@@ -1,1299 +1,399 @@
-Return-Path: <devicetree+bounces-199587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F4DB114FC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 02:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC48B11514
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 02:17:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C01AD4E82A3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 00:03:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF5754E5601
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 00:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5E510F1;
-	Fri, 25 Jul 2025 00:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA61A17C77;
+	Fri, 25 Jul 2025 00:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vqJIqWVf"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hEDFMjUI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2070.outbound.protection.outlook.com [40.107.100.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B434634;
-	Fri, 25 Jul 2025 00:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753401853; cv=none; b=X3eX082KffAGP6JNftnB6K8PgHg+TLXwgMwNRuPR7YVVn0c3VuHXdhwq36CX+GifzMiTelXr2ThS2RxswAKAmBfe6oYg+HymUxCuu3jt/ZsS2nCOTHtATbcekTYgQB8DR+u4TE9n1L7YO3VjIgTfIAxQT4yf+/zjPK3cudDZkOA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753401853; c=relaxed/simple;
-	bh=paRL7lUkiCFj50dlW21bp0ixJnDFpnsc1d28+/nSkvg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mel08SMrKvKvPbrJyOu9a0WjowAoOHJVbVpQpEuLub2jO9FX/afmOFADNyUIqOimwd55aVKJseZ2kbdFsi044CVK/ZSk+S6xCNExbFWU/yBtCeWmDXlX1pI+g+cdm0HF0CVt1ZEkOsmcvSG/RMIhQ7Lbqm2JhCqQBn39h5bWqmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vqJIqWVf; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 72967C66;
-	Fri, 25 Jul 2025 02:03:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1753401809;
-	bh=paRL7lUkiCFj50dlW21bp0ixJnDFpnsc1d28+/nSkvg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vqJIqWVfO6VZ87XVEP6qwg8954IYYK1jjPjCndkuuz2DZfRKOhFDGBnBoDrF52uZQ
-	 H0xQJvBJWjONAv8YGImPsE8o92Spd5y89Y6Dfz2B3jOYCDkgWgWuLWq+VAMeN7YvSW
-	 9pER5V0lWmvJsR30Apfhbjq7Njd0iicZ7rFoB184=
-Date: Fri, 25 Jul 2025 03:04:04 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank.Li@nxp.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Alice Yuan <alice.yuan@nxp.com>,
-	Robert Chiras <robert.chiras@nxp.com>,
-	Zhipeng Wang <zhipeng.wang_1@nxp.com>
-Subject: Re: [PATCH v3 2/4] media: nxp: add V4L2 subdev driver for camera
- parallel interface (CPI)
-Message-ID: <20250725000404.GW11202@pendragon.ideasonboard.com>
-References: <20250708-imx8qxp_pcam-v3-0-c8533e405df1@nxp.com>
- <20250708-imx8qxp_pcam-v3-2-c8533e405df1@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C7B1362;
+	Fri, 25 Jul 2025 00:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753402653; cv=fail; b=lzzsEZmILZTxbRNkeHULbPhlxcgt9UXdBGFO3ekLNLgwM4incIFCHWkq4FbyjA2Lje9p197lVsVHFADOMe+ktm87hJIOHFOjnT7f9dbLVkM794AnoeW63e2VfOS7VhBTL3/j1xReCJoj1hzAGfSr3RG0OUd2OEeYFKF22wCehV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753402653; c=relaxed/simple;
+	bh=HcgEYhbHumBVIIGYv+kT/nPcw4iMSpU5MamwfLFiD1E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tiw+shz6mWXZIFox7yRMV4v3KhdFS7TXS+3MRitCN8dk9qUcrqY1dats0nrQBM+MnopQ9MNeeNWhrwcHy2z8ULasEW4XGfyZYIqnF/SgM6dIlIEqK92PaLJcLjcUxaiVkzAbJ90rE2w/pRHudbqaMMeElR9GDNoj1GYJ7kdzkX4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hEDFMjUI; arc=fail smtp.client-ip=40.107.100.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Y4z1Ce4mEj3pqSMX8BlLmNJIDhFpnJxJ1+DyVLy19WCrjRdriOvDscbDSf04MI3eHpgNMjhNCSsh+70O8JHftMUNwyyD9Rcz0QCxiF2XzuvvAXyoGCFpjT5jx43pWRm8MdfeCVHXbW+on25FhxpTAHl9m1d7yfZbJ5Txm84V3pk6cougjrdwteXnkhF5r1FHVCnkHPuFulP5CjuEpOIhB8M5FpU6Qv4YuMNJXFwuzt/0FERfdWyl0osTWhZOv5svPoYFK7ZpNMlik35Yn1OwhEJILtrKFD2LwuX8jxBTqirsPFqMWP9SkvS7tgCcmuAUAF1s6jxJbFEvHWGxvCOmBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7C9pYEMRnMf97J1Zk6uTbXTCyub+/MpvvyBl6fx93PI=;
+ b=NckPWEPGvbSUBXHObT70KhlRt+6tMuiFBeVS7MaYSxkX6OGzzDEisMjIaaOWgJi/irfqKDGh8JUvwNPwz1tvewQ12VsAX9STuHOF3Azpzoo0Wqcaqm5FgTC2z65TsToxysiU4Bb6//ZVUwgSahoz2wfWBtnDJyrBcKFjqS4QMCMUnqkPWqAOri2xeY5jyVfgATbnRQhdWL7ETKtAjx1X+eMXuBNQRX/PeyHoMzWk5BDn45aS1Ue09SRZHb8rK9cyj+cl20BfP6Q2lj96SBDNP9MHo7m/8cKXcQVxbNOOSSsY16SMR55KXQcL9KmkLou9+/FziRUt+ReBRLn3vczu0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7C9pYEMRnMf97J1Zk6uTbXTCyub+/MpvvyBl6fx93PI=;
+ b=hEDFMjUIeFxb0iPcXXdUmyfnhaYiYYaGwk6dUHJgYJslF9kluzMiJSoS8vtlqhbJ9+qgJBfIq0vz+n+ihsG6+sM0Bmj7d66VRTZnCydigFiUZa+oQT1X0ExOZDPE8ZDXotlxz5X3GCBXkgTLmi+ArJNt13vGlSv57gUJtO+RKVIN0amFcVXKxmOvpnmFopghKA/VvJTnVlTobz5gySdcKKWQLQMT3UPnyxidqy3tWSNi0vfQbnJNEt1qFG2DfFp9VMqCmUyH8z3JjoA255gUsqYXlUsGpCglyOH9fcvxt3p6fbKZALtLq7XHBXv+sWR1NmguNT7qmsaUNHSqbZZfYA==
+Received: from DM3PR11MB8736.namprd11.prod.outlook.com (2603:10b6:0:47::9) by
+ LV8PR11MB8747.namprd11.prod.outlook.com (2603:10b6:408:206::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8922.39; Fri, 25 Jul 2025 00:17:27 +0000
+Received: from DM3PR11MB8736.namprd11.prod.outlook.com
+ ([fe80::b929:8bd0:1449:67f0]) by DM3PR11MB8736.namprd11.prod.outlook.com
+ ([fe80::b929:8bd0:1449:67f0%5]) with mapi id 15.20.8901.028; Fri, 25 Jul 2025
+ 00:17:27 +0000
+From: <Tristram.Ha@microchip.com>
+To: <horms@kernel.org>
+CC: <Woojung.Huh@microchip.com>, <andrew@lunn.ch>, <olteanv@gmail.com>,
+	<kuba@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <maxime.chevallier@bootlin.com>,
+	<davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+	<marex@denx.de>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH net-next v4 4/7] net: dsa: microchip: Use different
+ registers for KSZ8463
+Thread-Topic: [PATCH net-next v4 4/7] net: dsa: microchip: Use different
+ registers for KSZ8463
+Thread-Index:
+ AQHb+Et23Zt1PEXlIkK/NsvHKZPcN7Q6zkiAgAABfwCABDF2wIAA6f4AgACpFhCAAUD4AIAALLEQ
+Date: Fri, 25 Jul 2025 00:17:26 +0000
+Message-ID:
+ <DM3PR11MB87360DB5CDD47DF4A64FC33BEC59A@DM3PR11MB8736.namprd11.prod.outlook.com>
+References: <20250719012106.257968-1-Tristram.Ha@microchip.com>
+ <20250719012106.257968-5-Tristram.Ha@microchip.com>
+ <20250720101703.GQ2459@horms.kernel.org>
+ <20250720102224.GR2459@horms.kernel.org>
+ <DM3PR11MB873641FBBF2A79E787F13877EC5FA@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <20250723162158.GJ1036606@horms.kernel.org>
+ <DM3PR11MB87369E36CA76C1BB7C78CEB7EC5EA@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <20250724213556.GG1266901@horms.kernel.org>
+In-Reply-To: <20250724213556.GG1266901@horms.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PR11MB8736:EE_|LV8PR11MB8747:EE_
+x-ms-office365-filtering-correlation-id: 4c3b19f0-213e-455c-7384-08ddcb10a2ee
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?50FnVfED95o0lWBwdzEtlJm1vprKyNNpZKFW7ED+m6Tp3bmIBhKHAQBbc5hh?=
+ =?us-ascii?Q?MFOGWqTvfiIvbeaCYm0f4NVhHHAm1p6KEFcrvPBYa1cF9aOnRJpdcEE768iR?=
+ =?us-ascii?Q?2AYQ/e1/oHxpYGpKK0sWvnKFSPsK1pUnB1dwM94U27sMekGjzCHzeodDMWgY?=
+ =?us-ascii?Q?Z41OhvyyeD0C8TSJjAdSqt2v5ki84/kky4EzqKEwPz7YVLMZoa6sbAJUaoyB?=
+ =?us-ascii?Q?hIlZVSzuobMI3/tY8ObZuD/HRlK9vj2825VeitmP0Qy4i21LlPvZKmJMHGQy?=
+ =?us-ascii?Q?crawJaIm28oWLBudqKYCfbjvvU2YFMYSg7Jn/3nly81ylQ9C3KDlNzEvmv1D?=
+ =?us-ascii?Q?ekDpV6R+4sXS8v2fz3HDjm1I/KB70XeBUCQM3+/sQ+0akkKKnRMah+io846g?=
+ =?us-ascii?Q?Y/pPNehujZ0/GNKlwYwCRTJglmkbY6rYkgBsEPnQoQTlh9UqhpyJCZhbktq+?=
+ =?us-ascii?Q?+1L5TzWAHXCRP4frfZn9kqw0fRZLYPjrQFAE2I4VLIr5UCzBNeX+CzVk0DTX?=
+ =?us-ascii?Q?O50b05H/GLkRTgu3SMy0ToO0zwM0Rb+TX4hfVT2EvaAuMQA4h/I+LkRestOL?=
+ =?us-ascii?Q?0l5eIOrIgQuUSFG60Kj3Uj80AK3oms52oYP4+zMCDGslpkNin+ws70EhCDzo?=
+ =?us-ascii?Q?Wy9cXz//6gKdgxBsQ90wbK8wACiuU63FpPac+dPU6L56KtreLwl3IG06welI?=
+ =?us-ascii?Q?8v/wr62RoYV65nvbdJiQFNZdpzu4rhemRo2CzOmhACkzctM+MtcDvqh+61pF?=
+ =?us-ascii?Q?mEpyAGz87J4W7NNFJWzaOIautSLFkdTbbtPyDg6l8JHRRfAZshJY93c/mkt+?=
+ =?us-ascii?Q?3Bwq7C5JYvNTkw5kXytVnJEF1oGBIbhqpw8DqP/l7jeJEkdjPmCrx6uDyDAP?=
+ =?us-ascii?Q?zpsvJRg++lq2ugCYfesbGWdcVH5DOSC8PaER0oyKh6b6Xc01uTtT2K8oIUj+?=
+ =?us-ascii?Q?ePM1mZ2U2g1DC+WTCP3xCduG0yKm4YeleS4o/iDWXlO9+KQAP+xaQnSiuXUd?=
+ =?us-ascii?Q?WzzRkPHsofFEfcDyDLadVaaNavjbioXeiL5mlW92a1ALYEJ4dJH/1xCgQ5tp?=
+ =?us-ascii?Q?D8X+3t5L+WvYxocopAzYnq0zk3Ids0ZMxZROu1srr+vNA5pgSE21+a1u44nf?=
+ =?us-ascii?Q?pMuz1Mv1s05UYV6dj0F8DJiQX0Jq0VCmuCiTngBfx+uWfZ7GLW9Xl2w0vDp5?=
+ =?us-ascii?Q?I3TtZmnvAonrCGkYiOwGWNmozPkYm1NA0YEiJCjEcsaMkeCdez8+tix+vxN/?=
+ =?us-ascii?Q?vkIBLdoAM7aJGMxASiyVwBOKEPmwIX6ddeeijF4BTaybjpXXnx7XxYujIOe4?=
+ =?us-ascii?Q?hxF9UEhACj5d0jQSYhG9Ms69RhhAyekLE3z7rQbjm5HftoZrykMAD4uyEgyV?=
+ =?us-ascii?Q?XjCYoUAoxhkyf8AIIfyWtlEOUu+4gdhUNidIfMpvl/F+n7tN4MhVrMA0DTiH?=
+ =?us-ascii?Q?IoQqIGC7txLKq7XgKyp0h76Pp9sROoeughaJP2vagVGkZmUt1Q8ZzObX0U9y?=
+ =?us-ascii?Q?0JW3D3A7iSNDwv0=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR11MB8736.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?gnJBvaHmXfkcVYOvD23OLE9twczTLrtmDtzdPyEz2YzG/Ogm+YCpLuQBKiEu?=
+ =?us-ascii?Q?D81Krn37o2mkZGdXPKivmfwjACjpmEs/onmr8mB5/o+YA2xqreBdbgQd/lS7?=
+ =?us-ascii?Q?D8xU9upvJGZ5DGfJwuHPjabAUa4uZoZU8KcNqjUSmrvjDYCnp/JgsbBhIPJU?=
+ =?us-ascii?Q?LdAWTOXKQoL08+neJtI6ZScNyztAM0xEDvEwotyc7GkevAs9icjPw5R7cDvf?=
+ =?us-ascii?Q?wYnRMSDsVheDdANmC/7jTnwYISnysDbL9kCSqO5s3S6KS0FYw4a8rkzJYFAf?=
+ =?us-ascii?Q?GWOmXuvetPB4Pw9ctLPBn0orZZbR4I2dTfttBOj+ZbuahwC/IDdUl0klHhbi?=
+ =?us-ascii?Q?qUXkARfl1P1cqEzyQTF31Y1BoVD5Ligjk71EgRW58GfFn5tECRex0zuCDzOW?=
+ =?us-ascii?Q?pxnWfcpFpQqqg93sMSbdq7ybY2Nvg//ffj9SgQjvSMgnc0EPcr/MieVoq35N?=
+ =?us-ascii?Q?+vAv688sUhhiU+RV9Oq4/Tkp3dlqpPITmeYMJRr+nViReba7mJLjXR0+tFiA?=
+ =?us-ascii?Q?++G/aibfS582Zcb3v0ocsQOlDXsBABLSGsIoq0FgAClU6mL1QcesW02TOsbi?=
+ =?us-ascii?Q?fKMULDf80nHOfx+fTbu5l0vUgALvkKttLN0lWZ9JJMFhXW6FRq9ZfolkS1Bh?=
+ =?us-ascii?Q?axseGzSdcj9MBivHrxbkmDRQbECHctJYjEfREM6Gr4mOsFVmhScVtM6HofkB?=
+ =?us-ascii?Q?IBsGG7E08omiaLsvurpCa+s4cCGZLOmxwSSX05hBgTWqI/lRmdqoJm6NHh4w?=
+ =?us-ascii?Q?a1RpR4utX7KmXDGd2nkWFm/FGxsvLVIwqE5Y2QeTEnC0qjoZW1kQZHGLfWnH?=
+ =?us-ascii?Q?2y0qezZT6Wn/+mRYQ7BYSw8Ar7++3fPqKdJDe1n56h+W964aZo1guesrvGWx?=
+ =?us-ascii?Q?OmsSg/B6cJ5Pg5+C6DVQr6Wzbt14STHtvBHh2LVdix92mNlVxADN9dudRkH1?=
+ =?us-ascii?Q?HVeCYuzjTzEIb5M5gDgAZW69ptSLhiOOgJRwaIqcySJz1he82TnkV31V9N1c?=
+ =?us-ascii?Q?wETK+DLO2bb2xEzh8YBxjxJYp5J7H3x2LWJO3cZ2r4ShcGmPg/SxPu6Z7BhH?=
+ =?us-ascii?Q?brbYgt04UgW6TzVEKNimsErg5gRpxXFBTG8f36J/p4Ci325ba9M7O+PVBYg9?=
+ =?us-ascii?Q?RJ4WvxGHQ+l44zVS6IycXBuH3uV+8hDoHdknskvuXJPW/nJ0+n1DGwjCaglu?=
+ =?us-ascii?Q?nM/LerbybBl4EmvVralh0v0KQW+R7mOp+9uD2XD39mEv59KC8Y7OIi8neBez?=
+ =?us-ascii?Q?xitRYJ0t7IzvSpkBOp4p3nEZrUa3LSwrkVbwvBNTLqTp9SWaJzvSBHvVYSZJ?=
+ =?us-ascii?Q?SkntCwRF+UfGttkhAAVGndXtBA3SdnNrdnoKOKFZ+UBn/QrTP3TpPAZRrMTC?=
+ =?us-ascii?Q?rpM7iuRcw3Tezo1XQyyNWay5CjgP0Lj5Sw3Q2MpsLi2MGix865vOBCFR/dX+?=
+ =?us-ascii?Q?Ts4I3VWBQXkoRz2Ad4jSTnxEYrKXBHQVBDuFqHfL931oBKXKaghIwdPC4zth?=
+ =?us-ascii?Q?FUd97fB47IW/Fonvz2FxPx5kqoXL4MY/ZV1MGGy0vL2BhW7XyIlSkzkHQcmw?=
+ =?us-ascii?Q?qXixlmUkgiIfCYNKsnPZEh3NWe+Gix+HW68jvU0q?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250708-imx8qxp_pcam-v3-2-c8533e405df1@nxp.com>
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PR11MB8736.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c3b19f0-213e-455c-7384-08ddcb10a2ee
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2025 00:17:26.9609
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DDzHYRvOqT6op9lpuTAaiQb7sAWhcee80Fglds3NWjNK9IuKbncwecH/uDGvHemKPx3OtCf7wOtqnXei0zAuT3zsfNFszmU+tOMhpssG0+c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8747
+
+> On Thu, Jul 24, 2025 at 02:28:56AM +0000, Tristram.Ha@microchip.com wrote=
+:
+> > > On Wed, Jul 23, 2025 at 02:25:27AM +0000, Tristram.Ha@microchip.com w=
+rote:
+> > > > > On Sun, Jul 20, 2025 at 11:17:03AM +0100, Simon Horman wrote:
+> > > > > > On Fri, Jul 18, 2025 at 06:21:03PM -0700, Tristram.Ha@microchip=
+.com
+> wrote:
+> > > > > > > From: Tristram Ha <tristram.ha@microchip.com>
+> > > > > > >
+> > > > > > > KSZ8463 does not use same set of registers as KSZ8863 so it i=
+s necessary
+> > > > > > > to change some registers when using KSZ8463.
+> > > > > > >
+> > > > > > > Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
+> > > > > > > ---
+> > > > > > > v3
+> > > > > > > - Replace cpu_to_be16() with swab16() to avoid compiler warni=
+ng
+> > > > > >
+> > > > > > ...
+> > > > > >
+> > > > > > > diff --git a/drivers/net/dsa/microchip/ksz_common.c
+> > > > > b/drivers/net/dsa/microchip/ksz_common.c
+> > > > > >
+> > > > > > ...
+> > > > > >
+> > > > > > > @@ -2980,10 +2981,15 @@ static int ksz_setup(struct dsa_switc=
+h *ds)
+> > > > > > >     }
+> > > > > > >
+> > > > > > >     /* set broadcast storm protection 10% rate */
+> > > > > > > -   regmap_update_bits(ksz_regmap_16(dev), regs[S_BROADCAST_C=
+TRL],
+> > > > > > > -                      BROADCAST_STORM_RATE,
+> > > > > > > -                      (BROADCAST_STORM_VALUE *
+> > > > > > > -                      BROADCAST_STORM_PROT_RATE) / 100);
+> > > > > > > +   storm_mask =3D BROADCAST_STORM_RATE;
+> > > > > > > +   storm_rate =3D (BROADCAST_STORM_VALUE *
+> > > > > BROADCAST_STORM_PROT_RATE) / 100;
+> > > > > > > +   if (ksz_is_ksz8463(dev)) {
+> > > > > > > +           storm_mask =3D swab16(storm_mask);
+> > > > > > > +           storm_rate =3D swab16(storm_rate);
+> > > > > > > +   }
+> > > > > > > +   regmap_update_bits(ksz_regmap_16(dev),
+> > > > > > > +                      reg16(dev, regs[S_BROADCAST_CTRL]),
+> > > > > > > +                      storm_mask, storm_rate);
+> > > > > >
+> > > > > > Hi Tristram,
+> > > > > >
+> > > > > > I am confused by the use of swab16() here.
+> > > > > >
+> > > > > > Let us say that we are running on a little endian host (likely)=
+.
+> > > > > > Then the effect of this is to pass big endian values to regmap_=
+update_bits().
+> > > > > >
+> > > > > > But if we are running on a big endian host, the opposite will b=
+e true:
+> > > > > > little endian values will be passed to regmap_update_bits().
+> > > > > >
+> > > > > >
+> > > > > > Looking at KSZ_REGMAP_ENTRY() I see:
+> > > > > >
+> > > > > > #define KSZ_REGMAP_ENTRY(width, swp, regbits, regpad, regalign)=
+         \
+> > > > > >         {                                                      =
+         \
+> > > > > >               ...
+> > > > > >                 .reg_format_endian =3D REGMAP_ENDIAN_BIG,      =
+           \
+> > > > > >                 .val_format_endian =3D REGMAP_ENDIAN_BIG       =
+           \
+> > > > > >         }
+> > > > >
+> > > > > Update; I now see this in another patch of the series:
+> > > > >
+> > > > > +#define KSZ8463_REGMAP_ENTRY(width, swp, regbits, regpad, regali=
+gn)    \
+> > > > > +       {                                                        =
+       \
+> > > > >                 ...
+> > > > > +               .reg_format_endian =3D REGMAP_ENDIAN_BIG,        =
+         \
+> > > > > +               .val_format_endian =3D REGMAP_ENDIAN_LITTLE      =
+         \
+> > > > > +       }
+> > > > >
+> > > > > Which I understand to mean that the hardware is expecting little =
+endian
+> > > > > values. But still, my concerns raised in my previous email of thi=
+s
+> > > > > thread remain.
+> > > > >
+> > > > > And I have a question: does this chip use little endian register =
+values
+> > > > > whereas other chips used big endian register values?
+> > > > >
+> > > > > >
+> > > > > > Which based on a skimming the regmap code implies to me that
+> > > > > > regmap_update_bits() should be passed host byte order values
+> > > > > > which regmap will convert to big endian when writing out
+> > > > > > these values.
+> > > > > >
+> > > > > > It is unclear to me why changing the byte order of storm_mask
+> > > > > > and storm_rate is needed here. But it does seem clear that
+> > > > > > it will lead to inconsistent results on big endian and little
+> > > > > > endian hosts.
+> > > >
+> > > > The broadcast storm value 0x7ff is stored in registers 6 and 7 in K=
+SZ8863
+> > > > where register 6 holds the 0x7 part while register 7 holds the 0xff=
+ part.
+> > > > In KSZ8463 register 6 is defined as 16-bit where the 0x7 part is he=
+ld in
+> > > > lower byte and the 0xff part is held in higher byte.  It is necessa=
+ry to
+> > > > swap the bytes when the value is passed to the 16-bit write functio=
+n.
+> > >
+> > > Perhaps naively, I would have expected
+> > >
+> > >         .val_format_endian =3D REGMAP_ENDIAN_LITTLE
+> > >
+> > > to handle writing the 16-bit value 0x7ff such that 0x7 is in
+> > > the lower byte, while 0xff is in the upper byte. Is that not the case=
+?
+> > >
+> > > If not, do you get the desired result by removing the swab16() calls
+> > > and using
+> > >
+> > >         .val_format_endian =3D REGMAP_ENDIAN_BIG
+> > >
+> > > But perhaps I misunderstand how .val_format_endian works.
+> > >
+> > > >
+> > > > All other KSZ switches use 8-bit access with automatic address incr=
+ease
+> > > > so a write to register 0 with value 0x12345678 means 0=3D0x12, 1=3D=
+0x34,
+> > > > 2=3D0x56, and 3=3D0x78.
+> >
+> > It is not about big-endian or little-endian.  It is just the presentati=
+on
+> > of this register is different between KSZ8863 and KSZ8463.  KSZ8863 use=
+s
+> > big-endian for register value as the access is 8-bit and the address is
+> > automatically increased by 1.  Writing a value 0x03ff to register 6 mea=
+ns
+> > 6=3D0x03 and 7=3D0xff.  The actual SPI transfer commands are "02 06 03 =
+ff."
+> > KSZ8463 uses little-endian for register value as the access is fixed at
+> > 8-bit, 16-bit, or 32-bit.  Writing 0x03ff results in the actual SPI
+> > transfer commands "80 70 ff 03" where the correct commands are
+> > "80 70 03 ff."
+>=20
+> The difference between expressing a 16-bit value as "ff 03" and "03 ff"
+> sounds a lot like endianness to me.
+>=20
+> "ff 03" is the little endian representation of 0x3ff.
+> "03 ff" is the big endian representation of 0x3ff.
+>=20
+> I am very confused as to why you say "KSZ8463 uses little-endian for
+> register value". And then go on to say that the correct transfer command =
+is
+> "02 06 03 ff", where the value in that command is "03 ff." That looks lik=
+e
+> a big endian value to me.
+>=20
+>=20
+> In my reading of your code, it takes a host byte order value, and swappin=
+g
+> it's byte order. It is then passing it to an API that expects a host byte
+> order value. I think it would be much better to avoid doing that. This is
+> my main point.
+>=20
+> Let us consider the (likely) case that the host is little endian.  The
+> value (and mask) are byte swapped, becoming big endian.  Thisbig endian
+> value (and mask) is passed to regmap_update_bits().
+>=20
+> Now let us assume that, because REGMAP_ENDIAN_LITTLE is used,
+> they then pass through something like cpu_to_le16().
+> That's a noop on a little endian system. So the value remains big endian.
+>=20
+> Next, let us consider a big endian host.
+> The value (and mask) are byte swapped, becoming little endian.
+> This little endian value (and mask) is passed to regmap_update_bits().
+>=20
+> Then, let us assume that, because REGMAP_ENDIAN_LITTLE is used,
+> they then pass through something like cpu_to_le16().
+> This is a byte-swap on big endian hosts.
+> So the value (and mask) become big endian.
+>=20
+> The result turns out to be the same for little endian and big endian host=
+s,
+> which is nice. But now let us assume that instead of passing byte-swapped
+> values to APIs that expect host byte order values, we instead pass host
+> byte order values and use REGMAP_ENDIAN_BIG.
+>=20
+> In this case the host byte order values are passed to regmap_update_bits(=
+).
+> Then, as per our earlier assumptions, because REGMAP_ENDIAN_BIG is used,
+> the value (and mask) pass through cpu_to_be16 or similar. After which the=
+y
+> are big endian. The same result as above. But without passing byte-swappe=
+d
+> values to APIs that expect host byte order values.
+>=20
+> Is my understanding of the effect of REGMAP_ENDIAN_LITTLE and
+> REGMAP_ENDIAN_BIG incorrect? Is some other part of my reasoning faulty?
+>=20
+>=20
+> I feel that we are talking past each other.
+> Let's try to find a common understanding.
+
+It is really about the register definition of this specific register.
+In KSZ8863 when presenting in 16-bit the value is 0x07ff, but in KSZ8463
+it is 0xff07.  It is the fault of the hardware to define such value.
+
+Note that in the new patch KSZ8463 SPI driver implements its own access
+functions, so native mode is used instead and there is no automatic
+swapping depending on the big-endian or little-endian format.  Still this
+code is needed to program the register correctly.
 
-Hi Frank,
-
-Thank you for the patch.
-
-On Tue, Jul 08, 2025 at 01:48:43PM -0400, Frank Li via B4 Relay wrote:
-> From: Alice Yuan <alice.yuan@nxp.com>
-> 
-> Add a V4L2 sub-device driver for the CPI controller found on i.MX8QXP,
-> i.MX8QM, and i.MX93 SoCs. This controller supports parallel camera sensors
-> and enables image data capture through a parallel interface.
-> 
-> Signed-off-by: Alice Yuan <alice.yuan@nxp.com>
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> Signed-off-by: Zhipeng Wang <zhipeng.wang_1@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> change in v3
-> - replace csi with cpi
-> - use __free(fwnode_handle) to simpilfy code
-> - remove imx91 driver data, which is the same as imx93
-> 
-> change in v2
-> - remove MODULE_ALIAS
-> - use devm_pm_runtime_enable() and cleanup remove function
-> - change output format to 1x16. controller convert 2x8 to 1x16 format
-> ---
->  MAINTAINERS                                   |   1 +
->  drivers/media/platform/nxp/Kconfig            |  11 +
->  drivers/media/platform/nxp/Makefile           |   1 +
->  drivers/media/platform/nxp/imx-parallel-cpi.c | 920 ++++++++++++++++++++++++++
->  4 files changed, 933 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8ae0667d2bb41fb6a1549bd3b2b33f326cbd1303..14842a3b860a6f23846f12a684eedcbb9eb69e19 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15112,6 +15112,7 @@ F:	Documentation/devicetree/bindings/media/nxp,imx-mipi-csi2.yaml
->  F:	Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
->  F:	Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
->  F:	drivers/media/platform/nxp/imx-mipi-csis.c
-> +F:	drivers/media/platform/nxp/imx-parallel-cpi.c
->  F:	drivers/media/platform/nxp/imx7-media-csi.c
->  F:	drivers/media/platform/nxp/imx8mq-mipi-csi2.c
->  
-> diff --git a/drivers/media/platform/nxp/Kconfig b/drivers/media/platform/nxp/Kconfig
-> index 40e3436669e213fdc5da70821dc0b420e1821f4f..504ae1c6494f331c16124a224421ac7acd433ba5 100644
-> --- a/drivers/media/platform/nxp/Kconfig
-> +++ b/drivers/media/platform/nxp/Kconfig
-> @@ -39,6 +39,17 @@ config VIDEO_IMX_MIPI_CSIS
->  	  Video4Linux2 sub-device driver for the MIPI CSI-2 CSIS receiver
->  	  v3.3/v3.6.3 found on some i.MX7 and i.MX8 SoCs.
->  
-> +config VIDEO_IMX_PARALLEL_CPI
-> +	tristate "NXP i.MX9/i.MX8 Parallel CPI Driver"
-
-I'd write it in numerical order, "i.MX8/i.MX9"
-
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on VIDEO_DEV
-> +	select MEDIA_CONTROLLER
-> +	select V4L2_FWNODE
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	help
-> +	  Video4Linux2 sub-device driver for PARALLEL CPI receiver found
-> +	  on some iMX8 and iMX9 SoCs.
-> +
->  source "drivers/media/platform/nxp/imx8-isi/Kconfig"
->  
->  # mem2mem drivers
-> diff --git a/drivers/media/platform/nxp/Makefile b/drivers/media/platform/nxp/Makefile
-> index 4d90eb71365259ebdda84ea58483e1c4131d3ac7..5346919d2f1083b51ec99b66981c5d38b3df960c 100644
-> --- a/drivers/media/platform/nxp/Makefile
-> +++ b/drivers/media/platform/nxp/Makefile
-> @@ -7,5 +7,6 @@ obj-y += imx8-isi/
->  obj-$(CONFIG_VIDEO_IMX7_CSI) += imx7-media-csi.o
->  obj-$(CONFIG_VIDEO_IMX8MQ_MIPI_CSI2) += imx8mq-mipi-csi2.o
->  obj-$(CONFIG_VIDEO_IMX_MIPI_CSIS) += imx-mipi-csis.o
-> +obj-$(CONFIG_VIDEO_IMX_PARALLEL_CPI) += imx-parallel-cpi.o
->  obj-$(CONFIG_VIDEO_IMX_PXP) += imx-pxp.o
->  obj-$(CONFIG_VIDEO_MX2_EMMAPRP) += mx2_emmaprp.o
-> diff --git a/drivers/media/platform/nxp/imx-parallel-cpi.c b/drivers/media/platform/nxp/imx-parallel-cpi.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..718f02bf70c4d0ae74ecf842c1ecb1a1afbcdd45
-> --- /dev/null
-> +++ b/drivers/media/platform/nxp/imx-parallel-cpi.c
-> @@ -0,0 +1,920 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * i.MX Parallel CPI receiver driver.
-> + *
-> + * Copyright 2019-2025 NXP
-> + *
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/debugfs.h>
-
-I don't think you use this.
-
-> +#include <linux/delay.h>
-> +#include <linux/errno.h>
-> +#include <linux/interrupt.h>
-
-I don't think you use this either.
-
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/mfd/syscon.h>
-
-Alphabetical order please.
-
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-
-This doesn't seem needed.
-
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
-
-Same here.
-
-> +#include <linux/spinlock.h>
-
-And here. Please verify all headers, drop the ones you don't need, and
-add any you may have forgotten. That includes the media/ headers.
-
-> +
-> +#include <media/v4l2-common.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-event.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-mc.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +#define IMX_CPI_DEF_MBUS_CODE			MEDIA_BUS_FMT_UYVY8_2X8
-> +#define IMX_CPI_DEF_PIX_WIDTH			1920
-> +#define IMX_CPI_DEF_PIX_HEIGHT			1080
-
-Those macros are used in a single location only (or will be in the next
-version), drop them and use the values directly in imx_cpi_default_fmt.
-
-> +
-> +#define IMX_CPI_MAX_PIX_WIDTH			0xffff
-> +#define IMX_CPI_MAX_PIX_HEIGHT			0xffff
-> +
-> +#define IMX_CPI_PAD_SINK			0
-> +#define IMX_CPI_PAD_SOURCE			1
-> +#define IMX_CPI_PADS_NUM			2
-> +
-> +/* CI_PI INTERFACE CONTROL */
-> +#define IF_CTRL_REG_PL_ENABLE			BIT(0)
-> +#define IF_CTRL_REG_PL_VALID			BIT(1)
-> +#define IF_CTRL_REG_DATA_TYPE_SEL		BIT(8)
-> +#define IF_CTRL_REG_DATA_TYPE(x)		FIELD_PREP(GENMASK(13, 9), (x))
-> +
-> +#define DATA_TYPE_OUT_NULL			0x00
-> +#define DATA_TYPE_OUT_RGB			0x04
-> +#define DATA_TYPE_OUT_YUV444			0x08
-> +#define DATA_TYPE_OUT_YYU420_ODD		0x10
-> +#define DATA_TYPE_OUT_YYU420_EVEN		0x12
-> +#define DATA_TYPE_OUT_YYY_ODD			0x18
-> +#define DATA_TYPE_OUT_UYVY_EVEN			0x1a
-> +#define DATA_TYPE_OUT_RAW			0x1c
-> +
-> +#define IF_CTRL_REG_IF_FORCE_HSYNV_OVERRIDE	0x4
-> +#define IF_CTRL_REG_IF_FORCE_VSYNV_OVERRIDE	0x2
-> +#define IF_CTRL_REG_IF_FORCE_DATA_ENABLE_OVERRIDE	0x1
-> +
-> +/* CPI INTERFACE CONTROL REG */
-> +#define CPI_CTRL_REG_CPI_EN			BIT(0)
-> +#define CPI_CTRL_REG_PIXEL_CLK_POL		BIT(1)
-> +#define CPI_CTRL_REG_HSYNC_POL			BIT(2)
-> +#define CPI_CTRL_REG_VSYNC_POL			BIT(3)
-> +#define CPI_CTRL_REG_DE_POL			BIT(4)
-> +#define CPI_CTRL_REG_PIXEL_DATA_POL		BIT(5)
-> +#define CPI_CTRL_REG_CCIR_EXT_VSYNC_EN		BIT(6)
-> +#define CPI_CTRL_REG_CCIR_EN			BIT(7)
-> +#define CPI_CTRL_REG_CCIR_VIDEO_MODE		BIT(8)
-> +#define CPI_CTRL_REG_CCIR_NTSC_EN		BIT(9)
-> +#define CPI_CTRL_REG_CCIR_VSYNC_RESET_EN	BIT(10)
-> +#define CPI_CTRL_REG_CCIR_ECC_ERR_CORRECT_EN	BIT(11)
-> +#define CPI_CTRL_REG_HSYNC_FORCE_EN		BIT(12)
-> +#define CPI_CTRL_REG_VSYNC_FORCE_EN		BIT(13)
-> +#define CPI_CTRL_REG_GCLK_MODE_EN		BIT(14)
-> +#define CPI_CTRL_REG_VALID_SEL			BIT(15)
-> +#define CPI_CTRL_REG_RAW_OUT_SEL		BIT(16)
-> +#define CPI_CTRL_REG_HSYNC_OUT_SEL		BIT(17)
-> +#define CPI_CTRL_REG_HSYNC_PULSE(x)		FIELD_PREP(GENMASK(21, 19), (x))
-> +#define CPI_CTRL_REG_UV_SWAP_EN			BIT(22)
-> +#define CPI_CTRL_REG_DATA_TYPE_IN(x)		FIELD_PREP(GENMASK(26, 23), (x))
-> +#define CPI_CTRL_REG_MASK_VSYNC_COUNTER(x)	FIELD_PREP(GENMASK(28, 27), (x))
-> +#define CPI_CTRL_REG_SOFTRST			BIT(31)
-> +
-> +/* CPI INTERFACE STATUS */
-> +#define CPI_STATUS_FIELD_TOGGLE			BIT(0)
-> +#define CPI_STATUS_ECC_ERROR			BIT(1)
-> +
-> +/* CPI INTERFACE CONTROL REG1 */
-> +#define CPI_CTRL_REG1_PIXEL_WIDTH(v)		FIELD_PREP(GENMASK(15, 0), (v))
-> +#define CPI_CTRL_REG1_VSYNC_PULSE(v)		FIELD_PREP(GENMASK(31, 16), (v))
-> +
-> +/* Need match field DATA_TYPE_IN definition at CPI CTRL register */
-> +enum cpi_in_data_type {
-> +	CPI_IN_DT_UYVY_BT656_8 = 0x0,
-> +	CPI_IN_DT_UYVY_BT656_10,
-> +	CPI_IN_DT_RGB_8,
-> +	CPI_IN_DT_BGR_8,
-> +	CPI_IN_DT_YVYU_8 = 0x5,
-> +	CPI_IN_DT_YUV_8,
-> +	CPI_IN_DT_RAW_8 = 0x9,
-> +	CPI_IN_DT_RAW_10,
-> +};
-> +
-> +enum {
-> +	PI_MODE_INIT,
-
-Not used.
-
-> +	PI_GATE_CLOCK_MODE,
-> +	PI_CCIR_MODE,
-> +};
-> +
-> +enum {
-> +	PI_V1,
-> +	PI_V2,
-> +};
-> +
-> +static const char *const imx_cpi_clk_id[] = {
-> +	"pixel",
-> +	"ipg",
-> +};
-> +
-> +#define PCPIDEV_NUM_CLKS   ARRAY_SIZE(imx_cpi_clk_id)
-
-Drop this macro and use ARRAY_SIZE() in the single location below.
-
-> +
-> +struct imx_cpi_plat_data {
-> +	u32 version;
-> +	u32 if_ctrl_reg;
-> +	u32 interface_status;
-> +	u32 interface_ctrl_reg;
-> +	u32 interface_ctrl_reg1;
-> +	u8 def_hsync_pol;
-> +	u8 def_vsync_pol;
-> +	u8 def_pixel_clk_pol;
-> +	u8 def_cpi_in_data_type;
-> +};
-> +
-> +struct cpi_pm_domain {
-> +	struct device *dev;
-> +	struct device_link *link;
-> +};
-> +
-> +struct imx_cpi_device {
-> +	struct device *dev;
-> +	void __iomem *regs;
-> +	struct reset_control *mrst;
-> +	struct regulator *pcpi_phy_regulator;
-
-Those two fields are unusued.
-
-> +	struct clk_bulk_data clks[PCPIDEV_NUM_CLKS];
-> +
-> +	struct v4l2_subdev sd;
-> +	struct media_pad pads[IMX_CPI_PADS_NUM];
-> +	struct v4l2_async_notifier notifier;
-> +
-> +	struct v4l2_mbus_framefmt format;
-
-Unused.
-
-> +	const struct imx_cpi_plat_data *pdata;
-> +	struct imx_cpi_pix_format const *pcpidev_fmt;
-
-Unused.
-
-> +
-> +	struct {
-> +		struct v4l2_subdev *sd;
-> +		const struct media_pad *pad;
-> +	} source;
-> +
-> +	struct cpi_pm_domain pm_domains[2];
-
-Unused.
-
-> +
-> +	u8 mode;
-> +	u8 uv_swap;
-> +};
-> +
-> +struct imx_cpi_pix_format {
-> +	u32 code;
-> +	u32 output;
-> +	u32 data_type;
-
-This isn't used. It seems a bit weird though that .def_cpi_in_data_type
-is used, but not the per-format data type.
-
-> +	u8 width;
-> +};
-> +
-> +static const struct imx_cpi_pix_format imx_cpi_formats[] = {
-> +	/* YUV formats. */
-> +	{
-> +		.code = MEDIA_BUS_FMT_UYVY8_2X8,
-> +		.output = MEDIA_BUS_FMT_UYVY8_1X16,
-> +		.data_type = CPI_IN_DT_YVYU_8,
-> +		.width = 16,
-> +	}, {
-> +		.code = MEDIA_BUS_FMT_YUYV8_2X8,
-> +		.output = MEDIA_BUS_FMT_YUYV8_1X16,
-> +		.data_type = CPI_IN_DT_YVYU_8,
-> +		.width = 16,
-> +	},
-> +};
-> +
-> +static const struct imx_cpi_plat_data imx8qxp_pdata = {
-> +	.version = PI_V1,
-> +	.if_ctrl_reg = 0x0,
-> +	.interface_status = 0x20,
-> +	.interface_ctrl_reg = 0x10,
-> +	.interface_ctrl_reg1 = 0x30,
-> +	.def_hsync_pol = 1,
-> +	.def_vsync_pol = 0,
-> +	.def_pixel_clk_pol = 0,
-> +	.def_cpi_in_data_type = CPI_IN_DT_UYVY_BT656_8,
-> +};
-> +
-> +static const struct imx_cpi_plat_data imx93_pdata = {
-> +	.version = PI_V2,
-> +	.if_ctrl_reg = 0x0,
-> +	.interface_status = 0x4,
-> +	.interface_ctrl_reg = 0x8,
-> +	.interface_ctrl_reg1 = 0xc,
-> +	.def_hsync_pol = 0,
-> +	.def_vsync_pol = 1,
-> +	.def_pixel_clk_pol = 0,
-
-This is the same for the two variants. Do you plan to support other
-variants that will have default clock polarities ? If not, drop this.
-
-> +	.def_cpi_in_data_type = CPI_IN_DT_YVYU_8,
-> +};
-> +
-> +static void imx_cpi_regs_dump(struct imx_cpi_device *pcpidev)
-> +{
-> +	struct device *dev = pcpidev->dev;
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	u32 i;
-> +
-> +	struct {
-> +		u32 offset;
-> +		const char *const name;
-> +	} registers[] = {
-> +		{ pdata->if_ctrl_reg, "HW_IF_CTRL_REG" },
-> +		{ pdata->interface_ctrl_reg, "HW_CPI_CTRL_REG" },
-> +		{ pdata->interface_status, "HW_CPI_STATUS" },
-> +		{ pdata->interface_ctrl_reg1, "HW_CPI_CTRL_REG1" },
-> +
-> +	};
-> +
-> +	for (i = 0; i < ARRAY_SIZE(registers); i++) {
-> +		u32 reg = readl(pcpidev->regs + registers[i].offset);
-> +
-> +		dev_dbg(dev, "%20s[0x%.2x]: 0x%.8x\n",
-> +			registers[i].name, registers[i].offset, reg);
-> +	}
-> +}
-> +
-> +static const struct imx_cpi_pix_format *find_imx_cpi_format(u32 code)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(imx_cpi_formats); i++)
-> +		if (code == imx_cpi_formats[i].code)
-> +			return &imx_cpi_formats[i];
-> +
-> +	return NULL;
-> +}
-> +
-> +static void imx_cpi_sw_reset(struct imx_cpi_device *pcpidev)
-> +{
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	u32 val;
-> +
-> +	/* Softwaret Reset */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val |= CPI_CTRL_REG_SOFTRST;
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	usleep_range(500, 1000);
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val &= ~CPI_CTRL_REG_SOFTRST;
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +}
-> +
-> +static void imx_cpi_hw_config(struct imx_cpi_device *pcpidev)
-> +{
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	u32 val;
-> +
-> +	/* Software Reset */
-> +	imx_cpi_sw_reset(pcpidev);
-> +
-> +	/* Config PL Data Type */
-> +	val = readl(pcpidev->regs + pdata->if_ctrl_reg);
-> +	val |= IF_CTRL_REG_DATA_TYPE(DATA_TYPE_OUT_YUV444);
-
-Don't you need to clear the field first ? Same everywhere else where
-applicable.
-
-> +	writel(val, pcpidev->regs + pdata->if_ctrl_reg);
-> +
-> +	/* Enable sync Force */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val |= (CPI_CTRL_REG_HSYNC_FORCE_EN | CPI_CTRL_REG_VSYNC_FORCE_EN);
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	/* Enable Pixel Link */
-> +	val = readl(pcpidev->regs + pdata->if_ctrl_reg);
-> +	val |= IF_CTRL_REG_PL_ENABLE;
-> +	writel(val, pcpidev->regs + pdata->if_ctrl_reg);
-> +
-> +	/* Enable Pixel Link */
-> +	val = readl(pcpidev->regs + pdata->if_ctrl_reg);
-> +	val |= IF_CTRL_REG_PL_VALID;
-> +	writel(val, pcpidev->regs + pdata->if_ctrl_reg);
-> +
-> +	/* Config CTRL REG */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	val |= (CPI_CTRL_REG_DATA_TYPE_IN(pdata->def_cpi_in_data_type) |
-> +		FIELD_PREP(CPI_CTRL_REG_HSYNC_POL, pdata->def_hsync_pol) |
-> +		FIELD_PREP(CPI_CTRL_REG_VSYNC_POL, pdata->def_vsync_pol) |
-> +		FIELD_PREP(CPI_CTRL_REG_PIXEL_CLK_POL, pdata->def_pixel_clk_pol) |
-
-You should parse the polarities from the device tree.
-
-> +		CPI_CTRL_REG_MASK_VSYNC_COUNTER(3) |
-> +		CPI_CTRL_REG_HSYNC_PULSE(2));
-> +
-> +	if (pcpidev->uv_swap)
-> +		val |= CPI_CTRL_REG_UV_SWAP_EN;
-> +
-> +	if (pcpidev->mode & PI_GATE_CLOCK_MODE) {
-
-mode is hardcoded to PI_GATE_CLOCK_MODE. And the mode seem exclusive, so
-they shouldn't be handled as a bitmask, especially given that the
-PI_GATE_CLOCK_MODE and PI_CCIR_MODE enumerators have a single bit set
-only by accident.
-
-> +		val |= CPI_CTRL_REG_GCLK_MODE_EN;
-> +	} else if (pcpidev->mode & PI_CCIR_MODE) {
-> +		val |= (CPI_CTRL_REG_CCIR_EN |
-> +			CPI_CTRL_REG_CCIR_VSYNC_RESET_EN |
-> +			CPI_CTRL_REG_CCIR_EXT_VSYNC_EN |
-> +			CPI_CTRL_REG_CCIR_ECC_ERR_CORRECT_EN);
-> +	}
-> +
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +}
-> +
-> +static int get_interface_ctrl_reg1_param(struct imx_cpi_device *pcpidev,
-
-imx_cpi_ prefix please.
-
-> +					 u32 *pixel_width, u32 *vsync_pulse,
-> +					 const struct v4l2_mbus_framefmt *format)
-> +{
-> +	u32 version = pcpidev->pdata->version;
-
-No need for the variable.
-
-> +
-> +	switch (version) {
-> +	case PI_V1:
-> +		*pixel_width = format->width - 1;
-> +		*vsync_pulse = format->width << 1;
-> +		break;
-> +	case PI_V2:
-> +		*pixel_width = format->width << 3;
-> +		*vsync_pulse = format->width - 1;
-> +		break;
-> +	default:
-> +		dev_err(pcpidev->dev, "Not support PI version %d\n", version);
-> +		return -EINVAL;
-
-This can't happen. You can make this function void and drop the error
-check in the caller. Actually, as the caller is rather simple, and this
-function is very simple too, you can just inline it in the caller.
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx_cpi_config_ctrl_reg1(struct imx_cpi_device *pcpidev,
-> +				     const struct v4l2_mbus_framefmt *format)
-> +{
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	struct device *dev = pcpidev->dev;
-> +	u32 pixel_width;
-> +	u32 vsync_pulse;
-> +	u32 val;
-> +	int ret;
-> +
-> +	dev_dbg(dev, "%s %dx%d, fmt->code:0x%0x\n", __func__,
-> +		format->width, format->height, format->code);
-> +
-> +	if (format->width <= 0 || format->height <= 0) {
-> +		dev_err(dev, "%s width/height invalid\n", __func__);
-> +		return;
-> +	}
-
-This can't happen.
-
-> +
-> +	ret = get_interface_ctrl_reg1_param(pcpidev, &pixel_width,
-> +					    &vsync_pulse, format);
-> +	if (ret < 0)
-> +		return;
-> +
-> +	val = (CPI_CTRL_REG1_PIXEL_WIDTH(pixel_width) |
-> +	       CPI_CTRL_REG1_VSYNC_PULSE(vsync_pulse));
-
-No need for parentheses.
-
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg1);
-> +}
-> +
-> +static void imx_cpi_enable(struct imx_cpi_device *pcpidev)
-> +{
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	u32 val;
-> +
-> +	/* Enable CPI */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val |= CPI_CTRL_REG_CPI_EN;
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	/* Disable SYNC Force */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val &= ~(CPI_CTRL_REG_HSYNC_FORCE_EN | CPI_CTRL_REG_VSYNC_FORCE_EN);
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +}
-> +
-> +static void imx_cpi_disable(struct imx_cpi_device *pcpidev)
-> +{
-> +	const struct imx_cpi_plat_data *pdata = pcpidev->pdata;
-> +	u32 val;
-> +
-> +	/* Enable Sync Force */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val |= (CPI_CTRL_REG_HSYNC_FORCE_EN | CPI_CTRL_REG_VSYNC_FORCE_EN);
-
-No need for parentheses.
-
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	/* Disable CPI */
-> +	val = readl(pcpidev->regs + pdata->interface_ctrl_reg);
-> +	val &= ~CPI_CTRL_REG_CPI_EN;
-> +	writel(val, pcpidev->regs + pdata->interface_ctrl_reg);
-> +
-> +	/* Disable Pixel Link */
-> +	val = readl(pcpidev->regs + pdata->if_ctrl_reg);
-> +	val &= ~(IF_CTRL_REG_PL_VALID | IF_CTRL_REG_PL_ENABLE);
-> +	writel(val, pcpidev->regs + pdata->if_ctrl_reg);
-> +}
-> +
-> +static void imx_cpi_start_stream(struct imx_cpi_device *pcpidev,
-> +				 const struct v4l2_mbus_framefmt *format,
-> +				 const struct imx_cpi_pix_format *pcpidev_fmt)
-> +{
-> +	if (pcpidev_fmt->code == MEDIA_BUS_FMT_YUYV8_2X8 ||
-> +	    pcpidev_fmt->code == MEDIA_BUS_FMT_UYVY8_2X8)
-> +		pcpidev->uv_swap = 1;
-
-Pass the information required to calculate this to the
-imx_cpi_hw_config() function and drop the uv_swap field.
-
-> +
-> +	imx_cpi_hw_config(pcpidev);
-> +	imx_cpi_config_ctrl_reg1(pcpidev, format);
-> +	imx_cpi_enable(pcpidev);
-> +	imx_cpi_regs_dump(pcpidev);
-> +}
-> +
-> +static void imx_cpi_stop_stream(struct imx_cpi_device *pcpidev)
-> +{
-> +	imx_cpi_regs_dump(pcpidev);
-> +	imx_cpi_disable(pcpidev);
-> +}
-> +
-> +/* -----------------------------------------------------------------------------
-> + * Async subdev notifier
-> + */
-> +
-> +static struct imx_cpi_device *
-> +notifier_to_imx_cpi_device(struct v4l2_async_notifier *n)
-> +{
-> +	return container_of(n, struct imx_cpi_device, notifier);
-> +}
-> +
-> +static struct imx_cpi_device *
-> +sd_to_imx_cpi_device(struct v4l2_subdev *sdev)
-> +{
-> +	return container_of(sdev, struct imx_cpi_device, sd);
-> +}
-> +
-> +static int imx_cpi_notify_bound(struct v4l2_async_notifier *notifier,
-> +				struct v4l2_subdev *sd,
-> +				struct v4l2_async_connection *asd)
-> +{
-> +	struct imx_cpi_device *pcpidev = notifier_to_imx_cpi_device(notifier);
-> +	struct media_pad *sink = &pcpidev->sd.entity.pads[IMX_CPI_PAD_SINK];
-> +
-> +	return v4l2_create_fwnode_links_to_pad(sd, sink, 0);
-> +}
-> +
-> +static const struct v4l2_async_notifier_operations imx_cpi_notify_ops = {
-> +	.bound = imx_cpi_notify_bound,
-> +};
-> +
-> +static int imx_cpi_async_register(struct imx_cpi_device *pcpidev)
-> +{
-> +	struct v4l2_fwnode_endpoint vep = {
-> +		.bus_type = V4L2_MBUS_PARALLEL,
-> +	};
-> +	struct v4l2_async_connection *asd;
-> +	struct fwnode_handle *ep __free(fwnode_handle) = NULL;
-> +	int ret;
-> +
-> +	v4l2_async_subdev_nf_init(&pcpidev->notifier, &pcpidev->sd);
-
-Move this after v4l2_fwnode_endpoint_parse() so you won't need to
-cleanup if DT parsing fails.
-
-> +
-> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(pcpidev->dev), 0, 0,
-> +					     FWNODE_GRAPH_ENDPOINT_NEXT);
-> +	if (!ep)
-> +		return -ENOTCONN;
-> +
-> +	ret = v4l2_fwnode_endpoint_parse(ep, &vep);
-> +	if (ret)
-> +		return ret;
-> +
-> +	asd = v4l2_async_nf_add_fwnode_remote(&pcpidev->notifier, ep,
-> +					      struct v4l2_async_connection);
-> +	if (IS_ERR(asd))
-> +		return PTR_ERR(asd);
-> +
-> +	pcpidev->notifier.ops = &imx_cpi_notify_ops;
-
-Move this just after v4l2_async_subdev_nf_init().
-
-> +	ret = v4l2_async_nf_register(&pcpidev->notifier);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return v4l2_async_register_subdev(&pcpidev->sd);
-
-This will need to move to the probe function, see below.
-
-> +}
-> +
-> +/* -----------------------------------------------------------------------------
-> + * Media entity operations
-> + */
-> +
-> +static int imx_cpi_link_setup(struct media_entity *entity,
-> +			      const struct media_pad *local_pad,
-> +			      const struct media_pad *remote_pad,
-> +			      u32 flags)
-> +{
-> +	struct v4l2_subdev *sd = media_entity_to_v4l2_subdev(entity);
-> +	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-> +	struct v4l2_subdev *remote_sd;
-> +
-> +	dev_dbg(pcpidev->dev, "link setup %s -> %s", remote_pad->entity->name,
-> +		local_pad->entity->name);
-> +
-> +	/* We only care about the link to the source. */
-> +	if (!(local_pad->flags & MEDIA_PAD_FL_SINK))
-> +		return 0;
-> +
-> +	remote_sd = media_entity_to_v4l2_subdev(remote_pad->entity);
-> +	if (flags & MEDIA_LNK_FL_ENABLED) {
-> +		if (pcpidev->source.sd)
-> +			return -EBUSY;
-> +
-> +		pcpidev->source.sd = remote_sd;
-> +		pcpidev->source.pad = remote_pad;
-> +	} else {
-> +		pcpidev->source.sd = NULL;
-> +		pcpidev->source.pad = NULL;
-> +	}
-
-You only support one connected subdev, so you can make the sink link
-immutable and avoid the complexity here. source.sd and source.pad can be
-assigned in the notifier .bound() handler.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct media_entity_operations imx_cpi_entity_ops = {
-> +	.link_setup = imx_cpi_link_setup,
-> +	.link_validate = v4l2_subdev_link_validate,
-> +	.get_fwnode_pad = v4l2_subdev_get_fwnode_pad_1_to_1,
-> +};
-> +
-> +static int imx_cpi_set_fmt(struct v4l2_subdev *sd,
-> +			   struct v4l2_subdev_state *sd_state,
-> +			   struct v4l2_subdev_format *sdformat)
-> +{
-> +	struct imx_cpi_pix_format const *pcpidev_fmt;
-> +	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-> +	struct device *dev = pcpidev->dev;
-> +	struct v4l2_mbus_framefmt *fmt;
-> +	unsigned int align;
-> +
-> +	/*
-> +	 * The Parallel cpi can't transcode in any way, the source format
-> +	 * can't be modified.
-> +	 */
-> +	if (sdformat->pad == IMX_CPI_PAD_SOURCE)
-> +		return v4l2_subdev_get_fmt(sd, sd_state, sdformat);
-> +
-> +	/*
-> +	 * Validate the media bus code and clamp and align the size.
-> +	 *
-> +	 * The total number of bits per line must be a multiple of 8. We thus
-> +	 * need to align the width for formats that are not multiples of 8
-> +	 * bits.
-
-All formats are multiples of 16 bits.
-
-> +	 */
-> +	pcpidev_fmt = find_imx_cpi_format(sdformat->format.code);
-> +	if (!pcpidev_fmt)
-> +		pcpidev_fmt = &imx_cpi_formats[0];
-> +
-> +	switch (pcpidev_fmt->width % 8) {
-> +	case 0:
-> +		align = 0;
-> +		break;
-> +	case 4:
-> +		align = 1;
-> +		break;
-> +	case 2:
-> +	case 6:
-> +		align = 2;
-> +		break;
-> +	default:
-> +		/* 1, 3, 5, 7 */
-> +		align = 3;
-> +		break;
-> +	}
-> +
-> +	v4l_bound_align_image(&sdformat->format.width, 1,
-> +			      IMX_CPI_MAX_PIX_WIDTH, align,
-> +			      &sdformat->format.height, 1,
-> +			      IMX_CPI_MAX_PIX_HEIGHT, 0, 0);
-> +
-> +	fmt = v4l2_subdev_state_get_format(sd_state, sdformat->pad);
-> +	if (!fmt)
-> +		return -EINVAL;
-
-I don't think this can return an error.
-
-> +
-> +	fmt->code = pcpidev_fmt->code;
-> +	fmt->width = sdformat->format.width;
-> +	fmt->height = sdformat->format.height;
-> +	fmt->field = V4L2_FIELD_NONE;
-> +	fmt->colorspace = sdformat->format.colorspace;
-> +	fmt->quantization = sdformat->format.quantization;
-> +	fmt->xfer_func = sdformat->format.xfer_func;
-> +	fmt->ycbcr_enc = sdformat->format.ycbcr_enc;
-> +
-> +	sdformat->format = *fmt;
-> +
-> +	/* Propagate the format from sink to source. */
-> +	fmt = v4l2_subdev_state_get_format(sd_state, IMX_CPI_PAD_SOURCE);
-> +	*fmt = sdformat->format;
-> +
-> +	/* The format on the source pad might change due to unpacking. */
-> +	fmt->code = pcpidev_fmt->output;
-> +
-> +	dev_dbg(dev, "%s: fmt_code:0x%0x, %dx%d\n", __func__,
-> +		fmt->code, fmt->width, fmt->height);
-
-I think you can drop this, it's useful for development, but less so in
-upstream.
-
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_mbus_framefmt imx_cpi_default_fmt = {
-
-This isn't used.
-
-> +	.code = IMX_CPI_DEF_MBUS_CODE,
-> +	.width = IMX_CPI_DEF_PIX_WIDTH,
-> +	.height = IMX_CPI_DEF_PIX_HEIGHT,
-> +	.field = V4L2_FIELD_NONE,
-> +	.colorspace = V4L2_COLORSPACE_SMPTE170M,
-> +	.xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(V4L2_COLORSPACE_SMPTE170M),
-> +	.ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(V4L2_COLORSPACE_SMPTE170M),
-> +	.quantization = V4L2_QUANTIZATION_LIM_RANGE,
-> +};
-> +
-> +static int imx_cpi_init_state(struct v4l2_subdev *sd,
-> +			      struct v4l2_subdev_state *sd_state)
-> +{
-> +	struct v4l2_subdev_format fmt = {
-> +		.pad = IMX_CPI_PAD_SINK,
-> +	};
-> +
-> +	fmt.format.code = imx_cpi_formats[0].code;
-> +	fmt.format.width = IMX_CPI_DEF_PIX_WIDTH;
-> +	fmt.format.height = IMX_CPI_DEF_PIX_HEIGHT;
-> +
-> +	fmt.format.colorspace = V4L2_COLORSPACE_SMPTE170M;
-> +	fmt.format.xfer_func =
-> +	    V4L2_MAP_XFER_FUNC_DEFAULT(fmt.format.colorspace);
-> +	fmt.format.ycbcr_enc =
-> +	    V4L2_MAP_YCBCR_ENC_DEFAULT(fmt.format.colorspace);
-> +	fmt.format.quantization =
-> +	    V4L2_MAP_QUANTIZATION_DEFAULT(false,
-> +					  fmt.format.colorspace,
-> +					  fmt.format.ycbcr_enc);
-> +
-> +	return imx_cpi_set_fmt(sd, sd_state, &fmt);
-
-If possible, I'd just get the sink and source pad formats with
-v4l2_subdev_get_fmt() here and set them to imx_cpi_default_fmt. That
-will be simpler.
-
-> +}
-> +
-> +static int imx_cpi_s_stream(struct v4l2_subdev *sd, int enable)
-> +{
-> +	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-> +	const struct v4l2_mbus_framefmt *format;
-> +	const struct imx_cpi_pix_format *pcpidev_fmt;
-> +	struct v4l2_subdev_state *state;
-> +	int ret;
-> +
-> +	if (!enable) {
-> +		v4l2_subdev_disable_streams(pcpidev->source.sd,
-> +					    pcpidev->source.pad->index, BIT(0));
-> +
-> +		imx_cpi_stop_stream(pcpidev);
-> +
-> +		pm_runtime_put(pcpidev->dev);
-> +
-> +		return 0;
-> +	}
-> +
-> +	state = v4l2_subdev_lock_and_get_active_state(sd);
-> +	format = v4l2_subdev_state_get_format(state, IMX_CPI_PAD_SINK);
-> +	pcpidev_fmt = find_imx_cpi_format(format->code);
-> +
-> +	ret = pm_runtime_resume_and_get(pcpidev->dev);
-> +	if (ret < 0)
-> +		goto err_unlock;
-> +
-> +	imx_cpi_start_stream(pcpidev, format, pcpidev_fmt);
-> +
-> +	ret = v4l2_subdev_enable_streams(pcpidev->source.sd,
-> +					 pcpidev->source.pad->index, BIT(0));
-> +	if (ret < 0)
-> +		goto err_stop;
-> +
-> +	v4l2_subdev_unlock_state(state);
-> +
-> +	return 0;
-> +
-> +err_stop:
-> +	imx_cpi_stop_stream(pcpidev);
-> +	pm_runtime_put(pcpidev->dev);
-> +err_unlock:
-> +	v4l2_subdev_unlock_state(state);
-> +	return ret;
-> +}
-> +
-> +static int imx_cpi_enum_mbus_code(struct v4l2_subdev *sd,
-> +				  struct v4l2_subdev_state *sd_state,
-> +				  struct v4l2_subdev_mbus_code_enum *code)
-> +{
-> +	/*
-> +	 * The PARALLEL CPI can't transcode in any way, the source format
-> +	 * is identical to the sink format.
-> +	 */
-> +	if (code->pad == IMX_CPI_PAD_SOURCE) {
-> +		struct v4l2_mbus_framefmt *fmt;
-> +
-> +		if (code->index > 0)
-> +			return -EINVAL;
-> +
-> +		fmt = v4l2_subdev_state_get_format(sd_state, code->pad);
-> +		code->code = fmt->code;
-> +		return 0;
-> +	}
-> +
-> +	if (code->pad != IMX_CPI_PAD_SINK)
-> +		return -EINVAL;
-> +
-> +	if (code->index >= ARRAY_SIZE(imx_cpi_formats))
-> +		return -EINVAL;
-> +
-> +	code->code = imx_cpi_formats[code->index].code;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_cpi_get_frame_desc(struct v4l2_subdev *sd,
-> +				  unsigned int pad,
-> +				  struct v4l2_mbus_frame_desc *fd)
-> +{
-> +	struct v4l2_mbus_frame_desc_entry *entry = &fd->entry[0];
-> +	const struct imx_cpi_pix_format *pcpidev_fmt;
-> +	const struct v4l2_mbus_framefmt *fmt;
-> +	struct v4l2_subdev_state *state;
-> +
-> +	if (pad != IMX_CPI_PAD_SOURCE)
-> +		return -EINVAL;
-> +
-> +	state = v4l2_subdev_lock_and_get_active_state(sd);
-> +	fmt = v4l2_subdev_state_get_format(state, IMX_CPI_PAD_SOURCE);
-> +	pcpidev_fmt = find_imx_cpi_format(fmt->code);
-> +	v4l2_subdev_unlock_state(state);
-> +
-> +	if (!pcpidev_fmt)
-> +		return -EPIPE;
-
-This can't happen, as the format on the source pad is guaranteed to be
-valid at all times.
-
-> +
-> +	fd->type = V4L2_MBUS_FRAME_DESC_TYPE_PARALLEL;
-> +	fd->num_entries = 1;
-> +
-> +	entry->flags = 0;
-> +	entry->pixelcode = pcpidev_fmt->code;
-
-Use fmt->code, and drop the pcpidev_fmt lookup.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_subdev_video_ops imx_cpi_video_ops = {
-> +	.s_stream = imx_cpi_s_stream,
-
-.s_stream() is deprecated, please implement .enable_streams() and
-.disable_streams(), and set .s_stream to v4l2_subdev_s_stream_helper.
-
-> +};
-> +
-> +static const struct v4l2_subdev_pad_ops imx_cpi_pad_ops = {
-> +	.enum_mbus_code = imx_cpi_enum_mbus_code,
-> +	.get_fmt = v4l2_subdev_get_fmt,
-> +	.set_fmt = imx_cpi_set_fmt,
-> +	.get_frame_desc = imx_cpi_get_frame_desc,
-> +};
-> +
-> +static const struct v4l2_subdev_ops imx_cpi_subdev_ops = {
-> +	.pad = &imx_cpi_pad_ops,
-> +	.video = &imx_cpi_video_ops,
-> +};
-> +
-> +static const struct v4l2_subdev_internal_ops imx_cpi_internal_ops = {
-> +	.init_state = imx_cpi_init_state,
-> +};
-> +
-> +static int imx_cpi_clk_get(struct imx_cpi_device *pcpidev)
-> +{
-> +	unsigned int i;
-> +	int ret = 0;
-
-Drop ret.
-
-> +
-> +	for (i = 0; i < PCPIDEV_NUM_CLKS; i++)
-
-Use ARRAY_SIZE(pcpidev->clks) instead of PCPIDEV_NUM_CLKS. Same below.
-
-> +		pcpidev->clks[i].id = imx_cpi_clk_id[i];
-> +
-> +	ret = devm_clk_bulk_get(pcpidev->dev, PCPIDEV_NUM_CLKS, pcpidev->clks);
-
-Return directly here.
-
-> +
-> +	return ret;
-> +}
-> +
-> +/* ----------------------------------------------------------------------
-> + * Suspend/resume
-> + */
-
-Add a blank line.
-
-> +static int __maybe_unused imx_cpi_runtime_suspend(struct device *dev)
-
-Drop __maybe_unused, it's not needed when using RUNTIME_PM_OPS() and
-pm_ptr().
-
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-> +
-> +	clk_bulk_disable_unprepare(PCPIDEV_NUM_CLKS, pcpidev->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused imx_cpi_runtime_resume(struct device *dev)
-
-Here too.
-
-> +{
-> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> +	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-> +
-> +	return clk_bulk_prepare_enable(PCPIDEV_NUM_CLKS, pcpidev->clks);
-> +}
-> +
-> +static const struct dev_pm_ops imx_cpi_pm_ops = {
-> +	RUNTIME_PM_OPS(imx_cpi_runtime_suspend, imx_cpi_runtime_resume, NULL)
-
-
-> +};
-> +
-> +static int imx_cpi_subdev_init(struct imx_cpi_device *pcpidev)
-> +{
-> +	struct v4l2_subdev *sd = &pcpidev->sd;
-> +	int ret;
-> +
-> +	v4l2_subdev_init(sd, &imx_cpi_subdev_ops);
-> +
-> +	sd->internal_ops = &imx_cpi_internal_ops;
-> +	sd->owner = THIS_MODULE;
-
-Not needed. Does this come from copying code from an existing driver ?
-If so, please send a patch to fix that driver and lower the amount of
-cargo-cult.
-
-> +	snprintf(sd->name, sizeof(sd->name), "parallel-%s",
-> +		 dev_name(pcpidev->dev));
-> +
-> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	sd->ctrl_handler = NULL;
-
-Not needed.
-
-> +
-> +	sd->entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
-> +	sd->entity.ops = &imx_cpi_entity_ops;
-> +
-> +	sd->dev = pcpidev->dev;
-> +
-> +	pcpidev->pads[IMX_CPI_PAD_SINK].flags = MEDIA_PAD_FL_SINK | MEDIA_PAD_FL_MUST_CONNECT;
-
-The media subsystem wraps lines to 80 columns, with exceptions when
-doing so would significantly decrease readability. Please check through
-the driver.
-
-> +	pcpidev->pads[IMX_CPI_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE |
-> +						       MEDIA_PAD_FL_MUST_CONNECT;
-
-Weird indentation. Use either
-
-	pcpidev->pads[IMX_CPI_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE |
-						  MEDIA_PAD_FL_MUST_CONNECT;
-
-or
-
-	pcpidev->pads[IMX_CPI_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE
-						| MEDIA_PAD_FL_MUST_CONNECT;
-
-> +
-> +	ret = media_entity_pads_init(&sd->entity, IMX_CPI_PADS_NUM, pcpidev->pads);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = v4l2_subdev_init_finalize(sd);
-> +	if (ret)
-> +		media_entity_cleanup(&sd->entity);
-> +
-> +	return ret;
-> +}
-> +
-> +static void imx_cpi_cleanup(void *data)
-> +{
-> +	struct imx_cpi_device *pcpidev = data;
-> +
-> +	v4l2_subdev_cleanup(&pcpidev->sd);
-> +	media_entity_cleanup(&pcpidev->sd.entity);
-> +	v4l2_async_nf_unregister(&pcpidev->notifier);
-> +	v4l2_async_nf_cleanup(&pcpidev->notifier);
-> +	v4l2_async_unregister_subdev(&pcpidev->sd);
-> +}
-> +
-> +static int imx_cpi_probe(struct platform_device *pdev)
-> +{
-> +	struct imx_cpi_device *pcpidev;
-> +	struct device *dev = &pdev->dev;
-> +	int ret = 0;
-
-No need to initialize this to 0.
-
-> +
-> +	pcpidev = devm_kzalloc(dev, sizeof(*pcpidev), GFP_KERNEL);
-> +	if (!pcpidev)
-> +		return -ENOMEM;
-> +
-> +	pcpidev->dev = dev;
-> +	platform_set_drvdata(pdev, pcpidev);
-> +
-> +	pcpidev->pdata = of_device_get_match_data(dev);
-> +
-> +	pcpidev->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pcpidev->regs))
-> +		return dev_err_probe(dev, PTR_ERR(pcpidev->regs),
-> +				     "Failed to get regs\n");
-> +
-> +	ret = imx_cpi_clk_get(pcpidev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = imx_cpi_subdev_init(pcpidev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(dev, imx_cpi_cleanup, pcpidev);
-> +	if (ret)
-> +		return ret;
-
-Are you sure that all the cleanup calls in imx_cpi_cleanup() are safe if
-imx_cpi_async_register() fails below ? I think manual error handling is
-better, with a .remove() function.
-
-> +
-> +	pcpidev->mode = PI_GATE_CLOCK_MODE;
-
-I'd move this just after assigning pdata to group all static
-initialization together.
-
-> +
-> +	platform_set_drvdata(pdev, &pcpidev->sd);
-
-That's the second platform_set_drvdata() call. Drop it, keep the first
-one, and turn
-
-	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-	struct imx_cpi_device *pcpidev = sd_to_imx_cpi_device(sd);
-
-above into
-
-	struct imx_cpi_device *pcpidev = dev_get_drvdata(dev);
-
-> +
-> +	ret = imx_cpi_async_register(pcpidev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	devm_pm_runtime_enable(dev);
-
-Please use runtime PM autosuspend. This also needs to be enabled before
-calling v4l2_async_register_subdev(), as the subdev could get used as
-soon as it gets registered.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id imx_cpi_of_match[] = {
-> +	{.compatible = "fsl,imx8qxp-pcif", .data = &imx8qxp_pdata },
-
-Missing space after the curly brace.
-
-> +	{.compatible = "fsl,imx93-pcif", .data = &imx93_pdata },
-> +	{ },
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, imx_cpi_of_match);
-> +
-> +static struct platform_driver _driver = {
-
-_driver is quite uncommon. You can use the same prefix as in the rest of
-the driver and name this imx_cpi_driver.
-
-> +	.probe = imx_cpi_probe,
-> +	.driver = {
-> +		.of_match_table = imx_cpi_of_match,
-> +		.name = "imx-parallel-cpi",
-> +		.pm = pm_ptr(&imx_cpi_pm_ops),
-> +	},
-> +};
-> +
-> +module_platform_driver(_driver);
-> +
-> +MODULE_DESCRIPTION("i.MX9 Parallel CPI receiver driver");
-> +MODULE_LICENSE("GPL");
-
--- 
-Regards,
-
-Laurent Pinchart
 
