@@ -1,189 +1,192 @@
-Return-Path: <devicetree+bounces-199782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA98B12068
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:55:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EA2B120A4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EADC17A55D8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:53:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449E33BBBAF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A6B247DF9;
-	Fri, 25 Jul 2025 14:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C8C2EE269;
+	Fri, 25 Jul 2025 15:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="m0jj0ZKW"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="QE+1rzc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514C0226863;
-	Fri, 25 Jul 2025 14:55:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753455314; cv=none; b=EyTQ6KS3Ug7J7/9IO+9YEeyJFLsFHLj14Ke+8WSRubtfBnzVKeviqn3jyKidaPCJWHAjlVj0fsNf+6Sy4C2joyc2OXoa9ZaTIdai+k0Jx/WIDm6GCjU7skUtwP8vZ+QU5mv60j6r6+BMXAcMhPSTx33Mu0Z5wH4ulzB50ngkJpU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753455314; c=relaxed/simple;
-	bh=EXHaox/1NzXqFsnH0dWanvrMBp8w7U0rZ5dj8B4pNPs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=InSoyrUa+8xiXZYeviXV59bQ39qXUGHijD+nBaGttbiBa/b+4vx/63mzWm7Sd2h5/vMQaqgzHIG5cgFvei2bVlvgAcNQu7J6u1KTWoTuc6gEDAxQ8T77mqT9kShqEteFLpVI4/Askh6VMhMzdsuF08OqznBtsVCdxi5rb0DAHsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=m0jj0ZKW; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56PCJhSE009250;
-	Fri, 25 Jul 2025 16:54:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	EXHaox/1NzXqFsnH0dWanvrMBp8w7U0rZ5dj8B4pNPs=; b=m0jj0ZKW2V09n25s
-	7B7U6M9MLZjvJcMWRYlZu2uFMoeeao9xbmKHMjp231wc1Gp9uJ4HcC8UklLPBTGC
-	HTWTXgbC6XqRFU8qn68Fxm/2C7mfOYEEjoH3L0nmPMqHWADv7AcbyNsZ/tX/SrEH
-	rQYs6bVDHl96QbwVaQLnkbATyLJrUKGt9anHUzsXgc2IeJzY+j7wo02hNDcoPKm3
-	DSB5xGyi/yp2TLyA1KfNMc05VQx0e+AlozREVTRbbUAGcAD0asReA0mUXre8LULM
-	XpTEtFaY8nJDqkhkeuyD2rbNFwh+uIwH1OJVtVHmyep5WVEsmMDd18//lFI0E8QJ
-	8Y4cGg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 483w3j3kdk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Jul 2025 16:54:48 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D000040044;
-	Fri, 25 Jul 2025 16:53:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC96979F3AB;
-	Fri, 25 Jul 2025 16:52:16 +0200 (CEST)
-Received: from [10.252.19.90] (10.252.19.90) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Jul
- 2025 16:52:15 +0200
-Message-ID: <51f9e2bd-1129-4a82-b12a-72663e57ebda@foss.st.com>
-Date: Fri, 25 Jul 2025 16:52:13 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5669E2EE265;
+	Fri, 25 Jul 2025 15:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753456171; cv=pass; b=nbBdkiRWT9h0ZrZR9bFzlV3V4+qDr7puJ8uw6FA4G1pKMxDhd2GktcUj8WOQXClpaaq38m/h4Zc6iZHMQeOXDFtu6p4oXSYlI4Gk0E36kUwgV5zYze2s946cuTOc6JHSaSvuUTdC1MIjUQCu9ByqCjVZxXzqIZlDT44kRF9lPsw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753456171; c=relaxed/simple;
+	bh=w/q7YXmYQo5hzxHYJrOKBSm8hKp1IgwuaIt41MKBlu0=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=MEIqWi2lcdPED8sL2Ycv2zrVZkBNHgYvl/4AIeYDPd2Qe3V54O96iqBmqPAwj+sVklf/OQP175yJ82zpoxjFblUlrgwjJDzN2Gph+ud31Pv0qllm2JTtV2InGj0zhSUWtdP8R0j1Pyzdyp5fOWs/xg5gre3msk0lBX4zaMfcUM4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=QE+1rzc3; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1753456138; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=aJXR6a8q6dZxYmYb1+KpOaP5xjOrgMxKHNYdECzRR5QJmek/cfTFOY75qbIYgguq6ARPq9qJmb4qaVK8pgt56olCg9P/pqUuniPaONawvKK66N7hsTTwOEIHsNHxjIBA8rQspIl0b8ONPMWbP6wXwTvkXFCMWQ8dBMsLg2++llg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753456138; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ke+lVtmoyenH47nCVRy+b5168mhUwVX/VKLxEBmQcBw=; 
+	b=QxcP3Cyfe1YTERLmahTy1qE1Yv4Xjan2hUkUenNpoutdyqp4cAoW6L76BBES14kDNwdUjXGXwZr+fNjVGJl84aSIw9N0vv5aTeQy/GBdaLVKvHmwyPNSECka0mhKzRfaIMNedBqxlm4SM+gEfTyDWwufP6tZdiyTttdThprB1ds=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+	dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753456138;
+	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+	bh=ke+lVtmoyenH47nCVRy+b5168mhUwVX/VKLxEBmQcBw=;
+	b=QE+1rzc3QP2OK2xyvj5KS8T65DhKXFXbPAOd74SKmC+dyFRz0auClItJ9wuXkDUY
+	nh15gCgocCehYaQqSfIphi/TeIlZG9E4O/sVW2pHDUIGpc4Yc3ZpTfkiJrkIDhcIf/1
+	gqN9XK+Sqhqgzt2jjQj1SKo4jpWAqzT6a/mzbruw=
+Received: by mx.zohomail.com with SMTPS id 1753456135651361.47805588339804;
+	Fri, 25 Jul 2025 08:08:55 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Linux-stm32] [PATCH 09/12] arm64: dts: st: add lvds support on
- stm32mp255
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
-        Yannick Fertre
-	<yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-References: <20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com>
- <20250725-drm-misc-next-v1-9-a59848e62cf9@foss.st.com>
- <85673db7-d311-47cc-be52-291d94e136e4@foss.st.com>
- <a00bb4e2-b0e8-44ef-bf14-5e4f5e60f9d0@foss.st.com>
-Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <a00bb4e2-b0e8-44ef-bf14-5e4f5e60f9d0@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-25_04,2025-07-24_01,2025-03-28_01
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Re: [PATCH v12 2/3] rust: pwm: Add Kconfig and basic data structures
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <20250717-rust-next-pwm-working-fan-for-sending-v12-2-40f73defae0c@samsung.com>
+Date: Fri, 25 Jul 2025 12:08:37 -0300
+Cc: =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Drew Fustini <drew@pdp7.com>,
+ Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Benno Lossin <lossin@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Drew Fustini <fustini@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org,
+ rust-for-linux@vger.kernel.org,
+ linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <437DA583-95FF-4ADF-9947-1F39D242E157@collabora.com>
+References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
+ <CGME20250717090831eucas1p282ac3df2e2f1fc2a46e12c440abfbba1@eucas1p2.samsung.com>
+ <20250717-rust-next-pwm-working-fan-for-sending-v12-2-40f73defae0c@samsung.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
+X-ZohoMailClient: External
+
+Hi Michal,
 
 
+Overall looks good, a few minor comments:
 
-On 7/25/25 13:13, Clement LE GOFFIC wrote:
-> On 7/25/25 13:08, Clement LE GOFFIC wrote:
->> Hi Raphael,
->>
->> On 7/25/25 12:04, Raphael Gallais-Pou wrote:
->>> The LVDS is used on STM32MP2 as a display interface.
->>>
->>> Add the LVDS node.
->>>
->>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
->>> ---
->>>   arch/arm64/boot/dts/st/stm32mp255.dtsi | 12 ++++++++++++
->>>   1 file changed, 12 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/
->>> dts/st/stm32mp255.dtsi
->>> index
->>> f689b47c5010033120146cf1954d6624c0270045..a4d965f785fa42c4597494010855aec7e1b9fdd1
->>> 100644
->>> --- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
->>> +++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
->>> @@ -6,6 +6,18 @@
->>>   #include "stm32mp253.dtsi"
->>>   &rifsc {
->>> +    lvds: lvds@48060000 {
->>> +        compatible = "st,stm32mp25-lvds";
->>
->> For the compatible you now need one comaptible per SoC.
->> It means your compatible should look like : "st,stm32mp251-lvds".
->> This way, if on the 253 or 255 there is an issue you are able to easily add
->> match data in the driver with compatible "st,stm32mp253-lvds" or
->> "st,stm32mp255-lvds".
->> A prior discussion on this subject has been raised on my V1 of HDP involving
->> Krzysztof and Alexandre :
->> https://lore.kernel.org/all/418a80a9-8c08-4dd1- bf49-1bd7378321aa@kernel.org/
-> Woops, this comment should target the add of the ltdc compatible as I see that
-> lvds one already exists and can't be changed.
-> Though the main idea is here.
+[=E2=80=A6]
 
-Indeed, the compatible is wrong.
+> +
+> +/// Wrapper for board-dependent PWM arguments [`struct =
+pwm_args`](srctree/include/linux/pwm.h).
+> +#[repr(transparent)]
+> +pub struct Args(Opaque<bindings::pwm_args>);
+> +
+> +impl Args {
+> +    /// Creates an `Args` wrapper from a C struct pointer.
+> +    ///
+> +    /// # Safety
+> +    ///
+> +    /// The caller must ensure that `c_args_ptr` is a valid, non-null =
+pointer
+> +    /// to `bindings::pwm_args` and that the pointed-to data is valid
+> +    /// for the duration of this function call (as data is copied).
+> +    unsafe fn from_c_ptr(c_args_ptr: *const bindings::pwm_args) -> =
+Self {
+> +        // SAFETY: Caller guarantees `c_args_ptr` is valid. We =
+dereference it to copy.
+> +        Args(Opaque::new(unsafe { *c_args_ptr }))
+> +    }
 
-After carefully reading the thread you point to, I suggest the following:
+from_raw()
 
-* Rename the new LTDC compatible to "st,stm32mp251-ltdc"
-* Add another compatible for the LVDS. So it would have "st,stm32mp255-lvds",
-and falls back to "st,stm32mp25-lvds".
 
-Like so the LVDS driver would not have to be modified.
+> +
+> +    /// Returns the period of the PWM signal in nanoseconds.
+> +    pub fn period(&self) -> u64 {
+> +        // SAFETY: `self.0.get()` returns a pointer to the =
+`bindings::pwm_args`
+> +        // managed by the `Opaque` wrapper. This pointer is =
+guaranteed to be
+> +        // valid and aligned for the lifetime of `self` because =
+`Opaque` owns a copy.
+> +        unsafe { (*self.0.get()).period }
+> +    }
+> +
+> +    /// Returns the polarity of the PWM signal.
+> +    pub fn polarity(&self) -> Result<Polarity, Error> {
+> +        // SAFETY: `self.0.get()` returns a pointer to the =
+`bindings::pwm_args`
+> +        // managed by the `Opaque` wrapper. This pointer is =
+guaranteed to be
+> +        // valid and aligned for the lifetime of `self`.
+> +        let raw_polarity =3D unsafe { (*self.0.get()).polarity };
+> +        Polarity::try_from(raw_polarity)
+> +    }
+> +}
+> +
+> +/// Wrapper for PWM state [`struct =
+pwm_state`](srctree/include/linux/pwm.h).
+> +#[repr(transparent)]
+> +pub struct State(bindings::pwm_state);
 
-Alex, Krzysztof, does that seem good to you ?
+No Opaque<T>?
 
-Best regards,
-Raphaël
->
->>
->>> +        #clock-cells = <0>;
->>> +        reg = <0x48060000 0x2000>;
->>> +        clocks = <&rcc CK_BUS_LVDS>, <&rcc CK_KER_LVDSPHY>;
->>> +        clock-names = "pclk", "ref";
->>> +        resets = <&rcc LVDS_R>;
->>> +        access-controllers = <&rifsc 84>;
->>> +        power-domains = <&CLUSTER_PD>;
->>> +        status = "disabled";
->>> +    };
->>> +
->>>       vdec: vdec@480d0000 {
->>>           compatible = "st,stm32mp25-vdec";
->>>           reg = <0x480d0000 0x3c8>;
->>>
->>
->> Best regards,
->> Clément
->
+> +
+> +impl State {
+> +    /// Creates a `State` wrapper by taking ownership of a C =
+`pwm_state` value.
+> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
+> +        State(c_state)
+> +    }
+> +
+> +    /// Returns `true` if the PWM signal is enabled.
+> +    pub fn enabled(&self) -> bool {
+> +        self.0.enabled
+> +    }
+> +}
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+If the lack of Opaque<T> is not a problem for whatever reason:
+
+Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+
+=E2=80=94 Daniel
 
 
