@@ -1,222 +1,189 @@
-Return-Path: <devicetree+bounces-199781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC646B1203C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:40:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA98B12068
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0C8518951C5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:40:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EADC17A55D8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D87F1FC7E7;
-	Fri, 25 Jul 2025 14:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A6B247DF9;
+	Fri, 25 Jul 2025 14:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jeuI/77b"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="m0jj0ZKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB561E5701;
-	Fri, 25 Jul 2025 14:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514C0226863;
+	Fri, 25 Jul 2025 14:55:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753454432; cv=none; b=U0Hpvgurwf4r6n6iPHBctfOArz0AWpWGwhPzwpeNffqIeWkETaBzdKtpeBGh61V5bme8dyUjMeLv23QZUwIIsJasqoHdjJ31d5Q8a+zZXX07fYYS0AeTMAWRqAfep2V5+yG1aESChNBgWAt15w5xrjLIqZ23CevJQNu0BYX1dI8=
+	t=1753455314; cv=none; b=EyTQ6KS3Ug7J7/9IO+9YEeyJFLsFHLj14Ke+8WSRubtfBnzVKeviqn3jyKidaPCJWHAjlVj0fsNf+6Sy4C2joyc2OXoa9ZaTIdai+k0Jx/WIDm6GCjU7skUtwP8vZ+QU5mv60j6r6+BMXAcMhPSTx33Mu0Z5wH4ulzB50ngkJpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753454432; c=relaxed/simple;
-	bh=Pe1O6JQBpM96y38GlEwysMUHU2QGMRFxNAE0yGjeyqU=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=i6BrEUYbpkJTPneBdOzxQkWMMj+AnS0HHAiSvle4ep4GL/8auMO4Z+q4679UcqUPnxKG2Og7AaOkMusRRER3dQYQCTDHhgTH8aIG4UUOpnRVEtzRe15l7ofcvUrNSoTJrPUOvlJk5USVlkQniGKZT/WO6uv4JiKC7zXRDKEfLgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=fail (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jeuI/77b reason="signature verification failed"; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E307982;
-	Fri, 25 Jul 2025 16:39:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1753454387;
-	bh=Pe1O6JQBpM96y38GlEwysMUHU2QGMRFxNAE0yGjeyqU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=jeuI/77b/1trNj4HKV+BBArKHz6hRUxwdCQmxDOV1ismZ3kfNs/DnLvLzGPHHHsVW
-	 Pn/vKlaF+8Ks6JkxJGa3gblLj+ead7ywPotcOPcA55yiR0DGlN1hUfhvSrt5VC9Y1M
-	 a5wcqS412S/LIACvSjsLsd4ltomOGs21nqCy40p4=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1753455314; c=relaxed/simple;
+	bh=EXHaox/1NzXqFsnH0dWanvrMBp8w7U0rZ5dj8B4pNPs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=InSoyrUa+8xiXZYeviXV59bQ39qXUGHijD+nBaGttbiBa/b+4vx/63mzWm7Sd2h5/vMQaqgzHIG5cgFvei2bVlvgAcNQu7J6u1KTWoTuc6gEDAxQ8T77mqT9kShqEteFLpVI4/Askh6VMhMzdsuF08OqznBtsVCdxi5rb0DAHsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=m0jj0ZKW; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56PCJhSE009250;
+	Fri, 25 Jul 2025 16:54:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	EXHaox/1NzXqFsnH0dWanvrMBp8w7U0rZ5dj8B4pNPs=; b=m0jj0ZKW2V09n25s
+	7B7U6M9MLZjvJcMWRYlZu2uFMoeeao9xbmKHMjp231wc1Gp9uJ4HcC8UklLPBTGC
+	HTWTXgbC6XqRFU8qn68Fxm/2C7mfOYEEjoH3L0nmPMqHWADv7AcbyNsZ/tX/SrEH
+	rQYs6bVDHl96QbwVaQLnkbATyLJrUKGt9anHUzsXgc2IeJzY+j7wo02hNDcoPKm3
+	DSB5xGyi/yp2TLyA1KfNMc05VQx0e+AlozREVTRbbUAGcAD0asReA0mUXre8LULM
+	XpTEtFaY8nJDqkhkeuyD2rbNFwh+uIwH1OJVtVHmyep5WVEsmMDd18//lFI0E8QJ
+	8Y4cGg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 483w3j3kdk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 16:54:48 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D000040044;
+	Fri, 25 Jul 2025 16:53:23 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC96979F3AB;
+	Fri, 25 Jul 2025 16:52:16 +0200 (CEST)
+Received: from [10.252.19.90] (10.252.19.90) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Jul
+ 2025 16:52:15 +0200
+Message-ID: <51f9e2bd-1129-4a82-b12a-72663e57ebda@foss.st.com>
+Date: Fri, 25 Jul 2025 16:52:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <PN3P287MB35190A4AEE4C8D98142E7B6AFF59A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
-References: <20250724104711.18764-1-hardevsinh.palaniya@siliconsignals.io> <20250724104711.18764-3-hardevsinh.palaniya@siliconsignals.io> <aIKi1BkNzNvsf5Tr@smile.fi.intel.com> <PN3P287MB35190A4AEE4C8D98142E7B6AFF59A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
-Subject: Re: [PATCH v5 2/2] media: i2c: add ov2735 image sensor driver
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: sakari.ailus@linux.intel.com <sakari.ailus@linux.intel.com>, laurent.pinchart@ideasonboard.com <laurent.pinchart@ideasonboard.com>, Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, Ricardo Ribalda <ribalda@chromium.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Hans de Goede <hansg@kernel.org>, =?utf-8?q?Andr=C3=A9?= Apitzsch <git@apitzsch.eu>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Matthias Fend <matthias.fend@emfend.at>, Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Sylvain Petinot <sylvain.petinot@foss.st.com>, Dongcheng Yan <dongcheng.yan@intel.com>, Jingjing Xiong <jingjing.xiong@intel.com>, Arnd Bergmann <arnd@arndb.de>, linux-media@vger.kernel.org <linux-media@vger.kernel.org>, devicetree@vger.kernel.org <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.
- org <linux-kernel@vger.kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Date: Fri, 25 Jul 2025 15:40:24 +0100
-Message-ID: <175345442477.2567018.13588829522231689027@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
-
-Quoting Hardevsinh Palaniya (2025-07-25 06:55:23)
-<snip>
-> > > +static int ov2735_page_access(struct ov2735 *ov2735,
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=
-=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=
-=EF=BF=BD=EF=BF=BD u32 reg, void *val, int *err, bool is_read)
-> > > +{
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD u8 page =3D (reg >> CCI_REG_PRI=
-VATE_SHIFT) & 0xff;
-> >=20
-> > ' & 0xff' part is redundant.
-> >=20
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD u32 addr =3D reg & ~CCI_REG_PRI=
-VATE_MASK;
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD int ret =3D 0;
-> >=20
-> > How is this assignment being used?
-> >=20
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (err && *err)
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return *err;
-> > > +
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD mutex_lock(&ov2735->page_lock);
-> > > +
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Perform page access before r=
-ead/write */
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (ov2735->current_page !=3D p=
-age) {
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_write(ov2735->cci, O=
-V2735_REG_PAGE_SELECT, page, err);
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (ret)
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=
-=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD goto err_mutex_unlock;
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ov2735->current_page =3D page;
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD }
-> > > +
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (is_read)
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_read(ov2735->cci, ad=
-dr, (u64 *)val, err);
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD else
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_write(ov2735->cci, a=
-ddr, *(u64 *)val, err);
-> >=20
-> > Do you really need this castings?
->=20
-> Do you really think this casting is unnecessary?
->=20
-
-Yes? Well quite probably - I haven't checked myself yet but ..
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Linux-stm32] [PATCH 09/12] arm64: dts: st: add lvds support on
+ stm32mp255
+To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+References: <20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com>
+ <20250725-drm-misc-next-v1-9-a59848e62cf9@foss.st.com>
+ <85673db7-d311-47cc-be52-291d94e136e4@foss.st.com>
+ <a00bb4e2-b0e8-44ef-bf14-5e4f5e60f9d0@foss.st.com>
+Content-Language: en-US
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <a00bb4e2-b0e8-44ef-bf14-5e4f5e60f9d0@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_04,2025-07-24_01,2025-03-28_01
 
 
-> Please check the definitions of cci_read/write
->=20
-> without this, we can't even build the driver.
 
-How about ... changing the function prototype of ov2735_page_access ?
+On 7/25/25 13:13, Clement LE GOFFIC wrote:
+> On 7/25/25 13:08, Clement LE GOFFIC wrote:
+>> Hi Raphael,
+>>
+>> On 7/25/25 12:04, Raphael Gallais-Pou wrote:
+>>> The LVDS is used on STM32MP2 as a display interface.
+>>>
+>>> Add the LVDS node.
+>>>
+>>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>>> ---
+>>>   arch/arm64/boot/dts/st/stm32mp255.dtsi | 12 ++++++++++++
+>>>   1 file changed, 12 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/
+>>> dts/st/stm32mp255.dtsi
+>>> index
+>>> f689b47c5010033120146cf1954d6624c0270045..a4d965f785fa42c4597494010855aec7e1b9fdd1
+>>> 100644
+>>> --- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
+>>> +++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
+>>> @@ -6,6 +6,18 @@
+>>>   #include "stm32mp253.dtsi"
+>>>   &rifsc {
+>>> +    lvds: lvds@48060000 {
+>>> +        compatible = "st,stm32mp25-lvds";
+>>
+>> For the compatible you now need one comaptible per SoC.
+>> It means your compatible should look like : "st,stm32mp251-lvds".
+>> This way, if on the 253 or 255 there is an issue you are able to easily add
+>> match data in the driver with compatible "st,stm32mp253-lvds" or
+>> "st,stm32mp255-lvds".
+>> A prior discussion on this subject has been raised on my V1 of HDP involving
+>> Krzysztof and Alexandre :
+>> https://lore.kernel.org/all/418a80a9-8c08-4dd1- bf49-1bd7378321aa@kernel.org/
+> Woops, this comment should target the add of the ltdc compatible as I see that
+> lvds one already exists and can't be changed.
+> Though the main idea is here.
 
-Then you might be able to build without casts ?
+Indeed, the compatible is wrong.
 
+After carefully reading the thread you point to, I suggest the following:
 
-> > > +err_mutex_unlock:
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD mutex_unlock(&ov2735->page_lock=
-);
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return ret;
-> >=20
-> > Hmm... Wouldn't be cleanup.h helpful here?
-> >
-> > > +}
-> >=20
-> > ...
-> >=20
-> > > +static int ov2735_write(struct ov2735 *ov2735, u32 reg, u64 val, int=
- *err)
-> > > +{
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return ov2735_page_access(ov273=
-5, reg, (void *)&val, err, false);
-> >=20
-> > Why casting?
-> >=20
-> > > +}
-> >=20
-> > ...
+* Rename the new LTDC compatible to "st,stm32mp251-ltdc"
+* Add another compatible for the LVDS. So it would have "st,stm32mp255-lvds",
+and falls back to "st,stm32mp25-lvds".
 
-<snip>
+Like so the LVDS driver would not have to be modified.
 
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Apply format settings. */
-> >=20
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Apply customized values from=
- user */
-> >=20
-> > Define a single style for one-line comments and use it everywhere consi=
-stently.
->=20
-> Are you referring to the period at the end of the comment?
-> =20
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
-=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD goto error_power_off;
-> >=20
-> > ...
-> >=20
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD devm_pm_runtime_set_active_enab=
-led(ov2735->dev);
-> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD devm_pm_runtime_get_noresume(ov=
-2735->dev);
-> >=20
-> > No error checks? What's the point to use devm and what will happen if t=
-he first
-> > fails, for example?
-> >=20
-> > --
-> > With Best Regards,
-> > Andy Shevchenko
->=20
-> With all due respect,
->=20
-> I completely understand and appreciate the need for multiple rounds of re=
-view.
-> However, where feasible, it would be helpful to receive style-related and=
-=20
-> non-blocking comments earlier in the review process. Iterating on minor i=
-ssues
-> in later versions, especially ones that could have been addressed togethe=
-r=20
-> earlier, can become a bit frustrating at times. I hope you can understand=
- this=20
-> perspective.
+Alex, Krzysztof, does that seem good to you ?
 
-I certainly understand that public patch review can be slow and tedious
-at times, but please remember that unless you have paid Andy to review
-this work, there are no contractual 'requirements' on which bits get
-reviewed first. All reviews are helpful, whereever they come in - and
-the goal here is to get as many eyes on code as possible to support high
-quality code being maintained in the linux kernel.
+Best regards,
+Raphaël
+>
+>>
+>>> +        #clock-cells = <0>;
+>>> +        reg = <0x48060000 0x2000>;
+>>> +        clocks = <&rcc CK_BUS_LVDS>, <&rcc CK_KER_LVDSPHY>;
+>>> +        clock-names = "pclk", "ref";
+>>> +        resets = <&rcc LVDS_R>;
+>>> +        access-controllers = <&rifsc 84>;
+>>> +        power-domains = <&CLUSTER_PD>;
+>>> +        status = "disabled";
+>>> +    };
+>>> +
+>>>       vdec: vdec@480d0000 {
+>>>           compatible = "st,stm32mp25-vdec";
+>>>           reg = <0x480d0000 0x3c8>;
+>>>
+>>
+>> Best regards,
+>> Clément
+>
 
-
-Perhaps one path to speed this up in the future might be if you might
-find some time to read more kernel code and also review some other
-kernel patches publicly as well. It might accelerate/help you learn the
-linux coding style sooner to avoid some cycles, and provide more eyes
-where we need them in the community.
-
-Regards
---
-Kieran
-
-
-> Once again, thank you for your time and effort in helping improve the qua=
-lity
-> of the driver.
->=20
-> Best Regards,
-> Hardev
 
