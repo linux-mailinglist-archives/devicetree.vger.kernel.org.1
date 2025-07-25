@@ -1,141 +1,253 @@
-Return-Path: <devicetree+bounces-199798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27069B1228C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 19:05:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC039B122FB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 19:27:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 360A31CE55AA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:05:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61BB57BA1C4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:26:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DDE2F002C;
-	Fri, 25 Jul 2025 17:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965702EF9D7;
+	Fri, 25 Jul 2025 17:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="lMYRbbWd"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="TwR16l5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1D12EF66B;
-	Fri, 25 Jul 2025 17:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D1B2EF2AD;
+	Fri, 25 Jul 2025 17:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753463047; cv=none; b=svOUo6wbeD8ys8HiUJqTtrbzOWvsGUKl1EwkB5iX+Ny5x7HVY64LJBbeLsMlAz1Uu2pmSa88SRxMlJMeC9hIrJKT0JT2syyTVksOayzM/SSvwQiL93+Ius/d0LEn1aMWoIf8q5SEQa+VMPkGIZ/shJhcG+4KM/l/ewQ4B9WfReI=
+	t=1753464470; cv=none; b=b/ypH/RUgJP+btOauWpvB75G5Q5KddclGXBl+EQIY1geWegNtowC4nnZHfNWIyw3txN80Zq5YIbWhmVX2sDcGpNiFfbbk4fY8VXc6Hpd6qqW5e6ef5foxiIYzi4QiX+w1XIs+IgDqw6NYkr+e+gnhmzbspwp6jHunCaPff5b6Tk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753463047; c=relaxed/simple;
-	bh=XRPXn4b8DSkRHKtIXSlfRWZ/7dKLmVHQ9WRzD4Ora/A=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=htjcsD+EQCIQw6khDop33F1876TUFNkXuh3Tzxx5MFA/Pwod2VSy0PMiv5932TAfxQwkXxfwrGy83vq26jX27daxk7JZX60yn42zQuArtVxsufNBaOjSgNCWaftaxsd6lTo4rjPLKGGglyWlz1kVrPfoDpt5pIbcmxYH2qi/n98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=lMYRbbWd; arc=none smtp.client-ip=95.215.58.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1753464470; c=relaxed/simple;
+	bh=JulBuFHYdgKvNoi/Uuf1v9zXL91cqjkYaYHW6vNvzZ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=O5NKIHDnACOVI4TuuZ5ygTr2RQlS/DKuCPQ5gK4pr7J2HNT158QUeeJMHVk6d5k2t3H9LDiwJdkBTK8Q6DbzvLIOpwZzXkEptnED295/o+6gJ2iXnrOIU+hQPv9kgofC2Dv69tHr9xVJPLsFc8ytjfMhqXibyYu3txcvpBKaZso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=TwR16l5Z; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 246C610391E80;
+	Fri, 25 Jul 2025 19:27:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1753464464; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=3UlWs5l+oOrBrkVYNeILHZoYkNbA2xQARHEE4h2fbS8=;
+	b=TwR16l5ZRojyZ9aw5+k0dhQkwb/1kaLqVhqH2QvioVY0qVECNvy5CTzAUcBxLKHRlYRQjN
+	8e2RhplWmYn2pXCnyjXv7Xt3k2NXMrp+y6B/21scJzfPchyJEThoMSyNb5Byw5TBTTd9qs
+	arMXYG8ykNZshXDXwpwkvVIsVIxMQ3TWcnVc3IG4Fu3umERajzNZKMfX5tnSHAF0NK4Nos
+	nRDGiFbmSzKHPLjnfQ5gyVU6FL+LVM9nVhPcTs2idRcrmLtdmXN7aZqOTYnO5Yo5zGtAMj
+	I2rPEdrBela6GoksRl3a/KSW9EYXEeeKue53IHAWNyV11yRaOHXjsoLgjTDAaQ==
+Date: Fri, 25 Jul 2025 19:27:38 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+ <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>
+Subject: Re: [net-next v16 06/12] net: mtip: Add net_device_ops functions to
+ the L2 switch driver
+Message-ID: <20250725192738.0fffece9@wsk>
+In-Reply-To: <20250725155440.GF1367887@horms.kernel.org>
+References: <20250724223318.3068984-1-lukma@denx.de>
+	<20250724223318.3068984-7-lukma@denx.de>
+	<20250725155440.GF1367887@horms.kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1753463031;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Q6NaXMg9fbROH9LvIGCHCsqgrXQO+KbOb0QRffIyTME=;
-	b=lMYRbbWdVu9phJd7Q2DFv8Z9C2qAH919I0996wblEzzaVBasc+xxHGRU3M3Zp05/pBarYR
-	tB2bdt8xpLkn39yB2WOvU6IJWD0DC5EMcw+JgDP4EsDb8Jdld4Ez0FLfLVTYGjZaplAUO2
-	YWHNsenPJXB2mqKwteYxOdHxKQHmH4J+/BArnDso+N7Os0hUvCMmo6+8qC/FRW0/h7I6bU
-	1P81Lf5C/IEpTYiv5xnCC2RruYkXNWI8Dtqf4J7TzOqI4wNKEh/edzIuFgECkD6YXY0mjG
-	KqBQ6Le2cM+47oAUOI/htPjC8cwqHguDZwGRdYlP2Qp9xbe8kGGBfqEcFFYJ9w==
-Content-Type: multipart/signed;
- boundary=8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Fri, 25 Jul 2025 19:03:29 +0200
-Message-Id: <DBLARE9EUGTB.1AIKSIZBIXHIJ@cknow.org>
-Cc: "Chen Wang" <unicorn_wang@outlook.com>, "Drew Fustini" <drew@pdp7.com>,
- <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v6 1/8] mmc: sdhci-of-dwcmshc: add common bulk optional
- clocks support
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Adrian Hunter" <adrian.hunter@intel.com>, "Robin Murphy"
- <robin.murphy@arm.com>, "Chen Wang" <unicornxw@gmail.com>,
- <aou@eecs.berkeley.edu>, <conor+dt@kernel.org>, <guoren@kernel.org>,
- <inochiama@outlook.com>, <jszhang@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
- <paul.walmsley@sifive.com>, <robh@kernel.org>, <ulf.hansson@linaro.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mmc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <chao.wei@sophgo.com>, <haijiao.liu@sophgo.com>,
- <xiaoguang.xing@sophgo.com>, <tingzhu.wang@sophgo.com>
-References: <cover.1722847198.git.unicorn_wang@outlook.com>
- <e57e8c51da81f176b49608269a884f840903e78e.1722847198.git.unicorn_wang@outlook.com> <f81b88df-9959-4968-a60a-b7efd3d5ea24@arm.com> <99899915-2730-41c7-b71a-f8d97bb6e59c@intel.com> <DBKCYCNRNTMZ.1XJU81M6EE2D0@cknow.org> <30cb2e71-5e0b-4fa0-b0e0-3263d9aa8712@intel.com>
-In-Reply-To: <30cb2e71-5e0b-4fa0-b0e0-3263d9aa8712@intel.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="Sig_/VpCMvLfcku4gQXj7ihFznS1";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
---8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2
+--Sig_/VpCMvLfcku4gQXj7ihFznS1
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Thu Jul 24, 2025 at 4:57 PM CEST, Adrian Hunter wrote:
-> On 24/07/2025 17:33, Diederik de Haas wrote:
->> On Wed Jul 23, 2025 at 7:33 AM CEST, Adrian Hunter wrote:
->>> On 22/07/2025 21:33, Robin Murphy wrote:
->>>> A bit late for a "review", but Diederik and I have just been
->>>> IRC-debugging a crash on RK3568 which by inspection seems to be caused
->>>> by this patch:
->>>>
->>>> On 2024-08-05 10:17 am, Chen Wang wrote:
->>>>> From: Chen Wang <unicorn_wang@outlook.com>
->>>>>
->>>>> In addition to the required core clock and optional
->>>>> bus clock, the soc will expand its own clocks, so
->>>>> the bulk clock mechanism is abstracted.
->>>>>
->>>>> Note, I call the bulk clocks as "other clocks" due
->>>>> to the bus clock has been called as "optional".
->>>>>
->>>>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->>>>> Tested-by: Drew Fustini <drew@pdp7.com> # TH1520
->>>>> Tested-by: Inochi Amaoto <inochiama@outlook.com> # Duo and Huashan Pi
->>>>> ---
->>>
->>> Presumably the problem has gone away with:
->>>
->>> 	commit 91a001a1a0749e5d24606d46ac5dfd4433c00956
->>> 	Author: Binbin Zhou <zhoubinbin@loongson.cn>
->>> 	Date:   Sat Jun 7 15:39:01 2025 +0800
->>>
->>> 	    mmc: sdhci-of-dwcmshc: Drop the use of sdhci_pltfm_free()
->>>
->>> which is in next.
->>>
->>> In which case a separate fix is needed for stable.
->>=20
->> Adding that patch to my 6.16-rc7 kernel indeed stopped the OOPSies.
->> Thanks!
->
-> You need the other patches that it depends on, otherwise you are
-> just leaking the memory.  Refer:
->
-> 	https://lore.kernel.org/all/cover.1749127796.git.zhoubinbin@loongson.cn/
+Hi Simon,
 
-Also with the other patches, the OOPSies stopped :-)
+> On Fri, Jul 25, 2025 at 12:33:12AM +0200, Lukasz Majewski wrote:
+> > This patch provides callbacks for struct net_device_ops for MTIP
+> > L2 switch.
+> >=20
+> > Signed-off-by: Lukasz Majewski <lukma@denx.de> =20
+>=20
+> ...
+>=20
+> > +static netdev_tx_t mtip_start_xmit_port(struct sk_buff *skb,
+> > +					struct net_device *dev,
+> > int port) +{
+> > +	struct mtip_ndev_priv *priv =3D netdev_priv(dev);
+> > +	struct switch_enet_private *fep =3D priv->fep;
+> > +	unsigned short status;
+> > +	struct cbd_t *bdp;
+> > +	void *bufaddr;
+> > +
+> > +	spin_lock_bh(&fep->hw_lock);
+> > +
+> > +	if (!fep->link[0] && !fep->link[1]) {
+> > +		/* Link is down or autonegotiation is in progress.
+> > */
+> > +		netif_stop_queue(dev);
+> > +		spin_unlock_bh(&fep->hw_lock);
+> > +		return NETDEV_TX_BUSY;
+> > +	}
+> > +
+> > +	/* Fill in a Tx ring entry */
+> > +	bdp =3D fep->cur_tx;
+> > +	status =3D bdp->cbd_sc;
+> > +
+> > +	if (status & BD_ENET_TX_READY) {
+> > +		/* All transmit buffers are full. Bail out.
+> > +		 * This should not happen, since dev->tbusy should
+> > be set.
+> > +		 */
+> > +		netif_stop_queue(dev);
+> > +		dev_err_ratelimited(&fep->pdev->dev, "%s: tx queue
+> > full!.\n",
+> > +				    dev->name);
+> > +		spin_unlock(&fep->hw_lock); =20
+>=20
+> Sorry be the one to point out this needle in a haystack,
+> but this should be spin_unlock_bh()
 
-Cheers,
-  Diederik
+I must have overlooked it when working on the code.
 
---8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2
-Content-Type: application/pgp-signature; name="signature.asc"
+Anyway, I need to wait if there are other comments from Jakub or Paolo
+- as they had some comments (addressed already by this patch set) for
+  previous version.
+
+>=20
+> Flagged by Smatch.
+>=20
+> > +		return NETDEV_TX_BUSY;
+> > +	}
+> > +
+> > +	/* Clear all of the status flags */
+> > +	status &=3D ~BD_ENET_TX_STATS;
+> > +
+> > +	/* Set buffer length and buffer pointer */
+> > +	bufaddr =3D skb->data;
+> > +	bdp->cbd_datlen =3D skb->len;
+> > +
+> > +	/* On some FEC implementations data must be aligned on
+> > +	 * 4-byte boundaries. Use bounce buffers to copy data
+> > +	 * and get it aligned.spin
+> > +	 */
+> > +	if ((unsigned long)bufaddr & MTIP_ALIGNMENT) {
+> > +		unsigned int index;
+> > +
+> > +		index =3D bdp - fep->tx_bd_base;
+> > +		memcpy(fep->tx_bounce[index], skb->data, skb->len);
+> > +		bufaddr =3D fep->tx_bounce[index];
+> > +	}
+> > +
+> > +	if (fep->quirks & FEC_QUIRK_SWAP_FRAME)
+> > +		swap_buffer(bufaddr, skb->len);
+> > +
+> > +	/* Push the data cache so the CPM does not get stale memory
+> > +	 * data.
+> > +	 */
+> > +	bdp->cbd_bufaddr =3D dma_map_single(&fep->pdev->dev, bufaddr,
+> > +					  MTIP_SWITCH_TX_FRSIZE,
+> > +					  DMA_TO_DEVICE);
+> > +	if (unlikely(dma_mapping_error(&fep->pdev->dev,
+> > bdp->cbd_bufaddr))) {
+> > +		dev_err(&fep->pdev->dev,
+> > +			"Failed to map descriptor tx buffer\n");
+> > +		dev->stats.tx_dropped++;
+> > +		dev_kfree_skb_any(skb);
+> > +		goto err;
+> > +	}
+> > +
+> > +	/* Save skb pointer. */
+> > +	fep->tx_skbuff[fep->skb_cur] =3D skb;
+> > +	fep->skb_cur =3D (fep->skb_cur + 1) & TX_RING_MOD_MASK;
+> > +
+> > +	/* Send it on its way.  Tell FEC it's ready, interrupt
+> > when done,
+> > +	 * it's the last BD of the frame, and to put the CRC on
+> > the end.
+> > +	 */
+> > +
+> > +	status |=3D (BD_ENET_TX_READY | BD_ENET_TX_INTR |
+> > BD_ENET_TX_LAST |
+> > +		   BD_ENET_TX_TC);
+> > +
+> > +	/* Synchronize all descriptor writes */
+> > +	wmb();
+> > +	bdp->cbd_sc =3D status;
+> > +
+> > +	skb_tx_timestamp(skb);
+> > +
+> > +	/* Trigger transmission start */
+> > +	writel(MCF_ESW_TDAR_X_DES_ACTIVE, fep->hwp + ESW_TDAR);
+> > +
+> > +	dev->stats.tx_bytes +=3D skb->len;
+> > +	/* If this was the last BD in the ring,
+> > +	 * start at the beginning again.
+> > +	 */
+> > +	if (status & BD_ENET_TX_WRAP)
+> > +		bdp =3D fep->tx_bd_base;
+> > +	else
+> > +		bdp++;
+> > +
+> > +	if (bdp =3D=3D fep->dirty_tx) {
+> > +		fep->tx_full =3D 1;
+> > +		netif_stop_queue(dev);
+> > +	}
+> > +
+> > +	fep->cur_tx =3D bdp;
+> > + err:
+> > +	spin_unlock_bh(&fep->hw_lock);
+> > +
+> > +	return NETDEV_TX_OK;
+> > +} =20
+>=20
+> ...
+
+
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH, Managing Director: Johanna Denk,
+Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
+Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/VpCMvLfcku4gQXj7ihFznS1
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaIO47QAKCRDXblvOeH7b
-bh72AQCh2k0eqJiG8Ya5dmzENE7WFUBjyOZZW10vyWI/TozQJAEAlJekvqK7tuae
-XFsYO2aDmaIN1Y0pZTJ7d2kzkrzxwQk=
-=ZwZn
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmiDvooACgkQAR8vZIA0
+zr1bvQgA44ZH/osB57cH3YVOvl8W4ulZu0p5blupZwTqPyhtEWfShe4Gefx2DbBt
+Qi87KMsl8a4Z6SIAcgfuGtn1dFzMua0tj/sJ8fY2oyUtexOv2y6tQGiDr1j8DO/k
+BSF/t0HZeHfT8iNCM2QHMc/6ffmXu1Db115OJaE8C5eJ8P/vl209TV/KjlLYxeeE
+t0k4PpCGy5ek0A1LveQLbn7PAHNDiy3sbSyadvrisQmHBpUcOjpbeIWzafC5KZXN
+3XWWzQYYw3s9sL2MMTa4zrEMqdUB3iX2jm09OQJkcI/tZi3PEWHQOIMws/5kr9yq
+b01X7Ygc7fueQ3yXYUE3WxIIPCQ8xw==
+=jTi0
 -----END PGP SIGNATURE-----
 
---8c1edd4abc64afa689b98190459caaa658628e964ab805c9823f0dd1a1b2--
+--Sig_/VpCMvLfcku4gQXj7ihFznS1--
 
