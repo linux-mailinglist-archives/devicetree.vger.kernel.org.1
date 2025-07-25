@@ -1,163 +1,233 @@
-Return-Path: <devicetree+bounces-199703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F52B11BBE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A6AB11BC6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9C6317FB78
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:09:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32BC5A30C5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135172E54DE;
-	Fri, 25 Jul 2025 10:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8C32D9EE1;
+	Fri, 25 Jul 2025 10:08:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="P5/N2NqU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CNJ504A+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E682E5B3E;
-	Fri, 25 Jul 2025 10:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3746D2D6604
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 10:08:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753438052; cv=none; b=GVSEYhlYUqkyvaJ/rebY993Z5QDOASLKR+74ZrSW2hrPh79thPb/+461xNQQFf1+LFpKYck3G+L2jrjA5t5BWbDiUf1rAC6oCs5qouT+3iz6syTCV5jL5SfqodjJvwnUnsmhKSr/NXuibeDAmW+C1lknYzs1Hv7YPXXB21mCixs=
+	t=1753438098; cv=none; b=l2q6zzsOf2F+U6gnacUhnvlBRGrd6O8aU3sQgdK5kIOtP1olsgfY3NkOk4D1OZaTZEoG/ul792tW+lr08sOCwkoGYjA9zMlnUNDyu//sxHsWIeMgLskeCoPWOrzRwla2vUB6U/98Oqk29bqe8y1GR43VM5/heAXM8MvfMy/lwjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753438052; c=relaxed/simple;
-	bh=1e+UAkMMoq6wxbeaZRiZiS3SdmIXecYKdN0+850Zq2o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=pS+rthULpY4j6bfM1TwFQjNMKD8zyzPZ4NIseVpzZ0JjpVEdedZc7PYEjELPmdwOJ01DLxZiEaHYsl01z3xvgkPuEBmxhwS96t8JM7wj2i5udVGPEv1b82GqSkBTpKYt3H6bQvpEAkupa3w+AYcPT6BDbvHjaTlAohumqibZPqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=P5/N2NqU; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P9cSdj007814;
-	Fri, 25 Jul 2025 12:07:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	W1KDXoh5LDTtJ7+frb/wxVL20UcusznPewWOmjzvoSg=; b=P5/N2NqUWvzWCv3R
-	stbsbjLB2ACbZ1qfozrK9ZLyn9RHBOLGCwhHSYMjHBuvL5opd13raNkM3QSrL05G
-	6jRbwyqly2tT04FlXo9+FfzfHDq7gnUIJVIyVKdjsnTiS6pnt/asQ2Nm4et0BgyN
-	po8qNUemwoodHakrbbMsLvcerUBGjY9jjJuF4/1L2SkfvZImDPOvVjuQkeQkRA4q
-	bqZKmfmuv4tWwO25aa9sG9ywuafaj99kCYihwbzZFCjNvKR63SiH5djApWngti8A
-	f+0P4hGtnM8ZOwriOP8zNK4J+g+PQEMU1st2hYY4CRSk7f+92xPnAbIPLLGiTdA0
-	F/hZUA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 483w3m2hdy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 25 Jul 2025 12:07:13 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2A7F940060;
-	Fri, 25 Jul 2025 12:05:45 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CD1607A19E6;
-	Fri, 25 Jul 2025 12:04:37 +0200 (CEST)
-Received: from localhost (10.252.19.90) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 25 Jul
- 2025 12:04:37 +0200
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Date: Fri, 25 Jul 2025 12:04:04 +0200
-Subject: [PATCH 12/12] arm64: dts: st: add loopback clocks on LTDC node
+	s=arc-20240116; t=1753438098; c=relaxed/simple;
+	bh=IlswOXw/RTcT0slyrcVOlRkPyNua54MAWCCNfnpi6y0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Diwam6r1OqMEUlXwC0ausntSV8DYE02zNvQUZCqlGd0APL1DzqNzKH9McTzobhMESE4gyTEzQHyShzkPJLxXZ02vKVGIULWtEcGuxX09sc7aWe3PVx6OV7epbGFc8uw8w/VZ9LAq3StKBeBRhnAfGsOKyxUhJm+Bm+crHg5+20s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CNJ504A+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P9RKWY025903
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 10:08:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=6EBHc56iB4SgkIrGWkMoVed7ialO6Hu91Fg
+	rEoulgGQ=; b=CNJ504A+r23mg0+9FgdE5QuAZ8FjXBbGOsVLU5VmGg8AfN4rxPl
+	Dib+f/XqaltETQ27Rk97zohFGYJv3IBf6YA6vk8+ErR9zlOJ5ousaz/7FI+3by9T
+	IKI6ayd6+9Byq6ARw8eKDeBxMyyrtFpjL7TDyF909e5SbjSCZ5LnjZPQAU/zVeT/
+	YnVdGaj4eJ80OCMRl7BnarG+z/TOzmsrBs/wEm4a6UVosISAt7ZoUY8XltPsvBXB
+	3RTu0NzigctUUhGR9DxyxnrQsjLlg6D/IeihOqMimddTMIWNsk5pOlc9sN4MVBUF
+	LU8xpgCZNIsmKg4KPZlPrIGeM6ZVVG9CT0A==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w30snc4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 10:08:14 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-236725af87fso31556605ad.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 03:08:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753438093; x=1754042893;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6EBHc56iB4SgkIrGWkMoVed7ialO6Hu91FgrEoulgGQ=;
+        b=iJWXzM3Zg7mSiulJhq/63u88sFlLM7qq3LBeBH2uZtcFhjy5HaPGzDaqaZNYVdSU9a
+         wr1AcFLjHMVIut54DzjS2TTo6BTFFUOXYwnkjDCsfiEyWBB7sIcm/cShywkjGbS5dFw7
+         aUmMrH9DHmlzyNM/MHFhOsVhYgOmVTN0mmWJI2PDb3BCk7V4QBV9j9JKIIgWCHDKoPin
+         0h9k0V7YXu2qmqafFXE1BVUxOM0yB4p+Fth9X1NQNybX49nSOIVM0dXZf4RZRgkrk7js
+         2hPS6DQ2Q+D8s04WQgm0Iloq2ub2xvj442HB7kylJQxBKQtDktkF2wOunfLQmGc7zkfy
+         xM3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXogmdQ8qBA4717r9nRKjhtNTdbVXWTPf/ytRXsFU02ArTKZ+SaB1ythNkOI+gCpwzizoVmWUSB+CPq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcaz3dTQ/hD+NXvlTRCaXLoWQcyaxjMmSSRNQ3mytBfb9ljWxt
+	eV5QpKElxR00Ca15VqEK+NaGk4B9amJ9Gg+U8CrrAcQvmtLfoujjW4QqLtSYjdTIxHv42ciec6g
+	Ga/jXlsE7dFrZhRwlb7UARGLccifWT+0i5aB3WxfqifW12+Gvnu1EdlBrCOhEwvgQ
+X-Gm-Gg: ASbGncsFuOaPAvcoVk5ysVdgjI/XbsSyouV2MxcvVwoQc3AkHSF8bfrGC8/Qn0y5en/
+	olFVqxCnrKjZXaX3F7mO4x13DngEbfSC6BzPe29+roSbTPLMddD2kllL4x+trkaFHi7mU9y4X/F
+	VGM+gKKjkSYP9aZGW+mlYnYZEEmNsb3hPVHsRAJT7NelIxduWaNGEZZtpdFCKCTb7d4x0NU+yBf
+	KhK3Y+K1X8+Tfosip8uVKPFaDeaIalw1bE39uNq3yKqskl2c9IqIOx8zdYZ/9U5DD8hXcvCAJQb
+	IhXu7fJSD44tWzNSg3q7IPy8hN+agdiDdnnN00kJWvwCQeEj1nlx+43MKJpehafqZJkOvR773OR
+	8MJAfVG1kco5iMcmPA2g=
+X-Received: by 2002:a17:902:f68e:b0:234:8a16:d62b with SMTP id d9443c01a7336-23fb308080cmr22580665ad.12.1753438093404;
+        Fri, 25 Jul 2025 03:08:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFiwVDJYSX1y11czEmaF5LFxL17hgu0Lb2lAPb7Ue/TpYcJeCl2AQGCWJYInJsEyxe1YPp2QQ==
+X-Received: by 2002:a17:902:f68e:b0:234:8a16:d62b with SMTP id d9443c01a7336-23fb308080cmr22580135ad.12.1753438092796;
+        Fri, 25 Jul 2025 03:08:12 -0700 (PDT)
+Received: from jiegan.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fa48fd29dsm33641435ad.176.2025.07.25.03.08.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Jul 2025 03:08:12 -0700 (PDT)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Jinlong Mao <jinlong.mao@oss.qualcomm.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Gan <quic_jiegan@quicinc.com>
+Subject: [PATCH v4 00/10] coresight: ctcu: Enable byte-cntr function for TMC ETR
+Date: Fri, 25 Jul 2025 18:07:56 +0800
+Message-Id: <20250725100806.1157-1-jie.gan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250725-drm-misc-next-v1-12-a59848e62cf9@foss.st.com>
-References: <20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com>
-In-Reply-To: <20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com>
-To: Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime
- Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Christophe Roullier
-	<christophe.roullier@foss.st.com>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=WtArMcfv c=1 sm=1 tr=0 ts=6883578e cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=URa5TLP9FqKrhjsjdTUA:9 a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Y8MRgLy52Jk2ecGAAQRp9-x0y790Mi3K
+X-Proofpoint-ORIG-GUID: Y8MRgLy52Jk2ecGAAQRp9-x0y790Mi3K
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDA4NSBTYWx0ZWRfXx1dMvCt9s4IM
+ ElpUIWOMwLYiRUNS69DhV75U6R0NF6/SBHGfsdYsYXkHSaamLGSBiuSW1KCXV/kLU4ZgSB/6m9o
+ e+ncLvaBuGx37xcdxWu2t2qSKdWDmCteuCylz0VGUIvtw7UB/8A+K8J5Ri0sc3KxcbIBr3l1fg1
+ z5ANTsOYpuWdk0qd8bD/dkP1X2tk+usOLNHAiB2LwlG2lKHYKaEPFEXCJPmrguz+RJF5rEb3QVl
+ wwexxXwsWraj2kwZzkCjGqohEYb/Gl4nAdQgrLjd6BY9UhuTDjK1653KaeVfJVci6Au7mX2ffya
+ 07ZCeJNP+cMkFxhvQJy2G+eubqmuvcWAHve6OKXOiwIAEPddkYR6PMohmBwmGqMbmwEHBUtWuMo
+ M39bKN4RClS9ACOAzLkt6G6DNiv6WstgvkGJusjIcAFnWjFKeSyYZg858KXo+uRJ8pHgoSuu
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-25_02,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ mlxscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507250085
 
-ck_ker_ltdc has the CLK_SET_RATE_PARENT flag.  While having this flag is
-semantically correct, it for now leads to an improper setting of the
-clock rate.  The ck_ker_ltdc parent clock is the flexgen 27, which does
-not support changing rates yet.  To overcome this issue, a fixed clock
-can be used for the kernel clock.
+The byte-cntr function provided by the CTCU device is used to count the
+trace data entering the ETR. An interrupt is triggered if the data size
+exceeds the threshold set in the BYTECNTRVAL register. The interrupt
+handler counts the number of triggered interruptions.
 
-Add the clocks needed for the LTDC to work.
+Based on this concept, the irq_cnt can be used to determine whether
+the etr_buf is full. The ETR device will be disabled when the active
+etr_buf is nearly full or a timeout occurs. The nearly full buffer will
+be switched to background after synced. A new buffer will be picked from
+the etr_buf_list, then restart the ETR device.
 
-Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 6 ++++++
- arch/arm64/boot/dts/st/stm32mp255.dtsi | 7 ++++++-
- 2 files changed, 12 insertions(+), 1 deletion(-)
+The byte-cntr reading functions can access data from the synced and
+deactivated buffer, transferring trace data from the etr_buf to userspace
+without stopping the ETR device.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index c561df51a6001004e45fb53a56d5d42c310e6b61..54dd57e0a98eabbbcfe89459e6d63eb287f5ca04 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -52,6 +52,12 @@ clk_rcbsec: clk-rcbsec {
- 			compatible = "fixed-clock";
- 			clock-frequency = <64000000>;
- 		};
-+
-+		clk_flexgen_27_fixed: clk-54000000 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <54000000>;
-+		};
- 	};
- 
- 	firmware {
-diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-index a4d965f785fa42c4597494010855aec7e1b9fdd1..82c2fa67b6b91f67d51872ed098aea897fab0197 100644
---- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
-@@ -5,6 +5,11 @@
-  */
- #include "stm32mp253.dtsi"
- 
-+&ltdc {
-+	clocks = <&rcc CK_BUS_LTDC>, <&clk_flexgen_27_fixed>, <&syscfg>, <&lvds>;
-+	clock-names = "bus", "lcd", "ref", "lvds";
-+};
-+
- &rifsc {
- 	lvds: lvds@48060000 {
- 		compatible = "st,stm32mp25-lvds";
-@@ -34,4 +39,4 @@ venc: venc@480e0000 {
- 		clocks = <&rcc CK_BUS_VENC>;
- 		access-controllers = <&rifsc 90>;
- 	};
--};
-\ No newline at end of file
-+};
+The byte-cntr read operation has integrated with the file node tmc_etr,
+for example:
+/dev/tmc_etr0
+/dev/tmc_etr1
+
+There are two scenarios for the tmc_etr file node with byte-cntr function:
+1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
+2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
+
+Shell commands to enable byte-cntr reading for etr0:
+echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+echo 1 > /sys/bus/coresight/devices/etm0/enable_source
+cat /dev/tmc_etr0
+
+Enable both ETR0 and ETR1:
+echo 0x10000 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+
+Reset the BYTECNTR register for etr0:
+echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+
+Changes in V4:
+1. Rename the function to coresight_get_in_port_dest regarding to Mike's
+comment (patch 1/10).
+2. Add lock to protect the connections regarding to Mike's comment
+(patch 2/10).
+3. Move all byte-cntr functions to coresight-ctcu-byte-cntr file.
+4. Add tmc_read_ops to wrap all read operations for TMC device.
+5. Add a function in helper_ops to check whether the byte-cntr is
+enabkled.
+6. Call byte-cntr's read_ops if byte-cntr is enabled when reading data
+from the sysfs node.
+Link to V3 resend - https://lore.kernel.org/all/20250714063109.591-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3 resend:
+1. rebased on next-20250711.
+Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3:
+1. The previous solution has been deprecated.
+2. Add a etr_buf_list to manage allcated etr buffers.
+3. Add a logic to switch buffer for ETR.
+4. Add read functions to read trace data from synced etr buffer.
+Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
+
+Changes in V2:
+1. Removed the independent file node /dev/byte_cntr.
+2. Integrated the byte-cntr's file operations with current ETR file
+   node.
+3. Optimized the driver code of the CTCU that associated with byte-cntr.
+4. Add kernel document for the export API tmc_etr_get_rwp_offset.
+5. Optimized the way to read the rwp_offset according to Mike's
+   suggestion.
+6. Removed the dependency of the dts patch.
+Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
+
+Jie Gan (10):
+  coresight: core: Refactoring ctcu_get_active_port and make it generic
+  coresight: core: add a new API to retrieve the helper device
+  coresight: tmc: add etr_buf_list to store allocated etr_buf
+  coresight: tmc: add create/delete functions for etr_buf_node
+  coresight: tmc: Introduce tmc_read_ops to wrap read operations
+  dt-bindings: arm: add an interrupt property for Coresight CTCU
+  coresight: ctcu: enable byte-cntr for TMC ETR devices
+  coresight: add a new function in helper_ops
+  coresight: tmc: integrate byte-cntr's read_ops with sysfs file_ops
+  arm64: dts: qcom: sa8775p: Add interrupts to CTCU device
+
+ .../testing/sysfs-bus-coresight-devices-ctcu  |   5 +
+ .../bindings/arm/qcom,coresight-ctcu.yaml     |  17 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   5 +
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ drivers/hwtracing/coresight/coresight-core.c  |  59 +++
+ .../coresight/coresight-ctcu-byte-cntr.c      | 364 ++++++++++++++++++
+ .../hwtracing/coresight/coresight-ctcu-core.c | 148 +++++--
+ drivers/hwtracing/coresight/coresight-ctcu.h  |  60 ++-
+ drivers/hwtracing/coresight/coresight-priv.h  |   4 +
+ .../hwtracing/coresight/coresight-tmc-core.c  |  99 +++--
+ .../hwtracing/coresight/coresight-tmc-etr.c   |  81 ++++
+ drivers/hwtracing/coresight/coresight-tmc.h   |  40 ++
+ include/linux/coresight.h                     |   3 +
+ 13 files changed, 828 insertions(+), 59 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-ctcu
+ create mode 100644 drivers/hwtracing/coresight/coresight-ctcu-byte-cntr.c
 
 -- 
-2.25.1
+2.34.1
 
 
