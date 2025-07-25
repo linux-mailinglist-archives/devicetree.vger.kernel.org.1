@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-199851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7943BB12757
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:25:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6ECB12772
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88D251CE090D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:25:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 734B65A370C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24FB725B1EA;
-	Fri, 25 Jul 2025 23:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93CA262FC1;
+	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BhH2V1yH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihiRRkKq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDECC1D9A5D;
-	Fri, 25 Jul 2025 23:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD773262D14;
+	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753485919; cv=none; b=UvHjlqg6z6bINMmi97ctJlzqhFtEpvMgeDYEToB9KVZwOVGcxtR1EeygSdd6y0ZpyhSU++2/s7NIXqSDYMZG8xQJ/HbrSTOWNyEjmJagWLuAfaQFe0W8NL1XbEYH8phT0oVwguT0FlmHCpl+VnNQVaeK3J42VXm7GzEliwoCgAo=
+	t=1753486027; cv=none; b=gY32MRvIj5sin5nz2JTR6W8t4WKGFLrtFWNM1q4XtILA+zkszxLo2tBoCpUYP/i2nI3mHuOMv/cFkBO3xUIbCjjrazAc1stcgZ4KYHWXA1DgIdCuBPX7n/af2i9lu41nL0NKnQBD4SGyDwa0g/Ch2+SLi3UAbIrn/JzSJqNt68w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753485919; c=relaxed/simple;
-	bh=30Lu0lu5cTdskwZvddFTxEhvmB6dDSde5G6CiimxE18=;
+	s=arc-20240116; t=1753486027; c=relaxed/simple;
+	bh=1D5Cen4w32EzTcG4YKubhAFWUoYoIC6LSnVdLASv/X0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gHoCMEILvqmc4WsYz8e2ILSErtUByCtosP8m3XirrCtHPlO2WQ9kKwIsaUcCWF9X1i4WHylnLmFcpsaqBBF8fIyT4yLD42b+qXoNFlTG/JXdjcwhuD59Bp1U1BYtm0MlDumq8OHW5vWjQpge43KrCBlq/g3IrotIJLgrPJnnVKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BhH2V1yH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7A37C4CEE7;
-	Fri, 25 Jul 2025 23:25:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EpY8QF+If68ha+jZiTUOxJf2bFWBUqZ6yRRZrvAxkKR+jCsxRgxdC7Vkks7p2FKBcNyMaCT7EwF4BSQLjTVJDcmBitd/lgQSg0R1ayZjhXRJQNz0fN0Md05lRbmRdYR327C8V1JgFPEpUIPlmhP2yr1/l9aAfJQVRwYRVjQ5R2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihiRRkKq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74A4AC4CEF4;
+	Fri, 25 Jul 2025 23:27:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753485918;
-	bh=30Lu0lu5cTdskwZvddFTxEhvmB6dDSde5G6CiimxE18=;
+	s=k20201202; t=1753486027;
+	bh=1D5Cen4w32EzTcG4YKubhAFWUoYoIC6LSnVdLASv/X0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BhH2V1yHUI/4eJQ6O6SG1WTvCOkt3dRljpQMyc6AJJvfc9Ge6R4yFP34FihWPc4AU
-	 sCHjWECuBb9JWB5DHvvXko61NyKC4mpUdZUBDorYydB9bN4zn+wWJXl9dRjjTi5oNm
-	 69IZ10ziTsotIvFjLvZ5zVRy0Aw8VaWi36Zm01diusnQXnPMP/Er4YWcGxQ/lIZD03
-	 JQewW2m6ut/0cqUi+V2EZFgFNUuRVVyZlHJl/PRCu3xi28NZFElIJzIx9EKtLDIFJ7
-	 E4curYdmx/NhdLREspoJMKHpBsLMP0OxYHetdO3gTNCl53Mvd6oA2GnJE7/UAegz/B
-	 yCq9g/Ji9+iCQ==
-Date: Fri, 25 Jul 2025 18:25:17 -0500
+	b=ihiRRkKqmOS5fWcijJ50OOIjmcgkrCWXXaTX4XcAV+SehMWjdHq99jRncjBz7bk6N
+	 WO3A340rTt0y4zEti0YuC625hSD/Koafe7zB0X9Zjz8WdwDrNlt9X3rTQTR/pteC3P
+	 /VO0mx8iPHetcr+/S1p2nrztYifXuhUTs+4mbQBWQOI0oAB9/dVNd0BqfcJieyov+1
+	 b3mmki+sAsX6qvxd7cEloIlxOKyRyVYqcYmtD6p+EpLAsWHNzQk7ln7LqKLkefAHKt
+	 VkWioRoeqYo5wZBK4/Iy/XlDUgXEL+hDzGzydrTWi/FGjNayvMSm05dZSeSd1I30D3
+	 taQ9CVREn8jCA==
+Date: Fri, 25 Jul 2025 18:27:06 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Matthew Gerlach <matthew.gerlach@altera.com>
-Cc: alexandre.torgue@foss.st.com, maxime.chevallier@bootlin.com,
-	davem@davemloft.net, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com, edumazet@google.com, pabeni@redhat.com,
-	linux-kernel@vger.kernel.org, dinguyen@kernel.org,
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	krzk+dt@kernel.org, andrew+netdev@lunn.ch, kuba@kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: net: altr,socfpga-stmmac: Add
- compatible string for Agilex5
-Message-ID: <175348591737.2024488.4815901624908424031.robh@kernel.org>
-References: <20250724154052.205706-1-matthew.gerlach@altera.com>
- <20250724154052.205706-2-matthew.gerlach@altera.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: adi,ad7124: fix clocks
+ properties
+Message-ID: <175348602635.2026537.7901713448810166521.robh@kernel.org>
+References: <20250724-iio-adc-ad7124-proper-clock-support-v1-0-88f35db2fcaf@baylibre.com>
+ <20250724-iio-adc-ad7124-proper-clock-support-v1-1-88f35db2fcaf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +64,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250724154052.205706-2-matthew.gerlach@altera.com>
+In-Reply-To: <20250724-iio-adc-ad7124-proper-clock-support-v1-1-88f35db2fcaf@baylibre.com>
 
 
-On Thu, 24 Jul 2025 08:40:48 -0700, Matthew Gerlach wrote:
-> Add compatible string for the Altera Agilex5 variant of the Synopsys DWC
-> XGMAC IP version 2.10.
+On Thu, 24 Jul 2025 18:25:22 -0500, David Lechner wrote:
+> Use correct clocks properties for the AD7124 family of ADCs.
 > 
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> These ADCs have an internal clock along with an optional external clock
+> that can be connected to the CLK pin. This pin can be wired up 3 ways:
+> 1. Not connected - the internal clock is used.
+> 2. Connected to an external clock (input) - the external clock is used.
+> 3. Connected to the CLK pin on another ADC (output) - the internal clock
+>    is used on one and the other is configured for an external clock.
+> 
+> The new bindings describe these 3 cases by picking one of the following:
+> 1. Omit both clocks and #clock-cells properties.
+> 2. Include only the clocks property with a phandle to the external clock.
+> 3. Include only the #clock-cells property on the ADC providing the output.
+> 
+> The clock-names property is now deprecated and should not be used. The
+> MCLK signal that it refers to is an internal counter in the ADC and
+> therefore does not make sense as a devicetree property as it can't be
+> connected to anything external to the ADC. Since there is only one
+> possible external clock, the clock-names property is not needed anyway.
+> Based on the implementation of the Linux driver, it looks like the
+> "mclk" clock was basically being used as a control to select the power
+> mode of the ADC, which is not something that should be done in the
+> devicetree.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
-> v2:
->  - Remove generic compatible string for Agilex5.
-> ---
->  .../devicetree/bindings/net/altr,socfpga-stmmac.yaml      | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/iio/adc/adi,ad7124.yaml     | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
