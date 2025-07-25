@@ -1,192 +1,245 @@
-Return-Path: <devicetree+bounces-199783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EA2B120A4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:09:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F15B120C1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 17:23:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 449E33BBBAF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:09:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAB201C841FE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 15:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C8C2EE269;
-	Fri, 25 Jul 2025 15:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD4422D795;
+	Fri, 25 Jul 2025 15:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="QE+1rzc3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ATzB3/mc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5669E2EE265;
-	Fri, 25 Jul 2025 15:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753456171; cv=pass; b=nbBdkiRWT9h0ZrZR9bFzlV3V4+qDr7puJ8uw6FA4G1pKMxDhd2GktcUj8WOQXClpaaq38m/h4Zc6iZHMQeOXDFtu6p4oXSYlI4Gk0E36kUwgV5zYze2s946cuTOc6JHSaSvuUTdC1MIjUQCu9ByqCjVZxXzqIZlDT44kRF9lPsw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753456171; c=relaxed/simple;
-	bh=w/q7YXmYQo5hzxHYJrOKBSm8hKp1IgwuaIt41MKBlu0=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=MEIqWi2lcdPED8sL2Ycv2zrVZkBNHgYvl/4AIeYDPd2Qe3V54O96iqBmqPAwj+sVklf/OQP175yJ82zpoxjFblUlrgwjJDzN2Gph+ud31Pv0qllm2JTtV2InGj0zhSUWtdP8R0j1Pyzdyp5fOWs/xg5gre3msk0lBX4zaMfcUM4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=QE+1rzc3; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1753456138; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=aJXR6a8q6dZxYmYb1+KpOaP5xjOrgMxKHNYdECzRR5QJmek/cfTFOY75qbIYgguq6ARPq9qJmb4qaVK8pgt56olCg9P/pqUuniPaONawvKK66N7hsTTwOEIHsNHxjIBA8rQspIl0b8ONPMWbP6wXwTvkXFCMWQ8dBMsLg2++llg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753456138; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ke+lVtmoyenH47nCVRy+b5168mhUwVX/VKLxEBmQcBw=; 
-	b=QxcP3Cyfe1YTERLmahTy1qE1Yv4Xjan2hUkUenNpoutdyqp4cAoW6L76BBES14kDNwdUjXGXwZr+fNjVGJl84aSIw9N0vv5aTeQy/GBdaLVKvHmwyPNSECka0mhKzRfaIMNedBqxlm4SM+gEfTyDWwufP6tZdiyTttdThprB1ds=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
-	dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753456138;
-	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
-	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
-	bh=ke+lVtmoyenH47nCVRy+b5168mhUwVX/VKLxEBmQcBw=;
-	b=QE+1rzc3QP2OK2xyvj5KS8T65DhKXFXbPAOd74SKmC+dyFRz0auClItJ9wuXkDUY
-	nh15gCgocCehYaQqSfIphi/TeIlZG9E4O/sVW2pHDUIGpc4Yc3ZpTfkiJrkIDhcIf/1
-	gqN9XK+Sqhqgzt2jjQj1SKo4jpWAqzT6a/mzbruw=
-Received: by mx.zohomail.com with SMTPS id 1753456135651361.47805588339804;
-	Fri, 25 Jul 2025 08:08:55 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D538677111
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 15:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753456985; cv=none; b=AotYPpZAts/M/e4Al4t1kjOsFGFziI/iYG16sD+hWyYnqqU85NYgs9NGNJYpXInLg4HgzRftqFi5HYzvSPaiqz6jZIQUUxXCwaBesT+OrT4iDUdZUYU36veSyDlLhSxIW4ZGp2ezkAaOIbGF0/7cTiTGm/sTLUIzxYxrJYklV1Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753456985; c=relaxed/simple;
+	bh=JjfQEpEcDJYlL8sZrWJ4hNkuZZvv9FQs9CUKa4SDujI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=naCwE1aJdxdW9F6CaXJlPdO/XGM5I/OVDqvg7Xn/8MVzw51dRY+lzucKR61eTVJ0twIdlF4M/Jkp1+NRvsI0eVUlq+q6RPy5I4slm+XJq43OAh5iB8XTtpbync7M0EGcJ6wHjapGD0DzVKBdE89hrrgpZOeEbPYRfH/PLZDq890=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ATzB3/mc; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P88n0p008715
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 15:23:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=eTjMO6ThCzwsibq1lFHZiZoZ
+	coN7Cs449c4GQQHgyao=; b=ATzB3/mcmVV/zkia8P/vSXPv93q3nC5wTBFv+1r/
+	5uWPW6GrxvL87y7HUByOa2Ttbk4hL7YBaSfy+DxR6b6lUfj0hX5m1kZvmc5AvxO0
+	AMpk2yriLI+GTqVwMWwKvaLrL9SlYgnNF8fnqP85/fwYXqQM2c9y+m0xSD27g1mf
+	qn4ZuW6BvJd25PDtjqTvkXpYWx1twdBna5bVHpx/j7zs+shz3AksF8RMdWsOFnFS
+	YA5sstgBn4/XGQR4x7ZwuLRDg/bKcxtdrpcybdIgzboAZ3w17aki59yy5mP/qni2
+	EalIrVPMU2SqA1ni43Fo7HJRtYrOo/20XSu3gg/hmb1jNw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48465916hc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 15:23:02 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6fb5f71b363so45057916d6.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 08:23:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753456981; x=1754061781;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eTjMO6ThCzwsibq1lFHZiZoZcoN7Cs449c4GQQHgyao=;
+        b=tU259Z5dHHIFNmSXBrP4Lcr4GWDm+UwhiL+uTEjmKISwqtoabUJ/5BM9Kmolxk2glW
+         qj40A1iED1LkeMHBkXfybP55jkGq6QmNSu+WnFAWvatHWmW/oHo2csTxLcOJRjClhv1k
+         hU5SMlMxcWwn7/opEW3kNV2xzWjUdd0jqP6gAtT23ENPDMkiWnd7DM0k+ysgS/TYdy3J
+         a+Yp13jz76Qvh08+tmQzYxiWiL8WGo+POVoF1tUbyYu8uqFVVUclUP5BErQGuyaBSoYZ
+         Jaq9Sd43U3icjAnPkKFXQ/PpK+esODj+aKwRD0AAFaajxjrp7rP2yjotKG3pmfW9+EUg
+         nJsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUI3p+I+n9KdQjH8Tpp/Z0QRWy6nY6uMjY0xETN47pdFO7ktiYTL2puAIYsrus4YKHnPDzV003VHeOd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFcd1fHjw8o1BVRKQqr3xMPCbtH8aNTp+tPIjsMGZmhZDd0J5n
+	LP/4l/Yt2bTse8Gcvb1zdfkqKR2FbM+SWEIXyNYKwwyakoJuiJX7wHN2Ac71JzKYO5wU4V3n83e
+	rDMRz3ZNpHWwSFRu2t95EvVtb4DzSdtAkugdPphaDdOnRNUYWEuJDIGoHD7Gb5QcL
+X-Gm-Gg: ASbGncsEYN6h0nPVdQcAuui48X479AQcP4MiKRTd4OpTBoMZjIAmTfjVXbfxC9S0kgB
+	VH+o2leGp+vVfkAT/oUd3y9wsQE1v2JcXlYLiBDyxpNKGrWki/hckUZu6ZvSi3Ti+vmXReez6z/
+	cJ6Ro9byASMUCSz/Ju1uYAo7Yr6kuuX6QbDJcCOAWgMMZMKxwGh5JY/l9p6O9B5hK7D2/UmbNev
+	FR0lgKJymGjz9aBkL7uHeQFB4ciETM0l/0Tix7Ht0LSCYN7dljtC01IRPxlhtdD+W3FxSZLRLyp
+	kEvubkqXp8h3SqSArMeYnqwT+GEzUZKLIlvg8Y9R07yvoWxeyuHieQlwtXUNVdJITAkA6VP9g1p
+	v2xi1Xp+p36cUx6PGBd9C22HqcPf7c+H+Sb5rVjiIud6tRMNAD6O1
+X-Received: by 2002:a05:6214:1cc9:b0:705:538:65ab with SMTP id 6a1803df08f44-707205ea86cmr34752006d6.39.1753456980687;
+        Fri, 25 Jul 2025 08:23:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHK5LDQ3JiR87dSBEdbMLaQa7N1rf2mWwVfPEnOCbZ2F/UBqPcJrWvG8vZus18ZIxSK6RRVlQ==
+X-Received: by 2002:a05:6214:1cc9:b0:705:538:65ab with SMTP id 6a1803df08f44-707205ea86cmr34751036d6.39.1753456979758;
+        Fri, 25 Jul 2025 08:22:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b6336355dsm8672e87.86.2025.07.25.08.22.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Jul 2025 08:22:57 -0700 (PDT)
+Date: Fri, 25 Jul 2025 18:22:55 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
+        stephen@radxa.com, cristian.ciocaltea@collabora.com,
+        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+        yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, robh@kernel.org,
+        sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v5 02/10] drm/bridge: synopsys: Add DW DPTX Controller
+ support library
+Message-ID: <svn2p46qguxrpn6fhqnjffqpgv7keabwgld53uw6ckkn4piu47@gedy4t22cqfx>
+References: <20250716100440.816351-1-andyshrk@163.com>
+ <20250716100440.816351-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
-Subject: Re: [PATCH v12 2/3] rust: pwm: Add Kconfig and basic data structures
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <20250717-rust-next-pwm-working-fan-for-sending-v12-2-40f73defae0c@samsung.com>
-Date: Fri, 25 Jul 2025 12:08:37 -0300
-Cc: =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- Drew Fustini <drew@pdp7.com>,
- Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Benno Lossin <lossin@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Drew Fustini <fustini@kernel.org>,
- linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org,
- rust-for-linux@vger.kernel.org,
- linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <437DA583-95FF-4ADF-9947-1F39D242E157@collabora.com>
-References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
- <CGME20250717090831eucas1p282ac3df2e2f1fc2a46e12c440abfbba1@eucas1p2.samsung.com>
- <20250717-rust-next-pwm-working-fan-for-sending-v12-2-40f73defae0c@samsung.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-X-Mailer: Apple Mail (2.3826.600.51.1.1)
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250716100440.816351-3-andyshrk@163.com>
+X-Proofpoint-ORIG-GUID: _egIa-oQ8bft1n1IB0qR0vW42HlYXxHy
+X-Proofpoint-GUID: _egIa-oQ8bft1n1IB0qR0vW42HlYXxHy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDEzMiBTYWx0ZWRfXxRdmY48EX9RG
+ eIB9RGbvk1rU2V2nzRLBHwBP/0LCYPtEMlFF8OTLUywhM2YXG5BU6biknX2//19rfLfDOfJ9h2g
+ cufco1lV3B+fF6LHigrPCILJg3bvgqtCp94i+8zS2jk+dMFTuq+vJwHtNTCkQ+BZ5nUeEHB3dnG
+ bllLbxtlqEyzRX8lAEM6pWlQGwxHipuc9OtV+3e1o160qshpZvOq89RdfJgz7BfxTLzw9cIUFUO
+ HL5rQfsxyquRjCQqgvKJ+FvPGxqLoHq8pXW5t+aJzBt3fUFkAH24rMRk5DtTAN8adbzh9/TtYiG
+ 06Y99Hmovgj7b4kVfGYysgsgsVx6abrLcc5/GFlM3virKBMnA1/tZAAI0L2hgdXsbvzUOG6MScq
+ HtoR2nJ3LH2z0w77BfKER1XXxAjRfcHmTpiuE4nJ7oVR6YHutig63dUm/WmMI6mLPyfCbpRh
+X-Authority-Analysis: v=2.4 cv=Vo8jA/2n c=1 sm=1 tr=0 ts=6883a156 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=s8YR1HE3AAAA:8 a=w3-XvOWwJNVOjCSRI-QA:9 a=CjuIK1q_8ugA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22 a=jGH_LyMDp9YhSvY-UuyI:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_04,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=999 adultscore=0 impostorscore=0 suspectscore=0
+ phishscore=0 spamscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507250132
 
-Hi Michal,
+On Wed, Jul 16, 2025 at 06:04:29PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> The DW DP TX Controller is compliant with the DisplayPort Specification
+> Version 1.4 with the following features:
+> 
+> * DisplayPort 1.4a
+> * Main Link: 1/2/4 lanes
+> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> * AUX channel 1Mbps
+> * Single Stream Transport(SST)
+> * Multistream Transport (MST)
+> * Type-C support (alternate mode)
+> * HDCP 2.2, HDCP 1.3
+> * Supports up to 8/10 bits per color component
+> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> * Pixel clock up to 594MHz
+> * I2S, SPDIF audio interface
+> 
+> Add library with common helpers to make it can be shared with
+> other SoC.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v5:
+> - Use drm_dp_read_sink_count_cap instead of the private implementation.
+> 
+> Changes in v4:
+> - Drop unnecessary header files
+> - Switch to devm_drm_bridge_alloc
+> 
+> Changes in v3:
+> - Rebase on drm-misc-next
+> - Switch to common helpers to power up/down dp link
+> - Only pass parameters to phy that should be set
+> 
+> Changes in v2:
+> - Fix compile error when build as module
+> - Add phy init
+> - Only use one dw_dp_link_train_set
+> - inline dw_dp_phy_update_vs_emph
+> - Use dp_sdp
+> - Check return value of drm_modeset_lock
+> - Merge code in atomic_pre_enable/mode_fixup to atomic_check
+> - Return NULL if can't find a supported output format
+> - Fix max_link_rate from plat_data
+> 
+>  drivers/gpu/drm/bridge/synopsys/Kconfig  |    7 +
+>  drivers/gpu/drm/bridge/synopsys/Makefile |    1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-dp.c  | 2044 ++++++++++++++++++++++
+>  include/drm/bridge/dw_dp.h               |   20 +
+>  4 files changed, 2072 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+>  create mode 100644 include/drm/bridge/dw_dp.h
+> +
+> +static int dw_dp_link_parse(struct dw_dp *dp, struct drm_connector *connector)
+> +{
+> +	struct dw_dp_link *link = &dp->link;
+> +	u8 dpcd;
+> +	int ret;
+> +
+> +	dw_dp_link_reset(link);
+> +
+> +	ret = drm_dp_read_dpcd_caps(&dp->aux, link->dpcd);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	drm_dp_read_desc(&dp->aux, &link->desc, drm_dp_is_branch(link->dpcd));
+> +
+> +	if (drm_dp_read_sink_count_cap(connector, link->dpcd, &link->desc)) {
+> +		ret = drm_dp_read_sink_count(&dp->aux);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		link->sink_count = ret;
+> +
+> +		/* Dongle connected, but no display */
+> +		if (!link->sink_count)
+> +			return -ENODEV;
+> +	}
+> +
+> +	ret = drm_dp_dpcd_readb(&dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST, &dpcd);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	link->vsc_sdp_supported = !!(dpcd & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED);
 
 
-Overall looks good, a few minor comments:
-
-[=E2=80=A6]
+drm_dp_vsc_sdp_supported()
 
 > +
-> +/// Wrapper for board-dependent PWM arguments [`struct =
-pwm_args`](srctree/include/linux/pwm.h).
-> +#[repr(transparent)]
-> +pub struct Args(Opaque<bindings::pwm_args>);
+> +	link->revision = link->dpcd[DP_DPCD_REV];
+> +	link->rate = min_t(u32, min(dp->plat_data.max_link_rate,
+> +				    dp->phy->attrs.max_link_rate * 100),
+> +			   drm_dp_max_link_rate(link->dpcd));
+> +	link->lanes = min_t(u8, phy_get_bus_width(dp->phy),
+> +			    drm_dp_max_lane_count(link->dpcd));
 > +
-> +impl Args {
-> +    /// Creates an `Args` wrapper from a C struct pointer.
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// The caller must ensure that `c_args_ptr` is a valid, non-null =
-pointer
-> +    /// to `bindings::pwm_args` and that the pointed-to data is valid
-> +    /// for the duration of this function call (as data is copied).
-> +    unsafe fn from_c_ptr(c_args_ptr: *const bindings::pwm_args) -> =
-Self {
-> +        // SAFETY: Caller guarantees `c_args_ptr` is valid. We =
-dereference it to copy.
-> +        Args(Opaque::new(unsafe { *c_args_ptr }))
-> +    }
-
-from_raw()
-
-
+> +	link->caps.enhanced_framing = drm_dp_enhanced_frame_cap(link->dpcd);
+> +	link->caps.tps3_supported = drm_dp_tps3_supported(link->dpcd);
+> +	link->caps.tps4_supported = drm_dp_tps4_supported(link->dpcd);
+> +	link->caps.fast_training = drm_dp_fast_training_cap(link->dpcd);
+> +	link->caps.channel_coding = drm_dp_channel_coding_supported(link->dpcd);
+> +	link->caps.ssc = !!(link->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
 > +
-> +    /// Returns the period of the PWM signal in nanoseconds.
-> +    pub fn period(&self) -> u64 {
-> +        // SAFETY: `self.0.get()` returns a pointer to the =
-`bindings::pwm_args`
-> +        // managed by the `Opaque` wrapper. This pointer is =
-guaranteed to be
-> +        // valid and aligned for the lifetime of `self` because =
-`Opaque` owns a copy.
-> +        unsafe { (*self.0.get()).period }
-> +    }
-> +
-> +    /// Returns the polarity of the PWM signal.
-> +    pub fn polarity(&self) -> Result<Polarity, Error> {
-> +        // SAFETY: `self.0.get()` returns a pointer to the =
-`bindings::pwm_args`
-> +        // managed by the `Opaque` wrapper. This pointer is =
-guaranteed to be
-> +        // valid and aligned for the lifetime of `self`.
-> +        let raw_polarity =3D unsafe { (*self.0.get()).polarity };
-> +        Polarity::try_from(raw_polarity)
-> +    }
+> +	return 0;
 > +}
 > +
-> +/// Wrapper for PWM state [`struct =
-pwm_state`](srctree/include/linux/pwm.h).
-> +#[repr(transparent)]
-> +pub struct State(bindings::pwm_state);
 
-No Opaque<T>?
-
-> +
-> +impl State {
-> +    /// Creates a `State` wrapper by taking ownership of a C =
-`pwm_state` value.
-> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
-> +        State(c_state)
-> +    }
-> +
-> +    /// Returns `true` if the PWM signal is enabled.
-> +    pub fn enabled(&self) -> bool {
-> +        self.0.enabled
-> +    }
-> +}
->=20
-> --=20
-> 2.34.1
->=20
->=20
-
-If the lack of Opaque<T> is not a problem for whatever reason:
-
-Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-
-=E2=80=94 Daniel
-
+-- 
+With best wishes
+Dmitry
 
