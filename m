@@ -1,122 +1,222 @@
-Return-Path: <devicetree+bounces-199780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E070CB12029
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:33:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC646B1203C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 16:40:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0D741C80084
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:34:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0C8518951C5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 14:40:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD0B1C6FE1;
-	Fri, 25 Jul 2025 14:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D87F1FC7E7;
+	Fri, 25 Jul 2025 14:40:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbLlQ58t"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jeuI/77b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C117C190472;
-	Fri, 25 Jul 2025 14:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB561E5701;
+	Fri, 25 Jul 2025 14:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753454024; cv=none; b=G29ERqLzk1eqCfW7foSemCyVZNssewxztZGaQ7C7iWxcqHojpS/XHM3OXMPJIUjguLA4NMTEhSp/PzytrH7eIaMGkGreSX6VEfWyx1i2vy+c8g7il9s96iBAsXBOH5b4swvNyFvFhw9n8MhmcaZDIZtTgnDtwUesdTZd0S8tfR0=
+	t=1753454432; cv=none; b=U0Hpvgurwf4r6n6iPHBctfOArz0AWpWGwhPzwpeNffqIeWkETaBzdKtpeBGh61V5bme8dyUjMeLv23QZUwIIsJasqoHdjJ31d5Q8a+zZXX07fYYS0AeTMAWRqAfep2V5+yG1aESChNBgWAt15w5xrjLIqZ23CevJQNu0BYX1dI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753454024; c=relaxed/simple;
-	bh=dZJ+XcQoCX8HZqiKQVLfki/ABIy/u4NDULHsqYfvNe8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=u5qDYMXxcNm058H7JpjD3rOvWHcyO1pvCgX+EE8gzE9nb4i+gDWXqVCkM+LilmztqZVR3OvyEWFkb0tDxh2dbybxJlpBRGGEPiRehT48PuiGY4V6mD0ioUgGO8m5yz53G3GIZebnSc/4pspgGRhhQamKbH9kivemgOZq6xq0WL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbLlQ58t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55F54C4CEE7;
-	Fri, 25 Jul 2025 14:33:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753454024;
-	bh=dZJ+XcQoCX8HZqiKQVLfki/ABIy/u4NDULHsqYfvNe8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YbLlQ58tkJJKVbeGdJP8IL64Amk0A7Ix7z7VFGT9r30GRlgjoXwjDmFguIX43y21S
-	 1QqHUcFGePVCD/Y1Vrn5N9oAJeVWJlXjykWWW4QrwZB/eO49Ud6BowN+2I/bLnSfQb
-	 yeqaKYjnDETgBeesKdvZ1cyVIM7k2EA1Ohr6sgpauTXihsI7Dy1AI+Y8U3g38zgov0
-	 yqQdHAeXQ2hvLmZRsAfLWrtCyDRTUcW1PRTpXOL69/hnQqfkQ2bt9SJdf5gMupVerV
-	 uz+16UqZ8ZRJQ4WaWrqMPKtUH7u5+FXeYLpdP+oYPr1ihIHSuLMrIjrBOahMMS9ZeW
-	 VuvXBxpqFN5tg==
-Date: Fri, 25 Jul 2025 09:33:43 -0500
+	s=arc-20240116; t=1753454432; c=relaxed/simple;
+	bh=Pe1O6JQBpM96y38GlEwysMUHU2QGMRFxNAE0yGjeyqU=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=i6BrEUYbpkJTPneBdOzxQkWMMj+AnS0HHAiSvle4ep4GL/8auMO4Z+q4679UcqUPnxKG2Og7AaOkMusRRER3dQYQCTDHhgTH8aIG4UUOpnRVEtzRe15l7ofcvUrNSoTJrPUOvlJk5USVlkQniGKZT/WO6uv4JiKC7zXRDKEfLgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=fail (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jeuI/77b reason="signature verification failed"; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E307982;
+	Fri, 25 Jul 2025 16:39:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1753454387;
+	bh=Pe1O6JQBpM96y38GlEwysMUHU2QGMRFxNAE0yGjeyqU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=jeuI/77b/1trNj4HKV+BBArKHz6hRUxwdCQmxDOV1ismZ3kfNs/DnLvLzGPHHHsVW
+	 Pn/vKlaF+8Ks6JkxJGa3gblLj+ead7ywPotcOPcA55yiR0DGlN1hUfhvSrt5VC9Y1M
+	 a5wcqS412S/LIACvSjsLsd4ltomOGs21nqCy40p4=
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <20250725050216.526327-1-krishna.kurapati@oss.qualcomm.com>
-References: <20250725050216.526327-1-krishna.kurapati@oss.qualcomm.com>
-Message-Id: <175345393876.1190053.13346690295209363754.robh@kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Flatten primary usb
- controller node
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <PN3P287MB35190A4AEE4C8D98142E7B6AFF59A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+References: <20250724104711.18764-1-hardevsinh.palaniya@siliconsignals.io> <20250724104711.18764-3-hardevsinh.palaniya@siliconsignals.io> <aIKi1BkNzNvsf5Tr@smile.fi.intel.com> <PN3P287MB35190A4AEE4C8D98142E7B6AFF59A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v5 2/2] media: i2c: add ov2735 image sensor driver
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: sakari.ailus@linux.intel.com <sakari.ailus@linux.intel.com>, laurent.pinchart@ideasonboard.com <laurent.pinchart@ideasonboard.com>, Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>, Ricardo Ribalda <ribalda@chromium.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Hans de Goede <hansg@kernel.org>, =?utf-8?q?Andr=C3=A9?= Apitzsch <git@apitzsch.eu>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Matthias Fend <matthias.fend@emfend.at>, Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Sylvain Petinot <sylvain.petinot@foss.st.com>, Dongcheng Yan <dongcheng.yan@intel.com>, Jingjing Xiong <jingjing.xiong@intel.com>, Arnd Bergmann <arnd@arndb.de>, linux-media@vger.kernel.org <linux-media@vger.kernel.org>, devicetree@vger.kernel.org <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.
+ org <linux-kernel@vger.kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Date: Fri, 25 Jul 2025 15:40:24 +0100
+Message-ID: <175345442477.2567018.13588829522231689027@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
+
+Quoting Hardevsinh Palaniya (2025-07-25 06:55:23)
+<snip>
+> > > +static int ov2735_page_access(struct ov2735 *ov2735,
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=
+=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=
+=EF=BF=BD=EF=BF=BD u32 reg, void *val, int *err, bool is_read)
+> > > +{
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD u8 page =3D (reg >> CCI_REG_PRI=
+VATE_SHIFT) & 0xff;
+> >=20
+> > ' & 0xff' part is redundant.
+> >=20
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD u32 addr =3D reg & ~CCI_REG_PRI=
+VATE_MASK;
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD int ret =3D 0;
+> >=20
+> > How is this assignment being used?
+> >=20
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (err && *err)
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return *err;
+> > > +
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD mutex_lock(&ov2735->page_lock);
+> > > +
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Perform page access before r=
+ead/write */
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (ov2735->current_page !=3D p=
+age) {
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_write(ov2735->cci, O=
+V2735_REG_PAGE_SELECT, page, err);
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (ret)
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=
+=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD goto err_mutex_unlock;
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ov2735->current_page =3D page;
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD }
+> > > +
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD if (is_read)
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_read(ov2735->cci, ad=
+dr, (u64 *)val, err);
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD else
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD ret =3D cci_write(ov2735->cci, a=
+ddr, *(u64 *)val, err);
+> >=20
+> > Do you really need this castings?
+>=20
+> Do you really think this casting is unnecessary?
+>=20
+
+Yes? Well quite probably - I haven't checked myself yet but ..
 
 
-On Fri, 25 Jul 2025 10:32:16 +0530, Krishna Kurapati wrote:
-> Flatten primary usb controller node and update to using latest
-> bindings and flattened driver approach.
-> 
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
-> Link to RFC:
-> https://lore.kernel.org/all/20250720072125.1514823-1-krishna.kurapati@oss.qualcomm.com/
-> 
-> Changes in v2:
-> Fixed base address.
-> 
->  .../boot/dts/qcom/qcm6490-fairphone-fp5.dts   |  6 +-
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts      |  7 +--
->  .../boot/dts/qcom/qcm6490-shift-otter.dts     |  6 +-
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  |  6 +-
->  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  6 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts       |  6 +-
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi      |  6 +-
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 59 ++++++++-----------
->  .../boot/dts/qcom/sm7325-nothing-spacewar.dts |  6 +-
->  9 files changed, 42 insertions(+), 66 deletions(-)
-> 
+> Please check the definitions of cci_read/write
+>=20
+> without this, we can't even build the driver.
+
+How about ... changing the function prototype of ov2735_page_access ?
+
+Then you might be able to build without casts ?
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+> > > +err_mutex_unlock:
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD mutex_unlock(&ov2735->page_lock=
+);
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return ret;
+> >=20
+> > Hmm... Wouldn't be cleanup.h helpful here?
+> >
+> > > +}
+> >=20
+> > ...
+> >=20
+> > > +static int ov2735_write(struct ov2735 *ov2735, u32 reg, u64 val, int=
+ *err)
+> > > +{
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD return ov2735_page_access(ov273=
+5, reg, (void *)&val, err, false);
+> >=20
+> > Why casting?
+> >=20
+> > > +}
+> >=20
+> > ...
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+<snip>
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Apply format settings. */
+> >=20
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD /* Apply customized values from=
+ user */
+> >=20
+> > Define a single style for one-line comments and use it everywhere consi=
+stently.
+>=20
+> Are you referring to the period at the end of the comment?
+> =20
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=
+=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD goto error_power_off;
+> >=20
+> > ...
+> >=20
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD devm_pm_runtime_set_active_enab=
+led(ov2735->dev);
+> > > +=EF=BF=BD=EF=BF=BD=EF=BF=BD=EF=BF=BD devm_pm_runtime_get_noresume(ov=
+2735->dev);
+> >=20
+> > No error checks? What's the point to use devm and what will happen if t=
+he first
+> > fails, for example?
+> >=20
+> > --
+> > With Best Regards,
+> > Andy Shevchenko
+>=20
+> With all due respect,
+>=20
+> I completely understand and appreciate the need for multiple rounds of re=
+view.
+> However, where feasible, it would be helpful to receive style-related and=
+=20
+> non-blocking comments earlier in the review process. Iterating on minor i=
+ssues
+> in later versions, especially ones that could have been addressed togethe=
+r=20
+> earlier, can become a bit frustrating at times. I hope you can understand=
+ this=20
+> perspective.
 
-  pip3 install dtschema --upgrade
+I certainly understand that public patch review can be slow and tedious
+at times, but please remember that unless you have paid Andy to review
+this work, there are no contractual 'requirements' on which bits get
+reviewed first. All reviews are helpful, whereever they come in - and
+the goal here is to get as many eyes on code as possible to support high
+quality code being maintained in the linux kernel.
 
 
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250725 (exact match)
+Perhaps one path to speed this up in the future might be if you might
+find some time to read more kernel code and also review some other
+kernel patches publicly as well. It might accelerate/help you learn the
+linux coding style sooner to avoid some cycles, and provide more eyes
+where we need them in the community.
 
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250725050216.526327-1-krishna.kurapati@oss.qualcomm.com:
-
-arch/arm64/boot/dts/qcom/sc7280-idp.dtb: usb@8cf8800 (qcom,sc7280-dwc3): 'dr_mode' does not match any of the regexes: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+Regards
+--
+Kieran
 
 
-
-
-
+> Once again, thank you for your time and effort in helping improve the qua=
+lity
+> of the driver.
+>=20
+> Best Regards,
+> Hardev
 
