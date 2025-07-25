@@ -1,227 +1,195 @@
-Return-Path: <devicetree+bounces-199754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5695FB11DB2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 13:38:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C510B11CB3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A93C67B3D47
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 11:36:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0698C3A422B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DBE32DE6FC;
-	Fri, 25 Jul 2025 11:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53CD72E6135;
+	Fri, 25 Jul 2025 10:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jZQzdTMo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KM9kFONC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519151BD4F7
-	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 11:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC642E4986;
+	Fri, 25 Jul 2025 10:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753443487; cv=none; b=WMmDgSaBHzAhwuQ9UYwtRikll4O709Z/ISjOUd/m3vSz5St9YxJwKasL7mlocFpi5JVVpAswaHJ5yno3xlDeLvyKMoXG9tLU10zpQEgcfAaGOs6Hm/5voCDXGqlVkmz2KzHOo6+Go+HmX8urx301ommFLDAPcS5hzo5W0C5r2nI=
+	t=1753440058; cv=none; b=A7G6Dd/5oER2DzDYFI2zPvaCjPqU8eDj5ucV2MR0nutXhQFOT7tNwcAcap6IeJ1u7IM2IRcrX3xpqg+LCrIRcChGgh6WSCUZUw+JquaENJir61MHGWoRjXarUBo+RiEhIvg3nTJDvPpsPWAxIwNp0ugpWBT4wRdE+CERVwM6YtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753443487; c=relaxed/simple;
-	bh=IU7jvnAwzmp5GuJHgplXAk58lqyd9tH4hjc214tIw4o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ffIgILGVDV13UtnZ1gNXuEWG3it5RBRlyqk7+Q6j6Owoi8RY4O5RWza/4k3cXhSBPbt8oBF58qURAcN15EMI3tLypgFFlcV8QzsI+MaXdWSox2FdQqHlaj8H5zIncIWetmdJ/Tjs7PWjMEeXctuM39lQ2PuA9J9rV3Y/DtDxnwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jZQzdTMo; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7df981428abso306634485a.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 04:38:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753443485; x=1754048285; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=liSvRWA4OuPhKZFuMFSYIULFcTNts/JUeGi4znSdmNM=;
-        b=jZQzdTMoiX0yYIx/xuUn/RZqax7ZXKqbm+3Yoa9DzV1GcLWEIv2iiXD2ksBxafI0MI
-         osYfbKsfAim0WIsF3PqIiADNePio2T1A/1pqDA7jCP3B/OsTXMRkzTvuCWAWWnYlnOfF
-         oFwY6uOTSJAb9V7Z7HjWWWZRJ1BQlq1JpnhWw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753443485; x=1754048285;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=liSvRWA4OuPhKZFuMFSYIULFcTNts/JUeGi4znSdmNM=;
-        b=n4QkH6QpCpWRlWdt0UCvbGaoGOESqTT9UVwhNlC0n4b/CMPYjs3sX2igP00LJ9f7rg
-         SfHtPcz0SOqNPycmCMGMDKiIQv6lgJIlmzrzrTqtmY4OIvkbB5MU9+xocuDgVggfiow7
-         PBy5sJoHbyiACVuKDvIb6yHfvLmrpGiTciuXs7kolDWPegmezZGdt5sDqZVHvXIfmWXi
-         VSEQ4MzeIo3LOCoB8sohH5+XcnSB/lw7eNZBexMEY28bZWrvW3rR1kVRWs26jAt2gJOp
-         STfH0RPPq21Rk0ha4EqmcOqhFtwkyq6CzCZ/04unKbrrXdgDTx3RT81jTlwVW5qzbN3M
-         isvA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRiPU88CXjZamaY0XWFQ95vIhZe1Iog3J8gO07w3342jYyK4COo/tsWqEOvKg+nsYef1u3zK8f6wfv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJK5ANgkZgZDADkkvRBWto7qug6UwIKeXVHSEyKlXNdNkpIANx
-	iH1lxdb2DjhzwTvqzSit9gjXCAAfzPETvw/eQ9vK396uRPfqy200kg0lnmLBfdpb8AM6vP0bxaw
-	CJQe31Q==
-X-Gm-Gg: ASbGncuFXSwSkoirwpWQLGb0KAFf7FXY2RfvH6XM3b4/2HnMNEfN27W1d3NAqBF6ZTY
-	5ReICYn5YyNfsyxXcftrgYtK7E9wCm0ASbV/cVeolIc/ZgucS7ULrP8WtN2Yk+YoILNnlen3ASR
-	MjvQ6xzo8mmvlVH1lgr1pWYzlWYC7CWY7ON6GmAxo8zws+qoxX+mR0nI7SYL4Wz6WFIHNVKZbVY
-	J/7kTXRhLcnXfpDl0xDp2NSLKxNhA9KA9INDUdLMm5SinmW1WMeDBQCqYnWXGNM+5rnYNCTAutr
-	miDBA15uicDFT1iY/o7gP3Jr6Ksnes6h2KHj/oTBOXyaxJmW4gviSn9gJcNk7xZb5+XDFtVO3rQ
-	NqFg7jJ99g+mtoXphtUxi+Do1Pb9e9V4CyTn+88Ln3kSGYshPjNIQUqi2OBolOQ==
-X-Google-Smtp-Source: AGHT+IEwgv8Kqh4JUJVuxOLHhlZMH3vcjHZrhEqMF9MJMovCYSwv6RT18uG4sD9oLhApnvmdxZouPw==
-X-Received: by 2002:ad4:5d62:0:b0:704:8fa0:969e with SMTP id 6a1803df08f44-707205e6db0mr17477646d6.41.1753443484802;
-        Fri, 25 Jul 2025 04:38:04 -0700 (PDT)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-70715b19b14sm18771516d6.35.2025.07.25.04.38.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jul 2025 04:38:04 -0700 (PDT)
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4ae73b0a891so34664621cf.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 04:38:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWnqBlNb/3yWF39kP3RFSiMavyWQuIIv6ZULBDYEZyMGMBPL369czAkGwAF7Jy36Cc72N6+dBFudj8U@vger.kernel.org
-X-Received: by 2002:a05:6102:6891:b0:4dd:b82d:e0de with SMTP id
- ada2fe7eead31-4fa3ff44195mr308667137.17.1753440019738; Fri, 25 Jul 2025
- 03:40:19 -0700 (PDT)
+	s=arc-20240116; t=1753440058; c=relaxed/simple;
+	bh=/0jyUMBdRUQwJwHBTn57lQc2Rx77xz38YUbHGJ5wb5I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LV5kP+8mp60AoBEXGbHrngLMYJ8tk2FU3pkXsJ4b6bcZM5CdMXMpaAGtuq3Abhxo6D2fxtdfEvF63H8yyRy1jDflMMP0mnP/oNR+JtZB6n09Cx7J0IOhc1Vu5ldDTSzQVjUqXPhCh1XCvzZqNwEF2Cr/hAbm4Mjvv5DSkJPJvy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KM9kFONC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P9O4O6015353;
+	Fri, 25 Jul 2025 10:40:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=/gd/KzqquAMBKWuCy/lO6VLlM6nqWN42OFR
+	63FfJb4Q=; b=KM9kFONC+R4zUoFoWrZw3Qt7aw/Dkw2c10USDazPJ1MGVz6QHM+
+	1WGN2qzBlMoRDwNfA2LmiTpisqmwaIlv/dUrvkyDDVLRvqCHgwKnKeBZksKNRMtw
+	fs2Qmbc0TB21BQxDB+XYGyEMzhBzc3bR58WyR/IW1l90xKjrpjXZ3v9ZY2ugtxFE
+	PQapFX1unKIxQ073AATR6w6Vd/1/mM1HZb/lbElVKNeQjVqDhvzxVsk/iADGYOkG
+	xk0CK1prD50DLmlrcog14hUwOeq3Zkxzpxq+vn+zbVLvP/kyEVnPnyl3Is97T+jx
+	aZnqDGg/IX6mJHqfvMkbEvtrETOyMEljBMw==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w2qhska-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:40:44 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 56PAegdi017158;
+	Fri, 25 Jul 2025 10:40:42 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 4804emtgtx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:40:42 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 56PAeg7J017147;
+	Fri, 25 Jul 2025 10:40:42 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 56PAegAZ017143
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:40:42 +0000
+Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id B1505210CE; Fri, 25 Jul 2025 18:40:40 +0800 (CST)
+From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        kw@linux.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Subject: [PATCH v9 0/5] pci: qcom: Add QCS8300 PCIe support
+Date: Fri, 25 Jul 2025 18:40:32 +0800
+Message-Id: <20250725104037.4054070-1-ziyue.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-38-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-38-angelogioacchino.delregno@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 25 Jul 2025 18:39:43 +0800
-X-Gmail-Original-Message-ID: <CAC=S1njv7qrL0LyhZsp=HVdxxDo2bA7FbCkMVqJ9R9qpg-0hMw@mail.gmail.com>
-X-Gm-Features: Ac12FXzAeqGgOrEJjRR1J4ryO0U3L8RJWv4_H_TyT4RYPsIpmGY3ViSbTr41uno
-Message-ID: <CAC=S1njv7qrL0LyhZsp=HVdxxDo2bA7FbCkMVqJ9R9qpg-0hMw@mail.gmail.com>
-Subject: Re: [PATCH 37/38] arm64: dts: mediatek: mt8395-kontron-i1200: Fix
- MT6360 regulator nodes
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
-	daniel.lezcano@linaro.org, mwalle@kernel.org, devicetree@vger.kernel.org, 
-	linus.walleij@linaro.org, linux-remoteproc@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	olivia.wen@mediatek.com, shane.chien@mediatek.com, linux-gpio@vger.kernel.org, 
-	linux-phy@lists.infradead.org, airlied@gmail.com, simona@ffwll.ch, 
-	herbert@gondor.apana.org.au, jassisinghbrar@gmail.com, jiaxin.yu@mediatek.com, 
-	andy.teng@mediatek.com, chunfeng.yun@mediatek.com, jieyy.yang@mediatek.com, 
-	chunkuang.hu@kernel.org, conor+dt@kernel.org, jitao.shi@mediatek.com, 
-	p.zabel@pengutronix.de, arnd@arndb.de, kishon@kernel.org, 
-	kyrie.wu@mediatek.corp-partner.google.com, maarten.lankhorst@linux.intel.com, 
-	tinghan.shen@mediatek.com, mripard@kernel.org, ck.hu@mediatek.com, 
-	broonie@kernel.org, eugen.hristev@linaro.org, houlong.wei@mediatek.com, 
-	matthias.bgg@gmail.com, tglx@linutronix.de, mchehab@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, granquet@baylibre.com, 
-	sam.shih@mediatek.com, mathieu.poirier@linaro.org, fparent@baylibre.com, 
-	andersson@kernel.org, sean.wang@kernel.org, linux-sound@vger.kernel.org, 
-	lgirdwood@gmail.com, vkoul@kernel.org, linux-crypto@vger.kernel.org, 
-	tzimmermann@suse.de, atenart@kernel.org, krzk+dt@kernel.org, 
-	linux-media@vger.kernel.org, davem@davemloft.net
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=RbqQC0tv c=1 sm=1 tr=0 ts=68835f2d cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=QyXUC8HyAAAA:8 a=MByrn4WnkjAl5ObW7ywA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDA5MCBTYWx0ZWRfX4reXMXEbN7sQ
+ 7bwwGpaLW7V4duVnT9tSnoSHGRGYfBPVBZS+WBfqClauW+f8kYyd3MHwBFTPLcPTiUT5uJbz3Uu
+ QJSn2xHojNmRIuX4j/OG3t1NY+rKOSLSynAt/0DSP3lqpinW5fLWt5d/h/p5Ut8WG4plM4mCf7O
+ 5D0/dWboGsJKuSaWbxBzr3Q/feDp4s3fNDNj3XgbBIf0kAw7RwETx6Lt0JmkbxeVNp8oae80I+v
+ IoyyYWbtNlicnmwLt+7cKV6qaQLN4Im2wHgjbPOoOZrGldt1Txad+NEaIjUlxq4raNeGwI72yzM
+ XMPrKwJwRLXRdbuLHfWXUaBcGazQGJ2kwUzqrGt8mN/ndlke3LvMbY6kn/nnR5OsqRenJGqf0gp
+ Rl4vCENs0HZaUzWhc/yDnGxHDw+Vka3ZkhEVQV2QPcsfKNnb7NjvafVxF90tRI8soYi1XVpw
+X-Proofpoint-GUID: Em91rZ5pkpPfvbmJjXG_w70iWAkdS44L
+X-Proofpoint-ORIG-GUID: Em91rZ5pkpPfvbmJjXG_w70iWAkdS44L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_03,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 lowpriorityscore=0 spamscore=0 mlxlogscore=999
+ priorityscore=1501 malwarescore=0 impostorscore=0 mlxscore=0 adultscore=0
+ phishscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507250090
 
-On Thu, Jul 24, 2025 at 5:51=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> All of the MT6360 regulator nodes were wrong and would not probe
-> because the regulator names are supposed to be lower case, but
-> they are upper case in this devicetree.
->
-> Change all nodes to be lower case to get working regulators.
->
-> Fixes: 94aaf79a6af5 ("arm64: dts: mediatek: add Kontron 3.5"-SBC-i1200")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+This series depend on the sa8775p gcc_aux_clock and link_down reset change
+https://lore.kernel.org/all/20250725102231.3608298-2-ziyue.zhang@oss.qualcomm.com/
 
-Reviewed-by: Fei Shao <fshao@chromium.org>
+This series adds document, phy, configs support for PCIe in QCS8300.
+It also adds 'link_down' reset for sa8775p.
 
-> ---
->  .../mediatek/mt8395-kontron-3-5-sbc-i1200.dts    | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dt=
-s b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
-> index 4985b65925a9..d16f545cbbb2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
-> @@ -352,7 +352,7 @@ regulator {
->                         LDO_VIN2-supply =3D <&vsys>;
->                         LDO_VIN3-supply =3D <&vsys>;
->
-> -                       mt6360_buck1: BUCK1 {
-> +                       mt6360_buck1: buck1 {
->                                 regulator-name =3D "emi_vdd2";
->                                 regulator-min-microvolt =3D <600000>;
->                                 regulator-max-microvolt =3D <1800000>;
-> @@ -362,7 +362,7 @@ MT6360_OPMODE_LP
->                                 regulator-always-on;
->                         };
->
-> -                       mt6360_buck2: BUCK2 {
-> +                       mt6360_buck2: buck2 {
->                                 regulator-name =3D "emi_vddq";
->                                 regulator-min-microvolt =3D <300000>;
->                                 regulator-max-microvolt =3D <1300000>;
-> @@ -372,7 +372,7 @@ MT6360_OPMODE_LP
->                                 regulator-always-on;
->                         };
->
-> -                       mt6360_ldo1: LDO1 {
-> +                       mt6360_ldo1: ldo1 {
->                                 regulator-name =3D "mt6360_ldo1"; /* Test=
- point */
->                                 regulator-min-microvolt =3D <1200000>;
->                                 regulator-max-microvolt =3D <3600000>;
-> @@ -380,7 +380,7 @@ mt6360_ldo1: LDO1 {
->                                                            MT6360_OPMODE_=
-LP>;
->                         };
->
-> -                       mt6360_ldo2: LDO2 {
-> +                       mt6360_ldo2: ldo2 {
->                                 regulator-name =3D "panel1_p1v8";
->                                 regulator-min-microvolt =3D <1800000>;
->                                 regulator-max-microvolt =3D <1800000>;
-> @@ -388,7 +388,7 @@ mt6360_ldo2: LDO2 {
->                                                            MT6360_OPMODE_=
-LP>;
->                         };
->
-> -                       mt6360_ldo3: LDO3 {
-> +                       mt6360_ldo3: ldo3 {
->                                 regulator-name =3D "vmc_pmu";
->                                 regulator-min-microvolt =3D <1800000>;
->                                 regulator-max-microvolt =3D <3300000>;
-> @@ -396,7 +396,7 @@ mt6360_ldo3: LDO3 {
->                                                            MT6360_OPMODE_=
-LP>;
->                         };
->
-> -                       mt6360_ldo5: LDO5 {
-> +                       mt6360_ldo5: ldo5 {
->                                 regulator-name =3D "vmch_pmu";
->                                 regulator-min-microvolt =3D <3300000>;
->                                 regulator-max-microvolt =3D <3300000>;
-> @@ -404,7 +404,7 @@ mt6360_ldo5: LDO5 {
->                                                            MT6360_OPMODE_=
-LP>;
->                         };
->
-> -                       mt6360_ldo6: LDO6 {
-> +                       mt6360_ldo6: ldo6 {
->                                 regulator-name =3D "mt6360_ldo6"; /* Test=
- point */
->                                 regulator-min-microvolt =3D <500000>;
->                                 regulator-max-microvolt =3D <2100000>;
-> @@ -412,7 +412,7 @@ mt6360_ldo6: LDO6 {
->                                                            MT6360_OPMODE_=
-LP>;
->                         };
->
-> -                       mt6360_ldo7: LDO7 {
-> +                       mt6360_ldo7: ldo7 {
->                                 regulator-name =3D "emi_vmddr_en";
->                                 regulator-min-microvolt =3D <1800000>;
->                                 regulator-max-microvolt =3D <1800000>;
-> --
-> 2.50.1
->
->
+Have follwing changes:
+	- Add dedicated schema for the PCIe controllers found on QCS8300.
+	- Add compatible for qcs8300 platform.
+	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
+	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
+
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+---
+Changes in v9:
+- Fix DTB error (Vinod)
+- Link to v8: https://lore.kernel.org/all/20250714081529.3847385-1-ziyue.zhang@oss.qualcomm.com/
+
+Changes in v8:
+- rebase sc8280xp-qmp-pcie-phy change to solve conflicts.
+- Add Fixes tag to phy change (Johan)
+- Link to v7: https://lore.kernel.org/all/20250625092539.762075-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v7:
+- rebase qcs8300-ride.dtsi change to solve conflicts.
+- Link to v6: https://lore.kernel.org/all/20250529035635.4162149-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v6:
+- move the qcs8300 and sa8775p phy compatibility entry into the list of PHYs that require six clocks
+- Update QCS8300 and sa8775p phy dt, remove aux clock.
+- Fixed compile error found by kernel test robot
+- Link to v5: https://lore.kernel.org/all/20250507031019.4080541-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v5:
+- Add QCOM PCIe controller version in commit msg (Mani)
+- Modify platform dts change subject (Dmitry)
+- Fixed compile error found by kernel test robot
+- Link to v4: https://lore.kernel.org/linux-phy/20241220055239.2744024-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v4:
+- Add received tag
+- Fixed compile error found by kernel test robot
+- Link to v3: https://lore.kernel.org/lkml/202412211301.bQO6vXpo-lkp@intel.com/T/#mdd63e5be39acbf879218aef91c87b12d4540e0f7
+
+Changes in v3:
+- Add received tag(Rob & Dmitry)
+- Update pcie_phy in gcc node to soc dtsi(Dmitry & Konrad)
+- remove pcieprot0 node(Konrad & Mani)
+- Fix format comments(Konrad)
+- Update base-commit to tag: next-20241213(Bjorn)
+- Corrected of_device_id.data from 1.9.0 to 1.34.0.
+- Link to v2: https://lore.kernel.org/all/20241128081056.1361739-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v2:
+- Fix some format comments and match the style in x1e80100(Konrad)
+- Add global interrupt for PCIe0 and PCIe1(Konrad)
+- split the soc dtsi and the platform dts into two changes(Konrad)
+- Link to v1: https://lore.kernel.org/all/20241114095409.2682558-1-quic_ziyuzhan@quicinc.com/
+
+
+Ziyue Zhang (5):
+  dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
+    for qcs8300
+  arm64: dts: qcom: qcs8300: enable pcie0
+  arm64: dts: qcom: qcs8300-ride: enable pcie0 interface
+  arm64: dts: qcom: qcs8300: enable pcie1
+  arm64: dts: qcom: qcs8300-ride: enable pcie1 interface
+
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  15 +-
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  80 +++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 296 +++++++++++++++++-
+ 3 files changed, 375 insertions(+), 16 deletions(-)
+
+
+base-commit: 0a46206e9062399773c87ae287d4aed4d92612b1
+-- 
+2.34.1
+
 
