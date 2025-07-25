@@ -1,275 +1,179 @@
-Return-Path: <devicetree+bounces-199615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1ADCB117EF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F53FB117F4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 07:24:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74601AA7F4A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 05:23:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 530413BC41D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 05:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D492242D8B;
-	Fri, 25 Jul 2025 05:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5962405F5;
+	Fri, 25 Jul 2025 05:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="FLsOUbgQ"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="e1L/4KHB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2060.outbound.protection.outlook.com [40.107.236.60])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFEF4A08;
-	Fri, 25 Jul 2025 05:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.60
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8141F4617;
+	Fri, 25 Jul 2025 05:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753421024; cv=fail; b=eoDrlYKc2Knyewtd/YVxrikYWdRs8ZDtZXNTJLd06d5TzvR+B8YXzh/feG1RV6vqAJ89gU7c0jdrZAs4TBieMdXyunEBN5FnvEtnlgVm+W2kfa2wNPKKlXSSow5N/jsZ2hZy7wMYeZJ2O306WWu6VuD7ZP5eS6B8KeHjqAuEe1Y=
+	t=1753421072; cv=pass; b=O0N67Px2S5aJlzw0QVZCVDAav4V9qnwpucMxceHLsMtddExeNR76CesFFyX8li4T8cO5OCzm3iQ36NL1P4SyZKCAd2H+3GYvAAP8Cg9CbDLXfXqGctKuF6MPn9QUk74TjrhGZOhyOHYxJrGSI46qySfcvEanHKvYOPtAAbAxkl8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753421024; c=relaxed/simple;
-	bh=he3mzG+fui5J5Dl2QH0JZrYx1508gDHZK1JUQAxhXKU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s/85o6zJcnzl1TtQy6kw656BQl65rSmvOkCBYjZZdRM0eojmgzWbN/2/N6Ry9UJH/6M12yPXFsE5Se7+bYSDFkvH7VyzsDbTBVNGkzz0NIEonkrwRMVLouksODbehjEJwUa9xt0rX83r3GSBoOTzbymSxn5wzApu1m0zi53tezs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=FLsOUbgQ; arc=fail smtp.client-ip=40.107.236.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kFGZgCwJk9x/NXVlBEZUSkxKrwj1uucGL+lLq8guNs9i0MlwXO1VVfT5LyK8Z0WFwtlzEsHoN08JMNwcnRgow8Vx5Z0QoxTL7iWDecyVO7rktXsXISI70b8bFUJHavlYi3C17z3YXATrMdezl1D4NFX3hUkp4Jn3tZ1RPg2kJlCvtENOWc+07nBnn05QUVBTm/BKQiD9uWHqe36J2F/O1BUa+Uf3oQwX05iGja85kKaWPCdhMsFxUgRAoYDV+qVaUBFJetfP5oI1vbZCdq77KjoHghL9l+VuSEFxHZ07MquZLMjc2Uc2UV14tj1L+YtnkriSdcmqfWA/3w4w+Av+4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OxTNebHMn6VVdFIcQFPWxUqRy3U3opi/ruGdzDEk4JQ=;
- b=rzpqIVCKtbyssIGtsnldts99MzoTe4CiLHL+9rSTvv6cp4sGxSi6p7SxyG5ecFe5wXL/I2lIFDAPkcnGLK0lci4C42fPRFHTvqpQvjQjgLrsa7B8AHrSs4WPbG54tgNi0eSMK+OzSnN80jL1GewdAtZ/0xySmUWOKxnrJIq35f+19sR6IekZIAnGFPGxEq73AOYNaFuWZfYh11onu2Kc7UotWT0SXyvFy/r0TVXM4iSxbOepeZ6abF0YRjHi+78Jx6YKwcuCMF2vsk5EJ6XyIgnP329dh2k/xiLbssSdUnkgICLD7MNtJ2kXxQCRsirC83395QdgqU+VE2MLokPHgg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OxTNebHMn6VVdFIcQFPWxUqRy3U3opi/ruGdzDEk4JQ=;
- b=FLsOUbgQKYzIDUjHDsdabFuQInVOFo4vIyGjkIDreSlLe+8Rul5cd90wUZZ3Yb/vFM5msJTyRfLQsFdcYMI+FhMnVzxaMafVG7GnD2XKmzYBVQ0YCD0qp51GjIrUemW1gVkJxfpdeI+OBSAuOWa6JLtMWJZl4U4aRmkFmsUDkvbEh7Uydc8SSZGucyDe1ofIMVddzE5f2Ayjv9w3gzo7rxUbNiMAHhwX1SW5fc7gayBlePLg2CxouDaDpxR3dx9rz+Kl9LNJLoiD/Zt2ErPkLJ09PLparppgce4DGcSmfHFICHfRRT/IdGOm93C90HQfQoMGXT9jlgMLV/V+4iZXMA==
-Received: from MN2PR19CA0025.namprd19.prod.outlook.com (2603:10b6:208:178::38)
- by PH0PR12MB7472.namprd12.prod.outlook.com (2603:10b6:510:1e9::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Fri, 25 Jul
- 2025 05:23:37 +0000
-Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
- (2603:10b6:208:178:cafe::fa) by MN2PR19CA0025.outlook.office365.com
- (2603:10b6:208:178::38) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.23 via Frontend Transport; Fri,
- 25 Jul 2025 05:23:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8964.20 via Frontend Transport; Fri, 25 Jul 2025 05:23:36 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Thu, 24 Jul
- 2025 22:23:21 -0700
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Thu, 24 Jul
- 2025 22:23:21 -0700
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Thu, 24 Jul 2025 22:23:17 -0700
-From: Rajesh Gumasta <rgumasta@nvidia.com>
-To: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-	<andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
-	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <kyarlagadda@nvidia.com>
-CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-i2c@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-	<andersson@kernel.org>, <sjg@chromium.org>, <nm@ti.com>, Rajesh Gumasta
-	<rgumasta@nvidia.com>
-Subject: [PATCH V3 3/3] dt-binding: mmc: tegra: Add register-setting support
-Date: Fri, 25 Jul 2025 10:52:25 +0530
-Message-ID: <20250725052225.23510-4-rgumasta@nvidia.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250725052225.23510-1-rgumasta@nvidia.com>
-References: <20250725052225.23510-1-rgumasta@nvidia.com>
+	s=arc-20240116; t=1753421072; c=relaxed/simple;
+	bh=0jdwYP7NMMSOkijcTdLfUVo2J0IdU8dpKxQcsJLtvco=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HQz7pTqgU35G4oj8F906MFYZry3iZcAAOdUC1IgEBsm30Mefq5BBkJJpO31uhEMI4cUC0SlM1l1/ZwaHb9sR447rLuC7VbgysuvWvzM2uCCKKyFqkm0h5prZG0tQzLyaPRIGNSWF2y1rrauI6OXrODdDfJKrnRuRPgNYUPKBVGY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=e1L/4KHB; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1753421048; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=NsjT7+WyV/RRNWTCvMJ8Qpu2MdfXsJDsFfmjL2wTNSEI1mCDkSyjB0IT4a8jKa6n5z3VJ6VZa1705fql5CkKJsS0OPP5FJ5AbXkUlmuyjuJ6BfGQZR/xz+RvILylpiINR1RT9rzLf5iHI6h8audGDpe1CNTyJPmpfG1eXLunIxQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753421048; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=y4ldkYpDBhe6MUIxmYmjLmmqHNKj9PN8JQgOOK2ZTr4=; 
+	b=NCuYY47R5Mz5/snraIWehHM+mW3mCkPDjC4nSyxWwmbYl9izIkm5bFj73PH28VKENXbe16r+z4RpOW1PRF0oxy/++ysxC5+xKVYzm0CPBIJiSAWRBsk6Ol98AhdXUqhksbiOjdipj+chedHKBKYTxV1HeSk6XCHiDSkWSm3O8HM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753421048;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=y4ldkYpDBhe6MUIxmYmjLmmqHNKj9PN8JQgOOK2ZTr4=;
+	b=e1L/4KHBQPvUM5BedDKyxbfKjxEZGHnyyCPgf5MMX4m1R71qRhOPgWKzSATlVJHV
+	/nJP05RXDTW5rMq4feV4ZXR8vXBouEQuvidaNPphnqO+fAWxQ9jGkJDBSISmRgysc3L
+	PR7UrRahCBwx5iSiZKO4WUgMzveXbP/sWiHo1yJs=
+Received: by mx.zohomail.com with SMTPS id 1753421046615566.1010844319203;
+	Thu, 24 Jul 2025 22:24:06 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id CE23A180761; Fri, 25 Jul 2025 07:24:01 +0200 (CEST)
+Date: Fri, 25 Jul 2025 07:24:01 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH] arm64: dts: rockchip: use MAC TX delay for ROCK 4D
+Message-ID: <mqoyjn7mnq6tmt6n6oev4wa3herjaxlupml2fmcampwiajvj4a@r5zs4d3jdm5p>
+References: <20250724-rk3576-rock4d-phy-timings-v1-1-1cdce2b4aca4@kernel.org>
+ <f22243f5-759a-4ff2-8d14-6edb49d87c52@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|PH0PR12MB7472:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34c07602-fc65-41db-98be-08ddcb3b685b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|7416014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?dy2bR/2RcKb4KWNmkUgjmR1XglnCS6KpLLQ4mV8dGbP3yTh4v/I3O+lGALPU?=
- =?us-ascii?Q?R4LNydvzDUvSYquCQtd2OXmGSU4CFn7T+j0Mechwh6jQ0GojHpD9RznKT1XM?=
- =?us-ascii?Q?3uj17YqWVW+KED5ZQLP4Mi2pgF45YP6dCfNCNsQVBALl3EIk6iLwyumDWuzL?=
- =?us-ascii?Q?pES38fUlzktEOHWHL6cd2M+PrLW2HASjk/9ZaVM9d0JeW/4HBh0Sj+MWJTAy?=
- =?us-ascii?Q?t56XgRTsgVQ+3Xokb2DZSNAy5G0QiBoA3WVYW95JNyQKQ6ngO8vfGbCjndHd?=
- =?us-ascii?Q?JCATucdw1x0sS2bxHkAubQTINKaTITrp+NktDj8FMiNX8dZf3foOuuFmnYsY?=
- =?us-ascii?Q?0LhyHkDB9Ri1l2YPTZTQxXpoW2W7uHsCGxQAaEhbShV6o3qLSKLkpsIPCPRc?=
- =?us-ascii?Q?dceGw6U0vQmver5tNUPD6sVmtaEZfS6k07Pv6fvjIwhbp+XPNqUFRgtXHW8m?=
- =?us-ascii?Q?sb64l//YZARcnsezLFRYKkW2EtA3jSul29lGHVH1WEExMdLM39JsDkObEceR?=
- =?us-ascii?Q?rTzXFT5i97if0p80JDonnSgmLCXzf3LXVt7i4sp/G54GuNthtmzQjqbCkmyx?=
- =?us-ascii?Q?ErM8dRQvnpKOvZqFcLzBxnYTbYqOoEEEUvR5P8gEyQP1lwf8xydDepExnYbE?=
- =?us-ascii?Q?+G3l614dOpHAOBOXLrBSH+LMpPQdCLR4zpCGXNycca5rVnssm6h2HJ516T+P?=
- =?us-ascii?Q?6Rc/GfJAd67DNbHKiRLRKLSYD8JvlxqCEPHqKkJVimf4YGGB3ss9Im33hoex?=
- =?us-ascii?Q?nOvWSe+M7r+8iHHx+avcBobbxmpCGzZaaB0OO62ShL/FBoPxblN1OaGv5EGv?=
- =?us-ascii?Q?mU7jbpXa5RtfrLj95y4Zviy2IlaBD1ZkytI2Yqadq/pPsbIsx1MfimauQepf?=
- =?us-ascii?Q?LLSPClzX8UCBXuHnWR5OQWeZJ3Mx7Bn9VqaBJDKVL2HIWtl++TSsSVO9KLNS?=
- =?us-ascii?Q?EXJGJ9wN/cTIBXbWpvPWaqFx0wZRYDYt/8iUMdw8vzxn2Mpfm4dLZgZAL/7/?=
- =?us-ascii?Q?xKjIZN+C5avGZL8VXLDQ4AidhjwLxjhqZn9scx3aOGKYohJuOTbUDhEHQskf?=
- =?us-ascii?Q?dctnvXQc+QzVl4zP/S3/pP8e+b/ppHkJ53lfj2asHpVRQJEDkceYd7SITgyc?=
- =?us-ascii?Q?xbJbTigzGbjQqtC6lbn5ZxQvqjq+DC9DnAWY3KPCwKEG5YaR5ol5gMg2PjHN?=
- =?us-ascii?Q?MO8s0cNqK8akecPyJw43GT9OaGw4vYSymUf+xvFAooi0iGX3NgCVUYfhJbTV?=
- =?us-ascii?Q?ugLYVPpjN7LCBcYgMbsIXrJjKl0rCEmw0L4t/rmiyqwosYlHjIaLxt18wk9E?=
- =?us-ascii?Q?10sH7tzybGr4hYTro2d59ZSaoWCvJEhP15d15va1SV0cKfGUbQCwYaVIERls?=
- =?us-ascii?Q?RhyySyk+oKmfcil+irJvbHxGwWHseMo6vIie9HjkJhEaXUqqwc8e6X2LPwDB?=
- =?us-ascii?Q?5gs8SwLOKAlGE4TZoOHLex0GjCoDfCoFC+bhp7bWYsgyk86FPet6OwS9M806?=
- =?us-ascii?Q?VRq13i0bpuMbti6nl9ueznaYZrb7zcC/pVCK?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2025 05:23:36.8722
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34c07602-fc65-41db-98be-08ddcb3b685b
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECD9.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7472
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lntxnw2zm2xvrrvo"
+Content-Disposition: inline
+In-Reply-To: <f22243f5-759a-4ff2-8d14-6edb49d87c52@lunn.ch>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.2/253.413.66
+X-ZohoMailClient: External
 
-Add register setting support for the NVIDIA Tegra20 MMC controllers. The
-top-level 'reg-settings' node and child nodes for each MMC operating mode
-supported are defined in the mmc-controller-common.yaml binding. The
-NVIDIA specific register setting property is defined in the
-nvidia,tegra20-sdhci.yaml.
 
-Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
----
- .../bindings/mmc/mmc-controller-common.yaml   | 24 ++++++++++
- .../bindings/mmc/nvidia,tegra20-sdhci.yaml    | 48 +++++++++++++++++++
- 2 files changed, 72 insertions(+)
+--lntxnw2zm2xvrrvo
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] arm64: dts: rockchip: use MAC TX delay for ROCK 4D
+MIME-Version: 1.0
 
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-index 9a7235439759..0bdebc6454d8 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
-@@ -308,6 +308,30 @@ properties:
-       sequence. To successfully detect an (e)MMC/SD/SDIO card, that
-       power sequence must be maintained while initializing the card.
- 
-+  reg-settings:
-+    $ref: /schemas/regset/register-settings.yaml
-+
-+    properties:
-+      default-settings:
-+        type: object
-+        description:
-+          Default MMC register settings.
-+
-+      sdr50:
-+        type: object
-+        description:
-+          Register settings for MMC sdr50 operating mode.
-+
-+      sdr104:
-+        type: object
-+        description:
-+          Register settings for MMC sdr104 operating mode.
-+
-+      hs200:
-+        type: object
-+        description:
-+          Register settings for MMC hs200 operating mode.
-+
- patternProperties:
-   "^.*@[0-9]+$":
-     type: object
-diff --git a/Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.yaml b/Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.yaml
-index 72987f0326a1..a78b2bd92b18 100644
---- a/Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.yaml
-@@ -17,6 +17,15 @@ description: |
-   This file documents differences between the core properties described by
-   mmc-controller.yaml and the properties for the Tegra SDHCI controller.
- 
-+definitions:
-+  reg-settings:
-+    properties:
-+      nvidia,num-tuning-iterations:
-+        description: The number of tuning iterations to be used by tuning circuit.
-+        $ref: /schemas/types.yaml#/definitions/uint8
-+        minimum: 0
-+        maximum: 4
-+
- properties:
-   compatible:
-     oneOf:
-@@ -177,6 +186,27 @@ properties:
-       operates at a 1.8 V fixed I/O voltage.
-     $ref: /schemas/types.yaml#/definitions/flag
- 
-+  reg-settings:
-+    $ref: /schemas/mmc/mmc-controller-common.yaml#/properties/reg-settings
-+
-+    properties:
-+      default-settings:
-+        $ref: "#/definitions/reg-settings"
-+        unevaluatedProperties: false
-+
-+      sdr50:
-+        $ref: "#/definitions/reg-settings"
-+        unevaluatedProperties: false
-+
-+      sdr104:
-+        $ref: "#/definitions/reg-settings"
-+        unevaluatedProperties: false
-+
-+      hs200:
-+        $ref: "#/definitions/reg-settings"
-+        unevaluatedProperties: false
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -310,4 +340,22 @@ examples:
-                           <&tegra_car TEGRA210_CLK_PLL_C4>;
-         assigned-clock-parents = <&tegra_car TEGRA210_CLK_PLL_C4_OUT0>;
-         assigned-clock-rates = <200000000>, <1000000000>, <1000000000>;
-+
-+        reg-settings {
-+            default-settings {
-+                nvidia,num-tuning-iterations = /bits/ 8 <0>;
-+            };
-+
-+            sdr50 {
-+                nvidia,num-tuning-iterations = /bits/ 8 <4>;
-+            };
-+
-+            sdr104 {
-+                nvidia,num-tuning-iterations = /bits/ 8 <2>;
-+            };
-+
-+            hs200 {
-+                nvidia,num-tuning-iterations = /bits/ 8 <2>;
-+            };
-+        };
-     };
--- 
-2.50.1
+Hi,
 
+On Thu, Jul 24, 2025 at 05:51:16PM +0200, Andrew Lunn wrote:
+> >  &gmac0 {
+> >  	clock_in_out =3D "output";
+> >  	phy-handle =3D <&rgmii_phy0>;
+> > -	phy-mode =3D "rgmii-id";
+> > +	phy-mode =3D "rgmii-rxid";
+> >  	pinctrl-names =3D "default";
+> >  	pinctrl-0 =3D <&eth0m0_miim
+> >  		     &eth0m0_tx_bus2
+> > @@ -246,6 +246,8 @@ &eth0m0_rgmii_clk
+> >  		     &eth0m0_rgmii_bus
+> >  		     &ethm0_clk0_25m_out>;
+> >  	status =3D "okay";
+> > +	tx_delay =3D <0x20>;
+> > +	rx_delay =3D <0x00>;
+>=20
+> What does 0x20 mean? Is it less than 2ns, or greater than 2ns?
+
+Unfortunately I don't know. This part is not documented in the TRM I
+have access to. Also my scope is not good enough for measuring
+delays in the pico-second range. Previous measurements for RK3588
+(RK3576 uses most of its IP and probably shared most of its quirks)
+suggested, that mapping this to the standard properties may not
+easily be possible:
+
+https://lore.kernel.org/all/bb3486c6-93df-4453-acc6-deba3c8f7f0e@lunn.ch/
+
+> Have you tried "rgmii-id" and small values for tx_delay? If the
+> hardware needs 2.1ns, for example, the MAC could add 0.1ns and the PHY
+> adds the default 2ns. That would allow you to conform to the DT
+> binding.
+
+The MAC code (drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c) looks
+like this, so "rgmii-id" results in no MAC delays being applied:
+
+	case PHY_INTERFACE_MODE_RGMII:
+		bsp_priv->ops->set_to_rgmii(bsp_priv, bsp_priv->tx_delay,
+					    bsp_priv->rx_delay);
+		break;
+	case PHY_INTERFACE_MODE_RGMII_ID:
+		bsp_priv->ops->set_to_rgmii(bsp_priv, 0, 0);
+		break;
+	case PHY_INTERFACE_MODE_RGMII_RXID:
+		bsp_priv->ops->set_to_rgmii(bsp_priv, bsp_priv->tx_delay, 0);
+		break;
+	case PHY_INTERFACE_MODE_RGMII_TXID:
+		bsp_priv->ops->set_to_rgmii(bsp_priv, 0, bsp_priv->rx_delay);
+		break;
+    ...
+
+Also the default values (if properties are missing in DT) are
+rx_delay=3D0x10 and tx_delay=3D0x30, so changing this logic risks
+breaking some boards :(
+
+> What PHY is this? Have you looked it you can control the delays the
+> PHY adds? If you actually need a delay of 1.9ns, maybe the PHY can be
+> configured to do this? That would also allow you to conform to the DT
+> binding.
+
+The Rock 4D uses a RTL8211F. As far as I can see that just offers
+one delay control knob.
+
+Greetings,
+
+-- Sebastian
+
+--lntxnw2zm2xvrrvo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmiDFOkACgkQ2O7X88g7
++pocqRAAmG8r6935rknghxbjS85/wcBLgwi1SELzeDaLTBoAT+ib7M19APbWAXm1
+GOmjHBN09+TXbygKfHNoch5ot3dcMOBkhWaody16bZHFf9ViNkYwSIccs4BeVNEO
+l6EONSCdAjDt1LRB3AFPR9fG3bcaXvzpcLq9rHaBZ5keaEESGQpw5ACAcoJFGVYh
+gvwWya6PHgMol5zGWIkn7IYucKPTKWPmsp4NfyznEhe11UGW43uok9CisTN1SD0t
+JmWpg7WL4xhJ9Pno+gG+Bw70p5ZXZAeS+37dSj5HtL0+jn4KG53KEx2pNon9Bwcy
+C+I/IxAfL5xm8T4oxOO7eHCg/+GoMPSBqtsb0dEI7iwzMgA0Nxo1bFHvV337U9ma
+6CNa2abaZWRtp6qEEP1PP4bfFV5fSxK5bP5q/6OYYGa4vASAKUhfTxiJt41G0hXv
+1SrkEl36Ln/XponneBBiBT7LzGFE72UdHiKhD5O4wqWkRJm/vPRg0J93J89zqeu7
+B4MvRFXyUe8Roid2T+WFL2/+OZeWpmiGiwtPrNjbs7EKLRUb1jnUvsxUo+pMSp3q
+BCmQeUGNxYpI1i4JYD3CzHjHbbgSYT26C4nkgowTCSmY3O1Db2k0PqHl7xCmKVw7
+RCGSAhGauMbV28A50kgORuQXD/UiUqdl4QU6K5aA6EWFxuGWYSg=
+=XuMz
+-----END PGP SIGNATURE-----
+
+--lntxnw2zm2xvrrvo--
 
