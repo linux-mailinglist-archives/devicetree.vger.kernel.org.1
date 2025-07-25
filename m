@@ -1,202 +1,273 @@
-Return-Path: <devicetree+bounces-199722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AB7DB11C45
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:25:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4B1B11C9B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:37:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7F1B3A83E5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:24:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 990077BCB89
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF2B2DE6ED;
-	Fri, 25 Jul 2025 10:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CE72E4260;
+	Fri, 25 Jul 2025 10:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="gVuxAjj9"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="FzXxnfWQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022075.outbound.protection.outlook.com [40.107.75.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6F42DEA80;
-	Fri, 25 Jul 2025 10:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.75
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753439107; cv=fail; b=Pb2E2nWiocBpy1SVIOvl3BIHaq9R1w3dFP7taSvecGougY4uHMrQYsi++W2i1MRsoGVjz86G19bSC/m2SsKfMRgbKNNw/mP9Q3TkH/WBdGXxaXCvs8nrkMs3Ffzjzb9r4jVfxk+SEvo3zeUgMafdhp36jdeprLZeH3ZE9thkcSc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753439107; c=relaxed/simple;
-	bh=t9H7qMPUhOR7usgf5ObGW69JJEkZAEtyBuBcCM6bXi0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=bPW7GYD5RMsthqnlL3TatGB8SniWjEVPWc+kF/5Y2y+32dJFrtuMX+Of1JlatxDhP+WeBEvQoraDkNbnIscbv3WJaV2kUWhsHTAHd8A9X/tfxE+ohQHRKE5E294AUzLRAiUf1yES77LojFYpGNVpNmfwjqtRAB+QmzXR81vNV0M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=gVuxAjj9; arc=fail smtp.client-ip=40.107.75.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FwoUZOkuFpikeY4mwesQSIp+GvL6XIXSN2cgBwd50/5YTvWKDDtCoNlUimO2qwV8DNPhUqKNqes2qSDYpmMnzQPwx5eP9y1KPnk2a9ZXScWxa+Ueolx8wSGeS4ppiUcpNxgnhANR81LuYpx7AxU01lrDMyMiFLFkdRz1YQ9QcIaNwI0A9aw+7Fv0BPAYKFkY5TH59MiG/HsQxkJq8bxf+LzaCcogrpx1WBzsIqEB1pMAMEuskY35J8Cyi2yY+PqgYlxVDEGUgm0qzyk/F1+n7CStaoz5R+06Itep4NfnDCol/Zk1xzb9F6Xp4lFsmNPMiNqIXFB84i5NhQRQnWEnng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t9H7qMPUhOR7usgf5ObGW69JJEkZAEtyBuBcCM6bXi0=;
- b=b2N0WuZhbhvc1ZcND0LL8zi2GOCN5o0992Mj1MP76UDch+bzpteWynPjlcFMFzhhSj+0ng7nLkrEU6/pJ3RRUCK5b+M0lIKbGVfeAnB0kZUMDqUjWT/UoPbJpgB6jvz2y+Z/EL4TdXyjl0jynvB731rsHvDxUMAJrWlOy+eW6PnOpds+n5bv7hZ7hWi7uCrw0VnYmJ3HmZQAN1UpbNMIk+R4p7o8ohGwE3f5LKNzUhsWfrZt7jRRIlXNQ86QT+v4176E/FPvIEA3Qf6NqW6UnOEnPxPDGhexB6fXIWf153cB/5Pss4XaezpylyF8u1DcnFHMVc0BkL+LX5JKGHBVdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t9H7qMPUhOR7usgf5ObGW69JJEkZAEtyBuBcCM6bXi0=;
- b=gVuxAjj9e3kpalsM+XxfZb2ns+Yps0yyCampZfwBcwXAzKnf20LKry6LkmNI5uvyJxB5RUwPHmgamHwoDxlmty6Rhjmb2nqL15bt38tpZt3b6J6c77rUKlFxvgD7NH+gjAsdGYH64Japazlrr914NPkLOfSkG3p3WAy4ZKnBjI6x+KXMkzaxRR+B0nalRi47RyUsu+MLmlRDew06rqUrDG7zqEorexVNXSenWn3cfQebNUzCbh3s/eKGgv51AvvM/gPFcIwPx4oLXu1ba5/FOBtF7qGqbtmMCWDD2/cb3rZ41I66I/7JmAWGog0ddjeUyeOaCFgylCxSBI5oVIvlug==
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com (2603:1096:400:45f::6)
- by SG2PR06MB5106.apcprd06.prod.outlook.com (2603:1096:4:1c9::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.21; Fri, 25 Jul
- 2025 10:24:57 +0000
-Received: from TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b]) by TYZPR06MB6568.apcprd06.prod.outlook.com
- ([fe80::72b8:dce5:355b:e84b%5]) with mapi id 15.20.8943.029; Fri, 25 Jul 2025
- 10:24:57 +0000
-From: Jammy Huang <jammy_huang@aspeedtech.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au"
-	<andrew@codeconstruct.com.au>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>
-Subject: RE: [PATCH v6 2/2] mailbox: aspeed: add mailbox driver for AST27XX
- series SoC
-Thread-Topic: [PATCH v6 2/2] mailbox: aspeed: add mailbox driver for AST27XX
- series SoC
-Thread-Index: AQHb+a+f17UQvucgWEGM4OCtCylrnrRCqSVA
-Date: Fri, 25 Jul 2025 10:24:57 +0000
-Message-ID:
- <TYZPR06MB656867AD5FF1FCA04E770BBCF159A@TYZPR06MB6568.apcprd06.prod.outlook.com>
-References: <20250702011956.47479-1-jammy_huang@aspeedtech.com>
- <20250702011956.47479-3-jammy_huang@aspeedtech.com>
- <CABb+yY1kyZdMqcMRUEdqCYByQE=DurfnejtvuQsMf9wfLiij2g@mail.gmail.com>
-In-Reply-To:
- <CABb+yY1kyZdMqcMRUEdqCYByQE=DurfnejtvuQsMf9wfLiij2g@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR06MB6568:EE_|SG2PR06MB5106:EE_
-x-ms-office365-filtering-correlation-id: 388e0ca7-88c8-45b0-ffdf-08ddcb658141
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?UEplSWYwcnRPbXNGU0NWVGRNQjlMeGtOb1dQVWJKSWZPSU9CTGFNWkVHbS9H?=
- =?utf-8?B?T3lpR2hkRVdEL2IyVHdQcWUxODVMa2ZFMU9VQmhSeHQxN1NjM0VzNDJpSU5s?=
- =?utf-8?B?V2wrREw0Q2FkRkRoY1FGRVJZNUpoYWdUbUgzeDd1UFJFS2tXaUhMTE1hM0xY?=
- =?utf-8?B?d2hlbTg2VCtxbS9hTnczVTh6U2tBWDVZTHRkRHRXTXZ5eWlRcjZ4MlU2blBj?=
- =?utf-8?B?TWlHSWtYdTA5dVd0WWRDWmVvMEVYZWt0MXZ5TXMvTXhCa21YRjRRQm1HUy80?=
- =?utf-8?B?TDJoMGpIQ29Ga1ZkMnhsRmNQMVc0SUtmS2NrbDRUZk9HNFhDRG5jTjQyb01s?=
- =?utf-8?B?TmkyVzZUeGZVczFEb0IzaHlJZy9pQTNqUUdDMG9hTEVqa3NqbEhZRnczekFs?=
- =?utf-8?B?d25sYzc3dU5KejZYbjJkSllwRWJlaUpGVEdCdFZLcFdDUkZ5bmlKZkNQdGVC?=
- =?utf-8?B?V2kvUFJjNElibEJBZ3Z2ZHNuRmwrUlFaMGREbnFQU2NJeGhlMk5TR0hPWE9o?=
- =?utf-8?B?V1VRRVRyMTJOOExvZyt2QWQ2OTY0MWl6NFNnWFhpeHVyV1NKNWI3N3VnK1Vq?=
- =?utf-8?B?Nk15ZE11citibkpHMG9ISkpPVVlYVFltQnI2NmhNT0RFZGhHaVVlR29EbC95?=
- =?utf-8?B?UnI5ZnoxVCtwWXlXZzFUa2xEMlF2TnlpemdiMW0zTjVRL2lHTlU4OUpoeDMr?=
- =?utf-8?B?cEZrZ1ZuM0JlcFcvb05pRzJNbGRxaGRWVmU3ckx5VTVqSDhLOEsrbTVxc3Ev?=
- =?utf-8?B?eE55amRFN3ZseGttbDBoVGZoL1I0amlZWW1Ib012RXR4aG0zRTZsUmNtTTNi?=
- =?utf-8?B?MS9kanpGUUhGcXhqVFd1cTdpS0RabGFROUViUWYva2ZWQXhkTWdCWi9xWWxP?=
- =?utf-8?B?dGoweUl5M1o4dlE2Qm1RdUIxcVNyT1pML29LRXpiVmZ5SUZTbkFDY3JLTUpQ?=
- =?utf-8?B?YmJrOXphZ1NuWWNYN2YxWTJ6cVBkUjlMRkh6K3ZNbGxJMmhhNkRPR0lLUi85?=
- =?utf-8?B?YWpUWlFYb29PUFVJQ2RraWN5ZWhHRWJQc0JFM2JCbUUyT3p4VFRtck4rWFNE?=
- =?utf-8?B?MXc1TDFndnd2aXVIUFp0dW0rNnR2NHNIV01ESDhIaThLb2k1NERsQ0lzTXor?=
- =?utf-8?B?MmxLWTBkMlZiV2M1OEZCcmk2ektmOTZNUTkrVzdRS1prSGtBNmJKNHJrOHZS?=
- =?utf-8?B?eUdtbDNLaXVwdjg3eTk1VnBvQUlOZ21iRGpoSUJiOU1CSERsRlBKY1FEQkxm?=
- =?utf-8?B?SVFDamIxZ3ZsVUo0bjY2Vk10c0JjNnU0bFl3c2EvQmlJQW8rR1V3N3NnMlVY?=
- =?utf-8?B?WGVpeFVVWjkxakVhMnlrWm9iUUY1anZicmtiLzA0M1ZLYmV0dFl1Y0NlaHQ3?=
- =?utf-8?B?Q0VVNXV5aHFONHZMdWx4aFFQYktVOW5odHdPZFB1OWt5RFBGa3U3V295MWpq?=
- =?utf-8?B?N1AySmhWY295Uit2K2ZCU3lKZFpYZk5ENTlRcjVOS0VTQkd0cWNSeDdzVXZz?=
- =?utf-8?B?d0xRN1J0bEQ4Vnh3NGlmQjkrSGc1aTNCcGFubUl1eS8raml5K291eGJRZ3ZY?=
- =?utf-8?B?Ly9jckludlVhOVJjRGRYMXdRQllhVnpRb0xuTmY5aThKQzRieWtuYmh5ZEhv?=
- =?utf-8?B?RS9IUkNjNXI2S1JoUTNIeDhOQXFlTmlmVmQ0Z1FWemNrWlJnYnZ3djlBWmpN?=
- =?utf-8?B?V013UnJpV0ZCWm1IbHlJR0dCc0xrQW5QOUVSNEo5VnQrWEVydjhJekZhSXFu?=
- =?utf-8?B?NFB1cVVGVTdhSUdEMjgvT1FCQndYUzN4OE9SYS83c0V6bDlTVkJXS3BZRElH?=
- =?utf-8?B?b2ZUMkxzdlJNSnBKN0hmM0ZqSlptdDNyandGWEpDUVFGaTAzd2FhRE9iTXFK?=
- =?utf-8?B?M3NUZm9LbUx3dXZxN3diejhQNlhCR0NrVE15WHNiTVFuLzRMNmkzOStGaEl1?=
- =?utf-8?B?TXo1WjZCRWp0dHpkdzF2UXJPNC8vUXQyWWpqRE9aYUt5NDdGQTJVTlQ2Z0k4?=
- =?utf-8?B?bEc2cXhFL0ZBPT0=?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB6568.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TDdRRjE2UWRYekJsN2NBa0gwaWZFUWhqQ29abU40SWJwTDJNeEM2QzE3bE9m?=
- =?utf-8?B?TW1DL2dNNHFSOUNLUUpybmVTUEdVeG0zMmpUOXNvUENlTGk3ekp3a2crNll2?=
- =?utf-8?B?Vm4rQzJIZ0gzL0xrb0RST1hOZzNBY1luTmNjTGpVcXY1cm5zRy9uYkNRUmRv?=
- =?utf-8?B?TEZ4YXlSSXRkeGVRQ3hYWE1NRGhJUlRCRFRsSGttcmZ0dFpsRUZSVVl4Z05o?=
- =?utf-8?B?UzNUTW9TLzd6T1VVUEdyNmJ2ZDd2ZUlHcWNUUU14RW9aQ2V4S01qMHB2SldR?=
- =?utf-8?B?eVJwSHZXbTVnSFZibzBHZGQwM3N2RVQvL09SdXVWayttRVNQTWNld1ZIeUZs?=
- =?utf-8?B?L2hpanJQSkFrUU5aSVN5UGsvNDJXUE8rY0hIUlAwR2tPWWlwemd5MVZKWjBj?=
- =?utf-8?B?WDd6YWpGa2VMdEFVeW9XQm9MT29JenJ4S2prb1VaS0hyNkdqT0hWKzdhNmVX?=
- =?utf-8?B?MzNkUTMwOWY1S0NJc0dEbmVveG5Hb2x5WSt5Z0dhNUZzUDhHUXhKMGZoODVv?=
- =?utf-8?B?TURrU0dLNytoY3VVRzRXKzZFYmo4VmErL3J5MGFCem04RkVFZkFqczZES3lH?=
- =?utf-8?B?Y3Z0aXRMMlkyVnlBR3ZZbnZiL3hiZG1kN2ZtaUZPYkFlQy9WbnZjTVlpUHJB?=
- =?utf-8?B?dXRVdEtRTmhRTjN5U1lCcVBIM1F1NnpKQUVHYS92YWtkRHhUYkRvd25vL1B0?=
- =?utf-8?B?eGhmYlRWL29aSWxOeWVJUEMwNENsUzRtMDZEdTZNWXRsMDB1YW1vcHhaZm5Y?=
- =?utf-8?B?aksvSjRHRWdNSTU0cFk0dUUrNnVKWkNTZlRpaEFCS3dkNzFEalFzQmhPQXEr?=
- =?utf-8?B?RmN1UGtLRDN3a0svU0kxNzJQRnNhbHZITXNudm1VTFRhWHZqb0FZUWtQNlI3?=
- =?utf-8?B?UDBRaVVMbmRWWFpJYUpDbDY5NDRXY2h1TitPdHEzUXE5U2dYTklDd09DcnBs?=
- =?utf-8?B?OFhLM0h2cnJVNi9Ya2hmL01DUlArVWtvSkR4Q3UrZXcwbFk1d1c2Y2laSWtB?=
- =?utf-8?B?aGt2Z1ljRlJrWHQvblFXZXhpaFVMYnE5cnZlTHFBN2h2RVpWeGZrSjJBcVIv?=
- =?utf-8?B?NDk3d3lQNFRDc0RuNlREWUlacElmUTdIQ3pwZGpQckcxSWJKMWhkQ1YvaC9h?=
- =?utf-8?B?RmpFc3RHMXROS3g0UUw5RE9qUmRzUEI3aEZmb1hha0VGaVNTTi9JM1NoaWdV?=
- =?utf-8?B?YmU2bGtPSlNnUnFLRlEzNW5oU3hzRzZlNGxrSVVxN0tKSlNtS0NobWxNWG5l?=
- =?utf-8?B?N2RsSlNjZWpudFdmUHhhMUl3ekdyalloMXlBWnlMK09xMVhuTEJDdjViaGt5?=
- =?utf-8?B?SDBpRzJFU05XQm9PYXZlSkI0Y2ZTL3U1VVd1NUJkQ0RMZ2lHMTAvbG1OZEIv?=
- =?utf-8?B?d3Z1YUt0WnU1cjFoODVOMkl1R3JLNGdZd3JsWDRVVGJ3dkhjSGZiVHVyUXNh?=
- =?utf-8?B?ODRCZGh2b2g3L1BUNzdtK1dONjh4ZkNsRnNjTUdHbjloN2h6bzIrQmV1bE9j?=
- =?utf-8?B?SWE5QW4wb2FJTmVnNGtaU0JKSEtpbVh1SUxCRUY2eUEzY0pZWHRoSFZsU3VM?=
- =?utf-8?B?bm9uMUozMzRJZ0tiNHl2TnoxVE84RFBLK0hOcHJvTG8rRy9rYWo5Vzd1aWpV?=
- =?utf-8?B?WkU5RmR3NWhiT3A0d005NFhZMzhMdFlpOFF4QStTU0ZlT3hWamVRakJUNFpx?=
- =?utf-8?B?UFRueVhuRDlKckR3YTg5cEVQMzJXYjBUYW9oS0JjbUhxWUgxR0JHWFQ5UHpJ?=
- =?utf-8?B?UDNsa1AxNE0yNkVLMVg4K1JGRWZLKzQ5UUhpR0FCSFFuR29pRFRDZ2VObDlN?=
- =?utf-8?B?bVlMVG52UWZLQzVxZ3IrdnpYcWpaYjMzWHgzdGNZaXpxMHVLUkM1aUhwdDZm?=
- =?utf-8?B?UWFQS3BvdFhDV0p5M2hocDZJUFhCT2pBZm9wUzVNWWFXTm5JRDVwYjUvMDZ2?=
- =?utf-8?B?NnI0QTNYeDE0dUI3dHJTamVzczVvMmxscGxHNks5L1hDLzBQMTNTd3EyZHBK?=
- =?utf-8?B?em9XMFZwblBVN21LcGZiek45YWg1SkdZVVR3R1RFZWpDVWk3bWQvblMwbzJC?=
- =?utf-8?B?bG9FcTF5a09zRy9lZHFXL2xSSndzZGd1S0JwVmxnaVpNWDljQnJvNUNUS0Fi?=
- =?utf-8?B?YkVEa0g5NnVWNTIzcm1EcDNiSm9CdlFaQTFCMTN6MWU0K3VBd1BTL3EwdDZw?=
- =?utf-8?B?S0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFD72DECB1
+	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 10:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753439657; cv=none; b=kO2UTK1TJnxd40ILeiwt4qz35c1IQ0UWqaInB1Xl6Oy3xTIODHgFkz+QvVEonmdqfUxUdJuZOLKsMXFwDV4Bn9YwhRVxLisxB+2veZELLjuElDM5Zuhi9JW1F46AVrz3I5CPwb1unRJ3Lt4oWKxvmXsT7BRLskE8er/vBJ0puBA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753439657; c=relaxed/simple;
+	bh=yYEFudnuqhhtZ+sqQ+TFTlE2skKtiAAPYNG8FKAlAuU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QxnuNEsuWG3DQor14jdkd6L9iW51qhZqf4DuXbttdh5D0dJSXd61tjRVLpfIuJS9hdO9Rojs5w5aM8tti+bXazP/v/8D5apmCbkXtZAWVAhs1iroq5NllCIl2RGlpgmHfOj3j3I68k1HD2YFh2qTiMUXxu4o0ywTJ/UWT54NjFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=FzXxnfWQ; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e9a109035bso1411690137.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 03:34:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1753439654; x=1754044454; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=29HDb0CStjqCTbdMTaT8ki881uLabi0viRhzF0Cw5Io=;
+        b=FzXxnfWQmrcrnzl2wVEnHwMDIGsJFF86UzbsoTWK2z0V61FS4G7tWsyz2lDY6Vk1fM
+         3JEvuqSx8PlAVp+FIH0lDzStc3fBUVeCbowVswPSNMJHhnOcwuq+4fPtmPL8xWAe36iy
+         bZOhzaR2E/B2de6MR3KctMBbs1OUsim77wvaU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753439654; x=1754044454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=29HDb0CStjqCTbdMTaT8ki881uLabi0viRhzF0Cw5Io=;
+        b=hmu+LFSWr4a0ZxpeyQXwB46gZlrAnrhQ3Y8YzPg/nbVI/6JzIFjm60Tx6Iy+0lG4rU
+         Gxd0kS2mMc7g+Ytv+7tvssN8uMiB10tQvlkKGPrJGFt0V11XYdGDNxr9uOPQpRYEti0F
+         1rgnr21hoiPH+QWA7ckqK996BATaJb4bW95CSMm6djzITTG5H0oAg/Fbu8961dWPobMz
+         6fvciNfTskCW67tsF86bODmczhy5PJIP6qu6KkCLrSidDbIUf+x4/QKZgIpmTk/Pvv7c
+         RgXa1MvPu6Re+mDb4rTaNIbmp+7oTjE6nMkWS65a6v5zAA+Gqu37fJtN9Aw4dNfESetN
+         3wkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWdAGRgfaDeYzgjOE7IiY2d9WZ91WuSk/urYh/hKDCezp0wOM/yMfhwMjNxqoCsf8UtHAKmiFuDP2ay@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQxkZ/9wONo7ArX5ujcjBUHRimlyGPGrsl9dIrpOeCH+RsPiIZ
+	we7NaXI+4SKPUsy7wa+J9csyPSQcdub2C0Cd2JOV+iZ81qzpEpzBsKASyWopgNu15XC/un3s5WU
+	vFazU+A==
+X-Gm-Gg: ASbGncubEOneO1ud7+JmsgQD697rKtU3YE6KrOJJ2/j2R7rB/k86tfv9dloujc+FkrO
+	/5jB87uEd7JJ6dF5GxzQ1XKov/v4M05jHAkT/Sd2O3qOFbXksVS+skCVB5c/6zjjbSYU5rPHjZY
+	gRGB2cgxxYC9uT61DHvezxbKu8zZXXpjCSIb/AFxXhcF6lkMlafyutzZ+/20byqEb43QiHh8uwB
+	bOkgGSWQQ4wgggpR4VM16WxORGZ0JXjLcyyzHfQifDKyeanhZbO9LWnm9JzFsRLXUeyClghG6Br
+	GnX42/582gA7MF9dw7zq23iWKTTzU+PzB7co9vITNfZOVtmm7aBPUqRyYOVLfvKHjbEh815WHxU
+	XzoO2n5CFHpL4GmtnJcv378NR/jX5nQNN5GxI7R9ZX9JOjUQsDpfzNLrpPA==
+X-Google-Smtp-Source: AGHT+IGVLI3OEUlIfO3VNRPCV30uq9V3wx95huXgK6MVBOSFOE0vUZ5VeWjLeqDQuR4dpz84ZTONgA==
+X-Received: by 2002:a05:6102:6897:b0:4e7:bc41:a9ab with SMTP id ada2fe7eead31-4fa3fda8ef5mr305379137.23.1753439653619;
+        Fri, 25 Jul 2025 03:34:13 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-537bf605acbsm898769e0c.7.2025.07.25.03.34.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jul 2025 03:34:13 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e9a109035bso1411656137.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 03:34:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXE3+oCTDJ6A89F1hz2LI+a/3Dt4yD+c5Hr9Zw8E3DjTSDJY0sqx3psPBJg2uu41RyX73Yt5plZv6j6@vger.kernel.org
+X-Received: by 2002:a05:6102:5799:b0:4e5:ade7:eb7c with SMTP id
+ ada2fe7eead31-4fa3fac29femr330925137.12.1753439652105; Fri, 25 Jul 2025
+ 03:34:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6568.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 388e0ca7-88c8-45b0-ffdf-08ddcb658141
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2025 10:24:57.6651
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Sj5Hpym12kO1h/FnCmqrY2sgthC/JACm9N7O+/QE0ySLemqICPeyZD84UFPTRpMSdT/JA2W988edsM1zRATQD81Bzn1wpP8ML8pnNYzV9l0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5106
+References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-35-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250724083914.61351-35-angelogioacchino.delregno@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Fri, 25 Jul 2025 18:33:36 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhfg_qD044bO8EOV=MckoNVtJXQ47XBeDFMPwJ9goHg-A@mail.gmail.com>
+X-Gm-Features: Ac12FXyYX3cOTb6n6096sUC59Z8DCV1ifB6_qbpW9gH46tmstAs2fiwwoJYhrGs
+Message-ID: <CAC=S1nhfg_qD044bO8EOV=MckoNVtJXQ47XBeDFMPwJ9goHg-A@mail.gmail.com>
+Subject: Re: [PATCH 34/38] arm64: dts: mediatek: mt8195: Fix ranges for jpeg
+ enc/decoder nodes
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
+	daniel.lezcano@linaro.org, mwalle@kernel.org, devicetree@vger.kernel.org, 
+	linus.walleij@linaro.org, linux-remoteproc@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	olivia.wen@mediatek.com, shane.chien@mediatek.com, linux-gpio@vger.kernel.org, 
+	linux-phy@lists.infradead.org, airlied@gmail.com, simona@ffwll.ch, 
+	herbert@gondor.apana.org.au, jassisinghbrar@gmail.com, jiaxin.yu@mediatek.com, 
+	andy.teng@mediatek.com, chunfeng.yun@mediatek.com, jieyy.yang@mediatek.com, 
+	chunkuang.hu@kernel.org, conor+dt@kernel.org, jitao.shi@mediatek.com, 
+	p.zabel@pengutronix.de, arnd@arndb.de, kishon@kernel.org, 
+	kyrie.wu@mediatek.corp-partner.google.com, maarten.lankhorst@linux.intel.com, 
+	tinghan.shen@mediatek.com, mripard@kernel.org, ck.hu@mediatek.com, 
+	broonie@kernel.org, eugen.hristev@linaro.org, houlong.wei@mediatek.com, 
+	matthias.bgg@gmail.com, tglx@linutronix.de, mchehab@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, granquet@baylibre.com, 
+	sam.shih@mediatek.com, mathieu.poirier@linaro.org, fparent@baylibre.com, 
+	andersson@kernel.org, sean.wang@kernel.org, linux-sound@vger.kernel.org, 
+	lgirdwood@gmail.com, vkoul@kernel.org, linux-crypto@vger.kernel.org, 
+	tzimmermann@suse.de, atenart@kernel.org, krzk+dt@kernel.org, 
+	linux-media@vger.kernel.org, davem@davemloft.net
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-PiBPbiBUdWUsIEp1bCAxLCAyMDI1IGF0IDg6MTnigK9QTSBKYW1teSBIdWFuZw0KPiA8amFtbXlf
-aHVhbmdAYXNwZWVkdGVjaC5jb20+IHdyb3RlOg0KPiANCj4gLi4uLi4NCj4gPiArICAgICAgICAg
-ICAgICAgLyogUmVhZCB0aGUgbWVzc2FnZSBkYXRhICovDQo+ID4gKyAgICAgICAgICAgICAgIGZv
-ciAoZGF0YV9yZWcgPSBtYi0+cnhfcmVncyArIElQQ1JfREFUQSArDQo+IG1iLT5tc2dfc2l6ZSAq
-IG4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgd29yZF9kYXRhID0gY2hhbi0+Y29uX3ByaXYs
-DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgbnVtX3dvcmRzID0gKG1iLT5tc2dfc2l6ZSAvIHNp
-emVvZih1MzIpKTsNCj4gPiArICAgICAgICAgICAgICAgICAgICBudW1fd29yZHM7DQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgbnVtX3dvcmRzLS0sIGRhdGFfcmVnICs9IHNpemVvZih1MzIpLA0K
-PiB3b3JkX2RhdGErKykNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAqd29yZF9kYXRhID0g
-cmVhZGwoZGF0YV9yZWcpOw0KPiA+ICsNCj4gUGxlYXNlIGNsZWFuIHRoaXMgZm9yIGxvb3AuDQpP
-Sywgd2lsbCBiZSB1cGRhdGVkIGluIGxhdGVyIHBhdGNoLg0KVGhhbmtzIGZvciBoZWxwLg0KDQo+
-IA0KPiBUaGFua3MNCj4gLUphc3NpDQoNClJlZ2FyZHMuDQo=
+On Thu, Jul 24, 2025 at 5:51=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> The jpeg decoder main node is under the soc bus but currently has
+> no ranges or reg specified, while the children do, and this is
+> wrong in multiple aspects.
+>
+> The very same is also valid for the jpeg encoder node.
+>
+> Rename the decoder and encoder nodes to "jpeg-decoder@1a040000"
+> and to "jpeg-encoder@1a030000" respectively, and change their
+> children to use the newly defined ranges.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+
+Despite now jpeg-encoder isn't sorted in order, I guess we all agree
+it's much easier to read in this way, so
+
+Reviewed-by: Fei Shao <fshao@chromium.org>
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 30 +++++++++++++-----------
+>  1 file changed, 16 insertions(+), 14 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index dd065b1bf94a..35b10082bb89 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -3014,7 +3014,7 @@ venc: video-codec@1a020000 {
+>                         #size-cells =3D <2>;
+>                 };
+>
+> -               jpgdec-master {
+> +               jpeg-decoder@1a040000 {
+>                         compatible =3D "mediatek,mt8195-jpgdec";
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_VDEC1=
+>;
+>                         iommus =3D <&iommu_vdo M4U_PORT_L19_JPGDEC_WDMA0>=
+,
+> @@ -3025,11 +3025,12 @@ jpgdec-master {
+>                                  <&iommu_vdo M4U_PORT_L19_JPGDEC_BUFF_OFF=
+SET0>;
+>                         #address-cells =3D <2>;
+>                         #size-cells =3D <2>;
+> -                       ranges;
+> +                       ranges =3D <0 0 0 0x1a040000 0 0x20000>,
+> +                                <1 0 0 0x1b040000 0 0x10000>;
+>
+> -                       jpgdec@1a040000 {
+> +                       jpgdec@0,0 {
+>                                 compatible =3D "mediatek,mt8195-jpgdec-hw=
+";
+> -                               reg =3D <0 0x1a040000 0 0x10000>;/* JPGDE=
+C_C0 */
+> +                               reg =3D <0 0 0 0x10000>;/* JPGDEC_C0 */
+>                                 iommus =3D <&iommu_vdo M4U_PORT_L19_JPGDE=
+C_WDMA0>,
+>                                          <&iommu_vdo M4U_PORT_L19_JPGDEC_=
+BSDMA0>,
+>                                          <&iommu_vdo M4U_PORT_L19_JPGDEC_=
+WDMA1>,
+> @@ -3042,9 +3043,9 @@ jpgdec@1a040000 {
+>                                 power-domains =3D <&spm MT8195_POWER_DOMA=
+IN_VDEC0>;
+>                         };
+>
+> -                       jpgdec@1a050000 {
+> +                       jpgdec@0,10000 {
+>                                 compatible =3D "mediatek,mt8195-jpgdec-hw=
+";
+> -                               reg =3D <0 0x1a050000 0 0x10000>;/* JPGDE=
+C_C1 */
+> +                               reg =3D <0 0 0x10000 0x10000>;/* JPGDEC_C=
+1 */
+>                                 iommus =3D <&iommu_vdo M4U_PORT_L19_JPGDE=
+C_WDMA0>,
+>                                          <&iommu_vdo M4U_PORT_L19_JPGDEC_=
+BSDMA0>,
+>                                          <&iommu_vdo M4U_PORT_L19_JPGDEC_=
+WDMA1>,
+> @@ -3057,9 +3058,9 @@ jpgdec@1a050000 {
+>                                 power-domains =3D <&spm MT8195_POWER_DOMA=
+IN_VDEC1>;
+>                         };
+>
+> -                       jpgdec@1b040000 {
+> +                       jpgdec@1,0 {
+>                                 compatible =3D "mediatek,mt8195-jpgdec-hw=
+";
+> -                               reg =3D <0 0x1b040000 0 0x10000>;/* JPGDE=
+C_C2 */
+> +                               reg =3D <1 0 0 0x10000>;/* JPGDEC_C2 */
+>                                 iommus =3D <&iommu_vpp M4U_PORT_L20_JPGDE=
+C_WDMA0>,
+>                                          <&iommu_vpp M4U_PORT_L20_JPGDEC_=
+BSDMA0>,
+>                                          <&iommu_vpp M4U_PORT_L20_JPGDEC_=
+WDMA1>,
+> @@ -3088,7 +3089,7 @@ vdosys0: syscon@1c01a000 {
+>                 };
+>
+>
+> -               jpgenc-master {
+> +               jpeg-encoder@1a030000 {
+>                         compatible =3D "mediatek,mt8195-jpgenc";
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_VENC_=
+CORE1>;
+>                         iommus =3D <&iommu_vpp M4U_PORT_L20_JPGENC_Y_RDMA=
+>,
+> @@ -3097,11 +3098,12 @@ jpgenc-master {
+>                                         <&iommu_vpp M4U_PORT_L20_JPGENC_B=
+SDMA>;
+>                         #address-cells =3D <2>;
+>                         #size-cells =3D <2>;
+> -                       ranges;
+> +                       ranges =3D <0 0 0 0x1a030000 0 0x10000>,
+> +                                <1 0 0 0x1b030000 0 0x10000>;
+>
+> -                       jpgenc@1a030000 {
+> +                       jpgenc@0,0 {
+>                                 compatible =3D "mediatek,mt8195-jpgenc-hw=
+";
+> -                               reg =3D <0 0x1a030000 0 0x10000>;
+> +                               reg =3D <0 0 0 0x10000>;
+>                                 iommus =3D <&iommu_vdo M4U_PORT_L19_JPGEN=
+C_Y_RDMA>,
+>                                                 <&iommu_vdo M4U_PORT_L19_=
+JPGENC_C_RDMA>,
+>                                                 <&iommu_vdo M4U_PORT_L19_=
+JPGENC_Q_TABLE>,
+> @@ -3112,9 +3114,9 @@ jpgenc@1a030000 {
+>                                 power-domains =3D <&spm MT8195_POWER_DOMA=
+IN_VENC>;
+>                         };
+>
+> -                       jpgenc@1b030000 {
+> +                       jpgenc@1,0 {
+>                                 compatible =3D "mediatek,mt8195-jpgenc-hw=
+";
+> -                               reg =3D <0 0x1b030000 0 0x10000>;
+> +                               reg =3D <1 0 0 0x10000>;
+>                                 iommus =3D <&iommu_vpp M4U_PORT_L20_JPGEN=
+C_Y_RDMA>,
+>                                                 <&iommu_vpp M4U_PORT_L20_=
+JPGENC_C_RDMA>,
+>                                                 <&iommu_vpp M4U_PORT_L20_=
+JPGENC_Q_TABLE>,
+> --
+> 2.50.1
+>
+>
 
