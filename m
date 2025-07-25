@@ -1,201 +1,170 @@
-Return-Path: <devicetree+bounces-199718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C1DB11C21
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00BE8B11C36
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 12:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 331B916AA7A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:18:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67EEF4E2EEF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 10:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFAE2DCF6B;
-	Fri, 25 Jul 2025 10:18:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378762DAFCF;
+	Fri, 25 Jul 2025 10:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="J5iv/n3r"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hh6ujQXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0A82DA77D
-	for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 10:18:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927F02DA777;
+	Fri, 25 Jul 2025 10:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753438698; cv=none; b=HTFn8+94xRhup0XOYY3lifQ09CYe9CXrLkvb82noFQ6h4N5l4rI7EKKNU5JO83OlrhLn/1le81IAnCa6tkhyiWhcGfq3fzA/5Et8eMXEcdh3dkB2/ZvDZ91CtrgrUQNZbBJGu168ZwrKCwTHv+uV6p4e0J98w+PJCZTgwWXifoo=
+	t=1753438980; cv=none; b=TptoTEHaX3w6cmUXF//q6UBJxyA95p6j7RoRuTdtpOdVz+1/ubZNa+C88UPXq56YndO93Dt900uXUP2TqCV4b/Sk0TrHw95braxWWe9kha7DCvMI4sYc8LotN3maRwEloiDjHdeY4XVjy8mzWdFKv5AuUJmgu4Ii019VQGC5ATw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753438698; c=relaxed/simple;
-	bh=2XXVnmKfKOuWrZjQTjDdYxCXEPvU5YjHEeLez+QHVDs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WVAMjP+uy41n5dj9QCzc7xZ/BWzOyUOScgQhBRrqpv8fuEbYixxdMCAaLm+Xh/5jaCS9C1uBOOULpS4h6BaHlb/jnbGxWLC1pn9X4rRlqsDDj7A4bp1OFRYnWtZY3pPcx7YswKTzScD9JuxYU9N27P7TvzAHgXSO4+ePbiEATiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=J5iv/n3r; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4efbfe9c7a5so1913676137.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 03:18:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1753438695; x=1754043495; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s9CPe4n6W7cHa+GL0hIjIVMWtvIyx6LwWGjspV/N2Ok=;
-        b=J5iv/n3rma12RMXbJ0iPqndDMFk75vBSdjxbUKQtXYpd3wiKlOEhEekjUwfgByuRDs
-         XAPp2XyClwU5FGahyNrDJjkNRgFV67HPZGJbMDZ72CM8bawRHpZvhz+fYozVmKvYawfS
-         AMEa+LmcJn0IpilXLOyhEz9X3Ge19nsw0p2zw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753438695; x=1754043495;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s9CPe4n6W7cHa+GL0hIjIVMWtvIyx6LwWGjspV/N2Ok=;
-        b=Bq/iMLOl6NqJVJM1U/K4F1QyopzC9H4Ecia0JD7uZIBCgb+wDSPAt3quTUbCIUYGqx
-         HcC/9IHgQzhXhJ0KhEEyVM3enP9X+G0nnZrNyyj+udvnN7xJ6tHpxDKc3t/cB7tGZItH
-         Jh3wLfuJn1Mqzanal2RqzHPnACCat12GwbObIe0xuOvVr6OQ09SmyX6g3WzybCLSFcHz
-         M35X+8m7+j9iZApPQwgKk/wvcHfm4UM66ElJSXJzHvmpFfaqr1CfOMQ3smTlkHn/gsVK
-         3V4ygimQ42G/EHrb3eJG2Fq91LWAL2kOk2ljlFOuTQMVUJ1Dx6MdRJKDOvkauTO04iO/
-         WGnw==
-X-Forwarded-Encrypted: i=1; AJvYcCWm1gc6ePSYfW9ehCW5ZJ+z5KUgN4qGpF4Uo2zLAAiO1s6V4CXw6+hy9B7JjA9WyO+3Vk432SeCsaSE@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq7QcoRT/Rl9VfsTIETSkKcCXDBHp7hnJjUzUkP/lf8T4yCDHb
-	gB++BwBTv4ZrcABFGaNY88UI82aj7G9UpfF/wGOY+PUvdHkiH1vYTXoBor0ZA1W4b5wQxFD1aAk
-	2rk4=
-X-Gm-Gg: ASbGncujDlO6+sseuI8md5RGMo8AInK/CUsOqtJnDV9DcXnM2jDuTe3WdSkk3mWCC6S
-	BJCANeR40lqb9AQ+E0Q9W9qX1gV0ZqtPi/54BW/zpTxmoPah1NBhZxe12iNLdhMY2/xC+Qb5hC0
-	56ubTB9o8qedDEKbnADR52cniTfCpnuzLgnETQ/qTDXyNgpCUbbg0dTaWOQrm8agW9qDGS5Q9lb
-	o77F3CvuqcNhyB9fKhpnsGQC/Xk2zz4I55RgR+GOGh/XUb6LwlQgiVsQ6GKxN9Pk8QdvcTj7E28
-	gSYiWOe6byQkF8fRLb6cSxZeaM2NzEIyJhGOypCJOcMadJ+CFh4ExAmg4i+YxqlFXC7wad+Jgzm
-	xNL2CYU1TRluBf/0tg9UVAE5V/vxxxHwoJPid+gIMw8yHd+84RSSCqQ9ispyllvQ9yb6f
-X-Google-Smtp-Source: AGHT+IEJdNGjzjLEm4OQVGNI34iCDH3LsA45Wrzqg+qi+Ie6w/keKRy8SSDsB7ZvC/xvf2dx3k5caQ==
-X-Received: by 2002:a05:6102:5491:b0:4e9:963f:286a with SMTP id ada2fe7eead31-4fa3ee2e958mr368419137.5.1753438694713;
-        Fri, 25 Jul 2025 03:18:14 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4fa2a9c508fsm697449137.17.2025.07.25.03.18.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jul 2025 03:18:13 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4e80ff08dd6so1217165137.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jul 2025 03:18:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW5BtrgVy3XJwVwqAqpF2xqhM5WDqofB8pFuQ+NhqhM5+bBdxYmcmw6iYOy40dGPYTuBHb1CJnT7rTV@vger.kernel.org
-X-Received: by 2002:a05:6102:1623:b0:4fa:dd4:6877 with SMTP id
- ada2fe7eead31-4fa2eb0ce5dmr2502816137.4.1753438693359; Fri, 25 Jul 2025
- 03:18:13 -0700 (PDT)
+	s=arc-20240116; t=1753438980; c=relaxed/simple;
+	bh=DoBptU7WgQjjp3I2VdAKCGZvrHgfiOMQFawDaIBPBOs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=C5ieqhEBOZFS+PGOLUParbLhSibkWjMRJhvjIWXB2q+ebyzggyA4HXFqBkNrxSNfIxT7c9DKMK6pQeM4wmerVsYgFcQhkWpSNMS3g/vY87MvmLQ//Bp8PE6o8TONYbLxAijimLKf2pMYmRWefywaNcjftu9JEsz9f3iL45HTQR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hh6ujQXk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56P9JXb1025827;
+	Fri, 25 Jul 2025 10:22:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=iIbZHbS9s9W6ttGKX/iKrJbEeTlLeZNA0hs
+	TF5Hj6BY=; b=hh6ujQXkCl1w/fwCbBcmzIrCNP7oJRkv/v+nPQVWj38C2Bftq0k
+	auTknlIB9qxlYNAyLOGbVMp8Qeun2pB4p8bvYl5+SbdnTWZuz5D6cewMEKGR1VWD
+	fXt0ulbryhiBPKBL4aJv4IKtQAq9G64506aqQzgSVHBNLI8pPLnVyVSShQjRsxkA
+	kS8KsHq1ZV78La+5ljVwfW5q8HJKNlMNn+hbX+jxHMkzZbzD6+Sr78ciPzXQDHvZ
+	q4HXYwO3O9ClEqenUSkMKLDraHlLXVWYQMM593PrZWqTf95qQGd5Rh8dMq90azEd
+	80WMvPf6kPkQUolPV4nNqQkw2yvZWLqPwiA==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 483w30spkc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:22:48 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 56PAMYeH027666;
+	Fri, 25 Jul 2025 10:22:34 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 4804emsyu0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:22:34 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 56PAMYGq027650;
+	Fri, 25 Jul 2025 10:22:34 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 56PAMX8Z027644
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 25 Jul 2025 10:22:34 +0000
+Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id DC1BA210CE; Fri, 25 Jul 2025 18:22:32 +0800 (CST)
+From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        kw@linux.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Subject: [PATCH v7 0/3] pci: qcom: drop unrelated clock and add link_down reset for sa8775p
+Date: Fri, 25 Jul 2025 18:22:28 +0800
+Message-Id: <20250725102231.3608298-1-ziyue.zhang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724083914.61351-1-angelogioacchino.delregno@collabora.com> <20250724083914.61351-31-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250724083914.61351-31-angelogioacchino.delregno@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 25 Jul 2025 18:17:35 +0800
-X-Gmail-Original-Message-ID: <CAC=S1niM4ddPSaOM9uMRQuUS8HwPw+gtxe9kGUggWQx6uio5eA@mail.gmail.com>
-X-Gm-Features: Ac12FXzF0-E5XCOaIf5MFeMvqjYMvWSzSdwqzh1uEwhsUpfXPcd-rqBecXNopmU
-Message-ID: <CAC=S1niM4ddPSaOM9uMRQuUS8HwPw+gtxe9kGUggWQx6uio5eA@mail.gmail.com>
-Subject: Re: [PATCH 30/38] arm64: dts: mediatek: pumpkin-common: Fix pinctrl
- node names
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, robh@kernel.org, 
-	daniel.lezcano@linaro.org, mwalle@kernel.org, devicetree@vger.kernel.org, 
-	linus.walleij@linaro.org, linux-remoteproc@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	olivia.wen@mediatek.com, shane.chien@mediatek.com, linux-gpio@vger.kernel.org, 
-	linux-phy@lists.infradead.org, airlied@gmail.com, simona@ffwll.ch, 
-	herbert@gondor.apana.org.au, jassisinghbrar@gmail.com, jiaxin.yu@mediatek.com, 
-	andy.teng@mediatek.com, chunfeng.yun@mediatek.com, jieyy.yang@mediatek.com, 
-	chunkuang.hu@kernel.org, conor+dt@kernel.org, jitao.shi@mediatek.com, 
-	p.zabel@pengutronix.de, arnd@arndb.de, kishon@kernel.org, 
-	kyrie.wu@mediatek.corp-partner.google.com, maarten.lankhorst@linux.intel.com, 
-	tinghan.shen@mediatek.com, mripard@kernel.org, ck.hu@mediatek.com, 
-	broonie@kernel.org, eugen.hristev@linaro.org, houlong.wei@mediatek.com, 
-	matthias.bgg@gmail.com, tglx@linutronix.de, mchehab@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, granquet@baylibre.com, 
-	sam.shih@mediatek.com, mathieu.poirier@linaro.org, fparent@baylibre.com, 
-	andersson@kernel.org, sean.wang@kernel.org, linux-sound@vger.kernel.org, 
-	lgirdwood@gmail.com, vkoul@kernel.org, linux-crypto@vger.kernel.org, 
-	tzimmermann@suse.de, atenart@kernel.org, krzk+dt@kernel.org, 
-	linux-media@vger.kernel.org, davem@davemloft.net
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=WtArMcfv c=1 sm=1 tr=0 ts=68835af8 cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=5rr6ixAOVb5IYiBHoQ4A:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 5Qn9hx-4didi1S5_QmRg8LsScOF2GS54
+X-Proofpoint-ORIG-GUID: 5Qn9hx-4didi1S5_QmRg8LsScOF2GS54
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI1MDA4OCBTYWx0ZWRfXz4oCkU5nm/ZI
+ uMclcfVO1gENEt5OM8cgVfLIGAhKMy/rnRC8yfVmdCoEFm8CHVyyu/WFVmIvz7YgKGPrU03HWAv
+ 97qpPOC6uHt/YjtRgbHeTMhU5k8qMVDyQQEz3GFF5dZTTIF1dTKulySqI2xG8KYvUC+O/mDWzcO
+ J17dfUKmJYYxBclKvI5KxTVSriys3LYCr+GDNQce3RW3xp9g6bMVW4k1ZaMf45dAChFufKh1/65
+ suzVNFbg5Evqj6fH0wE0MqL1rXWbbquh3fWOC7NsJNNIMevItUfJSxgCs9i6P6epkavhK06rHWI
+ aLElJt2iKZrUKkiW+kJH5ae/LfSWJLfnFuAKN1YBXHU0apFZiW6cuX/ks4+hgV5BE0Kh5otVM+i
+ tOr5CdmWzHdTNF82t09Edr+UHr5KM8f76w0J9ZwEkCrE105Ssx19Xmp26UGOMz/IFHo+LPle
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-25_03,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
+ mlxscore=0 clxscore=1015 mlxlogscore=999 suspectscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507250088
 
-On Thu, Jul 24, 2025 at 5:50=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Fix the pinctrl node names to adhere to the bindings, as the main
-> pin node is supposed to be named like "uart0-pins" and the pinmux
-> node named like "pins-bus".
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+This series drop gcc_aux_clock in pcie phy, the pcie aux clock should 
+be gcc_phy_aux_clock. And sa8775p platform support link_down reset in
+hardware, so add it for both pcie0 and pcie1 to provide a better user
+experience.
 
-Reviewed-by: Fei Shao <fshao@chromium.org>
+Have follwing changes:
+  - Update pcie phy bindings for sa8775p.
+  - Document link_down reset.
+  - Remove aux clock from pcie phy.
+  - Add link_down reset for pcie.
 
-> ---
->  .../boot/dts/mediatek/pumpkin-common.dtsi      | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm6=
-4/boot/dts/mediatek/pumpkin-common.dtsi
-> index a356db5fcc5f..805fb82138a8 100644
-> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-> @@ -198,8 +198,8 @@ &usb_phy {
->  };
->
->  &pio {
-> -       gpio_keys_default: gpiodefault {
-> -               pins_cmd_dat {
-> +       gpio_keys_default: gpio-keys-pins {
-> +               pins-cmd-dat {
->                         pinmux =3D <MT8516_PIN_42_KPCOL0__FUNC_GPIO42>,
->                                  <MT8516_PIN_43_KPCOL1__FUNC_GPIO43>;
->                         bias-pull-up;
-> @@ -207,7 +207,7 @@ pins_cmd_dat {
->                 };
->         };
->
-> -       i2c0_pins_a: i2c0 {
-> +       i2c0_pins_a: i2c0-pins {
->                 pins1 {
->                         pinmux =3D <MT8516_PIN_58_SDA0__FUNC_SDA0_0>,
->                                  <MT8516_PIN_59_SCL0__FUNC_SCL0_0>;
-> @@ -215,7 +215,7 @@ pins1 {
->                 };
->         };
->
-> -       i2c2_pins_a: i2c2 {
-> +       i2c2_pins_a: i2c2-pins {
->                 pins1 {
->                         pinmux =3D <MT8516_PIN_60_SDA2__FUNC_SDA2_0>,
->                                  <MT8516_PIN_61_SCL2__FUNC_SCL2_0>;
-> @@ -223,21 +223,21 @@ pins1 {
->                 };
->         };
->
-> -       tca6416_pins: pinmux_tca6416_pins {
-> -               gpio_mux_rst_n_pin {
-> +       tca6416_pins: tca6416-pins {
-> +               pins-mux-rstn {
->                         pinmux =3D <MT8516_PIN_65_UTXD1__FUNC_GPIO65>;
->                         output-high;
->                 };
->
-> -               gpio_mux_int_n_pin {
-> +               pins-mux-intn {
->                         pinmux =3D <MT8516_PIN_64_URXD1__FUNC_GPIO64>;
->                         input-enable;
->                         bias-pull-up;
->                 };
->         };
->
-> -       ethernet_pins_default: ethernet {
-> -               pins_ethernet {
-> +       ethernet_pins_default: ethernet-pins {
-> +               pins-eth {
->                         pinmux =3D <MT8516_PIN_0_EINT0__FUNC_EXT_TXD0>,
->                                  <MT8516_PIN_1_EINT1__FUNC_EXT_TXD1>,
->                                  <MT8516_PIN_5_EINT5__FUNC_EXT_RXER>,
-> --
-> 2.50.1
->
->
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+
+Changes in v7:
+- Fixed rebase confict
+- Link to v6: https://lore.kernel.org/all/20250725095302.3408875-1-ziyue.zhang@oss.qualcomm.com/
+
+Changes in v6:
+- Update phy bindings commit msg(Johan)
+- Add Acked-by tag
+- Link to v5: https://lore.kernel.org/all/20250718081718.390790-1-ziyue.zhang@oss.qualcomm.com/
+
+Changes in v5:
+- Update phy bindings(Johan)
+- Link to v4: https://lore.kernel.org/all/20250718071207.160988-1-ziyue.zhang@oss.qualcomm.com/
+
+Changes in v4:
+- Update phy bindings, and commit msg(Johan)
+- Add ABI break commit msg
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20250625090048.624399-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v3:
+- Update phy bindings, remove phy_aux clock (Johan)
+- Update DT binding's description (Johan)
+- Link to v2: https://lore.kernel.org/all/20250617021617.2793902-1-quic_ziyuzhan@quicinc.com/
+
+Changes in v2:
+- Change link_down reset from optional to mandatory(Konrad)
+- Link to v1: https://lore.kernel.org/all/20250529035416.4159963-1-quic_ziyuzhan@quicinc.com/
+
+Ziyue Zhang (3):
+  dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
+  arm64: dts: qcom: sa8775p: remove aux clock from pcie phy
+  arm64: dts: qcom: sa8775p: add link_down reset for pcie
+
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  4 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 42 ++++++++++++-------
+ 2 files changed, 28 insertions(+), 18 deletions(-)
+
+
+base-commit: d7af19298454ed155f5cf67201a70f5cf836c842
+-- 
+2.34.1
+
 
