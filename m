@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-199838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E989B12712
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:06:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E45DB12721
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 01:12:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85B541CC0550
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:06:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D2CD584028
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 23:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336A5258CE8;
-	Fri, 25 Jul 2025 23:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3FC25A63D;
+	Fri, 25 Jul 2025 23:12:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="djIISh6Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eUO6gcNm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067B222F767;
-	Fri, 25 Jul 2025 23:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA2722F767;
+	Fri, 25 Jul 2025 23:12:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753484774; cv=none; b=fh0P5HsN8TTWsEoCe6xcosk86lVBIgN1HB6f+FoYLdYZ3MkNNRPjvWn3KhZa9N9R+LNiV/nMjmPnLEsHk8ku5lOEaqzEW7NYZRkPXFcOlhBptr+iTvUxuN7sQUuCWVNKRrzXPUZIvCT29P0HPr9wJfgyafup9WdCBloYo6dEDQM=
+	t=1753485155; cv=none; b=hUvAC8qdhHGdQomHPiPQRBT5ySyupPoQZvYr0SIJlOKIWbNMgi62ySSnhQ/TkFt0VS3vhJe3Vr/wTVp/iOnBItHIpjtm7D1pALl5OoMOoGrayZNDLW3OyH2RuaYeqYczu/RqavaB2IA6qGygkGskDF4F+GZ0hX8+KRIIAhGHFYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753484774; c=relaxed/simple;
-	bh=8vnCCU3LPQGo53C05dFuO3MKjV+pOSMNfVK636KtS6E=;
+	s=arc-20240116; t=1753485155; c=relaxed/simple;
+	bh=lKPeV4dbiMZgeOgy5vCWxzKkrNkCOUiKusQlfwyyh4g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jOTA6jJuVL0yJ1sKOzWvUQRadAAiThVyW4qGxCAgdI3DQ2oauKzQaplOq17Hujc3nYa6DQ1w2A0S1+/rAby3dEmuYykAn3tRHWDR6gnjjlM/kx+/Ope7gdZuS0dU0QGyeY4tShv5zPYWc3NRDpNhcakOkpWvve00lL+H0T44moQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=djIISh6Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6392AC4CEE7;
-	Fri, 25 Jul 2025 23:06:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dwe8Ep+3E6WnFRQ8awZeT5YBoi8lQIrnu2c4rob0FhYzuqRxVBapbD3DuTL9aYjgzsLwk+hBwaU5UFeAuIZLabjbgc0G99H8Jy+3wdJh9n4aTQ8B2L7wLZY5JnJ7Ayg6plQq/GYmUBLOmKhRJXAeKikxsQtXiPYwc+QcedxvJFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eUO6gcNm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F03C4CEE7;
+	Fri, 25 Jul 2025 23:12:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753484773;
-	bh=8vnCCU3LPQGo53C05dFuO3MKjV+pOSMNfVK636KtS6E=;
+	s=k20201202; t=1753485155;
+	bh=lKPeV4dbiMZgeOgy5vCWxzKkrNkCOUiKusQlfwyyh4g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=djIISh6YSRnwbypyxmMrAcPIUUF5v68Wdiwz93/UgTP6WNGlSue6F0OcCzQrZG/Zu
-	 sxV/iPajbiXLYwfkki0R/DK9I/KVRQXo0WqgVHJjKoLhQxf3hQZxLs715FLHVQBuPm
-	 crPoWpACcui6Im2dZ5mc+qrKo1XDtXvUhg9ExD8DgK+RVldhB2w6d4xkZlr3GTEvPz
-	 zmeE5b71gF1tNqmZWVZY9GykFDPmPtcjhvZFveml/6vCq7nGZE7EYsShbqNBoEULL4
-	 LzAZkEB6gHsWfNWNJRBItw2Oj7UXsWz/+xvKkNl0N387AaMtBHlfN/qcz1nncI8DnS
-	 yKgoA+adJ0F+g==
-Date: Fri, 25 Jul 2025 18:06:12 -0500
+	b=eUO6gcNman3Vtu/exvEYRzEjR7cFwafa00xuS8x2urfr/gOW2Bj7tembJ35BQTYTM
+	 sg1PZAIPVXEHqG9QluUBkbzuEdOZRuljdC6ARmZ8pyWDWdeVH5i0aatgDw3RtEdxEg
+	 xpPlkVUvOHHg19vB7hidb0J5UytvvysKl/vIvKGSIUtThtJWJLydupBWpQiuEqjs+d
+	 EzUemwm89JaJBGb4llfCrohBuQSTN0iG/CNdVtQYdI5LqZlXNTaLvXEVJPyV5Ma7mP
+	 IiLffzZHtemi1ChCQZZQA3i9Qtc0PnkfDdorR1wTC+RJH5m1NC7GGDg4VXVy14umvk
+	 lCRTefb+Hgb5w==
+Date: Fri, 25 Jul 2025 18:12:34 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: linux-usb@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	devicetree@vger.kernel.org, Chukun Pan <amadeus@jmu.edu.cn>,
-	Yao Zi <ziyao@disroot.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 06/11] dt-bindings: usb: dwc3: Add compatible for RK3528
-Message-ID: <175348477194.2001313.779930445119740224.robh@kernel.org>
-References: <20250723122323.2344916-1-jonas@kwiboo.se>
- <20250723122323.2344916-7-jonas@kwiboo.se>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: u.kleine-koenig@baylibre.com, mturquette@baylibre.com,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	sboyd@kernel.org, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, geert+renesas@glider.be,
+	kernel@collabora.com, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com
+Subject: Re: [PATCH 1/3] dt-bindings: clock: mt7622: Add AFE_MRGIF clock
+Message-ID: <175348515340.2008768.1491160057381781606.robh@kernel.org>
+References: <20250724083907.61313-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250723122323.2344916-7-jonas@kwiboo.se>
+In-Reply-To: <20250724083907.61313-1-angelogioacchino.delregno@collabora.com>
 
 
-On Wed, 23 Jul 2025 12:23:04 +0000, Jonas Karlman wrote:
-> The USB dwc3 core on Rockchip RK3528 is the same as the one already
-> described by the generic snps,dwc3 schema.
+On Thu, 24 Jul 2025 10:39:05 +0200, AngeloGioacchino Del Regno wrote:
+> Add the missing AFE Merge Interface clock to MT7622 to make use of
+> it in the audio subsystem.
 > 
-> Add the compatible for the Rockchip RK3528 variant.
+> While at it, also remove the useless CLK_AUDIO_NR_CLK definition.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  include/dt-bindings/clock/mt7622-clk.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
