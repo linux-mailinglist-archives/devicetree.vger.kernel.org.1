@@ -1,89 +1,83 @@
-Return-Path: <devicetree+bounces-199814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A3FB12511
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:04:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E51B1251F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 22:05:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56FA2AC616C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 20:04:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EFE5AC650E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 20:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192E5253356;
-	Fri, 25 Jul 2025 20:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC280256C8B;
+	Fri, 25 Jul 2025 20:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tc23Ptee"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BYyt4KE/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDB72528E1;
-	Fri, 25 Jul 2025 20:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D71025393C;
+	Fri, 25 Jul 2025 20:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753473888; cv=none; b=PZGOT5v5t8rPKTmxU3p8LWFmXETlrRAmyDDNOxj2gx5GHDQjkRF1abXhzTMTEjHGKi7TGABxUtY2CU7Lq2Q0mucIIumYetYaNE8VR98bi9/gP5gUYCPvxaikap45qejKa8BbvAev4DsmsMGdZ+fX4fAb9yhiilbP1ZQRN5tWaNs=
+	t=1753473937; cv=none; b=EIgf8KNOnQVCA1t8K4i4t5kVyUtc0lTWJnX0ZTLzfaMedQmHHzyiIstwUcN8+YoU1PzqLYT7wixiWdSe72OKtmUrQH9zbZMekoWZJRs/2lrXjKuMI5t1KZilf5eAe+I9JL96gPUkWWH+ZINVUYPT8HuheyOzD+XSjZ8N/9UVWes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753473888; c=relaxed/simple;
-	bh=XXKRhRbkPdtCnHz5AqzwvY5fPC+7Cnxs+88nTiPHBpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uqRK3cK/VNHAvDRcjHk08QvQE8SWFNMpyHGRcJ1ogNzAAsy+OlqOO49OayMlj6NY6f9K3jc6fw6TWK8IEMFUGG7fPhy1lj6X16Xse2dW57vO+HyiNxLKoa0uOuQfPb7m3KwK0YQpdeW8IsZWd54btP6Z8QEL4SSbNIx7kMwRuhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tc23Ptee; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D533C4CEE7;
-	Fri, 25 Jul 2025 20:04:46 +0000 (UTC)
+	s=arc-20240116; t=1753473937; c=relaxed/simple;
+	bh=Q2jZW7v9hu+TpLa3xYjqej6AtWSM3G3mIsRSK1nrrV4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o8s8jLPQYShiJYSZR7W4nAPtFtg7ZYry/HDr4SuvYyjcleJZDscAQFysaeFlgiCNLRlvhVoEnq0QwziOR2SjQDtRNZe/eln5tUheVGMHJLJIvlrvYkVxgW4otICQEgLoQ+GTZfHJ4/PF0CYKq+7/xRKVXnUnUTVFGte+zrGyQDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BYyt4KE/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C308AC4CEE7;
+	Fri, 25 Jul 2025 20:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753473887;
-	bh=XXKRhRbkPdtCnHz5AqzwvY5fPC+7Cnxs+88nTiPHBpE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Tc23PteexjiHb5GWF3qs9ivHEy+H5q1OPzvdp+dh44jd8vBm5+0bhm0wPPLVviUXE
-	 h0YSPNOB3hyIqIx/PCzzoOv/mR81NhtPsZLpMBvgtvplYOR6JxNRmua2hgOMzNWGIW
-	 HJq5u0pfTtT/aEUinWJeIBcsw3S1rRKrb8sarmtlkB51WR2vJa4YvJmE9JYC/2fld2
-	 +esltBUXb6HBDed/ccndqjCLbsZmRc8tuAC6Mo7tlwtl3UdGQYyAQBXvcJLBrpf2ZD
-	 GH2ibsBbo78pPXzBPImolt7SgxMAUO8LoRnHNrnnVkGvf2ZMP7hpk50IBI7iE5H+WW
-	 tmW2/vlOh+DXA==
-Date: Fri, 25 Jul 2025 13:04:45 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Russell King
- <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, Christophe
- Leroy <christophe.leroy@csgroup.eu>, Herve Codina
- <herve.codina@bootlin.com>, Florian Fainelli <f.fainelli@gmail.com>, Heiner
- Kallweit <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v10 00/15] net: phy: Introduce PHY ports
- representation
-Message-ID: <20250725130445.32e0307f@kernel.org>
-In-Reply-To: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
-References: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
+	s=k20201202; t=1753473935;
+	bh=Q2jZW7v9hu+TpLa3xYjqej6AtWSM3G3mIsRSK1nrrV4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BYyt4KE/LNDKndF9oqGXS6Zhkx92ObAXyUnaVzcFEs+wFhiOwhQ6vC0lrB3fFdWmn
+	 nVVHDtQgHFKR43P4y+uk/SaOdD7P9KPYZCM8gBNh4GJ5gG5lmNZHUWrBqaFpnPUcUj
+	 19QI3ewFM5rz4IzbyS5KIv4NtPC04bBCg8z7x1rAmyXc7grFqCRVD7uF1OevZr176e
+	 es++8I+y+mYSKcrw7zXT+x9B0+dJDSfAHnDJ+QpsNoYz1uoRPycknATR00XMZ5In1C
+	 lCBt7IQEs5DXZR7zfxC2GRYQWjrtBU9xwM2axK0B2Tvl1RLeDW2Wpge2nCsusoEYwP
+	 HjjMDrPiwOO0Q==
+Date: Fri, 25 Jul 2025 15:05:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: srinivas.kandagatla@oss.qualcomm.com
+Cc: conor+dt@kernel.org, srini@kernel.org, devicetree@vger.kernel.org,
+	andersson@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	mturquette@baylibre.com, linux-sound@vger.kernel.org,
+	broonie@kernel.org, sboyd@kernel.org
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: lpass-wsa: remove un-used
+ include
+Message-ID: <175347393332.1760852.9382967903042104261.robh@kernel.org>
+References: <20250724134229.103001-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20250724134229.103001-2-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250724134229.103001-2-srinivas.kandagatla@oss.qualcomm.com>
 
-On Tue, 22 Jul 2025 14:16:05 +0200 Maxime Chevallier wrote:
-> Here's V10 of the phy_port series. This version doesn't contain any
-> significant change, it fixes the conflict on the qualcom PHY driver, as
-> well as aggregates the reviews from Rob, K=C3=B6ry and Christophe (thanks
-> again).
 
-Looks like we gathered no reviews from PHY maintainers here.
-We'll need to Defer this series to 6.18. Perhaps we should
-have pinged PHY maintainers a bit more for their input, sorry :(
---=20
-pw-bot: cr
+On Thu, 24 Jul 2025 14:42:28 +0100, srinivas.kandagatla@oss.qualcomm.com wrote:
+> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> 
+> qcom,sm8250-lpass-aoncc.h is really not used in the bindings, this patch
+> removes it, this also enables us to cleanup some of the dead code in
+> kernel.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml          | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
