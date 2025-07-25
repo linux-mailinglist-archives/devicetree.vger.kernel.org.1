@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-199633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4593EB11862
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:17:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A721B11877
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 08:25:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6DD13A8B30
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:16:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 616761CC19F7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jul 2025 06:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87F228640B;
-	Fri, 25 Jul 2025 06:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8922882C1;
+	Fri, 25 Jul 2025 06:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="To3MtcVj";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Ook6lqJ4"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="X+/adXWb";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KBTgTsAU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D1A4DDA9;
-	Fri, 25 Jul 2025 06:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68E91E47AD;
+	Fri, 25 Jul 2025 06:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753424210; cv=none; b=MZGlAWZ5Q+JekV3WZB3C4i9ZAxPFy4ZsKhkIOK9IdF/BhHjHDhqGYZKiTkwt1I0cOJMX+OTyRlYq5cobEV1gczmtsnWcKXpC4DBFLGR8cbGn5IP0F06hF7mx+XZmjDBV1857OLqW+/ag7XVpXAmzlMxPbPjGWMsJx8YHoehS9RI=
+	t=1753424710; cv=none; b=UXxZtbnd23TlGtZGup/hu+3V0CXcuuYHGZ3MHBBCe4o+6ms6NdXiM1XSHZJ5qxIGsiYFS4nj8MQXfbXUbV+N2myZJygrUYVmp+xxqUo6iu1MHdBZni3hxyaVambOTJJV+M/ig3HZdUx/2L22xCbKx0JGyz9MrFqRUiRauAKxphI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753424210; c=relaxed/simple;
-	bh=UX9o2UBcrLrTyB/SAnQgRLvf5FcPARPR/tUxFeAlJvo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eVxH+xcWa3jaMzTtHMQXlVdrmKN4Tp8VOycnWQWegoPNaP5hgcV1vVHuwBjBdQHSpsrN/hpUzfTqMFX13duUaXtgWeUN6kIKp8E11BJU4CB0uHw1AwpuSDgQpaz+EKqDMHNI+uD5nopl3y1imlYlqPibFUX2UX1FhL/lvHjFpeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=To3MtcVj; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Ook6lqJ4 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	s=arc-20240116; t=1753424710; c=relaxed/simple;
+	bh=Z8g+/3DNT01an5sTkSJ8I8j31e4KkHQQd1/NRR00ss8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EK9yyekP30xGgdzIzrTZNjk1jTMjM/mC2DFLeYB7MJapBZ4MC7PAI6uioy09A2rJuBTSkbSynFgf7zJEr0/Hj9AJOFEdvrWNSUiSZlz288umGsoy7iawmDI+SEjKZ5dbKsREUBQF9G5Fp4U8zUqIInlD4kZ9CTDS8iN8uQiZTkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=X+/adXWb; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KBTgTsAU reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1753424208; x=1784960208;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=6+NMJ7h/o8pylRH4ygiHeGJQ+PzavQZbTp36paYIGYQ=;
-  b=To3MtcVj0ym4A+m4q3+tXKlQb2wb6QXC4GC5tAnvfZBq/tbXCD6e+Ic7
-   0E0O5Udnv2PPJBpQilov2XvIafjyXKJdmdds7UW10W+N01nHpWv3uJAAu
-   PUUBqUqEtoQal7ijTZnvO1XF8YRPdpN9mP0MUv0ZgH2JkpbbfijbHUW57
-   NRh3f9tHDJgvHqNwr5fkNHnlJSkKk13jtHgK1lPfrdPZH51z6JbI+/ChA
-   MSBOaZr+UrBGXaM51UFqbSMUkOcC8S0tiKoVSZGO6VSaDtGE54KoGFR7L
-   n7yHmHiOkqZBwMFo0iaBDRUIONuBMGXLjXCwCPm874A9TQzSFpU6gYaJf
-   w==;
-X-CSE-ConnectionGUID: wCx4nWgLQiaR7GJ+WCauAg==
-X-CSE-MsgGUID: pdqx8zC9RPi5hh2m7frMQA==
+  t=1753424707; x=1784960707;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=HxGeV7xXFc6W+ct7dDtCqUAFCsNs4UQAyALJopA12VI=;
+  b=X+/adXWbV85wOUfj5OBHqMRhn/QcnUNYIYirQVEs8CELJTtxVDPy2Evn
+   G0tG+kbCaKsCWbvbEugr3SIrsnIqDoR8UzT6D7e8V2rHrxF6ESCK5o9P7
+   LpV0UAdsM1jle0QAsq3oaAL5/dqvWKYQk1bx96tEv8YMlWt0/YoWOkbl1
+   6cYltGwu6qA2SshKEb3VHr2nzW6Fe0dtvG6tAYyflIJKSIyFvgDQRIsl7
+   vXj+vvxJo/jBFo5wyZ1djO+fc5kf6T7KX8RIYS7fT2ijXuugB0hm3DH8n
+   UwK7WCrxA322ttC/3o4GBYj/wU87tsNvtrllhE678mhBpmUdkAJWtqr9h
+   g==;
+X-CSE-ConnectionGUID: tSmPr5WFRHCP/nj6HNiRsQ==
+X-CSE-MsgGUID: lhp5tWKnTm60LG0pYPBxjg==
 X-IronPort-AV: E=Sophos;i="6.16,338,1744063200"; 
-   d="scan'208";a="45413152"
+   d="scan'208";a="45413371"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 25 Jul 2025 08:16:45 +0200
-X-CheckPoint: {6883214D-39-943DFC15-D71A48EE}
-X-MAIL-CPID: 382319F339E41E674EC679742E33E083_5
-X-Control-Analysis: str=0001.0A002101.68832150.000C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 59D22173655;
-	Fri, 25 Jul 2025 08:16:41 +0200 (CEST)
+  by mx1.tq-group.com with ESMTP; 25 Jul 2025 08:25:04 +0200
+X-CheckPoint: {68832340-2-4FC15ADB-CD71293B}
+X-MAIL-CPID: 3FAB2EC1BECB98B599CA3BBB1032025C_0
+X-Control-Analysis: str=0001.0A002102.68832340.005F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8B6B517358C;
+	Fri, 25 Jul 2025 08:24:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1753424201;
+	s=dkim; t=1753424699;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6+NMJ7h/o8pylRH4ygiHeGJQ+PzavQZbTp36paYIGYQ=;
-	b=Ook6lqJ45cr4IQkw5NLK0hVGwkBA4ZFHhDp0XrV/6cMurI/wwyHM/Hq0aKVz8ezmHR9a4P
-	K9u9RD++BnIxLHAe5/cEyjMWzOdFbBjLfiUuAcHG9lFDNj5P4RrgN9SE7+16U65kV4Bi57
-	Y3j9xaNmXgYXl66WhHGdAlTeCDIvM2AAE0jdn3lQgFxDyp94RCSWrtDx7ibcQbqQEPvGno
-	3fhxVw9wqi8bt+D3oXyrfII8HPJXdbcXCRSrTPDfFV/nED1eOxIwqfLO1Ggibh4jEeH2jr
-	UGs9Lzlnnc+n4V/musW+kvG7LWtVaeNnqC6YQnwqO0xclpu9BCb8+Jb9IZ5MQA==
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=HxGeV7xXFc6W+ct7dDtCqUAFCsNs4UQAyALJopA12VI=;
+	b=KBTgTsAUx2sSzETp81sZBYUzxzWBRIBR5IN/cknk9cvgsWSFG1BY4vQffATPggHfXFMPaM
+	DeBdBN4ctIELnt2gdxZe1f7eEx+RZEZ7MD8pg5l1VgEo+V33Z42MrQhssq1KE3SJp4Il7u
+	pqkImbzYseEzOAwN3OCHVgyvckshU/5RHMktzAgNmFFBYuDcdMcHuyDifFwRJuiYipOeyl
+	fDEIfeGhy7Jj3nvh+av/9eona1/umPQDfsatVVafvTE1Cu4izoZ45Ady52g8a3oEb4MA4u
+	ZLD3OW2BAZTiGY0AgC1WT2A5Gcg9RQIot0S05ePbtfJA9emxUvGeFIrq/JqwlA==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: ls1021a-tqmals1021a-mbsl1021a: Remove superfluous compatible
-Date: Fri, 25 Jul 2025 08:16:32 +0200
-Message-ID: <20250725061633.267174-2-alexander.stein@ew.tq-group.com>
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 1/2] dt-bindings: arm: add TQMLS1012AL
+Date: Fri, 25 Jul 2025 08:24:50 +0200
+Message-ID: <20250725062454.271191-1-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250725061633.267174-1-alexander.stein@ew.tq-group.com>
-References: <20250725061633.267174-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,42 +95,46 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 
-The touchscreen compatible in the overlays has one extra entry. Remove it
-to fix the dtbs_check warning:
-  touchscreen@38 (edt,edt-ft5406): compatible: ['edt,edt-ft5406', 'edt,edt-ft5x06'] is too long
+From: Matthias Schiffer <matthias.schiffer@tq-group.com>
 
+TQMLS1012AL is a SOM using NXP LS1012A CPU. MBLS1012AL is a carrier
+reference design.
+
+[1] https://www.tq-group.com/en/products/tq-embedded/qoriq-layerscape/tqmls1012al
+
+Signed-off-by: Matthias Schiffer <matthias.schiffer@tq-group.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso    | 2 +-
- .../nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso    | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Changes in v3:
+* Fixed commit message subject
 
-diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso
-index 146d45601f693..66cedc2dcd965 100644
---- a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso
-+++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-dc44.dtso
-@@ -36,7 +36,7 @@ &i2c0 {
- 	#size-cells = <0>;
+Changes in v3:
+* None
+
+Changes in v2:
+* Collected Conor's A-b
+
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index f494ada0c1966..0beb0040a7d34 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1571,6 +1571,12 @@ properties:
+               - fsl,ls1012a-qds
+           - const: fsl,ls1012a
  
- 	polytouch: touchscreen@38 {
--		compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
-+		compatible = "edt,edt-ft5406";
- 		reg = <0x38>;
- 		interrupt-parent = <&pca9554_0>;
- 		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-diff --git a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
-index db66831f31af9..8b9455bffbd26 100644
---- a/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
-+++ b/arch/arm/boot/dts/nxp/ls/ls1021a-tqmls1021a-mbls1021a-rgb-cdtech-fc21.dtso
-@@ -36,7 +36,7 @@ &i2c0 {
- 	#size-cells = <0>;
- 
- 	polytouch: touchscreen@38 {
--		compatible = "edt,edt-ft5406", "edt,edt-ft5x06";
-+		compatible = "edt,edt-ft5406";
- 		reg = <0x38>;
- 		interrupt-parent = <&pca9554_0>;
- 		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++      - description: TQ Systems TQMLS12AL SoM on MBLS1012AL board
++        items:
++          - const: tq,ls1012a-tqmls1012al-mbls1012al
++          - const: tq,ls1012a-tqmls1012al
++          - const: fsl,ls1012a
++
+       - description: LS1021A based Boards
+         items:
+           - enum:
 -- 
 2.43.0
 
