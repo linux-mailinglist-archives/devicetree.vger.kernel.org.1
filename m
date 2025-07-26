@@ -1,122 +1,120 @@
-Return-Path: <devicetree+bounces-199882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E7BB12AD1
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 15:53:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB32EB12B5D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 18:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098CE17B3F0
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 13:53:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D9261897654
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 16:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231CA285CAA;
-	Sat, 26 Jul 2025 13:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2657C264FBD;
+	Sat, 26 Jul 2025 16:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZwG3HNCM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFeD3pzf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0E0376F1;
-	Sat, 26 Jul 2025 13:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3DA1F473A;
+	Sat, 26 Jul 2025 16:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753537970; cv=none; b=b53AT/r8X6G/Yr90j8LiNpYmZ2wa+d5JRdFTb/MaHY80gecIFfq0F+1kq1juiFMyPTOzMnJibug8BeCoKJSAaPEmLfrde4nmrH1eh7sBz5sFknRl/BtDM9mYAoyTD/A54/1I8DKr6EypoCsqC5Ldg3iEIRyjpp2COVlgKlPQEIo=
+	t=1753546174; cv=none; b=jTbB5FMoXmK65W5vxDez/DM/IV/knJH+jhYKPTo69Cojdcj5XiKnfrBRyRlkdHjrlv8QfU/NacGIfVSXaXT6JBvV0Z7NY+hLM6EsRj63vsby4U4JHhytM+aXTx6e3XlpN5Ax1C+JlOHxykVfzsLNm2Tbs4WXqufhnbabqgPqFrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753537970; c=relaxed/simple;
-	bh=lFuPyRoz0shNaVNJDvmrl4WZAKtXA52saGklq7aY55A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MlmtihabaziCfiJ/PuOTsZ8RMIBqcWIlkz67oZZAogFnN+Hjdm/VaYDMK+KVGKlaweKl5nF7W1vcKBjQuyALeGMWQsddSC56tGsnXqF/ZOvRpnSP2kAJ6K1M3LETFLxioekx1DJSq8+fUVffXd9bIPTq0yfeOG3hzKJCRXMDBZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZwG3HNCM; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3a4e575db1aso155111f8f.2;
-        Sat, 26 Jul 2025 06:52:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753537967; x=1754142767; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L7gsK5t9my2KIvz/yOtyIav75bvnwncFskC7xHpOTE0=;
-        b=ZwG3HNCM/5i++UHJHKzc8Z92YoxB15nAdj3rPiizG7R2m6BJkPhhofJSWUEWOPMVNF
-         vwfADQe8bMfGIuzpBuXc1PDe4J2SPwoMqpKUEhBvDSuoKeDVIdGTAO6/6egNtEQL0RZ4
-         /JDGqkrSXHTFTHOmKX5Yq4mLdVodZnJqeNSkegvQmPAbS3+Z117YbZnTxgighHyMXHCp
-         8tl847ROEDLLqisQ8M5146cfpoUgy420xDc2/S9yprWPykyz8ntDZl5zG+Ask+VjL7yN
-         QjRzAj+d786GxPsZrCE372d8hhwhbW5L174EDldUgDLcCdrKkkf8S4J6+QN32DDKmjf+
-         W4jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753537967; x=1754142767;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L7gsK5t9my2KIvz/yOtyIav75bvnwncFskC7xHpOTE0=;
-        b=J4Comly57MN6HeS1KzhoVNAHweZLB7f3DF46uj299DPZI4fWwGN8PxtPE9LOoLZAH+
-         vviWfxMr2DPGVgHYPohOtKl6quf7POY1O+Jk2nxesBO+iJ41wQ7N0EETlKsV9FaWds36
-         2pf/W1MG8aRIXJzKReEvMFarRbq6ZbNWQtYCmbCYhTVcR4qhob+dttna25AWqg/x5IUi
-         7gugF23IaT11NRApgYKci2rHGlPhGkLvYCfhNibXwPzTtZtthaV/qtdeKHl5alMtfT6Z
-         R0w+R7RYVslWZO4sD1c8D6IJh+tTttWctor6Ip3GtTfoiXjG0zV8AnL+ruR+6/V2YpHl
-         xNAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWMbRtBqUQRkwSyeMdOciwnVGa5/I4EFpHOvz1oSQOIDEuhpqfWspE6TIgd2q3/hSFEB3nvKqHhhxz+@vger.kernel.org, AJvYcCWlYWrdLxZpnJ3tjaBOHevfEr/jspz4AOaoillgDnDAMKVuRKVAUSC9PnoRAy8REAb7ChRVWoVMhw1A+QNA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy89fELBCpaEGPJkZPQQew5CE0vbuzX7D9X4yZAq+xG3qR0rwKV
-	DC643QkyWGDSYu2MTOOwy4Du1NNTa19MgVKiFpU4PSSDZ4B0NCbJrEMMVIPZPXdHr94=
-X-Gm-Gg: ASbGncsuxxIGMK+JWYmmwf6oh3Hxla9ds/n7kBCq4LFNb8ZYfhDVbBv/EOWIZu2j0qN
-	OKMFdRA3vxBGFgAgLyiBYFv8Zt+9fbDxN26V+xEz5tlbDX4l2UxiCMIaFyZeJ19N/iK72+wqVqh
-	dmSdPUiYHOnzdZBG6Q2/DCT8Oo0gdMSTUXE/ThZMl9t4C0zOYpbiv1dLc0RoyGOhjrPsVmi/nPe
-	2xG4mz4hXDi8OkHWXjkX14K5QlIv3MZXbRlMUMKIiu0Ys/ZcDYcvHBSUnZudbSQX9HktsLEmeMH
-	GPDul6iDz5FMZqp80MoGror3gelp6mFwRrl0+hcDUAh8VXimPRPc43hNFzbeqo6fy6aTzOPSI6i
-	70OVd6XZEIcDVWmLCwHCGLit6PJdvEpDRkQ==
-X-Google-Smtp-Source: AGHT+IFG+VyHIVOEUPTiiGdkm5FQonRW/tGNZ4tdFY0Z5nZCHqWSoyx0C46nntZCO+uU4P0jgMQ1Qw==
-X-Received: by 2002:a05:6000:178a:b0:3a4:e193:e6e7 with SMTP id ffacd0b85a97d-3b7765ec686mr1949229f8f.5.1753537966540;
-        Sat, 26 Jul 2025 06:52:46 -0700 (PDT)
-Received: from gnulinux.home ([2a00:23c5:a31d:e401:17e9:5a63:c6ff:e542])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b7811b82c6sm1184625f8f.49.2025.07.26.06.52.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Jul 2025 06:52:46 -0700 (PDT)
-From: Harry Fellowes <harryfellowes1@gmail.com>
-To: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: antoniu.miclaus@analog.com,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Harry Fellowes <harryfellowes1@gmail.com>
-Subject: [PATCH] dt: hwmon/adi,ltc2991.yaml: fix typo in shunt resistor description
-Date: Sat, 26 Jul 2025 14:52:26 +0100
-Message-ID: <20250726135225.3018-2-harryfellowes1@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	s=arc-20240116; t=1753546174; c=relaxed/simple;
+	bh=zGhm9cGrLInk87ZM6CuHQbsPnqmOPsIF+UQoiuaBFWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZUbG2VtJdHFgIELjsrEH/8MGq4OiLfRnclS7iSjk+lHZEbjizsFSnt1UDLAUrzD2L0Fhwmsc6hdKnnumXnIA+UwFh+ZLX1Tf63ot/d2srqSpuuTMM3FBQ8UoWX4b4v4FGY8e90yzyQvZfmPKJOhXkQty2FjlISIJ1aa0IAmDRHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFeD3pzf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC5FC4CEED;
+	Sat, 26 Jul 2025 16:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753546173;
+	bh=zGhm9cGrLInk87ZM6CuHQbsPnqmOPsIF+UQoiuaBFWc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OFeD3pzfrqawsjoygKNa2OYK1mUDi84CYqacznSznpb8EV/75vZsotw2VE1+O2k/T
+	 scsIKENP/t7K4OtgtRXw/3wX29CS27Li2lLuHiAF2TAOaIrA9Yl+TNCvezu9QAPKvN
+	 DNXVNRDOEsT672eZEIClpB0McFE2sgzMpUKTm45F65iUukO4fVJQqzbDdMPRaxMoX4
+	 N2qRum08MdcYEDg0XaW+zqLr8+KXK1qBaqI9YndKjYvpQMEwhE4ZBMwBAsTvmEOGY5
+	 MhfsKNJk04x9LvgLMis4rhQ6YQr0Erh90wI7ZF4q2+fERx9l60gz9RTZ4MGrnswwzo
+	 d94V/iB8FOOPA==
+Date: Sat, 26 Jul 2025 11:09:30 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wasim Nazir <wasim.nazir@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, kernel@oss.qualcomm.com
+Subject: Re: [PATCH 0/7] Refactor sa8775p/qcs9100 to common names
+ lemans-auto/lemans
+Message-ID: <pzkceoriu5cgvidt4xekauyc2ovqkbuoi32bbornr2wbxmombh@7visdfuos6ml>
+References: <20250722144926.995064-1-wasim.nazir@oss.qualcomm.com>
+ <20250723-angelic-aboriginal-waxbill-cd2e4c@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250723-angelic-aboriginal-waxbill-cd2e4c@kuoka>
 
-Corrected the misspelled word "curent" to "current" in the description
-of the shunt-resistor-micro-ohms property. This improves clarity and
-maintains consistency in documentation.
+On Wed, Jul 23, 2025 at 10:32:43AM +0200, Krzysztof Kozlowski wrote:
+> On Tue, Jul 22, 2025 at 08:19:19PM +0530, Wasim Nazir wrote:
+> > This patch series refactors the sa8775p and qcs9100 platforms and introduces
+> > a unified naming convention for current and future platforms (qcs9075).
+> > 
+> > The motivation behind this change is to group similar platforms under a
+> > consistent naming scheme and to avoid using numeric identifiers.
+> > For example, qcs9100 and qcs9075 differ only in safety features provided by
+> > the Safety-Island (SAIL) subsystem but safety features are currently
+> > unsupported, so both can be categorized as the same chip today.
+> >
+> 
+> I expressed strong disagreement with this patchset in individual
+> patches. I expect NO NEW versions of it, but by any chance you send it,
+> then please always carry my:
+> 
 
-Signed-off-by: Harry Fellowes <harryfellowes1@gmail.com>
----
- Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I requested Wasim to prepare this patch set. Something that would have
+been useful to include in the cover letter and some of the patches...
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-index 1ff44cb22ef4..2210764a81bb 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,ltc2991.yaml
-@@ -49,7 +49,7 @@ patternProperties:
- 
-       shunt-resistor-micro-ohms:
-         description:
--          The value of curent sense resistor in micro ohms. Pin configuration is
-+          The value of current sense resistor in micro ohms. Pin configuration is
-           set for differential input pair.
- 
-       adi,temperature-enable:
--- 
-2.50.1
 
+I definitely agree with your position when it comes to renaming working
+platforms and I also think there has been way too much churn in relation
+to this platform.
+
+But the thing we call SA8775P upstream is not SA8775P. The hardware +
+firmware that is described by sa8775p.dtsi doesn't exist.
+
+Reactively and without telling us the whole story, we seem to have
+gotten qcs9100-ride*.dts to represent what folks has been using to
+upstream the platform support.
+
+But the board where I see people actually running upstream (the EVK
+introduced in this series) is based on the QCS9075 variant, which is the
+same die but with some hardware features disabled.
+
+
+
+In other words, this is a mess resulting from lacking communication and
+reactive shortsighted attempts to get things merged. I don't want to
+maintain it in this form.
+
+> Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+
+I'm fine carrying this token of disapproval for how we got here. 
+
+Regards,
+Bjorn
+
+> Best regards,
+> Krzysztof
+> 
 
