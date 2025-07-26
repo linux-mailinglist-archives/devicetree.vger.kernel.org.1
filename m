@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-199870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1688DB12A39
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 13:07:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAE4B12A8A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 14:56:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 239C91C26C88
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 11:07:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7B504E4B85
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 12:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D5921A94F;
-	Sat, 26 Jul 2025 11:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D3B24676E;
+	Sat, 26 Jul 2025 12:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RwoAFDKA"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="gxBQj7IA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46AA19C54B;
-	Sat, 26 Jul 2025 11:07:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246FE2E3700
+	for <devicetree@vger.kernel.org>; Sat, 26 Jul 2025 12:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753528032; cv=none; b=JYq9AGxX3ikMe0HPLjaEu/hTmwOUAu9cCLbXEJRMaAJXAgBDTR/om462I+cUh22eEEUakQKeBk6fRbLXsjtpeK8e6Uy4XL83RPl1VbnlThLrag0r+1nrkRvHCE21jqtetu02AgnUPJPSkJyCZ+l+3Rln9rToKaqi3Dy8WvGUbn8=
+	t=1753534587; cv=none; b=i9EDlqnHhPKeEq4PQZDprJz7mOTMVfVNxZJ8ktTDy3Vqe7t5Ra/EWVpRPvrLKcQhuDBNutG261wa/ptfmvnpL9lZfHaP36//moccf7HIMvyaf29Z7BPG/cZeaKJTekm6N5+mkNzqPdCKtNRhX3xNC+zmD8Qw9E2B924FvEEpNDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753528032; c=relaxed/simple;
-	bh=gQD4wP/MZwBjNfJaUuiV6gs8Sb6uZrf6XElQOONS5ng=;
+	s=arc-20240116; t=1753534587; c=relaxed/simple;
+	bh=2s2R/UOkxr5JqesTnpu8H8gMVEpM0R3qzK7yClKajVc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EaLCIbhx43UjsLbl9UNJms/IwK9RSA2cViar/+WefHisARRUYtUddUZCos8Zxcnl+EoX/4JDwYwWTNTiJJbBtp/yhWOmm4Tfbxs7FZlhBPkHVgTGw2zP/nqL41bcb2X9liBIo1OG/SsGqqbWbO1NuHKiLAosrgjs+2dq5I71jd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RwoAFDKA; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b77a4ad84cso248925f8f.2;
-        Sat, 26 Jul 2025 04:07:10 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=GViqUAcHluTFPk+6Wyxyk6WQdQbTYt1/PgAp2KG8JUwD191KDlfn0T5Iv9wxpL2teOH47p9PbuE68Kjkrep6Sdl7HuzKDlzE9JsUgepcHgliMy1cgQ0yQLDiqs7PCfa+bLoHC+d24o/6zXncjzXDA/OxY7gpJAZyN+R1QNEY0hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=gxBQj7IA; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3b782cca9a0so38920f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Jul 2025 05:56:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753528029; x=1754132829; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1753534583; x=1754139383; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pNa3qU18en9WzZnFesAoBlTJYBP5hk4MnfgIv/faVHU=;
-        b=RwoAFDKAIcf5rCQnRy2JWyxYzYA6Wc6KyvauSpklK47QuA97NmL57d6ABcyYqJYeBs
-         UaEzCqGy+3lIOIjFYlR1034JxKzfCclJ15jxVxrF21MRTTLXvnNH2PUmJ/SwAvdZkJfL
-         NT4ag8CdpujiKHxPRvXcU2AZqi4E84fFHT4xRVbtXUm9LMstmaBp8fDbU9dPbUuJ3Emw
-         BiVGyhw3vtWEYREuWsdWfSMGdK7KF11dTyZuyZvx7Vp7kWBPU0FVAAPjrrBerEI+2Z0I
-         KRbYsWXlYFObHgTJN0en6ZpVlgdlDpY3Kovb6ST3RDcGttfVt9vLtcaCZFErMNq88zNt
-         ti7A==
+        bh=oVd7AMali/jsi6H1hzbMRMOEHFNbKvjmSzlnGm24Ac0=;
+        b=gxBQj7IA1HBi+YRu9BuwmFox9nam0KLfaoU+TLvxKbm+mhFqNI6Yejpt56o1wW7H1l
+         X9Y0YR8hsIfd2j+PvqineDMFRR8oZY+0RwX75mjWNSZl71XUz0aWbK6P2woI5+DP3vid
+         xCfwvtcyteNq41gKuep5G5VhurrI/CR0HrmfgIRgz9WhIhIHnLGNvrPJEP9o2mrswIt0
+         6M0UfMCvmxb/6F04jE2ycgBD7N4hqYF547YycKSc8ySN8RPd2+dsm6hnXXaHq3yrJZvM
+         xcHR4l7avQbJmiJGtC7zKiVy02KXcXJ+aWb691cWzmh3LGjEeh0UUanqEFaLrhjqcgD3
+         CiTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753528029; x=1754132829;
+        d=1e100.net; s=20230601; t=1753534583; x=1754139383;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pNa3qU18en9WzZnFesAoBlTJYBP5hk4MnfgIv/faVHU=;
-        b=xL2GzoROv+pCFJfyMT2sjpkRmzJMxU52ZWPtjfbuB8nSbhHGpL2o0sXYsdkekeYNVy
-         +vWBuiNVH2EXHODW+CtstKYe1uE2az13+KzWMHnB9xg7wLsG7mQe2Vrkczu8MI8vg3sI
-         sRNBWSbmsWrnxi9oARjgdId0pGng8zMjGhbkxfASvV3HshHeBUYiEkpQoj+8uuC4xcth
-         quiYfZShdHAgYRxEKTGIaLDmqpxr+f2FxitZwC/VuB26OOtfb5WbpOaL4jJWeZEwsA26
-         J51r46Cd6HupG6jGbnj2DVKEJfoP0Y+c8y3SOHJtmD9Uc9ud9IKz7ug5hd/B+18lHrH1
-         7Rdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUbKETXf136FnD7OYE4cvXaP51A7g9jDOMlciQKNwWGWpGH4A42/b+zAPcStCtH82EYSRA1P302+3Yr6fA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzH+3KXHJeIbC5MT6WCz8FfoLgcD2sbB/3T51khVZz2/YViTDhk
-	tE6DBJuE3xxhO9LjdHQr2HtnC21d3QY2bWqfDt5ZKsIZmu+QKe4hmyM=
-X-Gm-Gg: ASbGncszpsdcR/u2+P67geghCAF86appusUR2wyKr/NkJ3S3m71hBBKNNDA3I2yS2Wx
-	7aSvHpI7U8NE81Axm3x7gBZ7envyl7l57g3dVp1sAeDZyPYTyjH6X6TyeC5uSQDuA2zBRO61FCX
-	b3Tutos5pCjGcaJUBVGqoIR/bv5dtmlpO4sJVd89T78m5ERJ9GIml/AwS3qNxZBvL4Z3LNdZd2k
-	ajE6fijlmDH1bC988/uGrNj2NeEhZwgKX52+amaCjCo+fH/7GA2XJcFjqV8ufOnNDxa0Zs4Kbg1
-	eMoCX4Z79apU0M9jyL02zvWSHD8MEHsZjj8LynuKupZ+lIwZHHBIqKHcjF5GkYke7Qw7envgShf
-	NMIrGDvCJrXFHruSZ/llQJ9vlRKJ6esN6OnJSqYpXOjiDmvxcANWqCRQiUz//rMt1JMTf
-X-Google-Smtp-Source: AGHT+IErIrHwPR1r+j+7XXM0CCTaccjvC5i4ORfw15B6NsxaP8RzwsKAVSUb6nuEIQdtcDZU3WEVog==
-X-Received: by 2002:a05:6000:40df:b0:3a5:3a03:79c1 with SMTP id ffacd0b85a97d-3b776676d43mr4216161f8f.48.1753528028455;
-        Sat, 26 Jul 2025 04:07:08 -0700 (PDT)
-Received: from ?IPV6:2a02:810b:f13:8500:7a8a:e7b9:25b7:a4f6? ([2a02:810b:f13:8500:7a8a:e7b9:25b7:a4f6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b778f03436sm2513217f8f.51.2025.07.26.04.07.07
+        bh=oVd7AMali/jsi6H1hzbMRMOEHFNbKvjmSzlnGm24Ac0=;
+        b=dpuKebo6SOZwsPF5VDzmSyTnNXayTWwSCizphi5sZcT5esmNvda7l9xXwRjyyhPoTF
+         fPk8ROnlXaUBBp90P/fEW2JgvbBKqmretiNwR5ydw+1xjMxT2u8nyxNZzJ4TmR48nG3W
+         cJtrZDE5AqAqOL4p2GnpkJdRVNRG5WRHqkX5jCpiAocFsYTGrUzJnXKUqFLdWFzDezdc
+         PXIETAPvWYMU+QonIkORRpijjI4u6ygiMvdiOY+GELP9R4mICuU5ASoJez8wswDYb6UG
+         VN6x7xt3/nYo8bz46lExByN3SrN/mcOiPPCMtsOvUHzXa9g+zZrx2Cey5EO1HR0UsJa7
+         B/fg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/OVxNAkv+v65RKZaqBNgBzaQGfLLZ0fgEvawXFOZbSL0CtshH2xFpsLzsLrVH91eKff0HsTLKaf3r@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHEsfVcxTGWk0bhAPYHvdEf26QvVTA3xObqII0uj1idh3Jj3NK
+	x3sKFX9zJ5cmUaMHRWnha4UHTNcfoBzUKTFrilqpRo+/BbmLtzQUy5nhfUeApHM9qMw=
+X-Gm-Gg: ASbGnctXPKh6GzbpN4JQqqv3IZYZ5tSQVPFReaCfLYSMlEist38id5JGa15m0JZs+8u
+	dZ4LAg5rTiGDZQPh9Ky0Qd/cCMBF65twSSk7n4gLpsHeSUm5fwHmMtlIrbjLjBlNJga0Hzzyzcn
+	XL9yebcFf7CGrw7Et0lV9Arvx0WYWTkFsTaTcLx3H0gJ1mVtnXTgnuAj7BA03t+ubFfEKtjMI63
+	TTIeOKHDNeCbIyzhCvNVq2N2dStdX+U3KsuL2Lwsq2c9NALimSshLPn027GMGraTqQ5cMVFuHsi
+	hrdlo3xl72ty7pGZdF+dRbdGcH6PQqrGJBm1qQb/rCkvML8evVEXDoIiZWpmuoJNTewE6Rzwwpl
+	SPkmi9RP2ozbopOOHEzOKf3nMZ5cAG9+T07Rr5/aFZCvWjS0VwdjjlkOj9i0GakyU/+SLWBJBoc
+	Zp+ejg2kXbdw==
+X-Google-Smtp-Source: AGHT+IHcdmZgE50L6D5Uo+PeD640vgCbTir0gSC0WUCoG2jj5zd6WbBnoWPwULzq1pOtJHDErCHGfw==
+X-Received: by 2002:a05:6000:1445:b0:3b7:7ceb:1428 with SMTP id ffacd0b85a97d-3b77ceb1730mr1042661f8f.8.1753534583420;
+        Sat, 26 Jul 2025 05:56:23 -0700 (PDT)
+Received: from ?IPV6:2a02:2f04:6206:d100:13e7:7f4:965e:e5b8? ([2a02:2f04:6206:d100:13e7:7f4:965e:e5b8])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b778eb27besm2791649f8f.9.2025.07.26.05.56.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Jul 2025 04:07:08 -0700 (PDT)
-Message-ID: <6f62d1a8-0e5b-4e66-bbe2-53a355df3c1e@gmail.com>
-Date: Sat, 26 Jul 2025 13:07:06 +0200
+        Sat, 26 Jul 2025 05:56:22 -0700 (PDT)
+Message-ID: <681b063c-6eab-459b-a714-1967a735c37d@tuxon.dev>
+Date: Sat, 26 Jul 2025 15:56:20 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,70 +83,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] arm64: dts: rockchip: Add ROCK 2A/2F, Sige1 and
- NanoPi Zero2
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: devicetree@vger.kernel.org, heiko@sntech.de, jonas@kwiboo.se,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, ziyao@disroot.org
-References: <6d93c92d-2bba-4247-960d-5f2e5e12b594@gmail.com>
- <20250723134019.1076352-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v2 4/5] net: cadence: macb: sama7g5_emac: Remove USARIO
+ CLKEN flag
+To: Ryan.Wanner@microchip.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+ alexandre.belloni@bootlin.com
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1752510727.git.Ryan.Wanner@microchip.com>
+ <1e7a8c324526f631f279925aa8a6aa937d55c796.1752510727.git.Ryan.Wanner@microchip.com>
+ <fe20bc48-8532-441d-bc40-e80dd6d30ee0@tuxon.dev>
+ <848529cc-0d01-4012-ae87-8a98b1307cbe@microchip.com>
 Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <20250723134019.1076352-1-amadeus@jmu.edu.cn>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <848529cc-0d01-4012-ae87-8a98b1307cbe@microchip.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
+Hi, Ryan,
 
-> Hi,
->
->> Nope.
+On 7/21/25 18:39, Ryan.Wanner@microchip.com wrote:
+> On 7/18/25 04:00, Claudiu Beznea wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 >>
->> Are you really questioning my picture? Ridiculous ... see [0]
-> No, I mean some boards of this model have SoC silkscreen RK3528 and
-> others have RK3528A. The same is true for another Hinlink H28K SBC.
->
->> I'm sort of impressed on with which conviction you continue to claim
->> plain wrong things: [1], [2], [3].
-> If you spend a few minutes running mainline u-boot or BSP kernel
-> on your RK3528 board before blaming me:
-I can't see the point here: I don't think it matters wether you or I
-actually have this version on any of our boards. It exists: you may like it
-or not.
+>> Hi, Ryan,
+>>
+>> On 14.07.2025 19:37, Ryan.Wanner@microchip.com wrote:
+>>> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>>
+>>> Remove USARIO_CLKEN flag since this is now a device tree argument and
+>>
+>> s/USARIO_CLKEN/USRIO_HAS_CLKEN here and in title as well.
+>>
+>>> not fixed to the SoC.
+>>>
+>>> This will instead be selected by the "cdns,refclk-ext"
+>>> device tree property.
+>>>
+>>> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+>>> ---
+>>>   drivers/net/ethernet/cadence/macb_main.c | 3 +--
+>>>   1 file changed, 1 insertion(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+>>> index 51667263c01d..cd54e4065690 100644
+>>> --- a/drivers/net/ethernet/cadence/macb_main.c
+>>> +++ b/drivers/net/ethernet/cadence/macb_main.c
+>>> @@ -5113,8 +5113,7 @@ static const struct macb_config sama7g5_gem_config = {
+>>>
+>>>   static const struct macb_config sama7g5_emac_config = {
+>>>        .caps = MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII |
+>>> -             MACB_CAPS_USRIO_HAS_CLKEN | MACB_CAPS_MIIONRGMII |
+>>
+>> Will old DTBs still work with new kernels with this change?
+> 
+> That was my assumption, but it seems it would be safer to keep this
+> property for this IP and implement this dt flag property on IPs that do
+> not already have  MACB_CAPS_USRIO_HAS_CLKEN property.
 
-This picture was actually a reply to your claim "... so we have never seen
-the silk screen printed with RK3528 ... "  in your mail dated 2025/07/19.
+So, this patch should be reverted, right?
 
-Initially my only question was, why we don't use "rockchip,rk3528a" as
-compatible when working on boards where the silkscreens says exactly that.
-It was obviously copied from vendor and now it's "too late", "too
-complicated" or something, idk and I'm fine with it.
-> BL31:
-> INFO:    rk_otp_init finish!
-> INFO:    RK3528 SoC (0x101)
->
-> mainline u-boot:
-> ------
-> U-Boot 2025.07-...
->
-> Model: Generic RK3528
-> SoC:   RK3528A
-> ------
->
-> BSP kernel:
-> [    0.768514] rockchip-cpuinfo cpuinfo: SoC            : 35281000
-> [    0.768990] rockchip-cpuinfo cpuinfo: Serial         : ...
->
->> I'm fine if upstream decides not to care. But it is and remains wrong
->> to claim that the other version does not exist
-> Unless Rockchip says they fused the wrong OTP during production.
-> Regardless of the SoC silkscreen, the chip type on OTP is the same,
-> so how does Rockchip distinguish these chips?
-Please read the rest of my previous reply where I sent code locations 
-where and how they do.
->
-> --
-> 2.25.1
->
->
+Thank you,
+Claudiu
+
+> 
+> Ryan
+>>
+>> Thank you,
+>> Claudiu
+>>
+>>> -             MACB_CAPS_GEM_HAS_PTP,
+>>> +             MACB_CAPS_MIIONRGMII | MACB_CAPS_GEM_HAS_PTP,
+>>>        .dma_burst_length = 16,
+>>>        .clk_init = macb_clk_init,
+>>>        .init = macb_init,
+>>
+> 
+
 
