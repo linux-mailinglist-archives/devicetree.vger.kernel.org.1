@@ -1,59 +1,77 @@
-Return-Path: <devicetree+bounces-199883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB32EB12B5D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 18:09:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC13B12B86
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 18:56:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D9261897654
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 16:09:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76861747D6
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 16:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2657C264FBD;
-	Sat, 26 Jul 2025 16:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E126D285C8A;
+	Sat, 26 Jul 2025 16:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OFeD3pzf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DAEP8Jjf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3DA1F473A;
-	Sat, 26 Jul 2025 16:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90ABCA5E;
+	Sat, 26 Jul 2025 16:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753546174; cv=none; b=jTbB5FMoXmK65W5vxDez/DM/IV/knJH+jhYKPTo69Cojdcj5XiKnfrBRyRlkdHjrlv8QfU/NacGIfVSXaXT6JBvV0Z7NY+hLM6EsRj63vsby4U4JHhytM+aXTx6e3XlpN5Ax1C+JlOHxykVfzsLNm2Tbs4WXqufhnbabqgPqFrc=
+	t=1753549005; cv=none; b=SGheu4HD/jtgAKr4WQ9kfZu/tSqND+je6zgVXVMuqkf0XsvRKfycOx3wgDaDlV8Z7k3rPKr+HYGNyBt/0DwY7JanoEdzDur7DNjMrFKuiR7Opxn0jfy6n/AUZ/66kC/PBk4k20QiRA6OfyJRD3PQKHH5k2j+Rlrv6xPFjMLB130=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753546174; c=relaxed/simple;
-	bh=zGhm9cGrLInk87ZM6CuHQbsPnqmOPsIF+UQoiuaBFWc=;
+	s=arc-20240116; t=1753549005; c=relaxed/simple;
+	bh=xCg92gP7rQbNoUCfPTgJWW0kbd3zy4lJS0U+Oc7rzE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZUbG2VtJdHFgIELjsrEH/8MGq4OiLfRnclS7iSjk+lHZEbjizsFSnt1UDLAUrzD2L0Fhwmsc6hdKnnumXnIA+UwFh+ZLX1Tf63ot/d2srqSpuuTMM3FBQ8UoWX4b4v4FGY8e90yzyQvZfmPKJOhXkQty2FjlISIJ1aa0IAmDRHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OFeD3pzf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC5FC4CEED;
-	Sat, 26 Jul 2025 16:09:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qje7zDH+c0AdVGoFr40Q6FexClFBeNmVDAzBrjRKPsya3oB0nRb+jm8quKlD4t1g0u8xtx2KKPzHdbDjYi07jKV0aJ7pq7lnsZdwYj1+WTpg7As1BBB8ehBleABFZhX9n5/aK0mfe4iTRLdnAD73k+5wAhrBArNnCUDUcz0oyMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DAEP8Jjf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4CACC4CEED;
+	Sat, 26 Jul 2025 16:56:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753546173;
-	bh=zGhm9cGrLInk87ZM6CuHQbsPnqmOPsIF+UQoiuaBFWc=;
+	s=k20201202; t=1753549005;
+	bh=xCg92gP7rQbNoUCfPTgJWW0kbd3zy4lJS0U+Oc7rzE4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OFeD3pzfrqawsjoygKNa2OYK1mUDi84CYqacznSznpb8EV/75vZsotw2VE1+O2k/T
-	 scsIKENP/t7K4OtgtRXw/3wX29CS27Li2lLuHiAF2TAOaIrA9Yl+TNCvezu9QAPKvN
-	 DNXVNRDOEsT672eZEIClpB0McFE2sgzMpUKTm45F65iUukO4fVJQqzbDdMPRaxMoX4
-	 N2qRum08MdcYEDg0XaW+zqLr8+KXK1qBaqI9YndKjYvpQMEwhE4ZBMwBAsTvmEOGY5
-	 MhfsKNJk04x9LvgLMis4rhQ6YQr0Erh90wI7ZF4q2+fERx9l60gz9RTZ4MGrnswwzo
-	 d94V/iB8FOOPA==
-Date: Sat, 26 Jul 2025 11:09:30 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wasim Nazir <wasim.nazir@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, kernel@oss.qualcomm.com
-Subject: Re: [PATCH 0/7] Refactor sa8775p/qcs9100 to common names
- lemans-auto/lemans
-Message-ID: <pzkceoriu5cgvidt4xekauyc2ovqkbuoi32bbornr2wbxmombh@7visdfuos6ml>
-References: <20250722144926.995064-1-wasim.nazir@oss.qualcomm.com>
- <20250723-angelic-aboriginal-waxbill-cd2e4c@kuoka>
+	b=DAEP8JjfEeyrcttfxZEbDEHjBgfO55KtsgsatqYzi1s6K0e+o0B9i+1HobATxhrgz
+	 +ju5skj6e7otHw/yFssY+Bjt70NO4bd/+izWVOuzcdrSOqa+uulPsxFTzoM3Xeq49V
+	 AGGzrn0xjrQ2UAQO8DSYY0CB+d6M/ybh2m8UPJPmDkIFBNYU+ynLBogKCzIrXibizM
+	 0BLOcNlvaozyGjCVPWnYPQxlseiKodg4+AZgL0GVhv3GwfECx11ZyV5LIsTlKji3CR
+	 gpUADD68JeDTNoH7ay0TTP1bPDXMBkhhg1l4F7f51c93YDevHyAcIBk8vb4tdScSmE
+	 jT2MsyR9WgQGw==
+Date: Sat, 26 Jul 2025 09:56:43 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, Alice Ryhl <aliceryhl@google.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Benno Lossin <lossin@kernel.org>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>,
+	Fu Wei <wefu@redhat.com>, Gary Guo <gary@garyguo.net>,
+	Guo Ren <guoren@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 8/9] riscv: dts: thead: Add PVT node
+Message-ID: <aIUIy5ykeZi+BNXA@x1>
+References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
+ <CGME20250623180907eucas1p10c0ca6b667debcc8139402d97e4ef800@eucas1p1.samsung.com>
+ <20250623-rust-next-pwm-working-fan-for-sending-v5-8-0ca23747c23e@samsung.com>
+ <175340623531.3513.5896709502242556676@lazor>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,59 +80,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250723-angelic-aboriginal-waxbill-cd2e4c@kuoka>
+In-Reply-To: <175340623531.3513.5896709502242556676@lazor>
 
-On Wed, Jul 23, 2025 at 10:32:43AM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Jul 22, 2025 at 08:19:19PM +0530, Wasim Nazir wrote:
-> > This patch series refactors the sa8775p and qcs9100 platforms and introduces
-> > a unified naming convention for current and future platforms (qcs9075).
+On Thu, Jul 24, 2025 at 06:17:15PM -0700, Stephen Boyd wrote:
+> Quoting Michal Wilczynski (2025-06-23 11:08:56)
+> > Add PVT DT node for thermal sensor.
 > > 
-> > The motivation behind this change is to group similar platforms under a
-> > consistent naming scheme and to avoid using numeric identifiers.
-> > For example, qcs9100 and qcs9075 differ only in safety features provided by
-> > the Safety-Island (SAIL) subsystem but safety features are currently
-> > unsupported, so both can be categorized as the same chip today.
-> >
+> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> > ---
+> >  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > index 26996422e1efe5d2dde68819c2cec1c3fa782a23..bef30780034e06b07aa29b27b0225ea891a4b531 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -669,6 +669,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
+> >                         thead,pad-group = <1>;
+> >                 };
+> >  
+> > +               pvt: pvt@fffff4e000 {
 > 
-> I expressed strong disagreement with this patchset in individual
-> patches. I expect NO NEW versions of it, but by any chance you send it,
-> then please always carry my:
-> 
+> Node name should probably be 'thermal-sensor@fffff4e000' then.
 
-I requested Wasim to prepare this patch set. Something that would have
-been useful to include in the cover letter and some of the patches...
+Thanks for pointing this out. It does seem like 'pvt@' is unusual:
 
+$ git grep -l 'thermal-sensor@' arch/*/boot/dts | wc -l
+57
+$ git grep -l 'pvt@' arch/*/boot/dts | wc -l
+1
 
-I definitely agree with your position when it comes to renaming working
-platforms and I also think there has been way too much churn in relation
-to this platform.
+$ git grep -l 'thermal-sensor@' Documentation/devicetree/bindings/ | wc -l
+14
+$ git grep -l 'pvt@' Documentation/devicetree/bindings/ | wc -l
+2
 
-But the thing we call SA8775P upstream is not SA8775P. The hardware +
-firmware that is described by sa8775p.dtsi doesn't exist.
+The 6.17 PR for dts has already happened, so I'll do a fix once I can
+update my thead-dt-fixes branch to 6.17-rc1.
 
-Reactively and without telling us the whole story, we seem to have
-gotten qcs9100-ride*.dts to represent what folks has been using to
-upstream the platform support.
-
-But the board where I see people actually running upstream (the EVK
-introduced in this series) is based on the QCS9075 variant, which is the
-same die but with some hardware features disabled.
-
-
-
-In other words, this is a mess resulting from lacking communication and
-reactive shortsighted attempts to get things merged. I don't want to
-maintain it in this form.
-
-> Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-
-I'm fine carrying this token of disapproval for how we got here. 
-
-Regards,
-Bjorn
-
-> Best regards,
-> Krzysztof
-> 
+thanks,
+drew
 
