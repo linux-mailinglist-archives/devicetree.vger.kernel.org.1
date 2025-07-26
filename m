@@ -1,219 +1,113 @@
-Return-Path: <devicetree+bounces-199897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03162B12C5E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 22:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65805B12C73
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 22:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10C9C7AB501
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 20:44:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EA5C7A7EFB
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 20:49:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D742185AC;
-	Sat, 26 Jul 2025 20:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAC528A3ED;
+	Sat, 26 Jul 2025 20:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eo8rusya"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZW6cm0y+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5904C1B042E
-	for <devicetree@vger.kernel.org>; Sat, 26 Jul 2025 20:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4544B1E8338;
+	Sat, 26 Jul 2025 20:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753562777; cv=none; b=CIhhGPMxUDRXrHebnJrC8d2mJDuEkWfO0oExnpTo+1RKFOrdqhnqQ5g0TugUuM73SynYF9EjCEi3S6QfCFXbGVcF974I4JOrUUFCAe9cKFtFl9aIKSAVKsL+vXYHW4OmHQofDWuOsjR8kG2G9d1iXrMlw03oEww6vrG28FGyOb0=
+	t=1753563024; cv=none; b=RjTqxly8ZCRZij01ObrYnCogjgl7kh8gZ5I+OSiaXa7CxP0bikk3G1Cm1mxeh3m2jL1fhIsX+kDEQ6qX7rp4t8mub8MPL/gwdYIItNTxyUjbhdJEYsNp3dXvT9tNwQ99ba8JwCah+oeqB516e3eCSRGNIr9ksF9Dixta/pBwsiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753562777; c=relaxed/simple;
-	bh=AgFl8oYApeBrJhPG9hAm6A9ogSmb60gaE3IC/9S0mSM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=fbVVE3FxXXPFWPyj7q9kCkThXtWIq3r+AzTCLIpyIiIUtJ+ha1bi8m3epWnh44xB6mKmzCzO3/PEjEAhQlJYWWEbFXKlnCJ22DQMdxr3pLohMrxXdhL5LIuEFR3qjdHB2c3/sUyttl3YFXia3MV+++dnUtjWU1DuiB0wqdxegJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eo8rusya; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-73e65c09828so1517931a34.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Jul 2025 13:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753562774; x=1754167574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=adVyS8ykePUpCxVa6P/qJ+4OYY/RJo9Vkh0bwyU9BA4=;
-        b=eo8rusyafloyFYiF3i/916Rlbwhgj0y1HsdrGHI4It2dHVim3gORD7FP+qz0cK/PFu
-         UZ4GHeDmbvnZI5mPkJpl9MQRi+fwk3iJLbkIqo2d0xq4w/iTdowIpjSXSnmX66X/OtWN
-         U0DCXfFS8EqhA8yV/n/L8sropIEMz+yOuo11r8NfbbnI3wRYa4Yfw+kKsgpCcg/YXVTZ
-         2U+1KfMCzTjAxbigxbXwNWZjkZJK7SS0pG4uQ+PDk4/eHvmq8eZhTgQ2vD1DevLbM+4Q
-         zxD5Xbi2ZuUVlEK0MUzBkNi7LwMvCMhVkC++xO94iAXh92mUbEK2XT3w0WnkwI/qXGNd
-         OiZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753562774; x=1754167574;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adVyS8ykePUpCxVa6P/qJ+4OYY/RJo9Vkh0bwyU9BA4=;
-        b=Zwxi3HYGH32UROf985t9a9ijkVy4EllU1gckcrdV80XlF3jwbjVGZT04c4fP8UtfiP
-         XVK+iA7wCROPA4TC92HUoGyWzzTCFTNjKZ8hc2NMN8DrsY4jHCXcB01sP3tJuR+hq18f
-         iXfOGoBrEaVEhbJ2z5AJ7irIhrz8WJf8jaAlFknAnP2WEu1eOYM7bbVG6CR3/d5xO9R9
-         3R9JR14wccIqmk8ji2QtnmLD9OgsuQEwoZY6BLXkZi/fu5ODjvoaGpXvbS0+j+PjnT6B
-         tdJzEvTPXZvT+KPKoacIA/srsr6yxYJptR/W9Jxz0aKVJVVfMAuKg749K+Gav/1HzVTa
-         tRVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVB1UABi29m6UJW72HLolfVizbxoEZI+mSvAzXRaYGDRuQaaPwJWTNJtI7MCK3+Y5+fWgxtS+uTTD4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQALBQ2pVTb2aECJJPDCV7pXpYRHNwIvDA8mbh05C6S+phUvSN
-	NstFqrS/q72ZaJqnW+H8BKYG/gNxV/prpyPFHM6LgKnos9Mr6toIMHGNbGJhlATlSsg=
-X-Gm-Gg: ASbGncubzukVs+pAHw6iNX0DujFu7giyXgEerhcUcfXoagc5duDkY6H19RNtV41Hu1f
-	gJvI0TWzCQRjptGweeeTpl0Otc0ZsQD2t4M4VIf6qn3w36JWJO6ooNu+OU+2D1HOhP3ae7zPckM
-	sT1/mETYdxKY0NBMAADjLoWYL2HvEEB0ocQEm8v+SUwkKo+SHz0MkC4OYAZ0dW+CkykJOfw7Fos
-	YJpLVYPh6K+JkbyjyTu+/mIgtkFqkGlsnU1p/tAIlCFKuwisvbvD0Ul0TcnOweZ/gXZjzGAB5ht
-	7VOh804Iv5wjF0y3KelMA8MOGk0UB85UA3WHghGx52Pe3J7GKV4MntKvYp/yEYN/yL+BChecjqz
-	kAZAgFcq8jJcYWvQ/QNKftNTtq2q/hheDDHiZm0Lptiw6Tq1OkFhmuEQoFMf7a9A9JBqs7TsP
-X-Google-Smtp-Source: AGHT+IH9t28zTolDysbNhdXb23sMoRkURov5APnmp/JHYYlxIDPTMz/ZosJ9ofjYg1FWWz24zqLsng==
-X-Received: by 2002:a05:6830:924:b0:73e:9857:9839 with SMTP id 46e09a7af769-7413d96e6a6mr3842789a34.0.1753562774403;
-        Sat, 26 Jul 2025 13:46:14 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:63fb:769a:c359:cee? ([2600:8803:e7e4:1d00:63fb:769a:c359:cee])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-74148230156sm445250a34.49.2025.07.26.13.46.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Jul 2025 13:46:12 -0700 (PDT)
-Message-ID: <b09d59ed-8bc8-4db4-b758-78e05af399df@baylibre.com>
-Date: Sat, 26 Jul 2025 15:46:12 -0500
+	s=arc-20240116; t=1753563024; c=relaxed/simple;
+	bh=5CcbBLAvFqafwbDTuYRHBZTGQlGQDl+tdcBy7K/cZGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rEZhA1aGvdezAND48h0JaLG/bMTxBV9QkQ8ZW1PjaGw6I63lRQqte7MoSNwAr52IsquT4Ob7fYkpjIYseT3cUNy73xn+Wtv+Z/vh2oAK5hhv6hh8yIRg59E0TAWmExlFqK7BSzNgMRPhbCNC+9KiZkp2lxDOgT5lUBhzld+wb6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ZW6cm0y+; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=EUlYzqAYpxnFteGA0rbRZWT0uzl0Of2A26AS9jfz3Wo=; b=ZW6cm0y+hFYTZGKm3HL1p2XLP1
+	8FbSV3vCcrpTwA/ix7DfXcxH5bVojJw1TxYnBB4IVWmeoGa+Uh5vm0wF0xKYfbVy70dIB2ssyQvcm
+	M+ooW4OZRVswmkrk2xlqbkGiFhn75Q/53d6lNjcO0+KYs19DJOjIjgVOADNhYRH4v49g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uflqK-002xx0-Oy; Sat, 26 Jul 2025 22:50:08 +0200
+Date: Sat, 26 Jul 2025 22:50:08 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH net-next v10 05/15] net: phy: dp83822: Add support for
+ phy_port representation
+Message-ID: <6721b691-bae8-4a91-b14b-276b14b89244@lunn.ch>
+References: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
+ <20250722121623.609732-6-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: David Lechner <dlechner@baylibre.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: iio: adc: add ade9000
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250721112455.23948-1-antoniu.miclaus@analog.com>
- <20250721112455.23948-2-antoniu.miclaus@analog.com>
-Content-Language: en-US
-In-Reply-To: <20250721112455.23948-2-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250722121623.609732-6-maxime.chevallier@bootlin.com>
 
-On 7/21/25 6:24 AM, Antoniu Miclaus wrote:
-> Add devicetree bindings support for ade9000.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v2:
->  - move interrup-names near interrupts
->  - remove properties related to the waveform buffer and make them runtime attributes
->  - remove egy-time property and make it a runtime attribute.
->  - remove wf-src and use filter_type in the driver.
->  - add vref, vdd support.
->  - use adc standard channels instead of phase channels.
+> +#if IS_ENABLED(CONFIG_OF_MDIO)
+> +		if (dp83822->fx_enabled && dp83822->fx_sd_enable)
+> +			dp83822->fx_signal_det_low =
+> +				device_property_present(&phydev->mdio.dev,
+> +							"ti,link-loss-low");
+> +
+> +		/* ti,fiber-mode is still used for backwards compatibility, but
+> +		 * has been replaced with the mdi node definition, see
+> +		 * ethernet-port.yaml
+> +		 */
+> +		if (!dp83822->fx_enabled)
+> +			dp83822->fx_enabled =
+> +				device_property_present(&phydev->mdio.dev,
+> +							"ti,fiber-mode");
 
-It seems that you ignored some of my v1 comments without saying why.
+Could be my grep fu is broken but:
 
->  .../bindings/iio/adc/adi,ade9000.yaml         | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
-> new file mode 100644
-> index 000000000000..0176252aae35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bindings/iio/adc/adi,ade9000.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADE9000 High Performance, Polyphase Energy Metering driver
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +  The ADE9000 s a highly accurate, fully integrated, multiphase energy and power
-> +  quality monitoring device. Superior analog performance and a digital signal
-> +  processing (DSP) core enable accurate energy monitoring over a wide dynamic
-> +  range. An integrated high end reference ensures low drift over temperature
-> +  with a combined drift of less than ±25 ppm/°C maximum for the entire channel
-> +  including a programmable gain amplifier (PGA) and an analog-to- digital
-> +  converter (ADC).
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ADE9000.pdf
-> +
-> +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ade9000
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: irq0
-> +      - const: irq1
+~/linux$ grep -r fiber-mode arch/*
+~/linux$ 
 
-I still think that there should be 3 interrupts, the 3rd one being
-the C4/EVENT/DREADY pin.
+So it does not even appear to be used. If it is not used, do we have
+to consider backwards compatibility?
 
-> +
-> +  reset-gpios:
-> +    description: |
-> +      Must be the device tree identifier of the RESET pin. As the line is
-> +      active low, it should be marked GPIO_ACTIVE_LOW.
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  vref-supply: true
-> +
+Maybe consider marking the property deprecated and point to the new
+binding?
 
-There is also a clock input and clock output that we can add
-clocks and #clock-cells for.
-
-> +patternProperties:
-> +  "^channel@[0-2]$":
-> +    $ref: /schemas/iio/adc/adc.yaml#
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        description: The channel number (0-2 for phases A, B, C)
-> +        minimum: 0
-> +        maximum: 2
-> +
-> +    required:
-> +      - reg
-
-Why do we need channel properties? Do we expect in some cases to
-only have 1 or 2 phases wired up? Otherwise, this provides no additional
-information.
-
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +  - interrupts
-> +  - interrupt-names
-> +  - vdd-supply
-> +
+	Andrew
 
