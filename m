@@ -1,159 +1,234 @@
-Return-Path: <devicetree+bounces-199867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C214CB129F5
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 11:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B124B12A0A
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 12:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 498964E7B7A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 09:43:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EED53A8E4F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 10:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397C9224AF1;
-	Sat, 26 Jul 2025 09:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60A9242925;
+	Sat, 26 Jul 2025 10:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HRj0IhwH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kyZKaqLR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFB4155326;
-	Sat, 26 Jul 2025 09:43:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25D4623E324;
+	Sat, 26 Jul 2025 10:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753523006; cv=none; b=ebHcG++12SGp26ZA9H9kT06P0zQaNNgc4olZgpLs8+V0RkL8yFEiSVSPkQFAn0In8FrUohaigKdyAosIkxnZE0WSermLbExLlpYTmntEW73AZIQdUgCZ5Zuj3Q6Q6Ewocxb/MZzQFMuEqC/T+y4G7aTkT0MrIUjuO+aqhvVHCoc=
+	t=1753525591; cv=none; b=rUjaX1EPJ2NqK54tP0tR7IWD6lyg7TjU7qSA2uiJdBxhvl4byLIV+RZnm6qoLg5vYsEJU4e+dFoTezNkjX9YIOwLE+HvUCIle1W+ZKXMsBPAaegabCYfGUS2GTtYRYsXTpiACjsMJ2UaFrnEMK+AqrcR0Pv6XaO6f4RhgpjttPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753523006; c=relaxed/simple;
-	bh=gmoae3pQ6n1/2XP8mGxeGj2e+0uTKpbeI5N90BkBXcI=;
+	s=arc-20240116; t=1753525591; c=relaxed/simple;
+	bh=iE8cIDfFLQ8B5WGZtqZKWPN4Ek+qnInv2VJkerYcv0E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g/+xa0WWEwidCK9rXGQ+v0htHifrIm7jdia8sr6ro7CZwhPFCds+Guvzton+ISEMv4p0zJJ7QQrJAmBkOxW760S99cng61nF4EiHNKz6aMZZ2nlddW7g5tbXnpPXLerHXIzttNXV3ByE3rZPzphjRL2fvqyum86M5kUkr3evZcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HRj0IhwH; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 821204C9;
-	Sat, 26 Jul 2025 11:42:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1753522959;
-	bh=gmoae3pQ6n1/2XP8mGxeGj2e+0uTKpbeI5N90BkBXcI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HRj0IhwHMiVRjp+TVns7bQy+6Y3+uM9Gs9XOT8xxoMLoN0XSlTd8qUY3uKWpyIGR3
-	 yLU+/jsolGOdd5EWZuPcBGF1Azh85YRUd95hQo4NDCTeLxzGF64rrdCVF4FeQPiwho
-	 OnEWNvohZyl7Iusw20RVJj6q9uLZt3f2km8NstsQ=
-Date: Sat, 26 Jul 2025 12:43:13 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
-	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Ricardo Ribalda <ribalda@chromium.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hans de Goede <hansg@kernel.org>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-	Matthias Fend <matthias.fend@emfend.at>,
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Sylvain Petinot <sylvain.petinot@foss.st.com>,
-	Dongcheng Yan <dongcheng.yan@intel.com>,
-	Jingjing Xiong <jingjing.xiong@intel.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] media: i2c: add ov2735 image sensor driver
-Message-ID: <20250726094313.GD27425@pendragon.ideasonboard.com>
-References: <20250724104711.18764-1-hardevsinh.palaniya@siliconsignals.io>
- <20250724104711.18764-3-hardevsinh.palaniya@siliconsignals.io>
- <aIKi1BkNzNvsf5Tr@smile.fi.intel.com>
- <PN3P287MB35190A4AEE4C8D98142E7B6AFF59A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
- <175345442477.2567018.13588829522231689027@ping.linuxembedded.co.uk>
- <PN3P287MB3519055FE42890F5F577B51BFF58A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TihFBHFKoYWPuBIRQJ8IX3eMg4orDABkWp98Nh7Dmp5sRByXwf5b8hpd1DxTa6LRmm1dL1hGwh0Jtn/ad7rymofgNyKdTfZkAtMSx8nEvJfuRzIDClIOrzHKNydPPMyxPS7w1hxJSlJimwG9RVsk6a8XNdHpEmJ4CYl9cBochEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kyZKaqLR; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753525590; x=1785061590;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=iE8cIDfFLQ8B5WGZtqZKWPN4Ek+qnInv2VJkerYcv0E=;
+  b=kyZKaqLRxvC2WkhrDmGHErsG0lLABaYfhmE+26ith5w1aUR9CUP0QojC
+   fX5411FHMIN2KUh4EzPb6qrWQpgZCaIIr7V6VCwBBapuvaTIvstlNESgb
+   Oq3VB9guGWB+BLvISoT7u6JUHg89sZS182aPYMXtnGjw1mW8aJmS3WYSr
+   xDzAQ1HFoV4VZB4KQk6MkrGsfDgTsizw1cTZjj3YFau1C+FA5KvkijflA
+   g7je2rbEoj4XY6dL8JcwajCxkGNbVyinLRVhOr9JDGYKxlvh4prZfU15V
+   IUYmMdv+z5K2FHQJDlPWvh4ID5RODGbAyWUyuUNKWb+BFbA7ix0jFoJeE
+   A==;
+X-CSE-ConnectionGUID: I4BwidOuS7yJ3Q5r7a98fw==
+X-CSE-MsgGUID: drgkOW9CSY6eIluhWUh5vA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11503"; a="55996066"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
+   d="scan'208";a="55996066"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2025 03:26:30 -0700
+X-CSE-ConnectionGUID: W+MjwdixSHuhX3TInEHXeg==
+X-CSE-MsgGUID: +c3Ix+1iSi691V+f/dZLvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
+   d="scan'208";a="192406716"
+Received: from lkp-server01.sh.intel.com (HELO 9ee84586c615) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 26 Jul 2025 03:26:26 -0700
+Received: from kbuild by 9ee84586c615 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ufc6h-000LsC-2j;
+	Sat, 26 Jul 2025 10:26:23 +0000
+Date: Sat, 26 Jul 2025 18:26:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] clk: qcom: Add a driver for SM8750 GPU clocks
+Message-ID: <202507261830.IirBJ9dS-lkp@intel.com>
+References: <20250723-topic-8750_gpucc-v2-2-56c93b84c390@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PN3P287MB3519055FE42890F5F577B51BFF58A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <20250723-topic-8750_gpucc-v2-2-56c93b84c390@oss.qualcomm.com>
 
-On Sat, Jul 26, 2025 at 06:06:05AM +0000, Hardevsinh Palaniya wrote:
-> > Quoting Hardevsinh Palaniya (2025-07-25 06:55:23)
-> > <snip>
-> > > > > +static int ov2735_page_access(struct ov2735 *ov2735,
-> > > > > +�������������������������� u32 reg, void *val, int *err, bool is_read)
-> > > > > +{
-> > > > > +���� u8 page = (reg >> CCI_REG_PRIVATE_SHIFT) & 0xff;
-> > > >
-> > > > ' & 0xff' part is redundant.
-> > > >
-> > > > > +���� u32 addr = reg & ~CCI_REG_PRIVATE_MASK;
-> > > > > +���� int ret = 0;
-> > > >
-> > > > How is this assignment being used?
-> > > >
-> > > > > +���� if (err && *err)
-> > > > > +������������ return *err;
-> > > > > +
-> > > > > +���� mutex_lock(&ov2735->page_lock);
-> > > > > +
-> > > > > +���� /* Perform page access before read/write */
-> > > > > +���� if (ov2735->current_page != page) {
-> > > > > +������������ ret = cci_write(ov2735->cci, OV2735_REG_PAGE_SELECT, page, err);
-> > > > > +������������ if (ret)
-> > > > > +�������������������� goto err_mutex_unlock;
-> > > > > +������������ ov2735->current_page = page;
-> > > > > +���� }
-> > > > > +
-> > > > > +���� if (is_read)
-> > > > > +������������ ret = cci_read(ov2735->cci, addr, (u64 *)val, err);
-> > > > > +���� else
-> > > > > +������������ ret = cci_write(ov2735->cci, addr, *(u64 *)val, err);
-> > > >
-> > > > Do you really need this castings?
-> > >
-> > > Do you really think this casting is unnecessary?
-> > >
-> > 
-> > Yes? Well quite probably - I haven't checked myself yet but ..
-> > 
-> > 
-> > > Please check the definitions of cci_read/write
-> > >
-> > > without this, we can't even build the driver.
-> > 
-> > How about ... changing the function prototype of ov2735_page_access ?
-> 
-> Of course, changing the function prototype would work.
-> 
-> My intention is to keep a single ov2735_page_access() function that can
-> handle both read and write operations. The cci_read() function expects 
-> a u64 *, whereas cci_write() expects a u64 value. To support both cases
-> within one function, I’ve used a void *val and cast it appropriately 
-> depending on the operation.
-> 
-> If we were to remove the casting, we would need to split this into two
-> separate functions, one for read and one for write, even though the only 
-> difference between them would be a single line. I’d prefer to avoid that
-> redundancy and keep the code compact. 
-> 
-> Let me know if you see a better way to handle this without duplicating
-> the logic. 
+Hi Konrad,
 
-Move the cci_read() and cci_write() calls from the bottom of
-ov2735_page_access() to ov2735_read() and ov2735_write() respectively.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 0be23810e32e6d0a17df7c0ebad895ba2c210fc4]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/dt-bindings-clock-qcom-Add-SM8750-GPU-clocks/20250724-044303
+base:   0be23810e32e6d0a17df7c0ebad895ba2c210fc4
+patch link:    https://lore.kernel.org/r/20250723-topic-8750_gpucc-v2-2-56c93b84c390%40oss.qualcomm.com
+patch subject: [PATCH v2 2/3] clk: qcom: Add a driver for SM8750 GPU clocks
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250726/202507261830.IirBJ9dS-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250726/202507261830.IirBJ9dS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507261830.IirBJ9dS-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/qcom/gpucc-sm8750.c:521:1: error: redefinition of '__inittest'
+     521 | module_platform_driver(gx_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:261:3: note: expanded from macro 'module_driver'
+     261 | } \
+         |   ^
+   include/linux/module.h:132:42: note: expanded from macro '\
+   module_init'
+     132 |         static inline initcall_t __maybe_unused __inittest(void)                \
+         |                                                 ^
+   drivers/clk/qcom/gpucc-sm8750.c:469:1: note: previous definition is here
+     469 | module_platform_driver(gpu_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:261:3: note: expanded from macro 'module_driver'
+     261 | } \
+         |   ^
+   include/linux/module.h:132:42: note: expanded from macro '\
+   module_init'
+     132 |         static inline initcall_t __maybe_unused __inittest(void)                \
+         |                                                 ^
+>> drivers/clk/qcom/gpucc-sm8750.c:521:1: error: redefinition of 'init_module'
+     521 | module_platform_driver(gx_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:261:3: note: expanded from macro 'module_driver'
+     261 | } \
+         |   ^
+   include/linux/module.h:134:6: note: expanded from macro '\
+   module_init'
+     134 |         int init_module(void) __copy(initfn)                    \
+         |             ^
+   drivers/clk/qcom/gpucc-sm8750.c:469:1: note: previous definition is here
+     469 | module_platform_driver(gpu_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:261:3: note: expanded from macro 'module_driver'
+     261 | } \
+         |   ^
+   include/linux/module.h:134:6: note: expanded from macro '\
+   module_init'
+     134 |         int init_module(void) __copy(initfn)                    \
+         |             ^
+>> drivers/clk/qcom/gpucc-sm8750.c:521:1: error: redefinition of '__exittest'
+     521 | module_platform_driver(gx_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:266:3: note: expanded from macro 'module_driver'
+     266 | } \
+         |   ^
+   include/linux/module.h:140:42: note: expanded from macro '\
+   module_exit'
+     140 |         static inline exitcall_t __maybe_unused __exittest(void)                \
+         |                                                 ^
+   drivers/clk/qcom/gpucc-sm8750.c:469:1: note: previous definition is here
+     469 | module_platform_driver(gpu_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:266:3: note: expanded from macro 'module_driver'
+     266 | } \
+         |   ^
+   include/linux/module.h:140:42: note: expanded from macro '\
+   module_exit'
+     140 |         static inline exitcall_t __maybe_unused __exittest(void)                \
+         |                                                 ^
+>> drivers/clk/qcom/gpucc-sm8750.c:521:1: error: redefinition of 'cleanup_module'
+     521 | module_platform_driver(gx_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:266:3: note: expanded from macro 'module_driver'
+     266 | } \
+         |   ^
+   include/linux/module.h:142:7: note: expanded from macro '\
+   module_exit'
+     142 |         void cleanup_module(void) __copy(exitfn)                \
+         |              ^
+   drivers/clk/qcom/gpucc-sm8750.c:469:1: note: previous definition is here
+     469 | module_platform_driver(gpu_cc_sm8750_driver);
+         | ^
+   include/linux/platform_device.h:292:2: note: expanded from macro 'module_platform_driver'
+     292 |         module_driver(__platform_driver, platform_driver_register, \
+         |         ^
+   include/linux/device/driver.h:266:3: note: expanded from macro 'module_driver'
+     266 | } \
+         |   ^
+   include/linux/module.h:142:7: note: expanded from macro '\
+   module_exit'
+     142 |         void cleanup_module(void) __copy(exitfn)                \
+         |              ^
+   4 errors generated.
+
+
+vim +/__inittest +521 drivers/clk/qcom/gpucc-sm8750.c
+
+   513	
+   514	static struct platform_driver gx_cc_sm8750_driver = {
+   515		.probe = gx_cc_sm8750_probe,
+   516		.driver = {
+   517			.name = "gx_cc-sm8750",
+   518			.of_match_table = gx_cc_sm8750_match_table,
+   519		},
+   520	};
+ > 521	module_platform_driver(gx_cc_sm8750_driver);
+   522	
 
 -- 
-Regards,
-
-Laurent Pinchart
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
