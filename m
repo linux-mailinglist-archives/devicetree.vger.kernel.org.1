@@ -1,77 +1,62 @@
-Return-Path: <devicetree+bounces-199884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC13B12B86
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 18:56:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E799BB12B91
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 19:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76861747D6
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 16:56:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E06C3AAC9D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jul 2025 17:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E126D285C8A;
-	Sat, 26 Jul 2025 16:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547532877D2;
+	Sat, 26 Jul 2025 17:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DAEP8Jjf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LOqzOZOS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90ABCA5E;
-	Sat, 26 Jul 2025 16:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A5C28750C;
+	Sat, 26 Jul 2025 17:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753549005; cv=none; b=SGheu4HD/jtgAKr4WQ9kfZu/tSqND+je6zgVXVMuqkf0XsvRKfycOx3wgDaDlV8Z7k3rPKr+HYGNyBt/0DwY7JanoEdzDur7DNjMrFKuiR7Opxn0jfy6n/AUZ/66kC/PBk4k20QiRA6OfyJRD3PQKHH5k2j+Rlrv6xPFjMLB130=
+	t=1753549922; cv=none; b=Gg/DDw1l19ZmfeHLr2BOy0KuX77kNY/0W8z733+BofuMT6Jh8nt6ymMsH4SOnfMGjbkXGNnQvixq6oZvlIY1H+67FJsb7xEfAWG2JDoDEO1zt68aGLYtCfP3OrWW8SqvURk385Dw/tfMsVHO/P0BtN0965nC2u2mYn85CZXMrlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753549005; c=relaxed/simple;
-	bh=xCg92gP7rQbNoUCfPTgJWW0kbd3zy4lJS0U+Oc7rzE4=;
+	s=arc-20240116; t=1753549922; c=relaxed/simple;
+	bh=rbCHqu5g+PtQzNMLvBDPb0/RV2wi01i4KdX1ANI0vaY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qje7zDH+c0AdVGoFr40Q6FexClFBeNmVDAzBrjRKPsya3oB0nRb+jm8quKlD4t1g0u8xtx2KKPzHdbDjYi07jKV0aJ7pq7lnsZdwYj1+WTpg7As1BBB8ehBleABFZhX9n5/aK0mfe4iTRLdnAD73k+5wAhrBArNnCUDUcz0oyMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DAEP8Jjf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4CACC4CEED;
-	Sat, 26 Jul 2025 16:56:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IroB+JaczGgPQzE9tR7yj5U3n4igUVxpPZlclTYZdCX/98pPvhomLMWfJNP2deOtqY0ATVCCiMHlBclXvJuHM76Y9tbzNMH3j4lpz6XneG9RUDye1U8HjPIYD42w8smpBACo0ud7yF4pMYHNDfN2jcxJMS/JpuJWoPH1jhiMGAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LOqzOZOS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B162FC4CEED;
+	Sat, 26 Jul 2025 17:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753549005;
-	bh=xCg92gP7rQbNoUCfPTgJWW0kbd3zy4lJS0U+Oc7rzE4=;
+	s=k20201202; t=1753549921;
+	bh=rbCHqu5g+PtQzNMLvBDPb0/RV2wi01i4KdX1ANI0vaY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DAEP8JjfEeyrcttfxZEbDEHjBgfO55KtsgsatqYzi1s6K0e+o0B9i+1HobATxhrgz
-	 +ju5skj6e7otHw/yFssY+Bjt70NO4bd/+izWVOuzcdrSOqa+uulPsxFTzoM3Xeq49V
-	 AGGzrn0xjrQ2UAQO8DSYY0CB+d6M/ybh2m8UPJPmDkIFBNYU+ynLBogKCzIrXibizM
-	 0BLOcNlvaozyGjCVPWnYPQxlseiKodg4+AZgL0GVhv3GwfECx11ZyV5LIsTlKji3CR
-	 gpUADD68JeDTNoH7ay0TTP1bPDXMBkhhg1l4F7f51c93YDevHyAcIBk8vb4tdScSmE
-	 jT2MsyR9WgQGw==
-Date: Sat, 26 Jul 2025 09:56:43 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Alice Ryhl <aliceryhl@google.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Benno Lossin <lossin@kernel.org>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>,
-	Fu Wei <wefu@redhat.com>, Gary Guo <gary@garyguo.net>,
-	Guo Ren <guoren@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>, Trevor Gross <tmgross@umich.edu>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 8/9] riscv: dts: thead: Add PVT node
-Message-ID: <aIUIy5ykeZi+BNXA@x1>
-References: <20250623-rust-next-pwm-working-fan-for-sending-v5-0-0ca23747c23e@samsung.com>
- <CGME20250623180907eucas1p10c0ca6b667debcc8139402d97e4ef800@eucas1p1.samsung.com>
- <20250623-rust-next-pwm-working-fan-for-sending-v5-8-0ca23747c23e@samsung.com>
- <175340623531.3513.5896709502242556676@lazor>
+	b=LOqzOZOSdy4bu3tujbaeZeDeyXdFKmVFMRi7oEDbsn5YWEg7yg4qGttFH/5s6nADo
+	 8QyY3nUKWaGqDH9JPJ2gUZTlcxOa6xrc2mJOj/9kmRr9EP//zWIbvVEasrXpUrXblK
+	 ILS3+raUWsO2aGz/Q2RbXAs9TLgmchrwDu7bpA6/dzCOy9PTnwVCFV0mOJWx3Q6SuB
+	 WeRidwQjxZ49ai8Y2Wlk2JwwCAQYWWqVXqZ6DgbqB+iaNHENwMBTwdLEcGYAxzHbYx
+	 5IZoHxqh8eOV8GiUAUExWOkUKLL3Gj+w5y8sUiH9M5jJ2ND0pQ7B3BcRhvwQDW7LW2
+	 ckApRb6hweqDg==
+Date: Sat, 26 Jul 2025 12:11:58 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Wasim Nazir <wasim.nazir@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, kernel@oss.qualcomm.com
+Subject: Re: [PATCH 1/7] arm64: dts: qcom: Rename sa8775p SoC to "lemans"
+Message-ID: <vc2z57myldazay75qwbxotxr5siooqny2vviu6yznna3fdj3ed@6fpcy7dcg6t3>
+References: <20250722144926.995064-1-wasim.nazir@oss.qualcomm.com>
+ <20250722144926.995064-2-wasim.nazir@oss.qualcomm.com>
+ <20250723-swinging-chirpy-hornet-eed2f2@kuoka>
+ <159eb27b-fca8-4f7e-b604-ba19d6f9ada7@oss.qualcomm.com>
+ <e718d0d8-87e7-435f-9174-7b376bf6fa2f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,44 +65,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <175340623531.3513.5896709502242556676@lazor>
+In-Reply-To: <e718d0d8-87e7-435f-9174-7b376bf6fa2f@kernel.org>
 
-On Thu, Jul 24, 2025 at 06:17:15PM -0700, Stephen Boyd wrote:
-> Quoting Michal Wilczynski (2025-06-23 11:08:56)
-> > Add PVT DT node for thermal sensor.
+On Thu, Jul 24, 2025 at 02:51:54PM +0200, Krzysztof Kozlowski wrote:
+> On 24/07/2025 14:47, Konrad Dybcio wrote:
+> > On 7/23/25 10:29 AM, 'Krzysztof Kozlowski' via kernel wrote:
+> >> On Tue, Jul 22, 2025 at 08:19:20PM +0530, Wasim Nazir wrote:
+> >>> SA8775P, QCS9100 and QCS9075 are all variants of the same die,
+> >>> collectively referred to as lemans. Most notably, the last of them
+> >>> has the SAIL (Safety Island) fused off, but remains identical
+> >>> otherwise.
+> >>>
+> >>> In an effort to streamline the codebase, rename the SoC DTSI, moving
+> >>> away from less meaningful numerical model identifiers.
+> >>>
+> >>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/{sa8775p.dtsi => lemans.dtsi} | 0
+> >>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi             | 2 +-
+> >>
+> >> No, stop with this rename.
+> >>
+> >> There is no policy of renaming existing files.
 > > 
-> > Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > index 26996422e1efe5d2dde68819c2cec1c3fa782a23..bef30780034e06b07aa29b27b0225ea891a4b531 100644
-> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > @@ -669,6 +669,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
-> >                         thead,pad-group = <1>;
-> >                 };
-> >  
-> > +               pvt: pvt@fffff4e000 {
+> > There's no policy against renaming existing files either.
 > 
-> Node name should probably be 'thermal-sensor@fffff4e000' then.
+> There is, because you break all the users. All the distros, bootloaders
+> using this DTS, people's scripts.
+> 
 
-Thanks for pointing this out. It does seem like 'pvt@' is unusual:
+None of these users are affected by the rename of the .dtsi file.
 
-$ git grep -l 'thermal-sensor@' arch/*/boot/dts | wc -l
-57
-$ git grep -l 'pvt@' arch/*/boot/dts | wc -l
-1
+Patch 5 does have user impact, so that one would be "controversial".
+From the answers I've gotten, I'm questioning which of thees files
+actually has users - but that's best done in a standalone patch removing
+or renaming them, with a proper commit message.
 
-$ git grep -l 'thermal-sensor@' Documentation/devicetree/bindings/ | wc -l
-14
-$ git grep -l 'pvt@' Documentation/devicetree/bindings/ | wc -l
-2
+> > 
+> >> It's ridicilous. Just
+> >> because you introduced a new naming model for NEW SOC, does not mean you
+> >> now going to rename all boards which you already upstreamed.
+> > 
+> > This is a genuine improvement, trying to untangle the mess that you
+> > expressed vast discontent about..
+> > 
+> > There will be new boards based on this family of SoCs submitted either
+> > way, so I really think it makes sense to solve it once and for all,
+> > instead of bikeshedding over it again and again each time you get a new
+> > dt-bindings change in your inbox.
+> > 
+> > I understand you're unhappy about patch 6, but the others are
+> > basically code janitoring.
+> 
+> Renaming already accepted DTS is not improvement and not untangling
+> anything.
 
-The 6.17 PR for dts has already happened, so I'll do a fix once I can
-update my thead-dt-fixes branch to 6.17-rc1.
+No, but the rename of the dtsi file and avoiding introducing yet another
+qcs<random numbers> prefix in the soup is a huge improvement.
 
-thanks,
-drew
+> These names were discussed (for very long time) and agreed on.
+> What is the point of spending DT maintainers time to discuss the sa8775p
+> earlier when year later you come and start reversing things (like in
+> patch 6).
+> 
+
+There was no point, all the information wasn't brought to those
+discussions...
+
+What we know now is that QCS9100 and QCS9075 (and perhaps more?) are the
+Lemans IoT product line and the EVK is the main development board
+there on.
+
+It's unclear if there are any lingering users of sa8775p-ride, but
+the platform we describe in sa8775p.dtsi doesn't exist anymore. To the
+best of my understanding, any users of the ride hardware should be on
+qcs9100-ride...
+
+Regards,
+Bjorn
 
