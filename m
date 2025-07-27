@@ -1,394 +1,581 @@
-Return-Path: <devicetree+bounces-200007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592CAB13185
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:20:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE198B13191
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:37:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48C687A57D4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:18:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47E8C3AD473
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9D22222C4;
-	Sun, 27 Jul 2025 19:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2312264BC;
+	Sun, 27 Jul 2025 19:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FRviUR+8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6LrkgeC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE6D21E0A8;
-	Sun, 27 Jul 2025 19:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2E2224892
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 19:37:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753643999; cv=none; b=OEzSPKAVVNB6a7oLtuSJsrdghi/tlJD9HRi1oGsXL91tFwW+5dlcVVojf+HNwFIvgHcZhki8sljt6XNU4h1KmVdJ3IVN0qBlT/8Y/S8XA8idfnFIz6qnbl+LEMZsRkz6naYiq+HYlJcCyg240K+IaomlboXZS7NN78zVfF8Zj/o=
+	t=1753645025; cv=none; b=tthATzarFqJSuN5um4FZKlHPBCkgCuuuhC7+WyYn4b6Yt9UDPnYf6IoRwJtPwouwa/vVHp9nMUtaCmhyQqDEEOtS0gnOCdLlebigOWYDoNHXFJiEyR/L6ilCWegyy96d16joabYgf33vT/iOPFvLbgt/xgXZGZZFZVorvjlZL4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753643999; c=relaxed/simple;
-	bh=ODQad/kLebqtWcgou3DFGpBib/gjsX4M3+AiroUgXOs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ljwZo6Djn36OFF/DmOpu6+sceWB14mKGZyKk06kY0ejHdBKLtTzKKlPQ5ADMX1FjMlDU6BgjLlhloae0edfhTWBkWorlZ3JQgSpto8tHLVHfH2tzU2q/so9eKoa16XcNM2L46hOqC7+2yJsfYdh+lLHumX4gyS/V2kZMJJAdvLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FRviUR+8; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753643998; x=1785179998;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ODQad/kLebqtWcgou3DFGpBib/gjsX4M3+AiroUgXOs=;
-  b=FRviUR+8bGTISj1QxV+JqdMHItlTPdKDfFcPs5G3ilGiXupsgVDUEAjY
-   vAOHPkSM/sTRJ2dedP2BQdnUWLd0WpzDXyoTwlR3SI1KT5mgZzwGgI6Sl
-   aEUtEqmVvNo1RWSvm9r0otA4wi9nHVyQcMY5iPtvepufvvcRYmwS+C3JK
-   IjguS845BrrUoZffosv/pZX6AAJusSJ7H/Vu8IqDSr9kU1/sq7taxWBq+
-   VqKHYPdyhQ/agzqE6wP5cAn8RHY0gFMp14acuYOhRrIOfT/WRaaFJzmVf
-   mG2vOzuPpKXZfS6VHO8k7FastxE6zSXP9G/ms8erY+gOTSiTf59Q6sNsP
-   w==;
-X-CSE-ConnectionGUID: /GPk1INoRFWR2vew0C/c5w==
-X-CSE-MsgGUID: wzrn8mrsS4elBsrxTIabhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="58518747"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
-   d="scan'208";a="58518747"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2025 12:19:57 -0700
-X-CSE-ConnectionGUID: Wlqgd4GMRi2rWUo+AG9GTw==
-X-CSE-MsgGUID: ftSqS2g5RKOKTsUxssggWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
-   d="scan'208";a="193215578"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.124])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jul 2025 12:19:53 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 821F111FAF5;
-	Sun, 27 Jul 2025 22:19:49 +0300 (EEST)
-Date: Sun, 27 Jul 2025 19:19:49 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>
-Cc: Cosmin Tanislav <cosmin.tanislav@analog.com>,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	s=arc-20240116; t=1753645025; c=relaxed/simple;
+	bh=pCQCdRmlqteGXO1dI3JhZJOwDdd/l/sBFMVSJ+tKS4c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M3HwNi5U0C8s+nTzt9ynj1tPkVpdM8I/53DDwL/M+DiIew8yueozDMsiWKRZ6eVWTc62oJv/f9/4jULFbEUYLvax9L+paQ2OphIs0hQ1Tr9h3q4RAeTdSooPTg5NXL8FxEQMzJ++3TsAyEb9/sCXzHXeEc4rFdESxvRAm+h/cwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6LrkgeC; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ae0bf1616b9so44306566b.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 12:37:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753645020; x=1754249820; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7y0vcHUdKY5HubRv6sWiVBOd/tgjmHnqruM1wM9dbQk=;
+        b=s6LrkgeC+hWkWa+ir8J+CtTAN+p4+uthXLN8vYGrG3a9reDJG3Ptzp+3pBtO22ky2B
+         Sgf4asUc5b1OkP7jk/+hPkGom30TBTou4ob1VoDj0TOt4weIAP1Edf8NCInGXaE2RVKi
+         PlAd0eMeC3YY8RVdT3DjGQPucJ7RNtVAyg+a5np9bcNZITOXE6PZmKzgMB16Ku4JIe+6
+         Y721bSWXIPMlnVehXY2tpud05in7hJ43C27iUX/pfjhfwaYvIq5D+TUuh0wgVX9eaeLv
+         EkMGoFCPVJRqu2VOGs0kryO6SQTk+qWKgjtjAeLW2wX1C4q1FfkBFUFwnTzJ+TAvOkOP
+         w3xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753645020; x=1754249820;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7y0vcHUdKY5HubRv6sWiVBOd/tgjmHnqruM1wM9dbQk=;
+        b=JsJkNcz47dMaNYDtzXGBwz4RypamEE8YkmzDkxRKIEeQD4Gr5f1I0ftrAYwG+YA8x0
+         lei+Nvhya9b5hT9d0PsFKv3RxEZFiMYUqIr28TNNqggO+dsVGlkA0+lTBYo67SzZ6Qac
+         Om2rPPREBUlrRvo6NEQYgTjtDdICrqAA5mx++tj7VaFGjs0cPFOZV+HlFlON4oBZmtFa
+         mphTEunqI6cnWibeK+MYOdjDNM+HXbeiOEbVdfIjptNBDh+h8VlLKX0YDint149UttxS
+         72p1pqgUVa+mKbFM0i4Sqr+5cn/+RinxaqrZ7Vhcke2b0ZY+6Inl5p9vOCZhuQucen7n
+         QrXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUoB68dpGaDMOvDdwNJHYhzhqc4aM+0v4iqwc9FYqMdIJNn489Ep1oYRSByKQ7bXX0M2B8g8KG6omR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8KIYGIoZXYMJkwmaw25dBogsxXnNBFhj5gojJKOAS3IgwirKc
+	g0J4TD2M7tJZDHT3IRPc41ip2JKYJqCMpEtxfyF5CrKYv2gPg5aoFR8fa3Kud4nJ5FU=
+X-Gm-Gg: ASbGncuNfwUODDGCZDJccmkjvfw5OAJzcf5Fw/lhrQPtW7Lwz9JQ3o76b6/cO1hxouu
+	oMMOYkKqf2VCV2DPrI7e/3n+bmmmqJlP0bsjVgyNN61CDt85MPwqMCdnfssRJZR+ErcDapG09jY
+	StDdzR8LpF3Hvyq5jOF4J7aPvuBXnZJoT/A+5+JW8lK1Z+gGLQreen/1YIgkLRRcCpP5liS0/Wh
+	LFNKhrX38s38aVpLr5QLeS0szEW85Pz4LmYoBbq1QoQzR2JV60xRUL4SNRhWbmvrpZ4AAifUorS
+	hUlCX0hI1UCX1BOiQ8lfoJB7zKtK7mFPPidb7c0+Ys7B4eXXSW7kCTVOuUfmMsTaOwO9oIk7pLI
+	AuWb+BvucyFZmP6dmAju0mj1HdzbMWqz+
+X-Google-Smtp-Source: AGHT+IGnsqbLYepeBQlMegx0Lp4dkyiztC6rJSiVSH/e1bfIWi3D25Q5CqLCNjtZas5rY3E0iHNbaQ==
+X-Received: by 2002:a17:907:9628:b0:ae3:cd73:efb9 with SMTP id a640c23a62f3a-af61d779f94mr388208866b.12.1753645020391;
+        Sun, 27 Jul 2025 12:37:00 -0700 (PDT)
+Received: from kuoka.. ([178.197.203.90])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af6358a1c23sm318267066b.51.2025.07.27.12.36.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Jul 2025 12:36:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	Julien Massot <julien.massot@collabora.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v7 14/24] dt-bindings: media: i2c: add MAX9296A,
- MAX96716A, MAX96792A
-Message-ID: <aIZ71TZM9wUGlGoU@kekkonen.localdomain>
-References: <20250718152500.2656391-1-demonsingur@gmail.com>
- <20250718152500.2656391-15-demonsingur@gmail.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8650: Sort nodes by unit address
+Date: Sun, 27 Jul 2025 21:36:53 +0200
+Message-ID: <20250727193652.4029-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250718152500.2656391-15-demonsingur@gmail.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11920; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=pCQCdRmlqteGXO1dI3JhZJOwDdd/l/sBFMVSJ+tKS4c=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBohn/U3EEL9lsA4gGgyw4soEmQ+T9mPFjc51imq
+ SGyybgk7lOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIZ/1AAKCRDBN2bmhouD
+ 178DD/4lZF18/08Yzvzw4qiqtSF/pGbR/jJj2qVZaM/GpMpRi+GufSA4BeTgMrFK7oxYRr0pc0S
+ 7TevAv373OoKlhYRsE8PNguNRvDwcfLrqPU5XbVcXS/nh0DLMpJMpMbrQRjl0OpcxBh+NpMXmsF
+ csL2DC9rs3f30DTHY4/S2+z+khXMyapTVf9I8pum+3uB6JFg/pYnxsYjKwSYFw2IMQm8YtxQNWH
+ vk7Bkq8q0PX9cpWz99MqNo2EL6jwa5DHh+W2rYcynAJVCEWunj3lKLzEi8x60DXykI6nXOZhCw3
+ kn4bv2LnE1LrNn29y6sTTAI9v+ZmcnhJuq+Rc3wl4DwkpoEIQsm6TNBk0DoWNU3AhShfA2QROHn
+ y11Vtzcv5x60DQYmYVZfK7ZkPseCuMR6YJvRDLjFui4z3hGkiK+qJYnd2of43LehvtjA498J0Mn
+ zO6K0ywoDSupG3yndZP5a0UasP11oeFm5XBoWVDFPi++ZDdXvQA8e0D+u0o1O9HwmhHXdMac29v
+ 2O72/lzLDFnhum7PL7np7WG/ftYI+i5JCLSYuqSoI1pMN5AMfzuGBTk7veCm1CZrRlyrN5HZBZR
+ 2MfSrK6AE1jY4NBgPtiOb3xkYHDaoLdM4TX9oDzSEwkQWHYrnicjEKeB87LNSzVJ7eeG71bg35F ZgD3tpNChMWjR4Q==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-Hi Cosmin,
+Qualcomm DTS uses sorting of MMIO nodes by the unit address, so move
+few nodes in SM8650 DTSI to fix that.
 
-On Fri, Jul 18, 2025 at 06:24:50PM +0300, Cosmin Tanislav wrote:
-> The MAX9296A deserializer converts single or dual serial inputs to MIPI
-> CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps or 6Gbps
-> in the forward direction and 187.5Mbps in the reverse direction.
-> In GMSL1 mode, each serial link can be paired with 3.12Gbps or 1.5Gbps
-> GMSL1 serializers or operate up to 4.5Gbps with GMSL2 serializers with
-> GMSL1 backward compatibility. The MAX9296A supports mixed GMSL2 and
-> GMSL1 links. The serial inputs operate independently, allowing videos
-> with different timings and resolutions to be received on each input.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 414 +++++++++++++--------------
+ 1 file changed, 207 insertions(+), 207 deletions(-)
 
-C-PHY or D-PHY? I'd assume the latter?
-
-> 
-> MAX96716A supports both tunnel and pixel mode.
-> MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
-> 
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/media/i2c/maxim,max9296a.yaml    | 242 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  2 files changed, 248 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> new file mode 100644
-> index 0000000000000..4f2b3b5b69cf4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> @@ -0,0 +1,242 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Collabora Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/maxim,max9296a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim MAX9296A GMSL2 to CSI-2 Deserializer
-> +
-> +maintainers:
-> +  - Cosmin Tanislav <cosmin.tanislav@analog.com>
-> +
-> +description: >
-> +  The MAX9296A deserializer converts single or dual serial inputs to
-> +  MIPI CSI-2 outputs. The GMSL2 links operate at a fixed rate of 3Gbps
-> +  or 6Gbps in the forward direction and 187.5Mbps in the reverse
-> +  direction. In GMSL1 mode, each serial link can be paired with 3.12Gbps
-> +  or 1.5Gbps GMSL1 serializers or operate up to 4.5Gbps with GMSL2
-> +  serializers with GMSL1 backward compatibility. The MAX9296A supports
-> +  mixed GMSL2 and GMSL1 links. The serial inputs operate independently,
-> +  allowing videos with different timings and resolutions to be received
-> +  on each input.
-> +
-> +  MAX96716A supports both tunnel and pixel mode.
-> +
-> +  MAX96792A supports both tunnel and pixel mode, and has two GMSL3 links.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max9296a
-> +      - maxim,max96716a
-> +      - maxim,max96792a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: Specifier for the GPIO connected to the PWDNB pin.
-> +
-> +  port0-poc-supply:
-> +    description: Regulator providing Power over Coax for GMSL port 0
-> +
-> +  port1-poc-supply:
-> +    description: Regulator providing Power over Coax for GMSL port 1
-> +
-> +  i2c-alias-pool:
-> +    maxItems: 2
-> +
-> +  i2c-atr:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^i2c@[0-1]$':
-> +        $ref: /schemas/i2c/i2c-controller.yaml#
-> +        unevaluatedProperties: false
-> +        properties:
-> +          reg:
-> +            items:
-> +              minimum: 0
-> +              maximum: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    patternProperties:
-> +      '^port@[0-1]$':
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: GMSL Input ports 0-1
-> +
-> +      '^port@[2-3]$':
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Output ports 0-1
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              lane-polarities:
-> +                minItems: 1
-
-With D-PHY, 2 is the minimum.
-
-> +                maxItems: 5
-> +
-> +              link-frequencies:
-> +                maxItems: 1
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +    anyOf:
-> +      - required:
-> +          - port@2
-> +      - required:
-> +          - port@3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-atr.yaml#
-> +
-> +dependentRequired:
-> +  i2c-atr: [i2c-alias-pool]
-> +  i2c-alias-pool: [i2c-atr]
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        deserializer@28 {
-> +            compatible = "maxim,max9296a";
-> +            reg = <0x28>;
-> +            powerdown-gpios = <&main_gpio0 37 GPIO_ACTIVE_LOW>;
-> +
-> +            i2c-alias-pool = <0x40 0x41>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    des_gmsl_in_0: endpoint {
-> +                        remote-endpoint = <&ser_0_gmsl_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                    reg = <1>;
-> +                    des_gmsl_in_1: endpoint {
-> +                        remote-endpoint = <&ser_1_gmsl_out>;
-> +                    };
-> +                };
-> +
-> +                port@2 {
-> +                    reg = <2>;
-> +                    des_csi_out: endpoint {
-> +                        data-lanes = <1 2 3 4>;
-> +                        link-frequencies = /bits/ 64 <400000000>;
-> +                        remote-endpoint = <&csi_in>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            i2c-atr {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                i2c@0 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    reg = <0>;
-> +
-> +                    serializer@40 {
-> +                        compatible = "maxim,max96717", "maxim,max96717f";
-> +                        reg = <0x40>;
-> +                        gpio-controller;
-> +                        #gpio-cells = <2>;
-> +                        #clock-cells = <0>;
-> +
-> +                        ports {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            port@0 {
-> +                                reg = <0>;
-> +                                ser_0_csi_in: endpoint {
-> +                                    data-lanes = <1 2>;
-> +                                    remote-endpoint = <&sensor_0_out>;
-> +                                };
-> +                            };
-> +
-> +                            port@1 {
-> +                                reg = <1>;
-> +                                ser_0_gmsl_out: endpoint {
-> +                                    remote-endpoint = <&des_gmsl_in_0>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +
-> +                i2c@1 {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    reg = <1>;
-> +
-> +                    serializer@40 {
-> +                        compatible = "maxim,max96717", "maxim,max96717f";
-> +                        reg = <0x40>;
-> +                        gpio-controller;
-> +                        #gpio-cells = <2>;
-> +                        #clock-cells = <0>;
-> +
-> +                        ports {
-> +                            #address-cells = <1>;
-> +                            #size-cells = <0>;
-> +
-> +                            port@0 {
-> +                                reg = <0>;
-> +                                ser_1_csi_in: endpoint {
-> +                                    data-lanes = <1 2>;
-> +                                    remote-endpoint = <&sensor_1_out>;
-> +                                };
-> +                            };
-> +
-> +                            port@1 {
-> +                                reg = <1>;
-> +                                ser_1_gmsl_out: endpoint {
-> +                                    remote-endpoint = <&des_gmsl_in_1>;
-> +                                };
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 93e22dfd61c17..0eb1729ae1647 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14783,6 +14783,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/iio/proximity/maxbotix,mb1232.yaml
->  F:	drivers/iio/proximity/mb1232.c
->  
-> +MAXIM GMSL2/3 SERIALIZERS AND DESERIALIZERS
-> +M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/maxim,max9296a.yaml
-> +
->  MAXIM MAX11205 DRIVER
->  M:	Ramona Bolboaca <ramona.bolboaca@analog.com>
->  L:	linux-iio@vger.kernel.org
-
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index e14d3d778b71..2360d560dc86 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -3490,6 +3490,11 @@ &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
+ 			};
+ 		};
+ 
++		rng: rng@10c3000 {
++			compatible = "qcom,sm8650-trng", "qcom,trng";
++			reg = <0 0x010c3000 0 0x1000>;
++		};
++
+ 		cnoc_main: interconnect@1500000 {
+ 			compatible = "qcom,sm8650-cnoc-main";
+ 			reg = <0 0x01500000 0 0x14080>;
+@@ -3561,11 +3566,6 @@ mmss_noc: interconnect@1780000 {
+ 			#interconnect-cells = <2>;
+ 		};
+ 
+-		rng: rng@10c3000 {
+-			compatible = "qcom,sm8650-trng", "qcom,trng";
+-			reg = <0 0x010c3000 0 0x1000>;
+-		};
+-
+ 		pcie0: pcie@1c00000 {
+ 			device_type = "pci";
+ 			compatible = "qcom,pcie-sm8650", "qcom,pcie-sm8550";
+@@ -3926,38 +3926,6 @@ pcie1_phy: phy@1c0e000 {
+ 			status = "disabled";
+ 		};
+ 
+-		cryptobam: dma-controller@1dc4000 {
+-			compatible = "qcom,bam-v1.7.0";
+-			reg = <0 0x01dc4000 0 0x28000>;
+-
+-			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>;
+-
+-			#dma-cells = <1>;
+-
+-			iommus = <&apps_smmu 0x480 0>,
+-				 <&apps_smmu 0x481 0>;
+-
+-			qcom,ee = <0>;
+-			qcom,num-ees = <4>;
+-			num-channels = <20>;
+-			qcom,controlled-remotely;
+-		};
+-
+-		crypto: crypto@1dfa000 {
+-			compatible = "qcom,sm8650-qce", "qcom,sm8150-qce", "qcom,qce";
+-			reg = <0 0x01dfa000 0 0x6000>;
+-
+-			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
+-					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+-			interconnect-names = "memory";
+-
+-			dmas = <&cryptobam 4>, <&cryptobam 5>;
+-			dma-names = "rx", "tx";
+-
+-			iommus = <&apps_smmu 0x480 0>,
+-				 <&apps_smmu 0x481 0>;
+-		};
+-
+ 		ufs_mem_phy: phy@1d80000 {
+ 			compatible = "qcom,sm8650-qmp-ufs-phy";
+ 			reg = <0 0x01d80000 0 0x2000>;
+@@ -4079,6 +4047,38 @@ ice: crypto@1d88000 {
+ 			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+ 		};
+ 
++		cryptobam: dma-controller@1dc4000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0 0x01dc4000 0 0x28000>;
++
++			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>;
++
++			#dma-cells = <1>;
++
++			iommus = <&apps_smmu 0x480 0>,
++				 <&apps_smmu 0x481 0>;
++
++			qcom,ee = <0>;
++			qcom,num-ees = <4>;
++			num-channels = <20>;
++			qcom,controlled-remotely;
++		};
++
++		crypto: crypto@1dfa000 {
++			compatible = "qcom,sm8650-qce", "qcom,sm8150-qce", "qcom,qce";
++			reg = <0 0x01dfa000 0 0x6000>;
++
++			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "memory";
++
++			dmas = <&cryptobam 4>, <&cryptobam 5>;
++			dma-names = "rx", "tx";
++
++			iommus = <&apps_smmu 0x480 0>,
++				 <&apps_smmu 0x481 0>;
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0 0x01f40000 0 0x20000>;
+@@ -4962,6 +4962,176 @@ opp-202000000 {
+ 			};
+ 		};
+ 
++		usb_1_hsphy: phy@88e3000 {
++			compatible = "qcom,sm8650-snps-eusb2-phy",
++				     "qcom,sm8550-snps-eusb2-phy";
++			reg = <0 0x088e3000 0 0x154>;
++
++			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
++			clock-names = "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
++
++			#phy-cells = <0>;
++
++			status = "disabled";
++		};
++
++		usb_dp_qmpphy: phy@88e8000 {
++			compatible = "qcom,sm8650-qmp-usb3-dp-phy";
++			reg = <0 0x088e8000 0 0x3000>;
++
++			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
++				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
++			clock-names = "aux",
++				      "ref",
++				      "com_aux",
++				      "usb3_pipe";
++
++			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
++				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
++			reset-names = "phy",
++				      "common";
++
++			power-domains = <&gcc USB3_PHY_GDSC>;
++
++			#clock-cells = <1>;
++			#phy-cells = <1>;
++
++			orientation-switch;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usb_dp_qmpphy_out: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usb_dp_qmpphy_usb_ss_in: endpoint {
++						remote-endpoint = <&usb_1_dwc3_ss>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					usb_dp_qmpphy_dp_in: endpoint {
++						remote-endpoint = <&mdss_dp0_out>;
++					};
++				};
++			};
++		};
++
++		usb_1: usb@a6f8800 {
++			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
++			reg = <0 0x0a6f8800 0 0x400>;
++
++			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
++					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>,
++					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
++					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
++					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
++					  "dp_hs_phy_irq",
++					  "dm_hs_phy_irq",
++					  "ss_phy_irq";
++
++			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
++				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
++				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
++				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
++				 <&tcsr TCSR_USB3_CLKREF_EN>;
++			clock-names = "cfg_noc",
++				      "core",
++				      "iface",
++				      "sleep",
++				      "mock_utmi",
++				      "xo";
++
++			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
++					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
++			assigned-clock-rates = <19200000>, <200000000>;
++
++			resets = <&gcc GCC_USB30_PRIM_BCR>;
++
++			interconnects = <&aggre1_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_USB3_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
++			interconnect-names = "usb-ddr",
++					     "apps-usb";
++
++			power-domains = <&gcc USB30_PRIM_GDSC>;
++			required-opps = <&rpmhpd_opp_nom>;
++
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			status = "disabled";
++
++			usb_1_dwc3: usb@a600000 {
++				compatible = "snps,dwc3";
++				reg = <0 0x0a600000 0 0xcd00>;
++
++				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>;
++
++				iommus = <&apps_smmu 0x40 0>;
++
++				phys = <&usb_1_hsphy>,
++				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
++				phy-names = "usb2-phy",
++					    "usb3-phy";
++
++				snps,hird-threshold = /bits/ 8 <0x0>;
++				snps,usb2-gadget-lpm-disable;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_enblslpm_quirk;
++				snps,dis-u1-entry-quirk;
++				snps,dis-u2-entry-quirk;
++				snps,is-utmi-l1-suspend;
++				snps,usb3_lpm_capable;
++				snps,usb2-lpm-disable;
++				snps,has-lpm-erratum;
++				tx-fifo-resize;
++
++				dma-coherent;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						usb_1_dwc3_hs: endpoint {
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						usb_1_dwc3_ss: endpoint {
++							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
++						};
++					};
++				};
++			};
++		};
++
+ 		iris: video-codec@aa00000 {
+ 			compatible = "qcom,sm8650-iris";
+ 			reg = <0 0x0aa00000 0 0xf0000>;
+@@ -5580,176 +5750,6 @@ dispcc: clock-controller@af00000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
+-		usb_1_hsphy: phy@88e3000 {
+-			compatible = "qcom,sm8650-snps-eusb2-phy",
+-				     "qcom,sm8550-snps-eusb2-phy";
+-			reg = <0 0x088e3000 0 0x154>;
+-
+-			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
+-			clock-names = "ref";
+-
+-			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+-
+-			#phy-cells = <0>;
+-
+-			status = "disabled";
+-		};
+-
+-		usb_dp_qmpphy: phy@88e8000 {
+-			compatible = "qcom,sm8650-qmp-usb3-dp-phy";
+-			reg = <0 0x088e8000 0 0x3000>;
+-
+-			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+-				 <&rpmhcc RPMH_CXO_CLK>,
+-				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+-				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+-			clock-names = "aux",
+-				      "ref",
+-				      "com_aux",
+-				      "usb3_pipe";
+-
+-			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+-				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+-			reset-names = "phy",
+-				      "common";
+-
+-			power-domains = <&gcc USB3_PHY_GDSC>;
+-
+-			#clock-cells = <1>;
+-			#phy-cells = <1>;
+-
+-			orientation-switch;
+-
+-			status = "disabled";
+-
+-			ports {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+-				port@0 {
+-					reg = <0>;
+-
+-					usb_dp_qmpphy_out: endpoint {
+-					};
+-				};
+-
+-				port@1 {
+-					reg = <1>;
+-
+-					usb_dp_qmpphy_usb_ss_in: endpoint {
+-						remote-endpoint = <&usb_1_dwc3_ss>;
+-					};
+-				};
+-
+-				port@2 {
+-					reg = <2>;
+-
+-					usb_dp_qmpphy_dp_in: endpoint {
+-						remote-endpoint = <&mdss_dp0_out>;
+-					};
+-				};
+-			};
+-		};
+-
+-		usb_1: usb@a6f8800 {
+-			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
+-			reg = <0 0x0a6f8800 0 0x400>;
+-
+-			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
+-					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>,
+-					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
+-					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
+-					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "pwr_event",
+-					  "hs_phy_irq",
+-					  "dp_hs_phy_irq",
+-					  "dm_hs_phy_irq",
+-					  "ss_phy_irq";
+-
+-			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+-				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+-				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
+-				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+-				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+-				 <&tcsr TCSR_USB3_CLKREF_EN>;
+-			clock-names = "cfg_noc",
+-				      "core",
+-				      "iface",
+-				      "sleep",
+-				      "mock_utmi",
+-				      "xo";
+-
+-			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+-					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
+-			assigned-clock-rates = <19200000>, <200000000>;
+-
+-			resets = <&gcc GCC_USB30_PRIM_BCR>;
+-
+-			interconnects = <&aggre1_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
+-					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+-					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+-					 &config_noc SLAVE_USB3_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
+-			interconnect-names = "usb-ddr",
+-					     "apps-usb";
+-
+-			power-domains = <&gcc USB30_PRIM_GDSC>;
+-			required-opps = <&rpmhpd_opp_nom>;
+-
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			status = "disabled";
+-
+-			usb_1_dwc3: usb@a600000 {
+-				compatible = "snps,dwc3";
+-				reg = <0 0x0a600000 0 0xcd00>;
+-
+-				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>;
+-
+-				iommus = <&apps_smmu 0x40 0>;
+-
+-				phys = <&usb_1_hsphy>,
+-				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
+-				phy-names = "usb2-phy",
+-					    "usb3-phy";
+-
+-				snps,hird-threshold = /bits/ 8 <0x0>;
+-				snps,usb2-gadget-lpm-disable;
+-				snps,dis_u2_susphy_quirk;
+-				snps,dis_enblslpm_quirk;
+-				snps,dis-u1-entry-quirk;
+-				snps,dis-u2-entry-quirk;
+-				snps,is-utmi-l1-suspend;
+-				snps,usb3_lpm_capable;
+-				snps,usb2-lpm-disable;
+-				snps,has-lpm-erratum;
+-				tx-fifo-resize;
+-
+-				dma-coherent;
+-
+-				ports {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					port@0 {
+-						reg = <0>;
+-
+-						usb_1_dwc3_hs: endpoint {
+-						};
+-					};
+-
+-					port@1 {
+-						reg = <1>;
+-
+-						usb_1_dwc3_ss: endpoint {
+-							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
+-						};
+-					};
+-				};
+-			};
+-		};
+-
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sm8650-pdc", "qcom,pdc";
+ 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
 -- 
-Kind regards,
+2.48.1
 
-Sakari Ailus
 
