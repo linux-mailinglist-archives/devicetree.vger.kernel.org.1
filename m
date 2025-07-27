@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-199923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2683B12EA0
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 10:32:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317DDB12EA5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 10:32:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218C73A9442
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 08:31:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C19D172ED9
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 08:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8A91F4C85;
-	Sun, 27 Jul 2025 08:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4FF1FF60A;
+	Sun, 27 Jul 2025 08:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R9yhgxtj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HPefPEc/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B4B1F0E26
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:31:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915101FE45D
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753605118; cv=none; b=hpKrCNIaXKIwTGqCRfxBxzHsVJGgzHu7q3CRMNrNvD3tub7X/fj0flyzLKoKgr5cPytvUMCGA25WT2SkcXPazvzpkVe+bMFhNQV2SHqQHmsEEBY+jF9mu7mYZcIf79E1YncndxXPT8IyapSF4mgqLfUVpKJuzXN4bKAxK9yiBcc=
+	t=1753605124; cv=none; b=Pufs2RmgemVph5yraQmEn9JhDgTXFbGmO/vI62Heb6ygC5hoLMx0L23ARObGTTFFvUtSIL/si4jZZoplGA7ZJEVgHFZ/95aH/PDKQOqsDBLry8exB51AEn883KXj+xFGruIqAPMhdqDPbcApCctJogU257cj+s2sz+c+PzQVP1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753605118; c=relaxed/simple;
-	bh=KS66tluy4UNZlmHCFuA1cw30RD0JWLP8MtnyXo+u9GA=;
+	s=arc-20240116; t=1753605124; c=relaxed/simple;
+	bh=+9bKbsOHOv6HUfFTojTu52PpIyeGZIM2BjFmGx8IJRQ=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pJxmRomLy3e9HPAFKiHP5srjzemg62I/PDwnHmOqeTIoC0lB9Yws5EnB6iEl2X1ZNlO+P1M2LCMFxU5FX4kQYEj/B7NrKJlpjGJ7viYa0UY9Dt2RKAaeRxVKQy3nF7KI9NcE/+mkxAB2Cpkv2OW0NDG++OmTd4DW6o5HOv2pvcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R9yhgxtj; arc=none smtp.client-ip=205.220.168.131
+	 MIME-Version; b=sf/OEGaOpIlOyQfNC5wUXn2sU/dzbLdyH+o4Mf+WEEAS4L44oTTZRaEnOAIwQi9AX6YeGffsz3u+EufJQjPnHDMNXJcJD+hkleioV5EuRpcP7mbxrcnRyvPs+CUvcI6eFbQ/D/xI4xjmf7cP/pyg9g8fxr//hTx9U1FsD/cMAww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HPefPEc/; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56R5o26S006375
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:31:56 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56R5FGxT017700
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:32:01 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=cMKigYxoZi3
-	tizeIAUWIbs/u9lcIMeC06tjZsjaEh/w=; b=R9yhgxtj8p2SJHFnhQziYYWVcu5
-	Tg1pBXHiHwN+ScVb4Gt85ZZzCx0WU+ujkY9l31oWNucuo5htmwIzDLBKaM7H26Rm
-	lmsKKxLmpvp/161Ug5RQ+ONdqi1PncV+fhwKQMTLoBp2gaKH3LTMEZ2fmU2WrnOt
-	+BOVXn/F9f3yhGfNLiloE++IRbcXdPPnh7Za5XrnABtSst6CEYoJ/BtNRPWA3/t/
-	I/CVBlkID9fJSR60wKqcdKkzjsMGId8cqiWXEOIF9AVXZHmuxa+r+d5LlRdIaQJk
-	m9Hcd+m2TjnnOhzHRuI/rj2LXavl2eblxcYXy3/VJnMsISdxiKSeFPvaEMA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qhs9w-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=RZd0XO7FU/P
+	/QgQIeS4PXIVz6WnhkQsNSg2RESxcNiY=; b=HPefPEc/95TVL6F6Rrg5jVJV650
+	g1MwDGN3Sm/N+vLf0WpA4ttQrZfQ5trD8GZpqnLCsIqidja9jq/oB9bJ4K/SiD7x
+	tCxeUwKep3XEZ/tkF9+Mm0tX/KULxpo6xWUkTE4OJucVhJh6HF54arRLkhVSE0V9
+	O0fZfGOO4iYv8uTUMFUby1ImZ+XFXYAnSYbeTo1HQxOZN9G4P125guG7YLebzZCz
+	0pi7JCfCilCXUI0rHbISq6Rq0A0+7d1iavroPvRYwhlNnNCqQf38roprCUTqdcQP
+	4ElAr6B+6BttW2hhAe1OlgDjQ9cojkSiW4yyGetX9FiXVR5GNSq63vMyB4Q==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484pm29v1w-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:31:56 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-23ff7d61fb7so2922685ad.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 01:31:56 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 08:32:01 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2400499ab2fso2189745ad.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 01:32:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753605115; x=1754209915;
+        d=1e100.net; s=20230601; t=1753605120; x=1754209920;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cMKigYxoZi3tizeIAUWIbs/u9lcIMeC06tjZsjaEh/w=;
-        b=Hnvi4mvTwmv/8lkScuezRE5cM5U4t9I3rgHTWjw7lupV1nMQXv1T+svM71HGW0IctZ
-         mV8gYXydz5lxcpuiLtgRvO23MKftwRe0H2lm3ZGgTjrtebFnNtwCqRfydY+6ulikN6+d
-         FTyba4rQfPgY+va8gm8wcGWd9sFnoV610xQmuDXKDo8iGCQoxCtS7bc2+4+SaAIzC7oM
-         L/+laahkSv/j+sP3m6HNxCblSihm+Hp3MUGnzx5lY0nS0+rDG3xmBgy0/dGTmz8Bntmr
-         /f1KTTOixgONUBbqHu04iIwP2jbE0wsXhy7mjSLO7h7dSdNsI3wByV7vAiWqMpt/YrqI
-         a0Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCUnTxo/HRsN+e80DjlUvu9FyU6x1Q0ndbPXO9MkWmi4XwshNEIB2zyNaB1l6mkMnvzf8Y7cVGj2WFOI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9Eqh2aU1I9Nyrz9dU0zoe3kEptKvMy9ZXKsC5YTrQ2sy/tfxQ
-	c+J1qGGQB9cliXNZbSvb0DIChzx0geNktvd+wPMpD0ntC3TwgVG+ePGVCsWnWRJfRDpuzyKQWmH
-	JI4jSJSIiRlB+RtI+w91mk4QHy79SJzcBWHyagdacfvxafS65Yu7GLhqs432YLYLi
-X-Gm-Gg: ASbGnctus5DnZphM6x05NjfOst3oiw947UamHVJ2I/4n4U9RHGc04vyP3dzxgJ4QLJ1
-	oxMgpZ7Um5ih5kxrpTGZ168/rCm3JsaqbDhP1E1LvE5d53S5kY0djaV1WVNrQLuvYE1VuAWoo4k
-	QKG/PWNGAQrGzeLHbz4JSY4OFsOcJ1gnVU3lzMj4tSuOaGbmXDPujMAGtC4Y8WkJinXItU0gN7e
-	vN815GZNe/O30Tt6FyMuLL8xJoUdh8N0GrMIiQfCFPmbNUzk20ETw7V6CSBUcUNoda0DnZQ3oci
-	1VNsphqeSI6dy4qWDx7zt5AItJ73+0puKvLeyghziTduCoTtZXKzkn+lO9TbqfbTGbwMHyCHCdY
-	w
-X-Received: by 2002:a17:903:1cb:b0:231:9817:6ec1 with SMTP id d9443c01a7336-23fb2b9994dmr119238245ad.17.1753605115069;
-        Sun, 27 Jul 2025 01:31:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHQLeWWGe0S+6T/div3h9wg1voIC4vD+r6Hk3Ex4qK4VN/YEmTNOdFlLef3X4nDqrDugTV+ZA==
-X-Received: by 2002:a17:903:1cb:b0:231:9817:6ec1 with SMTP id d9443c01a7336-23fb2b9994dmr119237915ad.17.1753605114619;
-        Sun, 27 Jul 2025 01:31:54 -0700 (PDT)
+        bh=RZd0XO7FU/P/QgQIeS4PXIVz6WnhkQsNSg2RESxcNiY=;
+        b=A/nU/GO9xW8YH8Uxikh7CGM0e0LSCMOpStARpqqPqhOJBCb4CF+BJk1pP5k5yzPyYd
+         jawJXu9CeQ2kmrx0GusTbzFPCjzhLTJeJEMV34F/mSNo95wI0sklgC4fSTj7OLaZl3+J
+         zZP7WiX+4f44i35xhJnj2qdJLTBcqnPQrDuwvLCA9QNc9PSJeFHjioqS2HglPGil1ZlL
+         0ceBg5rd08SNthsjf0KyAy/xT7ye22cmfkzOwsBZu4205HT2UfehJLZ6o1TI+SYjsQKu
+         VTlOoDgymboJJc3ZE+/GEBiHUUbS7bicdzZvL8AQQebEPOKZ1SQ1BKcTl3/20xolYNHs
+         sEhw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDrTnq6mewnqs07CDvzo7x9egiKo44DckETXhKfNRYvHNbdGn5fJoBX1PA29o3Vhbgkb/pnyzQEFnL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYeyhYt/4MeRrVqW/zw6p6K1JEz+v3Jl5tcArqb8eb8qeYzXF8
+	hZGno4Vl439wZ4piDAQXsl5P7WR8BA1H63i3EVTp4ijXmAuIJf0mG6yieqPPzyvsikcsDEulWNb
+	Yn+7eJhJqlLb0C13YfEiv0gPCT7tD9P5UbDZ99VBHeNsNvb8FfN9nhFAvBGeIByg/
+X-Gm-Gg: ASbGncsZsjMUkpJhK380aNr7OgYFpevWV7jsYpA2Ia+BeA329ap2scbdyEuCQyxWB/V
+	Nudzd1n9G933Ah7X+9Jp7gHEHkdejAw7Cn5T6Dci/F9MmirTcp4zuRFK13VlItF3TEWtMWpXqqD
+	h3aupTd0VnBCy2K/04kM7lfRPTLxtbuVF9tGwKBGwqumDIojDzBP+B4eysfmkRMDmowBKCGRuED
+	cKxSbGv/qNOzk0LEXYF7OHIpwBAglnl1TqVb2yzW4gpohOXMj+1TKdPvVvABt8FKdamrGLbB1Bd
+	X2PYqdlIUuy4Fx4D3PDTTpXZspLjI630AWPs0RVAqNo86IR9UG2VAzkTK194UeLk1dxza69wLEL
+	G
+X-Received: by 2002:a17:902:fc8d:b0:23f:fa7c:7129 with SMTP id d9443c01a7336-23ffa7c7345mr26119165ad.25.1753605119923;
+        Sun, 27 Jul 2025 01:31:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYL40jaLo95RgGHJ+Xssx0AAZaURi7P8YVF5vPE2C+sA20mi+8Arqz6EQswYNjlnFFzFdgKg==
+X-Received: by 2002:a17:902:fc8d:b0:23f:fa7c:7129 with SMTP id d9443c01a7336-23ffa7c7345mr26118815ad.25.1753605119458;
+        Sun, 27 Jul 2025 01:31:59 -0700 (PDT)
 Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2401866c2c3sm2848645ad.30.2025.07.27.01.31.50
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2401866c2c3sm2848645ad.30.2025.07.27.01.31.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 01:31:54 -0700 (PDT)
+        Sun, 27 Jul 2025 01:31:59 -0700 (PDT)
 From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -93,9 +93,9 @@ Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
         kernel@oss.qualcomm.com
-Subject: [PATCH v3 2/3] ASoC: codecs: wsa883x: Add devm action to safely disable regulator on device removal
-Date: Sun, 27 Jul 2025 14:01:16 +0530
-Message-Id: <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Subject: [PATCH v3 3/3] ASoC: codecs: wsa883x: Handle shared reset GPIO for WSA883x speakers
+Date: Sun, 27 Jul 2025 14:01:17 +0530
+Message-Id: <20250727083117.2415725-4-mohammad.rafi.shaik@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
 References: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
@@ -106,128 +106,133 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDA3MCBTYWx0ZWRfX2rxJieXMDM8k
- Mkftp8LSmaCHC+osLQn0KFxx6p/3jmi5+avKQ0leahvxUWFYdcywQSKUnyEo1dRISZ+U9CisB9i
- apLsKQ/FwlQ1E+HJSdAv44YeW5sO6KfW6stldxSfSkYhcTrGlPvfTObKtUPusK3EfYOTSj9JRZI
- py0dPsQf0K1YJWhgBizY7Jdh7nt1gO+jKXSnpSn1FzRAORqHyGeF8Qy0MDVJ8Lewb/iBmmSwXZc
- P+pJkU8zic4avdyfC/OrhCqc4MvesFecgmjpGI0nE6TVdebsOqqJk2Xb5WRVPEnYqpEr9BtryDW
- AyPTp0pzq75kGagwiyv2YiQg+r4fHeEJasdqJQtlHdO7DIhAKE1EbX8bzCkpEWOQvurn709Od1P
- IVgZblppiZkv4hJGny9hvMpJUwYZmfevw00j77rJLKbzeJd0vVKy1mszo+oNOGLfMALUep/s
-X-Proofpoint-ORIG-GUID: Jllejd0sDKw8TM48cIirblGdRGrGuq1P
-X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=6885e3fc cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=Jm80cirAj_4qYY6Vn38A:9
- a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: Jllejd0sDKw8TM48cIirblGdRGrGuq1P
+X-Proofpoint-GUID: 8bZJrmZA5AVxUEU8q5L1k3-U6aP03cxT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDA3MyBTYWx0ZWRfXz4x6NZm7eE3/
+ w7RMyeN16EvwiuZp7HVijratZEU0YKM7BXTOz+NJAhAxk01GBz9hHnJiD+JRR7evpL9MMdQbdPk
+ l00Fug8iD7sd1e6kn7OKQbbHBNefFLq5q/AusVNTqH95yj/TPMvTEXGOhnpMmFS/9b/BlxbK9cy
+ Gxyd9u/4Jw2UD8e15ZsuOshKPkVSr6Jy3HEDQftOhUInR1mW+vppPbymEFRq3/ucro/2D139V3J
+ ZdYFzzntEyN4C/XMNSjEE5VFKeRxKfpgvXSqb5FxjHxxdxj0rO6tkisWnxlXJ3n0n9iIidT/yBs
+ ZesvtXGkDhxiboOyR9FDA7ZfE5UK02ZKCBZyKFB5CtUJaT+zT60os4Kyh3d8tfh9MK2avSLTpYm
+ h7qH9QN/JtsQRoQBQfovL3AmYTm52vjhzMw14Lo2Eql1PDCmTuPMTDwC8UpooWibUzDxNaLD
+X-Authority-Analysis: v=2.4 cv=HfYUTjE8 c=1 sm=1 tr=0 ts=6885e401 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=pGReym1pqKqKmaA-xlUA:9
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: 8bZJrmZA5AVxUEU8q5L1k3-U6aP03cxT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-27_03,2025-07-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- spamscore=0 mlxlogscore=984 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507270070
+ mlxscore=0 clxscore=1015 bulkscore=0 suspectscore=0 impostorscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507270073
 
-To prevent potential warnings from _regulator_put() during device
-removal, register a devm-managed cleanup action using
-devm_add_action_or_reset() to safely disable the regulator
-associated with the WSA883x codec, ensuring that the regulator
-is properly disabled when the device is removed, even if the
-probe fails or the driver is unloaded unexpectedly.
+On some Qualcomm platforms such as QCS6490-RB3Gen2, the multiple
+WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
+To handle such cases, use the reset controller framework along
+with the "reset-gpio" driver.
 
 Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 ---
- sound/soc/codecs/wsa883x.c | 44 ++++++++++++++++++++++----------------
- 1 file changed, 25 insertions(+), 19 deletions(-)
+ sound/soc/codecs/wsa883x.c | 55 +++++++++++++++++++++++++++++++++-----
+ 1 file changed, 49 insertions(+), 6 deletions(-)
 
 diff --git a/sound/soc/codecs/wsa883x.c b/sound/soc/codecs/wsa883x.c
-index 188363b03b93..d5bc71b28a3a 100644
+index d5bc71b28a3a..0acf111f9583 100644
 --- a/sound/soc/codecs/wsa883x.c
 +++ b/sound/soc/codecs/wsa883x.c
-@@ -14,6 +14,7 @@
- #include <linux/printk.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/soundwire/sdw.h>
- #include <linux/soundwire/sdw_registers.h>
-@@ -1546,6 +1547,13 @@ static const struct hwmon_chip_info wsa883x_hwmon_chip_info = {
+@@ -469,6 +469,7 @@ struct wsa883x_priv {
+ 	struct sdw_stream_runtime *sruntime;
+ 	struct sdw_port_config port_config[WSA883X_MAX_SWR_PORTS];
+ 	struct gpio_desc *sd_n;
++	struct reset_control *sd_reset;
+ 	bool port_prepared[WSA883X_MAX_SWR_PORTS];
+ 	bool port_enable[WSA883X_MAX_SWR_PORTS];
+ 	int active_ports;
+@@ -1547,6 +1548,24 @@ static const struct hwmon_chip_info wsa883x_hwmon_chip_info = {
  	.info	= wsa883x_hwmon_info,
  };
  
-+static void wsa883x_regulator_disable(void *data)
++static void wsa883x_reset_assert(void *data)
 +{
 +	struct wsa883x_priv *wsa883x = data;
 +
-+	regulator_disable(wsa883x->vdd);
++	if (wsa883x->sd_reset)
++		reset_control_assert(wsa883x->sd_reset);
++	else
++		gpiod_direction_output(wsa883x->sd_n, 1);
++}
++
++static void wsa883x_reset_deassert(struct wsa883x_priv *wsa883x)
++{
++	if (wsa883x->sd_reset)
++		reset_control_deassert(wsa883x->sd_reset);
++	else
++		gpiod_direction_output(wsa883x->sd_n, 0);
++}
++
+ static void wsa883x_regulator_disable(void *data)
+ {
+ 	struct wsa883x_priv *wsa883x = data;
+@@ -1554,6 +1573,28 @@ static void wsa883x_regulator_disable(void *data)
+ 	regulator_disable(wsa883x->vdd);
+ }
+ 
++static int wsa883x_get_reset(struct device *dev, struct wsa883x_priv *wsa883x)
++{
++	wsa883x->sd_reset = devm_reset_control_get_optional_shared_deasserted(dev, NULL);
++	if (IS_ERR(wsa883x->sd_reset))
++		return dev_err_probe(dev, PTR_ERR(wsa883x->sd_reset),
++				     "Failed to get reset\n");
++	/*
++	 * if sd_reset: NULL, so use the backwards compatible way for powerdown-gpios,
++	 * which does not handle sharing GPIO properly.
++	 */
++	if (!wsa883x->sd_reset) {
++		wsa883x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
++							GPIOD_FLAGS_BIT_NONEXCLUSIVE |
++							GPIOD_OUT_HIGH);
++		if (IS_ERR(wsa883x->sd_n))
++			return dev_err_probe(dev, PTR_ERR(wsa883x->sd_n),
++					     "Shutdown Control GPIO not found\n");
++	}
++
++	return 0;
 +}
 +
  static int wsa883x_probe(struct sdw_slave *pdev,
  			 const struct sdw_device_id *id)
  {
-@@ -1566,13 +1574,20 @@ static int wsa883x_probe(struct sdw_slave *pdev,
+@@ -1583,11 +1624,9 @@ static int wsa883x_probe(struct sdw_slave *pdev,
  	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to enable vdd regulator\n");
+ 		return ret;
  
-+	/*
-+	 * Register devm action to safely disable the regulator on device removal.
-+	 * This prevents a potential release warning from _regulator_put().
-+	 */
-+	ret = devm_add_action_or_reset(dev, wsa883x_regulator_disable,
-+				       wsa883x);
+-	wsa883x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
+-						GPIOD_FLAGS_BIT_NONEXCLUSIVE | GPIOD_OUT_HIGH);
+-	if (IS_ERR(wsa883x->sd_n))
+-		return dev_err_probe(dev, PTR_ERR(wsa883x->sd_n),
+-				     "Shutdown Control GPIO not found\n");
++	ret = wsa883x_get_reset(dev, wsa883x);
 +	if (ret)
 +		return ret;
-+
- 	wsa883x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
- 						GPIOD_FLAGS_BIT_NONEXCLUSIVE | GPIOD_OUT_HIGH);
--	if (IS_ERR(wsa883x->sd_n)) {
--		ret = dev_err_probe(dev, PTR_ERR(wsa883x->sd_n),
--				    "Shutdown Control GPIO not found\n");
--		goto err;
--	}
-+	if (IS_ERR(wsa883x->sd_n))
-+		return dev_err_probe(dev, PTR_ERR(wsa883x->sd_n),
-+				     "Shutdown Control GPIO not found\n");
  
  	dev_set_drvdata(dev, wsa883x);
  	wsa883x->slave = pdev;
-@@ -1598,12 +1613,9 @@ static int wsa883x_probe(struct sdw_slave *pdev,
- 	gpiod_direction_output(wsa883x->sd_n, 0);
+@@ -1610,7 +1649,11 @@ static int wsa883x_probe(struct sdw_slave *pdev,
+ 	pdev->prop.simple_clk_stop_capable = true;
+ 	pdev->prop.sink_dpn_prop = wsa_sink_dpn_prop;
+ 	pdev->prop.scp_int1_mask = SDW_SCP_INT1_BUS_CLASH | SDW_SCP_INT1_PARITY;
+-	gpiod_direction_output(wsa883x->sd_n, 0);
++
++	wsa883x_reset_deassert(wsa883x);
++	ret = devm_add_action_or_reset(dev, wsa883x_reset_assert, wsa883x);
++	if (ret)
++		return ret;
  
  	wsa883x->regmap = devm_regmap_init_sdw(pdev, &wsa883x_regmap_config);
--	if (IS_ERR(wsa883x->regmap)) {
--		gpiod_direction_output(wsa883x->sd_n, 1);
--		ret = dev_err_probe(dev, PTR_ERR(wsa883x->regmap),
--				    "regmap_init failed\n");
--		goto err;
--	}
-+	if (IS_ERR(wsa883x->regmap))
-+		return dev_err_probe(dev, PTR_ERR(wsa883x->regmap),
-+				     "regmap_init failed\n");
- 
- 	if (IS_REACHABLE(CONFIG_HWMON)) {
- 		struct device *hwmon;
-@@ -1623,16 +1635,10 @@ static int wsa883x_probe(struct sdw_slave *pdev,
- 	pm_runtime_set_active(dev);
- 	pm_runtime_enable(dev);
- 
--	ret = devm_snd_soc_register_component(dev,
--					      &wsa883x_component_drv,
-+	return devm_snd_soc_register_component(dev,
-+					       &wsa883x_component_drv,
- 					       wsa883x_dais,
- 					       ARRAY_SIZE(wsa883x_dais));
--err:
--	if (ret)
--		regulator_disable(wsa883x->vdd);
--
--	return ret;
--
- }
- 
- static int wsa883x_runtime_suspend(struct device *dev)
+ 	if (IS_ERR(wsa883x->regmap))
 -- 
 2.34.1
 
