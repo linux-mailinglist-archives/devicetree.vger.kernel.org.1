@@ -1,136 +1,123 @@
-Return-Path: <devicetree+bounces-200017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121DEB131FE
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 23:23:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E539EB1328E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 01:59:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5537C1895EF7
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:23:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F2A53A8F8D
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 23:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE06423C51D;
-	Sun, 27 Jul 2025 21:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04A82528E1;
+	Sun, 27 Jul 2025 23:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TKyVpY3e";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="lAXQlp/w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DE728FD;
-	Sun, 27 Jul 2025 21:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3011A254E;
+	Sun, 27 Jul 2025 23:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753651398; cv=none; b=L6mz1zJ4f4jzl8pX9L/AdwMlfOCkVfrLCV2hoAWYR/KRgYH+E2sCr2DbV46KFMJsGVeA9jOXsUL4sZt05vjlOV1B4mlrMflezNxmWRtMlpnYtMqRYL6iQSndKGh4k3wozuQI1kYSiQkiwBNh9JrtI+DU0DlrNU46aaJfHNSMKkI=
+	t=1753660766; cv=none; b=CCcjU97NYU1wgEfNHmapPd0XRqjhiTRQGhXWA2eR700nqVvwssES6h/aSscYshIS8emkL918Zph1CROL761L72DpCvXameNLAPH+yyffj0qV6BGyWpJisYlWGBwihIKfMyqep/irz614RjRQdg5bS+aIeOHxKLKQ8c2LSztMBhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753651398; c=relaxed/simple;
-	bh=xt0AZUVHMpD8vl17PbgkUvXZb6kbkI35v/akkyB+Dqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KSc7SuP9RT7FkBqk3DuYGDe5KCQNz5vjRoLElPJl04tvFhmvxpRgIW3bDIXPqLfxKYsw0qhev72seveZ+KuLwnsWTulsG654znpH2j6rFQRkH7OE3lAoX8WzfOR8kZvlhZlOJ1f0Bk4Px+khLdv74pAVWLIbWbieNrdwDIgc0Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	s=arc-20240116; t=1753660766; c=relaxed/simple;
+	bh=IDPYYq6+Y7hVelxWz1YJTxIp2lHzHE4a58b7PCwGess=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qgsTEw0+TOcBS9oHyw/h4JIpFwz9E7ueaJ7SzuYbF3A1VxpD0vywaCJNiwBA+gNKqoISpUduN1NlUwBDstTXxW4yMKOJGpzs9V+kC5pnQzykiUZvW2Yj6j2c9SLW/LO3hdajOBAwRAIiAzVpHdM5erza0Yv6JcL/108waPuvhfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TKyVpY3e; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=lAXQlp/w; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bqvjD3YSKz9tkV;
-	Sun, 27 Jul 2025 23:23:12 +0200 (CEST)
-Message-ID: <a028730a-a51c-4595-992e-e1e082329850@timmermann.space>
-Date: Sun, 27 Jul 2025 23:23:10 +0200
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bqz9Q4SzKz9ts4;
+	Mon, 28 Jul 2025 01:59:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1753660762;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bwZHfv7bs22p4Cd8SYFjyk554kcj5vyp15h3G865eEE=;
+	b=TKyVpY3e0Ezo05THuHsVjXU/1Au1XHtzYyy/wpZ0vjU5HHtZMPHsgcnRvTMGYUCvwMU9Vy
+	3Lodl3zuCTP7gZUlRX8hLhWBPpnIm1KRAhYKMjLJ01r0rJ1W/K8iyk3wZDPfnyLpuOoD0V
+	ruVZVwmEdKwoAmuPQ7wPuaayJciWv9SAgEtrAX4dLxpjLGqM/tmq3HGwwKEXSVO+2d5vQ2
+	fv/3cgxo/TJR+o36U0Kq/XqO+2Endcs6KECE8aVq+GIs/5gtu61qRb/mpF26+ChpnPtYtG
+	Kf5p0DoZTmmtyvCUUyyvH1RL1gtxQlSS8GsUp986ZrJKXY8LhaF1RHoxtlXXCA==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1753660760;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bwZHfv7bs22p4Cd8SYFjyk554kcj5vyp15h3G865eEE=;
+	b=lAXQlp/wAco/VJfFAoj+xA+R2PIFhVSiVLS6QLzNGqTZ0k6bHhJJ4ckiBPB9EFuBnsHz4Z
+	VScNwsGsxNNspa1qFNve6jK1HJ+FzMXtWUq8d7GvSS+8d3WBzmerqo+8nixKATqVWuhe/Z
+	X6gdlU4JmHh3BivobECsCg2XS23EaIMfve8mBJqO3aU+X/mTaRVcUGHdt5xCIIoUxLJ+Xf
+	HFvHpZTcicSwLOj+yxT8jx4Dj+JKx3q2OHN0V+ebnDq0xHtP6/c0f8Oszg99L76jy6kSU3
+	hf3hasTzLOLKz/vChpcAZx6cTnjpnt8oXMczU+7TSZ0dKwO0xAz8aAGsltks8Q==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: r8a779g3: Invert microSD voltage selector on Retronix R-Car V4H Sparrow Hawk EVTB1
+Date: Mon, 28 Jul 2025 01:58:11 +0200
+Message-ID: <20250727235905.290427-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v7 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-To: Lee Jones <lee@kernel.org>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250708141114.134950-1-linux@timmermann.space>
- <20250708141114.134950-3-linux@timmermann.space>
- <20250723093108.GQ11056@google.com>
-Content-Language: en-US, de-DE
-From: Lukas Timmermann <linux@timmermann.space>
-In-Reply-To: <20250723093108.GQ11056@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: c9c00573611d0c9b9cd
+X-MBO-RS-META: ks969f3mpqpgnwzwryfpo3os8kbkwktd
 
-Formatting was malformed in the last message, sorry. Next try:
+Invert the polarity of microSD voltage selector on Retronix R-Car V4H
+Sparrow Hawk board. The voltage selector was not populated on prototype
+EVTA1 boards, and is implemented slightly different on EVTB1 boards. As
+the EVTA1 boards are from a limited run and generally not available,
+update the DT to make it compatible with EVTB1 microSD voltage selector.
 
->> +#define AS3668_CHIP_REV1 0x01
-> 
-> How many REVs can one chip have?
-> 
-Would be 4-bit/16. I thought I do a little check about the revision and 
-print a warning message to inform about the probably untested revision. 
-Or is that not necessary?
-Removing the REV constant results in an if-statement similar to
-if(rev == 1). Is this considered a magic number?
->> +static int as3668_read_value(struct i2c_client *client, u8 reg)
->> +{
->> +	return i2c_smbus_read_byte_data(client, reg);
->> +}
->> +
->> +static int as3668_write_value(struct i2c_client *client, u8 reg, u8 value)
->> +{
->> +	int err = i2c_smbus_write_byte_data(client, reg, value);
->> +
->> +	if (err)
->> +		dev_err(&client->dev, "error writing to reg 0x%02x, returned %d\n", reg, err);
->> +
->> +	return err;
->> +}
-> 
-> These look like abstractions for the sake of abstractions.
-> 
-> Just use the i2c_smbus_*() calls directly.
-> 
-Should I omit the write function as well? I do some error handling 
-there. Is it okay to err |= write() the returned error codes in init or 
-should I handle every possible write error by itself?
+Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->> +	/* Read identifier from chip */
->> +	chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
->> +
->> +	if (chip_id1 != AS3668_CHIP_IDENT)
->> +		return dev_err_probe(&client->dev, -ENODEV,
->> +				"chip reported wrong id: 0x%02x\n", chip_id1);
-> 
-> Unlikely.  This too is unexpected, as above.
-> 
-Error message not descriptive, understood. Changing that to "unexpected 
-..." as above. Or am I misunderstanding and the check should be omitted 
-entirely?
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+index dfbf2ce7e23a..9d702b74c288 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+@@ -194,7 +194,7 @@ vcc_sdhi: regulator-vcc-sdhi {
+ 		regulator-max-microvolt = <3300000>;
+ 		gpios = <&gpio8 13 GPIO_ACTIVE_HIGH>;
+ 		gpios-states = <1>;
+-		states = <3300000 0>, <1800000 1>;
++		states = <1800000 0>, <3300000 1>;
+ 	};
+ };
+ 
+-- 
+2.47.2
 
->> +	/* Check the revision */
->> +	chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
-> 
-> Is child_id2 not for another chip?
-> 
-> This is ambiguous, please improve the variable nomenclature.
-> 
-chip_id2 is directly related to the defined register CHIP_ID2 which name 
-is taken from the datasheet of the AS3668. (Not sure if I'm allowed to 
-link it)
-Should we diverge from the datasheet in case of naming?
-Or is only chip_id2 to be renamed, even tho it holds the values of 
-CHIP_ID2? I would consider chip_ident for chip_id1 and chip_subident for 
-chip_id2. chip_subident would break down into chip_rev and chip_serial.
-Of course reading chip_id2 would be unnecessary if I omit checking the 
-revision in the first place (see above).
-
->> +	err = as3668_dt_init(as3668);
->> +	if (err)
->> +		return dev_err_probe(&client->dev, err, "failed to initialize device\n");
-> 
-> No need for 2 error messages.
-> 
-Doing if(error) return error; then...?
-
-Thanks for the input. I'm willing to learn. 🙂
-
-Lukas Timmermann
 
