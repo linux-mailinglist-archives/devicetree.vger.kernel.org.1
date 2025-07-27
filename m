@@ -1,148 +1,195 @@
-Return-Path: <devicetree+bounces-200001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E68DB130D4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 18:59:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E3BB130DB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:10:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBF7E1895777
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:59:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8495B1894658
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 17:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B7F221554;
-	Sun, 27 Jul 2025 16:58:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bPeX5OmP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144BF1FC7E7;
+	Sun, 27 Jul 2025 17:10:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD1A21FF24;
-	Sun, 27 Jul 2025 16:58:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+Received: from 1wt.eu (ded1.1wt.eu [163.172.96.212])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6867E4A00;
+	Sun, 27 Jul 2025 17:10:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=163.172.96.212
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753635537; cv=none; b=tFIANy/mPiL52ntXizxDrXA7ept1+mcwXrT/g5JzfDV4hvSRVh/ZyW3+k4iXWjyYLWUvQjiygtXVT+9WYHyy7bB6TOYWso4llGnv9CWpGxZE/7jK99mjSMCDU3U40c6VrQGyKaQJSf56MnfIW4PJ/eIg+TJwjQ1usmJbaY1k+Lg=
+	t=1753636229; cv=none; b=MtAenf+ijv45rykkX7HLgDjegv9XJxSdu+xT1uCJHxE8Y0/T/8+G6P1D5vS3/V117jGnxMHtaXmz8PEdLT8i9fB+SGsBL1OeKTBpg9NatSkjpn1x1yj/ds7BJji3JyPDDfAfPoFDoXdbUp21Lc3hc7t6cAkXGUOXSotdDwFrNJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753635537; c=relaxed/simple;
-	bh=xaIfMyoNbRF5NRFYE39P0X2AyUjoGgarwnnpBy9mcYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SLXs/IBqCRMmUSq3svRwTo8iIHf5yX5eIMSWAQgy6sr6N1KkVTIKh9VzzuY3NXVE6eQ+GVgcdUFoCyx9DMKNmb2tAg4E3x3Ts3xkJ+GYMgcKhCrZG46gz4TKavO+BBpFiDpx5X5BipEswuRgg0e0Ufulpc58mF5KKQOcfWypPQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bPeX5OmP; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4563a57f947so18843275e9.1;
-        Sun, 27 Jul 2025 09:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753635534; x=1754240334; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EF78n2GJo9Ljh6+9I+QrDrhKqgr6XnFmnArJPBP8sdQ=;
-        b=bPeX5OmPOvOePf9rLuWcH7mwHw1gBRlVOmGTMBiq/9zuKT57U/LjgDHnynAVlE15Ss
-         jt33l4v5ZXxaje1R4Ql8xvgGjuJnppZOidRra+loXn4RJIVvfTBaWlt5zAkm6W1YXV5w
-         aUVVYRaoAzJPTc96ghAePlOox3FeUeDvKwDQ13WwCd6UyQXD/70gRITgnDJRwjIoNPJi
-         ik28bLr2J85mY1G+tblBq2PkDxgTth+MjGziHrLbMmPWE0cQtjgb3Q2FqsLeQmGY40oR
-         +pgHfZj7PGEE0pRlbvUOQQA82ejhvoe60XgfcAIlvaUlw4Vf1aAV0T02RM9iHjuRyDDC
-         XuMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753635534; x=1754240334;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EF78n2GJo9Ljh6+9I+QrDrhKqgr6XnFmnArJPBP8sdQ=;
-        b=doVHcqPqrghb7+PqSbb9SIfJr2HGMkb9kfERNKeNrdCSzXlCpIsHDY7NjkN5Skz37J
-         pjmzidIbGYwlFG2mW1WryhQ7CW7T5AuHYU1gXMN/l6idtaaPmw/vaWveTKYcTNN3zpkG
-         lOKzjmCiCee8xJjWD7TLc8OC/EEHhsicOR+6jyyWQjIWAydFvsRnckPQaIWZnkDjjtf1
-         hK5y6uvNVdDw08CiPoRFbDhM+osV/FgT3oyBG3ETxMyrR4uGmJvMNl1CJ5x1K9ftiYU4
-         ZTitGm8YSQ5Am6V8/KqRUW9zWS/CVnUd25ArBebNh/XXyS6pWPmVANvKNYfbt348lQ8k
-         CCDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU43QxuGTpsYfrgJ9aTkKRVRcgq2BABuXZqPKGjEZ475EI7LM9dVFeyYOMb+W85AOPAUOAYXKpleSpC@vger.kernel.org, AJvYcCUPQHEkPAPJJE+g+zXEll0Ntv8OsEtquU4pN8NCj2R5tIAyLVcOlJf+RE7BzMUlQcCOpIu8v5t0MZXZsR39@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTnS6iEf0lOL7roLImc1pzphdAd6vQ8QHSldV2SyQdlX36Yxot
-	a6kdxAxRTxYYmATOm2+q0OuBy32ZETK4OiDiitJR2OqA0QKZNhW0KXE=
-X-Gm-Gg: ASbGncuN7LlNjDr1PPFWJKB3AcML/EQBZ1VDFH7lOIfZ7RYzbat1nLRFhU37ejpG6zC
-	V7vB8QKluj3KT14gjmSScgEJn2cv7VSYPjIBjEKfQ38aAGaA7MLAxRJNiYgdyHg2iU9she3hg4l
-	nxmImYT5If1TWZv/cV9RDl2u/xXKmp0uUAJGJthiLHflhJIOg4n2S/M+04lUQQBzilZQggNAI4O
-	+fdQ+/36AxU4hr5tUyN7TuQOn3qDQ9sXF8jvxYsInX6rWrifDQsqbl2OdR1lJkXPnSDXnQ+QcPm
-	hO5XL6BBZ5zNriTPvRSCcDyDjZWGDgHXceDkDXG1IuqmJvCzff+yd9/3OaM8yTVFJ+5qURieJC0
-	yTCtnG47FFG+q5M0UEsqpIqsAf6DkX4UI58uN/f7EQR8gDrFAgfE=
-X-Google-Smtp-Source: AGHT+IGsriUGTQtFk3WMLf3zlohLZapyUEGO2OTMkwMcic2kFu7BspA2oGNvKvQ6RBaXAmNsq62AXg==
-X-Received: by 2002:a05:600c:a405:b0:455:efd7:17dc with SMTP id 5b1f17b1804b1-4587c8283c1mr36053445e9.11.1753635534149;
-        Sun, 27 Jul 2025 09:58:54 -0700 (PDT)
-Received: from alex-x1e.localdomain ([84.226.118.249])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458704aaf20sm128545745e9.0.2025.07.27.09.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 09:58:53 -0700 (PDT)
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-To: Douglas Anderson <dianders@chromium.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Subject: [PATCH v1 3/3] drm/panel-edp: Add BOE NV140WUM-N64
-Date: Sun, 27 Jul 2025 18:50:26 +0200
-Message-ID: <20250727165846.38186-4-alex.vinarskis@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250727165846.38186-1-alex.vinarskis@gmail.com>
-References: <20250727165846.38186-1-alex.vinarskis@gmail.com>
+	s=arc-20240116; t=1753636229; c=relaxed/simple;
+	bh=/NgwpO3cse/PaI1LwtLxV1CE5rATpK2IMleIMwqMhGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JtF7+mQwAX8/QU7vAM4iLhyZDvvdnHR4NhBWNZ2Y5cL1grtThyMCuXgDP0olue5NL7kS0Ucz+DjHTOG20nq8QDxMJTrdzvE49o0YsbEcREhfwZwQjrzro3y/EMOcFCPEn3ESNld6HQJxdjsUMVAYCluL00rozQz6OJz480kC0Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=1wt.eu; spf=pass smtp.mailfrom=1wt.eu; arc=none smtp.client-ip=163.172.96.212
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=1wt.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=1wt.eu
+Received: (from willy@localhost)
+	by pcw.home.local (8.15.2/8.15.2/Submit) id 56RH9lBm018749;
+	Sun, 27 Jul 2025 19:09:47 +0200
+Date: Sun, 27 Jul 2025 19:09:47 +0200
+From: Willy Tarreau <w@1wt.eu>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: alchark@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, ziyao@disroot.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
+ scaling support
+Message-ID: <20250727170947.GA19379@1wt.eu>
+References: <CABjd4YzLaAgd-5Cg9fMSAgCS6Wt6=uC8K3WRhcAtnjjg1je87Q@mail.gmail.com>
+ <20250720140010.218235-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250720140010.218235-1-amadeus@jmu.edu.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Timings taken from NV140WUM-N41. It is found in some arm64 laptops,
-eg. Asus Zenbook A14 UX3407QA.
+Hello,
 
-The raw edid of the panel is:
-00 ff ff ff ff ff ff 00 09 e5 f6 0c 00 00 00 00
-10 22 01 04 a5 1e 13 78 07 8e 95 a6 52 4c 9d 26
-0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-01 01 01 01 01 01 5d 30 80 a0 70 b0 28 40 30 20
-36 00 2e bc 10 00 00 1a 00 00 00 fd 00 28 3c 4a
-4a 0f 01 0a 20 20 20 20 20 20 00 00 00 fe 00 3d
-4c 33 30 20 20 20 20 20 20 20 20 ff 00 00 00 fc
-00 4e 56 31 34 30 57 55 4d 2d 4e 36 34 0a 01 f8
+On Sun, Jul 20, 2025 at 10:00:10PM +0800, Chukun Pan wrote:
+> Hi,
+> 
+> > > Because the actual frequency generated by 850mV is closer to 1008MHz.
+> >
+> > Which likely means that you have an -L5 chip. It will be different on
+> > other chips - it's a lottery of silicon quality.
+> 
+> The rk3528 board I have has -L3 and -L5 levels.
+> -L3 level tested at 850mV (mainline kernel) actual frequency is 1055MHz.
+> 
+> Frankly speaking, I have always doubted whether the voltage value of BSP
+> is correct. The voltage of BSP kernel at 1800MHz and 2016MHz is too low,
+> and no board can reach the corresponding actual frequency.
+> For example, if we set the CPU frequency to 2016MHz when running the BSP
+> kernel, the actual frequency can only reach 1800MHz.
 
-70 20 79 02 00 21 00 1d c8 0b 5d 07 80 07 b0 04
-88 66 ea 51 cc 74 9d 66 52 0f 02 35 54 40 5e 40
-5e 00 44 12 78 22 00 14 7f 5c 02 85 7f 07 9f 00
-2f 00 1f 00 af 04 27 00 02 00 05 00 2b 00 0c 27
-00 28 3b 00 00 27 00 28 2f 00 00 2e 00 06 00 44
-40 5e 40 5e 81 00 1e 72 1a 00 00 03 71 28 3c 00
-00 60 ff 60 ff 3c 00 00 00 00 e3 05 04 00 e6 06
-01 01 60 60 ff 00 00 00 00 00 00 00 00 00 de 90
+I've tried the patch on my E20C and am seeing a frequency drop compared
+to cpufreq disabled (2016 MHz stock frequency). By default, without the
+OPP, my CPU cores are showing the following frequencies:
 
-Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
----
- drivers/gpu/drm/panel/panel-edp.c | 1 +
- 1 file changed, 1 insertion(+)
+  # ncpu=$(nproc);for ((i=0; i<ncpu;i ++)); do echo -n "$(taskset -c $i ./mhz -c -i) " ;done;echo
+  2008 2011 2012 2010 
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index 9a56e208cbdd..b334926e96ed 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -1947,6 +1947,7 @@ static const struct edp_panel_entry edp_panels[] = {
- 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, "NT140FHM-N47"),
- 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c93, &delay_200_500_e200, "Unknown"),
- 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200, "NT116WHM-N44"),
-+	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cf6, &delay_200_500_e50_p2e80, "NV140WUM-N64"),
- 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cfa, &delay_200_500_e50, "NV116WHM-A4D"),
- 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0d73, &delay_200_500_e80, "NE140WUM-N6S"),
+There's always the same distribution with core 0 being slightly lower,
+then core 3, then 1 and 2, very likely due to leakage and PVTM adjustments.
+
+In idle it's consuming 906 mW. After enabling the OPP, I've tried again
+and this time I'm seeing this:
+
+  # ncpu=$(nproc);for ((i=0; i<ncpu;i ++)); do echo -n "$(taskset -c $i ./mhz -c -i) " ;done;echo
+  1891 1895 1894 1893 
+
+It's missing ~120 MHz as if we were not using the correct multiples. The
+power draw is also lower, at 864 mW.
+
+I've tested each of the OPP in turn and measured the idle power consumption
+and the effective frequency (measured on core 1):
+
+    OPP     MHz    mW
+   408000   394   795
+   600000   593   797
+   816000   908   800
+  1008000  1100   801
+  1200000  1306   808
+  1416000  1372   812
+  1608000  1576   818
+  1800000  1744   836
+  2016000  1896   856
+
+It's interesting to note that 816, 1008 and 1200 MHz result in a higher
+frequency than configured, but upper ones result in slightly smaller
+frequencies (~2%, might just be a measurement error), particularly for
+the last one which is 6% lower.
+
+I noticed a missing entry for 2 GHz in clk-rk3528.c so I've added it,
+expecting that it would solve the problem:
+
+--- a/drivers/clk/rockchip/clk-rk3528.c
++++ b/drivers/clk/rockchip/clk-rk3528.c
+@@ -25,6 +25,7 @@ enum rk3528_plls {
+ };
  
--- 
-2.48.1
+ static struct rockchip_pll_rate_table rk3528_pll_rates[] = {
++       RK3036_PLL_RATE(2016000000, 1, 84, 1, 1, 1, 0),
+        RK3036_PLL_RATE(1896000000, 1, 79, 1, 1, 1, 0),
+        RK3036_PLL_RATE(1800000000, 1, 75, 1, 1, 1, 0),
+        RK3036_PLL_RATE(1704000000, 1, 71, 1, 1, 1, 0),
 
+But it had no effect at all, the frequency remains limited to 1896 MHz.
+
+One thing I'm noticing is that with the OPP patches applied, my CPU
+voltage measures 1.094V. Without it, it's 100mV above, at 1.194V. So
+I tried to change the opp-microvolts in the DTS, setting them to 1.2V,
+and I reverted the change above since it had no effect.
+
+And indeed, this unlocked the upper OPP, but now the CPU is running at
+2.1 GHz, and at 900mW idle:
+
+  $ ncpu=$(nproc);for ((i=0; i<ncpu;i ++)); do echo -n "$(taskset -c $i ./mhz -c -i) " ;done;echo
+  2091 2094 2094 2092 
+
+So it's clear that something in the hardware is having fun with our
+settings, and adjusting the frequency also based on the delivered
+voltage.
+
+I tried other voltages without changing the frequency and here's what 
+I'm measuring (configured mhz, measured mhz, configured voltage,
+measured voltage):
+
+  Opp-MHz  MHz  Opp-mV  mV
+   stock  2012  stock  1194
+    2016  1896   1100  1094
+    2016  1944   1125  1117
+    2016  1998   1150  1144
+    2016  2040   1175  1167
+    2016  2094   1200  1194
+
+At least the configured voltage is always respected. So I'm wondering
+what's done in the stock settings. Maybe it's set to a higher voltage
+to ensure stability even on low-quality bins, and configures a lower
+frequency ? Applying a ratio above would indicate that the stock OPP at
+1194 mV above is in fact 2012*2016/2094=1944 MHz. It indeed corresponds
+to a multiple of 24 MHz.
+
+And bingo, trying to set it in opp-hz gives me the stock frequency and
+voltage on this device:
+
+  2009 2012 2013 2011
+
+So what should we conclude from this ? Is the 1.1V configured in the OPP
+the official maximum ? If so, given that the E20C runs at 1.2V stock, how
+can we be sure it will not fail on devices that work fine at 1.2V at stock
+frequency and are not necessarily well tested at 1.1 ? Shouldn't we raise
+the max voltage a little bit to match what vendors do ? Similarly, if we'd
+set 1.2V with the 2016MHz OPP, it would result in a higher frequency on
+some devices like mine, possibly resulting in instabilities on some
+devices. On the other hand, the trouble caused by that PVTM stuff is also
+the one that adjusts our frequency based on the voltage and requested one,
+presumably in order to work reliably at that voltage.
+
+Or maybe we could simply raise the voltage a little bit. The table above
+shows that at 1.15V we're close to the configured OPP and still below the
+stock voltage. This is not critical, but I find it a bit annoying that
+enabling cpufreq results in lower performance than without!
+
+Another observation is that I thought it was the boot loader that was
+presetting the voltage and frequency, and that's not even the case: under
+u-boot, I'm measuring 944mV. So it's just linux that sets it when booting.
+Maybe it instead indicates that one voltage regulator driver's default
+setting is a bit high for this chip and should not set the CPU voltage
+to 1.2V, hence not make the device run at this frequency to start with ?
+
+I can run more tests next weekend if needed.
+
+Cheers,
+Willy
 
