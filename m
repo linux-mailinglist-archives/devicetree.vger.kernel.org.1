@@ -1,119 +1,203 @@
-Return-Path: <devicetree+bounces-199926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46DDAB12EBE
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 10:44:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 700CDB12ECA
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0BEF3B1BD2
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 08:43:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F8401898A2B
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:23:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294A41F0E26;
-	Sun, 27 Jul 2025 08:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2071F583D;
+	Sun, 27 Jul 2025 09:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ig2pAft1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfyBNpuD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC609645;
-	Sun, 27 Jul 2025 08:43:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553735BAF0;
+	Sun, 27 Jul 2025 09:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753605832; cv=none; b=lak3YfnSrnBrWnf/kP8cXX+75V9yYkC5v0J0V+MBIMFT6ROzCu598lQ/j3VGPeGnhKlp/fLi7W1C50vnZlvYl6kHIx58lS1okP/A79AJPKd6CyjeAfKnogZj3gJdkAgmvgXsKC0zOnpoHyA0sWFpjHHjKnY9Z1axiq2i4UianXU=
+	t=1753608189; cv=none; b=cJczTqvATGUOVJN3RKmcZcIQUqnr+Sti3LbGWX5RLiYEZTLnCMzn6Y5FJdLfHwIIHyYkCc/d1NAmDCZTTRvNhTtIisOa7eZKvGcyJ3mL1SwyQ1GwTFFGyrLjagTz9S/n83wPGkK5fKK3g3/2sjwpZ+V8Q615anBin+d4xP5wzAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753605832; c=relaxed/simple;
-	bh=wdPpue6cQRZ45iqTOCMVPSODzBOKWj3BK49Ut3S/T4o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PZ9J4Dh6+5I+7lK9rMjYG/O4plzgg6iZMrJfs116gRLD3UO0Q8KFclCn2+YQBK+ECVxl2NFNst6BHe6w/HvHtEyrsqo5yuwx86cUYO7rg05YIvR6U8pYFfPdKL7AMhPEE/RZWeUSPLHMLECMjJjEDlse++GpZm/H/rsjKbaXmYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ig2pAft1; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2350fc2591dso39979725ad.1;
-        Sun, 27 Jul 2025 01:43:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753605830; x=1754210630; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z8NFLmsGhXOrBNXuU/ihDT+2dF3Ew5tMWev9rrSJi5Q=;
-        b=Ig2pAft1oqvbrlnv1xNIYXkJ0LLHUOJnGzKZ0eAB5F23chgbxZ2bF7qwZb0OTn+uTM
-         ocOfDfvZP3LpghJpJl1zBB4H480bjbp85M0LGFsXsZYsZAkbPqGFv4XKSLS8ZFYLtr0K
-         VPjjQvstfNP0cgAMBBfjhF7CTQRrMxWtgbX5LHqIHlhV/TGJ9kVv1jVHfJHsq41g9CZg
-         ajtuDgrdK42FP7efUNFQeY2Ir2+5zsyLRn+4OxwX3LaSX9dqolZpX1fBJIn+SvNX9YNP
-         lKOHlDDLyK60UN3aoFXfYcwRtLkh90V8ZVm+rwCtAv7kaE+E9O+CRZOKOdbBJ/pNbF3b
-         T0JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753605830; x=1754210630;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z8NFLmsGhXOrBNXuU/ihDT+2dF3Ew5tMWev9rrSJi5Q=;
-        b=hEc6OyUV5Fl0gGrCpkA+KXNNr8VRJgESv6q9FdRAoOrTnRJMn2vYjXmJfCUnQhRhPB
-         Mir1fw2TTyq6UDwgRVxHKIgPd3DqYukadUVh5za08yhl5pSyz1XCf/bcqSgygN3IiMPr
-         KB++AVcgqEkUdxruGaP/iKOgxxsnfPQGzwABTv/NwA+AtvqrEzq/HkRdao8+ToYwkXBA
-         FYqM9nq+FO8DXb19fAufqhz948Y21f+xgOO+zfMhiR0ZASpfV4uvvVoDq3x1SLnzTtMU
-         7eoX3K+MV8EbjHRm7A4J1rsNqIwU/shwDjmwtEmAMPnyfLQIJzzsFpOErBDXg92ijtp6
-         XOuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUSAGAsdwBBgfYcvD/e3oHyqmtTCgZJecZ+B/w6+g7rrSLWFVMp64f2SQJIN7VTfjlwNZa4Awn/nxk6g/DY@vger.kernel.org, AJvYcCVazs9vlaZgo0QsQ8mszuzePVm5AtHEIAzvGVJOXYAblL3jB96OAu8ztVjR1NqqwpxctZP/3bX2WwZ1Tn0=@vger.kernel.org, AJvYcCVmmcz/Bs1X9sMbhUaUURdsUYIQaOySHUjDDDfSvJlQ4dbhpoIuKufImWR2clCNKC6PGJrbteoz6ry4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuiqDIiSg1rA+vfqIZRZoTwJxyAk+kG//5zJDGBndGaoqOF/qE
-	pcJQv5N0fFnLXwygLu9JvlzM7GWg4U8N4RZGOXLMS0orTT1uM/g3745j
-X-Gm-Gg: ASbGnctQ0ugqsZ1ZZlRN0FwXZmYFd8YTP/9qBrDekGLcMAHU+hd+R+qPxkp2jg9icNQ
-	5xNBLgZ1v4Bt1vlR9Fg9jgd2En9+QP91Gvme5pBNtVDffb4E0owOv1ID4n2SNaGBzf7f6RztrNZ
-	6e7sACxw1PfYbQ9XAxc2YoxUj+76Hk6MivvncMlUgO8E6VnXVXY9+U6ETeT3GJ+6G5xbwHMe8HD
-	b5wXY0ih4Q2gTjGHCq1BNWA/mqFCf7YD8EXqRqTKVOHvVvT4FDrc49p61OyownykufU4KQunlVd
-	/yqRQOjtJajEf1qG54wro71dQIUQRhsAHtKsGfRKTjJ8NU/IJA79nJaVPmD0sr9lT2U9z+QckNJ
-	+97at5pJDGNLHjjJX6Gd8PiWuEn8tA/di5A==
-X-Google-Smtp-Source: AGHT+IGTtip7TqXZw8U+iPg7zXdMeJY175R40wih2BC9mgWqMCUsqc6nDFsjmTq2gzQSxD2gnAjCSQ==
-X-Received: by 2002:a17:903:2b0f:b0:235:e94b:62dd with SMTP id d9443c01a7336-23fa5d7420emr187334415ad.12.1753605829876;
-        Sun, 27 Jul 2025 01:43:49 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:152b:d3db:2a19:4eb0])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fbe5781aasm30319875ad.205.2025.07.27.01.43.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 01:43:49 -0700 (PDT)
-Date: Sun, 27 Jul 2025 01:43:46 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bastian Hecht <hechtb@gmail.com>, Michael Riesch <michael.riesch@wolfvision.net>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jeff LaBundy <jeff@labundy.com>
-Subject: Re: [PATCH v11 0/4] Input: support overlay objects on touchscreens
-Message-ID: <wj4vnqkjne24twr2lpzcyi67dhdcu5ogmts4r3uads7flpmgud@ltgnxzqjxnth>
-References: <20241016-feature-ts_virtobj_patch-v11-0-b292a1bbb0a1@wolfvision.net>
- <e2ed48bf-386b-4c14-bc9e-0519da415c73@wolfvision.net>
+	s=arc-20240116; t=1753608189; c=relaxed/simple;
+	bh=X4o1N/+LblHHfZ1eiMxUyvwUFnSbGO9ozqi3n8jmUAk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DEjvSG6ZX/UqHAZ8ANOarbbVgXxyhyWyUmEVD4EzVV7sFqx6nEol2v3JGN9ScLi/ABpyoc1k3fLKyX2klKb9zeiGb4+qVjDpIxciP4g8GSxjWBYbe257DGWtfHs0SwGanViB64glaAqCKJwO3aHVyWilvK09Cojuvl4FKhFg8AU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfyBNpuD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4280CC4CEEB;
+	Sun, 27 Jul 2025 09:23:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753608188;
+	bh=X4o1N/+LblHHfZ1eiMxUyvwUFnSbGO9ozqi3n8jmUAk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HfyBNpuDhwZIxNdEyFnLoqg57mtC7xcd8kVhnc5HalJuD3V3MvjHs0AUCSEmsfxxM
+	 nG6amwP+DsO6FzQ6SAttnXu2+JhsscBIl83LD7GacQIHPoBRat7N3cCqixE1YuWj9v
+	 W7x7CyIseBru+W6SN3sZhSWxYovWRKFe/Th0PM/4FBYid1MAu0ktGUCM8gaKyJR5UJ
+	 otrsw++Ty6Kp7SSS0HP3Uj7rV+7BPA0Li0/VsCUaVe9GqtpRWtsB8n9trwqTEx0fpu
+	 HMxytNEV2mvKJPpQF1iPTE6qE7RjiR6cYl+hZ24+/pQ4i5Uv53U9dDlSIaGKZtHFvw
+	 Fh5XlxsEJbN3g==
+Message-ID: <acdc8d41-94b3-47a5-b67e-58def060a378@kernel.org>
+Date: Sun, 27 Jul 2025 11:23:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e2ed48bf-386b-4c14-bc9e-0519da415c73@wolfvision.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
+To: Dixit Parmar <dixitparmar19@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+ <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Javier,
+On 26/07/2025 11:37, Dixit Parmar wrote:
+> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+> controlled by I2C interface. Main applications includes joysticks, control
+> elements (white goods, multifunction knops), or electric meters (anti
+> tampering).
 
-On Thu, Jan 16, 2025 at 11:41:14AM +0100, Javier Carrasco wrote:
+You are duplicating existing binding, need to remove it as well.
+
 > 
-> Hi,
+> The device can be configured in to different operating modes by optional
+> device-tree "mode" property. Also, the temperature sensing part requires
+> raw offset captured at 25°C and that can be specified by "temp-offset"
+> optional device-tree property.
 > 
-> as a couple of months have passed since the last submission, I would
-> like to send a short reminder that this series is still relevant. It is
-> of course not urgent, an Ack to confirm that is on the queue would be fine.
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
 > 
-> Some commercial products are using this feature since its last
-> submission without finding new issues, and it would be ready for a new
-> review in its current form. I just verified that it applies cleanly to
-> v6.13-rc7, but if for some reason a resend is desired, I will do it
-> promptly.
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+> ---
+>  .../iio/magnetometer/infineon,tlv493d.yaml         | 57 ++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+> new file mode 100644
+> index 000000000000..0442cf41503b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
+> +
+> +maintainers:
+> +  - Dixit Parmar <dixitparmar19@gmail.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^magnetometer@[0-9a-f]+$'
+> +
+> +  compatible:
+> +    const: infineon,tlv493d-a1b6
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: 2.8V to 3.5V supply
+> +
+> +  mode:
+> +    description: Sensor operating mode. Must be one of the defined enum values.
 
-Sorry for sitting on this for so long. The series has been applied.
+Why is this board level property? I imagine you want to change it runtime.
 
-Thank you.
 
--- 
-Dmitry
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0 # Power Down Mode. No measurement.
+> +      - 1 # Fast Mode
+> +      - 2 # Low-Power Mode
+> +      - 3 # Ultra Low-Power Mode
+> +      - 4 # Master Controlled Mode
+> +    default: 4
+> +
+> +  temp-offset:
+> +    description: Raw temperature offset at 25°C to apply before applying scale and correction.
+
+Does not look wrapped according to Linux coding style.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 340
+
+Missing vendor prefix, missing unit suffix. I am also not sure what is
+the board design choice to offset it.
+
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+Missing supplies.
+
+
+
+Best regards,
+Krzysztof
 
