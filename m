@@ -1,184 +1,121 @@
-Return-Path: <devicetree+bounces-199965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16DCCB12FBC
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 15:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 279C4B12FCD
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:07:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DFA51899ADC
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 13:38:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD381897A0E
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 14:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95BE13635C;
-	Sun, 27 Jul 2025 13:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECD321576E;
+	Sun, 27 Jul 2025 14:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N5bp4PnG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fCUHiezs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91EA7E9;
-	Sun, 27 Jul 2025 13:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7EBB1DAC95;
+	Sun, 27 Jul 2025 14:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753623488; cv=none; b=jlaVNrIrECq5KsM6bCT9STPkFV0a4Dhq/ZrAov87AnLMDo5bSYq+C11AV5KoKpY43hM8bYYRyUBakKK4EwNfdxT3AwvM6v15vlZWjSBrH1gMiMHyGiaFyu80XG27lAulUOO293WqeKE2C0vQJU/Mtrgy/6D9PicFjVutpIsbPiI=
+	t=1753625241; cv=none; b=A4UfQ1QwaYuhBKprvlJBED75OQot7YOsmc3FGUOWkKQvjJTPT+spUB7/CV4I1a+Vo+QU/Ko3OYz854iHO+i4MVD0i/2ULOp0o3v7Q0GCqVcsU68+6p8z8kTgsszBPhUsT2KQnj85IPErBAhULLe7kNf0FwO+Z9gZ6EI8ep3ruso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753623488; c=relaxed/simple;
-	bh=W63d++1mImp7daZ8G/o8sLT3DO5aSXl9dxZqiv2V1hU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tu+c624okTosFiBJcqzoxD6avWeXnztFUg1Thdx9f8Mp3ZVHzCXrXd1qzoLA74srg6ZhKMb/mC6+WzRp2PRKTwp7av26xukCbrd0rohFooDWB5VixZwxbWMhKdk2xJevZ8YX4D4WZBpAPFCnDz6UZ5tpBBfJo0uctZHzI3AGutY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N5bp4PnG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B3C4C4CEEB;
-	Sun, 27 Jul 2025 13:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753623488;
-	bh=W63d++1mImp7daZ8G/o8sLT3DO5aSXl9dxZqiv2V1hU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=N5bp4PnGDSzh0LVn2a7Jx2LDYcAzRxKKa6hMexxnIvEg3GQkdRwGAAtbLUUw6upO2
-	 ngwp7V0pj8XacZVSeLxUG2czj7ktnI/OAwdGbR/joT2PsAb7+5rXwB8vwWco6X9jl4
-	 i15iMYMZg1PpjuSriVX5fnq60+3p95oVacRcuhImHUp/y4PSMiwsOzZNTjsb5eKN1S
-	 PsG6B5Mm2tAh8JKmRRQshNzdlysCJUaawtkGwcvIArtFHvpVnieOgRcbkcEHtvu1dB
-	 vnMVWK9i2T2DYAHYJRN6qc1DEXKYt0Zt2o8MgnbH+8fYuVoZEYRydbtWk7H+NAKSc2
-	 Mwzv5znCKYLwg==
-Date: Sun, 27 Jul 2025 14:38:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] Documentation: ABI: iio: adc: add ade9000 ABI
-Message-ID: <20250727143801.69cb377d@jic23-huawei>
-In-Reply-To: <20250721112455.23948-5-antoniu.miclaus@analog.com>
-References: <20250721112455.23948-1-antoniu.miclaus@analog.com>
-	<20250721112455.23948-5-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753625241; c=relaxed/simple;
+	bh=0NRnrtvx5Nd0mZa/d0TTBJ+mm3Pv6a451mcqUAxzMRs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mMmhDdIH+GY1qK80SicfH5Vwq33H9pHMltLx1TG/us+p13lY+SB64Jd2FXbk3IZ2mJRHU2t7XkaxZ0FzXsfmk6eptgWkijyrS6UT6MAIwtTfmyVJRiT2gs0Hbrb+5du44uHoM2jdSHrKEOIYPDUJjLVwKbtw+yCRXeBOLQGlWwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fCUHiezs; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b34a78bb6e7so2947943a12.3;
+        Sun, 27 Jul 2025 07:07:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753625239; x=1754230039; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ijMatxPTKApiZUPbghgjR/zDx2AP3DuF//yAnK8PVuk=;
+        b=fCUHiezsJo1pfQXXV3CiWQZPJtAFVS2LAzIjjPCAbuv/wXf29hNPm6KWFCHbnDTNGY
+         Y8+Rm2LZp2vZleqX3PUttGb9rdu71Ox7rouV3SxlAK5/Rd0uKhKVmT19bi2xhQjjY6+l
+         ytWAx8x9nF3LM05HGT3z6kWODR3kOqw6XuQFgXKoGfYKUxbv6sKqRREh3I+tTzuIt8pb
+         /nr8u8rw/lCytEERmgwXkSgMcuHdL6rNC9glkux3qolQ9jk/X87zQIoi/SrM1JfR9tj6
+         bACEP22nVzF0Pjd3Sau/HXcocNG2kYsa0BD1gT6+5aRqkSbq/WGz/PXIWwox+5xCm/wk
+         xu/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753625239; x=1754230039;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ijMatxPTKApiZUPbghgjR/zDx2AP3DuF//yAnK8PVuk=;
+        b=wmRpC8WQorttbY8FngFXSyOQnnUidetJM4xvWOaonUMd28sd1siYnNnwjUhWlKh2Qp
+         0XVfY7IDsUjWd11rT5JBpz1NwI5VTo3X5Qrlq/5dlRnhscMKjCZ3Ii8K3xx4JZgjewOa
+         MjjeWG+NltZH4pcT7H9qo9BNzel3PFCEWPixs+B+t8xD6R35Hgr+jqMpyT0PqAPj52mZ
+         i8EK+HbH4616vD82GDwEXJjiEPDfrclWgLCYg8AFzIx1eQbB8+5+Z2PtDKC2h2tiiK/4
+         ohx7QU8/N0MuHcWM9LzN1/O6d7QWZ3VoM44bBNCug+x8Uet/z/5NyaV2B2IwIuq/Uu4d
+         WAEg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0dCVoKhn1I4Vze/YlDMFtZNjuKtskeaWJlCTBAaM0VOPO8SS17SqQaxbT9DmOw0HU9UfWtsZYyrIh@vger.kernel.org, AJvYcCUk9wFYSmrdv5GLHsknpVYIVwxumTDnRx3PUg8m3ZYEPca4rvpoihmb32DKDkuxtiaIX6zU6OC5IAgbUOo=@vger.kernel.org, AJvYcCVm965mZpFp36mWqg154xjDyxSUlKIKvfbu4mmBP+oQpdwWAcac1th7GIAGbmr+RA+Gytak2qe5/QYQJqI2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHeueZ5syiGuWjveyGm9g8S2e6maTISQRnzfZdlxkzENKTIt6K
+	grROrSkSoh+H+wvOPOq5wrdZ3F6FwV0bR3eOldNGaIQfakLngV9wyijY47EBgQ==
+X-Gm-Gg: ASbGnctVa4omae8VlJBoIeRKJGZithT5U6Nqf6KXEmrRINhvZsi+kFxwHiMCAC4NQUy
+	rwXY49iQ1n0jSBHILwQF7rtE/EmtLuJj/XEG4tvrLXUWMeOeM1VnhKY3U8IAnO4jIvNyo+KZplk
+	hkoSO1z2vm0Pq2Z7XELbS+F2+1nt6TIp5XWAyQoQXwkM/GV1ZYAKyoLHRs53S3/2eASsDP8E/iy
+	cjeU9u5QTkNi5ova3cfHo0ZTImwleuy2phcjsrt6DXZ/nCt0mG7ZqBux1kt9hSyMXaIfSMppSy+
+	kjFO6d9+zUX9xgaBAil91z3zqiNWoIh731O/2hIFeD4fwMdRO3C/+d4h28LusuZrFvOepAI/f3o
+	2/bl1Zwe//LI5JFeQzCqxta2s26S+qopb2lI=
+X-Google-Smtp-Source: AGHT+IEQHs087lj02YqE9M+XbKDd29RwR3fK0vwhvrdjnhXjWGjxDg4OPYYE122c2ldL1inh9RBClg==
+X-Received: by 2002:a17:90b:35cb:b0:313:283e:e881 with SMTP id 98e67ed59e1d1-31e7785efe2mr13853465a91.11.1753625238202;
+        Sun, 27 Jul 2025 07:07:18 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31ef172abe3sm191490a91.39.2025.07.27.07.07.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Jul 2025 07:07:17 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sun, 27 Jul 2025 07:07:15 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: hwmon: Replace bouncing Alexandru Tachici
+ emails
+Message-ID: <b0ff5a5d-f397-42a5-83c9-1b0ba8b40dd7@roeck-us.net>
+References: <20250724113735.59148-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250724113735.59148-2-krzysztof.kozlowski@linaro.org>
 
-On Mon, 21 Jul 2025 14:24:45 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> Add sysfs ABI documentation for the ADE9000 ADC driver,
-> documenting the device-specific attributes and interfaces.
+On Thu, Jul 24, 2025 at 01:37:36PM +0200, Krzysztof Kozlowski wrote:
+> Emails to alexandru.tachici@analog.com bounce permanently:
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+>   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
+> 
+> so replace him with Cedric Encarnacion from Analog.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  new in v2.
->  .../ABI/testing/sysfs-bus-iio-adc-ade9000     | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ade9000
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ade9000 b/Documentation/ABI/testing/sysfs-bus-iio-adc-ade9000
-> new file mode 100644
-> index 000000000000..fa92fd67483f
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ade9000
-> @@ -0,0 +1,64 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/wf_cap_en
-> +KernelVersion:	6.13
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Enable fixed data rate for waveform buffer instead of resampled data.
-> +		When enabled (1), the waveform buffer uses a fixed data rate.
-> +		When disabled (0), the waveform buffer uses resampled data.
+> I don't know who from Analog should maintain these devices, so I chosen
+> author from Analog of one of last commits.
+> 
+> Cedric Encarnacion, could you confirm that you are okay (or not) with this?
+> ---
 
-I had to go read the datasheet section on this to find out what this means.
-It is changing the sampling frequency to the wave form frequency / 128.
-We need to figure out how to map this to something related to sampling frequency.
-Given the fixes sample rates are 8k or larger, maybe we just use anything below 8K to mean
-use this mode?  Bit hacky but mostly that's the right thing to do as line frequencies
-tend to be lower than that anyway.
+Applied. If there is a better maintainer, lets update it again later.
 
-> +
-> +		This attribute is shared by all channels and represents a device-wide
-> +		setting that affects the entire waveform buffer configuration.
-> +		Changes immediately update the hardware configuration.
-> +
-> +		Reading: Returns current setting (0 or 1)
-> +		Writing: Accepts 0, 1
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/wf_mode
-> +KernelVersion:	6.13
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Waveform buffer filling and trigger mode configuration.
-> +
-> +		Valid values:
-> +		0 - Stop when waveform buffer is full
-> +		1 - Continuous fill, stop only on enabled trigger events
-> +		2 - Continuous filling, center capture around enabled trigger events
-> +		3 - Streaming mode
-> +
-> +		This attribute is shared by all channels and represents a device-wide
-> +		setting that affects the entire waveform buffer configuration.
-> +		Changes immediately update the hardware configuration.
-> +
-> +		Reading: Returns current mode (0-3)
-> +		Writing: Accepts values 0, 1, 2, or 3
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/wf_in_en
-> +KernelVersion:	6.13
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Enable IN waveform samples readout from waveform buffer.
-> +		When enabled (1), IN waveform samples are included in buffer readout.
-
-What does buffer readout mean here? Is this the IIO buffer?  In which case why isn't it
-just a channel?
-
-> +		When disabled (0), IN waveform samples are excluded from buffer readout.
-
-Hmm. This waveform buffer stuff needs some more thought.  We should really be mapping this
-to a buffer with control over the triggering.   Smells a bit like the old impact sensors
-but we never actually got those out of staging ;(
-
-
-I'd be tempted to drop this support from the initial driver so that we can revisit
-it and consider it carefully after the main part of the driver is upstream.
-
-Gut feeling is this needs to be using a separate buffer from main channels with
-separate trigger controls etc.  The multibuffer stuff is not yet much used so
-there may be some core features missing.
-
-> +
-> +		This attribute is shared by all channels and represents a device-wide
-> +		setting that affects the entire waveform buffer configuration.
-> +		Changes immediately update the hardware configuration.
-> +
-> +		Reading: Returns current setting (0 or 1)
-> +		Writing: Accepts 0, 1
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/egy_time
-If we keep this, the name definitely needs some work. Probably needs to be standard
-ABI as well.
-
-> +KernelVersion:	6.13
-That was a while back!
-
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Energy accumulation time setting for energy registers.
-> +		This value configures the time period over which energy
-> +		measurements are accumulated in the ADE9000 device.
-
-So this is interesting.  Feels a bit like it corresponds to a low pass filter
-on a power measurement? Or kind of scaling on the power measurement but in terms
-of timing.  I'd like inputs from others on how to handle this but I don't think
-a custom ABI is the way to go
-
-> +
-> +		This attribute is shared by all channels and represents a device-wide
-> +		setting that affects energy accumulation across all phases.
-> +		Changes immediately update the hardware configuration.
-> +
-> +		Reading: Returns current energy accumulation time value
-> +		Writing: Accepts any valid 32-bit unsigned integer value
-> +
-
+Thanks,
+Guenter
 
