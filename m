@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-200003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B144B13109
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 20:01:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 732AFB13113
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 20:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A1CF3AC25E
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 18:01:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B524165EAE
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 18:04:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF8CE21ADC5;
-	Sun, 27 Jul 2025 18:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01D622D9F3;
+	Sun, 27 Jul 2025 18:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MYP4KFZt"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="qVxk37Qd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7093178F2E;
-	Sun, 27 Jul 2025 18:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2952722B8CB
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 18:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753639286; cv=none; b=Nhr9cOxGtDkF50YnA7h+U0mNMDiWmQ02kSbCE8abpTJoQQCPAUBDK0DqxND5Kcn/rsNDcbIaX1LyJ/9ORXZwgAIn8SqeWh6H8NegiR0MPsT0rPCVx5/gjvB5msJmCg7Ke9NtLkrDJvjRPDljqtCEdfRcunki+zMQqSHgHnkihHI=
+	t=1753639419; cv=none; b=FgNcTgHK5/ReBf+Rbj4Zs8kpbeRlwcBF7tpE9ZElUelQBqF5WaxDtP2TKbT3UnQWmboKzm7v4gfO6QjPkiLNrAYy/3FVAsanlW3wKj0UqjDveN4CjY//nJJWP92a4pmqFjx+lpTOgrxTcXjBr+laF+eQEhDvEIAdLz3/DiC8hcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753639286; c=relaxed/simple;
-	bh=LI6y7ozJcC8Or2supKfVMbgMM+uopKpBzephb7b4Qas=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E7jutHBq6TfPAzUSLuSu8RmM36YRw0kRzpDLeav74chVolVTlNlM6qYMj5CKM25vegnTKgJFEq59bvub6glidHgmIkRgOOU6bQS2umOGsI9tXoifQjfsILxB03olV4TdqZ7X8b2E1DPn2NXuLyaMOXxdUy5QaPhX3EYuPQUbb+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MYP4KFZt; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7426c44e014so2940966b3a.3;
-        Sun, 27 Jul 2025 11:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753639285; x=1754244085; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6XocR6rTOn05yQM1S/WcSN7hOFbXc4E7TYH6NfvZ9v4=;
-        b=MYP4KFZt38+h0TFv/mgx+Akyc1UYNoSiX3ff8TmyVy63XVNTqfgkbQwLZt47qgVPSa
-         8fIKYohxAlORq5hV0EvWnUAlbSL6h9e8ODD3+pYmGcrFlBPguc4Q90MfW7SWMFumwLhI
-         nfXKZw3Glv4SRh0htdFTBqhVZFl4av9vQYNslciij6ERcZaDogheGFgBuDwDL6dn00nT
-         9xbRwhyEsFFpHkIdBnXLlVpP/7sdl8DUXvXfFPqFb5zRtaWzVUIkzyDuBBcjO8HeK57i
-         HnQGj3dDBEsEsR2MZamWGx1Pz2D+h+UbmmXepcLuuwzAls8ksZG1l5zo3CBxOw1sZSwM
-         Rgcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753639285; x=1754244085;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6XocR6rTOn05yQM1S/WcSN7hOFbXc4E7TYH6NfvZ9v4=;
-        b=UuYUtmArkbzfZie9PxmaIHQ6sssY4CfTngyjyyZz5dx5KsDNZBhIexg+G26b8dZ8Xe
-         SukTUpF43GFAJuq0heg68ykoYkqlQQ8E68DttXRWxFgfrWdlqCk1rIteCRAv7Uxoqxz7
-         +Z1OV54XlIL7HjA1w5fuQMgkcJber9L4kod8bhqGLlk6mLZkpeaTTVaAA3QDm6e+wIVe
-         12hv8lUxpJlYiwlDZbOUxGD7IWbprCoiqxcgH5NmUES55MRoqgK1cZKAPaf2FD1muyou
-         mpPVaX04rabpA98qUfdXr4SM7VFb77BVl427zyt+H5brcwk8QUpAHKAkZJOw3yrpovkl
-         /DUA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRCTN/lKJh6utnCPwLBYzZwDP5pwOPI6qIHrMYleLjYWmqJmyMJB5V58PcKHW9Bu8nSc7OqnQCcbRB@vger.kernel.org, AJvYcCXtoA+0A2OGk8/VsisxH0UfOJvJnTRoy1Lu33fU8a5drv679Fkr7qNjdRvP3q7krqAwJ8RvvYC6+mo0Jrq+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRwQCtK1uN9eXH/jkchHWjrTWf5nmczVa+YbCqndCL/J7ee/er
-	q3KdrE5+Mun2HIou/zEyTYsSzYHs5aLOVQoMwI3UFfDtzhOsa5v1ElOb
-X-Gm-Gg: ASbGncu0QtRzXFCEafcjuUu/zBp1k7Y/J5ybr1DiQO69F6pjoI/8x8ldCDVoW4aZS2O
-	RGnyAOpJ9BmcxHbTe6kwb8TUPgU7gIDls9XkwVxRT4fbq+QO8m4ulHT2XycDcCR25NoDo7z+W+S
-	E2ln3cnzT8tSvble/Vr0/z9b+ZI5rJR5Ftsuh7pb4FYE3lE+U2SmQ0fXgwWsmN9dYv2CrR8ESIp
-	ouqnssUzuO2DcVmVRLlq5VepM4h5hoX5LVbWXboeTyK8KKYS2JJ038eeRvn+Xwf9DpfQ7gNAZwv
-	8gbR/h+i5a0pJgYI1hKMqzmRxxK1uRywcOdX9DxC5AiJaTUmEDK/2PC9AQ6y/1/BYKmvECAvBv0
-	wsPNQMgHQTWaq2GD1nHGPME5T4QgVM9G8tt66yOrLWUyr8LhNeWpmO8ebA8107i31Kv+PE08Fs5
-	I2OvI=
-X-Google-Smtp-Source: AGHT+IGpFW5gv7iUfyBGK/ap4jGIPXnlfskJyfh3p4UPAIgAAzqPgMcg+xV0hTkIRH/c9+koaMyrhg==
-X-Received: by 2002:a05:6a00:cd4:b0:748:f6a0:7731 with SMTP id d2e1a72fcca58-76334bacc1emr12831116b3a.23.1753639284500;
-        Sun, 27 Jul 2025 11:01:24 -0700 (PDT)
-Received: from localhost.localdomain (61-231-19-160.dynamic-ip.hinet.net. [61.231.19.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76408c02005sm3826482b3a.36.2025.07.27.11.01.22
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Sun, 27 Jul 2025 11:01:24 -0700 (PDT)
-From: Joonwon Kang <kjw1627@gmail.com>
-To: robh@kernel.org,
-	saravanak@google.com
-Cc: nsaenzjulienne@suse.de,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1753639419; c=relaxed/simple;
+	bh=WIxZnDfBjy3+MWbIUs96xiEYfrzW7OIdSfiwwszp1mM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=tE14+1KW3ZJENGYBoTPIdHRSZB5h8YdnaoAfm8a3OEK1cr3cXkSgmNVt4SylExO/0AZt7vLVujgxHgcWb5ZnluRKO8YsPp9TGTMcDb3BgYza+xYAadlLGiL7GSCPNALt2GSV2b3kJ7DQwNIud9P7oD4iyR3BZaApkV2PbfNbnOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=qVxk37Qd; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
+ Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
+ t=1753639417; bh=EeTBhSz8vgF+IOB9tNLiutH2dTp1nA31ocl9xEGhTRc=;
+ b=qVxk37QdsFmyBwsPmVVVTu+fQV7SbbUF8wKX93RzN9NQQxtJPxLIHUrLdmxynuaGdG9uFy52z
+ WQbM9H+U07PPr7/Mx4qXb8bm5QcKbTMnhLWcDXV4w9LzrS9DnyiSuDfAcwSxZ2AQdv7zRnkQlOb
+ ht4lQ/LxI6BL6MCoFXYD3VZqflal/nWN9rv+BN9L96o9qQhx/Hq9usfSZpIkc5nibUbABC6RC3E
+ b5Dz5HQ7gUgoL2LJk/hMYnHkWYmAs/kpyT2L8F/MOw+ZA6U0gSLrlQ42/tC/YpNHvuao5op5b1r
+ 8iNiHV3S1/kpoC8yH+CGptcs3JOV3gesLJSZUd347IKQ==
+X-Forward-Email-ID: 688669eec509b9ee169cf33b
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.1.7
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+From: Jonas Karlman <jonas@kwiboo.se>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	=?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Yao Zi <ziyao@disroot.org>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	netdev@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Joonwon Kang <kjw1627@gmail.com>
-Subject: [PATCH] of: address: Fix bug to get the highest cpu address of subtrees for dma
-Date: Mon, 28 Jul 2025 02:01:00 +0800
-Message-ID: <20250727180100.15961-1-kjw1627@gmail.com>
-X-Mailer: git-send-email 2.46.0
+	Jonas Karlman <jonas@kwiboo.se>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to Radxa E24C
+Date: Sun, 27 Jul 2025 18:03:00 +0000
+Message-ID: <20250727180305.381483-4-jonas@kwiboo.se>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250727180305.381483-1-jonas@kwiboo.se>
+References: <20250727180305.381483-1-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,49 +83,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The function of_dma_get_max_cpu_address() for a device node should choose
-the highest cpu address among the ones that subtree nodes can access.
-However, there was a bug of choosing the lowest cpu address and this
-commit is to fix it.
+The Radxa E24C has a Realtek RTL8367RB-VB switch with four usable ports
+and is connected using a fixed-link to GMAC1 on the RK3528 SoC.
 
-Signed-off-by: Joonwon Kang <kjw1627@gmail.com>
+Add an ethernet-switch node to describe the RTL8367RB-VB switch.
+
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
- drivers/of/address.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+Initial testing with iperf3 showed ~930-940 Mbits/sec in one direction
+and only around ~1-2 Mbits/sec in the other direction.
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index f0f8f0dd191c..5e984e0d372b 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -969,6 +969,7 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
- {
- 	phys_addr_t max_cpu_addr = PHYS_ADDR_MAX;
- 	struct of_range_parser parser;
-+	phys_addr_t max_subtree_max_addr = PHYS_ADDR_MAX;
- 	phys_addr_t subtree_max_addr;
- 	struct device_node *child;
- 	struct of_range range;
-@@ -992,10 +993,17 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct device_node *np)
+The RK3528 hardware design guide recommends that timing between TXCLK
+and data is controlled by MAC, and timing between RXCLK and data is
+controlled by PHY.
+
+Any mix of MAC (rx/tx delay) and switch (rx/tx internal delay) did not
+seem to resolve this speed issue, however dropping snps,tso seems to fix
+that issue.
+
+Unsure what is best here, should MAC or switch add the delays? Here I
+just followed DT from vendor downstream tree and added rx/tx internal
+delay to switch.
+
+Vendor downstream DT also adds 'pause' to the fixed-link nodes, and this
+may be something that should be added here. However, during testing flow
+control always ended up being disabled so I skipped 'pause' here.
+
+Schematics: https://dl.radxa.com/e/e24c/docs/radxa_e24c_v1200_schematic.pdf
+---
+ .../boot/dts/rockchip/rk3528-radxa-e24c.dts   | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+index 225f2b0c5339..26754ff7f4ef 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+@@ -196,6 +196,7 @@ &cpu3 {
+ };
  
- 	for_each_available_child_of_node(np, child) {
- 		subtree_max_addr = of_dma_get_max_cpu_address(child);
--		if (max_cpu_addr > subtree_max_addr)
--			max_cpu_addr = subtree_max_addr;
-+		if (subtree_max_addr == PHYS_ADDR_MAX)
-+			continue;
+ &gmac1 {
++	/delete-property/ snps,tso;
+ 	clock_in_out = "output";
+ 	phy-mode = "rgmii-id";
+ 	phy-supply = <&avdd_rtl8367rb>;
+@@ -368,6 +369,60 @@ &mdio1 {
+ 	reset-delay-us = <25000>;
+ 	reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
+ 	reset-post-delay-us = <100000>;
 +
-+		if (max_subtree_max_addr == PHYS_ADDR_MAX)
-+			max_subtree_max_addr = subtree_max_addr;
-+		else
-+			max_subtree_max_addr = max(max_subtree_max_addr, subtree_max_addr);
- 	}
- 
-+	max_cpu_addr = min(max_cpu_addr, max_subtree_max_addr);
++	ethernet-switch@1d {
++		compatible = "realtek,rtl8365mb";
++		reg = <0x1d>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtl8367rb_eint>;
 +
- 	return max_cpu_addr;
- }
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			ethernet-port@0 {
++				reg = <0>;
++				label = "wan";
++			};
++
++			ethernet-port@1 {
++				reg = <1>;
++				label = "lan1";
++			};
++
++			ethernet-port@2 {
++				reg = <2>;
++				label = "lan2";
++			};
++
++			ethernet-port@3 {
++				reg = <3>;
++				label = "lan3";
++			};
++
++			ethernet-port@6 {
++				reg = <6>;
++				ethernet = <&gmac1>;
++				label = "cpu";
++				phy-mode = "rgmii-id";
++				rx-internal-delay-ps = <2000>;
++				tx-internal-delay-ps = <2000>;
++
++				fixed-link {
++					speed = <1000>;
++					full-duplex;
++				};
++			};
++		};
++
++		interrupt-controller {
++			interrupt-parent = <&gpio1>;
++			interrupts = <RK_PC2 IRQ_TYPE_LEVEL_LOW>;
++			interrupt-controller;
++			#address-cells = <0>;
++			#interrupt-cells = <1>;
++		};
++	};
+ };
  
+ &pinctrl {
 -- 
-2.46.0
+2.50.1
 
 
