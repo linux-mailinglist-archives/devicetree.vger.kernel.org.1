@@ -1,207 +1,120 @@
-Return-Path: <devicetree+bounces-199996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39880B13094
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 18:28:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DCF9B13093
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 18:28:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34D2B7AC3C9
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:26:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11F9A178367
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACF8A22F383;
-	Sun, 27 Jul 2025 16:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1C622D780;
+	Sun, 27 Jul 2025 16:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fUDksuNJ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="uwpH1cn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2889A2327A3
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 16:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCBA21FF29
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 16:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753633583; cv=none; b=bIEXN2RaRAcWOwUo27dPiJeRI+Yw5KCIh64uewqyWNx6C5J5iUcEHTNdsaYIkKdAoRHXZEPcMLKF1Imcilx5tpX36kjzeqGhmOJQsCDrGANvTGvSbxNu/EFuKCRDhJAovzf+RgtBhoncqFKpUGY0VIeka+QH4BYOgYcaCrVM67o=
+	t=1753633578; cv=none; b=fqm33X4z3Jw2Q5L32nyMHf/DcKxOQSwCre+jTek9PJvHBK+3InGfQHSUDLbSEctO6mOHPEWfcHBwEp/ILysWFouJkjXpzqlMkuvMtqYqZwuJIgRbtDoPWkhN5LGScgG9J5nKRV7XIJVXTh5v/XgJfrCtjsx/8mJRdm58sizDHOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753633583; c=relaxed/simple;
-	bh=bDYj8SCrzcBMYL0De2l91EChlN4ZQ8qlnKnsadPkWH0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qE54vjC/NyPoTgBIDw8iopkARMzyUHd9XakUc8SWPdbM1esVFS/08vCFWt5oT2Z/NT89q0M+qirUsDttzG048ZfqcWPBa3iq0gPEmnOtX/6mm8KlnBjAAHPeezNmNRrEBlJ6R/cRwgKoNdyuaa+7fola0B6CEJUMMB9uyP+FbtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fUDksuNJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56REoemp010918
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 16:26:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zO1m4Mu1s9USWMxZJk5OY8bYzy46q5JS7Is6cMJU9ok=; b=fUDksuNJD70l19bX
-	6Bp4yt/V7G/bjPloVzd/OlS5eM0+YroiuqBGLwcrg9agTSJo5+F8RCQRj3CQb0Id
-	iNaUwmG4q2Fbqkip3En/1HtzhZB9lV3f1P4Ia5tfnxiAlhk+VggNydXAt3i2gzOJ
-	57zsbO569dh5mSwQ6bueeXl8U7s21JVaJmdfzHk3ipB7Ag9VB5YwbDmgSadrhUMD
-	Sf+iTjmOctGTI5ilmWL9G8zC6taZRvRzMG87y5fsBUIRBS8Nnus47cysgZvjFKvg
-	nkkn8saCL7hHEwffzjmuR3rApsCutOEIrpvXWfMcvxjHPNct+FcwhrTrwBhj7kKM
-	IP3nbQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484pbktb9d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 16:26:21 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-23824a9bc29so61276615ad.3
-        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 09:26:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753633580; x=1754238380;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zO1m4Mu1s9USWMxZJk5OY8bYzy46q5JS7Is6cMJU9ok=;
-        b=j6OyFSsBrz9uYqhKrOGL2xiu4flxlEi8emYl1Lnmntm5m+O8FXPA78G1HqN31hfZM8
-         LSov/Nj1AuDhx5cHIhp8BQ+Y428wy0ZDiZQn9JxqBvJP7yc8O+UHlVjBsf1+E1DhnHe0
-         UyEmKUw0ZSq2/wf6g9U+iICH9OsfAHs0qRSXMKKAAmCL0fAUQPlqRRw/a1w/NAzwAwWe
-         1kHQC0wkXol+jy41vXHm3sqyV58Lv+14Hs8dK6kuN5QymkonKt8Vp+afknZwUeuYj5DK
-         leUqrgrPJsaj5reyJXx1bVsPM8HyG9v62WnJrBqJ+EQOWcVZNfx/pNrbWUoKraJ8Tk8u
-         b14Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUoMXC8eP/26Ch/ea115BZ7J1rKrrca8h1XJPNXsmH4H42l4Dd93kUDh5A+CP0nLt/f+PBklqontd4X@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/w662ZOp1yA0xv/E0TRbk8QTNe9+msIqT/xgnErP5L65aZY8r
-	jjV8QzVKyuDeA4aILr1zznDdzTByDYmr5Utq5SzktzeT0VBiKTNuBVfZgfmq3BTJPRvy02r34Xq
-	vrhGKzrXZ+p6Zp/NEmAwz6iWbDIYZsesZN9MiY/tGBoo3jXy+vCf7Iq2M8ScZRU/w
-X-Gm-Gg: ASbGncsfav58re4KaVYGW8KCY1a1WxuQBoQWBda1cs+2C1xWe2GcNAL43yH6QfaFQYW
-	UCI30LnlJ4WLFSIdmsVhvBxe3aqF3Dg+/cllVp0T8JyNbJ6tuGkO03dcV6JEwWewbdLn/JOurPF
-	mF8bpoSCAHtlE/FEEs7NOM5TSMbPG5BtzdDADIn0YBpe8e5sltLcZ9hBd+oKF7xg9OZg36ko3cl
-	sIwel4L9IlPzUDryFSuKWyJBnBP/++vK3hcA6+7iphSZgn0qO08AoZejs67k9ufQ4yHnlDI5iDx
-	q75wKEru5oAJq0+iA7HpIdPc+GlakjYURyyZbnEj+a2vFi/k8NAIw4tSUsndX53wKRjF41Y7ITC
-	P
-X-Received: by 2002:a17:902:e807:b0:235:1b91:9079 with SMTP id d9443c01a7336-23fb31795bfmr154382615ad.32.1753633579803;
-        Sun, 27 Jul 2025 09:26:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFwc00XkR+di84taiD/OffOGEpCSV4NomuISb8nymc7JO+HaEUAMVPaylTxckUGH7O8K1y1Vw==
-X-Received: by 2002:a17:902:e807:b0:235:1b91:9079 with SMTP id d9443c01a7336-23fb31795bfmr154382295ad.32.1753633579320;
-        Sun, 27 Jul 2025 09:26:19 -0700 (PDT)
-Received: from hu-spratap-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fd9397ebbsm29110325ad.210.2025.07.27.09.26.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 09:26:19 -0700 (PDT)
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-Date: Sun, 27 Jul 2025 21:54:53 +0530
-Subject: [PATCH v13 10/10] arm64: dts: qcom: sa8775p-ride: Add PSCI
- SYSTEM_RESET2 types
+	s=arc-20240116; t=1753633578; c=relaxed/simple;
+	bh=tSpa480BxryxHVl7QXWh/TInPIAUuAoO4TN4RAD5RKE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NMRL1OA1rdGcmRhX/5lt6HAGhB0qFayWiZjeWj55WnUCDi8+h1+5OqXMkTZevb6U3q8ennGVlXiK3VX0KtciBfA0dTZqluABpE/apQkgTAkKuuIaDEvpiZUsFYQzEDovTTifHAOlvwQTyJB90DUWxAgq1DjFdRu5iWTSHwQEH6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=uwpH1cn3; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1753633574;
+ bh=+IwD9MK//CM9Rt8Um/g7d3JPVvOSWALhDcyNnxAUdjk=;
+ b=uwpH1cn3LSf71a3e8njYCqNdxU+eInCNzyaQ5NOux2ZJD5cjvvenkifJjxMXtZ3DyyN4YCDxt
+ R+KVK2vl1IjzBdxCaeIlXqVNqrzCsv9gnX1SMjcWDMKliUA82I/qy9OZaraWY2y0vcVDKHku+rj
+ a5OzFOXLyFSEwICxYEAoDeDrCwAQ0Q4FANuRaadZCRbfNBIdxAKZ45Spgh8+r38Jgv/yxK64vFU
+ Crfb7cvdLLFmLCB4i/dAIQ0obDUTeKWaKgchdVhLp41enRFQT1dNRaLrpmyXSXnNU+fmuP85WcA
+ BoNpgojgke3Lgud6xiWSPIWwNHKsRvgaQfRpHQqMu+8A==
+X-Forward-Email-ID: 68865320c752737c6c09a5f9
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.1.7
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <91ea1a4e-3b83-4857-a410-38425e4e5de0@kwiboo.se>
+Date: Sun, 27 Jul 2025 18:26:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250727144409.327740-1-jonas@kwiboo.se>
+ <20250727144409.327740-4-jonas@kwiboo.se>
+ <72d979e8-005a-4d4d-b5d2-3f59e78574de@lunn.ch>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <72d979e8-005a-4d4d-b5d2-3f59e78574de@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250727-arm-psci-system_reset2-vendor-reboots-v13-10-6b8d23315898@oss.qualcomm.com>
-References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
-In-Reply-To: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
-To: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Elliot Berman <elliot.berman@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753633495; l=1668;
- i=shivendra.pratap@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
- bh=nykICX8hQVOI73Pb+LH6QfNsfIbx6Lek13GmZ+0SmB4=;
- b=qv8WQ4rhMzRIfBTQPcknLWKzfFESP1pOGTqD92zp0OFhxDqrgJbvV6E1LADfVHcHGcJQzUbqr
- o9Pw1v/PWgrBJiJ8iJ/4KEdXWIzCIiK4N7VGCBXkE8I4eFNERL87qYr
-X-Developer-Key: i=shivendra.pratap@oss.qualcomm.com; a=ed25519;
- pk=CpsuL7yZ8NReDPhGgq6Xn/SRoa59mAvzWOW0QZoo4gw=
-X-Authority-Analysis: v=2.4 cv=LsaSymdc c=1 sm=1 tr=0 ts=6886532d cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=w06kbW2hXDg5FjFnD0gA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDE0NiBTYWx0ZWRfXwucoBQNYtMgs
- B+1Ow25z7Q3+1wI7XRoQd9nVFbuNcyppcGWadjjt2MJCPmvaHXga/RMafYEXy6AKfVB4vF5UG7D
- 1RfhE6LjLY77E3Ysmua08O4Twar2A1UsKjLOIaT7lZ42vm992rXa5Eq+WV00X10OHYgjoB8v0uO
- V2YkgxCXdI7NxlBvZm5Lje7nIgHbj98lrtnGugGI3htpiDbW4UPNa8glpLGothjpwfr8FesTL6E
- N0ixBP6RITraLfVZ2VgR1uBh1KxC4VjoHNoXzZIX9Qx4p5cNUw5iZWp1RDHrvEqbAYYlmR9+fCW
- 0WYpiI3k/XxK6O+yMNnR0QRIe2K5yQzXcbgE353iGDf9IrC3t48NnN94rJ7MfdoN44sup1z3Qtt
- vqO++srN0b5I1/jP2n9gJcuSDhJyfMbAVEkoF9YYAaON2AWXGhYnwsWUulvbRi7AMjxrOeBH
-X-Proofpoint-ORIG-GUID: prmSfroCyPcghhpeBPDTIwQjohrunRz2
-X-Proofpoint-GUID: prmSfroCyPcghhpeBPDTIwQjohrunRz2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-27_05,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 mlxlogscore=999 spamscore=0 phishscore=0 suspectscore=0
- impostorscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 mlxscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507270146
 
-From: Elliot Berman <elliot.berman@oss.qualcomm.com>
+Hi Andrew,
 
-Add support for SYSTEM_RESET2 vendor-specific resets in
-sa8775p-ride as reboot-modes.  Describe the reset types:
-"bootloader" will cause device to reboot and stop in the
-bootloader's fastboot mode.  "edl" will cause device to reboot
-into "emergency download mode", which permits loading images via
-the Firehose protocol.
+On 7/27/2025 6:15 PM, Andrew Lunn wrote:
+>> +&gmac1 {
+>> +	clock_in_out = "output";
+>> +	phy-mode = "rgmii-id";
+>> +	phy-supply = <&avdd_rtl8367rb>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&rgmii_miim>, <&rgmii_tx_bus2>, <&rgmii_rx_bus2>,
+>> +		    <&rgmii_rgmii_clk>, <&rgmii_rgmii_bus>, <&gmac1_rstn_l>;
+>> +	status = "okay";
+>> +
+>> +	fixed-link {
+>> +		speed = <1000>;
+>> +		full-duplex;
+>> +	};
+> 
+> A fixed-link without an obvious reason gets me asking questions...
+> 
+> The schematic indicates there is a realtek 6387 switch on the other
+> end. rtl8365mb.c seems to support this. Is there a reason you did not
+> include this now?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Elliot Berman <elliot.berman@oss.qualcomm.com>
-Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 7 +++++++
- arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 2 +-
- 2 files changed, 8 insertions(+), 1 deletion(-)
+Sorry, this was mentioned in the cover letter, and patches to enable use
+of the switch is incoming in a separate series very shortly.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 63b3031cfcc15fe2cce58c0fb7502b19f058b80c..b1bbd3270afc65e9e036e8098ae7cec3d3363a32 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -874,6 +874,13 @@ &pmm8654au_3_gpios {
- 			  "GNSS_BOOT_MODE";
- };
- 
-+&psci {
-+	reboot-mode {
-+		mode-bootloader = <0x10001 0x2>;
-+		mode-edl = <0 0x1>;
-+	};
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 9997a29901f57d7894dc1eacb6a809caa427c6c4..52466607035e663f4dc6e5c97223d5c0404650e2 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -622,7 +622,7 @@ pmu {
- 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	psci {
-+	psci: psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
- 
+"""
+This also leaves out describing the RTL8367RB-VB switch as support for
+the switch requires dt-binding and/or driver changes to make it work,
+something that will be handled in a separate follow-up series.
+"""
 
--- 
-2.34.1
+Basically the dt-bindings prevents describing a mdio child node, yet the
+driver requires it. I have prepared a patch that relaxes the driver to
+make it all work and it should be on the list shortly.
+
+Regards,
+Jonas
+
+> 
+> 	Andrew
 
 
