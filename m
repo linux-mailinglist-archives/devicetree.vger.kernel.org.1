@@ -1,117 +1,134 @@
-Return-Path: <devicetree+bounces-199917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE241B12E0B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFACEB12E37
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 10:05:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6917C17CC7B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 07:17:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E711017CBD3
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 08:05:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848161E6DC5;
-	Sun, 27 Jul 2025 07:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4481DED64;
+	Sun, 27 Jul 2025 08:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NVDgzHjY"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="QiNliuiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B811E376E;
-	Sun, 27 Jul 2025 07:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11543155326;
+	Sun, 27 Jul 2025 08:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753600635; cv=none; b=JCRzdFa9SSYhohiFTYRhuTCaNjeruAD/tMEhwlM5U7Sjq4afy0yxPLZq5Sr+4CPvjDNDxpmkG8n03xoWqiuX4dbDNyc8qVk1+V1iC9Bcw3FdwGX7eipfPqkz9onXMkaa+8eNt9F4t6RQEXnNZvYrDCmvde3rRQ8mrRKKZjFnblk=
+	t=1753603550; cv=none; b=sxPOWnRfSIfJao3kj37euxke9hERjR1hUF2brAu40+mEwkRtENuxwVyZ5xbH/LLlnY8aquMLJ8rp1TKgppj8i8Qr0biOVE4TlBKyWA/5/viVPJ6iUTZlnNHYnHQGczWSHl81kaAVbRMwAgAU1lWGuBhd2oWD3V5zqZd3T9hvk+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753600635; c=relaxed/simple;
-	bh=TftV0aWXrV1+RHzz32mU431/YAR06CaB+MdXLNeKsCY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A3q7mKV/Lbj4NY9K6LB5MKgeYNQml6ckb3TsHoxm/Q1o6BubZ+6pastYg9nG7NXlR/D/OPBnSsguzcRRZVcTKFC/jzmSAGAeZjuTD/IKdnvmZ6Kzz/0ixMpVqxPSOLYwr8LTiGjUQCnNuhRLnLp7IohRimGIcRQeiXkStyePB44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NVDgzHjY; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b5146e706ab911f08b7dc59d57013e23-20250727
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=h/6Q7ujA0qP8HOsCdISb9GQQ5dFVRD6CG+119es1Sxg=;
-	b=NVDgzHjYAH4+bHaBnlYXs8pLfJMRz/WsyoqllVKHvCb/JaQUg6ctS2tNyoavejBbbp5DpHBipHMPWqGGRXW3ZJ9QVueTihP5rVpadZTUB1R3ZJp301Ep2OmhjoJFk5TncrikIp7bvJ4pX9a0PoG3fmdGNjfVTWtuDRcCn4oQUuM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:86822d3b-9ba6-4443-a13b-62f4d59eacc7,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:3385360f-6968-429c-a74d-a1cce2b698bd,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|15|50,EDM
-	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: b5146e706ab911f08b7dc59d57013e23-20250727
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <jay.liu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2112734843; Sun, 27 Jul 2025 15:17:08 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Sun, 27 Jul 2025 15:17:05 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Sun, 27 Jul 2025 15:17:04 +0800
-From: Jay Liu <jay.liu@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, Jay Liu <jay.liu@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Hsin-Yi
- Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>, Yongqiang Niu
-	<yongqiang.niu@mediatek.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 7/7] dt-bindings: display: mediatek: gamma: Add support for MT8196
-Date: Sun, 27 Jul 2025 15:15:57 +0800
-Message-ID: <20250727071609.26037-8-jay.liu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250727071609.26037-1-jay.liu@mediatek.com>
-References: <20250727071609.26037-1-jay.liu@mediatek.com>
+	s=arc-20240116; t=1753603550; c=relaxed/simple;
+	bh=e61m84fGX2vrBugF0y+lPAXMApbOPGKCY7UvCfdkjDc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YYQkIHPCNyqFl0hI76Z2F17d6qI3u4d3bD+49RWNXHp7JujKkwZY/pThTf+wTl1nF46SrjTZhsSZtTqDmNfRf/iZeOhXjIHecR/n5eaX6FXAaY5gbzVgh6hi+bwXnrJ8SRoRICuaQ+jaK1JgmTIOk5ZXeQP125Qu+jphDe8Ly+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=QiNliuiO; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 335AC1038C126;
+	Sun, 27 Jul 2025 10:05:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1753603545; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=RkBrq8EwJtKrLLyc89nHWZVNStBBKpPPsVnWhREsJ3M=;
+	b=QiNliuiOiHMjVLrreXLPVMtdb6modtyn9YS0LJimse60TjPW5KL5jdyhUQZDOY0BJv6vC1
+	QmtyZEOevEZTYA8m6jqbfaSVYXBgqvsZR5E2aR97uWQuTuifRl+698ko3S6iiGtHpKLFNe
+	yWEyEguBDDn1mGpPhlu9LbqolnulGLNkJiZNQrF8qGy6n+isjMCBKOxr62Ll1SUBoTHz4P
+	xkRalhn9K9xq/3l8AhS2ydZJsbY+TPWDUm6YcCY3nXF9/ilaZrewuDzrXnrMtfFD/G8MSS
+	2ZqOD584dzQgbM+HYAc1wjEuastuPoEVRDpORsPcjxGHBfbGC0svhTytmYE0XQ==
+Date: Sun, 27 Jul 2025 10:05:37 +0200
+From: Lukasz Majewski <lukma@denx.de>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [net-next v16 04/12] net: mtip: The L2 switch driver for imx287
+Message-ID: <20250727100537.4abf90fd@wsk>
+In-Reply-To: <20250726133835.6e28a717@kernel.org>
+References: <20250724223318.3068984-1-lukma@denx.de>
+	<20250724223318.3068984-5-lukma@denx.de>
+	<20250725151829.40bd5f4e@kernel.org>
+	<20250726221323.0754f3cd@wsk>
+	<20250726133835.6e28a717@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; boundary="Sig_/0V+L.IMPpnGggWz/bxwq32Y";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add a compatible string for the GAMMA IP found in the MT8196 SoC.
-Each GAMMA IP of this SoC is fully compatible with the ones found
-in MT8195.
+--Sig_/0V+L.IMPpnGggWz/bxwq32Y
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Jay Liu <jay.liu@mediatek.com>
-Signed-off-by: 20220315152503 created <jay.liu@mediatek.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml     | 1 +
- 1 file changed, 1 insertion(+)
+Hi Jakub,
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
-index 48542dc7e784..513e51c6d2b9 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
-@@ -40,6 +40,7 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt8188-disp-gamma
-+              - mediatek,mt8196-disp-gamma
-           - const: mediatek,mt8195-disp-gamma
- 
-   reg:
--- 
-2.46.0
+> On Sat, 26 Jul 2025 22:13:23 +0200 Lukasz Majewski wrote:
+> > > > +		ret =3D register_netdev(fep->ndev[i]);
+> > > > +		if (ret) {
+> > > > +			dev_err(&fep->ndev[i]->dev,
+> > > > +				"%s: ndev %s register err:
+> > > > %d\n", __func__,
+> > > > +				fep->ndev[i]->name, ret);
+> > > > +			break;
+> > > > +		}     =20
+> > >=20
+> > > Error handling in case of register_netdev() still buggy, AFAICT.
+> > >  =20
+> >=20
+> > I've added the code to set fep->ndev[i] =3D NULL to
+> > mtip_ndev_cleanup(). IMHO this is the correct place to add it. =20
+>=20
+> If register_netdev() fails you will try to unregister it and hit=20
+> a BUG_ON().
 
+Ach.... right. Thanks for explanation.
+
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH, Managing Director: Johanna Denk,
+Tabea Lutz HRB 165235 Munich, Office: Kirchenstr.5, D-82194
+Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/0V+L.IMPpnGggWz/bxwq32Y
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmiF3dEACgkQAR8vZIA0
+zr3XqAgA2sXocPAdmK/F5WB7kLsc6cqCUe6c3iGLjKWISsBkLMNQpfTzN8u3AMt+
+SE64cZAf1HmhN+dCrW+M+/xlKliLHwlkMF6E+Xpd+GhfIeNRijyPXBrcAB2c+Npd
+5yqu9q6rVYD+icUz8AuRiWJQQhKHxrj35cdP7rKD0iyL/NjetQJwRRnlBIF1Asb6
+Y8qLJY52pRfXxgr2pdlmkE2onr9sEnM4VsZrnWy0yuyb0ufMy8NEuRy+mh6TYeqk
+O1TmsdbbUMAcXaGk3XYR6btXXu5bkgn3hGdEJnORLtq1I+W9RH13kbHiKqm7w5Jb
+gZuhF67G07ueQCFJDxAjLMjVflKSOQ==
+=Tm9v
+-----END PGP SIGNATURE-----
+
+--Sig_/0V+L.IMPpnGggWz/bxwq32Y--
 
