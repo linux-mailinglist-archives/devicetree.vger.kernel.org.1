@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07F6B12FF4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:45:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C6CB12FF7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81D763BB46B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 14:44:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4FC13BB595
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 14:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8096F21A436;
-	Sun, 27 Jul 2025 14:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B0921B199;
+	Sun, 27 Jul 2025 14:44:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="s4JmrPlU"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="C8x3wDfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969492192F2
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 14:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590BB21ABDC
+	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 14:44:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753627475; cv=none; b=JVJvww/ULmbRswIWnvphBpyo29P+PXvayCTXVx/WRa/Q4P1khPvyHcpk7F2oAwW5a4kIbtiIZs84Q+l8WN6a+5K3Mo6Qdjr0h/oln+CXWHEofnLYfmWqS1IyiK76Kg5oa5QS7mfeNAo1HXKS812NFozBlk2h4qMEXt7LX20Zzzs=
+	t=1753627484; cv=none; b=QaCpQnby3b8oCA1QMAKkvSQsScMhZMp/L/zZGi3bIori2z+dPtpHqBp+jmK6LXOv0WEnZdsElSs2NQYuYOyXU2f3cVeIDiuN82gH0Kulu3U7SdnznNFhJ4mCd0PQJoY3mmftAOtbQ6WfHYHNf8wN8LBB01qgeWzbbd9PeLKTSPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753627475; c=relaxed/simple;
+	s=arc-20240116; t=1753627484; c=relaxed/simple;
 	bh=oPFPk1Lx00Msv/Zl4l6k4Cw4wpVXALSgzY+hZoBBttE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o4nwoMEIBWUH75Qm/SDI7vykh4GXfIDCfblMNZ8DOZoYpnV5VcfT5z0iwyto4HwFQv4fQ6DFLFhmp6Ade/ZyEZrCqc1HO+uGQftm7rMLNbsswhWShxrPW/gPuQFCD9Z7PWUDnbjMwm/a/vvIFqagi4p1UshfsAqPKgTfiOhm6tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=s4JmrPlU; arc=none smtp.client-ip=121.127.44.73
+	 MIME-Version; b=LgiroeU+jzcS2MdZiSEybXBv6P606np1aUxRqfEM7RwGy/xgTsn4fdmJWK6ok1lmnQX+IXn0DdimaSh7NGWfkmzLG/ohCkVomzwl3tMH+kHO2qL50ZTHU40r3U4etQTEBhDLCWy6eBJG+CBwseh0Lngdm2mZou9WQawUgdusUCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=C8x3wDfU; arc=none smtp.client-ip=149.28.215.223
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1753627472; bh=8aBrRTfcYjO7n599Gvqfq41hTigk2D5xPYVcn/Z58V4=;
- b=s4JmrPlUwzUKxYUWhqZLy1wW04nV7torXwxDbtsizZkBlJrFGHi2g6U7jnLkl6nJHYzdk42o3
- DmyzV2feTs5ZP8Af+TVJK5qvTLzobq79ZPkfT/hR3kxPuTU/F4e+yQzPgof371aIUl+eeBjpgyp
- +uBFfEiOIXj6JkIQkGfR40Qvo36l4BzsG9JMWWbGtwPLlHR6gTJijGRNWmE9KZjzEQjwYAcX0Ii
- NzPvfiPGLlPhDE0Dq/pIiSWZAa3/xxOxWzM5MxJzO0CSBn23pt8IV/6recougyK5UICbxH0Sizn
- Z127J4MHq70de9zDE6V/J4sv5Ar9poscVwm0scqkT/mA==
+ t=1753627476; bh=8aBrRTfcYjO7n599Gvqfq41hTigk2D5xPYVcn/Z58V4=;
+ b=C8x3wDfUyRRQ385mU72h6GkJCeLy9LjVRiSZO36U+WIQbNJiQ4n163gNSTbHBY4CBvlhK5CLx
+ 05b6SppXzR7D21f//lXbeg3q+GmoPRPOmhNSx8DllqTtkSCCsJNojyBjwtyGPrpQeZBuMNAzJ42
+ rx+UZs6mQ4bSB/JyowOZ5Yq1W5zkzqXW7ss2tZ5xnI506hKSLvXMk+TIlfFmL6CcCsSdpL4Zwke
+ nlWORGAzxxqfVg5A3SHxDeea7yQgKy6t9f6Rf6xco9A3hLprTyLJM31irN4hKT/DN1n1ixeFHVN
+ xun5QjtT1kBDldqOW5P7XY4oW+kDbbV/TxbqNpovsuzA==
 X-Forward-Email-ID: 68863b4bc752737c6c0978a3
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
+ 149.28.215.223
 X-Forward-Email-Version: 1.1.7
 X-Forward-Email-Website: https://forwardemail.net
 X-Complaints-To: abuse@forwardemail.net
