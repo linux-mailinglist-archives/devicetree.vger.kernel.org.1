@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700CDB12ECA
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:23:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E18B12ED0
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:30:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F8401898A2B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB953BC17C
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2071F583D;
-	Sun, 27 Jul 2025 09:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAA61FBEA8;
+	Sun, 27 Jul 2025 09:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfyBNpuD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCB3pcy2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 553735BAF0;
-	Sun, 27 Jul 2025 09:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943A19460;
+	Sun, 27 Jul 2025 09:30:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753608189; cv=none; b=cJczTqvATGUOVJN3RKmcZcIQUqnr+Sti3LbGWX5RLiYEZTLnCMzn6Y5FJdLfHwIIHyYkCc/d1NAmDCZTTRvNhTtIisOa7eZKvGcyJ3mL1SwyQ1GwTFFGyrLjagTz9S/n83wPGkK5fKK3g3/2sjwpZ+V8Q615anBin+d4xP5wzAs=
+	t=1753608619; cv=none; b=OF/FRIvxmc2FDqxzunMZ6arjf9G5LkRLHoBcqTuQFWdqExTslhTWSCjI0+RWab2JcUv0v2V/6xiIMolcQCj0WRQyfZwN+YC5iQjmvEDpdGD7kulAyWJNWtmSyBmOQASZpE65yD2vCA+exgr+pn92aiSAMLTGWD4qBCQHQQMIXno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753608189; c=relaxed/simple;
-	bh=X4o1N/+LblHHfZ1eiMxUyvwUFnSbGO9ozqi3n8jmUAk=;
+	s=arc-20240116; t=1753608619; c=relaxed/simple;
+	bh=1G8EBj+mLr6qao5CQ+yXFngGEjwUU5x6p8fIGY11ZQQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DEjvSG6ZX/UqHAZ8ANOarbbVgXxyhyWyUmEVD4EzVV7sFqx6nEol2v3JGN9ScLi/ABpyoc1k3fLKyX2klKb9zeiGb4+qVjDpIxciP4g8GSxjWBYbe257DGWtfHs0SwGanViB64glaAqCKJwO3aHVyWilvK09Cojuvl4FKhFg8AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfyBNpuD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4280CC4CEEB;
-	Sun, 27 Jul 2025 09:23:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VNt92wn/eKoRnw8W3PiWBhv2/WSZWW2pA50VgdJcgbUXoBUPTnDTcGstHvBhLEmoGo56KHQcpJ0MkViIj9zUS5pEXgyETdswu/bAxeueRPweTuGASMK+/PVzHHM7r0C+w/gTHUXPABHLfpBdpiFfvoeMloBXExa507Mo0rhApdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCB3pcy2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD411C4CEEB;
+	Sun, 27 Jul 2025 09:30:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753608188;
-	bh=X4o1N/+LblHHfZ1eiMxUyvwUFnSbGO9ozqi3n8jmUAk=;
+	s=k20201202; t=1753608617;
+	bh=1G8EBj+mLr6qao5CQ+yXFngGEjwUU5x6p8fIGY11ZQQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HfyBNpuDhwZIxNdEyFnLoqg57mtC7xcd8kVhnc5HalJuD3V3MvjHs0AUCSEmsfxxM
-	 nG6amwP+DsO6FzQ6SAttnXu2+JhsscBIl83LD7GacQIHPoBRat7N3cCqixE1YuWj9v
-	 W7x7CyIseBru+W6SN3sZhSWxYovWRKFe/Th0PM/4FBYid1MAu0ktGUCM8gaKyJR5UJ
-	 otrsw++Ty6Kp7SSS0HP3Uj7rV+7BPA0Li0/VsCUaVe9GqtpRWtsB8n9trwqTEx0fpu
-	 HMxytNEV2mvKJPpQF1iPTE6qE7RjiR6cYl+hZ24+/pQ4i5Uv53U9dDlSIaGKZtHFvw
-	 Fh5XlxsEJbN3g==
-Message-ID: <acdc8d41-94b3-47a5-b67e-58def060a378@kernel.org>
-Date: Sun, 27 Jul 2025 11:23:04 +0200
+	b=dCB3pcy2zaJG7lj+TOpcxPdADFKlNfDLfLL0AB8tklII7BnnHxSX7LbhtbFzDrNrC
+	 23/F/ev4yKLXpy3gnLDwcE+J2euOLXdBu1+jIKAH5w7BUL5/9r2jNnrSWQDLAi/Xc5
+	 VjOeaqDJjS1c7QiGuveUf6Fb87X25aJoRP+Xz4y1f8FCyPMFWbgzX1Zn4udJjADXIM
+	 3mfwV5UPEL+1ywzVBfYyyjcbd8Jda1htwZkRt+DInzc+OET7ZGetS58gxRki01J5Vf
+	 PaP/wGoh7odeWGVDqzPQuXfX/0VQliroXA9yS6CCU9utdP9uxVO0McCFSNZjmD92zT
+	 wP7HQ5zMjfs8w==
+Message-ID: <07faf0cc-a8e6-426d-b397-dfc321a7f3df@kernel.org>
+Date: Sun, 27 Jul 2025 11:30:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: magnetometer: document Infineon
- TLV493D 3D Magnetic sensor
-To: Dixit Parmar <dixitparmar19@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
- <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+Subject: Re: [PATCH v3 2/3] ASoC: codecs: wsa883x: Add devm action to safely
+ disable regulator on device removal
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
+ kernel@oss.qualcomm.com
+References: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,97 +110,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+In-Reply-To: <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 26/07/2025 11:37, Dixit Parmar wrote:
-> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
-> controlled by I2C interface. Main applications includes joysticks, control
-> elements (white goods, multifunction knops), or electric meters (anti
-> tampering).
+On 27/07/2025 10:31, Mohammad Rafi Shaik wrote:
+> To prevent potential warnings from _regulator_put() during device
 
-You are duplicating existing binding, need to remove it as well.
+Warning is either there or not. Either you fix real, specific issue or
+not. The code looks correct at first glance, so please describe exactly
+how these warnings happen or how what is the bug being fixed.
 
-> 
-> The device can be configured in to different operating modes by optional
-> device-tree "mode" property. Also, the temperature sensing part requires
-> raw offset captured at 25°C and that can be specified by "temp-offset"
-> optional device-tree property.
-> 
-> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
-> 
-> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
-> ---
->  .../iio/magnetometer/infineon,tlv493d.yaml         | 57 ++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
-> new file mode 100644
-> index 000000000000..0442cf41503b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
-> +
-> +maintainers:
-> +  - Dixit Parmar <dixitparmar19@gmail.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^magnetometer@[0-9a-f]+$'
-> +
-> +  compatible:
-> +    const: infineon,tlv493d-a1b6
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: 2.8V to 3.5V supply
-> +
-> +  mode:
-> +    description: Sensor operating mode. Must be one of the defined enum values.
+> removal, register a devm-managed cleanup action using
+> devm_add_action_or_reset() to safely disable the regulator
+> associated with the WSA883x codec, ensuring that the regulator
+> is properly disabled when the device is removed, even if the
 
-Why is this board level property? I imagine you want to change it runtime.
+Device cannot be removed/unloaded, AFAIK, because of suppressed bind.
+Regulator is already disabled during error paths, so that part of above
+sentences is just misleading.
+
+How can one trigger the warnings?
 
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum:
-> +      - 0 # Power Down Mode. No measurement.
-> +      - 1 # Fast Mode
-> +      - 2 # Low-Power Mode
-> +      - 3 # Ultra Low-Power Mode
-> +      - 4 # Master Controlled Mode
-> +    default: 4
-> +
-> +  temp-offset:
-> +    description: Raw temperature offset at 25°C to apply before applying scale and correction.
+> probe fails or the driver is unloaded unexpectedly.
 
-Does not look wrapped according to Linux coding style.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 340
-
-Missing vendor prefix, missing unit suffix. I am also not sure what is
-the board design choice to offset it.
-
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-Missing supplies.
-
-
+How driver can be unloaded unexpectedly?
 
 Best regards,
 Krzysztof
