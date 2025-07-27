@@ -1,581 +1,190 @@
-Return-Path: <devicetree+bounces-200008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE198B13191
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:37:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A71AB13197
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47E8C3AD473
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:36:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F2B93B8BA7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2312264BC;
-	Sun, 27 Jul 2025 19:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3083E226CE5;
+	Sun, 27 Jul 2025 19:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6LrkgeC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="xg02+3AN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2E2224892
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 19:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CDD21B9FE;
+	Sun, 27 Jul 2025 19:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753645025; cv=none; b=tthATzarFqJSuN5um4FZKlHPBCkgCuuuhC7+WyYn4b6Yt9UDPnYf6IoRwJtPwouwa/vVHp9nMUtaCmhyQqDEEOtS0gnOCdLlebigOWYDoNHXFJiEyR/L6ilCWegyy96d16joabYgf33vT/iOPFvLbgt/xgXZGZZFZVorvjlZL4o=
+	t=1753646281; cv=none; b=iFmnQRhidZbFxEQbppFr0mzoVm4Dm+wZYxXRbqdGpz3BMHjfkc+ru+RAj+vinIdb6rQKQ8kLEtb2DRPE23qN4Vsz+1UZV43AbNC8TqQL0N7wxzx9Tq3hUGdEG4NRvfwbETCjT7dZmqvK79W9w413VDYOB+dtkWuDZrWQmm0qXGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753645025; c=relaxed/simple;
-	bh=pCQCdRmlqteGXO1dI3JhZJOwDdd/l/sBFMVSJ+tKS4c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M3HwNi5U0C8s+nTzt9ynj1tPkVpdM8I/53DDwL/M+DiIew8yueozDMsiWKRZ6eVWTc62oJv/f9/4jULFbEUYLvax9L+paQ2OphIs0hQ1Tr9h3q4RAeTdSooPTg5NXL8FxEQMzJ++3TsAyEb9/sCXzHXeEc4rFdESxvRAm+h/cwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6LrkgeC; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ae0bf1616b9so44306566b.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 12:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753645020; x=1754249820; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7y0vcHUdKY5HubRv6sWiVBOd/tgjmHnqruM1wM9dbQk=;
-        b=s6LrkgeC+hWkWa+ir8J+CtTAN+p4+uthXLN8vYGrG3a9reDJG3Ptzp+3pBtO22ky2B
-         Sgf4asUc5b1OkP7jk/+hPkGom30TBTou4ob1VoDj0TOt4weIAP1Edf8NCInGXaE2RVKi
-         PlAd0eMeC3YY8RVdT3DjGQPucJ7RNtVAyg+a5np9bcNZITOXE6PZmKzgMB16Ku4JIe+6
-         Y721bSWXIPMlnVehXY2tpud05in7hJ43C27iUX/pfjhfwaYvIq5D+TUuh0wgVX9eaeLv
-         EkMGoFCPVJRqu2VOGs0kryO6SQTk+qWKgjtjAeLW2wX1C4q1FfkBFUFwnTzJ+TAvOkOP
-         w3xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753645020; x=1754249820;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7y0vcHUdKY5HubRv6sWiVBOd/tgjmHnqruM1wM9dbQk=;
-        b=JsJkNcz47dMaNYDtzXGBwz4RypamEE8YkmzDkxRKIEeQD4Gr5f1I0ftrAYwG+YA8x0
-         lei+Nvhya9b5hT9d0PsFKv3RxEZFiMYUqIr28TNNqggO+dsVGlkA0+lTBYo67SzZ6Qac
-         Om2rPPREBUlrRvo6NEQYgTjtDdICrqAA5mx++tj7VaFGjs0cPFOZV+HlFlON4oBZmtFa
-         mphTEunqI6cnWibeK+MYOdjDNM+HXbeiOEbVdfIjptNBDh+h8VlLKX0YDint149UttxS
-         72p1pqgUVa+mKbFM0i4Sqr+5cn/+RinxaqrZ7Vhcke2b0ZY+6Inl5p9vOCZhuQucen7n
-         QrXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUoB68dpGaDMOvDdwNJHYhzhqc4aM+0v4iqwc9FYqMdIJNn489Ep1oYRSByKQ7bXX0M2B8g8KG6omR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8KIYGIoZXYMJkwmaw25dBogsxXnNBFhj5gojJKOAS3IgwirKc
-	g0J4TD2M7tJZDHT3IRPc41ip2JKYJqCMpEtxfyF5CrKYv2gPg5aoFR8fa3Kud4nJ5FU=
-X-Gm-Gg: ASbGncuNfwUODDGCZDJccmkjvfw5OAJzcf5Fw/lhrQPtW7Lwz9JQ3o76b6/cO1hxouu
-	oMMOYkKqf2VCV2DPrI7e/3n+bmmmqJlP0bsjVgyNN61CDt85MPwqMCdnfssRJZR+ErcDapG09jY
-	StDdzR8LpF3Hvyq5jOF4J7aPvuBXnZJoT/A+5+JW8lK1Z+gGLQreen/1YIgkLRRcCpP5liS0/Wh
-	LFNKhrX38s38aVpLr5QLeS0szEW85Pz4LmYoBbq1QoQzR2JV60xRUL4SNRhWbmvrpZ4AAifUorS
-	hUlCX0hI1UCX1BOiQ8lfoJB7zKtK7mFPPidb7c0+Ys7B4eXXSW7kCTVOuUfmMsTaOwO9oIk7pLI
-	AuWb+BvucyFZmP6dmAju0mj1HdzbMWqz+
-X-Google-Smtp-Source: AGHT+IGnsqbLYepeBQlMegx0Lp4dkyiztC6rJSiVSH/e1bfIWi3D25Q5CqLCNjtZas5rY3E0iHNbaQ==
-X-Received: by 2002:a17:907:9628:b0:ae3:cd73:efb9 with SMTP id a640c23a62f3a-af61d779f94mr388208866b.12.1753645020391;
-        Sun, 27 Jul 2025 12:37:00 -0700 (PDT)
-Received: from kuoka.. ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af6358a1c23sm318267066b.51.2025.07.27.12.36.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 12:36:59 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1753646281; c=relaxed/simple;
+	bh=bTV1Ce2wHOqMu2kVymsIX8SlLEnb1OxCNKqezUt3EWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jT1ZoY8XBH++TpwZDXfumhvHq/L9FTNhQWYE8joFy3venrWvV5qJz7jNeJsEMDvCL5IH7HT9I0sQ9/yAvwy1eWP4kLX7hFD7cAoRMYayJFGHWJP2kmSbGd4tevqytQzrvmNO66alvehfuIuX1jft58qoAYZZV2vh6tTOW57gY7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=xg02+3AN; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=8hEsloU/e5SnX4wmvFRSNKqlkwL0lNp6OodxTTFUtc0=; b=xg02+3ANIpeQD3xeG/u8lRQDRe
+	yuSKoIF78ltBcE7+xWkS+XUGpjsCBTSqeQa78LWnwjZuwk52634YJEra0hQAR/sotpxZtyczV8Krp
+	pN08ZsKToAcuyA3R+6qutEz/freUUTJEH53k8Qljib7q+oV+z+21zeya99W4XQU64mewL+z2QuZQ2
+	4HoMxaKXa0u5qXZQYmfHcgLzfJ2oJYfz4g5PhkWT6QeEGpCvhuw/INYmdhfSUcx/HZtjKUiVlpkjs
+	jdgFhGJQYUD2Xqx+yOIb/H9vC4CvnICBwCoxBPeDmsD7YT9xtvcnrgwkgWoTb5mYvJUvFnRbN21o6
+	P40lfMMQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34694)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1ug7Uy-0007gA-2a;
+	Sun, 27 Jul 2025 20:57:33 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1ug7Us-00042L-1o;
+	Sun, 27 Jul 2025 20:57:26 +0100
+Date: Sun, 27 Jul 2025 20:57:26 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8650: Sort nodes by unit address
-Date: Sun, 27 Jul 2025 21:36:53 +0200
-Message-ID: <20250727193652.4029-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
+	Heiko Stuebner <heiko@sntech.de>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+	netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to
+ Radxa E24C
+Message-ID: <aIaEpkZtPt6wqaiL@shell.armlinux.org.uk>
+References: <20250727180305.381483-1-jonas@kwiboo.se>
+ <20250727180305.381483-4-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=11920; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=pCQCdRmlqteGXO1dI3JhZJOwDdd/l/sBFMVSJ+tKS4c=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBohn/U3EEL9lsA4gGgyw4soEmQ+T9mPFjc51imq
- SGyybgk7lOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIZ/1AAKCRDBN2bmhouD
- 178DD/4lZF18/08Yzvzw4qiqtSF/pGbR/jJj2qVZaM/GpMpRi+GufSA4BeTgMrFK7oxYRr0pc0S
- 7TevAv373OoKlhYRsE8PNguNRvDwcfLrqPU5XbVcXS/nh0DLMpJMpMbrQRjl0OpcxBh+NpMXmsF
- csL2DC9rs3f30DTHY4/S2+z+khXMyapTVf9I8pum+3uB6JFg/pYnxsYjKwSYFw2IMQm8YtxQNWH
- vk7Bkq8q0PX9cpWz99MqNo2EL6jwa5DHh+W2rYcynAJVCEWunj3lKLzEi8x60DXykI6nXOZhCw3
- kn4bv2LnE1LrNn29y6sTTAI9v+ZmcnhJuq+Rc3wl4DwkpoEIQsm6TNBk0DoWNU3AhShfA2QROHn
- y11Vtzcv5x60DQYmYVZfK7ZkPseCuMR6YJvRDLjFui4z3hGkiK+qJYnd2of43LehvtjA498J0Mn
- zO6K0ywoDSupG3yndZP5a0UasP11oeFm5XBoWVDFPi++ZDdXvQA8e0D+u0o1O9HwmhHXdMac29v
- 2O72/lzLDFnhum7PL7np7WG/ftYI+i5JCLSYuqSoI1pMN5AMfzuGBTk7veCm1CZrRlyrN5HZBZR
- 2MfSrK6AE1jY4NBgPtiOb3xkYHDaoLdM4TX9oDzSEwkQWHYrnicjEKeB87LNSzVJ7eeG71bg35F ZgD3tpNChMWjR4Q==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250727180305.381483-4-jonas@kwiboo.se>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Qualcomm DTS uses sorting of MMIO nodes by the unit address, so move
-few nodes in SM8650 DTSI to fix that.
+On Sun, Jul 27, 2025 at 06:03:00PM +0000, Jonas Karlman wrote:
+> The Radxa E24C has a Realtek RTL8367RB-VB switch with four usable ports
+> and is connected using a fixed-link to GMAC1 on the RK3528 SoC.
+> 
+> Add an ethernet-switch node to describe the RTL8367RB-VB switch.
+> 
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
+> Initial testing with iperf3 showed ~930-940 Mbits/sec in one direction
+> and only around ~1-2 Mbits/sec in the other direction.
+> 
+> The RK3528 hardware design guide recommends that timing between TXCLK
+> and data is controlled by MAC, and timing between RXCLK and data is
+> controlled by PHY.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 414 +++++++++++++--------------
- 1 file changed, 207 insertions(+), 207 deletions(-)
+Assuming RK3528 is the MAC side, then that makes sense - it's basically
+suggesting that the _producer_ of the signals should appropriately skew
+them.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index e14d3d778b71..2360d560dc86 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -3490,6 +3490,11 @@ &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 			};
- 		};
- 
-+		rng: rng@10c3000 {
-+			compatible = "qcom,sm8650-trng", "qcom,trng";
-+			reg = <0 0x010c3000 0 0x1000>;
-+		};
-+
- 		cnoc_main: interconnect@1500000 {
- 			compatible = "qcom,sm8650-cnoc-main";
- 			reg = <0 0x01500000 0 0x14080>;
-@@ -3561,11 +3566,6 @@ mmss_noc: interconnect@1780000 {
- 			#interconnect-cells = <2>;
- 		};
- 
--		rng: rng@10c3000 {
--			compatible = "qcom,sm8650-trng", "qcom,trng";
--			reg = <0 0x010c3000 0 0x1000>;
--		};
--
- 		pcie0: pcie@1c00000 {
- 			device_type = "pci";
- 			compatible = "qcom,pcie-sm8650", "qcom,pcie-sm8550";
-@@ -3926,38 +3926,6 @@ pcie1_phy: phy@1c0e000 {
- 			status = "disabled";
- 		};
- 
--		cryptobam: dma-controller@1dc4000 {
--			compatible = "qcom,bam-v1.7.0";
--			reg = <0 0x01dc4000 0 0x28000>;
--
--			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>;
--
--			#dma-cells = <1>;
--
--			iommus = <&apps_smmu 0x480 0>,
--				 <&apps_smmu 0x481 0>;
--
--			qcom,ee = <0>;
--			qcom,num-ees = <4>;
--			num-channels = <20>;
--			qcom,controlled-remotely;
--		};
--
--		crypto: crypto@1dfa000 {
--			compatible = "qcom,sm8650-qce", "qcom,sm8150-qce", "qcom,qce";
--			reg = <0 0x01dfa000 0 0x6000>;
--
--			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
--					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
--			interconnect-names = "memory";
--
--			dmas = <&cryptobam 4>, <&cryptobam 5>;
--			dma-names = "rx", "tx";
--
--			iommus = <&apps_smmu 0x480 0>,
--				 <&apps_smmu 0x481 0>;
--		};
--
- 		ufs_mem_phy: phy@1d80000 {
- 			compatible = "qcom,sm8650-qmp-ufs-phy";
- 			reg = <0 0x01d80000 0 0x2000>;
-@@ -4079,6 +4047,38 @@ ice: crypto@1d88000 {
- 			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0 0x01dc4000 0 0x28000>;
-+
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			#dma-cells = <1>;
-+
-+			iommus = <&apps_smmu 0x480 0>,
-+				 <&apps_smmu 0x481 0>;
-+
-+			qcom,ee = <0>;
-+			qcom,num-ees = <4>;
-+			num-channels = <20>;
-+			qcom,controlled-remotely;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sm8650-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0 0x01dfa000 0 0x6000>;
-+
-+			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "memory";
-+
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+
-+			iommus = <&apps_smmu 0x480 0>,
-+				 <&apps_smmu 0x481 0>;
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0 0x01f40000 0 0x20000>;
-@@ -4962,6 +4962,176 @@ opp-202000000 {
- 			};
- 		};
- 
-+		usb_1_hsphy: phy@88e3000 {
-+			compatible = "qcom,sm8650-snps-eusb2-phy",
-+				     "qcom,sm8550-snps-eusb2-phy";
-+			reg = <0 0x088e3000 0 0x154>;
-+
-+			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
-+			clock-names = "ref";
-+
-+			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
-+
-+			#phy-cells = <0>;
-+
-+			status = "disabled";
-+		};
-+
-+		usb_dp_qmpphy: phy@88e8000 {
-+			compatible = "qcom,sm8650-qmp-usb3-dp-phy";
-+			reg = <0 0x088e8000 0 0x3000>;
-+
-+			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-+			clock-names = "aux",
-+				      "ref",
-+				      "com_aux",
-+				      "usb3_pipe";
-+
-+			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
-+				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
-+			reset-names = "phy",
-+				      "common";
-+
-+			power-domains = <&gcc USB3_PHY_GDSC>;
-+
-+			#clock-cells = <1>;
-+			#phy-cells = <1>;
-+
-+			orientation-switch;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_dp_qmpphy_out: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_dp_qmpphy_usb_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usb_dp_qmpphy_dp_in: endpoint {
-+						remote-endpoint = <&mdss_dp0_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		usb_1: usb@a6f8800 {
-+			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
-+			reg = <0 0x0a6f8800 0 0x400>;
-+
-+			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
-+					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>,
-+					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
-+					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
-+					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "dp_hs_phy_irq",
-+					  "dm_hs_phy_irq",
-+					  "ss_phy_irq";
-+
-+			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
-+				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-+				 <&tcsr TCSR_USB3_CLKREF_EN>;
-+			clock-names = "cfg_noc",
-+				      "core",
-+				      "iface",
-+				      "sleep",
-+				      "mock_utmi",
-+				      "xo";
-+
-+			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-+					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-+			assigned-clock-rates = <19200000>, <200000000>;
-+
-+			resets = <&gcc GCC_USB30_PRIM_BCR>;
-+
-+			interconnects = <&aggre1_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_USB3_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+			interconnect-names = "usb-ddr",
-+					     "apps-usb";
-+
-+			power-domains = <&gcc USB30_PRIM_GDSC>;
-+			required-opps = <&rpmhpd_opp_nom>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			status = "disabled";
-+
-+			usb_1_dwc3: usb@a600000 {
-+				compatible = "snps,dwc3";
-+				reg = <0 0x0a600000 0 0xcd00>;
-+
-+				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+				iommus = <&apps_smmu 0x40 0>;
-+
-+				phys = <&usb_1_hsphy>,
-+				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
-+				phy-names = "usb2-phy",
-+					    "usb3-phy";
-+
-+				snps,hird-threshold = /bits/ 8 <0x0>;
-+				snps,usb2-gadget-lpm-disable;
-+				snps,dis_u2_susphy_quirk;
-+				snps,dis_enblslpm_quirk;
-+				snps,dis-u1-entry-quirk;
-+				snps,dis-u2-entry-quirk;
-+				snps,is-utmi-l1-suspend;
-+				snps,usb3_lpm_capable;
-+				snps,usb2-lpm-disable;
-+				snps,has-lpm-erratum;
-+				tx-fifo-resize;
-+
-+				dma-coherent;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						usb_1_dwc3_hs: endpoint {
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						usb_1_dwc3_ss: endpoint {
-+							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+
- 		iris: video-codec@aa00000 {
- 			compatible = "qcom,sm8650-iris";
- 			reg = <0 0x0aa00000 0 0xf0000>;
-@@ -5580,176 +5750,6 @@ dispcc: clock-controller@af00000 {
- 			#power-domain-cells = <1>;
- 		};
- 
--		usb_1_hsphy: phy@88e3000 {
--			compatible = "qcom,sm8650-snps-eusb2-phy",
--				     "qcom,sm8550-snps-eusb2-phy";
--			reg = <0 0x088e3000 0 0x154>;
--
--			clocks = <&tcsr TCSR_USB2_CLKREF_EN>;
--			clock-names = "ref";
--
--			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
--
--			#phy-cells = <0>;
--
--			status = "disabled";
--		};
--
--		usb_dp_qmpphy: phy@88e8000 {
--			compatible = "qcom,sm8650-qmp-usb3-dp-phy";
--			reg = <0 0x088e8000 0 0x3000>;
--
--			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
--				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
--				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
--			clock-names = "aux",
--				      "ref",
--				      "com_aux",
--				      "usb3_pipe";
--
--			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
--				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
--			reset-names = "phy",
--				      "common";
--
--			power-domains = <&gcc USB3_PHY_GDSC>;
--
--			#clock-cells = <1>;
--			#phy-cells = <1>;
--
--			orientation-switch;
--
--			status = "disabled";
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
--
--					usb_dp_qmpphy_out: endpoint {
--					};
--				};
--
--				port@1 {
--					reg = <1>;
--
--					usb_dp_qmpphy_usb_ss_in: endpoint {
--						remote-endpoint = <&usb_1_dwc3_ss>;
--					};
--				};
--
--				port@2 {
--					reg = <2>;
--
--					usb_dp_qmpphy_dp_in: endpoint {
--						remote-endpoint = <&mdss_dp0_out>;
--					};
--				};
--			};
--		};
--
--		usb_1: usb@a6f8800 {
--			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
--			reg = <0 0x0a6f8800 0 0x400>;
--
--			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
--					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>,
--					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
--					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
--					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "pwr_event",
--					  "hs_phy_irq",
--					  "dp_hs_phy_irq",
--					  "dm_hs_phy_irq",
--					  "ss_phy_irq";
--
--			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
--				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
--				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
--				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>,
--				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
--				 <&tcsr TCSR_USB3_CLKREF_EN>;
--			clock-names = "cfg_noc",
--				      "core",
--				      "iface",
--				      "sleep",
--				      "mock_utmi",
--				      "xo";
--
--			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
--					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
--			assigned-clock-rates = <19200000>, <200000000>;
--
--			resets = <&gcc GCC_USB30_PRIM_BCR>;
--
--			interconnects = <&aggre1_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
--					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
--					 &config_noc SLAVE_USB3_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
--			interconnect-names = "usb-ddr",
--					     "apps-usb";
--
--			power-domains = <&gcc USB30_PRIM_GDSC>;
--			required-opps = <&rpmhpd_opp_nom>;
--
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
--
--			status = "disabled";
--
--			usb_1_dwc3: usb@a600000 {
--				compatible = "snps,dwc3";
--				reg = <0 0x0a600000 0 0xcd00>;
--
--				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>;
--
--				iommus = <&apps_smmu 0x40 0>;
--
--				phys = <&usb_1_hsphy>,
--				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
--				phy-names = "usb2-phy",
--					    "usb3-phy";
--
--				snps,hird-threshold = /bits/ 8 <0x0>;
--				snps,usb2-gadget-lpm-disable;
--				snps,dis_u2_susphy_quirk;
--				snps,dis_enblslpm_quirk;
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
--				snps,is-utmi-l1-suspend;
--				snps,usb3_lpm_capable;
--				snps,usb2-lpm-disable;
--				snps,has-lpm-erratum;
--				tx-fifo-resize;
--
--				dma-coherent;
--
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
--					port@0 {
--						reg = <0>;
--
--						usb_1_dwc3_hs: endpoint {
--						};
--					};
--
--					port@1 {
--						reg = <1>;
--
--						usb_1_dwc3_ss: endpoint {
--							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
--						};
--					};
--				};
--			};
--		};
--
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sm8650-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>, <0 0x174000f0 0 0x64>;
+> Any mix of MAC (rx/tx delay) and switch (rx/tx internal delay) did not
+> seem to resolve this speed issue, however dropping snps,tso seems to fix
+> that issue.
+> 
+> Unsure what is best here, should MAC or switch add the delays? Here I
+> just followed DT from vendor downstream tree and added rx/tx internal
+> delay to switch.
+
+Okay. Heres'a an in-depth explanation, because I think many people need
+this for MAC-to-MAC RGMII links. A MAC to PHY link:
+
+	MAC1 ------- PHY1
+
+The PHY mode in the MAC1 description controls the application of delays
+at PHY1. This is relatively well undersood. Now, for a MAC to MAC link:
+
+	MAC1 ------- MAC2 in a PHY
+
+Let's say MAC2 is part of a PHY. Okay, so this is quite simple because
+it's a PHY on the other end, and thus the situation above applies.
+
+In both these cases, the MAC driver will pass the PHY interface to
+phylib, which will in turn pass it to the PHY driver, which is expected
+to configure the PHY appropriately.
+
+There is a side-case, where a MAC driver is allowed to configure the
+delays at its end _provided_ it then passes PHY_INTERFACE_MODE_RGMII
+to phylib (telling the PHY not to add its own delays.)
+
+Now let's look at something that isn't a PHY:
+
+	MAC1 ------- MAC2 in a switch
+
+In this case, MAC2 isn't in a PHY or part of a PHY that is driven by
+phylib, so we don't have a way in the kernel of passing the PHY mode
+from MAC1 to MAC2 in order for MAC2 to configure itself. It's tempting
+to say that which RGMII mode is used doesn't matter, but consider the
+side-case above - if we're talking about a MAC driver that interprets
+the PHY mode and adds its own delays, then it *does* very much matter.
+
+It also matters for MAC2. This could be a switch port that can be used
+as a CPU facing port, or a switch port that is used as a PHY. In the
+latter case, it becomes exactly as the first two cases above.
+
+Let's take a theoretical case of two ethernet MACs on the same system
+connected with a RGMII link:
+
+	MAC1 ------- MAC2
+
+They both use the same driver. What RGMII interface mode should be used
+for each? Would it be correct to state "rgmii-id" for both MACs?
+Or "rgmii" for one and "rgmii-id" for the other.
+
+You may notice I'm not providing a solution - this is a thought
+experiment, to provoke some thought into the proper use of the phy-mode
+property at each end of a MAC to MAC link, and hopefully gain some
+realisation that (probably) using "rgmii-id" for both MACs probably
+isn't correct given the model that phy-mode _generally_ states how the
+opposite end of the RGMII link to the MAC should be configured.
+
+However, currently it doesn't matter as long as we don't end up with
+two MACs that are back to back and the MAC drivers decide to insert
+the RGMII delay (the side-case I mention above.)
+
+Personally, I don't like that we have this side-case as a possibility
+because it causes problems (if you go through the thought experiment
+above, you'll trip over the problem if you consider the combinations
+of MAC1 and MAC2 that do/do not use the side-case!)
+
+So, I would expect a MAC to MAC link to have "rgmii" at one end, and
+"rgmii-id" at the other end, rather than both having the same RGMII
+mode.
+
+> Vendor downstream DT also adds 'pause' to the fixed-link nodes, and this
+> may be something that should be added here. However, during testing flow
+> control always ended up being disabled so I skipped 'pause' here.
+
+Does it get disabled at the switch, or the stmmac end?
+
 -- 
-2.48.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
