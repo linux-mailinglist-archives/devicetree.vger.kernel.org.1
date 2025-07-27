@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-199978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AFCB12FF1
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:44:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A05B12FF0
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 16:44:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 949037A3388
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 14:43:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D0B83A254F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 14:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F0421B918;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5B921ABB1;
 	Sun, 27 Jul 2025 14:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="tDrLTID3"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="FMvMNvkO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58F338F80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69589218851
 	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 14:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753627470; cv=none; b=jEYbz9QgAMO99bPgOIFXuLuLTRx5Dxg7mBhd1sgMPkq1Ycszj+OJ4/C9KUs83is1Hixfq9em88Yj+tfUffENv+MGQN5ohlm7rHurYZxh1YINN38Ib87g5eZ2FbdlMt8R66mqkI1i4NA1rboxd+9PMZZMeHaH2gz5SvCo94a/QqU=
+	t=1753627469; cv=none; b=O0Ki+l0TtkL2gSIauxHK1w37vZ4NccN2B4YjjXSP6fxcfqSRBWSmqlb93vOg7QOPamEIWxS85SyKU0FE8iAddFMXUphSPrTjmPPg/E21D0mKunCjFzoO0PHGGwWliR5Or06csJJtbCdBU5pZ+64fJ3dL9PapxBz33HtEhKG99sA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753627470; c=relaxed/simple;
-	bh=rxB4wwmTm9qP+EMFaQl40OrhmxbUhexlUXKracSsIvw=;
+	s=arc-20240116; t=1753627469; c=relaxed/simple;
+	bh=LiLhXOzyplAd7/QDdDO7YLbEDBBNjqFYMCY5bBkc8hQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SqjkwbwsCcDoSq9TNwhmuEfByFPik/e4nFdOTbNKo2T1J8pNckfPeFruhHpr6ql9GsKWiwt4hSL/DJqEoKmntKNZlI5q1NLIP1eg9+UJUJwfFB3jYHWkkGzdaeKHLUvaCkaXcZM/1JsmAhMZhnLcpajn1fftQoYDyCwHHVL8xCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=tDrLTID3; arc=none smtp.client-ip=121.127.44.73
+	 MIME-Version; b=Lt18NvKD/AnHo9Zft7COFhRDuTLpYxQ+TrrCC+5mRAqranpQXPsL3KzQiMm0qzjJyHXg+EhPb2VOlTE1I/jt/kWw62dShOMyOop8FOdHTzQVe4sz1eKvbp3z9p8W9DRvrTI7fdX8jujw1/gODQ5MguQ2SUcvfO9CFP/pSmLPF2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=FMvMNvkO; arc=none smtp.client-ip=121.127.44.73
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
  h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
  Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1753627462; bh=3ETGr9nGI2JrVhT/rXZdTDhtjuBKP4m13iSkZEx+nqA=;
- b=tDrLTID3o2FTuhtEQ/otmm53YgIPq6gL/pYVY9ViOVe6wbs6FkVtJKcYuOaDdc5kGW9MQ44zj
- MfjXzTwE4VBUE9ukwUK9QzhBTiguBv4GwJ9nNhBAvfnQZyWnbuhq1uifwkrr+VHKCxVQbFZYTSP
- p4e/Otc4ER0uAV8eMOPf+pB4GYunQ9MTtC2zmYo9f39Bs/VH0iFUhtqhONYP5B3FL/T8Gws3gt7
- cVUsy+HRSlRvt6AVToseur9fcy7RzkdpfXZvzMsHIloTacgwSWuoNtuxiW49LHnrB6Y6Ii212Lf
- 7O5QKcGoTHYwwJPOLai9OAXu/yKJoAGU34Ch84ewL7Lw==
-X-Forward-Email-ID: 68863b43c752737c6c097874
+ t=1753627467; bh=5KkCjLGin8VBSyRUFqdEAC5Ls5N/o8F13r5OT8O7IgI=;
+ b=FMvMNvkOLUppX9yRr0Qhh6ag3WCLIoob45kasFLHVRwBrmIQ6aCUeER7wDZgnIyZ7V17/Epnn
+ RFqd2hmw6VmSXE+an6SjYY5x+/Svha1ISbVGzgP2e7vOaa1d0sU4blsApakuYON2Op7Rhdjnj4w
+ EJEolzDpGz71JvqInHvX0yVNWKRufxBiUVgtvPtz623QF0VcRAITzD++gkUZ88YkszLI1MVSfC0
+ eFpDzUQBzCTYFQht0ltv1RMmcK0WzIR+sh4LyRj6kiiiK1mIjXrlcTYpHf27Z2VMejKDDhiC5Hl
+ YnHJe0yxOZZQtBhzj5rXwonQlvemUgmi+vEegoGA3ceQ==
+X-Forward-Email-ID: 68863b46c752737c6c09788e
 X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
  121.127.44.73
 X-Forward-Email-Version: 1.1.7
@@ -60,9 +60,9 @@ Cc: Yao Zi <ziyao@disroot.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH 1/3] arm64: dts: rockchip: Add SFC node for RK3528
-Date: Sun, 27 Jul 2025 14:44:01 +0000
-Message-ID: <20250727144409.327740-2-jonas@kwiboo.se>
+Subject: [PATCH 2/3] dt-bindings: arm: rockchip: Add Radxa E24C
+Date: Sun, 27 Jul 2025 14:44:02 +0000
+Message-ID: <20250727144409.327740-3-jonas@kwiboo.se>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250727144409.327740-1-jonas@kwiboo.se>
 References: <20250727144409.327740-1-jonas@kwiboo.se>
@@ -74,40 +74,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Flexible Serial Flash Interface (FSPI) controller in Rockchip RK3528
-is similar to the one included in e.g. RK3568 and RK3588.
+The Radxa E24C is a compact, high-performance network computer
+developed by Radxa, based on the Rockchip RK3528A SoC.
 
-Add device tree node for the Flexible Serial Flash Interface (FSPI)
-controller in RK3528.
+Add devicetree binding documentation for the Radxa E24C.
 
 Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 ---
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index 3e51a3f51e05..49886a4b58f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -1077,6 +1077,18 @@ sdhci: mmc@ffbf0000 {
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index e3d3d483de4a..15b019caefbf 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -875,9 +875,11 @@ properties:
+           - const: radxa,cm3i
+           - const: rockchip,rk3568
  
-+		sfc: spi@ffc00000 {
-+			compatible = "rockchip,sfc";
-+			reg = <0x0 0xffc00000 0x0 0x4000>;
-+			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru SCLK_SFC>, <&cru HCLK_SFC>;
-+			clock-names = "clk_sfc", "hclk_sfc";
-+			power-domains = <&power RK3528_PD_VPU>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		sdio0: mmc@ffc10000 {
- 			compatible = "rockchip,rk3528-dw-mshc",
- 				     "rockchip,rk3288-dw-mshc";
+-      - description: Radxa E20C
++      - description: Radxa E20C/E24C
+         items:
+-          - const: radxa,e20c
++          - enum:
++              - radxa,e20c
++              - radxa,e24c
+           - const: rockchip,rk3528
+ 
+       - description: Radxa E52C
 -- 
 2.50.1
 
