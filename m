@@ -1,156 +1,161 @@
-Return-Path: <devicetree+bounces-199950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6FBB12F56
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 13:25:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 553C8B12F5A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 13:48:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D89D3B760D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:25:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 590931898B78
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1268B21423C;
-	Sun, 27 Jul 2025 11:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4641E0DE3;
+	Sun, 27 Jul 2025 11:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q89WmYfw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JpIgKpNu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C30212B2F
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 11:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D620B1F95C;
+	Sun, 27 Jul 2025 11:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753615522; cv=none; b=MLD69rWuvjMx1pXJ0IfpNtyl5PjR2mHp+PAXSaXTadYMa2FBra4Dm62qGuD40skStlLNqrq/sbppWCDcxunxVxcInMUJ96cbeqm3M+LOluyGzBMyRHfhRjJ4E1EFmS6PX5/yb8AX+GA7bV7vCxiUQv1TSnXVXxTHTVsDbQ++Mng=
+	t=1753616888; cv=none; b=sTQ/5fKcW5I7ZUkBa3sxO6358A65+Wt6v58YE1dLtpr0WN3bGVD224mWhZwawDNyqDCCa2BDyFRtc36WDlQ+09C0VvhbT2VgijIGP8rScNE60Q3XqnsZQjueXxHLsvNj87IEjjeJry7yYDs9uDgtCWZo7AgD63g2aDCq+7I66Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753615522; c=relaxed/simple;
-	bh=mpicCbPyy9dZQR13RfrXUc9e1M5HBHhRY/bkK7x1vjU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t0Re08ZnV6LbRx4pQ91LiaFez0Rj8e21fSoaxmAnsrfDKS2lGqDXstZkYrW99foOHRMH2Ww6nMYEgDNKmL9ldLzzHPDwl+B1Ubq/tNYUXLwo0fLR9Jj/NBwKfxQHzWXB8urrtsJZrcbmJDYkSAKfqTs+rtOkkT90A4MCgRmHigY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q89WmYfw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56RAx3pR004290
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 11:25:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DfJKZhMSNWDE28vPZNyTvcOOnTgpUT1dF1tLEjH+ZFc=; b=Q89WmYfw4DOBQLol
-	HXZhb830aRzwUa747kEC9YifTj/wkA3q2bIZcgwtVvfdoZZHKXDmxP6bkDv7Z3ZP
-	Rm9/MDUmfHojmgAC0IQ2WT04PVnhLq9TKKm5r249awK4A6PLE2y7Is+Fjdj5hG9h
-	OYsPMsrDRtGAxJ9zi4wvX+rjhgsxfLZj/DteH6LL4+8KFj0GpDmhIOCJkMg++5vv
-	IwxEHkLYGUEB2MkFpXKrrkMaoG5sbsPMaFVZTkE1QfETKUaOe8KydM9/H1hS5l1N
-	E6WU4E/G6wtdzc8uj6i+ZWk41m9hxkGAio3xb4kQHEbLMYHMZFi6kV7iDfFapILK
-	JVaAXA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484mqk29dc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 11:25:17 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70734e02839so33214496d6.2
-        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 04:25:17 -0700 (PDT)
+	s=arc-20240116; t=1753616888; c=relaxed/simple;
+	bh=l5mXWPkCVwawwX9SoiL1xL8eaODLJelNHat8jR0vFJI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sAweXbIutdvbsj0f7kSC7ZHH/ak5f9nPfwfZVc1ZY+S6t9lny/McRdlEqL2zgFHzlKnmSWJvxC5EZhMIyC72WmEtb73NOEOCu4Lsr1fexTFbJ24tx1e5+TuqRl3+CNB1NtIh5ZcOeBlANTbt+RbO7W0yBYNUglWJ3TC5mxu3dlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JpIgKpNu; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b7746135acso1405317f8f.2;
+        Sun, 27 Jul 2025 04:48:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753616885; x=1754221685; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sMQBpNZSUQDy6K65ntO3bsCKa6J7GqRvgZAdyhi1X/0=;
+        b=JpIgKpNunSDD/ulNHpuP13491bopq/ooT0MUjJ1K5YXLBYIm9jtmyD8kDUcWmLzwbx
+         eAh8i4H3w8DDBVDI+aDonvIzarcyrRZuhwG0kcfuiXM+xYoO/84OnAtF/tDJmVl+xB1B
+         wQdnHGWKRKE6EtD7Gmn9x5DHs8v80qGBK20MH6EZ0zwymMxZOUV4VQ2sNCBUlCbexuym
+         kSEXr2NCaeE5N+uWtkcfqnsF2kqESoWPvRBqZyY7yhANs28v6QiRLfw72d6ADMzjSSqG
+         BB25kRedTxPEn09Ipi3ORwdB9ZJLQ/qRA2CNcYZbtQjV/fq1PhPZS3wi/VLSEm9GnP/d
+         a1+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753615516; x=1754220316;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DfJKZhMSNWDE28vPZNyTvcOOnTgpUT1dF1tLEjH+ZFc=;
-        b=NNGlLPZcL65s7365hfoVmpI7eZmk1nK9Fblaw45LpwvIJEgzUfZP+fMTVuBFCZP7rE
-         1rpFVBmBor+y+gBVGWJkSDT6k9PkRV/CdROoitTh0dgBoprSWNnC3uvTLAxHo6tKc5Lq
-         aqc5OJG6XjFITzQHARTTIvIXn75YBbReTwLB7Z5iOiE0G1xxhfNVuTmsuQELVfrfhL1U
-         MzYvSHZwNTTG3Ta18ZF0QRAJDV4Pio3f7KGP2d0/Pvf1TuGfHyjiTgsGSp8f05Lj3p1Y
-         DFse/vP7UIJodkI92qQSfLsE26VRDucWNMRqAQynI+wyddN9Z4GRzAMBTQD2aWOIll8e
-         NXNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjEzFi1My7sako/l+BJJPVrQc31KfpMbqDrgFLd8aHrGVX0hW7BJyg0W+h0r/tEZEmlCyaNMio9s6a@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGHRkgYo8AASCepdj4r94OCAg20po1jzwuKv4JYuJVIxwmFLDR
-	KVskpixhq2wY9OUTT9+lJg3mNTVWPluJWmYWxtyHGiZ9qQsRpr6X/yzBpBN7XGf6BO1iWKWNqs3
-	zDbklEZRwgMXgPkJRjVJtAloE7V0RY963ZsQ2T6+lVhhuf7K0CAw/oAzooCEJo4j5
-X-Gm-Gg: ASbGncs6iGhjC84b1h0VCFBxKc0yqOCSX0FJEM6zkbh0pG6Yqx/rpcftop2wrm5+663
-	yCVQ8Gh7JlTGzOYM5LfAtFGfNOd0fD0GMvfa2ukeMwFGiSdFiLLnNqSxN0C9Z+kF1n0NU/OArqw
-	SIlPiwAXb3axRDB13/sI1dB8neixT6sCClI7lwpY2MpVoK7JgMdNo1CzZzkn+kVHRlV1SBXUtGz
-	gFWk7eh8cEo6EzfcCS5NdELGwdC+A0fduupbxuuJ6oOrEdXJien+R6T4pwQL9T5yd8gGApnh3bi
-	ckMwtlcEKOwgcqDpESI2fm7ntN8DaTu9bU/YasKDuix6OBLpHEtavW8DaqK0zNXq6J0=
-X-Received: by 2002:a05:6214:300f:b0:702:bd34:75c8 with SMTP id 6a1803df08f44-7072049f3famr99229526d6.5.1753615516183;
-        Sun, 27 Jul 2025 04:25:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEkCofJ/1O0p8bOeiGbSGwSMF+ue6NzNwSlWHo2EXq+Z7g+oFlTe7pN+OBZy9EjswapZE4S/Q==
-X-Received: by 2002:a05:6214:300f:b0:702:bd34:75c8 with SMTP id 6a1803df08f44-7072049f3famr99228736d6.5.1753615514814;
-        Sun, 27 Jul 2025 04:25:14 -0700 (PDT)
-Received: from [192.168.68.118] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-458705c4cacsm114650875e9.24.2025.07.27.04.25.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Jul 2025 04:25:14 -0700 (PDT)
-Message-ID: <8b3abd1a-4246-485c-9f2b-63ee37ef808c@oss.qualcomm.com>
-Date: Sun, 27 Jul 2025 12:25:12 +0100
+        d=1e100.net; s=20230601; t=1753616885; x=1754221685;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sMQBpNZSUQDy6K65ntO3bsCKa6J7GqRvgZAdyhi1X/0=;
+        b=xGf8/0u9iRkE3+uPk+nus3xztpv0SP7hrYiCyfK7/yW6bcm+RpFyjRAybEItRQyx2Z
+         pfF5LpNQT4rtFb28JlnY3mclC7wBKnh9Ppbl9IuEw4oUYRzHyydN/IEAt1i4Vh280R/I
+         S5iJMe7uitACIPyUsfAqpdMS+/JIp3nQCyr5w7HhKzrqzMNrfTUPvfXTh2T9Qj/2vT4P
+         8wzY9loZnWERkMZGrQN98wlnLGO0JF0CEHBX1AkYuiVmVsAXIwx1jUYQdhOpRuXjApSz
+         mV9C+qatro5stQ3WEQH8D71gjuJxtMOucwLlcvHo+0TmeKV7XL62ap4KY2Hof2jOW4KR
+         BCyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWnu2PrwTVsMG0hNnALRil4Cq46JkA6cuBxHGsXPKUjZIZt2cWADiA8c/mo9b8GQGAL628Gd212eH14RCGw@vger.kernel.org, AJvYcCWobwYjFPFHvib7qz3HOeizQUf7OCDCH5Dr+wzXfpmUMjzvhLEFGQJPJR/yPP3wGINSGZSod92h2cen@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI9yhX0R57YaYc0vwQpsCBXm944dRxuMJgVC4+t0Wj9xkZ7IO5
+	naQO8qNHZOMXB8c1u5tPqNaKnue8fEV2n8n4vuyIY4Kg0I/z0y6EcNihO2TWuw==
+X-Gm-Gg: ASbGncsgt+TzdxtsIEe01wdtDfWJ+P5kdxClco3U1kG2dNCJuItKk0v2jffzi85ruha
+	/O3gGkJfW1jQ4Efnp+Q5+S+Yc5CG24EMnUu7hnXxAjBPmXUq9K+Roueoz/YQRE/OS+T4mQkEQ62
+	IcI0wq8hih6jNe0kQxWO7eS3a0sYIeiHJr+j7ntC4kseUj3xa6cDafMPkSLMraYiIUOiHZHLwut
+	kqr9IWX+DYZPtdyQjOl/3AkXSo19nmBcJouYjX6fOahxnbc8ZuDDix6rGyQ/s7WCF9jttaWjr0h
+	6jNeEs0YT+W5JPKMxQCeU6tKT9Eg+eq0FtI35NQb1xy/uuv8Ul1QbzXk9/6k0lILRGa647cCk4y
+	Hf/nqxju3999WMpCXeiDAWXFDPXnHkxfz8IkQ3sH5BGNOlFa65Dssa6w=
+X-Google-Smtp-Source: AGHT+IEoZoh1zX9m/SWxq30NR8WQw/WsE6JtkdMRskPgD3woMffROYsKSaIBHJZqb9xFWYdqeRj8hQ==
+X-Received: by 2002:a05:6000:381:b0:3a8:2f65:3745 with SMTP id ffacd0b85a97d-3b7766764admr6113621f8f.51.1753616884868;
+        Sun, 27 Jul 2025 04:48:04 -0700 (PDT)
+Received: from builder.. (190-11-142-46.pool.kielnet.net. [46.142.11.190])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b778eb284fsm5621555f8f.12.2025.07.27.04.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Jul 2025 04:48:04 -0700 (PDT)
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+To: linux-i2c@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>,
+	Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: [PATCH v3 0/3] i2c: rework and extend RTL9300 I2C driver
+Date: Sun, 27 Jul 2025 11:47:57 +0000
+Message-ID: <20250727114800.3046-1-jelonek.jonas@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
- <276b7977-45d9-4b37-a4f5-1c65802ac267@oss.qualcomm.com>
- <mwhxikivaxtz5px5e7jkqtuuk2iz457fy5drsnaj32j4o5qqk6@hwkcjso4jpsp>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <mwhxikivaxtz5px5e7jkqtuuk2iz457fy5drsnaj32j4o5qqk6@hwkcjso4jpsp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI3MDEwMSBTYWx0ZWRfX/9241NdVjLqe
- IhJivi7DFDnM9bqDiZPanpnrGkfNymvxkQIq/a8RJMe+ESiqBHYHh87LYu1H27Wky+kvxlRr4pl
- p7OazqF1LmIYm5iZFEhWAYZUq7TLpwL9ASMM5ifXnFCprxqcPeVJvd86JUttdSAiO97vfqTXVxs
- nQquQ9vgJ0FyCkdNsIByzMigjuSo/Fd+3Fnj+ZwntBVCJZ7XSXMrIwM3qcTWLxZ4JfrehsQCk0K
- sAaMtD/5fw0EaESAcvoSSTfbnI3021rdm/eH4CkukCnp7YXboCIvW36pNEvrWWX8srsnIKsIFdr
- fXTh02wk2nlOLjQZiOKoiPh3rEel8UgQskl5AdIRKFzrjlrOL/AAiiKyigtwJ0xaOBlZDeY4lHL
- JrLYQYPngkyqFE/LFfGmOoyBdh8uNDSHHrAffEkGJK/6P4Uo9ZbRbyxPPb+51iTkgr/SIll2
-X-Authority-Analysis: v=2.4 cv=fqPcZE4f c=1 sm=1 tr=0 ts=68860c9d cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=XE7kxn0J_hhxY9Cja4kA:9
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-GUID: YQkLUPpyTRW6J1BJGt0seNQi2oCdRCeU
-X-Proofpoint-ORIG-GUID: YQkLUPpyTRW6J1BJGt0seNQi2oCdRCeU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-27_04,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 impostorscore=0
- adultscore=0 mlxscore=0 spamscore=0 mlxlogscore=674 phishscore=0 bulkscore=0
- malwarescore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507270101
+Content-Transfer-Encoding: 8bit
 
-On 7/24/25 3:24 PM, Dmitry Baryshkov wrote:
-> On Thu, Jul 24, 2025 at 03:31:50PM +0200, Konrad Dybcio wrote:
->> On 7/24/25 3:28 PM, srinivas.kandagatla@oss.qualcomm.com wrote:
->>> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->>>
->>> Qcom Slimbus controller driver is totally unused and dead code, there is
->>> no point in keeping this driver in the kernel without users.
->>>
->>> This patch removes the driver along with device tree bindings.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->>> ---
->>
->> I *thiiink* this is apq806x code, with 8974 adopting the new hw.
->>
->> +Dmitry, does you computer history museum require this driver?
-> 
-> I never had time to try enabling audio on IFC6410 nor Nexus 7. But if
-> the driver would be actually useable there, I'd prefer to keep it.
-TBH, I have never verified this in full audio use case in any of the
-qcom platforms. This driver has been unused since it was originally
-added in 2017. AFAIU, no one is using this lets remove this now, Am
-happy to take it back if someone has managed to test this.
+This patch series reworks the current implementation of the driver for
+I2C controller integrated into RTL9300 SoCs to simplify support
+extension, and adds support for the RTL9310 series.
+Goal of this is to have RTL9310 support upstream in a proper
+implementation to be able to drop downstream versions of this driver.
 
---srini
-> 
+The first patch reworks the driver to use more of the regmap API.
+Instead of using macros, all registers are defined as reg_field and
+operations on these registers are performed using regmap_field and the
+corresponding API. This simplifies adding support for further chip
+families and avoids potential redundant code by just providing
+chip-specific functions for every chip family.
+
+The second patch extends the existing dt-bindings of RTL9300 for RTL9310
+support.
+
+The third patch makes use of previous changes by adding support for the
+RTL9310 series, providing the correct register definitions and a few
+specifics. This also uses a new vendor dt-property which was added by
+the second patch to properly manage the I2C controllers. Having this
+property is necessary to properly describe the hardware and allow the
+driver to correctly work with the I2C controllers.
+
+Both has been tested successfully on RTL9302B-based Zyxel XGS1210-12
+and RTL9313-based Netgear MS510TXM.
+
+Compile-tested with Linux, run-tested as backport in OpenWrt on the
+aforementioned devices.
+
+--
+Changelog
+
+v3: - narrowed vendor property per variant to be required only
+      for RTL9310
+    - narrowed usable child-node i2c addresses per variant
+    - no changes to driver patches
+
+v2: - Patch 1:
+        - adjusted commit message
+        - retained Tested-By and Reviewed-By from Chris Packham
+    - Patch 2:
+        - simplified check as suggested by Markus Stockhausen
+        - fixed commit message
+    - Patch 3 (all requested by Krzysztof):
+        - use vendor property instead of generic
+        - add front compatibles to make binding complete
+        - fix commit message
+    - reordered patches, dt-bindings patch now comes before its 'user'
+    - properly add device-tree list and relevant maintainers to To/Cc
+
+--
+
+Jonas Jelonek (3):
+  i2c: rework RTL9300 I2C controller driver
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
+  i2c: add RTL9310 support to RTL9300 I2C controller driver
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  58 ++++-
+ drivers/i2c/busses/i2c-rtl9300.c              | 231 +++++++++++++-----
+ 2 files changed, 218 insertions(+), 71 deletions(-)
+
+-- 
+2.48.1
 
 
