@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-199928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-199929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E18B12ED0
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D0AB12ED6
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 11:32:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB953BC17C
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:29:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28AF43BCEC1
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 09:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDAA61FBEA8;
-	Sun, 27 Jul 2025 09:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0B701F866A;
+	Sun, 27 Jul 2025 09:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCB3pcy2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMx+jRK1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943A19460;
-	Sun, 27 Jul 2025 09:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A2D1E1C36;
+	Sun, 27 Jul 2025 09:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753608619; cv=none; b=OF/FRIvxmc2FDqxzunMZ6arjf9G5LkRLHoBcqTuQFWdqExTslhTWSCjI0+RWab2JcUv0v2V/6xiIMolcQCj0WRQyfZwN+YC5iQjmvEDpdGD7kulAyWJNWtmSyBmOQASZpE65yD2vCA+exgr+pn92aiSAMLTGWD4qBCQHQQMIXno=
+	t=1753608771; cv=none; b=e0wEayOf8X8bZ3WYag48eNsciJxvRsdHTg9mRB8HP6lg/H06vB0uMdpa8xMUfKDD+s0j3w9NblBQNCum++TIs6ue6l+IcA7yC2epg8IuZ83ntECx1CfhuDKaZ4UiJQ46qdr44sWxxaoRu2DHNHhKHIbaeShvvZvifXvMrfp/QZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753608619; c=relaxed/simple;
-	bh=1G8EBj+mLr6qao5CQ+yXFngGEjwUU5x6p8fIGY11ZQQ=;
+	s=arc-20240116; t=1753608771; c=relaxed/simple;
+	bh=J6yMR1a/ZOiag4onA7QD1/NBgaJweMIAhXBRnbxDtKk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VNt92wn/eKoRnw8W3PiWBhv2/WSZWW2pA50VgdJcgbUXoBUPTnDTcGstHvBhLEmoGo56KHQcpJ0MkViIj9zUS5pEXgyETdswu/bAxeueRPweTuGASMK+/PVzHHM7r0C+w/gTHUXPABHLfpBdpiFfvoeMloBXExa507Mo0rhApdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCB3pcy2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD411C4CEEB;
-	Sun, 27 Jul 2025 09:30:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=vF8cvA/DIXGVef6q3j84oAFU/J51hVVo5L+1DeQjTzW1C61kGwcSGVJsJdXMt+TgFPXaCzT9rrWT4FCz2kAY3y85QaCfRShvSoSae66UZprvopoL6zIVdBBGF/OXvHYIcha09ZL9V7MtmoeWdOeegcPMnZNQEc8NxC1HgXHygdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMx+jRK1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4BAAC4CEEB;
+	Sun, 27 Jul 2025 09:32:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753608617;
-	bh=1G8EBj+mLr6qao5CQ+yXFngGEjwUU5x6p8fIGY11ZQQ=;
+	s=k20201202; t=1753608771;
+	bh=J6yMR1a/ZOiag4onA7QD1/NBgaJweMIAhXBRnbxDtKk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dCB3pcy2zaJG7lj+TOpcxPdADFKlNfDLfLL0AB8tklII7BnnHxSX7LbhtbFzDrNrC
-	 23/F/ev4yKLXpy3gnLDwcE+J2euOLXdBu1+jIKAH5w7BUL5/9r2jNnrSWQDLAi/Xc5
-	 VjOeaqDJjS1c7QiGuveUf6Fb87X25aJoRP+Xz4y1f8FCyPMFWbgzX1Zn4udJjADXIM
-	 3mfwV5UPEL+1ywzVBfYyyjcbd8Jda1htwZkRt+DInzc+OET7ZGetS58gxRki01J5Vf
-	 PaP/wGoh7odeWGVDqzPQuXfX/0VQliroXA9yS6CCU9utdP9uxVO0McCFSNZjmD92zT
-	 wP7HQ5zMjfs8w==
-Message-ID: <07faf0cc-a8e6-426d-b397-dfc321a7f3df@kernel.org>
-Date: Sun, 27 Jul 2025 11:30:11 +0200
+	b=cMx+jRK14wC/5i8uP15C4L+34asvzIIf0uY58D0+tTIOVEI7nH4192z7KOWzolRUF
+	 crgNUGHGFUkcWfpbkyCUHfKZqi3i3xc90YvYp2uAsN+qvJ7+gKNOIBBzm86OlPz7w3
+	 MoipWCCUmTqWbIkD4oDKBm1mfG/lrmSIrbfMBqLcEjhCeBkaUIXv1o5IBH2WuBL8ei
+	 TzEz+EtDM73JNEPGemv9TGzDA8rqME3X9T5tpAIEyJx1z1HW3jdrWjBHOyRLWotCQr
+	 S7N7ONY78MoQYR3IXANFEcWmXxXze5WXI4lJNaSvNWggV0Mwphrfx7rfse83k5Nu+I
+	 nftf36279/rUA==
+Message-ID: <5ea6a860-8984-4263-942d-d05d7c24b495@kernel.org>
+Date: Sun, 27 Jul 2025 11:32:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ASoC: codecs: wsa883x: Add devm action to safely
- disable regulator on device removal
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
- kernel@oss.qualcomm.com
-References: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Subject: Re: [PATCH] dt: hwmon/adi,ltc2991.yaml: fix typo in shunt resistor
+ description
+To: Harry Fellowes <harryfellowes1@gmail.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: antoniu.miclaus@analog.com, jdelvare@suse.com, linux@roeck-us.net,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20250726135225.3018-2-harryfellowes1@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,32 +102,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <20250726135225.3018-2-harryfellowes1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/07/2025 10:31, Mohammad Rafi Shaik wrote:
-> To prevent potential warnings from _regulator_put() during device
+On 26/07/2025 15:52, Harry Fellowes wrote:
+> Corrected the misspelled word "curent" to "current" in the description
+> of the shunt-resistor-micro-ohms property. This improves clarity and
+> maintains consistency in documentation.
 
-Warning is either there or not. Either you fix real, specific issue or
-not. The code looks correct at first glance, so please describe exactly
-how these warnings happen or how what is the bug being fixed.
-
-> removal, register a devm-managed cleanup action using
-> devm_add_action_or_reset() to safely disable the regulator
-> associated with the WSA883x codec, ensuring that the regulator
-> is properly disabled when the device is removed, even if the
-
-Device cannot be removed/unloaded, AFAIK, because of suppressed bind.
-Regulator is already disabled during error paths, so that part of above
-sentences is just misleading.
-
-How can one trigger the warnings?
-
-
-> probe fails or the driver is unloaded unexpectedly.
-
-How driver can be unloaded unexpectedly?
+Please fix multiple typos at once, not one per patch. Are you sure there
+are no other typos in hwmon?
 
 Best regards,
 Krzysztof
