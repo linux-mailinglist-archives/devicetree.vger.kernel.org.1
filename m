@@ -1,190 +1,116 @@
-Return-Path: <devicetree+bounces-200009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A71AB13197
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 21:58:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 909EFB131BC
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 22:27:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F2B93B8BA7
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 19:57:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56E51677A8
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 20:27:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3083E226CE5;
-	Sun, 27 Jul 2025 19:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 096DB230BCC;
+	Sun, 27 Jul 2025 20:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="xg02+3AN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mTiJubrN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CDD21B9FE;
-	Sun, 27 Jul 2025 19:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEEDA22FF35;
+	Sun, 27 Jul 2025 20:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753646281; cv=none; b=iFmnQRhidZbFxEQbppFr0mzoVm4Dm+wZYxXRbqdGpz3BMHjfkc+ru+RAj+vinIdb6rQKQ8kLEtb2DRPE23qN4Vsz+1UZV43AbNC8TqQL0N7wxzx9Tq3hUGdEG4NRvfwbETCjT7dZmqvK79W9w413VDYOB+dtkWuDZrWQmm0qXGo=
+	t=1753648060; cv=none; b=nkNV/vcposjGu8JHBMh0oMcrotwD5JtOPDgxdAA0BM2o3I4ssy03z0cZBjWkuSwqAlX0C5Qc5haPOhQM9HMZFHdtC3PWKd2GTB7gR3+TVmq8rdJ2ZS6JyjOHldy5zJWSumPoOYOoHVce3RCRUrS0zKZEx7lFs2PfxXViKzWwbEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753646281; c=relaxed/simple;
-	bh=bTV1Ce2wHOqMu2kVymsIX8SlLEnb1OxCNKqezUt3EWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jT1ZoY8XBH++TpwZDXfumhvHq/L9FTNhQWYE8joFy3venrWvV5qJz7jNeJsEMDvCL5IH7HT9I0sQ9/yAvwy1eWP4kLX7hFD7cAoRMYayJFGHWJP2kmSbGd4tevqytQzrvmNO66alvehfuIuX1jft58qoAYZZV2vh6tTOW57gY7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=xg02+3AN; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=8hEsloU/e5SnX4wmvFRSNKqlkwL0lNp6OodxTTFUtc0=; b=xg02+3ANIpeQD3xeG/u8lRQDRe
-	yuSKoIF78ltBcE7+xWkS+XUGpjsCBTSqeQa78LWnwjZuwk52634YJEra0hQAR/sotpxZtyczV8Krp
-	pN08ZsKToAcuyA3R+6qutEz/freUUTJEH53k8Qljib7q+oV+z+21zeya99W4XQU64mewL+z2QuZQ2
-	4HoMxaKXa0u5qXZQYmfHcgLzfJ2oJYfz4g5PhkWT6QeEGpCvhuw/INYmdhfSUcx/HZtjKUiVlpkjs
-	jdgFhGJQYUD2Xqx+yOIb/H9vC4CvnICBwCoxBPeDmsD7YT9xtvcnrgwkgWoTb5mYvJUvFnRbN21o6
-	P40lfMMQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34694)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1ug7Uy-0007gA-2a;
-	Sun, 27 Jul 2025 20:57:33 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1ug7Us-00042L-1o;
-	Sun, 27 Jul 2025 20:57:26 +0100
-Date: Sun, 27 Jul 2025 20:57:26 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
-	netdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to
- Radxa E24C
-Message-ID: <aIaEpkZtPt6wqaiL@shell.armlinux.org.uk>
-References: <20250727180305.381483-1-jonas@kwiboo.se>
- <20250727180305.381483-4-jonas@kwiboo.se>
+	s=arc-20240116; t=1753648060; c=relaxed/simple;
+	bh=g1P1yFObg4U9ZW04eI4Xh89eKDpgOVFGbj/DQtG5dqE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=PEFvqcqDqN7OOsKMitiAkvwl6Tw1pKhYCeOGlZnWy6z5AlnKjMpztxxEBtQaDOKQBxVM/ngkKhrVvxI4SUR6ij7+kBBxSZs2FZmOkGIfQVx5YVjCKjfw8Abq57qa5+EJRlx2ZYCdVm/CuOQLNXZSimYoKnmQcu7BFdmz0cayqL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mTiJubrN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 324C6C4CEEB;
+	Sun, 27 Jul 2025 20:27:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753648060;
+	bh=g1P1yFObg4U9ZW04eI4Xh89eKDpgOVFGbj/DQtG5dqE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=mTiJubrNsMntDPFY0xWRDR/l59lwilPZorgrp0bu2XJPInBIyfhHzqK17ORYWhMME
+	 ClL5IBFv6tKooUff0U0fUHKd7ED9n0YZCYm5WEbSXRSDTsnPe0ZX+jWFlcjkomSKZk
+	 0C5wQswGc7XinCD6ZBdQ06wjkEZtvubCAvAq20uowpfty0LTqHXsfdh+8p9ZsTmN+X
+	 8PhFflLUM4k8n5ZfEJE/dZddHyRFQ0iFnfu8e8w1pyYbg5BNbhpDSubgLjkmdBHZZa
+	 1Jq8wXDXquR/R4XUhLJNXlk6RO7o9VU6lgBUOvdxa50XsK4PI6Uz+d0uWf+TirVR53
+	 AALp02OSZCBng==
+Date: Sun, 27 Jul 2025 15:27:39 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250727180305.381483-4-jonas@kwiboo.se>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org, 
+ Andy Shevchenko <andy@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-iio@vger.kernel.org
+To: Dixit Parmar <dixitparmar19@gmail.com>
+In-Reply-To: <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+ <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+Message-Id: <175364805544.3130.15364114273761890479.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
 
-On Sun, Jul 27, 2025 at 06:03:00PM +0000, Jonas Karlman wrote:
-> The Radxa E24C has a Realtek RTL8367RB-VB switch with four usable ports
-> and is connected using a fixed-link to GMAC1 on the RK3528 SoC.
+
+On Sat, 26 Jul 2025 15:07:02 +0530, Dixit Parmar wrote:
+> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+> controlled by I2C interface. Main applications includes joysticks, control
+> elements (white goods, multifunction knops), or electric meters (anti
+> tampering).
 > 
-> Add an ethernet-switch node to describe the RTL8367RB-VB switch.
+> The device can be configured in to different operating modes by optional
+> device-tree "mode" property. Also, the temperature sensing part requires
+> raw offset captured at 25°C and that can be specified by "temp-offset"
+> optional device-tree property.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> 
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
 > ---
-> Initial testing with iperf3 showed ~930-940 Mbits/sec in one direction
-> and only around ~1-2 Mbits/sec in the other direction.
+>  .../iio/magnetometer/infineon,tlv493d.yaml         | 57 ++++++++++++++++++++++
+>  1 file changed, 57 insertions(+)
 > 
-> The RK3528 hardware design guide recommends that timing between TXCLK
-> and data is controlled by MAC, and timing between RXCLK and data is
-> controlled by PHY.
 
-Assuming RK3528 is the MAC side, then that makes sense - it's basically
-suggesting that the _producer_ of the signals should appropriately skew
-them.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> Any mix of MAC (rx/tx delay) and switch (rx/tx internal delay) did not
-> seem to resolve this speed issue, however dropping snps,tso seems to fix
-> that issue.
-> 
-> Unsure what is best here, should MAC or switch add the delays? Here I
-> just followed DT from vendor downstream tree and added rx/tx internal
-> delay to switch.
+yamllint warnings/errors:
 
-Okay. Heres'a an in-depth explanation, because I think many people need
-this for MAC-to-MAC RGMII links. A MAC to PHY link:
+dtschema/dtc warnings/errors:
+Warning: Duplicate compatible "infineon,tlv493d-a1b6" found in schemas matching "$id":
+	http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d.yaml#
+	http://devicetree.org/schemas/trivial-devices.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml: 'example' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
 
-	MAC1 ------- PHY1
+doc reference errors (make refcheckdocs):
 
-The PHY mode in the MAC1 description controls the application of delays
-at PHY1. This is relatively well undersood. Now, for a MAC to MAC link:
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com
 
-	MAC1 ------- MAC2 in a PHY
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Let's say MAC2 is part of a PHY. Okay, so this is quite simple because
-it's a PHY on the other end, and thus the situation above applies.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-In both these cases, the MAC driver will pass the PHY interface to
-phylib, which will in turn pass it to the PHY driver, which is expected
-to configure the PHY appropriately.
+pip3 install dtschema --upgrade
 
-There is a side-case, where a MAC driver is allowed to configure the
-delays at its end _provided_ it then passes PHY_INTERFACE_MODE_RGMII
-to phylib (telling the PHY not to add its own delays.)
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-Now let's look at something that isn't a PHY:
-
-	MAC1 ------- MAC2 in a switch
-
-In this case, MAC2 isn't in a PHY or part of a PHY that is driven by
-phylib, so we don't have a way in the kernel of passing the PHY mode
-from MAC1 to MAC2 in order for MAC2 to configure itself. It's tempting
-to say that which RGMII mode is used doesn't matter, but consider the
-side-case above - if we're talking about a MAC driver that interprets
-the PHY mode and adds its own delays, then it *does* very much matter.
-
-It also matters for MAC2. This could be a switch port that can be used
-as a CPU facing port, or a switch port that is used as a PHY. In the
-latter case, it becomes exactly as the first two cases above.
-
-Let's take a theoretical case of two ethernet MACs on the same system
-connected with a RGMII link:
-
-	MAC1 ------- MAC2
-
-They both use the same driver. What RGMII interface mode should be used
-for each? Would it be correct to state "rgmii-id" for both MACs?
-Or "rgmii" for one and "rgmii-id" for the other.
-
-You may notice I'm not providing a solution - this is a thought
-experiment, to provoke some thought into the proper use of the phy-mode
-property at each end of a MAC to MAC link, and hopefully gain some
-realisation that (probably) using "rgmii-id" for both MACs probably
-isn't correct given the model that phy-mode _generally_ states how the
-opposite end of the RGMII link to the MAC should be configured.
-
-However, currently it doesn't matter as long as we don't end up with
-two MACs that are back to back and the MAC drivers decide to insert
-the RGMII delay (the side-case I mention above.)
-
-Personally, I don't like that we have this side-case as a possibility
-because it causes problems (if you go through the thought experiment
-above, you'll trip over the problem if you consider the combinations
-of MAC1 and MAC2 that do/do not use the side-case!)
-
-So, I would expect a MAC to MAC link to have "rgmii" at one end, and
-"rgmii-id" at the other end, rather than both having the same RGMII
-mode.
-
-> Vendor downstream DT also adds 'pause' to the fixed-link nodes, and this
-> may be something that should be added here. However, during testing flow
-> control always ended up being disabled so I skipped 'pause' here.
-
-Does it get disabled at the switch, or the stmmac end?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
