@@ -1,131 +1,173 @@
-Return-Path: <devicetree+bounces-200120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B15BBB13766
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:19:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82754B13763
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:19:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E3E23A6EA5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:19:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF84D3A68B5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:19:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181A3234963;
-	Mon, 28 Jul 2025 09:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3112C2153D2;
+	Mon, 28 Jul 2025 09:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ra9i7CST"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="HRfloTkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425F822F74B;
-	Mon, 28 Jul 2025 09:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7DD1D8E1A
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753694384; cv=none; b=OhEQG9iizEXPbUfe8M2YDcNPUPvV3NKvff/ckrAneCTALtsDJZ2JJkoOJfvzML70enQo3FdZ5cG7JGD1X+kSsxvz1ZvAKbMFZ09ReLR/jZxBIi8vDVHoCTq25bpc3ujrnQhKiFyow+6MT4MKVnZgZzCoqx0qJdgUb3jfkmb0Xa4=
+	t=1753694380; cv=none; b=YGc6YY0mIMlj/uvDkObTtrjqyrRsA9vxdUHSrmXsO1a9+UVE84LrtbX/lA3IYMHufxhuGERvhaBC+q0WhSUEK6s/GTXFbo/ddUJO7IJWBN6/mCYe7L9ZfejiPuuJuqtmd5Xf9E8jeP5pMbareS8sXtuC5p2UK2pIinoaYQJ48HI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753694384; c=relaxed/simple;
-	bh=JBe/6VnvMXghy7hG0OQTodzfDN84dQ4C8ehh/E1Ui6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Pfy84LAuB/dM3w7GHsM0sjQ2l7xoThVJc19p5XPY2Kb88v242x8w1SPdU/Gu5Djwlr1z4z0RuxwutuhfljIuoDpG/ZPwpD/HTi7E7MNLEXwUdj0bFiJz46CViwqfBkEarWnmRpXObMpEmyyIchUS1z1vjNpI4x6MAuM3x+uRioo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ra9i7CST; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56S8jfbS023646;
-	Mon, 28 Jul 2025 11:19:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	/n2Y6jUtj/p2PorjZw4FleFZNqzHtoA8QQQ55mAjzHM=; b=ra9i7CSTewtW3PGz
-	EVHG77biSbn99acmZdPMO6Luyd2LqgWttWTP6203xfySIexq4wRZRqdPoI87a5XP
-	l18sBvBmcntaMlsA8dE/2HrpQ1nTISVpKkTKWYZfIL4H2zSuvXOp0GkF1G+S06UX
-	sV8tScxIdCquuTwVi6DwcHNZ1pqxReJleky1vbh5ojubX5Ml4WV0p9hNMl9xEpIy
-	72lUATwhtKv6JnGDWiwwL6IeUN7JLurheXysmn3A8AF0FQq4voIsR7FCuvqgvjT/
-	5H9FFDF8kop6+gwnpHvnhmx/Djv++vi7dKBcLEADglFIsvFluV/i9LP0TZ5zB/o3
-	8+KdhQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 484m58y7xa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Jul 2025 11:19:31 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 27ECF4002D;
-	Mon, 28 Jul 2025 11:18:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A1520700A0D;
-	Mon, 28 Jul 2025 11:18:08 +0200 (CEST)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Jul
- 2025 11:18:08 +0200
-Message-ID: <09384c23-cffe-471c-95b4-82b3d34de4e7@foss.st.com>
-Date: Mon, 28 Jul 2025 11:18:07 +0200
+	s=arc-20240116; t=1753694380; c=relaxed/simple;
+	bh=EM/dwFq1yZlzHICX5jZbmxa1S4pmrfRrhSn472Stlgk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kAAUNzbptkgau0ryyoAOW0eM0bsinFHR0O6mjGjGfDXFCimfZKdMuI0UsHuqL8ROkbuMVgh5NlBZxJbeJcycPEAubLRiKCKCeS+o5bq61sCi2OOSpuxZFgNDEBhQmAv6onfGBuXCKN+jY9xHe2VFZHncrA2NcRsYFvhkfpi9pNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=HRfloTkh; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55b72633aaeso89954e87.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 02:19:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1753694376; x=1754299176; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R5Wfr6IDv5PxwXwO5SalQp0PsuBKS/k9qem5YR1Q0PY=;
+        b=HRfloTkh4g3PC0IRR5nBPYEUCItNL97qQtAbO7ZLMpifPsMfWvlcHWaBHyaatTfRsj
+         jSBjf84GF3pi31/f+Ujyj8nAHjF1GX+ZAA4iNPVC5p3SkXXONA9NS46ka/rLAJAuvbDg
+         xOkhj4ZNBmrv3MRTs8Oq3IX8sCz3NrEKeasECeEWoIzeZ0er0zHpZeq1D9eAlPRhU6AN
+         PiCwuvw8Eqt61T9lM3CmnB0v1OqMQhDHeQj/ft1HRwFa7JElpcuNoqV+M5LLD1QRuXb1
+         gPTiUQddv/yIIsonilbvKZ+K/6TgNc0eKyil/S7SRVaIUTFNJcZ/+DrpqnQau5WZWovy
+         W5jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753694376; x=1754299176;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R5Wfr6IDv5PxwXwO5SalQp0PsuBKS/k9qem5YR1Q0PY=;
+        b=rb1tGR/dfhVeQaE3mrGc18TkxYS9YDg/VB5ifdxD1drs0U5oUY264HwTMn3V6hzciz
+         XUXQA50gYu8S0ZwgC34uFhvmuZPtWslg7vSRuF9io1tt3/Omw6KzsMIez7EIi9/0YiSk
+         VZZ7xdrXZxWhGLUCQJrCTkOAuKExxT6+u5dWQC/iUtUV/+o2WrQSppTLRtLXGjv/Gw7j
+         FgGiDe3IK7XQguX13A4YQqUbwXE2HTLW1ci5c8W8KdbcfjAwaQq0Ub6Z9+d1foJt31bb
+         qs1sbZ9CZr5uUqoKLAkl58v33Pz/5UhG++9oDwkxSy6to+zB3DOpXZpSXw6UPp+Zf0CS
+         1kSw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4adXDCcK48WO8yrdtB3ZPp6G424UXjY3RJkuDkWofT8iwkFHajQHgVdVnOKkz9HiwAdCNPgRQUb68@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgrG7kzfK9ktwEMUXWgdQKKVKsIae0XolgzxVmBXMxc/h/G3Zg
+	N3z8cxXEUZgsn16xF/+x29eiaGgxeLM+K8BlRRNRPM7PGDV7LeIc9H8FputSEC7JOGA3OAEiByY
+	zFxfVMLLH1uWbFYBhVQC8WBf29cSXSpw9HkJzu+mYiQ==
+X-Gm-Gg: ASbGncuRs8zgePolx3c14Xuzq3ZgWpisp0Or8RXBucQfM5gDHy5y8VOI9S3ao4IeGHd
+	zdos5+1iCkqxz6n2btPnw0fNQixdaTvgMOCGIiT2m10wk+CB8q8RIUG2G9IAk+7lH3QlqV7HRDv
+	giNgjUKwkgHAT2+mRqctbEXdkDvjmIGZqw5GHb7UACBnbMcTXpdneKtoq3RALjt3FMAiLR3EQJV
+	pe+GhM=
+X-Google-Smtp-Source: AGHT+IE+L8kojs9dsw3C6rCUb7FSCgckOs2Jkf9bqhFZnlMh8FPpWpEIQvGXcm9tMwdZmOjR+SBZh5eXeLrR0pntl+w=
+X-Received: by 2002:ac2:51d2:0:b0:55b:5ad8:186d with SMTP id
+ 2adb3069b0e04-55b5f4bbd79mr2861674e87.37.1753694376329; Mon, 28 Jul 2025
+ 02:19:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: sti: rename SATA phy-names
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250713142424.41236-1-rgallaispou@gmail.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250713142424.41236-1-rgallaispou@gmail.com>
+References: <20250704070356.1683992-1-apatel@ventanamicro.com>
+ <20250704070356.1683992-9-apatel@ventanamicro.com> <175341132347.3513.7184287611040628050@lazor>
+ <CAK9=C2UDV3xCpKxZmT4NsRvN=hCcQrcx0fr-QFD2fuOrqmXmHA@mail.gmail.com> <175359739515.3513.8664828076215459722@lazor>
+In-Reply-To: <175359739515.3513.8664828076215459722@lazor>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Mon, 28 Jul 2025 14:49:23 +0530
+X-Gm-Features: Ac12FXzCp3IP9jRK5qLB49tEzZkZnvv77-g8d-wAPrlIzxfNVRivXQcgZVb8d84
+Message-ID: <CAK9=C2WRVHZ4FdoW0fKRRFg6qAC5asn03dHj_NXkMKfBXKkXdA@mail.gmail.com>
+Subject: Re: [PATCH v8 08/24] dt-bindings: clock: Add RPMI clock service
+ message proxy bindings
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acp <i@vger.kernel.org>, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-28_03,2025-07-24_01,2025-03-28_01
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Jul 27, 2025 at 11:53=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wr=
+ote:
+>
+> Quoting Anup Patel (2025-07-25 09:16:12)
+> > On Fri, Jul 25, 2025 at 8:12=E2=80=AFAM Stephen Boyd <sboyd@kernel.org>=
+ wrote:
+> > >
+> > > Quoting Anup Patel (2025-07-04 00:03:40)
+> > > > Add device tree bindings for the RPMI clock service group based
+> > > > message proxy implemented by the SBI implementation (machine mode
+> > > > firmware or hypervisor).
+> > > >
+> > > > The RPMI clock service group is defined by the RISC-V platform
+> > > > management interface (RPMI) specification.
+> > > >
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > > [...]
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    clock-controller {
+> > >
+> > > Maybe the name should be 'clock-service' then? I don't understand SBI=
+ so
+> > > not sure why this is in DT to begin with. Is something consuming this
+> > > node? Or a driver is binding to it?
+> >
+> > SBI is a syscall style interface between SBI implementation (aka
+> > M-mode firmware or hypervisor) and supervisor software (aka
+> > Linux kernel).
+> >
+> > We have DT based drivers in OpenSBI (M-mode firmware). This
+> > binding allows Clock message proxy driver to be probed on the
+> > OpenSBI side. The clock message proxy driver allows Linux
+> > RPMI clock driver to send RPMI messages via OpenSBI as
+> > proxy thereby sharing the RPMI transport between OpenSBI
+> > and Linux kernel.
+>
+> Let me try to clarify my confusion. A 'clock-controller' node without a
+> '#clock-cells' property is confusing.
 
+Ahh, I see your point. The node name need not be 'clock-controller'
+since the node is for a firmware driver which provides MPXY channel
+to supervisor software (aka Linux kernel).
 
-On 7/13/25 16:24, Raphael Gallais-Pou wrote:
-> Stick to the documentation and rename both SATA phy-names properties to
-> what is expected.
-> 
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-> ---
->  arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-> index 35a55aef7f4b..3e6a0542e3ae 100644
-> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
-> +++ b/arch/arm/boot/dts/st/stih407-family.dtsi
-> @@ -669,7 +669,7 @@ sata0: sata@9b20000 {
->  			interrupt-names = "hostc";
->  
->  			phys = <&phy_port0 PHY_TYPE_SATA>;
-> -			phy-names = "ahci_phy";
-> +			phy-names = "sata-phy";
->  
->  			resets = <&powerdown STIH407_SATA0_POWERDOWN>,
->  				 <&softreset STIH407_SATA0_SOFTRESET>,
-> @@ -692,7 +692,7 @@ sata1: sata@9b28000 {
->  			interrupt-names = "hostc";
->  
->  			phys = <&phy_port1 PHY_TYPE_SATA>;
-> -			phy-names = "ahci_phy";
-> +			phy-names = "sata-phy";
->  
->  			resets = <&powerdown STIH407_SATA1_POWERDOWN>,
->  				 <&softreset STIH407_SATA1_SOFTRESET>,
+>
+> It's not providing clks? The SBI firmware is not discoverable? Do you
+> have a pointer to the DTS for this node and the clock controller node in
+> the next patch? I'd like to understand why this is named a clock
+> controller when it doesn't provide clks.
 
+The firmware driver is not providing clks. Also, the SBI firmware and
+various SBI extensions are indeed discoverable from supervisor software.
 
-Hi Raphael
+On the Linux side, we have two DT nodes:
+1) One DT node for the SBI MPXY based mailbox-controller
+    (Refer, https://lore.kernel.org/all/20250704070356.1683992-3-apatel@ven=
+tanamicro.com/)
+2) Second DT node for the clock-controller based on the
+    RPMI clock service group.
+    (Refer, https://lore.kernel.org/all/20250704070356.1683992-10-apatel@ve=
+ntanamicro.com/)
 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-
-Thanks
+Regards,
+Anup
 
