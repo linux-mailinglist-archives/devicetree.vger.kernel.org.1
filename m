@@ -1,280 +1,245 @@
-Return-Path: <devicetree+bounces-200071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384ECB134D7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4E9EB134DA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:21:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB4F1888A70
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:19:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E187218959D0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D8921FF49;
-	Mon, 28 Jul 2025 06:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9945B21ABBD;
+	Mon, 28 Jul 2025 06:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HcGiCm7A"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="eVDu62XR";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="SH6esJan"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E1017B425
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 06:19:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753683552; cv=none; b=IiXFJxnOoTP8C5gGVCmPg5vFaUKnoYL1LOjIi+nuXOK1tHEfipvNQlIstUE+DyyPnkbTMrhDC2BaT3VW7HPP7xXuNcsmNv2iptGT0W4X1Q9sJdFGwrldA8VS3jjZx14jmzzJXDm/tgoas3/NFdhuh8uo53/cIlGc3+CoVN+8PIM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753683552; c=relaxed/simple;
-	bh=OAo7c2DEwsiVmOBzkwu2o/1eMEM6Be57LMDi7xou0ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vCnzMFEwVehljemCNuOB46WHJ7WqlcdMVBqLjnwrhNDnNwl7uxiMBsEm9rV6JnOYEGGrgXyepEsF86JVm7eXLHBZqY9qQdcxdedYUF9CD8c522OAKIB6Q9wwFwea80OtGFHQkailfjrXxNoGrlMlH5Tf5WysnAaZ++mAmoPfA0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HcGiCm7A; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1753683549;
- bh=47Fk9CIAGtNHco8wNLXEvPIj9J6CR5nOoXAaq7kp3PQ=;
- b=HcGiCm7AxDZeYPpLGiEzRCP3bv1AsCrMjqiEbAfSGHLpoFotPuhHXSybuQ2b4owMRSui/zVOy
- +3gh1U1hz/UwvY6bMnlrJidf1dQmHSzyyKGhgZox2Pt1NjfXZRs+2OdIYAHAD/iW6a0BpIfzs87
- IxZUnwF+p4M44SMiRDYzhIzS3NaiIOVlzajMUx88acwieOHWrv3FxyyQfSZqv0aGqUqIDSLKep6
- v7qL5Vd45RvkzfdYPJvQYLh0yP35MtdrCy9BNLz+C+VNazyhH/6jdWFNh/zNhAz0GKYx0MIjO4Q
- APhXc9vFXQ1KlXsQwSirLB2Tfl12OZ7OUu+jISQTfOGw==
-X-Forward-Email-ID: 68871646991cafe79f4c9fae
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.1.8
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <42188845-5206-4887-80b5-c79e8084f542@kwiboo.se>
-Date: Mon, 28 Jul 2025 08:18:40 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003DB86344;
+	Mon, 28 Jul 2025 06:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753683706; cv=fail; b=Tzf3zGQaxJ4Fywef14RtUpYIwjRWU90w8pma4gALXQtShfTby2SeoHAjSKWEK9Bj4mZabKPp4MGui/7HIcylLOy5VtcCpcmCStMPC9eyEGTeMYJuvjii9bMN4OGOZ8Vfvxov3GKL5YBtUd2mgpiakmbzSuCzG92d4MAnBRKuhtw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753683706; c=relaxed/simple;
+	bh=0uxEQ0uKZesJSKti9CM81Y1oPPvdI+fuzziT8P3uMTc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=B7BW2TgS8r6bJHlma9w1O9A5q6kVMoFJnQ1NpGAtT0avZAE5/YrGycqdg2A+g8lCaQL8IDjekOiMnUswGXux8Vl+j5+cnt/tThcwDdUJfl7KDakHj7/2MLtLEOsm89QchJtcBH9n2YvkFiF7OYtybarUPcnlPLPrgdYX5tdCV0o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=eVDu62XR; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=SH6esJan; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 1fb023d46b7b11f08b7dc59d57013e23-20250728
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=0uxEQ0uKZesJSKti9CM81Y1oPPvdI+fuzziT8P3uMTc=;
+	b=eVDu62XRRYFGoGbPCuFQFQly2Rbj2BNuyQY2GYWZ1VcujedAShxO0ISCwUwNhv4dpX+n6wgMgaGRWUC5d6Ve7VOQPfs+YlrMOJAQ6SG5iFzDOs1PFa6Bn4ttbrczvPEkHtWl4LQU+gmlNCUQdADf3gPcqZs1hc0ZPz1ztoup4vY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:5b127c7c-b5be-493d-964a-c3220f324081,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:9fc23d0f-6968-429c-a74d-a1cce2b698bd,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111,TC:nil,Conte
+	nt:0|15|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL
+	:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 1fb023d46b7b11f08b7dc59d57013e23-20250728
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <friday.yang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2022051603; Mon, 28 Jul 2025 14:21:40 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Mon, 28 Jul 2025 14:21:37 +0800
+Received: from OS8PR02CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Mon, 28 Jul 2025 14:21:39 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FiBIdjlAiYamodcjJc6V4ado00eNVFcEaLU0ujqh+SsiM6pmAT1lrzl0Ywsk+SIjCoVwKJygDCe0IVdjTuycstBE65NLCixXNqR2N90+6d0ORenIu6gq4Y5a7Q4JT00JiyMyic0OCcpkrpiPEXY0Zlr00SNksiu2EcQkR1x78Qeb3ysKGlnOE3i1J/Cwl0UdQWk4Ag5Ka75IUwKOfXephVsxnUmZAKRGeMMA17sHDtlUU6Tg/6M8rlTqsSUoMiZ56CRS960wvjOUyjO9OlOhih1sxtIeznT0HP/Y7lgKvIAbD6Stz2CITWFu9+CV+NiwA/2XOMtCMYI8L42Xb6BeXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0uxEQ0uKZesJSKti9CM81Y1oPPvdI+fuzziT8P3uMTc=;
+ b=dwzf9BWebFOBgO8Ei9hAGg6+OV6srUKg9nUyr4duKKfFzswVyXI20QmGKJL8JVhl7wULrM8EvPxpHTavhdLwO1wZSJmEQU6t/1/57hZwJFGTs13Ix9eY15IjwPIjx0C6i8pIkmnJINQ6TBcRzx1cFnjHuedZRZJHc0kl15zRwTDaja7y68N2+zqPH+AK/PvMXhUWu3eks/CwG4/knJYmxsiwpT5m36sC8jPdjjFIiM6HeU9mAChaWGWSfaicxUv3BPcZDNs5ag/l+VnxT4ux6jFXr1kGwHwEpIqd4B/DaHtW2FO/JRwsNQNL8d/aDFeVxJV+UXTx/URugyljlTIJ6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0uxEQ0uKZesJSKti9CM81Y1oPPvdI+fuzziT8P3uMTc=;
+ b=SH6esJan51Ndih2D0sG8bzNWQpsAJd0HbxhuVCbEimHwSmXH9oDTVkEkkaR43R6i/2S6yTwimQZbjbljqKCqoyy0tywsPujwkprP/nvh8DK4VTeyGdaJKVhhzsGh3c2Shq9x3bxMtQ/3A+hiaT98Y2J+xZhlOSu5/OjSa7mEw1w=
+Received: from JH0PR03MB7983.apcprd03.prod.outlook.com (2603:1096:990:3d::5)
+ by SE2PPF9D8ADABD2.apcprd03.prod.outlook.com (2603:1096:108:1::49f) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Mon, 28 Jul
+ 2025 06:21:36 +0000
+Received: from JH0PR03MB7983.apcprd03.prod.outlook.com
+ ([fe80::68cc:b424:7a97:b11f]) by JH0PR03MB7983.apcprd03.prod.outlook.com
+ ([fe80::68cc:b424:7a97:b11f%3]) with mapi id 15.20.8964.025; Mon, 28 Jul 2025
+ 06:21:36 +0000
+From: =?utf-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>
+To: "robh@kernel.org" <robh@kernel.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, =?utf-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?=
+	<Yong.Wu@mediatek.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "krzk@kernel.org"
+	<krzk@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: Re: [PATCH v7 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+Thread-Topic: [PATCH v7 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+Thread-Index: AQHbubTGkmH/7Q97fUK8yI7GEpvvKbPCgMwAgIUbhQA=
+Date: Mon, 28 Jul 2025 06:21:35 +0000
+Message-ID: <5ee8b669b93b18eed00329be90595539bc4f3e9f.camel@mediatek.com>
+References: <20250430094545.23932-1-friday.yang@mediatek.com>
+	 <20250430094545.23932-3-friday.yang@mediatek.com>
+	 <9f01a9a4-89b2-4bfc-97cd-827be989ef16@kernel.org>
+In-Reply-To: <9f01a9a4-89b2-4bfc-97cd-827be989ef16@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: JH0PR03MB7983:EE_|SE2PPF9D8ADABD2:EE_
+x-ms-office365-filtering-correlation-id: dfb46ef4-1491-4c38-9103-08ddcd9f0129
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?KzVMTW16cW5HZnl5UTdpWWVZQUZoOVFDaUlzM29qMENNZWVvYnhEQ1pFMnk4?=
+ =?utf-8?B?M3VPZ09LTFU3K3JSQm9IR0dxaHJ0Yy9jTFRhU2c0RE43UzFRWE50L1k4Mm1t?=
+ =?utf-8?B?Y1RVMktpYk9LVmRLSG1Ka2thSHVCOEVWWDBTTVVQOU8ycmZvcm1uTEVhVzF3?=
+ =?utf-8?B?UTVlVXJaa0NsVzlNOGtKWTJwV1ZZclNKdi9oc2xpcVZvU1BvS1dFL3FSK2J0?=
+ =?utf-8?B?L3hrQ1pSWnZVSHpYcDdOSkIzbG5SaDBwVy9nZWRPbnNRWHppN2JVNEhvRGk0?=
+ =?utf-8?B?a280RDB2Q0JoSmwyd213OFM3V2llQ00wSUUxR3hWZE1xQ2orVjNNU0NQUGZU?=
+ =?utf-8?B?RTFIUSsxTGtxaHJIWDg1c0FDK0xReFpKSDdlVnROUHc1cTUvYUZZRmUycHpk?=
+ =?utf-8?B?M09SRmxmSm9oU1RyU1ZxOVI1aEZVaCtTbUdsSXZrYTZSdVlSVHREbHFoWjd6?=
+ =?utf-8?B?Y0pYNVZ5Nk0wRHkrd2Z1enJETUxnNjRLbEcxdEUzaHhUeHlteGVXeDZ0REhP?=
+ =?utf-8?B?YWFXa3ZkUWc2bTBHZEcxVXZXM1RFQThuZmlNU3FEMU9uQm1NZGQzeUlGV3BY?=
+ =?utf-8?B?STZ4YzV3Q2hZZDdVcGo5NlRhTzZwWkswbW9oUFRNM0xFUmpRdmJNMVAzWU9z?=
+ =?utf-8?B?WURKTUFqTHFqWnhlaGUwMWpEVmRZWHBlUjg2OEU1U09BMU9IZVZkR0lha2t3?=
+ =?utf-8?B?Si9DbmNKSUxLU2R1TnowM2JrekpwVnZOdTU4eGVJbU9nSDNUYjFnZ1R3NTVN?=
+ =?utf-8?B?ZUVWd0NudmtNYzlTZi9Ua0E0N3FJeWRVSE92Qmh2UlhBMW5kZVMva2ZMVHZu?=
+ =?utf-8?B?L1doTU5sYUJJTVNPME5QaTIrck91eDRzekZQczhXY0V0WDhtMTByWDFmNDlh?=
+ =?utf-8?B?YXNZdjRlVzNNYXFRL25Kd1d5TjVVaHV4RnR4ckg2V05uTmNtRXBmRzhpQ2wy?=
+ =?utf-8?B?TkxsMkZmdHl5Wjl4UXJ0c3BCeUp4VURSNElRdE4vc1dsSC9RZTllamNTamNZ?=
+ =?utf-8?B?VVZzd1I4QjdGdnFyMDgreHRKTTR4bDhWSDNhekpTVUo4d1ZRRzNkalJ5SnNK?=
+ =?utf-8?B?VVJZcllaakhnTVlOU29BQVhBYnQvTEdwRjdLeERZcG03aEk5dmdPVEVDb1hy?=
+ =?utf-8?B?QjE2eWhVTy9wZXNNd0Y3VW5TZHR2WG5WbnQrNzA1WkhZNElKZ1hRK0NMd3Nl?=
+ =?utf-8?B?UWFoSGF5dXBWZkV3d1prdEUrbTk3Q2NMdVU0TG9ZMmVEWmVtNEY5MlBSQVgy?=
+ =?utf-8?B?bm1vOGdwU1BEUmc1SENyZmpyM0JxdlZKZy94blFyN0FyTUV1WVFCZElucEdk?=
+ =?utf-8?B?K0FRUGdBYzlOTkoyUStIWGZ3c1g2VWJINTJwSEJqWG5qNU5DL2h0akpHUEpN?=
+ =?utf-8?B?Q3dlWTg1K212c3pRTk12SkEyd0x1aUhSTXlTSEJDWnNiY1hidTZNTDJZZEd3?=
+ =?utf-8?B?QjQzQ2VCNDd0WG5wZ0Y3VE1nNWFkZ2RZOU9xbWVCS3gzVlRNR1FaUkcrcmx3?=
+ =?utf-8?B?M1JwZFFjeHovbnRxeXppL3c0YzVRdmxIQ3ZiTEx6VjJOdVJ0Z25PY1NVNWlU?=
+ =?utf-8?B?WmZ3VjZEQThLd0dCVzRrZ2VrS3FJZDhQZVNlTXo2R1c4R1JKRkFxM242YXZP?=
+ =?utf-8?B?cUpiL04rS09OM095c05OMkhPTEx4bGZCcVZWdG9HZGRHNGQwR3ljci9SSVdh?=
+ =?utf-8?B?UUtiMUd3R0dvajBBWkZmZlJXTDl3SnAvZy9mTEVNV1VGSzh0TVFGc3NMWGgw?=
+ =?utf-8?B?ajB6U0NDT3huazBYWFZ2RjlpTzM5alVrL2FOUUt6RUxvOVlRVU9ERysxc1B5?=
+ =?utf-8?B?M05qblBYYlhYMUxyalRuZWJLTUpyeUZrd29EMmxQS3ZUNUlRN0l2Mk8xa0U3?=
+ =?utf-8?B?cXZjZXZuWFpObFBqcm5nRFFTUmI1cUR5cWx3MUp1eCtrVDZXZTM4UThRYWwx?=
+ =?utf-8?B?RlgwQVowYjEzTDhZWklwRXZCVFJMWC8rYjJhVTZKNkwxVEpuOWlEWmRxQzMv?=
+ =?utf-8?B?SmgvSi9zbnJ3PT0=?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JH0PR03MB7983.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cjN6WFpxMXVTSzVSMk05Z3dKREhMRW83TlVjM2xyV2NDS0pLQXRXWThCL3hW?=
+ =?utf-8?B?YWNNaHQvem4zTEdZRm8zRkVZbElxbG8yczZUMTd5RlhocWdHN09tTWZYL3ZT?=
+ =?utf-8?B?V3grNldHc1hMOW9MYUZRNHU4a0Z6VHVCc3RkdkZtKzF2WXdyMUozWCtpQW9V?=
+ =?utf-8?B?UUE0clUwUWFOd1VaZTVoOGJtK21ocEpFdEQwelVwNGVOSU9Bc0Rxd1k1ZjVr?=
+ =?utf-8?B?WDhKNi91aUFuT2gxTzJEMDhYZEovQzlqeXYwQTh3OUxLTi9aQy9WdEJOcllU?=
+ =?utf-8?B?aDVGbmdrTTJHRk9HallVd29jdmRZOTdvSnlucmQ4K29vVExkMWN3SXJTWEJy?=
+ =?utf-8?B?RzlLQkFEaWFzNk83NHp3aU5MczVJWTl3b1R1enh1ZEtGQzVzM2xDUUVhSGpL?=
+ =?utf-8?B?V2RyL2tEZUF2QTh2NTQyK2I1SFNISzV2ZWswZ0tLNFArNkZhWjJKVUdsOSsr?=
+ =?utf-8?B?MHBCRVNqSFNYd2RXaUNvdElJWEZzYUwxcjFOcjJ0bTlkemRnV1dDd2RFVzNH?=
+ =?utf-8?B?NWNrS0VaOWpnRlZYVWN0ck43UTJUSWNSU01lK0hwZjc2c2V5U0d2Zmk5eG5P?=
+ =?utf-8?B?Z3lSckM1QU1iNjBjeUlldGIvQ3Q1TGlVWlNGV0dpWnpZcGc5RXBIa0V5emFD?=
+ =?utf-8?B?Z05GMURBaDFiU1B3TTZheWxiTEZnU1oxTEtOanpmVUpYNmFFTTgxcGNFcGRQ?=
+ =?utf-8?B?em9NMS9Bd3RWd3lhdm1GUk9FdHh5NWphVStFNlF0VXh6eHhjMVZDMXUveTlX?=
+ =?utf-8?B?cW81ZjRqYjFyTUxjdjdHYzhnU2xxSXVVcVVyaGplbldvb2R1SlRhUnZMMkNn?=
+ =?utf-8?B?czVDbFFJMjkrY3IrNUV3aDkxQjIvM2tObnpBb1hrenFEdXIxUitxNWI1dVJu?=
+ =?utf-8?B?SzdrVHBRaWNmK1RyTm1BZkNZbDFrNVVTbklJUWl0OWNPdk5Ib3Mrdnd1Smlx?=
+ =?utf-8?B?UDBuVFEyeTByMS84UlNwZXg4aExmYXR0Q0JmNUV6WjFXSS9IMlhsck5uVVc0?=
+ =?utf-8?B?eGVzQWIxbWFIUk15aXVRd3ZSTWlyRnNmei9waDJkeVMvVlozU2lHNkg4Z1ZF?=
+ =?utf-8?B?N2F6aVpVMk9ySkk1bTZTd1V4akkyN1RPL1BnVVRsd0JNUXdLMDRrRjRlNith?=
+ =?utf-8?B?QjhoWHZydU5ETlVmY2VsRndQamF0bExXaUFGak5ZbWg2Z3ZCelBjQWRZVVMz?=
+ =?utf-8?B?OWxKVnZ0SklXa1g4UTE1ZndBRGpDWmJ1bVJvQnFoanhkYkdxZmVXUDFmNktX?=
+ =?utf-8?B?VmZIWnRKRjRxcGpvQTR6dTJxNlRpUFd6dE43ZVlmL1ErY2FBNWl2Qlc4TnE2?=
+ =?utf-8?B?SmdsU0xMKzdRV3NSdTRxTGV2VjlFL3k0VlhyWjhPMlozVGV2ajVONkVTMlF4?=
+ =?utf-8?B?a3hkd3kwZjZDMFdhcWREcEM1UWovWWdBUVRTNStVdGxzamlDQnMvb2U2Qmc0?=
+ =?utf-8?B?UjZmV1JCUHpoR2JXdnpoUHRZaDc3Qm55U3FjTEZZaFZOWjlJTVA5SVY2dWpj?=
+ =?utf-8?B?dWtUUjMxQ2VSSzI5UHV2NU9mVjBLeXdmTjBLY0IvRGRqZHZDc3FCYWgvcnlh?=
+ =?utf-8?B?VFBkV3VicVE1TkNaTDlDS1NRSDZFRDhBMGNTeDE5dmhqZ1ZySG1MeTI1cmVR?=
+ =?utf-8?B?TWt1M3VTN0xlUC9RWGdNWUZIT0hCVzFEdUQyaU5pOUgvQUZFV3NRYU16ZEtV?=
+ =?utf-8?B?ZkthUHRnOWZoOUZlOThiTjNmRmZHWkVyOHdWVHBvWmhtRFFzWXpycCtLZ1Rx?=
+ =?utf-8?B?R1pGVFNaVHE3c3ErNVB4b1ZOS2hHRWcrUkNKc1RhQVJIWVdwUE9hWDQreFhE?=
+ =?utf-8?B?dExzSnJJMFRQYmpZanVvVTRQRGYvRVU1TU9qUTJnMmhKcEJHU0pBZkRYRitG?=
+ =?utf-8?B?cVFQdndRZi9qblRoM245MUIrV0RYalhLazdXYzExNWNlL1V1cWpjeUsrR3RQ?=
+ =?utf-8?B?K3ZhbDVMUWFZNlFUTk0yM0k2cmlpcDN5aWYzVlFyZ0pVZHdBTjZCSktXQVhF?=
+ =?utf-8?B?V24yOFptMWNzQUUyWGdpMkl1QTFQNzRTcURsQjVHWDhIVGV4YUtYdjFoSDZY?=
+ =?utf-8?B?b2o4ZXcvT3h3UmRTa0ZLR3J3L0VzSVliamdOOVFBWGJRd3pIYUsybU5adnpP?=
+ =?utf-8?B?VjdyTkUzMUswVHZ2V2hJM21sSHp1K01jckxhOEoza2pCLy9EV3RFTUhaZjZC?=
+ =?utf-8?B?VkE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AB9422E2D5AD394A9808DF7D40F696D5@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] phy: rockchip: naneng-combphy: Add RK3528 support
-To: Yao Zi <ziyao@disroot.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- Shresth Prasad <shresthprasad7@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Chukun Pan <amadeus@jmu.edu.cn>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Andy Yan <andy.yan@rock-chips.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20250624033733.50197-1-ziyao@disroot.org>
- <20250624033733.50197-6-ziyao@disroot.org>
- <eb7c9e40-3c17-488f-98a2-17b972f61e75@kwiboo.se> <aIHDSW0XO9BCfch3@pie.lan>
- <aIcFmhQqLuUlLZb_@pie>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <aIcFmhQqLuUlLZb_@pie>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: JH0PR03MB7983.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfb46ef4-1491-4c38-9103-08ddcd9f0129
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2025 06:21:35.9229
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: peCtQJmQuWRzw69ekB2iRxeDsTuhrT5rkAdJYxtDpZIHW1WtODb8o2e2VXTGu4/lsm4yBy1KkHM1Cry9c5YZ5GgyldpOf9YMVm/ixd061Ew=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE2PPF9D8ADABD2
 
-Hi Yao Zi,
-
-On 7/28/2025 7:07 AM, Yao Zi wrote:
-> On Thu, Jul 24, 2025 at 05:23:55AM +0000, Yao Zi wrote:
->> On Wed, Jul 23, 2025 at 04:51:15PM +0200, Jonas Karlman wrote:
->>> Hi Yao Zi,
->>>
->>> On 6/24/2025 5:37 AM, Yao Zi wrote:
->>>> Rockchip RK3528 integrates one naneng-combphy that is able to operate in
->>>> PCIe and USB3 mode. The control logic is similar to previous variants of
->>>> naneng-combphy but the register layout is apperantly different from the
->>>> RK3568 one.
->>>>
->>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
->>>> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
->>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>>>  .../rockchip/phy-rockchip-naneng-combphy.c    | 186 +++++++++++++++++-
->>>>  1 file changed, 185 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
->>>> index 1d1c7723584b..bf00a85a113b 100644
->>>> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
->>>> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> 
-> ...
-> 
->>>> @@ -398,6 +437,147 @@ static int rockchip_combphy_probe(struct platform_device *pdev)
->>>>  	return PTR_ERR_OR_ZERO(phy_provider);
->>>>  }
->>>>  
->>>> +static int rk3528_combphy_cfg(struct rockchip_combphy_priv *priv)
->>>> +{
->>>> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
->>>> +	unsigned long rate;
->>>> +	u32 val;
->>>> +
->>>> +	/* Set SSC downward spread spectrum */
->>>> +	val = FIELD_PREP(RK3528_PHYREG6_SSC_DIR, RK3528_PHYREG6_SSC_DOWNWARD);
->>>> +	rockchip_combphy_updatel(priv, RK3528_PHYREG6_SSC_DIR, val, RK3528_PHYREG6);
->>>> +
->>>> +	switch (priv->type) {
->>>> +	case PHY_TYPE_PCIE:
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
->>>> +		break;
->>>> +	case PHY_TYPE_USB3:
->>>> +		/* Enable adaptive CTLE for USB3.0 Rx */
->>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG80_CTLE_EN, RK3528_PHYREG80_CTLE_EN,
->>>> +					 RK3528_PHYREG80);
->>>> +
->>>> +		/* Set slow slew rate control for PI */
->>>> +		val = FIELD_PREP(RK3528_PHYREG81_SLEW_RATE_CTRL,
->>>> +				 RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW);
->>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_SLEW_RATE_CTRL, val,
->>>> +					 RK3528_PHYREG81);
->>>> +
->>>> +		/* Set CDR phase path with 2x gain */
->>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X,
->>>> +					 RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X, RK3528_PHYREG81);
->>>> +
->>>> +		/* Set Rx squelch input filler bandwidth */
->>>> +		val = FIELD_PREP(RK3528_PHYREG83_RX_SQUELCH, RK3528_PHYREG83_RX_SQUELCH_VALUE);
->>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG83_RX_SQUELCH, val, RK3528_PHYREG83);
->>>> +
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
->>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
->>>
->>> I suggest we add something like following here:
->>>
->>> 		rockchip_combphy_param_write(priv->pipe_grf, &cfg->u3otg0_port_en, true);
->>>
->>> to ensure that U3 is enabled in case boot firmware disable the U3 port.
->>
->> Thanks for the hint, I'm willing to adapt it. Should we handle the case
->> that USB is enabled by firmware but PCIe is going to be used in kernel,
->> too? It's desirable to make fewer assumptions about the state set by
->> firmware.
->>
->> P.S., I'm assuming the register should be written as "disabled" value
->> whenever PCIe is used, and "enabled" whenever USB is used, as
->> the LSB of USB_GRF_USB3OTG0_CON1 is said to be "USB 3.0 SS Port Disable
->> control" according to RK3588's TRM, which doesn't look like something
->> compatible with PCIe mode when setting to 1'b0 (port enabled). Please
->> correct me if I'm wrong.
-> 
-> I've read through the manual and done some tests today, and it seems I
-> misunderstood the purpose of USB3OTG0_CON1. This register has only
-> something to do with USB3, but not PCIe. Writing either "disabled" or
-> "enabled" value to it doesn't affect PCIe functionality. Thus for the
-> naneng-combphy driver, it should be enough to only write the "enabled"
-> value to u3otg0_port_en if USB-3 mode is used.
-> 
-> Anyway, thanks for your remind on this register :) Its reset value
-> allows USB-3 to function thus I just forgot about it during clean-up.
-> I'll send v5 soon.
-
-Sorry for not getting back to you sooner, I fully agree with your
-assessment here, the USB3OTG0_CON1 reg only affects USB and has nothing
-to do with PCIe. Trying to adjust it when probing PCIe drivers could
-open up for strange bahavior in case USB3 controller driver has already
-been loaded or similar.
-
-> 
-> ...
-> 
->>>> +static const struct rockchip_combphy_grfcfg rk3528_combphy_grfcfgs = {
->>>> +	/* pipe-phy-grf */
->>>> +	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
->>>> +	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
->>>> +	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
->>>> +	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
->>>> +	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
->>>> +	.pipe_clk_24m		= { 0x0004, 14, 13, 0x00, 0x00 },
->>>> +	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
->>>> +	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
->>>> +	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
->>>> +	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
->>>> +	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
->>>> +	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
->>>> +	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x110 },
->>>> +	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x00 },
->>>> +	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x101 },
->>>> +	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
->>>
->>> And adding something like this:
->>>
->>> 	/* pipe-grf */
->>> 	.u3otg0_port_en		= { 0x0044, 15, 0, 0x0181, 0x1100 },
->>>
->>> Should be possible with ("phy: rockchip: naneng-combphy: Enable U3 OTG
->>> port for RK3568") [1].
->>>
->>> Most RK3528 boards I have come across this far seem to use PCIe instead
->>> of USB3, so having boot firmware disable U3 early (to help support USB
->>> gadget in boot firmware) and instead having this PHY driver re-enable U3
->>> when needed seem most logical to me.
-> 
-> Thank you for the U-Boot patch! While reading through, I saw commit
-> "rockchip: rk3528: Disable USB3OTG U3 port early" states,
-
-I will try to send out a small RK3528 U-Boot series including that patch
-later today, with v6.16 just released I am hoping U-Boot shortly merges
-the v6.16 DTs for its next release, v2025.10, to reduce the size of such
-U-Boot series.
-
-> 
->> Some board designs may not use the COMBPHY for USB3 purpose. For these
->> board to use USB OTG the input clock source must change to use UTMI
->> clk instead of PIPE clk.
-> 
-> Does this mean we should ideally add similar handling for USB3OTG in the
-> kernel's usb2phy driver, too? Otherwise if the firmware doesn't handle
-> clock stuff well, the kernel'll fail to operate in OTG mode, either.
-
-Checking for use of a usb3-phy from the usb2phy driver feel like the
-wrong place to do that, if anything possible from the DWC3 driver. But
-that also feel a bit strange to me, and could possibly be complex.
-
-What we know for sure is that when the combo phy, or usbdp phy for e.g.
-rk3576 and rk3588, is used for usb3, we should be sure that we can
-"enable" U3 in USB3OTGx_CON1 regs without affecting anything.
-
-Based on my testing it only seem to be the utmi/pipe clk source bit that
-has any effect on USB2 only function. So could possibly be something for
-the clock tree to handle as an alternative approach.
-
-To be able to use usb2 in U-Boot, and with the usbdp phy driver already
-having support in both Linux and U-Boot to enable U3 port, doing an
-early disable in U-Boot and later re-enable when we know for sure is
-easy and make some sense to me ;-)
-
-Regards,
-Jonas
-
-> 
->>>
->>> I will push an updated U-Boot rk3528 branch [2] where I include such
->>> early U3 port disable once source.denx.de is back online again.
->>>
->>> [1] https://lore.kernel.org/r/20250723072324.2246498-1-jonas@kwiboo.se
->>> [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
->>>
->>> Regards,
->>> Jonas
-> 
-> Thanks,
-> Yao Zi
-
+T24gU3VuLCAyMDI1LTA1LTA0IGF0IDE1OjQwICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3Bl
+biBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRo
+ZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIDMwLzA0LzIwMjUgMTE6NDUsIEZyaWRheSBZYW5nIHdy
+b3RlOg0KPiA+IEZyb206ICJGcmlkYXkgWWFuZyIgPGZyaWRheS55YW5nQG1lZGlhdGVrLmNvbT4N
+Cj4gPiANCj4gPiBUbyBwcmV2ZW50IGhhbmRsaW5nIGdsaXRjaCBzaWduYWxzIGR1cmluZyBNVENN
+T1Mgb24vb2ZmDQo+ID4gdHJhbnNpdGlvbnMsDQo+ID4gU01JIHJlcXVpcmVzIGNsYW1wIGFuZCBy
+ZXNldCBvcGVyYXRpb25zLiBQYXJzZSB0aGUgcmVzZXQgc2V0dGluZ3MNCj4gPiBmb3INCj4gPiBT
+TUkgTEFSQnMgYW5kIHRoZSBjbGFtcCBzZXR0aW5ncyBmb3IgdGhlIFNNSSBTdWItQ29tbW9uLiBS
+ZWdpc3Rlcg0KPiA+IGdlbnBkIGNhbGxiYWNrIGZvciB0aGUgU01JIExBUkJzIGxvY2F0ZWQgaW4g
+aW1hZ2UsIGNhbWVyYSBhbmQgSVBFDQo+ID4gc3Vic3lzdGVtcywgYW5kIGFwcGx5IHJlc2V0IGFu
+ZCBjbGFtcCBvcGVyYXRpb25zIHdpdGhpbiB0aGUNCj4gPiBjYWxsYmFjay4NCj4gPiANCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBGcmlkYXkgWWFuZyA8ZnJpZGF5LnlhbmdAbWVkaWF0ZWsuY29tPg0KPiA+
+IFRlc3RlZC1ieTogRnJpZGF5IFlhbmcgPGZyaWRheS55YW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+
+IEhvdyBpcyB0aGlzIHBvc3NpYmxlPyBBcmUgeW91IGNsYWltaW5nIHRoYXQgbm9uZSBvZiBvdGhl
+ciBhdXRob3JzDQo+IHRlc3QNCj4gdGhlaXIgcGF0Y2hlcz8gSG93IHRlc3Rpbmcgd291bGQgYmUg
+bm90IGltcGxpZWQgYnkgYXV0aG9yc2hpcD8NCj4gDQoNCk9LLCBJIHdpbGwgcmVtb3ZlIHRoaXMg
+dGFnIGluIHRoZSBuZXcgdmVyc2lvbi4NCg0KPiA+IFJldmlld2VkLWJ5OiBZb25nIFd1IDx5b25n
+Lnd1QG1lZGlhdGVrLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwg
+UmVnbm8gPA0KPiA+IGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCj4g
+PiBBY2tlZC1ieTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NCj4gDQo+IENoYW5nZWxv
+ZyBzYXlzIHRoYXQgdjcgaGFzIG9ubHkgZm9sbG93aW5nIGNoYW5nZXM6DQo+IA0KPiAgIC0gUmVt
+b3ZlIHRoZSAnZGV2bV9wbV9ydW50aW1lX2VuYWJsZScgY2hhbmdlLg0KPiANCj4gV2hpbGUgdjYg
+aGFkIG5vIHN1Y2ggdGFncy4NCj4gDQo+IE5vIGNsdWUgd2hhdCBoYXBwZW5lZCBoZXJlLCBidXQg
+bG9va3MgbGlrZSBtZXNzIHdpdGggdGhlIHRhZ3MgYW5kDQo+IHJlYWxseQ0KPiBpbmNvbXBsZXRl
+IGNoYW5nZWxvZy4NCj4gDQoNCkFwb2xvZ3kgZm9yIHRoZSBtaXNzLCBJIHdpbGwgYWRkIG1vcmUg
+ZGV0YWlsZWQgZGVzY3JpcHRpb25zIGFuZCByZW1vdmUNCnRoZSBpbmNvcnJlY3QgdGFncyBpbiB0
+aGUgbmV3IHZlcnNpb24uDQoNCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg==
 
