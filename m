@@ -1,121 +1,87 @@
-Return-Path: <devicetree+bounces-200046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB119B133FF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:09:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC7DB13406
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F98D3A7AC2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:09:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73503176283
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5ABB1990A7;
-	Mon, 28 Jul 2025 05:09:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+whWOiU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E103217739;
+	Mon, 28 Jul 2025 05:11:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D018290F;
-	Mon, 28 Jul 2025 05:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121B6290F;
+	Mon, 28 Jul 2025 05:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753679370; cv=none; b=ugaUPPVQGP2QdKBmk149ay80KKo/rjo6yLUkZEqCX63vyuoYUzNVjp4mZAVQxE7q2k0S6kN3lRw4DBoYDKQbzNKa8ihfpEw1duM2FlNLhgJgzeFFDvDarV+neAnmB3brSwBYgaMIKFmn4F4uStxXXy1ADd7qNTiBtFxBMqRNrJI=
+	t=1753679473; cv=none; b=XawiukMHDEsW1Z4FZmLU9WNVBHaXNpAaL4GVwlGXX4WG55ebRriTj1lS12kimvPyNWyThgj+ynXHEUTN3F3Snc9rFAZ7Vs9IgyadsmFIjMeINC9qpszm6svijRl5Tz/t8Eff6CO/A8igLleS7uUDkKB9v760VYfPazQipq6oJ+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753679370; c=relaxed/simple;
-	bh=T9lo0t6P/L6EZKk6AfmRjZYXVJYgMvSsSmmuIkFH45g=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=L62aeJya6EkKH/0+lamXZf4ePalM8wAKYBlLec8zOyX566r3Dl+l0RUakUgpB3RWnhGQQlotQ07zQUgvrW5Z/Nw1U6yEyuCwugC/n1TTPQbWefWTqXpsYKERc821VjD1vS4gnoVhndeTS7WrV3Sy9ghLFCID2Wz4bIUtL0xooLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+whWOiU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0561C4CEE7;
-	Mon, 28 Jul 2025 05:09:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753679370;
-	bh=T9lo0t6P/L6EZKk6AfmRjZYXVJYgMvSsSmmuIkFH45g=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=a+whWOiUBkCLaHGeCZ6XV8zVeP/UdSNkBSXpz4A0DKjW9mRwFdgKCTHK4cMMid6qA
-	 IXdpnqSUtqVyFKA4LYv47lVy/YNyKR5/LHK2njzJeWos0UL5PjIuLpEa0FsLIsrapO
-	 +sXPKOfTSZb5713S+wfWyWdI0uuEz7aiw6Cm+l6dryeOssFj1wrmx8JDHuH66lTm3S
-	 yMhA2za1kY+nskSyQqIJdMOrKI9JlwpgzdJjoQHwa2a3DJ14AWmKKHpZ4y57AVincc
-	 HzUWZ4U/RaKX6aJ3stJ0xBQkO53m//w8h+oLtts/5HrcZVWVp8EcatZXQIbydHtzFe
-	 ripkUCHVp0KOw==
-Message-ID: <93c39b36-07c8-4883-bd23-7d0194c50a7a@kernel.org>
-Date: Mon, 28 Jul 2025 07:09:25 +0200
+	s=arc-20240116; t=1753679473; c=relaxed/simple;
+	bh=4nEe5PLFL6Y1WwycjvwOrFYlLqHEUi7f5SQZnpdS9AQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZnW/mCbksqXd8QGAGSokB9A2x60f0KmMfXa+YJ+AS7bVbHH7GvTL/X4ff/kgffJjWc489+e45XMkHbIUTDZDQryLEkdKjBT4w+vrJf7EWB+DiS9FIn+jXMFK3Ofob5+Kf7K+iVBe6aeOahvNe3xgZNfEvZsgdGu4Gef5AGq5yOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F09FC4CEE7;
+	Mon, 28 Jul 2025 05:11:12 +0000 (UTC)
+Date: Mon, 28 Jul 2025 07:11:10 +0200
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Erik Beck <xunil@tahomasoft.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add
+ LinkStar-H68k-1432v1
+Message-ID: <20250728-dashing-discerning-roadrunner-bc8b87@kuoka>
+References: <20250727-linkstarpatch_v4_6-16-rc1-v4-0-0dfa7aa06ec9@tahomasoft.com>
+ <20250727-linkstarpatch_v4_6-16-rc1-v4-1-0dfa7aa06ec9@tahomasoft.com>
+ <9ebd9797-8d92-4799-bb8d-59a796e6043c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: add LinkStar-H68k-1432v1
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Erik Beck <xunil@tahomasoft.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250724-linkstar-h68k-patchv3-v3-0-b9f87b7306e5@tahomasoft.com>
- <20250724-linkstar-h68k-patchv3-v3-2-b9f87b7306e5@tahomasoft.com>
- <20250725-muskox-of-authentic-gaiety-b8eda4@kuoka>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250725-muskox-of-authentic-gaiety-b8eda4@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <9ebd9797-8d92-4799-bb8d-59a796e6043c@linaro.org>
 
-On 25/07/2025 09:26, Krzysztof Kozlowski wrote:
-> On Thu, Jul 24, 2025 at 05:37:59PM -0400, Erik Beck wrote:
->> Adds dts for LinkStar-H68K-1432v1 board, using rk3568.  Also modifies
+On Mon, Jul 28, 2025 at 07:07:32AM +0200, Krzysztof Kozlowski wrote:
+> On 28/07/2025 02:03, Erik Beck wrote:
+> > Add device tree bindings.
+> > 
+> > This device:
+> >   - Has not been supported previously in the mainline Linux kernel;
 > 
-> Add DTS
+> Irrelevant, drop.
+> 
+> >   - Is a single board travel router made by Seeed, using an rk3568;
+> >   - Has four ethernet ports;
+> >   - Has four USB ports;
+> >   - Has WiFi (MediaTek MT7921e);
+> >   - Has a real-time clock (rk809)
+> > 
+> > Base commit:
+> >   - commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494 ("tag: v6.16-rc1");
+> 
+> Irrelevant, drop. This should NEVER be part of commit msg, because it
+> makes no sense once applied. It is not even true in that moment.
 
-Add DTS and here goes the rest. Not "Add DTS full stop".
+Also now I see checkpatch warnings...
+
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
+
 
