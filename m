@@ -1,177 +1,202 @@
-Return-Path: <devicetree+bounces-200308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E61B14100
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 19:11:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1924FB1410C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 19:14:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EC96189AAD9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:11:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DEEC67A1FDA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A07275865;
-	Mon, 28 Jul 2025 17:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A524127511E;
+	Mon, 28 Jul 2025 17:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WxAHBuzj"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="aArmC+xR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5566D42AA5
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 17:11:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753722667; cv=none; b=bvxqsYT+EZT0kCuSLEvMtSS+NeYsEouQxgHGy65u3hZDBhlW5XB4eGCFtNVbBY91EQbxRWeKIxRCPY8zcu9T9gSHumx4GNkR5a1WgGsCwPFAeI5O/pKR/XqXLfdiTQ33rMx64oGwxdO5LAVOSoLFY3kxTTqeBJQk2uHLlIG2xHE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753722667; c=relaxed/simple;
-	bh=bKx7T1DLQcbdvNXKkdxjhh9o20FMdCO0YBI0USo5qRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mO9Qsk1kJCaXXxR7ToKtecfHFxt0PRV6Z+rI8EayxWmIKpHPF7xQdF+FQ/hTTei85zi5tHSi30SooVQ6tTBRA4A/o7RI2l24gE10NqMbLmZydYTEVPNGUxn0P7UjTGbp+UTSEQAtCV+61y+oyCJl3FCZ650Arr6qduNROH/v330=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WxAHBuzj; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ae0bde4d5c9so911807266b.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 10:11:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753722664; x=1754327464; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QR1arBx0XvaSp1oUXc3PyontAThuSk/8jS2zweGYDNE=;
-        b=WxAHBuzj/5k9vPu0wCo7mPeSQvYKrJIm7erozXLuNjSfF4PmjuO+72WfufvbcrFhiI
-         JfUCB+W8t0wtkf9OogyKUFcHiAMjTQlMAgG7sjW0DriH87kFpSC1Giv+5D+nB48ql+9+
-         LdIc308cu3Sp7e28RA/kHTbHNOOXRRa/p6FIwlcFsTAqRg+4YHrfI2k6jMa7Yx/yZsPZ
-         wmq351hrSbbf5sx7Ew3qor4YTG22RbC+GMvcKNkh1AOIj7xlED5HOJRQee9lNswW2Lhq
-         fU3NaIbo3ZTejCgXB5oEn0Y8FTu4ImiZYjd7PnGzZ8bxvIF5URNuYTu5HrIIGStV9bQ7
-         ywmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753722664; x=1754327464;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QR1arBx0XvaSp1oUXc3PyontAThuSk/8jS2zweGYDNE=;
-        b=B3N870gghSKvDzQyncAsByCW9gAg0+eK0jHLaoEPIsbQfwHCwPUdLAVdoHGPE0N775
-         Sli9Ne6Oxzqp6yoNdJ0GWL4zxfuKNzs6iWMYCzjyxAl792EsDsUkEBISWuavKwBls+h3
-         fLl28oaSs3ZWtz9dmYyKMyuKZ5oTOHiECm4pKiOQbmF4AgK1G8bZgmhtqcwjfPABHRom
-         8kcnZvbmyvgvZKvm4vpOBVPHvN9uRKni6QTSWlOInXrBzw1juDFZkTiaU7VP0mNzcoEK
-         T7kxDsXOw3qUWyzMcP0c93iAqFCU6/DCeYRBqM9GVHUYrw3Ao9BRsZwlcPwxMYmBFdCy
-         DV3A==
-X-Forwarded-Encrypted: i=1; AJvYcCU4LuPlZMVqdgYomD48amnjvvUJSFaSX3Iw7/FA0y/YJONOcVidElb+u266Mh8+aowJJIU2qE8j7N8Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVrZ79ssqPYXEueWNYBYjAuu6Qm+k1X8dE//t/zsMwBnepwMB8
-	yKDJdXOMoM2QMeVFqlWBlY0Rp9hJ0vhauaZwOWIez4B/GuHxgQZDUJfvV73Pij+5tqE=
-X-Gm-Gg: ASbGnctSbjNtxwSf+dl1NPGqYu9sd1b3UKQghcQ1+ZlBA2mgTw8Xt1g99B7rg/t+Wsq
-	KKov1HqwwP6mx8NnQTNkOTb4ots8n01wlUJQptsctS3Xlup1GZ+jzK2EhCS+UX7+3CKDg/KvdWP
-	2RxDxAtgyWx8FUx89BAUbgYkd46BTLke1SJEUZykn8YCkU5YL/DeQSDpcAwe1P3S99YUOp7ZqCd
-	Oy+3MTv9dGEcKRCWUILvWSUEocAR44wJjXFgMBg7HV0j7nrR+97NAyEFUBHHmAiGh2E/3ZNulkZ
-	9Me+LAvXZCayI4v5DL4Nk1KLJ6VkpPA8NWIFgLlkE2RAeBDWwWEr8XXzf52Pn3WRAvy9J/0cf0f
-	TprVBxmKSUIbhO7J0DxrwOrR3/Qj+6ltnMw==
-X-Google-Smtp-Source: AGHT+IFd/ukbJWEyAyiMoVr3cixjoIXsXy8y7hQtFjRtY748SHCa7Gi1Pqlg3oMU0d8uaJRO6rYQqw==
-X-Received: by 2002:a17:907:1ca3:b0:ad4:d00f:b4ca with SMTP id a640c23a62f3a-af619a0795cmr1251448066b.50.1753722663537;
-        Mon, 28 Jul 2025 10:11:03 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:e460:c4f3:f28e:97ef])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af63585ff5asm452983566b.11.2025.07.28.10.11.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jul 2025 10:11:03 -0700 (PDT)
-Date: Mon, 28 Jul 2025 19:10:58 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Taniya Das <taniya.das@oss.qualcomm.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Acayan <mailingradian@gmail.com>,
-	Andy Gross <andy.gross@linaro.org>,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH RFC 24/24] arm64: dts: qcom: x1e80100: Describe GPU_CC
- power plumbing requirements
-Message-ID: <aIevIuMDA5R8igmi@linaro.org>
-References: <20250728-topic-gpucc_power_plumbing-v1-0-09c2480fe3e6@oss.qualcomm.com>
- <20250728-topic-gpucc_power_plumbing-v1-24-09c2480fe3e6@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9D426E175;
+	Mon, 28 Jul 2025 17:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753722837; cv=pass; b=fvPB4eiD7H+oAhubaUq9qQr+MdSOIhSlPbC2f97dkS944YDVJaeoao/Dglr2FRz6ZvTAK4s2fCf30oqtQoM9IhHfEX0BpVmbdsSd8HPsMADuNNso4B9IcBuAnw+uNMoU0mp/BQfWN1d1dRHN3ljCjsLp7C7Bsk6Xvb/urdxDeUw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753722837; c=relaxed/simple;
+	bh=EZLm0hWPwWbOCXSmaGl+GP6kZweDgiIZF7XOG7Q81Jc=;
+	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
+	 Content-Type; b=mF3fDWe5cJvv9pxizc8VppDM0dZ2nXKxr0PeKWLcYbfLIr8bltUeM7a5jzup2oqGU5ahLg56Zvfqcijx/P3JlOXFhaEDx9ttzMZIJbKs7JxugAEVANzXUxcS/6QS9pYUbceef+mIt1Z+Y4k7M8EoZBjxA7y7mmK3E4WL2XqB8Aw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=aArmC+xR; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1753722797; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=DyeAj1vuOJX4gjpudAMnSDJhzX2qgPiz0DuR0Tt1JU/ZcSC/UsHvndDivcenloRdTkILKKSlxF1Ca5zpCaMR4I5vfcCbgANhdz2A9e44OmzlCg0C21OVKbRGcFPO1Zt8F7f2OG1fIW3dLFhkRgkFw9hxtrBT6WRA5V1fOGUmo2E=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753722797; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=7nyI91Gx9WQnBf9pyvb0BXaqUgm6dK2RhJMrNVE6CmM=; 
+	b=CZjkeooRlycc6Dx2U93rSmgTX+y4K5veGDh0fAKEGZB77kVSIAC2c1gZlHhCJPD0RPfkzoOZIx7wxarydXlqpC3kUVl/kIUqL2rL65n1rifqNr2XCdakWor1+j0A+SiliuzoIyqv8MGLVmqC9A/a5lQMwtUeu1upkuV8KW9XsHA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753722797;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=7nyI91Gx9WQnBf9pyvb0BXaqUgm6dK2RhJMrNVE6CmM=;
+	b=aArmC+xRg0/DrzPIr0y1SP32KRg+iZ922Xd8/MVsJeUNw8cCbu471AAFYdfIYHzM
+	991JLY2yILIIoa+zR71Zj9egMIkOr771Ml/sa+g9T8e9ByCjX5hgDGoZA9ToljB1RzG
+	bvqeA5SCM5KvJ/JwAQefHK9j2WA0mTJ+JIaxgV9c=
+Received: by mx.zohomail.com with SMTPS id 1753722795361320.37867733484927;
+	Mon, 28 Jul 2025 10:13:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250728-topic-gpucc_power_plumbing-v1-24-09c2480fe3e6@oss.qualcomm.com>
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, 
+	"Bjorn Andersson" <andersson@kernel.org>, 
+	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
+	"Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Conor Dooley" <conor+dt@kernel.org>, 
+	"Chen Wang" <unicorn_wang@outlook.com>, 
+	"Inochi Amaoto" <inochiama@gmail.com>, 
+	"Philipp Zabel" <p.zabel@pengutronix.de>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
+	"Alexandre Ghiti" <alex@ghiti.fr>
+In-Reply-To: <3864e374-b045-4317-85bf-ec3a2d3d7940@kernel.org>
+Cc: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>, 
+	<sophgo@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add C906L rproc for Sophgo
+	 CV1800B SoC
+Message-ID: <185679960f220550.906528684e28f712.ba6c1f3fdd9df549@Mac>
+Date: Mon, 28 Jul 2025 17:13:10 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-On Mon, Jul 28, 2025 at 06:16:24PM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> A number of power rails must be powered on in order for GPU_CC to
-> function. Ensure that's conveyed to the OS.
-> 
-> Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 5e9a8fa3cf96468b12775f91192cbd779d5ce946..6620517fbb0f3ed715c4901ec53dcbc6235be88f 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3928,6 +3928,12 @@ gpucc: clock-controller@3d90000 {
->  			clocks = <&bi_tcxo_div2>,
->  				 <&gcc GCC_GPU_GPLL0_CPH_CLK_SRC>,
->  				 <&gcc GCC_GPU_GPLL0_DIV_CPH_CLK_SRC>;
-> +
-> +			power-domains = <&rpmhpd RPMHPD_CX>,
-> +					<&rpmhpd RPMHPD_MX>,
-> +					<&rpmhpd RPMHPD_GFX>,
-> +					<&rpmhpd RPMHPD_GMXC>;
-> +
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  			#power-domain-cells = <1>;
-> 
+On 28/07/2025 15:11, Krzysztof Kozlowski wrote:
+> On 28/07/2025 13:03, Junhui Liu wrote:
+>> +
+>> +  firmware-name:
+>> +    maxItems: 1
+>> +
+>> +  mbox-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
+>> +
+>> +  mboxes:
+>=20
+> First go mboxes, then mboxes-names. ALWAYS.
 
-To repeat your own message from a couple of months back [1]:
+Thanks, I will fix the order in the next version.
 
-> You shouldn't be messing with VDD_GFX on platforms with a GMU.
->
-> Parts of the clock controller are backed by one of the MX rails,
-> with some logic depending on CX/GFX, but handling of the latter is
-> fully deferred to the GMU firmware.
->
-> Konrad
+>=20
+>> +    description:
+>> +      This property is required only if the rpmsg/virtio functionality i=
+s used.
+>> +      (see mailbox/sophgo,cv1800b-mailbox.yaml)
+>> +    items:
+>> +      - description: mailbox channel to send data to C906L
+>> +      - description: mailbox channel to receive data from C906L
+>> +
+>> +  memory-region:
+>> +    description:
+>> +      List of phandles to reserved memory regions used by the remote pro=
+cessor.
+>> +      The first region is required and provides the firmware region for =
+the
+>> +      remote processor. The following regions (vdev buffer, vrings) are =
+optional
+>> +      and are only required if rpmsg/virtio functionality is used.
+>> +    minItems: 1
+>=20
+> Why isn't this constrained?
 
-Please describe somewhere in the cover letter or the individual patches
-how this relates to the responsibilities of the GMU. I searched for
-"GMU" in the patch series and couldn't find any note about this.
+Do you mean a maxItems should be added here?
 
-Also: How much is a plain "power on" votes (without a corresponding
-"required-opps") really worth nowadays? An arbitrary low voltage level
-on those rails won't be sufficient to make the GPU_CC actually
-"function". Do you need "required-opps" here? In the videocc/camcc case
-we have those.
+>=20
+>> +    items:
+>> +      - description: firmware region
+>> +      - description: vdev buffer
+>> +      - description: vring0
+>> +      - description: vring1
+>> +    additionalItems: true
+>=20
+> No, drop. This needs to be constrained.
 
-Thanks,
-Stephan
+My intention is that RPMsg/OpenAMP is not the only use case for
+remoteproc. There are scenarios where the remoteproc is just used for
+booting the remote processor without any communication with Linux. In
+such case, only the firmware region is needed, and the other regions may
+not be necessary.
 
-[1]: https://lore.kernel.org/linux-arm-msm/2dae7d88-4b3e-452f-9555-05f10b42dabc@oss.qualcomm.com/
+Additionally, the remote processor might reserve extra memory for custom
+buffers or other firmware-specific purposes beyond virtio/rpmsg.
+Therefore, I think only the firmware region should be required and
+constrained, while allowing flexibility for additional/custom memory
+regions as needed.
+
+>=20
+>=20
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  sophgo,syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      A phandle to the SEC_SYS region, used for configuration of the rem=
+ote
+>> +      processor.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - firmware-name
+>> +  - memory-region
+>> +  - resets
+>> +  - sophgo,syscon
+>=20
+> Why mboxes are not required?
+
+The reason is similar to "memory-region" above. The mboxes property is
+only needed when RPMsg/virtio communication is used. For some use cases,
+the remote processor does not need to communicate with Linux at all, so
+the mailbox is not required. Would it be necessary to require the mboxes
+property even in scenarios where mailbox communication is not involved?
+
+>=20
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    c906l-rproc {
+>=20
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicet=
+ree-basics.html#generic-names-recommendation
+
+Thanks for the information, I will change the node name to a generic
+"remoteproc" in the example. (Although it's not in the list, I think
+it's generic enough)
+
+>=20
+>=20
+> Best regards,
+> Krzysztof
+
+--=20
+Best regards,
+Junhui Liu
+
 
