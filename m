@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-200187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309B4B13A6B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 14:23:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACCA5B13AA3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 14:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8811D3AB3D9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 12:22:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D643E16E210
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 12:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC4A263F36;
-	Mon, 28 Jul 2025 12:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57D8E26561E;
+	Mon, 28 Jul 2025 12:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o/2x0i2N"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bDEgH2tj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8837D33E7;
-	Mon, 28 Jul 2025 12:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB83A264A9C
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753705402; cv=none; b=Bnir8WFFDepdGApf3ZLBUMb4yai1oCzPCa4e7awFJEpPF36gOpOIopKyet4XVn3SADIZYSFOf+OiqJJoo9dX47w/shb633tO/StrrqPmmuuPASqn2ESAkN58ZFOm1VtS9pAir+UmQwYQDgoR21TIE640X+1xVwOGYTh+39Vtdac=
+	t=1753706220; cv=none; b=i/yVogBj0STh7cDAD91vgZqZApGQVBCg17aQdfQUU+/0Tk2JW2GLR5/lbOuJZ0vBGRVAX6XRukQrAaybIKSAlp1kuzhrfsGwPZ6cL37nly8p3CVOyrq8lz1RPYmzfHq06PDhBH8Lb9Bz0xkfqIhG2P+HLfuN6JYhuTq0KRq1UWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753705402; c=relaxed/simple;
-	bh=Tsr9NQwfI4BCS/zuCTheVTv/aPg7pxX9MjHV1UIW+lQ=;
+	s=arc-20240116; t=1753706220; c=relaxed/simple;
+	bh=mZG68U145bc9NpABMY0pXoCv9xsjDo8q/XMbf8MXVqk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qPk+dE71eRcamMx5hebB40gFB5JwAPgFOKXyWv7DXTp8yKDKjBU/Q+2hOclvs7lhulHP3nVUkZ0BiKrdisjUPBKvfAjEpVqZGWIA9CxRwGCPdF0y1WtDnd92VgWmZX8kUlKgRj0Zv9TSMjbFVFlM/64K4dWBNby1Hd242jA3WxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o/2x0i2N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19226C4CEE7;
-	Mon, 28 Jul 2025 12:23:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753705402;
-	bh=Tsr9NQwfI4BCS/zuCTheVTv/aPg7pxX9MjHV1UIW+lQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o/2x0i2NTgs//HPCdOS9icimooS4gH00SGpVx2b6NbCwVa/f+vTpHzzpvDy3MeS/r
-	 BoYDMqkXBDnCXUQG/b/ViEUQlC1fhHbKrOvTxL26XvanJdqyYPTst22MWvtlEBZm23
-	 vxkVDBGASfuTbiF9rZOqdXNpdp+AANLs5CQHuvA1nIdhKyVZETH80JRoaf9wfWlWpI
-	 eYQ51BF0UnPmO+sWsVjAXVPpRRk6qJyeHhCvU4zKwkyoelngtpkGqFPwvAxvebtUXK
-	 xbDFo2qK6rUwv1qf+FgJVfGdFDswA7FUjvvUR8hCqVkrWPuhauCvAfgWe+4h8GGN8t
-	 FpQTp/2IiJBbw==
-Message-ID: <2a39c0ab-edd4-402c-95a0-a6286f03102a@kernel.org>
-Date: Mon, 28 Jul 2025 14:23:14 +0200
+	 In-Reply-To:Content-Type; b=IRjw6zzDTGXFjdWgPoElY221kMzXv6DE73jVDCDDK0QSZHkcAJ57krS0M6T5+5uAhZ7qbYq3MyAD/X9xmdVdApQu0nnSxRHjWH42PakSgcGm/S62K43/LMpcn0CfRyu2iBovadMOdOu/QC6G4ZZ5ZOzDc5boAq9U3rsXbYSYsrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bDEgH2tj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SAlQgh028385
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:36:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	X+jULI02a8P5hXHovIvLcRS3cL3QiDHFx1hynrPU7Jo=; b=bDEgH2tj6B/SugY/
+	CJsPkfx92E/weIRkNw4bRPtV2DKVphWhS++Uas7eGKOwd2qEwbU+q+LjuSjEpdCP
+	+HPF/QGLFaUp+WaWmTm+RbF5046PCHVg6lA5sOf27iE6YvWygtXu6i8S73JA2fKg
+	oqiKC3nJXPUEx5BTEMAphRz95YqnHNODZ1Q3OJtZi3fGwHxXJc+EM5G55e8zTfpJ
+	D7WcV4r8kBtHtckwhd6tNxwQPgXZ70GObaks7iRHQeabTjd3np6nEXsccyIsBHtW
+	6//prIZoUTXgdFUN2UGLC30IN5s/CU1gYQw77tF2mXlZ31kdBZ02GnW0/eIW3ugj
+	Y4g1Lw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484pm2cggv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:36:57 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-74b185fba41so4185268b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 05:36:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753706216; x=1754311016;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X+jULI02a8P5hXHovIvLcRS3cL3QiDHFx1hynrPU7Jo=;
+        b=O5laB3hieb8IRVmBwc3SE6IUHpYBWhF152FViwoJROGEiGl8PdRLBTG+O9W7muZc6f
+         kOfDQTkm6qOS7dyH3zju4RVaP4+pvrmdAvfbs93r3NgKwWM8NLOn7849VoFj3DVoey9H
+         72pxFERS5PUuimWHotZIfZvuPze+HL15xNqumb/mkvYoXD3VmJWMsvd5otjqe0cXhLda
+         GXTHwTH8GuR8BzrDlnWiivOu9OlSO9xyX7VuEBB2OMqpxEvyFCVk+3dZqJ1a++0/cnnl
+         5rdpLvqFEP+HnIQRPGLK9yRx5qK+LjhMxVrwc7JSKmoze/63F7oALUFX4rGg7Ze+EpWG
+         gIZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1y9XZ7zqk8a4dL/SSk12aABaZtkLn9IRKrB5nk7i3Sdwlmk58eI8E3h3Hbi8sCygBPF3tYJTFwhnA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZx9ZgYMDxdVl931rI6aG1GMzI7UMT892ZuxdWTgBZVWLerdAK
+	xCT5PWQIU6tc91S7SpyGAv7hRY8vBQnFlU7jZiDzoBm9RGt5FrCTbu9UFw9vjzNG3nKAs7SZJZz
+	n9DaBxWJqi78pbRTYE5O5Cb4NxjQR9/DDh6ahmBGsdcPI66Qc6zgR4K5Fm8LUwt/t
+X-Gm-Gg: ASbGncuFFDbY5hSWYynLv6B1Yk2qVUw3gFyTHyOoan5H9QpjpH/PFqlNOb1NFrA7LRQ
+	e7QJCkU6IsMYKS7ZI8A0y8CCTtjrwiR3rGPsGMhjGw0E69R7OeG3dmvS+8gH9QoslGFXFH1UVWD
+	Tg2WRYpc6VqPvFMenCzHNs+Jku5cOEKA9cWaTZnCqY4qM0gma9I5Bs90LnHBvE61kBhW2ByIPCR
+	T1npigzpKF8IAzIDC55OoFaZukP9zWAdmWnXb1FsyXAABfHr5WwTcRqfJvT9MrLe0sqhTUI8jUg
+	SBbB8SFG2la4UMzEvSE7xsUn98opTPCz5ZH3wDdGQM0yFIXkBnKOb+MowjnpjsqPeRN0yp2bz8O
+	SHQ==
+X-Received: by 2002:a05:6a00:cc3:b0:75f:8239:5c2b with SMTP id d2e1a72fcca58-76339569eeamr16383492b3a.23.1753706215903;
+        Mon, 28 Jul 2025 05:36:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEbKTYrncloyPw/ezLKjdLOdPuFqooqOq468nbcvdXeufgeWmiXla7My/PA/S37rd9050aj6g==
+X-Received: by 2002:a05:6a00:cc3:b0:75f:8239:5c2b with SMTP id d2e1a72fcca58-76339569eeamr16383457b3a.23.1753706215392;
+        Mon, 28 Jul 2025 05:36:55 -0700 (PDT)
+Received: from [10.218.21.68] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76408c0271csm5534607b3a.49.2025.07.28.05.36.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Jul 2025 05:36:55 -0700 (PDT)
+Message-ID: <aae92260-5169-4af1-97b0-48f364612dca@oss.qualcomm.com>
+Date: Mon, 28 Jul 2025 18:06:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,106 +90,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
- resets as reboot-mode
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
- Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Stephen Boyd <swboyd@chromium.org>, Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- Elliot Berman <quic_eberman@quicinc.com>,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
- <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
- <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
- <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
- <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
- <5e2caeb7-360a-4590-a36f-ff1ec4c20d31@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 2/3] ASoC: codecs: wsa883x: Add devm action to safely
+ disable regulator on device removal
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
+ <07faf0cc-a8e6-426d-b397-dfc321a7f3df@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5e2caeb7-360a-4590-a36f-ff1ec4c20d31@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <07faf0cc-a8e6-426d-b397-dfc321a7f3df@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: ZPEDiCNkE1l5gFPrHOBVxpiMuQDAybej
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA5MCBTYWx0ZWRfX4OtMvnfurbGU
+ fLXT8GmekIppgi8g7rY+UNwtWgvTYU7cjbdVrhqgt+Nm5lq1AGkByE9DNhuUdshP8UyG5Hjyje5
+ NPu745VMv+vHQ7cXM2fPyRTbd46vIreEulSXalL0u6vdApVmGRnmwk/Xx4SN7+BaAuhmIf2Yb74
+ p/b+Gb0O4MabGC9vBThX26lRC/WsFcwk8feuS2N4nZPrYUPn3/Y7EkmgYbGv7CaMnNqSIqRczXH
+ +wDQmPjOCKlKWjznNQqZkIm76rjLoiaus1fPRMBpnQulmVq6l9EKcRnIShyOJAGYeRsm6dlqLNg
+ k8o3wtkwMiNKzT/Rgjpz5dsE1IQLdObXLC5lwezLNdjq6MR2rozRYeYJOFMgc4bOU6oyBhc/BaY
+ ZhZBHryiiwFVBFUVWCCEHd4ChAkkHUPwTyquQnZt6Xh/0Q/95C93LMDkIBgREAK+9neRBZXr
+X-Authority-Analysis: v=2.4 cv=HfYUTjE8 c=1 sm=1 tr=0 ts=68876ee9 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=4BO2McRAkM1DgkD1vDcA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: ZPEDiCNkE1l5gFPrHOBVxpiMuQDAybej
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-28_03,2025-07-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 clxscore=1015 bulkscore=3 suspectscore=0 impostorscore=0
+ spamscore=0 lowpriorityscore=3 adultscore=0 mlxlogscore=441 phishscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507280090
 
-On 28/07/2025 14:03, Dmitry Baryshkov wrote:
->>
->>> and the reboot-mode is defined in the
->>> previous patch. So, I'd assume, the path is defined.
->>
->> As I said, path is not. only psci/reboot-mode is.
+
+
+On 7/27/2025 3:00 PM, Krzysztof Kozlowski wrote:
+> On 27/07/2025 10:31, Mohammad Rafi Shaik wrote:
+>> To prevent potential warnings from _regulator_put() during device
 > 
-> Do we have an _actual_ use case where PSCI node is not at at root node? 
+> Warning is either there or not. Either you fix real, specific issue or
+> not. The code looks correct at first glance, so please describe exactly
+> how these warnings happen or how what is the bug being fixed.
+>
 
-Yes, many cases, because it belongs as well to firmware node.
+The current wsa883x codec driver manually enables and disables 
+regulators during probe and remove.
+In patch v3-0003, reset functionality was added using 
+devm_reset_control_get_optional_shared_deasserted() for shared gpios.
 
-> If not, it's obviously a deficiency of the schema. Could you please 
-> provide suggestions on how to describe that in DT schema?
+However, during cleanup, this led to a warning:
+"WARNING: CPU: 2 PID: 195 at drivers/regulator/core.c:2450 
+_regulator_put+0x50/0x58"
 
-I do not see deficiency. There is no ABI that psci must be root node, so
-there is no issue to fix there.
+This occurs because the regulator is still enabled/released when the 
+devm-managed cleanup path attempts to release it.
 
-If you want to add such ABI, I will answer: no, don't, because we do not
-want paths or node names to be the ABI.
+To resolve this, remove the manual regulator disable logic and instead 
+register a devm-managed cleanup action using devm_add_action_or_reset(). 
+This ensures proper cleanup and avoids regulator misuse warnings.
 
-Compatible is the ABI.
+For reference, the wsa884x codec driver already follows this approach by 
+using devm actions for regulator management.
 
-Best regards,
-Krzysztof
+>> removal, register a devm-managed cleanup action using
+>> devm_add_action_or_reset() to safely disable the regulator
+>> associated with the WSA883x codec, ensuring that the regulator
+>> is properly disabled when the device is removed, even if the
+> 
+> Device cannot be removed/unloaded, AFAIK, because of suppressed bind.
+> Regulator is already disabled during error paths, so that part of above
+> sentences is just misleading.
+> 
+> How can one trigger the warnings?
+>
+
+The warning in _regulator_put() can be triggered by applying patch 
+v3-0003, which introduces reset functionality using 
+devm_reset_control_get_optional_shared_deasserted().
+
+Since the existing driver handles regulator enable/disable manually, the 
+devm-managed reset cleanup path may attempt to release regulators that 
+are still enabled, leading to the warning.
+
+This issue highlights the need to replace manual regulator handling with 
+devm_add_action_or_reset() to ensure proper cleanup and avoid such warnings.
+
+> 
+>> probe fails or the driver is unloaded unexpectedly.
+> 
+> How driver can be unloaded unexpectedly?
+> 
+
+"Unloaded" might not be the most accurate term here. What I meant is 
+that the driver’s probe can fail due to an error—such as missing 
+resources or improper regulator handling.
+
+Thanks & Regards,
+Rafi.
+
+> Best regards,
+> Krzysztof
+
 
