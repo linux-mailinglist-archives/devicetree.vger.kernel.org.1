@@ -1,209 +1,280 @@
-Return-Path: <devicetree+bounces-200070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F62B134CC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:17:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 384ECB134D7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:19:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A48EB3A5059
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:16:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB4F1888A70
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B440021CC44;
-	Mon, 28 Jul 2025 06:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D8921FF49;
+	Mon, 28 Jul 2025 06:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n+yLNASi"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HcGiCm7A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EE886344;
-	Mon, 28 Jul 2025 06:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E1017B425
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 06:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753683417; cv=none; b=c8y+hEvwkN9JtpDNtbnk1x5VnTZ6tx2+RCaSVQqLbdAFmGxxeUyhAf4Lxwd/C98fBy14BQhtehL43rHj0cNbW2TuNkPkcy9bigB1ir/1ZN9eBCbD5TPJf37mVPnojWFXs5YQSPggOTJoUArYnuFOyUVt2HL5F/aSZ2GqQ/+9MZo=
+	t=1753683552; cv=none; b=IiXFJxnOoTP8C5gGVCmPg5vFaUKnoYL1LOjIi+nuXOK1tHEfipvNQlIstUE+DyyPnkbTMrhDC2BaT3VW7HPP7xXuNcsmNv2iptGT0W4X1Q9sJdFGwrldA8VS3jjZx14jmzzJXDm/tgoas3/NFdhuh8uo53/cIlGc3+CoVN+8PIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753683417; c=relaxed/simple;
-	bh=mw/XPlPKMDno6G8YIqCwyPXZ88qFJ4U3/hr6QCOL0eU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=D6rzvOmrFueokFHMPQZfJNdlexxBAzfGzprOnXfy/s3VE0v/jd/BsfIImpBcAioqHTRuolqPqVvNPcv4/408G88UVZsjIyskNQIw7Ly4Vh2Qci0bU2QxUTUIcFPRGTnCsBbAWzhXw/MPIpgNWqLRroSQZWCQ1+1qA4EIn3FvwSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n+yLNASi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56S4rVH4019654;
-	Mon, 28 Jul 2025 06:16:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XuAZsK0BtOoqFUMaBkh4WaTxus9sHxVIny3hqpjTFr8=; b=n+yLNASiQ8BrhoFM
-	UuV3+r3tQDdx67X7VEJM1OnfQEteUuLks8TIxKk5u85Dr8rE0zPdbmdbKJWkOP+x
-	bxP1gUyxoiiijgQuL1+80mrEBBoZaVhHPanDy8jNFlyuGwkbw9V3EodRSdMm/80f
-	QqjlHezEe7atTsMd2kkiHz/v0cB9Mxk26ZI7ecEiMVa+myBCF6s+MZ53Sy4exJtk
-	dTMa5JyzwyWKn8AhciQ0NMkCI8PKvfE63GgIwtUa1dvGXNbI4UXYiDWutjy0/jlO
-	6OU3iCRIIJVsg9pSHfjvWcJlvRbaVNtAoPsSnrKr0wkdugRi9Nl8CaetxIJdCKOV
-	OPqKPg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qkaqb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Jul 2025 06:16:51 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56S6GpAf014949
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Jul 2025 06:16:51 GMT
-Received: from [10.204.101.210] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 27 Jul
- 2025 23:16:47 -0700
-Message-ID: <7fb5256e-630c-3040-ca6d-4e9dee52162c@quicinc.com>
-Date: Mon, 28 Jul 2025 11:46:37 +0530
+	s=arc-20240116; t=1753683552; c=relaxed/simple;
+	bh=OAo7c2DEwsiVmOBzkwu2o/1eMEM6Be57LMDi7xou0ac=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vCnzMFEwVehljemCNuOB46WHJ7WqlcdMVBqLjnwrhNDnNwl7uxiMBsEm9rV6JnOYEGGrgXyepEsF86JVm7eXLHBZqY9qQdcxdedYUF9CD8c522OAKIB6Q9wwFwea80OtGFHQkailfjrXxNoGrlMlH5Tf5WysnAaZ++mAmoPfA0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HcGiCm7A; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1753683549;
+ bh=47Fk9CIAGtNHco8wNLXEvPIj9J6CR5nOoXAaq7kp3PQ=;
+ b=HcGiCm7AxDZeYPpLGiEzRCP3bv1AsCrMjqiEbAfSGHLpoFotPuhHXSybuQ2b4owMRSui/zVOy
+ +3gh1U1hz/UwvY6bMnlrJidf1dQmHSzyyKGhgZox2Pt1NjfXZRs+2OdIYAHAD/iW6a0BpIfzs87
+ IxZUnwF+p4M44SMiRDYzhIzS3NaiIOVlzajMUx88acwieOHWrv3FxyyQfSZqv0aGqUqIDSLKep6
+ v7qL5Vd45RvkzfdYPJvQYLh0yP35MtdrCy9BNLz+C+VNazyhH/6jdWFNh/zNhAz0GKYx0MIjO4Q
+ APhXc9vFXQ1KlXsQwSirLB2Tfl12OZ7OUu+jISQTfOGw==
+X-Forward-Email-ID: 68871646991cafe79f4c9fae
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.1.8
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <42188845-5206-4887-80b5-c79e8084f542@kwiboo.se>
+Date: Mon, 28 Jul 2025 08:18:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v7 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-        <quic_vgarodia@quicinc.com>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <mchehab@kernel.org>,
-        <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <amit.kucheria@oss.qualcomm.com>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
- <20250715204749.2189875-6-jorge.ramirez@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] phy: rockchip: naneng-combphy: Add RK3528 support
+To: Yao Zi <ziyao@disroot.org>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ Shresth Prasad <shresthprasad7@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, Andy Yan <andy.yan@rock-chips.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20250624033733.50197-1-ziyao@disroot.org>
+ <20250624033733.50197-6-ziyao@disroot.org>
+ <eb7c9e40-3c17-488f-98a2-17b972f61e75@kwiboo.se> <aIHDSW0XO9BCfch3@pie.lan>
+ <aIcFmhQqLuUlLZb_@pie>
 Content-Language: en-US
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <20250715204749.2189875-6-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <aIcFmhQqLuUlLZb_@pie>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA0MSBTYWx0ZWRfX3FM+GhfM+Dxv
- sjthqkVmTAu6dOjtNsSIevD/Z0IsZdG3Vt0185d/URdPH8/E/VYxvll6ClEIG8ESWmLs/3mMD+/
- 2RE7gP4K1b2aZoW6YR+SnxfAjBERExYQeksnKg3NVxyDC5cD4cwLGYFf5HOW/+uYKUpMrODdgt3
- 4BMZojmYhJkKWuTqHabb/bKwA5RQiousDNQkH8/re/4bvPDPeQjiZAdym1o9m91OinIgIpcfcx+
- LeZ0AjmKChG3i85mvRAS665AFN/Icj6TIfZtmyPRjSRxO+HpNWC04l0IBPtLRdpZHk8uE82EUL/
- 4XO1uM4iC0MPTavwlK+/4bXxZOS6PHWaVKtlPquihEFuGnkan74vzQ/f+4rjJ8iI+0HabIAsWaP
- vM3i1PwxCNdP5wf/T9224lb287zWlBM0tl8sGNGswJjec9C3nZGqC7x/B5qmL1S4aLtEhiv5
-X-Proofpoint-ORIG-GUID: AMNBmPYI8gIppHYbmYn2QR5072qhAqk9
-X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=688715d4 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=-h2BoODB7oHphHcttcwA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: AMNBmPYI8gIppHYbmYn2QR5072qhAqk9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-28_02,2025-07-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507280041
 
+Hi Yao Zi,
 
+On 7/28/2025 7:07 AM, Yao Zi wrote:
+> On Thu, Jul 24, 2025 at 05:23:55AM +0000, Yao Zi wrote:
+>> On Wed, Jul 23, 2025 at 04:51:15PM +0200, Jonas Karlman wrote:
+>>> Hi Yao Zi,
+>>>
+>>> On 6/24/2025 5:37 AM, Yao Zi wrote:
+>>>> Rockchip RK3528 integrates one naneng-combphy that is able to operate in
+>>>> PCIe and USB3 mode. The control logic is similar to previous variants of
+>>>> naneng-combphy but the register layout is apperantly different from the
+>>>> RK3568 one.
+>>>>
+>>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+>>>> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+>>>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>  .../rockchip/phy-rockchip-naneng-combphy.c    | 186 +++++++++++++++++-
+>>>>  1 file changed, 185 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>>>> index 1d1c7723584b..bf00a85a113b 100644
+>>>> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>>>> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> 
+> ...
+> 
+>>>> @@ -398,6 +437,147 @@ static int rockchip_combphy_probe(struct platform_device *pdev)
+>>>>  	return PTR_ERR_OR_ZERO(phy_provider);
+>>>>  }
+>>>>  
+>>>> +static int rk3528_combphy_cfg(struct rockchip_combphy_priv *priv)
+>>>> +{
+>>>> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+>>>> +	unsigned long rate;
+>>>> +	u32 val;
+>>>> +
+>>>> +	/* Set SSC downward spread spectrum */
+>>>> +	val = FIELD_PREP(RK3528_PHYREG6_SSC_DIR, RK3528_PHYREG6_SSC_DOWNWARD);
+>>>> +	rockchip_combphy_updatel(priv, RK3528_PHYREG6_SSC_DIR, val, RK3528_PHYREG6);
+>>>> +
+>>>> +	switch (priv->type) {
+>>>> +	case PHY_TYPE_PCIE:
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
+>>>> +		break;
+>>>> +	case PHY_TYPE_USB3:
+>>>> +		/* Enable adaptive CTLE for USB3.0 Rx */
+>>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG80_CTLE_EN, RK3528_PHYREG80_CTLE_EN,
+>>>> +					 RK3528_PHYREG80);
+>>>> +
+>>>> +		/* Set slow slew rate control for PI */
+>>>> +		val = FIELD_PREP(RK3528_PHYREG81_SLEW_RATE_CTRL,
+>>>> +				 RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW);
+>>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_SLEW_RATE_CTRL, val,
+>>>> +					 RK3528_PHYREG81);
+>>>> +
+>>>> +		/* Set CDR phase path with 2x gain */
+>>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X,
+>>>> +					 RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X, RK3528_PHYREG81);
+>>>> +
+>>>> +		/* Set Rx squelch input filler bandwidth */
+>>>> +		val = FIELD_PREP(RK3528_PHYREG83_RX_SQUELCH, RK3528_PHYREG83_RX_SQUELCH_VALUE);
+>>>> +		rockchip_combphy_updatel(priv, RK3528_PHYREG83_RX_SQUELCH, val, RK3528_PHYREG83);
+>>>> +
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
+>>>> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
+>>>
+>>> I suggest we add something like following here:
+>>>
+>>> 		rockchip_combphy_param_write(priv->pipe_grf, &cfg->u3otg0_port_en, true);
+>>>
+>>> to ensure that U3 is enabled in case boot firmware disable the U3 port.
+>>
+>> Thanks for the hint, I'm willing to adapt it. Should we handle the case
+>> that USB is enabled by firmware but PCIe is going to be used in kernel,
+>> too? It's desirable to make fewer assumptions about the state set by
+>> firmware.
+>>
+>> P.S., I'm assuming the register should be written as "disabled" value
+>> whenever PCIe is used, and "enabled" whenever USB is used, as
+>> the LSB of USB_GRF_USB3OTG0_CON1 is said to be "USB 3.0 SS Port Disable
+>> control" according to RK3588's TRM, which doesn't look like something
+>> compatible with PCIe mode when setting to 1'b0 (port enabled). Please
+>> correct me if I'm wrong.
+> 
+> I've read through the manual and done some tests today, and it seems I
+> misunderstood the purpose of USB3OTG0_CON1. This register has only
+> something to do with USB3, but not PCIe. Writing either "disabled" or
+> "enabled" value to it doesn't affect PCIe functionality. Thus for the
+> naneng-combphy driver, it should be enough to only write the "enabled"
+> value to u3otg0_port_en if USB-3 mode is used.
+> 
+> Anyway, thanks for your remind on this register :) Its reset value
+> allows USB-3 to function thus I just forgot about it during clean-up.
+> I'll send v5 soon.
 
-On 7/16/2025 2:17 AM, Jorge Ramirez-Ortiz wrote:
-> Add a qcm2290 compatible binding to the Cenus core.
-> 
-> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
-> encode at 1280x720 (HD).
-> 
-> The encoder is not available to firmware versions below 6.0.54 due to an
-> internal requirement for secure buffers.
-> 
-> The bandwidth tables incorporate a conservative safety margin to ensure
-> stability under peak DDR and interconnect load conditions.
-> 
-> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  drivers/media/platform/qcom/venus/core.c | 51 ++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index bad49f0b4a77..2c9e2e0f95f5 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -1088,6 +1088,56 @@ static const struct venus_resources sc7280_res = {
->  	.enc_nodename = "video-encoder",
->  };
->  
-> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
-> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
-> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
-> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
-> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
-> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct venus_min_fw min_fw_encode = {
-> +	.major = 6, .minor = 0, .rev = 54  /* encode min fw version */
-> +};
-> +
-> +static const struct venus_resources qcm2290_res = {
-> +	.bw_tbl_dec = qcm2290_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(qcm2290_bw_table_dec),
-> +	.bw_tbl_enc = qcm2290_bw_table_enc,
-> +	.bw_tbl_enc_size = ARRAY_SIZE(qcm2290_bw_table_enc),
-> +	.clks = { "core", "iface", "bus", "throttle" },
-> +	.clks_num = 4,
-> +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
-> +	.vcodec_clks_num = 2,
-> +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
-> +	.vcodec_pmdomains_num = 2,
-> +	.opp_pmdomain = (const char *[]) { "cx" },
-> +	.vcodec_num = 1,
-> +	.hfi_version = HFI_VERSION_4XX,
-> +	.vpu_version = VPU_VERSION_AR50_LITE,
-> +	.max_load = 352800,
-> +	.num_vpp_pipes = 1,
-> +	.vmem_id = VIDC_RESOURCE_NONE,
-> +	.vmem_size = 0,
-> +	.vmem_addr = 0,
-> +	.cp_start = 0,
-> +	.cp_size = 0x70800000,
-> +	.cp_nonpixel_start = 0x1000000,
-> +	.cp_nonpixel_size = 0x24800000,
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/venus-6.0/venus.mbn",
-> +	.dec_nodename = "video-decoder",
-> +	.dec_minfw = NULL,
-> +	.enc_nodename = "video-encoder",
-> +	.enc_minfw = &min_fw_encode,
-> +};
-> +
->  static const struct of_device_id venus_dt_match[] = {
->  	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->  	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
-> @@ -1098,6 +1148,7 @@ static const struct of_device_id venus_dt_match[] = {
->  	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->  	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
->  	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
-> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, venus_dt_match);
+Sorry for not getting back to you sooner, I fully agree with your
+assessment here, the USB3OTG0_CON1 reg only affects USB and has nothing
+to do with PCIe. Trying to adjust it when probing PCIe drivers could
+open up for strange bahavior in case USB3 controller driver has already
+been loaded or similar.
 
-Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> 
+> ...
+> 
+>>>> +static const struct rockchip_combphy_grfcfg rk3528_combphy_grfcfgs = {
+>>>> +	/* pipe-phy-grf */
+>>>> +	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
+>>>> +	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
+>>>> +	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
+>>>> +	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
+>>>> +	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
+>>>> +	.pipe_clk_24m		= { 0x0004, 14, 13, 0x00, 0x00 },
+>>>> +	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
+>>>> +	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
+>>>> +	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
+>>>> +	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
+>>>> +	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
+>>>> +	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
+>>>> +	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x110 },
+>>>> +	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x00 },
+>>>> +	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x101 },
+>>>> +	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
+>>>
+>>> And adding something like this:
+>>>
+>>> 	/* pipe-grf */
+>>> 	.u3otg0_port_en		= { 0x0044, 15, 0, 0x0181, 0x1100 },
+>>>
+>>> Should be possible with ("phy: rockchip: naneng-combphy: Enable U3 OTG
+>>> port for RK3568") [1].
+>>>
+>>> Most RK3528 boards I have come across this far seem to use PCIe instead
+>>> of USB3, so having boot firmware disable U3 early (to help support USB
+>>> gadget in boot firmware) and instead having this PHY driver re-enable U3
+>>> when needed seem most logical to me.
+> 
+> Thank you for the U-Boot patch! While reading through, I saw commit
+> "rockchip: rk3528: Disable USB3OTG U3 port early" states,
 
-Thanks,
-Dikshita
+I will try to send out a small RK3528 U-Boot series including that patch
+later today, with v6.16 just released I am hoping U-Boot shortly merges
+the v6.16 DTs for its next release, v2025.10, to reduce the size of such
+U-Boot series.
+
+> 
+>> Some board designs may not use the COMBPHY for USB3 purpose. For these
+>> board to use USB OTG the input clock source must change to use UTMI
+>> clk instead of PIPE clk.
+> 
+> Does this mean we should ideally add similar handling for USB3OTG in the
+> kernel's usb2phy driver, too? Otherwise if the firmware doesn't handle
+> clock stuff well, the kernel'll fail to operate in OTG mode, either.
+
+Checking for use of a usb3-phy from the usb2phy driver feel like the
+wrong place to do that, if anything possible from the DWC3 driver. But
+that also feel a bit strange to me, and could possibly be complex.
+
+What we know for sure is that when the combo phy, or usbdp phy for e.g.
+rk3576 and rk3588, is used for usb3, we should be sure that we can
+"enable" U3 in USB3OTGx_CON1 regs without affecting anything.
+
+Based on my testing it only seem to be the utmi/pipe clk source bit that
+has any effect on USB2 only function. So could possibly be something for
+the clock tree to handle as an alternative approach.
+
+To be able to use usb2 in U-Boot, and with the usbdp phy driver already
+having support in both Linux and U-Boot to enable U3 port, doing an
+early disable in U-Boot and later re-enable when we know for sure is
+easy and make some sense to me ;-)
+
+Regards,
+Jonas
+
+> 
+>>>
+>>> I will push an updated U-Boot rk3528 branch [2] where I include such
+>>> early U3 port disable once source.denx.de is back online again.
+>>>
+>>> [1] https://lore.kernel.org/r/20250723072324.2246498-1-jonas@kwiboo.se
+>>> [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
+>>>
+>>> Regards,
+>>> Jonas
+> 
+> Thanks,
+> Yao Zi
+
 
