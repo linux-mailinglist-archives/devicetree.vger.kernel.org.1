@@ -1,138 +1,114 @@
-Return-Path: <devicetree+bounces-200125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E49B1377D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:28:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3936FB1378F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C0B23B85CA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:27:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C8F817651C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FE4C23536A;
-	Mon, 28 Jul 2025 09:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53F8F21638D;
+	Mon, 28 Jul 2025 09:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Cz9thDgR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWbBe3tr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433BC2367D4;
-	Mon, 28 Jul 2025 09:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248A49463;
+	Mon, 28 Jul 2025 09:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753694882; cv=none; b=irKQcvKcsmRPp2qK1UuudNshsNcxa2WN82JoOFXgzvW1uqia47R1Ggu7zyShD4p+XmLYw+hGXbEEhq0Om6hAOZF14KpBW8PPAg/Zco5BFB4Kro6JMmh4SVlN8UwF3t+3QWodyEiO2P+bB/RUrin+ZAX+sFwNG2Juao0RQhzDJIs=
+	t=1753695239; cv=none; b=gXd3NXvRlxBOO9QDfQLHRB1Xa4UC0B34Y6uNxtNP9udalcb6t/52IkEIfohuSWZjdoXBC2ZdbrWy1cL1WLQ7nJbF+oaHuiOBsoRzvHrzAECI3cFBWwO7uW1cPzeCIe4jNz9uv5AKixAQUqn9X2YNsw93C/uS29l1uc3GQbSUJo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753694882; c=relaxed/simple;
-	bh=Ebq1BvzYefK2bJIq0l36kLRfYmXoclAETpF4p0VJMSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VNE5c8vsl+pOiVnfgsDDjOQ+oZhXaDbinNYCXWoXzGT7P2/pOiS5eAfy8zWWrGYsqHnhVkg8Nubvvyv/FM5nrJ4Sly1LiqwS41c8TP04ovYjEIP5gxGxtGPnptTowCTZ+P++4YxQp+3TiN6Tw5otrFNVGYoKKlYQJwHm/KWzCw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Cz9thDgR; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56S5AQBU005322;
-	Mon, 28 Jul 2025 11:27:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	tKkzym8iL3hbITcicEqfEneityvCYZo4YSktLirvyx4=; b=Cz9thDgRAVogk5sj
-	Ry6zrR/xEwoonnK8i5QMYJoMsLjKDOgzYPgfW/b755DX+Dxm7KHNXn5xgJ9EXSuV
-	PLhEdScHf/zZcx+QxFtQbfBwVOT5ZMXey2/1jtvshN41d8M3C3xwCq9SjZMvpZn7
-	dGlVyecB8tfw8/UMjzHeNvSVEkp5KBa2MkG1Un+P8zpZvhRjP696uDJWGbCKah+E
-	HlJGCJkpHYW6mYplJ4Pxw27aHa6rDphkt2OB0PjBvZnIe5A3P5S9n7lcU+cjVPZO
-	+qM5NxQMHWb1rL0OB2F7kGlF+rl58j1jvzqopRfWRhqOwXRs87MQQ5nnS4MsuEs6
-	pghrkg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 484m58y971-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Jul 2025 11:27:50 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C73E24004F;
-	Mon, 28 Jul 2025 11:26:47 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 426066F3FF7;
-	Mon, 28 Jul 2025 11:26:13 +0200 (CEST)
-Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Jul
- 2025 11:26:12 +0200
-Message-ID: <517de150-9fb1-4098-92a3-d5a24eea67a1@foss.st.com>
-Date: Mon, 28 Jul 2025 11:26:12 +0200
+	s=arc-20240116; t=1753695239; c=relaxed/simple;
+	bh=xgvpcMi4xVt5i3iu1enJ7NxI7jGYXAm7Dz6/uB75rOY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ttXbVpnPvI32WG25Q7Ti2UWWIqeRjYqDoBKrpoY3QG5EtZcDyyFkqoj5Q3km+LfmxXqJ0c4sAEZdMhHUi025ykur7m6TRUBgzVCxntrrT7t20YR0ETMMmf1sp+d7+7SEep6Ocez161eXnMoNQYcWUUFemrUDEx92F6OKTClROuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWbBe3tr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE8CC4CEE7;
+	Mon, 28 Jul 2025 09:33:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753695238;
+	bh=xgvpcMi4xVt5i3iu1enJ7NxI7jGYXAm7Dz6/uB75rOY=;
+	h=From:Date:Subject:To:Cc:From;
+	b=RWbBe3tr4CKS+J/B6qWYTHCDoYGeLU0+BqxHzDqAtpLnvCj747bZmrUdM682wp1KQ
+	 Z1EUarHby9qaEdOhHjEIBYuTQfURa4x1QR9pBmvx3yjVXOBmnQdZHSg9gwSkk1OKep
+	 deG1M5VxIBCbv5MFHYvk7GHo55XMm5JjigANYIyRCnXvJQfvZvmv4dc+edDLn4vT6d
+	 rVQrdb6eR+sOv3+VBFjWpBK5oHEHef70TZljSAnQ1bMrwX7z+7bueHN03FXaJPn6PJ
+	 knanufzmNZLkXuKgnlrIb9HRHiM+BHbnxXY5XWngFJ4POXYRwlMu6985XJldVNF4Zo
+	 j6LAK8lj8zUWw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Date: Mon, 28 Jul 2025 11:33:52 +0200
+Subject: [PATCH] arm64: dts: qcom: sc7280-chrome-common: Remove duplicate
+ node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: arm: sti: drop B2120 board support
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-References: <20250714-sti-rework-v2-0-f4274920858b@gmail.com>
- <20250714-sti-rework-v2-3-f4274920858b@gmail.com>
-Content-Language: en-US
-From: Patrice CHOTARD <patrice.chotard@foss.st.com>
-In-Reply-To: <20250714-sti-rework-v2-3-f4274920858b@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-28_03,2025-07-24_01,2025-03-28_01
+Message-Id: <20250728-topic-chrome_dt_fixup-v1-1-1fc38a95d5ea@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAP9Dh2gC/x2MWwqAIBAArxL7nWDS+yoRketa+1GKVgTR3ZM+h
+ 2HmgUiBKUKfPRDo4shuT1DkGeA67wsJNolBSVXJRrXicJ5R4BrcRpM5Jsv36YUtS1PrBrGzGlL
+ rAyXxf4fxfT+VX0EBZwAAAA==
+X-Change-ID: 20250728-topic-chrome_dt_fixup-f44d6b7cc9fb
+To: cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753695235; l=1117;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=iQM1UCMj9uQFICgEonSsjJqyIfrM8L7vyNrS4l0aPBw=;
+ b=A7YoltDkgU23tATyvj8vbLap5YbjTYMRFXH6uXIT9nWPoIQa+ib27mtYPno9gNVb14Sa3ikjf
+ Q8/DmqCImr0CdKQ2lAn0KGPI5VFxRJHJFI/Z96SunKLsftcuDG69KvY
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
+sc7280.dtsi already includes the very same definition (bar 'memory@'
+vs 'video@', which doesn't matter). Remove the duplicate to fix a lot
+of dtbs W=1 warning instances (unique_unit_address_if_enabled).
 
-On 7/14/25 15:49, Raphael Gallais-Pou wrote:
-> B2120 boards are internal boards which never were commercialised.
-> 
-> Remove them from bindings.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-> 
-> ---
-> Changes in v2:
-> - Added Krzysztof's acked-by
-> - Put this patch last to get a bisectable series
-> ---
->  Documentation/devicetree/bindings/arm/sti.yaml | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/sti.yaml b/Documentation/devicetree/bindings/arm/sti.yaml
-> index 842def3e3f2bce470763d3665c7603b9058b1e4e..177358895fe1c9f80f8c825142cf015d04286ce8 100644
-> --- a/Documentation/devicetree/bindings/arm/sti.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sti.yaml
-> @@ -14,12 +14,8 @@ properties:
->      const: '/'
->    compatible:
->      oneOf:
-> -      - items:
-> -          - const: st,stih407-b2120
-> -          - const: st,stih407
->        - items:
->            - enum:
-> -              - st,stih410-b2120
->                - st,stih410-b2260
->            - const: st,stih410
->        - items:
-> 
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 5 -----
+ 1 file changed, 5 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+index 8b4239f13748fe591b68a163f37993f9e84c2de0..84c6d662b54f8c87de56c02100e2b491094f90b3 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+@@ -44,11 +44,6 @@ camera_mem: memory@8ad00000 {
+ 			reg = <0x0 0x8ad00000 0x0 0x500000>;
+ 			no-map;
+ 		};
+-
+-		venus_mem: memory@8b200000 {
+-			reg = <0x0 0x8b200000 0x0 0x500000>;
+-			no-map;
+-		};
+ 	};
+ };
+ 
 
-Hi Raphael
+---
+base-commit: d7af19298454ed155f5cf67201a70f5cf836c842
+change-id: 20250728-topic-chrome_dt_fixup-f44d6b7cc9fb
 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Thanks
 
