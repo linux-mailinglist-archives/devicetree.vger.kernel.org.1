@@ -1,120 +1,139 @@
-Return-Path: <devicetree+bounces-200099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19351B135C7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:38:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E38B135EB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D0461896533
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:39:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FF67188FC1E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE4C21D3E9;
-	Mon, 28 Jul 2025 07:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365511C2335;
+	Mon, 28 Jul 2025 07:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YidYqouM"
+	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="udgmHHNq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A6D31F1517;
-	Mon, 28 Jul 2025 07:38:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 468FD21CC68;
+	Mon, 28 Jul 2025 07:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753688319; cv=none; b=TwzUVWAfuZdYpZ3omdX+FTNRyf1LilqJjnPaNyxk7L5jQe2pNwY0HXjpdCRZGgJI6EnoP2um4+sxZKT+TcEdOCIKxbpo6Bhm/D6o+eI5G9xte0LMKoAbtz4Lm8iFe2CpfPVWFfdgZMHqNOjpq3JVH478ZXVg2gcNvt1fG7BKggU=
+	t=1753689324; cv=none; b=ujVhwHMoNHuEJgWgfnYom2FQx1NEDu8ShcnLZ1PI5R0RJ/prwwunkiCcbIvqPwE4rWoUYU6Lk1faAK112C95JgIZ6PWskrkzVPXtOne0V0lGt85jGj71YLi16FWqFbALRhe6XbPwYtgEql31UqRidWpTdNBUt0j65w2oyzHUHsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753688319; c=relaxed/simple;
-	bh=Atv+h1zy3lGlRpGsaTZb5bGl9bBfscVo1QdxCp3Ycio=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fA8uv6xxh+08m67f5elt4+cok7W13wI/1LI+2xIQqp8o6b9VUPE4JVFuvL7Od8Ovw5ZiFXO2fF9rnsFMq6gFR2XmTuutWq8yLBPv/fJP9qQlRKnpu4KcAlV0kEu65DT/nr5aAM0t29LFE58/UaQnXKWaDpR/UyQFOj93ueB9SoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YidYqouM; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753688317; x=1785224317;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Atv+h1zy3lGlRpGsaTZb5bGl9bBfscVo1QdxCp3Ycio=;
-  b=YidYqouMh45FHZEsU2SdUX/UgX7ieWDU9cwq4XKaeAaaG/+BRChlMHa/
-   mvpM7+AXTwOyB38keC9LAm1y2tidnsIxp55GJPS0xLlfQJKF+JiDlaPaJ
-   TYW34SkxFqp498/oZc9eXSVP942EORVCKGX5zfToey8buv7rlXW5m/ZaV
-   yhpJExW7hU9erDp2ZA1PYI+jwRJU99ie2vlQvRatk/YwhiY12HOtpGSsR
-   bjQN31X1PpiKAWq45Osl+oew+UjBQ3CazIlWqS7/8eRMxI2ZXxaz/auAo
-   jWcZo97YRSvkGu++zBFRawdkLCq1niSlSXqm0VlfbXEV71gmNpli1LAeg
-   g==;
-X-CSE-ConnectionGUID: chR9AGr2SZ66Slj1kWmEmA==
-X-CSE-MsgGUID: bIBsr66cSAOfRUeRjLrn7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="67007810"
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
-   d="scan'208";a="67007810"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2025 00:38:36 -0700
-X-CSE-ConnectionGUID: 7fHWNrH9SCKEyS77FrHOWg==
-X-CSE-MsgGUID: FLqVuymaRu2UlNmoWUzs0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
-   d="scan'208";a="166517711"
-Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 28 Jul 2025 00:38:32 -0700
-Received: from kbuild by 160750d4a34c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ugIRJ-0000Il-1J;
-	Mon, 28 Jul 2025 07:38:29 +0000
-Date: Mon, 28 Jul 2025 15:37:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alex Elder <elder@riscstar.com>, lee@kernel.org, lgirdwood@gmail.com,
-	broonie@kernel.org, alexandre.belloni@bootlin.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, mat.jonczyk@o2.pl, dlan@gentoo.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, linux.amoon@gmail.com, troymitchell988@gmail.com,
-	guodong@riscstar.com, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 4/8] regulator: spacemit: support SpacemiT P1
- regulators
-Message-ID: <202507281558.lZ0NYtth-lkp@intel.com>
-References: <20250726131003.3137282-5-elder@riscstar.com>
+	s=arc-20240116; t=1753689324; c=relaxed/simple;
+	bh=vyTswW5mBU8qP9UGZBd+Yz7rbpkaOC9CmV5ZJm37XsE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p6+odBz4tF3TdL/NMkYcJD6ie2gYJdFyYVQ/FLukihTQLygXk/11I8qx658T2sh5itynU1aUykuSt+bE3MPcb/qNkfEJYW7f43YJIHnnLZ+1USWps5GR/DAPi6hHSGk4meMMLAlzseYbEZxrqsh6AAa9ZbnW/hWLK0fhrDpOtaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=udgmHHNq; arc=none smtp.client-ip=78.46.3.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=it-klinger.de; s=default2502; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=Bkr0VA2OrZmPbs1hb5HnRRtZ9Uq4gXLZICTeByE38r0=; b=udgmHHNqU6niL8ZaLUpM+juNr9
+	pQ3QrVUSALGs5td5djdjQN5jKpmxIngs8hiDghH/Za1XH8vdZJhxm1FkgRtOtIKKe81AE3r7BKf4F
+	hsLjTTkp3718ZtW5L6ki+W639CW1OJhMy4CDljvz2e8aJtLsuajiEsjUUo9M9fc0l6qWKT4kbxy7G
+	9F9dlrXvJ9EIvkFyXozlky8T0a4eUjd79HRu8FDUKZHVhOI3tT5/VQmbV1/OWWgxJ1lrAYGQWnoMF
+	70gCdCdFu0wK6NusoZ6yKtr1xK3idIu9Buzr6Gu3jONg2vLtEt8myKLPBz+Cts0UWzK2/QskO5eaJ
+	jVwXl5VA==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <ak@it-klinger.de>)
+	id 1ugIhR-0004Wh-04;
+	Mon, 28 Jul 2025 09:55:09 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ak@it-klinger.de>)
+	id 1ugIhQ-0006b7-0N;
+	Mon, 28 Jul 2025 09:55:08 +0200
+From: Andreas Klinger <ak@it-klinger.de>
+To: jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: lars@metafoo.de,
+	javier.carrasco.cruz@gmail.com,
+	mazziesaccount@gmail.com,
+	andriy.shevchenko@linux.intel.com,
+	arthur.becker@sentec.com,
+	perdaniel.olsson@axis.com,
+	mgonellabolduc@dimonoff.com,
+	muditsharma.info@gmail.com,
+	clamor95@gmail.com,
+	emil.gedenryd@axis.com,
+	ak@it-klinger.de,
+	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/3] iio:light: add driver for veml6046x00 RGBIR color sensor
+Date: Mon, 28 Jul 2025 09:54:43 +0200
+Message-Id: <20250728075447.338725-1-ak@it-klinger.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250726131003.3137282-5-elder@riscstar.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.0.7/27712/Sun Jul 27 10:35:17 2025)
 
-Hi Alex,
+This patchset adds an IIO driver for Vishay veml6046x00 RGBIR color sensor.
 
-kernel test robot noticed the following build warnings:
+Changes in v7:
+- Thanks to the reviews of Jonathan and Andy improvements in the PM could be
+  implemented like removal of pm_runtime_mark_last_busy() and consistency in PM
+  handling in some functions.
 
-[auto build test WARNING on d7af19298454ed155f5cf67201a70f5cf836c842]
+Changes in v6:
+- Thanks to the in-depth review of Andy many datatype improvements were
+  realized.
+- According to Jonathans review change the channel types from IIO_LIGHT to
+  IIO_INTENSITY.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Elder/dt-bindings-mfd-add-support-the-SpacemiT-P1-PMIC/20250726-211530
-base:   d7af19298454ed155f5cf67201a70f5cf836c842
-patch link:    https://lore.kernel.org/r/20250726131003.3137282-5-elder%40riscstar.com
-patch subject: [PATCH v10 4/8] regulator: spacemit: support SpacemiT P1 regulators
-config: alpha-kismet-CONFIG_MFD_SPACEMIT_P1-CONFIG_REGULATOR_SPACEMIT_P1-0-0 (https://download.01.org/0day-ci/archive/20250728/202507281558.lZ0NYtth-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250728/202507281558.lZ0NYtth-lkp@intel.com/reproduce)
+Changes in v5:
+- Thanks to the feedback of Andy and further explanations of Jonathan many
+  improvements could be implemented.
+- add documentation in kernel-doc format
+- iio_push_to_buffers_with_ts() is not used as also testing against
+  linux-stable where it is not available so far.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507281558.lZ0NYtth-lkp@intel.com/
+Changes in v4:
+- implement feedback from Andy and Jonathan
+- implement feedback from vendor (reading interrupt register as bulk read)
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for MFD_SPACEMIT_P1 when selected by REGULATOR_SPACEMIT_P1
-   WARNING: unmet direct dependencies detected for MFD_SPACEMIT_P1
-     Depends on [n]: HAS_IOMEM [=y] && I2C [=n]
-     Selected by [y]:
-     - REGULATOR_SPACEMIT_P1 [=y] && REGULATOR [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y])
+Changes in v3:
+- implement a lot of feedback from Jonathan
+- change scale value to real factor of lux per raw count instead of hardware
+  gain  
+- optimize code by using more lookup tables
+- remove unimplemented threshold functionality
+
+Changes in v2:
+- fix missing include for example in vishay,veml6046x00.yaml
+
+Andreas Klinger (3):
+  dt-bindings: iio: light: veml6046x00: add color sensor
+  iio: light: add support for veml6046x00 RGBIR color sensor
+  MAINTAINER: add maintainer for veml6046x00
+
+ .../iio/light/vishay,veml6046x00.yaml         |   51 +
+ MAINTAINERS                                   |    6 +
+ drivers/iio/light/Kconfig                     |   13 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/veml6046x00.c               | 1031 +++++++++++++++++
+ 5 files changed, 1102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/vishay,veml6046x00.yaml
+ create mode 100644 drivers/iio/light/veml6046x00.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.5
+
 
