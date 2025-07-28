@@ -1,142 +1,231 @@
-Return-Path: <devicetree+bounces-200177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE0DB139AC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:09:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3297EB139DE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:30:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AABF3ABE58
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:08:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51A9118917EE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9CE255F5C;
-	Mon, 28 Jul 2025 11:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1002475E3;
+	Mon, 28 Jul 2025 11:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDqCEAIL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyGfYIwY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAA8217659;
-	Mon, 28 Jul 2025 11:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C553B212B3D;
+	Mon, 28 Jul 2025 11:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753700938; cv=none; b=NpyInyaS3N8zQj4lRX8hO9p3AuB6ne5x0oMKw6YqtuIFlj6nud7oiwagYjlpGAHlFqaTWlP7BNfdiJunRTkih9NSIkt3xwHde92xMYRJgx2mV8jSM8Mru/T1fO+nuvIjJuEP3aZTNjlQb1lVyAWFnCn/f0KAaj08EjBWpZFM93w=
+	t=1753702253; cv=none; b=R8EHMvy0iLJcMWWAngmawYz9RCZq+3CG1DJyiad4xvpU+A83oCXXAG9v22uF0EpxYuiVkSoxS1Vayyw9zx8wzGS0tnhEiSKOQEHtk0gRGFnFlkMyuO1D/sJabPkAN5/+wnmZR+dgpQrOEJ2Q3tNxLYK7rwlneciIWDCA8ALIrL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753700938; c=relaxed/simple;
-	bh=Zqm7Z3Z/kdUKXzMqB4JXHSMfTfwdhlcb1iuBPmxSszg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fFaUYroE3RyOiqjdpi6IUG9Ma7IoMdP+CG3qmFrByohTB3BsVqcRtTwlwkHqLPbdEdtesdyQZoU6RIpTjGTiGbLNqtF96AdQp4iHh/NtaIrTgJDBrvQEqzAuk5TRUS1XZJ23GitqViMMB0eF32lCahaKR5RVBP8YgRCixQDbRAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDqCEAIL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA647C4CEE7;
-	Mon, 28 Jul 2025 11:08:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753700937;
-	bh=Zqm7Z3Z/kdUKXzMqB4JXHSMfTfwdhlcb1iuBPmxSszg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dDqCEAILEB7zAWESSNGDkZenpgoWqFuW12YTDRZ2lQDBA//junbXhzUyY4FtfkhSx
-	 g95qIDo+VcrOgjOj4vgF9tfUYs1r2vHvU8XEZSiCE0eXsBH3I5KunB5S2Ayog33iZx
-	 Dd4UbHbZDJiAYrqtR8JZmaURCl14yeCYlvTjJSxP9DEmfrtiykVqS9cE4lp/U/hHNv
-	 tdKOOd2ZrsDTePhVixhpYQvm4yIMnfm+GpnhEBFlYZYbeS8VNuTCMbgGtLOtVN3kUJ
-	 eb5M8WpMcpOTA7biFofmQruYQ4uRk0O34JYWpD5u3sZCVyvGgUyS2FccGCBPNFCVT4
-	 wZoDd3Iy16ABA==
-Message-ID: <172f1a38-d7a8-4799-ad44-f3eea69f297a@kernel.org>
-Date: Mon, 28 Jul 2025 13:08:53 +0200
+	s=arc-20240116; t=1753702253; c=relaxed/simple;
+	bh=LyM2zoTWmsxPJEfljMiEUCzkv9Ob2+5GaIos55WbWmA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JqxntHju3gdXxMnYkmtR5udSfe7QkAZ9zylzdzabTqxPCtuPZhdtU6qZ7Igl6giQu3iiu5qZ0qxc2DOlIsgiozAdOAyt4riDJ00eXsxShr2007oA5eyNt+2o8pihI37cT7ZC2I+zkG0oRsTRRvrHlj2vwqgZv4YNpFdwTYiM7jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyGfYIwY; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e75668006b9so3826759276.3;
+        Mon, 28 Jul 2025 04:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753702250; x=1754307050; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=nNtNrao6UVesGhYjMLNvpZlbMAwweAAO5D4RH4zwPlI=;
+        b=DyGfYIwYldPtNtuYkMZ4t//9zZuldn3xydKsu1ShoCTvMYar4REhzG6AX3/5AcUINv
+         J8N6xxeuiaNo2WT+m6qtd5VsgdIAy6KusY+NL8OnO4v5jb46GNDRm+jFr05ux4cbw+eG
+         RLzLfrhd70hvC8XunHMn8YABXBGRxPNJf9Xv6EQsuAdRJxa90nvJ0kedPqz3SKkr/iKj
+         80hjtJ/+FPvt18JhQG/EmSacIV2uQslTJPo0Aw+fNIs0moTge+N7ylxFvBxxi12B2I/H
+         WctaVtAGnoZg15zu/iQKPLBLWwje4T40eEATRU7oQYhdcl+NcMZNa2aFcvovcsMsmaJh
+         b8RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753702250; x=1754307050;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nNtNrao6UVesGhYjMLNvpZlbMAwweAAO5D4RH4zwPlI=;
+        b=Z1L2nsb6ue15RgZoqORAdDpROIcQR6MoB1q1ZoOczKRb0aP5Zu2r34JrmK1cl60UIm
+         YBqUno70NCGYe0E0e7B3PfNmhD7b7imQdZhdGDdKBmboMS860h0v6b+siI7PR/TcZ8GR
+         +9MIgQS+OV3uEt0xAQSUaMhhqfQ9wXWw3/fonevbkpOXZYZnuod2hcaCV0edBZYaHjdY
+         zxhasKZ+sYA5sKtRRk/pl19XigNDqpoAYn22TXIjVTwMOCb2gQcApCzpjJ3fRKUsiVLH
+         ko5HBPfvP7ZnJdBXFbnJdpQ1Aml/ASyZ1z3jSGBvvLL8r+v1ym+GD4GNznMb5uuvLPXN
+         2npg==
+X-Forwarded-Encrypted: i=1; AJvYcCUEtfjcK+YrT5b162YBN+5uicU/3fJeSDKPdmvKYpCoRkUFRTtw4q1reCJm/Br2hSDaHsucdJPbqO2i@vger.kernel.org, AJvYcCUWj9xdNixI2llXgFpaHRzXffpgRmLnZt8vD9bmgjuB1tpToJlBYOz6NkIHMW2BdTW+zJZdE1kLBntHKHO1@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywz6Xp0e4tEuI/ufPrxpxPqtnf89R6Ed1qi0YY2RnOmFmi0v0Ed
+	Nl7dxzNhv01gWGk6RHLp53KaR65gGFpt9QnHmWIvgBZBInkAyCid5l/wy9u0mjRZXzBIH8wqD3Y
+	6CSXhrDj+PRY8fhrxu7UmPWmgl6OxUPI=
+X-Gm-Gg: ASbGnctsXDoIdSJhUHN2fM1jWxOFKumlU297U2OYkqL6Cg9Cve/MIngFCEMiVy+scaf
+	t9IUKvF6qAg4Cyc3ViCNqcc/PwQpk2pARfUjTv3Fbfjf6a753jVnwKojbfASCUydtUbyzfQLMZ5
+	Vqmrx4wLVzK6QKc1OqEai3LGHrv7CQLTLJJMRrjD21CgHVJfZGIfUVN22dFhg1xIsazG0Ymg8ZF
+	HBENKNWXoz7menCpYQ=
+X-Google-Smtp-Source: AGHT+IFumFg2UZwvA+f5kl7EQMHXkNUZt/zwa/n9YKY+QhiLG1qhJTrDdz/0F0M5MYN/krBckT6OuIygxIbgPz/5mng=
+X-Received: by 2002:a05:6902:c0f:b0:e8b:7064:b with SMTP id
+ 3f1490d57ef6-e8df1231b91mr11050441276.43.1753702250334; Mon, 28 Jul 2025
+ 04:30:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: Add initial audio support for
- Hamoa-IOT-EVK
-To: leqi@qti.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250728-initial_audio_support_for_qualcomm_hamoa_iot_evk_board-v2-1-58aa30b60c7b@qti.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250728-initial_audio_support_for_qualcomm_hamoa_iot_evk_board-v2-1-58aa30b60c7b@qti.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250717135336.3974758-1-tmaimon77@gmail.com> <20250717135336.3974758-2-tmaimon77@gmail.com>
+ <db07c25c-4064-4330-8bdb-8a619b0b2915@linaro.org>
+In-Reply-To: <db07c25c-4064-4330-8bdb-8a619b0b2915@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Mon, 28 Jul 2025 14:30:39 +0300
+X-Gm-Features: Ac12FXynceWX6vHFauZXjIJ3-QNlcwbofxe7Djt0AreDMabbmJlyHL9RKrb110Q
+Message-ID: <CAP6Zq1jDCfhOWj4JwORy22TDZRBr0fnuy5-=G4WO9DFRv7pTdQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] arm64: dts: nuvoton: npcm845: Add peripheral nodes
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 28/07/2025 09:16, leqi via B4 Relay wrote:
-> From: leqi <leqi@qti.qualcomm.com>
-> 
-> This patch adds initial audio codec support for the Hamoa-IOT-EVK board,
-> including WCD9385 configuration, micbias voltage settings, GPIO reset,
-> and power supply bindings. It enables basic audio functionality for
-> further development. Basic test is good in Hamoa-IOT-EVK board.
-> 
-> Signed-off-by: leqi <leqi@qti.qualcomm.com>
-> ---
-> Changes in v2:
-> - Updated author email address to leqi@qti.qualcomm.com.
-> - Clarified that audio is validated with this change.
-> - Link to v1: https://lore.kernel.org/all/20250723-initial_audio_support_for_qualcomm_hamoa_iot_evk_board-v1-1-816991701952@quicinc.com/
-> ---
->  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 232 +++++++++++++++++++++++++++++
->  1 file changed, 232 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> index 843f39c9d59286a9303a545411b2518d7649a059..91618e22e86c46c698b3639f60bc19314705b391 100644
-> --- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-> @@ -124,6 +124,94 @@ pmic_glink_ss2_con_sbu_in: endpoint {
+Hi Krzysztof
 
+Thanks for your comments
 
-This was not merged, was it? Same comment as other patch, when you have
-entire code ready send entire board. Not chunk by chunk.
+On Thu, 17 Jul 2025 at 17:05, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 17/07/2025 15:53, Tomer Maimon wrote:
+> > Enable peripheral support for the Nuvoton NPCM845 SoC by adding device
+> > nodes for Ethernet controllers, MMC controller, SPI controllers, USB
+> > device controllers, random number generator, ADC, PWM-FAN controller,
+> > and I2C controllers. Include pinmux configurations for relevant
+> > peripherals to support hardware operation. Add an OP-TEE firmware node
+> > for secure services.
+> > This patch enhances functionality for NPCM845-based platforms.
+>
+> Drop this sentence, redundant and not in style (see submitting patches).
+> >
+> > Depends-on: ARM: dts: nuvoton: npcm845: Add pinctrl groups
+Maybe it's an issue with our work mail server,
+https://patchwork.ozlabs.org/project/openbmc/patch/20250706153551.2180052-1-tmaimon77@gmail.com/
+I believe you didn't receive the patches below as well, since I didn't
+see any comments. Am I correct?
+https://patchwork.ozlabs.org/project/openbmc/patch/20250706134207.2168184-2-tmaimon77@gmail.com/
+https://patchwork.ozlabs.org/project/openbmc/patch/20250706134207.2168184-3-tmaimon77@gmail.com/
 
-You are not following properly release early, release often.
+>
+> There is no such tag.
+>
+> Use changelog for this purpose or b4 dependencies.
+>
+>
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 695 ++++++++++++++++++
+> >  .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
+> >  2 files changed, 702 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > index 5cd877e6c20a..3564e0e30791 100644
+> > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+> > @@ -4,6 +4,7 @@
+> >  #include <dt-bindings/clock/nuvoton,npcm845-clk.h>
+> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >  #include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/gpio/gpio.h>
+> >
+> >  / {
+> >       #address-cells = <2>;
+> > @@ -40,6 +41,11 @@ ppi_cluster0: interrupt-partition-0 {
+> >               };
+> >       };
+> >
+> > +     udc0_phy: usb-phy {
+> > +             #phy-cells = <0>;
+> > +             compatible = "usb-nop-xceiv";
+>
+> Please follow DTS coding style.
+Do you mean the property order?
+>
+> > +     };
+> > +
+> >       ahb {
+> >               #address-cells = <2>;
+> >               #size-cells = <2>;
+> > @@ -56,6 +62,259 @@ clk: rstc: reset-controller@f0801000 {
+> >                       #clock-cells = <1>;
+> >               };
+> >
+> > +             gmac1: eth@f0804000 {
+>
+> Please follow established naming for node names. I'll fix whatever old
+> stuff you took it from.
+>
+>
+> > +                     device_type = "network";
+> > +                     compatible = "snps,dwmac";
+>
+> I don't think we want the generic one, even if it is allowed by bindings.
+Do you mean to use "snps,dwmac-3.72a" and not "snps,dwmac"?
+>
+> Also... You CC-ed an address, which suggests you do not work on mainline
+> kernel or you do not use get_maintainers.pl/b4/patman. Please rebase and
+> always work on mainline or start using mentioned tools, so correct
+> addresses will be used.
+>
+>
+> > +                     reg = <0x0 0xf0804000 0x0 0x2000>;
+>
+>
+> > +                     interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     interrupt-names = "macirq";
+> > +                     clocks  = <&clk NPCM8XX_CLK_AHB>;
+> > +                     clock-names = "stmmaceth";
+> > +                     pinctrl-names = "default";
+> > +                     pinctrl-0 = <&rg2_pins
+> > +                                     &rg2mdio_pins>;
+> > +                     status = "disabled";
+> > +             };
+>
+>
+> ...
+>
+> > +
+> > +             mc: memory-controller@f0824000 {
+> > +                     compatible = "nuvoton,npcm845-memory-controller";
+> > +                     reg = <0x0 0xf0824000 0x0 0x1000>;
+> > +                     interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> > +             };
+> > +
+> > +             udc0:usb@f0830000 {
+>
+> DTS coding style...
+>
+> > +                     compatible = "nuvoton,npcm845-udc";
+> > +                     reg = <0x0 0xf0830000 0x0 0x1000
+> > +                            0x0 0xfffeb000 0x0 0x800>;
+> > +                     interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks = <&clk NPCM8XX_CLK_SU>;
+> > +                     clock-names = "clk_usb_bridge";
+> > +
+> > +                     phys = <&udc0_phy>;
+> > +                     phy_type = "utmi_wide";
+> > +                     dr_mode = "peripheral";
+> > +                     status = "disabled";
+> > +             };
+> > +
+>
+> ...
+>
+>
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
+Thanks,
+
+Tomer
 
