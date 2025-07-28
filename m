@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68704B13A10
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:52:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72467B13A29
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 14:01:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A27189528B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:52:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87C7A16982B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 12:01:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128EC25BEE8;
-	Mon, 28 Jul 2025 11:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DFB24466D;
+	Mon, 28 Jul 2025 12:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oRbksmGa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNQEaGnv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B96221FBD;
-	Mon, 28 Jul 2025 11:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2D41B412A;
+	Mon, 28 Jul 2025 12:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753703551; cv=none; b=u9dLAm6sj8HDKv68zmRo/k6V+YuVXTK0gCfS2yh6wTa1+t+WZYhbQwqZWBMIMIxSD4H1FXFBsEopDytwnu0Km/RsSo9R+2NywZ4uVfIv8VO122Z2cvgTgD0wcMxMZsZg2GzeEJkVgFra6OS+EUgkS3AT+sAnunUJQq+MJHW7LUw=
+	t=1753704068; cv=none; b=X8Wjzat/1YZOLHRcT16cDEgWlpeZFySTEQ1+xLwfqD5EQjdYR8P8GPcW6YX0vsFN9z4D3pqTEvRxGqfv4vle8J4YOX/dGQBLyk0ylbxaXt3674DffC9RNmEOkMJQh4gJbTHS2/SmIVw8ClLXP1v24NAQ2CAs/EKm6H+3OZrfqvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753703551; c=relaxed/simple;
-	bh=n0J5JDKTqeiSZ0GT4nTGggSWytKhfzg7qr5qEFkmUNU=;
+	s=arc-20240116; t=1753704068; c=relaxed/simple;
+	bh=AT9yKQg5kRN8nra0kolGIDcgq8P5PHiV3m58mHJz5rw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OKKuFYK07TiisyOcD0bUc8v4oyuO0egUykj0JQcPtnlJBeTfqlDM4cq/CD8PM6+zZCVkWPbfKz/WqCfm6Fvd+A/HG26f91pWoiollTqf01QlpRra0YDB7hU5TLDGCKEW1+Cni/DiNnit2uEq1We4D3UV6WRs7Br5UPwk8NCaL5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oRbksmGa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6C3C4CEE7;
-	Mon, 28 Jul 2025 11:52:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pRZUskksrSn4XB67yGfoJvE0nk9RbsF92PnOedQYNDCwvjuMqZDPwzGAnD6MD3aAyh1r20wSEEm4g23/FlDgrX9PUFROYjUTioFd4ghOHJxMsXsvWR8Y/Gye74o5tQDK5SpYS/yRR3x/sLPpFyeDVXTY8xiBMr2iVx1wkUo616w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNQEaGnv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D59C4CEE7;
+	Mon, 28 Jul 2025 12:01:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753703550;
-	bh=n0J5JDKTqeiSZ0GT4nTGggSWytKhfzg7qr5qEFkmUNU=;
+	s=k20201202; t=1753704068;
+	bh=AT9yKQg5kRN8nra0kolGIDcgq8P5PHiV3m58mHJz5rw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oRbksmGapq9OYmr5bQZfbTnyAEOopzoaYZZzPo1tB1TP9ZpJZr+WnOqmdDUHOk5uh
-	 dOUb48Vfpe2P0N8Z0v1WaTEjVYl/YuwZXxZV4ZnZRvJvUxkdEx4oW61QXxqMLWyrKZ
-	 p2jM6GbxuMkfDU6sAuM03YhB2FwcBz9szLJtx2DCEFB++0YJh3gS0GJFvJTy18kuc8
-	 n2c/wYxTRZUNhrtHb7DooKhp5tCbUaOVVfsK+w0OOAVFdNg4601pOBifTghfyjli7L
-	 dL6Lb75oBuNuDDgPO+JxEnUhc+y3DXIF1V2tN+g1L4ekaVGKqW7CMROGdkWQxAVyXN
-	 ShtXfvTTP+uLQ==
-Message-ID: <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
-Date: Mon, 28 Jul 2025 13:52:22 +0200
+	b=hNQEaGnvdB8vZbpyHKEoHvYZlMF6Z3S0L4w0ht6X57FtC2rpGIk7AnL1SV0vh7HtQ
+	 PSBrRWAolXqHOLYPJrFdIvLaVOf8BGUnhaec1Vqd4aBwzly6MLMd2uyHC6yo84aG+J
+	 p/fGkzu735OIRpgeHPJ7S+ulyCofvBfRq8f9bUdQ0vosb4EgbSPlRHM1VwTnZqfY0o
+	 aNxEOQWb5yPp9TTbUeye3B9e/OtAqGc+KuAOLdDIHYcmHu0pEogvdVP0vCRzF/oIuG
+	 e4xIns42Nr+HIx4i/zf3qi8+GNIJ2NTxj5ra8fudKgo7me9hq+9jVnkvtCoOpm4lXW
+	 //GYp7n1lkAbg==
+Message-ID: <8d6ba467-d418-441f-aa49-8b615f3c333a@kernel.org>
+Date: Mon, 28 Jul 2025 14:01:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,33 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
- resets as reboot-mode
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
- Mark Rutland <mark.rutland@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
- Stephen Boyd <swboyd@chromium.org>, Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- Elliot Berman <quic_eberman@quicinc.com>,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
- <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
- <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
- <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
+Subject: Re: [PATCH v2 4/7] dt-bindings: display: mediatek: disp-tdshp: Add
+ support for MT8196
+To: Jay Liu <jay.liu@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>,
+ Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250727071609.26037-1-jay.liu@mediatek.com>
+ <20250727071609.26037-5-jay.liu@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -122,44 +113,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
+In-Reply-To: <20250727071609.26037-5-jay.liu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/07/2025 11:44, Dmitry Baryshkov wrote:
-> On Mon, Jul 28, 2025 at 06:53:14AM +0200, Krzysztof Kozlowski wrote:
->> On 27/07/2025 18:24, Shivendra Pratap wrote:
->>> +
->>> +static int __init psci_init_vendor_reset(void)
->>> +{
->>> +	struct reboot_mode_driver *reboot;
->>> +	struct device_node *np;
->>> +	int ret;
->>> +
->>> +	np = of_find_node_by_path("/psci/reboot-mode");
->>
->>
->> Why are you looking by full path, not by compatible? Is the ABI - above
->> path - expressed anywhere?
+On 27/07/2025 09:15, Jay Liu wrote:
+> Add disp-tdshp hardware description for MediaTek MT8196 SoC
 > 
-> PSCI node is required to have a node name of psci, it doesn't have MMIO,
-
-This is true
-
-> so it resides in the root node
-
-This might be or not might be true. It is not defined by ABI. Anyway,
-you answered where the ABI would be documented, even though as I said it
-is not (/psci is not), but does not answer to first part: why you are
-not using compatibles which is always the preferred method?
+> Signed-off-by: Jay Liu <jay.liu@mediatek.com>
+> Signed-off-by: 20220315152503 created <jay.liu@mediatek.com>
 
 
-> and the reboot-mode is defined in the
-> previous patch. So, I'd assume, the path is defined.
+Who is this person?
 
-As I said, path is not. only psci/reboot-mode is.
+Test your bindings BEFORE you send them, not after. That's v2 so I don't
+get why this is not tested at this point.
 
-> 
+
 Best regards,
 Krzysztof
 
