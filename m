@@ -1,198 +1,196 @@
-Return-Path: <devicetree+bounces-200181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B32B13A33
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 14:04:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CADDCB13A36
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 14:05:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2ADB17A3E0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 12:04:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39B7F1896543
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 12:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95ABE262FC5;
-	Mon, 28 Jul 2025 12:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2293F24BD03;
+	Mon, 28 Jul 2025 12:05:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oXmc+B86"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O/09t9if"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DF2248F72
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934442AF11
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753704249; cv=none; b=qpAevwKaD6lLlN83bVzHHPHF5TgUgMqxMpiVXLJcCX84nO8Je65dmL9wRJUZhtzRJrHXHhesSfkRjHOpF+eU+8dY0w65xXJm3V6+SYzBT9ELvz9fds/ir4wr9ujv9OoQYxS8wWgZpdMinNtdRJu/bDJ4d8vOUtRMjOsqjNSDwgE=
+	t=1753704321; cv=none; b=Zm6JnrpabFP3hXMENoV3hrgNVFuHanVA165P+t5BSDI9nAGXfvu0XVftg2wB7ONhJCeHKEaMSIciQbQ6Fa1wVaEMuAVPmCD6awIz05E5l7Fa/t0V+DXlsMo1Nk5TD62PkJ+ciFPMWQMBmwIh3+b9fJ/amGeioqUDh/P/E9lCeTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753704249; c=relaxed/simple;
-	bh=5rAvbVGtB7lFEOgjNCztAzaQGPyJ6cuIh1BF+HOX/d0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BZiUHZWR2Wp+TS3JO8Y8/JRfBX+NZnvLE8h6Zk5Y0Mc9j8Nl+PBg0mnA0f1TeHTwyDI4RRdUP+2bF1AhBCYEdk3Y+MIFXjxAm3h49EKbnF4uU1PagFmoS572V1lWEnsadZH0V6aUtqttulVMtQwdCb6W3Wubpx74YUJ79E6Cuwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oXmc+B86; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1753704321; c=relaxed/simple;
+	bh=k2RWxP/WKnsMkHTWmUDQ087InDb7cjcO9LVdeqkD0kA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SxMLUyqD/KaSymT2RJKuoFma6E99x//PjkJ+OGKxtKlsmrfF8YJ3vPVOTshqki8R0ssAokqrMNWXdfgLiuIRFXbrFwr7riuh0GmZYD4BkhCr79sA401/JXGay8dJV59fLzOICHeCusQ+/rblVpPiCC4fHXKmBaV16T/uY11w5gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O/09t9if; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SAlL3p005055
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:04:07 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SAlNvk023471
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:05:18 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	66vOC3/qlK+MyX1ZwSFINvuQl7YeMvvNbUSCtqoe2Dw=; b=oXmc+B86PKUWLJVm
-	QmOpYEtQ3X4JsvXSyBAVaGeN1yGLf7GeUn5xEjkuzpWAWLaO6HyuZWPubGDWatMF
-	2RtLNtrcea4FUlk1nFQ29VO9pWFmUWWeypasRwXZtoIhJS+bP26mbjzM/fdYObcD
-	EsZ6QMmFwGbS3EwxC6tXisZM+cPgtOJWcPaNpmngAI4t+5ysoc1LjuSvHUHtsdci
-	hpC7bRxWV27vCsWKzkEnxaAy3l4RpZP2QOoH5Ke1xtRHgmxceUPBPkoUby8J2MG+
-	GPeER5xrSghPrUu2Z4HhXPbu2ZZE5wekUZ/5S9xfcCOR2v7Y09zGMwSg0CV3X1Ux
-	JSf9xg==
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nytvp28-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=MLMkHEXhcpE9zqxnDSOUT7LZ
+	JSw53zS0jCgPn9nQ6+g=; b=O/09t9ifQZ5pb1vgPcIgB4ft+YBrnr3NSj2lG8HH
+	POO+dTiTkFe87ThnmxxXAY/3hNC9AY/qkpFt9yOkTp9buD7tG5o4So5ilDJSiHcT
+	IbrApJia0nx3Yk0fh44+TzLDPGuUEXrNKW49zlTd0lh5kq1A1y7H9wekO+TdyKCw
+	gsdgObcQ0Khe1RgBrpY9SVIvkM+PpZOjdoX9noy6s5+Z9HqX5Q4VzEvm2G5ZQr0D
+	Qkc1zYcO329+XCB6xDLDLN+4gf3uAmFy1Ngz9e1WwyYl/e0z7Pxn2c+C4bTiZOk/
+	h5xJ6Tl/iUnBOO4Y2GtroCJiMPewTlVJ7tYkmCzsULqtww==
+Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qme6g-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:04:06 +0000 (GMT)
-Received: by mail-il1-f198.google.com with SMTP id e9e14a558f8ab-3e3d23d2e66so16226405ab.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 05:04:06 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 12:05:18 +0000 (GMT)
+Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-615bc8a49a4so878840eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 05:05:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753704246; x=1754309046;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=66vOC3/qlK+MyX1ZwSFINvuQl7YeMvvNbUSCtqoe2Dw=;
-        b=i6jy6VO9kc8jRXja/4ocRprz0+5tZkErnARDwbqXbaqf6vM1VR7z0qQZ2deLK1Iwno
-         ox03a0ZwTAjIcdZIatc/ECXxP6OeSPqHWGlTNWB1OlHljbJEp6ki/Q1zZ/bEwk55WrTX
-         xUdkwbMA9xlDNeI45Qf4ugB0U6eBeTtNVBkxrxChJfsvU4ERarpufE/o9w+Ff5/2Hwgb
-         kfo5VXg3fKtqGhuk0jjPMUhKOnR8YJFrFNAONbab5FyPWOvsJg1FIMf1OO0JpkISLB1x
-         5LFd+xaxpBgnw+ugHBxHWr4krjSXcLUeP3x4E0kN7mMy16/c26GfA1MFTNJMc4qJcLIu
-         PZUA==
-X-Forwarded-Encrypted: i=1; AJvYcCXI9Vi6wGvhCtJlLJgaQ2Hg2G0cBiP4cAvccg/FJY/DG1w2QxfIqJ+/dofJp2LbKZ6FOC8vbNCW9OxD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzk+LcLWiBgpObxmJbc0aR1jlm6hHO/4MgFTmlXMJ6jr5tsODJS
-	hbswYU286dxzLsq4UgyXql2JuSLJIzOREhqjn47oLcLOgH6l2cB6JK1IakJo9tsWpXXpTzynCtR
-	swMFxwsbFgIFh64HEIqPrcs7LC5yri184ELig4VXWsYWwkab3xwMK4uc+taxsazVp
-X-Gm-Gg: ASbGncvVmc53rsFZCY5sSOdABRwyJxKk16UXq9oEVLTJlHuADkRc+G+bTctClfNtDH6
-	0d2JDPoYcoAEGtVUIcXaWkxXfnorhVjx6trs5eHRP9ec/q7PEGt0mcUjoRCb4TbHGjgGeE8XlWG
-	yJ9jS88yW3vBBRsgn7mGo1khEq922/+Mj8lcBTSCIIByrEyhgbYRtYs5qcIRSS6Qks3MXyMay5J
-	AIGb6zRa2CQeIseLIJDg6PN4IBDPioK8UE8ZCM4CHUJJ+OKq0Ufcea+siEgpEdnY2Sf9Fiz0S0u
-	ByoRhINGf7UtpedoYsfyoDbVEhH0pHLk4V7A73iUJ4PRiBzkMC3Zn+EmmITMHdUQ5nTJhgquGcW
-	FX0ta3J4+8KtXUaI8OLzF0AjkcVy2dHrXmnhl43tso9ZoOTNqC+gS70wX0IKH0y6pK7WO8kavNX
-	X39aYFFcNTaOf0UhVdmA==
-X-Received: by 2002:a05:6e02:3707:b0:3e2:8a58:7f67 with SMTP id e9e14a558f8ab-3e3c52e6ac4mr173518385ab.11.1753704245675;
-        Mon, 28 Jul 2025 05:04:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG+zIpMz+L3rJ5NWcaLcGYendd5twzo270GnZHovgracNvGxzH2qdsYSFiW1xnhFedlu22Z8Q==
-X-Received: by 2002:a05:6e02:3707:b0:3e2:8a58:7f67 with SMTP id e9e14a558f8ab-3e3c52e6ac4mr173514325ab.11.1753704241592;
-        Mon, 28 Jul 2025 05:04:01 -0700 (PDT)
-Received: from ?IPV6:2001:14bb:cc:47df:318b:ca77:b793:45a5? (2001-14bb-cc-47df-318b-ca77-b793-45a5.rev.dnainternet.fi. [2001:14bb:cc:47df:318b:ca77:b793:45a5])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-331f42b6edbsm12086391fa.98.2025.07.28.05.03.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jul 2025 05:03:59 -0700 (PDT)
-Message-ID: <5e2caeb7-360a-4590-a36f-ff1ec4c20d31@oss.qualcomm.com>
-Date: Mon, 28 Jul 2025 15:03:57 +0300
+        d=1e100.net; s=20230601; t=1753704317; x=1754309117;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MLMkHEXhcpE9zqxnDSOUT7LZJSw53zS0jCgPn9nQ6+g=;
+        b=Z310HpEMcyNcjub5f9ws6kdOs9AzV3Fdj0iC6ytRhC0aCc8NzehjcNQ9iqxUXhZBvO
+         yJwzySUi183/m6AKR14UGuiJWOLTQq/f0M5MXRGVhGLXPBxZwv+oaD9hqvcI30jj+W5a
+         20rgOw/8Bc+GSb44cRHyc0CueNX0C5ZE4YDKgU3yc9Zvxubz7xS6nYzHImwPMcMvrrpd
+         8GhkiNb4pkj218JYQEKwDzZKG7zhD0ci0DZ6EqRzO+p95brj1zIQuTtrRvThKUlOja7C
+         ubfqbkuP8449sFL/XnGuCOID2fEOm/7Pbi/rv68hum6PMUUcU3TRFr/DwuCAJhdHeO/h
+         OaFg==
+X-Forwarded-Encrypted: i=1; AJvYcCX93X7ENpHCzrrm70399sTIx7Mwo025tiYZr7ZbHIugD2R1QM+2R+FBGiv8P2sKta6njYJk6Xx3Q+mK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWAjEQOc+4+btTLjuvXeSNk7/lT8UICtqodRm+PIhsGssKyAXp
+	ndfWlPX4O3LyvX23i+yZtY6DjizFvG9QlkJubIl7LmaoOd3XAD75biudm793xCobKQ92gR/xX4B
+	zIm5EN3P8fSDFfr/a4v1ZjNQoWO8/LhKuf9kN+W8mj7c3gRrwAr1c31IYihoOQIeJ
+X-Gm-Gg: ASbGncuip6IyELa607zXoX1v8B6BHASrwjAhk6lojBHhALF4LtM1HQQlULXF6zmNX8F
+	xz/hC8b/U7zaWMXDhtaSaGG9ubSwZuash6/s/qGb2NIy8P58wppojnKgs6yPrzhwDmkIdzza/Ep
+	jMUT0Vf9RGzv5wQZTAKx33R3YZXrK4bZ+1zL26P+9KPp1vXbd+yIY7WKty/l9/yGkXB2dWoQ2Q+
+	OBjcxSY3MN0Gf+2YEKXKjMvU2YA0C+YsKnnTJBL43Y/iSkqV4vSeAZEGB+75y5O+vbDTfAwgAxz
+	74gkh6pARkmgasP14vUy3q0Yg218VjBiZkXHceod/NEc0btYWMc+ky7zEm5iWcILauRzidH70OI
+	35dkQCmdTjPyW/2G8gZqQzCh7zJ5UYBsavOVBl8mUO/gLFBR8hXrL
+X-Received: by 2002:a05:6808:1511:b0:3f9:2fdc:ee93 with SMTP id 5614622812f47-42bba1f2b8amr5993494b6e.30.1753704317216;
+        Mon, 28 Jul 2025 05:05:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGHSfeWv4VHXW2+zlLwrnah8CuiseIJTrikxH8XMRdQkuCbQ7xwR1kFZq9NS64k4Bn807RS+w==
+X-Received: by 2002:a05:6808:1511:b0:3f9:2fdc:ee93 with SMTP id 5614622812f47-42bba1f2b8amr5993452b6e.30.1753704316668;
+        Mon, 28 Jul 2025 05:05:16 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b63375932sm1240730e87.152.2025.07.28.05.05.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jul 2025 05:05:15 -0700 (PDT)
+Date: Mon, 28 Jul 2025 15:05:14 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, mripard@kernel.org, naoki@radxa.com,
+        stephen@radxa.com, cristian.ciocaltea@collabora.com,
+        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+        yubing.zhang@rock-chips.com, krzk+dt@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, robh@kernel.org,
+        sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v6 02/10] drm/bridge: synopsys: Add DW DPTX Controller
+ support library
+Message-ID: <soz3wrbwlogzv6pi7i2cf5iq5gxhspkrti3pcxn5cdhztghwww@xxcdbp2n5cvq>
+References: <20250728082846.3811429-1-andyshrk@163.com>
+ <20250728082846.3811429-3-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
- resets as reboot-mode
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
- <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
- <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
- <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
- <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: Mj8ZVC6qJ_MyIzemxkX5ZrDLocO7UCQS
-X-Proofpoint-ORIG-GUID: Mj8ZVC6qJ_MyIzemxkX5ZrDLocO7UCQS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA4NyBTYWx0ZWRfX3HnCDOcd3FYl
- oM/zDVGJAu+KneobCUPibIgzzuT3eUxB+jmxk7f1RrzBqBfoT5qGPKG4hFCDijdCeA0AcTgpJ/O
- NAIea3vSYmH/OIaFbFS6szud/qRRUcCf7OI/bk5Qz36YqMPHwBpjHDO6myTu0ITuPO2dU7YB3Bm
- U+/MYIdp6MSNsAE6HNyh8p2QsuYujkYKTTPQQEHzR6QfPTqJwx8p6Yf+JpVH0JAh93t0DJENcOO
- 41gGpxMR3xyQKmFSRoahITqVLre2h0J8s6+MJTusauyKf/Nd/4CZAFFp/mMzZhJLDTH+Eg5KijJ
- 01GpJ5xAp3RL6wkkXkMdE12TV8wjgtYniw5OaN5TIN9Titfaea5s3b2bcmx74epZpICULuDBDFH
- 8VY/VkprEpbeviBzLVtOm8U8JnaWjAI0iDWsnvmxIApyEYcMc00s5oq1wyoh9GfNg21yW8uY
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=68876737 cx=c_pps
- a=knIvlqb+BQeIC/0qDTJ88A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Wb1JkmetP80A:10 a=jG_yPd5o3CEIpo8lzG8A:9 a=QEXdDO2ut3YA:10
- a=8vIIu0IPYQVSORyX1RVL:22
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250728082846.3811429-3-andyshrk@163.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA4NSBTYWx0ZWRfX+fj0Ac1SKVx7
+ h/FbeN6byOcEky1TIr9qMdSaWzY3GcqsTZPDAI2r2Av3q0enFgaYk4NhRpATh0oBcu1NEKmsaxi
+ lbPTghpzH3wfKLr8UfLShKsi06yHqd5CPD9PEGwYV7N9nwCwysQxvyri5xf3hcGxGjm/oU7hVUm
+ jiYKjT9qEeBoYQ6zYzarOaD1rPQyt60Mjwgu16Dh/XW1q92fEmlNBVTveZ7QWVi3tQiVIIiEfuu
+ 9ENMg/Nt8R9jIRuyMWJNBp8b5VNWxjcKEFXXQAr8l30P9wk2WVQSod47m5c1i4aGyB0o5AxR1r0
+ unwGXYOoj4yi4TGSoMs34+QH+kDx3TLXzgI6sHkczHleLJ3Gpgcvq7dMVkaFi7GiAua/aEkAbih
+ rX3j31d91XhcIPyFof8wNzqHH2DglqFjvXKTyVJlV+KTs0c810k3+gbzqDD1v2QFK6oAa28m
+X-Proofpoint-ORIG-GUID: iBsB8YNtC2Wwg01OaAXY8IC3zI5dtvcb
+X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=6887677e cx=c_pps
+ a=lVi5GcDxkcJcfCmEjVJoaw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=s8YR1HE3AAAA:8 a=EUspDBNiAAAA:8 a=rZy2__OW2t70H_ViVZ0A:9
+ a=CjuIK1q_8ugA:10 a=rBiNkAWo9uy_4UTK5NWh:22 a=jGH_LyMDp9YhSvY-UuyI:22
+X-Proofpoint-GUID: iBsB8YNtC2Wwg01OaAXY8IC3zI5dtvcb
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-28_03,2025-07-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507280087
+ definitions=main-2507280085
 
-On 28/07/2025 14:52, Krzysztof Kozlowski wrote:
-> On 28/07/2025 11:44, Dmitry Baryshkov wrote:
->> On Mon, Jul 28, 2025 at 06:53:14AM +0200, Krzysztof Kozlowski wrote:
->>> On 27/07/2025 18:24, Shivendra Pratap wrote:
->>>> +
->>>> +static int __init psci_init_vendor_reset(void)
->>>> +{
->>>> +	struct reboot_mode_driver *reboot;
->>>> +	struct device_node *np;
->>>> +	int ret;
->>>> +
->>>> +	np = of_find_node_by_path("/psci/reboot-mode");
->>>
->>>
->>> Why are you looking by full path, not by compatible? Is the ABI - above
->>> path - expressed anywhere?
->>
->> PSCI node is required to have a node name of psci, it doesn't have MMIO,
+On Mon, Jul 28, 2025 at 04:28:27PM +0800, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> This is true
+> The DW DP TX Controller is compliant with the DisplayPort Specification
+> Version 1.4 with the following features:
 > 
->> so it resides in the root node
+> * DisplayPort 1.4a
+> * Main Link: 1/2/4 lanes
+> * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> * AUX channel 1Mbps
+> * Single Stream Transport(SST)
+> * Multistream Transport (MST)
+> * Type-C support (alternate mode)
+> * HDCP 2.2, HDCP 1.3
+> * Supports up to 8/10 bits per color component
+> * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> * Pixel clock up to 594MHz
+> * I2S, SPDIF audio interface
 > 
-> This might be or not might be true. It is not defined by ABI. Anyway,
-> you answered where the ABI would be documented, even though as I said it
-> is not (/psci is not), but does not answer to first part: why you are
-> not using compatibles which is always the preferred method?
+> Add library with common helpers to make it can be shared with
+> other SoC.
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
+> ---
+> 
+> Changes in v6:
+> - Use drm_dp_vsc_sdp_supported
+> - Store bpc/bpp/color format in dw_dp_bridge_state
+> 
+> Changes in v5:
+> - Use drm_dp_read_sink_count_cap instead of the private implementation.
+> 
+> Changes in v4:
+> - Drop unnecessary header files
+> - Switch to devm_drm_bridge_alloc
+> 
+> Changes in v3:
+> - Rebase on drm-misc-next
+> - Switch to common helpers to power up/down dp link
+> - Only pass parameters to phy that should be set
+> 
+> Changes in v2:
+> - Fix compile error when build as module
+> - Add phy init
+> - Only use one dw_dp_link_train_set
+> - inline dw_dp_phy_update_vs_emph
+> - Use dp_sdp
+> - Check return value of drm_modeset_lock
+> - Merge code in atomic_pre_enable/mode_fixup to atomic_check
+> - Return NULL if can't find a supported output format
+> - Fix max_link_rate from plat_data
+> 
+>  drivers/gpu/drm/bridge/synopsys/Kconfig  |    7 +
+>  drivers/gpu/drm/bridge/synopsys/Makefile |    1 +
+>  drivers/gpu/drm/bridge/synopsys/dw-dp.c  | 2094 ++++++++++++++++++++++
+>  include/drm/bridge/dw_dp.h               |   20 +
+>  4 files changed, 2122 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-dp.c
+>  create mode 100644 include/drm/bridge/dw_dp.h
+> 
 
-That's a good question, I've added one from my side: why do we need an 
-extra late_init call.
-
-> 
-> 
->> and the reboot-mode is defined in the
->> previous patch. So, I'd assume, the path is defined.
-> 
-> As I said, path is not. only psci/reboot-mode is.
-
-Do we have an _actual_ use case where PSCI node is not at at root node? 
-If not, it's obviously a deficiency of the schema. Could you please 
-provide suggestions on how to describe that in DT schema?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
 -- 
