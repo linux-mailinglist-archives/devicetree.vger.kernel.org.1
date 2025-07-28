@@ -1,169 +1,237 @@
-Return-Path: <devicetree+bounces-200043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2489B133F7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:07:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8786AB133FB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD5F3B683E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:07:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EBE518969EB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C69B2185B1;
-	Mon, 28 Jul 2025 05:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF052192FC;
+	Mon, 28 Jul 2025 05:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XWpPfTLJ"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Vls+F+BH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B716D217716
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 05:07:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B538218EA1;
+	Mon, 28 Jul 2025 05:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753679260; cv=none; b=N+i3jJ5l+Bi5mgQYudZT73IubbjnQzs59WaECiOdnoeLxsM4MfbIJErasx3wzB1HiZYiQY52Pwzusb+CljY1iqjPU8EUYpbb/ke87q8GQJaOpWwcnuZSYo4yIrCB24FPblc+ZR/QIetfztryXNbiRgwBl6Vv9YzYPIyq47zImU0=
+	t=1753679288; cv=none; b=aqHsgV61nmPiD7RmgTPDzqswHC8uQbowFmzZUvYTOKu69uRlQdOlVm2/Aq5ti7Uc/F90cSyD27rxR3Fnc3uhHfvVGeZyIu8zEgNouKGTMrPlVHyUzM0af74oiE8VC2YYQ+pdIamp1QlpuWfkDirYlyZuT3vAe9PISjFR5IcjECc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753679260; c=relaxed/simple;
-	bh=mH/cGBiY0dlSDL59H4mB5AvIyTXZ/VwivsRhbGPaEl4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=urv62ugUPruq4tIji06S2Vo0gLD8w04J18NDc6QIotnn0JAhXulPJ+DlnosbbNLOb5lxYg3QVCv0jqcxUM5cRVit+RcBcjRPgR0Wb0CqEKASaM4VhzebD0QTkUdFTTCPk4g7eI/FI6P2H4MVIwOoDKCiW4tzbVpe4xsf/l8khio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XWpPfTLJ; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-456077f0e6eso3226875e9.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Jul 2025 22:07:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753679256; x=1754284056; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=L3eSrG1vqRe3J8vkPZXbMpRX/xHdKrmfIqvsgLhc6Z0=;
-        b=XWpPfTLJGTQLp7qkZk6x03biKkNRebPANXKj0ptaDE2V8ln0GMXupo5gWpkma5X8UR
-         PNTq65aat4R57Z7gaJHhry5L+w0YT6PiQPNCzT9RLf7te3GUEFnA+JZRojZANiqKaY2l
-         c3Qkr37m8aHT1mF6Gy/PG104tIR3mjxEEYzXvigaSMOX3QCp0N1oAo/lc+vFcuwOMNEA
-         /W8MKTtMnEMkAiQb4NtOXMiLyc1PFhOPdfUaxEXbVl/B/AVpkWXTgVfxOwXXfE/Kl3G0
-         L3NE3V8D10VNptzXtrjvlVvvsTE1i0H1imfVV87Spa4RkZ8ZzSIh0dYvGqbBwlL95D3s
-         bPnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753679256; x=1754284056;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L3eSrG1vqRe3J8vkPZXbMpRX/xHdKrmfIqvsgLhc6Z0=;
-        b=cC6H/ReTwK2569oFoTNHvlk1T8DL0uyCeP2a4RE39XiLWii46snbQ3bkCyhU7KxUvY
-         nmRCuzNY8u8Zf2cYQy0aGSxjQveDaBVoKb1DeRgsxoCaf/5qhlCiZhMkKWFYElI0DDwd
-         sY3SnQo+VKErMyq5+CfuE9PSaWj6TZd4lssKhwozoq8zTlsH6+2OPdKGVJpYrALaecoe
-         mmlWc8r4DRjTVQQHUGaYdUUZtotG4xJvdkvTNp5gU+oWqWKFIf04KM435PRNGMVx8ibM
-         fIGIQ7mYcnC+2S/9vXudCkp4ZlOLZScYChs1grLckCM875yt/AgRVGF/kqaGyTtfuHvV
-         La0A==
-X-Gm-Message-State: AOJu0Yy7m5WTszylw76h10aEJOocxcuQUcVDjR2vFQcCC/TAK6TEcMR8
-	VsaXGKeWy8sEQbuvfa6jgnPrezMSlDilOwiWyPJbJb6EhGDIkWgJX9T74H+4ExFmQc8=
-X-Gm-Gg: ASbGnctL/+LyM4WXqOvPxnsy2tFl2aFbRdB1MPrVgjjFSEkmDFcR6po5LlqRWBmjdU2
-	ej0n6VvAkjjq1PxLj4MksTuQCGVZ+ALZb6TbEdv1EVuaiQiTcgrrV+SJYigYjYY7PS3P+ruStDO
-	b29O51mNAv+GEj2LYBJmWYIAWp2JRWwNhpZrqpsKH8qjVa+i2mM9rvpSOYbNTWCCjcujGuhJBVr
-	k8TR+H4NBeR8e6SMXh9+EdJ4V0ECiqGr6qHFQEWHtup4pldMiT48lfv8h4Vel79S1YU2M5PMY3w
-	lkJnm7jULFlbCP9fONLgPFlC/W+6bhKC+Ijzr2sq6MVvgFr96plvs0AlROgodHBMKGC1cDlwy4M
-	wGx3RBaoJVv8YRryyBfvPAjivvYUaSxxZs6pT9Ve+/w==
-X-Google-Smtp-Source: AGHT+IFTiLLa4VIdaNVlbk8aHV5CofUdpZeQ+TwRocmmdvBMGt2mf4/1U63x+Qn0o0ivABMfNj6mgg==
-X-Received: by 2002:a05:600c:a06:b0:456:1a00:c745 with SMTP id 5b1f17b1804b1-4588459a0dfmr11175385e9.3.1753679255762;
-        Sun, 27 Jul 2025 22:07:35 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.203.90])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458704aaf20sm144977785e9.0.2025.07.27.22.07.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Jul 2025 22:07:35 -0700 (PDT)
-Message-ID: <9ebd9797-8d92-4799-bb8d-59a796e6043c@linaro.org>
-Date: Mon, 28 Jul 2025 07:07:32 +0200
+	s=arc-20240116; t=1753679288; c=relaxed/simple;
+	bh=C2uPb02MiokZGlv8JpAHMlpdLLPVnFYjfQPmyPpiPuU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kasaleqNpTo5rm+L0j/Zvj0PeohQWswh2Ez/PVV1rcdk3ZHdS4pIZYDi5+wo/q/kdTKKTe1m9kzkgOIWJek1XrvtBMJvpw+H76WmZDxLG4Mu1i32Ny7Sb1XckQGSznCZwspbvxPbP6JF/df5c5UQQkvsy4djsFaQqHZwC7EEm34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Vls+F+BH; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 1077A23CB1;
+	Mon, 28 Jul 2025 07:07:57 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id b7ANjcg6Zkbp; Mon, 28 Jul 2025 07:07:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1753679275; bh=C2uPb02MiokZGlv8JpAHMlpdLLPVnFYjfQPmyPpiPuU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Vls+F+BHomGstKwi/Wa+rUmALYJRPkRqkZ8KMDCahNlCE4kl2Swb1kf/UeexPqkwe
+	 feubZnvIKYJcZvz8JdyL8fymUyGbvE9inBw4mUHQ7uGtr/qs53PCOeg1S9zlCwKXuK
+	 cK69Rpz+6PlcUP+rxtwufZY2u8kOVh4tm935+/Ft0IC+42DQ6ts3rIBBwXmaHeaRSz
+	 mRH3w+OI4tdBaRFywKMwRF6Q746R9DwITrBs7Gqm9JvSdkf0OP4YJpwtfs8St2KJJk
+	 hGr21MDMSaP9GYdiCwMjqQ3IerXIjubtup851dBy7mkN0V0rVM3j92qI1xooMEecTA
+	 rjD0wYUoBRsow==
+Date: Mon, 28 Jul 2025 05:07:38 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-arm-kernel@lists.infradead.org,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/6] phy: rockchip: naneng-combphy: Add RK3528 support
+Message-ID: <aIcFmhQqLuUlLZb_@pie>
+References: <20250624033733.50197-1-ziyao@disroot.org>
+ <20250624033733.50197-6-ziyao@disroot.org>
+ <eb7c9e40-3c17-488f-98a2-17b972f61e75@kwiboo.se>
+ <aIHDSW0XO9BCfch3@pie.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add
- LinkStar-H68k-1432v1
-To: Erik Beck <xunil@tahomasoft.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250727-linkstarpatch_v4_6-16-rc1-v4-0-0dfa7aa06ec9@tahomasoft.com>
- <20250727-linkstarpatch_v4_6-16-rc1-v4-1-0dfa7aa06ec9@tahomasoft.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCaBdQXwUJFpZbKgAKCRAbk0N9O0Fim07TD/92Vcmzn/jaEBcq
- yT48ODfDIQVvg2nIDW+qbHtJ8DOT0d/qVbBTU7oBuo0xuHo+MTBp0pSTWbThLsSN1AuyP8wF
- KChC0JPcwOZZRS0dl3lFgg+c+rdZUHjsa247r+7fvm2zGG1/u+33lBJgnAIH5lSCjhP4VXiG
- q5ngCxGRuBq+0jNCKyAOC/vq2cS/dgdXwmf2aL8G7QVREX7mSl0x+CjWyrpFc1D/9NV/zIWB
- G1NR1fFb+oeOVhRGubYfiS62htUQjGLK7qbTmrd715kH9Noww1U5HH7WQzePt/SvC0RhQXNj
- XKBB+lwwM+XulFigmMF1KybRm7MNoLBrGDa3yGpAkHMkJ7NM4iSMdSxYAr60RtThnhKc2kLI
- zd8GqyBh0nGPIL+1ZVMBDXw1Eu0/Du0rWt1zAKXQYVAfBLCTmkOnPU0fjR7qVT41xdJ6KqQM
- NGQeV+0o9X91X6VBeK6Na3zt5y4eWkve65DRlk1aoeBmhAteioLZlXkqu0pZv+PKIVf+zFKu
- h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
- vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250727-linkstarpatch_v4_6-16-rc1-v4-1-0dfa7aa06ec9@tahomasoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aIHDSW0XO9BCfch3@pie.lan>
 
-On 28/07/2025 02:03, Erik Beck wrote:
-> Add device tree bindings.
+On Thu, Jul 24, 2025 at 05:23:55AM +0000, Yao Zi wrote:
+> On Wed, Jul 23, 2025 at 04:51:15PM +0200, Jonas Karlman wrote:
+> > Hi Yao Zi,
+> > 
+> > On 6/24/2025 5:37 AM, Yao Zi wrote:
+> > > Rockchip RK3528 integrates one naneng-combphy that is able to operate in
+> > > PCIe and USB3 mode. The control logic is similar to previous variants of
+> > > naneng-combphy but the register layout is apperantly different from the
+> > > RK3568 one.
+> > > 
+> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > ---
+> > >  .../rockchip/phy-rockchip-naneng-combphy.c    | 186 +++++++++++++++++-
+> > >  1 file changed, 185 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> > > index 1d1c7723584b..bf00a85a113b 100644
+> > > --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> > > +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+
+...
+
+> > > @@ -398,6 +437,147 @@ static int rockchip_combphy_probe(struct platform_device *pdev)
+> > >  	return PTR_ERR_OR_ZERO(phy_provider);
+> > >  }
+> > >  
+> > > +static int rk3528_combphy_cfg(struct rockchip_combphy_priv *priv)
+> > > +{
+> > > +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+> > > +	unsigned long rate;
+> > > +	u32 val;
+> > > +
+> > > +	/* Set SSC downward spread spectrum */
+> > > +	val = FIELD_PREP(RK3528_PHYREG6_SSC_DIR, RK3528_PHYREG6_SSC_DOWNWARD);
+> > > +	rockchip_combphy_updatel(priv, RK3528_PHYREG6_SSC_DIR, val, RK3528_PHYREG6);
+> > > +
+> > > +	switch (priv->type) {
+> > > +	case PHY_TYPE_PCIE:
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
+> > > +		break;
+> > > +	case PHY_TYPE_USB3:
+> > > +		/* Enable adaptive CTLE for USB3.0 Rx */
+> > > +		rockchip_combphy_updatel(priv, RK3528_PHYREG80_CTLE_EN, RK3528_PHYREG80_CTLE_EN,
+> > > +					 RK3528_PHYREG80);
+> > > +
+> > > +		/* Set slow slew rate control for PI */
+> > > +		val = FIELD_PREP(RK3528_PHYREG81_SLEW_RATE_CTRL,
+> > > +				 RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW);
+> > > +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_SLEW_RATE_CTRL, val,
+> > > +					 RK3528_PHYREG81);
+> > > +
+> > > +		/* Set CDR phase path with 2x gain */
+> > > +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X,
+> > > +					 RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X, RK3528_PHYREG81);
+> > > +
+> > > +		/* Set Rx squelch input filler bandwidth */
+> > > +		val = FIELD_PREP(RK3528_PHYREG83_RX_SQUELCH, RK3528_PHYREG83_RX_SQUELCH_VALUE);
+> > > +		rockchip_combphy_updatel(priv, RK3528_PHYREG83_RX_SQUELCH, val, RK3528_PHYREG83);
+> > > +
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
+> > > +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
+> > 
+> > I suggest we add something like following here:
+> > 
+> > 		rockchip_combphy_param_write(priv->pipe_grf, &cfg->u3otg0_port_en, true);
+> > 
+> > to ensure that U3 is enabled in case boot firmware disable the U3 port.
 > 
-> This device:
->   - Has not been supported previously in the mainline Linux kernel;
-
-Irrelevant, drop.
-
->   - Is a single board travel router made by Seeed, using an rk3568;
->   - Has four ethernet ports;
->   - Has four USB ports;
->   - Has WiFi (MediaTek MT7921e);
->   - Has a real-time clock (rk809)
+> Thanks for the hint, I'm willing to adapt it. Should we handle the case
+> that USB is enabled by firmware but PCIe is going to be used in kernel,
+> too? It's desirable to make fewer assumptions about the state set by
+> firmware.
 > 
-> Base commit:
->   - commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494 ("tag: v6.16-rc1");
+> P.S., I'm assuming the register should be written as "disabled" value
+> whenever PCIe is used, and "enabled" whenever USB is used, as
+> the LSB of USB_GRF_USB3OTG0_CON1 is said to be "USB 3.0 SS Port Disable
+> control" according to RK3588's TRM, which doesn't look like something
+> compatible with PCIe mode when setting to 1'b0 (port enabled). Please
+> correct me if I'm wrong.
 
-Irrelevant, drop. This should NEVER be part of commit msg, because it
-makes no sense once applied. It is not even true in that moment.
+I've read through the manual and done some tests today, and it seems I
+misunderstood the purpose of USB3OTG0_CON1. This register has only
+something to do with USB3, but not PCIe. Writing either "disabled" or
+"enabled" value to it doesn't affect PCIe functionality. Thus for the
+naneng-combphy driver, it should be enough to only write the "enabled"
+value to u3otg0_port_en if USB-3 mode is used.
 
-> 
+Anyway, thanks for your remind on this register :) Its reset value
+allows USB-3 to function thus I just forgot about it during clean-up.
+I'll send v5 soon.
 
+...
 
-Best regards,
-Krzysztof
+> > > +static const struct rockchip_combphy_grfcfg rk3528_combphy_grfcfgs = {
+> > > +	/* pipe-phy-grf */
+> > > +	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
+> > > +	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
+> > > +	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
+> > > +	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
+> > > +	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
+> > > +	.pipe_clk_24m		= { 0x0004, 14, 13, 0x00, 0x00 },
+> > > +	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
+> > > +	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
+> > > +	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
+> > > +	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
+> > > +	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
+> > > +	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
+> > > +	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x110 },
+> > > +	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x00 },
+> > > +	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x101 },
+> > > +	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
+> > 
+> > And adding something like this:
+> > 
+> > 	/* pipe-grf */
+> > 	.u3otg0_port_en		= { 0x0044, 15, 0, 0x0181, 0x1100 },
+> > 
+> > Should be possible with ("phy: rockchip: naneng-combphy: Enable U3 OTG
+> > port for RK3568") [1].
+> > 
+> > Most RK3528 boards I have come across this far seem to use PCIe instead
+> > of USB3, so having boot firmware disable U3 early (to help support USB
+> > gadget in boot firmware) and instead having this PHY driver re-enable U3
+> > when needed seem most logical to me.
+
+Thank you for the U-Boot patch! While reading through, I saw commit
+"rockchip: rk3528: Disable USB3OTG U3 port early" states,
+
+> Some board designs may not use the COMBPHY for USB3 purpose. For these
+> board to use USB OTG the input clock source must change to use UTMI
+> clk instead of PIPE clk.
+
+Does this mean we should ideally add similar handling for USB3OTG in the
+kernel's usb2phy driver, too? Otherwise if the firmware doesn't handle
+clock stuff well, the kernel'll fail to operate in OTG mode, either.
+
+> > 
+> > I will push an updated U-Boot rk3528 branch [2] where I include such
+> > early U3 port disable once source.denx.de is back online again.
+> > 
+> > [1] https://lore.kernel.org/r/20250723072324.2246498-1-jonas@kwiboo.se
+> > [2] https://source.denx.de/u-boot/contributors/kwiboo/u-boot/-/commits/rk3528
+> > 
+> > Regards,
+> > Jonas
+
+Thanks,
+Yao Zi
 
