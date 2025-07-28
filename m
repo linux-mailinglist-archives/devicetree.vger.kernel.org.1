@@ -1,47 +1,61 @@
-Return-Path: <devicetree+bounces-200047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC7DB13406
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6ACB1340D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:13:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73503176283
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:11:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 223AE16ABFE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E103217739;
-	Mon, 28 Jul 2025 05:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1341219A71;
+	Mon, 28 Jul 2025 05:13:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gN7Iq9NC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121B6290F;
-	Mon, 28 Jul 2025 05:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83C6290F;
+	Mon, 28 Jul 2025 05:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753679473; cv=none; b=XawiukMHDEsW1Z4FZmLU9WNVBHaXNpAaL4GVwlGXX4WG55ebRriTj1lS12kimvPyNWyThgj+ynXHEUTN3F3Snc9rFAZ7Vs9IgyadsmFIjMeINC9qpszm6svijRl5Tz/t8Eff6CO/A8igLleS7uUDkKB9v760VYfPazQipq6oJ+U=
+	t=1753679611; cv=none; b=usDw9xrBKoLM4BiL46ghUBJJV2KFu4PQF2i84G5EUZhtR9YV/9QrwEfhkXyZvp5aoEJaaJ2KIqH8D4v/QBPiILkJvTwa41xare1XtjzJWTEpK2iu+KQit0sh0r9GPeHYG6WOJxntfLHQWNOB4f+6c6E7AbGOgqBmcwykVAGmjnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753679473; c=relaxed/simple;
-	bh=4nEe5PLFL6Y1WwycjvwOrFYlLqHEUi7f5SQZnpdS9AQ=;
+	s=arc-20240116; t=1753679611; c=relaxed/simple;
+	bh=SCnFBh2pOHaMVAfqrFukG2B0hL6vIjUPCh6ccF3qkK8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZnW/mCbksqXd8QGAGSokB9A2x60f0KmMfXa+YJ+AS7bVbHH7GvTL/X4ff/kgffJjWc489+e45XMkHbIUTDZDQryLEkdKjBT4w+vrJf7EWB+DiS9FIn+jXMFK3Ofob5+Kf7K+iVBe6aeOahvNe3xgZNfEvZsgdGu4Gef5AGq5yOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F09FC4CEE7;
-	Mon, 28 Jul 2025 05:11:12 +0000 (UTC)
-Date: Mon, 28 Jul 2025 07:11:10 +0200
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Erik Beck <xunil@tahomasoft.com>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=kR82ekqL2MS65WV3zRfSa3ZX9QtzCUX+zi3U/y1hjFeFVIOX+heole3j6n1e7lGZQHeUodnf5/ojnL1nus2gFamHf01po3X96KhXZf0NbT/oh8sElMsFXbb7NqP6iHPUvI5OITIkwZQNn/GrotiDQ/YMJUTKCYOy4FNuMO9PyXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gN7Iq9NC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF7FC4CEE7;
+	Mon, 28 Jul 2025 05:13:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753679611;
+	bh=SCnFBh2pOHaMVAfqrFukG2B0hL6vIjUPCh6ccF3qkK8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gN7Iq9NCeErSi0+I/651qC9gtqQbPYvfmJV/9O29RskqzV2JOSeMUnqJEZ8x5Hmfj
+	 UPXZkvom7b/Ucz+4yw0MAJLkNC0EKS5NRdGb2ZDBd4ke6nOXvxig9Ax55Qr1QSxIIF
+	 K4KfW4nkV0054baygkRJdm3iPcSJeO6UJxQPCi3lFfHmNuZPDHxxpZhG+cbzctyYpC
+	 gwwJBiixcOmqCGMu+ZIaxUB4M0b6n6zAT3mN9Z6UaR5TPGpKQwZdHU1/UkFonUkua0
+	 uqxhfMrnFUcE6Y0EJm6sMPgsXcYiL6vfHEElFG9NMVInU0jERzCxr3qqIlEJu8WxlR
+	 E0/RtxjrwuITA==
+Date: Mon, 28 Jul 2025 07:13:28 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add
- LinkStar-H68k-1432v1
-Message-ID: <20250728-dashing-discerning-roadrunner-bc8b87@kuoka>
-References: <20250727-linkstarpatch_v4_6-16-rc1-v4-0-0dfa7aa06ec9@tahomasoft.com>
- <20250727-linkstarpatch_v4_6-16-rc1-v4-1-0dfa7aa06ec9@tahomasoft.com>
- <9ebd9797-8d92-4799-bb8d-59a796e6043c@linaro.org>
+	Simon Horman <horms@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v6 1/7] dt-bindings: net: airoha: npu: Add
+ memory regions used for wlan offload
+Message-ID: <20250728-pompous-bull-of-argument-ddda6c@kuoka>
+References: <20250727-airoha-en7581-wlan-offlaod-v6-0-6afad96ac176@kernel.org>
+ <20250727-airoha-en7581-wlan-offlaod-v6-1-6afad96ac176@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,36 +64,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9ebd9797-8d92-4799-bb8d-59a796e6043c@linaro.org>
+In-Reply-To: <20250727-airoha-en7581-wlan-offlaod-v6-1-6afad96ac176@kernel.org>
 
-On Mon, Jul 28, 2025 at 07:07:32AM +0200, Krzysztof Kozlowski wrote:
-> On 28/07/2025 02:03, Erik Beck wrote:
-> > Add device tree bindings.
-> > 
-> > This device:
-> >   - Has not been supported previously in the mainline Linux kernel;
+On Sun, Jul 27, 2025 at 04:40:46PM +0200, Lorenzo Bianconi wrote:
+> Document memory regions used by Airoha EN7581 NPU for wlan traffic
+> offloading. The brand new added memory regions do not introduce any
+> backward compatibility issues since they will be used just to offload
+> traffic to/from the MT76 wireless NIC and the MT76 probing will not fail
+> if these memory regions are not provide, it will just disable offloading
+> via the NPU module.
 > 
-> Irrelevant, drop.
-> 
-> >   - Is a single board travel router made by Seeed, using an rk3568;
-> >   - Has four ethernet ports;
-> >   - Has four USB ports;
-> >   - Has WiFi (MediaTek MT7921e);
-> >   - Has a real-time clock (rk809)
-> > 
-> > Base commit:
-> >   - commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494 ("tag: v6.16-rc1");
-> 
-> Irrelevant, drop. This should NEVER be part of commit msg, because it
-> makes no sense once applied. It is not even true in that moment.
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../devicetree/bindings/net/airoha,en7581-npu.yaml | 22 ++++++++++++++++++----
 
-Also now I see checkpatch warnings...
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
