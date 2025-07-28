@@ -1,83 +1,122 @@
-Return-Path: <devicetree+bounces-200098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACA2AB135C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:36:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75EAAB1355D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C4FD3B2962
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:36:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93730178E99
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328AB1D61A3;
-	Mon, 28 Jul 2025 07:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8D5222577;
+	Mon, 28 Jul 2025 07:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Dkfb0xjX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD121A2398;
-	Mon, 28 Jul 2025 07:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBFE223301;
+	Mon, 28 Jul 2025 07:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753688201; cv=none; b=fVekwluOJ7xCcmMAW/n2sAFOrgZN46GBlcf3J/emP+x6dCbGf+/4luKMr7IPcZdOpHvNLQR6Ku+3KvgR6yuVNMqBH7qHn4mRmutSQc7IUP8rXEQGXX98vOavcy+HY8P1CjSoOEryt/QwvBprz/iJyTUWfywXMAeflvu3dPGMlME=
+	t=1753686605; cv=none; b=K4hnJ3n726JjZ/gYxcibNbpOdPkNVHp5j2eCeWjHdB7UJH8Ja+dVdliZ49LkNe+g7Zd53RLnLnc5xxBXkGPKM3s6Uld61HvhonkJ2bO1V9k6hFDK6e+6oj2EL4qH/tf6uWAzOpBZ7JymQYElj6fXJ4P5QKAlmRGkOPPWHNgahsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753688201; c=relaxed/simple;
-	bh=JKGhf0/5uchtKIIrzcl+XcKCeBE97i8IJWxiuyOKtTA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=evgpsgg+W99PcEzDF2UYXMl3SfnAp6B14W/qdb0A3fJ8v/Ln5BRtX3Rp3c8Y6pPtLG2+GLwNf4/uZXyUKkoP9pcwXCWrZE4gvF+JWTu3WclQaDu4S2j/FFohqdLVTilj4q6tBnlBYdETtt9N9dnh6HdzKKBuwj7lVQTbhcANEUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.213.139])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1d71feaf9;
-	Mon, 28 Jul 2025 15:01:00 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Add SFC node for RK3528
-Date: Mon, 28 Jul 2025 15:00:38 +0800
-Message-Id: <20250728070038.174726-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250727144409.327740-2-jonas@kwiboo.se>
-References: <20250727144409.327740-2-jonas@kwiboo.se>
+	s=arc-20240116; t=1753686605; c=relaxed/simple;
+	bh=fELmI1I7WwxoqLk6NoJJj3JbPs2L4fWVDFlsNfL0Py4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sx9E5qpZ1Ykhyyzj9gTsbnAJKTkp946KyPsSEleI59fbcUOvOVxA7jATsDI/SriveoOkVdvlTkDLZmB+X9Md62QCq/fsy5R7xnROB+k8O/U8HgeGQ4JOPmh1vtmQ3UvXLR/pnZ/4pXzGrw30qBy4FE4vw6stJTxIV+jQms/Pnq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Dkfb0xjX; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753686604; x=1785222604;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fELmI1I7WwxoqLk6NoJJj3JbPs2L4fWVDFlsNfL0Py4=;
+  b=Dkfb0xjX69nDO7pXot34jXca5xlZUiwZdH8S1VUfyvWhScC7+Qa2Bx3n
+   XBpXJdHNZu1aBsNJLoVNoGo5mOBUJkAcG2LSePGzwwasi5vEWpA+kz7Qz
+   T/feAB0eys3SkG8MKjKGGT8NYLQdwPcU5XUVvEragLD647OPdGD8dXYWw
+   ddRPtLJfv2u/JwgiC1YuP4VcXd+KgHsE1f+ZmNiBOZ1TftanwK5ozXva8
+   Cs9zboavIP8CZ770qnyC1lhr4d56elRgZzQKuHh0jh/Tv0S165GwIJwgv
+   BD/g4kptmdRcEV2ocySc+yyxgmXlgKIae21jaKFWy3HCfddsU6fgs29SS
+   A==;
+X-CSE-ConnectionGUID: 7mIbDmQCREiWvdQINKaMyg==
+X-CSE-MsgGUID: CoGl8GkASrKQkMNmowPG7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11504"; a="56018455"
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
+   d="scan'208";a="56018455"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2025 00:10:03 -0700
+X-CSE-ConnectionGUID: 1b5uAKZ1R2WvX6VPVI7RUQ==
+X-CSE-MsgGUID: jWFNKIIRRFOiYMr0h12pjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,339,1744095600"; 
+   d="scan'208";a="162792296"
+Received: from black.fi.intel.com ([10.237.72.28])
+  by fmviesa008.fm.intel.com with ESMTP; 28 Jul 2025 00:09:59 -0700
+Received: by black.fi.intel.com (Postfix, from userid 1001)
+	id 7A1A615B; Mon, 28 Jul 2025 10:09:57 +0300 (EEST)
+Date: Mon, 28 Jul 2025 10:09:57 +0300
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+To: Pratyush Yadav <pratyush@kernel.org>
+Cc: Alexey Charkov <alchark@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] mtd: spi-nor: Add a driver for the VIA/WonderMedia
+ serial flash controller
+Message-ID: <20250728070957.GT2824380@black.fi.intel.com>
+References: <20250510-wmt-sflash-v1-0-02a1ac6adf12@gmail.com>
+ <20250510-wmt-sflash-v1-2-02a1ac6adf12@gmail.com>
+ <mafs01psu89sx.fsf@kernel.org>
+ <CABjd4YyRScBgDbi8Sk0D3vxcmLF8+YBetUdkfhrS_4Y7M+gS1g@mail.gmail.com>
+ <mafs0h5z1snn7.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a984fd5af4203a2kunm29ba9c68148cdd
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaHx9CVh1DSUpOHkxCSkpNTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKSEJZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
-	tZBg++
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <mafs0h5z1snn7.fsf@kernel.org>
 
 Hi,
 
-> +		sfc: spi@ffc00000 {
-> +			compatible = "rockchip,sfc";
-> +			reg = <0x0 0xffc00000 0x0 0x4000>;
-> +			interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cru SCLK_SFC>, <&cru HCLK_SFC>;
-> +			clock-names = "clk_sfc", "hclk_sfc";
+On Thu, Jul 24, 2025 at 03:51:08PM +0200, Pratyush Yadav wrote:
+> > From what I understood, spi-mem primarily expects to be talking SPI
+> > opcodes to the controller, and for the controller/driver to bring
+> > their own chip probing routines. This controller on the other hand
+> > abstracts the opcodes away, and wants someone to tell it what its
+> > flash chip can do (the controller itself can only get a chip ID in
+> > "normal" mode, and it needs to somehow know the chip size and
+> > standard/fast read capability of the chip). So pretty much the
+> > opposite, huh.
+> 
+> Does it use SFDP to figure out which opcodes to use? Then it feels very
+> similar to intel-spi. See [0] for example. I know this is fitting a
+> square peg in a round hole, but if it isn't too painful then it would
+> make maintenance on SPI NOR end a bit easier.
+> 
+> Mika (+Cc), you did the conversion of intel-spi to SPI MEM. Maybe you
+> can share how painful/easy the conversion was, and if it ended up being
+> maintainable?
 
-The clock* should be placed before interrupts.
-BTW, doesn't the sfc node need to configure pinctrl?
-
-Thanks,
-Chukun
-
---
-2.25.1
-
-
+Well it is kind of "maintainable" but the driver needs to do whole lot of
+translation to get the SPI opcodes translated into the commands the
+controller can actually execute. This means that if we get new opcodes for
+new chips the driver needs to be updated too. I feel the SPI MEM is not
+really good fit for "higher level" controllers like this.
 
