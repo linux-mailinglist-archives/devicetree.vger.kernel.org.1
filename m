@@ -1,123 +1,192 @@
-Return-Path: <devicetree+bounces-200018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E539EB1328E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 01:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1BBB13293
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 02:03:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F2A53A8F8D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jul 2025 23:59:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 279163B61BF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 00:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04A82528E1;
-	Sun, 27 Jul 2025 23:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0A836D;
+	Mon, 28 Jul 2025 00:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TKyVpY3e";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="lAXQlp/w"
+	dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="nF/faPlY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3011A254E;
-	Sun, 27 Jul 2025 23:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1FFF1BC5C;
+	Mon, 28 Jul 2025 00:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753660766; cv=none; b=CCcjU97NYU1wgEfNHmapPd0XRqjhiTRQGhXWA2eR700nqVvwssES6h/aSscYshIS8emkL918Zph1CROL761L72DpCvXameNLAPH+yyffj0qV6BGyWpJisYlWGBwihIKfMyqep/irz614RjRQdg5bS+aIeOHxKLKQ8c2LSztMBhg=
+	t=1753661010; cv=none; b=or56p2WWUKnMAakWzTzEqsVkFCVXKR/ZJuMtZZcocL8TLQqTiEFfh70meG2v4pBpcvviM/SmQk1gtOdmm3XivHGZlkLt317qQPAB+rmteOOfoS3Knc0iWii95lFDUgyolW/11MyPm3kqYdFOUioz7qqwXvBu8ZJqMbtnH7SIpp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753660766; c=relaxed/simple;
-	bh=IDPYYq6+Y7hVelxWz1YJTxIp2lHzHE4a58b7PCwGess=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qgsTEw0+TOcBS9oHyw/h4JIpFwz9E7ueaJ7SzuYbF3A1VxpD0vywaCJNiwBA+gNKqoISpUduN1NlUwBDstTXxW4yMKOJGpzs9V+kC5pnQzykiUZvW2Yj6j2c9SLW/LO3hdajOBAwRAIiAzVpHdM5erza0Yv6JcL/108waPuvhfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TKyVpY3e; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=lAXQlp/w; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	s=arc-20240116; t=1753661010; c=relaxed/simple;
+	bh=6vrdKbRCJyD0LWK2qqYSjBdh3A5KmFbKK1liI2Tilsg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rTWopblBfy5kvSlgqxaF2q7+wEei1HgV1ITE3kmKXG61rv0ih1cinoiCFtbQJ5VH69GM43bKzr+Fs+dgB5DpiQLGDj8VWrChLv8QDr0L++60T9YWPD4Tp0q9sD0Qk2My5BpaR9tMmRgS+DMriUAe0jlAzyL+EPt7VJCKJ5137Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=nF/faPlY; arc=none smtp.client-ip=209.222.21.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
+	s=default; t=1753661002;
+	bh=6vrdKbRCJyD0LWK2qqYSjBdh3A5KmFbKK1liI2Tilsg=;
+	h=From:Subject:Date:To:Cc:From;
+	b=nF/faPlYmOW9P4rXXebpd4UiERUFYUKTcuMP20DkSADBd1mygtip0xkInPMNaEeee
+	 1k+RHG5LWt4AjSfA5GC7UFwBaM6sREQcmxLRT6HDrFWMadlc29A8/QqcA5K60QMmQH
+	 D8slGaMTDNg+K98EEshxgXaq8AmuEvgsoL56FKG+EdbdhbaDnkgQnqPda5ECXhHpqp
+	 9aJqRiZfpFSHV34B7PwcVyFQpWibx1egtsvdnCFMqBu0XroZAfPfxPpuDKCUPizeji
+	 6l7+UUiHINCv5/11YuCULFv69MjQgNH8rB9eTLqgji2sOQXsFBUSpcNPxRtkFqLqVi
+	 VO9EMh2Kqp+Dw==
+Received: from localhost (unknown [IPv6:2600:4040:50b7:b604:6c1:3a28:af02:372c])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bqz9Q4SzKz9ts4;
-	Mon, 28 Jul 2025 01:59:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1753660762;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=bwZHfv7bs22p4Cd8SYFjyk554kcj5vyp15h3G865eEE=;
-	b=TKyVpY3e0Ezo05THuHsVjXU/1Au1XHtzYyy/wpZ0vjU5HHtZMPHsgcnRvTMGYUCvwMU9Vy
-	3Lodl3zuCTP7gZUlRX8hLhWBPpnIm1KRAhYKMjLJ01r0rJ1W/K8iyk3wZDPfnyLpuOoD0V
-	ruVZVwmEdKwoAmuPQ7wPuaayJciWv9SAgEtrAX4dLxpjLGqM/tmq3HGwwKEXSVO+2d5vQ2
-	fv/3cgxo/TJR+o36U0Kq/XqO+2Endcs6KECE8aVq+GIs/5gtu61qRb/mpF26+ChpnPtYtG
-	Kf5p0DoZTmmtyvCUUyyvH1RL1gtxQlSS8GsUp986ZrJKXY8LhaF1RHoxtlXXCA==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1753660760;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=bwZHfv7bs22p4Cd8SYFjyk554kcj5vyp15h3G865eEE=;
-	b=lAXQlp/wAco/VJfFAoj+xA+R2PIFhVSiVLS6QLzNGqTZ0k6bHhJJ4ckiBPB9EFuBnsHz4Z
-	VScNwsGsxNNspa1qFNve6jK1HJ+FzMXtWUq8d7GvSS+8d3WBzmerqo+8nixKATqVWuhe/Z
-	X6gdlU4JmHh3BivobECsCg2XS23EaIMfve8mBJqO3aU+X/mTaRVcUGHdt5xCIIoUxLJ+Xf
-	HFvHpZTcicSwLOj+yxT8jx4Dj+JKx3q2OHN0V+ebnDq0xHtP6/c0f8Oszg99L76jy6kSU3
-	hf3hasTzLOLKz/vChpcAZx6cTnjpnt8oXMczU+7TSZ0dKwO0xAz8aAGsltks8Q==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: r8a779g3: Invert microSD voltage selector on Retronix R-Car V4H Sparrow Hawk EVTB1
-Date: Mon, 28 Jul 2025 01:58:11 +0200
-Message-ID: <20250727235905.290427-1-marek.vasut+renesas@mailbox.org>
+	by chumsalmon.baetis.net (Postfix) with ESMTPSA id 4D05827E434;
+	Mon, 28 Jul 2025 00:03:22 +0000 (UTC)
+From: Erik Beck <xunil@tahomasoft.com>
+Subject: [PATCH v4 0/2] Add Support for LinkStar H68K board: ARM64 and
+ RK3568: dts and dt-bindings.
+Date: Sun, 27 Jul 2025 20:03:18 -0400
+Message-Id: <20250727-linkstarpatch_v4_6-16-rc1-v4-0-0dfa7aa06ec9@tahomasoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: c9c00573611d0c9b9cd
-X-MBO-RS-META: ks969f3mpqpgnwzwryfpo3os8kbkwktd
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEa+hmgC/x3MQQqEMAxA0atI1hOIpVacq8ggtUYNDlVSEUG8u
+ 8XlW/x/QWIVTvAtLlA+JMkaM+yngDD7ODHKkA2GTEW1cfiXuKTd6+b3MHeH7RyWDjWUyLYnCr5
+ vBjKQ+015lPN9t7/7fgDAEerjawAAAA==
+X-Change-ID: 20250726-linkstarpatch_v4_6-16-rc1-e4b00cab9d02
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Erik Beck <xunil@tahomasoft.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753661001; l=3848;
+ i=xunil@tahomasoft.com; s=20250724; h=from:subject:message-id;
+ bh=6vrdKbRCJyD0LWK2qqYSjBdh3A5KmFbKK1liI2Tilsg=;
+ b=K9rdSoH2lM/WDBF63+iwo/GNOV02v80drHgJXnKwGNTfndU8uB0Zx5Pb/uIPc222liiTcqwaN
+ 04bt8KnLApyCKWSSpa1IQKaF0wFWrnAoiHERkggzUT4fBtahoRYTO7o
+X-Developer-Key: i=xunil@tahomasoft.com; a=ed25519;
+ pk=FTZVGUexvkWb4j8v0wbtm7CtJLijIAaa5x0XV72WWC0=
 
-Invert the polarity of microSD voltage selector on Retronix R-Car V4H
-Sparrow Hawk board. The voltage selector was not populated on prototype
-EVTA1 boards, and is implemented slightly different on EVTB1 boards. As
-the EVTA1 boards are from a limited run and generally not available,
-update the DT to make it compatible with EVTB1 microSD voltage selector.
+Provide support for the Seeed LinkStar H68K-1432v1, previously
+unsupported in mainline Linux kernel. It is a compact single board
+travel router with the following features:
 
-Fixes: a719915e76f2 ("arm64: dts: renesas: r8a779g3: Add Retronix R-Car V4H Sparrow Hawk board support")
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+  - Rockchip rk3568 SoC;
+  - Four Gib RAM;
+  - Four ethernet ports:
+    -  Two 1 GigE ports;
+    -  Two 2.5 GigE ports (RTL8125);
+    
+  - Ethernet ports support Precision Time Protocol (PTP IEEE 1588);
+  
+  - Four USB ports:
+    - Three USB 3.0 ports;
+    - Two USB 2.0 ports;
+    
+  - Integrated WiFi:
+    - MediaTek MT7921e
+    
+  - Audio and video outputs:
+    - HDMI;
+    - Headphone;
+    
+  - eMMC (32 Gib) and microSD storage;
+  - Real-time clock (rk809)
+  - Powered by:
+    - USB Type-C;
+    - Barrel connector (DC 12-24v);
+    
+These patches:
+  - Create a devicetree for the board;
+  - Add a (dtb) Makefile entry for the board;
+  - Add the board to dt-bindings;
+
+v4:
+  - Responsive to comments received from  Krzysztof Kozlowski <krzk+dt@kernel.org>
+    - https://lore.kernel.org/all/20250725-muskox-of-authentic-gaiety-b8eda4@kuoka/
+    - https://lore.kernel.org/all/20250725-nocturnal-messy-cicada-dbcc10@kuoka/
+    - /* (Thank you Krzysztof!) */
+    
+  - Changes made are:
+    - Clarified the base commit working from;
+    - Base patched against:
+      - Commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494 (tag: v6.16-rc1);
+	
+    - Revised commit message for devicetree to be clearer, contain
+      more details about the hardware, and be more succinct;
+
+    - Revised commit message for devicetree binding to be clearer, contain
+      more details about the hardware, and be more succinct;
+  
+v3:
+  Responsive to comments received from:
+  - Chukun Pan <amadeus@jmu.edu.cn>
+  - Krzysztof Kozlowski <krzk+dt@kernel.org>
+  - Rob Herring <robh@kernel.org>
+  - Heiko Stuebner <heiko@sntech.de>
+
+   /* (Thank you all!) */
+
+  Those changes are:
+     - Removed copyright line of <amadeus@jmu.edu.cn> per their request;
+     - Fixed indentations;
+     - Replaced space indentations with tabs;
+     - Packaging this patch set together properly using b4, fixing the threading;
+     - Clarifying versioning and Changelog;
+
+v2: (https://lore.kernel.org/all/20250721201137.233166-1-xunil@tahomasoft.com/)
+  Responding to comments received from Heiko Stuebner <heiko@sntech.de> 
+
+  Those changes are:
+
+     - Splits the single commit into two, one for the yaml binding,
+       and the other for the board devicetree plus Makefile addition;
+
+     - Adds other recipients needed from get_maintainer.pl --nol and --nom;
+     
+     - Uses git send-email to send the patches, to avoid adding line
+       breaks from the MUA;
+
+     - Changes comment style to conform with style guide;
+     - Removes several unneeded comments from the devicetree;
+     - Changes LED naming scheme with more standard nomenclature;
+     - Changes naming of regulators, prepending 'regulator', such as:
+        ~ from: vcc12v_dcin: vcc12v-dcin {}
+        ~ to:   vcc12v_dcin: regulator-vcc12v-dcin {}
+
+     - Removes unneeded tx_delay/rx_delay from rgmii-id
+        
+v1: (https://lore.kernel.org/all/20250718075058.243a5619.xunil@tahomasoft.com/)
+  - Initial patch to provide support for Seeed LinkStar H68K
+
+Signed-off-by: Erik Beck <xunil@tahomasoft.com>
+
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Erik Beck (2):
+      dt-bindings: arm: rockchip: add LinkStar-H68k-1432v1
+      arm64: dts: rockchip: add LinkStar-H68k-1432v1
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-index dfbf2ce7e23a..9d702b74c288 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-@@ -194,7 +194,7 @@ vcc_sdhi: regulator-vcc-sdhi {
- 		regulator-max-microvolt = <3300000>;
- 		gpios = <&gpio8 13 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <1>;
--		states = <3300000 0>, <1800000 1>;
-+		states = <1800000 0>, <3300000 1>;
- 	};
- };
- 
+ .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../dts/rockchip/rk3568-linkstar-h68k-1432v1.dts   | 740 +++++++++++++++++++++
+ 3 files changed, 746 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250726-linkstarpatch_v4_6-16-rc1-e4b00cab9d02
+
+Best regards,
 -- 
-2.47.2
+Erik Beck <xunil@tahomasoft.com>
 
 
