@@ -1,221 +1,214 @@
-Return-Path: <devicetree+bounces-200273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24F1B13F0B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:46:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA989B13F21
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:48:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7D7A164782
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:43:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57CFC4E1B7E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26857270EA8;
-	Mon, 28 Jul 2025 15:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A4A2135D7;
+	Mon, 28 Jul 2025 15:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F6gBhE+m"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="i2qCGPva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2DE824BD03
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 15:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753717435; cv=none; b=nb5kPyWE+Bmv1iJg1clRR2bQy0tejYFPc+A1iw5vEAFoZL6GyZ/BDJvuGAUqXnRSS6Php9iUozPJtc9pUoiQG7bNpE5T0LPQocG4IrQgrqHwaeg4CHFZkVdd9iudKFPhOdgRf+JTCKNyqDmrAlg82q8wjzJ6h7tLtl5eFhbpzxU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753717435; c=relaxed/simple;
-	bh=p6jswuQ+V541U00bNC2MfY/rFbL8CPYowUsgW1LTeZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JR46ymSkYRtB/6WyxZ9gMpdLZG5fJhdUpEiVEmUteX5+BBr7E9+ibvrjMMV0+9MuMLbbGaf003FjPAqFmjBizOPlG8RmjLKTOdpyfzomFIfl5X6yjCeT+RifnJh0Hh6Ea32jEWe/2ug96kRfkQGeVA/sgO5ZGok2GDqOzqQniys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F6gBhE+m; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SAlMaQ023465
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 15:43:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vravO/6khNRvhlPxzNQ/FnndOxyVsrk4qImwPP/3MTs=; b=F6gBhE+m6cQWFMBS
-	FNPdejfcQVQlLWaI3KZQmslLdIpzC/Gp4sxo3nLGPPnL+RzpeMbm8WFmbyVaumOy
-	oEx54W7hUEzCC9aH5hgyko40SF+WlBJieNNXiQ5zTT+HaDv7f6zLdSLqRDo8rJ16
-	h+YF1v6YCp51kVWV9IcaQQFIBMxNOtIAoKxLkpzpF28T1yB3KdGq+LnrPGxOzx/Z
-	V5nHCmMkZRXJRtpRlaIxdvl/1vuVKtOp937tqTOd/Ybocf78AxMJ1voGCnqu7BSu
-	cWg2cFAO+4RfiJVCeL/ljOaJ2UZwiU16cXwUGg5fKWBT67b3Z9KwLJOlwu8CrYNL
-	J/SdNw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qn11r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 15:43:52 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-7074cb63bccso13577456d6.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 08:43:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753717431; x=1754322231;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vravO/6khNRvhlPxzNQ/FnndOxyVsrk4qImwPP/3MTs=;
-        b=eG85TTP2fe/HlEXfVbqI1yVUTjuKRJz5muymGbYHBdu4z8ynsOUmhptbav6HmD7w4i
-         5ku/nQe3MV3Z7kfL+6/Fti4WeWMohAe7Z9axvbXSRhgTmTNnsR1MeiGM0/Ir6kncw5VS
-         fUaOXKfjWOuUUiZjUqgSrWAh/7wyVnx5W86UsVR+8y0dsq0GHC6Ljg7Z/EaIIZuZVcy8
-         hVl7ZLlHpNxBLkmCVF/Htld3vx9Srz0nBGgWchkitPts/4tUsMyox9wUjYRMUa/WHxnH
-         Ue/gsGZBtkMmhRDPFuoK/f6YyMmApW9MAfNtOAXiPhrZkcxrXTRb4ZQj2l2MLAdtjD8V
-         5jbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvuU/+0HIAd4HXJ/OF02e3GL042EPArYaoaURbIutScEZN6ichqsP5IuGmoyWDAGj59VGcj5VRxgnF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSnjAHAH4+TpjiY0IBM2dsWY8VFLCSRSYsf4GLErzjNy+EactL
-	UiLWdXjBOwChplo1ZY8/l87+ROtS35+sSmCeUYRPmSnmt4hFWOrvYpLUImpu6YfGxjuw98Mjoit
-	Cuhf6ufg0Vsxx4ISNGII/AuhrAkCLR2jOmb4Z6/qdgVKIATE4U9fMjYXvZxbjBgRe
-X-Gm-Gg: ASbGncsKLCMwMr9lnHWrMEI1x4+b+Nx9Mi/IZSL5OH7JssO3Oud3Act+bCZA9J2lF/c
-	SokrTkK0MNxYjUNQchsSx6d58npx1MMZvhcY3h2E+N0HeHi3xMwPnrs+H6mOS+WqBkW7ijDeaqE
-	nZhQ6nBP4jeAai3qsrSsDAvR8z5ty/+bw8opMwaQjq4phewnW7DLrUQtsnVgcbiDu/uj3BgP9Ca
-	7G/nnea11PY29JI7dIWwBcd3/I62q+ocXuA2gQUh8A3b3vMbNMRKuGEIhwq3ysbKalo2ME+R4gW
-	tSwQbUZkY96Vm1g2sLfuQ/vHoC391oAgYadQf+zJrhq7VG4CXkD2CbBv0MJMv/Cp/YH9fb8oHoP
-	voxlUGmQWAQfN3ClsQuAtOPKk2xMT9MyC0kqRw5QKW50HgImOMCH8
-X-Received: by 2002:a05:6214:2526:b0:707:49d9:2580 with SMTP id 6a1803df08f44-70749d928acmr45930346d6.32.1753717430542;
-        Mon, 28 Jul 2025 08:43:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG9IABiVxzBbfc7hwa3mCRlg2TuSRU6F+DG1TSpnai1vC7ywlpehy/nsTnNAXNFPNLKo10uXQ==
-X-Received: by 2002:a05:6214:2526:b0:707:49d9:2580 with SMTP id 6a1803df08f44-70749d928acmr45929666d6.32.1753717429713;
-        Mon, 28 Jul 2025 08:43:49 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b6316db8bsm1325177e87.5.2025.07.28.08.43.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jul 2025 08:43:48 -0700 (PDT)
-Date: Mon, 28 Jul 2025 18:43:47 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Kevin Tang <kevin.tang@unisoc.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/12] drm: sprd: register a DSI bridge and move init
- code to pre_enable
-Message-ID: <h555ivhoyfykmw44xch6y3bwlqtewgqks33j4rqw4zkcbdkxih@y4pori4lff6h>
-References: <20250719-ums9230-drm-v1-0-e4344a05eb3d@abscue.de>
- <20250719-ums9230-drm-v1-5-e4344a05eb3d@abscue.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D3D2116F4;
+	Mon, 28 Jul 2025 15:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753717531; cv=fail; b=WMyyp4QmySr0xywcGoj+A5ZBge+5qcMwEvX1gUobfbslFiymY4sW+x1ufMlxaijPwivsNtEXGgUBF0Vrv7smBpupz+Skx1HANzxsB8Cc78/nbN2yfBK30XBsQiwHiJEahF9DHbZ+AlYkSc5/Oinb9oPRjhLh7JnHwCNSk7wHWmQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753717531; c=relaxed/simple;
+	bh=FhHaFvKj7do9p4HZeWV1N46aTdKO22bnD+I7OUEXrdI=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=ZUskxeZEuvYFEQGZKa/vvP4HFjiW43A5FatYhJqGzg7xZrU0LTSSpCfNBw45XuvBG4ThbxR59YUVBnA2Qma4DtffFqp0sw9ux9X4FJ9X+IciDCDKUaF0esuZAfyOyj58AD1dkVuV+E0Lqhl8gLPS2pqcQQlqJHkAdSwpYoeUrOM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=i2qCGPva; arc=fail smtp.client-ip=40.107.93.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QNpKDGbkdDe/ELFHqldOB4InmHHFvj6uFIzVS7jwZw1IQ2JNO6pBY97qMDpUA8dokQ3b9ShvMXE54HauEbPOxECXbqCEGHRlc4qi5gcN/xasYF0pZJAWp0NpwsM1lf6HWkhX6BnVzuQz50e8UnjUAlPopDFK3twqzOErUwREt7ZkenEb9cIcy9BBZAuPGfFpLpe02qpwvkKS3/BkZrTMbgCbF7mqyadZKbo9WxKZzvLjCMHnAe9SbannXBSlvVM/7SBukk1mMz0j3CV6ojoVoIwp85jmGRTn97kbaB4HR3+Kqxr4V8dnKei/HJsIJu3Dk76KiPw0xuCYG1ZP6uxCNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EmEGYnyQiuyMEkL3jTkm300Igq5wwvYmEieaeK6HJqU=;
+ b=CcIbkH61JTh4sup9no91BmSLwAO06o3i/TmeS1MpRNKX4IVCsIFjDCmfDK4xZoqNlx1icio8fxsNlR44to8f+qzyCHSxzqwW+IF+8mler61hQQi82wKTKLltXfZVo0Wj7ioi1Q2SXf/J+saLOvR57sPQ6cnrd9tddTnNcm1gUl9heJcRHhSP2G/+E3gaPawNdnI5z9a4hqosyDRN0udAxHwgKyVQGhz3DVPzohgM6pi8qn04PZDM4OyW/6S2egWFMfSpKgVG+xFJb1PQytNyeSj4mLqBrE/4jXE/LNNluXLFwenJs5p628E7JNxsMzTxEFXkL7jSdVagY3dJ5lwa3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EmEGYnyQiuyMEkL3jTkm300Igq5wwvYmEieaeK6HJqU=;
+ b=i2qCGPva9jIqO7y2ZfkZ7T7sAflFVU9z+oJQhsGPw6CmNGRdCm7lNJGO7E7SUzz/NEQqlSbKd/XqMsPEiyHWIQEQhEIn2pyTZTD8jGVrBmF0bCLT+Df0yuRXE1w24Xh0CZc25fe7xR3heBtgWpymEBd39II42t1jz3wNYXE1PpI0XyNdqUnvsnbf3nqQq11Xis2eJrbqqrlHbQmwZUlpWX3gjb0P9y+qwk9lXfhh31Y6LV400pwSNy2hLANRjmHeVYMrOhrdb4XZdJEfbeFsNLhMfTH2O4NlbmEZKp67emgFnYWkpTJPH9mj4TxMt+lZ0zClavfSSbz+tUzdZqSL/w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
+ by SA3PR03MB7489.namprd03.prod.outlook.com (2603:10b6:806:39a::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Mon, 28 Jul
+ 2025 15:45:24 +0000
+Received: from BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
+ ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.8964.026; Mon, 28 Jul 2025
+ 15:45:22 +0000
+From: Matthew Gerlach <matthew.gerlach@altera.com>
+To: dinguyen@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>
+Subject: [PATCH] arm64: dts: agilex: add clocks property to clkmgr node
+Date: Mon, 28 Jul 2025 08:45:18 -0700
+Message-ID: <20250728154518.299282-1-matthew.gerlach@altera.com>
+X-Mailer: git-send-email 2.49.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR04CA0028.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::41) To BYAPR03MB3461.namprd03.prod.outlook.com
+ (2603:10b6:a02:b4::23)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250719-ums9230-drm-v1-5-e4344a05eb3d@abscue.de>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDEwOSBTYWx0ZWRfX5iB//1dbT09c
- KF8yYZNSjtznRsRaRv62N02IMytNIpE7BI7OaeuR63cn4Kkpv/ao87bm6s0uKPVZbVryS5a6fSq
- /MdYnWv3/BhkuletbFzDNB9y/MKHDaDIK1roBR/sOGUzmg4mMW3e8xxiPbTdYMXpykoxv4Xk+sq
- 6tqB2Oxv7s5bbaeisuqLdmOLR8dh07WVnAE1ulWg3M1xgr6xeRkeTvJ6kQJYzAOqHBTmBHRSMfG
- OUs/OTXggzvASkn6S1x3mDTAofwIqk3JIdOvhariwl6fLTu42LkmmcMXcsucmG3FKSDdvzgWUPa
- FNyeLks5Jf5XBSx/K1b2XascFaCDln/8Rr2m9LbgM0WRpNZ9zFnlE5Im8y959NuhgjuCHGlXRGZ
- FXy7HGbLoJT/vedHqOP8y7v4iKklbNAA96JIaIytP95x7WbMjaNwHo6xkmm40WaZ/149ENSA
-X-Proofpoint-ORIG-GUID: bvkm8VatQ9Z3IUoa8W42om5qrBaU05qq
-X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=68879ab8 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=Wb1JkmetP80A:10 a=fR7qSs6sQ28PYmOJ40wA:9 a=3ZKOabzyN94A:10
- a=wPNLvfGTeEIA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: bvkm8VatQ9Z3IUoa8W42om5qrBaU05qq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-28_03,2025-07-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507280109
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|SA3PR03MB7489:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca3f8324-893c-4c5d-6cfa-08ddcdedc32c
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pR4p9jP65vxgYP4W2oftmq36LznHr12umBrsrZBNHmKj2nJ/YmYLKywKfHLq?=
+ =?us-ascii?Q?Em8VMujuSH4ZWWeEY5qc3uAKsxojoTWfrmYBlEtRlAftt1sViI+eDfOFLf64?=
+ =?us-ascii?Q?SYiTJht26LWwezfkbMiXmzyabqvrbg7QsrGj2gOqjMufY3WcmH5sDP81UKe7?=
+ =?us-ascii?Q?RQjACiCvBEzJz/iBkkUsIQI+E7C5Q3lYcli21flF6s5/I5bDtt3Vo3GBrtuV?=
+ =?us-ascii?Q?uKHfAbNJcvD8maThztCof8vyvuEKstmD9TQFxNU3nlEVelwi+f1+ksWK1iyL?=
+ =?us-ascii?Q?c8BGZFItMXw1PpgSCWk3EShf3v3I1MdjlDSZ/OqcTxSe/ngSJySGu28TvIpv?=
+ =?us-ascii?Q?a9ezd4aUgWvLk3JngWthLdxSs8kS/aY19ufRohEuCsxfPCZKgCiZeZ6vVA7t?=
+ =?us-ascii?Q?QVkMt1b3JYsI4fm0KYjhTCBOnHWJP2T8bzdN476zbJW7hYEAoHK0qBE8ot1c?=
+ =?us-ascii?Q?ZX/DYJMriFdtiEsE8kwbBnidV4bc0D0Q20IFSjEuCpGYDWyULZONkWqw8Miu?=
+ =?us-ascii?Q?61hKc+0SvX318AmCvt74bTFuyTb8HBEqbQ+YArADeKd8vzIUXEmhYf5T8TIt?=
+ =?us-ascii?Q?Tukm9EfqVcV2SUtLEnLOWRDM6BvyKWegrTDxAdXWQzOv5ErQAakEtAh9L136?=
+ =?us-ascii?Q?+6D028nX17wpirdhV0QrvNDHPY9JW1y1T5gAuEzurr+9gX4tVPlryA4Ew/M0?=
+ =?us-ascii?Q?wo9lQ3+KpXLWZdVANwzg/s4TZ0tr1snHav1zPw4clU49FzM5FU2sCMNwCKro?=
+ =?us-ascii?Q?AGEN6FwCp8UQvSMYy/MmYwWW4ustbEUzWF941oA+FnY+lKP94HaW/FruStO6?=
+ =?us-ascii?Q?OCRZLogmYRQDpo7MgW04gIQF4PBt4+QAJS8olBCHvXvzQXw+bJsK4BfO1Ib5?=
+ =?us-ascii?Q?IXi7oIfqDVtOUcfiMTDJ9GgCKxPRG2eGv6taQoLASKdAo0OXmvsMGHMU2VWB?=
+ =?us-ascii?Q?Q2BYD9QbKLp8X1jkEe8gel6qZ46DD4nj/I3jCzFayDVuMkCS8dioP4/Q0Xbo?=
+ =?us-ascii?Q?sEUF8XK3rqOaMx2xIrnfJRxgFreq2yeAxlpw4AJdJV0VSKsvG4mo33GwXEZw?=
+ =?us-ascii?Q?F4fdd7bUdvpClB9fUnQUAMfVWlxEng0TR9oMc9J3vGYOG/Ser7Z9o1YNr/gh?=
+ =?us-ascii?Q?Mu+tU7kOj+IpvBkKXSJHLU4IbtUKAFl2LPJNIbmJetRbdzFso9w1Fh1SkYJW?=
+ =?us-ascii?Q?2JnGIEC8H9l6vcCyYCYf9sWpoBCqhapOumcyHIuqcigZN/Pc4zKDJ+bf/FfK?=
+ =?us-ascii?Q?AhsR+vLP/t8pdlDYH+NVY6Hnm+mPK2mKVCjYTuELjg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?apv0BUw9/39te2IVBTjmqqQ28tWP1iEdzr1zft100Xj10QsHnRevP573TTxw?=
+ =?us-ascii?Q?enyEYYm3/3NmNUvwds7+9TZyjmVDhHAeBchJ81ot995Ec3ErnBh5/jH6+cPi?=
+ =?us-ascii?Q?7sW6ZSgakuZkHO1TO8hubhxm2T2zcRTa4zXsLbwVUV+BgI+K50A881h9p+qT?=
+ =?us-ascii?Q?BWXOv2u3x2W6ZtkW2SX9laohaRXjAwQqbFPyBkRbXiKytInCGsH+s2i4FP7G?=
+ =?us-ascii?Q?6WRaH8TvSpp/uq+TsW8tOTy5hfQldym1pWSf6fIkjoNhoyc05DhXL1750iyd?=
+ =?us-ascii?Q?Mq+eN1/IXKqOKM6e+Gphpw7XW5lMmHSW5VA+16r3AsoWaWD2Tt5pi+u0kgMU?=
+ =?us-ascii?Q?VOBr7y8MsdKSO4nOWJm7VfwK4NKj6Q6UBE2u8PHv4i0Xdr9RHoUWRw5NbUUd?=
+ =?us-ascii?Q?P+32/E1DE0Od3pfrIL764K5VkQC5SepKyHpY4JCRurg8y8mW6y4cUXLQOd7c?=
+ =?us-ascii?Q?Quxd41nQERjUn7xzSY8KWOo0jxDSDG2A7Nb/XEdHtIgWd/hbFgxpKoq+fTez?=
+ =?us-ascii?Q?19qv8XpygVHmfeANmZlBonJbjg1QAmLPpuW0LpeuTaH7UxUGEowdUNgmKDGI?=
+ =?us-ascii?Q?W+n4OLxo6yVpaQfb//1n3tlXrwDa/X65OwRZZYr3kI/rrBTSdK/dEl/H1mZA?=
+ =?us-ascii?Q?YZdIsOoV9ijNIHpuTZNzSE50QkuuTCpdMhF0SYclNCdfM6R7ZICrBKhPuTYj?=
+ =?us-ascii?Q?6Ede9TAm+ds+aoVmxut4p1V3UmgrRK5zmXrLAsxgtENlfEskluyeSYwNdIjT?=
+ =?us-ascii?Q?jCatHKOXB+1cLZFQua/zJ1Yar6OtjhAvc8MLR5ybmJ3g8+F4sVCqqaxb2tUw?=
+ =?us-ascii?Q?NnKAnGZje75mVnn6N8y3zFZJQKZcc16EduIoKofRe+J1UL/40u+YWMbSHxx3?=
+ =?us-ascii?Q?y1TR6/sxyooYVF4OyCgEMZt15EQjexHT2lnKkOMjWvmHGt7AJBTBMs3AAgVj?=
+ =?us-ascii?Q?8fMtsbQOdVWGlZ27OZkWZcTalycS/7D4g2LzxSpSW+rPtLKisdIc9GsOfqvK?=
+ =?us-ascii?Q?wISBW6dbHd+WxllrUrx4Z16JbILIFFTl+WsBMzeDGIGbiooWJEESjQBZm6D3?=
+ =?us-ascii?Q?WnVzyV1uxJz88K2frMsSfYuP2KQxZqb7F9sXm9QnN/SdZjO9o/PuNzcaL31i?=
+ =?us-ascii?Q?vVwx+/dLJW9GZ+g7TA+z0tz2+JJSCCBYDpmyAGePr5Ke8Y5X3rOsWgknCG1Y?=
+ =?us-ascii?Q?Orl9Z4ZAPFqPq2H+FR3YbzCGVK2swe0eVoL9gEg3g2NItxUCpyhWp6YbsRnz?=
+ =?us-ascii?Q?cS9EQgGRANIlITjJ+T6R+bQ1y+3T2FzbF9n538XI0JPVdSSMEduD2BnpSo1V?=
+ =?us-ascii?Q?DWIqiRcfxWcC8IKEh10VsUwLFaAUOArZOp1W+SocFxYF2cFJtVW965ET3qMF?=
+ =?us-ascii?Q?aNDKPE2lmjYEyCuFNZjvUEzjbA+cc1HMxKWFJR5PoUDs6sUFE0rXEP3HSjs0?=
+ =?us-ascii?Q?5ZUSqNRH3o/iv4HrH3v2PXCsY9teULF+bKJGp2itQre1NnrIw0EUQWRrlIHI?=
+ =?us-ascii?Q?Zz6cHfDaJyHxSYvQV2kwHyEdCigD/ljd8qHtCW6ocZzPW+/BtRJBEEcevrYU?=
+ =?us-ascii?Q?hC17rPB3SHgL+QM2gVT1ELxUCK1+UxVgQUol6XbwhcBpG08aBKboyoDX+E5u?=
+ =?us-ascii?Q?GA=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca3f8324-893c-4c5d-6cfa-08ddcdedc32c
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2025 15:45:22.4253
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YpiBnZ6Yw3BiygLEGdJzsYhfcLqDLfn9055YIlQce6gyRv5nBl8Wn0Bfd4stFGUYaoH6JLa9hz9+93YrikishoUm7yRsTrmflBWtAYQo498=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR03MB7489
 
-On Sat, Jul 19, 2025 at 02:09:41PM +0200, Otto Pflüger wrote:
-> If a panel needs to send DSI commands during initialization, it sets the
-> prepare_prev_first flag, which allows the DSI host to initialize itself
-> before the panel's prepare function is called. To support this, the DSI
-> host must register a bridge and perform the necessary initialization
-> steps in its pre_enable function.
-> 
-> Implement this for the Unisoc DSI driver by moving the initialization
-> code from the encoder callbacks to a bridge and simplify the remaining
-> encoder-related code which no longer needs any callbacks.
-> 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-> ---
->  drivers/gpu/drm/sprd/Kconfig    |   2 +
->  drivers/gpu/drm/sprd/sprd_dsi.c | 143 +++++++++++++++++++++++++---------------
->  drivers/gpu/drm/sprd/sprd_dsi.h |   4 ++
->  3 files changed, 97 insertions(+), 52 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/sprd/Kconfig b/drivers/gpu/drm/sprd/Kconfig
-> index e22b780fe82248296a7153d02269faf8cd63294f..1afcdbf6f0ee3304f2297835241c9bb10d422154 100644
-> --- a/drivers/gpu/drm/sprd/Kconfig
-> +++ b/drivers/gpu/drm/sprd/Kconfig
-> @@ -2,6 +2,8 @@ config DRM_SPRD
->  	tristate "DRM Support for Unisoc SoCs Platform"
->  	depends on ARCH_SPRD || COMPILE_TEST
->  	depends on DRM && OF
-> +	select DRM_BRIDGE_CONNECTOR
-> +	select DRM_DISPLAY_HELPER
->  	select DRM_GEM_DMA_HELPER
->  	select DRM_KMS_HELPER
->  	select DRM_MIPI_DSI
-> diff --git a/drivers/gpu/drm/sprd/sprd_dsi.c b/drivers/gpu/drm/sprd/sprd_dsi.c
-> index 23b0e1dc547a5023ee6ad7d5e1c49e2cec986bf0..43fff12d73f12619da57606a3c4785924e2c1507 100644
-> --- a/drivers/gpu/drm/sprd/sprd_dsi.c
-> +++ b/drivers/gpu/drm/sprd/sprd_dsi.c
-> @@ -11,8 +11,10 @@
->  
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
->  #include <drm/drm_of.h>
->  #include <drm/drm_probe_helper.h>
-> +#include <drm/drm_simple_kms_helper.h>
->  
->  #include "sprd_drm.h"
->  #include "sprd_dpu.h"
-> @@ -778,19 +780,53 @@ static void sprd_dphy_fini(struct dsi_context *ctx)
->  	dsi_reg_up(ctx, PHY_INTERFACE_CTRL, RF_PHY_RESET_N, RF_PHY_RESET_N);
->  }
->  
-> -static void sprd_dsi_encoder_mode_set(struct drm_encoder *encoder,
-> -				      struct drm_display_mode *mode,
-> -				 struct drm_display_mode *adj_mode)
-> +static int sprd_dsi_encoder_init(struct sprd_dsi *dsi,
-> +				 struct device *dev)
-> +{
-> +	struct drm_encoder *encoder = &dsi->encoder;
-> +	u32 crtc_mask;
-> +	int ret;
-> +
-> +	crtc_mask = drm_of_find_possible_crtcs(dsi->drm, dev->of_node);
-> +	if (!crtc_mask) {
-> +		drm_err(dsi->drm, "failed to find crtc mask\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	drm_dbg(dsi->drm, "find possible crtcs: 0x%08x\n", crtc_mask);
-> +
-> +	encoder->possible_crtcs = crtc_mask;
-> +	ret = drm_simple_encoder_init(dsi->drm, encoder, DRM_MODE_ENCODER_DSI);
+Add a clocks property to the clkmgr device tree node specifying osc1
+as the input clock.
 
-The drm_simple_* components are being deprecated. Please open-code
-corresponding functionality.
+Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+---
+ arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts      | 4 ++++
+ arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts      | 4 ++++
+ arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-> +	if (ret) {
-> +		drm_err(dsi->drm, "failed to init dsi encoder\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+index d22de06e9839..e913f46f25cd 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+@@ -45,6 +45,10 @@ dma-controller@0 {
+ 	};
+ };
+ 
++&clkmgr {
++	clocks = <&osc1>;
++};
++
+ &osc1 {
+ 	clock-frequency = <25000000>;
+ };
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+index b31cfa6b802d..6b6a8a37624d 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+@@ -44,6 +44,10 @@ memory@80000000 {
+ 	};
+ };
+ 
++&clkmgr {
++	clocks = <&osc1>;
++};
++
+ &gpio1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
+index 0f9020bd0c52..1bce69e90f04 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
+@@ -78,6 +78,10 @@ phy0: ethernet-phy@0 {
+ 	};
+ };
+ 
++&clkmgr {
++	clocks = <&osc1>;
++};
++
+ &nand {
+ 	status = "okay";
+ 
 -- 
-With best wishes
-Dmitry
+2.35.3
+
 
