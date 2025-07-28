@@ -1,80 +1,56 @@
-Return-Path: <devicetree+bounces-200306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDEAB14089
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 18:43:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43BEBB140F5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 19:09:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 592933A574D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 16:43:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 885A53BD3FF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87532749C2;
-	Mon, 28 Jul 2025 16:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1074B274B52;
+	Mon, 28 Jul 2025 17:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="VWD9rWi5"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="apYcas1z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B42DF1DA5F
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 16:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7632737E3
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 17:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753721017; cv=none; b=I3KTVFiDFE+Ypg/bTrYsfBdSDK+PZjC6oeLhrlqvU0Zl4GjViipVBgSBRrPg+hvncxUELq/xaKVjkYqYgbkDGdnypezO2YKAqFCbaCrJ2PnRyKq61o2G9Q7g/0/8SZ5ZFG5kPknl+a3ylG3P67ocuxu6B/20DyKaLNxuF2Mz3so=
+	t=1753722583; cv=none; b=hzCgOZRdcN3xjZuNT6L7Mj9x24tUGFThWzTmVPGzKt9/R3kZbVIVVysiTZu+ol136WZRlOB02TDNCjXweo8VrEyDu0RODJRD3H6UrJgn4UeVAFcQuFz/TdImsT6x9L7QSP70gdisOZRMR2h8o3/mCC80RFtRiMH8lojNvRFzwAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753721017; c=relaxed/simple;
-	bh=rhjEXzsTwnZFAF5osPavXR0nQ1U3valXq3FCuGUvhIk=;
+	s=arc-20240116; t=1753722583; c=relaxed/simple;
+	bh=1RRB5mcT6XkxVvImVlknYsFQxEXTXSs1Fy1yDu34bZA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tW9HVdZxw2cX6E06zS/449mcy8dHl9VOWlq9LnefzU+rUcpV0cmYv19RcOALe8WqM9Xw3xTQT9IbD9fL20DZjnuzwOe1B5dnHo86pxvXjKWqY2PUz66h1u6vQxm1wWd7VeOKJjJJJ95hhxRKEPbfeBLCGmd/PVCHfu3wsNjoO1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=VWD9rWi5; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3e3c80c8127so9872955ab.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753721015; x=1754325815; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ldQSwkThGxTZIExSscNpx1zCzTVrhc9kUZXUJm0UXLk=;
-        b=VWD9rWi5UNPMCHl7NEdL4Ys7wh/esp6/e/I/jIPXpju6XdeXEdXn21Xn0izSlqe4N1
-         SnMTazPnnxo2KTbusPTfh8U9QpeHn4380vwAwd5kcaDqqpLASZSdOcPX4jPP0Tb05Lw1
-         5Wo0RjcVP35m84lspTgoemGsQiH08rN3kYjJMsUS+3IqFn7p+iaXEG3VUNCMkTOhPGxz
-         GQDajRTZK+cVWnxOt/Y/5oetlqYt9Gh5vILY8F7q6ltSPGLlYu1vsSy++f1/Lv90uASr
-         fTst6mgHuW9rdf6BFqLKMGL0GWxxF5yy8Q65kkPbf1S1mDIFz3jMoKQ0+5Le+Pue35q4
-         3ehA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753721015; x=1754325815;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ldQSwkThGxTZIExSscNpx1zCzTVrhc9kUZXUJm0UXLk=;
-        b=dzyGAi/mThHhPKmJhnWDAledZR3mSyebXWNjl1EDkM4hVifCyXgCTu8xwVejYDb+EU
-         zVz7zyiTFv/F5Vfyyu3wij80OsjhZWDre5mFJVSJ7prHti065Uq/9uTWtDaKskVDb9QP
-         R4Qh/VcUBv5SfnyMKENYQPOFTmsn/KyTbLyMBRyO/RyARc3MTsi32aDTeZyuHjsTzsMx
-         d2r1A3xAQACtw0H3TBAm+OycbzxZFYT6RwPITlU0UqDuPsc1UlsNifbLlipRsufRNrpf
-         0aEFSy6e5eay1DFnTSAwYB3LXTMFT7GvXIGgGkW6wDqJGBh5dd1raomuSmvMeO46y+hb
-         vEzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVn9UUZQHwdemyoelDyrNMtcmp3cjVos2h2sOm96PejV2qj2E7lSepnPbXRlJjjBR5rc7Sfvlx1Sh3O@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKnW4UssiSHVFhw6Jx8+Ul1PyP9kskIbfI1R8Uhzj5T3gmP/LJ
-	uy34H+X/jbGxWuauQeG2tGD2R7OUuoYPHDmJ6X7DNVTKOvI1Bk0CWTPnNEvihoU9AAY=
-X-Gm-Gg: ASbGncuOwBcADB5QxVUwxzVLejfvshhTB2ssDUAqNi0/mp6vGEC1zync7QWBDT8qq57
-	esg2booJemTD6eAqIZ88zPAV5aWpjUYXrzlgHIONSP7RN/L5UZIKclnvNwhEJtFmIFlmnP2+u6I
-	2Vm9B0O2FtAdsM73rnDgavHLGoigboYHgzqppsrhPBhHIIRpHIIrI/zP73RdOxp8q+VrALKG8fe
-	MMyIjGzcnNNA63ljtX9lCj19Gh7qAJXliu1fCv6BaiOz3Gr28YjCLvZ+gXOySg8ucppez75GiXy
-	33xtZHff55V1IoTt7dk8PvrXfXGUJFxxA62H8iiqxDJ5tRyVnjOn5woIcnHCYo/vKvdnB5YSB7U
-	+o3roWDUuUH0s3yXeCqyzp3oRsRkE/wbXaO3fCBOl4a3o5cpkbY0uujyt9jt8H0k=
-X-Google-Smtp-Source: AGHT+IEKf13G5VVtKix2Gq667g//FiBaGINonaogdX3yn8hZwcFv6711Pe8N6gMwP+Vbi5i7MjtaZg==
-X-Received: by 2002:a05:6e02:1805:b0:3e2:9f1e:e291 with SMTP id e9e14a558f8ab-3e3c53125b1mr209554715ab.21.1753721014595;
-        Mon, 28 Jul 2025 09:43:34 -0700 (PDT)
-Received: from [172.22.22.234] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3e3cad13c7csm25861755ab.61.2025.07.28.09.43.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jul 2025 09:43:34 -0700 (PDT)
-Message-ID: <ef2b4526-3725-4a25-9118-ab77a1d91362@riscstar.com>
-Date: Mon, 28 Jul 2025 11:43:32 -0500
+	 In-Reply-To:Content-Type; b=eCHV6v0DkVwOBJi9ZVVU7LG+3trRFaUVhcHp8b0Rd5s4o9XOQ+vZkzU9dL3Bre7bzAYmXMoZg7Bfl+v7kpyX6OPCdd1Dc04uQKkhw8GzyU1vqyYqnCmvmPXQSIvyh+VEnpRDwpHtvNJboiPtezS7+9NaEg7ftaLE4/+MXR5KBUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=apYcas1z; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1753722580;
+ bh=o1SAkKfZM3NhF3wZAPT2jfOda4w4lWqHgHvXSycv5Gc=;
+ b=apYcas1zRvWrusiROXe1jSQkmSJA5WYX12wDbJ5QxExI3w/CDIgBbp/Pu9MscBV9Y4HtVV7My
+ Uwz/+//yfpq5I0Etpl4q+3fpE2ZpvyNuuVnX/VTCnaqKHOmYN49XrHCaXEDYeNWTm/+NIGBad1N
+ 2lM6IMe+eWbjMHKZYbmctoBzOimZRKSyuLUVYSNkIYjJsKU5eG0RlIaEAxQCt3AceGHnRumoO9H
+ LoL07U4xuP8ShO+pp4WLlBeu4G+kVUcjCQru7E6bGvGrqvbSoBRtvjI7/v8p5nGATGHo9Np+XVd
+ B9BLIazpP6cVTe3lHFeFJlNY4YzhxiXR/MxOrIU/1ApQ==
+X-Forward-Email-ID: 6887aebc351ec66b15a29e9b
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.1.8
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <e2fd11db-543a-43eb-b118-9f246ff149b5@kwiboo.se>
+Date: Mon, 28 Jul 2025 19:09:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,62 +58,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 4/8] regulator: spacemit: support SpacemiT P1
- regulators
-To: kernel test robot <lkp@intel.com>, lee@kernel.org, lgirdwood@gmail.com,
- broonie@kernel.org, alexandre.belloni@bootlin.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
- Necip Fazil Yildiran <fazilyildiran@gmail.com>,
- oe-kbuild-all@lists.linux.dev, mat.jonczyk@o2.pl, dlan@gentoo.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, linux.amoon@gmail.com, troymitchell988@gmail.com,
- guodong@riscstar.com, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250726131003.3137282-5-elder@riscstar.com>
- <202507281558.lZ0NYtth-lkp@intel.com>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ robh@kernel.org, ziyao@disroot.org
+References: <20250727144409.327740-4-jonas@kwiboo.se>
+ <20250728125015.988357-1-amadeus@jmu.edu.cn>
 Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <202507281558.lZ0NYtth-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250728125015.988357-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 7/28/25 2:37 AM, kernel test robot wrote:
-> Hi Alex,
-> 
-> kernel test robot noticed the following build warnings:
+Hi Chukun,
 
-I have a fix for this, and will include it in v11 of this series
-when I publish it.  I will wait to do that until I get additional
-feedback.
+On 7/28/2025 2:50 PM, Chukun Pan wrote:
+> Hi,
+> 
+>> +	avddl_1v1: avddh_3v3: avdd_rtl8367rb: regulator-avdd-rtl8367rb {
+>> +		compatible = "regulator-fixed";
+>> +		enable-active-high;
+>> +		gpios = <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&gpio_8367_en>;
+>> +		regulator-name = "avdd_rtl8367rb";
+> 
+> I don't see the avdd_rtl8367rb regulator in the schematics. It looks like
+> DVDDIO (RTL8367RB power) is connected to AVDDH_3V3 via a magnetic bead.
 
-The fix is to make REGULATOR_SPACEMIT_P1 depend on I2C, in addition
-to ARCH_SPACEMIT || COMPILE_TEST.
+Both avddl_1v1 and avddh_3v3 are controlled by the same gpio, I do not
+remember if using two regulators with same gpios is supported, can only
+remember it being an issue in the past, so I opted to just describe it
+as a single regulator and gave it a new name and added labels for the
+name used in schematic.
 
-					-Alex
+Would calling it vdd_8367 (after gpio_8367_en) be better or do you have
+any other suggestion on how to describe these?
+
+I will at least add a comment related to this regulator for v2.
 
 > 
-> [auto build test WARNING on d7af19298454ed155f5cf67201a70f5cf836c842]
+>> +&gmac1 {
+>> +	clock_in_out = "output";
+>> +	phy-mode = "rgmii-id";
+>> +	phy-supply = <&avdd_rtl8367rb>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&rgmii_miim>, <&rgmii_tx_bus2>, <&rgmii_rx_bus2>,
+>> +		    <&rgmii_rgmii_clk>, <&rgmii_rgmii_bus>, <&gmac1_rstn_l>;
 > 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Alex-Elder/dt-bindings-mfd-add-support-the-SpacemiT-P1-PMIC/20250726-211530
-> base:   d7af19298454ed155f5cf67201a70f5cf836c842
-> patch link:    https://lore.kernel.org/r/20250726131003.3137282-5-elder%40riscstar.com
-> patch subject: [PATCH v10 4/8] regulator: spacemit: support SpacemiT P1 regulators
-> config: alpha-kismet-CONFIG_MFD_SPACEMIT_P1-CONFIG_REGULATOR_SPACEMIT_P1-0-0 (https://download.01.org/0day-ci/archive/20250728/202507281558.lZ0NYtth-lkp@intel.com/config)
-> reproduce: (https://download.01.org/0day-ci/archive/20250728/202507281558.lZ0NYtth-lkp@intel.com/reproduce)
+> Should the pinctrl of gmac1_rstn_l be written together with the
+> reset-gpios of the rtl8367rb switch?
+
+When defining pinctrl to the mdio1 node they are not applied, and there
+was issues probing the switch when using reset-gpios of the switch.
+So I opted to describe the switch reset as the mdio bus reset.
+
+I guess we should describe the HW and not work around SW issues, will
+change in v2.
+
 > 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202507281558.lZ0NYtth-lkp@intel.com/
+> ```
+> reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
+> pinctrl-0 = <&gmac1_rstn_l>;
+> ```
 > 
-> kismet warnings: (new ones prefixed by >>)
->>> kismet: WARNING: unmet direct dependencies detected for MFD_SPACEMIT_P1 when selected by REGULATOR_SPACEMIT_P1
->     WARNING: unmet direct dependencies detected for MFD_SPACEMIT_P1
->       Depends on [n]: HAS_IOMEM [=y] && I2C [=n]
->       Selected by [y]:
->       - REGULATOR_SPACEMIT_P1 [=y] && REGULATOR [=y] && (ARCH_SPACEMIT || COMPILE_TEST [=y])
+>> +&i2c0 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&i2c0m0_xfer>;
+>> +	status = "okay";
+>> +
+>> +	rk805: pmic@18 {
+>> +		compatible = "rockchip,rk805";
+>> +		reg = <0x18>;
+>> +		interrupt-parent = <&gpio4>;
+>> +		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
+>> +		#clock-cells = <1>;
+>> +		clock-output-names = "rk805-clkout1", "rk805-clkout2";
+> 
+> The clkout pin is not connected, but the dt-bindings require it.
+> Maybe clock-output-names could be made optional?
+
+Seem the using just #clock-cells = <0> is valid without
+clock-output-names, will use that in v2, thanks.
+
+> 
+> +&mdio1 {
+> +	reset-delay-us = <25000>;
+> +	reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
+> +	reset-post-delay-us = <100000>;
+> +};
+> 
+> I don't think this is correct, reset-gpios should be written on the
+> rtl8365mb switch node. The switch driver has defined the reset time.
+
+See above, I had issues using the reset-gpios of the switch, because the
+switch was probed twice, once deferred by gmac, and by the second probe
+failed with -BUSY because of the reset-gpios still being claimd by the
+first probe.
+
+I can change to describe the reset pin in the switch, however that will
+likely mean Ethernet is unusable until the issue in devres/gpiolib is
+tracked down and fixed by someone.
+
+> 
+> ```
+> &mdio1 {
+> 	switch@29 {
+> 		compatible = "realtek,rtl8365mb";
+> 		reg = <29>;
+> 		reset-gpios = <&gpio4 RK_PC2 GPIO_ACTIVE_LOW>;
+> ```
+
+As mentioned above, this caused probe issues and an unusable switch.
+I would rather skip describing this reset pin as it does not seem to be
+needed it self reset when the regulator is powered on.
+
+Any thoughts on what is better of the two? Skip describing the reset pin
+or describe it and leave the switch possible unusable? Probing gmac
+before the switch should leave it in a working state.
+
+Regards,
+Jonas
+
+> 
+> Thanks,
+> Chukun
+> 
+> --
+> 2.25.1
+> 
 > 
 
 
