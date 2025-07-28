@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-200136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643E3B137C8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:42:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3336AB137CD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:43:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F90A17AD18
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:42:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F33517B120
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23421253355;
-	Mon, 28 Jul 2025 09:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F86257430;
+	Mon, 28 Jul 2025 09:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="O21JBu3+"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="pdGxB5gR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA2025486D
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0F42571A1
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:41:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753695710; cv=none; b=WMaQqg5QPRr2YfFrNoIuTItY5FS80j0SYOYIv+919cxpcdERbDzMNmuBhDjgKDNSV8uwvjSHbSzr1/XMea56ERSezlvJhbUod77+6v3p7HY8hhP3c5+TEVXioAb/MOKNWnFkxVaxihELXb9aPTxxuPcCfzj5F5JEILGkd7RmIuc=
+	t=1753695718; cv=none; b=Y0dcZb41Rpv7e9FKJAMoHgHI5uQ4MuT/nkD/JIfisk4ed6jM2QFW8UksFzdGDR4RMbCQGdt5z7KQYO3H+oVBmA9XwBlsrlG8qhLrF8p8oDmKa+X7OuQSLKtEbZdBLXyplMEFe4WIMglYqwYVz1mO0xdFcAl36cs4rf0pfiVzyTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753695710; c=relaxed/simple;
-	bh=2D2pCQzookgwdAAtHFuVK0XP30EwZIqIZ0Ic1dDvTa4=;
+	s=arc-20240116; t=1753695718; c=relaxed/simple;
+	bh=UBn+LBjax9N4GZfXPTV/0yYRe68OpjEpS5e1cFYqyMc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nUGVws+FS7cTwyGDy5rYpQLT/ViWS9+wk/Go2y8He8fidGaj/rtru5GW+67AMyhPTZppDtaLD113unTdS4ubw8TR1xGVRgpKYVLmmty4dn/BuqbCOelhhpaBZACV4dCUhBfEBGjUt2KHgu3pThORdXMaojL4dXZNK20o9qrFNJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=O21JBu3+; arc=none smtp.client-ip=209.85.214.179
+	 MIME-Version; b=cuhUKagVJP9aRxkxcsLNLWKw1qzfafzT8kmYzrn0ECTDYQn6Ey1teqd1kzrTjpSsTQxKfVY0aXYxmw7UXxpZqh4byQLDJe6WWeKNxD/s65gzD2gOj69CCJt4FArYOPDdWsHUFBMUmXvTD9m0YWRWfr4KrAwV28+DpolfcQdsObQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=pdGxB5gR; arc=none smtp.client-ip=209.85.216.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-23636167afeso36104095ad.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 02:41:47 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-31ecd1f0e71so1119192a91.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 02:41:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1753695707; x=1754300507; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1753695717; x=1754300517; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=TIg/1GBTKsBFC54o9wzP/NH34EZtppmVu7UpxaXegaQ=;
-        b=O21JBu3+OquTQ3kxY/fAqBJybtCPDRIjRC+dugIYcZ7Klq6L06relZCz3bzpfWfUyL
-         +7krQ2Nb511x/JE6QQNnAtRxWGcg8D82KlCk/AmHcpPYRA0fN0/SRTS0M5JJAGC/PZ5d
-         ZlWGpohSFJ8c78VpABtkUVo5+Y65I/fas0V8UWT87j5JzD+sf+RRIQoWVpT2gT6yoThK
-         yGE7RKupwPA6YjGJW4t7BSC+8xgRqRhORjScNCFzDeDqxuZvWBqlFIfPah+TmPLZmCgo
-         NFYYxIraR5MOiKgYND9vcLtyGSHfD0ktCjxZBO436feiBwipKekPZIE9xt6VIAJpXcaL
-         tbfw==
+        bh=bl+ki3sYBLOuIZdWtmik+PFOlIYEBNco4Pu8AxHtczE=;
+        b=pdGxB5gRGieuRvZWCt29dPB1O0Jf+tlDaCev7xheqXIIQ4I5aA5bxaJJYiTksK0n93
+         tYUMJLKbr5vzHSfvv0gFaaWC9SYDijzHPLMRUfx2vs1IV4h7FmneolltaXCFke9UKOq+
+         wm2ukSmrfup/7Kixt1nu8JL/MhGkMKOLJCME7PYfXFlcDPj+9uwgM+bXJyp8G1IiOxVf
+         qDhQl0sWZ29rmwB34oOAwPj8XJtJIpJTLSJk++q3EElKh08XUSI1DNesPuG0FUFoL1kS
+         9u96avgYv2i1vrzpCwP7zMEi5CvipdmAYWsHSTYvS4hd5g52mIxuCVi0DQhS+3yOkr+A
+         615g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753695707; x=1754300507;
+        d=1e100.net; s=20230601; t=1753695717; x=1754300517;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TIg/1GBTKsBFC54o9wzP/NH34EZtppmVu7UpxaXegaQ=;
-        b=P5WmkyfDTXRRtG3PXSJp+fCNnBm3le5T/W5ZXFILnDRpWmyJooB3MDvo7oXYj9ZlWE
-         D3lYUWBTIFZrYociJ6paNCXna6AHb+p0vtOjYSmo0i/F7Z5FOvhnEiLT7lATYMfG3VqZ
-         VI609b9zdpZIx+wdmJXKs43M0fx9VTXIWeBUsR3pYymzOp1gLFRZid6CRyeAvM898xB6
-         1/oEL+/Q9FQNMzlMHGF0xlXhXGfRFBMbdpU8TSsUj/qsFIMckGuf3DeaULiQ8gq0v7eZ
-         q/S94gYvBYaaP1mqPuGk29vBcGQN3X+1FFu/A9WJCtmHjwbWoImzLP8IqJjk0DuThWfJ
-         HDxA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3KKkzUS9Ii+TK9lfeU4aglz8qH+ZCpsBn5Obgi4gkVAzFPlNqYjx+2/soRRWt4QqUS4mRew9bC/Bg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR+zhTfq5EQASkfvKDRoysFjasRxl1kkf/SUJYYBsE+N7bWTRq
-	7cLw6eGkYMLDLfw5jj9H2+rrocMJcYImoqUaM2DxVnqUGjudtVw33inXrU46Bidz4B8=
-X-Gm-Gg: ASbGncvx76YoCU7oObwESLztDnO0YJEIkpMzCwBZzIja7HgioZ9b5L12y+BnEDgTwbq
-	pULmHKQSYlEzAPtDwDJEJJAVl5kECkookKY0jGMkMUsHc7qTL6CFQgemP+Y37GSOH5jmCYNHOfQ
-	pEQNoiZMglSAU9XRj1QMvw1abWH9h3m2SgIQnYNY83KeS2v98bwOgrffX227k42RK+SeMImAp8N
-	iOV9+fuRf4iHQjpbrkrFxMeLmNpAqksXEnZXzhdjT6M7qV6r6CAV+nsIq2P0PHps3RJtmCwrzhr
-	+FgeTP9G8pzNW6KsPRKXlIBddRHUvn16ay5fVyH67M2iHVhqcD9g8tY2V2rvYoxUHFU+tNQGzZG
-	cuSTaMxSAoXSaQ8p/L4nopHLxS81XF7HH6vPf28ogFg9rjKLflWZL0xF0PCPt
-X-Google-Smtp-Source: AGHT+IFlHjmFiEXU2dJH97grCLi/iSNAvTJn9LNOpuW/QlLPoDnHitMrBp8pd3yh4EaT11w8/znf0A==
-X-Received: by 2002:a17:902:f652:b0:23c:8f4c:6658 with SMTP id d9443c01a7336-23fb315ab2bmr140862815ad.25.1753695707124;
-        Mon, 28 Jul 2025 02:41:47 -0700 (PDT)
+        bh=bl+ki3sYBLOuIZdWtmik+PFOlIYEBNco4Pu8AxHtczE=;
+        b=AOxkm59x1NlVdruP4Fn+CF1KCNyaILiEGZivprND5lioEzqztS0O9top55Zpo9e1Fc
+         7ynyLVpVH/5I8nBL08f+87uvBRoA2w0ZhPLPDCh6WB17XGjOmlfwDgF5QAbPr6/EF+OI
+         M0FRElgTrPvaMWvNu3bEexY3/NIIWDHGbsyoc9/X0Z7/exMR3S8a5p1YFkUOsmQCqmHT
+         nbDg7j2EAGR9NNN9DTJ8LwCET4oSBb2jp6bjU+Tzr3sjHUhS5Jzz7+lBKxpkjbujTcBP
+         sw/fHC26WxxOs4w49Tjwno+28gvcYemhCS1/D3D7Re1aLeYeJbETAz0yTLJwJ+qggEPn
+         G+rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWI0LHrPqDsm6GHUBVgsiJWzQrIZt80li45ieRSsgzzUBHcc18Qlm5ZyWk1MSDFlXNSY6nKnZzVpfZc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQJLDLf9f1OIYiJoRXKmu+ylioIiFkqyYXiJPO5oVLFH0tHVZy
+	+kwsViJ3195HqYjED7wRKEvfhh+7/82zeQG+7N9omdIK3jAWWlAUEPBDz4tNTSMiu8I=
+X-Gm-Gg: ASbGncuQBcQvHD+44yi5vnY1gBsWd8s6M/fjbeWAlgr/rivO2naS0iG7LPlJK4VUktk
+	6tAM2T06GW1dysydcIQdA8U1baVVNyftJU+ozYJx6rQqI9HUr+oWMHrvLrW3eAAmlceGPstOoYi
+	qBoc4DPzye3CpaRah/I0eIUhpnXwu8BWUdg11WbYWMHhM2oGaBKLLPlMWMHhu0HwABHSsPPb9w0
+	WCdsOCNrJcHFDjn8tM4zH/U7sTOioNiQ9oHS/iGxyLNQdyjth54qIFqn6Rbn1+fBTOup/IQ+M27
+	g1VA5LiishzpslIV/Ytn28TpongxQQ7F2N/JdmwmVGLAy7XizwQdQAB8ocd3wtDN6AoS9sQhHNU
+	fPp3RUCeB7i/i/SFq6pgew+8xpo3XKg/nYKHRLAX0XqaVvUFiQo+UxJK6ipVP
+X-Google-Smtp-Source: AGHT+IFhFTqPuSSTK3+8jxndNiXraAgvrolPYd24EgLuqZVd3xcphyV7/2XKTMQF8DKsWkxQNVZhAQ==
+X-Received: by 2002:a17:90b:4f43:b0:31f:7b7:4070 with SMTP id 98e67ed59e1d1-31f07b7416amr1816333a91.25.1753695716661;
+        Mon, 28 Jul 2025 02:41:56 -0700 (PDT)
 Received: from anup-ubuntu-vm.localdomain ([122.171.19.28])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e832fbf99sm5396230a91.1.2025.07.28.02.41.37
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31e832fbf99sm5396230a91.1.2025.07.28.02.41.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jul 2025 02:41:46 -0700 (PDT)
+        Mon, 28 Jul 2025 02:41:56 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
@@ -104,9 +104,9 @@ Cc: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v9 05/24] mailbox: Allow controller specific mapping using fwnode
-Date: Mon, 28 Jul 2025 15:10:13 +0530
-Message-ID: <20250728094032.63545-6-apatel@ventanamicro.com>
+Subject: [PATCH v9 06/24] byteorder: Add memcpy_to_le32() and memcpy_from_le32()
+Date: Mon, 28 Jul 2025 15:10:14 +0530
+Message-ID: <20250728094032.63545-7-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250728094032.63545-1-apatel@ventanamicro.com>
 References: <20250728094032.63545-1-apatel@ventanamicro.com>
@@ -118,163 +118,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Introduce optional fw_node() callback which allows a mailbox controller
-driver to provide controller specific mapping using fwnode.
+Add common memcpy APIs for copying u32 array to/from __le32 array.
 
-The Linux OF framework already implements fwnode operations for the
-Linux DD framework so the fw_xlate() callback works fine with device
-tree as well.
-
-Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
+Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 ---
- drivers/mailbox/mailbox.c          | 65 ++++++++++++++++++------------
- include/linux/mailbox_controller.h |  3 ++
- 2 files changed, 43 insertions(+), 25 deletions(-)
+ include/linux/byteorder/generic.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
-index 5cd8ae222073..2acc6ec229a4 100644
---- a/drivers/mailbox/mailbox.c
-+++ b/drivers/mailbox/mailbox.c
-@@ -15,6 +15,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/of.h>
-+#include <linux/property.h>
- #include <linux/spinlock.h>
- 
- #include "mailbox.h"
-@@ -383,34 +384,56 @@ EXPORT_SYMBOL_GPL(mbox_bind_client);
-  */
- struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int index)
- {
--	struct device *dev = cl->dev;
-+	struct fwnode_reference_args fwspec;
-+	struct fwnode_handle *fwnode;
- 	struct mbox_controller *mbox;
- 	struct of_phandle_args spec;
- 	struct mbox_chan *chan;
-+	struct device *dev;
-+	unsigned int i;
- 	int ret;
- 
--	if (!dev || !dev->of_node) {
--		pr_debug("%s: No owner device node\n", __func__);
-+	dev = cl->dev;
-+	if (!dev) {
-+		pr_debug("No owner device\n");
- 		return ERR_PTR(-ENODEV);
+diff --git a/include/linux/byteorder/generic.h b/include/linux/byteorder/generic.h
+index c9a4c96c9943..b3705e8bbe2b 100644
+--- a/include/linux/byteorder/generic.h
++++ b/include/linux/byteorder/generic.h
+@@ -173,6 +173,22 @@ static inline void cpu_to_le32_array(u32 *buf, unsigned int words)
  	}
- 
--	ret = of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox-cells",
--					 index, &spec);
-+	fwnode = dev_fwnode(dev);
-+	if (!fwnode) {
-+		dev_dbg(dev, "No owner fwnode\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+
-+	ret = fwnode_property_get_reference_args(fwnode, "mboxes", "#mbox-cells",
-+						 0, index, &fwspec);
- 	if (ret) {
--		dev_err(dev, "%s: can't parse \"mboxes\" property\n", __func__);
-+		dev_err(dev, "%s: can't parse \"%s\" property\n", __func__, "mboxes");
- 		return ERR_PTR(ret);
- 	}
- 
-+	spec.np = to_of_node(fwspec.fwnode);
-+	spec.args_count = fwspec.nargs;
-+	for (i = 0; i < spec.args_count; i++)
-+		spec.args[i] = fwspec.args[i];
-+
- 	scoped_guard(mutex, &con_mutex) {
- 		chan = ERR_PTR(-EPROBE_DEFER);
--		list_for_each_entry(mbox, &mbox_cons, node)
--			if (mbox->dev->of_node == spec.np) {
--				chan = mbox->of_xlate(mbox, &spec);
--				if (!IS_ERR(chan))
--					break;
-+		list_for_each_entry(mbox, &mbox_cons, node) {
-+			if (device_match_fwnode(mbox->dev, fwspec.fwnode)) {
-+				if (mbox->fw_xlate) {
-+					chan = mbox->fw_xlate(mbox, &fwspec);
-+					if (!IS_ERR(chan))
-+						break;
-+				} else if (mbox->of_xlate) {
-+					chan = mbox->of_xlate(mbox, &spec);
-+					if (!IS_ERR(chan))
-+						break;
-+				}
- 			}
-+		}
- 
--		of_node_put(spec.np);
-+		fwnode_handle_put(fwspec.fwnode);
- 
- 		if (IS_ERR(chan))
- 			return chan;
-@@ -427,15 +450,8 @@ EXPORT_SYMBOL_GPL(mbox_request_channel);
- struct mbox_chan *mbox_request_channel_byname(struct mbox_client *cl,
- 					      const char *name)
- {
--	struct device_node *np = cl->dev->of_node;
--	int index;
--
--	if (!np) {
--		dev_err(cl->dev, "%s() currently only supports DT\n", __func__);
--		return ERR_PTR(-EINVAL);
--	}
-+	int index = device_property_match_string(cl->dev, "mbox-names", name);
- 
--	index = of_property_match_string(np, "mbox-names", name);
- 	if (index < 0) {
- 		dev_err(cl->dev, "%s() could not locate channel named \"%s\"\n",
- 			__func__, name);
-@@ -470,9 +486,8 @@ void mbox_free_channel(struct mbox_chan *chan)
  }
- EXPORT_SYMBOL_GPL(mbox_free_channel);
  
--static struct mbox_chan *
--of_mbox_index_xlate(struct mbox_controller *mbox,
--		    const struct of_phandle_args *sp)
-+static struct mbox_chan *fw_mbox_index_xlate(struct mbox_controller *mbox,
-+					     const struct fwnode_reference_args *sp)
++static inline void memcpy_from_le32(u32 *dst, const __le32 *src, size_t words)
++{
++	size_t i;
++
++	for (i = 0; i < words; i++)
++		dst[i] = le32_to_cpu(src[i]);
++}
++
++static inline void memcpy_to_le32(__le32 *dst, const u32 *src, size_t words)
++{
++	size_t i;
++
++	for (i = 0; i < words; i++)
++		dst[i] = cpu_to_le32(src[i]);
++}
++
+ static inline void be16_add_cpu(__be16 *var, u16 val)
  {
- 	int ind = sp->args[0];
- 
-@@ -523,8 +538,8 @@ int mbox_controller_register(struct mbox_controller *mbox)
- 		spin_lock_init(&chan->lock);
- 	}
- 
--	if (!mbox->of_xlate)
--		mbox->of_xlate = of_mbox_index_xlate;
-+	if (!mbox->fw_xlate && !mbox->of_xlate)
-+		mbox->fw_xlate = fw_mbox_index_xlate;
- 
- 	scoped_guard(mutex, &con_mutex)
- 		list_add_tail(&mbox->node, &mbox_cons);
-diff --git a/include/linux/mailbox_controller.h b/include/linux/mailbox_controller.h
-index ad01c4082358..80a427c7ca29 100644
---- a/include/linux/mailbox_controller.h
-+++ b/include/linux/mailbox_controller.h
-@@ -66,6 +66,7 @@ struct mbox_chan_ops {
-  *			no interrupt rises. Ignored if 'txdone_irq' is set.
-  * @txpoll_period:	If 'txdone_poll' is in effect, the API polls for
-  *			last TX's status after these many millisecs
-+ * @fw_xlate:		Controller driver specific mapping of channel via fwnode
-  * @of_xlate:		Controller driver specific mapping of channel via DT
-  * @poll_hrt:		API private. hrtimer used to poll for TXDONE on all
-  *			channels.
-@@ -79,6 +80,8 @@ struct mbox_controller {
- 	bool txdone_irq;
- 	bool txdone_poll;
- 	unsigned txpoll_period;
-+	struct mbox_chan *(*fw_xlate)(struct mbox_controller *mbox,
-+				      const struct fwnode_reference_args *sp);
- 	struct mbox_chan *(*of_xlate)(struct mbox_controller *mbox,
- 				      const struct of_phandle_args *sp);
- 	/* Internal to API */
+ 	*var = cpu_to_be16(be16_to_cpu(*var) + val);
 -- 
 2.43.0
 
