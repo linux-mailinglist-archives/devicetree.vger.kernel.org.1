@@ -1,231 +1,165 @@
-Return-Path: <devicetree+bounces-200178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3297EB139DE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:30:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68704B13A10
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51A9118917EE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A27189528B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1002475E3;
-	Mon, 28 Jul 2025 11:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128EC25BEE8;
+	Mon, 28 Jul 2025 11:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyGfYIwY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oRbksmGa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C553B212B3D;
-	Mon, 28 Jul 2025 11:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B96221FBD;
+	Mon, 28 Jul 2025 11:52:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753702253; cv=none; b=R8EHMvy0iLJcMWWAngmawYz9RCZq+3CG1DJyiad4xvpU+A83oCXXAG9v22uF0EpxYuiVkSoxS1Vayyw9zx8wzGS0tnhEiSKOQEHtk0gRGFnFlkMyuO1D/sJabPkAN5/+wnmZR+dgpQrOEJ2Q3tNxLYK7rwlneciIWDCA8ALIrL0=
+	t=1753703551; cv=none; b=u9dLAm6sj8HDKv68zmRo/k6V+YuVXTK0gCfS2yh6wTa1+t+WZYhbQwqZWBMIMIxSD4H1FXFBsEopDytwnu0Km/RsSo9R+2NywZ4uVfIv8VO122Z2cvgTgD0wcMxMZsZg2GzeEJkVgFra6OS+EUgkS3AT+sAnunUJQq+MJHW7LUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753702253; c=relaxed/simple;
-	bh=LyM2zoTWmsxPJEfljMiEUCzkv9Ob2+5GaIos55WbWmA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JqxntHju3gdXxMnYkmtR5udSfe7QkAZ9zylzdzabTqxPCtuPZhdtU6qZ7Igl6giQu3iiu5qZ0qxc2DOlIsgiozAdOAyt4riDJ00eXsxShr2007oA5eyNt+2o8pihI37cT7ZC2I+zkG0oRsTRRvrHlj2vwqgZv4YNpFdwTYiM7jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyGfYIwY; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e75668006b9so3826759276.3;
-        Mon, 28 Jul 2025 04:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753702250; x=1754307050; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=nNtNrao6UVesGhYjMLNvpZlbMAwweAAO5D4RH4zwPlI=;
-        b=DyGfYIwYldPtNtuYkMZ4t//9zZuldn3xydKsu1ShoCTvMYar4REhzG6AX3/5AcUINv
-         J8N6xxeuiaNo2WT+m6qtd5VsgdIAy6KusY+NL8OnO4v5jb46GNDRm+jFr05ux4cbw+eG
-         RLzLfrhd70hvC8XunHMn8YABXBGRxPNJf9Xv6EQsuAdRJxa90nvJ0kedPqz3SKkr/iKj
-         80hjtJ/+FPvt18JhQG/EmSacIV2uQslTJPo0Aw+fNIs0moTge+N7ylxFvBxxi12B2I/H
-         WctaVtAGnoZg15zu/iQKPLBLWwje4T40eEATRU7oQYhdcl+NcMZNa2aFcvovcsMsmaJh
-         b8RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753702250; x=1754307050;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nNtNrao6UVesGhYjMLNvpZlbMAwweAAO5D4RH4zwPlI=;
-        b=Z1L2nsb6ue15RgZoqORAdDpROIcQR6MoB1q1ZoOczKRb0aP5Zu2r34JrmK1cl60UIm
-         YBqUno70NCGYe0E0e7B3PfNmhD7b7imQdZhdGDdKBmboMS860h0v6b+siI7PR/TcZ8GR
-         +9MIgQS+OV3uEt0xAQSUaMhhqfQ9wXWw3/fonevbkpOXZYZnuod2hcaCV0edBZYaHjdY
-         zxhasKZ+sYA5sKtRRk/pl19XigNDqpoAYn22TXIjVTwMOCb2gQcApCzpjJ3fRKUsiVLH
-         ko5HBPfvP7ZnJdBXFbnJdpQ1Aml/ASyZ1z3jSGBvvLL8r+v1ym+GD4GNznMb5uuvLPXN
-         2npg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEtfjcK+YrT5b162YBN+5uicU/3fJeSDKPdmvKYpCoRkUFRTtw4q1reCJm/Br2hSDaHsucdJPbqO2i@vger.kernel.org, AJvYcCUWj9xdNixI2llXgFpaHRzXffpgRmLnZt8vD9bmgjuB1tpToJlBYOz6NkIHMW2BdTW+zJZdE1kLBntHKHO1@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywz6Xp0e4tEuI/ufPrxpxPqtnf89R6Ed1qi0YY2RnOmFmi0v0Ed
-	Nl7dxzNhv01gWGk6RHLp53KaR65gGFpt9QnHmWIvgBZBInkAyCid5l/wy9u0mjRZXzBIH8wqD3Y
-	6CSXhrDj+PRY8fhrxu7UmPWmgl6OxUPI=
-X-Gm-Gg: ASbGnctsXDoIdSJhUHN2fM1jWxOFKumlU297U2OYkqL6Cg9Cve/MIngFCEMiVy+scaf
-	t9IUKvF6qAg4Cyc3ViCNqcc/PwQpk2pARfUjTv3Fbfjf6a753jVnwKojbfASCUydtUbyzfQLMZ5
-	Vqmrx4wLVzK6QKc1OqEai3LGHrv7CQLTLJJMRrjD21CgHVJfZGIfUVN22dFhg1xIsazG0Ymg8ZF
-	HBENKNWXoz7menCpYQ=
-X-Google-Smtp-Source: AGHT+IFumFg2UZwvA+f5kl7EQMHXkNUZt/zwa/n9YKY+QhiLG1qhJTrDdz/0F0M5MYN/krBckT6OuIygxIbgPz/5mng=
-X-Received: by 2002:a05:6902:c0f:b0:e8b:7064:b with SMTP id
- 3f1490d57ef6-e8df1231b91mr11050441276.43.1753702250334; Mon, 28 Jul 2025
- 04:30:50 -0700 (PDT)
+	s=arc-20240116; t=1753703551; c=relaxed/simple;
+	bh=n0J5JDKTqeiSZ0GT4nTGggSWytKhfzg7qr5qEFkmUNU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OKKuFYK07TiisyOcD0bUc8v4oyuO0egUykj0JQcPtnlJBeTfqlDM4cq/CD8PM6+zZCVkWPbfKz/WqCfm6Fvd+A/HG26f91pWoiollTqf01QlpRra0YDB7hU5TLDGCKEW1+Cni/DiNnit2uEq1We4D3UV6WRs7Br5UPwk8NCaL5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oRbksmGa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6C3C4CEE7;
+	Mon, 28 Jul 2025 11:52:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753703550;
+	bh=n0J5JDKTqeiSZ0GT4nTGggSWytKhfzg7qr5qEFkmUNU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oRbksmGapq9OYmr5bQZfbTnyAEOopzoaYZZzPo1tB1TP9ZpJZr+WnOqmdDUHOk5uh
+	 dOUb48Vfpe2P0N8Z0v1WaTEjVYl/YuwZXxZV4ZnZRvJvUxkdEx4oW61QXxqMLWyrKZ
+	 p2jM6GbxuMkfDU6sAuM03YhB2FwcBz9szLJtx2DCEFB++0YJh3gS0GJFvJTy18kuc8
+	 n2c/wYxTRZUNhrtHb7DooKhp5tCbUaOVVfsK+w0OOAVFdNg4601pOBifTghfyjli7L
+	 dL6Lb75oBuNuDDgPO+JxEnUhc+y3DXIF1V2tN+g1L4ekaVGKqW7CMROGdkWQxAVyXN
+	 ShtXfvTTP+uLQ==
+Message-ID: <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
+Date: Mon, 28 Jul 2025 13:52:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250717135336.3974758-1-tmaimon77@gmail.com> <20250717135336.3974758-2-tmaimon77@gmail.com>
- <db07c25c-4064-4330-8bdb-8a619b0b2915@linaro.org>
-In-Reply-To: <db07c25c-4064-4330-8bdb-8a619b0b2915@linaro.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Mon, 28 Jul 2025 14:30:39 +0300
-X-Gm-Features: Ac12FXynceWX6vHFauZXjIJ3-QNlcwbofxe7Djt0AreDMabbmJlyHL9RKrb110Q
-Message-ID: <CAP6Zq1jDCfhOWj4JwORy22TDZRBr0fnuy5-=G4WO9DFRv7pTdQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: nuvoton: npcm845: Add peripheral nodes
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
-	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
-	openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Stephen Boyd <swboyd@chromium.org>, Andre Draszik
+ <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ Elliot Berman <quic_eberman@quicinc.com>,
+ Srinivas Kandagatla <srini@kernel.org>
+References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
+ <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
+ <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
+ <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof
+On 28/07/2025 11:44, Dmitry Baryshkov wrote:
+> On Mon, Jul 28, 2025 at 06:53:14AM +0200, Krzysztof Kozlowski wrote:
+>> On 27/07/2025 18:24, Shivendra Pratap wrote:
+>>> +
+>>> +static int __init psci_init_vendor_reset(void)
+>>> +{
+>>> +	struct reboot_mode_driver *reboot;
+>>> +	struct device_node *np;
+>>> +	int ret;
+>>> +
+>>> +	np = of_find_node_by_path("/psci/reboot-mode");
+>>
+>>
+>> Why are you looking by full path, not by compatible? Is the ABI - above
+>> path - expressed anywhere?
+> 
+> PSCI node is required to have a node name of psci, it doesn't have MMIO,
 
-Thanks for your comments
+This is true
 
-On Thu, 17 Jul 2025 at 17:05, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 17/07/2025 15:53, Tomer Maimon wrote:
-> > Enable peripheral support for the Nuvoton NPCM845 SoC by adding device
-> > nodes for Ethernet controllers, MMC controller, SPI controllers, USB
-> > device controllers, random number generator, ADC, PWM-FAN controller,
-> > and I2C controllers. Include pinmux configurations for relevant
-> > peripherals to support hardware operation. Add an OP-TEE firmware node
-> > for secure services.
-> > This patch enhances functionality for NPCM845-based platforms.
->
-> Drop this sentence, redundant and not in style (see submitting patches).
-> >
-> > Depends-on: ARM: dts: nuvoton: npcm845: Add pinctrl groups
-Maybe it's an issue with our work mail server,
-https://patchwork.ozlabs.org/project/openbmc/patch/20250706153551.2180052-1-tmaimon77@gmail.com/
-I believe you didn't receive the patches below as well, since I didn't
-see any comments. Am I correct?
-https://patchwork.ozlabs.org/project/openbmc/patch/20250706134207.2168184-2-tmaimon77@gmail.com/
-https://patchwork.ozlabs.org/project/openbmc/patch/20250706134207.2168184-3-tmaimon77@gmail.com/
+> so it resides in the root node
 
->
-> There is no such tag.
->
-> Use changelog for this purpose or b4 dependencies.
->
->
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 695 ++++++++++++++++++
-> >  .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
-> >  2 files changed, 702 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > index 5cd877e6c20a..3564e0e30791 100644
-> > --- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> > @@ -4,6 +4,7 @@
-> >  #include <dt-bindings/clock/nuvoton,npcm845-clk.h>
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> >
-> >  / {
-> >       #address-cells = <2>;
-> > @@ -40,6 +41,11 @@ ppi_cluster0: interrupt-partition-0 {
-> >               };
-> >       };
-> >
-> > +     udc0_phy: usb-phy {
-> > +             #phy-cells = <0>;
-> > +             compatible = "usb-nop-xceiv";
->
-> Please follow DTS coding style.
-Do you mean the property order?
->
-> > +     };
-> > +
-> >       ahb {
-> >               #address-cells = <2>;
-> >               #size-cells = <2>;
-> > @@ -56,6 +62,259 @@ clk: rstc: reset-controller@f0801000 {
-> >                       #clock-cells = <1>;
-> >               };
-> >
-> > +             gmac1: eth@f0804000 {
->
-> Please follow established naming for node names. I'll fix whatever old
-> stuff you took it from.
->
->
-> > +                     device_type = "network";
-> > +                     compatible = "snps,dwmac";
->
-> I don't think we want the generic one, even if it is allowed by bindings.
-Do you mean to use "snps,dwmac-3.72a" and not "snps,dwmac"?
->
-> Also... You CC-ed an address, which suggests you do not work on mainline
-> kernel or you do not use get_maintainers.pl/b4/patman. Please rebase and
-> always work on mainline or start using mentioned tools, so correct
-> addresses will be used.
->
->
-> > +                     reg = <0x0 0xf0804000 0x0 0x2000>;
->
->
-> > +                     interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     interrupt-names = "macirq";
-> > +                     clocks  = <&clk NPCM8XX_CLK_AHB>;
-> > +                     clock-names = "stmmaceth";
-> > +                     pinctrl-names = "default";
-> > +                     pinctrl-0 = <&rg2_pins
-> > +                                     &rg2mdio_pins>;
-> > +                     status = "disabled";
-> > +             };
->
->
-> ...
->
-> > +
-> > +             mc: memory-controller@f0824000 {
-> > +                     compatible = "nuvoton,npcm845-memory-controller";
-> > +                     reg = <0x0 0xf0824000 0x0 0x1000>;
-> > +                     interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> > +             };
-> > +
-> > +             udc0:usb@f0830000 {
->
-> DTS coding style...
->
-> > +                     compatible = "nuvoton,npcm845-udc";
-> > +                     reg = <0x0 0xf0830000 0x0 0x1000
-> > +                            0x0 0xfffeb000 0x0 0x800>;
-> > +                     interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks = <&clk NPCM8XX_CLK_SU>;
-> > +                     clock-names = "clk_usb_bridge";
-> > +
-> > +                     phys = <&udc0_phy>;
-> > +                     phy_type = "utmi_wide";
-> > +                     dr_mode = "peripheral";
-> > +                     status = "disabled";
-> > +             };
-> > +
->
-> ...
->
->
-> Best regards,
-> Krzysztof
+This might be or not might be true. It is not defined by ABI. Anyway,
+you answered where the ABI would be documented, even though as I said it
+is not (/psci is not), but does not answer to first part: why you are
+not using compatibles which is always the preferred method?
 
-Thanks,
 
-Tomer
+> and the reboot-mode is defined in the
+> previous patch. So, I'd assume, the path is defined.
+
+As I said, path is not. only psci/reboot-mode is.
+
+> 
+Best regards,
+Krzysztof
 
