@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8448B133D1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:54:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB96B133DA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:01:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D0818858E7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 04:55:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FA7B3B502F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:01:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21EE0217704;
-	Mon, 28 Jul 2025 04:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAD4207A22;
+	Mon, 28 Jul 2025 05:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nTAWZUyv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EXNaKFBR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E417B78F3A;
-	Mon, 28 Jul 2025 04:54:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B8D29405;
+	Mon, 28 Jul 2025 05:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753678478; cv=none; b=mAsX4R10Nero7ILgvmkJEQd3wrRPFESjrEK3Qk58bf3dGDfP/KAqFhvnP+JLm/RYU1jRn56nTmUfbMws/RS5mvdDUY5u498mN2/I0MQK5oueMmPJhzV9RupGA0sXmo0oSY204y3TLFQ/2HBFYmu+RxAJHXLFdyJYRXPhMMzRHO4=
+	t=1753678899; cv=none; b=XH0SzjCN18DiGLVq0iz49VpXeQT6NoRYNJuhVI5HB4O7jmg6uBzhNWLLeWq1+oj4gMcwSxtQsw4A1WP9+fdNQYul9LByZniyC16xKo0nlqU/1ftABjteISYKgPgOxH5eFhHLeg1TtR/QOx/yHFMUXM8tUx9Lr4yS/8L8BYUDXDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753678478; c=relaxed/simple;
-	bh=Wh7upnKZdulod8UOOydJPwZLWQtp2GXJyslkrYNgT2Y=;
+	s=arc-20240116; t=1753678899; c=relaxed/simple;
+	bh=h2t9VTTQvPqtnd9UzMdzQzgUqidHexMKRE2szkipEdA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DTL31CBzjLsfLS5ZRXcbo4v4wRD67LocEPmAKIcoAwBQGTuSflHBpTF0XDJfxvZZpl8XE0k02Q8wfUR/y+bPLir65Frx2PRdYIYoUZ5eEwSU0YbHbxL+uO2m6bH+FZtd4WiOyh+HO9tvwjonsz23fUvYhL7GN+B0OsJY/TJcP/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nTAWZUyv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D974C4CEE7;
-	Mon, 28 Jul 2025 04:54:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZSQvK+mVmzq3ZomhnFGudu86eHYOQIWiMGccYX3Gm3zeq9lnbUnPM0S4YafPFCUJ5gjO8/vgYCXytAlRcfDi6xlg1ji//ZLbp+1/FhE4om7xYgYgTgYdGtwc5RpgM7weUsbxAds8VkqCsubP6OCylrAO/gu1M49huZTIWmPJk84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EXNaKFBR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE5D3C4CEE7;
+	Mon, 28 Jul 2025 05:01:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753678475;
-	bh=Wh7upnKZdulod8UOOydJPwZLWQtp2GXJyslkrYNgT2Y=;
+	s=k20201202; t=1753678896;
+	bh=h2t9VTTQvPqtnd9UzMdzQzgUqidHexMKRE2szkipEdA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nTAWZUyvb2HuBIwhHenp27cXtX0Qlj1Nkihe2X9wYasYh62OsmoPzUFHLDhyCKS4W
-	 E5kv/wSlSQk69mB9Cq0YNgup01OJwz6hswZdfxeSzo/jG8ZgPVTErWYcVtIOd2nU4K
-	 6RN47fVtjTvaZfWlRXtIGN3vyWXn1SQlCw+0e43FnxlOGnujloN0YryUlAwuFrXg9T
-	 EUu4q6Wn3MOOcPni56PH/vUsklXATy0Gxb74T9Ow8zyHm7LBAh7aXEqmCG0IEqNxDn
-	 k0htr4Di2YF0by6KDs+tOMgqi8bdpAYSx0C4tAxSWGTw0hLw+BxqvCrsciHljQr+fG
-	 vx4WgPKAni0lA==
-Message-ID: <9771df86-daad-4178-a461-bba5b7d6be6b@kernel.org>
-Date: Mon, 28 Jul 2025 06:54:30 +0200
+	b=EXNaKFBRdbopl6nr3kNPc+/DouSIxexmqT5HFrpckAEnXXMGix6yizKJoWFAoxdkJ
+	 b+bVnnmmdkE9iFP8603Szq479ZfWotj+5h6TcepiUsrO/EJSU18AUqeAPMd/FfmSjd
+	 DNVgEzSIBtSv5Hnq8nyIJYf8XCyjdbk5lyXb0T4WbcqBbOSaDYc/E54Xj7oIfI9njV
+	 3mD9FKjD6iadgDe3tkoNi5yCc1XvLEReI+/a6/zvn03wCp1WFUnYPZVTR6vt6saGkr
+	 Y216jJKItQto4xX1digPCX6XOAPmj5C5H1TcUVGQxyRtr78ME8DuEJ6C8iZuuxkR4W
+	 3+FzZ0o0lraOw==
+Message-ID: <5b8d42d5-d034-4495-9d28-27478a606d62@kernel.org>
+Date: Mon, 28 Jul 2025 07:01:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: (lm75) Add binding for NXP
- P3T1750
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
- corbet@lwn.net, linux-doc@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com
-References: <20250728041913.3754236-1-lakshay.piplani@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom: Add SM8750 GPU clocks
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250723-topic-8750_gpucc-v2-0-56c93b84c390@oss.qualcomm.com>
+ <20250723-topic-8750_gpucc-v2-1-56c93b84c390@oss.qualcomm.com>
+ <20250724-blazing-therapeutic-python-1e96ca@kuoka>
+ <54b617c1-bd1b-4244-b75d-57eaaa2c083d@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,20 +109,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250728041913.3754236-1-lakshay.piplani@nxp.com>
+In-Reply-To: <54b617c1-bd1b-4244-b75d-57eaaa2c083d@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/07/2025 06:19, Lakshay Piplani wrote:
-> Add "nxp,p3t1750" to the lm75 compatible list.
+On 25/07/2025 11:30, Konrad Dybcio wrote:
+>>>  
+>>> @@ -40,6 +42,9 @@ properties:
+>>>        - description: GPLL0 main branch source
+>>>        - description: GPLL0 div branch source
+>>>  
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>
+>> This should be a different binding or you need to restrict other
+>> variants here.
 > 
-> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-> ---
-> Changes in v2:
-> - Sorted compatible strings alphabetically
+> Actually looks like this is the same case as the recent videocc changes
+> (15 year old technical debt catching up to us..)
 > 
+> I'll send a mass-fixup for this.
+> 
+> Some platforms require 2 and some require 3 entries here. Do I have to
+> restrict them very specifically, or can I do:
+> 
+> power-domains:
+>   description:
+>     Power domains required for the clock controller to operate
+>   minItems: 2
+>   items:
+>     - description: CX power domain
+>     - description: MX power domain
+>     - description: MXC power domain
+> 
+> ?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is correct and should be in top level, but you still need to
+restrict them per each variant (minItems: 3 or maxItems: 2).
+
+> 
+> Konrad
+
 
 Best regards,
 Krzysztof
