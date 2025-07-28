@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-200048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6ACB1340D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:13:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E93B13412
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:19:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 223AE16ABFE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:13:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA5233A621C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1341219A71;
-	Mon, 28 Jul 2025 05:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D654B215F6C;
+	Mon, 28 Jul 2025 05:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gN7Iq9NC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hAU4jnuM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83C6290F;
-	Mon, 28 Jul 2025 05:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52D32E3708;
+	Mon, 28 Jul 2025 05:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753679611; cv=none; b=usDw9xrBKoLM4BiL46ghUBJJV2KFu4PQF2i84G5EUZhtR9YV/9QrwEfhkXyZvp5aoEJaaJ2KIqH8D4v/QBPiILkJvTwa41xare1XtjzJWTEpK2iu+KQit0sh0r9GPeHYG6WOJxntfLHQWNOB4f+6c6E7AbGOgqBmcwykVAGmjnE=
+	t=1753679944; cv=none; b=CqGTz+LZGbKk1vo03vlpqTD9ucOWkSQ1V8jpjmtGlVKt6z8hF1fsy6AGxLKYm6QsNkkI51HL/DRXeCWAqW80+OxT+FwwAlCU5rqjwQia2DTZBghbj0XFqgesDpyKW3LWusG9FNmsB/eON+26LYlFElKs5hVganTgHOEPJC2pwwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753679611; c=relaxed/simple;
-	bh=SCnFBh2pOHaMVAfqrFukG2B0hL6vIjUPCh6ccF3qkK8=;
+	s=arc-20240116; t=1753679944; c=relaxed/simple;
+	bh=KWCLB5ShRmghHY/hmUPXAF5gevknUvBoBlaPpRZjE0k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kR82ekqL2MS65WV3zRfSa3ZX9QtzCUX+zi3U/y1hjFeFVIOX+heole3j6n1e7lGZQHeUodnf5/ojnL1nus2gFamHf01po3X96KhXZf0NbT/oh8sElMsFXbb7NqP6iHPUvI5OITIkwZQNn/GrotiDQ/YMJUTKCYOy4FNuMO9PyXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gN7Iq9NC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF7FC4CEE7;
-	Mon, 28 Jul 2025 05:13:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=d5OIcq1NCUsJpLcSbQZ6CBPgLCKYXLAA2ZB7/GZhPHY++TPqxn7oauTpiVELI1CtprmXr9HwZtz0ukoMi/RuO7rRdPtYorpuAPUG9J6CLUznm54G1lOW9dsCgAVO2joYc3cDnD6AiVRoxL/trsKn7BrSwwHc8Jtx+7lKGFBV6Zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAU4jnuM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E1CC4CEE7;
+	Mon, 28 Jul 2025 05:19:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753679611;
-	bh=SCnFBh2pOHaMVAfqrFukG2B0hL6vIjUPCh6ccF3qkK8=;
+	s=k20201202; t=1753679944;
+	bh=KWCLB5ShRmghHY/hmUPXAF5gevknUvBoBlaPpRZjE0k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gN7Iq9NCeErSi0+I/651qC9gtqQbPYvfmJV/9O29RskqzV2JOSeMUnqJEZ8x5Hmfj
-	 UPXZkvom7b/Ucz+4yw0MAJLkNC0EKS5NRdGb2ZDBd4ke6nOXvxig9Ax55Qr1QSxIIF
-	 K4KfW4nkV0054baygkRJdm3iPcSJeO6UJxQPCi3lFfHmNuZPDHxxpZhG+cbzctyYpC
-	 gwwJBiixcOmqCGMu+ZIaxUB4M0b6n6zAT3mN9Z6UaR5TPGpKQwZdHU1/UkFonUkua0
-	 uqxhfMrnFUcE6Y0EJm6sMPgsXcYiL6vfHEElFG9NMVInU0jERzCxr3qqIlEJu8WxlR
-	 E0/RtxjrwuITA==
-Date: Mon, 28 Jul 2025 07:13:28 +0200
+	b=hAU4jnuM4K0Rwfnuj5eJdGSReVV/ySCD2tYpTjIEbPekH0wx9p3b/jMnmAbDoq2AA
+	 aj9g0zeLtEZfpNDKLmdpq+ZvIwhBphbsYvyvlQoUgghlYznZXIMzepuIgi+inMuatP
+	 EWv0rB0gEuWoGVrZZ/6bbHt8yrbLyAjuxENPF/zD1XjnAN3oCrRco/N+2+79hD7msP
+	 9Cr458EittBZ5jjrCBOaZe1rxQCT7lFMMPuTp2c8RRit2iJhoLvi6JxHMmwRd3xC71
+	 dRJ9HxoW9DunWmuqmKLYaaEtdp2p33ePxMFUzFCx6km0UgAjckviqVavBxV2mDwjzW
+	 i6PUJebl2r3oA==
+Date: Mon, 28 Jul 2025 07:19:01 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v6 1/7] dt-bindings: net: airoha: npu: Add
- memory regions used for wlan offload
-Message-ID: <20250728-pompous-bull-of-argument-ddda6c@kuoka>
-References: <20250727-airoha-en7581-wlan-offlaod-v6-0-6afad96ac176@kernel.org>
- <20250727-airoha-en7581-wlan-offlaod-v6-1-6afad96ac176@kernel.org>
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	jean-baptiste.maneyrol@tdk.com, robh@kernel.org, ~lkcamp/patches@lists.sr.ht, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: pressure: add invensense,icp10100
+Message-ID: <20250728-outrageous-snobbish-hoatzin-ebdc03@kuoka>
+References: <20250728004039.8634-1-rodrigo.gobbi.7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,21 +59,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250727-airoha-en7581-wlan-offlaod-v6-1-6afad96ac176@kernel.org>
+In-Reply-To: <20250728004039.8634-1-rodrigo.gobbi.7@gmail.com>
 
-On Sun, Jul 27, 2025 at 04:40:46PM +0200, Lorenzo Bianconi wrote:
-> Document memory regions used by Airoha EN7581 NPU for wlan traffic
-> offloading. The brand new added memory regions do not introduce any
-> backward compatibility issues since they will be used just to offload
-> traffic to/from the MT76 wireless NIC and the MT76 probing will not fail
-> if these memory regions are not provide, it will just disable offloading
-> via the NPU module.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../devicetree/bindings/net/airoha,en7581-npu.yaml | 22 ++++++++++++++++++----
+On Sun, Jul 27, 2025 at 09:32:02PM -0300, Rodrigo Gobbi wrote:
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - invensense,icp10101
+> +          - invensense,icp10110
+> +          - invensense,icp10111
+> +      - const: invensense,icp10100
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This does not allow using invensense,icp10100 alone. Try it yourself on
+DTS - you will see warnings.
+
+You need oneOf, just takek a peak at some random bindings.
 
 Best regards,
 Krzysztof
