@@ -1,113 +1,94 @@
-Return-Path: <devicetree+bounces-200239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C50B13DDD
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D61B13DE9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 17:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0B4B7A463E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:06:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7A887A7685
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9165026F477;
-	Mon, 28 Jul 2025 15:07:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0C8271479;
+	Mon, 28 Jul 2025 15:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="B1p6GydT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="YNugWOgT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F8126B093;
-	Mon, 28 Jul 2025 15:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B20271445;
+	Mon, 28 Jul 2025 15:08:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753715261; cv=none; b=QX3Hp+mQ3HYGJG38ggIrdJ335K76xxZw61Zh+Uq9ANQKPVMRTUBTTAV577bm/iu+QligrBFU9koSQbC+TjB1Ccv5baOF0KsMBtiFt9iOb448HzqGVitp3dK0bwrA9F+fUDRtS7SlT7wYiUZcV4H7ltWMxVXx5p15GoIt+TKDuFw=
+	t=1753715338; cv=none; b=qTQY+RJeVIoazOeQitjvNrVeQu+RlX/jB12cPn1JBtxPxs3/6BWWBi7ADsPNsCkNKjq1qzLr09rGlp/zo2kXl1T30O2OYhDsq/S+Fi5nDBgzOXCLr/NfieLyyR65hu59oKdcXALqqCmWV6KwVG6yQFju4KtjG93xGelFInFYpSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753715261; c=relaxed/simple;
-	bh=uvTHoWDfs2EDKcTU/ctS/fdFesLbnoOsjLa1+Mgz95M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=D2fcNmmDgtXSn2lRu0V62wImy1ZT7qdN6T/RS+iW4pwoaNEhOZHZ6bICQ4TirK0go49h/ZrfGQ9COHYAnIv2hV2lmOnjt1Jy4LfmNFyU+4S4H92gj1lpmtzgT37FdFH7H4ioRlBUn7fbJhEzbkvku3fUmfUxYNaiA24mBTI9mAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=B1p6GydT; arc=none smtp.client-ip=209.222.21.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
-	s=default; t=1753715258;
-	bh=uvTHoWDfs2EDKcTU/ctS/fdFesLbnoOsjLa1+Mgz95M=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=B1p6GydTvvV9IUlpvSF7BW+R/jZiJLDJk1X1ho3uJX91QeIXLtHkm2SOWG/BbP152
-	 QVSm2nEzgp0cygItof5QokKepy/Jr/fbhGeGaSH4AN96S0GLoQ7ZU7qUAsQSm7y1+z
-	 uc8x0xjOjv+mdqGXlm1WeSvR9A+Wk1md4bPfrrQdaj1zxtgi7RhGNQ/fAYw0s71GMU
-	 KHH5RQ1G6UnMrLqVFr37jTzAKendrQdZkPrJoChDMTIhugh0THUQJKQkuC0l/lNQR8
-	 7vRz6JQjMFxBdumHfY8Roak1PvqFA2mbOwyq9LzfHaDt7yxGzOhhZGI2AKAe/jRSZd
-	 izplVda2lQRZQ==
-Received: from localhost (unknown [IPv6:2600:4040:50b7:b604:31ee:da95:eea2:34e])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by chumsalmon.baetis.net (Postfix) with ESMTPSA id 89C9C27E83B;
-	Mon, 28 Jul 2025 15:07:38 +0000 (UTC)
-From: Erik Beck <xunil@tahomasoft.com>
-Date: Mon, 28 Jul 2025 11:07:37 -0400
-Subject: [PATCH v5 2/2] dt-bindings: arm: rockchip: add
- LinkStar-H68k-1432v1
+	s=arc-20240116; t=1753715338; c=relaxed/simple;
+	bh=CG3hzhVEa/YWkRQxQ4yvbM6yCNb/dYltNT7u/U0kDak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rrNIJKAeHVOen0cNBnLjzF2l79dJHK1WQ1MpKU1RaAIhHETtLz2xk4ZxI0TxJ92e05Z8P3ue2djRKkR6IOZQv0YCf6VyzIWU/2P2CTJTSRtlaFhl4/XWD1oXxOvsIoiQvj/eehvkMjcOl4NH9JMCQHj7MjwuOCq20JJs97XekKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=YNugWOgT; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id CE7BB3A4;
+	Mon, 28 Jul 2025 17:08:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1753715293;
+	bh=CG3hzhVEa/YWkRQxQ4yvbM6yCNb/dYltNT7u/U0kDak=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YNugWOgTbR5wt43oF7MNQ96kaoSVa2dH7xXUKPO1Q4BYv6Idy2gU+u5yCBl6P10gw
+	 izFG0CV5yKGsJtkBjf7ehbucNANLlI7W1K1QHlTgenOb+jDD2elcBkBWCIfVXRKG4Z
+	 R+cuq+/gNzRiiWZBDnX53RcsLSIG5Z09fxynosNU=
+Date: Mon, 28 Jul 2025 18:08:47 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-media@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 13/72] arm64: dts: renesas:
+ aistarvision-mipi-adapter-2.1: Drop clock-frequency from camera sensor node
+Message-ID: <20250728150847.GK787@pendragon.ideasonboard.com>
+References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
+ <20250710174808.5361-14-laurent.pinchart@ideasonboard.com>
+ <CAMuHMdV=kuBePu8iwfd6Z2naLYUvKM74G+UoDP9=PvD776SBmQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250728-linkstarpatch_v5-v5-2-b4ebfeaca652@tahomasoft.com>
-References: <20250728-linkstarpatch_v5-v5-0-b4ebfeaca652@tahomasoft.com>
-In-Reply-To: <20250728-linkstarpatch_v5-v5-0-b4ebfeaca652@tahomasoft.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Erik Beck <xunil@tahomasoft.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753715257; l=1156;
- i=xunil@tahomasoft.com; s=20250724; h=from:subject:message-id;
- bh=uvTHoWDfs2EDKcTU/ctS/fdFesLbnoOsjLa1+Mgz95M=;
- b=jS97AuXubreofn2GtbncJNoEvjWPnHULAnjzCIRTJUVzrXRw9PovBHcnUMte3OHu7lrCE5xGy
- fiSEuxE9MBCANt9dIS6FOxBWnR2t3mw7teMzKH/HlgtZaD33TY7IVlY
-X-Developer-Key: i=xunil@tahomasoft.com; a=ed25519;
- pk=FTZVGUexvkWb4j8v0wbtm7CtJLijIAaa5x0XV72WWC0=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdV=kuBePu8iwfd6Z2naLYUvKM74G+UoDP9=PvD776SBmQ@mail.gmail.com>
 
-Add device tree bindings.
+On Mon, Jul 28, 2025 at 04:19:49PM +0200, Geert Uytterhoeven wrote:
+> On Thu, 10 Jul 2025 at 19:49, Laurent Pinchart wrote:
+> > The clock-frequency for camera sensors has been deprecated in favour of
+> > the assigned-clocks and assigned-clock-rates properties. As the clock
+> > source for the sensor is a fixed-frequency oscillator, simply drop the
+> > clock-frequency.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Thanks for your patch!
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> Doesn't this patch have a hard dependency on "[PATCH 66/72] media:
+> i2c: ov5645: Use V4L2 legacy sensor clock helper", and thus shouldn't
+> this patch be moved after the latter in this series?
 
-This device:
-  - Is a single board travel router made by Seeed, using an rk3568;
-  - Has four ethernet ports;
-  - Has four USB ports;
-  - Has WiFi (MediaTek MT7921e);
-  - Has a real-time clock (rk809)
-
-Signed-off-by: Erik Beck <xunil@tahomasoft.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 5772d905f390e53b44f9093d32b869a7e0655db6..7f3904b69293f31fdd4f6080fab5ce054c1abee2 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -1109,6 +1109,11 @@ properties:
-           - const: rockchip,rk3588-toybrick-x0
-           - const: rockchip,rk3588
- 
-+      - description: Seeed LinkStar H68K-1432v1 RK3568
-+        items:
-+          - const: seeed,rk3568-linkstar-h68k-1432v1
-+          - const: rockchip,rk3568
-+
-       - description: Sinovoip RK3308 Banana Pi P2 Pro
-         items:
-           - const: sinovoip,rk3308-bpi-p2pro
+Apparently it does. I'll move the DT changes to the end of the series.
 
 -- 
-2.43.0
+Regards,
 
+Laurent Pinchart
 
