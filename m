@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E57B133C6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:50:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0DB7B133CB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C08F4188793B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 04:50:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 481DE3B2B74
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 04:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF71618C008;
-	Mon, 28 Jul 2025 04:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2040C2045B6;
+	Mon, 28 Jul 2025 04:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrL4+y31"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZR84LQaw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963BBEEC3;
-	Mon, 28 Jul 2025 04:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E41AC15278E;
+	Mon, 28 Jul 2025 04:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753678209; cv=none; b=BUIE5ffBo/QRN9XgUwrSMblp38jqg+GIXj/yiSi5/wxbWQ4B7weKGMittOj0rYv5B2Hc68Ehh+u6hmzk1ebfIufLsCaud6VxhSOJPNNxMqFixpRjru4Fat3NVEzX7Erhn8rLFfkf19n7VF5NRF9B27y0ssDJgDbkzX+tl7SZcEk=
+	t=1753678403; cv=none; b=PGp7Wh3wvQnuywJ5Ks/zVbbGtBnpuT6YOnuP+i+O8SDc/MKDGcVfrELearJPrUx01MfNVEYG08e8tZjzUf18Z5VOx6XltqAf6HRZOrrFVZzi+EnXcTH/UTvrzYSUN/7TPOyP31zrRKZyLc7tqTS3/wXqGo1D7RwgbH+TICTEWAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753678209; c=relaxed/simple;
-	bh=CzRdO948Lo2iFxSrbyu5Pagmi3kJ6/7KYnoh6hd6OHk=;
+	s=arc-20240116; t=1753678403; c=relaxed/simple;
+	bh=zsnBU3qQQDiYFD7qpMKtcuJR6qr2mTSmb4EcinSR/zc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HJcEzbftocJNY3r5ljGvc8lYXR+TIaMRvKqICk+fJcjkaoig2NgTwIQKQcc8O/LcnlCyCPjNnmg5Vls6FB0l6oweowjOAsYQDWfLDJrkxwxCkHlrJ778r4wi1LXjp879W7QKV6wZzRvzsIoGjFSfY80ZAkppZ+cwBe3kz4WxNvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrL4+y31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6663CC4CEE7;
-	Mon, 28 Jul 2025 04:50:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MAjlItgpe2NQwZecRYc3OsZE7jIjzcLqfCppwQyGqPCUcBePAZffaTBXrs2X3ccOzvLFioJQGRhDpateZtO2g/TI4WIohSAJbaLjCFOe8DZaZQ+O3wb9++WiiSZplzdjz6NnUV6Wz1GU3uRItEbHkyP0jo1nlCmhjLkDx74oX/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZR84LQaw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30899C4CEE7;
+	Mon, 28 Jul 2025 04:53:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753678209;
-	bh=CzRdO948Lo2iFxSrbyu5Pagmi3kJ6/7KYnoh6hd6OHk=;
+	s=k20201202; t=1753678402;
+	bh=zsnBU3qQQDiYFD7qpMKtcuJR6qr2mTSmb4EcinSR/zc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RrL4+y31r5CPtYMDYuefm/kgI9mrBIwDYDdyLrivD4MtAP93Y6kIIdD3PwSYu7lVg
-	 Uo8V3Ult2hqkn770Jdo4Ho1Hzz3cnflSDULKiwCCF1OPBlQzhSrrEmHVuSpVzU1HKS
-	 FLliS9vWzC/t1hOFce8Y1V66kO4MQKaws1beT7e5wzpVC7WoVtL+vnDmBtoyyfEKtc
-	 wuwhhL5rWE9X5KY8mPkQGFmutq1vQpEvdVE/MwCfiyX9svGf+utJg6Tzsr91HWJvtK
-	 LlHLnyi+B/Lw4Ll67QVQEAohs2n+trvYGsGW5yuqn9k0rh2JFYvlQOw5r5hkJJcHGL
-	 Bf3EwaKb25e8g==
-Message-ID: <eef43c76-7e1d-4e91-a41a-0a8c33d9616f@kernel.org>
-Date: Mon, 28 Jul 2025 06:50:04 +0200
+	b=ZR84LQawVO+YuvpxZ8FgKNzYt7kElbKXAfpHODDe8WeyF1JzWQt/UH5jhghbtDv0D
+	 0DSMx6uNSKTJxlfwMeFyLhWJgc4D8ODFqTlE0YXSM1iOimgrE9wIvCpUkM1ubc2tgj
+	 nwPjBaDWAORb/oRSeugbxNbz0U5Itso0li4AmeZ8iNA9sLj/D08zn7ni8Np6I0QEJ8
+	 uWhCByQO3qhDHX4RITqi3OsjCDfTX9Yz4h2jzWV3sUdEDADfLguXPp6F/HkCJ3Fu9x
+	 E1unYyz0DJS9Y7CXkArX5HSlpVFT5CEjQMlnFX594koHyZFbSCzxkuv60GKCtwLSJy
+	 MVecQBAI9kwng==
+Message-ID: <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
+Date: Mon, 28 Jul 2025 06:53:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
- for MT8188
-To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250521063347.31578-1-friday.yang@mediatek.com>
- <20250521063347.31578-3-friday.yang@mediatek.com>
- <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
- <7421d8f4f3d5fdb392f46df93bfee21a97cc2e1c.camel@mediatek.com>
- <633ea291-2e02-44be-bd03-220634b3c62d@kernel.org>
- <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
- <1e9de035-9d32-45d1-9f11-33c3439143be@kernel.org>
- <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
- <03dece78-44d5-4b85-b71c-bb6794849ddd@kernel.org>
- <7e390b85e1ba6362ffa0231faefc0ea63a922639.camel@mediatek.com>
+Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andy Yan <andy.yan@rock-chips.com>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Vinod Koul <vkoul@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Stephen Boyd <swboyd@chromium.org>, Andre Draszik
+ <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ Elliot Berman <quic_eberman@quicinc.com>,
+ Srinivas Kandagatla <srini@kernel.org>
+References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
+ <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,64 +120,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <7e390b85e1ba6362ffa0231faefc0ea63a922639.camel@mediatek.com>
+In-Reply-To: <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/07/2025 04:59, Friday Yang (杨阳) wrote:
-> On Thu, 2025-07-24 at 10:55 +0200, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 24/07/2025 10:43, Friday Yang (杨阳) wrote:
->>>>
->>>>> ignore this tag. What I intended to explain here was that I
->>>>> decided
->>>>> not
->>>>> to use 'devm_pm_runtime_enable' to replace 'pm_runtime_enable'
->>>>> functions. Unfortunately, the fake tag didn't explain this
->>>>> clearly
->>>>> in
->>>>> the changelog, which was my fault. To address this, I updated
->>>>> patchset
->>>>> v8 to include an explanation.
->>>>>
->>>>> In patchset v6, I replaced 'pm_runtime_enable' with
->>>>> 'devm_pm_runtime_enable'. However, in patchset v8, I reverted
->>>>> this
->>>>> change and included the reason for this decision in the
->>>>> changelog.
->>>>> Apologize for the delay and the trouble again.
->>>>
->>>> Nothing above is related to my question about the
->>>> fake/invented/questioned tag.
->>>>
->>>
->>> I got your point, you refer to the 'reviewed-by' and 'acked-by' tag
->>> in
->>> this patch.
->>> These are the tags from two reviewers.
->>>
->>>
-> https://lore.kernel.org/lkml/174172361378.44650.15345202042780383326.robh@kernel.org/
->>
->>
->> You are really not responding to my initial comments and keep
->> dragging
->> this discussion in some confused directions. Do we talk here about
->> that
->> patch? No.
->>
-> 
-> I understand what you're referring to. For the 'dt-binding' patch, I
-> can keep the tags. However, for the 'smi driver' patch, I should remove
-> the tags because there was a change after v6.
-> I will update v9 soon. Thank you!
+On 27/07/2025 18:24, Shivendra Pratap wrote:
+> +
+> +static int __init psci_init_vendor_reset(void)
+> +{
+> +	struct reboot_mode_driver *reboot;
+> +	struct device_node *np;
+> +	int ret;
+> +
+> +	np = of_find_node_by_path("/psci/reboot-mode");
 
 
-No. You never responded to v7 and never addressed the actual comments I
-raised.
+Why are you looking by full path, not by compatible? Is the ABI - above
+path - expressed anywhere?
 
 
 Best regards,
