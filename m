@@ -1,134 +1,188 @@
-Return-Path: <devicetree+bounces-200121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312FCB1376F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:25:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC38BB13774
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 11:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B94E83B7F54
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:24:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1DBE7A4A57
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 09:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B40022356BA;
-	Mon, 28 Jul 2025 09:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F4423370F;
+	Mon, 28 Jul 2025 09:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="hnRqEenl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pBbJn40v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B3622FE15
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8041522C35D
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753694693; cv=none; b=W0FZsbNtMXvhN8JYXvnv/fJjCGBSragN10iT5r98RSN6s6AT8bNMM3VoBHkLkF4r1Tq9GERHNjnjEcNx89aLAmNYOj1qfZpxVlbxL7C5dldbnUoHVzlSQovVvhs0w96LKWyQZmOvplG7Dy/Mm/h81Gp67wXzlJ9FVh0YYYNzs18=
+	t=1753694708; cv=none; b=pMiUvQ4cEa6nUl0bM4AdIYFOnmguTunxOfNsh+MyQtxyFYxsK9yY72LLbj69k+9RWBOMr6AaSSCkCZF9hifpb+Wm5kUDPW7VEL1YX5APaS+TfdaehemQhnvpM7BTpK+rE7ES5qXuohzDkIn832WZlOMvq+P3GIpC0y86Jk17+h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753694693; c=relaxed/simple;
-	bh=p7SaI3KRq9+LTs81Ai4ENBC/+OQ8Fyl2MN4HlWaQG8E=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=JFbFeEim6bcmPLDtumrvTUMnSaiSVL5U8JgcTqwa17LtMBjCaUDLiLfh6BtDKuKqLrLWIu2fO+Zjrg/DU4hYbIxhMFKat3XVnuvhEhULVrJfRabvKJiFt4UO5M5am8r83aeivBWVTviZDknRPx2EkRVfqJvaTtgUtqUiVxHcWMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=hnRqEenl; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ae0c571f137so799815966b.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 02:24:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1753694690; x=1754299490; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p7SaI3KRq9+LTs81Ai4ENBC/+OQ8Fyl2MN4HlWaQG8E=;
-        b=hnRqEenl351V0jKU5o0FexJPeykocfKZRvqd3XPdnk3WxuWZwK00bVDgumZlsDIuYA
-         qZBZjSv6nK4+/lxPc5uQC+3mJo0azz2pQMt8MS2MFmThRbPXSOiBQPBSJRH0R+rcay62
-         2hLXp2wTfLHQxL+CJMqWzNRo/90jUrmwlLVfMC0kIEOtDk5qQT3p13mJEG6WW6ZT6NhT
-         sbjSd7OUW5whJBGK3H09wQLtbxRJ+cMOhjckpcwt9x5oogSr9YA1k51d7HI1EHDDDz+S
-         GuZtAeqhdxjNnC0H6GqZbWsheZ00/JaiyAubXrB6KWTN72i7o6MQ14blYwMBf1V650sC
-         mBgQ==
+	s=arc-20240116; t=1753694708; c=relaxed/simple;
+	bh=PvPKcE3eALATxUJe1yT+rLheC5LBnXtwdUiRFngfSqk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q0HXxTSfCscxImvLnMHl3+jdEZt5QEoE5Q/NzTVhCjwh91Imb5ZRtvYzdtuNpcdjeYEJJvGeg6pNBFky6/qrnizjGRWo+Urm1jTB9htg65dKdJJfQYekY3rjDOWAy6Rhi59w092l7PNeOeBVOYo0vMN1rm6ocnNGbhnNwGGOs6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pBbJn40v; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56S4rwC3020683
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:25:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xO1DkZAA9DCroi1+CycGEgMcsvDK1LPRrUiGmAaML1o=; b=pBbJn40v9A1yBZb+
+	L95XkkmCpRgxUZx1VEtq7L2Sx/PamdGr4//heZn9OqRMMFTkPAGQCLMvulXn+uNP
+	QzFHiRCknpCBjIHU9rrn4QpCywqzVr9oJPgRZ/kdd3+zvW5he3zEQz/+KDhAoQ2w
+	QTuMKv8KFPSKWbvfPQ72L3tXcYsncM39Ft4pWlOz/fi7vfFk6YH9PO+nASgt9Rpl
+	itjUvh5ol0Zzhat49B2hetJXw1iUxFN4HUsMvUXj4/ndSlsJVYEciOhvO1R8/mCM
+	sMGTb6v1iUsuTAWd6HC0nX0vGq0HPt7HEMa/84xlI6nFZ0FZlBbhM856c3VQMzfj
+	VBMcvg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qkwua-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 09:25:05 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ab3ab7f74bso13115871cf.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 02:25:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753694690; x=1754299490;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=p7SaI3KRq9+LTs81Ai4ENBC/+OQ8Fyl2MN4HlWaQG8E=;
-        b=mgWQYc+X8RFCea2aNJTJ9JYD0EgjtfZG+2sqQEN5U6BMyFzz22ifdH7bT7Fn/Ugw0F
-         QV4Xh64Cuenj1nyiwIbEhhlVdAxAL5H8W/WqoprEunjH779jxChG9YqXbV8XCpPo+aX9
-         KCPINxHNOCA+gRxkx1ISMB+czGIQOFZ2bpsukX8lC6BVsv0sF5P+7C433WP67pwLvs21
-         o8JrsO7Cto2m/ddJlLXff7X1KthwvPjJvKxlquCmfm40MT0NIPjj4PgsL08tSXlidSl0
-         bPhJyRhBLfHe+ovm2LTi4dh1IvC6EXl1sEENsrPeLZan3C4rrOtrojv1fdU/5Wl9v28O
-         xoLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUTKQhCELL6NnKV+StsS3OJ2OSCFq6AH4iDJxoWkJcjLajok3FTnCosxag3ySJm6+zsMIZazwo0Y6hM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhdatvsYPUFYQBuPUosvuFssL3tJlcPYeKaBtUz6Q6O0YQWVag
-	rnodHJBr9lBp8SpLScOQXfVqfoHP+oJBJks8iDjNdIBzr4v+wahjmF4bKbKjHIA70vA=
-X-Gm-Gg: ASbGncuUfn9jcd6La8rDcMkge/qoPCo3dDN3Qbb520Tz2Ne3PLkG0LkbPemezfQCm5F
-	vThS9MMqenl1ERBPZw+S7rf6DR4te4hWz94eA78Fn0XODmmDKkAnad1iS/w6qSsnxS6sTjgA7Uq
-	rCRR+314pm3AUeYY0NwOJwdXPTSDikEr8y/rgaVbXcJ8rYVUvatrDy3Se/N4UYAzXfcketyMtX5
-	JDClFm/I4WD59eGYetibEcGQx0LzJbn6D42VrL0/Ugy/DX7TPMgBW72FcQrV0k7ORgqlgXA51j8
-	b+l+EvSRQTRMkUAs+rl04pv63YtDa4JAbvlcwUfdKMkPaFKFgRUg9WgAn9uDXqD07hMXRavQYza
-	lRc16bO9oK6ZuG/uwYMBA062gQMglwWwcF0t+es0jBHfUsuzog/zpvQhaf9BwfDqIio4=
-X-Google-Smtp-Source: AGHT+IGk6lrYnsZId9mCE/cRiQIVZNKCJUyZ+AEWNPRvXM5N0BY5nsGMSTWyTaZBxtJaa8J1biPu9w==
-X-Received: by 2002:a17:907:e2c5:b0:af2:4429:206b with SMTP id a640c23a62f3a-af6190f8b0amr1131320966b.33.1753694690008;
-        Mon, 28 Jul 2025 02:24:50 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635afd811sm384349466b.136.2025.07.28.02.24.49
+        d=1e100.net; s=20230601; t=1753694704; x=1754299504;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xO1DkZAA9DCroi1+CycGEgMcsvDK1LPRrUiGmAaML1o=;
+        b=FnqcnDTZN+ibNbtpLvjfa50MvggHH5b9txm/pK3/ZtORYkNdQ1Vk4EuovnPbvzPSdF
+         thn6slhi1N8qn837d9Au4ovaNw7FPtlzwJLhp3+1TtaYnks5oVLsefd6IJq7m2x9awMO
+         wYUtiWdE1jUv+CcuCWCZ84rB6zjNPaExsdi1OuD1NZGuzpOCapupmmIaGSW9SpCqncIk
+         Hfc/9LyaFGSWfhA1IMAulzzVIrZ9ClinwWphiPUyZV5gnM4U81WF2jv6Eu33erGKq+x5
+         7N6l5KyRDrFZC9Yd9rHEr3W0vx20CHnDVP3ndflURiPasrQ6qW01qdVkvbpPMWczOR3Y
+         fOHw==
+X-Forwarded-Encrypted: i=1; AJvYcCXbnnahbpjDJPWjlFaQdskrATSyv7y04nKbOim3XaNRyzbwAxkYtCt2Heqc1WWlep7md89juc855G1P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuKXMghdFWm/XTQzbykI7M4grZYJApF8wjwmOZV5is4qK5NVDI
+	FX4c7D2W/DW9lvavkM9428acLZvVvyTssNOv3V+eX7sjNr1RXb2LvduehDjm25hAiz97r7koTdn
+	RW9zpGXCA3tKKzzkuUCIALVpUXS6ENHpZWM+LHGUWExDxtUEvcoWcDWa/Su3UkIPH
+X-Gm-Gg: ASbGncsXx1TGBcek7/1urMgoh9vDbXlws6AyuODtGtU4yMYNVzZVeeNd9vjy0lycXrR
+	Z1mblm3Za0mPkrrx7MkM9VLpQ/U088mIbfsO249GAe3e8Tw8cgf/0R+ebOxCkwNZsyEphaSgh09
+	Pi27upH0Uz3zT5SG9GUoojYcCCHHylUlR678SM4HAdTwd1hHBPAeeOB+/+ksnJp0BqLFZezL198
+	TyiBEggs7LC15GgdvfL+U/UHwoXFeRo/JPrr+nNqkRwBk0cDRS7WQvw9fjGwuICg2tG2i2iqfxx
+	E9lqt2tP0w7AutrHPgjfLSdIEVn1Zk3kLUnKTEC6YzxzYLudvK9zh6al9OT8IgqOTn/uWPJgSZ8
+	+cEdZc2O3/AkKGPDx3w==
+X-Received: by 2002:a05:622a:1b92:b0:4a9:a2d2:5cd5 with SMTP id d75a77b69052e-4ae8ef7e796mr58446251cf.6.1753694704001;
+        Mon, 28 Jul 2025 02:25:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHxAT4whBsHT+qBFJmzRTiibTXpVW5iNbuG0sn1pmyCWfzieUITf0fIw8UP0wtE2IZXWRpuTA==
+X-Received: by 2002:a05:622a:1b92:b0:4a9:a2d2:5cd5 with SMTP id d75a77b69052e-4ae8ef7e796mr58446161cf.6.1753694703376;
+        Mon, 28 Jul 2025 02:25:03 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61500ae2f31sm3003928a12.51.2025.07.28.02.25.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jul 2025 02:24:49 -0700 (PDT)
+        Mon, 28 Jul 2025 02:25:02 -0700 (PDT)
+Message-ID: <6e8bcafc-da00-424a-81a3-439e7ed6e080@oss.qualcomm.com>
+Date: Mon, 28 Jul 2025 11:24:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: qcom: Add SM8750 GPU clocks
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250723-topic-8750_gpucc-v2-0-56c93b84c390@oss.qualcomm.com>
+ <20250723-topic-8750_gpucc-v2-1-56c93b84c390@oss.qualcomm.com>
+ <20250724-blazing-therapeutic-python-1e96ca@kuoka>
+ <7d444f4c-fa1f-4436-b93a-f2d2b6d49de2@oss.qualcomm.com>
+ <a3846433-f1f8-4b83-a965-baec24ee5159@kernel.org>
+ <adffdc2f-7dbc-41ea-ac9a-015af251b43b@oss.qualcomm.com>
+ <a16c19e2-a4be-4c62-87f3-5d0354893bcf@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a16c19e2-a4be-4c62-87f3-5d0354893bcf@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 28 Jul 2025 11:24:49 +0200
-Message-Id: <DBNKVU7OQHNL.12Z6O3PI6SHGU@fairphone.com>
-Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Konrad Dybcio"
- <konrad.dybcio@oss.qualcomm.com>
-Cc: <srinivas.kandagatla@oss.qualcomm.com>, <srini@kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
- <276b7977-45d9-4b37-a4f5-1c65802ac267@oss.qualcomm.com>
- <mwhxikivaxtz5px5e7jkqtuuk2iz457fy5drsnaj32j4o5qqk6@hwkcjso4jpsp>
-In-Reply-To: <mwhxikivaxtz5px5e7jkqtuuk2iz457fy5drsnaj32j4o5qqk6@hwkcjso4jpsp>
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA2NyBTYWx0ZWRfX5bOMG1ZhIh1e
+ pij8aZSmAwYsl/c0fDQZiBEANSvEPPiigKGXZaI5EI6Ak3RVq2VB6dSo1ulNRz5JoDDjH733GHI
+ X0bEhnz8Wc+cayezRfj757jbNBIFFkAj4Cf6ypP8ok9vdZ1GSWdpQ7NXgq8vAJft5hSHvKPfL4t
+ bHQp/Zgh1h8ASb+NCBuwQIWjAbu3C0EDgcvwaza4TKHc8Z4QeSiy8qK6yJCGKqiPfJ3ach1g1Dc
+ tdBtKFdmLabGAUTXx4f2His2MockyxN89aHXrj2OLo0cnPteFmg8RK6/a7erFXaFjVOSntOs7NZ
+ 6NcBMQ3DR1Vu2mbaOo4JrXPlrJi1Wg50V5dbdtrC/oYW89ro8uDZzZKuQKWrqhi7P0UdiWe/Som
+ vgXPLvmK0lclGaPB7x2xbviqnnlLOeIi7PNojNPNYSd4/qH8UMHHFrpN+i+37DN0AqV1zo1O
+X-Proofpoint-ORIG-GUID: qvgv6HjeZNeknnjQcHgKiLFQkzJcyGW3
+X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=688741f1 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=Rh5PIcw8VRhVldmlYEYA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: qvgv6HjeZNeknnjQcHgKiLFQkzJcyGW3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-28_03,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507280067
 
-Hi all,
+On 7/28/25 7:05 AM, Krzysztof Kozlowski wrote:
+> On 25/07/2025 11:23, Konrad Dybcio wrote:
+>> On 7/24/25 4:42 PM, Krzysztof Kozlowski wrote:
+>>> On 24/07/2025 12:53, Konrad Dybcio wrote:
+>>>> On 7/24/25 10:18 AM, Krzysztof Kozlowski wrote:
+>>>>> On Wed, Jul 23, 2025 at 10:38:48PM +0200, Konrad Dybcio wrote:
+>>>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>>>
+>>>>>> The SM8750 features a "traditional" GPU_CC block, much of which is
+>>>>>> controlled through the GMU microcontroller. Additionally, there's
+>>>>>> an separate GX_CC block, where the GX GDSC is moved.
+>>>>>>
+>>>>>> Add bindings to accommodate for that.
+>>>>>>
+>>>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>>> ---
+>>
+>> [...]
+>>
+>>> Yes, qcom,gcc. If that was missing intentionally, it is fine assuming
+>>> you implement the rest of comments.
+>>
+>> With the description addition that you suggested above, should I keep
+>> this file in clocks/ after all?
+> 
+> Good point, I don't know, this is unusual case. The question is whether
+> there could be user of this binding/DTS, which would need/use
+> clock-cells? If none of possible users could use it as a clock
+> controller, I think it is not a clock controller from how SW sees it.
+> IOW, it does not matter what it is fully (in bigger picture) if it
+> cannot be used in that way.
+> 
+> If all users of the binding can use it only as power domain provided, I
+> would move it to power with rest of power domains. Also rename the node
+> name to power-controller or power-domain.
 
-On Thu Jul 24, 2025 at 4:24 PM CEST, Dmitry Baryshkov wrote:
-> On Thu, Jul 24, 2025 at 03:31:50PM +0200, Konrad Dybcio wrote:
->> On 7/24/25 3:28 PM, srinivas.kandagatla@oss.qualcomm.com wrote:
->> > From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->> >=20
->> > Qcom Slimbus controller driver is totally unused and dead code, there =
-is
->> > no point in keeping this driver in the kernel without users.
->> >=20
->> > This patch removes the driver along with device tree bindings.
->> >=20
->> > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.c=
-om>
->> > ---
->>=20
->> I *thiiink* this is apq806x code, with 8974 adopting the new hw.
->>=20
->> +Dmitry, does you computer history museum require this driver?
->
-> I never had time to try enabling audio on IFC6410 nor Nexus 7. But if
-> the driver would be actually useable there, I'd prefer to keep it.
+The hardware block can be accessed from the CPU directly, skipping
+the microcontroller (although that is undesirable and the only "real" use
+for it I can think about is someone trying to get rid of a blob).
 
-FWIW on the WIP msm8974 audio branch (from years ago, unfortunately), I
-don't see "qcom,slim" compatible being used, also with no change to
-drivers/slimbus/qcom-ctrl.c.
+I can add clock/reset-cells to describe the hardware accurately, but
+the Linux driver(s - this is a block that exists on many >=2024 SoCs as
+you may imagine) will continue to only provide a single power domain.
+With that, I think clock/ makes sense, as this is essentially the same
+hardware template as other instances of QCOM_*CC
 
-That branch is using the compatible "qcom,slim-ngd-v1.5.0" for MSM8974.
-
-So at least for my museum collection, it's not needed.
-
-Regards
-Luca
+Konrad
 
