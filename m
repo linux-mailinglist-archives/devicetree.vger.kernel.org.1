@@ -1,156 +1,186 @@
-Return-Path: <devicetree+bounces-200037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D3EB133A3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:19:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8E57B133C6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:50:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E960174A86
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 04:19:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C08F4188793B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 04:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAEE1DF75D;
-	Mon, 28 Jul 2025 04:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF71618C008;
+	Mon, 28 Jul 2025 04:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrL4+y31"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3821C36;
-	Mon, 28 Jul 2025 04:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963BBEEC3;
+	Mon, 28 Jul 2025 04:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753676383; cv=none; b=iR5SKwspVtB5Lmy8xfchFaNrnpNytMRsiTK7R1Al2eo6aXvWpR/NNUUBD5lHcBZW9ksPtZ5SNpgdg/9FFQyaAhXWXBuxRutfr7J8l+ig5nVfVIH8CsDT1MpnUxcCl8y9gNxf3/v8tSE/GMvS45dck/egtOsYrB6/sJd3isSz+Y8=
+	t=1753678209; cv=none; b=BUIE5ffBo/QRN9XgUwrSMblp38jqg+GIXj/yiSi5/wxbWQ4B7weKGMittOj0rYv5B2Hc68Ehh+u6hmzk1ebfIufLsCaud6VxhSOJPNNxMqFixpRjru4Fat3NVEzX7Erhn8rLFfkf19n7VF5NRF9B27y0ssDJgDbkzX+tl7SZcEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753676383; c=relaxed/simple;
-	bh=+21c/5kfzRyWQ9mGcHPND0dXCpuIpbvrRxN47140bqg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gYlzPuTdIB8kR5o9OyCheBBPfanJctNZaWI4lXCE9WoDiFjT9K7BlxeuCDCnO2nPcG4fITklF7aUu9AZOhmOt8A8r+MqH/4hBy4d18J8tvm99sSqa/JEsfRj4BOVkHNM+rdYKDi1xv4yIa8p9UlWzKbMrUBejHaV5VL9B/dDAN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8D2461A147C;
-	Mon, 28 Jul 2025 06:19:34 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4F79A1A1480;
-	Mon, 28 Jul 2025 06:19:34 +0200 (CEST)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id D78B01800079;
-	Mon, 28 Jul 2025 12:19:32 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: linux-kernel@vger.kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	linux-hwmon@vger.kernel.org,
-	corbet@lwn.net,
-	linux-doc@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	shashank.rebbapragada@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v2 2/2] hwmon: (lm75) Add NXP P3T1750 support
-Date: Mon, 28 Jul 2025 09:49:13 +0530
-Message-Id: <20250728041913.3754236-2-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250728041913.3754236-1-lakshay.piplani@nxp.com>
-References: <20250728041913.3754236-1-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1753678209; c=relaxed/simple;
+	bh=CzRdO948Lo2iFxSrbyu5Pagmi3kJ6/7KYnoh6hd6OHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HJcEzbftocJNY3r5ljGvc8lYXR+TIaMRvKqICk+fJcjkaoig2NgTwIQKQcc8O/LcnlCyCPjNnmg5Vls6FB0l6oweowjOAsYQDWfLDJrkxwxCkHlrJ778r4wi1LXjp879W7QKV6wZzRvzsIoGjFSfY80ZAkppZ+cwBe3kz4WxNvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrL4+y31; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6663CC4CEE7;
+	Mon, 28 Jul 2025 04:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753678209;
+	bh=CzRdO948Lo2iFxSrbyu5Pagmi3kJ6/7KYnoh6hd6OHk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RrL4+y31r5CPtYMDYuefm/kgI9mrBIwDYDdyLrivD4MtAP93Y6kIIdD3PwSYu7lVg
+	 Uo8V3Ult2hqkn770Jdo4Ho1Hzz3cnflSDULKiwCCF1OPBlQzhSrrEmHVuSpVzU1HKS
+	 FLliS9vWzC/t1hOFce8Y1V66kO4MQKaws1beT7e5wzpVC7WoVtL+vnDmBtoyyfEKtc
+	 wuwhhL5rWE9X5KY8mPkQGFmutq1vQpEvdVE/MwCfiyX9svGf+utJg6Tzsr91HWJvtK
+	 LlHLnyi+B/Lw4Ll67QVQEAohs2n+trvYGsGW5yuqn9k0rh2JFYvlQOw5r5hkJJcHGL
+	 Bf3EwaKb25e8g==
+Message-ID: <eef43c76-7e1d-4e91-a41a-0a8c33d9616f@kernel.org>
+Date: Mon, 28 Jul 2025 06:50:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] memory: mtk-smi: mt8188: Add SMI reset and clamp
+ for MT8188
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250521063347.31578-1-friday.yang@mediatek.com>
+ <20250521063347.31578-3-friday.yang@mediatek.com>
+ <fe4d93d1-fb6a-4985-8316-7a76fa1a481f@kernel.org>
+ <7421d8f4f3d5fdb392f46df93bfee21a97cc2e1c.camel@mediatek.com>
+ <633ea291-2e02-44be-bd03-220634b3c62d@kernel.org>
+ <d7e6e9f9da7adf5c806f29c577f6bf51b35fdeed.camel@mediatek.com>
+ <1e9de035-9d32-45d1-9f11-33c3439143be@kernel.org>
+ <2cc7a0be13d2b35b8728fb23e56097620a40fc05.camel@mediatek.com>
+ <03dece78-44d5-4b85-b71c-bb6794849ddd@kernel.org>
+ <7e390b85e1ba6362ffa0231faefc0ea63a922639.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <7e390b85e1ba6362ffa0231faefc0ea63a922639.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
 
-Add support for lm75 compatible NXP P3T1750
-temperature sensor.
+On 28/07/2025 04:59, Friday Yang (杨阳) wrote:
+> On Thu, 2025-07-24 at 10:55 +0200, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> On 24/07/2025 10:43, Friday Yang (杨阳) wrote:
+>>>>
+>>>>> ignore this tag. What I intended to explain here was that I
+>>>>> decided
+>>>>> not
+>>>>> to use 'devm_pm_runtime_enable' to replace 'pm_runtime_enable'
+>>>>> functions. Unfortunately, the fake tag didn't explain this
+>>>>> clearly
+>>>>> in
+>>>>> the changelog, which was my fault. To address this, I updated
+>>>>> patchset
+>>>>> v8 to include an explanation.
+>>>>>
+>>>>> In patchset v6, I replaced 'pm_runtime_enable' with
+>>>>> 'devm_pm_runtime_enable'. However, in patchset v8, I reverted
+>>>>> this
+>>>>> change and included the reason for this decision in the
+>>>>> changelog.
+>>>>> Apologize for the delay and the trouble again.
+>>>>
+>>>> Nothing above is related to my question about the
+>>>> fake/invented/questioned tag.
+>>>>
+>>>
+>>> I got your point, you refer to the 'reviewed-by' and 'acked-by' tag
+>>> in
+>>> this patch.
+>>> These are the tags from two reviewers.
+>>>
+>>>
+> https://lore.kernel.org/lkml/174172361378.44650.15345202042780383326.robh@kernel.org/
+>>
+>>
+>> You are really not responding to my initial comments and keep
+>> dragging
+>> this discussion in some confused directions. Do we talk here about
+>> that
+>> patch? No.
+>>
+> 
+> I understand what you're referring to. For the 'dt-binding' patch, I
+> can keep the tags. However, for the 'smi driver' patch, I should remove
+> the tags because there was a change after v6.
+> I will update v9 soon. Thank you!
 
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
----
-Changes in v2:
-- None. Patch unchanged.
 
- Documentation/hwmon/lm75.rst |  6 ++++--
- drivers/hwmon/lm75.c         | 13 +++++++++++++
- 2 files changed, 17 insertions(+), 2 deletions(-)
+No. You never responded to v7 and never addressed the actual comments I
+raised.
 
-diff --git a/Documentation/hwmon/lm75.rst b/Documentation/hwmon/lm75.rst
-index c6a54bbca3c5..84e690824fee 100644
---- a/Documentation/hwmon/lm75.rst
-+++ b/Documentation/hwmon/lm75.rst
-@@ -121,9 +121,9 @@ Supported chips:
- 
-          https://www.ti.com/product/TMP1075
- 
--  * NXP LM75B, P3T1755, PCT2075
-+  * NXP LM75B, P3T1755, PCT2075, 'P3T1750'
- 
--    Prefix: 'lm75b', 'p3t1755', 'pct2075'
-+    Prefix: 'lm75b', 'p3t1755', 'pct2075', 'p3t1750'
- 
-     Addresses scanned: none
- 
-@@ -135,6 +135,8 @@ Supported chips:
- 
-                https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
- 
-+               https://www.nxp.com/docs/en/data-sheet/P3T1750DP.pdf
-+
-   * AMS OSRAM AS6200
- 
-     Prefix: 'as6200'
-diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
-index 9b4875e2fd8d..979057f02748 100644
---- a/drivers/hwmon/lm75.c
-+++ b/drivers/hwmon/lm75.c
-@@ -40,6 +40,7 @@ enum lm75_type {		/* keep sorted in alphabetical order */
- 	max31725,
- 	mcp980x,
- 	p3t1755,
-+	p3t1750,
- 	pct2075,
- 	stds75,
- 	stlm75,
-@@ -229,6 +230,13 @@ static const struct lm75_params device_params[] = {
- 		.num_sample_times = 4,
- 		.sample_times = (unsigned int []){ 28, 55, 110, 220 },
- 	},
-+	[p3t1750] = {
-+		.clr_mask = 1 << 1 | 1 << 7,	/* disable SMBAlert and one-shot */
-+		.default_resolution = 12,
-+		.default_sample_time = 55,
-+		.num_sample_times = 4,
-+		.sample_times = (unsigned int []){ 28, 55, 110, 220 },
-+	},
- 	[pct2075] = {
- 		.default_resolution = 11,
- 		.default_sample_time = MSEC_PER_SEC / 10,
-@@ -806,6 +814,7 @@ static const struct i2c_device_id lm75_i2c_ids[] = {
- 	{ "max31726", max31725, },
- 	{ "mcp980x", mcp980x, },
- 	{ "p3t1755", p3t1755, },
-+	{ "p3t1750", p3t1750, },
- 	{ "pct2075", pct2075, },
- 	{ "stds75", stds75, },
- 	{ "stlm75", stlm75, },
-@@ -920,6 +929,10 @@ static const struct of_device_id __maybe_unused lm75_of_match[] = {
- 		.compatible = "nxp,p3t1755",
- 		.data = (void *)p3t1755
- 	},
-+	{
-+		.compatible = "nxp,p3t1750",
-+		.data = (void *)p3t1750
-+	},
- 	{
- 		.compatible = "nxp,pct2075",
- 		.data = (void *)pct2075
--- 
-2.25.1
 
+Best regards,
+Krzysztof
 
