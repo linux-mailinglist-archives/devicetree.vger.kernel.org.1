@@ -1,173 +1,147 @@
-Return-Path: <devicetree+bounces-200330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE70CB14427
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 00:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A05B1447D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 00:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDFF917F16C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 22:00:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C68CC164F65
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 22:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78671F462D;
-	Mon, 28 Jul 2025 22:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="v+W2wslr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57CA22356C0;
+	Mon, 28 Jul 2025 22:53:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD45B1A316E
-	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 22:00:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49F8233735;
+	Mon, 28 Jul 2025 22:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753740009; cv=none; b=qFIa5rOK3Uk5TVGxR8R/1vN2ehPxlG22+vVRVkMzBhbUq9nEIWWyKng6PEuE2N60YnvMW6nLknsuWa1sjO3+iOuuL1D+6l8q1+PEQI5huSLQwDP3tmE7AHCrj6wEAy44ofHPuNTCJIg04ppUoroyuR04vw4L7oqvv4h49+ceH58=
+	t=1753743206; cv=none; b=XWklAnetQ0X6kcG0MePwVsE12W0CQBZgmTYTc8pyhLwPyy603X5i4jy2SmlZGFLGcIk3NctE6GlgvQwT1V38NCK0niBeqOPZjIVYTb2GHSPz/M22ENxU36pU75PEZ9PJe6cL1wCTH9dh4h5wtlaLPv7iOGz/PDKt+1OOeAFXDOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753740009; c=relaxed/simple;
-	bh=/qAK7aYKKFRgAJnNBp3OG1T2f+7X1+5mXUXNzKDQxr8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JD1i8cREdAXbAqg3LBsjC3Beul3w6lQFi5jCzy5PvfUy2+zJIQBON4GnOMZBtcUjnM9CepLUXq41xO1lYxsL88OfTus2cfATXc1rD2KUdFQ+0zc2vyEBqQFCpIdJFBlBVIJGpSz655hvQxRNbw9tsrfqk4sCmHP3oau8Xk+Tm6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=v+W2wslr; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3e3d31a9ac7so10401295ab.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 15:00:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753740006; x=1754344806; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SW20ypPIfCwWzDyApEVu137flF7JF7gBm3arCQYvIbI=;
-        b=v+W2wslr5hItGs6yCQ5c+558JTBleRDLv4njzriMThgLURHsc9qoj9mpVU7gnEtzmW
-         Sm11lp2eGHrf4IYNSYxzUKBDiYNCMxcdpUhEA+CeuOKxdSfiT9rJjk/A6VGJUKTM6CIO
-         ifJxFV9woud5CAqsOhuFOAlchAQxMQrvAPLtgrXV77v/tH6yqmTkqS0vKBbK5brBiOWq
-         WprGIa6EC9YGSicNK2Xqo58q7taHmhOxEu6NXNoHcMOTSmvxk1xP5did2BJfZaxLxba5
-         6CVy9frO1nUUIUje7kRFCaVkJynocM7OhbjGt29ygcMynmoueuSalidbiPxsSIVvnjrk
-         pKbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753740006; x=1754344806;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SW20ypPIfCwWzDyApEVu137flF7JF7gBm3arCQYvIbI=;
-        b=bjh4FjNoa+mINK2r7f6CWzw7zKisavOPmKk4sskHvF4t/VYVPhCo8QC9cgUJ34Hz0k
-         yx2BtlWFvLMuXhdi5/TePyhI9KF0qjSMGKQEeyolyaJWQWZeB/T7fwTbO/ju/t0fMevz
-         Ki+OsBPLH5TRg5bsVmgv7DMDi0wKCEbAR0co6CtLvJz17ZNtJN6QqqIkkmNy2HBQxFCq
-         4V1G1e/JlndQamD5nQXodhUPOQ2yQJT0SLX8ZOme3noxFl5d9Hf2pXk7o/X5Twmu4KyJ
-         hDWHncYC9VFBKOH0+seBWQrRtNmxTud79mr4Pb9VXcEAOZ5knO9Vhc/VWmqJS/JNONSV
-         3MEw==
-X-Gm-Message-State: AOJu0Yz3x7wUR8dIV1u8LG1DkhfTpJfSvZUiw5LOqGJH9pkVZsP1eF1W
-	haDi6/+HEESpHvZB6RxQne3KYBds07FblsXjhiQQKSZRp8qURjlJq+fdXfudlV0W68g=
-X-Gm-Gg: ASbGncs11lG1JLFhdtxcERq3cJl2NfvvLdHbmWiW6t3N3293WD/fSjDJZw0nF/UinJl
-	JZFwhi5mweKsrBZ94dA8d+JS4kG7vB1M3PE5+rzuiuKp1Wa4C1NUCk5zh7IL02RthC4sbz99x49
-	ZeYGjdWUVolU4QC/O5Kda2trlIGyy9jpAAHoq08eTdgdR/n7A8/kkhx0mYE8C4TMx+HrXAKH1fn
-	ctrQOvIpObZMnqi++FTa8Ox2IcnlkyJsVBoBTjHzKtKJbrjbILdpTLWXjkyIOxu6vUkgTN1bGkA
-	rJ1yipW+35zE5B3H7MCnENiR7bW9ZHHh7Xoh1mV0+QGQze+0r6o2OfJ9bLFtDS/zLxdWD6N0MP2
-	wHdjPMasdx7TyoCB0xEjSCYRc/UDV+CKaFR/JQQSBH5OoBlAZ1XQibLZAL6brHm1zvA==
-X-Google-Smtp-Source: AGHT+IEInGF/Uihao86Df5Hh8l2S/n6kOMKGVWM1LdBNeEbSuGAD9Xt1OLU4ny9gFPGHVpMlKG5tfQ==
-X-Received: by 2002:a05:6e02:1d98:b0:3e3:d185:9163 with SMTP id e9e14a558f8ab-3e3d185932fmr133375445ab.20.1753740005684;
-        Mon, 28 Jul 2025 15:00:05 -0700 (PDT)
-Received: from zippy.localdomain (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-508c91c9fdfsm2167331173.4.2025.07.28.15.00.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jul 2025 15:00:05 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dlan@gentoo.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	lkundrak@v3.sk
-Cc: devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	spacemit@lists.linux.dev,
-	linux-mediatek@lists.infradead.org,
+	s=arc-20240116; t=1753743206; c=relaxed/simple;
+	bh=1DQjd1hRjLd2X+8zYkRt1hFSKDv+6s9BB/llroO3qMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=afSIiQCLZvsM8wOeO1UkHADbqCwXXcWd8HkcD27W/F6G1cmRFQs6EuGvnhUxvWvq4RcGXL+ir+fgvB54hBcPFhnF/qJXL/IaAuXa93rf5ohCbygp7MZpcLtsH6CZIvzICHkQCgNqr8h4Wu1sWQ3bK/LClQQMGPqNNc8Ekc64BrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.124.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id E8D24341F0B;
+	Mon, 28 Jul 2025 22:53:23 +0000 (UTC)
+Date: Tue, 29 Jul 2025 06:53:19 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, lkundrak@v3.sk,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	spacemit@lists.linux.dev, linux-mediatek@lists.infradead.org,
 	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	kernel test robot <lkp@intel.com>
-Subject: [PATCH] dt-bindings: serial: 8250: allow "main" and "uart" as clock names
-Date: Mon, 28 Jul 2025 17:00:01 -0500
-Message-ID: <20250728220002.599554-1-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
+Subject: Re: [PATCH] dt-bindings: serial: 8250: allow "main" and "uart" as
+ clock names
+Message-ID: <20250728225319-GYA900803@gentoo>
+References: <20250728220002.599554-1-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250728220002.599554-1-elder@riscstar.com>
 
-There are two compatible strings defined in "8250.yaml" that require
-two clocks to be specified, along with their names:
-  - "spacemit,k1-uart", used in "spacemit/k1.dtsi"
-  - "nxp,lpc1850-uart", used in "lpc/lpc18xx.dtsi"
+Hi Alex,
 
-When only one clock is used, the name is not required.  However there
-are two places that do specify a name:
-  - In "mediatek/mt7623.dtsi", the clock for the "mediatek,mtk-btif"
-    compatible serial device is named "main"
-  - In "qca/ar9132.dtsi", the clock for the "ns8250" compatible
-    serial device is named "uart"
+On 17:00 Mon 28 Jul     , Alex Elder wrote:
+> There are two compatible strings defined in "8250.yaml" that require
+> two clocks to be specified, along with their names:
+>   - "spacemit,k1-uart", used in "spacemit/k1.dtsi"
+>   - "nxp,lpc1850-uart", used in "lpc/lpc18xx.dtsi"
+> 
+> When only one clock is used, the name is not required.  However there
+> are two places that do specify a name:
+>   - In "mediatek/mt7623.dtsi", the clock for the "mediatek,mtk-btif"
+>     compatible serial device is named "main"
+>   - In "qca/ar9132.dtsi", the clock for the "ns8250" compatible
+>     serial device is named "uart"
+> 
+> In commit d2db0d7815444 ("dt-bindings: serial: 8250: allow clock 'uartclk'
+> and 'reg' for nxp,lpc1850-uart"), Frank Li added the restriction that two
+> named clocks be used for the NXP platform mentioned above.  Extend that
+> so that the two named clocks used by the SpacemiT platform are similarly
+> restricted.
+> 
+> Add "main" and "uart" as allowed names when a single clock is specified.
+> 
+> Fixes: 2c0594f9f0629 ("dt-bindings: serial: 8250: support an optional second clock")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202507160314.wrC51lXX-lkp@intel.com/
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  .../devicetree/bindings/serial/8250.yaml      | 19 ++++++++++++++-----
+>  1 file changed, 14 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+> index e46bee8d25bf0..cef52ebd8f7da 100644
+> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> @@ -61,11 +61,17 @@ allOf:
+>              - const: uartclk
+>              - const: reg
+..
+>      else:
+would it be better to drop this 'else', and moving following 'if' block
+to the same level with "nxp,lpc1850-uart"?
 
-In commit d2db0d7815444 ("dt-bindings: serial: 8250: allow clock 'uartclk'
-and 'reg' for nxp,lpc1850-uart"), Frank Li added the restriction that two
-named clocks be used for the NXP platform mentioned above.  Extend that
-so that the two named clocks used by the SpacemiT platform are similarly
-restricted.
+the reason here would avoid too many indentions if add more constraint in
+the future if other SoC uart need different clock-names..
 
-Add "main" and "uart" as allowed names when a single clock is specified.
+> -      properties:
+> -        clock-names:
+> -          items:
+> -            - const: core
+> -            - const: bus
+> +      if:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: spacemit,k1-uart
+> +      then:
+> +        properties:
+> +          clock-names:
+> +            items:
+> +              - const: core
+> +              - const: bus
+>  
+>  properties:
+>    compatible:
+> @@ -162,6 +168,9 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>      oneOf:
+> +      - enum:
+> +          - main
+> +          - uart
+>        - items:
+>            - const: core
+>            - const: bus
+> 
+> base-commit: 0b90c3b6d76ea512dc3dac8fb30215e175b0019a
+> -- 
+> 2.48.1
+> 
 
-Fixes: 2c0594f9f0629 ("dt-bindings: serial: 8250: support an optional second clock")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202507160314.wrC51lXX-lkp@intel.com/
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- .../devicetree/bindings/serial/8250.yaml      | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
-index e46bee8d25bf0..cef52ebd8f7da 100644
---- a/Documentation/devicetree/bindings/serial/8250.yaml
-+++ b/Documentation/devicetree/bindings/serial/8250.yaml
-@@ -61,11 +61,17 @@ allOf:
-             - const: uartclk
-             - const: reg
-     else:
--      properties:
--        clock-names:
--          items:
--            - const: core
--            - const: bus
-+      if:
-+        properties:
-+          compatible:
-+            contains:
-+              const: spacemit,k1-uart
-+      then:
-+        properties:
-+          clock-names:
-+            items:
-+              - const: core
-+              - const: bus
- 
- properties:
-   compatible:
-@@ -162,6 +168,9 @@ properties:
-     minItems: 1
-     maxItems: 2
-     oneOf:
-+      - enum:
-+          - main
-+          - uart
-       - items:
-           - const: core
-           - const: bus
-
-base-commit: 0b90c3b6d76ea512dc3dac8fb30215e175b0019a
 -- 
-2.48.1
-
+Yixun Lan (dlan)
 
