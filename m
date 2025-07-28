@@ -1,182 +1,209 @@
-Return-Path: <devicetree+bounces-200069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A3CB1349B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:05:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46F62B134CC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35FF11897B04
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:05:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A48EB3A5059
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6702821CC44;
-	Mon, 28 Jul 2025 06:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B440021CC44;
+	Mon, 28 Jul 2025 06:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DSWzq1Cl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n+yLNASi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A912619F40A;
-	Mon, 28 Jul 2025 06:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EE886344;
+	Mon, 28 Jul 2025 06:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753682726; cv=none; b=aow5OSYgC1i9FtrdHwtK0lHQDKAQSKnxdKb7YErxQqsDDAr4a8r61ha4mE3+G1jTMdaQpbFSIeS9KWtS0w9cdBE262OpG4BaCTdytbLlFjSLnVFhucl6ApOdaAP8m96f72xApnec7bgLtyHSvoTqj0jesN5sFR5f/QpZ6tYUZk4=
+	t=1753683417; cv=none; b=c8y+hEvwkN9JtpDNtbnk1x5VnTZ6tx2+RCaSVQqLbdAFmGxxeUyhAf4Lxwd/C98fBy14BQhtehL43rHj0cNbW2TuNkPkcy9bigB1ir/1ZN9eBCbD5TPJf37mVPnojWFXs5YQSPggOTJoUArYnuFOyUVt2HL5F/aSZ2GqQ/+9MZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753682726; c=relaxed/simple;
-	bh=6Bl6t0D6Smny3lA5QBgsKsojEFjKp+6fv2oc5TrWVks=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pYaqHBlakJ537kCFGP0XLxjC3vhp4pby/8As5gqBt5MrSqoxiTNVratBNzq18g3RUa/XdiFWMbejno7QLsmqZIhyT4YXnNie2Esyd7apyPZOTKJuoENLOin0Za4dQD7IRgHUT6Ix2C1+BCu4D8XGoiS3lUMoq46VxA15PxG8nH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DSWzq1Cl; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-455b002833bso14808365e9.0;
-        Sun, 27 Jul 2025 23:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753682723; x=1754287523; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tQXF3uhUpKed79enyV2WSAsZRiLGa5m0jySlxIYlh2M=;
-        b=DSWzq1CleEFv7S9StERg8eDGdowO1+E/XBHrdbfDRiRlSrVYCgPEjI+xl9Hd+0JQpo
-         pIwjBB6oQ4JdIIGRqydArTlbrVAgqA6fho/Lfw8gY5NV3/VbNmKHZj1dQADBKU6bFInb
-         nZXtTl51k0zeyZOsV7VL3hxxDB5OMPHztlAqsrFDM4nAocYmPAOn5ws34haGzUsI3wsc
-         47iZryxQOCdVB+iv3xj3US0Y/PesEWgfxLPKMTjcXwYcEnImfa+uNmEdS9q2M9l31rSL
-         jeraQyHovJJf5uKCBaCtNyeTyWAPEfskl71IufT6qqo/ktg8JxccNmn37lbhZNO4Bp5S
-         UflA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753682723; x=1754287523;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tQXF3uhUpKed79enyV2WSAsZRiLGa5m0jySlxIYlh2M=;
-        b=huxX6k/gZoy80TOLDuCX7sJtqgs6hBDWuk8P7XkJt+6kX2mZBYiESexCdEvWFH/v0x
-         3+lBClNzg7P+IvqvtGxWQ+qBPIy2ltqoukoSNmNeNWD/u0LmmnksE7jRZ70XyeUL9bqY
-         yQvQDY7cuz0ywGVxfO0aPM7+GtL8EQiocOG0It0PeZLrL8DdqOdabuTjvEA4bHNDZgNP
-         k6NCb/rQoVORPALVecS1fb28QZoKHRmsPh9lqQhNJ0Z3a8XMOgX+cdSvQ63L16kH9wVc
-         uMLHP14c3DR7yUFP7WYbnGOR86M5UV/ov1qJAZQqDdAwXlWQhOcqDbNnp8a83Yf34LfV
-         nrlw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8rxWVLFOXtBQ1eRihbTILyUSkSoViXn6jFx5PiDGoxo1WIAuxQNueAU68Cnuz6Eb5j7mpg3moHUFF@vger.kernel.org, AJvYcCWuoqCb21eHl33Ez+07xKoiVXOQ7bouW5gmXdAakGRAKO8wnipyatd8LzZHn6kE6DDT7D582fXyWK0SGQYl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1ZbMsbbDw7vOqBHi1HYB7LC4bnu5mobrvfdDD7KuCfe+mrvWM
-	byB7NyoDuT/o+7tKPjJzK8Qq5lHKtJDODUx+hJUZMQf0BKm7/UZw1CrKABX4iu9yJV7njYdwpZF
-	9n3ZLQcgu74x8oPotaiqNtYwEqDZH3ZE=
-X-Gm-Gg: ASbGncvb6EsKzAFku7QAbONA8pi7maft5e+FzDDofGChiPpD4TbyjsT/UH9GiqSmwTY
-	HfisRMM8KaU8MVKWDAoKpNfvcldukomztWr/wun7BbcUVacGlDV+oKW62RpR3D+1G/IL8ZKOHpV
-	xTfPquALnqR5E2QyEgX5tR5zJTzw5eTusenDPUZS8yRAJwnz29BPAWIycDsi72KzE8y9cxBcdUN
-	8d9fCBr
-X-Google-Smtp-Source: AGHT+IGbQly/khf35EnzlRO7ObYBo3BJlziBpv1lPzLbWO+xhKZeTjbakTyAb7qcQM/u3YZ/g+3x0BcnqrQrhaC7WKs=
-X-Received: by 2002:a05:600c:6748:b0:456:eab:633e with SMTP id
- 5b1f17b1804b1-4587dd0db72mr59731935e9.17.1753682722442; Sun, 27 Jul 2025
- 23:05:22 -0700 (PDT)
+	s=arc-20240116; t=1753683417; c=relaxed/simple;
+	bh=mw/XPlPKMDno6G8YIqCwyPXZ88qFJ4U3/hr6QCOL0eU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D6rzvOmrFueokFHMPQZfJNdlexxBAzfGzprOnXfy/s3VE0v/jd/BsfIImpBcAioqHTRuolqPqVvNPcv4/408G88UVZsjIyskNQIw7Ly4Vh2Qci0bU2QxUTUIcFPRGTnCsBbAWzhXw/MPIpgNWqLRroSQZWCQ1+1qA4EIn3FvwSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n+yLNASi; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56S4rVH4019654;
+	Mon, 28 Jul 2025 06:16:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XuAZsK0BtOoqFUMaBkh4WaTxus9sHxVIny3hqpjTFr8=; b=n+yLNASiQ8BrhoFM
+	UuV3+r3tQDdx67X7VEJM1OnfQEteUuLks8TIxKk5u85Dr8rE0zPdbmdbKJWkOP+x
+	bxP1gUyxoiiijgQuL1+80mrEBBoZaVhHPanDy8jNFlyuGwkbw9V3EodRSdMm/80f
+	QqjlHezEe7atTsMd2kkiHz/v0cB9Mxk26ZI7ecEiMVa+myBCF6s+MZ53Sy4exJtk
+	dTMa5JyzwyWKn8AhciQ0NMkCI8PKvfE63GgIwtUa1dvGXNbI4UXYiDWutjy0/jlO
+	6OU3iCRIIJVsg9pSHfjvWcJlvRbaVNtAoPsSnrKr0wkdugRi9Nl8CaetxIJdCKOV
+	OPqKPg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qkaqb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Jul 2025 06:16:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56S6GpAf014949
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 28 Jul 2025 06:16:51 GMT
+Received: from [10.204.101.210] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 27 Jul
+ 2025 23:16:47 -0700
+Message-ID: <7fb5256e-630c-3040-ca6d-4e9dee52162c@quicinc.com>
+Date: Mon, 28 Jul 2025 11:46:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250623081504.58622-1-clamor95@gmail.com> <CAPVz0n38N32HobYshtS9cLBJqWGPA1MZjMr0HH3C4UqGcFaFVA@mail.gmail.com>
-In-Reply-To: <CAPVz0n38N32HobYshtS9cLBJqWGPA1MZjMr0HH3C4UqGcFaFVA@mail.gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 28 Jul 2025 09:05:11 +0300
-X-Gm-Features: Ac12FXx4CN1mT0Dh6FdAxwgNHcr1BsYAY3RYhstMmFIeWt6bQ2yxBdsgzEZ5FqU
-Message-ID: <CAPVz0n0nwnVyVP2V4Oswhhrz=gwMpv_-f2xJfBO2N44GRNjaKQ@mail.gmail.com>
-Subject: Re: [PATCH v7 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v7 5/7] media: venus: core: Add qcm2290 DT compatible and
+ resource data
+To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
+        <quic_vgarodia@quicinc.com>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <mchehab@kernel.org>,
+        <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <amit.kucheria@oss.qualcomm.com>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250715204749.2189875-1-jorge.ramirez@oss.qualcomm.com>
+ <20250715204749.2189875-6-jorge.ramirez@oss.qualcomm.com>
+Content-Language: en-US
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <20250715204749.2189875-6-jorge.ramirez@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDA0MSBTYWx0ZWRfX3FM+GhfM+Dxv
+ sjthqkVmTAu6dOjtNsSIevD/Z0IsZdG3Vt0185d/URdPH8/E/VYxvll6ClEIG8ESWmLs/3mMD+/
+ 2RE7gP4K1b2aZoW6YR+SnxfAjBERExYQeksnKg3NVxyDC5cD4cwLGYFf5HOW/+uYKUpMrODdgt3
+ 4BMZojmYhJkKWuTqHabb/bKwA5RQiousDNQkH8/re/4bvPDPeQjiZAdym1o9m91OinIgIpcfcx+
+ LeZ0AjmKChG3i85mvRAS665AFN/Icj6TIfZtmyPRjSRxO+HpNWC04l0IBPtLRdpZHk8uE82EUL/
+ 4XO1uM4iC0MPTavwlK+/4bXxZOS6PHWaVKtlPquihEFuGnkan74vzQ/f+4rjJ8iI+0HabIAsWaP
+ vM3i1PwxCNdP5wf/T9224lb287zWlBM0tl8sGNGswJjec9C3nZGqC7x/B5qmL1S4aLtEhiv5
+X-Proofpoint-ORIG-GUID: AMNBmPYI8gIppHYbmYn2QR5072qhAqk9
+X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=688715d4 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8
+ a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=-h2BoODB7oHphHcttcwA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: AMNBmPYI8gIppHYbmYn2QR5072qhAqk9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-28_02,2025-07-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507280041
 
-=D0=BF=D0=BD, 21 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 19:38 Svya=
-toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> =D0=BF=D0=BD, 23 =D1=87=D0=B5=D1=80=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 11=
-:15 Svyatoslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
-> > and LG Optimus Vu P895
-> >
-> > ---
-> > Changes on switching from v6 to v7:
-> > - removed enabled checks
-> > - configuration complete quirk moved from host_transfer to
-> >   atomic_enable
-> > - switched to devm_drm_bridge_alloc
-> > - removed redundant dev_set_drvdata use
-> >
-> > Changes on switching from v5 to v6:
-> > - set correct module name in Kconfig help
-> > - return error if spi sync failed for reading
-> >
-> > Changes on switching from v4 to v5:
-> > - rebased on top of drm-misc-next with adjustments to fit
-> >
-> > Changes on switching from v3 to v4:
-> > - no changes, resend
-> >
-> > Changes on switching from v2 to v3:
-> > - added mutex guard
-> > - configuration register flags parametrized using panel flags
-> > - removed unneded debug messages
-> > - removed unimplemented modes checks
-> > - added check for maximum pixel row length
-> > - use types header
-> > - remove ssd2825_to_ns
-> > - shift bridge setup into atomic pre-enable
-> > - cleaned default values of hzd and hpd
-> >
-> > Changes on switching from v1 to v2:
-> > - added description for clock
-> > - removed clock-names
-> > - added boundries for hs-zero-delay-ns and hs-prep-delay-ns
-> > - added mutex lock for host transfers
-> > - converted to atomic ops
-> > - get drm_display_mode mode with atomic helpers
-> > - parameterized INTERFACE_CTRL_REG_6 configuration
-> > - added video mode validation and fixup
-> > - removed clock name
-> > - switched to devm_regulator_bulk_get_const
-> > - added default timings
-> > ---
-> >
-> > Svyatoslav Ryhel (2):
-> >   dt-bindings: display: bridge: Document Solomon SSD2825
-> >   drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
-> >
-> >  .../display/bridge/solomon,ssd2825.yaml       | 141 ++++
-> >  drivers/gpu/drm/bridge/Kconfig                |  13 +
-> >  drivers/gpu/drm/bridge/Makefile               |   1 +
-> >  drivers/gpu/drm/bridge/ssd2825.c              | 775 ++++++++++++++++++
-> >  4 files changed, 930 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/so=
-lomon,ssd2825.yaml
-> >  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
-> >
-> > --
-> > 2.48.1
-> >
->
-> Greetings!
->
-> These patches had no activity/feedback from maintainers for almost a
-> month, so, in case they got lost in the depths of email box, this is a
-> friendly reminder that they are still relevant and I would like them
-> to move on.
->
-> Best regards,
-> Svyatoslav R.
 
-Hello there!
 
-This is a friendly reminder that they are still relevant and I would
-like them to move on. Should I resent them?
+On 7/16/2025 2:17 AM, Jorge Ramirez-Ortiz wrote:
+> Add a qcm2290 compatible binding to the Cenus core.
+> 
+> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
+> encode at 1280x720 (HD).
+> 
+> The encoder is not available to firmware versions below 6.0.54 due to an
+> internal requirement for secure buffers.
+> 
+> The bandwidth tables incorporate a conservative safety margin to ensure
+> stability under peak DDR and interconnect load conditions.
+> 
+> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  drivers/media/platform/qcom/venus/core.c | 51 ++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index bad49f0b4a77..2c9e2e0f95f5 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -1088,6 +1088,56 @@ static const struct venus_resources sc7280_res = {
+>  	.enc_nodename = "video-encoder",
+>  };
+>  
+> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
+> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
+> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
+> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
+> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
+> +};
+> +
+> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
+> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
+> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
+> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
+> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
+> +};
+> +
+> +static const struct venus_min_fw min_fw_encode = {
+> +	.major = 6, .minor = 0, .rev = 54  /* encode min fw version */
+> +};
+> +
+> +static const struct venus_resources qcm2290_res = {
+> +	.bw_tbl_dec = qcm2290_bw_table_dec,
+> +	.bw_tbl_dec_size = ARRAY_SIZE(qcm2290_bw_table_dec),
+> +	.bw_tbl_enc = qcm2290_bw_table_enc,
+> +	.bw_tbl_enc_size = ARRAY_SIZE(qcm2290_bw_table_enc),
+> +	.clks = { "core", "iface", "bus", "throttle" },
+> +	.clks_num = 4,
+> +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
+> +	.vcodec_clks_num = 2,
+> +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
+> +	.vcodec_pmdomains_num = 2,
+> +	.opp_pmdomain = (const char *[]) { "cx" },
+> +	.vcodec_num = 1,
+> +	.hfi_version = HFI_VERSION_4XX,
+> +	.vpu_version = VPU_VERSION_AR50_LITE,
+> +	.max_load = 352800,
+> +	.num_vpp_pipes = 1,
+> +	.vmem_id = VIDC_RESOURCE_NONE,
+> +	.vmem_size = 0,
+> +	.vmem_addr = 0,
+> +	.cp_start = 0,
+> +	.cp_size = 0x70800000,
+> +	.cp_nonpixel_start = 0x1000000,
+> +	.cp_nonpixel_size = 0x24800000,
+> +	.dma_mask = 0xe0000000 - 1,
+> +	.fwname = "qcom/venus-6.0/venus.mbn",
+> +	.dec_nodename = "video-decoder",
+> +	.dec_minfw = NULL,
+> +	.enc_nodename = "video-encoder",
+> +	.enc_minfw = &min_fw_encode,
+> +};
+> +
+>  static const struct of_device_id venus_dt_match[] = {
+>  	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
+>  	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
+> @@ -1098,6 +1148,7 @@ static const struct of_device_id venus_dt_match[] = {
+>  	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
+>  	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
+>  	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
+> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, venus_dt_match);
 
-Best regards,
-Svyatoslav R.
+Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+
+Thanks,
+Dikshita
 
