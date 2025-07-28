@@ -1,219 +1,182 @@
-Return-Path: <devicetree+bounces-200068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92557B1347E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 07:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A3CB1349B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 08:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E125D1897BD7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 05:58:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35FF11897B04
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 06:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B400625393C;
-	Mon, 28 Jul 2025 05:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6702821CC44;
+	Mon, 28 Jul 2025 06:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UkEjlZYI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DSWzq1Cl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239B12517A5;
-	Mon, 28 Jul 2025 05:56:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A912619F40A;
+	Mon, 28 Jul 2025 06:05:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753682206; cv=none; b=OP7KdlfV7yVDgzwATRRAke8l+qPYXl+hVu4hq7uNJ1WUca2ywiDZrKM+3xK5zPa5o4txf9UqhskwJbVUALIqhYOMUrukXgaPmoTDcKgnbxoY+bSBIK3fWNIcShBIOc0welfIEcDtRq+J8to8fcSBipKvLweSnOPDTknzeTlDwbI=
+	t=1753682726; cv=none; b=aow5OSYgC1i9FtrdHwtK0lHQDKAQSKnxdKb7YErxQqsDDAr4a8r61ha4mE3+G1jTMdaQpbFSIeS9KWtS0w9cdBE262OpG4BaCTdytbLlFjSLnVFhucl6ApOdaAP8m96f72xApnec7bgLtyHSvoTqj0jesN5sFR5f/QpZ6tYUZk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753682206; c=relaxed/simple;
-	bh=TPZgCgjAkax5i2/pB1EewOK8U5/Ji+0ZtO9LqIpr2vc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UpCcb0Iu5YDDLayZBYOZByC39F86np2L7HubMozPhanwgCznyu1DIyJgFPKDec5WqPVTZjTtDCeV09+hRyhS0hotPlCKPiv9kXgjvstasnO1Lrxy3Bx4AfbAyN/Mw9FoCSmMAw+ocHy+hFRKt232yWX7t0tkUniaJF7SaZofDXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UkEjlZYI; arc=none smtp.client-ip=209.85.214.173
+	s=arc-20240116; t=1753682726; c=relaxed/simple;
+	bh=6Bl6t0D6Smny3lA5QBgsKsojEFjKp+6fv2oc5TrWVks=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pYaqHBlakJ537kCFGP0XLxjC3vhp4pby/8As5gqBt5MrSqoxiTNVratBNzq18g3RUa/XdiFWMbejno7QLsmqZIhyT4YXnNie2Esyd7apyPZOTKJuoENLOin0Za4dQD7IRgHUT6Ix2C1+BCu4D8XGoiS3lUMoq46VxA15PxG8nH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DSWzq1Cl; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-23ffa7b3b30so8704495ad.1;
-        Sun, 27 Jul 2025 22:56:45 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-455b002833bso14808365e9.0;
+        Sun, 27 Jul 2025 23:05:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753682204; x=1754287004; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1753682723; x=1754287523; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=h+hROFZIJ4zafnbkZoU/ntEvBJYn2g7xzj4eJTsFhmI=;
-        b=UkEjlZYIG15+mXH4rHlq7aijfZvgZW2aG6mtvq4hmQtbN0hnnlD8MTrdgBeADBdq3S
-         uqS77zZirNQZNWxF3USSnH3LUDDXxKDwEsXp19Ra4BMHM7c/WaJKD7ncucM1xv2SwT80
-         moYceNNsYCVrXZD6zRON5g/AdJ2oMU2Bu9Be+oZYhFFFiKZ8JdmodDyVdU78NVyiJbKr
-         HTtf8MgyvOsYeU71yPzCTLzgeu44vaIVjuHbl0/4PlcH4htshlT76ZIIe3Bu55bJeEGV
-         QkkjmMoorn8u8vTcBqGCVd7nZswPd6SFRvop7xOUi0PYMNEhORL8MyA6MSliymeI+fze
-         zw0A==
+        bh=tQXF3uhUpKed79enyV2WSAsZRiLGa5m0jySlxIYlh2M=;
+        b=DSWzq1CleEFv7S9StERg8eDGdowO1+E/XBHrdbfDRiRlSrVYCgPEjI+xl9Hd+0JQpo
+         pIwjBB6oQ4JdIIGRqydArTlbrVAgqA6fho/Lfw8gY5NV3/VbNmKHZj1dQADBKU6bFInb
+         nZXtTl51k0zeyZOsV7VL3hxxDB5OMPHztlAqsrFDM4nAocYmPAOn5ws34haGzUsI3wsc
+         47iZryxQOCdVB+iv3xj3US0Y/PesEWgfxLPKMTjcXwYcEnImfa+uNmEdS9q2M9l31rSL
+         jeraQyHovJJf5uKCBaCtNyeTyWAPEfskl71IufT6qqo/ktg8JxccNmn37lbhZNO4Bp5S
+         UflA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753682204; x=1754287004;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1753682723; x=1754287523;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h+hROFZIJ4zafnbkZoU/ntEvBJYn2g7xzj4eJTsFhmI=;
-        b=WOIi3ivuJBqJ2drwtCVMUEzUldbfehrUBbo92TB06LlPRYiUh6wNi/cACUkUm0DhvX
-         8a/Sx0XCfHUrb0OGGO/VwU4PG5BTjoeozcSxV/LuobO7fa53RJZcc0OKjsIPI30KTXt4
-         wuK2HXeJGSl4gmVyoXeiYbwidSnImluhi337D6maTE1QLN4mvw7M9MGUzA8q0OEXbKc5
-         RgFylcfl+H/hx6LHY3nlYVjotTShZoAGFJwsxNcWDUWlCULP3t7RfdK3iUhX5oYHKFhn
-         PKcvmCZGhYhIqqFD+6HFbHZmID4hL1z4nU6eDeMSSv2jK513+F7MRU/Wjj1q71gWo1X/
-         RFzA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3QDPLCysSuxb6kUwRm/ng738EMe8Gh1IO9TDFK3T6E+46I4rIAk1Nabg2O6Ml01IEXgkbup11Klzl7Vmp@vger.kernel.org, AJvYcCWBvaShilqJzLbhFPI7iI44LpgsQ1nlwcSf2f1dDm8X1NL1dUbjOZCCq0YPVKJLBywSq5gkJq1Hml1A@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywoo5SX639To5cKdezS9tv0MUHs6NqSKK7aUdxiyeTr1r/akrIL
-	1vEVdKSKlAq9rZJoi2K3BJX5kr99c07q68vHl7KavZlVe+wD6Oyvgq8m
-X-Gm-Gg: ASbGncsuDOgRmooDqPiclbDZyKFdluxr11yzMYkR6o+z7MpiUQNYp6SQ9PNvahaN2Kw
-	1hVY1Zt3bikaIk8uIGBd4+zwv/px6wM5iI9jEG7Iie9BinyD3cnt5vIwm5rkbYiHoaTa/hhrmBD
-	kkfORRwhRdhh75Jti8f4oVz08tBu/onIij4lvhHCTdRS0lyiSCecUu2WUC7lrQTOG3OtOoq4jYg
-	MKUj7F1pEOXLTJk+j3f2vF3mcjC9/XbUyq+RMyyeKVKLYwCX1TNVKWNzsvS7a5Iknewq5W0bdwv
-	LiEWlhsrI8FBclM/KhxwNVNFD/bYhsQgScqLWRcYmeGVve5Zs03WWJQ6VqruxfO4ddrWc4B4fbX
-	GowtzIzw4qmr7iLpFFieoQOKVrj7vEK5UK+qqkZ8uaD3oH9SVOOAy/1WNXcS5NApAWYhr0EFueZ
-	c=
-X-Google-Smtp-Source: AGHT+IESYMV9/aCSq8+ZkMIq1xghfGxILNOdIuRhEeldG3+nYfcr3Y2QDDogE793q0IX8dW9AYzfjA==
-X-Received: by 2002:a17:902:c409:b0:234:f4da:7eeb with SMTP id d9443c01a7336-23fb3051350mr152238685ad.7.1753682204352;
-        Sun, 27 Jul 2025 22:56:44 -0700 (PDT)
-Received: from localhost.localdomain (c-76-133-73-115.hsd1.ca.comcast.net. [76.133.73.115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23fbe514b59sm45091795ad.128.2025.07.27.22.56.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jul 2025 22:56:43 -0700 (PDT)
-From: rentao.bupt@gmail.com
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Andrew Lunn <andrew@lunn.ch>,
-	Tao Ren <taoren@meta.com>
-Cc: Tao Ren <rentao.bupt@gmail.com>
-Subject: [PATCH v4 13/13] ARM: dts: aspeed: Add Facebook Darwin (AST2600) BMC
-Date: Sun, 27 Jul 2025 22:56:15 -0700
-Message-ID: <20250728055618.61616-14-rentao.bupt@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250728055618.61616-1-rentao.bupt@gmail.com>
-References: <20250728055618.61616-1-rentao.bupt@gmail.com>
+        bh=tQXF3uhUpKed79enyV2WSAsZRiLGa5m0jySlxIYlh2M=;
+        b=huxX6k/gZoy80TOLDuCX7sJtqgs6hBDWuk8P7XkJt+6kX2mZBYiESexCdEvWFH/v0x
+         3+lBClNzg7P+IvqvtGxWQ+qBPIy2ltqoukoSNmNeNWD/u0LmmnksE7jRZ70XyeUL9bqY
+         yQvQDY7cuz0ywGVxfO0aPM7+GtL8EQiocOG0It0PeZLrL8DdqOdabuTjvEA4bHNDZgNP
+         k6NCb/rQoVORPALVecS1fb28QZoKHRmsPh9lqQhNJ0Z3a8XMOgX+cdSvQ63L16kH9wVc
+         uMLHP14c3DR7yUFP7WYbnGOR86M5UV/ov1qJAZQqDdAwXlWQhOcqDbNnp8a83Yf34LfV
+         nrlw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8rxWVLFOXtBQ1eRihbTILyUSkSoViXn6jFx5PiDGoxo1WIAuxQNueAU68Cnuz6Eb5j7mpg3moHUFF@vger.kernel.org, AJvYcCWuoqCb21eHl33Ez+07xKoiVXOQ7bouW5gmXdAakGRAKO8wnipyatd8LzZHn6kE6DDT7D582fXyWK0SGQYl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1ZbMsbbDw7vOqBHi1HYB7LC4bnu5mobrvfdDD7KuCfe+mrvWM
+	byB7NyoDuT/o+7tKPjJzK8Qq5lHKtJDODUx+hJUZMQf0BKm7/UZw1CrKABX4iu9yJV7njYdwpZF
+	9n3ZLQcgu74x8oPotaiqNtYwEqDZH3ZE=
+X-Gm-Gg: ASbGncvb6EsKzAFku7QAbONA8pi7maft5e+FzDDofGChiPpD4TbyjsT/UH9GiqSmwTY
+	HfisRMM8KaU8MVKWDAoKpNfvcldukomztWr/wun7BbcUVacGlDV+oKW62RpR3D+1G/IL8ZKOHpV
+	xTfPquALnqR5E2QyEgX5tR5zJTzw5eTusenDPUZS8yRAJwnz29BPAWIycDsi72KzE8y9cxBcdUN
+	8d9fCBr
+X-Google-Smtp-Source: AGHT+IGbQly/khf35EnzlRO7ObYBo3BJlziBpv1lPzLbWO+xhKZeTjbakTyAb7qcQM/u3YZ/g+3x0BcnqrQrhaC7WKs=
+X-Received: by 2002:a05:600c:6748:b0:456:eab:633e with SMTP id
+ 5b1f17b1804b1-4587dd0db72mr59731935e9.17.1753682722442; Sun, 27 Jul 2025
+ 23:05:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250623081504.58622-1-clamor95@gmail.com> <CAPVz0n38N32HobYshtS9cLBJqWGPA1MZjMr0HH3C4UqGcFaFVA@mail.gmail.com>
+In-Reply-To: <CAPVz0n38N32HobYshtS9cLBJqWGPA1MZjMr0HH3C4UqGcFaFVA@mail.gmail.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 28 Jul 2025 09:05:11 +0300
+X-Gm-Features: Ac12FXx4CN1mT0Dh6FdAxwgNHcr1BsYAY3RYhstMmFIeWt6bQ2yxBdsgzEZ5FqU
+Message-ID: <CAPVz0n0nwnVyVP2V4Oswhhrz=gwMpv_-f2xJfBO2N44GRNjaKQ@mail.gmail.com>
+Subject: Re: [PATCH v7 0/2] drm: bridge: add ssd2825 RGB/DSI bridge support
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Tao Ren <rentao.bupt@gmail.com>
+=D0=BF=D0=BD, 21 =D0=BB=D0=B8=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 19:38 Svya=
+toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> =D0=BF=D0=BD, 23 =D1=87=D0=B5=D1=80=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 11=
+:15 Svyatoslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > Solomon SSD2825 is a RGB to MIPI DSI bridge used in LG Optimus 4D P880
+> > and LG Optimus Vu P895
+> >
+> > ---
+> > Changes on switching from v6 to v7:
+> > - removed enabled checks
+> > - configuration complete quirk moved from host_transfer to
+> >   atomic_enable
+> > - switched to devm_drm_bridge_alloc
+> > - removed redundant dev_set_drvdata use
+> >
+> > Changes on switching from v5 to v6:
+> > - set correct module name in Kconfig help
+> > - return error if spi sync failed for reading
+> >
+> > Changes on switching from v4 to v5:
+> > - rebased on top of drm-misc-next with adjustments to fit
+> >
+> > Changes on switching from v3 to v4:
+> > - no changes, resend
+> >
+> > Changes on switching from v2 to v3:
+> > - added mutex guard
+> > - configuration register flags parametrized using panel flags
+> > - removed unneded debug messages
+> > - removed unimplemented modes checks
+> > - added check for maximum pixel row length
+> > - use types header
+> > - remove ssd2825_to_ns
+> > - shift bridge setup into atomic pre-enable
+> > - cleaned default values of hzd and hpd
+> >
+> > Changes on switching from v1 to v2:
+> > - added description for clock
+> > - removed clock-names
+> > - added boundries for hs-zero-delay-ns and hs-prep-delay-ns
+> > - added mutex lock for host transfers
+> > - converted to atomic ops
+> > - get drm_display_mode mode with atomic helpers
+> > - parameterized INTERFACE_CTRL_REG_6 configuration
+> > - added video mode validation and fixup
+> > - removed clock name
+> > - switched to devm_regulator_bulk_get_const
+> > - added default timings
+> > ---
+> >
+> > Svyatoslav Ryhel (2):
+> >   dt-bindings: display: bridge: Document Solomon SSD2825
+> >   drm: bridge: Add support for Solomon SSD2825 RGB/DSI bridge
+> >
+> >  .../display/bridge/solomon,ssd2825.yaml       | 141 ++++
+> >  drivers/gpu/drm/bridge/Kconfig                |  13 +
+> >  drivers/gpu/drm/bridge/Makefile               |   1 +
+> >  drivers/gpu/drm/bridge/ssd2825.c              | 775 ++++++++++++++++++
+> >  4 files changed, 930 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/so=
+lomon,ssd2825.yaml
+> >  create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
+> >
+> > --
+> > 2.48.1
+> >
+>
+> Greetings!
+>
+> These patches had no activity/feedback from maintainers for almost a
+> month, so, in case they got lost in the depths of email box, this is a
+> friendly reminder that they are still relevant and I would like them
+> to move on.
+>
+> Best regards,
+> Svyatoslav R.
 
-Add initial device tree for the Meta (Facebook) Darwin AST2600 BMC.
+Hello there!
 
-Darwin is Meta's rack switch platform with an AST2600 BMC integrated for
-health monitoring purpose.
+This is a friendly reminder that they are still relevant and I would
+like them to move on. Should I resent them?
 
-Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
----
-Changes in v4:
-  - None.
-Changes in v3:
-  - Removed flash layout (use the "default" in common.dtsi).
-Changes in v2:
-  - Removed mac3 controller.
-  - Fixed DTB warnings.
-
- arch/arm/boot/dts/aspeed/Makefile             |  1 +
- .../dts/aspeed/aspeed-bmc-facebook-darwin.dts | 72 +++++++++++++++++++
- 2 files changed, 73 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index f6e714b7db2d..dce32ee0ace7 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-bletchley.dtb \
- 	aspeed-bmc-facebook-catalina.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
-+	aspeed-bmc-facebook-darwin.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
- 	aspeed-bmc-facebook-fuji-data64.dtb \
- 	aspeed-bmc-facebook-fuji.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-new file mode 100644
-index 000000000000..58c107a1b6cf
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-darwin.dts
-@@ -0,0 +1,72 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 Facebook Inc.
-+
-+/dts-v1/;
-+
-+#include "ast2600-facebook-netbmc-common.dtsi"
-+
-+/ {
-+	model = "Facebook Darwin BMC";
-+	compatible = "facebook,darwin-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial0 = &uart5;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			      <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			      <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			      <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	spi_gpio: spi {
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&i2c0 {
-+	eeprom@50 {
-+		compatible = "atmel,24c512";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		     &pinctrl_adc2_default &pinctrl_adc3_default
-+		     &pinctrl_adc4_default &pinctrl_adc5_default
-+		     &pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		     &pinctrl_adc10_default &pinctrl_adc11_default
-+		     &pinctrl_adc12_default &pinctrl_adc13_default
-+		     &pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
-+
-+&emmc_controller {
-+	status = "okay";
-+};
-+
-+&emmc {
-+	status = "okay";
-+
-+	non-removable;
-+	max-frequency = <25000000>;
-+	bus-width = <4>;
-+};
--- 
-2.47.3
-
+Best regards,
+Svyatoslav R.
 
