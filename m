@@ -1,192 +1,251 @@
-Return-Path: <devicetree+bounces-200328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F37B14304
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 22:31:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D3CB143E3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 23:31:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3EBF3AE00C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 20:30:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71A181756C7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 21:31:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A3E1A08BC;
-	Mon, 28 Jul 2025 20:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41A2275B12;
+	Mon, 28 Jul 2025 21:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QM4F9cAa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KXs2qKgH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196774C9D;
-	Mon, 28 Jul 2025 20:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD140199EAD
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 21:31:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753734680; cv=none; b=nnhbjPY2uAn8uK6IVrBBVagTzqbNi/mjOsBWT8v8YBs7i/3+wH+QNzIfJSD0G/gWolGVLvx2dpbWB/K8eJHOtrqCBKPeiGtLKnXAG6ClmsGgkW6yTtwbjRNwzEn8dSvcctJOEyLY/WcXslWKLzU4HwReJVYWQPKT2U9TLfaCWJg=
+	t=1753738281; cv=none; b=NQaJ3SsDW9hc9Ii6RxHOphs9X/uP1yYlQ0xdBIOQq4rSPC/AetKXfzN3E3mqTSV/VRGDSsPuNPxwEaHA4ylob8nSDS5+JGNq6ZphKA/RPGDnPJj+sFQJpPcuiKL23y6tKGHs+ApMEVcUczqa1iLa7l7up7W/ZpMMXBMX5OsbkSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753734680; c=relaxed/simple;
-	bh=5zpLgvcFjyvCbRJ2K9eYrKV3wY29rhQ2Migll4tMDKI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Y0JMLIEA5XYWvIRfsiN9TNIixecBgkwCFGBXdSfb3xqDb/wvBgfiyhmKJ8ZqCMHRJt/l5zcmiK/MylzX719r/o/FUOPZSLiZ1ghkNzw4ZXXU0GFapgdCABt2vSOk7jIL8pSxMQ+tC+RXX9c5sOl772xGumhxO3SJGkVzhoM8LHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QM4F9cAa; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1753734676;
-	bh=5zpLgvcFjyvCbRJ2K9eYrKV3wY29rhQ2Migll4tMDKI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=QM4F9cAaDDALe1tJ9ZVTGG1R28qF2oJ+isM2Bew938coHxcKgnfLcYEidcQuKQ/ni
-	 KzaIUnZuI6UZB540kep3TjAAFDJlyWbSbrbXYHnF38Uoq7NhLAAKlYitEOBM3fD3xN
-	 idSz7nBsaXlALrgd8vC370FUt7ZPQowf8g0wn+yPrdM8/qorBPfayu1qCtJr5Gp5ix
-	 JsUO13dafFUKzcDyighala6keY3aaAn1IHrLAZ5zsptWt5US0XmlzWgMKdHHVUVek7
-	 gkHxTbZiVvmUMxWjWdhe1uCiyvGRrOk78/JRPFAaJMHqidP1eIXIOgQIh1Idg9/T8f
-	 5E/GLAmyuTJOg==
-Received: from [IPv6:2606:6d00:11:5a76::5ac] (unknown [IPv6:2606:6d00:11:5a76::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A65D717E0DD0;
-	Mon, 28 Jul 2025 22:31:13 +0200 (CEST)
-Message-ID: <9ed47afadc8f624daff6711b86360cbd9e68af79.camel@collabora.com>
-Subject: Re: [PATCH v1 0/8] Enable video decoder & encoder for MT8189
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Tiffany Lin
- <tiffany.lin@mediatek.com>,  Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
- Yunfei Dong <yunfei.dong@mediatek.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, Hans Verkuil
- <hverkuil@xs4all.nl>,  Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Sebastian Fricke <sebastian.fricke@collabora.com>, Nathan Hebert	
- <nhebert@chromium.org>, Arnd Bergmann <arnd@arndb.de>, Irui Wang	
- <irui.wang@mediatek.com>, George Sun <george.sun@mediatek.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Andrzej Pietrasiewicz
-	 <andrzejtp2010@gmail.com>
-Date: Mon, 28 Jul 2025 16:31:11 -0400
-In-Reply-To: <20250721105520.5625-1-kyrie.wu@mediatek.com>
-References: <20250721105520.5625-1-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mQGiBEUQN0MRBACQYceNSezSdMjx7sx6gwKkMghrrODgl3B0eXBTgNp6c431IfOOEsdvk
- oOh1kwoYcQgbg4MXw6beOltysX4e8fFWsiRkc2nvvRW9ir9kHDm49MkBLqaDjTqOkYKNMiurFW+go
- zpr/lUW15QqT6v68RYe0zRdtwGZqeLzX2LVuukGwCg4AISzswrrYHNV7vQLcbaUhPgIl0D+gILYT9
- TJgAEK4YHW+bFRcY+cgUFoLQqQayECMlctKoLOE69nIYOc/hDr9uih1wxrQ/yL0NJvQCohSPyoyLF
- 9b2EuIGhQVp05XP7FzlTxhYvGO/DtO08ec85+bTfVBMV6eeY4MS3ZU+1z7ObD7Pf29YjyTehN2Dan
- 6w1g2rBk5MoA/9nDocSlk4pbFpsYSFmVHsDiAOFje3+iY4ftVDKunKYWMhwRVBjAREOByBagmRau0
- cLEcElpf4hX5f978GoxSGIsiKoDAlXX+ICDOWC1/EXhEEmBR1gL0QJgiVviNyLfGJlZWnPjw6xhhm
- tHYWTDxBOP5peztyc2PqeKsLsLWzAr7QnTmljb2xhcyBEdWZyZXNuZSA8bmljb2xhc0BuZHVmcmVz
- bmUuY2E+iGIEExECACIFAlXA3CACGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sB
- qgcJngAnRDBTr8bhzuH0KQwFP1nEYtfgpKdAKCrQ/sJfuG/8zsd7J8wVl7y3e8ARbRDTmljb2xhcy
- BEdWZyZXNuZSAoQi4gU2MuIEluZm9ybWF0aXF1ZSkgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29
- tPohgBBMRAgAgBQJFlCyOAhsDBgsJCAcDAgQVAggDBBYCAwECHgECF4AACgkQcVMCLawGqBwhLQCg
- zYlrLBj6KIAZ4gmsfjXD6ZtddT8AoIeGDicVq5WvMHNWign6ApQcZUihtElOaWNvbGFzIER1ZnJlc
- 25lIChCLiBTYy4gSW5mb3JtYXRpcXVlKSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY28udW
- s+iGIEExECACIFAkuzca8CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sBqgcQX8
- An2By6LDEeMxi4B9hUbpvRnzaaeNqAJ9Rox8rfqHZnSErw9bCHiBwvwJZ77QxTmljb2xhcyBEdWZy
- ZXNuZSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY29tPohiBBMRAgAiBQJNzZzPAhsDBgsJC
- AcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRBxUwItrAaoHLlxAKCYAGf4JL7DYDLs/188CPMGuwLypw
- CfWKc9DorA9f5pyYlD5pQo6SgSoiC0R05pY29sYXMgRHVmcmVzbmUgKEIgU2MuIEluZm9ybWF0aXF
- 1ZSkgPG5pY29sYXMuZHVmcmVzbmVAdXNoZXJicm9va2UuY2E+iGAEExECACAFAkUQN0MCGwMGCwkI
- BwMCBBUCCAMEFgIDAQIeAQIXgAAKCRBxUwItrAaoHPTnAJ0WGgJJVspoctAvEcI00mtp5WAFGgCgr
- +E7ItOqZEHAs+xabBgknYZIFPU=
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-FYdGZs1zTcICozY3Py8W"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1753738281; c=relaxed/simple;
+	bh=xOpGSwD+i3k4RvsiTCXNKOCRdZ4nxyhgb6f9qWDfH6I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j/r5BJ2kjRmY5ocjp2Ve1NuGIPd8pacv5E2Nd/U45PNsr4wFXG8B5iYNqkR5coIBlYVkCBYeLtMtBYFXgv5zIun/lf6STfaRb5dsjNXsigJlkV4Yd8g6jTjjxt5hetjN07fzsXY2A/Iq39Z88QZHmWCWDLy69c8S5pOKBCZahDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KXs2qKgH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SAlLMU018856
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 21:31:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zQzEir7iRMo8Nll1ylqLs9Ikgmf6SuRckbH505+LxRU=; b=KXs2qKgHxKrmw8ge
+	Q3tHP5EFqL8B3eauTeWPiQLecxuWuigdn5mxjtHAZJ3jhLrNYdt/13EDEIXEzca9
+	bkIaopwTnsUpqhYazUPZuqedoPRtgl9CUqxSjsuRb1Ncgu6ztS+SzYg2ZIrDZbmS
+	2HuUZE1NdG15tuv8hi+0DUMt7SL3ENWYeoSTZZ9GyKrMITXat9W+9tahQs/mS9hw
+	MhFoF+k0gIxv8nHIL1ADiJsdWxWnbuyk0DuMwNKbShlIXBsoxmOC0Sv8fKasqccd
+	d72XBXrAZJnCNM6LOBbgnvs/2Ili01uykCK8aCsp/6U8oGxXmXSGAnoArhO3hbTG
+	Rev3ng==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484q85wymp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 21:31:17 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e1d3bc3bd9so57855885a.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Jul 2025 14:31:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753738276; x=1754343076;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zQzEir7iRMo8Nll1ylqLs9Ikgmf6SuRckbH505+LxRU=;
+        b=VtVmhtFMQuSfsebN22tmCPdCLiD2++gDN7cEiE83+Stu4HiAZ42/CRy1b8KNLIZGXR
+         8CUSn4rJl5S8Y1uvvLHKvXxhS7s9xw3GFObhLvE7hGSRN+W6b1ZW3djn+oX61eUYT+v3
+         KDkcIMNuXP0hJ58uaDw8HqB9X087YZJB8SqNYnSL0jMrF16/ILumJYrTBUc90bmKngW3
+         xTRthTM8yOPYBuFVmY+T5b+59OkMa41zzleKsHVFIlRt3iMHJfeMAtG5//aQ7GQhUiEi
+         1RW2lhOJ6gP/SpEBaTGTSGTSMB/yFpgD77ibd33rzI1viDtg2H8vZyUQZgpu/MOe9a3K
+         mrxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRH+RpH+kF3nhWPDP6jsoAL1vQi/7K8AAxrVwrNE/YtRsAeQM+vmdyHnbO1IsoZOw+X/zonHn4TFkV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzs1ed4xHI/oGQwHjDGv3wWSLNm1pxMafne37i6I5Mw3RXnuXcg
+	RlfCmwxBMbcvbol1NJ5KgWCPFDkLgdf/bvBXXmtO5zYlcjxdM35jrITpN8iSST4MgkxpUeofVWZ
+	sVQdvqlRmhGLlV0Lt7Vvc4hpBRyjg8kCnaLvu6Vd47chCwdCC7pELDEEgbhxT2nhL
+X-Gm-Gg: ASbGncshn+fTxlDMYcGjXoFunPw23/QJpwLqUCL7Lhd5WlCkCaQ1WwIorBYFmjmIbe4
+	Fstx0s4x+6jPtnu4hwM/uaXzN1BK6DaObMWYNQJVqPttzHqiIusvmoSmrqrtgKQz/bVTZhJPizA
+	MWLDJSQcMfuyLcxkz62h3kYb+poFk2GgjN1zbv3gVmrs3rqTgcNvk7ZBNb1cGLCy/ijJDOGU1go
+	rQhU8ibIAejzpTBdfRbAnIdYBHn/iOeWux3DrBuUwzFS6ZxL6xj5X2DwWiW+VzFKWC8++JZc0tD
+	GU4JkqKDq31lhoCAS+osCpz0IZY4WBDUQchx0ptoadIepQJ9z7XQ4Ikn0PJm+QfkvRv5U3t0NK0
+	UrQ7manQGzUbV5mY6tA==
+X-Received: by 2002:a05:620a:2586:b0:7e3:3029:44c with SMTP id af79cd13be357-7e63bf6fa83mr809620985a.7.1753738276381;
+        Mon, 28 Jul 2025 14:31:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+4JUeHIe/vdgr99ACJt7Fa75bNvYRVKL98OaFFoBsSdhAU1ioagzUl9HgqrphdrjT4yMMgw==
+X-Received: by 2002:a05:620a:2586:b0:7e3:3029:44c with SMTP id af79cd13be357-7e63bf6fa83mr809614785a.7.1753738275560;
+        Mon, 28 Jul 2025 14:31:15 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635a62b14sm472695066b.77.2025.07.28.14.31.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Jul 2025 14:31:14 -0700 (PDT)
+Message-ID: <50868cd8-68a9-4bad-99f3-8cf542886fb6@oss.qualcomm.com>
+Date: Mon, 28 Jul 2025 23:31:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-FYdGZs1zTcICozY3Py8W
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Le lundi 21 juillet 2025 =C3=A0 18:55 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> This series have the follow changing:
-> Firstly add mt8189 video decoder compatible, profile and level to support
-> MT8189 kernel driver.
-> Secondly fix some bugs, including vp 4K profile2 and media device node
-> number bug.
-> Lastly, add mt8189 video encoder compatible.
-
-Since its a new hardware, please provide v4l2-compliance test results along=
- with
-relevant fluster result for the decoder part. Please also provide a link to=
- your
-submission of the related SCP firmware to the linux-firmware project. This =
-way I
-don't have to ask if/when the firmware will land.
-
-cheers,
-Nicolas
-
->=20
-> This series has been tested with MT8189 tast test.
-> Encoding and decoding worked for this chip.
->=20
-> Patches 1-2 Add decoder compatible.
-> Patches 3 Add profile and level supporting.
-> Patches 4 Add core-only VP9 decoding supporting.
-> Patches 5-6 fix some bugs.
-> Patches 7-8 Adds encoder compatible.
->=20
-> ---
-> This series patches dependent on:
-> [1]
-> https://patchwork.linuxtv.org/project/linux-media/cover/20250510075357.11=
-761-1-yunfei.dong@mediatek.com/
-> [2]
-> https://patchwork.linuxtv.org/project/linux-media/cover/20250528063633.14=
-054-1-irui.wang@mediatek.com/
->=20
-> Kyrie Wu (8):
-> =C2=A0 dt-bindings: media: mediatek: decoder: Add MT8189
-> =C2=A0=C2=A0=C2=A0 mediatek,vcodec-decoder
-> =C2=A0 media: mediatek: vcodec: add decoder compatible to support MT8189
-> =C2=A0 media: mediatek: vcodec: add profile and level supporting for MT81=
-89
-> =C2=A0 media: mediatek: vcodec: Add core-only VP9 decoding support for MT=
-8189
-> =C2=A0 media: mediatek: vcodec: fix vp9 4096x2176 fail for profile2
-> =C2=A0 media: mediatek: vcodec: fix media device node number
-> =C2=A0 dt-bindings: media: Add MT8189 mediatek,vcodec-encoder
-> =C2=A0 media: mediatek: encoder: Add MT8189 encoder compatible data
->=20
-> =C2=A0.../media/mediatek,vcodec-encoder.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> =C2=A0.../media/mediatek,vcodec-subdev-decoder.yaml |=C2=A0 1 +
-> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 9 +++++-
-> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0.../vcodec/decoder/mtk_vcodec_dec_stateless.c |=C2=A0 4 +++
-> =C2=A0.../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 32 ++++++++++++----=
----
-> =C2=A0.../vcodec/encoder/mtk_vcodec_enc_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 14 ++++++++
-> =C2=A07 files changed, 50 insertions(+), 13 deletions(-)
-
---=-FYdGZs1zTcICozY3Py8W
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 24/24] arm64: dts: qcom: x1e80100: Describe GPU_CC
+ power plumbing requirements
+To: Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Andy Gross
+ <andy.gross@linaro.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250728-topic-gpucc_power_plumbing-v1-0-09c2480fe3e6@oss.qualcomm.com>
+ <20250728-topic-gpucc_power_plumbing-v1-24-09c2480fe3e6@oss.qualcomm.com>
+ <aIevIuMDA5R8igmi@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aIevIuMDA5R8igmi@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI4MDE1OCBTYWx0ZWRfX5D3Xijmdtcms
+ i9nTdomm/AzP5DYzf4VGlidvAh5YC3xUQc9LSR4XQFolXhsttu+KtjZcU17rY7I4SglIn+xFjbG
+ VLSxMgWkCDQ6aov8V53PZgswAVOI/7hUG0VE5kvVwWqdaLY6kZrrqRb7Cd0H4Zkw6qSnOfFZruX
+ aEK4JsLTZeJDrRtf6iL2f4Vc9l2+PgeGEb+DOXFNLaaUQBHWj0pWRy+GDerYi46ZwJkm+nvtniW
+ BRi7vBpb+Ykqb7DKx0FE9Sdn35P1TxucchDK9jfTiSvmqo9Hge/Bz7UKx+DFiDQ8S8BkZ6FdFd+
+ BGwku48muDtwpPmjnGs8HoBHwKemGSznh6eQElBGf9DfE4cQniOzbhRL1QD2tGl5X2Ow3RrAp0z
+ VP9XW2mic83wmM/FhuP+frt4epCgrEG3/2OBwoWMk5T+j68l2MAZD+/iiRpJuUbdI+J9XfsE
+X-Authority-Analysis: v=2.4 cv=TqLmhCXh c=1 sm=1 tr=0 ts=6887ec26 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=Ep2Uw0KgDCB9V8QWne8A:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: yOC8xdHV3_-YN48lCEkKYG5SSkcfq5Mn
+X-Proofpoint-GUID: yOC8xdHV3_-YN48lCEkKYG5SSkcfq5Mn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-28_04,2025-07-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ malwarescore=0 adultscore=0 spamscore=0 priorityscore=1501 clxscore=1015
+ impostorscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507280158
 
------BEGIN PGP SIGNATURE-----
+On 7/28/25 7:10 PM, Stephan Gerhold wrote:
+> On Mon, Jul 28, 2025 at 06:16:24PM +0200, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>
+>> A number of power rails must be powered on in order for GPU_CC to
+>> function. Ensure that's conveyed to the OS.
+>>
+>> Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> index 5e9a8fa3cf96468b12775f91192cbd779d5ce946..6620517fbb0f3ed715c4901ec53dcbc6235be88f 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+>> @@ -3928,6 +3928,12 @@ gpucc: clock-controller@3d90000 {
+>>  			clocks = <&bi_tcxo_div2>,
+>>  				 <&gcc GCC_GPU_GPLL0_CPH_CLK_SRC>,
+>>  				 <&gcc GCC_GPU_GPLL0_DIV_CPH_CLK_SRC>;
+>> +
+>> +			power-domains = <&rpmhpd RPMHPD_CX>,
+>> +					<&rpmhpd RPMHPD_MX>,
+>> +					<&rpmhpd RPMHPD_GFX>,
+>> +					<&rpmhpd RPMHPD_GMXC>;
+>> +
+>>  			#clock-cells = <1>;
+>>  			#reset-cells = <1>;
+>>  			#power-domain-cells = <1>;
+>>
+> 
+> To repeat your own message from a couple of months back [1]:
+> 
+>> You shouldn't be messing with VDD_GFX on platforms with a GMU.
+>>
+>> Parts of the clock controller are backed by one of the MX rails,
+>> with some logic depending on CX/GFX, but handling of the latter is
+>> fully deferred to the GMU firmware.
+>>
+>> Konrad
+> 
+> Please describe somewhere in the cover letter or the individual patches
+> how this relates to the responsibilities of the GMU. I searched for
+> "GMU" in the patch series and couldn't find any note about this.
+> 
+> Also: How much is a plain "power on" votes (without a corresponding
+> "required-opps") really worth nowadays? An arbitrary low voltage level
+> on those rails won't be sufficient to make the GPU_CC actually
+> "function". Do you need "required-opps" here? In the videocc/camcc case
+> we have those.
 
-iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaIfeDwAKCRBxUwItrAao
-HMzZAKDRnKnZLS0mmgeweRyByWUpJk3rxQCdEEBk7PHedwsGNq6oR45JEjQNdhw=
-=4Qqz
------END PGP SIGNATURE-----
+Right, I failed to capture this.
 
---=-FYdGZs1zTcICozY3Py8W--
+The GFX rail should be powered on before unclamping the GX_GDSC (as
+per the programming guide). The clock controller HPG however doesn't
+seem to have a concept of RPMh, so it says something that amounts to
+"tell the PMIC to supply power on this rail". In Linux, since Commit
+e3e56c050ab6 ("soc: qcom: rpmhpd: Make power_on actually enable the
+domain") we don't really need a defined level for this (perhaps it's
+more ""portable"" across potential fuse-bins if we don't hardcode the
+lowest level anyway?).
+
+However after that happens, the level scaling is done by the GMU
+firmware. This holds for allOf CX/MX/GFX. I'm not super sure if
+both MX and (G)MXC need to both be captured together - downstream
+seems to describe MXC as a child of MX (in socname-regulators.dtsi),
+but I'm not really sure this is true in hardware.
+
+The GPU driver currently first enables the GX_GDSC and only then
+does it kickstart the GMU firmware. Downstream seems to do that as
+well. So on a second thought, since we've not seen any errors so
+far, it calls into question what role the GFX rail plays in the
+GX_GDSC's powering up..
+
+Furthermore, this assumes that the OS is aware when the GPU is in
+use, meaning VDD_GFX would be on when GPU(_CC) would be resumed, but
+with IFPC or hwsched, we have 2 corner cases:
+
+1) GPU is on but the OS doesn't know that
+   (which is fine because by the time the GPU is on, the GMU has
+   taken over)
+
+2) GPU wants to be off, but the OS holds an RPMh vote
+
+I *think* 2 shouldn't be an issue either, as downstream does
+precisely this, and if it turns out to be a problem down the line,
+it'd still be something to sort out on the C side.
+
+LMK your thoughts
+
+Konrad
 
