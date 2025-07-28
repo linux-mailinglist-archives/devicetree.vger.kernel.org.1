@@ -1,142 +1,105 @@
-Return-Path: <devicetree+bounces-200195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D7FB13B5E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46081B13B6C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 15:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C13BA16211B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:18:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A299016AA20
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jul 2025 13:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C9B2690D5;
-	Mon, 28 Jul 2025 13:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="BO0GX2YI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6C62676E9;
+	Mon, 28 Jul 2025 13:23:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574AF265621;
-	Mon, 28 Jul 2025 13:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187C67261C;
+	Mon, 28 Jul 2025 13:23:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753708573; cv=none; b=IJesbKCz8e2yIMHK5Zs2If3UBkbTWU7bCdCMu3Hr1V4IzQNx7lRC2f0/jVhOcpcyQghD7sTDyL5l8mxcwTW/fxng/L3a+cvtxBGYhKyBPxEjBYHjMfPdr8/eW8nhL9owZ6ChutEz80wIg7yponTX5FLQS0mBea8+WPkGJY6ohso=
+	t=1753709007; cv=none; b=VGsBn2aAj4u2Wj05f9j+V2dTjKZuGUExCxJIQBvTsmP5KjJy9jNt+X0zEGI5uvxMkOfXlfr4T587pcdA6Vs7cnw/eXeS3+t5uecZOdF5wE3FFQ2ow4LoDHB41zOkIs5gNTnxDHLtrlfeJjZBZNPZazzYVNSt2AICIdtRt0pkIZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753708573; c=relaxed/simple;
-	bh=W+HdYTcs/B9LyLPL42PUNlOvNmUrXUKGfHZ9d1aOnWg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iTdKCmJDkEgGH3FOmj4Vv9GCxrBuZtuv3mm52aHcAFpOuOY8KzfnX6eKkVkw5gx9+aW+9sUuVSKE0ji50f3bI+y1361OsGde/MyTN7SwNXSfwJhkKbJ0OgX/NhC2H7VrYCloHGjLI4OfFu9DnicF9XuO/YjKshDfhFJueA0pGM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=BO0GX2YI; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SCmIZY020685;
-	Mon, 28 Jul 2025 15:15:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	kLBhveJQnl8m3PppqLbOwkmepYRNmUTrNGuqfx0S5N0=; b=BO0GX2YIvdvzkDS8
-	ZgLPuGdA6WGl6NtJ6/xQvARzA7FDTBuGpl2k/0Qe88TTGB7pnIHxmoiSSisOV32g
-	UPiaPFmPKvtiX3XhLTfQmiPWWhAf9mhUbsxt+Qr5vXr+/xmOe8AI+GP0Tf55h+zN
-	AFsqv8MDszq5GkCQzzPwvL5oMkRwBOJCrayjtLqCoOJvpNLWhq4S434nD6ImKdRB
-	72VdlL6sQWIW34oobe/U/QH4wcbMN4ZdhzkhC81oilbCnC/pNvViJ6nfNqbMdD1i
-	EIeVOm26ibQEre65vm7otTMzzWKq1lvbLirBMolEWRX1Hn8E7BM9qTwCIDk13yj3
-	LKIF2A==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 484pc28cgd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 28 Jul 2025 15:15:27 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C3CB64005A;
-	Mon, 28 Jul 2025 15:13:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BDC18768ABE;
-	Mon, 28 Jul 2025 15:12:40 +0200 (CEST)
-Received: from [10.252.23.100] (10.252.23.100) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 28 Jul
- 2025 15:12:39 +0200
-Message-ID: <a0c0e255-32c6-466d-a2ea-694a4f074de3@foss.st.com>
-Date: Mon, 28 Jul 2025 15:12:38 +0200
+	s=arc-20240116; t=1753709007; c=relaxed/simple;
+	bh=NAQ/zJ7Cd0gCK86SJM5nKyxBxJiSPDXbYTrj9hDZGKs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k7Lh9TfNJxfPgAP2RsgjsNToUPJRQh54+IRA3Jz35xwDNd8+b8pc25RRZ/uraa2smVTzXxoRbzOzgfQbKhm/pJO2YQgvS3wJ5VkYIjYDy+Fn/ksaceWCVuq5AddFQUH410gYkNWk5JWH/Sq/NJk40axCPBWb6i3L76sN3lA5MtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A3151516;
+	Mon, 28 Jul 2025 06:23:17 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 54A813F66E;
+	Mon, 28 Jul 2025 06:23:20 -0700 (PDT)
+Date: Mon, 28 Jul 2025 14:23:17 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+	Stephen Boyd <swboyd@chromium.org>,
+	Andre Draszik <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	Elliot Berman <quic_eberman@quicinc.com>,
+	Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
+ resets as reboot-mode
+Message-ID: <20250728-exotic-armadillo-of-upgrade-fbebc1@sudeepholla>
+References: <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
+ <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
+ <b81aa592-a66b-457b-9f42-df4505b28508@kernel.org>
+ <3gtlf5txxtioa5bvo6o467jupyoam4hjhm2mdiw5izv5vbl3tz@drndgp3tcrgo>
+ <bcef34c3-98b4-454c-8138-c73729e17081@kernel.org>
+ <5e2caeb7-360a-4590-a36f-ff1ec4c20d31@oss.qualcomm.com>
+ <2a39c0ab-edd4-402c-95a0-a6286f03102a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/19] perf: stm32: introduce DDRPERFM driver
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-CC: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gabriel Fernandez
-	<gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Le
- Goffic <legoffic.clement@gmail.com>,
-        Julius Werner <jwerner@chromium.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-perf-users@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-References: <20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com>
- <20250722-ddrperfm-upstream-v3-12-7b7a4f3dc8a0@foss.st.com>
- <20250725115655.00002304@huawei.com> <20250725115908.000074d7@huawei.com>
-Content-Language: en-US
-From: Clement LE GOFFIC <clement.legoffic@foss.st.com>
-In-Reply-To: <20250725115908.000074d7@huawei.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-28_03,2025-07-28_01,2025-03-28_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2a39c0ab-edd4-402c-95a0-a6286f03102a@kernel.org>
 
-On 7/25/25 12:59, Jonathan Cameron wrote:
->>> +
->>> +	platform_set_drvdata(pdev, pmu);
->>> +	pmu->dev = &pdev->dev;
->>> +
->>> +	pmu->cfg = device_get_match_data(pmu->dev);
->>> +
->>> +	pmu->membase = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->>> +	if (IS_ERR(pmu->membase))
->>> +		return PTR_ERR(pmu->membase);
->>> +
->>> +	if (of_property_present(pmu->dev->of_node, "access-controllers")) {
->>> +		ret = stm32_firewall_get_firewall(pmu->dev->of_node, &firewall, 1);
->>
->> Jiri is busy driving dev_fwnode() thorugh to get rid of all the directly references
->> to of_node.  Probably better to use that here from the start.
->>
-> Need more coffee. Ignore this one, you still need an of_node here.
-Ack
-
+On Mon, Jul 28, 2025 at 02:23:14PM +0200, Krzysztof Kozlowski wrote:
+> On 28/07/2025 14:03, Dmitry Baryshkov wrote:
+> >>
+> >>> and the reboot-mode is defined in the
+> >>> previous patch. So, I'd assume, the path is defined.
+> >>
+> >> As I said, path is not. only psci/reboot-mode is.
+> > 
+> > Do we have an _actual_ use case where PSCI node is not at at root node? 
 > 
->>
->>> +		if (ret)
->>> +			return dev_err_probe(pmu->dev, ret, "Failed to get firewall\n");
->>> +		ret = stm32_firewall_grant_access_by_id(&firewall, firewall.firewall_id);
->>> +		if (ret)
->>> +			return dev_err_probe(pmu->dev, ret, "Failed to grant access\n");
->>> +	}
->>> +
+> Yes, many cases, because it belongs as well to firmware node.
+> 
 
++1, I was about to make similar comment. /psci predates the formal push
+to put all firmware related nodes under /firmware, so /firmware/psci is
+equally possible path and should be recommended one so that all such
+firmware related nodes are contained under /firmware.
+
+-- 
+Regards,
+Sudeep
 
