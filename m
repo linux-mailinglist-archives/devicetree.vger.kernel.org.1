@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809E8B148FC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:14:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92BF3B1492F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:33:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9E011897B6F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:15:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D3BA54596B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:33:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F00626056E;
-	Tue, 29 Jul 2025 07:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7DF264F96;
+	Tue, 29 Jul 2025 07:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZtE34Ul"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gI66fBEA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E382367BA;
-	Tue, 29 Jul 2025 07:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E3C2248BF;
+	Tue, 29 Jul 2025 07:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753773279; cv=none; b=KTxgrvfWSBjcgreXFuPASJyN9+eHvwTCUc9DGTONRwsNiPRKJOe6zfppoJ/dRli25zsBb8JSYxzKKY5yq3Aber/OLPQjATUv2cbAK0TBUHPk7By7gwVz3Xe2BeSOiYCOAh7gNSMESWTwIlPji62bS2lpyP9hb76agdhM6qlD6kA=
+	t=1753774385; cv=none; b=T9h7/1NyZ/Ij7jJei894EwSwSZ2YSXRFDFUOkRQ0GrsDBSUdaU9q5A4muLUTF88A5VJvx+pPuz8jUnTHisZUH5heBLV033v+g1EkSlADCjjD1rfpQrGMyJXgcntIK1qV6uhUxw2W81ATLwitdaL+wtOtSPVP226hDzl93EVWbYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753773279; c=relaxed/simple;
-	bh=9jaI39l1Uh8xxeZqcMi491zMxReRhgEiKezb0D06vIc=;
+	s=arc-20240116; t=1753774385; c=relaxed/simple;
+	bh=CxqkaF7ekVdwSdtSEeCYKk2cQa8nwCz+CBmrB3n4Oj8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tqJn5mGq+dFF0wwQuhwF6L6jaK0suu83B7mp0pKlYFRnsgAFwg+XuqLcwdudxzbMeufRCO+XVLGEb+eb7PSB7n0NuraM6lRBi9fSwlB+PdDPP3ZWB1dREcxHRTLroRvdKwT0exfR1yLK4KVR3tKWf6Vcco76UYHfGQ5ABaknDDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZtE34Ul; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B32C4CEEF;
-	Tue, 29 Jul 2025 07:14:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hT9iE04wrFSLnDDYNkjJqXUwWE4aiVJC/3Yf+lu16SCr3Nphq9t82qrgWXAOofTjt+URarGDF/NZsxG8b1NCu6gjcAD9VsoRERjhIDQU6atAf2YuxBZ0CsN2XhVFzp6aaQNiibdLYGocVEiqn9xpfv4dsQgDQ6cfnsI7kSagSo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gI66fBEA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C442CC4CEF8;
+	Tue, 29 Jul 2025 07:33:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753773279;
-	bh=9jaI39l1Uh8xxeZqcMi491zMxReRhgEiKezb0D06vIc=;
+	s=k20201202; t=1753774384;
+	bh=CxqkaF7ekVdwSdtSEeCYKk2cQa8nwCz+CBmrB3n4Oj8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pZtE34UlOQ1ny5tcZcYAEXUc24qujKBJZSiuRWpp6Ki56TUavO2sKV0aebhNRPVG1
-	 CZPO3RcUyeMrRFRGrW6EMGC1GfI8iyJ7LfcUmK0k1DjH1fJUI5pAcFxw7AWb/J0FkZ
-	 SufWEBZ2WmKp4p7mY5xHH8Kn8n0WWH/jphoAc16PB+/GLpOo+C5tLtxQBqZBUnkwps
-	 A8I818nnQ9aI4vA654zE31NI2/t7+A0ec2S1h8dagkdIUqB00eQ0fJRKazvrMNS5uV
-	 eOvpi+z0OukP8odiv9nj/FQYlprzHd2TPaHvtmx03FcB3ZAkxRoVgbEMnxQKt/1X3Z
-	 oxVjDzyZtHXeA==
-Message-ID: <6f9f3b70-fb5a-4af2-a01c-5bc14fff8b90@kernel.org>
-Date: Tue, 29 Jul 2025 09:14:35 +0200
+	b=gI66fBEAYeyg+yQpo0/8giOHu/JTcPZE+SfM52Rbbs6IYABr3wc/IfnD7XVDeGkZq
+	 buh9Rv5F3TDx19bk2dvOrX6Rhj8XMtTY6DFQ2bVWNx7BZCXIJk7PaqPNMWZ+4p24rh
+	 hfaWxBfLkhCpucUMSqsyN91RPDlsNUr1Ln8HKEcoY2L8G/qHEsGGLNuKU403uhD+Zs
+	 AijUSdiIo+WfUJbn1xzBejAGj0cPw5P0TfsC2HqHJBSjCD4MpbvmfCRqbJ1ZBeedSe
+	 xlbvaoDguj3Vb1YvS9XhmMBj5beoQFamfAHnDG/ObHgL6fPHfJ4s5YS4wYfO5RiBoU
+	 aHvDE5ijywH/w==
+Message-ID: <8f7cbf16-4cdd-4f95-8ff8-971da749b41e@kernel.org>
+Date: Tue, 29 Jul 2025 09:33:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 dt-bindings]dt-bindings: debix-model-a: Add bindings
- for BT and audio
-To: WangErQian <WangErQianY@icloud.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, john@polyhex.net
-References: <20250729031351.3875406-1-WangErQianY@icloud.com>
+Subject: Re: [PATCH 1/2] dt-bindings vnc virtual input
+To: marlonwu@126.com, robh@kernel.org, dmitry.torokhov@gmail.com,
+ krzk+dt@kernel.org
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ MenglongWoo@aliyun.com
+References: <20250729064346.22834-1-marlonwu@126.com>
+ <20250729064346.22834-2-marlonwu@126.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,28 +102,12 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250729031351.3875406-1-WangErQianY@icloud.com>
+In-Reply-To: <20250729064346.22834-2-marlonwu@126.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2025 05:13, WangErQian wrote:
-> Add bindings for Debix Model A Bluetooth and audio
-> 
-> This patch adds device tree binding documentation for:
-
-Read submitting patches. It explains how to write appropriate commit msg
-and what should be in the patchset.
-
-> - fsl,mxc_bt_rfkill.yaml: Bluetooth RF control node
-> - fsl,imx-audio-es8316.yaml: Audio codec interface
-
-Read submitting patches. There is VERY important paragraph called -
-separate your changes.
-
-> 
-> Signed-off-by: WangErQian <WangErQianY@icloud.com>
-
-No, you need real name.
+On 29/07/2025 08:43, marlonwu@126.com wrote:
+> From: Menglong Wu <marlonwu@126.com>
 
 Please use subject prefixes matching the subsystem. You can get them for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
@@ -131,203 +115,100 @@ your patch is touching. For bindings, the preferred subjects are
 explained here:
 https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Please use standard email subjects, so with the PATCH keyword in the
-title. `git format-patch -vX` helps here to create proper versioned
-patches. Another useful tool is b4. Skipping the PATCH keyword makes
-filtering of emails more difficult thus making the review process less
-convenient.
-
-There is no patch prefix called "dt-bindings".
-
-
-> ---
->  .../bindings/bluetooth/fsl,mxc_bt_rfkill.yaml | 70 +++++++++++++++
->  .../bindings/sound/fsl,imx-audio-es8316.yaml  | 88 +++++++++++++++++++
->  2 files changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml b/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
+> Add documentation for virtual GPIO keys to enable full ANSI keyboard
+> emulation via VNC on embedded devices without physical keyboards.
+> 
+> - vnc-virtual-input.txt: Usage scenario and implementation details
+> - vnc-virtual-input.yaml: Formal DT binding specification
+> - MAINTAINERS: Add entry for VNC virtual input support
+> 
+> The solution registers virtual GPIOs (starting from 400) to avoid conflicts
+> with physical GPIOs while supporting standard Linux input codes.
+> 
+> Signed-off-by: Menglong Wu <marlonwu@126.com>
+> ---
+>  .../bindings/input/vnc-virtual-input.txt      | 153 ++++++++++++++++++
+>  .../bindings/input/vnc-virtual-input.yaml     |  86 ++++++++++
+>  MAINTAINERS                                   |   7 +
+>  3 files changed, 246 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/vnc-virtual-input.txt
+
+We do not take txt bindings anymore, sorry.
+
+>  create mode 100644 Documentation/devicetree/bindings/input/vnc-virtual-input.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/vnc-virtual-input.txt b/Documentation/devicetree/bindings/input/vnc-virtual-input.txt
 > new file mode 100644
-> index 000000000000..b173de7a4102
+> index 000000000000..77d12308c553
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +$id: http://devicetree.org/schemas/bluetooth/fsl,mxc_bt_rfkill.yaml#
+> +++ b/Documentation/devicetree/bindings/input/vnc-virtual-input.txt
+> @@ -0,0 +1,153 @@
+> +Register virtual GPIO keys for VNC
+> +==========================
+> +
+> +# Purpose
+> +
+> +To emulate a full ANSI keyboard on embedded devices without physical
+> +keyboards.The server responds to key events via x11vnc.
+> +This resolves the limitation where embedded systems only register a few
+> +GPIO keys, making them unable to process full keyboard inputs.
+> +
+> +documented in Documentation/devicetree/bindings/input/vnc-virtual-input.yaml
+
+I don't understand the placement of this file in bindings. What are you
+writing bindings for here?
+
+
+> diff --git a/Documentation/devicetree/bindings/input/vnc-virtual-input.yaml b/Documentation/devicetree/bindings/input/vnc-virtual-input.yaml
+> new file mode 100644
+> index 000000000000..8b5414cb2bea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/vnc-virtual-input.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/a.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NXP i.MX Bluetooth RFKill Controller
+> +title: VNC Virtual GPIO Keys
 > +
 > +maintainers:
-> +  - WangErQian <wangerqiany@icloud.com>
+> +  - Menglong Wu <marlonwu@126.com>
 > +
 > +description: |
-> +  Binding for NXP i.MX Bluetooth RFKill controller, managing power and wake signals via GPIOs.
+> +  This binding describes a virtual GPIO key input node for VNC remote
+> +  input.
 
-No, explain the hardware, not what binding is.
+Describe the hardware, not the binding...
 
+> +  It is based on the standard gpio-keys binding.
+> +
+> +select: false
+> +
+> +allOf:
+> +  - $ref: gpio-keys.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: fsl,mxc_bt_rfkill
+> +    const: gpio-keys
 
-There is no user of this, so why posting this binding?
+So this is all completely redundant and not needed. Drop the bindings.
 
-> +
-> +  pinctrl-names:
-> +    maxItems: 1
-> +    items:
-> +      - const: default
-> +
-> +  pinctrl-0:
-> +    type: phandle
-> +    description: Phandle to default pin control configuration
-> +
-> +  bt-power-gpios:
-> +    description: GPIO controlling Bluetooth power (active low)
-> +    maxItems: 1
-> +
-> +  wake-bt-gpios:
-> +    description: GPIO for waking Bluetooth device (active low)
-> +    maxItems: 1
-> +
-> +  wake-host-gpios:
-> +    description: GPIO for host wake-up signal (active low)
-> +    maxItems: 1
 > +
 > +  status:
-> +    type: string
-> +    enum: [ "okay", "disabled" ]
-> +    default: "okay"
+> +    enum:
+> +      - okay
+> +      - disabled
 
-Do you see ANY binding with such syntax? No. There is no and this should
-be a hint that you are doing something wrong.
+Do you see any bindings with this?
 
-Anyway, entire binding does not describe the hardware, so this cannot be
-accepted. Bindings describe real hardware devices, not virtual beings
-like some containers for GPIOs.
+Srsly, it's second bindings today. I think you send some AI slops to us.
 
+Please confirm:
 
-...
-
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
-> new file mode 100644
-> index 000000000000..35f13d656caf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +$id: http://devicetree.org/schemas/sound/fsl,imx-audio-es8316.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX Audio Interface with ES8316 Codec
-> +
-> +maintainers:
-> +  - WangErQian <wangerqiany@icloud.com>
-> +
-> +description: |
-> +  Binding for NXP i.MX platforms using the Everest ES8316 audio codec.
-
-Same comments
-
-> +  Defines the connections between CPU DAI (SAI), codec, and audio routing.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,imx-audio-es8316
-
-There is no user for it or your commit msg is incomplete.
-
-> +
-> +  model:
-> +    type: string
-> +    description: Descriptive name of the audio setup (e.g., board-specific)
-> +    default: "imx-audio-es8316"
-
-How other bindings do this?
-
-> +
-> +  audio-cpu:
-> +    type: phandle
-> +    description: Phandle to the CPU audio interface (e.g., SAI node)
-> +    maxItems: 1
-> +
-> +  audio-codec:
-> +    type: phandle
-> +    description: Phandle to the audio codec (ES8316 node)
-> +    maxItems: 1
-> +
-> +  format:
-> +    type: string
-> +    description: Audio data format (e.g., i2s, left-justified)
-> +    enum: ["i2s", "right-justified", "left-justified", "dsp-a", "dsp-b"]
-> +    default: "i2s"
-
-How other bindings do this?
-
-> +
-> +  hp-det-gpio:
-> +    type: phandle-array
-> +    description: GPIO for headphone detection (active high)
-> +    maxItems: 1
-> +    items:
-> +      - description: GPIO specifier (controller + pin + flags)
-> +
-> +  audio-routing:
-> +    type: string-array
-> +    description: Connection mapping between codec pins and audio components
-> +    items:
-> +      minItems: 2
-> +      maxItems: 2
-
-These are redundant. I don't think this was tested.
-
-> +      items:
-> +        - description: Source endpoint (e.g., "Mic Jack")
-> +        - description: Sink endpoint (e.g., "MIC2")
-> +
-> +required:
-> +  - compatible
-> +  - audio-cpu
-> +  - audio-codec
-> +  - audio-routing
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    sai3: sai@40031000 {
-> +        compatible = "fsl,imx8mp-sai";
-> +        reg = <0x40031000 0x1000>;
-> +    };
-
-Drop node, not relevant.
-
-> +
-> +    codec: es8316@11 {
-> +        compatible = "everest,es8316";
-> +        reg = <0x11>;
-> +    };
-
-Drop node, not relevant.
-
-
-> +
-> +    sound {
-> +        compatible = "fsl,imx-audio-es8316";
-> +        model = "imx-audio-es8316";
-> +        audio-cpu = <&sai3>;
-> +        audio-codec = <&codec>;
-> +        format = "i2s";
-> +        hp-det-gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-> +        audio-routing =
-> +            "Mic Jack", "MIC2",
-> +            "Headphone Jack", "HPOL",
-> +            "Headphone Jack", "HPOR";
-> +    };
-
+Did you use any AI tool to generate this file?
 
 Best regards,
 Krzysztof
