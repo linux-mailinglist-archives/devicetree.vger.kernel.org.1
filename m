@@ -1,233 +1,162 @@
-Return-Path: <devicetree+bounces-200570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03BAB15328
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:52:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD56AB15315
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:47:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7AD718A50E5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:52:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B44D561B6E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E1C253B40;
-	Tue, 29 Jul 2025 18:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC30247296;
+	Tue, 29 Jul 2025 18:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="Xu/vWqvf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hAKWEh6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5D424DD13;
-	Tue, 29 Jul 2025 18:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753815121; cv=pass; b=UQjeba2bw9SLlfQvwmu+8dYZC7r1gv5zvYcUKvYKudZy1JCzcb5SDOnLU5x9mhLfnPyS717kPpwn97q+OuNx2C+pI0AlNNkZLhCz9ahg9OOh7hofl0o/HwJfUKdTuIQxhajkFOQd8Y1D9m7T02MWK/g6otdFrJmgZLNgNTSuQk8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753815121; c=relaxed/simple;
-	bh=7tXMSKlCWjju5fI/jyjdzhJJomYquD/UmYKow2jsXaQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n/yo9sh1f8sz5QcWY/Q0DVXK7fMoTafwC62g1y/UdB+ZqsbqFK9PYQhnRNpoAu7xoILmbYo8l58EYgSZXM7838Pv1KfqcmQVn+7k0fIhSIRzwiRj1RVqIhng4qabkY+NeSOl0/euA1ufztftUkWs6i/j4ntu9+2igtjRuquNa10=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=Xu/vWqvf; arc=pass smtp.client-ip=136.143.188.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1753815079; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=JBeM7HAfMn0FBMAUkexSv0eaEu69IqTien/yIGWwF2C9wChkMlrXnvGLT9YDTfqqd3EcKF3qDZr7RU1Y9GjOqJz0ECOSe4giGRjQSzbrliTtth0uRx5F0Z5yHJDwKIOTcy3ePm2D/hXNSfgriU52gyHd3YUbBR8OdkSdx13Encw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753815079; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=1gl5tyPKGcn0xJohDzLP9CsQXqbtUioIYMBev0Dr6vQ=; 
-	b=hETmDhCbCydQMZf2vQflq9+Wa4E9+R7iEW56GS7VEf1eJXKS0KBDS+7N71MUSuRfddku33/syzPQBls3pTGNPddpEjSBHKKX5Qmr49lu+67bCnzVWGcbfIHAHj5Ky3fZvdxaeT322uUbk0PJzIKbm6Zo7LrqKD6nuaOciGFoQrY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753815079;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Feedback-ID:Reply-To;
-	bh=1gl5tyPKGcn0xJohDzLP9CsQXqbtUioIYMBev0Dr6vQ=;
-	b=Xu/vWqvfDJb2T2F+evV++IMoV+m1Z3IvmFoyeMk2TZxB34K/EsPXwsaPp9Feefqo
-	2+PPMPdF/6ZUDTGminKvwTG7Hojkel3tiHJ9+JozXMsM/NW+F/ndsl1vLp4AVkEITSw
-	xiSrK2BvCWrLeufkvXeiaZQ93PppNKU9qnBdifOc=
-Received: by mx.zohomail.com with SMTPS id 1753815077001653.4359079339121;
-	Tue, 29 Jul 2025 11:51:17 -0700 (PDT)
-From: Xukai Wang <kingxukai@zohomail.com>
-Date: Wed, 30 Jul 2025 02:43:53 +0800
-Subject: [PATCH v7 3/3] riscv: dts: canaan: Add clock definition for K230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4E62AE8D;
+	Tue, 29 Jul 2025 18:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753814869; cv=none; b=Z69Kbg0TQpTPWUwJTnM7asCfna2072vW6R0wKNfso1DoOTuEoU8/0ldkAo0wzqYbDiRRnY55Tqinka8XXYt+kO00rnY99UeOivpIjpiqF29SupJyRNz+9uHDjQ0cWg/TANpY/vGUt9WsVCkQfWnL34zUUOG4ygYjEJ4wW0MvmeA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753814869; c=relaxed/simple;
+	bh=JghpAhHm1OQNRidbFV6VitScuVePnsf11Vnj7jlZXvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cdtm+vOAyykuTWl2uWMMszRFPjqVxGrH71ol+7wASdmiY0WFE5OmizYloK61kjsSg1lfpqSnG1N4gQzlDnUL2pLYMfMHM/mldnrWfiH827qrVRis5Fnc/tRb7L9PxFbMwtSyj8WHijVOPb0F+SKNpzBUtQgX/QxzWVweox3vBuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAKWEh6g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAB08C4CEEF;
+	Tue, 29 Jul 2025 18:47:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753814869;
+	bh=JghpAhHm1OQNRidbFV6VitScuVePnsf11Vnj7jlZXvw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hAKWEh6gVwizDL/2GNGxynqRRPfgD2An5GzMku1mB474X6+VRdaw/H7F8yxkJXTgC
+	 vU/l8rlxOeHJi5yKH0cF5FZWnHevITLSRsBwu1TdlsNdFek/pqDFUTYX4ctDO3VwYi
+	 0C6oTeCEelCrD/h+Jmi73HYXe75n+lzClEOxWXlDAekgrvboDDA81GC8MN1VGPY48M
+	 emUeyPcIdt+ofdjf/PGs3daXo8bGBkTnwrhzNwInTkee8klfxkZFbzGVsccDvo2CdV
+	 b1K85BQmjfMmSgVEDodQBptYgV0fgVwomATENBdLoyTPH5Ho6Of02BRwsvzWTp7rcn
+	 PT8srhb0TCLVw==
+Date: Tue, 29 Jul 2025 19:47:38 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
+ 3D Magentic sensor
+Message-ID: <20250729194738.52aa3268@jic23-huawei>
+In-Reply-To: <aIg_SClXq0pO69iH@dixit>
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+	<20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
+	<141967ee-22f4-4b15-a8da-e8cef25828b4@baylibre.com>
+	<aIg_SClXq0pO69iH@dixit>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250730-b4-k230-clk-v7-3-c57d3bb593d3@zohomail.com>
-References: <20250730-b4-k230-clk-v7-0-c57d3bb593d3@zohomail.com>
-In-Reply-To: <20250730-b4-k230-clk-v7-0-c57d3bb593d3@zohomail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xukai Wang <kingxukai@zohomail.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Troy Mitchell <TroyMitchell988@gmail.com>
-X-Mailer: b4 0.14.2
-Feedback-ID: rr080112279b54b9156260a440bfbc8ba80000ba6f231c96f7e4b8097e64a54000ea00b987c31b28ad7edb7a:zu08011227872a5892e1c9cb215857a413000011d2c0a6dd143140d8d0999d15a3fc959ef3fd861df5b2fe6b:rf0801122da75b6cc804455d5c0b2bacea0000ed84fa1a16201d6ffca26cc62681a55595812d8153f20275c2fdc4f83804e9:ZohoMail
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-This patch describes the clock controller integrated in K230 SoC
-and replace dummy clocks with the real ones for UARTs.
+On Tue, 29 Jul 2025 08:56:00 +0530
+Dixit Parmar <dixitparmar19@gmail.com> wrote:
 
-For k230-canmv and k230-evb, they provide an additional external
-pulse input through a pin to serve as clock source.
+> On Sat, Jul 26, 2025 at 03:44:03PM -0500, David Lechner wrote:
+> > On 7/26/25 4:37 AM, Dixit Parmar wrote: =20
+> > > The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> > > applications includes joysticks, control elements (white goods,
+> > > multifunction knops), or electric meters (anti tampering) and any
+> > > other application that requires accurate angular measurements at
+> > > low power consumptions.
+> > >=20
+> > > The Sensor is configured over I2C, and as part of Sensor measurement
+> > > data it provides 3-Axis magnetic fields and temperature core measurem=
+ent.
+> > >=20
+> > > The driver supports raw value read and buffered input via external tr=
+igger
+> > > to allow streaming values with the same sensing timestamp.
+> > >=20
+> > > The device can be configured in to different operating modes by optio=
+nal
+> > > device-tree "mode" property. Also, the temperature sensing part requi=
+res
+> > > raw offset captured at 25=C2=B0C and that can be specified by "temp-o=
+ffset"
+> > > optional device-tree property.
+> > >=20
+> > > While sensor has interrupt pin multiplexed with I2C SCL pin. But for =
+bus
+> > > configurations interrupt(INT) is not recommended, unless timing const=
+raints
+> > > between I2C data transfers and interrupt pulses are monitored and ali=
+gned.
+> > >=20
+> > > The Sensor's I2C register map and mode information is described in pr=
+oduct
+> > > User Manual[1].
+> > >=20
+> > > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49=
+/infineon-tlv493d-a1b6-datasheet-en.pdf
+> > > [1] https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-U=
+serManual-v01_03-EN.pdf
+> > >=20
+> > > Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
 
-Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
----
- arch/riscv/boot/dts/canaan/k230-canmv.dts | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230-evb.dts   | 11 +++++++++++
- arch/riscv/boot/dts/canaan/k230.dtsi      | 26 ++++++++++++++++++--------
- 3 files changed, 40 insertions(+), 8 deletions(-)
+Picking out one question for a quick answer...
+> > > +			return ret;
+> > > +		}
+> > > +		/* Return raw values for requested channel */
+> > > +		switch (chan->address) {
+> > > +		case AXIS_X:
+> > > +			*val =3D x;
+> > > +			return IIO_VAL_INT;
+> > > +		case AXIS_Y:
+> > > +			*val =3D y;
+> > > +			return IIO_VAL_INT;
+> > > +		case AXIS_Z:
+> > > +			*val =3D z;
+> > > +			return IIO_VAL_INT;
+> > > +		case TEMPERATURE:
+> > > +			*val =3D t;
+> > > +			return IIO_VAL_INT;
+> > > +		default:
+> > > +			return -EINVAL;
+> > > +		}
+> > > +	case IIO_CHAN_INFO_SCALE:
+> > > +		switch (chan->type) {
+> > > +		case IIO_MAGN:
+> > > +			/*
+> > > +			 * Magnetic field scale: 0.0098 mTesla (i.e. 9.8 =C2=B5T)
+> > > +			 * Expressed as fractional: 98/10 =3D 9.8 =C2=B5T.
+> > > +			 */
+> > > +			*val =3D 98;
+> > > +			*val2 =3D 10; =20
+> >=20
+> > We use SI units, so this needs to be gauss, not tesela.
+> >  =20
+> Sure, Is there any documentation/reference this details are mentioned?
 
-diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-index 9565915cead6ad2381ea8249b616e79575feb896..6579d39e2c1690d9e9c2b9c884db528c37473204 100644
---- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-@@ -17,8 +17,19 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: timer_pulse_in {
-+		compatible = "fixed-clock";
-+		clock-frequency = <50000000>;
-+		#clock-cells = <0>;
-+	};
- };
- 
- &uart0 {
- 	status = "okay";
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts b/arch/riscv/boot/dts/canaan/k230-evb.dts
-index f898b8e62368c3740d6795fd1e3cb0b261a460ac..64fbb5036b6e919662c8d66adb8f102a698318bf 100644
---- a/arch/riscv/boot/dts/canaan/k230-evb.dts
-+++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
-@@ -17,8 +17,19 @@ ddr: memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x20000000>;
- 	};
-+
-+	timerx_pulse_in: timer_pulse_in {
-+		compatible = "fixed-clock";
-+		clock-frequency = <50000000>;
-+		#clock-cells = <0>;
-+	};
- };
- 
- &uart0 {
- 	status = "okay";
- };
-+
-+&sysclk {
-+	clocks = <&osc24m>, <&timerx_pulse_in>;
-+	clock-names = "osc24m", "timer-pulse-in";
-+};
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 95c1a3d8fb1192e30113d96d3e96329545bc6ae7..5a7a13117a779637fa33e91dce47430455c0f949 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
- 
-+#include <dt-bindings/clock/canaan,k230-clk.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- /dts-v1/;
-@@ -58,10 +59,10 @@ l2_cache: l2-cache {
- 		};
- 	};
- 
--	apb_clk: apb-clk-clock {
-+	osc24m: clock-24m {
- 		compatible = "fixed-clock";
--		clock-frequency = <50000000>;
--		clock-output-names = "apb_clk";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "osc24m";
- 		#clock-cells = <0>;
- 	};
- 
-@@ -89,10 +90,19 @@ clint: timer@f04000000 {
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
- 		};
- 
-+		sysclk: clock-controller@91102000 {
-+			compatible = "canaan,k230-clk";
-+			reg = <0x0 0x91102000 0x0 0x40>,
-+			      <0x0 0x91100000 0x0 0x108>;
-+			clocks = <&osc24m>;
-+			clock-names = "osc24m";
-+			#clock-cells = <1>;
-+		};
-+
- 		uart0: serial@91400000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91400000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART0_RATE>;
- 			interrupts = <16 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -102,7 +112,7 @@ uart0: serial@91400000 {
- 		uart1: serial@91401000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91401000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART1_RATE>;
- 			interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -112,7 +122,7 @@ uart1: serial@91401000 {
- 		uart2: serial@91402000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91402000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART2_RATE>;
- 			interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -122,7 +132,7 @@ uart2: serial@91402000 {
- 		uart3: serial@91403000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91403000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART3_RATE>;
- 			interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -132,7 +142,7 @@ uart3: serial@91403000 {
- 		uart4: serial@91404000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x91404000 0x0 0x1000>;
--			clocks = <&apb_clk>;
-+			clocks = <&sysclk K230_LS_UART4_RATE>;
- 			interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
+Documentation/ABI/testing/sysfs-bus-iio
 
--- 
-2.34.1
+https://elixir.bootlin.com/linux/v6.16/source/Documentation/ABI/testing/sys=
+fs-bus-iio#L342
+is the specific entry for magnetic fields.=20
+
+Otherwise a small process thing - where you are agreeing with review
+feedback, no need to put it in your reply.  Much better to just fix
+it and have it in the change log for the next version.  That will let
+you crop away much more of the thread, so we can focus in on questions.
+
+Jonathan
 
 
