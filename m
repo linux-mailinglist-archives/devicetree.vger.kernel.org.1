@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-200584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE9FB15477
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 22:56:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB36B15485
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 23:04:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DC815479C7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:56:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 542F616B548
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A449278173;
-	Tue, 29 Jul 2025 20:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07196279347;
+	Tue, 29 Jul 2025 21:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="gqCIwiG4"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="Fbng30ms"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89152156678
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 20:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CC019F13F
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 21:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753822585; cv=none; b=jZE5hCHs37Fr6yNKUBjwXq5a44SjiEsbtSjahcVFBH3zNYg9pmUOnMN/gh64qeLP5X8CuzlBMa5YwsXQpicNuy4rA4pHLHZ65kvJlKfSwj2kbjWH6yx2x+JXtVwnrru4b5VvhtCT0c3n7qEjSNEUeFCswv6yptmtwxaHVA8WgnE=
+	t=1753823049; cv=none; b=oArrJd1hiTiI4MVXUFG0GiU/ajF6nIlkgqgd19RVs+q8B8iQZZFwshf+sqlpyzUzen0qN/YSdW26bS+3W4g1v2VagPPb+RNc4piyOa3IRFyJRmLR/rh60yuC7oC0FG1lyXkKBoa8awEH2aT0KFnfYo7zYuXt4wVLKeqVCzhRB8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753822585; c=relaxed/simple;
-	bh=Z1Kr26XwW405L9j7UMRlKke0625JiBNeN1OtSRfhsDs=;
+	s=arc-20240116; t=1753823049; c=relaxed/simple;
+	bh=7thQFiHMskvQ9aFUSWH6/ir2YyqLwdvvFhctZkjF81M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eVGFe88nvFgm0s4P5e11zPdBMHTaEcdVRKahQr5MLC2kXG2HmNl6rOuZP+BhYRyiDEbwO09YY6Y/0PjPh2AxyT3uNLc/GZFsDJROZO4K8K+UF/1Gzk7UTTkZe2yoywVd2XJxfgW3wew/cCHCEAHxuhUfJs1JzixVzj01UK4xSV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=gqCIwiG4; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1753822582;
- bh=v+EFRhrySWl3zLJ7XlS9rNLMc1j/yRIrm57mAagtY1s=;
- b=gqCIwiG4BMiE0mElqmp4QBZdK5D9DlxDxEj63+YqL5l9ivG2AvG4FVitWjVC9fZT6ZyYETkCq
- 9JPrSL1/wro0a4p3Jha4XmVs1i2eVrxhENzNG5DU0MfnkHbtLnWPHN61qwrP6qjjHJbUWGRxbAf
- yIB+79L5TAjb/CDDlp6CyK19IVRfdkqQegkK9/FB/PWeMC5/13JTRGG2wVOzCUPqibBJ8xNyUl+
- 2Ldo1wUCIAPJ3AwCN/qmu8JhQ13/X4Vm55zxYYbSF1T8KVbnPGx/Xjf6fSJghppY8CvVvjlayiK
- UtI6S/Pg+dew807b8SuTVdHViYbaftQshO8WT1VMPu7A==
-X-Forward-Email-ID: 688935605983c8a2f4b4a751
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.1.8
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
-Date: Tue, 29 Jul 2025 22:55:53 +0200
+	 In-Reply-To:Content-Type; b=SqBur06iRyq4UOsDXOekVXAh7ELsv8EqmtjOj23Et9t5DcaVxpStgnOx0JvWF04HeVkPRrAuDbV+XOY5IoAD1tryRyb31im3vEKNMupIaGcdUOmVg8rrL61f8dlyeIJ4P1GX5WeK3qSgQWyRBre9HQzwQNrRkF1OzM6DsDIKrJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=Fbng30ms; arc=none smtp.client-ip=209.85.166.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-880f2623a6dso338539239f.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 14:04:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753823047; x=1754427847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Dm0B5M26cYOXX5KrUOLsQ5vTboaxWnLdzB6XMUX6uWQ=;
+        b=Fbng30msi2RM9dGyyAbbGtkKGS6ZUE3VVxeL0oUhcO48WUwn4VzKxEZZ3/a5Q40Sy2
+         9r5PQ+hV0FJOIBLrkHRBik4bpGwaKN2hzsN+FRQOmRBB/u14jxBmo3aXXO7bcCsXHVjb
+         Xe6Uk9L8YU/NYD/PnEOcLi/YkdKR755Sr/GhLjmog+Z2Bmh7McbWEFdWdgrTA2d9wjXq
+         i+gz05Uoy/kxDpggEuccseKyr3n0Sy049LNyTUPzyDQ2MxMDcJiqb6mXPJGtMyjy3cI/
+         F9WqObhIqVRIRO1LpBTbNU02UE1cOfzznpOlkGn3Xb0vOXb7J70rkRbux4cFCE5Z99i7
+         Az8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753823047; x=1754427847;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dm0B5M26cYOXX5KrUOLsQ5vTboaxWnLdzB6XMUX6uWQ=;
+        b=XUk+T5YqgA3/eagbvER6Gfh0j08c1Qpqnt9de2gtW2a5qshyKpgMysaDDtvEqkdGPB
+         0uFdnSMmjt5joQN7pl4N33QsXMgjf+lNDbX20QokSzaZPn2VRD16is7c1u9rWPUtN62x
+         Ix6RKEvtgr+klZRd6XBZ7aiuaSnf+rfw52seVa/I9k71J0gYtL601kzARkccoiK10nfr
+         FMAESeZkQQe507eY4iJuKP4WrEJPv6yQ0mjgXrAdF4nsM8fDbAmcdIoNYuWV6+rtbOz2
+         eNxN3qadKM9oWndD26nIjVH+FonIER3rBkygHnPOIuDYo95EU+RjSinr+eULYee9SZj0
+         TNRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVg64PuAPY6f7SSEPPLbeBl8efI7PDQ9HJH9oMfQQ7ie0ufy+KefXljLiWG7h4qgpAGt/7pfrB9unR4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtbgPCYrqOaPY/TuIuk9JqZmzlBkLS0IAT1zV6vcIbsaO2tcrF
+	ZYg9K/TPBHDxFTWXw+Mapctu0lNn9XL6UY0YMtZB6rSXNK+HejjM2s9ZFNzHV03HjQ8=
+X-Gm-Gg: ASbGncsHaDuq5BJJ6duPwVlpwKXITNYuEoOkoKKg+6Z0Z+8etRIHxjk9Vj9kyN/JAte
+	qyW7DCT8Nsiz2IqkYRC6pZhgtQk7oAjU9m0ZhJI8StHKG0fDdDqyt/rZaSetGjVSBGqhp7RerC+
+	13ElbVZge66/Lsp3bBVb8g/7UQNajTAvSgpwrIBBsQz0qmP0qpZx0sw/sf+1pZeQ8hfB7vq1eEh
+	F71IeMO/6kOox1Fy5s8l+Qp+5R4a2AI+vkeUoED3OibSfU1DHyMUQu5JsFQrpfkSLUnGhiPXH0p
+	WYdGfuXcJrk6YtKULCKcpKdJ51DcIog0KPrYdDlKAFIaDf/nRyj9ooiPrGH0OZXuzft3cMxYuPL
+	TinV6LBY2soUQzcZBh38+q28dkZ1c/3TVsKX6w9Z/xIB2om/Ni+lbIgFzuvpGLQ==
+X-Google-Smtp-Source: AGHT+IEYsNZGToVFKqEpDm8h8KviUj+EbfOPDQ9fzvNi2gdCmg29FQdC20eQLL41P+j0nBILREZn0w==
+X-Received: by 2002:a05:6602:7501:b0:879:c9db:cbf0 with SMTP id ca18e2360f4ac-881374c295emr155676739f.2.1753823047163;
+        Tue, 29 Jul 2025 14:04:07 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-508c91f1dcfsm2827976173.47.2025.07.29.14.04.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jul 2025 14:04:06 -0700 (PDT)
+Message-ID: <5c3f9f10-6a9d-45b4-80c0-09402b35bf47@riscstar.com>
+Date: Tue, 29 Jul 2025 16:04:05 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,88 +82,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to
- Radxa E24C
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: "alsi@bang-olufsen.dk" <alsi@bang-olufsen.dk>,
- "andrew@lunn.ch" <andrew@lunn.ch>, "conor+dt@kernel.org"
- <conor+dt@kernel.org>, "davem@davemloft.net" <davem@davemloft.net>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "edumazet@google.com" <edumazet@google.com>,
- "heiko@sntech.de" <heiko@sntech.de>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "kuba@kernel.org" <kuba@kernel.org>,
- "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "olteanv@gmail.com" <olteanv@gmail.com>,
- "pabeni@redhat.com" <pabeni@redhat.com>, "robh@kernel.org"
- <robh@kernel.org>, "ziyao@disroot.org" <ziyao@disroot.org>
-References: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
- <20250729115009.2158019-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH] dt-bindings: serial: 8250: allow "main" and "uart" as
+ clock names
+To: Conor Dooley <conor@kernel.org>, Yixun Lan <dlan@gentoo.org>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, lkundrak@v3.sk,
+ devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-mediatek@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+References: <20250728220002.599554-1-elder@riscstar.com>
+ <20250728225319-GYA900803@gentoo>
+ <20250729-reshuffle-contented-e6def76b540b@spud>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250729115009.2158019-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250729-reshuffle-contented-e6def76b540b@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Chukun,
-
-On 7/29/2025 1:50 PM, Chukun Pan wrote:
-> Hi,
-> 
->> The issue is with TSO and RX checksum offload, with those disabled on
->> the conduit interface (gmac1/eth0) my issues disappeared.
-> 
-> I did a test today and the same problem occurred when running the new
-> kernel on my rk3568 + rtl8367s board. This problem does not exist on
-> older kernels (6.1 and 6.6). Not sure where the problem is.
-
-I had only tested on a next-20250722 based kernel and on a vendor 6.1
-based kernel. And similar to your findings, on 6.1 based kernel there
-was no issue only on the newer kernel.
-
-I will probably drop the use of "/delete-property/ snps,tso" and include
-a note in commit message about the TSO and RX checksum issue for v2.
-
-> 
->> With a 'mdio' child node 'make CHECK_DTBS=y' report something like:
+On 7/29/25 12:54 PM, Conor Dooley wrote:
+> On Tue, Jul 29, 2025 at 06:53:19AM +0800, Yixun Lan wrote:
+>> Hi Alex,
 >>
->>    rockchip/rk3528-radxa-e24c.dtb: ethernet-switch@1d (realtek,rtl8365mb): mdio: False schema does not allow { [snip] }
->>          from schema $id: http://devicetree.org/schemas/net/dsa/realtek.yaml#
+>> On 17:00 Mon 28 Jul     , Alex Elder wrote:
+>>> There are two compatible strings defined in "8250.yaml" that require
+>>> two clocks to be specified, along with their names:
+>>>    - "spacemit,k1-uart", used in "spacemit/k1.dtsi"
+>>>    - "nxp,lpc1850-uart", used in "lpc/lpc18xx.dtsi"
+>>>
+>>> When only one clock is used, the name is not required.  However there
+>>> are two places that do specify a name:
+>>>    - In "mediatek/mt7623.dtsi", the clock for the "mediatek,mtk-btif"
+>>>      compatible serial device is named "main"
+>>>    - In "qca/ar9132.dtsi", the clock for the "ns8250" compatible
+>>>      serial device is named "uart"
+>>>
+>>> In commit d2db0d7815444 ("dt-bindings: serial: 8250: allow clock 'uartclk'
+>>> and 'reg' for nxp,lpc1850-uart"), Frank Li added the restriction that two
+>>> named clocks be used for the NXP platform mentioned above.  Extend that
+>>> so that the two named clocks used by the SpacemiT platform are similarly
+>>> restricted.
+>>>
+>>> Add "main" and "uart" as allowed names when a single clock is specified.
+>>>
+>>> Fixes: 2c0594f9f0629 ("dt-bindings: serial: 8250: support an optional second clock")
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> Closes: https://lore.kernel.org/oe-kbuild-all/202507160314.wrC51lXX-lkp@intel.com/
+>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>> ---
+>>>   .../devicetree/bindings/serial/8250.yaml      | 19 ++++++++++++++-----
+>>>   1 file changed, 14 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+>>> index e46bee8d25bf0..cef52ebd8f7da 100644
+>>> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+>>> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+>>> @@ -61,11 +61,17 @@ allOf:
+>>>               - const: uartclk
+>>>               - const: reg
+>> ..
+>>>       else:
+>> would it be better to drop this 'else', and moving following 'if' block
+>> to the same level with "nxp,lpc1850-uart"?
 >>
->> With a mdio node the driver is happy and dtschema is sad, and without
->> the mdio node it was the other way around.
+>> the reason here would avoid too many indentions if add more constraint in
+>> the future if other SoC uart need different clock-names..
 > 
-> On older kernels (6.1/6.6) only realtek-smi requires mdio child OF node.
-> Commit bba140a566ed ("net: dsa: realtek: use the same mii bus driver for both interfaces")
-> changed this behavior, both MDIO interface and SMI interface need it
-> (rtl83xx_setup_user_mdio), but the dt-bindings has not been updated.
-> I think this needs a Fixes tag.
-
-Thanks for finding this, and yes I can see that commit bba140a566ed
-changed the behavior of the driver and probably broke out-of-tree users.
-
-My current plan for a v2 is to:
-- include a new dt-bindings patch to allow use of a mdio node
-- include a mdio node in the switch node
-- add a Fixes tag to the driver patch
-
-Then leave up to maintainers to decide if they want to accept this patch
-or not.
-
-Regards,
-Jonas
-
+> I agree, it's more typical to do it that way I think to boot.
 > 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
-> 
+> Also, why is there a k1/lpc conditional bit that is not part of the
+> allOf in addition to the bits in the allOf? Can that get merged with the
+> allOf please?
+
+Are you talking about the blank line here?
+
+     then:
+       oneOf:
+         - required: [ clock-frequency ]
+         - required: [ clocks ]
+                            <------ this blank line
+   - if:
+       properties:
+         compatible:
+           contains:
+             const: nxp,lpc1850-uart
+     then:
+
+I didn't notice that before.  It got inserted with commit
+d2db0d7815444 ("dt-bindings: serial: 8250: allow clock
+'uartclk' and 'reg' for nxp,lpc1850-uart").
+
+If so, yes I'll remove that as well when I update the patch to
+get rid of the else as Yixun suggests.
+
+Greg won't take this for a couple weeks so I'll hold off sending
+v2 for a while.
+
+					-Alex
 
 
