@@ -1,189 +1,219 @@
-Return-Path: <devicetree+bounces-200350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C947FB1465A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 04:38:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED20B14690
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 05:03:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07FA93B22BE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 02:37:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 446A07A6898
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7D3211499;
-	Tue, 29 Jul 2025 02:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A49217668;
+	Tue, 29 Jul 2025 03:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="L/svBMRD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nm3sBIS2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011026.outbound.protection.outlook.com [52.101.65.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4233920FA9C;
-	Tue, 29 Jul 2025 02:38:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753756688; cv=fail; b=S0oOIDRCVr3geCINbNZRDkCx3pE2k39wxFcMQ6uYDAiKRPxlviIVH0WAUJIlbiYIniYX6KRUya0r4NP9QR/PF2BE6gnA3Y1XDrwLky85JM1m7JYFrKSeXy+UHtc3K7KKC3z8sVQEPUSFbFe9RY+Ibr63A0KSzfrrBue6L/eGCOk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753756688; c=relaxed/simple;
-	bh=tLu1gomK1QbdJlyZoQLD2zE6K/hDkHv3DZTQ9vAcBso=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BGVDTqbONzM14VRU2sqg9dxEVFj8onGj5/MTbwECVeR/Gx1w21UQ4R3xxLUQ3frUXvqc8egmVEguQBtTjADDBroFO7kIXOf1p/SVGZ7GedVqFhqyPydBJ2mALIoMfZkgBsk9HQNXfEecarBIZpadVG5UU4RLTqtzJXVrSdKryBQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=L/svBMRD; arc=fail smtp.client-ip=52.101.65.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BTEsdjZaZBwb/RJI6bsaGfATruSicObJDN7bCvHIFN8dcItsqeB/EngDUXUxMZJhbt5Rco7sOPeCyI5w+3+mxT+UB/J5uQi9GfXoqSn3d2nmg8StHMrN0/y/URUQHJpvOB05ZLy3J5EZue/BXAglBLu3ozgHQ92cyhR6ISG2b/wiSv0DEBB4bLzhqjkcyPPzgMU0pmHSSHv7dEIB4o9cP5r2BuWjRRaib9tOQ9ZSaA0beORBToPvLyNFm9nZZNG8jqbvP6OThnTIs0sBjsLFtFugPh5WLnt5zHwyfyTeO1DbOYBhphMws18CmRvhkp9gJbiUrcLcufQn002YEYhq0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+Bo1M70aVU9uB6+S9+3myvlKh6FXn1oNOX2U/DuumPU=;
- b=QteU2iO0qh8gZlPlUXDx+RppojTq61XNnjoNejP3uXQo6efDK31ntaC2bn28ob7UfceAy0LFJKvmtyhwoxnOcxxl8l+/jo7srlXRkJJc37WifYiR1cb4RICN2OjbFYiczEy7C750LZCEiut+VqzY4uI3NcOpSWSCjYBuI/9ytPDoPkm79hn0z4g6Nl+WdyeM0R1HDuDx/0+KkBDnc0teIkjwhEeRHofquh54iPGsNmYXaOM4Uwx8m3aAmPeGao38DE2cfaghnYHyfjGl7CDZNRaPqVvVD4H5v/yjd6ecZFP5MfCH0c05W4We/J3C3m5M/0nQTRIFImIgWzAYA+3JnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+Bo1M70aVU9uB6+S9+3myvlKh6FXn1oNOX2U/DuumPU=;
- b=L/svBMRDzB5DHfcBkgCPhwdHNZnA9xcNAKgtVM380xgAhWO1gdiN8SAZ3y64qY1KVTZpxWF92hUrZfg8X7i15KGd5afX3i/s7+tcTn9zUQ5QCpkYGUcGeskIiY+u2H/ogN4gGylBeZDBsoPz1pE6/MCTz8gySih3f8obXIB1kp3yk/CN/vd1BgkbwkFyNvkZdSlXAKVLaLwsA7NlRJsqhrY1VBa1Xb+7ajbaqtvdbR1zrks6gioButNRNGuJJOAj7SwHh2EJzLLme9q3f21iN1NtcQ+Wv+IIx4yG1kEgWqmpzmEoONe8xPZnYO5KDO5h/YBCz/QEfIEAh1mdcbjUFQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
- by GVXPR04MB10732.eurprd04.prod.outlook.com (2603:10a6:150:215::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.25; Tue, 29 Jul
- 2025 02:38:03 +0000
-Received: from AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::50d3:c32a:2a83:34bb]) by AS8PR04MB8642.eurprd04.prod.outlook.com
- ([fe80::50d3:c32a:2a83:34bb%5]) with mapi id 15.20.8964.023; Tue, 29 Jul 2025
- 02:38:03 +0000
-From: Jacky Bai <ping.bai@nxp.com>
-To: rafael@kernel.org,
-	daniel.lezcano@linaro.org,
-	rui.zhang@intel.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org
-Cc: linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	festevam@gmail.com
-Subject: [PATCH 4/4] arm64: dts: imx93: update the tmu compatible string
-Date: Tue, 29 Jul 2025 10:40:39 +0800
-Message-Id: <20250729024039.1223771-4-ping.bai@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250729024039.1223771-1-ping.bai@nxp.com>
-References: <20250729024039.1223771-1-ping.bai@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGAP274CA0009.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::21)
- To AS8PR04MB8642.eurprd04.prod.outlook.com (2603:10a6:20b:429::24)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCC31E521A;
+	Tue, 29 Jul 2025 03:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753758219; cv=none; b=th38JqbXnf3fFYgnjG6yNc7fsfvDybQBEXAD6kYeoBaOZu5g1U+qa+LB1wyIaP1dNU2EaBxn49GtyG+eb+b8RBkDdjRQ1ugRVxB1foG7CLAzhjUBthxossGBDpHoDnkm388B5SmSSxH3aN65Rm6CRvfsfcKrlOfG999mwkiUW/Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753758219; c=relaxed/simple;
+	bh=LSV/pQdJC+fneSAPB5inQCEKAEeIukrh2KJW3iiP7qk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hcc47ks4QY2hEimCIHcgZlVd5d6vvY0SVfwOP2nTLomcN/lxSwE6KperEoVmw26dBfpWPTOSqjKkSAf2+vYCQso+RunhFEr+Ix9PGPUYJV9t8Wl2sT2cJ7DwG2lu0EKQ1SdeDhNLAFAgb5HnU3hoo7LHDIaReF4Ja0/i4q4ppqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nm3sBIS2; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b3f80661991so391973a12.0;
+        Mon, 28 Jul 2025 20:03:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753758218; x=1754363018; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IXO12M/CDdwgzfu3NadcSVolSn34grMG/o4SmHRmEBo=;
+        b=Nm3sBIS2yb/M06Hffa6xIRd7B47o15Is9xz6LKkYQn/MrCcx0lxe651VS2AhAGl/b0
+         8xhKM29+fhZp7a+mBvJ2myUdZaVLvKOkgqqZsR7Hof/oaFdEFSSri35ctsRHSAqYX/Eo
+         MGSxG+kKEPNNjUmtUHZjPBR4LZQpvy/dGtBLLgI2tlaswLIVdm7ClWAkBpSTRpu0N/zC
+         s7wlYpFcskBQ47vyvV+tCIyoF+jsD+h0BGm4JlZa/MzoMG8r3IgAIS3dqZViIx4UmeeD
+         W7KKkZeivvaqXaxNMnZqbvBHFQ3pQF/BF338O+gTLLRLQcF4T48AYq2eF4gD0d0DSnig
+         HtGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753758218; x=1754363018;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IXO12M/CDdwgzfu3NadcSVolSn34grMG/o4SmHRmEBo=;
+        b=ahhPZ9pIs4CNYeKHTug+cfdHei0TjmxlXD3WPMDBfCm9Xiz73laApjaZIHi95BEwAw
+         SC1319IOu8y4EL5bCySkFPZNTCJ7hormQrCG5mXWulvNa7Bp5aS7hHDNH/AdD54hWBKH
+         TNYls2mppKSeX8DVHSynDFDgLn/fuOGgPjLIN2mHausJvHKB2T4Ok96vkRO/fA5ygFpy
+         FRZfawo+WnLCq0jO7J6uoTDcKJbSIOMQbWv9Rmf6v60s3QjHjEnIBrTBopauCa+OJQ74
+         ZmiXXZQ8MSof1XgCPz7UGu0U230PuWokFry3Cflij/SdcMfSL1xgIFmZDH6mm6UX0s8O
+         JeOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUrlIV2xLZmtMSavsxZdKTdEoOOnmtHEwaPDg4xHV9sh94J0dCQNimhtHx/0mTcRxPWAh0p322AzEq6/c3a@vger.kernel.org, AJvYcCVPpEsAtIBU1SimBkgzn8FLlZbsvjG8HBEtIcvvagYP0zcyQrCSDTYUqq8AKgoLFsBiev2kxbP4Pslp@vger.kernel.org, AJvYcCXHANqvDJBx7rQiGnubH+2jz4EmwJL69QGj1wjB/Yc5letb4sQTI/PPtSewVJXlN8VosIxeC0n/OacU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxplkiXCrcFNGB3x2+j0YrzYcgoMHMAPQ9lCAxfpK3hdeJE2YWY
+	yWrLN89U06k/vQVe3rK3CVpRWAyUTkK0qjzEU1BiWEiGKwocHeAVjiWOPc6yLfSg
+X-Gm-Gg: ASbGncvXLciLcS+s7KBqldiaLs/Y/OyRS/MG8K+s9zivrSxaLa3/d2qOrku4zwrPuej
+	Y7QrvX9w8z0mEZAl6430snR3C/rXjg15M56uARR5g+WbXfT5s8j+u3Q2QMuhRcRiAVkqfxZIPsl
+	KMxcHLjNB+l8wSu9MjSevNVQZqR40+mEu4LdEhAa6T2lOZbcBgNBj8BYZGBAHP2Iq+Cws6+rRKw
+	tzDJponh7cRdSGhRlg+RCnzklWSbCmo6YSrxl0VjGDYzi1zAkUqSh1e1bE8q7xK9YnrKr5hKNYK
+	3l/RT09VapsY56POg4v+B4KEiPotCF6PSadtcLg4r/eVzHDdlsiCeTeM+nbUhHcUX0nXllhn3en
+	hio2YehHJMOMtJuDXiEq5cw==
+X-Google-Smtp-Source: AGHT+IEqOh9O6CEC2CimcyCWQJcx0A9whkEtqsd1I4BC5ZOa9k3+eaMNONrPVjoFtxLUrmQTLjsvdg==
+X-Received: by 2002:a17:90b:2d8e:b0:31e:934b:d00b with SMTP id 98e67ed59e1d1-31f28c920dfmr2367584a91.7.1753758217535;
+        Mon, 28 Jul 2025 20:03:37 -0700 (PDT)
+Received: from dixit ([2401:4900:1c7e:9464:4ee2:7e58:1508:18c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f328a0ac5sm273689a91.7.2025.07.28.20.03.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jul 2025 20:03:36 -0700 (PDT)
+Date: Tue, 29 Jul 2025 08:33:27 +0530
+From: Dixit Parmar <dixitparmar19@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
+Message-ID: <aIg5_x4UMLjRk4dn@dixit>
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+ <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
+ <455141b2-e82f-45fd-b30f-5d9436aa861b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8642:EE_|GVXPR04MB10732:EE_
-X-MS-Office365-Filtering-Correlation-Id: ff7d894a-3f8b-403d-5c66-08ddce48f114
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|52116014|7416014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PBLVTdqvtgAQVUvQbxQWEAkrHMxi75sgvsjiHtaQq4VBVx+19KIEa/6Lo/D2?=
- =?us-ascii?Q?+69aHK2xPXJvodTmLM2VL8JPVFUzTEGT6xgwzkwnnsLZcW0EHrufPfnMu/0S?=
- =?us-ascii?Q?Ys00c4tXVsSIVCCwmPOhFTtcQeKfHpV8nKIRG7j5Lz6T4YKyLvRq15PA/arp?=
- =?us-ascii?Q?AZw7V7W5ZhgfAwiasB6dLOoF1ZEqWMZJYXJVwpUO6KnqB677uKO0k356dXtF?=
- =?us-ascii?Q?/pqYBhTBOxiP0JgaEWVlIttXj1GjnFxcnIKbZJehwmU84FnjDMWLn/HFeUYj?=
- =?us-ascii?Q?CMgUwQWTIgecNZT7uJjj0km9tpUaTzbOVz1wh+La2HBTytipz88WkP6wyXYN?=
- =?us-ascii?Q?ZBTtgeeeEIy/th2w/72vD4cF9oXP3317QflDjgHxkbhnSBLKXIUQZotZ6omU?=
- =?us-ascii?Q?/83vzmyqcoDuzbnvrgcOPDhS0GiBF6WwIf3WOXdBI1Q12hnIXvJCjc2uaE7W?=
- =?us-ascii?Q?W3eXMC5wy3QBbfLGeos6HgrnZUnBHyeSiyQczeQvZ5iE0Cnu2nlHMi6qAZts?=
- =?us-ascii?Q?t03okulJ+CfbNaTtXz6M4VePD7UuvTnyBsfRT043TawL17Nhle5+zf1EWK1R?=
- =?us-ascii?Q?oTzXVE90QIPBg7Zu3eLjH3l03/Ue0hZkb7BbYyQ0qNMzpzTw/COZ0p8eze5W?=
- =?us-ascii?Q?730H0x4tT19ei4hS3/SVTOeRcjkU2lmSydPUBLWfDm/lTh3jCzF+auA3vrBI?=
- =?us-ascii?Q?r9rLqa56P+iByeoG20wP2IRU3+9u3n57Waa23GoOP9fgs2RHwscMPSrBPsNx?=
- =?us-ascii?Q?Pa18H3xwtJXdy2yp1KmhuPs8/U3qRApR9UCvvWZAxwAqQIpTzxEZ51E2fEs6?=
- =?us-ascii?Q?4IXmtsfEoKLugY7I5nyP/3dpvHWrqck3WqfTIr2EWPW2Jb3sRP90VOX+kjfO?=
- =?us-ascii?Q?kP2Cdl56fvdEkC/RTlQRBEdy16lCX59ajw+hlMQBm2KC6aMr7hwQxFZNitxJ?=
- =?us-ascii?Q?vYBcscwF5TByB9LqLl+Mi/1ZcKYAT0GKo1Rg74nz9E62jVtkHGUdT1vEfkef?=
- =?us-ascii?Q?oqrVbpfkcSjbN9fCjlxxyIuC2oan27WQDzLwV+X+51O9Zvb4v3mgaC0ajEnP?=
- =?us-ascii?Q?VsJIlEPGoZGwCrXhw9UMJTIDsENIrNDNtvrt29kMHiuPnfkc6PAjj3IhDDK8?=
- =?us-ascii?Q?+BQn51l/HHkOzMttXH+zAzUYKP7LwWU4DAikF0PknxXBH9apUyLnyVMv9sI2?=
- =?us-ascii?Q?RN7dkVJgeZxtF+rVZXa35PoKljc7rvXEuCIS6dR1goUj8MzF5Hj0EFxOF7K3?=
- =?us-ascii?Q?QzdLYcwWRJWVJLN6LQxRFAM+my+lKmtB17RIfpgDKLt9+0URHYqdiVr2M1KI?=
- =?us-ascii?Q?ALtAtXlX1Cv9WsSqUziueEkipHEhV2JRAueUI/EsTvg83lTHAGdHA2UuJvB0?=
- =?us-ascii?Q?7NhuSssAKdl912dSsx6g92dXYR8AOxpOfpqNzFrThayawYzWu3e7SxDyxxTf?=
- =?us-ascii?Q?uZRa4ComxBtT/Oj+/obD4EshFGCLsP/Av4SLJZKUN1HVc7rAxsAroQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?MrRGX1R8oTraofMKNGDSFyEMW0/4Fni4Nx06URYEg7ow887jEWRtp67Rp2eA?=
- =?us-ascii?Q?FW+K9yirCkakQwHSW+ZpSyh9HE2JDKiS9q6qmXHUfwWtgODjjxYs4vzVJ5ZN?=
- =?us-ascii?Q?x/T7Hb09/fr3I2UsFdBQCR6umnff/SF4Fi2XnLkyLvBmLppy1cMB9n1utsDf?=
- =?us-ascii?Q?dmdXBGC1+kJ9MezqLHj2WXDH6GAECks2nWAeAdrUkm8p10hDxr6D98PtRMPW?=
- =?us-ascii?Q?qehTdliRl817XeIW1WHyjxvA87WhNQ1Xe1/+yu+Oo6uuRyuYk2RfLbn1NOTM?=
- =?us-ascii?Q?OYsnHy6l6rtuCXK23OMFDY/6n2191lTDBLzcm51w6B7Sot2TDUNY5EbOSGor?=
- =?us-ascii?Q?CzoVqqIQ4/zGpaLRC75MyZbVMARXxYUWQJCQ6gBQBdJDneorVQ1x8DSzkIKY?=
- =?us-ascii?Q?IfcHguUfXo67dabpdDOzcbTcdiuuzpQpWxtDs1TUxH0C+bKUQKCBK7lWULAd?=
- =?us-ascii?Q?56PcjV6Fb+puKsbLWM2cqRkVVAmF2y3TanZGKh8ICaYr8OFjSsDICjZUJRNC?=
- =?us-ascii?Q?OmQQFhLcAfu9EjQhxwFBSkO6gor/fFh9x2JNM8TQKjFZle0aitDxZp/AxTyc?=
- =?us-ascii?Q?bxX/CGPTQRgGxxVOfSwuoxu23qeBVShchFgEBPPDxsYIQ1i57vZFCD0tA117?=
- =?us-ascii?Q?nmghH7mZ5tAqirhdIiWhI0qT92xxfJqyahMHx7lkGRHy2J1teldhPuhajiuk?=
- =?us-ascii?Q?DRJpWUA47Zce1JeTFBcN3klXOGbyowYSovsRevru/04UqUIjISGUi69DvGfV?=
- =?us-ascii?Q?72lzrcsaJ50n8ItRDQBtS3iQxPDv+A9DzOd3E3DdR9PcEjCqYOObcDEzcuYm?=
- =?us-ascii?Q?AWKqgyIa7GysUnyESraSkBP13o/Bp3OCG6hjrhemnK8vVyou760VU68GH4ae?=
- =?us-ascii?Q?vTaVHB/XzlGW+0Uc3L9wu5C72+JQ1oKemV/NJ8Tn7VwC31Y0SoF9bU4NI9Zf?=
- =?us-ascii?Q?G2OIpJ5u2YWuMCHHLIb96XvtwQpm/v6M91KiSmKZInn4PS1D32YT+AaY4Zkt?=
- =?us-ascii?Q?vSFvuZKBETa+DnH9+Vox9vx2Nbi3n+6p4IbBqOAapXIbTVRmmviKYyOIzxFq?=
- =?us-ascii?Q?hruBS70GmadWqeZou+gFNQ8zCdewe1ZmPgScDfzw5DK2PcfFXzhc774jdQSR?=
- =?us-ascii?Q?Z/y1aCqtCcnCoYbRDpuZIqdFm5jbjf3EUKje1eRTt/0rJOMpcExa5AzK4Fwj?=
- =?us-ascii?Q?fS8F9R9IPe7qUb+2godFw9QeSko9Hbwt7ABdvRahRDp6voOKEF5RDj4/APa5?=
- =?us-ascii?Q?lo+sg8V6YQvC6bIsHl99kOanQwZCfOll6yyt088nyCTmij+SI9fJ1URiKasK?=
- =?us-ascii?Q?skx8J6iXEPfC8KDwHoNGliQrzjlXDwc/pxPDRgIZVRQvHlbRk5fmagTKltVc?=
- =?us-ascii?Q?1R2jl1jn7B4C3iJuryoL8IitF/UJDzj1QC2VuIs6Ex9l3DkdLq52j5aOyrwm?=
- =?us-ascii?Q?UWXrfdl3FyFQ31sZVkFqQAxgbCSCYI8oHusV8UR6pLwTDrId81AlJLrrWwhE?=
- =?us-ascii?Q?iPplAxlwaakA7T1Q/RGgv2Gm11qsXzm8NZvy8XNMJXqkMM6astzsRkVFlbOr?=
- =?us-ascii?Q?eGgeXRGIoMHXjUQlLMcwj4KmVarkWqtLWQo4oH3/?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ff7d894a-3f8b-403d-5c66-08ddce48f114
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 02:38:03.8376
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MDt/ELBKzEUtaeN4gGO7W9+ocG0MdDNXujohM/FaOzhpZx7+mKAUKhGKn5HfkJFF9fISTEwlzvU/9Wlcyj+UZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10732
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <455141b2-e82f-45fd-b30f-5d9436aa861b@baylibre.com>
 
-Update the tmu compatible string.
-
-Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index 8a7f1cd76c76..2f1db9cbfa4e 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -544,7 +544,7 @@ clock-controller@44480000 {
- 			};
- 
- 			tmu: tmu@44482000 {
--				compatible = "fsl,qoriq-tmu";
-+				compatible = "fsl,imx93-tmu", "fsl,qoriq-tmu";
- 				reg = <0x44482000 0x1000>;
- 				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX93_CLK_TMC_GATE>;
--- 
-2.34.1
-
+On Sat, Jul 26, 2025 at 03:43:56PM -0500, David Lechner wrote:
+> On 7/26/25 4:37 AM, Dixit Parmar wrote:
+> > Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+> > controlled by I2C interface. Main applications includes joysticks, control
+> > elements (white goods, multifunction knops), or electric meters (anti
+> > tampering).
+> > 
+> > The device can be configured in to different operating modes by optional
+> > device-tree "mode" property. Also, the temperature sensing part requires
+> > raw offset captured at 25°C and that can be specified by "temp-offset"
+> > optional device-tree property.
+> > 
+> > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> > 
+> > Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+> > ---
+> >  .../iio/magnetometer/infineon,tlv493d.yaml         | 57 ++++++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+> > new file mode 100644
+> > index 000000000000..0442cf41503b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
+> > +
+> > +maintainers:
+> > +  - Dixit Parmar <dixitparmar19@gmail.com>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: '^magnetometer@[0-9a-f]+$'
+> > +
+> > +  compatible:
+> > +    const: infineon,tlv493d-a1b6
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  vdd-supply:
+> > +    description: 2.8V to 3.5V supply
+> 
+> The SDA pin can also be a /INT signal, so we need to have an
+> optional interrupts property as well.
+>
+Okay. Will add it.
+> > +
+> > +  mode:
+> > +    description: Sensor operating mode. Must be one of the defined enum values.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum:
+> > +      - 0 # Power Down Mode. No measurement.
+> > +      - 1 # Fast Mode
+> > +      - 2 # Low-Power Mode
+> > +      - 3 # Ultra Low-Power Mode
+> > +      - 4 # Master Controlled Mode
+> > +    default: 4
+> 
+> This is not the sort of thing that really belongs in a devicetree.
+> We should be describing here how the chip is wired up, and only
+> control how it works based on that.
+> 
+> If there are any wiring conditions that could affect this setting,
+> they could go here. For example, if the power supply doesn't have
+> enough current, then we can only operate in one of the low power
+> modes. Otherwise generally we just stick to the best performing
+> mode. And specifying the power down mode here really doesn't make
+> sense - you could never use the sensor!
+> 
+Got it. Will remove it.
+> > +
+> > +  temp-offset:
+> > +    description: Raw temperature offset at 25°C to apply before applying scale and correction.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: 340
+> 
+> This is another one that likely doesn't belong in the devicetree.
+> There is a standard *_calibbias attribute that can be used for
+> such a calibration if needed.
+> 
+Its factory setting so I thought if there is any deviation from that
+than we can handle it like this but as you pointed out, its not the
+right way, so will stick to 340 default factory value as per the
+datasheet.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> 
+> Power supplies are usually required.
+> 
+Ack.
+> > +
+> > +additionalProperties: false
+> > +
+> > +example:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +      magnetometer@5e {
+> > +        compatible = "infineon,tlv493d-a1b6";
+> > +        reg = <0x5e>;
+> > +        vdd = <&hall_vcc>;
+> > +      };
+> > +    };
+> > 
+> 
+Thanks for the review,
+Dixit
 
