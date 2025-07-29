@@ -1,207 +1,132 @@
-Return-Path: <devicetree+bounces-200482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0655CB14E26
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:13:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39DBCB14E40
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:16:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D7945459AB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:13:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6734F17EAF1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34D5257444;
-	Tue, 29 Jul 2025 13:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB193FB31;
+	Tue, 29 Jul 2025 13:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cTFwhVQy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8xdKihB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988851BDCF;
-	Tue, 29 Jul 2025 13:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452942F24;
+	Tue, 29 Jul 2025 13:16:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753794778; cv=none; b=lKA1brNnE4QmfCedpHI39gO4xcRqJ0V2vldGXLbNtYVD67H9RhNzYNh4V4c/+zro53S2lo0vCLVtEtT7IOtjZhr1Mz0ZCp3xh7o5hHfJOmey0l02bImkNTwiNU4pnh90xvaQt2YHx79/1o4+jSTxHckYPfDfv/3dtNhvVfzLF2w=
+	t=1753795000; cv=none; b=U9Ya6Zf0adJ3PP25kXdJAvRNz56aH7blk3s7Ze+NjJlm5C5BF9OMB2GnAI91NaB9ZfLUDoZN7j0uZnOlNL/+KCrLE51IGjRyh2DZL5k/9kx2pp2N4LPWhV0iZl/bIi5XLKy/7oqsdooFBpkXz2daMqqPkAT0+dFW1uXZNOHayuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753794778; c=relaxed/simple;
-	bh=/cLNQ0aruB2Rxp4O04VU2hwDm4xTPNqgYIIU3JaaaIA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=aLs4+SwLZtumL4wf7jjA54lC/rKw3cZBoT7ewphXYly2XFbg+o3vzZijCEbeuNjShb07rG3HtGbKw6D4ckwSfXDljuz816GF9s0CKdGKgzRLcnUz2xBGfWwQnDTn7oyfHXHoG7Pk3aswOMK4ur21lmtOW/jfpWX7KZ89avqX5/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cTFwhVQy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE81EC4CEF7;
-	Tue, 29 Jul 2025 13:12:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753794778;
-	bh=/cLNQ0aruB2Rxp4O04VU2hwDm4xTPNqgYIIU3JaaaIA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=cTFwhVQycc0dYmbyDF/wdmnagj3VL6y0jhemgGz3uKAH68LQHal1ac64muYtz9LoJ
-	 OvWLl+YOHmGkKQ4LmagQAvvAZBOdlFeaN7qfXMTM6Kg2WMhhYeVSVdIpR+Iu/0oWE5
-	 /xSpdDV/f+/+ut8caPKRNQEqz5VmPajHDj5J47R4POHckdWGoriDymu/3A4r9JGXal
-	 58N5myqutBHvpifnR7yyS6RR1Pn/YXgfXbheumsIbMInK5WJt1Z67vVWN6l0D8pT/f
-	 r7wf8Od9lCdn+TJzeekARfCAWhmz0CG69F3VHkrH1S2BXssGx9hSkMk53kxMbbo1Ne
-	 RKy8JLQFN5KZw==
-Date: Tue, 29 Jul 2025 08:12:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1753795000; c=relaxed/simple;
+	bh=RUF08R7NpLN8blL4sUVGgdMI/qgrbUe2bQ4Li7BkTuA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iwYLV2hPdivVGLI25t4zKGnwA++oXO5tEsOhGDtlrhgc9qmsgWJX7cDXCNZskkaWRMuSbkLTL4VMNI38ZRXlYazvU92f7A/YWimIvyewKAnGTHrfj5Sl8soJTKoSIfB25RL4jTsEFijDSYS02ItnpfuOZQWarjMppiWPDLBP8Hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8xdKihB; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-719fe335186so23143167b3.1;
+        Tue, 29 Jul 2025 06:16:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753794998; x=1754399798; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/lfTifbzeJtDBdptx2/mM5xq8Rur7Nj3CsrchIJIonA=;
+        b=m8xdKihBrATcQr+acs9o3iORy4t+8g6HjjJdo6i7id8tsMmEIz6Q3zyhszaMrOoTrl
+         9RgsMD75QBmzc/T1DQJUk16Dcyl8bvaCcZCrpluivrfX7XhSWpqFnEk6UwPvERvx3fGw
+         gduHSY2whughOhgDq06TBYNau6M20mgq9OcBiYRVkp9Kd0xLXjg4fJfQ1gW7AVe0klNM
+         Rs/XOTB9H3kJHqqmTzNgN+JEjx+7MRaxbRXN6XTZ2CUKNaUOqmyuAMdI5eI+8UVDq0EL
+         YGP1BEL82aDRlt53x8TK6ERjpZmxk7G3H+WDPhQgAr4ZhwKhHJSL+gBMVhsxL6xF8tY5
+         vSjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753794998; x=1754399798;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/lfTifbzeJtDBdptx2/mM5xq8Rur7Nj3CsrchIJIonA=;
+        b=BnlTV68psQoC9slLYJytMifK5ZCSSpObaKnMDvXNXYLF7Ewh65uedbwKtOatK+KXuW
+         t9uncpZQhNwZFC5xoJjbVAHYAxOXtifMvBsXmxZeSENqQN+Uk9dtCbHxg1MhTwk8udT2
+         Y+k9RPjeI200f+t86qDpAd+DAJurqdA9WEkXy0g9gewclS8RCqXYS7jAD+f2RCPv2OXl
+         a+VQMEziTlDNf3anH0AaIDax9zhbY4Px0IeaeUlw7zfFjJiJIFk3BStuTYpwu+3GzHsN
+         lXFQ5wb31c7BEWj7hbBKHE6Qnk0BQxTPYuOFqjUum5uP0840E+dX/S+WlGsPCL0j/CO0
+         HOIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU9Kjn6o+NT48WmgZTx8QK8srqVMvT/ByuyivsiAv7rKt0wCo9uanMq1+OHhwR/nsHK8gZtQC1SKllnPRz7@vger.kernel.org, AJvYcCWu9QOXq4SyRUDWN0lrLyF5nUOjkBJJ45QsK2dDimUCm2WJp7eYQ97g5vEdm8kjpBFOEIY6lRgsZGpq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEA/i8rQHfUUsI80r1p1KMwm4IG+19Z4ZltKpCGlTRY/iEUq1U
+	ARnemujY39aW5npWqmy5gHU4H1OIsGnWufmKQqKoTvkpkW7vYyDJ/Apm5JcO19IQoBG0aD5mopb
+	MSvoHnxQ9ZymiTPgLRsYZyrrBLK8ilqQ=
+X-Gm-Gg: ASbGncs00ZQlBM1a0LRpjGl/pegiBTQYfvnkm+OBPnL3EyrPq3WTbAx3HB3uuE08E3R
+	BRxtVumYVL2AFOgpPtbdwOyoVoNSP2epP0sI2F6LvT6PyMXeiiYNiURSr180xhvWCnCC2BA6fAJ
+	9V68bwo4NfBHtqxHn/FRvynEMRLRm7wixNDn1lDpUBag/m/7mA4TKcRF3fGGj6u2dF33P+dbP8F
+	ey7fI99
+X-Google-Smtp-Source: AGHT+IEVae635NG5Lnt4HLDioDmt7SEj8cMo8l/+8dWgrcypmmqoDPY8G7XnLkcZ+fTaIcEF50pQVxzPBwWh8wy3V2o=
+X-Received: by 2002:a05:690c:f87:b0:71a:18fb:7386 with SMTP id
+ 00721157ae682-71a18fb79admr125380267b3.2.1753794998174; Tue, 29 Jul 2025
+ 06:16:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jason Kridner <jkridner@beagleboard.org>, luca.ceresoli@bootlin.com, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- conor+dt@kernel.org, Mark Brown <broonie@kernel.org>, 
- Deepak Khatri <lorforlinux@beagleboard.org>, Andrew Davis <afd@ti.com>, 
- Dhruva Gole <d-gole@ti.com>, linux-spi@vger.kernel.org, 
- herve.codina@bootlin.com, devicetree@vger.kernel.org, 
- Robert Nelson <robertcnelson@beagleboard.org>
-To: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org>
-References: <20250729-spi-bus-extension-v1-0-b20c73f2161a@beagleboard.org>
- <20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org>
-Message-Id: <175379477596.388256.1787674509168915234.robh@kernel.org>
-Subject: Re: [PATCH 4/4] devicetree: bindings: spi: Introduce SPI bus
- extensions
+References: <20250717135336.3974758-1-tmaimon77@gmail.com> <20250717135336.3974758-3-tmaimon77@gmail.com>
+ <91119587-789e-485d-9cf1-da2c500f241c@linaro.org> <CAP6Zq1gN28y-6_OwnzMbJ+EiubtABVw+FUqbmAo5bvBW-5tDdw@mail.gmail.com>
+ <c661130c-3d18-4e6c-9c63-ac4c10c415de@linaro.org>
+In-Reply-To: <c661130c-3d18-4e6c-9c63-ac4c10c415de@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 29 Jul 2025 16:16:27 +0300
+X-Gm-Features: Ac12FXxH-ZuZJCzUxfuM_gJnXAtYQn_WVuODI9WBIPAGyW5P6swnPSsLiOyEMH8
+Message-ID: <CAP6Zq1jxysc+Uy0U_2dczyLDb5mwKBEafaJJ9+ouJMfipjBoYw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	openbmc@lists.ozlabs.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Krzysztof
 
-On Tue, 29 Jul 2025 15:21:03 +0530, Ayush Singh wrote:
-> An SPI bus can be wired to the connector and allows an add-on board to
-> connect additional SPI devices to this bus.
-> 
-> Those additional SPI devices could be described as sub-nodes of the SPI
-> bus controller node however for hotplug connectors described via device
-> tree overlays there is additional level of indirection, which is needed
-> to decouple the overlay and the base tree:
-> 
->   --- base device tree ---
-> 
->   spi1: spi@abcd0000 {
->       compatible = "xyz,foo";
->       spi-bus-extension@0 {
->           spi-bus = <&spi_ctrl>;
->       };
->       ...
->   };
-> 
->   spi5: spi@cafe0000 {
->       compatible = "xyz,bar";
->       spi-bus-extension@0 {
->           spi-bus = <&spi_sensors>;
->       };
->       ...
->   };
-> 
->   connector {
->       spi_ctrl: spi-ctrl {
->           spi-parent = <&spi1>;
->           #address-cells = <1>;
->           #size-cells = <0>;
->       };
-> 
->       spi_sensors: spi-sensors {
->           spi-parent = <&spi5>;
->           #address-cells = <1>;
->           #size-cells = <0>;
->       };
->   };
-> 
->   --- device tree overlay ---
-> 
->   ...
->   // This node will overlay on the spi-ctrl node of the base tree
->   spi-ctrl {
->       eeprom@50 { compatible = "atmel,24c64"; ... };
->   };
->   ...
-> 
->   --- resulting device tree ---
-> 
->   spi1: spi@abcd0000 {
->       compatible = "xyz,foo";
->       spi-bus-extension@0 {
->           spi-bus = <&spi_ctrl>;
->       };
->       ...
->   };
-> 
->   spi5: spi@cafe0000 {
->       compatible = "xyz,bar";
->       spi-bus-extension@0 {
->           spi-bus = <&spi_sensors>;
->       };
->       ...
->   };
-> 
->   connector {
->       spi_ctrl: spi-ctrl {
->           spi-parent = <&spi1>;
->           #address-cells = <1>;
->           #size-cells = <0>;
-> 
->           device@1 { compatible = "xyz,foo"; ... };
->       };
-> 
->       spi_sensors: spi-sensors {
->           spi-parent = <&spi5>;
->           #address-cells = <1>;
->           #size-cells = <0>;
->       };
->   };
-> 
-> Here spi-ctrl (same goes for spi-sensors) represent the part of SPI bus
-> that is on the hot-pluggable add-on. On hot-plugging it will physically
-> connect to the SPI adapter on the base board. Let's call the 'spi-ctrl'
-> node an "extension node".
-> 
-> In order to decouple the overlay from the base tree, the SPI adapter
-> (spi@abcd0000) and the extension node (spi-ctrl) are separate nodes.
-> 
-> The extension node is linked to the SPI bus controller in two ways. The
-> first one with the spi-bus-extension available in SPI controller
-> sub-node and the second one with the spi-parent property available in
-> the extension node itself.
-> 
-> The purpose of those two links is to provide the link in both direction
-> from the SPI controller to the SPI extension and from the SPI extension
-> to the SPI controller.
-> 
-> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
-> ---
->  .../devicetree/bindings/spi/spi-controller.yaml    | 66 +++++++++++++++++++++-
->  1 file changed, 65 insertions(+), 1 deletion(-)
-> 
+On Tue, 29 Jul 2025 at 09:21, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/07/2025 14:12, Tomer Maimon wrote:
+> >>> +
+> >>> +     mdio0: mdio@0 {
+> >>
+> >> Huh... this should fail checks. It's not MMIO node, is it?
+> > No, it's MDIO node,
+> > https://elixir.bootlin.com/linux/v6.16-rc7/source/Documentation/devicetree/bindings/net/mdio-gpio.yaml#L48
+> > Should I modify the node name? If yes, which node name should I use?
+> >>
+> >>
+> >>> +             compatible = "virtual,mdio-gpio";
+> >>
+> >> where is the reg?
+> > It does not include reg in the mother node, but only in the child.
+>
+> You put the unit address...
+OK
+>
+> >>
+> >> Please confirm that you introduced no new dtbs_check W=1 warnings.
+>
+> I need you to answer this.
+I didn't run dtbs_check with W=1 and the mdio-gpio document. I will
+make sure to run dtbs_check W=1 before submitting the next version
+>
+>
+>
+> Best regards,
+> Krzysztof
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Best regards,
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/spi-controller.example.dtb: spi@abcd0000 (brcm,bcm2835-spi): 'oneOf' conditional failed, one must be fixed:
-	'interrupts' is a required property
-	'interrupts-extended' is a required property
-	from schema $id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/spi-controller.example.dtb: spi@abcd0000 (brcm,bcm2835-spi): 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
-Documentation/devicetree/bindings/spi/spi-controller.example.dtb: /example-2/connector/spi-addon/device@2: failed to match any schema with compatible: ['xyz,foo']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Tomer
 
