@@ -1,110 +1,106 @@
-Return-Path: <devicetree+bounces-200467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5048B14D3E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:56:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EBC3B14D33
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:50:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7CA817AD457
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:54:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 965F3176AE5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC1428F51A;
-	Tue, 29 Jul 2025 11:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b="Iu6mW30P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F1C28EA70;
+	Tue, 29 Jul 2025 11:50:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.atl.tools (mail.atl.tools [49.12.87.235])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30FF239E62;
-	Tue, 29 Jul 2025 11:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=49.12.87.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DFD28C5D3;
+	Tue, 29 Jul 2025 11:50:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753790172; cv=none; b=nkXHTBlU1gikAyMJWAG69ISNOBWz0kVparyFmS1fImi/1G8PJjYFptHYJAKuFGqrmpcsOw+V4o6ZzsnbkRG3dHtKpvdxAWPdu4ir4GMTTnSFFszCJdKcDkDVX8TWbZb6FYi9OkyZISzcBQAuIft/bgIiWOJnXCRzzwdYvFsQ3NA=
+	t=1753789829; cv=none; b=Yh8EWPlVEubmNJjinvlPVTVWI3rLf+6gcShbX1J+QZOoY/ml+tgjfhhTskm286x7NGYUerVfqidstd8a2QOS8zNOOa5O4nljjaTQfLYhrcErfFX+gcrj0/WsqWdtj0L2DmLk1/bZoYwSXYu6ENLMYIKyeWiKqRR4O4xCUDtiViQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753790172; c=relaxed/simple;
-	bh=5I8dskIAWO6Qn9h2UFvt3u0In0c8qrDVN4C57QAqN+w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gaA9tPOeUhvVrmwrYR11hn+T28CDw8r34rkYx5WuyF57SjMphP+A2YG2HxfDdxNmVx0jbkpE7TsbD2VmGUcJNEkW1nCx4OuHsKfhalewn/GeSn3+lfnyHxFlSFVQNrBoH3Ai5fLkfMYeGx36DBA196woKaXjOysWsyTdUrb7dDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools; spf=pass smtp.mailfrom=atl.tools; dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b=Iu6mW30P; arc=none smtp.client-ip=49.12.87.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atl.tools
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 128E5299B8;
-	Tue, 29 Jul 2025 11:46:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=atl.tools; s=dkim;
-	t=1753789571; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=m1S8mDT7uN0ZA9A1JPkt54nsJiQufYiFmXjtDUqFtLA=;
-	b=Iu6mW30P9u3mi6UEkXPS2LSQIVlgDDRzPCkLrYLrZHlhpkpBOAzPqMcJX4NDe64uqwA1nX
-	mwcx0+kriZItTykAYIy2V/B/vT4g27JUCIK78VR67BHL4NisLBAmh+5m/6LQCwEtekzICg
-	+ja89Opr7S7aalig8fGD3okyOjM1SoLczC416OkiaULqtAZhHqcOmCWo18YZTk7c6NcPWA
-	h40NcGssk6rIRTNTq8a+IZCANejSeB7XZ+V30UeQBD9Yby98ESBk8lV7D1F46Ihi9mmNl8
-	4F7lV08Pf9ujWndH2i/qFuvohbyNPwzMnCm6MO5yVvsCGdJkAhVZ2TI9IHyWYw==
-Message-ID: <9d13d012-8b10-4094-bea0-b85e799ff0c5@atl.tools>
-Date: Tue, 29 Jul 2025 11:46:00 +0000
+	s=arc-20240116; t=1753789829; c=relaxed/simple;
+	bh=PK4ml/xEq0jzjs5GtAgAMRnH6WZy4V7erfxj0M4xcTA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=EYLnuvu5pg3e3HAPt9Dd/MsPkathHJOg7SeDaD9AfzxUGryZ3eq0n4HSmQaBfo0O1mX/GkE4xV78KkK7IcPLmJkg8YXdcF/5lmgPqzYEChNrXBVDqHPPoxcHD9WyypurJSiuAOV2TnVQTj5avU4j7ZlzX7TpFTrBE/GhOsmTsCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.213.139])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1d9d0f96f;
+	Tue, 29 Jul 2025 19:50:14 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: alsi@bang-olufsen.dk,
+	amadeus@jmu.edu.cn,
+	andrew@lunn.ch,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	linus.walleij@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	netdev@vger.kernel.org,
+	olteanv@gmail.com,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to Radxa E24C
+Date: Tue, 29 Jul 2025 19:50:09 +0800
+Message-Id: <20250729115009.2158019-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
+References: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: add initial support for Samsung
- Galaxy S22
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250716231710.99983-1-violet@atl.tools>
- <20250716231710.99983-3-violet@atl.tools>
- <1ca25402-8f57-468c-b4d5-7b52f526ab28@oss.qualcomm.com>
-Content-Language: en-US
-From: Violet <violet@atl.tools>
-In-Reply-To: <1ca25402-8f57-468c-b4d5-7b52f526ab28@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a985604d4c503a2kunm15728bea1d0da6
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGktDVkhNSxkYQx4fT0JNSVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKSEJZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0pVSktLVU
+	tZBg++
 
-On 7/17/25 20:19, Konrad Dybcio wrote:
+Hi,
 
-> On 7/17/25 1:17 AM, Violet wrote:
->> Add new device support for the Samsung Galaxy S22 (SM-S901E) phone
->>
->> What works:
->> - SimpleFB
->> - USB
->>
->> Signed-off-by: Violet <violet@atl.tools>
->> ---
-> [...]
->
->> +&tlmm {
->> +	gpio-reserved-ranges = <36 4>, <50 1>;
-> Do you know what these are connected to?
->
-> We tend to document it, see e.g. x1-crd.dtsi
->
->> +};
->> +
->> +&usb_1 {
->> +	/* USB 2.0 only */
->> +	qcom,select-utmi-as-pipe-clk;
-> Is that a hardware limitation? I thought these phones had the necessary
-> pins connected (for DeX)..
->
->> +	status = "okay";
-> A newline before 'status' is good practice, file-wide
->
-> Konrad
+> The issue is with TSO and RX checksum offload, with those disabled on
+> the conduit interface (gmac1/eth0) my issues disappeared.
 
-Thank you, I'll fix these issues on the next patchset. Indeed it is not a
+I did a test today and the same problem occurred when running the new
+kernel on my rk3568 + rtl8367s board. This problem does not exist on
+older kernels (6.1 and 6.6). Not sure where the problem is.
 
-hardware limitation, I just kept it USB 2.0 for now to avoid any
+> With a 'mdio' child node 'make CHECK_DTBS=y' report something like:
+>
+>    rockchip/rk3528-radxa-e24c.dtb: ethernet-switch@1d (realtek,rtl8365mb): mdio: False schema does not allow { [snip] }
+>          from schema $id: http://devicetree.org/schemas/net/dsa/realtek.yaml#
+>
+> With a mdio node the driver is happy and dtschema is sad, and without
+> the mdio node it was the other way around.
 
-potential issues with 3.0.
+On older kernels (6.1/6.6) only realtek-smi requires mdio child OF node.
+Commit bba140a566ed ("net: dsa: realtek: use the same mii bus driver for both interfaces")
+changed this behavior, both MDIO interface and SMI interface need it
+(rtl83xx_setup_user_mdio), but the dt-bindings has not been updated.
+I think this needs a Fixes tag.
+
+Thanks,
+Chukun
+
+--
+2.25.1
+
 
 
