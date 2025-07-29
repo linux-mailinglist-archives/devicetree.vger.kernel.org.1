@@ -1,170 +1,139 @@
-Return-Path: <devicetree+bounces-200505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9894FB14F9B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:54:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565C5B14FD7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:59:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5DEC1890B58
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:54:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97393A90A3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74EA2036FF;
-	Tue, 29 Jul 2025 14:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA6C288C32;
+	Tue, 29 Jul 2025 14:58:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Cvm1oiaL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="liorL59I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2089.outbound.protection.outlook.com [40.107.236.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC001ACEDD;
-	Tue, 29 Jul 2025 14:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.89
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753800867; cv=fail; b=Hbl3o7gaCPp4ygEOtb4M1ZSyAQUGD2n8CwkIV8UDfs3xUoFSKEkfVQpwClytuj4ymBhAS1abBKo2XIBwk0rUxIX4f2NNXa6UF8T6MdTP/wAfsoyo8tLBeJC7B0m0kCyg6e2vJEPX+gBT4lYM+7kW32b4i8O2QPrIq5B7YhAduyc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753800867; c=relaxed/simple;
-	bh=Idi4Kv2tMWFleBWJM51FJhUEtSh8p/eU7KOMRS6hnp4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hdyJiVaRPUOdkqWyffh5HWNCO/UNhdRQyYsw1TSiNqADbWFFD8oeqRQV3CrDBBXJovXrijSJIdcgzA6Y0r9nok5q3+0LcLsYrVBspmoxpZtT4eIlr+RX9RHsXTVtkPBlNDsGgmYrXIPqRJbwnTCZruAe5Wpc+SiTp7tTf56ULjk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Cvm1oiaL; arc=fail smtp.client-ip=40.107.236.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R7gdSSXUtqUUOmugYdO8iMSzTzyqLewZqJV2yko1sFL1aQNp+7zNFeP3x6I7g/Hsbpj3uqiTazI96fva8KwrCOeEcQN4dTzKsO9uS3UI77wNyHTs2SYv/tJOHLW0eLR24vpZDzB8VxZmGaYF+VDDKq175jid430f/6tpDGQxGWhBxYlrmSCbsem/WFgNqnohPs9LbNoJd3kCz1Y1EQkxy8Q3dUQMCWP0b5MdjVsbHid72+Nho2KajUJrxmXcbTVK9JyfcJQbmwpRI/jXZgVGfY9l2iQ0CBzr8RjX2VmjRbbLRvZo8X3uVcGEpBNFr3aso8Ab3v9Cf9liJ3XBR0DB7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Idi4Kv2tMWFleBWJM51FJhUEtSh8p/eU7KOMRS6hnp4=;
- b=oUORVKYJjJfTS5IMCG2jNB4Ba0wLJ4Jm91zVwbKQwkB5i10byaEhOtgLSDL7pUtA3a504mAgDiVkGsOrm+V1itzg5T+W16S8Z3h96UuUdmv1RNZEzhRLsr18d+2MOR0+Uc0aBAirAybbCGycmC4zOvqv/4Frso1LWjATL9prpwgbjleGsh28D+qb4Pknslebwq3jx3O91ZjNh+Rj1JDBBh6+BqqbrQQYkI7xc+8y0pAg4N71JQpsuEuu6UBC4f5CHRAsuqFDsn+e4qEqBv+DHFxqnjlID8E2iJkDn+t1ptU/MyqNMG3bf4dtihHrTBYbVS5jG46UvHbdUVgg4g3VUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=plexus.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Idi4Kv2tMWFleBWJM51FJhUEtSh8p/eU7KOMRS6hnp4=;
- b=Cvm1oiaLOduKdgwqY9sFY5TwFGLdNk/kR19x5ljNHdzBRxvOnNQs2dsMY0vCa11+4fWgVaTFGKyl2Hs/+EHamll75Zz2XvTUcGhKPl9yczahiv8eoRRaWtf5/eUeOqZGo8k7efW+QSrHiyVCsUxVCSrQWQHuUmS9Bud2vFcCCfcnvNVAK/Fo6HCFurSqllPjEjAILjB5RsgqR9WC8QhvksAqhSbc2gXbfsxcfz2FVYleZk+UPthLf+KhLoYfy2SRBxoF0IAR++OjX33NKLfJ3mPLQl3NFy6WMQo3h/wJlVzAuaVnfUqr41B5OE1HHJRmP/m3qxJxmxTnWGCkLgohJA==
-Received: from MW4PR03CA0002.namprd03.prod.outlook.com (2603:10b6:303:8f::7)
- by SA0PR12MB4398.namprd12.prod.outlook.com (2603:10b6:806:9f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.25; Tue, 29 Jul
- 2025 14:54:21 +0000
-Received: from CO1PEPF000075EE.namprd03.prod.outlook.com
- (2603:10b6:303:8f:cafe::13) by MW4PR03CA0002.outlook.office365.com
- (2603:10b6:303:8f::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8964.23 via Frontend Transport; Tue,
- 29 Jul 2025 14:54:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CO1PEPF000075EE.mail.protection.outlook.com (10.167.249.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8989.10 via Frontend Transport; Tue, 29 Jul 2025 14:54:20 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 29 Jul
- 2025 07:54:02 -0700
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 29 Jul
- 2025 07:53:50 -0700
-Received: from willie-obmc-builder.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Tue, 29 Jul 2025 07:53:50 -0700
-From: Willie Thai <wthai@nvidia.com>
-To: <danny.kaehn@plexus.com>
-CC: <andriy.shevchenko@linux.intel.com>, <bartosz.golaszewski@linaro.org>,
-	<bentiss@kernel.org>, <devicetree@vger.kernel.org>,
-	<dmitry.torokhov@gmail.com>, <ethan.twardy@plexus.com>, <jikos@kernel.org>,
-	<krzk+dt@kernel.org>, <linux-input@vger.kernel.org>, <robh@kernel.org>,
-	<tingkaic@nvidia.com>, <rastekar@nvidia.com>, <dkodihalli@nvidia.com>,
-	<mhn@nvidia.com>, <arundp@nvidia.com>
-Subject: Re [PATCH v11 0/4] Firmware Support for USB-HID Devices and CP2112
-Date: Tue, 29 Jul 2025 14:53:50 +0000
-Message-ID: <20250729145350.3538324-1-wthai@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FCA287244
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 14:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753801104; cv=none; b=tivSB3ijHCVoqoSFedDVfB5BqBJ+greWfC/TsxWTm9WIZgqjn+xTUAN1KyUnmrrt6wLJYMf4FkmENTkt17QKwPazt4zlrYataVe4JlJzFIpMFx/Qu0kjVEY1CmhZgMpVDnHDH6uNT1J1dtp+eh3pCI0Mj9MYbJ8c/V6WHZuVmB0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753801104; c=relaxed/simple;
+	bh=5DLEwBkxqt6s+6OaagrlrYbcvqyOtrkxlazUFASdP28=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FDL/xpzlXtrCUTCv5vYObIYU4EDDGHaiNVua5XlWsFDOBLyfxfGLiMbRViyk5asDRb5UbMPU1NRHel961ghfaHqB9m/1epuaUECeKMIb2dPpLUtfLKYTN33ImLzu4uOfhJwY7yGnkCPYQPdlNboJN1UkZrVRpddmnoeP3+UEQec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=liorL59I; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b78d13bf10so1034770f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 07:58:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753801101; x=1754405901; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SG72+1t7OUfNAakM7d1Bv7bt4/O0HHuGB6qfh+9EcM=;
+        b=liorL59I/yZekMS/7MkQspbXc/dId+0ZL4haYsRXTE4pk3laNC/l+dq9qe2tZmrcfZ
+         QrR4tG+/PB6PSV51Tanm5shAqVayQme2uKFuwrlFHDC86Bt/hoKfwfCAAjSX1tG/bN3z
+         lYuGscKoe8JYqXqHbpDsOZvjb9bkr8f0wNMH3JuU8bybypofy7KErcTObqFj3RqF0EqC
+         kzYSLe2iuuBXLgUCWMY6iDY8oL3ZtCIB4idFzbd9YG5EYnjd+UniaesEOmvvLhjL8Io6
+         1OGU+d00LC+vrfjoHbRC21kZGM6QSw/HbJ4kkY2Vjniw9wxWsKdHlYNHY9BhdoF0sjWo
+         4KNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753801101; x=1754405901;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3SG72+1t7OUfNAakM7d1Bv7bt4/O0HHuGB6qfh+9EcM=;
+        b=eGVPlDFFGaLOJdX8exj2xfGzBxCgI4LALJ+dIJnf+0sdXEiQl6RIgd+H8PYT79vovS
+         8R4tHCSNnzrxGi3TNpXb8CNdWPcpuGjYzQxYEh1O8EktuXbBd5PaHwivyb0UrL5EWrBX
+         dGu/L/GduSyUvJ2WMK4O5/Uaox1A6Sxz6cate99RpP3PZip9MMbwXWp6fk4yO2JGcAfV
+         cS5/yosv4w+S1s8wlzsc5Ae694M40+NEQqVxzrtoJ6JRIr09uZUDU6OPyjGX15FtNnTW
+         JonNg9GBQ0yMXW8PTuvN4M1obUa/f11CA0GY1HMj1jguIPj7It6QB31ClAcDdnZ8cNul
+         4oEg==
+X-Forwarded-Encrypted: i=1; AJvYcCWdScjLmW5UqifWe7oA1v+ZeoVoHmU9kG3aefBbTo/InJLjFcwWhVZcdF0A+YEGrQse3ESGHwH1/IXB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5RG9jx74z2DkI1KYPLxt3nFwJAtkN1oTCLtoEj3DF/iU1VnD1
+	IC5O9X6j1CsOQdWDI+V4LjPz68PI1hW8uhsGgqivaYugGLk6Cynt1J6/6KDV0YM7zHzt4qFkZED
+	vv78K
+X-Gm-Gg: ASbGncsujj0Z/C54OCT/plxscEcEA/ZewJays4vgVuqzk3z4af+O8O1FHY3nbFkK990
+	KSWB7ft0G0lsavlTmyq7GzVseZ6DWt93La2Fl/a/NwoQEyxQ/RSbgtBqS25727jaKOV0cEPzoTW
+	yTJx1NSDaCKpRqrBrF2ZJkuNScOPMsxDtQCntI/dcUy6fS7u+JJ15baOl8Ry0xDtgsbsUcXNuk/
+	lEWQcFX9mc7eGYf7yeTxuDbOxPIG240tGO1f2ae51QyPtUeShQGwU9bUwf/d1V2rdxzclDMEB+d
+	qPvZY3uEJrlR6Dph9Wm6TaCetcXqTQVXuR3v+lmtvm4A/uL6xKxVg9kkC63o3n85Gp7SthxgVGg
+	T++ObV3QqP3T1r3om9wz6Nd7mq8vO4TqN9UJXGKX1Vj4=
+X-Google-Smtp-Source: AGHT+IGvLb6PF+iuDs4axF9ZaBfC5kZF3UzJPyMeyWZMnRRHfA9P4AmXhgZ7gteDJTRvpSeyBjgLLw==
+X-Received: by 2002:a5d:64c3:0:b0:3a5:298a:3207 with SMTP id ffacd0b85a97d-3b77678d462mr11828738f8f.48.1753801100760;
+        Tue, 29 Jul 2025 07:58:20 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458705bcbb7sm210294075e9.18.2025.07.29.07.58.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 07:58:20 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: sm8[56]50: flatten the primary usb
+ controller node
+Date: Tue, 29 Jul 2025 16:58:16 +0200
+Message-Id: <20250729-topic-sm8x50-usb-flatten-v1-0-4be74a629136@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075EE:EE_|SA0PR12MB4398:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5d8b4b6-ec68-4e0b-f063-08ddceafcce8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|1800799024|7416014|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZXozVVRGTU14VTNGVmpiUVFZTGRwTlUxZTBkVTBMUGxHWGxLV3NzMjl3TS9K?=
- =?utf-8?B?cEx0WXlnUFNQK0J2MUZvdTkwMTN4Y0VFNUZCM2RNeHBLdU9WZzkraiswYWl6?=
- =?utf-8?B?VzBMaENZNEM4K21SWlBENWc5VXY2aDJ5cE5zMlBCeG41eEF2cVRWU0sveXc2?=
- =?utf-8?B?TkczNVNibFF0SWduVEExb2lONWVSaHR6R01TZjNwZEdCQVc2TXRrSzgwaVA4?=
- =?utf-8?B?czhyZys5NW5MMU5jVDFOa1lVMng0MkNJRHpld0Y2MDNGbjZWNnYzVlQybXpu?=
- =?utf-8?B?RUVOeUtCbktHTHhPWWt6STg0dEtLSzRNZmUzWlI1dUQyaFVjNlpOVGl2TlJP?=
- =?utf-8?B?cDBVUzU1QVBFQjdXNDNBcHdqVk43eEQzVURXWWdic2cwSE11K0d1bm43VUc3?=
- =?utf-8?B?eUVBRURGRFc5TStnUTlGdTluc2U0QzM1MitZRFhQbFFGY2hiTUs3VzY5QS9v?=
- =?utf-8?B?TTY4TmFhWlFWOGF6V1lXeVExNFc3b0JteG5wNkExV015MVRXOVNHN05tWndW?=
- =?utf-8?B?a0JnYnVFQ01Fc2xoTE9wUGk3bkhjSnRIc2ZwYTRaRGNZVkRyTTJuam4rQmF3?=
- =?utf-8?B?bGcyUzBEbFVvMHJHQmYxWldCdzZuMEZXa0d2RGdRWVRUWnhDaEhzTTJYLzRI?=
- =?utf-8?B?WjVGYmdCYk5qOGFRbXpXSTdjaktBSStIeFQ4NlRUdEt4bzJmcmpsaTlsRmZh?=
- =?utf-8?B?SzRIZXE1ZkVQL3RHSlJTQWhqN0NSNklOOU9XUUpHMDduVG0rNXhSWUdiQ0xP?=
- =?utf-8?B?TFVxOFJFcWFmVThTL3BzUUJNRGdzUUY5clF0alRObi90NUdhVmEwRktzZGgv?=
- =?utf-8?B?cEZ4eXZMak5tMjFIRGpuWGNRYmRseGpFRGJtRGxCVmNnRG9wVXNjSFU5ZjNS?=
- =?utf-8?B?U3E0Wi9LRlJhcGpWWUl2U3FpMmRPZHdsT09nKzdLYVlzQWpyL0NqRDJxMWdx?=
- =?utf-8?B?RWRYV0FJbE9nRUFkb3RyUVBNUHpwbnlxUWhwRk1jNGJlRkx3anF6TTMrUDZv?=
- =?utf-8?B?NFZ3NjFlSlFNd1MzdXI4b1RsMG1ncWFlRnB1UTd1bWhYLzJLUGZFTVN6UmlP?=
- =?utf-8?B?N0hwT2Z5R1BIVXR5MGZOL2szVmkvRWxTbUFsb3FWTTlSVThJNVRDN1NJRy9z?=
- =?utf-8?B?d3pBa0lxNmEreGxYM2pldUlGbENxUmJoQUt2OHZwMm5HWW1lTnFwWVAzUGdq?=
- =?utf-8?B?RWFrQjltYXEyZkpUanJmSlZIN1FpQ3FCeVBRS01CQlVCYmgyRXFpT3RzTlJu?=
- =?utf-8?B?MVBGQlRGVDZZUm9aZW5HNElMQ29OMEw2Q0IwNE5EOXRHSExHZ2ZXM2VycDBx?=
- =?utf-8?B?OW1lall6OHRCY1A5NDkwSUZIWnN2b1ZmTzdoSUEraGRvNnZoRGtUeWkwVmJ3?=
- =?utf-8?B?MmVkOEFaRXMyVFNab1ZVK2d6TG4zeitYVTZpR1JScUtXZjlmM0lWSm0zUDJP?=
- =?utf-8?B?L1hqOW1EeENCbmxnQVpxYmVzQmdhMzZtL0RtMVBXNDdNMlR5OGpDbXh5WlE0?=
- =?utf-8?B?SkVtOGRIV2ttdEdvblc4UmE4Yi9ycER5c1BRcmZQQ2tyMndveHl1SFpMYzRy?=
- =?utf-8?B?cHNyN3NxR2xEMkhlYTd6dEVEQnlXTmxTNzVoK2prNm9rM0Y2UkRML0ZPVW5X?=
- =?utf-8?B?VkUvbWlJR0d1aXpiaDIxRGZoUnFVeHYwbkMrNzBheDlqeUlzc3ZDVUhid3Vx?=
- =?utf-8?B?dU1sNDB6c3AxMjVxUlVkZ1BETDVhM2Q1TUFKZjczTGRDNVRjUkZ0U2t2Rzlj?=
- =?utf-8?B?OHdNTDlmbUh4enZuVzh1NVpEWHFVbWUzV1NXdEVIbWU5RGRaeUluZ1dmUWsy?=
- =?utf-8?B?SEo2cFg4T2FQOHhrMVd6b3Vxa2JsOW9VdU5tcTVvTWNieFBidmpQZE9hQTgw?=
- =?utf-8?B?RkcyTHhJZmIvaU5JZy91M052em4rcGZ6MXhEcVRaVzB5WjRyOUlnbThrMVIw?=
- =?utf-8?B?a2Q0NTdTSENueXppK0ZsRmVzam1lSTBIT1MweWFjbzRlWThISmhrVE0zRXlP?=
- =?utf-8?B?Zi9Xa3g0WjUzWVRLdEp2ZjhuUmkvMWpxWHU2YVRxMDdPRFRTRHh1MS9Tbjdv?=
- =?utf-8?Q?jevCUH?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(7416014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2025 14:54:20.7328
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5d8b4b6-ec68-4e0b-f063-08ddceafcce8
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075EE.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4398
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIjhiGgC/x3MywqEMAxA0V+RrCcQK/UxvzK48JFqQKs0VQTx3
+ y2zPIt7b1AOwgrf7IbAp6hsPiH/ZDDMnZ8YZUwGQ8ZSZRqM2y4D6lpflvDQHt3SxcgeiakgZ1x
+ RWoKU74GdXP/1r32eF686tDlqAAAA
+X-Change-ID: 20250729-topic-sm8x50-usb-flatten-0e030f2f3650
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=876;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=5DLEwBkxqt6s+6OaagrlrYbcvqyOtrkxlazUFASdP28=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBoiOGKCnvV+b8/ScA2TuTuqz6WgSD4xwnr4sqRLi16
+ jr4gEVWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaIjhigAKCRB33NvayMhJ0XuFEA
+ CUdERSi0IZc/Fo7S1+yg1Z15DnPkEHo22YQQio+yvyhX8GtcVGoTJEouMTGao16vm63qOqjzJs/zOV
+ YdSkg6Xp1/L/zt29jRmkB0F/ICYpUNeKSJSY4ObwislY385Qwcx4eVoLQ5gc90Rp8f5rvflhmjsIUZ
+ lC5gEykyF6WV/boOdwI+Nrz91UkN1zhfH3/g+xXm71OMp5EOen4q7F43xfR/251R37Gu18aFlVJRk4
+ UAncIgT6jrejnetI+HQIfK4dNbo11izg4qxiq+tnTCbyRg9lqGVQfNBuElqGGh6ISVgk0HedEvRhWt
+ 6TLbjx01iBiZzYApNSPRiX7Q3OwUWHZhpvnlwhrrpUH4l78hJk9olwj/yyF/L4KVV5BwQ+LTJtAPD6
+ SQ7WZxbu4PG1OBzVeghVgHhic8sWwUcK+xD5/hC72+8ltAWDy2vPTuuNaPnAdm22hsohMBkSVkvybQ
+ 9oBGp2F3C2jVcdgq7Vu/0Kj+ma7d11390XvbFXP8wBBhCbOoBg4uK3493rrAKIiTrVFNk0/iqM5bun
+ cgSMuC8Mv4m+xviJPsljYejkeqMqVW2JK5kYRZ18PNGCGph4yiBRcG7YnVHX426ehb7Rk2ZImbTNjW
+ RdwuJJI5QiwH+O8WZHZ5U77NEkLKPR/TGPxo5lpkgXk+8YI6bLVOBoAb/K9Q==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi Danny,
+Flatten USB Controller node on SM8550 & SM8650 to move away from legacy USB
+Qualcomm glue driver and make use of new one.
 
-I hope this message finds you well.
-Thank you for the patch set — it’s exactly what we need for the I2C-over-USB feature in our new products.
-Could you please let us know when we can expect the next version of the patch set?
-If you've paused work on it, we're happy to take over and continue from where you left off.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: sm8550: Flatten the USB nodes
+      arm64: dts: qcom: sm8650: Flatten the USB nodes
 
-Thanks!
+ arch/arm64/boot/dts/qcom/sm8550.dtsi    | 84 ++++++++++++++++----------------
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts |  6 +--
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  6 +--
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  6 +--
+ arch/arm64/boot/dts/qcom/sm8650.dtsi    | 86 +++++++++++++++------------------
+ 5 files changed, 88 insertions(+), 100 deletions(-)
+---
+base-commit: 54efec8782214652b331c50646013f8526570e8d
+change-id: 20250729-topic-sm8x50-usb-flatten-0e030f2f3650
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
