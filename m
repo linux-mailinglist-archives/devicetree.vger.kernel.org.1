@@ -1,159 +1,193 @@
-Return-Path: <devicetree+bounces-200493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF97B14EE3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:58:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 122BAB14F05
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82BE54683B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:58:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95B997A58D0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D2D1C862B;
-	Tue, 29 Jul 2025 13:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4756A1AF0B6;
+	Tue, 29 Jul 2025 14:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnNxdQG0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RyL2F7/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490A2259C;
-	Tue, 29 Jul 2025 13:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856C512B94;
+	Tue, 29 Jul 2025 14:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753797478; cv=none; b=F9rMrPQVJADt1CjALWOeAwm/yB7/Z+tTG4JHbaGOEMVns4b+2TUmdVfK8+gvL4F309L+XbLfR5VxUQcVc91F8K+FLktAdy0xm48z9PqBVHXfOMjM2i41HQr5tLkwro31zu7yF6dqMPzcJ8aeIuBJVSdQs41MWuo11ah5bbcjhNs=
+	t=1753797947; cv=none; b=FD+1+bx8AwoFETq5koLsiHL1IaahuNFcP+k6SgFoRKdQOmEMP24yK5UBfLOZt9JsZr3E7FCaoXdu9aR7tamOZqBOQFGlMmd4Bu79QAXSHPqBqqAnSZxsEGl5MiFGT1se89+fYtjoe/wG8RTuGJbffMgig0qTpOw0kGsNb0SxkFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753797478; c=relaxed/simple;
-	bh=AX7eZDNmkJrEgW0Z7fDJWxMDlVgr1LZpviDEOOeKIL4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XKFgmDzjLflD8PJ9rS2JXkvyBmqapxN+AyU51tTvCKM5pBY2xbo4s6DUT3A1XezRhwxSGfcmB0sxsC0QI/o8ht/gdXLPq9d9dZuzSgIdMy7GSHaaOoD5s8cSNPfzNyG7lrdVsbdM9oLbaekR8fDCbwYQl3zzANEqA7n+Z2agBeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnNxdQG0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1644C4CEF4;
-	Tue, 29 Jul 2025 13:57:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753797477;
-	bh=AX7eZDNmkJrEgW0Z7fDJWxMDlVgr1LZpviDEOOeKIL4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gnNxdQG0DNWnJg+YHdQbXI0C3jbbNqOqJANMAHS0QZmb21lenjqAXFtqtc26lZ8t3
-	 BItM+qaMYFlrtcv8Ad7md1GdJa0vlvcXw7+JO8Z0NtHqajm4EsHO0EetPlD2guvQ6O
-	 3YKxFenQxcWTkErACwte5tqYEOWO4RIpJJfWdSK2nfwYr68XCvQADIsPmS4ouAnbv/
-	 t66m5hucPd29Xdvp78iGK5WQDli5e1W7IEvK7Ajw4tci1yksrRi5o5o5WbHRH7IeMU
-	 CGMIFCtkcgkPk0v2hbNYfJLaEmCNkkH/+4tA4Ej2uDg3Q94MaY3W+s8lvZDrf0tVZi
-	 cnb7UKdSpQEqA==
-Message-ID: <5029ba6e-fa5f-41a5-a1df-bb9117973bd8@kernel.org>
-Date: Tue, 29 Jul 2025 15:57:50 +0200
+	s=arc-20240116; t=1753797947; c=relaxed/simple;
+	bh=kNhX9nMatP8g/CbICaKUoCj+mAKxEZssu+yPTV2mYxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ixwVZfRu2CEyp4LoiTUX+7PQiolP8qCuJydDTGJCKJCwiDmXEd/IV9hWbXkbiWmEOjfl8VCRlNdBiJniwApX3TCN4FshlHvxLO5KcEdYog3X6ibH0aJQyFRQde1OG0cct2EGDFZQGv15f8DfMSCG+WrHzXPPyFPKgMqLFnK9NTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RyL2F7/H; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b78127c5d1so1876373f8f.3;
+        Tue, 29 Jul 2025 07:05:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753797943; x=1754402743; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rprcdj1nFAqXfdxmxGkMV6IQ2YBvlkL6JUKhxwsP4ag=;
+        b=RyL2F7/HqDvkhEHPO7GBPiFxTTuwutWIx57RvEpWE83UXQQfwe/uobH5vf+3hIwsnK
+         dOqQd/0yj/k7lp549ZEoCqMDds93A8bV3Eh6iDx0z0ASs4nXY2CNR54OtYgEShyZB6lG
+         hbqclcvnzVSs1MTlBJLi5crXkrYRBJrK4U434ZSfCm+VZPdqBGUGKTt4HtKVBnEWVzyg
+         3Uv/7GGKkk7N3rIc++JG6x+hTlMAUdTSWO1SwZnyNMPU0dydVHEgX0hDrzcNE0pL0+gh
+         O+cXMBiQEsook7r47yvQvfTUYgPr3QUO2WYZBfe2W9el06deqB4nWRbmf+z6chpXQjyb
+         5Drg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753797943; x=1754402743;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rprcdj1nFAqXfdxmxGkMV6IQ2YBvlkL6JUKhxwsP4ag=;
+        b=C1WJOo3vtHJ4NRT0hU3J8KZrI2JNZ1AhlHIbYlHyDvxVM4ZR23S1bbUXqx7AF3ucMQ
+         cMpLMKtYmSrE5JO1iRbTz4IeVT/birl+NXiVeYi04PEARqNRyyoRRFqcdQgip8HWqdmy
+         7EOKky9Y2f4txN8aZPFJbyF/3DuMo8oZ6akEkX38cvWZd9bh13+y3PeE0M3gVY11+fQe
+         2zp2WTrNLjAkinBs46LBLbutUUVOp9GzfIewLfF668sWMqSk5OuoqEfHYssZHY5RmV6H
+         rf6/H3ClAfx7YGe1GThdW5qCD7lle85pRVSZgH8GZs7vM83Uh57NLGg7m6QDppLfFQa8
+         V1pg==
+X-Forwarded-Encrypted: i=1; AJvYcCUOmArNd2fdzKMgtXvQq3efgpozrbHTH8HTorC/8kPqHPPGAzR4amn7jay8BwPY24bug09V4irLD/of@vger.kernel.org, AJvYcCUTjbpK/jJhiawTm4V5k2UiW1cMu2DUfG8G0rFEDI2zuCVULuDD3HBz3JSKcpl+iz4jaAeKFjji/khV@vger.kernel.org, AJvYcCWYPU0frEtHsY1j2LeHm3I0SQLMdHK9pJDT6ygCtVxxligL4fg0qHpsslHlwdpnf0fAD+e7oElhvUUy@vger.kernel.org, AJvYcCWoT1ofLu3n7vNaBN3WDsykBFyXnBBApcDcZhhFAfuGopqtKXhYxUCww+aEtbdjU6ZhbkRvt1BIF2y222g=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwYHZfdg8eldy4aOZFMZtxD1DMrQj35eZTsqCw/lauoJi5xEH9
+	kLCOcQSMM7IBuQEKkMHrx2unmf/f8SKrWrGZblEL1AHFEXG6NVcP0JAi
+X-Gm-Gg: ASbGncvOOykzPY9T9vVBqAXWXrCCaJ8ljo9KarfQJs6eUTfEYqhuQ8iozKGhWfrsoP8
+	+Ft8Z65M+WI6zJsaT19daCNkGR6gKD1UbdfrYj+q/YyKk/riscgsWEV+ToZvA9rmL2gGfIp3H92
+	inTxfLCeKAzt62I63AD/p94KE96Yhwo6DsWkjGXSGS0YbFzRI1TaaPI5nDjHgJ+elO7fu/+Y4Jv
+	ghScmR21QcZJrXcDgODFnHGMo0LwiHVhjbrAKP5OtFbYReAMC91mevwuzm5O+tfwDphzMBEqwJq
+	QuZkj5foQ6F2v48wYUrJNw2OruPE2DHXkxBLN4gsajWSXsHlU7vrOHYnNWO9dJzqWg3+4gs2+n3
+	79pSSd7jf6nmZJapzemonsn4rCe57Uo02hj6FQ1ZxFSywjusqUxsyufOFN755FnGDdO4eMGHeU2
+	UF679/UHGz
+X-Google-Smtp-Source: AGHT+IFZaUQwrxBlhVbnkLnmd8kchOhU8OOpW0F01eP0B+ajXj5NJu3Ugnkm2hEXTQpWoTAzFJ9BtA==
+X-Received: by 2002:a05:6000:1a8f:b0:3b7:907d:41c with SMTP id ffacd0b85a97d-3b7907d0696mr2189740f8f.35.1753797942493;
+        Tue, 29 Jul 2025 07:05:42 -0700 (PDT)
+Received: from orome (p200300e41f4e9b00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4e:9b00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458705377dasm200207535e9.4.2025.07.29.07.05.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 07:05:41 -0700 (PDT)
+Date: Tue, 29 Jul 2025 16:05:39 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jon Hunter <jonathanh@nvidia.com>, 
+	Rajesh Gumasta <rgumasta@nvidia.com>, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	andi.shyti@kernel.org, ulf.hansson@linaro.org, kyarlagadda@nvidia.com, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, andersson@kernel.org, sjg@chromium.org, nm@ti.com
+Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
+Message-ID: <33wpprxurmuorivfp4crcyzjgkrnpb6t5oewhg6adw7uhyib32@7foqh5v6ujdv>
+References: <20250725052225.23510-1-rgumasta@nvidia.com>
+ <20250725052225.23510-2-rgumasta@nvidia.com>
+ <1a6f4194-de77-4dca-b2e8-2b51a106d770@kernel.org>
+ <dc4ed9fd-2da1-4d9b-b8f1-446ea0697385@nvidia.com>
+ <a6268cd4-4a7e-498e-9787-bec959bb1475@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] dt-bindings: clock: ipq9574: Rename NSS CC
- source clocks to drop rate
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Luo Jie <quic_luoj@quicinc.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Georgi Djakov <djakov@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Anusha Rao <quic_anusha@quicinc.com>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Richard Cochran <richardcochran@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com,
- quic_linchen@quicinc.com, quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
- quic_suruchia@quicinc.com
-References: <20250710-qcom_ipq5424_nsscc-v3-0-f149dc461212@quicinc.com>
- <20250710-qcom_ipq5424_nsscc-v3-5-f149dc461212@quicinc.com>
- <20250710225412.GA25762-robh@kernel.org>
- <93082ccd-40d2-4a6b-a526-c118c1730a45@oss.qualcomm.com>
- <2f37c7e7-b07b-47c7-904b-5756c4cf5887@quicinc.com>
- <a383041e-7b70-4ffd-ae15-2412b2f83770@oss.qualcomm.com>
- <830f3989-d1ac-4b7c-8888-397452fe0abe@quicinc.com>
- <c67d7d8c-ae39-420f-b48b-d7454deb1fc9@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <c67d7d8c-ae39-420f-b48b-d7454deb1fc9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 29/07/2025 15:53, Konrad Dybcio wrote:
->>
->> We had adopted this proposal in version 2 previously, but as noted in
->> the discussion linked below, Krzysztof had suggested to avoid using the
->> clock rate in the clock names when defining the constraints for them.
->> However I do agree that we should keep the interface for IPQ9574
->> unchanged and instead use a generic clock name to support the newer
->> SoCs.
->>
->> https://lore.kernel.org/all/20250701-optimistic-esoteric-swallow-d93fc6@krzk-bin/
->>
->> Request Krzysztof to provide his comments as well, on whether we can
->> follow your suggested approach to avoid breaking ABI for IPQ9574.
-> 
-> Krzysztof, should the bindings be improved-through-breaking, or should
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ed2rfe7qzgwvgvkr"
+Content-Disposition: inline
+In-Reply-To: <a6268cd4-4a7e-498e-9787-bec959bb1475@kernel.org>
 
 
-Unfortunately not, you should not change them for such reason.
+--ed2rfe7qzgwvgvkr
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
+MIME-Version: 1.0
 
-> there simply be a new YAML with un-suffixed entries, where new platforms
-> would be added down the line?
+On Tue, Jul 29, 2025 at 11:28:43AM +0200, Krzysztof Kozlowski wrote:
+> On 29/07/2025 11:15, Jon Hunter wrote:
+> >=20
+> > On 25/07/2025 07:47, Krzysztof Kozlowski wrote:
+> >> On 25/07/2025 07:22, Rajesh Gumasta wrote:
+> >>> +description: |
+> >>> +  Register Settings provides a generic way to specify register confi=
+gurations
+> >>> +  for any hardware controllers. Settings are specified under a "reg-=
+settings"
+> >>> +  sub-node under the controller device tree node. It allows defining=
+ both
+> >>> +  default and operating mode specific register settings in the devic=
+e tree.
+> >>> +
+> >>> +properties:
+> >>> +  reg-settings:
+> >>> +    type: object
+> >>> +    description: |
+> >>> +      Container node for register settings configurations. Each chil=
+d node
+> >>> +      represents a specific configuration mode or operating conditio=
+n.
+> >>> +
+> >>> +    additionalProperties:
+> >>> +      type: object
+> >>
+> >> I don't understand what does this binding bring. It is empty.
+> >=20
+> >=20
+> > Yes this is very much similar to the pinctrl.yaml that defines a=20
+> > top-level object that can then be used by different devices and those=
+=20
+>=20
+> No, it is not similar. pinctrl.yaml defines common properties and common
+> schema for class of devices - pin controllers.
+>=20
+> There is nothing common here, nothing defined except that you have
+> unspecified children nodes.
 
+This is supposed to be very generic and it needs to be by its nature.
 
-Either new binding file or here with allOf:if:then differences per
-variant. Depends on readability.
+> > devices can then define the properties they need. So the examples for=
+=20
+> > I2C and MMC really demonstrate how this would be used in the subsequent=
+=20
+> > patches. Obviously we are open to any ideas on how if there are better=
+=20
+> > or preferred ways to do this.
+>=20
+> I don't see this part addressing comments from Rob - you need more users
+> of this. Adding fake (empty, no-op) common schema is not solving it.
 
+Bjorn, Simon and Nishanth are Cc'ed on this series since they expressed
+interest in this kind of functionality, so I expect that we'll see other
+users of this eventually.
 
-Best regards,
-Krzysztof
+However, we do have to get the ball rolling and propose something that
+we think can work for a number of cases, so that's what this is.
+
+Thierry
+
+--ed2rfe7qzgwvgvkr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmiI1S8ACgkQ3SOs138+
+s6FRUQ/9HORCi3QODo+X7pa+WYsYlZ4zhuhvsmDsbJ1x3dcsqHz6YrlvSurSgn6T
+1mmDUYaA+QnkOpyIBsQ76zMyqoxwX8TD3ogtAZGjZX8ZjXmtQMRD5XnTjG7UhA3t
+K0jfAZzCMmp/s/+2DtFreHPUS3a2/BkgD92EG49HItgTW88H/e1FW5CQkH9ur/Wd
+Uu27xy7U5YmaNRS0sYra/B58UPJ3mMHJ1lqjjSOQUlfn9rbjFTyXFuLPVLBOkBag
+y5+DoKASAdHON67N2gXZl3qeDdvE9+vyUmsuphZwm0Fp5ekW3nPrTx7jXFHehLbd
+7vBNf80oRV9+QuUUaKWbCvrZelk537jvzEanBzVK8QE73QVJGT4Bxr33StW7Pans
+24YOfLjfhbN9S2NCxqarCZ72LJUManEREX4dY6+N+tnszuj1DOV4KmXjX1XSXp5m
+cR3W7StSdSNkMO7n43MMqu++bn1bkv1jCwE1/HC9eSKIbiGNbPv7/3kERzIlb/cl
+zrI3pefPk5sDcheI/A1FzSA/7RDoi4iSY73+ur+jAvJCPqF3juwVE4AJnNKnaI/j
+/HIn0Su0wiKjaXuYuCM4k8KxZsJyAj1p3bj46K3Tiu1ALrLPOWIaPZHcsd8q2HAb
+FbYs8TwIPYxzSklfYhVSguF7faO23hhXRku4wg28M6vfLQhEsRA=
+=gNJZ
+-----END PGP SIGNATURE-----
+
+--ed2rfe7qzgwvgvkr--
 
