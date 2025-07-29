@@ -1,163 +1,140 @@
-Return-Path: <devicetree+bounces-200462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0BEDB14C86
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:49:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E61E2B14CCB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:12:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 148563B5853
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 10:49:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFC867AF841
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14CA28B4E3;
-	Tue, 29 Jul 2025 10:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22A7E28C2C6;
+	Tue, 29 Jul 2025 11:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="etLanObY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NJLK6YAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E70328AAED
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 10:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7040C288502;
+	Tue, 29 Jul 2025 11:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753786178; cv=none; b=dAZ6I9gruf9USfQd5+jU7dDEGFp1jLRbas3L9AYAAf6pVs33u3HuUJgpUNJAecgaQGJ7H99gIecTedU+cKFcUHGoz54R3m+k2YWsUkRyBzzjoMRk9iYIPLmsJvhurkbt8c0/jdyG2NnNZA3c6BFJIp0Peo/cbgJ8c92v6Uh65c8=
+	t=1753787535; cv=none; b=r9cEI9bKlLn22uU/pEvwVRCbmbHuY+E8eOmegmX1kdI/k5aBLV7//RdqtX7cpn9d92JUBbVFpGNhb9CMllWygBgY/fbs/BU59Fb+/VgcB25qTysz4IFRVjrmeKYRoDY0xt2eiUS2d9rUBa9dy3O8vrqX6yi+VKm6yV50MbSnBEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753786178; c=relaxed/simple;
-	bh=3NjEr949klcb1iGBUHCvKsBaHUyDI+r7RHxECamMvxE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZWXaBNKcu3Cmq+wdSGab7CQFFH9H4uAdkWGlXbWOQacJyVKVtMdlNxoJoEqS6T+Ga8Y9U2ftli6qNLQTIVHbYj3HDPXK+s5fO7bOZl8Fm/iJqmkb0p8L4yWl7Q2alrOCwi78ZT/cgtlCw+/ghAw3C+KC7YU3YvINWdCvf1jhBQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=etLanObY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56T8FIXu005041
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 10:49:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PkaxQrVa3W0fxICjBisBL0T34FtsYWW4gH/vbW0r5IY=; b=etLanObYoN0FHF8M
-	tCb6Wi/II1hgH+MP0T91I2lskdN7C3WRuvs8y4I/j/0XOzKB4At76gt93SjLtmpA
-	VsN32ukeBKHu31t3XOcnj0YlEtB2PUlAnY/pK0hksYvYnMvs5OS+EBuQPyDOdI/C
-	crN7ftqP1PM2DsvE5dmNNjQgz3hxyYhq3Ro9XvtdKQ0ltl5cx2+qEIRSufrKqKLK
-	uPHtRkxjUq/ki36QlFF7tyKEZ9N5Yseqq5WYGcmHysgvZaOqp/N+G3x4nE4FuOVj
-	pdiDPEvAshnNX+GHUpt5m/UmNt7w1c7lbYVH7TEqJVB+U0S90fSc4KnEd02LsWo0
-	vOI/+A==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nyu01mu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 10:49:36 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e2ced79f97so51210185a.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 03:49:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753786175; x=1754390975;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PkaxQrVa3W0fxICjBisBL0T34FtsYWW4gH/vbW0r5IY=;
-        b=Lw18JDn1GUUsNsd023geVd6iOp5qHwGZOBpy21olL3D96tw8QN/avQCsSqWlJIFDcx
-         DnmrHWYbjMca3T10Rnvb1yVxzg/AzFl5W7b0Xj8R969bSAa5QD2WZMr6n0Jf9pu9U5Pn
-         Gk2xhuWtIC9y9doIiNydntLkg6zFdPplDgZkTgAbEo4aepnH3BK54r3xZ2HNhyJGzsR8
-         v3KqZllFrLGw1Zj629epHBTyF8FVqlPQiUULukf5yAnYd1oowtaHt/PALcdNsJjoqUga
-         g+ghLQOFX/IgDctV3n5N5gCdiDeBy+yXz6UT8B+ljr3xfVtqbKx89Qpwe/Ym6CGSUYTD
-         4luA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3kVn2dqD3dsCoPnVsr9XJbW6px/i8pYOvT32AAHgQshtAblOL7vUoZgu80EanYiBlImJuUS3eekZp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/+n3fPqW017Qn42KHPS9KnqihFq3DWgsaIoLzsbGluK96nSVD
-	NZ3VMi7VpQPsbjWNMYF6XTVBR0ssaojq/oOgmd35bgQVaNtb/X9zodGS9ISWz3WyK619rJ/5CfJ
-	NnEWPW8XmfOD04zvjnISqByRGozIF/iUXqeq2wvMsFBcA/8ET1gg2BIDCZAUpOCXA
-X-Gm-Gg: ASbGncu2o+zq2tlmT4IPb7Q6MG9d/qGe3hy41Y2mGcmBIYkdmC579yQh3htucdrt8cf
-	WYwD3yo9dv9cNzxchXU8gT9FWuHWB7RrsuKbACNrpRVnSile6XB9O0+chXiyg3tbBQbBXIS6SnO
-	SHmdASb30TIKCi5c2x8N2QgOT1oWWDOwzfjgqPhLi0V4g9ZvXjOBGFtVF0ogCx2O9SO5LjR0jDU
-	kavzdNIZwuv1hK2p8LPy+UlK0Wi+26N15/d5UYEqMFAp8RLELJK32MRBv6SRniqWpgopb4DrjtD
-	9y/gfOks96yyKgK0Zf1v7hWbgbVJicHAlTK0BVKOoDTb/bZLDfBJJInV9jAAdrY1pQalb03jAlr
-	DHxccf2wbwBymcLSiCw==
-X-Received: by 2002:a05:6214:4a51:b0:707:4020:8631 with SMTP id 6a1803df08f44-7074020c508mr39353676d6.5.1753786175197;
-        Tue, 29 Jul 2025 03:49:35 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IET3lprW3Hl+UblfFO22E57srKZN9s6YGNunKASndnP8ZoduMXNySxnL5z0zpm6nnnqWds75w==
-X-Received: by 2002:a05:6214:4a51:b0:707:4020:8631 with SMTP id 6a1803df08f44-7074020c508mr39353486d6.5.1753786174855;
-        Tue, 29 Jul 2025 03:49:34 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635accc38sm560388766b.114.2025.07.29.03.49.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jul 2025 03:49:33 -0700 (PDT)
-Message-ID: <8b30c83f-5f35-49d5-9c37-4002addf519a@oss.qualcomm.com>
-Date: Tue, 29 Jul 2025 12:49:31 +0200
+	s=arc-20240116; t=1753787535; c=relaxed/simple;
+	bh=9/J0BHd+fuqkNFinG3p1UvN7xRkDJF3VXrbJKKrrPA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gLExAX0EhN4noEJB96fNuSRQ9aB9UnfAt2erxiSGenu1EjnZb+t9KbNl3sl2TyO5fCP9vGPqUPZVqhys5Aj0nlCdm/cltZpuHe760tCYeIo05fVUEfWEFBN209EsSYDqrXF/FXALU75A8hpnQP9kLafnwyJsD5eMBEDbUPTIAwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NJLK6YAH; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1753787534; x=1785323534;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9/J0BHd+fuqkNFinG3p1UvN7xRkDJF3VXrbJKKrrPA8=;
+  b=NJLK6YAHkmcvH39dItg28s9exiqzdO7C5b+1+73Soi/fszl5gORyOfBP
+   XybY4035aUxNfe4rbaBMpuUu/tqc2L6TEWh67gYYotcwIpoturAs7CY78
+   NjO58GEuXw2kwxz2nXezhRb5JjI/tIL9bFGd7/ipzm3Vbz/egdnRPC5M6
+   TSyZHKhL1yqlgBQG5mKF0WlE7PeK2jAjaqZ9ebmOTJccBWoKd146yOHjV
+   WoAgQ6EeSWUoW5phD6mYnrCi6kHDpUHeuDYB9KsMkxNCoq4m2sKpDWTyU
+   3qdXo4W6FGXUo39ubZeLVorO/vWWdD3JryjPQc82BDZQt9rJqcj0i62/A
+   A==;
+X-CSE-ConnectionGUID: M269EpkkTcOvna7l5c6VBg==
+X-CSE-MsgGUID: cQbALhAfTGGjPuh1pC/Jtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11505"; a="58677110"
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; 
+   d="scan'208";a="58677110"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2025 04:12:13 -0700
+X-CSE-ConnectionGUID: 9h1TUjEISHO75Q1oFt4DCg==
+X-CSE-MsgGUID: 7H97cNIyQnStcprWNIE7SA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,348,1744095600"; 
+   d="scan'208";a="163451637"
+Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 29 Jul 2025 04:12:08 -0700
+Received: from kbuild by 160750d4a34c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ugiFa-0001Dv-2z;
+	Tue, 29 Jul 2025 11:12:06 +0000
+Date: Tue, 29 Jul 2025 19:11:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: oe-kbuild-all@lists.linux.dev, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for
+ Sophgo CV1800B SoC
+Message-ID: <202507291829.aB1UgzrA-lkp@intel.com>
+References: <20250728-cv1800-rproc-v2-2-5bbee4abe9dc@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 7/7] clk: qcom: gcc: Add support for Global Clock
- Controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
- <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-7-227cfe5c8ef4@oss.qualcomm.com>
- <25uelsjuw4xxfopvfn4wvlj2zgivwbjprm74if5ddwvht4ibfz@yctc2kvfmxyw>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <25uelsjuw4xxfopvfn4wvlj2zgivwbjprm74if5ddwvht4ibfz@yctc2kvfmxyw>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: trJuTui6JoEQhCy3TJh64SwMWkUWkJlU
-X-Proofpoint-ORIG-GUID: trJuTui6JoEQhCy3TJh64SwMWkUWkJlU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDA4NCBTYWx0ZWRfX7M/Opw/qQvXX
- hnaNTqoGsg+LYfnfr45p0e4FRpkSZy9J2LPocA01zoGNXAlaMaFQu6HnN+6+SmXCeIO0mRyyNvg
- oNVDTjfz/QH+fVJUSxnBNKxSnuUKNjHMPGF3zHTTRXZQHOKmByb7xS5js0ir5e1AHKz2mNf28wY
- AJO2vQ4oN1ZbRsBqGQX9muQnGJzIi00GYNA0uGt44rfwXyrtPeVzqrOuLCQ+hkDSRY0C516SGOd
- seA/TcRQA7tRQRk4GwnMRWo3XflO/lxl0FEbPkLGlu0dw0BDlIdKSEZt7pguUXpGQFZddTNRPjz
- NnSdGlfKamBGKp7KT05LSYsnOU7sqy7UB9Di9JPBSoUu5dykMrRTh9tb8M2gCvAoZjp4C2JPUlq
- 4vqi55lXojiXI6L5c39/U5sgwJI902ZJUUu9y5gamPkTSWfgiOQv/VwGapMY/yrkKJSYQOIz
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=6888a740 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=N_I0jeO3kqKEb7emQd8A:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-29_02,2025-07-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507290084
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250728-cv1800-rproc-v2-2-5bbee4abe9dc@pigmoral.tech>
 
-On 7/29/25 12:48 PM, Dmitry Baryshkov wrote:
-> On Tue, Jul 29, 2025 at 11:12:41AM +0530, Taniya Das wrote:
->> Add support for Global clock controller for Glymur platform.
->>
->> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> ---
->>  drivers/clk/qcom/Kconfig      |    9 +
->>  drivers/clk/qcom/Makefile     |    1 +
->>  drivers/clk/qcom/gcc-glymur.c | 8623 +++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 8633 insertions(+)
->>
->> +static void clk_glymur_regs_configure(struct device *dev, struct regmap *regmap)
->> +{
->> +	int ret;
->> +
->> +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
->> +				       ARRAY_SIZE(gcc_dfs_clocks));
-> 
-> Why are you doing this manually instead of using
-> qcom_cc_driver_data.dfs_rcgs ?
+Hi Junhui,
 
-I guess that has been merged last week or so, so yeah, please rebase
+kernel test robot noticed the following build warnings:
 
-Konrad
+[auto build test WARNING on 038d61fd642278bab63ee8ef722c50d10ab01e8f]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Junhui-Liu/dt-bindings-remoteproc-Add-C906L-rproc-for-Sophgo-CV1800B-SoC/20250728-190847
+base:   038d61fd642278bab63ee8ef722c50d10ab01e8f
+patch link:    https://lore.kernel.org/r/20250728-cv1800-rproc-v2-2-5bbee4abe9dc%40pigmoral.tech
+patch subject: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for Sophgo CV1800B SoC
+config: parisc-randconfig-r123-20250729 (https://download.01.org/0day-ci/archive/20250729/202507291829.aB1UgzrA-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 8.5.0
+reproduce: (https://download.01.org/0day-ci/archive/20250729/202507291829.aB1UgzrA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202507291829.aB1UgzrA-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/remoteproc/sophgo_cv1800b_c906l.c:47:20: sparse: sparse: cast removes address space '__iomem' of expression
+
+vim +/__iomem +47 drivers/remoteproc/sophgo_cv1800b_c906l.c
+
+    36	
+    37	static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
+    38					   struct rproc_mem_entry *mem)
+    39	{
+    40		void __iomem *va;
+    41	
+    42		va = ioremap_wc(mem->dma, mem->len);
+    43		if (!va)
+    44			return -ENOMEM;
+    45	
+    46		/* Update memory entry va */
+  > 47		mem->va = (void *)va;
+    48	
+    49		return 0;
+    50	}
+    51	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
