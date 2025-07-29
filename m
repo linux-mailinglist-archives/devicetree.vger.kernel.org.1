@@ -1,239 +1,158 @@
-Return-Path: <devicetree+bounces-200518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85161B1505F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:44:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D3BB15077
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:50:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B69123A6BCA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:44:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8306C7AFFBD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB2352951D0;
-	Tue, 29 Jul 2025 15:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3102951AC;
+	Tue, 29 Jul 2025 15:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sOyPiMQb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BMt8iVkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561EE2951BA
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 15:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C67D295531
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 15:50:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753803867; cv=none; b=M7qhPTReUt19u7bpX0v13q7l0TGjvCaoYayX8iBOkKGad8L4uXkg8R11O1MZVIOnqeqj3T2nzWj1Wq5Y1JNFx9CcjSiLFkbHhSBcSH84YTjS9rlbVk1cTeNgNuAmLGZuwyguAnpn3QchUxmYTxurPWRwRsYtOtikg1caPQsOp5I=
+	t=1753804216; cv=none; b=JJX2cEcsuZx19RMcK0WLXtHxuzQ4FhAD8xFqTOeKR9vajtyvNfCoG9c6Pg0ga/LKJK6vOhrfliRjFyqYkq5ZVHIlwRfHMGnLwZvFzA4APHPParAnamcSlAUVyk/csC8NKxS0c8AzJHq8VdJRa7phXre89tMTNTTHIrck8ICi29M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753803867; c=relaxed/simple;
-	bh=gTKUAoQOVNfDwrKXIlmuLwCfGQF/GjTu9mg9ZtnCU4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s0lvCa2aPTwiNATvkmyZfHHE7rhOqWFexyhxmk5VGuBMpP3V//+LU0nW+KcyV7ZY9DYrVfyHfh2aae8iQVi8lER+jsoXUtZtWVrMPZiIKULCLHnCN1ZB0MV666POjySPxzLXZExOzB53h0jeQCFkbv6QX7ft3DS5QLE5b30u3LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sOyPiMQb; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-615398dc162so4079525a12.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:44:24 -0700 (PDT)
+	s=arc-20240116; t=1753804216; c=relaxed/simple;
+	bh=3MQGEggsiUVrrgFI2G8aeSVLgPSN6VW/Rm2vcPBZys8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MUjdauiKhKqFkn4gLCYMKtq3oIifXIeZGX/b6ZawvZvyoOIaRWMiwB1YEBDOITu9pXLYdGMpNhom8exzLD8TxOKiYOYCWx1dMabKNX4dOwWoV7KLs6akb313L7LnUwpCrGCD7DjrGRaHnIh8U5r+Do6AB+WUv/N5OD7DzE5msFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BMt8iVkO; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-31ed9a17f1fso2149655a91.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:50:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753803863; x=1754408663; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LN18dTJK3bUZCImiyE0FuNTJ8LDUzXGgTCqf/lUFg3U=;
-        b=sOyPiMQbFbwAU1KXWqOcUWZdn5zUoGvE7JeWbvckjDCECR3gQCuHb2H3Y7CoYrCfPL
-         nwBXLA3rXeiALkieOxZmUrQsRuMCwCGy2WJYZbUOrCSExr7TnNNyR6gF2/MEZGh5Emo3
-         GKcaQoBsZYDWUVPet4ixy8X+v+L+YE1IYd7R8bACHQanvDjKjg5WAceXvKUr87YnYHke
-         bl84LwuJ5dgwWefB0qTrz11gihk0GcWmAiFvRvm1BGrrsZ0Cwo0CwJaZGnoTG45BffkJ
-         CkTVXglWtK9T7aiPtR1G+vW64S9Dnf/SQI4ed00qsYzARio03t8GguNgtoAeGGTaEx9/
-         0wdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753803863; x=1754408663;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1753804213; x=1754409013; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LN18dTJK3bUZCImiyE0FuNTJ8LDUzXGgTCqf/lUFg3U=;
-        b=hTQbFZ/tO/kESw7Zq27p4xP36PQFm8OxLtmDUGL7nfajsNqZ46vONNCrdCPckU5iI3
-         gCpqyV4r4sM6dzsubyJ/eqsuPhZ63Ooujcpw0X1sw10l4prNsQTldyfB/eKw+st1gVWJ
-         M2aVu8ux2f+LMSimbgCXSbAM3It/NVulLkj9aAuBu8px2/h8437hxN1DyXwDYGSl0+/J
-         GUdG6IS5V6tmiGHDwrqotbljN89Vi3oCCAPPT+eyjjA+jP/h9neMSJ1q0o7GmH+xPlA4
-         cyFhgXwqS5HETgeblChOt3cVz6H6ahbmX6PZMYvl/KbYb3PxwsbGMzGZWvSbtigYb7Kd
-         xH9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXB3IPAAHVccpq6gXZpBPqhQI4XltZhIzno6gcWCh8wPqfCVpxET3tDoSaZDgSnMinLxoCgf+llhcp+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzURzuQ6TXWYM/a/Q3rmHbe1bfx6gNc7ZA+jp6pWooqXYmp61iZ
-	0RjV2grNypqjM+67p4bi8h5f0z8NA0um8Z6lClv+emZnGi2P/szfMVH0RA7XYGd0y48=
-X-Gm-Gg: ASbGnctkkXwZRhggqgcSNFh/PFgtRHvwzlB3PjpjM02aLNPD3Oxe61n0wh2/k9tuhA/
-	nOu+l++GrA3LcYG7PPk2uZqKFm5qGePmSrcqwG5kpFkeV4PDrIgDdjuLwckPS3i+4zFIJ6MYfaZ
-	o4nBJ8edgnRrAlv3dVAz4y7NSUt+LHYTHVQ9z/47ksH3RSlC/yVy4IhPIFyHHAykCSTA+GuH+up
-	ZnT2MHGcl1NULYoFjsGzy/5wc+8icqurr1cdA9A3smqkn3gYLTrY8Nf6X0S1ziYcw00X44U1Lw7
-	WVl3vtdTZm1sf/AqTZVOhKqRaN1sBblQWrpuDImtmvDKKoXEpJczwQrmop82dMsJzjBL8pcX+Do
-	oUnpmvpxMaNNBZGefvffHJQw0e42Ee6iGAg==
-X-Google-Smtp-Source: AGHT+IGq9wI3/lWh7E230ug5OoIqR7fJXimGz2+ajBqUWxDLFS2ckclMt/arQALpxqYLTlDmX5irhg==
-X-Received: by 2002:a05:6402:2756:b0:609:d491:8d7c with SMTP id 4fb4d7f45d1cf-614f1f66f87mr15096225a12.33.1753803862494;
-        Tue, 29 Jul 2025 08:44:22 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:ef30:dd5d:6e13:d8d2:7f2f])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6154f4fac5fsm2166412a12.22.2025.07.29.08.44.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jul 2025 08:44:22 -0700 (PDT)
-Date: Tue, 29 Jul 2025 17:44:17 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Taniya Das <taniya.das@oss.qualcomm.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Acayan <mailingradian@gmail.com>,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RFC 24/24] arm64: dts: qcom: x1e80100: Describe GPU_CC
- power plumbing requirements
-Message-ID: <aIjsTgA7O7UqS-Oz@linaro.org>
-References: <20250728-topic-gpucc_power_plumbing-v1-0-09c2480fe3e6@oss.qualcomm.com>
- <20250728-topic-gpucc_power_plumbing-v1-24-09c2480fe3e6@oss.qualcomm.com>
- <aIevIuMDA5R8igmi@linaro.org>
- <50868cd8-68a9-4bad-99f3-8cf542886fb6@oss.qualcomm.com>
- <aIhrav7GKpsbVpto@linaro.org>
- <6b903628-9abf-4b9e-971e-e9338308d693@oss.qualcomm.com>
- <0a1337d7-ee3e-47de-a401-b25586e813e4@oss.qualcomm.com>
+        bh=pRr//l+WljJZJqCKmuGr3DoCPPP+3a2R/rHAUaoNxRA=;
+        b=BMt8iVkOK9F1QNAdqXuuJVQPO6EViz7zYIZtlULR3SkPgZf5RmSFtwB+lGZtPrRXkD
+         3arfxiDHIiYHPGAzGxK08FW5YLLhFTAKtkkryoz5jtWPG5gfJPE/rfmRiKhmrcEAXyLc
+         V6/1Bbeapi32bKHODiRVo4gOtspZfEOKYB1aQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753804213; x=1754409013;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pRr//l+WljJZJqCKmuGr3DoCPPP+3a2R/rHAUaoNxRA=;
+        b=g8B7SOjcQ3+MJfPPHmmqQv4RjMEIkLaxj2RXlFs9Br8K3fsP6KkTmyxr81Td3HizsX
+         /2YreWaUsVQ26oA0DIlb7Te9lnJxaAzaqC9biPetc7LDWP5+OIYfX0FbzTvJBNQVg4xF
+         KBQMI4Aoez410KdgdYoH/BSnbsup6cUSX3WNSjKeAsBNnuO/ZP3b+VmqMuGwI83F65oM
+         CasI1L7FyMmOQ9bKfFG1E5Q20YYhFWG4285o5Mxv+ikBQuEfovAvBekzJGKTsy9Ow3u6
+         W+Jqr/w5inw8ElKsGsextuNVGOuYCTYbS+qU0GlAUdng99U8jtRbzfk7ZV9KY/2dWSob
+         +iFg==
+X-Forwarded-Encrypted: i=1; AJvYcCXFEFRxIgtYpf+EhtQKTi/bRXXGPEQHNdlKrnJNJEALTRNHpz2GsG3upacRoZWxGGmZKScxGoXRUcy2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz11SSdYqAg3GVeIXW4kr2H989uCXanWUb6gay9F7ujdJ9wJuC7
+	ASQXcsoIYVbhzbYSAK08Xe8DUtqzdmlnsEgF/m+wCshgoi6GO5sJ2XeXXhLaf6yXVn1Td6Jl7Qi
+	5YOU=
+X-Gm-Gg: ASbGnct6ymHxuaIJ7Hikrmq9mffQefOODdkFN8F9AqUA1khllTgQySfafLhPA/CpQLl
+	yc5KMdtN4KIGZjNU8bfr8NHq708e/Ihu9agbu7uK+diE9CptTypbJTQeWyXjaahZKO3H7xL30OA
+	9AErVh0jXFshPs/frrsp50pjKshjMN5VG0VhLRETNbD69+lESC7TQbHXVpxCG4TuG7oEjFGftT7
+	1MaxT7Wg93K8T3ftDBD+lAtcZ2l2eRw1HH6Mu0+Bq/3CUS+Dg/RjACBfEARM0oDpwbU92SYzKrd
+	5ug7JgYXdIcE0VBs4Q3SdtYRRx2zwE9M57AFDqg3s3N3muCNkdfetHYbIkHS6Ahu+Q+9jS2ajeZ
+	EByTLjijbF2W/irDsfUp6rR9lncOksXvQ16s44gte1nHvhQWRS0BwT9PMg+vgRP8OkiZvkQHN
+X-Google-Smtp-Source: AGHT+IFCP3h2oYR7l0nhBzlAWMuqLJe/YuYNJkQm1VyZfvh+1aacJLnmGK2sOsLNRW9+7wjD8Pa5Eg==
+X-Received: by 2002:a17:90b:390b:b0:313:b78:dc14 with SMTP id 98e67ed59e1d1-31f5dc89520mr104662a91.0.1753804212509;
+        Tue, 29 Jul 2025 08:50:12 -0700 (PDT)
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com. [209.85.216.41])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f2ef2462fsm1520614a91.0.2025.07.29.08.50.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jul 2025 08:50:11 -0700 (PDT)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-31ed9a17f1fso2149504a91.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:50:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWY6vcb5uwBDm5gutv2PUsyODwR04IDLKggt+LKxIaKjIg5hyhmt4wt2oCOfIqo4BYgViH2RGzcRbpB@vger.kernel.org
+X-Received: by 2002:a17:90b:35c7:b0:311:eb85:96f0 with SMTP id
+ 98e67ed59e1d1-31e77a1b44bmr22317060a91.29.1753804209750; Tue, 29 Jul 2025
+ 08:50:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a1337d7-ee3e-47de-a401-b25586e813e4@oss.qualcomm.com>
+References: <20250727165846.38186-1-alex.vinarskis@gmail.com> <20250727165846.38186-4-alex.vinarskis@gmail.com>
+In-Reply-To: <20250727165846.38186-4-alex.vinarskis@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 29 Jul 2025 08:49:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xd_xL=PYvVNqQWFZGmqN+Q=SvvaBTfbv9k+fDb8QwUtQ@mail.gmail.com>
+X-Gm-Features: Ac12FXx7-_hf5KJUuN4rJ_U3AGgXay6N1FUZnlxj0Vi-OfESDXBTZN7_sEezRhc
+Message-ID: <CAD=FV=Xd_xL=PYvVNqQWFZGmqN+Q=SvvaBTfbv9k+fDb8QwUtQ@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] drm/panel-edp: Add BOE NV140WUM-N64
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 29, 2025 at 03:28:55PM +0200, Konrad Dybcio wrote:
-> On 7/29/25 10:23 AM, Konrad Dybcio wrote:
-> > On 7/29/25 8:34 AM, Stephan Gerhold wrote:
-> >> On Mon, Jul 28, 2025 at 11:31:10PM +0200, Konrad Dybcio wrote:
-> >>> On 7/28/25 7:10 PM, Stephan Gerhold wrote:
-> >>>> On Mon, Jul 28, 2025 at 06:16:24PM +0200, Konrad Dybcio wrote:
-> >>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>>>>
-> >>>>> A number of power rails must be powered on in order for GPU_CC to
-> >>>>> function. Ensure that's conveyed to the OS.
-> >>>>>
-> >>>>> Fixes: 721e38301b79 ("arm64: dts: qcom: x1e80100: Add gpu support")
-> >>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>>>> ---
-> >>>>>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
-> >>>>>  1 file changed, 6 insertions(+)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>>> index 5e9a8fa3cf96468b12775f91192cbd779d5ce946..6620517fbb0f3ed715c4901ec53dcbc6235be88f 100644
-> >>>>> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> >>>>> @@ -3928,6 +3928,12 @@ gpucc: clock-controller@3d90000 {
-> >>>>>  			clocks = <&bi_tcxo_div2>,
-> >>>>>  				 <&gcc GCC_GPU_GPLL0_CPH_CLK_SRC>,
-> >>>>>  				 <&gcc GCC_GPU_GPLL0_DIV_CPH_CLK_SRC>;
-> >>>>> +
-> >>>>> +			power-domains = <&rpmhpd RPMHPD_CX>,
-> >>>>> +					<&rpmhpd RPMHPD_MX>,
-> >>>>> +					<&rpmhpd RPMHPD_GFX>,
-> >>>>> +					<&rpmhpd RPMHPD_GMXC>;
-> >>>>> +
-> >>>>>  			#clock-cells = <1>;
-> >>>>>  			#reset-cells = <1>;
-> >>>>>  			#power-domain-cells = <1>;
-> >>>>>
-> >>>>
-> >>>> To repeat your own message from a couple of months back [1]:
-> >>>>
-> >>>>> You shouldn't be messing with VDD_GFX on platforms with a GMU.
-> >>>>>
-> >>>>> Parts of the clock controller are backed by one of the MX rails,
-> >>>>> with some logic depending on CX/GFX, but handling of the latter is
-> >>>>> fully deferred to the GMU firmware.
-> >>>>>
-> >>>>> Konrad
-> >>>>
-> >>>> Please describe somewhere in the cover letter or the individual patches
-> >>>> how this relates to the responsibilities of the GMU. I searched for
-> >>>> "GMU" in the patch series and couldn't find any note about this.
-> >>>>
-> >>>> Also: How much is a plain "power on" votes (without a corresponding
-> >>>> "required-opps") really worth nowadays? An arbitrary low voltage level
-> >>>> on those rails won't be sufficient to make the GPU_CC actually
-> >>>> "function". Do you need "required-opps" here? In the videocc/camcc case
-> >>>> we have those.
-> >>>
-> >>> Right, I failed to capture this.
-> >>>
-> >>> The GFX rail should be powered on before unclamping the GX_GDSC (as
-> >>> per the programming guide). The clock controller HPG however doesn't
-> >>> seem to have a concept of RPMh, so it says something that amounts to
-> >>> "tell the PMIC to supply power on this rail". In Linux, since Commit
-> >>> e3e56c050ab6 ("soc: qcom: rpmhpd: Make power_on actually enable the
-> >>> domain") we don't really need a defined level for this (perhaps it's
-> >>> more ""portable"" across potential fuse-bins if we don't hardcode the
-> >>> lowest level anyway?).
-> >>
-> >> Thanks, I forgot that we have this commit.
-> >>
-> >>>
-> >>> However after that happens, the level scaling is done by the GMU
-> >>> firmware. This holds for allOf CX/MX/GFX. I'm not super sure if
-> >>> both MX and (G)MXC need to both be captured together - downstream
-> >>> seems to describe MXC as a child of MX (in socname-regulators.dtsi),
-> >>> but I'm not really sure this is true in hardware.
-> >>>
-> >>> The GPU driver currently first enables the GX_GDSC and only then
-> >>> does it kickstart the GMU firmware. Downstream seems to do that as
-> >>> well. So on a second thought, since we've not seen any errors so
-> >>> far, it calls into question what role the GFX rail plays in the
-> >>> GX_GDSC's powering up..
-> >>>
-> >>
-> >> It might play a role, but we wouldn't know since AFAICT we don't support
-> >> enabling the GX_GDSC. Look at the beautiful gdsc_gx_do_nothing_enable()
-> >> function, it basically just defers the entire task to the GMU. The GDSC
-> >> just exists in Linux so we can turn it *off* during GMU crashes. :D
-> > 
-> > OHHHHH snap! I, on the other hand, forgot we have *that* commit..
-> > 
-> >> I think we should identify precisely which votes we are missing, instead
-> >> of making blanket votes for all the power rails somehow related to the
-> >> GPU. In this case this means: Which rails do we need to vote for to make
-> >> the GMU turn on? If there are no votes necessary after the GMU is on,
-> >> it's better to have none IMO.
-> > 
-> > The GMU pokes at RPMh directly (see a6xx_hfi.c), so we indeed just
-> > need to make sure that it can turn on.. Which in short means the
-> > *C*X_GDSC must be able to power up, which doesn't have any special
-> > requirements. The only question that's left is basically whether
-> > MX_C must be on. I'll try testing that in practice.
-> 
-> So this is apparently difficult, at least on SC8280XP, where something
-> seems to be voting on MXC and it only seems to shut down when entering
-> CXPC. I would imagine/hope this is not the case on newer platforms, but
-> I don't have a way to fully confirm this at the moment..
-> 
+Hi,
 
-If in doubt, I would suggest to leave everything as-is for now until
-someone actually runs into an issue caused by this (if this is even
-possible). There are plenty other actual gaps to address. ;)
+On Sun, Jul 27, 2025 at 9:58=E2=80=AFAM Aleksandrs Vinarskis
+<alex.vinarskis@gmail.com> wrote:
+>
+> Timings taken from NV140WUM-N41. It is found in some arm64 laptops,
+> eg. Asus Zenbook A14 UX3407QA.
+>
+> The raw edid of the panel is:
+> 00 ff ff ff ff ff ff 00 09 e5 f6 0c 00 00 00 00
+> 10 22 01 04 a5 1e 13 78 07 8e 95 a6 52 4c 9d 26
+> 0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+> 01 01 01 01 01 01 5d 30 80 a0 70 b0 28 40 30 20
+> 36 00 2e bc 10 00 00 1a 00 00 00 fd 00 28 3c 4a
+> 4a 0f 01 0a 20 20 20 20 20 20 00 00 00 fe 00 3d
+> 4c 33 30 20 20 20 20 20 20 20 20 ff 00 00 00 fc
+> 00 4e 56 31 34 30 57 55 4d 2d 4e 36 34 0a 01 f8
+>
+> 70 20 79 02 00 21 00 1d c8 0b 5d 07 80 07 b0 04
+> 88 66 ea 51 cc 74 9d 66 52 0f 02 35 54 40 5e 40
+> 5e 00 44 12 78 22 00 14 7f 5c 02 85 7f 07 9f 00
+> 2f 00 1f 00 af 04 27 00 02 00 05 00 2b 00 0c 27
+> 00 28 3b 00 00 27 00 28 2f 00 00 2e 00 06 00 44
+> 40 5e 40 5e 81 00 1e 72 1a 00 00 03 71 28 3c 00
+> 00 60 ff 60 ff 3c 00 00 00 00 e3 05 04 00 e6 06
+> 01 01 60 60 ff 00 00 00 00 00 00 00 00 00 de 90
+>
+> Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> ---
+>  drivers/gpu/drm/panel/panel-edp.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/pa=
+nel-edp.c
+> index 9a56e208cbdd..b334926e96ed 100644
+> --- a/drivers/gpu/drm/panel/panel-edp.c
+> +++ b/drivers/gpu/drm/panel/panel-edp.c
+> @@ -1947,6 +1947,7 @@ static const struct edp_panel_entry edp_panels[] =
+=3D {
+>         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, "NT140=
+FHM-N47"),
+>         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c93, &delay_200_500_e200, "Unkn=
+own"),
+>         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200, "NT11=
+6WHM-N44"),
+> +       EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cf6, &delay_200_500_e50_p2e80, =
+"NV140WUM-N64"),
 
-Stephan
+Since this is a "guess" timing without any datasheet, I'd be more
+comfortable picking the most conservative of the "cousin" timings. Can
+you re-send with "delay_200_500_e200" instead?
+
+-Doug
 
