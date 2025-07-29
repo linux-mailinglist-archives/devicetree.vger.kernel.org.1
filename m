@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-200553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AACA1B151DC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:11:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88014B15222
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E214D543EC0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:11:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D76DB188CA3B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F5E27C162;
-	Tue, 29 Jul 2025 17:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80F6293462;
+	Tue, 29 Jul 2025 17:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzCoOhxb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eabzNBFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68F2294A02;
-	Tue, 29 Jul 2025 17:11:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B6B23DE;
+	Tue, 29 Jul 2025 17:34:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753809084; cv=none; b=Qw4v0S62kLojAh0nt7mXcbYp9LgWxt6365WzlkfZIE8TLVZaKHhRBtploNIrrgMMur4UwiGMACbMYePKQZ5wxXZ4F7Sfhi65QxNEW9qz3+2JRDw9UsYCjcp2qPEb10dl9m/DEWyAQpUiV6ej4eXamBV8tpsuVL0zrDy7UYqF+eI=
+	t=1753810449; cv=none; b=JIETLE5QhfwsyABMsREfJec/l8hFALBbEM4TCbU/1CH66JszEklWT56fxSrdevT3ArftEYdjUQURzlBFCVuXVm4fJCOCLKgFL4M0w1q9Fx81eSHicw0sojQ27hVANZDgHr20eR75i8C/0qVA2zG99WXnK2q8uSr23aS3Oo6wLmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753809084; c=relaxed/simple;
-	bh=p9rc1oOh9mm37WaFrFxx1IcalYyMV1uXikDiay6fcng=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oUxBTm009I8yS6ygtSpWIh40Qf0j93JUsnV/FsRUcP9b/5zykOxURDdY/nx8dK1F4GIAKs2q+TsG9JXHmRFijGGbahok08HGyYeFPBndqT1Z5SD7ywDClqsiPDhjN1iXbm8U7Ube/iakKUPizel66zaZ21Bw5dqHSemfyQc5n6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UzCoOhxb; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-455b00339c8so37141775e9.3;
-        Tue, 29 Jul 2025 10:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753809079; x=1754413879; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZANuYZ6czBvWFRoCbDeJ8Q3EHHGA34Yc3WGmzpGe3JQ=;
-        b=UzCoOhxbTo5/cKBhNalH3mVl3cUUDFjC8Fj8sB3AvPe5eB0OWLAIapDtJ9yzRokwRG
-         A9VSz6JV5VC6SXLP7MTNKvTZy2TavjOy78mY7q1NTboWmn1hgJ02Lc5JPRZXoeYFG49z
-         mICXPph7W1h4fnVgs06c68ZvPvDa/13wUXtFiDpbuA3oKuFXxYb8XYOm1LaJOA8DDdoY
-         XU2rBaFbC7bxqxCxzu4QiinXIIvaGLpYZdXI5p9DCsI0Y3L11iaaklyyBri3x+3sD38f
-         P6ZtuS1SWoytZojVFEhpoxK71HveAK48pUwjWTEik0juj7qzT7KPAOAPzee+so7Y2HIo
-         Y9CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753809079; x=1754413879;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZANuYZ6czBvWFRoCbDeJ8Q3EHHGA34Yc3WGmzpGe3JQ=;
-        b=izM4V4GLpYJm3XxUg8E0AsppDSDbGMmVod0szgmrjx7GCIgHAS4ZtndIj1kN57tFwl
-         uJWlNATM3JK5+2RUICCjo8QMPupskgvxaIMBZ/qV+w4PthvRXxya9KoSAPfgyiFTajMr
-         LW7xocJh5ON1DIw/K/ohnHnBU3ub2b+Xp8YnGJhDLJ2Is7HSQffDC6MxSgqVwIei72A9
-         f4fC0sDvO8H9oxhZ372oIX3NZYQqPYfLsqnWD4Eiv625yln+y6vfAtLYHg18eECWc9ZS
-         l/MNFau6nEjSZn+/rQU33biUtodKom1U5Q7gMx+8dvcSFMM41QLQOBFfGnfRqgxyARie
-         FS9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUjpEHYKbKJeTuW5afXR3k+fBZWNrau2JJ5rckzNsmCC9pXqRBWzuX+a9PezB+qNtmaHbrKhlFQIw+QhYEG6bk=@vger.kernel.org, AJvYcCUpkymGyOz8QLkFPzxUutWv0ZsHmM3d76pMetZNWVDhnu8kgoJR1e53rmgWYNLoaGrThQE9NWYqX8/IrZL3R60eP58=@vger.kernel.org, AJvYcCVmLW1IPO6xRxzyskIT4wrfrELGQ7Wy6IwKMV7onmex2fmWxrh4uP42ILvPl60hZJit4cCtZqRz1+Nl@vger.kernel.org, AJvYcCWcUu/GE7aI7QQtdl8zn06cP6ZZQfYXUT7WYhtQFkreT6BaTw70mkYezsNnrZe7BOx8EnIQ9UMOBQf94fcp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzq63drYHe35d+TTufHEMsr+FbOekvAwNigJuJjT3+tWcjGJTNp
-	N5iKzC1Rlbh44IieDnjlxDKkjZZmcsXy3QYSzTTjLPfVkIHSMprytmCzdMCSC+BSbJ83Qm++tje
-	0W6CUYxYfZluh+SfAmTQigaw3dhzWyfM=
-X-Gm-Gg: ASbGncszKvqW9BkLzqM8SiR4oIY9W5h5HzCUGEmx8EkGhKj/RRhcsGWi1f7U/zcV6VX
-	71sJYVILg6W3+HVWvpCNOGYTLr7NZRwoXSojcw2wAsSZpZeJIzlNVgcVLl4WCVRTrQGf+lobkgC
-	2tcO7gZ70dc0Q4fGK39XRPAHY5H86a5lEs2GJ2CiWqj+DEtqOcvmk049anlmsFCfOjvrlORFnoB
-	HabK1tv
-X-Google-Smtp-Source: AGHT+IF/DfK3nshDycMq33UF1s2J2fEP5HrKgoG4dERgRLP7hoScT2etRMMBfljpNxxXyX06f2h9MJRRvgEXxtQNjU4=
-X-Received: by 2002:a05:600c:3e0b:b0:456:1e5a:8879 with SMTP id
- 5b1f17b1804b1-45892b9c21fmr6418005e9.9.1753809078771; Tue, 29 Jul 2025
- 10:11:18 -0700 (PDT)
+	s=arc-20240116; t=1753810449; c=relaxed/simple;
+	bh=gqjJxvrbJzU+Y1NaVhsDYvQYmRoqY8d4rd0tdxvq+Yk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eakSyGE9z6MkG0gQ6NLc1peEB9jxmkIXZ0WSSxeupP/3QvmFcw0JfIisCzSOGBuQY0/Wk0U0BmrJ/lSsq/NJio0f93kABNiEU0mNxtn+32x97Z8Z6s4o1mtGLgDCRUVUg7hV+XGWo3u2wahHXY0pb7gzworRt4Fe2ka6z6d5KfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eabzNBFb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCAE0C4CEEF;
+	Tue, 29 Jul 2025 17:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753810449;
+	bh=gqjJxvrbJzU+Y1NaVhsDYvQYmRoqY8d4rd0tdxvq+Yk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eabzNBFbEPWmcOna09473itgkl4JYClURyCLK83NCanQbjgmk90/+qQJY4Atgytqj
+	 rYUAH1qzzNHxQd1yjgU2/kCgl6TPIO0Wi6V37MaKbNVUOxy/qtS4t1CB9eIOH0oS4+
+	 th0zFV34hG1n34QcTIOpj8/6/RppgfpxA9iciNRgDIeuFbjPW3LDT8Owui3zZXUiGi
+	 OuCfrzJ5zARMJfLQaie8aapd8hyBFJwp0TwOqaXm8sPlGpioGvKPZ6kOfwOJxDEW+Q
+	 agWpZZCjjMuS6hAMoOB2K03GV5vtXoQaE6RvdFwuB7KakvFjH9jFdBp8R7hMj5DJIz
+	 0fdzZucjTtp4w==
+Date: Tue, 29 Jul 2025 10:34:07 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net 0/3] Fix broken link with TH1520 GMAC when linkspeed
+ changes
+Message-ID: <aIkGDxstQ9Eimw4p@x1>
+References: <20250729093734.40132-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250729155915.67758-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <aIkAGUVGqLcFBoXo@shikoro>
-In-Reply-To: <aIkAGUVGqLcFBoXo@shikoro>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 29 Jul 2025 18:10:52 +0100
-X-Gm-Features: Ac12FXyEa0ifnr6d9GCkDPZ_PB-bEzB-WPz4FXCllKXUqrJbsHiXRLT3SSzwN2A
-Message-ID: <CA+V-a8s_3hv9z0HFKiUQ76d7FVJ+-vrLahhFVEafZbS3oO8iJw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] Add watchdog driver support for RZ/T2H and RZ/N2H SoCs
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250729093734.40132-1-ziyao@disroot.org>
 
-Hi Wolfram,
+On Tue, Jul 29, 2025 at 09:37:31AM +0000, Yao Zi wrote:
+> It's noted that on TH1520 SoC, the GMAC's link becomes broken after
+> the link speed is changed (for example, running ethtool -s eth0 speed
+> 100 on the peer when negotiated to 1Gbps), but the GMAC could function
+> normally if the speed is brought back to the initial.
+> 
+> Just like many other SoCs utilizing STMMAC IP, we need to adjust the TX
+> clock supplying TH1520's GMAC through some SoC-specific glue registers
+> when linkspeed changes. But it's found that after the full kernel
+> startup, reading from them results in garbage and writing to them makes
+> no effect, which is the cause of broken link.
+> 
+> Further testing shows perisys-apb4-hclk must be ungated for normal
+> access to Th1520 GMAC APB glue registers, which is neither described in
+> dt-binding nor acquired by the driver.
+> 
+> This series expands the dt-binding of TH1520's GMAC to allow an extra
+> "APB glue registers interface clock", instructs the driver to acquire
+> and enable the clock, and finally supplies CLK_PERISYS_APB4_HCLK for
+> TH1520's GMACs in SoC devicetree.
+> 
+> Yao Zi (3):
+>   dt-bindings: net: thead,th1520-gmac: Describe APB interface clock
+>   net: stmmac: thead: Get and enable APB clock on initialization
+>   riscv: dts: thead: Add APB clocks for TH1520 GMACs
+> 
+>  .../devicetree/bindings/net/thead,th1520-gmac.yaml     |  8 ++++++--
+>  arch/riscv/boot/dts/thead/th1520.dtsi                  | 10 ++++++----
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c      |  6 ++++++
+>  3 files changed, 18 insertions(+), 6 deletions(-)
+> 
+> -- 
+> 2.50.1
+> 
 
-On Tue, Jul 29, 2025 at 6:08=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> Hi,
->
-> >   dt-bindings: watchdog: renesas,wdt: Add support for RZ/T2H and RZ/N2H
-> >   watchdog: rzv2h_wdt: Obtain clock-divider ranges from OF match data
-> >   watchdog: rzv2h_wdt: Obtain CKS divider via OF data
-> >   watchdog: rzv2h_wdt: Make "oscclk" an optional clock
-> >   watchdog: rzv2h_wdt: Add support for configurable count clock source
-> >   watchdog: rzv2h_wdt: Make reset controller optional
-> >   watchdog: rzv2h: Set min_timeout based on max_hw_heartbeat_ms
-> >   watchdog: rzv2h: Add support for RZ/T2H
-> >   watchdog: rzv2h_wdt: Improve error strings and add newlines
->
-> Minor nit, but still: inconsistent prefix
->
-> I'd suggest to use "rzv2h" instead of "rzv2h_wdt" but it is ultimately
-> the WDT maintainers call...
->
-I agree, I will switch to using "rzv2h".
+Thanks for fixing this issue. I've tested this series on next-20250729
+with my LPi4a. I'm able to change the speed from 1000 to 100 and back to
+1000. The network continues to work without any problems through those
+transistions.
 
-Cheers,
-Prabhakar
+Tested-by: Drew Fustini <fustini@kernel.org>
 
