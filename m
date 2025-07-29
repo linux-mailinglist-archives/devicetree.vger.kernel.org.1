@@ -1,103 +1,139 @@
-Return-Path: <devicetree+bounces-200549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE9FB151AD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:52:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A4BEB151C4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B9B73BFCB3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:52:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A48B5164938
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25ECE289E36;
-	Tue, 29 Jul 2025 16:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B3B28EA72;
+	Tue, 29 Jul 2025 16:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="btbLX4Rb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlPT85UP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7954215191;
-	Tue, 29 Jul 2025 16:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A440934CF5;
+	Tue, 29 Jul 2025 16:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753807971; cv=none; b=ZLN4OqHLv5ibv/Pk5f+m2+4Syyi+QHaoB+pIggWXxGosQIPS2Muaq7HgVn7hh30rffX9TqUkv3i9rEs4GDJTREh8AbgcUkpi6C7+jdJ95RsvyHxh7cn+1jMZDILQ12DeYgrM4ozLWlZwn03vEVtrDo+W36JmtsnTg3VeSYs4yR4=
+	t=1753808300; cv=none; b=gsUYRTGPsfi5HYXpvsxuTxdpMM2cU1CedzTmqxG876qokUrKBjVvjDiQHRU05G7KpTyYMwUp1k1dD7sV8JkUX76QIKpAawh5EhwpTDtHnrEiyD2aAAFA78JpLrFoCtZwyO5dmOAoNGuR9mepb9WGQXppAe69bD3o9AeB1Z9OOh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753807971; c=relaxed/simple;
-	bh=1+WJoKvOdfzOnz1RyuC1YBVUXZTMqzeGGAA/TvJXqUA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cTFrN1nxi+FTA/8Rdn0ND8Tymi+SYS4AexO2NV9TaLjGpJxAsKaBAVO5dls6Wq34J4l2/u5ifxCOhgaeifemAF+bld3yIxVy9Rugm32ACyQoV+TsOC/OGrKIcpf53OCok4wviAnDnlrzOl0CCq53vLSYE078/9KJmIzLH1utxQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=btbLX4Rb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26906C4CEEF;
-	Tue, 29 Jul 2025 16:52:47 +0000 (UTC)
+	s=arc-20240116; t=1753808300; c=relaxed/simple;
+	bh=Hb9smdHf0g56CpF8sBWDOF38RasuaUJ0puvOlmqvOjY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=er+5L2nDPiY9Fiyz6XYKYSuc1tBDDs2MEzKbk2E5oc2WOJ51C5s6qxdsHFGAfoePLV9ccl2ezr2ZsJPZpdEkM1o4A6bwu3RJ/+VcmO0VeDzgiUNS/uPhW30dlpSEBSi83EZ98OY6u/B+g001MfyVDxyNIiwlgtt2Sr9k5cpgl+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlPT85UP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A35EC4CEF5;
+	Tue, 29 Jul 2025 16:58:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753807970;
-	bh=1+WJoKvOdfzOnz1RyuC1YBVUXZTMqzeGGAA/TvJXqUA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=btbLX4RbHSOMcsUr4iZDOea3Y4k2GBUPeIzw26+KEFSKPqrayPS9PC63lgeM4X5ez
-	 ZsPyokp5MO8phDwnn0naTN3LbiSzzjwakQDm/ZstFbl4Rnakom7ZLuASeQINcZkciq
-	 dfTfqyFbPzEyJ1cRCO5yRK9p0IV8E3+dTXua5m5XsUBelAj3F2jmlkhFhC15wNGoL8
-	 bwCVohXY51iRqj/YDgju/t504MQ/ySt7hf1CHhArZlOJQMfSiT+rL5cUJQkoXfauPS
-	 uWigBkP5VHqPShtBep3P3+oWl+Q4sho4+Syaa7NuV4ykOEoHwAZbxXdBaisaJ8hqOE
-	 L0BlEWpYabSMA==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: linux-spi@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Biju Das <biju.das.jz@bp.renesas.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250729145110.37258-1-fabrizio.castro.jz@renesas.com>
-References: <20250729145110.37258-1-fabrizio.castro.jz@renesas.com>
-Subject: Re: [PATCH v3] MAINTAINERS: Add entries for the RZ/V2H(P) RSPI
-Message-Id: <175380796790.160619.8661684220183752769.b4-ty@kernel.org>
-Date: Tue, 29 Jul 2025 17:52:47 +0100
+	s=k20201202; t=1753808296;
+	bh=Hb9smdHf0g56CpF8sBWDOF38RasuaUJ0puvOlmqvOjY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KlPT85UP6HQLETFTi6OtUJx9aRuyZBcfrc4BG0gLSetfvPPGD3huNlBLFo0yL5k22
+	 Mtx9Bqa1YmgYyOQeni00rZcMrLD1xMmj+A/AcO7/p2AZGoUM57od4OFqJgUlcbZPy1
+	 vwoHTTPkVS1J/e0Wea9moLyTMgW5hPt3gOmatUFpd7vYVdHguB+8uTPSslkTw2M+Nd
+	 AQ9lmMqb8djPioT5MzVN22+r099MIJTq6z508uKiDs1wcvKL++f6Yh4T1g5d9/PNTn
+	 kMtkM/iz68Sx+YMXAHzvOowhlMKSqVIczcTgLwLbXL7BKChTSMwB2V7Xl1e7J3sn/D
+	 v2qe7PZzt4j6A==
+Date: Tue, 29 Jul 2025 17:58:10 +0100
+From: Simon Horman <horms@kernel.org>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/2] drivers: net: stmmac: handle start time
+ set in the past for flexible PPS
+Message-ID: <20250729165810.GG1877762@horms.kernel.org>
+References: <20250729-relative_flex_pps-v2-0-3e5f03525c45@foss.st.com>
+ <20250729-relative_flex_pps-v2-1-3e5f03525c45@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cff91
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250729-relative_flex_pps-v2-1-3e5f03525c45@foss.st.com>
 
-On Tue, 29 Jul 2025 15:51:10 +0100, Fabrizio Castro wrote:
-> Add the MAINTAINERS entries for the Renesas RZ/V2H(P) RSPI
-> driver.
+On Tue, Jul 29, 2025 at 04:52:00PM +0200, Gatien Chevallier wrote:
+> In case the time arguments used for flexible PPS signal generation are in
+> the past, consider the arguments to be a time offset relative to the MAC
+> system time.
 > 
+> This way, past time use case is handled and it avoids the tedious work
+> of passing an absolute time value for the flexible PPS signal generation
+> while not breaking existing scripts that may rely on this behavior.
 > 
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c | 31 ++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> index 3767ba495e78d210b0529ee1754e5331f2dd0a47..5c712b33851081b5ae1dbf2a0988919ae647a9e2 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+> @@ -10,6 +10,8 @@
+>  #include "stmmac.h"
+>  #include "stmmac_ptp.h"
+>  
+> +#define PTP_SAFE_TIME_OFFSET_NS	500000
+> +
+>  /**
+>   * stmmac_adjust_freq
+>   *
+> @@ -172,6 +174,10 @@ static int stmmac_enable(struct ptp_clock_info *ptp,
+>  
+>  	switch (rq->type) {
+>  	case PTP_CLK_REQ_PEROUT:
+> +		struct timespec64 curr_time;
+> +		u64 target_ns = 0;
+> +		u64 ns = 0;
+> +
 
-Applied to
+I think you need to wrap this case in {}, as is already done for the following
+case.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Clang 20.1.8 W=1 build warn about the current arrangement as follows.
 
-Thanks!
+  .../stmmac_ptp.c:177:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+    177 |                 struct timespec64 curr_time;
+        |                 ^
+  1 warning generated.
 
-[1/1] MAINTAINERS: Add entries for the RZ/V2H(P) RSPI
-      commit: 926406a85ad895fbe6ee4577cdbc4f55245a0742
+GCC 8.5.0 (but not 15.1.0) also flags this problem.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Also, please note:
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+## Form letter - net-next-closed
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+The merge window for v6.17 has begun and therefore net-next is closed
+for new drivers, features, code refactoring and optimizations. We are
+currently accepting bug fixes only.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Please repost when net-next reopens after 11th August.
 
-Thanks,
-Mark
+RFC patches sent for review only are obviously welcome at any time.
 
+See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
+
+-- 
+pw-bot: defer
 
