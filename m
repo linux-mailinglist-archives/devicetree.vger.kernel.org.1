@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931C8B14DC0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:36:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5B3B14DD8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9E85167BB8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:36:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D04818A3418
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5CF28C2A2;
-	Tue, 29 Jul 2025 12:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294F779CD;
+	Tue, 29 Jul 2025 12:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNamvkee"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzb2elDO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1622877CA;
-	Tue, 29 Jul 2025 12:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FA96FC5;
+	Tue, 29 Jul 2025 12:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753792588; cv=none; b=UmgWehzUWnhHhqKE71kvAu4NzFrIi+GIrMPie1aBfUM8Emi2NtF9FC4bFBKqgXi2294Q0yQsUdR7aSvi/LjTGiP0PC60ELRnDHPFBQJEEbgcw+uAwBtAObko2dAt/p9rFLshCxYGHuNMpr4XpqK0q3Pb4ieTCxcJBBWrdJIVTkY=
+	t=1753793177; cv=none; b=gB8CLYLj3Sofd101E7i1+DOcYfR6H27/y9ZpHhedwBhGTV/n5zrKQhPcb6feTlZuG/24O2GSlh3hM4mqO+oMkKQ9xFa2tHMs2EatGDjDSAc+OxcsVRUH5rDBpUvp+SQOkNuBmszeF63GVEF8UTqw8eJyjXpyHcxMPcNzc3Xe/bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753792588; c=relaxed/simple;
-	bh=KUioZkFmFCXixlFHWSwnprwz8zjsEoKrfuLEveaWquE=;
+	s=arc-20240116; t=1753793177; c=relaxed/simple;
+	bh=3FiKmgyBfPSctVNUPnnNPqwAszKf1wXTxNmsvtqBL3E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ds7EdQgo/ada+zENBSwAZjHuz7cfaR1k0wi90+Vvink6X8RchGv4E1SMcih2iv9FA92QYcqBwVbeJwxughujcJWHgCF6/oZNo1uS/gjLKRJf91dpaDdvJ4KAGo1wkTn2ggVRe2k2CqaOpyO9fZw1V825FB2cAaFWY7uzhon9LWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNamvkee; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 465C4C4CEEF;
-	Tue, 29 Jul 2025 12:36:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qm9SRx0oT6/6kNzeHYet/DBjRLEwiHNbMIvTFadxgPtYLIVxnzSkfuYMpSrykhkTfmI5pGN89l19ZIofTPPqpyecm79ZD+rO+DnMTKE8U2kfDv274xko0yb2EJnRUztTXcjK1rtC04mTocO/KebNB2zkJmDbbirltUoA+j/TBI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzb2elDO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A22C4CEF4;
+	Tue, 29 Jul 2025 12:46:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753792588;
-	bh=KUioZkFmFCXixlFHWSwnprwz8zjsEoKrfuLEveaWquE=;
+	s=k20201202; t=1753793174;
+	bh=3FiKmgyBfPSctVNUPnnNPqwAszKf1wXTxNmsvtqBL3E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SNamvkeeo/dk+O/t5AGnym8piqOYFV/K6IMVBN6TuAZEuXDWjz42/tLal9oTbFsLQ
-	 i5qUK+QayStEN1nvLbZ0y81hJMGXoSBTR0xS+96tU8sIt7gQIZAZDl4CoQaWLVaxpk
-	 aaPgdqqZdkiUwrMMGNB3PtN5Zb9vrLirtVwIlKcWl1GGlSGh25lU9WTTzbB1hntELC
-	 oRKmeL0dt1/nr3hz0slcaDkrM4SMLlEfdxQLhl83TAjXjzyBb+C0Ga4NezZwi5Qks3
-	 friJts2hbQKdu3zjxEULxddKszvDEZwxdIb+riHy4/UFKyfupk1gCbzneP4UPt5tQW
-	 Y4d2HWm64l6EA==
-Message-ID: <e2dbef3b-89b4-41cb-b94f-9b432de36802@kernel.org>
-Date: Tue, 29 Jul 2025 14:36:22 +0200
+	b=jzb2elDOahGgR3ElnFNBybxDPyjq412+a+8Eg//EmCXY9TXD1P2L3KY7cghE5z0Wj
+	 d4EtrpKiVxdkrc+qIF/snyMPAfI95ab8WYWS06wOJKtoKlZiK8Bj/Z4MNSm2xqYhka
+	 rMl/pkSOLItTpu+8WRSQEqq9z7T3NGhe0o9irNGjkE32XbYMfcBJbAJ9GbOgmrUwMO
+	 g4uzITMBl+mesolE9EpmWfsJD0I8WLG9EtxrPlpUP43qxt9jCxw9klRLYYshNI13xH
+	 Yw07Pl5R65Btk4e2U+WIxAAQUInet/9zT0bPA/qxFlApYwkTe8P/0pCuCCpm6kOke2
+	 pj4I3AyVIUvDg==
+Message-ID: <c90da4f4-a402-43db-8375-575801ac2714@kernel.org>
+Date: Tue, 29 Jul 2025 14:46:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] arm64: dts: qcom: Add display support for QCS615
-To: Fange Zhang <fange.zhang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
- Li Liu <quic_lliu6@quicinc.com>, Dmitry Baryshkov <lumag@kernel.org>
-References: <20250718-add-display-support-for-qcs615-platform-v5-0-8579788ea195@oss.qualcomm.com>
- <20250718-add-display-support-for-qcs615-platform-v5-1-8579788ea195@oss.qualcomm.com>
+Subject: Re: [PATCH 3/4] spi: Handle spi bus extension
+To: Ayush Singh <ayush@beagleboard.org>, Mark Brown <broonie@kernel.org>,
+ herve.codina@bootlin.com, luca.ceresoli@bootlin.com, conor+dt@kernel.org,
+ Jason Kridner <jkridner@beagleboard.org>,
+ Deepak Khatri <lorforlinux@beagleboard.org>, Dhruva Gole <d-gole@ti.com>,
+ Robert Nelson <robertcnelson@beagleboard.org>, Andrew Davis <afd@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250729-spi-bus-extension-v1-0-b20c73f2161a@beagleboard.org>
+ <20250729-spi-bus-extension-v1-3-b20c73f2161a@beagleboard.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,36 +106,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250718-add-display-support-for-qcs615-platform-v5-1-8579788ea195@oss.qualcomm.com>
+In-Reply-To: <20250729-spi-bus-extension-v1-3-b20c73f2161a@beagleboard.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/07/2025 14:56, Fange Zhang wrote:
-> From: Li Liu <quic_lliu6@quicinc.com>
-> 
-> Add display MDSS and DSI configuration for QCS615 platform.
-> QCS615 has a DP port, and DP support will be added in a later patch.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
-> Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 181 ++++++++++++++++++++++++++++++++++-
->  1 file changed, 180 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index 142338069a74cc6c263e17d84efa22ccd0c26813..24299430b195026e896c365d80a0036713f00d35 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/clock/qcom,qcs615-videocc.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/gpio/gpio.h>
+On 29/07/2025 11:51, Ayush Singh wrote:
+>  	for_each_available_child_of_node(node, nc) {
+> +		/* Filter out extension node */
+> +		if (of_node_name_eq(nc, "spi-bus-extension"))
+> +			continue;
+> +
+>  		if (of_node_test_and_set_flag(nc, OF_POPULATED))
+>  			continue;
+>  
+> @@ -2541,6 +2549,23 @@ static void of_register_spi_children(struct spi_controller *ctlr,
+>  			of_node_clear_flag(nc, OF_POPULATED);
+>  		}
+>  	}
+> +
+> +	/* Look at extensions */
+> +	for_each_available_child_of_node(node, nc) {
+> +		if (!of_node_name_eq(nc, "spi-bus-extension"))
 
-Don't add completely redundant/unused headers.
-
-Drop
+Where did you document the new ABI? There is no DT bindings patch with it.
 
 
 Best regards,
