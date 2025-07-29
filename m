@@ -1,126 +1,152 @@
-Return-Path: <devicetree+bounces-200579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F5FB153F7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:52:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6126CB15402
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B4B15A2C06
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A707561255
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CF82550B3;
-	Tue, 29 Jul 2025 19:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D751029B8CE;
+	Tue, 29 Jul 2025 19:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SnPcwBOQ"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="xH6bv/Vl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A732517A5;
-	Tue, 29 Jul 2025 19:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1F6239E62
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 19:59:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753818713; cv=none; b=KEFm3Mt73Voo2so25F33JRnUvY2lJX9VE1FVqTxtt2yLm4+URS1TpHCB9yYpilFL3KAuFO7idI6z2FJMAYBnioO2orfb0lCL0T/wFH0l6ieA+1hwqAeVFYBwy+mbTQxz3ZxnmkFklFQDjAXV6vXhvsWI5nyfVXvP9B584JVYZY8=
+	t=1753819172; cv=none; b=IR2RmBLuIUSRsybiT/X9JECisOf+E7Jm4890P4OLR9Nj28KrsW5DU9KoT0aJ8lgbCTo3UrHsxnf01BcK4Qcrm9eSMLZIkWKC/O2ARn9lJTv3D31Ltyh/5ZhVe1QiJL9/NfFTXB+PvMZNky3xpo+7jl20m9pYT04ivzzolRTqK0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753818713; c=relaxed/simple;
-	bh=LvLZjqXdLZ/C3FmulEyHLqTLcLW07oR0bKRYVP6DKqI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LuVp7SKFt5bIDlDAvKIYjso8JIyNmGszN6ot/DfeqIR+0a1qF7RoxtpIH6lmsxC5huLWpgwame0St1ojHLRQGn+9n95rXMchZ/UbCB9RDzyFK8NDRRgmYDaydyqpb9GafaETWFmshAu9sZNma/f6eiGkbsHOk1m/WSjdYCYSSCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SnPcwBOQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3721EC4CEEF;
-	Tue, 29 Jul 2025 19:51:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753818712;
-	bh=LvLZjqXdLZ/C3FmulEyHLqTLcLW07oR0bKRYVP6DKqI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SnPcwBOQzBn4+S4EBwpCLTmaq6UTs8adnZNlj7tFpjfxC4mGyMdjnewASKXa1VElY
-	 bXq87b2+AhSznUbs0RN6cBlClgefmVLgz7bc1boIXWo2eYoN6ON5NlWmiEZI499PJC
-	 DfDLIDxq4q7mfB4aMVq6qT0xYuqFd2fQBVqWN0whf0jYkARh9uGNriMZAHHSRQRDR6
-	 P7UcM3YLkabTQwXdCmMh7G/XKZfS9NgGwhqof1XH3uzBsG++BG/EMe7yOS+PT7oEE3
-	 2boAI9A1Z7BCDz4lJ0I5ihRCpXvg/vkZAJTOcMBx81NH4Bb0lAUoEveW0T25gvZ20A
-	 6+5XznQqp9ufQ==
-Date: Tue, 29 Jul 2025 14:51:51 -0500
-From: Rob Herring <robh@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 4/6] of/irq: Introduce of_irq_foreach_imap
-Message-ID: <20250729195151.GB658914-robh@kernel.org>
-References: <20250725152618.32886-1-herve.codina@bootlin.com>
- <20250725152618.32886-5-herve.codina@bootlin.com>
+	s=arc-20240116; t=1753819172; c=relaxed/simple;
+	bh=AxtkY3zpWxRWMeZZ93rMiHKBDA4jBLbUFfRgPxvdCHk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=AjbJNBY/LOMYNvhf9pnm9KDbggbx389ZXJI6ujudUXQ34HcORoynDqoqfvK88jHA79WOmpkU1m1jqCuWvnUljvbuQIEDCPFZG7JpcHDFVj/+w1E/olLs4l1SOe4l5CNGqeupGMXvhccA6eLrTkjROJyJnlgcdwTvZYn0JIRbaeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=xH6bv/Vl; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250725152618.32886-5-herve.codina@bootlin.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1753819157;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=OcthrL0Xe+fdbwJ+7ct553yzhsg4eVUVDzsOcSB6eAI=;
+	b=xH6bv/Vl6xdZ1vLDAdzZn5s3YjOUgRr+1aTVe6G+zr84L6yRGGOVX8FLfWGaUOvAUNnlE8
+	OkJnIsxTPLgZPwebAIBIXU7JOWLjxBeLZadQnyYcyV+Y2Vfgkp+aCcSlX7UpwqmPpScSHw
+	YNl6ErX0r7qmEXJMigEFrzj+eF52Z8nbqK4AhrYbWaMXjiGQpixAa5p5AkJXzTjPk2TNKY
+	3CwvGNBQZyVzE5aSpvyt8P+KqlQRTV4IXH3fqrGTUEFoluwLKK8OInxSTONR6iuXkLLqf3
+	hlc1zw9l4s/WOFJWkT9fyDHI25o1uymTqosLMs6a2gIyxx6PNBl6s7qtaftYpA==
+Content-Type: multipart/signed;
+ boundary=2fd07b92180be8290edbe889ada7baa056994820fa28317a2cadcfeab9c7;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 29 Jul 2025 21:59:02 +0200
+Message-Id: <DBOSZZ7TMD2P.U0MGKUR3DXN@cknow.org>
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-phy@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v3 4/5] arm64: dts: rockchip: Add missing dp_out port
+ for RK3399 CDN-DP
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Chaoyi Chen" <kernel@airkyi.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>, "Kishon Vijay
+ Abraham I" <kishon@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Sandy
+ Huang" <hjc@rock-chips.com>, "Andy Yan" <andy.yan@rock-chips.com>, "Yubing
+ Zhang" <yubing.zhang@rock-chips.com>, "Frank Wang"
+ <frank.wang@rock-chips.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Amit Sunil Dhamne"
+ <amitsd@google.com>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Chaoyi Chen" <chaoyi.chen@rock-chips.com>, "Dragan Simic"
+ <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Peter Robinson"
+ <pbrobinson@gmail.com>
+References: <20250729090032.97-1-kernel@airkyi.com>
+ <20250729090032.97-5-kernel@airkyi.com>
+In-Reply-To: <20250729090032.97-5-kernel@airkyi.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, Jul 25, 2025 at 05:26:13PM +0200, Herve Codina wrote:
-> of_irq_foreach_imap is an iterator designed to help a driver to parse
-> an interrupt-map property.
-> 
-> Indeed some drivers need to know details about the interrupt mapping
-> described in the device-tree in order to set internal registers
-> accordingly.
+--2fd07b92180be8290edbe889ada7baa056994820fa28317a2cadcfeab9c7
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-I would like to see some existing user converted to make sure it works 
-for other cases.
-
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+On Tue Jul 29, 2025 at 11:00 AM CEST, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>
+> Let's make the ports nodes of cdn_dp in the same style as the other
+> display interface, and match the style of ports's yaml.
+>
+> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > ---
->  drivers/of/irq.c       | 70 ++++++++++++++++++++++++++++++++++++++++++
->  include/linux/of_irq.h | 11 +++++++
->  2 files changed, 81 insertions(+)
-> 
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index f8ad79b9b1c9..863b31eb3c1a 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -157,6 +157,76 @@ const __be32 *of_irq_parse_imap_parent(const __be32 *imap, int len, struct of_ph
->  	return imap;
->  }
->  
-> +/**
-> + * of_irq_foreach_imap - Iterate through interrupt-map items
-> + * @np: device node where interrupt-map is available
-> + * @func: function called on each interrupt-map items
-> + * @data: data passe to @func
-> + *
-> + * This function iterates through interrupt-map items and calls @func on each
-> + * item. The parent interrupt described in the interrupt-map item is parsed
-> + * and passed to @func using a pointer to a struct of_phandle_args.
-> + * Also the imap raw value is passed in order to allow @func to look at other
-> + * values of the interrupt-map (child unit address and child interrupt
-> + * specificer)
-> + *
-> + * If @func returns an error, the iteration stops and this error is returned.
-> + */
-> +int of_irq_foreach_imap(struct device_node *np,
-> +			int (*func)(void *data,
-> +				    const __be32 *imap,
-> +				    const struct of_phandle_args *parent_args),
-> +			void *data)
+>  arch/arm64/boot/dts/rockchip/rk3399-base.dtsi | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi b/arch/arm64/b=
+oot/dts/rockchip/rk3399-base.dtsi
+> index 9d5f5b083e3c..edeb177bc433 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-base.dtsi
+> @@ -618,7 +618,11 @@ cdn_dp: dp@fec00000 {
+>  		status =3D "disabled";
+> =20
+>  		ports {
+> -			dp_in: port {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +
+> +			dp_in: port@0 {
+> +				reg =3D <0>;
+>  				#address-cells =3D <1>;
+>  				#size-cells =3D <0>;
+> =20
+> @@ -632,6 +636,12 @@ dp_in_vopl: endpoint@1 {
+>  					remote-endpoint =3D <&vopl_out_dp>;
+>  				};
+>  			};
+> +
+> +			dp_out: port@1 {
+> +				reg =3D <1>;
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +			};
 
-The func callback is a departure from other DT iterators. Look at the 
-'ranges' iterator which keeps the state on each iteration.
+Patch 5 adds a single endpoint to dp_out (without a reg property), so it
+seems that #address/#size-cells is not needed?
+If you run ``make CHECK_DTBS=3Dy W=3D1 rockchip/rk3399-evb-ind.dtb`` it
+should spit out a warning about that.
 
-Rob
+Cheers,
+  Diederik
+
+>  		};
+>  	};
+> =20
+
+
+--2fd07b92180be8290edbe889ada7baa056994820fa28317a2cadcfeab9c7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaIkoCgAKCRDXblvOeH7b
+brfGAP91vbmzqtSHHq487babaTkFfCZ5yunCKjR4z8ny048RbAEAionq5YOmCJoU
+pi+lTvFwVYBJkyoMcr/Yv7tpfvlC2w0=
+=ePLo
+-----END PGP SIGNATURE-----
+
+--2fd07b92180be8290edbe889ada7baa056994820fa28317a2cadcfeab9c7--
 
