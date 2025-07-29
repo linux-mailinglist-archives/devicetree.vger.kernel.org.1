@@ -1,122 +1,143 @@
-Return-Path: <devicetree+bounces-200557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35E7B15250
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:46:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33612B1527E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:10:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E274C17D954
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:46:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E33CB7AAB1A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8CD22AE7F;
-	Tue, 29 Jul 2025 17:45:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0E8296158;
+	Tue, 29 Jul 2025 18:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c3Svszja"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="pjqDRtV9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048801A2390;
-	Tue, 29 Jul 2025 17:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCA62AE90;
+	Tue, 29 Jul 2025 18:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753811157; cv=none; b=CF8Ud+gIWT652tgaBMO9Lo0OwSe1jK8MPzxWyzitRlmtRywM0j18FWHHfpRxnT9k5TDxsgVeWFEvPXvPaDDtj2LYI2MAvStxh3PRRuDx+0vN/UFMhONwm9+oPIDN5SwV2TIucMCPZqQVT/FlMnhK040qUFMVTkI1PL2MRAU8cwE=
+	t=1753812622; cv=none; b=jUmaRqET3kDYwHrUQqtsH9nvvl39YmaUg1vjBPJ+gxrWhi02RhzYe2EaMJgCgn3/+fPlZSRrswuJJ+0Eyxs7y16i6cMY7RCmQVZdE9FQK5Q9tL8Nx9fmQWv67o9bXME+t0luc23st1n5YXhrXibi/WXRGr1pjSp2TQ5ipdhIrHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753811157; c=relaxed/simple;
-	bh=6qjTRlNG6mWLFC8VSGcpPLF+CAKlIypJQcDcbXR/Otw=;
+	s=arc-20240116; t=1753812622; c=relaxed/simple;
+	bh=9R39EpjRsrM9NBjuKWJ3b9Sl/p6l42CkUZtTPH9wn10=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DmGa0OYc1pFAOx8CohIBdagUp51W73ubtMzzV/YThjcQspoghfTJotjVJyu0rwrNxBNJSVQaFrg7vpgI7dkO0q5+AAUYwJm4sKGbQpDLEpe7Zo+DQZH1rxzGitCgOCdrMTyPczLtwD2hYfKvZw1ZcO3513oF+OEbCFzcIY3qIOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c3Svszja; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DEF0C4CEF4;
-	Tue, 29 Jul 2025 17:45:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753811156;
-	bh=6qjTRlNG6mWLFC8VSGcpPLF+CAKlIypJQcDcbXR/Otw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c3SvszjaScYVH2cxvcbjgFbZsEdyFYQ5VRKpfVXyjtjpt0htJIN4mtK1PpeCjDaTh
-	 /46k3styG6mmy/i/SG4QDXuWKob0spuXN4wa2XligKXGNHgB96bSxGvYpmq6t8R4lQ
-	 3LGJp2bUsAMQnQP3EpveRTed/HN+jVc+RK5Axje7AwxBXFws9gYtiLeuLNzj5ly+gV
-	 uF3n3MzkE5o6wlBHY3SHVPJTNsIdjDQ7x+AOQ6MLwrKSSv6sRiRAOhiPeIHS6WkQRB
-	 e9BWt/aD9VViGsaHwERb/lX7n67N7yX90TBLYrc9+y6SYEJx8Lmceif5xxNW4b++Vj
-	 0fP4QaRafx0fg==
-Date: Tue, 29 Jul 2025 10:45:54 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net 3/3] riscv: dts: thead: Add APB clocks for TH1520
- GMACs
-Message-ID: <aIkI0vHDD1CfxAkl@x1>
-References: <20250729093734.40132-1-ziyao@disroot.org>
- <20250729093734.40132-4-ziyao@disroot.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jZhnjSBdGopUCz+QixY9yzKmUbsi4eQjFo2Z+u9S1pnBeE+rmAml8qJseQT46GpHbS1RAGobnd6LuOf1uRkfhND3bUOj/RfxY3AZIQEc1xdC51cNwv6eXz/ewtwmpAFsqIa7IsXaCtatKQjQCfODyrA2cNujwrMp4ciExb/pLFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=pjqDRtV9; arc=none smtp.client-ip=67.231.149.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0425989.ppops.net [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56T8rttL032514;
+	Tue, 29 Jul 2025 12:59:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pps1; bh=7/Pov
+	LSJDwcXcsFbB5zYUztmeVGVrjtuuVCZP0SNRK0=; b=pjqDRtV9szxgrG13ps9Z1
+	aQjOtYZZYpc3dulaCGE7tLefRb5Xd6Jg/VIcPndsyGEObaU5HF+41tIp8eLv2g6Q
+	l7boOxdn4CuyChONS841A82Opskd6Zn2X+7xHDJ5K5xnmsgHETxrY1dor0701zAy
+	4YdcmXHUtK5HkIGYiPYvxk0MwPfqajncku/zWPUAB9F2+fnIokAzDGRxkA55vGnL
+	YHy2vhQ6+X5Ibef8mCLubp766hZDzjm1SrNkhgjX4XyCp4K6AURh3/JtiBXOmvkd
+	VdHy8/k9l2bYvnbKkrrvMz3XRoiLe5GYoohLz4tmfoByOMsWeFqSBM/SS0C1XjER
+	A==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 486fc9t4tr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Jul 2025 12:59:53 -0500 (CDT)
+Received: from m0425989.ppops.net (m0425989.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 56THvoMS011174;
+	Tue, 29 Jul 2025 12:59:52 -0500
+Received: from intranet-smtp.plexus.com ([64.215.193.254])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 486fc9t4tp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Jul 2025 12:59:52 -0500 (CDT)
+Received: from localhost (unknown [10.255.48.203])
+	by intranet-smtp.plexus.com (Postfix) with ESMTP id A3C553B4F7;
+	Tue, 29 Jul 2025 12:59:51 -0500 (CDT)
+Date: Tue, 29 Jul 2025 12:49:51 -0500
+From: Danny Kaehn <danny.kaehn@plexus.com>
+To: Willie Thai <wthai@nvidia.com>
+Cc: andriy.shevchenko@linux.intel.com, bartosz.golaszewski@linaro.org,
+        bentiss@kernel.org, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, ethan.twardy@plexus.com, jikos@kernel.org,
+        krzk+dt@kernel.org, linux-input@vger.kernel.org, robh@kernel.org,
+        tingkaic@nvidia.com, rastekar@nvidia.com, dkodihalli@nvidia.com,
+        mhn@nvidia.com, arundp@nvidia.com
+Subject: Re: Re [PATCH v11 0/4] Firmware Support for USB-HID Devices and
+ CP2112
+Message-ID: <20250729174951.GB4111945@LNDCL34533.neenah.na.plexus.com>
+References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
+ <20250729145350.3538324-1-wthai@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250729093734.40132-4-ziyao@disroot.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250729145350.3538324-1-wthai@nvidia.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDEzNyBTYWx0ZWRfX4bahBf2Pr8yR
+ E8kvaNmam2d+n5iPqgVzBQQZ5DRG46k9Gls+ZnerSOzCp1EOkv3fXXkavHKKfFF6h+yIKzIew4B
+ 0ALCHkAVY+XlnWphCyBdPHIP7wUbdkLo8FcgUacVtwaRswFTseWPcSGoppW6YhgCj0C3zQaDQ5b
+ D4FOLumU1ldGnss7P6FRBhHTSIu7hLQ2eeIMXYA23xJxssiQ6tgzwgGTqI8GjM5AGKUq/HPk1x9
+ wuTd9J6XDUrATehI0+Tml2IaNOlFEpVHwaqYG8FynEom8GYn8eWkALo6k206uDfd4oX1hiVwcFn
+ 2J1KfRo31yo/guD+ayJL3D27RKhynZVaM77zL3c9PJR6g2BCMIB/qF9PLhQdZLdhAYjkHt5gOYi
+ tMrYS2WYmuvbNxucPX1VHDnfjdmgniDndwlsBbRD59cBTpF02c+p4HId9/HRkswXrcfcByxZ
+X-Proofpoint-GUID: 312z6txhGSLceQEcODaSszh7lFLENVah
+X-Proofpoint-ORIG-GUID: bTmR2Lq0mhgR7NC8jNcJ94qoc4Du_vPQ
+X-Authority-Analysis: v=2.4 cv=ZtntK87G c=1 sm=1 tr=0 ts=68890c19 cx=c_pps
+ a=356DXeqjepxy6lyVU6o3hA==:117 a=356DXeqjepxy6lyVU6o3hA==:17
+ a=p-amL0WH6BgkGnzH:21 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10
+ a=weiHyVKbh4n8zbIAmYYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Reason: orgsafe
 
-On Tue, Jul 29, 2025 at 09:37:34AM +0000, Yao Zi wrote:
-> Describe perisys-apb4-hclk as the APB clock for TH1520 SoC, which is
-> essential for accessing GMAC glue registers.
+On Tue, Jul 29, 2025 at 02:53:50PM +0000, Willie Thai wrote:
+> Hi Danny,
 > 
-> Fixes: 7e756671a664 ("riscv: dts: thead: Add TH1520 ethernet nodes")
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
+> I hope this message finds you well.
+> Thank you for the patch set — it’s exactly what we need for the I2C-over-USB feature in our new products.
+> Could you please let us know when we can expect the next version of the patch set?
+> If you've paused work on it, we're happy to take over and continue from where you left off.
 > 
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index 42724bf7e90e..03f1d7319049 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -297,8 +297,9 @@ gmac1: ethernet@ffe7060000 {
->  			reg-names = "dwmac", "apb";
->  			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "macirq";
-> -			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC1>;
-> -			clock-names = "stmmaceth", "pclk";
-> +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC1>,
-> +				 <&clk CLK_PERISYS_APB4_HCLK>;
-> +			clock-names = "stmmaceth", "pclk", "apb";
->  			snps,pbl = <32>;
->  			snps,fixed-burst;
->  			snps,multicast-filter-bins = <64>;
-> @@ -319,8 +320,9 @@ gmac0: ethernet@ffe7070000 {
->  			reg-names = "dwmac", "apb";
->  			interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "macirq";
-> -			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC0>;
-> -			clock-names = "stmmaceth", "pclk";
-> +			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC0>,
-> +				 <&clk CLK_PERISYS_APB4_HCLK>;
-> +			clock-names = "stmmaceth", "pclk", "apb";
->  			snps,pbl = <32>;
->  			snps,fixed-burst;
->  			snps,multicast-filter-bins = <64>;
-> -- 
-> 2.50.1
-> 
+> Thanks!
 
-Thank you for determining that this clock is needed for the GMAC.
+Thanks for reaching out!
 
-Reviewed-by: Drew Fustini <fustini@kernel.org>
+Apologies, I haven't been working on this in a while, and have only been able
+to intermittently return to attempt to bring it forward.
+
+Feel free to take over and move this forward! I'm not sure what the protocol
+is for that, as far as changelogs and versions and whatnot. If your product's
+timeline for needing this mainlined is not urgent; however, I can prioritize
+coming back to this and having a v12 submitted, likely by the end of next
+week, to remove the overhead needed for you to assume ownership of the
+patchset.
+
+The last several versions of this patchset have all revolved around trying
+to get this change working for ACPI as well as DeviceTree in such a way which
+make the ACPI and DeviceTree interface/binding acceptable to their respective
+maintainers. With this latest version, it seemed that there was not going to
+be any consensus between the two firmware languages, so it seemed an entirely
+different binding/interface and corresponding logic in the device driver
+would be needed. This seems unfortunate, as it seemed the whole purpose of
+the fwnode / device_*() functions was to unify the driver interface to the
+firmware language used... but this is presumably a special case, being almost
+exclusively a device composed of different generic device functions...
+
+Let me know if you plan to take this over and if there's any
+documentation/context/test procedures you would need from me; else I would be
+happy to start moving this forward again now that there is someone waiting
+on it.
+
+Thanks
+
+Danny Kaehn
+
+
 
