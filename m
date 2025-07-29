@@ -1,138 +1,157 @@
-Return-Path: <devicetree+bounces-200516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F08B6B1504F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:41:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A100EB1505A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE6C44E75B0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:40:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04CDA188DA99
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F33529550F;
-	Tue, 29 Jul 2025 15:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DD2294A02;
+	Tue, 29 Jul 2025 15:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVSx1pgt"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iZQ1tSWY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30437293C71;
-	Tue, 29 Jul 2025 15:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B539546B8;
+	Tue, 29 Jul 2025 15:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753803639; cv=none; b=qEV7a83YQj/YBLDgGc2/gqfps6EYWPyX1E6BNFqFOIbzqRiEENs67ZBm30dpV45fuzZUYUwGHjDT0t1QGIwiAdxkOl2QB9uPsuEWPJp+2a04/qniTN+fmBasOY2gDDhN6lYeZl/OZX+6SLYFdHigbVN6Z++KVRl1pLDWgAB75xs=
+	t=1753803850; cv=none; b=JEbk/hKcr7gou7+IO8311KU9o3YeEPN6blpm3JauRRMhbckqgejAo1FscLAEAVQPgD+z30PM64PuWKbkLnYmb76sRk9vnygBz2hMDxEGxHQmGj6fD86zNqNd/IJtzQ5RsYgMbUZBp8jEJoWeaFQa/nBFDJmj2YMD/smZ1r+ubkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753803639; c=relaxed/simple;
-	bh=K25Kho8qsn1NdbvfhwmhShwU+hQrB/3WGuSSdzsp2jc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ipN6IvQR42wzw8UZL0zpicoWky5dDDlOteOhhd+4Rr26wJmlVKf0lhvrqgcdAvwQntrh2s7yIJU4hXQo/1bmyt0pfJkqbUkfAbgYG7tQMvLTI6c19++YvM/9DrheAQGNrnapp/eRx2f8AXLpK9Xu2ZBu7xr1svuHMMnU5xkbmnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVSx1pgt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A43F4C4CEF5;
-	Tue, 29 Jul 2025 15:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753803636;
-	bh=K25Kho8qsn1NdbvfhwmhShwU+hQrB/3WGuSSdzsp2jc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WVSx1pgtyP8XBALk7khnHjMVm0yRX2XLVy16XJhYTI43pS+e6WcUgpnT3zPewSi0a
-	 UR8IlFg2eEXwVa9KFMMW55elKybDXuw8+sILcJ6mx7r/L883egQUaBVBKuSGFfm3Fv
-	 0uBBGoqnEJLelLK83YdNNIlwXPzP7AVzeLXNW/Fi5YTr7ULkMS/NXYlbbMtOaCCm/f
-	 DronK5SWa/a3b6+fbY3PsPSxvVdnpI33wSKoivzXXP9F65xMTk2hWmCcLNCvnLYmn/
-	 /x4QxfGu8grB/q+EmqkgI0Ms+SMOUL+Gxtu77JdWxKhB1mQDrXRqdFWSThz6mJMBYs
-	 In0K3MrSKKZ+g==
-Message-ID: <3603a744-e898-49ef-968a-2388e14cae54@kernel.org>
-Date: Tue, 29 Jul 2025 17:40:32 +0200
+	s=arc-20240116; t=1753803850; c=relaxed/simple;
+	bh=S3+XNf1yB0GDaxhHAShTKUqmAkpZEnuxO7naqLjaIp0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=G92haavPdn3Blw0pzFoaIJNfCQkjmOrGth4FInzgIB7y0yB9lfcM0P3YH5qdA5exBCtBVbfBgn0Y3Eiu0GdXQEF8hnI4lPq7chT+Ossuw1lYcRMbIStZ8otPw8vEJSJA/EyKUAY0ENPrBsQ637ri9Wt5qD4BJNJeqISqKmVSfJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iZQ1tSWY; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 9266420231;
+	Tue, 29 Jul 2025 17:44:04 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id lVLsDY5o5ZQS; Tue, 29 Jul 2025 17:44:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1753803843; bh=S3+XNf1yB0GDaxhHAShTKUqmAkpZEnuxO7naqLjaIp0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=iZQ1tSWYX5L6Yo1i6M+b1Tm3/khKQdTTo1AkT+gqo0UvP8q0D0/XAKFELWuBZ0A5U
+	 cxunVuSc1jFRgl7lTjZA4lHi0ebzENkCXF4zD5BNTtL5rY/xm8yGg4fL4WHIFwTt1/
+	 4PYG0blQXlUpcNA5bR6tVoEGTizlXc02GI5ISZ8NurKzjobaBO65D5gJfgJARGOaKD
+	 E0AO5fEbhDT3Tur00p7H74RwpQohy3iSWq0jGqbS9Ph82/Bz3QG/Q4PtbpnW96pNP+
+	 ZQDHwPJuy38mM3y999pZDeU36pa/Pd4Gvz3c0Xu6FpB7Nw7BvEmTIbLG3IDymWrVAC
+	 8gmGiZmTNo/nQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: power: supply: Add Richtek RT9756 smart
- cap divider charger
-To: cy_huang@richtek.com, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1753759794.git.cy_huang@richtek.com>
- <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 29 Jul 2025 15:44:03 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 09/13] drm/bridge: samsung-dsim: increase timeout value
+ for PLL_STABLE
+In-Reply-To: <CAAQKjZMLMbwDVZRb5+Xb_5yz3AEP4uuzFJMuuZy9NFDu13VU5w@mail.gmail.com>
+References: <20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org>
+ <20250706-exynos7870-dsim-v3-9-9879fb9a644d@disroot.org>
+ <CAAQKjZMLMbwDVZRb5+Xb_5yz3AEP4uuzFJMuuZy9NFDu13VU5w@mail.gmail.com>
+Message-ID: <b732d2588112932ab399df47fb58e3f5@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 29/07/2025 06:21, cy_huang@richtek.com wrote:
-> +
-> +  shunt-resistor-micro-ohms:
-> +    description: Battery current sense resistor mounted.
-> +    default: 2000
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - wakeup-source
+On 2025-07-29 05:44, Inki Dae wrote:
+> 2025년 7월 7일 (월) 오전 3:28, Kaustabh Chakraborty 
+> <kauschluss@disroot.org>님이 작성:
+>> 
+>> Exynos7870's DSIM requires more time to stabilize its PLL. The current
+>> timeout value, 1000, doesn't suffice. Increase the value to 3000, 
+>> which
+>> is just about enough as observed experimentally.
+>> 
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>>  drivers/gpu/drm/bridge/samsung-dsim.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c 
+>> b/drivers/gpu/drm/bridge/samsung-dsim.c
+>> index 
+>> fb2cb09cfd5a4f2fb50f802dc434c0956107b4e9..4b49707730db76aa8fd3ab973b02507436750889 
+>> 100644
+>> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
+>> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
+>> @@ -755,7 +755,7 @@ static unsigned long samsung_dsim_set_pll(struct 
+>> samsung_dsim *dsi,
+>> 
+>>         samsung_dsim_write(dsi, DSIM_PLLCTRL_REG, reg);
+>> 
+>> -       timeout = 1000;
+>> +       timeout = 3000;
+> 
+> Relying on an implicit loop to wait for PLL stabilization is not an
+> ideal solution.
+> According to the datasheet, this can be addressed more explicitly by
+> using the DSIM_PLLTMR (PLL timer) register instead.
+> 
+> By configuring the pll timer field in DSIM_PLLTMR appropriately, we
+> can avoid arbitrary loops.
+> For example according to data sheet:
+> If the APB clock is 80 MHz and the desired delay is 20 µs,
+> the pll timer field should be set to:
+> delay_time * apb_clock = 20 * 80 = 1600 (0x3E80)
+> 
+> Once this value is set and the MskPllStable field in the DSIM_INTMSK
+> register is unmasked,
+> the pll_stable field in the DSIM_INTSRC register will be set after the
+> specified delay (20 µs in this example).
+> We can then check this field to determine whether the PLL has 
+> stabilized.
+> 
+> While the current patch relies on an implicit method, I’m fine with
+> merging it as-is for now.
+> However, since this patch series likely has sufficient time to
+> mainline, I believe this is a good opportunity to improve the related
+> logic.
+> 
+> Would you be open to trying the approach described above?
 
-Why do you require this? I cannot find any use of it, so maybe I missed
-some change in Linux code (and that's second question like that for
-Richtek, so refer to your other patchsets for contexr).
+Interesting. I will try implementing it sometime in the near future.
+(can't commit to it at the moment, preoccupied)
 
-> +  - interrupts
-> +
-
-Missing ref to power supply.
-
-> +additionalProperties: false
-> +
-
-unevaluated instead
-
-
-Best regards,
-Krzysztof
+> 
+> Thanks,
+> Inki Dae
+> 
+>>         do {
+>>                 if (timeout-- == 0) {
+>>                         dev_err(dsi->dev, "PLL failed to 
+>> stabilize\n");
+>> 
+>> --
+>> 2.49.0
+>> 
+>> 
 
