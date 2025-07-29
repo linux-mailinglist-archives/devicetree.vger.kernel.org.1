@@ -1,342 +1,114 @@
-Return-Path: <devicetree+bounces-200422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA043B14AA9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03ACEB14AE3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B1191890A0C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A4C11AA2583
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF3328724A;
-	Tue, 29 Jul 2025 09:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9872868AD;
+	Tue, 29 Jul 2025 09:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="d3kE2Exq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YduF7GV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ACD928724F;
-	Tue, 29 Jul 2025 09:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76670264A60;
+	Tue, 29 Jul 2025 09:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753779701; cv=none; b=X6vhyL5dQiPt9ko23iKDAvayd8t2MgEPw4npC4DWvxcHrGYbr2AW7Ok9/a7Dy+ycaKgbF26Sc4QGUGgOd2UJYBDy2di3P8dUAbBBpE7NDWEqXznmqPN2gvcHA7Zo1ImZ9aMhFarIRSLL83mdNU9Zo7oejLbBr88Bzbdxpj8+0o4=
+	t=1753780438; cv=none; b=alaObczaezffRAREta67H63fwGM907bZLjGbq3MEw+9XsGr8BXDZE1LWsu2R/JWlXPdn9HYhCwCELEOc7pirQq//ahPbqoAz+iXA4+Xldt/0XuvAmwS5sgahNxf8wybWUnVVgWwwxY6yuzXE6GnNbByGYqdIqhHrHXOGDNBX4eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753779701; c=relaxed/simple;
-	bh=pcrpufKXiwpLeztAqfrGiC6oceMtOOt8LO5zA+Q97Vw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=DADrhFaOOxcWQh0IRDn6TGNkm+heB9/0W3ELr/UCaCUgZHZE7c4+AFNwM5tPnegI4XcPEEW06MLNj5vikj8eA/5hUarm7lSxbJPs4xyoIXLhSjShkHDvNnBz9d6yhR+XjhUDVOmae2JsrFgupRIDgy5HCXfFZFhTH56GfSFYuMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=d3kE2Exq; arc=none smtp.client-ip=54.207.19.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1753779665;
-	bh=dtZ8M9ETu2w0tZGRmT7fZPAaZFUL2JXhMvCbISuY7ec=;
-	h=From:To:Subject:Date:Message-Id;
-	b=d3kE2ExqE0y71lJxb6+MrK441CjkBOb4lsga4nAYSF2DqzYuo11T1K8igF1UVW0k0
-	 8Iwni/SxQNSWm6AOaJc+lgfY2OMpCxvw7CENaKRsl4Y7MZBWljRKc55L0tUElIUGuf
-	 26h5IcKzoU5LvhigWEWStvOi31aG6PmTtQ6HbMbs=
-X-QQ-mid: zesmtpgz1t1753779658t6c34df16
-X-QQ-Originating-IP: ccvnQl2r3lBFVqXjPv6mrz6606tw2gXyLioL8U8B5zk=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 29 Jul 2025 17:00:56 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5067649708474818546
-From: Chaoyi Chen <kernel@airkyi.com>
+	s=arc-20240116; t=1753780438; c=relaxed/simple;
+	bh=H0NQBYVHTmZzarqDz2wS/1YJiTdprgg2acyD5u6hl2k=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=RMOOXjiDThzJn2f7pyysjIrT43sfxvJLaXLFkgglIbJUdfumtp/FPnMqwnUFaO0W5S+9qbtoXkS7CL1YIe2a/Mi96J8Io6atitQfqG3HOSgYWLiTNwp1vyO+dpdBDqDHEfBvJOyPobH7kQUdrn7ha1LXJ/edkJaPZsDUFSlcFIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YduF7GV+; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7682560a2f2so859758b3a.1;
+        Tue, 29 Jul 2025 02:13:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753780436; x=1754385236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SQyxRL212NH2CE2dAFaZIS3vSFyJbqnMjH8EoS/AicY=;
+        b=YduF7GV+0UCRFtaeUfW5gknFN3BAbHW9MFC59IQVVVjJKRVErhOE0RFHLbKrqNErPn
+         JNOKfnym0PjTP97luM3S6I4bZsfh9GxCK3Fa/CCVPuoxzOleofH8aL179bLbmGOHq3bi
+         9+wnsgaIUtydgqEQk0KFa0nN9PXCf85+Y8UP9s0eVYGhym3U3JzZn5uBGuSfw5F712CT
+         4JHt/Si7+MJdalKVjHqA6+3UQN0vNvdkYu3u7sw0mxP5O56jHa2N7fVBjL1JIzSEkVKq
+         rd+dmccBZf4hAoF23PlFqz01O0zD5Banqi3X48omZz3pKtZlN6VhVY64jKO1IkZzUT4Z
+         /zwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753780436; x=1754385236;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SQyxRL212NH2CE2dAFaZIS3vSFyJbqnMjH8EoS/AicY=;
+        b=YIRAXMIrJ17afsbcv750xp2WililgexJK1eZq05cyu8jUSbA7b07WINB1w/cSNP6Pq
+         gdXAnv0TKJwpSPfvDZIXLWlpcKUdc7JY9IbSP1a9v2Eahfq6cOhH1b8STBxHIoSuXCkn
+         Au4e23WWxXPPrH9flZcGy8I1Dy3BOLuqfmcycUl1MHpqpHxXaShdGU7b8ElYg0mzrYKH
+         1t4gXsO17jrqK5Hk2RtmAVe0Gs5j8mR4FM6mP56WsZ9NdGVLO1D0e2yVUcBEE9MO8Yj3
+         hxSSuDketGLrhTbjNYSDYQcQ3rUmdhJv9/8aVSxhl5Gz2E/UPabSf3zSSeGe3zJ8XTHr
+         7KTw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrmhDMB/KUs5fedmU7R8Aey155goLy1LcJIUnYfRRkeBLKVt1ewiX9U8rwYRp8l/AGzINXrkvp2h5B@vger.kernel.org, AJvYcCXrQ7YefE7leLnZxRx1WOfAMQByDBky3iVdqO+saXcnKvzBz4lLBn6ofzqQ0OMqC/lYwke1ddXRVTcGGf34@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywd0eydGsskaJeqQfAQIQ7GQLNFWtaLACFU4XHoh7x54eHQfJzR
+	1b7sbYUjNbeKR2/6SA2aKsHAFP5X58eXpLjql+tiEToHHj02Jz4f6C15
+X-Gm-Gg: ASbGncsTmeezOZyePQHtr4ckgg1R8nHYyBecOLAt9Ek0ETsMtXc445OmClmggYSiUNi
+	4wLC/YrL4AllcquNh9n4O7TpQP7Wvt9PrnttNiDj8Mxa5gSKIFFZJt1fE+exF4Xitl7fo/w/QaX
+	k5Hnsy7/NEz0BOja6gqLkF3EEn2V8e42mcF/8uwLfeB4MnJhurZrvEB8ve32LEnu4QkWj8l9OWv
+	DGl1ww8tv91aHJ/gTXu0FdwpZs+/+xDnsxbxMmvWnbs/rCe0PDHtfNM/hR8POGHPrU+EGvANhRe
+	D6Tw3du/fRYPRVbdICg2rAWJv8BYk2DorFjTRPzAdrLDE36c8uAbm+sjwuuHrmPxTFkiA4rlaKF
+	0Ca+RpT0mK0pOrQG2mJq1JAtfNYexrz0f/8ZG1HiwUHwaXzYP2Xn/7aUfkNwWRflFFDnli4aI8k
+	9hm9Q+NVquBSh+d4PyPz09R1WjQaRGGKgUCQHhqta88qawPD49956+tSl1Pw==
+X-Google-Smtp-Source: AGHT+IEF+2Zavb47/riBr9cIbA+jDv2YfAkypoAz4HCbP7aW46kup2+kr9hS5IwmTEmyf3wzvvaWQg==
+X-Received: by 2002:a05:6a00:759a:b0:748:e2d8:100d with SMTP id d2e1a72fcca58-76967298756mr3498076b3a.8.1753780435773;
+        Tue, 29 Jul 2025 02:13:55 -0700 (PDT)
+Received: from fred-System-Product-Name.. (2001-b400-e38d-c586-0429-5c72-053d-8858.emome-ip6.hinet.net. [2001:b400:e38d:c586:429:5c72:53d:8858])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7640b8b06ddsm7528612b3a.121.2025.07.29.02.13.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 02:13:55 -0700 (PDT)
+From: Fred Chen <fredchen.openbmc@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
-Date: Tue, 29 Jul 2025 17:00:32 +0800
-Message-Id: <20250729090032.97-6-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250729090032.97-1-kernel@airkyi.com>
-References: <20250729090032.97-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NXAwOXNh0CeG7jbNHxcElhLVrQfFYAhqdTEs4V/ZTJBVwCx78nClAISt
-	87x66kFyoY2+adZbOH0TJrpSY70cn3c8JzkcDdEVpPvOYBr4sMNodopvpjQa1iGbIkYVMYh
-	ANyNq9yd5G1YavWHVwzlG83I/0+tuDX53KtUlvzKfEHprVAscENVEp0/pQET801+ZeVo/99
-	kTrlSeR8nYunJahmpIxoHwT0XnapI3SFd8y8frX+U1vxD+HHSkReXK1mLPc/uvwwZ7rmVqT
-	ZMvD98EFe4IbDCmiTtasfklY3LLmlpLmTusKhI86xbH6MOueKHPU4BPObDSctlM77AZHBCZ
-	g3R3nIrlgZpFciyAKrsrm7F+duztFHUu/cuE+PJwk4qckjPYPpdYo3S14PStSocbl0nDT3r
-	K9w9EkSvuySdf6F6e2uTBoHmhOG/DaOTHNgObHTv9/c9s0O72dYtNTfdM9+UQmvqwGDHndl
-	/EHAlG9lcv/PvC12v31+y5ze1IpfCgzCX8LL2+t7rVLVA2BfbBkXNzFuDxVpfE+IidGz4qa
-	vCElrqca+fghYJu6u3UKkoPp33kcGe4102PP+LKJokjjxCKYM4v95FOMemVITHBhyC8YF2A
-	uC+64zpT+3Vj8/iVtcPJyvLKhkH0r9n3dueRwZt87LvPVYE2CvkYNEefu+nxJBMHgpY2eip
-	oZbZktGd4v7T/Vn86VopyXg6K/Ja2vYi3m+NLk6DcFOMCX0soA9MYlruujE6r09WzmrOhCM
-	9bYwZ1tMgo4Z8umYhitW5/NFvvO+3f7hOc8qWylk2vXGmDiZUynGhV4h63xouSacnwWSuwl
-	U1y+juTgzE1LW2an7KiCDHiEwQ6KO0zQZOAR5zIbfvRQ9dSpviTiQH8ygpRQrsYM+GkAkvI
-	Zyi+JKnHLHX3pPDicPWKVpXVmXZ/KTyagxAO/y3cUUm/50ZHyCaKF3LKcRmlP0mYoPSsr/s
-	lSkxQVwVh3XwOSZAPg/9+ApZEfXt9b87w/D+YhNzDyafTqZBxHjSkYAD0
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] Revise Meta Santabarbara devicetree
+Date: Tue, 29 Jul 2025 17:13:42 +0800
+Message-ID: <20250729091351.3964939-1-fredchen.openbmc@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Summary:
+Revise linux device tree entry related to Meta (Facebook) Santabarbara.
+- add sensor nodes for extension board
+- add mctp node for NIC
+- adjust LED configuration
+Base on branch for-next
 
-The RK3399 EVB IND board has a Type-C interface DisplayPort.
-It use fusb302 chip as Type-C controller.
+Fred Chen (3):
+  ARM: dts: aspeed: santabarbara: add sensor support for extension
+    boards
+  ARM: dts: aspeed: santabarbara: Enable MCTP for frontend NIC
+  ARM: dts: aspeed: santabarbara: Adjust LED configuration
 
-fusb302 chip ---> USB/DP PHY0 <----> CDN-DP controller
+ .../aspeed-bmc-facebook-santabarbara.dts      | 840 +++++++++++++++++-
+ 1 file changed, 839 insertions(+), 1 deletion(-)
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
-
-Changes in v3:
-- Fix wrong vdo value.
-- Fix port node in usb-c-connector.
-
-Changes in v2:
-- Add endpoint to link DP PHY and DP controller.
-- Fix devicetree coding style.
-
- .../boot/dts/rockchip/rk3399-evb-ind.dts      | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-index 70aee1ab904c..aeeee6bd2973 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-@@ -4,6 +4,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/usb/pd.h>
- #include "rk3399.dtsi"
- 
- / {
-@@ -19,6 +20,21 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	sound: sound {
-+		compatible = "rockchip,rk3399-gru-sound";
-+		rockchip,cpu = <&i2s0 &spdif>;
-+	};
-+
-+	vbus_typec: regulator-vbus-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_typec0_en>;
-+		regulator-name = "vbus_typec";
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc5v0_sys: regulator-vcc5v0-sys {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -31,6 +47,11 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 	};
- };
- 
-+&cdn_dp {
-+	phys = <&tcphy0_dp>;
-+	status = "okay";
-+};
-+
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_b>;
- };
-@@ -55,6 +76,12 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_l>;
- };
- 
-+&dp_out {
-+	dp_controller_output: endpoint {
-+		remote-endpoint = <&dp_phy_in>;
-+	};
-+};
-+
- &emmc_phy {
- 	status = "okay";
- };
-@@ -341,6 +368,71 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	i2c-scl-rising-time-ns = <475>;
-+	i2c-scl-falling-time-ns = <26>;
-+	status = "okay";
-+
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus_typec>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 2500, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 1500, PDO_FIXED_USB_COMM)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0x00001c46>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc_hs: endpoint {
-+						remote-endpoint = <&u2phy0_typec_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc_ss: endpoint {
-+						remote-endpoint = <&tcphy0_typec_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usbc_dp: endpoint {
-+						remote-endpoint = <&tcphy0_typec_dp>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2s2 {
- 	status = "okay";
- };
-@@ -354,6 +446,16 @@ &io_domains {
- };
- 
- &pinctrl {
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vcc5v0_typec0_en: vcc5v0-typec0-en {
-+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -400,10 +502,48 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&sound {
-+	rockchip,codec = <&cdn_dp>;
-+	status = "okay";
-+};
-+
-+&spdif {
-+	status = "okay";
-+};
-+
- &tcphy0 {
- 	status = "okay";
- };
- 
-+&tcphy0_dp {
-+	mode-switch;
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tcphy0_typec_dp: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc_dp>;
-+		};
-+
-+		dp_phy_in: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_controller_output>;
-+		};
-+	};
-+};
-+
-+&tcphy0_usb3 {
-+	orientation-switch;
-+
-+	port {
-+		tcphy0_typec_ss: endpoint {
-+			remote-endpoint = <&usbc_ss>;
-+		};
-+	};
-+};
-+
- &tcphy1 {
- 	status = "okay";
- };
-@@ -418,6 +558,12 @@ &tsadc {
- 
- &u2phy0 {
- 	status = "okay";
-+
-+	port {
-+		u2phy0_typec_hs: endpoint {
-+			remote-endpoint = <&usbc_hs>;
-+		};
-+	};
- };
- 
- &u2phy0_host {
 -- 
 2.49.0
 
