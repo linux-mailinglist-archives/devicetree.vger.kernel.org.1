@@ -1,233 +1,110 @@
-Return-Path: <devicetree+bounces-200340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A683DB145F5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:50:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F955B14639
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 04:31:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75D71AA1A42
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 01:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A38F16A723
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 02:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6C116F0FE;
-	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BCD20E6F3;
+	Tue, 29 Jul 2025 02:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2jv1SWX"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LD/lu15g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CDC10957;
-	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99678202976;
+	Tue, 29 Jul 2025 02:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753753849; cv=none; b=nLVDEMFEd/EDeGozpyrym0iiXiS3tl2qR5PUI6DVbywRwCivW8BUgL9T7asYhw445HSrFkwAgo+aq1Sh3Tq4hIWgQvqicSGr3EbZONc0zxXrkSobxqAfbuX6dAAf51tDWXN00iSkITqqE6Ylb0DP0SBIg+G32PSG+rLOL8Vt4aw=
+	t=1753756307; cv=none; b=gDjiJdmRyBSBuu2+Mx5kkd/m/DqTPe6K1zgC5RftbQWOQuMk+wz2tEPQ6Tpzuofy0a/EpYO2nXp7GU/JSHBE2yxzGQ79iR0Tdje2bVZpwGTUccxcvSt0qbabOuM3zk+fnbOdCfXkS1QXpfw+DLc7TiyZIPfQnTcHdraUE+i1rv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753753849; c=relaxed/simple;
-	bh=ZJHFmzIPr8ML5NGJayIIymS18ptTL0fxQguqCZMVGR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=gVDZYhdorjvVtJ6x5lRxFxR+A+h0TROxcGxR0opceXM+FISbr6edz5gzA03bRtSOiXkuU60h8i3zTS1QAO2XoTvh1chDbkCNQOy/poZL1/j7fzCY1vTrpcPyrHMeekf9+U2XXmeAZrbd6iYHUlXlovjh9QXgnrXYuCdhP7kq5UE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2jv1SWX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B974C4CEE7;
-	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753753849;
-	bh=ZJHFmzIPr8ML5NGJayIIymS18ptTL0fxQguqCZMVGR4=;
-	h=Date:From:To:Cc:Subject:From;
-	b=B2jv1SWXMFVKYdow0z6X+R3YMQl0l+mo1si6bJPUAYs8EMc6pQo0M5YJMTU1A+Ivb
-	 ED4C2XVRkyQvOEOmyxPIUc0p4CAWraqAxQqrZ24MuN9FX+zJjaGQH/6lrLyw0+tgxD
-	 NurkqN8AmsoWY4ATiMxo0s/ZwRYpwXh4EhryfzLFKVSVmgS+h5I09IhhxpqmUtqFy8
-	 xW46CzE+iAfdtO91iYrYiv00uWC6d2El6scbhq1/joQscOsbeaQKzi2elXwPhf4UjT
-	 uXHbI3vaAZNYNVi6UOuw7nEnVTsWa4g/tBjqcZNMiUKAI267tAawqUlnLgp56JpmYW
-	 Q9dkzKsLNZ++A==
-Date: Mon, 28 Jul 2025 20:50:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree updates for v6.17
-Message-ID: <20250729015048.GA235874-robh@kernel.org>
+	s=arc-20240116; t=1753756307; c=relaxed/simple;
+	bh=VpfO5jq7Rgl2P01yNdb0ZVD+vXm7aa9G8GSDFv0LnzM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZBxiuqYHWhjD/sxIn8DFWVdoZVAehSHGiwSl9PHqcL8/84R/omQkoTUSwHvcmEaOvrF30iabtzZ74L5pngH1RmTMGCKOmDAnRm7sTzoNgx3D08a/USXtSNoNcPnhwLBdthatTIhssZa7m/YtwHBz25uK3Gk/XhLx9+2aNDn1wkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=LD/lu15g; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 235ecafe6c2411f0b33aeb1e7f16c2b6-20250729
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=41rw4LISPl+iO7NfLc3Ar1MC/dnrRsPRo+py+vvxe0E=;
+	b=LD/lu15gcYba++9X9lodLeKiqr1jW3FCU+NThFwCj3IqedqH48AQbiuTRbDwfD5l1y2H6h8RIbu1CojLOaAaCRl9J9ppNVAWpwWJ5Uzg8dauYQI7fl7hbd/JHTrS3RF3vSuB1JxYnNDh//9n2gIGJdyMJrc7AJgKEx300tXGMj0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.2,REQID:c2b87ee7-51db-411c-abc1-436b28e4f5d4,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:9eb4ff7,CLOUDID:0b095950-93b9-417a-b51d-915a29f1620f,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|15|50,EDM:-3,IP
+	:nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
+	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 235ecafe6c2411f0b33aeb1e7f16c2b6-20250729
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+	(envelope-from <huayu.zong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1901018978; Tue, 29 Jul 2025 10:31:31 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Tue, 29 Jul 2025 10:31:30 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Tue, 29 Jul 2025 10:31:29 +0800
+From: Huayu Zong <huayu.zong@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Tinghan Shen
+	<tinghan.shen@mediatek.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<--cc=Project_Global_Chrome_Upstream_Group@mediatek.com>, Huayu Zong
+	<huayu.zong@mediatek.com>
+Subject: [PATCH 0/3] Add support for MT8189 SCP and device tree bindings
+Date: Tue, 29 Jul 2025 10:31:10 +0800
+Message-ID: <20250729023125.9036-1-huayu.zong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Linus,
+  This patch series adds support for the System Companion
+Processor (SCP) on MediaTek MT8189, including device tree
+bindings, dts node, and driver support.
 
-Please pull DT updates for 6.17. There's a couple of trivial conflicts 
-with GPIO and MFD trees in trivial-devices.yaml and MAINTAINERS. 
+---
+This series patches dependent on:
+[1]
+https://patchwork.kernel.org/project/linux-mediatek/cover/20250718075630.644870-1-sirius.wang@mediatek.com/
 
-Rob
+Huayu Zong (3):
+  dt-bindings: remoteproc: mediatek: Add binding for mt8189 scp
+  arm64: dts: mt8189: Add scp node
+  remoteproc: mediatek: Support MT8189 SCP
 
+ .../bindings/remoteproc/mtk,scp.yaml          |  2 +
+ arch/arm64/boot/dts/mediatek/mt8189-evb.dts   | 17 +++++++++
+ arch/arm64/boot/dts/mediatek/mt8189.dtsi      | 11 ++++++
+ drivers/remoteproc/mtk_common.h               | 11 ++++++
+ drivers/remoteproc/mtk_scp.c                  | 37 +++++++++++++++++--
+ 5 files changed, 75 insertions(+), 3 deletions(-)
 
-The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
+-- 
+2.45.2
 
-  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.17
-
-for you to fetch changes up to 0121898ec05fa4c1f566fc05c7e8b3caf0998f97:
-
-  dt-bindings: Correct indentation and style in DTS example (2025-07-28 19:56:29 -0500)
-
-----------------------------------------------------------------
-Devicetree updates for 6.17:
-
-- Add bindings for arm,armv7m-nvic, fsl,icoll, fsl,imx23-digctl, Xilinx
-  INTC, Analog Devices ADT7411, and a bunch of trivial hwmon devices
-
-- Convert fsl,vf610-mscm-ir, fsl,dsu, via,vt8500-timer, nxp,isp1301,
-  Marvell Armada NETA and BM, apm,xgene1-msi, fsl,mpic-msi,
-  himax,hx8357d, and sitronix,st7586 bindings to DT schema format
-
-- Fixes for some display bindings
-
-- More indentation clean-ups in examples
-
-- Add more guidelines and clarifications on writing bindings
-
-----------------------------------------------------------------
-Alexey Charkov (1):
-      dt-bindings: timer: via,vt8500-timer: Convert to YAML
-
-AngeloGioacchino Del Regno (1):
-      dt-bindings: display: mediatek,dp: Allow DisplayPort AUX bus
-
-David Lechner (1):
-      dt-bindings: display: convert sitronix,st7586 to YAML
-
-Frank Li (9):
-      dt-bindings: soc: Add fsl,imx23-digctl.yaml for i.MX23 and i.MX28
-      dt-bindings: lcdif: add lcd panel related property for imx28
-      dt-bindings: display: arm,pl11x: Allow resets property
-      dt-bindings: display: convert himax,hx8357d.txt to yaml format
-      dt-bindings: trivial-devices: add compatible string nxp,isp1301 from isp1301.txt
-      dt-bindings: interrupt-controller: Add arm,armv7m-nvic and fix #interrupt-cells
-      dt-bindings: display: imx: convert fsl,dcu.txt to yaml format
-      dt-bindings: interrupt-controller: Add fsl,icoll.yaml
-      dt-bindings: fsl: convert fsl,vf610-mscm-ir.txt to yaml format
-
-J. Neuschäfer (1):
-      dt-bindings: interrupt-controller: Convert fsl,mpic-msi to YAML
-
-Krzysztof Kozlowski (10):
-      docs: dt: writing-bindings: Rephrase typical fallback (superset) usage
-      docs: dt: writing-bindings: Express better expectations of "specific"
-      docs: dt: writing-bindings: Consistently use single-whitespace
-      docs: dt: submitting-patches: Avoid 'YAML' in the subject and add an example
-      docs: dt: writing-bindings: Document compatible and filename naming
-      docs: dt: writing-bindings: Document discouraged instance IDs
-      docs: dt: writing-schema: Document preferred order of properties
-      dt-bindings: display: sprd,sharkl3-dpu: Fix missing clocks constraints
-      dt-bindings: display: sprd,sharkl3-dsi-host: Fix missing clocks constraints
-      dt-bindings: Correct indentation and style in DTS example
-
-Lukas Bulwahn (1):
-      MAINTAINERS: adjust file entry in INTEL STRATIX10 FIRMWARE DRIVERS
-
-Meng Li (1):
-      dt-bindings: watchdog: fsl-imx-wdt: add compatible string fsl,ls1046a-wdt
-
-Michal Simek (1):
-      dt-bindings: interrupt-controller: Add missing Xilinx INTC binding
-
-Mikhail Kalashnikov (1):
-      dt-bindings: gpu: mali-bifrost: Add Allwinner A523 compatible
-
-Rob Herring (Arm) (3):
-      dt-bindings: interrupt-controller: Convert apm,xgene1-msi to DT schema
-      dt-bindings: trivial-devices: Add undocumented hwmon devices
-      dt-bindings: net: Convert Marvell Armada NETA and BM to DT schema
-
-Wolfram Sang (1):
-      dt-bindings: trivial-devices: Add Analog Devices ADT7411
-
- .../bindings/arm/arm,trace-buffer-extension.yaml   |  10 +-
- .../bindings/arm/freescale/fsl,vf610-mscm-ir.txt   |  30 ----
- .../devicetree/bindings/arm/stm32/st,mlahb.yaml    |  20 +--
- .../devicetree/bindings/display/arm,pl11x.yaml     |   3 +
- .../devicetree/bindings/display/fsl,dcu.txt        |  34 ----
- .../devicetree/bindings/display/fsl,lcdif.yaml     |  19 +-
- .../bindings/display/fsl,ls1021a-dcu.yaml          |  71 ++++++++
- .../devicetree/bindings/display/himax,hx8357.yaml  |  78 ++++++++
- .../devicetree/bindings/display/himax,hx8357d.txt  |  26 ---
- .../bindings/display/mediatek/mediatek,dp.yaml     |   3 +
- .../bindings/display/sitronix,st7586.txt           |  22 ---
- .../bindings/display/sitronix,st7586.yaml          |  61 +++++++
- .../bindings/display/sprd/sprd,sharkl3-dpu.yaml    |   2 +-
- .../display/sprd/sprd,sharkl3-dsi-host.yaml        |   2 +-
- .../bindings/dsp/mediatek,mt8195-dsp.yaml          |  42 ++---
- .../intel,ixp4xx-network-processing-engine.yaml    |  52 +++---
- .../devicetree/bindings/fpga/xlnx,versal-fpga.yaml |   2 +-
- .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |   1 +
- .../interrupt-controller/apm,xgene1-msi.yaml       |  54 ++++++
- .../bindings/interrupt-controller/arm,nvic.yaml    |   3 +-
- .../bindings/interrupt-controller/fsl,icoll.yaml   |  45 +++++
- .../interrupt-controller/fsl,mpic-msi.yaml         | 161 +++++++++++++++++
- .../interrupt-controller/fsl,vf610-mscm-ir.yaml    |  63 +++++++
- .../bindings/interrupt-controller/xlnx,intc.yaml   |  82 +++++++++
- .../devicetree/bindings/iommu/riscv,iommu.yaml     |   6 +-
- .../devicetree/bindings/leds/leds-mt6360.yaml      | 199 ++++++++++-----------
- .../devicetree/bindings/mips/brcm/soc.yaml         |  50 +++---
- .../misc/intel,ixp4xx-ahb-queue-manager.yaml       |   6 +-
- .../devicetree/bindings/mmc/renesas,sdhi.yaml      |  76 ++++----
- .../devicetree/bindings/mtd/technologic,nand.yaml  |   2 +-
- .../bindings/net/marvell,armada-370-neta.yaml      |  79 ++++++++
- .../bindings/net/marvell,armada-380-neta-bm.yaml   |  60 +++++++
- .../bindings/net/marvell-armada-370-neta.txt       |  50 ------
- .../devicetree/bindings/net/marvell-neta-bm.txt    |  47 -----
- .../bindings/nvmem/amlogic,meson6-efuse.yaml       |   2 +-
- .../devicetree/bindings/pci/ti,j721e-pci-ep.yaml   |  34 ++--
- .../devicetree/bindings/pci/xgene-pci-msi.txt      |  68 -------
- .../devicetree/bindings/power/reset/qcom,pon.yaml  |  72 ++++----
- .../devicetree/bindings/powerpc/fsl/msi-pic.txt    | 111 ------------
- .../nvidia,tegra264-bpmp-shmem.yaml                |  15 +-
- .../devicetree/bindings/rtc/renesas,rzn1-rtc.yaml  |  22 +--
- .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  28 +--
- .../bindings/soc/fsl/fsl,imx23-digctl.yaml         |  53 ++++++
- .../devicetree/bindings/soc/qcom/qcom,eud.yaml     |  38 ++--
- .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml    |  32 ++--
- .../devicetree/bindings/submitting-patches.rst     |  12 +-
- .../devicetree/bindings/timer/via,vt8500-timer.txt |  15 --
- .../bindings/timer/via,vt8500-timer.yaml           |  51 ++++++
- .../devicetree/bindings/trivial-devices.yaml       |  54 ++++++
- Documentation/devicetree/bindings/usb/isp1301.txt  |  24 ---
- .../devicetree/bindings/vendor-prefixes.yaml       |   1 +
- .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml  |   2 +
- .../devicetree/bindings/writing-bindings.rst       |  42 ++++-
- .../devicetree/bindings/writing-schema.rst         |   3 +
- MAINTAINERS                                        |  11 +-
- 55 files changed, 1353 insertions(+), 798 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
- delete mode 100644 Documentation/devicetree/bindings/display/fsl,dcu.txt
- create mode 100644 Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.yaml
- create mode 100644 Documentation/devicetree/bindings/display/himax,hx8357.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/himax,hx8357d.txt
- delete mode 100644 Documentation/devicetree/bindings/display/sitronix,st7586.txt
- create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7586.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/apm,xgene1-msi.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-msi.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/xlnx,intc.yaml
- create mode 100644 Documentation/devicetree/bindings/net/marvell,armada-370-neta.yaml
- create mode 100644 Documentation/devicetree/bindings/net/marvell,armada-380-neta-bm.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
- delete mode 100644 Documentation/devicetree/bindings/net/marvell-neta-bm.txt
- delete mode 100644 Documentation/devicetree/bindings/pci/xgene-pci-msi.txt
- delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/msi-pic.txt
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,imx23-digctl.yaml
- delete mode 100644 Documentation/devicetree/bindings/timer/via,vt8500-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/via,vt8500-timer.yaml
- delete mode 100644 Documentation/devicetree/bindings/usb/isp1301.txt
 
