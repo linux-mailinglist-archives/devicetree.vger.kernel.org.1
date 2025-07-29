@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-200454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B52B14BFA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DCFB14BFC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:14:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0626617E0D4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 10:13:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC27816EDAB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 10:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33163289805;
-	Tue, 29 Jul 2025 10:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5EF28852D;
+	Tue, 29 Jul 2025 10:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RR03ngIk"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QsA8zBkm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EFB288C2B;
-	Tue, 29 Jul 2025 10:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB173253925;
+	Tue, 29 Jul 2025 10:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753783956; cv=none; b=YE09xnN63jVW9IqG7HhS3bsN06Pq//7Xc1nEzHWy0D7h3nN5yYf9+Oub0ySJiSLLY6FN9y+smNPj4lgp2IMSFItLk6Qnu/9oMu3DHwF7iPk8+tWIjq0SoCFZAA6hsgeQgkQmBfntgFiZ1jfRK38j4A90XXOHctT4Nj9Wyqqspkg=
+	t=1753784042; cv=none; b=iy28bpLl8cH9S/BlDFqIdSaKRHrKky4ocFZ8oHAYdy/1bF7YqqlosvCQOd0+UBRrc8eiIOcCk+XT79JbSp9R/NXeOfa82ho75d8NzGFF2suf3/JaBZil+WeXw26SPVJw3td8kddjuUT9MfhK3O/jEBObMTpAJAzbteApjPSPKN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753783956; c=relaxed/simple;
-	bh=l45JpMbEyFD0Shr+CnJlAga+Yxcov8Uu2dF6QgMPcvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XtSHIzbu41D7v5b0+h/EtZLp137MOjuT3f2bA50UgpbAR8P05f/5Xzahd2xKgIVx4wtpiz2I6LVky01cBXUVN4KVLJpyPp27/O0Arq/G0dcrym9R7McRI/Id9+odU0Hrwi6bF7VXoH3Kmw+izbqDKAd1HcMui3DYGcWQ3f8YL54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RR03ngIk; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1753784042; c=relaxed/simple;
+	bh=KCqBt2nHHSyKsCR7eaoD8lFqx1EfG6Nptsv2HTAspbo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=UktmQJGg/uAqsHAWQaDhvW1NZQ43XZkkloPcXR8+I9ZtjtO38xgSYoXTlBU3MXQDkvagtIi7a2yPozVz0r5ioNyEGUUNDNS8hm0hDzvSrr/xLuVolM/n3UyEM04HWSnT8pqL43V0/GxgmaIvXo3E+ONMtvWFRzpQiLx/sEvybks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QsA8zBkm; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1753783952;
-	bh=l45JpMbEyFD0Shr+CnJlAga+Yxcov8Uu2dF6QgMPcvY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RR03ngIkNg0zObH7QhMizyOvNCD8gjxDB6nGi9aMo82Jbfpmwha+dshtuxV2p/43d
-	 oTWrjKEgidakvx4EqhVJWSnr99iTKVkSJSD5kXx2mmSeGLhRdzxOxZNBG1dmYRjce4
-	 /bKh+00VAMX1NNFiRqsbxew4J6BuV76ICrUAXLrzzStBvVvP0oy+BDFtOJZfkeGWqs
-	 LnNjhPmrU/4LJYNb4o1LtnM8IBvTvMxTxWTARmghgTuS/OY+jeFFW+h+m3K/ULrBGi
-	 AUe52ZeZJ+ylhegHJpA4rJ0XoYD3jfIN4RmzVGOAB8Ssw8XDwksVDxlmxRmLyVhxW5
-	 58Htzm0Wv+ikw==
+	s=mail; t=1753784039;
+	bh=KCqBt2nHHSyKsCR7eaoD8lFqx1EfG6Nptsv2HTAspbo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=QsA8zBkmIBtA+Dt3J9nOwuC2s9aRQgBIqGyC5pNtGOTwUW1KeSY5kX+nrcLGjrh4d
+	 UJ+3a/0fViXI7igUTedYX1gYRivwI/aaMx7xvs5i4xMBHMRmElf+nYyT3HCTgjMf0s
+	 TGkNv0MhLxgfbTI+4QcpOQlhuIJy29zzxBiJenyGqynRwVuctK+scZiJ5YyY+Klve9
+	 x+sLLv3jzTH5mguySM7ik6o4icAdIF3ghBF9mrKXzcF0NAclHbpeBMOp12J323gxn+
+	 Iik5ya1qJvOaibOh5IKqUJk/oENeFdgId900NV+rEtNNemOcAmGm7rGqisQdMdr0mk
+	 2RPys0on3yVgw==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 088F617E15D4;
-	Tue, 29 Jul 2025 12:12:30 +0200 (CEST)
-Message-ID: <b4280c72-1f49-458f-88ad-35bde791151d@collabora.com>
-Date: Tue, 29 Jul 2025 12:12:29 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BBCA617E1284;
+	Tue, 29 Jul 2025 12:13:58 +0200 (CEST)
+Message-ID: <e6246af6-eadf-4bee-9e1c-c17adb86b496@collabora.com>
+Date: Tue, 29 Jul 2025 12:13:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,37 +57,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: arm64: mediatek: add mt8395-evk-ufs
- board
-To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v4] arm64: dts: mediatek: mt7986-bpi-r3: Change fan PWM
+ value for mid speed
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Ramax Lo <ramax.lo@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250729093506.273337-1-macpaul.lin@mediatek.com>
+ linux-mediatek@lists.infradead.org,
+ Frank Wunderlich <frank-w@public-files.de>
+References: <B06376CB-BE3F-4645-8A4D-A9C67CDCA3EC@public-files.de>
+ <20250729075608.1651898-1-mikhail.kshevetskiy@iopsys.eu>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250729093506.273337-1-macpaul.lin@mediatek.com>
+In-Reply-To: <20250729075608.1651898-1-mikhail.kshevetskiy@iopsys.eu>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 29/07/25 11:34, Macpaul Lin ha scritto:
-> Add a compatible string for the MediaTek mt8395-evk-ufs board.
-> This board is the origin Genio 1200 EVK already mounted two main storages,
-> one is eMMC, and the other is UFS. The system automatically prioritizes
-> between eMMC and UFS via BROM detection, so user could not use both storage
-> types simultaneously. As a result, mt8395-evk-ufs must be treated as a
-> separate board.
+Il 29/07/25 09:56, Mikhail Kshevetskiy ha scritto:
+> Popular cheap PWM fans for this machine, like the ones coming in
+> heatsink+fan combos will not work properly at the currently defined
+> medium speed. Trying different pwm setting using a command
 > 
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>    echo $value > /sys/devices/platform/pwm-fan/hwmon/hwmon1/pwm1
+> 
+> I found:
+> 
+>    pwm1 value     fan rotation speed   cpu temperature     notes
+>    -----------------------------------------------------------------
+>      0            maximal              31.5 Celsius        too noisy
+>     40            optimal              35.2 Celsius        no noise hearable
+>     95            minimal
+>     above 95      does not rotate      55.5 Celsius
+>    -----------------------------------------------------------------
+> 
+> Thus only cpu-active-high and cpu-active-low modes are usable.
+> I think this is wrong.
+> 
+> This patch fixes cpu-active-medium settings for bpi-r3 board.
+> 
+> I know, the patch is not ideal as it can break pwm fan for some users.
+> Likely this is the only official mt7986-bpi-r3 heatsink+fan solution
+> available on the market.
+> 
+> This patch may not be enough. Users may wants to tweak their thermal_zone0
+> trip points, thus tuning fan rotation speed depending on cpu temperature.
+> That can be done on the base of the following example:
+> 
+>    === example =========
+>    # cpu temperature below 25 Celsius degrees, no rotation
+>    echo 25000 > /sys/class/thermal/thermal_zone0/trip_point_4_temp
+>    # cpu temperature in [25..32] Celsius degrees, normal rotation speed
+>    echo 32000 > /sys/class/thermal/thermal_zone0/trip_point_3_temp
+>    # cpu temperature above 50 Celsius degrees, max rotation speed
+>    echo 50000 > /sys/class/thermal/thermal_zone0/trip_point_2_temp
+>    =====================
+> 
+> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+> Acked-by: Frank Wunderlich <frank-w@public-files.de>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
