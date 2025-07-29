@@ -1,250 +1,1130 @@
-Return-Path: <devicetree+bounces-200464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19024B14CE1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:17:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62329B14D26
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:45:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B7E318A374A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:18:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A982544F55
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2719128C2C7;
-	Tue, 29 Jul 2025 11:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FF528C2A2;
+	Tue, 29 Jul 2025 11:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JJvb/z67"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="acl719e2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921FC28B3ED
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9C841AAC
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753787869; cv=none; b=Id1ejHBCP3YIzJbIZMyG9b1Lfb7c+hNzmCoWBqyB8wCTfAz94iiZp78OU4QLNl/NpFwm8n/8SQo03NdATzjm0aC2JYGYi4TDTF/D+t9kNyLdhmM67T+sIbFaEgSAB1MdI1pE2nlq7CpYlIrIvcWfWmBUlJcdH4R4lTUwqjoeNt0=
+	t=1753789550; cv=none; b=dDD4p39UBifj5qaIDD6Je5cNusXOJNZTeb9fCzVG0C7MttgG+sW7dDe1Hc6qLVY8EpOxZLd6jVmDB+Zq0Uv8TbkVTqGG3BM0//mYMsah9OU4XrAlQCA1R4gqQG/WiF/WyLsTDcfbm7XSxJpEtS9sdH4YU2SJZzq37xgyGLrHvY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753787869; c=relaxed/simple;
-	bh=w5fSSjhlZE4kaSUhjPO0bjn6UL+qxNFnllPhL6OPLvA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i77aqNBZY+ZVyK5qbGlGBI8ZP4qipjoFE2u0kajB8XbzHeg+g5COLKkTwQqHvochsnfkRrJmEqLVNOD/ebkAKp8YjPH+dSuvL5KhIcaJKjOKFlnePEkaGO6lbc1tLkMnUDw8KwLY1vsFA3a19c9ZUucmq1IakM8568JacIRqwvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JJvb/z67; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56T8EkkR005230
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:17:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JYLypgdlK6xbRh65r51fMOTrMAj5xEpWl/0YTtrCvkg=; b=JJvb/z67ZXOEaE5K
-	/aMBVM25cxtou/PSxH4NgdnI3Qjd7ItDqfqjueg3qY+TeT2CytUhRTi9oFmqAp9F
-	hbsHYs0CBWl8TyDuEqXtmmpmiFAw2GWsILSYR6/pB2uSs8CZf4ZkOq5Uo7PKIqjj
-	Oi1ly92bAIK2WH0+o6VggFLza+JsAzvnjEdxUK5V9vMJ77EfaMzqIpnomTHsQU1G
-	QnLl/W61rlzE6UmWwIqeD3/cAbmB54pwkW018lDuLecB0KwH/VvyHQpEkNpkeOa2
-	pNchutBn14Chx763CGg7whjj3KKkLSUFjApxE/438YcuOrr+w576cO7nyGP9wnOa
-	lIsqlg==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nyu043f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:17:46 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7073b0e7576so10828396d6.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 04:17:46 -0700 (PDT)
+	s=arc-20240116; t=1753789550; c=relaxed/simple;
+	bh=9qrqq14uVfCV6tHwLn6M3VD8Ja1tAkWib2kwj2Z2b28=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rXxuQ609k1v2r24u8p2vhiCJqX0ro9e4eGnRYQNjWJM9TMx5vMhSwvJqSvYt9CI1uUdZlzAp9McKKBKfKPRSSb2rvlTHbqfmidGupr2UQCMvx4KQsJz7G1kPtAY27P2lBvXywrdVcfj49QNXRJIJr3/+2miMw8cAQlxi333W03g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=acl719e2; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-553b5165cf5so6839088e87.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 04:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1753789545; x=1754394345; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fvU8hum8qe2aqvNrj+SC56dU8YWl4qMnPgrm0y/93TM=;
+        b=acl719e2feYsWggEE9u9Hj9JqhqyUIo3zlG5+V2cddQRqqkiBPV+IqqJe5FWZS7iIM
+         JjQhdVDpUF5VYraokqFpSmrlhvkrvI7snHsfEb5krIhr+tiazcbAgAZo8eY45/m33HcD
+         owkmfKneYHbAzPxu4O1n/hYAGN75c79dwGyiQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753787865; x=1754392665;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JYLypgdlK6xbRh65r51fMOTrMAj5xEpWl/0YTtrCvkg=;
-        b=BZYG0lshLasYE2ymj5jk8koW7IcTXxz0KALydceEn5oPmuUl3MMil6YrPrZ2t+UPPi
-         +PK4F+iMFFVvd+MDeUIKJR9xU57WuCr437EQah7lq8RgsARwgQ7J1zgUKeGeJdX2NBHY
-         FGwmrXcl+FKg2MfWfAWmm9S9JSBXWhWta+DCi2PMfccE2DCllHWDBe/CQ29T8xJHQe47
-         o4r0zQ6IoLJePPWgS1xJO1JS7Z6YT33Z9HMY74ExsW2Ws713DRt7bgvqL/JyOpIWOb+b
-         jX911/4DvB5ggXtWIfnmystjfUKWCB3R7XAJPe4+0fp8LgjLQIkAEAjKTBQz4+kxRRUL
-         222A==
-X-Forwarded-Encrypted: i=1; AJvYcCWPtHw8NLAXYbX/7YSEarl6DpTiEWyHfzz2aVPVYIMvtMNxqAwPWpOtJGkdITMquX5frgOkzKlYYF5k@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEMlTo+MP86LjrEjR9TQytGCi1rJlR4D3KXr+HtUjV60BQoiI0
-	hk5crulL0v8+ej7aBCWJL7K/p6GqGGCgN/r61p4MBZdtbkkPNdSFOmueJtcToSlan1ZFGJvH57F
-	Cii5jU0g6V/SAwktab5FqNhFpOCVbNM3pfErkqYxn5E3pBOEEmiFq9ncwd/gieDmp
-X-Gm-Gg: ASbGncuUF5bc7uc3lwSL8bH47qeSNs7PbJ6uNI0HDeqzcsGHo/Jm/IQZ8eArc7znYGG
-	uNLYQfbTUd8HiqaeH28XHO6GhABG1lUA8AKdnCWhyzKLgyq6LwdsvKg7AC2YeCmCftYSuJCTCgO
-	R90ZA57kV2yFKrEUxPYpcMOPCBT7qgdddAOGIlLujzUL5duTqpcDaX5UdAH7BUfJ8IL709Q1IEx
-	U5XhkpkwdzMp0Z1f2UAfXHpVKoW84+EAQselYucXtjvcogg3zdIY50CvtuPoovOEI60Ep7mq5Hy
-	Dxjvq0Cl4Xly+/2PlZQfCMzJJE2GEAdcPevZXpFjPKmSt1IUKi+nPmIF5Q2PqesPTIr6/YvmOu1
-	hECJwrWXRPGTLr+yhmg==
-X-Received: by 2002:ad4:5f4c:0:b0:707:4dcc:4f56 with SMTP id 6a1803df08f44-7074dcc58e3mr33456866d6.8.1753787865058;
-        Tue, 29 Jul 2025 04:17:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFVL/ipLCTE3KQBvxK0+K5+RyTudhg4FnfX6zILSoy/F5vK3nKlWwkqe0t7Ugz+vuHVlx/Q5A==
-X-Received: by 2002:ad4:5f4c:0:b0:707:4dcc:4f56 with SMTP id 6a1803df08f44-7074dcc58e3mr33456586d6.8.1753787864544;
-        Tue, 29 Jul 2025 04:17:44 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635a63116sm577931366b.90.2025.07.29.04.17.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jul 2025 04:17:42 -0700 (PDT)
-Message-ID: <1f6fc7ce-5826-4f59-89d7-ac691a3ae785@oss.qualcomm.com>
-Date: Tue, 29 Jul 2025 13:17:39 +0200
+        d=1e100.net; s=20230601; t=1753789545; x=1754394345;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fvU8hum8qe2aqvNrj+SC56dU8YWl4qMnPgrm0y/93TM=;
+        b=vT5a/dzyrByiWUdgLZlJ6BeN3KHVq7YnKJiAY8dDs4kfBTX9jJ+JhNXqReKCVzhBwf
+         VTbfRLjGPAOXFFl2FXxt5iGPRgc8QPln80x+C5p5H727pD2RUyagi8l14AgLvbbpsWFM
+         s4o4T01ttd/sRfFFmuZBqMNeXnc7G1RIB51JhcPw2S+mCWBGyAXWvtRhwleYLt8zWV3l
+         xmS4JuQuml7eqFB4VqrbJkyRfuuXRvDwVpnIYRJzbanKqLiazlPW4uJ2f7/c5gAU/Yuq
+         OOMYWAIhHxOIb6slS17sPPilnntM8FZrbMociaya/lO8w/WwGhIem2R9HOWpomU9lYN3
+         7Ayw==
+X-Forwarded-Encrypted: i=1; AJvYcCXHupXvAGh0Sk5Js6EeUx/KtDgFcOgVWYqPlblJKA3AFCl1dpuQ5n+bDXLtA5/Ks4K+ZMkOmlMICHY/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzVOeqpJY1wct5zkfUJ4ap5171Ug08wFAr6oLDglXBlBSXk9dT
+	sUH/IVb9UdLkHf0VoJCdgIoKCbw40UtoGQ7D+cU3hui6rbmTvcE2CVU6L8gx5KkvxASeCqNm/zs
+	IiGtD2dcbJGNDFx8T0f4h7geS+yTnpqLUjooSsw9Y
+X-Gm-Gg: ASbGncvFYtjhUNZRTDEZthLQ2ZclBHQrRnXExHFi1CeJNuTqkjWHn8gvRT2t9wqpXHG
+	mExsU7eUXZ/xN8zwurCMZ/Dr1QE+tgA8NIOjnuxZhQJ8SOwydN29E3Q2Z0Y8zqOazya4qVclUF4
+	KLH2gaClLqx8VBLH1o3WcnSnTBeVVIzLffCfhqgoeLsuMUaofRjvfRk+nhbaJ8+DXICUCIyMPtR
+	KPYJEHJSv9SFXejpFGFaYYwPprJrkZrfScmNqCr9XYz
+X-Google-Smtp-Source: AGHT+IH9dV1TYULqEJcOG5ei2Y/B2t6swYB5rhyu6zMe2KpGzObUuKioZ3LumIhJWTnVf+1LBk/V2P+kADExeNkE0hA=
+X-Received: by 2002:a05:6512:3501:b0:55b:5b29:61ef with SMTP id
+ 2adb3069b0e04-55b5f50d012mr4132836e87.56.1753789544591; Tue, 29 Jul 2025
+ 04:45:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] arm64: dts: qcom: Add display support for QCS615
-To: Fange Zhang <fange.zhang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
-        Li Liu <quic_lliu6@quicinc.com>, Dmitry Baryshkov <lumag@kernel.org>
-References: <20250718-add-display-support-for-qcs615-platform-v5-0-8579788ea195@oss.qualcomm.com>
- <20250718-add-display-support-for-qcs615-platform-v5-1-8579788ea195@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250718-add-display-support-for-qcs615-platform-v5-1-8579788ea195@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: P05DHfTynq3wQ1BGjsUrX7-tEenYFMFT
-X-Proofpoint-ORIG-GUID: P05DHfTynq3wQ1BGjsUrX7-tEenYFMFT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDA4NyBTYWx0ZWRfX/5LWCydd4u5Q
- T/WM1GFKOyT2Fb+1BxftLvunCYFfIRG1fARhQlikzAK3cJDojiaQUDeWl4jvBYe9yCvEvez2KdP
- USVhDYGEGyQXs7Sip3FQAXfWnehZyYDf9YvWT7LJMAbnLVJxfmxB5vtDrOAc9PLqhaGLv9LZZSC
- JRVfccW8FsQmA+rfyxCRUOJ5ijcOyi5dl2nsqX3DuDhwDI07Lj2yr+1n+D2Kx0HYTmREwVLy80J
- MwBuWdKOMBEFIZaabEDYICiNREOMA0+uDijeBTmKSHfjSb4oWeq+Qr5I0Jj75ZKpWbyBtvqO0a6
- zYgs+lrJMRAeqvG+tZ0jCMg3PwLMzXVOicyp6vLX6hli7akNDDAxYcAKgk5aaDoY1oeUWYvrJwt
- /IqdcX8ERvBPMypk5OTj39mF7zkLCHWtpY3NzvZxyQJEKcoiS0SLwk9ET+Cww44BqwVag3XW
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=6888adda cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=Frto0rYOkVf98Gw2rTwA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-29_03,2025-07-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507290087
+References: <20250708111806.3992-1-darren.ye@mediatek.com> <20250708111806.3992-5-darren.ye@mediatek.com>
+In-Reply-To: <20250708111806.3992-5-darren.ye@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 29 Jul 2025 19:45:32 +0800
+X-Gm-Features: Ac12FXxLbtSlFodhdJf7BRw2LIFc5tMFEEnn1_7E9iQ9STfYQ6fuWXbpbgw0AyQ
+Message-ID: <CAGXv+5Fo4NmH-DJ8LDe3ey-BoA=kRC9jZJOPuZJeAbSQseA2eg@mail.gmail.com>
+Subject: Re: [PATCH v6 04/10] ASoC: mediatek: mt8196: support ADDA in platform driver
+To: "Darren.Ye" <darren.ye@mediatek.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Jaroslav Kysela <perex@perex.cz>, 
+	Takashi Iwai <tiwai@suse.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/18/25 2:56 PM, Fange Zhang wrote:
-> From: Li Liu <quic_lliu6@quicinc.com>
-> 
-> Add display MDSS and DSI configuration for QCS615 platform.
-> QCS615 has a DP port, and DP support will be added in a later patch.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
-> Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
+On Tue, Jul 8, 2025 at 7:34=E2=80=AFPM Darren.Ye <darren.ye@mediatek.com> w=
+rote:
+>
+> From: Darren Ye <darren.ye@mediatek.com>
+>
+> Add mt8196 ADDA DAI driver support.
+>
+> Signed-off-by: Darren Ye <darren.ye@mediatek.com>
 > ---
+>  sound/soc/mediatek/mt8196/mt8196-dai-adda.c | 888 ++++++++++++++++++++
+>  1 file changed, 888 insertions(+)
+>  create mode 100644 sound/soc/mediatek/mt8196/mt8196-dai-adda.c
+>
+> diff --git a/sound/soc/mediatek/mt8196/mt8196-dai-adda.c b/sound/soc/medi=
+atek/mt8196/mt8196-dai-adda.c
+> new file mode 100644
+> index 000000000000..e44332ffd0c4
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8196/mt8196-dai-adda.c
+> @@ -0,0 +1,888 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + *  MediaTek ALSA SoC Audio DAI ADDA Control
+> + *
+> + *  Copyright (c) 2024 MediaTek Inc.
+> + *  Author: Darren Ye <darren.ye@mediatek.com>
+> + */
+> +
+> +#include <linux/regmap.h>
+> +#include <linux/delay.h>
+
+Please sort by name. And add an empty line here to separate the groups.
+
+> +#include "mt8196-afe-clk.h"
+> +#include "mt8196-afe-common.h"
+> +#include "mt8196-interconnection.h"
+> +
+> +enum {
+> +       UL_IIR_SW =3D 0,
+> +       UL_IIR_5HZ,
+> +       UL_IIR_10HZ,
+> +       UL_IIR_25HZ,
+> +       UL_IIR_50HZ,
+> +       UL_IIR_75HZ,
+> +};
+> +
+> +enum {
+> +       MTK_AFE_ADDA_UL_RATE_8K =3D 0,
+> +       MTK_AFE_ADDA_UL_RATE_16K =3D 1,
+> +       MTK_AFE_ADDA_UL_RATE_32K =3D 2,
+> +       MTK_AFE_ADDA_UL_RATE_48K =3D 3,
+> +       MTK_AFE_ADDA_UL_RATE_96K =3D 4,
+> +       MTK_AFE_ADDA_UL_RATE_192K =3D 5,
+> +       MTK_AFE_ADDA_UL_RATE_48K_HD =3D 6,
+> +};
+> +
+> +enum {
+> +       MTK_AFE_MTKAIF_RATE_8K =3D 0x0,
+> +       MTK_AFE_MTKAIF_RATE_12K =3D 0x1,
+> +       MTK_AFE_MTKAIF_RATE_16K =3D 0x2,
+> +       MTK_AFE_MTKAIF_RATE_24K =3D 0x3,
+> +       MTK_AFE_MTKAIF_RATE_32K =3D 0x4,
+> +       MTK_AFE_MTKAIF_RATE_48K =3D 0x5,
+> +       MTK_AFE_MTKAIF_RATE_64K =3D 0x6,
+> +       MTK_AFE_MTKAIF_RATE_96K =3D 0x7,
+> +       MTK_AFE_MTKAIF_RATE_128K =3D 0x8,
+> +       MTK_AFE_MTKAIF_RATE_192K =3D 0x9,
+> +       MTK_AFE_MTKAIF_RATE_256K =3D 0xa,
+> +       MTK_AFE_MTKAIF_RATE_384K =3D 0xb,
+> +       MTK_AFE_MTKAIF_RATE_11K =3D 0x10,
+> +       MTK_AFE_MTKAIF_RATE_22K =3D 0x11,
+> +       MTK_AFE_MTKAIF_RATE_44K =3D 0x12,
+> +       MTK_AFE_MTKAIF_RATE_88K =3D 0x13,
+> +       MTK_AFE_MTKAIF_RATE_176K =3D 0x14,
+> +       MTK_AFE_MTKAIF_RATE_352K =3D 0x15,
+
+Same comments from other patches about enum value assignments and macros
+apply here as well.
+
+> +};
+> +
+> +struct mtk_afe_adda_priv {
+> +       int dl_rate;
+> +       int ul_rate;
+> +};
+> +
+> +static unsigned int adda_ul_rate_transform(struct mtk_base_afe *afe,
+> +                                          unsigned int rate)
+> +{
+> +       switch (rate) {
+> +       case 8000:
+> +               return MTK_AFE_ADDA_UL_RATE_8K;
+> +       case 16000:
+> +               return MTK_AFE_ADDA_UL_RATE_16K;
+> +       case 32000:
+> +               return MTK_AFE_ADDA_UL_RATE_32K;
+> +       case 48000:
+> +               return MTK_AFE_ADDA_UL_RATE_48K;
+> +       case 96000:
+> +               return MTK_AFE_ADDA_UL_RATE_96K;
+> +       case 192000:
+> +               return MTK_AFE_ADDA_UL_RATE_192K;
+> +       default:
+> +               dev_info(afe->dev, "rate %d invalid, use 48kHz!!!\n", rat=
+e);
+
+Make it a warning.
+
+> +               return MTK_AFE_ADDA_UL_RATE_48K;
+> +       }
+> +}
+> +
+> +static unsigned int mtkaif_rate_transform(struct mtk_base_afe *afe,
+> +                                         unsigned int rate)
+> +{
+> +       switch (rate) {
+> +       case 8000:
+> +               return MTK_AFE_MTKAIF_RATE_8K;
+> +       case 11025:
+> +               return MTK_AFE_MTKAIF_RATE_11K;
+> +       case 12000:
+> +               return MTK_AFE_MTKAIF_RATE_12K;
+> +       case 16000:
+> +               return MTK_AFE_MTKAIF_RATE_16K;
+> +       case 22050:
+> +               return MTK_AFE_MTKAIF_RATE_22K;
+> +       case 24000:
+> +               return MTK_AFE_MTKAIF_RATE_24K;
+> +       case 32000:
+> +               return MTK_AFE_MTKAIF_RATE_32K;
+> +       case 44100:
+> +               return MTK_AFE_MTKAIF_RATE_44K;
+> +       case 48000:
+> +               return MTK_AFE_MTKAIF_RATE_48K;
+> +       case 96000:
+> +               return MTK_AFE_MTKAIF_RATE_96K;
+> +       case 192000:
+> +               return MTK_AFE_MTKAIF_RATE_192K;
+> +       default:
+> +               dev_info(afe->dev, "rate %d invalid, use 48kHz!!!\n", rat=
+e);
+
+Make it a warning.
+
+> +               return MTK_AFE_MTKAIF_RATE_48K;
+> +       }
+> +}
+> +
+> +enum {
+> +       SUPPLY_SEQ_ADDA_AFE_ON,
+> +       SUPPLY_SEQ_ADDA_FIFO,
+> +       SUPPLY_SEQ_ADDA_AP_DMIC,
+> +       SUPPLY_SEQ_ADDA_UL_ON,
+> +};
+> +
+> +static int mtk_adda_ul_src_dmic_phase_sync(struct mtk_base_afe *afe)
+
+mtk_adda_ul_set_src_dmic_phase_sync() ?
+
+Without a verb in the name, it's unclear what this function does.
 
 [...]
 
 > +
-> +			mdss_mdp: display-controller@ae01000 {
-> +				compatible = "qcom,sm6150-dpu";
-> +				reg = <0x0 0x0ae01000 0x0 0x8f000>,
-> +				      <0x0 0x0aeb0000 0x0 0x2008>;
-> +				reg-names = "mdp", "vbif";
-> +
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +				clock-names = "iface", "bus", "core", "vsync";
+> +static int mtk_adda_ul_src_dmic_phase_sync_clock(struct mtk_base_afe *af=
+e)
 
-1 per line please, everywhere> +
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +				assigned-clock-rates = <19200000>;
-
-Is this necessary?
-
-> +
-> +				operating-points-v2 = <&mdp_opp_table>;
-> +				power-domains = <&rpmhpd RPMHPD_CX>;
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <0>;
-
-interrupts-extended
-
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-
-Please keep a \n between properties and subnodes
-
-> +						dpu_intf0_out: endpoint {
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						dpu_intf1_out: endpoint {
-> +							remote-endpoint = <&mdss_dsi0_in>;
-> +						};
-> +					};
-> +				};
-> +
-> +				mdp_opp_table: opp-table {
-> +					compatible = "operating-points-v2";
-> +
-> +					opp-19200000 {
-> +						opp-hz = /bits/ 64 <19200000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-> +					};
-> +
-> +					opp-25600000 {
-> +						opp-hz = /bits/ 64 <25600000>;
-> +						required-opps = <&rpmhpd_opp_svs>;
-
-This and the above frequency are missing one zero (i.e. you
-have a 10x underclock)
+mtk_adda_ul_set_src_dmic_phase_sync_clock() ?
 
 [...]
 
-> +			mdss_dsi0_phy: phy@ae94400 {
-> +				compatible = "qcom,sm6150-dsi-phy-14nm";
-> +				reg = <0x0 0x0ae94400 0x0 0x100>,
-> +				      <0x0 0x0ae94500 0x0 0x300>,
-> +				      <0x0 0x0ae94800 0x0 0x188>;
-
-sz = 0x124
-
-> +				reg-names = "dsi_phy",
-> +					    "dsi_phy_lane",
-> +					    "dsi_pll";
 > +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&rpmhcc RPMH_CXO_CLK>;
-> +				clock-names = "iface", "ref";
-> +
-> +				status = "disabled";
-> +			};
-> +		};
-> +
->  		dispcc: clock-controller@af00000 {
->  			compatible = "qcom,qcs615-dispcc";
->  			reg = <0 0x0af00000 0 0x20000>;
->  
->  			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> -				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
-> +				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
-> +				 <&mdss_dsi0_phy 0>,
-> +				 <&mdss_dsi0_phy 1>,
+> +static int mtk_adda_ul_src_dmic(struct mtk_base_afe *afe, int id)
 
-#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
+mtk_adda_ul_enable_src_dmic() ?
 
-Konrad
+> +{
+> +       unsigned int reg_con0 =3D 0, reg_con1 =3D 0;
+> +
+> +       dev_dbg(afe->dev, "id: %d\n", id);
+> +
+> +       switch (id) {
+> +       case MT8196_DAI_ADDA:
+> +       case MT8196_DAI_AP_DMIC:
+> +               reg_con0 =3D AFE_ADDA_UL0_SRC_CON0;
+> +               reg_con1 =3D AFE_ADDA_UL0_SRC_CON1;
+> +               break;
+> +       case MT8196_DAI_ADDA_CH34:
+> +       case MT8196_DAI_AP_DMIC_CH34:
+> +               reg_con0 =3D AFE_ADDA_UL1_SRC_CON0;
+> +               reg_con1 =3D AFE_ADDA_UL1_SRC_CON1;
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       switch (id) {
+> +       case MT8196_DAI_AP_DMIC:
+> +               dev_dbg(afe->dev, "clear mtkaifv4 ul ch1ch2 mux\n");
+> +               regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4_RX_CFG0=
+,
+> +                                  MTKAIFV4_UL_CH1CH2_IN_EN_SEL_MASK_SFT,
+> +                                  0x0 << MTKAIFV4_UL_CH1CH2_IN_EN_SEL_SF=
+T);
+> +               break;
+> +       case MT8196_DAI_AP_DMIC_CH34:
+> +               dev_dbg(afe->dev, "clear mtkaifv4 ul ch3ch4 mux\n");
+> +               regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4_RX_CFG0=
+,
+> +                                  MTKAIFV4_UL_CH3CH4_IN_EN_SEL_MASK_SFT,
+> +                                  0x0 << MTKAIFV4_UL_CH3CH4_IN_EN_SEL_SF=
+T);
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       /* choose Phase */
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          UL_DMIC_PHASE_SEL_CH1_MASK_SFT,
+> +                          0x0 << UL_DMIC_PHASE_SEL_CH1_SFT);
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          UL_DMIC_PHASE_SEL_CH2_MASK_SFT,
+> +                          0x4 << UL_DMIC_PHASE_SEL_CH2_SFT);
+> +
+> +       /* dmic mode, 3.25M*/
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          DIGMIC_3P25M_1P625M_SEL_CTL_MASK_SFT,
+> +                          0x0);
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          DMIC_LOW_POWER_MODE_CTL_MASK_SFT,
+> +                          0x0);
+> +
+> +       /* turn on dmic, ch1, ch2 */
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          UL_SDM_3_LEVEL_CTL_MASK_SFT,
+> +                          0x1 << UL_SDM_3_LEVEL_CTL_SFT);
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          UL_MODE_3P25M_CH1_CTL_MASK_SFT,
+> +                          0x1 << UL_MODE_3P25M_CH1_CTL_SFT);
+> +       regmap_update_bits(afe->regmap, reg_con0,
+> +                          UL_MODE_3P25M_CH2_CTL_MASK_SFT,
+> +                          0x1 << UL_MODE_3P25M_CH2_CTL_SFT);
+> +
+> +       /* ul gain:  gain =3D 0x7fff/positive_gain =3D 0x0/gain_mode =3D =
+0x10 */
+> +       regmap_update_bits(afe->regmap, reg_con1,
+> +                          ADDA_UL_GAIN_VALUE_MASK_SFT,
+> +                          0x7fff << ADDA_UL_GAIN_VALUE_SFT);
+> +       regmap_update_bits(afe->regmap, reg_con1,
+> +                          ADDA_UL_POSTIVEGAIN_MASK_SFT,
+> +                          0x0 << ADDA_UL_POSTIVEGAIN_SFT);
+> +       /* gain_mode =3D 0x10: Add 0.5 gain at CIC output */
+> +       regmap_update_bits(afe->regmap, reg_con1,
+> +                          GAIN_MODE_MASK_SFT,
+> +                          0x02 << GAIN_MODE_SFT);
+> +       return 0;
+> +}
+> +
+> +static int mtk_adda_ul_event(struct snd_soc_dapm_widget *w,
+> +                            struct snd_kcontrol *kcontrol,
+> +                            int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +
+> +       dev_dbg(afe->dev, "name %s, event 0x%x\n", w->name, event);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               break;
+> +       case SND_SOC_DAPM_POST_PMD:
+> +               /* should delayed 1/fs(smallest is 8k) =3D 125us before a=
+fe off */
+> +               usleep_range(120, 130);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int mtk_adda_ch34_ul_event(struct snd_soc_dapm_widget *w,
+> +                                 struct snd_kcontrol *kcontrol,
+> +                                 int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +
+> +       dev_dbg(afe->dev, "name %s, event 0x%x\n", w->name, event);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               break;
+> +       case SND_SOC_DAPM_POST_PMD:
+> +               /* should delayed 1/fs(smallest is 8k) =3D 125us before a=
+fe off */
+> +               usleep_range(120, 130);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int mtk_adda_ul_ap_dmic_event(struct snd_soc_dapm_widget *w,
+> +                                    struct snd_kcontrol *kcontrol,
+> +                                    int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +
+> +       dev_info(afe->dev, "name %s, event 0x%x\n", w->name, event);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               break;
+> +       case SND_SOC_DAPM_POST_PMD:
+> +               /* should delayed 1/fs(smallest is 8k) =3D 125us before a=
+fe off */
+> +               usleep_range(120, 130);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int mtk_adda_ch34_ul_ap_dmic_event(struct snd_soc_dapm_widget *w,
+> +                                         struct snd_kcontrol *kcontrol,
+> +                                         int event)
+> +{
+> +       struct snd_soc_component *cmpnt =3D snd_soc_dapm_to_component(w->=
+dapm);
+> +       struct mtk_base_afe *afe =3D snd_soc_component_get_drvdata(cmpnt)=
+;
+> +
+> +       dev_dbg(afe->dev, "name %s, event 0x%x\n", w->name, event);
+> +
+> +       switch (event) {
+> +       case SND_SOC_DAPM_PRE_PMU:
+> +               break;
+> +       case SND_SOC_DAPM_POST_PMD:
+> +               /* should delayed 1/fs(smallest is 8k) =3D 125us before a=
+fe off */
+> +               usleep_range(120, 130);
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+> +}
+
+This function is duplicated four times. Please just have one copy.
+And name it something like "mtk_adda_sleep_on_pmd_event(...)".
+
+> +
+> +static const struct snd_kcontrol_new mtk_adda_controls[] =3D {
+> +};
+
+Please remove this if it is empty.
+
+> +
+> +/* ADDA UL MUX */
+> +#define ADDA_UL_MUX_MASK 0x3
+> +enum {
+> +       ADDA_UL_MUX_MTKAIF =3D 0,
+> +       ADDA_UL_MUX_AP_DMIC,
+> +       ADDA_UL_MUX_AP_DMIC_MULTICH,
+> +};
+> +
+> +static const char *const adda_ul_mux_map[] =3D {
+> +       "MTKAIF", "AP_DMIC", "AP_DMIC_MULTI_CH",
+> +};
+> +
+> +static int adda_ul_map_value[] =3D {
+> +       ADDA_UL_MUX_MTKAIF,
+> +       ADDA_UL_MUX_AP_DMIC,
+> +       ADDA_UL_MUX_AP_DMIC_MULTICH,
+> +};
+> +
+> +static SOC_VALUE_ENUM_SINGLE_DECL(adda_ul_mux_map_enum,
+> +                                 SND_SOC_NOPM,
+> +                                 0,
+> +                                 ADDA_UL_MUX_MASK,
+> +                                 adda_ul_mux_map,
+> +                                 adda_ul_map_value);
+> +
+> +static const struct snd_kcontrol_new adda_ul_mux_control =3D
+> +       SOC_DAPM_ENUM("ADDA_UL_MUX Select", adda_ul_mux_map_enum);
+> +
+> +static const struct snd_kcontrol_new adda_ch34_ul_mux_control =3D
+> +       SOC_DAPM_ENUM("ADDA_CH34_UL_MUX Select", adda_ul_mux_map_enum);
+> +
+> +static const struct snd_soc_dapm_widget mtk_dai_adda_widgets[] =3D {
+> +       /* inter-connections */
+> +       SND_SOC_DAPM_SUPPLY_S("ADDA Enable", SUPPLY_SEQ_ADDA_AFE_ON,
+> +                             AUDIO_ENGEN_CON0, AUDIO_F3P25M_EN_ON_SFT, 0=
+,
+> +                             NULL, 0),
+> +       SND_SOC_DAPM_SUPPLY_S("ADDA Capture Enable", SUPPLY_SEQ_ADDA_UL_O=
+N,
+> +                             AFE_ADDA_UL0_SRC_CON0,
+> +                             UL_SRC_ON_TMP_CTL_SFT, 0,
+> +                             mtk_adda_ul_event,
+> +                             SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PM=
+D),
+
+The event callback does nothing for SND_SOC_DAPM_PRE_PMU. Please drop the f=
+lag.
+
+> +       SND_SOC_DAPM_SUPPLY_S("ADDA CH34 Capture Enable", SUPPLY_SEQ_ADDA=
+_UL_ON,
+> +                             AFE_ADDA_UL1_SRC_CON0,
+> +                             UL_SRC_ON_TMP_CTL_SFT, 0,
+> +                             mtk_adda_ch34_ul_event,
+> +                             SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PM=
+D),
+
+Same here.
+
+> +       SND_SOC_DAPM_SUPPLY_S("AP_DMIC_EN", SUPPLY_SEQ_ADDA_AP_DMIC,
+> +                             AFE_ADDA_UL0_SRC_CON0,
+> +                             UL_AP_DMIC_ON_SFT, 0,
+> +                             mtk_adda_ul_ap_dmic_event,
+> +                             SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PM=
+D),
+
+Same here.
+
+> +       SND_SOC_DAPM_SUPPLY_S("AP_DMIC_CH34_EN", SUPPLY_SEQ_ADDA_AP_DMIC,
+> +                             AFE_ADDA_UL1_SRC_CON0,
+> +                             UL_AP_DMIC_ON_SFT, 0,
+> +                             mtk_adda_ch34_ul_ap_dmic_event,
+> +                             SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PM=
+D),
+
+Same here.
+
+> +       SND_SOC_DAPM_SUPPLY_S("ADDA_FIFO", SUPPLY_SEQ_ADDA_FIFO,
+> +                             AFE_ADDA_UL0_SRC_CON1,
+> +                             FIFO_SOFT_RST_SFT, 1,
+> +                             NULL, 0),
+> +       SND_SOC_DAPM_SUPPLY_S("ADDA_CH34_FIFO", SUPPLY_SEQ_ADDA_FIFO,
+> +                             AFE_ADDA_UL1_SRC_CON1,
+> +                             FIFO_SOFT_RST_SFT, 1,
+> +                             NULL, 0),
+> +       SND_SOC_DAPM_MUX("ADDA_UL_Mux", SND_SOC_NOPM, 0, 0,
+> +                        &adda_ul_mux_control),
+> +       SND_SOC_DAPM_MUX("ADDA_CH34_UL_Mux", SND_SOC_NOPM, 0, 0,
+> +                        &adda_ch34_ul_mux_control),
+> +       SND_SOC_DAPM_INPUT("AP_DMIC_INPUT"),
+> +       SND_SOC_DAPM_INPUT("AP_DMIC_CH34_INPUT"),
+> +};
+> +
+> +static const struct snd_soc_dapm_route mtk_dai_adda_routes[] =3D {
+> +       /* capture */
+> +       {"ADDA_UL_Mux", "MTKAIF", "ADDA Capture"},
+> +       {"ADDA_UL_Mux", "AP_DMIC", "AP DMIC Capture"},
+> +       {"ADDA_UL_Mux", "AP_DMIC_MULTI_CH", "AP DMIC MULTICH Capture"},
+> +       {"ADDA_CH34_UL_Mux", "MTKAIF", "ADDA CH34 Capture"},
+> +       {"ADDA_CH34_UL_Mux", "AP_DMIC", "AP DMIC CH34 Capture"},
+> +       {"ADDA_CH34_UL_Mux", "AP_DMIC_MULTI_CH", "AP DMIC MULTICH Capture=
+"},
+> +
+> +       {"AP DMIC Capture", NULL, "ADDA Enable"},
+> +       {"AP DMIC Capture", NULL, "ADDA Capture Enable"},
+
+Since "ADDA Enable" is the overall enable bit for the whole block,
+you could just have the route point from "ADDA Enable" to "ADDA Capture
+Enable". This also solves the sequencing order.
+
+> +       {"AP DMIC Capture", NULL, "ADDA_FIFO"},
+> +       {"AP DMIC Capture", NULL, "AP_DMIC_EN"},
+> +
+> +       {"AP DMIC CH34 Capture", NULL, "ADDA Enable"},
+> +       {"AP DMIC CH34 Capture", NULL, "ADDA CH34 Capture Enable"},
+
+Same here.
+
+> +       {"AP DMIC CH34 Capture", NULL, "ADDA_CH34_FIFO"},
+> +       {"AP DMIC CH34 Capture", NULL, "AP_DMIC_CH34_EN"},
+> +
+> +       {"AP DMIC MULTICH Capture", NULL, "ADDA Enable"},
+> +       {"AP DMIC MULTICH Capture", NULL, "ADDA Capture Enable"},
+> +       {"AP DMIC MULTICH Capture", NULL, "ADDA CH34 Capture Enable"},
+> +       {"AP DMIC MULTICH Capture", NULL, "ADDA_FIFO"},
+> +       {"AP DMIC MULTICH Capture", NULL, "ADDA_CH34_FIFO"},
+> +       {"AP DMIC MULTICH Capture", NULL, "AP_DMIC_EN"},
+> +       {"AP DMIC MULTICH Capture", NULL, "AP_DMIC_CH34_EN"},
+
+Nit: I'd add an empty line here for separation.
+
+> +       {"AP DMIC Capture", NULL, "AP_DMIC_INPUT"},
+> +       {"AP DMIC CH34 Capture", NULL, "AP_DMIC_CH34_INPUT"},
+> +       {"AP DMIC MULTICH Capture", NULL, "AP_DMIC_INPUT"},
+> +};
+> +
+> +/* dai ops */
+> +static int mtk_dai_adda_hw_params(struct snd_pcm_substream *substream,
+> +                                 struct snd_pcm_hw_params *params,
+> +                                 struct snd_soc_dai *dai)
+> +{
+> +       struct mtk_base_afe *afe =3D snd_soc_dai_get_drvdata(dai);
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       unsigned int rate =3D params_rate(params);
+> +       unsigned int mtkaif_rate =3D 0;
+> +       int id =3D dai->id;
+> +       struct mtk_afe_adda_priv *adda_priv;
+> +
+> +       if (id >=3D MT8196_DAI_NUM || id < 0)
+> +               return -EINVAL;
+> +
+> +       adda_priv =3D afe_priv->dai_priv[id];
+> +
+> +       dev_info(afe->dev, "id %d, stream %d, rate %d\n",
+> +                id,
+> +                substream->stream,
+> +                rate);
+
+dev_dbg() please.
+
+> +
+> +       if (!adda_priv)
+> +               return -EINVAL;
+> +
+> +       if (substream->stream =3D=3D SNDRV_PCM_STREAM_PLAYBACK) {
+
+I suggest moving each block (playback and capture) into smaller functions.
+That way each function is easier to read, and the indentation is decreased.
+
+> +               adda_priv->dl_rate =3D rate;
+> +
+> +               /* get mtkaif dl rate */
+> +               mtkaif_rate =3D
+> +                       mtkaif_rate_transform(afe, adda_priv->dl_rate);
+
+This should fit on one line.
+
+> +               if (id =3D=3D MT8196_DAI_ADDA) {
+> +                       /* MTKAIF sample rate config */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_TXIF_INPUT_MODE_MASK_=
+SFT,
+> +                                          mtkaif_rate << MTKAIFV4_TXIF_I=
+NPUT_MODE_SFT);
+> +                       /* AFE_ADDA_MTKAIFV4_TX_CFG0 */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_TXIF_FOUR_CHANNEL_MAS=
+K_SFT,
+> +                                          0x0 << MTKAIFV4_TXIF_FOUR_CHAN=
+NEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_ADDA_OUT_EN_SEL_MASK_=
+SFT,
+> +                                          0x1 << MTKAIFV4_ADDA_OUT_EN_SE=
+L_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_ADDA6_OUT_EN_SEL_MASK=
+_SFT,
+> +                                          0x1 << MTKAIFV4_ADDA6_OUT_EN_S=
+EL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_TXIF_V4_MASK_SFT,
+> +                                          0x1 << MTKAIFV4_TXIF_V4_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_TX_CFG0,
+> +                                          MTKAIFV4_TXIF_EN_SEL_MASK_SFT,
+> +                                          0x0 << MTKAIFV4_TXIF_EN_SEL_SF=
+T);
+> +                       /* clean predistortion */
+> +               } else {
+> +                       /* MTKAIF sample rate config */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_TX_CFG0,
+> +                                          ADDA6_MTKAIFV4_TXIF_INPUT_MODE=
+_MASK_SFT,
+> +                                          mtkaif_rate << ADDA6_MTKAIFV4_=
+TXIF_INPUT_MODE_SFT);
+> +                       /* AFE_ADDA6_MTKAIFV4_TX_CFG0 */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_TX_CFG0,
+> +                                          ADDA6_MTKAIFV4_TXIF_FOUR_CHANN=
+EL_MASK_SFT,
+> +                                          0x0 << ADDA6_MTKAIFV4_TXIF_FOU=
+R_CHANNEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_TX_CFG0,
+> +                                          ADDA6_MTKAIFV4_TXIF_EN_SEL_MAS=
+K_SFT,
+> +                                          0x1 << ADDA6_MTKAIFV4_TXIF_EN_=
+SEL_SFT);
+> +               }
+> +       } else {
+> +               unsigned int voice_mode =3D 0;
+> +               unsigned int ul_src_con0 =3D 0;   /* default value */
+> +
+> +               adda_priv->ul_rate =3D rate;
+> +
+> +               /* get mtkaif dl rate */
+> +               mtkaif_rate =3D
+> +                       mtkaif_rate_transform(afe, adda_priv->ul_rate);
+
+This fits in one line. No need to wrap the line.
+
+> +
+> +               voice_mode =3D adda_ul_rate_transform(afe, rate);
+> +
+> +               ul_src_con0 |=3D (voice_mode << 17) & (0x7 << 17);
+
+There should be macros for the shift and mask?
+
+> +
+> +               /* enable iir */
+> +               ul_src_con0 |=3D (1 << UL_IIR_ON_TMP_CTL_SFT) &
+> +                               UL_IIR_ON_TMP_CTL_MASK_SFT;
+> +               ul_src_con0 |=3D (UL_IIR_SW << UL_IIRMODE_CTL_SFT) &
+> +                               UL_IIRMODE_CTL_MASK_SFT;
+> +
+> +               regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4_RX_CFG0=
+,
+> +                                  MTKAIFV4_RXIF_INPUT_MODE_MASK_SFT,
+> +                                  mtkaif_rate << MTKAIFV4_RXIF_INPUT_MOD=
+E_SFT);
+> +
+> +               regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV4_RX_CFG=
+0,
+> +                                  ADDA6_MTKAIFV4_RXIF_INPUT_MODE_MASK_SF=
+T,
+> +                                  mtkaif_rate << ADDA6_MTKAIFV4_RXIF_INP=
+UT_MODE_SFT);
+> +
+> +               switch (id) {
+> +               case MT8196_DAI_ADDA:
+> +               case MT8196_DAI_AP_DMIC:
+> +               case MT8196_DAI_AP_DMIC_MULTICH:
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_RXIF_INPUT_MODE_MASK_=
+SFT,
+> +                                          mtkaif_rate << MTKAIFV4_RXIF_I=
+NPUT_MODE_SFT);
+> +                       /* AFE_ADDA_MTKAIFV4_RX_CFG0 */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_RXIF_FOUR_CHANNEL_MAS=
+K_SFT,
+> +                                          0x1 << MTKAIFV4_RXIF_FOUR_CHAN=
+NEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_RXIF_EN_SEL_MASK_SFT,
+> +                                          0x0 << MTKAIFV4_RXIF_EN_SEL_SF=
+T);
+> +                       /* [28] loopback mode
+> +                        * 0: loopback adda tx to adda rx
+> +                        * 1: loopback adda6 tx to adda rx
+> +                        */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_TXIF_EN_SEL_MASK_SFT,
+> +                                          0x0 << MTKAIFV4_TXIF_EN_SEL_SF=
+T);
+> +
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_UL_CH1CH2_IN_EN_SEL_M=
+ASK_SFT,
+> +                                          0x1 << MTKAIFV4_UL_CH1CH2_IN_E=
+N_SEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_UL_CH3CH4_IN_EN_SEL_M=
+ASK_SFT,
+> +                                          0x1 << MTKAIFV4_UL_CH3CH4_IN_E=
+N_SEL_SFT);
+> +
+> +                       /* 35Hz @ 48k */
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_02_01, 0x00000=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_04_03, 0x00003=
+FB8);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_06_05, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_08_07, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_10_09, 0x0000C=
+048);
+> +
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_SRC_CON0, ul_src_con0);
+> +
+> +                       /* mtkaif_rxif_data_mode =3D 0, amic */
+> +                       regmap_update_bits(afe->regmap,
+> +                                          AFE_MTKAIF1_RX_CFG0,
+> +                                          0x1 << 0,
+> +                                          0x0 << 0);
+> +
+> +                       /* 35Hz @ 48k */
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_IIR_COEF_02_01, 0x00000=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_IIR_COEF_04_03, 0x00003=
+FB8);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_IIR_COEF_06_05, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_IIR_COEF_08_07, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_IIR_COEF_10_09, 0x0000C=
+048);
+> +
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL0_SRC_CON0, ul_src_con0);
+> +
+> +                       /* mtkaif_rxif_data_mode =3D 0, amic */
+> +                       regmap_update_bits(afe->regmap,
+> +                                          AFE_MTKAIF0_RX_CFG0,
+> +                                          0x1 << 0,
+> +                                          0x0 << 0);
+> +                       break;
+> +               case MT8196_DAI_ADDA_CH34:
+> +               case MT8196_DAI_AP_DMIC_CH34:
+> +                       /* AFE_ADDA_MTKAIFV4_RX_CFG0 */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_RXIF_FOUR_CHANNEL_MAS=
+K_SFT,
+> +                                          0x1 << MTKAIFV4_RXIF_FOUR_CHAN=
+NEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_RXIF_EN_SEL_MASK_SFT,
+> +                                          0x0 << MTKAIFV4_RXIF_EN_SEL_SF=
+T);
+> +
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_UL_CH1CH2_IN_EN_SEL_M=
+ASK_SFT,
+> +                                          0x1 << MTKAIFV4_UL_CH1CH2_IN_E=
+N_SEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_UL_CH3CH4_IN_EN_SEL_M=
+ASK_SFT,
+> +                                          0x1 << MTKAIFV4_UL_CH3CH4_IN_E=
+N_SEL_SFT);
+> +
+> +                       /* 35Hz @ 48k */
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_02_01, 0x00000=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_04_03, 0x00003=
+FB8);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_06_05, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_08_07, 0x3FB80=
+000);
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_IIR_COEF_10_09, 0x0000C=
+048);
+> +
+> +                       regmap_write(afe->regmap,
+> +                                    AFE_ADDA_UL1_SRC_CON0, ul_src_con0);
+> +
+> +                       /* mtkaif_rxif_data_mode =3D 0, amic */
+> +                       regmap_update_bits(afe->regmap,
+> +                                          AFE_MTKAIF1_RX_CFG0,
+> +                                          0x1 << 0,
+> +                                          0x0 << 0);
+> +
+> +                       break;
+> +               case MT8196_DAI_ADDA_CH56:
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_RX_CFG0,
+> +                                          ADDA6_MTKAIFV4_RXIF_INPUT_MODE=
+_MASK_SFT,
+> +                                          mtkaif_rate << ADDA6_MTKAIFV4_=
+RXIF_INPUT_MODE_SFT);
+> +                       /* AFE_ADDA6_MTKAIFV4_RX_CFG0 */
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_RX_CFG0,
+> +                                          ADDA6_MTKAIFV4_RXIF_FOUR_CHANN=
+EL_MASK_SFT,
+> +                                          0x1 << ADDA6_MTKAIFV4_RXIF_FOU=
+R_CHANNEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_MTKAIFV4=
+_RX_CFG0,
+> +                                          MTKAIFV4_UL_CH5CH6_IN_EN_SEL_M=
+ASK_SFT,
+> +                                          0x1 << MTKAIFV4_UL_CH5CH6_IN_E=
+N_SEL_SFT);
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA6_MTKAIFV=
+4_RX_CFG0,
+> +                                          ADDA6_MTKAIFV4_RXIF_EN_SEL_MAS=
+K_SFT,
+> +                                          0x1 << ADDA6_MTKAIFV4_RXIF_EN_=
+SEL_SFT);
+> +                       break;
+> +               default:
+> +                       break;
+> +               }
+> +
+> +               /* ap dmic */
+> +               switch (id) {
+> +               case MT8196_DAI_AP_DMIC:
+> +               case MT8196_DAI_AP_DMIC_CH34:
+> +                       mtk_adda_ul_src_dmic(afe, id);
+> +                       break;
+> +               case MT8196_DAI_AP_DMIC_MULTICH:
+> +                       regmap_update_bits(afe->regmap, AFE_ADDA_ULSRC_PH=
+ASE_CON1,
+> +                                          DMIC_CLK_PHASE_SYNC_SET_MASK_S=
+FT,
+> +                                          0x1 << DMIC_CLK_PHASE_SYNC_SET=
+_SFT);
+> +                       mtk_adda_ul_src_dmic_phase_sync(afe);
+> +                       mtk_adda_ul_src_dmic(afe, MT8196_DAI_AP_DMIC);
+> +                       mtk_adda_ul_src_dmic(afe, MT8196_DAI_AP_DMIC_CH34=
+);
+> +                       mtk_adda_ul_src_dmic_phase_sync_clock(afe);
+> +                       break;
+> +               default:
+> +                       break;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct snd_soc_dai_ops mtk_dai_adda_ops =3D {
+> +       .hw_params =3D mtk_dai_adda_hw_params,
+> +};
+> +
+> +/* dai driver */
+> +#define MTK_ADDA_PLAYBACK_RATES (SNDRV_PCM_RATE_8000_48000 |\
+> +                                SNDRV_PCM_RATE_96000 |\
+> +                                SNDRV_PCM_RATE_192000)
+> +
+> +#define MTK_ADDA_CAPTURE_RATES (SNDRV_PCM_RATE_8000 |\
+> +                               SNDRV_PCM_RATE_16000 |\
+> +                               SNDRV_PCM_RATE_32000 |\
+> +                               SNDRV_PCM_RATE_48000 |\
+> +                               SNDRV_PCM_RATE_96000 |\
+> +                               SNDRV_PCM_RATE_192000)
+> +
+> +#define MTK_ADDA_FORMATS (SNDRV_PCM_FMTBIT_S16_LE |\
+> +                         SNDRV_PCM_FMTBIT_S24_LE |\
+> +                         SNDRV_PCM_FMTBIT_S32_LE)
+> +
+> +static struct snd_soc_dai_driver mtk_dai_adda_driver[] =3D {
+> +       {
+> +               .name =3D "ADDA",
+> +               .id =3D MT8196_DAI_ADDA,
+> +               .playback =3D {
+> +                       .stream_name =3D "ADDA Playback",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_PLAYBACK_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .capture =3D {
+> +                       .stream_name =3D "ADDA Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+> +       {
+> +               .name =3D "ADDA_CH34",
+> +               .id =3D MT8196_DAI_ADDA_CH34,
+> +               .playback =3D {
+> +                       .stream_name =3D "ADDA CH34 Playback",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_PLAYBACK_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .capture =3D {
+> +                       .stream_name =3D "ADDA CH34 Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+> +       {
+> +               .name =3D "ADDA_CH56",
+> +               .id =3D MT8196_DAI_ADDA_CH56,
+> +               .capture =3D {
+> +                       .stream_name =3D "ADDA CH56 Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+> +       {
+> +               .name =3D "AP_DMIC",
+> +               .id =3D MT8196_DAI_AP_DMIC,
+> +               .capture =3D {
+> +                       .stream_name =3D "AP DMIC Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+> +       {
+> +               .name =3D "AP_DMIC_CH34",
+> +               .id =3D MT8196_DAI_AP_DMIC_CH34,
+> +               .capture =3D {
+> +                       .stream_name =3D "AP DMIC CH34 Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 2,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+> +       {
+> +               .name =3D "AP_DMIC_MULTICH",
+> +               .id =3D MT8196_DAI_AP_DMIC_MULTICH,
+> +               .capture =3D {
+> +                       .stream_name =3D "AP DMIC MULTICH Capture",
+> +                       .channels_min =3D 1,
+> +                       .channels_max =3D 4,
+> +                       .rates =3D MTK_ADDA_CAPTURE_RATES,
+> +                       .formats =3D MTK_ADDA_FORMATS,
+> +               },
+> +               .ops =3D &mtk_dai_adda_ops,
+> +       },
+
+I think this is a weird setup. AFAIK there is only one ADDA, but here
+it is expanded into 6 backend DAIs for different setups. However only
+one is actually usable: enabling a second one would clobber the hardware
+configuration setup by the first one. This seems very fragile.
+
+> +};
+> +
+> +static int init_adda_priv_data(struct mtk_base_afe *afe)
+> +{
+> +       struct mt8196_afe_private *afe_priv =3D afe->platform_priv;
+> +       struct mtk_afe_adda_priv *adda_priv;
+> +       static const int adda_dai_list[] =3D {
+> +               MT8196_DAI_ADDA,
+> +               MT8196_DAI_ADDA_CH34,
+> +               MT8196_DAI_ADDA_CH56,
+> +               MT8196_DAI_AP_DMIC_MULTICH
+> +       };
+> +       int i;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(adda_dai_list); i++) {
+> +               adda_priv =3D devm_kzalloc(afe->dev,
+> +                                        sizeof(struct mtk_afe_adda_priv)=
+,
+> +                                        GFP_KERNEL);
+> +               if (!adda_priv)
+> +                       return -ENOMEM;
+> +
+> +               afe_priv->dai_priv[adda_dai_list[i]] =3D adda_priv;
+> +       }
+> +
+> +       /* ap dmic priv share with adda */
+> +       afe_priv->dai_priv[MT8196_DAI_AP_DMIC] =3D
+> +               afe_priv->dai_priv[MT8196_DAI_ADDA];
+> +       afe_priv->dai_priv[MT8196_DAI_AP_DMIC_CH34] =3D
+> +               afe_priv->dai_priv[MT8196_DAI_ADDA_CH34];
+> +
+> +       return 0;
+> +}
+> +
+> +int mt8196_dai_adda_register(struct mtk_base_afe *afe)
+> +{
+> +       struct mtk_base_afe_dai *dai;
+> +
+> +       dai =3D devm_kzalloc(afe->dev, sizeof(*dai), GFP_KERNEL);
+> +       if (!dai)
+> +               return -ENOMEM;
+> +
+> +       list_add(&dai->list, &afe->sub_dais);
+
+The DAI should be added to the list only if everything succeeds.
+
+
+ChenYu
+
+> +       dai->dai_drivers =3D mtk_dai_adda_driver;
+> +       dai->num_dai_drivers =3D ARRAY_SIZE(mtk_dai_adda_driver);
+> +
+> +       dai->controls =3D mtk_adda_controls;
+> +       dai->num_controls =3D ARRAY_SIZE(mtk_adda_controls);
+> +       dai->dapm_widgets =3D mtk_dai_adda_widgets;
+> +       dai->num_dapm_widgets =3D ARRAY_SIZE(mtk_dai_adda_widgets);
+> +       dai->dapm_routes =3D mtk_dai_adda_routes;
+> +       dai->num_dapm_routes =3D ARRAY_SIZE(mtk_dai_adda_routes);
+> +
+> +       return init_adda_priv_data(afe);
+> +}
+> +
+> --
+> 2.45.2
+>
+>
 
