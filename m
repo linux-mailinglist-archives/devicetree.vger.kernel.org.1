@@ -1,138 +1,125 @@
-Return-Path: <devicetree+bounces-200472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA14B14D95
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:23:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5A3B14DBA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:34:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B32CA163BE0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:23:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C357D18A2C08
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABB928DF46;
-	Tue, 29 Jul 2025 12:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBABE28B3EB;
+	Tue, 29 Jul 2025 12:33:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DWuZ/1XI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKFXasll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A757C262FF5;
-	Tue, 29 Jul 2025 12:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF8222425E;
+	Tue, 29 Jul 2025 12:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753791802; cv=none; b=an0uk6ufOt3wy65KcWBTxJs6YZsv9u25q6+lUnEpkcapJHnKQbnA4U48qsCvC/vKOB00wbVJWIBUpwJHJHA5tYE3IKQ8kCmYEEF+Jhx39fP10Mx7WobHDVtpAZ9yPbx8U3kJPFwXyJu8PzxnA3NpaKAGTcsWmupk1IPZ646GRNA=
+	t=1753792438; cv=none; b=Lx2TpufeKW7ERTnRHrD1RdqARKR8JHlaRo9XeaYlGSwfYAlYzGyJTwX3kWHruAPiXxy1U1A8V4fb3pf+m804y5itpSh6ERDxbf61eQdPXNDvxSKtabGvflG02+FcYZUc4msEmzdRzVrogRXohQiNAzGRpAgFrcZvddjcrGfrERE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753791802; c=relaxed/simple;
-	bh=c5ql2LwbSyC1j3Y9FvlSg+2VJwZHQ/nuHeE6q7BYeUA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y/4zX9Ljp+DUpwu/+liGsU9ye6g6A9Pyos1QHuuE5mMSymcypSTRHLrhBLyH0UFb5zBHl80pvImGWnLkh2s9cRL8uvntR3y4NCPQREuwwzu/5xGMmxEEZrPuIk58EBtWKPLrTz5WA2NM/2yJ96X1K5nQYkDaaGofagQoal1Fcxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DWuZ/1XI; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56TCMl4J2961788;
-	Tue, 29 Jul 2025 07:22:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1753791767;
-	bh=e3nvlVKCBTyX8mAmnTYnSsQqdWgC+ufyRK3D5Obt8JY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=DWuZ/1XIfjmPZlUOl94+pdKxZ5J8e0VklOebRtp4dV9VdOR1CGD05BddmBEALqrkE
-	 lYjxNdc2sCoVe0VPs287oEBFNlm/3G0VgwRR3CtGHiRA8yvSUGmipwLOtn2M8Y7W/7
-	 DsiYjKClx2INZc4J7KZLZZQ1DSL/Pn4L3hhU1ZXA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56TCMlRP1804735
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 29 Jul 2025 07:22:47 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 29
- Jul 2025 07:22:46 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 29 Jul 2025 07:22:46 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56TCMkDw3701653;
-	Tue, 29 Jul 2025 07:22:46 -0500
-Date: Tue, 29 Jul 2025 07:22:46 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <huaqian.li@siemens.com>
-CC: <lkp@intel.com>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
-        <christophe.jaillet@wanadoo.fr>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <diogo.ivo@siemens.com>,
-        <helgaas@kernel.org>, <jan.kiszka@siemens.com>, <kristo@kernel.org>,
-        <krzk+dt@kernel.org>, <kw@linux.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>,
-        <oe-kbuild-all@lists.linux.dev>, <robh@kernel.org>,
-        <s-vadapalli@ti.com>, <ssantosh@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH v12 3/7] soc: ti: Add IOMMU-like PVU driver
-Message-ID: <20250729122246.o7upnxvqnp7nltdo@harmonize>
-References: <20250728023701.116963-1-huaqian.li@siemens.com>
- <20250728023701.116963-4-huaqian.li@siemens.com>
+	s=arc-20240116; t=1753792438; c=relaxed/simple;
+	bh=fio1fm37u4gqPExATSgrTskCq6p+QcCx5ftXVPkmW/c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TnA9UQMFPnbdCVk4BqPHQBeFW1yXG4mkUACvxoBECkuzsdd3Dtt/Ir3annfIUXq7MHyuAfdc1XQ+JZp/asDKkgR0+idF8NA5LtKpOQ9ZsxvU9kv8u98t5zmXER6h7JD75A1y08ODXDbhicpQdKsZJNXgrBydJZtZ9aIFwnGFhCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKFXasll; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98761C4CEEF;
+	Tue, 29 Jul 2025 12:33:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753792438;
+	bh=fio1fm37u4gqPExATSgrTskCq6p+QcCx5ftXVPkmW/c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BKFXaslloHCh8xyxK6Z9oFhRqA7JPxSSOARVeN77yTUeHwvUVFhXjjfFIe2ZomfXt
+	 jdlBkAofMwHVNENBAKKF9QrimoE8D9J7g7Fs7XRaPUzgUSxMdSoonPnGVLzluAP0z1
+	 U3Lb5mH0biw0kg7D8mfbn0/WS6hL80q8hH8rM6YxvE7GZxlvHTNiDGzPK4QJpdmj+j
+	 G/X2mlNb1ruPDHDc+/M3mAMKvRPq0Cc5zt1s9aeI92sGlXDFG98Hbc04AdGmnpVyFJ
+	 4FSDkJUBNO1iq+ukJgcaHFXBvI95l9haLRqK5St+ijjIRssFOWcGiBctSACa0BTqI7
+	 U6hhbhRikuYAA==
+Message-ID: <1da99d0e-3ccc-473b-8f1f-0d00d206e746@kernel.org>
+Date: Tue, 29 Jul 2025 14:33:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250728023701.116963-4-huaqian.li@siemens.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] dt-bindings: arm: qcom: document r0q board binding
+To: Violet <violet@atl.tools>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250729120331.287245-1-violet@atl.tools>
+ <20250729120331.287245-2-violet@atl.tools>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250729120331.287245-2-violet@atl.tools>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 10:36-20250728, huaqian.li@siemens.com wrote:
-> From: Jan Kiszka <jan.kiszka@siemens.com>
+On 29/07/2025 14:03, Violet wrote:
+> Add binding for the Samsung Galaxy S22 (SM-S901E) board, codenamed R0Q,
+> which is based on the Qualcomm Snapdragon 8 Gen 1 SoC.
 > 
-> The TI Peripheral Virtualization Unit (PVU) permits to define a limited
-> set of mappings for DMA requests on the system memory. Unlike with an
-> IOMMU, there is no fallback to a memory-backed page table, only a fixed
-> set of register-backed TLBs. Emulating an IOMMU behavior appears to be
-> the more fragile the more fragmentation of pending requests occur.
-> 
-> Therefore, this driver does not expose the PVU as an IOMMU. It rather
-> introduces a simple, static interface to devices that are under
-> restricted-dma-pool constraints. They can register their pools with the
-> PVUs, enabling only those pools to work for DMA. As also MSI is issued
-> as DMA, the PVU already register the related translator region of the
-> AM654 as valid DMA target.
-> 
-> This driver is the essential building block for limiting DMA from
-> untrusted devices to clearly defined memory regions in the absence of a
-> real IOMMU (SMMU).
-> 
-> Co-developed-by: Diogo Ivo <diogo.ivo@siemens.com>
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
-> ---
->  drivers/soc/ti/Kconfig  |   4 +
->  drivers/soc/ti/Makefile |   1 +
->  drivers/soc/ti/ti-pvu.c | 500 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/ti-pvu.h  |  32 +++
->  4 files changed, 537 insertions(+)
->  create mode 100644 drivers/soc/ti/ti-pvu.c
->  create mode 100644 include/linux/ti-pvu.h
-> 
-> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-> index 1a93001c9e36..af7173ad84de 100644
-> --- a/drivers/soc/ti/Kconfig
-> +++ b/drivers/soc/ti/Kconfig
-> @@ -82,6 +82,10 @@ config TI_PRUSS
->  	  processors on various TI SoCs. It's safe to say N here if you're
->  	  not interested in the PRU or if you are unsure.
->  
-> +config TI_PVU
-> +	bool "TI Peripheral Virtualization Unit driver"
+> Signed-off-by: Violet <violet@atl.tools>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-tristate please? Prefer to make this as a module.
+Actually I need to retract my Ack. You have to use real name.
 
+I also don't get why this is v7. Where are v1-v5?
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+https://lore.kernel.org/all/?q=f%3Aviolet%40atl.tools
+
+Best regards,
+Krzysztof
 
