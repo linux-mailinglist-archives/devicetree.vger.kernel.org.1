@@ -1,150 +1,164 @@
-Return-Path: <devicetree+bounces-200403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E64B14961
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:50:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F75AB14968
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 952A84E6292
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:50:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69504546187
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2600B26A0C7;
-	Tue, 29 Jul 2025 07:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC58226AA98;
+	Tue, 29 Jul 2025 07:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g+/SCYTC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XUZQjMDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40076246BDE;
-	Tue, 29 Jul 2025 07:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08CA7264A74;
+	Tue, 29 Jul 2025 07:52:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753775426; cv=none; b=rEENDb+L6dbW2PROfJy9+4e4CSvLs45RLREf9sEDR9jifK9O2BaAs+hHk3P8HNEj3s64dxTLplfF32DkPrdnYw85k/dzQYhbC60Vx1dxvlrLSnFJ7x2itJ9/u4nYhpYqJuzDULpv/niJpPKQpjbdXqdSUtsL0LBTHMfrKfHjWa0=
+	t=1753775528; cv=none; b=lyWgw7ob4eRubzqGNvdhXRAypivmcrkAp1r67hJyzutj84paufpX/XLIy2NXsleRPz9W0Qf62XO6x9QCcmUKhANfX4mItEuxHNvd8xJfDGAMVAbf1V5wfGZ0lBb/Z5ZxFTQYTu6zOWYqqPBYjgvfFW73dC+5xeBe440M+Ddw98k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753775426; c=relaxed/simple;
-	bh=CQl8LE8k+1s7Eg5bM1UKtsJ+iIs1rvwCqfLfLIPptGc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CuI6O792cjfc53t3yPoknXNQe7HmjjWJApzUrO3Pt6Int5udqegJibLKYwKIENFYWmQoapOSqOh6+tjRQdXG3rcYCmqYb+pBLgFrF9V6+nSAdVqL6SuetyWwUvR52FkFcCIVEphmrMlfrMxspBzpvvgryR32Kmi3kl7hBIlQMKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g+/SCYTC; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1753775528; c=relaxed/simple;
+	bh=59yPLjV1oKDgQnAIoESOgPml+Td0lslGd/7VUkzNTaE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MmNk9tsfDYo6MTBuA9lb8z8urz+d00pyAszyAArTDjBQWfN1LynzV+t5QWmeXh/xUnCxetoTOyC/aaewPyqC+0gVpwso/gESsPNWKoeRM//FcHFCEM9minwaj4hTdmwfbp1jW2TvHvu/i0edsFR2nOSrz8eoufx0adyMDKhUftQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XUZQjMDB; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-ae0d758c3a2so869157266b.2;
-        Tue, 29 Jul 2025 00:50:23 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3b78bca0890so851628f8f.3;
+        Tue, 29 Jul 2025 00:52:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753775422; x=1754380222; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J2nY/YyGeNEbnKCTGYkjHDIFCHZRSI0DGKQEZxmy2WM=;
-        b=g+/SCYTCzYibO+ASrc1vclArICbe/r2xpLsjG0KrCUaImuH3YzqDuRGjD1jxT2YEFT
-         +zbkr5Hhfevf6HMHj3wT0ZX1bKceg50la4MluYCkBcDbXVmt4+mGvhLzr2IWXEXV3iF3
-         Ina+TaLVQrXE2pITTZG2cQzORGaCO+BGHcOXR7NposKJrtzV5n0P/R5+I5X1/ttl1YKC
-         9OPI6/AGXcyoOj12sYMx8tP01rbcQ2csyBQvBV8sRjYd6t15kX3XxB33jS0FSXl+wcgz
-         esYWsvGdzCWKz7seUdGJ9pOa60cyWDwhzjp5ED9aO3j2ATpFjAnvo3GZfboU4gy+0HNK
-         dnCA==
+        d=gmail.com; s=20230601; t=1753775525; x=1754380325; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p/vGXG+Y2ROImo97YvG9XS12uaci1YT5Mv7jP+PuwLA=;
+        b=XUZQjMDBPD8AzOh+PLJb5I74Ypr64UHL4u6FNX1VgQM6z4nSVkDrLBzIq2fqjbPj9K
+         Ho/4ptxgHFy6LG0BO0ZgNFSb6vq97H3lVI9qehtl9SzZ7CSz8wGG6Q1oTpbVB/LZG7pQ
+         jPIu6RZNDx8PdrmEzQxk4Ff52C+MjtxDis+tOuzkIxZpGJG28QVER1N7buEtTV+pSWUZ
+         iwfyFTJX/hJvW3Uvmhv2ZWwb6BcAE5UnYWKtxNGulLT37IKoEkEwPwdfoUTGFqPtvUG8
+         cNWEJkcff8iVx/oXNl0IXHqEgy+8cV2ds6dnD+QEMPBCSRFLgCMICK4sfLshsy3bH/Go
+         g+vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753775422; x=1754380222;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J2nY/YyGeNEbnKCTGYkjHDIFCHZRSI0DGKQEZxmy2WM=;
-        b=LjwlJxB7UMc7Mqa/P1599V/VV53muVFPRhl+KNFtbOX6vhstt9qGAfbcKSsXObczzl
-         Xul2iZ0AoVzcr1cisK+zdmoqYEvxsfcfypdy1H4/XbOi1oJ32ttNBtA486FgZsd7h1SD
-         SksKaWRJTCanGJWi+vTlaFFpk9uXXcMmZURHCzcRcw8eHSvL1PZtNEKAWQqi06mIFfdr
-         0fU0v06muTmiJztlyKsIs0hSBzzoGFp2xqzYVsSXWae7YyCmydEDmFcHP6o/bhWwLyUn
-         ILzpmYk20RyzsjOwv4Oi/TOtyk+B9VuOuaCqt9D6N4IkvV8L1Ngf7WlcyavUGjkL/JGv
-         QliA==
-X-Forwarded-Encrypted: i=1; AJvYcCUEk9KcuFrw9WUi0O/8QvP85Mkn/2hHdfg9Ot3c55jZIOdVZ27HanYEUk9kBeIUMHDSyAfxkOb1m7sf@vger.kernel.org, AJvYcCUZjjovyUUq1nCVcFYhir77FlC1rwYtEwI/lt56rW2wcQHMA6OKBsIewsX5ynzWeMeQkAMuzNedA3zJCyra@vger.kernel.org, AJvYcCVI+3yEi0QYkHauFvKoU76KqMvSzbaLeuTvQg9++hY2xP4gjBhQhN+exCPSoFwqMNmekOO2plIil2PK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGFmSSLJW5+M0UjpOftqcEbto/sCOr4UamgdV5tGgXxIbLkdPE
-	Pg8MMuKO/rwHQzVGmPYwYBbEC4KdDB1vX4/p3gqJVbjABcnQM3N/K361wcp6Xt2n5q6GEUx0aFJ
-	LxVXpl0iEVkkeV2fHw4oulQYD1Oh/oysG42YDDDyeOw==
-X-Gm-Gg: ASbGncs8SN4UGj6SXBLmFCFTqfK3/cKwQ+8/K4FDVfoPPfYCCOj/UVEx33rZhfE3SmQ
-	w8ACtI6MLKC5jZF3xSnSCdDQd1jVtirgWT9+79FZjlfczxhaZ+pHu3AN+NoWTGFC15b4GbjBYAm
-	h9CGQto4lc4q5n1XLqPBBpcmbszLov1AIFxDcaZNaGEzNIwfLB30LsxiOe6MHPN9wMwS0Jkbj82
-	48LUYgwqSSkmwAfrLzE
-X-Google-Smtp-Source: AGHT+IHVPk71QMTo4e6QHVVCfKybd5aV+PwQ9jyHs2FMw1sQjYgz58n+0UzqcRBuq9NtNO+Nzy6lskNswg4vO625AqU=
-X-Received: by 2002:a17:907:7245:b0:ae3:6d27:5246 with SMTP id
- a640c23a62f3a-af619c0d676mr1677656766b.48.1753775422338; Tue, 29 Jul 2025
- 00:50:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1753775525; x=1754380325;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p/vGXG+Y2ROImo97YvG9XS12uaci1YT5Mv7jP+PuwLA=;
+        b=UXrq3FX2Mu67HB3/vEoEZL7tVfwOnh1qRDYrqDqo9z0zzW4foufnuA3cMAInx+pwNH
+         ADigZZ1H9yHenJs/fVJi8uqWMT1jzg9XBtJziFX1tAHr03D/nsfMfwijw8yNfRONed8G
+         Cvv6RNPBq78Ed0MjmStSaNp20PInRKtGwKeJss6eJdOlwBoMMoo85MsEBCeuSfdkfZC8
+         g+etVeTN1i0nHezuwl8dIc1hmbDDN4seBuHshxkLKElly9bjKFjrlAh7UYpf1P8MJQfx
+         MQRV5ieSGTgH4SZlPSQ6fL1SEY3ddHjekIVujgT7CWT2QqqjoQsLDG4aeTy/w8MQUATN
+         4vwg==
+X-Forwarded-Encrypted: i=1; AJvYcCXS1vLfU4LxdHd57PC/N7NndIsYGiVDnfjjX35jaMkkatSu6QT77tX2Fh9vnSGHkoRYVrcxlenqyEUIB4G3@vger.kernel.org, AJvYcCXy744jR9oLibSUY+YsaRvVyTo0Cc3TgSv3UuHk2hApTIG6jab/XdeTXzSIxtCoCinUXVlt/O+EG+3T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcfp8nhriYXN+Q37GWWPp8QF56NLeCsnsgDjUPzoRRMQhhwA94
+	pS9YAGi7z5eJt0A9fdMo+Q3qZzDz/yVwSlySFrvEqdxhSrxdUtjnc5hGyrlqoQ==
+X-Gm-Gg: ASbGncuNArs9FMxXL0v6QUcA573kZE4l/9msbI7Vf8ak40+TzgF9btQdUk376AGDOXr
+	RqLalmBEZBTQIjzBVnUA5hWcsRXNRXWd5D3VwjOhqKFGLNWOmD53XffqsJQJqlD5rkTPEqW8WuW
+	JUGTB3OwRsDKf+GdSSHpbP2rXM5i9vDVi4KASkn/aMtGIq+C8nNvRRlR+QkLqoCz+XszDiC7LX8
+	sttyd2jKkWPV+bLRMrLG/QJDsHqtDpeHO3+YiSYjaImn2LQ+VHN5xOO5SQVxkEOWKYWQj2X05cW
+	sPkT+OgOMI6LVI52kYspyKGqX6s0RWd9SsLNhoJGbJt0odBO7BIJMf3Z6BvkV0Ip0HCQkoVa1k5
+	6fIJyxWW9YWXCRIX30+u21ust68u93U87TXpmeR/I8GzIFSeAbQ==
+X-Google-Smtp-Source: AGHT+IHjf0fyZI8FDe6pBTbYKK6KoxqUEzta2TJcghjGqVbNWN64iP3zwStPFKAuVhiqBvfNuob3/A==
+X-Received: by 2002:a05:6000:4022:b0:3a4:d6ed:8df8 with SMTP id ffacd0b85a97d-3b7767765a2mr12039789f8f.39.1753775525065;
+        Tue, 29 Jul 2025 00:52:05 -0700 (PDT)
+Received: from builder.. (53-8-142-46.pool.kielnet.net. [46.142.8.53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b778f047afsm11046706f8f.39.2025.07.29.00.52.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 00:52:04 -0700 (PDT)
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+To: linux-i2c@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>,
+	Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: [PATCH v4 0/3] i2c: rework and extend RTL9300 I2C driver
+Date: Tue, 29 Jul 2025 07:51:42 +0000
+Message-ID: <20250729075145.2972-1-jelonek.jonas@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
- <20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
- <141967ee-22f4-4b15-a8da-e8cef25828b4@baylibre.com> <aIg_SClXq0pO69iH@dixit>
-In-Reply-To: <aIg_SClXq0pO69iH@dixit>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 29 Jul 2025 09:49:45 +0200
-X-Gm-Features: Ac12FXxSD3PkDtLt2p5OvZu4apDEYIKrXmJ20tEHXkOFCwp6KsHRgzKY6jCUGE8
-Message-ID: <CAHp75Vf8nj7xg5xadCTXQhaXzaCL0y5T5qsUHK_dcoQ3hozDXw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
- 3D Magentic sensor
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 29, 2025 at 5:26=E2=80=AFAM Dixit Parmar <dixitparmar19@gmail.c=
-om> wrote:
-> On Sat, Jul 26, 2025 at 03:44:03PM -0500, David Lechner wrote:
-> > On 7/26/25 4:37 AM, Dixit Parmar wrote:
+This patch series reworks the current implementation of the driver for
+I2C controller integrated into RTL9300 SoCs to simplify support
+extension, and adds support for the RTL9310 series.
+Goal of this is to have RTL9310 support upstream in a proper
+implementation to be able to drop downstream versions of this driver.
 
-...
+The first patch reworks the driver to use more of the regmap API.
+Instead of using macros, all registers are defined as reg_field and
+operations on these registers are performed using regmap_field and the
+corresponding API. This simplifies adding support for further chip
+families and avoids potential redundant code by just providing
+chip-specific functions for every chip family.
 
-> > >   config SI7210
-> > >       To compile this driver as a module, choose M here: the module
-> > >       will be called si7210.
-> > >
-> > > +config TLV493D
-> > > +   tristate "Infineon TLV493D Low-Power 3D Magnetic Sensor"
-> > > +   depends on I2C
-> > > +   select REGMAP_I2C
-> > > +   select IIO_BUFFER
-> > > +   select IIO_TRIGGERED_BUFFER
-> > > +   help
-> > > +     Say Y here to add support for the Infineon TLV493D-A1B6 Low-
-> > > +     Power 3D Megnetic Sensor.
-> > > +
-> > > +     This driver can also be compiled as a module.
-> > > +     To compile this driver as a module, choose M here: the module
-> > > +     will be called tlv493d.
-> > > +
-> > >  config TI_TMAG5273
-> > >     tristate "TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor"
-> > >     depends on I2C
+The second patch extends the existing dt-bindings of RTL9300 for RTL9310
+support.
 
-...
+The third patch makes use of previous changes by adding support for the
+RTL9310 series, providing the correct register definitions and a few
+specifics. This also uses a new vendor dt-property which was added by
+the second patch to properly manage the I2C controllers. Having this
+property is necessary to properly describe the hardware and allow the
+driver to correctly work with the I2C controllers.
 
-> > > @@ -35,4 +35,6 @@ obj-$(CONFIG_SI7210)                      +=3D si72=
-10.o
-> > >
-> > >  obj-$(CONFIG_TI_TMAG5273)          +=3D tmag5273.o
-> > >
-> > > +obj-$(CONFIG_TLV493D)      +=3D tlv493d.o
-> >
-> > We try to keep these in alphabetical order.
-> >
-> Ofcourse, I considered TI_TMAG5273 as whole. Will move it above that.
+Both has been tested successfully on RTL9302B-based Zyxel XGS1210-12
+and RTL9313-based Netgear MS510TXM.
 
-David, Jonathan, I remember I have asked Jonathan once already about
-these cases and unfortunately I forgot what was the conclusion about
-this. The filename has no vendor prefix, and  I think we prefer the
-order done by filename.
+Compile-tested with Linux, run-tested as backport in OpenWrt on the
+aforementioned devices.
 
-> > >  obj-$(CONFIG_YAMAHA_YAS530)                +=3D yamaha-yas530.o
+--
+Changelog
 
+v4: - fixed an incorrect check for number of channels which was already
+      present in original code
 
---=20
-With Best Regards,
-Andy Shevchenko
+v3: - narrowed vendor property per variant to be required only
+      for RTL9310
+    - narrowed usable child-node i2c addresses per variant
+    - no changes to driver patches
+
+v2: - Patch 1:
+        - adjusted commit message
+        - retained Tested-By and Reviewed-By from Chris Packham
+    - Patch 2:
+        - simplified check as suggested by Markus Stockhausen
+        - fixed commit message
+    - Patch 3 (all requested by Krzysztof):
+        - use vendor property instead of generic
+        - add front compatibles to make binding complete
+        - fix commit message
+    - reordered patches, dt-bindings patch now comes before its 'user'
+    - properly add device-tree list and relevant maintainers to To/Cc
+
+--
+
+Jonas Jelonek (3):
+  i2c: rework RTL9300 I2C controller driver
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
+  i2c: add RTL9310 support to RTL9300 I2C controller driver
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  58 ++++-
+ drivers/i2c/busses/i2c-rtl9300.c              | 231 +++++++++++++-----
+ 2 files changed, 218 insertions(+), 71 deletions(-)
+
+-- 
+2.48.1
+
 
