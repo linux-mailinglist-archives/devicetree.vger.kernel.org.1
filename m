@@ -1,344 +1,156 @@
-Return-Path: <devicetree+bounces-200573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255C9B15339
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D65EB15345
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:07:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552271889D01
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:05:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4BCD1893130
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71F223959D;
-	Tue, 29 Jul 2025 19:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B2E23BCED;
+	Tue, 29 Jul 2025 19:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I976hoEi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T7gfrstY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B0F46447;
-	Tue, 29 Jul 2025 19:05:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CCEF46447
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 19:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753815922; cv=none; b=TFGYK/HYiZGdld4rvcRmlm++g84VvbK+siLbkJDIIw6sC9TmUvaU87rSW3PbuYf8yoiHPxDS6oOgllNfqN1TW4p8LLLxjpa/gMYcaTskagaOp9CPjfEaPzY1VYOvsmg9BM2d28y+0vxexNfS/mwK8zaDQ7Tc27spGoP0MhFg5u8=
+	t=1753816040; cv=none; b=dvzUjJ8x3ocgRmn13jL/7sQmvD7A7InJdv2ILRx9CphMq7MUotrx4ilIYd3/um5gFJi9LkvT7GZ/Sz3/4QJt2y0o0HDqPYgb+pK2x+qecomWG47tLFuCQfbtIXZQpyWthw+KdHy6UZOGEBew5N3nnYdsS8VU/LQVq6DD3EHXXU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753815922; c=relaxed/simple;
-	bh=yxH+FULZ86o67g8LSiDf9ZC187TQ4TjAq094yJ7LAXs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lFd73WW4P7g9qToQYZcPs2THv3Cp5n99P8Ji2JIQNjgJ2Soyjbi7XGxhs8rLEDfSjCW/2k6dsKe9UwB3EZHepFCRYJB4oIZ+M0BjMIWG+VW+hXdt77EwZcqHRUuwfEq856+CgwTzzKSBPfYjCt7plVosOk8UQguonr4QH2kXGpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I976hoEi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D74CC4CEEF;
-	Tue, 29 Jul 2025 19:05:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753815922;
-	bh=yxH+FULZ86o67g8LSiDf9ZC187TQ4TjAq094yJ7LAXs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I976hoEiVTNqqmojBTOTca/IRNa8rVO0DHreW6OvAWDJYt2uGQhpSaUCvwSLl/BIw
-	 +QP696300upZaM904rfXCj3POg8LowIXZvBjGf/HBnCHGsgheKEQmOXxnKbf4ZTgat
-	 uNRbl03uMlz4eW91+CsRILMoaVVGNdz3k8FhiHutGO9OFSyfm7xux+5Pvam7ChztMS
-	 OLpisAKiW16MZeY+wy7RqMY3VJzd+8oi3Qizcov2ORQb7sAlvupkQlth0K6vK9biuG
-	 4lq+FAnasEMYaXKJUPmVhyvxKKQqq13uVxKosAHnPC82VNk1fUBAF4Ot2qW2R+NNYF
-	 YoRwMElX/O6hQ==
-Date: Tue, 29 Jul 2025 20:05:13 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
- 3D Magentic sensor
-Message-ID: <20250729200513.275e0d98@jic23-huawei>
-In-Reply-To: <aIhE5zwrPljqHqGX@dixit>
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
-	<20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
-	<20250727140559.1f6c1668@jic23-huawei>
-	<aIhE5zwrPljqHqGX@dixit>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1753816040; c=relaxed/simple;
+	bh=Ddeb9FHgi0foYjAwEeh5turmJZNaNkBrXn/UjX9lKi8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PxWZzhLv4oS9sQbj19gZBh6683bxVlf6syrz+HV7lpnVn8YJrrjH0C+47VDZrxirwwpiD/ByxeFqoz9iMagiiauAHy2slMIBdnvZ+8fjsEhXtc8eaLD/p1kQ90RFVBvYiBkwzp/NSF7MbzM5F/rJFdQUR+3QdTIutaE2SnSD/3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T7gfrstY; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3b786421e36so60381f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 12:07:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753816037; x=1754420837; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o/MxRuoyCjAuu+Wx+uvo6WAHep4Y7koyz5dvv/gvsfI=;
+        b=T7gfrstYSc0XAVnwBsqwjpu3d49OJMlkGx743rqg2/dT/Y8EQi00M+yCLBk7WqSckg
+         n0ipKMTwEzpsm+uYf+ff7EWc6/BoxqzdOvXrJdiWlgM1P5RzfaHQgExWgveKUOF6m/pJ
+         PFXN3cC2GQkBCLAwftb6xOULY5aAZTGQ0jspjFJE2EvZ2W9YybVC0/1ZNDfnh47fONIY
+         isKnLPL0GuBOqhiT9PY57ijx2R9k2M3TtaWRUkod/mEtecBy7XYnGpm9TUoFGzGCZmkq
+         gxhAKeR7XpldfQIknlkxS6anZofN/q9Md4wbKo9EFJX1nMg59kZ+nVLwClKWzCVEeVWl
+         oA1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753816037; x=1754420837;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o/MxRuoyCjAuu+Wx+uvo6WAHep4Y7koyz5dvv/gvsfI=;
+        b=veC5yCRiGV+kcDTnXk4sMDn53fNM+Fzp4FFLMvtmsKdDjyAkUXqZHVHqu2xxOZcEJ7
+         NlntLPYTDGCop+VXmH5bzwp86FdvPI4zuurK5Dpqgs94+Am3Q8nMLXhVpn6Iiq6ZtOrj
+         K7la7ATOkNAXih/0UZqwwmjGozREP/Ql8xBJuMurTW8/tWSjP+m6o5zs2IOo88cjzK5s
+         7ubtk3qnInr2UZFKm4kFwpd7P7Xl67Jy5927fCesvIfxYJf+VPEscpduLV/C/Rr59Kw1
+         q8gOj5e/OJYvQe8mWsSuArEAwXmeaZMNYqKHvcnQ6aPforp5IvjDdD9AHEWNczEM53g8
+         2sog==
+X-Forwarded-Encrypted: i=1; AJvYcCU+c5IV1/u9upHfeCR4B90UgxAFiD4KYhbfWZBh473onSzZ1FWvgnuw9AVGZ/KeiyB3qNQ2xcM3kFWG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2iP8PBi/CsMZavWEvtsnAOBpssShzn9/hXEotQ7EBcKXPjZAG
+	oAWBpuhkaE44NgH4RWuXsAAX0zQuXqD25d0poiwlGq+fZJajJssrWgJU
+X-Gm-Gg: ASbGncsBZ7oWeD2sbefAJQ60RntQ5EjjRGVi8RSbA1TyJpWuIniBswb9i1YX/r4Toet
+	xHZRYb95ker66ifDlkEKxceSv+xhvVtoiEMdUrJxeC1sDtxrBnd3N24dtF/f5L30PMAqW1iBbsM
+	0lyBXzYUN7vVPjeovUcQL7UQSIsHHB7S8BRveh60EuWMcRgafUNRPEokwebBr57MAA5d2zuEXZc
+	0ZoktCozWXb6kJhRQSSUK/VV3BnhoB3HGHd7BvWH6cIbN8+FV6fP2CCpc1EoqnQkZgNPnijA0mB
+	31FE5V8St6gtPjxWnTrvyNTbOgv9WfE5IvU+WsCGmaKqIRfOaZ4BFce4Hj80+HcRbMKZImLOSw0
+	+SKNvCQkyfv/iKODHwd1Fe1pvmzE4W39FEnCsPnERAzZC4n98qFsQ/nU1L2N6C8LnVqESpjrWQI
+	f3howk9LY3S7Te1AOCqgpmW8rLBk/xocH68y8ksMfZE4Nk2XptYgcBF9dQ7/N2w4KdHi8G
+X-Google-Smtp-Source: AGHT+IH6zFByu5WodzMnXJJqavnMrgXchjczYZlogRLJSbiGoSTQBt4t6fb0Oxe0bzUtCS6BUJq3HA==
+X-Received: by 2002:a05:6000:288a:b0:3b7:8146:4640 with SMTP id ffacd0b85a97d-3b79503579dmr637352f8f.56.1753816036422;
+        Tue, 29 Jul 2025 12:07:16 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4588e5c1ad7sm36470415e9.10.2025.07.29.12.07.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 12:07:16 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Pinephone Pro: Update WiFi
+Date: Tue, 29 Jul 2025 20:06:47 +0100
+Message-ID: <20250729190712.145817-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, 29 Jul 2025 09:19:59 +0530
-Dixit Parmar <dixitparmar19@gmail.com> wrote:
+Update the WiFi configuration to include the wake-up
+pin and add an ethernet alias to allow assignment of
+a mac-address from the firmware.
 
-> On Sun, Jul 27, 2025 at 02:05:59PM +0100, Jonathan Cameron wrote:
-> > On Sat, 26 Jul 2025 15:07:01 +0530
-> > Dixit Parmar <dixitparmar19@gmail.com> wrote:
-> >=20
-> > Hi Dixit,
-> >=20
-> > Very clean driver for a v1. Nice.
-> >  =20
-> > > The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor =20
-> >=20
-> > Slightly odd wrap.  Aim for 75 chars for patch descriptions.
-> > =20
-> Okay, 75.
-> > > applications includes joysticks, control elements (white goods,
-> > > multifunction knops), or electric meters (anti tampering) and any
-> > > other application that requires accurate angular measurements at
-> > > low power consumptions.
-> > >=20
-> > > The Sensor is configured over I2C, and as part of Sensor measurement
-> > > data it provides 3-Axis magnetic fields and temperature core measurem=
-ent.
-> > >=20
-> > > The driver supports raw value read and buffered input via external tr=
-igger
-> > > to allow streaming values with the same sensing timestamp.
-> > >=20
-> > > The device can be configured in to different operating modes by optio=
-nal
-> > > device-tree "mode" property. Also, the temperature sensing part requi=
-res
-> > > raw offset captured at 25=C2=B0C and that can be specified by "temp-o=
-ffset"
-> > > optional device-tree property.
-> > >=20
-> > > While sensor has interrupt pin multiplexed with I2C SCL pin. But for =
-bus
-> > > configurations interrupt(INT) is not recommended, unless timing const=
-raints
-> > > between I2C data transfers and interrupt pulses are monitored and ali=
-gned.
-> > >=20
-> > > The Sensor's I2C register map and mode information is described in pr=
-oduct
-> > > User Manual[1].
-> > >=20
-> > > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49=
-/infineon-tlv493d-a1b6-datasheet-en.pdf =20
-> > Tag, so in the tags block (no blank line to the SoB) =20
-> Sorry, didn't quite get it.
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ .../dts/rockchip/rk3399-pinephone-pro.dts     | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-You should have it as Datasheet: <link>
-That will then be a formal 'tag' so belongs alongside the Signed-off-by: et=
-c with no blank
-lines in that block.
-
-Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infin=
-eon-tlv493d-a1b6-datasheet-en.pdf=20
-Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-UserM=
-anual-v01_03-EN.pdf #1
-Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
-
-> > > [1] https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-U=
-serManual-v01_03-EN.pdf =20
-> > Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-U=
-serManual-v01_03-EN.pdf #1
-> >=20
-> > So make it a tag with a trailing comment to give the reference number.
-> >  =20
-> > >=20
-> > > Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com> =20
-
-> > > +
-> > > +#define TLV493D_DATA_X_GET(b)	\
-> > > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_MSB, b[TLV493D_RD_RE=
-G_BX]) << 4 | \
-> > > +			(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> =
-4), 11) =20
-> >=20
-> > These are odd enough I'd make them c functions rather than macros. Burn=
- a few lines
-> > for better readability.=20
-> >  =20
-> I saw this kind of data retrival and formation from registers as macros s=
-o I sticked to
-> it. Having all these as function will also require a seperate function
-> for each channel coz the masks and the layout of the bits changes over
-> the register. Do you still recommend it as c functions?
-
-Is it more than 4 short functions?  I'd burn the few lines that costs.
-
-s32 tlv493d_data_y_get(u8 *buff)
-{
-	u16 val =3D FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) <<=
- 4 |
-		  FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
-
-	return sign_extend32(val, 11);
-}
-> > > +/*
-> > > + * The datasheet mentions the sensor supports only direct byte-strea=
-m write starting from
-> > > + * register address 0x0. So for any modification to be made to any w=
-rite registers, it must
-> > > + * be written starting from the register address 0x0.
-> > > + * I2C write operation should not contain register address in the I2=
-C frame, it should
-> > > + * contains only raw byte stream for the write registers. As below,
-> > > + * I2C Frame: |S|SlaveAddr Wr|Ack|Byte[0]|Ack|Byte[1]|Ack|.....|Sp|
-> > > + */
-> > > +static int tlv493d_write_all_regs(struct tlv493d_data *data)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	if (!data || !data->client)
-> > > +		return -EINVAL;
-> > > +
-> > > +	/*
-> > > +	 * As regmap does not provide raw write API which perform I2C write=
- without
-> > > +	 * specifying register address, direct i2c_master_send() API is use=
-d.
-> > > +	 */
-> > > +	ret =3D i2c_master_send(data->client, data->wr_regs, ARRAY_SIZE(dat=
-a->wr_regs)); =20
-> >=20
-> > Given we have to do this, I'm a bit doubtful about regmap usage in gene=
-ral in here.
-> > Maybe it's just not a good fit and we should stick to direct use of the=
- i2c stuff
-> > like here?
-> >  =20
-> Sorry, didn't get entirely? From what I understood, you meant we could
-> drop regmap from this driver entirely and use direct I2C APIs. I believe
-> that would be too much, coz of the frequency we perform operations and
-> regmap is easier and clean imo.
-
-The mixture is nasty though :(=20
-> Also, we could have used regmap_raw_write() API by specifying register
-> 0x0 as address and rest of the 3 bytes as data. regmap will perform raw
-> write of these byte stream over the I2C the same way sensor expects. But
-> the problem with that approach is we are not using it as per the API
-> convention. let me know your thoughts? Is it a good option, it'll look
-> like this:
-> regmap_raw_write(data->map, data->wr_regs[0], &data->wr_regs[1],
-> ARRAY_SIZE(data->wr_regs) - 1);
-
-I'm not keen on that either.
-
-If you really want to mix i2c and regmap then that's fine, I was just dubio=
-us
-whether we were getting value for money from regmap here.
-
-> > > +	if (ret < 0) {
-> > > +		dev_err(data->dev, "failed to write registers. error %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +	*x =3D TLV493D_DATA_X_GET(buff);
-> > > +	*y =3D TLV493D_DATA_Y_GET(buff);
-> > > +	*z =3D TLV493D_DATA_Z_GET(buff);
-> > > +	*t =3D TLV493D_DATA_TEMP_GET(buff);
-> > > +
-> > > +out:
-> > > +	pm_runtime_mark_last_busy(data->dev); =20
-> >=20
-> > As below  This should get simpler.
-> >=20
-> > Not directly relevant to this patch:
-> >=20
-> > If this cycle is quiet I plan to propose some cleanup.h based handling =
-for runtime
-> > pm as it's annoying how often we need a goto for it.  The new ACQUIRE()=
-  / ACQUIRE_ERR()
-> > should work for this.=20
-> >  =20
-> Does this need any modifications with current codebase?
-
-Needs a bunch of work to show generality across many drivers and
-convincing Rafael (PM maintainer) it's a good idea.
-Don't try to do it in this series!
-
-> >  =20
-> > > +	pm_runtime_put_autosuspend(data->dev);
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int tlv493d_init(struct tlv493d_data *data)
-> > > +{
-> > > +	int ret;
-> > > +	u8 buff[TLV493D_RD_REG_MAX];
-> > > +
-> > > +	if (!data)
-> > > +		return -EINVAL;
-> > > +
-> > > +	/*
-> > > +	 * The sensor initialization requires below steps to be followed,
-> > > +	 * 1. Power-up sensor.
-> > > +	 * 2. Read and store read-registers map (0x0-0x9).
-> > > +	 * 3. Copy values from read reserved registers to write reserved fi=
-elds (0x0-0x3).
-> > > +	 * 4. Set operating mode.
-> > > +	 * 5. Write to all registers.
-> > > +	 */
-> > > +	ret =3D regmap_bulk_read(data->map, TLV493D_RD_REG_BX, buff, ARRAY_=
-SIZE(buff));
-> > > +	if (ret) {
-> > > +		dev_err(data->dev, "bulk read failed, error %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	data->wr_regs[0] =3D 0; /* Write register 0x0 is reserved. Does not=
- require to be updated.*/
-> > > +	data->wr_regs[1] =3D buff[TLV493D_RD_REG_RES1] & TLV493D_RD_REG_RES=
-1_WR_MASK;
-> > > +	data->wr_regs[2] =3D buff[TLV493D_RD_REG_RES2] & TLV493D_RD_REG_RES=
-2_WR_MASK;
-> > > +	data->wr_regs[3] =3D buff[TLV493D_RD_REG_RES3] & TLV493D_RD_REG_RES=
-3_WR_MASK;
-> > > +
-> > > +	ret =3D tlv493d_set_operating_mode(data, data->mode);
-> > > +	if (ret < 0) {
-> > > +		dev_err(data->dev, "failed to set operating mode\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	return ret; =20
-> > return 0? =20
-> Its the same though. ret from tlv493d_set_operating_mode is 0 on
-> success and -ve on failure.
-
-Then return 0 to make it explicit that if we get here we only return 0.
-That can be useful to compilers.
-
-Also check above as if (ret) is cleaner still.
-
-
-> > > +	if (ret)
-> > > +		val =3D 340;
-> > > +	/*
-> > > +	 * The above is a raw offset; however, IIO expects a single effecti=
-ve offset.
-> > > +	 * Since final temperature includes an additional fixed 25=C2=B0C (=
-i.e. 25000 m=C2=B0C),
-> > > +	 * we compute a combined offset using scale =3D 1100 (1.1 * 1000).
-> > > +	 */
-> > > +	data->temp_offset =3D -val + (s32)div_u64(25000, 1100);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int tlv493d_read_raw(struct iio_dev *indio_dev, const struct =
-iio_chan_spec *chan, =20
-> >=20
-> > wrap to keep this under 80.  Doesn't look like it will hurt readability.
-> >  =20
-> Ack. Is 80 standard for whole kernel or iio only?
-
-It's kind of the the 'old' standard.  Used to be a fairly hard limit, but
-over time there has been some relaxation.  So, if your code is nice and rea=
-dable
-you will rarely get anyone complaining if you stick to 80 chars.
-
->=20
-> Thank you for such detailed review. Appriciate it,
-You are welcome.
-
-J
-> Dixit
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 585ef0fd88ef0..05f7b506f3594 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -21,6 +21,7 @@ / {
+ 	chassis-type = "handset";
+ 
+ 	aliases {
++		ethernet0 = &brcmf;
+ 		mmc0 = &sdio0;
+ 		mmc1 = &sdmmc;
+ 		mmc2 = &sdhci;
+@@ -689,6 +690,12 @@ vcc1v8_codec_en: vcc1v8-codec-en {
+ 		};
+ 	};
+ 
++	wifi {
++		wifi_host_wake_l: wifi-host-wake-l {
++			rockchip,pins = <4 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	wireless-bluetooth {
+ 		bt_wake_pin: bt-wake-pin {
+ 			rockchip,pins = <2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -715,7 +722,19 @@ &sdio0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ 	sd-uhs-sdr104;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&gpio4>;
++		interrupts = <RK_PD0 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_host_wake_l>;
++	};
+ };
+ 
+ &pwm0 {
+-- 
+2.50.1
 
 
