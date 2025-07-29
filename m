@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-200481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8F87B14E27
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0655CB14E26
 	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:13:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6943E7A45DF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:11:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D7945459AB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C11D235064;
-	Tue, 29 Jul 2025 13:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34D5257444;
+	Tue, 29 Jul 2025 13:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uf40uzF+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cTFwhVQy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CEA1BDCF;
-	Tue, 29 Jul 2025 13:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988851BDCF;
+	Tue, 29 Jul 2025 13:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753794777; cv=none; b=NGkXeiIYt+74syD8HN7oyjM+DDYU4fEgfbT6CtZyJoA+Mn7cSyTKEGM+vCfmz/yD1fOvTxJJOhdFkOoSj/9RuxwOHGQ7Mrnfl65ASvBlY7QdrKuQg9sWgrZyLcTqXdb7/fZudEBOpZ7/YzBBvOlsNVmoMmNcYXAqCm9Dp9TuNNk=
+	t=1753794778; cv=none; b=lKA1brNnE4QmfCedpHI39gO4xcRqJ0V2vldGXLbNtYVD67H9RhNzYNh4V4c/+zro53S2lo0vCLVtEtT7IOtjZhr1Mz0ZCp3xh7o5hHfJOmey0l02bImkNTwiNU4pnh90xvaQt2YHx79/1o4+jSTxHckYPfDfv/3dtNhvVfzLF2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753794777; c=relaxed/simple;
-	bh=ZYf2Y5Gf2AmhWIYZ16idIUzzM0Y2potg0/rjZjCDgJc=;
+	s=arc-20240116; t=1753794778; c=relaxed/simple;
+	bh=/cLNQ0aruB2Rxp4O04VU2hwDm4xTPNqgYIIU3JaaaIA=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=JW4uU6zusjS8ah/SLWTHDeNR5dotUhmVXJqb8aywy7NVqy38YIJGVQQqr9N4qPOBq382AIkPvPtgReNn64wzj/LaiXuGfprsePZAsw6vCMMNCBHto/RGDfifaZzoyWe75/6EZ4qzymMRsBnX+wOQ2EeQApgUAGiI/HbWT4Kda0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uf40uzF+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6A2AC4CEEF;
-	Tue, 29 Jul 2025 13:12:56 +0000 (UTC)
+	 Message-Id:Subject; b=aLs4+SwLZtumL4wf7jjA54lC/rKw3cZBoT7ewphXYly2XFbg+o3vzZijCEbeuNjShb07rG3HtGbKw6D4ckwSfXDljuz816GF9s0CKdGKgzRLcnUz2xBGfWwQnDTn7oyfHXHoG7Pk3aswOMK4ur21lmtOW/jfpWX7KZ89avqX5/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cTFwhVQy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE81EC4CEF7;
+	Tue, 29 Jul 2025 13:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753794776;
-	bh=ZYf2Y5Gf2AmhWIYZ16idIUzzM0Y2potg0/rjZjCDgJc=;
+	s=k20201202; t=1753794778;
+	bh=/cLNQ0aruB2Rxp4O04VU2hwDm4xTPNqgYIIU3JaaaIA=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=uf40uzF+GvhUO93onC6SIES/BWmFXoppojG6HmARmQlGzA/cm5Q9q+JVsbPpCgBpr
-	 A4Dz6SS3hc447U3R86lapPlTUpegI42cKyWp3bnwxYIEF7wl/ZCU1UnldCaOBW36BL
-	 Doi72w57H6KwfDKvFAmYs0e/H4mrRMFXGeKyPqYSQc95WJo2xMBSFdnaTKjxw5dzdH
-	 fnzWDoL5HLCUH7sJB/cCm2nqIzY38p3+ItXWeI3K/3LF4qYsFQrQvFv317PV7h59cK
-	 q/OzxlgsGz4ZeTZNL72DGZDDvAM2hQJHyIksAlFZuQJpid5qcQtErs6QLZI7iK0LbC
-	 dRv6TCPQ2S7og==
-Date: Tue, 29 Jul 2025 08:12:55 -0500
+	b=cTFwhVQycc0dYmbyDF/wdmnagj3VL6y0jhemgGz3uKAH68LQHal1ac64muYtz9LoJ
+	 OvWLl+YOHmGkKQ4LmagQAvvAZBOdlFeaN7qfXMTM6Kg2WMhhYeVSVdIpR+Iu/0oWE5
+	 /xSpdDV/f+/+ut8caPKRNQEqz5VmPajHDj5J47R4POHckdWGoriDymu/3A4r9JGXal
+	 58N5myqutBHvpifnR7yyS6RR1Pn/YXgfXbheumsIbMInK5WJt1Z67vVWN6l0D8pT/f
+	 r7wf8Od9lCdn+TJzeekARfCAWhmz0CG69F3VHkrH1S2BXssGx9hSkMk53kxMbbo1Ne
+	 RKy8JLQFN5KZw==
+Date: Tue, 29 Jul 2025 08:12:57 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,158 +51,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, john@polyhex.net, 
- imx@lists.linux.dev
-To: WangErQian <WangErQianY@icloud.com>
-In-Reply-To: <20250729031351.3875406-1-WangErQianY@icloud.com>
-References: <20250729031351.3875406-1-WangErQianY@icloud.com>
-Message-Id: <175379477491.387965.6675785034730375913.robh@kernel.org>
-Subject: Re: [PATCH v1 dt-bindings]dt-bindings: debix-model-a: Add bindings
- for BT and audio
+Cc: Jason Kridner <jkridner@beagleboard.org>, luca.ceresoli@bootlin.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ conor+dt@kernel.org, Mark Brown <broonie@kernel.org>, 
+ Deepak Khatri <lorforlinux@beagleboard.org>, Andrew Davis <afd@ti.com>, 
+ Dhruva Gole <d-gole@ti.com>, linux-spi@vger.kernel.org, 
+ herve.codina@bootlin.com, devicetree@vger.kernel.org, 
+ Robert Nelson <robertcnelson@beagleboard.org>
+To: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org>
+References: <20250729-spi-bus-extension-v1-0-b20c73f2161a@beagleboard.org>
+ <20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org>
+Message-Id: <175379477596.388256.1787674509168915234.robh@kernel.org>
+Subject: Re: [PATCH 4/4] devicetree: bindings: spi: Introduce SPI bus
+ extensions
 
 
-On Tue, 29 Jul 2025 11:13:52 +0800, WangErQian wrote:
-> Add bindings for Debix Model A Bluetooth and audio
+On Tue, 29 Jul 2025 15:21:03 +0530, Ayush Singh wrote:
+> An SPI bus can be wired to the connector and allows an add-on board to
+> connect additional SPI devices to this bus.
 > 
-> This patch adds device tree binding documentation for:
-> - fsl,mxc_bt_rfkill.yaml: Bluetooth RF control node
-> - fsl,imx-audio-es8316.yaml: Audio codec interface
+> Those additional SPI devices could be described as sub-nodes of the SPI
+> bus controller node however for hotplug connectors described via device
+> tree overlays there is additional level of indirection, which is needed
+> to decouple the overlay and the base tree:
 > 
-> Signed-off-by: WangErQian <WangErQianY@icloud.com>
+>   --- base device tree ---
+> 
+>   spi1: spi@abcd0000 {
+>       compatible = "xyz,foo";
+>       spi-bus-extension@0 {
+>           spi-bus = <&spi_ctrl>;
+>       };
+>       ...
+>   };
+> 
+>   spi5: spi@cafe0000 {
+>       compatible = "xyz,bar";
+>       spi-bus-extension@0 {
+>           spi-bus = <&spi_sensors>;
+>       };
+>       ...
+>   };
+> 
+>   connector {
+>       spi_ctrl: spi-ctrl {
+>           spi-parent = <&spi1>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+> 
+>       spi_sensors: spi-sensors {
+>           spi-parent = <&spi5>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+>   };
+> 
+>   --- device tree overlay ---
+> 
+>   ...
+>   // This node will overlay on the spi-ctrl node of the base tree
+>   spi-ctrl {
+>       eeprom@50 { compatible = "atmel,24c64"; ... };
+>   };
+>   ...
+> 
+>   --- resulting device tree ---
+> 
+>   spi1: spi@abcd0000 {
+>       compatible = "xyz,foo";
+>       spi-bus-extension@0 {
+>           spi-bus = <&spi_ctrl>;
+>       };
+>       ...
+>   };
+> 
+>   spi5: spi@cafe0000 {
+>       compatible = "xyz,bar";
+>       spi-bus-extension@0 {
+>           spi-bus = <&spi_sensors>;
+>       };
+>       ...
+>   };
+> 
+>   connector {
+>       spi_ctrl: spi-ctrl {
+>           spi-parent = <&spi1>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+> 
+>           device@1 { compatible = "xyz,foo"; ... };
+>       };
+> 
+>       spi_sensors: spi-sensors {
+>           spi-parent = <&spi5>;
+>           #address-cells = <1>;
+>           #size-cells = <0>;
+>       };
+>   };
+> 
+> Here spi-ctrl (same goes for spi-sensors) represent the part of SPI bus
+> that is on the hot-pluggable add-on. On hot-plugging it will physically
+> connect to the SPI adapter on the base board. Let's call the 'spi-ctrl'
+> node an "extension node".
+> 
+> In order to decouple the overlay from the base tree, the SPI adapter
+> (spi@abcd0000) and the extension node (spi-ctrl) are separate nodes.
+> 
+> The extension node is linked to the SPI bus controller in two ways. The
+> first one with the spi-bus-extension available in SPI controller
+> sub-node and the second one with the spi-parent property available in
+> the extension node itself.
+> 
+> The purpose of those two links is to provide the link in both direction
+> from the SPI controller to the SPI extension and from the SPI extension
+> to the SPI controller.
+> 
+> Signed-off-by: Ayush Singh <ayush@beagleboard.org>
 > ---
->  .../bindings/bluetooth/fsl,mxc_bt_rfkill.yaml | 70 +++++++++++++++
->  .../bindings/sound/fsl,imx-audio-es8316.yaml  | 88 +++++++++++++++++++
->  2 files changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
+>  .../devicetree/bindings/spi/spi-controller.yaml    | 66 +++++++++++++++++++++-
+>  1 file changed, 65 insertions(+), 1 deletion(-)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml:2:1: [error] missing document start "---" (document-start)
-./Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml:40:13: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml:40:21: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml:41:14: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:2:1: [error] missing document start "---" (document-start)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:21:14: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:36:12: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:36:19: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:36:38: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:36:56: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:36:65: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml:37:14: [error] string value is redundantly quoted with any quotes (quoted-strings)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml: ignoring, error in schema: properties: pinctrl-0: type
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: ignoring, error in schema: properties: hp-det-gpio: type
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml: properties:pinctrl-0:type: 'anyOf' conditional failed, one must be fixed:
-	'phandle' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'phandle' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml: properties:pinctrl-names: {'maxItems': 1, 'items': [{'const': 'default'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml: properties:pinctrl-0:type: 'phandle' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml: properties:status:type: 'string' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-routing:type: 'anyOf' conditional failed, one must be fixed:
-	'string-array' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'string-array' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-cpu:type: 'anyOf' conditional failed, one must be fixed:
-	'phandle' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'phandle' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-codec:type: 'anyOf' conditional failed, one must be fixed:
-	'phandle' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'phandle' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:hp-det-gpio:type: 'anyOf' conditional failed, one must be fixed:
-	'phandle-array' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'phandle-array' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-routing:items: {'minItems': 2, 'maxItems': 2, 'items': [{'description': 'Source endpoint (e.g., "Mic Jack")'}, {'description': 'Sink endpoint (e.g., "MIC2")'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-routing:items: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'Source endpoint (e.g., "Mic Jack")'}, {'description': 'Sink endpoint (e.g., "MIC2")'}] is too long
-	[{'description': 'Source endpoint (e.g., "Mic Jack")'}, {'description': 'Sink endpoint (e.g., "MIC2")'}] is too short
-	False schema does not allow 2
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:hp-det-gpio: {'type': 'phandle-array', 'description': 'GPIO for headphone detection (active high)', 'maxItems': 1, 'items': [{'description': 'GPIO specifier (controller + pin + flags)'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:model:type: 'string' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-cpu:type: 'phandle' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-codec:type: 'phandle' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:format:type: 'string' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:hp-det-gpio:type: 'phandle-array' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:audio-routing:type: 'string-array' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml: properties:hp-det-gpio: 'anyOf' conditional failed, one must be fixed:
-	'type' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'items' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('type' was unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'type' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	'items' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	1 is less than the minimum of 2
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/gpios.yaml#
-Error: Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.example.dts:21.17-18 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dts:26.13-26: Warning (reg_format): /example-0/es8316@11:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): 'oneOf' conditional failed, one must be fixed:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/spi-controller.example.dtb: spi@abcd0000 (brcm,bcm2835-spi): 'oneOf' conditional failed, one must be fixed:
 	'interrupts' is a required property
 	'interrupts-extended' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx8mp-sai'] is too short
-	'fsl,imx8mp-sai' is not one of ['fsl,imx6ul-sai', 'fsl,imx7d-sai']
-	'fsl,imx8mp-sai' is not one of ['fsl,imx6sx-sai', 'fsl,imx7ulp-sai', 'fsl,imx8mq-sai', 'fsl,imx8qm-sai', 'fsl,imx8ulp-sai', 'fsl,imx93-sai', 'fsl,imx95-sai', 'fsl,vf610-sai']
-	'fsl,imx8mp-sai' is not one of ['fsl,imx94-sai']
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): 'dmas' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): 'dma-names' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: sai@40031000 (fsl,imx8mp-sai): Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: es8316@11 (everest,es8316): '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/everest,es8316.yaml#
-Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.example.dtb: /example-0/sound: failed to match any schema with compatible: ['fsl,imx-audio-es8316']
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1526: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+	from schema $id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/spi-controller.example.dtb: spi@abcd0000 (brcm,bcm2835-spi): 'clocks' is a required property
+	from schema $id: http://devicetree.org/schemas/spi/brcm,bcm2835-spi.yaml#
+Documentation/devicetree/bindings/spi/spi-controller.example.dtb: /example-2/connector/spi-addon/device@2: failed to match any schema with compatible: ['xyz,foo']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250729031351.3875406-1-WangErQianY@icloud.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
