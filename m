@@ -1,129 +1,101 @@
-Return-Path: <devicetree+bounces-200592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C724B154BA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 23:38:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C0FB154CA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 23:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BAAA4E16E9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:37:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843AE189C776
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BEF221FBD;
-	Tue, 29 Jul 2025 21:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE9122539D;
+	Tue, 29 Jul 2025 21:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qW5ruKUE"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Yk5kOHIl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C7C81581EE;
-	Tue, 29 Jul 2025 21:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5CD21E0B2;
+	Tue, 29 Jul 2025 21:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753825099; cv=none; b=j/TBFUm+Oe1LHkcy6foLrMCvynG+EzJahaQSeZoGBluQJKOf7glgJS7n0fcA2ju5RkfQhKUOel4TzT3m+fspFo9AUFsgzYzl9BwBEXfINmDmKn7rrfr2vIrqpIWlWJSS8KB5/ZipE+Kdl7+8IZZkUhrnNLaWHhAeA5hlhLPXF94=
+	t=1753825518; cv=none; b=WAklpPMgDcvHPJJS1RbgyTapPcQkVM9ZdtwxszE/sByG+4579A/rC5EE2nVrPJYVl2Ai68T9HYmmnxDYpu8xHGHsbTwJoCPI0DupyOUMCX3CWPgcZgxDOnOYxmyZVx3dj/8BWPCMvD/15PruMvIinkzUQQSX/iyekmm6eBBhx7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753825099; c=relaxed/simple;
-	bh=RbiX5C9ZNSVgqywJgaDdT3SU5ZxrC7DIKMkAgMjIHqM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kGbgx5Q7mGw55U0dK2mEEtItXZZIdrbnjLbbduWF57bhUwsg/tU1ujhhDdxkItOFtIMa5Jy69lQ0JJF3eXMobZX6kZBAf4irRTfNsUqBCPLlVDA6VMTE8Tp1LBxyi5lwFcIWoJy9K7s+MBYVStCqoDJSK9s4kXtotxL1KKv4F0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qW5ruKUE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2FEC4CEF8;
-	Tue, 29 Jul 2025 21:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753825099;
-	bh=RbiX5C9ZNSVgqywJgaDdT3SU5ZxrC7DIKMkAgMjIHqM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qW5ruKUEVp1+6NVwIxqqua6H+75nhw53XjZF2b+D4+Y4ulEiX4Y+9oykKNozGyW7A
-	 ED7Or2wprVZxFf00cp486qOXJuu1LvYw3yfa3/A3riRvSi0KKehyVLr0FBm9VFyvml
-	 xNRF13XdK/RX6UeWx6metByEufKtswSAVa6jbzIYd1i5N2C3Sf1nWnZV12b5zMQaj+
-	 T8XOJo4ebvSNaCNiPesKmK6vbny5LUvnAwIs8JYoQ2vIn7Go8kcsirGv1EQKlKfY5E
-	 M+gqIIipH/qhyZeCHbOPg/Q5pQ17qRdi4qzs+iekH63QRdYmBepGutZO+xpre3ZmAt
-	 sTp/+YwHvqZTA==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso492143a12.1;
-        Tue, 29 Jul 2025 14:38:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUx4E/+uqMDRJ4aiY1BCAgycKSBsyxqpExOlcEtWgToIubnuJdmFogK8boQpos2pGGqUng+Sji/LEp03YOa@vger.kernel.org, AJvYcCWEc14+OJKfaB9aWZVipB3p7XOBUgqQahHANaLVfEGgfaT/zidHbgWesy/OvI5J1N+epUzMHexLcUHq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0bRv9FuJTWl1jEOwGscLHVrAtHYHm2286mxWeZMzlBFybG+GT
-	LfPH2jfbOtaQYLT8vbDtkd5nItCcGeRQbUEZ3IL4ua4MBHohhI7rTJgiHkE1od/oFyv38mcU3Xo
-	PnsqcgY2hmn7lAMFEpXMUK/BU/wFqLg==
-X-Google-Smtp-Source: AGHT+IGvBZ0btfZgJFG9HmTwKXOD3/MSQXfb+Qs2Tts90trK7pL2qm2BE0USLaxZ5PIPuS6byX7/Tet5ZaY65/Y+43k=
-X-Received: by 2002:a17:907:9802:b0:af2:4a7e:ad64 with SMTP id
- a640c23a62f3a-af8fd6e5f65mr111254066b.2.1753825097587; Tue, 29 Jul 2025
- 14:38:17 -0700 (PDT)
+	s=arc-20240116; t=1753825518; c=relaxed/simple;
+	bh=0eTWygk7sJUGmlzICVrrEKhs549JkRr4pu1uxSB1WmY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CL1g+/+idVWajA9BArTe2F0QCbbQxwvuGPeCR1+yj3TNg/ql++zZYO5yOAHmVibl2fJWrbZ+xF5EBP09z7THViMLM1nG6ILifjSd5Bl/xBlT5crOTZixTYrbY+ylOLzB+ysot3zth++UU1IPowA0PtelWT/FpUQjsdI5e95wDNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Yk5kOHIl; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Wf/0uZWB4TN7Fbn1MCE47FdY12dXgDlIhEUAvFCkfX8=; b=Yk5kOHIl0CLrboS9EJbYvPpeSc
+	k6mNYiPGw10mcTYl2R0LlVmtxGn6x5Ib1V3bCdw6TsAlDfC4vlv30lP1XUPv5+IrbZSfm14BCVv0b
+	TsgH1A5agj+hZV6Oymoe5FrNPRb1l0UkIbuoCJKR5oDNaOWZl0YLLio6sfkxKRAyJ1YY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ugs82-003EPg-Ro; Tue, 29 Jul 2025 23:44:58 +0200
+Date: Tue, 29 Jul 2025 23:44:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>,
+	"alsi@bang-olufsen.dk" <alsi@bang-olufsen.dk>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"heiko@sntech.de" <heiko@sntech.de>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"olteanv@gmail.com" <olteanv@gmail.com>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"ziyao@disroot.org" <ziyao@disroot.org>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to
+ Radxa E24C
+Message-ID: <fdb2e6f0-3732-49ee-b11d-e82f9a9cb2e9@lunn.ch>
+References: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
+ <20250729115009.2158019-1-amadeus@jmu.edu.cn>
+ <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250727180100.15961-1-kjw1627@gmail.com>
-In-Reply-To: <20250727180100.15961-1-kjw1627@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 29 Jul 2025 16:38:04 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+J+6gxOzsXe9t9==GGJ721jrbNhaGMHZyfCTxkM8B0eA@mail.gmail.com>
-X-Gm-Features: Ac12FXy8QPjafdy9u2G_MjJ36oKb7qYl68BAVkZFJ4Q8P3yCBh8fAC5XN8o-02g
-Message-ID: <CAL_Jsq+J+6gxOzsXe9t9==GGJ721jrbNhaGMHZyfCTxkM8B0eA@mail.gmail.com>
-Subject: Re: [PATCH] of: address: Fix bug to get the highest cpu address of
- subtrees for dma
-To: Joonwon Kang <kjw1627@gmail.com>
-Cc: saravanak@google.com, nsaenzjulienne@suse.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
 
-On Sun, Jul 27, 2025 at 1:01=E2=80=AFPM Joonwon Kang <kjw1627@gmail.com> wr=
-ote:
->
-> The function of_dma_get_max_cpu_address() for a device node should choose
-> the highest cpu address among the ones that nodes can access.
-> However, there was a bug of choosing the lowest cpu address and this
-> commit is to fix it.
+> > I did a test today and the same problem occurred when running the new
+> > kernel on my rk3568 + rtl8367s board. This problem does not exist on
+> > older kernels (6.1 and 6.6). Not sure where the problem is.
+> 
+> I had only tested on a next-20250722 based kernel and on a vendor 6.1
+> based kernel. And similar to your findings, on 6.1 based kernel there
+> was no issue only on the newer kernel.
+> 
+> I will probably drop the use of "/delete-property/ snps,tso" and include
+> a note in commit message about the TSO and RX checksum issue for v2.
 
-Please provide a test case in the DT unittests or at least details on
-the DT that is affected by the bug.
+You are submitting a patch for todays kernel, not a historic
+kernel. If todays kernel needs this property to work, please include
+it.
 
-> Signed-off-by: Joonwon Kang <kjw1627@gmail.com>
-> ---
->  drivers/of/address.c | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index f0f8f0dd191c..5e984e0d372b 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -969,6 +969,7 @@ phys_addr_t __init of_dma_get_max_cpu_address(struct =
-device_node *np)
->  {
->         phys_addr_t max_cpu_addr =3D PHYS_ADDR_MAX;
->         struct of_range_parser parser;
-> +       phys_addr_t max_subtree_max_addr =3D PHYS_ADDR_MAX;
->         phys_addr_t subtree_max_addr;
->         struct device_node *child;
->         struct of_range range;
-> @@ -992,10 +993,17 @@ phys_addr_t __init of_dma_get_max_cpu_address(struc=
-t device_node *np)
->
->         for_each_available_child_of_node(np, child) {
->                 subtree_max_addr =3D of_dma_get_max_cpu_address(child);
-> -               if (max_cpu_addr > subtree_max_addr)
-> -                       max_cpu_addr =3D subtree_max_addr;
-> +               if (subtree_max_addr =3D=3D PHYS_ADDR_MAX)
-> +                       continue;
-> +
-> +               if (max_subtree_max_addr =3D=3D PHYS_ADDR_MAX)
-> +                       max_subtree_max_addr =3D subtree_max_addr;
-> +               else
-> +                       max_subtree_max_addr =3D max(max_subtree_max_addr=
-, subtree_max_addr);
->         }
->
-> +       max_cpu_addr =3D min(max_cpu_addr, max_subtree_max_addr);
-> +
->         return max_cpu_addr;
->  }
->
-> --
-> 2.46.0
->
+You can always remove it when you have done a git bisect and find what
+changed, and submit a fix.
+
+	Andrew
 
