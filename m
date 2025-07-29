@@ -1,93 +1,156 @@
-Return-Path: <devicetree+bounces-200433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3C6B14B38
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD9DB14B44
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:28:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E4E24E54EC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:24:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 524343BF6C5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F052673B9;
-	Tue, 29 Jul 2025 09:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD7F287247;
+	Tue, 29 Jul 2025 09:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="hpFXhVh8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBVfHBQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E92A1A76BB;
-	Tue, 29 Jul 2025 09:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D1E286D7C;
+	Tue, 29 Jul 2025 09:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753781074; cv=none; b=mxPORfqnrRdtQkjlYw0EsefePrxCEmEeyqIo3YzmVLHRwSffcLEn3s0DJM9ZfD6gdbPwQJIXilkaYq605HAM0IORKhJSJZIVigmr19B61mUDmt+PHtw/UbAYbCOevA3Kgcx25W0Kyef+u+xc1Qb/eO2CwASOV5xZc7pwT0fTyQM=
+	t=1753781330; cv=none; b=W2fabst4qKWtTD9UpUiuuNTkFh566/Hf8/hGljkkVTeKS5ywMxHaHaG/A24aZ+fgZoehmwcRKOdIwYKCqrUB8bOmIHabla6j4jgvkWzfSwl+ff7K/DPlqDYX2kcdguLA5wbNdx+8TwgRrBer3PL5IymydU8q2cJYl77eatqUEI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753781074; c=relaxed/simple;
-	bh=5f4BpgvVmzCRmDHsN/VvJBuhhWIHDaaAjfV2HvJvoOs=;
-	h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:References:
-	 Cc:In-Reply-To:To; b=ENGxPGdbNyAblcSGVodAb58BpWXTNUqaDS6foAS7PXLIIkqmr2hP7icsRoQ8/vTGlJTDVaKkj3MsMdIsbZOt6MKpW0TJAEo9Ro0ZXQr2dRJ2u4kT+wnogpXehwnQwxZ9E59J4KUX10sRzT4WgOVF8Fd0I3flBeaRxT+qUcDjjkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=hpFXhVh8; arc=none smtp.client-ip=209.222.21.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
-	s=default; t=1753781067;
-	bh=5f4BpgvVmzCRmDHsN/VvJBuhhWIHDaaAjfV2HvJvoOs=;
-	h=From:Subject:Date:References:Cc:In-Reply-To:To:From;
-	b=hpFXhVh8LgP8dqnxcUgwPNo6gTpGwmpdL+3iJuNNFBFpBGjzSvPtenKS/Y9H3jdWH
-	 X/4iWVa8l+2IL96OuJShAyeJHPCwqh9Az2ub+A/Lz7JxMoqm7K6rcDGD83j+lxa/Wd
-	 uCSHnl91sS97i1Z1IKre75KtOgyk60OGoIBsWv8CethiTw8QEXtyiKcypi+037gNuF
-	 /O6DkkSV8Nz6N/EjDY0V+hUNQibAfE6UCubpHFlaulVS+D+YlWbKbsmPcWSl1JdwBR
-	 ZNvHDBz00pwgPYLzjmGSYtT64gVmO8CyajtRGjwVfBKTZ4kg4Onc6if6XGliWFxR/P
-	 jEp2aIU1uWMpQ==
-Received: from smtpclient.apple (unknown [IPv6:2600:4040:50b7:b604:2ca9:1ceb:f1ef:b736])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by chumsalmon.baetis.net (Postfix) with ESMTPSA id 629C327E434;
-	Tue, 29 Jul 2025 09:24:27 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From: Erik Beck <xunil@tahomasoft.com>
+	s=arc-20240116; t=1753781330; c=relaxed/simple;
+	bh=CMqZsJW/c6Uzt84ItOkAAWWmg9MXF0clQbidcO5PnDQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nbbv9G9CB5ezRIAO/nYJxQ3bYTeLN48AoFkG183j94OhGGEbZwsI8aj3FWxYwyCVlCQSuyDxJ8S7QNz/D108OVl/KPamXMpl2FlWer5f6OtbfoFqMUa7LXhNYlwU915NJ0oGFzWRL950kOEqrPpsre6+Ig7Ytn4tXI3KAxOflhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBVfHBQ6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA904C4CEEF;
+	Tue, 29 Jul 2025 09:28:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753781330;
+	bh=CMqZsJW/c6Uzt84ItOkAAWWmg9MXF0clQbidcO5PnDQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mBVfHBQ61xY2a2SewgbGtBxal41VOrGa781znRGJRJKYBiR3dvbiLFMTEPh/c11gM
+	 vTW1N0m5jEgD8NvA3legX/7VQqudzpv+7gbBf+4gAG9nc2hLdpAYzIOA5mrFVbaLKn
+	 TfhH2jlCgBsDtrkWV7+eIL5qidIO5uXfgpJR/WuMAT2bbk/4piGz0V83fUQQuoxDta
+	 DdY/fmDXVUkRMn9cd5NCG9YHpATAxVPk6WxQEex436n5TuIBgUDTBVndDOavhvx/6M
+	 fiBJm0O/pWh5e1ZMretdHENCctSpA69Hbvn1JosPnd3ohq0Grd6o61uObrgQFNg4b7
+	 s83FSol7RTJNg==
+Message-ID: <a6268cd4-4a7e-498e-9787-bec959bb1475@kernel.org>
+Date: Tue, 29 Jul 2025 11:28:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH v5 2/2] dt-bindings: arm: rockchip: add LinkStar-H68k-1432v1
-Date: Tue, 29 Jul 2025 05:24:17 -0400
-Message-Id: <9E402294-53BD-4BA7-9E0A-EE4B287DF038@tahomasoft.com>
-References: <20250729-passionate-jerboa-of-superiority-c7aff5@kuoka>
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250729-passionate-jerboa-of-superiority-c7aff5@kuoka>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: iPhone Mail (22F76)
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
+To: Jon Hunter <jonathanh@nvidia.com>, Rajesh Gumasta <rgumasta@nvidia.com>,
+ krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ andi.shyti@kernel.org, ulf.hansson@linaro.org, thierry.reding@gmail.com,
+ kyarlagadda@nvidia.com
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, andersson@kernel.org,
+ sjg@chromium.org, nm@ti.com
+References: <20250725052225.23510-1-rgumasta@nvidia.com>
+ <20250725052225.23510-2-rgumasta@nvidia.com>
+ <1a6f4194-de77-4dca-b2e8-2b51a106d770@kernel.org>
+ <dc4ed9fd-2da1-4d9b-b8f1-446ea0697385@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <dc4ed9fd-2da1-4d9b-b8f1-446ea0697385@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 29/07/2025 11:15, Jon Hunter wrote:
+> 
+> On 25/07/2025 07:47, Krzysztof Kozlowski wrote:
+>> On 25/07/2025 07:22, Rajesh Gumasta wrote:
+>>> +description: |
+>>> +  Register Settings provides a generic way to specify register configurations
+>>> +  for any hardware controllers. Settings are specified under a "reg-settings"
+>>> +  sub-node under the controller device tree node. It allows defining both
+>>> +  default and operating mode specific register settings in the device tree.
+>>> +
+>>> +properties:
+>>> +  reg-settings:
+>>> +    type: object
+>>> +    description: |
+>>> +      Container node for register settings configurations. Each child node
+>>> +      represents a specific configuration mode or operating condition.
+>>> +
+>>> +    additionalProperties:
+>>> +      type: object
+>>
+>> I don't understand what does this binding bring. It is empty.
+> 
+> 
+> Yes this is very much similar to the pinctrl.yaml that defines a 
+> top-level object that can then be used by different devices and those 
 
+No, it is not similar. pinctrl.yaml defines common properties and common
+schema for class of devices - pin controllers.
 
-> On Jul 29, 2025, at 04:54, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->=20
-> =EF=BB=BFOn Mon, Jul 28, 2025 at 11:07:37AM -0400, Erik Beck wrote:
->> Add device tree bindings.
->=20
-> I don't understand why correct patch order was changed to incorrect.
+There is nothing common here, nothing defined except that you have
+unspecified children nodes.
 
-My error. Thank you, and I'll be reordering them shortly.
+> devices can then define the properties they need. So the examples for 
+> I2C and MMC really demonstrate how this would be used in the subsequent 
+> patches. Obviously we are open to any ideas on how if there are better 
+> or preferred ways to do this.
 
-Regards,
+I don't see this part addressing comments from Rob - you need more users
+of this. Adding fake (empty, no-op) common schema is not solving it.
 
-Erik
->=20
-> See submitting patches in DT bindings dir.
->=20
-> Best regards,
-> Krzysztof
->=20
->=20
+Best regards,
+Krzysztof
 
