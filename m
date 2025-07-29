@@ -1,69 +1,68 @@
-Return-Path: <devicetree+bounces-200559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00F1B15261
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:54:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEDE4B15280
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:11:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E81B55437B4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:54:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A1977A588C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED35298CCF;
-	Tue, 29 Jul 2025 17:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172C82989A2;
+	Tue, 29 Jul 2025 18:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d4iKMO1R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMrVZJMH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14605298CB1;
-	Tue, 29 Jul 2025 17:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D833C2AE90;
+	Tue, 29 Jul 2025 18:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753811655; cv=none; b=J3lRQymJqH2Zm7pFhDZEbRMsC+2jOLwGiOt61XrlRyIRDGbhu48Z1+qhTWPVkWRYXXNfNIEn0i80BTFGh1h74E+H4Rlhrdo4D1n30LCtQzyf5IcVh+1SNL/FeX3/htMxbXksvh3jTPPxqVhNsfOMqAgbkVIL05xrEiqYEUVnLes=
+	t=1753812713; cv=none; b=txOA2MOCqX1XUINdvHfhU2vr1RQiMn6vwjZwADo6UDXugBZNoP7mOc68wmDYPRSNHmN7B8xyoruQ4WW1xFX+n2Cqlam+71rj3OoFJYw+umPG/5VkFl3A4qReabQSpqHZp89OR6hxmoa2E49U5TCZatTltde9EIB5d6UwSxlqrds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753811655; c=relaxed/simple;
-	bh=J6y7muyFDzOpaWbidr++rX+I7mcOedEEEF1hRm5TL9w=;
+	s=arc-20240116; t=1753812713; c=relaxed/simple;
+	bh=Kp4/gvOCoF4j3IVDGkFHzTtSG45DUv0mvG8JEJIXRms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ATncG86X9kYYhA8ASzxi0NamVM52nTPAQKtsEqmuf1Z+/jqKJYkXqlUGrMlRVymwDcM1yFGud4MkLN+QKF09xHpdP5cKuqxRdGwSqoH0+W76QgSHcx4HOV83Vj2rDXIByjhVEB/RQtg6wck0wY9fGxsAQBG6fuzBsIQj1hoaeBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d4iKMO1R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 585CDC4CEF4;
-	Tue, 29 Jul 2025 17:54:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bcejsFvnCLYLyrkomb4WHQNyXAHTF14h4rpj3e40jKL3pdfEzPc+wnGQb7gBVN9GHSX0W//v8v0SrzTG20BDGLPWFRKsB26XJfw6rxwXBhuWhjjwbe7YY4cm3WLXPYZnfBgN2nX3aaJFgHZ8RD2A8C29OS2FoFKB9vvWDiPv1us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pMrVZJMH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 410CDC4CEEF;
+	Tue, 29 Jul 2025 18:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753811654;
-	bh=J6y7muyFDzOpaWbidr++rX+I7mcOedEEEF1hRm5TL9w=;
+	s=k20201202; t=1753812712;
+	bh=Kp4/gvOCoF4j3IVDGkFHzTtSG45DUv0mvG8JEJIXRms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d4iKMO1R9RObKxmf2UyIzWWqHARsbZ+po8iimkSzRynrxyAPla44caaU0nbDr4YvS
-	 MlBR3YcpjA14F/lXXIZnm09ursqrw1Il9rsl32RoTvFMtPwGNwMtSKg8oPakc1b3Cr
-	 k4ZXntCF81Q50cKGaVued3T+Zrg4B5PuXkt0nb+QHTErPx2qadZCcbsce1YhR2ElSg
-	 ubzceejBv/ihLj49353LlJMO9lIEtmHQvuPbDkPKODBRVHmC5fDwbmO0cxk63K/4g9
-	 ZAf0z0wL6S7tnCrnwMhi61F5/rpdUe2u3vxxRmPDAOETpoIowlKEkAFOA7TMpaT0QF
-	 QYBJmSUzyjBcw==
-Date: Tue, 29 Jul 2025 10:54:12 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	b=pMrVZJMHglSkP2KaUUVuDJgQNM6nyfHH7e8kAtn1Ns6BWW3CK72lNvEYZQZO5FkaH
+	 qpWAE3/G6DactS67jtMhx64NbD/1fiQlscwmeLNJwgdn5KNm9BKSc1h1k0Ma3MTx/N
+	 qdbAfLGVvO5jkvIzfCnQ79VwOvy0NTaKCVq0dqULFI/2PbCabhHkGneGiP6614L6CN
+	 UWtQLnVeNmI3kjLYJS2Tffblp31stui3fYtHWLy0TbewtPCjfb+iA4874uuZJK9vZJ
+	 zag/d5Mbw/SCbv20juyZN9sar7lhUI9A4JsRcNy832a+fJ6oaFg/0fB/to2vhG47aV
+	 Ido0K7u1KyU/Q==
+Date: Tue, 29 Jul 2025 13:11:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net 1/3] dt-bindings: net: thead,th1520-gmac: Describe
- APB interface clock
-Message-ID: <aIkKxM3zfVjaa1we@x1>
-References: <20250729093734.40132-1-ziyao@disroot.org>
- <20250729093734.40132-2-ziyao@disroot.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 1/6] dt-bindings: gpio: snps,dw-apb: Add support for
+ Renesas RZ/N1
+Message-ID: <20250729181151.GA530390-robh@kernel.org>
+References: <20250725152618.32886-1-herve.codina@bootlin.com>
+ <20250725152618.32886-2-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,67 +71,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250729093734.40132-2-ziyao@disroot.org>
+In-Reply-To: <20250725152618.32886-2-herve.codina@bootlin.com>
 
-On Tue, Jul 29, 2025 at 09:37:32AM +0000, Yao Zi wrote:
-> Besides ones for GMAC core and peripheral registers, the TH1520 GMAC
-> requires one more clock for configuring APB glue registers. Describe
-> it in the binding.
+On Fri, Jul 25, 2025 at 05:26:10PM +0200, Herve Codina wrote:
+> The RZ/N1 SoCs uses the Synopsys DesignWare IP to handle GPIO blocks.
 > 
-> Though the clock is essential for operation, it's not marked as required
-> for now to avoid introducing new dt-binding warnings to existing dts.
+> Add RZ/N1 SoC and family compatible strings.
+
+Why? Yes, that's policy, but so far we avoided it on this IP. Perhaps 
+because it is simple enough. So what's different here?
+
 > 
-> Fixes: f920ce04c399 ("dt-bindings: net: Add T-HEAD dwmac support")
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
->  .../devicetree/bindings/net/thead,th1520-gmac.yaml        | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/gpio/snps,dw-apb-gpio.yaml        | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> index 6d9de3303762..fea9fbc1d006 100644
-> --- a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> @@ -59,14 +59,18 @@ properties:
->        - const: apb
+> diff --git a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> index ab2afc0e4153..ceb71b5ac688 100644
+> --- a/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml
+> @@ -20,7 +20,13 @@ properties:
+>      pattern: "^gpio@[0-9a-f]+$"
 >  
->    clocks:
-> +    minItems: 2
->      items:
->        - description: GMAC main clock
->        - description: Peripheral registers interface clock
-> +      - description: APB glue registers interface clock
+>    compatible:
+> -    const: snps,dw-apb-gpio
+> +    oneOf:
+> +      - const: snps,dw-apb-gpio
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a06g032-gpio
+> +          - const: renesas,rzn1-gpio
+> +          - const: snps,dw-apb-gpio
 >  
->    clock-names:
-> +    minItems: 2
->      items:
->        - const: stmmaceth
->        - const: pclk
-> +      - const: apb
->  
->    interrupts:
->      items:
-> @@ -88,8 +92,8 @@ examples:
->          compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
->          reg = <0xe7070000 0x2000>, <0xec003000 0x1000>;
->          reg-names = "dwmac", "apb";
-> -        clocks = <&clk 1>, <&clk 2>;
-> -        clock-names = "stmmaceth", "pclk";
-> +        clocks = <&clk 1>, <&clk 2>, <&clk 3>;
-> +        clock-names = "stmmaceth", "pclk", "apb";
->          interrupts = <66>;
->          interrupt-names = "macirq";
->          phy-mode = "rgmii-id";
+>    "#address-cells":
+>      const: 1
 > -- 
 > 2.50.1
 > 
-
-Thanks for figuring out that this clock is needed for the APB glue
-registers. The schema passes W=1 dt_binding_check with no warnings.
-
-Regarding minItems, I think it would be okay to change to 3 as the APB
-clock should have been there from the start but I missed it. We can fix
-the in-tree dts at the same time so that seems okay to me. But let's see
-what the dt bindings maintainers think.
-
--Drew
 
