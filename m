@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2769DB15019
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:20:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F08B6B1504F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E58BD3A5812
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:20:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE6C44E75B0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 15:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0BC292B3D;
-	Tue, 29 Jul 2025 15:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F33529550F;
+	Tue, 29 Jul 2025 15:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PEiCz7c+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVSx1pgt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38D4292B24;
-	Tue, 29 Jul 2025 15:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30437293C71;
+	Tue, 29 Jul 2025 15:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753802444; cv=none; b=KVea6hbxQDNGvOMkQC1wQYd/ctNvnruqQ8stbloqexiq6UESS5DD/adZRF1kJQ7uIyShxxAq4E/nxIzSZCwAGrPn6wXK+Ol5q1Nv6cjT+n8j9BZBwhYEUrzllV6GcfKMYFOcndMpyeEwasX6FKt8DjxcsNgB94GRrfUnfbOznVI=
+	t=1753803639; cv=none; b=qEV7a83YQj/YBLDgGc2/gqfps6EYWPyX1E6BNFqFOIbzqRiEENs67ZBm30dpV45fuzZUYUwGHjDT0t1QGIwiAdxkOl2QB9uPsuEWPJp+2a04/qniTN+fmBasOY2gDDhN6lYeZl/OZX+6SLYFdHigbVN6Z++KVRl1pLDWgAB75xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753802444; c=relaxed/simple;
-	bh=wy1kZtqlV6yy+DUBnplOAwMXLNKxZRRgZkAH2zFRQAY=;
+	s=arc-20240116; t=1753803639; c=relaxed/simple;
+	bh=K25Kho8qsn1NdbvfhwmhShwU+hQrB/3WGuSSdzsp2jc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J37ctSPQJ0FilIjlBdFd0b0HRrGB5qvKkd3w0/WAGAVBuQXGQpn4E59TUea/Vj2lHZw9lj7VFyymOabQjq8ltdg+FgfNGMnjLBjTOQd81oVx5iwUlPEcaDoB4zUcwTp3906ydmVUUwtgpSC7UTkGJ2QhSc8BdbDX6RQ1+3MKJ04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PEiCz7c+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34468C4CEF4;
-	Tue, 29 Jul 2025 15:20:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ipN6IvQR42wzw8UZL0zpicoWky5dDDlOteOhhd+4Rr26wJmlVKf0lhvrqgcdAvwQntrh2s7yIJU4hXQo/1bmyt0pfJkqbUkfAbgYG7tQMvLTI6c19++YvM/9DrheAQGNrnapp/eRx2f8AXLpK9Xu2ZBu7xr1svuHMMnU5xkbmnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVSx1pgt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A43F4C4CEF5;
+	Tue, 29 Jul 2025 15:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753802443;
-	bh=wy1kZtqlV6yy+DUBnplOAwMXLNKxZRRgZkAH2zFRQAY=;
+	s=k20201202; t=1753803636;
+	bh=K25Kho8qsn1NdbvfhwmhShwU+hQrB/3WGuSSdzsp2jc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PEiCz7c+CnBajqjHjsTqzpS14ITZQ2lW2areAxzB9SIeBczSfA9dS5Sy7ALvoheOf
-	 anKgR2W0Y1v151fhqkReRmGq/b7vGNZz2uj4MeBzH5OO+vWgEWAVy2FQ6d7IEuUGe/
-	 DhmjGqM0Io4IiAwnRmm+r34N64KMEFFRXu37Pk1OndsGG8o4y5b3M02tPntSq1rhdK
-	 bjfJCORoKC0tRLxH8NpfN1ica/7dxy09mSHrvWSJvnd1yrS2d4nxuL+uAEyd/DQENa
-	 ukMPJwg4TnHSOHRE6vfLUrj9YvoWKPFCIiDVgbfTlqptIFolGcK+QpoYOtBgGQwdQI
-	 uOephXgX61/ow==
-Message-ID: <f1586f30-f94e-4fc4-b09c-7a5a0859ead1@kernel.org>
-Date: Tue, 29 Jul 2025 17:20:39 +0200
+	b=WVSx1pgtyP8XBALk7khnHjMVm0yRX2XLVy16XJhYTI43pS+e6WcUgpnT3zPewSi0a
+	 UR8IlFg2eEXwVa9KFMMW55elKybDXuw8+sILcJ6mx7r/L883egQUaBVBKuSGFfm3Fv
+	 0uBBGoqnEJLelLK83YdNNIlwXPzP7AVzeLXNW/Fi5YTr7ULkMS/NXYlbbMtOaCCm/f
+	 DronK5SWa/a3b6+fbY3PsPSxvVdnpI33wSKoivzXXP9F65xMTk2hWmCcLNCvnLYmn/
+	 /x4QxfGu8grB/q+EmqkgI0Ms+SMOUL+Gxtu77JdWxKhB1mQDrXRqdFWSThz6mJMBYs
+	 In0K3MrSKKZ+g==
+Message-ID: <3603a744-e898-49ef-968a-2388e14cae54@kernel.org>
+Date: Tue, 29 Jul 2025 17:40:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: rockchip: add
- LinkStar-H68k-1432v1
-To: Erik Beck <xunil@tahomasoft.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250729-linkstar-6-16-rc1-v6-v6-0-92307f465835@tahomasoft.com>
- <20250729-linkstar-6-16-rc1-v6-v6-1-92307f465835@tahomasoft.com>
+Subject: Re: [PATCH 1/3] dt-bindings: power: supply: Add Richtek RT9756 smart
+ cap divider charger
+To: cy_huang@richtek.com, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1753759794.git.cy_huang@richtek.com>
+ <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,24 +103,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250729-linkstar-6-16-rc1-v6-v6-1-92307f465835@tahomasoft.com>
+In-Reply-To: <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2025 16:39, Erik Beck wrote:
-> Add device tree bindings.
-> 
-> This device:
->   - Is a single board travel router made by Seeed, using an rk3568;
->   - Has four ethernet ports;
->   - Has four USB ports;
->   - Has WiFi (MediaTek MT7921e);
->   - Has a real-time clock (rk809)
-> 
-> Signed-off-by: Erik Beck <xunil@tahomasoft.com>
-> ---
+On 29/07/2025 06:21, cy_huang@richtek.com wrote:
+> +
+> +  shunt-resistor-micro-ohms:
+> +    description: Battery current sense resistor mounted.
+> +    default: 2000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - wakeup-source
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why do you require this? I cannot find any use of it, so maybe I missed
+some change in Linux code (and that's second question like that for
+Richtek, so refer to your other patchsets for contexr).
+
+> +  - interrupts
+> +
+
+Missing ref to power supply.
+
+> +additionalProperties: false
+> +
+
+unevaluated instead
+
 
 Best regards,
 Krzysztof
