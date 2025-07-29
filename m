@@ -1,390 +1,334 @@
-Return-Path: <devicetree+bounces-200396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21AA6B148E3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:03:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 809E8B148FC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 382B016E72A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:03:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9E011897B6F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:15:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D0C236A8B;
-	Tue, 29 Jul 2025 07:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F00626056E;
+	Tue, 29 Jul 2025 07:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iqoBavYn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZtE34Ul"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4939C1F874F;
-	Tue, 29 Jul 2025 07:02:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E382367BA;
+	Tue, 29 Jul 2025 07:14:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753772575; cv=none; b=Ud07iHZvpn7sfeDY9IXvYAQPWOYltDH4NJ11jLj8SIOx2o0eKD0XzH/s75ot3Avxno6ctkq4ak9yKWmtckH72ZHhMb8I5j5nzdIZQZ9bA4nar7pyvqDNonTY+hLUTAtLIMPtHYIPSClURiMilNXXR3UNqix96BjLZNTDFyxwWkg=
+	t=1753773279; cv=none; b=KTxgrvfWSBjcgreXFuPASJyN9+eHvwTCUc9DGTONRwsNiPRKJOe6zfppoJ/dRli25zsBb8JSYxzKKY5yq3Aber/OLPQjATUv2cbAK0TBUHPk7By7gwVz3Xe2BeSOiYCOAh7gNSMESWTwIlPji62bS2lpyP9hb76agdhM6qlD6kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753772575; c=relaxed/simple;
-	bh=6Twi/oK9dSgTMY+wFSaidKTy9Oyz42Ha1n0Jk9/6glQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T34g2rzGYC7U52Ggc1o2Sz0b7O13t+9u5jm1EY0SOui8LRqSxc5nIRGsh3R5VkyWqkwaATbkpLJaDSwMoRi3L9MxqD93u7CBKzzuVaFv2pyUHDYRN8ElGjBzYZlQV3qpnE+hgXJCytjTyAZCh36YEk/to5oaV8D2IxAlenwpZz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iqoBavYn; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-53167fb5690so2054618e0c.3;
-        Tue, 29 Jul 2025 00:02:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753772572; x=1754377372; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UPe/qLLEwDQRByPG42BYIGc6HQMFYi+UgYC+8be7e28=;
-        b=iqoBavYnsaIQTdOmFlOT5EuaPVKxcnFO4Aiz5LWvWm005TvIGDzYh01v5yRA32hFsH
-         BYRESM4sGi9bIYabTwFrsYILkQq2AzFm6qb4wrbtz3zVW44M1Mh8SCIkFwcH5hwEwN0W
-         JsXJ8862Ngq/0VdZW5SYV7TlLtLJCpboq6jqaDsmGsfmjT556XBwiWITOhv3XPZtxYIb
-         P3h9r9dgAjVyzk3oZCBzXBvIUsCpXlw8wM/yBEbjkoi7OBB1MH7fSBRw6zANEBboeVeD
-         xIQW3k1PNe7upUXv8owwf4kaeAz7kCaRIPWDfdLWpBowNhL+RJx5FzCmOUCQ8QuA2R1j
-         O9/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753772572; x=1754377372;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UPe/qLLEwDQRByPG42BYIGc6HQMFYi+UgYC+8be7e28=;
-        b=H/FTkc/Zm38AjT9r3TqxAKoyojLiEpJ2TUiFOyvuLShqn5W5twEGGEsmbMEETOvnOp
-         42GgGBLEtjIp+zZiDBk8CyfOMR7rKRNpB09ygy1ltycYJtphmetqgDpjWbgptTpFkmm1
-         DcXnBYhxEKO0k3pfOQg73VIesdgoAKwUfReO9E/tSbFR2VGwjNJw+nqfsDiq0Jhb6NLp
-         yzjVfFS9DvM0s4KnFI9HJiSRp/Ai4k5MBqEZp61SNGNcDG4VAZz+Po/TZEeQUBxCvWPV
-         2X0d8+BgbA3v4urLkX4riSqZOXSNUEpHs4DpgFYDlDIFDkrI9f5XMnNs1nET0hjMLXZo
-         9/Hw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjoQkWAe8XZxugNn7qD5KWTYHbAa9hcKfPYeGRGGswneUVL6ZYwGMFHXE1bepDkVdJCOY+ngd1LThq@vger.kernel.org, AJvYcCUoOD33YJeXnLmQNctc5C2WNZVeLJZb3PQ2yy2ocxp9KLJjJB/S7K9jQzV4KD0Lbt0IJxNgTDNXQzzSczHh@vger.kernel.org, AJvYcCXqpG3qNqw1dNr98HpToKm7kIhd42Kpz46oS4p0uVfzYJk7ORDWEFSyzeiBvrIpHdwVuMEdkiyD3n44oWX7t0Cj0fM=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywv14b5f5bZGhvY8wMclEVMPhyMVx4M4pRwSlDIkS/Q9dtgUGzc
-	F4JL2XLbj7xSPragHDtQP2V0WaWgYbAbFiF4E1qVlO0IeUr6pZKk7PqyJoXwtvEjrnIkQlAHB5m
-	WtE9/3XZ53vAzJs8tQ3wIFh8dJxmTpxE=
-X-Gm-Gg: ASbGncs/Zm7b5J1RL0KTPio9rUhZiUfNc3nOpKDlOGrA5P6q7NM9s0DqmTSpILiAkzR
-	V3R1+TOSjanCigEMKWQLzAp38T0QjEo5HrU4ceys4xGVdj2lg4thccLjSbkgsAjzi6GBgvZOpMz
-	g1fQIYjJd4j9I3wCfRSNHAdsT/VAghf2jBZuFNBItC/+OuI4tLSc4VWDPuH+JC7Y46LV0KumCF3
-	Jxl+Q==
-X-Google-Smtp-Source: AGHT+IFoncrlpWw1i6WzQqR3txoGKpqtrzhok2riEERJ9a82EDQDLrmTtk5K8booTBL5JJI+e2v2Ca5TnYv+mP2pkxQ=
-X-Received: by 2002:a05:6102:d90:b0:4f9:6a93:2a3a with SMTP id
- ada2fe7eead31-4fa3ff86239mr6458282137.26.1753772571875; Tue, 29 Jul 2025
- 00:02:51 -0700 (PDT)
+	s=arc-20240116; t=1753773279; c=relaxed/simple;
+	bh=9jaI39l1Uh8xxeZqcMi491zMxReRhgEiKezb0D06vIc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tqJn5mGq+dFF0wwQuhwF6L6jaK0suu83B7mp0pKlYFRnsgAFwg+XuqLcwdudxzbMeufRCO+XVLGEb+eb7PSB7n0NuraM6lRBi9fSwlB+PdDPP3ZWB1dREcxHRTLroRvdKwT0exfR1yLK4KVR3tKWf6Vcco76UYHfGQ5ABaknDDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZtE34Ul; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B32C4CEEF;
+	Tue, 29 Jul 2025 07:14:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753773279;
+	bh=9jaI39l1Uh8xxeZqcMi491zMxReRhgEiKezb0D06vIc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pZtE34UlOQ1ny5tcZcYAEXUc24qujKBJZSiuRWpp6Ki56TUavO2sKV0aebhNRPVG1
+	 CZPO3RcUyeMrRFRGrW6EMGC1GfI8iyJ7LfcUmK0k1DjH1fJUI5pAcFxw7AWb/J0FkZ
+	 SufWEBZ2WmKp4p7mY5xHH8Kn8n0WWH/jphoAc16PB+/GLpOo+C5tLtxQBqZBUnkwps
+	 A8I818nnQ9aI4vA654zE31NI2/t7+A0ec2S1h8dagkdIUqB00eQ0fJRKazvrMNS5uV
+	 eOvpi+z0OukP8odiv9nj/FQYlprzHd2TPaHvtmx03FcB3ZAkxRoVgbEMnxQKt/1X3Z
+	 oxVjDzyZtHXeA==
+Message-ID: <6f9f3b70-fb5a-4af2-a01c-5bc14fff8b90@kernel.org>
+Date: Tue, 29 Jul 2025 09:14:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org> <20250706-exynos7870-dsim-v3-10-9879fb9a644d@disroot.org>
-In-Reply-To: <20250706-exynos7870-dsim-v3-10-9879fb9a644d@disroot.org>
-From: Inki Dae <daeinki@gmail.com>
-Date: Tue, 29 Jul 2025 16:02:09 +0900
-X-Gm-Features: Ac12FXzIdQh-2hSRJxrhTX04Gexopr85LkmnAh4nGUB4cX_MHGUC9ISKVNYHE8E
-Message-ID: <CAAQKjZNfb6LkShtCvan__ew=H7CaquTqn5DLcP1agtkG6B5mSw@mail.gmail.com>
-Subject: Re: [PATCH v3 10/13] drm/bridge: samsung-dsim: add ability to define
- clock names for every variant
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 dt-bindings]dt-bindings: debix-model-a: Add bindings
+ for BT and audio
+To: WangErQian <WangErQianY@icloud.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev
+Cc: linux-arm-kernel@lists.infradead.org, john@polyhex.net
+References: <20250729031351.3875406-1-WangErQianY@icloud.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250729031351.3875406-1-WangErQianY@icloud.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-2025=EB=85=84 7=EC=9B=94 7=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 3:28, Ka=
-ustabh Chakraborty <kauschluss@disroot.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=
-=84=B1:
->
-> Presently, all devices refer to clock names from a single array. The
-> only controlling parameter is the number of clocks (num_clks field of
-> samsung_dsim_driver_data) which uses the first n clocks of that array.
-> As new devices are added, this approach turns out to be cumbersome.
->
-> Separate the clock names in individual arrays required by each variant,
-> in a struct clk_bulk_data. Add a pointer field to the driver data struct
-> which points to their respective clock names, and rework the clock usage
-> code to use the clk_bulk_* API instead.
->
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+On 29/07/2025 05:13, WangErQian wrote:
+> Add bindings for Debix Model A Bluetooth and audio
+> 
+> This patch adds device tree binding documentation for:
+
+Read submitting patches. It explains how to write appropriate commit msg
+and what should be in the patchset.
+
+> - fsl,mxc_bt_rfkill.yaml: Bluetooth RF control node
+> - fsl,imx-audio-es8316.yaml: Audio codec interface
+
+Read submitting patches. There is VERY important paragraph called -
+separate your changes.
+
+> 
+> Signed-off-by: WangErQian <WangErQianY@icloud.com>
+
+No, you need real name.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+Please use standard email subjects, so with the PATCH keyword in the
+title. `git format-patch -vX` helps here to create proper versioned
+patches. Another useful tool is b4. Skipping the PATCH keyword makes
+filtering of emails more difficult thus making the review process less
+convenient.
+
+There is no patch prefix called "dt-bindings".
+
+
 > ---
->  drivers/gpu/drm/bridge/samsung-dsim.c | 88 +++++++++++++++++------------=
-------
->  include/drm/bridge/samsung-dsim.h     |  2 +-
->  2 files changed, 44 insertions(+), 46 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/brid=
-ge/samsung-dsim.c
-> index 4b49707730db76aa8fd3ab973b02507436750889..b6b3bbcbd0f438e5e1d3faf18=
-f8c2d532a4ecc93 100644
-> --- a/drivers/gpu/drm/bridge/samsung-dsim.c
-> +++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-> @@ -219,23 +219,31 @@
->  #define DSI_XFER_TIMEOUT_MS            100
->  #define DSI_RX_FIFO_EMPTY              0x30800002
->
-> -#define OLD_SCLK_MIPI_CLK_NAME         "pll_clk"
-> -
->  #define PS_TO_CYCLE(ps, hz) DIV64_U64_ROUND_CLOSEST(((ps) * (hz)), 10000=
-00000000ULL)
->
-> -static const char *const clk_names[5] =3D {
-> -       "bus_clk",
-> -       "sclk_mipi",
-> -       "phyclk_mipidphy0_bitclkdiv8",
-> -       "phyclk_mipidphy0_rxclkesc0",
-> -       "sclk_rgb_vclk_to_dsim0"
-> -};
-> -
->  enum samsung_dsim_transfer_type {
->         EXYNOS_DSI_TX,
->         EXYNOS_DSI_RX,
->  };
->
-> +static struct clk_bulk_data exynos3_clk_bulk_data[] =3D {
-> +       { .id =3D "bus_clk" },
-> +       { .id =3D "pll_clk" },
-> +};
+>  .../bindings/bluetooth/fsl,mxc_bt_rfkill.yaml | 70 +++++++++++++++
+>  .../bindings/sound/fsl,imx-audio-es8316.yaml  | 88 +++++++++++++++++++
+>  2 files changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml b/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
+> new file mode 100644
+> index 000000000000..b173de7a4102
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bluetooth/fsl,mxc_bt_rfkill.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +$id: http://devicetree.org/schemas/bluetooth/fsl,mxc_bt_rfkill.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static struct clk_bulk_data exynos4_clk_bulk_data[] =3D {
-> +       { .id =3D "bus_clk" },
-> +       { .id =3D "sclk_mipi" },
-> +};
+> +title: NXP i.MX Bluetooth RFKill Controller
 > +
-> +static struct clk_bulk_data exynos5433_clk_bulk_data[] =3D {
-> +       { .id =3D "bus_clk" },
-> +       { .id =3D "sclk_mipi" },
-> +       { .id =3D "phyclk_mipidphy0_bitclkdiv8" },
-> +       { .id =3D "phyclk_mipidphy0_rxclkesc0" },
-> +       { .id =3D "sclk_rgb_vclk_to_dsim0" },
-> +};
+> +maintainers:
+> +  - WangErQian <wangerqiany@icloud.com>
 > +
->  enum reg_idx {
->         DSIM_STATUS_REG,        /* Status register (legacy) */
->         DSIM_LINK_STATUS_REG,   /* Link status register */
-> @@ -408,7 +416,8 @@ static const struct samsung_dsim_driver_data exynos3_=
-dsi_driver_data =3D {
->         .has_legacy_status_reg =3D 1,
->         .has_freqband =3D 1,
->         .has_clklane_stop =3D 1,
-> -       .num_clks =3D 2,
-> +       .clk_data =3D exynos3_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos3_clk_bulk_data),
->         .max_freq =3D 1000,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 1,
-> @@ -439,7 +448,8 @@ static const struct samsung_dsim_driver_data exynos4_=
-dsi_driver_data =3D {
->         .has_legacy_status_reg =3D 1,
->         .has_freqband =3D 1,
->         .has_clklane_stop =3D 1,
-> -       .num_clks =3D 2,
-> +       .clk_data =3D exynos4_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos4_clk_bulk_data),
->         .max_freq =3D 1000,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 1,
-> @@ -468,7 +478,8 @@ static const struct samsung_dsim_driver_data exynos5_=
-dsi_driver_data =3D {
->         .reg_ofs =3D exynos_reg_ofs,
->         .plltmr_reg =3D 0x58,
->         .has_legacy_status_reg =3D 1,
-> -       .num_clks =3D 2,
-> +       .clk_data =3D exynos3_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos3_clk_bulk_data),
->         .max_freq =3D 1000,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 1,
-> @@ -497,7 +508,8 @@ static const struct samsung_dsim_driver_data exynos54=
-33_dsi_driver_data =3D {
->         .plltmr_reg =3D 0xa0,
->         .has_legacy_status_reg =3D 1,
->         .has_clklane_stop =3D 1,
-> -       .num_clks =3D 5,
-> +       .clk_data =3D exynos5433_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos5433_clk_bulk_data),
->         .max_freq =3D 1500,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 0,
-> @@ -526,7 +538,8 @@ static const struct samsung_dsim_driver_data exynos54=
-22_dsi_driver_data =3D {
->         .plltmr_reg =3D 0xa0,
->         .has_legacy_status_reg =3D 1,
->         .has_clklane_stop =3D 1,
-> -       .num_clks =3D 2,
-> +       .clk_data =3D exynos3_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos3_clk_bulk_data),
->         .max_freq =3D 1500,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 1,
-> @@ -555,7 +568,8 @@ static const struct samsung_dsim_driver_data imx8mm_d=
-si_driver_data =3D {
->         .plltmr_reg =3D 0xa0,
->         .has_legacy_status_reg =3D 1,
->         .has_clklane_stop =3D 1,
-> -       .num_clks =3D 2,
-> +       .clk_data =3D exynos4_clk_bulk_data,
-> +       .num_clks =3D ARRAY_SIZE(exynos4_clk_bulk_data),
->         .max_freq =3D 2100,
->         .wait_for_hdr_fifo =3D 1,
->         .wait_for_reset =3D 0,
-> @@ -2021,7 +2035,7 @@ int samsung_dsim_probe(struct platform_device *pdev=
-)
->  {
->         struct device *dev =3D &pdev->dev;
->         struct samsung_dsim *dsi;
-> -       int ret, i;
-> +       int ret;
->
->         dsi =3D devm_drm_bridge_alloc(dev, struct samsung_dsim, bridge, &=
-samsung_dsim_bridge_funcs);
->         if (IS_ERR(dsi))
-> @@ -2045,23 +2059,11 @@ int samsung_dsim_probe(struct platform_device *pd=
-ev)
->         if (ret)
->                 return dev_err_probe(dev, ret, "failed to get regulators\=
-n");
->
-> -       dsi->clks =3D devm_kcalloc(dev, dsi->driver_data->num_clks,
-> -                                sizeof(*dsi->clks), GFP_KERNEL);
-> -       if (!dsi->clks)
-> -               return -ENOMEM;
-> -
-> -       for (i =3D 0; i < dsi->driver_data->num_clks; i++) {
-> -               dsi->clks[i] =3D devm_clk_get(dev, clk_names[i]);
-> -               if (IS_ERR(dsi->clks[i])) {
-> -                       if (strcmp(clk_names[i], "sclk_mipi") =3D=3D 0) {
-> -                               dsi->clks[i] =3D devm_clk_get(dev, OLD_SC=
-LK_MIPI_CLK_NAME);
-> -                               if (!IS_ERR(dsi->clks[i]))
-> -                                       continue;
-> -                       }
-> -
-> -                       dev_info(dev, "failed to get the clock: %s\n", cl=
-k_names[i]);
-> -                       return PTR_ERR(dsi->clks[i]);
-> -               }
-> +       ret =3D devm_clk_bulk_get(dev, dsi->driver_data->num_clks,
-> +                               dsi->driver_data->clk_data);
-> +       if (ret) {
-> +               dev_err(dev, "failed to get clocks in bulk (%d)\n", ret);
-> +               return ret;
+> +description: |
+> +  Binding for NXP i.MX Bluetooth RFKill controller, managing power and wake signals via GPIOs.
 
-Above change modifies the existing behavior.
+No, explain the hardware, not what binding is.
 
-Previously, when devm_clk_get() failed and the clock name was
-"sclk_mipi", the code included a fallback mechanism to try "pll_clk"
-instead. This fallback logic has been removed in the current patch.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,mxc_bt_rfkill
 
-While changing this behavior may raise concerns, the benefits of
-refactoring=E2=80=94specifically, defining clock names per SoC and adopting
-the clk_bulk_* API for improved maintainability=E2=80=94appear to outweigh =
-the
-potential downsides.
+There is no user of this, so why posting this binding?
 
-Unless there are objections from other reviewers, I intend to proceed
-with merging this patch.
-If anyone has concerns or sees potential issues with this change,
-please share your thoughts.
+> +
+> +  pinctrl-names:
+> +    maxItems: 1
+> +    items:
+> +      - const: default
+> +
+> +  pinctrl-0:
+> +    type: phandle
+> +    description: Phandle to default pin control configuration
+> +
+> +  bt-power-gpios:
+> +    description: GPIO controlling Bluetooth power (active low)
+> +    maxItems: 1
+> +
+> +  wake-bt-gpios:
+> +    description: GPIO for waking Bluetooth device (active low)
+> +    maxItems: 1
+> +
+> +  wake-host-gpios:
+> +    description: GPIO for host wake-up signal (active low)
+> +    maxItems: 1
+> +
+> +  status:
+> +    type: string
+> +    enum: [ "okay", "disabled" ]
+> +    default: "okay"
 
-Thanks,
-Inki Dae
+Do you see ANY binding with such syntax? No. There is no and this should
+be a hint that you are doing something wrong.
 
->         }
->
->         dsi->reg_base =3D devm_platform_ioremap_resource(pdev, 0);
-> @@ -2134,7 +2136,7 @@ static int samsung_dsim_suspend(struct device *dev)
->  {
->         struct samsung_dsim *dsi =3D dev_get_drvdata(dev);
->         const struct samsung_dsim_driver_data *driver_data =3D dsi->drive=
-r_data;
-> -       int ret, i;
-> +       int ret;
->
->         usleep_range(10000, 20000);
->
-> @@ -2150,8 +2152,7 @@ static int samsung_dsim_suspend(struct device *dev)
->
->         phy_power_off(dsi->phy);
->
-> -       for (i =3D driver_data->num_clks - 1; i > -1; i--)
-> -               clk_disable_unprepare(dsi->clks[i]);
-> +       clk_bulk_disable_unprepare(driver_data->num_clks, driver_data->cl=
-k_data);
->
->         ret =3D regulator_bulk_disable(ARRAY_SIZE(dsi->supplies), dsi->su=
-pplies);
->         if (ret < 0)
-> @@ -2164,7 +2165,7 @@ static int samsung_dsim_resume(struct device *dev)
->  {
->         struct samsung_dsim *dsi =3D dev_get_drvdata(dev);
->         const struct samsung_dsim_driver_data *driver_data =3D dsi->drive=
-r_data;
-> -       int ret, i;
-> +       int ret;
->
->         ret =3D regulator_bulk_enable(ARRAY_SIZE(dsi->supplies), dsi->sup=
-plies);
->         if (ret < 0) {
-> @@ -2172,11 +2173,9 @@ static int samsung_dsim_resume(struct device *dev)
->                 return ret;
->         }
->
-> -       for (i =3D 0; i < driver_data->num_clks; i++) {
-> -               ret =3D clk_prepare_enable(dsi->clks[i]);
-> -               if (ret < 0)
-> -                       goto err_clk;
-> -       }
-> +       ret =3D clk_bulk_prepare_enable(driver_data->num_clks, driver_dat=
-a->clk_data);
-> +       if (ret < 0)
-> +               goto err_clk;
->
->         ret =3D phy_power_on(dsi->phy);
->         if (ret < 0) {
-> @@ -2187,8 +2186,7 @@ static int samsung_dsim_resume(struct device *dev)
->         return 0;
->
->  err_clk:
-> -       while (--i > -1)
-> -               clk_disable_unprepare(dsi->clks[i]);
-> +       clk_bulk_disable_unprepare(driver_data->num_clks, driver_data->cl=
-k_data);
->         regulator_bulk_disable(ARRAY_SIZE(dsi->supplies), dsi->supplies);
->
->         return ret;
-> diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsu=
-ng-dsim.h
-> index 04ed11787bbd22503f7221cad1a491a4e5e66781..eb9fdbab1b34074923daa0aa0=
-443c33c5b99ae42 100644
-> --- a/include/drm/bridge/samsung-dsim.h
-> +++ b/include/drm/bridge/samsung-dsim.h
-> @@ -58,6 +58,7 @@ struct samsung_dsim_driver_data {
->         unsigned int has_clklane_stop:1;
->         unsigned int has_broken_fifoctrl_emptyhdr:1;
->         unsigned int has_sfrctrl:1;
-> +       struct clk_bulk_data *clk_data;
->         unsigned int num_clks;
->         unsigned int min_freq;
->         unsigned int max_freq;
-> @@ -104,7 +105,6 @@ struct samsung_dsim {
->
->         void __iomem *reg_base;
->         struct phy *phy;
-> -       struct clk **clks;
->         struct clk *pll_clk;
->         struct regulator_bulk_data supplies[2];
->         int irq;
->
-> --
-> 2.49.0
->
->
+Anyway, entire binding does not describe the hardware, so this cannot be
+accepted. Bindings describe real hardware devices, not virtual beings
+like some containers for GPIOs.
+
+
+...
+
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
+> new file mode 100644
+> index 000000000000..35f13d656caf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/fsl,imx-audio-es8316.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +$id: http://devicetree.org/schemas/sound/fsl,imx-audio-es8316.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX Audio Interface with ES8316 Codec
+> +
+> +maintainers:
+> +  - WangErQian <wangerqiany@icloud.com>
+> +
+> +description: |
+> +  Binding for NXP i.MX platforms using the Everest ES8316 audio codec.
+
+Same comments
+
+> +  Defines the connections between CPU DAI (SAI), codec, and audio routing.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx-audio-es8316
+
+There is no user for it or your commit msg is incomplete.
+
+> +
+> +  model:
+> +    type: string
+> +    description: Descriptive name of the audio setup (e.g., board-specific)
+> +    default: "imx-audio-es8316"
+
+How other bindings do this?
+
+> +
+> +  audio-cpu:
+> +    type: phandle
+> +    description: Phandle to the CPU audio interface (e.g., SAI node)
+> +    maxItems: 1
+> +
+> +  audio-codec:
+> +    type: phandle
+> +    description: Phandle to the audio codec (ES8316 node)
+> +    maxItems: 1
+> +
+> +  format:
+> +    type: string
+> +    description: Audio data format (e.g., i2s, left-justified)
+> +    enum: ["i2s", "right-justified", "left-justified", "dsp-a", "dsp-b"]
+> +    default: "i2s"
+
+How other bindings do this?
+
+> +
+> +  hp-det-gpio:
+> +    type: phandle-array
+> +    description: GPIO for headphone detection (active high)
+> +    maxItems: 1
+> +    items:
+> +      - description: GPIO specifier (controller + pin + flags)
+> +
+> +  audio-routing:
+> +    type: string-array
+> +    description: Connection mapping between codec pins and audio components
+> +    items:
+> +      minItems: 2
+> +      maxItems: 2
+
+These are redundant. I don't think this was tested.
+
+> +      items:
+> +        - description: Source endpoint (e.g., "Mic Jack")
+> +        - description: Sink endpoint (e.g., "MIC2")
+> +
+> +required:
+> +  - compatible
+> +  - audio-cpu
+> +  - audio-codec
+> +  - audio-routing
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    sai3: sai@40031000 {
+> +        compatible = "fsl,imx8mp-sai";
+> +        reg = <0x40031000 0x1000>;
+> +    };
+
+Drop node, not relevant.
+
+> +
+> +    codec: es8316@11 {
+> +        compatible = "everest,es8316";
+> +        reg = <0x11>;
+> +    };
+
+Drop node, not relevant.
+
+
+> +
+> +    sound {
+> +        compatible = "fsl,imx-audio-es8316";
+> +        model = "imx-audio-es8316";
+> +        audio-cpu = <&sai3>;
+> +        audio-codec = <&codec>;
+> +        format = "i2s";
+> +        hp-det-gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> +        audio-routing =
+> +            "Mic Jack", "MIC2",
+> +            "Headphone Jack", "HPOL",
+> +            "Headphone Jack", "HPOR";
+> +    };
+
+
+Best regards,
+Krzysztof
 
