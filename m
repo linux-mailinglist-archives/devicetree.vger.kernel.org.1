@@ -1,152 +1,224 @@
-Return-Path: <devicetree+bounces-200353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D09BB1469E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 05:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F84B146A8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 05:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B614188C85F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:09:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E5E8188ED12
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D68C21B905;
-	Tue, 29 Jul 2025 03:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0605220296A;
+	Tue, 29 Jul 2025 03:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xnn6TC2v"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aOaBV+L8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A0ABA2D;
-	Tue, 29 Jul 2025 03:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31AAF286A9;
+	Tue, 29 Jul 2025 03:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753758560; cv=none; b=DB6T9mx5Oyne4vZVkUKjRPRQ0bTU/UnmzeKfKaM+S5qo8AJP2+UlI2ZC995fpoujqa5c8FDUSEwO2cxcMtmowdybWsFgYJv7oBJe44pZ92foBYWvUyZOv4CHyG1H6HGhKBE36K/WPDSym0PVY3d3vGeHrVMVq/PVdqkM/Ki7JW0=
+	t=1753758802; cv=none; b=d7RbBRAmzk0HyLMov5YqNGbAvsUGipNm+kG8KuzBPLhpVCezA4bth1t/6hqphKzPt5RlxVFs15ZOLn/IoTLWHsqxsMBRC9Ksk/ghcgX9v7X4wg2GN+F29fOVOLE1WmTTnUSQ5p7evZQT0Xt/qwNpc6opOuNRVetvFCLRfFCn4pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753758560; c=relaxed/simple;
-	bh=voB8nxZG0JsraYF5bpcTovmRiiaGSdSGo2ys2dvzbto=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9CrmN6PBaVoce655WhYciFZ9ZxLKlwLJ1sMUsoIRk+T1Rkht2wOywZgc+1iO7m94dd7F7yt92Kp1F+9SNNH3rYvDrooMju5SGYY92iJh1GwJVDx9rXbC6FUKQwC3ceYpa/W0k0B2uf3xt43tlzsAnxnNKh1lsHrmmqJAQChBP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xnn6TC2v; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2402774851fso18470795ad.1;
-        Mon, 28 Jul 2025 20:09:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753758558; x=1754363358; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=H/Boxl4Fu66xPvr2Oag07ot90KsvXFnNk2eJEF85IiI=;
-        b=Xnn6TC2voUtmz1tCJtIXQAr2RgPAFrvKP4IT+mbrBu0QpjAkjWSztRKCQJUuxsBWwf
-         qsuSXDZcsmMipjzRsx0IcBo4Cw3OuwG3EU1hUbdsnb8OnEUeDiJpe23R6k7LYMJAmb3l
-         bRwJbrBCT5HvZ090TQHld8sHk60qBFsDXK5TIlKzcjYiHbM1M0ZXifMxYekBMZFTI1Mn
-         OBHgo3jdJ6BoyJHRQxjDtGPD4yrxANv6o7/I+bli2kq3lYCH1KEQVHFsF9WtiCrh8xnH
-         Z7E26n2yAJd3GjXLscPI9clliU37H4UuebkAgfCjN0q/LKjkZ/pz8GsyuWj6ZZdaGhZl
-         RJKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753758558; x=1754363358;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H/Boxl4Fu66xPvr2Oag07ot90KsvXFnNk2eJEF85IiI=;
-        b=Awv0ZiQnEyZdehH+AVUcA97mHIEwZ+y38c1eA2VNDwCq1Da7BxixVK5RvhO8J6zwJM
-         ZzOQ+/QcJ9KmMPCleO2oQXgmNvYuTFQJ3NrneqsKeP5ypslMNxOGQSqZ8kJsF0eqJCG1
-         ek6mt8BJIkoh6ErtEAqtnl9fJKQsiIKxymiV531C5XDAK93HkkazCUBGeHCj8EMHrIsj
-         E20TXoV8yOSSqHvw8zXpe4RGimBF9QSV/dtD30aMrJvBWEj+EwD78mrtN0ExBoqypQsn
-         Co5wSZlCBiZfpeNn4eKkDbl6/3n1zmJsAqf042SSx595pJazNl7edjZlW3FPRp203LWD
-         ZxaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbsmq+5r0azoOWX4uCp7bAGa/mrs5lS1Wcalg2Z2JUVuvYk5LIh61Qb0pZ+VJ0Hi5BxZvCymLFhlzx@vger.kernel.org, AJvYcCW9kXIxRMt4qm+X6WkdNNyIbhIMeOwn580AeQyzUjo8oPAE/lLdpHg843gSGWwcbHt7ouDlAxOkZDfc@vger.kernel.org, AJvYcCWtCGVpddLCuXmYjm8ecs9Ud+SSZR08JmHI4JD0JnDQVX4vadLSigLhEo7EkTT3MwqsacsgZ0bCxgEjX6zz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxrc4v0q4Z2JRmAbfeeKgJvpdWBPpy/ZrWyfumxESPu8eXOq7Ns
-	5//qFOdBcI1QdmX3dh4zzO4k0Tekw6/CLA53YwNtTW26Dl6NoCUfqFPFX2NSMCE8
-X-Gm-Gg: ASbGncsjbjtMdHgOQtmUS2EExG9WimudrMSpqGQrYVhRtvXvvVgM4/w0Bh4Fb9LmSlU
-	ENZFEu3VSwVbuxnef/tZJ2pmKxrUTGJB75MYe9uRCcKSVPZS7Emrzxx3FW+j2M1742nfVwru3yd
-	id/1oSBZHZxVrnUFIsU8KW9NNOz8rA8Uvbv4B55FeAngmT+hb/NzR5KQWF7F79zxvMwA2yhwPIs
-	E2EBs2zMbggzX5CrwSPQ216Dkhlqn+pYL43hyMGlkIqyZw1FD8duq0/2PmrvNQnQoeNu7QG+6w4
-	q7YSZjFlYC/3kRfZ7Xg15BRLO1d2ZE6vKZWUBkHC6O1bAv816/6vxQa19kpkv4ybOLnQ999y+j4
-	BTZ3dIsfF/fqIPYRPrYv/Aw==
-X-Google-Smtp-Source: AGHT+IE7/6r5+53tvDyEi0ZksrZje7lyaYHFB1SRu+zg1k/9pvR6PtB3VkjKQHbTcw5sHJAfpGB9FQ==
-X-Received: by 2002:a17:902:f114:b0:23f:df69:af50 with SMTP id d9443c01a7336-23fdf69b14bmr97860585ad.34.1753758558168;
-        Mon, 28 Jul 2025 20:09:18 -0700 (PDT)
-Received: from dixit ([2401:4900:1c7e:9464:4ee2:7e58:1508:18c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2403c16fa8dsm27353025ad.156.2025.07.28.20.09.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jul 2025 20:09:17 -0700 (PDT)
-Date: Tue, 29 Jul 2025 08:39:08 +0530
-From: Dixit Parmar <dixitparmar19@gmail.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: magnetometer: document Infineon
- TLV493D 3D Magnetic sensor
-Message-ID: <aIg7VKO_VXkbfUaA@dixit>
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
- <20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com>
- <175364805544.3130.15364114273761890479.robh@kernel.org>
+	s=arc-20240116; t=1753758802; c=relaxed/simple;
+	bh=iJMJCFZc9HDo/baFqJSNhgJVvq2qX3JgMKKPxj8XRlA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CylNLLqjf1izDdOjptzX+bZF2KSlZuJE9h8HVkQQbXnrsYSse9r9AhZl+LpApmy3omoknMqrucyH1OODQ/yUJl3LZ5mUY7yLDxnoLl7zpGriOb8wxThqaHDxok5lDzQo9iMVzy01iF0FvTFtd7PczJh4a7jsARvFzhv27xyT1Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aOaBV+L8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56SLrFkh006723;
+	Tue, 29 Jul 2025 03:13:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=UbAkIX7/pZTGIlDBMkI7Lk
+	J039dLexJgFoVOnC4Gd5A=; b=aOaBV+L8MZISVf9z1ETI3K0m2ONrkrKrgYF/iE
+	uzhHfFO1wVGjtlB74OSVHtbYjqJhZnPQO04otg0JM7O5ejEsC34541hc9Lr4GkQL
+	t+HOiz5YLgSN6CjAbHd4gjP5/ht+rhSLBabVo4yXXjaDWHC6xZmwSbXfXGooCRsx
+	nmsdzM2BnmpYBVMRcOpaygMu/wBQdl2ueUh/tHXOYEdtJcA8ymDtVHAoO5BxraFR
+	ZetEtjIP+rNx5NwN5j8immYo7SZ61Xqg8seAoB0kukUwmRBcLqXailczXVDC7eVI
+	1G7/NttRLkB5yla2nvqWj5LD/7Wuz+QlR+waBpmSlH8EbIwA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nytxt33-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Jul 2025 03:13:18 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56T3DHAl025579
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 29 Jul 2025 03:13:17 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 28 Jul 2025 20:13:14 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ling Xu <quic_lxu5@quicinc.com>
+Subject: [PATCH v3] arm64: dts: qcom: sm6150: Add ADSP and CDSP fastrpc nodes
+Date: Tue, 29 Jul 2025 08:42:59 +0530
+Message-ID: <20250729031259.4190916-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <175364805544.3130.15364114273761890479.robh@kernel.org>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fyLGjDUOt0W-3g-XAsCUJiEbfP9fzHQS
+X-Proofpoint-ORIG-GUID: fyLGjDUOt0W-3g-XAsCUJiEbfP9fzHQS
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDAyMSBTYWx0ZWRfXyMnFMz7jnFw+
+ nfftZpKMFSF323YSuriKNPguW1ghlb+xHX3Hdfjn93QmKVbXNuVGLOpMI/b5+UBj9TXAwk9KEvp
+ chynVCeCHvk1jsjYuXsuyS4LgCzS7xiW/xzZz2euu8ZcnMIxYLRjlOHzT1CG6u2l8rtMaAxja4V
+ zL6Bqp++KAekg1s2Mf0bTqvubp1DCkUDRpZE3rhEAeqUODL23W3y62/apAJGf8ix0flOUrBiTiv
+ FYsM4niYtRuPFB22w7+ZKvULtYEbwjLGieR7Mnv9gCFXuYJOrlp30cMydMygeeOnnB55LwlgSVp
+ r9Bg+E3T8ScbsY5ZfM44LZ5j/8EQ2fw4zYkzvQRYXHh6Coc11k8TzXKd+zF6lpbPd6H9h+lolav
+ Eakg7lBa3mLsLIxi5djfE5c++xTmKS0q/akxm7UAXL2rpkJN68/vATHHpC3wKmIZM+0lBOkp
+X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=68883c4e cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=YnpQG1V86MJULNi4tNkA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-28_05,2025-07-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=565 spamscore=0
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507290021
 
-On Sun, Jul 27, 2025 at 03:27:39PM -0500, Rob Herring (Arm) wrote:
-> 
-> On Sat, 26 Jul 2025 15:07:02 +0530, Dixit Parmar wrote:
-> > Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
-> > controlled by I2C interface. Main applications includes joysticks, control
-> > elements (white goods, multifunction knops), or electric meters (anti
-> > tampering).
-> > 
-> > The device can be configured in to different operating modes by optional
-> > device-tree "mode" property. Also, the temperature sensing part requires
-> > raw offset captured at 25°C and that can be specified by "temp-offset"
-> > optional device-tree property.
-> > 
-> > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
-> > 
-> > Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
-> > ---
-> >  .../iio/magnetometer/infineon,tlv493d.yaml         | 57 ++++++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-Ack.
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Warning: Duplicate compatible "infineon,tlv493d-a1b6" found in schemas matching "$id":
-> 	http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d.yaml#
-> 	http://devicetree.org/schemas/trivial-devices.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml: 'example' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250726-tlv493d-sensor-v6_16-rc5-v1-2-deac027e6f32@gmail.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Add ADSP and CDSP fastrpc nodes for SM6150 platform.
+
+Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+---
+V2 -> v3:
+  - Add nsessions.
+patch [v2]: https://lore.kernel.org/linux-arm-msm/20250703055532.2199477-1-quic_lxu5@quicinc.com/
+v1 -> v2:
+  - resend patch.
+Patch [v1]: https://lore.kernel.org/linux-arm-msm/20250523103853.1538813-1-quic_lxu5@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/sm6150.dtsi | 87 ++++++++++++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm6150.dtsi b/arch/arm64/boot/dts/qcom/sm6150.dtsi
+index e033b53f0f0f..b01a7511b71a 100644
+--- a/arch/arm64/boot/dts/qcom/sm6150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6150.dtsi
+@@ -3172,6 +3172,56 @@ glink-edge {
+ 				mboxes = <&apss_shared 4>;
+ 				label = "cdsp";
+ 				qcom,remote-pid = <5>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "cdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x1081 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x1082 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1083 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1084 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1085 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@6 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <6>;
++						iommus = <&apps_smmu 0x1086 0x0>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 
+@@ -3844,6 +3894,43 @@ glink_edge: glink-edge {
+ 				mboxes = <&apss_shared 24>;
+ 				label = "lpass";
+ 				qcom,remote-pid = <2>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "adsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x1723 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x1724 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x1725 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@6 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <6>;
++						iommus = <&apps_smmu 0x1726 0x0>;
++						qcom,nsessions = <5>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 	};
+-- 
+2.34.1
+
 
