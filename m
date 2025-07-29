@@ -1,237 +1,899 @@
-Return-Path: <devicetree+bounces-200357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54755B146C0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 05:22:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183C8B146D1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 05:26:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 876A24E0FF4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:22:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F1231AA0D12
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF05D217668;
-	Tue, 29 Jul 2025 03:22:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6D621E0B7;
+	Tue, 29 Jul 2025 03:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="pA9N2a0x";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="kLlzEDOL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AXeAqdHo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5D5214228;
-	Tue, 29 Jul 2025 03:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753759369; cv=fail; b=f9GLMDfqn0PB2Uu/kzjCF3ppuu/kNcX3S4wAaEINz1I+sOqJmO/gKtc6TVAb+NFYNnjfk1mrMH7buQKqoJTxBCN6WlLNySiKskIiMC7YTtFHPlSY3csQRSV31AaxyR21sxXP44IQStnFHbHyjG/QeWrwyqRjAxI61JMJx8BelrM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753759369; c=relaxed/simple;
-	bh=J1d0Bf89mIIP/Emuz/C1NoWvVhptVHywzVqi04JAKGk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jmgaUKocZDTwE2Aepg9IKhxCo6yQCaH8DXPBFoswwW7SY5KJrYBqrOefUaukDBiRS/Six6Mj7/7SqFftwW/yFKAYkOqWChtGKkNBzsM37EQRa0ncbywFPIXDFyktItOEk6ITWGIEi9MAY+mkT/M8frXSNaDCU84B/zFFjmHp+as=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=pA9N2a0x; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=kLlzEDOL; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 495d76906c2b11f08b7dc59d57013e23-20250729
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=J1d0Bf89mIIP/Emuz/C1NoWvVhptVHywzVqi04JAKGk=;
-	b=pA9N2a0x9K/m8Mh5fL6ojpJ6DFNDT0IsWPQmIWNvfQWH01sE6IXgWRzyT7F3UVMn5ciXloOjRzjNUUqUzv71f4+bw97924hXRsiPBABSab0zm13z6JYR5gwjFMJIeMTPgO5J+P6rB6pqrc56/Ww4uQ/q5vO7CM43LeiKk4jP9ok=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:ef22e990-cdcc-41d5-863c-5197c64ae820,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:0324e208-aadc-4681-92d7-012627504691,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111,TC:nil,Conte
-	nt:0|15|50,EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL
-	:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 495d76906c2b11f08b7dc59d57013e23-20250729
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <jay.liu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1045762288; Tue, 29 Jul 2025 11:22:41 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Tue, 29 Jul 2025 11:22:40 +0800
-Received: from OS8PR02CU002.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Tue, 29 Jul 2025 11:22:40 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JLXPDLSGIYQMHIqAIkcPm+ugxoSv+5M37dyJVm1Bbp/W5i9Blg5ETlGNWEfxAxfYqi3pbA/qpV8tctv07oKzwhxG6GiVVjauqk+IHpxlHqvnOQHFULQ+zcWMHvyDUttdrIUNO0EjkbJPi/+eNr4rIm/QHontMmr3E17BkW0AuJ6VGP3Q/F1+805c/jhXJdlX+3ALG1Oa0UinTGIesXHkPInLNOas4wKaHwxBA15SMrOe1BBXjPr7dEakzBve8v6I6uLW1Gb/8hIGRVBGVuze0jc6iOSDatBPI4+I/Axtlggow7FPKJ4MmiW1HgUkBpH5rxSvuF0wAKrU0CoZclzXXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J1d0Bf89mIIP/Emuz/C1NoWvVhptVHywzVqi04JAKGk=;
- b=fKcHq4Vqgydvg6AOlh5PtnpaArTizbFZa03spfp+QtDRGVPVtJzKXUyrEgQnSDWX5cmIKECafIz+OFJMk+AuXY5jqw0diGTj8ngRSdN+h8bfrp/8btmBBDukSKbBb6sQcxGD/kpA64W4k4P05/lsuw2lcse5UjGnPKdSY5UXWRX0qoXjsnMKEHibMlY7ZNwMifiGOkci9DLysyBdD5cK+ZYTR4L8N6mqBMDJuBjYU/lEMGXW1AEO45YXXYgJg6tNw5oCQJeGDp6GBHIgBu6eFlXFvXsH72JsHYuz8DAwsSIIe5OsR+HGRwvk2i8AwIui9ao1qjxz5bFvMbonAmAKFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930CC21D3F0;
+	Tue, 29 Jul 2025 03:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753759573; cv=none; b=igR09afgIf7SkG0Vedv02IaNMCA2LsAvwAIJHaavvbO24Jb18pBJl2L1c3lTDp/zdoB0ZNUAXbX1eXdk6yAZWVHQ9jBRzySA+SpbcUdrR9hTRXqQOvnWQ5VxJqKu9PqqhCLcDjouD+4i+PWH1hCsU7Z04BUxjJceeSisUh+gz1w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753759573; c=relaxed/simple;
+	bh=FWp2RCuYNClRdyW/L3DeYd4iVb7SgekzHHKLTkVEoYE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=slC2Ucte1d3lF4df4Ir+1mIyof6Wub2NS78bqCQSfLhEl8ELRI+O8isbznzoecuu7yKPhFcENT9QpfFTqIDMzOZU9WbAUQi84ps66aBBKBpqSyV5rueeho0ycotBNAx4dD19TeVwwJWmWLkKnnLYq0Ps0LVdyMZM2lqcKIkpXZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AXeAqdHo; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b350704f506so478097a12.0;
+        Mon, 28 Jul 2025 20:26:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J1d0Bf89mIIP/Emuz/C1NoWvVhptVHywzVqi04JAKGk=;
- b=kLlzEDOLBBcTgpsu9UEyfw3jgvA5OiR3DyTP9+FHkFV7g4EZ1YehFNPl5qJDyEpPS/uNxKrBgqpG/NvA+a7N6DmJd+DUpYCkHHn9F2o72ZiEohb0/Gd0rrk+RQMgdHfNqCVbZyoEkJemk8Yzn2wZWPyU0Z3gv3fA1fSCNmWS3/U=
-Received: from TYZPR03MB8136.apcprd03.prod.outlook.com (2603:1096:400:459::6)
- by PUZPR03MB6909.apcprd03.prod.outlook.com (2603:1096:301:ff::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8964.26; Tue, 29 Jul
- 2025 03:22:37 +0000
-Received: from TYZPR03MB8136.apcprd03.prod.outlook.com
- ([fe80::c1dc:a4af:10cc:b939]) by TYZPR03MB8136.apcprd03.prod.outlook.com
- ([fe80::c1dc:a4af:10cc:b939%3]) with mapi id 15.20.8964.025; Tue, 29 Jul 2025
- 03:22:36 +0000
-From: =?utf-8?B?SmF5IExpdSAo5YiY5Y2aKQ==?= <Jay.Liu@mediatek.com>
-To: =?utf-8?B?WW9uZ3FpYW5nIE5pdSAo54mb5rC45by6KQ==?=
-	<yongqiang.niu@mediatek.com>, "krzk@kernel.org" <krzk@kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "simona@ffwll.ch"
-	<simona@ffwll.ch>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"mripard@kernel.org" <mripard@kernel.org>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?=
-	<ck.hu@mediatek.com>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"hsinyi@chromium.org" <hsinyi@chromium.org>, "airlied@gmail.com"
-	<airlied@gmail.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 4/7] dt-bindings: display: mediatek: disp-tdshp: Add
- support for MT8196
-Thread-Topic: [PATCH v2 4/7] dt-bindings: display: mediatek: disp-tdshp: Add
- support for MT8196
-Thread-Index: AQHb/sZ1icxgLO8hUUOgy5TyIJy63LRHcQWAgAEBfIA=
-Date: Tue, 29 Jul 2025 03:22:36 +0000
-Message-ID: <14f0f1f3ee43f50705f4db16e89f0750b9db44fe.camel@mediatek.com>
-References: <20250727071609.26037-1-jay.liu@mediatek.com>
-	 <20250727071609.26037-5-jay.liu@mediatek.com>
-	 <8d6ba467-d418-441f-aa49-8b615f3c333a@kernel.org>
-In-Reply-To: <8d6ba467-d418-441f-aa49-8b615f3c333a@kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB8136:EE_|PUZPR03MB6909:EE_
-x-ms-office365-filtering-correlation-id: f08e81d9-fd17-43a7-2ac9-08ddce4f2a7f
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018|921020;
-x-microsoft-antispam-message-info: =?utf-8?B?L09oR216eDZwczY3b1ZEZDNCdHBBYkdwajVsdGNkVHBYT09iWGRackNVdk5a?=
- =?utf-8?B?cVI0bSt2aG9iVnFqdE5XMExNckpIYTl4VkJNdnRJalU0bG1mdGtPRytSODNm?=
- =?utf-8?B?THdrY2FqZzdDNUxSZ2JieUdLaURrMGZZR2FnSDF5LzVRRVpoUml0OGdVMU1r?=
- =?utf-8?B?VjR5N05UWFlrTSt1WlhWMmVqcE1LTVo0b2hpdmQ3ckJYbFFBZ2VRS2JVK3k2?=
- =?utf-8?B?RmNIN3B4clA4MGsreWtLMmUveGtPdDVZMENHTGNHMStuL0JOV1hsNjl6S0xw?=
- =?utf-8?B?dTdVR3R4ckhVSVJRdEh4RWQ2N3BjR3loL3VLTG91Y0FJR3E5UFJEYzdvNE5R?=
- =?utf-8?B?RVgwOGpiZC9rM0ZmRzhrYUp5amRjTEVVeTI0MEgvMGc0VDBGYzk5akRCVGpF?=
- =?utf-8?B?bDloZzlrcFhYZ1ZkaUhjdFhGOVZBcGc4VlBwT2JlM3NPdjJGTHJlVnN2eXpD?=
- =?utf-8?B?UzBZZWlHamd5N0t5RHdSU1VCbXJ2byt6L0dDOU1xTEhkUHkxRndOVVJqbmlB?=
- =?utf-8?B?RDN2T00wRnluSTRFLzE2d2RKbGJCZi9QcGU1bVdHRVJEdGNkbittcFd1c04r?=
- =?utf-8?B?ank3V1FsNFBJUWJnVndsVmd0b1l5cnJvb3d6cC9hTUpobVo3QzNPZjNOc2lX?=
- =?utf-8?B?dGc5VnQrMVlPVFI2Y1hmRXVQSUJTU3VzU2paRndtTFZ1WU12QlYzN1BwbGxj?=
- =?utf-8?B?RzZiWE1nRXJ2SkI5Y0JFemY0NjZSUThqZXc4WCtWczNPZSttTE00U1RNT0lp?=
- =?utf-8?B?ZElMSVhtRVFoZW53SkZ1VDVIR29xdkFSREhEc3ZVN3R5T1RRR0ZPUjJDRkho?=
- =?utf-8?B?SjBBUDVCV3hDYnRlQkR5cEZGWFhnd09iaUw2VWROOFdsdFNNNk8xQTdBcXgz?=
- =?utf-8?B?eUJJOHpoZlJRNnhWZmhTODh5T3kydVUrMzNOU29DcTg0WGNJWnJnZUYveXND?=
- =?utf-8?B?aWRMUVpHRjlNVjhSLy8xVmpHUnQ4QUNFcXI5RHlCekNXaGc3NVlSK0FMNHBS?=
- =?utf-8?B?Zk9MOHRsUXdJcFBHOUdYWGVYa2wxV1l0bW9lV1BlZ1A5SEVUYk5YWDY5TXpw?=
- =?utf-8?B?M0VUR1Z6RGhyYWorYUNMV2xoUW5kNUJMVHYvM0s4T0R3U0l2aVBFTW4wK3Fs?=
- =?utf-8?B?elVqVy9zT1FrTjhsZjZuUmY2eVZiRDRScExmTkZFZFJvV3daakMvK0tVNUUw?=
- =?utf-8?B?TTFvNjBRb1phS1pFOEZNQ3RDKzh3SE1SS0NaODFKU3BTNlA1YWV2bnhOSFRH?=
- =?utf-8?B?K3VWN1FBYmlHbDFGbkRicE9DdDlQd0ZscjVJajAyU0pmbjczUkZtR3JRQUlZ?=
- =?utf-8?B?UUtzQkpDQjJwbzlmTGNDL2hTQ0cvNll2b1BjZFJLYkwzYTNkd1V4VTY1ejRV?=
- =?utf-8?B?MUlXMjFmWncvcFNKWU42NG15MGx4SnNhVGkrUUV0WjJUUm0yRlVQQUxKbG9N?=
- =?utf-8?B?ZUtmZ1FsU0tXa20yemh6eUVjajVuTjBFVC81Z3dkb1lpcnNkRVB1Smh2WVJL?=
- =?utf-8?B?NWhyQ3RjSVV2clRWdXVWTTh1VlU1bm1ZMDl1aldOQnFmTW5pbHEwYmNqOCtJ?=
- =?utf-8?B?U1MxbVhZOHNpUVp0Qy9wTlo3OVd1NU9EcE1ZTVhyM0FpL1JZSWtadjN0YUt5?=
- =?utf-8?B?UnVtV0plUkR0WTMxQjY0Ty9rQlBoU01oRlFMN3oweXlwOEwyY0p1WnhtNmUz?=
- =?utf-8?B?bjJZdUo3UTJTNHR0WnpoaDZFQVJvbkxtSEk3dUF0dG44RFgwN0lzMTBOWnJB?=
- =?utf-8?B?NHRNblIzclhheTVBVXVCZUpEUElyaVAzSEkvdDhWckRVR1k0RkhIcUkvWGRo?=
- =?utf-8?B?cW51U2hCenB2WXpoZnNmMlBldFpCUVRrUHdHUFdCUzNqK3BwYm93Snp6ZldX?=
- =?utf-8?B?WUQ1aENXU0hHRUEwV0ZwWkx1d3Z3eG9tVVdKWExlaExJS3MxblRxM2RkU1hv?=
- =?utf-8?B?K3VyQ2pTejNIRTZXajBmNmtlOThhK2dkbk9qeERSMDZ2OHJueXo0eDB4V0Rz?=
- =?utf-8?Q?g6OsIkNxJQYVgS0CcHVS7mGnM890lk=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB8136.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Zkp2bzg5RnZKc1RHTERldWxnSnV6KyswMyt4b2VmTGhEcDI3QmJkRktkbE00?=
- =?utf-8?B?SEFiazVoSW1zNE1aZ2s5VWFUVTJySjhaNGIvNFM2YkRBQU5pTnZlM0txMGpT?=
- =?utf-8?B?RW12TVBvWUV3aDRwMG5oazZ5elBHZk4wTCs2dWJORFNSZnpnZDdObVNINzE0?=
- =?utf-8?B?RTlBQ1RwdVp5cmVPak9LUFpKc1RHY3lxUndmMTdLUU44YVgwZGJKMVNTUTEv?=
- =?utf-8?B?bER5Y2QvNTk1bFNMK3VwVmpvR1V3Yzk1aUdMMU50V1JPVWVLYWFQS0NJWFVJ?=
- =?utf-8?B?dzJOaXlpY2dGTmMzbGhkUlNjNUx5NnRIVFZpbU1jMlRVRlozb09FSzFQZE95?=
- =?utf-8?B?a3dkTDZnbXNtUnNRb0twQ1pmLzZIOHN4WlNsTEhOcGtzYUdZUWwzb1VNNmQx?=
- =?utf-8?B?WGlpZVBnWmpvYytXd3JhenFpS2FvSmxXcHVGSURGbE15RGZEWEY2aW51TDk3?=
- =?utf-8?B?dkZ2L1F6SGxrNnRoRjQwWkZoSCtpY3lsU1Z4RDdDS2huc0RRVUlyU3QyZXZo?=
- =?utf-8?B?WFNsSlZFdHNzUmtiZ0VsWkN3aTVkZSszenIrT0Y0empQVmtwWTNGUHBQUVdu?=
- =?utf-8?B?ZVhsajYvUVhQcTRSSW1vZ0dpdTdYaTJkQ1gyQkJxaVBnaVNTTGFRbTZqZVFq?=
- =?utf-8?B?RDFQY0Q5ZGZZVTBhYnB1OG1sVkNBRTN4U0JhMmJwMzlXak1LQjBZWUM1cVoy?=
- =?utf-8?B?Y2RVV3RNbGVhTzduTW5hUmpiME9OOXdUdVVsbGtCZVkwOHlEUGgvNTY4YTBE?=
- =?utf-8?B?L3VCQTU5QjRXemNFRkxuZUtXM2JYeXNkTU9qSm5uc3FReW9ZbFF0WUp1T2JV?=
- =?utf-8?B?dW9rYU5JQVExK0liL2N0Nmd6SjIyZlhtWTQ5cnBOcnU1dzBvVmNRQkt3b3Vo?=
- =?utf-8?B?QWJYNXhxeWVXVUxaVk8vcTVKNVdGZzM3dE9GT3ZNNzBXeTV2TXlwV0JJYmFK?=
- =?utf-8?B?a0k5WTE3K09LQVBMa2JmbzBaQ2JNQXJqc0I5RTJadkprYkxNbTgrRmZMV0dT?=
- =?utf-8?B?U1l2MWVFMnRFZUVkbmN1ZFRZNkhPdWJqL2lKREcrajJZaFNmaVp5UGFidEFG?=
- =?utf-8?B?NWhjclREeS9uNmdMOE4rbWt4WTVQb3NiUTMySnVaeHZkN3ozQ1h0MngzcW44?=
- =?utf-8?B?bFlTdnBsWWpjVXlBbzlJMzh1QTAzdEp6SGt2WjU1WnBQSGRpUFMvUHhTUTdj?=
- =?utf-8?B?bXYyM01zSER6UTJreS9yT3NYOG53TmRqNFhJMmpjbFh0dXpvT1R4RXY4UnR4?=
- =?utf-8?B?OE9kRmlWSkxBNG5VdDJvSUZtdmJHU3J3Ums3TlYxUHE4SUVMdSs4czRjNDdo?=
- =?utf-8?B?NmJib2N5clAvQ0E1cmoxSWttelVyZVNDbm82WXlUbFV6TFFVblRIZXR0dG1C?=
- =?utf-8?B?b2xDd0xiTWlCMXV1ajNkQmtmWmMzSlRGbEdYTWZKZWpxcTlKaWRVdHUvVUN1?=
- =?utf-8?B?RGt2UUp0cE53V1hPaXUxMEYzM1FOdjBlcG9GemhydlpmRUVxMlJlYmtTc1pM?=
- =?utf-8?B?SS9xOEoxQ2gzaGdzL05NNDJXUjNyNkdWM2dtVGZNNUlONzg0M0Q0aDNyVnpJ?=
- =?utf-8?B?UVJFemYxVHVJeWZYa085VE9pTFlUVFNFbUxmQkVQU2x2b3FiaDVwaEM3ZTVr?=
- =?utf-8?B?Q3cwT0xMTlJRdElmaTFIQVo3Wnl3QnVuZGJKcUJpcXd4Q002M1lwaExDczl3?=
- =?utf-8?B?Nk5yeFNiNmdlYTk5R2xRaFdjR1RKRlI5YVd3anhJRDA3WE90YW96WDJUQUZ4?=
- =?utf-8?B?TU92c0psL1ZsKzd6N0dIWTVVcjR4Q3d3Yzlkb3BXUHRZbnkxd0dYVWZiVGVB?=
- =?utf-8?B?ZVFleTJ3T3hEdlp3T083RFBMT1VuTGtMN3dYY0YwZ1Y1b1NHakczTlVadFFu?=
- =?utf-8?B?Tytqb1dtVzVFVDIrbElOMEUxUTlBMSt1S3FzY2hkU294V0VHcTJyUkptMzRq?=
- =?utf-8?B?aFNXellxSGVab3pJMm5sR0xhOTBxSnpwV3RsWHltVGRGNjRRRHB5RUxLYWFQ?=
- =?utf-8?B?NWNTZkRVTjlOVVFJRUs5dU1kb2xRNWwvd0tCR0IveVVBWnV0UjJ6ckhlWE1W?=
- =?utf-8?B?ZzZwdXIwQ2tkczMwamN2eW9yL2lBMnA3QzFaclpGdnhEbThrYnJQL1cxUSs2?=
- =?utf-8?Q?pfh17jSd2G+goftrsP7PnyqRs?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0CD4A2AF2F73C64A9338F67E84A9E95F@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1753759571; x=1754364371; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fJhDGMY3+SHgK+DsqFkqtVChty3WL6CRvwpNWxOavcU=;
+        b=AXeAqdHoMlXXEvPdboKSoMKNYO6wkxSwUV+2JXUsIG6SdEK9t0NtXGrMo/mU0AI7Qz
+         6RG8uHkXvIMjJl9tHMCBraAH9VV3zHTTb/9dsMbRW5anp0JOMWcIQttiWd+NNeMJ1V/Z
+         OIYod7fXQLq945cxIlyV+JW6BiAi5YWjmt7XwYjFXdbsNPa3UxhXK1WhUe+FxVmZ844A
+         r+4JdE9OBHh4PpP63gA4z0BXuu9BBX+jsM7XBjaSxvl5u2JhLYqxvVU+JLJcwKhBKmEQ
+         K2T/IYQFxtI4FmaBOu8a/uT2NDcgzyOX3FNSgLJn3t0QYGx4BP5LQ/+tUpN0EepRV68h
+         k6Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753759571; x=1754364371;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fJhDGMY3+SHgK+DsqFkqtVChty3WL6CRvwpNWxOavcU=;
+        b=atrbwrsCHFIk+qlGXdewtXpjoPg21zMSxgPvootIjYIEPL0KdlMgkM091njZTfbsP2
+         ZSzEJ3i7hTK0otM74FXhZDXYGMmj9jXE4QwlbafROpLY54AoWmOFgXKDF3LvyS0yzrye
+         kqj4KcsnqhWk1NISeecHXPP4qQxEDVFpz93zSTZ+MPnsnLaot28k3K9AQ6YcWzz5qoNR
+         E3gdwXvS1yAoh1K/bhIJcPjO0/HmSNRjGVO1TkyJj4B1qtXXSHAe/P6MRRGo/Bk0uF6R
+         Uf8w29epKv64cbYAS/KbYHAI6swK5ylgrTrfZpG+XgPuCdS+xL3Z3L4mGMDYyplZVv0J
+         vRCA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0mPTvz0LLYjF/0YRFWtPS0NWiw9C5ZJbHCr5KxyPZBaw1qPjXU2PamIuBve6/6HYiEQNUbJaoJPwj@vger.kernel.org, AJvYcCWWvfxWmpzyNmlkbF5n5rcWsdZZGoM0BtmiLcVyFA5HK6bddZVbMztfkBh46aduKAkV+eC3g1PFHCjA@vger.kernel.org, AJvYcCWXCke2ifwk6NQo1xjRZ2nFpZ381FJDt/LbxPDYz7ab9LW0+WJbuS8S/KIFyzc3T7pwyjE+8KesHlvy42l+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVceGWPZw9iJtCu7pkXyLsEK10ntqz6ORpYzXBy/8GbXXdS3CJ
+	sGMm+Go+2/xUuvp+ZqsHpQJUmfetndoxjr7NKDvoToi7O5jeNgqx4rEI
+X-Gm-Gg: ASbGncsxwF9xd9SrthtNMNhBppp4WIgT+DehTdW0WfyemG9AMHfJINwhX1CCsgDk+G3
+	t6PkA8htDmgR1V3imPe9l2ph0RteoC9CAaev+UB1FH4SgV+WKBhdk1GY3qi+HYReswVJ63znbyv
+	LtM8SHD8AQQij2kpK02HvWza5ThbkcwcRnSCf9rvzhE7dM46u6laAmWPJ53aZ2x6CcimUf0RPlD
+	08VFyQqHLcTL7ssuLItN0QXjErnh70/l1nKLvYOH5G9cCCEiEbLLcTANh2aXDtjiSZDF4Rkixsy
+	l9Rz9zoiq7Shi5gx2ecRllFv/DnqGpFj210Vz47jmor1Tti8wEjwluG4JqJXZMbQZgXCzT6mf1R
+	khYEPCHV6HfZgDPseDoHlJg==
+X-Google-Smtp-Source: AGHT+IGPtt8vz8+sB4B0sjlHkFl/f9zuH3Bem/2i8GmRwffEhpiaTTu29z3USetDrG+I326nzRO+cA==
+X-Received: by 2002:a17:902:f64f:b0:234:1e11:95a3 with SMTP id d9443c01a7336-24063d61ddamr27674815ad.13.1753759570583;
+        Mon, 28 Jul 2025 20:26:10 -0700 (PDT)
+Received: from dixit ([2401:4900:1c7e:9464:4ee2:7e58:1508:18c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2401f3ef888sm35464435ad.106.2025.07.28.20.26.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jul 2025 20:26:09 -0700 (PDT)
+Date: Tue, 29 Jul 2025 08:56:00 +0530
+From: Dixit Parmar <dixitparmar19@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
+ 3D Magentic sensor
+Message-ID: <aIg_SClXq0pO69iH@dixit>
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+ <20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
+ <141967ee-22f4-4b15-a8da-e8cef25828b4@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB8136.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f08e81d9-fd17-43a7-2ac9-08ddce4f2a7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2025 03:22:36.6814
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XjumDBJ4rApaN2x6J/SdqrKwP4sS5bl3ko2o+4ZZMDr7ZCuNyRvl/zI8ksXmfCC06GNV3HAy3pxwxPApevlhSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB6909
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <141967ee-22f4-4b15-a8da-e8cef25828b4@baylibre.com>
 
-T24gTW9uLCAyMDI1LTA3LTI4IGF0IDE0OjAxICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
-b3RlOg0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3Bl
-biBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRo
-ZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIDI3LzA3LzIwMjUgMDk6MTUsIEpheSBMaXUgd3JvdGU6
-DQo+ID4gQWRkIGRpc3AtdGRzaHAgaGFyZHdhcmUgZGVzY3JpcHRpb24gZm9yIE1lZGlhVGVrIE1U
-ODE5NiBTb0MNCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBKYXkgTGl1IDxqYXkubGl1QG1lZGlh
-dGVrLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiAyMDIyMDMxNTE1MjUwMyBjcmVhdGVkIDxqYXku
-bGl1QG1lZGlhdGVrLmNvbT4NCj4gDQo+IA0KPiBXaG8gaXMgdGhpcyBwZXJzb24/DQo+IA0KPiBU
-ZXN0IHlvdXIgYmluZGluZ3MgQkVGT1JFIHlvdSBzZW5kIHRoZW0sIG5vdCBhZnRlci4gVGhhdCdz
-IHYyIHNvIEkNCj4gZG9uJ3QNCj4gZ2V0IHdoeSB0aGlzIGlzIG5vdCB0ZXN0ZWQgYXQgdGhpcyBw
-b2ludC4NCj4gDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQpJIGFwb2xvZ2l6
-ZSBmb3IgdGhpcyBpc3N1ZS4gSW4gdGhlIG5leHQgcmVsZWFzZSwgSeKAmWxsIGNvbmR1Y3QgbW9y
-ZQ0KdGhvcm91Z2ggY2hlY2tzIHRvIGVuc3VyZSB0aGF0IHNpbWlsYXIgYmFzaWMgbWlzdGFrZXMg
-ZG9u4oCZdCBoYXBwZW4NCmFnYWluLg0K
+On Sat, Jul 26, 2025 at 03:44:03PM -0500, David Lechner wrote:
+> On 7/26/25 4:37 AM, Dixit Parmar wrote:
+> > The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> > applications includes joysticks, control elements (white goods,
+> > multifunction knops), or electric meters (anti tampering) and any
+> > other application that requires accurate angular measurements at
+> > low power consumptions.
+> > 
+> > The Sensor is configured over I2C, and as part of Sensor measurement
+> > data it provides 3-Axis magnetic fields and temperature core measurement.
+> > 
+> > The driver supports raw value read and buffered input via external trigger
+> > to allow streaming values with the same sensing timestamp.
+> > 
+> > The device can be configured in to different operating modes by optional
+> > device-tree "mode" property. Also, the temperature sensing part requires
+> > raw offset captured at 25°C and that can be specified by "temp-offset"
+> > optional device-tree property.
+> > 
+> > While sensor has interrupt pin multiplexed with I2C SCL pin. But for bus
+> > configurations interrupt(INT) is not recommended, unless timing constraints
+> > between I2C data transfers and interrupt pulses are monitored and aligned.
+> > 
+> > The Sensor's I2C register map and mode information is described in product
+> > User Manual[1].
+> > 
+> > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> > [1] https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-UserManual-v01_03-EN.pdf
+> > 
+> > Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+> > ---
+> >  drivers/iio/magnetometer/Kconfig   |  14 +
+> >  drivers/iio/magnetometer/Makefile  |   2 +
+> >  drivers/iio/magnetometer/tlv493d.c | 606 +++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 622 insertions(+)
+> > 
+> > diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
+> > index 3debf1320ad1..e0070dccc751 100644
+> > --- a/drivers/iio/magnetometer/Kconfig
+> > +++ b/drivers/iio/magnetometer/Kconfig
+> > @@ -246,6 +246,20 @@ config SI7210
+> >  	  To compile this driver as a module, choose M here: the module
+> >  	  will be called si7210.
+> >  
+> > +config TLV493D
+> > +	tristate "Infineon TLV493D Low-Power 3D Magnetic Sensor"
+> > +	depends on I2C
+> > +	select REGMAP_I2C
+> > +	select IIO_BUFFER
+> > +	select IIO_TRIGGERED_BUFFER
+> > +	help
+> > +	  Say Y here to add support for the Infineon TLV493D-A1B6 Low-
+> > +	  Power 3D Megnetic Sensor.
+> > +
+> > +	  This driver can also be compiled as a module.
+> > +	  To compile this driver as a module, choose M here: the module
+> > +	  will be called tlv493d.
+> > +
+> >  config TI_TMAG5273
+> >  	tristate "TI TMAG5273 Low-Power Linear 3D Hall-Effect Sensor"
+> >  	depends on I2C
+> > diff --git a/drivers/iio/magnetometer/Makefile b/drivers/iio/magnetometer/Makefile
+> > index 9297723a97d8..39c62dd06db8 100644
+> > --- a/drivers/iio/magnetometer/Makefile
+> > +++ b/drivers/iio/magnetometer/Makefile
+> > @@ -35,4 +35,6 @@ obj-$(CONFIG_SI7210)			+= si7210.o
+> >  
+> >  obj-$(CONFIG_TI_TMAG5273)		+= tmag5273.o
+> >  
+> > +obj-$(CONFIG_TLV493D)	+= tlv493d.o
+> 
+> We try to keep these in alphabetical order.
+>
+Ofcourse, I considered TI_TMAG5273 as whole. Will move it above that.
+> > +
+> >  obj-$(CONFIG_YAMAHA_YAS530)		+= yamaha-yas530.o
+> > diff --git a/drivers/iio/magnetometer/tlv493d.c b/drivers/iio/magnetometer/tlv493d.c
+> > new file mode 100644
+> > index 000000000000..f230d6409a4b
+> > --- /dev/null
+> > +++ b/drivers/iio/magnetometer/tlv493d.c
+> > @@ -0,0 +1,606 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/**
+> > + * Driver for the Infineon TLV493D Low-Power 3D Magnetic Sensor
+> > + *
+> > + * Copyright (C) 2025 Dixit Parmar <dixitparmar19@gmail.com>
+> > + *
+> > + */
+> > +
+> > +#include <linux/bits.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/module.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/types.h>
+> > +#include <linux/units.h>
+> > +
+> > +#include <linux/iio/buffer.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/trigger_consumer.h>
+> > +#include <linux/iio/triggered_buffer.h>
+> > +
+> > +#define TLV493D_RD_REG_BX	0x00
+> > +#define TLV493D_RD_REG_BY	0x01
+> > +#define TLV493D_RD_REG_BZ	0x02
+> > +#define TLV493D_RD_REG_TEMP	0x03
+> > +#define TLV493D_RD_REG_BX2	0x04
+> > +#define TLV493D_RD_REG_BZ2	0x05
+> > +#define TLV493D_RD_REG_TEMP2	0x06
+> > +#define TLV493D_RD_REG_RES1	0x07
+> > +#define TLV493D_RD_REG_RES2	0x08
+> > +#define TLV493D_RD_REG_RES3	0x09
+> > +#define TLV493D_RD_REG_MAX	0x0a
+> > +#define TLV493D_WR_REG_RES	0x00
+> > +#define TLV493D_WR_REG_MODE1	0x01
+> > +#define TLV493D_WR_REG_RES2	0x02
+> > +#define TLV493D_WR_REG_MODE2	0x03
+> > +#define TLV493D_WR_REG_MAX	0x04
+> > +#define TLV493D_VAL_MAG_X_AXIS_MSB	GENMASK(7, 0)
+> > +#define TLV493D_VAL_MAG_X_AXIS_LSB	GENMASK(7, 4)
+> > +#define TLV493D_VAL_MAG_Y_AXIS_MSB	GENMASK(7, 0)
+> > +#define TLV493D_VAL_MAG_Y_AXIS_LSB	GENMASK(3, 0)
+> > +#define TLV493D_VAL_MAG_Z_AXIS_MSB	GENMASK(7, 0)
+> > +#define TLV493D_VAL_MAG_Z_AXIS_LSB	GENMASK(3, 0)
+> > +#define TLV493D_VAL_TEMP_MSB		GENMASK(7, 4)
+> > +#define TLV493D_VAL_TEMP_LSB		GENMASK(7, 0)
+> > +#define TLV493D_VAL_FRAME_COUNTER	GENMASK(3, 2)
+> > +#define TLV493D_VAL_CHANNEL	GENMASK(1, 0)
+> > +#define TLV493D_VAL_PD_FLAG	BIT(4)
+> > +#define TLV493D_RD_REG_RES1_WR_MASK	GENMASK(4, 3)
+> > +#define TLV493D_RD_REG_RES2_WR_MASK	GENMASK(7, 0)
+> > +#define TLV493D_RD_REG_RES3_WR_MASK	GENMASK(4, 0)
+> > +#define TLV493D_MODE1_MOD_FAST	BIT(1)
+> > +#define TLV493D_MODE1_MOD_LOW	BIT(0)
+> > +#define TLV493D_MODE2_TEMP_CTRL	BIT(7)
+> > +#define TLV493D_MODE2_LP_PERIOD	BIT(6)
+> > +#define TLV493D_MODE2_PARITY_CTRL	BIT(5)
+> > +
+> > +#define SET_BIT(b, bit)	(b |= bit)
+> > +#define CLR_BIT(b, bit)	(b &= ~bit)
+> 
+> I think most readers of the code would fare better without these macros.
+> 
+> And it could simplify things to make a
+> 
+> #define TLV493D_MODE1_MOD	GENMASK(1, 0)
+> 
+> and use FIELD_PREP() instead of 
+> 
+Ack.
+> > +
+> > +#define TLV493D_DATA_X_GET(b)	\
+> > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 | \
+> > +			(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4), 11)
+> > +#define TLV493D_DATA_Y_GET(b)	\
+> > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << 4 | \
+> > +			FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]), 11)
+> > +#define TLV493D_DATA_Z_GET(b)	\
+> > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_Z_AXIS_MSB, b[TLV493D_RD_REG_BZ]) << 4 | \
+> > +			FIELD_GET(TLV493D_VAL_MAG_Z_AXIS_LSB, b[TLV493D_RD_REG_BZ2]), 11)
+> > +#define TLV493D_DATA_TEMP_GET(b)	\
+> > +	sign_extend32(FIELD_GET(TLV493D_VAL_TEMP_MSB, b[TLV493D_RD_REG_TEMP]) << 8 | \
+> > +			FIELD_GET(TLV493D_VAL_TEMP_LSB, b[TLV493D_RD_REG_TEMP2]), 11)
+> > +
+> > +enum tlv493d_channels {
+> > +	AXIS_X = 0,
+> > +	AXIS_Y,
+> > +	AXIS_Z,
+> > +	TEMPERATURE,
+> 
+> These are very generic names. Please add TLV493D_ prefix.
+> 
+Indeed.
+> > +};
+> > +
+> > +enum tlv493d_op_mode {
+> > +	TLV493D_OP_MODE_POWERDOWN = 0,
+> > +	TLV493D_OP_MODE_FAST,
+> > +	TLV493D_OP_MODE_LOWPOWER,
+> > +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
+> > +	TLV493D_OP_MODE_MASTERCONTROLLED,
+> > +	TLV493D_OP_MODE_MAX,
+> > +};
+> > +
+> > +struct tlv493d_mode {
+> > +	u8 m;
+> > +	u32 sleep_us;
+> > +};
+> > +
+> > +struct tlv493d_data {
+> > +	struct device *dev;
+> > +	struct i2c_client *client;
+> > +	struct mutex lock;
+> 
+> Lock needs a comment describing what it is supposed to protect.
+> 
+Ack.
+> > +	struct regmap *map;
+> > +	u8 mode;
+> > +	u8 wr_regs[TLV493D_WR_REG_MAX];
+> > +	s32 temp_offset;
+> > +};
+> > +
+> > +/*
+> > + * Different mode has different measurement cycle time, this time is
+> > + * used in deriving the sleep and timemout while reading the data from
+> > + * sensor in polling.
+> > + * Power-down mode: No measurement.
+> > + * Fast mode: Freq:3.3 KHz. Measurement time:305 usec.
+> > + * Low-power mode: Freq:100 Hz. Measurement time:10 msec.
+> > + * Ultra low-power mode: Freq:10 Hz. Measurement time:100 msec.
+> > + * Master controlled mode: Freq:3.3 Khz. Measurement time:305 usec.
+> > + */
+> > +static struct tlv493d_mode modes[TLV493D_OP_MODE_MAX] = {
+> 
+> Let's add the tlv493d_ prefix to modes.
+> 
+Will rename is to tlv493d_modes_info.
+> > +	{.m = TLV493D_OP_MODE_POWERDOWN, .sleep_us = 0 },
+> > +	{.m = TLV493D_OP_MODE_FAST, .sleep_us = 305 },
+> > +	{.m = TLV493D_OP_MODE_LOWPOWER, .sleep_us = 10 * USEC_PER_MSEC },
+> > +	{.m = TLV493D_OP_MODE_ULTRA_LOWPOWER, .sleep_us = 100 * USEC_PER_MSEC },
+> > +	{.m = TLV493D_OP_MODE_MASTERCONTROLLED, .sleep_us = 305 },
+> > +};
+> > +
+> > +/*
+> > + * The datasheet mentions the sensor supports only direct byte-stream write starting from
+> > + * register address 0x0. So for any modification to be made to any write registers, it must
+> > + * be written starting from the register address 0x0.
+> > + * I2C write operation should not contain register address in the I2C frame, it should
+> > + * contains only raw byte stream for the write registers. As below,
+> > + * I2C Frame: |S|SlaveAddr Wr|Ack|Byte[0]|Ack|Byte[1]|Ack|.....|Sp|
+> > + */
+> > +static int tlv493d_write_all_regs(struct tlv493d_data *data)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (!data || !data->client)
+> > +		return -EINVAL;
+> > +
+> > +	/*
+> > +	 * As regmap does not provide raw write API which perform I2C write without
+> > +	 * specifying register address, direct i2c_master_send() API is used.
+> > +	 */
+> > +	ret = i2c_master_send(data->client, data->wr_regs, ARRAY_SIZE(data->wr_regs));
+> > +	if (ret < 0) {
+> > +		dev_err(data->dev, "failed to write registers. error %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int tlv493d_set_operating_mode(struct tlv493d_data *data, u8 mode)
+> > +{
+> > +	if (!data)
+> > +		return -EINVAL;
+> > +
+> > +	u8 *reg_mode1 = &data->wr_regs[TLV493D_WR_REG_MODE1];
+> > +	u8 *reg_mode2 = &data->wr_regs[TLV493D_WR_REG_MODE2];
+> > +
+> > +	switch (mode) {
+> > +	case TLV493D_OP_MODE_POWERDOWN:
+> > +		CLR_BIT(*reg_mode1, TLV493D_MODE1_MOD_FAST);
+> > +		CLR_BIT(*reg_mode1, TLV493D_MODE1_MOD_LOW);
+> > +		break;
+> > +
+> > +	case TLV493D_OP_MODE_FAST:
+> > +		SET_BIT(*reg_mode1, TLV493D_MODE1_MOD_FAST);
+> > +		CLR_BIT(*reg_mode1, TLV493D_MODE1_MOD_LOW);
+> > +		break;
+> > +
+> > +	case TLV493D_OP_MODE_LOWPOWER:
+> > +		CLR_BIT(*reg_mode1, TLV493D_MODE1_MOD_FAST);
+> > +		SET_BIT(*reg_mode1, TLV493D_MODE1_MOD_LOW);
+> > +		SET_BIT(*reg_mode2, TLV493D_MODE2_LP_PERIOD);
+> > +		break;
+> > +
+> > +	case TLV493D_OP_MODE_ULTRA_LOWPOWER:
+> > +		CLR_BIT(*reg_mode1, TLV493D_MODE1_MOD_FAST);
+> > +		SET_BIT(*reg_mode1, TLV493D_MODE1_MOD_LOW);
+> > +		CLR_BIT(*reg_mode2, TLV493D_MODE2_LP_PERIOD);
+> > +		break;
+> > +
+> > +	case TLV493D_OP_MODE_MASTERCONTROLLED:
+> > +		SET_BIT(*reg_mode1, TLV493D_MODE1_MOD_FAST);
+> > +		SET_BIT(*reg_mode1, TLV493D_MODE1_MOD_LOW);
+> > +		break;
+> > +
+> > +	default:
+> > +		dev_err(data->dev, "invalid mode configuration\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return tlv493d_write_all_regs(data);
+> > +}
+> > +
+> > +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *x, s16 *y,
+> > +				s16 *z, s16 *t)
+> > +{
+> > +	u8 buff[7] = {0};
+> > +	int err, ret;
+> > +	struct tlv493d_mode *mode;
+> > +
+> > +	if (!data)
+> > +		return -EINVAL;
+> > +
+> > +	guard(mutex)(&data->lock);
+> > +
+> > +	ret = pm_runtime_resume_and_get(data->dev);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	mode = &modes[data->mode];
+> > +
+> > +	/*
+> > +	 * Poll until data is valid,
+> > +	 * For a valid data TLV493D_VAL_CHANNEL bit of TLV493D_RD_REG_TEMP should be set to 0.
+> > +	 * The sampling time depends on the sensor mode. poll 3x the time of the sampling time.
+> > +	 */
+> > +	ret = read_poll_timeout(regmap_bulk_read, err, err ||
+> 
+> Why not regmap_read_poll_timeout()?
+> 
+We want to read all 7 register in single operation to make sure that we
+read it from the same measurement cycle. out of those 7 registers
+TLV493d_RD_REG_TEMP has a bit field TLV493D_VAL_CHANNEL which stats if
+the measurement cycle was complete or not. Per my understanding
+regmap_read_poll_timeout() does not support bulk/multi register read so,
+read_poll_timeout is used with regmap_bulk_read().
+> > +			FIELD_GET(TLV493D_VAL_CHANNEL, buff[TLV493D_RD_REG_TEMP]) == 0,
+> > +			mode->sleep_us, (3 * mode->sleep_us), false, data->map, TLV493D_RD_REG_BX,
+> > +			buff, ARRAY_SIZE(buff));
+> > +	if (ret) {
+> > +		dev_err(data->dev, "read poll timeout, error:%d", ret);
+> > +		goto out;
+> > +	}
+> > +	if (err) {
+> > +		dev_err(data->dev, "read data failed, error:%d\n", ret);
+> > +		ret = err;
+> > +		goto out;
+> > +	}
+> > +
+> > +	*x = TLV493D_DATA_X_GET(buff);
+> > +	*y = TLV493D_DATA_Y_GET(buff);
+> > +	*z = TLV493D_DATA_Z_GET(buff);
+> > +	*t = TLV493D_DATA_TEMP_GET(buff);
+> > +
+> > +out:
+> > +	pm_runtime_mark_last_busy(data->dev);
+> > +	pm_runtime_put_autosuspend(data->dev);
+> > +	return ret;
+> > +}
+> > +
+> > +static int tlv493d_init(struct tlv493d_data *data)
+> > +{
+> > +	int ret;
+> > +	u8 buff[TLV493D_RD_REG_MAX];
+> > +
+> > +	if (!data)
+> > +		return -EINVAL;
+> > +
+> > +	/*
+> > +	 * The sensor initialization requires below steps to be followed,
+> > +	 * 1. Power-up sensor.
+> > +	 * 2. Read and store read-registers map (0x0-0x9).
+> > +	 * 3. Copy values from read reserved registers to write reserved fields (0x0-0x3).
+> > +	 * 4. Set operating mode.
+> > +	 * 5. Write to all registers.
+> > +	 */
+> > +	ret = regmap_bulk_read(data->map, TLV493D_RD_REG_BX, buff, ARRAY_SIZE(buff));
+> > +	if (ret) {
+> > +		dev_err(data->dev, "bulk read failed, error %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	data->wr_regs[0] = 0; /* Write register 0x0 is reserved. Does not require to be updated.*/
+> > +	data->wr_regs[1] = buff[TLV493D_RD_REG_RES1] & TLV493D_RD_REG_RES1_WR_MASK;
+> > +	data->wr_regs[2] = buff[TLV493D_RD_REG_RES2] & TLV493D_RD_REG_RES2_WR_MASK;
+> > +	data->wr_regs[3] = buff[TLV493D_RD_REG_RES3] & TLV493D_RD_REG_RES3_WR_MASK;
+> > +
+> > +	ret = tlv493d_set_operating_mode(data, data->mode);
+> > +	if (ret < 0) {
+> > +		dev_err(data->dev, "failed to set operating mode\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int tlv493d_parse_dt(struct tlv493d_data *data)
+> > +{
+> > +	struct device_node *node;
+> > +	u32 val = 0;
+> > +	int ret;
+> > +
+> > +	if (!data)
+> > +		return -EINVAL;
+> > +
+> > +	node = data->dev->of_node;
+> > +
+> > +	/* Optional 'mode' property to set sensor operation mode */
+> > +	ret = of_property_read_u32(node, "mode", &val);
+> > +	if (ret < 0 || val >= TLV493D_OP_MODE_MAX) {
+> > +		/* Fallback to default mode if property is missing or invalid */
+> > +		data->mode = TLV493D_OP_MODE_MASTERCONTROLLED;
+> > +	} else {
+> > +		data->mode = val;
+> > +	}
+> 
+> As mentioned in the dt-bindings review, we already control this paritially
+> with the power management runtime, so having devicetree specify a power mode
+> doesn't really make sense.
+> 
+> In fact, since the mode determines the sample rate, if we ever implemented
+> handling the interrupt pin, it would make sense for the sampling_freqency
+> to control mode rather than hard-coding it.
+> 
+Agreed, will drop the mode and temp-offset setting in DT.
+> > +
+> > +	/*
+> > +	 * Read temperature offset (raw value at 25°C). If not specified,
+> > +	 * default to 340.
+> > +	 */
+> > +	ret = of_property_read_u32(node, "temp-offset", &val);
+> > +	if (ret)
+> > +		val = 340;
+> 
+> As mentioned in the dt-bindings review, this sounds like a calibbias rather
+> than something that should be hard-coded in a devicetree.
+> 
+Agreed, will drop it.
+> > +	/*
+> > +	 * The above is a raw offset; however, IIO expects a single effective offset.
+> > +	 * Since final temperature includes an additional fixed 25°C (i.e. 25000 m°C),
+> > +	 * we compute a combined offset using scale = 1100 (1.1 * 1000).
+> > +	 */
+> > +	data->temp_offset = -val + (s32)div_u64(25000, 1100);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int tlv493d_read_raw(struct iio_dev *indio_dev, const struct iio_chan_spec *chan,
+> > +		int *val, int *val2, long mask)
+> > +{
+> > +	struct tlv493d_data *data = iio_priv(indio_dev);
+> > +	s16 x, y, z, t;
+> > +	int ret;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_PROCESSED:
+> 
+> Processed is not the same as raw. Just drop it.
+> 
+Ack.
+> > +	case IIO_CHAN_INFO_RAW:
+> > +		ret = tlv493d_get_measurements(data, &x, &y, &z, &t);
+> > +		if (ret) {
+> > +			dev_err(data->dev, "failed to read sensor data\n");
+> 
+> The error gets returned to usespace, so we don't need to log errors here.
+> 
+Ack.
+> > +			return ret;
+> > +		}
+> > +		/* Return raw values for requested channel */
+> > +		switch (chan->address) {
+> > +		case AXIS_X:
+> > +			*val = x;
+> > +			return IIO_VAL_INT;
+> > +		case AXIS_Y:
+> > +			*val = y;
+> > +			return IIO_VAL_INT;
+> > +		case AXIS_Z:
+> > +			*val = z;
+> > +			return IIO_VAL_INT;
+> > +		case TEMPERATURE:
+> > +			*val = t;
+> > +			return IIO_VAL_INT;
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		switch (chan->type) {
+> > +		case IIO_MAGN:
+> > +			/*
+> > +			 * Magnetic field scale: 0.0098 mTesla (i.e. 9.8 µT)
+> > +			 * Expressed as fractional: 98/10 = 9.8 µT.
+> > +			 */
+> > +			*val = 98;
+> > +			*val2 = 10;
+> 
+> We use SI units, so this needs to be gauss, not tesela.
+> 
+Sure, Is there any documentation/reference this details are mentioned?
+> > +			return IIO_VAL_FRACTIONAL;
+> > +		case IIO_TEMP:
+> > +			/*
+> > +			 * Temperature scale: 1.1 °C per LSB, expressed as 1100 m°C
+> > +			 * Returned as integer for IIO core to apply:
+> > +			 * temp = (raw + offset) * scale
+> > +			 */
+> > +			*val = 1.1 * MILLI;
+> 
+> I guess this works since it is a constant, but we usually don't
+> have floating point in the kernel. I would probably just write this
+> as 1100. It doesn't have too many zeros that we can't easily see
+> how many there are.
+> 
+Ack. Will make it 1100.
+> > +			return IIO_VAL_INT;
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_OFFSET:
+> > +		switch (chan->type) {
+> > +		case IIO_TEMP:
+> > +			/*
+> > +			 * Temperature offset includes sensor-specific raw offset
+> > +			 * plus compensation for +25°C bias in formula.
+> > +			 * This value is precomputed during probe/init:
+> > +			 * offset = -raw_offset + (25000 / scale)
+> > +			 */
+> > +			*val = data->temp_offset;
+> > +			return IIO_VAL_INT;
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> 
+> There is no break; so this is unreachable and can be removed.
+> 
+Ack.
+> > +}
+> > +
+> > +static irqreturn_t tlv493d_trigger_handler(int irq, void *ptr)
+> > +{
+> > +	struct iio_poll_func *pf = ptr;
+> > +	struct iio_dev *indio_dev = pf->indio_dev;
+> > +	struct tlv493d_data *data = iio_priv(indio_dev);
+> > +
+> > +	struct {
+> > +		s16 channels[3];
+> > +		s16 temperature;
+> > +		aligned_s64 timestamp;
+> > +	} scan;
+> 
+> 	} scan = { };
+> 
+> Technically not needed here since we assign all values and there shuold
+> not be any holes in the struct, but good to have for when others copy this
+> and modify it in a new driver.
+> 
+Okay.
+> > +
+> > +	s16 x, y, z, t;
+> > +	int ret;
+> > +
+> > +	ret = tlv493d_get_measurements(data, &x, &y, &z, &t);
+> > +	if (ret) {
+> > +		dev_err(data->dev, "failed to read sensor data\n");
+> > +		goto trig_out;
+> > +	}
+> > +
+> > +	scan.channels[0] = x;
+> > +	scan.channels[1] = y;
+> > +	scan.channels[2] = z;
+> > +	scan.temperature = t;
+> 
+> Why not just pass these directly to tlv493d_get_measurements() and avoid this
+> assigment and extra local variables?
+> 
+Bcoz the same measurement function is used from raw_read where the
+individiual channels values are needed. hence kept as independed args
+based for each channel.
+> > +
+> > +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+> > +
+> > +trig_out:
+> > +	iio_trigger_notify_done(indio_dev->trig);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +#define TLV493D_AXIS_CHANNEL(axis, index)			\
+> > +	{							\
+> > +		.type = IIO_MAGN,				\
+> > +		.modified = 1,					\
+> > +		.channel2 = IIO_MOD_##axis,			\
+> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |	\
+> > +				BIT(IIO_CHAN_INFO_SCALE),	\
+> > +		.address = index,				\
+> 
+> Setting address the same as scan_index is redundant. We can just
+> use scan_index everywhere.
+> 
+we can, I hope this does not break anything on userspace iiolib's side.
+> > +		.scan_index = index,				\
+> > +		.scan_type = {					\
+> > +			.sign = 's',				\
+> > +			.realbits = 12,				\
+> > +			.storagebits = 16,			\
+> > +			.endianness = IIO_CPU,			\
+> > +		},						\
+> > +	}
+> > +
+> > +static const struct iio_chan_spec tlv493d_channels[] = {
+> > +	TLV493D_AXIS_CHANNEL(X, AXIS_X),
+> > +	TLV493D_AXIS_CHANNEL(Y, AXIS_Y),
+> > +	TLV493D_AXIS_CHANNEL(Z, AXIS_Z),
+> > +	{
+> > +		.type = IIO_TEMP,
+> > +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> > +				BIT(IIO_CHAN_INFO_SCALE) |
+> > +				BIT(IIO_CHAN_INFO_OFFSET),
+> > +		.address = TEMPERATURE,
+> > +		.scan_index = TEMPERATURE,
+> > +		.scan_type = {
+> > +			.sign = 's',
+> > +			.realbits = 12,
+> > +			.storagebits = 16,
+> > +			.endianness = IIO_CPU,
+> > +		},
+> > +	},
+> > +	IIO_CHAN_SOFT_TIMESTAMP(4),
+> > +};
+> > +
+> > +static const struct regmap_range tlv493d_volatile_reg_ranges[] = {
+> > +	regmap_reg_range(TLV493D_RD_REG_BX, TLV493D_RD_REG_RES3),
+> > +};
+> > +
+> > +static const struct regmap_access_table tlv493d_volatile_regs = {
+> > +	.yes_ranges = tlv493d_volatile_reg_ranges,
+> > +	.n_yes_ranges = ARRAY_SIZE(tlv493d_volatile_reg_ranges),
+> > +};
+> 
+> Would make sense to have these closer to tlv493d_regmap_config.
+> 
+Ack.
+> > +
+> > +static const struct iio_info tlv493d_info = {
+> > +	.read_raw = tlv493d_read_raw,
+> > +};
+> > +
+> > +static const struct iio_buffer_setup_ops tlv493d_setup_ops = {};
+> 
+> Just pass NULL if there are no ops.
+> 
+Ack.
+> > +
+> > +static const unsigned long tlv493d_scan_masks[] = { GENMASK(3, 0), 0 };
+> > +
+> > +static const struct regmap_config tlv493d_regmap_config = {
+> > +	.reg_bits = 8,
+> > +	.val_bits = 8,
+> > +	.max_register = TLV493D_RD_REG_RES3,
+> > +	.volatile_table = &tlv493d_volatile_regs,
+> > +};
+> > +
+> > +static int tlv493d_probe(struct i2c_client *client)
+> > +{
+> > +	struct device *dev = &client->dev;
+> > +	struct iio_dev *indio_dev;
+> > +	struct tlv493d_data *data;
+> > +	int ret;
+> > +
+> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	data = iio_priv(indio_dev);
+> > +	data->dev = dev;
+> > +	data->client = client;
+> > +	i2c_set_clientdata(client, indio_dev);
+> 
+> There is not i2c_get_clientdata(), so I don't think we need this.
+> 
+Correct, will remove it.
+> > +
+> > +	ret = devm_mutex_init(dev, &data->lock);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	data->map = devm_regmap_init_i2c(client, &tlv493d_regmap_config);
+> > +	if (IS_ERR(data->map))
+> > +		return dev_err_probe(dev, PTR_ERR(data->map), "failed to allocate register map\n");
+> > +
+> > +	ret = devm_regulator_get_enable(dev, "vdd");
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to enable regulator\n");
+> > +
+> > +	ret = tlv493d_parse_dt(data);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to parse device-tree\n");
+> > +
+> > +	ret = tlv493d_init(data);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to initialized\n");
+> > +
+> > +	indio_dev->info = &tlv493d_info;
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +	indio_dev->name = client->name;
+> > +	indio_dev->channels = tlv493d_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(tlv493d_channels);
+> > +	indio_dev->available_scan_masks = tlv493d_scan_masks;
+> > +
+> > +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> > +			iio_pollfunc_store_time, tlv493d_trigger_handler,
+> > +			&tlv493d_setup_ops);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret, "iio triggered buffer setup failed\n");
+> > +
+> > +	ret = pm_runtime_set_active(dev);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	ret = devm_pm_runtime_enable(dev);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	pm_runtime_get_noresume(dev);
+> > +	pm_runtime_set_autosuspend_delay(dev, 500);
+> > +	pm_runtime_use_autosuspend(dev);
+> > +
+> > +	pm_runtime_mark_last_busy(dev);
+> > +	pm_runtime_put_autosuspend(dev);
+> > +
+> > +	ret =  devm_iio_device_register(dev, indio_dev);
+> 
+> random extra space
+> 
+Ack.
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "iio device register failed\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int tlv493d_runtime_suspend(struct device *dev)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > +	struct tlv493d_data *data = iio_priv(indio_dev);
+> > +
+> > +	return tlv493d_set_operating_mode(data, TLV493D_OP_MODE_POWERDOWN);
+> > +}
+> > +
+> > +static int tlv493d_runtime_resume(struct device *dev)
+> > +{
+> > +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> > +	struct tlv493d_data *data = iio_priv(indio_dev);
+> > +
+> > +	return tlv493d_set_operating_mode(data, data->mode);
+> > +}
+> > +
+> > +static DEFINE_RUNTIME_DEV_PM_OPS(tlv493d_pm_ops,
+> > +		tlv493d_runtime_suspend, tlv493d_runtime_resume, NULL);
+> > +
+> > +static const struct i2c_device_id tlv493d_id[] = {
+> > +	{ "tlv493d" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, tlv493d_id);
+> > +
+> > +static const struct of_device_id tlv493d_of_match[] = {
+> > +	{ .compatible = "infineon,tlv493d-a1b6", },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, tlv493d_of_match);
+> > +
+> > +static struct i2c_driver tlv493d_driver = {
+> > +	.driver = {
+> > +		.name = "tlv493d",
+> > +		.of_match_table = tlv493d_of_match,
+> > +		.pm = pm_ptr(&tlv493d_pm_ops),
+> > +	},
+> > +	.probe = tlv493d_probe,
+> > +	.id_table = tlv493d_id,
+> > +};
+> > +
+> > +module_i2c_driver(tlv493d_driver);
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_DESCRIPTION("Infineon TLV493D Low-Power 3D Magnetic Sensor");
+> > +MODULE_AUTHOR("Dixit Parmar <dixitparmar19@gmail.com>");
+> > 
+> 
+Thank you for the review,
+Dixit
 
