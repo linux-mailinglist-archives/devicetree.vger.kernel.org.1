@@ -1,135 +1,189 @@
-Return-Path: <devicetree+bounces-200543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE785B15149
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:27:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B91B15150
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:30:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C7897A5F48
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:26:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F3883A86E9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 16:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280A3292B5F;
-	Tue, 29 Jul 2025 16:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0851D28DF25;
+	Tue, 29 Jul 2025 16:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="o09Pmcwy"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="D+a5l1fO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB5D27874A
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 16:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AE022687C;
+	Tue, 29 Jul 2025 16:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753806445; cv=none; b=h4qJAtwexx02O+8GKAk/P/GmTyONdobxlUw54l3SgxA4aYP1e7jDeNuDojOZZCqX5t7+OHQsNGBNckW4/NZVSxZchnhUI+YV01V8jqlD2pid7QFpWjtYI1xNH+mQCOYPbuLP1EkIaH9Wc/BJ9oXm25SN7yopLGHzfqQF9jRjZKc=
+	t=1753806600; cv=none; b=BUFrFkdkQ+KQpRyFFfcSLZWtQ3W/Kkr3OL1IYtWwK9ZqSjlgzv4NHqxccW9OhPEIKC1dhDpJAILHJXTNCPbhvkZOwuCuNXmjKDl6v06oqUTKKGefyLup/2UD0iBMJAzCsP3cS864adTPQ4y0ThQ/el34RKrwE5wAYktX3SiwNic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753806445; c=relaxed/simple;
-	bh=+Ex+N/76JlJzNQ1mpQHpBbQAkZCWoPaGzNh2+ytXYUo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CIc/mwNuWbsN7/xoFFtXR+eMJ/vsfJEYM8+hJN4hxEIsiT37grDV/8ysux13tGk3K1yuda7ZXHdHWnvU3pxDblv4JRWNS5y/s+F6RJbOq9auJgLxX5KU7HPandxkcyn9FjG8clH+kJmVzvRRvJyAzyiY99MnnmUqwMCLc9dcinM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=o09Pmcwy; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-41b309ce799so4014584b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 09:27:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753806442; x=1754411242; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qBPGm5h/2s2YI6WQk+GinbBOPswke5n0aLNO4q5tQ8U=;
-        b=o09PmcwyryeKTNKrt2BV1hW3YnW2Rrq98TrzuvX5yTAHRDve7OapQ+/IGUQC7uPWyX
-         qWs+Aoqau0lMFCFxJMeF3DZSfjFodHNzoZxeOtOzYTAJpe0lHAoXgF3/BimgDQPd01hE
-         +br1nw5lt8NkV6kBjnLpbe7ayRT1m5FJv5vjBLgjidBh58WYXq7PQTEbTNfepGxNGXq/
-         uaoTuYtOe7Wm6LmZeVlsm4RHL8nTXDw6cRSaFGGDEGoXeS1fdnkR0sBqJ1LFjEG1C6ZS
-         1dTudj6mEhFCbVp7Lr8Poed+U97E4SMc+awYBjlLqglQv456u35lXD9bFkEuFA2jUyP0
-         GRPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753806442; x=1754411242;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qBPGm5h/2s2YI6WQk+GinbBOPswke5n0aLNO4q5tQ8U=;
-        b=YEbdq9pct7ZRMyBL2WFdZhnFH+v4YgjJT+LLwtyRNkFDdPtGw17QKrVgz2ptmNFnDJ
-         Nhte0bpbF2gSaye9Q/dL9n0bgGqFTOJBzBRVf6x9kl1zNSQjn5t4WxH0b6vlT/8iOrYx
-         IdB6dL42wkbjwsF9J68Gf2SVU2srjoiaSgpEG0Ii6XUpQeVmVvDSFq03FnBwL7Ihip9f
-         hm3eQ7JpyNSV+77eqsJ52o8ZRHHZKJT0IP0ZIoJVCMo/qcfkQ26LWa/5Vfx1g7KpVcz+
-         ZPPE3NiH16BVjJB6ouShyjPRPFj5wc8Pi9Cx6yFAdddLCAIa3wIZIZO6qcyXjZ9FriJT
-         IrcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXs9XIu9uaCMPNtquqdf61rZhndmk2E5R+yvgW7rwnXYvno6BHZEycVsFO+YZJmTB9M7EQnJ980iR6i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+hkxFYUft4N9rg/jHBg+oKZrbP11w+upSFPhIpBfLlnEH2avG
-	nB+BpkwD5CrnNgjXKBmJxMH6PoTyrAV50Mf/q9JfghZsUKjdlwu6sIAkHfI6Laobi9w=
-X-Gm-Gg: ASbGncu+Bsvudx0+uyoO0opBnf3IJTkXyC8V7zP+S3cduCN/XDSrMGYEVzHq7eBbGBy
-	bGnPDbt68Nd568O+19SKaxZtUC1QlrfhJ5N2yPdalLGHSHwMLfRwUINzWtd9vl2NdJ6fnfEqVyu
-	IL6fgSROOFqsFQkiduf3Vqem0mRTY5Peu+Y7ht1UxTum0BGRVRB5gCjS80t8DO3SqVvr0wj8wO3
-	d4I+HX4iwhipPmWcBWMsX22tb2vzFSG5t5RLAm2FawXtAs2gnvbJgmravG9bpByalTEKJm+a7MZ
-	u4QSt4YIqhefF9x+x63JZdtW96xpMLwX+M+88DmqD+pDhgrgGLAleqMG2Mk1agXugf5HhFbbnn0
-	0vX+AfGai4oVPJcy8PpKOAVx2/hboTfva1cmrLXODUUOseZ1YBrtaiwcWDRjxXNcCwS3ZE/ooy4
-	k=
-X-Google-Smtp-Source: AGHT+IGlLMhKLgFHyvZ49DCZvMiA90TwWVIRz6iijC7YfuIMHUc0iUAcLMALFo80OHJGPrKXxcL7mg==
-X-Received: by 2002:a05:6808:2018:b0:40c:7996:73e3 with SMTP id 5614622812f47-4319bc0965emr193324b6e.28.1753806442351;
-        Tue, 29 Jul 2025 09:27:22 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:c7d5:61e1:68d6:dd54? ([2600:8803:e7e4:1d00:c7d5:61e1:68d6:dd54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-42c7ad75019sm1509734b6e.1.2025.07.29.09.27.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jul 2025 09:27:20 -0700 (PDT)
-Message-ID: <791e34a5-8670-48a2-9c26-782a7682f7cc@baylibre.com>
-Date: Tue, 29 Jul 2025 11:27:20 -0500
+	s=arc-20240116; t=1753806600; c=relaxed/simple;
+	bh=cYPpvp6/LktGFqLRabjLYkW/Jo8p7bCXx5XWj6nAHfQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Q30/LcoQIMzLCG71c0hroxgvovNpI+zXsbHJrAHBIbMXEL2TMhX1abdhYkKBVSWiMf35s5AalFvoYlIM70nHFUTNt46th/bsCJkBSt1ArUMpOkmX/7eOkGG+K1ggCtC6FZAocqQmeGJcP9ccDiI8u97Tdl4p52BYeGEf0FYOUlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=D+a5l1fO; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8EC6520F84;
+	Tue, 29 Jul 2025 18:29:56 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id kh5I-_ur6aEA; Tue, 29 Jul 2025 18:29:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1753806592; bh=cYPpvp6/LktGFqLRabjLYkW/Jo8p7bCXx5XWj6nAHfQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=D+a5l1fOvhebePXJUchw4Yhtzye0Fw7YkC6+MLurTq8XGuJcueOGpRM2zSobYf8iU
+	 j5+5ljLOrkjG28uiSPb3IWE8Iu7t6iJ2eU6h2VULRj3V5QCNQuuOcbrsSlJUdyPPGO
+	 6D2mPPUf0GUCzKVoXw+efXTzlgiO1k0OeLH+LGe5ZR5uOkVxcbnbtjgZfcOA2Dtt+k
+	 +EMxwuPvc+w094r40OWw9k4Iu0Ej+pJAZ5istvxlAHAsAfQXySN6/VKbIAuAQvG8uv
+	 ia+cztb0FemhJ98IKUv+ZaGAP4jhyc15v+zAWJohyFvZ2SjEoR+aSBNPTgeyPCQEZr
+	 cRGAiEqMf+rhg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: temperature: add support for
- MCP998X
-To: Victor.Duicu@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
- jic23@kernel.org, nuno.sa@analog.com, conor+dt@kernel.org, andy@kernel.org
-Cc: Marius.Cristea@microchip.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-References: <20250613130207.8560-1-victor.duicu@microchip.com>
- <20250613130207.8560-2-victor.duicu@microchip.com>
- <d6c318bed4a2e61ffaac556ba1073e91c1307902.camel@microchip.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <d6c318bed4a2e61ffaac556ba1073e91c1307902.camel@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 29 Jul 2025 16:29:52 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Inki Dae <daeinki@gmail.com>
+Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski
+ <m.szyprowski@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park
+ <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 10/13] drm/bridge: samsung-dsim: add ability to define
+ clock names for every variant
+In-Reply-To: <CAAQKjZNfb6LkShtCvan__ew=H7CaquTqn5DLcP1agtkG6B5mSw@mail.gmail.com>
+References: <20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org>
+ <20250706-exynos7870-dsim-v3-10-9879fb9a644d@disroot.org>
+ <CAAQKjZNfb6LkShtCvan__ew=H7CaquTqn5DLcP1agtkG6B5mSw@mail.gmail.com>
+Message-ID: <080f567245829dba8572be649a46cc93@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 7/28/25 8:01 AM, Victor.Duicu@microchip.com wrote:
-> Hi everyone,
+On 2025-07-29 07:02, Inki Dae wrote:
+> 2025년 7월 7일 (월) 오전 3:28, Kaustabh Chakraborty 
+> <kauschluss@disroot.org>님이 작성:
+>> 
+>> -       dsi->clks = devm_kcalloc(dev, dsi->driver_data->num_clks,
+>> -                                sizeof(*dsi->clks), GFP_KERNEL);
+>> -       if (!dsi->clks)
+>> -               return -ENOMEM;
+>> -
+>> -       for (i = 0; i < dsi->driver_data->num_clks; i++) {
+>> -               dsi->clks[i] = devm_clk_get(dev, clk_names[i]);
+>> -               if (IS_ERR(dsi->clks[i])) {
+>> -                       if (strcmp(clk_names[i], "sclk_mipi") == 0) {
+>> -                               dsi->clks[i] = devm_clk_get(dev, 
+>> OLD_SCLK_MIPI_CLK_NAME);
+>> -                               if (!IS_ERR(dsi->clks[i]))
+>> -                                       continue;
+>> -                       }
+>> -
+>> -                       dev_info(dev, "failed to get the clock: %s\n", 
+>> clk_names[i]);
+>> -                       return PTR_ERR(dsi->clks[i]);
+>> -               }
+>> +       ret = devm_clk_bulk_get(dev, dsi->driver_data->num_clks,
+>> +                               dsi->driver_data->clk_data);
+>> +       if (ret) {
+>> +               dev_err(dev, "failed to get clocks in bulk (%d)\n", 
+>> ret);
+>> +               return ret;
 > 
-> I am writing this message to ask your opinions regarding the placement
-> of temperature range property from the MCP998X/XD family in the
-> devicetree.
+> Above change modifies the existing behavior.
 > 
-> The reason why I am bringing back this topic is due to a limitation of
-> the chips. When the moving average filter is enabled, the old readings
-> are kept and new readings are added to the average. This is a problem
-> when changing the range of temperatures. The raw temperature values
-> change based on the range so the mixed values will give erroneous
-> results during averaging.
+> Previously, when devm_clk_get() failed and the clock name was
+> "sclk_mipi", the code included a fallback mechanism to try "pll_clk"
+> instead. This fallback logic has been removed in the current patch.
 > 
-> One possible workaround for this behavior is to set the temperature
-> range before runtime, to not allow the user to change it.
+> While changing this behavior may raise concerns, the benefits of
+> refactoring—specifically, defining clock names per SoC and adopting
+> the clk_bulk_* API for improved maintainability—appear to outweigh the
+> potential downsides.
 
-It looks like it is just a an average of the last 8 samples at most.
-So if there isn't a way to reset the chip memory that holds those 8
-samples, we could just read 8 samples and throw away the values before
-giving data to userspace any time we start sampling.
+I have checked all devices which use this driver.
 
-Even without changing the temperature range, we would still have old
-values and possibly the same issue of stale data possibly influencing
-the measurements any time we stop sampling and start again. So I'm not
-seeing that this temperature range setting should be a special case.
-It still sounds like something better suited to be set at runtime.
+Here is a mapping of all compatible -> clock names in the driver:
+- fsl,imx8mm-mipi-dsim: bus_clk, sclk_mipi
+- fsl,imx8mp-mipi-dsim: bus_clk, sclk_mipi
+- samsung,exynos3250-mipi-dsi: bus_clk, pll_clk
+- samsung,exynos4210-mipi-dsi: bus_clk, sclk_mipi
+- samsung,exynos5410-mipi-dsi: bus_clk, pll_clk
+- samsung,exynos5422-mipi-dsi: bus_clk, pll_clk
+- samsung,exynos5433-mipi-dsi: bus_clk, sclk_mipi,
+                                phyclk_mipidphy0_bitclkdiv8,
+                                phyclk_mipidphy0_rxclkesc0,
+                                sclk_rgb_vclk_to_dsim0
+
+And here is what I found by grep-ing all devicetrees:
+
+arm/boot/dts/nxp/imx/imx7s.dtsi
+     compatible = "fsl,imx7d-mipi-dsim", "fsl,imx8mm-mipi-dsim";
+     (uses bus_clk, sclk_mipi)
+
+arm/boot/dts/samsung/exynos3250.dtsi
+     compatible = "samsung,exynos3250-mipi-dsi";
+     (uses bus_clk, pll_clk)
+
+arm/boot/dts/samsung/exynos4.dtsi
+     compatible = "samsung,exynos4210-mipi-dsi";
+     (uses bus_clk, sclk_mipi)
+
+arm/boot/dts/samsung/exynos5420.dtsi
+     compatible = "samsung,exynos5410-mipi-dsi";
+     (uses bus_clk, pll_clk)
+
+arm/boot/dts/samsung/exynos5800.dtsi
+     compatible = "samsung,exynos5422-mipi-dsi";
+     (uses bus_clk, pll_clk - uses node from exynos5420.dtsi)
+
+arm64/boot/dts/exynos/exynos5433.dtsi
+     compatible = "samsung,exynos5433-mipi-dsi";
+     (uses bus_clk, sclk_mipi, and 3 others as mentioned above)
+
+arm64/boot/dts/freescale/imx8mm.dtsi
+     compatible = "fsl,imx8mm-mipi-dsim";
+     (uses bus_clk, sclk_mipi)
+
+arm64/boot/dts/freescale/imx8mn.dtsi
+     compatible = "fsl,imx8mn-mipi-dsim", "fsl,imx8mm-mipi-dsim";
+     (uses bus_clk, sclk_mipi)
+
+arm64/boot/dts/freescale/imx8mp.dtsi
+     compatible = "fsl,imx8mp-mipi-dsim";
+     (uses bus_clk, sclk_mipi)
+
+So, there shouldn't be any regressions.
 
 > 
-> Initially, in the first patch, I have placed the property
-> microchip,extended-temp-range in the devicetree.
-> At that point I mistakenly did not include Conor, Krzysztof and Rob in
-> the discussion and I would like to ask for comments.
+> Unless there are objections from other reviewers, I intend to proceed
+> with merging this patch.
+> If anyone has concerns or sees potential issues with this change,
+> please share your thoughts.
+> 
+> Thanks,
+> Inki Dae
 > 
 
