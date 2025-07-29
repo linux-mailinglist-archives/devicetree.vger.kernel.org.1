@@ -1,136 +1,155 @@
-Return-Path: <devicetree+bounces-200569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900EDB15327
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:52:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E40B15331
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 20:58:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E9FC3A4DC9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:51:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FC1216D618
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 18:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4332512D8;
-	Tue, 29 Jul 2025 18:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB93824728D;
+	Tue, 29 Jul 2025 18:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eWoWvQgG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0JDMme3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968D324A043
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 18:51:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C561F4CB6
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 18:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753815112; cv=none; b=Foykj9A6x+6EnMpNck6wASJUlnJ1Q8ZkjL/ARjWqWpvE2ugTwBRIS3B+KW603tpQCWbX6I4zWjYI6S5jttVPxRUJ2MhSG+tyUbiFZrpcp+S8OwwZVln7bUlcZ4CgPZ9RxGbLkzE3ZP51LRPjLEncb4dDiWjjK1lR0lLJQ4YnIKU=
+	t=1753815514; cv=none; b=GicoDEF7I8r3vKc3+uK70DRLTho/7ifS0DIPGlC1H19qCcpm07ZKCXG971hBChlXCgLDZ9uOzNIsTz2aQJBZR/SRx99zVQamiTqspwP1sXpl48zqB2h6SYubbmj4uwSNp/gk1WQ1nwxou1WlzEuNLVVIi90QtOnv8fIEDYl8kUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753815112; c=relaxed/simple;
-	bh=tkYPqG6hSoExZpavosByUWQQZFauHqgD4v+3OLU6+vA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RczZEdrA26Cb2t2lwPxoHIV/R2dB+0sm8uPUQmV/tHQXiK6+yH5mBeO8zxBXd3I8ce63Xr5UJUc2Ai02pcg3MdAnaYko0KH1z/dDhARB5lwkiiKlwJSLFJgZEUefzlaoSlEOvjR2ZmnaeUYCwOOX4+TFIkqqKjezKhWxzK0PGg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eWoWvQgG; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-41b309ce7d5so1830463b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:51:50 -0700 (PDT)
+	s=arc-20240116; t=1753815514; c=relaxed/simple;
+	bh=padKMHqaBdUCNVgjs5EVlo3evaR4MHbLDig2yQT3Fag=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=I9wpeU28gB1aYeTDPYVb539qXot/yYh29Hfj2zPBLBT2QAY87fbf6pq6gQBmmcyB4efwsYHTSbXRNaqXU2wbIn1f+qv38JY4CRvkyHgBNpDTxsT2WDeaTtJqWwJEvwR5GsQ/Kp2Dj/cMQdkX4kOlaiy7GiAMJvgmrVMWuKJk0xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0JDMme3; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4561ca74829so61449595e9.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 11:58:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753815109; x=1754419909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nW9OX3dqh3cJ18q/aTepV16/WtzibItMr8FPMWEaO5Q=;
-        b=eWoWvQgGmSw/LedIqS0RAsjf2f96H6SXm2qrV1E3YImdwNYrC4KL+OaFYJ/ORBlB4Z
-         vXJAfpn/Hy6wUJS1fhjg8oziAM1n66uvow67qTii0vibNkggNBug/8UvyZyrOiOZTIsC
-         nz3YqjR2hZ+Nm8j3kfpHI4uJw7uJKj1TW1oLIQ5619ERq81Qib8qP/XWUEcVe0GkZ5E7
-         s/WUN9SqY5lShafbzTNvaq0vaiUu3aovD9qUnbDe8g/asgURbbYFTa6mDmidKakmnacJ
-         PWnH7g9H0PzYBsxihcwfyscBJkiPCHWepWio2ETipmp5ZVaLO1RZZ46bc9SezrH3MEIs
-         i9RQ==
+        d=gmail.com; s=20230601; t=1753815511; x=1754420311; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dlG7PNdMEgQfJKLs4yxVqtBUK7MC8lUUbumEET1hUqc=;
+        b=O0JDMme3luLzJT4WmT6Oh6bziPevRbYq9XlSC6QBXdaXIQFjkDPMh2PmoP4RkpMwYD
+         n1UUZXb5JZAZ1hcS4MuSgP+wm2uU8HoNYYMNWMuvJ3BV+45KHJD4GDxIhMhMci1BL39o
+         zZ5s7u4nkfCVOthOkK/nljbN2YG/lmGLsz9lvlSgKqHoMNK7KtJcU92FEEwi0LHeFPrs
+         I/2s1Mlp0I2ArCdkoepc9y2P1zu7Rzta2VYiMJNpL0YU4jajKxpNordFHWGQjkDyYjbT
+         Oo2h5MynLDZ1hB7efyWGO12ZY6slVvXfo/jjqeUGtmWkbEpTb2h6XvLGPzJEjAUhL7Nd
+         uMjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753815109; x=1754419909;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nW9OX3dqh3cJ18q/aTepV16/WtzibItMr8FPMWEaO5Q=;
-        b=QFxqotp19eOFF+rZF6L0DoZ8EWs2R58zsgwsnb4czxLFvazo2BYONJa2kWm6IKLMTy
-         KinBAL52Uwx1VKmvld/gdbx1OxWljRSGoHUybZhEn1HWnKUNY+DV4mV4koOhN0pwF+Zd
-         R027iHbKZ6aU9iW3EVTtRNunk02xEPWcLzMlpm8htT/aOcUtA5pDzoXJbknf4Y2kpGQf
-         DQjAvEb1EPb/r3C6AB9pNEto9E/qlbQif6KNIU9XN/Eb/bJfp27j2OcMMxYqcRxD2FXE
-         FjobkC+excgEXt0z/MqgY8hnw1E7l4Gk1JYm8/tGND/y6Y8zyEQ3U2kHWVbewguQq9Rr
-         mRpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVaBdjPS3wtVO7Q5XDjPOf5JinvSnPuEXfbd0zekSnZ3kW5qBRMX9islLTDTX/ODdIHnGh9Kd4DTkrp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwsy2L0vHb0MSOLjwbBQPixiQt+o1hGRgByYmc4w17j+9ILeUI
-	7CgwH4bffdcrCoDkVVmTL4nLfYYgvN5NaZhBX8bD/bATUgiqeMIN7nZlKlXEwhf3vMk=
-X-Gm-Gg: ASbGncuzqHaSUu+LuptrVH1BPgtciap+p/EnLFIec1fgs3/YN2fE/g8auRFAK6qs/z3
-	+ab2JXe9N1xmdm3fWpuGT7h2pB1PWqxE7KUMt5iCaPIhNw6zNUL+uZTfawTibNJGgztPWkabNEK
-	gW7iTW9s81awM2j37tUdDpkX+o3lj9NoEc1wqJxXcPXZhleYXJtzW/p0L1z7AybPA6Q1QFBVuxt
-	FGnvPXmorJi9EIYSR0Iq4MIOUt9vq7pGQoDfgOfocipXLPiYhUib/93cNdzT1qioQoXEWrofbWq
-	ow2nARqQrovpHVw4cotZlmoGeQg8HOwWsBooLwCi9DI5K1xWkq/CxKBn2OZrFnYFuZm/OXhAdXQ
-	fjtWAsJ/ghM/o3bmxkL00WhYtsPuYz1FF1tH4djHs61UCMsSVufIi3Wfz3qgQethvR2E78r1rf6
-	Y=
-X-Google-Smtp-Source: AGHT+IEk1VUBACKAVfd3nk/GnuDKx7Ws203xpDX0qSmk0ah3tw52EhxFHTI+yXJat0ciadah+dzUgQ==
-X-Received: by 2002:a05:6808:2393:b0:40b:3530:98bb with SMTP id 5614622812f47-43199d7a01cmr506635b6e.9.1753815109508;
-        Tue, 29 Jul 2025 11:51:49 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:c7d5:61e1:68d6:dd54? ([2600:8803:e7e4:1d00:c7d5:61e1:68d6:dd54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-42c7b843b74sm1634782b6e.16.2025.07.29.11.51.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jul 2025 11:51:49 -0700 (PDT)
-Message-ID: <f5b46109-ad53-4d03-937e-ac4fc868755f@baylibre.com>
-Date: Tue, 29 Jul 2025 13:51:48 -0500
+        d=1e100.net; s=20230601; t=1753815511; x=1754420311;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dlG7PNdMEgQfJKLs4yxVqtBUK7MC8lUUbumEET1hUqc=;
+        b=rPvqqH/b+biCHmaQvyUf4ZF5EdzrkszcGDqCTWBJEZugnu2WBWdeFfIIA/jBT1rdC7
+         MruuyomhTSNOsqBaSVYlNPQSWNRK8xJ3XkQLj3/KNlnniVABkwJ0UVnjmsiY4R3pDMzO
+         abUAy7ETgQYOanV55ysJ9ZU3USk0H/rvSgDSKDtBsJPkI0NGjfKKXU7y+EbO04T1Nqsf
+         ygAGj7AlyEuQO3M8CYlSHtmdQQ03NQn5tblRa+a83tyWw275TfmwQ+u9hKoRZkHteEiL
+         CWcyspC05Muh3MxS7g6hGcSo9lpWrP5HKQSpcSD9oeuN+tqBHdSbwZKgRIdQP9GQONRu
+         fY9A==
+X-Forwarded-Encrypted: i=1; AJvYcCUkcJmQbUACOimG+DSWRG46vicNY/5mhIojE8ZJoL/tYQ67kArAEYmc9JCkQWlVPVOH4fUT1LhQDRbO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7MMF0tN1CMX0ieYQf5BhJGYmOLTks0jvhvM3U568ZqotABmCG
+	ZpleK/CsMPJrEBnOf2WoTvpIdPTXwG9FIbDC5h13FWLadkgLAPE+o8sk
+X-Gm-Gg: ASbGncss4nViigpuvcHQYhBp2LNbZi7aJWCA+a7YCuLo3EFf668kAkAVglQf6Rg56uF
+	xeeL0JfNBNphfZlMii3jZLvlSdNoiJF09duJicN0a+KwskJAv+g4yxQ55y36zUeZL8uKFjiNqd7
+	Gty+fnqim0XXj4kRxiH7u2XOJzFDrnzPfrtgV0bUF2qLV9bpbNJeuJ7Qg4nthrI55GhjpXkGVL9
+	hO3FcsX5Y13hareHY7NhybrXkQUoloYQ3tA2T7+RBezwK82ejEhTxrSBgzyzLV8je9HTB07ygOQ
+	O7EwUPHEI94PQdxaPVR2g4Ik9fJFcr2XtfH2LFrAuIFANXdAtJ9scvU1iv2+iqwRVR9xfhAUZwX
+	nFgChSOErC3T6KSWxMmX8uLX5qEhBWiF3ZodPOTR8c8BTS8TLVYJuCSahddvjVdN5ccMkmEVArL
+	Pdssn7GW+X/QSQnHWUDtj9c+VkD6niK2WiqddgEk2vLQ/+AWfI0voHFvj7bQ==
+X-Google-Smtp-Source: AGHT+IFVG8MCSeJi/dYjm7QHZUG4zDJVV2W82Q1iLkHB7zROK/tyX/U1h+UQx958znyjGSXuSvF1YQ==
+X-Received: by 2002:a05:6000:1a88:b0:3b7:8832:fdcc with SMTP id ffacd0b85a97d-3b7950093b6mr668686f8f.38.1753815510813;
+        Tue, 29 Jul 2025 11:58:30 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b794a9d6a1sm880387f8f.16.2025.07.29.11.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jul 2025 11:58:30 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Pinebook Pro: Update WiFi
+Date: Tue, 29 Jul 2025 19:58:17 +0100
+Message-ID: <20250729185827.144547-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
- 3D Magentic sensor
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
- <20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
- <141967ee-22f4-4b15-a8da-e8cef25828b4@baylibre.com> <aIg_SClXq0pO69iH@dixit>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aIg_SClXq0pO69iH@dixit>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 7/28/25 10:26 PM, Dixit Parmar wrote:
+Update the WiFi configuration to include the wake-up
+pin and add an ethernet alias to allow assignment of
+a mac-address from the firmware.
 
-...
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ .../boot/dts/rockchip/rk3399-pinebook-pro.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
->>> +	case IIO_CHAN_INFO_SCALE:
->>> +		switch (chan->type) {
->>> +		case IIO_MAGN:
->>> +			/*
->>> +			 * Magnetic field scale: 0.0098 mTesla (i.e. 9.8 µT)
->>> +			 * Expressed as fractional: 98/10 = 9.8 µT.
->>> +			 */
->>> +			*val = 98;
->>> +			*val2 = 10;
->> We use SI units, so this needs to be gauss, not tesela.
->>
-> Sure, Is there any documentation/reference this details are mentioned?
->>> +			return IIO_VAL_FRACTIONAL;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 5a8551d9ffe47..05c48cb09df6f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -19,6 +19,7 @@ / {
+ 	chassis-type = "laptop";
+ 
+ 	aliases {
++		ethernet0 = &brcmf;
+ 		mmc0 = &sdio0;
+ 		mmc1 = &sdmmc;
+ 		mmc2 = &sdhci;
+@@ -883,6 +884,12 @@ vcc5v0_host_en_pin: vcc5v0-host-en-pin {
+ 		};
+ 	};
+ 
++	wifi {
++		wifi_host_wake_l: wifi-host-wake-l {
++			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	wireless-bluetooth {
+ 		bt_wake_pin: bt-wake-pin {
+ 			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -940,7 +947,19 @@ &sdio0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ 	sd-uhs-sdr104;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
++
++	brcmf: wifi@1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_host_wake_l>;
++	};
+ };
+ 
+ &sdhci {
+-- 
+2.50.1
 
-
-Most of the sysfs attribute documentation is in 
-Documentation/ABI/testing/sysfs-bus-iio. Specifically for this
-case, it says:
-
-
-What:		/sys/bus/iio/devices/iio:deviceX/in_magn_x_raw
-What:		/sys/bus/iio/devices/iio:deviceX/in_magn_y_raw
-What:		/sys/bus/iio/devices/iio:deviceX/in_magn_z_raw
-KernelVersion:	2.6.35
-Contact:	linux-iio@vger.kernel.org
-Description:
-		Magnetic field along axis x, y or z (may be arbitrarily
-		assigned).  Data converted by application of offset
-		then scale to Gauss.
 
