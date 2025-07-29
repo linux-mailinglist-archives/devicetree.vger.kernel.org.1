@@ -1,172 +1,155 @@
-Return-Path: <devicetree+bounces-200414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E92B14A22
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 10:31:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6981B14A33
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 10:37:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 314C916A40D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 08:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0A1C17EE0A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 08:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F75F284682;
-	Tue, 29 Jul 2025 08:31:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417C72857EC;
+	Tue, 29 Jul 2025 08:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fARHZ0s7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JIUGgsJ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3A8188006;
-	Tue, 29 Jul 2025 08:31:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A032928540F
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753777897; cv=none; b=dIIHMZcdGvrCwMtC7JCTo+SJQYNhsXWYkYD6YwYqOY1OBtmlABTsY60Znt8zCJFHllKuzmP9sDj28+j/bQg6I6OtNIOJsCz3laZCa5Bxv1lf7F6byOxq/Uj2+84fZXqrqQc96/ue7ALKd33H5XqhdKJXUCUmBn+4j7h74UU7lGU=
+	t=1753778218; cv=none; b=f55EBjzkYWIWuQ8R0u8N/J3A8X/IgFQPHy9H5wiDssHvH2m/o2mKn5l5lIW27i66mwV2DUIEbDsFdRaauVNsG3eM24xRex9TZhm3oD4apj6Nqs/2H0OGENNMt504qIYrJmp1LCkg4WBOHe1ahSzm4ZWUjs9X+VNwMhcLoGnV+no=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753777897; c=relaxed/simple;
-	bh=3RI8jIoJyDmrLUwJoPWxZREhJPgeAMp3caffnQq7nBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QoUN7pUgVrUwZOVdHgXQFtu64uDaLiGv4QBTBCKpMepbooR5V9lgRkH+hb9XPN0aAUd/OR0Mnt3f2bXDPmGOFZ8U+2UrzWCc8dmlLMj+ftENoiVS2Um/FUxQjQHK9wfpH1pHq8KLAMdZyVwvUKpxb+SiwT5CnxPuO9E0mjn/oBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fARHZ0s7; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b34c068faf8so5347604a12.2;
-        Tue, 29 Jul 2025 01:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753777895; x=1754382695; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=V3tQDpY9kmcpxqJo02gP5nd31GjHYrw3D1aQf8x0gRc=;
-        b=fARHZ0s7EX77uRrW2RiEQN++INK1xDQG4S6jgaFARyGMibLn0zqbgybszR8vfMtpni
-         h6V2MtMK0Z8DfqG2yDIIKONOyWxzfwGN6HOpbaMxZGmMvDSqVViWDxpv3b2VAsrEtRgw
-         48CJ8gYVBfsHuogzPxUYG3dGUI7h37iomIa8/78piI7p3jmCQO+cYZGgB305+8sAwmJL
-         ydHNl12VyklMxuNBWgbgVhAoXHUs73VuJFnjBQ16Ag0qj6HVq0fd/JAz7fcZwze5MG7T
-         67NNVHjhmfNG7iCwFE3Xzj5EjKQOFVnFDIolGMj/h7qK27DknQyOHIXkCvh+2FPmMYyB
-         d80g==
+	s=arc-20240116; t=1753778218; c=relaxed/simple;
+	bh=T+qr+jLkWblLmI3OwGwYt4XSYv4v9vvX5Kt7Lyc0wws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WWqO8iLqi6bUnxowsl8bNGh4uzlhcTDT09Bmuvti1uuN7FMeD/YectssqQnchDGZ1DUNA+iLxJFdfjuc5Q+SaGAeSvRVh14UfVDsvMeOlMO8Vsj9DrZu5wZl0HobtrKG7nFaBKsO4jM8mjObuN5hVX+0WUYrsHtmSrtxdQSd8hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JIUGgsJ2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56T03CtM019418
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:36:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r374LKMpjnu2z/yDiUy93wHqo816rkjcCkC3Ws8MlUQ=; b=JIUGgsJ2Vat1VqpR
+	w4fs/R/vXBPfwXM2usLmsxHP9g9lo+yeLcCeU+bwgQCfbDpQVYTE7ky53wP5pHPP
+	3jseQShpGbuKPB/Ky1KGXJRYWWUtMrJ7v5z64zliQ8jjEpHsMRDrh8bO6wS8bGb3
+	+qUBn3F+Pa1Kr/PAjOszQ7A91OttJkBIM1o1O+JxXcq4w0111NXa3kBO7cBTrV2T
+	FZ1fQI5lsdmMlDavJ8YUdA97j+jD4oc/h2QvXmKoZgOxTk/02WDN7ZkTCFnpguT3
+	F9N4DDx9xjlVuybG56h4T/7n9I0bKMNUiG1NlLZ2MI2u1K3G0BePEM+63iCfOIGM
+	AltDEg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484pm2fajc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 08:36:55 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4abc1e8bd11so18163181cf.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 01:36:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753777895; x=1754382695;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V3tQDpY9kmcpxqJo02gP5nd31GjHYrw3D1aQf8x0gRc=;
-        b=hXGeceQ3GuAQQP5YvKQ2/W4Gntry4cG8UZ8dQdE5Z2j0tYfN0fNRS9C7COZy72wI2k
-         OxxFRwz82s+0e/jidpjDf9tLXAQ9HhqzP4TKJ3lHQz92OSbN87ElXPzB1XctRyRKUInf
-         fbhaPXNcXw11TfG3t6Yz6u90WSpl2hwa/XN/9JJhXn18vcDQepsB2nI9EgyyZ/yNgyR/
-         uDzA4iCPFbqXFOFKLCcwqi9ewwQkbDHZvAG+57TMTvNMvH4mwX2rVCxKJWL8pmoMi8S8
-         qEYVzHnQZu5NyZtJNz4k8wbehKesArXuduMm4qFtG3ciAZLln4fwzPMKnwc8j6WuZIwz
-         YLOw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2HAXiZ3JcExMg6AyZd0KfHbxzD79729jFQ0lplmG/Vgs1hCmDVHxcD5WWKiePK52fo+F3vn2hFlw1sB9z@vger.kernel.org, AJvYcCWxLmFa4iwoM1XFW80dqWXsh5t0fZz2bat+Wnw76Xh5gpX2R2UJvUFDjYd7tW86d1/NaXGdoJKrXSdf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaH/XR9+J8nTjHXBEwlm9v7hCXD0SENekBU6Vnf2ymG2t53Rc6
-	R7QbOVXjJxr1eN/AdC0m90S+IU9QDe+SW0likyRB84Tp+Wztv7mFgL8n
-X-Gm-Gg: ASbGncuFIb8yTVvbHbU1dgvyYMmECKSUY07nXDmEKdFoq8FfEpK2Pa05IMUsEgB8vn9
-	lZxHwPeiccS3B+su0O6glY+n2o/kNMtHK7EBT/HYitAqKAKeazOxAnHv94FoNTMx/NuyE/dOiRw
-	2uUHoCMXcVFjrj2KU4ylnN4NoyhQLTuHx3zQNyzsUautScBspSv+8s0rUg95Qm8WQBBH2oIyo6A
-	VdTLDfbZ96Vnz2YWn4RmvY9NOgM/XBr3VED/2he9JrxXw/KBWhWdC0MsBld7VwJG6oCmWEtPnK5
-	OvzYBu4aOn+pokDoEk2Sln7cnO09xQFmS812oXAMH5xEP2v2EoOyDs5aEEHRvD5TOLYINSDwLVL
-	eOOW/ZXopv2NGHj0U2dgCf4wC1fiQlvYV
-X-Google-Smtp-Source: AGHT+IH3/A1CboxM+y3QmvNziehjws3MkOhzin8JJlZv9QPmsMuudb9IbcMH6qSkoi3W9mg9v6j4HQ==
-X-Received: by 2002:a17:90a:da8c:b0:312:1ae9:152b with SMTP id 98e67ed59e1d1-31e77a027b8mr18810110a91.23.1753777894979;
-        Tue, 29 Jul 2025 01:31:34 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-31ec91fbf4csm5462503a91.12.2025.07.29.01.31.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jul 2025 01:31:34 -0700 (PDT)
-Date: Tue, 29 Jul 2025 16:31:01 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Junhui Liu <junhui.liu@pigmoral.tech>, 
-	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add C906L rproc for
- Sophgo CV1800B SoC
-Message-ID: <jcpr5tg7jyyyqmaujegeuq5j3dqz4rrgxfz73rl55l3jibtq63@3w7bzux2b2je>
-References: <20250728-cv1800-rproc-v2-0-5bbee4abe9dc@pigmoral.tech>
- <20250728-cv1800-rproc-v2-1-5bbee4abe9dc@pigmoral.tech>
+        d=1e100.net; s=20230601; t=1753778215; x=1754383015;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r374LKMpjnu2z/yDiUy93wHqo816rkjcCkC3Ws8MlUQ=;
+        b=sqgosBh7CYq1ze3BWtrA/7os/w3etN0HU0JLf5+O+8DV38QvpC5tf2oKepYxy0EIEP
+         pocd2hNQ8afKHsbIgE+IpV7fygC1WqMGhCeKIB+2QOMijTb/nxP5k4/yna3w5kZugSe1
+         he+FTzSLAwFHMhH7rFA2ZOn0es/B6nKvezkjteuku8iNTgCnQ4Pb9AbpobV13t5fBcNx
+         COk6NK9hYt+oyK4N3R63rf6w0Rv8vRWOrLvGdZPqo0VMyhvXGJlHW7Tz4K6WnX+BX/ak
+         VA1vzdQn//U+0zZ/4F/UKvVHFFCBxbtme9P9behrPey5Ll0+QfsDtSeNfGTbslBNtvTC
+         O5xA==
+X-Forwarded-Encrypted: i=1; AJvYcCXDWDLzQ/q2jmUMiFVPSXrzuxfnekm1v0mOD/UhwHj8RkNvP6L5typqZR/M9UgK1oQ/05Xw1v6X1zCW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwH/Z+K+0deU2dOJa+g54pnuUr03zAWRVfhS0Z40Vfioh8XTXmm
+	u18fWTkwlpU+Y8SxFoPP+iI6l5WNEeMpRT6ctAIFsULegr4dW4iejUP7QEOD3LcMo7N1ck1bsEY
+	BOAnU3kZnIZ7Y8a3/dSWSTUtkUCjYW8+II/ugXjzpF4h+fibB7ePEJS87qrts8BHj
+X-Gm-Gg: ASbGncuvKGUwcqcUV3xW+y5ClNvEjDFMoc/nTiD3c09YPItRw8iBVcN6OlCTzZm2NUL
+	Lgc0TMPmYAttNNs+Bfr7EuXMM74ItV91RUCUneQ68vHDpx5R7DE/A5daxcuIOLPBXfa0bvRtlp+
+	4FXGQitTkb6bfns//k4j2+1WrapIUVRqSk4Z39df+GaJWDhWqxEb4jUYfCt+3KrruRp72Hv9jGy
+	bLoNlosX9ta5EjyyqkN96DpavEZ2I8xDtjDO2wMKnrqbg269hkROpYguGOgWqmDJrtr5MCGfgLU
+	nuYvm0I6liYi24DykgdNRqqKyINgp+bw/E66gxGI6Y47hyibRP9Vfv+/SNdJK0FbpZEOsKW4SvM
+	hp7TrBDzl9BKW29Ae3Q==
+X-Received: by 2002:a05:620a:f13:b0:7e3:2e02:4849 with SMTP id af79cd13be357-7e63bf8d71emr899893285a.9.1753778214664;
+        Tue, 29 Jul 2025 01:36:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEU7rBqgyFONH5D7acKOlxV8sWmc1eoBfy92nD47LvfQVhjNvsFThVhIRvJal0LNgXqlJO88Q==
+X-Received: by 2002:a05:620a:f13:b0:7e3:2e02:4849 with SMTP id af79cd13be357-7e63bf8d71emr899892285a.9.1753778214293;
+        Tue, 29 Jul 2025 01:36:54 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af63589d146sm541281966b.35.2025.07.29.01.36.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jul 2025 01:36:53 -0700 (PDT)
+Message-ID: <5cfcbb73-859c-46af-a9a0-cc2cee7066e6@oss.qualcomm.com>
+Date: Tue, 29 Jul 2025 10:36:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250728-cv1800-rproc-v2-1-5bbee4abe9dc@pigmoral.tech>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com>
+ <20250729-hamoa_initial-v3-3-806e092789dc@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250729-hamoa_initial-v3-3-806e092789dc@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: wrdJrRz1XPVfMHYYcO4ZJ_QeolNTDl7n
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDA2NSBTYWx0ZWRfX+5X/mlm+xVe1
+ pFj2nN4FtAsWMV5Rrpz2ptb0ujfW4m67b6EoIpEckr3/U26c9fKQkEwxJjWRAHU1A/LI+oGBMI5
+ jn0qd7wprvXgsNaxKW49TsTb06173dgK9yzjSBkaOF1LPH89cK7zpPwkPznDhdaeDKlu2cESHpx
+ 7YFtgb1b7dfJiTJlreJkF+CFYyjZCdKSGLtqlqx5CGjjs6zj49xmkNGZiJmXVHzsNTijNg9kLaV
+ JSMHDk9KAZ79dkeHxe66Z5sZpaoeU13QMJVCRxukkVrZxgjxrn2G4pvQMKOVqsq2F3Zyvb0Yolf
+ bd5HBqxy4l7VxToqWc4rN5mBijIKMx0zpVgjq40QDEQEwu0BKGRHmksuVxvrx83ceveCahisD3W
+ IyvM3iBOtTvGIPxK63k01oaed/mP752TGb3Ks1MYM75DJ0Q74fi1KHKZIGIS17TJy45YwL55
+X-Authority-Analysis: v=2.4 cv=HfYUTjE8 c=1 sm=1 tr=0 ts=68888827 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=EUspDBNiAAAA:8 a=HFdUuuCF8L9kRLeQQEgA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: wrdJrRz1XPVfMHYYcO4ZJ_QeolNTDl7n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-29_02,2025-07-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 clxscore=1015 bulkscore=0 suspectscore=0 impostorscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 phishscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507290065
 
-On Mon, Jul 28, 2025 at 07:03:23PM +0800, Junhui Liu wrote:
-> Add C906L remote processor for CV1800B SoC, which is an asymmetric
-> processor typically running RTOS.
+On 7/29/25 3:31 AM, Yijie Yang wrote:
+> The HAMOA-IOT-SOM is a compact computing module that integrates a System
+> on Chip (SoC) — specifically the x1e80100 — along with essential
+> components optimized for IoT applications. It is designed to be mounted on
+> carrier boards, enabling the development of complete embedded systems.
 > 
-> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> This change enables and overlays the following components:
+> - Regulators on the SOM
+> - Reserved memory regions
+> - PCIe6a and its PHY
+> - PCIe4 and its PHY
+> - USB0 through USB6 and their PHYs
+> - ADSP, CDSP
+> - WLAN, Bluetooth (M.2 interface)
+> 
+> Written with contributions from Yingying Tang (added PCIe4 and its PHY to
+> enable WLAN).
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
 > ---
->  .../bindings/remoteproc/sophgo,cv1800b-c906l.yaml  | 79 ++++++++++++++++++++++
->  1 file changed, 79 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2061c2fd6ba343c09b1a91700ea4a695d2b57f81
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/sophgo,cv1800b-c906l.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo C906L remote processor controller for CV1800B SoC
-> +
-> +maintainers:
-> +  - Junhui Liu <junhui.liu@pigmoral.tech>
-> +
-> +description:
-> +  Document the bindings for the C906L remoteproc component that loads and boots
-> +  firmwares on the CV1800B SoC.
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,cv1800b-c906l
-> +
-> +  firmware-name:
-> +    maxItems: 1
-> +
-> +  mbox-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  mboxes:
-> +    description:
-> +      This property is required only if the rpmsg/virtio functionality is used.
-> +      (see mailbox/sophgo,cv1800b-mailbox.yaml)
-> +    items:
-> +      - description: mailbox channel to send data to C906L
-> +      - description: mailbox channel to receive data from C906L
-> +
-> +  memory-region:
-> +    description:
-> +      List of phandles to reserved memory regions used by the remote processor.
-> +      The first region is required and provides the firmware region for the
-> +      remote processor. The following regions (vdev buffer, vrings) are optional
-> +      and are only required if rpmsg/virtio functionality is used.
-> +    minItems: 1
-> +    items:
-> +      - description: firmware region
-> +      - description: vdev buffer
-> +      - description: vring0
-> +      - description: vring1
-> +    additionalItems: true
-> +
 
-Why not allocating these region dynamicly? I do not think firware is
-always avaible before staring. Allowing dynamic firmware give us max
-flexiblity.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Regards,
-Inochi
+Konrad
 
