@@ -1,127 +1,181 @@
-Return-Path: <devicetree+bounces-200400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32612B14936
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84234B14939
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 09:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CE1F4E613A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:34:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C17313BBE13
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 07:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF07264625;
-	Tue, 29 Jul 2025 07:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A302264627;
+	Tue, 29 Jul 2025 07:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DbfqtHcw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mBWTPmP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7EF7263C8E;
-	Tue, 29 Jul 2025 07:34:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 368CC19ADBF;
+	Tue, 29 Jul 2025 07:36:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753774471; cv=none; b=W7JStmQEIhLP/At378OfKoV+blT18SrfO7J05CL9DwRfuBsPj5q0GeEe3OPYkorPG3fKCxyD40x+/ty25ySzHkFOODQdB0qrKpWwcz1dPqciF5ROmcrzbxzp0/6mF1H8JSL1bzWlD5KSvm/K90wuu+8L48E1sJ1nBs/TtAgIyr4=
+	t=1753774574; cv=none; b=TOTi39w7QqssCDjKICWyptyyOOyA08vNcc1X/Nsq2YkSsEXdONmfv/dOHj4FdxCJb8+sfZh/lzzMZPMekpOlK05xQLNmzgrq8AldkLQeBjITsbIPLbZ1tGsh9g2EJSJT3V7mnnT8eKy4obcg/P/ecDsMScI5QDJIfoBQelX8ZIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753774471; c=relaxed/simple;
-	bh=T4AKUq0VFSRZrnCBenAsVu5b2QdykBL9uTX/+xaqPZ4=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Z7DUNxVHtSEd+vZh1DY/yAzHDjKc4F2i8CLqWUCcCJmzmEkfH65BLU2MR6Opo+7afIAkYJAw0H5L+UKAFlw0Gyzu9n013W4RsydZDHzhB5qmd3rbZGMSZRs2tFWIpZUdsG9cfeG1Gh69W99X1BHhkyAa/k+95iCg4rWG6117cvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DbfqtHcw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D607C4CEF9;
-	Tue, 29 Jul 2025 07:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753774471;
-	bh=T4AKUq0VFSRZrnCBenAsVu5b2QdykBL9uTX/+xaqPZ4=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=DbfqtHcwGiUUUUiLHsapmTyRaoMc1v3QY7XbhEgz2rq3p513aMYnHqnuAQpt0GMBI
-	 aN/f0fj8+/RSX8hyvjDXMqdf3JW1izq5W/qTxyhn5ZwEmMuhVgzWI6575MvoM5A1rS
-	 tGFjy23GnQfcvCfBFM+g9zHTe+MvMrGeaCvYQUQORZmkd+QCzDXfuyHl2If9YT26/3
-	 BMjmvw2uW9D7rsOlO5/MtL1weeXo7bZSm8ZHX4pYMUvmcsvYgh3Hc8QT46MWZxF7XK
-	 rhE7uXlkNsIiqbcLM6i3vcpPZF6a0GGSGAGMEEyI9QDbZmy6XazHuR9iV6FKRZYZZs
-	 j9jKTGfc9ILdA==
-Message-ID: <66c6ca0c-a811-4e65-8569-0b3094cfd8fa@kernel.org>
-Date: Tue, 29 Jul 2025 09:34:27 +0200
+	s=arc-20240116; t=1753774574; c=relaxed/simple;
+	bh=OCgAuH0poRpM8EdoB+9XWQ7QaY6GNM7nY8AsgVITxYg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r8pJg5Ugq899iwvbPYf2zkaxSdafGO0RwZZH3FRRJMKspPo65S7X7rTkaoP+ir3pngazq7creZGGrMynjvEvtDWjuSNBD6rNPz1ykVbRceb6GL1eUSclRi22d6viG19Ba9wg1u5qHuQaUCbowCU+WeCHQyS5bfTENXgk5UxpzOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mBWTPmP3; arc=none smtp.client-ip=209.85.217.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4e7ef5d6bffso1552546137.3;
+        Tue, 29 Jul 2025 00:36:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753774572; x=1754379372; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ybx9ZEB7Knt4sq4h7VniyBzicrS5wNfctmysoMkVU7g=;
+        b=mBWTPmP3RTtrzKoLGzJo2Avp1zm3x5gp0MeIc3Oe+0Hvp2LCubnEwOSvWOmRUZz14q
+         vFVc0zcajWDoQfi+ZgXo6U7/OkHVS1JeMK8Z25hjJv24CvHFTrzIFB8Auc33AKFsrcAb
+         LXhhKJ2GgyzeTPYPonl1B3YvF+DkA/acLRqPgbUTbdIInwi3EgevFVc4FDE46RMi3E6o
+         ciF3+6CZ85O/PDgOD5BG9FHsVxpYod9h9rXgI17zmC1KwYHNqv9TRTqBsOhJOsXs1u2t
+         vZyP+KTIxTOrvoC2MnFXWam7rJ2uogHbeNXePVHlznPIb3Pd2YWKF8Lg5IVdvxGtT4AO
+         PDKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753774572; x=1754379372;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ybx9ZEB7Knt4sq4h7VniyBzicrS5wNfctmysoMkVU7g=;
+        b=FgV6j7O7lCIHHTM3/CCXLj/rElyS0EX4VtAT1ueYws5wMA2/FsBetMWmKoyqgymNBB
+         5oXJkatPKcG5HPArxODdYE2tbgJLuxDPXicOBrz8S7C6ntIgjuNXdDDO8ZyUBpiK60Eu
+         iW/CubVuRCsd6z1t1kam19dtRRKcxfvb1OSgPKt3CVDykdEsJ0Ml+P6NLimACHQwwic1
+         Xb1mXGJ1OXN+uJkBUSrYA/DpOuv1b3u4Bq/iMyQXRCtz9AuBvV94I4CW7eaaf1pjbf9M
+         1MEGT3M68eaKyihkwIyIRxlTUM08Fs+AGU8iyUKE5tBDn9xef2p97aIoieSbE1kCRSZF
+         2aUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoriUJavntt27Cho1Or3/3xTQ1XBG+MhrrmWkiyyXPcCNMFxcHw47sGsL0FL6C/NL9mViHjEexQ/xBon6u@vger.kernel.org, AJvYcCVbtgBGHDe+RM3c0vwrZJzWU7TGbGBqOrKus0Uu9bvjjtkSSFFJoSoM6HKi5jszna23XQ6Xg1bea853@vger.kernel.org, AJvYcCWDJfGchxpqiX5F+1krxwp3NnlUDmOsXx3Dg3lEruO8q/x+2d3xSwuSP5m8lh3+50MHVIr90tV3r1lAPhGeMi4prls=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAVeTJ8uq3a6AAlxW2j3XPMs0EfbubytJOBeGTRBtGWgzRVwu1
+	b3Ei420DmEjkSL2s3VZMfaHq86lSyXMC2KzY8SxUbxaMjF/9I1AeTAWdwTtLNnObHo+p/Vk0a4p
+	DEcxI/1wmiHZonezaROea5caUBqOxJ4k=
+X-Gm-Gg: ASbGncu1Rn1sFC9Xgttrb+AzIlyYkNtdQtiGaqh3Sg50FZU5kagqyz8ahSUNtSfeAtZ
+	uXmuSk8PtvBuoy+MakHGnLOdqbU2o0mIt9Z0j0ACz799qDRQBiQwZE7daEbXKd3Uvi/1hvYTqOw
+	SbFG45E8O+QMV4wPI51pZE+/FAR02T/dxGgcRT2KK1yqvbI+nmpQhBPjNyvyEy6r3foANhPAXoY
+	u2eBA==
+X-Google-Smtp-Source: AGHT+IENH2AW1ZXDnTlpVuHy58DEAA8L0hmQ3yc6dY3oxN1NrLrIl4BCIubHSKcHLtCqUNYVz4YtdWuKh0KtO3j5xGY=
+X-Received: by 2002:a05:6102:3053:b0:4e9:add0:2816 with SMTP id
+ ada2fe7eead31-4fa3fc4c5b4mr5102345137.5.1753774572016; Tue, 29 Jul 2025
+ 00:36:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 dt-bindings]dt-bindings: debix-model-a: Add bindings
- for BT and audio
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: WangErQian <WangErQianY@icloud.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, john@polyhex.net
-References: <20250729031351.3875406-1-WangErQianY@icloud.com>
- <6f9f3b70-fb5a-4af2-a01c-5bc14fff8b90@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6f9f3b70-fb5a-4af2-a01c-5bc14fff8b90@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org>
+In-Reply-To: <20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org>
+From: Inki Dae <daeinki@gmail.com>
+Date: Tue, 29 Jul 2025 16:35:29 +0900
+X-Gm-Features: Ac12FXzR2-3ASwmrKN7QegXsTXtT3Y5L39TTtfej0LBVwYdqfV-4142nEMemsSM
+Message-ID: <CAAQKjZP12LZPHcPo1ztvKq6Vts=Mp0o5NyJfdCZZoMB633wynQ@mail.gmail.com>
+Subject: Re: [PATCH v3 00/13] Support for Exynos7870 DSIM bridge
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Jagan Teki <jagan@amarulasolutions.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/07/2025 09:14, Krzysztof Kozlowski wrote:
->> +
->> +  status:
->> +    type: string
->> +    enum: [ "okay", "disabled" ]
->> +    default: "okay"
-> 
-> Do you see ANY binding with such syntax? No. There is no and this should
-> be a hint that you are doing something wrong.
+Hi Kaustabh Chakraborty,
 
+2025=EB=85=84 7=EC=9B=94 7=EC=9D=BC (=EC=9B=94) =EC=98=A4=EC=A0=84 3:26, Ka=
+ustabh Chakraborty <kauschluss@disroot.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=
+=84=B1:
+>
+> This patch series introduces a lot of changes to the existing DSIM
+> bridge driver, by introdcing new registers and making register offsets
+> configurable for different SoCs. These preliminary changes are followed
+> by the introduction of support for Exynos7870's DSIM IP block.
+>
+> Work is heavily inspired and only possible due to Samsung's vendor
+> kernel sources. Testing has been done with Samsung Galaxy J7 Prime
+> (samsung-on7xelte), Samsung Galaxy A2 Core (samsung-a2corelte), and
+> Samsung Galaxy J6 (samsung-j6lte), all with DSI video mode panels.
 
-Unless you wrote it with AI. This would explain a lot.
+Patches 1 through 12 have been merged into the exynos-drm-misc-next branch.
+- Patch 9 was merged as-is. If you decide to accept my suggestion and
+submit a revised version later, I will apply it on top of the existing
+patch.
+- Patch 10 was also merged without modification. Although it includes
+a behavioral change (removal of the fallback to pll_clk), I don=E2=80=99t
+foresee any issues. If any problems arise, I=E2=80=99ll revert it.
 
-That's a no go and waste of our time. Don't do that.
+And patch 13 has been merged into the exynos-drm-next branch.
 
-Best regards,
-Krzysztof
+Thanks,
+Inki Dae
+
+>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+> Changes in v3:
+> - support both legacy STATUS and LINK_STATUS & DPHY_STATUS split (daeinki=
+)
+> - Link to v2: https://lore.kernel.org/r/20250627-exynos7870-dsim-v2-0-143=
+3b67378d3@disroot.org
+>
+> Changes in v2:
+> - added commit to isolate clock names for each variant
+> - replaced clock names with generic ones (krzk)
+> - added maxItems to clocks property in dtschema (krzk)
+> - Link to v1: https://lore.kernel.org/r/20250612-exynos7870-dsim-v1-0-1a3=
+30bca89df@disroot.org
+>
+> ---
+> Kaustabh Chakraborty (13):
+>       drm/bridge: samsung-dsim: support separate LINK and DPHY status reg=
+isters
+>       drm/bridge: samsung-dsim: add SFRCTRL register
+>       drm/bridge: samsung-dsim: add flag to control header FIFO wait
+>       drm/bridge: samsung-dsim: allow configuring bits and offsets of CLK=
+CTRL register
+>       drm/bridge: samsung-dsim: allow configuring the MAIN_VSA offset
+>       drm/bridge: samsung-dsim: allow configuring the VIDEO_MODE bit
+>       drm/bridge: samsung-dsim: allow configuring PLL_M and PLL_S offsets
+>       drm/bridge: samsung-dsim: allow configuring the PLL_STABLE bit
+>       drm/bridge: samsung-dsim: increase timeout value for PLL_STABLE
+>       drm/bridge: samsung-dsim: add ability to define clock names for eve=
+ry variant
+>       dt-bindings: samsung,mipi-dsim: document exynos7870 DSIM compatible
+>       drm/bridge: samsung-dsim: add driver support for exynos7870 DSIM br=
+idge
+>       drm/exynos: dsi: add support for exynos7870
+>
+>  .../bindings/display/bridge/samsung,mipi-dsim.yaml |  27 ++
+>  drivers/gpu/drm/bridge/samsung-dsim.c              | 353 +++++++++++++++=
++-----
+>  drivers/gpu/drm/exynos/exynos_drm_dsi.c            |   9 +
+>  include/drm/bridge/samsung-dsim.h                  |  16 +-
+>  4 files changed, 317 insertions(+), 88 deletions(-)
+> ---
+> base-commit: 26ffb3d6f02cd0935fb9fa3db897767beee1cb2a
+> change-id: 20250523-exynos7870-dsim-f29d6eafca52
+>
+> Best regards,
+> --
+> Kaustabh Chakraborty <kauschluss@disroot.org>
+>
+>
 
