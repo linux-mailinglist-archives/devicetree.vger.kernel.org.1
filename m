@@ -1,224 +1,123 @@
-Return-Path: <devicetree+bounces-200552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C95B151D7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:10:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACA1B151DC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 19:11:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53D403BE163
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:10:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E214D543EC0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 17:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A727294A02;
-	Tue, 29 Jul 2025 17:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F5E27C162;
+	Tue, 29 Jul 2025 17:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="flWQIz7d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzCoOhxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF47B27C162;
-	Tue, 29 Jul 2025 17:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753809028; cv=pass; b=IwoFc/i03CZoJIwNlER/3ogLJVC9XzYsgBEbqChHefyv6f8VSk8Tcsb3mtepK88HXsqOVRnoqvct2R3VbrUhvLPD5k8Ghvg7cuV7vNks0ztjrXWmtYjk+qAEu0GhPe2UEPUqePytbAxCHWSv1Y7swclCbr0F+LmsYoF3tM4+STk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753809028; c=relaxed/simple;
-	bh=UD1/bYDPnWjfX7urT9kC0AMo6BngmaJ+Ts3PKR/ZYII=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b+kS7lNT8g/KDEhbB1MCbsev0cKy8O5brksfH4LkivBSnDFJ/5MsODG7rdfzoMxgMjz+yymPvWiOAZma6Be8AKmy4JtQaGzTyXmGcShkxFjyWLvUIojpl3OQxqBCEo3j7pdG1TsmLrWAeNP87cmSdNoL7YEtL52czSG3TefFmqQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=flWQIz7d; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1753808989; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SfxG9oyq7Xh8cTqP4vj/WMBsAVKKyJGE+kgbDuj9GfiznmFzbYCU1RFKYuJ1+PkM/MHnJiWt4bUh+cZ2fl7/Vzrszw8deKQciSfQL+emFjSlk4R2wePdVXx+SvXdQqh6KibmQVXeJDS0iZE0ib3d/Ih697a0bi1Fvx8rFrqYn/c=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753808989; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=TxY+JKrWeGH0H6xo56T1MRsEGuU0255fEPWJ+EHkpqA=; 
-	b=jGKxLA38fK+Wa5kjzUZSZGRREuV//fN3TzV9QTPyK7DUAWUQgT6VVXQKS9RxRi1xfGvQ2nPhPkcOM1ujZdFRb3zSbmPCczj4CAWDz/5rbOyx00C8vaoSWqdio5MCz0mWu3WiC07ESQL7lgfcxqfgKmTNbSPCKhmfH7mUX6sDhOo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753808989;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=TxY+JKrWeGH0H6xo56T1MRsEGuU0255fEPWJ+EHkpqA=;
-	b=flWQIz7djxGg2eW+E94jqszUeQMWJ/YoZmfNOdOHpqLbst6uitu0W/kUVagoSK7D
-	ySTx3VwmZNGjMoVB7EmCXZZoBMqq3MB7PrJQ1vJ6JqZpBhPGWG9FF3zgSI7BX4aBwul
-	jr7++GN4QedV8dLVHczmIrWPdqIhoF3uLhSdL610=
-Received: by mx.zohomail.com with SMTPS id 1753808986669159.71490156758534;
-	Tue, 29 Jul 2025 10:09:46 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 669AE180F0B; Tue, 29 Jul 2025 19:09:41 +0200 (CEST)
-Date: Tue, 29 Jul 2025 19:09:41 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: dmitry.baryshkov@oss.qualcomm.com, heiko@sntech.de, hjc@rock-chips.com, 
-	mripard@kernel.org, naoki@radxa.com, stephen@radxa.com, 
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, 
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh@kernel.org, 
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v6 09/10] arm64: dts: rockchip: Enable DisplayPort for
- rk3588s Cool Pi 4B
-Message-ID: <hbvwlucm5mnjpve6hb6h7dusgrokvdxzbpq5zrwib4yesrdakp@v77ofq7u2vv2>
-References: <20250728082846.3811429-1-andyshrk@163.com>
- <20250728082846.3811429-10-andyshrk@163.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68F2294A02;
+	Tue, 29 Jul 2025 17:11:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753809084; cv=none; b=Qw4v0S62kLojAh0nt7mXcbYp9LgWxt6365WzlkfZIE8TLVZaKHhRBtploNIrrgMMur4UwiGMACbMYePKQZ5wxXZ4F7Sfhi65QxNEW9qz3+2JRDw9UsYCjcp2qPEb10dl9m/DEWyAQpUiV6ej4eXamBV8tpsuVL0zrDy7UYqF+eI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753809084; c=relaxed/simple;
+	bh=p9rc1oOh9mm37WaFrFxx1IcalYyMV1uXikDiay6fcng=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oUxBTm009I8yS6ygtSpWIh40Qf0j93JUsnV/FsRUcP9b/5zykOxURDdY/nx8dK1F4GIAKs2q+TsG9JXHmRFijGGbahok08HGyYeFPBndqT1Z5SD7ywDClqsiPDhjN1iXbm8U7Ube/iakKUPizel66zaZ21Bw5dqHSemfyQc5n6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UzCoOhxb; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-455b00339c8so37141775e9.3;
+        Tue, 29 Jul 2025 10:11:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753809079; x=1754413879; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZANuYZ6czBvWFRoCbDeJ8Q3EHHGA34Yc3WGmzpGe3JQ=;
+        b=UzCoOhxbTo5/cKBhNalH3mVl3cUUDFjC8Fj8sB3AvPe5eB0OWLAIapDtJ9yzRokwRG
+         A9VSz6JV5VC6SXLP7MTNKvTZy2TavjOy78mY7q1NTboWmn1hgJ02Lc5JPRZXoeYFG49z
+         mICXPph7W1h4fnVgs06c68ZvPvDa/13wUXtFiDpbuA3oKuFXxYb8XYOm1LaJOA8DDdoY
+         XU2rBaFbC7bxqxCxzu4QiinXIIvaGLpYZdXI5p9DCsI0Y3L11iaaklyyBri3x+3sD38f
+         P6ZtuS1SWoytZojVFEhpoxK71HveAK48pUwjWTEik0juj7qzT7KPAOAPzee+so7Y2HIo
+         Y9CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753809079; x=1754413879;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZANuYZ6czBvWFRoCbDeJ8Q3EHHGA34Yc3WGmzpGe3JQ=;
+        b=izM4V4GLpYJm3XxUg8E0AsppDSDbGMmVod0szgmrjx7GCIgHAS4ZtndIj1kN57tFwl
+         uJWlNATM3JK5+2RUICCjo8QMPupskgvxaIMBZ/qV+w4PthvRXxya9KoSAPfgyiFTajMr
+         LW7xocJh5ON1DIw/K/ohnHnBU3ub2b+Xp8YnGJhDLJ2Is7HSQffDC6MxSgqVwIei72A9
+         f4fC0sDvO8H9oxhZ372oIX3NZYQqPYfLsqnWD4Eiv625yln+y6vfAtLYHg18eECWc9ZS
+         l/MNFau6nEjSZn+/rQU33biUtodKom1U5Q7gMx+8dvcSFMM41QLQOBFfGnfRqgxyARie
+         FS9A==
+X-Forwarded-Encrypted: i=1; AJvYcCUjpEHYKbKJeTuW5afXR3k+fBZWNrau2JJ5rckzNsmCC9pXqRBWzuX+a9PezB+qNtmaHbrKhlFQIw+QhYEG6bk=@vger.kernel.org, AJvYcCUpkymGyOz8QLkFPzxUutWv0ZsHmM3d76pMetZNWVDhnu8kgoJR1e53rmgWYNLoaGrThQE9NWYqX8/IrZL3R60eP58=@vger.kernel.org, AJvYcCVmLW1IPO6xRxzyskIT4wrfrELGQ7Wy6IwKMV7onmex2fmWxrh4uP42ILvPl60hZJit4cCtZqRz1+Nl@vger.kernel.org, AJvYcCWcUu/GE7aI7QQtdl8zn06cP6ZZQfYXUT7WYhtQFkreT6BaTw70mkYezsNnrZe7BOx8EnIQ9UMOBQf94fcp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq63drYHe35d+TTufHEMsr+FbOekvAwNigJuJjT3+tWcjGJTNp
+	N5iKzC1Rlbh44IieDnjlxDKkjZZmcsXy3QYSzTTjLPfVkIHSMprytmCzdMCSC+BSbJ83Qm++tje
+	0W6CUYxYfZluh+SfAmTQigaw3dhzWyfM=
+X-Gm-Gg: ASbGncszKvqW9BkLzqM8SiR4oIY9W5h5HzCUGEmx8EkGhKj/RRhcsGWi1f7U/zcV6VX
+	71sJYVILg6W3+HVWvpCNOGYTLr7NZRwoXSojcw2wAsSZpZeJIzlNVgcVLl4WCVRTrQGf+lobkgC
+	2tcO7gZ70dc0Q4fGK39XRPAHY5H86a5lEs2GJ2CiWqj+DEtqOcvmk049anlmsFCfOjvrlORFnoB
+	HabK1tv
+X-Google-Smtp-Source: AGHT+IF/DfK3nshDycMq33UF1s2J2fEP5HrKgoG4dERgRLP7hoScT2etRMMBfljpNxxXyX06f2h9MJRRvgEXxtQNjU4=
+X-Received: by 2002:a05:600c:3e0b:b0:456:1e5a:8879 with SMTP id
+ 5b1f17b1804b1-45892b9c21fmr6418005e9.9.1753809078771; Tue, 29 Jul 2025
+ 10:11:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iihpr7ffgjlj4iks"
-Content-Disposition: inline
-In-Reply-To: <20250728082846.3811429-10-andyshrk@163.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.4.3/253.35.66
-X-ZohoMailClient: External
-
-
---iihpr7ffgjlj4iks
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20250729155915.67758-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <aIkAGUVGqLcFBoXo@shikoro>
+In-Reply-To: <aIkAGUVGqLcFBoXo@shikoro>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 29 Jul 2025 18:10:52 +0100
+X-Gm-Features: Ac12FXyEa0ifnr6d9GCkDPZ_PB-bEzB-WPz4FXCllKXUqrJbsHiXRLT3SSzwN2A
+Message-ID: <CA+V-a8s_3hv9z0HFKiUQ76d7FVJ+-vrLahhFVEafZbS3oO8iJw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/9] Add watchdog driver support for RZ/T2H and RZ/N2H SoCs
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 09/10] arm64: dts: rockchip: Enable DisplayPort for
- rk3588s Cool Pi 4B
-MIME-Version: 1.0
 
-Hi,
+Hi Wolfram,
 
-On Mon, Jul 28, 2025 at 04:28:34PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
->=20
-> Enable the Mini DisplayPort on this board.
-> Note that ROCKCHIP_VOP2_EP_DP0 is defined as 10 in dt-binding header,
-> but it will trigger a dtc warning like "graph node unit address error,
-> expected "a"" if we use it directly after endpoint, so we use "a"
-> instead here.
->=20
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
+On Tue, Jul 29, 2025 at 6:08=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> Hi,
+>
+> >   dt-bindings: watchdog: renesas,wdt: Add support for RZ/T2H and RZ/N2H
+> >   watchdog: rzv2h_wdt: Obtain clock-divider ranges from OF match data
+> >   watchdog: rzv2h_wdt: Obtain CKS divider via OF data
+> >   watchdog: rzv2h_wdt: Make "oscclk" an optional clock
+> >   watchdog: rzv2h_wdt: Add support for configurable count clock source
+> >   watchdog: rzv2h_wdt: Make reset controller optional
+> >   watchdog: rzv2h: Set min_timeout based on max_hw_heartbeat_ms
+> >   watchdog: rzv2h: Add support for RZ/T2H
+> >   watchdog: rzv2h_wdt: Improve error strings and add newlines
+>
+> Minor nit, but still: inconsistent prefix
+>
+> I'd suggest to use "rzv2h" instead of "rzv2h_wdt" but it is ultimately
+> the WDT maintainers call...
+>
+I agree, I will switch to using "rzv2h".
 
-The graph currently looks like this:
-
-VOP <-> DP controller <-> DP Connector
-
-IIUIC this does not work for USB-C and needs to look like this,
-because the USBDP PHY handles the lane muxing and thus must be
-the thing connected to the USB-C controller/connector:
-
-VOP <-> DP controller <-> USBDP PHY <-> USB-C Connector
-
-I wonder if the simple case not involving USB-C should also have
-the USBDP PHY described in the graph as a transparent bridge?
-Note, that the USBDP PHY DT binding is currently not ready for
-this (this also affects the next patch, but should be enough to
-discuss this once :)).
-
-Greetings,
-
--- Sebastian
-
->=20
-> (no changes since v2)
->=20
-> Changes in v2:
-> - Sort in alphabetical order
->=20
->  .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts b/arch/ar=
-m64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> index 8b717c4017a46..5393c6cc493c3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-> @@ -39,6 +39,18 @@ chosen {
->  		stdout-path =3D "serial2:1500000n8";
->  	};
-> =20
-> +	dp-con {
-> +		compatible =3D "dp-connector";
-> +		label =3D "DP OUT";
-> +		type =3D "mini";
-> +
-> +		port {
-> +			dp_con_in: endpoint {
-> +				remote-endpoint =3D <&dp0_out_con>;
-> +			};
-> +		};
-> +	};
-> +
->  	hdmi-con {
->  		compatible =3D "hdmi-connector";
->  		type =3D "d";
-> @@ -215,6 +227,24 @@ &cpu_b2 {
->  	cpu-supply =3D <&vdd_cpu_big1_s0>;
->  };
-> =20
-> +&dp0 {
-> +	status =3D "okay";
-> +	pinctrl-0 =3D <&dp0m0_pins>;
-> +	pinctrl-names =3D "default";
-> +};
-> +
-> +&dp0_in {
-> +	dp0_in_vp2: endpoint {
-> +		remote-endpoint =3D <&vp2_out_dp0>;
-> +	};
-> +};
-> +
-> +&dp0_out {
-> +	dp0_out_con: endpoint {
-> +		remote-endpoint =3D <&dp_con_in>;
-> +	};
-> +};
-> +
->  &gpu {
->  	mali-supply =3D <&vdd_gpu_s0>;
->  	status =3D "okay";
-> @@ -889,3 +919,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
->  		remote-endpoint =3D <&hdmi0_in_vp0>;
->  	};
->  };
-> +
-> +&vp2 {
-> +	vp2_out_dp0: endpoint@a {
-> +		reg =3D <ROCKCHIP_VOP2_EP_DP0>;
-> +		remote-endpoint =3D <&dp0_in_vp2>;
-> +	};
-> +};
-> --=20
-> 2.43.0
->=20
-
---iihpr7ffgjlj4iks
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmiJAEsACgkQ2O7X88g7
-+prNtg//bsKKMAA8eaI9O6lXTAxHpG5/NO6poWY5y1hlAapvyZeYfdlPRJFAPnV4
-vu3UUT2mwRQOeAE6SzjKI2DOvtKU3vDQJgf8a9OrHM3OuS3+ioutmpyhX2YyeANt
-GjC0tX7gfv7dOTzp9L3j2pEGN7bQNQLZh9doIjM1f+wdCBvgKB7pMbwDeoPoHzf0
-UwhUQ2eB4EgVZn7XNd5NnF5eL7/JosLDNrYkek0M/rfrgkV7Hfq6HmvPSTnd0w57
-sAl/zZ66VAAnEukJ2PDyZOR5vCM1qlEn4Bux919MB0ltGyHuHXBB8MLosIFVNRBA
-aesK52/wn7w4EhE4Jg+iEggmk6kqMu67wOEdWyfPZ8gL/xrFi7j7u1CYAWpaTI5R
-dBxq55fS9o/pcTQ41HDEyX4TfV+11c5TnxPGo+0NQlucZqDEO7UcddXl76IuVIUO
-pgqREMW9l9Y8+vozkUXmgTQrqk6wde/3R2i7kBSFnj1FAGsHWkO1rY9ESy+uyghZ
-PMu8pPQuNKTdX8vMI1ejrbPbbNawsMvpLhHVN1S72qK3sSy4U9BUnEjrHR5bjJor
-fmYq+pk3URBT3tsaubEmvV1TGNZnrs+8E6U8Ls6ewDEZ8OG1IezkiR2DHnj/oi4x
-I+c7X3YmyfDiEUX11MpjNVy3ROss+0q83O5mc6tmJAR7CaongWs=
-=0LrM
------END PGP SIGNATURE-----
-
---iihpr7ffgjlj4iks--
+Cheers,
+Prabhakar
 
