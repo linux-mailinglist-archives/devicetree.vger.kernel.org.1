@@ -1,189 +1,138 @@
-Return-Path: <devicetree+bounces-200471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51DB1B14D78
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:11:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA14B14D95
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:23:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 669CF16879C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:11:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B32CA163BE0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6DD28FAA7;
-	Tue, 29 Jul 2025 12:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABB928DF46;
+	Tue, 29 Jul 2025 12:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AOR+HhHO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DWuZ/1XI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B44291E3DF2
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 12:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A757C262FF5;
+	Tue, 29 Jul 2025 12:23:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753791096; cv=none; b=J8gKoKwlkz3lbXSmrOWT4ZZKt/SmhCDuBafPdmNaDMM45KbrDayaGwsZaZe1qdknhrT0p+Iva6kb2rK5jL7pusKX8/D3Or5pZNkzg7s30wdVosSaDnmOwtBF01dClGjzB4gEFGf4Xpg6Cg0RULA19fFFcPpDP3PAodxcD7yyFI0=
+	t=1753791802; cv=none; b=an0uk6ufOt3wy65KcWBTxJs6YZsv9u25q6+lUnEpkcapJHnKQbnA4U48qsCvC/vKOB00wbVJWIBUpwJHJHA5tYE3IKQ8kCmYEEF+Jhx39fP10Mx7WobHDVtpAZ9yPbx8U3kJPFwXyJu8PzxnA3NpaKAGTcsWmupk1IPZ646GRNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753791096; c=relaxed/simple;
-	bh=WtaahhtHI8wCSsflpowLiUT/PdVdKqZ4oKuS99Kip1g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HvN3zdEufXKJO//OXpOX+R+XlJ5f1a9is26B6IYte4JIA+p2IRqhmheBjSYAacAuVnnH0V8/nPo5ZqZi2UfI+/jiszXdxvmkp91zQaMpbDMsJ+rnyL0FaBge8KfzOBdb492gxZDJYkqLrMSjvP06FRnXa/zil2fVZKxFV/hj4f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AOR+HhHO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56T9A0Sw023465
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 12:11:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4QE9lOzTrqBaaFrVLkONL9bTvaiKUb2/mfEEdEROAZE=; b=AOR+HhHONlZuDO79
-	/zflcFlSc2qIq20MTQp0NwDDW1zBi9VnW+ePX2OsI8OPmmEiG99pXmngTl7iwxMc
-	soBxgKAHjqc3mNHqC1SosL56HyGtRkBgVLbJv/or5QuN872SroZFk/mpyCa6vU43
-	2Q2j4n0dNqE+jnz5kz3CH1iahtjW/YFKTO1v51h4LLA9bN5r/a2wQ3Qdvl10iocT
-	7/wUtfPBPa8rs4jAstx/PGhuPL/lHIv4jylWPGvdV4kHnFpvn2/k67oZro2hCKnv
-	QKCYVcQN4bYKvLNyUyQmwZuAzSm++XZ4OygYNtAaL7EWMyXDgaSALDWb6g2UhXDx
-	5nrdiw==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484r6qqya9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 12:11:33 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-31f2dd307d4so931437a91.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 05:11:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753791093; x=1754395893;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4QE9lOzTrqBaaFrVLkONL9bTvaiKUb2/mfEEdEROAZE=;
-        b=A8SQNNzq19KtrMsLqRbFbZbBbu7mRCA+kp82Zi3ovgbwrOO2Bqw6vYks0pl6Bxe7mx
-         7fA20GfNsdPItFE+dI6JNBJSM6Y27AmUzdxUjrARBgVSnC3fmf48gJMCVieES7Y5mIqE
-         PMPF4WUt9NKJDAofHeUROyZRNyf1+mLfelOB7uwlpgIncWNkwSTN5rw7jPb4eJEd2+ct
-         C6AnRsZaOpKfvvnYR3pgZNTIaqviBtSNsRBrRBqtwSHCDIeRrXrNBpflkDIyhqh2VARk
-         y4OD8/Qe9nSCX8s+t/ogD0dcTpSWHfA6D8gPdbuJFNldd4Sd/OAz0OWnYuH63it3AEpV
-         Q0Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7agIqQxr0NLWuCJFkTRNHr9VkD/7TvnUMCm4zgTc9f+IWvXgiR9SAX7hMljTOImNG37EgWqxneHUH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWRhnLQUSBaVvH3QCBgjpDtcivT0UnVnQry7DKjdDqYQ+1Yhku
-	WLJ2slDWEPS95TkCNEWjYFuNJn2pxaaLqTQEnKsLDY4e5xMq2/eNyD++UDOO2IfnFWRjVTVgqYM
-	aBG9cyZaj2SBezkAfFBOVxT/EXdJiUZmatCQ2oMLMe2niJ4EGDNhKivnYBz6c1ZOa
-X-Gm-Gg: ASbGncs3QN6byLSF3u0ROKYxbn2JeXKOdXNxCR5wMlp+ByQ2EgMicfq9A48SUEsvaG1
-	CJFRb77iNfq+Rb11U6x7tDQaQQX0VkMWL1KB6iAQdko9llO3Km6r8xpr8nVxb2pSPNFEDuB+Fxb
-	hn1LSz4kyMyvCadsOmE2hyoLp8t7xqUj/iyBYv1tAiwU034k2ij42yzh+wwLeNL2AY3VjymU28Q
-	MdpKUpTGCcGswR2zojDUiNSt2XZB6CyCYgPS/7D7H6v2eAazNdpZPiR0HS28g3cPm4g8/jVaCBR
-	ENPZmY2wF3vkgusgAG3bX+PvZqJjSckLyWOO/oBbSL3CPzgnPh9aXXLL87H0cQmFj0lqdNjd
-X-Received: by 2002:a17:90b:1809:b0:31f:42e8:a899 with SMTP id 98e67ed59e1d1-31f42e8ab21mr1328750a91.13.1753791092859;
-        Tue, 29 Jul 2025 05:11:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFsgLFy8b++ep6TqapChmczzcUReCy8+FTDkc9tnmCqFhUILVLHVWY3NjRVOTnzXnPonH4Baw==
-X-Received: by 2002:a17:90b:1809:b0:31f:42e8:a899 with SMTP id 98e67ed59e1d1-31f42e8ab21mr1328707a91.13.1753791092318;
-        Tue, 29 Jul 2025 05:11:32 -0700 (PDT)
-Received: from [192.168.1.4] ([122.183.154.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f5262aa05sm69491a91.32.2025.07.29.05.11.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jul 2025 05:11:32 -0700 (PDT)
-Message-ID: <8b7bc371-576b-4a4a-88a4-a4ed47d97778@oss.qualcomm.com>
-Date: Tue, 29 Jul 2025 17:41:26 +0530
+	s=arc-20240116; t=1753791802; c=relaxed/simple;
+	bh=c5ql2LwbSyC1j3Y9FvlSg+2VJwZHQ/nuHeE6q7BYeUA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y/4zX9Ljp+DUpwu/+liGsU9ye6g6A9Pyos1QHuuE5mMSymcypSTRHLrhBLyH0UFb5zBHl80pvImGWnLkh2s9cRL8uvntR3y4NCPQREuwwzu/5xGMmxEEZrPuIk58EBtWKPLrTz5WA2NM/2yJ96X1K5nQYkDaaGofagQoal1Fcxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DWuZ/1XI; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56TCMl4J2961788;
+	Tue, 29 Jul 2025 07:22:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1753791767;
+	bh=e3nvlVKCBTyX8mAmnTYnSsQqdWgC+ufyRK3D5Obt8JY=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=DWuZ/1XIfjmPZlUOl94+pdKxZ5J8e0VklOebRtp4dV9VdOR1CGD05BddmBEALqrkE
+	 lYjxNdc2sCoVe0VPs287oEBFNlm/3G0VgwRR3CtGHiRA8yvSUGmipwLOtn2M8Y7W/7
+	 DsiYjKClx2INZc4J7KZLZZQ1DSL/Pn4L3hhU1ZXA=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56TCMlRP1804735
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 29 Jul 2025 07:22:47 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 29
+ Jul 2025 07:22:46 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 29 Jul 2025 07:22:46 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56TCMkDw3701653;
+	Tue, 29 Jul 2025 07:22:46 -0500
+Date: Tue, 29 Jul 2025 07:22:46 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <huaqian.li@siemens.com>
+CC: <lkp@intel.com>, <baocheng.su@siemens.com>, <bhelgaas@google.com>,
+        <christophe.jaillet@wanadoo.fr>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <diogo.ivo@siemens.com>,
+        <helgaas@kernel.org>, <jan.kiszka@siemens.com>, <kristo@kernel.org>,
+        <krzk+dt@kernel.org>, <kw@linux.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <lpieralisi@kernel.org>,
+        <oe-kbuild-all@lists.linux.dev>, <robh@kernel.org>,
+        <s-vadapalli@ti.com>, <ssantosh@kernel.org>, <vigneshr@ti.com>
+Subject: Re: [PATCH v12 3/7] soc: ti: Add IOMMU-like PVU driver
+Message-ID: <20250729122246.o7upnxvqnp7nltdo@harmonize>
+References: <20250728023701.116963-1-huaqian.li@siemens.com>
+ <20250728023701.116963-4-huaqian.li@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: add initial support for Samsung
- Galaxy S22
-To: Violet <violet@atl.tools>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20250729120331.287245-1-violet@atl.tools>
- <20250729120331.287245-3-violet@atl.tools>
-Content-Language: en-US
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <20250729120331.287245-3-violet@atl.tools>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzI5MDA5NCBTYWx0ZWRfXwfQbqBT2WyLK
- 565OsqlXWbewzVh/sbbOKvKYCqCm/HYBv1TYofWzEaKTVCZRjvMGE3deH7xFZRWlfzA++tYfaD5
- Kgj07DJBKfTeXKl/4S9T9TFTBprOQhYRzUzmA5DqNkRgXOXQ89UYELOeEhidNNzLrWD6rvdjgUn
- ihCFIRh9aZK+SvENqApja53dTfHry5xOlNa7nihbgrzDiRqsI2Mf3Po8MET3kJJuPUS0n5TM2xm
- FDnp9zyhDXik2/NS1mo/3RqQQ8XLaZGwnZ2OskkJPgPWbD4bYJ2SuIm07idB8FofMN3+aQ9Hcab
- IDrsB+hM4Jg9Uq+quTESh7qEtYyqY0UH6+RTwOMvIplUqygIG/6JnG1XcRVcT1E/krrY1Yv5Jua
- IQxKyOEUvwWYpD2lEpSii3jG05xj70PNchhfu8acNZlQjIb/zqk1vRDmt4VppGpngEfi52Qd
-X-Proofpoint-ORIG-GUID: IFQH38pFcQyQ497X9yDk4WGzBeDQ6Mnn
-X-Authority-Analysis: v=2.4 cv=ea89f6EH c=1 sm=1 tr=0 ts=6888ba75 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=A1H60L6fWQAu95VAuYzdKw==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=ZSXNc6tYleypp-tdgiEA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: IFQH38pFcQyQ497X9yDk4WGzBeDQ6Mnn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-29_03,2025-07-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0 clxscore=1015
- spamscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507290094
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250728023701.116963-4-huaqian.li@siemens.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-
-
-On 7/29/2025 5:33 PM, Violet wrote:
-> Add new device support for the Samsung Galaxy S22 (SM-S901E) phone
+On 10:36-20250728, huaqian.li@siemens.com wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 > 
-> What works:
-> - SimpleFB
-> - USB
+> The TI Peripheral Virtualization Unit (PVU) permits to define a limited
+> set of mappings for DMA requests on the system memory. Unlike with an
+> IOMMU, there is no fallback to a memory-backed page table, only a fixed
+> set of register-backed TLBs. Emulating an IOMMU behavior appears to be
+> the more fragile the more fragmentation of pending requests occur.
 > 
-> Signed-off-by: Violet <violet@atl.tools>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Therefore, this driver does not expose the PVU as an IOMMU. It rather
+> introduces a simple, static interface to devices that are under
+> restricted-dma-pool constraints. They can register their pools with the
+> PVUs, enabling only those pools to work for DMA. As also MSI is issued
+> as DMA, the PVU already register the related translator region of the
+> AM654 as valid DMA target.
+> 
+> This driver is the essential building block for limiting DMA from
+> untrusted devices to clearly defined memory regions in the absence of a
+> real IOMMU (SMMU).
+> 
+> Co-developed-by: Diogo Ivo <diogo.ivo@siemens.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Li Hua Qian <huaqian.li@siemens.com>
 > ---
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 147 ++++++++++++++++++
->   2 files changed, 148 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+>  drivers/soc/ti/Kconfig  |   4 +
+>  drivers/soc/ti/Makefile |   1 +
+>  drivers/soc/ti/ti-pvu.c | 500 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/ti-pvu.h  |  32 +++
+>  4 files changed, 537 insertions(+)
+>  create mode 100644 drivers/soc/ti/ti-pvu.c
+>  create mode 100644 include/linux/ti-pvu.h
 > 
+> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
+> index 1a93001c9e36..af7173ad84de 100644
+> --- a/drivers/soc/ti/Kconfig
+> +++ b/drivers/soc/ti/Kconfig
+> @@ -82,6 +82,10 @@ config TI_PRUSS
+>  	  processors on various TI SoCs. It's safe to say N here if you're
+>  	  not interested in the PRU or if you are unsure.
+>  
+> +config TI_PVU
+> +	bool "TI Peripheral Virtualization Unit driver"
 
-[...]
+tristate please? Prefer to make this as a module.
 
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <36 4>; /* SPI (not linked to anything) */
-> +};
-> +
-> +&usb_1 {
-> +	/* Keep USB 2.0 only for now */
-> +	qcom,select-utmi-as-pipe-clk;
-> +
-> +	status = "okay";
-> +}; > +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-> +	maximum-speed = "high-speed";
-> +	/* Remove USB3 phy */
-> +	phys = <&usb_1_hsphy>;
-> +	phy-names = "usb2-phy";
-> +};
-> +
 
-Hi Violet,
-
-  The usb node has been flattened recently. Its not merged yet, but it 
-was acked: [1]. Can you rebase your changes on top of this patch [1].
-
-[1]: 
-https://lore.kernel.org/all/20250715052739.3831549-3-krishna.kurapati@oss.qualcomm.com/
-
+-- 
 Regards,
-Krishna,
-
-> +&usb_1_hsphy {
-> +	vdda-pll-supply = <&vreg_l5b_0p88>;
-> +	vdda18-supply = <&vreg_l1c_1p8>;
-> +	vdda33-supply = <&vreg_l2b_3p07>;
-> +
-> +	status = "okay";
-> +};
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
