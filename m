@@ -1,64 +1,58 @@
-Return-Path: <devicetree+bounces-200466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBC3B14D33
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 13:50:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F0B4B14D5D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 14:04:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 965F3176AE5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 11:50:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCAC518A2E1D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 12:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F1C28EA70;
-	Tue, 29 Jul 2025 11:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EC7290BA2;
+	Tue, 29 Jul 2025 12:03:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b="GwFIQdmI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mail.atl.tools (mail.atl.tools [49.12.87.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DFD28C5D3;
-	Tue, 29 Jul 2025 11:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBCB528FFC8;
+	Tue, 29 Jul 2025 12:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=49.12.87.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753789829; cv=none; b=Yh8EWPlVEubmNJjinvlPVTVWI3rLf+6gcShbX1J+QZOoY/ml+tgjfhhTskm286x7NGYUerVfqidstd8a2QOS8zNOOa5O4nljjaTQfLYhrcErfFX+gcrj0/WsqWdtj0L2DmLk1/bZoYwSXYu6ENLMYIKyeWiKqRR4O4xCUDtiViQ=
+	t=1753790628; cv=none; b=d/kYdnX/vQRGovdVvNG2r8HJmfODPn6jXzy1+EJP/h2lEI+aMGJgw0ZynnbSDv0Ike2brrZP5esrCRpgqk50Q4J6+Y0y1Gv1CmTGG8MsDbdOBRr6De/M/nZpklxPvHtEA5ksL2B/51A6yhFPHHoWsHnW3Q6OuI5LS3kymG3IkE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753789829; c=relaxed/simple;
-	bh=PK4ml/xEq0jzjs5GtAgAMRnH6WZy4V7erfxj0M4xcTA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EYLnuvu5pg3e3HAPt9Dd/MsPkathHJOg7SeDaD9AfzxUGryZ3eq0n4HSmQaBfo0O1mX/GkE4xV78KkK7IcPLmJkg8YXdcF/5lmgPqzYEChNrXBVDqHPPoxcHD9WyypurJSiuAOV2TnVQTj5avU4j7ZlzX7TpFTrBE/GhOsmTsCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.213.139])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1d9d0f96f;
-	Tue, 29 Jul 2025 19:50:14 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: alsi@bang-olufsen.dk,
-	amadeus@jmu.edu.cn,
-	andrew@lunn.ch,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
+	s=arc-20240116; t=1753790628; c=relaxed/simple;
+	bh=fwaCjLD6EB6n8W82GgacUq5Hd72P7HmejoAcodIb8hQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dyNbLc2Zx8X5gtP1NzSUojFmpmIPlogc/0qsknulFf2rLUr0Fnbnkc4Rud6GpeTU1JLKnlLujU1HQyRAd2myS4uP4+4cF/qExkvHk00mty/Ea4SuCCiwXskFMWMEZUK9MIzpRZ2ikzZOEqaB2Luk6ciTIiwQ9LBHBMM0+KHp1/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools; spf=pass smtp.mailfrom=atl.tools; dkim=pass (2048-bit key) header.d=atl.tools header.i=@atl.tools header.b=GwFIQdmI; arc=none smtp.client-ip=49.12.87.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=atl.tools
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atl.tools
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 623F52A8F9;
+	Tue, 29 Jul 2025 12:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=atl.tools; s=dkim;
+	t=1753790624; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=p0FOHDWyMZP0lChScy57LuBVhQcpOIP/X2zCiU5WuuI=;
+	b=GwFIQdmIPgqPCC+OFcZeIYQAxg0zsyJPpQbgFN10msg14G0Kh1UQtX+F4n7doS0VnDzQrP
+	i33LMOC6LSjqXXeJ4u4NkjkFHkLOBSQQR2WftTV7uKiBRp2f957ZTby3Dp52JKtdExpqRU
+	ZUV524cYtb2PW+GmtgHSvaOIxd1Gr+8Xfg7Of/FZM1ZvwRY1l66srNDLxlGrBsbnH1HbbX
+	qU47l7YMvGrcx69cDuCGxmqlnRAc6k4zq/wM7MbTTqtXMs9Txock+E65n+BM107d3tmNkB
+	7sJNLC0cIImxdC7bjSghyfE2smjNAPXQ6B+QylT4hXClgqoopDi+eQjWZ7Itaw==
+From: Violet <violet@atl.tools>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
-	linus.walleij@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	netdev@vger.kernel.org,
-	olteanv@gmail.com,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to Radxa E24C
-Date: Tue, 29 Jul 2025 19:50:09 +0800
-Message-Id: <20250729115009.2158019-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
-References: <5bdd0009-589f-49bc-914f-62e5dc4469e9@kwiboo.se>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 0/2] arm64: dts: qcom: add initial support for Samsung Galaxy S22
+Date: Tue, 29 Jul 2025 12:03:29 +0000
+Message-ID: <20250729120331.287245-1-violet@atl.tools>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,41 +60,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a985604d4c503a2kunm15728bea1d0da6
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGktDVkhNSxkYQx4fT0JNSVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKSEJZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0pVSktLVU
-	tZBg++
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Changes in v7:
+- Document the reserved GPIO pins, remove pin 50 as it does not
+ need to be reserved
+- Clarify the phone isn't limited to USB 2.0 but rather USB 3.0
+ isn't implemented yet
+- Add a newline before every 'status' node
 
-> The issue is with TSO and RX checksum offload, with those disabled on
-> the conduit interface (gmac1/eth0) my issues disappeared.
+Changes in v6:
+- Remove debug features (bootargs, etc) that slipped in the v5 DTS
+- Format and organize nodes correctly based on existing DTS, 
+ move "status = "okay";" to the bottom always
+- Solve "ddr_device_type" and "qcom,rmtfs-mem" warnings, the rest are
+ from existing SoC .dtsi
+- Disable buttons, ufs and other features for later revision
 
-I did a test today and the same problem occurred when running the new
-kernel on my rk3568 + rtl8367s board. This problem does not exist on
-older kernels (6.1 and 6.6). Not sure where the problem is.
+Changes in v5:
+- Properly format the thread
 
-> With a 'mdio' child node 'make CHECK_DTBS=y' report something like:
->
->    rockchip/rk3528-radxa-e24c.dtb: ethernet-switch@1d (realtek,rtl8365mb): mdio: False schema does not allow { [snip] }
->          from schema $id: http://devicetree.org/schemas/net/dsa/realtek.yaml#
->
-> With a mdio node the driver is happy and dtschema is sad, and without
-> the mdio node it was the other way around.
+Changes in v4:
+- Try to properly format the thread
 
-On older kernels (6.1/6.6) only realtek-smi requires mdio child OF node.
-Commit bba140a566ed ("net: dsa: realtek: use the same mii bus driver for both interfaces")
-changed this behavior, both MDIO interface and SMI interface need it
-(rtl83xx_setup_user_mdio), but the dt-bindings has not been updated.
-I think this needs a Fixes tag.
+Changes in v3:
+- Removed unnecessary initrd start and end addresses
+- Make sure r0q is in right order on Makefile
+- Properly format memory addresses
+- Set r0q to the correct, alphabetical order in documents
 
-Thanks,
-Chukun
+Changes in v2:
+- Attempt to format the patchset thread correctly
 
---
-2.25.1
+Signed-off-by: Violet <violet@atl.tools>
 
+Violet (2):
+  dt-bindings: arm: qcom: document r0q board binding
+  arm64: dts: qcom: add initial support for Samsung Galaxy S22
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sm8450-samsung-r0q.dts      | 147 ++++++++++++++++++
+ 3 files changed, 149 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+
+-- 
+2.50.1
 
 
