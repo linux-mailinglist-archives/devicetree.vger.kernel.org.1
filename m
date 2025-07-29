@@ -1,118 +1,233 @@
-Return-Path: <devicetree+bounces-200339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4538FB145ED
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:41:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A683DB145F5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 03:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E0CC7AF518
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 01:40:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75D71AA1A42
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 01:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFBE1F4616;
-	Tue, 29 Jul 2025 01:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6C116F0FE;
+	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="B9KloKMh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2jv1SWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589F71F37C5;
-	Tue, 29 Jul 2025 01:41:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CDC10957;
+	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753753288; cv=none; b=aqqKhnVidR/V4eChmH8R2voTyQlSPzM30SmNddMm7r36+3bACgwQHqiEZquD4fjfkerqDaW6hhRPy96dVTYqdoCxv+V+es57Ax3p/fd09w5Q/L8GH7W4R2L4eYQcMidFnP5qsWmCDG6bjsZFmLcqClGA2hR/89nItZgz3ovJIu4=
+	t=1753753849; cv=none; b=nLVDEMFEd/EDeGozpyrym0iiXiS3tl2qR5PUI6DVbywRwCivW8BUgL9T7asYhw445HSrFkwAgo+aq1Sh3Tq4hIWgQvqicSGr3EbZONc0zxXrkSobxqAfbuX6dAAf51tDWXN00iSkITqqE6Ylb0DP0SBIg+G32PSG+rLOL8Vt4aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753753288; c=relaxed/simple;
-	bh=7jL0NE4cF4xqYnGuVecwCuQthPBG5AwQZhJM7XTG5Ek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Prmy/GL+LEDh92MBcrcaCpJ63B4bx3JPc85AX8cu4LcKhBJe+q6q+ntvfiOrvuHnhC+ZVpuYXTjQMlckIbr6vJ8EsI1pk5iHxFui+kgFb5VECTL8z7rxlHjlrHB7y2WXXsNm/rc6H5Mi/ltnH2pOdG46mD6eB3oxkyrGGKCvR+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=B9KloKMh; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 4A82325D07;
-	Tue, 29 Jul 2025 03:41:23 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Ckl6WRtZjqNd; Tue, 29 Jul 2025 03:41:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1753753282; bh=7jL0NE4cF4xqYnGuVecwCuQthPBG5AwQZhJM7XTG5Ek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=B9KloKMhlJyyRh81m9m/G3F+TnYK+unb5HmSIcZYXv9skznThsPV7h/WJffNlxaJj
-	 GgelXZd6oZyPw3DHn2h5K07c7MdBLXmnkcXFhOCDK/lbxmgM2JtehkiPcayyUeZLPA
-	 CxOt4PLcDLpw7MfjzJ569Yu1jHgXTqSh42zh47HsACMyiVQg/6sJJZnjh1TTSjYhfZ
-	 AFWr+MskYiXsSrZT2kLjXuenqSzj67q532Gvy79Xvk/YwuvxoUDyTLwAXRg6ZCfZEk
-	 KOov8Z0BmgN26+ZXXUU1EY2M2Go+57hXmXtLODAkruVnsjzMIf4llmKPDmKGsCh0Pb
-	 Sn3Y0xyX8GMMw==
-Date: Tue, 29 Jul 2025 01:41:01 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Ze Huang <huang.ze@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v7 1/2] dt-bindings: usb: dwc3: add support for SpacemiT
- K1
-Message-ID: <aIgmrQ7afSO5sjB_@pie>
-References: <20250729-dwc3_generic-v7-0-5c791bba826f@linux.dev>
- <20250729-dwc3_generic-v7-1-5c791bba826f@linux.dev>
+	s=arc-20240116; t=1753753849; c=relaxed/simple;
+	bh=ZJHFmzIPr8ML5NGJayIIymS18ptTL0fxQguqCZMVGR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=gVDZYhdorjvVtJ6x5lRxFxR+A+h0TROxcGxR0opceXM+FISbr6edz5gzA03bRtSOiXkuU60h8i3zTS1QAO2XoTvh1chDbkCNQOy/poZL1/j7fzCY1vTrpcPyrHMeekf9+U2XXmeAZrbd6iYHUlXlovjh9QXgnrXYuCdhP7kq5UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2jv1SWX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B974C4CEE7;
+	Tue, 29 Jul 2025 01:50:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753753849;
+	bh=ZJHFmzIPr8ML5NGJayIIymS18ptTL0fxQguqCZMVGR4=;
+	h=Date:From:To:Cc:Subject:From;
+	b=B2jv1SWXMFVKYdow0z6X+R3YMQl0l+mo1si6bJPUAYs8EMc6pQo0M5YJMTU1A+Ivb
+	 ED4C2XVRkyQvOEOmyxPIUc0p4CAWraqAxQqrZ24MuN9FX+zJjaGQH/6lrLyw0+tgxD
+	 NurkqN8AmsoWY4ATiMxo0s/ZwRYpwXh4EhryfzLFKVSVmgS+h5I09IhhxpqmUtqFy8
+	 xW46CzE+iAfdtO91iYrYiv00uWC6d2El6scbhq1/joQscOsbeaQKzi2elXwPhf4UjT
+	 uXHbI3vaAZNYNVi6UOuw7nEnVTsWa4g/tBjqcZNMiUKAI267tAawqUlnLgp56JpmYW
+	 Q9dkzKsLNZ++A==
+Date: Mon, 28 Jul 2025 20:50:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree updates for v6.17
+Message-ID: <20250729015048.GA235874-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250729-dwc3_generic-v7-1-5c791bba826f@linux.dev>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 29, 2025 at 12:33:55AM +0800, Ze Huang wrote:
-> Add support for the USB 3.0 Dual-Role Device (DRD) controller embedded
-> in the SpacemiT K1 SoC. The controller is based on the Synopsys
-> DesignWare Core USB 3 (DWC3) IP, supporting USB3.0 host mode and USB 2.0
-> DRD mode.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Ze Huang <huang.ze@linux.dev>
-> ---
->  .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 124 +++++++++++++++++++++
->  1 file changed, 124 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..7007e2bd42016ae0e50c4007e75d26bada34d983
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/spacemit,k1-dwc3.yaml
-> @@ -0,0 +1,124 @@
+Linus,
 
-...
+Please pull DT updates for 6.17. There's a couple of trivial conflicts 
+with GPIO and MFD trees in trivial-devices.yaml and MAINTAINERS. 
 
-> +  resets:
-> +    items:
-> +      - description: USB3.0 AHB reset
-> +      - description: USB3.0 VCC reset
-> +      - description: USB3.0 PHY reset
-> +      - description: PCIE0 global reset (for combo phy)
+Rob
 
-Why should the USB driver takes care of the PCIe stuff? This sounds
-strange to me.
 
-> +  reset-names:
-> +    items:
-> +      - const: ahb
-> +      - const: vcc
-> +      - const: phy
-> +      - const: pcie0
+The following changes since commit 19272b37aa4f83ca52bdf9c16d5d81bdd1354494:
 
-Best regards,
-Yao Zi
+  Linux 6.16-rc1 (2025-06-08 13:44:43 -0700)
+
+are available in the Git repository at:
+
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.17
+
+for you to fetch changes up to 0121898ec05fa4c1f566fc05c7e8b3caf0998f97:
+
+  dt-bindings: Correct indentation and style in DTS example (2025-07-28 19:56:29 -0500)
+
+----------------------------------------------------------------
+Devicetree updates for 6.17:
+
+- Add bindings for arm,armv7m-nvic, fsl,icoll, fsl,imx23-digctl, Xilinx
+  INTC, Analog Devices ADT7411, and a bunch of trivial hwmon devices
+
+- Convert fsl,vf610-mscm-ir, fsl,dsu, via,vt8500-timer, nxp,isp1301,
+  Marvell Armada NETA and BM, apm,xgene1-msi, fsl,mpic-msi,
+  himax,hx8357d, and sitronix,st7586 bindings to DT schema format
+
+- Fixes for some display bindings
+
+- More indentation clean-ups in examples
+
+- Add more guidelines and clarifications on writing bindings
+
+----------------------------------------------------------------
+Alexey Charkov (1):
+      dt-bindings: timer: via,vt8500-timer: Convert to YAML
+
+AngeloGioacchino Del Regno (1):
+      dt-bindings: display: mediatek,dp: Allow DisplayPort AUX bus
+
+David Lechner (1):
+      dt-bindings: display: convert sitronix,st7586 to YAML
+
+Frank Li (9):
+      dt-bindings: soc: Add fsl,imx23-digctl.yaml for i.MX23 and i.MX28
+      dt-bindings: lcdif: add lcd panel related property for imx28
+      dt-bindings: display: arm,pl11x: Allow resets property
+      dt-bindings: display: convert himax,hx8357d.txt to yaml format
+      dt-bindings: trivial-devices: add compatible string nxp,isp1301 from isp1301.txt
+      dt-bindings: interrupt-controller: Add arm,armv7m-nvic and fix #interrupt-cells
+      dt-bindings: display: imx: convert fsl,dcu.txt to yaml format
+      dt-bindings: interrupt-controller: Add fsl,icoll.yaml
+      dt-bindings: fsl: convert fsl,vf610-mscm-ir.txt to yaml format
+
+J. Neuschäfer (1):
+      dt-bindings: interrupt-controller: Convert fsl,mpic-msi to YAML
+
+Krzysztof Kozlowski (10):
+      docs: dt: writing-bindings: Rephrase typical fallback (superset) usage
+      docs: dt: writing-bindings: Express better expectations of "specific"
+      docs: dt: writing-bindings: Consistently use single-whitespace
+      docs: dt: submitting-patches: Avoid 'YAML' in the subject and add an example
+      docs: dt: writing-bindings: Document compatible and filename naming
+      docs: dt: writing-bindings: Document discouraged instance IDs
+      docs: dt: writing-schema: Document preferred order of properties
+      dt-bindings: display: sprd,sharkl3-dpu: Fix missing clocks constraints
+      dt-bindings: display: sprd,sharkl3-dsi-host: Fix missing clocks constraints
+      dt-bindings: Correct indentation and style in DTS example
+
+Lukas Bulwahn (1):
+      MAINTAINERS: adjust file entry in INTEL STRATIX10 FIRMWARE DRIVERS
+
+Meng Li (1):
+      dt-bindings: watchdog: fsl-imx-wdt: add compatible string fsl,ls1046a-wdt
+
+Michal Simek (1):
+      dt-bindings: interrupt-controller: Add missing Xilinx INTC binding
+
+Mikhail Kalashnikov (1):
+      dt-bindings: gpu: mali-bifrost: Add Allwinner A523 compatible
+
+Rob Herring (Arm) (3):
+      dt-bindings: interrupt-controller: Convert apm,xgene1-msi to DT schema
+      dt-bindings: trivial-devices: Add undocumented hwmon devices
+      dt-bindings: net: Convert Marvell Armada NETA and BM to DT schema
+
+Wolfram Sang (1):
+      dt-bindings: trivial-devices: Add Analog Devices ADT7411
+
+ .../bindings/arm/arm,trace-buffer-extension.yaml   |  10 +-
+ .../bindings/arm/freescale/fsl,vf610-mscm-ir.txt   |  30 ----
+ .../devicetree/bindings/arm/stm32/st,mlahb.yaml    |  20 +--
+ .../devicetree/bindings/display/arm,pl11x.yaml     |   3 +
+ .../devicetree/bindings/display/fsl,dcu.txt        |  34 ----
+ .../devicetree/bindings/display/fsl,lcdif.yaml     |  19 +-
+ .../bindings/display/fsl,ls1021a-dcu.yaml          |  71 ++++++++
+ .../devicetree/bindings/display/himax,hx8357.yaml  |  78 ++++++++
+ .../devicetree/bindings/display/himax,hx8357d.txt  |  26 ---
+ .../bindings/display/mediatek/mediatek,dp.yaml     |   3 +
+ .../bindings/display/sitronix,st7586.txt           |  22 ---
+ .../bindings/display/sitronix,st7586.yaml          |  61 +++++++
+ .../bindings/display/sprd/sprd,sharkl3-dpu.yaml    |   2 +-
+ .../display/sprd/sprd,sharkl3-dsi-host.yaml        |   2 +-
+ .../bindings/dsp/mediatek,mt8195-dsp.yaml          |  42 ++---
+ .../intel,ixp4xx-network-processing-engine.yaml    |  52 +++---
+ .../devicetree/bindings/fpga/xlnx,versal-fpga.yaml |   2 +-
+ .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |   1 +
+ .../interrupt-controller/apm,xgene1-msi.yaml       |  54 ++++++
+ .../bindings/interrupt-controller/arm,nvic.yaml    |   3 +-
+ .../bindings/interrupt-controller/fsl,icoll.yaml   |  45 +++++
+ .../interrupt-controller/fsl,mpic-msi.yaml         | 161 +++++++++++++++++
+ .../interrupt-controller/fsl,vf610-mscm-ir.yaml    |  63 +++++++
+ .../bindings/interrupt-controller/xlnx,intc.yaml   |  82 +++++++++
+ .../devicetree/bindings/iommu/riscv,iommu.yaml     |   6 +-
+ .../devicetree/bindings/leds/leds-mt6360.yaml      | 199 ++++++++++-----------
+ .../devicetree/bindings/mips/brcm/soc.yaml         |  50 +++---
+ .../misc/intel,ixp4xx-ahb-queue-manager.yaml       |   6 +-
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml      |  76 ++++----
+ .../devicetree/bindings/mtd/technologic,nand.yaml  |   2 +-
+ .../bindings/net/marvell,armada-370-neta.yaml      |  79 ++++++++
+ .../bindings/net/marvell,armada-380-neta-bm.yaml   |  60 +++++++
+ .../bindings/net/marvell-armada-370-neta.txt       |  50 ------
+ .../devicetree/bindings/net/marvell-neta-bm.txt    |  47 -----
+ .../bindings/nvmem/amlogic,meson6-efuse.yaml       |   2 +-
+ .../devicetree/bindings/pci/ti,j721e-pci-ep.yaml   |  34 ++--
+ .../devicetree/bindings/pci/xgene-pci-msi.txt      |  68 -------
+ .../devicetree/bindings/power/reset/qcom,pon.yaml  |  72 ++++----
+ .../devicetree/bindings/powerpc/fsl/msi-pic.txt    | 111 ------------
+ .../nvidia,tegra264-bpmp-shmem.yaml                |  15 +-
+ .../devicetree/bindings/rtc/renesas,rzn1-rtc.yaml  |  22 +--
+ .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  |  28 +--
+ .../bindings/soc/fsl/fsl,imx23-digctl.yaml         |  53 ++++++
+ .../devicetree/bindings/soc/qcom/qcom,eud.yaml     |  38 ++--
+ .../devicetree/bindings/soc/ti/wkup-m3-ipc.yaml    |  32 ++--
+ .../devicetree/bindings/submitting-patches.rst     |  12 +-
+ .../devicetree/bindings/timer/via,vt8500-timer.txt |  15 --
+ .../bindings/timer/via,vt8500-timer.yaml           |  51 ++++++
+ .../devicetree/bindings/trivial-devices.yaml       |  54 ++++++
+ Documentation/devicetree/bindings/usb/isp1301.txt  |  24 ---
+ .../devicetree/bindings/vendor-prefixes.yaml       |   1 +
+ .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml  |   2 +
+ .../devicetree/bindings/writing-bindings.rst       |  42 ++++-
+ .../devicetree/bindings/writing-schema.rst         |   3 +
+ MAINTAINERS                                        |  11 +-
+ 55 files changed, 1353 insertions(+), 798 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,vf610-mscm-ir.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/fsl,dcu.txt
+ create mode 100644 Documentation/devicetree/bindings/display/fsl,ls1021a-dcu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/himax,hx8357.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/himax,hx8357d.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/sitronix,st7586.txt
+ create mode 100644 Documentation/devicetree/bindings/display/sitronix,st7586.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/apm,xgene1-msi.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,icoll.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mpic-msi.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,vf610-mscm-ir.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/xlnx,intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,armada-370-neta.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,armada-380-neta-bm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-neta-bm.txt
+ delete mode 100644 Documentation/devicetree/bindings/pci/xgene-pci-msi.txt
+ delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/msi-pic.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/fsl,imx23-digctl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/via,vt8500-timer.txt
+ create mode 100644 Documentation/devicetree/bindings/timer/via,vt8500-timer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/isp1301.txt
 
