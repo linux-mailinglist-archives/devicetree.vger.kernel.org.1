@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-200590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B232B15498
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 23:16:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AEFB154B7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 23:36:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FDF07A94CA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:14:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9293A4E2C66
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jul 2025 21:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D5C2356BE;
-	Tue, 29 Jul 2025 21:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86883279358;
+	Tue, 29 Jul 2025 21:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="fCd4wtJf"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="LolU6kF2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4456B1A23B1
-	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 21:16:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E84221FBD
+	for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 21:36:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753823764; cv=none; b=b/UgLLcULjS+byI73OyCuLwL/GDbt6diqIYsa1WKcWHy30HqMukMQZkOOvuIGFuA7zpP7EKSaVJvhLG0MJJP7pH0WHz48BL3TwWtCyUN543C2IwTj3fXF3DmZluv8RI2WnuxnDs+mrwSvWMEBvMEioYN3Gc0kkZmp945XDqO2ws=
+	t=1753824964; cv=none; b=mxOPvAyJZKTJ9fvv32DKJxNMfoFx4kQuuSG93K16rWdQ8NFMkPAc8leZSuuomcrrtjCcwFVpsR+GMr535oGfxUhZ6sP0/RB1jPpVh/fLuKVd6deCpgLaesaVpmIkCQHyAzfN88HN84VzdnHQw+74bKJIJh+nrsnuB4JmhyiA3e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753823764; c=relaxed/simple;
-	bh=/mQ5plFUE244s4TmafZw/Z9a9lfv/swUjPEG4ElKJNo=;
+	s=arc-20240116; t=1753824964; c=relaxed/simple;
+	bh=TrgIz2OT4qDkw7/yxDSJfKcyMf8vlrlfJceE81V2yjg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qf4Lw4EFxk1+LwZc5zJIN/cuRId7Cs4wXd+c45uoG1/BiLUmMwSpPnojeWZfsvcRVGiGzdNtjM/OrnJ45EKuAS1bwCcI6aXfm9Y0gVPMH5eV8+YSaVNaF51LfSFkPCO2ub49aw8QcMHaISF5lVJH2CzDMcQEh9F6mQSeEgAJ6iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=fCd4wtJf; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1753823762;
- bh=e76LF6aEcRNEARMGNURIVQyVQToNTotfPN3MrqTtWjs=;
- b=fCd4wtJf/CjpclsjDkr1C14Wr7l/o7bz45ikC9e6R+LWRI/4JhxUCxmZy5oiAolFkGa/MF0CS
- 0MrK6L0xzrr/UZT6t3RZgm1UEWdnXioTr+lvVkbGn9wXgsKlMMSClSsOpfI6PEQG3VSqICADuoM
- HaV0T0y+KqmhrCo6k1uXF09ugOuMMGHiNdqqNagplb7pdLb6/7+A1RktNE91S9eH2Uo27+KyvO0
- 5rjdFPxYy8m8djA8st9s7p4efFqTK4bWUuiMEWFTBrU1P+k1FJmyo6WZ1HlnWwcjJw4I5CscU6g
- v8iklTjTiAE/tg/dNc+dGZ94IscQLMWagvVTB03oxTpw==
-X-Forward-Email-ID: 688939dd5983c8a2f4b4c57a
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.1.8
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <dcbc1c43-748b-479a-878f-569428e09f45@kwiboo.se>
-Date: Tue, 29 Jul 2025 23:15:04 +0200
+	 In-Reply-To:Content-Type; b=XXZhbaHGNFUSehsg9R49T4tHp4W5FrmeggJJ6ctBTbzPEkcK57+mcaXxp0qwl2VJZYtbTmuHfTVjGKAwEOeH6I4DQsZ1p/MNEsgZfYdCxArw20kKKDKLDD7YineTAczQ3nccihU46CwPCEFDtjGDHPrbHHEhjaIyX1J7G88Y/W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=LolU6kF2; arc=none smtp.client-ip=209.85.166.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-87c017978e6so11217139f.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Jul 2025 14:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1753824959; x=1754429759; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T6TTijnB+mf1Tx70AUpgzd27gcsp61CTxKy/bu5Mf0k=;
+        b=LolU6kF2PVWI0kgEhS5mW5462kJx3eljcqMhAbCGLyX1BpiwDeEG+I1Q9KytT0iJJ3
+         jduKHPyfeqArddaLQiis1m7CkEBR3LfkaB8a8EVhCN04792Rtkmyn5MJ76A+bG3rcp7E
+         +vKWSK8VWEdos6YZIIbrvU+AHL0girNTzqwTLYseRvG70FlULzMpibFRvcP73IXG7mKl
+         6kLriF/4PIO+2cCzA4IzU6c1tf9hT522KhKqmMrTnI5SZE+g6q51W86L8r5SZZZ2aXmb
+         Q0zwqj+nMiGc7aj80SjHVuJ7IZ0QMQBCocf1ePZUkuiBOh9ZjxGs31qzDCx2Tm2JC+/h
+         35qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753824959; x=1754429759;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T6TTijnB+mf1Tx70AUpgzd27gcsp61CTxKy/bu5Mf0k=;
+        b=VxqvtIdyrli+Ch+7VKp6RUMI55mYknKOO5Xxpz1rIYyPfMPxw2hnjJYapjxTQafhp8
+         Z2lz+JPWtNgtV7AJ+/obReieRsO28ehYxjzWl/9/grZGpweOe9K82fpi0vua9XYLSXvC
+         j2VJPZGaLQ0TlNOreIJnoO02/SmjuCfaw7+ffXwLeOsPCknaQU4CmBNxss5yXSIkW+6e
+         yr96b5t7glAl339/M36cG7W3IO9kfuwcSjXOsMBqp+yyqL9NdgGRsQ3zxFwl4nEj1dHx
+         oTRwcEBlg8Z2uUGVhzCRtNtYOtLtcKAcQJzvqwzp1yuOiHPLSbLXET8FlAGGsMlsfafU
+         bryQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWNSSWQaEpXBJFWf0ga775nGP9XtqbT6rhArlnCa/MBMhTAcGQ1SH4plzKky2wDChPFstPx9QO+4Af+@vger.kernel.org
+X-Gm-Message-State: AOJu0YylULHkyiKx4/AsxD+STHLogdXQwS3ywOmaJz8nayZClSdGGv2g
+	P4LqWigBPypjNDoRfvlWAC2pO9Smhgu4iw5h3XZTk38x506Wij0vL/Nue9HdEMuOn3c=
+X-Gm-Gg: ASbGnct8VN0v5B1ZaOX29AskkYujrD0fJi/EjfWe7CgqqwN5ohVrhXwifafGDboN6a8
+	2oWGVdcfisWzzigLdxj4LhppbTXuctuxxHIlGtiPlApvPqesXKAO+TJYUrvfifBs4n87WJKf+vw
+	LCyLDfcD25tNE1QAYXOJSIKHmXkJIdcmqPZQS/xC0K2bL6lZRA0LGPwEzs3X4pnmYF5CIqPICFg
+	0pbBqTNUe5Hq+LI4O65OcFVROizylJy7toiFx/iFBaubE8QAZ+aEu6f8BH35yJD9XkgOqr2QikN
+	V1Q/m9de6bycavqZhwPJxapkyJHuE17BS3LbN8M8EQnx4Xau+pKyvwyoqYbamUTShyrCRvWUFHk
+	ANMDmjss9u2jxin7odCZpSIvpA4axtZKLR30TsWSLWYXXNgkldVQYSeijjUH9jw==
+X-Google-Smtp-Source: AGHT+IH9yMoT3SyI/T66ZtxcPnZNldk6FIOoyhUi5kHT3q4ZE7dn1hQwAMIQq+oM/1pZl9ARWn7tQA==
+X-Received: by 2002:a92:db50:0:b0:3e3:b3d0:26cf with SMTP id e9e14a558f8ab-3e3e97254b5mr53179065ab.10.1753824959544;
+        Tue, 29 Jul 2025 14:35:59 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-508c9343739sm2781465173.69.2025.07.29.14.35.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jul 2025 14:35:59 -0700 (PDT)
+Message-ID: <79fde2dc-2370-4ec8-94eb-57715cfc2806@riscstar.com>
+Date: Tue, 29 Jul 2025 16:35:57 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,102 +82,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- ziyao@disroot.org
-References: <e2fd11db-543a-43eb-b118-9f246ff149b5@kwiboo.se>
- <20250729132025.2359761-1-amadeus@jmu.edu.cn>
+Subject: Re: [PATCH] dt-bindings: serial: 8250: allow "main" and "uart" as
+ clock names
+To: Conor Dooley <conor@kernel.org>
+Cc: Yixun Lan <dlan@gentoo.org>, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, lkundrak@v3.sk,
+ devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+ spacemit@lists.linux.dev, linux-mediatek@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+References: <20250728220002.599554-1-elder@riscstar.com>
+ <20250728225319-GYA900803@gentoo>
+ <20250729-reshuffle-contented-e6def76b540b@spud>
+ <5c3f9f10-6a9d-45b4-80c0-09402b35bf47@riscstar.com>
+ <20250729-clench-hastily-b80f11f73336@spud>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250729132025.2359761-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250729-clench-hastily-b80f11f73336@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 7/29/2025 3:20 PM, Chukun Pan wrote:
-> Hi,
-> 
->> Both avddl_1v1 and avddh_3v3 are controlled by the same gpio, I do not
->> remember if using two regulators with same gpios is supported, can only
->> remember it being an issue in the past, so I opted to just describe it
->> as a single regulator and gave it a new name and added labels for the
->> name used in schematic.
+On 7/29/25 4:08 PM, Conor Dooley wrote:
+> On Tue, Jul 29, 2025 at 04:04:05PM -0500, Alex Elder wrote:
+>> On 7/29/25 12:54 PM, Conor Dooley wrote:
+>>> On Tue, Jul 29, 2025 at 06:53:19AM +0800, Yixun Lan wrote:
+>>>> Hi Alex,
+>>>>
+>>>> On 17:00 Mon 28 Jul     , Alex Elder wrote:
+>>>>> There are two compatible strings defined in "8250.yaml" that require
+>>>>> two clocks to be specified, along with their names:
+>>>>>     - "spacemit,k1-uart", used in "spacemit/k1.dtsi"
+>>>>>     - "nxp,lpc1850-uart", used in "lpc/lpc18xx.dtsi"
+>>>>>
+>>>>> When only one clock is used, the name is not required.  However there
+>>>>> are two places that do specify a name:
+>>>>>     - In "mediatek/mt7623.dtsi", the clock for the "mediatek,mtk-btif"
+>>>>>       compatible serial device is named "main"
+>>>>>     - In "qca/ar9132.dtsi", the clock for the "ns8250" compatible
+>>>>>       serial device is named "uart"
+>>>>>
+>>>>> In commit d2db0d7815444 ("dt-bindings: serial: 8250: allow clock 'uartclk'
+>>>>> and 'reg' for nxp,lpc1850-uart"), Frank Li added the restriction that two
+>>>>> named clocks be used for the NXP platform mentioned above.  Extend that
+>>>>> so that the two named clocks used by the SpacemiT platform are similarly
+>>>>> restricted.
+>>>>>
+>>>>> Add "main" and "uart" as allowed names when a single clock is specified.
+>>>>>
+>>>>> Fixes: 2c0594f9f0629 ("dt-bindings: serial: 8250: support an optional second clock")
+>>>>> Reported-by: kernel test robot <lkp@intel.com>
+>>>>> Closes: https://lore.kernel.org/oe-kbuild-all/202507160314.wrC51lXX-lkp@intel.com/
+>>>>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>>>>> ---
+>>>>>    .../devicetree/bindings/serial/8250.yaml      | 19 ++++++++++++++-----
+>>>>>    1 file changed, 14 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+>>>>> index e46bee8d25bf0..cef52ebd8f7da 100644
+>>>>> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+>>>>> @@ -61,11 +61,17 @@ allOf:
+>>>>>                - const: uartclk
+>>>>>                - const: reg
+>>>> ..
+>>>>>        else:
+>>>> would it be better to drop this 'else', and moving following 'if' block
+>>>> to the same level with "nxp,lpc1850-uart"?
+>>>>
+>>>> the reason here would avoid too many indentions if add more constraint in
+>>>> the future if other SoC uart need different clock-names..
+>>>
+>>> I agree, it's more typical to do it that way I think to boot.
+>>>
+>>> Also, why is there a k1/lpc conditional bit that is not part of the
+>>> allOf in addition to the bits in the allOf? Can that get merged with the
+>>> allOf please?
 >>
->> Would calling it vdd_8367 (after gpio_8367_en) be better or do you have
->> any other suggestion on how to describe these?
+>> Are you talking about the blank line here?
 > 
-> Would it be better to just call it avddh_3v3 and add a comment?
-> This makes it easier to find in the schematics and match phy-supply.
+> No, I'm talking about what's down around line 270 in the binding.
 
-It already had a label for avddh_3v3, I am currently thinking something
-like following, includes the names from schematic and a name for humans:
+Oh wow that's in a weird spot, and it might be redundant?
 
-	/* Common enable line for the avdd rails mentioned in the labels */
-	vdd_switch: avddl_1v1: avddh_3v3: regulator-vdd-switch {
-		compatible = "regulator-fixed";
-		enable-active-high;
-		gpios = <&gpio1 RK_PC3 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&gpio_8367_en>;
-		regulator-name = "vdd_switch";
-		startup-delay-us = <10000>;
-		vin-supply = <&vcc5v0_sys>;
-	};
+Anyway I'll work on getting that fixed too before I send
+my next version.
 
-> 
->> See above, I had issues using the reset-gpios of the switch, because the
->> switch was probed twice, once deferred by gmac, and by the second probe
->> failed with -BUSY because of the reset-gpios still being claimd by the
->> first probe.
+					-Alex
+
 >>
->> I can change to describe the reset pin in the switch, however that will
->> likely mean Ethernet is unusable until the issue in devres/gpiolib is
->> tracked down and fixed by someone.
-> 
-> I don't think it's a devres/gpiolib issue.
-> It looks like these two resets are competing:
-> 
->   priv->reset_ctl = devm_reset_control_get_optional(dev, NULL);
->   priv->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-> 
-> reset-gpios works if reset-names is specified:
-> 
-> -	priv->reset_ctl = devm_reset_control_get_optional(dev, NULL);
-> +	priv->reset_ctl = devm_reset_control_get_optional(dev, "switch");
-> 
-> Or just remove the reset controller, I'm not sure if it's really needed:
-> 
-> -	priv->reset_ctl = devm_reset_control_get_optional(dev, NULL);
-> -	if (IS_ERR(priv->reset_ctl))
-> -		return dev_err_cast_probe(dev, priv->reset_ctl,
-> -					  "failed to get reset control\n");
-
-Very interesting, my initial testing was to include a call to
-devm_gpiod_put() in rtl83xx_remove() but was afraid it could result in a
-WARN_ON in case driver was properly unloaded/removed.
-
-  void rtl83xx_remove(struct realtek_priv *priv)
-  {
-	if (priv->reset)
-		devm_gpiod_put(priv-dev, priv->reset);
-  }
-
-With reset_control_get using a gpio fallback, this complicates things a
-little bit, will run some more tests and probably include a driver patch
-for v2, thanks for finding this!
-
-Regards,
-Jonas
-
-> 
-> Thanks,
-> Chukun
-> 
-> --
-> 2.25.1
-> 
-> 
+>>      then:
+>>        oneOf:
+>>          - required: [ clock-frequency ]
+>>          - required: [ clocks ]
+>>                             <------ this blank line
+>>    - if:
+>>        properties:
+>>          compatible:
+>>            contains:
+>>              const: nxp,lpc1850-uart
+>>      then:
+>>
+>> I didn't notice that before.  It got inserted with commit
+>> d2db0d7815444 ("dt-bindings: serial: 8250: allow clock
+>> 'uartclk' and 'reg' for nxp,lpc1850-uart").
+>>
+>> If so, yes I'll remove that as well when I update the patch to
+>> get rid of the else as Yixun suggests.
+>>
+>> Greg won't take this for a couple weeks so I'll hold off sending
+>> v2 for a while.
+>>
+>> 					-Alex
+>>
 
 
