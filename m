@@ -1,163 +1,255 @@
-Return-Path: <devicetree+bounces-200660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F915B15A15
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:57:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18112B15A31
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A9677A73B0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:56:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4267918A3653
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589EF291C23;
-	Wed, 30 Jul 2025 07:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC71255E26;
+	Wed, 30 Jul 2025 08:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P2OvjWKo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O0xPZhAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D32F12629D
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01FF2253A5;
+	Wed, 30 Jul 2025 08:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753862272; cv=none; b=IKCHd0cvX2+erPc+R6lBmKr1fdLMoU/ehNnBKYDaSHtUwcfk2Z76W3RVR1kxapmDf+ZrOKBOvgMRFE8dMu+VgwWXQuklOQzv/J8E+VyVZK045ndTgWlktdO3kICd8ASd2TuxwHpQgJzpG0SN3zQnjr7HIBQkLd/GX9EfEye9Hvs=
+	t=1753863024; cv=none; b=d3puOyJWH5ZkMmzvvCUgCZdNT07k7MmiCjF+ZM654nli2iLQRYV6m+rxYP6Xzg3He8tl6vvFW4EJ++C6YhI1E7Ft3fkEe9KZNQLhXUMkqI3pg8oD0KJllha/1vBYgHcRkKChN9ZFIMV0wKrm5n7d9t4y2V7r95YIpZbiSl4NITA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753862272; c=relaxed/simple;
-	bh=XZ2PvbCqPh4TDubyP5ZkSEFWcWBI13qEuuuSTP3h0AM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W738lP6yNpC773P0pvjw8X6T0aG4FJQJwKZK+AOuQnvbWaHEHLWn3QmsSBjjFRdhKj2OhH4/upMTPE6PEEy9ruyrq1Ld9M2bvVjeoYEqTUW35EHk86FCi6MQyF15MfGn6EcGDjYHvaqdJutBvhMcd6q1pTab2C4iJKovLwNuNao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P2OvjWKo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U5RpcT005230
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:57:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bep9w9BnXdrMmlin8Bi4VGFbGPSSxR11L24CVQ4ky8o=; b=P2OvjWKoPkLJEqWV
-	HVfKaydYguKXVsjrq0QaF+thRZQuyqit/G7Rvo8n23YBBhnVDHvvi6azm6nvfXt/
-	SlEb/KHudejGJY6TkQzxOLXuPPeo2m8SAZnsub1koynuaWiekzHnf3OkV9rAKoya
-	9q9JCgxz1xJd4+bsCtjiibQLh3XB2L8ECsnuSd9vG+/D/WMAuh2WhykVbQFqLDo8
-	OTZIhpeKPEhBPX8i0tpSmeCwgcJF61SzIxSqhqz6HwZfvJXZ2tR8eArfMhRM3JAx
-	/g+F76rl7CVK15CkRyLFDi8tS7oiCzMxe6MnACzpa5cpu/JMNeA0aZUp3JjE7aL1
-	utbmRQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484nyu376h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:57:50 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ab65611676so23137801cf.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 00:57:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753862269; x=1754467069;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bep9w9BnXdrMmlin8Bi4VGFbGPSSxR11L24CVQ4ky8o=;
-        b=DPPyPQXvEdII4ViJx7mYmw+kciN6WiLjDTCa/23iUV/QQIOGmkZ2AYg8gn1zlw+WFc
-         qFQ0NZ92VkBtI65eCnvVaZWNV11wUPbor8PQA96Y8SkjH7R5n9wCnUekFbJX1j6Xfhoc
-         lk//Xhi6aBTjG5XOhiQg4UNrm9BD3X89q7b8eWPmPXr7/yLJ4HshnLSAkzgZ5U/NX6c8
-         i9uidEdx24X90hm6UqTShAZvvJuf7yV/MA4xymLvDz2rB3TYsPV/YAUdjX51hYRKdLbS
-         +w9/TuLjbqbgtFiDN5lxuuWCdtYb4UXMiTS585NHB27sKrduSVZ12rqOLuXmPS3bKd+D
-         FMxA==
-X-Forwarded-Encrypted: i=1; AJvYcCXrPjBznpSm4EFdh1GAi5E6n8yktF6Equf9W7T7MJ1P+6W0EsupoIYVURb+zDZRvz3XfXHGMpHzVG3t@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcipdKYRan7m37C7NbMlGQmOv+ycpahQl5HL+qWqYJp3lO2/h3
-	5EoCb3Kf1Z/IiyFU2vvIGi2rkOaG9Cj+3/yiSUlHLsN8KR4byxOb8eXXMaq2HKWxc8vQoA1Zrb1
-	a+/X3T1UwNMF7GMSKm2rv7CnWEVbH8nNbIE83gI7xlYeL5YG2xfpQwXGYr4sXAmUG
-X-Gm-Gg: ASbGncuQO4qx0bMz+mCj6ysDqzC7uMTP5XAUqLzKY0CW7YKsMJ8HZpPDAwT7sjkItYj
-	R9kRB0Q/V39oOlO+rvAdIqJ8DP9JQ2/J8gk7mgitEspReEX+tims7CSvceG9wlZAFUkMRNj4TKh
-	BcXaARZ7vvs8/A5ox3DvV9S0LZFStrhiXHeFCtZhUzijI/6wWP3l/402ll1liaFnQ+k3yjSIyia
-	x7HyTqhvmE39Ls03baXudeU9qIjrFt+0UuSKhBF8JxMpKqvh89wCs4imwWySchkckRvps1YVZ53
-	NF5AWuSPyhUvz3NrXQDf8fPJAZDE1MudE5+ZU/NCKHGJ8VYp4w7lZ5qflf8rUIWrqetidqj0AL0
-	xXK+SE0nSs8F95+PHmg==
-X-Received: by 2002:ac8:7fc4:0:b0:4ab:6d02:c061 with SMTP id d75a77b69052e-4aedb96a9a1mr7229971cf.6.1753862268912;
-        Wed, 30 Jul 2025 00:57:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG/sjv/KirXnu+zAbo+zcVKQUFU7/xftsd5QFNM57kgr4gJGSFZUGgA+3QYMDJuoSGOBbDkLg==
-X-Received: by 2002:ac8:7fc4:0:b0:4ab:6d02:c061 with SMTP id d75a77b69052e-4aedb96a9a1mr7229781cf.6.1753862268489;
-        Wed, 30 Jul 2025 00:57:48 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635a65fffsm697780266b.76.2025.07.30.00.57.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Jul 2025 00:57:48 -0700 (PDT)
-Message-ID: <0d267f8e-ab1a-4239-8966-5ac2d5d40787@oss.qualcomm.com>
-Date: Wed, 30 Jul 2025 09:57:46 +0200
+	s=arc-20240116; t=1753863024; c=relaxed/simple;
+	bh=YBq0SKGRnPswqt43Y1t+cjiSBNY3A+c2eONjz2IpXrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=BkBBB6omSCeq5coBBJT/KuW2cu77rz/SgmGTI4/TXyv1/hqFZCJpLPd5Ki8O0iu52g5ZBGurT6QPWHij2vmQiVl7phlbGcJt7a0N75Ul5ZeHFkJCVYSjvOIxesHTWz4tXc3hZwbh0MhzyCsYoA5jXIfSlPF1TAEVrBKxeHKpu6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O0xPZhAj; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9796B4447C;
+	Wed, 30 Jul 2025 08:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1753863010;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3TthCFgIH8wLI4dLCfe2QLJEfDqNxOUUkBOW1DRbUqI=;
+	b=O0xPZhAj1T/Oea/AcfHYfAUaTrBNKebzhDCnJT+5StWS+Pxqm3+InAr5J9Xsd60UVzS+JF
+	3mjTU9fDV7DT6vMypFHPSWYnNAuc6TFo8AWo5Z5MorZtnTsXXhafADjfLcQB9dzdA5gfDt
+	b5P2khvf98J3XbZmpl33trAOyNVEMxlvVCj9D9nmkPoRNJdgTxSqKL4xlCH27YDTSQM3UI
+	8bVhF6PrZS2DWbM5VxT1y7+aY+jDAY1bx2DkeCIShjJUwyxCqUKlpxIIBaZ5tSQO2By6kw
+	dWGEPEMxn/MD4AZBpCsSBv2zbq97df3gLFsHtC6xT+ExFHEfgL75AjOJSy+jJQ==
+Date: Wed, 30 Jul 2025 10:10:07 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan
+ <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Phil
+ Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/6] gpio: renesas: Add support for GPIO and related
+ interrupts in RZ/N1 SoC
+Message-ID: <20250730101007.314d88ce@bootlin.com>
+In-Reply-To: <aIYHD5SEAqQNfDjD@ninjato>
+References: <20250725152618.32886-1-herve.codina@bootlin.com>
+	<aIYHD5SEAqQNfDjD@ninjato>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Flatten the USB nodes
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250729-topic-sm8x50-usb-flatten-v1-0-4be74a629136@linaro.org>
- <20250729-topic-sm8x50-usb-flatten-v1-2-4be74a629136@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250729-topic-sm8x50-usb-flatten-v1-2-4be74a629136@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: iJop3B6UnEHM6wyJxnYiCWe4H3i4oPTM
-X-Proofpoint-ORIG-GUID: iJop3B6UnEHM6wyJxnYiCWe4H3i4oPTM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA1NSBTYWx0ZWRfX9PJgUZOITyhc
- /n3vemDuMOvA8OnrtRKc6Zhdsj0ckc6JYaiNszpAAPgMiaO3o5TRakCNco88z6QFYNmkoVFwsfu
- YJH+vhQQ4+NsRT2rQjlTtug3ZvFRBp42nymFlByhGuFi2kjADdn3LndWFi++WwqsC2hIt9aIF0N
- lDFTY1e54OMPwRo0k2qgb5G7ObPScDINejXi7UmSxOb3Au+247w21DCOQPfwPLxrYO2wxOGo+cG
- NlDaslkgzmHEQQKOmzgxe85n9YYegUinksOVhxC2gM8ipW191bVkUQFAuMwkFmb8PtkazxtLv6P
- 15r859BEl0ujJkfCJokpt9awwBWD4Z5YZIZgebndsoazsrYNCshGbCc8Lg35coKF9K/KGyGdcPw
- 0l5ZWW/xdgl0wrzN8L7ueP3u6RDUbmWCxUBJb5SnbWyY687gDcfX5gpRSw9Ox6nm4vzKV52P
-X-Authority-Analysis: v=2.4 cv=CLoqXQrD c=1 sm=1 tr=0 ts=6889d07e cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=KKAkSRfTAAAA:8 a=cHqI4RTSPJW5vXGIaXYA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-30_03,2025-07-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 adultscore=0 suspectscore=0 mlxlogscore=847 spamscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507300055
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdeljeegudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeviefffeegiedtleelieeghfejleeuueevkeevteegffehledtkeegudeigffgvdenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudekpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtohephhhorghnsehoshdrrghmphgvrhgvtghomhhpuhhtihhnghdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhlpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdpr
+ hgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvg
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 7/29/25 4:58 PM, Neil Armstrong wrote:
-> Transition the USB controllers found in the SM8650 SoC to the newly
-> introduced, flattened representation of the Qualcomm USB block, i.e.
-> qcom,snps-dwc3, to show the end result.
+Hi Wolfram,
+
+On Sun, 27 Jul 2025 13:01:35 +0200
+Wolfram Sang <wsa+renesas@sang-engineering.com> wrote:
+
+> Hi Hervé,
 > 
-> The reg and interrupts properties from the usb child node are merged
-> with their counterpart in the outer node, remaining properties and child
-> nodes are simply moved.
+> > This series adds support for GPIO and GPIO IRQ mux available in the
+> > RZ/N1 SoCs.  
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-
-[...]
-
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index e14d3d778b71bbbd0c8fcc851eebc9df9ac09c31..0120b9c7432a945a204ed76a461a6d0f13875537 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5651,16 +5651,18 @@ usb_dp_qmpphy_dp_in: endpoint {
->  			};
->  		};
+> Yes, way cool! Very happy to see this upstreaming effort!
+> 
+> > The first two patches of the series add support for GPIO (binding update
+> > and device-tree description).  
+> 
+> So, I started simple and used the first two patches to enable LEDs on
+> pins 92 and 93 on my board. I added this on top of patch 1+2:
+> 
+> diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> index 3258b2e27434..4790ffad578f 100644
+> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> @@ -185,6 +185,12 @@ fixed-link {
+>  	};
+>  };
 >  
-> -		usb_1: usb@a6f8800 {
-> -			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
-> -			reg = <0 0x0a6f8800 0 0x400>;
-> +		usb_1: usb@a600000 {
-> +			compatible = "qcom,sm8650-dwc3", "qcom,snps-dwc3";
-> +			reg = <0 0x0a600000 0 0x10000>;
+> +&gpio1 {
+> +	pinctrl-0 = <&pins_gpio1>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+>  &i2c2 {
+>  	pinctrl-0 = <&pins_i2c2>;
+>  	pinctrl-names = "default";
+> @@ -256,6 +262,11 @@ pins_cpld: pins-cpld {
+>  			 <RZN1_PINMUX(122, RZN1_FUNC_USB)>;
+>  	};
+>  
+> +	pins_gpio1: pins-gpio1 {
+> +		pinmux = <RZN1_PINMUX(92, RZN1_FUNC_GPIO)>,	/* GPIO1B[23] */
+> +			 <RZN1_PINMUX(93, RZN1_FUNC_GPIO)>;	/* GPIO1B[24] */
+> +	};
+> +
+>  	pins_eth3: pins_eth3 {
+>  		pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+>  			 <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>
+> 
+> to my board dts. The controller gets probed but I can't control the
+> LEDs. Neither with exported GPIOs (via sysfs) nor with a dedicated LED
+> node. Am I missing something obvious? The LEDs are attached to PL_GPIO92
+> and PL_GPIO93 which are mapped to GPIO1b[23] and GPIO1b[24]. That seems
+> to be in accordance with the datasheet. I hope I just overlooked
+> something simple. Some outputs, first /sys/kernel/debug/gpio:
+> 
+> 	...
+> 	gpiochip1: GPIOs 552-583, parent: platform/5000c000.gpio, 5000c000.gpio:
+> 
+> 	gpiochip2: GPIOs 584-615, parent: platform/5000c000.gpio, 5000c000.gpio:
+> 	 gpio-608 (                    |sysfs               ) out hi 
+> 
+> And /sys/kernel/debug/pinctrl/40067000.pinctrl/pinmux-pins:
+> 
+> 	Pinmux settings per pin
+> 	Format: pin (name): mux_owner gpio_owner hog?
+> 	...
+> 	pin 92 (pl_gpio92): 5000c000.gpio (GPIO UNCLAIMED) function pins-gpio1 group pins-gpio1
+> 	pin 93 (pl_gpio93): 5000c000.gpio (GPIO UNCLAIMED) function pins-gpio1 group pins-gpio1
+> 
+> I wonder about the "(GPIO UNCLAIMED)" a little? How do you use it on
+> your board?
+> 
 
-sz = 0xfc_100 as well
+Strange, I have a LED working on my side.
 
-Konrad
+My LED is connected to gpio0b[9] (GPIO17).
+
+I just used:
+--- 8< ---
+	gpio_leds {
+		compatible = "gpio-leds";
+
+		led_1g: led-0 {
+			label = "led_1g";
+			gpios = <&gpio0b 9 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	&gpio0 {
+		pinctrl-0 = <&pins_gpio0>;
+		pinctrl-names = "default";
+		status = "okay";
+	};
+
+	&pinctrl{
+		/*
+		 * I have other pins used as GPIOs but my led is :
+		 *    RZN1_PINMUX(17, RZN1_FUNC_GPIO)
+		 */
+
+		pins_gpio0: pins_gpio0 {
+			pinmux = <
+				RZN1_PINMUX(13, RZN1_FUNC_GPIO)	/* GPIO0B[7] */
+				RZN1_PINMUX(14, RZN1_FUNC_GPIO)	/* GPIO0B[8] */
+				RZN1_PINMUX(15, RZN1_FUNC_GPIO)	/* GPIO0A[6] */
+				RZN1_PINMUX(16, RZN1_FUNC_GPIO)	/* GPIO0A[7] */
+				RZN1_PINMUX(17, RZN1_FUNC_GPIO)	/* GPIO0B[9] */
+				RZN1_PINMUX(18, RZN1_FUNC_GPIO)	/* GPIO0B[10] */
+				RZN1_PINMUX(22, RZN1_FUNC_GPIO)	/* GPIO0A[9] */
+				RZN1_PINMUX(23, RZN1_FUNC_GPIO)	/* GPIO0B[13] */
+			>;
+			drive-strength = <6>;
+			bias-disable;
+		pins_gpio0_pullup {
+			pinmux = <
+				RZN1_PINMUX(25, RZN1_FUNC_GPIO)	/* GPIO0B[14] - A70CI_EN_N */
+				RZN1_PINMUX(26, RZN1_FUNC_GPIO)	/* GPIO0B[15] - A71CH_EN_N */
+				RZN1_PINMUX(27, RZN1_FUNC_GPIO)	/* GPIO0A[11] - TRUST_M_EN_N */
+				RZN1_PINMUX(28, RZN1_FUNC_GPIO)	/* GPIO0A[12] - TRUST_X_EN_N */
+				RZN1_PINMUX(32, RZN1_FUNC_GPIO)	/* GPIO0B[19] - STMA100_EN_N*/
+			>;
+			drive-strength = <6>;
+			bias-pull-up;
+		};
+
+	};
+--- 8< ---
+
+Of course with:
+  CONFIG_GPIO_DWAPB=y
+  CONFIG_LEDS_CLASS=y
+  CONFIG_LEDS_GPIO=y
+
+My led is accessible from the user-space without any issue:
+  echo 255 > /sys/class/leds/led_1g/brightness
+
+I have checked /sys/kernel/debug/pinctrl/40067000.pinctrl/pinmux-pins and
+I have also the "(GPIO UNCLAIMED)":
+	...
+	pin 12 (pl_gpio12): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 13 (pl_gpio13): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 14 (pl_gpio14): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 15 (pl_gpio15): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 16 (pl_gpio16): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 17 (pl_gpio17): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 18 (pl_gpio18): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 19 (pl_gpio19): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 20 (pl_gpio20): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 21 (pl_gpio21): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 22 (pl_gpio22): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 23 (pl_gpio23): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0
+	pin 24 (pl_gpio24): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 25 (pl_gpio25): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0_pullup
+	pin 26 (pl_gpio26): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0_pullup
+	pin 27 (pl_gpio27): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0_pullup
+	pin 28 (pl_gpio28): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0_pullup
+	pin 29 (pl_gpio29): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 30 (pl_gpio30): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 31 (pl_gpio31): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	pin 32 (pl_gpio32): 5000b000.gpio (GPIO UNCLAIMED) function pins_gpio0 group pins_gpio0_pullup
+	pin 33 (pl_gpio33): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+	...
+
+When you described the LED on your side, did you reference the GPIO using &gpio1b
+for instance gpios = <&gpio1b 23 GPIO_ACTIVE_HIGH>;
+
+For GPIO accesses from user space I used gpioget/gpioset tools from libgpiod
+without any issues to read/write a GPIO.
+
+Best regards,
+Hervé
 
