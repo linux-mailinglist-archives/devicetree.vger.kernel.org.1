@@ -1,103 +1,110 @@
-Return-Path: <devicetree+bounces-200631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D8AB15930
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:58:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C87B15937
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B9218A5FB0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 06:58:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2758B169425
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0932A1F4C92;
-	Wed, 30 Jul 2025 06:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJROmsAn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B671F1301;
+	Wed, 30 Jul 2025 07:00:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52C47262D;
-	Wed, 30 Jul 2025 06:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E8315E96;
+	Wed, 30 Jul 2025 07:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753858701; cv=none; b=mDv3S0DlJDe0kjtr4iMo4v6sOH7pexWXLkGVsdVodILRt3fu7u05hsShz3p0ctiSUQB1WqeSzvxSOxvDqqFkQTRugaDpUPGgFbh/u/KWUxB0JUE2SavKwXyYFALfRQQA1L3cC+WJAgpfbaSa1dSaXhbF7pr7hM8SmN15PKacXrM=
+	t=1753858845; cv=none; b=rHYI8P8vzIAD+Bxd8xStSL6NLB4I50Q1n1nLb/SbopWBcNefT7hrZlmhiqBJZLcpknpEJ3uq/YMkilKKDUi+W+pH3v/aFr8VcVcuSAk3Ew+DXI5bn8wSN+XCcTK7A3KbpqiI7u9FIDFLu1iPha5DdxFSYWLHPeRCQ/SI483c2xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753858701; c=relaxed/simple;
-	bh=GHNJMzDwHia/VawDKRP28HqC/Lt9R5Ms0U30Km18fGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DxirT8NTkdKrrx2rpA/Vy2lfg4ANAgmsM2cy/YCiAczGuJu03zHognAcJDcMy5YeKAaHUFzTVk7XpprMVlZcnIMgDtdRZEi5uXmhPBTImLhNAAAzuT6w9uKKD6pTEDptm9pw1kEm8IkvauZw+VyrPQ98vk/SHkcH3yTrbPaKQx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJROmsAn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 243A1C4CEE7;
-	Wed, 30 Jul 2025 06:58:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753858701;
-	bh=GHNJMzDwHia/VawDKRP28HqC/Lt9R5Ms0U30Km18fGs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uJROmsAnlyyJu0kjxDwgser2yC+n3hiMjZJ8H3L6sG9cmLRjyg6bHBzhGRYmH53zo
-	 D8u69619Yr6ASNj7gnLXesZHWVHR+KiOaHPDXdMJv9Zv7MFwZADyoQnwxpV2OLkt30
-	 T43LtK1YgvedGFSbZLh9n8QscuvP0d2CZCSdxwZQMgcFoyl8heoRtV7ztJVvE3c+VW
-	 yDTN2HML4OydjFXGVS77nFzefavnUbuSkznZp9rTWGZe8592Xu4I8caE6c9NH1N/q3
-	 NSEOX1POOcdU96THVgzxGz6hldBXruMBSTjyUcE58FFx0aQcuG2Y9MzigdfQnSmMLj
-	 dL0EmUQiXfeCA==
-Date: Wed, 30 Jul 2025 08:58:19 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Erik Beck <xunil@tahomasoft.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] arm64: dts: rockchip: add LinkStar-H68k-1432v1
-Message-ID: <20250730-striped-free-lionfish-826b70@kuoka>
-References: <20250729-linkstar-6-16-rc1-v6-v6-0-92307f465835@tahomasoft.com>
- <20250729-linkstar-6-16-rc1-v6-v6-2-92307f465835@tahomasoft.com>
- <8ef3e1f4-4658-408f-8f46-ee9fc48d7a8d@kwiboo.se>
+	s=arc-20240116; t=1753858845; c=relaxed/simple;
+	bh=REJtSTBiF3law9afsKupJ+wkuKQclje8L+scMPhRT/o=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Qo8Gs6LKKayk6K1JOuhUIAzy3bokV5EJyqW2xAzBimWydZY/7ZEVFDxmSr4wg8faHYpbkW4fK0XbTttt9SP73rE0NmqrvE1DdaA1Vcpkd19MuyFSIIa9weg+g67iO4nZZmEDHWDtfXQM+wrPUybcH3aY/hxmNUu+5S1Kj/8tqDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.213.139])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1db43cc79;
+	Wed, 30 Jul 2025 15:00:30 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: w@1wt.eu
+Cc: alchark@gmail.com,
+	amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
+Date: Wed, 30 Jul 2025 15:00:26 +0800
+Message-Id: <20250730070026.60109-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250727170947.GA19379@1wt.eu>
+References: <20250727170947.GA19379@1wt.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <8ef3e1f4-4658-408f-8f46-ee9fc48d7a8d@kwiboo.se>
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a985a21eff403a2kunm7d0c82e722f2c0
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHRhOVhkYT05KGBpKSkMeSlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKSEJZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0tVSktLVU
+	tZBg++
 
-On Tue, Jul 29, 2025 at 10:30:35PM +0200, Jonas Karlman wrote:
-> > +
-> > +		/* Middle inset/recessed button,
-> > +		 * marked by clockwise arrow/circle
-> > +		 */
-> > +
-> > +		button-reset {
-> > +			label = "button:system:reset";
-> > +			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_RESTART>;
-> > +			debounce-interval = <50>;
-> 
-> Please order props alphabetically.
+Hi,
 
-Why the least important property - debounce-interval - would be first?
-This is not a readable style.
+> It's interesting to note that 816, 1008 and 1200 MHz result in a higher
+> frequency than configured, but upper ones result in slightly smaller
+> frequencies (~2%, might just be a measurement error), particularly for
+> the last one which is 6% lower.
 
-> 
-> > +		};
-> > +	};
-> > +
-> > +	gpio-leds {
-> > +		compatible = "gpio-leds";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&led_white_pin>, <&led_green_pin>,
-> > +			<&led_amber_pin>, <&led_blue_pin>;
-> 
-> And here pinctrl-names comes before the pins, this is my personal
-> preferred ordering for pinctrl-* props, I will settle for being
-> consistent.
+Please refer to the description of this series:
+https://lore.kernel.org/lkml/20250320100002.332720-1-amadeus@jmu.edu.cn/
 
-This is not the recommended order. Names always are supposed to follow
-the property with actual values.
+During the discussion, it was considered that the minimum voltage should
+be 875mV to maintain stability, so there is a deviation in the frequency
+between 816MHz and 1200MHz.
 
-Best regards,
-Krzysztof
+> I noticed a missing entry for 2 GHz in clk-rk3528.c so I've added it,
+> expecting that it would solve the problem:
+>
+> +       RK3036_PLL_RATE(2016000000, 1, 84, 1, 1, 1, 0),
+>
+> But it had no effect at all, the frequency remains limited to 1896 MHz.
+
+There is a comment in the bsp kernel:
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/drivers/clk/rockchip/clk-rk3528.c#L101
+
+Only 408MHz and 600MHz are generated by normal PLL, the rest of the
+CPU frequency is controlled by TF-A via SCMI.
+
+> Or maybe we could simply raise the voltage a little bit. The table above
+> shows that at 1.15V we're close to the configured OPP and still below the
+> stock voltage. This is not critical, but I find it a bit annoying that
+> enabling cpufreq results in lower performance than without!
+
+I also mentioned this in the cover letter. The actual frequency of 2016MHz
+requires 1.13V ~ 1.15V. Not sure if this is safe for the rk3528 SoC.
+
+Thanks,
+Chukun
+
+--
+2.25.1
+
 
 
