@@ -1,250 +1,180 @@
-Return-Path: <devicetree+bounces-200852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02524B16568
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 19:23:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A59B1658A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 19:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32BAE3A8005
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:22:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 902A9188CE79
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73F92E03E4;
-	Wed, 30 Jul 2025 17:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14EC2D3A80;
+	Wed, 30 Jul 2025 17:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0HqWsEpp"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="KfRAx0F9";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WHzSHeMP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52132DECD4;
-	Wed, 30 Jul 2025 17:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BA5EEBA;
+	Wed, 30 Jul 2025 17:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753896192; cv=none; b=CSnsYMxeaoN1/gQHQq8Ng3buhqRR3QZxmoqas4u0yH0ZjaRNAGex4AkzQOMcOTYoIt5V+P9HnUywOoXUvjQlVwWWq2wwqVOfhGsuNIeyGu8N7iqMwpeXKWKaCKkpmi2AOnA/ab9vd4Lkg4jhaL9iiTp4U2Oj03HysJQJUmIXwpM=
+	t=1753896731; cv=none; b=PAS8936pRMcULlxx7EUNa113+NoR9wDNfP2zX3B6Z79mw5unpJ4LgsgTtL2K2ZWgpa62wQ44ouSmosTA9K3AOzh3MoKmzRS8CZdS/eevfj3Jx3WjtupLE0O4dm0ECVIL93GzVbR1GQFd/WU7YAdtmp587H2MEFDaymt3ojApkoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753896192; c=relaxed/simple;
-	bh=fcQatGkLQTr442eBCsTf6Sj7AxhZRDvUiMo1ybgpxVM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GTDWsMrXN2aaXYGprQMnq/dSjmk12Z4EhC9R/2Zjzzzjkih/b9mmM2AIDr11cphsEt4fUdUEP/s4Gonma5ec3WWqK9GIYUYHxPetI4gelwxtFY6vnB8dDU5TMeQEPhQjFj7oHupRm/p4IJvQkIUB1vzTQALVkZecSB+Lr1B9Uwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0HqWsEpp; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
-	bh=/EAN/+etvQisP+dIWJJSEsjYmf1s9wXpYrOfMl11APA=; b=0HqWsEppoOWpFOag26xBQkwC0h
-	9cB6O7VI6uZs2lj+U7EPvtBBpWPci7cTokyzhOjmLlCMkX2NG/67FjDIhvqHHs3SarccmzNkGXObL
-	DRtYwJp3P8VFWnRXkAnGioKPJegZ1HAdkt9q/c39Qj46dlNpHyc1I57N2+/cch+/1Zj9kLg6VnhKl
-	0gmAUlollZkwIe6Tfii/j6FYeKeztKhp6mDntuG3CNMtnhpBz8Y6hTl8a8ojZiHLJIKuIm9Ielr/d
-	TqAU7Cs5gLU5UmdFalY+5/GNTvCVdQmpP/++Yi9P/ryrkH1BenYBr2N+Eyp3Jy/cXh80mR8z900HG
-	rJ1Q1clA==;
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uhAWC-0001Xq-Sj; Wed, 30 Jul 2025 19:23:08 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: lee@kernel.org,
-	srini@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] nvmem: add driver for the eeprom in qnap-mcu controllers
-Date: Wed, 30 Jul 2025 19:22:48 +0200
-Message-ID: <20250730172248.1875122-3-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250730172248.1875122-1-heiko@sntech.de>
-References: <20250730172248.1875122-1-heiko@sntech.de>
+	s=arc-20240116; t=1753896731; c=relaxed/simple;
+	bh=j83rhuadkSf764RQr36uK9h4N/5BeZkA5cSdiBfbJps=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=HIAZz3bMi4tXo99UItl4SXmzpK0fET/qYq3uaYwZ4i3x5mZdSRe8ocoSjM2Eta6cnl/WvmbbkXW9VMLBrjvc7af54EHiku0RLu+EPhWglq5oS/9/TIpaHHzYeJhUDImoQYtVvb8HYhV2P/zJMDKu6XTABEDafXrlk6uQ7F112UQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=KfRAx0F9; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WHzSHeMP; arc=none smtp.client-ip=202.12.124.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfout.stl.internal (Postfix) with ESMTP id 373B51D0072A;
+	Wed, 30 Jul 2025 13:32:07 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 30 Jul 2025 13:32:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1753896727;
+	 x=1753983127; bh=FrHvCL86NTqIeIXqqveuapZXFtcxgLyI0phgD1y5qhE=; b=
+	KfRAx0F9Xs75XSfLmAibLMEPU8y2lITs1ww//Ie9depgBY4VykMHI0haY1mA+j0h
+	Am+HMz3PJ9JQWKZPuw6HCCwdxEWak/lr2flm06ppnxslvhp0u+nmDgfS0yq/sxRm
+	rCE8WF9oZRQPWneIChsWjja4p1VbvwrcIISq02LGiJ2bcfGM/qG8iNPQbCUrFBJR
+	szViXaS408oFZ1d31/6ARhWDaI0yPA4YgO8BLZbanz65kazXIfl5ClDnGD4a5uJd
+	yOXbk72l52vw7O6R/6Hvz6EAeaQ83EMSDUcYGnWkykCx7diE5wod+pf1YH2VIK0B
+	g8nBr85TdPSvR5YbiyNE/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1753896727; x=
+	1753983127; bh=FrHvCL86NTqIeIXqqveuapZXFtcxgLyI0phgD1y5qhE=; b=W
+	HzSHeMPYLikGA2Hxm8f+dM7xH4xEZ3AHcnmKvMUOAfgt8v8h3rUUiPp0gAtngs83
+	Viu0sghkMwCFFSzdOuoMalyc86bgZuC3Fxy0QB1Fg/gFoPq4wIDviWx5hROez17B
+	BrNb5WlEdpam1zk31mSnvtk1NmSnw6DmukHC/8RcGIml+2l2iqTZH16kr0IySBvc
+	sjCbPL7PzBBbXB1FHTuLG5bvBrwj/9uOMQO1IrmuTAAGPKIlanIlMjQIpqvPSAl6
+	2ZccOmDBudTU1xe+D2EGyslVitmy2NYT1+DBr7wejYTuHQ7ZmGfT/Jl9l4u76EoA
+	YB46JMVf3TyCrobxxS8EQ==
+X-ME-Sender: <xms:FVeKaLWJXTQoddk-B5fMRxk0o_J9cvs4ZTAZdU8RGcZm-L6RtLORKg>
+    <xme:FVeKaDlcXoYmJGFEYcojfvDIp9b5qDKesd8Aj-WN3-07sqmeLAPF0oJlsJw6y5iOQ
+    CkQYDF2DIqitwrFD_g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdelkeehgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthhqredtredtjeenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpedvhfdvkeeuudevfffftefgvdevfedvleehvddvgeejvdefhedtgeegveehfeeljeen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedvledpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepshhouhhvihhkrdgthhgrkhhrrghvrghrthihsegrrhhmrdgtohhmpd
+    hrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtphht
+    thhopehmrghrkhdrrhhuthhlrghnugesrghrmhdrtghomhdprhgtphhtthhopehsuhguvg
+    gvphdrhhholhhlrgesrghrmhdrtghomhdprhgtphhtthhopehflhhorhhirghnrdhfrghi
+    nhgvlhhlihessghrohgruggtohhmrdgtohhmpdhrtghpthhtoheptghrohhsqdhqtghomh
+    dqughtshdqfigrthgthhgvrhhssegthhhrohhmihhumhdrohhrghdprhgtphhtthhopehs
+    figsohihugestghhrhhomhhiuhhmrdhorhhgpdhrtghpthhtoheprghnuggvrhhsshhonh
+    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdr
+    ohhrgh
+X-ME-Proxy: <xmx:FVeKaDuAfdIO_iGt1QPOYtiwfGQ-pAv9670yxyCWmxR5LpX6fMQi5Q>
+    <xmx:FVeKaMLKze5sQiDoY9NlwDFYigiF2DPgevfMeiwFCGkEWw8Mgi2haw>
+    <xmx:FVeKaMk2QP5I7zDxaw21V4IKd_FWf-rl00_CoBA9iwguB8Qv6l0LwA>
+    <xmx:FVeKaDksrpwIemRS9oMC5PPeu_Wnnsld29fhXaiezuRN1sr67kWQ9A>
+    <xmx:F1eKaHi9YhMXWL0IpIiIb0TWX_M_HJQxaNyT072MS32My-VY2-YiwnGM>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 93DAA700068; Wed, 30 Jul 2025 13:32:05 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-ThreadId: Tc37f4eafbf89ea7c
+Date: Wed, 30 Jul 2025 19:31:44 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ "Shivendra Pratap" <shivendra.pratap@oss.qualcomm.com>,
+ "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+ "Bjorn Andersson" <andersson@kernel.org>,
+ "Sebastian Reichel" <sre@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Sudeep Holla" <sudeep.holla@arm.com>,
+ "Souvik Chakravarty" <Souvik.Chakravarty@arm.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Andy Yan" <andy.yan@rock-chips.com>,
+ "Mark Rutland" <mark.rutland@arm.com>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, "Vinod Koul" <vkoul@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Florian Fainelli" <florian.fainelli@broadcom.com>
+Cc: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>,
+ "Mukesh Ojha" <mukesh.ojha@oss.qualcomm.com>,
+ "Stephen Boyd" <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ "Elliot Berman" <quic_eberman@quicinc.com>,
+ "Srinivas Kandagatla" <srini@kernel.org>
+Message-Id: <592902f1-549f-47c5-9ef4-b5c7ef2c9a47@app.fastmail.com>
+In-Reply-To: <34c52c88fd8fcbf68c453c1e94e4cd6294becff1.camel@linaro.org>
+References: 
+ <20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
+ <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
+ <b45b157593f1865a402f4098cdeafc298a294c6d.camel@linaro.org>
+ <b92c164f-c6df-a2c0-1416-67652a01b179@oss.qualcomm.com>
+ <34c52c88fd8fcbf68c453c1e94e4cd6294becff1.camel@linaro.org>
+Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific resets as
+ reboot-mode
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The qnap-mcu also has an eeprom connected to it, that contains some
-specific product-information like the mac addresses for the network
-interfaces.
+On Wed, Jul 30, 2025, at 17:23, Andr=C3=A9 Draszik wrote:
+> On Wed, 2025-07-30 at 18:33 +0530, Shivendra Pratap wrote:
+>> On 7/30/2025 2:14 PM, Andr=C3=A9 Draszik wrote:
 
-Add a nvmem driver for it.
+>> 1. For this, both commands will be defined in the psci->reboot-mode D=
+T Node with the arguments that
+>> =C2=A0=C2=A0 are defined and supported by the firmware.
+>> 2. Further, such requirement will now be taken care by the underlying=
+ firmware that supports
+>> =C2=A0=C2=A0 PSCI vendor-specific reset. When we call into firmware w=
+ith vendor specific reset arguments,
+>> =C2=A0=C2=A0 firmware will take care of the defined HW writes and war=
+m/cold reset as per the mapping of the
+>> =C2=A0=C2=A0 defined arguments. Firmware and the Linux kernel here ar=
+e in agreement for executing the
+>> =C2=A0=C2=A0 vendor-specific resets.
+>
+> So that means
+>
+>     echo warm > /sys/kernel/reboot/mode
+>     reboot bootloader
+>
+> and
+>
+>     echo cold > /sys/kernel/reboot/mode
+>     reboot bootloader
+>
+> can not be distinguished.
+>
+> The firmware can not know whether or not cold or warm reboot was
+> requested in this case by the user.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- drivers/mfd/qnap-mcu.c          |   1 +
- drivers/nvmem/Kconfig           |   9 +++
- drivers/nvmem/Makefile          |   2 +
- drivers/nvmem/qnap-mcu-eeprom.c | 110 ++++++++++++++++++++++++++++++++
- 4 files changed, 122 insertions(+)
- create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
+My feeling is that this is fine: the /sys/kernel/reboot/mode
+interface is not really used on anything other than 32-bit
+arm and x86 machines, and the way it is specific as
+cold/warm/hard/soft/gpio is not that useful.
 
-diff --git a/drivers/mfd/qnap-mcu.c b/drivers/mfd/qnap-mcu.c
-index 6ed020206e55..e942ead9e515 100644
---- a/drivers/mfd/qnap-mcu.c
-+++ b/drivers/mfd/qnap-mcu.c
-@@ -346,6 +346,7 @@ static const struct qnap_mcu_variant qnap_ts433_mcu = {
- };
- 
- static struct mfd_cell qnap_mcu_cells[] = {
-+	{ .name = "qnap-mcu-eeprom", },
- 	{ .name = "qnap-mcu-input", },
- 	{ .name = "qnap-mcu-leds", },
- 	{ .name = "qnap-mcu-hwmon", }
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index d370b2ad11e7..b3975488a5aa 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -265,6 +265,15 @@ config NVMEM_QCOM_SEC_QFPROM
-           This driver can also be built as a module. If so, the module will be called
-           nvmem_sec_qfprom.
- 
-+config NVMEM_QNAP_MCU_EEPROM
-+	tristate "QNAP MCU EEPROM Support"
-+	depends on MFD_QNAP_MCU
-+	help
-+	  Say y here to enable support for accessing the EEPROM attached to
-+	  QNAP MCU devices. This EEPROM contains additional runtime device
-+	  information, like MAC addresses for ethernet devices that do not
-+	  contain their own mac storage.
-+
- config NVMEM_RAVE_SP_EEPROM
- 	tristate "Rave SP EEPROM Support"
- 	depends on RAVE_SP_CORE
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 2021d59688db..21b3ae1c57e8 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -54,6 +54,8 @@ obj-$(CONFIG_NVMEM_QCOM_QFPROM)		+= nvmem_qfprom.o
- nvmem_qfprom-y				:= qfprom.o
- obj-$(CONFIG_NVMEM_QCOM_SEC_QFPROM)	+= nvmem_sec_qfprom.o
- nvmem_sec_qfprom-y			:= sec-qfprom.o
-+obj-$(CONFIG_NVMEM_QNAP_MCU_EEPROM)	+= nvmem-qnap-mcu-eeprom.o
-+nvmem-qnap-mcu-eeprom-y			:= qnap-mcu-eeprom.o
- obj-$(CONFIG_NVMEM_RAVE_SP_EEPROM)	+= nvmem-rave-sp-eeprom.o
- nvmem-rave-sp-eeprom-y			:= rave-sp-eeprom.o
- obj-$(CONFIG_NVMEM_RCAR_EFUSE)		+= nvmem-rcar-efuse.o
-diff --git a/drivers/nvmem/qnap-mcu-eeprom.c b/drivers/nvmem/qnap-mcu-eeprom.c
-new file mode 100644
-index 000000000000..fea1e7b91764
---- /dev/null
-+++ b/drivers/nvmem/qnap-mcu-eeprom.c
-@@ -0,0 +1,110 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * ee1004 - driver for DDR4 SPD EEPROMs
-+ *
-+ * Copyright (C) 2017-2019 Jean Delvare
-+ *
-+ * Based on the at24 driver:
-+ * Copyright (C) 2005-2007 David Brownell
-+ * Copyright (C) 2008 Wolfram Sang, Pengutronix
-+ */
-+
-+#include <linux/mfd/qnap-mcu.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+
-+/* Determined by trial and error until read anomalies appeared */
-+#define QNAP_MCU_EEPROM_SIZE		256
-+#define QNAP_MCU_EEPROM_BLOCK_SIZE	32
-+
-+static int qnap_mcu_eeprom_read_block(struct qnap_mcu *mcu, unsigned int offset,
-+				      void *val, size_t bytes)
-+{
-+	const u8 cmd[] = { 0xf7, 0xa1, offset, bytes };
-+	u8 *reply;
-+	int ret = 0;
-+
-+	reply = kzalloc(bytes + sizeof(cmd), GFP_KERNEL);
-+	if (!reply)
-+		return -ENOMEM;
-+
-+	ret = qnap_mcu_exec(mcu, cmd, sizeof(cmd), reply, bytes + sizeof(cmd));
-+	if (ret)
-+		goto out;
-+
-+	/* First bytes must mirror the sent command */
-+	if (memcmp(cmd, reply, sizeof(cmd))) {
-+		ret = -EIO;
-+		goto out;
-+	}
-+
-+	memcpy(val, reply + sizeof(cmd), bytes);
-+
-+out:
-+	kfree(reply);
-+	return ret;
-+}
-+
-+static int qnap_mcu_eeprom_read(void *priv, unsigned int offset, void *val, size_t bytes)
-+{
-+	struct qnap_mcu *mcu = priv;
-+	int pos = 0, ret;
-+	u8 *buf = val;
-+
-+	if (unlikely(!bytes))
-+		return 0;
-+
-+	while (bytes > 0) {
-+		size_t to_read = (bytes > QNAP_MCU_EEPROM_BLOCK_SIZE) ?
-+						QNAP_MCU_EEPROM_BLOCK_SIZE : bytes;
-+
-+		ret = qnap_mcu_eeprom_read_block(mcu, offset + pos, &buf[pos], to_read);
-+		if (ret < 0)
-+			return ret;
-+
-+		pos += to_read;
-+		bytes -= to_read;
-+	}
-+
-+	return 0;
-+}
-+
-+static int qnap_mcu_eeprom_probe(struct platform_device *pdev)
-+{
-+	struct qnap_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
-+	struct nvmem_config nvcfg = {};
-+	struct nvmem_device *ndev;
-+
-+	nvcfg.dev = &pdev->dev;
-+	nvcfg.of_node = pdev->dev.parent->of_node;
-+	nvcfg.name = dev_name(&pdev->dev);
-+	nvcfg.id = NVMEM_DEVID_NONE;
-+	nvcfg.owner = THIS_MODULE;
-+	nvcfg.type = NVMEM_TYPE_EEPROM;
-+	nvcfg.read_only = true;
-+	nvcfg.root_only = false;
-+	nvcfg.reg_read = qnap_mcu_eeprom_read;
-+	nvcfg.size = QNAP_MCU_EEPROM_SIZE,
-+	nvcfg.word_size = 1,
-+	nvcfg.stride = 1,
-+	nvcfg.priv = mcu,
-+
-+	ndev = devm_nvmem_register(&pdev->dev, &nvcfg);
-+	if (IS_ERR(ndev))
-+		return PTR_ERR(ndev);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver qnap_mcu_eeprom_driver = {
-+	.probe = qnap_mcu_eeprom_probe,
-+	.driver = {
-+		.name = "qnap-mcu-eeprom",
-+	},
-+};
-+module_platform_driver(qnap_mcu_eeprom_driver);
-+
-+MODULE_AUTHOR("Heiko Stuebner <heiko@sntech.de>");
-+MODULE_DESCRIPTION("QNAP MCU EEPROM driver");
-+MODULE_LICENSE("GPL");
--- 
-2.47.2
+I think for the purpose of the new code here, we should talk
+about reboot "commands" instead of "modes" to avoid confusing
+between the global "enum reboot_mode" variable and the
+firmware interface for reboot modes as listed in DT.
 
+    Arnd
 
