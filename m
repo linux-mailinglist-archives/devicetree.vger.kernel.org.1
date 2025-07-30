@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-200692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6035EB15B8F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:30:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BC6B15B90
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:30:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8916E548126
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:30:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0388A1898100
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 707CD273817;
-	Wed, 30 Jul 2025 09:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979FE269811;
+	Wed, 30 Jul 2025 09:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m8JqsNdp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UUHpzfkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61CA270ED4
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 09:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B47275865
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 09:30:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753867800; cv=none; b=qHGuhQrtbSLWvtVYpB3NUxeHW5WDlxA0N6kuNQPNya6hjT3z3YlPBAb6VJ2f+Rc7vCr3/jPV3MWSawF0ZmDtzBouh+1V8Mz0ccqZ4/KW9LEmrjWOIHgdkAqi+GD59wUSxSTvm9ZXKBZuRdDvi4l35475l9udqci8sMfIywggrSg=
+	t=1753867803; cv=none; b=LFebWohibs9nwJmBA19yeAjSUxuy9Bvp0ZFwMapnXYwcoieTy3xy/zX5JSuafOK6vsBHoooeqlNdSta3wMnL/JKmS8EGGGcp72kS5rDCNRd2a2NE17buO8Jl0ycBysTKDIXwyxR8p0zSmXdWiWsIPChmwImJiuog5JSaQwEhn5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753867800; c=relaxed/simple;
-	bh=fnvRP+SViXyCbSMzmsrKWpJn9OYHrE70YQgzPaCywJA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=WaH/6n6C1LHPxICACmJyrSKKnMy/ORbfczVfOGKpXTLjb38/q1OHx0oVo7Bz3i0Kr8rWxSqPaXBSpYPvIsmKQgBQWw5FX5gMAcirGkAQQ2DJwKLaiODJahovFBf2f6+oyBwZQz6lXosFXKklhr+zg7ItrG3mgqXLMQxHOEZMxo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m8JqsNdp; arc=none smtp.client-ip=209.85.215.181
+	s=arc-20240116; t=1753867803; c=relaxed/simple;
+	bh=5dgm8QJmb1y3lQDQkDPV0FaZsW33rfPUVwIw+yQAhQ0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ZS47DSm7eQdm1Yby6a6uCbKCmaR7UGPmrQ9osMPaFkfU9NurA2J3F1YX6vOs6HBJ3XDXZJuk0kMkavVDCD1dDy2pbdaETtWUoRksmBWE0w9sJq/b/l0zLcB+wGmLbOOSBIjlNFMmhpbUy6OWmK3hidRIsK6GKSh04Hd6pQ0vK0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UUHpzfkN; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-b31d489a76dso6672240a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 02:29:57 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-769a21bd4d5so1595161b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 02:30:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753867797; x=1754472597; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L0POlGKbEX0EvHYDWI2NptB2rFaQwWq9w/pBl23x/4k=;
-        b=m8JqsNdpmNjEiQDZlPQYPmq10IeFALBuw6Cqqxxd5JCEVEc5XxrGhS5RiJm5CNuot7
-         SJgEzx0BGd8lrtdO2/I75RCNyk5Su7htVs99clauIY5z7tg/+Mbp0Ml5WfHSqX+Dz7sM
-         aa6gd8ty80jHXsZ4it3QMuMzSdmRbcAogtBCpC+TtE8Wp4EPl4i43AwVO64N17XLFIGb
-         mpq/eRUjpHLefY/8DCiM/zkNzf5Mq5GfiQ1C4PTw71XwmJp953UGhTJeRTKhiYPaMwfT
-         4qfRAbH9ag0X7immokP4AtKtFlUZfKUJtkNaw5AHan1uMGbg/J6XxJgEHdMue6WCe80l
-         E1IQ==
+        d=linaro.org; s=google; t=1753867801; x=1754472601; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vu+M0/uIPWDSjTwSlyDMCHQ4E58hfAmwYKc2WXq227M=;
+        b=UUHpzfkN4C0CGSHOMRQi5+vwTxxEQdIzWwJ6U/iAaOBV//sqglORdxidYIodBMq8Wo
+         0x/OjlyBJpdy0DvOWNha24ebMxU9Y6q+Q4ot8B6j6fAoXCnIBVbZBx6wLFGV55JxrXwK
+         j//Xtc5QIQ01TG1FfdUTpNReaL5qC7vHAcWJ0GzY1QW3YOiCD/UgeIYZONy2TRZ3lhmt
+         U8dGSnExQJi1IhlfatYRZyZoGKcOdW51rIOOT1CPEWddE4RUXq4KNNX2H9crbDRHO18t
+         PfkIUW8k9c9LbPcHTKttwq3LZwaNrohJFL/dsY2333SS3AGFbtjF6r/s/AWgreeN/KKs
+         pJNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753867797; x=1754472597;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L0POlGKbEX0EvHYDWI2NptB2rFaQwWq9w/pBl23x/4k=;
-        b=aqn6RWk0hWKcjFsIakiY2yM4v4GGRRtdpXogmU5rcls1CcnTMfXamrLRpiWZzjpG9n
-         qMVNLL8Imxbr09YsQ7IOsU1TCPzgiYjPehoJYsOMFrlLYP8Ka87odpDTdxxnEJmQbBPm
-         h12aToxLx7pbB2/CTDZCix7BxJSKSsTiO5xX4YMkewSDnZbuT7EAmm5K5WQkyC8vY4ex
-         aZHEzvhCuWgV8nS6E6n5QBMh1BCUuHSoVW/oNNNnkgqxu/x0MYupLFr6gqwSSvwWI87S
-         LxUXHeUpVan0HuhPy6AYiRn/ekJFschUJVpJl/TJH7OfDwgseIptAnloxVnTIq+A+FUM
-         B57Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW5r2IzCSYm+4O34CZDzEmTHN9GjVHdTLSfy/u50BYMmB/dfEV60baFi2feQAUIQEJhoT8JZtG+Adgi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/6Afk1j/XifmzND5xvfnssMyvMvwtcj+cQnYfpzHRd9kHVqzD
-	E9h6ALftkGwX1Yn4DmxaRJ4KFnUUBRSTPbTvBTijwPBAg9yUeHDAUOP5gnvEW/s/6yw=
-X-Gm-Gg: ASbGncvFczafk/MAk/rus0jknUQsteedVNv5w2o3dFoffhAwVSKtc6l/iWwPH7TYB5A
-	W/XlCI/HRlKkZ7F7pkFC59Z3ySnuyxP2Kt+8NkwYgXGKkQMeCMG5lW3Ux4FFt8lT2NSRHB00tmL
-	FNU4gv5lq8g9qZ6UaaDLMNo97nl+AwETbZHWENdFgMR30+EsEQYpbt0PKzodzDg9v3nSgcwD5xw
-	VfCac+Z14atUTiLb6PtXsGLrmXlhWYe5rRGM9YgagRUtWOLkLmsfFsTWaC8NRWAoRqNEfPa41A/
-	lyJtdu53lgLXpiO5bWL9HOLxGCEA0TG605JwBUZNkBHVW/HrQ+fZo/FEvamNSmfTQEs0NLL82a7
-	+1Ux0ZaP9L25TZlcAvWfa4CQ=
-X-Google-Smtp-Source: AGHT+IF4uc5aZmco6mwIQFVn7igbRT3lJPHP6Dmmwr2upZelWkrrgq0JOAt0HEgC+nPLPHXlqWICLw==
-X-Received: by 2002:a17:90b:5103:b0:313:f6fa:5bb5 with SMTP id 98e67ed59e1d1-31f5de54a99mr4185193a91.18.1753867797096;
-        Wed, 30 Jul 2025 02:29:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1753867801; x=1754472601;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vu+M0/uIPWDSjTwSlyDMCHQ4E58hfAmwYKc2WXq227M=;
+        b=gX3LA1PO3pJ8CprwkC8IqkJjhtfS7uxwZNgABAx6+RtwOpha4mkLUpUUZxU31qOXTk
+         GuO4zuHXCPkpCTbWQgTILmUxZGScddOQQce8xAc8fwNVOWBlmYXlKHQtOhiKpm7xvya2
+         fB+wN+JUL/BgPsehgYQFu+opEMMiA/KcP/GnO0YKqKXc2xOM1rn7gI4nxyq7eAi7FDQo
+         KJOLXsarGmCptnCev7rGDb8k5yAhcFRsXGJQxyEG9Lhbyayk3ql9bufj8tE6st3xxelI
+         JtWbFkL9tdkWY08FWMPG637Faeq1ZTtfFZMPA1a6ZGfhH2Drt3mDnPxGlSnsAq/Wk1hR
+         iXXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ924FEF76K5B7LebY+xXwQ8Gsd3OJert9N2WHSnuOn6/+zgS5jryA/k2O5njCBLqRZwvFFx4NwgfY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXFfGkXV+i7QskjemZGXMfpC8fTvaTubeL2VzHr2pCYeXE7idD
+	cl5lVbdS7YJv4GDPVSM6r0rwST9Z0ooFlLigFQ74FnJzYgyL69QOtasgB/9s46I4ZiE=
+X-Gm-Gg: ASbGnctdOOcbjDx0Lz/UyvNDju98hzCjdd9Z4bGrT13b8Y81zH/d5cr0+FUuL8q9a/f
+	xA3nqi4CZnNiiMQMg2UAin88HqUegZM9SYD0S5GhG81b0Ypl3vSIvxA2kp7OuDOMrviTKnK6inr
+	CuiiMziYTt3ijU/MCSTXKvLeZEdGS8cWvwIYXbG43FLE/LGD+hpqy/1WBsfYk2zBd9tVFqLiOe1
+	7IceIntLfg99QcXVLxS9xtF6l5XrKG/fB8si72Fh7L2nl5o1ab4pk+FcYtGFq6F4bNrsnwzvUYP
+	/+OEO2NZj2lwmGP4M9YS4pg+xXw0Lsu+SqUzvZP/26fwonwFIwxC1AFcW6+ODF/CAq4yWt0CyMH
+	qgsMtwVVFdAUr/miaFBXT9fE=
+X-Google-Smtp-Source: AGHT+IEaqMhp9wt/vc4KBbRw+vOpiZc3CbcTUS+/uPYT7mnw3RyDbEwb+0HDQqI/sNr/Say0lfIuDQ==
+X-Received: by 2002:a17:903:4b08:b0:240:3dea:b269 with SMTP id d9443c01a7336-24096b658a9mr39237495ad.48.1753867801249;
+        Wed, 30 Jul 2025 02:30:01 -0700 (PDT)
 Received: from localhost ([122.172.85.40])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63ee4f42sm1477362a91.23.2025.07.30.02.29.55
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24009e53876sm74902245ad.2.2025.07.30.02.30.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 02:29:56 -0700 (PDT)
+        Wed, 30 Jul 2025 02:30:00 -0700 (PDT)
 From: Viresh Kumar <viresh.kumar@linaro.org>
 To: linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
-	Jason Wang <jasowang@redhat.com>,
-	"Michael S. Tsirkin" <mst@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Xuan Zhuo <xuanzhuo@linux.alibaba.com>
-Cc: Arnd Bergmann <arnd@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>,
+	Arnd Bergmann <arnd@kernel.org>,
 	Vincent Guittot <vincent.guittot@linaro.org>,
 	=?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
 	Bill Mills <bill.mills@linaro.org>,
+	"Michael S. Tsirkin" <mst@redhat.com>,
+	Jason Wang <jasowang@redhat.com>,
 	devicetree@vger.kernel.org,
 	virtualization@lists.linux.dev,
 	Sudeep Holla <sudeep.holla@arm.com>,
@@ -92,101 +92,148 @@ Cc: Arnd Bergmann <arnd@kernel.org>,
 	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: [RFC PATCH  0/6] virtio: Add support for Virtio message transport
-Date: Wed, 30 Jul 2025 14:59:29 +0530
-Message-Id: <cover.1753865268.git.viresh.kumar@linaro.org>
+Subject: [RFC PATCH  1/6] of: reserved-memory: Add reserved_mem_device_init()
+Date: Wed, 30 Jul 2025 14:59:30 +0530
+Message-Id: <88dbf7486b820bd713598f20efd51e327b9ff755.1753865268.git.viresh.kumar@linaro.org>
 X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
+In-Reply-To: <cover.1753865268.git.viresh.kumar@linaro.org>
+References: <cover.1753865268.git.viresh.kumar@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hello,
+This adds reserved_mem_device_init() helper to attach the specified
+reserved-memory region to the device.
 
-This RFC series introduces support for a new Virtio transport type:
-"virtio-msg", as proposed in [1]. Unlike existing transport types like
-virtio-mmio or virtio-pci, which rely on memory-mapped registers, virtio-msg
-implements transport operations via structured messages. Those messages can be
-transported through different mechanisms such as mailboxes, shared memory based
-FIFO or specific protocols such as FF-A on Arm.
+This is required to attach a reserved-memory region with a non-DT
+device.
 
-This series includes:
-- Core virtio-msg transport support.
-- Two message transport bus implementations:
-  - virtio-msg-ffa: based on ARM's Firmware Framework for Arm (FF-A).
-  - virtio-msg-loopback: a loopback device for testing and validation.
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+ drivers/of/of_reserved_mem.c    | 64 ++++++++++++++++++++-------------
+ include/linux/of_reserved_mem.h |  7 ++++
+ 2 files changed, 47 insertions(+), 24 deletions(-)
 
-The code is available here for reference: [2] and virtio-msg loopback and FF-A
-test setups are explained here: [3] and [4].
-
-This series is based on v6.16 and depends on commit [5].
-
-
-### Memory Mapping and Reserved Memory Usage
-
-The first two patches enhance the reserved-memory subsystem to support attaching
-struct device`s that do not originate from DT nodes — essential for virtual or
-dynamically discovered devices like the FF-A or loopback buses.
-
-This reserved-memory region enables:
-- Restricting all DMA-coherent and streaming DMA memory to a controlled range.
-- Allowing the remote endpoint to pre-map this memory, reducing runtime overhead.
-- Preventing unintentional data leaks, since memory is typically shared at page
-  granularity.
-- For the loopback bus, it restricts the portion of kernel memory that can be
-  mapped into userspace, improving safety.
-
-Device association with reserved-memory regions is based on DT node naming
-conventions, such as vmsglb@ or vmsgffa@, similar to the remoteproc framework’s
-approach.
-
-Feedback on the design, API, and approach is welcome.
-
---
-Viresh
-
-[1] https://lore.kernel.org/all/20250620224426.3923880-2-bill.mills@linaro.org/
-[2] git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/linux.git virtio/msg-rfc-v1
-[3] https://linaro.atlassian.net/wiki/spaces/HVAC/pages/30104092673
-[4] https://linaro.atlassian.net/wiki/spaces/HVAC/pages/29657792513
-[5] From linux-next: 5be53630b4f0 virtio-mmio: Remove virtqueue list from mmio device
-
-
-Viresh Kumar (6):
-  of: reserved-memory: Add reserved_mem_device_init()
-  of: reserved-memory: Add of_reserved_mem_lookup_by_name
-  virtio: Add support for virtio-msg transport
-  virtio-msg: Add optional userspace interface for message I/O
-  virtio-msg: Add support for FF-A (Firmware Framework for Arm) bus
-  virtio-msg: Add support for loopback bus
-
- MAINTAINERS                          |   7 +
- drivers/of/of_reserved_mem.c         |  91 +++-
- drivers/virtio/Kconfig               |  34 ++
- drivers/virtio/Makefile              |   5 +
- drivers/virtio/virtio_msg.c          | 655 +++++++++++++++++++++++++++
- drivers/virtio/virtio_msg_ffa.c      | 505 +++++++++++++++++++++
- drivers/virtio/virtio_msg_internal.h |  88 ++++
- drivers/virtio/virtio_msg_loopback.c | 323 +++++++++++++
- drivers/virtio/virtio_msg_user.c     | 140 ++++++
- include/linux/of_reserved_mem.h      |  13 +
- include/uapi/linux/virtio_msg.h      | 213 +++++++++
- include/uapi/linux/virtio_msg_ffa.h  |  94 ++++
- include/uapi/linux/virtio_msg_lb.h   |  22 +
- 13 files changed, 2166 insertions(+), 24 deletions(-)
- create mode 100644 drivers/virtio/virtio_msg.c
- create mode 100644 drivers/virtio/virtio_msg_ffa.c
- create mode 100644 drivers/virtio/virtio_msg_internal.h
- create mode 100644 drivers/virtio/virtio_msg_loopback.c
- create mode 100644 drivers/virtio/virtio_msg_user.c
- create mode 100644 include/uapi/linux/virtio_msg.h
- create mode 100644 include/uapi/linux/virtio_msg_ffa.h
- create mode 100644 include/uapi/linux/virtio_msg_lb.h
-
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 77016c0cc296..e0a86c3fa656 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -606,6 +606,45 @@ struct rmem_assigned_device {
+ static LIST_HEAD(of_rmem_assigned_device_list);
+ static DEFINE_MUTEX(of_rmem_assigned_device_mutex);
+ 
++/**
++ * reserved_mem_device_init() - assign reserved memory region to given device
++ * @dev:	Pointer to the device to configure
++ * @rmem:	Pointer to the reserved memory region
++ *
++ * This function assigns the @rmem reserved memory region to the @dev device.
++ *
++ * Returns error code or zero on success.
++ */
++int reserved_mem_device_init(struct device *dev, struct reserved_mem *rmem)
++{
++	struct rmem_assigned_device *rd;
++	int ret;
++
++	if (!dev || !rmem || !rmem->ops || !rmem->ops->device_init)
++		return -EINVAL;
++
++	rd = kmalloc(sizeof(*rd), GFP_KERNEL);
++	if (!rd)
++		return -ENOMEM;
++
++	ret = rmem->ops->device_init(rmem, dev);
++	if (ret == 0) {
++		rd->dev = dev;
++		rd->rmem = rmem;
++
++		mutex_lock(&of_rmem_assigned_device_mutex);
++		list_add(&rd->list, &of_rmem_assigned_device_list);
++		mutex_unlock(&of_rmem_assigned_device_mutex);
++
++		dev_info(dev, "assigned reserved memory node %s\n", rmem->name);
++	} else {
++		kfree(rd);
++	}
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(reserved_mem_device_init);
++
+ /**
+  * of_reserved_mem_device_init_by_idx() - assign reserved memory region to
+  *					  given device
+@@ -624,10 +663,8 @@ static DEFINE_MUTEX(of_rmem_assigned_device_mutex);
+ int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 				       struct device_node *np, int idx)
+ {
+-	struct rmem_assigned_device *rd;
+ 	struct device_node *target;
+ 	struct reserved_mem *rmem;
+-	int ret;
+ 
+ 	if (!np || !dev)
+ 		return -EINVAL;
+@@ -644,28 +681,7 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 	rmem = of_reserved_mem_lookup(target);
+ 	of_node_put(target);
+ 
+-	if (!rmem || !rmem->ops || !rmem->ops->device_init)
+-		return -EINVAL;
+-
+-	rd = kmalloc(sizeof(struct rmem_assigned_device), GFP_KERNEL);
+-	if (!rd)
+-		return -ENOMEM;
+-
+-	ret = rmem->ops->device_init(rmem, dev);
+-	if (ret == 0) {
+-		rd->dev = dev;
+-		rd->rmem = rmem;
+-
+-		mutex_lock(&of_rmem_assigned_device_mutex);
+-		list_add(&rd->list, &of_rmem_assigned_device_list);
+-		mutex_unlock(&of_rmem_assigned_device_mutex);
+-
+-		dev_info(dev, "assigned reserved memory node %s\n", rmem->name);
+-	} else {
+-		kfree(rd);
+-	}
+-
+-	return ret;
++	return reserved_mem_device_init(dev, rmem);
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_device_init_by_idx);
+ 
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index f573423359f4..3933f1d39e9a 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -37,6 +37,7 @@ int of_reserved_mem_device_init_by_idx(struct device *dev,
+ int of_reserved_mem_device_init_by_name(struct device *dev,
+ 					struct device_node *np,
+ 					const char *name);
++int reserved_mem_device_init(struct device *dev, struct reserved_mem *rmem);
+ void of_reserved_mem_device_release(struct device *dev);
+ 
+ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np);
+@@ -64,6 +65,12 @@ static inline int of_reserved_mem_device_init_by_name(struct device *dev,
+ 	return -ENOSYS;
+ }
+ 
++static inline int reserved_mem_device_init(struct device *dev,
++					   struct reserved_mem *rmem)
++{
++	return -ENOSYS;
++}
++
+ static inline void of_reserved_mem_device_release(struct device *pdev) { }
+ 
+ static inline struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
 -- 
 2.31.1.272.g89b43f80a514
 
