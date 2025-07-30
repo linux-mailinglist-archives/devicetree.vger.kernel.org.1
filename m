@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-200678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A44FB15AEC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:51:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0DDB15AF4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:53:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B07818A6718
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:51:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 233F016C9EB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:53:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B02292912;
-	Wed, 30 Jul 2025 08:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D09291880;
+	Wed, 30 Jul 2025 08:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JK5ZiiVb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="A4eBIy1G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1EB3268FF1
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38BE12900BF
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753865464; cv=none; b=bcFtuHDYH3K+NxUmWdU9bSfnVI/I4nH3C9JXSvLA1Qi+TpB91Q5ec1L+cjMRXyY2h3LZc2cA7hU3tg5ORbIRJG0yU9aS6HSHzAiGf+g+NvsWTqR1UlEc9RG5WRTljyMXjmdBGjV2xmzuZ3X6XBlLckob0xqPUW6VS7MNJghBSvI=
+	t=1753865610; cv=none; b=dfjpZs6j3vvq5G1vr0ucI5fci8oNVkWApwqrMWi48gp4NOvGBJm/K6Ao/fc8lKYew2U84PgY7My1sKik7cUCB5i1oP9QaO+Xioy7WljM/IpxF59fYD7bkJ6vOWge55CP+sIMhgxmZ1Mj8aI8Zsaj/TmcTJ44DnFHXzB33C+QvgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753865464; c=relaxed/simple;
-	bh=cnm7gUWT4K1m1gorlL74OiveZaLuR7e6ktTKo3UnIag=;
+	s=arc-20240116; t=1753865610; c=relaxed/simple;
+	bh=LEGjQIX/OSS70e2pba18afB58fnFMkCFWqzgfCGcH2Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nXERM1kuiedAItLae3gVovBD2hhiFtHmU0nhpO6/eGVAJ+uq2tNyo6KXdqa1CqmjaG+PyRuCfLFRs4V9cFBoT3XGaiyE1iZ7q3SsEpiwCavwDj2nB4PMX2wviW6MtBQjqUBcjv05MoIbsmInHhpmz9PBvUL1bND/K1txgtzi2No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JK5ZiiVb; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=rWeh+12Wnu19ONiojiLqOWaGZTJpPcDSXPjtXNPgUzkkEcTCI8BCLgQoBJrpAL1PzbOD0/mhhQpS7nb5tE7kPFsqcZq43QWs70NmmRe6X3BIdIbXKKKhtKS4vZaUWGexhQ4UUATZF27gvwZjMU5f9suULu0iUIrpsuVY0ZxYA/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=A4eBIy1G; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U75Jqt012483
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:51:00 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U6WCoW017815
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:53:28 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZqmpfuwY68b4/PX6d4P+JQac1Qgro1GSUaG1n/KUCOk=; b=JK5ZiiVbE5EHAt31
-	HA2DlnVSzqrVmJpWqlunWTwbDZ+4bM+4nrehlWGdRQLdzEHxFEI/unm3QQY+H2Ud
-	VDQBCLzAXKmzWoudy9XZh6/lSrn27TWwJ0ipFYkViaKDS50OnplNZbEakMeX54A7
-	cRnRjwDpv979pEczKML9QiEDZvB5Kq9gho4WdCP3/jKtkBjJ+La8QuEeL3U32ys1
-	RgsbJoCNqaGtw5uZDLcQtVFFS6imA0Fvv74hA2F2PmFkfDxHZjGO7eiTVlx6obDT
-	X382ZMRZL0BZPXxblyzCFhlUS7I+o7lZ3gEKbpuc9Sm/Ojf8IQ0+OV647l0Kom35
-	H9fABQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484qda2yay-1
+	yry99kMMFqY8zCfj7lzYjkJIij1/JDYYNXnSDFUTCG0=; b=A4eBIy1GyrTNL8FR
+	HHew1H3isqDjCTSZtmeUW71Pfb+vXhZb14hPo2yiP6y/g+PreAftTE7fwR83tuPg
+	Y+fEQG3eA/Vm3fmXCJ4XEtE91oC5J3mim4FDKKN6bFTAKGg6TC9dO1SYJabrd3jH
+	TF8vY0vbIFnqJ6D4eZ9HhWSnqvAK+d5sc8lfPXMNxwgHAraCuOv8nzW1cx63jY3h
+	IOS/l65gkDY0Pc9Uh0rETLD/njU8X88t0CQSp9o//UadTiX+Fo0Lx1DN4mo2DFw+
+	YNmRprdQRRuogDuIglMIHWBSg8VQ6VLeXlvYMwjFaTx7JLbv8zdSqTZBSCXoxmSA
+	XpmR2Q==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484p1ak07v-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:51:00 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4abd7342386so16532141cf.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 01:51:00 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 08:53:27 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-74cf7913166so1200920b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 01:53:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753865460; x=1754470260;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZqmpfuwY68b4/PX6d4P+JQac1Qgro1GSUaG1n/KUCOk=;
-        b=mbO4Rq4Cz3FVx9H12gmVfIlrR9VKZxptdmzZI2vc0EprFfsdmhsC8ZAGNraJfKo9QD
-         gaRh6H3hhQSpbQW+GQjNhU1nPb3H5V09Ziw1tohEEPnZ02blpkol7D5Qqxo4Ae1LDVPi
-         KWKWwO1hFSPLilSp2ywmwLt2S+JhUMsL7C7lrWwhj2NohD2IYnYQCQGyZFLd7uKHYMmN
-         7tFsGmnc+sMnv1BbqWvofP5jExbVYMTCBYk7qlmafLXHi4VSFURNLVAB3C1RYQ275SJQ
-         JxJzwf/hBOXvfRVVEY88PHnPHPYlhfzOzmdUCCcTwe04oTBm1LPS1JEeTMa1gwk+MUjY
-         gUIg==
-X-Forwarded-Encrypted: i=1; AJvYcCUMLjNidjiWRcNb27LTX7KQM+1MCNsUoggCu5zPNabo2l0MyNUf9YH+GvRLFxvePMR7lmBxNpJGr00n@vger.kernel.org
-X-Gm-Message-State: AOJu0YzThm5oBgjIEwg9p0ELePIqfM2kPx0O/pkbDJJ9lNyLZZ1NWSa5
-	2MIghmsw2T6yHqBW3V+lI93A4GA6GCieCVcVaozkzRiDl0NJey1v83ukNf7HiltFPUlL8noy/Xr
-	CM129rZFlJ80jFwso0HBN+6fmgmLGqNaWL6MtEIga6PfZ8TrtMqcuzjWZ3ja9Tdzl
-X-Gm-Gg: ASbGncuW9eJr38pX2nDdlanqs5LlcvaEklNlF1nN783eOG7UW4LgxbsMRB+bbGcDZjR
-	AQipG02qDvZxXYE85TMlDD/HiCYjd/Q+F9BSKsTJQxApHELj2StbRaWQP3tMcFMpvhxBoATmLjY
-	i/6gtp++/3EuSBZF/k/ImEQkb67QI9TZYFOaxcYwq0+C24s5sOV4NijIMWUBvWUx0jAtSRD4bAg
-	b+DuAsOSeTxA25DXwb2PfPAsx188vBKqnFeKz0LSrRQbdHS5zNqzUfdUd9HtE8czPU159XORTjt
-	ILjqnmYU6a9RDHmUh+uZ3mA9C1JW5t4pSU1IUysfUrfbxNz7SVBAwWf5GvkljA2TyOL5sXAZTuZ
-	DjQLX3dok7v0+N5Q/lA==
-X-Received: by 2002:a05:622a:118c:b0:4ae:6b49:4d7c with SMTP id d75a77b69052e-4aedbc5f883mr18142601cf.12.1753865459569;
-        Wed, 30 Jul 2025 01:50:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGmvclCHzWAaYHfQI4bS0nUaGn564PqmzPDblDwtxwKNRM091Yd3gey/eoAYJa9b8OgyLa+xw==
-X-Received: by 2002:a05:622a:118c:b0:4ae:6b49:4d7c with SMTP id d75a77b69052e-4aedbc5f883mr18142451cf.12.1753865458877;
-        Wed, 30 Jul 2025 01:50:58 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af63589ff78sm716927666b.47.2025.07.30.01.50.57
+        d=1e100.net; s=20230601; t=1753865606; x=1754470406;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yry99kMMFqY8zCfj7lzYjkJIij1/JDYYNXnSDFUTCG0=;
+        b=GOYvUMMcXYGW6vJQzaP7yeeQ5xgqSFU6FiC2O8WN3+Z8N1WJNpBGIy02PzjjywUf7a
+         zpSRUfZKLcMSZmG516OcPAyb+V8x0tcBcUBk4qN3wcyq6aPJbCezo2Re5X8TRKZHrPg6
+         QrwhByeuSo7Zob+Y8Fp8ueeqm3DbxAYO+N4UYqWMDdV7eDigxO/uz2sd4iGsOj90r8cs
+         8rzIvOduZNHXdqpwjYcq/yx0nfrATt5FUDmxN8YcLleIIZbB586RNfkEk1S95alc0kv6
+         b5xWxTaE6lU4ypoOVnQ9y3Cl1bp1zV8XNBnN4BcMaJtXe2hhRF+FnP5uPTM0AyCBCn+p
+         yjww==
+X-Forwarded-Encrypted: i=1; AJvYcCXnir/Qz94nEMrUxKYKnb9FgBjmFpyMmbx1kJneniRZj/hvDocKRUpwcYCjLN+FzhLzeoxsJHi8/wOp@vger.kernel.org
+X-Gm-Message-State: AOJu0YywrISu4L7GUnwQy9NK1/ZvgV5XUI8i/W9YkroORmcNJL8G+AIg
+	mr31DFbzKMePtxguTzIhcKPydUV9O4huLOdrnsZ6+SqTw942BtzvMv6MQkath0CxkYHzCYmK7bv
+	8CkhEwtHYjkHgWtrmFTQ313DnL0aXgyqnxFcfkhtGRAemvu5kdcn+6cAqb1O7qeLX
+X-Gm-Gg: ASbGnct6YDFwlGDOdB4Zc9u7VMtC67k3zJqFhQmw9SmhN+yHQONFrhklygTz4Rx5xYD
+	H5vYGB8OxsS8M1e2lWSonpS3pqnQszqGemMeUEE7pTxrLUTqPviBCA6A7JhP4SPFXpj9/CthUhr
+	kQnpF3iKlhgQC4gheKeew8FboxV1EqnZ/stJKfjIknJy6QOu4MjRrFHAskgVurAeZGK3+kJVemh
+	reHhLggp9sXrlCMiaLreahkZa824fpxZy+eLcqBV7HW865aXsREc2X8c3WbZlObj3+g7xDdtJm+
+	SVSdIXVTB5HfbmazpGmX8LkwiOl78ltbJO9G4b7zu6uafcywR1VWWRyAHCGb/t9OQeMlvn/UcQq
+	ikU1jzF5+/V/Zkqkz73wRmuu9wfQjiQ==
+X-Received: by 2002:a05:6a00:3a15:b0:736:fefa:b579 with SMTP id d2e1a72fcca58-76ab331d67emr1785815b3a.7.1753865606429;
+        Wed, 30 Jul 2025 01:53:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE1lcGCmyjgrElcbydcxH4piKCVTBp09W5mqd3uW9/dBMAgGC4DCe3OpUMuk8Rvd0cylpoWZg==
+X-Received: by 2002:a05:6a00:3a15:b0:736:fefa:b579 with SMTP id d2e1a72fcca58-76ab331d67emr1785793b3a.7.1753865605877;
+        Wed, 30 Jul 2025 01:53:25 -0700 (PDT)
+Received: from [10.133.33.112] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76b210e4f94sm1072225b3a.36.2025.07.30.01.53.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Jul 2025 01:50:58 -0700 (PDT)
-Message-ID: <cc139316-03da-41e9-8bf0-f792bfdf5bb3@oss.qualcomm.com>
-Date: Wed, 30 Jul 2025 10:50:56 +0200
+        Wed, 30 Jul 2025 01:53:25 -0700 (PDT)
+Message-ID: <e5a3f05f-9775-4e3d-ae7d-ebbca14b4df5@oss.qualcomm.com>
+Date: Wed, 30 Jul 2025 16:53:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,257 +90,216 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/4] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
- device tree
-To: jens.glathe@oldschoolsolutions.biz,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 02/13] dt-bindings: phy: Add binding for QCS615
+ standalone QMP DP PHY
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20250701-tb16-dt-v9-0-7d9e280837b5@oldschoolsolutions.biz>
- <20250701-tb16-dt-v9-4-7d9e280837b5@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250701-tb16-dt-v9-4-7d9e280837b5@oldschoolsolutions.biz>
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        konrad.dybcio@oss.qualcomm.com, fange.zhang@oss.qualcomm.com,
+        quic_lliu6@quicinc.com, quic_yongmou@quicinc.com
+References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
+ <20250722-add-displayport-support-for-qcs615-platform-v2-2-42b4037171f8@oss.qualcomm.com>
+ <jemfu5sy7k4a2iar55im5bhyhxzlrwpftmpqmps3b2tco7r6a2@oodls7gi45yy>
+ <e673a3a3-6924-49db-9040-e34b82199a43@oss.qualcomm.com>
+ <w3rwao5wbmstdyics6qhp7beulbbp5ludqkwpfsmevgqmzz3d6@u2e533zlitkr>
+From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+In-Reply-To: <w3rwao5wbmstdyics6qhp7beulbbp5ludqkwpfsmevgqmzz3d6@u2e533zlitkr>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Nz844BBbvX_TvgPVIrLrosyNbpMErkFr
-X-Authority-Analysis: v=2.4 cv=Pfv/hjhd c=1 sm=1 tr=0 ts=6889dcf4 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
- a=EUspDBNiAAAA:8 a=gxl3bz0cAAAA:8 a=8mZ0GnmNcxpObUtPvmUA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=kiRiLd-pWN9FGgpmzFdl:22
-X-Proofpoint-GUID: Nz844BBbvX_TvgPVIrLrosyNbpMErkFr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA2MCBTYWx0ZWRfX0rKkKNRzaJjh
- O8kyMPN5J+K8OjgUqehw0HQeIweqamZVJhWfGN0Cx8KphztL0izD4eD4yzNkfVtTQWKqRBEyRBk
- tsT5mHMyPvy5YNSZbqz5Sn8bz/hnZDKrFJhHDus8oYCDD8PrxqNaiqVuELrfq5KsCRn9AEq1TpI
- kQhndu/icFkdJFetW7tfOcsCdVDLW0pOwzKgIYgJGuyD+P3RLoKIsPyPUz7u7BLXnAZ08ISFwys
- UuSC+9LgC0DjKN0023BVY1u8KecWKlcxade5Ura0d8+uToLB9Tv3nFJJeVA43l85mVWMLqS6vNQ
- k6F/T05STle11PX1nu4zd8w04qh0W70po0Nct1fuX2EGn/HKFSAbzzSnXpujdQs9lvzADoze6xA
- 5V1MDbW4sO8pSnLsEbkqimbkLKzFqKVu+PKdRzE+KVpS/W4EEZJnexwgNg85dJ+lBHCDeLoM
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 1bynRTq9-7ntg8XHGNPZlp31-Pj6QYt1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA2MiBTYWx0ZWRfX+9cG8t4k/eLe
+ xIAe1fq+wIAbBuqEwbz66JO/7aM2ntSFE4ZQFdo6IuN7YWRfDLemcTnQm3eicXGmtJ2Dbit6MMG
+ PzzzVb3q0IvFVvJY1aLV19QgfarF0xkUvIte0VBIg4OHpWzW+/gBwHqlAFPKj5ovi7J/a1GA1Kd
+ rfOyIWvAEH0urGENqXdvVFtYzyOwAHOxJVVVzr2FqHry6J/u5FlIhkan+fIzonBJAoxFG++0Xen
+ WZz2dPN6G9M/OjK3hDeTz7VJUR9nXRu3+LoV8jBx6D6ayBTmZk885bjUUIimqqPsTNmIAJN17w+
+ PunBar3uYOw9f0kyRnsstxO8d/B0to+TsCsb8E6UtXe6Ho1Kahhiipm8R/aSbnUXNuA8DqLsuq3
+ /iDg1qeX031OsGeS9rKG+k8bF/c6zpVivAa2R8QhJxbCmZLyjLZzCUbtQZVdc6NpWEcLbsXA
+X-Proofpoint-GUID: 1bynRTq9-7ntg8XHGNPZlp31-Pj6QYt1
+X-Authority-Analysis: v=2.4 cv=KtNN2XWN c=1 sm=1 tr=0 ts=6889dd87 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=Oh2cFVv5AAAA:8 a=EUspDBNiAAAA:8
+ a=B85Fo_iQka-ta6S4ByUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22 a=7KeoIwV6GZqOttXkcoxL:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-30_03,2025-07-30_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0
- spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507300060
+ clxscore=1015 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ adultscore=0 mlxlogscore=999 bulkscore=0 spamscore=0 impostorscore=0
+ mlxscore=0 malwarescore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507300062
 
-On 7/1/25 7:02 PM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> Device tree for the Lenovo Thinkbook 16 G7 QOY
-> 
-> The Laptop is a Snapdragon X1 / X1 Plus (Purwa) based device [1].
-> 
-> Supported features:
-> 
-> - USB type-c and type-a ports
-> - Keyboard
-> - Touchpad (all that are described in the dsdt)
-> - Touchscreen (described in the dsdt, no known SKUss)
-> - Display including PWM backlight control
-> - PCIe devices
-> - nvme
-> - SDHC card reader
-> - ath12k WCN7850 Wifi and Bluetooth
-> - ADSP and CDSP
-> - GPIO keys (Lid switch)
-> - Sound via internal speakers / DMIC / USB / headphone jack
-> - DP Altmode with 2 lanes (as all of these still do)
-> - Integrated fingerprint reader (FPC)
-> - Integrated UVC camera
-> - X1-45 GPU
-> 
-> Not supported yet:
-> 
-> - HDMI port.
-> - EC and some fn hotkeys.
-> 
-> Limited support yet:
-> 
-> - SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
-> the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
-> but not UHS-I (SD104) and UHS-II.
-> 
-> This work was done without any schematics or non-public knowledge of the device.
-> So, it is based on the existing x1e device trees, dsdt analysis, using HWInfo
-> ARM64, and pure guesswork. It has been confirmed, however, that the device really
-> has 4 NXP PTN3222 eUSB2 repeaters, one of which doesn't have a reset GPIO (eusb5
-> @43).
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> Co-developed by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |    2 +
->  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |    2 +-
->  .../boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 1657 ++++++++++++++++++++
->  3 files changed, 1660 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 4bfa926b6a0850c3c459bcba28129c559d50a7cf..6b1d71daff5a778237c5e3706aaea8e29dafa001 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -333,3 +333,5 @@ x1p42100-asus-zenbook-a14-el2-dtbs	:= x1p42100-asus-zenbook-a14.dtb x1-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-asus-zenbook-a14.dtb x1p42100-asus-zenbook-a14-el2.dtb
->  x1p42100-crd-el2-dtbs	:= x1p42100-crd.dtb x1-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-crd.dtb x1p42100-crd-el2.dtb
-> +x1p42100-lenovo-thinkbook-16-el2-dtbs	:= x1p42100-lenovo-thinkbook-16.dtb x1-el2.dtbo
-> +dtb-$(CONFIG_ARCH_QCOM)	+= x1p42100-lenovo-thinkbook-16.dtb x1p42100-lenovo-thinkbook-16-el2.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> index e3888bc143a0aaae23c92d400d48ea94423e0366..378635f7cb0bfe37cf10644a16bd8b3cca447f3c 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> @@ -170,7 +170,7 @@ trip1 {
->  			};
->  		};
->  
-> -		pm8010-thermal {
-> +		pm8010_thermal: pm8010-thermal {
 
-Let's rebase on:
+On 7/22/2025 8:41 PM, Dmitry Baryshkov wrote:
+> On Tue, Jul 22, 2025 at 08:05:06PM +0800, Xiangxu Yin wrote:
+>> On 7/22/2025 4:38 PM, Dmitry Baryshkov wrote:
+>>> On Tue, Jul 22, 2025 at 03:22:03PM +0800, Xiangxu Yin wrote:
+>>>> Introduce device tree binding documentation for the Qualcomm QMP DP PHY
+>>>> on QCS615 SoCs. This PHY supports DisplayPort functionality and is
+>>>> designed to operate independently from the USB3 PHY.
+>>>>
+>>>> Unlike combo PHYs found on other platforms, the QCS615 DP PHY is
+>>>> standalone and does not support USB/DP multiplexing. The binding
+>>>> describes the required clocks, resets, TCSR configuration, and clock/PHY
+>>>> cells for proper integration.
+>>> Simply put: no, this is not correct. Even if you go to the SM6150 block
+>>> diagram, it points out that DP uses the USB3 PHY, not a separate DP PHY.
+>>>
+>>> I thought that we have discussed it beforehand.
+>>>
+>>> I can quote my comment from the previous thread:
+>>>
+>>>>> No. It means replacing extending existing entries with bigger reg and
+>>>>> #phy-cells = <1>. The driver must keep working with old node definitions
+>>>>> as is to ensure backwards compatibility. New nodes should make it
+>>>>> register two PHYs (USB3 and DP). On the driver side modify generic code
+>>>>> paths, all platforms supported by the driver should be able to support
+>>>>> USB3+DP combination.
+>>> Looking at the hardware memory maps:
+>>>
+>>> MSM8998: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+>>> SDM660: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+>>> QCM2290: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
+>>> SM6115: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
+>>>
+>>> Now:
+>>> SM6150: USB3 PHY regs at 0x88e6000
+>>>         USB3 PHY regs at 0x88e8000, DP PHY regs at 0x88e9000
+>>>
+>>> I do not know, why msm-4.14 didn't describe second USB3 PHY. Maybe you
+>>> can comment on it.
+>>>
+>>> But based on that list, the only special case that we need to handle is
+>>> the first USB3 PHY, which doesn't have a corresponding DP PHY block. But
+>>> it will be handled anyway by the code that implements support for the
+>>> existing DT entries. All other hardware blocks are combo USB+DP PHYs.
+>>>
+>>> Having all of that in mind, please, for v3 patchset implement USB+DP
+>>> support in the phy-qcom-qmp-usbc driver and add the following logic
+>>> that also was requested in v1 review:
+>>>
+>>>>> Not quite. Both USB3 and DP drivers should be calling power_on / _off.
+>>>>> If USB3 is on, powering on DP PHY should fail. Vice versa, if DP is on,
+>>>>> powering on USB should fail.
+>>> I think our understanding might not be fully aligned. 
+> I did not write this. Please fix your mailer to quote messages properly.
+> As you are using Thunderbird, I'm not sure where the issue comes from.
+>
+> Also please fix it to wrap your responses somwhere logically.
+>
+>>> Perhaps this is because I didn’t accurately update the mutual exclusion relationships and test results for the different PHYs. 
+>>> Let me clarify my latest findings and explain why I believe these are separate PHYs that require mutual exclusion via TCSR.
+>>>
+>>> 1. About the TCSR DP_PHYMODE Registers
+>>>
+>>> MSM8998/SDM660:
+>>> 	Only one TCSR_USB3_DP_PHYMODE register at 0x1FCB248.
+>>> QCM2290/SM6115:
+>>> 	TCSR_USB3_0_DP_PHYMODE at 0x3CB248
+>>> 	TCSR_USB3_1_DP_PHYMODE at 0x3CB24C
+>>> SM6150:
+>>> 	TCSR_USB3_0_DP_PHYMODE at 0x1FCB248
+>>> 	TCSR_USB3_1_DP_PHYMODE at 0x1FCB24C
+> SM6150 has two different sets of output pins, so the first register
+> covers first set of SS lanes (which are routed to the documented SS
+> PHY), the second register covers the second set of SS lanes (which are
+> routed to the DP and secondary USB PHY).
+>
+> I can only assume that the same configuration was supposed to be
+> applicable to QCM2290 / SM6115, but was later removed / disabled, while
+> the registers were kept in the TCSR block.
+>
+>>> Even though MSM8998, SDM660, QCM2290, and SM6115 all have one USB3 PHY and one DP PHY, the TCSR DP_PHYMODE register configuration is different on each platform.
+>>>
+>>> Additionally, I found some interesting register documentation for QCM2290/SM6115:
+>>> 	TCSR_USB3_0_DP_PHYMODE: “In kamorta this one is for mobile usb. DP not supported.”
+>>> 	TCSR_USB3_1_DP_PHYMODE: “DP mode supported for Auto usb in kamorta.”
+>>> I think the reason for having two different TCSR registers is to allow both the USB3.0 and DP PHYs to be useds at the same time in certain product configurations.
+> Sure. One for the first PHY (USB), one for the second PHY (USB+DP).
+> If you check the memory map, you will find the second VLS CLAMP register
+> for the second USB PHY.
+>
+>>> 2. SM6150 Test Results
+>>> When TCSR_DP_PHYMODE_0 is switched to DP, the USB3 primary PHY cannot work, and the DP PHY is also not functional (possibly due to clock lack or other configuration mismatch with this TCSR setting).
+>>> When TCSR_DP_PHYMODE_1 is switched to DP, both the USB3 primary PHY and the DP PHY work normally.
+>>> I think "why msm-4.14 didn't describe second USB3 PHY", because TCSR_DP_PHYMODE_1 always works in DP mode.
+>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c
+> Here it still programs the TCSR register.
+>
+>>> Based on these info, I believe these are separate PHYs, and only the
+>>> TCSR DP_PHYMODE registers determine which USB3/DP PHYs are paired or
+>>> mutually exclusive. This is why I have maintained separate private
+>>> data for each PHY and implemented Power on mutex control via TCSR,
+>>> rather than using a qmp_combo-like structure.
+> Still, no. Check the block diagram of SM6150.
+>
+>>> Given the above, do you think we still need to force USB and DP to be strictly bound together like a combo PHY?
+> Yes.
 
-https://lore.kernel.org/linux-arm-msm/20250701183625.1968246-1-alex.vinarskis@gmail.com/
+I checked the related PHY series and block diagrams again.
 
-[...]
+PRI and SEC go to different nodes based on the SoC design, and there are two types of configurations: USB3-only and USB3+DP pairing.
 
-> +	/*
-> +	 * This is an odd one. The camera is physically behind the eusb9 repeater (confirmed) but
-> +	 * if it is placed below the usb_2_dwc3 node, it will be switched of after ~30 seconds.
-> +	 * The reason seems to be that the dwc3 driver does not probe for child nodes when in
-> +	 * host-only mode. But that's the default setting for the xhci controllers due to issues
-> +	 * when in OTG mode. https://lore.kernel.org/all/20241210111444.26240-1-johan+linaro@kernel.org/
-> +	 * The whole reason it is described in the dt (as an USB device) is its requirement for
-> +	 * that additional regulator, and to get power management to switch it off when suspended.
-> +	 * Defining it stand-alone does work.
-> +	 */
-> +	camera {
-> +		compatible = "usb5986,1198";
-> +
-> +		vdd-supply = <&vreg_cam_5p0>;
-> +	};
+Before proceed the v3 patchset, I’d like to double-confirm whether the following structure is what you expect:
 
-If the bindings checker is happy, I think we can keep it here for now..
+usb_qmpphy_1: phy@88e6000 {
+    compatible = "qcom,sm6150-qmp-usb3-prim-phy"; <== rename to PRIM
+    ...
+    qcom,tcsr-reg = <&tcsr 0xb244>, <&tcsr 0xb248>;
+    qcom,tcsr-names = "vls_clamp", "dp_phy_mode";
+    
+    #clock-cells = <1>;
+    #phy-cells = <1>;
+    ...
+};
 
-[...]
+usb_qmpphy_2: phy@88e8000 {
+    compatible = "qcom,sm6150-qmp-usb3dp-sec-phy"; <== SEC SS, use usb3dp to indicate DP capability
 
-> +		wcd-playback-dai-link {
-> +			link-name = "WCD Playback";
-> +
-> +			cpu {
-> +				sound-dai = <&q6apmbedai RX_CODEC_DMA_RX_0>;
-> +			};
-> +
-> +			codec {
+    reg = <0x0 0x088e8000 0x0 0x2000>; <== SS2 base address and offset define in driver config
 
-'co'dec < 'cp'u
+    clocks = <&gcc GCC_AHB2PHY_WEST_CLK>,
+            <&gcc GCC_USB3_SEC_CLKREF_CLK>; <== This SoC has no USB3.0 SEC SS clk
+    clock-names = "cfg_ahb",
+                "ref";
+    clock-output-names = "dp_phy_link_clk",
+                    "dp_phy_vco_div_clk";
+                    
+    resets = <&gcc GCC_USB3PHY_PHY_SEC_BCR >,
+         <&gcc GCC_USB3_DP_PHY_SEC_BCR>;
+    reset-names = "phy", "phy_phy";
 
-[...]
+    qcom,tcsr-reg = <&tcsr 0xbff0>, <&tcsr 0xb24c>;
+    qcom,tcsr-names = "vls_clamp", "dp_phy_mode"; <== added for backward compatibility with legacy configs that only had vls_clamp
 
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +
-> +	pinctrl-0 = <&qup_i2c2_data_clk>, <&tpad_default>, <&kybd_default>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	/* ELAN06FA */
-> +	touchpad@15 {
+    #clock-cells = <1>;
+    #phy-cells = <1>;
 
-5 touchpad variants is a lot. Does DSDT give any clues as to whether
-all of them are plausibly present on production hw?
+    status = "disabled";
+};
 
-[...]
-
-> +&mdss_dp0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss_dp1 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp1_out {
-> +	data-lanes = <0 1 2 3>;
-
-Does defining all 4 lanes not upset the driver without additional
-patches?
-
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss_dp2 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp2_out {
-> +	data-lanes = <0 1 2 3>;
-> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +};
-> +
-> +&mdss_dp2_phy {
-> +//	vdda-phy-supply = <&vreg_l3b>;
-> +// 	vdda-pll-supply = <&vreg_l6b>;
-
-The regulators are usecase-specialized, feel free to trust what
-is present on the CRD
-
-[...]
-
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +
-> +			mdss_dp3_out: endpoint {
-> +				data-lanes = <0 1 2 3>;
-> +				link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +
-> +				remote-endpoint = <&edp_panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-
-Please rebase on:
-
-https://lore.kernel.org/linux-arm-msm/20250724-move-edp-endpoints-v1-3-6ca569812838@oss.qualcomm.com/
-
-[...]
-
-> +&sdhc_2 {
-> +	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
-> +	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
-> +	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
-> +	pinctrl-names = "default", "sleep";
-> +	vmmc-supply = <&vreg_l9b_2p9>;
-> +	vqmmc-supply = <&vreg_l6b_1p8>;
-> +//	bus-width = <4>;
-> +//	no-sdio;
-> +//	no-mmc;
-
-Please either remove the '//' or remove the lines
-
-[...]
-
-> +&tlmm {
-> +	gpio-reserved-ranges = <34 2>, /* Unused */
-> +			       <72 2>, /* Secure EC I2C connection (?) */
-> +			       <238 1>; /* UFS Reset */
-
-Try removing the UFS reset block and see if the platform still
-boots, this turned out to be a false flag on CRD
-
-I'd also suggest removing voltage suffixes from regulator names (i.e.
-turn them to e.g. vreg_l6b).
-
-Konrad
+>
+>>>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+>>>> ---
+>>>>  .../bindings/phy/qcom,qcs615-qmp-dp-phy.yaml       | 111 +++++++++++++++++++++
+>>>>  1 file changed, 111 insertions(+)
+>>>>
 
