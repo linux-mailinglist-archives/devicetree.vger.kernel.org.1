@@ -1,174 +1,184 @@
-Return-Path: <devicetree+bounces-200819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5D3B161DE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:52:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D96B161EA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:54:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0B0C18C738C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:53:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3FB7172A95
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9EE2D879A;
-	Wed, 30 Jul 2025 13:52:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F15F2D9482;
+	Wed, 30 Jul 2025 13:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CL1axfhY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mwyGYuTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF612BD03B
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 13:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A22D8DDB;
+	Wed, 30 Jul 2025 13:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753883566; cv=none; b=I5iGA193rNGggpw3+EajkhCgLm1ni3JHHyt5kv050ultO+3s6uhPLtgjKjuv6/TCzFjgM90NNEJEz3fyQfUtwhjH0wbAEggQb8gni5JGm8siNXdSQlKSg0ttzZzBH7xxAgAFttop7mAlrNrhA+H0j6WTuk15hA5iRQIRBZUW9kk=
+	t=1753883607; cv=none; b=K0sHtEsyrkb0sjsGl9YesRAuP/8mnisoW7BTwdHCmmER+xJfL+9EUXJjLCDewJBJHvpZhGfYBqA0Jc9Tv2FL+iiHasyv4utWMPgfaLKabZ3aYZWX/neBPjXIjaMf76JRZc3ECzVh0fTdura/w2bfvtXy+4nYM9HsZ5fCt29BLkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753883566; c=relaxed/simple;
-	bh=n+/Al/hya7iKccfkk2/acBwTs2umvyAH+cTmAiASgng=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=REZLHlFLu+thvjg/Xlfysv0FQPMYoLjiGi8MhEYqNjZiyl66z7wxwqj9zKSjI5r+PAspAuqH/mtLjvfvkBB2DPYYTfnsFat0GmiFunW/GUqpKCqwWHB2O1eus88Kr3oTPDQsLcjdOy0ngKw8AaufCujycxN2/9bziar8K8ks1Sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CL1axfhY; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60789b450ceso12958766a12.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 06:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753883562; x=1754488362; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+rp5BOhOSI3hJlfQlyw0n/QrQz57EFsvEJK12JX37JM=;
-        b=CL1axfhYUp1p32DMTs16tlR8K9euMFnYh3Lyy0ktI66sxaftJLwnl4StwvpuK+dmB6
-         qj9me9NS/KdvKxvB6LjiDEo0OVy3iAem4nVF7i71v1pYm1iQaXggYrdcqWyeXoqLeUwA
-         dPWbrG7qTFssU1wA91c9oQ0ptr1DtaUk9nq6/DpNctscUhmdv7PUTFK+IDyI+hrBLujk
-         Cl4kxoxwrDk9tDCB48xUmX7JwG7TWCV0wUiiBidlP2uwhjgUL0IGrEWOnKDVZcHI0eAD
-         LhyB7CmIvxBPXuqisPYV+aue1/IFw38mEoEnrjyvq1P3pe/5UApI3JKssgEn9ez+fsGN
-         APPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753883562; x=1754488362;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+rp5BOhOSI3hJlfQlyw0n/QrQz57EFsvEJK12JX37JM=;
-        b=slWHqppxTUnvz/G8qnj1+WtXXaQEHk8l3y9B0aguqsh/AE6Vvg/VWiBioHJQkxxh+b
-         8nN9BEH+Geg6paEqzoOC3RAntL8RANnougWwAFYLjv0hbo9qxQfebQ9Xne32sTTg1gDE
-         L4QF4JLCI/bpjwHIUdHeeQJ8a4P2IgXf0bHq0U3QfYEkGzwgLY2phPJ5SYHx1Jiob7lm
-         lselJOPZphUWpwH6Q+ujPA/Syb52Ju/kvr0m0C3pQ89NEuF2h0S2gF/brNBt/fmfextM
-         VQaOQxWUWTP8XNmcKwZ/tuWjXHA4/DqXvZp4Ks6KgRl23mn3OLydA3SoDYAhOqc2JsLY
-         +Siw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuKwXivw7vCVDIvpq3YWfHTuPNsj89VXoxGTfFxQ064oIWP2ZBWwxTLzIZSn2/Q8e8D5QjY03x5n8t@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdr0y8h+CJhYyLP8JhD+ov1WhEyoMf6wIvooPGEmyJiCHJX7Ci
-	NhIo0YDfHfO831dEWahR4dr7pkWsr8OpSCh0zapC2uQhaFGcMcegvYS1oGFyv3qjWxc=
-X-Gm-Gg: ASbGnct4AX0Xpiei5wQ+S8dhMjia80TAdVnVy53Uz/BSr6Jifc5r0Ka6UBXvAu8KbbS
-	ouyaCL8QbO4+qRvukkPUpan+Yu6NC5yooSmDfMOnhF4ESyWwsExNHC55MJ4yCEEwVrPfl8HgxPR
-	PJGP+FUtiEZgOAOsNNPKqobcfgx1Tg/ACP6VdvhzrZevvFlynZNz+JY+Y8dtjGzJifFiDGszhew
-	hhuRdY3xYfl9Kw7EJNmxEAZg4+zVPeagDSZCH0ShS3GPJggwIECmZ0/W7E5yafkinMbGhFKVGGk
-	4U7YkAy7zlMxIwyi0/cmV8owUwClf4WgwamJp5hbXwFGTAJrhBRsD1GiKqW0WJv/tNlCcPuZG3z
-	GmerRJ1E/KiuA5gcZi3sO11jvVSM=
-X-Google-Smtp-Source: AGHT+IHmHFD7kf9axGR7OqSKqgBDA0mgn8z8jZ8b9IsKFZAES+c1F4OBGbCYGQRGpeMsepIGLtvF1g==
-X-Received: by 2002:a05:6402:40c5:b0:615:9b3c:5918 with SMTP id 4fb4d7f45d1cf-6159b3c5954mr1538590a12.1.1753883562203;
-        Wed, 30 Jul 2025 06:52:42 -0700 (PDT)
-Received: from localhost ([2001:4090:a244:83c4:a15:2832:36af:7a70])
-        by smtp.gmail.com with UTF8SMTPSA id 4fb4d7f45d1cf-6158ab9d0dbsm1108310a12.60.2025.07.30.06.52.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 06:52:41 -0700 (PDT)
+	s=arc-20240116; t=1753883607; c=relaxed/simple;
+	bh=stuy2rI58Vsc0PiqRzUo/vprvXkWOhvLV54M9TdCCp0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JBTSYaKM0ozSDr+ZlyYk5PJ0Qz/lyYUnpfjChzp0BMiR5HSmG4Rer9D2PrtSY4Rx4MazgI1IWbWiYUu/DgCcs3WAlgdMcop252FzBLbL6FsdLwCt9lECaehFGdqDAsafhYkqJ4Vp3omAszdrHBdxQa/VhuZXBoSKk9eK6f0qoJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mwyGYuTj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56UCbAWo006561;
+	Wed, 30 Jul 2025 13:53:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	krEHYvALcIr5L6u5+iHLkKXMi4mmcRlQVfkjxj3pvNc=; b=mwyGYuTj4PGqy940
+	pI/w8l+YapTE88rnvZzY17Je1eChVB/Zdd8J3vcpyc1DGPyfwolQec+jbsoA/Hvc
+	OaTlz9Z/tgSLU20JoW5mHuffzefRQDomdP4YxPntTzWDliR9w2a6InbAMFNgxEuW
+	4CFN8SZGdA/dEtCo7asPg9hqCcB1Q/0voiaToNwhxU4I77ythcG8Of/DcnmQGvH3
+	zEy90BvFtbdGtQTWK1kioSOgheI87J/vLhGaRJ9HOGnyG/aeLysCVw5oZLlEjDhB
+	THvTHoQo49jMIwBKvViDGOFQV4BlCnoimfM9z2iyBWU3eVcc4J/iVbjOaxIZLlHH
+	J421qA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 485v1xhc2r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Jul 2025 13:53:15 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56UDrFb7023656
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 30 Jul 2025 13:53:15 GMT
+Received: from [10.218.7.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 30 Jul
+ 2025 06:53:10 -0700
+Message-ID: <df8b3c85-d572-4cee-863b-35fe6a5ed9ff@quicinc.com>
+Date: Wed, 30 Jul 2025 19:23:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Wed, 30 Jul 2025 15:52:33 +0200
-Message-Id: <DBPFTXDNMIS5.1RCL30X7VN5MG@baylibre.com>
-To: "Michael Walle" <mwalle@kernel.org>, "Jon Cormier"
- <jcormier@criticallink.com>, "Jerome Neanne" <jneanne@baylibre.com>
-Cc: "Job Sava" <jsava@criticallink.com>, "Krzysztof Kozlowski"
- <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Julien Panis" <jpanis@baylibre.com>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-input@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: Add power-button option for TI
- TPS6594 PMIC
-From: "Markus Schneider-Pargmann" <msp@baylibre.com>
-X-Mailer: aerc 0.20.1
-References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com> <20250520-linux-stable-tps6594-pwrbutton-v1-1-0cc5c6e0415c@criticallink.com> <20250521-wandering-tested-porpoise-acbef7@kuoka> <CAKMwjwTP=xSsX3UuK02sKbXWaU7y-ErytNYCL_P0UveDytQW2A@mail.gmail.com> <20250529-wise-tremendous-stork-a7d091@kuoka> <CAKMwjwQOBE651A-5VVjwcv5TspO2eNZfgwWzMpTTWxhR3nGKUw@mail.gmail.com> <0fb4b411-1b27-43fc-8d48-e5220fc85478@kernel.org> <CAKMwjwSZEhXav2U-bd+JNyVDK3JdJoN1kJjnxpfKXBKsW2XxdQ@mail.gmail.com> <DBEDT0OKPYAC.EX6HDQCKUWIS@walle.cc> <CADL8D3bpVVrswNUvS5nSeQYuZbyPOfMoMFG_JrPSFb9YkNEKdg@mail.gmail.com> <DBHJ1S8MTSA2.35ZZDZFQGFNB1@kernel.org>
-In-Reply-To: <DBHJ1S8MTSA2.35ZZDZFQGFNB1@kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] dt-bindings: ufs: qcom: Split SC7280 and similar into
+ separate file
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar
+	<alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche
+	<bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Manivannan
+ Sadhasivam" <mani@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Andy
+ Gross" <agross@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Ram Kumar
+ Dwivedi" <quic_rdwivedi@quicinc.com>
+References: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
+Content-Language: en-US
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA5OSBTYWx0ZWRfXydAnmnJ2pSbP
+ +ehsQxfAiJLBtgMi0jfpm0+MVaIl8SshR3yPXcHxTA+jGQGa7f1kVxBt+TiupW1S+vHg9ulZ/oI
+ pVZOb8nFjPBTnaDubMhvgdQAI3XVbvl+0FfozuzIcdNTeX8TX6fNrQFdkkVLJfAXJep8ZoJBQ1r
+ MtV3GRRy8ftdkZmnZrf6C5ZMTCzhB1PegxVB4HSv+iafD503bYfwB4ktw+Nffi3SZK3cId4C4v9
+ Pn8sJSmHgKrKoWKtCbpOUiMi5ga8TpHmQepSZuK9PddCARnYDhGbgEW70Yai2OI07A5p4naEHLb
+ VH72/hsRBRduPg4oDxM/g56Q6vlUjqYwih858o0CIVLGU0qeZyvFkCNgRxz1FIJyY4GBL7zn1VB
+ DubPnm1yC6czb9CeZMg8HEMxv+kSJlXzY9dtj4VQfB9w8qZzOedamIdzodDlHAF7QXmS/q8s
+X-Authority-Analysis: v=2.4 cv=JKw7s9Kb c=1 sm=1 tr=0 ts=688a23cb cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=HodSQJYkpgkrawyL3x8A:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: ikEp6fss3AxCKMVGJYn3mxCMUe8sAJCY
+X-Proofpoint-GUID: ikEp6fss3AxCKMVGJYn3mxCMUe8sAJCY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-30_04,2025-07-30_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 mlxscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 clxscore=1011
+ mlxlogscore=999 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507300099
 
---166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
 
-I think my mail wasn't sent properly, so here we go again:
+On 7/30/2025 6:05 PM, Krzysztof Kozlowski wrote:
+> The binding for Qualcomm SoC UFS controllers grew and it will grow
+> further.  It already includes several conditionals, partially for
+> difference in handling encryption block (ICE, either as phandle or as IO
+> address space) but it will further grow for MCQ.
+> 
+> See also: lore.kernel.org/r/20250730082229.23475-1-quic_rdwivedi@quicinc.com
+> 
+> The question is whether SM8650 and SM8750 should have their own schemas,
+> but based on bindings above I think all devices here have MCQ?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-On Mon Jul 21, 2025 at 8:42 AM CEST, Michael Walle wrote:
-> [+ Jerome and Markus ]
->
-> Hi,
->
->> > > > Someone knowing the device should come with arguments whether
->> > > > other states for this are useful at all. Or not useful and then ar=
-gument
->> > > > that in commit msg for example.
->> > > The other states are not useful for the kernel. Only the push button
->> > > has a need for an interrupt handler. The other states the PMIC handl=
-es
->> > > on its own.
->> > >
->> > > What exactly do you want me to change?
->> >
->> > Because the driver isn't setting the configuration anyway, wouldn't
->> > it be possible to read the config bits (Register 0x3c, bits 7-6) to
->> > figure out whether the pin is configured as power-button instead of
->> > having this property?
->> >
->> > I mean, the correct config is likely stored in the NVM anyway, and
->> > reconfiguring it to another value seems unlikely.
->> Currently, the TPS MFD driver only loads the power button driver if
->> the flag is set.  We could put that discovery code in the MFD driver,
->> but what if the system designer doesn't want the power button driver?
->
-> The device tree is not for configuration. The designer can just
-> ignore the input event in that case.
->
->> I'm not sure auto detecting it makes sense.
->
-> Why?
->
->> We are basing this on the other TI PMIC drivers and how they are
->> configured. I'm not sure I want to reinvent the wheel, so to speak.
->
-> That was never a good reason. Maybe there was a reason for the
-> TPS65219. Markus? Jerome? I haven't found anything in the commit
-> messages or cover letters. Only that it is "optional". Not sure what
-> that means. According to the TPS65219 datasheet, that pin if not
-> used shall be configured as EN and be connected to VSYS.
 
-I don't think the TPS65219 has a config register to detect if the pin is
-a power-button that's why a devicetree description was necessary.
-Looking at it now, it should probably have been an enum for TPS65219. It
-is not relevant to any software but it is not describing the
-configuration fully.
+Hi Krzysztof,
 
-Best
-Markus
+If I understand correctly, you're splitting the YAML files based on MCQ 
+(Multi-Circular Queue) support:
 
---166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3
-Content-Type: application/pgp-signature; name="signature.asc"
+-qcom,sc7280-ufshc.yaml includes targets that support MCQ
+-qcom,ufs-common.yaml includes common properties
+-qcom,ufs.yaml includes targets that do not support MCQ
 
------BEGIN PGP SIGNATURE-----
 
-iIcEABYKAC8WIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaIojoREcbXNwQGJheWxp
-YnJlLmNvbQAKCRCFwVZpkBVKUwQ+AQCCSckOjQFmKhWjtgebU+FH8Kv6EqNOhk12
-kbOkJ/ZVqwEA3K1IyehD1qEqHEZwyCvmd2D9lIEd1pazKofQxtaTygo=
-=YrKw
------END PGP SIGNATURE-----
+In future, if a new property applies to both some MCQ and some
+non-MCQ targets, we would need to update both YAML files. In the current 
+implementation, we handle such cases using if-else conditions to include 
+the new property.
 
---166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3--
+For reference, only SM8650 and SM8750 currently support MCQ, though more 
+targets may be added later.
+
+Regarding the patch 
+lore.kernel.org/r/20250730082229.23475-1-quic_rdwivedi@quicinc.com, 
+instead of using two separate YAML files, we could use if-else 
+conditions to differentiate the reg and reg-name properties between MCQ 
+targets (SM8650 and SM8750) and non-MCQ targets (all others).
+
+Regards,
+Nitin
+
+
+
+> ---
+> Krzysztof Kozlowski (2):
+>        dt-bindings: ufs: qcom: Split common part to qcom,ufs-common.yaml
+>        dt-bindings: ufs: qcom: Split SC7280 and similar
+> 
+>   .../devicetree/bindings/ufs/qcom,sc7280-ufshc.yaml | 149 +++++++++++++++++++
+>   .../devicetree/bindings/ufs/qcom,ufs-common.yaml   |  67 +++++++++
+>   .../devicetree/bindings/ufs/qcom,ufs.yaml          | 160 +++++----------------
+>   3 files changed, 251 insertions(+), 125 deletions(-)
+> ---
+> base-commit: d7af19298454ed155f5cf67201a70f5cf836c842
+> change-id: 20250730-dt-bindings-ufs-qcom-980795ebd0aa
+> 
+> Best regards,
+
 
