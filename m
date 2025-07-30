@@ -1,123 +1,174 @@
-Return-Path: <devicetree+bounces-200818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775AFB161AC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:40:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C5D3B161DE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:52:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D20F2189C744
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:40:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0B0C18C738C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53ADD2D640F;
-	Wed, 30 Jul 2025 13:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9EE2D879A;
+	Wed, 30 Jul 2025 13:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UYvRGx1H"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CL1axfhY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C01F29E0F8;
-	Wed, 30 Jul 2025 13:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF612BD03B
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 13:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753882798; cv=none; b=GSAVtROC5fE/LI07O2jkc92NgdGHJ9/SfRucKtHA1dE9fdo9jUZ/C4GINJS1D/F8oINFFL6RUNrb9JrUdnpllSJCYabzXve/ULvwpnRmQpcpTvDfv8Vbz4IQkayRavW9dMbyHDEFzD9KWoWaMKBxkLa293HknWSrD3hN06Dwo1U=
+	t=1753883566; cv=none; b=I5iGA193rNGggpw3+EajkhCgLm1ni3JHHyt5kv050ultO+3s6uhPLtgjKjuv6/TCzFjgM90NNEJEz3fyQfUtwhjH0wbAEggQb8gni5JGm8siNXdSQlKSg0ttzZzBH7xxAgAFttop7mAlrNrhA+H0j6WTuk15hA5iRQIRBZUW9kk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753882798; c=relaxed/simple;
-	bh=FvpLspMfizkDeBxIkg/xekgU7Uyfj0y7AN+Zs4GVRs0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kwy1M/XCsMGXr6b1Alz79xzSipLb0IDLvu6pUITLa5lsTMmp5KibnHXo0930VzlveW2+G0MwjnhV65qCBZK0TCotnY70rRgObyEyiX1y5Go47zgFYCLQc2lLIYdlCs+JyuPCtAcVntkXs6vrxNKWvN/8/UxtwgcIy1GuCdzsSp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYvRGx1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB4AC4CEFA;
-	Wed, 30 Jul 2025 13:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753882797;
-	bh=FvpLspMfizkDeBxIkg/xekgU7Uyfj0y7AN+Zs4GVRs0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UYvRGx1HOii8U2PLosDu5LSfDQtE9dwk+Aet8Pe1cQHnOVjMRGtlwwyZ53J2OmU1F
-	 qA9BM+treVzWycMpomTkJrWFSYbNfwzMlOt2Zr40zlawQzOL5zt0K3q7qt55+CXfHi
-	 OQahU+HDeqNVc1RS59Vk5p2cuvsLqj6277aeCrWUseUMcCYMMdlB78+fqnIbbRUKX8
-	 njaQ7NYU5vwvwUlV9GChZkN2sHg0Gn6mdW5b0G5seUusE7fL2BpKDCEYF7Ycm1Qsrc
-	 1Jp8oH6WEshdbhc4DIcwirth+9r5N9gIDRVxRfWgM5dopld/WDffT6dGaXnwyH88kk
-	 bBCZ6TgHsGOxQ==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ae360b6249fso1240737166b.1;
-        Wed, 30 Jul 2025 06:39:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWp1Xf01L/yHqOFpJtMXYuNj17sssAkNKbZGSZ43JcrdkUhMGhPKFIY2JTbPlaO+vPKpGmrgRfmTw1S@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywtjw1o0gFxEu78qIMXzdWJZIGQ0Dt94wb103zbpIa2k5JP42IQ
-	nyX1ZHAWGb0ktvStuxtzBd81tF86BUvmbXULnqltUxDY9ud3aUiWhJ59aAassf9lwyTJjNUxDVY
-	x4eiMdF+hm/H61VzYdVUWb3+934whaw==
-X-Google-Smtp-Source: AGHT+IGPoa94KZMO3CxT5BHxcNLbFX0ka6sBY/j36WnCxd4454EPYg+eCD7JAlMEsyTiIf2ckWZOq3V0iWduPco48Ro=
-X-Received: by 2002:a17:907:9410:b0:af8:f58f:89dc with SMTP id
- a640c23a62f3a-af8fd9ed6afmr432683766b.41.1753882796266; Wed, 30 Jul 2025
- 06:39:56 -0700 (PDT)
+	s=arc-20240116; t=1753883566; c=relaxed/simple;
+	bh=n+/Al/hya7iKccfkk2/acBwTs2umvyAH+cTmAiASgng=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=REZLHlFLu+thvjg/Xlfysv0FQPMYoLjiGi8MhEYqNjZiyl66z7wxwqj9zKSjI5r+PAspAuqH/mtLjvfvkBB2DPYYTfnsFat0GmiFunW/GUqpKCqwWHB2O1eus88Kr3oTPDQsLcjdOy0ngKw8AaufCujycxN2/9bziar8K8ks1Sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CL1axfhY; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60789b450ceso12958766a12.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 06:52:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753883562; x=1754488362; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+rp5BOhOSI3hJlfQlyw0n/QrQz57EFsvEJK12JX37JM=;
+        b=CL1axfhYUp1p32DMTs16tlR8K9euMFnYh3Lyy0ktI66sxaftJLwnl4StwvpuK+dmB6
+         qj9me9NS/KdvKxvB6LjiDEo0OVy3iAem4nVF7i71v1pYm1iQaXggYrdcqWyeXoqLeUwA
+         dPWbrG7qTFssU1wA91c9oQ0ptr1DtaUk9nq6/DpNctscUhmdv7PUTFK+IDyI+hrBLujk
+         Cl4kxoxwrDk9tDCB48xUmX7JwG7TWCV0wUiiBidlP2uwhjgUL0IGrEWOnKDVZcHI0eAD
+         LhyB7CmIvxBPXuqisPYV+aue1/IFw38mEoEnrjyvq1P3pe/5UApI3JKssgEn9ez+fsGN
+         APPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753883562; x=1754488362;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+rp5BOhOSI3hJlfQlyw0n/QrQz57EFsvEJK12JX37JM=;
+        b=slWHqppxTUnvz/G8qnj1+WtXXaQEHk8l3y9B0aguqsh/AE6Vvg/VWiBioHJQkxxh+b
+         8nN9BEH+Geg6paEqzoOC3RAntL8RANnougWwAFYLjv0hbo9qxQfebQ9Xne32sTTg1gDE
+         L4QF4JLCI/bpjwHIUdHeeQJ8a4P2IgXf0bHq0U3QfYEkGzwgLY2phPJ5SYHx1Jiob7lm
+         lselJOPZphUWpwH6Q+ujPA/Syb52Ju/kvr0m0C3pQ89NEuF2h0S2gF/brNBt/fmfextM
+         VQaOQxWUWTP8XNmcKwZ/tuWjXHA4/DqXvZp4Ks6KgRl23mn3OLydA3SoDYAhOqc2JsLY
+         +Siw==
+X-Forwarded-Encrypted: i=1; AJvYcCUuKwXivw7vCVDIvpq3YWfHTuPNsj89VXoxGTfFxQ064oIWP2ZBWwxTLzIZSn2/Q8e8D5QjY03x5n8t@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywdr0y8h+CJhYyLP8JhD+ov1WhEyoMf6wIvooPGEmyJiCHJX7Ci
+	NhIo0YDfHfO831dEWahR4dr7pkWsr8OpSCh0zapC2uQhaFGcMcegvYS1oGFyv3qjWxc=
+X-Gm-Gg: ASbGnct4AX0Xpiei5wQ+S8dhMjia80TAdVnVy53Uz/BSr6Jifc5r0Ka6UBXvAu8KbbS
+	ouyaCL8QbO4+qRvukkPUpan+Yu6NC5yooSmDfMOnhF4ESyWwsExNHC55MJ4yCEEwVrPfl8HgxPR
+	PJGP+FUtiEZgOAOsNNPKqobcfgx1Tg/ACP6VdvhzrZevvFlynZNz+JY+Y8dtjGzJifFiDGszhew
+	hhuRdY3xYfl9Kw7EJNmxEAZg4+zVPeagDSZCH0ShS3GPJggwIECmZ0/W7E5yafkinMbGhFKVGGk
+	4U7YkAy7zlMxIwyi0/cmV8owUwClf4WgwamJp5hbXwFGTAJrhBRsD1GiKqW0WJv/tNlCcPuZG3z
+	GmerRJ1E/KiuA5gcZi3sO11jvVSM=
+X-Google-Smtp-Source: AGHT+IHmHFD7kf9axGR7OqSKqgBDA0mgn8z8jZ8b9IsKFZAES+c1F4OBGbCYGQRGpeMsepIGLtvF1g==
+X-Received: by 2002:a05:6402:40c5:b0:615:9b3c:5918 with SMTP id 4fb4d7f45d1cf-6159b3c5954mr1538590a12.1.1753883562203;
+        Wed, 30 Jul 2025 06:52:42 -0700 (PDT)
+Received: from localhost ([2001:4090:a244:83c4:a15:2832:36af:7a70])
+        by smtp.gmail.com with UTF8SMTPSA id 4fb4d7f45d1cf-6158ab9d0dbsm1108310a12.60.2025.07.30.06.52.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jul 2025 06:52:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <cover.1753865268.git.viresh.kumar@linaro.org>
-In-Reply-To: <cover.1753865268.git.viresh.kumar@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 30 Jul 2025 08:39:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJn2XtvWaDBSqYPUe2ZVxE7t4EbAt8OPncbQaKjh1jY5w@mail.gmail.com>
-X-Gm-Features: Ac12FXxEywWNtZl5abfalLDGdegqDfPIjD9L5lbHvRJWQgO4YCOCdgR-mgr7rc8
-Message-ID: <CAL_JsqJn2XtvWaDBSqYPUe2ZVxE7t4EbAt8OPncbQaKjh1jY5w@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/6] virtio: Add support for Virtio message transport
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: linux-kernel@vger.kernel.org, =?UTF-8?Q?Eugenio_P=C3=A9rez?= <eperezma@redhat.com>, 
-	Jason Wang <jasowang@redhat.com>, "Michael S. Tsirkin" <mst@redhat.com>, 
-	Saravana Kannan <saravanak@google.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>, 
-	Arnd Bergmann <arnd@kernel.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	=?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>, 
-	Bill Mills <bill.mills@linaro.org>, devicetree@vger.kernel.org, 
-	virtualization@lists.linux.dev, Sudeep Holla <sudeep.holla@arm.com>, 
-	Bertrand Marquis <bertrand.marquis@arm.com>, "Edgar E . Iglesias" <edgar.iglesias@amd.com>, 
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Wed, 30 Jul 2025 15:52:33 +0200
+Message-Id: <DBPFTXDNMIS5.1RCL30X7VN5MG@baylibre.com>
+To: "Michael Walle" <mwalle@kernel.org>, "Jon Cormier"
+ <jcormier@criticallink.com>, "Jerome Neanne" <jneanne@baylibre.com>
+Cc: "Job Sava" <jsava@criticallink.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Julien Panis" <jpanis@baylibre.com>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-input@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: Add power-button option for TI
+ TPS6594 PMIC
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+X-Mailer: aerc 0.20.1
+References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com> <20250520-linux-stable-tps6594-pwrbutton-v1-1-0cc5c6e0415c@criticallink.com> <20250521-wandering-tested-porpoise-acbef7@kuoka> <CAKMwjwTP=xSsX3UuK02sKbXWaU7y-ErytNYCL_P0UveDytQW2A@mail.gmail.com> <20250529-wise-tremendous-stork-a7d091@kuoka> <CAKMwjwQOBE651A-5VVjwcv5TspO2eNZfgwWzMpTTWxhR3nGKUw@mail.gmail.com> <0fb4b411-1b27-43fc-8d48-e5220fc85478@kernel.org> <CAKMwjwSZEhXav2U-bd+JNyVDK3JdJoN1kJjnxpfKXBKsW2XxdQ@mail.gmail.com> <DBEDT0OKPYAC.EX6HDQCKUWIS@walle.cc> <CADL8D3bpVVrswNUvS5nSeQYuZbyPOfMoMFG_JrPSFb9YkNEKdg@mail.gmail.com> <DBHJ1S8MTSA2.35ZZDZFQGFNB1@kernel.org>
+In-Reply-To: <DBHJ1S8MTSA2.35ZZDZFQGFNB1@kernel.org>
+
+--166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On Wed, Jul 30, 2025 at 4:29=E2=80=AFAM Viresh Kumar <viresh.kumar@linaro.o=
-rg> wrote:
->
-> Hello,
->
-> This RFC series introduces support for a new Virtio transport type:
-> "virtio-msg", as proposed in [1]. Unlike existing transport types like
-> virtio-mmio or virtio-pci, which rely on memory-mapped registers, virtio-=
-msg
-> implements transport operations via structured messages. Those messages c=
-an be
-> transported through different mechanisms such as mailboxes, shared memory=
- based
-> FIFO or specific protocols such as FF-A on Arm.
->
-> This series includes:
-> - Core virtio-msg transport support.
-> - Two message transport bus implementations:
->   - virtio-msg-ffa: based on ARM's Firmware Framework for Arm (FF-A).
->   - virtio-msg-loopback: a loopback device for testing and validation.
->
-> The code is available here for reference: [2] and virtio-msg loopback and=
- FF-A
-> test setups are explained here: [3] and [4].
->
-> This series is based on v6.16 and depends on commit [5].
->
->
-> ### Memory Mapping and Reserved Memory Usage
->
-> The first two patches enhance the reserved-memory subsystem to support at=
-taching
-> struct device`s that do not originate from DT nodes =E2=80=94 essential f=
-or virtual or
-> dynamically discovered devices like the FF-A or loopback buses.
+Hi,
 
-We support creating devices from reserved-memory nodes. Just add a
-compatible which you should do anyways because node names are not
-supposed to be that specific or an ABI.
+I think my mail wasn't sent properly, so here we go again:
 
-Rob
+On Mon Jul 21, 2025 at 8:42 AM CEST, Michael Walle wrote:
+> [+ Jerome and Markus ]
+>
+> Hi,
+>
+>> > > > Someone knowing the device should come with arguments whether
+>> > > > other states for this are useful at all. Or not useful and then ar=
+gument
+>> > > > that in commit msg for example.
+>> > > The other states are not useful for the kernel. Only the push button
+>> > > has a need for an interrupt handler. The other states the PMIC handl=
+es
+>> > > on its own.
+>> > >
+>> > > What exactly do you want me to change?
+>> >
+>> > Because the driver isn't setting the configuration anyway, wouldn't
+>> > it be possible to read the config bits (Register 0x3c, bits 7-6) to
+>> > figure out whether the pin is configured as power-button instead of
+>> > having this property?
+>> >
+>> > I mean, the correct config is likely stored in the NVM anyway, and
+>> > reconfiguring it to another value seems unlikely.
+>> Currently, the TPS MFD driver only loads the power button driver if
+>> the flag is set.  We could put that discovery code in the MFD driver,
+>> but what if the system designer doesn't want the power button driver?
+>
+> The device tree is not for configuration. The designer can just
+> ignore the input event in that case.
+>
+>> I'm not sure auto detecting it makes sense.
+>
+> Why?
+>
+>> We are basing this on the other TI PMIC drivers and how they are
+>> configured. I'm not sure I want to reinvent the wheel, so to speak.
+>
+> That was never a good reason. Maybe there was a reason for the
+> TPS65219. Markus? Jerome? I haven't found anything in the commit
+> messages or cover letters. Only that it is "optional". Not sure what
+> that means. According to the TPS65219 datasheet, that pin if not
+> used shall be configured as EN and be connected to VSYS.
+
+I don't think the TPS65219 has a config register to detect if the pin is
+a power-button that's why a devicetree description was necessary.
+Looking at it now, it should probably have been an enum for TPS65219. It
+is not relevant to any software but it is not describing the
+configuration fully.
+
+Best
+Markus
+
+--166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIcEABYKAC8WIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaIojoREcbXNwQGJheWxp
+YnJlLmNvbQAKCRCFwVZpkBVKUwQ+AQCCSckOjQFmKhWjtgebU+FH8Kv6EqNOhk12
+kbOkJ/ZVqwEA3K1IyehD1qEqHEZwyCvmd2D9lIEd1pazKofQxtaTygo=
+=YrKw
+-----END PGP SIGNATURE-----
+
+--166989f9f9a66e3cb36fa7f8ad6c45ebf369d74034ef3f270c152a3ef9d3--
 
