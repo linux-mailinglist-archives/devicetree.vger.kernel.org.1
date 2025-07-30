@@ -1,58 +1,48 @@
-Return-Path: <devicetree+bounces-200777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DA5B15F35
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72C33B15F2F
 	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:21:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 421AB168404
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:21:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163CE3AA371
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5BA292B48;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78D280312;
 	Wed, 30 Jul 2025 11:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="SVMEXXGo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJ3HQnGj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD4C25761;
-	Wed, 30 Jul 2025 11:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753874482; cv=pass; b=N0XjJpekwUuX61FJbeXGrFkX6b7LiKTMZ1Q0unDDVLAJIg0c4OwbVcev3LGpa7sBNalOgGRyvd9VSPX1xNBPj3GZr3Rk/blazxLsdEYbdenPfWbxzIgacAjyrDv+uDe161FtEazsJltXGj29QzXck/woKi+RAKQYcRttncYmVkM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E24C156C6A;
+	Wed, 30 Jul 2025 11:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753874482; cv=none; b=aoRoes3+0rHlddYZUssT7e//331zPyrm7IUnr6oZqfoOddOdM73oXz4P/5NBNNzWV9w2USHa8TF8YANNkAxOV7sz2QnSO5TqGKHGfBVl8+5SxNr7zWG6sxV2/1habVUwIwb41h/3ujUxadFVAyCrtUY86/CT4nPvejKPe7fK0FU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1753874482; c=relaxed/simple;
-	bh=tbCibIy2cmD+3opvuXp1KpJuZJv+jtvN1A9fuYyZZxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjMsX/dahACmEJe+O6tij2h4I7alkllfObzcs6ahbHv3R7FoRt4lUzz8DLgNxj3AYFlVHG1yMpWbk9URYvcSIymToHFjQPjD0N+irn3LNOSSCweiPubwpysLVCQ/FuQgDDl26/flaVvT2P5jjqWqx60hWuKuqotxVMFCXRfAR7c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=SVMEXXGo; arc=pass smtp.client-ip=136.143.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1753874463; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=E8r8UTppfiLYDUKk0iKnk8G8/FN1FpODiWadA9FBObOHIUyt4+/SAyHoGwfo46HIndDDoFteDSt1WMnutOaImJhOmy+rQexDY3RzHypvTD6CR4BlGxZNGMEIgYrgO2F6rarDQveFgOiDgzhHzMXaWl2D8yADnrykjQeU7q9sx38=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753874463; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8Oz8gEKqQKUEqMecwoAV5BMdQ44ozr0nc/GN/7ECVkk=; 
-	b=oLz/jflwJpTuDqk1ujOH9BxpbpSMpgfmSH7gOuadElCB9kWs8VIybTG09k0yq+6VJs52fLk0fsVrBU+KEkH5e/2n6higSulN2zYW6lzyGSTrelZtiNiW4994efaEu/9KlrFKMjKaIguaCHe8iuXE7G93+PP0XDDYYb6rvGJRcG4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753874463;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=8Oz8gEKqQKUEqMecwoAV5BMdQ44ozr0nc/GN/7ECVkk=;
-	b=SVMEXXGoydW4JlJFuYIzvP8ubzv4KonrfST271YiBRYjVfVmTtVUBq/+vew0kFIs
-	whQiqqJAHtHrWijhCPSgNfM4ccbpugxt1vpMG9IXkf8BiNIb2LgN0PxkQ7judxfFcf3
-	qfIXHt/kQufJpoDDlvE4Hxt/2/QlizuLHJ/63xi4=
-Received: by mx.zohomail.com with SMTPS id 175387445597336.57491374987171;
-	Wed, 30 Jul 2025 04:20:55 -0700 (PDT)
-Message-ID: <122a51eb-21e1-4cb4-b42b-fcb7e01cf64e@zohomail.com>
-Date: Wed, 30 Jul 2025 19:20:50 +0800
+	bh=CtznNYmb1zga1PkVQcwqrmPcOrlSE8pwLtq10dWObas=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=uYTbsFyqoIfuZPIrvPQESWOGByb2u88MYcnLJuYHlt++x2zbprT/8rdUcevldz+aFXmTQyu4NJQSCgeISnnyPrizDgyrQm7BwqVOLsZ/y6N31VTZrAjioPInLUf9PdoPmbHomPcyk7Sa2K16tWrxueZxc7EACDNVuXylCwe2p7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJ3HQnGj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2FC0C4CEF6;
+	Wed, 30 Jul 2025 11:21:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753874482;
+	bh=CtznNYmb1zga1PkVQcwqrmPcOrlSE8pwLtq10dWObas=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=EJ3HQnGjQvZ4QcMP1x1Or3XPmH0rokD4/74ay4C546u8HqAva7yDZrCxq3WXEYX43
+	 yh6PT9tYGFRgsT61NZan/t3QUA/kJCsCf+fHrrsvetN+16LV1VhgNQAyoX5fRmOxI+
+	 YhPLsf6WUDBYviHjl0L31sYSQuWDe5/t+PNY6lZO8ZQWajaN+RSZhP0V2wQB0khggF
+	 4Jk9vXbPRd+iMla+wHw0lxb6QfxPyA2dzbEnd53cH42L1b4wEUCcEUTlYbx8e+oHxu
+	 kvuftNTQLLQWjPa5PxHOWl0BFCckVPnmAzsiyLgOkzm94oSUFIHCYFlvmdvSfPHZ75
+	 WrawrHTGZRDUg==
+Message-ID: <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
+Date: Wed, 30 Jul 2025 13:21:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,146 +50,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/3] dt-bindings: clock: Add bindings for Canaan K230
- clock controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, Samuel Holland <samuel.holland@sifive.com>,
- Troy Mitchell <TroyMitchell988@gmail.com>
-References: <20250730-b4-k230-clk-v7-0-c57d3bb593d3@zohomail.com>
- <20250730-b4-k230-clk-v7-1-c57d3bb593d3@zohomail.com>
- <20250730-cobalt-salmon-of-charisma-aea028@kuoka>
-From: Xukai Wang <kingxukai@zohomail.com>
+Subject: Re: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
+ support for optional 'spi_gclk' clock
+To: Manikandan Muralidharan <manikandan.m@microchip.com>, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, ryan.wanner@microchip.com,
+ tudor.ambarus@linaro.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250730101015.323964-1-manikandan.m@microchip.com>
+ <20250730101015.323964-2-manikandan.m@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250730-cobalt-salmon-of-charisma-aea028@kuoka>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250730101015.323964-2-manikandan.m@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Feedback-ID: rr0801122705379e726ccbd43f37e10cb6000094e63ed90cacde45cdbc9d713d3e27ea8ff19fee53717ce07d:zu080112272a964b8e78150ea41f6bca3600003d8e0fa10c7b72419c2cccc5a40a808f82a51dfb38244fb1a8:rf0801122c10cdd9d1176d37f07bf07f420000feac9293e220c0d9b6cd3327d2d7bf3d02e2af548a215b4f7b53805f1cdd:ZohoMail
-X-ZohoMailClient: External
 
+On 30/07/2025 12:10, Manikandan Muralidharan wrote:
+> Update the Atmel SPI DT binding to support an optional programmable
+> SPI generic clock 'spi_gclk', in addition to the required 'spi_clk'.
+> 
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+> ---
+> changes in v2:
+>  - Fixed mail threading
 
-On 2025/7/30 15:05, Krzysztof Kozlowski wrote:
-> On Wed, Jul 30, 2025 at 02:43:51AM +0800, Xukai Wang wrote:
->> This patch adds the Device Tree binding for the clock controller
->> on Canaan k230. The binding defines the clocks and the required
->> properties to configure them correctly.
->>
->> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
->> ---
->>  .../devicetree/bindings/clock/canaan,k230-clk.yaml |  61 ++++++
->>  include/dt-bindings/clock/canaan,k230-clk.h        | 223 +++++++++++++++++++++
->>  2 files changed, 284 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..f2aa509b12bce1a69679f6d7e2853273233266d5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/canaan,k230-clk.yaml
->> @@ -0,0 +1,61 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/canaan,k230-clk.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Canaan Kendryte K230 Clock
->> +
->> +maintainers:
->> +  - Xukai Wang <kingxukai@zohomail.com>
->> +
->> +description:
->> +  The Canaan K230 clock controller generates various clocks for SoC
->> +  peripherals. See include/dt-bindings/clock/canaan,k230-clk.h for
->> +  valid clock IDs.
->> +
->> +properties:
->> +  compatible:
->> +    const: canaan,k230-clk
->> +
->> +  reg:
->> +    items:
->> +      - description: PLL control registers
->> +      - description: Sysclk control registers
->> +
->> +  clocks:
->> +    minItems: 1
-> No, drop. Hardware is not flexible.
-OK.
->
->> +    items:
->> +      - description: Main external reference clock
->> +      - description:
->> +          External clock which used as the pulse input
->> +          for the timer to provide timing signals.
-> So what is the difference that you removed my Rb? Only this? I do not
-> see any differences (and don't tell me, you claim some random indice
-> numbers as change DT maintainer would need to re-review...)
-Sorry about that. Since canaan/k230-clk.yaml was updated with new
-clocks, I thought it might require a re-review. I didn't mean to cause
-unnecessary noise.
->
->> +
->> +  clock-names:
->> +    minItems: 1
-> No, drop. Hardware is not flexible.
-OK.
->
->> +    items:
->> +      - const: osc24m
->> +      - const: timer-pulse-in
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - '#clock-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clock-controller@91102000 {
->> +        compatible = "canaan,k230-clk";
->> +        reg = <0x91102000 0x40>,
->> +              <0x91100000 0x108>;
->> +        clocks = <&osc24m>;
->> +        clock-names = "osc24m";
-> Incomplete. Post complete hardware.
-OK.
->
->> +        #clock-cells = <1>;
->> +    };
->> diff --git a/include/dt-bindings/clock/canaan,k230-clk.h b/include/dt-bindings/clock/canaan,k230-clk.h
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..9eee9440a4f14583eac845b649e5685d623132e1
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/canaan,k230-clk.h
->> @@ -0,0 +1,223 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->> +/*
->> + * Kendryte Canaan K230 Clock Drivers
->> + *
->> + * Author: Xukai Wang <kingxukai@zohomail.com>
->> + */
->> +
->> +#ifndef __DT_BINDINGS_CANAAN_K230_CLOCK_H__
->> +#define __DT_BINDINGS_CANAAN_K230_CLOCK_H__
->> +
->> +/* Kendryte K230 SoC clock identifiers (arbitrary values) */
-> Drop comment, redundant and obvious.
-OK, I'll drop it.
->
-> Best regards,
-> Krzysztof
->
+You already received comments. Respond to them instead of sending again
+the same.
+
+Best regards,
+Krzysztof
 
