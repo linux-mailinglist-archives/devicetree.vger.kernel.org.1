@@ -1,167 +1,154 @@
-Return-Path: <devicetree+bounces-200821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7BD1B16257
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 16:11:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A05B16292
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 16:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE4447B52A4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:09:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B7FC16840E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B9E2D9491;
-	Wed, 30 Jul 2025 14:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC672D5C73;
+	Wed, 30 Jul 2025 14:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MuIUxDm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBFF277036;
-	Wed, 30 Jul 2025 14:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A042AE84
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 14:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753884656; cv=none; b=B5hXT4o+yd3Q5WnZmL7jlZp3HgrFASGiUrGYTBXuYysqnRcuDKB9QYKW9ObLMD+CyAnxZaRM71nL4TjQk8aEkqIo+4ZTrzygsfEql3AWaLGrSfcpHN2mRUxzOpoadssKG+qAwoE0f8c8GokBmYMhHakuzug7DHFHoTVUjblGLxg=
+	t=1753885309; cv=none; b=pW1sunwhzLoLN1voRkzq7jvn3oMtS3aZXCx94ydThh+z8s5yerj/9yQpBisng1znBo9KS9TnYmLfUf0EFeIxI/BzQl4veUNVZzgKhOD/FwTjVmFfMp7uqHirh4mqJwu55a11srIx8oO1TbnYSWbC/dHLnvmF5abHTUPvHn+dMrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753884656; c=relaxed/simple;
-	bh=5ws017ro45wbenQFBjg0rUTLyw2naT3DUbBsCdHxZ4E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qsUWVn3oiXVOKAmcXQUIjuPhMGo4EZhNiTgOOJSg4egjGUbjMj+C61+nP1j/GkBo/m80brc6JF914iu3tl1qFxsLKlR6JeXq9NlGlJnQ858to9uOF5C6rvKvz4rWz+Ko9aMOViLl3EbjZCbdbJQyNSfSI9qLSC6WTMCrjNP1Tds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-615da180061so3413277eaf.2;
-        Wed, 30 Jul 2025 07:10:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753884653; x=1754489453;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+	s=arc-20240116; t=1753885309; c=relaxed/simple;
+	bh=nnBI8oydSFQHa82yNQVammP8UkmvOduxcI1kLmqhFlQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=t4xfR/r8ZIIpFv4hFbjOEKLp+wM+FSHm2YgDlAqA6o1VLGdSymAsWhIXlPcyJxQrtOaNHOTDNt4N+8psWbKKOF3OF3EtDo6q4goVnUf5CsKtbYoKB6ACS0SUXkboLO7J8zh8LUiz7g5wWUdPLmbTNpWhCtsYvOr+vC4//sueEiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MuIUxDm5; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3b78d337dd9so1638638f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753885306; x=1754490106; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zx3AWQDFRk8H84CG7YO/9K305ZWz0jlqkXOZNrDtzb0=;
-        b=VXOfN5QuqsR6BQaT+bQiHSRW2VB6IIfqxnIUfa0XKDLEcM0rqWRn86ZqI8Nqqd809B
-         CbkTo5UAbuYi0I+l5CzHlMXYKfZLWXheiy8KEEHJGMn9lbkP5Pqd9ln1Uhc8as8Lpa3P
-         b23OSlQMyxUu5Bw3kRCTp6PDWGDTxd/rulUAwk7Ue19d7cJuL45F8f0nO7ZCgtbLFRlB
-         j9kaLTaoHJGBEhzCMbT0qzsP6MYleexQHhE0IGoNUBfttJ/y5fNeWAODWaIhr9pT8VvF
-         HxZL/q+7Vy+JA7G8tRP2WpQvNFfndlVrM7d7l56deFE3C4WyUdSsYPhjlf1VhVpErYby
-         wbxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU89Me7+i8d4y4eMPXTGLn5MLqMqnu6Ibq695OpDUkjSZ0P0TDN9RXKDI9SsFsPv6YiGdJMHQw8Wpzf@vger.kernel.org, AJvYcCWUV5KljEDwoFb88UEb8FejN71brXk7gTuojsbpdDtM+E1h4ZtCXshkqikWQV/dowqjcBS2eUAR9sHcoSxF5kncD5s=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmN7AYTpHrBVDplbNopQMaQZCHo0xomv5sVuF5/EVuprT6+cja
-	v6PH21LyWAsCo5RZu6ZMJhZLo28t9eJfEyNtHgzdut6DbOU4F+BWljLhxg5PjwuA
-X-Gm-Gg: ASbGncvapEuZhjoUvPplWjmhP4u6afEl6ut1+si64tzzZLe/bxwYlt3++tF1Yx/56jd
-	6HrnwmEyQjRmzGqLgTqPQkSm5agIAZCDIiazlq0pZIq5x36QoVqfa+RprW/pAfUml60MF6G3hi4
-	hVfs0qo9RskOL4UB9sJOtzuwnA+AT4YmiF5mmV2xV1ohXkRqB4wa1nao3sBNv47sRKEt2FwSyjK
-	VXO8ywoPbKDBRpAZM8k5Na14gG9GlSKCJyBk9Q8lXLrucyPj7NhrMq9eEn1brhauB016qWi66lq
-	nlFobsnegvBlgEyeFFhHIxaei8pDAQ2FEPtbYNWqGhwg9QcHrfrLTfViNC+pXYsUoOIOTBbrGtm
-	29+29HUabeSCBVYTp6Z0PAxTGgBUQ4uJJVmaV4ykwyVd+GXqa/mSCEtfV8KoqMhLmKsRqHzg=
-X-Google-Smtp-Source: AGHT+IF1HeIBjum9uEJTREj2nM8F+d2yLSGSA08mR9195zPwTbtmR0hFGASqESBz+Y/5OauT6tzCdg==
-X-Received: by 2002:a4a:e90b:0:b0:618:f6cb:3081 with SMTP id 006d021491bc7-6195d44690fmr2218677eaf.5.1753884653168;
-        Wed, 30 Jul 2025 07:10:53 -0700 (PDT)
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com. [209.85.161.48])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61965bf791asm146184eaf.6.2025.07.30.07.10.51
+        bh=wl6QWGFqf/eD1ZaqoeecpKgPsEHgZ0O15WgFpZqHFQ0=;
+        b=MuIUxDm5FT91t1NxqxsX6C0BoUQ9eQ8xb3rr5YyEmqMuKBiQH+Qa04qAUHdUuhzfmH
+         dIHmXYLx9S4Ekz7zkymdUp3KnCbs2vBTZnOHhb4J1cqe8xAha3wP2rWfn2tFpF9ZF4ta
+         6BBQJ+WC2iLZG+FNkSMa7DbBPh6+m0lS2kHzUmC1Vp63FAytvgrgN+3ZHWM/zUiOm9x9
+         KmLwy7iWytq+aoo5SeDPPosL1egKfyEYkJnk2652Y2mIFjW0pWlehAmhjKZZJAnToN2K
+         qVMMF5e1agSl+gtLBkwTxLEeWSE9+cyjvhO4lOrK4GqItQQtYEIEnKALmvH9OcnfVa/0
+         Q9mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753885306; x=1754490106;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=wl6QWGFqf/eD1ZaqoeecpKgPsEHgZ0O15WgFpZqHFQ0=;
+        b=ZOrq6Dh/s/C0FpB8kBpeogAf6ELCLomQ6gMJf4MAxsQDmNyCYDWaVJv9nC3/nfmyJV
+         NFIIwTSvbCjkXj56MFEAuhz7a5nyWKXhxFpdmaWeK9ZeZtQ7bo6ZtrxcLXkb9IG9OmO1
+         MnCSYQjfp4691MQfiakk2Ju21BJTXZZKLhd5R8uVZy2VAhK9wDeRWKLX75oY/OGMg/5U
+         Lh2ROVSMzbAA7FtnuP/KIIAe/EN0MuXD2lRVWOe03+xHG/rJIGmt6elwjh7ZLyfJ5E9v
+         xVLxwdPj8QDfcH/ZOOPmsbJll/PuY6qS5Mnh5R/HUEldlS9K9Go+GzVoFmHK6I2ww7mN
+         rMmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCx5PEJD//q4RIW4kts2R6imstN066siCrXna8AKzu/Lg8ODcz+rTz/Oo+E7UqfcbfWNy/vVe+jSt4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLqmYiDsv+Q9O+dr1CitEwwhYHf51lKzJX/b3629vBdw3QihpQ
+	Wxc5s0b4paJV0MLcXVw6CRyE9mG56GTNJaQO8O45T/FnLfp8XIR8v7BhFxkfAVMaXaY=
+X-Gm-Gg: ASbGncvCFc83F+yTuAYxX4kMlOoWAA7VrgE+d/7fM0a2skd+OBEqBla6thWbWzhfPAE
+	Xilt0BxYwGOx6mnmIVvd9F5p7BIRJ4BMeipANzd/JFV37m9x4nl0PGwZtkyvZMoZ9eRiueoxtx2
+	iApW3kypOjOYAr012WaepMR8wC/SeVDnX1MW/iJa//t10s9aMIKYnyXKzK3Hsf6WKWfBe1V6t1G
+	qYkaeqx2hkAU36rIU5GsYbKxWN8Sz59+syrAFj4JE2HOTyA8ttOT7Z7XUBlKBQLk68LWw4iY9KJ
+	+1Ac/3DGuTRQ6JBnRfJmz3wJzN09wjrOC9kXP5eh3pZdLh38vCTnF74ZDyF/FwYzC5N7ysIwuk6
+	5/Qu7bmcmjkx6gMBZ2TiMZB7YoiyoEC5FLcKp0P+fQAQWVxcDguHtDfzE54J8Y88htluLdxyxFI
+	Q=
+X-Google-Smtp-Source: AGHT+IFA5qYlm5bEqedLiGYvfasaSXHztZvhGiNg4RG0SNJu3GimE97Yr6qXPi7PsXOCZn+S+k7M/Q==
+X-Received: by 2002:a05:6000:26c6:b0:3b7:8362:fed8 with SMTP id ffacd0b85a97d-3b794fc19dfmr3050534f8f.2.1753885305784;
+        Wed, 30 Jul 2025 07:21:45 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5cc9:639a:a021:88ef? ([2a01:e0a:3d9:2080:5cc9:639a:a021:88ef])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b7883228dasm11024541f8f.50.2025.07.30.07.21.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Jul 2025 07:10:51 -0700 (PDT)
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-6159466e80aso3305294eaf.1;
-        Wed, 30 Jul 2025 07:10:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV9Ye7PUg21JWWXY8WNd+8yxlbTPeXlV2Al9Gtdu8LgQzEUyz3aNAvgJ19/H4RoVJFxp5zVOYn+8HvDlTIWnhgRvcA=@vger.kernel.org, AJvYcCXs1A07jTw8gvEgYeAnH3bvUsCQb5MdI5tLYw20KXky61bnHu2BylhghGeOVCSQIjc3eZniOqXvRu+J@vger.kernel.org
-X-Received: by 2002:a05:6808:1993:b0:40b:1588:e005 with SMTP id
- 5614622812f47-4319a080ae1mr2246245b6e.10.1753884650448; Wed, 30 Jul 2025
- 07:10:50 -0700 (PDT)
+        Wed, 30 Jul 2025 07:21:45 -0700 (PDT)
+Message-ID: <1a961543-76ff-4c22-a18b-b679923fbcca@linaro.org>
+Date: Wed, 30 Jul 2025 16:21:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250714-ivc-v4-0-534ea488c738@ideasonboard.com> <20250714-ivc-v4-2-534ea488c738@ideasonboard.com>
-In-Reply-To: <20250714-ivc-v4-2-534ea488c738@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 30 Jul 2025 16:10:38 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXhUiPiQsK_gWhb_B9mEhwM-KBg7WMzq3bPBpbzxxWRrw@mail.gmail.com>
-X-Gm-Features: Ac12FXzKd0wL5SegKSGvshG5HuXUQoVw7DmvJwil2vl7RK2bGFZ-8Y4uplsYAK4
-Message-ID: <CAMuHMdXhUiPiQsK_gWhb_B9mEhwM-KBg7WMzq3bPBpbzxxWRrw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] media: platform: Add Renesas Input Video Control
- block driver
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	jacopo.mondi@ideasonboard.com, biju.das.jz@bp.renesas.com, 
-	laurent.pinchart@ideasonboard.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v7 2/2 RESEND] drm: bridge: Add support for Solomon
+ SSD2825 RGB/DSI bridge
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Heidelberg <david@ixit.cz>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250730055424.6718-1-clamor95@gmail.com>
+ <20250730055424.6718-3-clamor95@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250730055424.6718-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Daniel,
+On 30/07/2025 07:54, Svyatoslav Ryhel wrote:
+> SSD2825 is a cost-effective MIPI Bridge Chip solution targeting mainly
+> smartphones. It can convert 24bit RGB interface into 4-lane MIPI-DSI
+> interface to drive display modules of up to 800 x 1366, while supporting
+> AMOLED, a-si LCD or LTPS panel technologies for smartphone applications.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>   drivers/gpu/drm/bridge/Kconfig   |  13 +
+>   drivers/gpu/drm/bridge/Makefile  |   1 +
+>   drivers/gpu/drm/bridge/ssd2825.c | 775 +++++++++++++++++++++++++++++++
+>   3 files changed, 789 insertions(+)
+>   create mode 100644 drivers/gpu/drm/bridge/ssd2825.c
+> 
 
-On Mon, 14 Jul 2025 at 17:19, Daniel Scally <dan.scally@ideasonboard.com> wrote:
-> Add a driver for the Input Video Control block in an RZ/V2H SoC which
-> feeds data into the Arm Mali-C55 ISP.
->
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+<snip>
 
-Thanks for your patch!
+LGTM
 
-> --- /dev/null
-> +++ b/drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c
-
-> +static int rzv2h_ivc_get_hardware_resources(struct rzv2h_ivc *ivc,
-> +                                           struct platform_device *pdev)
-> +{
-> +       const char * const resource_names[RZV2H_IVC_NUM_HW_RESOURCES] = {
-
-static
-
-> +               "reg",
-> +               "axi",
-> +               "isp",
-> +       };
-
-> +static int rzv2h_ivc_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct rzv2h_ivc *ivc;
-> +       int ret;
-> +
-> +       ivc = devm_kzalloc(dev, sizeof(*ivc), GFP_KERNEL);
-> +       if (!ivc)
-> +               return -ENOMEM;
-> +
-> +       ivc->dev = dev;
-> +       platform_set_drvdata(pdev, ivc);
-> +       mutex_init(&ivc->lock);
-> +       spin_lock_init(&ivc->spinlock);
-> +
-> +       ret = rzv2h_ivc_get_hardware_resources(ivc, pdev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       pm_runtime_set_autosuspend_delay(dev, 2000);
-> +       pm_runtime_use_autosuspend(dev);
-> +       pm_runtime_enable(dev);
-> +
-> +       ivc->irqnum = platform_get_irq(pdev, 0);
-> +       if (ivc->irqnum < 0) {
-> +               dev_err(dev, "failed to get interrupt\n");
-
-No need to print anything, as platform_get_irq() already calls
-dev_err_probe() on failure.
-
-> +               return ret;
-> +       }
-> +
-> +       ret = rzv2h_ivc_initialise_subdevice(ivc);
-> +       if (ret)
-> +               return ret;
-> +
-> +       return 0;
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
