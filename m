@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3707B15916
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:47:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57588B1592A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E429118A51F5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 06:48:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513B73B811C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 06:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7A71F1306;
-	Wed, 30 Jul 2025 06:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBB01F5423;
+	Wed, 30 Jul 2025 06:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gAtXd+jv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJLncwru"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDCD14F70;
-	Wed, 30 Jul 2025 06:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23C41EA7FF;
+	Wed, 30 Jul 2025 06:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753858067; cv=none; b=nhDV7L0kyFLEYqgyyiLkgN/uh/MYGaftsbbmkzzFm6kN7m0gNtkHSBNBHLOQFd0E4adxdu+8Dbxxb3cezQ3CERVo7oCCJLLZAoVQvkOG0fSHjnSj/9YTZA3QGVitJuXK26EVIFd7upw/7KRGQJ3oLWMWiHEllzslkZktZBesZWk=
+	t=1753858518; cv=none; b=ku9Hu/qjnk0dIBj0pu7SI0hXEHdvQGxxezqMSPRXCrAPF7FZtT6Sjp9dZkEwvYzTr8h13vudpmw5gB5r6kuF8IWgB33LKZLNJ1pW5MPqprXQHFx4qzbAxFXM5RnakTSV5BjRhb7ygFrQqF54feQ/4J+lbWcpyiJrX1o2FdVHWIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753858067; c=relaxed/simple;
-	bh=DbdLiwFTUP0a9C15JjpoWlbE+bFP9Kd316peZHUGVj8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L8JLtbl55wE79iMSXWLCa2Afszv8iLR7xgZMbBHVggeCzehfG3vw/aXqpPh6uLc/0yx2xIb52sh6kxdcqkf6973P4KPQ7ctsPpEEPdjOMBTDa2eF2wHFYZrkcq+ywYM53IFXBVLd79R+3eQEkQFUF7kw3j7ehd1yHi5SnKd2ttA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gAtXd+jv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C1CDC4CEE7;
-	Wed, 30 Jul 2025 06:47:41 +0000 (UTC)
+	s=arc-20240116; t=1753858518; c=relaxed/simple;
+	bh=CE+VGFhEeMBuX62wOBgp62Z2B/CebCJnk+FFXVi5qSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pvuFU2pgZB9EV1cc+FjaP3Bxb1N0nCKJ76iuGSps84iWiGEMSLyf5OvqBuy6eYXsiKY0q+5smowuJlAdGD3/lhltBJJEI1HU3C/V56kCnzU1Oqaj8MqSvq2XygyAybSTB6CljHW6vud934FdaQl6QRilCTBX4o7qz6sTsvdXpBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJLncwru; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82767C4CEE7;
+	Wed, 30 Jul 2025 06:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753858066;
-	bh=DbdLiwFTUP0a9C15JjpoWlbE+bFP9Kd316peZHUGVj8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gAtXd+jvIDICgCvhUoJ6Z4AgoPIaK5U2jufDV82bHsdi0ATDSdKBbGjAvhAFpQgE7
-	 76xOV1hvNzupxRI931r3pO4VX49W8yw+tNbAK1RiXTqqjfY+M9Q0hGY1uFUct3Xfub
-	 mqdcIboMUNhA7K+mUigH3igBmbM44kZPNRGXZVU4Q5w9hAV2zSpz+dvILaN9dSND33
-	 F+YrB9z7QDaoCtHXNw2Z6QBEyGIxPN5tWnldu6UVXzriJ59MThC/MyYURlqu6sy2qd
-	 //94Z4PjCadBy7Nwf+/0OesfW9HmDGZzAHARHhvx6qbpSKLxQJ0AaWPGB8Z1VqKIMw
-	 AtRl/ljUAUYvA==
-Message-ID: <4137240e-a5c4-427b-900c-ae062aa9a9c8@kernel.org>
-Date: Wed, 30 Jul 2025 08:47:40 +0200
+	s=k20201202; t=1753858517;
+	bh=CE+VGFhEeMBuX62wOBgp62Z2B/CebCJnk+FFXVi5qSQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=EJLncwru6TUCRxeZ4od39fNNxekNt5DSvRCOdGH5q8gH3Zu8SnYrmlPPKPLYhM+3a
+	 qVNVOA+GqVwL1t3sHSP97O0tdI03qQv/kYgEjimqZM7Omkz028CBWXWFYUs6EoqnV/
+	 d6HHEKZr5uKVX9OkzoSxZry7MRX0DB9/nW4PmBaT9bUfH3EqEeIOZIR13FAk2mC1J0
+	 jFijBD+d3IYEsFLn4/HDyLI/7r3FBKe01kQjmj1J3vkgagE/ZZJ3x6tBlxdgAjWoUk
+	 mPFRceNdbK4pSWDMW0OInnfDUKbzXV7Oxkd5fKwV3Uysii9sIGdVyrJA/vqBtQmwRE
+	 aLQjlmrDCR6lQ==
+Message-ID: <926eebd1-4790-4ca4-a03b-b52a32e7fd91@kernel.org>
+Date: Wed, 30 Jul 2025 08:55:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add C906L rproc for
- Sophgo CV1800B SoC
-To: Junhui Liu <junhui.liu@pigmoral.tech>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <1856e9e7bfdcb6a8.1f73e6be0161d31f.3ad0845628cf3b62@Jude-Air.local>
+Subject: Re: [PATCH 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add support
+ for optional 'spi_gclk' clock
+To: Manikandan Muralidharan <manikandan.m@microchip.com>, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, tudor.ambarus@linaro.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250730053720.262118-1-manikandan.m@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,79 +104,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1856e9e7bfdcb6a8.1f73e6be0161d31f.3ad0845628cf3b62@Jude-Air.local>
+In-Reply-To: <20250730053720.262118-1-manikandan.m@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2025 05:31, Junhui Liu wrote:
-> On 29/07/2025 08:27, Krzysztof Kozlowski wrote:
->> On 28/07/2025 19:13, Junhui Liu wrote:
->>>>
->>>>> +    description:
->>>>> +      This property is required only if the rpmsg/virtio functionality is used.
->>>>> +      (see mailbox/sophgo,cv1800b-mailbox.yaml)
->>>>> +    items:
->>>>> +      - description: mailbox channel to send data to C906L
->>>>> +      - description: mailbox channel to receive data from C906L
->>>>> +
->>>>> +  memory-region:
->>>>> +    description:
->>>>> +      List of phandles to reserved memory regions used by the remote processor.
->>>>> +      The first region is required and provides the firmware region for the
->>>>> +      remote processor. The following regions (vdev buffer, vrings) are optional
->>>>> +      and are only required if rpmsg/virtio functionality is used.
->>>>> +    minItems: 1
->>>>
->>>> Why isn't this constrained?
->>>
->>> Do you mean a maxItems should be added here?
->>>>>
->>>>> +    items:
->>>>> +      - description: firmware region
->>>>> +      - description: vdev buffer
->>>>> +      - description: vring0
->>>>> +      - description: vring1
->>>>> +    additionalItems: true
->>>>
->>>> No, drop. This needs to be constrained.
->>>
->>> My intention is that RPMsg/OpenAMP is not the only use case for
->>
->> We don't allow such syntax, that's not negotiable. Why 322 redundant
->> memory regions are fine now?
->>
->>> remoteproc. There are scenarios where the remoteproc is just used for
->>> booting the remote processor without any communication with Linux. In
->>> such case, only the firmware region is needed, and the other regions may
->>> not be necessary.
->>>
->>> Additionally, the remote processor might reserve extra memory for custom
->>> buffers or other firmware-specific purposes beyond virtio/rpmsg.
->>> Therefore, I think only the firmware region should be required and
->>> constrained, while allowing flexibility for additional/custom memory
->>> regions as needed.
->>
->> So how does this work exactly without the rest? Remote processor boots
->> and works fine? How do you communicate with it?
->>
->> Please describe exactly the usecase.
-> 
-> Thank you for your clarification.
-> 
-> The C906L remoteproc can run at two use cases:
-> 1. Standalone mode: Only the firmware region is used. In this case, the
->    remoteproc driver loads the firmware into the firmware region and
->    boots the C906L. The C906L runs independently, without communication
->    with Linux, and the mailbox is not used.
-> 2. OpenAMP/RPMsg mode: The firmware region, vdev buffer, and vrings are
->    used. In this scenario, the C906L runs firmware with OpenAMP support
->    and communicates with Linux via the virtio memory regions and mailbox.
-> 
-> To summarize:
-> - Required: firmware region
-> - Optional: vdev buffer, vrings, mailbox
+On 30/07/2025 07:37, Manikandan Muralidharan wrote:
+> Update the Atmel SPI DT binding to support an optional programmable
+> SPI generic clock 'spi_gclk', in addition to the required 'spi_clk'.
 
-How does your driver behave in (1)? Does it work?
+Why? Hardware changed? Explain why you are making changes to the stable ABI.
+
+Also, I do not see any user of this, but maybe you just created Cc-list
+incomplete.
 
 Best regards,
 Krzysztof
