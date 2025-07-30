@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCCCFB16082
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:44:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB012B16096
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:47:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 026D7565B9F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:44:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59A514E1C05
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD83292B5D;
-	Wed, 30 Jul 2025 12:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F21429993A;
+	Wed, 30 Jul 2025 12:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UQpr8lWe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyRoU97i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561E5217736;
-	Wed, 30 Jul 2025 12:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F19299924;
+	Wed, 30 Jul 2025 12:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753879476; cv=none; b=LoivbqubktvMAZ37+JizjXf3+Af8b9jx50BdlCGGbyYAbE2xgS1YcdKA2cjeu5RBApqwUx9Qihqh1bXTUeZhpGLm3pYkHMkdn3dt8wr7asAgtuTKguzGkUID2bs6YLnvU2wsjKMEoxP6SfS46LNwHL8Qbj186ZN0onM4/HzCPjg=
+	t=1753879586; cv=none; b=CIxOgBPvi/2NZiUUVOOHDspiqW2rQxZsimGI1aPIuikEwUJqyzfJxzHugGMCpnSLHDR393IsSrLAoihNlhZOE04gGCibANKxKl6iig/6lHDzGDqzMlMJ87rJHPy55Hx9pDiYtR/IFlv/EwaEFdtkWvRr8I7TsCURXGdXPrwaalA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753879476; c=relaxed/simple;
-	bh=jCoiiWdENTEfMwdXA/0mmzNCCV7rvV0enSCM+Dcen5g=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ucO2ypipVsz+QjoIvOtPOtDFHvq/J9k5Y11KYwitxpYCkFkO229nbPRyb5394gjxM1xFed6pjAnUSrZJ2oAnvWkFUxBtmq24JeXAGAnf6xu7UQ0z3zq880dfxEVzoeGFh4RoalqonHNWWIeNkP13gQ5PHqTAJZqkwwWuA1+eap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UQpr8lWe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 253DCC4CEE7;
-	Wed, 30 Jul 2025 12:44:31 +0000 (UTC)
+	s=arc-20240116; t=1753879586; c=relaxed/simple;
+	bh=50UIteFtNHRUtkmAOTrMYqlbtcxNvyAqWTl8Cdv76Bs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tbPzr4tdUzugz9imGa0rSXeQtpN6ksF8SbufTLqnuF+8syi74xsq2En0lzLiyT/UYkZ+AV9gxEwLgazMPp41NcIDhxF4WHf9UhfQ3J4F6A1dLH+Dr5S+9fbgwByQlLfjfb7JJA83PZo6tjCTpgksxCJEMboA6zZX6sBpMy4cgDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyRoU97i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49E15C4CEF5;
+	Wed, 30 Jul 2025 12:46:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753879476;
-	bh=jCoiiWdENTEfMwdXA/0mmzNCCV7rvV0enSCM+Dcen5g=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=UQpr8lWen9uGW+/WsqGxilWkKjeYM3vz8AsUSBFO/23blC2MIz/HiCD3F4uVdsF2K
-	 N2US1i6G4qGQTMcPsGXVIZ+ygkbq98Z30K0ZLJyQOLdaoc4QagZbdk5MeOyCos/D5X
-	 zk+XBKr6CVoH/1rkYKUV84KXGjCFzNqDawJjML3KXMHsRqdC8KaEwqBmZqxvE6W7iF
-	 xj7Yt+LFe+BMSXWKF+PRSXbaXBlG3UwB28U4KU16eWWhH3cfTqL9DI9Leeof8VR06C
-	 N4xOo8uFbRD+JJtt9PCXyecadxuFAezIWcYKDg1l5kSq0+knY5FhzK5SShwkcGN0wy
-	 iHNnE58tixLSQ==
-Message-ID: <01f2c5d5-6321-49af-b73c-6924f46d6646@kernel.org>
-Date: Wed, 30 Jul 2025 14:44:30 +0200
+	s=k20201202; t=1753879585;
+	bh=50UIteFtNHRUtkmAOTrMYqlbtcxNvyAqWTl8Cdv76Bs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uyRoU97iNW4Q7pfzLuqM2O1mSa8sPr+48oa9cjJ7UPTOrgZMKRsfb8WkWBVqvA01f
+	 MzlmP0wGN6no215r5gQBqmxFkaTrZ2Kyr8qW3YtpFNBGs082lG89/YLR7fkZKtTqDF
+	 MLiLPc1e4nVS+NianvJSsnxq5CKgCRR1OLdYPaBO8dimJ7Jc72R/gq4SXh73kSf4SW
+	 W3S2SqXDZ8JreMPNmRytk0kLOqPMt4pPTM2KwFDLiSdpGYOAhDV7YSFOK+0V2JZWO0
+	 7nF7NDum1ISgff7QbXcGCU3r5HlBsYsM2gVOhodAYG1eR2qlpi+dnrC6ta67PGlcDw
+	 rCWtXseuc1D6g==
+Message-ID: <c8211e69-75d9-439e-a4de-1add711d2a05@kernel.org>
+Date: Wed, 30 Jul 2025 14:46:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 1/3] dt-bindings: ufs: qcom: Add reg and reg-names
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: Add lemans evaluation kit (EVK)
+ initial board support
+To: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ kernel@oss.qualcomm.com, Rakesh Kota <quic_kotarake@quicinc.com>,
+ Sayali Lokhande <quic_sayalil@quicinc.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250722144926.995064-1-wasim.nazir@oss.qualcomm.com>
+ <20250722144926.995064-8-wasim.nazir@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, mani@kernel.org,
- alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
- <20250730082229.23475-2-quic_rdwivedi@quicinc.com>
- <466a42c4-54f5-45b2-b7f0-2d51695eac8e@kernel.org>
- <78998e50-a20c-41de-a2b8-a467475210cf@quicinc.com>
- <bc07c850-c3ba-48bf-8ca2-a6ffda8440e8@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -107,34 +109,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <bc07c850-c3ba-48bf-8ca2-a6ffda8440e8@kernel.org>
+In-Reply-To: <20250722144926.995064-8-wasim.nazir@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 30/07/2025 13:33, Krzysztof Kozlowski wrote:
->>> "extending" but you are not extending at all.
->>>
->>> Recent qcom patches love to break ABI and impact users. No.
->>>
->>> Best regards,
->>> Krzysztof
->>
->>
->> Hi Krzysztof,
->>
->> Thanks for your feedback.
->>
->> Regarding your concern about this being an incompatible change — could you please clarify what specific aspect you believe breaks compatibility? 
->> From my side, I’ve carefully tested the patch and verified that it does not break any existing DTs. I ran the following command to validate against the schema:
+On 22/07/2025 16:49, Wasim Nazir wrote:
+> Lemans EVK is an IoT board without safety monitoring feature of
+> Safety Island(SAIL) subsystem.
 > 
+> Lemans EVK is single board supporting these peripherals:
+>   - Storage: 2 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
+>     eMMC on mezzanine card
+>   - Audio/Video, Camera & Display ports
+>   - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD
+>   - Sensors: IMU
+>   - PCIe ports
+>   - USB & UART ports
 > 
-> I missed that earlier list is not actually used for SM8550 and SM8650.
-> The syntax is a bit confusing after looking only at diff, which probably
-> means this binding is getting messy.
+> On top of lemans EVK board additional mezzanine boards can be stacked
+> in future.
 > 
-> I think binding should be just split the constraints are easier to follow.
+> Implement basic features like uart/ufs to enable 'boot to shell'.
+> 
+> Co-developed-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> Co-developed-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile       |   1 +
+>  arch/arm64/boot/dts/qcom/lemans-evk.dts | 291 ++++++++++++++++++++++++
+>  2 files changed, 292 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/lemans-evk.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 2a1941c29537..cbc89c54f92b 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -31,6 +31,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp453.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-auto-ride.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-auto-ride-r3.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-ride-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> new file mode 100644
+> index 000000000000..dd357d514587
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> @@ -0,0 +1,291 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 
-I sent a patch for splitting the bindings.
+Missing date, as discussed in other thread your internal guidelines are
+not relevant here and to my knowledge upstream guidelines (provided in
+other linked discussion) ask for year of first publication.
 
 Best regards,
 Krzysztof
