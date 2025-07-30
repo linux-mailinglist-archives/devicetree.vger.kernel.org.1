@@ -1,149 +1,170 @@
-Return-Path: <devicetree+bounces-200612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0382B15797
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 04:37:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B81B157CE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 05:32:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49A53B09A6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 02:37:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6583917B509
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 03:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE5E1B0413;
-	Wed, 30 Jul 2025 02:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230E516DEB1;
+	Wed, 30 Jul 2025 03:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="AgwMK+2x"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="anpXcqJ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA8E288A2;
-	Wed, 30 Jul 2025 02:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753843051; cv=none; b=Lh8rjaNhE/q7TWmxS4kzi9yXc4yfC4hU2V1bJlHHCgEqgIE+fk6MRvqgQ5kcgp+cjYFzOU48fvfI97ruxkePK/xKqEMGmy2psAhYfe6aWzJGAtH949h9lIeGEWWx5+8Vck6mzTXCs1iwREc4ismegAAj9/cMa6O7Fdaj9J4DEtE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753843051; c=relaxed/simple;
-	bh=r6EJUgnKNkBU/gY2vKM1Kph1PWJOeN4y03H/SRXg+vA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qkbXCn1wiWPp+stLbtOkhrxtpp4Itsvi0Aoe6n/GAAvJ4rjS1QRTONcBfh/nqMnGAINbqUNddm69yisBQqVWnu0ukJKlzAVHeG1/uIw/5BwP2stDLPoEViRdvpYkTr+L48OO/J71wPxgpQQTcBtiAGkk1CvPdTk8dvLhgA6pJ1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=AgwMK+2x; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 079EC20F9E;
-	Wed, 30 Jul 2025 04:37:26 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 8jRGBdc8Sp0M; Wed, 30 Jul 2025 04:37:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1753843045; bh=r6EJUgnKNkBU/gY2vKM1Kph1PWJOeN4y03H/SRXg+vA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AgwMK+2xLh/uRypIC/UB7RAXvQhhzpfFuUw3sFrlic/janHA/4c574mpUHzuP2h+r
-	 GNL2CupOEq6B5gdiZV45oHIDI15qtrPbsHYqpwM+J7ZmXSRWqNxJGO71PZTccZ32gv
-	 f9t8yDb2AjhhPWT1+2Edh/9S4pP4zsJ9FmYGq/WgRPGHSR/Cr4mlHMxgoOGaM65pSL
-	 4SJ7xThP+4fULiS0c/geMdiST2UWrUW5oJXk/kIwZL3f7tZtQApxwNbspRarsfTCT3
-	 Sbgzjq328tWP01hPwQEwMF4PU96Rc4IqwCcCbOt9qEoBmyfu/21MlpHaCTnDYEwpF4
-	 EfrzKAF4mIMiw==
-Date: Wed, 30 Jul 2025 02:37:09 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net 1/3] dt-bindings: net: thead,th1520-gmac: Describe
- APB interface clock
-Message-ID: <aImFVW1Pl_QHijWx@pie>
-References: <20250729093734.40132-1-ziyao@disroot.org>
- <20250729093734.40132-2-ziyao@disroot.org>
- <20250729-canal-stimuli-492b4550108c@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51B811CA0;
+	Wed, 30 Jul 2025 03:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753846337; cv=pass; b=k3zcel3bavmIIArerJAV3slWCt4Zf4FrdShBSMIicLzn/7Dz/UoZC8UrL7Kdli4msmfBDs4mEqgYD/TZpiIPDu9DApAhlMG8Ui3gQtM++qpnv4cCA4+/bxhZmv8xFfCoCKi6OVwBpSuj5TTG0ZDAhhNFQIDSWuDRLB6iytXwHo8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753846337; c=relaxed/simple;
+	bh=v/mTQXR7nXI3YYXMNZ88NxH1RY7rcBGYIDdQy/5J6Zk=;
+	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
+	 Content-Type; b=jH2id1ZZVZh0WLoatoPoO3kZAFlgK+QixNq9LpMSZkQvhjhHTpxTKv+0uSIzDyd6CMmEDce2lHNhc4J9ja7qdM+pYiv7I+KjaRU66svvgfAi4/YsosADce2J4HHBhLHD7lHIGfO5gOS6WNkEC2qZ5ZMsObBC53sGunYYvYdnHBs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=anpXcqJ7; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1753846298; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ezBzqJB56c1miHFXcMTWwIQnARYDgvONAST09HSTlXIdTc5Oyuwbece6Q6hbRu19qzxpXQyP+Ri8d4HmC8T0TzjsSVuuFn3W5IoKFG5ZJjTlXM+xKpqoSUyDs5RsKpx6ZpjVuzUAnh60Uk8dT2x+V46NU0ESTv9mRB3w00VvNPQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753846298; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=0iSJ3Kr1iquFsEaFYZYQunG3FhEI8rJM6UK4xjhKbMo=; 
+	b=laocn2/YpsMzSuK4/HJD3XQbkTjgCDnYQbkYgdDSEqiQg5bs3ggxrpue5V0qtTl49tiJx8WX4odNOEAoB09qAn6D/FUbN8VTDB9PGHNP0JAKZTVCTbw0xWd8jzHpCeMEdxcgjp2FNSCuYbPT32zZ5dHv1GZctaG0IH17VOlKlsw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753846298;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=0iSJ3Kr1iquFsEaFYZYQunG3FhEI8rJM6UK4xjhKbMo=;
+	b=anpXcqJ7jz1fCyVmJQqEwO4uGzIAJAiI6kljdDFlpHkpMQxAdUXzHh1xk1MHCjz5
+	u9ZSDGcNFQGowrt9ieLYx9YPwiRnEBYMyQAPjmv39JtD/kWZyYj3RveK762QmuPhRwX
+	QSPODxowaRR76HgP8cBd648UVYPNL+d0Naz8k8H4=
+Received: by mx.zohomail.com with SMTPS id 1753846295024259.9063222071202;
+	Tue, 29 Jul 2025 20:31:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250729-canal-stimuli-492b4550108c@spud>
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, 
+	"Bjorn Andersson" <andersson@kernel.org>, 
+	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
+	"Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Conor Dooley" <conor+dt@kernel.org>, 
+	"Chen Wang" <unicorn_wang@outlook.com>, 
+	"Inochi Amaoto" <inochiama@gmail.com>, 
+	"Philipp Zabel" <p.zabel@pengutronix.de>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
+	"Alexandre Ghiti" <alex@ghiti.fr>
+In-Reply-To: <f1b90b0f-f7a7-4117-9d36-046c4ca9c19a@kernel.org>
+Cc: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>, 
+	<sophgo@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add C906L rproc for Sophgo
+	 CV1800B SoC
+Message-ID: <1856e9e7bfdcb6a8.1f73e6be0161d31f.3ad0845628cf3b62@Jude-Air.local>
+Date: Wed, 30 Jul 2025 03:31:26 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-On Tue, Jul 29, 2025 at 06:43:42PM +0100, Conor Dooley wrote:
-> On Tue, Jul 29, 2025 at 09:37:32AM +0000, Yao Zi wrote:
-> > Besides ones for GMAC core and peripheral registers, the TH1520 GMAC
-> > requires one more clock for configuring APB glue registers. Describe
-> > it in the binding.
-> > 
-> > Though the clock is essential for operation, it's not marked as required
-> > for now to avoid introducing new dt-binding warnings to existing dts.
-> 
-> Nah, introduce the warnings. If the clock is required for operation, it
-> should be marked as such. You've made it optional in the driver, which
-> is the important part (backwards compatible) and you've got the dts
-> patch in the series.
+On 29/07/2025 08:27, Krzysztof Kozlowski wrote:
+> On 28/07/2025 19:13, Junhui Liu wrote:
+>>>
+>>>> +    description:
+>>>> +      This property is required only if the rpmsg/virtio functionality=
+ is used.
+>>>> +      (see mailbox/sophgo,cv1800b-mailbox.yaml)
+>>>> +    items:
+>>>> +      - description: mailbox channel to send data to C906L
+>>>> +      - description: mailbox channel to receive data from C906L
+>>>> +
+>>>> +  memory-region:
+>>>> +    description:
+>>>> +      List of phandles to reserved memory regions used by the remote p=
+rocessor.
+>>>> +      The first region is required and provides the firmware region fo=
+r the
+>>>> +      remote processor. The following regions (vdev buffer, vrings) ar=
+e optional
+>>>> +      and are only required if rpmsg/virtio functionality is used.
+>>>> +    minItems: 1
+>>>
+>>> Why isn't this constrained?
+>>=20
+>> Do you mean a maxItems should be added here?
+>> >>
+>>>> +    items:
+>>>> +      - description: firmware region
+>>>> +      - description: vdev buffer
+>>>> +      - description: vring0
+>>>> +      - description: vring1
+>>>> +    additionalItems: true
+>>>
+>>> No, drop. This needs to be constrained.
+>>=20
+>> My intention is that RPMsg/OpenAMP is not the only use case for
+>=20
+> We don't allow such syntax, that's not negotiable. Why 322 redundant
+> memory regions are fine now?
+>=20
+>> remoteproc. There are scenarios where the remoteproc is just used for
+>> booting the remote processor without any communication with Linux. In
+>> such case, only the firmware region is needed, and the other regions may
+>> not be necessary.
+>>=20
+>> Additionally, the remote processor might reserve extra memory for custom
+>> buffers or other firmware-specific purposes beyond virtio/rpmsg.
+>> Therefore, I think only the firmware region should be required and
+>> constrained, while allowing flexibility for additional/custom memory
+>> regions as needed.
+>=20
+> So how does this work exactly without the rest? Remote processor boots
+> and works fine? How do you communicate with it?
+>=20
+> Please describe exactly the usecase.
 
-Thanks for the confirmation, will remove minItems in v2.
+Thank you for your clarification.
 
-Regards,
-Yao Zi
+The C906L remoteproc can run at two use cases:
+1. Standalone mode: Only the firmware region is used. In this case, the
+   remoteproc driver loads the firmware into the firmware region and
+   boots the C906L. The C906L runs independently, without communication
+   with Linux, and the mailbox is not used.
+2. OpenAMP/RPMsg mode: The firmware region, vdev buffer, and vrings are
+   used. In this scenario, the C906L runs firmware with OpenAMP support
+   and communicates with Linux via the virtio memory regions and mailbox.
 
-> > 
-> > Fixes: f920ce04c399 ("dt-bindings: net: Add T-HEAD dwmac support")
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  .../devicetree/bindings/net/thead,th1520-gmac.yaml        | 8 ++++++--
-> >  1 file changed, 6 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> > index 6d9de3303762..fea9fbc1d006 100644
-> > --- a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> > @@ -59,14 +59,18 @@ properties:
-> >        - const: apb
-> >  
-> >    clocks:
-> > +    minItems: 2
-> >      items:
-> >        - description: GMAC main clock
-> >        - description: Peripheral registers interface clock
-> > +      - description: APB glue registers interface clock
-> >  
-> >    clock-names:
-> > +    minItems: 2
-> >      items:
-> >        - const: stmmaceth
-> >        - const: pclk
-> > +      - const: apb
-> >  
-> >    interrupts:
-> >      items:
-> > @@ -88,8 +92,8 @@ examples:
-> >          compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
-> >          reg = <0xe7070000 0x2000>, <0xec003000 0x1000>;
-> >          reg-names = "dwmac", "apb";
-> > -        clocks = <&clk 1>, <&clk 2>;
-> > -        clock-names = "stmmaceth", "pclk";
-> > +        clocks = <&clk 1>, <&clk 2>, <&clk 3>;
-> > +        clock-names = "stmmaceth", "pclk", "apb";
-> >          interrupts = <66>;
-> >          interrupt-names = "macirq";
-> >          phy-mode = "rgmii-id";
-> > -- 
-> > 2.50.1
-> > 
+To summarize:
+- Required: firmware region
+- Optional: vdev buffer, vrings, mailbox
 
+Then I can add a "maxItems: 4" to the memory-region property and remove
+the "additionalItems: true" line.
+
+Is this approach acceptable for you?
+
+>=20
+>=20
+> Best regards,
+> Krzysztof
+
+--=20
+Best regards,
+Junhui Liu
 
 
