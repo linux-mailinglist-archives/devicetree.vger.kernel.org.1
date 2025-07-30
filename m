@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCDE1B15BF6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:36:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59439B15C0A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74CDA18C2455
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:36:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F0C23AA1A4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:36:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36DD293C74;
-	Wed, 30 Jul 2025 09:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D7A3277CAF;
+	Wed, 30 Jul 2025 09:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WMdcWH+N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CVEmdkbp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C34293B63;
-	Wed, 30 Jul 2025 09:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19DC2273D72;
+	Wed, 30 Jul 2025 09:36:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753868159; cv=none; b=UoQGgYJd4spuOaP2fqNUICmmyzb8TV2AcuuQoy7+IeUYTJqiz6yrMLiq+wEwcalqRHoQ8q4oIbGi21tHfGHrtsh1GXBVqTO1sC8qmMyQaV11s3llqgWNtPGKoOzKRWSzqtOlmQOVmsJ+9CSICsndW+tafQeXPPrGQF+W7UNCg1M=
+	t=1753868200; cv=none; b=FzMtr47AIIB9UADMBXtoZaycRGkFHvaqSrMHt2fEqnAwsotcqdL9ZtPJmm+LMDnE1W6i3F3CAYnbwHpVrpel3Y8prIiMeE5O44eucwByxmUmADXlsbyJTd18T5nmjlSVFZHjS4AQMXoIU8B2/l8kvGQOLeUr+0Ws8Os2wmAU2E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753868159; c=relaxed/simple;
-	bh=PzvAqEp4SfY/LLfvCtZGeWxCRUZOK1mQy74OYoBIq0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hZFHKyh5u9eMQXeE+q9cQMoIzP0ys1+v/xvdRTVhZaVIuGWMocnePDhv6v9QqUWJme1az2tSMqpObG/wdS9fGYLYCeuXk2zZ7q/SeYD3BN2r2HxYc5V6pvEFlLh2oxTw7UAMbLADxAl1OQsEdN9dpPWQsh5GdnGSret9JuIEKMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WMdcWH+N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC7DC4CEE7;
-	Wed, 30 Jul 2025 09:35:53 +0000 (UTC)
+	s=arc-20240116; t=1753868200; c=relaxed/simple;
+	bh=NHQ3js70j/50D35RKRy0v/iwc2kI7Sx2FwDFs1vOpSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=tV/9cuxlrTmopqSyIji1xZ2X+cQptA6CTrKqfIuSx+vJbzQnPvBBFnnxYGc18CEGTKzPSqZBqWQ+05VBTG0P/wE905EnKhoR/dYxoKQkiAuf6ZmN1dQTxQFwX98rLYB+sQZHGpEJ482SW70Yl6NB0zJDbgp8Epz66ht60zxHtDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CVEmdkbp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 562B6C4CEE7;
+	Wed, 30 Jul 2025 09:36:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753868158;
-	bh=PzvAqEp4SfY/LLfvCtZGeWxCRUZOK1mQy74OYoBIq0M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WMdcWH+N6qQJt2u91P+MJa1G3tWHMXvjLCifeiNyQSu0J9736TrRcRLEWXx4I27zy
-	 wYdK2RutevXQVHB5ivqxrvkgUIp9ehpp9ufglTalMLH5gjZPIWoNQDVQfnOEM9JgyN
-	 eimbZnO0YslNQxCuE1gp+cbhm60EuPz12ENwnAOTNqP7lAbl/t2ji9YUIRewWgmqhy
-	 6rtth2fI6lPP1nUjpZPtlKFqN1feoMNgrNqg06torbpuxyQTaeW0tSpt/YAIuClU8o
-	 uA5Bk0SFwYpcyKtISvFCYONoCKE3ROE4rO0Vk08e4WQ7mTCBUnqpxQn/wKTUjcP8mj
-	 wUVyMoyUKF8IA==
-Message-ID: <9dd2af04-5109-43e4-b097-d6b1b4c45dbd@kernel.org>
-Date: Wed, 30 Jul 2025 11:35:52 +0200
+	s=k20201202; t=1753868195;
+	bh=NHQ3js70j/50D35RKRy0v/iwc2kI7Sx2FwDFs1vOpSU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=CVEmdkbpUMJwxn09bsyvP4Xv5Kc2W928uDUUvVUefe3XStFWuHR45lzc6aAO8WgOY
+	 KGcSdVeq3AGh3+93R6O7IXp+SbDRQ/t9fvcpjh8VN6ntjMccX8eqr6nFEzA3/HvRmT
+	 j4bsH/CQVead0UvuS5jqon70dIsr2gkb9bvZf1/cL7sEeQ+mVtbUQ8W+P+KwJUCDhW
+	 s74O66W0+bqnfiKEPwb7oplCovj+0Ez++ajDkkEjCF6WviZ4Tvs/9+K8IV2YqN2vdQ
+	 qeE4Fh0EVSTo5Kdblvb/4Ucs5znw5y2pHUJ9Ojwec8BAIykovIOhGqSEMgHJ0is73k
+	 vFMxnRU5MPe5w==
+Message-ID: <02084269-f591-420f-8f60-7ac0aca9097a@kernel.org>
+Date: Wed, 30 Jul 2025 11:36:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for
- Sophgo CV1800B SoC
-To: Junhui Liu <junhui.liu@pigmoral.tech>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <1856fd5bd24fbc18.7164ab65bf64e5c2.99b72db93ceee539@Jude-Air.local>
+Subject: Re: [PATCH v4 1/4] dt-bindings: clock: ipq5424-apss-clk: Add ipq5424
+ apss clock controller
+To: Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+ Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
+ rafael@kernel.org, viresh.kumar@linaro.org, ilia.lin@kernel.org,
+ djakov@kernel.org, quic_mdalam@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20250730081316.547796-1-quic_varada@quicinc.com>
+ <20250730081316.547796-2-quic_varada@quicinc.com>
+ <1705cfd6-95fe-4668-ae3b-f8fc7321d32a@kernel.org>
+ <2c165ddd-f6b6-45b6-a319-8944fab324f2@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,76 +109,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1856fd5bd24fbc18.7164ab65bf64e5c2.99b72db93ceee539@Jude-Air.local>
+In-Reply-To: <2c165ddd-f6b6-45b6-a319-8944fab324f2@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2025 11:27, Junhui Liu wrote:
-> On 30/07/2025 08:46, Krzysztof Kozlowski wrote:
->> On 28/07/2025 13:03, Junhui Liu wrote:
->>> +
->>> +static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
->>> +				   struct rproc_mem_entry *mem)
->>> +{
->>> +	void __iomem *va;
->>> +
->>> +	va = ioremap_wc(mem->dma, mem->len);
->>> +	if (!va)
->>> +		return -ENOMEM;
->>> +
->>> +	/* Update memory entry va */
->>> +	mem->va = (void *)va;
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int cv1800b_c906l_mem_release(struct rproc *rproc,
->>> +				     struct rproc_mem_entry *mem)
->>> +{
->>> +	iounmap((void __iomem *)mem->va);
->>> +	return 0;
->>> +}
->>> +
->>> +static int cv1800b_c906l_add_carveout(struct rproc *rproc)
->>> +{
->>> +	struct device *dev = rproc->dev.parent;
->>> +	struct device_node *np = dev->of_node;
->>> +	struct of_phandle_iterator it;
->>> +	struct rproc_mem_entry *mem;
->>> +	struct reserved_mem *rmem;
->>> +	int i = 0;
->>> +
->>> +	/* Register associated reserved memory regions */
->>> +	of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
->>> +	while (of_phandle_iterator_next(&it) == 0) {
->>> +		rmem = of_reserved_mem_lookup(it.node);
->>> +		if (!rmem) {
->>> +			of_node_put(it.node);
->>> +			return -EINVAL;
->>> +		}
->>> +
->>> +		if (!strcmp(it.node->name, "vdev0buffer")) {
->>
->> Why are you adding undocumented ABI? And so hidden, not even using
->> standard OF API!
->>
->> How does this behaves when I change your DTS to call it
->> "whateverbuffer"? Does it work? Obviously not.
->>
->> No, stop doing that.
+On 30/07/2025 11:22, Sricharan Ramabadhran wrote:
 > 
-> Yes, you're right. I will consider introducing a "memory-region-names"
-> property in the bindings, instead of relying on the node labels directly.
+> 
+> On 7/30/2025 2:32 PM, Krzysztof Kozlowski wrote:
+>> On 30/07/2025 10:13, Varadarajan Narayanan wrote:
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/qcom,ipq5424-apss-clk.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm APSS IPQ5424 Clock Controller
+>>> +
+>>> +maintainers:
+>>> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>>> +  - Md Sadre Alam <quic_mdalam@quicinc.com>
+>>
+>> My v2 comments seems still valid. Your explanation suggests they moved
+>> on, so it is confusing to see them here.
+>>
+>> Sricharan and Md Sadre, can you provide Acks for this?
+>>
+> Ack. Please feel free to remove my name.
 
 
-You don't need it. First, you use some old code as template, but you
-should look how or re-use Rob's code rewriting this completely.
-
-Second, list has strict order, so you know exactly where the vdev0
-buffer is. It cannot be on any other position of the list.
-
-This is why you define the ABI. Use then the ABI.
-
+I meant Ack that you still maintain this hardware and bindingd.
 
 Best regards,
 Krzysztof
