@@ -1,168 +1,181 @@
-Return-Path: <devicetree+bounces-200735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69019B15DBD
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:01:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FAB3B15DC1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:01:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0242545127
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:01:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E32203A9B1E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15ABB1D7E41;
-	Wed, 30 Jul 2025 10:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2F427AC21;
+	Wed, 30 Jul 2025 10:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="RNigQPZE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OE9t+lPD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D64B19DFB4;
-	Wed, 30 Jul 2025 10:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753869661; cv=pass; b=ljoHOlOCceHU28gcFFseqMu5lSd6vATxymuGQ5o59+uxNzlWUpYbmkZGKA9aL4Bh4kXxJC6YSWV+gqls+XiGEEXclnLlmCVsStWhqPTgSN0bsCS11TdDQf98ueWTiJdp7QqJ5wX8untYVFSFRB6kEJggrWJDiCGk6lJJZDUTBPA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753869661; c=relaxed/simple;
-	bh=P8CQgssKSIaGk0xRCqs4CM81zbWzC1LUae6FEPLRlOw=;
-	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
-	 Content-Type; b=Igo+HioG6TVKaLsmHLqti6/SPDr6gemEd2iVFMlsdEkHSAU51BGES8tMEfDGfFI1AYayD/CEH4eHqY1uZR6qKjTKmxx5fDc5MGBq50CeQyhkZGM9k6ynFNHYFts2rgAKtXBQVE7NMYsTLRfhigVd0UCxZCn2XZFGcFqL+GvcxIY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=RNigQPZE; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1753869630; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=mVHba9e1imXwc9oD9l4XIa6BmxmDyMn1i5zBQhdL1EHhgFhOCoBjMS6p+Xu6+AkQKrV+UiyEtdDfxgKxFhbhJuAJ07U4rSgoxmkmTPKKt/AuJ0hLKaJF4t2L7K4AOvfdp5EFnu3Mj78fsV//6cDdVQ/R+0zfY2aSIcJWLNPg064=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1753869630; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=dJCJxzbcOMXSmaYqhU1ZQU8GEIkWpngcSTaDLY085mc=; 
-	b=a7B0WqvQuQRZzbOpb3be2Pa+L+PzdEu8xYwPWcO6HkgCKYmILU3RZp45NltHPZawUXfOoiVL2gGFbfIGBOuRQyqp/8nDcjzKKujEF3/WCYOSRDyjdyTuE+QykeXoPO7sWkXinJFG4qWslKA+/ID9pfd8F8cNK04TUMyk5iNHLtc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753869630;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=dJCJxzbcOMXSmaYqhU1ZQU8GEIkWpngcSTaDLY085mc=;
-	b=RNigQPZElgWg3b6atXoHhURBwH86YwWzXDl8JABOLq9JHNgbWcJ2FaPCBqfDiCvw
-	zg6hxEpoZubFOrlUmDDlsKGESC3cp2rK7SMFWwf+lqONIOk4DwGwOsroZryDclFHl/o
-	+ASps9v37kbVzoihpWNMHbSJR2M3FX147xXFh/58=
-Received: by mx.zohomail.com with SMTPS id 17538696277121019.2099092907802;
-	Wed, 30 Jul 2025 03:00:27 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4536271441
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 10:01:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753869665; cv=none; b=uIrmSn1V8THaFBzdRpNPvUz7zTGXZuvny7jdaLR1JkLoW5/T1W5HqtoIKbMrYSROn3K1N5YbIquoQRJkaPLILDkpVUICEuHj0SJxEvL9E4AAWti5NumY5ab42yqGGG0y49m9pi5TGc8yu03kBrr6sZmV3mfr4n769Rkssvkdjas=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753869665; c=relaxed/simple;
+	bh=/NbRkipP9VCM+Lc6lxFwKRTG405kRiihzDFyNsOsLMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nyCUsalkjMJVWgRfUDfP4tvL5mvTFxX3FmpKfzKu9NXTl+ISX/pkq3EsNcpf/i/TcaaBblW5v3OSlWU+G6OKPo207ngVuY3lnyj82oiKrU9JPqfseKkk58n0KNpzamAAHQszbZPct8vKZBYuOixHdyUO+VMiGQ8KwT2e5Cd+onQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OE9t+lPD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U66d2j027698
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 10:01:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8qVYp0AZmQ8Y171B2X7YTOB0/ixgpTOlnQfewXcziPo=; b=OE9t+lPDtS4F0KFH
+	BLAGtHen7/ksS9o5XXqVJZLcjjqWg+rh8AJ2TYIiYOy7mrhfjvqpTwc7/6AF0eck
+	CYVvbW12dKXNl04dsYgRrzoQXMOER2xIN/ytB500jc51p1W1LoN5HCAHM0QiPvPu
+	nZ2Hoy2uCON7PhNxpUzU1/Fvv7WAFpcZCWQQYTiNUDWW3pNfgxWggWNHok+2Pu4T
+	C0tPKddpYMw+P9Q3PZGR3hySHs4/YhgnooZZ4yJyr6cudIKSZA0fKKB8d9V4OTpw
+	FaCBWoB+ufuo8g+XqoW3CZVpvHrOZXxCvgkFaAz0pZv/a1dK2W8+ZIauTupX6eyF
+	xN+fXw==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4860ep0my1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 10:01:02 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7047de9a9b1so3537636d6.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 03:01:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753869661; x=1754474461;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8qVYp0AZmQ8Y171B2X7YTOB0/ixgpTOlnQfewXcziPo=;
+        b=P6C+tVHlheiA8yda90DB0udjK5S17q+cbssMaBqSGuOtkzlwqB5vAXheNe7+aRUMA2
+         Ssz2p0bq3BFc4wod+cQp5UahW1+nrqt0L8ImjM65Droa8kz6iwc3dUsqDvhoijFZYDb7
+         TBD37uTaq6VmvO5iiozkmrtCPRZ6jkaZl+EYz7PEjd8vP+0DZLbMuvk5dnZ4gRSKdkPx
+         QLHH51PlCKM/6P+1xleegTJGg8ODw1HVZQ/a7RFvHsrS4JIN8U8U5wXiFkrdCjwG7GJT
+         Y4ghn+2qxei2DDM+Y7+W9bu63zqcLBAilcyPgM3FUmK4IenIj0S8AtQf779adI22WSgF
+         7B+w==
+X-Forwarded-Encrypted: i=1; AJvYcCXTPPWJSHQvEJpyF1MxCsaruj73zoziEOixzf6zowy/VNTloP4faRqoz7jW58G05IgPteTmgmjN5Qxd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpZAAp24Vqe9qb9mYdPizIFrcUg6HZ2F/MI1RuqaoDJaoH89ka
+	nvMkzQoTZuLednMM8NddXIEHDhadKcZYy4NY4HucFvJX+nqZ/KWKuPzjYgp2vxaUi2HeqlDAwZe
+	lZpbGO3haUe9sM3j9JIvDDDnMD/+0NJXm1wpLuJpz8ZOCi0y2o4Rpu9uLJ6Ud6nqi
+X-Gm-Gg: ASbGnct6kcSYR/1pE6fwQPD8biB5G7stJfQygY9rj9PZD8le7qosI1InsGPVOi11WXW
+	VAEyvXnCE+ZwujSAQonNBKcLFwY2Y4wboCsfE/QhPv2Pj/Z6lAHVkYaRYSx6XbKyxF5gahJbD1F
+	HVo8rp5JYdw7SyDT0uRzppXmcA2EARBFn8oNg4BjePNIZ2EBkyHWZcL17UBNj2HvDb3/Pgb/FDP
+	LmPzxJBUOXkxgaoWxDmBwzvCgnYz4D243uW72sQTzuZzmTahm0lHh0aw2eaH8Te2sVs71ycPHEU
+	pgv5EY77GCYZAfZowKp0FWf4axgVjwauDZ77QSOV2cTgiIacructc14RO9RdUkrr6LtkNGBAQ/p
+	hIJmfgSMGEGN2QRdOyw==
+X-Received: by 2002:a05:620a:3908:b0:7d4:5cdc:81e2 with SMTP id af79cd13be357-7e66f372189mr195218985a.13.1753869661084;
+        Wed, 30 Jul 2025 03:01:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGK729sglyzfLvdcMWb65qyWQ1Lwoe8zYZPYieFqzmCOYEfteuWti2wa+QHRti968wjTGVNhg==
+X-Received: by 2002:a05:620a:3908:b0:7d4:5cdc:81e2 with SMTP id af79cd13be357-7e66f372189mr195212785a.13.1753869660444;
+        Wed, 30 Jul 2025 03:01:00 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af635aa4494sm717711666b.97.2025.07.30.03.00.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Jul 2025 03:00:59 -0700 (PDT)
+Message-ID: <63da4872-2365-40eb-9b2e-d3393ddd9b68@oss.qualcomm.com>
+Date: Wed, 30 Jul 2025 12:00:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, 
-	"Bjorn Andersson" <andersson@kernel.org>, 
-	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
-	"Rob Herring" <robh@kernel.org>, 
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
-	"Conor Dooley" <conor+dt@kernel.org>, 
-	"Chen Wang" <unicorn_wang@outlook.com>, 
-	"Inochi Amaoto" <inochiama@gmail.com>, 
-	"Philipp Zabel" <p.zabel@pengutronix.de>, 
-	"Paul Walmsley" <paul.walmsley@sifive.com>, 
-	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
-	"Alexandre Ghiti" <alex@ghiti.fr>
-In-Reply-To: <9dd2af04-5109-43e4-b097-d6b1b4c45dbd@kernel.org>
-Cc: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>, 
-	<sophgo@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
-	<linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for Sophgo
-	 CV1800B SoC
-Message-ID: <1856ff20ba2bf450.56ed58d65d21d4ef.5a222480fa1019f2@Jude-Air.local>
-Date: Wed, 30 Jul 2025 10:00:20 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Add ACD levels for GPU
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250729-topic-sm8650-upstream-gpu-acd-level-v1-1-258090038a41@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250729-topic-sm8650-upstream-gpu-acd-level-v1-1-258090038a41@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: y5NWljsEfZPWdQ3wMeUhhQdFMhxwOg0x
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA3MCBTYWx0ZWRfX1hg0/zFxYy7q
+ Pq68FLNVxz0Rjvzr8bhhN2NK14DYGqTD0ptuwjEZMFNpdAsn5y1cskyWBd4odGUd+dPWHjPf3mS
+ adndtvBQZzRIpP/+K4UYjxIFenwUX5+L5NK/HKOKrux2SJkEd7GdkZtzHfTLX1bMZsjPEjTgWWc
+ KnQTmMjTLcvCp/NOHke2/VdYpz+m+LrmWpT5fuUkNnV07QZr2TrQupGzaqCeqce6BMElbege5A0
+ GgeS0b610EPOOQlFgN8LKKHP3x/0sLc6FbYjDCsAzDLPgGzynCD27+Jl52w5tnh8AdaFNFrPwvr
+ QPK+WEYdvaWdOSHTlFCoRDx1VKEX3ghXxj4f+kOw/VY5li7x8XmX9sf46Nt8/4t3zSeTYnl0YvY
+ 2ZjTEYjdlgsrWXIwzSRyM7UmEVIb3oqIxWq0GvLy1Z0PgCq7zULW5nM3sFCx5JT80SPpJPiP
+X-Authority-Analysis: v=2.4 cv=DIWP4zNb c=1 sm=1 tr=0 ts=6889ed5e cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=qC_FGOx9AAAA:8 a=KKAkSRfTAAAA:8
+ a=uJl3NGG0jz6E0JRZAr4A:9 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+ a=fsdK_YakeE02zTmptMdW:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: y5NWljsEfZPWdQ3wMeUhhQdFMhxwOg0x
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-30_04,2025-07-30_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 bulkscore=0 mlxscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2507300070
 
-On 30/07/2025 11:35, Krzysztof Kozlowski wrote:
-> On 30/07/2025 11:27, Junhui Liu wrote:
->> On 30/07/2025 08:46, Krzysztof Kozlowski wrote:
->>> On 28/07/2025 13:03, Junhui Liu wrote:
->>>> +
->>>> +static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
->>>> +				   struct rproc_mem_entry *mem)
->>>> +{
->>>> +	void __iomem *va;
->>>> +
->>>> +	va =3D ioremap_wc(mem->dma, mem->len);
->>>> +	if (!va)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	/* Update memory entry va */
->>>> +	mem->va =3D (void *)va;
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static int cv1800b_c906l_mem_release(struct rproc *rproc,
->>>> +				     struct rproc_mem_entry *mem)
->>>> +{
->>>> +	iounmap((void __iomem *)mem->va);
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static int cv1800b_c906l_add_carveout(struct rproc *rproc)
->>>> +{
->>>> +	struct device *dev =3D rproc->dev.parent;
->>>> +	struct device_node *np =3D dev->of_node;
->>>> +	struct of_phandle_iterator it;
->>>> +	struct rproc_mem_entry *mem;
->>>> +	struct reserved_mem *rmem;
->>>> +	int i =3D 0;
->>>> +
->>>> +	/* Register associated reserved memory regions */
->>>> +	of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
->>>> +	while (of_phandle_iterator_next(&it) =3D=3D 0) {
->>>> +		rmem =3D of_reserved_mem_lookup(it.node);
->>>> +		if (!rmem) {
->>>> +			of_node_put(it.node);
->>>> +			return -EINVAL;
->>>> +		}
->>>> +
->>>> +		if (!strcmp(it.node->name, "vdev0buffer")) {
->>>
->>> Why are you adding undocumented ABI? And so hidden, not even using
->>> standard OF API!
->>>
->>> How does this behaves when I change your DTS to call it
->>> "whateverbuffer"? Does it work? Obviously not.
->>>
->>> No, stop doing that.
->>=20
->> Yes, you're right. I will consider introducing a "memory-region-names"
->> property in the bindings, instead of relying on the node labels directly.=
+On 7/29/25 4:40 PM, Neil Armstrong wrote:
+> Update GPU node to include acd level values.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 495ea9bfd008500dd2c9f46ceca94cf5f972beca..4cd933219ce008bd1c603c87778e210b6332e29c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -4127,72 +4127,84 @@ zap-shader {
+>  
+>  			/* Speedbin needs more work on A740+, keep only lower freqs */
+>  			gpu_opp_table: opp-table {
+> -				compatible = "operating-points-v2";
+> +				compatible = "operating-points-v2-adreno",
+> +					     "operating-points-v2";
+>  
+>  				opp-231000000 {
+>  					opp-hz = /bits/ 64 <231000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
+>  					opp-peak-kBps = <2136718>;
+> +					qcom,opp-acd-level = <0xc82f5ffd>;
+>  				};
+>  
+>  				opp-310000000 {
+>  					opp-hz = /bits/ 64 <310000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
+>  					opp-peak-kBps = <2136718>;
+> +					qcom,opp-acd-level = <0xc82c5ffd>;
+>  				};
 
->=20
->=20
-> You don't need it. First, you use some old code as template, but you
-> should look how or re-use Rob's code rewriting this completely.
+https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-devicetree/-/blob/gfx-devicetree-oss.lnx.1.0.r1-rel/gpu/pineapple-v2-gpu-pwrlevels.dtsi?ref_type=heads
 
-Sorry, I didn't catch up with that patch. I will look into it and update
-my implementation accordingly.
+doesn't set ACD for D1/D2
 
->=20
-> Second, list has strict order, so you know exactly where the vdev0
-> buffer is. It cannot be on any other position of the list.
+>  
+>  				opp-366000000 {
+>  					opp-hz = /bits/ 64 <366000000>;
+>  					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
+>  					opp-peak-kBps = <6074218>;
+> +					qcom,opp-acd-level = <0xc02e5ffd>;
 
-Thanks for the advice, I will use the order in the list to identify the
-memory region.
+And other values differ too
 
->=20
-> This is why you define the ABI. Use then the ABI.
->=20
+What release did you grab these from?
 
-Understood, I will reconsider this.
-
---=20
-Best regards,
-Junhui Liu
-
+Konrad
 
