@@ -1,163 +1,251 @@
-Return-Path: <devicetree+bounces-200888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DDEB167B1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 22:38:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 086D5B167BD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 22:47:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06954623623
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 20:38:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FF0E3B0E1C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 20:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4523E21D3FD;
-	Wed, 30 Jul 2025 20:38:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A34920E718;
+	Wed, 30 Jul 2025 20:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FFrQ6aFV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXEF/9BQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3301D54EE;
-	Wed, 30 Jul 2025 20:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92A617BD3;
+	Wed, 30 Jul 2025 20:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753907924; cv=none; b=RWr874mLDV24dj8D7up1oTQdBAPCbYRAgXc9YhzZFy+u/6ZstjlMwEXM9LpNAM0DK0YFI5CVgrW8MwOq0xaxQthMWIcOJDmINO83/ZeNedlRDOdO7mqPCQBWuXWulIO7PwH7H5DXydURTVtjQDFa9PsYfDL2pjxqw1TdkrQgna8=
+	t=1753908455; cv=none; b=ROWjouBRZSOMWkyRPhF/Ba8M9WRoSu2J2+VAndFyZT8sGjlSYKaviBV571LPnoXc8vfnpas2Q7LQEOZl1WkudsLMEwkt6NzfDohYQqvGnLKw9wpB+Ywg6XK3UtlHHKyA/hG66jAWh58oq6krhD+NcKp+a3PSjwgYe5iHPdmUA6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753907924; c=relaxed/simple;
-	bh=kfkv1wZ+Pc1jy15de7WzAlnIqJkaVmE39OmHnnoo/Rs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kYynOzxLc+ci+8AZ+5ErnEfpnjnTDh1fiUNVTQVqVlVE8/pFmR4zy/lBlzBJQTVZQRL5KXyb5Ylq6fJInOjOMVpqyZyzUmbLeFuzX204ZMG6YPLDmeLojRGMiZBJkl2tOIRoQORnv50fBSRHdzjTWKxCLjsHy6c7CkXfPdrLh/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FFrQ6aFV; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4560add6cd2so1227235e9.0;
-        Wed, 30 Jul 2025 13:38:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753907921; x=1754512721; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l8Afm5kY+OgAWjgm6x2CIfrrEQg5mJMOKBZYCANj5hg=;
-        b=FFrQ6aFV1i5e4Ui+NaHb+qUq3oOT4MuvT9Q8a2qaQ70dakL8bCEPsLiiasIsT9lYHH
-         A2Wn7mX2l6pNHNnDYHNlj5OBMRKcLttSGkHCEd1X1dCGiNRin/jiaSCKRj/q7nwi63+5
-         /0pzclHN+DuEQogdR4BgsczRD3cuGboNH6exElypvXSW96Nk+aHpVMb2BMO576OzxcQO
-         ZpLcrF+G8tAni5xXre9mDcUoWj6gRJSfZY/pEhzSCzVMYh6UXMRx3TSk2yLerWJ2uhcz
-         uYjmp5M69aptv0aZW6QqjFJjJ5WAzvRp0FDNzFrNj07lfujblbVlYpFYJC/CzfYaT21h
-         Fzmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753907921; x=1754512721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l8Afm5kY+OgAWjgm6x2CIfrrEQg5mJMOKBZYCANj5hg=;
-        b=Q3wFnxOzgqIR+fuDtqKCgXzvbNw3NHvHiQscJgOl1XaWFd+6sM/aX+3YDSVWjNhnBr
-         yPiYawBK5H9P871JDQuqfcgUQfhlyHYIhwrYUCdOBywvOVTgTqXwiAJSzW8rBVa1cUbt
-         lub6fRTDtTXJUQtkXewfh+anIHI9cLnyUN8xwwb4kCMxDAbRtwPjTTTPhq0ouop4Ggv/
-         wqZ8BRCiCS2HWJRx3sKfdBy8IDv+a9WT3mEn+cuSicdMgQD8AiWh6LSThWng9eFTXgzM
-         bd006kNUigM4SLDW4cS0/Hgqy/43D2ScMbJVuGqC1EiOBltsj2gtonTJi8VOKPXe2YV5
-         9Qng==
-X-Forwarded-Encrypted: i=1; AJvYcCVqovmHTdqxJYBOTg1pAqCbrQlvGFRbncX6omimg2hAdRQkhm/riem58sYYFwVRu5oK3qcCqYUjnCR5@vger.kernel.org, AJvYcCWh8m8takszqMMjT4iNuLuvjI2RPA0MVPP2U1HdkVMsB5fIAB+IKy/i1pdXi/GeZAW6wUwfZqsxf+S99h66@vger.kernel.org
-X-Gm-Message-State: AOJu0YybKhYzIydrH/XiUTcFN0j3w7N2myb7o/mGUKWp4TVtKR0h40CH
-	QrMzypMy5+cxmRJDxhrGS0RxHR1+gM++6Xq9580ZQrgW39ZpVXIVnXq3+KDqsYNleYpnk771oyI
-	ykI+3SYu/7DKXAs81Yk4ESiVCSck5CA==
-X-Gm-Gg: ASbGnctW5TJKu6ooA8SuSZN3gxhLhQ4UNOjQ5ujvZTtDWPQvB3aZ+yZO99YYSxqu3ym
-	agDXv+72T/luPzdEMy8piH9i9M2xUKHz6BBCMWY5WiRaAfk29zu6nHGOuVUXotdLJFr0ZRcmGcp
-	E8pdNAORJOHvuU6XFklRXO9dF334XNWhgcy6cclzRuZHDJxktVA/D7R68AEA0pdRKTrykcSlPQz
-	icwXII=
-X-Google-Smtp-Source: AGHT+IF71tNBC+tWZFByXJpnEJB/lxS/QinOOCOXcHd7IWr/NovKj6aZybOP+4ABU2G9GfQ69trGOH4ZFy9NYgrGbXo=
-X-Received: by 2002:a05:600c:a103:b0:456:15be:d113 with SMTP id
- 5b1f17b1804b1-45891b17431mr34509625e9.1.1753907920608; Wed, 30 Jul 2025
- 13:38:40 -0700 (PDT)
+	s=arc-20240116; t=1753908455; c=relaxed/simple;
+	bh=RI0ksHF6O152eL68aDJf82KbbpvphujgM5aWcGo3uNI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rRfxUcsfxebQ0SwLb+f/H17OYF2A1eS4qgI36FFBVxD++Si5HtSIrXw8VxnPSGuR7F7n2EYAXSsA5QJKw2vrf80wm8yu4XMzPMqw3Z834zj5UM8pwy0tLr76DNcb6Lc2zaG6BOAMp1vqaVzIZfUHUNhEVSVJ8uZRHWofyvXElxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXEF/9BQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 542FDC4CEE3;
+	Wed, 30 Jul 2025 20:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753908454;
+	bh=RI0ksHF6O152eL68aDJf82KbbpvphujgM5aWcGo3uNI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DXEF/9BQY5gJWoTcj2QRalWAgOTQjN8Q09CwQJoIAUti4iZsi1eErMTyzhqe+YudV
+	 YBmToktDl7ADhktK08376xC2qPABezs52q7r8fc6Oclbqvm8ipsxMp1SWCYaQsI+Im
+	 vN+nXsRDI2MyKQKbS4NTwvNE0G+TfERjk/s6TChnIPkYJxgaKoVHaz+1ZEXjqEOjgs
+	 WOax7F6gUmcJbEcrZpukzZf6bS8HPtgSijnRkxRTHrv24S3V1zbU7pkE17brvIgFNw
+	 wgLWdh9Y4mnA0no/AVICZKOtD29B/yGVqiKGwL1pbLZGFrv5KdSU8pUj+4Ej9dxoqZ
+	 AuT1M4OwLWfow==
+Date: Wed, 30 Jul 2025 15:47:33 -0500
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 5/6] soc: renesas: Add support for Renesas RZ/N1 GPIO
+ Interrupt Multiplexer
+Message-ID: <20250730204733.GA1717453-robh@kernel.org>
+References: <20250725152618.32886-1-herve.codina@bootlin.com>
+ <20250725152618.32886-6-herve.codina@bootlin.com>
+ <20250729195137.GA658914-robh@kernel.org>
+ <20250730115421.770d99bf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250727165846.38186-1-alex.vinarskis@gmail.com>
- <20250727165846.38186-4-alex.vinarskis@gmail.com> <CAD=FV=Xd_xL=PYvVNqQWFZGmqN+Q=SvvaBTfbv9k+fDb8QwUtQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=Xd_xL=PYvVNqQWFZGmqN+Q=SvvaBTfbv9k+fDb8QwUtQ@mail.gmail.com>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Wed, 30 Jul 2025 22:38:28 +0200
-X-Gm-Features: Ac12FXwM4HeHJZZlcXMgpjN9-RQpaNQ_Bsz2F6A2gi95crriPvDr8wjeZ9Wk22E
-Message-ID: <CAMcHhXp47zmpoNYLCVRWWBk4HcYepgWX=3kWWzW8c8+a=2kE6A@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] drm/panel-edp: Add BOE NV140WUM-N64
-To: Doug Anderson <dianders@chromium.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250730115421.770d99bf@bootlin.com>
 
-On Tue, 29 Jul 2025 at 17:50, Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Sun, Jul 27, 2025 at 9:58=E2=80=AFAM Aleksandrs Vinarskis
-> <alex.vinarskis@gmail.com> wrote:
-> >
-> > Timings taken from NV140WUM-N41. It is found in some arm64 laptops,
-> > eg. Asus Zenbook A14 UX3407QA.
-> >
-> > The raw edid of the panel is:
-> > 00 ff ff ff ff ff ff 00 09 e5 f6 0c 00 00 00 00
-> > 10 22 01 04 a5 1e 13 78 07 8e 95 a6 52 4c 9d 26
-> > 0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> > 01 01 01 01 01 01 5d 30 80 a0 70 b0 28 40 30 20
-> > 36 00 2e bc 10 00 00 1a 00 00 00 fd 00 28 3c 4a
-> > 4a 0f 01 0a 20 20 20 20 20 20 00 00 00 fe 00 3d
-> > 4c 33 30 20 20 20 20 20 20 20 20 ff 00 00 00 fc
-> > 00 4e 56 31 34 30 57 55 4d 2d 4e 36 34 0a 01 f8
-> >
-> > 70 20 79 02 00 21 00 1d c8 0b 5d 07 80 07 b0 04
-> > 88 66 ea 51 cc 74 9d 66 52 0f 02 35 54 40 5e 40
-> > 5e 00 44 12 78 22 00 14 7f 5c 02 85 7f 07 9f 00
-> > 2f 00 1f 00 af 04 27 00 02 00 05 00 2b 00 0c 27
-> > 00 28 3b 00 00 27 00 28 2f 00 00 2e 00 06 00 44
-> > 40 5e 40 5e 81 00 1e 72 1a 00 00 03 71 28 3c 00
-> > 00 60 ff 60 ff 3c 00 00 00 00 e3 05 04 00 e6 06
-> > 01 01 60 60 ff 00 00 00 00 00 00 00 00 00 de 90
-> >
-> > Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> > ---
-> >  drivers/gpu/drm/panel/panel-edp.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/=
-panel-edp.c
-> > index 9a56e208cbdd..b334926e96ed 100644
-> > --- a/drivers/gpu/drm/panel/panel-edp.c
-> > +++ b/drivers/gpu/drm/panel/panel-edp.c
-> > @@ -1947,6 +1947,7 @@ static const struct edp_panel_entry edp_panels[] =
-=3D {
-> >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, "NT1=
-40FHM-N47"),
-> >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c93, &delay_200_500_e200, "Un=
-known"),
-> >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200, "NT=
-116WHM-N44"),
-> > +       EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cf6, &delay_200_500_e50_p2e80=
-, "NV140WUM-N64"),
->
-> Since this is a "guess" timing without any datasheet, I'd be more
-> comfortable picking the most conservative of the "cousin" timings. Can
-> you re-send with "delay_200_500_e200" instead?
+On Wed, Jul 30, 2025 at 11:54:21AM +0200, Herve Codina wrote:
+> Hi Rob,
+> 
+> On Tue, 29 Jul 2025 14:51:37 -0500
+> Rob Herring <robh@kernel.org> wrote:
+> 
+> > On Fri, Jul 25, 2025 at 05:26:14PM +0200, Herve Codina wrote:
+> > > On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> > > interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> > > order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+> > > 
+> > > The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> > > IRQ lines out of the 96 available to wire them to the GIC input lines.
+> > > 
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  drivers/soc/renesas/Kconfig       |   4 +
+> > >  drivers/soc/renesas/Makefile      |   1 +
+> > >  drivers/soc/renesas/rzn1_irqmux.c | 169 ++++++++++++++++++++++++++++++
+> > >  3 files changed, 174 insertions(+)
+> > >  create mode 100644 drivers/soc/renesas/rzn1_irqmux.c
+> > > 
+> > > diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
+> > > index fbc3b69d21a7..9e8ac33052fb 100644
+> > > --- a/drivers/soc/renesas/Kconfig
+> > > +++ b/drivers/soc/renesas/Kconfig
+> > > @@ -58,6 +58,7 @@ config ARCH_RZN1
+> > >  	select PM
+> > >  	select PM_GENERIC_DOMAINS
+> > >  	select ARM_AMBA
+> > > +	select RZN1_IRQMUX
+> > >  
+> > >  if ARM && ARCH_RENESAS
+> > >  
+> > > @@ -435,6 +436,9 @@ config PWC_RZV2M
+> > >  config RST_RCAR
+> > >  	bool "Reset Controller support for R-Car" if COMPILE_TEST
+> > >  
+> > > +config RZN1_IRQMUX
+> > > +	bool "Renesas RZ/N1 GPIO IRQ multiplexer support" if COMPILE_TEST
+> > > +
+> > >  config SYSC_RZ
+> > >  	bool "System controller for RZ SoCs" if COMPILE_TEST
+> > >  
+> > > diff --git a/drivers/soc/renesas/Makefile b/drivers/soc/renesas/Makefile
+> > > index 3bdcc6a395d5..daa932c7698d 100644
+> > > --- a/drivers/soc/renesas/Makefile
+> > > +++ b/drivers/soc/renesas/Makefile
+> > > @@ -14,4 +14,5 @@ obj-$(CONFIG_SYS_R9A09G057)	+= r9a09g057-sys.o
+> > >  # Family
+> > >  obj-$(CONFIG_PWC_RZV2M)		+= pwc-rzv2m.o
+> > >  obj-$(CONFIG_RST_RCAR)		+= rcar-rst.o
+> > > +obj-$(CONFIG_RZN1_IRQMUX)		+= rzn1_irqmux.o
+> > >  obj-$(CONFIG_SYSC_RZ)		+= rz-sysc.o
+> > > diff --git a/drivers/soc/renesas/rzn1_irqmux.c b/drivers/soc/renesas/rzn1_irqmux.c
+> > > new file mode 100644
+> > > index 000000000000..37e41c2b9104
+> > > --- /dev/null
+> > > +++ b/drivers/soc/renesas/rzn1_irqmux.c
+> > > @@ -0,0 +1,169 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * RZ/N1 GPIO Interrupt Multiplexer
+> > > + *
+> > > + * Copyright 2025 Schneider Electric
+> > > + * Author: Herve Codina <herve.codina@bootlin.com>
+> > > + */
+> > > +
+> > > +#include <linux/mod_devicetable.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_irq.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#define IRQMUX_MAX_IRQS 8
+> > > +
+> > > +static int irqmux_is_phandle_args_equal(const struct of_phandle_args *a,
+> > > +					const struct of_phandle_args *b)
+> > > +{
+> > > +	int i;
+> > > +
+> > > +	if (a->np != b->np)
+> > > +		return false;
+> > > +
+> > > +	if (a->args_count != b->args_count)
+> > > +		return false;
+> > > +
+> > > +	for (i = 0; i < a->args_count; i++) {
+> > > +		if (a->args[i] != b->args[i])
+> > > +			return false;
+> > > +	}
+> > > +
+> > > +	return true;
+> > > +}
+> > > +
+> > > +static int irqmux_find_interrupt_index(struct device *dev, struct device_node *np,
+> > > +				       const struct of_phandle_args *expected_irq)
+> > > +{
+> > > +	struct of_phandle_args out_irq;
+> > > +	bool is_equal;
+> > > +	int ret;
+> > > +	int i;
+> > > +
+> > > +	for (i = 0; i < IRQMUX_MAX_IRQS; i++) {
+> > > +		ret = of_irq_parse_one(np, i, &out_irq);  
+> > 
+> > I don't really want more users of this... More below.
+> > 
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		is_equal = irqmux_is_phandle_args_equal(expected_irq, &out_irq);
+> > > +		of_node_put(out_irq.np);
+> > > +		if (is_equal)
+> > > +			return i;
+> > > +	}
+> > > +
+> > > +	return -ENOENT;
+> > > +}
+> > > +
+> > > +struct irqmux_cb_data {
+> > > +	struct device_node *np;
+> > > +	struct device *dev;
+> > > +	u32 __iomem *regs;
+> > > +};
+> > > +
+> > > +static int irqmux_imap_cb(void *data, const __be32 *imap,
+> > > +			  const struct of_phandle_args *parent_args)
+> > > +{
+> > > +	struct irqmux_cb_data *priv = data;
+> > > +	u32 src_hwirq;
+> > > +	int index;
+> > > +
+> > > +	/*
+> > > +	 * The child #address-cells is 0. Already checked in irqmux_setup().
+> > > +	 * The first value in imap is the src_hwirq
+> > > +	 */
+> > > +	src_hwirq = be32_to_cpu(*imap);  
+> > 
+> > The iterator should take care of the endianness conversion.
+> 
+> Ok, it will take care.
+> 
+> > 
+> > > +
+> > > +	/*
+> > > +	 * Get the index in our interrupt array that matches the parent in the
+> > > +	 * interrupt-map
+> > > +	 */
+> > > +	index = irqmux_find_interrupt_index(priv->dev, priv->np, parent_args);
+> > > +	if (index < 0)
+> > > +		return dev_err_probe(priv->dev, index, "output interrupt not found\n");
+> > > +
+> > > +	dev_info(priv->dev, "interrupt %u mapped to output interrupt[%u]\n",
+> > > +		 src_hwirq, index);  
+> > 
+> > Do you even need "interrupts"? Just make the "interrupt-map" index 
+> > important and correspond to the hw index. That would greatly simplify 
+> > all this.
+> 
+> I would like to avoid to be based on the interrupt-map index.
+> 
+> Indeed, IMHO, it is less robust. I don't thing that we can enforce the
+> interrupt-map items order. Based on interrupt-map index, we need to ensure
+> that the first item is related to GIC 103, the second one to GIC 104 and so
+> on.
 
-Sure.
+How exactly are you enforcing that order for "interrupts"? You can't. 
 
-Do I understand correctly that more conservative delay_200_500_e200
-will for sure not make it worse, since its more conservative? In that
-case can re-spin right away. Otherwise I would prefer to re-test it
-first, may take a few days as I do not own the hardware so need to
-propagate the change and get some feedback.
+Aren't you just duplicating the information in "interrupts" in the 
+interrupt-map.
 
-Thanks,
-Alex
-
->
-> -Doug
+Rob
 
