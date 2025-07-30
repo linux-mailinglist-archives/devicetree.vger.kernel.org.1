@@ -1,118 +1,59 @@
-Return-Path: <devicetree+bounces-200916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BEB5B16962
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 01:47:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E188B1697A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 01:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 973D15607CE
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 23:47:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0D8918C76F1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 23:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E83823F403;
-	Wed, 30 Jul 2025 23:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22736233140;
+	Wed, 30 Jul 2025 23:52:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N6aMB3CE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0kK/w41"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A889D23ED76;
-	Wed, 30 Jul 2025 23:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8F9212FB7;
+	Wed, 30 Jul 2025 23:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753919193; cv=none; b=tAwPUWwl6mJxi2gitAMtDBHpCBUiQ+QOOLXlMyXa9iw1bIDXEtjbiGkqb/78I3Ok6x64u+maRES53/uOPIwBe92KBfZuABdFQZgaRz6AF8QCluYI3510kFWDKZQ+Bcg5aOYirfeis1sL4VRggGxuWctGPamAbnWzW/eLtzz1x7I=
+	t=1753919536; cv=none; b=aCdnp6+Ib+6P/x/Vx41bpMPVaSFGizHfjYVLTw7scikfBOLJBcevbtbsvstAB2Vd8ofWtAhQ1ztmpXqRRjwpZHJlX4vOA2T4fIT1MredCuoNwI/seo7F88FNOlA4MIKM5v7bz22KkkPflMs/Rt8ZDGnLwRbX1/+TAcuJ1tz5GQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753919193; c=relaxed/simple;
-	bh=lVT1wO7Gp792FLsRAdREUHlRgKkz5jzpbMWb3qz8oAY=;
+	s=arc-20240116; t=1753919536; c=relaxed/simple;
+	bh=zsGUwtWCHJliIuhsWXlAWg6lQCzm+yw+rRaXzComjqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gPB/MkVNtCMEG6TUrVqcoqD6vhQ/tG9tQfzK0z7kDcIIWU7mEHlLAbozIIPcmyfeNcTghomvjhm/kMKpIy1TXoT6at0zhLd7vru1haB2dTk9sPzyZJl2W4NEUdce9VyMco8iI0pwGFdmSi6jFA9cSBI9FQfZwZCoRgK8gY4Jjyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N6aMB3CE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE60C4CEEB;
-	Wed, 30 Jul 2025 23:46:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eE6N65upoxgyxI8nYDm0QOviEM9wjH1SoefueuM8Vy+IweSDzzCO8aYKZ6CTpudrRuS5ZZxODJlxGJoSvbO5yx+t1yyiNuovpmHnDKQ4qhFclY9BXDDnDs5XyWQVCcCFNljIziTtLZ+zNKgy6vZIxcxBHkhmj0wbPMAVyGcX+OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0kK/w41; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EBB4C4CEE3;
+	Wed, 30 Jul 2025 23:52:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753919193;
-	bh=lVT1wO7Gp792FLsRAdREUHlRgKkz5jzpbMWb3qz8oAY=;
+	s=k20201202; t=1753919535;
+	bh=zsGUwtWCHJliIuhsWXlAWg6lQCzm+yw+rRaXzComjqk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N6aMB3CEnMYdRMvFhM0HoWxdlsfSHx5m9Bk/+p1Tu0UGicuWCsqhq19gp+dX0Al9h
-	 ufzZFFn01VVIdroTIq4MKl0fZ/jXA0kQi1QCdTjqDcwTjZxYoyfU/uuJyEJFJ07qA3
-	 JeevVFdeYuOabfOwyqTlFCWN1dNkch6m/kOPdEHig9UkogvqR0kkVlL3sW42idySmr
-	 x7aqCguqpUrMz8Z85WFv4WuLtwZBipysMMnejHZV3hwlBdm9je7Ql0SKF+YJtdXmhy
-	 NHQOsrp+G1CwLUn1GZ0rWyOwYzqJkYhvDIzHrpoYxleGqrTIE6mU0fyubuC2rc1aQK
-	 gJh+uVlo0psBg==
-Date: Wed, 30 Jul 2025 18:46:31 -0500
+	b=i0kK/w41Ne0scmqL6sqW8WL13YI3UWEFHP3kTvruANn8XbjZnEeBs7XQ2F/nX5d4D
+	 FE0vg1+I863qTxROe55DrDf7SNpTcc7rBw9AzfBERoC1vVbIXy00c3fDGR4rtChUBr
+	 8xmC+SB8E/u13/19Li2IKc/2yt0qviOBtz4cLNDAteh7XbXCqGMaljagK15Gbi0EIl
+	 gvSXhZvDdu7n4YyqkYdGLtCDWz3gmZrSK7yJ70sJrv/eV/8FLo55Oy+biIlW/LEg3u
+	 rTkX0ee0n3A1aYC5YrMhLKm1NLn1giBiW2MHGFjLzKsT5nR8itoYixpvaRvMU/kdZU
+	 ok/jbTT9CUD0g==
+Date: Wed, 30 Jul 2025 18:52:14 -0500
 From: Rob Herring <robh@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Frank Li <Frank.Li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Takao Orito <orito.takao@socionext.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	=?iso-8859-1?Q?Am=E9lie?= Delaunay <amelie.delaunay@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
+To: Shiji Yang <yangshiji66@outlook.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Srinivas Kandagatla <srini@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	imx@lists.linux.dev, linux-actions@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH RFC 1/6] dt-bindings: dma: qcom,gpi: Retire passing the
- protocol ID
-Message-ID: <20250730234631.GA1899887-robh@kernel.org>
-References: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
- <20250730-topic-dma_genise_cookie-v1-1-b505c1238f9f@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: nvmem: add env-size property for u-boot
+ env layout
+Message-ID: <20250730235214.GA1907865-robh@kernel.org>
+References: <OSBPR01MB1670FF3930C3B1736E7EFC23BC24A@OSBPR01MB1670.jpnprd01.prod.outlook.com>
+ <OSBPR01MB16702D6947772E526F64D63CBC24A@OSBPR01MB1670.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,58 +62,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250730-topic-dma_genise_cookie-v1-1-b505c1238f9f@oss.qualcomm.com>
+In-Reply-To: <OSBPR01MB16702D6947772E526F64D63CBC24A@OSBPR01MB1670.jpnprd01.prod.outlook.com>
 
-On Wed, Jul 30, 2025 at 11:33:28AM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> This is a software construct that has no business being expressed in
-> dt-bindings. Drivers can be constructed to retrieve the protocol ID at
-> runtime or hardcode them per protocol.
-> 
-> Remove it, as a pre-requisite for further simplifying the GENI
-> bindings.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Wed, Jul 30, 2025 at 09:17:47PM +0800, Shiji Yang wrote:
+> This newly introduced property allows users to declare the size of
+> the environment storage area.
+
+Why do you need it to be less than the partition size? They commit msg 
+needs to explain that.
+
+The partition size for fixed partitions in particular are purely a DT 
+construct. No reason the partition size can't always be the env size.
+
+> Signed-off-by: Shiji Yang <yangshiji66@outlook.com>
 > ---
->  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/nvmem/layouts/u-boot,env.yaml      | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> index bbe4da2a11054f0d272017ddf5d5f7e47cf7a443..745613b93b210afd38946030f7477e91e08c907a 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> +++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-> @@ -61,14 +61,13 @@ properties:
->      maxItems: 13
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+> index 56a8f55d4..e0b65a53e 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
+> @@ -46,6 +46,12 @@ properties:
+>      type: object
+>      description: Command to use for automatic booting
 >  
->    "#dma-cells":
-> -    const: 3
-> +    const: 2
-
-I think you need to keep 3 and note it is deprecated. Does an existing 
-kernel support this being 2 already. If not, ABI break...
-
->      description: >
->        DMA clients must use the format described in dma.txt, giving a phandle
->        to the DMA controller plus the following 3 integer cells:
->        - channel: if set to 0xffffffff, any available channel will be allocated
->          for the client. Otherwise, the exact channel specified will be used.
->        - seid: serial id of the client as defined in the SoC documentation.
-> -      - client: type of the client as defined in dt-bindings/dma/qcom-gpi.h
+> +  env-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Size of the environment storage area in bytes. If this property
+> +      is not defined, the default size is the partition size.
+> +
+>    ethaddr:
+>      type: object
+>      description: Ethernet interfaces base MAC address.
+> @@ -85,6 +91,7 @@ examples:
+>          env: partition@40000 {
+>              compatible = "u-boot,env";
+>              reg = <0x40000 0x10000>;
+> +            env-size = <0x1000>;
 >  
->    iommus:
->      maxItems: 1
-> @@ -98,7 +97,7 @@ examples:
->      #include <dt-bindings/dma/qcom-gpi.h>
->      gpi_dma0: dma-controller@800000 {
->          compatible = "qcom,sdm845-gpi-dma";
-> -        #dma-cells = <3>;
-> +        #dma-cells = <2>;
->          reg = <0x00800000 0x60000>;
->          iommus = <&apps_smmu 0x0016 0x0>;
->          dma-channels = <13>;
-> 
+>              mac: ethaddr {
+>                  #nvmem-cell-cells = <1>;
 > -- 
-> 2.50.1
+> 2.50.0
 > 
 
