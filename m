@@ -1,158 +1,125 @@
-Return-Path: <devicetree+bounces-200741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D323CB15DFF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:19:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 317D5B15E0F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4CE27A32F4
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:18:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C2D27ABDB5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 10:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26026272E74;
-	Wed, 30 Jul 2025 10:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D85275867;
+	Wed, 30 Jul 2025 10:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eyQOpxcV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dYznHn8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE402266B66;
-	Wed, 30 Jul 2025 10:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374B42741DA
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 10:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753870772; cv=none; b=L+Ao2YRDUh0xIQWhsuVTcQ4+gynhrpCyBYWoA4Gs6XfvPL5ZPj4AjJP22wnoW3bRCG6c6dJqk7Ug5OudumeeZcw3nCZiuiivaCBL6mlC+MQI8zTT64qxBb/c+zf2//oM0MDUarod+NQIsYThgxl5eeDH9w4Vu09LlKRuDu1ODj8=
+	t=1753870895; cv=none; b=fiD5MeMbn606sGw82Yb569kFHB2fH1/vkEtUtIL5p5Gk9+jw2wm4MkX1wl12r/EaRZjT9bNwoRJeNiKWGlpTYZIdPL0Al+Skms4qX8NIwL3N8YJhz6mX/UhPjgvAB9hBxl9gSfhKaCBp515zTUoQ0lDfyh8NRfiT6NaqYc3Rg/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753870772; c=relaxed/simple;
-	bh=EAo1JwLwQmSVpdRh6bDezMwGkO6es9S03FxPuaNswug=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XbeqL9dy2oqF8GDT/+kVUw4S7fGhNSByiN/Qecrzd317OH5tao2u3Xbwq3ixgsFHwvlfFjOt0Fh8nY0UZKzCqtzqNVK9Pin+4DOo/P6joeaqpF+UhDZ/6WMaVk5UyUJtgE+BX2AQzCIh6OkSzR4y57uq44CWjMZPFskyQ1+NAfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eyQOpxcV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 582B1C4CEE7;
-	Wed, 30 Jul 2025 10:19:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753870771;
-	bh=EAo1JwLwQmSVpdRh6bDezMwGkO6es9S03FxPuaNswug=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eyQOpxcVcR1H63+BHWg/CFKigaLqUqMvNvXsUknLdHPeMkodeiZl5MPug/8DsVw/a
-	 giBEQoO6YJfc2IYMup/cB5/tzxUNdpq26OkCCKKEyijv3HeDTvTPB42bZ/LAWWap1W
-	 HSU9KVqt3jnCYHFHTDpwJjFf8xW2jB/JQQE+K88VmHLkDDwagXryM/B6XDesFEu6sE
-	 dSdDZ+j8pNDSjEmeF0IcFGmPg4/QvfL9hUVm6h9WtgU6dBsthpBa+4155dTYEuncfm
-	 LoudalTEKGq6b4IJRJAblOtrJzxaq8mDhKnhvwKxJ1GJAz0exZz3MffWB+GUVgM/Fm
-	 qi3d0rU9EWtOg==
-Date: Wed, 30 Jul 2025 11:19:07 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Viresh Kumar <vireshk@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Frank Li <Frank.Li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Taichi Sugaya <sugaya.taichi@socionext.com>,
-	Takao Orito <orito.takao@socionext.com>,
-	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Daniel Mack <daniel@zonque.org>,
-	Haojian Zhuang <haojian.zhuang@gmail.com>,
-	Robert Jarzmik <robert.jarzmik@free.fr>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	=?iso-8859-1?Q?Am=E9lie?= Delaunay <amelie.delaunay@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
+	s=arc-20240116; t=1753870895; c=relaxed/simple;
+	bh=Y+tSZfdhzH7q3y35doZALKJSaC4JvZC2ddW7P3nTifM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pmJTO8nWg+fVd3m+leF2hXeLh6fBuQqyivGM1x3IDAGb2aDCDAVYrB6auJK4yoGArqydbczzaHjyqqvGebfsE3yhj3cP2NCkAhKbcwg+KKvkvrZ3IZfANIfDDe5RHkKpKBMvv6r2CmtkL8X0+djWMvtgma1q4DKv+dzmb5mxEwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dYznHn8n; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b7862bd22bso454638f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 03:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753870892; x=1754475692; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=izmdp1mfJElMA660m7jOXKNrgn9YS9Q0kIP1psA3utA=;
+        b=dYznHn8njxgKuGi9zAwq5L2w/CbmE0sR1XwVVoAHSbsotMOQ4CEl8sQTL59F7qS8de
+         +z0DIIUvBf+vMcqtTxj7j9+RPJA850MAS9ZHqJmm29jZEX4Kx4GWnQJK6avYlb1hLZgF
+         Fsb0V+Z/yZ/3GjZBiSUv8B7q9jmE3O9tN3bTcRrrr729iNTw0y06aFRekOLP9CyUtQB0
+         teaGA1njjkhsYx0/YwFWez70LXMLv4IIN7xpS+s9EBt6VZUMNjCRDTKiAvtJ2wzfcRGx
+         H6d4Hd5N6S9jCHIKO0OVYHe7povmfIZkfXmpfoly3yxLMSXJAqc1QNr/UuRAezVncA8H
+         m+XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753870892; x=1754475692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=izmdp1mfJElMA660m7jOXKNrgn9YS9Q0kIP1psA3utA=;
+        b=YMiuijSJH4T9smPTtj33L7KVrBd9x0H0Ebu2RUAfwOtYUZP5spvDOqpTD4UyMecygW
+         JlCL/dPsRnqKn3DyRTpkRfFFGT+lWK7qJ3XwLtBy3WbmbgW0Ozes/GRHbe5K+9xKn0iD
+         Rgd/vqWLRXgUWEwvnYRwML1OjSGn8+7GjNApRtVhPrOXaosrtMQZp/FEgfFsa9x7DFRZ
+         4TBn6WttLx5+lg0tlNTGheiKSHDUlKrD7YTwS+FQNzdieXNXQuLrXeY389dTiF26qNNs
+         NsScQPCFEtHcMI9BpAbDuicz5/1nwL0MkBLXwvSiWPybpigtsYCRMZ5lhVjYD+4/NkHC
+         K1BA==
+X-Forwarded-Encrypted: i=1; AJvYcCX6/kr0XAHGXHXQokSQwhDmLEqZixD1oPko4YA8NfkNyU/nDHs52Q4wBSThWRl9O4SFVqBaVc4dhQLA@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywqup0E0sOX6r501D3Lv+Zn7OikYh7CsIgF92oZ0V5vcSkqjuoP
+	np6BSmz4ywdmFwr0QbMZhs+tJ6vBwU1IPq7vz/q4ydZwBJhI28UL29iAHQazYQ==
+X-Gm-Gg: ASbGncuLd0SvEejc5Qp9lmFXt9cWlebOc3IzBzHO1XecP7ohHW6C5lWV4f/Xw9+N6rF
+	w3qESB5Ut98bPASqPc89gdYfmLlFTU458bGKeS+n+Fp0BKrvWDIaaW1udou/eMjtb+K6J+frMIn
+	mAmdWauWiQ+04jrgUXl6k2iBFnLYupFlx9y6kAjsC0mQPHoDj+LPIXdDDtiThuavf0sYxQgfEw5
+	BC4ccxK51UZZvait4xRRd7OUdnkuBeEgq+oSlVlYVI63I2eUomxL9Fz/kkzUOWznqf38Is143Pg
+	L+1XuBUZ2MhcDYfK7u3MxExGU6O70+RsJ7k1ItMbBxLf14LL+N1Cfq59mjdymc6Ftn1VAO57Vm2
+	490zzGJ1BMVAAeQH46nzzzoMxy7xpK+2WG03MWSl1nOILgqmBdMbkCGOoTF9yPw95BNberSwZjh
+	UtIrGCbTVJVzU6JsvhPlwdF9SvXTKr6QezxgM9/Kh6otGYBYNOagU45BwcUQ==
+X-Google-Smtp-Source: AGHT+IEHXtB2NA59RXOAGzl8/E7rrQL8mlrQPxG7D28gE4sPqk53HQ56chwvDhjCqBfn8C/qtk2Kow==
+X-Received: by 2002:a05:600c:628c:b0:456:1281:f8dd with SMTP id 5b1f17b1804b1-45893108700mr24657995e9.12.1753870892301;
+        Wed, 30 Jul 2025 03:21:32 -0700 (PDT)
+Received: from cypher.home.roving-it.com (2.c.4.1.7.3.6.4.2.a.a.3.0.f.c.2.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:2cf0:3aa2:4637:14c2])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45895377b3csm20230985e9.13.2025.07.30.03.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jul 2025 03:21:31 -0700 (PDT)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	imx@lists.linux.dev, linux-actions@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH RFC 5/6] spi: geni-qcom: Hint GENI protocol ID to GPI DMA
-Message-ID: <490091ee-ba84-4f97-96b4-fe30ed082e17@sirena.org.uk>
-References: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
- <20250730-topic-dma_genise_cookie-v1-5-b505c1238f9f@oss.qualcomm.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Diederik de Haas <didi.debian@cknow.org>
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3399-pinebook-pro
+Date: Wed, 30 Jul 2025 11:21:26 +0100
+Message-ID: <20250730102129.224468-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bAEzP5efOXdEgXiD"
-Content-Disposition: inline
-In-Reply-To: <20250730-topic-dma_genise_cookie-v1-5-b505c1238f9f@oss.qualcomm.com>
-X-Cookie: Linux is obsolete
+Content-Transfer-Encoding: 8bit
 
+As described in the pinebookpro_v2.1_mainboard_schematic.pdf page 10,
+he SPI Flash's VCC connector is connected to VCC_3V0 power source.
 
---bAEzP5efOXdEgXiD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This fixes the following warning:
 
-On Wed, Jul 30, 2025 at 11:33:32AM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->=20
-> With the API in place, request the correct protocol ID with the GPI DMA
-> to avoid having to hardcode this obvious information in the device
-> tree.
+  spi-nor spi1.0: supply vcc not found, using dummy regulator
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Fixes: 5a65505a69884 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
---bAEzP5efOXdEgXiD
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 05c48cb09df6f..ee0e6c1947acb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -978,6 +978,7 @@ spiflash: flash@0 {
+ 		reg = <0>;
+ 		m25p,fast-read;
+ 		spi-max-frequency = <10000000>;
++		vcc-supply = <&vcc_3v0>;
+ 	};
+ };
+ 
+-- 
+2.50.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiJ8ZoACgkQJNaLcl1U
-h9DnvAf+LbcTzds/hsfTeLtLPENpavgpdBbC/kj+eo3NQESPHZy9K7kiL8p7Xjbr
-hMSf6upQxsK7NZMFyKsLc0oAEP6LLyDU16ON/R+QDQiNYou0xOm9vYoJwtmhMvDY
-PDJaohO2ZSfEwodlxhodZ0HxhrSaPXLEiJt2tA/ASGUdRtCC15yUoXItcUf+b04C
-/A3TjgtsVE32Xz6HKLh2/Z6WkBWVgqpGswljAu7JkNAvKlp7BTviSUX645kuiQYz
-/o32yfxiCCO5LO/s2/wvMjiCgaKi2Kf8uLjifxymS8nOhqcw/yZjAZ70/lo6j8IO
-EmQkB6uCcv8iOoBmuo/fb2/ULFapvQ==
-=j7vN
------END PGP SIGNATURE-----
-
---bAEzP5efOXdEgXiD--
 
