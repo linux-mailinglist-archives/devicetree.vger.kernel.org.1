@@ -1,140 +1,145 @@
-Return-Path: <devicetree+bounces-200690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF4CB15B70
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:24:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35454B15B86
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:28:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B716561689
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:24:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59366547C46
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BF4275865;
-	Wed, 30 Jul 2025 09:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0B2270547;
+	Wed, 30 Jul 2025 09:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cTPbrNKu"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="ofTCsuO9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AABF26FDA9;
-	Wed, 30 Jul 2025 09:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753867372; cv=none; b=WE83kWI3gsWljc0ycNULDnIqnKaoNRp8XKv9FAPoBWcwTREsilHwcM6LtyLUDAW7D/x3f/taSVLPg5t+IoMbCG02fTzoa5LZJ5EivdQ7hJYVZE0FAXHf+OZKNdWqc+S/sK4B1vlVm5QeIOu4rJhBlKksnnWe2VW4Aa7nA5b7p6o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753867372; c=relaxed/simple;
-	bh=mzwHw+265Ro4LQQ1Rr7vd9ninEBSp7M3yuLpyZqTcN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oOcew9xSEZ0JCjFwgN+nIZiqumPJrmykb+fhRKeh8k1VnL/eMZS0rzs0kdbeVZtQGdpNiBhWu5lE4b38grvUTc8CuCDvq1Hds5NWi1mrzj7AMMaVEn71iHZEK14DOORhpnF0cPxevhGfvT3AZA0zH/J4pm7cO6/Z28vDWPjlRq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cTPbrNKu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U7iLCr016213;
-	Wed, 30 Jul 2025 09:22:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	laY4sjzaZLR8SgMhPEYTnLhfZi9R4r0rn2mnqOqjZLM=; b=cTPbrNKu0M13t2oS
-	QCREkDNHZ4N2AYTFH8ZG+j0khvtS4NVf3iEhEcXry4ERJ69FLL9N5ICiffYWqHcl
-	2H+mZxd97AGNhuzfw3op3jmWOIkyEPzPV2FKWDrO7ju9qgaVq8sVdCKPwatfRh8I
-	QBBiGIs1XVLGQ4JT25TfvK5MazH/2jzwSPqXNxEsinv3CzHjd7SUtWc1vvX5UGBI
-	7wOs6wQgfUtL958TKJCUzLP4PutjsQCvHM4Cs3zWkapYj5/NY3wZT+S3vMmmhRkS
-	wzJ1NsChTa4ITaxkanOneNtd8clzO4k4+o6YHPdm7gtGm7mQK9PPfSEdK+wHQpIn
-	/uOdEg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 486v6y3jrj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Jul 2025 09:22:47 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56U9Mkmh005189
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Jul 2025 09:22:46 GMT
-Received: from [10.151.37.100] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 30 Jul
- 2025 02:22:41 -0700
-Message-ID: <2c165ddd-f6b6-45b6-a319-8944fab324f2@quicinc.com>
-Date: Wed, 30 Jul 2025 14:52:38 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBB720E6;
+	Wed, 30 Jul 2025 09:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753867724; cv=pass; b=G3g7adDYIGRJLgu+IxOC8wY81ojTG7wY4bgdvv21oxdadKDjgW3NET5ifaD7ZbT3IwisR9o14IFGxTbroy+CSw2k8kex8ovsOWIxXz4PzwHKKFPg1JPp0egROraeq2W+eB1wc6BpZRCIhUJXU6k9GOIFFzP1ijhPryhZneXFjMs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753867724; c=relaxed/simple;
+	bh=t3c7ApzZHOMiKIf3qYga0AK7Hlk1UGv35rVUccyTIV8=;
+	h=MIME-Version:From:To:In-Reply-To:Cc:Subject:Message-ID:Date:
+	 Content-Type; b=fGbjPYfNcBIfdd8I/6758yA6+6owW0iinQLjqTTRZizbY+iO0y0MFpmBa64P5Tokf512GuCIFB64Va0/GISvDazIs4LwtHu9lqUW/bJeKNATE/CMgyo/5iv8i0IEL1demuVeu0keSuggKVHP5Rxapnelw5Fc3rMYJaXLhNqVsxY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=ofTCsuO9; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1753867687; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=nddlrO4R71yX3djJdv0vnzDk2yDBK552d6TsBN0yiSBexeMJAAVdQY7UyR9lwQ7jsA5C2zQbVfYd8GnBaiNQR21tXMF/sepZi2LbrpvDna+jLoxIP+NYcqtJ0yIoM0JZFPZoAkKTdBuYyvjzYl4Dbj8W/p6TSGL5NJgiIhbj4d8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1753867687; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=JM3444/P86FR1Z2gUwUAcrgLuv1NTNO1qEqDAd2ngac=; 
+	b=j5hBgeS8On3qEOG7n8tsZvtaIbCQvY507MKEQikPquJ5fURIeYnhZL89+VNzjoYe8eajqzB0PNVWYK/gBGeeHQ5IwjrxN0g8Moy1PmCoi5P6e3ZInP7IHHdfR8NXpW25PtEFLps9Zi/d8fYdcxogzVZNp1U+kts/6b6jreEV1w4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1753867687;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=MIME-Version:From:From:To:To:In-Reply-To:Cc:Cc:Subject:Subject:Message-ID:Date:Date:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=JM3444/P86FR1Z2gUwUAcrgLuv1NTNO1qEqDAd2ngac=;
+	b=ofTCsuO9zgQI/w44cuB+/P49sCcqePfZSEnRJyi43ey2KjwkBgxEJt/AY4d/ae5L
+	1E2uaI0nzua2mxogo3GpvOotYE8RXWAZdKnhdf13oCxFMEqWWFftvAxvDA5XbZtTkJT
+	5Wzq2Z2SAKOHcRnHSVFi0fbdBTNPsfUdv4Gnooyg=
+Received: by mx.zohomail.com with SMTPS id 1753867684529441.77053887820284;
+	Wed, 30 Jul 2025 02:28:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: clock: ipq5424-apss-clk: Add ipq5424
- apss clock controller
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Varadarajan Narayanan
-	<quic_varada@quicinc.com>,
-        <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>, <djakov@kernel.org>,
-        <quic_mdalam@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-References: <20250730081316.547796-1-quic_varada@quicinc.com>
- <20250730081316.547796-2-quic_varada@quicinc.com>
- <1705cfd6-95fe-4668-ae3b-f8fc7321d32a@kernel.org>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <1705cfd6-95fe-4668-ae3b-f8fc7321d32a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA2NSBTYWx0ZWRfX0ugXjftaA4Yl
- oroN+K7j4TzT6tRyfDJT+TJLmOjFu9NC7YP1E7pKGzQEF43eR+B7EFf9+FctEYewdeCJQTZci81
- OXoFePgSrrOqq/A1yeW/cNRyGNXiXH1toyMDPu2xmSBUgd+b7zT65O5IR529/D+3rJA9PeayYDn
- F493PR2DGT4G3VW5+j8f1bTdefsIZMtv6Dfttq7L0/Q7bfVsOfXLuKpneOXDtpRVFfCQ9qB+Ko6
- /WYjZiMt1DKunF0NVxh3agfVGgYlREbU7qoSCjEKUpe/fub8Nj/zrQ8nAs8TnkHHAHPuyaWI51k
- nhItJga/ka47Wg5n6P8+Z+F+xvZ4rpf5Wigqe5amq5NhxowgvqWywo2B80zsmTqjbmBnsi8PK9K
- zTHOt7ENMKe6U0ndwWVyj+A6wALscBXgobRU7jwt8UIuvmlLyqPFZaVWshXTroToZJin3IC4
-X-Proofpoint-GUID: mKGqk8IfXU6HMPAi6WSQj-zZubvVai_w
-X-Proofpoint-ORIG-GUID: mKGqk8IfXU6HMPAi6WSQj-zZubvVai_w
-X-Authority-Analysis: v=2.4 cv=QYlmvtbv c=1 sm=1 tr=0 ts=6889e467 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=gEfo2CItAAAA:8
- a=COk6AnOGAAAA:8 a=WXmMl29sQjXzjk-Zzf0A:9 a=QEXdDO2ut3YA:10
- a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-30_03,2025-07-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 clxscore=1011 suspectscore=0 mlxlogscore=805
- lowpriorityscore=0 bulkscore=0 impostorscore=0 adultscore=0
- priorityscore=1501 mlxscore=0 spamscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507300065
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, 
+	"Bjorn Andersson" <andersson@kernel.org>, 
+	"Mathieu Poirier" <mathieu.poirier@linaro.org>, 
+	"Rob Herring" <robh@kernel.org>, 
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, 
+	"Conor Dooley" <conor+dt@kernel.org>, 
+	"Chen Wang" <unicorn_wang@outlook.com>, 
+	"Inochi Amaoto" <inochiama@gmail.com>, 
+	"Philipp Zabel" <p.zabel@pengutronix.de>, 
+	"Paul Walmsley" <paul.walmsley@sifive.com>, 
+	"Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, 
+	"Alexandre Ghiti" <alex@ghiti.fr>
+In-Reply-To: <8a4ba1b1-0960-4433-b183-59c99157b0e2@kernel.org>
+Cc: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>, 
+	<sophgo@lists.linux.dev>, <linux-kernel@vger.kernel.org>, 
+	<linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for Sophgo
+	 CV1800B SoC
+Message-ID: <1856fd5bd24fbc18.7164ab65bf64e5c2.99b72db93ceee539@Jude-Air.local>
+Date: Wed, 30 Jul 2025 09:27:55 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
 
-
-
-On 7/30/2025 2:32 PM, Krzysztof Kozlowski wrote:
-> On 30/07/2025 10:13, Varadarajan Narayanan wrote:
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,ipq5424-apss-clk.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 30/07/2025 08:46, Krzysztof Kozlowski wrote:
+> On 28/07/2025 13:03, Junhui Liu wrote:
 >> +
->> +title: Qualcomm APSS IPQ5424 Clock Controller
+>> +static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
+>> +				   struct rproc_mem_entry *mem)
+>> +{
+>> +	void __iomem *va;
 >> +
->> +maintainers:
->> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
->> +  - Md Sadre Alam <quic_mdalam@quicinc.com>
-> 
-> My v2 comments seems still valid. Your explanation suggests they moved
-> on, so it is confusing to see them here.
-> 
-> Sricharan and Md Sadre, can you provide Acks for this?
-> 
-Ack. Please feel free to remove my name.
+>> +	va =3D ioremap_wc(mem->dma, mem->len);
+>> +	if (!va)
+>> +		return -ENOMEM;
+>> +
+>> +	/* Update memory entry va */
+>> +	mem->va =3D (void *)va;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int cv1800b_c906l_mem_release(struct rproc *rproc,
+>> +				     struct rproc_mem_entry *mem)
+>> +{
+>> +	iounmap((void __iomem *)mem->va);
+>> +	return 0;
+>> +}
+>> +
+>> +static int cv1800b_c906l_add_carveout(struct rproc *rproc)
+>> +{
+>> +	struct device *dev =3D rproc->dev.parent;
+>> +	struct device_node *np =3D dev->of_node;
+>> +	struct of_phandle_iterator it;
+>> +	struct rproc_mem_entry *mem;
+>> +	struct reserved_mem *rmem;
+>> +	int i =3D 0;
+>> +
+>> +	/* Register associated reserved memory regions */
+>> +	of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+>> +	while (of_phandle_iterator_next(&it) =3D=3D 0) {
+>> +		rmem =3D of_reserved_mem_lookup(it.node);
+>> +		if (!rmem) {
+>> +			of_node_put(it.node);
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		if (!strcmp(it.node->name, "vdev0buffer")) {
+>=20
+> Why are you adding undocumented ABI? And so hidden, not even using
+> standard OF API!
+>=20
+> How does this behaves when I change your DTS to call it
+> "whateverbuffer"? Does it work? Obviously not.
+>=20
+> No, stop doing that.
 
-Regards,
-  Sricharan
+Yes, you're right. I will consider introducing a "memory-region-names"
+property in the bindings, instead of relying on the node labels directly.
+
+--=20
+Best regards,
+Junhui Liu
 
 
