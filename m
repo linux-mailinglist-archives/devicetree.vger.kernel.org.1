@@ -1,126 +1,218 @@
-Return-Path: <devicetree+bounces-200643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8D3B1598B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CD4B15998
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:31:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C5F13B633E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:27:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4455A3A3B2D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8094A28750B;
-	Wed, 30 Jul 2025 07:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2307E28F935;
+	Wed, 30 Jul 2025 07:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nic+ijc5"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ADW4/det"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B4C1F12F4;
-	Wed, 30 Jul 2025 07:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2C928F520
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753860460; cv=none; b=tYsUL57OWc54CA+V++iCAVcgyp+UnowAPjE5Q0ukPCqBHkvo54TRSs/ARslpo0TobPFAu8v+6V/gzkGJ1lkR7NI+lJBa0MHJQ6Ekkt+p00o59FgQGGOQ7woqpuH5YK33m5+y0HpEBODlw949HnyMGql/Y/P16+TG/ZSYsOLALUk=
+	t=1753860693; cv=none; b=sGtvuHTVKdDRz7IE5nelNck7E2zLSiGhlMR6/DJohWIWH49dllSSSOv2mGW/6A1do1qZISoGp/CmweC2gSFh0Ln6gwl6R+VNVambRuz4j+Omw4UKdgv6B4m9A4dPyLdi8m96C5iJhTlzCMZGCabPF7P+jo8zaeiCH4HqA5q4LLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753860460; c=relaxed/simple;
-	bh=kiLfI1wVhg5HCODuS6QMhP1+3AJY6AWK2NRmz0k2lBo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ja0w6VCVauc07vW6rSpft8RCckTXb8jTxElp1P5g5zWvzovKICX7bSJeZvZwARbqNiJq0qDLWKCFkaWYPCwh5Zsc2ekRFtPHjNckv4sBVkkI5i6TXrXEFbjMKGbrPeQDvVWyu5dLqaKKEbWwAWL8tQY45rXrZi/qxLUg02bhk5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nic+ijc5; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45622a1829eso22325345e9.1;
-        Wed, 30 Jul 2025 00:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753860457; x=1754465257; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6f0FwhvW4mq7M1CCFYzcRZRTS9S4BaVix+fIhnxA7VE=;
-        b=Nic+ijc5EwCST4GA5Rktuv4rK/IH82vi+yxRyJNjRTfkMo6J5vSAZaKR1KDFKb/Nxq
-         dp2yjQHrsbyRphs9aB1Sf2/ZHuYl55Wk4F/KTeU1yN/uz8YAoUCQxGQOgppzB4pGkOOy
-         cX1Cu4bttZfZq8dGYeAGWLxaavTBo7Dfx0csoe2r8UnUt6jT7aUncRu1QbEGz7fQOUgW
-         /nlbjIhIc702Ly0U1WfRsqAiI0gD8LNq/aJ82UpCyGwA9vQJIdopwv+LH+yWqJZAFvyo
-         86fv9jy2B9xG/OnwRfd1SQKVR/18tZ0iSCT4gOUiUMFP2MlXJn/D+hAjFmgLa9Q/Eifd
-         WFFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753860457; x=1754465257;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6f0FwhvW4mq7M1CCFYzcRZRTS9S4BaVix+fIhnxA7VE=;
-        b=n+Fd8dnf8LdsDyH/f1HSQAza2cQwRLA56SN49Wuad4aBe4PHPRNguHdu9XfsAIf9qj
-         nkesaYpac9uB8RrGf8Sm0TPd3yarHDe7y53t4faUlVd5OGO6hJbrFSR3sa6Y5bXw92Bg
-         2femh/LFZOx/MB0hJxrbxYlyxWs9Dk5W6GIOlMlp0O0yKnR1uDUL4Xp5ozqIKWZxxcNm
-         g37eFE9ib0fIJtT9zhzTMvBjoOmw0HJTtJVC9WcHPGxVbbGzHTL892IU4z4wIx6NvsMN
-         EzRmP1Z8xHf788ZXAgiDAtfyzzHkZOurANCICEwxWSiwApLgQUf7W56IaAJwoBFjcVwh
-         1s/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVdptvGE+vajWwDZB7Ne67gu7cJGate9O03bkycucctZSbHQjgvq23pBcD4EBEkD/r1v5mFILPeicVn@vger.kernel.org, AJvYcCXCIKUwIbilMt59hRYV1bN1Zan9EWe5LwKeDVIK9fpBiSFn0xmfU2uoHEbWOoh9Zuw8/JKN18wxyw/NhJGB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/+H3WmuXuE/uWl10BjT1Y9zPIERPg3hU5FXHXGBrWGwe1phmJ
-	0GidGr3IBPW6FXSVEdeM7fG5WaugJSSOA51cnF1fYgPYRtzWFi6fPXuL
-X-Gm-Gg: ASbGnctqCcPBcU42M7YLxfVaa5phZtozVE9i1ZnJRFtQjOEVXNLiKYHcblHnn2nGQEU
-	0L9YQBXAKi03g9juqok8X6F7/CjPcLyopsCYJJGIjpzfNU+vuIKBZvpc009yE/1uXnJ0E5rxE0S
-	2dWWdchr/eycVJLrvAJkQ+tWpwv2Tb/VrVjsDkCaHSKAlqIGMozR5LzbMU39WC2+Ecc1RDvqacR
-	9sMfqVBT9RevEd2U7r16lRfYqbIG/1xoD7wTwjCw/O33NVYWywtkXubqP0Hdm2AD4revij1aThu
-	w7vaj2mzjkjmoaG9Hzv3NHWxm841C8FRKhxMJpdEj4HjQNb3TiuFRKXAKOcXdIkiDQGAYEo8lwI
-	IvGlG3dTIZKSeuSf41foqG8O0B8jz7Jt4OJJv86LKIXqdGdKzNDW20fFtgwDOdsvDw6zk4DuIWw
-	==
-X-Google-Smtp-Source: AGHT+IGitxQ0sOEC+WgVaNX9L6/ItIfmQxZmM1ZdgBtR/19JOebjrySx8wjPj96seElfIW/TIv7EMQ==
-X-Received: by 2002:a05:600c:8409:b0:450:d4a6:799e with SMTP id 5b1f17b1804b1-45892bc58d3mr17968365e9.20.1753860456652;
-        Wed, 30 Jul 2025 00:27:36 -0700 (PDT)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b78084f79csm13259467f8f.71.2025.07.30.00.27.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 00:27:36 -0700 (PDT)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1753860693; c=relaxed/simple;
+	bh=pGAOCVRw0BLj2G2xXBMzOn9p5X2PAw/oxgucy6qgMkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SGk3pQ9/mHb/NUJDQAWV/vNFr7CJHfbK3Ba5tmRQrEJygv9J1oWH6+gIxaQSYaaTcWrfCsd71cdATCIcAG+4+aIfsDJGZDbTOExuc8LAbSPc0w9bsV1DnoSdaIDNQN0275itjc8Z/icT/J/g1GSFwrt3jV5eBJPQWK8/7MAaGJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ADW4/det; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1753860690;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tg3kHXf/VEPySXPdaIeZnW9fOV15ESdV9yA7hGdIv+A=;
+	b=ADW4/detI8pQGN9DQwpJsq8ehSnj+X/tdQI6gWuXiWYqjKuXS0cNEcqsWshkgwpkgQT4uz
+	mtnUCK1fy4oE3l2WEymlNtDnicDuJW9aGhIF6lNbXdJK6OVl6YKFv4iGc57L5xDnVja/XF
+	0OCVfdBr5jYHP4OZO73cqr1R/Ojzbc4=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-626-Dp1SzmyFOle5TuJFQO5dSQ-1; Wed,
+ 30 Jul 2025 03:31:24 -0400
+X-MC-Unique: Dp1SzmyFOle5TuJFQO5dSQ-1
+X-Mimecast-MFC-AGG-ID: Dp1SzmyFOle5TuJFQO5dSQ_1753860683
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1116119560AA;
+	Wed, 30 Jul 2025 07:31:22 +0000 (UTC)
+Received: from darkstar.users.ipa.redhat.com (unknown [10.72.116.59])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 438C21800B71;
+	Wed, 30 Jul 2025 07:31:12 +0000 (UTC)
+Date: Wed, 30 Jul 2025 15:31:59 +0800
+From: Dave Young <dyoung@redhat.com>
+To: Brian Mak <makb@juniper.net>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <bhe@redhat.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, x86@kernel.org,
+	kexec@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: soc: samsung: usi: add samsung,exynos2200-usi compatible
-Date: Wed, 30 Jul 2025 10:27:30 +0300
-Message-ID: <20250730072730.1882549-1-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Subject: Re: [PATCH RESEND] x86/kexec: Carry forward the boot DTB on kexec
+Message-ID: <aInKb8qr689ytM41@darkstar.users.ipa.redhat.com>
+References: <20250729182142.4875-1-makb@juniper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250729182142.4875-1-makb@juniper.net>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
 
-Add samsung,exynos2200-usi dedicated compatible for representing the USI
-of Samsung Exynos 2200 SoC.
+On Tue, Jul 29, 2025 at 11:21:42AM -0700, Brian Mak wrote:
+> The kexec_file_load syscall on x86 currently does not support passing
+> a device tree blob to the new kernel.
+> 
+> To add support for this, we copy the behavior of ARM64 and PowerPC and
+> copy the current boot's device tree blob for use in the new kernel. We
+> do this on x86 by passing the device tree blob as a setup_data entry in
+> accordance with the x86 boot protocol.
+> 
+> Signed-off-by: Brian Mak <makb@juniper.net>
+> ---
+>  arch/x86/kernel/kexec-bzimage64.c | 46 +++++++++++++++++++++++++++++--
+>  1 file changed, 43 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
+> index 24a41f0e0cf1..c24536c25f98 100644
+> --- a/arch/x86/kernel/kexec-bzimage64.c
+> +++ b/arch/x86/kernel/kexec-bzimage64.c
+> @@ -16,6 +16,8 @@
+>  #include <linux/kexec.h>
+>  #include <linux/kernel.h>
+>  #include <linux/mm.h>
+> +#include <linux/libfdt.h>
+> +#include <linux/of_fdt.h>
+>  #include <linux/efi.h>
+>  #include <linux/random.h>
+>  
+> @@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *params, unsigned long params_load_addr,
+>  }
+>  #endif /* CONFIG_EFI */
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +static void setup_dtb(struct boot_params *params,
+> +		      unsigned long params_load_addr,
+> +		      unsigned int dtb_setup_data_offset)
+> +{
+> +	struct setup_data *sd = (void *)params + dtb_setup_data_offset;
+> +	unsigned long setup_data_phys, dtb_len;
+> +
+> +	dtb_len = fdt_totalsize(initial_boot_params);
+> +	sd->type = SETUP_DTB;
+> +	sd->len = dtb_len;
+> +
+> +	/* Carry over current boot DTB with setup_data */
+> +	memcpy(sd->data, initial_boot_params, dtb_len);
+> +
+> +	/* Add setup data */
+> +	setup_data_phys = params_load_addr + dtb_setup_data_offset;
+> +	sd->next = params->hdr.setup_data;
+> +	params->hdr.setup_data = setup_data_phys;
+> +}
+> +#endif /* CONFIG_OF_FLATTREE */
+> +
+>  static void
+>  setup_ima_state(const struct kimage *image, struct boot_params *params,
+>  		unsigned long params_load_addr,
+> @@ -336,6 +360,16 @@ setup_boot_parameters(struct kimage *image, struct boot_params *params,
+>  			sizeof(struct efi_setup_data);
+>  #endif
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +	if (initial_boot_params) {
+> +		setup_dtb(params, params_load_addr, setup_data_offset);
+> +		setup_data_offset += sizeof(struct setup_data) +
+> +				     fdt_totalsize(initial_boot_params);
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+I suppose current boot dtb should be valid for the current runnning
+kernel, if you use kexec to load another kernel the next kexec reboot
+could fail due to unmatching dtb.
 
----
-changes in v2:
-dropped the first patch of the series
-added a r-b tag from Sam Protsenko
----
- Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Make this unconditionally could break the previous working kexec?
 
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-index cb2263709..c694926e5 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-@@ -36,6 +36,7 @@ properties:
-       - items:
-           - enum:
-               - google,gs101-usi
-+              - samsung,exynos2200-usi
-               - samsung,exynosautov9-usi
-               - samsung,exynosautov920-usi
-           - const: samsung,exynos850-usi
--- 
-2.43.0
+> +	} else {
+> +		pr_info("No DTB\n");
+
+pr_debug sounds better.
+
+> +	}
+> +#endif
+> +
+>  	if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
+>  		/* Setup IMA log buffer state */
+>  		setup_ima_state(image, params, params_load_addr,
+> @@ -529,6 +563,12 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
+>  				sizeof(struct setup_data) +
+>  				RNG_SEED_LENGTH;
+>  
+> +#ifdef CONFIG_OF_FLATTREE
+> +	if (initial_boot_params)
+> +		kbuf.bufsz += sizeof(struct setup_data) +
+> +			      fdt_totalsize(initial_boot_params);
+> +#endif
+> +
+>  	if (IS_ENABLED(CONFIG_IMA_KEXEC))
+>  		kbuf.bufsz += sizeof(struct setup_data) +
+>  			      sizeof(struct ima_setup_data);
+> @@ -537,7 +577,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
+>  		kbuf.bufsz += sizeof(struct setup_data) +
+>  			      sizeof(struct kho_data);
+>  
+> -	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
+> +	params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
+>  	if (!params)
+>  		return ERR_PTR(-ENOMEM);
+>  	efi_map_offset = params_cmdline_sz;
+> @@ -647,7 +687,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
+>  	return ldata;
+>  
+>  out_free_params:
+> -	kfree(params);
+> +	kvfree(params);
+>  	return ERR_PTR(ret);
+>  }
+>  
+> @@ -659,7 +699,7 @@ static int bzImage64_cleanup(void *loader_data)
+>  	if (!ldata)
+>  		return 0;
+>  
+> -	kfree(ldata->bootparams_buf);
+> +	kvfree(ldata->bootparams_buf);
+>  	ldata->bootparams_buf = NULL;
+>  
+>  	return 0;
+> 
+> base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
+> -- 
+> 2.25.1
+> 
+
+
+Thanks
+Dave
 
 
