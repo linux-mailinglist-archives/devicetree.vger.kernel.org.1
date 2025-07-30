@@ -1,82 +1,50 @@
-Return-Path: <devicetree+bounces-200701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9333B15BAB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:32:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A27B15BBD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB0F518C209F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:32:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B32B561B43
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F410127F736;
-	Wed, 30 Jul 2025 09:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E389272817;
+	Wed, 30 Jul 2025 09:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LMIxw3zg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mn3mWr7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4487D271445
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 09:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B9F26D4F9;
+	Wed, 30 Jul 2025 09:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753867916; cv=none; b=tY3x+zOM0V/dv7K62tvPNQr+/hMPXVTg6Y1KDLVYkK/aG0CBvdjHbTgURUxuuYcs/e2Q/QNrzsFFq2jVy4sw1YcRLAcBWapujF5HWsYwNz7iTySVHjhScbJy/DRFBklni+AGuJw3N9mbSufX+M3L42EFIamsvEbmnr4TrJmQcHo=
+	t=1753868068; cv=none; b=g2PJORVj1fHCcNah+9TOz1kAPRqVKoYqHBYBsEW+TcPz0c1JMZnc3G8hpG0o1E1F9lEhExKCR+lJhvBSzLMCAQ+GzPT/mkmfGSWSOfhL7xhUR3Qa012PeeU7kmoGETwzyKzPYOb4JNaLoJ1fvDR6ZHU7jAAGwvqifixFRBjvfWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753867916; c=relaxed/simple;
-	bh=UrLx/HnIyYtmVFp3GLCZaWBR+1sYwrgF6xX3qNmU/Ps=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cPPZog6EatMqfGYPfjSggnokHmk8R6rEaGqk7DICd5EUJaqbfzXSy3Jpa1l9F1qqjfWfWf7w4M+rVmAINyWJveugueVOfu/yT8YPCocqQtErAYQqsiHajcME5RqJCOKxkiiFZD1BdRjd8JjW3SeEhwghwrg40LZFtiMfxaKQRdA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LMIxw3zg; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-615378b42ecso5979894a12.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 02:31:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753867911; x=1754472711; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8pReZwdLuvK2x7nnnNc/6AC+XTJeKDHlZAHO11VcmSA=;
-        b=LMIxw3zgAucoiBnzSWYiPMEhuVXGOybEo3Xen78Roq/LyDUVvfgxD2Fb3ojWszx7Lz
-         lH+kVpvRs9IuduVOf83ADOGBOTS6PQcTbCLcUWQQoc5J8H7pfc7ODh/GSSgJErpUrHBV
-         +wRXClYmS4HNmW57l1/t0ZtN2XCvQn2kYgNaFwY4ZcTGSZESxnYHntev8jHrEa60+EZH
-         2kIO1WNFjM3qzP7lEg3uBBkskMxJ4hbmHzdp3G3iy6iTYrXSYYKUkB1phuO2foUIA4IO
-         0W0xd/FrcMHi9c5yLKKCTnHWJN9PeZeq2XpyhNjU+gkgJaqpKF8YtGFvHlHfDSnDu8ey
-         QjaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753867911; x=1754472711;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8pReZwdLuvK2x7nnnNc/6AC+XTJeKDHlZAHO11VcmSA=;
-        b=HsSXNjTdmZGTaG5a0GIANJGjT5AFTJi33KYHShXBMhiiMZz4cHT3OV9as5gph16wqp
-         +rGtBpNy4VCwxbp0nPLva4DCRr8dH/2Hk6K3imbhpdie4GwI0LvXD/AupaDE0A1NTMvI
-         q9u0kqFnMRZU5cLHDJBbDaYCiyDsmZNr5e7xfhMLFPpyBD02NcGlKUdQdB9mjMrABm/5
-         LIFfuq6ZYrldx5yzQjDBn1Ds+WcqX0Rlhuenf0SYr34a7TAGBAN42mnnRXC4tCLYZe98
-         vYkbmagp4zp2CBMTP/QIVchSSHg2EhSVC17ia1dcMHXtQ4Kav9fWefRvN8FtCUne9SWd
-         5toA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdQFwsOMZnXE6ijsDJWGkQuakQpVOAU5X3tBCy99h7bRyV5CrZi1J+Yx8sYloCotyPGxuXkLsa41by@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5DPV+lOipqNzAfiowz78Jj43Eli8wddeHDBNbfmSCNzkqTeUv
-	RmFPJv7YoXNd1VOUeDber4BpJ5utmDYPQcRAicKf5hLG/mjf/rImshgIfKIw4khk3Xw=
-X-Gm-Gg: ASbGncvykQnEmy0/4ujPvdeOzYpcScMy9WbaM9120ciZAovn2ZpIZjEjjGxbA26ErFo
-	/y5G/Yw8f3svdK8H+vtcWk8tgk6jHQK1PBtXZVSz1ZnsWbQPuEdRyGwjT1H4/tYYYhU7KhTRisD
-	t707coZLFwMBSf+2OMdv0OfZKwWVQoRa5EMsuC/WXpgcATYGQQBA4f6rEQOyzoAx975S2GoKnTb
-	9Eb/hPzpBhKdbs8KNSs6/lMjfXkkEQfwbV9N7LE1b248fsz3PDFIEPAMM3bfC98GoWadp2TPzDD
-	vg4GOTDPKzlST6XQMsv4WrmB2vcLN03E0caQN+8fgHX+GyaIVvFoeOqaINHgojp87ojind0QTOs
-	FAViCPYgkpy1TxoEnUbnRounrv6V70/2UH0Ve2WEGvzhCvWLvtGQxX8EAJAObSI1dGDuZA6KfmN
-	sZljJg9Q==
-X-Google-Smtp-Source: AGHT+IFAIKlwhaRCqnP2buBcT0RopLWu8QC5KSLz/f0m4GU4n7vGaomxMURhZGUWklTnaKUlIOKM1w==
-X-Received: by 2002:a17:907:3f16:b0:ada:4b3c:ea81 with SMTP id a640c23a62f3a-af8fd957532mr287123966b.39.1753867911166;
-        Wed, 30 Jul 2025 02:31:51 -0700 (PDT)
-Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61536916dbasm4090424a12.43.2025.07.30.02.31.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 02:31:50 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 30 Jul 2025 10:31:35 +0100
-Subject: [PATCH v5 2/2] clk: s2mps11: add support for S2MPG10 PMIC clock
+	s=arc-20240116; t=1753868068; c=relaxed/simple;
+	bh=CIVuQYfavwb/2ra5GsD9SGItvqbBHNthKR9qvQvzOGI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=F3TEofKNqz0g3c03dE9qltvrtdv0Pp5TYf3dvh5xX+vDu5wmpH1RGXACxl7hOGoS9xqxnYZLPx99Ady9hU0iTfc6npreCUfqEq7lTdZFP9gbWE+qsYuRS9gM/gG8V4AKyxTpQ/oghO82xhAlU9WTNO5DNwwwVZfPa3E3cYP1M0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mn3mWr7a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B05A0C4CEE7;
+	Wed, 30 Jul 2025 09:34:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753868067;
+	bh=CIVuQYfavwb/2ra5GsD9SGItvqbBHNthKR9qvQvzOGI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=mn3mWr7aA9V5VQdmoPI1MDwUFqmYcbYou3spQN0mTpS2xY/Q2IAmer8ElcJzAHti+
+	 KDI3Je9i5rYwxmc1Uu6frvKz5aCvEdeIaJV5v0eUbJgOtZmLFLXve2bcmizzIvgMEn
+	 zQqsAseUiBNcc0woER4J692Ev/4bp7WTpJQJ+R/ErEE5f9CVblx7OIN1CZA/zM/LZx
+	 ZgtSmBLu8mJcqqTFok+wdPrjTWQ4KU23lsYRxK+U5FL/RLAIYBgwxmTvJMoFOzaETL
+	 y6mDyNH5gHTpUEo+vdF56kw6vXYSq/gBDMHez4n+nx7iA96Ye8h3ttmX3XshWhq+mw
+	 OFIlGH+1lL8JQ==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [RFC PATCH 0/6] Allow DMA consumers to pass a cookie to providers'
+ of_xlate
+Date: Wed, 30 Jul 2025 11:33:27 +0200
+Message-Id: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,82 +52,193 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250730-s2mpg10-v5-2-cd133963626c@linaro.org>
-References: <20250730-s2mpg10-v5-0-cd133963626c@linaro.org>
-In-Reply-To: <20250730-s2mpg10-v5-0-cd133963626c@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOfmiWgC/x3MTQqAIBBA4avErBO0P6mrRETpaEOkoRFBePek5
+ bd474WIgTDCULwQ8KZI3mWIsgC1Lc4iI50NFa9aLkXDLn+SYvpYZouOIs7K+52QdZ1WK5emNrq
+ HXJ8BDT3/eZxS+gB+aeXZaQAAAA==
+X-Change-ID: 20250714-topic-dma_genise_cookie-66dcb07f3fd9
+To: Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@kernel.org>, 
+ Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Neal Gompa <neal@gompa.dev>, 
+ Ludovic Desroches <ludovic.desroches@microchip.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Paul Cercueil <paul@crapouillou.net>, 
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, 
+ Viresh Kumar <vireshk@kernel.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Frank Li <Frank.Li@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Taichi Sugaya <sugaya.taichi@socionext.com>, 
+ Takao Orito <orito.takao@socionext.com>, 
+ =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Daniel Mack <daniel@zonque.org>, 
+ Haojian Zhuang <haojian.zhuang@gmail.com>, 
+ Robert Jarzmik <robert.jarzmik@free.fr>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ =?utf-8?q?Am=C3=A9lie_Delaunay?= <amelie.delaunay@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Laxman Dewangan <ldewangan@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+ Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, 
+ Viken Dadhaniya <quic_vdadhani@quicinc.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+ imx@lists.linux.dev, linux-actions@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev, 
+ linux-tegra@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-spi@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753868049; l=5799;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=CIVuQYfavwb/2ra5GsD9SGItvqbBHNthKR9qvQvzOGI=;
+ b=va5fmQm0vcHgbpGnfydpzko+HQU0+0iHNYCXm7WHYjVRwugQO/jlg6FABqOs3xChvtQiLtHfX
+ nwgfqitX8ihAL4cqD4UZZ9Xblo1yiqYPkj39iyy4q4XnXfktK7X59k3
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Add support for Samsung's S2MPG10 PMIC clock, which is similar to the
-existing PMIC clocks supported by this driver.
+The DMA subsystem attempts to make it theoretically possible to pair
+any DMA block with any user. While that's convenient from a
+codebase sanity perspective, some blocks are more intertwined.
 
-S2MPG10 has three clock outputs @ 32kHz: AP, peri1 and peri2.
+One such case is the Qualcomm GENI, where each wrapper contains a
+number of Serial Engine instances, each one of which can be programmed
+to support a different protocol (such as I2C, I3C, SPI, UART, etc.).
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
+The GPI DMA it's designed together with, needs to receive the ID of the
+protocol that's in use, to adjust its behavior accordingly. Currently,
+that's done through passing that ID through device tree, with each
+Serial Engine expressed NUM_PROTOCOL times, resulting in terrible
+dt-bindings that are full of useless copypasta.
+
+Currently, the DT looks like:
+
+i2c@foobar {
+	compatible = "qcom,geni-i2c";
+	dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
+	       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
+	// actual hw description
+};
+
+spi@foobar {
+        compatible = "qcom,geni-spi";
+        dmas = <&gpi_dma1 0 1 QCOM_GPI_SPI>,
+               <&gpi_dma1 1 1 QCOM_GPI_SPI>;
+	// actual, identical hw description
+};
+
+Which is manageable when there's two of them. Unfortunately, we're
+in the double digits range nowadays.
+
+This series attempts to cut down on that through making the last cell
+unnecessary, moving the purely-SW data that the current protocol ID is
+into the driver.
+
+The mass of_xlate signature change is a little unfortunate, let me know
+if it can be avoided somehow..
+
+Attaching the relevant dt-bindings change and converting one platform
+over as an example.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- drivers/clk/clk-s2mps11.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Konrad Dybcio (6):
+      dt-bindings: dma: qcom,gpi: Retire passing the protocol ID
+      dmaengine: Make of_dma_request_slave_channel pass a cookie to of_xlate
+      dmaengine: qcom: gpi: Accept protocol ID hints
+      i2c: qcom-geni: Hint GENI protocol ID to GPI DMA
+      spi: geni-qcom: Hint GENI protocol ID to GPI DMA
+      arm64: dts: qcom: x1e80100: Remove GENI protocol ID from DMA cells
 
-diff --git a/drivers/clk/clk-s2mps11.c b/drivers/clk/clk-s2mps11.c
-index d4e9c3577b35dec8d9ec67c489b7b5ae27211f55..ff7ce12a5da6b437b5c92b9a32dcaf9423647cde 100644
---- a/drivers/clk/clk-s2mps11.c
-+++ b/drivers/clk/clk-s2mps11.c
-@@ -11,6 +11,7 @@
- #include <linux/regmap.h>
- #include <linux/clk-provider.h>
- #include <linux/platform_device.h>
-+#include <linux/mfd/samsung/s2mpg10.h>
- #include <linux/mfd/samsung/s2mps11.h>
- #include <linux/mfd/samsung/s2mps13.h>
- #include <linux/mfd/samsung/s2mps14.h>
-@@ -140,6 +141,9 @@ static int s2mps11_clk_probe(struct platform_device *pdev)
- 	clk_data->num = S2MPS11_CLKS_NUM;
- 
- 	switch (hwid) {
-+	case S2MPG10:
-+		s2mps11_reg = S2MPG10_PMIC_RTCBUF;
-+		break;
- 	case S2MPS11X:
- 		s2mps11_reg = S2MPS11_REG_RTC_CTRL;
- 		break;
-@@ -221,6 +225,7 @@ static void s2mps11_clk_remove(struct platform_device *pdev)
- }
- 
- static const struct platform_device_id s2mps11_clk_id[] = {
-+	{ "s2mpg10-clk", S2MPG10},
- 	{ "s2mps11-clk", S2MPS11X},
- 	{ "s2mps13-clk", S2MPS13X},
- 	{ "s2mps14-clk", S2MPS14X},
-@@ -241,6 +246,9 @@ MODULE_DEVICE_TABLE(platform, s2mps11_clk_id);
-  */
- static const struct of_device_id s2mps11_dt_match[] __used = {
- 	{
-+		.compatible = "samsung,s2mpg10-clk",
-+		.data = (void *)S2MPG10,
-+	}, {
- 		.compatible = "samsung,s2mps11-clk",
- 		.data = (void *)S2MPS11X,
- 	}, {
+ .../devicetree/bindings/dma/qcom,gpi.yaml          |   5 +-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 198 ++++++++++-----------
+ drivers/dma/amba-pl08x.c                           |   3 +-
+ drivers/dma/apple-admac.c                          |   3 +-
+ drivers/dma/at_hdmac.c                             |   6 +-
+ drivers/dma/at_xdmac.c                             |   3 +-
+ drivers/dma/bcm2835-dma.c                          |   3 +-
+ drivers/dma/dma-jz4780.c                           |   3 +-
+ drivers/dma/dmaengine.c                            |  20 ++-
+ drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c     |   3 +-
+ drivers/dma/dw/of.c                                |   3 +-
+ drivers/dma/ep93xx_dma.c                           |   6 +-
+ drivers/dma/fsl-edma-main.c                        |   6 +-
+ drivers/dma/img-mdc-dma.c                          |   3 +-
+ drivers/dma/imx-dma.c                              |   3 +-
+ drivers/dma/imx-sdma.c                             |   3 +-
+ drivers/dma/lgm/lgm-dma.c                          |   3 +-
+ drivers/dma/milbeaut-hdmac.c                       |   4 +-
+ drivers/dma/mmp_pdma.c                             |   3 +-
+ drivers/dma/mmp_tdma.c                             |   3 +-
+ drivers/dma/moxart-dma.c                           |   3 +-
+ drivers/dma/mxs-dma.c                              |   3 +-
+ drivers/dma/nbpfaxi.c                              |   3 +-
+ drivers/dma/of-dma.c                               |  18 +-
+ drivers/dma/owl-dma.c                              |   3 +-
+ drivers/dma/pl330.c                                |   3 +-
+ drivers/dma/pxa_dma.c                              |   3 +-
+ drivers/dma/qcom/bam_dma.c                         |   3 +-
+ drivers/dma/qcom/gpi.c                             |  16 +-
+ drivers/dma/qcom/qcom_adm.c                        |   3 +-
+ drivers/dma/sh/rcar-dmac.c                         |   3 +-
+ drivers/dma/sh/rz-dmac.c                           |   3 +-
+ drivers/dma/sh/usb-dmac.c                          |   3 +-
+ drivers/dma/st_fdma.c                              |   3 +-
+ drivers/dma/ste_dma40.c                            |   3 +-
+ drivers/dma/stm32/stm32-dma.c                      |   3 +-
+ drivers/dma/stm32/stm32-dma3.c                     |   4 +-
+ drivers/dma/stm32/stm32-mdma.c                     |   3 +-
+ drivers/dma/sun4i-dma.c                            |   3 +-
+ drivers/dma/sun6i-dma.c                            |   3 +-
+ drivers/dma/tegra186-gpc-dma.c                     |   3 +-
+ drivers/dma/tegra20-apb-dma.c                      |   3 +-
+ drivers/dma/tegra210-adma.c                        |   3 +-
+ drivers/dma/ti/cppi41.c                            |   3 +-
+ drivers/dma/ti/edma.c                              |   3 +-
+ drivers/dma/ti/k3-udma.c                           |   3 +-
+ drivers/dma/uniphier-xdmac.c                       |   3 +-
+ drivers/dma/xilinx/xilinx_dma.c                    |   3 +-
+ drivers/dma/xilinx/xilinx_dpdma.c                  |   3 +-
+ drivers/dma/xilinx/zynqmp_dma.c                    |   3 +-
+ drivers/i2c/busses/i2c-qcom-geni.c                 |   4 +-
+ drivers/spi/spi-geni-qcom.c                        |   4 +-
+ include/linux/dmaengine.h                          |   7 +
+ include/linux/of_dma.h                             |  16 +-
+ sound/soc/apple/mca.c                              |   2 +-
+ sound/soc/renesas/rcar/dma.c                       |   2 +-
+ 56 files changed, 261 insertions(+), 177 deletions(-)
+---
+base-commit: 79fb37f39b77bbf9a56304e9af843cd93a7a1916
+change-id: 20250714-topic-dma_genise_cookie-66dcb07f3fd9
 
+Best regards,
 -- 
-2.50.1.552.g942d659e1b-goog
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
