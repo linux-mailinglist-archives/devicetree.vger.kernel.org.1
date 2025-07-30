@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5EADB1590E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:44:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF00B15913
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 08:46:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6060F7A393A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 06:43:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A15C3A7497
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 06:46:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90C81F1932;
-	Wed, 30 Jul 2025 06:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D25D1EF397;
+	Wed, 30 Jul 2025 06:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CCGH1sgA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="la5gwF1c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB41D42A9E;
-	Wed, 30 Jul 2025 06:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AD714F70;
+	Wed, 30 Jul 2025 06:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753857869; cv=none; b=qiLIg/SoQkCZKpy+ny0Ch/+8W0mjVdVstLSaCP+7diue5crsf4CeA2HUfSPs5i7ojqHOa29DTHQUtuIwYzbC/PXvHklrzAbOtBeipS7RBR8UvcxVV7MXJgGvmSeE7GxlkHsBeG4kyoE4g8EQQ4bAkEDnqy4clI8/zsZ6Am93BFc=
+	t=1753857996; cv=none; b=ljIpLpkvhZ+xLpwqmHQh7A/AklMabDYi5fJEzAheGsznVtbRJh84FbT1kFNDZnkSBm/MjABUOXKYiaeeFlhFljXXjTSqtvuuF4FwI5P0T1ZoDjjgXPsJA0Cqcmxqe4AalQrnvBIsg2HfOKqbd7agRSOxzkIIIzYlom2VEZB2rL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753857869; c=relaxed/simple;
-	bh=y5AXV1e6MbPhnz4RWeVpBB6rnHzp/Px9FD29zL36zTk=;
+	s=arc-20240116; t=1753857996; c=relaxed/simple;
+	bh=lbzvxqHxNLa58gDKpqG3fpAeB/UdJDmqE/7V7ykeYZE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dt7q2NgzbEdnarPup45rJxRVz6ZNbyEs5mzbrJpnoGpijUkl/krCkcTIWLN6ifL+JUPnjVtoklhJQkQJvRVSvDlt48em8NJVMtJhmQkwUu67GyrgjWp8b7p5+RwmVdmHnr7jqzG/b+YP7tPZva4/5WFkBYH5AVkzTb/U8qyK5Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CCGH1sgA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D808BC4CEE7;
-	Wed, 30 Jul 2025 06:44:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nnC6TF9oeWHO76VG5Zu/tA8EjCXFLtFaaCl5vsSDq79UFZtrTtJI804MOMfwRruBZlB5Yidw50WmuvgfMoLfLzHY+FbT1sR58o+StZkuWpaGMrygsSeba6N9pF6i0CEWYuYcLQQioWkLxsMxCn24c2ROeCIPxTOYD+H8ELVIlzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=la5gwF1c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98EEC4CEE7;
+	Wed, 30 Jul 2025 06:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753857869;
-	bh=y5AXV1e6MbPhnz4RWeVpBB6rnHzp/Px9FD29zL36zTk=;
+	s=k20201202; t=1753857995;
+	bh=lbzvxqHxNLa58gDKpqG3fpAeB/UdJDmqE/7V7ykeYZE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CCGH1sgAY6cfZIyghEtoIxrl0TN8NgogU3jpwIKFHiqnIiUhjl1ygiUbLAsBvFqiE
-	 g4rvh3Mo2XqpCHMPX25vTz8VagX6XXI8wQdbP0cTUx4H+cUcxaEbwMHsbuFPYBs8+U
-	 84adzWWt0xooRbDtjutO6IuFBYuoLhlFM7CYLP9QNTwBpdLR/Iz+EnRXLiaWyMFeZa
-	 MJxnB6M4slMMg5yzYStc7AStLYxiMhTC9hG2sdjJQRDEq0jVmZyKS1hrSAuZciqQqd
-	 EZYYtMfTtmztvqYXVhmzPLcQuI85vywBHg3stJ5K2koY1VIBrYxPJtllpvJH/SxB61
-	 wIuk84cf1RVUg==
-Message-ID: <157fee28-e6b9-4c81-9698-57302117c885@kernel.org>
-Date: Wed, 30 Jul 2025 08:44:25 +0200
+	b=la5gwF1cN2+W8eLkiqnogus7oUJuYr98ApT0sMTNxRI7Rw01W3O2B1ZbfsabD8Vu7
+	 4XRI9mw02rx+CqTyjFJXmHPUE2w36O716a1A9+U4El34OiaQ26oYKb9ElYKGB2AzbM
+	 dnb//VZW7bRUUmOGtsh1kWnkZuHxuIKt/1axhC3KKsRe6cj09BWXmIQQYuOJ3QRFeX
+	 WhMZ7c+gzNoPux4PbMos8s9aWcMl7Bb+uMKddXLqPwO4vwoTvildI0a4dmIPrl3Kzv
+	 0b9DkakmOeeIkg5ITf5/ZTxmckNSnjlaFaAgjJKIMqSx2FC3Wcyn0wgExpYNHBSQfB
+	 2dR82payyQJWw==
+Message-ID: <8a4ba1b1-0960-4433-b183-59c99157b0e2@kernel.org>
+Date: Wed, 30 Jul 2025 08:46:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 2/2] drivers: remoteproc: Add C906L controller for
+ Sophgo CV1800B SoC
+To: Junhui Liu <junhui.liu@pigmoral.tech>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com>
- <20250729-hamoa_initial-v3-3-806e092789dc@oss.qualcomm.com>
- <5hgynbka274jerw5x6ekfuoj45k6bqt2hdbsx2puniqornil4s@pdgavjb2jeci>
- <ef9c302a-28f9-4bc9-912c-92bf5ca7bbf3@oss.qualcomm.com>
+ <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <20250728-cv1800-rproc-v2-0-5bbee4abe9dc@pigmoral.tech>
+ <20250728-cv1800-rproc-v2-2-5bbee4abe9dc@pigmoral.tech>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,29 +111,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ef9c302a-28f9-4bc9-912c-92bf5ca7bbf3@oss.qualcomm.com>
+In-Reply-To: <20250728-cv1800-rproc-v2-2-5bbee4abe9dc@pigmoral.tech>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/07/2025 03:11, Yijie Yang wrote:
-> 
-> 
-> On 2025-07-29 18:44, Dmitry Baryshkov wrote:
->> On Tue, Jul 29, 2025 at 09:31:59AM +0800, Yijie Yang wrote:
->>> The HAMOA-IOT-SOM is a compact computing module that integrates a System
->>> on Chip (SoC) — specifically the x1e80100 — along with essential
->>> components optimized for IoT applications. It is designed to be mounted on
->>> carrier boards, enabling the development of complete embedded systems.
->>>
->>> This change enables and overlays the following components:
->>
->> What does this mean, how can it overlay something?
-> 
-> What I want to convey here is that I referenced some nodes defined in 
-> x1e80100.dtsi within this file to add additional properties. I’ll revise 
-> the wording to make this clearer.
+On 28/07/2025 13:03, Junhui Liu wrote:
+> +
+> +static int cv1800b_c906l_mem_alloc(struct rproc *rproc,
+> +				   struct rproc_mem_entry *mem)
+> +{
+> +	void __iomem *va;
+> +
+> +	va = ioremap_wc(mem->dma, mem->len);
+> +	if (!va)
+> +		return -ENOMEM;
+> +
+> +	/* Update memory entry va */
+> +	mem->va = (void *)va;
+> +
+> +	return 0;
+> +}
+> +
+> +static int cv1800b_c906l_mem_release(struct rproc *rproc,
+> +				     struct rproc_mem_entry *mem)
+> +{
+> +	iounmap((void __iomem *)mem->va);
+> +	return 0;
+> +}
+> +
+> +static int cv1800b_c906l_add_carveout(struct rproc *rproc)
+> +{
+> +	struct device *dev = rproc->dev.parent;
+> +	struct device_node *np = dev->of_node;
+> +	struct of_phandle_iterator it;
+> +	struct rproc_mem_entry *mem;
+> +	struct reserved_mem *rmem;
+> +	int i = 0;
+> +
+> +	/* Register associated reserved memory regions */
+> +	of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+> +	while (of_phandle_iterator_next(&it) == 0) {
+> +		rmem = of_reserved_mem_lookup(it.node);
+> +		if (!rmem) {
+> +			of_node_put(it.node);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (!strcmp(it.node->name, "vdev0buffer")) {
 
-That is not an overlay. Use proper, not misleading terms.
+Why are you adding undocumented ABI? And so hidden, not even using
+standard OF API!
+
+How does this behaves when I change your DTS to call it
+"whateverbuffer"? Does it work? Obviously not.
+
+No, stop doing that.
 
 Best regards,
 Krzysztof
