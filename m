@@ -1,162 +1,91 @@
-Return-Path: <devicetree+bounces-200859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F09BFB165CB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 19:49:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAC4B16565
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 19:23:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 099263A9135
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:49:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D9297B2B19
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75B062DECBF;
-	Wed, 30 Jul 2025 17:49:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2941D7E41;
+	Wed, 30 Jul 2025 17:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ahu2yZS5"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xdCF1R+t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B951E0DE8;
-	Wed, 30 Jul 2025 17:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB952DEA94;
+	Wed, 30 Jul 2025 17:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753897791; cv=none; b=X9EdRfm/AI9P4jmB4FiBuAU6yqLNzXBkQ1sdZBffRxyQI0VzCfXBh4TbfK7Ez1xouc6UFJB0ZlVcp1vcPKxdqCgkKagEaNXUKjy/YjIoIno1+7aLxi/YfrqEO2BXwqiPBOqg5I1jCWPE1lphvVaZtoWWa3x2d8jUI5159bp7WF8=
+	t=1753896191; cv=none; b=qBy/bDJMtVNPwAB4qI3B5wpFeg0t3OtGwOvmkeyZQGNL+mx4sTZAG6Xw9azPeGlWCGK0BFM6RCnlE7CQ8+Uw7vYPNbmyPKFtkxx0B/Ew4hFtzFKisdL7DxP4gA+CO3QnONyQiYoLCYUFHxH2hRaby1JkwdaH3b1VP5PSAZjceBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753897791; c=relaxed/simple;
-	bh=/p3QCeb5vrjQsgDySv7ceP1YaCttjBmqpB2bCe9hbyY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kO7UnCuBmpSgoB4HLC2Xyi9zgDb6tjK5KrXdhM3rDe3Lqb+2Xj+y1SPHe8pIhEj8r3kSsZPRT2/O7XRTpIBcQiKEEdFg6EydXDErD6vBjnIFY4YAjOWoTho3uN34WFfL9I6JG+yeMLuyztx1fH4Fp6o4HxMR6JqSA1hdME996Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ahu2yZS5; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay15.mail.gandi.net (relay15.mail.gandi.net [IPv6:2001:4b98:dc4:8::235])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id F3A7B583E84;
-	Wed, 30 Jul 2025 17:03:05 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6F0BE442AA;
-	Wed, 30 Jul 2025 17:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753894977;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p2UE0f0lxM12DzKY8SLP9Ryrfpakau+5gbE2rpdBN1A=;
-	b=ahu2yZS5PpM6RqG4gIA/3xnCkg4qml3y3KjQG8RWCeS0mvQ8P3OO48pA1rjRhGSrKzrK7i
-	xxkgydLuwN02xdb5Ml6RPck3kBzCDx+pkpu5ylKcKwPORFhLh8pcpuLaYUiDiF8tg+5cAv
-	glJgPdehk+mWn7F0mT65XneDhDEyWbo+itCG78QK53R5CMcaxIXTAdpS7ALLA6xKJWjVKA
-	b9Qfv5dmHeIaaouIiJVme4EiM4UyXGpj+CXD4PkLcdT2bu7dHbL2zd88p7K/SzgCeMxxFo
-	PjPaPgg+Ccs6LAfJztYZtdj7421A95gj0SUdHn9FKnjKBuFY4dZ4M0n2GyRw3A==
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Date: Wed, 30 Jul 2025 19:02:47 +0200
-Subject: [PATCH 4/4] drm/tidss: Fix sampling edge configuration
+	s=arc-20240116; t=1753896191; c=relaxed/simple;
+	bh=h705O3MXZ7CoRpdRU1wDJ74D+TD6qxGHpUvX1+z/du4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZfeoU0cEljA3dHlmznWWu+apc6MuM174hnn9dxsiS3Av5Rt6pSLr2C02C5w56IeUHbcxcdk+mZmXz6GW7ea35YupOYiGu02yU3tYZFpWwJIbWlmRNCe4dQNpu0u9HfVTZkcLM9ftXZGJ3t+b2MijxCQ6hHptON7wjZIOBnUAWis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xdCF1R+t; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Reply-To:Content-Type:In-Reply-To:References;
+	bh=fjxV2fdbeg/h7RCtTN73y+CF0z8gq4C7j/9uDu2WKKY=; b=xdCF1R+tlH6pEoAULbsqGKzjMv
+	uf+AKAISFfsTTXBRT+ju1EBnF/rwOcDG3bhNuwnJr9v2F1QxljxCPM0Z8C2MWTTW/NNvA9dz5a4Rt
+	wW3H+UtPYeeYIkpeq6MeuOLibOstLxSyHiHwQ1zyBe+w5xt08NrF0DVX+ELYngkLMv6fb4X/d9FlY
+	0xogGvddwY4sP4Vjoha7rY/B2tcxhNwQLCeIL626RIbWxTjFSSZs0gO+KogfhfC3/GQnxlhHc6saM
+	2SoPZ20CAcxhy8Ver+aEIkOh9xTKDi5uxSf9ShZ+VUkLWFZVSoOVfmv4qMrEZTq1Qj2fo5U392FOM
+	3LSNH+eA==;
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uhAWC-0001Xq-EF; Wed, 30 Jul 2025 19:23:08 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: lee@kernel.org,
+	srini@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] qnap-mcu: add nvmem subdevice to read the eeprom
+Date: Wed, 30 Jul 2025 19:22:46 +0200
+Message-ID: <20250730172248.1875122-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250730-fix-edge-handling-v1-4-1bdfb3fe7922@bootlin.com>
-References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
-In-Reply-To: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
-To: Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>, 
- Benoit Parrot <bparrot@ti.com>, Lee Jones <lee@kernel.org>, 
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>
-Cc: thomas.petazzoni@bootlin.com, Jyri Sarha <jsarha@ti.com>, 
- Tomi Valkeinen <tomi.valkeinen@ti.com>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org, 
- Louis Chauvet <louis.chauvet@bootlin.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2065;
- i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=/p3QCeb5vrjQsgDySv7ceP1YaCttjBmqpB2bCe9hbyY=;
- b=owEBbQKS/ZANAwAIASCtLsZbECziAcsmYgBoilA3+uu7ksY6HhTrzvxrlNdnU7OHWYsxGYCQ2
- fxOj7ZMH/+JAjMEAAEIAB0WIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCaIpQNwAKCRAgrS7GWxAs
- 4tKXD/4sZ0sUqe4etG+L+kea89Ub7gI7TmlWL/HHW/R4eN/jjonq+ae5qyuwSAYLbvlFvEBEgyC
- qGTFg0GCF67gfuuN095HEUNZ1EP9dGB2S0Yqj3MKXM36OHsCG2DHXtsBaFxs62DBxrwgnA1tEa+
- 04f30TQYPpAPR4oKH/FF1/MEfz3j0Idt7cQXQcbqV8svD0waNm95iMrezSX15XkMajTFFQ5fB+S
- tbzr/utpbB4oFoT+mpoLBLPIeaE6Y9MlIi+iui9Ze3e4E4DjGRtj10IzVkig8tKyF+juxQNq61s
- OFuZuBz0o9eRx1ZQSuOW5HQrSP+3EkS0Om7KQ6OvJNvn/22fQb0zhxbON9UZ9LNjx4ooAZ/NxHR
- e7kMUuRN/CN4K92cH4vXzB65xti1xFFgmoQUpvjIUSH4FSTSvcxbdPYgoVjLvrImV6IOCzwysv0
- A7bhsLRoY4ZsyY2jqRTICAx4X3SQ10DCf7JwLKfvd+mxkZivK9nxJ9t64krM0M8PpYjQ802gPk3
- 5tao4daQfje4SJ0R/shh8sCut2UJrR2QEdLX62WNxIWlRWfqaQTRDDHTBv9hJF1Sg4Z0dtPmyYR
- XZlEuSKxYEjSz/DNucVZ6iYTK+KIHJy27udRLPlcsFeAVY9MJnojagC9sn5AbuY827lx87j98Ps
- 241f24OZV4aqqFA==
-X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
- fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdelkeegkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefnohhuihhsucevhhgruhhvvghtuceolhhouhhishdrtghhrghuvhgvthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephedtjedttdetieeigfeljeekteetvefhudekgeelffejheegieevhfegudffvddvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegludelvddrudeikedrtddrvddtngdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehjhihrihdrshgrrhhhrgesihhkihdrfhhipdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhrihhsthhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtoheps
- hhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehnmhesthhirdgtohhm
+Content-Transfer-Encoding: 8bit
 
-As stated in the AM62x Technical Reference Manual (SPRUIV7B), the data
-sampling edge needs to be configured in two distinct registers: one in the
-TIDSS IP and another in the memory-mapped control register modules. Since
-the latter is not within the same address range, a phandle to a syscon
-device is used to access the regmap.
+The qnap-mcu is firmware running on a Weltrend WT61P803 MCU and there is
+an eeprom connected to it, that can be read via the serial interface.
 
-Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
-Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+The eeprom is somewhat important, as it contains for example the
+assigned mac address for the rk3568's gmac interface on TSx33 devices.
 
----
+So add a nvmem driver for it and hook it into the mfd.
 
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Heiko Stuebner (2):
+  dt-bindings: mfd: qnap,ts433-mcu: allow nvmem-layout child node
+  nvmem: add driver for the eeprom in qnap-mcu controllers
 
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index c0277fa36425ee1f966dccecf2b69a2d01794899..65ca7629a2e75437023bf58f8a1bddc24db5e3da 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.c
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -498,6 +498,7 @@ struct dispc_device {
- 	const struct dispc_features *feat;
- 
- 	struct clk *fclk;
-+	struct regmap *clk_ctrl;
- 
- 	bool is_enabled;
- 
-@@ -1267,6 +1268,11 @@ void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport,
- 		       FLD_VAL(mode->vdisplay - 1, 27, 16));
- 
- 	VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 1, 0, 0);
-+
-+	if (dispc->clk_ctrl) {
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 0x000);
-+		regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 0x000);
-+	}
- }
- 
- void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
-@@ -3012,6 +3018,14 @@ int dispc_init(struct tidss_device *tidss)
- 
- 	dispc_init_errata(dispc);
- 
-+	dispc->clk_ctrl = syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
-+								   "ti,clk-ctrl");
-+	if (IS_ERR(dispc->clk_ctrl)) {
-+		r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
-+				  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
-+		return r;
-+	}
-+
- 	dispc->fourccs = devm_kcalloc(dev, ARRAY_SIZE(dispc_color_formats),
- 				      sizeof(*dispc->fourccs), GFP_KERNEL);
- 	if (!dispc->fourccs)
+ .../bindings/mfd/qnap,ts433-mcu.yaml          |   3 +
+ drivers/mfd/qnap-mcu.c                        |   1 +
+ drivers/nvmem/Kconfig                         |   9 ++
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/qnap-mcu-eeprom.c               | 110 ++++++++++++++++++
+ 5 files changed, 125 insertions(+)
+ create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
 
 -- 
-2.50.1
+2.47.2
 
 
