@@ -1,105 +1,119 @@
-Return-Path: <devicetree+bounces-200634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A96B15948
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:06:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A60CB1595B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:12:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A76C545F20
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:06:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC1C3BDEDA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A4A1F5823;
-	Wed, 30 Jul 2025 07:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VgTLrhnx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4A4224254;
+	Wed, 30 Jul 2025 07:12:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865F01F1932;
-	Wed, 30 Jul 2025 07:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from 1wt.eu (ded1.1wt.eu [163.172.96.212])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE63C21FF2B;
+	Wed, 30 Jul 2025 07:12:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=163.172.96.212
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753859201; cv=none; b=RqBfryc/MGhfVxcdCsPggaN4R6msS/8J5BoSszyOOiRpeGEH2MeyVdrsh+/fg7Wu4Nw+HC75b7Y+fdKY7+qqkOsAlitSf1Gy9uCXX9e1U8wuNi2eReNJCiEoEwx/tsags7e26zy9LFf3r3N7iEfvI0m5k2FS9srSNjf/udso/bs=
+	t=1753859540; cv=none; b=knn+Sm9jUrUwwlHVLCd5h45Y8TUMpaORxJ/ygjstwgLX8+GpyiMhrqb6RNjgArH5ftcE9jzM8Y2dVQ4RuetR8/4AazPx2sGRd4xUs/tM8ZukvlbILmw0GcoZjkuOjmzmeqq5QYi2La/wBKa36/7TvdcO40F5DHxH0jP07CYm+Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753859201; c=relaxed/simple;
-	bh=KlI1XPaFmUg2EcZ0srrQoO2VB9R/Kuj5mD2SUgA4Yho=;
+	s=arc-20240116; t=1753859540; c=relaxed/simple;
+	bh=ZuSp//kVhmATYjMaP/FNEufGoy6Pa1v9492w4C9YlHs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L74n9/yFjp6Z4BVzXlmrVxHVs6If/Mq4zfapwp/5EhibtM1kvFjm78w6iUWCQSqe99EpvjBB70ThF/iGN39/nRCdh+GSDbTPGE+mRfvkoleYjwIKKx3nH2RbLyFLZHqx9qeVg7sEsHgfWRH+VdJwOxpAlWMv83ln/4DVrs2kMUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VgTLrhnx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA33C4CEE7;
-	Wed, 30 Jul 2025 07:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753859201;
-	bh=KlI1XPaFmUg2EcZ0srrQoO2VB9R/Kuj5mD2SUgA4Yho=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VgTLrhnxvCTrx9QaVzU9EIM2tTnQ9jk06DoDKo1YEgouN01AsKMo5YVcOkoliFp0u
-	 0uxNM2NW9iHq2EgCrzaBF14wUjCbVtGUQCPSghydc1Sd1nwxEz+fuce4nC1mluLc+C
-	 a7Rn+9kfaD6COIA5FHkWtfnTqQ9Jd1kRvFSx6i6xJQu8QHdZnw3zqzkTSg3X4v+a2C
-	 0e3yibcFCUcyWUPUIY+kE+0eg0E7+A4EaNfgwqeMqThVaH9WmuOkqvnu992OSc5s9L
-	 k/PV2AnKGPgMrndn5g8nn39Vi1hcF/m65dVdPcRG/MobFxDuH+o9nIF43sm5HHDY/P
-	 I2fNRSVSURb1A==
-Date: Wed, 30 Jul 2025 09:06:38 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xukai Wang <kingxukai@zohomail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Samuel Holland <samuel.holland@sifive.com>, Troy Mitchell <TroyMitchell988@gmail.com>
-Subject: Re: [PATCH v7 3/3] riscv: dts: canaan: Add clock definition for K230
-Message-ID: <20250730-laughing-dancing-emu-5540d6@kuoka>
-References: <20250730-b4-k230-clk-v7-0-c57d3bb593d3@zohomail.com>
- <20250730-b4-k230-clk-v7-3-c57d3bb593d3@zohomail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NBW6rBQxRy+PKZAhOArdFgwSGTwpRd0vUFGUBpLuZisYo58N7EKBTd7m+ZsdQ8IAxBuSpuG9zAUde5bRQgxLO0gznJ8VIu94XK938GJ9HnZZdZQy0MZZzVxiQZdwYeGchGfQo5+II147tJcJ5qX3R4Sbh+sm0gi8eKGJkqx0q4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=1wt.eu; spf=pass smtp.mailfrom=1wt.eu; arc=none smtp.client-ip=163.172.96.212
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=1wt.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=1wt.eu
+Received: (from willy@localhost)
+	by pcw.home.local (8.15.2/8.15.2/Submit) id 56U7BjvR026741;
+	Wed, 30 Jul 2025 09:11:45 +0200
+Date: Wed, 30 Jul 2025 09:11:45 +0200
+From: Willy Tarreau <w@1wt.eu>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: alchark@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        heiko@sntech.de, jonas@kwiboo.se, krzk+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, ziyao@disroot.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency
+ scaling support
+Message-ID: <20250730071145.GA26734@1wt.eu>
+References: <20250727170947.GA19379@1wt.eu>
+ <20250730070026.60109-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250730-b4-k230-clk-v7-3-c57d3bb593d3@zohomail.com>
+In-Reply-To: <20250730070026.60109-1-amadeus@jmu.edu.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Wed, Jul 30, 2025 at 02:43:53AM +0800, Xukai Wang wrote:
-> This patch describes the clock controller integrated in K230 SoC
-> and replace dummy clocks with the real ones for UARTs.
+Hi!
+
+On Wed, Jul 30, 2025 at 03:00:26PM +0800, Chukun Pan wrote:
+> Hi,
 > 
-> For k230-canmv and k230-evb, they provide an additional external
-> pulse input through a pin to serve as clock source.
+> > It's interesting to note that 816, 1008 and 1200 MHz result in a higher
+> > frequency than configured, but upper ones result in slightly smaller
+> > frequencies (~2%, might just be a measurement error), particularly for
+> > the last one which is 6% lower.
 > 
-> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
-> ---
->  arch/riscv/boot/dts/canaan/k230-canmv.dts | 11 +++++++++++
->  arch/riscv/boot/dts/canaan/k230-evb.dts   | 11 +++++++++++
->  arch/riscv/boot/dts/canaan/k230.dtsi      | 26 ++++++++++++++++++--------
->  3 files changed, 40 insertions(+), 8 deletions(-)
+> Please refer to the description of this series:
+> https://lore.kernel.org/lkml/20250320100002.332720-1-amadeus@jmu.edu.cn/
+
+Yes I had read this one. I'm just getting higher differences on my
+device here.
+
+> During the discussion, it was considered that the minimum voltage should
+> be 875mV to maintain stability, so there is a deviation in the frequency
+> between 816MHz and 1200MHz.
+
+I tend to agree, especially on low voltages, where the gain in stability
+is important while the difference in consumptionis barely noticeable.
+
+> > I noticed a missing entry for 2 GHz in clk-rk3528.c so I've added it,
+> > expecting that it would solve the problem:
+> >
+> > +       RK3036_PLL_RATE(2016000000, 1, 84, 1, 1, 1, 0),
+> >
+> > But it had no effect at all, the frequency remains limited to 1896 MHz.
 > 
-> diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-> index 9565915cead6ad2381ea8249b616e79575feb896..6579d39e2c1690d9e9c2b9c884db528c37473204 100644
-> --- a/arch/riscv/boot/dts/canaan/k230-canmv.dts
-> +++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
-> @@ -17,8 +17,19 @@ ddr: memory@0 {
->  		device_type = "memory";
->  		reg = <0x0 0x0 0x0 0x20000000>;
->  	};
-> +
-> +	timerx_pulse_in: timer_pulse_in {
+> There is a comment in the bsp kernel:
+> https://github.com/rockchip-linux/kernel/blob/develop-5.10/drivers/clk/rockchip/clk-rk3528.c#L101
+> 
+> Only 408MHz and 600MHz are generated by normal PLL, the rest of the
+> CPU frequency is controlled by TF-A via SCMI.
 
-Follow DTS coding style.
+OK!
 
-Please use name for all fixed clocks which matches current format
-recommendation: 'clock-<freq>' (see also the pattern in the binding for
-any other options).
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=v6.11-rc1
+> > Or maybe we could simply raise the voltage a little bit. The table above
+> > shows that at 1.15V we're close to the configured OPP and still below the
+> > stock voltage. This is not critical, but I find it a bit annoying that
+> > enabling cpufreq results in lower performance than without!
+> 
+> I also mentioned this in the cover letter. The actual frequency of 2016MHz
+> requires 1.13V ~ 1.15V. Not sure if this is safe for the rk3528 SoC.
 
-Best regards,
-Krzysztof
+My point is that if you disable cpufreq, the CPU is running at 1.2V, which
+is even higher. I don't know why it's running at this voltage, maybe as
+the result of initializing some regulators, but that's what we're getting.
+So the question about safety of running between 1.13-1.15 resolves to
+"it's at least safer than running without cpufreq" in the current state.
 
+And as I mentioned it's clearly linux and not u-boot that is setting 1.2V,
+because under u-boot and during kernel selection and image loading, my
+board is at 0.95V. It's only once the kernel starts to boot that it bumps
+to 1.2V.
+
+So there's something to fix somewhere, either by lowering the default
+setting or by increasing the voltages in OPP, but as it is right now the
+situation is inconsistent.
+
+Regards,
+Willy
 
