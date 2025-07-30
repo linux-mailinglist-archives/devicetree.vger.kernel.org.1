@@ -1,218 +1,171 @@
-Return-Path: <devicetree+bounces-200645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CD4B15998
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:31:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5654FB159A9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:35:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4455A3A3B2D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:31:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 947B8547E62
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2307E28F935;
-	Wed, 30 Jul 2025 07:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0DF2877C1;
+	Wed, 30 Jul 2025 07:35:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ADW4/det"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyXofFu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2C928F520
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB051EEA3C;
+	Wed, 30 Jul 2025 07:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753860693; cv=none; b=sGtvuHTVKdDRz7IE5nelNck7E2zLSiGhlMR6/DJohWIWH49dllSSSOv2mGW/6A1do1qZISoGp/CmweC2gSFh0Ln6gwl6R+VNVambRuz4j+Omw4UKdgv6B4m9A4dPyLdi8m96C5iJhTlzCMZGCabPF7P+jo8zaeiCH4HqA5q4LLI=
+	t=1753860917; cv=none; b=QErwxFACwWdCphMZldYQwFqJIMynajyfGhBZNOfJaJiP3xPfqsDuiiqFIIhGC19xYty11L/d07NX0RIwDfVGr5ZNgw/NtUZ5eVBcitQe23ZdJXBpTFg275juAyVNgtQNwHm9oDf77ORnnEXIdSYJFNEFbd8R4VSlD9hz6EXHwD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753860693; c=relaxed/simple;
-	bh=pGAOCVRw0BLj2G2xXBMzOn9p5X2PAw/oxgucy6qgMkQ=;
+	s=arc-20240116; t=1753860917; c=relaxed/simple;
+	bh=Rb42T9aQ/AvFB04Um0C8TnqGFJJMEejYJB7uNmy/X7s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SGk3pQ9/mHb/NUJDQAWV/vNFr7CJHfbK3Ba5tmRQrEJygv9J1oWH6+gIxaQSYaaTcWrfCsd71cdATCIcAG+4+aIfsDJGZDbTOExuc8LAbSPc0w9bsV1DnoSdaIDNQN0275itjc8Z/icT/J/g1GSFwrt3jV5eBJPQWK8/7MAaGJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ADW4/det; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1753860690;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=tg3kHXf/VEPySXPdaIeZnW9fOV15ESdV9yA7hGdIv+A=;
-	b=ADW4/detI8pQGN9DQwpJsq8ehSnj+X/tdQI6gWuXiWYqjKuXS0cNEcqsWshkgwpkgQT4uz
-	mtnUCK1fy4oE3l2WEymlNtDnicDuJW9aGhIF6lNbXdJK6OVl6YKFv4iGc57L5xDnVja/XF
-	0OCVfdBr5jYHP4OZO73cqr1R/Ojzbc4=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-626-Dp1SzmyFOle5TuJFQO5dSQ-1; Wed,
- 30 Jul 2025 03:31:24 -0400
-X-MC-Unique: Dp1SzmyFOle5TuJFQO5dSQ-1
-X-Mimecast-MFC-AGG-ID: Dp1SzmyFOle5TuJFQO5dSQ_1753860683
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1116119560AA;
-	Wed, 30 Jul 2025 07:31:22 +0000 (UTC)
-Received: from darkstar.users.ipa.redhat.com (unknown [10.72.116.59])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 438C21800B71;
-	Wed, 30 Jul 2025 07:31:12 +0000 (UTC)
-Date: Wed, 30 Jul 2025 15:31:59 +0800
-From: Dave Young <dyoung@redhat.com>
-To: Brian Mak <makb@juniper.net>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Baoquan He <bhe@redhat.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, x86@kernel.org,
-	kexec@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND] x86/kexec: Carry forward the boot DTB on kexec
-Message-ID: <aInKb8qr689ytM41@darkstar.users.ipa.redhat.com>
-References: <20250729182142.4875-1-makb@juniper.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=p2HTImEc6kWN5Rn1MrEI4Ip0ZyqS34Kt6bOc+4meHhkbv2iBlssIiO7hwMYHRfQJpXW2Un+jwcCW0KlK9EN8EOhSWEi51HGdC+pAm8cJL0diykP6chYYNNfsEgIxYYBOSqZ+ga4RgXdmWZLBJbxoUnVhhwt+6EHvs55U0SYNAFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyXofFu8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8CEEC4CEE7;
+	Wed, 30 Jul 2025 07:35:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753860915;
+	bh=Rb42T9aQ/AvFB04Um0C8TnqGFJJMEejYJB7uNmy/X7s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lyXofFu8g8SSyulnEKipqT2pOCKv+cop+PA7ESplvce5MRGTqNlVUjnLgz/DgTKnT
+	 Qr1msG/NOCq5NC4G3D0vr4xL1GHxj/7mI/6dBp8NGoHTokAr1pzK1jk/1qUR3n/IxJ
+	 lTJfOJVDIjylOZ1QnwCvyHVHIC6+B/QpW2o9eVsKR7bX3N8VsCfBv4hzVT7qWrk+4u
+	 WbwWmEQH67o8hVqDOQeBuDmHDZyd2HB6uJHZSeqlhmHHoT+pMgg+FX9676Jn7R2Quq
+	 GRyPuKp8BNJMFu+dJPuX7m5PvNv6PYIcD4Edhtk1PRNwgBYS+6E8UCC5BGYvlwUxrA
+	 oO6+qJ8rcpEdw==
+Date: Wed, 30 Jul 2025 09:35:12 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: add support for NXPs TJA1145 CAN
+ transceiver
+Message-ID: <20250730-aromatic-optimistic-hyena-f1db1a@kuoka>
+References: <20250728-tja1145-support-v1-0-ebd8494d545c@liebherr.com>
+ <20250728-tja1145-support-v1-1-ebd8494d545c@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250729182142.4875-1-makb@juniper.net>
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+In-Reply-To: <20250728-tja1145-support-v1-1-ebd8494d545c@liebherr.com>
 
-On Tue, Jul 29, 2025 at 11:21:42AM -0700, Brian Mak wrote:
-> The kexec_file_load syscall on x86 currently does not support passing
-> a device tree blob to the new kernel.
+On Mon, Jul 28, 2025 at 05:39:29PM +0200, Dimitri Fedrau wrote:
+> Adding documentation for NXPs TJA1145 CAN transceiver.
 > 
-> To add support for this, we copy the behavior of ARM64 and PowerPC and
-> copy the current boot's device tree blob for use in the new kernel. We
-> do this on x86 by passing the device tree blob as a setup_data entry in
-> accordance with the x86 boot protocol.
-> 
-> Signed-off-by: Brian Mak <makb@juniper.net>
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 > ---
->  arch/x86/kernel/kexec-bzimage64.c | 46 +++++++++++++++++++++++++++++--
->  1 file changed, 43 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/phy/nxp,tja1145-can.yaml   | 79 ++++++++++++++++++++++
+
+Why isn't this in can directory with rest of CAN bindings?
+
+>  1 file changed, 79 insertions(+)
 > 
-> diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
-> index 24a41f0e0cf1..c24536c25f98 100644
-> --- a/arch/x86/kernel/kexec-bzimage64.c
-> +++ b/arch/x86/kernel/kexec-bzimage64.c
-> @@ -16,6 +16,8 @@
->  #include <linux/kexec.h>
->  #include <linux/kernel.h>
->  #include <linux/mm.h>
-> +#include <linux/libfdt.h>
-> +#include <linux/of_fdt.h>
->  #include <linux/efi.h>
->  #include <linux/random.h>
->  
-> @@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *params, unsigned long params_load_addr,
->  }
->  #endif /* CONFIG_EFI */
->  
-> +#ifdef CONFIG_OF_FLATTREE
-> +static void setup_dtb(struct boot_params *params,
-> +		      unsigned long params_load_addr,
-> +		      unsigned int dtb_setup_data_offset)
-> +{
-> +	struct setup_data *sd = (void *)params + dtb_setup_data_offset;
-> +	unsigned long setup_data_phys, dtb_len;
+> diff --git a/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..10bf2bce1b35788b3284c42e544a56eda6d79947
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
+
+Filename should match compatible.
+
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/nxp,tja1145-can.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	dtb_len = fdt_totalsize(initial_boot_params);
-> +	sd->type = SETUP_DTB;
-> +	sd->len = dtb_len;
+> +title: TJA1145 CAN transceiver
 > +
-> +	/* Carry over current boot DTB with setup_data */
-> +	memcpy(sd->data, initial_boot_params, dtb_len);
+> +maintainers:
+> +  - Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 > +
-> +	/* Add setup data */
-> +	setup_data_phys = params_load_addr + dtb_setup_data_offset;
-> +	sd->next = params->hdr.setup_data;
-> +	params->hdr.setup_data = setup_data_phys;
-> +}
-> +#endif /* CONFIG_OF_FLATTREE */
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+
+Missing ref to transceiver properties. Look at other CAN bindings.
+
 > +
->  static void
->  setup_ima_state(const struct kimage *image, struct boot_params *params,
->  		unsigned long params_load_addr,
-> @@ -336,6 +360,16 @@ setup_boot_parameters(struct kimage *image, struct boot_params *params,
->  			sizeof(struct efi_setup_data);
->  #endif
->  
-> +#ifdef CONFIG_OF_FLATTREE
-> +	if (initial_boot_params) {
-> +		setup_dtb(params, params_load_addr, setup_data_offset);
-> +		setup_data_offset += sizeof(struct setup_data) +
-> +				     fdt_totalsize(initial_boot_params);
-
-I suppose current boot dtb should be valid for the current runnning
-kernel, if you use kexec to load another kernel the next kexec reboot
-could fail due to unmatching dtb.
-
-Make this unconditionally could break the previous working kexec?
-
-> +	} else {
-> +		pr_info("No DTB\n");
-
-pr_debug sounds better.
-
-> +	}
-> +#endif
+> +properties:
+> +  compatible:
+> +    const: nxp,tja1145
 > +
->  	if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
->  		/* Setup IMA log buffer state */
->  		setup_ima_state(image, params, params_load_addr,
-> @@ -529,6 +563,12 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
->  				sizeof(struct setup_data) +
->  				RNG_SEED_LENGTH;
->  
-> +#ifdef CONFIG_OF_FLATTREE
-> +	if (initial_boot_params)
-> +		kbuf.bufsz += sizeof(struct setup_data) +
-> +			      fdt_totalsize(initial_boot_params);
-> +#endif
+> +  "#phy-cells":
+> +    const: 0
 > +
->  	if (IS_ENABLED(CONFIG_IMA_KEXEC))
->  		kbuf.bufsz += sizeof(struct setup_data) +
->  			      sizeof(struct ima_setup_data);
-> @@ -537,7 +577,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
->  		kbuf.bufsz += sizeof(struct setup_data) +
->  			      sizeof(struct kho_data);
->  
-> -	params = kzalloc(kbuf.bufsz, GFP_KERNEL);
-> +	params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
->  	if (!params)
->  		return ERR_PTR(-ENOMEM);
->  	efi_map_offset = params_cmdline_sz;
-> @@ -647,7 +687,7 @@ static void *bzImage64_load(struct kimage *image, char *kernel,
->  	return ldata;
->  
->  out_free_params:
-> -	kfree(params);
-> +	kvfree(params);
->  	return ERR_PTR(ret);
->  }
->  
-> @@ -659,7 +699,7 @@ static int bzImage64_cleanup(void *loader_data)
->  	if (!ldata)
->  		return 0;
->  
-> -	kfree(ldata->bootparams_buf);
-> +	kvfree(ldata->bootparams_buf);
->  	ldata->bootparams_buf = NULL;
->  
->  	return 0;
-> 
-> base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
-> -- 
-> 2.25.1
-> 
+> +  reg:
+> +    maxItems: 1
 
+reg is the second property, also in "required:" block.
 
-Thanks
-Dave
+> +
+> +  spi-max-frequency:
+> +    maximum: 4000000
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cs-setup-delay-ns:
+> +    minimum: 50
+> +    default: 50
+> +
+> +  spi-cs-hold-delay-ns:
+> +    minimum: 50
+> +    default: 50
+> +
+> +  spi-cs-inactive-delay-ns:
+> +    minimum: 250
+> +    default: 250
+> +
+> +  vcc-supply:
+> +    description:
+> +      CAN transceiver supply voltage
+> +
+> +  vio-supply:
+> +    description:
+> +      Supply voltage for I/O level adaptor
+> +
+> +  vbat-supply:
+> +    description:
+> +      Battery supply voltage
+> +
+> +required:
+> +  - compatible
+> +  - "#phy-cells"
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        canphy@0 {
+
+can-phy if something like this exist. If not, then probably can-transceiver
+
+> +            compatible = "nxp,tja1145";
+> +            #phy-cells = <0>;
+> +            reg = <0>;
+
+Please follow DTS coding style.
+
+Best regards,
+Krzysztof
 
 
