@@ -1,58 +1,93 @@
-Return-Path: <devicetree+bounces-200911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83FC9B1691A
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 00:41:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D1CB1691F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 00:48:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F1583A4E0C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 22:41:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE89E7A8506
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 22:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B6E22F770;
-	Wed, 30 Jul 2025 22:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080B8222586;
+	Wed, 30 Jul 2025 22:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOE1BIb5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZimAU6Lo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7FA81FC0E6;
-	Wed, 30 Jul 2025 22:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3FF167DB7;
+	Wed, 30 Jul 2025 22:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753915308; cv=none; b=JViWLpY4uYZSjSQI0ghI/4fXrun9J8dPHS3d5XaLffALgxTQQS7Y6TOn1Z9+4X/XuizzuaW94rJ0dH3o9dniYlnB78MNN2LGTupzk/abuz73K3k0LUYmKR6ItJmKrsLWxc1tk43/gI9cUlUcPHOqRgW00ONGnV0zSqFwdKx8IPw=
+	t=1753915711; cv=none; b=ZxVUZyxejvnsgET7CTh1zsp0owzk7+oyrE6yvTXewzhFxTtC5wtEs8U/qYHBgDOWgt3wC0lBknEOma1D0c9aIr3FOQIwrBTDxjbJL/oB77UZVaANB8eVm4uC3iAdScE5dgYEVyVTHC35BXbRxs30tcG1UD3iSpUZlUg5FpRdbZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753915308; c=relaxed/simple;
-	bh=GWaDf3adn+wN1fKBXt2Ts7vvMaetMJXms4RCI3IHYUM=;
+	s=arc-20240116; t=1753915711; c=relaxed/simple;
+	bh=gKDRUSLxO4KYQEFLKEGt3wEeOK2rxZPX+4a6QetgkKY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iy3QTVLVgd1fuv5RJfFEzTwBZO9T2/vq74wOIXxbLDvf/OQUZOL/1wDxIo0lPCcSiofpUF2yKjziDgJ5rj2oAYZmCOLqfSBzGIK1nlGmQBzaGT8ym1CEKgiVL+PsAjVdUJ3GQSW6nmrcOJC4Xk5ogqWiUIOtGLL/juOUTf1SANw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOE1BIb5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19F87C4CEE3;
-	Wed, 30 Jul 2025 22:41:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753915308;
-	bh=GWaDf3adn+wN1fKBXt2Ts7vvMaetMJXms4RCI3IHYUM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YOE1BIb5RrLaijIXCXMec2ww8/iSXQlF6La+cvZddui90k9ts4RBQQumjPHBWBXlS
-	 BWZ86NRIu4gm5jY9SFjsA7AVcVGDjoX6/LthdzMfFnlGkU5uUH55arGrQUTff5sFG8
-	 dGD4UBgUJPQXadeXI3mId8fpOfopeeXo1xKdklYRA7Lf9Vdy89TDMKP4Rps32VZySc
-	 65jy32t2vOx14v2qsycq/eSzCmm4UXC3eYNukHBVdxjH74HKuaAnKRDJoMIowdd6xz
-	 8wpB++/EXaykQMx1a3DgCnuYdg6EeWN3/7UUT5v1/iWFh/Mg7ZN/XUgmqiJsCEuRwQ
-	 TkbUrgeXdkRFw==
-Date: Wed, 30 Jul 2025 17:41:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-Cc: m.szyprowski@samsung.com, robin.murphy@arm.com, saravanak@google.com,
-	quic_obabatun@quicinc.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	william.zhang@broadcom.com, kernel@oss.qualcomm.com,
-	will@kernel.org, djakov@kernel.org
-Subject: Re: [PATCH v3] of: reserved_mem: Restructure call site for
- dma_contiguous_early_fixup()
-Message-ID: <20250730224132.GA1822233-robh@kernel.org>
-References: <20250730002956.1812694-1-oreoluwa.babatunde@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=d1IY287Mh+iCTqEDKMkyynvHI/Qt/B61EF/U2vFldGUC4wlaQnpfz0NaqBIZxjjRvAmB0+UNtXQd+3ODT7ReqjyqLrFN6T88yrF2jrFVEzTTOaJEDilwKGv1MlFoxY2wBXj7rJA/Lbrw0fm787c1gjGG2QFWWYjUC1+sOQr2bNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZimAU6Lo; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-76bc5e68e26so425844b3a.0;
+        Wed, 30 Jul 2025 15:48:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1753915709; x=1754520509; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NP6vcGcK02YLX4Uh++vawCQkxiZgTHh/2PlbBRfDZHI=;
+        b=ZimAU6Lo60LAsw1Dti4cNtS8iHUAWhzsQuVXgbZ5Acp+JuAKXa3REc1L4aiNpcLKe1
+         fZhzmKWWQaicvXnW30+zA8jn3jKFt9dPSlWZJE6CFzEs+Vmm5pUTk8uyjn2tnEsFCAG2
+         JBKTWF8BiefuKfJqovaOzDv3XXf1JjyS1Eiqs2vNx9BAt3mco76FOZc7uG6hi2sxelsb
+         AmRsIO5Qox2zi5TbJNbxAK1Cx90Imal0WaXwuLS7AT+IiYBWZctPdrdrTc7+SS4RY5Du
+         hck9KZSE/sk2FDynU4CiVsH9WGbuaNhrhKxD6LbcpCCLLisKBG/1hPNi3XgD1y6IbEYd
+         akGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753915709; x=1754520509;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NP6vcGcK02YLX4Uh++vawCQkxiZgTHh/2PlbBRfDZHI=;
+        b=TCWQXSvmm0HE9FRDJgYvdg0M+28tcXEnkRvz0bmjKpKZ8lcxuSV26ihwBGrU7t8Aag
+         kUrEQ2aahX0eOJW7dQ3kt+RWDwbcZr2IG6PuZiwzLBIYdfE6dhBWq2ASZmVx2Nhi7mUX
+         zXUwUMsTM3inkUAXxGDloqAycXAQm5LE0ODQiXSI1Dvqg49YuIUEFHbXIL067DWpQIT/
+         fbiH5Nvd+O5F+LaHThMTRrhR5EuovaDujCsdB3vC9qrSVXahPTITdGxqqvVLWSqIaIHR
+         qSHEEGyks2JfCcTomgpTFSDjBpj6178S2aFhgy+l5DtzjCcmMAVBInWsFX126xZPuRgS
+         HLZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqfr7JK+LAWtAZ4QOIeJbMPBiPDKPfhde9r4vXrstjP2e4yEatV3sf5Lh/bbXM8Ve4StfuD3gou5isTpde@vger.kernel.org, AJvYcCXK3/X5q8DtmN3grPtnZLNlOZ0iL0wpLwV//SgweWBZWG+Su3OFoHFhQ1S3mKcnYh4DMoBY5fAaHG+2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+uIughuqM8IkIG9lJ2QU5DAYM2zzNQkRtnR2xJSYh8ATBircA
+	LoBx4lSqp7KdW46S8qwUQZH7Tidqk7kS06I56+wxcld3TfgpmDp6Dj9O
+X-Gm-Gg: ASbGncvC/4yFQBvclatGG97RdtOfH/JAMwGTy88sF2JgviSZiaOca72vLZBhnCZiONS
+	sMO3JTDxNyyrbvJ7yDC830AiK6htmDxZQBPRZjsnxtqcBzPq7PpFCtKbMlaKEY6ox1ImNVDwwvx
+	I3bfBtYcqKNgC2bfocFkHCDKiK1li8+xPJKS/8fzLetjw24YUz/Ylh4JchRn60ERg2Y5bvdFtwL
+	T/NrJPYN/3tpACFHy4kSvmjS6E0bLwSY8v/sJ3KTamUpyycUP4EnVc8SN88Ci3TzsE9jT4GShC8
+	5+/c3DOiAk5yKf7+X+AcO5MFHQOiBjY43a1gqESkyOPRm9vxEB4GkgEEpUKYXr4rqUk14lkm/Uk
+	GFnTIhVaIpzA6CtLwdLWQ6w==
+X-Google-Smtp-Source: AGHT+IHdHRz5ygZhpTYyipXzL2+kQpjXt95ma7h5f7Ng2oXDH8vIiDfPKBBpkWpLagLHgSt57lXBqQ==
+X-Received: by 2002:a17:902:e80e:b0:234:8ec1:4af6 with SMTP id d9443c01a7336-24096b4158dmr76980525ad.45.1753915709361;
+        Wed, 30 Jul 2025 15:48:29 -0700 (PDT)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-241e8976a06sm1475055ad.81.2025.07.30.15.48.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jul 2025 15:48:28 -0700 (PDT)
+Date: Thu, 31 Jul 2025 06:47:51 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>, 
+	Inochi Amaoto <inochiama@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add C906L rproc for
+ Sophgo CV1800B SoC
+Message-ID: <fm3ayx67ip4km5qhn77v7s76bo5iyppmbrxhbcqdbc4pz2zstb@fbrishsvcazn>
+References: <bfvsmafcsxy4gr4dsprn4z4yl2lltgje2oilsny7vanb7rsolq@t2prbsfisioc>
+ <1856fbcb55769ae0.5ecf256b8267239e.f51806827c8576a5@Jude-Air.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,100 +96,163 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250730002956.1812694-1-oreoluwa.babatunde@oss.qualcomm.com>
+In-Reply-To: <1856fbcb55769ae0.5ecf256b8267239e.f51806827c8576a5@Jude-Air.local>
 
-On Tue, Jul 29, 2025 at 05:29:56PM -0700, Oreoluwa Babatunde wrote:
-> Restructure the call site for dma_contiguous_early_fixup() to
-> where the reserved_mem nodes are being parsed from the DT so that
-> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+On Wed, Jul 30, 2025 at 08:59:15AM +0000, Junhui Liu wrote:
+> On 30/07/2025 14:05, Inochi Amaoto wrote:
+> > On Wed, Jul 30, 2025 at 03:57:09AM +0000, Junhui Liu wrote:
+> >> On 29/07/2025 16:31, Inochi Amaoto wrote:
+> >> > On Mon, Jul 28, 2025 at 07:03:23PM +0800, Junhui Liu wrote:
+> >> >> Add C906L remote processor for CV1800B SoC, which is an asymmetric
+> >> >> processor typically running RTOS.
+> >> >> 
+> >> >> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
+> >> >> ---
+> >> >>  .../bindings/remoteproc/sophgo,cv1800b-c906l.yaml  | 79 ++++++++++++++++++++++
+> >> >>  1 file changed, 79 insertions(+)
+> >> >> 
+> >> >> diff --git a/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml
+> >> >> new file mode 100644
+> >> >> index 0000000000000000000000000000000000000000..2061c2fd6ba343c09b1a91700ea4a695d2b57f81
+> >> >> --- /dev/null
+> >> >> +++ b/Documentation/devicetree/bindings/remoteproc/sophgo,cv1800b-c906l.yaml
+> >> >> @@ -0,0 +1,79 @@
+> >> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> >> +%YAML 1.2
+> >> >> +---
+> >> >> +$id: http://devicetree.org/schemas/remoteproc/sophgo,cv1800b-c906l.yaml#
+> >> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> >> +
+> >> >> +title: Sophgo C906L remote processor controller for CV1800B SoC
+> >> >> +
+> >> >> +maintainers:
+> >> >> +  - Junhui Liu <junhui.liu@pigmoral.tech>
+> >> >> +
+> >> >> +description:
+> >> >> +  Document the bindings for the C906L remoteproc component that loads and boots
+> >> >> +  firmwares on the CV1800B SoC.
+> >> >> +
+> >> >> +properties:
+> >> >> +  compatible:
+> >> >> +    const: sophgo,cv1800b-c906l
+> >> >> +
+> >> >> +  firmware-name:
+> >> >> +    maxItems: 1
+> >> >> +
+> >> >> +  mbox-names:
+> >> >> +    items:
+> >> >> +      - const: tx
+> >> >> +      - const: rx
+> >> >> +
+> >> >> +  mboxes:
+> >> >> +    description:
+> >> >> +      This property is required only if the rpmsg/virtio functionality is used.
+> >> >> +      (see mailbox/sophgo,cv1800b-mailbox.yaml)
+> >> >> +    items:
+> >> >> +      - description: mailbox channel to send data to C906L
+> >> >> +      - description: mailbox channel to receive data from C906L
+> >> >> +
+> >> >> +  memory-region:
+> >> >> +    description:
+> >> >> +      List of phandles to reserved memory regions used by the remote processor.
+> >> >> +      The first region is required and provides the firmware region for the
+> >> >> +      remote processor. The following regions (vdev buffer, vrings) are optional
+> >> >> +      and are only required if rpmsg/virtio functionality is used.
+> >> >> +    minItems: 1
+> >> >> +    items:
+> >> >> +      - description: firmware region
+> >> >> +      - description: vdev buffer
+> >> >> +      - description: vring0
+> >> >> +      - description: vring1
+> >> >> +    additionalItems: true
+> >> >> +
+> >> > 
+> >> > Why not allocating these region dynamicly? I do not think firware is
+> >> > always avaible before staring. Allowing dynamic firmware give us max
+> >> > flexiblity.
+> >> 
+> >> I'm afraid it's not easy to do this.
+> >> 
+> >> For firmware region, the RTOS firmware usually needs a physical address
+> >> to link to, and I have researched and tested two RTOS (RT-Thread and
+> >> Zephyr) on the C906L, both of them do not support position-independent
+> >> execution or runtime relocation. Therefore, a reserved memory region is
+> >> needed to provide a fixed physical address for the RTOS firmware.
+> > 
+> > I think it is simple and possible to add PIE support for these RTOS. As
+> > the memory of CV18XX is limited, I do not want to see some reserved
+> > regions. This may hurt users who do not need this.
 > 
-> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-> Tested-by: William Zhang <william.zhang@broadcom.com>
-> ---
-> v3: Wrap the call to dma_contiguous_early_fixup() with a check for
->     CONFIG_DMA_CMA to fix compile error seen on x86. The __weak function
->     definition introduced in v2 was not sufficient to prevent the issue,
->     so remove that as well.
->     Also add Tested-by tag from William Zhang.
+> Thank you for sharing your concern about the limited memory.
 > 
-> v2: Add a check for the "reusable" property to narrow things down to
->     only cma regions.
->     Also add __weak function definition for dma_contiguous_early_fixup()
->     to avoid compile errors on architectures that do not define the
->     function.
+> However, I think I have to wait until some RTOS supports PIE before I
+> can continue to advance this patch series. At least I haven't found any
+> guide on compiling RTOS firmware with PIE support for the two RTOSs
+> (RT-Thread and Zephyr) I'm currently testing on the C906L.
 > 
->  drivers/of/of_reserved_mem.c | 20 ++++++++++++++++----
->  kernel/dma/contiguous.c      |  2 --
->  2 files changed, 16 insertions(+), 6 deletions(-)
+> Besides, I have searched the existing remoteproc drivers in the kernel,
+> and haven't found any driver using dynamic memory allocation for the
+> firmware region. It may take some time to implement this feature if we
+> really need it on CV18XX SoCs.
 > 
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 77016c0cc296..cfffecb91c3a 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -25,6 +25,7 @@
->  #include <linux/memblock.h>
->  #include <linux/kmemleak.h>
->  #include <linux/cma.h>
-> +#include <linux/dma-map-ops.h>
->  
->  #include "of_private.h"
->  
-> @@ -175,13 +176,19 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->  		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
->  		size = dt_mem_next_cell(dt_root_size_cells, &prop);
->  
-> -		if (size &&
-> -		    early_init_dt_reserve_memory(base, size, nomap) == 0)
-> +		if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
-> +			/* Architecture specific contiguous memory fixup. */
-> +#ifdef CONFIG_DMA_CMA
-> +			if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
-> +			    of_get_flat_dt_prop(node, "reusable", NULL))
-> +				dma_contiguous_early_fixup(base, size);
-> +#endif
+> > 
+> >> (In fact, there is already a reserved memory region for the C906L in
+> >> cv1800b-milkv-duo.dts)
+> > 
+> > This is just preserved for vendor zsbl and I have a plan to remove it.
+> > Always let linux take care of all memory. It is good to support all
+> > firmware implementation for CV18XX.
+> 
+> Got it.
+> 
+> > 
+> > I think it is always good to use remoteproc like this:
+> > https://www.kernel.org/doc/html/latest/staging/remoteproc.html
+> > 
+> >> 
+> >> For virtio-related regions, the RTOS firmware also needs to know the
+> >> shared memory regions for communications at compile time.
+> >> 
+> > 
+> > I think you should investigate this and check if there is something you
+> > missed. I haven't see any reserved region in remoteproc binding mentions
+> > virtio.
+> 
 
-Add a static inline for dma_contiguous_early_fixup() instead of having 
-an #ifdef.
-
->  			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
->  				uname, &base, (unsigned long)(size / SZ_1M));
-> -		else
-> +		} else {
->  			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
->  			       uname, &base, (unsigned long)(size / SZ_1M));
-> +		}
->  
->  		len -= t_len;
->  	}
-> @@ -472,7 +479,12 @@ static int __init __reserved_mem_alloc_size(unsigned long node, const char *unam
->  		       uname, (unsigned long)(size / SZ_1M));
->  		return -ENOMEM;
->  	}
-> -
-> +#ifdef CONFIG_DMA_CMA
-> +	/* Architecture specific contiguous memory fixup. */
-> +	if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
-> +	    of_get_flat_dt_prop(node, "reusable", NULL))
-> +		dma_contiguous_early_fixup(base, size);
-> +#endif
->  	/* Save region in the reserved_mem array */
->  	fdt_reserved_mem_save_node(node, uname, base, size);
->  	return 0;
-> diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-> index 67af8a55185d..d9b9dcba6ff7 100644
-> --- a/kernel/dma/contiguous.c
-> +++ b/kernel/dma/contiguous.c
-> @@ -483,8 +483,6 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
->  		pr_err("Reserved memory: unable to setup CMA region\n");
->  		return err;
->  	}
-> -	/* Architecture specific contiguous memory fixup. */
-> -	dma_contiguous_early_fixup(rmem->base, rmem->size);
->  
->  	if (default_cma)
->  		dma_contiguous_default_area = cma;
-> -- 
-> 2.34.1
+> Currently, in Zephyr, the only boards with OpenAMP sample support are
+> the i.MX and STM32MP series [1]. Both of them define reserved memory
+> regions for virtio and vrings in their respective Linux kernel device
+> trees [2][3]. These are the only available reference targets I have at
+> the moment.
 > 
+> Furthermore, searching for the keyword "vring" in the remoteproc
+> bindings yields many results, which I believe mostly pertain to reserved
+> memory regions for rpmsg/virtio.
+> 
+> $grep "vring" -r Documentation/devicetree/bindings/remoteproc | wc -l
+> 24
+> 
+
+#grep -rl vring | wc -l
+9
+
+In fact, it seems not many boards add vring as memory region,
+But for simplifity, it is OK for me to leave the vring as an
+fixed region. Or just not support virtio at all... I see the
+document of OpenAMP says it support no-virtio mode.
+
+> So, at present, all my references use reserved memory for firmware
+> regions (unless there is specific memory for the processor in hardware)
+> and for virtio-related regions. Do you think there is anything I might
+> have missed, or should some new feature be implemented?
+> 
+> [1] https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/subsys/ipc/openamp_rsc_table/boards
+> [2] https://github.com/torvalds/linux/blob/v6.16/arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi#L33-L49
+> [3] https://github.com/torvalds/linux/blob/v6.16/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts#L68-L97
+> 
+
+Great, I think it is convincing. Thanks.
+
+Regards,
+Inochi
 
