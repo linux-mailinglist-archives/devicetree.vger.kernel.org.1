@@ -1,178 +1,193 @@
-Return-Path: <devicetree+bounces-200719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAFBB15CA0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:45:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED052B15C93
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACA857AB801
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:43:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2089817174F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A8D2980C4;
-	Wed, 30 Jul 2025 09:43:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DE2293C6D;
+	Wed, 30 Jul 2025 09:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kDk3dYCg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aSVVSl6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08FE0296160;
-	Wed, 30 Jul 2025 09:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2B1293C5F;
+	Wed, 30 Jul 2025 09:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753868629; cv=none; b=j11PazkVQRrSeQ+/sep2b2jv+Bx0MffNQrAoplD7aLXZTKTVNSq3dWQ7X1n4HsRiCBrIEjY2RITTakzqVkSpQFeKvm/XVA87uXKgN3wNoL3chZaNQ7nYbs+Zg+Gki4Lb8mwMRLNERa61aW9BtESkONefQqayOmNlC8xwnWLaNDc=
+	t=1753868615; cv=none; b=QIGz/irGqbocFyYxFULWDv4f6q2cvQ9fULpPvIFfnh8DMrCCoxkj7vrd5FpnfNHBoGLgV7XaHz8l2g4srSjYpKuYcsm9Z0xymjm6LJihexQ2zkgbWLzB/a8Kp/jMAoK+hoDDOaEOTHIj/O3Kt8twZQf2Pvkp5bd5TqoEQr2RKP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753868629; c=relaxed/simple;
-	bh=EGFlnuVzPU/MCb3uGavxiA6M9+FIo8sh/pnBzB3nVPA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=jbSWMXGFxZh2pMRDzZ5LUalnk4Yxt5k2IdE59JdpWOQpkaP10TnrDysYHWIHWCjK4toAY/uj+qLARnohXkzV4C631Tn/oJsGFT2TBnLrv2CEmNvZWh2YTcS2h8j9DWDHlNeeitru9aIExgtksnDTkB0UCiCQ782WjVz+LOQfi2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kDk3dYCg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56U4F23U013440;
-	Wed, 30 Jul 2025 09:43:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GNWpd5hzCYXFc6INoaGE1csh/flCx43DQC8QxEVUaSg=; b=kDk3dYCg7NqG6MPz
-	PZgmnzMdubWz69OQ4b7aN5JHX5L8glrynD2hUoIkiueh79EbdE9LwPjYZwzVLP7e
-	sFNdJQIeleBptf6cGtuQ4iJCtm5nrizBxNosc2aRgvYIZsh6FRSwsCzk1h3vnZR2
-	S/u3ivrtrr4xN16taY6YKulmwLnTTBRgyff4xQsp3kNrrg7EQfSetE7Q3a1NkVNf
-	gcdwTcst7WKeRXtjC6m1RLV8/vQUxJLCBc/MK/rE2LWS9f5M/rKKYXaH+uGnF9Su
-	X03qsWkLa4Was5McLyN8JSaQNhlalVn9wL5SP4t0SJSJlIyitBjGqkTvA7x7kVug
-	8P0Z6w==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484q3xu6sb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Jul 2025 09:43:35 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56U9hY4Z009236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 30 Jul 2025 09:43:34 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Wed, 30 Jul 2025 02:43:28 -0700
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-Date: Wed, 30 Jul 2025 17:42:30 +0800
-Subject: [PATCH v5 5/5] soc: qcom: ubwc: Add QCS8300 UBWC cfg
+	s=arc-20240116; t=1753868615; c=relaxed/simple;
+	bh=l19ciGWdlKJF2Jx2rrIYOrVvfwPJixLfLxn7wpITpCw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CDlAZs03OwIowhALkcc45lwIv8pNerAHgLeXALoBvp6E0+kCqJjt5ioNJK9T8EHCm/6+d+QHabTUmU8Ydaw1RfoJNdSwzYBr0aw4vHuZLEQ9wad+hKZAIjFa+cDfuLYunBMKiyoMC/8LDB2RAXYHCKUvFNZSQa8W5MW89tWDzaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aSVVSl6N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22CAEC4CEF8;
+	Wed, 30 Jul 2025 09:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753868615;
+	bh=l19ciGWdlKJF2Jx2rrIYOrVvfwPJixLfLxn7wpITpCw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aSVVSl6Ngd6ChWm5MqI1bsYnFwMijlANofgnDsGw0kOsFmxj19di7WOkGWLcZt3Mh
+	 5cakr+BB7r9dEUltqUReLnCDn5H8q/m3CaA8g8GifcXyRxd6vZbUiLeMUhyGC/wDpm
+	 jaRzWJ1WXHfbbB1fxu6ul21HwjY3CpRiCX6DyM/vPozQE86ajTuCOcQUuI93b/labr
+	 sVfPHsimNoSDQ45PP1OxI0fDXXwtFki2lmY3eZ8D1yiF36yg8xM+hR7sLOosRhnsqV
+	 0cFRwcaj/kXWtwxux1S9h9byLUXiYc66XMq8ZlLNwNZSEmam6hr/EPfS6xqffKx7l5
+	 8pqwoQTTXVHWw==
+Message-ID: <29f997f3-3b38-4bf9-9ed3-204a15edb849@kernel.org>
+Date: Wed, 30 Jul 2025 11:43:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] convert sound: realtek: alc5623 from txt to yaml
+To: Mahdi Khosravi <mmk1776@gmail.com>, devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250730093713.104003-1-mmk1776@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250730093713.104003-1-mmk1776@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250730-mdssdt_qcs8300-v5-5-bc8ea35bbed6@quicinc.com>
-References: <20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com>
-In-Reply-To: <20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang
-	<jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Neil
- Armstrong" <neil.armstrong@linaro.org>,
-        Kuogee Hsieh
-	<quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Yongxing Mou <quic_yongmou@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1753868578; l=1587;
- i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
- bh=EGFlnuVzPU/MCb3uGavxiA6M9+FIo8sh/pnBzB3nVPA=;
- b=vszfHmPG/JREJtaZnT+euc+tCo/oml0hi1Pd+P78w/oR6W5+J9moRQYvVHBEWy3hepWj7jWX+
- BnoNE161zx6Bg/uau/psRODuFsb46w3x695OrYSFbhIyVZnHRQh29ey
-X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
- pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=JovxrN4C c=1 sm=1 tr=0 ts=6889e947 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=2VydLR8uY93yoHhY48MA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: yI5lQ3h3kaNQ_-ZUG0Turp3byLq4VcrL
-X-Proofpoint-GUID: yI5lQ3h3kaNQ_-ZUG0Turp3byLq4VcrL
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDA2NyBTYWx0ZWRfX8EtxIGFvVZDY
- iFRKggYSdXT/+Dje6My2weE4DUs3XrIp4xhEsX8p1decAo1F583QWmgRlHudoq37qGAb95vEecx
- luJwTZRsVFpAV0oPtGjmvyJDq+j7abC2l7hnJ9vHozjTJZD8xDYn2Zy86VckP7poh93ypNuh4bW
- Qn8to3Uv1wkVDaXuC1SeAwtcABBOIAyngJNMT0qCNp+hh2MIFMcdP1q8WYhmlc2LX6LqjOvl4Bl
- ktbBpNbhEJJq8maKPi/a8u+DO6m4gx7KDAWVc+T7O91XQuz6hJ+V78TDw4El2OwhxwHTB56bbuM
- as42QgtLM85ahYGJD5hOaW77yR0CC8vUkz37tCE1Dfmquim4sSOy4jGEKRAa/rLJms9+38ABI3v
- yt+dKB5rpKrZbRPWkVQJNYMtDF4LtPeKY5OKxI+YWmvsPMOLUa/Z14as9Ko+4VofzfPKDFKX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-30_03,2025-07-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 priorityscore=1501 bulkscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 suspectscore=0 spamscore=0 mlxlogscore=999
- mlxscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507300067
 
-The QCS8300 adopts UBWC 4.0, consistent with SA8775P, add 4 channels LP5
-configuration data according to the specification.
+On 30/07/2025 11:37, Mahdi Khosravi wrote:
+> I converted the alc5623 audio codec binding from text to DT schema.
+> This is my first try and I used make dt_binding_check & make dtbs_check to verify
+> without getting any errors.
 
-Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
----
- drivers/soc/qcom/ubwc_config.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Take a look at your compatible and then look at your example.
+realtek,alc5632 is completely different. Just DTS using it in the kernel.
 
-diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
-index bd0a98aad9f3b222abcf0a7af85a318caffa9841..389fb871018b65987295db60571c063b4d984d70 100644
---- a/drivers/soc/qcom/ubwc_config.c
-+++ b/drivers/soc/qcom/ubwc_config.c
-@@ -35,6 +35,16 @@ static const struct qcom_ubwc_cfg_data qcm2290_data = {
- 	.highest_bank_bit = 15,
- };
- 
-+static const struct qcom_ubwc_cfg_data qcs8300_data = {
-+	.ubwc_enc_version = UBWC_4_0,
-+	.ubwc_dec_version = UBWC_4_0,
-+	.ubwc_swizzle = UBWC_SWIZZLE_ENABLE_LVL2 |
-+			UBWC_SWIZZLE_ENABLE_LVL3,
-+	.ubwc_bank_spread = true,
-+	.highest_bank_bit = 16,
-+	.macrotile_mode = true,
-+};
-+
- static const struct qcom_ubwc_cfg_data sa8775p_data = {
- 	.ubwc_enc_version = UBWC_4_0,
- 	.ubwc_dec_version = UBWC_4_0,
-@@ -225,6 +235,7 @@ static const struct of_device_id qcom_ubwc_configs[] __maybe_unused = {
- 	{ .compatible = "qcom,msm8998", .data = &msm8998_data },
- 	{ .compatible = "qcom,qcm2290", .data = &qcm2290_data, },
- 	{ .compatible = "qcom,qcm6490", .data = &sc7280_data, },
-+	{ .compatible = "qcom,qcs8300", .data = &qcs8300_data, },
- 	{ .compatible = "qcom,sa8155p", .data = &sm8150_data, },
- 	{ .compatible = "qcom,sa8540p", .data = &sc8280xp_data, },
- 	{ .compatible = "qcom,sa8775p", .data = &sa8775p_data, },
 
--- 
-2.34.1
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
+
+> diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> new file mode 100644
+> index 000000000000..98524d06458c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ALC5621/ALC5622/ALC5623 audio Codec
+
+s/audio/Audio/. Keep it consistent.
+
+> +
+> +maintainers:
+> +  - Mahdi Khosravi <mmk1776@gmail.com>
+
+That's DAI, no? At least looking at driver? Then you miss dai-common
+reference.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,alc5623
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  add-ctrl:
+> +    description:
+> +      Default register value for Reg-40h, Additional Control Register. If absent
+> +      or has the value of 0, the register is untouched.
+> +    type: object
+> +
+> +  jack-det-ctrl:
+> +    description:
+> +      Default register value for Reg-5Ah, Jack Detect Control Register. If absent
+> +      or has value 0, the register is untouched.
+> +    type: object
+
+None of these are objects. This wasn't tested due to your compatible
+issue. :/
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+unevaluatedProperties after adding dai-common ref.
+
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        codec@1a {
+> +            compatible = "realtek,alc5632";
+
+
+Best regards,
+Krzysztof
 
