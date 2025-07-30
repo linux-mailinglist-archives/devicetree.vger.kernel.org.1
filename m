@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C33B15F2F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:21:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24B60B15F48
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 163CE3AA371
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:20:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A540170871
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78D280312;
-	Wed, 30 Jul 2025 11:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38FA5293B5E;
+	Wed, 30 Jul 2025 11:24:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJ3HQnGj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXX/RAVI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E24C156C6A;
-	Wed, 30 Jul 2025 11:21:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C3125761;
+	Wed, 30 Jul 2025 11:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753874482; cv=none; b=aoRoes3+0rHlddYZUssT7e//331zPyrm7IUnr6oZqfoOddOdM73oXz4P/5NBNNzWV9w2USHa8TF8YANNkAxOV7sz2QnSO5TqGKHGfBVl8+5SxNr7zWG6sxV2/1habVUwIwb41h/3ujUxadFVAyCrtUY86/CT4nPvejKPe7fK0FU=
+	t=1753874648; cv=none; b=GHrlik1nbE1WfBoHSr5t1J7xICqaAidAkADwBQ/gdTnjXwrRegQktcjEsXbHjBFFsd5OojUBtR6ifAywwqqy9+nUU+Esai8IbrANEEn64oQmPs1BBGhsQtK28oWSnhCNNNONT7HVZMxonHAVJ1nxheggdcHXqsg25c4/SlVkYFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753874482; c=relaxed/simple;
-	bh=CtznNYmb1zga1PkVQcwqrmPcOrlSE8pwLtq10dWObas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=uYTbsFyqoIfuZPIrvPQESWOGByb2u88MYcnLJuYHlt++x2zbprT/8rdUcevldz+aFXmTQyu4NJQSCgeISnnyPrizDgyrQm7BwqVOLsZ/y6N31VTZrAjioPInLUf9PdoPmbHomPcyk7Sa2K16tWrxueZxc7EACDNVuXylCwe2p7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJ3HQnGj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2FC0C4CEF6;
-	Wed, 30 Jul 2025 11:21:18 +0000 (UTC)
+	s=arc-20240116; t=1753874648; c=relaxed/simple;
+	bh=p439xKdUjQDIZnib0dKjcMt9bu3g5d26E1vN3T7Uh5Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o07ttfxULoWlkNi68gKvQUu3r15tMwPDINdslY3EcCJPd9z948Q43UQ9pwzVhWhJUZesXFJzCODMBWgKvcPROnHc2qRpf3EvPkCbseccTEAc0GqrPah/ExkATGHEdrHlt9nxxcy0RsvHtR72f7kgHBGWKOQHE7bq3I07r/ulKvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXX/RAVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92105C4CEE7;
+	Wed, 30 Jul 2025 11:24:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753874482;
-	bh=CtznNYmb1zga1PkVQcwqrmPcOrlSE8pwLtq10dWObas=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=EJ3HQnGjQvZ4QcMP1x1Or3XPmH0rokD4/74ay4C546u8HqAva7yDZrCxq3WXEYX43
-	 yh6PT9tYGFRgsT61NZan/t3QUA/kJCsCf+fHrrsvetN+16LV1VhgNQAyoX5fRmOxI+
-	 YhPLsf6WUDBYviHjl0L31sYSQuWDe5/t+PNY6lZO8ZQWajaN+RSZhP0V2wQB0khggF
-	 4Jk9vXbPRd+iMla+wHw0lxb6QfxPyA2dzbEnd53cH42L1b4wEUCcEUTlYbx8e+oHxu
-	 kvuftNTQLLQWjPa5PxHOWl0BFCckVPnmAzsiyLgOkzm94oSUFIHCYFlvmdvSfPHZ75
-	 WrawrHTGZRDUg==
-Message-ID: <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
-Date: Wed, 30 Jul 2025 13:21:17 +0200
+	s=k20201202; t=1753874647;
+	bh=p439xKdUjQDIZnib0dKjcMt9bu3g5d26E1vN3T7Uh5Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RXX/RAVI27DR10M/gfwNiS935Ue6Zdqk/CyooqHwDNb1SajzszBzF//byGdkDyMh/
+	 UAAt9LcAAbHCIWusf/pcLfNpauaUSv1kP3YuAJ0VWBYxwC/rYvuaMvBinpT1EejcYH
+	 dg/5Dntnt0khOT2LTdswlfMM7U0O9/yrEBBcR5Sdjlf7yM60FhAr8YW+TveE/sB8zB
+	 xifWuuVuCW6Xd0ysWCE5nO+CEtkabJlrx7R+DVYeSjFVIEKJVFXUTqohy/R/XQkYED
+	 +h87tW629+0bc/n2PTAJv7Bn91DM15gh9GKcNlidOiDUbS4VeJLXf0kE3Ucx4Lb7bW
+	 FD0QR+nY09++Q==
+Message-ID: <462402ce-22cf-492b-bc40-bd9dbc3a2f16@kernel.org>
+Date: Wed, 30 Jul 2025 13:24:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
- support for optional 'spi_gclk' clock
-To: Manikandan Muralidharan <manikandan.m@microchip.com>, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- claudiu.beznea@tuxon.dev, ryan.wanner@microchip.com,
- tudor.ambarus@linaro.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250730101015.323964-1-manikandan.m@microchip.com>
- <20250730101015.323964-2-manikandan.m@microchip.com>
+Subject: Re: [RFC PATCH 2/6] of: reserved-memory: Add
+ of_reserved_mem_lookup_by_name
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Arnd Bergmann <arnd@kernel.org>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ =?UTF-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>,
+ Bill Mills <bill.mills@linaro.org>, "Michael S. Tsirkin" <mst@redhat.com>,
+ Jason Wang <jasowang@redhat.com>, devicetree@vger.kernel.org,
+ virtualization@lists.linux.dev, Sudeep Holla <sudeep.holla@arm.com>,
+ Bertrand Marquis <bertrand.marquis@arm.com>,
+ "Edgar E . Iglesias" <edgar.iglesias@amd.com>,
+ Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <cover.1753865268.git.viresh.kumar@linaro.org>
+ <feb4591cc48c70f9790c3f4d37c149fc336c3110.1753865268.git.viresh.kumar@linaro.org>
+ <b32b9698-0254-43b3-8109-ee8e37482bae@kernel.org>
+ <20250730105744.w5arednoluxufvio@vireshk-i7>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,21 +113,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250730101015.323964-2-manikandan.m@microchip.com>
+In-Reply-To: <20250730105744.w5arednoluxufvio@vireshk-i7>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2025 12:10, Manikandan Muralidharan wrote:
-> Update the Atmel SPI DT binding to support an optional programmable
-> SPI generic clock 'spi_gclk', in addition to the required 'spi_clk'.
+On 30/07/2025 12:57, Viresh Kumar wrote:
+> On 30-07-25, 11:46, Krzysztof Kozlowski wrote:
+>> On 30/07/2025 11:29, Viresh Kumar wrote:
+>>> +	struct device_node *child __free(device_node) = NULL;
+>>
+>> This should not be NULL or this should not be cleanup. Follow coding
+>> style for cleanup - constructor must be real here.
 > 
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> ---
-> changes in v2:
->  - Fixed mail threading
+> I may have misunderstood how cleanup works, but this is what I
+> thought:
+> 
+> The cleanup is defined in of.h as:
+> 
+> DEFINE_FREE(device_node, struct device_node *, if (_T) of_node_put(_T))
+> 
+> 
+> Doesn't this mean that it handles the case where `child` is NULL, by
+> not calling of_node_put() ? So it should either be a valid constructor
+> or NULL and not some stale value.
 
-You already received comments. Respond to them instead of sending again
-the same.
+I am speaking about coding style. It's explicitly requested to use only
+the full constructor syntax (see long time Linus' remark or just read
+cleanup.h docs).
+
+NULL is allowed in certain cases, but the code here does not look like
+needing it in the first place.
+
 
 Best regards,
 Krzysztof
