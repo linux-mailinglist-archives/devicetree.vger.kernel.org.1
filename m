@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-200646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5654FB159A9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:35:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3AB5B159B6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 947B8547E62
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:35:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 165BF18A7264
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 07:40:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0DF2877C1;
-	Wed, 30 Jul 2025 07:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B91F28FFE1;
+	Wed, 30 Jul 2025 07:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyXofFu8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LeGpVIki"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB051EEA3C;
-	Wed, 30 Jul 2025 07:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28DE156CA;
+	Wed, 30 Jul 2025 07:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753860917; cv=none; b=QErwxFACwWdCphMZldYQwFqJIMynajyfGhBZNOfJaJiP3xPfqsDuiiqFIIhGC19xYty11L/d07NX0RIwDfVGr5ZNgw/NtUZ5eVBcitQe23ZdJXBpTFg275juAyVNgtQNwHm9oDf77ORnnEXIdSYJFNEFbd8R4VSlD9hz6EXHwD4=
+	t=1753861181; cv=none; b=EgzqDR5MtZoqfEMEp5tAArxCXkpKYw7MONrw/hJ4woxaGHKu/EQi+i6P6Obr5LLsKWvR5g7/Ip3esffxJDkVOzmuEIGMTT5NNYSg7q4H5wcQXEWbzB2ixqLFIy+i2NwtntjA6/956f1+mGBAGDNBz+VilH02EvL3iXa0ah+UADw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753860917; c=relaxed/simple;
-	bh=Rb42T9aQ/AvFB04Um0C8TnqGFJJMEejYJB7uNmy/X7s=;
+	s=arc-20240116; t=1753861181; c=relaxed/simple;
+	bh=9vE/0YRE5m4T2yAc8ysN75M/3WfwPx5PcISQ5OcHdFs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p2HTImEc6kWN5Rn1MrEI4Ip0ZyqS34Kt6bOc+4meHhkbv2iBlssIiO7hwMYHRfQJpXW2Un+jwcCW0KlK9EN8EOhSWEi51HGdC+pAm8cJL0diykP6chYYNNfsEgIxYYBOSqZ+ga4RgXdmWZLBJbxoUnVhhwt+6EHvs55U0SYNAFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyXofFu8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8CEEC4CEE7;
-	Wed, 30 Jul 2025 07:35:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvzzIEZns95RdA0YwPiUsiyOYTUrFaAvzP7TeW8X9GHTxepRDRgushHXZN7TCD8+/P0C60BpJt1Gpb+hrDvpoANzdx79fjL4Bg4K9A7eqcGN4flxMdY4d4BHif/5h+Y0RLbtWi60s1FGQ8uScOmaxjzvXDqkXyg9vVYwgSoMkY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LeGpVIki; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06FB1C4AF09;
+	Wed, 30 Jul 2025 07:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753860915;
-	bh=Rb42T9aQ/AvFB04Um0C8TnqGFJJMEejYJB7uNmy/X7s=;
+	s=k20201202; t=1753861180;
+	bh=9vE/0YRE5m4T2yAc8ysN75M/3WfwPx5PcISQ5OcHdFs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lyXofFu8g8SSyulnEKipqT2pOCKv+cop+PA7ESplvce5MRGTqNlVUjnLgz/DgTKnT
-	 Qr1msG/NOCq5NC4G3D0vr4xL1GHxj/7mI/6dBp8NGoHTokAr1pzK1jk/1qUR3n/IxJ
-	 lTJfOJVDIjylOZ1QnwCvyHVHIC6+B/QpW2o9eVsKR7bX3N8VsCfBv4hzVT7qWrk+4u
-	 WbwWmEQH67o8hVqDOQeBuDmHDZyd2HB6uJHZSeqlhmHHoT+pMgg+FX9676Jn7R2Quq
-	 GRyPuKp8BNJMFu+dJPuX7m5PvNv6PYIcD4Edhtk1PRNwgBYS+6E8UCC5BGYvlwUxrA
-	 oO6+qJ8rcpEdw==
-Date: Wed, 30 Jul 2025 09:35:12 +0200
+	b=LeGpVIkikgjaTGHmA4hJCNVe9x06ZFQKqv5nneRs2qThAeFD/IYOTWYJb3Rx0cyUM
+	 QwRqnNJN2DCeEZwMmQEP3VBuU4ecfNuLR4tR9Wt6nsYeibvVY4k4pmSe0e4nWfrniv
+	 165h2RNS2GMF32TeT3aIkhNqKFihzsVWnCVUJ8GFCrLaEXlIMYB3r1AVUskau1cJ2b
+	 WIvrf+979UBYt3vVKQD3xddvUZBdG6tFXCBKTk/zNHHR25y/euhIibds7kXHm55A60
+	 Fvr7Kom3D5ZMaPbZpqb9bCuA3+Zj9Q1P5uzjAg7cDwErVH0igyMmlhZfB+t5m1/8Yd
+	 HwpVcCY3Rsemg==
+Date: Wed, 30 Jul 2025 09:39:38 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Dimitri Fedrau <dima.fedrau@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add support for NXPs TJA1145 CAN
- transceiver
-Message-ID: <20250730-aromatic-optimistic-hyena-f1db1a@kuoka>
-References: <20250728-tja1145-support-v1-0-ebd8494d545c@liebherr.com>
- <20250728-tja1145-support-v1-1-ebd8494d545c@liebherr.com>
+To: ChiYuan Huang <cy_huang@richtek.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: power: supply: Add Richtek RT9756 smart
+ cap divider charger
+Message-ID: <20250730-sassy-competent-mule-d94f1a@kuoka>
+References: <cover.1753759794.git.cy_huang@richtek.com>
+ <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
+ <3603a744-e898-49ef-968a-2388e14cae54@kernel.org>
+ <aIl+VKFURqFfXKz3@git-send.richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,108 +62,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250728-tja1145-support-v1-1-ebd8494d545c@liebherr.com>
+In-Reply-To: <aIl+VKFURqFfXKz3@git-send.richtek.com>
 
-On Mon, Jul 28, 2025 at 05:39:29PM +0200, Dimitri Fedrau wrote:
-> Adding documentation for NXPs TJA1145 CAN transceiver.
+On Wed, Jul 30, 2025 at 10:07:16AM +0800, ChiYuan Huang wrote:
+> On Tue, Jul 29, 2025 at 05:40:32PM +0200, Krzysztof Kozlowski wrote:
+> > On 29/07/2025 06:21, cy_huang@richtek.com wrote:
+> > > +
+> > > +  shunt-resistor-micro-ohms:
+> > > +    description: Battery current sense resistor mounted.
+> > > +    default: 2000
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - wakeup-source
+> > 
+> > Why do you require this? I cannot find any use of it, so maybe I missed
+> > some change in Linux code (and that's second question like that for
+> > Richtek, so refer to your other patchsets for contexr).
+> > 
 > 
-> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> ---
->  .../devicetree/bindings/phy/nxp,tja1145-can.yaml   | 79 ++++++++++++++++++++++
+> This will mark the interrupt as wakeup capable.
+> https://elixir.bootlin.com/linux/v6.16/source/drivers/i2c/i2c-core-of.c#L57
+> https://elixir.bootlin.com/linux/v6.16/source/drivers/i2c/i2c-core-base.c#L547
 
-Why isn't this in can directory with rest of CAN bindings?
+OK, but this does not explain why this is required. Why it is impossible
+to make board which uses this PMIC and wires the interrupt in a way it
+is not waking up the system?
 
->  1 file changed, 79 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..10bf2bce1b35788b3284c42e544a56eda6d79947
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/nxp,tja1145-can.yaml
-
-Filename should match compatible.
-
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/nxp,tja1145-can.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TJA1145 CAN transceiver
-> +
-> +maintainers:
-> +  - Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-
-Missing ref to transceiver properties. Look at other CAN bindings.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,tja1145
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-
-reg is the second property, also in "required:" block.
-
-> +
-> +  spi-max-frequency:
-> +    maximum: 4000000
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cs-setup-delay-ns:
-> +    minimum: 50
-> +    default: 50
-> +
-> +  spi-cs-hold-delay-ns:
-> +    minimum: 50
-> +    default: 50
-> +
-> +  spi-cs-inactive-delay-ns:
-> +    minimum: 250
-> +    default: 250
-> +
-> +  vcc-supply:
-> +    description:
-> +      CAN transceiver supply voltage
-> +
-> +  vio-supply:
-> +    description:
-> +      Supply voltage for I/O level adaptor
-> +
-> +  vbat-supply:
-> +    description:
-> +      Battery supply voltage
-> +
-> +required:
-> +  - compatible
-> +  - "#phy-cells"
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        canphy@0 {
-
-can-phy if something like this exist. If not, then probably can-transceiver
-
-> +            compatible = "nxp,tja1145";
-> +            #phy-cells = <0>;
-> +            reg = <0>;
-
-Please follow DTS coding style.
+To my limited knowledge this should be possible, but what do I know
+about hardware...
 
 Best regards,
 Krzysztof
