@@ -1,542 +1,239 @@
-Return-Path: <devicetree+bounces-200698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBD9B15B9F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:31:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A9F4B15BA4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 11:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FFE5486CB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:31:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD8D4548203
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 09:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D314293C6B;
-	Wed, 30 Jul 2025 09:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C40277036;
+	Wed, 30 Jul 2025 09:31:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zxvy2Zpq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZLCOVJYn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8627F293C4A
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 09:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EDF167DB7
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 09:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753867827; cv=none; b=CcXxuo07jXxaMPWn9NaTWrsWyfQr2KuCZPrpROzCTBmSaHI3/u6t4hkm2L3vSMo28xIl9PHtSNMxRMS2QHpBqJueRicsJSyJaawSrCsF78/NbVE5CCtft/Gr/VQRfhzdjhMYiQPVgD1Mp1FaRq7p5vla9AJPIY2ziAswtaN/D7U=
+	t=1753867914; cv=none; b=G41oq6ZMvP7WUtRiJIvCEaw4wSGp1Yjw8qUn+nhemF4qHuliihdqvwsOvr36BUrjDitmBJGDZbmjz0rgohOElljImDEqHgRKOkTJL48EZ/Ifo896hnzRX6kKC2QkmbpJrypuykvQ2I5Hsa/mhM8YFfmp6gynL0xQzF2CtTTBZJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753867827; c=relaxed/simple;
-	bh=EZG5GWBuYkwXyo63tWvaS2vVdUxh8TggH36mdHovo0U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qeyUR7rcy++T3diC+ACGe2/bU3/GbaCGNkP4jsAJAmiaxBHB1U5UwdUxs+r7oP0YjmpIC5B43gUkqnU/4OHq2OdqYbTWYYGBRcmnVz3yDNyo02elqsgEcB2cXazWMxwOYEC4tLf+tdUFaIkREFjbrxMNjJncZWZIYejHhqFCbkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zxvy2Zpq; arc=none smtp.client-ip=209.85.215.174
+	s=arc-20240116; t=1753867914; c=relaxed/simple;
+	bh=JQvshfvimgHfM0RiZnHUyLwR4iIsBOC1lbymHIY70KQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uIzo4IyW5uKime5rCXtM1h9EwAmRaIOgu3zGzETPy3LZAEmq7o5keBpTlLKiErTM3AVm8Sh+RrKKwMeuhYYBEKlSFfCPtYPOeqAjxQ9svk31hbUmtHy1gxB/+hIijVlZSRURZqYIiX+vlpFnRLOFsr4Gl6DRMyeOEkadTBf3y2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZLCOVJYn; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b3f741a77f7so4760848a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 02:30:25 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-615378b42ecso5979842a12.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 02:31:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753867825; x=1754472625; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ztfLizoM6vJzWJQpk/yKuNltuSgkusaceKeZjG9ohE=;
-        b=zxvy2ZpqBnucmNMLGSBa6OS5fGglqfJLOYItaLW1FeLRekA3fiVD/bf1HntB3YoufV
-         cZL+EMdDvFTZhnLNH9SiF7HwZoibomtziROVLGuvFTFEevVvcWSwIk5xZ1rrAwndzZEj
-         aaWDkI9wRtWGWu6uDcc4B+JIwH06s9nySjjnd2jM7FzyA/XxXCwpn1lsD6aDOxuAMzel
-         NV+VzUKBfkVqGAx6f8VTsqtKmxofCCUCZqQawpJgiJiO5JfIz4Mbbm6NGG/I/cGo9zT2
-         k7VdXJp4pP71d7vk6ahLxzCAwlu7SMyx1PvNzxzT42nPDUQqryDkqmj9uNr7AlbDW9Uh
-         NyeQ==
+        d=linaro.org; s=google; t=1753867910; x=1754472710; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ign5Rvn1nrFDYbDVfbmxV7M+H+jM3AW8cIlkron9MVw=;
+        b=ZLCOVJYnswBPPpfve49dvoNBPTURF6JGwYE52NYmL6TDVwQbrcoB8JMOABRzBgzVxL
+         lW7NC8GtIgB1n/fNWFFFFcjAZJjRk6w2HGXg6WjAG/RdjvVmvOcJfxlXna/QIGAIbjCo
+         2bG4p1gx91lHn5XGnf47JqMwiOx48Iw2R4J5JaCqYRW7nGl/JgdKUwba0BbI0s/juoYD
+         M37Qmy3WZrZvXXei2c3ogzJxE3wx24ACWlIEkjhd8kjJTej6UUcZkcJCVOx+3DYEEIVu
+         fjdZQdII/L93zkLFY7bqhDz6q7JTWz/kZKfi97V6afm8vm21X3PrZVkaWvxaM+D3i540
+         iiiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753867825; x=1754472625;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ztfLizoM6vJzWJQpk/yKuNltuSgkusaceKeZjG9ohE=;
-        b=s7PI5Tw+VkiLuwRq6oCVGvglUg4jJ3SLW/Fw5DurdjIKF+TofWp7fxppdBdkTzilys
-         Rl3D9Jaqlv4xYJN8dY2nFFlT7czfxjgvKtouATiRVaJs9X9rEA0n1DZdzf+QLYzp6JMF
-         WmqraWHJOZqS0O9koIuAz/vhlWaIzPZGS3Xj4wFstf7PqZ5eRcDLhry5UB+tcC+YJPs3
-         iFBLVMBUXqK6+Y+F46oZbBIwSxjzwYl36ipfzOjVRTJHLXrJ3odr63kXJTc5lCnRhK86
-         NQfPmO8k0teBmRLRCUbC0TtrrwgoQpHcIFp3CJVz89PYaz1/qgYGlu1dIgAxjPbkNkvg
-         rAJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXHwgvUe0QztuuF2OF4yzta0zXeppTh0E5Fteeb5wxG++ndifhyyynHcc6dd1IVgFvEf7DcCDRh069B@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/RTaPFnuZWa4OXBY78jKfe5rjWuUWJeGI2TUs0um3r4l55TPN
-	n6RPeG5203SpfXUv1sNRK+buMaVze08NvlNYfjekIjmwG+pQ+9d1cVREyLfl8CB5iNUHEDLg7my
-	P5Q6f
-X-Gm-Gg: ASbGncvDwygaWvrdpRHb95ocgJEDWtDtOjI0XBxNq1w2UbrpjUR9MZXe3py7c6WsDjo
-	SdsrGm8QKdr4zfFAJ7etHk1XgenTch+uYPn6ZQ+xFzPqN+RkRD1WW3FZpT5c+mdwdL3Xrp4lNna
-	4Qs/wseDqTja7bUIOYQk8Y4JthYf3oYnuSuUOTMul+tjvSVBHg3QSUYdUPkV+PeAXXxc7upkqWV
-	QXqGdIDwcKDQKRmNoQO8MpL2mJrS2CCHWV3iLnpX/WNnd3T3pYbknFWULqD6u8vwbqlSJOMumis
-	XaFWquj2WVlpU3lA7knAwJeXCYjMwOrShWFOeFSOwC/00wuT/y+6tFKOXYTAdmPNjzM/xr1BJdJ
-	h/ABcjc+5XKls92qvUyTXHpY=
-X-Google-Smtp-Source: AGHT+IFUrg1QYU7YbPaiKF9yxuBVZ4/0jL0dMyof/YqyAVSp+4ZDAcvrCV6vSNusV2vKF99MbZL+zw==
-X-Received: by 2002:a17:90b:3e84:b0:311:e8cc:424c with SMTP id 98e67ed59e1d1-31f5ea4c967mr3628584a91.25.1753867824670;
-        Wed, 30 Jul 2025 02:30:24 -0700 (PDT)
-Received: from localhost ([122.172.85.40])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63dd8c04sm1479090a91.19.2025.07.30.02.30.23
+        d=1e100.net; s=20230601; t=1753867910; x=1754472710;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ign5Rvn1nrFDYbDVfbmxV7M+H+jM3AW8cIlkron9MVw=;
+        b=wsN/seJ5uh2ILxcebLu3ju11GEoXGZeyLSE/KT655jpD0l9wKc296sHFa6fCOTCUSE
+         2sY9YERWNMWA6fI/gaOXeDaKrhOU5EcydUoj8xRannRqSfs1z9PsVObElAakiWc9wHbY
+         bMXMLzL4ftA9r99DPiY1qVFLsdlm02hMMgY8z4nXK0JysRWIonnjBqruc8S/WLLP2z8O
+         TpDScZsicaZQsRPwjMogwRN8qKsNojxE2p3/V7TFguMFNDm8FG8OWvVWGxtOCt4vNvZR
+         zVSJ7jyr3zTC5JUehzm4SoBHmwAIugf18Qc04UVK+7wuea8hCnuENVZzw2XJ9BVZbzq4
+         5MUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3OJvyMgO/M/Wxg8xcD2sj7ScNMxROnrrg3BL4bCbQDaQSDfbC7B49HV/Zugvo9UuwwvrOnpfH5SGK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+a0IyQHZWj31lBOohx9jCXiVQJHPYifzyCXHkKZEmlWGpX9ZN
+	Lwp7EVKhtydwCQYKJ0B2GMXYvQp8gXR4fPLv09kEqroDKRPq0AmjWroVRp30ghoTj+4=
+X-Gm-Gg: ASbGncu0KhGvAjjIb32+nkJf8oQxSbJ6LpPFz/yQm/6S4+688SvjAS7z4ht6u+TdXny
+	9bMDr/HtGBMMrfrSZ9vU/+BwxYBi49naxOnURc3YHmFavG0+NEdf+c1S9ayLeVLiZx3BpjW5Fw5
+	hHMUDoYhJ2HU6LMlRh+Nwc0rNE6ELNdxvJ+mlE+DJLuAZFL8gJTP9wgvip0fBlTlOwZQnIPPtk5
+	EUz0NjaYYwrnrLBhC97V/RDfVmaGrhWqHR3fPuZV1t2fUXYHJbQrIcvUgIRA7wGa3uH6kGYLO4Z
+	yE/gsgw134qVnNQFd41qHu2Iz+nMoI08QF/LYSyu4UPoVIjOWaes3hJAcTok/YPiK++E9NrKxDI
+	V+kzzZY5zErRFinQTroULzHXpKUXcvn2HHxk8gD0d8+mtIH0XgQaCCejsODu5Z2egX55shJufJp
+	lIAafDMw==
+X-Google-Smtp-Source: AGHT+IHblx3Qz+7RLXy0BsXAU+JhtlCfvSdqO2qWeJIEcuKpggfXj3qv90ALBrzdmml33C0iVYKiqQ==
+X-Received: by 2002:a05:6402:35c3:b0:615:79b9:28ba with SMTP id 4fb4d7f45d1cf-61586eef0e9mr2633422a12.6.1753867909762;
+        Wed, 30 Jul 2025 02:31:49 -0700 (PDT)
+Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61536916dbasm4090424a12.43.2025.07.30.02.31.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 02:30:24 -0700 (PDT)
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: linux-kernel@vger.kernel.org,
-	"Michael S. Tsirkin" <mst@redhat.com>,
-	Jason Wang <jasowang@redhat.com>,
-	Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
-	=?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Arnd Bergmann <arnd@kernel.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	=?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
-	Bill Mills <bill.mills@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Bertrand Marquis <bertrand.marquis@arm.com>,
-	"Edgar E . Iglesias" <edgar.iglesias@amd.com>,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [RFC PATCH  6/6] virtio-msg: Add support for loopback bus
-Date: Wed, 30 Jul 2025 14:59:35 +0530
-Message-Id: <622460b11118be66d5ec380b3d5771be77fc1e91.1753865268.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
-In-Reply-To: <cover.1753865268.git.viresh.kumar@linaro.org>
-References: <cover.1753865268.git.viresh.kumar@linaro.org>
+        Wed, 30 Jul 2025 02:31:49 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v5 0/2] Samsung S2MPG10 PMIC MFD-based drivers
+Date: Wed, 30 Jul 2025 10:31:33 +0100
+Message-Id: <20250730-s2mpg10-v5-0-cd133963626c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHXmiWgC/2XOTQ7CIBAF4KsY1mIGBvrjynsYFyJDJdHSgGk0T
+ e8u1WhrXL7JfG9mYImip8S2q4FF6n3yoc1Br1fsdD62DXFvc2YSpAaUgid57RoBnJy2goxFUMj
+ ydhfJ+furaX/I+ezTLcTHq7gX0/TTgd+OXnDgFqpaYQmyhHJ38e0xhk2IDZtKermE1QxlhkYrS
+ 4ToTGH+IM5QweIivqE0qEFTUf1BtYT1DNX0alFY7bDOB90PHMfxCcaAvPNKAQAA
+X-Change-ID: 20250321-s2mpg10-ef5d1ebd3043
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-Add a loopback bus implementation for the virtio-msg transport.
+Original cover letter further down.
 
-This bus simulates a backend that echoes messages to itself, allowing
-testing and development of virtio-msg without requiring an actual remote
-backend or transport hardware.
+This is a resend of two patches from the original series that haven't
+been merged yet. That series was merged except for the attached two
+patches here. Other than rebasing against next-20250729 there are no
+changes to them.
 
-The loopback bus requires a reserved memory region for its operation.
-All DMA-coherent and streaming DMA allocations are restricted to this
-region, enabling safe mapping into user space and helping validate the
-memory-sharing model.
+Lee, I think Stephen's intention was to get these two merged via the
+MFD tree please.
 
-The reserved-memory region must be named "vmsglb" in the device tree.
-Example:
+Original cover letter:
+----------------------
 
-  reserved-memory {
-    #address-cells = <2>;
-    #size-cells   = <2>;
-    ranges;
+This series adds initial support for the Samsung S2MPG10 PMIC using the
+MFD framework. This is a PMIC for mobile applications and is used on
+the Google Pixel 6 and 6 Pro (oriole / raven).
 
-    vmsglb@100000000 {
-      compatible = "restricted-dma-pool";
-      reg = <0x00000001 0x00000000  0x0 0x00400000>; /* 4 MiB */
-    };
-  };
+*** dependency note ***
 
-This bus is primarily intended for functional testing, development, and
-validation of the virtio-msg transport and its userspace interface.
+To compile, this depends on the Samsung ACPM driver in Linux next with
+the following additional patches:
+https://lore.kernel.org/all/20250324-acpm-atomic-v2-0-7d87746e1765@linaro.org/
+https://lore.kernel.org/all/20250319-acpm-fixes-v2-0-ac2c1bcf322b@linaro.org/
+https://lore.kernel.org/all/20250327-acpm-children-v1-0-0afe15ee2ff7@linaro.org/
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+*** dependency note end ***
+
++++ Kconfig update +++
+
+There is a Kconfig symbol update in this series, because the existing
+Samsung S2M driver has been split into core and transport (I2C & ACPM)
+parts. CONFIG_MFD_SEC_CORE is now truly a core driver, and
+the I2C code that was part of it is now enabled via CONFIG_MFD_SEC_I2C.
+
+This was necessary because unlike the other S2M PMICs, S2MPG10 doesn't
+talk via I2C, but via the Samsung ACPM firmware.
+
++++ Kconfig update end +++
+
+This series must be applied in-order, due to interdependencies of some
+of the patches. There are also various cleanup patches to the S2M
+drivers. I've kept them ordered as:
+  * DT bindings (patches 1 ... 3)
+  * s2m mfd prep for adding S2MPG10 support (patches 4 ... 7)
+  * split S2M mfd driver into s2m-core and s2m-i2c, including the
+    kconfig symbol update (patch 8)
+  * S2MPG10 core driver (patch 9)
+  * s2m mfd driver cleanup patches (patches 10 ... 23)
+  * S2MPG10 clock driver (patch 24)
+  * s2m RTC prep for adding S2MPG10 (patch 25 ... 26)
+  * S2MPG10 RTC driver (patch 27)
+  * s2m RTC cleanup patches (patches 28 ... 31)
+
+I realise these are many, but since some prep-work was required to be
+able to add S2MPG anyway, I wanted to get the cleanup patches in as
+well :-) Let me know if I should postpone them to a later date instead.
+
+The S2MPG10 includes buck converters, various LDOs, power meters, RTC,
+clock outputs, and additional GPIOs interfaces.
+
+This series adds support in the top-level device driver, and for the
+RTC and clock. Importantly, having the RTC driver allows to do a proper
+reset of the system. Drivers or driver updates for the other components
+will be added in future patches.
+
+This will need a DT update for Oriole / Raven to enable this device. I
+will send that out separately.
+
+Cheers,
+Andre'
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- drivers/virtio/Kconfig               |   9 +
- drivers/virtio/Makefile              |   1 +
- drivers/virtio/virtio_msg_loopback.c | 323 +++++++++++++++++++++++++++
- include/uapi/linux/virtio_msg_lb.h   |  22 ++
- 4 files changed, 355 insertions(+)
- create mode 100644 drivers/virtio/virtio_msg_loopback.c
- create mode 100644 include/uapi/linux/virtio_msg_lb.h
+Changes in v5:
+- just a rebase & resend of the last two remaining patches
+- no other changes
+- Link to v4: https://lore.kernel.org/r/20250409-s2mpg10-v4-0-d66d5f39b6bf@linaro.org
 
-diff --git a/drivers/virtio/Kconfig b/drivers/virtio/Kconfig
-index 683152477e3f..934e8ccb3a01 100644
---- a/drivers/virtio/Kconfig
-+++ b/drivers/virtio/Kconfig
-@@ -196,6 +196,15 @@ config VIRTIO_MSG_FFA
- 
- 	 If unsure, say N.
- 
-+config VIRTIO_MSG_LOOPBACK
-+	tristate "Loopback bus driver for virtio message transport"
-+	select VIRTIO_MSG
-+	select VIRTIO_MSG_USER
-+	help
-+	 This implements the Loopback bus for Virtio msg transport.
-+
-+	 If unsure, say N.
-+
- config VIRTIO_DMA_SHARED_BUFFER
- 	tristate
- 	depends on DMA_SHARED_BUFFER
-diff --git a/drivers/virtio/Makefile b/drivers/virtio/Makefile
-index 96ec0a9c4a7a..90a2f1d86937 100644
---- a/drivers/virtio/Makefile
-+++ b/drivers/virtio/Makefile
-@@ -7,6 +7,7 @@ obj-$(CONFIG_VIRTIO_MMIO) += virtio_mmio.o
- virtio_msg_transport-y := virtio_msg.o
- virtio_msg_transport-$(CONFIG_VIRTIO_MSG_USER) += virtio_msg_user.o
- obj-$(CONFIG_VIRTIO_MSG) += virtio_msg_transport.o
-+obj-$(CONFIG_VIRTIO_MSG_LOOPBACK) += virtio_msg_loopback.o
- obj-$(CONFIG_VIRTIO_MSG_FFA) += virtio_msg_ffa.o
- obj-$(CONFIG_VIRTIO_PCI) += virtio_pci.o
- virtio_pci-y := virtio_pci_modern.o virtio_pci_common.o
-diff --git a/drivers/virtio/virtio_msg_loopback.c b/drivers/virtio/virtio_msg_loopback.c
-new file mode 100644
-index 000000000000..d1d454fadc6f
---- /dev/null
-+++ b/drivers/virtio/virtio_msg_loopback.c
-@@ -0,0 +1,323 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Loopback bus implementation for Virtio message transport.
-+ *
-+ * Copyright (C) 2025 Google LLC and Linaro.
-+ * Viresh Kumar <viresh.kumar@linaro.org>
-+ *
-+ * This implements the Loopback bus for Virtio msg transport.
-+ */
-+
-+#define pr_fmt(fmt) "virtio-msg-loopback: " fmt
-+
-+#include <linux/err.h>
-+#include <linux/list.h>
-+#include <linux/miscdevice.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/virtio.h>
-+#include <uapi/linux/virtio_msg.h>
-+#include <uapi/linux/virtio_msg_lb.h>
-+
-+#include "virtio_msg_internal.h"
-+
-+struct vmlb_device {
-+	struct virtio_msg_device vmdev;
-+	struct list_head list;
-+};
-+
-+struct virtio_msg_lb {
-+	/* Serializes transfers and protects list */
-+	struct mutex lock;
-+	struct list_head list;
-+	struct miscdevice misc;
-+	struct virtio_msg_user_device vmudev;
-+	struct virtio_msg *response;
-+	struct reserved_mem *rmem;
-+	struct device *dev;
-+};
-+
-+static struct virtio_msg_lb *vmlb;
-+
-+#define to_vmlbdev(_vmdev)	((struct vmlb_device *)(_vmdev)->bus_data)
-+
-+static struct vmlb_device *find_vmlbdev(u16 dev_id)
-+{
-+	struct vmlb_device *vmlbdev;
-+
-+	list_for_each_entry(vmlbdev, &vmlb->list, list) {
-+		if (vmlbdev->vmdev.dev_id == dev_id)
-+			return vmlbdev;
-+	}
-+
-+	return NULL;
-+}
-+
-+static const char *virtio_msg_lb_bus_info(struct virtio_msg_device *vmdev,
-+					  u16 *msg_size, u32 *rev)
-+{
-+	*msg_size = VIRTIO_MSG_MIN_SIZE;
-+	*rev = VIRTIO_MSG_REVISION_1;
-+
-+	return dev_name(vmlb->dev);
-+}
-+
-+static int virtio_msg_lb_transfer(struct virtio_msg_device *vmdev,
-+				  struct virtio_msg *request,
-+				  struct virtio_msg *response)
-+{
-+	struct virtio_msg_user_device *vmudev = &vmlb->vmudev;
-+	int ret;
-+
-+	/*
-+	 * Allow only one transaction to progress at once.
-+	 */
-+	guard(mutex)(&vmlb->lock);
-+
-+	/*
-+	 * Set `vmsg` to `request` and finish the completion to wake up the
-+	 * `read()` thread.
-+	 */
-+	vmudev->vmsg = request;
-+	vmlb->response = response;
-+	complete(&vmudev->r_completion);
-+
-+	/*
-+	 * Wait here for the `write()` thread to finish and not return before
-+	 * the operation is finished to avoid any potential races.
-+	 */
-+	ret = wait_for_completion_interruptible_timeout(&vmudev->w_completion, 1000);
-+	if (ret < 0) {
-+		dev_err(vmlb->dev, "Interrupted while waiting for response: %d\n", ret);
-+	} else if (!ret) {
-+		dev_err(vmlb->dev, "Timed out waiting for response\n");
-+		ret = -ETIMEDOUT;
-+	} else {
-+		ret = 0;
-+	}
-+
-+	/* Clear the pointers, just to be safe */
-+	vmudev->vmsg = NULL;
-+	vmlb->response = NULL;
-+
-+	return ret;
-+}
-+
-+static struct virtio_msg_ops virtio_msg_lb_ops = {
-+	.transfer = virtio_msg_lb_transfer,
-+	.bus_info = virtio_msg_lb_bus_info,
-+};
-+
-+static int virtio_msg_lb_user_handle(struct virtio_msg_user_device *vmudev,
-+				     struct virtio_msg *vmsg)
-+{
-+	struct vmlb_device *vmlbdev;
-+
-+	/* Response message */
-+	if (vmsg->type & VIRTIO_MSG_TYPE_RESPONSE) {
-+		if (vmlb->response)
-+			memcpy(vmlb->response, vmsg, VIRTIO_MSG_MIN_SIZE);
-+
-+		return 0;
-+	}
-+
-+	/* Only support EVENT_USED virtio request messages */
-+	if (vmsg->type & VIRTIO_MSG_TYPE_BUS || vmsg->msg_id != VIRTIO_MSG_EVENT_USED) {
-+		dev_err(vmlb->dev, "Unsupported message received\n");
-+		return 0;
-+	}
-+
-+	vmlbdev = find_vmlbdev(le16_to_cpu(vmsg->dev_id));
-+	if (!vmlbdev)
-+		return 0;
-+
-+	virtio_msg_event(&vmlbdev->vmdev, vmsg);
-+	return 0;
-+}
-+
-+static struct virtio_msg_user_ops vmlb_user_ops = {
-+	.handle = virtio_msg_lb_user_handle,
-+};
-+
-+static int vmlbdev_add(struct file *file, struct vmsg_lb_dev_info *info)
-+{
-+	struct vmlb_device *vmlbdev;
-+	int ret;
-+
-+	scoped_guard(mutex, &vmlb->lock) {
-+		if (find_vmlbdev(info->dev_id))
-+			return -EEXIST;
-+
-+		vmlbdev = kzalloc(sizeof(*vmlbdev), GFP_KERNEL);
-+		if (!vmlbdev)
-+			return -ENOMEM;
-+
-+		vmlbdev->vmdev.dev_id = info->dev_id;
-+		vmlbdev->vmdev.ops = &virtio_msg_lb_ops;
-+		vmlbdev->vmdev.vdev.dev.parent = vmlb->dev;
-+		vmlbdev->vmdev.bus_data = vmlbdev;
-+
-+		list_add(&vmlbdev->list, &vmlb->list);
-+	}
-+
-+	ret = virtio_msg_register(&vmlbdev->vmdev);
-+	if (ret) {
-+		dev_err(vmlb->dev, "Failed to register virtio msg lb device (%d)\n", ret);
-+		goto out;
-+	}
-+
-+	return 0;
-+
-+out:
-+	scoped_guard(mutex, &vmlb->lock)
-+		list_del(&vmlbdev->list);
-+
-+	kfree(vmlbdev);
-+	return ret;
-+}
-+
-+static int vmlbdev_remove(struct file *file, struct vmsg_lb_dev_info *info)
-+{
-+	struct vmlb_device *vmlbdev;
-+
-+	scoped_guard(mutex, &vmlb->lock) {
-+		vmlbdev = find_vmlbdev(info->dev_id);
-+		if (vmlbdev) {
-+			list_del(&vmlbdev->list);
-+			virtio_msg_unregister(&vmlbdev->vmdev);
-+			return 0;
-+		}
-+	}
-+
-+	dev_err(vmlb->dev, "Failed to find virtio msg lb device.\n");
-+	return -ENODEV;
-+}
-+
-+static void vmlbdev_remove_all(void)
-+{
-+	struct vmlb_device *vmlbdev, *tvmlbdev;
-+
-+	guard(mutex)(&vmlb->lock);
-+
-+	list_for_each_entry_safe(vmlbdev, tvmlbdev, &vmlb->list, list) {
-+		virtio_msg_unregister(&vmlbdev->vmdev);
-+		list_del(&vmlbdev->list);
-+	}
-+}
-+
-+static long vmlb_ioctl(struct file *file, unsigned int cmd, unsigned long data)
-+{
-+	struct vmsg_lb_dev_info info;
-+
-+	if (copy_from_user(&info, (void __user *)data, sizeof(info)))
-+		return -EFAULT;
-+
-+	switch (cmd) {
-+	case IOCTL_VMSG_LB_ADD:
-+		return vmlbdev_add(file, &info);
-+
-+	case IOCTL_VMSG_LB_REMOVE:
-+		return vmlbdev_remove(file, &info);
-+
-+	default:
-+		return -ENOTTY;
-+	}
-+}
-+
-+static int vmlb_mmap(struct file *file, struct vm_area_struct *vma)
-+{
-+	unsigned long size = vma->vm_end - vma->vm_start;
-+	unsigned long offset = vma->vm_pgoff << PAGE_SHIFT;
-+
-+	if (offset > vmlb->rmem->size - size)
-+		return -EINVAL;
-+
-+	return remap_pfn_range(vma, vma->vm_start,
-+			(vmlb->rmem->base + offset) >> PAGE_SHIFT,
-+			size,
-+			vma->vm_page_prot);
-+}
-+
-+static loff_t vmlb_llseek(struct file *file, loff_t offset, int whence)
-+{
-+	return fixed_size_llseek(file, offset, whence, vmlb->rmem->size);
-+}
-+
-+static const struct file_operations vmlb_miscdev_fops = {
-+	.owner = THIS_MODULE,
-+	.unlocked_ioctl = vmlb_ioctl,
-+	.mmap = vmlb_mmap,
-+	.llseek = vmlb_llseek,
-+};
-+
-+static int virtio_msg_lb_init(void)
-+{
-+	int ret;
-+
-+	vmlb = kzalloc(sizeof(*vmlb), GFP_KERNEL);
-+	if (!vmlb)
-+		return -ENOMEM;
-+
-+	INIT_LIST_HEAD(&vmlb->list);
-+	mutex_init(&vmlb->lock);
-+	vmlb->vmudev.ops = &vmlb_user_ops;
-+
-+	vmlb->misc.name = "virtio-msg-lb";
-+	vmlb->misc.minor = MISC_DYNAMIC_MINOR;
-+	vmlb->misc.fops = &vmlb_miscdev_fops;
-+
-+	ret = misc_register(&vmlb->misc);
-+	if (ret)
-+		goto vmlb_free;
-+
-+	vmlb->dev = vmlb->misc.this_device;
-+	vmlb->vmudev.parent = vmlb->dev;
-+
-+	vmlb->rmem = of_reserved_mem_lookup_by_name("vmsglb");
-+	if (IS_ERR(vmlb->rmem)) {
-+		ret = PTR_ERR(vmlb->rmem);
-+		goto unregister;
-+	}
-+	ret = reserved_mem_device_init(vmlb->dev, vmlb->rmem);
-+	if (ret)
-+		goto mem_release;
-+
-+	/* Register with virtio-msg UAPI */
-+	ret = virtio_msg_user_register(&vmlb->vmudev);
-+	if (ret) {
-+		dev_err(vmlb->dev, "Could not register virtio-msg user API\n");
-+		goto mem_release;
-+	}
-+
-+	ret = dma_coerce_mask_and_coherent(vmlb->dev, DMA_BIT_MASK(64));
-+	if (ret)
-+		dev_warn(vmlb->dev, "Failed to enable 64-bit or 32-bit DMA\n");
-+
-+	return 0;
-+
-+mem_release:
-+	of_reserved_mem_device_release(vmlb->dev);
-+unregister:
-+	misc_deregister(&vmlb->misc);
-+vmlb_free:
-+	kfree(vmlb);
-+	return ret;
-+}
-+module_init(virtio_msg_lb_init);
-+
-+static void virtio_msg_lb_exit(void)
-+{
-+	virtio_msg_user_unregister(&vmlb->vmudev);
-+	of_reserved_mem_device_release(vmlb->dev);
-+	vmlbdev_remove_all();
-+	misc_deregister(&vmlb->misc);
-+	kfree(vmlb);
-+}
-+module_exit(virtio_msg_lb_exit);
-+
-+MODULE_AUTHOR("Viresh Kumar <viresh.kumar@linaro.org>");
-+MODULE_DESCRIPTION("Virtio message loopback bus driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/uapi/linux/virtio_msg_lb.h b/include/uapi/linux/virtio_msg_lb.h
-new file mode 100644
-index 000000000000..fe0ce6269a0a
---- /dev/null
-+++ b/include/uapi/linux/virtio_msg_lb.h
-@@ -0,0 +1,22 @@
-+/* SPDX-License-Identifier: ((GPL-2.0 WITH Linux-syscall-note) OR BSD-3-Clause) */
-+/*
-+ * Virtio message Loopback bus header.
-+ *
-+ * Copyright (C) 2025 Google LLC and Linaro.
-+ * Viresh Kumar <viresh.kumar@linaro.org>
-+ */
-+
-+#ifndef _LINUX_VIRTIO_MSG_LB_H
-+#define _LINUX_VIRTIO_MSG_LB_H
-+
-+struct vmsg_lb_dev_info {
-+	unsigned int dev_id;
-+};
-+
-+#define IOCTL_VMSG_LB_ADD					\
-+	_IOC(_IOC_NONE, 'P', 0, sizeof(struct vmsg_lb_dev_info))
-+
-+#define IOCTL_VMSG_LB_REMOVE					\
-+	_IOC(_IOC_NONE, 'P', 1, sizeof(struct vmsg_lb_dev_info))
-+
-+#endif /* _LINUX_VIRTIO_MSG_LB_H */
+Changes in v4:
+- various updates to sec-acpm (patch 9, Lee)
+- cache enum type in patch 25 (Krzysztof)
+- collect tags
+- Link to v3: https://lore.kernel.org/r/20250403-s2mpg10-v3-0-b542b3505e68@linaro.org
+
+Changes in v3:
+- Krzysztof:
+  - keep 'regulators' subnode required even for s2mpg10
+  - drop '$ref' and 'unevaluatedProperties' from pmic subnode, use
+    'additionalProperties' instead
+  - add some regulators to examples since s2mpg10 requires them as of
+    v3
+- sec-acpm:
+  - use an enum for struct sec_acpm_bus_context::type
+  - consistent name space for all functions sec_pmic_acpm_... to be
+    similar to i2c and consistent in this file
+- Link to v2: https://lore.kernel.org/r/20250328-s2mpg10-v2-0-b54dee33fb6b@linaro.org
+
+Changes in v2:
+- Rob:
+  - make PMIC node a child of ACPM, and all related changes (binding,
+    driver)
+- Krzysztof:
+  - merge defconfig updates into patch changing the symbols (patch 8)
+  - split MODULE_AUTHOR update into a separate patch
+  - better alignment fix (patch 11)
+  - merge two s2dos05/s2mpu05 related patches into one (patch 14)
+- myself:
+  - keep PMIC DT parsing in core, not in transport driver
+  - several updates in sec-acpm.c, see separate entries in patch 9
+  - fix typo in patch 17
+  - collect tags
+- Link to v1: https://lore.kernel.org/r/20250323-s2mpg10-v1-0-d08943702707@linaro.org
+
+---
+André Draszik (2):
+      dt-bindings: clock: samsung,s2mps11: add s2mpg10
+      clk: s2mps11: add support for S2MPG10 PMIC clock
+
+ Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml | 1 +
+ drivers/clk/clk-s2mps11.c                                    | 8 ++++++++
+ 2 files changed, 9 insertions(+)
+---
+base-commit: 54efec8782214652b331c50646013f8526570e8d
+change-id: 20250321-s2mpg10-ef5d1ebd3043
+
+Best regards,
 -- 
-2.31.1.272.g89b43f80a514
+André Draszik <andre.draszik@linaro.org>
 
 
