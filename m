@@ -1,56 +1,59 @@
-Return-Path: <devicetree+bounces-200812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD992B16152
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:20:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894EBB1615A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1618218C6458
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:21:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0238543402
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 13:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AEC262FC5;
-	Wed, 30 Jul 2025 13:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E93F298CD7;
+	Wed, 30 Jul 2025 13:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdEcX8LU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B10B11531E3;
-	Wed, 30 Jul 2025 13:20:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DA778F4E;
+	Wed, 30 Jul 2025 13:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753881643; cv=none; b=mOYjLOtSO6yQ0if1TlrTKHWPT3EvBEBwl923u3m40C1Avcm92wHB92h7J+j1qQlrWdVoHY7brdJTRsMqBb/Vv84YlSvLgOMYmrQ/zaEmaWZxQzOF3KRdHtYLC1IX9fTAeO597BEf3U7moFlpidKBNVowEcMVBKmxHi6rQGWaG0Y=
+	t=1753881773; cv=none; b=X9uuQfVtEUWiZgTecUWWVxBtefWsrmBicA98IVRAXjjzepsXC5KfQOq9x5DxcE0fPGumSy9JWm6yHeF6t0xISW/HbdOPzoYDNa0BxCGFgOQw91jy4+L5KvJiMcEpdBdLDRmTUH+gFF4PWIFxJ/M1UQge/6/75elYlnNCrtBP0lQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753881643; c=relaxed/simple;
-	bh=fkKm7APfsMSQiT77hCcKhZPKA8BOP+Knyo6wH1vqqko=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pLcQXi1lx/+LX6Jjg7F7HgX3PWIBtac+vevRky1ZP25Z3dQNrmIOTCXoRTrx7xu37b6NCHccsS/TSrPC0pzNYaElNOOQ4Lchh7+i8GK4B6QdpM/iRQ7Nh8w317DElLvMuYsWjPA+o6trAoA7vl7p3a5YUZrItSrLrguvHZCnA80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.213.139])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1dc0b97fb;
-	Wed, 30 Jul 2025 21:20:29 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: w@1wt.eu
-Cc: alchark@gmail.com,
-	amadeus@jmu.edu.cn,
+	s=arc-20240116; t=1753881773; c=relaxed/simple;
+	bh=Q3iDUAJTSaX8nRsvstx+mgRnQLOX9ppyrxzYW7PWT/g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OXuvjwGuQ579LMayoG99ySffmBA7oiyjTSFkooRLPRR3kuWYXJOgg0mUjUaVZ2kUfX1cKtnQPsCPOBVRwfrCMAVfoC1sX2OwrYIXJr64kEQtjndF3kHq57OFbLgyTlX11SvmRAsCTjYTFusRn7VsQIAMNhblqXdAIv9I2IO5Y6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BdEcX8LU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D124C4CEE7;
+	Wed, 30 Jul 2025 13:22:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753881772;
+	bh=Q3iDUAJTSaX8nRsvstx+mgRnQLOX9ppyrxzYW7PWT/g=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BdEcX8LUiTHF4Q4LdKOAViqMAgHJnhSaWkslyziJOaj9Mj2ZMNQGWroy8p8D1ODP6
+	 hoTmk8PV2stFs5YeLqrJ3juPOLFNuKZsfkiMpe7XugAlU5F9itrYolnppDVdB39PxS
+	 5Kmdsr+aZD2uLfyVLr5VVjsnzlhnRCNvu0t9GIuxwCfp3C1/0Y1/eF2PWkDwy1dPZB
+	 7w+CgAD8lVwK1pooBdkzWZjefL3Jt+rL7F8OJqQJiyskGef6tQA83Pmt/ZItZfZF5D
+	 1Mst6f9CJ64ac9RMa6F+BK0k3ifmVPl9ruRqHLFm8BkZmYFjY8jCKN4b5j6GH4OfCW
+	 5FwXTCAu84C6g==
+From: Sumit Garg <sumit.garg@kernel.org>
+To: linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	ziyao@disroot.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
-Date: Wed, 30 Jul 2025 21:20:26 +0800
-Message-Id: <20250730132026.214754-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250730071145.GA26734@1wt.eu>
-References: <20250730071145.GA26734@1wt.eu>
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: [PATCH] arm64: dts: qcom: qcm2290: Add TCSR download mode address
+Date: Wed, 30 Jul 2025 18:52:30 +0530
+Message-ID: <20250730132230.247727-1-sumit.garg@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,45 +61,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a985b7dd39f03a2kunm09ab435824e847
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQktMVh9IHk9CHxlITEsZTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSFVKSEJZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSktLVU
-	pCS0tZBg++
 
-Hi,
+From: Sumit Garg <sumit.garg@oss.qualcomm.com>
 
-> My point is that if you disable cpufreq, the CPU is running at 1.2V, which
-> is even higher. I don't know why it's running at this voltage, maybe as
-> the result of initializing some regulators, but that's what we're getting.
-> So the question about safety of running between 1.13-1.15 resolves to
-> "it's at least safer than running without cpufreq" in the current state.
->
-> And as I mentioned it's clearly linux and not u-boot that is setting 1.2V,
-> because under u-boot and during kernel selection and image loading, my
-> board is at 0.95V. It's only once the kernel starts to boot that it bumps
-> to 1.2V.
+Allow configuration of download mode via qcom_scm driver via specifying
+download mode register address in the TCSR space. It is especially useful
+for a clean watchdog reset without entry into download mode.
 
-If opp-table is not configured, kernel will initialize the pwm-regulator
-to maximum microvolts. This can be solved by configuring the pwm-regulator
-in U-Boot (waiting for U-Boot to synchronize the DT of kernel 6.16):
+The problem remained un-noticed until now since error reporting for
+missing download mode configuration feature was explicitly suppressed.
 
-```
-&vdd_arm {
-	regulator-init-microvolt = <953000>;
-};
+Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-&vdd_logic {
-	regulator-init-microvolt = <900000>;
-};
-```
-
-Thanks,
-Chukun
-
---
-2.25.1
-
+diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+index f49ac1c1f8a3..08eadec59882 100644
+--- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+@@ -154,6 +154,7 @@ scm: scm {
+ 			compatible = "qcom,scm-qcm2290", "qcom,scm";
+ 			clocks = <&rpmcc RPM_SMD_CE1_CLK>;
+ 			clock-names = "core";
++			qcom,dload-mode = <&tcsr_regs 0x13000>;
+ 			#reset-cells = <1>;
+ 			interconnects = <&system_noc MASTER_CRYPTO_CORE0 RPM_ALWAYS_TAG
+ 					 &bimc SLAVE_EBI1 RPM_ALWAYS_TAG>;
+-- 
+2.48.1
 
 
