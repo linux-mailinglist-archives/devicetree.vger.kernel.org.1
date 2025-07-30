@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-200913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99282B16921
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 00:49:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E76B1694D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 01:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3E4B1885436
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 22:49:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED14B7B1CF4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 23:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A56204C0C;
-	Wed, 30 Jul 2025 22:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C7F2343AE;
+	Wed, 30 Jul 2025 23:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAeyOpJQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iL3DwcDU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C82C4C62;
-	Wed, 30 Jul 2025 22:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B2C22F740;
+	Wed, 30 Jul 2025 23:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753915750; cv=none; b=HObkhSFL8E4GeWtBE0PGZQvafoeDWLPS6ysMXGQsb1GT/oww0CxttWbB0ofaJyNYpbhKEaycT2lYeR3cUdcevxeAhBlFKYYGdC/1UeRDGeFobD63JNzSlDKsLntC+SWyi7tdZ2TV7fg5CgLoQJUPe7hpxdrubX557fej1sW2Z3A=
+	t=1753918582; cv=none; b=YsK6tiBY+7UTA0hc4W5IjuiHwkmMA1kj6SSfrVOD7VV23RCrGy2meFQ1JA2wGKNUmcqT0t0IgpnTMylSVtV5g6Yoijm4dbWGeiPySIW9rBsLxqRjkrLW1QkWEgmWXAQUCt/LNBifKns2W1zJRBOz9604CJaAGEX83xx6ZNqA8pA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753915750; c=relaxed/simple;
-	bh=goPTgnhT+cAzzQXJeVfo70TQfAPngs3iiMPdZePS5SY=;
+	s=arc-20240116; t=1753918582; c=relaxed/simple;
+	bh=6YQIU/lmQnqs+hO7FAUhkrDi3ln14Ox3mYp8GHVqDHA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cOLBKCiD0EH21JBfXKMGav8gsWt5ii+NpUHDikuW+U949SAadS9bfyVAToAkYu/W/Am382034HRtM9dtMaX6s4jKDLKk9thS0l5cOK4UIYBt4B+7lBMrenVJ65XxJ8ct48FixXTpHTx+7yO0TFFVqgI/S6MJ+wkgbQxXOHfOwj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAeyOpJQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1105C4CEE3;
-	Wed, 30 Jul 2025 22:49:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=j+nRfxw2UtaQ36BMrJ2cWQ2ay0ZGMCra6h39pvnLQ5lfId7KrDxlYuooRyCsUp6v16ryiB+Duvfc1fbHzDg8UQIOkoPrs0VuWdE9DOpzgQaAwjqaalbjhvLMsJkr21Kgg5889RzYTI+XzQoDoCM3ZYUG4Ym44E4I70MWqGBrPPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iL3DwcDU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F41AC4CEE3;
+	Wed, 30 Jul 2025 23:36:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753915749;
-	bh=goPTgnhT+cAzzQXJeVfo70TQfAPngs3iiMPdZePS5SY=;
+	s=k20201202; t=1753918579;
+	bh=6YQIU/lmQnqs+hO7FAUhkrDi3ln14Ox3mYp8GHVqDHA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HAeyOpJQ+Q2LSBkhxUzPJwd9Qb/ou0T0vMIH0dfefLrsmbRvjrTB3L4kIjzWCAW7C
-	 o1e3K9Oh3LcLGPeis6kaq56s2aFJ/0kp2XDYGmSARVEBNKP3kMjcCP0ToZl085Azus
-	 29J1TgiUHLw7K6mthTO02S1oNl6UMFQnwSvXSGFjC4DPiO4Ri6wgfpaDP+jovYIIfi
-	 apU0kdlFVWx2zGko2B/wKPfkEg70TMp0HIH7pV5qUL+89yfLvNBxpZyQQPrM0GpY4a
-	 El29v90unc9+B3CQr5uX8wCWXCvfbrvoTqh5o/m9zVuhziG+sbiNc9oDLQtc8pGomT
-	 7R6fdVPQ1Gc1g==
-Date: Wed, 30 Jul 2025 17:49:07 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bagas Sanjaya <bagasdotme@gmail.com>
-Cc: Jilin Yuan <yuanjilin@cdjrlc.com>, wangjianli <wangjianli@cdjrlc.com>,
-	Jiang Jian <jiangjian@cdjrlc.com>,
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-	Linux Devicetree <devicetree@vger.kernel.org>,
-	Randy Dunlap <rdunlap@infradead.org>,
-	Saravana Kannan <saravanak@google.com>
-Subject: Re: [PATCH] of: Clarify OF device context in of_match_device()
- comment
-Message-ID: <175391574663.1840344.5797485398683125327.robh@kernel.org>
-References: <20250730013113.11264-1-bagasdotme@gmail.com>
+	b=iL3DwcDUUFW9OTHcE8FPXycCBZHI+d2dR2+M2ANRoUZXq3Ip308NKOHom/duduZN8
+	 4FtWIPUqNSa4KWriyNtN0blfhw4InCY5FpLK5f2er3Mb3tE/FjSY/wpRtQMN/lnMSq
+	 lWwmzomwVVJxz10H1IYQ2xps9dk5URcMmbdOtyVKeBYLw6VsH78C3Sye6r5YIQ4Sny
+	 lWCSzG98udoYirG3sqkmEncZpheGVuzAFhmlNtWCzGHCvP+mVtQnnf0VYnzsh/mdk3
+	 K8qR0q8z8OnNkxezaALPehdxq4C18QYl1mH8Jn77qwNtwLm1Ml47uGvnxx9eMG8UkG
+	 Z0ahH5NToDlkA==
+Date: Wed, 30 Jul 2025 18:36:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: tglx@linutronix.de, S32@nxp.com, linux-kernel@vger.kernel.org,
+	ghennadi.procopciuc@oss.nxp.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 19/20] dt: bindings: fsl,vf610-pit: Add compatible for
+ s32g2 and s32g3
+Message-ID: <20250730233547.GA1887794-robh@kernel.org>
+References: <20250730082725.183133-1-daniel.lezcano@linaro.org>
+ <20250730082725.183133-20-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +62,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250730013113.11264-1-bagasdotme@gmail.com>
+In-Reply-To: <20250730082725.183133-20-daniel.lezcano@linaro.org>
 
-
-On Wed, 30 Jul 2025 08:31:13 +0700, Bagas Sanjaya wrote:
-> Open Firmware abbreviation (OF) in of_match_device() comment is written
-> in lowercase instead, which is mistaken for prepositional word "of"
-> ([1], [2], [3], [4]) duplicate.
+On Wed, Jul 30, 2025 at 10:27:21AM +0200, Daniel Lezcano wrote:
+> The Vybrid Family is a NXP (formerly Freescale) platform having a
+> Programmable Interrupt Timer (PIT). This timer is an IP found also on
+> the NXP Automotive platform S32G2 and S32G3.
 > 
-> Clarify the context.
+> Add the compatible for those platforms to describe the timer.
 > 
-> Link: https://lore.kernel.org/all/CAL_JsqLypcBCOVZ8yYWK0J_xc2Vcr+ANrX_3v4vN55Srp4RknQ@mail.gmail.com/ [1]
-> Link: https://lore.kernel.org/all/20220926185852.GA2581083-robh@kernel.org/ [2]
-> Link: https://lore.kernel.org/all/CAL_JsqL4GvgFYzGUfhW5pvm4wYGrFaj6gHOYZjnOMuk2zCz67w@mail.gmail.com/ [3]
-> Link: https://lore.kernel.org/all/20220627173825.GA2637590-robh@kernel.org/ [4]
-> Signed-off-by: Bagas Sanjaya <bagasdotme@gmail.com>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 > ---
->  drivers/of/device.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/timer/fsl,vf610-pit.yaml          | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+> index bee2c35bd0e2..2aac63a58bfd 100644
+> --- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+> +++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+> @@ -15,8 +15,12 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,vf610-pit
+> +    oneOf:
+> +      - const: fsl,vf610-pit
+> +      - const: nxp,s32g2-pit
 
-Applied, thanks!
+These 2 can be a single enum. Otherwise,
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
+> +      - items:
+> +          - const: nxp,s32g3-pit
+> +          - const: nxp,s32g2-pit
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.43.0
+> 
 
