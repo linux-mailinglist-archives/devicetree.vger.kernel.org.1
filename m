@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-200797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6780B1606A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:36:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA341B1606F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:36:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26D518C6979
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:36:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE55A3A9566
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 12:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB1A7299922;
-	Wed, 30 Jul 2025 12:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC348299AA0;
+	Wed, 30 Jul 2025 12:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oytBIKTX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XNapruVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84EF229899A
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 12:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9481299944
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 12:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753878961; cv=none; b=ohUJuVP3bMmlv5SPx0AJn1GT4v5aaX5vOcpS2SrGTDwe+T5znOYiadstZ5ywTp0vd/1nTlIBqu+crAhehVAFZJl2Am9+PuB+RgFAbg3hw4kyqAXO5NJqNokA6QoVuQJk0tYym9sY5LKH4+sEzz7v/eZJFuD/WZSAvESVLPa10M0=
+	t=1753878964; cv=none; b=O3wGgWiS+PCpvxlFbrS6D5FvWuNfMS4d7QeyFhb+t5UBiNHcK5NsMRKjS69rtkXqLJInnoTgf6BAs3dA+Cfd+C/TTVL6DK4GyczMzYFl1dhMyrMC9Fdzy0wQvwTvnxO8ooi4Ya959c99Xd5FmB5qPYY3oT8bMmNrjl3dFTpfQ1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753878961; c=relaxed/simple;
-	bh=FdLKYyZbfYSsvJ/xHFdBnLCPtWsxGyr4mVu3tlfgIuY=;
+	s=arc-20240116; t=1753878964; c=relaxed/simple;
+	bh=boCA9V7sdFxzCI0LILmKKujCbe1eahhsFvEftXk76ec=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XHz4h6V2amgwaJyJI4CiupK0/oSual8MUqBqCWkfmoEpC1HfJvKSrqWgl+JI7gmkrnINCLhgchu722lwev//sZfnRmxvmnwc/stT/hnQn10oJSf0oawkrzQq9pGU8dGY7BX0VEnZsgtXs4NChDPgeFCVkZuXU1J9CiuAYnDB3R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oytBIKTX; arc=none smtp.client-ip=209.85.160.175
+	 In-Reply-To:To:Cc; b=Gahfn2iSex9JjtTm5MVF27w1rGMS35A4acZXelMw+08wERGjckSVxth98vGc4cLBqftm+mvWjMrApl+/lRzLE/wQ9lwFVu8O/eVYm/+rDA3g39GQERK6olkrtbNZYGzHeLD0XIdc36IU+eUYjUqRW/lY3YQR1/o+fX9Cpxn96y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XNapruVw; arc=none smtp.client-ip=209.85.219.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4ab1abfe312so12078811cf.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 05:35:59 -0700 (PDT)
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-707504f050cso5282176d6.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 05:36:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753878958; x=1754483758; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1753878961; x=1754483761; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yq1vQi8nX5SzZwnMjuxxgoo742N3v7FflaYZunf3Ev0=;
-        b=oytBIKTXsn1lPk6tLisezua1871bi3wGG3GFNvmoHZrN4hBS69Dfm7aq+9QYMGzA4x
-         sD+P7XdmYm1iHRcABDVXPeWoDFUfJoD79nAchpYnVoUNPg9qObBjoLLrD8GcJGwmQI7L
-         Cp4B4Jp+/5fSoIqw1W6mY7dIMqVXvXjJ1NUt0hseZpzzcs1Y9Rpg8xwErhXLh+Rg9XxZ
-         2vcqRPyhtdcRexyE42nMPWpYe+izwxrboOUfVtUAUcQVkYmxIgJBW2FsqcjGXA+vf6Rm
-         z+fw0N0HxQ8YPWBigHK554v4SCr/Whky4roADVFt9Izd/6LoPRca80QuOwn7j9tiWu0G
-         LFeQ==
+        bh=BK+Qe1LGAkGbTPbl50bCcrtO0BrMrgGPtaP514sRKAg=;
+        b=XNapruVwAZ3nr6taQHElCBAURa6wbUV9Bv1/xT3Inz5rYKmAMxxnCNYRfvImJSEClr
+         SnqQO5cwxhBs4BGZQqRbGZAR/9x1SauPrp3Yo+0Ve1eqQCwkZ02qBh14a9yqUysotF19
+         /9DA5aTxuNqSj/c1paWClvaOCS2LctfNoDoEW4mE4Oi4szOYPob2wAZ+BBVtWAB5HJOJ
+         eCwVIwnfU7nohhAvGpp7CAH4axGGZcrpDdJ4VURH5kmw9rr4CXP8NWep9n+TkB9ZkZsQ
+         vTScUW1jJnp8tq162ZjDynnHBYNGcf5Puz5mXWB7I8ht7XK1sI7uk235Dsmch1U6uOiI
+         +mAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753878958; x=1754483758;
+        d=1e100.net; s=20230601; t=1753878961; x=1754483761;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yq1vQi8nX5SzZwnMjuxxgoo742N3v7FflaYZunf3Ev0=;
-        b=M4QXgpPWqAeUV2bicNRpUXw+91GBONPPYgWtqnVW7O2n9jZdYkkX2Cej+VoC/rwYIX
-         wCijSnSYqb7QKDDIp7s2fbTdlRqdqdam46xeYVaBfcyBld/tD8EiUK45UfFX1MnzLSHz
-         PA67CP1VRtp8i9UG0jjwdRiSfg4y7mRRQ0de6KkgGqbNhogg0o6UVPDWvP6qb+Xh73vc
-         xwRKpDPpsNp1aQolBp4KiHXmSfYJFpnSTjyYoBBNcfj8aRxJGdA/oQGgAYRJCU4qU0/W
-         tfYfxqO+ND529skG4AkalaaZgpSK9mKBspTteaV4vrqWEQW6XnQjr3Y0p/Aiu9iupq1t
-         Ijtg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9d56/011Qi3HC0aiqfYMoRD0K2P3itXUpKXqpa8miKtRPTqMciLZ94GH4sra5lTvHBdWXvMU6mgfr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsZjf55F5LpHLTqMDKS+3Ei0WaCc767bZLo34xZvgh+ENKZjtV
-	vaIYDyFJwvwRj5peMYNt8xHCjLs8ubdZGRe774K5d0xZYPMpwEGiYUAJWBMwndqCcCc=
-X-Gm-Gg: ASbGncue/tKw0EZeymQEArUNTOc4HtArkT/+x7mC1S2F8Kx8Yvnglxa5nBw0AX5KytI
-	UxY0mUpbZtwS8eKZwo7qa0wBsQYCdJfybpUOKUcvt6qEAgSRUmAo/h7HchqP8FHo2EnEQ1rAFLx
-	uGSbjg9t10AO1vVVk7/Kg/Y5phmIR/KkbBsuBtnOZ3nK0KnRmyYMrI1cZt6oYW4Gd4tJPd3ZQa2
-	qBbBQLijfs998GaXbEbyWHFD1YvEHKuO6aNEh6vcGvzPNEgaE4uoFUiSzaT8qsWHR7tyLNivy/U
-	J34Itsz32evf2tdhpm8ojBUSZsmw7UjWb+hHdoo79bwXib3eNiuQaSvNNyp1IYriXzik/sBJlWp
-	dN8w8srlIsuFtaw9tCH1QyznF8e8qP0sWyUJiXNM=
-X-Google-Smtp-Source: AGHT+IGflNFiycXFqZ/YAE64LpSel2Xs0guweuUzkZ03uokbzQxtkW+lJkWGBTvgU/sgiGxjni9CEQ==
-X-Received: by 2002:a05:6214:588e:b0:707:6b6c:6598 with SMTP id 6a1803df08f44-7076b6c66fcmr13305586d6.4.1753878958184;
-        Wed, 30 Jul 2025 05:35:58 -0700 (PDT)
+        bh=BK+Qe1LGAkGbTPbl50bCcrtO0BrMrgGPtaP514sRKAg=;
+        b=UZ/NcobQWmYDGo8V/kiVv0xahIW5NZzjrdkw/Yd/VKslNzV//31Q2LmpFR9vyqVYyU
+         DuOFyvNDN6cImGY1sNb4APgaTey6Gh9T+V0TVzWgVOVy+U4PGoOfmJDOsnvQHGRjgYBO
+         ZnCoDtvhkKB3lumH5JevZu8Dic2tvSzvw+23DwA6rTU8KtfsR+175EySYSVaC5HemVja
+         jZ4QbdwjOikX10njh8lhDxHehHjtBhxoasxNi4xOFJeLetcC3rx4ooM+qdjIjOpvMknP
+         b7xDLG2cBRceZvcfrxGypo6sgEbQ4I2rV5cdOqQgI6fwPO6TecoweUuzKS8G3hDFh/DB
+         ZjxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUHvz7vLVLgycYIdbD+wwnMeucIj4ksgfmkRtg1uxi1uV7W48Nq45iaiwQdK4Am4T4tCIFfA9BCgQqF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4KJXDosDEK33GySrB6j9hZtRmjlcH+dBnysNtpSymsL6p45DD
+	rx8sDOUafWDESIRqTnjh/8jNY1uUrV/9X8oS5cHGhivhtTadOLJdkwLuVASHlOaNp8E=
+X-Gm-Gg: ASbGnctWJe6Yq85NFqeGYv2iikzlchkQwg6GM1uKOS7fsEZm5sXPtFQDkgvZjn58gpB
+	OpnmvTUZsvN0E/MPjU3KXh9y1+zy9z4M0K36LzOSatJGcsjrQWYB31dUzZ+H5XqMXbILqaXNlg+
+	/qdyrbpyQ3gQrPNeYeK5QcFkbk3pd7QD6unje6H4U+E2ijn2f34Znu07LhZWYtP7wSDh8FvzPsJ
+	orb2xbpB/UfEC47hnWSb/SX5G50rjWVPY/Mzlf1mgE2EjS2e9pf0EVJQlODvxtCZ+zKYYXBP2xN
+	Q4YxgUI9U1Rbnip3jhynYuh8O4RLhkmKgT51EhQgwKfaH6KynFXu9U1SVKPqk9eydcoK06Zn88c
+	g6SbYbinZ5KJSepDeA5WRj4HOxc+WW4lz4sB0F9w=
+X-Google-Smtp-Source: AGHT+IEW0cadrg1ZN1RG03vDTq0f84xR/ulVr2IH6hMSVwOLg+CysA5FEmskNDvHn4664OUgc7jtLg==
+X-Received: by 2002:a05:6214:1c0d:b0:705:b43:10fa with SMTP id 6a1803df08f44-70766d387f8mr19703356d6.1.1753878961384;
+        Wed, 30 Jul 2025 05:36:01 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.218.223])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-7076a647d47sm10105716d6.9.2025.07.30.05.35.55
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-7076a647d47sm10105716d6.9.2025.07.30.05.35.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 05:35:57 -0700 (PDT)
+        Wed, 30 Jul 2025 05:36:00 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 30 Jul 2025 14:35:36 +0200
-Subject: [PATCH 1/2] dt-bindings: ufs: qcom: Split common part to
- qcom,ufs-common.yaml
+Date: Wed, 30 Jul 2025 14:35:37 +0200
+Subject: [PATCH 2/2] dt-bindings: ufs: qcom: Split SC7280 and similar
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250730-dt-bindings-ufs-qcom-v1-1-4cec9ff202dc@linaro.org>
+Message-Id: <20250730-dt-bindings-ufs-qcom-v1-2-4cec9ff202dc@linaro.org>
 References: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
 In-Reply-To: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
 To: Alim Akhtar <alim.akhtar@samsung.com>, 
@@ -98,189 +97,367 @@ Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
  Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3812;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11790;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=FdLKYyZbfYSsvJ/xHFdBnLCPtWsxGyr4mVu3tlfgIuY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoihGlxuQYLbZApMks48NMdeNERQIuH2JtrpvJ9
- yc7qamSjn6JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIoRpQAKCRDBN2bmhouD
- 1z0TD/0bUIg13+xIanVAnqIfkvsMGTdYBVlKFtQsGM+wqWOQ5urKJ1RF7MTFrZffaoDUJBEELFm
- EeA7nvnfDOfvMDqG7kCT8SlgDYX162Fz9bz7ze7KMssRbu/aEaO+CB2bkYAqAH8am+MkH36/bOe
- WJcRwln+UYbar0IA4JcR550iyiEjMMsIKBMEbuYx7pnWzbVI9EglFWup8f4opcdbKxNqewJWeVk
- ppoi7RaphVaPBPNo7GIFWKjZ3Gt+rbwrex6C/cMRCzVUYT5cy/21Xm4rmocpUpr6c6M7RYPnUJ4
- FAQQkKM/IL9nczWPiBzDw+ecOgxn8kmw0cHt2D65ckN5R4jbjCFY7BhJRRY5QSeTL50gDEi4HnT
- DJdbmg0X76dOwlxewIuP0rmGle8Hhhjkn4UHUmRkInZkApqU6g1zRPBp7pxRVqag/QhYW0MaflB
- LyYWi/egLeaIo7GFC8LM1I1BV7YZ8LqlPFfcX2SZ+47wJmxgxhqUSy4SYwHqEzjehos5VxQIYgC
- CmRPHvBNVorvJKZi1hB7XHcy/yi5tbC8ZyT2cYpmAUEBt9TR7JYk/QfkPd5WfTqRsD9V8HRpnnd
- VNoolpmuT2MG6b9151tLof6pKOWQIjElvKDSybpur/NFmhZcXFcIdXtvTxYPGMXQEgjimXvd0U+
- zqTmiv8b6FoHw3g==
+ bh=boCA9V7sdFxzCI0LILmKKujCbe1eahhsFvEftXk76ec=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoihGmr6jo7Aor+3UbS6k3j6a1qWb3wcXpYEu+S
+ T1fluxxheSJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIoRpgAKCRDBN2bmhouD
+ 17SAEACBDvyabLZV9xW21iI3QDfAHNg47RgcHyKNjkIuhv7ybSQQxw5B+DBbI4ZAxwJzZAUdshl
+ 7MPRQi2TIxISDnVlYJaihDuewG+yDg+oCzUDOf4Phb3vwAqr/IhNAZXOaHi3jKbrk9vzGiH25gi
+ jIlzKZGPJaq4isRelT3qHTuED60497uQ/dEKqLeER2SUv+WuBmt0mUpsQoqUlcCzq7kzWj35uW2
+ H7R8LaDnc/KgY4/RyuO2EIb9rxFaP/DnLK1UXXqOO+rvmDTwbXaax8yzDWLpFDDueAaYAvtpgIl
+ Dhb4vSG9zG7LhP60gL7+QTjow+9dv5daju1pG4G6QvpItb+1lHjvmMk2qrwaTwaJsqvB3mer1zr
+ XYkzTOVtPjQGUytlWbneoBCjgoBS1jWUgeeot9d/OiZdGevgs7ZkD5e2pCdZHRUYU15Wx65OWwL
+ 3uyZvMEsa6Ivxdl2dgNWjdVCe5+t1W8PFwcyDF1PpKSWNKlKtLDYMD0Z2nBwdGa3zWHT0w+5y81
+ JbpMhsC/U8VGeqsGSBfOAe4YbFxLh5PCKHjKZK1Kh8UjZpT4mlus/R37CM2mjN/f6TB6ELrYs0T
+ xcFFPGBet1lxlBXc2WqOh4GQUQRWzABPoGWgMMcSvUsO7eB70356rm06XECyZbWs+tmkT4tihP2
+ Pxm5As5ZuT2v5Fg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
 The binding for Qualcomm SoC UFS controllers grew and it will grow
-further.  It already includes several conditionals, partially for
-difference in handling encryption block (ICE, either as phandle or as IO
-address space) but it will further grow for MCQ.
+further.  Split SC7280 and several other devices which:
+1. Do not reference ICE as IO address space, but as phandle,
+2. Have same order of clocks.
 
-Prepare for splitting this one big binding into several ones for common
-group of devices by defining common part for all Qualcomm UFS schemas.
-
-This only moves code, no functional impact expected.
+The split allows easier review and further growth with MCQ IO address
+space.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/ufs/qcom,ufs-common.yaml   | 67 ++++++++++++++++++++++
- .../devicetree/bindings/ufs/qcom,ufs.yaml          | 53 +----------------
- 2 files changed, 68 insertions(+), 52 deletions(-)
+ .../devicetree/bindings/ufs/qcom,sc7280-ufshc.yaml | 149 +++++++++++++++++++++
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          | 107 +++++----------
+ 2 files changed, 183 insertions(+), 73 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs-common.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs-common.yaml
+diff --git a/Documentation/devicetree/bindings/ufs/qcom,sc7280-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sc7280-ufshc.yaml
 new file mode 100644
-index 0000000000000000000000000000000000000000..962dffcd28b44b3489be5615c75e7270a0c45dc4
+index 0000000000000000000000000000000000000000..0f2fe48860a7847819f325bb8170692a82af2ae3
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs-common.yaml
-@@ -0,0 +1,67 @@
++++ b/Documentation/devicetree/bindings/ufs/qcom,sc7280-ufshc.yaml
+@@ -0,0 +1,149 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/ufs/qcom,ufs-common.yaml#
++$id: http://devicetree.org/schemas/ufs/qcom,sc7280-ufshc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm Universal Flash Storage (UFS) Controller Common Properties
++title: Qualcomm SC7280 and Other SoCs UFS Controllers
 +
 +maintainers:
 +  - Bjorn Andersson <bjorn.andersson@linaro.org>
 +
++# Select only our matches, not all jedec,ufs-2.0
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - qcom,msm8998-ufshc
++          - qcom,qcs8300-ufshc
++          - qcom,sa8775p-ufshc
++          - qcom,sc7280-ufshc
++          - qcom,sc8180x-ufshc
++          - qcom,sc8280xp-ufshc
++          - qcom,sm8250-ufshc
++          - qcom,sm8350-ufshc
++          - qcom,sm8450-ufshc
++          - qcom,sm8550-ufshc
++          - qcom,sm8650-ufshc
++          - qcom,sm8750-ufshc
++  required:
++    - compatible
++
 +properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,msm8998-ufshc
++          - qcom,qcs8300-ufshc
++          - qcom,sa8775p-ufshc
++          - qcom,sc7280-ufshc
++          - qcom,sc8180x-ufshc
++          - qcom,sc8280xp-ufshc
++          - qcom,sm8250-ufshc
++          - qcom,sm8350-ufshc
++          - qcom,sm8450-ufshc
++          - qcom,sm8550-ufshc
++          - qcom,sm8650-ufshc
++          - qcom,sm8750-ufshc
++      - const: qcom,ufshc
++      - const: jedec,ufs-2.0
++
++  reg:
++    maxItems: 1
++
++  reg-names:
++    items:
++      - const: std
++
 +  clocks:
-+    minItems: 7
-+    maxItems: 9
++    minItems: 8
++    maxItems: 8
 +
 +  clock-names:
-+    minItems: 7
-+    maxItems: 9
-+
-+  dma-coherent: true
-+
-+  interconnects:
-+    minItems: 2
-+    maxItems: 2
-+
-+  interconnect-names:
 +    items:
-+      - const: ufs-ddr
-+      - const: cpu-ufs
++      - const: core_clk
++      - const: bus_aggr_clk
++      - const: iface_clk
++      - const: core_clk_unipro
++      - const: ref_clk
++      - const: tx_lane0_sync_clk
++      - const: rx_lane0_sync_clk
++      - const: rx_lane1_sync_clk
 +
-+  iommus:
-+    minItems: 1
-+    maxItems: 2
++  qcom,ice:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: phandle to the Inline Crypto Engine node
 +
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: ufsphy
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  required-opps:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  reset-names:
-+    items:
-+      - const: rst
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the RESET pin of the UFS memory device.
++required:
++  - compatible
++  - reg
 +
 +allOf:
-+  - $ref: ufs-common.yaml
++  - $ref: qcom,ufs-common.yaml
 +
-+additionalProperties: true
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interconnect/qcom,sm8450.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        ufs@1d84000 {
++            compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
++                         "jedec,ufs-2.0";
++            reg = <0x0 0x01d84000 0x0 0x3000>;
++            interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
++            phys = <&ufs_mem_phy_lanes>;
++            phy-names = "ufsphy";
++            lanes-per-direction = <2>;
++            #reset-cells = <1>;
++            resets = <&gcc GCC_UFS_PHY_BCR>;
++            reset-names = "rst";
++            reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
++
++            vcc-supply = <&vreg_l7b_2p5>;
++            vcc-max-microamp = <1100000>;
++            vccq-supply = <&vreg_l9b_1p2>;
++            vccq-max-microamp = <1200000>;
++
++            power-domains = <&gcc UFS_PHY_GDSC>;
++            iommus = <&apps_smmu 0xe0 0x0>;
++            interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
++                            <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
++            interconnect-names = "ufs-ddr", "cpu-ufs";
++
++            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
++                     <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
++                     <&gcc GCC_UFS_PHY_AHB_CLK>,
++                     <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
++                     <&rpmhcc RPMH_CXO_CLK>,
++                     <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
++                     <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
++                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
++            clock-names = "core_clk",
++                          "bus_aggr_clk",
++                          "iface_clk",
++                          "core_clk_unipro",
++                          "ref_clk",
++                          "tx_lane0_sync_clk",
++                          "rx_lane0_sync_clk",
++                          "rx_lane1_sync_clk";
++            freq-table-hz = <75000000 300000000>,
++                            <0 0>,
++                            <0 0>,
++                            <75000000 300000000>,
++                            <75000000 300000000>,
++                            <0 0>,
++                            <0 0>,
++                            <0 0>;
++            qcom,ice = <&ice>;
++        };
++    };
 diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 6c6043d9809e1d6bf489153ab0aea5186d3563cc..fc0f7b8d1cd1c4a2168f29cffcc0c2ff660424df 100644
+index fc0f7b8d1cd1c4a2168f29cffcc0c2ff660424df..b34da3df841a11eb50022fa7d091ebfbb33b1d17 100644
 --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
 +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -47,39 +47,6 @@ properties:
+@@ -15,7 +15,16 @@ select:
+   properties:
+     compatible:
+       contains:
+-        const: qcom,ufshc
++        enum:
++          - qcom,msm8994-ufshc
++          - qcom,msm8996-ufshc
++          - qcom,qcs615-ufshc
++          - qcom,sc7180-ufshc
++          - qcom,sdm845-ufshc
++          - qcom,sm6115-ufshc
++          - qcom,sm6125-ufshc
++          - qcom,sm6350-ufshc
++          - qcom,sm8150-ufshc
+   required:
+     - compatible
+ 
+@@ -25,25 +34,13 @@ properties:
+       - enum:
+           - qcom,msm8994-ufshc
+           - qcom,msm8996-ufshc
+-          - qcom,msm8998-ufshc
+           - qcom,qcs615-ufshc
+-          - qcom,qcs8300-ufshc
+-          - qcom,sa8775p-ufshc
+           - qcom,sc7180-ufshc
+-          - qcom,sc7280-ufshc
+-          - qcom,sc8180x-ufshc
+-          - qcom,sc8280xp-ufshc
+           - qcom,sdm845-ufshc
+           - qcom,sm6115-ufshc
+           - qcom,sm6125-ufshc
+           - qcom,sm6350-ufshc
+           - qcom,sm8150-ufshc
+-          - qcom,sm8250-ufshc
+-          - qcom,sm8350-ufshc
+-          - qcom,sm8450-ufshc
+-          - qcom,sm8550-ufshc
+-          - qcom,sm8650-ufshc
+-          - qcom,sm8750-ufshc
        - const: qcom,ufshc
        - const: jedec,ufs-2.0
  
--  clocks:
--    minItems: 7
--    maxItems: 9
--
--  clock-names:
--    minItems: 7
--    maxItems: 9
--
--  dma-coherent: true
--
--  interconnects:
--    minItems: 2
--    maxItems: 2
--
--  interconnect-names:
--    items:
--      - const: ufs-ddr
--      - const: cpu-ufs
--
--  iommus:
--    minItems: 1
--    maxItems: 2
--
--  phys:
--    maxItems: 1
--
--  phy-names:
--    items:
--      - const: ufsphy
--
--  power-domains:
--    maxItems: 1
--
-   qcom,ice:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: phandle to the Inline Crypto Engine node
-@@ -93,30 +60,12 @@ properties:
-       - const: std
-       - const: ice
+@@ -92,44 +89,6 @@ allOf:
+         reg-names:
+           maxItems: 1
  
--  required-opps:
--    maxItems: 1
+-  - if:
+-      properties:
+-        compatible:
+-          contains:
+-            enum:
+-              - qcom,msm8998-ufshc
+-              - qcom,qcs8300-ufshc
+-              - qcom,sa8775p-ufshc
+-              - qcom,sc7280-ufshc
+-              - qcom,sc8180x-ufshc
+-              - qcom,sc8280xp-ufshc
+-              - qcom,sm8250-ufshc
+-              - qcom,sm8350-ufshc
+-              - qcom,sm8450-ufshc
+-              - qcom,sm8550-ufshc
+-              - qcom,sm8650-ufshc
+-              - qcom,sm8750-ufshc
+-    then:
+-      properties:
+-        clocks:
+-          minItems: 8
+-          maxItems: 8
+-        clock-names:
+-          items:
+-            - const: core_clk
+-            - const: bus_aggr_clk
+-            - const: iface_clk
+-            - const: core_clk_unipro
+-            - const: ref_clk
+-            - const: tx_lane0_sync_clk
+-            - const: rx_lane0_sync_clk
+-            - const: rx_lane1_sync_clk
+-        reg:
+-          minItems: 1
+-          maxItems: 1
+-        reg-names:
+-          maxItems: 1
 -
--  resets:
--    maxItems: 1
--
--  '#reset-cells':
--    const: 1
--
--  reset-names:
--    items:
--      - const: rst
--
--  reset-gpios:
--    maxItems: 1
--    description:
--      GPIO connected to the RESET pin of the UFS memory device.
--
- required:
-   - compatible
-   - reg
- 
- allOf:
--  - $ref: ufs-common.yaml
-+  - $ref: qcom,ufs-common.yaml
- 
    - if:
        properties:
+         compatible:
+@@ -246,10 +205,10 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8150.h>
+     #include <dt-bindings/clock/qcom,rpmh.h>
+     #include <dt-bindings/gpio/gpio.h>
+-    #include <dt-bindings/interconnect/qcom,sm8450.h>
++    #include <dt-bindings/interconnect/qcom,sm8150.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     soc {
+@@ -257,9 +216,12 @@ examples:
+         #size-cells = <2>;
+ 
+         ufs@1d84000 {
+-            compatible = "qcom,sm8450-ufshc", "qcom,ufshc",
++            compatible = "qcom,sm8150-ufshc", "qcom,ufshc",
+                          "jedec,ufs-2.0";
+-            reg = <0 0x01d84000 0 0x3000>;
++            reg = <0x0 0x01d84000 0x0 0x2500>,
++                  <0x0 0x01d90000 0x0 0x8000>;
++            reg-names = "std", "ice";
++
+             interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+             phys = <&ufs_mem_phy_lanes>;
+             phy-names = "ufsphy";
+@@ -275,19 +237,8 @@ examples:
+             vccq-max-microamp = <1200000>;
+ 
+             power-domains = <&gcc UFS_PHY_GDSC>;
+-            iommus = <&apps_smmu 0xe0 0x0>;
+-            interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+-                            <&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
+-            interconnect-names = "ufs-ddr", "cpu-ufs";
++            iommus = <&apps_smmu 0x300 0>;
+ 
+-            clock-names = "core_clk",
+-                          "bus_aggr_clk",
+-                          "iface_clk",
+-                          "core_clk_unipro",
+-                          "ref_clk",
+-                          "tx_lane0_sync_clk",
+-                          "rx_lane0_sync_clk",
+-                          "rx_lane1_sync_clk";
+             clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+                      <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+                      <&gcc GCC_UFS_PHY_AHB_CLK>,
+@@ -295,15 +246,25 @@ examples:
+                      <&rpmhcc RPMH_CXO_CLK>,
+                      <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+                      <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+-                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+-            freq-table-hz = <75000000 300000000>,
++                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
++                     <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
++            clock-names = "core_clk",
++                          "bus_aggr_clk",
++                          "iface_clk",
++                          "core_clk_unipro",
++                          "ref_clk",
++                          "tx_lane0_sync_clk",
++                          "rx_lane0_sync_clk",
++                          "rx_lane1_sync_clk",
++                          "ice_core_clk";
++            freq-table-hz = <37500000 300000000>,
+                             <0 0>,
+                             <0 0>,
+-                            <75000000 300000000>,
+-                            <75000000 300000000>,
++                            <37500000 300000000>,
+                             <0 0>,
+                             <0 0>,
+-                            <0 0>;
+-            qcom,ice = <&ice>;
++                            <0 0>,
++                            <0 0>,
++                            <0 300000000>;
+         };
+     };
 
 -- 
 2.48.1
