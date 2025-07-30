@@ -1,48 +1,83 @@
-Return-Path: <devicetree+bounces-200823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76FBBB162A6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 16:25:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B286B162C9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 16:28:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6B7E7B0014
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:23:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 350581AA343B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 14:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5613D2D9ED5;
-	Wed, 30 Jul 2025 14:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A582D9EEC;
+	Wed, 30 Jul 2025 14:28:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxMc/0D4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G38OmcXE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F85A2D97BC;
-	Wed, 30 Jul 2025 14:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F8A2D97B6
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 14:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753885513; cv=none; b=G8DNOAqU6OZ0up6q6xf1LrYCPhRIdkZDQZ2Ah2ndaMFnVw0ZRRV69DtfjtcqNVDBwfxZEaYP7ukkgoChS2jMdjFBuO+Sr+BL8/JNWV+gDyQDkvb+QzqyqnG52M6goFgOR46GKkucJbTUfUPVa0mIFeStivVQvN21PpoYPZhwwYM=
+	t=1753885725; cv=none; b=ciOpYBEUs8xfldgareijpk1jCbPCxskwM/uXnS9SEi94IbgRHeGjPvHuxeqQndZZJh4PPoXgC5X2qRz3wfiCk1nKVkmPU8q+crjiVWOylMhWAQ+wlGBf/A3Gt+YrXeMYnYqGVxiWqbmEJr5SVAo7wE/jEM1kwaVjDkgBjU37uG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753885513; c=relaxed/simple;
-	bh=cBW5ZhTGEzkKjsNQyDowc6ut+7Yqtc1Qi6/6iLTumX4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=djPbHWecjt2NNB9KUWednQbrpgdnt3A9FB0Xpiw3AFMWgxJ4vHB80JuQG2QEHm6npfsa1gy9sgINx4XmiAnVyYl0OzOC4wC4nzNMUcidyRJ6pG2w01A63XrhB5zir0baDlFvX4noJ4R4kP5vOLra15/kYU35M8jkIOng5sfefec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxMc/0D4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 025EFC4CEE7;
-	Wed, 30 Jul 2025 14:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753885512;
-	bh=cBW5ZhTGEzkKjsNQyDowc6ut+7Yqtc1Qi6/6iLTumX4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GxMc/0D4t/flGgXijLtbTwdjDp1q7CWwrgk4cOmyXVB6aS+jbwcL0aU+HbjPgDNUQ
-	 lZ/AUwp1lNyZDU2nOJBAFuyqu6cRcRN0zrSIe7LWzYgRQc2OFcI0TMSwsw0Fy/tOJz
-	 GFweRh3saGRHdEBURwtDLn45XB5LaKA7e7W394mDITX2zKah/DYHoUxmWy4usb9SPx
-	 9dLmNYCQ4oX0xqolklT/RzWDbF12o8Bl3yHZ6HDmmH9RUqvjgp65BlCqk/9BQIVGVu
-	 oGWSIypb+SinKw3vdS1104a+i2wSaglXTBQ9MAbZK1AV18o6cgm50RojV1cZuNTS/0
-	 sGmVXGUaB8iQw==
-Message-ID: <6ebe7084-bb00-4fac-b64d-e08e188f3005@kernel.org>
-Date: Wed, 30 Jul 2025 16:25:06 +0200
+	s=arc-20240116; t=1753885725; c=relaxed/simple;
+	bh=STW90s3KQt7qz/SZuFNEPaZC4WtWeH2+//zEppDSySQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=hZpdXf39Zk8OpssfnV+yfnwIIjv5jGueAJPNGTzrHwqeGt5TFnQxrISSeba2jd4KQF6UivpI2+QKyHXWXRzGNNyde+J7jEKfLgU9XP1SbDr15HR+xID93qRXtRirVkm24BDjxz2Py8sZgZYmVHF/19Nq4UqDO4Xa7AtGfxIeEUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G38OmcXE; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-454f428038eso59183275e9.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 07:28:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753885720; x=1754490520; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VYfKKkomyIJnTe7xVnvfHYaX8X0anbFk9RY4Fhlx8c8=;
+        b=G38OmcXE8kN1awNd7uUHzT7pzMkYCd442ONg1KcWs8nGX8kG4GZev42dwoZEBUZ9+E
+         Djt0cCT4rfpfJgFLPSdF570rFQlJRmSTMImxEUzys5i5NP3heD/zfXjj/sOwg2CzaPsl
+         qdYuSyL484cHYl8hz3hHs3n52A9E7N1iIPLZaeq2AAZMEbIV6D4L4IdLd6N1bMCTOqwh
+         Rkc99kssrngqfmIQnuExS4t5XpE6yKdVeYQxFBXSGHBZlI5GSECpYWipfhGRlZ5Y0ayp
+         mGxgzCGAOJUrWkkrT0o4snzYHedARDsxdIGT5vjJHRnUAqML33YKY7R1JApgv8GBJbk+
+         12mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753885720; x=1754490520;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VYfKKkomyIJnTe7xVnvfHYaX8X0anbFk9RY4Fhlx8c8=;
+        b=IGF8lvBU0mDbXh/DiyurHZGgiOQ6TvPTNJv3nj0VVOMHpdpe95h5wf1ROWNd5x9AVv
+         qd+9g9uQiO2yoreD/k+s61SmsQL8+7N5xJtDH2z2mtqok1tTpYrMVtGojR6f7meFzPvF
+         fQHf2JsGMYp8MEfibEjA92wGu6sq5NcL9qSp0nRl+briIol7D/V/556MrYbvuZW+jjEJ
+         kyFHLB7rXeUdtuQfG+uhZH4v6yHfXvYmSHhppJ/dfA8ucsxWJlGsOTw4jUDMGPPOJy7j
+         XJgIoptCz5hHGHM4M5mPoTC0XOjm+27IM5zphDEqVLfNHgPVPYBurZWdwhM88LhR0oFw
+         IvgA==
+X-Forwarded-Encrypted: i=1; AJvYcCXVaRUVxIPouXJAJOKaHaitUW87XqMcJK5iLIE9bYzeTe7NObCKMcjK4C9UOl5JyfBbYXcnxtDloqzR@vger.kernel.org
+X-Gm-Message-State: AOJu0YywGE+8M9YELAC8OzYxt6PnDl8BpsjHld8ZDrMS0qA1T2hQJv2C
+	oZQxmXlPIBR5KDd3t1iKVjY/x/pzq74AqykESNVKwFithDznW/cQn5EsuDiTepEocds=
+X-Gm-Gg: ASbGnctfW72wp6NERqR8b0ZwrasfJneVG1OiGHb4hO4eWnpdOjtO5y22FlvZg1g12AL
+	/EMre+oFO+0MB/kCJ8q1r9UBwc20nMrN6uyMCdnvK8WapHWYLOSN8TXFP8NFrxrwXGrgTdaiY1k
+	dXKrOeEk+P0ffGJJOhZ1ww3hqvRHvyHILI/YdtvTRYLmyzh6hges2aRJ20VgU9+ND7KN4CrmNWF
+	F1LqLY8l4ZXvIfYhqJst5HP/WPVpmz2QY88J44Vsu4NeiOIQvEkgrVC7a42Y3yF3Hzk+6zhFRWK
+	4YC4o8Yxo5k5boX4/bhqpYfjFtgGQfHEbZ6SWGhwRC3n3ctyQwe/yLeX/ERw3ShbaRqo8LHeZUa
+	cN4mAdAdcom/FhP3PJw4S1XnLD2SMNM+mZ/BuM45UV+I1lM7jeKdPblXEKqkjuo6vzCahJZXpoP
+	GebI2VI0U8bg==
+X-Google-Smtp-Source: AGHT+IFkiongaw+716eYscwAn2hud6KDZWIRmXrEPYkuiIscgZfHi99ALGqutk4bxdBQdOBbpGHfUQ==
+X-Received: by 2002:a5d:584c:0:b0:3b7:6828:5f78 with SMTP id ffacd0b85a97d-3b794fe4f79mr2697229f8f.4.1753885720284;
+        Wed, 30 Jul 2025 07:28:40 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5cc9:639a:a021:88ef? ([2a01:e0a:3d9:2080:5cc9:639a:a021:88ef])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458953755d1sm28427255e9.11.2025.07.30.07.28.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Jul 2025 07:28:39 -0700 (PDT)
+Message-ID: <a88b22b6-4be5-4176-95b0-0a03530bfd76@linaro.org>
+Date: Wed, 30 Jul 2025 16:28:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,128 +85,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] dt-bindings: ufs: qcom: Split SC7280 and similar into
- separate file
-To: Nitin Rawat <quic_nitirawa@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-References: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
- <df8b3c85-d572-4cee-863b-35fe6a5ed9ff@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <df8b3c85-d572-4cee-863b-35fe6a5ed9ff@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Add ACD levels for GPU
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250729-topic-sm8650-upstream-gpu-acd-level-v1-1-258090038a41@linaro.org>
+ <63da4872-2365-40eb-9b2e-d3393ddd9b68@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <63da4872-2365-40eb-9b2e-d3393ddd9b68@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 30/07/2025 15:53, Nitin Rawat wrote:
-> 
-> 
-> On 7/30/2025 6:05 PM, Krzysztof Kozlowski wrote:
->> The binding for Qualcomm SoC UFS controllers grew and it will grow
->> further.  It already includes several conditionals, partially for
->> difference in handling encryption block (ICE, either as phandle or as IO
->> address space) but it will further grow for MCQ.
+On 30/07/2025 12:00, Konrad Dybcio wrote:
+> On 7/29/25 4:40 PM, Neil Armstrong wrote:
+>> Update GPU node to include acd level values.
 >>
->> See also: lore.kernel.org/r/20250730082229.23475-1-quic_rdwivedi@quicinc.com
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 14 +++++++++++++-
+>>   1 file changed, 13 insertions(+), 1 deletion(-)
 >>
->> The question is whether SM8650 and SM8750 should have their own schemas,
->> but based on bindings above I think all devices here have MCQ?
->>
->> Best regards,
->> Krzysztof
->>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> index 495ea9bfd008500dd2c9f46ceca94cf5f972beca..4cd933219ce008bd1c603c87778e210b6332e29c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> @@ -4127,72 +4127,84 @@ zap-shader {
+>>   
+>>   			/* Speedbin needs more work on A740+, keep only lower freqs */
+>>   			gpu_opp_table: opp-table {
+>> -				compatible = "operating-points-v2";
+>> +				compatible = "operating-points-v2-adreno",
+>> +					     "operating-points-v2";
+>>   
+>>   				opp-231000000 {
+>>   					opp-hz = /bits/ 64 <231000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
+>>   					opp-peak-kBps = <2136718>;
+>> +					qcom,opp-acd-level = <0xc82f5ffd>;
+>>   				};
+>>   
+>>   				opp-310000000 {
+>>   					opp-hz = /bits/ 64 <310000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
+>>   					opp-peak-kBps = <2136718>;
+>> +					qcom,opp-acd-level = <0xc82c5ffd>;
+>>   				};
 > 
+> https://git.codelinaro.org/clo/la/platform/vendor/qcom/opensource/graphics-devicetree/-/blob/gfx-devicetree-oss.lnx.1.0.r1-rel/gpu/pineapple-v2-gpu-pwrlevels.dtsi?ref_type=heads
 > 
-> Hi Krzysztof,
+> doesn't set ACD for D1/D2
 > 
-> If I understand correctly, you're splitting the YAML files based on MCQ 
-> (Multi-Circular Queue) support:
+>>   
+>>   				opp-366000000 {
+>>   					opp-hz = /bits/ 64 <366000000>;
+>>   					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
+>>   					opp-peak-kBps = <6074218>;
+>> +					qcom,opp-acd-level = <0xc02e5ffd>;
+> 
+> And other values differ too
+> 
+> What release did you grab these from?
 
-Not entirely, I don't know which devices support MCQ. I split based on
-common parts in the binding.
+A much more recent non-public release with different gpu-pwrlevels for different SKU codes,
+all sets ACDs for D1/D2, and the ACD values are:
+
+#define ACD_LEVEL_TURBO_L1    0x882a5ffd
+#define ACD_LEVEL_TURBO       0x882a5ffd
+#define ACD_LEVEL_NOM_L1      0x882a5ffd
+#define ACD_LEVEL_NOM         0x882a5ffd
+#define ACD_LEVEL_SVS_L2      0x882a5ffd
+#define ACD_LEVEL_SVS_L1      0x882a5ffd
+#define ACD_LEVEL_SVS_L0      0x882a5ffd
+#define ACD_LEVEL_SVS         0x882c5ffd
+#define ACD_LEVEL_LOW_SVS_L1  0xc02a5ffd
+#define ACD_LEVEL_LOW_SVS     0xc02d5ffd
+#define ACD_LEVEL_LOW_SVS_D0  0xc02e5ffd
+#define ACD_LEVEL_LOW_SVS_D1  0xc82c5ffd
+#define ACD_LEVEL_LOW_SVS_D2  0xc82f5ffd
+
+Neil
 
 > 
-> -qcom,sc7280-ufshc.yaml includes targets that support MCQ
-> -qcom,ufs-common.yaml includes common properties
-> -qcom,ufs.yaml includes targets that do not support MCQ
-> 
-> 
-> In future, if a new property applies to both some MCQ and some
-> non-MCQ targets, we would need to update both YAML files. In the current 
+> Konrad
 
-No
-
-> implementation, we handle such cases using if-else conditions to include 
-> the new property.
-
-Hm?
-
-> 
-> For reference, only SM8650 and SM8750 currently support MCQ, though more 
-> targets may be added later.
-
-Are you sure? Are you claiming that SM8550 hardware does not support MCQ?
-
-> 
-> Regarding the patch 
-> lore.kernel.org/r/20250730082229.23475-1-quic_rdwivedi@quicinc.com, 
-> instead of using two separate YAML files, we could use if-else 
-> conditions to differentiate the reg and reg-name properties between MCQ 
-> targets (SM8650 and SM8750) and non-MCQ targets (all others).
-
-It's a mess already and you want to make it messy. I already responded
-on that.
-
-Best regards,
-Krzysztof
 
