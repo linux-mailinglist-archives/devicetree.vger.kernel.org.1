@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-200869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC85B16676
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 20:43:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCCCB166BE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 21:14:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FE801AA8126
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 18:43:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A544C7A139B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 19:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AACA2E0405;
-	Wed, 30 Jul 2025 18:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C342E03FA;
+	Wed, 30 Jul 2025 19:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZVvlXiTb"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F+tBuQT8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A932E2E0409
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 18:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92C61E25F8
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 19:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753900985; cv=none; b=kOwjZLjWOjQfjpSrSy8gxaPyvSecJOLAWLmU3liAGGQMMJhGOjqt+NVR+9jo0npnLV1xILrvU1M/ltP/GhwVtE7zTvBQLy4/cPY+cPCiApJCP2JCUvQ6OVO64vBh6w9aq/bSc4W1FMmdaYEamkIEX1pO/6duOcyh9MqBkdIBohE=
+	t=1753902835; cv=none; b=NYE08cpWnofYYry+NEyqBZC9bOM7fHr4Fp6Epby8yEcdowczJL68eB8IJHWaByrcxQ6lfFEnKmZ1z1Ic1mEWoMXWYR9ewx2pPCqDXhwoUOsuw9tkEQUlox3mpbzPO0ckVOq8Jo6KuJq9c4VdkLtl3N7Xe8X0Kf3u/sEsI2J4G+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753900985; c=relaxed/simple;
-	bh=qdx7NrEpIGy1d3PcvacW0jr7ju/GBkM8nCqLuJ9W42U=;
+	s=arc-20240116; t=1753902835; c=relaxed/simple;
+	bh=Q40vFM47o1aH80LOoTyutooZitVa1Avk/jyW8kw48GY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UMQR0YUApWMd0AVIyqSAqL0s3nE3ro5i+/vMjERCMh/xJZiQZN/IT2EzoCG1tzlBSolb8XnCufe+wHhk4+cvdJ+aZquFTdd6WRCERiIiKu3/Gfeiq5v8yyfg3OQnhL8XIqsetvMPAagOWXpDREoGL9/wafPFoEKvliW7WSocq94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZVvlXiTb; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=hVpvTFrYyQIEITHB3CsziDS1d9i5OcRw2SJgR10b5yv05wMSsc1X1wFedXx6e8j9Vt/tRKv8QlWCni4rICM42VCsJDKiBgcig0/XTGt5Vep72ld3IXZgBHugIjjn7wEmA2mF6JWFnN31gdSjdzYn3t+H2yOoQD6bVXi7xYVamgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F+tBuQT8; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56UCbRVB025535
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 18:43:02 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56UCbCs9024601
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 19:13:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9c5QkbApR+lGMSGubJQFWOy4
-	IDJeWT64QPQIBtzV7MQ=; b=ZVvlXiTbBgZH4SufusLeROYgc5lISyDizfxjI5Fv
-	0/b1InLOpu3+tBuU/qkQFx4j5b4Hxspy/K6QWZ0PkkrYpy1rHKcAIJxrgPB5HWwW
-	PwBGuqKqeHiAD1r0n9mkr6yWrxCYkWquygFOwAL2rqCCB5Xcg80RBkxAzrsLtcY3
-	wa7Ymz6QeLG2mbriQsusvjYw47bx5BUj10EPJVUb5VdVMbvygw6SyndOgsTO7V4E
-	qrRRkeIb97JscOxtBtqcANua8UnzRoelY4YJc/z0J5364wIGNXfJHKz+t9oGVvbC
-	VQBhxU5Dpcf+KyqQX9X63N4kUI2vOzO2zMKN+Img0T0wNQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484p1amv2p-1
+	:references:subject:to; s=qcppdkim1; bh=aMpNvFPvt2cMAKNRFOUnF1jA
+	yCuM7WFPijqR+Ei2D/0=; b=F+tBuQT8LTVPb4S5M+db3HHjBSYUucF1a7lRQtWt
+	MIR9SkRhya+99V5V8/lCkZ69XUEV/WfkivHNugmXANg0r1P28+MM2JyoH76OU4yp
+	TbYNkbUDeC8lxyKLRmncSo/Tv1OzyRPECGa70SVC/QkPzqjCCixFMMjhKsCehjac
+	v6FVx4Zb6O92UC3KAD68jRCtmr0WCwmlFwoCXAxa4yeU+J5q+N+SCJ2WJzwgkUTJ
+	5hQZ4/5/16sA898jwCJ0JuaW4Xj1h+vRzRlEpLuCQbQINUwExDgOnUdfHc5Bt08t
+	NCt1x7voA+9p6OoZX9Znl7ZxSX4iMQYdS7hIjKYGKz1RDg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484p1amy64-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 18:43:02 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7074bad0561so1706756d6.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 11:43:02 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 19:13:52 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-70771983a52so1786226d6.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Jul 2025 12:13:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753900981; x=1754505781;
+        d=1e100.net; s=20230601; t=1753902832; x=1754507632;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9c5QkbApR+lGMSGubJQFWOy4IDJeWT64QPQIBtzV7MQ=;
-        b=C2qzGnL/jZnoVuHwSNytVfJ7+hrzSGiez1+tbjBrROaMlAqsCtzVNUN7zv48OeUKgY
-         aQjc+Zbq+nydfT2EILMmJb2SZx6XYEQKaiqmKky3JM5UPjpu7d3gs169SzVlVOqcvCHh
-         zHAyZ5uLEQ6Z+0hWymGi9T7RIOf/icjlYRTzOBRAdP4DvA5lhpt92/i5xoOEeVG27mYM
-         F06loGiL4e1mB29z5X2aH+47ssnJGmPuWRnxucknljWvhkOSeEn8ibXqEO941XuKqDs2
-         pc5GzTu48crgdH6jK3sZDeY7jLz1NoEppq5j3OLAKM3iWx4VlIVlSFxHqGSZUZ94/YKu
-         rgzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWSKDG5yHsHIPxynD6xH3Oh3ZpaX2te9DoPnpa2a5ydd+aVaKE9XYYqx0J036M+xWvlUIWOxgkqx5Sl@vger.kernel.org
-X-Gm-Message-State: AOJu0YybdajL7ddQmboVCV2xwq6j5CvcGVjJWTfeWtcZ/RksHQpkqKPY
-	rMbDbY5ETk1D0Qg5YKWIoj2yETXDx+ov+r8tmUZOGtC06bZ0cEnkCeivjNnoNRdyx9sliIajtic
-	Y/5J9nzQ4undM1vfVKxZdsaM4ur5Y15PEkP24tB8oFQp6xM8EBXzG0iEETuFXiKKe
-X-Gm-Gg: ASbGncsuWPvTQUyVDUMOxRJLb65EXVSsw9IDOUx4/hJMo8D7g7qtcpsMKem6KR1p+uW
-	pS9OUecGVPxMG3jCk3//eKxHE+2klhHdHsDxwr2Pfeq6ibc5CyeKSXVqMZiVfFNbc74gov25tcf
-	dTyWh1ESkmXjEl+t8rTJxMRnwiVvy89ly374oPNnqMO7om5HvvDDVQFKfig3cogjYzLQuGEhTst
-	cWsqt/F8j/wA0LN4qoS5Fdes9eYsKyLMqM58Z+AjlFsoCVy972glylUdoKlHPWPA1COt4sXzs27
-	72wp1PIhfgOvRY9M9QENHcV6BEmc7Dv6ZOvBqMU4hfb6g5PnILdC/7PPawrFZ4HXDkrxpH2RYeG
-	obQiWUKBA6llKApawLRFUVWSktMZB7WGD1Ra7+8bMnK7o4skxBn+I
-X-Received: by 2002:a05:6214:acf:b0:702:daca:9049 with SMTP id 6a1803df08f44-70766de22c1mr66949076d6.7.1753900981509;
-        Wed, 30 Jul 2025 11:43:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHh3yOcT3RsS6N0Cu2BRNc0Oq6rHJMiT0sj8uq9gs0lNela3LLwN0p2XCGTMiTfolk8knrVwg==
-X-Received: by 2002:a05:6214:acf:b0:702:daca:9049 with SMTP id 6a1803df08f44-70766de22c1mr66948626d6.7.1753900980891;
-        Wed, 30 Jul 2025 11:43:00 -0700 (PDT)
+        bh=aMpNvFPvt2cMAKNRFOUnF1jAyCuM7WFPijqR+Ei2D/0=;
+        b=ErupI4nr1ptjF9c34AxUgTK29/ygliEoaaBMcX8rX679vQW5PAsWU8nxujTjK+NzfT
+         Ue5AWtAY96qQtsOZE7Sm4mqNcDsGQGjUb3y7vda2wKE7aGL9hEb525qfKBjnUX7hRiAK
+         cHlwZ9i3xFRjddFW4KuLKXir/UFjpQxrd+peFU9ogbkGAgcnvXXDkPIxILz1Mvws1y81
+         lYYyeSLKmH/mSDG1vuvCIuNpBOufsWAVWTYPnxTQpK1w5GLXAJTV+/vQMZJ1L01+/0kw
+         PlLJeMsotoDt2LiFm4rr7kv/dZpNW7Uc3HuY59kUyBRIRlDthn9VLNeSKjmlSfbgs4hb
+         frsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxJOvgoJOXQK7fxg1uESGwj0gwlyb6BjApAO3PrVukm9B4Wtk19Q0MEoTAJ5fIzzlHpb1A1th2qG8E@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqVV7xklRQ9Doy7Gk/b2VIjXit4oxl0F+cI3ByQmzhPTegW+qb
+	xQzuWviP2AY/DS/9rm2lNkqqboQTfjnQg3xJVxp5vhJQBgO2ssSYwFU/4oEfEbW4dHQFBWqArZd
+	IyqWbyzQfaFmBI0qE4WN/RjvX/C4qvN9/TsqQmKwVE9NDdhdaXY9R0Ym6W4qdlxSs
+X-Gm-Gg: ASbGncudEZNu4EsabM9HEBGeuaPhP5N5GnYohcZ/hXn+Sb8d/O7n/3++qpQ/K2/BqIb
+	Qskt2pKSP7RLoZXjf/sI2psMcGOMTNBwiM9+AhGre9Tlg3LX4pBoPI24He8Hncnc52NjzZNMddN
+	NFQCi/qw0Pyu9musGb6cyAWDK8TwYZvjkou53lULkksl4ZaBE99i+H3LUstNvoem6w5uMOGYdOQ
+	GWJ+AQhjXJ0jJXOHp1CDO0fkIB/64/z+Yhc/qLX0s37LJcWZdShbkLFrDL5cBufnf6tlnyQOIh4
+	d0eA73QdbSf6+/9wBpVAtWzZ5QxGPp5+haXIAfplMnI3NiTzg3Odl1dbSwozb8vsIHmeaFOwcdR
+	db1yjYifY7E8J4C9HyiQNWJcI6s6rVreJVYjd+UGlnGZ57jxe2SH5
+X-Received: by 2002:a05:6214:5010:b0:707:3891:a072 with SMTP id 6a1803df08f44-707669f8c80mr67431876d6.0.1753902831541;
+        Wed, 30 Jul 2025 12:13:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGHgmYSqHWL1JQSbQgLX/lTKYei8dv1aftQo53r3fvUDU06KrOX+cc9BvRo4AKOH1ZPMuJ35Q==
+X-Received: by 2002:a05:6214:5010:b0:707:3891:a072 with SMTP id 6a1803df08f44-707669f8c80mr67430436d6.0.1753902830418;
+        Wed, 30 Jul 2025 12:13:50 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-331f4278c27sm19992301fa.76.2025.07.30.11.42.59
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-331f427c501sm21257541fa.77.2025.07.30.12.13.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jul 2025 11:43:00 -0700 (PDT)
-Date: Wed, 30 Jul 2025 21:42:58 +0300
+        Wed, 30 Jul 2025 12:13:49 -0700 (PDT)
+Date: Wed, 30 Jul 2025 22:13:47 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Yijie Yang <yijie.yang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-Message-ID: <cawg456ucsvssm2ngbcjvpprxke7s3sfqf4fzoj5dtfj2flnzw@2e3h5ojgn4s5>
-References: <20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com>
- <20250729-hamoa_initial-v3-4-806e092789dc@oss.qualcomm.com>
- <pbvyog477v32s4lu72z52dhsond5yud5w3nxmcouvr6ljlndlh@ws46dncy35c6>
- <b4a3f568-f41f-4141-b421-8b158973f810@oss.qualcomm.com>
+To: Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Yubing Zhang <yubing.zhang@rock-chips.com>,
+        Frank Wang <frank.wang@rock-chips.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Amit Sunil Dhamne <amitsd@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+        Diederik de Haas <didi.debian@cknow.org>,
+        Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 0/5] Add Type-C DP support for RK3399 EVB IND board
+Message-ID: <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
+References: <20250729090032.97-1-kernel@airkyi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,169 +114,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b4a3f568-f41f-4141-b421-8b158973f810@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: 4wM1rM-vHX7LltCI-10jD76Gp8f2ZdPP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDEzNyBTYWx0ZWRfX9PJWV9Ra7bfX
- i2jSKsV6qfZTRJEq5wep4inkyu386emT+zJC2+iL4rK21JGyGi8Tkm3fnp5r6bDFjP/Wb+Wdnw+
- kG9N+p3Bd30gyZhn6ZOBW5TCj59TDusZhEq/HVgnbwj0/Hy7SCA8Pbm2WhxUJLoI+56WxYxQWIi
- ROc0Xzfx0kysnklrCTihiK+g0syelLM9gJ/kX+6x2eqCMeq1yj3MEG6ribDdgRldSWDRHTPfdtE
- inCu/V1YBxqqAG0UCjrYDZkRSizAkeTUJnbP6JEzKlW20lwPX/adPwn9TFuXb4MneEyTCPF1WbT
- FTyCwPqQD3DFXzgkI3U4g4OWLtttyu9JincJP8zaLBYu1LhTWdjVnEpbzg9267Eezsm//gEWt1u
- 2IBBZ0Q/rzL2rhneoUSafFI3JNfNM3AHzlCyebWP1SvFYtAfaZphz7WGesVjFslLmjC1zUyy
-X-Proofpoint-GUID: 4wM1rM-vHX7LltCI-10jD76Gp8f2ZdPP
-X-Authority-Analysis: v=2.4 cv=KtNN2XWN c=1 sm=1 tr=0 ts=688a67b6 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Wb1JkmetP80A:10 a=MQaB2THTsXMMIvyQaIUA:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
+In-Reply-To: <20250729090032.97-1-kernel@airkyi.com>
+X-Proofpoint-ORIG-GUID: Q1OvrGkmk94vhw7Gz2l11COiThucXOS5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMwMDE0MCBTYWx0ZWRfXzQGV5yzTBH1l
+ vWnQbPzCPM5cd2UAZEDKgu48FHgUxBY/3Y1ZySIAm+jbS8dePWfbVjYsRG1frQ/bC66yf99zEmO
+ rCCOtixx+GlR1cMYBqPRZbAzzX6wiE6a5c60DTRWkAGZ+m+yyGDlzYt4xAy/GDEov9z+aNtLBqo
+ Gxn4+xWjNDpx79LjWdVicZd1gu5b/KKWIxBDlksArXyjuhapCkw3GTAsL2D82eAzpd/aFGsjmxT
+ fi3SlVPP8qxgfpss6R2NdHRgXVTnfENN0Vg6VWY+DGSTnVXrNJZ8mJrjDci52MQ9UZkK5MlBimn
+ sTKA1kSMqxFMCoWxfV8hv6N/lQ/UdvfzhMvHFxiWkDkP+x5FnhmolaQD6pA/66lFl39mSXdm6Ju
+ 7+EuGLW6vgPkfpHTVddqsRxB8Rv2NE7HcZZElW5xm8XDFR1aYFcyDJGxJQSe41W4nCldFxbw
+X-Proofpoint-GUID: Q1OvrGkmk94vhw7Gz2l11COiThucXOS5
+X-Authority-Analysis: v=2.4 cv=KtNN2XWN c=1 sm=1 tr=0 ts=688a6ef0 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Wb1JkmetP80A:10 a=s8YR1HE3AAAA:8 a=14ipHPXA7Wsnq1XJWM0A:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=jGH_LyMDp9YhSvY-UuyI:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-07-30_05,2025-07-30_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  clxscore=1015 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- adultscore=0 mlxlogscore=999 bulkscore=0 spamscore=0 impostorscore=0
+ adultscore=0 mlxlogscore=831 bulkscore=0 spamscore=0 impostorscore=0
  mlxscore=0 malwarescore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
  authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507300137
+ engine=8.19.0-2505280000 definitions=main-2507300140
 
-On Wed, Jul 30, 2025 at 02:28:25PM +0800, Yijie Yang wrote:
+On Tue, Jul 29, 2025 at 05:00:27PM +0800, Chaoyi Chen wrote:
+> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 > 
+> This series focuses on adding Type-C DP support for USBDP PHY and DP
+> driver. The USBDP PHY and DP will perceive the changes in cable status
+> based on the USB PD and Type-C state machines provided by TCPM. Before
+> this, the USBDP PHY and DP controller of RK3399 sensed cable state
+> changes through extcon, and devices such as the RK3399 Gru-Chromebook
+> rely on them. This series should not break them.
 > 
-> On 2025-07-29 18:37, Dmitry Baryshkov wrote:
-> > On Tue, Jul 29, 2025 at 09:32:00AM +0800, Yijie Yang wrote:
-> > > The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
-> > > the Hamoa IoT SoM and a carrier board. Together, they form a complete
-> > > embedded system capable of booting to UART.
-> > > 
-> > > This change enables and overlays the following peripherals on the carrier
-> > > board:
-> > > - UART
-> > > - On-board regulators
-> > > - USB Type-C mux
-> > > - Pinctrl
-> > > - Embedded USB (EUSB) repeaters
-> > > - NVMe
-> > > - pmic-glink
-> > > - USB DisplayPorts
-> > > 
 
+[....]
 
-> > > +	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
-> > 
-> > Hmm, so there are regulators for the retimer, but they are not used.
-> > Could you please point out, why?
+> ====
+> 2. DP HPD event notify
 > 
-> According to the schematic, there is a regulator and a retimer (PS8830).
-> However, as mentioned above, the retimer is not connected to USB 0 and is
-> therefore not used in the EVK. As a result, the regulator is left unused in
-> this context.
+> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+> the CDN-DP can be switched to output to one of the PHYs.
+> 
+> USB/DP PHY0 ---+
+>                | <----> CDN-DP controller
+> USB/DP PHY1 ---+
 
-What is connected to the retimer then?
+Could you please clarify this, can you switch DP stream between two
+USB-C outputs? What happens if user plugs in DP dongles in both USB-C
+ports?
 
 > 
-> > 
-> > > +		compatible = "regulator-fixed";
-> > > +
-
-[...]
-
-> > > +
-> > > +	usb_1_ss0_sbu_default: usb-1-ss0-sbu-state {
-> > > +		mode-pins {
-> > > +			pins = "gpio166";
-> > > +			function = "gpio";
-> > > +			bias-disable;
-> > > +			drive-strength = <2>;
-> > > +			output-high;
-> > 
-> > What does this pin do? It's not recommended to set GPIO values through
-> > pinctrl.
+> BTW, one of the important things to do is to implement extcon-like
+> notifications. I found include/drm/bridge/aux-bridge.h , but if the
+> aux-bridge is used, the bridge chain would look like this:
 > 
-> It is used to switch data lines between USB Type-C orientation detection and
-> DisplayPort AUX channels.
+> PHY0 aux-bridge ---+
+>                    | ----> CDN-DP bridge
+> PHY1 aux-bridge ---+
+> 
+> Oh, CDN-DP bridge has two previous aux-bridge!
+> 
+> Now, I try to use drm_connector_oob_hotplug_event() to notify HPD
+> state between PHY and CDN-DP controller.
 
-I don't think I follow it here. Which data lines? Type-C orientation
-detection uses CC1 / CC2, DP AUX use SBU lines.
-
-> When this GPIO is high, USB0 operates in
-> orientation detection mode.
-
-What does this mean?
+Does it actually work? The OOB HPD event will be repoted for the usb-c
+connector's fwnode, but the DP controller isn't connected to that node
+anyhow. If I'm not mistaken, the HPD signal will not reach DP driver in
+this case.
 
 > 
-> > 
-> > > +		};
-> > > +
-> > > +		oe-n-pins {
-> > > +			pins = "gpio168";
-> > > +			function = "gpio";
-> > > +			bias-disable;
-> > > +			drive-strength = <2>;
-> > > +		};
-> > > +
-> > > +		sel-pins {
-> > > +			pins = "gpio167";
-> > > +			function = "gpio";
-> > > +			bias-disable;
-> > > +			drive-strength = <2>;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	wcn_bt_en: wcn-bt-en-state {
-> > > +		pins = "gpio116";
-> > > +		function = "gpio";
-> > > +		drive-strength = <2>;
-> > > +		bias-disable;
-> > > +	};
-> > > +
-> > > +	wwan_sw_en: wwan-sw-en-state {
-> > > +		pins = "gpio221";
-> > > +		function = "gpio";
-> > > +		drive-strength = <4>;
-> > > +		bias-disable;
-> > > +	};
-> > > +
-> > > +	wcn_sw_en: wcn-sw-en-state {
-> > > +		pins = "gpio214";
-> > > +		function = "gpio";
-> > > +		drive-strength = <2>;
-> > > +		bias-disable;
-> > > +	};
-> > > +
-> > > +	wcn_usb_sw_n: wcn-usb-sw-n-state {
-> > 
-> > What does this pin do? Using pinctrl to set GPIO values is not
-> > recommended AFAIR.
-> 
-> This pin functions similarly to usb-1-ss0-sbu-state; it controls the data
-> switch between signals from the USB connector and WLAN data.
-
-Could you please explain it? Does it toggle USB2 signals(you've added it
-to the USB2 PHY) being routed either to the USB connector or to the WiFi
-card? Or do you mean something else?
-
-> > > +&usb_2_hsphy {
-> > > +	phys = <&eusb5_repeater>;
-> > > +
-> > > +	pinctrl-0 = <&wcn_usb_sw_n>;
-> > > +	pinctrl-names = "default";
-> > > +};
-> > > +
-> > > +&usb_mp_hsphy0 {
-> > > +	phys = <&eusb6_repeater>;
-> > > +};
-> > > +
-> > > +&usb_mp_hsphy1 {
-> > > +	phys = <&eusb3_repeater>;
-> > > +};
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> 
-> -- 
-> Best Regards,
-> Yijie
+> Patch1 add new Type-C mode switch for RK3399 USBDP phy binding.
+> Patch2 add typec_mux and typec_switch for RK3399 USBDP PHY.
+> Patch3 drops CDN-DP's extcon dependency when Type-C is present.
+> Patch4 add missing dp_out port for RK3399 CDN-DP.
+> Patch5 add Type-C DP support for RK3399 EVB IND board.
 > 
 
 -- 
