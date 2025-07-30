@@ -1,116 +1,149 @@
-Return-Path: <devicetree+bounces-200611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F01B1576B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 04:06:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0382B15797
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 04:37:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30D221892E5A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 02:07:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49A53B09A6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 02:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8449718C933;
-	Wed, 30 Jul 2025 02:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE5E1B0413;
+	Wed, 30 Jul 2025 02:37:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="z8qrXkvY"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="AgwMK+2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6523EEBA;
-	Wed, 30 Jul 2025 02:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA8E288A2;
+	Wed, 30 Jul 2025 02:37:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753841212; cv=none; b=tCp7diN89xWy0MAYDuXRABtihu5x5zWYdWBSAHYkBvTAjfdUHotMkcMwue0Oe6b4RdNHnO5wE6sLH3uPtIDwk+lVpyFxLrewYismiGPvXaDHBGZpdKpMqBFNzKMsg/wvVgir3yaErrNJenKOuqx1y6M/XZEU4wUEwq8qMoLrx1I=
+	t=1753843051; cv=none; b=Lh8rjaNhE/q7TWmxS4kzi9yXc4yfC4hU2V1bJlHHCgEqgIE+fk6MRvqgQ5kcgp+cjYFzOU48fvfI97ruxkePK/xKqEMGmy2psAhYfe6aWzJGAtH949h9lIeGEWWx5+8Vck6mzTXCs1iwREc4ismegAAj9/cMa6O7Fdaj9J4DEtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753841212; c=relaxed/simple;
-	bh=0TN0JJ0sPEdY8+AEKsqH5z5n1c0D9g4cUEGihAx6U0I=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZ9Lnoqkty1hLUO4tarxuz/eyuDrBxWZetlK+Kpul9ZLhtuAVsqmVPqUr/ukklGl0+HJS/9w3ntQ0bSpRMDr3P01djbwQ0TY/om42n63LmwojTpx0b0S2003YuFi4Ukz9FKQRorQTqeUKfONADZ7oZ1wZAxPOoTvbVSLkTgOALA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=z8qrXkvY; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1753841206;
-	bh=aH1M1cXyquaTzAxijiw+AvsTfYNzXEKIaPK9sUyBhAM=; l=996;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=z8qrXkvYk8kFfhDd5w7oD5wF5e4qZTv0TuSMOAbuGcYR3z0zNzqxsEvYI1eAo7Ca8
-	 JRZl/KTvuZ1wl24JauzwpEs3LRfAtUcamPNGRToUdsIYweWD6OGOOIRUGOxnJWw5/w
-	 FZoCmxAv45R4a0rpmWCfwhPzHbbsxbCWclaLLnqjtIgXW0E2c2Uz4uuHOahyXGipj2
-	 yuRSC88AAcXSMhWJRaQKE/ZE0D4LR7pUhLTwFEDwkudS2KbA050G/DynYwLbtyd3ui
-	 xDJ0kaQcEuEvmYSszEdoTTfx64PXKV+dryI090UNtm+hNTjRcerYATEnadnkpdqJEC
-	 pKi+LWGtsRsnA==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(244573:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Wed, 30 Jul 2025 10:06:32 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Wed, 30 Jul
- 2025 10:06:32 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Wed, 30 Jul 2025 10:06:32 +0800
-Date: Wed, 30 Jul 2025 10:07:16 +0800
-From: ChiYuan Huang <cy_huang@richtek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: power: supply: Add Richtek RT9756 smart
- cap divider charger
-Message-ID: <aIl+VKFURqFfXKz3@git-send.richtek.com>
-References: <cover.1753759794.git.cy_huang@richtek.com>
- <3fa997b42b4aec43fc182a043cf521f7e3e7fcb3.1753759794.git.cy_huang@richtek.com>
- <3603a744-e898-49ef-968a-2388e14cae54@kernel.org>
+	s=arc-20240116; t=1753843051; c=relaxed/simple;
+	bh=r6EJUgnKNkBU/gY2vKM1Kph1PWJOeN4y03H/SRXg+vA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qkbXCn1wiWPp+stLbtOkhrxtpp4Itsvi0Aoe6n/GAAvJ4rjS1QRTONcBfh/nqMnGAINbqUNddm69yisBQqVWnu0ukJKlzAVHeG1/uIw/5BwP2stDLPoEViRdvpYkTr+L48OO/J71wPxgpQQTcBtiAGkk1CvPdTk8dvLhgA6pJ1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=AgwMK+2x; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 079EC20F9E;
+	Wed, 30 Jul 2025 04:37:26 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 8jRGBdc8Sp0M; Wed, 30 Jul 2025 04:37:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1753843045; bh=r6EJUgnKNkBU/gY2vKM1Kph1PWJOeN4y03H/SRXg+vA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=AgwMK+2xLh/uRypIC/UB7RAXvQhhzpfFuUw3sFrlic/janHA/4c574mpUHzuP2h+r
+	 GNL2CupOEq6B5gdiZV45oHIDI15qtrPbsHYqpwM+J7ZmXSRWqNxJGO71PZTccZ32gv
+	 f9t8yDb2AjhhPWT1+2Edh/9S4pP4zsJ9FmYGq/WgRPGHSR/Cr4mlHMxgoOGaM65pSL
+	 4SJ7xThP+4fULiS0c/geMdiST2UWrUW5oJXk/kIwZL3f7tZtQApxwNbspRarsfTCT3
+	 Sbgzjq328tWP01hPwQEwMF4PU96Rc4IqwCcCbOt9qEoBmyfu/21MlpHaCTnDYEwpF4
+	 EfrzKAF4mIMiw==
+Date: Wed, 30 Jul 2025 02:37:09 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net 1/3] dt-bindings: net: thead,th1520-gmac: Describe
+ APB interface clock
+Message-ID: <aImFVW1Pl_QHijWx@pie>
+References: <20250729093734.40132-1-ziyao@disroot.org>
+ <20250729093734.40132-2-ziyao@disroot.org>
+ <20250729-canal-stimuli-492b4550108c@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3603a744-e898-49ef-968a-2388e14cae54@kernel.org>
+In-Reply-To: <20250729-canal-stimuli-492b4550108c@spud>
 
-On Tue, Jul 29, 2025 at 05:40:32PM +0200, Krzysztof Kozlowski wrote:
-> On 29/07/2025 06:21, cy_huang@richtek.com wrote:
-> > +
-> > +  shunt-resistor-micro-ohms:
-> > +    description: Battery current sense resistor mounted.
-> > +    default: 2000
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - wakeup-source
+On Tue, Jul 29, 2025 at 06:43:42PM +0100, Conor Dooley wrote:
+> On Tue, Jul 29, 2025 at 09:37:32AM +0000, Yao Zi wrote:
+> > Besides ones for GMAC core and peripheral registers, the TH1520 GMAC
+> > requires one more clock for configuring APB glue registers. Describe
+> > it in the binding.
+> > 
+> > Though the clock is essential for operation, it's not marked as required
+> > for now to avoid introducing new dt-binding warnings to existing dts.
 > 
-> Why do you require this? I cannot find any use of it, so maybe I missed
-> some change in Linux code (and that's second question like that for
-> Richtek, so refer to your other patchsets for contexr).
-> 
+> Nah, introduce the warnings. If the clock is required for operation, it
+> should be marked as such. You've made it optional in the driver, which
+> is the important part (backwards compatible) and you've got the dts
+> patch in the series.
 
-This will mark the interrupt as wakeup capable.
-https://elixir.bootlin.com/linux/v6.16/source/drivers/i2c/i2c-core-of.c#L57
-https://elixir.bootlin.com/linux/v6.16/source/drivers/i2c/i2c-core-base.c#L547
-> > +  - interrupts
-> > +
-> 
-> Missing ref to power supply.
-> 
-> > +additionalProperties: false
-> > +
-> 
-Ack, will add the below lines to the document for next revision.
+Thanks for the confirmation, will remove minItems in v2.
 
-allOf:
-  - $ref: power-supply.yaml#
-> unevaluated instead
-> 
-Ack.
+Regards,
+Yao Zi
 
-Thx.
+> > 
+> > Fixes: f920ce04c399 ("dt-bindings: net: Add T-HEAD dwmac support")
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  .../devicetree/bindings/net/thead,th1520-gmac.yaml        | 8 ++++++--
+> >  1 file changed, 6 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> > index 6d9de3303762..fea9fbc1d006 100644
+> > --- a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> > @@ -59,14 +59,18 @@ properties:
+> >        - const: apb
+> >  
+> >    clocks:
+> > +    minItems: 2
+> >      items:
+> >        - description: GMAC main clock
+> >        - description: Peripheral registers interface clock
+> > +      - description: APB glue registers interface clock
+> >  
+> >    clock-names:
+> > +    minItems: 2
+> >      items:
+> >        - const: stmmaceth
+> >        - const: pclk
+> > +      - const: apb
+> >  
+> >    interrupts:
+> >      items:
+> > @@ -88,8 +92,8 @@ examples:
+> >          compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
+> >          reg = <0xe7070000 0x2000>, <0xec003000 0x1000>;
+> >          reg-names = "dwmac", "apb";
+> > -        clocks = <&clk 1>, <&clk 2>;
+> > -        clock-names = "stmmaceth", "pclk";
+> > +        clocks = <&clk 1>, <&clk 2>, <&clk 3>;
+> > +        clock-names = "stmmaceth", "pclk", "apb";
+> >          interrupts = <66>;
+> >          interrupt-names = "macirq";
+> >          phy-mode = "rgmii-id";
+> > -- 
+> > 2.50.1
+> > 
+
+
 
