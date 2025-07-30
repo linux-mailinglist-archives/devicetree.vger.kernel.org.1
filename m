@@ -1,263 +1,264 @@
-Return-Path: <devicetree+bounces-200844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94E5B163C3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:35:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0875BB163DE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 17:46:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B930A5A3D3F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:35:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080385A0620
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jul 2025 15:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740D62264CC;
-	Wed, 30 Jul 2025 15:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FB62D9EDF;
+	Wed, 30 Jul 2025 15:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Mg7rbI5X"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LB8kfxhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from relay16.mail.gandi.net (relay16.mail.gandi.net [217.70.178.236])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D2F433A5;
-	Wed, 30 Jul 2025 15:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E6A2652B4;
+	Wed, 30 Jul 2025 15:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.236
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753889746; cv=none; b=rrRPSR5kR+JCfQVomF2IZnDcOeRSDP6PMYum7V8NjeMaMKzQKBYN/zkEezzzl0TY8e5f6r0WG0VDiMW3QPapGCFiDzi7Nqvlca0SdvsMDvHv/ie98cTvFKrBp8uzgQyYa35w/j8Sp0qEWGkx9e8ZxKOEhhTF6yQfn07v3w5pzgU=
+	t=1753890369; cv=none; b=pJ9tFYteLZbohSWBwfyINKfxE21BYTe4yVZkPKSpX7wXpTFcNm+bICLOHTqzmp14wxtXZmaMmcAPUpZ9o56v09fK8eBx/IlezWlF0k5nT1aE/bSJrhaPV8CjSnNQ0o//5EQqw+FtQuIXeFXnnPDOLTMHx4nno6/Fydgtf+F6QZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753889746; c=relaxed/simple;
-	bh=kCyztr77u4EEyOxkCXt5j2Yt4z3W0IFI7x3HI5IuhQs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W/uZncVftbiQuOLcrmJPxz6BqKSxRuhXUjIkUyYGQ9knlNhxizRCx2E9jgVfNU/mYLDb4V2o8R+STPofWpExKHW/yZnMAvBG1j0f+mM+uMI0RVGkf8D0XVPrdTl4SujrC3pdhUBW1rbfphpVjPvPRjVI7Pj+Dw/nBvWV5CZD9Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Mg7rbI5X; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1753889744; x=1785425744;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kCyztr77u4EEyOxkCXt5j2Yt4z3W0IFI7x3HI5IuhQs=;
-  b=Mg7rbI5XQshdvZkwhBZiVT+bxHqQdf5wkG0akaGaK94ndEzGMZ+KbP2I
-   8VPt4NO3B1038kMEzvWwevozH8+M1ciDR1MDpAEs1+pJeRrR7l8PSfPuw
-   cKUZBkI6dLNaVEvstETSOXtVrUkzND7SRD61kfou7bjn40rosoFcch+Ve
-   ytrdX4VDYNYJ4t0I9HldhQuqiBCJHHfVKNBc5cCyWwcDfXmza6UdPGncn
-   wy3wFlRVgug2hDX0kiAAYNbN33po09pxb0hLULBMHTCpJtpIj9LONMCV7
-   pQfsktSqzLEs+IpRAzZcKEdMNXcbYQXHVfafM0yLUbOCMqg2GnI4cfK5I
-   Q==;
-X-CSE-ConnectionGUID: g8D6Q5T3TfWXJ/bmIwY/3A==
-X-CSE-MsgGUID: SD8QBSjaTiKPoJE5JCqgnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11507"; a="66893167"
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; 
-   d="scan'208";a="66893167"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2025 08:35:43 -0700
-X-CSE-ConnectionGUID: fD5ms+nfRemb1yEBTKKsNA==
-X-CSE-MsgGUID: tvp5Dn4uTfCYWOuhLIDf3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,350,1744095600"; 
-   d="scan'208";a="163467311"
-Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 30 Jul 2025 08:35:41 -0700
-Received: from kbuild by 160750d4a34c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uh8qA-0002sy-1S;
-	Wed, 30 Jul 2025 15:35:38 +0000
-Date: Wed, 30 Jul 2025 23:34:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Mehdi Djait <mehdi.djait@linux.intel.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: Add OmniVision OV6211 image sensor
- driver
-Message-ID: <202507302325.nnfzHwrF-lkp@intel.com>
-References: <20250729231454.242748-3-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1753890369; c=relaxed/simple;
+	bh=L8XzuUBtVMiUY3rJrZnCLHPBuVniF1PoqG4acgTlRg0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lkaxFUa2aVGic1Q7PLyBRwCehn4WdDwqKWL19Ba8AJMudomS7PKIv/7wDXLIRjSBgKG9OHb8Paej8BbFJZ+WvS1Pkt0dwWcMRLqJlPX5KHIW7z78w/T1zI8SUPPCyiCU7QXgHtwxkPXbqrcpmKnVS6uNpHzwO0fTsCEjsznBWDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LB8kfxhH; arc=none smtp.client-ip=217.70.178.236
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EB2DA43881;
+	Wed, 30 Jul 2025 15:45:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1753890356;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BVuoo4VG2tlrXaQpp6d0XpKPV/Ar3pXYePMdRqvPDDM=;
+	b=LB8kfxhHMjKFKuZDoPujS+Fa1sNVuy84ku1XnoiCqQfC820A/eyfM6Xrd3IcuX8XPe7Pnp
+	ym7Ne/+6rpAvNDTpd55CUZcf8hGAejzcOtJRGL3tarBMONIWC77eM6yT+0RG8fDFcyE8oz
+	iJ++aVnKu70MqWNrPT7zWBXIkG5rfadhW8gXhEcLAf1+3aWoN0riVVEh9MTzKuDGWrj7yF
+	YEpYWwy02OUTU/cl7YWzhbu+dnG4ke0fGAN3St4df7l90pjwnW7Zx0carXWnt9cwpov+Ke
+	UZnYJZUVlEGSPvXce1fKL7T8uShf2EXTIiF+ElzO1jtL0ct/hfTwDqt6i58kUw==
+Date: Wed, 30 Jul 2025 17:45:53 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ayush Singh <ayush@beagleboard.org>, Mark Brown <broonie@kernel.org>,
+ herve.codina@bootlin.com, conor+dt@kernel.org, Jason Kridner
+ <jkridner@beagleboard.org>, Deepak Khatri <lorforlinux@beagleboard.org>,
+ Dhruva Gole <d-gole@ti.com>, Robert Nelson <robertcnelson@beagleboard.org>,
+ Andrew Davis <afd@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, linux-spi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] devicetree: bindings: spi: Introduce SPI bus
+ extensions
+Message-ID: <20250730174553.4df8037b@booty>
+In-Reply-To: <c65d26d0-51b8-4131-a755-6c72b7dea549@kernel.org>
+References: <20250729-spi-bus-extension-v1-0-b20c73f2161a@beagleboard.org>
+	<20250729-spi-bus-extension-v1-4-b20c73f2161a@beagleboard.org>
+	<c65d26d0-51b8-4131-a755-6c72b7dea549@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250729231454.242748-3-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdelkeefvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepnfhutggrucevvghrvghsohhlihcuoehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhkeeigeethfegleeiheehgfdtkeffvefggedvgeegleekheejteettefhvedugfenucffohhmrghinhepkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudehpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlr
+ dhorhhgpdhrtghpthhtohephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjkhhrihgunhgvrhessggvrghglhgvsghorghrugdrohhrghdprhgtphhtthhopehlohhrfhhorhhlihhnuhigsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepugdqghholhgvsehtihdrtghomh
 
-Hi Vladimir,
+On Tue, 29 Jul 2025 14:52:00 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-kernel test robot noticed the following build errors:
+> On 29/07/2025 11:51, Ayush Singh wrote:
+> > An SPI bus can be wired to the connector and allows an add-on board to
+> > connect additional SPI devices to this bus.
+> >  =20
+>=20
+> ... so I found the binding. Not marked by my filters due to non-standard
+> subject.
+>=20
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-pat=
+ches.html#i-for-patch-submitters
+>=20
+> > Those additional SPI devices could be described as sub-nodes of the SPI
+> > bus controller node however for hotplug connectors described via device
+> > tree overlays there is additional level of indirection, which is needed
+> > to decouple the overlay and the base tree:
+> >=20
+> >   --- base device tree ---
+> >=20
+> >   spi1: spi@abcd0000 {
+> >       compatible =3D "xyz,foo";
+> >       spi-bus-extension@0 {
+> >           spi-bus =3D <&spi_ctrl>;
+> >       };
+> >       ...
+> >   };
+> >=20
+> >   spi5: spi@cafe0000 {
+> >       compatible =3D "xyz,bar";
+> >       spi-bus-extension@0 {
+> >           spi-bus =3D <&spi_sensors>;
+> >       };
+> >       ...
+> >   };
+> >=20
+> >   connector {
+> >       spi_ctrl: spi-ctrl {
+> >           spi-parent =3D <&spi1>;
+> >           #address-cells =3D <1>;
+> >           #size-cells =3D <0>;
+> >       };
+> >=20
+> >       spi_sensors: spi-sensors {
+> >           spi-parent =3D <&spi5>;
+> >           #address-cells =3D <1>;
+> >           #size-cells =3D <0>;
+> >       };
+> >   }; =20
+>=20
+> It looks like you are re-doing I2C work. Please wait till I2C discussion
+> finishes, so we won't have to comment on the same in multiple places.
+>=20
+> >=20
+> >   --- device tree overlay ---
+> >=20
+> >   ...
+> >   // This node will overlay on the spi-ctrl node of the base tree
+> >   spi-ctrl {
+> >       eeprom@50 { compatible =3D "atmel,24c64"; ... };
+> >   };
+> >   ...
+> >=20
+> >   --- resulting device tree ---
+> >=20
+> >   spi1: spi@abcd0000 {
+> >       compatible =3D "xyz,foo";
+> >       spi-bus-extension@0 {
+> >           spi-bus =3D <&spi_ctrl>;
+> >       };
+> >       ...
+> >   };
+> >=20
+> >   spi5: spi@cafe0000 {
+> >       compatible =3D "xyz,bar";
+> >       spi-bus-extension@0 {
+> >           spi-bus =3D <&spi_sensors>;
+> >       };
+> >       ...
+> >   };
+> >=20
+> >   connector {
+> >       spi_ctrl: spi-ctrl {
+> >           spi-parent =3D <&spi1>;
+> >           #address-cells =3D <1>;
+> >           #size-cells =3D <0>;
+> >=20
+> >           device@1 { compatible =3D "xyz,foo"; ... };
+> >       };
+> >=20
+> >       spi_sensors: spi-sensors {
+> >           spi-parent =3D <&spi5>;
+> >           #address-cells =3D <1>;
+> >           #size-cells =3D <0>;
+> >       };
+> >   };
+> >=20
+> > Here spi-ctrl (same goes for spi-sensors) represent the part of SPI bus
+> > that is on the hot-pluggable add-on. On hot-plugging it will physically
+> > connect to the SPI adapter on the base board. Let's call the 'spi-ctrl'
+> > node an "extension node".
+> >=20
+> > In order to decouple the overlay from the base tree, the SPI adapter
+> > (spi@abcd0000) and the extension node (spi-ctrl) are separate nodes.
+> >=20
+> > The extension node is linked to the SPI bus controller in two ways. The
+> > first one with the spi-bus-extension available in SPI controller
+> > sub-node and the second one with the spi-parent property available in
+> > the extension node itself.
+> >=20
+> > The purpose of those two links is to provide the link in both direction
+> > from the SPI controller to the SPI extension and from the SPI extension
+> > to the SPI controller.
+> >=20
+> > Signed-off-by: Ayush Singh <ayush@beagleboard.org>
+> > ---
+> >  .../devicetree/bindings/spi/spi-controller.yaml    | 66 ++++++++++++++=
++++++++-
+> >  1 file changed, 65 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml =
+b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> > index 82d051f7bd6e09dab9809c85ff13475d2b118efd..9b44ce4542f9552c94cb065=
+8ffe3f6d3f29bc434 100644
+> > --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> > @@ -25,6 +25,13 @@ properties:
+> >    "#size-cells":
+> >      const: 0
+> > =20
+> > +  spi-parent:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      In case of an SPI bus extension, reference to the SPI bus contro=
+ller
+> > +      this extension is connected to. In other word, reference the SPI=
+ bus
+> > +      controller on the fixed side that drives the bus extension.
+> > +
+> >    cs-gpios:
+> >      description: |
+> >        GPIOs used as chip selects.
+> > @@ -111,7 +118,26 @@ properties:
+> >        - compatible
+> > =20
+> >  patternProperties:
+> > -  "^.*@[0-9a-f]+$":
+> > +  'spi-bus-extension@[0-9a-f]+$':
+> > +    type: object
+> > +    description:
+> > +      An SPI bus extension connected to an SPI bus. Those extensions a=
+llow to
+> > +      decouple SPI busses when they are wired to connectors. =20
+>=20
+> I really do not get why you need separate two-way phandles for marking
+> parent child relationship. IOW, if you need two way, then why not graphs?
+>=20
+> Or why not just making the device@2 a child of SPI, since it is coming
+> from overlay.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linuxtv-media-pending/master linus/master v6.16 next-20250730]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+For the same reason as in I2C (and the proposed solution is the same).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vladimir-Zapolskiy/dt-bindings-media-i2c-Add-OmniVision-OV6211-image-sensor/20250730-071618
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250729231454.242748-3-vladimir.zapolskiy%40linaro.org
-patch subject: [PATCH v2 2/2] media: i2c: Add OmniVision OV6211 image sensor driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20250730/202507302325.nnfzHwrF-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250730/202507302325.nnfzHwrF-lkp@intel.com/reproduce)
+As you wrote above, Ayush could wait for the I2C discussion to finish.
+Problem is, the I2C discussion is not moving forward: Herv=C3=A9 is sending
+proposals but there is no feedback on the core of the proposal, and no
+feedback at all on the latest iteration. In case your filters missed it:
+https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootlin.co=
+m/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202507302325.nnfzHwrF-lkp@intel.com/
+I think Ayush's series is useful anyway in that it shows the approach
+Herv=C3=A9 proposed works unmodified for another subsystem and is useful for
+a different use case.
 
-All errors (new ones prefixed by >>):
+Luca
 
->> drivers/media/i2c/ov6211.c:672:18: error: call to undeclared function 'devm_v4l2_sensor_clk_get'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     672 |         ov6211->xvclk = devm_v4l2_sensor_clk_get(&client->dev, NULL);
-         |                         ^
->> drivers/media/i2c/ov6211.c:672:16: error: incompatible integer to pointer conversion assigning to 'struct clk *' from 'int' [-Wint-conversion]
-     672 |         ov6211->xvclk = devm_v4l2_sensor_clk_get(&client->dev, NULL);
-         |                       ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   2 errors generated.
-
-
-vim +/devm_v4l2_sensor_clk_get +672 drivers/media/i2c/ov6211.c
-
-   654	
-   655	static int ov6211_probe(struct i2c_client *client)
-   656	{
-   657		struct ov6211 *ov6211;
-   658		unsigned long freq;
-   659		int ret;
-   660	
-   661		ov6211 = devm_kzalloc(&client->dev, sizeof(*ov6211), GFP_KERNEL);
-   662		if (!ov6211)
-   663			return -ENOMEM;
-   664	
-   665		ov6211->regmap = devm_cci_regmap_init_i2c(client, 16);
-   666		if (IS_ERR(ov6211->regmap))
-   667			return dev_err_probe(&client->dev, PTR_ERR(ov6211->regmap),
-   668					     "failed to init CCI\n");
-   669	
-   670		v4l2_i2c_subdev_init(&ov6211->sd, client, &ov6211_subdev_ops);
-   671	
- > 672		ov6211->xvclk = devm_v4l2_sensor_clk_get(&client->dev, NULL);
-   673		if (IS_ERR(ov6211->xvclk))
-   674			return dev_err_probe(&client->dev, PTR_ERR(ov6211->xvclk),
-   675					     "failed to get XVCLK clock\n");
-   676	
-   677		freq = clk_get_rate(ov6211->xvclk);
-   678		if (freq && freq != OV6211_MCLK_FREQ_24MHZ)
-   679			return dev_err_probe(&client->dev, -EINVAL,
-   680					"XVCLK clock frequency %lu is not supported\n",
-   681					freq);
-   682	
-   683		ret = ov6211_check_hwcfg(ov6211);
-   684		if (ret)
-   685			return dev_err_probe(&client->dev, ret,
-   686					     "failed to check HW configuration\n");
-   687	
-   688		ov6211->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-   689							     GPIOD_OUT_HIGH);
-   690		if (IS_ERR(ov6211->reset_gpio))
-   691			return dev_err_probe(&client->dev, PTR_ERR(ov6211->reset_gpio),
-   692					     "cannot get reset GPIO\n");
-   693	
-   694		ov6211->avdd = devm_regulator_get_optional(&client->dev, "avdd");
-   695		if (IS_ERR(ov6211->avdd)) {
-   696			ret = PTR_ERR(ov6211->avdd);
-   697			if (ret != -ENODEV)
-   698				return dev_err_probe(&client->dev, ret,
-   699						     "Failed to get avdd regulator\n");
-   700	
-   701			ov6211->avdd = NULL;
-   702		}
-   703	
-   704		ov6211->dovdd = devm_regulator_get_optional(&client->dev, "dovdd");
-   705		if (IS_ERR(ov6211->dovdd)) {
-   706			ret = PTR_ERR(ov6211->dovdd);
-   707			if (ret != -ENODEV)
-   708				return dev_err_probe(&client->dev, ret,
-   709						     "Failed to get dovdd regulator\n");
-   710	
-   711			ov6211->dovdd = NULL;
-   712		}
-   713	
-   714		ov6211->dvdd = devm_regulator_get_optional(&client->dev, "dvdd");
-   715		if (IS_ERR(ov6211->dvdd)) {
-   716			ret = PTR_ERR(ov6211->dvdd);
-   717			if (ret != -ENODEV)
-   718				return dev_err_probe(&client->dev, ret,
-   719						     "Failed to get dvdd regulator\n");
-   720	
-   721			ov6211->dvdd = NULL;
-   722		}
-   723	
-   724		/* The sensor must be powered on to read the CHIP_ID register */
-   725		ret = ov6211_power_on(&client->dev);
-   726		if (ret)
-   727			return ret;
-   728	
-   729		ret = ov6211_identify_module(ov6211);
-   730		if (ret) {
-   731			dev_err_probe(&client->dev, ret, "failed to find sensor\n");
-   732			goto power_off;
-   733		}
-   734	
-   735		mutex_init(&ov6211->mutex);
-   736		ov6211->cur_mode = &supported_modes[0];
-   737	
-   738		ret = ov6211_init_controls(ov6211);
-   739		if (ret) {
-   740			dev_err_probe(&client->dev, ret, "failed to init controls\n");
-   741			goto mutex_destroy;
-   742		}
-   743	
-   744		ov6211->sd.internal_ops = &ov6211_internal_ops;
-   745		ov6211->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-   746		ov6211->sd.entity.ops = &ov6211_subdev_entity_ops;
-   747		ov6211->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-   748		ov6211->pad.flags = MEDIA_PAD_FL_SOURCE;
-   749		ret = media_entity_pads_init(&ov6211->sd.entity, 1, &ov6211->pad);
-   750		if (ret) {
-   751			dev_err_probe(&client->dev, ret,
-   752				      "failed to init media entity pads\n");
-   753			goto v4l2_ctrl_handler_free;
-   754		}
-   755	
-   756		ret = v4l2_async_register_subdev_sensor(&ov6211->sd);
-   757		if (ret < 0) {
-   758			dev_err_probe(&client->dev, ret,
-   759				      "failed to register V4L2 subdev\n");
-   760			goto media_entity_cleanup;
-   761		}
-   762	
-   763		/* Enable runtime PM and turn off the device */
-   764		pm_runtime_set_active(&client->dev);
-   765		pm_runtime_enable(&client->dev);
-   766		pm_runtime_idle(&client->dev);
-   767	
-   768		return 0;
-   769	
-   770	media_entity_cleanup:
-   771		media_entity_cleanup(&ov6211->sd.entity);
-   772	
-   773	v4l2_ctrl_handler_free:
-   774		v4l2_ctrl_handler_free(ov6211->sd.ctrl_handler);
-   775	
-   776	mutex_destroy:
-   777		mutex_destroy(&ov6211->mutex);
-   778	
-   779	power_off:
-   780		ov6211_power_off(&client->dev);
-   781	
-   782		return ret;
-   783	}
-   784	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
