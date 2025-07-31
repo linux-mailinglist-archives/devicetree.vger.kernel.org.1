@@ -1,86 +1,95 @@
-Return-Path: <devicetree+bounces-201043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DDB1724C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:48:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CCCB17256
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 200D83AE77B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:47:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B72627A6AB3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EF5239E84;
-	Thu, 31 Jul 2025 13:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1A92C3273;
+	Thu, 31 Jul 2025 13:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPXZJa6g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OYvfVm/Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1CA1E502;
-	Thu, 31 Jul 2025 13:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5361E502;
+	Thu, 31 Jul 2025 13:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753969698; cv=none; b=tt7Mg6DDPG88JYosOv2PWXKFtmwI2tPSk1cG/cAYqzSPhNHTDd6DdYursIlD0oJeI3uguX2pI9T28LxJGVcFrXBDjuH83j7FJeXTD3Cl1Rfj8fYoeUx317jvP2HQpNi37wNTL0T6z4cHdBOVWn4+Xqa6UJZiDB2lliU5/5MI32Y=
+	t=1753969804; cv=none; b=t/fvFR7fmJM9O3XIz0BppctDmkqTlaerywGS7mNVaE5WLYHtPP1j7LMUmssor21pgpOgOvUbEl3bHtcHWQwTTCUhkVN1det0pdFbNkyngoSchobAS5Db94tyhMUuBIfDU7BOgurE68KftS3dphrfDzx+v3VW4+FAtpr7livlcE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753969698; c=relaxed/simple;
-	bh=Q92AxWyd2wLBi6j5UGUyDa2dOb67fl0UgsLftyKpIik=;
+	s=arc-20240116; t=1753969804; c=relaxed/simple;
+	bh=jawTeo3jrKl31BlPRVIr+R1PBzhaxmiMePBk8kxuwVE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rQpZGXH9i3EABNvKRgkp+A0KWMJdz84LMYT6biNNgYS2mV9DyGovrvhwLu/SQ+69sXKEacxzDvYPzFVBxjoyuTcd9rcdYvyYiIr8Ak26DcFt3WYUEm7618DQGgHex3I/R5ZxvoZr9Q+ReOekB+nD6Zcy779kRlF7X9T0vKwUCe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPXZJa6g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06822C4CEEF;
-	Thu, 31 Jul 2025 13:48:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TJzO03ywRHSBoj3AlxXLAACFF2YPRJl5cDxvekkMod9BZ5XrbTfBKEf/JQhbKqAhoI1C6259T7huHopdqPgqIbP+gXx+5FY9+ooy9X9QM/L+6tx7tsVcQIPhZSUt4F3fzGIUyenY3PyxIkz3S5moNwe6AQMKs6YB0lQUWKXYA3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYvfVm/Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 466DCC4CEEF;
+	Thu, 31 Jul 2025 13:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753969697;
-	bh=Q92AxWyd2wLBi6j5UGUyDa2dOb67fl0UgsLftyKpIik=;
+	s=k20201202; t=1753969803;
+	bh=jawTeo3jrKl31BlPRVIr+R1PBzhaxmiMePBk8kxuwVE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BPXZJa6gj5rXxgdo/Xw79VqAJwhg31mBX5riQDGbZbbJZ8mdQNTdNozNBFd+pHfAK
-	 xPe95Gpba4YyMWCOO73WjN7rfBJxP1suTJQ2d4Z7YZ3RbhvkvK90tx13k8q8zpC7A0
-	 uNnx7rGE47Ro4dUFgB85nDS7/mNOfMU6ONTJvZ/+ZPh/c9cBoXsJxMGmzsfGopxAOj
-	 ifkFQbjDSpqKJsDgf1gdyzsKxVlbc95qvJci4+Jg5JoYonj1s0ZzWQjoDARLCG2EZR
-	 X5TdxzPrLma/hk5MIageLnK2665BSik4KfiLN4f5cQW19NPKLGMEmAqCkK7Xw1QpSw
-	 7Rxrzx3d0/UrQ==
-Date: Thu, 31 Jul 2025 14:48:13 +0100
-From: Lee Jones <lee@kernel.org>
-To: srini@kernel.org, Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: mfd: qnap,ts433-mcu: allow
- nvmem-layout child node
-Message-ID: <20250731134813.GJ1049189@google.com>
-References: <20250730172248.1875122-2-heiko@sntech.de>
- <175396964012.1212829.4001330716835123166.b4-ty@kernel.org>
+	b=OYvfVm/ZsnER1HAKkEC4ux4CBvQVHusXAIuQa7z1ZbnKXII3hVV0Vn6nrQDFfiX8s
+	 IRdZpm0EQQII1M9WaXzoygW+pWRitgstvVXD/ZlpibPf1tutHLt/QsaliYM4OU3u1w
+	 qBs4XJvMcr091e+bw3lFfjJr5tAIDLaOboOA8r+jbb8ev/LYEcDbA4keqduCjzqmdL
+	 87p7crjoiKMwL4dJ7CAtIp7BJ8bfAGCAtE9FYCezeSVRHNfEcSxoPRB0kF+Mg8B3Ud
+	 sHuncQm80xlb2D2GQQ2hL52M1WqmHfZ0HkZnwQ9KqTy5t+q6zDZXtJgCkz2Pu/yzqc
+	 oyDag2pTvuaUg==
+Date: Thu, 31 Jul 2025 08:50:02 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, linux-doc@vger.kernel.org,
+	linux-perf-users@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Will Deacon <will@kernel.org>,
+	Julius Werner <jwerner@chromium.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+	Le Goffic <legoffic.clement@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-clk@vger.kernel.org,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v5 02/20] dt-bindings: stm32: stm32mp25: add
+ `#access-controller-cells` property
+Message-ID: <175396980193.2134840.5721329894183158883.robh@kernel.org>
+References: <20250728-ddrperfm-upstream-v5-0-03f1be8ad396@foss.st.com>
+ <20250728-ddrperfm-upstream-v5-2-03f1be8ad396@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <175396964012.1212829.4001330716835123166.b4-ty@kernel.org>
+In-Reply-To: <20250728-ddrperfm-upstream-v5-2-03f1be8ad396@foss.st.com>
 
-On Thu, 31 Jul 2025, Lee Jones wrote:
 
-> On Wed, 30 Jul 2025 19:22:47 +0200, Heiko Stuebner wrote:
-> > The MCU has an eeprom memory connected internally, that for example
-> > contains some mac-addresses for the soc gmac controllers.
-> > 
-> > Therefore allow defining the nvmem-layout for the eeprom.
-> > 
-> > 
+On Mon, 28 Jul 2025 17:29:33 +0200, ClÈment Le Goffic wrote:
+> RCC is able to check the availability of a clock.
+> Allow to query the RCC with a firewall ID.
 > 
-> Applied, thanks!
+> Signed-off-by: ClÈment Le Goffic <clement.legoffic@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/clock/st,stm32mp25-rcc.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> [1/2] dt-bindings: mfd: qnap,ts433-mcu: allow nvmem-layout child node
->       commit: 17edd13a0916c7c84966b4db96fe744986c3a04b
 
-This should have been applied to the previous set.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-I eventually worked out why it wasn't applying cleanly.
-
--- 
-Lee Jones [ÊùéÁêºÊñØ]
 
