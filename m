@@ -1,119 +1,90 @@
-Return-Path: <devicetree+bounces-201037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8F0B17220
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:35:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8B9B1721E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F5215459FC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:35:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 671F21C20F43
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0272C376B;
-	Thu, 31 Jul 2025 13:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26AA2C3257;
+	Thu, 31 Jul 2025 13:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BzgOYlwz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n62DkWJI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3AE2C08DF;
-	Thu, 31 Jul 2025 13:35:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA0E2C158D;
+	Thu, 31 Jul 2025 13:35:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753968912; cv=none; b=VQDcQR8wCAtHcPttnDkKXAb6P91kLwCMd+WeEIRotkA5s8h/jVGBMKj+iN64Gq8ELd7ofXlHNZkWefRmeDA8vbdVsZcBaeCDgVXb/c6/31bxqpD9We07Hh4nNCOvRl0IJ3pAcHDntnqXKx8+qTKwm9/scjRttHPOzNbYvlBPbh4=
+	t=1753968907; cv=none; b=pjvaPcNSB6OigSnEYUEn9UN2gpbNnXaN/CmwAAWttVjzm5bf9fqMOoQRzMzITFHTkMVRGx8I+Cx0UrUahaKkJ+ktYZqib1TDcsL+G2exjjglpkNs6GTREADYtPdUK+vAABnbaUMExHntsQnteL5J+GeLxIF1ef/7sNoor/WvsCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753968912; c=relaxed/simple;
-	bh=BpWZMH1JVcbEpdiTw6RbzbPmEx/pLBe2psuUMPreWYw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p3Xh8jCk3XMFrrhEEL1z2MP/T1MBJeviinWPLVBtio5dXcyCtN7OAnet9iLc6DtYfIpRO1KP4fKGMhKVFVbNx7WeY2DY3eE4VMOOVtJV3v2Ay00LbI1BDI5FSDzNnUSbrqLhiC8gJLwN27t8R7NJSPBtu3MRZJX5FkSEWGIIzGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BzgOYlwz; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AE10B443EE;
-	Thu, 31 Jul 2025 13:35:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753968907;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=My2aLPxmdnpZ3qTUzBLrCqn0REKR+9iuEoTW7pGZFAM=;
-	b=BzgOYlwzGRnkYY5poCQBmzn8jMwUTz/Ok1HYLcWyM01sOXjztsfhamRlWzW9uEN8m3R9zQ
-	gP4/kwyIRCDT9zoNMBSTPAVQZxwNpjOjwxA1JnHLY0Q0tliPT7Dv4xtdkZ+v085hX0uCvW
-	cQW/4yTi9Anhx9gqTnfQtuoXh4LPcB/639i3TwToj+h6ZaTBomtDarh2xMDRuYRV1yCIe0
-	nEn8NOpO/gkHDzXzyxL0vQLbqoZhGpurhCRgL2R6hmJToTbSPGh/DGfegjDOVq3X/ByRra
-	QmyWGxzQCjK2fN358+BLWEazzVeYnqQvCzOG1ndpcBEAyZi39o9yrzJtu7/v7Q==
-Date: Thu, 31 Jul 2025 15:35:02 +0200
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Russell
- King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>, Herve Codina
- <herve.codina@bootlin.com>, Florian Fainelli <f.fainelli@gmail.com>, Heiner
- Kallweit <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
- Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v10 01/15] dt-bindings: net: Introduce the
- ethernet-connector description
-Message-ID: <20250731153502.78eebb88@fedora.home>
-In-Reply-To: <8d0029bc-74b7-44bc-ae0b-606d5fd2d7c3@lunn.ch>
-References: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
-	<20250722121623.609732-2-maxime.chevallier@bootlin.com>
-	<8d0029bc-74b7-44bc-ae0b-606d5fd2d7c3@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1753968907; c=relaxed/simple;
+	bh=JlgjnISOVlbMm171G0UqLCdsAqO+LwlJ2wQNnZovLEA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pPvP9qEPbMipOqccemhOKGYwSeeU6KEI0psdruiZ5jiYTCmG60eLN7MJ0JuJqHKjWioDUM2xgwsoeNBArd2yvsrV0p9KTQ0mh8m0ngCAZlM/rNUBUZ99rhlm2oXDkqFhT1Dl+xgW8NoXXP93Y1e5oDWIno/9KmNMP0oWgtBCA5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n62DkWJI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E516C4CEEF;
+	Thu, 31 Jul 2025 13:35:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753968907;
+	bh=JlgjnISOVlbMm171G0UqLCdsAqO+LwlJ2wQNnZovLEA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n62DkWJI5QDzlSFj4I0ZZxFbWRpzaHmiyzX3/mXIv+bAD973YvFciv5FfgfDDdfy3
+	 g8wvomrxmJ095KgSDtLbd8toTpFS6e9ZZjIHS30te5ucGfNGQ+x+oa5w3NUn5UCdEu
+	 i1D5AX5tXpnVOc9/SgA4vGyGdm9wB/rkVqBUdjc9YNukoEhPQmNC3NaxO79vYFMPDS
+	 S/+V15V6uMBAB0eoSFQRlSXzgG2tWk8cBgm6tBKhLuNFbKGg3I0nIgzpG19QV6bXnT
+	 pkiJ0icmE5bjGGDxC47KnVLpgUdZCRtUYVV19Yk+82WJmxd0Txsa5Bay9lhYfVHut1
+	 tTCGBWuAZjSiQ==
+Date: Thu, 31 Jul 2025 08:35:06 -0500
+From: Rob Herring <robh@kernel.org>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
+	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jerome.forissier@linaro.org,
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+	sakari.ailus@linux.intel.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v11.1 07/19] dt-bindings: media: Add bindings for ARM
+ mali-c55
+Message-ID: <20250731133506.GA2114146-robh@kernel.org>
+References: <20250714-c55-v11-7-bc20e460e42a@ideasonboard.com>
+ <20250731071151.997550-1-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutddtleegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeevledtvdevueehhfevhfelhfekveeftdfgiedufeffieeltddtgfefuefhueeknecukfhppedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjedphhgvlhhopehfvgguohhrrgdrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedtpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtp
- hhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250731071151.997550-1-dan.scally@ideasonboard.com>
 
-Hello Andrew,
-
-First, thanks a lot for taking a look a this series !
-
-On Sat, 26 Jul 2025 21:49:07 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
-
-> >  - The number of lanes, which is a quite generic property that allows
-> >    differentating between multiple similar technologies such as BaseT1
-> >    and "regular" BaseT (which usually means BaseT4).  
+On Thu, Jul 31, 2025 at 08:11:51AM +0100, Daniel Scally wrote:
+> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
 > 
-> > +            mdi {
-> > +                connector-0 {
-> > +                    lanes = <2>;
-> > +                    media = "BaseT";  
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Resending this patch with the change that I had forgotten to make,
+> actually made.
 > 
-> This is correct when the port is Fast Ethernet. However, as you point
-> out, now a days, the more normal case is 1G, with 4 lanes for BaseT.
-> To avoid developers just copy/pasting without engaging brain, maybe
-> add a comment about it being a Fast Ethernet port?
+> Changes in v11.1:
 
-Absolutely :)
+Creative versioning like this and sending 1 patch of the series doesn't 
+work with the tools (i.e. b4). You're going to have to send the whole 
+thing as v12. But do that after rc1 is out.
 
-Maxime
-
-> 
-> 	Andrew
-
+Rob
 
