@@ -1,139 +1,193 @@
-Return-Path: <devicetree+bounces-201133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB4DB17853
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 23:41:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EBAEB17860
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 23:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EACE1C23DC7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 21:41:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0F8A1C23E93
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 21:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50792267B02;
-	Thu, 31 Jul 2025 21:41:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9673264A83;
+	Thu, 31 Jul 2025 21:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oo0sHqk5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gjHSYwVl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEE525A2BF;
-	Thu, 31 Jul 2025 21:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C343C38;
+	Thu, 31 Jul 2025 21:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753998078; cv=none; b=TwFl3DIUSw6pSkuGhm3tJhxF0MIjnJyYvWNSCJ0Sjl/PyMcntIDzGTXp8c/BVggeHgfxQWE1x9CulPz3dcWDIgkcpHxni9h0xnjUoVqRpjIyOmhJcSD10fZs2SqZS+1XTpwxOupG8HxTyTzI1Upd7xOy4AE1VSIZCkLGcTgaYyo=
+	t=1753998221; cv=none; b=PMvfG7rU6Jvadalvx18Muc1gc4yBIcfpdlb1VNZKBsaaJxv8ElhCeVix2JUesnOkoV4WJE/Q7rRQcBU3nFT15oP3rJgQe8z+SiK3x5ZsSyn7JOUrdq8GJBYKBvhLkJ0Hx29jGRGQjD0slAedE6elLPCjC2wPlPeWN1WXxszQX2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753998078; c=relaxed/simple;
-	bh=9mI4N8u3ScAJggIMZMmZ/Ya+KZ+m5teUXO1GFzmVIDo=;
+	s=arc-20240116; t=1753998221; c=relaxed/simple;
+	bh=WgyFwq8wPQfOS2gYZg3qreYEkQfmXIGbIkQtMqzdcG4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T2m2At+Vea/pExX6XTxXKZFMc8GNzrccymZqERIu6OiPhZzNihTlrZdB84JZQQzTpmjO5fEQV+v4e8rY4wYstsNs23NeJGBZ1G/bb0fNmr2HrgOWTh0oNk+GAHVkcW6JQL5NImjxmMaz+IU47LH0vqjKqwUkiwFotUTw3GmBo9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Oo0sHqk5; arc=none smtp.client-ip=209.85.167.43
+	 To:Cc:Content-Type; b=amfMGRjHr2vvNKEZE2uXk/3Gm5hByWkUumS2g2OhC/OTiQ9Y35ErnCDOTswNezPcMk6H2aAaY4D+CE9RreVCLBo9GdYNHrfqxPIHFwtz2f8YjdwWbiCZSTAlp4nLw1wrvJJuTkhahxg8+Uqx3BtbZ8KTwIKLs0ksFmPDVtHW24Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gjHSYwVl; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55b8e6eb691so291615e87.1;
-        Thu, 31 Jul 2025 14:41:16 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45634205adaso1073175e9.2;
+        Thu, 31 Jul 2025 14:43:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753998075; x=1754602875; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1753998215; x=1754603015; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gvf0Xa6p5M9PIWK0J0OeMh9XD7bPno2rlXopEdLIN/c=;
-        b=Oo0sHqk5eI314WcMqRWQDNehjXn7SXAOlc1qBwo/3L4h5Wf3ZDEbdPVBs/YLq8U4O8
-         cmrRN25PC0ZQG8qteIhug1dk9X6eXJ/nV+Cb6P8Shof3Xmc38bmnPlfbx/rafqxgYiiT
-         Hv29+5b/s+nCxhs3ReZ9X8AapS8rTX6eD42SfE9uK/6noKBXaMzkx0bMFGBp/kQLYu6Q
-         rSkwlsvp9GQcw0NGcd3cEHR3fRF3XMB/+qGnmmJRMA6s1UcACd6EHqPXEd8vRj6jwCD7
-         mgmVtZqx7Q9e3y49PQJZCivBzYQE/+1+U9btKQ/r1LFHE6KZEz3iVlCzmgcSo0eQpOUm
-         xCyg==
+        bh=mVuwC8UGnhHwVB50C+DPCf7wPw8Gtqu+iJNVt6eueag=;
+        b=gjHSYwVlOSyO6IXq+xDLhyTOMyQcBCsXDAQgYk/62ERnqp8yWzhRySgFQIvHAAV4YL
+         SqpLvAKguOe3Ty2XFlWmeixWPI8C/XSGG/ueKj8IjOGCa9g3FdqrHMPcj4X9nQP8/UBD
+         y2gqi3QCb21rKDHol2+iwmhaycTXhg0gHJ4f++7sjAGvNM8A1JrjNwftcTPlo2RHMLzq
+         apbqA0A5rCKaMLPH89GKt98/tQjO02Elic2L8boMeVaS2RRYb2QK9VbQOFNUe0OZDyti
+         R5yv3xW9HynYkp2iW6TkJhrbzKHUbtxbl38+fEDTaDWa3y0raTUZeVwF7EN1kBr25Kkj
+         P4uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753998075; x=1754602875;
+        d=1e100.net; s=20230601; t=1753998215; x=1754603015;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gvf0Xa6p5M9PIWK0J0OeMh9XD7bPno2rlXopEdLIN/c=;
-        b=nAg2u0TTTi4mhop+WlGEM1J9a/6iKqsnWFkwEVSluhS+PROsRwwxbwuvIIfb3dFDAd
-         KobD07Uh6j9HRYRnqXr0Ff0m434sHh9r2QR4xGjCX97a/INzw+AzYYGCgD9b1kwJHzYP
-         h05zZ9PXDPbtAACghs2zuDkmg9NsFPz8h0Rg8XMutrhZGv0+cQkTXZtKt2ES6CkLT3QH
-         0IY3N2BB8Phso38V+pVqdYZzGwAhKgLSeFkKk+pax/pSAFn2Z9OQasWa7x7CIp144kYZ
-         Kxp0VFjLuQ3o8Mmk9AE4aBnNmSdTEs6UlCCPQ+Bz2/8aeh3W4dhV4V5QYs5nMxwqYLgN
-         06AA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5Kl/wwFJYFoL7Pm6x238UWLzjie//221v8c/048JTSOWExMttVNVCJbOZRf+4FcBgRomZ4yAkLI1e+pA=@vger.kernel.org, AJvYcCWajjgVVyt5G0iA9LyGNVGa01dObNwnTHH5jRbZ2IlJIi6Fi+VKJPZqnkPxi6UNBvHTXQqWEiBGhBE1mzB7@vger.kernel.org, AJvYcCXBbU6cCEDq9IlSNKOFlUzAl3avCQVGTUKzVaJZH3ASOVzEi0fMmb6JH8WhvnRGYOjuj9km1w1/ZRxN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsI0YScMe2e81923hSLM1Q3pqqRArJz+9xseHh1P0pliwZXEr3
-	7kQqcTMG15AF6A7k+wWVv7/Nmq6rlBeLHtf+dcfFN092JNOmgQrD9c+6oYGvf0kLkEeT9wJjhRg
-	8iAjheswMgNy8xGSjNPdLE1YrA3P0oHM=
-X-Gm-Gg: ASbGncuLQFW6Bt5tURvCa9l3lf/pffXhPQ1omyQhvt3ayuedovpnNr5DqJHpJsqRvZi
-	zgA3I4PticgOSCFXbRHIg/zUIDFwOQ2b/xsvShoGbcM3t3g2J5OKdpnbozGCisY76MmWQArPT/G
-	si1Uc+Lc4jZqlVoMk+IqitBX22IGpxAfHOl4HVeXaLNRtGZzGdO+UNUfkKBz2Fm0jYAwAVqaf+C
-	Ikx6L0=
-X-Google-Smtp-Source: AGHT+IEzhbXF5hB4kA6lGGKpx7iYWvGq6kBdJrcpVjjd1Yhw709h2IxteNo15t9eMVEXh4iscqM4v1KgRudKCQHUiFk=
-X-Received: by 2002:ac2:4e14:0:b0:553:a77f:9c47 with SMTP id
- 2adb3069b0e04-55b7c084834mr2238747e87.30.1753998074395; Thu, 31 Jul 2025
- 14:41:14 -0700 (PDT)
+        bh=mVuwC8UGnhHwVB50C+DPCf7wPw8Gtqu+iJNVt6eueag=;
+        b=OQrCSC8j6QOvWYrbEnY85b+T8L32wrGBbMxkAjJFuAMRM1u4Rq+GMLSyyTbEMszLTt
+         r9gpFR0BGj0uM1pe+th0J14ZOX+Q+t3WM6y3iBXdI7iKamADmyHIzwg8Qjt2xENVpCOM
+         xPGsbEShAlEmcCQA9QT2cX9iIzRb810KgQ6/WoVnvDUkzLOn1SgcArMmAyBOTtd5EQFC
+         LcRHR1vXcu+K3nNpQv90W4o0fWlqJxcIneiox6VSKCmHIyLOI8Jk4DTbqpj0jBsWt46a
+         cXFFzjtaE+dQaT0Zm1s97IU6ZyYgqopqb+vBpiGRqDmiJEtV/u4dukvRw0eHnVnLwIR5
+         0iag==
+X-Forwarded-Encrypted: i=1; AJvYcCUabhZyEoAGs9yJ5YaPTkl3DwyiecZT1bYBqLG4FSvrQY3VGfWYqLErU4cVcoJLRgKAlXqOp+ymNvUP@vger.kernel.org, AJvYcCUfm3r8wg2ngqutjGSJeeaSJTSE4uGv6Vkj/13aRjylgV5Usd71w9/dNk6ZzyNIS+GacyKgRwCvu4G0QkE8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBHFOW3u/2ActC6Cl22rO3MvGMyAEdYF+Bb+YQ4rn5Q+BH9QZB
+	MA76P1IVvyPWMIT4be4ceZUM41dBydZXWTea/y6OtJKdM3I1mWyWya3QCRM4kww5ztQV52s7sig
+	nwEdW5cBhmFh889BV8qH814bx9JyRQQ==
+X-Gm-Gg: ASbGncvL15rp2dD85dXW23irmwIwGIdKx19CrEGy4gzRd4tjGyzEReogy9+56ilmM+M
+	dCDvjpCTw/WyEmg/9ZgNbodJKsZMfLGBgNnRUUulsl7UE2ppMKfJna/Z0cr0HzMsVrtJIkiy2Ca
+	75cFloZQcumDLxgPLzVPCS6gMob31WTENeHuqouDJ1iywGj8j6LXXgAEzUQTmjCNPb3yzaKa7cI
+	JC/Itg=
+X-Google-Smtp-Source: AGHT+IHpB6Hl4ZebtAfNcyc2eS73Ko83njTG1t6gr49Z9kbw/LLnTogLy3mZ7uIf6yNx3otUoSfmmusKFErOVSMXlfQ=
+X-Received: by 2002:a05:600c:8b65:b0:441:b698:3431 with SMTP id
+ 5b1f17b1804b1-45892bcfaf9mr70317255e9.28.1753998214809; Thu, 31 Jul 2025
+ 14:43:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250611-p3452-v2-0-fd2679706c63@gmail.com> <CALHNRZ9tjJo3LRmpaGsEsf2=Him0O2J-ZaJf4UZ8bcbz1119BQ@mail.gmail.com>
- <CALHNRZ-mUb1Yv6WTeq50ddBS209uWUkv2ivdEMqfBBUtw+SU2Q@mail.gmail.com>
-In-Reply-To: <CALHNRZ-mUb1Yv6WTeq50ddBS209uWUkv2ivdEMqfBBUtw+SU2Q@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 31 Jul 2025 16:41:03 -0500
-X-Gm-Features: Ac12FXzL93mWunH4cqtyZKP0uBS9ByxG4KjbmltB2NDeCi9ZRpI_e50ftvAJMzo
-Message-ID: <CALHNRZ9H=kPLAJ-YZN8n307uAMbGYOHF55-Tc5=uN_y46USYBg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer
- Kit support
-To: webgeek1234@gmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250727165846.38186-1-alex.vinarskis@gmail.com>
+ <20250727165846.38186-4-alex.vinarskis@gmail.com> <CAD=FV=Xd_xL=PYvVNqQWFZGmqN+Q=SvvaBTfbv9k+fDb8QwUtQ@mail.gmail.com>
+ <CAMcHhXp47zmpoNYLCVRWWBk4HcYepgWX=3kWWzW8c8+a=2kE6A@mail.gmail.com> <CAD=FV=XT-BBRDBHVh2KBpJydSje7_eUF19OMu9e3CcRvDf7ung@mail.gmail.com>
+In-Reply-To: <CAD=FV=XT-BBRDBHVh2KBpJydSje7_eUF19OMu9e3CcRvDf7ung@mail.gmail.com>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Thu, 31 Jul 2025 23:43:23 +0200
+X-Gm-Features: Ac12FXza9SHOkn8kXzmnifFDDxgM-t8FELZFnQEfBU0CoG5aGwgQRlmAo1iH0MM
+Message-ID: <CAMcHhXrStcuc-ORy7_zhjwDv=r_bUONb812VGGp_5DYatNWhaw@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] drm/panel-edp: Add BOE NV140WUM-N64
+To: Doug Anderson <dianders@chromium.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 14, 2025 at 12:36=E2=80=AFAM Aaron Kling <webgeek1234@gmail.com=
-> wrote:
+On Wed, 30 Jul 2025 at 23:44, Doug Anderson <dianders@chromium.org> wrote:
 >
-> On Mon, Jun 30, 2025 at 2:37=E2=80=AFPM Aaron Kling <webgeek1234@gmail.co=
-m> wrote:
-> >
-> > On Wed, Jun 11, 2025 at 1:53=E2=80=AFPM Aaron Kling via B4 Relay
-> > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > >
-> > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > ---
-> > > Changes in v2:
-> > > - Fix usb power supply to align with downstream power tree
-> > > - Control vdd_hdmi with gpio pa6 and delete unused vdd_hub_3v3 to avo=
-id
-> > >   conflicts
-> > > - Link to v1: https://lore.kernel.org/r/20250608-p3452-v1-0-4c2c1d7e4=
-310@gmail.com
-> > >
-> > > ---
-> > > Aaron Kling (2):
-> > >       dt-bindings: arm: tegra: Document Jetson Nano Devkits
-> > >       arm64: tegra: Add NVIDIA Jetson Nano 2GB Developer Kit support
-> > >
-> > >  Documentation/devicetree/bindings/arm/tegra.yaml   |  5 ++
-> > >  arch/arm64/boot/dts/nvidia/Makefile                |  2 +
-> > >  arch/arm64/boot/dts/nvidia/tegra210-p3541-0000.dts | 59 ++++++++++++=
-++++++++++
-> > >  3 files changed, 66 insertions(+)
-> > > ---
-> > > base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
-> > > change-id: 20250513-p3452-059708ca9993
-> > >
-> > > Best regards,
-> > > --
-> > > Aaron Kling <webgeek1234@gmail.com>
-> >
-> > Friendly reminder about this series.
+> Hi,
 >
-> Re-reminder about this series.
+> On Wed, Jul 30, 2025 at 1:38=E2=80=AFPM Aleksandrs Vinarskis
+> <alex.vinarskis@gmail.com> wrote:
+> >
+> > On Tue, 29 Jul 2025 at 17:50, Doug Anderson <dianders@chromium.org> wro=
+te:
+> > >
+> > > Hi,
+> > >
+> > > On Sun, Jul 27, 2025 at 9:58=E2=80=AFAM Aleksandrs Vinarskis
+> > > <alex.vinarskis@gmail.com> wrote:
+> > > >
+> > > > Timings taken from NV140WUM-N41. It is found in some arm64 laptops,
+> > > > eg. Asus Zenbook A14 UX3407QA.
+> > > >
+> > > > The raw edid of the panel is:
+> > > > 00 ff ff ff ff ff ff 00 09 e5 f6 0c 00 00 00 00
+> > > > 10 22 01 04 a5 1e 13 78 07 8e 95 a6 52 4c 9d 26
+> > > > 0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+> > > > 01 01 01 01 01 01 5d 30 80 a0 70 b0 28 40 30 20
+> > > > 36 00 2e bc 10 00 00 1a 00 00 00 fd 00 28 3c 4a
+> > > > 4a 0f 01 0a 20 20 20 20 20 20 00 00 00 fe 00 3d
+> > > > 4c 33 30 20 20 20 20 20 20 20 20 ff 00 00 00 fc
+> > > > 00 4e 56 31 34 30 57 55 4d 2d 4e 36 34 0a 01 f8
+> > > >
+> > > > 70 20 79 02 00 21 00 1d c8 0b 5d 07 80 07 b0 04
+> > > > 88 66 ea 51 cc 74 9d 66 52 0f 02 35 54 40 5e 40
+> > > > 5e 00 44 12 78 22 00 14 7f 5c 02 85 7f 07 9f 00
+> > > > 2f 00 1f 00 af 04 27 00 02 00 05 00 2b 00 0c 27
+> > > > 00 28 3b 00 00 27 00 28 2f 00 00 2e 00 06 00 44
+> > > > 40 5e 40 5e 81 00 1e 72 1a 00 00 03 71 28 3c 00
+> > > > 00 60 ff 60 ff 3c 00 00 00 00 e3 05 04 00 e6 06
+> > > > 01 01 60 60 ff 00 00 00 00 00 00 00 00 00 de 90
+> > > >
+> > > > Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/panel/panel-edp.c | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/pa=
+nel/panel-edp.c
+> > > > index 9a56e208cbdd..b334926e96ed 100644
+> > > > --- a/drivers/gpu/drm/panel/panel-edp.c
+> > > > +++ b/drivers/gpu/drm/panel/panel-edp.c
+> > > > @@ -1947,6 +1947,7 @@ static const struct edp_panel_entry edp_panel=
+s[] =3D {
+> > > >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, =
+"NT140FHM-N47"),
+> > > >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c93, &delay_200_500_e200,=
+ "Unknown"),
+> > > >         EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200,=
+ "NT116WHM-N44"),
+> > > > +       EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cf6, &delay_200_500_e50_p=
+2e80, "NV140WUM-N64"),
+> > >
+> > > Since this is a "guess" timing without any datasheet, I'd be more
+> > > comfortable picking the most conservative of the "cousin" timings. Ca=
+n
+> > > you re-send with "delay_200_500_e200" instead?
+> >
+> > Sure.
+> >
+> > Do I understand correctly that more conservative delay_200_500_e200
+> > will for sure not make it worse, since its more conservative? In that
+> > case can re-spin right away. Otherwise I would prefer to re-test it
+> > first, may take a few days as I do not own the hardware so need to
+> > propagate the change and get some feedback.
+>
+> Is anything really for sure? No. :-)
+>
+> ...but it's _highly_ likely to not make it worse. Presumably you
+> tested without ${SUBJECT} patch and things worked OK aside from the
+> big warning splat in your logs about using the conservative timings.
+> Those conservative timings basically give you:
+>
+> desc->delay.enable =3D 200;
+>
+> ...so you probably already tested with an enable timing of 200 and
+> using 200 here will give you the same conservative number for
+> "enable", will avoid some other conservative timings, and will avoid
+> the warning splat.
 
-Yet another reminder about this series.
+Indeed, this is mostly to get rid of the warning, and it worked
+perfectly fine without adjusted timings.
+Thanks for the explanation! Will re-spin shortly.
 
-Aaron
+Alex
+
+>
+> ...and the "p2e80" doesn't do anything useful when enable is 200.
+>
+>
+> -Doug
 
