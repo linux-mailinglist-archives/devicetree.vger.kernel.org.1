@@ -1,131 +1,258 @@
-Return-Path: <devicetree+bounces-200947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F6BB16BC7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:58:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DA3B16BDD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:10:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57DA5827E8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 05:58:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E5C6621EA0
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 06:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F567241685;
-	Thu, 31 Jul 2025 05:58:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="kRxiwXyv";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="fYaC+P1x"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06FE1241132;
+	Thu, 31 Jul 2025 06:10:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazon11021136.outbound.protection.outlook.com [40.107.57.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17604323D;
-	Thu, 31 Jul 2025 05:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753941511; cv=none; b=kuut3gmniLbhgwryycgvSupI5YskvLvKEylgIq7T4IFtCHR0CVnoNvx4GkQiKehf5I1Ll4cKTFPf7QWBmuVGkxsoiFZ3gg62kjlZOHNNUwdXusd4qeo0gMK5Ws18YdoL2GCJ4/XqHGp96hzVCISwtS3ze1NWHh8JwEOXlvArq3Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753941511; c=relaxed/simple;
-	bh=cGbzmsV+xJPSNLboyu0ymV3QD2y9cWV6+EX29cXbVjo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XkdYKbG6nyAbvdZnop/C1LkJrofky7/+ZnT+NazWsQ4hRuUlqyL5LuotT4PjTSPO65VkIURrLGlh0WvmkiGwlK/m4R1lomzzY+YsXdqkeduf9c2/IagjQrNPkCsh4Ai6NAGUJLU1e73f9F2+T1Dataw88gjAHu9qZXeQqgiEP9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=kRxiwXyv; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=fYaC+P1x reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1753941506; x=1785477506;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=98SHBebru6MCJ/QnRQtH2DcDv15Ssbf4Sj22mQlx6D8=;
-  b=kRxiwXyvXOwxLQFhVY/VeGtCeABt+8YGJVHIphP5njzAaXtyIlz3Tqyt
-   n5t+ILd8AiMw7gR6jwYtROJa8AhDC4x/kR1vo6M5uTBWLBbvYEvfP3l0n
-   s2zN7SKeECZcJTTKPT9i2GrEuzkjZteQnvxzrgVfxGRhWlNLlQc4pfpX1
-   6tvPoyQyX0UPl0FKOo3mJ1hk4KQWvnUCQNeJhmWJZscTc/inNDvZdhXZ/
-   2pP6Euq6LaPZ/nc0dxddWl7c1KO2sASpoHWeYLsgbZyu8IdGEH7PYFe2E
-   EpUdSsrT3cEr3mls+xFQfumPiLmgjvhWZZmTrK0knBgwAEZnrcvq07DI2
-   Q==;
-X-CSE-ConnectionGUID: 42qa7/ZfSFKqzF0ESfeQZw==
-X-CSE-MsgGUID: Yx8XBTCYSbecOEUDS8gpeg==
-X-IronPort-AV: E=Sophos;i="6.16,353,1744063200"; 
-   d="scan'208";a="45509996"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 31 Jul 2025 07:58:23 +0200
-X-CheckPoint: {688B05FF-6-FE216C80-D1ADDD01}
-X-MAIL-CPID: 343950EB2E7D3053FAAC216CA983035A_4
-X-Control-Analysis: str=0001.0A00210A.688B05FA.005F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 66CD616B0A1;
-	Thu, 31 Jul 2025 07:58:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1753941498;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=98SHBebru6MCJ/QnRQtH2DcDv15Ssbf4Sj22mQlx6D8=;
-	b=fYaC+P1xLljM/NdSckBIk110Nhmd1J/Ou3zJkfO2E39fvTHYbPAkTpDurN7pZ5dqN1zv7t
-	32gjV002+v6EELCUgr6ThmxHXKVlNMeilROyXBWFtHOrK0mIg6HCLG64oHpx+lPUv3ZyOL
-	oicN55gMPoRsRRX1unSIYzfpsGYiaSf0SjHtbNCOw0DDPPsMmIgElei9iCHwFM6qnOwg90
-	GUNkwpWN+9KFonU63w42lG+IXMI72z4E4qP/behfKf2Z+uiAUe2y/iFVZVGqM9bgEErckL
-	ahkJBbhgEpYYOzgGirYRBYo6Scj5gXbNPfS2Omwhybral1ccJDG2LLXM/Cdz4w==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199A923B622;
+	Thu, 31 Jul 2025 06:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.57.136
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753942235; cv=fail; b=YlhMJ1B1oU9I/0daIeLxywhEhDUDgNZvZ2vHat2FU+DtsXrOOvueQQDeLpPgYW2xhavs/GUV/q5+txIJmmSrLuDAsTu+GC+m8BFGLvG77RpVop06UIqtUrVPn3aUo5vxT9DxmjEL6H+IvUH0MIJT6D6KLWhFT1X10rSsWKECiGg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753942235; c=relaxed/simple;
+	bh=odwK9Vr5BLIWFOjebHHr9DRLKNDtfTUr08IKnaetW/o=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lvY/OTIcaC56VGhdkrXWEOzt/u+DurfAGwJ21Cruq0ruQWO2wUVaPyZrhbCPOtKJsHxuTKlQkLtOz6LvPE4+UNHV0Vw6pE4PrJbHGKYDgh8vp7SRqs/+V99GJBvCrivHs10aN+Nj3nfXo2mSKvO38w+Ybc2bSYhKi01vXDyNaAI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.57.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HRcsoHPsFD2I3qBTl+n/DVASQtV5Y6u3YBb2Y1rB6RbpWgSEJTuIu7ki/Ewxe/Hfq7Rpbo4QQvTz/LjjVWSemXz+he2Cwu+vP2eFhBvZ43Tu3qrcNqvCxr/E0o/vFAfW40oUsN1h64dspNthNnkkEp4IxiGFknD/PtGm52Pgcuzw6qZn4mYMRT0gZK+1wnUajN6C/XJb0/J+LpVO0KD6glH8QHuciDf1UZVF4yalPT0/Lr7aQI47FTOpl+kAQn5iskACk/sEohV7y2z2AJdkA+DLw3LSGapL1hJ4O48PqqeNU9DsUlXG+AOFMMHwL7h+P7/VggfWP+B6NxV/Y6dw2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FZD/NzNK1DAKSmU6VDOj/w5lSRzYKmnQIzytO5HGB5U=;
+ b=JIJQCLRj/ZswjGpzApW7aFP5d/vRWVwAny5FoiVGTNFA80rdiUIHSPZRoEZ0co4ZecEDeBzUtFVZUIjF3qMniEeZu4q918OvjToqJXPUQeVF7NcT9luXPX6cgiOlYmpE7vxBIP5EAbw7aA+HGjZgsTKhC6ugSysaPAG5z1YSu5mVVHvmVXjOOwyP5X7D/MmwcB0XDInsveVVgHfcVXV2ATXAqpPdVcOGpnEzvxaHA04Md6TELG2RMhlxeUePXDxF9uJolpQM5UllafeMVXxEOcxAkF/a4F3x3e+lxxme+YPMs0jClwYIPQcHIou/Hr3sQtIXkDFIKks4ZuZVrV7LJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:229::21)
+ by MAYP287MB3886.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:14d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.14; Thu, 31 Jul
+ 2025 06:10:29 +0000
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418]) by PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418%6]) with mapi id 15.20.8989.013; Thu, 31 Jul 2025
+ 06:10:29 +0000
+From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+To: sakari.ailus@linux.intel.com,
+	andriy.shevchenko@linux.intel.com
+Cc: laurent.pinchart@ideasonboard.com,
+	kieran.bingham@ideasonboard.com,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Hans de Goede <hansg@kernel.org>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Jim Lai <jim.lai@intel.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] dt-bindings: fsl: fsl,rcpm: Add #power-domain-cells
-Date: Thu, 31 Jul 2025 07:58:04 +0200
-Message-ID: <20250731055806.2265628-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
+Subject: [PATCH v6 0/2] media: i2c: Add ov2735 camera sensor driver
+Date: Thu, 31 Jul 2025 11:39:56 +0530
+Message-Id: <20250731061004.5447-1-hardevsinh.palaniya@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN2PR01CA0235.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:eb::13) To PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:229::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN3P287MB3519:EE_|MAYP287MB3886:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ed8fb89-17b7-430b-20fc-08ddcff8f2f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?DITOK5NGNazXMbSTewGUQMdBOiwW2Rpux4yBoPy6u6WOJPIr71t2+m4ee1QO?=
+ =?us-ascii?Q?tgCWKfhmbmLAcshyi34pM1iICSWfOQkvggavMX4RmJTpsPRS1jGz34As5tb+?=
+ =?us-ascii?Q?Pt8cXORa3310nTaIWNT4TjvApMS0kaZ23qK4PWWECa4oMsez33/ovV8fFavu?=
+ =?us-ascii?Q?gabB7KVUwEAl1P0MmB+ueiv7pUv+dsjAOqsMD+e1zsoOG7hJnmg59B3/CEtB?=
+ =?us-ascii?Q?qH9XQ9nEHKaoi796yxhz2UAaeDjZlvN9uPsBvMpCfL7ZOFAXRQed3Nkv9c1h?=
+ =?us-ascii?Q?SkWuDQ0uqFzeyHLUESWOBD/J5nMq9AcohPXbeNT8QhQq79M47vyxASYMMpkG?=
+ =?us-ascii?Q?n4LugVSTISESpot0uf7ggU4bhVyHsu1XD3zWBvMu+XBSRrEYs0jjoMWhZce0?=
+ =?us-ascii?Q?1YflkK3c9Hog8Q+OY/b8XwWnefgz9c+utpXgfUXiQZhxH/34kuT7gjCVWukA?=
+ =?us-ascii?Q?Zmvn066MmgkDKr5ISQ7BjqFhQXCQ/6RGtXg5ydeB+vEYjt2sLVIPyHAu4mYx?=
+ =?us-ascii?Q?MOrA5/NdeSEOHOrb3e1+MkcqehmTi5YZ9ASH748PXDO1zMzP22gzinxnUuDO?=
+ =?us-ascii?Q?J1OhDtH3Cvh+giVZMUgfvKkuOI+HavllxbFWo3l/O8womkqBSMRvueFd4CSY?=
+ =?us-ascii?Q?D8ctsiU9B5ta40TQEnfW2KRK3svwBCBLmNajQfRb9O3L+BPRyXTYe7/0a+7l?=
+ =?us-ascii?Q?e0J2zEk40qAfawyU55m6w08HH5gsKubjgBcoSbXIZo2Ul3/CLR65lY94j43e?=
+ =?us-ascii?Q?E4LcQ2O8xlQsHKGfPHccrO9H7uCaI65Z70VF4F/CeSxoFa9HQWuz01FRNSZ+?=
+ =?us-ascii?Q?wVa3G8Og0d+aEmUoB7C/iy8e21z7PCo7OkREwd4h9SQH/Kdos42Rh5j3u/Sq?=
+ =?us-ascii?Q?fZh3Gte+rfjd+eeuG1ibsGF7a1s11be3c9XA4l6xoMk+6HljJ2hbO949YmTP?=
+ =?us-ascii?Q?hGws22j+NssrzV1EbA8LmUiGR5TygzjyDxrf2AOV7bW0ilItGh0Yl1qiiJLP?=
+ =?us-ascii?Q?mxtDLzmSwSbpbCwGRpE5XD25beURoKJUEmvuqL99r5Vq8wTbJdvGAKeR9wgX?=
+ =?us-ascii?Q?zeeYe81qKanM8WUOO76e0dLihmF6NlICu+rPWnP20JqegyM7IHpgbyrHDWF8?=
+ =?us-ascii?Q?CgQwRL7FHEOPajZnxqHlC9VjvZCiq0sy5qZIFSOdnVu0SkTDwCjma/h+8sYC?=
+ =?us-ascii?Q?xR4URoTZ3spkbhoMDIp11r9/cyXKsDEZ36OOjrKa10Qv2UJ7WBd7cogQNch0?=
+ =?us-ascii?Q?dkDvMFMDzKW8Zi9+x2uqkI3rVM4zmyfUDlceArtokUNduNCxDkh8653dncL5?=
+ =?us-ascii?Q?nP8zAb0YFFPsZiMdyiWeqkJTdH0EIoh4a+GbsAVyOO9DGLXF2J5uEw8Ie7tw?=
+ =?us-ascii?Q?VTZmRZ0uVAX/O07fqimmaiArr7sVY/HWThk67aA3LUr1TigkvJIbkIemv/ky?=
+ =?us-ascii?Q?fP2bsuoKJkyHdMy5HOveGo6druAHY1UFf6Q7GVzrObeYUSiWd5LgjQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB3519.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?3IGRMu2Ff9bVsXFvyVKjy8lw7j3rY10a+xAiqNTzJ6tk28PjLC6Di221SQaL?=
+ =?us-ascii?Q?Fmjiy76gieAEz+9m5JaTKsbVT2cMxXjo2uSfpGTXvpntchCsYasnk5/YfFMd?=
+ =?us-ascii?Q?GQTUrSgU2lzQiTNwop/3QmpX19pJPpIS1Da9ZXylwRwZCz6uEZsiKEkYC/BU?=
+ =?us-ascii?Q?QEtdWDEspA/Oqu2rMdQPOkk39c2/FxSPrGIKm4waYkgyVZRisnskp6ATJFt3?=
+ =?us-ascii?Q?3xzmXBZfg6VGRU1J8/SdoYkglUkPZuHAl+0sKoKGZw0t3QNCwx9cjjz6XEYL?=
+ =?us-ascii?Q?lBJucL7lu0YSghS1Vnlc6710bIfu0ixNnTRlOPg3U6AfxcpxJU1EMoxZsJnl?=
+ =?us-ascii?Q?66m5Lf7HT2RimtRprPSL9af25EqNn66snB4SM3qdyuk7NvyiYb9Arl3YtogX?=
+ =?us-ascii?Q?Tc5KkwUCUlrF3y4ha069rmIE8GgC573l46EXXRAgNVQ3ahcZEDQ9zoJ+tS2/?=
+ =?us-ascii?Q?qERoNt1D7U/AwCmA3ag14mq60C69noMZ4XkQrV1xJsuZ7z51ZsUaXVDDMJSj?=
+ =?us-ascii?Q?fy5x7wmq7hhMVQKzt5cvYs2cUHcXrHmDdR1pFw7RINGdQzlWKHPcWY/3lRme?=
+ =?us-ascii?Q?7Kkcf2OOsWZmh/0bi13B+HGgQlR1giLwFFtl4rjtTa56VV0GtYBMlO7BpKAH?=
+ =?us-ascii?Q?nd7HfXpkcglXgx6UFtXH8XY6LyKiYEjtZ9be4wKrSuCqZvr25FCesbnBTJ8t?=
+ =?us-ascii?Q?n9HD4YkGnxpFVAbRGjgIE3L/o5m0R4wDoM0GTTCAGOcaSJpkuiCwaNjvxH4w?=
+ =?us-ascii?Q?cX58ltehV8ELvaE1+vXb35EUbJPEmVEi74yIe8miE8aUu0gmj2omuvmZnEFp?=
+ =?us-ascii?Q?Hh6PsBw07XCsIvGArhO06vXh9T0qYWU5cGxVxhku0nAQnns/e1q7dQWPpJRj?=
+ =?us-ascii?Q?w7ySCRFgn2zF2BA4+J4q/jVEl7RP7m+gel8vUBDJu2wSBYqCv1eZvqyde4u8?=
+ =?us-ascii?Q?KUH1O0EIB0fOzki60SQxsGBAgZq/Acl9sQ8Yzxi0y2gLVycuzWCn2mZivceM?=
+ =?us-ascii?Q?8rLLhKam6pUe28521QImI5SAOfPCSUFcmy/2rockJyPColKw1ATeaO2O5QLX?=
+ =?us-ascii?Q?k+BMGeqQp/KW0WAE0AJKXUlSvZsvSapTju0BtjLHE+Thb2X+jYo7kQUN1+6U?=
+ =?us-ascii?Q?ThgIy/9pqytzlrcnhNgjB8bc5ZLmKPCQGu/gFANvjfA9U6W/C2cYD1/6KM83?=
+ =?us-ascii?Q?krtOx8TKQbqNg5vMiLENQeUYU104OB1nmPi4LNXLFZP4hd7V5S2oGeKNrsNH?=
+ =?us-ascii?Q?YLmLTfKTYKGaK1/5As1Wah3C7DED5ygeLEztOrwh61UXwp6Yaj/DCeqeuvPg?=
+ =?us-ascii?Q?xRlYuOZzcQFCkwP4mvmt2OeGW0LiXXdENQ3G+/oiTdgtJQr1XngmEQSX/ZPR?=
+ =?us-ascii?Q?cREjYSNbMWnkJ+50y5crz7m4SCy2uNUyTjSN7hCcsb6hrolGRFozgOermS7f?=
+ =?us-ascii?Q?iy5BPQubIgyYDBaijNKbYQ66H8MfC+xnfqVjkO2VLh2QS7Y95cj9erqpQXtd?=
+ =?us-ascii?Q?WgiiLK05JuujgPwhUK3EUBIZS0JCkNZcxQg8WZ+i3Lemp33MCBV6vHBdr1be?=
+ =?us-ascii?Q?8lLltlI6MpOWUFGRhfiBaIqvuMndAVZf8PBmB/uwLKOUNrpAIoY14E0OyvC4?=
+ =?us-ascii?Q?iwC7kO2D3vHLush7N1ExQBA=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed8fb89-17b7-430b-20fc-08ddcff8f2f0
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2025 06:10:29.3786
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RZnAgSgaJRyVHGF2+DP4nOXoRcGvpZJw0WqHLMZG/N6t91R4m9HUkI6FmLXhEb3ZtpT3PEY+6l6j9FLbgRSdf+3iZOwaLvKuR2nDZVNIlzvOVE8Qo5SRIa3TE+NtrER2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAYP287MB3886
 
-dtbs_check for ls1021.dtsi warns about unsupported property:
- power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an
+active array size of 1920 x 1080.
 
-But if removed the check warns about missing property:
- power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' is a required property
+The following features are supported:
+- Manual exposure an gain control support.
+- vblank/hblank control support.
+- Test pattern support control.
+- Supported resolution: 1920 x 1080 @ 30fps (SGRBG10).
 
-Given commit 8bcf67b8d893b ("ARM: dts: ls1021a: add #power-domain-cells
-for power-controller node") explicitly added that property, add it
-to the expected property list as well.
+The driver is tested on mainline branch v6.14-rc6 on IMX8MP Debix Model a.
 
-Fixes: ad21e3840a88 ("dt-bindings: soc: fsl: Convert rcpm to yaml format")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
+v5 -> v6
 
-Changes in v2:
-* Add the property instead of referencinf power-domain.yaml
-* Adjust commit message
-* v1: https://lore.kernel.org/all/20250725055835.260930-1-alexander.stein@ew.tq-group.com/
+In Patch 1/2:
+- Add MAINTAINERS entry
 
- Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+In Patch 2/2:
+- Add Required headers
+- Change ov2735_page_access prototype to remove casting
+- Add error check for devm_pm_runtime*
+- Remove unused variable from stream_enable (Media CI robot detected)
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
-index 03d71ab930d79..2aa8e8a2643ba 100644
---- a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
-@@ -49,6 +49,8 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  "#power-domain-cells": true
-+
-   "#fsl,rcpm-wakeup-cells":
-     description: |
-       The number of IPPDEXPCR register cells in the
+v4 -> v5
+
+In Patch 1/2:
+- Add Krzysztof's Review tag.
+
+In Patch 2/2:
+- Remove redundant if (ret && err) check in ov2735_page_access()
+- Address coding style issues (indentation, format specifier, combined declaration)
+- Replace hardcoded values with USEC_PER_MSEC where appropriate
+- removing unused "ov2735->client = client"
+
+v3 -> v4
+
+In Patch 1/2:
+- Removed the clock-names property from the device tree binding.
+- Added link-frequencies property to the port node.
+- Cleaned up the example by removing unnecessary entries.
+
+In Patch 2/2:
+- Removed the cci_ prefix from read/write functions and custom page macros.
+- Corrected error handling in the ov2735_page_access() function.
+- Calculated PLL parameters dynamically based on the specified link frequency.
+- Set resolution registers from format and crop instead of hardcoding.
+- Fixed a memory leak in ov2735_parse_endpoint().
+- Switched to devm_pm_runtime_*() functions for runtime PM handling.
+- Added documentation for the use of msleep() in the power_on() function.
+- Corrected GPIO polarity handling in the power_off() function.
+
+v2 -> v3
+
+In Patch 1/2:
+- Renamed pwdn pin to enable pin.
+- Changed supply names to lowercase and added them to required properties.
+
+In Patch 2/2:
+- Stored page number in CCI private bits.
+- Added helper functions to handle page switching in cci_read() and cci_write().
+- Removed ov2735_mbus_codes.
+- Corrected control count to 9.
+
+v1 -> v2
+
+- Added necessary header files.
+- Corrected indentation.
+- Used the ret parameter in cci_write and cci_read functions.
+
+Hardevsinh Palaniya (1):
+  media: i2c: add ov2735 image sensor driver
+
+Himanshu Bhavani (1):
+  dt-bindings: media: i2c: Add ov2735 sensor
+
+ .../bindings/media/i2c/ovti,ov2735.yaml       |  109 ++
+ MAINTAINERS                                   |    9 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/ov2735.c                    | 1071 +++++++++++++++++
+ 5 files changed, 1200 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov2735.yaml
+ create mode 100644 drivers/media/i2c/ov2735.c
+
 -- 
-2.43.0
+2.34.1
 
 
