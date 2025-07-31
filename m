@@ -1,88 +1,82 @@
-Return-Path: <devicetree+bounces-200988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FED2B16DDE
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:45:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54D9B16DEC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 160513B69F5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:45:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D7A618C5176
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697EF202F67;
-	Thu, 31 Jul 2025 08:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6C7286884;
+	Thu, 31 Jul 2025 08:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ot9m3uLM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gazgJRj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B696F214A6E
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25F7206F2A
+	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753951542; cv=none; b=hl+4DVYK72y89ooPVNpFkaB07Un3Zh6l3Fe9uiFUBNYE3RZPyQ0lG0qgsElBNOwxQOvXqEU0xtHYKzD6xwTmnvvbGTVD2z1zhj6RtbsHGP/J0YsEsJUObY9KTP5l5RdozjRaWruVN6yjGw5ZX4Ur4MOgop4mlOGB3l9OZ53/DQo=
+	t=1753951827; cv=none; b=gzELwGIsd1JUopj4iOdvA3usIh+pcKeEU0ds9TaiI0QBH0vB+X3R75JiP0aXkYLgG5f4cUWor7P7NV8o61K3wrZhvzF4aO2fieH1ZOOd34QL4Ycz2W3J5p2/plvbXPspbSNZ5/BXu9JEQqFvHFTk6jIK6wanBtLeOFIqvzdk7ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753951542; c=relaxed/simple;
-	bh=18D46RaLmbTlUnUGui7/qF33DpRxEz3EaP4PJ+ve7B0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ISIsSroyMhvKPkKohMBp/RBan6d14/O8S+wzHaRpsZEbbWHSwsayS831McNpVT6Y2rxHQT5Oi96FxiM1/NSKaJ3JUNPhR2FXia5Pr+wBuaVHXbzCaRbSJ4EcntDL9KE38mhNvRMb+xDf95/WMS8EcdzZ834fMGVls5SI92mZ+C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ot9m3uLM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56V1fUwf027050
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:45:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bXRoKDrQ98QDaWIGvaODl1kClGzq84AWkTwEHfO4DTA=; b=ot9m3uLMrt8Swrv2
-	JW6MQcgM+0WjzL5mck7edWratKuyybPRZeNAfc3SyrqVrtLZDM8fMs7XpT3ssBWc
-	1NRs+IhVfiN2TO299ROTelBckYrboEaCP5p0iYOFYBDFHEPcnMQX5oTjCiWjs518
-	u7KPkCb72yI3w6af6yAxCEdpXPollx/q4b5zcKfGDDJf2S1NtB0x3iNueuAF4x6r
-	iagv5OryYRO03kfTDGO5PqCNy5qTdjN40+bgs4wF8gJenf2X81Fyru/mPA2HHpQa
-	iaYQ6Vf62yDneMHbLrlWdJ4JNjk8nRMCgoRm+u4cFOGwUF0yT22PjLWA48wXaiVF
-	p/lvSA==
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 487jweueks-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:45:39 +0000 (GMT)
-Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b42249503c4so1004497a12.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 01:45:39 -0700 (PDT)
+	s=arc-20240116; t=1753951827; c=relaxed/simple;
+	bh=6Lg1eIwjFjvSRaGr6nblSxRpIYC4YoB4n9JiTRn29Ds=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=C+XNfz/qd9b4hCVq+thxIlGTSL3/G1cXxevEcudERt0mv8+YlW2t9fPuh/ZSvIT36DSFzNFU0P3MCE79+0PMKkNaoYNMlQ0ZD6FqDSN9GZQzUf1snpv7NzkdydKzkeyUfujKxVhNgmFVJGk3r5GAOVfxGZ3C8i/eK28aymwlko4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gazgJRj5; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45892deb25bso1341185e9.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 01:50:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753951823; x=1754556623; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YoqT3sYyeE3BcU8PpvXQ31mNiDpWd/PfJiufhJ/dUHg=;
+        b=gazgJRj5kwQtVoo4OHjHqci4WnIh2DNj+FHjxoDW0bETPj+AYc62yiVFZpworCZjOl
+         QbZf1GsZvfKLcAw9GittSieYGiOjXjhMdok83LTnvt8GUIiwn/GtC66XmHDh0v8vx9uT
+         wassDEoETsLkur5ER7H3qVnJXIVrnWtfP6nBLn35AA4Lm+jli5tB/kAta4/wxqblHMiD
+         qkFRkbjAcNJcYCXnkQ+THn/ZKQf7uivhs17TJLuruhc00wIIKtZFq9N13Ma4JjqRirKD
+         Ud3pOOJ02bT1U0gaQgIMpYn65z3Sz3EmuE22J6Zzdd3X5xvBPOisEyZgVG/1F8flh6gC
+         /YSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753951538; x=1754556338;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bXRoKDrQ98QDaWIGvaODl1kClGzq84AWkTwEHfO4DTA=;
-        b=Z9xM2MXGJGfnc9e0zks7vvUc/9hYSxASFGjOT+YyihhJ+Uj2jB9kxLjvCFuI1Bbb2n
-         0GIEpg/5sA83HYGM8aMKo6kIydQSANv4RguMV3tO2BT5hzsHAt7FDEAL4u2wAJndOie/
-         uYtURYAGTsePWCZu1JmkHv1xA9wV650Y5ep+ddKArRwlMqwGo+lMigBdEcNLUjK0hW6W
-         LpQyGJhQBy4d3SIrAzJXiLDRxeLpevCuU0JMSHzU+1RwsmG/yDO3a4rPCKsrEc5ELzj0
-         r8DvsFlBmHTwHEcIjUA97r/yMs+M78T/D8HTTiSbv8Fpv9aX47QQu7StMt+jCKG8T069
-         aJ6w==
-X-Forwarded-Encrypted: i=1; AJvYcCXr6IB9zwyxsXctGW4Sb+JOl7iukssP8qalQ8EWpTtfT4uqhKwQvTGePxgpA6jYI09kdFPTqxwKUvxi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzi94ntvlJBmh4m4RBXUex6Z8/9HDBx+5aaG+zSxAQPLBZvK3Gt
-	Ub01UuEdGMWk6gTS02zV5P/fVfAItPpsa+REErg4j2XSmHEMVS5+DCsfhqcig4XxMeelxAj5bKi
-	pxBlWBYyVU4xd50g0D/TyOBGoJc6BPkz6kdr//96XX4D3Dov+idwqmk0CIRsxMwBQ
-X-Gm-Gg: ASbGncvKynMxG+oad1sc5VzUoOha6lHMwz0AvAJnXjNHNJPF88Pbjz4ipsmIsOGNRUi
-	wNsejM2qleiFA34AYuiqSXSA631Badv9SZJHt197vctWdnadNeqFEtyX1LsNOLyl0JLW00fPtJ3
-	cfH7B9iGFTVQnJcevlYlanQ7YqWor1+2vdq+bH+4H9RY3Y/WYMsxkud3euqBGjXPemG3HaE4Jnt
-	0RcqqUmZZnHkjPuB0TYnqF3mlmgXCZKANBgAXYromJeh7E0As6vRYxuhW/pb2yodpD4VoDfHOWX
-	9DCxKUE2psYEoArLMNLYmBENmozwOmrIUEmn6o8hCKjCW8HzljLqiFmzwvGFqdIH9HI07bunD8v
-	QQBb3CjpY2kQ9DAIBGGwpyoy+aPGN
-X-Received: by 2002:a17:902:ecc4:b0:240:4d19:8774 with SMTP id d9443c01a7336-24200d6b5a3mr17928095ad.24.1753951538156;
-        Thu, 31 Jul 2025 01:45:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHxMh58HMEu0FMobtYPpOQsJHvULEpFZ2FEA2ttpq4ZgGpHgUPWBls1eoQk0R3ywX13zcmFSQ==
-X-Received: by 2002:a17:902:ecc4:b0:240:4d19:8774 with SMTP id d9443c01a7336-24200d6b5a3mr17927845ad.24.1753951537675;
-        Thu, 31 Jul 2025 01:45:37 -0700 (PDT)
-Received: from [10.133.33.143] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241e8aca205sm11696515ad.193.2025.07.31.01.45.34
+        d=1e100.net; s=20230601; t=1753951823; x=1754556623;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YoqT3sYyeE3BcU8PpvXQ31mNiDpWd/PfJiufhJ/dUHg=;
+        b=Gd60lr+LtQdXJPIpeg3aVJutWUIfXhRwpi6I5bO/U9WOUhkQmgenfvaoX9CPxa1HJo
+         o1cmq9zzn9NBHktrUqFCMVkvOtj/DFDDkHz0+K0/SF1VX5nW9U/R8LUjYIW9S/VtcFlf
+         VEw7ShSAtHjgh7bmVJczdVQGLtUZv73/QuFMr/TFFhMgWywazyroqgjq67ehVrASH1XP
+         7Ax9j0vpkpTsjFhjlgdoIAZoO4Tw1nZMIgz3Zc4ZPIy1Dpv/eg8T0Z+sUpYQ9f48h0NG
+         +xQLk5bHp99kfTaBScWwnJKij6yCkxM3Md+BVUeIxgzEXNwP3rrdjljRc4oRyebcrg2h
+         zizg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCbNfxXYP/Os6HY51s+DQCJxNSTPUILM63VGvMy9hHqBm2qSAqOPmsRgmdOK+MKfsArnzeWF+2wZZk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyL8OKwFmcTNnVYJ0SPC8D8LoicrL5CwS33f710UaZoIVAoaYuW
+	1UnCLbOZQiqloSX5w9WazW143Hf5nWOBpWWvb4/DhTcwaj3FjfxB4ssJVmXgefNfKTU=
+X-Gm-Gg: ASbGnctkA/g8BU3ARALfX5tFSUqp19Pd1WKYoTfQ/cjeT+9coawAm+c4zNUuk4bwUee
+	T4XKIZ2+TU8SaJ2dYOF3CjoYA1KPE9mWEZ6d2qPtaWftGsiD6DPQfveuy0lT7EjEoHIT6r8obDV
+	HNF4it3Ta/idILD6Zbg1+7yLCS4w5j/+2QhsWrrukqvSBRQQgw01yimZuCpbVa+ZgBxvGDlVrtA
+	H6+VcgwSdfu8Q02+jlect8y7Z20+jLbGg1nOeHmAzjfKWtrwqgZbpq2Vxm8UmXWkrlITemN+Fly
+	QrIu50GAvpUWcMZ3x+qzM/+Acx1eT16neLRC7OTa2GNMQroJIGmH60w/r+EwLV9yO6ECtLFK0Zk
+	D8HBeWvmmZtfT/eqoO1iKdvNm43OblIWPhDl31GWMD2+ss7iuQg1+eEIY5jaXCG6UD81/ICGj
+X-Google-Smtp-Source: AGHT+IEgSZer8hWY13x0qXXR6I/Sej/NR+Xl7nYUwCW+ECmWFbBpqghq5bAxRYQfADo4HpTVwczsaQ==
+X-Received: by 2002:a05:600c:6304:b0:456:191b:9e8d with SMTP id 5b1f17b1804b1-45892b9d0bdmr51113435e9.11.1753951823050;
+        Thu, 31 Jul 2025 01:50:23 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5d4b:b132:363:7591? ([2a01:e0a:3d9:2080:5d4b:b132:363:7591])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4589952a60fsm54626685e9.23.2025.07.31.01.50.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Jul 2025 01:45:37 -0700 (PDT)
-Message-ID: <391b8214-37f2-460d-94d0-3bd0daa00066@oss.qualcomm.com>
-Date: Thu, 31 Jul 2025 16:45:33 +0800
+        Thu, 31 Jul 2025 01:50:22 -0700 (PDT)
+Message-ID: <aff38b98-23ff-4dcd-afab-2a0d8c8ad599@linaro.org>
+Date: Thu, 31 Jul 2025 10:50:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,211 +84,148 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com>
- <20250729-hamoa_initial-v3-4-806e092789dc@oss.qualcomm.com>
- <pbvyog477v32s4lu72z52dhsond5yud5w3nxmcouvr6ljlndlh@ws46dncy35c6>
- <b4a3f568-f41f-4141-b421-8b158973f810@oss.qualcomm.com>
- <cawg456ucsvssm2ngbcjvpprxke7s3sfqf4fzoj5dtfj2flnzw@2e3h5ojgn4s5>
-Content-Language: en-US
-From: Yijie Yang <yijie.yang@oss.qualcomm.com>
-In-Reply-To: <cawg456ucsvssm2ngbcjvpprxke7s3sfqf4fzoj5dtfj2flnzw@2e3h5ojgn4s5>
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH V1 0/3] Enable UFS MCQ support for SM8650 and SM8750
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, mani@kernel.org,
+ alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: ZOFFpkiJ-OTxkVK5VQPL7EncjrR4Bj3_
-X-Authority-Analysis: v=2.4 cv=Wv0rMcfv c=1 sm=1 tr=0 ts=688b2d33 cx=c_pps
- a=rz3CxIlbcmazkYymdCej/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=Wb1JkmetP80A:10 a=Uz-00NkV9YIIZGY-jFMA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
-X-Proofpoint-GUID: ZOFFpkiJ-OTxkVK5VQPL7EncjrR4Bj3_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMxMDA2MCBTYWx0ZWRfX+3n0a4uFfnd3
- Rzt8lVxXn4EThCZqQWiiyYx89gT039BU1UsIuzxxmYRk5vHLdPCggeb0m7slhdtfhxcdym7tpaO
- zYiEdVoE1c8PTnQAGETwTewqh0904WNk5cU9khg+/g5QGAvRgggUlH27qfEM80b9b7GTmBG9Xiv
- 15nGVEWqc4kJrzPu0SBuehMk/icKnZYUHX67hZLmMVra6al7C0e/kq6LCM029ppTvht2Ufkq4D4
- CWNtLiMjCpER4wh0I4AAyAGqltd91tBKhCaMaT1kGUGih83ajmOEb8aFVzUHurus6fjU57P2A9t
- +0u7HEZB0LZohY7ePIN6JfO1VNMvVZba0WgeShifZmoeNqneuaRx57RnL9BB2C9gs45Zh53Rqq+
- fdLs/Xr2H1rfjAajFtWk9E40flKZ8C8KIpzQBBDGixmi2AzTFshut8gYQSy9BQk0nZ9DXk65
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-31_01,2025-07-31_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 mlxscore=0 adultscore=0 impostorscore=0
- phishscore=0 mlxlogscore=999 suspectscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507310060
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-
-On 2025-07-31 02:42, Dmitry Baryshkov wrote:
-> On Wed, Jul 30, 2025 at 02:28:25PM +0800, Yijie Yang wrote:
->>
->>
->> On 2025-07-29 18:37, Dmitry Baryshkov wrote:
->>> On Tue, Jul 29, 2025 at 09:32:00AM +0800, Yijie Yang wrote:
->>>> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
->>>> the Hamoa IoT SoM and a carrier board. Together, they form a complete
->>>> embedded system capable of booting to UART.
->>>>
->>>> This change enables and overlays the following peripherals on the carrier
->>>> board:
->>>> - UART
->>>> - On-board regulators
->>>> - USB Type-C mux
->>>> - Pinctrl
->>>> - Embedded USB (EUSB) repeaters
->>>> - NVMe
->>>> - pmic-glink
->>>> - USB DisplayPorts
->>>>
+On 30/07/2025 10:22, Ram Kumar Dwivedi wrote:
+> This patch series enables Multi-Circular Queue (MCQ) support for the UFS
+> host controller on Qualcomm SM8650 and SM8750 platforms. MCQ is a modern
+> queuing model that improves performance and scalability by allowing
+> multiple hardware queues.
 > 
+> Although MCQ support has been present in the UFS driver for several years,
+> this is the first time it is being enabled via Device Tree for these
+> platforms.
 > 
->>>> +	vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
->>>
->>> Hmm, so there are regulators for the retimer, but they are not used.
->>> Could you please point out, why?
->>
->> According to the schematic, there is a regulator and a retimer (PS8830).
->> However, as mentioned above, the retimer is not connected to USB 0 and is
->> therefore not used in the EVK. As a result, the regulator is left unused in
->> this context.
+> Patch 1 updates the device tree bindings to allow the additional register
+> regions and reg-names required for MCQ operation.
 > 
-> What is connected to the retimer then?
-
-All data lines are broken, except for some power lines.
-
+> Patches 2 and 3 update the device trees for SM8650 and SM8750 respectively
+> to enable MCQ by adding the necessary register mappings and MSI parent.
 > 
->>
->>>
->>>> +		compatible = "regulator-fixed";
->>>> +
+> Tested on internal hardware for both platforms.
 > 
-> [...]
+> Palash Kambar (1):
+>    arm64: dts: qcom: sm8750: Enable MCQ support for UFS controller
 > 
->>>> +
->>>> +	usb_1_ss0_sbu_default: usb-1-ss0-sbu-state {
->>>> +		mode-pins {
->>>> +			pins = "gpio166";
->>>> +			function = "gpio";
->>>> +			bias-disable;
->>>> +			drive-strength = <2>;
->>>> +			output-high;
->>>
->>> What does this pin do? It's not recommended to set GPIO values through
->>> pinctrl.
->>
->> It is used to switch data lines between USB Type-C orientation detection and
->> DisplayPort AUX channels.
+> Ram Kumar Dwivedi (2):
+>    dt-bindings: ufs: qcom: Add MCQ support to reg and reg-names
+>    arm64: dts: qcom: sm8650: Enable MCQ support for UFS controller
 > 
-> I don't think I follow it here. Which data lines? Type-C orientation
-> detection uses CC1 / CC2, DP AUX use SBU lines.
-
-I made a mistake here — this pin switches between two data sources: one 
-is DP AUX, and the other is a GPIO pair configured with the function 
-usb0_sbrx/usb0_sbtx. Both data sources originate from the SoC and are 
-routed to the USB0_SBU1 and USB0_SBU2 lines of the USB Type-C connector.
-
-> 
->> When this GPIO is high, USB0 operates in
->> orientation detection mode.
-> 
-> What does this mean?
-
-This means the switch will select the GPIO pair configured as 
-usb0_sbrx/usb0_sbtx.
-
-> 
->>
->>>
->>>> +		};
->>>> +
->>>> +		oe-n-pins {
->>>> +			pins = "gpio168";
->>>> +			function = "gpio";
->>>> +			bias-disable;
->>>> +			drive-strength = <2>;
->>>> +		};
->>>> +
->>>> +		sel-pins {
->>>> +			pins = "gpio167";
->>>> +			function = "gpio";
->>>> +			bias-disable;
->>>> +			drive-strength = <2>;
->>>> +		};
->>>> +	};
->>>> +
->>>> +	wcn_bt_en: wcn-bt-en-state {
->>>> +		pins = "gpio116";
->>>> +		function = "gpio";
->>>> +		drive-strength = <2>;
->>>> +		bias-disable;
->>>> +	};
->>>> +
->>>> +	wwan_sw_en: wwan-sw-en-state {
->>>> +		pins = "gpio221";
->>>> +		function = "gpio";
->>>> +		drive-strength = <4>;
->>>> +		bias-disable;
->>>> +	};
->>>> +
->>>> +	wcn_sw_en: wcn-sw-en-state {
->>>> +		pins = "gpio214";
->>>> +		function = "gpio";
->>>> +		drive-strength = <2>;
->>>> +		bias-disable;
->>>> +	};
->>>> +
->>>> +	wcn_usb_sw_n: wcn-usb-sw-n-state {
->>>
->>> What does this pin do? Using pinctrl to set GPIO values is not
->>> recommended AFAIR.
->>
->> This pin functions similarly to usb-1-ss0-sbu-state; it controls the data
->> switch between signals from the USB connector and WLAN data.
-> 
-> Could you please explain it? Does it toggle USB2 signals(you've added it
-> to the USB2 PHY) being routed either to the USB connector or to the WiFi
-> card? Or do you mean something else?
-
-Yes, that's right. It routes signals between the USB connector and the 
-M.2 Wi-Fi card.
-
-> 
->>>> +&usb_2_hsphy {
->>>> +	phys = <&eusb5_repeater>;
->>>> +
->>>> +	pinctrl-0 = <&wcn_usb_sw_n>;
->>>> +	pinctrl-names = "default";
->>>> +};
->>>> +
->>>> +&usb_mp_hsphy0 {
->>>> +	phys = <&eusb6_repeater>;
->>>> +};
->>>> +
->>>> +&usb_mp_hsphy1 {
->>>> +	phys = <&eusb3_repeater>;
->>>> +};
->>>>
->>>> -- 
->>>> 2.34.1
->>>>
->>>
->>
->> -- 
->> Best Regards,
->> Yijie
->>
+>   .../devicetree/bindings/ufs/qcom,ufs.yaml     | 21 ++++++++++++-------
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi          |  9 +++++++-
+>   arch/arm64/boot/dts/qcom/sm8750.dtsi          | 10 +++++++--
+>   3 files changed, 29 insertions(+), 11 deletions(-)
 > 
 
--- 
-Best Regards,
-Yijie
+I ran some tests on the SM8650-QRD, and it works so please add my:
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
 
+I ran some fio tests, comparing the v6.15, v6.16 (with threaded irqs)
+and next + mcq support, and here's the analysis on the results:
+
+Significant Performance Gains in Write Operations with Multiple Jobs:
+The "mcq" change shows a substantial improvement in both IOPS and bandwidth for write operations with 8 jobs.
+Moderate Improvement in Single Job Operations (Read and Write):
+For single job operations (read and write), the "mcq" change generally leads to positive, albeit less dramatic, improvements in IOPS and bandwidth.
+Slight Decrease in Read Operations with Multiple Jobs:
+Interestingly, for read operations with 8 jobs, there's a slight decrease in both IOPS and bandwidth with the "mcq" kernel.
+
+The raw results are:
+Board: sm8650-qrd
+
+read / 1 job
+                v6.15     v6.16  next+mcq
+iops (min)  3,996.00  5,921.60  4,661.20
+iops (max)  4,772.80  6,491.20  5,027.60
+iops (avg)  4,526.25  6,295.31  4,979.81
+cpu % usr       4.62      2.96      5.68
+cpu % sys      21.45     17.88     25.58
+bw (MB/s)      18.54     25.78     20.40
+
+read / 8 job
+                 v6.15      v6.16   next+mcq
+iops (min)  51,867.60  51,575.40  56,818.40
+iops (max)  67,513.60  64,456.40  65,379.60
+iops (avg)  64,314.80  62,136.76  63,016.07
+cpu % usr        3.98       3.72       3.85
+cpu % sys       16.70      17.16      14.87
+bw (MB/s)      263.60     254.40     258.20
+
+write / 1 job
+                v6.15     v6.16  next+mcq
+iops (min)  5,654.80  8,060.00  7,117.20
+iops (max)  6,720.40  8,852.00  7,706.80
+iops (avg)  6,576.91  8,579.81  7,459.97
+cpu % usr       7.48      3.79      6.73
+cpu % sys      41.09     23.27     30.66
+bw (MB/s)      26.96     35.16     30.56
+
+write / 8 job
+                  v6.15       v6.16    next+mcq
+iops (min)   84,687.80   95,043.40  114,054.00
+iops (max)  107,620.80  113,572.00  164,526.00
+iops (avg)   97,910.86  105,927.38  149,071.43
+cpu % usr         5.43        4.38        2.88
+cpu % sys        21.73       20.29       16.09
+bw (MB/s)       400.80      433.80      610.40
+
+The test suite is:
+for rw in read write ; do
+     echo "rw: ${rw}"
+     for jobs in 1 8 ; do
+         echo "jobs: ${jobs}"
+         for it in $(seq 1 5) ; do
+             fio --name=rand${rw} --rw=rand${rw} \
+                 --ioengine=libaio --direct=1 \
+                 --bs=4k --numjobs=${jobs} --size=32m \
+                 --runtime=30 --time_based --end_fsync=1 \
+                 --group_reporting --filename=/dev/disk/by-partlabel/super \
+             | grep -E '(iops|sys=|READ:|WRITE:)'
+             sleep 5
+         done
+     done
+done
+
+Thanks,
+Neil
 
