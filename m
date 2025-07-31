@@ -1,179 +1,162 @@
-Return-Path: <devicetree+bounces-200975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5C06B16CCB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:33:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75541B16CD6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:42:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C1EB18C71B1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:34:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 822463A77E9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE646286885;
-	Thu, 31 Jul 2025 07:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF8C29CB58;
+	Thu, 31 Jul 2025 07:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z2j0PoK/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XWOBup87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E8C19597F;
-	Thu, 31 Jul 2025 07:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB8629CB3E
+	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 07:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753947223; cv=none; b=AaDazajyZapEY3Zq5bYG7wtfDnl7tIh8SFrKBSdZT3QSH7nfdZwvDYnAgK5Gum5IY9ktf2fvTimJXj8usdJdT861voc8LaUxjfAWArPct1EAcz/upiTwJ1vJJU5YU1m+dpqVKJavOiqHWpk8I6tK+z+Oj+Ma6AWDyVomCR1LuLU=
+	t=1753947711; cv=none; b=sE1tEpgjKbFS4skTjxHwXEjQn0+3DPkTCjALNT5uhAMWN2hLGphUU23+xtEyZUUqvXfm/GGZRDSbwCC9qqQlksUwNDoykpDml1eDmcAF7MPvljTb6C61ZFrynFBAZc4Kl7rRxUZKoSS0IegbM1WSzry0vonvUFQ3I8yC/arvqqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753947223; c=relaxed/simple;
-	bh=8gd1XJu/hU6zK55BIaEKAOX9pr+PQogrt/+iL+WtPlM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hj33EBAoDh1a7VzlmmsoZab3E+6GtSJWFStQs9qw/gqwz0pw/slPsuMA5Q9G2E50ykno0n51jSdW2begevgubn3re1jUHCnqDOe0hrAq5H4A1xgSe0kN5ZV9A+8Na91/aDk4KzrPPY/eGLjZVAH68y77krZ2Wexp3pOqSipX1Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z2j0PoK/; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4ab3802455eso7911001cf.2;
-        Thu, 31 Jul 2025 00:33:42 -0700 (PDT)
+	s=arc-20240116; t=1753947711; c=relaxed/simple;
+	bh=FUk+hS8UV3ct/Zmfxgtd4RMf6XdZWYcVB8mHR4pLQno=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L5QpHW6Ifc55is06hkshyVRrfiXZuQgJW654W1BJe78zGNr8eU2Z9AbWiXfpC7rvcqfRXa2A1wzVyjOHbBWhgW+vB/ZCXGNJKN0PjCyRAvwUi6Jbh2F86rWQoraeAz/OQBpHJbPaZoSnuiokNe1m9tpeRKc/cuvaiPUgfjfP6OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XWOBup87; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b78315ff04so78965f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 00:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753947221; x=1754552021; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZOX9X8brnwUNsz5uO4Te0xlPw30giJyAMqsCiquXPp4=;
-        b=Z2j0PoK/WXwwMNZuFYWGc558gF3SkrqH3VCTJmVDPRJLCUzcHVooJTONi/Dsmjx5LT
-         tnd7c+8DNogXJpZ5wIIIZLDebpawxGqco5S+4qvhNxh9tch/KvXdTXpPsvUTsxw54jCm
-         leh02h3tkCsbgxbANvFH/zKYBflBA/svAdxabB7uXpXwmhiBVCcnbxuIUJsCyZHjfD5K
-         pxwfOkhhKROGOrhQZjVrxDLve/Iknoy07AHRiUng5nkY9Dxd2PtRQw3rEBHreGwZrKlv
-         mPa7VzGpM4bXY7n1H99KsKXtnBQDlECcsWLr8gRLb770EHHGbJNJheFxr6f3TtuBA+wV
-         Np2w==
+        d=linaro.org; s=google; t=1753947708; x=1754552508; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rg8qJybgcN2QySvV7zBDwm9nfaW7SarG7SeeC2wAVGI=;
+        b=XWOBup87NdeToIdH0PJk9b6pVxx7RXm66HQ1olaNVoaKT0pnxulmW23pKYYd9xBdF5
+         ND2xp9UvHRMSDqqrn4n+StUZczbiNJ4Tw5Dduw78CXIpqlMavkjIKsC/+E7urbUDWzgj
+         IGmjUlrXPtzEe8VM7uH4GM+Dni7dESeLk+8dw9Oyu0F55TW9Aa7gyZ+MJfrfTSmEU0P5
+         tALTxdRwt+1JWdV5wVvX49V+8tGAUXRQgfBl32lzpqvMASWno6Te4TuQQr1ILwNPpoAA
+         3ifDJXzH4WuX2UgqVc4xgkfVpu22BuK0Az9I016RT52n9GblAT+5IrpOF0QL2WyKPclC
+         ExEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753947221; x=1754552021;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZOX9X8brnwUNsz5uO4Te0xlPw30giJyAMqsCiquXPp4=;
-        b=VSW7hM8wFPfUhFThlXw5t0hYL8XUKrjn20epF69NwKzboNdi2eiWcZWU8GffS0Es7g
-         WUvtQnJT6SrUZ8tZ29g8NMKdXTazBUaaVqhtJ6FBWQAGLop9ltEXvOg+YTFZJBITY2Ry
-         iKr5i4wwr2Lcmt/2QGbbRFrszRY/z+IAHVgQB0Izp6plSoiD44zYGBND7prqpXBTCN+K
-         ncMvAAbeBS9v1H8TsuKxSI4zvDS5LXVmKj9Zel3Ot7OgIa2Z5xNNf/kSZlRXzxzXAvtx
-         EvZqxKz1P03rd9ZUjCEznvN8KqrTUrFJTUJTap4LxcJ6BqX5kOnYEd/kVvN27nuYjsHP
-         DKYA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2Fyo3mrWBePFCmSLeneusqX4vKTy1l1XeHKFkX8Rjn31dLahJJC3kLbONXqiYlb4DZslXeSIHqWE4LJR7@vger.kernel.org, AJvYcCWmG3CnrK3r+ZKXjbSPGsyMO7vNZvJqu+V5HEH8mBr81RLmtrmqfI4rgS0KOWoqeIEUFCl74uk1//s=@vger.kernel.org, AJvYcCX6D7pEOQ7gHxjfpHqEQc/Y0l8ZoE0I3gyS3R90xEONU3CLtOVx3OiYkKGwQswKy9ul8pYWYqfunfse@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ3W9+2fc8aamDBqQDxMn0FhEAmlspxuLx1sLr/NxKooC1X+eJ
-	LtL6kv+wcpf910fEHPPfmJkP8+82SOUBWH6/PCroGZzuMgeh+cuJL9O7xafMbeFJv0DU9f2mguY
-	nqyQuJACmLP37jwu/Lg0OUlHgJeQ5/FQ=
-X-Gm-Gg: ASbGncs2VGv/DDm/DcA+wfvLleVSWVtkEdtXt5zLHXuU2H2H9ra40URFABMcuEghPzJ
-	lCl9bnlqTDoYpmBo+NoExbfuqXXHpyf9n8IU9S0SZNeMy/FYupYwXb8SGhOQqEF/Zt42oAifbTR
-	kLC5DHEB+y6wxFwDKcOxB9HuxTBFfE3nNVGvFqoiqIsRZTPvK0BHSbMmKuT3LefyEwpfFjo3Nk9
-	MmnMavPl4iz9RP4S9ffl7mFw5BPetmeYRvhcD3Z
-X-Google-Smtp-Source: AGHT+IH1uwkUGAwbjx/9dKqcwJTQI9b2LQO1Th3mXrOlkX6OvkMWjy54q1bCvJ9oudoi0B/QbEA71tvh/WvbZgihO6E=
-X-Received: by 2002:ac8:5913:0:b0:4ae:cc75:4704 with SMTP id
- d75a77b69052e-4aedbc6b2abmr108326681cf.59.1753947221032; Thu, 31 Jul 2025
- 00:33:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1753947708; x=1754552508;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rg8qJybgcN2QySvV7zBDwm9nfaW7SarG7SeeC2wAVGI=;
+        b=ghMe+bVedNobbgsdKNkNGELlyt/ADJyeygS2AxYltGbm8IK2rgHUAPwFjkBSJeUW4j
+         rpjTLSaqp7lYiq7YbxTH3Liw0IPLQmm4qgYlNAVGp594a3dc7+0BVd55TnsS7UM0uAOa
+         o5SytSI6XW3jf/Fh2Yd4/XIcT1u8eMLc1/861TL4YWtgpL8x8/OyRRWHOicBkLAr/0bX
+         SZ1ygd8QTeLosfY8FYx9XfzrjqjzHSPJok1XGcuMO5aIjYsRyGUL8VAcX1tg0aVxDQET
+         xKC74BRI5j/kur3bPImyKvR04Aa7q+BI+PpEN70o+Q94T66BHl7lmkl7pJwCPgdArZ5n
+         JJxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVOCKNGqteg5nJZD6Bmqw96lxb35zEXtSVTdm9nXsThrYt2+4GZXZWSY5lBZKFX+9QCeNxISAwj+AHn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxOrU1vMx2XoQZ9eZNi7UL3Xe9npHixHAn9VXrfYj9tQsXH6ds
+	MmxLQ++H+MzruqNWVR1LAM3z729/EyVZYlOZwsUTm+/jsCNIDeSH7NkJji09bEUcDna8L6ztScN
+	HQp9m
+X-Gm-Gg: ASbGncsUMxVaL4bp1ZZD+fYmmdJ3G76W4+sFwAL9mqkFXBlbxOA93ECv+pgHKaU1WDO
+	TglfZOpiJPJKUM1EAE18X6ZdmyvBPEEkVR+ukl2gC4Ee8JUmKktSwFwYWvPgQ8QmS5r5t+c3/Ty
+	synFgZCxMzPKJ8krbHpyAatuH5UO2v5TGF+3updzPFpH99xAwO5dRaHZLqsz/lGcbHf3XDLULhm
+	koKN5ecVC4ywqQ2D11aYo7+mGW+EpgwrQ63Tasi89xE1h1ymmHg1WopfbckSilECLK+nLg+PybW
+	QXf5Uc5ViTglFbExMpBXOWi+wOJ0BW+FzTmMt0xy7/uOE7YpYg8R6TtVE6JJczUOauSXH0Rs6y8
+	ddJw8P9rqc1IcVbaHsolNYygTwlcdGd+iN8b3VYgJxJ4Iey/v6UQpVNuqWgoasg==
+X-Google-Smtp-Source: AGHT+IF/E5/SuU8iV+jCxBPuKgOukgigRyRn5Br/+JMK7Nzazv6QWnZ9AFSrYVbUlRdayFffY5H5aw==
+X-Received: by 2002:a05:6000:250f:b0:3b4:58ff:ed1 with SMTP id ffacd0b85a97d-3b79503e0a1mr4697527f8f.52.1753947708090;
+        Thu, 31 Jul 2025 00:41:48 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b79c3b9386sm1439883f8f.18.2025.07.31.00.41.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Jul 2025 00:41:47 -0700 (PDT)
+Message-ID: <858e9dd6-b3a7-4ff7-aaa1-02a140b93de8@linaro.org>
+Date: Thu, 31 Jul 2025 09:41:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
- <aHgHxR1_Gzu8Dwbm@mai.linaro.org> <4178173.5fSG56mABF@diego> <14c91ee4-3a09-4ec9-966f-0d563d7c8966@linaro.org>
-In-Reply-To: <14c91ee4-3a09-4ec9-966f-0d563d7c8966@linaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 31 Jul 2025 11:33:32 +0400
-X-Gm-Features: Ac12FXyBhKCe01359PD8yUXtXOTB-iOa83dWxetYoDpIa3sijPk9zpEZPKHbrQs
-Message-ID: <CABjd4YzJeNf0Qq9qFeMcoYQV5erZGUeOpmJynRW88AeL9dJNhQ@mail.gmail.com>
-Subject: Re: [PATCH v6 0/7] RK3576 thermal sensor support, including OTP trim adjustments
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Ye Zhang <ye.zhang@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 19/20] dt: bindings: fsl,vf610-pit: Add compatible for
+ s32g2 and s32g3
+To: Rob Herring <robh@kernel.org>
+Cc: tglx@linutronix.de, S32@nxp.com, linux-kernel@vger.kernel.org,
+ ghennadi.procopciuc@oss.nxp.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <20250730082725.183133-1-daniel.lezcano@linaro.org>
+ <20250730082725.183133-20-daniel.lezcano@linaro.org>
+ <20250730233547.GA1887794-robh@kernel.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250730233547.GA1887794-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Heiko!
 
-On Thu, Jul 17, 2025 at 12:20=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
-> On 7/17/25 09:21, Heiko St=C3=BCbner wrote:
-> > Hi Daniel,
-> >
-> > Am Mittwoch, 16. Juli 2025, 22:12:53 Mitteleurop=C3=A4ische Sommerzeit =
-schrieb Daniel Lezcano:
-> >> On Tue, Jun 10, 2025 at 02:32:36PM +0200, Nicolas Frattaroli wrote:
-> >>> This series adds support for the RK3576's thermal sensor.
-> >>>
-> >>> The sensor has six channels, providing measurements for the package
-> >>> temperature, the temperature of the big cores, the temperature of the
-> >>> little cores, and the GPU, NPU and DDR controller.
-> >>>
-> >>> In addition to adding support for the sensor itself, the series also
-> >>> adds support for reading thermal trim values out of the device tree.
-> >>> Most of this functionality is not specific to this SoC, but needed to=
- be
-> >>> implemented to make the sensors a little more accurate in order to
-> >>> investigate whether the TRM swapped GPU and DDR or downstream swapped
-> >>> GPU and DDR in terms of channel IDs, as downstream disagrees with wha=
-t's
-> >>> in the TRM, and the difference is so small and hard to pin down with
-> >>> testing that the constant offset between the two sensors was a little
-> >>> annoying for me to deal with.
-> >>>
-> >>> I ended up going with the channel assignment the TRM lists, as I see =
-the
-> >>> DDR sensor get a larger deviation from baseline temperatures during m=
-emory
-> >>> stress tests (stress-ng --memrate 8 --memrate-flush) than what the TR=
-M
-> >>> claims is the GPU sensor but downstream claims is the DDR sensor. Inp=
-ut
-> >>> from Rockchip engineers on whether the TRM is right or wrong welcome.
-> >>>
-> >>> The trim functionality is only used by RK3576 at the moment. Code to
-> >>> handle other SoCs can rely on the shared otp reading and perhaps even
-> >>> the IP revision specific function, but may need its own IP revision
-> >>> specific functions added as well. Absent trim functionality in other
-> >>> SoCs should not interfere with the modified common code paths.
-> >>>
-> >>> Patch 1 is a cleanup patch for the rockchip thermal driver, where a
-> >>> function was confusingly named.
-> >>>
-> >>> Patch 2 adds the RK3576 compatible to the bindings.
-> >>>
-> >>> Patch 3 adds support for this SoC's thermal chip to the driver. It is=
- a
-> >>> port of the downstream commit adding support for this.
-> >>>
-> >>> Patch 4 adds some documentation for imminent additional functionality=
- to
-> >>> the binding, namely the trim value stuff.
-> >>>
-> >>> Patch 5 adds support for reading these OTP values in the
-> >>> rockchip_thermal driver, and makes use of them. The code is mostly ne=
-w
-> >>> upstream code written by me, using downstream code as reference.
-> >>
-> >> Replaced previously applied version V5 with this V6 patches 1-5
-> >
-> > are these commits available somewhere?
-> >
-> > Because git.kernel.org reports that
-> >    https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git
-> > has not seen activity in a while?
-> >
->
-> I just pushed the bleeding-edge branch
+Hi Rob,
 
-Just wondering if patches 6-7 from this series are on your radar?
-Driver changes are in -next AFAICT, but not DTS. Can't wait to get the
-temperature monitoring working on RK3576 without out-of-tree patches
-;-)
+On 31/07/2025 01:36, Rob Herring wrote:
+> On Wed, Jul 30, 2025 at 10:27:21AM +0200, Daniel Lezcano wrote:
+>> The Vybrid Family is a NXP (formerly Freescale) platform having a
+>> Programmable Interrupt Timer (PIT). This timer is an IP found also on
+>> the NXP Automotive platform S32G2 and S32G3.
+>>
+>> Add the compatible for those platforms to describe the timer.
+>>
+>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> ---
+>>   .../devicetree/bindings/timer/fsl,vf610-pit.yaml          | 8 ++++++--
+>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>> index bee2c35bd0e2..2aac63a58bfd 100644
+>> --- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>> +++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>> @@ -15,8 +15,12 @@ description:
+>>   
+>>   properties:
+>>     compatible:
+>> -    enum:
+>> -      - fsl,vf610-pit
+>> +    oneOf:
+>> +      - const: fsl,vf610-pit
+>> +      - const: nxp,s32g2-pit
+> 
+> These 2 can be a single enum. Otherwise,
 
-Thanks a lot,
-Alexey
+Do you mean this ?
+
+    enum:
+      - fsl,vf610-pit
+      - nxp,s32g2-pit
+
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
+Thanks for the review
+
+>> +      - items:
+>> +          - const: nxp,s32g3-pit
+>> +          - const: nxp,s32g2-pit
+>>   
+>>     reg:
+>>       maxItems: 1
+>> -- 
+>> 2.43.0
+>>
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
