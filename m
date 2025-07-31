@@ -1,213 +1,121 @@
-Return-Path: <devicetree+bounces-201146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0352B178FD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 00:13:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0334B17905
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 00:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 360541C8091F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 22:13:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D5F83AF645
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 22:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8C0277CBA;
-	Thu, 31 Jul 2025 22:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DEB326E702;
+	Thu, 31 Jul 2025 22:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WiPdH8bJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uqLaUiTb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367B7277C9E;
-	Thu, 31 Jul 2025 22:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1C02676DF;
+	Thu, 31 Jul 2025 22:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753999965; cv=none; b=bIS8yf5atPdMp08sNTeI5uDpDvEd8pTmJHYMglBqPwS3sy/IVWsQ/pWVxB9p4Evu8B4DGWNFBi6m5Dwk0YpaLpQkQFUkl8pamCfJVcpxSfqsDFKm+HULLz0qmtF090O+r54qVxG31AMsi6WMdR3itXAmGwV6itqirX4HccdFOX0=
+	t=1754000223; cv=none; b=cj5SC4YEd6DgPqHrZuWx7bKH5KK/5rbmKgrmmImx9VVdXhmJ9o0XQSFvsZ1Al08BPc5+oXh4K9Edxt0GFo8058c/ejATamackHA8uS8J5T0F5uvBG1tNVyMVmpdWHWg7j5ZxLVeubmxcotTGGZ4dg2QDu8l3ihNt5cPCOB8ro8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753999965; c=relaxed/simple;
-	bh=ynT/7P19nBEbnk4v3wUHrwMTXAlpxpXmfSbDLW7QBow=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XVq0IJX1meJ1r1TxN/jL5KotF7XtGHN3O8FxCNeQK/Kg935bHNb3haeHPUemDoJrKC/wDM6F7psjbccI+0P9yzC6sYBAGkjoMztDO5zPOlJZQo/KdzG+v9tY8VTRaHXM+IfRXimSSypwMG/cUAtGKm8UkKQpogMxMrB/yXEALLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WiPdH8bJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F38E7C4CEEF;
-	Thu, 31 Jul 2025 22:12:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753999965;
-	bh=ynT/7P19nBEbnk4v3wUHrwMTXAlpxpXmfSbDLW7QBow=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=WiPdH8bJVZiPwaVYPbRRr523yZEzOPQ+ie6pu6R67AsJQNNDlJEGT7ay45wD7eDkq
-	 LWt9adqI1IaCuV8oC5dgyWEPfcpu0QWaFm81n00/ylYgb66xnFkzMEFgIWG0FbBJYp
-	 dvh8q5g065Hf5jP+cXZ/eg+BAU2Td+fwPUhef4xpkbzfSeI9FKX7sA1ba+y8me/2hc
-	 pN0WY4/A4lK+hUzEbMPDIDPoHZR9R8cdk48SP3pV7KbsIJVTOSEsyyO2ucOLBciLMB
-	 iyTpyCCDMz7xlXpajr2lRYL/VBzx0bxlOT3SDiWhTKYXg4flf5djaa4SSIWFt0u6xI
-	 ZCFD5xkDIvBkg==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Thu, 31 Jul 2025 17:12:23 -0500
-Subject: [PATCH 6/6] dt-bindings: fsi: Convert aspeed,ast2400-cf-fsi-master
- to DT schema
+	s=arc-20240116; t=1754000223; c=relaxed/simple;
+	bh=f83U+T2+PBCeDKLnFO2gjKOrX5TKB2qVEuH5/8weOyc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hTyOWhHNkRSiR9Xd6qUPvdm1HteUnMzJmFO3uqNfRCd0t/VzOHGOMJgt9e/WQZOrsVqHMqjl4cVqLf+Q77QJd5PKDcHpouT6KA/ZSoprn0S2IWfabDYPm6e8esrRJMXTf31tordhUgNDoZqOJVFN/ZuEw0E3LqchahmA4Pq/A2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uqLaUiTb; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56VMGesW3587553;
+	Thu, 31 Jul 2025 17:16:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754000200;
+	bh=QN3d7kXcBabvZydAeOgZJZMx4cZdK5z524/HEbI4Q8g=;
+	h=From:To:CC:Subject:Date;
+	b=uqLaUiTbtVhjpONUrKFuwQRg/p9GC4n86cnHzlK42NfahIwaOPMJtqDLCuYU4aS+v
+	 e+JWrF/gb0ynqW4AHYcsdizgRi4rFW/2uuufCi+0QSnuMz9Cq9OdEl7S7egVMO+svc
+	 DSBvW5YCfDmdOq5NxCgx61qwKjZOu40KIRSK+x80=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56VMGel9323090
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 31 Jul 2025 17:16:40 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 31
+ Jul 2025 17:16:40 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 31 Jul 2025 17:16:40 -0500
+Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.190])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56VMGefh3290646;
+	Thu, 31 Jul 2025 17:16:40 -0500
+From: Brandon Brnich <b-brnich@ti.com>
+To: <linux-kernel@vger.kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Darren Etheridge
+	<detheridge@ti.com>,
+        Brandon Brnich <b-brnich@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
+Date: Thu, 31 Jul 2025 17:16:22 -0500
+Message-ID: <20250731221622.2187892-1-b-brnich@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250731-dt-fsi-cleanups-v1-6-e7b695a29fc3@kernel.org>
-References: <20250731-dt-fsi-cleanups-v1-0-e7b695a29fc3@kernel.org>
-In-Reply-To: <20250731-dt-fsi-cleanups-v1-0-e7b695a29fc3@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Benjamin Herrenschmidt <benh@kernel.crashing.org>, 
- Eddie James <eajames@linux.ibm.com>, Ninad Palsule <ninad@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- linux-fsi@lists.ozlabs.org
-X-Mailer: b4 0.15-dev
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Convert the ASpeed Coldfire offloaded GPIO FSI master.
+This adds the node for E5010 JPEG Encoder. E5010 is a stateful JPEG Encoder
+present in J722s SoC, supporting baseline encoding of semiplanar based
+YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
+supported from 64x64 to 8kx8k.
 
-Drop the "fsi-master" compatible as it has not be used consistently and
-doesn't represent anything.
-
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Brandon Brnich <b-brnich@ti.com>
 ---
- .../bindings/fsi/aspeed,ast2400-cf-fsi-master.yaml | 81 ++++++++++++++++++++++
- .../devicetree/bindings/fsi/fsi-master-ast-cf.txt  | 36 ----------
- 2 files changed, 81 insertions(+), 36 deletions(-)
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/fsi/aspeed,ast2400-cf-fsi-master.yaml b/Documentation/devicetree/bindings/fsi/aspeed,ast2400-cf-fsi-master.yaml
-new file mode 100644
-index 000000000000..690b6c936f18
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fsi/aspeed,ast2400-cf-fsi-master.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fsi/aspeed,ast2400-cf-fsi-master.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+index 5cfa7bf36641..1ada7202d192 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+@@ -385,6 +385,17 @@ c7x_1: dsp@7e200000 {
+ 		ti,sci-proc-ids = <0x31 0xff>;
+ 		status = "disabled";
+ 	};
 +
-+title: ASpeed ColdFire offloaded GPIO-based FSI master
-+
-+maintainers:
-+  - Eddie James <eajames@linux.ibm.com>
-+
-+allOf:
-+  - $ref: /schemas/fsi/fsi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - aspeed,ast2400-cf-fsi-master
-+      - aspeed,ast2500-cf-fsi-master
-+
-+  clock-gpios:
-+    maxItems: 1
-+    description: GPIO for FSI clock
-+
-+  data-gpios:
-+    maxItems: 1
-+    description: GPIO for FSI data signal
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description: GPIO for enable signal
-+
-+  trans-gpios:
-+    maxItems: 1
-+    description: GPIO for voltage translator enable
-+
-+  mux-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO for pin multiplexing with other functions (eg, external FSI masters)
-+
-+  memory-region:
-+    maxItems: 1
-+    description:
-+      Reference to the reserved memory for the ColdFire. Must be 2M aligned on
-+      AST2400 and 1M aligned on AST2500.
-+
-+  aspeed,cvic:
-+    description: Reference to the CVIC node.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  aspeed,sram:
-+    description: Reference to the SRAM node.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - clock-gpios
-+  - data-gpios
-+  - enable-gpios
-+  - trans-gpios
-+  - mux-gpios
-+  - memory-region
-+  - aspeed,cvic
-+  - aspeed,sram
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    fsi-master {
-+      compatible = "aspeed,ast2500-cf-fsi-master";
-+      clock-gpios = <&gpio 0>;
-+      data-gpios = <&gpio 1>;
-+      enable-gpios = <&gpio 2>;
-+      trans-gpios = <&gpio 3>;
-+      mux-gpios = <&gpio 4>;
-+      memory-region = <&coldfire_memory>;
-+      aspeed,cvic = <&cvic>;
-+      aspeed,sram = <&sram>;
-+    };
-diff --git a/Documentation/devicetree/bindings/fsi/fsi-master-ast-cf.txt b/Documentation/devicetree/bindings/fsi/fsi-master-ast-cf.txt
-deleted file mode 100644
-index 3dc752db748b..000000000000
---- a/Documentation/devicetree/bindings/fsi/fsi-master-ast-cf.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Device-tree bindings for ColdFire offloaded gpio-based FSI master driver
--------------------------------------------------------------------------
--
--Required properties:
-- - compatible =
--	"aspeed,ast2400-cf-fsi-master" for an AST2400 based system
--   or
--	"aspeed,ast2500-cf-fsi-master" for an AST2500 based system
--
-- - clock-gpios = <gpio-descriptor>;	: GPIO for FSI clock
-- - data-gpios = <gpio-descriptor>;	: GPIO for FSI data signal
-- - enable-gpios = <gpio-descriptor>;	: GPIO for enable signal
-- - trans-gpios = <gpio-descriptor>;	: GPIO for voltage translator enable
-- - mux-gpios = <gpio-descriptor>;	: GPIO for pin multiplexing with other
--                                          functions (eg, external FSI masters)
-- - memory-region = <phandle>;		: Reference to the reserved memory for
--                                          the ColdFire. Must be 2M aligned on
--					  AST2400 and 1M aligned on AST2500
-- - aspeed,sram = <phandle>;		: Reference to the SRAM node.
-- - aspeed,cvic = <phandle>;		: Reference to the CVIC node.
--
--Examples:
--
--    fsi-master {
--        compatible = "aspeed,ast2500-cf-fsi-master", "fsi-master";
--
--	clock-gpios = <&gpio 0>;
--        data-gpios = <&gpio 1>;
--        enable-gpios = <&gpio 2>;
--        trans-gpios = <&gpio 3>;
--        mux-gpios = <&gpio 4>;
--
--	memory-region = <&coldfire_memory>;
--	aspeed,sram = <&sram>;
--	aspeed,cvic = <&cvic>;
--    }
-
++	e5010: e5010@fd20000 {
++		compatible = "img,e5010-jpeg-enc";
++		reg = <0x00 0xfd20000 0x00 0x100>,
++		      <0x00 0xfd20200 0x00 0x200>;
++		reg-names = "core","mmu";
++		clocks = <&k3_clks 201 0>;
++		clock-names = "core_clk";
++		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
++		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++	};
+ };
+ 
+ &main_bcdma_csi {
 -- 
-2.47.2
+2.34.1
 
 
