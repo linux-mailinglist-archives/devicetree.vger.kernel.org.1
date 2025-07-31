@@ -1,110 +1,105 @@
-Return-Path: <devicetree+bounces-201031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45693B171B6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:04:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FB88B171DF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:18:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A6DB7A50E8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:02:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 414047B2E79
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255962BDC1C;
-	Thu, 31 Jul 2025 13:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB142C3274;
+	Thu, 31 Jul 2025 13:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FrtH5N8Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 354F43A8C1;
-	Thu, 31 Jul 2025 13:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29077A94A;
+	Thu, 31 Jul 2025 13:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753967056; cv=none; b=HHKxBKOCdhVhV34+ei+mBpqO1eoIB6ksR2Qp6wr1FsGaKX8At2LLzqmeWGm+RdbyBhBsfarpyw/zFpMEIDl30nMMOy4ih1DUC9xCZFXuH/Gmi4bF5l0lAYqP+K1DUxA7RKKhPtmKK/lvqtHyZF000YXyWljMIWb7Slnp8AiXIMY=
+	t=1753967915; cv=none; b=N2dr4MRyY2LADbYuLI4PaZuExdxm3Frpq1H1irnQYFP+e3YzYQW6XFTQrnkFOfa10+kE4L0nj8zvPNohMBE25VRcT2j+FM3QsmInKKqSFnhKaHqb+sSCc2oKYY4QVn06Rx8XbRgnRjyAW4FCwAeW6TrqHg6MUg1XGBrjZQUAvyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753967056; c=relaxed/simple;
-	bh=Gr5VIocSsSHBsm9aipkJffgAf8h2uKY4g13v57y4I0E=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gzlvrSxkhU0rZQiPLJ0j8iYXkzAFwTT7NPmbvDfEkyG5TE1oVbpg+SjwVjFNSOf9ZuTXNrrW9xk+85trpbROdiJEDuz2eU7XU3NJSeyW4aIGf5MUYp/7ZwTanx+r0RIZZlTlR3SaGIlKfjMrIoniEG18xwk3KDVSsypSb3eqRQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bt8PJ6wcCz6L5Cn;
-	Thu, 31 Jul 2025 21:02:12 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id E5BC11402EA;
-	Thu, 31 Jul 2025 21:04:11 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 31 Jul
- 2025 15:04:10 +0200
-Date: Thu, 31 Jul 2025 14:04:09 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-CC: Jonathan Cameron <jic23@kernel.org>, David Lechner
-	<dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
- 3D Magentic sensor
-Message-ID: <20250731140409.00000029@huawei.com>
-In-Reply-To: <aImVLWJP08_g23xu@dixit>
-References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
-	<20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
-	<20250727140559.1f6c1668@jic23-huawei>
-	<aIhE5zwrPljqHqGX@dixit>
-	<20250729200513.275e0d98@jic23-huawei>
-	<aImVLWJP08_g23xu@dixit>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1753967915; c=relaxed/simple;
+	bh=Setdk4P0LfxRRgUblhfUiMB1mpM6wOnPj1k9C7xJ+eA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eg4fHW1dA1Ms0Rsu8qoTdIYg2zR0Cf6njgM/3Pv8DPkjEXDK9wgTTrY0uUFvrm97xsvsh3+Gs6xMJopGcAu/RxAh3fPldduAV1PSGD1bY8B6qvvoHJqeYfN/HZ2NGD7SOG354brQtcbUMEoq4MsPZoV2ZaUjsbrNlPg9D8VRkL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FrtH5N8Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68AA9C4CEF4;
+	Thu, 31 Jul 2025 13:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753967914;
+	bh=Setdk4P0LfxRRgUblhfUiMB1mpM6wOnPj1k9C7xJ+eA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FrtH5N8ZTn11r98wDtyoPuCNbywhaLiKlTjNEgfpJ/MYE/ueVe5av8X9ILRQrhb16
+	 mS3r96kKh9t0oR7lkViwtGeMY+rBqx2wELrNEo1Is+Zzk/zIiQSgRSH1IhYrFj7vzr
+	 ORSi5DH0N6BqtvdXtfojBgAM7Bt3Qf/0P8fRxyRiqCRQgos2KjaMHs10fqj1AmLsTD
+	 RZd3BM/J59xtxhiNcGN+hsTaClqOSrGzlznRRqhQLm0o4txNRQh45/nanuCwrWOkn+
+	 oIVWx0Dn/xgMBcLcWWfp9FNqrOLMdgikCCaUDZoS27xf976zWdhGP7KDeD+B40oCC/
+	 cuB42vd5zpd9A==
+Date: Thu, 31 Jul 2025 14:18:27 +0100
+From: Lee Jones <lee@kernel.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux.amoon@gmail.com, troymitchell988@gmail.com,
+	guodong@riscstar.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 2/8] mfd: simple-mfd-i2c: specify max_register
+Message-ID: <20250731131827.GG1049189@google.com>
+References: <20250726131003.3137282-1-elder@riscstar.com>
+ <20250726131003.3137282-3-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250726131003.3137282-3-elder@riscstar.com>
 
+On Sat, 26 Jul 2025, Alex Elder wrote:
 
-Please crop to the remaining discussion points.
+> All devices supported by simple MFD use the same 8-bit register 8-bit
+> value regmap configuration.  There is an option available for a device
+> to specify a custom configuration, but no existing device uses it.
+> 
+> Rather than requiring a "full" regmap configuration to be provided to
+> change only the max_register value, Lee Jones suggested allowing
+> max_register to be specified in the simple_mfd_data structure.  The
+> 8-bit register 8-bit configuration is still used by default, but
+> max_register is also applied if it is non-zero.
+> 
+> If both regmap_config and max_register are provided, the max_register
+> field in the regmap_config structure is ignored.
+> 
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> Suggested-by: Lee Jones <lee@kernel.org>
+> ---
+> v10: - Rename simple_regmap_config() -> simple_regmap_config_get()
+>      - Introduce simple_regmap_config_put() to free regmap_config
+> 
+>  drivers/mfd/simple-mfd-i2c.c | 45 ++++++++++++++++++++++++++++++++----
+>  drivers/mfd/simple-mfd-i2c.h |  5 +---
+>  2 files changed, 41 insertions(+), 9 deletions(-)
 
-> > > > > +
-> > > > > +#define TLV493D_DATA_X_GET(b)	\
-> > > > > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 | \
-> > > > > +			(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4), 11)    
-> > > > 
-> > > > These are odd enough I'd make them c functions rather than macros. Burn a few lines
-> > > > for better readability. 
-> > > >     
-> > > I saw this kind of data retrival and formation from registers as macros so I sticked to
-> > > it. Having all these as function will also require a seperate function
-> > > for each channel coz the masks and the layout of the bits changes over
-> > > the register. Do you still recommend it as c functions?  
-> > 
-> > Is it more than 4 short functions?  I'd burn the few lines that costs.
-> > 
-> > s32 tlv493d_data_y_get(u8 *buff)
-> > {
-> > 	u16 val = FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << 4 |
-> > 		  FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
-> > 
-> > 	return sign_extend32(val, 11);
-> > }  
-> Okay.
-> Will a single function with channel as arguments will be better?
+This has gone from an in-function 11 line change to 50 lines and the
+inclusion of 2 new functions.  As much as I _really_ appreciate the time
+and effort you have put into this [0], the added complexity being added
+here doesn't sit right with me.  How would you like to go back to your
+v4 idea of providing a bespoke regmap_config for for device?
 
-IIRC I gave that a go as my first try before falling back to this. 
-You either need a look up table, or you need to pass
-a lot of parameters.  In the end it felt simpler to just have 4 small functions.
+[0] Beers on me for sending you down this path!
 
-If you can come up with a clean and readable way of doing so, go for it!
-
-Jonathan
-
-
+-- 
+Lee Jones [李琼斯]
 
