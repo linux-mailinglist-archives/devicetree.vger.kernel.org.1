@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-200951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF42BB16BE7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:11:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8549B16BEE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:14:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08435622B20
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 06:11:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D27A1AA61BD
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 06:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35211242D7E;
-	Thu, 31 Jul 2025 06:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014F4242914;
+	Thu, 31 Jul 2025 06:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iKeb3qE/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KpcaHYF+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C33241691;
-	Thu, 31 Jul 2025 06:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66D72C9A;
+	Thu, 31 Jul 2025 06:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753942296; cv=none; b=YF5TPCC8x/catTplCl9dMwKpRPvAm1tY4P5zoWJT6wgAks00QnUXeAbIYUFUxaDN7+fjoiXYvjveFw1yLZtuPg/v5FhiDzlM17083eim5oFswF9ZUTkuh6pbik4GYKPmJbYgyQuxwfAbrarsh7M7dsnb4EcCygE8LtifWELBG9c=
+	t=1753942434; cv=none; b=CfvBgHskAUHAN7dPUpxNlTbFWIOHk6/Gc7xThbBSfawNKkGrtNIDm2waq4h9hvo3Ap4xtHrLGPKgm0fMXSSM03uSFWdgHl3lqkuRUWY1D4DpeqwgJuj5Rfdxmf8mOkmU/J1QW0kpKgPvPQTrTY6ywBu4R+RrVU0ghgvLz9sSV6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753942296; c=relaxed/simple;
-	bh=t4CO3DrNqAlxgKHhJ3MEDw+KhIrq7qagVN6YFpKyqV8=;
+	s=arc-20240116; t=1753942434; c=relaxed/simple;
+	bh=HnFr5Rr4lc3XsUAnWFUC3pWDPvfXeIPgwcZcKQ4sbzU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ui7djsKPXQt1ix/WG9tiFz2D2jkacInI4mDFLWhvbgIzp9WvS3C/sBcoBd+14TYUz+n/5z4XN7Y7AIzY5SpEtvjPhPnKZsq8ANKGboLV0WRmILvhaOm02XMEBfUWFzUQsP6n13wEj3OZ4HA3e+FeDzOIDzHD74abHqX4MZ2eqE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iKeb3qE/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66006C4CEEF;
-	Thu, 31 Jul 2025 06:11:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YVM4YJX/pLs2g6a4/nhp/FE7vSLW9hdeNwG6etz6caoHMT94r+7mfqti5yYNlyhdeJHS5sa2tTpOhai/pY2htKmjH+lmqmRmp8wNqOhRTS1DrpWUjUGMn4g66BR5aHMeLlIm2irt8cHSVax9em87vGG2M5QI3+F3hyhehhVwirE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpcaHYF+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D66BC4CEEF;
+	Thu, 31 Jul 2025 06:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753942294;
-	bh=t4CO3DrNqAlxgKHhJ3MEDw+KhIrq7qagVN6YFpKyqV8=;
+	s=k20201202; t=1753942434;
+	bh=HnFr5Rr4lc3XsUAnWFUC3pWDPvfXeIPgwcZcKQ4sbzU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iKeb3qE/NGjrfXkvmSNpLj09Wbns7DNR/4TTUWTa7mOCm+osj6JBpYNbXJN8LeHDt
-	 zbyCbtYAhfUOAxOh0xU2mM0HKbGQMyCDqYPHoc6BeXn2y0x7tOio3ZBMSUROaUa72A
-	 h9+L06woyxrQ3sze9/BjfERiugzPz0BsCTmcMc/99Hd/v7w/qlOV4jzNsNmRoVbwJg
-	 r1tmJl3QkHLm5zXG0ftJkNKDhwiMZij+UI4SCzx32+bVUo/D0q2RTpfE7DNQP5q5Aq
-	 tYujtURnf0htTZ2pyX2AQ9hXTC0gLHdmp7QsqVwxpOVq5DKFDJLFia5jY3cbxDqaVH
-	 CCAZuRvHcV2Xw==
-Message-ID: <17f9763b-7ae5-4429-ab16-058eddf9c79c@kernel.org>
-Date: Thu, 31 Jul 2025 08:11:29 +0200
+	b=KpcaHYF+rBpYXZciXschkR0xF22RqA7ifPDXfnGELHmiQk4YkRl4Vh+wLINpA/dof
+	 g5ZqW/eCrPkMCE1n70Lgc8zO/wEjaA96fU400YMXS+oLbPsyT1nPp1cf+LEpZpqWNQ
+	 S68mr8UovEVNYFsPJWS7lKjFC4MESTgrIN3ZsmUg/39e7UkD9o9x8S8vpgkiGk+vZx
+	 IMreT7ArihBms4JiBqNMGM4+/sV/jfvdQMUBUIMDIy+JkMXYdbZCIBudHRPcBGOVVs
+	 7SF4qXERWiVMCk4fxmKc7gc47wJITkN+o8fldWJg1bwkBzzMo0QgSmPNCUloB03hcA
+	 aZXNuYYVF27eA==
+Message-ID: <28ba8a6d-a180-485d-9bfd-d5ac8783831d@kernel.org>
+Date: Thu, 31 Jul 2025 08:13:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Eswin EIC7700 USB controller
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- yangwei1@eswincomputing.com, pinkesh.vaghela@einfochips.com
-References: <20250730073953.1623-1-zhangsenchuan@eswincomputing.com>
- <20250730074058.2004-1-zhangsenchuan@eswincomputing.com>
- <51648c0f-dd30-4a07-83c0-533a57c29e63@kernel.org>
- <1f9a715d.3bb7.1985ef71b54.Coremail.zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: media: i2c: Add ov2735 sensor
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+ sakari.ailus@linux.intel.com, andriy.shevchenko@linux.intel.com
+Cc: laurent.pinchart@ideasonboard.com, kieran.bingham@ideasonboard.com,
+ Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Ricardo Ribalda <ribalda@chromium.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
+ <git@apitzsch.eu>, Matthias Fend <matthias.fend@emfend.at>,
+ Tarang Raval <tarang.raval@siliconsignals.io>,
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+ Jingjing Xiong <jingjing.xiong@intel.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>, Arnd Bergmann
+ <arnd@arndb.de>, linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250731061004.5447-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250731061004.5447-2-hardevsinh.palaniya@siliconsignals.io>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,26 +118,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1f9a715d.3bb7.1985ef71b54.Coremail.zhangsenchuan@eswincomputing.com>
+In-Reply-To: <20250731061004.5447-2-hardevsinh.palaniya@siliconsignals.io>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 31/07/2025 07:31, zhangsenchuan wrote:
->>
->>> +            #address-cells = <2>;
->>> +            #size-cells = <2>;
->>> +
->>> +            usb@50480000 {
->>> +                compatible = "snps,dwc3";
->>> +                reg = <0x0 0x50480000 0x0 0x10000>;
->>
->> Nothing improved and you did not respond to the feedback.
-> 
-> I'm very sorry that I haven't given you any feedback here. I'm not quite clear about what you mean by feedback.
-> In v1 patch, you mentioned "Fold the child node into the parent"，could you please tell me what's the exact
-> meaning of this comment?
-It means you should not have separate child for dwc3, but only one node
-in total.
+On 31/07/2025 08:09, Hardevsinh Palaniya wrote:
+> +        properties:
+> +          data-lanes:
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +          link-frequencies: true
+Nothing improved. My comments from versions before still apply.
 
 Best regards,
 Krzysztof
