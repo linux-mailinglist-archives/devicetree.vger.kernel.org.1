@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-201104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72ED6B175A5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 19:35:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8755AB175AB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 19:37:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3BE91899AE6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 17:35:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67CE63B49D9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 17:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6A6241662;
-	Thu, 31 Jul 2025 17:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEBC24293B;
+	Thu, 31 Jul 2025 17:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nbKdcQ2O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VAvimPmH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464111DE4E7;
-	Thu, 31 Jul 2025 17:34:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01BB22FF2E;
+	Thu, 31 Jul 2025 17:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753983301; cv=none; b=LQN5t6sM2IlVeCqs3vcyo35Ue85+1IP20YpTRhQhNLROHBMhsMoF6RgpsWQOFMhHJa2Z8Q67SkzAnuZQQsy+9fJuy6tZfwwoRESiUQaL6QE0q7b79B+XfiT+P8hUO1CGr2q+Cb/12wt6m9MpJuDHrqXoE8+9ROW5DsidhNmocW4=
+	t=1753983435; cv=none; b=jYJ+MvibBavrqlLrN+5hHSQdruOO5scu3SrzmR+kBa+w7vd1DR7UogzyRU075FR2uFL/yn0iLNhdpkudA2k4UaHBRHYEaDxZarmIsfmVMPyuHbGMEQpuaourZQ4gCFiIayRKJmT+IfvSbRWRdKrXx1lNoWJn9YpOPJcxtiWdxuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753983301; c=relaxed/simple;
-	bh=JiDnKF3IpXc6rXBjO09bRRekZPcZX7iA0oknDyM6mEY=;
+	s=arc-20240116; t=1753983435; c=relaxed/simple;
+	bh=ywlvPM717dLhVttjQEnvzvv1noJR+G4RB/Fn/JLZAQc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ODec9+SEDsVWok/V4Y5CiYol/KYscx6PbImcPoQRCD48GuSTPhG9M5EtpL+3G3fw7FBmBQa0w5f/znuhcEZvnzuopQNGXJPy6rcvbj3OoNyNWKBcrWzCnNwu6l1xS/CXdtEY4KryoYlfusFEq3BwEOpybSqz60AttJCXaldPjOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nbKdcQ2O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90E50C4CEEF;
-	Thu, 31 Jul 2025 17:34:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=C19i+FqgOVIKR+c2theVg/FmWDg/Qo1wpAizT8dX7KL+bEnRZXsnVOprGqEfrleEppL0YvWjODxHAu/MFAr713MeYqNy3waHInY3byZDW8HMkwd1EiEjPmb6LkPOAZAHEZsnc9QOthpqUepadNcIm+j9DNerlc0ZPnDsCdN7dmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VAvimPmH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0E45C4CEEF;
+	Thu, 31 Jul 2025 17:37:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753983299;
-	bh=JiDnKF3IpXc6rXBjO09bRRekZPcZX7iA0oknDyM6mEY=;
+	s=k20201202; t=1753983435;
+	bh=ywlvPM717dLhVttjQEnvzvv1noJR+G4RB/Fn/JLZAQc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nbKdcQ2OgY058bckyN1Zy0YS9uHrbuEtjZ1fLW5Y2tHDn70v3HHHABJnYuPDYPbRb
-	 WplMlFwaFxahfBqTrT8Rf5EAOv7wMuYHKh1bjMrs0d/F8sp3kWgWE819PNDhX4GWZ2
-	 MVdK66sAo3x/oitCPPq81RHZjuMmTld+Wv3HpAOMruDM5cYQ237g+N6pjEqHcx+FAM
-	 f/KKMZbcH+3oRDOT7TdP8u1/87tK4isWghSnUm5/0wfqnqxmFBlxek/pPt5aTsiovw
-	 ufJ5ppk6cXOfoKRWn0RflKjzeASBcDpOZtd5WzxPurQivLDSdjpw4kvNk2kMYzB+tk
-	 xy8glo9jP5UEw==
-Date: Thu, 31 Jul 2025 12:34:58 -0500
+	b=VAvimPmHvyHLSkWLKue9aYm6eJpiGPpaftzUIyA9Socrc35CEJARj3SDFWyC7zyN5
+	 mLg6zpHtK0spOpe68k8DIW6eNaU6lqLm/8oIEs/j1FBp/ppvB84kRIL9X5Z6ySTi0i
+	 V4x9QfOhfQZCfm9jSTPawAYLXx6rAlXG5Z70GXudBwLIAmH9waUUaV/cYd3T19ejPl
+	 iIhYHsxs6YwbJnjwQMakrL2z6DtiUCWEF+5p/hhaQXs3GcHrVh7HDquISrlXvqNQ7u
+	 eAPIPfCmvrfMgIoTarFV4P7bLhXM0UXEmNjSz8b4C6cnTzmiBi/d8bv7XOEgbD0iJ2
+	 +LEK98xsdgrTw==
+Date: Thu, 31 Jul 2025 12:37:14 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-scsi@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: ufs: qcom: Split SM8650 and similar
-Message-ID: <175398329829.2268219.10303422532695900388.robh@kernel.org>
-References: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
- <20250731-dt-bindings-ufs-qcom-v2-3-53bb634bf95a@linaro.org>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: linux-i2c@vger.kernel.org, andi.shyti@kernel.org, digetx@gmail.com,
+	linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+	ldewangan@nvidia.com, conor+dt@kernel.org, thierry.reding@gmail.com,
+	linux-kernel@vger.kernel.org, jonathanh@nvidia.com,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: nvidia,tegra20-i2c: Add Tegra256
+ I2C compatible
+Message-ID: <175398343346.2270652.1269106467992234487.robh@kernel.org>
+References: <20250731091122.53921-1-akhilrajeev@nvidia.com>
+ <20250731091122.53921-2-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,29 +62,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250731-dt-bindings-ufs-qcom-v2-3-53bb634bf95a@linaro.org>
+In-Reply-To: <20250731091122.53921-2-akhilrajeev@nvidia.com>
 
 
-On Thu, 31 Jul 2025 09:15:54 +0200, Krzysztof Kozlowski wrote:
-> The binding for Qualcomm SoC UFS controllers grew and it will grow
-> further.  Split SM8650 and SM8750 UFS controllers which:
-> 1. Do not reference ICE as IO address space, but as phandle,
-> 2. Have same order of clocks.
-> 3. Have MCQ IO address space. Document that MCQ address space as
->    optional to maintain backwards compatibility and because Linux
->    drivers can operate perfectly fine without it (thus without MCQ
->    feature).  Linux driver already uses "mcq" as possible name for
->    "reg-names" property.
+On Thu, 31 Jul 2025 14:41:21 +0530, Akhil R wrote:
+> Add compatible for Tegra256 I2C controllers. Tegra256 consists of
+> 8 generic Tegra I2C controllers similar to previous generations.
+> The parent clock frequency is different in these controllers and
+> hence the timing parameter values are different from the previous
+> ones.
 > 
-> The split allows easier review and maintenance of the binding.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
 > ---
->  .../devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 178 +++++++++++++++++++++
->  .../devicetree/bindings/ufs/qcom,ufs.yaml          |  32 ----
->  2 files changed, 178 insertions(+), 32 deletions(-)
+>  .../devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
