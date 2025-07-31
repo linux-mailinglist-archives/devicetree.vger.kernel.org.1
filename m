@@ -1,90 +1,149 @@
-Return-Path: <devicetree+bounces-201036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC8B9B1721E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D07EB1722B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:36:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 671F21C20F43
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:35:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C42371C21282
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26AA2C3257;
-	Thu, 31 Jul 2025 13:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n62DkWJI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC22A2C3259;
+	Thu, 31 Jul 2025 13:36:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA0E2C158D;
-	Thu, 31 Jul 2025 13:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48CBB2C15AB;
+	Thu, 31 Jul 2025 13:36:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753968907; cv=none; b=pjvaPcNSB6OigSnEYUEn9UN2gpbNnXaN/CmwAAWttVjzm5bf9fqMOoQRzMzITFHTkMVRGx8I+Cx0UrUahaKkJ+ktYZqib1TDcsL+G2exjjglpkNs6GTREADYtPdUK+vAABnbaUMExHntsQnteL5J+GeLxIF1ef/7sNoor/WvsCg=
+	t=1753969015; cv=none; b=LIkO4huA72gn5gC4D1KhAB+/+nRHwWpPG+AeAbCUcKjglF7EvLd9RFIpmp1aTHlSwetAOIFK+pSO+HagIfnKlpTSbPnAb2MHRa/fkjlWj6xLKvr8NGQl6vREnC6sLCg0NuMzIXoK4ivxJ1lF3ENH5kBdBxKf0DahgLO7nYvigtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753968907; c=relaxed/simple;
-	bh=JlgjnISOVlbMm171G0UqLCdsAqO+LwlJ2wQNnZovLEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pPvP9qEPbMipOqccemhOKGYwSeeU6KEI0psdruiZ5jiYTCmG60eLN7MJ0JuJqHKjWioDUM2xgwsoeNBArd2yvsrV0p9KTQ0mh8m0ngCAZlM/rNUBUZ99rhlm2oXDkqFhT1Dl+xgW8NoXXP93Y1e5oDWIno/9KmNMP0oWgtBCA5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n62DkWJI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E516C4CEEF;
-	Thu, 31 Jul 2025 13:35:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753968907;
-	bh=JlgjnISOVlbMm171G0UqLCdsAqO+LwlJ2wQNnZovLEA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n62DkWJI5QDzlSFj4I0ZZxFbWRpzaHmiyzX3/mXIv+bAD973YvFciv5FfgfDDdfy3
-	 g8wvomrxmJ095KgSDtLbd8toTpFS6e9ZZjIHS30te5ucGfNGQ+x+oa5w3NUn5UCdEu
-	 i1D5AX5tXpnVOc9/SgA4vGyGdm9wB/rkVqBUdjc9YNukoEhPQmNC3NaxO79vYFMPDS
-	 S/+V15V6uMBAB0eoSFQRlSXzgG2tWk8cBgm6tBKhLuNFbKGg3I0nIgzpG19QV6bXnT
-	 pkiJ0icmE5bjGGDxC47KnVLpgUdZCRtUYVV19Yk+82WJmxd0Txsa5Bay9lhYfVHut1
-	 tTCGBWuAZjSiQ==
-Date: Thu, 31 Jul 2025 08:35:06 -0500
-From: Rob Herring <robh@kernel.org>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com,
-	jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
-	mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-	sakari.ailus@linux.intel.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11.1 07/19] dt-bindings: media: Add bindings for ARM
- mali-c55
-Message-ID: <20250731133506.GA2114146-robh@kernel.org>
-References: <20250714-c55-v11-7-bc20e460e42a@ideasonboard.com>
- <20250731071151.997550-1-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1753969015; c=relaxed/simple;
+	bh=pUddgFY3bTyLpnjqVwtW0u0LS8Fi/74YNvkxstPYw6k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GBFW+/zRvKgiEQ5n+bWkX0m+1cjDkLULI3hIgfmpJSZRF55jlABbB/exIP8E+kW/eZ1Tqg6ESoAPzHW6aedM+xVtpQj+XYwRF48iwadRmSEX8er9jrG2Grqnfu3UdxGAWiuM48XjbodS6JL4Onp2IUtSOvJ001uxIfTn4MI1IV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 73E3542D7F;
+	Thu, 31 Jul 2025 13:36:48 +0000 (UTC)
+Message-ID: <cf49b59f-d39c-4757-a453-6d3c8a09d1ce@ghiti.fr>
+Date: Thu, 31 Jul 2025 15:36:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250731071151.997550-1-dan.scally@ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/7] riscv: Add support for xmipsexectl
+To: aleksa.paunovic@htecgroup.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>,
+ Alexandre Ghiti <alexghiti@rivosinc.com>,
+ Aleksandar Rikalo <arikalo@gmail.com>,
+ Raj Vishwanathan4 <rvishwanathan@mips.com>
+References: <20250724-p8700-pause-v5-0-a6cbbe1c3412@htecgroup.com>
+Content-Language: en-US
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <20250724-p8700-pause-v5-0-a6cbbe1c3412@htecgroup.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutddtleehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpefhhfdutdevgeelgeegfeeltdduhfduledvteduhfegffffiefggfektefhjedujeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedvrgdtgeemtggvtgdtmedutdejfeemsgelsgegmeejvggtkeemheehugdtmeegfhdvvdemieegvdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtdegmegtvggttdemuddtjeefmegslegsgeemjegvtgekmeehhegutdemgehfvddvmeeigedvkedphhgvlhhopeglkffrggeimedvrgdtgeemtggvtgdtmedutdejfeemsgelsgegmeejvggtkeemheehugdtmeegfhdvvdemieegvdekngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopeduledprhgtphhtthhopegrlhgvkhhsrgdrphgruhhnohhvihgtsehhthgvtghgrhhouhhprdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtp
+ hhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgruhhlrdifrghlmhhslhgvhiesshhifhhivhgvrdgtohhmpdhrtghpthhtohepphgrlhhmvghrsegurggssggvlhhtrdgtohhmpdhrtghpthhtoheprghouhesvggvtghsrdgsvghrkhgvlhgvhidrvgguuhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvth
+X-GND-Sasl: alex@ghiti.fr
 
-On Thu, Jul 31, 2025 at 08:11:51AM +0100, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+Hi Aleksa,
+
+On 7/24/25 17:23, Aleksa Paunovic via B4 Relay wrote:
+> This patch series adds support for the xmipsexectl vendor extension.
+> A new hardware probe key has also been added to allow userspace to probe for MIPS vendor extensions.
+>
+> Additionally, since the standard Zihintpause PAUSE instruction encoding is not supported on some MIPS CPUs,
+> an errata was implemented for replacing this instruction with the xmipsexectl MIPS.PAUSE alternative encoding.
+>
+> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
 > ---
-> Resending this patch with the change that I had forgotten to make,
-> actually made.
-> 
-> Changes in v11.1:
+> Changes in v5:
+> - Add MIPS.IHB and MIPS.EHB instructions
+> - Rebase on alex-for-next
+> - Address other smaller comments pointed out by Alexandre
+> - Link to v4: https://lore.kernel.org/r/20250625-p8700-pause-v4-0-6c7dd7f85756@htecgroup.com
+>
+> This is a continuation of a previous series, which did not implement the full
+> xmipsexectl vendor extension. The title was updated accordingly.
+>
+> Changes in v4:
+> - Add support for the xmipsexectl vendor extension
+> - Remove the ifdef/else from errata_list.h
+> - Replace the ifdef/else with a hwprobe call in the userspace code.
+>
+> Link to v3:
+> https://lore.kernel.org/linux-riscv/20250129131703.733098-1-arikalo@gmail.com/
+>
+> ---
+> Aleksa Paunovic (6):
+>        dt-bindings: riscv: Add xmipsexectl ISA extension description
+>        riscv: Add xmipsexectl as a vendor extension
+>        riscv: Add xmipsexectl instructions
+>        riscv: hwprobe: Add MIPS vendor extension probing
+>        riscv: hwprobe: Document MIPS xmipsexectl vendor extension
+>        riscv: Add tools support for xmipsexectl
+>
+> Djordje Todorovic (1):
+>        riscv: errata: Fix the PAUSE Opcode for MIPS P8700
+>
+>   Documentation/arch/riscv/hwprobe.rst               |  9 +++
+>   .../devicetree/bindings/riscv/extensions.yaml      |  6 ++
+>   arch/riscv/Kconfig.errata                          | 23 ++++++++
+>   arch/riscv/Kconfig.vendor                          | 13 +++++
+>   arch/riscv/errata/Makefile                         |  1 +
+>   arch/riscv/errata/mips/Makefile                    |  5 ++
+>   arch/riscv/errata/mips/errata.c                    | 67 ++++++++++++++++++++++
+>   arch/riscv/include/asm/alternative.h               |  3 +
+>   arch/riscv/include/asm/cmpxchg.h                   |  3 +-
+>   arch/riscv/include/asm/errata_list.h               | 13 ++++-
+>   arch/riscv/include/asm/errata_list_vendors.h       |  5 ++
+>   arch/riscv/include/asm/hwprobe.h                   |  3 +-
+>   arch/riscv/include/asm/vdso/processor.h            |  3 +-
+>   arch/riscv/include/asm/vendor_extensions/mips.h    | 37 ++++++++++++
+>   .../include/asm/vendor_extensions/mips_hwprobe.h   | 22 +++++++
+>   arch/riscv/include/asm/vendorid_list.h             |  1 +
+>   arch/riscv/include/uapi/asm/hwprobe.h              |  1 +
+>   arch/riscv/include/uapi/asm/vendor/mips.h          |  3 +
+>   arch/riscv/kernel/alternative.c                    |  5 ++
+>   arch/riscv/kernel/sys_hwprobe.c                    |  4 ++
+>   arch/riscv/kernel/vendor_extensions.c              | 10 ++++
+>   arch/riscv/kernel/vendor_extensions/Makefile       |  2 +
+>   arch/riscv/kernel/vendor_extensions/mips.c         | 22 +++++++
+>   arch/riscv/kernel/vendor_extensions/mips_hwprobe.c | 23 ++++++++
+>   arch/riscv/mm/init.c                               |  1 +
+>   tools/arch/riscv/include/asm/vdso/processor.h      | 27 +++++----
+>   26 files changed, 298 insertions(+), 14 deletions(-)
+> ---
+> base-commit: b6a4bae2f16162876842127d7507dad84e404f8f
+> change-id: 20250424-p8700-pause-dcb649968e24
+>
+> Best regards,
 
-Creative versioning like this and sending 1 patch of the series doesn't 
-work with the tools (i.e. b4). You're going to have to send the whole 
-thing as v12. But do that after rc1 is out.
 
-Rob
+Thanks for the v5, I'll take that for 6.17.
+
+Thanks,
+
+Alex
+
 
