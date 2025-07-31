@@ -1,117 +1,116 @@
-Return-Path: <devicetree+bounces-201039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5B9FB1723D
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:41:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03DD7B17242
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:46:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 946073A9572
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:41:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E90A33AEB07
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B7F2C3273;
-	Thu, 31 Jul 2025 13:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2856B78F45;
+	Thu, 31 Jul 2025 13:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ij8PkJSh"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s2aPDoKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B537B16419;
-	Thu, 31 Jul 2025 13:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F3422338;
+	Thu, 31 Jul 2025 13:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753969315; cv=none; b=Xd7mkpldXWzQjxLdcfZQHP3eg+IeoVm5Sxi0bh7EA6unltedgEgZeBYqiwWasMqO6wVkXq8PMPNX4KRTGEIOqgE88vQUA59fHhwSBXtcxWxvs/Xw1lpCQld2N8BGKzMbt+9ZOHWr6OKaidzlOSfxYkzuW/k2SvaM+wrhcwUElRE=
+	t=1753969586; cv=none; b=C6DX64EWtQIVBSFTEW4AtKewveLHIOOZFgB1kpa1WnPEXpeXjSrnH3MndmlflZgxYdxfPpcoSy89kPNLAWOvhjHIpD3bhmjq41wv32sDJvUl9rk2tV5IU/6JSaRA+6N5Z70XtxwEK1uO/gfjMlO9Yv31CilFKy9AqR4VufeuE9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753969315; c=relaxed/simple;
-	bh=trI9eEiA5VY8YQDC03bJMw+fv5vHkRIbkQ2JDxq1II0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V0jvXvD3tKh5Ng7ADOq9unJwrR5obD1LxEvcS5zrb9xpiIzGZYs4VNil2VxmQ/YWUgOTOqwcbNSESuzmHOCE9KYAvXHjoE8kRORVdce9KHIyENOsKNvYFaZNx4B56v4cnVbJ7p0bw2P2i/y3imkWFq9jGf9TraHP44Xl0VUozAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ij8PkJSh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DC91C4CEEF;
-	Thu, 31 Jul 2025 13:41:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753969315;
-	bh=trI9eEiA5VY8YQDC03bJMw+fv5vHkRIbkQ2JDxq1II0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ij8PkJShew8pu4ZGzkFdAFzoVmlvHFirzjpMKDqKVC1ruFUCkYgsklBDSvJx8UlNV
-	 VzfYdfROTIRh9IoGe6I/K3Cv9LHmsrwvdubM2KBTPFwDNPxbfMlxw3e5wRBDrBkxvc
-	 d4eag+/alBpnnjHKYGC4teXTPtpVmlq4liGjAc4nxSFyswJyKrCN9DiNANNqxYKvqX
-	 SX4yiyee514bkcfPBjYqArFvOhJF9uI5HsZHB+wGzsEpYM2oGCew42tDcc5zXstyS5
-	 OcFeAX7DAWPvAU5szCjEqxo+aoDnEbxFdOu8b0yzxYLaZ6GeHmJ3+APnola/gK6kVq
-	 X/qF5OfxxpAzw==
-Date: Thu, 31 Jul 2025 14:41:48 +0100
-From: Lee Jones <lee@kernel.org>
-To: Alex Elder <elder@riscstar.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, alexandre.belloni@bootlin.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
-	linux.amoon@gmail.com, troymitchell988@gmail.com,
-	guodong@riscstar.com, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v10 2/8] mfd: simple-mfd-i2c: specify max_register
-Message-ID: <20250731134148.GI1049189@google.com>
-References: <20250726131003.3137282-1-elder@riscstar.com>
- <20250726131003.3137282-3-elder@riscstar.com>
- <20250731131827.GG1049189@google.com>
- <e3cd0e11-e516-4cf6-b8f8-5cf2b5a236a4@riscstar.com>
+	s=arc-20240116; t=1753969586; c=relaxed/simple;
+	bh=EdfR3+ghXfvid8Ak9BFhtOhrGJNHg3UqEP+sC26bPJo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t1F4as/Hax3Th1V97a/7OWiaRFCRTtd13vbWhn7fbRAcX1K7R5oNff0D7ASyCrAZ9/8unZ2oJ6fiQk8KuoS7FlGnp5ytBFG3xo/k05RGdhFqNU8JqU/5xB22e0ayWSV0OviRqLDhAoSRkV02fklseuE74K6jHEBnr2hqbUMvyPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s2aPDoKS; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=EdfR3+ghXfvid8Ak9BFhtOhrGJNHg3UqEP+sC26bPJo=; b=s2aPDoKSHYE2kKRj6gIVVD1GOV
+	fcyxAWhVigRK5nmd4r39qvJYfsh15mYv+up49sLyMVgmgm7fdKeXj6Tz8jcov+sqW47LaViq+O/08
+	FiCKhEKVmsqLmQ0JaxVWMq4ng6kFiYqGXXUx75iOnj6mx4t/NmSeMMj9FH9AsQb12ZZ55EQQgHLnP
+	IE0IpOIQkNRTLTp0NQKMuk5DBt+odJ9HJ8FN9vLyk29Z/24LDNtQ4lKOt9lEoGZmmEAHFhbSTLMVC
+	b4OYu5XIloViojkcFakmlrrMcioISbGwOtsjg2jyrZ+B2nvw7ptg8weOVx0KeeA2p+xD6aM6MZPfu
+	Oz+uHF3w==;
+Received: from i53875bde.versanet.de ([83.135.91.222] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uhTbQ-0008Cv-68; Thu, 31 Jul 2025 15:45:48 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Alexey Charkov <alchark@gmail.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, kernel@collabora.com,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Ye Zhang <ye.zhang@rock-chips.com>
+Subject: Re: [PATCH v6 0/7] RK3576 thermal sensor support,
+ including OTP trim adjustments
+Date: Thu, 31 Jul 2025 15:45:47 +0200
+Message-ID: <2664626.Lt9SDvczpP@diego>
+In-Reply-To: <iafobb7h4nphjcujm34gig6vwlzfveegwewpayehb4h3tayzgv@bxpdfmhf2hfa>
+References:
+ <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
+ <3560770.QJadu78ljV@diego>
+ <iafobb7h4nphjcujm34gig6vwlzfveegwewpayehb4h3tayzgv@bxpdfmhf2hfa>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e3cd0e11-e516-4cf6-b8f8-5cf2b5a236a4@riscstar.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, 31 Jul 2025, Alex Elder wrote:
+Am Donnerstag, 31. Juli 2025, 15:27:03 Mitteleurop=C3=A4ische Sommerzeit sc=
+hrieb Sebastian Reichel:
+> Hi,
+>=20
+> On Thu, Jul 31, 2025 at 10:11:23AM +0200, Heiko St=C3=BCbner wrote:
+> > Right now we're in the middle of the merge-window though, so everything
+> > I apply now, I'd need to rebase onto -rc1 in slightly more than a week,
+> > invalidating all those nice commit hashes that end up in the "applied" =
+mails.
+> >=20
+> > So I'm struggling with myself on every merge window about that.
+>=20
+> Your are not supposed to merge anything to your for-next branch
+> during the merge window anyways. See first sentence of Stephen
+> Rothwell's mails [0]:
+>
+> > Please do not add any v6.18 material to your linux-next included
+> > branches until after v6.17-rc1 has been released.
 
-> On 7/31/25 8:18 AM, Lee Jones wrote:
-> > On Sat, 26 Jul 2025, Alex Elder wrote:
-> > 
-> > > All devices supported by simple MFD use the same 8-bit register 8-bit
-> > > value regmap configuration.  There is an option available for a device
-> > > to specify a custom configuration, but no existing device uses it.
-> > > 
-> > > Rather than requiring a "full" regmap configuration to be provided to
-> > > change only the max_register value, Lee Jones suggested allowing
-> > > max_register to be specified in the simple_mfd_data structure.  The
-> > > 8-bit register 8-bit configuration is still used by default, but
-> > > max_register is also applied if it is non-zero.
-> > > 
-> > > If both regmap_config and max_register are provided, the max_register
-> > > field in the regmap_config structure is ignored.
-> > > 
-> > > Signed-off-by: Alex Elder <elder@riscstar.com>
-> > > Suggested-by: Lee Jones <lee@kernel.org>
-> > > ---
-> > > v10: - Rename simple_regmap_config() -> simple_regmap_config_get()
-> > >       - Introduce simple_regmap_config_put() to free regmap_config
-> > > 
-> > >   drivers/mfd/simple-mfd-i2c.c | 45 ++++++++++++++++++++++++++++++++----
-> > >   drivers/mfd/simple-mfd-i2c.h |  5 +---
-> > >   2 files changed, 41 insertions(+), 9 deletions(-)
-> > 
-> > This has gone from an in-function 11 line change to 50 lines and the
-> > inclusion of 2 new functions.  As much as I _really_ appreciate the time
-> > and effort you have put into this [0], the added complexity being added
-> > here doesn't sit right with me.  How would you like to go back to your
-> > v4 idea of providing a bespoke regmap_config for for device?
-> 
-> I LOVE this suggestion.  I will send v11 shortly and it will
-> be very much like v6 (or something like that).
-> 
-> > [0] Beers on me for sending you down this path!
-> 
-> I'm looking forward to seeing you again, beer or not.
+The general idea is just merging but without updating the -next branch,
+then after -rc1 rebase + do new -next.
 
-Likewise!  =:-)
+But as you pointed out, this is all cumbersome and doesn't shave off much
+from the amount of patches waiting, so as most of the time, I'll just wait
+for -rc1 to start clean :-)
 
--- 
-Lee Jones [李琼斯]
+
+>=20
+> [0] https://lore.kernel.org/all/20250731133311.1a3e3867@canb.auug.org.au/
+>=20
+> Greetings,
+>=20
+> -- Sebastian
+>=20
+
+
+
+
 
