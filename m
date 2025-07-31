@@ -1,219 +1,239 @@
-Return-Path: <devicetree+bounces-201005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C464B16F02
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:50:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7292B16F14
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 12:00:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0DC37ADEDF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:49:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 128347A65C2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3022BDC3E;
-	Thu, 31 Jul 2025 09:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979931E3772;
+	Thu, 31 Jul 2025 10:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O2s09FwL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eLC7+6ij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825CF2BD5A7;
-	Thu, 31 Jul 2025 09:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CC51E51D;
+	Thu, 31 Jul 2025 10:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753955428; cv=none; b=rU/ZAhvi730vBHUpJt/f/KYhzygIyFeDgijfhTqO1qOClBrTBkQmx9MMn8Ry9ABlIFcfy1Vx2lIl4ph+083zD2BhHcho/DJc8MfS8YA8MkSiYVkhWnu0OS3wOpRjDLJrZbtbFJY3FAt+9dxlH/5pXnkj65pLTJLIOtWnoAYPOUk=
+	t=1753956036; cv=none; b=taRFpT2hHwxR38+gNOxxaC6V3cRIyN9IkbPXq/JpfnvvXU8T3lkFKfnp0kXcCGjVRutA3cZbXLAs6xFvlDSd/eRCRzbi/FWEjXg/MPjBGGoMsiYMrFlGqcjBZT0Pud+BXsvNcRR4nFkwkY35+RBQWKTvA34p/e4No6LLFfMVins=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753955428; c=relaxed/simple;
-	bh=L4wEv5yD2YGJZlT2oppXRQ7NXwcHptUuqESz0gDytiw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gnlwFMKYfz8inwSVbuF32dX04Z4Yc3c5kVNU8cNBaChAHuxzE4srYAS8FsuX3cHaVxkcafOzxTvGO8agT9aM4Eu4mdj2g0JxUDrrLsWA8gzfcjh5dnU+hqwoc4RiPEUrOkAk0blDf1Qyqo0OqJcH1+tvFWkFsBm8EZ7Kirazdrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O2s09FwL; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 15CA243854;
-	Thu, 31 Jul 2025 09:50:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1753955418;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=oQZaEeF9d7skWsfawRi1lhOPl2zgtzHvwTKPULZo3oY=;
-	b=O2s09FwLDoyIJnk/6dSjw3g3U7UcPzW9P4u7udmFTu0FSLNhbqZQgC/L851x4QIWbNeiKX
-	CAj03MM4/ipe3/IALyAtpEt5XGCb3vgZJMxfOp5ltuwCjQneLW5kXWPVrbkQOrQpVXZRBj
-	iHqp9cjZdA6QvsgcyAlhnwdpt5F9LIAnxoiOGGLUyXxTzJ1kG8/3vS5M3jI583MVUsrgVz
-	uu0tUdBY7rS7YZU06ZK7VJKL8q93C+bkD7asgweDVaPfcbEQ+SIUi1POmbRJgY//OXC//W
-	OVtPn3yZyla+Y4O6BNxt18eYzPukHlBkwPQDf5CBvX5H0wftyH0LwYWpxFVm4A==
-Message-ID: <8a2b1876-d1d4-4523-ae6a-bd14875772cf@bootlin.com>
-Date: Thu, 31 Jul 2025 11:50:16 +0200
+	s=arc-20240116; t=1753956036; c=relaxed/simple;
+	bh=nIIy3EtagONm9o7fIocsy3fvnqj5DKyDI9AvQpz+YsA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rUZE+qaC0IXxPo8Qbo6tWTYbK/GsZymMlWDSToPzIaObboKbRGdBWJS2lLORzN/xJgiXkhvaB2NpsiG+kH6u65VLVwTIXBEFfifb63+EmVQcjxuElsVXyq/Jwj3b5QTDCGlmSFps+IpY4dgutiX1FCtz0KN/EvRdDUnlVuYtHl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eLC7+6ij; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96C17C4CEEF;
+	Thu, 31 Jul 2025 10:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753956036;
+	bh=nIIy3EtagONm9o7fIocsy3fvnqj5DKyDI9AvQpz+YsA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eLC7+6ijyBPGKVEMVLfwY+Uw6w5la+YyHP/0svxYWWgTFagJusQ8YCt5h4K9Qtm0W
+	 fbrDqzIHcEFwXtz/8R1k+qnVGmHJN5o8B7/o2YJiD3ybv9+NhnnPJrBUd2iuVkpUa8
+	 YYYqqfimZw0V4cfMDJIpaQjmGJiF4wX1cAEABFHg8Z8oTrFq9Q54sseSj4nJXfyJHX
+	 EYltQcNTEyRH/UM9T21J0eGc3M9obqQuaUxWHB4BPHCl0GPUHmT76oqYxuQ03M1kEz
+	 qe1lxG2BGYaCC71S+ehz0G2qPrCwVtDYWeuiROsBXwFkBUc87nrnR91ESTs81SFsj6
+	 858ooeFMMIHTQ==
+Date: Thu, 31 Jul 2025 12:00:33 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v12 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+Message-ID: <6d2cq657lkwrzntlwwyc5drgkh4vsetkppugrhjedpp7hlvdh5@lqwe34oyuuvb>
+References: <20250427142500.151925-1-privatesub2@gmail.com>
+ <20250427142500.151925-2-privatesub2@gmail.com>
+ <20250512235619.30cff739@minigeek.lan>
+ <20250619094407c4c849f3@mail.local>
+ <20250619131044.20b45d8d@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am62-main: Add tidss clk-ctrl
- property
-To: Rob Herring <robh@kernel.org>
-Cc: Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
- Benoit Parrot <bparrot@ti.com>, Lee Jones <lee@kernel.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, thomas.petazzoni@bootlin.com,
- Jyri Sarha <jsarha@ti.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- stable@vger.kernel.org
-References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
- <20250730-fix-edge-handling-v1-3-1bdfb3fe7922@bootlin.com>
- <20250731001725.GA1938112-robh@kernel.org>
-Content-Language: en-US
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
- 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
-In-Reply-To: <20250731001725.GA1938112-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutddtgeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeetieekffetjeeugfdvfefhudetueelleetuddvtddtvdehgefgudeugfehgeelfeenucffohhmrghinhepthhirdgtohhmpdgsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopegludelvddrudeikedrtddrvddtngdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvgedprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhihrhhirdhsrghrhhgrsehikhhirdhfihdprhgtphhtthhopehtohhmihdrvhgrlhhkvghinhgvnhesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhug
- idrihhnthgvlhdrtghomhdprhgtphhtthhopehmrhhiphgrrhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghh
-X-GND-Sasl: louis.chauvet@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xadqunur2iav4gmf"
+Content-Disposition: inline
+In-Reply-To: <20250619131044.20b45d8d@donnerap.manchester.arm.com>
 
 
+--xadqunur2iav4gmf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v12 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+MIME-Version: 1.0
 
-Le 31/07/2025 à 02:17, Rob Herring a écrit :
-> On Wed, Jul 30, 2025 at 07:02:46PM +0200, Louis Chauvet wrote:
->> For am62 processors, we need to use the newly created clk-ctrl property to
->> properly handle data edge sampling configuration. Add them in the main
->> device tree.
->>
->> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
->> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
->> ---
->>
->> Cc: stable@vger.kernel.org
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> index 9e0b6eee9ac77d66869915b2d7bec3e2275c03ea..d3131e6da8e70fde035d3c44716f939e8167795a 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> @@ -76,6 +76,11 @@ audio_refclk1: clock-controller@82e4 {
->>   			assigned-clock-parents = <&k3_clks 157 18>;
->>   			#clock-cells = <0>;
->>   		};
->> +
->> +		dss_clk_ctrl: dss_clk_ctrl@8300 {
->> +			compatible = "ti,am625-dss-clk-ctrl", "syscon";
->> +			reg = <0x8300 0x4>;
-> 
-> H/w blocks are rarely only 4 bytes of registers... Does this belong to
-> some larger block. The problem with bindings defining single registers
-> like this is they don't get defined until needed and you have a constant
-> stream of DT updates.
+Hello Andre,
 
-In this case, I don't think there is a "larger block". This register 
-exists only because TI had issues in the display controller [1].
+On Thu, Jun 19, 2025 at 01:10:44PM +0100, Andre Przywara wrote:
+> On Thu, 19 Jun 2025 11:44:07 +0200
+> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+>=20
+> Hi Alexandre,
+>=20
+> > On 12/05/2025 23:56:19+0100, Andre Przywara wrote:
+> > > On Sun, 27 Apr 2025 17:24:53 +0300
+> > > Aleksandr Shubin <privatesub2@gmail.com> wrote:
+> > >=20
+> > > Hi,
+> > >  =20
+> > > > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
+> > > > controller witch is different from the previous pwm-sun4i.
+> > > >=20
+> > > > The D1 and T113 are identical in terms of peripherals,
+> > > > they differ only in the architecture of the CPU core, and
+> > > > even share the majority of their DT. Because of that,
+> > > > using the same compatible makes sense.
+> > > > The R329 is a different SoC though, and should have
+> > > > a different compatible string added, especially as there
+> > > > is a difference in the number of channels.
+> > > >=20
+> > > > D1 and T113s SoCs have one PWM controller with 8 channels.
+> > > > R329 SoC has two PWM controllers in both power domains, one of
+> > > > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
+> > > >=20
+> > > > Add a device tree binding for them.
+> > > >=20
+> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+> > > > ---
+> > > >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 84 +++++++++++++++=
+++++
+> > > >  1 file changed, 84 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner=
+,sun20i-pwm.yaml
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i=
+-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..4b25e94a8e46
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.ya=
+ml
+> > > > @@ -0,0 +1,84 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Allwinner D1, T113-S3 and R329 PWM
+> > > > +
+> > > > +maintainers:
+> > > > +  - Aleksandr Shubin <privatesub2@gmail.com>
+> > > > +  - Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    oneOf:
+> > > > +      - const: allwinner,sun20i-d1-pwm
+> > > > +      - items:
+> > > > +          - const: allwinner,sun50i-r329-pwm
+> > > > +          - const: allwinner,sun20i-d1-pwm
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  "#pwm-cells":
+> > > > +    const: 3
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description: Bus clock
+> > > > +      - description: 24 MHz oscillator
+> > > > +      - description: APB clock
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: bus
+> > > > +      - const: hosc
+> > > > +      - const: apb
+> > > > +
+> > > > +  resets:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  allwinner,npwms:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: The number of PWM channels configured for this in=
+stance
+> > > > +    enum: [6, 8, 9] =20
+> > >=20
+> > > Do we really need to be so restrictive here? The IP has an
+> > > "architectural" limit of 16 channels (due to the MMIO register layout
+> > > and status/control bits usage in some registers), so can't we just le=
+ave
+> > > this value to be anything between 1 and 16 here? If people configure
+> > > this wrongly, it's their fault, I'd say? Without confining this furth=
+er
+> > > based on the respective compatible strings this enum is less useful
+> > > anyway, I think. The Allwinner A523 uses the same IP, and supports all
+> > > 16 channels, the V853 implements 12, that's what I quickly found
+> > > already, and there might be more examples in the future, so I'd rather
+> > > open this up.
+> > >  =20
+> >=20
+> > Do we really need this property? I feel like the number of PWM channels=
+ should be
+> > something the driver could infer from the compatible string as we are g=
+oing to
+> > have one compatible string per SoC anyway.
+>=20
+> Well yes, this would work, but I feel like it creates unnecessary churn to
+> touch the driver every time some new SoC with the same IP pops up, and
+> where just the number of channels is different - see above for a list of
+> SoCs we already know about, and there are more in the pipe. It also means
+> stable kernels would already work.
 
-Here is the extract of MMR registers ([2], page 4311):
+Having a property that specifies the number of PWM outputs is fine for
+me.
 
-[...]
-A2E4h AUDIO_REFCLK1_CTRL_PROXY <unrelated>
-A300h DPI0_CLK_CTRL_PROXY <this register, 32 bits>
-<nothing between 0xA304 and 0xA319>
-A320h DSS_DISPC0_CLKSEL1_PROXY <an other dss clock stuff, 32 bits>
-A330h MCASP0_CLKSEL_PROXY <unrelated>
-[...]
+There is some prior art for that: mxs-pwm.yaml has fsl,pwm-number;
+pwm-st.txt has st,pwm-num-chan with that semantic.
 
-I agree that DSS_DISPC_CLKSEL_PROXY is also related to DSS clock stuff, 
-so may be included in the same block, but there is also a big hole in 
-between. What do you think is better?
+Given that this is a fundamental concept of a pwm chip, I'd say giving
+that a generic name without vendor prefix is justified. I suggest to go
+for
 
-[1]:https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1228207/am62a7-rgb-display-flickering-and-pixel-issue/4687209#4687209
-[2]:https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf#page=4311
+	npwms =3D <..>;
 
->> +		};
->>   	};
->>   
->>   	dmss: bus@48000000 {
->> @@ -787,6 +792,7 @@ dss: dss@30200000 {
->>   			 <&k3_clks 186 2>;
->>   		clock-names = "fck", "vp1", "vp2";
->>   		interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
->> +		ti,clk-ctrl = <&dss_clk_ctrl>;
->>   		status = "disabled";
->>   
->>   		dss_ports: ports {
->>
->> -- 
->> 2.50.1
->>
+which matches ngpios that is specified for gpio chips.
 
--- 
-Louis Chauvet, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards
+Uwe
 
+--xadqunur2iav4gmf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiLPr4ACgkQj4D7WH0S
+/k6qWwf/UfJJoL8d1i9SVPk/Syl4ySb6I9d8VOpLaDSJfkSpXLfkxhBEvlXyOXAn
+FzlTMz893YPQTTpTeuEmFMebZhM62aQoFwRTw8NecOLepM3Y/3ia5Q+wS/goyNf3
+NKMXMcqIeyF2BiQc1PvBTInND72IGsRqzuScnGVZtoAgz8IOEgigclMY5cc4mbGX
+CsbLwoTC9F9MXYHQp2j+2VpL3qf89ug6zXdXq+j4YSRYaBj9LuPCFhTN921V6MfP
+18OK7KI7rfJpJUuVPcpnmM0nH7Z9hTXM3kQFdiSwGd6QexuESuw3KBCdfDwuRpoI
+4nSRBPbwtqh1Eq7AwAuqT07vbY/DRQ==
+=JDZ2
+-----END PGP SIGNATURE-----
+
+--xadqunur2iav4gmf--
 
