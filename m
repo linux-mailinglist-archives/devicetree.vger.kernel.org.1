@@ -1,145 +1,150 @@
-Return-Path: <devicetree+bounces-201001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7A56B16EB3
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:32:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8B1B16ED5
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:42:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2861B3B068B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:31:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED74518C6EAA
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3655528A718;
-	Thu, 31 Jul 2025 09:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7819F29994C;
+	Thu, 31 Jul 2025 09:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2F5rhFUT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F03729DB78
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 09:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C2628FFE3
+	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 09:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753954311; cv=none; b=QQYUx8rSt1mLrD6xfn+bZjmRrBbloDV4UsNx73dQVupXjHTfLlLel3syTe/5tdhqiC+3K89gd5J6aH2ChPKbi3gigYF5pNFvn3nvtFsKalAbMHCvnah0sH+7NXbHBwYcVrhY8pIG7txmGqEQhv7JEgm5HrxNfgGkxQclKoas5Bg=
+	t=1753954923; cv=none; b=Sua1Y0Ozq7d0w5FuIuSW8CTSHyilUQU2OYMx31C08dlLQHiNhk51nQvrjsm053vN8nQWqlicyKNEay9NpNDH0SvVw25n2X08RA1lmHlfIRxh/8Wo9xRLfs2rbewz4E+X86namzYOGHjJdVJF6CO1Md1WIcnVz5M5ec/fCDHd4zQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753954311; c=relaxed/simple;
-	bh=OvHjt7+5eG1TC9P6ACsCDFqrKQvDbxe4ukuHSJaxrP8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T/2ljcA5tI/86bjP9xKy8jyt/oYq2ef2AajfsWPyf0j1TKTK74gCi51lWjZl9nEu3skJrka1k8uRwVsJK2ey6J8SVUEy4+LEn5qcuGUkMhJb1IJlxIzCB7VnzFl5cv4pB8N8BfYloLNh4pQcgUs9EpAQOG9TlQocdZnD16wCMDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1uhPdT-0005sL-9v; Thu, 31 Jul 2025 11:31:39 +0200
-Message-ID: <4043f877-fc29-4d81-b96a-83f6ef3fa926@pengutronix.de>
-Date: Thu, 31 Jul 2025 11:31:38 +0200
+	s=arc-20240116; t=1753954923; c=relaxed/simple;
+	bh=QnOkZh2xfL40YRumGUqUgGUVFVo0T+Nn2lfElsVl5SA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e4oHHA9T9SXnghrmp9cBKs0C467rPN22TVyGl1ZF5catr3jUHLYd421pqk6A9CzZLxBjZZEMvMUQq+oKjQysPLvlDKzWD9PnzPNOtUGqiyw0z9cYki3MNBIe6kAPzeRazv6KlI8i4x7tXNEHF/30Rxh+AE2v73eYG+KTbdB0PKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2F5rhFUT; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-ae3be3eabd8so140615766b.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 02:42:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1753954920; x=1754559720; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=QnOkZh2xfL40YRumGUqUgGUVFVo0T+Nn2lfElsVl5SA=;
+        b=2F5rhFUTcZ60txfs5vVWY3mfAczXQ0Hig/iKt8+4SXPGT3oB8TvOxaaidHGHIO0Cxs
+         ZQzzvaulhZG5gQIWavGPdM4/LEa8Bx4h/vxdVotjUaWQpRnTG5EWfXTa+jiMFSuQgakn
+         aSDR2wv4MEX5p2AItQv8bkHnPvTKZfhRkZvZZFJlMcOOkSPKkpsD0esF/1jXmhXJENB1
+         swEB0EI+EUyE6zTokNjwQHE/pmANnWSNIiuiNscxg2/oq4tis0o0+BPbsxLKiBWX6/6b
+         spp/i7K3BwyHq06X07VwRw/tUtC2ryNHspfO/H3+lbmU9RrkGi70qW5K+x1ACyz1IKeI
+         E+Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753954920; x=1754559720;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QnOkZh2xfL40YRumGUqUgGUVFVo0T+Nn2lfElsVl5SA=;
+        b=Zgs7ud5Aeiy6qEcLAWm0sSqjJvBOGyiKPW16ZHVht3NsPMDecstGkWWRzLK6W4hsAL
+         zxj9RrCDdP0ixoYGSPfei5loBfF1zC0SR3zspE4/UL2wUNhu6I+qjldgrpNFBNpbhNiI
+         97CUbpjTYzbtr5pziUNIcNW7t83Jl4Z65ohR5IQHKY/X6bwYZK3TN0382KY0GcyFVpu5
+         fBw5No/GGpcTiN4A+TtYk3MmVdKuPUvSIIXuN4u2oMcsdd2yDPRoelFbSJ/I695AYIHz
+         abP+gUcZc1vK+dVAWLE4Zpp53I0QP81dRQ/1Ya6ZmcENtHSsg59DdK1KbTeAlEXTYLqJ
+         wxkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWXayMvotDtuBDS07cRp975vxWIhu/kLzu5CX+Ee64P9ZhWvRHbrdzpvtN9Y7YJJOik1ERpKcs6QEGI@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywdtbz2JhZupNXIMmX+Aekw0THyH14JJ9Rg4kgsABUPT8J/WotU
+	Bx4h4ztRUPWWZN92Rao06MXKxZQ3FIgEE0syk8Dmo3G2thKPod9/un3iVjSsYVXcZUY=
+X-Gm-Gg: ASbGncs5DD/sbamcNMQuFYrytG/7IxmuCMKdiREF1w80iT+p+zr6k3mUNVSYhyauHy2
+	glYjMZKrZHXknvwX5yYkAl8YL91UE3HvBk4/DCIGCxR5MbPRYu90OGH/khiDa7PlNdRvG3qAMxV
+	JSBkxJfjXlA6Ey+TcTdcs9vAAXTIo42rNM+vyceESvVh2GpvMzm2un6rIMdMl34I8faHmRMmIM2
+	yZJZLzqmMpOpMpjnSWcrS+MFvlQdWNS0RQatmUblhWJx+85yE1UBiYid96s4DVq7iDlCeyjGkum
+	9G4/q9SldWWL8CSmQD9mreQsQz0ELxWJANH1gFs+0yrPthzqKucJzkdulz26oZlCDKdFRM75XYv
+	CoRJhQeT3Ovq10+shIwVseg8muWxdZJiQtU6GGlCGgCS0z63WVQVw3Je/fzdvY8I3
+X-Google-Smtp-Source: AGHT+IGLYXVQtDxNwo330E93me7kT0e10jyCYoV37P7PPC8dqrFgzE417WGD+xvPdcDnkSu32KUyXA==
+X-Received: by 2002:a17:907:3c88:b0:ae8:8d00:76c3 with SMTP id a640c23a62f3a-af91bf24846mr181679666b.29.1753954918666;
+        Thu, 31 Jul 2025 02:41:58 -0700 (PDT)
+Received: from localhost (p200300f65f06ab0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f06:ab04::1b9])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-af91a21c039sm82055866b.110.2025.07.31.02.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Jul 2025 02:41:58 -0700 (PDT)
+Date: Thu, 31 Jul 2025 11:41:56 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: renesas,rz-mtu3: Use #pwm-cells = <3>
+Message-ID: <n4ivjvd6hq7phwkzbmvg2tqtejc6ufcybslnyh62kegjkhdvoj@cvfjwstrhlwh>
+References: <20250527205823.377785-2-u.kleine-koenig@baylibre.com>
+ <fmn3mrcbih3oq6hgl45jipdofko46ur2sux5p4lf3nzlpahklr@3tm5molhdfdx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mp-tqma8mpql: remove virtual 3.3V
- regulator
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, Markus Niebel
- <Markus.Niebel@ew.tq-group.com>, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com
-References: <20250731091655.2453107-1-alexander.stein@ew.tq-group.com>
- <20250731091655.2453107-2-alexander.stein@ew.tq-group.com>
-Content-Language: en-US, de-DE, de-BE
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20250731091655.2453107-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m7medg3g5ye5skkb"
+Content-Disposition: inline
+In-Reply-To: <fmn3mrcbih3oq6hgl45jipdofko46ur2sux5p4lf3nzlpahklr@3tm5molhdfdx>
 
-Hi Alexander,
 
-On 7/31/25 11:16, Alexander Stein wrote:
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> 
-> BUCK4 rail supplies the 3.3V rail. Use the actual regulator
-> instead of a virtual fixed regulator.
-> 
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+--m7medg3g5ye5skkb
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: timer: renesas,rz-mtu3: Use #pwm-cells = <3>
+MIME-Version: 1.0
 
-jfyi, this may impact boot time as it delays eMMC probe until after the
-PMIC on the slower I2C bus is registered. It would be cool if we could
-annotate regulators as left-on by bootloader somehow to weaken
-dependencies, but that's unrelated to your patch.
+Hello Daniel,
 
-Cheers,
-Ahmad
+On Mon, Jun 16, 2025 at 03:08:41PM +0200, Uwe Kleine-K=F6nig wrote:
+> On Tue, May 27, 2025 at 10:58:22PM +0200, Uwe Kleine-K=F6nig wrote:
+> > With the goal to unify all PWM bindings to use #pwm-cells =3D <3> update
+> > the renesas,rz-mtu3 binding accordingly. Keep <2> documented as a
+> > deprecated value at least until the in-tree device trees are fixed
+> > accordingly.
+> >=20
+> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
+>=20
+> I would expect that with the positive feedback by Biju Das and Rob
+> Herring it's on you to pick up this patch. Or would you prefer that I
+> take it via PWM?
 
-> ---
->  .../boot/dts/freescale/imx8mp-tqma8mpql.dtsi      | 15 +++------------
->  1 file changed, 3 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> index b48d5da147273..9716f24f7c6ed 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-> @@ -16,15 +16,6 @@ memory@40000000 {
->  		reg = <0x0 0x40000000 0 0x80000000>;
->  	};
->  
-> -	/* identical to buck4_reg, but should never change */
-> -	reg_vcc3v3: regulator-vcc3v3 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "VCC3V3";
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -		regulator-always-on;
-> -	};
-> -
->  	reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
->  		compatible = "regulator-gpio";
->  		pinctrl-names = "default";
-> @@ -187,14 +178,14 @@ at24c02: eeprom@53 {
->  		read-only;
->  		reg = <0x53>;
->  		pagesize = <16>;
-> -		vcc-supply = <&reg_vcc3v3>;
-> +		vcc-supply = <&buck4_reg>;
->  	};
->  
->  	m24c64: eeprom@57 {
->  		compatible = "atmel,24c64";
->  		reg = <0x57>;
->  		pagesize = <32>;
-> -		vcc-supply = <&reg_vcc3v3>;
-> +		vcc-supply = <&buck4_reg>;
->  	};
->  };
->  
-> @@ -211,7 +202,7 @@ &usdhc3 {
->  	non-removable;
->  	no-sd;
->  	no-sdio;
-> -	vmmc-supply = <&reg_vcc3v3>;
-> +	vmmc-supply = <&buck4_reg>;
->  	vqmmc-supply = <&buck5_reg>;
->  	status = "okay";
->  };
+I understood your silence as "Please pick that patch up via your PWM
+tree" and did that now.
 
--- 
-Pengutronix e.K.                  |                             |
-Steuerwalder Str. 21              | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
+Applied to
 
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+
+=2E
+
+Best regards
+Uwe
+
+--m7medg3g5ye5skkb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiLOmEACgkQj4D7WH0S
+/k56gQf/YVbE8M4YImhXFa56R+9I6mz7mcCrs5jdK4BGolG38W3TFlZeG2daO2nh
+MdBRKKRp2w9UTC1sM30Vm3/xuSpVgRKzBCIrgWgrrkIyZ1r1b6DqBc8D4Tz424Yt
+sgEB9dsoygEHyp34HxePgqG3fOgwbhwVd7Ww/IDBaM8kxDXxf4OfG34krIJhLEJw
+9+v5HZTlnLJEeBBqxytwp+v4fb+b4vBLlmZhLp1Kj2IPZGLgFFADAFDPpmRHf0Op
+e3CmdYPWGgDCPSQUV7w0DMY0bzcpvl3IXjGKD5MCObCrxnHxAoikvViOA7DRFe/i
+FgWZgSCLMO3luQ6woVmvzYeaEnII2g==
+=fddD
+-----END PGP SIGNATURE-----
+
+--m7medg3g5ye5skkb--
 
