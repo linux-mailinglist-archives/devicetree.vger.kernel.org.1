@@ -1,157 +1,99 @@
-Return-Path: <devicetree+bounces-201025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D115B170AB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:52:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F43EB170C7
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:57:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EAB1A8299E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:52:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD4F91884C8C
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C932C3745;
-	Thu, 31 Jul 2025 11:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCBA236431;
+	Thu, 31 Jul 2025 11:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWRtu991"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fqE5vUhs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5BBF2C08DB;
-	Thu, 31 Jul 2025 11:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34281A3150;
+	Thu, 31 Jul 2025 11:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753962722; cv=none; b=i9k+B5YyK+J2F5VL0JdoFXTvho7dRC1kaS8W+C06gTr1onNVijJwvcimkPjLgbzd/WGj22QTGZHmYwWX/O1ar9A6J5ZMCFuL+UUoJDsBMN0AvpxfFhZo6TfQJnYPTsZzH1ll95avLyQDOT4IXIidY2RCYULNFH0wVsU4JWaOs68=
+	t=1753963020; cv=none; b=qz6jqz005NksbBWJbd+IgJuLIIOE0cSjmljuWb+AdSrszi7zALfM9bOQc8IMQZC4m4hiI8dk+R5COlsYBSBjC+GuzwXo//H9re3G7T4iCHDtExepAOc+8GYBUqVZax9v08HeQSfKRycqOHOmbwdrlY5cWGaFqy2fNrH5JNPhw7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753962722; c=relaxed/simple;
-	bh=Z83uWHM+h223rV4Zk4J8by6vpmxft3lhwsCh7wcDG1M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=edRe6EKTaqs2OBaTHL6wxOrsKghvuaBn5dbFbO3iyLPhIOu4lYg1hoc/d3r4J/UCDYIXF0Td/06tcKN076gAn31haL7aILaUKK0EeRifUnzIG4K2wp1hBwGvlNCK16eL8KkUHeWp8hMiUOZz6JnZTHi4Wy+PRv9jQdoiQUBem+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWRtu991; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918BEC4CEEF;
-	Thu, 31 Jul 2025 11:51:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753962721;
-	bh=Z83uWHM+h223rV4Zk4J8by6vpmxft3lhwsCh7wcDG1M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kWRtu9919bXLAuc8u4SEP7dZPQ4aengs3q/wqG8zTS4R+yDqmljGznFziysZi1/0+
-	 sGi8f6KCq+Xf/uNHEZqqR2rJA4aI+S7KQaiv+fyC1uI2nzidqZFXi8nX7yR++pQYvY
-	 zDPDh+3jw99WBsbm1Fxjz4hki88/SFYwOvu0UHRR2m9RQ9IND6D3SxBQOpA9zgOF2+
-	 GNT0VZwVXdPw4j6n3yrZVUKs0ZtcZD/KpTPAbJy5PEmw7z/cqnBtrHPLYTy0JuYPbG
-	 nGUHo9hBMEerWS5IQ3nwata/IJnsLesmFLU+G5/fp2WF0rWgR23MDf65nHM0z4fmkF
-	 n2l8FxiHYIa5g==
-Date: Thu, 31 Jul 2025 12:51:56 +0100
-From: Lee Jones <lee@kernel.org>
-To: Lukas Timmermann <linux@timmermann.space>
-Cc: pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] leds: as3668: Driver for the ams Osram 4-channel
- i2c LED driver
-Message-ID: <20250731115156.GF1049189@google.com>
-References: <20250708141114.134950-1-linux@timmermann.space>
- <20250708141114.134950-3-linux@timmermann.space>
- <20250723093108.GQ11056@google.com>
- <a028730a-a51c-4595-992e-e1e082329850@timmermann.space>
+	s=arc-20240116; t=1753963020; c=relaxed/simple;
+	bh=4WizGtFrJ4RX3yfEr0Cej5vDJ47Ip7T/5US+vJRVZN4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dX5nrCdT37HzkVPfvKpOOkxeWYPbaswZ9IpOnwdlhcatvYiAItw1RpifHg68U20QQjuWTcT/LrcLL3+rfiday3ZuMxIpaRHujEqKjHkzMGB3/9NprAk9L+iDk9ze3Xh1aySv0l/nktS8/PhP00/E10lknZ4xYMiFp9hbOrjgoe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fqE5vUhs; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 56VBuitk3437181;
+	Thu, 31 Jul 2025 06:56:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1753963004;
+	bh=ctS2IsIxQtxk4XIYF0HsMS9YZmREfXrPM1zm5+YRlrs=;
+	h=From:To:CC:Subject:Date;
+	b=fqE5vUhsL9xqx7rB7V9LEHJAyv0sTk2/w9bXZEjppS3pMwW8RdLH8j9shnP1hkV3o
+	 /A+r17eWdStDO1xx6zBRvAvupbQO7jgBmy3Bo7ReG4OHSpGl+qdvEUjBOlnjTIK2wP
+	 9Ndas5gBH/2F3gaViGAmQnzY6Ny0IP6hLtmd7BIg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 56VBuiMG3301194
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 31 Jul 2025 06:56:44 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 31
+ Jul 2025 06:56:43 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 31 Jul 2025 06:56:43 -0500
+Received: from akashdeep-HP-Z2-Tower-G5-Workstation.dhcp.ti.com (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 56VBudQO2861468;
+	Thu, 31 Jul 2025 06:56:40 -0500
+From: Akashdeep Kaur <a-kaur@ti.com>
+To: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <vishalm@ti.com>, <sebin.francis@ti.com>
+Subject: [PATCH 0/3] Remove unused bits from dts and add support for remaining pinctrl macros 
+Date: Thu, 31 Jul 2025 17:26:28 +0530
+Message-ID: <20250731115631.3263798-1-a-kaur@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a028730a-a51c-4595-992e-e1e082329850@timmermann.space>
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Sun, 27 Jul 2025, Lukas Timmermann wrote:
+This patch series cleans up the dts files to remove the pin control deep 
+sleep configuration that does not take effect in hardware.
+This series also adds the remaining macros in the pin control file 
+supported by SoC so that any configuration can be used as per requirement 
+in dts files.
 
-> Formatting was malformed in the last message, sorry. Next try:
-> 
-> > > +#define AS3668_CHIP_REV1 0x01
-> > 
-> > How many REVs can one chip have?
-> > 
-> Would be 4-bit/16. I thought I do a little check about the revision and
-> print a warning message to inform about the probably untested revision. Or
-> is that not necessary?
-> Removing the REV constant results in an if-statement similar to
-> if(rev == 1). Is this considered a magic number?
+Akashdeep Kaur (3):
+  arm64: dts: ti: k3-am62p5-sk: Remove the unused config from
+    USB1_DRVVBUS
+  arm64: dts: ti: k3-am62x-sk-common: Remove the unused config from
+    USB1_DRVVBUS
+  arm64: dts: ti: k3-pinctrl: Add the remaining macros
 
-I would omit this until there is another revision.
-
-> > > +static int as3668_read_value(struct i2c_client *client, u8 reg)
-> > > +{
-> > > +	return i2c_smbus_read_byte_data(client, reg);
-> > > +}
-> > > +
-> > > +static int as3668_write_value(struct i2c_client *client, u8 reg, u8 value)
-> > > +{
-> > > +	int err = i2c_smbus_write_byte_data(client, reg, value);
-> > > +
-> > > +	if (err)
-> > > +		dev_err(&client->dev, "error writing to reg 0x%02x, returned %d\n", reg, err);
-> > > +
-> > > +	return err;
-> > > +}
-> > 
-> > These look like abstractions for the sake of abstractions.
-> > 
-> > Just use the i2c_smbus_*() calls directly.
-> > 
-> Should I omit the write function as well? I do some error handling there. Is
-> it okay to err |= write() the returned error codes in init or should I
-> handle every possible write error by itself?
-
-The handling in write() is standard error handling.
-
-It doesn't justify another function.
-
-> > > +	/* Read identifier from chip */
-> > > +	chip_id1 = as3668_read_value(client, AS3668_CHIP_ID1);
-> > > +
-> > > +	if (chip_id1 != AS3668_CHIP_IDENT)
-> > > +		return dev_err_probe(&client->dev, -ENODEV,
-> > > +				"chip reported wrong id: 0x%02x\n", chip_id1);
-> > 
-> > Unlikely.  This too is unexpected, as above.
-> > 
-> Error message not descriptive, understood. Changing that to "unexpected ..."
-> as above. Or am I misunderstanding and the check should be omitted entirely?
-
-No, that's fine.
-
-> > > +	/* Check the revision */
-> > > +	chip_id2 = as3668_read_value(client, AS3668_CHIP_ID2);
-> > 
-> > Is child_id2 not for another chip?
-> > 
-> > This is ambiguous, please improve the variable nomenclature.
-> > 
-> chip_id2 is directly related to the defined register CHIP_ID2 which name is
-> taken from the datasheet of the AS3668. (Not sure if I'm allowed to link it)
-> Should we diverge from the datasheet in case of naming?
-> Or is only chip_id2 to be renamed, even tho it holds the values of CHIP_ID2?
-> I would consider chip_ident for chip_id1 and chip_subident for chip_id2.
-> chip_subident would break down into chip_rev and chip_serial.
-> Of course reading chip_id2 would be unnecessary if I omit checking the
-> revision in the first place (see above).
-
-I would encourage people to match up defines with the datasheet.
-
-Variables should instead be easy to read / maintain.
-
-> > > +	err = as3668_dt_init(as3668);
-> > > +	if (err)
-> > > +		return dev_err_probe(&client->dev, err, "failed to initialize device\n");
-> > 
-> > No need for 2 error messages.
-> > 
-> Doing if(error) return error; then...?
-
-Right.
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  2 +-
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 +-
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           | 66 +++++++++++++++----
+ 3 files changed, 56 insertions(+), 14 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.34.1
+
 
