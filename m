@@ -1,126 +1,110 @@
-Return-Path: <devicetree+bounces-201030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78562B17185
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 14:51:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45693B171B6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94AF2560D5B
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 12:51:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A6DB7A50E8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D55E2BE63A;
-	Thu, 31 Jul 2025 12:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b7fmbn7N"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255962BDC1C;
+	Thu, 31 Jul 2025 13:04:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD521E50E;
-	Thu, 31 Jul 2025 12:51:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 354F43A8C1;
+	Thu, 31 Jul 2025 13:04:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753966276; cv=none; b=A6uYSZX4mwY11mT1ntsOlXS9NZ38EQwp7RmC4dBCwOTCfMAL0izyulAQGCdZmMbLykUeJ2k2gQt68sto52IzW0psWBvDCNCF6iI8jEl/tMxKJcbXdYmDzL5iDMMdtaFXKimUEYdKIAsxdADjCX3kyW7KGMCszH0Op9Z6JxhCYqo=
+	t=1753967056; cv=none; b=HHKxBKOCdhVhV34+ei+mBpqO1eoIB6ksR2Qp6wr1FsGaKX8At2LLzqmeWGm+RdbyBhBsfarpyw/zFpMEIDl30nMMOy4ih1DUC9xCZFXuH/Gmi4bF5l0lAYqP+K1DUxA7RKKhPtmKK/lvqtHyZF000YXyWljMIWb7Slnp8AiXIMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753966276; c=relaxed/simple;
-	bh=ZdzKQk8Cjgf3dwmmkTI777cKzfN7wzkNA2dlg6Ar404=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nD5KNU1hOIrua7SYX0C5m7H1aOR9QY5xhT++UewUJiYTOyHW/s6GR2IChZas8PGGh34fGOVnCn+ISR8LxNS9lBfmeDuZqMvDp6tyTiz0K9cet55ISkEtudn7C+Em/YAn2R7s0wxNJqA7KyyZKsLGJptUGN+vZtaaOWrHuYk5vDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b7fmbn7N; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45600581226so9287925e9.1;
-        Thu, 31 Jul 2025 05:51:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753966273; x=1754571073; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=sAusd1csE+JqzNXmIGkHQyt3KnqkABSFxq19868TVlE=;
-        b=b7fmbn7N/GFaQ+l804bs0RLzjhkSh/qiakTF58Zker6Lj3SYDhy9VPL1bGbiRyDv7x
-         h0VW7Ck6eAn6oHCoKHN2LVfuXPEGMB1e6fZdnyL2XC6YlTn/R/rl6lE5x9oF69drfA1L
-         3MP4RWVXqk+m8eBO/vi6gkCVkxAEBEeTPtoNZxGvdqdiBta9b8dUx0a1jTaE/RyFy/Vv
-         FliALcekGuMCxZz6LsAL3H1Y8PhE0W8URhmIZMp/t3SuNCoKGQh6q6GWH3bAcmoXH39E
-         BZlKqYkoPUUsVQam6vuyF5IetUmSQBGeVm0qV8VoscCoKeCssTQmbCh0WAho4E13XhCN
-         JgJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753966273; x=1754571073;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sAusd1csE+JqzNXmIGkHQyt3KnqkABSFxq19868TVlE=;
-        b=XpfBCD//kMuQuJFouh1yHnX2zWwyXRzRiSp/T9nCDB9u/ii8LRR7WHU9ta8MXHbRAy
-         QtC8nk5KI/wE1FZJgMPy3KyYzzhD+0ofrVO5mfzCz7+O0NnyN43AkS1YVB0fEEXtsf0F
-         8LWjetKvaexfSWq99HVmvyFLB2b8zGF+aV+dB73w00uZTp6BifWBzHaiucefajSNgOIK
-         2jFDBE/AE77UoqPw6B6s292gVksUpls9q6hpsxa8kL/IvdZ3aUPKNvMTjFkjLNaVek5G
-         1Ejy8BT0OilHJcdmSfLvmjumhnhCLM1aIy2yc6ET2YHMl8mTzyk/LP0aqKKYHMzkx7bM
-         2TOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV6gYztK6h7xY7E0tYg8wo4WaaXeC3xsDHj0UhyQ9hpOB4b0Aq9uDUkGua66UaPqTXs2Ns8ZrvD+IODyPjOjGvqmBo=@vger.kernel.org, AJvYcCWDZMHkceogniPSxuYNhoR/V/7psK0Sf8w4OmTKsjA0DiLWyNI58r3uFczHIj5/Eiqz8QYfqRGpL9EGadrj@vger.kernel.org, AJvYcCWVEQPxWrhyy1Zup+KEAzx+JerJxGapY3DlWBJeM0ZcgIUvPU3lVjnO5aNVHK+Qf6s5ke+KFbF5d8L5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYEOckrBFdlh6QGukqkNEYzuYk8IlEp4bbilFevm6mkl85gxz2
-	YYigdHdBkV5x08pmT+QznbTdVjFdv6YwmCTwOwngmzjaoPXwEagwe2X09gUVe5nL9JI=
-X-Gm-Gg: ASbGncsk3PPSuB0zbJaNEiyM+QWqRuHgE5lktUx+nZAvRHMv1+2p/ZetBsbUV1yzv+4
-	Y1PLbMtJVGvBneH2Zz8XtLnaAaCc4hOkbqn9r7kpf6Z5h4daR0Un21OfBWKkmwli6mtjL+52INn
-	e0v9p+BYFupKVj30aTI4uAUuf+W3SXCn1BR2y/+CGFrFnA9JcrwqR5Av96jHb9DNbtDl/PfcEsn
-	2wfWj8gItKp5rmzLjI/gZOkyHllrxzldZdA+L37XeOuwa4LamYdP0gEihhSs+ZovgoIDV2RlVLj
-	2EnO9uk907qth/AYmsbfFZkt5CEdyriFGrAqV8IhS3yaXmrexD5NrbQRu29qHlMWjskd6C++ESH
-	80oZbJjo5cYWf26maTfgIJN1Wg7SrLhhgwqXRW5FfrnOe5Vm7akdCpYlbXnkmgtam9P+PsLD/rg
-	==
-X-Google-Smtp-Source: AGHT+IHcdqw0v9ZH1z1fU73BJc7m7fJ4V11JJS73y3UghDSWJasPPE4d4uv5/+ckuMXOQEwrQZe3+Q==
-X-Received: by 2002:a05:600c:6299:b0:456:1442:854 with SMTP id 5b1f17b1804b1-4589c5e20aemr45592005e9.24.1753966272750;
-        Thu, 31 Jul 2025 05:51:12 -0700 (PDT)
-Received: from biju.lan (host31-53-6-191.range31-53.btcentralplus.com. [31.53.6.191])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4589536acc9sm66977645e9.6.2025.07.31.05.51.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Jul 2025 05:51:12 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Fix typo for deleting node
-Date: Thu, 31 Jul 2025 13:51:06 +0100
-Message-ID: <20250731125109.147422-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1753967056; c=relaxed/simple;
+	bh=Gr5VIocSsSHBsm9aipkJffgAf8h2uKY4g13v57y4I0E=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gzlvrSxkhU0rZQiPLJ0j8iYXkzAFwTT7NPmbvDfEkyG5TE1oVbpg+SjwVjFNSOf9ZuTXNrrW9xk+85trpbROdiJEDuz2eU7XU3NJSeyW4aIGf5MUYp/7ZwTanx+r0RIZZlTlR3SaGIlKfjMrIoniEG18xwk3KDVSsypSb3eqRQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bt8PJ6wcCz6L5Cn;
+	Thu, 31 Jul 2025 21:02:12 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id E5BC11402EA;
+	Thu, 31 Jul 2025 21:04:11 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 31 Jul
+ 2025 15:04:10 +0200
+Date: Thu, 31 Jul 2025 14:04:09 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+CC: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] iio: magnetometer: add support for Infineon TLV493D
+ 3D Magentic sensor
+Message-ID: <20250731140409.00000029@huawei.com>
+In-Reply-To: <aImVLWJP08_g23xu@dixit>
+References: <20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com>
+	<20250726-tlv493d-sensor-v6_16-rc5-v1-1-deac027e6f32@gmail.com>
+	<20250727140559.1f6c1668@jic23-huawei>
+	<aIhE5zwrPljqHqGX@dixit>
+	<20250729200513.275e0d98@jic23-huawei>
+	<aImVLWJP08_g23xu@dixit>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Fix typo for deleting node 'channel@0'->'channel0'.
+Please crop to the remaining discussion points.
 
-Fixes: 46da632734a5 ("arm64: dts: renesas: rzg2lc-smarc: Enable CANFD channel 1")
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > +
+> > > > > +#define TLV493D_DATA_X_GET(b)	\
+> > > > > +	sign_extend32(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 | \
+> > > > > +			(FIELD_GET(TLV493D_VAL_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4), 11)    
+> > > > 
+> > > > These are odd enough I'd make them c functions rather than macros. Burn a few lines
+> > > > for better readability. 
+> > > >     
+> > > I saw this kind of data retrival and formation from registers as macros so I sticked to
+> > > it. Having all these as function will also require a seperate function
+> > > for each channel coz the masks and the layout of the bits changes over
+> > > the register. Do you still recommend it as c functions?  
+> > 
+> > Is it more than 4 short functions?  I'd burn the few lines that costs.
+> > 
+> > s32 tlv493d_data_y_get(u8 *buff)
+> > {
+> > 	u16 val = FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << 4 |
+> > 		  FIELD_GET(TLV493D_VAL_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
+> > 
+> > 	return sign_extend32(val, 11);
+> > }  
+> Okay.
+> Will a single function with channel as arguments will be better?
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 345b779e4f60..382f6271cb29 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -48,7 +48,7 @@ sound_card {
- #if (SW_SCIF_CAN || SW_RSPI_CAN)
- &canfd {
- 	pinctrl-0 = <&can1_pins>;
--	/delete-node/ channel@0;
-+	/delete-node/ channel0;
- };
- #else
- &canfd {
--- 
-2.43.0
+IIRC I gave that a go as my first try before falling back to this. 
+You either need a look up table, or you need to pass
+a lot of parameters.  In the end it felt simpler to just have 4 small functions.
+
+If you can come up with a clean and readable way of doing so, go for it!
+
+Jonathan
+
 
 
