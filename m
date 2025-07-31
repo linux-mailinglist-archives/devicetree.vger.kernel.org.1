@@ -1,381 +1,148 @@
-Return-Path: <devicetree+bounces-200970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E448B16C8C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:16:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115B4B16C99
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:21:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C3794E5D7C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:16:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43908564CD0
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:21:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0412BCF47;
-	Thu, 31 Jul 2025 07:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CA729AAFD;
+	Thu, 31 Jul 2025 07:21:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="INqFFHFB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o4a7jBGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4AD29E0EA
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 07:16:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042BD14885D;
+	Thu, 31 Jul 2025 07:21:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753946170; cv=none; b=hlUTWW95t8LGphs472LjbrqAwvOPBt0QjsTALnpzpmy16ittPDb6cRSfKrYS1s72ucDZbQ5yju24fjNrNQ1DainCBRGBvOb+lq0s2uziS48n1QleOJwYQWE72ft0ejRlC9k79SdYZ13/LKyygej5D9s95swFTz585si8XplOM0M=
+	t=1753946493; cv=none; b=iWtvbwQgfOtfO0hPc2fhtQNLR8FACB5Vxvj/IYCXiKrtDiDr9tT+DePJnSEbdQ7Anu32IwSvtZAiGr49bAtcKb1hfbe3s11TrDgY/pOpNPxeV4qgHYR4pchfNviPV4FXh84gkfTiWlISe1ahWlDUjAPkvwWSqbBzTgKeephkcAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753946170; c=relaxed/simple;
-	bh=m4Q58xqf9/x4E0jlUz4rpnXUwO4kR+noNYCXUYqKHk0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U7UthrWpX5bmfNW0TmaAcgpwyXNIN4lUtaSiODZ1xEB864booI6UNl/+DWO8bp9M1f5qtvnC38lPMk3HmmWc4dANN6SouCfyens526EHaAauRrMzOaDBFYBeOHXhdV9FvK5U2W+L0Vt8AXLmjltVk1Az1bHWyzA6fk8Hf6ao1qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=INqFFHFB; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3b780e4fb03so12213f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 00:16:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753946166; x=1754550966; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Th90s93dptO85T/mQtVXLdgDB41QrPyKFC7Dy2GHecI=;
-        b=INqFFHFBgGxqvDQGTYrLbcMoqvtZSBLAWdmO5+1xV0KU5R68FLygPmaUNnNvAXzHGV
-         A5JRNxEE0QFDqYj+jUeQNDe47EL+Xzpx0Q89s6As0WKcv/NTw7xufkvuhZRCEF3X1OB5
-         xvyXJi41XiayikkN7PSOLnOCG3bgmSPKsS29sOsoWog67J4arYYc3kHFvqkG2Qays1ve
-         v90XMJjOFRjz9aPB4j2m18MHvKzlywu2rXnTcaIjETRO6KmCMhCoikbtSmVhGbRQzrpN
-         UMApBRpj4y9Uh2NBMlnzU02Ufe518JHrc43X6lRgVvKXB6l3QZXaw+GHQtSQRymVF4yO
-         bnDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753946166; x=1754550966;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Th90s93dptO85T/mQtVXLdgDB41QrPyKFC7Dy2GHecI=;
-        b=LisEefDgFTToFR43TTPs9eB4twz59BZ9XMRM+Uheg3rRCd0R0YtAlYIhHgiPBBWKL+
-         HF59QM6K04Gf2ZgP4O7uQgG3Lh8JJif3zIrEO6MxDyA+oOS2nXRXX3EmKznzCT20Y5xG
-         g1Y2iMX1X3gr2XLTahAql10VFDir8kJ6w4TY1TwHQYBLaLkVkr/n+sLUbqiblYF2tdBf
-         jGiA1O4tG3kBwjQo4RXOXELVyiCNCeWJ7glrP1RaAl8N9po34treQNcQYoJIQzSYSzq/
-         gpZRzAVibEAJABFylyQ45+ij3LvSiR9rYXhMNoTDHplxa3ql/W+RhLUBYgGTbAzXNLEY
-         7pfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvglRpzg6oue0o8yt0HDCmWx6LWcwc0IR7L4vZKIEZG3mY6ysEyfM8MLR194DQyBHbF3sNvl1fgU8t@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHwArOyCAjFcoEzGjxPpJW6qmODb+pjfnCfAf2KFCjZTHEd2AI
-	SFJ8xcig46wgfmPGSEmMvH1AE48PZ3ahnX5x9dvm1LfLT/klFaU6nyGutN3fxH3Yls8=
-X-Gm-Gg: ASbGncvSL3zRUKevzCrCBFJiEkzFL78tc4qLdy9xnR9CYjAZrBomaRUe0sczbdlG/sx
-	hoMqkAfVnISYsbftxvFD6TPKFQCKsqTTJcgIo6UW+CqkjODynqi63RoyNawHMoFCQjgIPC2VG1y
-	vxD1RryAbexQI9skzUiinyjEKqPEwpIg70SnTWhGBnGvv1pu0kQ1YEd/hlnDaCipkXKq3ew9Szv
-	RPwjhjJQayOdf9aURc69tE0Y/y/hX3msFAweW8jJZT+DddX2LXVikaskinR6209TsGnhnsgqrhA
-	y+dgYnr8Mjh5KH1+tlrIeDrUWN95bagYHCuNsgKf8C9L/0wiwsk4e6EpWgzIoBNGzLgGv5L4mga
-	geXWpFRi0d84MUOq2TgrGguFXTcSN7LjtSRbhSpo=
-X-Google-Smtp-Source: AGHT+IFHoBRIn9mfQGbL5mI3ID9nYuUwh9NPEx0zHR3qVguO0qoABtm0LpJfgXYr4o9mY6Gylf5cfA==
-X-Received: by 2002:a05:6000:2383:b0:3b7:8b43:ac7d with SMTP id ffacd0b85a97d-3b794fc0779mr1676031f8f.3.1753946166381;
-        Thu, 31 Jul 2025 00:16:06 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.218.223])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c47ae8esm1353483f8f.61.2025.07.31.00.16.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Jul 2025 00:16:05 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 31 Jul 2025 09:15:54 +0200
-Subject: [PATCH v2 3/3] dt-bindings: ufs: qcom: Split SM8650 and similar
+	s=arc-20240116; t=1753946493; c=relaxed/simple;
+	bh=Sf0TC1yYttCqsejtWs5xjOFo+AcX/YgcSGfFK54fiqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mMclNrrUw3vSESPjYbUssGxUXge6BHDgS7yCxKWaGGWz4uiOAJt/nVIGITNgk5qk3AMv+gC+crur+XmpqwpM/C4qqV6pPSGRqcBkG1OmcvxbRgIBYlQ/1mACC/KiEk5wM9RNEbiK7MmivU/BU9F+n6sDiKFnCzYid5f+PzvJ52E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o4a7jBGT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA654C4CEF6;
+	Thu, 31 Jul 2025 07:21:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753946492;
+	bh=Sf0TC1yYttCqsejtWs5xjOFo+AcX/YgcSGfFK54fiqc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=o4a7jBGT5qojL/YFBgTcKCk5EtjI3oQCEcPVf8ExSq5Ewmv4F0P2sehICOVGPL2GK
+	 maPpFGdq3kKWkj0F4SpDH4+D5iOqqMf5NuUBsp+yRN2xRcGr9eGDosL10ouSKlJ4VT
+	 d7ORFd663GINzU6WSyvDyAp3+rJLuGVI+YaDlpJ/nEcSkrKioLiwEcEacEK/mAWG+k
+	 IX7eTJORMOwyWXaJ3vGmGn7OEJYJYA7dFmZTnpSwNiT8eBf5Wc9+Xhd/62/k5RId4c
+	 dwakDMNLIDv91PC3Hl0j/tZaJjNgJbQCiA93bwqY890s7y8i8nFItOtW39xSckcVbr
+	 mhB3Y7VnZLwxA==
+Message-ID: <39a65748-3946-4459-8701-a923bdfc500c@kernel.org>
+Date: Thu, 31 Jul 2025 09:21:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: media: i2c: Add ov2735 sensor
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+Cc: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+ "laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+ "kieran.bingham@ideasonboard.com" <kieran.bingham@ideasonboard.com>,
+ Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+ Ricardo Ribalda <ribalda@chromium.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
+ <git@apitzsch.eu>, Matthias Fend <matthias.fend@emfend.at>,
+ Tarang Raval <tarang.raval@siliconsignals.io>,
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+ Jingjing Xiong <jingjing.xiong@intel.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>, Arnd Bergmann
+ <arnd@arndb.de>, "linux-media@vger.kernel.org"
+ <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250731061004.5447-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250731061004.5447-2-hardevsinh.palaniya@siliconsignals.io>
+ <28ba8a6d-a180-485d-9bfd-d5ac8783831d@kernel.org>
+ <PN3P287MB3519C0DB4796E4D73411A549FF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+ <28ae1ac9-68b3-470e-9ec9-982370839207@kernel.org>
+ <PN3P287MB3519479DEF57D78794788B1CFF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <PN3P287MB3519479DEF57D78794788B1CFF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250731-dt-bindings-ufs-qcom-v2-3-53bb634bf95a@linaro.org>
-References: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
-In-Reply-To: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8603;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=m4Q58xqf9/x4E0jlUz4rpnXUwO4kR+noNYCXUYqKHk0=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoixgvSf90OB3oyLSCdRTgI1O1KtbPcZh2rWUMe
- uiBfXwVx46JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaIsYLwAKCRDBN2bmhouD
- 16xjD/9hofBF29vglaxv/+fCMf1vugvzZliqr08i1pEj8x1+VTFwn/QEQWNiPDQO2+TxTMr0uOJ
- xMAsZExfNQtyABjS3jGytOBAAT7M6CTfhdb73dn8cMLV4pr/64208LFlveU+00imNXkXKiYapMn
- YmaC6RA5gfy3bWkkNNkz3Ytzq/hNjBaOcvHR+RNjebdjOT7oZLa6qOsHAgCTzIHIp6vrLTCmTYA
- hGqlIGyHGqUe+ExLf2oYUCs/lYespdCI5S1dKCNfaDW2mYujqlLnxiETcRuFXH8OxQ96KT+4d8e
- OvAPSiQdLLKjx83rMU7Klv4b9mpvCDrJmdX+Y2liug2OlrxI3hIr1UhXCTOmcc946CJsYXAzwTs
- kcWUSyp2c/8DpUTzZhm7qHDOo3G64nz673r8NudR27oWryrbzYnyA1ox7B46+73HvAu9AFRGP+v
- fcla15kkOjt3BvTwe2koSN7ndTWPOKVFFmLxpFANvcqQXiAr7oieKH7Tcexz05LF+hjlcWTSDpm
- d/pjwWN9UPasnuzGq0vRiVJx7wwM767IHrgCEn0OxJtRE82JbDTQA7OSz7LniCtYqI/BWrarwzU
- rjGQkdsUwSO+vjxcWcLbVmRRa64pwz9Il868JHCcs3+2fFI+SxssOoX6XKVSZz+5EidDgWzK3CM
- VdMAXh2tLjtRdsw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-The binding for Qualcomm SoC UFS controllers grew and it will grow
-further.  Split SM8650 and SM8750 UFS controllers which:
-1. Do not reference ICE as IO address space, but as phandle,
-2. Have same order of clocks.
-3. Have MCQ IO address space. Document that MCQ address space as
-   optional to maintain backwards compatibility and because Linux
-   drivers can operate perfectly fine without it (thus without MCQ
-   feature).  Linux driver already uses "mcq" as possible name for
-   "reg-names" property.
+On 31/07/2025 09:10, Hardevsinh Palaniya wrote:
+> 
+> Apologies for repeatedly disagreeing earlier. In your previous response, it 
+> was a little hard to understand that you were saying the property is already
+> there and being duplicated.
 
-The split allows easier review and maintenance of the binding.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 178 +++++++++++++++++++++
- .../devicetree/bindings/ufs/qcom,ufs.yaml          |  32 ----
- 2 files changed, 178 insertions(+), 32 deletions(-)
+"Otherwise this is redundant - validates nothing, changes nothing, does
+not make the code more obvious."
 
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..aaa0bbb5bfe1673e3e0d25812c2829350b137abb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
-@@ -0,0 +1,178 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ufs/qcom,sm8650-ufshc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SM8650 and Other SoCs UFS Controllers
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+# Select only our matches, not all jedec,ufs-2.0
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - qcom,sm8650-ufshc
-+          - qcom,sm8750-ufshc
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,sm8650-ufshc
-+          - qcom,sm8750-ufshc
-+      - const: qcom,ufshc
-+      - const: jedec,ufs-2.0
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: std
-+      - const: mcq
-+
-+  clocks:
-+    minItems: 8
-+    maxItems: 8
-+
-+  clock-names:
-+    items:
-+      - const: core_clk
-+      - const: bus_aggr_clk
-+      - const: iface_clk
-+      - const: core_clk_unipro
-+      - const: ref_clk
-+      - const: tx_lane0_sync_clk
-+      - const: rx_lane0_sync_clk
-+      - const: rx_lane1_sync_clk
-+
-+  qcom,ice:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to the Inline Crypto Engine node
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: qcom,ufs-common.yaml
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,sm8650-gcc.h>
-+    #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interconnect/qcom,icc.h>
-+    #include <dt-bindings/interconnect/qcom,sm8650-rpmh.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        ufshc@1d84000 {
-+            compatible = "qcom,sm8650-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
-+            reg = <0x0 0x01d84000 0x0 0x3000>;
-+
-+            interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+            clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-+                     <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-+                     <&gcc GCC_UFS_PHY_AHB_CLK>,
-+                     <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-+                     <&tcsr TCSR_UFS_PAD_CLKREF_EN>,
-+                     <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-+                     <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-+                     <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-+            clock-names = "core_clk",
-+                          "bus_aggr_clk",
-+                          "iface_clk",
-+                          "core_clk_unipro",
-+                          "ref_clk",
-+                          "tx_lane0_sync_clk",
-+                          "rx_lane0_sync_clk",
-+                          "rx_lane1_sync_clk";
-+
-+            resets = <&gcc GCC_UFS_PHY_BCR>;
-+            reset-names = "rst";
-+            reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-+
-+            interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-+                             &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+                            <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+                             &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+            interconnect-names = "ufs-ddr",
-+                         "cpu-ufs";
-+
-+            power-domains = <&gcc UFS_PHY_GDSC>;
-+            required-opps = <&rpmhpd_opp_nom>;
-+
-+            operating-points-v2 = <&ufs_opp_table>;
-+
-+            iommus = <&apps_smmu 0x60 0>;
-+
-+            lanes-per-direction = <2>;
-+            qcom,ice = <&ice>;
-+
-+            phys = <&ufs_mem_phy>;
-+            phy-names = "ufsphy";
-+
-+            #reset-cells = <1>;
-+
-+            vcc-supply = <&vreg_l7b_2p5>;
-+            vcc-max-microamp = <1100000>;
-+            vccq-supply = <&vreg_l9b_1p2>;
-+            vccq-max-microamp = <1200000>;
-+
-+            ufs_opp_table: opp-table {
-+                compatible = "operating-points-v2";
-+
-+                opp-100000000 {
-+                    opp-hz = /bits/ 64 <100000000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <100000000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>;
-+                    required-opps = <&rpmhpd_opp_low_svs>;
-+                };
-+
-+                opp-201500000 {
-+                    opp-hz = /bits/ 64 <201500000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <201500000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>;
-+                    required-opps = <&rpmhpd_opp_svs>;
-+                };
-+
-+                opp-403000000 {
-+                    opp-hz = /bits/ 64 <403000000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <403000000>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>,
-+                             /bits/ 64 <0>;
-+                    required-opps = <&rpmhpd_opp_nom>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 191b88120d139a47632e3dce3d3f3a37d7a55c72..1dd41f6d5258014d59c8c8005bc54f7994351a52 100644
---- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -24,8 +24,6 @@ select:
-           - qcom,sm6125-ufshc
-           - qcom,sm6350-ufshc
-           - qcom,sm8150-ufshc
--          - qcom,sm8650-ufshc
--          - qcom,sm8750-ufshc
-   required:
-     - compatible
- 
-@@ -41,8 +39,6 @@ properties:
-           - qcom,sm6125-ufshc
-           - qcom,sm6350-ufshc
-           - qcom,sm8150-ufshc
--          - qcom,sm8650-ufshc
--          - qcom,sm8750-ufshc
-       - const: qcom,ufshc
-       - const: jedec,ufs-2.0
- 
-@@ -66,34 +62,6 @@ required:
- allOf:
-   - $ref: qcom,ufs-common.yaml
- 
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,sm8650-ufshc
--              - qcom,sm8750-ufshc
--    then:
--      properties:
--        clocks:
--          minItems: 8
--          maxItems: 8
--        clock-names:
--          items:
--            - const: core_clk
--            - const: bus_aggr_clk
--            - const: iface_clk
--            - const: core_clk_unipro
--            - const: ref_clk
--            - const: tx_lane0_sync_clk
--            - const: rx_lane0_sync_clk
--            - const: rx_lane1_sync_clk
--        reg:
--          minItems: 1
--          maxItems: 1
--        reg-names:
--          maxItems: 1
--
-   - if:
-       properties:
-         compatible:
+If code changes nothing, it means it is safe to be removed, because it
+has 0 impact.
 
--- 
-2.48.1
-
+Best regards,
+Krzysztof
 
