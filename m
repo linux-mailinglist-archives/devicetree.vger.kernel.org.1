@@ -1,151 +1,101 @@
-Return-Path: <devicetree+bounces-200926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AEEB16A78
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 04:35:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E02CB16A69
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 04:30:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67CBA1AA14D5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 02:35:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EE391AA02CB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 02:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388351A23B5;
-	Thu, 31 Jul 2025 02:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13ABE2367AF;
+	Thu, 31 Jul 2025 02:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="RO16iif7"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="CyfgZAWw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49211.qiye.163.com (mail-m49211.qiye.163.com [45.254.49.211])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF45F18A6B0;
-	Thu, 31 Jul 2025 02:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685F1A94F;
+	Thu, 31 Jul 2025 02:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753929332; cv=none; b=Ubkr11nXEeoaSCaB2ObhXJDX9tboNePtoaHa+DE3iWJiIltLokSpjrHy05I5iMa/tSJnGWIfHzPu1UrdJwsd1q3pluVYKscgVBTOSHK9n8f3SSZlVCVOdC+nWaDtP9TCjUPdQ4fyBj0/HEBsoeTp1sRChSS4YsY4wExKJXUG7P0=
+	t=1753929037; cv=none; b=XJy3q0wOZjxMsmGi9y+0W/7OrX/QswMADJ5ueSZ7xoOdoIjn9sycdvS0/+GbmzO7cV4POyj6nl2QCJ8RjWBpbH5GpgryJBszdgYFOWJXyJ3jGQl7QDUpE8ksWrHB3DCD610gcOeuENhWJz+vZUGZfRgkhbuQ4IbJBqu6tj0PyXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753929332; c=relaxed/simple;
-	bh=wGt+oJ2eiVfWy1iDzM9o28FJTuvh0pyWGCVFXYKv6Qc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WU2nx0DraczQwOEUVoyD7yV0iNOcgAe00mfUQDV+SgFVtpcFYD6HUJyPrqIIEtqf6Dyz9E2X8tg9RhGOsQwcM7y4PfoD/KE4sjhFr1J4o1mbc4yOvo1LV0Ut07fqm8IaXbgZbgmGDJRc9nJoMGQFZLl7Kn1bIZtQyLJByfSfZ08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=RO16iif7; arc=none smtp.client-ip=45.254.49.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.153] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1dcdf18ba;
-	Thu, 31 Jul 2025 10:19:51 +0800 (GMT+08:00)
-Message-ID: <63ec11cf-7927-431a-995e-a5fc35ef1ba7@rock-chips.com>
-Date: Thu, 31 Jul 2025 10:19:49 +0800
+	s=arc-20240116; t=1753929037; c=relaxed/simple;
+	bh=GQkDPLCi2StQpsUNzGuKJMftf7ArsxQi2n/TY08G0oA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=tyIKehIrvZ4zhUtYhgOOsoswTQ2Cz7y7PHZxQ2bm8Z4IenjNWyazoRzptMt02MNFbmYBGt04tPco/I5YPKX3Ddra3A6M6yTsRqWxXlmaFeY4c3PJzJVfPrZeuEbq+70qqpV7gtHr+LeyrVkUmFr/qdDCWpxWii2jAWrIhGtB7ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=CyfgZAWw; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1753929032;
+	bh=8jEKI+a2l5XlR/E3JP8s37RLYXVe77DyLwBFBCUJqfg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=CyfgZAWwliTD+nM38ntQktYQ6EDUNpi1cSwNgQDwKa6MmNl8SVPJGeIz7K9giG4Di
+	 e5Wz6neH3xPuwqfYdFUv60ksXRiZsq9DIWMeRGARjKmMSdZB+KefgmezJ/loQt1HM4
+	 iK4SE2HpyeyLAh+aYVOdZX261BuuFO8srTPoVhLfYT2mulmzYC4qglZ5mVdDxdJ9I+
+	 PT9mA5lJ6PMe9SjzCIrd+GYCnb7aGt7beSe5aMUDc2CtfgHJxMt4dfUnVCbxHTn06d
+	 BJViD8JZXtPjGJwcNf/aqlBHJu6C/f1kdnQerG6xTz9ECtH9+OhSUiipnj48R7qtKj
+	 O3gdcNXzV8jhQ==
+Received: from [192.168.68.112] (unknown [180.150.112.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B881069374;
+	Thu, 31 Jul 2025 10:30:29 +0800 (AWST)
+Message-ID: <b32a9de1d591d3012240919d23dbb22305cce6e2.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v9 2/3] ARM: dts: aspeed: clemente: add Meta Clemente BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Leo Wang <leo.jt.wang@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Kees Cook
+ <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,  "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
+	bruce.jy.hung@fii-foxconn.com
+Date: Thu, 31 Jul 2025 12:00:29 +0930
+In-Reply-To: <20250723-add-support-for-meta-clemente-bmc-v9-2-b76e7de4d6c8@fii-foxconn.com>
+References: 
+	<20250723-add-support-for-meta-clemente-bmc-v9-0-b76e7de4d6c8@fii-foxconn.com>
+	 <20250723-add-support-for-meta-clemente-bmc-v9-2-b76e7de4d6c8@fii-foxconn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Add Type-C DP support for RK3399 EVB IND board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20250729090032.97-1-kernel@airkyi.com>
- <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a985e475b1003abkunm77c0d17969e27b
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhpLHlZKTE5DQhgfSUsZSBlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=RO16iif7fvE2I/NqgFVWubst7c5eff+ThID3ba+yjSGE1Deh2av4GXUdv8xcfOjIoQRF5I8v1uaoBxKb/+DD1K1YmFe3nXoNmqmLqsqYOc6GjQA/eU0CqsQeM8yRVB7HTls4tRM/6RHXOdZnkUd6HI2cIMr02K/o8X0yNF8Ofbc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=+TiEqyL1AH0iOF6kXInInA83bu0TufgWM4xm6RFb5sQ=;
-	h=date:mime-version:subject:message-id:from;
 
-Hi Dmitry,
+On Wed, 2025-07-23 at 11:42 +0800, Leo Wang wrote:
+> From: Leo Wang <leo.jt.wang@gmail.com>
+>=20
+> Add linux device tree entry for Meta Clemente compute-tray
+> BMC using AST2600 SoC.
+>=20
+> Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
 
-On 7/31/2025 3:13 AM, Dmitry Baryshkov wrote:
-> On Tue, Jul 29, 2025 at 05:00:27PM +0800, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> This series focuses on adding Type-C DP support for USBDP PHY and DP
->> driver. The USBDP PHY and DP will perceive the changes in cable status
->> based on the USB PD and Type-C state machines provided by TCPM. Before
->> this, the USBDP PHY and DP controller of RK3399 sensed cable state
->> changes through extcon, and devices such as the RK3399 Gru-Chromebook
->> rely on them. This series should not break them.
->>
-> [....]
->
->> ====
->> 2. DP HPD event notify
->>
->> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
->> the CDN-DP can be switched to output to one of the PHYs.
->>
->> USB/DP PHY0 ---+
->>                 | <----> CDN-DP controller
->> USB/DP PHY1 ---+
-> Could you please clarify this, can you switch DP stream between two
-> USB-C outputs? What happens if user plugs in DP dongles in both USB-C
-> ports?
+Aside from the usual ASPEED warnings, I see:
 
-Currently, the software simply selects the first available port. So if 
-user plugs in DP dongles in both USB-C ports, the DP driver will select 
-the first port. This process is implemented in cdn_dp_connected_port() .
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: adc@34 (maxim,ma=
+x1363): '#address-cells', '#size-cells', 'channel@0', 'channel@1', 'channel=
+@2', 'channel@3' do not match any of the regexes: '^pinctrl-[0-9]+$'
+        from schema $id: http://devicetree.org/schemas/iio/adc/maxim,max136=
+3.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dtb: adc@35 (maxim,ma=
+x1363): '#address-cells', '#size-cells', 'channel@0', 'channel@1', 'channel=
+@2', 'channel@3' do not match any of the regexes: '^pinctrl-[0-9]+$'
+        from schema $id: http://devicetree.org/schemas/iio/adc/maxim,max136=
+3.yaml#
 
+Can you please submit a binding for this device, or drop the nodes from
+the devicetree for now?
 
-
->
->> BTW, one of the important things to do is to implement extcon-like
->> notifications. I found include/drm/bridge/aux-bridge.h , but if the
->> aux-bridge is used, the bridge chain would look like this:
->>
->> PHY0 aux-bridge ---+
->>                     | ----> CDN-DP bridge
->> PHY1 aux-bridge ---+
->>
->> Oh, CDN-DP bridge has two previous aux-bridge!
->>
->> Now, I try to use drm_connector_oob_hotplug_event() to notify HPD
->> state between PHY and CDN-DP controller.
-> Does it actually work? The OOB HPD event will be repoted for the usb-c
-> connector's fwnode, but the DP controller isn't connected to that node
-> anyhow. If I'm not mistaken, the HPD signal will not reach DP driver in
-> this case.
-
-Yes.  What you mentioned is the case in 
-drivers/usb/typec/altmodes/displayport.c . I have also added a new OOB 
-event notify in the PHY driver in Patch 3, where the expected fwnode is 
-used in the PHY. So now we have two OOB HPD events, one from 
-altmodes/displayport.c and the other from PHY. Only the HPD from PHY is 
-eventually passed to the DP driver.
-
-
-
->
->> Patch1 add new Type-C mode switch for RK3399 USBDP phy binding.
->> Patch2 add typec_mux and typec_switch for RK3399 USBDP PHY.
->> Patch3 drops CDN-DP's extcon dependency when Type-C is present.
->> Patch4 add missing dp_out port for RK3399 CDN-DP.
->> Patch5 add Type-C DP support for RK3399 EVB IND board.
->>
+Andrew
 
