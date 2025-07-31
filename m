@@ -1,231 +1,202 @@
-Return-Path: <devicetree+bounces-200989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54D9B16DEC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:50:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4C8B16DF8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D7A618C5176
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:50:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C24DD173961
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6C7286884;
-	Thu, 31 Jul 2025 08:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gazgJRj5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B7422069A;
+	Thu, 31 Jul 2025 08:56:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazon11021091.outbound.protection.outlook.com [40.107.57.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25F7206F2A
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753951827; cv=none; b=gzELwGIsd1JUopj4iOdvA3usIh+pcKeEU0ds9TaiI0QBH0vB+X3R75JiP0aXkYLgG5f4cUWor7P7NV8o61K3wrZhvzF4aO2fieH1ZOOd34QL4Ycz2W3J5p2/plvbXPspbSNZ5/BXu9JEQqFvHFTk6jIK6wanBtLeOFIqvzdk7ro=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753951827; c=relaxed/simple;
-	bh=6Lg1eIwjFjvSRaGr6nblSxRpIYC4YoB4n9JiTRn29Ds=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=C+XNfz/qd9b4hCVq+thxIlGTSL3/G1cXxevEcudERt0mv8+YlW2t9fPuh/ZSvIT36DSFzNFU0P3MCE79+0PMKkNaoYNMlQ0ZD6FqDSN9GZQzUf1snpv7NzkdydKzkeyUfujKxVhNgmFVJGk3r5GAOVfxGZ3C8i/eK28aymwlko4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gazgJRj5; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45892deb25bso1341185e9.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 01:50:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753951823; x=1754556623; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YoqT3sYyeE3BcU8PpvXQ31mNiDpWd/PfJiufhJ/dUHg=;
-        b=gazgJRj5kwQtVoo4OHjHqci4WnIh2DNj+FHjxoDW0bETPj+AYc62yiVFZpworCZjOl
-         QbZf1GsZvfKLcAw9GittSieYGiOjXjhMdok83LTnvt8GUIiwn/GtC66XmHDh0v8vx9uT
-         wassDEoETsLkur5ER7H3qVnJXIVrnWtfP6nBLn35AA4Lm+jli5tB/kAta4/wxqblHMiD
-         qkFRkbjAcNJcYCXnkQ+THn/ZKQf7uivhs17TJLuruhc00wIIKtZFq9N13Ma4JjqRirKD
-         Ud3pOOJ02bT1U0gaQgIMpYn65z3Sz3EmuE22J6Zzdd3X5xvBPOisEyZgVG/1F8flh6gC
-         /YSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753951823; x=1754556623;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=YoqT3sYyeE3BcU8PpvXQ31mNiDpWd/PfJiufhJ/dUHg=;
-        b=Gd60lr+LtQdXJPIpeg3aVJutWUIfXhRwpi6I5bO/U9WOUhkQmgenfvaoX9CPxa1HJo
-         o1cmq9zzn9NBHktrUqFCMVkvOtj/DFDDkHz0+K0/SF1VX5nW9U/R8LUjYIW9S/VtcFlf
-         VEw7ShSAtHjgh7bmVJczdVQGLtUZv73/QuFMr/TFFhMgWywazyroqgjq67ehVrASH1XP
-         7Ax9j0vpkpTsjFhjlgdoIAZoO4Tw1nZMIgz3Zc4ZPIy1Dpv/eg8T0Z+sUpYQ9f48h0NG
-         +xQLk5bHp99kfTaBScWwnJKij6yCkxM3Md+BVUeIxgzEXNwP3rrdjljRc4oRyebcrg2h
-         zizg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCbNfxXYP/Os6HY51s+DQCJxNSTPUILM63VGvMy9hHqBm2qSAqOPmsRgmdOK+MKfsArnzeWF+2wZZk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyL8OKwFmcTNnVYJ0SPC8D8LoicrL5CwS33f710UaZoIVAoaYuW
-	1UnCLbOZQiqloSX5w9WazW143Hf5nWOBpWWvb4/DhTcwaj3FjfxB4ssJVmXgefNfKTU=
-X-Gm-Gg: ASbGnctkA/g8BU3ARALfX5tFSUqp19Pd1WKYoTfQ/cjeT+9coawAm+c4zNUuk4bwUee
-	T4XKIZ2+TU8SaJ2dYOF3CjoYA1KPE9mWEZ6d2qPtaWftGsiD6DPQfveuy0lT7EjEoHIT6r8obDV
-	HNF4it3Ta/idILD6Zbg1+7yLCS4w5j/+2QhsWrrukqvSBRQQgw01yimZuCpbVa+ZgBxvGDlVrtA
-	H6+VcgwSdfu8Q02+jlect8y7Z20+jLbGg1nOeHmAzjfKWtrwqgZbpq2Vxm8UmXWkrlITemN+Fly
-	QrIu50GAvpUWcMZ3x+qzM/+Acx1eT16neLRC7OTa2GNMQroJIGmH60w/r+EwLV9yO6ECtLFK0Zk
-	D8HBeWvmmZtfT/eqoO1iKdvNm43OblIWPhDl31GWMD2+ss7iuQg1+eEIY5jaXCG6UD81/ICGj
-X-Google-Smtp-Source: AGHT+IEgSZer8hWY13x0qXXR6I/Sej/NR+Xl7nYUwCW+ECmWFbBpqghq5bAxRYQfADo4HpTVwczsaQ==
-X-Received: by 2002:a05:600c:6304:b0:456:191b:9e8d with SMTP id 5b1f17b1804b1-45892b9d0bdmr51113435e9.11.1753951823050;
-        Thu, 31 Jul 2025 01:50:23 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:5d4b:b132:363:7591? ([2a01:e0a:3d9:2080:5d4b:b132:363:7591])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4589952a60fsm54626685e9.23.2025.07.31.01.50.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Jul 2025 01:50:22 -0700 (PDT)
-Message-ID: <aff38b98-23ff-4dcd-afab-2a0d8c8ad599@linaro.org>
-Date: Thu, 31 Jul 2025 10:50:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A0E1482F5;
+	Thu, 31 Jul 2025 08:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.57.91
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753952167; cv=fail; b=Ud2KcAVCk6lSoFMkFK5U9144WewVvMsOJi/OaU1suJkZ4qvG3P0QYxASU5JBzC0EXjUPX+JjxfZmrx2bMkp0mGMTo6F2ina/vtO9T9UHj5rGSsZ4ocVv2ZcM2EhFugjSxXHTJDYZLMr8i7eXDVL7+yy2Uq+xYSUIE8boBlAFHkw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753952167; c=relaxed/simple;
+	bh=n8mfl2Y2W5wZjmZRoB+7urzNLyUy7z6YyKJUoyFQYZs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tDayaDTe91qGU4dAmxImWYT2+c/8whFmt1LS6NTw1VluOSkj2VuUSMRY7kaJ2c5JJDf31AWrpuz28GjBzAJ/0Ql8brF7zK5CMByIANI01jK7b3sLo3j0X1x4ROysNF9cGyYNpUPrEArMlPDhmcDuaimVrqlfWPaieln6VSWiph0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.57.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g+PssjepcE4dkGN7UcVcTB3y8Jkow7iuDGsaeTjN/izXAhPt8SsgVtDvaJD1UNkc3QbZEIpw6gnVc4FEBBiF9Q0v7pKxwGRbCNwtgxGDSHWEuoy41szWhiqcI+mmCmek7P6eKqO3rxlxSyW/hV7uQ6nYguTVh2fJtX0CGFFae+Edg9NYmTKrkkNfLSv1clSw0aB9XF+8QtHw4eiOwhBqQf6VRthQ5QpeIci3YrXZ1nNxQWXEDCTJPlbDE/OOUYF6GFhpOYZH0OwyEekjH/g0Jmfx6F2hqOdrN/zST/mxBp/23xsr6VPVfahg55YyHRhUPALeQ8zNdFf1681sdnzLaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n8mfl2Y2W5wZjmZRoB+7urzNLyUy7z6YyKJUoyFQYZs=;
+ b=IUivICAqLGqSZv7aTQPMbaclKANNXUaEekHrGHJdOj3GcLN73GB7o2bdIuuNJ2XRqoAYAreHvbdemBcqXvy21uatNvR6UGbApAeCq6dyukIq56qR/roPV5SqWw36Ap+aEgZFZpknQNd3eZqpEXox6K5mXJtedMmLJ227BBFiwJoxcvv0sc6Qzw2SPZOEQpYGEmOAoLFwVE9dy3EvJ/aVBf/CvuSrMXU5amnJL3ASWZHbfyi/Zi0OR7SVkGC/WBDs6QKLnSQ8DXPATvtTEII7LNnvf9KJ0j5iHX4efDf9eNa4vubIzfhfRanRFOtOYzv6j9YVuYn2GImXq68Yg6lfLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:229::21)
+ by MAZP287MB0660.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:110::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.14; Thu, 31 Jul
+ 2025 08:56:00 +0000
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418]) by PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418%6]) with mapi id 15.20.8989.013; Thu, 31 Jul 2025
+ 08:56:00 +0000
+From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"kieran.bingham@ideasonboard.com" <kieran.bingham@ideasonboard.com>, Himanshu
+ Bhavani <himanshu.bhavani@siliconsignals.io>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+	Ricardo Ribalda <ribalda@chromium.org>, Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>, Hans de Goede <hansg@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9_Apitzsch?= <git@apitzsch.eu>, Matthias Fend
+	<matthias.fend@emfend.at>, Tarang Raval <tarang.raval@siliconsignals.io>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Jingjing Xiong
+	<jingjing.xiong@intel.com>, Dongcheng Yan <dongcheng.yan@intel.com>, Benjamin
+ Mugnier <benjamin.mugnier@foss.st.com>, Sylvain Petinot
+	<sylvain.petinot@foss.st.com>, Arnd Bergmann <arnd@arndb.de>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: media: i2c: Add ov2735 sensor
+Thread-Topic: [PATCH v6 1/2] dt-bindings: media: i2c: Add ov2735 sensor
+Thread-Index:
+ AQHcAeHa9HY47390u0OJlhyWta8pG7RLwMcAgAAF2LOAAAFkgIAACEOYgAADZwCAABolrA==
+Date: Thu, 31 Jul 2025 08:56:00 +0000
+Message-ID:
+ <PN3P287MB35195D0D5B5EE972B885F189FF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+References: <20250731061004.5447-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250731061004.5447-2-hardevsinh.palaniya@siliconsignals.io>
+ <28ba8a6d-a180-485d-9bfd-d5ac8783831d@kernel.org>
+ <PN3P287MB3519C0DB4796E4D73411A549FF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+ <28ae1ac9-68b3-470e-9ec9-982370839207@kernel.org>
+ <PN3P287MB3519479DEF57D78794788B1CFF27A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+ <39a65748-3946-4459-8701-a923bdfc500c@kernel.org>
+In-Reply-To: <39a65748-3946-4459-8701-a923bdfc500c@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PN3P287MB3519:EE_|MAZP287MB0660:EE_
+x-ms-office365-filtering-correlation-id: 1cfc6492-0374-4a24-6edc-08ddd0101276
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?RyG7dxjjNFGXsu5XKKV7lLsDtPpAlUYwQAOWWRDuAaxIFxJSE3agtFHdfP?=
+ =?iso-8859-1?Q?pkc9815XAoLKVzOwwAc/U8xy9Arh3GkImWuSFZW7GSsQ86OSLUEpPPiUjU?=
+ =?iso-8859-1?Q?VhrNHIoIbd0bvD4XBRrC8aWrvB9NzsEDkcqrUEXFOONiewDVpbjVPrkvoy?=
+ =?iso-8859-1?Q?ZhVkxN49S/XGN1XXGAU7ieqL5EA2xsuQ27B7Eu+Z87MD7QJv4PlZVqMIF+?=
+ =?iso-8859-1?Q?emovv7Usc+yDRRuwgvh60DMoshea8xRebz/CdmD5QG0WHkRBR82p/Ng40Q?=
+ =?iso-8859-1?Q?/UsqbbC0+haSRjucfLaewy/i+Uy8V/cH64LLs/Njoa9q6lhUxb3ZOslp0+?=
+ =?iso-8859-1?Q?eqiaNvoV9nJP31sa1+LYMmnJqr9spivcJElDf/RJ2DYeE3joBIqkYyWJ2D?=
+ =?iso-8859-1?Q?hJccX22DnGC+FM6kF7WU9Hh1cQa4f6p4lMeQaWCQaPbG5COYnjEa6+kGbk?=
+ =?iso-8859-1?Q?pu+sY/8YzKXKqfPLlCZCDV0vMZtMDG34xRxz0QI0zchzSEkJP4f1jo8+iY?=
+ =?iso-8859-1?Q?GyAmMH9xdhMG/WR1bIHPuGiaUjOzPBq+k/vMfCvQAOCeAVGYY4WWjWfN7H?=
+ =?iso-8859-1?Q?osllMyHnM1oeoQuZo85y1Gb3ijb/LUTnCJzY2c8syqj4EZ50vcABlhtQ5G?=
+ =?iso-8859-1?Q?UD3Df8/yJz2tZojBPcerRtCTN9feokE9uifVT9R8yO5TE03NmHcl/oHSlH?=
+ =?iso-8859-1?Q?9MJzIGdPsZSK0Pn/iSDWXhHkMek39PCHAKhRDmWUI0flhwvOu6gB25UFJf?=
+ =?iso-8859-1?Q?4K53npnEnpBCs3D5glav/86FxUC25RQIb1DaN02lYMjvO6muwfM6AjmCQq?=
+ =?iso-8859-1?Q?S26vq52H12Xfq6Qrti1n79bSDmT3Wu43OXpodvur3w2OqFUny2DMYmx6aR?=
+ =?iso-8859-1?Q?HdcHiD6IKNAccsWWCORAbqB/0aUhKTrK4E77+obIDJLvGLf/XjqRwhLvoW?=
+ =?iso-8859-1?Q?1VBTSYG15xM8/4FXLs21XtQlpPVKvWg746aakZ5mGwyJW4cZJYxYYZ1q+f?=
+ =?iso-8859-1?Q?YZM3WW0NcScT+/JnGVQDBNNFxe/gkLoFfjQK+xeQhHsHEhjuxDSNfYm2d7?=
+ =?iso-8859-1?Q?S8dyAY6EAon4eiw/e9orVA60V3xmqDEEiPzAg2TZrSvM0bKhbphXu6hK/K?=
+ =?iso-8859-1?Q?ej81Lvw/xxUkYXcrDSe7SFG3nhkxcIFxjlZMcqe15l8MZK2Gg7ILfm9Dbp?=
+ =?iso-8859-1?Q?kM61cxM/WZqPcnrS4nb5UhM7HYJhiXAQisKBD05hc3ZpV+iUvZP5Hqb2CI?=
+ =?iso-8859-1?Q?o0pT/xLyLFJ5sxQwOJtZLzSffgstLZ8iMuWInEAiwbHRO4+AdwB1/FYHnQ?=
+ =?iso-8859-1?Q?kgsugWZ1ZbRoVW/O1WemvndRl1YqSrAGtyJs8Ddt2JIytR4TINWC0vV80F?=
+ =?iso-8859-1?Q?thfdXDyfZ3+vnP6bL/Mz0LDidG7U35FG34oj3UvOrT85YzacsQd8R4678K?=
+ =?iso-8859-1?Q?NtrzIL+S2kAEtOOGBs2Foh9VeWQptYKLpJseirmGKztthp90amJQsqOSJj?=
+ =?iso-8859-1?Q?5P2LGGIeBxwOSfrfdHFFN16h3tAbbc/1xOl/FHwS8gJQ=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB3519.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?ZwupaY8vG83ycZ+D9JRJ193m1VK+JKvN/bGMguxO+FaqprD82VYBJAE7Ms?=
+ =?iso-8859-1?Q?byl1/pg6t2HRqNLb2gox8rHVCwZLwsDh0N0A7wKvn4R7+jgzbcR28FkfBY?=
+ =?iso-8859-1?Q?P6QOduHGoaCFC3oIsRwQK8tgOznafOt5LpK1v/dEK+sz9FzKe4DC859p/s?=
+ =?iso-8859-1?Q?2X5rvbVv8D45fhc4SlGj5uyWhsfmP3eG0x6uMIImDBCIy3wmWNTugrfbbT?=
+ =?iso-8859-1?Q?fRG9NPq5g1GrQsGs+Xj7CZUf7hz9D2hLCKbQ+vfzPwIcP9oYCtLTmmU39p?=
+ =?iso-8859-1?Q?aLYVRLhd7eitSJ27phtF4EHbQeIWYCcY1+VD6cYA9clypPfdSyWqOm0mhG?=
+ =?iso-8859-1?Q?HuzdasuoCIlGjuBJHgPe+Rm9xDo1usL2H8RdSCs+kR9iA8FpoxRaiIjXaJ?=
+ =?iso-8859-1?Q?2o2CtmXHxni+N8vGdDd+vI1O44LgYrf08gf8R1WHiI7A7pzDQbCmld0ItW?=
+ =?iso-8859-1?Q?185vy04wo7rpXdEwLcWWx82zJQyNBU9XGUb/ypDPETYhut4f9AK3dhwOPl?=
+ =?iso-8859-1?Q?Pj1jJQUuyXr8e7CKxiP4fCfN7NFwUgxgaRoCZHCJQzSc8mPaU19Iyb1a2H?=
+ =?iso-8859-1?Q?m2LacRrzEWTEuPnwh1uXD7wmfYoHQFPSnVO8o+JI7Wog+UrSgn+WJOj3xU?=
+ =?iso-8859-1?Q?eGrJ34ecWqx6ksc9yC81YX/JvzEUa899w/YSJoEvh1Kbwzm9BskciGBxCm?=
+ =?iso-8859-1?Q?CSbeNEvCgavyRxUrE75tCanI5v9vcGsckYj21wEdQiWoM9P+38XbR+8via?=
+ =?iso-8859-1?Q?cXDzSxRC+oL0rddSRG/uX0CDg4ghxS4fxgRI/aXAGXNjG2k7B01nLLqkzY?=
+ =?iso-8859-1?Q?FrM6ESXam3Om7B+0Y0yM+QZaUvFxnaNH6joDLkpKKXobtfPeBkCyvlDdUL?=
+ =?iso-8859-1?Q?uzfyYjcnkGikuJOiIOh5HyoGpAzyLG9w2vj4L4Bt/2tViavm5U0Tn2NYBC?=
+ =?iso-8859-1?Q?HvJ+rGXq+dBGUGy+R8QUYEMDJbqa38/oVzse8vZ6RsH8LrsgHo2/JMWNDm?=
+ =?iso-8859-1?Q?uzOUg0KPNjkHy0LNslkPwnH9c6ExWRocUBSCERZOKYOKMsOg0UaxPVz9wy?=
+ =?iso-8859-1?Q?r3809XuZ0tBlLZu3odaoDyi5KYopPyhFBPuquednU106BvtrD+zvI/ta3H?=
+ =?iso-8859-1?Q?8ofnrNeFQpfAB/cPyYPgQU6VIZDAgC5/H4uNJCea4Ifh9BWDuG4dOfQv2r?=
+ =?iso-8859-1?Q?/+KNbS15kfNbRgvKS3pex6JMkmq5sCdCaINWvSkiWXn9/+o+7qAZ1RlLnj?=
+ =?iso-8859-1?Q?zStWSMur03Gu9RFGBU3QI0wJtI17QrLWkerWdtsmBi6wxBfD5O/DEPkDTp?=
+ =?iso-8859-1?Q?qkNapynktavLO/GMRqVOlH30kB+KU9XDO7J4oR8Dpz5XO6mhw5Sf3we+VH?=
+ =?iso-8859-1?Q?uUTPt4wJ/jh51lmrlshNENksIdB5pbMI7NVRuG+7irKuPM3GA+ABfot0kA?=
+ =?iso-8859-1?Q?uOfhc2k8m3vAHh2RI+RVP5Hgf3maicEnVoU1m/Rmd+GTRJcA6+mJJhDFRc?=
+ =?iso-8859-1?Q?hCyAFTakXlka20TCKtkyxe64CuHv4jEBeEc0eU0I+1VYzwgg0e+zz1HW94?=
+ =?iso-8859-1?Q?r7IFks9Mayso+jVDAr0lLU31ktUWXTTnHeaguTV0ohyb9V392EdmScD7Qc?=
+ =?iso-8859-1?Q?DkjVwBfK4CfliGNsyMwIbtvNmbyes+ViBKcscfnWV/uPsP5hSdEXx0/Q?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH V1 0/3] Enable UFS MCQ support for SM8650 and SM8750
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, mani@kernel.org,
- alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cfc6492-0374-4a24-6edc-08ddd0101276
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2025 08:56:00.4130
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xYvwZJyJM2SLVkPK8Lum+28/8VHt0qUbMEovy8ucpaOFdEnuCFOnTz38IlvF65OB/ocDyCrv6JlX7pOlAxS9z/Tyd+hH4oTzaZMs4Kgu2oq73YIWFntfIkJ+zA5qFrdd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAZP287MB0660
 
-Hi,
-
-On 30/07/2025 10:22, Ram Kumar Dwivedi wrote:
-> This patch series enables Multi-Circular Queue (MCQ) support for the UFS
-> host controller on Qualcomm SM8650 and SM8750 platforms. MCQ is a modern
-> queuing model that improves performance and scalability by allowing
-> multiple hardware queues.
-> 
-> Although MCQ support has been present in the UFS driver for several years,
-> this is the first time it is being enabled via Device Tree for these
-> platforms.
-> 
-> Patch 1 updates the device tree bindings to allow the additional register
-> regions and reg-names required for MCQ operation.
-> 
-> Patches 2 and 3 update the device trees for SM8650 and SM8750 respectively
-> to enable MCQ by adding the necessary register mappings and MSI parent.
-> 
-> Tested on internal hardware for both platforms.
-> 
-> Palash Kambar (1):
->    arm64: dts: qcom: sm8750: Enable MCQ support for UFS controller
-> 
-> Ram Kumar Dwivedi (2):
->    dt-bindings: ufs: qcom: Add MCQ support to reg and reg-names
->    arm64: dts: qcom: sm8650: Enable MCQ support for UFS controller
-> 
->   .../devicetree/bindings/ufs/qcom,ufs.yaml     | 21 ++++++++++++-------
->   arch/arm64/boot/dts/qcom/sm8650.dtsi          |  9 +++++++-
->   arch/arm64/boot/dts/qcom/sm8750.dtsi          | 10 +++++++--
->   3 files changed, 29 insertions(+), 11 deletions(-)
-> 
-
-I ran some tests on the SM8650-QRD, and it works so please add my:
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
-
-I ran some fio tests, comparing the v6.15, v6.16 (with threaded irqs)
-and next + mcq support, and here's the analysis on the results:
-
-Significant Performance Gains in Write Operations with Multiple Jobs:
-The "mcq" change shows a substantial improvement in both IOPS and bandwidth for write operations with 8 jobs.
-Moderate Improvement in Single Job Operations (Read and Write):
-For single job operations (read and write), the "mcq" change generally leads to positive, albeit less dramatic, improvements in IOPS and bandwidth.
-Slight Decrease in Read Operations with Multiple Jobs:
-Interestingly, for read operations with 8 jobs, there's a slight decrease in both IOPS and bandwidth with the "mcq" kernel.
-
-The raw results are:
-Board: sm8650-qrd
-
-read / 1 job
-                v6.15     v6.16  next+mcq
-iops (min)  3,996.00  5,921.60  4,661.20
-iops (max)  4,772.80  6,491.20  5,027.60
-iops (avg)  4,526.25  6,295.31  4,979.81
-cpu % usr       4.62      2.96      5.68
-cpu % sys      21.45     17.88     25.58
-bw (MB/s)      18.54     25.78     20.40
-
-read / 8 job
-                 v6.15      v6.16   next+mcq
-iops (min)  51,867.60  51,575.40  56,818.40
-iops (max)  67,513.60  64,456.40  65,379.60
-iops (avg)  64,314.80  62,136.76  63,016.07
-cpu % usr        3.98       3.72       3.85
-cpu % sys       16.70      17.16      14.87
-bw (MB/s)      263.60     254.40     258.20
-
-write / 1 job
-                v6.15     v6.16  next+mcq
-iops (min)  5,654.80  8,060.00  7,117.20
-iops (max)  6,720.40  8,852.00  7,706.80
-iops (avg)  6,576.91  8,579.81  7,459.97
-cpu % usr       7.48      3.79      6.73
-cpu % sys      41.09     23.27     30.66
-bw (MB/s)      26.96     35.16     30.56
-
-write / 8 job
-                  v6.15       v6.16    next+mcq
-iops (min)   84,687.80   95,043.40  114,054.00
-iops (max)  107,620.80  113,572.00  164,526.00
-iops (avg)   97,910.86  105,927.38  149,071.43
-cpu % usr         5.43        4.38        2.88
-cpu % sys        21.73       20.29       16.09
-bw (MB/s)       400.80      433.80      610.40
-
-The test suite is:
-for rw in read write ; do
-     echo "rw: ${rw}"
-     for jobs in 1 8 ; do
-         echo "jobs: ${jobs}"
-         for it in $(seq 1 5) ; do
-             fio --name=rand${rw} --rw=rand${rw} \
-                 --ioengine=libaio --direct=1 \
-                 --bs=4k --numjobs=${jobs} --size=32m \
-                 --runtime=30 --time_based --end_fsync=1 \
-                 --group_reporting --filename=/dev/disk/by-partlabel/super \
-             | grep -E '(iops|sys=|READ:|WRITE:)'
-             sleep 5
-         done
-     done
-done
-
-Thanks,
-Neil
+> On 31/07/2025 09:10, Hardevsinh Palaniya wrote:=0A=
+> >=0A=
+> > Apologies for repeatedly disagreeing earlier. In your previous response=
+, it=0A=
+> > was a little hard to understand that you were saying the property is al=
+ready=0A=
+> > there and being duplicated.=0A=
+>=0A=
+>=0A=
+> "Otherwise this is redundant - validates nothing, changes nothing, does=
+=0A=
+> not make the code more obvious."=0A=
+>=0A=
+> If code changes nothing, it means it is safe to be removed, because it=0A=
+> has 0 impact.=0A=
+ =0A=
+Thanks, now I understand your point more clearly=0A=
+ =0A=
+Best Regards,=0A=
+Hardev=0A=
+ =
 
