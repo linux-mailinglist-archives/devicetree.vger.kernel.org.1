@@ -1,70 +1,86 @@
-Return-Path: <devicetree+bounces-200945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B84B16BB3
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:48:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F6BB16BC7
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:58:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 183DD582471
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 05:48:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57DA5827E8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 05:58:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3761D246786;
-	Thu, 31 Jul 2025 05:47:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F567241685;
+	Thu, 31 Jul 2025 05:58:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="EB8FyFJS"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="kRxiwXyv";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="fYaC+P1x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C27244683;
-	Thu, 31 Jul 2025 05:47:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17604323D;
+	Thu, 31 Jul 2025 05:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753940874; cv=none; b=fMV+XVrs4PKUjSSc8ws+tH5eo5mLM8VJlgbX8qAZdAOIh49zR6vRg5bh4NTHOSTOCWxIPqNw5KlGUbVfZMD6bT3x2ebMysX29jM11C1+9Jaf7/1xlZDsGUJR5AXIfE8G9Sd2N5c6UxJi3kFp23a5stgrS1OH8aG2jt2zQ61WQjk=
+	t=1753941511; cv=none; b=kuut3gmniLbhgwryycgvSupI5YskvLvKEylgIq7T4IFtCHR0CVnoNvx4GkQiKehf5I1Ll4cKTFPf7QWBmuVGkxsoiFZ3gg62kjlZOHNNUwdXusd4qeo0gMK5Ws18YdoL2GCJ4/XqHGp96hzVCISwtS3ze1NWHh8JwEOXlvArq3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753940874; c=relaxed/simple;
-	bh=DkySQ9C6S2kjZcTV+DRFTNGRLwaEe/YY6YKOlioQj/4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZZu75H6MZMStyZtid+OXA+f/WW0n4vaTfOeqRr0svYpOUAlzkU8TVSx4k6fIwDTz7tz/z6WRg120TQsZLeSICmcSE7SJ5wEtMf+FNTOegIIJ7y4ZkDwwyy1KoJlYrFTSGmzTtX9WGiZ5N01sPwRQGBJDkkrloaGqyewHbJdCd0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=EB8FyFJS; arc=none smtp.client-ip=220.130.44.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
-X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
-	s=richtek; t=1753940868;
-	bh=x6e4i3YoKlDiQe2/JuPqV82fMICTL+9U6m2WYDkZjpo=; l=2264;
-	h=From:To:Subject:Date:Message-ID:MIME-Version;
-	b=EB8FyFJSiyrobSwbmts0uuiMVftYu5+e7m93o+FkowrZPBR+XUN0vVjA7pkWguxxR
-	 pTe4KRvlbr3la6PkH4jF4NamRuKq+Dhm+JlXzN04t+5bMIj46lVpNiWxnIoPAjoH3n
-	 axfe0RF1OHMgBSMtWdSpQNJSaLYiMdATq2vcqWykyOcMisjlS+7kECgcWvBHyJdipF
-	 j4JedCnQLSn5hsak1tYJX7o/dD979ByRhUehkyyBM/UVa0E5Xlp9GRfN1svcC1NTqN
-	 l2OfGfFkLwrskPDiCi55mUylZrfKnbzcCAYiJp3CSLp8wwKs4POJCuYkFm7c+79DL1
-	 j4K/BfwpuTiJw==
-Received: from 192.168.10.47
-	by mg.richtek.com with MailGates ESMTPS Server V6.0(244590:0:AUTH_RELAY)
-	(envelope-from <cy_huang@richtek.com>)
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 31 Jul 2025 13:47:38 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 31 Jul
- 2025 13:47:38 +0800
-Received: from git-send.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
- Transport; Thu, 31 Jul 2025 13:47:37 +0800
-From: <cy_huang@richtek.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>, ChiYuan Huang <cy_huang@richtek.com>,
-	<devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] Documentation: power: rt9756: Document exported sysfs entries
-Date: Thu, 31 Jul 2025 13:48:18 +0800
-Message-ID: <49a89b9da1f903b0326d3f448849183e62c64dc3.1753940508.git.cy_huang@richtek.com>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1753940508.git.cy_huang@richtek.com>
-References: <cover.1753940508.git.cy_huang@richtek.com>
+	s=arc-20240116; t=1753941511; c=relaxed/simple;
+	bh=cGbzmsV+xJPSNLboyu0ymV3QD2y9cWV6+EX29cXbVjo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XkdYKbG6nyAbvdZnop/C1LkJrofky7/+ZnT+NazWsQ4hRuUlqyL5LuotT4PjTSPO65VkIURrLGlh0WvmkiGwlK/m4R1lomzzY+YsXdqkeduf9c2/IagjQrNPkCsh4Ai6NAGUJLU1e73f9F2+T1Dataw88gjAHu9qZXeQqgiEP9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=kRxiwXyv; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=fYaC+P1x reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1753941506; x=1785477506;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=98SHBebru6MCJ/QnRQtH2DcDv15Ssbf4Sj22mQlx6D8=;
+  b=kRxiwXyvXOwxLQFhVY/VeGtCeABt+8YGJVHIphP5njzAaXtyIlz3Tqyt
+   n5t+ILd8AiMw7gR6jwYtROJa8AhDC4x/kR1vo6M5uTBWLBbvYEvfP3l0n
+   s2zN7SKeECZcJTTKPT9i2GrEuzkjZteQnvxzrgVfxGRhWlNLlQc4pfpX1
+   6tvPoyQyX0UPl0FKOo3mJ1hk4KQWvnUCQNeJhmWJZscTc/inNDvZdhXZ/
+   2pP6Euq6LaPZ/nc0dxddWl7c1KO2sASpoHWeYLsgbZyu8IdGEH7PYFe2E
+   EpUdSsrT3cEr3mls+xFQfumPiLmgjvhWZZmTrK0knBgwAEZnrcvq07DI2
+   Q==;
+X-CSE-ConnectionGUID: 42qa7/ZfSFKqzF0ESfeQZw==
+X-CSE-MsgGUID: Yx8XBTCYSbecOEUDS8gpeg==
+X-IronPort-AV: E=Sophos;i="6.16,353,1744063200"; 
+   d="scan'208";a="45509996"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 31 Jul 2025 07:58:23 +0200
+X-CheckPoint: {688B05FF-6-FE216C80-D1ADDD01}
+X-MAIL-CPID: 343950EB2E7D3053FAAC216CA983035A_4
+X-Control-Analysis: str=0001.0A00210A.688B05FA.005F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 66CD616B0A1;
+	Thu, 31 Jul 2025 07:58:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1753941498;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=98SHBebru6MCJ/QnRQtH2DcDv15Ssbf4Sj22mQlx6D8=;
+	b=fYaC+P1xLljM/NdSckBIk110Nhmd1J/Ou3zJkfO2E39fvTHYbPAkTpDurN7pZ5dqN1zv7t
+	32gjV002+v6EELCUgr6ThmxHXKVlNMeilROyXBWFtHOrK0mIg6HCLG64oHpx+lPUv3ZyOL
+	oicN55gMPoRsRRX1unSIYzfpsGYiaSf0SjHtbNCOw0DDPPsMmIgElei9iCHwFM6qnOwg90
+	GUNkwpWN+9KFonU63w42lG+IXMI72z4E4qP/behfKf2Z+uiAUe2y/iFVZVGqM9bgEErckL
+	ahkJBbhgEpYYOzgGirYRBYo6Scj5gXbNPfS2Omwhybral1ccJDG2LLXM/Cdz4w==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: fsl: fsl,rcpm: Add #power-domain-cells
+Date: Thu, 31 Jul 2025 07:58:04 +0200
+Message-ID: <20250731055806.2265628-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,83 +88,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Last-TLS-Session-Version: TLSv1.3
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+dtbs_check for ls1021.dtsi warns about unsupported property:
+ power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
 
-Document the settings exported by rt9756 charger driver through sysfs
-entries:
+But if removed the check warns about missing property:
+ power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' is a required property
 
-- watchdog_timer
-- battery_voltage
-- battery_current
-- operation_mode
+Given commit 8bcf67b8d893b ("ARM: dts: ls1021a: add #power-domain-cells
+for power-controller node") explicitly added that property, add it
+to the expected property list as well.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+Fixes: ad21e3840a88 ("dt-bindings: soc: fsl: Convert rcpm to yaml format")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../ABI/testing/sysfs-class-power-rt9756      | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9756
 
-diff --git a/Documentation/ABI/testing/sysfs-class-power-rt9756 b/Documentation/ABI/testing/sysfs-class-power-rt9756
-new file mode 100644
-index 000000000000..2d0f7ef1b855
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-power-rt9756
-@@ -0,0 +1,52 @@
-+What:		/sys/class/power_supply/rt9756-*/watchdog_timer
-+Date:		Aug 2025
-+KernelVersion:	6.17
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry shows and sets the watchdog timer when rt9756 charger
-+		operates in charging mode. When the timer expires, the device
-+		will disable the charging. To prevent the timer expires, any
-+		host communication can make the timer restarted.
+Changes in v2:
+* Add the property instead of referencinf power-domain.yaml
+* Adjust commit message
+* v1: https://lore.kernel.org/all/20250725055835.260930-1-alexander.stein@ew.tq-group.com/
+
+ Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+index 03d71ab930d79..2aa8e8a2643ba 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,rcpm.yaml
+@@ -49,6 +49,8 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  "#power-domain-cells": true
 +
-+		Access: Read, Write
-+
-+		Valid values:
-+		- 500, 1000, 5000, 30000, 40000, 80000, 128000 or 255000 (milliseconds),
-+		- 0: disabled
-+
-+What:		/sys/class/power_supply/rt9756-*/battery_voltage
-+Date:		Aug 2025
-+KernelVersion:	6.17
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		Reports the current BAT voltage.
-+
-+		Access: Read-Only
-+
-+		Valid values: Represented in microvolts
-+
-+What:		/sys/class/power_supply/rt9756-*/battery_current
-+Date:		Aug 2025
-+KernelVersion:	6.17
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		Reports the current BAT current.
-+
-+		Access: Read-Only
-+
-+		Valid values: Represented in microamps
-+
-+What:		/sys/class/power_supply/rt9756-*/operation_mode
-+Date:		Aug 2025
-+KernelVersion:	6.17
-+Contact:	ChiYuan Huang <cy_huang@richtek.com>
-+Description:
-+		This entry shows and set the operation mode when rt9756 charger
-+		operates in charging phase. If 'bypass' mode is used, internal
-+		path will connect vbus directly to vbat. Else, default 'div2'
-+		mode for the switch-cap charging.
-+
-+		Access: Read, Write
-+
-+		Valid values:
-+		- 'bypass' or 'div2'
+   "#fsl,rcpm-wakeup-cells":
+     description: |
+       The number of IPPDEXPCR register cells in the
 -- 
-2.34.1
+2.43.0
 
 
