@@ -1,204 +1,161 @@
-Return-Path: <devicetree+bounces-200980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD30B16D68
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:20:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72EC0B16D73
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80C31AA30E0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:21:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69C795A6DF9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 08:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D17821A43B;
-	Thu, 31 Jul 2025 08:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83773241670;
+	Thu, 31 Jul 2025 08:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GYRs2AzV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VgXjs34V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A1D82C60;
-	Thu, 31 Jul 2025 08:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA05D21B18B
+	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 08:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753950054; cv=none; b=k6QCYae4fSOFIu3HNoQaYCJuJMxhPgXS3+12tXmNrpmX6PTfbHXhE3BPAqhPGVrZh7GcLBIl0lEoEfny3vHF/vmnDSsFbftuaRBsyP+TQPbcLGuFauGHo7Op1yzyuJky1VwyfuS6YJhhMhST7LhDJ0vTOUkNWmvdhb8TLdI3G5Q=
+	t=1753950280; cv=none; b=qHZgBVkaWS2SvXfNmnzWBdeKxzczVyl/LATDFwypTHrEfWnQtB1xA6OOh2OgQ2OGXoNvgl3FUKXXo4Gp0AP12YftXIL5DJCLAMc2MfWNUWCtKYyxiysP/bP1ESDI+dtO6xTxwy9WmwJplWD4bzXyS9ElEvnxwTzYntcqy6Mde1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753950054; c=relaxed/simple;
-	bh=DVVdYUQhNXrT8nIZN7oHoaqViY3lQdp3bi8pSnyiBuE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c62IUlo0hb/qZtf7Dt67Rn7t83OgGPSqri3Dh3ANrj0jYfsrCiyT9Xxsn/hoBGul4cJGtxGTGrYJopgGlFinrCm5WgnJIa30cVHAHfHjfcfUCgAXs2zgDXi2xcvRVAXxuD9QkOGzrrJU7RnbwmJcmv5mPJcmeIt+ib7EkY/Op8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GYRs2AzV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56V1fXsi003474;
-	Thu, 31 Jul 2025 08:20:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=mG/9O/5shgU2wVXynKChJyvr
-	rVAhnyuanNYOCUrEHoo=; b=GYRs2AzVALbBtvVraYTN9CTHugzhVTJjJdqreJoi
-	mAn2RGkIv0TWZFZZj+k6H25riuyYmft1U/uNh78nPihtTQU9hmOvvrdpfQlcnBri
-	2QrVxvFT7aRAr3O05hgmdhJo1bR0/QqpW6RoIpHIebHF6x3IHw5J5ovRHEX6RoIb
-	db8L35fUpRwPA95w3a/s2B8t31cLh1fiiTG9kJ84Aw8Z+9dxzNV/8jE2lAFph9kA
-	OjS48ZRbMSWYds3AH4/LW6x6vrtji6UB1qFXQvD62L/77bZNhd9Fp0cBRLqFaCgx
-	TI215cPxSlXK0G1Nu5evsll+jWUNhwzWlxBLnMfrLwvT3w==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 487jwgbcpe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 31 Jul 2025 08:20:48 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 56V8Klx0012337
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 31 Jul 2025 08:20:47 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Thu, 31 Jul 2025 01:20:42 -0700
-Date: Thu, 31 Jul 2025 13:50:38 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>, <djakov@kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_mdalam@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: ipq5424: Enable cpufreq
-Message-ID: <aIsnVuWnwBisCm82@hu-varada-blr.qualcomm.com>
-References: <20250730081316.547796-1-quic_varada@quicinc.com>
- <20250730081316.547796-5-quic_varada@quicinc.com>
- <b51305cd-0e4f-49f9-adc1-fbe83b539e98@oss.qualcomm.com>
+	s=arc-20240116; t=1753950280; c=relaxed/simple;
+	bh=FOjf0BV0+IGLLxoC7Oso0aLNj9+WBkpQIo0cAC3Dh08=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s86RN+hbXHLdFbUz/XgIAs9H53VqoOQrxmbkIP1yGLKnH+1SgCOFKJ+n09wH0MPJEWo0G2Vmfune0qtxu9yRRvZUeMeNzEwhR0W7o7dbFovnGSUentw6jsTDwpk54vhQ6jzwDh5E878M7UAanNa2UmKnEkX4GBgDe8KiCLZAa+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VgXjs34V; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45611a6a706so644215e9.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 01:24:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753950277; x=1754555077; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b7ObA2owZIXNSWWy7ooxxBkOpHxPovglE/R/foejS2M=;
+        b=VgXjs34VtYxu/0z1RtbyjGNgSO59jJkbZwDCL+NeDqAJhh5boAZV30/1otZQLOUW/t
+         mOnuYyFRC4/eyQ3chiRuDbLy+mVI+mKP2EF6EGTzEWC/hG+cVvFwgiEclkMDTs+4wUaf
+         TnX4ByLOgO5wyNoYe3XEvxFmdur8FdxAw0cKG6m5n/uarylvCweW5P+AE7t2mYSaE8P+
+         7yGJ0+7TlAppu6P0NW+bAVzzoD63qFIEw4Vaoh4SU1b0INkRsnlwym/aFsGxUUP9zj2N
+         rzRgi1FCtmrpQaVkAIvDmCSmx2tqq5Py92ERHZU8d3FzglA2gK9u0FhI8i0ndaaPUe7q
+         yFig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753950277; x=1754555077;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7ObA2owZIXNSWWy7ooxxBkOpHxPovglE/R/foejS2M=;
+        b=SX51V2Sex9e24zosZbbH6+W8IbgLUzOAIMZuuQkU+xlGqvC+/rUnHcoHLi8Kgz0wIf
+         o8k0ZrYquit89iN60tOo4D/Ndf1K0uonEdkp990hli9m3QekScZk3bEL5NvvzNBnSFcY
+         8d5pjlzpChFqLbcuVGuKoTO92Zcpu05XwA90iSNPk6DOJDZD6QRrFVX96YCDZukI8x3e
+         gkoJeUN14s/KH6VgE3UfuPdkoMUCrFCD8BS78dFPHRN8qxhzNLQ9Dhb6UFfA8wTtSA0C
+         pdrrHw3U+ZpF6uDNd0z7EfPFJ4q4wO36g9duFqMnyrihlNPVyvCOUdbvZi6SGj0vLPh8
+         e7dA==
+X-Forwarded-Encrypted: i=1; AJvYcCXeAZmbf536P6GoCuonUNCdzaqK/sq+/Zh1XxDAYOlK5Kw3AiDpoc2u9ASaD3PD9fE+NBgdJjfVeUHR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiLrPKd347vMloBAeGx/9auBTkbzeD9hBm85RrJzxeAaKsNPhD
+	c9p++MCFEmH10pXauLDoeqlWgSxU0aX3Rn+W/kSzyORds1v8TO+hIBS2Jotmr9ULARY=
+X-Gm-Gg: ASbGnctOIvujkFXRB6M+utRuBrAATSgIsMXVauVKOTbB72+KisnFt3gJyyivVJ/PW9s
+	vq+aJsIMc6Lt4TQK/etgnY6cOjpti8jd/jgFPgJlcnz7uzCmnAMzDdQaIXDOacAEyp6ZWELRE7q
+	UBp82cGwAocVZ+Jovlj7ZkqKqweINx/OvOeLyePgkEt9freewyT6tMvdW9O9+BKmGs3U9Tv+OCP
+	C0o9tLZsYe1K9SR8fYqKqApM2qds6u6yMbI9PaE7phE1N0EIStjhRG39FCEz1pak6c4D9TJg9Ue
+	xi7ToFcgFuBY963SmXAiUlazgJu8EPnmA4NusghDhjc0uqi72yHHMXZkpsnYAYyKdDeOZ5TGe/t
+	IFPg8T+JkrIi5UWQ0Picf0qMsGILrtVb+UWDIFlmTy+amkTthEvU7YPgY6PcPjQ==
+X-Google-Smtp-Source: AGHT+IHqMPfEUGXtW/1KVB805ClqisCQcJBlHTWCw7ppIiNvGTbRcVUtbSqLbRahp7lhWcj3NI8Ifg==
+X-Received: by 2002:a05:600c:5185:b0:456:1846:6566 with SMTP id 5b1f17b1804b1-45892bee39cmr51405685e9.29.1753950276988;
+        Thu, 31 Jul 2025 01:24:36 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4589ee57c18sm17174995e9.28.2025.07.31.01.24.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Jul 2025 01:24:36 -0700 (PDT)
+Message-ID: <b3884959-cddb-47ac-be4b-87e9e37e5679@linaro.org>
+Date: Thu, 31 Jul 2025 10:24:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b51305cd-0e4f-49f9-adc1-fbe83b539e98@oss.qualcomm.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=WvgrMcfv c=1 sm=1 tr=0 ts=688b2760 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=Wb1JkmetP80A:10 a=COk6AnOGAAAA:8
- a=RPjSdeSmNi3ZrBCKw2EA:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Nq5ExcuO0SAtTQr9-7fWVEkMv8IrQ25o
-X-Proofpoint-GUID: Nq5ExcuO0SAtTQr9-7fWVEkMv8IrQ25o
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzMxMDA1NiBTYWx0ZWRfXwTStoN9aK3cq
- YX72oyK7bfMsLB2s7AZ/GTSK+Hat7xeTAV6ohC5eIzqPy8wXEfVeaA94nAP6Gjq+JnIOPWllZJy
- k5nb2hE/CuDafGiWP7V/QTTdiU+TFqopJt+ljoTX+WODzdh0avehoc0iWopb3ZvKRn7BFRQIysq
- eR+O1r6DaVzHxtOiH69v/ZbGb9kpx5uKm2Qa9kqcdmfqIYbPLAO0XtXsYe0VXDbvaF7VCQsYELi
- an/x2kAMZnKhuAbIiVG3jKV4f3ndh1COTtROWgEzo0Ai+8cBZV8BGwJvH522C0iy/T5WRAySrec
- 8OqWgx4Kc5ViXtEnVPFyEAf8WLNRttHTncuhWsmgJWNUNuKTuSMBvlv2k0P3ngSXnq1r9m3hAZW
- V1WE7EVqxCIJBhHfYaByY0b/0KWCot0L1AyGx4q564bTwCY+n7T/6PMl8BbORY9HWaREtdGy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-31_01,2025-07-31_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
- spamscore=0 mlxscore=0 impostorscore=0 adultscore=0 malwarescore=0
- priorityscore=1501 mlxlogscore=585 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507310056
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 19/20] dt: bindings: fsl,vf610-pit: Add compatible for
+ s32g2 and s32g3
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: tglx@linutronix.de, S32@nxp.com, linux-kernel@vger.kernel.org,
+ ghennadi.procopciuc@oss.nxp.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <20250730082725.183133-1-daniel.lezcano@linaro.org>
+ <20250730082725.183133-20-daniel.lezcano@linaro.org>
+ <20250730233547.GA1887794-robh@kernel.org>
+ <858e9dd6-b3a7-4ff7-aaa1-02a140b93de8@linaro.org>
+ <6011eb0d-e57e-4220-a9f1-c09fc4c6799e@kernel.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <6011eb0d-e57e-4220-a9f1-c09fc4c6799e@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 30, 2025 at 02:49:58PM +0200, Konrad Dybcio wrote:
-> On 7/30/25 10:13 AM, Varadarajan Narayanan wrote:
-> > From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> >
-> > Add the qfprom, cpu clocks, A53 PLL and cpu-opp-table required for
-> > CPU clock scaling.
-> >
-> > Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> > [ Added interconnect related entries, fix dt-bindings errors ]
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
->
-> [...]
->
-> > +	cpu_opp_table: opp-table-cpu {
-> > +		compatible = "operating-points-v2-kryo-cpu";
-> > +		opp-shared;
-> > +		nvmem-cells = <&cpu_speed_bin>;
-> > +
-> > +		opp-1416000000 {
->
-> These rates seem quite high, are there no lower fstates for idling?
+On 31/07/2025 09:50, Krzysztof Kozlowski wrote:
+> On 31/07/2025 09:41, Daniel Lezcano wrote:
+>>
+>> Hi Rob,
+>>
+>> On 31/07/2025 01:36, Rob Herring wrote:
+>>> On Wed, Jul 30, 2025 at 10:27:21AM +0200, Daniel Lezcano wrote:
+>>>> The Vybrid Family is a NXP (formerly Freescale) platform having a
+>>>> Programmable Interrupt Timer (PIT). This timer is an IP found also on
+>>>> the NXP Automotive platform S32G2 and S32G3.
+>>>>
+>>>> Add the compatible for those platforms to describe the timer.
+>>>>
+>>>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>>>> ---
+>>>>    .../devicetree/bindings/timer/fsl,vf610-pit.yaml          | 8 ++++++--
+>>>>    1 file changed, 6 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>>> index bee2c35bd0e2..2aac63a58bfd 100644
+>>>> --- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>>> +++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>>> @@ -15,8 +15,12 @@ description:
+>>>>    
+>>>>    properties:
+>>>>      compatible:
+>>>> -    enum:
+>>>> -      - fsl,vf610-pit
+>>>> +    oneOf:
+>>>> +      - const: fsl,vf610-pit
+>>>> +      - const: nxp,s32g2-pit
+>>>
+>>> These 2 can be a single enum. Otherwise,
+>>
+>> Do you mean this ?
+>>
+>>      enum:
+>>        - fsl,vf610-pit
+>>        - nxp,s32g2-pit
+>>
+> Yes.
+> And also please correct the subject prefix to match subsystem, git log
+> --oneline or:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Will check on this and update.
+Sure I'll replace it by:
 
-> > +			opp-hz = /bits/ 64 <1416000000>;
-> > +			opp-microvolt = <1>;
-> > +			opp-supported-hw = <0x3>;
-> > +			clock-latency-ns = <200000>;
-> > +			opp-peak-kBps = <984000>;
-> > +		};
-> > +
-> > +		opp-1800000000 {
-> > +			opp-hz = /bits/ 64 <1800000000>;
-> > +			opp-microvolt = <2>;
-> > +			opp-supported-hw = <0x1>;
-> > +			clock-latency-ns = <200000>;
-> > +			opp-peak-kBps = <1272000>;
-> > +		};
-> > +	};
-> > +
-> >  	memory@80000000 {
-> >  		device_type = "memory";
-> >  		/* We expect the bootloader to fill in the size */
-> > @@ -388,6 +428,18 @@ system-cache-controller@800000 {
-> >  			interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-> >  		};
-> >
-> > +		qfprom@a6000 {
-> > +			compatible = "qcom,ipq5424-qfprom", "qcom,qfprom";
-> > +			reg = <0x0 0x000a6000 0x0 0x1000>;
->
-> The block is a bit bigger
-
-Per the documentation, the block is 4KB. But the last register is at 0xa62bc.
-
-> On IPQ platforms, can the OS blow fuses directly without TZ
-> interference?
-
-No.
-
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +
-> > +			cpu_speed_bin: cpu-speed-bin@234 {
-> > +				reg = <0x234 0x1>;
-> > +				bits = <0 8>;
-> > +			};
-> > +		};
-> > +
-> >  		tlmm: pinctrl@1000000 {
-> >  			compatible = "qcom,ipq5424-tlmm";
-> >  			reg = <0 0x01000000 0 0x300000>;
-> > @@ -730,6 +782,15 @@ frame@f42d000 {
-> >  			};
-> >  		};
-> >
-> > +		apss_clk: clock@fa80000 {
-> > +			compatible = "qcom,ipq5424-apss-clk";
-> > +			reg = <0x0 0x0fa80000 0x0 0x20000>;
->
-> Let's make it 0x30_000 to reserve the actual carved out reg space
-
-ok.
-
-> > +			clocks = <&xo_board>, <&gcc GPLL0>;
-> > +			clock-names = "xo", "clk_ref";
->
-> 1 per line would be perfect
-
-Sure.
+dt-bindings: timer: Add the PIT for s32g2 and s32g3
 
 Thanks
-Varada
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
