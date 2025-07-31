@@ -1,195 +1,156 @@
-Return-Path: <devicetree+bounces-201067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F568B172E6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 16:11:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C31A0B172F5
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 16:14:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 137EE5A46E8
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 14:11:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CDA01AA7762
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 14:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE202C1594;
-	Thu, 31 Jul 2025 14:11:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D52E52D1F64;
+	Thu, 31 Jul 2025 14:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="RvDagKch"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="wc/6XWjF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B98921CC5B;
-	Thu, 31 Jul 2025 14:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F28928D8DA;
+	Thu, 31 Jul 2025 14:14:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753971085; cv=none; b=HErxlDe4aMt+9hgePaqMaz81hPPLzuBr9fR/Re8qjYzSu/g9kd7bb5oLIS2ERwvPRR2g0oJqJAq6WAGOBpypxDqwu19puwcFCdmrLaHRC9LLxBKgrWKR4Ts2t+SC0Ty+R2P+6tiwRl/dINorHXUatRlo3WRCsg7WrTtVrkkPyLQ=
+	t=1753971282; cv=none; b=Ixoil6k7XME3X57HMAumOO/EPxqCKQEQx7IJPnIds498gDk5il1cQ24moW3NOejdVe6vjkD0LfxyK6Kv2SlARIwx7AKC3JaiK6IAgEldbYlqrC63uVctjNfPFTlNzYY7rRrwaGC2JyVO01zVI/db30F56yZy8ZvPzsOg8rtqiuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753971085; c=relaxed/simple;
-	bh=WctS3TBZBfxHFoxgWiuUQ1YaaNSMG3iHX0kksiAuv0I=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=gegnOLX/iT/VVnMsUl7ABZYkDmzfoK1BM0E68mpDBPCI3WuM82GSTt1zSpcce/GVlKmSu9piFzdw2DPXP1SvBZsi8g8OBq83+smqtYLO/DDFr0WrhBjQbQ8exooJQrEJIqIOTw7czgpYmittCS8o4rud42zS9nYy/plEAT+eMoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=RvDagKch; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=dgpIYA1X3JY/hFPKIDfOS0L7idr7TKT6OBuNKuxgpM0=; b=RvDagKchEHmC4Ohnvrd5X4rHZh
-	ZRwgwTS1WLBLNUGSdhpOKJ6ciErX4Oy4+FsGuJlmMA0otp9j/MJKstfLThqDqcZb3GBuOr3QSke5X
-	DcTq1roXkeaza/POMx0wg5jChjGZj48LDOFEzu7IYBpemkuaaV37N6DnuXu1QZdpBcPflrlv2WhJe
-	vJaRhV0ZqbnqdesZ6/0rnLU+KdlD1t8gIwWBTSUV1F5MfBIGtKNLYTmL5NCHHCYpacyAx1gojB0Ts
-	eGxRd9bviVbDhlUmcGUoDPSN1Z7giUusyeg8t8Jf/upl9g1UF1hjxuIXtE58Q9Jyx0qJJ+q6LTxTU
-	QcH/28sQ==;
-Received: from [122.175.9.182] (port=5734 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uhU05-0000000EGZB-1GGq;
-	Thu, 31 Jul 2025 10:11:17 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 124C81781F30;
-	Thu, 31 Jul 2025 19:41:10 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id D14491783F55;
-	Thu, 31 Jul 2025 19:41:09 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id KDcsVC7gPY0O; Thu, 31 Jul 2025 19:41:09 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 775C11781F30;
-	Thu, 31 Jul 2025 19:41:09 +0530 (IST)
-Date: Thu, 31 Jul 2025 19:41:09 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: ALOK TIWARI <alok.a.tiwari@oracle.com>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
-	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
-	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <1942226614.78018.1753971069296.JavaMail.zimbra@couthit.local>
-In-Reply-To: <743eddd9-1f63-4c6c-8ba3-5007bd897ae1@oracle.com>
-References: <20250724072535.3062604-1-parvathi@couthit.com> <20250724072535.3062604-4-parvathi@couthit.com> <743eddd9-1f63-4c6c-8ba3-5007bd897ae1@oracle.com>
-Subject: Re: [PATCH net-next v12 3/5] net: ti: prueth: Adds PRUETH HW and SW
- configuration
+	s=arc-20240116; t=1753971282; c=relaxed/simple;
+	bh=MeZJ7iFErxrIWkTZf3XiMeKPBVZVufDsMgudwp5Pj30=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FhKiYkAvpa2Epy7RjpYEcORAtxWlC/BNRexgjPWV5TIiRbsGVZzkKBgxxI5hh1MkwzYvvIZ7+p3epOFOq9PGfq08dU06OhYh4piyQBoDY4mS8sWdg7n1LRqdI/XjtH1rkkju5OZZzUKW0/kzdi3w3sYbkEULg30uyQkR+miFp0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=wc/6XWjF; arc=none smtp.client-ip=54.206.16.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1753971260;
+	bh=y5AT6lF5XTZBycAdijjBHgbPYBOSCrxMOhOkBi/y28E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=wc/6XWjFrjtvGx6PXHZArOubpKzFeSyRiZbvvk+vWtDIkz+ILUHEc+edZMAsGxlKr
+	 M+rBPLo4ZqfwM90ODTq5PrWiHMqD4tCQpMU5KGM7SZgFPVMr38TREcMd3I45maTbyO
+	 BFYC5XVQcu5hP3HGCeNuN5WBJjLk3bejTzokWhrc=
+X-QQ-mid: zesmtpip2t1753971254tbad9d452
+X-QQ-Originating-IP: kw5QdBICyGZpE/R01gvvA+wL8LDI2K5Km7e1hNHDSm4=
+Received: from = ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 31 Jul 2025 22:14:13 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 11873278860039367758
+EX-QQ-RecipientCnt: 16
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH RESEND v3 0/2] clk: spacemit: fix sspax_clk
+Date: Thu, 31 Jul 2025 22:14:05 +0800
+Message-Id: <20250731-k1-clk-i2s-v3-0-2f655ddb0c6f@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds PRUETH HW and SW configuration
-Thread-Index: Bgd3ThmGCBL4ZbqhqpbvPS3WfmfZ0A==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-B4-Tracking: v=1; b=H4sIAC16i2gC/23NPw+CMBAF8K9COlsCV0jByUFWBx2NA5SrXPgbi
+ g2G8N1tcMHE8d3L/d7CDI6Ehh29hY1oyVDfuSAOHlNV3j2RU+kygwDiQIaS1yFXTc0JDMcIJOh
+ Qp2FcMPcwjKhp3rA7u2a37HJmD3evyEz9+N42LGztlwPYcxZ4wEEnWGoUZV5Ep4a61+ybIVfY0
+ uSrvt08K/ZG8mMIZ8SljGWqAwCQf411XT+BjA8f+QAAAA==
+X-Change-ID: 20250717-k1-clk-i2s-e4272f1f915b
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
+ Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Yao Zi <ziyao@disroot.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1753971252; l=1801;
+ i=troy.mitchell@linux.spacemit.com; s=20250712; h=from:subject:message-id;
+ bh=MeZJ7iFErxrIWkTZf3XiMeKPBVZVufDsMgudwp5Pj30=;
+ b=l5Pw2gYPmhUkf1L5UIOu0v+z7f9SM0aedihENvDPX6gEWxnmNZNHB+um3AiA0UeUkp491rvx8
+ D1hJ639UelfARKtSab+txoWd56/wQa1RXBmSAMdfXDLfnHbhwxgcdUS
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=zhRP1xE0bftrurqSWI+SzcSdJGIZ0BTTY9Id0ESzqlI=
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MWcocoo7mKajzQAUh/oZwuWFFrVg6hQz5vSZvAWlEMK85Q6SaIEN7apG
+	zmOG9sskcnZ+YzpTWCOjTfV3YGGukoVd1gAbkKHG1jkjfTvsU1xmPl4adhBu5len5VmpMG0
+	A37VwNWt3N0WfPlXj1ffFLP9Nq+RQPV0OPsLBB3Lidiu888ZruFS4NzCN9qYwdx6z4amONa
+	R+iYVWbg3FVNdOoaI0PqFHI9FHqw9oLzhN4e/jFGqq+RLgwd47Y4ktzWfrzz4v7Qc9IJBzn
+	prZs+wae3tn4CL5qfS94vhpyKwU0xS591bzkftTNL6VPaoingAMsOb2X9ogLVsXuYyjCBXF
+	UA+X4vHlJ8fsxBB2rOf/hRVzyO3yiRAKQLB6FW5I/7BJPz5HrClxkbWdyAnccGhN2y+Ws5O
+	Fe/dnSsUvj6KLnS7EOmleA6uIFsBBWB3tvlPdh62jRQtfLN9u9KpsPNo3b5cqfz5xvZ6ArT
+	mELyKouRJkUJgz/TqJJ/q+isjKXOUvY26Nr0h1ldcVbRCcVYH+zNhLdZEbuNAyiTBYaewuH
+	YQHuzVHJnbatJQg/C4RFqhNpL5epIEdkxprBQT6y01zb2AicGgqwRkqR/Ll/9dxsrREdjro
+	H2trP/q5dibt1n2h1Y5tQI5nLK8Sp0dnhxv0uATImpCT5KEpK9ywMfPz1SSobfWYKR6gLd/
+	oOVaO6OIPlu4JVYdgbawf0WwIiKIt+rcGwQCFWqYc+90hRz6EqCrS6GO4zRExGuyL1kLTlj
+	L3B0VNj/9cBnA9ElSoK3xTzcTC6mu2iWAjqkCFzuV0MaBuEQ1Lp++jSIH+RWS2kH09agm/9
+	QzS4C6QXFPfDLchUXdq4J/rE/DH0RbVT8f5zw374iuuzLTiEYakM58pYlmK4u7I58w/L2vH
+	GDG5UMK4yO74CdO68E6bGTnqeWdx21sT8Spy6Cuczsq2N8Cq8h5aJibjeyciAoy4dtfRAvb
+	9SiT5dg9JrljW8IULKYSc4R0hIe/Ef55g8u2lDkcEFST1r65yIaon6F0C1IZsx7gC19zQW+
+	lli9LOtLQ665wiitbfiWBQcxVDnjD/5Yfcv4Yy3R5Z0+5iq9/Qmg4mQgj62/YF1sA1yGsBK
+	+bNloM9GzLgqv+pbPY8NASTsN8GN66eACIDpRA2b7GfxxNAYkpU/fzd1ci6rU4JtUN+1KEd
+	mMyxmO5scyAJjHt72rG3Va7rQA==
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-RECHKSPAM: 0
 
-Hi,
+In the SpacemiT public document, when the FNCLKSEL field of
+the APBC_SSPAX_CLK_RST register is 7 (3'b111),
+which is a reserved value. And BIT3 of the same register is
+a reserved bit.
 
->> +/* NRT Buffer descriptor definition
->> + * Each buffer descriptor points to a max 32 byte block and has 32 bit in size
->> + * to have atomic operation.
->> + * PRU can address bytewise into memory.
->> + * Definition of 32 bit descriptor is as follows
->> + *
->> + * Bits		Name			Meaning
->> + *
->> =============================================================================
->> + * 0..7		Index		points to index in buffer queue, max 256 x 32
->> + *				byte blocks can be addressed
->> + * 6		LookupSuccess	For switch, FDB lookup was successful (source
->> + *				MAC address found in FDB).
->> + *				For RED, NodeTable lookup was successful.
->> + * 7		Flood		Packet should be flooded (destination MAC
->> + *				address found in FDB). For switch only.
->> + * 8..12	Block_length	number of valid bytes in this specific block.
->> + *				Will be <=32 bytes on last block of packet
->> + * 13		More		"More" bit indicating that there are more blocks
->> + * 14		Shadow		indicates that "index" is pointing into shadow
->> + *				buffer
->> + * 15		TimeStamp	indicates that this packet has time stamp in
->> + *				separate buffer - only needed of PTCP runs on
-> 
-> only needed if PTCP runs on host
-> 
+But the documentation is incorrect. In reality, the value 7 (3'b111)
+of FNCLKSEL is not reserved. Instead, it indicates that i2s_bclk is
+selected as the parent clock. Similarly, bit 3 is not reserved either.
+When FNCLKSEL is set to 7, bit 3 determines whether i2s_bclk is actually
+enabled as the parent clock.
 
-Sure, We will address this.
+In all other cases (i.e., when FNCLKSEL is not 7), bit 3 has no effect.
 
->> + *				host
->> + * 16..17	Port		different meaning for ingress and egress,
->> + *				Ingress: Port = 0 indicates phy port 1 and
->> + *				Port = 1 indicates phy port 2.
->> + *				Egress: 0 sends on phy port 1 and 1 sends on
->> + *				phy port 2. Port = 2 goes over MAC table
->> + *				look-up
->> + * 18..28	Length		11 bit of total packet length which is put into
->> + *				first BD only so that host access only one BD
->> + * 29		VlanTag		indicates that packet has Length/Type field of
->> + *				0x08100 with VLAN tag in following byte
->> + * 30		Broadcast	indicates that packet goes out on both physical
->> + *				ports,	there will be two bd but only one buffer
->> + * 31		Error		indicates there was an error in the packet
->> + */
->> +#define PRUETH_BD_START_FLAG_MASK	BIT(0)
->> +#define PRUETH_BD_START_FLAG_SHIFT	0
->> +
->> +#define PRUETH_BD_HSR_FRAME_MASK	BIT(4)
->> +#define PRUETH_BD_HSR_FRAME_SHIFT	4
->> +
->> +#define PRUETH_BD_SUP_HSR_FRAME_MASK	BIT(5)
->> +#define PRUETH_BD_SUP_HSR_FRAME_SHIFT	5
->> +
->> +#define PRUETH_BD_LOOKUP_SUCCESS_MASK	BIT(6)
->> +#define PRUETH_BD_LOOKUP_SUCCESS_SHIFT	6
->> +
->> +#define PRUETH_BD_SW_FLOOD_MASK		BIT(7)
->> +#define PRUETH_BD_SW_FLOOD_SHIFT	7
->> +
->> +#define	PRUETH_BD_SHADOW_MASK		BIT(14)
->> +#define	PRUETH_BD_SHADOW_SHIFT		14
->> +
->> +#define PRUETH_BD_TIMESTAMP_MASK	BIT(15)
->> +#define PRUETH_BD_TIMESTAMP_SHIT	15
-> 
-> typo PRUETH_BD_TIMESTAMP_SHIT -> PRUETH_BD_TIMESTAMP_SHIFT
-> 
+Importantly, whenever FNCLKSEL is set to 7, bit 3 must also be set to 1,
+otherwise the selection of i2s_bclk becomes invalid.
 
-Sure, We will address this.
+Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+I sent with a wrong email so resend.
+---
+Changes in v3:
+  - Fixing ABI-breaking behavior
+  - Modify commit msgs
+  - Link to v2: https://lore.kernel.org/r/20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com
 
+Changes in v2:
+  - Use virtual gate instead of new function for sspa
+  - Add Suggested-by tag: Yao Zi
+  - Add Fixes tag
+  - Link to v1: https://lore.kernel.org/all/20250718-k1-clk-i2s-v1-1-e92c10fd0f60@linux.spacemit.com/
 
-Thanks and Regards,
-Parvathi.
+---
+Troy Mitchell (2):
+      dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK for SSPA
+      clk: spacemit: fix sspax_clk
+
+ drivers/clk/spacemit/ccu-k1.c                  | 25 +++++++++++++++++++++----
+ include/dt-bindings/clock/spacemit,k1-syscon.h |  2 ++
+ 2 files changed, 23 insertions(+), 4 deletions(-)
+---
+base-commit: 733923397fd95405a48f165c9b1fbc8c4b0a4681
+change-id: 20250717-k1-clk-i2s-e4272f1f915b
+
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
+
 
