@@ -1,128 +1,260 @@
-Return-Path: <devicetree+bounces-201017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A681B16FBD
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 12:43:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE50AB16FC6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 12:47:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D69461894A57
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:43:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 203997AE839
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 10:45:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF96221FCD;
-	Thu, 31 Jul 2025 10:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E49722AE75;
+	Thu, 31 Jul 2025 10:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WZSooJ0z"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZcuuVPsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013008.outbound.protection.outlook.com [52.101.72.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D647718D643;
-	Thu, 31 Jul 2025 10:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753958615; cv=none; b=QhdGz62/N6W4tb0SEro4xGz0iesRcq2sjdQB9K8j4Rna/WRjd5+OEA/KDBUdZJSHfiUMxpzCObldWQ5WlAq7OaebLA1hfFsTgBaWO1PEmyzb1bxhe6CXDVFPFgmqkATugpquzuUP3QoDqRSecjKktlqh249I0rQLlUu/D3Tcn0E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753958615; c=relaxed/simple;
-	bh=DjfYV1Is37pQjWxBBKI7qLERWGnK5OoYpV9PDvPS/tA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WYZKS7NdtCON4SM8bIItc8CwzySIwld6/7nfEMZavjxioV384Tb9MSldEcig4T1ZERaSeFd6Zw5PbGGAeKO7sbcjVEhvcU16c3QPvY3FRsaHmXOe4rDCtHmpKWyWoKKUUpOHO/dpZP4j7zmNyihqv6aW8wsKwA3mXTp0wQDuQ/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WZSooJ0z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29224C4CEEF;
-	Thu, 31 Jul 2025 10:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1753958615;
-	bh=DjfYV1Is37pQjWxBBKI7qLERWGnK5OoYpV9PDvPS/tA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WZSooJ0z3e7nhekdca4zDyLOBphsSqcEsPM/01BT4+RMxbkJtBOmlFGPkdFLEdHEm
-	 LVC5y1Tb1UQbvGrw9BPjOkNQ/jH27gOsTZ61Wpsgf/koZ4qAJQk+KcrFx5EFAhaKFz
-	 Yr8A49+5XksNlvVQ87hojLrd8fzzEcejmGvhaTrXRDySLIW+z1MufgYe7AKslq/3QN
-	 p3TMUMBgDj683iSbEMLbG9Y8Yv9Yi1dh2eJYBerdiJAQU8VKypAGIiOj0D/jJc4cag
-	 qQQL+wvfZPvMSyp4V7BB3dF6zxbnFzUwMuea3bPjDIPIC4AZjUeCoMp8yERpKZkTt2
-	 0dWVra8p6bURw==
-Message-ID: <43e615db-8313-4a6f-8806-219c7b921481@kernel.org>
-Date: Thu, 31 Jul 2025 12:43:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2260C1FC7CB;
+	Thu, 31 Jul 2025 10:46:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.8
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1753958819; cv=fail; b=ROqPMeHTNQ709UGzJEpiNcgUo7KfsGLjCcACD1vspmrbOejMLajJVhx+zcYXEyYIFP+hD/GK9GYN4SnzLloe3TMICKr/7baTvLpGujkmlJXoRfrO0ZBPYROq0KGKHC9OMYanuizQUvvO6lJYE7EdMf+gHms2kdOgux+/WuSKjLw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1753958819; c=relaxed/simple;
+	bh=MrBcYxwpjVwjVkFui/AwsXM8IhOwACd4lCb0170Nw9g=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=OcQfpy9pShQes1w3pbawV64QeouOyJ7pyFWwMbPH9EVtETHp+bjkiittBrCLA1LgtadgYucADPx3aEJSGHnYWSJuQNqdfAHc3BcvBrw1O6ro+sUPp+sQODOdQmjvMYWvKv+W0nBgtKhakKZMIifov+9991KLVmMYQ/NWSqUzW/A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZcuuVPsA; arc=fail smtp.client-ip=52.101.72.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aX84I3oo/Ok2z+hcLRak5QTtULsSczPJiFqD107vJUvMVJKmekx7igJe7DVxaleOALlM88FT35PFLVrIoZcP/PCJs1x2pDDUEHtuOj3VYvjfYfTNvPeAalQOkMp4/QDZb6Yh0k0lquZ+HNnbQuVRr7/I5QeUbCSywwOSFKW8PBWGBCyDv4t44JlfjqTWlbPXxIUUEbixLWxxovHYm3gqShSBJjc3Tibxjyx47Yxwzd3x0cglkfUgH4LH7Gld7VFVfi3N9K1zFVfWByBwwspQQg8X7qDmNkCIaAokYNRbHewjH3RmseRQQCbqz7brsJRVCXTguOa+EXoNMLnxEejNKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E375+U65oxzzZ/qiL96Lp0kP4ozDVwV+DrfNyuo+eBg=;
+ b=OXUYciMrvmhib4KEMxGepT+bLxY2SSHgDR95VCG9wYqeEBThz7hZgvC+8zcT/Lnp4V8Lxkz0RrLBcHBjlDDTG4eYMGkn9CMBEZhDs/ZTjTAes1exTX0LEKuX1E3sjmQEc+iGbViw4dUyPr8j4P7gjlZ8+LYJD1EH4m9Z5SWNjzvW+Y/NslzWHSemceXFWb07aOFg5oll+WGMYCpK241K5jZg38/kwhQgUqI4OWjM0eBXgw7aJerfKcMwrUrhXD+z0Hg3lBW8nPHpngBkiOAiLcmdQMXkLK6oc/ubDvcIeaNExVAgooqiPpLcBY7fPkJthWOFp0558W7eeH4WsdXvsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E375+U65oxzzZ/qiL96Lp0kP4ozDVwV+DrfNyuo+eBg=;
+ b=ZcuuVPsAbZedICtMVd5Fs/vNvfmLMA9XCPEo9bcFO1/m9VOyI8bVRfq08bJgXXQ2NU7FxqrKxIxXHMSAhIXWzn5tQyiUDwXkXLtGEqzfPwmBa0M2iFKUFttYvAwXCu+J+eZzp8y25I4aQ7sn7cOr4rla7V+Xt5Ei/YuWUGGJZpjI5/+PLcHbrfYH+RIXQuw7rIvoiTfU06s5GK2lN3Lj4192k2JAu5jzRx+ue8ellbyOSNvSh5Ml4de7MNKLTuNzmYafkE/lNwZ0LtCY3AucJZMGMR2Vwm4/hiGAjCCL8lt8+h2xUmpYQ4V9rreeq0rw+7pkpTtl+2dkye25Z4Z0Kw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
+ by AS1PR04MB9238.eurprd04.prod.outlook.com (2603:10a6:20b:4c6::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.13; Thu, 31 Jul
+ 2025 10:46:53 +0000
+Received: from AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c]) by AS4PR04MB9386.eurprd04.prod.outlook.com
+ ([fe80::261e:eaf4:f429:5e1c%7]) with mapi id 15.20.8989.010; Thu, 31 Jul 2025
+ 10:46:53 +0000
+From: Joy Zou <joy.zou@nxp.com>
+Subject: [PATCH v3 0/2] regulator: add new PMIC PF0900 support
+Date: Thu, 31 Jul 2025 18:44:40 +0800
+Message-Id: <20250731-b4-pf09-v2-v3-0-4c2659516582@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABhJi2gC/43PwW7DIAwG4FepOJcJ2+CQnvYe0w4EzJrD0iiZo
+ k5V3n200rpWdFKPBn2//Z/ULFMvs9ptTmqSpZ/7w1AG2m5U3IfhQ3SfyqzQoDMNWN1ZPWbT6gV
+ 1CzGJcAJsUBUwTpL74yXs7b3M+37+Okzfl+wFzq+/Me42ZgFtNAo7yc5xm9PrcBxf4uFTnUMW/
+ B9igZQzs2UGQrzC7fVgX4EmBWMRUvlNT4HWEhiApvPO1wChAoLRsXfWG8L7LnTb5X4TFdghxRY
+ Di8v5wSasgLMuBM7YotADQBWwAXxnLQOG/BToGuGYgqNIXQ3IVIAyW/EeUjnsr/y6rj+JyISNa
+ wIAAA==
+X-Change-ID: 20250714-b4-pf09-v2-91cdee6d1272
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>, Joy Zou <joy.zou@nxp.com>, 
+ kernel test robot <lkp@intel.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SGBP274CA0017.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::29)
+ To AS4PR04MB9386.eurprd04.prod.outlook.com (2603:10a6:20b:4e9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/5] mfd: bq257xx: Add support for BQ25703A core driver
-To: Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- broonie@kernel.org, lgirdwood@gmail.com, sre@kernel.org, heiko@sntech.de,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lee@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250722164813.2110874-1-macroalpha82@gmail.com>
- <20250722164813.2110874-3-macroalpha82@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250722164813.2110874-3-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9386:EE_|AS1PR04MB9238:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28ff157a-9b5d-43bf-12eb-08ddd01f8fbf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|19092799006|366016|1800799024|52116014|376014|13003099007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Y2o2TWhwc0dPZnc3SUpvQzNtMTZSTVJtempiRjE3Nnd4S3duTGxDZ01ndzhI?=
+ =?utf-8?B?cGtuK3JwZmd2Nnk1TGlYVTd0azhScGxIaVVucE5OQy8zaGRJNEJ1UlFmc3Zy?=
+ =?utf-8?B?ZExieHhlOVdXbWN3MzduRWJHb01mWi9RclhycmlLdFY4ZWgvVlAvaXg3bXRw?=
+ =?utf-8?B?cEt3UUVhNVhaN1ljaCtoV0pyWjlITHdjWlRSVHEzN3BLVDk2MzB6eXh2aGhK?=
+ =?utf-8?B?VWxVaVl0cjJ6aVFCeWsydnhZNEVHZjMyVS9iYnUyTGgrYjZFcFR6M21rL1Va?=
+ =?utf-8?B?TStoZFB4blZjUWMxQzJQOTRsNjY5MjBYdFB2Uk9RSm9DSXlHZHMwbDVnb0RK?=
+ =?utf-8?B?Mi9jSXNJVzNNRVZqbTFiZXJhb2JPUVM1M2pMY040YUtvd3hNZDRmRVYzbjIy?=
+ =?utf-8?B?NVp5ZVFFc1pvNXZQV3pnbDRSTjFaL1R6U3VPSTZOSTF4c2ZCK3c5aEZlR1Jj?=
+ =?utf-8?B?dU1PN2NEQktPdU5KNzVSdkU1MUVkVTlGeHY0T3d0bUx2UXRpQzZnTEtramww?=
+ =?utf-8?B?eWE4anNmVDVtbStuR2ZNbHJTM0x2enAyTk5ydWxWNyt3bnN4ZGpMaHRWR2VK?=
+ =?utf-8?B?SFZqaFpaOGFzc244cmJCb3JhQTQ0Mm43d1YvbVRIbURuUjVsWlBCMEhtaEQ3?=
+ =?utf-8?B?L0x0c2U5SlZNRVQzbG53OC9BRGRiSW1VL2ZLVjl5NjBNL1VZeWtXaTVnMXZi?=
+ =?utf-8?B?NU5qN2cvWU9Pc2NiU3VaMUY4cXUrUHJlUXEzRm53S0pxK1VyN2toSlB5UGtq?=
+ =?utf-8?B?cVJWMzdyTEFxR2pnSlVuSG1lQm95WVcwdGJOSENEMVpqRjlnYS85YVE1R1R2?=
+ =?utf-8?B?YVFJZjllVFp5dHRvZEE1TXlxSUYrVUdTeGZIU3lyNmltZDhHRWM2M0gvRHZ1?=
+ =?utf-8?B?cFRtNzFPSi9pRWprMFRHYzZ4N2QzbE1mK2NiaWpwR2s0TjVoRHg4VHZOTk4x?=
+ =?utf-8?B?ZmJmMFBkS05ENEk0N0JGelJEOGcrK1hhVnFzRkMvMmhsU2E3MVJQNnpOV0Fy?=
+ =?utf-8?B?ZzlzWmY3aHlMTnA2Q3NjZ3lFSkRIRzdZNUFGY0Q1M015TytEUHhxdWN3VjVp?=
+ =?utf-8?B?YU9sVXlmUTRuc3QxV09oZUNkMFVLTXd2d3UweElwRWk3Z04vQTRVcGcyeXFN?=
+ =?utf-8?B?VVNDTFh1MmhsaFRtR0NZK2Q5M2UycndHbGsyN0VEUm84aCtIcUFWa1pDdlBD?=
+ =?utf-8?B?eWNabkNlQXJ3a3drd1lVeHpiTXNxVG02alRzQkI2OEszWThNYlgyT0VVaVIw?=
+ =?utf-8?B?NnZCUGRueEZ3YU1zRGhsbmdlK1Y3RWFQYXprVEVQZUVqV09zOXlKc2FjSEVF?=
+ =?utf-8?B?ZnhKNW5zZUFzSnJTSjhXbm1KblpZdUZHUDRncDA4UlJyaVBIRk00SktpSnk2?=
+ =?utf-8?B?anBkQ29aYWNYT1NBbDJXWDBGRTZBbVFvREVOT21jUkZ1eEJPbkdULzNPRStW?=
+ =?utf-8?B?YldSMGUxSDBQOVNyUUxka3JrR3IvdUFZOVpEaVNkMWx4L1ZXWXFzZU9DaEEz?=
+ =?utf-8?B?QVhQM2MzVUtDSnN4ZFgxb3lIVlM1M2RpNnYzN29YSDlIUHQ5eVhiOXA1amhG?=
+ =?utf-8?B?ejlQRmlvVGU4WW4rWVRxcm1ZYUdWaTE5NXhCTnpKeEdSdWJzRTVHeXR0Mnox?=
+ =?utf-8?B?eFZ3enp2SGNXT1FuVmpEUExJRW4rYzl6bHQ5OWV3SzVKZ1luYklFZU5qR0pY?=
+ =?utf-8?B?ZTZYaDQ0cWtyV3RzMGcwd0dna0wrdmtqTEh3YmhBVDA0NGY4cFVEdG05SEdI?=
+ =?utf-8?B?V2UvckppUWtsV2xKbEZRb3JoRmNWSkFiYzVWTjNvN2VlZmc2MEJpak9kK1VX?=
+ =?utf-8?B?bmp2ekYwMUQ3T2tScFR4RUZDc0V1NE1QL0F3Zk9PaGNCbU5VU0JKWm9kbTVq?=
+ =?utf-8?B?Wi83TTRBLzc0Zm9aUDhiaGpMUm9MOXphK3krcGhBOW54RlVHU3NOVSt4aVkz?=
+ =?utf-8?B?bk9vSWdYUnBVbGMwTHU4elJkVTg3OWtGUnY1c3E5alpDMFl2Mmt6cHFoeGxU?=
+ =?utf-8?Q?qqWLl6+KKa0yzl4qEGPse5IqZmrvm8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9386.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(52116014)(376014)(13003099007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?N3F5SGRKU2Z1M1g0VExLWStmek4veUh6YTUzdWtPMVlzelpyR01mYXF1L0lI?=
+ =?utf-8?B?R3JISzFIUGtpM0pGTy96R3I3RGhmcnV6VVJSTHBjVklWcGtGb1ZncDdzaWVK?=
+ =?utf-8?B?VWxHS1pGL2ZmNFFZWlljeUhkazdoRFlrM3pINDZKckZCczdMa084cEQ2bHFO?=
+ =?utf-8?B?eGxvcDhVYUVSOExjbTBxaVgwdlQ1SmgxRGtyRHlzS3FERmxlM01tSE9RVC9X?=
+ =?utf-8?B?R0srNzF1cTE0bHQrS1ZYeXA5OU8rdGpqNVZ6OUllVUhRZUk2STc0OEdzYXE5?=
+ =?utf-8?B?RHM3UVU0WTJMZ3lUWEM2R2JGM1FIZU5PekVUR1k3UFp6WTBCdnVvanpVZmRk?=
+ =?utf-8?B?Vll3YmVZSWpYbVp4MkJuUG51N3l5UGp5Y0ZwQ0RwdFpwQnFwWlNxQU9zUTNh?=
+ =?utf-8?B?ZTdmR01idDdWSHc2R1RCN0R2NkdDUHo3N1hXdWFISkpLSUFkQVJnNHA1dVBP?=
+ =?utf-8?B?SjZLdkMybnVwMWYrbmlkMHdLZmVXbkxTNXg4MkFpbkpqU0ZLMmNaQlpvYmR1?=
+ =?utf-8?B?VnZWeVR4ajV2WHRyK1RCWDZ4VjBEOVpXY3Y2VGI2dnlqSE9jRU0zbmpEOVN1?=
+ =?utf-8?B?TVdhM1RXRk4rd09VZDh5ejNZUjdFUlBDOGttcmVwOW8vWmw1V0NHcHVNNGRN?=
+ =?utf-8?B?Y1c4Q0JBT1F5TUVEVG4vMVZJWU9XdCtPTzNoVmtBRXlaekN5V1dIZVFwVkc1?=
+ =?utf-8?B?Und5bUdLQVJseWEvOEMyaDlQTnB4WU13RGxSNjRxTmhhN2tGK25vdTErZW5H?=
+ =?utf-8?B?YXNpdHRFTm9pUWR4SVJLT2h4a2xiNVRRWVZnMjJneEhzejAyVzdvUTcrWkR2?=
+ =?utf-8?B?TzJFOWd2NG5obno0ckRYWElBNnpLQ0tkdEZkc0tmWFQ3bnJqTUtsYTVQeXUv?=
+ =?utf-8?B?ZnlnMis5NHV1ZVhKMmQ4VVBWdTdobEVOak1qWVRYQnprbFV0WU5JemNiSjVB?=
+ =?utf-8?B?UE9nVitEck5OZHJ2Y2JkbUlEcW9oS1Y3cDJseUQvR1dLRXpvWXpJSUlidk92?=
+ =?utf-8?B?NStDSElyVmNkeU1GQi9pOEdsTklxeFJwOUNnVGFqTU8xcHlnSXFsVVFFYVRm?=
+ =?utf-8?B?MjRLbGtSS2hlYkxVSVpzbTFwVUE3ODRLR0tJRkYvL3NtNm03RzRLazNyWFRV?=
+ =?utf-8?B?SDJsM3FDNEJZVllLTWlnemRCdTFnaUtWditRZ0xZMi9OR01nY0pIckU1eVRu?=
+ =?utf-8?B?OURUcDhHZEZEY3gxa1loR3JsLzA2anNLS3JHa0FlbFQ3TXhlWmRFY0ExeG05?=
+ =?utf-8?B?RURIazdTeFZKVEQ5b0FtQ1VvQzBwYUU2KzdGT1ZJTC9jUVFsek1aMzVFbDlF?=
+ =?utf-8?B?UnRPN2NYS1VoNm0vb3EwZG16QUxNcFJBdWpKbVI4SDVwNzdXTi92RUhVRjBT?=
+ =?utf-8?B?NzJhWjJKOWJUdEpuZ2lhNkcrcjZncTJSQm1ZaEdiclpuVTNIS3IxdStPY01L?=
+ =?utf-8?B?MnNWcms3Tmcwa1lFQ2lKT0FNdTZxOWNWRGhTZllZY2FrNVgwNmRvcFhvUHIx?=
+ =?utf-8?B?cy9vNFd0SXgyeVFTMWo0UCtWVndGLytYMnpQbVdjakc2Wk9LZTBEcVhrNkJN?=
+ =?utf-8?B?NlkvQ2Z3cnM1V1RGUnhMMGsxUVEzUVNCeGgyeTRmQ08rSHptRURrdUZuZnRw?=
+ =?utf-8?B?U0ZhQUMweXNzUEZqemxpSFNUMll2K2NDL1FadktQNExIZThrczJoY1ZZK29R?=
+ =?utf-8?B?VFVoZ0RnTG56YnFoTHJYazFhdkRzYkllZXVoOVd5SDd3OWNMUzlHaXdJdFVm?=
+ =?utf-8?B?RVA3SFBjVkREQUxxYVhaUFZUU2V6OFo2UUJBWUgxUUxwRzRDd2hOTTRXaTl0?=
+ =?utf-8?B?aUlRd1lxWHJ0T2dCVUVCUEVKVEl6Q01qd2J2Vy9EWFNHSzdrclhuK2pMbk84?=
+ =?utf-8?B?Um1ZS1pNUDFvRmR4YVdNYWcrZlZSTytiNTNqb3c4WWxXL3RuaWZMeWNBQ1Jm?=
+ =?utf-8?B?VkJ5ZXpCOWZNYVNFNXUvTW1JdWtndDFFMkFlT2tWbXExUVE0dHRBdkN1cUYx?=
+ =?utf-8?B?ekdrQWNjRTRkTDU5MnBrb3V5N09ZVU9NVnpBd3RydWpOTlVCaHJpK2pxdFpz?=
+ =?utf-8?B?ZDJhZ2tXRlFiMGdaSDJtMFZBaFBvc3JVT0tFcjJWRTZXV2l1a0xrWjlST0NR?=
+ =?utf-8?Q?GGgqh/Li2Ixm5XSaCLcReU5E9?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28ff157a-9b5d-43bf-12eb-08ddd01f8fbf
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9386.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jul 2025 10:46:53.2372
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OLeDDOsrbNj1qyo8QswvxFV3PziHNykS1gIPcIU1kaB3ONymZtIkhWvlJJflHns6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9238
 
-On 22/07/2025 18:48, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> The Texas Instruments BQ25703A is an integrated charger manager and
-> boost converter.
-> 
-> The MFD driver initalizes the device for the regulator driver
-> and power supply driver.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add binding document and driver.
 
-Where did this happen?
+Signed-off-by: Joy Zou <joy.zou@nxp.com>
+---
+Changes in v3:
 
+binding part
+- change regulator node names into lowercase.
+- add more description for nxp,i2c-crc-enable.
+- remove the unnecessary nxp,dvs-run/standby-voltage property.
+  These changes come from review comments:
+  https://lore.kernel.org/imx/e9f38e38-7df7-4d19-b5c0-2f18aeebcc78@kernel.org/
+- add regulator-state-mem property for example.
+
+driver part
+- convert to use maple tree register cache.
+- change of_match_ptr() name to lowercase since dt-binding changed.
+- add more nxp,i2c-crc-enable description for commit message.
+- remove the of_parse_cb and dvs from pf0900_regulators since the
+  unnecessary property nxp,dvs-run/standby-voltage removed.
+- add set_suspend_enable/disable/voltage for the SW regulator_ops.
+  the run/standby voltage can be adjusted via the API which regulator
+  driver provides is recommended.
+  These changes come from binding review comments:
+  https://lore.kernel.org/imx/e9f38e38-7df7-4d19-b5c0-2f18aeebcc78@kernel.org/
+- add bitfield.h header due to build issue.
+- correct the sw4 id.
+- add PF0900 prefix for short macro define in order to avoid duplication.
+- merge the same mask define in order to simplify code.
+- Link to v2: https://lore.kernel.org/r/20250721-b4-pf09-v2-v2-0-e2c568548032@nxp.com
+
+Changes in v2:
+
+binding part
+- modify the binding file name to match compatible string.
+- add one space for dt_binding_check warning.
+- remove unnecessary quotes from "VAON".
+- remove the unnecessary empty line.
+- move unevaluatedProperties after the $ref.
+- move additionalProperties after regulator type.
+- remove unnecessary regulator description
+
+driver part
+- modify the copyright comment block to C++ style.
+- add reg_read/write for regmap_bus.
+- remove original pf0900_pmic_read/write.
+- remove many regulator operations.
+- use regmap_read replace pf0900_pmic_read.
+- use regmap_update_bits and regmap_write_bits replace pf0900_pmic_write.
+- move the code from pf0900.h to pf0900-regulator.c and delete the header file.
+- remove unmask status interrupts and add unmask regulator interrupts.
+- remove many interrupts check warning print from irq_handler.
+- add notifier for regulator event.
+- remove unused macro define.
+- add PF0900 prefix for IRQ macro define in order to avoid duplication.
+- use GENMASK() and BIT() to replace mask marco define
+- remove redundant enum pf0900_chip_type.
+- remove redundant print info and comments.
+- add dvs property present check because this property is optional.
+- remove ret == -EINVAL check from sw_set_dvs() function.
+- Link to v1: https://lore.kernel.org/imx/20250617102025.3455544-1-joy.zou@nxp.com/
+
+---
+Joy Zou (2):
+      dt-bindings: regulator: add PF0900 regulator yaml
+      regulator: pf0900: Add PMIC PF0900 support
+
+ .../devicetree/bindings/regulator/nxp,pf0900.yaml  | 163 ++++
+ drivers/regulator/Kconfig                          |   8 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pf0900-regulator.c               | 975 +++++++++++++++++++++
+ 4 files changed, 1147 insertions(+)
+---
+base-commit: 84b92a499e7eca54ba1df6f6c6e01766025943f1
+change-id: 20250714-b4-pf09-v2-91cdee6d1272
 
 Best regards,
-Krzysztof
+-- 
+Joy Zou <joy.zou@nxp.com>
+
 
