@@ -1,335 +1,146 @@
-Return-Path: <devicetree+bounces-201071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F27B172FF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 16:16:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90CEB17376
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 16:53:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA85017ADE1
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 14:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92CC2A82FAB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 14:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A5A27456;
-	Thu, 31 Jul 2025 14:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10FC1AC88B;
+	Thu, 31 Jul 2025 14:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="M4yifNTO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpi8aEeN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8210818E25;
-	Thu, 31 Jul 2025 14:16:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720D115573F;
+	Thu, 31 Jul 2025 14:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753971370; cv=none; b=gE1VRGS+hCtxR6PwFLLUr6L9p4LGv/obiuUtKacHMVUkLLKYOs9SpEqW9KOcovldbZrEeioGrYFJpGVtMHzh4ftyx0ZOQcRoWWU5lA+0fz7hNzW9gH9ayUuahrbcnhyDMBy1rYJXq+o3WmqeKcJy0ncw3g6fQ7PRSy4SFoAPGtQ=
+	t=1753973627; cv=none; b=MVNsoyPJvYgpNV1Ko1zXaib9K9NaXixyeV0B5lJx1RpCqeBsjCrtxR298esJtsPw+viPgnTi8vvUbygxOhn600Mo/3YEFzTo2IEItk/c44YfLDSKtxWliu7fInU2VRB0EUeRMko4xZcyU8gD8A69WOSZh5qf9w/dZVNCFpExx4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753971370; c=relaxed/simple;
-	bh=eQ/gZv6LO5Hue9eUzbsped9hjtPCsvRvn5W2HR7Wmdc=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=KQ8KYphuVzw1XP/karTIxuPWY5bk/ZpU8OaGXJjEiAOiVYXtzpJd7H27EkeOieLhyl6VumcqckdeY9bVYU2cSRgOc7F9vlNjXg8OeqB43ezHNQQCTSUyemQjE8s8oktImHt6vmEDvjxmuswHGkEMSZPGa8zJyg0PQseIyHxgnTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=M4yifNTO; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Yrfb0HOaoHG7iPog1DBjfZMW+8NvBRkjZ6FVr4DkooM=; b=M4yifNTOJvgbXIrhWyt7VnFbod
-	bzVsqfTnYcU/nnFZs8TBT9uSh0Sp46t6mGXqqC4kO3MH5wMQCvJyXnAzFz+b9GeihUicgz38qwRUq
-	/QJoZUlERnPJfWlDyQBIpDFCOSxXmeJ579r3eE8tTPmIhYae3lAlZ3qs80C1RZZkqunirrDWMoDbK
-	1NPX4TbE97q6lnpdjqnGD1IreBmK5Jb2sWaBaYsdz2/NvFEY/uVfKiCr98z3hxhYeEfLhRDHoenz1
-	gkvRaVhHlbL7ll4Z/qzvvBRbaxlbn3K/HsGcN2Ey8U9jhdKibDjjEa2diNk1tmLaMegMHrmblLqj+
-	D/SDapbA==;
-Received: from [122.175.9.182] (port=48191 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uhU4f-0000000EGfX-2qBf;
-	Thu, 31 Jul 2025 10:16:02 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id E5B941781F30;
-	Thu, 31 Jul 2025 19:45:55 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id C5B5C1783F55;
-	Thu, 31 Jul 2025 19:45:55 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id RGkdA-2r7jyA; Thu, 31 Jul 2025 19:45:55 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 7E4051781F30;
-	Thu, 31 Jul 2025 19:45:55 +0530 (IST)
-Date: Thu, 31 Jul 2025 19:45:55 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: ALOK TIWARI <alok.a.tiwari@oracle.com>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	s hauer <s.hauer@pengutronix.de>, m-karicheri2 <m-karicheri2@ti.com>, 
-	glaroque <glaroque@baylibre.com>, afd <afd@ti.com>, 
-	saikrishnag <saikrishnag@marvell.com>, m-malladi <m-malladi@ti.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	horms <horms@kernel.org>, s-anna <s-anna@ti.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <234831131.78058.1753971355358.JavaMail.zimbra@couthit.local>
-In-Reply-To: <1d39a02c-92e6-4ebe-8917-cc7c2ebb70b2@oracle.com>
-References: <20250724072535.3062604-1-parvathi@couthit.com> <20250724072535.3062604-3-parvathi@couthit.com> <1d39a02c-92e6-4ebe-8917-cc7c2ebb70b2@oracle.com>
-Subject: Re: [PATCH net-next v12 2/5] net: ti: prueth: Adds ICSSM Ethernet
- driver
+	s=arc-20240116; t=1753973627; c=relaxed/simple;
+	bh=BH+xJfVd8P1OMzhEptvJZEuLhWDdvxoqPKB2+LX+Isk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aCHszQG1d4mYM9lWaNfbJT03++Idqj7Jq5MY1w0CPQ3C6H8ZDhfAkX7utHXSij3Wi1OjbeJqekb59kfMrsiAsfr7M0jdAXrSV70K/1IH5cl4oYEC1SR1mJvNFXUYvUXMWOgmoVqHzXPzFDUsEuRgpwN2r+/ArAazQ3xLwQpxNaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpi8aEeN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65142C4CEEF;
+	Thu, 31 Jul 2025 14:53:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753973627;
+	bh=BH+xJfVd8P1OMzhEptvJZEuLhWDdvxoqPKB2+LX+Isk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kpi8aEeNbTv1oce/RogYtbW0tseYmoCFpjWum9y3PPI/WiazyTJlUEdEbRfT1ShZQ
+	 SPz1is62J06pv+Nn7H/ssASOgakKv3HwQ/32Lvn1bLbzU/LMA//ro9gohKcI14x9M3
+	 /+43v7sHtijaXZ3eSWKplfuVDl8A0ZKPLmsAT3TKYciN+L+4K44unMRqH71gZeGXDu
+	 upO58ItRggZZeNv0FUQyHS9y4MbDpRjtHocUvtZIYq+8NcLwS9ECTab7jUyoMAeMLe
+	 Ywj4pRU1lO651/DIOLa3gF9qYCYjfbwO5zeb2UsqhJj/AkS3yxplaNqGWCIVZaSsXi
+	 +CY/QHZxaikaw==
+Message-ID: <a8eb1574-39f2-4b71-b6be-bb28b43eb6f8@kernel.org>
+Date: Thu, 31 Jul 2025 16:53:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds ICSSM Ethernet driver
-Thread-Index: wj03l94gG4u1FVHPYBiI8HEpNdo3ng==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] dt-bindings: ufs: qcom: Split SC7280 and similar into
+ separate file
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Nitin Rawat <quic_nitirawa@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250730-dt-bindings-ufs-qcom-v1-0-4cec9ff202dc@linaro.org>
+ <df8b3c85-d572-4cee-863b-35fe6a5ed9ff@quicinc.com>
+ <6ebe7084-bb00-4fac-b64d-e08e188f3005@kernel.org>
+ <148b46f3-2109-4c15-b7d8-17963b38095a@quicinc.com>
+ <1547e339-5be2-4d87-ab35-98a9be0d250e@kernel.org>
+ <qemlydifa7u3zwrjnnp7umjsprjrje27ghzghyyoutufeyiimn@g2ejdt72opz3>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <qemlydifa7u3zwrjnnp7umjsprjrje27ghzghyyoutufeyiimn@g2ejdt72opz3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 31/07/2025 16:09, Manivannan Sadhasivam wrote:
+> On Thu, Jul 31, 2025 at 09:04:48AM GMT, Krzysztof Kozlowski wrote:
+>> On 31/07/2025 08:59, Nitin Rawat wrote:
+>>>> Hm?
+>>>>
+>>>>>
+>>>>> For reference, only SM8650 and SM8750 currently support MCQ, though more
+>>>>> targets may be added later.
+>>>>
+>>>> Are you sure? Are you claiming that SM8550 hardware does not support MCQ?
+>>>
+>>> Offcourse I can say that because I am working on Qualcomm UFS Driver.
+>>
+>> Qualcomm sent many patches which were not related to hardware at all,
+>> just based on drivers, so my question is completely valid based on
+>> previous experience with Qualcomm.
+>>
+> 
+> SM8550 indeed doesn't support MCQ. Even though it is based on UFSHCD 4.x, it
+> doesn't support MCQ due to hardware design. MCQ support only starts from SM8650.
 
-> On 7/24/2025 12:53 PM, Parvathi Pudi wrote:
->> From: Roger Quadros <rogerq@ti.com>
->>=20
->> Updates Kernel configuration to enable PRUETH driver and its dependencie=
-s
->> along with makefile changes to add the new PRUETH driver.
->>=20
->> Changes includes init and deinit of ICSSM PRU Ethernet driver including
->> net dev registration and firmware loading for DUAL-MAC mode running on
->> PRU-ICSS2 instance.
->>=20
->> Changes also includes link handling, PRU booting, default firmware loadi=
-ng
->> and PRU stopping using existing remoteproc driver APIs.
->>=20
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->> ---
->>   drivers/net/ethernet/ti/Kconfig              |  12 +
->>   drivers/net/ethernet/ti/Makefile             |   3 +
->>   drivers/net/ethernet/ti/icssm/icssm_prueth.c | 610 +++++++++++++++++++
->>   drivers/net/ethernet/ti/icssm/icssm_prueth.h | 100 +++
->>   4 files changed, 725 insertions(+)
->>   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.c
->>   create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth.h
->>=20
->> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/K=
-config
->> index a07c910c497a..ab20f22524cb 100644
->> --- a/drivers/net/ethernet/ti/Kconfig
->> +++ b/drivers/net/ethernet/ti/Kconfig
->> @@ -229,4 +229,16 @@ config TI_ICSS_IEP
->>   =09  To compile this driver as a module, choose M here. The module
->>   =09  will be called icss_iep.
->>  =20
->> +config TI_PRUETH
->> +=09tristate "TI PRU Ethernet EMAC driver"
->> +=09depends on PRU_REMOTEPROC
->> +=09depends on NET_SWITCHDEV
->> +=09select TI_ICSS_IEP
->> +=09imply PTP_1588_CLOCK
->> +=09help
->> +=09  Some TI SoCs has Programmable Realtime Units (PRUs) cores which ca=
-n
->=20
-> Some TI SoCs have Programmable Realtime Unit (PRU)
->=20
+Yeah, I checked later in datasheets and programming guide. That's why I
+sent v2 and marked it in Patchwork as changes-requested.
 
-Sure, We will address this.
-
->> +=09  support Single or Dual Ethernet ports with help of firmware code r=
-unning
->=20
-> with the help of firmware code running
->=20
-
-Sure, We will address this.
-
->> +=09  on PRU cores. This driver supports remoteproc based communication =
-to
->> +=09  PRU firmware to expose ethernet interface to Linux.
->=20
-> ethernet -> Ethernet
->=20
-
-Sure, We will address this.
-
->> +
->>   endif # NET_VENDOR_TI
->> diff --git a/drivers/net/ethernet/ti/Makefile b/drivers/net/ethernet/ti/=
-Makefile
->> index cbcf44806924..93c0a4d0e33a 100644
->> --- a/drivers/net/ethernet/ti/Makefile
->> +++ b/drivers/net/ethernet/ti/Makefile
->> @@ -3,6 +3,9 @@
->>   # Makefile for the TI network device drivers.
->>   #
->>  =20
->> +obj-$(CONFIG_TI_PRUETH) +=3D icssm-prueth.o
->> +icssm-prueth-y :=3D icssm/icssm_prueth.o
->> +
->>   obj-$(CONFIG_TI_CPSW) +=3D cpsw-common.o
->>   obj-$(CONFIG_TI_DAVINCI_EMAC) +=3D cpsw-common.o
->>   obj-$(CONFIG_TI_CPSW_SWITCHDEV) +=3D cpsw-common.o
->> diff --git a/drivers/net/ethernet/ti/icssm/icssm_prueth.c
->> b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
->> new file mode 100644
->> index 000000000000..375fd636684d
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssm/icssm_prueth.c
->> @@ -0,0 +1,610 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +/* Texas Instruments ICSSM Ethernet Driver
->> + *
->> + * Copyright (C) 2018-2022 Texas Instruments Incorporated -
->> https://urldefense.com/v3/__https://www.ti.com/__;!!ACWV5N9M2RV99hQ!KJSw=
-49T9tFMkKlUCkufdpPMrYbxZqO8afwgd1oNYrR_r0dienongkVB3K8jc1UDBehhE_eMQGHAGYrv=
-O9wPpJQ$
->> + *
->> + */
->> +
->> +#include <linux/etherdevice.h>
->> +#include <linux/genalloc.h>
->> +#include <linux/if_bridge.h>
->> +#include <linux/if_hsr.h>
->> +#include <linux/if_vlan.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/kernel.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/module.h>
->> +#include <linux/net_tstamp.h>
->> +#include <linux/of.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/of_mdio.h>
->> +#include <linux/of_net.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/phy.h>
->> +#include <linux/remoteproc/pruss.h>
->> +#include <linux/ptp_classify.h>
->> +#include <linux/regmap.h>
->> +#include <linux/remoteproc.h>
->> +#include <net/pkt_cls.h>
->> +
->> +#include "icssm_prueth.h"
->> +
->> +/* called back by PHY layer if there is change in link state of hw port=
-*/
->> +static void icssm_emac_adjust_link(struct net_device *ndev)
->> +{
->> +=09struct prueth_emac *emac =3D netdev_priv(ndev);
->> +=09struct phy_device *phydev =3D emac->phydev;
->> +=09bool new_state =3D false;
->> +=09unsigned long flags;
->> +
->> +=09spin_lock_irqsave(&emac->lock, flags);
->> +
->> +=09if (phydev->link) {
->> +=09=09/* check the mode of operation */
->> +=09=09if (phydev->duplex !=3D emac->duplex) {
->> +=09=09=09new_state =3D true;
->> +=09=09=09emac->duplex =3D phydev->duplex;
->> +=09=09}
->> +=09=09if (phydev->speed !=3D emac->speed) {
->> +=09=09=09new_state =3D true;
->> +=09=09=09emac->speed =3D phydev->speed;
->> +=09=09}
->> +=09=09if (!emac->link) {
->> +=09=09=09new_state =3D true;
->> +=09=09=09emac->link =3D 1;
->> +=09=09}
->> +=09} else if (emac->link) {
->> +=09=09new_state =3D true;
->> +=09=09emac->link =3D 0;
->> +=09}
->> +
->> +=09if (new_state)
->> +=09=09phy_print_status(phydev);
->> +
->> +=09if (emac->link) {
->> +=09       /* reactivate the transmit queue if it is stopped */
->> +=09=09if (netif_running(ndev) && netif_queue_stopped(ndev))
->> +=09=09=09netif_wake_queue(ndev);
->> +=09} else {
->> +=09=09if (!netif_queue_stopped(ndev))
->> +=09=09=09netif_stop_queue(ndev);
->> +=09}
->> +
->> +=09spin_unlock_irqrestore(&emac->lock, flags);
->> +}
->> +
->> +static int icssm_emac_set_boot_pru(struct prueth_emac *emac,
->> +=09=09=09=09   struct net_device *ndev)
->> +{
->> +=09const struct prueth_firmware *pru_firmwares;
->> +=09struct prueth *prueth =3D emac->prueth;
->> +=09const char *fw_name;
->> +=09int ret;
->> +
->> +=09pru_firmwares =3D &prueth->fw_data->fw_pru[emac->port_id - 1];
->=20
-> If emac->port_id =3D=3D 0, this will index at -1
->=20
-
-We will enter this API for emac->port_id as 1 or  2 always due to the
-reason that the physical port indexes are 1 for MII0 and 2 for MII1
-which are nothing but PRU0 and PRU1 respectively. Zero is for HOST port
-which is a virtual port no PRU core associated to it but it is the ARM
-core which is initializing the PRU=E2=80=99s.
-
->> +=09fw_name =3D pru_firmwares->fw_name[prueth->eth_type];
->> +=09if (!fw_name) {
->> +=09=09netdev_err(ndev, "eth_type %d not supported\n",
->> +=09=09=09   prueth->eth_type);
->> +=09=09return -ENODEV;
->> +=09}
->> +
->> +=09ret =3D rproc_set_firmware(emac->pru, fw_name);
->> +=09if (ret) {
->> +=09=09netdev_err(ndev, "failed to set PRU0 firmware %s: %d\n",
->=20
-> Hardcoded PRU0 in Logs, what if PRU1
->=20
-
-Sure, We will address this.
-
-We will post the next version soon after net-next is open.
-
-
-Thanks and Regards,
-Parvathi.
+Best regards,
+Krzysztof
 
