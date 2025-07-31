@@ -1,176 +1,902 @@
-Return-Path: <devicetree+bounces-201022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DB8B17018
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:05:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A04B17060
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85AD1AA632C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:05:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E2383B2F35
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 11:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC6912BE65B;
-	Thu, 31 Jul 2025 11:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC462BEC24;
+	Thu, 31 Jul 2025 11:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k3dTG93c"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="F6HVNlG9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2ABE1F8753
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 11:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD022C9A;
+	Thu, 31 Jul 2025 11:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753959918; cv=none; b=TmBaFEopF2wFA9GQHNgrZ51sUNb4rCNiTIVfOWgpSUaMOyvwYrc1uNc+ZBY6Ym7CxO7ji9eWeIUCnus2QPKsLZAeZ7b+3Pjhcu4+7uISwUhI37dQsy6r6XUkWjgxUm6IoQ/iJvOvewJp/b0IGRCM5ka5ZoU5zZAYNZC3w9GNQ0Y=
+	t=1753961533; cv=none; b=na3ciRbRvWSpJVywXPk2pguMVDE1HsSV3k2HoRea68IW8D+fR1OQWhM541cqCYozaXeSdHJAaLfXWY7OJD0RnK0WqeyUp/3hFSjoWN2w0SctZ2Be+N+G3iL/NgASbodqiTEMDan385vDDrF3V8EHFdcjsINtCbiJBsCZH6UDEgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753959918; c=relaxed/simple;
-	bh=VEKn7bCKtQ4DC3+ZJIGn7pT8WXFtiTvd9gJWSwXEX6s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cUnqMn+wQP7XsUz12/WaWmnLGIA8Oj8FnRQXDJt1slVa4M0GDfVfr/uu3+8VtjAnplzyE0f+X8fJs2O8XW4akMzwlZbwKKOIoOv3QuQCUlMpxC1zji/FtcLEA1k89nIkySyfPdvJIi/h7mYigVYoB+KDwje5i1qRX9z3Xh+v/Xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k3dTG93c; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4589968e001so4610425e9.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 04:05:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753959915; x=1754564715; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VEKn7bCKtQ4DC3+ZJIGn7pT8WXFtiTvd9gJWSwXEX6s=;
-        b=k3dTG93cfpQCJ5FG+CzzzVV4ZTcYXfgxNk879hQpvYIo0C3Hb/3newGQDkI8W+Pb8t
-         NHSv2dtP+QJR80KZm8Bz4BbpKJTAaaCeMuTJJG0t9511fYE3sXKegonxwnQAvizhePb/
-         dJkh+CBNgoC4SWR2Qr6Ifg8MSzMKJDaPjA1tWlRO0zLfJkjPHVFvWmmV2KMWxhOus+FB
-         Tn2MzNJm/eEpiZ6lXW5CgrY/iolx9PKhpN5n0/kiibuwd55Fsf9OjlAXGfmL3kLVbrE/
-         tlPtKARqnCK89+85vD/1jP+16vF2BmgQqqTgxgHeYR85R04KqhzI5+oFfyCKDezX2Cvj
-         WfnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753959915; x=1754564715;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VEKn7bCKtQ4DC3+ZJIGn7pT8WXFtiTvd9gJWSwXEX6s=;
-        b=ut48Qb5be+1kmvGHPih1cVXwWZJ2jlrCLZK59IShb0yw7IZJYsbQXQ76fmPkC3uU59
-         HxA46i9TaV5MD7SSTrOcFGCHYfP1/ssv0p7FrR4VwEncmSquL+g6UMg5+Bge1ZaM3htg
-         MbQUkU/4rDojtelFHkgrtaNcjyAxb2dEh9S3ZPPiYcyRQqPIH9I3ik3awtW8FuyoUPoA
-         onUEjdHYU6AVbYA9UW3v6Mlemuts26Eqx5kMv+ppYWEbqw/kCPtP7eQxur0ZsdYK7/1i
-         oRM1txFOWwX3FRDXUe9NDiBze3JQCP7GeJZ8ahjBaNPgvDAne4sIM7yfWwvR0xKBIydy
-         xH8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX6qbQ0C8VhrVR56gZ2d7G9zH/SKTHXl0JYtnMSCfzn3uZWsHb8JUg01THXBXdHaFJ5BD3yMcR2lgC7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX87UW6V5s4txWTlPWLkg0E1RXddqZ2KsRYYeFyJsn0BSj2Czd
-	PHbw46pfyZ5GdE5LoqeZB0bJ1afZx3nfn+tvUD9UitKS4Oqy8IFro8X66pC99wYB3LQ=
-X-Gm-Gg: ASbGnctoHp9+pHUNq1nsoKsGCkyP9cQNZeKaxgTpqEmNJJx6sF/rOjIjLahxZaAXK5K
-	9XTUPeAgy4TgNNWDUWH74HjFLXVBlYsit9vPrFcd5dEIhuAoMX6pqD6RkZcFM2kpW6SoVdBJH3A
-	fKAzbKmToVIraQ5gbuF7E3EypE1yNXw2WhEO4duzxFmZgAfQiXF3JXqP27YvjFDzyZTPWdLDWdb
-	3PbP/7/k4+OqOSRcnPAGkziLoazdcRbW8G50vEAMtMEgZnCC5U1sTN0BDv5SKt2RtEtlgaVAT4u
-	XV3ktH/8uWZX+6qD6PtyKNXp+cBOeMBYbwng1E2KMYiEoTSUm0sbfjyE4rlA0O99DV3nLPRbUj4
-	rOc0s7uhHND02q4iy3bBC9VqcIw==
-X-Google-Smtp-Source: AGHT+IE2uAVTLlLGsEyuKRwFnRFU/FdmGqD5jafe8UhDC8Cs0NgSXpOAHHVQxxk7a76FdVpc+nYZfA==
-X-Received: by 2002:a05:600c:1d25:b0:456:1560:7c5f with SMTP id 5b1f17b1804b1-4589a700e05mr55899935e9.14.1753959915171;
-        Thu, 31 Jul 2025 04:05:15 -0700 (PDT)
-Received: from [10.1.1.59] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4589edfcdc3sm23160775e9.12.2025.07.31.04.05.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Jul 2025 04:05:14 -0700 (PDT)
-Message-ID: <63d090988d04fa81231c984771a563c55daf1bd9.camel@linaro.org>
-Subject: Re: [PATCH v13 07/10] firmware: psci: Implement vendor-specific
- resets as reboot-mode
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Arnd Bergmann <arnd@arndb.de>, Shivendra Pratap	
- <shivendra.pratap@oss.qualcomm.com>, Bartosz Golaszewski	
- <bartosz.golaszewski@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
- Sebastian Reichel	 <sre@kernel.org>, Rob Herring <robh@kernel.org>, Sudeep
- Holla	 <sudeep.holla@arm.com>, Souvik Chakravarty
- <Souvik.Chakravarty@arm.com>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Yan	 <andy.yan@rock-chips.com>,
- Mark Rutland <mark.rutland@arm.com>, Lorenzo Pieralisi
- <lpieralisi@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Florian
- Fainelli	 <florian.fainelli@broadcom.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Mukesh Ojha
-	 <mukesh.ojha@oss.qualcomm.com>, Stephen Boyd <swboyd@chromium.org>, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, Elliot Berman <quic_eberman@quicinc.com>, 
- Srinivas Kandagatla
-	 <srini@kernel.org>
-Date: Thu, 31 Jul 2025 12:05:13 +0100
-In-Reply-To: <592902f1-549f-47c5-9ef4-b5c7ef2c9a47@app.fastmail.com>
-References: 
-	<20250727-arm-psci-system_reset2-vendor-reboots-v13-0-6b8d23315898@oss.qualcomm.com>
-	 <20250727-arm-psci-system_reset2-vendor-reboots-v13-7-6b8d23315898@oss.qualcomm.com>
-	 <b45b157593f1865a402f4098cdeafc298a294c6d.camel@linaro.org>
-	 <b92c164f-c6df-a2c0-1416-67652a01b179@oss.qualcomm.com>
-	 <34c52c88fd8fcbf68c453c1e94e4cd6294becff1.camel@linaro.org>
-	 <592902f1-549f-47c5-9ef4-b5c7ef2c9a47@app.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+build2 
+	s=arc-20240116; t=1753961533; c=relaxed/simple;
+	bh=cM/apJOigWjwAIjJOf0XoHrW5QC24bnnN5WqLnh2xDA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=B6CIOJTrwjiEcN2fKkU9hdZBscdh29GH3iQZu0NeYqp2foNGLy2V8ZXn91vqD6lirM9HPvDH32WBYOtEIuCjFhCnC2ELRs3DiihUhJ+41yziiqxOtOlzptPlJ/1FPGru3Iwff2szX/i1c5Ryyg1qfms1d7dVOZ4jgi36YR5DnN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=F6HVNlG9; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56VAoKKh023656;
+	Thu, 31 Jul 2025 13:26:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	G8/7AzUbZA+4uOGKVTy2M8+xGWeKLcj63g9+JFsOlPc=; b=F6HVNlG9F9a+YJWN
+	pcIQ9+uEAxS8f3lCB4vxo4N2tljiUNwLeJQrdR89HrbPNGc4wU6xBgEUAy6vAJ3n
+	D5twVfsOSq59ItV3VZ1zSRJIfOtuzMNTPOfGaf7M5zRqck/DgGsH3xvCzLHtroku
+	1LQnGm7cgiTX7Eu3SVpn+ikRQ/YHYfrXDqfcUoSLADdTo4xJaCYpXLGdLCHnC0mj
+	Gao6WomXonS/grn8vu/Hb3Ji7SksGMCK4VU+dQ/CWTZp3La0m6nFLfI0Im5l0rfA
+	e+tggrIfzGf+Uh8mY58508IaPY36YRblG8GIsscijmr0wTj/xf1sak2lDqkgrK4/
+	adkw1Q==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4858k5cb20-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 31 Jul 2025 13:26:29 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1BBC940050;
+	Thu, 31 Jul 2025 13:25:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0967A6D4BE3;
+	Thu, 31 Jul 2025 13:23:52 +0200 (CEST)
+Received: from [10.252.4.210] (10.252.4.210) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 31 Jul
+ 2025 13:23:50 +0200
+Message-ID: <f059ef8e-1834-4d21-bb17-8670cf7cd90f@foss.st.com>
+Date: Thu, 31 Jul 2025 13:23:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 8/9] clk: divider, gate: create regmap-backed copies of
+ gate and divider clocks
+To: Conor Dooley <conor@kernel.org>, <sboyd@kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara
+	<daire.mcnamara@microchip.com>,
+        <pierre-henry.moussay@microchip.com>,
+        <valentina.fernandezalanis@microchip.com>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones
+	<lee@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt
+	<palmer@dabbelt.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-riscv@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250623-levitate-nugget-08c9a01f401d@spud>
+ <20250623-spleen-rambling-8bd898f2788e@spud>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <20250623-spleen-rambling-8bd898f2788e@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-31_02,2025-07-31_01,2025-03-28_01
 
-On Wed, 2025-07-30 at 19:31 +0200, Arnd Bergmann wrote:
-> On Wed, Jul 30, 2025, at 17:23, Andr=C3=A9 Draszik wrote:
-> > On Wed, 2025-07-30 at 18:33 +0530, Shivendra Pratap wrote:
-> > > On 7/30/2025 2:14 PM, Andr=C3=A9 Draszik wrote:
->=20
-> > > 1. For this, both commands will be defined in the psci->reboot-mode D=
-T Node with the arguments that
-> > > =C2=A0=C2=A0 are defined and supported by the firmware.
-> > > 2. Further, such requirement will now be taken care by the underlying=
- firmware that supports
-> > > =C2=A0=C2=A0 PSCI vendor-specific reset. When we call into firmware w=
-ith vendor specific reset arguments,
-> > > =C2=A0=C2=A0 firmware will take care of the defined HW writes and war=
-m/cold reset as per the mapping of the
-> > > =C2=A0=C2=A0 defined arguments. Firmware and the Linux kernel here ar=
-e in agreement for executing the
-> > > =C2=A0=C2=A0 vendor-specific resets.
-> >=20
-> > So that means
-> >=20
-> > =C2=A0=C2=A0=C2=A0 echo warm > /sys/kernel/reboot/mode
-> > =C2=A0=C2=A0=C2=A0 reboot bootloader
-> >=20
-> > and
-> >=20
-> > =C2=A0=C2=A0=C2=A0 echo cold > /sys/kernel/reboot/mode
-> > =C2=A0=C2=A0=C2=A0 reboot bootloader
-> >=20
-> > can not be distinguished.
-> >=20
-> > The firmware can not know whether or not cold or warm reboot was
-> > requested in this case by the user.
->=20
-> My feeling is that this is fine: the /sys/kernel/reboot/mode
-> interface is not really used on anything other than 32-bit
-> arm and x86 machines, and the way it is specific as
-> cold/warm/hard/soft/gpio is not that useful.
 
-Currently, reboot_mode as such is also used by gs101 and later, we do
-distinguish between the reboot_modes (cold/hard and warm/soft), although
-generally not via sysfs indeed. And yes, gpio is a strangely specific
-one.
+On 6/23/25 14:56, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Implement regmap-backed copies of gate and divider clocks by replacing
+> the iomem pointer to the clock registers with a regmap and offset
+> within.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-I don't have insight into newer SoCs / board designs in that family,
-but my understanding is that newer SoCs use PSCI for reboot as well
-and I do believe being able to do cold reboot by default and warm
-reboot in some cases (crash handling in particular) to still be a
-valid use-case.
+Hi Conor,
 
-> I think for the purpose of the new code here, we should talk
-> about reboot "commands" instead of "modes" to avoid confusing
-> between the global "enum reboot_mode" variable and the
-> firmware interface for reboot modes as listed in DT.
+Excellent patch, thank you! I really needed this and will be using it.
 
-+1 It should really have been added as reboot command or reboot target
-in the first place.
+I would also be interested in having a similar regmap-backed 
+implementation for the multiplexer clock.  Do you have any plans to work 
+on this as well? If not, I’d be happy to propose a patch for it, with 
+your agreement.
 
-A.
+Thanks again for your work!
+
+Best regards,
+
+> ---
+>   drivers/clk/Kconfig              |   8 +
+>   drivers/clk/Makefile             |   2 +
+>   drivers/clk/clk-divider-regmap.c | 271 +++++++++++++++++++++++++++++++
+>   drivers/clk/clk-gate-regmap.c    | 254 +++++++++++++++++++++++++++++
+>   include/linux/clk-provider.h     | 120 ++++++++++++++
+>   5 files changed, 655 insertions(+)
+>   create mode 100644 drivers/clk/clk-divider-regmap.c
+>   create mode 100644 drivers/clk/clk-gate-regmap.c
+>
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 19c1ed280fd7f..273154031325e 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -33,6 +33,14 @@ menuconfig COMMON_CLK
+>   
+>   if COMMON_CLK
+>   
+> +config COMMON_CLK_DIVIDER_REGMAP
+> +	bool
+> +	select REGMAP
+> +
+> +config COMMON_CLK_GATE_REGMAP
+> +	bool
+> +	select REGMAP
+> +
+
+Why not use a single, more generic configuration like COMMON_CLK_REGMAP 
+instead of having both COMMON_CLK_DIVIDER_REGMAP and 
+COMMON_CLK_GATE_REGMAP ?
+
+
+>   config COMMON_CLK_WM831X
+>   	tristate "Clock driver for WM831x/2x PMICs"
+>   	depends on MFD_WM831X
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index 42867cd37c33d..6dbc1fe1e03e2 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -20,11 +20,13 @@ clk-test-y			:= clk_test.o \
+>   				   kunit_clk_assigned_rates_zero_consumer.dtbo.o \
+>   				   kunit_clk_parent_data_test.dtbo.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-divider.o
+> +obj-$(CONFIG_COMMON_CLK_DIVIDER_REGMAP)	+= clk-divider-regmap.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-fixed-factor.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-fixed-rate.o
+>   obj-$(CONFIG_CLK_FIXED_RATE_KUNIT_TEST)	+= clk-fixed-rate-test.o
+>   clk-fixed-rate-test-y		:= clk-fixed-rate_test.o kunit_clk_fixed_rate_test.dtbo.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-gate.o
+> +obj-$(CONFIG_COMMON_CLK_GATE_REGMAP)	+= clk-gate-regmap.o
+>   obj-$(CONFIG_CLK_GATE_KUNIT_TEST) += clk-gate_test.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-multiplier.o
+>   obj-$(CONFIG_COMMON_CLK)	+= clk-mux.o
+> diff --git a/drivers/clk/clk-divider-regmap.c b/drivers/clk/clk-divider-regmap.c
+> new file mode 100644
+> index 0000000000000..43b8f3dedb9e1
+> --- /dev/null
+> +++ b/drivers/clk/clk-divider-regmap.c
+> @@ -0,0 +1,271 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/export.h>
+> +#include <linux/slab.h>
+> +
+> +static inline u32 clk_div_regmap_readl(struct clk_divider_regmap *divider)
+> +{
+> +	u32 val;
+> +
+> +	regmap_read(divider->regmap, divider->map_offset, &val);
+> +
+> +	return val;
+> +}
+> +
+> +static inline void clk_div_regmap_writel(struct clk_divider_regmap *divider, u32 val)
+> +{
+> +	regmap_write(divider->regmap, divider->map_offset, val);
+> +
+> +}
+> +
+> +static unsigned long clk_divider_regmap_recalc_rate(struct clk_hw *hw,
+> +		unsigned long parent_rate)
+> +{
+> +	struct clk_divider_regmap *divider = to_clk_divider_regmap(hw);
+> +	unsigned int val;
+> +
+> +	val = clk_div_regmap_readl(divider) >> divider->shift;
+> +	val &= clk_div_mask(divider->width);
+> +
+> +	return divider_recalc_rate(hw, parent_rate, val, divider->table,
+> +				   divider->flags, divider->width);
+> +}
+> +
+> +static long clk_divider_regmap_round_rate(struct clk_hw *hw, unsigned long rate,
+> +				unsigned long *prate)
+> +{
+> +	struct clk_divider_regmap *divider = to_clk_divider_regmap(hw);
+> +
+> +	/* if read only, just return current value */
+> +	if (divider->flags & CLK_DIVIDER_READ_ONLY) {
+> +		u32 val;
+> +
+> +		val = clk_div_regmap_readl(divider) >> divider->shift;
+> +		val &= clk_div_mask(divider->width);
+> +
+> +		return divider_ro_round_rate(hw, rate, prate, divider->table,
+> +					     divider->width, divider->flags,
+> +					     val);
+> +	}
+> +
+> +	return divider_round_rate(hw, rate, prate, divider->table,
+> +				  divider->width, divider->flags);
+> +}
+> +
+> +static int clk_divider_regmap_determine_rate(struct clk_hw *hw,
+> +				      struct clk_rate_request *req)
+> +{
+> +	struct clk_divider_regmap *divider = to_clk_divider_regmap(hw);
+> +
+> +	/* if read only, just return current value */
+> +	if (divider->flags & CLK_DIVIDER_READ_ONLY) {
+> +		u32 val;
+> +
+> +		val = clk_div_regmap_readl(divider) >> divider->shift;
+> +		val &= clk_div_mask(divider->width);
+> +
+> +		return divider_ro_determine_rate(hw, req, divider->table,
+> +						 divider->width,
+> +						 divider->flags, val);
+> +	}
+> +
+> +	return divider_determine_rate(hw, req, divider->table, divider->width,
+> +				      divider->flags);
+> +}
+> +
+> +static int clk_divider_regmap_set_rate(struct clk_hw *hw, unsigned long rate,
+> +				unsigned long parent_rate)
+> +{
+> +	struct clk_divider_regmap *divider = to_clk_divider_regmap(hw);
+> +	int value;
+> +	unsigned long flags = 0;
+> +	u32 val;
+> +
+> +	value = divider_get_val(rate, parent_rate, divider->table,
+> +				divider->width, divider->flags);
+> +	if (value < 0)
+> +		return value;
+> +
+> +	if (divider->lock)
+> +		spin_lock_irqsave(divider->lock, flags);
+> +	else
+> +		__acquire(divider->lock);
+> +
+> +	if (divider->flags & CLK_DIVIDER_HIWORD_MASK) {
+> +		val = clk_div_mask(divider->width) << (divider->shift + 16);
+> +	} else {
+> +		val = clk_div_regmap_readl(divider);
+> +		val &= ~(clk_div_mask(divider->width) << divider->shift);
+> +	}
+> +	val |= (u32)value << divider->shift;
+> +	clk_div_regmap_writel(divider, val);
+> +
+> +	if (divider->lock)
+> +		spin_unlock_irqrestore(divider->lock, flags);
+> +	else
+> +		__release(divider->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +const struct clk_ops clk_divider_regmap_ops = {
+> +	.recalc_rate = clk_divider_regmap_recalc_rate,
+> +	.round_rate = clk_divider_regmap_round_rate,
+> +	.determine_rate = clk_divider_regmap_determine_rate,
+> +	.set_rate = clk_divider_regmap_set_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_divider_regmap_ops);
+> +
+> +const struct clk_ops clk_divider_regmap_ro_ops = {
+> +	.recalc_rate = clk_divider_regmap_recalc_rate,
+> +	.round_rate = clk_divider_regmap_round_rate,
+> +	.determine_rate = clk_divider_regmap_determine_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_divider_regmap_ro_ops);
+> +
+> +struct clk_hw *__clk_hw_register_divider_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock)
+> +{
+> +	struct clk_divider_regmap *div;
+> +	struct clk_hw *hw;
+> +	struct clk_init_data init = {};
+> +	int ret;
+> +
+> +	if (clk_divider_flags & CLK_DIVIDER_HIWORD_MASK) {
+> +		if (width + shift > 16) {
+> +			pr_warn("divider value exceeds LOWORD field\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +
+> +	/* allocate the divider */
+> +	div = kzalloc(sizeof(*div), GFP_KERNEL);
+> +	if (!div)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	init.name = name;
+> +	if (clk_divider_flags & CLK_DIVIDER_READ_ONLY)
+> +		init.ops = &clk_divider_regmap_ro_ops;
+> +	else
+> +		init.ops = &clk_divider_regmap_ops;
+> +	init.flags = flags;
+> +	init.parent_names = parent_name ? &parent_name : NULL;
+> +	init.parent_hws = parent_hw ? &parent_hw : NULL;
+> +	init.parent_data = parent_data;
+> +	if (parent_name || parent_hw || parent_data)
+> +		init.num_parents = 1;
+> +	else
+> +		init.num_parents = 0;
+> +
+> +	/* struct clk_divider assignments */
+> +	div->regmap = regmap;
+> +	div->map_offset = map_offset;
+> +	div->shift = shift;
+> +	div->width = width;
+> +	div->flags = clk_divider_flags;
+> +	div->lock = lock;
+> +	div->hw.init = &init;
+> +	div->table = table;
+> +
+> +	/* register the clock */
+> +	hw = &div->hw;
+> +	ret = clk_hw_register(dev, hw);
+> +	if (ret) {
+> +		kfree(div);
+> +		hw = ERR_PTR(ret);
+> +	}
+> +
+> +	return hw;
+> +}
+> +EXPORT_SYMBOL_GPL(__clk_hw_register_divider_regmap);
+> +
+> +struct clk *clk_register_divider_regmap_table(struct device *dev, const char *name,
+> +		const char *parent_name, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock)
+> +{
+> +	struct clk_hw *hw;
+> +
+> +	hw =  __clk_hw_register_divider_regmap(dev, NULL, name, parent_name, NULL,
+> +					       NULL, flags, regmap, map_offset,
+> +					       shift, width, clk_divider_flags,
+> +					       table, lock);
+> +	if (IS_ERR(hw))
+> +		return ERR_CAST(hw);
+> +	return hw->clk;
+> +}
+> +EXPORT_SYMBOL_GPL(clk_register_divider_regmap_table);
+> +
+> +void clk_unregister_divider_regmap(struct clk *clk)
+> +{
+> +	struct clk_divider_regmap *div;
+> +	struct clk_hw *hw;
+> +
+> +	hw = __clk_get_hw(clk);
+> +	if (!hw)
+> +		return;
+> +
+> +	div = to_clk_divider_regmap(hw);
+> +
+> +	clk_unregister(clk);
+> +	kfree(div);
+> +}
+> +EXPORT_SYMBOL_GPL(clk_unregister_divider_regmap);
+> +
+> +/**
+> + * clk_hw_unregister_divider_regmap - unregister a clk divider
+> + * @hw: hardware-specific clock data to unregister
+> + */
+> +void clk_hw_unregister_divider_regmap(struct clk_hw *hw)
+> +{
+> +	struct clk_divider_regmap *div;
+> +
+> +	div = to_clk_divider_regmap(hw);
+> +
+> +	clk_hw_unregister(hw);
+> +	kfree(div);
+> +}
+> +EXPORT_SYMBOL_GPL(clk_hw_unregister_divider_regmap);
+> +
+> +static void devm_clk_hw_release_divider_regmap(struct device *dev, void *res)
+> +{
+> +	clk_hw_unregister_divider_regmap(*(struct clk_hw **)res);
+> +}
+> +
+> +struct clk_hw *__devm_clk_hw_register_divider_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock)
+> +{
+> +	struct clk_hw **ptr, *hw;
+> +
+> +	ptr = devres_alloc(devm_clk_hw_release_divider_regmap, sizeof(*ptr), GFP_KERNEL);
+> +	if (!ptr)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	hw = __clk_hw_register_divider_regmap(dev, np, name, parent_name, parent_hw,
+> +					      parent_data, flags, regmap, map_offset,
+> +					      shift, width, clk_divider_flags, table,
+> +					      lock);
+> +
+> +	if (!IS_ERR(hw)) {
+> +		*ptr = hw;
+> +		devres_add(dev, ptr);
+> +	} else {
+> +		devres_free(ptr);
+> +	}
+> +
+> +	return hw;
+> +}
+> +EXPORT_SYMBOL_GPL(__devm_clk_hw_register_divider_regmap);
+> diff --git a/drivers/clk/clk-gate-regmap.c b/drivers/clk/clk-gate-regmap.c
+> new file mode 100644
+> index 0000000000000..05d61c1c3c3df
+> --- /dev/null
+> +++ b/drivers/clk/clk-gate-regmap.c
+> @@ -0,0 +1,254 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/export.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/string.h>
+> +
+> +/**
+> + * DOC: basic gatable clock which can gate and ungate its output
+> + *
+> + * Traits of this clock:
+> + * prepare - clk_(un)prepare only ensures parent is (un)prepared
+> + * enable - clk_enable and clk_disable are functional & control gating
+> + * rate - inherits rate from parent.  No clk_set_rate support
+> + * parent - fixed parent.  No clk_set_parent support
+> + */
+> +
+> +static inline u32 clk_gate_regmap_readl(struct clk_gate_regmap *gate)
+> +{
+> +	u32 val;
+> +
+> +	regmap_read(gate->map, gate->map_offset, &val);
+> +
+> +	return val;
+> +}
+> +
+> +static inline void clk_gate_regmap_writel(struct clk_gate_regmap *gate, u32 val)
+> +{
+> +	regmap_write(gate->map, gate->map_offset, val);
+> +
+> +}
+> +
+> +/*
+> + * It works on following logic:
+> + *
+> + * For enabling clock, enable = 1
+> + *	set2dis = 1	-> clear bit	-> set = 0
+> + *	set2dis = 0	-> set bit	-> set = 1
+> + *
+> + * For disabling clock, enable = 0
+> + *	set2dis = 1	-> set bit	-> set = 1
+> + *	set2dis = 0	-> clear bit	-> set = 0
+> + *
+> + * So, result is always: enable xor set2dis.
+> + */
+> +static void clk_gate_regmap_endisable(struct clk_hw *hw, int enable)
+> +{
+> +	struct clk_gate_regmap *gate = to_clk_gate_regmap(hw);
+> +	int set = gate->flags & CLK_GATE_SET_TO_DISABLE ? 1 : 0;
+> +	unsigned long flags;
+> +	u32 reg;
+> +
+> +	set ^= enable;
+> +
+> +	if (gate->lock)
+> +		spin_lock_irqsave(gate->lock, flags);
+> +	else
+> +		__acquire(gate->lock);
+> +
+> +	if (gate->flags & CLK_GATE_HIWORD_MASK) {
+> +		reg = BIT(gate->bit_idx + 16);
+> +		if (set)
+> +			reg |= BIT(gate->bit_idx);
+> +	} else {
+> +		reg = clk_gate_regmap_readl(gate);
+> +
+> +		if (set)
+> +			reg |= BIT(gate->bit_idx);
+> +		else
+> +			reg &= ~BIT(gate->bit_idx);
+> +	}
+> +
+> +	clk_gate_regmap_writel(gate, reg);
+> +
+> +	if (gate->lock)
+> +		spin_unlock_irqrestore(gate->lock, flags);
+> +	else
+> +		__release(gate->lock);
+> +}
+> +
+> +static int clk_gate_regmap_enable(struct clk_hw *hw)
+> +{
+> +	clk_gate_regmap_endisable(hw, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static void clk_gate_regmap_disable(struct clk_hw *hw)
+> +{
+> +	clk_gate_regmap_endisable(hw, 0);
+> +}
+> +
+> +int clk_gate_regmap_is_enabled(struct clk_hw *hw)
+> +{
+> +	u32 reg;
+> +	struct clk_gate_regmap *gate = to_clk_gate_regmap(hw);
+> +
+> +	reg = clk_gate_regmap_readl(gate);
+> +
+> +	/* if a set bit disables this clk, flip it before masking */
+> +	if (gate->flags & CLK_GATE_SET_TO_DISABLE)
+> +		reg ^= BIT(gate->bit_idx);
+> +
+> +	reg &= BIT(gate->bit_idx);
+> +
+> +	return reg ? 1 : 0;
+> +}
+> +EXPORT_SYMBOL_GPL(clk_gate_regmap_is_enabled);
+> +
+> +const struct clk_ops clk_gate_regmap_ops = {
+> +	.enable = clk_gate_regmap_enable,
+> +	.disable = clk_gate_regmap_disable,
+> +	.is_enabled = clk_gate_regmap_is_enabled,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_gate_regmap_ops);
+> +
+> +struct clk_hw *__clk_hw_register_gate_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data,
+> +		unsigned long flags,
+> +		struct regmap *map, u8 map_offset, u8 bit_idx,
+> +		u8 clk_gate_flags, spinlock_t *lock)
+> +{
+> +	struct clk_gate_regmap *gate;
+> +	struct clk_hw *hw;
+> +	struct clk_init_data init = {};
+> +	int ret = -EINVAL;
+> +
+> +	if (clk_gate_flags & CLK_GATE_HIWORD_MASK) {
+> +		if (bit_idx > 15) {
+> +			pr_err("gate bit exceeds LOWORD field\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +
+> +	/* allocate the gate */
+> +	gate = kzalloc(sizeof(*gate), GFP_KERNEL);
+> +	if (!gate)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	init.name = name;
+> +	init.ops = &clk_gate_regmap_ops;
+> +	init.flags = flags;
+> +	init.parent_names = parent_name ? &parent_name : NULL;
+> +	init.parent_hws = parent_hw ? &parent_hw : NULL;
+> +	init.parent_data = parent_data;
+> +	if (parent_name || parent_hw || parent_data)
+> +		init.num_parents = 1;
+> +	else
+> +		init.num_parents = 0;
+> +
+> +	/* struct clk_gate_regmap assignments */
+> +	gate->map = map;
+> +	gate->map_offset = map_offset;
+> +	gate->bit_idx = bit_idx;
+> +	gate->flags = clk_gate_flags;
+> +	gate->lock = lock;
+> +	gate->hw.init = &init;
+> +
+> +	hw = &gate->hw;
+> +	if (dev || !np)
+> +		ret = clk_hw_register(dev, hw);
+> +	else if (np)
+> +		ret = of_clk_hw_register(np, hw);
+> +	if (ret) {
+> +		kfree(gate);
+> +		hw = ERR_PTR(ret);
+> +	}
+> +
+> +	return hw;
+> +
+> +}
+> +EXPORT_SYMBOL_GPL(__clk_hw_register_gate_regmap);
+> +
+> +struct clk *clk_register_gate_regmap(struct device *dev, const char *name,
+> +		const char *parent_name, unsigned long flags, struct regmap *map,
+> +		u8 map_offset, u8 bit_idx, u8 clk_gate_flags, spinlock_t *lock)
+> +{
+> +	struct clk_hw *hw;
+> +
+> +	hw = __clk_hw_register_gate_regmap(dev, NULL, name, parent_name, NULL,
+> +					   NULL, flags, map, map_offset, bit_idx,
+> +					   clk_gate_flags, lock);
+> +	if (IS_ERR(hw))
+> +		return ERR_CAST(hw);
+> +	return hw->clk;
+> +}
+> +EXPORT_SYMBOL_GPL(clk_register_gate_regmap);
+> +
+> +void clk_unregister_gate_regmap(struct clk *clk)
+> +{
+> +	struct clk_gate_regmap *gate;
+> +	struct clk_hw *hw;
+> +
+> +	hw = __clk_get_hw(clk);
+> +	if (!hw)
+> +		return;
+> +
+> +	gate = to_clk_gate_regmap(hw);
+> +
+> +	clk_unregister(clk);
+> +	kfree(gate);
+> +}
+> +EXPORT_SYMBOL_GPL(clk_unregister_gate_regmap);
+> +
+> +void clk_hw_unregister_gate_regmap(struct clk_hw *hw)
+> +{
+> +	struct clk_gate_regmap *gate;
+> +
+> +	gate = to_clk_gate_regmap(hw);
+> +
+> +	clk_hw_unregister(hw);
+> +	kfree(gate);
+> +}
+> +EXPORT_SYMBOL_GPL(clk_hw_unregister_gate_regmap);
+> +
+> +static void devm_clk_hw_release_gate_regmap(struct device *dev, void *res)
+> +{
+> +	clk_hw_unregister_gate_regmap(*(struct clk_hw **)res);
+> +}
+> +
+> +struct clk_hw *__devm_clk_hw_register_gate_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data,
+> +		unsigned long flags, struct regmap *map,
+> +		u8 map_offset, u8 bit_idx,
+> +		u8 clk_gate_flags, spinlock_t *lock)
+> +{
+> +	struct clk_hw **ptr, *hw;
+> +
+> +	ptr = devres_alloc(devm_clk_hw_release_gate_regmap, sizeof(*ptr), GFP_KERNEL);
+> +	if (!ptr)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	hw = __clk_hw_register_gate_regmap(dev, np, name, parent_name, parent_hw,
+> +					   parent_data, flags, map, map_offset,
+> +					   bit_idx, clk_gate_flags, lock);
+> +
+> +	if (!IS_ERR(hw)) {
+> +		*ptr = hw;
+> +		devres_add(dev, ptr);
+> +	} else {
+> +		devres_free(ptr);
+> +	}
+> +
+> +	return hw;
+> +}
+> +EXPORT_SYMBOL_GPL(__devm_clk_hw_register_gate_regmap);
+> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> index 2e6e603b74934..6f5cf6670b48d 100644
+> --- a/include/linux/clk-provider.h
+> +++ b/include/linux/clk-provider.h
+> @@ -8,6 +8,7 @@
+>   
+>   #include <linux/of.h>
+>   #include <linux/of_clk.h>
+> +#include <linux/regmap.h>
+>   
+>   /*
+>    * flags used across common struct clk.  these flags should only affect the
+> @@ -526,6 +527,7 @@ void of_fixed_clk_setup(struct device_node *np);
+>   struct clk_gate {
+>   	struct clk_hw hw;
+>   	void __iomem	*reg;
+> +	u8		map_offset;
+
+I thought the|map_offset|field would only be needed in the|struct 
+clk_gate_regmap|structure, not in|struct clk_gate|.
+
+
+>   	u8		bit_idx;
+>   	u8		flags;
+>   	spinlock_t	*lock;
+> @@ -538,6 +540,37 @@ struct clk_gate {
+>   #define CLK_GATE_BIG_ENDIAN		BIT(2)
+>   
+>   extern const struct clk_ops clk_gate_ops;
+> +
+> +#ifdef CONFIG_COMMON_CLK_GATE_REGMAP
+> +/**
+> + * struct clk_gate_regmap - gating clock via regmap
+> + *
+> + * @hw:		handle between common and hardware-specific interfaces
+> + * @map:	regmap controlling gate
+> + * @map_offset:	register offset within the regmap controlling gate
+> + * @bit_idx:	single bit controlling gate
+> + * @flags:	hardware-specific flags
+> + * @lock:	register lock
+> + *
+> + * Clock which can gate its output.  Implements .enable & .disable
+> + *
+> + * Flags:
+> + * See clk_gate
+> + */
+> +struct clk_gate_regmap {
+> +	struct clk_hw hw;
+> +	struct regmap	*map;
+> +	u8		map_offset;
+I would have preferred if the size of|map_offset|was larger, for example 
+using|u16|or|u32|instead of|u8|.
+
+Is there a specific reason for choosing|u8|? Using a larger type might 
+offer more flexibility for future use cases.
+
+
+Thanks again for your work!
+
+Best regards,
+
+Gabriel
+
+
+> +	u8		bit_idx;
+> +	u8		flags;
+> +	spinlock_t	*lock;
+> +};
+> +
+> +#define to_clk_gate_regmap(_hw) container_of(_hw, struct clk_gate_regmap, hw)
+> +
+> +extern const struct clk_ops clk_gate_regmap_ops;
+> +#endif
+> +
+>   struct clk_hw *__clk_hw_register_gate(struct device *dev,
+>   		struct device_node *np, const char *name,
+>   		const char *parent_name, const struct clk_hw *parent_hw,
+> @@ -663,6 +696,31 @@ void clk_unregister_gate(struct clk *clk);
+>   void clk_hw_unregister_gate(struct clk_hw *hw);
+>   int clk_gate_is_enabled(struct clk_hw *hw);
+>   
+> +#ifdef CONFIG_COMMON_CLK_GATE_REGMAP
+> +struct clk_hw *__clk_hw_register_gate_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data,
+> +		unsigned long flags,
+> +		struct regmap *map, u8 map_offset, u8 bit_idx,
+> +		u8 clk_gate_flags, spinlock_t *lock);
+> +struct clk_hw *__devm_clk_hw_register_gate_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data,
+> +		unsigned long flags,
+> +		struct regmap *map, u8 map_offset, u8 bit_idx,
+> +		u8 clk_gate_flags, spinlock_t *lock);
+> +struct clk *clk_register_gate_regmap(struct device *dev, const char *name,
+> +		const char *parent_name, unsigned long flags,
+> +		struct regmap *map, u8 map_offset, u8 bit_idx,
+> +		u8 clk_gate_flags, spinlock_t *lock);
+> +
+> +void clk_unregister_gate_regmap(struct clk *clk);
+> +void clk_hw_unregister_gate_regmap(struct clk_hw *hw);
+> +int clk_gate_regmap_is_enabled(struct clk_hw *hw);
+> +#endif
+> +
+>   struct clk_div_table {
+>   	unsigned int	val;
+>   	unsigned int	div;
+> @@ -736,6 +794,41 @@ struct clk_divider {
+>   extern const struct clk_ops clk_divider_ops;
+>   extern const struct clk_ops clk_divider_ro_ops;
+>   
+> +#ifdef CONFIG_COMMON_CLK_DIVIDER_REGMAP
+> +/**
+> + * struct clk_divider_regmap - adjustable divider clock via regmap
+> + *
+> + * @hw:		handle between common and hardware-specific interfaces
+> + * @map:	regmap containing the divider
+> + * @map_offset:	register offset within the regmap containing the divider
+> + * @shift:	shift to the divider bit field
+> + * @width:	width of the divider bit field
+> + * @table:	array of value/divider pairs, last entry should have div = 0
+> + * @lock:	register lock
+> + *
+> + * Clock with an adjustable divider affecting its output frequency.  Implements
+> + * .recalc_rate, .set_rate and .round_rate
+> + *
+> + * @flags:
+> + * See clk_divider
+> + */
+> +struct clk_divider_regmap {
+> +	struct clk_hw	hw;
+> +	struct regmap	*regmap;
+> +	u8		map_offset;
+> +	u8		shift;
+> +	u8		width;
+> +	u8		flags;
+> +	const struct clk_div_table	*table;
+> +	spinlock_t	*lock;
+> +};
+> +
+> +#define to_clk_divider_regmap(_hw) container_of(_hw, struct clk_divider_regmap, hw)
+> +
+> +extern const struct clk_ops clk_divider_regmap_ops;
+> +extern const struct clk_ops clk_divider_regmap_ro_ops;
+> +#endif
+> +
+>   unsigned long divider_recalc_rate(struct clk_hw *hw, unsigned long parent_rate,
+>   		unsigned int val, const struct clk_div_table *table,
+>   		unsigned long flags, unsigned long width);
+> @@ -972,6 +1065,33 @@ struct clk *clk_register_divider_table(struct device *dev, const char *name,
+>   void clk_unregister_divider(struct clk *clk);
+>   void clk_hw_unregister_divider(struct clk_hw *hw);
+>   
+> +#ifdef CONFIG_COMMON_CLK_DIVIDER_REGMAP
+> +struct clk_hw *__clk_hw_register_divider_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock);
+> +
+> +struct clk_hw *__devm_clk_hw_register_divider_regmap(struct device *dev,
+> +		struct device_node *np, const char *name,
+> +		const char *parent_name, const struct clk_hw *parent_hw,
+> +		const struct clk_parent_data *parent_data, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock);
+> +
+> +struct clk *clk_register_divider_regmap_table(struct device *dev,
+> +		const char *name, const char *parent_name, unsigned long flags,
+> +		struct regmap *regmap, u8 map_offset, u8 shift, u8 width,
+> +		u8 clk_divider_flags, const struct clk_div_table *table,
+> +		spinlock_t *lock);
+> +
+> +void clk_unregister_divider_regmap(struct clk *clk);
+> +void clk_hw_unregister_divider_regmap(struct clk_hw *hw);
+> +#endif
+> +
+>   /**
+>    * struct clk_mux - multiplexer clock
+>    *
 
