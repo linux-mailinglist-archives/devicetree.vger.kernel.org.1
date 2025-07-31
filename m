@@ -1,132 +1,130 @@
-Return-Path: <devicetree+bounces-201047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CB7B17264
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:50:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023F5B17271
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 15:51:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E6375A3409
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:50:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B996C621396
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 13:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554FA2D2382;
-	Thu, 31 Jul 2025 13:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5EA2D23A5;
+	Thu, 31 Jul 2025 13:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Es8c2Yq5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEin94r9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BDF2D191F
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 13:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAFE2D3A6E
+	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 13:50:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753969827; cv=none; b=MfVzvAf2wptZiyloBo0it7oFlXZbZyWhATYKngjrSs5qbuJTRgzZu1G/0Eyn6VToEy2dXf9U7pXfQEiZrXQJG9okOHdRRN9WTkkFCBibSa1ApIurbuwLuD2Cf6iSrC1SW22p1UCZUfz5G2PMkcThsImB2NYag9fJCWRoXuINjtU=
+	t=1753969835; cv=none; b=sgcCOwvxv9KAp/Z2Zy8OeKFe6tWeUoxV7JguME9c31wCG79OfpcLzTAwdBm6mF8fQrM2CE3LJe6DCYWR/xth/XhikWqy/BALbGI1nbkUsduV45cv6awT2A4KGUlnlPZTfyj2mXmFcfJkSWeLpYw9P+4Co9hnQAXWLYbWEj8CVms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753969827; c=relaxed/simple;
-	bh=Eqahkamg13uwXjpD2HqVe8PGEmKJKZBW1G6dF/3Hy5o=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=sizUfSEZqdPSRYN8nDrDjZHINCLvSmDuCt9+kG5c4xYq3/6GAomq/wM709Vgo1xCwV4SKGfjvierDIrZy1DU9S9Yz7tMQfYxhcuf9wZIY5uUHS7cRXwlx+eGH/RtkalEmebzdCERDqPXD2UtWKnOdUQkAzOoh2KCs8FlcZ0CJmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Es8c2Yq5; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250731135023euoutp0198b9c16f637018c89c7412e9669c8d4b~XWkLxrf-Q0157801578euoutp01m
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 13:50:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250731135023euoutp0198b9c16f637018c89c7412e9669c8d4b~XWkLxrf-Q0157801578euoutp01m
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1753969823;
-	bh=o9pup7lxdlJYj1WCugUFlZF6W3E8/CCvLfzm1q+9rG4=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=Es8c2Yq5qhXWnh/0jOSHEfENH34QtVdjTK6zOwwr7JeShukwtnWhRcZIzpddg6o8c
-	 LaMHg5suhHtsPW8u9ABHWFVay6v99hvJCQyd1HydwARUYO1Remj7fxaQ6H6HMnSJTp
-	 qHgPYXT9sFvjahYKSkhSRKZm6Pd/WrsMSRwwuvnM=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250731135022eucas1p25e396efeb6096c7359a029a775d0f21f~XWkLCUHpl0703007030eucas1p2m;
-	Thu, 31 Jul 2025 13:50:22 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250731135021eusmtip2a53c34b00c11d99c50154d27f553bfe5~XWkKBtDkV3049030490eusmtip2Z;
-	Thu, 31 Jul 2025 13:50:21 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Thu, 31 Jul 2025 15:50:15 +0200
-Subject: [PATCH v9 5/5] drm/imagination: Enable PowerVR driver for RISC-V
+	s=arc-20240116; t=1753969835; c=relaxed/simple;
+	bh=5lxg9xauO3MeUewoXkq0nnjCyipVEFYu1QiDLPz8HQw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r/fNvR8GhNTmq/WDEqWlcrL8Y9WJtf2/c0+dgElDDePQI5X2B1VWvvRDMEIvAp/bWckJ+TqcIEJxz7WF0WnP7UPB798DJWrofAl7S/yF7Ag1jjdBIXwqSU3KRzLsSEUxa79lsY5AqyllgprWn6uTjzyT/V00syCtUlX/RZ55aBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EEin94r9; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3b78294a233so346073f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 06:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1753969831; x=1754574631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ttbP0UASnXnUPdgY4WsQTV6ycnU/sxDT3VHkXEkJ2WI=;
+        b=EEin94r9Pn844Zyh73bk8QooVaAByAK/ZD/7zPUUo+j7284Sfrxmx30l9IGYkMmcSb
+         V/xHfU0EN0r1W0tX3NDWz9JMR4nHg63LYcY1B6ImfiwbxQIe/z0IURemAQb/gXI0CQZ8
+         qCJ01GRVsTdovMWPmd59wET10HDK++ut8KYh2DWNiAYZvyttrdak/Z1c5OOjXpxHzt7u
+         neru5XrEb/gK8iMxnNfzg1SGXss5o+Kpj8f6BrGJoreJf8YbDi4wCuNkzoK4RVC/KQvo
+         4YOCScHhGPPhJiAUlBQdgUBa2OADaVnXzIQGgS+TMyJspSAoPNoSfD+JZ8YCCxJopYjI
+         vMvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1753969831; x=1754574631;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ttbP0UASnXnUPdgY4WsQTV6ycnU/sxDT3VHkXEkJ2WI=;
+        b=t23KppNKjkCFzl295xuc9jwXtvXKzOmK3Pw4ico9VV7szBAIZpZoIaaBLoBAOMcx2X
+         wT3CWnWlQWUCw9lg7NAwSCHN6/cd16ggQ1Lgqvguu2O9xkSf7SDzu/VA/m0USzm4/bg0
+         cW/3cpUOYFIvv4l+lnXcWA0UG/FdPFx+/efbr9dfUPLIogWmDUmT8h6h4iqZiwzz0P6b
+         EIo2DgagTs/TcRL/FIiTsGav26ZpkH6kDbB6XSeoDfHaAdLXSBM5Ea49uhobubdLc+Th
+         FqeMQmjvnRhxDuLCRSi4RN7VWFPP2tY6vohK20kfq/pOuL98+eq1XC1Y/W2RDSXsrS61
+         m+Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCWOVIqiVWB4ZMznDcAGdzxUVMev3pLfZy8qeu1/BGU89zJ46lw3sBg8KEdrGKVOqFxsizqH5fleyuE7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3UwTeIo5BO/B17n3TR4cHWtNbpcUYVWUsGhS7pVNMKLi9/B5a
+	a2CRDdP8VISIYun8hgyYD7u3BVK6bYtT8lLVYmuesBhWFAynPZdo3yEu+Z0ERW+84f8=
+X-Gm-Gg: ASbGncsrYWybEtb9VEDnp7Pambvd9skKL1EN3zW+aJ57jPxhrRmG0QggqnUqpd5zxTC
+	YYgJAVzp9oGMJFikIdyXl3jJdimJ9zvOQT/t6RUXr6lVzEMURScCqumFh0IltQhTUbBETAeJGED
+	6bT2phBTku/I8c86BIeSbHMrdQ0sP5rfrRW9MonM/shsKWpWDL3Y6L7FbspV8tMtH52Kj/qhLey
+	KigG4jNKXmDikNIWVlPOcUK+FOnZxPFow5dSM3lQGfirhR3xB2Qhd/P4hHwSGO1roNYyxyXjV14
+	45dI2rTjvFSkV/446VSJtPpbpueX24rVgqYO+p4r9Qx8o5KUpRW1opwhAqglKvqU+Ns3dLu4vyg
+	aEjXop+zypmFzTVhqSQB0XcYnLrzMz1Q9Sp6YfxnrEU2Jav16Nked+vzPjKhojQ==
+X-Google-Smtp-Source: AGHT+IHe5lAzWjWDvJCFogBIEALW5gpfBqEkMqvYFQycFRK8V9Sj7RWuB+XR82yqOPaZ8o9Y1wrxQA==
+X-Received: by 2002:a05:6000:290a:b0:3b8:d082:41e with SMTP id ffacd0b85a97d-3b8d082070amr978411f8f.57.1753969831203;
+        Thu, 31 Jul 2025 06:50:31 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b79c453328sm2657408f8f.46.2025.07.31.06.50.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Jul 2025 06:50:30 -0700 (PDT)
+Message-ID: <b9e7954b-442f-459c-860f-909decd87979@linaro.org>
+Date: Thu, 31 Jul 2025 15:50:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250731-apr_14_for_sending-v9-5-c242dc1ffc14@samsung.com>
-In-Reply-To: <20250731-apr_14_for_sending-v9-0-c242dc1ffc14@samsung.com>
-To: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
-	<conor+dt@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Paul Walmsley
-	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson
-	<ulf.hansson@linaro.org>,  Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Drew Fustini <fustini@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org,  Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250731135022eucas1p25e396efeb6096c7359a029a775d0f21f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250731135022eucas1p25e396efeb6096c7359a029a775d0f21f
-X-EPHeader: CA
-X-CMS-RootMailID: 20250731135022eucas1p25e396efeb6096c7359a029a775d0f21f
-References: <20250731-apr_14_for_sending-v9-0-c242dc1ffc14@samsung.com>
-	<CGME20250731135022eucas1p25e396efeb6096c7359a029a775d0f21f@eucas1p2.samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: timer: renesas,rz-mtu3: Use #pwm-cells = <3>
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250527205823.377785-2-u.kleine-koenig@baylibre.com>
+ <fmn3mrcbih3oq6hgl45jipdofko46ur2sux5p4lf3nzlpahklr@3tm5molhdfdx>
+ <n4ivjvd6hq7phwkzbmvg2tqtejc6ufcybslnyh62kegjkhdvoj@cvfjwstrhlwh>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <n4ivjvd6hq7phwkzbmvg2tqtejc6ufcybslnyh62kegjkhdvoj@cvfjwstrhlwh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Several RISC-V boards feature Imagination GPUs that are compatible with
-the PowerVR driver. An example is the IMG BXM-4-64 GPU on the Lichee Pi
-4A board. This commit adjusts the driver's Kconfig dependencies to allow
-the PowerVR driver to be compiled on the RISC-V architecture.
+On 31/07/2025 11:41, Uwe Kleine-König wrote:
+> Hello Daniel,
+> 
+> On Mon, Jun 16, 2025 at 03:08:41PM +0200, Uwe Kleine-König wrote:
+>> On Tue, May 27, 2025 at 10:58:22PM +0200, Uwe Kleine-König wrote:
+>>> With the goal to unify all PWM bindings to use #pwm-cells = <3> update
+>>> the renesas,rz-mtu3 binding accordingly. Keep <2> documented as a
+>>> deprecated value at least until the in-tree device trees are fixed
+>>> accordingly.
+>>>
+>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+>>
+>> I would expect that with the positive feedback by Biju Das and Rob
+>> Herring it's on you to pick up this patch. Or would you prefer that I
+>> take it via PWM?
+> 
+> I understood your silence as "Please pick that patch up via your PWM
+> tree" and did that now.
 
-By enabling compilation on RISC-V, we expand support for these GPUs,
-providing graphics acceleration capabilities and enhancing hardware
-compatibility on RISC-V platforms.
-
-The RISC-V support is restricted to 64-bit systems (RISCV && 64BIT) as
-the driver currently has an implicit dependency on a 64-bit platform.
-
-Add a dependency on MMU to fix a build warning on RISC-V configurations
-without an MMU.
-
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- drivers/gpu/drm/imagination/Kconfig | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/imagination/Kconfig b/drivers/gpu/drm/imagination/Kconfig
-index 3bfa2ac212dccb73c53bdc2bc259bcba636e7cfc..682dd2633d0c012df18d0f7144d029b67a14d241 100644
---- a/drivers/gpu/drm/imagination/Kconfig
-+++ b/drivers/gpu/drm/imagination/Kconfig
-@@ -3,8 +3,9 @@
- 
- config DRM_POWERVR
- 	tristate "Imagination Technologies PowerVR (Series 6 and later) & IMG Graphics"
--	depends on ARM64
-+	depends on (ARM64 || RISCV && 64BIT)
- 	depends on DRM
-+	depends on MMU
- 	depends on PM
- 	select DRM_EXEC
- 	select DRM_GEM_SHMEM_HELPER
+Yep, sorry missed it.
 
 -- 
-2.34.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
