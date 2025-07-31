@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-200976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-200977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75541B16CD6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:42:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFE44B16CE5
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 09:50:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 822463A77E9
-	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:41:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 018591AA2388
+	for <lists+devicetree@lfdr.de>; Thu, 31 Jul 2025 07:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF8C29CB58;
-	Thu, 31 Jul 2025 07:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225C826A0BF;
+	Thu, 31 Jul 2025 07:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XWOBup87"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m4Tw0mMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB8629CB3E
-	for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 07:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1DEE55B;
+	Thu, 31 Jul 2025 07:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1753947711; cv=none; b=sE1tEpgjKbFS4skTjxHwXEjQn0+3DPkTCjALNT5uhAMWN2hLGphUU23+xtEyZUUqvXfm/GGZRDSbwCC9qqQlksUwNDoykpDml1eDmcAF7MPvljTb6C61ZFrynFBAZc4Kl7rRxUZKoSS0IegbM1WSzry0vonvUFQ3I8yC/arvqqk=
+	t=1753948252; cv=none; b=P6kvrETMWFDjYfAl/P6I4dFlX9bJ7fTsDsVD9w+1s4ClSwfJqXCVtFyIKwvtze97/IwDID43gNGvd/2J3pau73HJGmD8WtuOHOWg4LPhbxU6kxtvqh3X6uN3M1cETDqlI8JtY5GqtvE9ao/WxleKV4mzxJQX8Gk3lV+LcEOgOfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1753947711; c=relaxed/simple;
-	bh=FUk+hS8UV3ct/Zmfxgtd4RMf6XdZWYcVB8mHR4pLQno=;
+	s=arc-20240116; t=1753948252; c=relaxed/simple;
+	bh=ZKHM5hOwTJGpfFzOiTM0aPCuHi35bh1u0E6HYU23tdI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L5QpHW6Ifc55is06hkshyVRrfiXZuQgJW654W1BJe78zGNr8eU2Z9AbWiXfpC7rvcqfRXa2A1wzVyjOHbBWhgW+vB/ZCXGNJKN0PjCyRAvwUi6Jbh2F86rWQoraeAz/OQBpHJbPaZoSnuiokNe1m9tpeRKc/cuvaiPUgfjfP6OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XWOBup87; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b78315ff04so78965f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 00:41:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1753947708; x=1754552508; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rg8qJybgcN2QySvV7zBDwm9nfaW7SarG7SeeC2wAVGI=;
-        b=XWOBup87NdeToIdH0PJk9b6pVxx7RXm66HQ1olaNVoaKT0pnxulmW23pKYYd9xBdF5
-         ND2xp9UvHRMSDqqrn4n+StUZczbiNJ4Tw5Dduw78CXIpqlMavkjIKsC/+E7urbUDWzgj
-         IGmjUlrXPtzEe8VM7uH4GM+Dni7dESeLk+8dw9Oyu0F55TW9Aa7gyZ+MJfrfTSmEU0P5
-         tALTxdRwt+1JWdV5wVvX49V+8tGAUXRQgfBl32lzpqvMASWno6Te4TuQQr1ILwNPpoAA
-         3ifDJXzH4WuX2UgqVc4xgkfVpu22BuK0Az9I016RT52n9GblAT+5IrpOF0QL2WyKPclC
-         ExEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753947708; x=1754552508;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rg8qJybgcN2QySvV7zBDwm9nfaW7SarG7SeeC2wAVGI=;
-        b=ghMe+bVedNobbgsdKNkNGELlyt/ADJyeygS2AxYltGbm8IK2rgHUAPwFjkBSJeUW4j
-         rpjTLSaqp7lYiq7YbxTH3Liw0IPLQmm4qgYlNAVGp594a3dc7+0BVd55TnsS7UM0uAOa
-         o5SytSI6XW3jf/Fh2Yd4/XIcT1u8eMLc1/861TL4YWtgpL8x8/OyRRWHOicBkLAr/0bX
-         SZ1ygd8QTeLosfY8FYx9XfzrjqjzHSPJok1XGcuMO5aIjYsRyGUL8VAcX1tg0aVxDQET
-         xKC74BRI5j/kur3bPImyKvR04Aa7q+BI+PpEN70o+Q94T66BHl7lmkl7pJwCPgdArZ5n
-         JJxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOCKNGqteg5nJZD6Bmqw96lxb35zEXtSVTdm9nXsThrYt2+4GZXZWSY5lBZKFX+9QCeNxISAwj+AHn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxOrU1vMx2XoQZ9eZNi7UL3Xe9npHixHAn9VXrfYj9tQsXH6ds
-	MmxLQ++H+MzruqNWVR1LAM3z729/EyVZYlOZwsUTm+/jsCNIDeSH7NkJji09bEUcDna8L6ztScN
-	HQp9m
-X-Gm-Gg: ASbGncsUMxVaL4bp1ZZD+fYmmdJ3G76W4+sFwAL9mqkFXBlbxOA93ECv+pgHKaU1WDO
-	TglfZOpiJPJKUM1EAE18X6ZdmyvBPEEkVR+ukl2gC4Ee8JUmKktSwFwYWvPgQ8QmS5r5t+c3/Ty
-	synFgZCxMzPKJ8krbHpyAatuH5UO2v5TGF+3updzPFpH99xAwO5dRaHZLqsz/lGcbHf3XDLULhm
-	koKN5ecVC4ywqQ2D11aYo7+mGW+EpgwrQ63Tasi89xE1h1ymmHg1WopfbckSilECLK+nLg+PybW
-	QXf5Uc5ViTglFbExMpBXOWi+wOJ0BW+FzTmMt0xy7/uOE7YpYg8R6TtVE6JJczUOauSXH0Rs6y8
-	ddJw8P9rqc1IcVbaHsolNYygTwlcdGd+iN8b3VYgJxJ4Iey/v6UQpVNuqWgoasg==
-X-Google-Smtp-Source: AGHT+IF/E5/SuU8iV+jCxBPuKgOukgigRyRn5Br/+JMK7Nzazv6QWnZ9AFSrYVbUlRdayFffY5H5aw==
-X-Received: by 2002:a05:6000:250f:b0:3b4:58ff:ed1 with SMTP id ffacd0b85a97d-3b79503e0a1mr4697527f8f.52.1753947708090;
-        Thu, 31 Jul 2025 00:41:48 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3b79c3b9386sm1439883f8f.18.2025.07.31.00.41.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Jul 2025 00:41:47 -0700 (PDT)
-Message-ID: <858e9dd6-b3a7-4ff7-aaa1-02a140b93de8@linaro.org>
-Date: Thu, 31 Jul 2025 09:41:46 +0200
+	 In-Reply-To:Content-Type; b=UKHBumC0FeWDAiwTb80KJdwAgEZQpfX+qzbRfNnDFhCecMsTb+Ms+SDyehBft5zPOcFJ5aTOmfuurZtAh28FcDw68II5H1qmbOQnfghdwvWomRDWphJh45Cv/fUWjVLUSS83Es8MFVWOSp7uh6GpmDxX6b/0tYRJc5fbrs2Wz7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m4Tw0mMp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4737AC4CEEF;
+	Thu, 31 Jul 2025 07:50:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1753948251;
+	bh=ZKHM5hOwTJGpfFzOiTM0aPCuHi35bh1u0E6HYU23tdI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=m4Tw0mMpUYAyGn6drvs1U9hJB3TAxSu76hNpo+SpvRgreZbuN5xw/B6dlerAuaGmk
+	 rSDcYQiiqBQ05exNFWZAIbeGBfLegyLwgoFVb+Z/9iyBIY9l4Qs9P2pVuoHv3cIU79
+	 aPatplPiNOsKb1ESHZhNmAJpGnZtTRAv/FiyceWotfFXv0tnAtnSoEgUfSpYCh3daV
+	 O1+bowyT941Y8U9eab0hWIpBTA1/fhIwn4wXDpr6vgDWdfAfOFG0OhL2mrirHWgorg
+	 +2+FBHwvJwKnc4e5Q9MIibH+pyW70BV198l+QmY2uYcyX9Fvcfqeuym1vPuxXiIYK4
+	 rDAqVuxExL9Eg==
+Message-ID: <6011eb0d-e57e-4220-a9f1-c09fc4c6799e@kernel.org>
+Date: Thu, 31 Jul 2025 09:50:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +52,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 19/20] dt: bindings: fsl,vf610-pit: Add compatible for
  s32g2 and s32g3
-To: Rob Herring <robh@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring <robh@kernel.org>
 Cc: tglx@linutronix.de, S32@nxp.com, linux-kernel@vger.kernel.org,
  ghennadi.procopciuc@oss.nxp.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
@@ -94,69 +61,102 @@ Cc: tglx@linutronix.de, S32@nxp.com, linux-kernel@vger.kernel.org,
 References: <20250730082725.183133-1-daniel.lezcano@linaro.org>
  <20250730082725.183133-20-daniel.lezcano@linaro.org>
  <20250730233547.GA1887794-robh@kernel.org>
+ <858e9dd6-b3a7-4ff7-aaa1-02a140b93de8@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20250730233547.GA1887794-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <858e9dd6-b3a7-4ff7-aaa1-02a140b93de8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-Hi Rob,
-
-On 31/07/2025 01:36, Rob Herring wrote:
-> On Wed, Jul 30, 2025 at 10:27:21AM +0200, Daniel Lezcano wrote:
->> The Vybrid Family is a NXP (formerly Freescale) platform having a
->> Programmable Interrupt Timer (PIT). This timer is an IP found also on
->> the NXP Automotive platform S32G2 and S32G3.
->>
->> Add the compatible for those platforms to describe the timer.
->>
->> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->> ---
->>   .../devicetree/bindings/timer/fsl,vf610-pit.yaml          | 8 ++++++--
->>   1 file changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
->> index bee2c35bd0e2..2aac63a58bfd 100644
->> --- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
->> +++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
->> @@ -15,8 +15,12 @@ description:
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - fsl,vf610-pit
->> +    oneOf:
->> +      - const: fsl,vf610-pit
->> +      - const: nxp,s32g2-pit
+On 31/07/2025 09:41, Daniel Lezcano wrote:
 > 
-> These 2 can be a single enum. Otherwise,
-
-Do you mean this ?
-
-    enum:
-      - fsl,vf610-pit
-      - nxp,s32g2-pit
-
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
-Thanks for the review
-
->> +      - items:
->> +          - const: nxp,s32g3-pit
->> +          - const: nxp,s32g2-pit
->>   
->>     reg:
->>       maxItems: 1
->> -- 
->> 2.43.0
+> Hi Rob,
+> 
+> On 31/07/2025 01:36, Rob Herring wrote:
+>> On Wed, Jul 30, 2025 at 10:27:21AM +0200, Daniel Lezcano wrote:
+>>> The Vybrid Family is a NXP (formerly Freescale) platform having a
+>>> Programmable Interrupt Timer (PIT). This timer is an IP found also on
+>>> the NXP Automotive platform S32G2 and S32G3.
+>>>
+>>> Add the compatible for those platforms to describe the timer.
+>>>
+>>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>>> ---
+>>>   .../devicetree/bindings/timer/fsl,vf610-pit.yaml          | 8 ++++++--
+>>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>> index bee2c35bd0e2..2aac63a58bfd 100644
+>>> --- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>> +++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+>>> @@ -15,8 +15,12 @@ description:
+>>>   
+>>>   properties:
+>>>     compatible:
+>>> -    enum:
+>>> -      - fsl,vf610-pit
+>>> +    oneOf:
+>>> +      - const: fsl,vf610-pit
+>>> +      - const: nxp,s32g2-pit
 >>
+>> These 2 can be a single enum. Otherwise,
+> 
+> Do you mean this ?
+> 
+>     enum:
+>       - fsl,vf610-pit
+>       - nxp,s32g2-pit
+> 
+Yes.
+And also please correct the subject prefix to match subsystem, git log
+--oneline or:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
