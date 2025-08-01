@@ -1,132 +1,146 @@
-Return-Path: <devicetree+bounces-201303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A807B18036
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:31:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F6FB1803C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:32:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00F1B1C28084
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:32:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 295411C284A0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:32:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE24241691;
-	Fri,  1 Aug 2025 10:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECA3239E7C;
+	Fri,  1 Aug 2025 10:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="G2amnp8H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eNKtvjkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3FF23C51B
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 10:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862C922E402
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 10:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754044273; cv=none; b=V+3DPpvWzWjhjjfitaKx55DiT1hCliP4byvHeVSIVPmfU1lYbZoUi5QGBpmWetScDTNtL6FdrOe9u1mrXCaY+sIBpDAVlb2vID7CpskTU3BSX9OV0X+dXYiBEvzR5jlk7/eStjZ4vfoiJS16mHcweIA41fcQFY6ZKw0qJ0aD5eM=
+	t=1754044296; cv=none; b=qbp6mjjYwu5CwtIOAHWdaBFhmlvIQvW5rTXBEMzQ0h7/DuvmZ0IiQ3oylQocrUtZGpJQiEuoF9Iwp/TRvaiWJQTiOmiLW0R3dRNrPBnODw8Y2Uz/KAUPvULZKyDWT5lZE3T0GmUwRwB0PNcyj2+FAtm9BK6uGM8vwzwF0Nm0YcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754044273; c=relaxed/simple;
-	bh=Eqahkamg13uwXjpD2HqVe8PGEmKJKZBW1G6dF/3Hy5o=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=ETfCelTYw7OfDiCazEXc01Zul61VWj4JWcYAtMEthzeHKHBPOuEbrA4vUKVUZqkPHlw10IcWRDzKxRMeYgbKwfzKmKERpItvkvOgkdmfCiztw95Pyobewr6hvRFCSfn0Lvw/kPCF+hizsL5kt9+5Vwc4EYHvqkrXdqmpPXqiz4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=G2amnp8H; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250801103109euoutp017b6af1b18a3d1c3c43e56d4b87198e25~XnfhcC6fx2547425474euoutp01e
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 10:31:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250801103109euoutp017b6af1b18a3d1c3c43e56d4b87198e25~XnfhcC6fx2547425474euoutp01e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754044269;
-	bh=o9pup7lxdlJYj1WCugUFlZF6W3E8/CCvLfzm1q+9rG4=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=G2amnp8Hi8sG4cTYJibb5hzUdFwgnjKAscAJApCu6Z1R+BGx1re3mfb8H6uV3B+SK
-	 PVrF//854ldoqmHayIz6SODumIyWCKXaYBOpAe3qU4xuvw3aTc5xWkojHxrj/M0wOh
-	 eAwgh7JypDR1pPyh5mNMoVbdahlU9WfrbxUctJNA=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250801103109eucas1p29ad9dc63368058db925aa341bbb16ac2~Xnfg1eEDF2329723297eucas1p2C;
-	Fri,  1 Aug 2025 10:31:09 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250801103107eusmtip15820c98c68101a33a97e84008a0e1778~XnffmkgEc1169111691eusmtip1i;
-	Fri,  1 Aug 2025 10:31:07 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Fri, 01 Aug 2025 12:31:04 +0200
-Subject: [PATCH v10 4/4] drm/imagination: Enable PowerVR driver for RISC-V
+	s=arc-20240116; t=1754044296; c=relaxed/simple;
+	bh=PTbICM3KD1c/dD+m/u0pUtSXhH+t/xx6pVlt+7dCQ0E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E96LMD1S8spjBJ0AaAsTXr26igtE/QNzAd+eW9DoXph49EgB8LllN/GuFyYo/BtNRanflzSsglTWaN93oMRphhJow+sQqZsmjK3uf02x9daQ8VWvl42xZWygWE5WttEqRkjnbaYvFNfktB6XRwzmdB9siux3c7WWR8nYhT+kfX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eNKtvjkd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5718l7fd018752
+	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 10:31:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iAOI0lIToQBsUNmMs7cWc7T3lg4pZZarBoVCwRquAEs=; b=eNKtvjkdSEG8Njxt
+	42CIm+sYEB4KP7xN5xai1SgDtQAmT/OzYvG6B+xgcZ2Y6LGLfqil2uKir/hXVRx5
+	/bvmZ5SW8mqJYWh6DkKqTx7r19qzocersKz9Daw/gSgpmdjdwzxl5OQmLdZKUHGf
+	u/RydiUfEXkHinCUS1bdR9msnhPRwXE9fnToeIsIrXQN2K7GqmWBYuylksWcmPhY
+	X6oHWwjYfHuR+T90eUHh2+aP/Bt2GlOeT/TuP8SjAu2uqv7XHCaZE3bDSLkPYNmm
+	0rKzVbZok6spl9ZpjvJ8ubGXdLSe0rGkKxkb/pZC07z8f0V4DJK59HkGg22vb8Rh
+	Xd7gHw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 487jwgg1q7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 10:31:32 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4aefe21386fso1200881cf.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 03:31:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754044291; x=1754649091;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iAOI0lIToQBsUNmMs7cWc7T3lg4pZZarBoVCwRquAEs=;
+        b=JNYN87FGK1jGzdlIP0Evb1gnggKd5V42BaPRe3zXH1QpXFu+NYCJDqRXBaxo3AvChy
+         sABPGla2aFPdoyjRFTvC554jNeRG0DkRftzeW2N/i+5OukxrVBh7WkHIIk/jatC4/vpk
+         JJqibXkbNXww+ZsqjkvHWiSvow29Vbk9r0DjJfKrB4ZFukv6jpLN8zfFCW/rOyfUIr/R
+         9yoVNJ8oM+nYVThqKuzP0R5DE5lrudgCt1c50ckvtD9WuP5gXrUsJgRDgnR9rY+3pDKM
+         V2JsiPwOEas7Gd3oZVbO5OGFWjXb02QFojnIAjLi6740PDTcRWMljfN4/xuBCm3gka5k
+         boag==
+X-Forwarded-Encrypted: i=1; AJvYcCUuBdOIT3SCFYyE7wIH5oFVGERUpkYW+mF8LHtUJQ2FWT18fB+C6sq4Hn28RXZ9MmuCZOBIu0HtHX3r@vger.kernel.org
+X-Gm-Message-State: AOJu0YylSunnpcngjRQnKZSFeOY/a1mXd+VL30Le+e3ZAp4yxOhnHJPC
+	v7WT7ZajA5oPCuQJHsvjBcTfyNwCwXlquqoXkco3zgJthHb26c7269r/q2/NH+WOBSx9e65hkpM
+	qyNs6SnAaLKLtR8L/DNwc2/DeopBGlIZsYno/Hpe9kTafdT65ZxUpYmijodgjdG0s
+X-Gm-Gg: ASbGncs5EUsj+2l+5bl2wRsuOGsT7VtNHkCvASR2frphsAosLOQPraQZ0NYAjpQWcBE
+	x42+PMfVh9cMJqzts1fV2BE1rvo4v2bDaTJGjdsHWqS0X1bynnpikdHIY++w0GDVxl2BM4JFsUb
+	rqqDF7mU87+jaLL66IoTxnebL2BxsV0W3pUze733Q1vhN9koag0lS/5oLrTBZxnkWx7oZaRcGaN
+	YwRe5LwgWYfWgsB7oEc2BDnwTVzTYYlfkwUGTvuF+ttJsQy3VIx6mwB6yerTckIWBSLRN+0KP+h
+	u9nx6MnPiyXlX8Z0uNBeELC/9+DPDSrREp2XtRBrkMYuhrtKn3deEJZGN/b51l8BTyr6JZXsaj6
+	FdXCEZ0Dm1dD1UuWA7Q==
+X-Received: by 2002:a05:622a:199d:b0:4a9:7fc9:d20d with SMTP id d75a77b69052e-4aedb96542amr77804241cf.5.1754044291334;
+        Fri, 01 Aug 2025 03:31:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGMBGkw0kJFBAVj6S3Vh+cLP8EoE+iTjRUAr+2UL7FVHEhgI/GeG8+ip/Jd2M6IsRnvbxbPiQ==
+X-Received: by 2002:a05:622a:199d:b0:4a9:7fc9:d20d with SMTP id d75a77b69052e-4aedb96542amr77804021cf.5.1754044290720;
+        Fri, 01 Aug 2025 03:31:30 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af919e96050sm267725666b.0.2025.08.01.03.31.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Aug 2025 03:31:30 -0700 (PDT)
+Message-ID: <bceeb55c-daaf-411f-8bf9-9f2dd06527c7@oss.qualcomm.com>
+Date: Fri, 1 Aug 2025 12:31:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Deduplicate
+ shared entries
+To: Krzysztof Kozlowski <krzk@kernel.org>, david@ixit.cz,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250801-sdm845-msmid-v2-0-9f44d125ee44@ixit.cz>
+ <20250801-sdm845-msmid-v2-2-9f44d125ee44@ixit.cz>
+ <a51a9efb-67b1-4607-bcf3-8be70a9d1c24@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a51a9efb-67b1-4607-bcf3-8be70a9d1c24@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250801-apr_14_for_sending-v10-4-e85802902a29@samsung.com>
-In-Reply-To: <20250801-apr_14_for_sending-v10-0-e85802902a29@samsung.com>
-To: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
-	<conor+dt@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Paul Walmsley
-	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson
-	<ulf.hansson@linaro.org>,  Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Drew Fustini <fustini@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org,  Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250801103109eucas1p29ad9dc63368058db925aa341bbb16ac2
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250801103109eucas1p29ad9dc63368058db925aa341bbb16ac2
-X-EPHeader: CA
-X-CMS-RootMailID: 20250801103109eucas1p29ad9dc63368058db925aa341bbb16ac2
-References: <20250801-apr_14_for_sending-v10-0-e85802902a29@samsung.com>
-	<CGME20250801103109eucas1p29ad9dc63368058db925aa341bbb16ac2@eucas1p2.samsung.com>
+X-Authority-Analysis: v=2.4 cv=WvgrMcfv c=1 sm=1 tr=0 ts=688c9784 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gv1wxAXu273yGl5PTI0A:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: IRZkvNvN5dBlXj8DtvCyv013hUGHfCdu
+X-Proofpoint-GUID: IRZkvNvN5dBlXj8DtvCyv013hUGHfCdu
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA3NyBTYWx0ZWRfX84uUfwNPnn2l
+ rluRn6I4tGXLOMrp6BxNR+x+LOfO9ZqwHsaPXMtA+qSKZbvHbNXlNJSlFu6btkG8qDm/loIqupE
+ KdmfUV08Pmuz9DTeEtg3Hv8OmT9rz6c//V1sUIfMycknG83TjzywKD0dBIvX8kOP+2rlvX/Pg6b
+ RE0BAXHyInnOTyDrY1378BCF8J04M5GyRd8J+gRiWUBY/Up1VPeDQawEcRt3auYSd8GHnGZMPiZ
+ RE3uNSQ6S3sBIu0utPwiZRpkgbJFF3KamOsIzCns1KXvsizR4+EJCr9ee/rgEQnRj+k/96zX/qN
+ OIA1thCje7G1pqlhWJTFXr58Qb98mmLXGp8fLfnVhEJZkf/yiW0PuXfJaS4+PtRI/IL2EEx3XOY
+ x0YWmHOk8P4Xt8fN/qPiPBGKmWd3s4/lFDhSXykWZTMnsVsMndOgMzsJ7hQocCllCwHF0PTv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-01_03,2025-07-31_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 suspectscore=0 lowpriorityscore=0
+ spamscore=0 mlxscore=0 impostorscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=608 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2508010077
 
-Several RISC-V boards feature Imagination GPUs that are compatible with
-the PowerVR driver. An example is the IMG BXM-4-64 GPU on the Lichee Pi
-4A board. This commit adjusts the driver's Kconfig dependencies to allow
-the PowerVR driver to be compiled on the RISC-V architecture.
+On 8/1/25 11:08 AM, Krzysztof Kozlowski wrote:
+> On 01/08/2025 10:21, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> Use the definition for qcom,msm-id and put them into the common dtsi.
+>>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+> 
+> Interesting that they use same ID...
 
-By enabling compilation on RISC-V, we expand support for these GPUs,
-providing graphics acceleration capabilities and enhancing hardware
-compatibility on RISC-V platforms.
+msm-id is the SoC identifier
 
-The RISC-V support is restricted to 64-bit systems (RISCV && 64BIT) as
-the driver currently has an implicit dependency on a 64-bit platform.
-
-Add a dependency on MMU to fix a build warning on RISC-V configurations
-without an MMU.
-
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- drivers/gpu/drm/imagination/Kconfig | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/imagination/Kconfig b/drivers/gpu/drm/imagination/Kconfig
-index 3bfa2ac212dccb73c53bdc2bc259bcba636e7cfc..682dd2633d0c012df18d0f7144d029b67a14d241 100644
---- a/drivers/gpu/drm/imagination/Kconfig
-+++ b/drivers/gpu/drm/imagination/Kconfig
-@@ -3,8 +3,9 @@
- 
- config DRM_POWERVR
- 	tristate "Imagination Technologies PowerVR (Series 6 and later) & IMG Graphics"
--	depends on ARM64
-+	depends on (ARM64 || RISCV && 64BIT)
- 	depends on DRM
-+	depends on MMU
- 	depends on PM
- 	select DRM_EXEC
- 	select DRM_GEM_SHMEM_HELPER
-
--- 
-2.34.1
-
+Konrad
 
