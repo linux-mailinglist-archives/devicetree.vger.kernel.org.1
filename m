@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-201241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0D6B17DBD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:39:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F302BB17DC2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4518F1C280AE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:39:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 780DC188420E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3A91FECDD;
-	Fri,  1 Aug 2025 07:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BD6B1DF270;
+	Fri,  1 Aug 2025 07:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CGvqrRC1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="R5E3/LB4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7AE71FE451;
-	Fri,  1 Aug 2025 07:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747EB2A8C1;
+	Fri,  1 Aug 2025 07:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754033947; cv=none; b=t+DZ8ujvDSWqG6WvvKWn8lA35W8luRIoONQsI8UyBWRRG37j9fSYau0dJcgswxjHxN/eiAjkLbhDzoRrrWqDV2EdaT/E8Pd04O2mIJ0jBjuAMQreRR/QTRSTTMRf13b2QGddwuWByMlkxB+Qxa/h1fZS8pa2vp7kt5YHnTrSxrs=
+	t=1754034113; cv=none; b=avwEnneacmsxmq7qtz4qM/5oFSrCt4excsHaxzmFXylla7c/vBZE66M9adXKUdhIzdIqv2+dsx1/qZyGPGP5K7PJu4hw5Zyj5S/B61OdZmRtlaxljgCMFr1/hBNTrLJz9YDWWCsyLlw6o/NL8OYvNYRDft9Y8eBZI+CUD0YuRYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754033947; c=relaxed/simple;
-	bh=wAiPTqgnauUCUB9qcLcvnu642yRlTqzNKg/FCLXG3hw=;
+	s=arc-20240116; t=1754034113; c=relaxed/simple;
+	bh=8GO2QlwNB/o3RC81iMx20QIWHNAykTNaGMaMqbeyk1U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IDYv0B3sORebq/YbQGL2z0RMBtv0gcYaf/GhS+wE4pQ6XXUCL6TyOddbDkTWQQk856PJ4PF457BeFnhBkNCjA9M0g0aFs3IEbMwVLp+H5ezY9vk/Of+Yh6rvN2OErSy4SpAeit8W5szTSs8hbRnGTrZznsOz49/+dw6ILFRUwdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CGvqrRC1; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=gj6cri+A8AoCxeQuqKEwRvxue28xDfaXf4Y8c26gcUEIue1gezCdoXe/0z5vllny7F/0iArmPk/iT44hydgrsJPXUNmuFjzji+NSEzmYFVf+oSpM0LCyJ29O8jvJIKGfEmjYcobjGpSQ2cWeMbpswHUTbwfL6evl9mSj/472ntk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=R5E3/LB4; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754033944;
-	bh=wAiPTqgnauUCUB9qcLcvnu642yRlTqzNKg/FCLXG3hw=;
+	s=mail; t=1754034109;
+	bh=8GO2QlwNB/o3RC81iMx20QIWHNAykTNaGMaMqbeyk1U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CGvqrRC11iEJ2l+58kHuA3tF7uQu74MzunG8cZcQ0+6z8Ggxki17DOYY4LX3MvqgO
-	 wV8P8NPAHQpy0rZyOSwe3NLVhQhg82zoJnIwnm0cM6qga9YySzWL/KRuhunzPerzsg
-	 1vCNLWUp9Ro9rndQThheFpX67sn6oS4EtbJsS4qvTPhOf8q9Nn4xeEtsC8mHYKlNQK
-	 Gi9xY+EsIDII0tOrshYm4xWcbRJZDg2bMtV2c31hzYn+PGcBUFnOAZE2wzPRYgwlF+
-	 KY7uB0wAiH7BPKqWlXVo2wLQT1EsjZQiH+Bpxh1Ke7FFPsGmzSArfgK3Mm9pCso4MI
-	 wTQrugt6vGF5g==
+	b=R5E3/LB4VV7xmygCgusprQR3KREteK8ri1mfpXvKRyrORPH4Di2Jh0yYFoWrbNi9g
+	 g9xnSL7V2ohJ5ij/Oxzxzo9dOmF+Yw41HC1cqBU17ZP596T+tPj/5TiJXySQVjJfVj
+	 VAFB1kQKRmAzDPlcRY336dJ0b8Et60sobK3RqV8fvnVs9pOk4C6iaeHWDpv9K4o34F
+	 t3uE1aT+n4HN7nEaPC8DhXmt5TV8ytLpj1/Ber1Dtt98FTfVC6ZOGw1N3bNDiLUszH
+	 OdlD50AAzDMtJqmfQoYTnwuOTZb5ZxNXzn2NWcd7GWwaWSZwANDzzM6vdJI31HbP0J
+	 XAu7E0dMFA9Hg==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C55617E0202;
-	Fri,  1 Aug 2025 09:39:03 +0200 (CEST)
-Message-ID: <9b70908a-d664-4f2c-8fd1-3ca280fe7381@collabora.com>
-Date: Fri, 1 Aug 2025 09:39:02 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 047EF17E0202;
+	Fri,  1 Aug 2025 09:41:48 +0200 (CEST)
+Message-ID: <e2e2141e-1e58-492e-b151-951eff13dc93@collabora.com>
+Date: Fri, 1 Aug 2025 09:41:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] soc:mediatek mt8189: Porting driver for spmi/pwrap
+Subject: Re: [PATCH 1/3] dt-bindings: mediatek : add binding for pwrap,spmi
 To: "niklaus.liu" <niklaus.liu@mediatek.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
@@ -69,123 +69,60 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20250801070913.3109-1-niklaus.liu@mediatek.com>
- <20250801070913.3109-3-niklaus.liu@mediatek.com>
+ <20250801070913.3109-2-niklaus.liu@mediatek.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250801070913.3109-3-niklaus.liu@mediatek.com>
+In-Reply-To: <20250801070913.3109-2-niklaus.liu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 01/08/25 08:39, niklaus.liu ha scritto:
-> Modify spmi/pwrap driver for mt8189
-> 
-> Signed-off-by: niklaus.liu <niklaus.liu@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-pmic-wrap.c | 27 +++++++++++++++++++++++++++
->   drivers/spmi/spmi-mtk-pmif.c         |  3 +++
->   2 files changed, 30 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> index 0bcd85826375..e3e8234e29a0 100644
-> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> @@ -1087,6 +1087,17 @@ static const int mt8183_regs[] = {
->   	[PWRAP_WACS2_VLDCLR] =			0xC28,
->   };
->   
-> +static int mt8189_regs[] = {
-> +	[PWRAP_INIT_DONE2] =		0x0,
-> +	[PWRAP_TIMER_EN] =		0x3e4,
-> +	[PWRAP_INT_EN] =		0x450,
-> +	[PWRAP_WACS2_CMD] =		0x880,
-> +	[PWRAP_SWINF_2_WDATA_31_0] =	0x884,
-> +	[PWRAP_SWINF_2_RDATA_31_0] =	0x894,
-> +	[PWRAP_WACS2_VLDCLR] =		0x8a4,
-> +	[PWRAP_WACS2_RDATA] =		0x8a8,
-> +};
+> Add pwrap,spmi compatible for mt8189  to the binding.
 
-You can fully reuse mt8195_regs, as mt8189 has the same layout.
+The changes look good, but you have to split the commit in two; one for adding the
+compatible to mediatek,pwrap.yaml and one for adding it to the other.
 
-> +
->   static const int mt8195_regs[] = {
->   	[PWRAP_INIT_DONE2] =		0x0,
->   	[PWRAP_STAUPD_CTRL] =		0x4C,
-> @@ -1324,6 +1335,7 @@ enum pwrap_type {
->   	PWRAP_MT8173,
->   	PWRAP_MT8183,
->   	PWRAP_MT8186,
-> +	PWRAP_MT8189,
->   	PWRAP_MT8195,
->   	PWRAP_MT8365,
->   	PWRAP_MT8516,
-> @@ -1854,6 +1866,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *wrp)
->   		break;
->   	case PWRAP_MT6873:
->   	case PWRAP_MT8183:
-> +	case PWRAP_MT8189:
->   	case PWRAP_MT8195:
->   		break;
->   	}
-> @@ -2393,6 +2406,19 @@ static const struct pmic_wrapper_type pwrap_mt8183 = {
->   	.init_soc_specific = pwrap_mt8183_init_soc_specific,
->   };
->   
-> +static struct pmic_wrapper_type pwrap_mt8189 = {
-> +	.regs = mt8189_regs,
-> +	.type = PWRAP_MT8189,
-> +	.arb_en_all = 0x777f,
-> +	.int_en_all = 0x180000,
-> +	.int1_en_all = 0,
-> +	.spi_w = PWRAP_MAN_CMD_SPI_WRITE,
-> +	.wdt_src = PWRAP_WDT_SRC_MASK_ALL,
-> +	.caps = PWRAP_CAP_ARB,
-
-Why are you avoiding to enable the INT1 interrupt on MT8189?
-
-Is this working around a hardware bug, or did you simply forget to enable it?
-I think you should really enable it, which means....
-
-> +	.init_reg_clock = pwrap_common_init_reg_clock,
-> +	.init_soc_specific = NULL,
-> +};
-> +
->   static const struct pmic_wrapper_type pwrap_mt8195 = {
->   	.regs = mt8195_regs,
->   	.type = PWRAP_MT8195,
-> @@ -2456,6 +2482,7 @@ static const struct of_device_id of_pwrap_match_tbl[] = {
->   	{ .compatible = "mediatek,mt8173-pwrap", .data = &pwrap_mt8173 },
->   	{ .compatible = "mediatek,mt8183-pwrap", .data = &pwrap_mt8183 },
->   	{ .compatible = "mediatek,mt8186-pwrap", .data = &pwrap_mt8186 },
-> +	{ .compatible = "mediatek,mt8189-pwrap", .data = &pwrap_mt8189 },
-
-...means that you don't even need to add a new compatible in this list, because
-the MT8195 compatible can be reused.
-
-You only have to add the MT8189 compatible to the bindings, so that you are
-allowed to specify in your devicetree node
-
-compatible = "mediatek,mt8189-pwrap", "mediatek,mt8195-pwrap";
-
->   	{ .compatible = "mediatek,mt8195-pwrap", .data = &pwrap_mt8195 },
->   	{ .compatible = "mediatek,mt8365-pwrap", .data = &pwrap_mt8365 },
->   	{ .compatible = "mediatek,mt8516-pwrap", .data = &pwrap_mt8516 },
-> diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
-> index 160d36f7d238..00420568afef 100644
-> --- a/drivers/spmi/spmi-mtk-pmif.c
-> +++ b/drivers/spmi/spmi-mtk-pmif.c
-> @@ -530,6 +530,9 @@ static const struct of_device_id mtk_spmi_match_table[] = {
->   	{
->   		.compatible = "mediatek,mt6873-spmi",
->   		.data = &mt6873_pmif_arb,
-> +	}, {
-> +		.compatible = "mediatek,mt8189-spmi",
-> +		.data = &mt8195_pmif_arb,
-
-This change is useless. Just add the compatible to the bindings so that you
-can specify
-
-compatible = "mediatek,mt8189-spmi", "mediatek,mt8195-spmi";
+Besides, please check the git log for both yaml files and:
+  1. Use the same prefixes that you find in there for your new commit titles;
+  2. Add a commit description that describes your change, e.g.:
+     "Add a new compatible string for MT8189; this SoC's {spmi, pwrap} IP is fully
+      compatible with the one found in the MT8195 SoC."
 
 Regards,
 Angelo
+
+> 
+> Signed-off-by: niklaus.liu <niklaus.liu@mediatek.com>
+> ---
+>   .../devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml         | 1 +
+>   Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml    | 1 +
+>   2 files changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> index 4737e5f45d54..c93cea9f203c 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
+> @@ -52,6 +52,7 @@ properties:
+>         - items:
+>             - enum:
+>                 - mediatek,mt8188-pwrap
+> +              - mediatek,mt8189-pwrap
+>             - const: mediatek,mt8195-pwrap
+>             - const: syscon
+>   
+> diff --git a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+> index 7f0be0ac644a..dc61d88008a9 100644
+> --- a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+> +++ b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+> @@ -26,6 +26,7 @@ properties:
+>             - enum:
+>                 - mediatek,mt8186-spmi
+>                 - mediatek,mt8188-spmi
+> +              - mediatek,mt8189-spmi
+>             - const: mediatek,mt8195-spmi
+>   
+>     reg:
+
+
+
 
