@@ -1,218 +1,128 @@
-Return-Path: <devicetree+bounces-201282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5C0B17F3B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:27:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECCDAB17F4E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:30:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E7BA1C222E4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:28:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28C4616FACB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22DB2264A1;
-	Fri,  1 Aug 2025 09:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3442264A8;
+	Fri,  1 Aug 2025 09:30:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qrPrHVgS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nhIG7ViP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC45224B15
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 09:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F4E21D3F6
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 09:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754040465; cv=none; b=L4VUSpRekabOCXWMzD/QZVdx2UUE8rKk6FdysN7Ekj/kdczsu4QRb3mDaPlvl62GhsEdSxgy+SgopevNAq1MGSWSwATD1xoWpblv/yLCgFMmIu4ygwrFHgiNmmK0+NHc1JmmcrJP1sHJ/JHZR0yjuznYA8qC3TbJb0/2IpDhw8U=
+	t=1754040649; cv=none; b=TVcN4FTSTq4/Qi51Vi1MbTZZ+jtosLnFEO9XprM1F+n7zEc8yKQewz9kC5W3yU8mt8b6lO9vFRwwcl9qkP2CIMxtKZMz10DDEXr6FL/GiTMvr9YGK8jd8tRiktriGTuYJs2RnnPy+FUL5K1Ov4j6cmDuQ6djJru5O1XpT8suyo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754040465; c=relaxed/simple;
-	bh=7rjGGi6sJRpSD6CPw0frSEqWEjsKA5TLzPnkb0vfgIQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HaMu0E/ij7GtYifa+zMPCz/0/8DvmSzbyjQx+QxgytXIgcT/RgMIJWys3Ls8GXgvIzx0i/GCs9UIKGIjClUw8DHtf/yjGQqj6iEj0EnREhMN0NdrxbDdiH+FwMP/FJNPd70xgIypM+fJ4QGEjpHvm3BSGLDeRUcZD+XnwmBJoj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qrPrHVgS; arc=none smtp.client-ip=209.85.210.173
+	s=arc-20240116; t=1754040649; c=relaxed/simple;
+	bh=kfic+uLDROpAOeszY5apQpKFu2TLHnt0S6dZt2k5jSw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vm7jT/0343d3nrO7Lls2s+hidpdGRJxNmbtol7biI6kOU3rG6LYg7+Icu1wdm+O7/1HsFutUn5blQ7PPM47pTnpybhv3XwUDdpTCpbYAuhbDPvbBIagHkuoIZqRBMGz3MnqFy+TI//kmqM/l8mWElmZDtucy5jZ0qgIcpamysQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nhIG7ViP; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-7682560a2f2so1949494b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 02:27:43 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4561ca74829so7172195e9.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 02:30:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754040463; x=1754645263; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aOzsaXGRbHTCJm/fkLtI1bRP1MDJ9mJ9tPK5q2Dho2g=;
-        b=qrPrHVgSxLigcrcDdqMFvdc9hzxvPdLOv/PUceIFlTf07eHfb6cv9iNb0Kgaq0dmil
-         N6m7UKACXHeEKBrneOxK7lNUMZZV/TH8D796zn2x60IgiV2F3f1azKW/ccZ1HSKZJv62
-         DzvL/EVTybkgWA35hnb/hV6cFdjVvUJobuSVXT5aywfKgWpq+sBxbmqnONSSuycX3YAC
-         AHX+0SbAbpdB3lccdUX1WKIKAkR2GRNLfJAnrGyRYEHJ1jYMnxDm0e58OtAgCBwn4Wz4
-         HV7sB06k2lfPjZKRgI7cS36rsbHgQXB6yVOjyKx7DXLT6VipIa5TNhxkJEGUC7B6qjYa
-         jmBA==
+        d=linaro.org; s=google; t=1754040646; x=1754645446; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W2mFNWcV7woJMSvTpn6utw5/t2ceVV02tn5+m4prOqA=;
+        b=nhIG7ViPMMHYfYONAu7LZwUW3XykX8NysiT+JluHRC55gFZn761mn8ghazV74bxtyG
+         IAHbZGbzpw6O5Dj3VtplsExdWAV3+ht+lqq2jskW3W5VUD7tkshWr6/33XZ2sXM+sL3m
+         FcRYDVEWCnMvNH5R+0KddDn/Ob2NV9iVWEBYhBLfuk9/yPABQJ+naHcLYHVp26MzTlw6
+         1k6B4G+qwGHxdRouuVrpvFJPlI8E8MKyDmxt/wv6QW40qstEJk+xlSprnhvpCnIzE7bj
+         CLf3SdCk8ZmF17QBETSlpwFYqagr46ef3Rd/u8AXqi6RDy1coPgWinNVdFApRPtcbm8k
+         eU1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754040463; x=1754645263;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aOzsaXGRbHTCJm/fkLtI1bRP1MDJ9mJ9tPK5q2Dho2g=;
-        b=uDnlRKOdyCW4eAfOa9S5ivekffx8ZMiq2RaBrIEUu/vzR5+jm9ECRSd9bPd65sFyuw
-         mS9WjsN78s604DjCiDmk3jA6qQSTE/C89bRciKHDMGxQChTEma2hl/nBuPN3eeqFXEGd
-         QqOzSZe1Fn+Eq3tdwEnQ79yoSU1FUBbb7rdVMCmoJiU70u/flMQySPVC0fJ74YyzQCol
-         4wKMGbIFM3j2J9F69f5XsaEHzRA+Sr2PFjhmBsbYs3cixE+bjH4XFKH7R7DG3VT0R5gc
-         C1mxx1PQZVKDnmhmKcysapVEmykomu2kUobSP9+6o0oGwAdYhqg+zFXyyyNmclcZ3SWF
-         f1Yg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtoKxXkHQOczNKi5Qob3s7tupCtUl55EAoWa6ei4Xhb5fqahDMN15eYaTdtO3S+fn+i2tl1CxSE0Zq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz27Q4QYbU98jHmFoptG1mb3+EwYRS7AKadfj0ICdC/ycYCGpnL
-	BzIZfxgCUMvAwQKxyz6TrgGMdXys9eNMBSFWMq9LpJ5eSaKOjcqqjUNZILEbXH6BVSeU8tdbKMl
-	3SfGyK9VC4+SvV76Na0goHCQsemuuu74rRc7jpqfzdA==
-X-Gm-Gg: ASbGnctuWU7+nofx3ulqHWBSLfyrrgiZzr+tYNB5FIxBMpVtqeNAuHR2gmK4QSwHVFB
-	LlSHMLk94HrGvCyAX/khmAWp03jOLnCXtN+0/UJqfAddddRlCLrRUabqCvZHSEqJqpB495S3pFU
-	VL3jaOmHWlekHT5tEZRwfqGeYUIR5TWI7qam8koj6jjZSs2ijzvnE0YjEm0rsUPJEWUQZFBhslx
-	RdkLQ==
-X-Google-Smtp-Source: AGHT+IHuKlUReo8BLBfNLWmArweL00LOxZR7uhUg6oyeIixMBD+kBAo6QhwVGBOeWx6hpJc7ym91L6wo5ave853cAD4=
-X-Received: by 2002:a05:6a00:2485:b0:74a:d2a3:80dd with SMTP id
- d2e1a72fcca58-76bccff259dmr6577824b3a.3.1754040462719; Fri, 01 Aug 2025
- 02:27:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754040646; x=1754645446;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W2mFNWcV7woJMSvTpn6utw5/t2ceVV02tn5+m4prOqA=;
+        b=JozJYKvUDuW1QRv9tHTzc/NryBeG56Oc+BYdOhCnVQ5TKSAdQlnyh20ZHDhYGiMCgl
+         AAaqUnDNYATMh5e8HgGcAg8O1CV46oAruOF7lRbohC/BfwQH9ExPBAhaI0etXAwJrgCe
+         v8Vqh/m93WBLB0yQtuC+md2OhyA+4eUSpT3usaLupGFE04sIApWljPBsQSrNPaYAXj7l
+         wa9MPUW5axJtUhZL4p8qIlNYi8MKlf5vPJc8TuVv0TcaxNeTOnORCsuKMj56mfzUOiIw
+         xV1SLwSKk7b5swzWLhPZRnvzSXu4wpFfozUcXfoSRS9icdfWp7Abkl2KASCfF7v5b5e6
+         dJPA==
+X-Gm-Message-State: AOJu0YzOE656ysgXsgA4aL/mzna0n4NQycHNuxsTCcrM3XW05djc3uLe
+	Nyl4aFFVgpgm+SjkqWypXqoC6javZGXXsp5XGgHXQeTlBaDlZ8qflqYvtvNNhOWgpuw=
+X-Gm-Gg: ASbGnctTL1uwP9cfcAvUSEgWiDT15qif6hvrObiAFF32EufbvaTYmXSZCHJjZor4KP6
+	CMMyvT95O8y8PcL83xMxjtRZwfvdTZEd3BcN2AHHJu0RvTuFEDdpYqxeRJIViPAIsWgPrvtBfsB
+	7a3KJnx1qOTzPZe0k6CTfcC8x0gjP3ByppxKis1kdhXKfzYz3I1lBX1ei4KO3ZsQ0hY/7qwgpKG
+	bQ7l/jSp8nlmv3s69LRYohyTmJIhymXqQBOIgF50Va+pP3mmMPcpZ2MIJSdroMhiSxvgTbGxpTp
+	L4CoELDuIFy3k1qoOaP+FzGMwA22KrFwZvLRhFNeO/5+h4uhy/JlTIUkR2KW9dEo6kEph1XQ9tC
+	KopPISgg6ErafqmsraZP77kb8uCXtRW2EQaYAwSEKHoWOdJACmEIietnElVC6og==
+X-Google-Smtp-Source: AGHT+IHCYZQ7LJ7cYHoVpSEsRcjkIRr0e2up/j89C6HrCxyO6Tidr6iZZH2RM3WjZrbfp3fSA5veNQ==
+X-Received: by 2002:a05:600c:c177:b0:456:cdf:1ecd with SMTP id 5b1f17b1804b1-45892bde5abmr104195385e9.31.1754040646427;
+        Fri, 01 Aug 2025 02:30:46 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-458953f887asm98477105e9.29.2025.08.01.02.30.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Aug 2025 02:30:45 -0700 (PDT)
+Message-ID: <8bd9a924-3fc3-4f4a-8096-458e771f94a4@linaro.org>
+Date: Fri, 1 Aug 2025 11:30:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250722081405.2947294-1-quic_jinlmao@quicinc.com>
- <20250722081405.2947294-2-quic_jinlmao@quicinc.com> <727fa9f4-fe25-495e-9d8d-48e504fbe6b0@arm.com>
- <20250722091425.GH3137075@e132581.arm.com> <CAJ9a7VhLLgAak_4FB=iW0izXprM4W+RsKfHUeo=XUHh9LwtUsA@mail.gmail.com>
- <20250722140659.GI3137075@e132581.arm.com> <CAJ9a7ViUoSMV_HHKKRMhcQX=isU+feJvwCaVhu-6EBK4QXJbVg@mail.gmail.com>
- <de702854-aca1-4c78-9555-f2139d5376af@quicinc.com> <CAJ9a7VjTYvFVz1fp2_hNkLrKBbBYkiHHyshgsVT98V8oB_bn8g@mail.gmail.com>
- <8d6a4c97-51a3-423f-9095-74347283d71b@quicinc.com>
-In-Reply-To: <8d6a4c97-51a3-423f-9095-74347283d71b@quicinc.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Fri, 1 Aug 2025 10:27:30 +0100
-X-Gm-Features: Ac12FXxb0p9qM-DmIoa1tkbL88-z9uRmiixPI8Eab6j9wjkCgT_azXgWX96JPwI
-Message-ID: <CAJ9a7VjYw5ExWV6DZBTTEWwmLmuhN0LZOFTiZq0xHekdAa41AA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add Qualcomm extended CTI
-To: Jinlong Mao <quic_jinlmao@quicinc.com>
-Cc: Leo Yan <leo.yan@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Yingchao Deng <quic_yingdeng@quicinc.com>, coresight@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: thermal: tsens: Add QCS615 compatible
+To: Gaurav Kohli <quic_gkohli@quicinc.com>, amitk@kernel.org,
+ rafael@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+ robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_manafm@quicinc.com
+References: <20250624064945.764245-1-quic_gkohli@quicinc.com>
+ <20250624064945.764245-2-quic_gkohli@quicinc.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250624064945.764245-2-quic_gkohli@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 24/06/2025 08:49, Gaurav Kohli wrote:
+> Add compatibility string for the thermal sensors on QCS615 platform.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Gaurav Kohli <quic_gkohli@quicinc.com>
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 0e653bbe9884..c8cc67b65f73 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -53,6 +53,7 @@ properties:
+>                 - qcom,msm8996-tsens
+>                 - qcom,msm8998-tsens
+>                 - qcom,qcm2290-tsens
+> +              - qcom,qcs615-tsens
+>                 - qcom,sa8255p-tsens
+>                 - qcom,sa8775p-tsens
+>                 - qcom,sar2130p-tsens
 
-On Thu, 31 Jul 2025 at 07:40, Jinlong Mao <quic_jinlmao@quicinc.com> wrote:
->
->
->
-> On 7/28/2025 5:52 PM, Mike Leach wrote:
-> > Hi,
-> >
-> > On Wed, 23 Jul 2025 at 03:58, Jinlong Mao <quic_jinlmao@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 7/22/2025 10:56 PM, Mike Leach wrote:
-> >>> On Tue, 22 Jul 2025 at 15:07, Leo Yan <leo.yan@arm.com> wrote:
-> >>>>
-> >>>> On Tue, Jul 22, 2025 at 01:00:18PM +0100, Mike Leach wrote:
-> >>>>
-> >>>> [...]
-> >>>>
-> >>>>> For a change of this magnitude to a CS component, that the ID
-> >>>>> registers will also have to change. This is a requirement of the
-> >>>>> Visible Component Architecture in the CoreSight specification.
-> >>>>> External tools cannot see the device tree.
-> >>>>>
-> >>>>> This is effectively no longer an ARM designed component, so the
-> >>>>> CoreSight specification requires that the DEVARCH register change to
-> >>>>> show qualcomm as the designer, and the architecture value change to
-> >>>>> represent this component.
-> >>>>> DEVID should be used to allow the driver to pick up parameters such as
-> >>>>> number of triggers as per the existing CTI component.
-> >>>>>
-> >>>>> If this component is Coresight compliant then the driver can use the
-> >>>>> ID registers to configure to the extended trigger architecture.
-> >>>>>
-> >>>>> With complete remapping of most of the registers, and the dropping of
-> >>>>> claim tag compatibility - which appears to be a breach of the
-> >>>>> CoreSight specification - it may be better to have a completely
-> >>>>> separate driver for this component.
-> >>>>
-> >>>> Good point. I'd like to confirm with the Qualcomm team: apart from the
-> >>>> differences in register offsets and claim bits, does this CTI module
-> >>>> have exactly the same bit layout and usage as CTI standard
-> >>>> implementation?
-> >>>>
-> >>>> If yes, then from a maintenance perspective, we probably don't want to
-> >>>> have two CTI drivers with identical register settings. It seems plausible
-> >>>> to encapsulate register access and claim logic into several functions.
-> >>>>
-> >>>>     void cti_reg_writel(u32 val, struct cti_drvdata *drvdata, bool relax);
-> >>>>     u32 cti_reg_readl(struct cti_drvdata *drvdata, bool relax);
-> >>>>     int cti_claim_device(struct cti_drvdata *drvdata);
-> >>>>     int cti_disclaim_device(struct cti_drvdata *drvdata, bool unlocked);
-> >>>>
-> >>>> Thanks,
-> >>>> Leo
-> >>>
-> >>> The CTI supports 128 triggers  - which means many more registers to
-> >>> enable / connect etc.
-> >>> I need to study the changes to determine if there are functional
-> >>> differences too.
-> >>>
-> >>> It might be feasible to divide the code into a common file and a pair
-> >>> of variants so some is reused.
-> >>>
-> >>> Mike
-> >> Thanks Mike & Leo & Suzuki.
-> >>
-> >> There is no register to show the version ID to distinguish between ARM
-> >> CTI and QCOM extended CTI.I will double confirm with internal HW team.
-> >>
-> >
-> > Can you clarify here please.
-> > The CID0-3, PID0-7, DEVARCH and DEVTYPE registers are part of the
-> > CoreSight specification for component identification.
-> > Can you confirm they are present on your component and the values they have.
-> >
-> > If they are present then the CoreSight specification requires that
-> > they be different than the standard ARM CTI.
-> >
-> > Regards
-> >
-> > Mike
->
-> Hi Mike,
->
-> These registers are present. I checked they are same as standard ARM
-> CTI. Like CIDR1(0xFF4), both are 0x90.
->
-> Thanks
-> Jinlong Mao
->
+Applied patch 1/2
 
-This is not permitted under the CoreSight specification as the
-register mappings are different to the standard ARM CTI. Any tools
-(external debug tools, userspace scripts etc.) that use the CoreSight
-ID registers to identify components will fail to work on your device.
-
-Regards
-
-Mike
-
-> >
-> >> For extended CTI, only trigger number changes and claim logic. Other
-> >> functions are the same as ARM CTI(bit layout of the register and usage)
-> >>
-> >> Thanks
-> >> Jinlong Mao>
-> >>
-> >>
-> >
-> >
->
-
+Thanks
 
 -- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
