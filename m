@@ -1,129 +1,129 @@
-Return-Path: <devicetree+bounces-201333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E59BB18186
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 14:17:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E53CB1818C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 14:19:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 616C27B6504
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:15:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E5963ABFD1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4314C23956E;
-	Fri,  1 Aug 2025 12:17:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC6C239E67;
+	Fri,  1 Aug 2025 12:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jm6lQfiz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K+J4gnRp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7E61F78E6;
-	Fri,  1 Aug 2025 12:17:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C6CD2F5E;
+	Fri,  1 Aug 2025 12:19:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754050637; cv=none; b=sBPPX9YOx0013I3SuV5Ib+JZIq9LlpaNQzYBzfhfbydGMOPUr6Ljl/9ZNGoTdkRP/+/xKBv+qCaC6ck04a0mdQ6duFOfw+FmW2IRoU+0YQskIADLcU3d8tPfnPXiNQ2Pzp/uzoaLtrVVCg1joZO0irzXJFuONMDazxDwNK6Hm/4=
+	t=1754050764; cv=none; b=cuXMft1Vqpz6ps24jaWWR4D1nujv/Pb96n3w8ohZCRxw4PBV4rNKwOKuM6HBqKrOa6UoIwCz2kO6qStFMR0SyIAVRxlgEiv5IJvcJbnqtgZ8MA/6u4qP99CjpFgXxEP5sfbvGlKJhZNgCaSKV29XhDxE2s5/Y0bBsdp6azB/d5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754050637; c=relaxed/simple;
-	bh=iqWJ70y9buvA8nkZlc67QtTGQA3nl96+0Hhd7pFajYs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Owyr0Md3s0XYzQTWjfReBO+sRNoPfhfbWtud5mXkywttnukIMThL9VTjop4buGiJqbYRqKHXvURayn1sfJDgRVjAUTs0pah6+s0bA3MSRs7LNJJyZWHsk/VJGO1iI0j9FMNLsB827mCqsjM33aydsWbuKtC6sXsT+aH/uVAmSvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jm6lQfiz; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754050633;
-	bh=iqWJ70y9buvA8nkZlc67QtTGQA3nl96+0Hhd7pFajYs=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=jm6lQfizSsqJcUBefLSOsUCpwkP4p4z7b52sE+/dPAVQ1hkpBEC16xy7KV5DWiqld
-	 91WqMEiPfOi70qjgsNEYG6hIGMJx+8gamdhu+wgTwND8hTTUtRWzatTaeIz9LYW9nY
-	 MvOoAAIDNP8c9kmnqWIWqSHQ+t5e+dQrwsN+tNZ9rBBMKWkaTndoSOsFIlkJZAVRet
-	 03yilDAdCIAO8EwEyk09foPNuHQbNlmz8i8yJXROUFKQkVNZkEh1x07oTEBSD4Tr7o
-	 XOiTxKoeUA3zSBNHV9FHKRHmTTiTt6umyTO/9AvlWm+POtimM/XEMm6bL7SKS7BxaV
-	 Qe7+4T+ujMs2A==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892F2d600c8f85cF092D4aF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9C88117E0DD7;
-	Fri,  1 Aug 2025 14:17:12 +0200 (CEST)
-Message-ID: <b8d48519e607698ada70ec1f87ee6e222e14940e.camel@collabora.com>
-Subject: Re: [PATCH v6 02/24] dt-bindings: media: i2c: max96717: add myself
- as maintainer
-From: Julien Massot <julien.massot@collabora.com>
-To: Cosmin Tanislav <demonsingur@gmail.com>, Cosmin Tanislav	
- <cosmin.tanislav@analog.com>, Tomi Valkeinen	
- <tomi.valkeinen+renesas@ideasonboard.com>, Mauro Carvalho Chehab	
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Niklas
- =?ISO-8859-1?Q?S=F6derlund?=	 <niklas.soderlund@ragnatech.se>, Sakari Ailus
- <sakari.ailus@linux.intel.com>,  Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org
-Date: Fri, 01 Aug 2025 14:17:11 +0200
-In-Reply-To: <20250716193111.942217-3-demonsingur@gmail.com>
-References: <20250716193111.942217-1-demonsingur@gmail.com>
-	 <20250716193111.942217-3-demonsingur@gmail.com>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1754050764; c=relaxed/simple;
+	bh=v3X4Y6GFa5Z6Re9e426LQ1bVzs4uMWOQgLnDgpHK6mo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GtdazEDBsePdcWI/i4Ki5nnJ4nrHv8Do39ERkTnZWREjrc1J+V5aHWORjvavXOVLYs7RBeMCR8XRYHlwQuEZIYV/NfYoo7LGS6jTnZrwmavqvBV/PekqvkCg7DzjEiyuG9xCWOYR4qT69BKxgwAXoAEz7C8KzxqVc3N9tYt7N2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K+J4gnRp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35826C4CEE7;
+	Fri,  1 Aug 2025 12:19:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754050763;
+	bh=v3X4Y6GFa5Z6Re9e426LQ1bVzs4uMWOQgLnDgpHK6mo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K+J4gnRpp9oYj7HZYNozhKJ7ABhCoK6m8WItz9b26HtXsCc0RL80a7xFE3dxn973r
+	 PB9Hlm2wMoKbVmQJijvloMNmgcTWerCGFif0Dd/wDy/uxx4b+5NsX4CpyjoR3LGACv
+	 iIyOuWAauSdBamIuob+yZZqeZABwrFcpCnlImBHWirE+RhLcxYtj7g2l+KsdgvxP0g
+	 cW+/wlWK1hMNzqCMlvAoHDe94n+TQiaoz6vlO65olioWXThf1sc5ZPXZau0s/6/ZiF
+	 J3Er1gVgK2RB+ZGATJxvEhHaDQ1VOTE+lsIX1nlkmF2pwHzNslC7lemN9BygxE8FaL
+	 6S1jUKeIS+e/A==
+Date: Fri, 1 Aug 2025 17:49:13 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com, 
+	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, agross@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
+ properties to UFS
+Message-ID: <2nm7xurqgzrnffustrsmswy2rbug6geadaho42qlb7tr2jirlr@uw5gaery445y>
+References: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
+ <20250722161103.3938-3-quic_rdwivedi@quicinc.com>
+ <2a3c8867-7745-4f0a-8618-0f0f1bea1d14@kernel.org>
+ <jpawj3pob2qqa47qgxcuyabiva3ync7zxnybrazqnfx3vbbevs@sgbegaucevzx>
+ <fa1847e3-7dab-45d0-8c1c-0aca1e365a2a@quicinc.com>
+ <1701ec08-21bc-45b8-90bc-1cd64401abd8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1701ec08-21bc-45b8-90bc-1cd64401abd8@kernel.org>
 
-Hi Cosmin,
+On Fri, Aug 01, 2025 at 11:12:42AM GMT, Krzysztof Kozlowski wrote:
+> On 01/08/2025 11:10, Ram Kumar Dwivedi wrote:
+> > 
+> > 
+> > On 01-Aug-25 1:58 PM, Manivannan Sadhasivam wrote:
+> >> On Thu, Jul 24, 2025 at 09:48:53AM GMT, Krzysztof Kozlowski wrote:
+> >>> On 22/07/2025 18:11, Ram Kumar Dwivedi wrote:
+> >>>> Add optional limit-hs-gear and limit-rate properties to the UFS node to
+> >>>> support automotive use cases that require limiting the maximum Tx/Rx HS
+> >>>> gear and rate due to hardware constraints.
+> >>>
+> >>> What hardware constraints? This needs to be clearly documented.
+> >>>
+> >>
+> >> Ram, both Krzysztof and I asked this question, but you never bothered to reply,
+> >> but keep on responding to other comments. This won't help you to get this series
+> >> merged in any form.
+> >>
+> >> Please address *all* review comments before posting next iteration.
+> > 
+> > Hi Mani,
+> > 
+> > Apologies for the delay in responding. 
+> > I had planned to explain the hardware constraints in the next patchset’s commit message, which is why I didn’t reply earlier. 
+> > 
+> > To clarify: the limitations are due to customer board designs, not our SoC. Some boards can't support higher gear operation, hence the need for optional limit-hs-gear and limit-rate properties.
+> > 
+> 
+> That's vague and does not justify the property. You need to document
+> instead hardware capabilities or characteristic. Or explain why they
+> cannot. With such form I will object to your next patch.
+> 
 
-On Wed, 2025-07-16 at 22:30 +0300, Cosmin Tanislav wrote:
-> Analog Devices is taking responsability for the maintenance of the Maxim
-> GMSL2/3 devices.
-> Add myself to the maintainers list and to the device tree bindings.
->=20
-> Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> =C2=A0Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml | 1=
- +
-> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 1 +
-> =C2=A02 files changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.y=
-aml
-> b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> index d1e8ba6e368ec..15ab37702a927 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
-> @@ -9,6 +9,7 @@ title: MAX96717 CSI-2 to GMSL2 Serializer
-> =C2=A0
-> =C2=A0maintainers:
-> =C2=A0=C2=A0 - Julien Massot <julien.massot@collabora.com>
-> +=C2=A0 - Cosmin Tanislav <cosmin.tanislav@analog.com>
-> =C2=A0
-> =C2=A0description:
-> =C2=A0=C2=A0 The MAX96717 serializer converts MIPI CSI-2 D-PHY formatted =
-input
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 24c557ee091d7..e973b0a985815 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14761,6 +14761,7 @@ F:	drivers/media/i2c/max96714.c
-> =C2=A0
-> =C2=A0MAX96717 GMSL2 SERIALIZER DRIVER
-> =C2=A0M:	Julien Massot <julien.massot@collabora.com>
-> +M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
-> =C2=A0L:	linux-media@vger.kernel.org
-> =C2=A0S:	Maintained
-> =C2=A0F:	Documentation/devicetree/bindings/media/i2c/maxim,max96717.yaml
+I had an offline chat with Ram and got clarified on what these properties are.
+The problem here is not with the SoC, but with the board design. On some Qcom
+customer designs, both the UFS controller in the SoC and the UFS device are
+capable of operating at higher gears (say G5). But due to board constraints like
+poor thermal dissipation, routing loss, the board cannot efficiently operate at
+the higher speeds.
 
-Reviewed-by: Julien Massot <julien.massot@collabora.com>
+So the customers wanted a way to limit the gear speed (say G3) and rate
+(say Mode-A) on the specific board DTS.
+
+But this series ended up adding these properties in the SoC dtsi, which was
+wrong in the first place. And the patch description also lacked the above
+reasoning.
+
+I hope Ram will fix these two things in the next version.
+
+FWIW: The customer is using a DT overlay to add these properties to the base
+DTS. So there would be no DTS change posted in the next version.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
