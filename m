@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-201411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F115B187BC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 21:30:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 177ECB187C8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 21:31:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 060C8AA2FE1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 19:30:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A13A71C805E7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 19:31:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09F228E5F3;
-	Fri,  1 Aug 2025 19:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF3D205AA1;
+	Fri,  1 Aug 2025 19:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bCWzLlIw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iwqNxYPl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB74F28E574;
-	Fri,  1 Aug 2025 19:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 380471F03C5;
+	Fri,  1 Aug 2025 19:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754076605; cv=none; b=R2rnfTaeFzMzfVceKVGwGIr4aKiyO3CBkE+OBIqsVZiOxUul0JE5oYB42rCgG97U4dMZg5o89bdUQjYj/v46YI39eXv6LJot5i+9o6GY/KZennurD29/m6jHEzmpgNJsXqaB4ylygNbdLPdjnCsH4Kkcmu3jqNA3v0K6EVKMpOM=
+	t=1754076694; cv=none; b=I46VBfIfx2M782EG5c7sFZhtfwSZ2g9eyU+lXfVgqB5s5RVkUZX2qGCMgwf+l1ezbOCWPa+BLX16PcKnoAtOedPQpTXg35OdYt08X1iEwSkhmMq7tQyoXDMO44J+BGCa2gNsN+MWyCxmmREVvLdnsDo7hNE1QWlsV04GgCrYEUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754076605; c=relaxed/simple;
-	bh=QIvDp326hx442oBNoCgvRKhpRZCrpyZ4MgfHtvxx6IE=;
+	s=arc-20240116; t=1754076694; c=relaxed/simple;
+	bh=TcZbBZapmGQ0Rnr4BOG6Vs70nByafs6BaT3xqjgKgEg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AWNqtLaXAal73KYjj5HiHNXyw0rr6eWrSo2Vgd4PZeOw/BoEOYslJdBAfJRX6jOCePeuy+ekgqaMAZSYz48laHCtnjSTueO5Xg9iBDsoObxMWWNC2xJTxpu0+i/KH8oE2jBAdhvA7unwvpzSo4fZg0UjFhzvnxiEkifJ+j/28jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCWzLlIw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE9DDC4CEF9;
-	Fri,  1 Aug 2025 19:30:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g9vto6Zoi8gWU5JHY8IgNI1d/3NfRzP/jTws2d9qhjwooGgcWWdhzBrui0E1+GktHi+DBlGkzyVlu9D1jCp99qRJF/0ZbpaO2ajeyoWpzPgPbANQqMStkXJUa1SnAxInT7V0AMxZpjAHOMbX9TqRad37P0IO2MdMXp3Lkea1IOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iwqNxYPl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC65CC4CEE7;
+	Fri,  1 Aug 2025 19:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754076605;
-	bh=QIvDp326hx442oBNoCgvRKhpRZCrpyZ4MgfHtvxx6IE=;
+	s=k20201202; t=1754076693;
+	bh=TcZbBZapmGQ0Rnr4BOG6Vs70nByafs6BaT3xqjgKgEg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bCWzLlIwA5rDCTigq8lmDf6xXVWEH5l56fpQ1pITJxnI/fmNgoB6H3Pw74iGDw4HO
-	 TlZ22QHpVCkxkQ6th79r4Trrpul16lQao0LebbJN15zjjS52eSClE2IIZxH3CRg08A
-	 jmH/8sb91gI/7KL7A/C0WRPVAaCxEC6xUnHupP3oXEPBR7+nz5XcA7+IhUTUBkwCVa
-	 50Nl8g8Kw1l+J0RqbdIEGkMb5zYZHYg0+0KOeccfKiAZpy8gEvZ6Pk+rWwn6fH5B3L
-	 H35pt1PEfxDfi8ACewevcQbTXWBYqVRV3uUM5uoi4JZp8YUFlO5EG3tfG0cw1QAcjN
-	 U5sCjPuDNzCrw==
-Date: Fri, 1 Aug 2025 20:29:59 +0100
+	b=iwqNxYPlEHQsXABuSbTPq9ikmDFweJrimgwN1Y/Be9zFSZ6otUuhGupkJ6CIMx9Os
+	 ZHYkFwVXVozwzR/MiewKAJ3vFLxQIt63C06Q2sltPkBXQherTpWHpva7w82k9gxSSu
+	 ADp0ixEkbF4ck5W/DoSPTfLE8NimYG0cxI8DrTjyFbbfgIe+2+EidLNFg/GxCzo4tz
+	 GYLWZdALm6Y8GNyfjoAzhcyshT1M98E2g1jZ1JFtTDKZBlKQ/OdBrkdfDZmQns52Y4
+	 V92ia6J+gqweIl9EN7v5XT7pLFtmX+q0EScVJfKr/0PfbamvqbTOoQpicstA6yCrib
+	 SJgzl7q890WAA==
+Date: Fri, 1 Aug 2025 20:31:28 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Nick Hu <nick.hu@sifive.com>
+Cc: Alexandre Ghiti <alex@ghiti.fr>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: dma: rz-dmac: Document RZ/G3E family of
- SoCs
-Message-ID: <20250801-tinfoil-revenue-6fec31c1f099@spud>
-References: <20250801084825.471011-1-tommaso.merciai.xr@bp.renesas.com>
- <20250801084825.471011-3-tommaso.merciai.xr@bp.renesas.com>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v2] dt-bindings: riscv: Add SiFive vendor extensions
+ description
+Message-ID: <20250801-lunar-stream-0fdb3f0febec@spud>
+References: <20250801070112.12071-1-nick.hu@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,38 +65,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cJFA5TX8jbyuGS70"
+	protocol="application/pgp-signature"; boundary="wbkrqDwsXdSIcaGf"
 Content-Disposition: inline
-In-Reply-To: <20250801084825.471011-3-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250801070112.12071-1-nick.hu@sifive.com>
 
 
---cJFA5TX8jbyuGS70
+--wbkrqDwsXdSIcaGf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 01, 2025 at 10:48:22AM +0200, Tommaso Merciai wrote:
-> The DMAC block on the RZ/G3E SoC is identical to the one found on the
-> RZ/V2H(P) SoC.
+On Fri, Aug 01, 2025 at 03:01:12PM +0800, Nick Hu wrote:
+> Add description for SiFive vendor extensions "xsfcflushdlone",
+> "xsfpgflushdlone" and "xsfcease". This is used in the SBI
+> implementation [1].
 >=20
-> No driver changes are required, as `renesas,r9a09g057-dmac` will be used
-> as a fallback compatible string on the RZ/G3E SoC.
+> [1] https://lore.kernel.org/opensbi/20250708074940.10904-1-nick.hu@sifive=
+=2Ecom/
 >=20
-> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> ---
 
+> Changes in v2:
+> - Update the message to indicate the user of the extensions.
+
+This should be below the --- line.
+With that,
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+although I suppose it'll be me taking this and I can fix it up on
+application?
 
---cJFA5TX8jbyuGS70
+>=20
+> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml  | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index ede6a58ccf53..5638297759df 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -663,6 +663,24 @@ properties:
+>              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-=
+5.0.0-Datasheet.pdf
+> =20
+>          # SiFive
+> +        - const: xsfcease
+> +          description:
+> +            SiFive CEASE Instruction Extensions Specification.
+> +            See more details in
+> +            https://www.sifive.com/document-file/freedom-u740-c000-manual
+> +
+> +        - const: xsfcflushdlone
+> +          description:
+> +            SiFive L1D Cache Flush Instruction Extensions Specification.
+> +            See more details in
+> +            https://www.sifive.com/document-file/freedom-u740-c000-manual
+> +
+> +        - const: xsfpgflushdlone
+> +          description:
+> +            SiFive PGFLUSH Instruction Extensions for the power manageme=
+nt. The
+> +            CPU will flush the L1D and enter the cease state after execu=
+ting
+> +            the instruction.
+> +
+>          - const: xsfvqmaccdod
+>            description:
+>              SiFive Int8 Matrix Multiplication Extensions Specification.
+> --=20
+> 2.17.1
+>=20
+
+--wbkrqDwsXdSIcaGf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaI0VtwAKCRB4tDGHoIJi
-0oBYAP9dYasfH1OnF5QpY61qg4/gKEjB/ZtQBUyYa/Ehppx0awEAqZg8y8ipVZkW
-4s+38ILPHghdhASqX4rkk+zv7fP+Ogc=
-=ML3I
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaI0WEAAKCRB4tDGHoIJi
+0uYTAPsGwJFW4yNjwYW1pBmrtz8xINlz60+L0eZqXY81BKT/owEAimug6HQAtgP4
+UpmPq+OYSLSIcv7IE9Am7z3Yn50aSQ0=
+=6jVn
 -----END PGP SIGNATURE-----
 
---cJFA5TX8jbyuGS70--
+--wbkrqDwsXdSIcaGf--
 
