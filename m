@@ -1,108 +1,98 @@
-Return-Path: <devicetree+bounces-201348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB633B18204
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 14:56:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B44B18248
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A9B17A9B4E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:54:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 480991AA752A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 13:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461C324676C;
-	Fri,  1 Aug 2025 12:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8485E24EF88;
+	Fri,  1 Aug 2025 13:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4q1fHlS"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oCchi7g4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18789238142;
-	Fri,  1 Aug 2025 12:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786C1248871;
+	Fri,  1 Aug 2025 13:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754052954; cv=none; b=uzm3sqyZIICifaAs9TM++jBn84L/QyySulEi9V4ea3XdYJ6/NqTUpr21w98KD4dPS53mUhmzAjUCPJPUH0VRlV3lz1TlNTVmRHd1NBjsM6Sw7QFVnFK2sp9B/wItcO0TINWKPBDpnFNkWjOacaWf/jeO78+5OarLYpjGDvj36Lc=
+	t=1754054216; cv=none; b=REQjziXKcqnkytTWOir6B71RYCtkEC3zF8AHs/31Z654fIQmFSQy0BJOVBF21OiQY7XalBhzgpXVZAwKYLH/N4MeqjWg/hjXz4K3P55oGwiBj6tOBgyuDqw0umtyZwMVNpks5piGoKLGeuop/qFLQR3tl/IX8oQy2Eze2JrUzis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754052954; c=relaxed/simple;
-	bh=pUtTWnJnFCUFZnOCDhSCjqlj1w/7DHhEYnzdKUIWCGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=df97mp4toMdR3doA9MLy2XpjytYMvqXdVpzsa2hvgxIfGgpnAgBQ/31psOsZFwe0qjX/0PZ4p68dhc7m9YPRVBUAS2XQXDcWZijTgbU/2SYLivQMOIkFuut5rcG3dJmKRhH1BgANwGiveCwofHcBUEhG163JKro1HYoMNA7MW5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4q1fHlS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07280C4CEE7;
-	Fri,  1 Aug 2025 12:55:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754052953;
-	bh=pUtTWnJnFCUFZnOCDhSCjqlj1w/7DHhEYnzdKUIWCGA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B4q1fHlSZqScI1D+FYZNRuBmbRKsUuAL19Fff9b5hfrsGDU7TOx0e7nuTJ6H8edA0
-	 lFMK0Dh27cnAmrPkOL02WAPXsZD/U0C6Iy8rFAWNivNHy9MCFomJcPOH4FwC/m4J+9
-	 6w4CtFk/aifSDnBeLk8aNJQaFgryEv7YmA6BzYkUex+p/fNOZFm4TAIrwhCzdH8y1x
-	 SD3/fuaogok4GYXou0SeXlvfXdG2OLy61IaNW6NKYjb4lhOtbohBr5DETMso6Ej/1f
-	 EMWAGVMe1XqOBFkFhDln5EpwqvEjghte/vcLcQD2vW3HSJzHatla+B9YZpnGbW7zAC
-	 UTCKAgmiN7JPw==
-Date: Fri, 1 Aug 2025 13:55:47 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-Cc: Shawn Guo <shawnguo2@yeah.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, Frank Li <Frank.Li@nxp.com>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 4/6] arm64: dts: imx8mp: convert 'aips5' to 'aipstz5'
-Message-ID: <59b874bf-e23b-40c4-b095-016fe6b14ed6@sirena.org.uk>
-References: <20250610160152.1113930-1-laurentiumihalcea111@gmail.com>
- <20250610160152.1113930-5-laurentiumihalcea111@gmail.com>
- <aHDNmVE23O4V4rqJ@dragon>
- <69f6a044-be90-490f-b0ad-e7867a4825da@gmail.com>
+	s=arc-20240116; t=1754054216; c=relaxed/simple;
+	bh=vYMoaA+SHxkZkQ8TViaTJ2DCB6xNRtqi06zUZsQKohw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oJnTB5nErUIA/z/a3qs2YzGn1XFjkORip/6+ozCOk+Blnsy/nLaD5ss/ZC6gIeaZmQq7BxbLPbH1Q0lHaRLrqSJUdT5U+6MF9e3HS1+xd0KYDv93zppF+mQu4AaZJmr/ymR6q0AyeDNnh4j/NIT3iCyQ2xwvIY013gsc1tRar5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oCchi7g4; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1754054212;
+	bh=vYMoaA+SHxkZkQ8TViaTJ2DCB6xNRtqi06zUZsQKohw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=oCchi7g4mNseOB7tfrBeYKUiEuhLDZUVwhFP1Xo6P1+O0QdjHPF5nRDUGAJ0FONWb
+	 N4XaIJqq4Z1W10JSBmxOyeHXSqhxZAEUEYFtGrOLqnTsbo1LyaPeOFKvQtt8vmSMCi
+	 sj6Vvz4FYKHcBbJM1bPpEtj1CJh+u46dcZ5gsKelVc84xIYksoM61JrKBVzXmFIJoJ
+	 ejumLv4CkAsgAB2OZi8X9geLl9k7GJ1DOBQKU7icmmHmAKjiESYDVQ5a6JwGls/2Xg
+	 p0gAooOyRnFp62Za9etTDtQrKmrWw8a10QwnMUYAsUJDaDJuN/WMrlbDuMOaZsVJUa
+	 JKc83Qyk/h/QA==
+Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08D3817E046D;
+	Fri,  1 Aug 2025 15:16:51 +0200 (CEST)
+From: Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH 0/3] Radxa NIO 12L: Add GPIO keys and LED support
+Date: Fri, 01 Aug 2025 15:16:48 +0200
+Message-Id: <20250801-radxa-nio-12-l-gpio-v1-0-d0840f85d2c8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="giqwk26NsK1VBXtr"
-Content-Disposition: inline
-In-Reply-To: <69f6a044-be90-490f-b0ad-e7867a4825da@gmail.com>
-X-Cookie: Who messed with my anti-paranoia shot?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEC+jGgC/x2MQQqAIBAAvxJ7bkHXhOgr0UFsq4XQUAhB/HvSb
+ eYwUyFzEs6wDBUSv5Ilhi56HMBfLpyMsncHUmTVrDQmtxeHQSJqwhvPp5OdDlKzJ2uMgV4+iQ8
+ p/3XdWvsA7BTHeGUAAAA=
+X-Change-ID: 20250801-radxa-nio-12-l-gpio-54f208c25333
+To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
+X-Mailer: b4 0.14.2
 
+This patchset adds support for the GPIO-connected red and blue LEDs, as well as the various hardware buttons present on the Radxa NIO 12L board.
 
---giqwk26NsK1VBXtr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It also includes a fix for the missing release (key-up) interrupt handling for PMIC-managed GPIO keys.
 
-On Fri, Aug 01, 2025 at 03:36:01PM +0300, Laurentiu Mihalcea wrote:
+Signed-off-by: Julien Massot <julien.massot@collabora.com>
+---
+Julien Massot (3):
+      Input: mtk-pmic-keys - MT6359 has a specific release irq
+      arm64: dts: mediatek: mt8395-nio-12l: add PMIC and GPIO keys support
+      arm64: dts: mediatek: mt8395-nio-12l: add support for blue and red LEDs
 
-> How should we proceed with this? The fix for the issue reported by Alexander
-> Stein was already picked up by Shawn via [1]. We also have [2], which is meant
-> to fix the Verdin issues pointed out by Mark. However, I'm still unsure about the
-> EVK issues reported by Mark, which I was not able to reproduce on my local setup.
+ .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 67 ++++++++++++++++++++++
+ drivers/input/keyboard/mtk-pmic-keys.c             |  1 +
+ 2 files changed, 68 insertions(+)
+---
+base-commit: b9ddaa95fd283bce7041550ddbbe7e764c477110
+change-id: 20250801-radxa-nio-12-l-gpio-54f208c25333
 
-FWIW the EVK issues are still present in -next.
+Best regards,
+-- 
+Julien Massot <julien.massot@collabora.com>
 
---giqwk26NsK1VBXtr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiMuVIACgkQJNaLcl1U
-h9Ddzwf7B+1qvYnmWp1lrZr/Rt+m6pRPpt7K9BLW6292BCBsvBTh9lApj7nBItkN
-Q8GNfxqVr5+tKBzyyzMj0p+0Ey//XcbAHM0y6SYHolp7t0Xarltf/4M9tFlgZWr1
-qyOixSeu4dD6bMZLRg0UkBbAi0mAlfj3yPvpfLch+t9H9kdDJZ2GjrGCErdSSjEW
-tbEonKmQ9pEcjxRw4DOeE+DvSeZ+i4nLBj0NiqMDoIIMe/Cz/uVTVDa1zlki0Qyi
-/mb74K82IA+7oRtKaKIrV0qlUg4NixhoTehWmykKG3Ihwu6NjHK+cnG+ThmdgN4T
-EdQWGyarTplqMDK7aaeRxl8Pc464bQ==
-=leE3
------END PGP SIGNATURE-----
-
---giqwk26NsK1VBXtr--
 
