@@ -1,88 +1,55 @@
-Return-Path: <devicetree+bounces-201240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6767FB17DBA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:39:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0D6B17DBD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:39:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EAB6567D9F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4518F1C280AE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:39:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0261E835B;
-	Fri,  1 Aug 2025 07:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3A91FECDD;
+	Fri,  1 Aug 2025 07:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J3U0IvTx"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CGvqrRC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF8615CD74
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 07:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7AE71FE451;
+	Fri,  1 Aug 2025 07:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754033932; cv=none; b=SrPscBQ/tfl6IqsuKO6HD0/bPWpgjvcd9Gw8TmzHgcILE5oLIb+mxY2vFG+QjJ1WmafxTk86/I70+wI+avnOPko2bMBf/Xfv4RAaa35bsaqbot+sZ5UuMP9z9lCXHYxZwXEcsIDIAp6Xiw2PshgiJj1ycsosuDRdhK2jZlrozhc=
+	t=1754033947; cv=none; b=t+DZ8ujvDSWqG6WvvKWn8lA35W8luRIoONQsI8UyBWRRG37j9fSYau0dJcgswxjHxN/eiAjkLbhDzoRrrWqDV2EdaT/E8Pd04O2mIJ0jBjuAMQreRR/QTRSTTMRf13b2QGddwuWByMlkxB+Qxa/h1fZS8pa2vp7kt5YHnTrSxrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754033932; c=relaxed/simple;
-	bh=ZNM55YfUl9xp2ZSYJcQSU6AfmSKr/O5GZtEj4E9ArwM=;
+	s=arc-20240116; t=1754033947; c=relaxed/simple;
+	bh=wAiPTqgnauUCUB9qcLcvnu642yRlTqzNKg/FCLXG3hw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RVpj4y/E00WyD4ZKJY8lrYK8SuLiTXsnwAhcyi2NgaSa6M0zKVRfus7LKGPEkcj1Z/p+uQg8ytOJiHi2NMMeI4XDA6Jfq0whkaD811rEdpPaoiPWCiCeRVoVfMgRdKHKpyrZXl1egC8bo9vcF3piNODSg/Y4L36bnRAZ1Ij8AIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J3U0IvTx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5710I47G009946
-	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 07:38:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZNM55YfUl9xp2ZSYJcQSU6AfmSKr/O5GZtEj4E9ArwM=; b=J3U0IvTxb5MLEnJQ
-	PRrdnr/FwfRHXckOy9HIUtdMTPVCzaNvKkIUIfiRmVMUqz+PVsSSpEKebj4O7Ym9
-	XlJJCriRT666zMQEXsxU+GfECmfAiTH5jEahOipKko3etXInUW6lTFI4pKLJ+IAK
-	NJ2oUjByg3yYUYwJpR1FR1mhOIs608mqm2EX+EVMSWM8p4S6E/vmrJSmmGGVCngj
-	YCRN0wkWAT+Iq4wwiLwtuc4tar0GdGjayrTsbSHISCuoMgAuQqQpTBUog8dBRv0k
-	ptu8DaMbM+rMYMA1C/gFXv/MYDASt0d610Vxq08g8dxeyMArMDTtqd7X0wblksWT
-	24akog==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4860ep8brf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 07:38:49 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-31f00adab23so528292a91.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 00:38:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754033928; x=1754638728;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZNM55YfUl9xp2ZSYJcQSU6AfmSKr/O5GZtEj4E9ArwM=;
-        b=WZy70eMBS48YedvrCZo84hk6gMFuoyaWWXvVFWajhrmPkXfcfeJheQrme6Bv2lT3X8
-         hTR/4jZHXJctlnNR/aXdEbWjKrgvXw+aPkh+aCWih73ULvxCXoTm1a8lsqAOp6A8723S
-         ZjbGdmwRVceAm2NrLtZ+D0TfwruE73jxo9GhZGlaApDmrkmFnFaCH9fB8AzjGlUc63iR
-         gb5ZxIBhfyq0AImCg/rBgOLAKtHafE8hW/xBvsDbArxh6q4d/wPLJ45WcjxWkB6/MecD
-         yEwzf6MhDJlVDpT1mbgp6eYBpOr02dVfYPd9RBCAH4BoA4BX/VeRrnAoO7zLKM3/NMvB
-         i0Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCX3jI0oBHdo0e79YelObhk1X9gTnzGppDIe4DSbMr5jB4JzrZMvM+o6ksX9X5hQywOOS8LQQiohaTnp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt8OhrDxRXBFENfzN4CMB3UZ750SgLwrkjgDTTuvmBBQEVo2uR
-	oomZ4zmkZSDAhQo9r7z1V+C0QWMH+wDohrATc5cFXvIR7G9DHLfOyPFHXg+x4QPqsoWyZRU98u3
-	geW5W8PNe6t14IlHaAm9LA0z+r4JdxXCWZhcIToNcNab+JqjaEeZJ1uBvTNp47un9
-X-Gm-Gg: ASbGncvhRvyo1kyenP+4VJA9Wvd2VolwrToN1fPaw/uLqp7z1rcQIIoGus3I6j8gjFa
-	QxKd394rvR14ogjz2AbA7cE7XK5DcDzXhU7n3Znxs6iBnSc2ZXK+bVP5JyJl3VYl8HH8jO4WfVm
-	FTzW5e1oPhyi6qcD4d8oGG3G7WJRVyHw35dvnmBeWAy27pFYBAutCwjXdKnwYI7Wt/EQv8U7Ai1
-	6JKiwt6CTF978VKf4ARygzuiN5tBeudPMY7MU0Jcp3Be0OCLAZtcQYrUYc2MGfUpRH+hTDE4x6W
-	1aa6xs4SiIR0NHGYiAxB1oivKyC/smSq6YvG2JVrS8k1oE+5e/TBLPa9Qpq4cOyC3liM+zjS1fR
-	OnPbA8T3syWKmgFyu3sVZklMOb+AUfA==
-X-Received: by 2002:a17:90b:1b48:b0:31e:cdc1:999e with SMTP id 98e67ed59e1d1-31f5dda821cmr6238992a91.1.1754033928360;
-        Fri, 01 Aug 2025 00:38:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHM0h4u47OKSZmyNwaHGa0yV5M9Yp5I0Yk+dyJ89VWmvfIRnuW3gw2qmcHYwbcIoh+J2GMIAQ==
-X-Received: by 2002:a17:90b:1b48:b0:31e:cdc1:999e with SMTP id 98e67ed59e1d1-31f5dda821cmr6238958a91.1.1754033927851;
-        Fri, 01 Aug 2025 00:38:47 -0700 (PDT)
-Received: from [10.133.33.149] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3207ebc3266sm3898449a91.13.2025.08.01.00.38.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Aug 2025 00:38:47 -0700 (PDT)
-Message-ID: <80c59c45-e010-4ec2-8ec5-9ebc2884e282@oss.qualcomm.com>
-Date: Fri, 1 Aug 2025 15:38:39 +0800
+	 In-Reply-To:Content-Type; b=IDYv0B3sORebq/YbQGL2z0RMBtv0gcYaf/GhS+wE4pQ6XXUCL6TyOddbDkTWQQk856PJ4PF457BeFnhBkNCjA9M0g0aFs3IEbMwVLp+H5ezY9vk/Of+Yh6rvN2OErSy4SpAeit8W5szTSs8hbRnGTrZznsOz49/+dw6ILFRUwdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CGvqrRC1; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1754033944;
+	bh=wAiPTqgnauUCUB9qcLcvnu642yRlTqzNKg/FCLXG3hw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CGvqrRC11iEJ2l+58kHuA3tF7uQu74MzunG8cZcQ0+6z8Ggxki17DOYY4LX3MvqgO
+	 wV8P8NPAHQpy0rZyOSwe3NLVhQhg82zoJnIwnm0cM6qga9YySzWL/KRuhunzPerzsg
+	 1vCNLWUp9Ro9rndQThheFpX67sn6oS4EtbJsS4qvTPhOf8q9Nn4xeEtsC8mHYKlNQK
+	 Gi9xY+EsIDII0tOrshYm4xWcbRJZDg2bMtV2c31hzYn+PGcBUFnOAZE2wzPRYgwlF+
+	 KY7uB0wAiH7BPKqWlXVo2wLQT1EsjZQiH+Bpxh1Ke7FFPsGmzSArfgK3Mm9pCso4MI
+	 wTQrugt6vGF5g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C55617E0202;
+	Fri,  1 Aug 2025 09:39:03 +0200 (CEST)
+Message-ID: <9b70908a-d664-4f2c-8fd1-3ca280fe7381@collabora.com>
+Date: Fri, 1 Aug 2025 09:39:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,197 +57,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/13] dt-bindings: phy: Add binding for QCS615
- standalone QMP DP PHY
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        konrad.dybcio@oss.qualcomm.com, fange.zhang@oss.qualcomm.com,
-        quic_lliu6@quicinc.com, quic_yongmou@quicinc.com
-References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
- <20250722-add-displayport-support-for-qcs615-platform-v2-2-42b4037171f8@oss.qualcomm.com>
- <jemfu5sy7k4a2iar55im5bhyhxzlrwpftmpqmps3b2tco7r6a2@oodls7gi45yy>
- <e673a3a3-6924-49db-9040-e34b82199a43@oss.qualcomm.com>
- <w3rwao5wbmstdyics6qhp7beulbbp5ludqkwpfsmevgqmzz3d6@u2e533zlitkr>
- <e5a3f05f-9775-4e3d-ae7d-ebbca14b4df5@oss.qualcomm.com>
- <ffdvzupefzhqq7fqtloycc3xzu57i55ths73xcjftor2cifuzr@5vhq2hfmkvda>
- <bd8f8643-a8c8-43d7-b293-acdba5ff798a@oss.qualcomm.com>
- <ad4f53eb-2f4b-4e62-a162-461de431e3de@oss.qualcomm.com>
- <2de51bf2-baed-4bf9-a40c-1681b2efcf79@oss.qualcomm.com>
- <x4ozwgcti2vrgorgow6nttcjmduk5e4kkd3pjj6xfsgihk6u4n@klfpypor6ya6>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <x4ozwgcti2vrgorgow6nttcjmduk5e4kkd3pjj6xfsgihk6u4n@klfpypor6ya6>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: Ty7-Fmq2h7FMCkPZVnzg1vTL1YWKC1ic
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA1MyBTYWx0ZWRfX8NoGsFtEvFYB
- 4kJQ4HA2TQyDbrRcHJalPo1QYO/anI5/V+QOupeFu3mif5pEVYPpU3W0W0yt0z3JaZOc5VZftU1
- fuhm0EwMhVOMJS63kvjwClfq99RBzIaA/6Z1kyvqLwnolXRg9rxg/1JqV64R0UKbydozR2icsuW
- qK9faU3NjvJso35NDQWcx3tlXlaPVagnCwcX89CMbfNbHF5x7DMpIIyGjoeHcVbAM5hHNbSbylT
- ZgjKTChHTcwFZ1zvF2EWiQZVR6Ho9BWRVyGras7GGr/9hsSoNB2N9oL21Nu8bUIsB1A5EuW9hbw
- wslCbvPiPGW+zTZTtyOEtkH7LMRsLulftohjRtevTYyWKU1m8do1t2/eQmewZ4Su0ynTsHaqaN2
- yJcKTyuEUtLs88VYyp5o85KX/l1rpoV6avahv+mAvIRsjFZYvFEeo+Iqk6B2JuRdwnvoulY9
-X-Authority-Analysis: v=2.4 cv=DIWP4zNb c=1 sm=1 tr=0 ts=688c6f09 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=Oh2cFVv5AAAA:8 a=6kdnFUR2qZRIvO1OxKUA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
- a=7KeoIwV6GZqOttXkcoxL:22
-X-Proofpoint-ORIG-GUID: Ty7-Fmq2h7FMCkPZVnzg1vTL1YWKC1ic
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-01_02,2025-07-31_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 bulkscore=0 mlxscore=0 mlxlogscore=999
- spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508010053
+Subject: Re: [PATCH 2/3] soc:mediatek mt8189: Porting driver for spmi/pwrap
+To: "niklaus.liu" <niklaus.liu@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
+ Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250801070913.3109-1-niklaus.liu@mediatek.com>
+ <20250801070913.3109-3-niklaus.liu@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250801070913.3109-3-niklaus.liu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Il 01/08/25 08:39, niklaus.liu ha scritto:
+> Modify spmi/pwrap driver for mt8189
+> 
+> Signed-off-by: niklaus.liu <niklaus.liu@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-pmic-wrap.c | 27 +++++++++++++++++++++++++++
+>   drivers/spmi/spmi-mtk-pmif.c         |  3 +++
+>   2 files changed, 30 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> index 0bcd85826375..e3e8234e29a0 100644
+> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
+> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+> @@ -1087,6 +1087,17 @@ static const int mt8183_regs[] = {
+>   	[PWRAP_WACS2_VLDCLR] =			0xC28,
+>   };
+>   
+> +static int mt8189_regs[] = {
+> +	[PWRAP_INIT_DONE2] =		0x0,
+> +	[PWRAP_TIMER_EN] =		0x3e4,
+> +	[PWRAP_INT_EN] =		0x450,
+> +	[PWRAP_WACS2_CMD] =		0x880,
+> +	[PWRAP_SWINF_2_WDATA_31_0] =	0x884,
+> +	[PWRAP_SWINF_2_RDATA_31_0] =	0x894,
+> +	[PWRAP_WACS2_VLDCLR] =		0x8a4,
+> +	[PWRAP_WACS2_RDATA] =		0x8a8,
+> +};
 
-On 8/1/2025 3:30 PM, Dmitry Baryshkov wrote:
-> On Fri, Aug 01, 2025 at 11:57:50AM +0800, Xiangxu Yin wrote:
->> On 8/1/2025 1:13 AM, Dmitry Baryshkov wrote:
->>> On 31/07/2025 08:06, Xiangxu Yin wrote:
->>>> On 7/31/2025 2:35 AM, Dmitry Baryshkov wrote:
->>>>> On Wed, Jul 30, 2025 at 04:53:16PM +0800, Xiangxu Yin wrote:
->>>>>> On 7/22/2025 8:41 PM, Dmitry Baryshkov wrote:
->>>>>>> On Tue, Jul 22, 2025 at 08:05:06PM +0800, Xiangxu Yin wrote:
->>>>>>>> On 7/22/2025 4:38 PM, Dmitry Baryshkov wrote:
->>>>>>>>> On Tue, Jul 22, 2025 at 03:22:03PM +0800, Xiangxu Yin wrote:
->>>>>>>>>> Introduce device tree binding documentation for the Qualcomm QMP DP PHY
->>>>>>>>>> on QCS615 SoCs. This PHY supports DisplayPort functionality and is
->>>>>>>>>> designed to operate independently from the USB3 PHY.
->>>>>>>>>>
->>>>>>>>>> Unlike combo PHYs found on other platforms, the QCS615 DP PHY is
->>>>>>>>>> standalone and does not support USB/DP multiplexing. The binding
->>>>>>>>>> describes the required clocks, resets, TCSR configuration, and clock/PHY
->>>>>>>>>> cells for proper integration.
->>>>>>>>> Simply put: no, this is not correct. Even if you go to the SM6150 block
->>>>>>>>> diagram, it points out that DP uses the USB3 PHY, not a separate DP PHY.
->>>>>>>>>
->>>>>>>>> I thought that we have discussed it beforehand.
->>>>>>>>>
->>>>>>>>> I can quote my comment from the previous thread:
->>>>>>>>>
->>>>>>>>>>> No. It means replacing extending existing entries with bigger reg and
->>>>>>>>>>> #phy-cells = <1>. The driver must keep working with old node definitions
->>>>>>>>>>> as is to ensure backwards compatibility. New nodes should make it
->>>>>>>>>>> register two PHYs (USB3 and DP). On the driver side modify generic code
->>>>>>>>>>> paths, all platforms supported by the driver should be able to support
->>>>>>>>>>> USB3+DP combination.
->>>>>>>>> Looking at the hardware memory maps:
->>>>>>>>>
->>>>>>>>> MSM8998: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
->>>>>>>>> SDM660: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
->>>>>>>>> QCM2290: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
->>>>>>>>> SM6115: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
->>>>>>>>>
->>>>>>>>> Now:
->>>>>>>>> SM6150: USB3 PHY regs at 0x88e6000
->>>>>>>>>          USB3 PHY regs at 0x88e8000, DP PHY regs at 0x88e9000
->>>>>>>>>
->>>>>>>>> I do not know, why msm-4.14 didn't describe second USB3 PHY. Maybe you
->>>>>>>>> can comment on it.
->>>>>>>>>
->>>>>>>>> But based on that list, the only special case that we need to handle is
->>>>>>>>> the first USB3 PHY, which doesn't have a corresponding DP PHY block. But
->>>>>>>>> it will be handled anyway by the code that implements support for the
->>>>>>>>> existing DT entries. All other hardware blocks are combo USB+DP PHYs.
->>>>>>>>>
->>>>>>>>> Having all of that in mind, please, for v3 patchset implement USB+DP
->>>>>>>>> support in the phy-qcom-qmp-usbc driver and add the following logic
->>>>>>>>> that also was requested in v1 review:
->>>>>>>>>
->>>>>>>>>>> Not quite. Both USB3 and DP drivers should be calling power_on / _off.
->>>>>>>>>>> If USB3 is on, powering on DP PHY should fail. Vice versa, if DP is on,
->>>>>>>>>>> powering on USB should fail.
->>>>>>>>> I think our understanding might not be fully aligned.
->>>>>>> I did not write this. Please fix your mailer to quote messages properly.
->>>>>>> As you are using Thunderbird, I'm not sure where the issue comes from.
->>>>>>>
->>>>>>> Also please fix it to wrap your responses somwhere logically.
->>>>>>>
->>>>>>>>> Perhaps this is because I didn’t accurately update the mutual exclusion relationships and test results for the different PHYs.
->>>>>>>>> Let me clarify my latest findings and explain why I believe these are separate PHYs that require mutual exclusion via TCSR.
->>>>>>>>>
->>>>>>>>> 1. About the TCSR DP_PHYMODE Registers
->>>>>>>>>
->>>>>>>>> MSM8998/SDM660:
->>>>>>>>>     Only one TCSR_USB3_DP_PHYMODE register at 0x1FCB248.
->>>>>>>>> QCM2290/SM6115:
->>>>>>>>>     TCSR_USB3_0_DP_PHYMODE at 0x3CB248
->>>>>>>>>     TCSR_USB3_1_DP_PHYMODE at 0x3CB24C
->>>>>>>>> SM6150:
->>>>>>>>>     TCSR_USB3_0_DP_PHYMODE at 0x1FCB248
->>>>>>>>>     TCSR_USB3_1_DP_PHYMODE at 0x1FCB24C
->>>>>>> SM6150 has two different sets of output pins, so the first register
->>>>>>> covers first set of SS lanes (which are routed to the documented SS
->>>>>>> PHY), the second register covers the second set of SS lanes (which are
->>>>>>> routed to the DP and secondary USB PHY).
->>>>>>>
->>>>>>> I can only assume that the same configuration was supposed to be
->>>>>>> applicable to QCM2290 / SM6115, but was later removed / disabled, while
->>>>>>> the registers were kept in the TCSR block.
->>>>>>>
->>>>>>>>> Even though MSM8998, SDM660, QCM2290, and SM6115 all have one USB3 PHY and one DP PHY, the TCSR DP_PHYMODE register configuration is different on each platform.
->>>>>>>>>
->>>>>>>>> Additionally, I found some interesting register documentation for QCM2290/SM6115:
->>>>>>>>>     TCSR_USB3_0_DP_PHYMODE: “In kamorta this one is for mobile usb. DP not supported.”
->>>>>>>>>     TCSR_USB3_1_DP_PHYMODE: “DP mode supported for Auto usb in kamorta.”
->>>>>>>>> I think the reason for having two different TCSR registers is to allow both the USB3.0 and DP PHYs to be useds at the same time in certain product configurations.
->>>>>>> Sure. One for the first PHY (USB), one for the second PHY (USB+DP).
->>>>>>> If you check the memory map, you will find the second VLS CLAMP register
->>>>>>> for the second USB PHY.
->>>>>>>
->>>>>>>>> 2. SM6150 Test Results
->>>>>>>>> When TCSR_DP_PHYMODE_0 is switched to DP, the USB3 primary PHY cannot work, and the DP PHY is also not functional (possibly due to clock lack or other configuration mismatch with this TCSR setting).
->>>>>>>>> When TCSR_DP_PHYMODE_1 is switched to DP, both the USB3 primary PHY and the DP PHY work normally.
->>>>>>>>> I think "why msm-4.14 didn't describe second USB3 PHY", because TCSR_DP_PHYMODE_1 always works in DP mode.
->>>>>>>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c
->>>>>>> Here it still programs the TCSR register.
->>>>>>>
->>>>>>>>> Based on these info, I believe these are separate PHYs, and only the
->>>>>>>>> TCSR DP_PHYMODE registers determine which USB3/DP PHYs are paired or
->>>>>>>>> mutually exclusive. This is why I have maintained separate private
->>>>>>>>> data for each PHY and implemented Power on mutex control via TCSR,
->>>>>>>>> rather than using a qmp_combo-like structure.
->>>>>>> Still, no. Check the block diagram of SM6150.
->>>>>>>
->>>>>>>>> Given the above, do you think we still need to force USB and DP to be strictly bound together like a combo PHY?
->>>>>>> Yes.
->>>>>> I checked the related PHY series and block diagrams again.
->>>>>>
->>>>>> PRI and SEC go to different nodes based on the SoC design, and there are two types of configurations: USB3-only and USB3+DP pairing.
->>>>>>
->>>>>> Before proceed the v3 patchset, I’d like to double-confirm whether the following structure is what you expect:
->>>>>>
->>>>>> usb_qmpphy_1: phy@88e6000 {
->>>>>>      compatible = "qcom,sm6150-qmp-usb3-prim-phy"; <== rename to PRIM
->>>>> No, we already have a compatible name and DT schema for this device.
->>>> Then current compatible name is "qcom,qcs615-qmp-usb3-phy" and shall we need update to "qcom,sm6150-qmp-usb3-phy"?
->>> Why? You _already_ have a compatible string. You don't need to change it just to follow the SoC name. 
->>>
->> Ok, but just to confirm — in this case, the USB3-DP PHY would use "qcom,sm6150-qmp-usb3-dp-phy" while the USB3-only PHY still uses "qcom,qcs615-qmp-usb3-phy"?
->>
->> Since both PHYs are on the same SoC, would it make sense to keep the naming consistent and use "qcom,qcs615-..." for both? 
-> Either way is fine with me.
-Ok, then I’ll use |"qcom,qcs615-qmp-usb3-dp-phy"| for the USB3-DP PHY in the v3 patch.
->
+You can fully reuse mt8195_regs, as mt8189 has the same layout.
+
+> +
+>   static const int mt8195_regs[] = {
+>   	[PWRAP_INIT_DONE2] =		0x0,
+>   	[PWRAP_STAUPD_CTRL] =		0x4C,
+> @@ -1324,6 +1335,7 @@ enum pwrap_type {
+>   	PWRAP_MT8173,
+>   	PWRAP_MT8183,
+>   	PWRAP_MT8186,
+> +	PWRAP_MT8189,
+>   	PWRAP_MT8195,
+>   	PWRAP_MT8365,
+>   	PWRAP_MT8516,
+> @@ -1854,6 +1866,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *wrp)
+>   		break;
+>   	case PWRAP_MT6873:
+>   	case PWRAP_MT8183:
+> +	case PWRAP_MT8189:
+>   	case PWRAP_MT8195:
+>   		break;
+>   	}
+> @@ -2393,6 +2406,19 @@ static const struct pmic_wrapper_type pwrap_mt8183 = {
+>   	.init_soc_specific = pwrap_mt8183_init_soc_specific,
+>   };
+>   
+> +static struct pmic_wrapper_type pwrap_mt8189 = {
+> +	.regs = mt8189_regs,
+> +	.type = PWRAP_MT8189,
+> +	.arb_en_all = 0x777f,
+> +	.int_en_all = 0x180000,
+> +	.int1_en_all = 0,
+> +	.spi_w = PWRAP_MAN_CMD_SPI_WRITE,
+> +	.wdt_src = PWRAP_WDT_SRC_MASK_ALL,
+> +	.caps = PWRAP_CAP_ARB,
+
+Why are you avoiding to enable the INT1 interrupt on MT8189?
+
+Is this working around a hardware bug, or did you simply forget to enable it?
+I think you should really enable it, which means....
+
+> +	.init_reg_clock = pwrap_common_init_reg_clock,
+> +	.init_soc_specific = NULL,
+> +};
+> +
+>   static const struct pmic_wrapper_type pwrap_mt8195 = {
+>   	.regs = mt8195_regs,
+>   	.type = PWRAP_MT8195,
+> @@ -2456,6 +2482,7 @@ static const struct of_device_id of_pwrap_match_tbl[] = {
+>   	{ .compatible = "mediatek,mt8173-pwrap", .data = &pwrap_mt8173 },
+>   	{ .compatible = "mediatek,mt8183-pwrap", .data = &pwrap_mt8183 },
+>   	{ .compatible = "mediatek,mt8186-pwrap", .data = &pwrap_mt8186 },
+> +	{ .compatible = "mediatek,mt8189-pwrap", .data = &pwrap_mt8189 },
+
+...means that you don't even need to add a new compatible in this list, because
+the MT8195 compatible can be reused.
+
+You only have to add the MT8189 compatible to the bindings, so that you are
+allowed to specify in your devicetree node
+
+compatible = "mediatek,mt8189-pwrap", "mediatek,mt8195-pwrap";
+
+>   	{ .compatible = "mediatek,mt8195-pwrap", .data = &pwrap_mt8195 },
+>   	{ .compatible = "mediatek,mt8365-pwrap", .data = &pwrap_mt8365 },
+>   	{ .compatible = "mediatek,mt8516-pwrap", .data = &pwrap_mt8516 },
+> diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
+> index 160d36f7d238..00420568afef 100644
+> --- a/drivers/spmi/spmi-mtk-pmif.c
+> +++ b/drivers/spmi/spmi-mtk-pmif.c
+> @@ -530,6 +530,9 @@ static const struct of_device_id mtk_spmi_match_table[] = {
+>   	{
+>   		.compatible = "mediatek,mt6873-spmi",
+>   		.data = &mt6873_pmif_arb,
+> +	}, {
+> +		.compatible = "mediatek,mt8189-spmi",
+> +		.data = &mt8195_pmif_arb,
+
+This change is useless. Just add the compatible to the bindings so that you
+can specify
+
+compatible = "mediatek,mt8189-spmi", "mediatek,mt8195-spmi";
+
+Regards,
+Angelo
 
