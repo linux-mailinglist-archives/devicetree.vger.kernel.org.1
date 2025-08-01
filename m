@@ -1,177 +1,96 @@
-Return-Path: <devicetree+bounces-201198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2941B17B51
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 04:50:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112EFB17B5A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 05:02:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3208B1AA6E3A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 02:51:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5AFD3BB086
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 03:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB113128395;
-	Fri,  1 Aug 2025 02:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06A616D9BF;
+	Fri,  1 Aug 2025 03:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bKojUV3s"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="YGXnGqJm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFEA487BE;
-	Fri,  1 Aug 2025 02:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A1121465A1
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 03:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754016637; cv=none; b=Yy68gNVeJDyl0LxbP4C+jHa5rZerZx0rB4oMwaFIXgMggzPp5RZw6+WoRQsGCfXoMoPu4ImwIDXbU5VMru7ah2SeEnkQycimC3MT5QiteBrOOR9YYgKZpa2AWXSzjgtgrIYsZBOwg3khk4W52Ks4Imniq8Xo+NG0vDKMGIh2uH8=
+	t=1754017371; cv=none; b=MZz4LGNIEM6lge4EJ3HexSW03u62R6Wn+QRJzkfHq8aYej0EHcWIEVGQj/wT9/9pv+HcJa+Qoqu4kSWw3VVTSmgScet3n7tE8SY2+UBnhYMiEkhAr6FLBdUB9MWly1Yp5nJrKbwdiHWc2I2lnwCeN+voRQk964IQQNWTkRI8MsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754016637; c=relaxed/simple;
-	bh=k1E4zHbjiM9XId0p1tynaOQMgxg3JfqzjjRJJskZNMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=brQgNr/k/lPwowHx7p/UUikzMe7d1qRqPhDrD/2sWsWIwxdMbmv5wsv8pxwUyuNVXO63u0bCeLJ7ipAvISmFDkjnSMrcF/PdWhrEsAZMY/5WgCs7qzJUMZyEK/I+ZMfmbwUBLV1Xp6xkVNmqLZBHK3W/vGWDZ/9xpDBM+gN8UfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bKojUV3s; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56VNmnNE025832;
-	Fri, 1 Aug 2025 02:50:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6HrEXklmTT9r1JiqMh77EhJ94xuPJu/BUx+ChrtVX8w=; b=bKojUV3s6te1dOZ1
-	47lIfm7sRqQEU5kosBS93cDqLTbsnR8+RPq50ACMX7WqI2gpKSgYQOjFYFwyiDcU
-	aC1sV/MaI8EG5jr08cOL48Q1zHG+lv52WmPENHca0xvwPcPLUuJ3tSWH0oNR0O48
-	qKrVRCfilcUqKRPVn6OxaNo58BxceBod5dDJUF4syHAIDngGwWjA36DQt2lc9blO
-	aLs3mrgzvwjHRwDB3XOQhHtAAQ8TMdO3PCPJPQY3DE/ApeGkWgRWaLDk8UYM3RQ2
-	6zFMf/inG2tez/yfOlXzYRDveG4XH+oOVhb7pSmOrHAsRViQF0sLQO5lqs5mSKHA
-	iS9n2g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48887g2hs3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Aug 2025 02:50:20 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5712oK24010208
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Aug 2025 02:50:20 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 31 Jul
- 2025 19:50:14 -0700
-Message-ID: <1f012c23-914e-4910-a87b-6f9e99c83a25@quicinc.com>
-Date: Fri, 1 Aug 2025 10:50:11 +0800
+	s=arc-20240116; t=1754017371; c=relaxed/simple;
+	bh=p20Xxl+itiPTVTN9K/Rj5u1N4M+6Q1+WogOfcN8095M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PJi94PQk+SQjhKC17OHqJmSaACf1092UtjW/7H+UMmWmTiJfjc4+RyfPjizgibP0jbbRGxFM8ooi5zOrEMwtXHODxGB3ftGhnEywSG3rd7sJMG/uAfd/8RgZx+s0p5vCgQT1kVNurNl+T2MSbKeDvFSMJuG5FgquYxkH2ee9KOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=YGXnGqJm; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1754017369;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NlRwIOX39loAW8Ndc7IEtOq9p1vayc9rGBUA9qXU/0w=;
+	b=YGXnGqJm9xBbw/SALAnQo7w4S06W8Q0jv1nGvvi5Re7p9dTH8qC6LHoBY5qkFTWlaKBX8W
+	1AbFW+4VJQRfhAKEahcM7vZ/BSh2zWi7dEyK/Oy1rMWN+95T/BXmN/RKtnLVlsZQAJIRqW
+	MwDKJCZnPS8LdCe8le8uxeFQfl/B+Fg=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-644-ATep_vWVM4mb-Cfc0HRovQ-1; Thu,
+ 31 Jul 2025 23:02:42 -0400
+X-MC-Unique: ATep_vWVM4mb-Cfc0HRovQ-1
+X-Mimecast-MFC-AGG-ID: ATep_vWVM4mb-Cfc0HRovQ_1754017360
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1D9DA1800374;
+	Fri,  1 Aug 2025 03:02:40 +0000 (UTC)
+Received: from localhost (unknown [10.72.112.183])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AD09D3000199;
+	Fri,  1 Aug 2025 03:02:36 +0000 (UTC)
+Date: Fri, 1 Aug 2025 11:02:32 +0800
+From: Baoquan He <bhe@redhat.com>
+To: Brian Mak <makb@juniper.net>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, x86@kernel.org,
+	kexec@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND] x86/kexec: Carry forward the boot DTB on kexec
+Message-ID: <aIwuSFKSUJDI6ULl@MiWiFi-R3L-srv>
+References: <20250729182142.4875-1-makb@juniper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] soc: qcom: ubwc: Add QCS8300 UBWC cfg
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark
-	<robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        "Abhinav
- Kumar" <abhinav.kumar@linux.dev>,
-        Jessica Zhang
-	<jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Neil
- Armstrong" <neil.armstrong@linaro.org>,
-        Kuogee Hsieh
-	<quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com>
- <20250730-mdssdt_qcs8300-v5-5-bc8ea35bbed6@quicinc.com>
- <070915c8-4d7f-40d2-ba38-e20a801c9089@oss.qualcomm.com>
-Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <070915c8-4d7f-40d2-ba38-e20a801c9089@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=Vdn3PEp9 c=1 sm=1 tr=0 ts=688c2b6c cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=8zkoDQCAsDv43kGhBogA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: NrMzwIxgG3z5Xois7MMAjFBTn_JlD0kK
-X-Proofpoint-GUID: NrMzwIxgG3z5Xois7MMAjFBTn_JlD0kK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDAyMSBTYWx0ZWRfX2VrmplPbImYL
- SJkyHe4+RbnN9CiJ/0twxvrm3gVQdB4o884HdIkMoJrxoId+SaLpT55zzogM75JlJ6mUfKQ4O7r
- HTPrZJe4TmQOpG44GHGGCCyvOrPqpxAHP0Cqvdd8rt/g+TJThsQdpv+Ik+75wqBdxUXEKuEE0Q2
- Lv0tgRPyXFJL1oh/WIxTPInU+NLet2Gid4NZZOIszfoD3tiwOXfoKwKAdSgdhRh/2ORrrrQKR1+
- YmBz+sQk0SR3VmaXPCDxrS/0KKqvOiWUgbFzFMmMVskaY1dazAs4ivunCmmJABmueNgj8XCEmSh
- QJLJf4JxdcTbYmv1fT97qWlo4ezpxLM70IdtdApPPVy5hAC6ZxRGDbNACMeLZbpw30GRwqb1FyU
- OyWgzqxG1SdIG4mPD56P10sV+V/0jw2zbUr9qT4tP1JNhgjlASn7FTeUIV1xEiaPFSqZmYkH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-31_04,2025-07-31_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
- priorityscore=1501 malwarescore=0 mlxlogscore=999 spamscore=0 phishscore=0
- bulkscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508010021
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250729182142.4875-1-makb@juniper.net>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-
-
-On 2025/7/30 18:16, Konrad Dybcio wrote:
-> On 7/30/25 11:42 AM, Yongxing Mou wrote:
->> The QCS8300 adopts UBWC 4.0, consistent with SA8775P, add 4 channels LP5
->> configuration data according to the specification.
->>
->> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
->> ---
->>   drivers/soc/qcom/ubwc_config.c | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
->> index bd0a98aad9f3b222abcf0a7af85a318caffa9841..389fb871018b65987295db60571c063b4d984d70 100644
->> --- a/drivers/soc/qcom/ubwc_config.c
->> +++ b/drivers/soc/qcom/ubwc_config.c
->> @@ -35,6 +35,16 @@ static const struct qcom_ubwc_cfg_data qcm2290_data = {
->>   	.highest_bank_bit = 15,
->>   };
->>   
->> +static const struct qcom_ubwc_cfg_data qcs8300_data = {
->> +	.ubwc_enc_version = UBWC_4_0,
->> +	.ubwc_dec_version = UBWC_4_0,
->> +	.ubwc_swizzle = UBWC_SWIZZLE_ENABLE_LVL2 |
->> +			UBWC_SWIZZLE_ENABLE_LVL3,
->> +	.ubwc_bank_spread = true,
->> +	.highest_bank_bit = 16,
->> +	.macrotile_mode = true,
->> +};
->> +
->>   static const struct qcom_ubwc_cfg_data sa8775p_data = {
->>   	.ubwc_enc_version = UBWC_4_0,
->>   	.ubwc_dec_version = UBWC_4_0,
->> @@ -225,6 +235,7 @@ static const struct of_device_id qcom_ubwc_configs[] __maybe_unused = {
->>   	{ .compatible = "qcom,msm8998", .data = &msm8998_data },
->>   	{ .compatible = "qcom,qcm2290", .data = &qcm2290_data, },
->>   	{ .compatible = "qcom,qcm6490", .data = &sc7280_data, },
->> +	{ .compatible = "qcom,qcs8300", .data = &qcs8300_data, },
+On 07/29/25 at 11:21am, Brian Mak wrote:
+> The kexec_file_load syscall on x86 currently does not support passing
+> a device tree blob to the new kernel.
 > 
-> You can just pass &sc8280xp_data instead, they're equivalent
-> 
-> Konrad
-Acked. Thanks.
+> To add support for this, we copy the behavior of ARM64 and PowerPC and
+> copy the current boot's device tree blob for use in the new kernel. We
+> do this on x86 by passing the device tree blob as a setup_data entry in
+> accordance with the x86 boot protocol.
+
+I see how, but no why. Why do we need to add DTB for x86?
+
 
