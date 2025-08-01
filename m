@@ -1,125 +1,144 @@
-Return-Path: <devicetree+bounces-201225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42DB4B17D1E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:09:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C519B17D13
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:02:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F036C4E83AF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:09:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC2E71C26B48
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADEA205AA1;
-	Fri,  1 Aug 2025 07:09:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A222E1FC7C5;
+	Fri,  1 Aug 2025 07:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Yx03isgu"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="M/MwOjud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37CD1FF610;
-	Fri,  1 Aug 2025 07:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038551F4613
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 07:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754032169; cv=none; b=id209tmsT67DSFBWXp6k/fHFznz2y5Fqtwr0BIorg/i6oPAPhnxtjzZd79J50qXJAWAbyS/UBijx3HCDkGQeG/AUZCqHal0oXQ28yHyrDpREgLYqs/V3/EXiz3WqFrP1S7E/eYCQ3v/3KmCKk98tRohdsNO/sOBO8hxLDA+qtxw=
+	t=1754031716; cv=none; b=OoyQMTGRfKWhHD9tzehqRa26dvNlPgn893FSIS2vs81uM/iYFBk68GpbNxM5bZ6UCdIeObRnMLMcc7tlY/XoGAZL2jtuCsejVI+bTWDmZv71UXulhBiX2CPM0XkL2nUJI4Uz+n4BFIdwl0H6tVXIQnsXqXpQsRo9FMKp4rEiAYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754032169; c=relaxed/simple;
-	bh=fl6uSeYxRMWH3jKSu6Bok18lfxJuGijlT0DWX2EIMOY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J22dSGtaTxpGGbD3PC4Ftl/T3oYp6R7DAtZlc3+BfP0Kz8Y8eMSH+Y3bOxzAmJW8uGOo0hItGWdt7K3Iu3iNRLMRlrE9y/xO1YsVD/qA6NtPgHXC+aqVBZ4dHWAiEPuiwpABHOgToxzD8jtL1gY1ZgnrssqUkC86Ph1rPw6laDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Yx03isgu; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 73a3e4486ea611f0b33aeb1e7f16c2b6-20250801
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=cn2RoAisMKaAgdwYwaUWd9l5blW+koqxiGIwZNbsspk=;
-	b=Yx03isguInoReYLzSgAx5TSR+1qmFNfoc9yY42tkd9X1L63CTAHZ0hEI3TUTNVd/k294V3LKOtlLkRtqvdsRjQDxvGtkmyGsUpdPMaPVx6f6l2adVDuEtS87j2UObsvSV1GxGyIrXRrbCdhIYqbGItSqx9F/NeTR4tpL1gJR1IA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.2,REQID:06aee1f3-832a-4c41-a0ee-1e4c0e87825d,IP:0,UR
-	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:-5
-X-CID-META: VersionHash:9eb4ff7,CLOUDID:2c750209-aadc-4681-92d7-012627504691,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:-5,Content:0|15|50,EDM:
-	-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,
-	AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 73a3e4486ea611f0b33aeb1e7f16c2b6-20250801
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <niklaus.liu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1640975403; Fri, 01 Aug 2025 15:09:23 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 1 Aug 2025 15:09:21 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 1 Aug 2025 15:09:20 +0800
-From: niklaus.liu <niklaus.liu@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Flora Fu
-	<flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>,
-	Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, niklaus.liu
-	<niklaus.liu@mediatek.com>
-Subject: [PATCH 3/3] regulator: Modify mt6315 regulator mode mask
-Date: Fri, 1 Aug 2025 14:39:37 +0800
-Message-ID: <20250801070913.3109-4-niklaus.liu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250801070913.3109-1-niklaus.liu@mediatek.com>
-References: <20250801070913.3109-1-niklaus.liu@mediatek.com>
+	s=arc-20240116; t=1754031716; c=relaxed/simple;
+	bh=1gtkaxU8lzB24bYfFWeTLEwtt6GQeplprUCDPu66xiw=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=m7iwxDAN2IxwwehBDIgMMH72dzpnsqfiV3KXr//ZCZRUpxzcMq6/Yh1XExvwauu56JuuEqD1Yt7q2QvT/dZdecQMNA6B+5F1wGBKrKDs+lU5iZdRIChZJZBGriqMsnLyzWJD5vFOWutaflzZz3o1OAdis8YAdEtSAKeUBpsjq2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=M/MwOjud; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-76bdce2ee10so404734b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 00:01:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1754031714; x=1754636514; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B1QL6HLqz3BETHlGyW0GKYu0gTqBWZzWd0eO80if9fo=;
+        b=M/MwOjudFzeC8iBaR93ZlxU6voL9LI10OCXKnWwddZuotrC3mYl9Q9X9PlfPfv4m6k
+         MaiI+V7ETSjzaO9PcTSjCmn2D4GGf9dgk8Vzp5qALhSJEKgldoBlxeTLQi/5FkWN+VzJ
+         4IxUCZxGdZWhQr1srKDXZ+TJae6GVvmrvLTVp2ZBox2Mz3qVESLJO+OoJ8Qn5Kv2IySD
+         +Gj9MpW8IDUgiSqn6E47lest/lep6EVDjin5hbZ1ptEc3d4/Z3rLiI6N/ZZr+KBO3gVr
+         1fBFge/3zhPIrfnxi7CldYAAyL0IAVdN4lClHz3C2Af0Yl9A0NQgIVLyWPBwWD9ROhc/
+         AI0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754031714; x=1754636514;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B1QL6HLqz3BETHlGyW0GKYu0gTqBWZzWd0eO80if9fo=;
+        b=b/4ndXe7Xi8FkD/Bh9TY3B2/r8WHSNUrRa2mV57uaSvYd9YihDDnME+V0udx0xNziz
+         532Lis+OXsmDmk8uTRtpnhsdPEwfJ776fMnC+zkN+fm1+Lt1w60k2VBfgo+yvp4/ob/o
+         nyr6xPB24qr28DdtH9pQiK8o04TF2gox68/rmJ2E5JdupRsz43vzSr/Hu99Q15AUExJW
+         Lk6z9/k3UQerNodWUN+L9fgilbPZTKqJwV2dfHYui5VWlOUMu695YuEJByLUzawM2QaC
+         I0sPAwGQgbjDaGVm6jEzXnU133xlSwH14H+Oaf7VJ2bKkWdXTAEjqfgrb2Ay68SvTiHH
+         tEmg==
+X-Forwarded-Encrypted: i=1; AJvYcCXyZHgoQ53NoUb94HqasfsmwpjuIscrD2gxRkt6KjYXAGtqpsaz6Wzlfm84vyiSy8WBmFJThvSRqPuY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+rokprhOIdMRd2vmVjcF8N24D4pHrZMa2ivctriN4csdCLVx5
+	0sCqGmgAcRtls5GypLFW45pV5QZ3YizHFNxGjOgu7dpQAViR9cW7fpYTWWOyBMjPtdM=
+X-Gm-Gg: ASbGnculq+QoNl4r/JwuYOklhFBYxkSxRApeN9MNJj3UQSTp+ddLW6ts1Ylg7ag69Yz
+	k8kGj+FwcCkCQbRP9HtG+B6bTRAQaDE/AyT7faIVfghqAFdnqGGArBms3xKAlahPCHrCxPPduvN
+	CR115Xw3QcvzY1XstNxWhNXwEPIf67Qw2jIItT8nYiQ4r+Pe8gFI9hoc1Rmq5cPspMOO11ESU3o
+	o7wuxb8/C6ihrZhfp/06IQTGg3NS75MF7SUJfZFl40SoLHPopkyq1nFghOel5norxaP+xqk+B27
+	EGXr434d8OBkLnJmJsaxx09D0ohediMCBajBywL7q0jf0UqO73CwK6N3qIYyHIqvdhFExg57c4s
+	Pb2dsD+0PjhCH/+LjolFTpiebPUUR+p8i1PZffw+3lydp
+X-Google-Smtp-Source: AGHT+IGU9ZLun3YXbKoCUx9QZlnwzO5u9ujah9aC8iWcLVseEem42XMHKR5EamUm8BPPO2QR3/wwVQ==
+X-Received: by 2002:a05:6a20:a104:b0:220:82c7:309c with SMTP id adf61e73a8af0-23dc0d2c094mr18053041637.7.1754031714232;
+        Fri, 01 Aug 2025 00:01:54 -0700 (PDT)
+Received: from hsinchu26.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfbd1a7sm3319043b3a.73.2025.08.01.00.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Aug 2025 00:01:53 -0700 (PDT)
+From: Nick Hu <nick.hu@sifive.com>
+To: conor@kernel.org,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Hu <nick.hu@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: [PATCH v2] dt-bindings: riscv: Add SiFive vendor extensions description
+Date: Fri,  1 Aug 2025 15:01:12 +0800
+Message-Id: <20250801070112.12071-1-nick.hu@sifive.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-Modify mt6315 regulator mode mask, compatible with all 6315 models
+Add description for SiFive vendor extensions "xsfcflushdlone",
+"xsfpgflushdlone" and "xsfcease". This is used in the SBI
+implementation [1].
 
-Signed-off-by: niklaus.liu <niklaus.liu@mediatek.com>
+[1] https://lore.kernel.org/opensbi/20250708074940.10904-1-nick.hu@sifive.com/
+
+Changes in v2:
+- Update the message to indicate the user of the extensions.
+
+Signed-off-by: Nick Hu <nick.hu@sifive.com>
 ---
- drivers/regulator/mt6315-regulator.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/riscv/extensions.yaml  | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/regulator/mt6315-regulator.c b/drivers/regulator/mt6315-regulator.c
-index 2608a6652d77..092ff748fe21 100644
---- a/drivers/regulator/mt6315-regulator.c
-+++ b/drivers/regulator/mt6315-regulator.c
-@@ -218,8 +218,10 @@ static int mt6315_regulator_probe(struct spmi_device *pdev)
- 	struct regmap *regmap;
- 	struct mt6315_chip *chip;
- 	struct mt_regulator_init_data *init_data;
-+	struct device_node *node = pdev->dev.of_node;
- 	struct regulator_config config = {};
- 	struct regulator_dev *rdev;
-+	unsigned int val = 0;
- 	int i;
+diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+index ede6a58ccf53..5638297759df 100644
+--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
++++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+@@ -663,6 +663,24 @@ properties:
+             https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
  
- 	regmap = devm_regmap_init_spmi_ext(pdev, &mt6315_regmap_config);
-@@ -247,6 +249,10 @@ static int mt6315_regulator_probe(struct spmi_device *pdev)
- 		init_data->modeset_mask[MT6315_VBUCK1] = BIT(MT6315_VBUCK1);
- 		break;
- 	}
+         # SiFive
++        - const: xsfcease
++          description:
++            SiFive CEASE Instruction Extensions Specification.
++            See more details in
++            https://www.sifive.com/document-file/freedom-u740-c000-manual
 +
-+	if (!of_property_read_u32(node, "buck1-modeset-mask", &val))
-+		init_data->modeset_mask[MT6315_VBUCK1] = val;
++        - const: xsfcflushdlone
++          description:
++            SiFive L1D Cache Flush Instruction Extensions Specification.
++            See more details in
++            https://www.sifive.com/document-file/freedom-u740-c000-manual
 +
- 	for (i = MT6315_VBUCK2; i < MT6315_VBUCK_MAX; i++)
- 		init_data->modeset_mask[i] = BIT(i);
- 
++        - const: xsfpgflushdlone
++          description:
++            SiFive PGFLUSH Instruction Extensions for the power management. The
++            CPU will flush the L1D and enter the cease state after executing
++            the instruction.
++
+         - const: xsfvqmaccdod
+           description:
+             SiFive Int8 Matrix Multiplication Extensions Specification.
 -- 
-2.46.0
+2.17.1
 
 
