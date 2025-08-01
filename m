@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F907B17F00
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:15:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1EFB17F04
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:16:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC3161883E13
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:15:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EC67565A2F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6C72AD3E;
-	Fri,  1 Aug 2025 09:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1634B2185A6;
+	Fri,  1 Aug 2025 09:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dPhibHPp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaTG9UVo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9F03C38;
-	Fri,  1 Aug 2025 09:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA701E7C19;
+	Fri,  1 Aug 2025 09:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754039723; cv=none; b=TNzbKoqyUW826xFudwJzuyyq05BfN5luvHzO6Zxq6iX8GuTNqO57CsvEeJMdCRpTq0Q3pF4DpX1JOwSOxhapHSsvHyrNs/hE5DPI96r7SFDjf098vUsKW9Ole5rk6KcO/dU9/CPFwZlTjEDMy3qPDf11fsUipMh97BjRC57ICVA=
+	t=1754039777; cv=none; b=GwrKKxkJ8F+7HziqWGpwZ/Nul2PFXhHg6ly3e3Geo3CYWXKIBiW1/ZF54FUbSxtdvaEkUtiZ4FW7TTPUv5CDnd7mjFcOuZPF5DZZ/uQPXkjwgy11vFiKVQq0S05aaTCGohCq9Lb+akPHDejrFX7wEHGR4vMryhJF01pZV1gyRtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754039723; c=relaxed/simple;
-	bh=mezW9xzXYXNVMaS5xbipPNlV2pAkqbqinlAL532+tuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=S2RFpTJ8AyoYa5WYUXkNs6+/jabbI8C0KwOK7/JC+U1toe5er/0eX5haC6JoMm9zjR5E1OYKGx0CqnOu2H+Iot7esY+denywH1OjmCy27eT19LSUixxYMNZ6v8JEn5DjHMQgHDr+vZgvDYW0Q79oA6rVWhqwovXpji4MnqQW8iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dPhibHPp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EE5BC4CEF4;
-	Fri,  1 Aug 2025 09:15:17 +0000 (UTC)
+	s=arc-20240116; t=1754039777; c=relaxed/simple;
+	bh=HymzmLf2fmwqD3gyxEPyAoceiwxrUsiU1UA2nbmDVUg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=m7Qw3KHulcElbzOLUFnIpDbAfYIyQu4XerpcPhttiH2wmPKlPvFkwmIWhxQGDO4zStT/OLUtpER9diKs8SDVuxqC/C0jvGoyDEGAnq3PA0Jzqcfk74XMJVVY0n8xkfM3eIonD4xAxO26aCMhqkIfam+CkoV7fwkgtbFNFayqanc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaTG9UVo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2FCAC4CEE7;
+	Fri,  1 Aug 2025 09:16:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754039720;
-	bh=mezW9xzXYXNVMaS5xbipPNlV2pAkqbqinlAL532+tuw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=dPhibHPprev4C+3iNCISr0HctHbtEks3fm+R5o0FcPIjx34sUs4y8xYWn1nd2Wzcw
-	 IPQxZtU7t8+JyKKYT7EZWJAaEMYEhcCa5R7Xf+SiHrA+t6ayhhRKJNfPCgQ8I/o7H5
-	 nFApZweLdpt4Nd/WGtIN3IhBxzJcIv8yJTNRiWbTslXhVKUYsPV1Gq6vE84hyrWQSG
-	 FK2pBFoAv6PdlSf0VWAZtCcm3BP/zufcCSly3ub+DzrZ1zc7zZLPiibVxVkBV/Z/MJ
-	 t+aFURymtd0VUTmoUPVfh7ruPqoDjjIt2RxXnkYlFGbQ0UDOfnsPOZ75BZR/Pvx401
-	 NC7TGfrer0j8g==
-Message-ID: <967dafd1-a1e7-41be-a194-aa7c9f6f7e8c@kernel.org>
-Date: Fri, 1 Aug 2025 11:15:15 +0200
+	s=k20201202; t=1754039776;
+	bh=HymzmLf2fmwqD3gyxEPyAoceiwxrUsiU1UA2nbmDVUg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TaTG9UVo7qMSdf8QtetkRpPQKP1fQllGUx/Z7QIEqPg+AtmBg6QLpegaGBqPITR6n
+	 6jbjDIvGHt4GXug7r8yqui+SIUNLgbPqYFshk8ElDx9EIHJC0F5K3is6lpekCrKmZU
+	 1xqcT00LRczedOMPo1JCDHKUdgS35c+ZDYQMfewVQCcbsOZ5/8JNkPEHMQwRn+NcTa
+	 mclDeBS66ApJ8u8ujWtB+V4zhaCKTSKqjvt4H9qwKGsoAGSg2fVjCvxPBdSGmBUnyo
+	 4LBjkUsFAlpWqc54ADXUkGiDW+zDsUDWr30CHbZzvW+Nm28TwPSzfcmxfW/87/VO5+
+	 ARHiWC1K/wWsQ==
+Message-ID: <4ba8a463-43bc-402c-9814-5ef811d4c715@kernel.org>
+Date: Fri, 1 Aug 2025 11:16:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
- support for optional 'spi_gclk' clock
-To: Manikandan.M@microchip.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- Ryan.Wanner@microchip.com, tudor.ambarus@linaro.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250730101015.323964-1-manikandan.m@microchip.com>
- <20250730101015.323964-2-manikandan.m@microchip.com>
- <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
- <691cfc11-3804-4f7d-b535-ea25f86c0c16@microchip.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Fix typo for deleting
+ node
+To: Biju Das <biju.das.jz@bp.renesas.com>, geert <geert@linux-m68k.org>,
+ "biju.das.au" <biju.das.au@gmail.com>
+Cc: "magnus.damm" <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250731125109.147422-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdXTbOcYPrgHxpCNJEWNhcd8e5NBC0gyYQXn0KmQ8wqEMw@mail.gmail.com>
+ <TY3PR01MB11346C00F991D3D718D16417A8626A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,39 +109,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <691cfc11-3804-4f7d-b535-ea25f86c0c16@microchip.com>
+In-Reply-To: <TY3PR01MB11346C00F991D3D718D16417A8626A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 01/08/2025 05:36, Manikandan.M@microchip.com wrote:
-> Hi Krzysztof,
+On 01/08/2025 10:11, Biju Das wrote:
+> Hi Geert,
 > 
-> On 30/07/25 4:51 pm, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> Thanks for the feedback.
+> 
+>> -----Original Message-----
+>> From: Geert Uytterhoeven <geert@linux-m68k.org>
+>> Sent: 01 August 2025 08:30
+>> Subject: Re: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Fix typo for deleting node
 >>
->> On 30/07/2025 12:10, Manikandan Muralidharan wrote:
->>> Update the Atmel SPI DT binding to support an optional programmable
->>> SPI generic clock 'spi_gclk', in addition to the required 'spi_clk'.
+>> Hi Biju,
+>>
+>> On Thu, 31 Jul 2025 at 14:51, Biju <biju.das.au@gmail.com> wrote:
+>>> From: Biju Das <biju.das.jz@bp.renesas.com>
 >>>
->>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
->>> ---
->>> changes in v2:
->>>   - Fixed mail threading
+>>> Fix typo for deleting node 'channel@0'->'channel0'.
+>>>
+>>> Fixes: 46da632734a5 ("arm64: dts: renesas: rzg2lc-smarc: Enable CANFD
+>>> channel 1")
+>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 >>
->> You already received comments. Respond to them instead of sending again
->> the same.
+>> Thanks for your patch!
 >>
+>>> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+>>> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+>>> @@ -48,7 +48,7 @@ sound_card {
+>>>  #if (SW_SCIF_CAN || SW_RSPI_CAN)
+>>>  &canfd {
+>>>         pinctrl-0 = <&can1_pins>;
+>>> -       /delete-node/ channel@0;
+>>> +       /delete-node/ channel0;
+>>
+>> As pointed out by Rob's bot, you must not delete this node.
+>> Instead, set channel0's status to disabled.
 > 
-> I have re-submitted the series so that patch 3/3 includes a clear 
-> explanation of this change for the benefit of a wider audience.
-> Apologies if this patch also requires a brief explanation—please let me 
-> know if I should include it here.
+> OK. Will fix this in next version.
 
-I do not see you addressed any comments. There are no changes here
-except threading. Look at your changelog:
-
-changes in v2:
-   - Fixed mail threading
+Please TEST your patch before sending it. This would avoid this entire
+discussion.
 
 Best regards,
 Krzysztof
