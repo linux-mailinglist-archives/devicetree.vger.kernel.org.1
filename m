@@ -1,184 +1,239 @@
-Return-Path: <devicetree+bounces-201377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7765B183C3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 16:28:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E486B183FD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 16:36:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19C351C83841
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 14:29:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 634457AB913
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 14:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6625226B75B;
-	Fri,  1 Aug 2025 14:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8867326C38D;
+	Fri,  1 Aug 2025 14:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FB6Nx8Ni"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="XyXAj9j/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013051.outbound.protection.outlook.com [40.107.162.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C2E2472B1;
-	Fri,  1 Aug 2025 14:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754058526; cv=none; b=saeb6PHyWP0odECn0ixDdKEJYcVoVPg95SaJKL5iNu+v2uB0uRWuaRqVA2d0bzzkB+N3Z2W0xH3+v+vwWGkIKgxvZ/iY+NA+Iq9NHhwsJifWXA6obu6R6c5sxzT8Y3fhLQQ3SK8hMeaRwRJ+3cJpi2A6bm1/IF1YHqktXi0g9rE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754058526; c=relaxed/simple;
-	bh=AIluz0CWTlkf+ryYSxTPKTsH1l3zg8Y6Xjxx3xiLVjY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hlb4pH9nQkfvqukzFwNIra0a5CQKnfp5qvYglVDBD2oi62Lm8tyO3qQ/2dMYkpTBJsBpTd5xugKeY0q4wHL9LLkJ5q4DAObSCumiUsQDl5eKaMmOQSbCNVG8sQIBZ/JvIz+qHrW/3zw1DBZ3DKgIRHcGY5/4yA2LWsnzL+j074A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FB6Nx8Ni; arc=none smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4fbf846d16fso1347539137.1;
-        Fri, 01 Aug 2025 07:28:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754058523; x=1754663323; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=enklQFOwEVlBN/RmOFCGBCNOiLV3Zi/krrC4kYv0Lv4=;
-        b=FB6Nx8NinIYMQSNoIkY1dbqB+rHRi/Ne5Pl7k/+hszP427bOdsN4QtxqYhcVbKA/lF
-         UplR3QkJxcIX+f7a8D+27ten2hKCnXyJVNJ/7up0W5/ZNn46bQukXsjHrfbKGaeGQ4g2
-         37MZRgVk9hcIbo1PvvC+WbqYNuZssQ45Gs0MxO16+4KSegs/doHkXS5K/8ZTI9x+hlR+
-         qPdecxkZb9MYoUEtngXbGgM+CihJe3djtM4Gno7CxivimtYpAQ3ZxwV2iS+PCitKPTti
-         oaVO2RTcN/ApsXveDUxnFjx0Gh/NKH9UZSUDn9NSb6nPSY4/I3FIGv0NZyHczw8h+wbi
-         qTFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754058523; x=1754663323;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=enklQFOwEVlBN/RmOFCGBCNOiLV3Zi/krrC4kYv0Lv4=;
-        b=i4vMuE8qVmyXG6Nt7FQEUnWzeGZw3GqiU+IuUyLTVy6+bg7rsrExN8YH6j4SrcPLLh
-         CkF9Z0nFhlBj6M4LWOz+p5yfVJsdWFD9reWItgLQhuCVc5P173s1DyxuCXnVGi8UvenC
-         3B6/il+udkTUMCXvS4LFq5g7t2lAsg4GOvjlL/0P7140RPvDke2lxxVH7uOQG1Kri7za
-         QW6pMnmp3DDeKW1wdpCINs3Oukho4A//fP/RQBjJ0djpmt9ZVCei1wD2JASHTjPKqvLV
-         yyxF4V1WmgnfGTAXKxUkkmgt46p6JJLxTisCI9dfu+ZZ2Huum5+6uQ18uODmfShDCH7Y
-         Q9aA==
-X-Forwarded-Encrypted: i=1; AJvYcCUA00Xsj4iaFhSqWCIk0ljloACFQVWOFQurd+gr+HJB7WI7dIk5Lqomrl9cZbVsURtqPhozGI+skWO7@vger.kernel.org, AJvYcCUBr6ahO+Mahi2EEvGhdIr+SjH4NUk09CqLuC2qfThl4sERa1dg8TUsASnzm3URB0A6ATDI9GoUpe9u@vger.kernel.org, AJvYcCVHkaouqAyTk3PSpb+gdbhOT6WMaWo3Vyexkz4IwWvfQucXbEeps6cz1P/UmChN9mgohkmUez2f5BjGPStz@vger.kernel.org, AJvYcCXh3ltipxzdLkDE7f2RQRGoYYPN3L825q2pPH/uhFtFzm1zuBH1+olhQpXOa5SBGAuhMknAtRKT+OWMoUz/Nw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya5c9xKOE9HKEBmXx7SmipvDBoI/75eOfjeAuRje3buMqBGZUD
-	b+QU1dOcqJ4DTiuQPFfSht1ahpywSa8fj6DeuLYZyWDQM3/YK9MDbR+KzyFJzSB+bLP+ZHcLd5S
-	Lu3+QspaUZIAR5Lsjs5pVcxtt1ovG+AQ=
-X-Gm-Gg: ASbGnctJNUREPrYykz+1UZbZcserLnCz46i4m+8NloU69Oe6YWkf0bnqNQFbKfBK4gc
-	FCgl/CVoEALyOkYk/TGV2Qzh2HGXJpL/VZoivCp+H9Vu1GQTH2RrI3tHQFh3eOpp2GiD8Umv/lw
-	LbV+A+XCNjhzKlXyvOMbOIicsIsKkDGE0sxyFOfhdiIEwIBR71rRBKwxKQQdukkh/yXrYa7DxvY
-	TxP5MkwDybu4nqTiPiLUgOS8Q==
-X-Google-Smtp-Source: AGHT+IFE74O+sbnSVic7t4Vc8ApRGNLfpxfLAcrdxoJjnrrGm5LNrQWaWD7dOtDZh3n/VkhweJi4vQ+qTHbbNZBzVmc=
-X-Received: by 2002:a05:6102:6102:10b0:4fb:f495:43ec with SMTP id
- ada2fe7eead31-4fc1014a568mr2223339137.12.1754058523415; Fri, 01 Aug 2025
- 07:28:43 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5370B246786;
+	Fri,  1 Aug 2025 14:36:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754059009; cv=fail; b=H5vVnkBes0HTFcuqiG+VL2lq4n2mfVHV46yWfMEnKRHnA8eVt1xnS8lteXtQ5toVHNSBZGcoBTJD81NdFU8SchFVMy+CZy6jxGzgqPwXlwcasVT/nCrK99Iq6aIs8FC1rwttWxsL9T5+2tZVixUcjT50kDTqKv4A4E7dzyp4RbQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754059009; c=relaxed/simple;
+	bh=/fFLfD+4HkSvXAdmPbJM75JCMBj2fDrkrv8NXcNHFQk=;
+	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=W8XhYktmo/MfdcPxBkXaSqS9saaJ8S6s/tjIc99GEDkgs5Aom3yXqRY/zRFktx0jkTc2/0D9ztM/7ZpqmJm/xMCHCQAO5QEyLGqJAaDbd6FxaquLDmtoajSkGu9ZSnLCkamjaOqwP1i6/jfTBJEdAzLreQ9w9qhwLXxDi7DeLg4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=XyXAj9j/; arc=fail smtp.client-ip=40.107.162.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wlCN07OQJBaGLeKIXSXXf2wMg9HZ26IwVDvjZItOFw5V2DMcm0Nh0r11+RxGtbhEGOyJvdLrKQr6kGOAk6ceXBFNqmgO7ceR1EaySW6YXzRQsTAMUonfGTdEc2eWUIBzUt624XNYWwH1nJfrJxXnICOE/jQGTjgfZtowKKOlG/IFsb8P2RlH66St8szoaGbeiNU91kdL9+G7eNGtbEUJECX5KCbSQqTrC2hsc2wyYDSBik/VqBUpgliSUenAYt+HualyH++CTVE62D7iPxpfMwdDqOP2Ntaz/NQ7bybtQS9xilzwL3z01j+Pk/Gd6EQae0Ab3ttOBIDc921srR2fDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kAMkpd/2qISrxv2TFtqjME7AxTUyJ2mKquza7jf++W0=;
+ b=CrxuMus6hehtVWvF40eY7WbJqtCn+EQj9IPNF+gWxNR+RpZZqB51uapigh+7EcdW/WT/FBaKYfRUrTAVCWx6WvcBffbSgmHQnEfKS65qQM7KdQ1qYlwhdazklMBUm9egK+ZufX2VPmMILNXqh0ug12luCbdoiM9Z0MYMPGFNQOiOafoeGRRLZVrW/zdezvuyWPvMF/vmzMD2t9kDIcFxGr30m4z+7tC5d9w9Wstym3ixoD/pdqChJGNTFo2W1y29UY+UNwpgwUsR6ftwaYDJhhRys7eiBzA6FVryDxV+JZdDoa5l7lxIGjw2O6/gIcvR6eg+1e679zt3aJIzs3cPWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kAMkpd/2qISrxv2TFtqjME7AxTUyJ2mKquza7jf++W0=;
+ b=XyXAj9j/zh4O3PFfWNWUk9meo4KulLaLQEjvj+T+OGdlNwhOjbbhddUdymEeC4LNOrOPPPXVtOyRf/AwF+u1PTTklty94SDZfHQ3xrLi84/cL/BBjB8gyK+9WQ0FlDW1veVIyrC5in+wMniGH5GC6QFfq2gSVeS3d9P5RlYlX0UQpfU2I/7sdcu/b/1JYqO550LbAIXwglI0CrqWaEhulwSGX3p0yNo+Q9PvPZ6jnNjc4qiANusj+cYlICpjdjSFg/qoWVe9Ksv1rapv8cZQMfbevP7XwLf0HaglMdOZGlFqa9clhRGT0pur1nN3CEyFed/7hKxl52cQW3qmBpc1hg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
+ by DB9PR04MB8108.eurprd04.prod.outlook.com (2603:10a6:10:25e::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.16; Fri, 1 Aug
+ 2025 14:36:43 +0000
+Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
+ ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.8989.015; Fri, 1 Aug 2025
+ 14:36:43 +0000
+Message-ID: <53bc13b9-365e-4212-84f9-85e67c23e067@oss.nxp.com>
+Date: Fri, 1 Aug 2025 17:36:40 +0300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 10/12] nvmem: s32g2_siul2: add NVMEM driver for SoC
+ information
+From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+To: Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ krzk+dt@kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>,
+ Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>, Lee Jones <lee@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, aisheng.dong@nxp.com,
+ Jacky Bai <ping.bai@nxp.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, NXP S32 Linux Team <s32@nxp.com>,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, echanude@redhat.com,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev,
+ Vincent Guittot <vincent.guittot@linaro.org>
+References: <20250710142038.1986052-1-andrei.stefanescu@oss.nxp.com>
+ <20250710142038.1986052-11-andrei.stefanescu@oss.nxp.com>
+ <9d004ea4-0bb2-4a21-8501-82ecf3482c3e@app.fastmail.com>
+ <fa24772b-0038-4f51-87c6-15b810d8d454@oss.nxp.com>
+Content-Language: en-US
+In-Reply-To: <fa24772b-0038-4f51-87c6-15b810d8d454@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM4PR07CA0031.eurprd07.prod.outlook.com
+ (2603:10a6:205:1::44) To AM9PR04MB8487.eurprd04.prod.outlook.com
+ (2603:10a6:20b:41a::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250617090032.1487382-1-mitltlatltl@gmail.com>
- <20250617090032.1487382-3-mitltlatltl@gmail.com> <36f3ef2d-fd46-492a-87e6-3eb70467859d@oss.qualcomm.com>
-In-Reply-To: <36f3ef2d-fd46-492a-87e6-3eb70467859d@oss.qualcomm.com>
-From: Pengyu Luo <mitltlatltl@gmail.com>
-Date: Fri, 1 Aug 2025 22:27:55 +0800
-X-Gm-Features: Ac12FXyEiR7WBLYRTG7PF-J5G5Sq4Cm7xfdTtw6UG5leGd5p1jqsinBxIETuVjs
-Message-ID: <CAH2e8h50mtsEpAZoUvYtD-HRMeuDQ4pcjq6P=0vsjvtZoajC-g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc8280xp: Describe GPI DMA
- controller nodes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|DB9PR04MB8108:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53374aad-7abe-4229-4426-08ddd108d595
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|19092799006|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?NUcwNTJLaHk3Y0ZzcmE3Tm9BYnNCU0xiR1JoOFZHSHk3WkZoNmM1M1paMlIy?=
+ =?utf-8?B?K2dIQTdkTzRQOUZ1NHRZNlUvT3Z2VFhwZUwxUG1vc3RrUEVyM3VZUGZqNEJu?=
+ =?utf-8?B?OWNlS0NzNmJqdkFhNU1SOElkQS95NUlRZEVOMU5UVjMwRm1xWlJSTytMWkEv?=
+ =?utf-8?B?MWhJMjUvcE5rd3hPV1VNRE1tZkc1V0RFSXJBd1l5RDllZllHaWxvd1dHSTNy?=
+ =?utf-8?B?NEUzRFhva1prbTVKZEVwK2IxUFF2TFhXUFRmVFFXeEV5cjd6WitYUm84UWlz?=
+ =?utf-8?B?R0JZQTZwNXE4ZlJ0QksrVnBkbTYvbndQd2ZPTWd2L29rZFhpRDJpQlFabkN3?=
+ =?utf-8?B?akJXK0tYcEhrTjM3NlZIWWFJMjhwUjMydHJmS0VUR0Z3b1F1R0ZXL20vTkRB?=
+ =?utf-8?B?OEczK0JWRWJVM3BpSmZqVFdkYnVQVkQrTWxyT0hyeWtXSG8yZGtJMjczbEJK?=
+ =?utf-8?B?c2toOE9JTXREMTJzOVkvbFJQb3R2UVlVQ3FkVUJ5TzlpWG9Lb1F1WUNIdExQ?=
+ =?utf-8?B?RUthZVVCekFCZEFXYWdPWSs1SzNWUWpsRkFWMThJYmhsYXMzd0h4RDZsTkhy?=
+ =?utf-8?B?TkFKNVhHcDdnWnk0R0ZPN3lsS3FLVDJ0OCtZbW9NRERhb0Uwa3FVclR6WDJW?=
+ =?utf-8?B?Y3E1anVTeFowNlVPczNOdkM1Tk1reUszcjdpTjJzVjJBMGl3b1gyTWhHL1U4?=
+ =?utf-8?B?blZzMlI2OEQwWUcvWC9vZURHZ1lkaE4yTG9objBFMG00bFJ6VmllS0hVWXJK?=
+ =?utf-8?B?Y24rVFZ6M3BzVm1seDVlUmhuL2grcUdmTTc4QVlPSTVBT0paVHZ5eFFsazJK?=
+ =?utf-8?B?R2JLMGVNOTZaTmpxYkQ1RVFzK3lMckoySnBxcHhTNkF3eHovbzlCT01YQWVp?=
+ =?utf-8?B?TGJia0psOSsrR2VsSlNpRGhEaGFBY3MwTStCaW5INnVHaEhPZXpLTllxdnFl?=
+ =?utf-8?B?SytZUWErbThKY2ZSVlA5Uy8wUTRlRGQvVUh0Rk9qRVhtVU9WZmxaTnJYQmtl?=
+ =?utf-8?B?K1ZOUWd0cVV3U2NUNXh0TG96bnVkNHUvd0RIM2l3ZnFTanp2SW1na2Z0Zmwv?=
+ =?utf-8?B?YlIrUlBONmxQWC9KZXRNSVZFUjkrZS9CQnhCaU9KWW5oaDZPWU94a0EzeFhT?=
+ =?utf-8?B?L3RiTGNGeDNQaTVTQVg3Z3R2Nmxmd0wyT1pvQUxLNzNycy95WGV6UHYzbkRy?=
+ =?utf-8?B?UXRvSFEveWdPbFNja3JScEY3U09LejFsMXdtbHdlZng4Q2xDM2dFaklpOExh?=
+ =?utf-8?B?UHlGOUFvRnA1Z3pVVW9WT3FOUzhkVmFaQzljQ1E4WjA4KzM4SXQvUFNhSTE4?=
+ =?utf-8?B?di9hYkE5a2gxSmR2dU5zMlozK1ZpR2JFTzlEaGloMms5Ymd2VzlPSm9GMU83?=
+ =?utf-8?B?M2tiRUxIeGxlUk13ZE9HQTh2ZzhoTDl1ZmZ0Ky84NDRWNlE3TjBiY1NJdUdv?=
+ =?utf-8?B?aVRYQktOelpjSCtIcXNLbWlta1B3Um41MlI1cVZiTHRObWR6clJ3Y0VPNTVF?=
+ =?utf-8?B?WUhwZVFvNFJDZllXbTNwamRDNjY4MzJTdzVZNUw5UW5paWExQURNTVdRbFIw?=
+ =?utf-8?B?Um5hTHNnSHFIQVUydkp5VDEvVFlZbXhVVlcxVmErWTFDeVNZSSswTEFoU1k5?=
+ =?utf-8?B?MHJRN0FXbnlmUUdqZm1NdWsvL0t5SmFlUXM3akloN2VjQWNJa1MwblZxVVRG?=
+ =?utf-8?B?OUpGWTdiSDUza2RiaWNheVU3TVdwNlNJenY0YlNZOVY1MHBEZy9Fb1R2bHZP?=
+ =?utf-8?B?N3laaFllelZUTGZHOFZaYTlEdWZnaTZtdldCN0NVQmRtRCtGQm4vTlVqT3FO?=
+ =?utf-8?B?ME1nTmdOK1ZiekYxM1RkdTFrN2lQdWg1ZGtGUWVWRFQ0M0xiUjFVeTF0cGdx?=
+ =?utf-8?B?QnBLTFdONUlOM2JSaVJIamNxcS83K05DN2pvazJVVUx2U1pqTGY3TDNvS1hJ?=
+ =?utf-8?B?K2w1RXh5SnpQeTB6bTVCUjZlSThkc3NCa3VlSUxxS3NsSmJueHNkS2prSkNU?=
+ =?utf-8?Q?OhsFDTnz3wnwNcz+Rf4g7OdesBB8v0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(19092799006)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?R1dsTGNtZmZiRVROdC9pMXViRUh0cDlzU2ZIUHhHbmhsVGN4TzN3RmVSbHBX?=
+ =?utf-8?B?ZUZQVkpldXdWTmtaM0Vjd052ME8vb2JXWEpGaUNGWmF3ZkwwUmpIYW1pN2Vm?=
+ =?utf-8?B?eUZOQTJKckZUR2o2SXRCRGVBYXFvRS9vZUtRc0JOZG9sSlNSYXJPMDg2dFB0?=
+ =?utf-8?B?VHV2MW9FU0pFOEhGNGU5RzNwVDd6RlBLRTFKa05pSVBjOW5HbXowOS9vWVBL?=
+ =?utf-8?B?eTRrZTNRVTNHR2l2VnhPaXNVYVFJTVVOS1ZJU1E1NHhDUXdUS3drOVVHWHU4?=
+ =?utf-8?B?TUhNQXE0VmRDUTBGVnRLcGlhQzlWZHZ2RFNrMWhkQjFxTTFpVUhIbjlrRkRV?=
+ =?utf-8?B?b0tSVjIvcDdXNG54aE55L05QNFhGai80Q1NocVNFNkF5M3M3d0dKNWZFWExY?=
+ =?utf-8?B?WHpYbnFsQjNzaW93dy9XaE0xM01CSmFtOUorSWVNNGd6RU9TemxWdEgxL3Jj?=
+ =?utf-8?B?akdabTU1WVlFaURjWkFXd1lUZzcxZEZ5VnpXK3hrWnJ5Rm9BUnBDVzZSOHFR?=
+ =?utf-8?B?MWlmTXpiRUxuNDZ5TWlLdlNkWXJtellHQXB1ZFVVdG5SRXBabEtraTNzYWRU?=
+ =?utf-8?B?ZnYyT0ptclpPaTZydnRheUp6RU80eXhHL2ZhZ0RvODR6dWFxUkQrMkcwL1N1?=
+ =?utf-8?B?eDBoc3Y4eXJmVEcxQ3gyWHNia0xPVGhSY1lhR2V6UTR5N1VOSy9MUVZLNjZQ?=
+ =?utf-8?B?elFGLzVDOFdBOGxpSGtLaCtjWkRFT2NRYmdYajIrVGxNYW9VMTExTFZsVXdy?=
+ =?utf-8?B?WkZrT0ZsNkwxbjE2VExlM3lnVGcycThLYkpxQTRXNTVNK2Z5WGMxeGU5QmQ2?=
+ =?utf-8?B?UE9jZGNjK0M1T1BmZWF3akRqYlBXcEY2ZDI3Y0c5dWIxajFreEVpeGdIT1hn?=
+ =?utf-8?B?VFRGcE1mMzN0cWR1MTMwRnMwSlY0TW9icnhPNXRxdVNwYnJ6V1pxeU12dlMz?=
+ =?utf-8?B?UUF0b2t4V0YrRmIvbnRpT3ZXMHd6OCthUmJJdWN0dWd5b01oc1k0RUxlRko2?=
+ =?utf-8?B?T1JoaTFHK2Y1QWJkQkpYRXpnQVBOb25EWCtsWVQzb0ZySVVTWkVpbnlCbmNr?=
+ =?utf-8?B?NnkwWWRkVTJoSHY5R0swdEFKelpWc3ZaSldQZUIwSy9MeFpPSkFGME11Wk5J?=
+ =?utf-8?B?TG9XWnhvMSt3Q3BhQzZtc3BiUllpOGdXQjlKaFk5aEYxbnR3WEx1YVQ1SG4y?=
+ =?utf-8?B?SkN6Uk1iaTF3TVdKRXZIdisrL2ZaMnl1MXdYTmFYcGNwUUt1UW9qdExqTjZW?=
+ =?utf-8?B?aXhqY1o4TjlQa3JiTWhPaERIZkFzTlkrWjcwQTBtRmFJSWc1NFJiQysxZVE1?=
+ =?utf-8?B?NEU0b0VKckR0aStvR0orekxyeWt4b1dsc0p1UTlVWmx1NEZFbXZ1ZGVnU3dS?=
+ =?utf-8?B?VUdBR2NLQjBRWkdvUy90anFnTEIyeGE0a0pKSmdkZDNQRlNiaFg5cWRUY1VC?=
+ =?utf-8?B?VGoraDBWb3hyQm9kV1J6ODNpMXhxYnNQRS90NlZRRnh1bEpDVVpwMk9JQ1hi?=
+ =?utf-8?B?eWtaVFJUZFRNekx0TVY1TSs4TnhaTS81bGhNODhTU1NrWHAvVlVoZW5UYks3?=
+ =?utf-8?B?TnEzYjRoMFFGYkgzSU8zRTUxZ1kxZUpoZGNteTU5cmhGMjRPSWQ0MkpZTEUr?=
+ =?utf-8?B?OGl0WHVoUE1yOHUzbTVZZmcwSDNad20wMEdleS9kWXhxa04zdE9ibVFSclpa?=
+ =?utf-8?B?MmJ2YmpYdHV0SnZKZGg3SXRiUzViTDdmVzdXQ0FabGxNVHZrempRTS9UVFkw?=
+ =?utf-8?B?T016WFpBZ0hNNEtsRUs2M25ONzFGTWNqUytZaS9KaGJ1M2UvMlRmdGcvb3RN?=
+ =?utf-8?B?UVhiekQzWFROQTdsdi9YZk9McHRhU2tIcUNoamJXZ2FQNVQ4N2d0cHRzdk1M?=
+ =?utf-8?B?aTlpcldUSm9OaXcwd0pFR0ZCOE1yanlLVjJxQUI4cXlyTzJiQlYyL2JZT3or?=
+ =?utf-8?B?V050cjVUSEdvcW5kWUIvRm92ZkJNWE9ZU2pCdDU0b2lQMm0ycStZVmRHb2Nq?=
+ =?utf-8?B?UjlTUW9vVzR3N1NVVlhKaUJraXd3T0RFTVhWTWhjd2FEbmdHaEdUVFBzcWVz?=
+ =?utf-8?B?UUZlNGY0eWRtMWRZV1ZvL2JVTVdoenpidmt0ZCtZVEVacFpHRzVnaUtEUlNK?=
+ =?utf-8?B?bmR0KzRmOXJnVlIxYmUwRHFGSHNvOTIzZ09KTCtXSkxZa2VKZjRVS0QwdXVC?=
+ =?utf-8?B?UlE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53374aad-7abe-4229-4426-08ddd108d595
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2025 14:36:43.2109
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JSEKggRWzFP+PfnIYKMuBhz0aXYh6HSp/znH4aT2lO/Mv97G1IvWco1pVYVT6TcCQMTBSCZR+4w/dxY5s2V2kTvWdhll6Hc88Ke/ht1WVeo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8108
 
-On Thu, Jul 31, 2025 at 6:33=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 6/17/25 11:00 AM, Pengyu Luo wrote:
-> > SPI on SC8280XP requires DMA (GSI) mode to function properly. Without
-> > it, SPI controllers fall back to FIFO mode, which causes:
-> >
-> > [    0.901296] geni_spi 898000.spi: error -ENODEV: Failed to get tx DMA=
- ch
-> > [    0.901305] geni_spi 898000.spi: FIFO mode disabled, but couldn't ge=
-t DMA, fall back to FIFO mode
-> > ...
-> > [   45.605974] goodix-spi-hid spi0.0: SPI transfer timed out
-> > [   45.605988] geni_spi 898000.spi: Can't set CS when prev xfer running
-> > [   46.621555] spi_master spi0: failed to transfer one message from que=
-ue
-> > [   46.621568] spi_master spi0: noqueue transfer failed
-> > [   46.621577] goodix-spi-hid spi0.0: spi transfer error: -110
-> > [   46.621585] goodix-spi-hid spi0.0: probe with driver goodix-spi-hid =
-failed with error -110
-> >
-> > Therefore, describe GPI DMA controller nodes for qup{0,1,2}, and
-> > describe DMA channels for SPI and I2C, UART is excluded for now, as
-> > it does not yet support this mode.
-> >
-> > Note that, since there is no public schematic, this is derived from
-> > Windows drivers. The drivers do not expose any DMA channel mask
-> > information, so all available channels are enabled.
-> >
-> > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > ---
->
-> [...]
->
-> > +             gpi_dma0: dma-controller@900000  {
->
-> Double space before '{'
->
 
-Ack
+> Thank you for the review! I've just taken a look over soc_device
+> and I agree, this driver should be a soc_device. I will convert
+> it in the next revision.
+> 
 
-> > +                     compatible =3D "qcom,sc8280xp-gpi-dma", "qcom,sm6=
-350-gpi-dma";
-> > +                     reg =3D <0 0x00900000 0 0x60000>;
-> > +
-> > +                     interrupts =3D <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                  <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>;
->
-> The last entry is incorrect and superfluous, please remove
->
+Hi Arnd,
 
-Sure, I can remove it. But the last entry is here in qcgpi8280.inf
+I took a more in-depth look over soc_device and how to apply it to SIUL2
+and I have encountered an issue. Downstream [1], [2], [3] we use SIUL2
+nvmem-cells to set the PCIe vendor id partially based on the part number
+and also to ensure that the SerDes subsystem is present. I don't think we can
+achieve this with a soc_device driver. I saw that we could export a custom
+attribute but I don't think we can read it from the PCIe driver.
 
-[Hardware_Registry_Base_8280]
-HKR,QUP\0,"NumGpii",%REG_DWORD%, 13
-HKR,Interrupt\0,"0",%REG_DWORD%, 276
-HKR,Interrupt\0,"1",%REG_DWORD%, 277
-HKR,Interrupt\0,"2",%REG_DWORD%, 278
-HKR,Interrupt\0,"3",%REG_DWORD%, 279
-HKR,Interrupt\0,"4",%REG_DWORD%, 280
-HKR,Interrupt\0,"5",%REG_DWORD%, 281
-HKR,Interrupt\0,"6",%REG_DWORD%, 282
-HKR,Interrupt\0,"7",%REG_DWORD%, 283
-HKR,Interrupt\0,"8",%REG_DWORD%, 284
-HKR,Interrupt\0,"9",%REG_DWORD%, 285
-HKR,Interrupt\0,"10",%REG_DWORD%, 286
-HKR,Interrupt\0,"11",%REG_DWORD%, 287
-HKR,Interrupt\0,"12",%REG_DWORD%, 288
+Apart from the proposed NVMEM driver, there is also an option of exporting
+a syscon regmap for the registers which provide information about the SoC.
 
-> You can also enable the gpi_dma nodes by default
->
+I have seen that typically NVMEM drivers export information read from fuses
+but I think having a NVMEM driver is nicer way to access the information
+instead of using a syscon regmap and manually extracting the needed bits. 
 
-Got it.
+To provide a bit of context: the SIUL2 IP has two registers called
+SIUL2 MCU ID Register (MIDR1/2) which export information such as:
+the part number, major, minor, package, maximum frequency,
+flash size, SRAM size, SerDes susbsytem presence and so on.
 
-Best wishes,
-Pengyu
+S32G2/3 SoCs have two SIUL2 blocks named SIUL2_0 and SIUL2_1. We need
+to export the MIDR1/2 registers of both SIUL2 hardware blocks.
+
+What do you think? Would it be ok to keep the existing NVMEM implementation?
+Do you have any other suggestions?
+
+Best regards,
+Andrei
+
+[1] - https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/arch/arm64/boot/dts/freescale/s32cc.dtsi#L1036
+[2] - https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/pci/controller/dwc/pci-s32cc.c#L832
+[3] - https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/pci/controller/dwc/pci-s32cc.c#L163
+
+
 
