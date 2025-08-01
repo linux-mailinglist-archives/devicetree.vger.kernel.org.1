@@ -1,156 +1,183 @@
-Return-Path: <devicetree+bounces-201214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2E9FB17C2E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 06:45:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F018EB17C32
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 06:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C7F31AA4A22
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 04:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1C231639FD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 04:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC21D1B3930;
-	Fri,  1 Aug 2025 04:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A46818DB1C;
+	Fri,  1 Aug 2025 04:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Xxvsibdl"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="gz+Z5D+i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA3F347DD
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 04:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4FB26ACB;
+	Fri,  1 Aug 2025 04:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754023500; cv=none; b=HJZGJbt7OkufrpyObQo1Oiil/00sycBJkTHwjV68oqSaPC0Ikdd0w+QLrzoE/Ss13LEiY5VAIKSW/KdqzcKcPMqREcU8cnFzYY9NNRc1GmIePOWrNtlwhatVzW/qdNpUhDBRxqoVaJGEuLzI+eN2ASNk/GOp272cU9StkieRWCA=
+	t=1754023545; cv=none; b=SA5WSvwTQkuU/FtKrxXpwR+OzUm+jod1LqNKougyN1TJUfLd38jGvPN8LvDOxUmuiX/ehFn0dgKOnXQib+XHo41PEZrf80CDDs8SNDk4ctxh+O3wOd3+5XWb9F7jWl1jFo8516qRRJr6t52yjhtYQ2j7x1yVqDBZUxnSTUU/moc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754023500; c=relaxed/simple;
-	bh=0Yp8+sGL3lRpm7HC5BKRhWpXDbqCyYKzOoJSMIzIH6A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i/RX9iwc8vhWLJLgfLZr76AB6XlB+n4CCxVjbl++quIrRZNMksU1yLOS5wRW/F4iD8mtFjURXvfU86qUI/p05zbA1peRHZMetCqRb1fXa5TlmqH4/DBfHmhd24D4keov1VHN2TtlkbmchEWyHe0D8HtLsJ0Yg3C3hfSVrmt2i98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Xxvsibdl; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5393d190351so587591e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 21:44:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1754023497; x=1754628297; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0Yp8+sGL3lRpm7HC5BKRhWpXDbqCyYKzOoJSMIzIH6A=;
-        b=XxvsibdlRKOal12ONE0cMCH5vzD5gU3tRGNyT9485Ov0lFoxvurGxlKiQjRfyPZcSV
-         C1Vj+eGB45m0/wqWIhlgkwLmsGa9kK860oON69VoyBAml6ZPdQ2XJjLriZykEl65WwYD
-         0eteSb953COSpRC8u6FtX8XyxS+W9G2azm3Og=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754023497; x=1754628297;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0Yp8+sGL3lRpm7HC5BKRhWpXDbqCyYKzOoJSMIzIH6A=;
-        b=dSDqzXBOngzM/6mhNkitUQyk27wrc/CvI1mhS9bbQ5ZPdueIa7OLou3F9qiQSAirDD
-         XfL4GMWKuZBSe9bRGQQ/GGQf8zb0Au7w+K8OifkriMBrzGPyTrbvoTo1/v1n0FQLEFvU
-         n8n3fEqhoXvrJWpNMQl1uafsaFv1asKdEk3L1+4rOd6KQLy+t1ghBcfS7PTru5B680+O
-         YUKHLVjY66dPZMxZXDucsxkR+YgCbNgfJxRV5yUjrB3ZzJXNG/RBOIJOcIDul4BY3SOt
-         eevi5EJh9MndzVGFv4w3Zo1gHhtiDWa9o4PAuiJqdr/mNW8I3JkEotKyWfKxbQxi/4k5
-         Alig==
-X-Forwarded-Encrypted: i=1; AJvYcCWfaXNzZdo3w3BJBaFFFJw07VDvPZl7D9EcgCmbEjXU/LYSt3NzSnaqMSsVwjzJHBWmOcNwyXztThbI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM6HNXBZwVeiCl2pTuzf3t63XD1K2faN1QIJLLO3FvjuRGZXf4
-	ENEKWqiPhLs/C5RqKvHx4HzR9vR2EsIs10WAqVr4nq0TU+eB88LXYgU5NKmYP/vGPFK5dAis5sB
-	l7/4=
-X-Gm-Gg: ASbGncttIRfz56xfKvi4XswoKAIMgaahJ6x4sUoJ32RDnLtz6IMr+JXwLO8djlxS8b4
-	EecbBS0UUiqGFRe3dNDZKdJ1N2x4CbNIFlSyvJXt+Ak+e0wcFed1AK4qiGCiHGouGtaG0yJOXDg
-	4tNuxgFtLNNkeUyGkcjC75/q5pOFjVNntdr3R1Ke4kkMt9O756HQ29+qDihdq6Xul8V8zGFoC3J
-	6gjJ0YQbyQngEQJoEk49iZ4QQJBGsvnJauMjkvxCvPBcdcHdOrp5BV0o/ExP4R0Dwn250au4bc0
-	StXaGlXqotlskrd5//Av5zocaHNArbJCzv3PMsQ4M+el8nBruT93z54N4+EP/kcdIEanYGYEDBS
-	2KHzO0lryiIKB3UUM0ABzNVxBUZ1VIOjMXCkJ1ZBEocsCB4wmGzHt6i8SDy5nAg==
-X-Google-Smtp-Source: AGHT+IGbu05z+m7RDZX2vC5f8bY17sDCCv1VD85XawiUO9vd46JmjUUjhMHBU0Z78K38DvPeVT5BMg==
-X-Received: by 2002:a05:6122:8ce:b0:535:aea0:7a0a with SMTP id 71dfb90a1353d-5391ce97f02mr6299699e0c.2.1754023497470;
-        Thu, 31 Jul 2025 21:44:57 -0700 (PDT)
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com. [209.85.221.170])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53936cb4c4dsm846690e0c.22.2025.07.31.21.44.56
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Jul 2025 21:44:56 -0700 (PDT)
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-5393776550aso642367e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 21:44:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVcXX4l96E9KLb1Qp6QCSVhefcEdG2l34aCBKNqBOevCFPi/tkj3btFEAQTYudYrvfm515TGC05EFJj@vger.kernel.org
-X-Received: by 2002:a05:6122:521a:20b0:539:345c:f229 with SMTP id
- 71dfb90a1353d-539345cfaf8mr2385080e0c.6.1754023496106; Thu, 31 Jul 2025
- 21:44:56 -0700 (PDT)
+	s=arc-20240116; t=1754023545; c=relaxed/simple;
+	bh=f0kSnytsj68XbFg2s9F9w28FfWo8pGYjLeMe3biLdCQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lJmyRLV6we9q8PCPriRwvZJfqOyh9ueWFgKlspU54PzfmGGlZHCpKVuLaeMiWejwJni4ZlBb0LE7hxCm1RzM1DqqOYOsFsgVw1bopxyQe2/3rHV/6XjnI2lHhL4oUmL2qhnk2hi6IuCC0TB4au7LLVw67ksKAcPXhdImH0tcY9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=gz+Z5D+i; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F28EA1038C126;
+	Fri,  1 Aug 2025 06:45:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1754023534;
+	h=from:reply-to:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=cazfz037LmHclW8XHXBHFZq0vEjND40W4TWSxFvy07E=;
+	b=gz+Z5D+i9YMV7qtc9jV2wB6l2n5mM6a5kkQ8N5Nrm4TkChr51IhcMCajFKXKFKQIDQsjt4
+	ShW3SLCe9XFh86uBmcTWkbHL2WbZATD/fRJZArT33UNgyIIrrdu4BBXN/LgGL0EgOfgJKe
+	kpEJ1HUwHN3gjuI/8WQAdhOM6WfrmJD3mlm/T+2Wss+jq3N+L3LfjcIxIipHcGxUU/MI2m
+	r1YZkcuFOuap5h6DZ3ytvYUiNMClLZyFlPKjbZO5LgT7qxUlivfIemKy9HNtBkvFhAx3cc
+	0IBrCFR61MfOwW9lvrYnv978S00+JLzejurw223yvP9RyOXsg3NBCeigGls2Sw==
+Message-ID: <0c6dcc6f-e09c-266d-f65a-12d18244a2c6@denx.de>
+Date: Fri, 1 Aug 2025 06:45:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAC=S1njcFhyY6+dT2MHU02ZsLDq+k_vAVv==bWuoGt3KA18PHg@mail.gmail.com>
- <20250731101441.142132-1-laura.nao@collabora.com>
-In-Reply-To: <20250731101441.142132-1-laura.nao@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 1 Aug 2025 12:44:19 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ngjmk8-C0H2Nii4NXE3wsL1dYLQp-PXafG0=oaOVsYgmA@mail.gmail.com>
-X-Gm-Features: Ac12FXx2cQ8dN2cbGqrj1qjUfxVx4elX2aD-gscg8zxkv2Gb7ghx-fdTpW8_Hzc
-Message-ID: <CAC=S1ngjmk8-C0H2Nii4NXE3wsL1dYLQp-PXafG0=oaOVsYgmA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/9] thermal/drivers/mediatek/lvts: Add support for ATP mode
-To: Laura Nao <laura.nao@collabora.com>
-Cc: andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com, 
-	arnd@arndb.de, bchihi@baylibre.com, colin.i.king@gmail.com, 
-	conor+dt@kernel.org, daniel.lezcano@linaro.org, devicetree@vger.kernel.org, 
-	kernel@collabora.com, krzk+dt@kernel.org, lala.lin@mediatek.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org, 
-	lukasz.luba@arm.com, matthias.bgg@gmail.com, nfraprado@collabora.com, 
-	rafael@kernel.org, robh@kernel.org, rui.zhang@intel.com, srini@kernel.org, 
-	u.kleine-koenig@baylibre.com, wenst@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
+ device
+Content-Language: en-US
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Guenter Roeck <linux@roeck-us.net>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Andrei Lalaev <andrey.lalaev@gmail.com>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Grant Peltier <grantpeltier93@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Michal Simek <michal.simek@amd.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+References: <20250719063355.73111-1-hs@denx.de>
+ <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
+ <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
+ <8a8106ea-83d3-e02a-9ae7-ea4a66e4c248@denx.de>
+ <2e9c96c6-6dfb-4232-a9ab-a3e78b718fc2@roeck-us.net>
+ <20250722112013.0000597e@huawei.com>
+Reply-To: hs@denx.de
+From: Heiko Schocher <hs@denx.de>
+In-Reply-To: <20250722112013.0000597e@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Thu, Jul 31, 2025 at 6:15=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> Hi Fei,
->
-> On 7/31/25 06:25, Fei Shao wrote:
-> > On Wed, Jul 30, 2025 at 11:40=E2=80=AFPM Laura Nao <laura.nao@collabora=
-.com> wrote:
-> >>
-> >> MT8196/MT6991 uses ATP (Abnormal Temperature Prevention) mode to detec=
-t
-> >> abnormal temperature conditions, which involves reading temperature da=
-ta
-> >> from a dedicated set of registers separate from the ones used for
-> >> immediate and filtered modes.
-> >>
-> >> Add support for ATP mode and its relative registers to ensure accurate
-> >> temperature readings and proper thermal management on MT8196/MT6991
-> >> devices.
-> >>
-> >> While at it, convert mode defines to enum.
-> >>
-> >> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> >> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> >
-> > It's not visible in this patch, but a heads-up that I see
-> > lvts_ctrl_start() also depends on whether lvts is in immediate mode. I
-> > wonder if anything is needed there for ATP mode e.g. a new
-> > sensor_atp_bitmap.
-> > Feel free to ignore if this is a false alarm.
-> >
->
-> Thanks for the heads up - the bitmap for ATP mode is the same as
-> sensor_filt_bitmap, so the function is already working as intended.
+Hello Jonathan,
 
-Acknowledged, thanks for the clarification.
+On 22.07.25 12:20, Jonathan Cameron wrote:
+> On Mon, 21 Jul 2025 21:58:10 -0700
+> Guenter Roeck <linux@roeck-us.net> wrote:
+> 
+>> On 7/21/25 21:05, Heiko Schocher wrote:
+>>> Hello Krzysztof,
+>>>
+>>> On 21.07.25 18:24, Krzysztof Kozlowski wrote:
+>>>> On 21/07/2025 17:56, Mark Brown wrote:
+>>>>> On Sat, 19 Jul 2025 08:33:51 +0200, Heiko Schocher wrote:
+>>>>>> This series introduces the changes needed for trivial spi
+>>>>>> based sensors from ABB, currently operated from userspace.
+>>>>>>
+>>>>>> The last patch adds the spidevices to the DTS files, already
+>>>>>> in mainline.
+>>>>>>
+>>>>>> make dtbs_check showed no errors/warnings for the dts files
+>>>>>>
+>>>>>> [...]
+>>>>>
+>>>>> Applied to
+>>>>>
+>>>>>      https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+>>>>>
+>>>>> Thanks!
+>>>>>
+>>>>> [1/3] dt-bindings: trivial-devices: Document ABB sensors
+>>>>>         commit: aad2f87cbcab56b322109d26d7b11842a09df91f
+>>>>> [2/3] spi: spidev: Add an entry for the ABB spi sensors
+>>>>>         commit: d60f7cab7c04944a79af16caa43c141e780a59c6
+>>>>>   
+>>>>
+>>>>
+>>>> That's unexpected, Mark. Patches received two objections/comments and I
+>>>> don't think discussion was resolved.
+>>>>
+>>>> ABB is huge company, probably making hundreds or more of sensors. The
+>>>> patchset basically claims that all of them work with spidev. It does not
+>>>> providing any model names or details, so it seems really incomplete to
+>>>> call them trivial devices.
+>>>
+>>> I do not know how many different sensors they have, nor if that department can
+>>> speak for the whole company...
+>>>
+>>> What I have as information is:
+>>> https://lore.kernel.org/linux-spi/2477dc64-92a0-9dc9-d168-56646d0d796e@denx.de/
+>>>
+>>> and I get no more information about them currently. May I should
+>>> add some sort of trivial into compatible name? Something like
+>>>
+>>> "abb,spi-trivial-sensor"
+>>> or
+>>> "abb,spidev-trivial-sensor"
+>>>
+>>> which makes it clearer, that only ABB trivial sensor, controlled through spidev
+>>> driver, is connected here?
+>>>    
+>>
+>> FWIW, I always thought that devicetree is not supposed to contain such generic
+>> information. Is it even appropriate to list something like this in devicetree
+>> in the first place ?
+>>
+>> If so, what prevents anyone from submitting hundreds of
+>> "<company>,spidev-trivial-<device-type>" entries, using the same line of argument ?
+> 
+> Agreed.  These should have separate compatibles based on what any OS etc
+> might want to bind to them.  Just because their model in Linux is spidev etc
+> that shouldn't mean a generic ID is appropriate.
+> 
+> Can we at least have some examples to motivate the discussion?
 
-Reviewed-by: Fei Shao <fshao@chromium.org>
+I am sorry, I get no more information about the sensors... even I do
+not know the count of variants. What I can say is, that this sensors
+measure gases, and are only used "internal" on the aristainetos3 carriers.
 
->
-> Best,
->
-> Laura
->
-> > Regards,
-> > Fei
->
+So a proposal would be:
+
+# ABB gas sensor on aristainetos3 carriers
+compatible "abb,aristainetos-gas-sensor"
+
+bye,
+Heiko
+> Jonathan
+> 
+>>
+>> Guenter
+>>
+
+-- 
+DENX Software Engineering GmbH, Managing Director: Johanna Denk, Tabea Lutz
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
 
