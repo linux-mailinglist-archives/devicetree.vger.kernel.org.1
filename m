@@ -1,150 +1,176 @@
-Return-Path: <devicetree+bounces-201256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3529DB17E61
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:35:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2595B17E6D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:44:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10ECD5628B9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 08:35:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4C7A566A14
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 08:44:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53C41FA859;
-	Fri,  1 Aug 2025 08:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548E7217666;
+	Fri,  1 Aug 2025 08:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yN93m34G"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="0lyzPvCO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12535360
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 08:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D429237160
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 08:44:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754037309; cv=none; b=CsdjB5uaJSfU96eyyGgSdHKIhO8J9PFmvq3GT2MV7HISeIayVFqCGjnTuxFjqZuDos1D+l8hY5NsTCJEW0TRVPj3GFd/9VZbJ2zHedts3B/ESipDnR7vdWOJmbpIFnd6kmF1jIRjNUnqfkISD/dD5ZamJnjp7P4w6qnBdn6hNe4=
+	t=1754037843; cv=none; b=tVYop7FVnvLG/KekSCV/Y8sD0wMb7LHugtuGbcTWEuqE4Ka4hp9fu+o0jJEf78+fFw5dRZD1dZOByMEgl0sqHJyfGMVCwSvLuMrg6ZQfKW1N+X8TetF/ybObnzEQQVd7AQfDVUOBrIkLf7be+UDBUCPTs1V85XZ/vK8aqf3VUV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754037309; c=relaxed/simple;
-	bh=FqOy+mMo2rR0EN6LQz9aSmLP9UV6EGx2ngQ1VQrZuL4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jQPfkWKsx74Brb8lBt82ps4Z3wsuYSnQZ2qykSdEwZnvXTna2gvnVOFB9tc3mbKX3syJ6wz5916vHb49CA0VKN4lQe3gfDNsbu+f202Q/xG289ZMyPPciA8h8aspFypH4KjEcRkvOlGn2mEoPd+VewNmJdqwEHYOMMIZhn4hpD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yN93m34G; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b788feab29so809195f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 01:35:07 -0700 (PDT)
+	s=arc-20240116; t=1754037843; c=relaxed/simple;
+	bh=dfr+O86TVilJxSLigDPHqskAHRxN4csm1x/HzUwrWiM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eF/ZqR2VkWyRo7uQm0+yw1vjm7taT6FjR9eGEkQQ/Q300DO5qv8AUbIAaOXi5OjDLtsd5sYj5r9TTZwcLpuQlEwlcTBUh9+6ok5XOYjtJS+/I770j7DDZoyVTI84Onr2GgDYcwa/PGbO44z56FjbW57CdvPuD808QuKiJ6bkZDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=0lyzPvCO; arc=none smtp.client-ip=209.85.166.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-3e3d0cba6a7so5148725ab.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 01:44:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754037306; x=1754642106; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jiFqr0OPCqHVXSpWzCqecK/S1S4l0jHxVTGQ1xBrzUE=;
-        b=yN93m34G00mdZcGkmDfnWBPdYnktFU30yHCmG8IptjaCrlfoB2/nDC+x3DeWlpX6xI
-         acbvszas8Wm6f0f2PPk+KfDwd6lI5pH3mlMMZ3MkLhaCRV7XtDubi2f37RKu60A/v4hL
-         SKlAaJEPEghJJzTgiXZlWC6BqhoWq8EIQpijiRSmMjJcauGZf0UEwLEgMgGqz0QtoPIO
-         SHjCpTmtHbQauthU1I64v5d1mHDh1jcnyHyHt+gwFyKr7KvVj5tkeARwYEo3n2N+ClUr
-         kQ9MJv7XzWP0XOKmZz8wPCVebTseV/RcC5BvqlQNY3TIsAvxI+oWb5sgFv1wssQSWbc4
-         R8Rg==
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1754037841; x=1754642641; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oLyL9cAx6BfgxcO7E+1dWaZ7Plp09nvga7blXTlglSc=;
+        b=0lyzPvCOeaDHS8nDfMitVC3SZ/t6tE/49R8pQrRW5nnkYBfsshjulW8XgGq1gyULXz
+         s3UdRkjl2OwA7TJqYUNpODxyyAVQYhkGh9So+3xzYl8uBiM/DTd5f8a6Fq+gKgrW4YfS
+         WYwcBwbPR2R2QBLSWJ5F454RabVrgz8wiTXKfBI1/q1BE5inSpCf/W3IKph8xKvVrZ2Y
+         j41yD4+1VbddL7yJkcFRAB63ePxzKMHZVloiyaoV88QINC/v+grLsSS41bMMTVniY9R+
+         7STiHTjdwDKk7fdheIsFuuVJJH8r7xWUYqwsjHO2xqSV5adGToN+xr22IRbINnC3SJid
+         pVgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754037306; x=1754642106;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jiFqr0OPCqHVXSpWzCqecK/S1S4l0jHxVTGQ1xBrzUE=;
-        b=v8vu+pvn+1xCrF+sWaR6BXupUHnhP2rKBmSyTHHE5OQDPvtt+lUira0a2DdR04gIBr
-         T4AqeKu0JDiDZPNwUjM3hZuLdSsvja53uMoCcoY+mSZjkewNzriHDBtLOzj9QRZAXp0u
-         7cVdLdfasnSK1yp5a3Q2BlYhZGXvJ1GmPjHiCUQnKsfDnRW8Zck7ftbqy8k5j+ydbdJu
-         cJnAZlpjn+L0ltqxTfI4ggXmrsNqPjtu772LkMVehYI4BRjWo4bhsd14DqlTJvhzFGmv
-         xAbWzD7sI9sWW11zVJbAWV1I+Qc6I9aXHMIX8gIciehQ//wL/tcNdYvygZ6ik2ibORdf
-         ieYg==
-X-Forwarded-Encrypted: i=1; AJvYcCXSVYS5mKCaQemsAVPWRKr8rHiHFXFLEOv2MQN/JCAk4cqCT4XxWYbYNNTW6tZXwK4gZmJXEl0kxjCS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiQRIZH7iR/QgcT9LnMe5eE0SvZF9U9jVzbEnRbfuqEmWX/tjI
-	6kusO9cT2iLo+lBBmWZ6Oosr942fpGsq9anosm6hSOgCZptPbdzrhMm8v5nkNbeKGh8=
-X-Gm-Gg: ASbGnct2Rz08hCctlN9HTVLya8OyKJ5gl4UmP728/q4xTUacNkXm/CHIMAQ7ChKJ+io
-	FoqIJrz2aKpkykFe4qJbsVqklm84SIuHG5Fv1ZTLPE5dL6TxJb955UXAy7JCTNehmm6FUmeKMrH
-	7+EPCYHbFeT4rMwJvwg8tU9z6MaYliy7KDXFhn8/hRZGEbEK1DI+YXGwD0Xga6hLbz0lXmI+uEM
-	lwLWWdgRTrIs7WAa42G3ksc9V5alG5yy1Lo/In800hSt8Md+hzHqqPxPrl2i4kwNVDoHlEU5mFW
-	r3VZQ/7KZlnHjMmmDf6pVDiZe18Cp2ILIIFxMqyCDVi5FEKROOafzGHkXhHoksWdZkkkoI1VUiy
-	0qyDeppy1fJrMCicit4kogTsrE21vv/Ud5mz1X3PhQkaYsYjYUlPX8VlNMi5/RQ==
-X-Google-Smtp-Source: AGHT+IGS+73xkShFl6cO1Qu7hyyuX9oTyEOMrN6GMT2KH3N0L9G6LCMIuM6NsKe0gCwLrUaUqn7Ybg==
-X-Received: by 2002:a05:6000:2884:b0:3b7:99cb:16ed with SMTP id ffacd0b85a97d-3b799cb1a28mr6844043f8f.40.1754037306324;
-        Fri, 01 Aug 2025 01:35:06 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-458953f8e02sm92820875e9.32.2025.08.01.01.35.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Aug 2025 01:35:05 -0700 (PDT)
-Message-ID: <164402ad-2762-4d6b-aa34-38ff1b506600@linaro.org>
-Date: Fri, 1 Aug 2025 10:35:04 +0200
+        d=1e100.net; s=20230601; t=1754037841; x=1754642641;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oLyL9cAx6BfgxcO7E+1dWaZ7Plp09nvga7blXTlglSc=;
+        b=WivFBU+Mo6VYha4OO4jTbiB/O9qUpBYbaRpuSGPpcFkJAh9EU0ZNWBpaaCaVXX/VP6
+         6xmhSeBJFFy5cei4gqSFPYmOg74z3MnZ8oiKrGcfzSH3zSfw07uL7r/FszTTrUeAENSu
+         wllklYh7JJuNWC3rTn5xzzACxkalpbcS9ursRw0pVYytMJSN/1P901VnHoWX+PbpkbxK
+         YCEstIdY5lM45bE0LfDlEfXOChSPLXVIjBNpRzqPctYYvkgRpt22nl4zdNO4AyUO9t6t
+         rusvKrNug1RcEQr2KNPUW3zCXrQUNenYUiy8BcRTAygr9ZhMwa52vSyVPEou3Onsk8H1
+         4Qfw==
+X-Forwarded-Encrypted: i=1; AJvYcCW5z0DKUJQEZtDMguEzdQxQH6jDaSD1M9gH6nJg7jutva9dKoIbG2GnBOX9DNq8txuHuRPzXX7W6c3C@vger.kernel.org
+X-Gm-Message-State: AOJu0YyntMJ+91CwUUinXjwPz97Ryink57NkDkqtia717ukHigC3bxc6
+	a0GMb0ry3wqq1dEo4DteYAhIT/aHJTbU/NXHRLekkQa62W0yAlAU8NRMMpMolBHIMLN4JMUXRVK
+	jvHYFOj9AlwSXlfOGVcKhX2mLUuhc3D7A4qo9RkPCWA==
+X-Gm-Gg: ASbGncubooHatMEqWSDEsoM7wKDIuNifpM5IHMmEIoqqKJ2FNdJKz96h2++XkfROV+/
+	SZ3stdfmTjQrmps5Eq8p+ZtDdu8mryT7LOh8SpKI0BUAvUph/j5SVcvALEUpV8SJ2F6ZaQwAVMM
+	T2AB8T7QCgDP8lZkfqvwCUPyuaykXahKzQzI0iohH+gigWS2AEP9VU/kmGWl1VZ2NTPeLJKJ9b+
+	K5bzBL8VyNeKAg=
+X-Google-Smtp-Source: AGHT+IHmDGSj8nBVu2UdqL0jDDjl4m5SMVZpNB5EGI45FpC4Q2VdKsJNxym9Ty834wUMcEEJgUTipp1SECn/mOC0qB8=
+X-Received: by 2002:a92:d447:0:b0:3e2:9eac:dc01 with SMTP id
+ e9e14a558f8ab-3e3f628ea39mr174094325ab.18.1754037840628; Fri, 01 Aug 2025
+ 01:44:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] arm64: dts: s32g2: Add the STM description
-To: Frank Li <Frank.li@nxp.com>
-Cc: mbrugger@suse.com, chester62515@gmail.com,
- ghennadi.procopciuc@oss.nxp.com, shawnguo@kernel.org,
- s.hauer@pengutronix.de, s32@nxp.com, kernel@pengutronix.de,
- festevam@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
- Thomas Fossati <thomas.fossati@linaro.org>
-References: <20250730195022.449894-1-daniel.lezcano@linaro.org>
- <20250730195022.449894-2-daniel.lezcano@linaro.org>
- <aIp+XTCSpNGee2qx@lizhi-Precision-Tower-5810>
- <5be6d858-01e1-4c2d-bd5c-0e3385251af7@linaro.org>
- <aIv6L30mf5bzUqup@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aIv6L30mf5bzUqup@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250704070356.1683992-1-apatel@ventanamicro.com>
+ <20250704070356.1683992-9-apatel@ventanamicro.com> <175341132347.3513.7184287611040628050@lazor>
+ <CAK9=C2UDV3xCpKxZmT4NsRvN=hCcQrcx0fr-QFD2fuOrqmXmHA@mail.gmail.com>
+ <175359739515.3513.8664828076215459722@lazor> <CAK9=C2WRVHZ4FdoW0fKRRFg6qAC5asn03dHj_NXkMKfBXKkXdA@mail.gmail.com>
+ <175398062959.3513.15195554063633980579@lazor>
+In-Reply-To: <175398062959.3513.15195554063633980579@lazor>
+From: Anup Patel <anup@brainfault.org>
+Date: Fri, 1 Aug 2025 14:13:49 +0530
+X-Gm-Features: Ac12FXz23n5I2gUDW1GUPhVBv6qqLgn5liXl8qbTORMXLg42e8K813D_AmSmA3A
+Message-ID: <CAAhSdy31yTWn2zXO+rVH0ziQ9YSc-tMV4g65Wso+3s=p_h2cGA@mail.gmail.com>
+Subject: Re: [PATCH v8 08/24] dt-bindings: clock: Add RPMI clock service
+ message proxy bindings
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-acp <i@vger.kernel.org>, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/08/2025 01:20, Frank Li wrote:
-> On Wed, Jul 30, 2025 at 11:15:40PM +0200, Daniel Lezcano wrote:
+On Thu, Jul 31, 2025 at 10:20=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wr=
+ote:
+>
+> Quoting Anup Patel (2025-07-28 02:19:23)
+> > On Sun, Jul 27, 2025 at 11:53=E2=80=AFAM Stephen Boyd <sboyd@kernel.org=
+> wrote:
+> > >
+> > > It's not providing clks? The SBI firmware is not discoverable? Do you
+> > > have a pointer to the DTS for this node and the clock controller node=
+ in
+> > > the next patch? I'd like to understand why this is named a clock
+> > > controller when it doesn't provide clks.
+> >
+> > The firmware driver is not providing clks. Also, the SBI firmware and
+> > various SBI extensions are indeed discoverable from supervisor software=
+.
+>
+> If SBI extensions are discoverable from software why do we need a DT
+> binding?
 
-[ ... ]
+The firmware which implements the SBI MPXY channel needs to
+discover the underlying RPMI service group from DT.
 
->>>> +			compatible = "nxp,s32g2-stm";
->>>> +			reg = <0x4011c000 0x3000>;
->>>> +			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
->>>> +			clocks = <&clks 0x3b>, <&clks 0x3c>, <&clks 0x3c>;
->>>> +			clock-names = "counter", "module", "register";
->>>> +			status = "disabled";
->>>
->>> why not default enable.
->>
->> The S32G2 and S32G3 can have different variants with 2, 4, 8 Cortex-A53 and
->> 3 or 4 Cortex-M7. We enable the same number of CPUs present on the system.
->>
->> AFAIU:
->> 	S32G233A : 2 x Cortex-A53
->> 	S32G274A : 4 x Cortex-A53
->>
->> 	S32G399A : 8 x Cortex-A53
->> 	S32G379A : 4 x Cortex-A53
->>
->> Otherwise we would have to do the opposite, that is disable the unused ones
->> in the s32g274a-rdb2.dts, s32g399a-rdb3.dts and other dts which include the
->> s32g2.dtsi and s32g3.dtsi.
->>
-> 
-> That's fine by default disabled. but what's impact if it is enable but no
-> one use it?
+Let's say we have only one RPMI shared memory transport between
+application processors and platform microcontroller. This RPMI transport
+will be shared between M-mode firmware (OpenSBI) and S-mode (Linux).
 
-At the first glance I would say we call the probe function for nothing, 
-so adding an extra overhead. When repeated into multiple drivers that 
-increases the boot time significantly. It is certainly a good practice 
-as a rule of thumb to enable only the ones we really need.
+The OpenSBI will use the following example DT nodes to probe the
+mailbox driver and MPXY driver to expose MPXY channel to S-mode.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+mb: mailbox@10080000 {
+    compatible =3D "riscv,rpmi-shmem-mbox";
+    reg =3D <0x00 0x10080000 0x00 0x10000>,
+         <0x00 0x10090000 0x00 0x10000>,
+         <0x00 0x100a0000 0x00 0x10000>;
+    reg-names =3D "a2p-req", "p2a-ack", "a2p-doorbell";
+    #mbox-cells =3D <0x01>;
+    riscv,slot-size =3D <0x40>;
+    riscv,p2a-doorbell-sysmsi-index =3D <3>;
+};
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+clock-service {
+    compatible =3D "riscv,rpmi-mpxy-clock";
+    mboxes =3D <&mb 0x08>;
+    riscv,sbi-mpxy-channel-id =3D <0x1001>;
+};
+
+Based on the above, Linux will use the following example DT nodes
+to probe the Linux MPXY mailbox driver and RPMI clock driver.
+
+mpxy_mbox: sbi-mpxy-mbox {
+    compatible =3D "riscv,sbi-mpxy-mbox";
+    #mbox-cells =3D <2>;
+    msi-parent =3D <&imsic_slevel>;
+};
+
+rpmi-clk {
+    compatible =3D "riscv,rpmi-clock";
+    #clock-cells =3D <1>;
+    mboxes =3D <&mpxy_mbox 0x1001 0x0>;
+};
+
+I hope the above example DT node provides a better picture
+about how DT bindings are used in firmware and Linux.
+
+Regards,
+Anup
 
