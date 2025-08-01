@@ -1,105 +1,179 @@
-Return-Path: <devicetree+bounces-201413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A419DB187D0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 21:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AAB4B187FA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 22:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52050AA3407
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 19:35:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBBC7AA67AA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 20:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5076C28D85E;
-	Fri,  1 Aug 2025 19:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CE01F4CBF;
+	Fri,  1 Aug 2025 20:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lt2ZvjEP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WJSufQXF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAAC28CF70;
-	Fri,  1 Aug 2025 19:35:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C82DF71;
+	Fri,  1 Aug 2025 20:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754076905; cv=none; b=YqHML+k3gUVqw+yOYiFGU1wqdX8U/Z4ZjCQrqMxZ8YFCX4DnjmQm/mwRMGCuBvIuGs9GTUVHHjiOI5CfVvlSfTocEyu6wxRE0GoJVN6oWZn0gpbbk/ApwTNPJBVf0k0ffCqX7hfInUeFAXpK2Hnpl41s6vNAcF6daTjeqdmy+d4=
+	t=1754078942; cv=none; b=uaw0Fbuca+Hef474dHXksTrKzzclt+iNIM8JlEbo9VIRWwp0SY5OM3IlHS+lUKyFUrgoGn4TanBjMXHaYjk1Me3ZAoO9RWIJllZgCwvjqHmkzi07pwwhLJuE5h+vic5hbKDYNmDhILekpDIPxNfz1+U2A65NnZyAK6b5orauyNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754076905; c=relaxed/simple;
-	bh=IJSAXcvh17DdROpZVcOX4dIvpsH4xqwZwXk4qGePwgE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ksJ8MelfchhxR7lXS2gKrd04/+rWty/5Asn/N6SZHglW9h0MeUIX+wJaquyp3R6TXRL87MEvSm1tlLyknCSm8xA+wWXfqi5eN0564IkONCGOE/fFYjT6VuCT35yFoSzZRophqHHULWss7UNP8hN0Fo0XsKo6LzWJe3dPM6BZd1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lt2ZvjEP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44E5CC4CEE7;
-	Fri,  1 Aug 2025 19:35:00 +0000 (UTC)
+	s=arc-20240116; t=1754078942; c=relaxed/simple;
+	bh=fw8F8QiVkdM8Joh95+oEe6ERIlYYV1zFhGgB51zRycI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LdzP3TwxSqK/VDhbskoW8gloT9KBuODtVl/6FnDSOPmOSKTgTXS76mwmjxbeIUCvPX6X6pPVR73mfsbkirVRR4PfB9dN3GriOwkjVj4zMjXwxwIBOCsedzFfTDKfXF7OPMJCNi3uQrsxqbzMvLHriEIa8cx4fWHBRR/8MJEBCGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJSufQXF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 014BFC4CEF4;
+	Fri,  1 Aug 2025 20:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754076904;
-	bh=IJSAXcvh17DdROpZVcOX4dIvpsH4xqwZwXk4qGePwgE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lt2ZvjEPl7yj2gTknYlTaX51NOHCsLy+g5fuSqVaMJJf/I+8ObC+lXdyBBTnVp3WY
-	 jEeGe0BKj9hwch/ZoRAanxaKbG7BUBwtZ/2foY6dAvSIxTGdrWAdIU25b6YzfLU3D2
-	 Tq0PuTs3xrrkw3htHeMvIgbgv2DDDjBijVz0Bx/vT8E3P5jJy9jJwcw4YeEl0Cb9U7
-	 oxcSiGhStLDepPLlfHue7sQ84ht/FEAJ2r+pRFeNIPzDwlMIdEO5HOpcYYvfkk3MIu
-	 +yiBOilisubeD+hOFNPBDI+tK3WltNO+rBljSX5fXYMgcodSK1Ij1HeSG/Ly4e+tLP
-	 W+G9w9yngdM1Q==
-Date: Fri, 1 Aug 2025 20:34:57 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Haotien Hsu <haotienh@nvidia.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1754078942;
+	bh=fw8F8QiVkdM8Joh95+oEe6ERIlYYV1zFhGgB51zRycI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=WJSufQXFoUAEZZCjWBC9UGKH+EmX5KsBppVj8N0wgJiZIlj2c0SE/B6ot+wXAzjfR
+	 8c0FBs/P7OcD/RPqQVyOpmiaKgupLYB+rcf0dm4tRYo6chPIoNZzaM34Ho1yr1ojw0
+	 6L6DO6oO5rZrvRV1fWzWiHWjhZ8iy/bv02S3qKSNwSsh/Pa4Q2Qg0E/b0zTOJEMZwr
+	 Z6St/MYc0GkSJ/xhl1I+OPaIqFcdBBzbKKybMWRi2xo4UuWN4vHtLJWL92wJM9qUcS
+	 9IRHeazBA/b2/wTc3pkdJw4SqdCMkWaez/8bTr4PIKWjFC56K6F9N38t09MjTNd2Jz
+	 utKIeLrGDySuw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	Brad Griffis <bgriffis@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
-	Vedant Deshpande <vedantd@nvidia.com>,
-	Akhil R <akhilrajeev@nvidia.com>,
-	Jinjie Ruan <ruanjinjie@huawei.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Henry Lin <henryl@nvidia.com>,
-	Jui Chang Kuo <jckuo@nvidia.com>, Wayne Chang <waynec@nvidia.com>,
-	WK Tsai <wtsai@nvidia.com>
-Subject: Re: [PATCH 1/4] dt-bindings: usb: Add wake-up support for Tegra234
- XUSB host controller
-Message-ID: <20250801-blend-lyricist-e2b88ee1f7e5@spud>
-References: <20250801095748.385437-1-haotienh@nvidia.com>
- <20250801095748.385437-2-haotienh@nvidia.com>
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: Ray Jui <ray.jui@broadcom.com>,
+	Scott Branden <scott.branden@broadcom.com>,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: PCI: Add missing "#address-cells" to interrupt controllers
+Date: Fri,  1 Aug 2025 15:07:27 -0500
+Message-ID: <20250801200728.3252036-2-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="X8oP1zOql6xeq+n0"
-Content-Disposition: inline
-In-Reply-To: <20250801095748.385437-2-haotienh@nvidia.com>
+Content-Transfer-Encoding: 8bit
 
+An interrupt-controller node which is the parent provider for
+"interrupt-map" needs an "#address-cells" property. This fixes
+"interrupt_map" warnings in new dtc.
 
---X8oP1zOql6xeq+n0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+PCI maintainers, Please ack, I'll take this with the dtc update for 
+6.18.
 
-On Fri, Aug 01, 2025 at 05:57:45PM +0800, Haotien Hsu wrote:
-> Populate USB wake events for Tegra234 XUSB host controller.
-> These wake-up events are optional to maintain backward compatibility and
-> because the USB controller does not require them for normal operation.
->=20
-> Signed-off-by: Haotien Hsu <haotienh@nvidia.com>
+ Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml    | 1 +
+ .../devicetree/bindings/pci/marvell,armada-3700-pcie.yaml     | 4 ++++
+ .../devicetree/bindings/pci/marvell,kirkwood-pcie.yaml        | 3 +++
+ .../devicetree/bindings/pci/socionext,uniphier-pcie.yaml      | 4 ++++
+ Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml  | 3 +++
+ 5 files changed, 15 insertions(+)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+index 5434c144d2ec..18e7981241b5 100644
+--- a/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+@@ -108,6 +108,7 @@ examples:
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+ 
+     gic: interrupt-controller {
++        #address-cells = <0>;
+         interrupt-controller;
+         #interrupt-cells = <3>;
+     };
+diff --git a/Documentation/devicetree/bindings/pci/marvell,armada-3700-pcie.yaml b/Documentation/devicetree/bindings/pci/marvell,armada-3700-pcie.yaml
+index 68090b3ca419..8403c79634ed 100644
+--- a/Documentation/devicetree/bindings/pci/marvell,armada-3700-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/marvell,armada-3700-pcie.yaml
+@@ -42,6 +42,9 @@ properties:
+     additionalProperties: false
+ 
+     properties:
++      '#address-cells':
++        const: 0
++
+       interrupt-controller: true
+ 
+       '#interrupt-cells':
+@@ -92,6 +95,7 @@ examples:
+             reset-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>;
+ 
+             pcie_intc: interrupt-controller {
++                #address-cells = <0>;
+                 interrupt-controller;
+                 #interrupt-cells = <1>;
+             };
+diff --git a/Documentation/devicetree/bindings/pci/marvell,kirkwood-pcie.yaml b/Documentation/devicetree/bindings/pci/marvell,kirkwood-pcie.yaml
+index 7be695320ddf..3d68bfbe6feb 100644
+--- a/Documentation/devicetree/bindings/pci/marvell,kirkwood-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/marvell,kirkwood-pcie.yaml
+@@ -101,6 +101,9 @@ patternProperties:
+         additionalProperties: false
+ 
+         properties:
++          '#address-cells':
++            const: 0
++
+           interrupt-controller: true
+ 
+           '#interrupt-cells':
+diff --git a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+index 638b99db0433..c07b0ed51613 100644
+--- a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
+@@ -56,6 +56,9 @@ properties:
+     additionalProperties: false
+ 
+     properties:
++      '#address-cells':
++        const: 0
++
+       interrupt-controller: true
+ 
+       '#interrupt-cells':
+@@ -109,6 +112,7 @@ examples:
+                         <0 0 0  4  &pcie_intc 3>;
+ 
+         pcie_intc: interrupt-controller {
++            #address-cells = <0>;
+             interrupt-controller;
+             #interrupt-cells = <1>;
+             interrupt-parent = <&gic>;
+diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+index 69b499c96c71..c704099f134b 100644
+--- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
++++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+@@ -99,6 +99,9 @@ properties:
+     additionalProperties: false
+ 
+     properties:
++      '#address-cells':
++        const: 0
++
+       interrupt-controller: true
+ 
+       '#interrupt-cells':
+-- 
+2.47.2
 
---X8oP1zOql6xeq+n0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaI0W4QAKCRB4tDGHoIJi
-0kltAQDiyFLBVNnXXpakSrzAUlPjFjlw68v7Rchf9l6RTNvK2AEA69U+MzqIyMOe
-s0VHAdcFO5kUImxsdN2tIk7bvWDoMwQ=
-=jXbq
------END PGP SIGNATURE-----
-
---X8oP1zOql6xeq+n0--
 
