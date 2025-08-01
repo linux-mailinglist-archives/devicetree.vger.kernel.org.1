@@ -1,170 +1,151 @@
-Return-Path: <devicetree+bounces-201387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36320B184FC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 17:31:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 934A7B1850C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 17:34:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B79F563D6B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:31:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 220E11C280ED
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF6826CE36;
-	Fri,  1 Aug 2025 15:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7677725A322;
+	Fri,  1 Aug 2025 15:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H/LdQtDa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KNADI7XD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9832A1B7F4;
-	Fri,  1 Aug 2025 15:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 441E914B96E;
+	Fri,  1 Aug 2025 15:33:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754062283; cv=none; b=fmCDt0CIGHHgdxtpo/1sayiIbA5lDEQnM63CvLV2PKHrODO3DLpZXPdBf7YEysbVj4kYU1qwxcKOqg+SbD1TPLiQXFJpEkQ9OK2MC2ZmaxwlAWsW95jhU/4DQNy3RVySDl3u2opwkZo2ncjN1BMVJ45SThBgoP9KSNl/SKHPG0M=
+	t=1754062437; cv=none; b=n5kUlQ57wVQB/HF1hyzXgmr+0G4ktUpszk1MIjARxzKqyw+sTAjiQJC4nvamXr+2fJQSo83tNoSKG4sHT5MH0qsQXAFWdSv1O0slgW/2UT9CobFPOA2gb3trkpHSOeY8G/Deq6+DuJRA+x3lgWL5vKwgm/fFVDvx2NO6/RzPaxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754062283; c=relaxed/simple;
-	bh=y6mkOrGwcWMo5LKjnRE7fq4giaHva3fen9P05JzBrBQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UDsNm+Spl9zalAv8nYBdtnFsb5TxXbjCwAFYrfQuHE2E+XZcQodBltG+JdPrkwNkk65fs6oDHfWM+MAW/3a9eDSJnb+KkLDXtA90s4VCyEMLsMq8DOvoMbH1lxnHdG+F/jiQAAGW2XVU8MQS3bJg7rb9r05typf6O9avN3G7AX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H/LdQtDa; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3b79bddd604so1339238f8f.0;
-        Fri, 01 Aug 2025 08:31:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754062280; x=1754667080; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I4UHueSc9BAu6grTRDLcGU5I69yEzCQOkcHM/+5O8oc=;
-        b=H/LdQtDam3Yw01AsW6ya8OY+7HjidjuFXM9v/zTToyAfkIooTTMG6n3+7xF9YJuXZ4
-         N6NiVne0WQJ0OX6TXtMoSCKJ9MG11mnq0Ref5YK91n1yJDdGtN33X6UsuTwNNr70ycEx
-         W0FfB8qpUwNH20XGR4D/T+8My+VBah196rDO25jOFznmHi6mgu44BfkggkmKzx+Gq4ng
-         ckM2fobB6ld5tyPRKqpoRBXL4372stB/S8jx9Qhf7KtHycViarIWVSuCWJZjWTQnWv4h
-         ka/6psG3G/TukoZJGA/UAxAdp+zdQF9/DIX0BoGtPRvJ8Thv74W6D6y/RJM/Dr3oOoPb
-         tbTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754062280; x=1754667080;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I4UHueSc9BAu6grTRDLcGU5I69yEzCQOkcHM/+5O8oc=;
-        b=sKZfxka4gm9Udukxys8cQSKGo745I7HVmY/Xl0AwYdF6OiSfi+HFW6QSUqNstWFyX/
-         Q0xpX0fhuGgc5fnKzzdPUjgwsXHMvuqSrKbQ/49vgZOHvLjsNc7qjP5LWIoAbOFNJCli
-         0fYYMQ3jVpK8ggY9kFpY6bioou1YoYNAH5QL2NkTkqGZYCN42Cpl7h9AaRwNpCtLyxwJ
-         iyZMn+HPBv/4s9A02bisoQytnC9UTwTzB4O/X71cOj4S2xTn9CnNVF8GcW1cdm6ogEFM
-         qXOUsF85DShDWnTgT3riLEV1EdJq79brgaFpzAx0I9dHrW8riuPQb5BA6C1gIQgiatMA
-         cJag==
-X-Forwarded-Encrypted: i=1; AJvYcCUHusADv0SmBzRA7iC/TzacCjqSygKt0qZfnGh6ROO2RmMKxocrqdqb830yiS1qR6PqCzPGEh34UleDXBVKnkvwotc=@vger.kernel.org, AJvYcCVrhyFM7XcbDMPBqlKT4E1m9ujLWqYNwXUpVMpTqYqs+WDMMBpkmF5C6Cl5biXFCKCtUuxQ0qVHmtczSjMQDQs=@vger.kernel.org, AJvYcCW5bfJ+Ue1WVpT9vH4wZR0ZRBeAhspx93NusSL+aWGysOQLBHXJ2huApwUS+wo4yjGcNKQVf99Kov6O@vger.kernel.org, AJvYcCXeDlnDwLL+JYjzgQa1+QtZMJ7JF4Kw9m64is+EzGn2Af4nBTfM/sDlBO3oOT/rK9Nagygn95zfiyBENf59@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1ROWQSIooIIkGKQjv2aUDOR9DxQ/KDG7Fdw/LiNBeVTDBCgq1
-	CcZJw+m3J34FGISU8mCS/HHwaoeMhHMhXggE5Dhu7TNl3ukp7TL/XrF+AfM9f0Jnyvx2McY31UP
-	Bt8FO9wNhxLNDHDglg1RFXBij56KBasTF+NSp
-X-Gm-Gg: ASbGncu3E8oUda1l9U+XyYfJ5y484QXOkvyWggH/sdbO6bzACjlYPfoFs/BAiP+nwtZ
-	9/fy/iLjd2eZkto8Lmm6fQd6QhP8Uf6kAPAMQHrNlk3sHpZZDwBCKrQWRE9cLP7w+QqjOsczM7b
-	AkizlLkAlpXsipxjBcHe47+Wy/o3X1QcV+Y2ReAqDQmD0NEEnpy5epfblG2AAxZVqObhR5ZbucB
-	bU63Ixi
-X-Google-Smtp-Source: AGHT+IG/PEclFnHnCQeI2QGLM29cWdJHKI1N8xyEXdcVOwzbQatLkiNjlXHy9Zk8mQM/o19QgqGiswZnW6NA2rQ+Lq0=
-X-Received: by 2002:a05:6000:1786:b0:3b7:8d2a:b33c with SMTP id
- ffacd0b85a97d-3b8d94716bamr171723f8f.18.1754062279697; Fri, 01 Aug 2025
- 08:31:19 -0700 (PDT)
+	s=arc-20240116; t=1754062437; c=relaxed/simple;
+	bh=pPVXXjSd3b/wxdsyWsr19KEUVs/RT5iHUF61lgzHuxI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R0UGae2sjFK5/llHQpHxWP9iFSAO6CKjQ4U5U+pb9wSukO5XvGwCetvcAHt8AsyhwxCqR4gLgs/rGVgYwSR70JiJXMcLHkW357QOL6AGhycWkvny9jvUf8BT3RI1wWsKZ7V+HjgbDb8dpP26pepqrhGOIfwtCwj/tVxhHmNZ9O8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KNADI7XD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B1BDC4CEE7;
+	Fri,  1 Aug 2025 15:33:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754062436;
+	bh=pPVXXjSd3b/wxdsyWsr19KEUVs/RT5iHUF61lgzHuxI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KNADI7XDsILoja5+zLjnYQ0htKdoCrK3UYGEINpUndvm0I7056v5xqRcgiD7Z5dHT
+	 7Tn/pxCYlMqbwOSx1YheGVpfRKYUyEFhCmv6aWGQtd4stWjdFenIBFBmEErGkRNedz
+	 YrrlRkEG8uIjfm2YGF+JluLuGG7m1q+nvwLFj+tYhktYJXf0rrYNI60JgbyxUApTca
+	 4YBA02ytf/BdO8M6aQ3i7mvWgZyhbLbqWO3ZCU7uXsGYb64k5ugEl6KWOyUFFFn2c5
+	 5qeTFmET+82nuk0K+SZKcIRLxNT6N63rhsJdhMJb7oO040cmAs8td3knxk0BiCrzjc
+	 jR1vQu+qsgCrQ==
+Date: Fri, 1 Aug 2025 21:03:46 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com, 
+	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: sm8650: Enable MCQ support for
+ UFS controller
+Message-ID: <54gttzkpxg55vrh5wsvyvteovki377w3yjfejjddpzzrvldwkg@p7sc4knnvla3>
+References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
+ <20250730082229.23475-3-quic_rdwivedi@quicinc.com>
+ <eab85cb3-7185-4474-9428-8699fbe4a8e5@kernel.org>
+ <40ace3bc-7e5d-417a-b51a-148c5f498992@quicinc.com>
+ <2a7bf809-73d9-4cb6-bcc9-3625ef1eb1fa@kernel.org>
+ <kayobeddgln5oi3g235ruh7f7adbqr7srim7tmt3iwa3zn33m4@cenneffnuhnv>
+ <5a32e933-03b9-4cc3-914c-46bdb2cedce6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250729155915.67758-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250729155915.67758-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <aIw-P6zkQSOhvYJW@shikoro> <CA+V-a8txrQoweVrd7uK4LLvDonqrEQGT_gV1r28RFhy8-m=9VQ@mail.gmail.com>
- <c06bcde9-0aa5-46d1-a5bf-bae5a319565c@roeck-us.net>
-In-Reply-To: <c06bcde9-0aa5-46d1-a5bf-bae5a319565c@roeck-us.net>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 1 Aug 2025 16:30:53 +0100
-X-Gm-Features: Ac12FXyy_ISzry_ypkaPqy_BT3ZWEZfMu2muHoo9P9HSEXIjK4mKJRz5zn1zayk
-Message-ID: <CA+V-a8sDP7iir-bPetbCw0fakPRxua5F-F1hVvXUD8bGAMdhFA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/9] watchdog: rzv2h: Set min_timeout based on max_hw_heartbeat_ms
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5a32e933-03b9-4cc3-914c-46bdb2cedce6@kernel.org>
 
-Hi Guenter,
-
-On Fri, Aug 1, 2025 at 2:52=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> w=
-rote:
->
-> On 8/1/25 04:05, Lad, Prabhakar wrote:
-> > Hi Wolfram,
-> >
-> > Thank you for the review.
-> >
-> > On Fri, Aug 1, 2025 at 5:10=E2=80=AFAM Wolfram Sang
-> > <wsa+renesas@sang-engineering.com> wrote:
-> >>
-> >> On Tue, Jul 29, 2025 at 04:59:13PM +0100, Prabhakar wrote:
-> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, Aug 01, 2025 at 04:20:37PM GMT, Krzysztof Kozlowski wrote:
+> On 01/08/2025 14:24, Manivannan Sadhasivam wrote:
+> > On Thu, Jul 31, 2025 at 10:38:56AM GMT, Krzysztof Kozlowski wrote:
+> >> On 31/07/2025 10:34, Ram Kumar Dwivedi wrote:
 > >>>
-> >>> Update the watchdog minimum timeout value to be derived from
-> >>> `max_hw_heartbeat_ms` using `DIV_ROUND_UP()` to ensure a valid and
-> >>> consistent minimum timeout in seconds.
+> >>>
+> >>> On 31-Jul-25 12:15 PM, Krzysztof Kozlowski wrote:
+> >>>> On 30/07/2025 10:22, Ram Kumar Dwivedi wrote:
+> >>>>> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
+> >>>>> on the Qualcomm SM8650 platform by updating the device tree node. This
+> >>>>> includes adding new register regions and specifying the MSI parent
+> >>>>> required for MCQ operation.
+> >>>>>
+> >>>>> MCQ is a modern queuing model for UFS that improves performance and
+> >>>>> scalability by allowing multiple hardware queues. 
+> >>>>>
+> >>>>> Changes:
+> >>>>> - Add reg entries for mcq_sqd and mcq_vs regions.
+> >>>>> - Define reg-names for the new regions.
+> >>>>> - Specify msi-parent for interrupt routing.
+> >>>>>
+> >>>>> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+> >>>>> ---
+> >>>>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 9 ++++++++-
+> >>>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>> index e14d3d778b71..5d164fe511ba 100644
+> >>>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>> @@ -3982,7 +3982,12 @@ ufs_mem_phy: phy@1d80000 {
+> >>>>>  
+> >>>>>  		ufs_mem_hc: ufshc@1d84000 {
+> >>>>>  			compatible = "qcom,sm8650-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+> >>>>> -			reg = <0 0x01d84000 0 0x3000>;
+> >>>>> +			reg = <0 0x01d84000 0 0x3000>,
+> >>>>> +			      <0 0x01da5000 0 0x2000>,
+> >>>>> +			      <0 0x01da4000 0 0x0010>;
+> >>>>
+> >>>>
+> >>>> These are wrong address spaces. Open your datasheet and look there.
+> >>>>
+> >>> Hi Krzysztof,
+> >>>
+> >>> I’ve reviewed it again, and it is correct and functioning as expected both on our upstream and downstream codebase.
+> >>> I think it is probably overlooked by you. Can you please double check from your end?
+> >>>
 > >>
-> >> I don't understand this change. Why is the _minimum_ timeout based on
-> >> the _maximum_ heartbeat?
+> >> No, it is not overlooked. There is no address space of length 0x10 at
+> >> 0x01da4000 in qcom doc/datasheet system. Just open the doc and look
+> >> there by yourself. The size is 0x15000.
 > >>
-> > The reason for deriving min_timeout from max_hw_heartbeat_ms is to
-> > ensure the minimum watchdog period (in seconds) is compatible with the
-> > underlying hardware.
-> >
-> > max_hw_heartbeat_ms is calculated as:
-> > max_hw_heartbeat_ms =3D (1000 * 16384 * cks_div) / clk_rate;
-> >
-> > This value varies by SoC:
-> >   RZ/T2H: cks_div =3D 8192, clk =E2=89=88 62.5 MHz -> max_hw_heartbeat_=
-ms ~ 2147ms
-> >   RZ/V2H: cks_div =3D 256, clk =E2=89=88 240 MHz -> max_hw_heartbeat_ms=
- ~ 174ms
-> >
-> > Since min_timeout is in seconds, setting it to:
-> > min_timeout =3D DIV_ROUND_UP(max_hw_heartbeat_ms, 1000);
-> >
-> > ensures:
-> > The minimum timeout period is never less than what the hardware can sup=
-port.
-> > - For T2H, this results in a min_timeout of 3s (2147ms -> 3s).
-> > - For V2H, it=E2=80=99s just 1s (174ms -> 1s).
-> >
->
-> Sorry, I completely fail to understand the logic.
->
-> If the maximum timeout is, say, 2 seconds, why would the hardware
-> not be able to support a timeout of 1 second ?
->
-The watchdog timer on RZ/V2H (and RZ/T2H) is a 14 bit down counter. On
-initialization the down counters on the SoCs are configured to the max
-down counter. On RZ/V2H down counter value 4194304 (which evaluates to
-174ms) is and on RZ/T2H is 134217728 (which evaluates to 2147ms). The
-board will be reset when we get an underflow error.
+> > 
+> > The whole UFS MCQ region is indeed of size 0x15000, but the SQD and VS registers
+> > are at random offsets, not fixed across the SoC revisions. And there are some
+> > big holes within the whole region for things like ICE and all.
+> > 
+> > So it makes sense to map only the part of these regions and leave the unused
+> > ones.
+> Each item in the reg represents some continuous, dedicated address
+> space, not individual registers or artificially decided subsection. The
+> holes in such address space is not a problem, we do it all the time for
+> all other devices as well.
+> 
+> You need to use the definition of that address space.
+> 
 
-So for example on T2H consider this example:
-- down counter is 134217728
-- min_timeout is set to 1 in the driver
-- When set  WDIOC_SETTIMEOUT to 1
-In this case the board will be reset after 2147ms, i.e. incorrect
-behaviour as we expect the board to be reset after 1 sec. Hence the
-min_timeout is set to 3s (2147ms -> 3s).
+What if some of the registers in that whole address space is shared with other
+peripherals such as ICE?
 
-Please let me know if my understanding of min_timeout is incorrect here.
+I agree with the fact that artifically creating separate register spaces leads
+to issues, but here I'm worried about hardcoding the offsets in the driver which
+can change between SoCs and also the shared address space with ICE.
 
-Cheers,
-Prabhakar
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
