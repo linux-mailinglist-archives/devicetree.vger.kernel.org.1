@@ -1,202 +1,343 @@
-Return-Path: <devicetree+bounces-201200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49100B17B70
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 05:37:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B41B17B89
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 05:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0453C3B1222
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 03:37:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B62A1A80C28
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 03:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE9F1714B7;
-	Fri,  1 Aug 2025 03:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC7518FC91;
+	Fri,  1 Aug 2025 03:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="l3pomGga"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YhrG+NMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2085.outbound.protection.outlook.com [40.107.100.85])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C52C33DF;
-	Fri,  1 Aug 2025 03:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.85
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754019424; cv=fail; b=onzl12gypiJp0LT/n3kbhi1gSfetOlqbKoLoPKDfN7OinV33ZuSApp4D9+OovZuEEGqA+ZBlUTwXHXYDEm6JusyGZPsRowvu03pg3MfTU3HmVQcdcrVys7Vhr9LolV/FedYz561dAn5EkPCqmU2WR6aJE/v7cdrfghnZuUrsTUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754019424; c=relaxed/simple;
-	bh=iyGM5SM3DIRczFtGSYDgIVeyiIWg1p31ZGdpEeERIYw=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eBA5rzeHcxWq29rOWPqt+8isz64e2k0TFRHf8PwYL9Up/3Of8Fd1CK1l752/o+JNcAUOsvfl1WEvucAnYB3D6mGtbYAl2LJbLZhbMOb2m/pM4FBogxCiSSPlIQ8dLuySRCQ/ihauAiVBKWlIJ7XfzaLOLd/hphc7KthL4zYcWZI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=l3pomGga; arc=fail smtp.client-ip=40.107.100.85
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qNm+Qg8XRm/4xWRuRPIrlRS2c6MzSmf5d1ye8QIUaGNv8TlxH76Dci0Eo6F7/zthDTdfb6XUd11/VRSF+7SPR9QBoIQEcwuUbWULm04QLZC1RDgjgPkfRCMG1XOQhUrm3gkIBxD+9+ZUu1plYnvVOaZ9GiL1Utc7imD/Oa/5Xc3YW0JGZ/dt53YhiKyyZ8BQpIFwJjNqzu/F0Fyc54OL0NiJEEjlFcFE0W10XXR8vLLiyCj/A0kkt4l7eYaKhMMSxneYB3K84gRcPaRF8kT1/GnxAh5umDpf2FqwHNoikrM2WmcvG/P6YE6CUc1nKFDYfSdaVBApryuQxb9mqF21hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iyGM5SM3DIRczFtGSYDgIVeyiIWg1p31ZGdpEeERIYw=;
- b=IcgkPUcAZV035w72KWt8OqubWYSL7GrStxl4zOvXVL6QLi92F+4IJhabBhliY/lWfvvgtuMwBI1YN24RnAhO862TQa7jMWfF2ooKYDwMAuyg0YXxiQYwwCYvhkJCUD8PeXqhFQ0DRirvH9s2nXn37R+VPnsTIrVbk6OBHXtnvQ1sS1rvhlSRY5Kbsc/djtDuB5hw72C9QXw9ssCbUhTnxyDeFTNJ8oNovlbne9cAqMrIQmOj28dzFqz/AbRpLuwbJc4SHZifrSYL+XZ6dE0j5UWeHPxrZIQsGg6Nt8ZgJqwKeYDzPu9cMPf0EcZeiNtpx+htuqvMDFky8n7ow899Dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iyGM5SM3DIRczFtGSYDgIVeyiIWg1p31ZGdpEeERIYw=;
- b=l3pomGga3h1D3cyiFpoobJnDadMJvF4PZAqI0BiyWNXFSO4XUmRZIRS2HgC3SzUlXAqTgbcwxY06NgwONXDPZyNVGIFuuZ3clumBkcCz9+05SYTqm6cSRYcCUJNoijhzTGM9120CGJnpSXas7Y32RA+ceJA6Mgmu3pz+aOzqogwEvKVa8rWf3xHS8gBXXabiWSrPDGoV7UBDYPPDf2SECBO4UtuvllKPADvAv9gQfKeBHYH9QawF1hn8L6ugykMIcl5tvTfthWowgfCrsYYrdJs4DiS1uEVTSSgZioS9y1GlgTrcEqHPcedAJv097Tuf1SGHjlqPGCan6C6X2aIohA==
-Received: from DM3PPF9623118BD.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f3a) by MW6PR11MB8410.namprd11.prod.outlook.com
- (2603:10b6:303:249::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.12; Fri, 1 Aug
- 2025 03:36:59 +0000
-Received: from DM3PPF9623118BD.namprd11.prod.outlook.com
- ([fe80::6ca6:1077:eb18:728d]) by DM3PPF9623118BD.namprd11.prod.outlook.com
- ([fe80::6ca6:1077:eb18:728d%6]) with mapi id 15.20.8964.023; Fri, 1 Aug 2025
- 03:36:58 +0000
-From: <Manikandan.M@microchip.com>
-To: <krzk@kernel.org>, <broonie@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<Ryan.Wanner@microchip.com>, <tudor.ambarus@linaro.org>,
-	<linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
- support for optional 'spi_gclk' clock
-Thread-Topic: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
- support for optional 'spi_gclk' clock
-Thread-Index: AQHcATo0qpdsN9N6RkuKfC724ixwULRKha2AgAKi7QA=
-Date: Fri, 1 Aug 2025 03:36:58 +0000
-Message-ID: <691cfc11-3804-4f7d-b535-ea25f86c0c16@microchip.com>
-References: <20250730101015.323964-1-manikandan.m@microchip.com>
- <20250730101015.323964-2-manikandan.m@microchip.com>
- <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
-In-Reply-To: <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF9623118BD:EE_|MW6PR11MB8410:EE_
-x-ms-office365-filtering-correlation-id: fec9bd2d-d103-4159-ac08-08ddd0acab98
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?Q1FDb1E4SGRJNDZ1MHg1YjVPK3hRbVNudU42TTZEd1pCOFJnZzVIaThvUlNo?=
- =?utf-8?B?QkQxdHZUUVZrVk4wbUNFa0RpWGNiSUtzczNOS2tPZnZ3ZkIvTDRJSktBZkdD?=
- =?utf-8?B?SnNTV1A3TlNlbFloQ3R6TjJSbDZNS0NnUzhtZHFoemFEZlA1T0FSZEtES095?=
- =?utf-8?B?L0s4VVFYeGpsVEN4T1JaU04vVm9ERjBrdUtsTTdTbkp6dkdzYkF1TllKYTI1?=
- =?utf-8?B?RmdFa2s4eW1zWjNPQWdkZHV4bTVFazRUZkk4em5pcTJiZFhRbUNmbFY4OEJs?=
- =?utf-8?B?SW1oVWZBcXV6VmpUc3ZLeFpnd0o2cE1nUXZHSG9zRWdBS2xCSHpEUC9VeUFl?=
- =?utf-8?B?UzNmM2M0eVQ2WndGTW9LWFFRUWZJNmM4ZjBzUW1vMWp5OEIzV2hybVpGcElt?=
- =?utf-8?B?cEFGak1sTFpaVmg0anBvckY3OU9SalNQaWV0V2NjSCtpU1EvK2YwUHE1M2Zo?=
- =?utf-8?B?d0huQmJCQS84bTliR3Q1aEFYcUxRdEZJdTdnenpsd21uVENIQ2ZIRVBiZG05?=
- =?utf-8?B?N0dScTZKbHR1UnZhZ1NxUGlJOHFHZG83MitOTWs4T2dhbGQ2Q3BoTFkxbXRr?=
- =?utf-8?B?M05zSXRyREFLZlYrNnJvTkZaYU9zTGtIdDJSanhQUXl6VnRzK2kveW5ZTkF6?=
- =?utf-8?B?eE93a04wRkJBOTNKenpTeW5kQ3BUUlI0TThwZVBpYXMzSGd1MCtOalI1WE9u?=
- =?utf-8?B?U3V1N2tlMEhaZWJzMmZkR2tMa0JtaDlOVnlYVkcxTE9YOWQ3ZGFWZGl6NEU4?=
- =?utf-8?B?eTQwaCtramlrL1c2bTM4cWRKSEdwWlMrelhtK2k0ME0xM3RYZnVVcmhTK2lj?=
- =?utf-8?B?R0F4VGR4cXU1ZXVUVy9sOER1OU9FMm5QQ0M0Qy9FNStNS0ZjYVAxaWZjNWU5?=
- =?utf-8?B?VGVMazRqejZhQXhvUDJ1NVBYSldONkg1QVJLWlEyczhLRFJpeHQyaWRkcG5q?=
- =?utf-8?B?am9tQVBFdThvcmdjWGV5bG94bVZraFNDWmhzYXliRVNINHlYTG5FZWN2ZVBj?=
- =?utf-8?B?WTdLZ2Y2YStZV09Ba1BSRjU3RFlraEc4L1V5T0pkaVp2a1FNdFc5OVk0QXJs?=
- =?utf-8?B?bnBnL1M4OUNFZml1SmgzWExkdHl6VDFlTnFHbEQvRjFVSk92aEYyUTV5TW9u?=
- =?utf-8?B?aDgrY1VjV1JXclJKSUtURnVxZGlDejZ5L1lLU2dRUU1zY1Fpb1pSQzlaenBi?=
- =?utf-8?B?aGJZV0pFNS9zUlF5VWNjT00zdlFRejZIYlYxRm1yNGdac1FUNTB5VGlvLzNG?=
- =?utf-8?B?aWVKeFIreUIrT0dabDNyVU5FNjVuQ3Ava1BCdERqdDJpV3gvdTNDcUl6YWwz?=
- =?utf-8?B?VGxGZCswYjdsSmdTRmNvZDFZNjlpajNRNExVRmVseE9mTVdaZU1jSnoySVZB?=
- =?utf-8?B?K29aQnNjQzJCcEprdUUxTjVIWnZZRENiOVZnanM1Y0hBRDRZK2s2RjJpVjJy?=
- =?utf-8?B?bUdQc3hZSVo4Tlg2Tmd2TzlBYnZ1MFVCWndiUlVkTHUxY3V5ZDkyU2xPcSs3?=
- =?utf-8?B?VEZhVlY1T3Jsd2hBTXhYdUZaUW02SWNac2JKT3RrcUdEbnVid3AxUi9JZUQv?=
- =?utf-8?B?aVlxK1lnWmtFOFJkNS9XOXN2WnFWQW9obnRHUEZGbXVwZDJveHYyL3pQdTNV?=
- =?utf-8?B?WE9SZ3BmL01JejUvWFhOeGxjaFNDcmx5bFF3a1R1VG4yZEwzU1pCajNUcW5a?=
- =?utf-8?B?WnZyTTY4bm14cldYdzJoV05qMW91elpVSk9lL2lkV2xUaWwzMVdvN01EZndC?=
- =?utf-8?B?Qm9URzlQYlArRWJ3RVhGUEp2WE1yTG9HejB5NTJEZjF1WUYrWVUrMnJWZHFy?=
- =?utf-8?B?d1dOQVRwclhhYkJIUWVObFFGNm1SdmMxd3B3SW5zVlJDOXVJR1gxVkNJejVz?=
- =?utf-8?B?bVVQSDNmQ3QrczNUTmgyVVNPZm16YVRUbm1rNzJ5VkJjMGIrbXdlMWVBeWR1?=
- =?utf-8?B?SmMvemp0L3hsdmtQZUkyVEVVSlRZdUoyVThHSm5iMDJOOFZhZ2Q4dllZZWpv?=
- =?utf-8?Q?Zog/FI8XUlEx7N9C0FhC4TdPANmtwU=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PPF9623118BD.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NmU2UDNDOElZS3MyYXY2QnNpWkZKYXR3cGpkOEMrRFJhVXY5ZlVIdnFleXlN?=
- =?utf-8?B?bEZVWG5ZalEwaU04ZEFwdEp5bzFUNVMxNUNobzlGUTl4NXZFSXNmN1V5Sk5i?=
- =?utf-8?B?aVYrUlZCeUpWUEZCYlNLbm9HMXhvVnY1eFNrNHcwcGpieHRSNjM1aGp6Uk4v?=
- =?utf-8?B?R3VIZFludFEvSlFUNVF0VmFaMEZacE8zQmRKS2FzcGFpQ29hb0lSdkdUSHpM?=
- =?utf-8?B?Mjcrd2ExZFdPQmQ4c0kzUEpQWWhsUk1aSVc5Q0F1cGYwbWdLb0N6UVFVVnZL?=
- =?utf-8?B?c0hnNmVheGV0WTNkNUk3c0VGaElHVUhYYTdSN2xKVmY5VndEVTJnQU9lbkhv?=
- =?utf-8?B?a3pjWWFOU1A0RzdocDEydzk3Zmg0RjAxcUVEbHhxcm5mdXNYaFNpaXF3Zitt?=
- =?utf-8?B?TFFUS2dPREN5aWw5dkZuVFVlY0FNVHRiVFlDc0c1a0RFZDZubUo0RFp5a0xC?=
- =?utf-8?B?M0t6cERKdWQ1RDlZcEhkSUNhOE1Fd0dXQjdkaFBGdm54YitiTFFTTmRwTmVM?=
- =?utf-8?B?SGVpYlAwQkhoMndEeGVjeExaTlh2eStERGlGN1JpdStxenAzOU9wd2xBN0c4?=
- =?utf-8?B?OW1VM005d3RQOUpGUVVOWEhjMWNYMGNIWUhLVWlRd3dYSTkzdEttZmtwbnBN?=
- =?utf-8?B?b2UwWjU2bXZYdEJtZlk1OVJQd3Q5RGVYQ1JsVUJjUTVVQWQ1c2l1amt4SEtx?=
- =?utf-8?B?VmhpYTRaL3YrNlFNeS9nRVBuTnhiTVErS2R4UXhsUVQxYllMR0lvTkhQY3JJ?=
- =?utf-8?B?S1F6VkRHbEJIUDVFTVRLTWZWeEZQQVhSaDhMTVVXT2p5WExSV0J3SG1OVyto?=
- =?utf-8?B?US9pMkNVVkhPQTdKbjJLVjRFaVZlbCsvejhFR2Z2cGI4RkgySnF1ODlZZHlI?=
- =?utf-8?B?eUo5ejljdGRGQVZvMmFQUWZqQTFMbGdjSmE3bzUxUkhJZytNcHBKQ0FlNU5F?=
- =?utf-8?B?Q2o3YUFYcENOZUN4REdhTXo3eUYyaHQ0Z2lUbmpFK0Z2aXo2cW95b2lpbHBp?=
- =?utf-8?B?eCtKMFhLelBwdERwbEdZT25SR0Z1RGRZY1JmT003aWd6bzNUNFdsQS96a3I0?=
- =?utf-8?B?dS9qazMyQlJpZ2JpSitoSllSd0JvWkJaeHY4L2Q1MHU0cGJBVUFHdHczRUMz?=
- =?utf-8?B?MVlEZHNtR0lWQWYwRmRvbENrd2JtRmdxWnRURkxiL0FaL2pYTGhSaEwxdGQ2?=
- =?utf-8?B?MjNYa21VSzd2TGlKVm40ZnA4UUZBZCthZlpSSllsR0YvZGEvQkVRa1M1N1Yx?=
- =?utf-8?B?SlZFVWRzczQ3UDF5cCtxOHBJTTNEdlBvdlJLR3FGanZJZWpEK2ZFOEQ1aUlr?=
- =?utf-8?B?TFNmS2hJRGc4MEJLS1dFejRwMFBydThROWpvL3RoYldjb1ZkM2YzZ1JDSlNF?=
- =?utf-8?B?dDJ6bUhRUzZoa3QyMVFFQkd4YnpwUlRWdGp6eWZ3NXFhRHNLYkc0OHhzeWRj?=
- =?utf-8?B?ZEN5K3VKOVFCM3YwWmtsZEI1MG5HVzllNlJLUktPSmpXZkxxZUFrSmVzblNX?=
- =?utf-8?B?VTF5cDVjTUt0ZWpaem1ucGx2RDN0RWVPY203ZXRIRkRKb242VFIrQyt1am1m?=
- =?utf-8?B?U1M4aUFUbk1HcnEyaEdvajYrYVlLS2dZbHVUVkNoTnF4R21rK3JLSXBCVzhD?=
- =?utf-8?B?TmJOMzlxRVpLVHA2MzNxQVdVbS9sdDZJRkVhYm1jOVFiQkpoZHMxRWo2Z2VS?=
- =?utf-8?B?aWI5ZnJabXNTbWV5dEx5Z3hHTWRLODc2VnMyVk95a2lxeXhGVGxTOEowL0VO?=
- =?utf-8?B?VHp0elltK2EyV2kzRXdVWEcrSDhhVHNJR1RiWkdwbHIvYWwxOVVnZ1lwbmRV?=
- =?utf-8?B?Ky9xZkNQcmYyZ054TXNYYkZpRGxDOUVacTBXSkIrL0Q2WmtndDRpaVBSRE9y?=
- =?utf-8?B?Wm5PVms3MElrSC9HUVhJVVRoSjIyYmZjK1ZteDNlZk1tSzNUTHhlOUtwbGpL?=
- =?utf-8?B?K1NIeTNYb2drOUQyVUJ0Z1ZnbnRWZnozUlhzMDhSUDcxZlorOHplcTd2VFpv?=
- =?utf-8?B?U1MxRWxKT0VSQllGRmxmdXNuLzVZTmxzMjMrRzlRWlB2Nmk1VXBzMjFJRWdy?=
- =?utf-8?B?SkNrT2JpUER0bUVOZWN2bWxhTFcrV2NsMGV6eDE1VDhlZ0NPK0ZwOGNLN203?=
- =?utf-8?Q?faiufuF62QJA0kKRM5yQbYbWe?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3DE651B4F07EC2478FAF0867FC6E2BFD@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C58915B0EF
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 03:58:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754020686; cv=none; b=IwuIqviabaWiW1ScIiPleAl891VLkoi1FduL1ILcWNNa3JmvqPHK9Bj+rJtchRvnIPWc7zNXwVpASexx8ZmVVJKyLZTFoRdE+yXl9GuVXOAbQHl0VOnF7mdeD92h5lZ2eCwRsPer12G3BL52wCcsS4Wk7e/+M2meJPrY424eWuA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754020686; c=relaxed/simple;
+	bh=UO0lZMJPPhDxk7mSF7iGN6/wHbR5r3yzJBCSKwUDnJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gg7wAvlsZDuoXHBIDvkU+kd68NQ9dVzj2Qj8OdvdiqvG6fREtHXjMEi/bSEZH3t36VjYjbC2cUO6C0Tb9UNSxYUqX/CCumzFh+VtD0A73Ur722Qqu7r7WJgDy2qcD4gPAQwfYRMV7bNlB5Fef/VPbMRrFGs2SqZEDBwjD+QNYoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YhrG+NMw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5710RoYv021732
+	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 03:58:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UO0lZMJPPhDxk7mSF7iGN6/wHbR5r3yzJBCSKwUDnJ0=; b=YhrG+NMw9LnX+yZD
+	fjWuVqBI0etONNwrCljiYvVBZjGAO5LegkXcnHxSO2IFXP55OMppPjMbGGo44s8j
+	Q1QZ/FZZCBADYFR7s2A3LTD/iJzC42AJtTmFQ+BU4Lyq/AKUs7OnkBdBxm1ll+UV
+	RxFO/5YdrSEaS8qV7ydKLbmFYrOdTmVJ1DKK+lx4/HNIMJ0eE/+zZmZpYBYUxO9z
+	WSwHjubuq25wAHq6QUsbgEjo/Dmo1Q6IKpZIhGwlOBwZoT7x52r17DCrLRYabqAA
+	Eo8q82YjQ/5oaLSyvUdMwCl/wrvEgyPeI5c5X3qGi8vnCHVghMFaRG1Wmcn+1kW4
+	oh9DJg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484mcrjftp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 03:58:01 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2406e9ed431so3720955ad.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 20:58:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754020681; x=1754625481;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UO0lZMJPPhDxk7mSF7iGN6/wHbR5r3yzJBCSKwUDnJ0=;
+        b=fnP1h4mix9i7TTqzwo0BU3aWY2BINbHfCHEa4zLZwNMlxhFisRU8dujCfotukwg5MS
+         GoRpsBAkkanu+XO2fbcQd/UM3b0oOsumF2m/R2nw8GZvrdHDBzc9divohuzZK5vrTrO0
+         DlPq7NitHEOFoIIFko3pImm4WjWQO4uMGjH64MfMZyPX8+om9rgxFPoSh90bhl7Ucyd1
+         EeBW1lX88fdoL4whCBVb+qP85PWNKHYlLDIABww69W5CKNA6C/cAgr1Ocm3EoVkm16tB
+         l/2N1bDs4oFM8/rW1mC5MTT6l3gAqX2rdDuZW5ImyFb8oa7cW62Hm/sEEe9wnWgDybpA
+         MJnw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNG88jQ6v5OuWQLOMcyQEXCetDbRruKAmbpFbfXQIZaJRw1oiD3bRKaCDyc9ipJullCl8gGJEjN5Dz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA7CD2AF2jPiRycSk4EaTn9VRpeHH9ZgqIr5YNLr6NrVIFRz1I
+	zooW5/qbSiVYIb02jL9FYPi/hGf3OUX2l9xU3Ltd0itcfy4V6Sr29UvO4S7cd0x4GFyl1RSL3V5
+	db6vRPCOMJmwQVcQGDBuq70BE+HxbKInMmqDWvVcfsWWwbPx/aS586G23aTH6f+pS
+X-Gm-Gg: ASbGncv60aJZ+n0zwswCxUIsP9tD4O8tcbEfeDOshwAuMKnrZnWbV+VtfRLfmJ3W1tS
+	dxMVOuHGh9/lYCG5943ZMw8K2KwcoHaMZLIazpXGX8gILvIXCl0fWt/b1eGPoq/mRHXoEzc/sg+
+	IisBTCNghPIkjnSNTWrYVtqX2hqvEsT2niBo0WIgGjPCEf4KP9w/gRvW1TFeRfQGo7/0YGywP+A
+	AJdHs19sf29VsFmReTWRiSKC/QABcCMQefFLgCbX68n8Jhn9YuiDIp1cHhJ4zcwexln2N3kSPny
+	CGh77CrywFTSnm4mdhqRkxYMNd2vG/4tr+aMSehFRZ3jaPphLa90OBryt2mxvQoiXY4YMSz6rK1
+	jEHjWMyiXxY1SgUqTb2i20gqc1pJaTA==
+X-Received: by 2002:a17:903:1c6:b0:240:b9c0:bc6f with SMTP id d9443c01a7336-240b9c0bebfmr11100115ad.10.1754020680559;
+        Thu, 31 Jul 2025 20:58:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFhXyUs6B80q8wF4GT4SaS9kVxn1ul1R0VRcy26253GED8PXnyjNS/bSUEoCCQWMZ4c4Fv3iw==
+X-Received: by 2002:a17:903:1c6:b0:240:b9c0:bc6f with SMTP id d9443c01a7336-240b9c0bebfmr11099775ad.10.1754020680014;
+        Thu, 31 Jul 2025 20:58:00 -0700 (PDT)
+Received: from [10.133.33.149] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1f0e757sm31142185ad.55.2025.07.31.20.57.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Jul 2025 20:57:59 -0700 (PDT)
+Message-ID: <2de51bf2-baed-4bf9-a40c-1681b2efcf79@oss.qualcomm.com>
+Date: Fri, 1 Aug 2025 11:57:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF9623118BD.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fec9bd2d-d103-4159-ac08-08ddd0acab98
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2025 03:36:58.7787
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J9LCGwRBA0RsuYE7Am7kJsbJFjgM5kq3PmQfOBVIQR6zKrElNjt2iKUCgR58OkqLrh6fxDCmUPWliQeA/AAQl94yS4LxP223tAwBz2eWx4E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8410
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 02/13] dt-bindings: phy: Add binding for QCS615
+ standalone QMP DP PHY
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        konrad.dybcio@oss.qualcomm.com, fange.zhang@oss.qualcomm.com,
+        quic_lliu6@quicinc.com, quic_yongmou@quicinc.com
+References: <20250722-add-displayport-support-for-qcs615-platform-v2-0-42b4037171f8@oss.qualcomm.com>
+ <20250722-add-displayport-support-for-qcs615-platform-v2-2-42b4037171f8@oss.qualcomm.com>
+ <jemfu5sy7k4a2iar55im5bhyhxzlrwpftmpqmps3b2tco7r6a2@oodls7gi45yy>
+ <e673a3a3-6924-49db-9040-e34b82199a43@oss.qualcomm.com>
+ <w3rwao5wbmstdyics6qhp7beulbbp5ludqkwpfsmevgqmzz3d6@u2e533zlitkr>
+ <e5a3f05f-9775-4e3d-ae7d-ebbca14b4df5@oss.qualcomm.com>
+ <ffdvzupefzhqq7fqtloycc3xzu57i55ths73xcjftor2cifuzr@5vhq2hfmkvda>
+ <bd8f8643-a8c8-43d7-b293-acdba5ff798a@oss.qualcomm.com>
+ <ad4f53eb-2f4b-4e62-a162-461de431e3de@oss.qualcomm.com>
+From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+In-Reply-To: <ad4f53eb-2f4b-4e62-a162-461de431e3de@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDAyNiBTYWx0ZWRfX1J/DUAJ4D+Fr
+ vUNAws8GJ8EloQD9m4viO8bhC3/LbRLaEbAPz1i/eoRBSjk+fTf7yKGIihdAPCXcaRtrRmx4h6r
+ N39Z+h+QYH+0o4RN4h+33GuOwYSvjwB0H16VHyKfiPP7iCDmNVK9sLSzxkZwI38WKK//qpG3NVj
+ D2Cx7cFD2ICdrQYh6FZuFEJ0Er5DQv0QUNGzJkBrQacnzWdhH//Byp9OSYRrtjYzz6QjCnUVEHF
+ cT5gIDZqXTEGb2Fx7DLkEbQZF/+OYEQyOt5yaD5zIzXwlNlAUf1zxlWv5irAvQmUHhDhLV4gbLm
+ XjI8barNf4l1lGmeSIQe0iioVP//NyyiAjGKxqESAyEIVfYl/UPx5ay1kk9NIbyj52d/k+TfeMD
+ 8rN+PzLEbBRBi3w7nRGc5/wiL9UQhlAWN5OHhVdgDy4F1vAAdJKg+iDLUPV3rhBIbBzXkGYu
+X-Authority-Analysis: v=2.4 cv=Hth2G1TS c=1 sm=1 tr=0 ts=688c3b4a cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=Oh2cFVv5AAAA:8 a=EUspDBNiAAAA:8
+ a=74qhCITlYKpdjXRJ2hIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22 a=7KeoIwV6GZqOttXkcoxL:22
+X-Proofpoint-GUID: aoU7BcHZvnlQQ8uwjbgkfuw3TtjVCiot
+X-Proofpoint-ORIG-GUID: aoU7BcHZvnlQQ8uwjbgkfuw3TtjVCiot
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-31_04,2025-07-31_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 mlxscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 adultscore=0 malwarescore=0 mlxlogscore=999 clxscore=1015
+ spamscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508010026
 
-SGkgS3J6eXN6dG9mLA0KDQpPbiAzMC8wNy8yNSA0OjUxIHBtLCBLcnp5c3p0b2YgS296bG93c2tp
-IHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0
-YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IE9uIDMw
-LzA3LzIwMjUgMTI6MTAsIE1hbmlrYW5kYW4gTXVyYWxpZGhhcmFuIHdyb3RlOg0KPj4gVXBkYXRl
-IHRoZSBBdG1lbCBTUEkgRFQgYmluZGluZyB0byBzdXBwb3J0IGFuIG9wdGlvbmFsIHByb2dyYW1t
-YWJsZQ0KPj4gU1BJIGdlbmVyaWMgY2xvY2sgJ3NwaV9nY2xrJywgaW4gYWRkaXRpb24gdG8gdGhl
-IHJlcXVpcmVkICdzcGlfY2xrJy4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBNYW5pa2FuZGFuIE11
-cmFsaWRoYXJhbiA8bWFuaWthbmRhbi5tQG1pY3JvY2hpcC5jb20+DQo+PiAtLS0NCj4+IGNoYW5n
-ZXMgaW4gdjI6DQo+PiAgIC0gRml4ZWQgbWFpbCB0aHJlYWRpbmcNCj4gDQo+IFlvdSBhbHJlYWR5
-IHJlY2VpdmVkIGNvbW1lbnRzLiBSZXNwb25kIHRvIHRoZW0gaW5zdGVhZCBvZiBzZW5kaW5nIGFn
-YWluDQo+IHRoZSBzYW1lLg0KPiANCg0KSSBoYXZlIHJlLXN1Ym1pdHRlZCB0aGUgc2VyaWVzIHNv
-IHRoYXQgcGF0Y2ggMy8zIGluY2x1ZGVzIGEgY2xlYXIgDQpleHBsYW5hdGlvbiBvZiB0aGlzIGNo
-YW5nZSBmb3IgdGhlIGJlbmVmaXQgb2YgYSB3aWRlciBhdWRpZW5jZS4NCkFwb2xvZ2llcyBpZiB0
-aGlzIHBhdGNoIGFsc28gcmVxdWlyZXMgYSBicmllZiBleHBsYW5hdGlvbuKAlHBsZWFzZSBsZXQg
-bWUgDQprbm93IGlmIEkgc2hvdWxkIGluY2x1ZGUgaXQgaGVyZS4NCg0KPiBCZXN0IHJlZ2FyZHMs
-DQo+IEtyenlzenRvZg0KDQotLSANClRoYW5rcyBhbmQgUmVnYXJkcywNCk1hbmlrYW5kYW4gTS4N
-Cg0K
+
+On 8/1/2025 1:13 AM, Dmitry Baryshkov wrote:
+> On 31/07/2025 08:06, Xiangxu Yin wrote:
+>>
+>> On 7/31/2025 2:35 AM, Dmitry Baryshkov wrote:
+>>> On Wed, Jul 30, 2025 at 04:53:16PM +0800, Xiangxu Yin wrote:
+>>>> On 7/22/2025 8:41 PM, Dmitry Baryshkov wrote:
+>>>>> On Tue, Jul 22, 2025 at 08:05:06PM +0800, Xiangxu Yin wrote:
+>>>>>> On 7/22/2025 4:38 PM, Dmitry Baryshkov wrote:
+>>>>>>> On Tue, Jul 22, 2025 at 03:22:03PM +0800, Xiangxu Yin wrote:
+>>>>>>>> Introduce device tree binding documentation for the Qualcomm QMP DP PHY
+>>>>>>>> on QCS615 SoCs. This PHY supports DisplayPort functionality and is
+>>>>>>>> designed to operate independently from the USB3 PHY.
+>>>>>>>>
+>>>>>>>> Unlike combo PHYs found on other platforms, the QCS615 DP PHY is
+>>>>>>>> standalone and does not support USB/DP multiplexing. The binding
+>>>>>>>> describes the required clocks, resets, TCSR configuration, and clock/PHY
+>>>>>>>> cells for proper integration.
+>>>>>>> Simply put: no, this is not correct. Even if you go to the SM6150 block
+>>>>>>> diagram, it points out that DP uses the USB3 PHY, not a separate DP PHY.
+>>>>>>>
+>>>>>>> I thought that we have discussed it beforehand.
+>>>>>>>
+>>>>>>> I can quote my comment from the previous thread:
+>>>>>>>
+>>>>>>>>> No. It means replacing extending existing entries with bigger reg and
+>>>>>>>>> #phy-cells = <1>. The driver must keep working with old node definitions
+>>>>>>>>> as is to ensure backwards compatibility. New nodes should make it
+>>>>>>>>> register two PHYs (USB3 and DP). On the driver side modify generic code
+>>>>>>>>> paths, all platforms supported by the driver should be able to support
+>>>>>>>>> USB3+DP combination.
+>>>>>>> Looking at the hardware memory maps:
+>>>>>>>
+>>>>>>> MSM8998: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+>>>>>>> SDM660: USB3 PHY regs at 0xc010000, DP PHY regs at 0xc011000
+>>>>>>> QCM2290: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
+>>>>>>> SM6115: USB3 PHY regs at 0x1615000, DP PHY regs at 0x1616000
+>>>>>>>
+>>>>>>> Now:
+>>>>>>> SM6150: USB3 PHY regs at 0x88e6000
+>>>>>>>          USB3 PHY regs at 0x88e8000, DP PHY regs at 0x88e9000
+>>>>>>>
+>>>>>>> I do not know, why msm-4.14 didn't describe second USB3 PHY. Maybe you
+>>>>>>> can comment on it.
+>>>>>>>
+>>>>>>> But based on that list, the only special case that we need to handle is
+>>>>>>> the first USB3 PHY, which doesn't have a corresponding DP PHY block. But
+>>>>>>> it will be handled anyway by the code that implements support for the
+>>>>>>> existing DT entries. All other hardware blocks are combo USB+DP PHYs.
+>>>>>>>
+>>>>>>> Having all of that in mind, please, for v3 patchset implement USB+DP
+>>>>>>> support in the phy-qcom-qmp-usbc driver and add the following logic
+>>>>>>> that also was requested in v1 review:
+>>>>>>>
+>>>>>>>>> Not quite. Both USB3 and DP drivers should be calling power_on / _off.
+>>>>>>>>> If USB3 is on, powering on DP PHY should fail. Vice versa, if DP is on,
+>>>>>>>>> powering on USB should fail.
+>>>>>>> I think our understanding might not be fully aligned.
+>>>>> I did not write this. Please fix your mailer to quote messages properly.
+>>>>> As you are using Thunderbird, I'm not sure where the issue comes from.
+>>>>>
+>>>>> Also please fix it to wrap your responses somwhere logically.
+>>>>>
+>>>>>>> Perhaps this is because I didn’t accurately update the mutual exclusion relationships and test results for the different PHYs.
+>>>>>>> Let me clarify my latest findings and explain why I believe these are separate PHYs that require mutual exclusion via TCSR.
+>>>>>>>
+>>>>>>> 1. About the TCSR DP_PHYMODE Registers
+>>>>>>>
+>>>>>>> MSM8998/SDM660:
+>>>>>>>     Only one TCSR_USB3_DP_PHYMODE register at 0x1FCB248.
+>>>>>>> QCM2290/SM6115:
+>>>>>>>     TCSR_USB3_0_DP_PHYMODE at 0x3CB248
+>>>>>>>     TCSR_USB3_1_DP_PHYMODE at 0x3CB24C
+>>>>>>> SM6150:
+>>>>>>>     TCSR_USB3_0_DP_PHYMODE at 0x1FCB248
+>>>>>>>     TCSR_USB3_1_DP_PHYMODE at 0x1FCB24C
+>>>>> SM6150 has two different sets of output pins, so the first register
+>>>>> covers first set of SS lanes (which are routed to the documented SS
+>>>>> PHY), the second register covers the second set of SS lanes (which are
+>>>>> routed to the DP and secondary USB PHY).
+>>>>>
+>>>>> I can only assume that the same configuration was supposed to be
+>>>>> applicable to QCM2290 / SM6115, but was later removed / disabled, while
+>>>>> the registers were kept in the TCSR block.
+>>>>>
+>>>>>>> Even though MSM8998, SDM660, QCM2290, and SM6115 all have one USB3 PHY and one DP PHY, the TCSR DP_PHYMODE register configuration is different on each platform.
+>>>>>>>
+>>>>>>> Additionally, I found some interesting register documentation for QCM2290/SM6115:
+>>>>>>>     TCSR_USB3_0_DP_PHYMODE: “In kamorta this one is for mobile usb. DP not supported.”
+>>>>>>>     TCSR_USB3_1_DP_PHYMODE: “DP mode supported for Auto usb in kamorta.”
+>>>>>>> I think the reason for having two different TCSR registers is to allow both the USB3.0 and DP PHYs to be useds at the same time in certain product configurations.
+>>>>> Sure. One for the first PHY (USB), one for the second PHY (USB+DP).
+>>>>> If you check the memory map, you will find the second VLS CLAMP register
+>>>>> for the second USB PHY.
+>>>>>
+>>>>>>> 2. SM6150 Test Results
+>>>>>>> When TCSR_DP_PHYMODE_0 is switched to DP, the USB3 primary PHY cannot work, and the DP PHY is also not functional (possibly due to clock lack or other configuration mismatch with this TCSR setting).
+>>>>>>> When TCSR_DP_PHYMODE_1 is switched to DP, both the USB3 primary PHY and the DP PHY work normally.
+>>>>>>> I think "why msm-4.14 didn't describe second USB3 PHY", because TCSR_DP_PHYMODE_1 always works in DP mode.
+>>>>>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c
+>>>>> Here it still programs the TCSR register.
+>>>>>
+>>>>>>> Based on these info, I believe these are separate PHYs, and only the
+>>>>>>> TCSR DP_PHYMODE registers determine which USB3/DP PHYs are paired or
+>>>>>>> mutually exclusive. This is why I have maintained separate private
+>>>>>>> data for each PHY and implemented Power on mutex control via TCSR,
+>>>>>>> rather than using a qmp_combo-like structure.
+>>>>> Still, no. Check the block diagram of SM6150.
+>>>>>
+>>>>>>> Given the above, do you think we still need to force USB and DP to be strictly bound together like a combo PHY?
+>>>>> Yes.
+>>>> I checked the related PHY series and block diagrams again.
+>>>>
+>>>> PRI and SEC go to different nodes based on the SoC design, and there are two types of configurations: USB3-only and USB3+DP pairing.
+>>>>
+>>>> Before proceed the v3 patchset, I’d like to double-confirm whether the following structure is what you expect:
+>>>>
+>>>> usb_qmpphy_1: phy@88e6000 {
+>>>>      compatible = "qcom,sm6150-qmp-usb3-prim-phy"; <== rename to PRIM
+>>> No, we already have a compatible name and DT schema for this device.
+>> Then current compatible name is "qcom,qcs615-qmp-usb3-phy" and shall we need update to "qcom,sm6150-qmp-usb3-phy"?
+>
+> Why? You _already_ have a compatible string. You don't need to change it just to follow the SoC name. 
+>
+Ok, but just to confirm — in this case, the USB3-DP PHY would use "qcom,sm6150-qmp-usb3-dp-phy" while the USB3-only PHY still uses "qcom,qcs615-qmp-usb3-phy"?
+
+Since both PHYs are on the same SoC, would it make sense to keep the naming consistent and use "qcom,qcs615-..." for both? 
+
+>>>
+>>>>      ...
+>>>>      qcom,tcsr-reg = <&tcsr 0xb244>, <&tcsr 0xb248>;
+>>>>      qcom,tcsr-names = "vls_clamp", "dp_phy_mode";
+>>> No need for qcom,tcsr-names. Second TCSR register should be optional in
+>>> the driver.
+>> Ok.
+>>>
+>>>>           #clock-cells = <1>;
+>>>>      #phy-cells = <1>;
+>>> #clock-cells = <0>;
+>>> #phy-cells = <0>;
+>>>
+>>>>      ...
+>>>> };
+>>>>
+>>>> usb_qmpphy_2: phy@88e8000 {
+>>>>      compatible = "qcom,sm6150-qmp-usb3dp-sec-phy"; <== SEC SS, use usb3dp to indicate DP capability
+>>> qcom,sm6150-qmp-usb3-dp-phy
+>> Ok, but for this part, shall we update dt-binding in "qcom,msm8998-qmp-usb3-phy.yaml" or create a new one?
+>
+> I think (I might be wrong here) new ones is a better fit. We'll migrate the rest of PHYs to new bindings later on. 
+>
+Ok, I’ll keep the USB3-DP PHY node definition in a separate YAML file in v3.
+>>>
+>>>>      reg = <0x0 0x088e8000 0x0 0x2000>; <== SS2 base address and offset define in driver config
+>>>>
+>>>>      clocks = <&gcc GCC_AHB2PHY_WEST_CLK>,
+>>>>              <&gcc GCC_USB3_SEC_CLKREF_CLK>; <== This SoC has no USB3.0 SEC SS clk
+>>>>      clock-names = "cfg_ahb",
+>>>>                  "ref";
+>>>>      clock-output-names = "dp_phy_link_clk",
+>>>>                      "dp_phy_vco_div_clk";
+>>> No need to, the driver can generate names on its own.
+>> Ok.
+>>>
+>>>>                           resets = <&gcc GCC_USB3PHY_PHY_SEC_BCR >,
+>>>>           <&gcc GCC_USB3_DP_PHY_SEC_BCR>;
+>>>>      reset-names = "phy", "phy_phy";
+>>> "phy_phy", "dp_phy". Is there no GCC_USB3_PHY_SEC_BCR?
+>> There are only GCC_USB2_PHY_SEC_BCR and GCC_USB3PHY_PHY_SEC_BCR, no GCC_USB3_PHY_SEC_BCR.
+>
+> Ack.
+>
+>>>>      qcom,tcsr-reg = <&tcsr 0xbff0>, <&tcsr 0xb24c>;
+>>>>      qcom,tcsr-names = "vls_clamp", "dp_phy_mode"; <== added for backward compatibility with legacy configs that only had vls_clamp
+>>> No need for qcom,tcsr-names, correct otherwise.
+>>>
+>>>>      #clock-cells = <1>;
+>>>>      #phy-cells = <1>;
+>>>>
+>>>>      status = "disabled";
+>>>> };
+>>>>
+>>>>>>>> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>>>>   .../bindings/phy/qcom,qcs615-qmp-dp-phy.yaml       | 111 +++++++++++++++++++++
+>>>>>>>>   1 file changed, 111 insertions(+)
+>>>>>>>>
+>
+>
 
