@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-201265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD87FB17EAA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:56:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4ABB17EB7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A04283AC265
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 08:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7D73626D97
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0102185A6;
-	Fri,  1 Aug 2025 08:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB10D1F875A;
+	Fri,  1 Aug 2025 09:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s8XEuFnU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ACobMMPC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E53F13EFF3
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 08:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A082AEE4;
+	Fri,  1 Aug 2025 09:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754038594; cv=none; b=puYpNLLUFbrRKvyVcufKE6Lo5pWBA5tb2bGtbWVqQSuo33a2YsAojxnViJWEzGlu3npPxUdctRQ+SaEHyGLikjzSy1x+GPrWHtWPWvvPn23exOXzkxiSNzzQTtR/5ZVJFqz/25E3vH/zc82cW/yhPaitVNF3x0Ut0zfDe5JUO4w=
+	t=1754038846; cv=none; b=Plig5JiNFLe92LzTpFrwxZi2j0svBs+9VMkxVURks8dA472VQywZA+2Lh5NatCoL2a70rgVoVEOchdc9OqL4+PzPj5jReNClfOhlktV07DMKZATSFCR7z4Mh3k7CMYe6AU7OE/CzfKCPnxXUcggqAai1qc7fDkc+ZJuBskPYRG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754038594; c=relaxed/simple;
-	bh=iWJ6vmjjHeJh3zw3l0ivlWKd8QssgOEwNGy9AZi+LA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PUGJMEswqnIrlhOxbrIwE5i4H/invSK81qeIt2Qjd3jAUU32gqrGGQFm6d6zYfP7p/FqZEG458lGVP4w/w6BSw9F61RsD2pueGBEf5cMkqcnHXrLgrzkJXJjbZsfe8AepBBTBIDB4ctwS78vZhCOpziFesvI7BcPBIAx+BFTijM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s8XEuFnU; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-31f255eb191so1676967a91.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 01:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754038592; x=1754643392; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iyaLPE5cVFQ4yQ1ZdsM+PFkuZa1fSK3UsMR4TaaRqL4=;
-        b=s8XEuFnUVTZbCkmIkjm4GFlEFk4G2qQKuyJ4BY4gU/wEUjrzBvuxVtA7txJsvkRSX2
-         6zCw/2lqenhwihcUTdDlkRcnhyIE7mgqywXNlX2WxFbIAKMoS1WdAuTUM/S3TG/yEUe8
-         KZbUOiqPUUJUAHEPs8ApkgBRi0MG6kgaCXYRnyvkJeMFXF+RpXhRa/gK9qcX+oKYr/ka
-         Shx1RNtcEbxc+z6/i0e+F+jR+6AiTA91Te7AU3kEMnf+1eH+6LncapBF/avNXE/Sbm3B
-         d3zgDSTWyuSVrmP4OX/2HkPrtwI4BdXWpYW35cBS1nnybtRz8iHCTnG61ROS5Bi0CduC
-         70zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754038592; x=1754643392;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iyaLPE5cVFQ4yQ1ZdsM+PFkuZa1fSK3UsMR4TaaRqL4=;
-        b=iAvWrfptSRi4aC4htCZi8jwj7XiEH+XEj5L4hLDRqR4AXgikALG+0K3xQLf5540F0e
-         rFt8FzMp9RQvmLXDVbmH9C2/Blx6jhbcSrY+a57tw1pRLsB2iOf0KrkkOTlUnnflWBm0
-         mFBCwAHmCjK0lEQUwRJpFkii0ZawS5voYGvU1AEBfrCda6R0Z4n8VYotZA4o/UnqTy4u
-         +qV7FcK8d1Gt1x/y5A3l0d5982ofYUi4iwKqlEDmWZ6FhxdDTMMcyklPt9CIBQTpeyn9
-         ucfHnJAwosU7SSOn/1kT4VB/V8VWi2oWabiDssLdFRvDHa4pzWnFqvQqxAE8QLzUH7Ln
-         g6hw==
-X-Forwarded-Encrypted: i=1; AJvYcCUeMKrUUS8CBMTdDWBFZFIfycaMbNIBJ/YcvmQVzgXxhNiLNkPI2T/J6Ok+JBGIQ3Q5ECVwC8h1rKLF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/RPZ+K00SiD7OCMmvAyg7qj7L/AhuIUxmZ9dWdRQzqCOaLLql
-	cJqVbkj7CQwQbJ9zIj+3kRHM2FpO3+MuzNdJWT9m2Jr2M/5qQ4J8rbURwxg+OfuoD5I=
-X-Gm-Gg: ASbGncspGvyfulVDj2vz7UdDcuQotG1KIQmQH4FiPKmvgaFNiUMYOu+pZDsTX5MvjXD
-	L1YeGkDYa3os3AQeOfp/nx9DDUgZ0GDqrf1MHRfxczzGCqPUzhJbQPRDSGZsvv/g5OOi8El1FmB
-	Ak3Jj2kTBIRHJ/za2R+qrOesBTaWQ3EcfbL6EwM5uOReHUoipwNgFvBJLvFsUGcy0ZlsTubmyri
-	5al0jcmzTYM4SSr7jXJbHYOJQfWvimI6eY2Yh0nBpLNKhoxkqSiqVskbxvTZPUfVcVaw1y5Br+Y
-	10QHUCdgHZ9rRm0y4tz5np6VP53cIjzU7qKS4Zs+rO/HyVMyevob2NruUw/Kz6SsUKxkUqdmSDm
-	6pD3N6WsvbY/+cifrDSYpG/Q=
-X-Google-Smtp-Source: AGHT+IEuiwLHQsCcm9P4L0Gud/JQjIDwRrB9XRFsCWBLfZnMjNO93355PSR3Vop33rURYHmqY0i6hA==
-X-Received: by 2002:a17:90b:1845:b0:31e:5cc7:133 with SMTP id 98e67ed59e1d1-31f5ddb2038mr15888994a91.11.1754038591891;
-        Fri, 01 Aug 2025 01:56:31 -0700 (PDT)
-Received: from localhost ([122.172.83.75])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-320f77d81bfsm1835353a91.12.2025.08.01.01.56.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Aug 2025 01:56:31 -0700 (PDT)
-Date: Fri, 1 Aug 2025 14:26:28 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] opp: Add bw_factor support to adjust bandwidth
- dynamically
-Message-ID: <20250801085628.7gdqycsggnqxdr67@vireshk-i7>
-References: <20250717-opp_pcie-v1-0-dde6f452571b@oss.qualcomm.com>
- <0dfe9025-de00-4ec2-b6ca-5ef8d9414301@oss.qualcomm.com>
- <20250801072845.ppxka4ry4dtn6j3m@vireshk-i7>
- <7bac637b-9483-4341-91c0-e31d5c2f0ea3@oss.qualcomm.com>
+	s=arc-20240116; t=1754038846; c=relaxed/simple;
+	bh=3tgjkleCScnfgdzhTua0mmKjP9FXf9xN4KNZz5k2+kU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QzeURxQCjfPlEuE/03kjGwbnc8YVwWqZSYcxXl7tZJJUjj2GQy9eNskGpgD1tRgWZnli0lQFDSO9iq8z4lq7nZQBn2sGJUi8LqDo6tgQcPu4o07RVWg+VOBO4cZeb6vx9k3OcD7xiOwgajuTwabKsddSr0bxLKn2JUQnkId3lFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ACobMMPC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF5E1C4CEE7;
+	Fri,  1 Aug 2025 09:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754038845;
+	bh=3tgjkleCScnfgdzhTua0mmKjP9FXf9xN4KNZz5k2+kU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ACobMMPCcRhLK1IjcDY5TFHYraC6/EORUTlrtz/h132d1ba+Z5+Oo6+fhjqiQRvBH
+	 LK4vthHeRhy/S0SrFLqnDEhHXJAhqI5uh7U5j5UZ4q7Qdo/d860/RY9BI72n1sX5qZ
+	 4zfo+x1jo1Ua3UnmWNtdk39mcnQZH/9XGF91ZGcmb3MX/+v5wsDx9AcZY+1isHPbLj
+	 kokCKeMA9a6VKA6db4j++Lwq0TZHyLtdcx16VEEbYMS71opNb7X9SVZKKd/RJBmSTJ
+	 j22NUGeHI6OSNx/wPQcMw8TEE7yNouDxaH8bF0KryQkDc5cgnNJu2PC03uza6XKFxO
+	 v4h/2HRvp2B2Q==
+Message-ID: <98bd97cd-0d34-4bb6-869f-68feec1de68e@kernel.org>
+Date: Fri, 1 Aug 2025 11:00:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7bac637b-9483-4341-91c0-e31d5c2f0ea3@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 2/4] dt-bindings: mmc: controller: Add
+ max-sd-hs-frequency property
+To: Sarthak Garg <quic_sartgarg@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
+ quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+ quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
+References: <20250801084518.2259767-1-quic_sartgarg@quicinc.com>
+ <20250801084518.2259767-3-quic_sartgarg@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250801084518.2259767-3-quic_sartgarg@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 01-08-25, 13:58, Krishna Chaitanya Chundru wrote:
-> When ever PCIe link speed/width changes we need to update the OPP votes,
-> If we use named properties approach we might not be able to change it
-> dynamically without removing the OPP table first. For that reason only
-> we haven't used that approach.
+On 01/08/2025 10:45, Sarthak Garg wrote:
+> Some platforms may require limiting the maximum frequency used in SD
+> High-Speed (HS) mode due to board-level hardware constraints. For
+> example, certain boards may include level shifters or other components
+> that cannot reliably operate at the default 50 MHz HS frequency.
+> 
+> Introduce a new optional device tree property max-sd-hs-frequency to
+> limit the maximum frequency (in Hz) used for SD cards operating in
+> High-Speed (HS) mode.
+> 
+> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
+> ---
+>  .../devicetree/bindings/mmc/mmc-controller-common.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+> index 9a7235439759..6c2529b976d1 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml
+> @@ -93,6 +93,16 @@ properties:
+>      minimum: 400000
+>      maximum: 384000000
+>  
+> +  max-sd-hs-frequency:
 
-I am not sure I understand it fully. I thought this was a one time configuration
-you were required to do at boot time based on platform's configuration.
+Use standard unit suffixes. s/frequency/hz/
 
-If you need to change the performance at runtime, won't you switch to a
-different OPP ?
 
-I don't have much knowledge of how PCIe works, maybe that's why the confusion.
 
--- 
-viresh
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Maximum frequency (in Hz) to be used for SD cards operating in
+> +      High-Speed (HS) mode. This is useful for board-specific limitations,
+> +      such as level shifters or others where the card cannot reliably
+> +      operate at the default 50 MHz HS frequency.
+
+Don't repeat constraints in free form text.
+
+default:
+
+
 
