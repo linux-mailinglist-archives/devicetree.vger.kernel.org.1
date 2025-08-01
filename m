@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD87B17EE7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F907B17F00
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744AF1C8006D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:13:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC3161883E13
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 09:15:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7B9221727;
-	Fri,  1 Aug 2025 09:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6C72AD3E;
+	Fri,  1 Aug 2025 09:15:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a+l59xB7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dPhibHPp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE8814F70;
-	Fri,  1 Aug 2025 09:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9F03C38;
+	Fri,  1 Aug 2025 09:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754039568; cv=none; b=L/y5tvuj4dENgltIUX1oF1FFYs6NLKdUU28/gcECx8tpWoND8Ossmm1VTPcz9u9cGsrzzDBfZwN8I7m1C67vPtx5dUuvq6IeHteJguNlgT9aFEE+iz7zWn6tJhPmt9oYxrFbuHsq2tJ6rfS+PlHGVwMa3HEInolPfyvzrLot1jg=
+	t=1754039723; cv=none; b=TNzbKoqyUW826xFudwJzuyyq05BfN5luvHzO6Zxq6iX8GuTNqO57CsvEeJMdCRpTq0Q3pF4DpX1JOwSOxhapHSsvHyrNs/hE5DPI96r7SFDjf098vUsKW9Ole5rk6KcO/dU9/CPFwZlTjEDMy3qPDf11fsUipMh97BjRC57ICVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754039568; c=relaxed/simple;
-	bh=/0aIoMWpMvoKgmbhWwt6QEfVxNIXHXS3+4r5hcmLZpo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YOBBf0pb7BeDaOMUMVNIbCOQyX1xVW4YI/AgAyR+ylDtDirb7XFhfn3MqKhORKhcdvDQcETuyWeb7LYCBTFfuW9+moVp7MV/iKknGmYJARh4KIfrFXCRJQEJ4Y7Q2QENjme0L/UX/uq1RtQYZ0pMrZxmy1O3ra2NvOjYec0HkaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a+l59xB7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0678FC4CEE7;
-	Fri,  1 Aug 2025 09:12:43 +0000 (UTC)
+	s=arc-20240116; t=1754039723; c=relaxed/simple;
+	bh=mezW9xzXYXNVMaS5xbipPNlV2pAkqbqinlAL532+tuw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=S2RFpTJ8AyoYa5WYUXkNs6+/jabbI8C0KwOK7/JC+U1toe5er/0eX5haC6JoMm9zjR5E1OYKGx0CqnOu2H+Iot7esY+denywH1OjmCy27eT19LSUixxYMNZ6v8JEn5DjHMQgHDr+vZgvDYW0Q79oA6rVWhqwovXpji4MnqQW8iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dPhibHPp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EE5BC4CEF4;
+	Fri,  1 Aug 2025 09:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754039567;
-	bh=/0aIoMWpMvoKgmbhWwt6QEfVxNIXHXS3+4r5hcmLZpo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a+l59xB7qoAyviFi3i7LZLuyTEAXVbrhAkRc7BF7nst+vregdi/ujA/4dmeORT9Di
-	 QW495UpQlbytopSioQ5wvuzfL9S3mwiqBP0pOHGLqYSmSfv8b9erDck1OnkLRr/Bj2
-	 g2roHwrOZ9kO/Krgbu53rqjuE4AM+MxRvVNfA3DQ+0VPvtTQqR3UYY5New8ZskPaCm
-	 fYvuIc8sR3SxpuC36CYrrLdcIixWM4fyuhDKdlTt03TXsscXSescdxzMGjwZ3bDPc9
-	 PUV3fA+xQb8AP02mae2d2at7Y7JH6QcH3f8F6WGi8Zu/u8nAVPy+r5zilrhi49JUM1
-	 Iqv5Qs4rywmeg==
-Message-ID: <1701ec08-21bc-45b8-90bc-1cd64401abd8@kernel.org>
-Date: Fri, 1 Aug 2025 11:12:42 +0200
+	s=k20201202; t=1754039720;
+	bh=mezW9xzXYXNVMaS5xbipPNlV2pAkqbqinlAL532+tuw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=dPhibHPprev4C+3iNCISr0HctHbtEks3fm+R5o0FcPIjx34sUs4y8xYWn1nd2Wzcw
+	 IPQxZtU7t8+JyKKYT7EZWJAaEMYEhcCa5R7Xf+SiHrA+t6ayhhRKJNfPCgQ8I/o7H5
+	 nFApZweLdpt4Nd/WGtIN3IhBxzJcIv8yJTNRiWbTslXhVKUYsPV1Gq6vE84hyrWQSG
+	 FK2pBFoAv6PdlSf0VWAZtCcm3BP/zufcCSly3ub+DzrZ1zc7zZLPiibVxVkBV/Z/MJ
+	 t+aFURymtd0VUTmoUPVfh7ruPqoDjjIt2RxXnkYlFGbQ0UDOfnsPOZ75BZR/Pvx401
+	 NC7TGfrer0j8g==
+Message-ID: <967dafd1-a1e7-41be-a194-aa7c9f6f7e8c@kernel.org>
+Date: Fri, 1 Aug 2025 11:15:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
- Manivannan Sadhasivam <mani@kernel.org>
-Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org,
- James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
- agross@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250722161103.3938-1-quic_rdwivedi@quicinc.com>
- <20250722161103.3938-3-quic_rdwivedi@quicinc.com>
- <2a3c8867-7745-4f0a-8618-0f0f1bea1d14@kernel.org>
- <jpawj3pob2qqa47qgxcuyabiva3ync7zxnybrazqnfx3vbbevs@sgbegaucevzx>
- <fa1847e3-7dab-45d0-8c1c-0aca1e365a2a@quicinc.com>
+Subject: Re: [PATCH v2 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
+ support for optional 'spi_gclk' clock
+To: Manikandan.M@microchip.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+ Ryan.Wanner@microchip.com, tudor.ambarus@linaro.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250730101015.323964-1-manikandan.m@microchip.com>
+ <20250730101015.323964-2-manikandan.m@microchip.com>
+ <c1230d31-cb7e-4a21-b7d0-ea32d862823f@kernel.org>
+ <691cfc11-3804-4f7d-b535-ea25f86c0c16@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,40 +107,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <fa1847e3-7dab-45d0-8c1c-0aca1e365a2a@quicinc.com>
+In-Reply-To: <691cfc11-3804-4f7d-b535-ea25f86c0c16@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 01/08/2025 11:10, Ram Kumar Dwivedi wrote:
+On 01/08/2025 05:36, Manikandan.M@microchip.com wrote:
+> Hi Krzysztof,
 > 
-> 
-> On 01-Aug-25 1:58 PM, Manivannan Sadhasivam wrote:
->> On Thu, Jul 24, 2025 at 09:48:53AM GMT, Krzysztof Kozlowski wrote:
->>> On 22/07/2025 18:11, Ram Kumar Dwivedi wrote:
->>>> Add optional limit-hs-gear and limit-rate properties to the UFS node to
->>>> support automotive use cases that require limiting the maximum Tx/Rx HS
->>>> gear and rate due to hardware constraints.
->>>
->>> What hardware constraints? This needs to be clearly documented.
->>>
+> On 30/07/25 4:51 pm, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
 >>
->> Ram, both Krzysztof and I asked this question, but you never bothered to reply,
->> but keep on responding to other comments. This won't help you to get this series
->> merged in any form.
+>> On 30/07/2025 12:10, Manikandan Muralidharan wrote:
+>>> Update the Atmel SPI DT binding to support an optional programmable
+>>> SPI generic clock 'spi_gclk', in addition to the required 'spi_clk'.
+>>>
+>>> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+>>> ---
+>>> changes in v2:
+>>>   - Fixed mail threading
 >>
->> Please address *all* review comments before posting next iteration.
+>> You already received comments. Respond to them instead of sending again
+>> the same.
+>>
 > 
-> Hi Mani,
-> 
-> Apologies for the delay in responding. 
-> I had planned to explain the hardware constraints in the next patchset’s commit message, which is why I didn’t reply earlier. 
-> 
-> To clarify: the limitations are due to customer board designs, not our SoC. Some boards can't support higher gear operation, hence the need for optional limit-hs-gear and limit-rate properties.
-> 
+> I have re-submitted the series so that patch 3/3 includes a clear 
+> explanation of this change for the benefit of a wider audience.
+> Apologies if this patch also requires a brief explanation—please let me 
+> know if I should include it here.
 
-That's vague and does not justify the property. You need to document
-instead hardware capabilities or characteristic. Or explain why they
-cannot. With such form I will object to your next patch.
+I do not see you addressed any comments. There are no changes here
+except threading. Look at your changelog:
+
+changes in v2:
+   - Fixed mail threading
 
 Best regards,
 Krzysztof
