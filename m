@@ -1,53 +1,82 @@
-Return-Path: <devicetree+bounces-201248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0C7B17E26
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:21:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8253EB17E32
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:23:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 723C01C265B9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 08:22:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4CAE3BD393
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 08:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADDB21146C;
-	Fri,  1 Aug 2025 08:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD3E21B185;
+	Fri,  1 Aug 2025 08:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJohK79o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vp8HIq5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7F319E7D1;
-	Fri,  1 Aug 2025 08:21:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE0B5B21A;
+	Fri,  1 Aug 2025 08:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754036500; cv=none; b=rS7gKeNhNvhQvJpB2+7V1UV6E70sUZeyqDpEAcyKqI+vpyZE2JSRvAK7Fli2SZ7vKYTJGQAVg5nuewfLeD8m+ocrC2zh5/Gx62bsdwPVUF2tLt85aDjkqFo+prQoHur85hRIqnUNk/8sK5dBDbqHogCEjt51QgpDJ5l3flw8n6s=
+	t=1754036595; cv=none; b=P7Xdseh6TK+7dBCl+xfjlkN85V+Pj9hIJe0rB0N5jcPlvbgnUrEoQl+GwdxXOe2CESO9KhgbLKqWcoO2AhhrqeoUZUY0D2vo9afP9IRGLxCXuxuVuZKfjUK2LjL5WNmB/QoqcHV/4Qx9XSG5Ud7KGl2dsuVao3jcbZqQZ1C6sJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754036500; c=relaxed/simple;
-	bh=7ghTM1abxmx5Z8mxEd/6YOwxzJ/Ipj0q9+LwDz1NLYo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VaSYpB5FA9dCkuS4IWB+6yFESkbQYYSaUlF5OoowN1gZp/88DkV/t3e1gK8mTVTD4+atT5OLCrhR6gTqyJlucAPhAoiUaHFG3fyAPwCVGqWTHSYgWhoeCIX9nJzX/iN9LoNTVFp9G0mQgDm67wOXLVoZdtXP7e2GzQkdko3tEHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJohK79o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E5148C4CEF4;
-	Fri,  1 Aug 2025 08:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754036500;
-	bh=7ghTM1abxmx5Z8mxEd/6YOwxzJ/Ipj0q9+LwDz1NLYo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=qJohK79odapicHzxkesuKtALUGjvbr+BLy04xXX4NqarWkquUTES2qBOay/DMkMzf
-	 4BU7DncLCqRSYm/487iOee6zZwpr1Mu9LtWlEx1MUFYyX7XVHwMHC26u5q1g4KsUTR
-	 RFSF+qcFkwpJ3DvK8VS7HuCL4XxZmjcdyYW4n0FrLOGyjOgWT/JySYwcC9D0xC6sAv
-	 V6Wo0VBFoIT5Z3Zv+OtwHwL2ag20cmuCsxkbVnoCdmjlmd3G0XGktLtb5LfhsmIFOT
-	 d6+Q0q//bqiFJTp4tIThWm5BoXZLl3s4YE26EMP8tmyABJc1rqP6+tN0ZvNkhZBcd4
-	 CbwLEy5GfydfA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DDB12C87FCA;
-	Fri,  1 Aug 2025 08:21:39 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Fri, 01 Aug 2025 10:21:40 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sdm845-oneplus: Deduplicate
- shared entries
+	s=arc-20240116; t=1754036595; c=relaxed/simple;
+	bh=oFW8Pcf+/M0flUeJ4t5z0g/SaacnwFP05q4Nt+4Z9wg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=j+jvucGkLWOkG0KOF4k/7EbrndMEN+tpRyW3SQTbjeK+nnYTpseSvlcCCwNbJWSqkv09j7Ol2/qSzPz+rLGK2SwE6NzdLwobr1PQmw6uG87t58ol/9IeMrnQi0qFNUM27g99BaQGKQABbtilXcCNOEVBBEzce6nmufW4dE/KPyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vp8HIq5E; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-31ecd40352fso1315235a91.2;
+        Fri, 01 Aug 2025 01:23:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754036593; x=1754641393; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9XTlkPv0IBw1LQNFKJofErU6zJZ+bp+//Zwh3h0I84U=;
+        b=Vp8HIq5EMYbJFlcwdocMaYSnSvSlUAqWkhMy/pHOKmLN6gYGcfq998g4ivej6Zbmwq
+         trnZc8rD2eJbemo3N0vAkDgl+tFJjL1TD4O4Hntpqbmxg4Q8Cckon1zIma8uUZoPSIdV
+         OHGdnCrJx8N21opT+VNnZAaWVUPlphxh1vwlxZMC1MtnJzoXD4sl28/QlAX7m2Xjx84e
+         q+wJV84f5QQZ1aCXCNM6OuHnCWBGidm+Ury6FeP8FAFykBaL+KkbI26Lcp2mJLy++dA8
+         ESILJWQ6gd4dv+00ta84xZEAdi993JlPQkqIfVs5xgtpPk+TYYMIzBTHLr8E4qRDjs8k
+         ozOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754036593; x=1754641393;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9XTlkPv0IBw1LQNFKJofErU6zJZ+bp+//Zwh3h0I84U=;
+        b=qAsPNBOnyZFOwMcqrUz3tF6xglZdwtmqVSN9Hhr5Vo1OFt1WybMMbPWeLH1oSnMfih
+         GALKgt5IqdD6XvflrOhpJ+Ozvwg3n1SuNBTvYeUVAeWZy5dx2jTF5Dn4Qp47eH8caNXk
+         PMY3uM+quu/zirVaLrcWkLOqaR/jwtSudwB1yz8sqawKNtOILvJhQ6c/vDhHhWiYU3aQ
+         +g3EsaYzwN64i1cpBdjnAuJujkX69CKd+RWlVNuvq+qb3K96a4wuK7cmjWGB/vQ9lZSN
+         hxQFoTyKiQzIzHteqVDqni7UOIRaB2HNPU6Iqj5UgBDTEMup4BNx2pAIl97U7c5U+OFR
+         qA2w==
+X-Forwarded-Encrypted: i=1; AJvYcCUY0gr2R5jxJTuA68VzwMPMcj7A7plSx0badymI6WJwnVHMF7/4coAHcNRSV9CaxK4vuGbg+DKk65A136+Ag+6M5Yg=@vger.kernel.org, AJvYcCV6Mj3Lpkx0tkNHQipLHKr9C3RkLq8Dr85pRLMm+SVIF8d8XFJmKeeuh7SquXVGYig7AeBdetDO9Qd1E9Ez@vger.kernel.org, AJvYcCXOAE/2bpyWq3jybfuSfS1xQl2jDBNU22JGystWjn0Ht71l2YNKvLqghXovK7VjPFq+2caowNFDlg2LoXXN/a8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9Y/RelsNwFyadLDgbeh59DmcCT3xZyEQ0PjuhChC2MeqFE1l7
+	WefrejqUWDfupOyNLkBwQii2QvmgwzHH35pzGazZrZ+8uvi4XzyTXfdv
+X-Gm-Gg: ASbGncuLvSSg8NfVBxfYOgW+M+6WTM95pB+FST68b4dUJQpIHamMujMp/Z9pddqYe0z
+	ZBMb251fmCRvE2MWhUN5PQu39iEEv80ydhTzM1+Bh2TRzkAHkSCz8HUowOox7FW0V80HEwqxAGI
+	JR4RtW+BgbO2OypyAcHTcS9Z6Ok2CMV1HvLi3JC1dV3dX1guqfxFpXZ4emyOncj2dKbnrF4H2iK
+	+36gzm+DjVGMyk3zXUSLYyxrUaBANHKrx68N1CfSPF/PqStbfuBUaaxYN/YTX0c2nGjc9uJ9xhm
+	BI79+ObJj/dGwAqv7cXrRUKZM557P7RV3rTusb6xcaQB0b7OCldBEaH9MJcOOewnAvvU9X6AWEO
+	5r/IZrosOCzDt+7KzjhqrdprDgt97e49FgKmplSfA+zFdPuqhLyqhn4UjDMP3Topxs5SCQgtvaf
+	4hxQ==
+X-Google-Smtp-Source: AGHT+IGvj0g2SL000bEpFWCRgDs2CE3+7rERXhrbik2vKVQje+4iGkCwmUe9S42Dfhh7fy3ca7XvNQ==
+X-Received: by 2002:a17:90b:1c06:b0:31e:3f7f:d4b1 with SMTP id 98e67ed59e1d1-320fbd13993mr2917452a91.24.1754036592766;
+        Fri, 01 Aug 2025 01:23:12 -0700 (PDT)
+Received: from [172.17.0.3] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3209a850417sm3992725a91.35.2025.08.01.01.23.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Aug 2025 01:23:12 -0700 (PDT)
+From: Leo Wang <leo.jt.wang@gmail.com>
+X-Google-Original-From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+Subject: [PATCH v10 0/3] ARM: dts: Add support for Meta Clemente BMC
+Date: Fri, 01 Aug 2025 16:22:47 +0800
+Message-Id: <20250801-add-support-for-meta-clemente-bmc-v10-0-c1c27082583d@fii-foxconn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,99 +85,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250801-sdm845-msmid-v2-2-9f44d125ee44@ixit.cz>
-References: <20250801-sdm845-msmid-v2-0-9f44d125ee44@ixit.cz>
-In-Reply-To: <20250801-sdm845-msmid-v2-0-9f44d125ee44@ixit.cz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+X-B4-Tracking: v=1; b=H4sIAFd5jGgC/5XSzWrDMAwH8FcpOc/Dn3K8095j7GDL0mpYkpJko
+ aP03ef2ssAySI8S5vcXli7NRGOhqXk5XJqRljKVoa+Fkk+HBo+x/yBRcm00WmonQbUi5iymr9N
+ pGGfBwyg6mqPAT+qon0mkDkWwKloICZ02TXVOI3E530Pe3mt9LNM8jN/3zEXduo/oixJSkMMIE
+ IisT69cSn17xqHvn3HomlvGoleuVntcXV1ARyxdUDbgtmvWrtnjmuqi1oYZ2QLytmvXrt/j2pt
+ LnlkbCxLttusedl11pWkpAytM4Z954df1ctfeoLqeDTmfsjQGtl2/chXscX11s0vJWxfQxbjtt
+ mt31z+01dXMEDkZSJK23bBy991DqG7yQD6TzYDtX/d6vf4AdUIfe5kDAAA=
+X-Change-ID: 20250618-add-support-for-meta-clemente-bmc-941a469bc523
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
+ bruce.jy.hung@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2251; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=ZJywnoUp3uvB3aKb5+Bvj63no54fBuuORi0qPRukfHI=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBojHkS0aszmT0r1lv705M3GHf3q3UeTInv1J0Hj
- 7xFX7oWI7SJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaIx5EgAKCRBgAj/E00kg
- cv2rD/9CHE4cDtJn3+z/h05RzJ1b8vmIHMrSj5jE1WuEDCeSh5Vq98jfSd7vzj8dqKP3H9+XFOH
- 7L0AULrDXhsb9L9GyKl0ATpPeJs7O0eD4v0eV30eQFtSngbVq9XhPNpWSn2jbhUq30cx7M0v2bw
- zQ4IEL0U8pUFEiL+S29kXgaSquxtxuwSyrA17dDc+O+ve468nbAC3Fd7YAZOH9rdy5elbVN8imh
- 6cWshAvCBLxyY7Rr2SbCN+342Z+JSarsJtsJC5uFEZOA/EmwlPA9nwcVSvG0nqAIGkzdGqBxyCE
- /C3r+VuR4112+IoK6gGibeznr6g1EGwDNkYLH+wSduWdshoh+THNyeaGYHEoVgV8bslRu1Sy6KN
- E+GDquRVpjUNhpN9kLmaiDJGjqdyrajSY9WReWgnUQPY7lsoDWd3HhL25GZd2fXO0UbgqvYyjFR
- qxzDffeRwWPfFYiDD3rky1lyJbPNHtap26RCDBK+75Y1mMeRQUpcGdzsAUY0nKflcqdNGAgC7JK
- qtPcRlmgsovbwaGNRzxv7hrYy212SqS4GeIhbcHCS3seugDe7//eWhKFS4g2HGMySBpld3i/vpS
- 5vLbUQdbbri1gSKKygCGqS9PS5Uh4tntFWGpEHklLcoO+j9hE70mL8CS+4YkKe7YrlHNWyc3CRM
- M9S3c+II2GLSliQ==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754036588; l=3087;
+ i=leo.jt.wang@fii-foxconn.com; s=20250618; h=from:subject:message-id;
+ bh=oFW8Pcf+/M0flUeJ4t5z0g/SaacnwFP05q4Nt+4Z9wg=;
+ b=aEkmJbS4z4oVHMRyPJVF+2OC67JWDL1S9Gy1HYPiBX98lLoJ4Tit/AnCyZMx10XwXEcHdsqdy
+ kAurb9DK/J1BoDXviwLgykl1ayq8RLQQzkQVo2kyyjk5eYPsBgFQC1W
+X-Developer-Key: i=leo.jt.wang@fii-foxconn.com; a=ed25519;
+ pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
 
-From: David Heidelberg <david@ixit.cz>
+This series adds initial support for the Meta Clemente BMC based on the
+ASPEED AST2600 SoC.
 
-Use the definition for qcom,msm-id and put them into the common dtsi.
+Patch 1 documents the compatible string.
+Patch 2 adds the device tree for the board.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi   | 4 ++++
- arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 --
- arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 2 --
- 3 files changed, 4 insertions(+), 4 deletions(-)
+Changes in v10:
+- Reordered NCSI pinctrl patch before board DTS.
+- Dropped MAX1363 ADC nodes from the devicetree.
+- Link to v9: https://lore.kernel.org/r/20250723-add-support-for-meta-clemente-bmc-v9-0-b76e7de4d6c8@fii-foxconn.com
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index b118d666e535a433f44b66c71b36e55df2ce5c80..dcfffb271fcf3146aeabda8fc19e61b456b76887 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/arm/qcom,ids.h>
- #include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-@@ -21,6 +22,9 @@
- /delete-node/ &rmtfs_mem;
- 
- / {
-+	chassis-type = "handset";
-+	qcom,msm-id = <QCOM_ID_SDM845 0x20001>;
-+
- 	aliases {
- 		serial0 = &uart9;
- 		serial1 = &uart6;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-index 4005e04d998a40d25a64d652a526bf93efc20332..cd5546b69d13d8d7f29373aebab1cfda79666900 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-@@ -10,8 +10,6 @@
- / {
- 	model = "OnePlus 6";
- 	compatible = "oneplus,enchilada", "qcom,sdm845";
--	chassis-type = "handset";
--	qcom,msm-id = <0x141 0x20001>;
- 	qcom,board-id = <8 0 17819 22>;
- 
- 	battery: battery {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-index 9471ada0d6ad8bd44cc58a6efa07f7eb27921af9..b4212626b42954e10974ec087db2b42b07979f72 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts
-@@ -10,8 +10,6 @@
- / {
- 	model = "OnePlus 6T";
- 	compatible = "oneplus,fajita", "qcom,sdm845";
--	chassis-type = "handset";
--	qcom,msm-id = <0x141 0x20001>;
- 	qcom,board-id = <8 0 18801 41>;
- 
- 	battery: battery {
+Changes in v9:
+- Fix comment alignment for // PDB TEMP SENSOR.
+- Drop non-standard aspeed,enable-byte property from i2c11 node.
+- Move NCSI3 and NCSI4 pinctrl nodes into a separate patch as requested.
+- Link to v8: https://lore.kernel.org/r/20250717-add-support-for-meta-clemente-bmc-v8-0-2ff6afb36b0e@fii-foxconn.com
 
+Changes in v8:
+- Relocate IOBx_NICx_TEMP TMP421 sensors
+- Enable byte mode for i2c11
+- Link to v7: https://lore.kernel.org/r/20250716-add-support-for-meta-clemente-bmc-v7-0-d5bb7459c5aa@fii-foxconn.com
+
+Changes in v7:
+- Relocate CBC FRU EEPROMs from i2c13 to i2c12.
+- Link to v6: https://lore.kernel.org/r/20250708-add-support-for-meta-clemente-bmc-v6-0-7f3e57bd0336@fii-foxconn.com
+
+Changes in v6:
+- Correct Author email to match Signed-off-by email address.
+- Link to v5: https://lore.kernel.org/r/20250627-add-support-for-meta-clemente-bmc-v5-0-038ed6f1cb9f@fii-foxconn.com
+
+Changes in v5:
+- Remove accidentally pasted texts.
+- Link to v4: https://lore.kernel.org/r/20250627-add-support-for-meta-clemente-bmc-v4-0-ce7ff23460c4@fii-foxconn.com
+
+Changes in v4:
+- Move properties of nodes defined in the same file from label ref back to where they belong.
+- Move pinctrl default configs for ncsi3 and ncsi4 to aspeed-g6-pinctrl.dtsi.
+- Add properties to i2c10 and i2c15 to enable MCTP.
+- Link to v3: https://lore.kernel.org/r/20250623-add-support-for-meta-clemente-bmc-v3-0-c223ffcf46cf@fii-foxconn.com
+
+Changes in v3:
+- Modify leakage sensor to reflect current design.
+- Link to v2: https://lore.kernel.org/r/20250621-add-support-for-meta-clemente-bmc-v2-0-6c5ef059149c@fii-foxconn.com
+
+Changes in v2:
+- Fix patch 1/2 subject line to match dt-bindings convention.
+- Reorder device tree nodes in patch 2/2 to follow upstream DTS style.
+- Link to v1: https://lore.kernel.org/r/20250618-add-support-for-meta-clemente-bmc-v1-0-e5ca669ee47b@fii-foxconn.com
+
+---
+Leo Wang (3):
+      dt-bindings: arm: aspeed: add Meta Clemente board
+      ARM: dts: aspeed: clemente: add NCSI3 and NCSI4 pinctrl nodes
+      ARM: dts: aspeed: clemente: add Meta Clemente BMC
+
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-clemente.dts    | 1250 ++++++++++++++++++++
+ arch/arm/boot/dts/aspeed/aspeed-g6-pinctrl.dtsi    |   10 +
+ 4 files changed, 1262 insertions(+)
+---
+base-commit: 52da431bf03b5506203bca27fe14a97895c80faf
+change-id: 20250618-add-support-for-meta-clemente-bmc-941a469bc523
+
+Best regards,
 -- 
-2.50.1
-
+Leo Wang <leo.jt.wang@fii-foxconn.com>
 
 
