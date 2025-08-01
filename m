@@ -1,196 +1,209 @@
-Return-Path: <devicetree+bounces-201392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605CFB18532
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 17:46:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B8B1B1856D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 18:09:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 037221C82655
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:46:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A040217DCBB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 16:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67C8A27BF80;
-	Fri,  1 Aug 2025 15:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE33D28C5AB;
+	Fri,  1 Aug 2025 16:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mjbs6OA8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rvKWKKbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E68527AC4D;
-	Fri,  1 Aug 2025 15:46:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E5A26C39B;
+	Fri,  1 Aug 2025 16:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754063167; cv=none; b=aPdRHC3NQ3R6Xv9yEEJmDFVtCWXlG6aAGXMEO5K+4j6Auon6A2NI6MrlVBOm9wYltc2RF+sIJtMxhDsloPJGE/sU/CBf2rD5rA3Zmcr44HimItICQB4FPqyNRnawRKkrENZK+61NNsCBmmEKP4l3jHg9rH++9lOBLVzi4OksMJU=
+	t=1754064564; cv=none; b=FjvYjwpkuavAqG0lNQbBk5qy3m6Rh+EESpMvdiBuR1LwzHAUNfdVJGWxtRq+h5qTu0b9YckRA6SgFENWEW3DEj4FVjY5TGKOfIHBYz0ageIF/VZHrlC+48SlKMp59J4m2aSbAg9D2HD3RTUmVOOlDLxRlJtLG8kTMy1VREZBL9o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754063167; c=relaxed/simple;
-	bh=4u/ERZo4s3oLx9uWszOTt0WmSC82PHA4dPnPCmk6B9A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=psokLcGpKZLA1snveLJMMq8/vPPG2mhEg3rd8F08rq/3/QvsVv2fDleY5akvWIZQxD19Na0OCFkEjaP+DIdns7sogC7NzFylvFCGqKVy6dpfeISlf85J2qeXLyR1qji9bMGWBO1+egoJThYFsA/ITQ0DEdeu57EkLdpw+60sW88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mjbs6OA8; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-458a84e2917so12405585e9.1;
-        Fri, 01 Aug 2025 08:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754063164; x=1754667964; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vPa5bQCjhcQssZJBxoWXb+FRc52wbSzCoxCNyn60iwU=;
-        b=Mjbs6OA8tbx8NHA3a42d/c0pw3RGYmY2xY0lWDIzEOeM1cb7xvwSy4AEFLe6/GfWJn
-         DPh0oyVO5IKRIkhsGYXTzOGW9SrgLdJhm4QRrrQYNKYPe8bhH1/KNMOxOBohoxN/coCT
-         NQWiHoLMOD1kvVjK5VBL2nKi/JOTRFvBVGO3jP1XmYReseZkAUIaMFebF+MMh64WgaeB
-         BjS7MT+gI469pymSkrFvxc2VhUyRF5waoR4G4AXPjQ4i8pyIi2EGKkAlHiKHAl2LDuX5
-         JcfqdpUf3NNy0V1hUbaZg/Xi3Z1eSzmULoeZAiH0ZfuP8AQBsvGVgqqYj2Wk0kxOJfqB
-         ltjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754063164; x=1754667964;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vPa5bQCjhcQssZJBxoWXb+FRc52wbSzCoxCNyn60iwU=;
-        b=GG4tLZpjGHAZ27bDsaw2REamItMvse9j55QJlEplyhJ/QmMifrD5DrmAZUBNntehxN
-         qeqQb1GkRmy8lppbH+mqnxgvsX0FOxNfYfAhk/ZijaNc5UYUMNFK2vo5MVzptAx4NtgH
-         sdCb2b1D3zpAxgPspcpYXmPBzKW+aZT6veEV7YNPp8I8SY9Njraj8inbEaIn1Lb9JJwP
-         u0wAoxq7rMCRZfQ1zn9IR1z156P6mRdiPa+OepcRffMm6JweuFtuI48b3vPy+Oi4JsQ+
-         r+ALxiWkttVpPEW6MiPm3/tpDh03co8TWk9poOJf5OVYVIANNPxwjzJNizsnim9Axy57
-         cKDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcECUGRaXE58DSaB+dcF0xI8/yL56sHYuu79p00DWtAaeivcZgKpPWm9Bodqo8Nc8I7lKA+NYXrj5I@vger.kernel.org, AJvYcCVqQP2JsZCG/3zj9BWaImN7iJdOGEXluVGxw+bj7/j7TZ4bE3lX5/qzBOnq7Iyea3cr6O8K2tduudlvbXKS@vger.kernel.org, AJvYcCWc+CDbypJLvO7PM3MKcd1a3HkYjHTUtXId0fwKeMHvZQSzSpWkHp6avSFVj24N3yWL0r6TYaXGCTLuYQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9lPPNudK5WLRRbisNrf8ys0JxB13S13IlQlL0o05u+d9P6peD
-	T/Cs9jdaQ9ROp/QnpRa07lAO+b2J6uJMBm3VZbKs6kBMI5fTv1wC4+IfyEXwZw==
-X-Gm-Gg: ASbGncsOGVblkKr4FY5yy3mKCN67UutepAYsdWvcUVkCJNDo6cHESzNplsAjqKkpLCt
-	n4TiXZAsIx/Yzljwt/hGgxjA/CTLHg71wXrML7tZsxD3RFWRZJPO5XK8UuecMrbNNLedOvjcWtT
-	dPaZCkZQIuKY6VSecWCZQP+/XYoYPKxAWbzNCFcGq4F6cXpcWGq53YnsHqmYdXVURx60nJMYZ7p
-	j8i2aOFDSnGlkzjbozII7hxT4NdKacNhtySwDfXV2VSH62Z2uFnzeCVLnaKD4Cq4TGF20p4Pu55
-	GSGYskLE5v+bCPXW5wUpOCEmnSRXWCdh7+5J+KKMclPYEWZzdlbka3kcnbAWuPwz+VRi1PKOmWb
-	JDBhIsoutmcYIsHSAyZPpF/qex8+t92CL5QHO3P4heKLqsvIdIM2bhyCkZPyQSVhHbpUQ4hraoL
-	VlH9NBX54=
-X-Google-Smtp-Source: AGHT+IEy1d0OjMb4ZEYvw+mMcSASJHq1ZBcUQZZYLP9JZltpwwHzGAjuBq72r9RUWMLB4u9IEdwKOA==
-X-Received: by 2002:a05:600c:1388:b0:456:25e7:bed with SMTP id 5b1f17b1804b1-4589af5ba2fmr105484575e9.14.1754063163618;
-        Fri, 01 Aug 2025 08:46:03 -0700 (PDT)
-Received: from iku.example.org (97e54365.skybroadband.com. [151.229.67.101])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c469582sm6194406f8f.52.2025.08.01.08.46.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Aug 2025 08:46:02 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4 3/3] pinctrl: renesas: rzt2h: Add support for RZ/N2H SoC
-Date: Fri,  1 Aug 2025 16:45:50 +0100
-Message-ID: <20250801154550.3898494-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250801154550.3898494-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250801154550.3898494-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1754064564; c=relaxed/simple;
+	bh=fF7jdCoxSI4PIYqc+nC8jQ5Zo2bBLXUC0r4Wf+iGzd8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JHFY8b9+7idXsG7TFQT5jlZiI0A8j+KrwB6sItpNR769pERZz6j74B4w8qrIVWIFOnLwTu0cG2B+YUsU83zenWnomiqqaSzqrwCqyJu4CBxmPl6NpA3KBfIh7oEblLNiQShBV08JDMfn6mJLno8Bie5iMze588UtoOzwZ7pTeos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rvKWKKbA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B856EC4CEE7;
+	Fri,  1 Aug 2025 16:09:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754064564;
+	bh=fF7jdCoxSI4PIYqc+nC8jQ5Zo2bBLXUC0r4Wf+iGzd8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rvKWKKbAWpN9RgkvBv1iHGLhHE5Yszey8SjnnYGuY17WCKQDoro7TkUsJnl7f3MQR
+	 Q/K3Zq+/XCKg23+Snpvd9UnCfXui69teQ14tsUSCc1zrERer3cslnmmSUlB1LtnKNs
+	 XWefJZR00eZSj1CTLDbyiGxkz5Lx3aLNuhjOiX0k4UCuYT9DFYuoDe6l8UPVla0gzU
+	 Xo00+IR/MmOBQ6FXJKthXYDnljneXb17nJnMGlMNxhGWLmD/kYi13D18pbpDALFmXI
+	 zDE1Rk/8DaksAvyKvJj7YB+YIOhVEcAgGbGtlVGi8zl8cdZ5n/5JKrSADLDvAGl3XR
+	 aNqELRO3R+iiA==
+Message-ID: <4fa9074e-609a-42aa-975a-a6daa7dd6d42@kernel.org>
+Date: Fri, 1 Aug 2025 18:09:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: sm8650: Enable MCQ support for
+ UFS controller
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com,
+ avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
+ <20250730082229.23475-3-quic_rdwivedi@quicinc.com>
+ <eab85cb3-7185-4474-9428-8699fbe4a8e5@kernel.org>
+ <40ace3bc-7e5d-417a-b51a-148c5f498992@quicinc.com>
+ <2a7bf809-73d9-4cb6-bcc9-3625ef1eb1fa@kernel.org>
+ <kayobeddgln5oi3g235ruh7f7adbqr7srim7tmt3iwa3zn33m4@cenneffnuhnv>
+ <5a32e933-03b9-4cc3-914c-46bdb2cedce6@kernel.org>
+ <54gttzkpxg55vrh5wsvyvteovki377w3yjfejjddpzzrvldwkg@p7sc4knnvla3>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <54gttzkpxg55vrh5wsvyvteovki377w3yjfejjddpzzrvldwkg@p7sc4knnvla3>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 01/08/2025 17:33, Manivannan Sadhasivam wrote:
+> On Fri, Aug 01, 2025 at 04:20:37PM GMT, Krzysztof Kozlowski wrote:
+>> On 01/08/2025 14:24, Manivannan Sadhasivam wrote:
+>>> On Thu, Jul 31, 2025 at 10:38:56AM GMT, Krzysztof Kozlowski wrote:
+>>>> On 31/07/2025 10:34, Ram Kumar Dwivedi wrote:
+>>>>>
+>>>>>
+>>>>> On 31-Jul-25 12:15 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 30/07/2025 10:22, Ram Kumar Dwivedi wrote:
+>>>>>>> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
+>>>>>>> on the Qualcomm SM8650 platform by updating the device tree node. This
+>>>>>>> includes adding new register regions and specifying the MSI parent
+>>>>>>> required for MCQ operation.
+>>>>>>>
+>>>>>>> MCQ is a modern queuing model for UFS that improves performance and
+>>>>>>> scalability by allowing multiple hardware queues. 
+>>>>>>>
+>>>>>>> Changes:
+>>>>>>> - Add reg entries for mcq_sqd and mcq_vs regions.
+>>>>>>> - Define reg-names for the new regions.
+>>>>>>> - Specify msi-parent for interrupt routing.
+>>>>>>>
+>>>>>>> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+>>>>>>> ---
+>>>>>>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 9 ++++++++-
+>>>>>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+>>>>>>>
+>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>>>>>> index e14d3d778b71..5d164fe511ba 100644
+>>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>>>>>> @@ -3982,7 +3982,12 @@ ufs_mem_phy: phy@1d80000 {
+>>>>>>>  
+>>>>>>>  		ufs_mem_hc: ufshc@1d84000 {
+>>>>>>>  			compatible = "qcom,sm8650-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>>>>>>> -			reg = <0 0x01d84000 0 0x3000>;
+>>>>>>> +			reg = <0 0x01d84000 0 0x3000>,
+>>>>>>> +			      <0 0x01da5000 0 0x2000>,
+>>>>>>> +			      <0 0x01da4000 0 0x0010>;
+>>>>>>
+>>>>>>
+>>>>>> These are wrong address spaces. Open your datasheet and look there.
+>>>>>>
+>>>>> Hi Krzysztof,
+>>>>>
+>>>>> I’ve reviewed it again, and it is correct and functioning as expected both on our upstream and downstream codebase.
+>>>>> I think it is probably overlooked by you. Can you please double check from your end?
+>>>>>
+>>>>
+>>>> No, it is not overlooked. There is no address space of length 0x10 at
+>>>> 0x01da4000 in qcom doc/datasheet system. Just open the doc and look
+>>>> there by yourself. The size is 0x15000.
+>>>>
+>>>
+>>> The whole UFS MCQ region is indeed of size 0x15000, but the SQD and VS registers
+>>> are at random offsets, not fixed across the SoC revisions. And there are some
+>>> big holes within the whole region for things like ICE and all.
+>>>
+>>> So it makes sense to map only the part of these regions and leave the unused
+>>> ones.
+>> Each item in the reg represents some continuous, dedicated address
+>> space, not individual registers or artificially decided subsection. The
+>> holes in such address space is not a problem, we do it all the time for
+>> all other devices as well.
+>>
+>> You need to use the definition of that address space.
+>>
+> 
+> What if some of the registers in that whole address space is shared with other
+> peripherals such as ICE?
 
-The RZ/N2H (R9A09G087) SoC from Renesas shares a similar pin controller
-architecture with the RZ/T2H (R9A09G077) SoC, differing primarily in the
-number of supported pins-576 on RZ/N2H versus 729 on RZ/T2H.
 
-Add the necessary pin configuration data and compatible string to enable
-support for the RZ/N2H SoC in the RZ/T2H pinctrl driver.
+It will be a different address space. We don't talk about imaginary
+3rd-party SoC. Qualcomm datasheet lists address spaces in very precise
+way. We were recently fixing all address spaces for remoterpocs based on
+that.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v3->v4:
-- No changes.
+> 
+> I agree with the fact that artifically creating separate register spaces leads
+> to issues, but here I'm worried about hardcoding the offsets in the driver which
+> can change between SoCs and also the shared address space with ICE.
 
-v2->v3:
-- No changes.
+Drivers are expected to hard-code offsets and all drivers do it. Look at
+display, sound codecs (both SoC and soundwire devices). Everything
+hard-coded offsets internal to address space.
 
-v1->v2:
-- New patch.
----
- drivers/pinctrl/renesas/Kconfig         |  3 ++-
- drivers/pinctrl/renesas/pinctrl-rzt2h.c | 17 +++++++++++++++++
- 2 files changed, 19 insertions(+), 1 deletion(-)
+What you essentially want is (making it border case) "reg" per register.
 
-diff --git a/drivers/pinctrl/renesas/Kconfig b/drivers/pinctrl/renesas/Kconfig
-index 0d0920f4678b..8cbd79a13414 100644
---- a/drivers/pinctrl/renesas/Kconfig
-+++ b/drivers/pinctrl/renesas/Kconfig
-@@ -45,6 +45,7 @@ config PINCTRL_RENESAS
- 	select PINCTRL_RZG2L if ARCH_R9A09G056
- 	select PINCTRL_RZG2L if ARCH_R9A09G057
- 	select PINCTRL_RZT2H if ARCH_R9A09G077
-+	select PINCTRL_RZT2H if ARCH_R9A09G087
- 	select PINCTRL_PFC_SH7203 if CPU_SUBTYPE_SH7203
- 	select PINCTRL_PFC_SH7264 if CPU_SUBTYPE_SH7264
- 	select PINCTRL_PFC_SH7269 if CPU_SUBTYPE_SH7269
-@@ -304,7 +305,7 @@ config PINCTRL_RZN1
- 	  This selects pinctrl driver for Renesas RZ/N1 devices.
- 
- config PINCTRL_RZT2H
--	bool "pin control support for RZ/T2H" if COMPILE_TEST
-+	bool "pin control support for RZ/N2H and RZ/T2H" if COMPILE_TEST
- 	depends on 64BIT && OF
- 	select GPIOLIB
- 	select GENERIC_PINCTRL_GROUPS
-diff --git a/drivers/pinctrl/renesas/pinctrl-rzt2h.c b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-index 877f6d00830f..55c64d74cb54 100644
---- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-+++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-@@ -764,6 +764,12 @@ static const u8 r9a09g077_gpio_configs[] = {
- 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f,
- };
- 
-+static const u8 r9a09g087_gpio_configs[] = {
-+	0x1f, 0xff, 0xff, 0x1f, 0, 0xfe, 0xff, 0, 0x7e, 0xf0, 0xff, 0x1,
-+	0xff, 0xff, 0xff, 0, 0xe0, 0xff, 0xff, 0, 0xff, 0xff, 0xff, 0x1,
-+	0xe0, 0xff, 0xff, 0x7f, 0, 0xfe, 0xff, 0x7f, 0, 0xfc, 0x7f,
-+};
-+
- static struct rzt2h_pinctrl_data r9a09g077_data = {
- 	.port_pins = rzt2h_gpio_names,
- 	.n_port_pins = ARRAY_SIZE(r9a09g077_gpio_configs) * RZT2H_PINS_PER_PORT,
-@@ -771,11 +777,22 @@ static struct rzt2h_pinctrl_data r9a09g077_data = {
- 	.n_ports = ARRAY_SIZE(r9a09g077_gpio_configs),
- };
- 
-+static struct rzt2h_pinctrl_data r9a09g087_data = {
-+	.port_pins = rzt2h_gpio_names,
-+	.n_port_pins = ARRAY_SIZE(r9a09g087_gpio_configs) * RZT2H_PINS_PER_PORT,
-+	.port_pin_configs = r9a09g087_gpio_configs,
-+	.n_ports = ARRAY_SIZE(r9a09g087_gpio_configs),
-+};
-+
- static const struct of_device_id rzt2h_pinctrl_of_table[] = {
- 	{
- 		.compatible = "renesas,r9a09g077-pinctrl",
- 		.data = &r9a09g077_data,
- 	},
-+	{
-+		.compatible = "renesas,r9a09g087-pinctrl",
-+		.data = &r9a09g087_data,
-+	},
- 	{ /* sentinel */ }
- };
- 
--- 
-2.50.1
-
+Best regards,
+Krzysztof
 
