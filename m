@@ -1,138 +1,295 @@
-Return-Path: <devicetree+bounces-201299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224D3B17FF9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51900B1802C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 12:31:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5356F17389F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:11:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAAC9560535
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 10:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180EE233714;
-	Fri,  1 Aug 2025 10:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDABD23AB98;
+	Fri,  1 Aug 2025 10:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sz5q07GJ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="jlEDOniB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D408220E030;
-	Fri,  1 Aug 2025 10:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E854238173
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 10:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754043112; cv=none; b=XAatORsp1WSTNBUSIxmR6aHJUkcis5zwy5URt4YndyOQIMDX8dCC/ak6koROwHeg0IG+tMzoa7nirjpTL0lQ0VrhtgptUgN2yiLs2gDksMcnz1/bd76x8M4pKnYId94aEdZ5aN81zV4j9evydY9BhLALnYCzAQa08I459M7j7r8=
+	t=1754044269; cv=none; b=uiYFQmBIHqdng5B9BOAbnQuiC6og7EQKBQVllRlXVhzT9rjKxXGGT+FdBqlKrxhY9fI16I2a0X3FNs8C0jEJV0DfzipNL5EpkXSwz1JB9dP3Vy3WPukenpkLIY03zMo2zF/6eri7m1viSiZY0vQG+ae43LjbH0J7MV2aj1PiHxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754043112; c=relaxed/simple;
-	bh=emSfXgxgLE13qdHNoG4H5bIFSvoxwcECzeINaeEVYRc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R7UPjkTaRKAvV0crsum9AVpaTQxVsucxz8/TTFLhYsWYi2rzY0BRzU9ut1YZhbLfY05JJykxvnuwj0fi1B8Md5DAw58JKLD+V9oiYhIXFoy8HfL5buTN0B7NIyMbhAYbG17ojKGy1R1KmaauLhKPv1qAdSpZDnE6gyfam2uLyqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sz5q07GJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C549DC4CEE7;
-	Fri,  1 Aug 2025 10:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754043111;
-	bh=emSfXgxgLE13qdHNoG4H5bIFSvoxwcECzeINaeEVYRc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sz5q07GJsgTqqkdMenDp3vnrAyom3IziUOdcb+iep8kxTMI/my/PYOEanQXh284Qt
-	 mdA5ZAj7sUVg5gpNlnxi95F5ziHsHjpczCdKNGjfjt9BfqE7TwdPHT9nMDiUuQ01vr
-	 W6S/u4lYnq1htAhq7CFA8hsTEbhil5pvQxEczUNjwcoRYc/H82cyuKC17PvPD3JVVc
-	 g17rXskfOILO+3oLfMBvP2Raz5zXUDJwgFJfUsyzK4/cBMs7eP/85yuGiS2qEaGhUG
-	 sWEQRDwaNboXcJcXOecz6tL6YBCmgVW0QLQt3OikwXoDSMADTm31TqHP9iqFWTTBbm
-	 1xDXcrN1sCRTg==
-Date: Fri, 1 Aug 2025 12:11:48 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
-Message-ID: <2msg7e7q42ocjewv35rytdtxwrfqrndpm2y5ustqeaeodencsd@nfdufgtevxte>
-References: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
- <20250722-mdb-max7360-support-v12-4-3747721a8d02@bootlin.com>
+	s=arc-20240116; t=1754044269; c=relaxed/simple;
+	bh=Mkhizdnt3n/MBEIPTeHmKWT4r2JZTSrlmA5MmFnVdzw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To:Cc:Content-Type:
+	 References; b=DQX/cpeuoEDIfRSQgqxeG5StxWzay3l523mLwp3AGJWrvzWl4uGmyhnauBLnpzHdhk5PIf56oKxZIabani3EPhV1ZsTdM7Ry5GfD8YjJVSkryE9ssVkDGk8/iSUfoH0BB2PqMEssnul897+mND8kbRqtgaBZOh6ImPcY/2CgERk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=jlEDOniB; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250801103105euoutp026e15e5eea0fac3776c329a38ebe94ff4~XnfdLawM91241212412euoutp02v
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 10:31:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250801103105euoutp026e15e5eea0fac3776c329a38ebe94ff4~XnfdLawM91241212412euoutp02v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754044265;
+	bh=Kcn/Dg23JsE6dVRXsivcm4tlTyWRM83SOP0eQdprxGU=;
+	h=From:Subject:Date:To:Cc:References:From;
+	b=jlEDOniBOBAHo84pA8nUm2MvEupNVm+5lvho7OhNH2IdjgRMRppBMgdnbftjbuku1
+	 6viWk9xxOfIzF4KlexOFQqF3x2rE0YRjwH3ZWjvCS5EK45ZHwoxqQfyYfYOAsm42Ls
+	 lRJ10ePag4r0Yll3TTu2yrdK4IJOYFL5nmZDRYnY=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250801103104eucas1p1dae57601c48faae879b154f11af8a4f1~XnfcYIJEi2570925709eucas1p1W;
+	Fri,  1 Aug 2025 10:31:04 +0000 (GMT)
+Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
+	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250801103103eusmtip1341f2767f65838dd31b47dc8cadbb951~XnfbWZbZv1329213292eusmtip1a;
+	Fri,  1 Aug 2025 10:31:03 +0000 (GMT)
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: [PATCH v10 0/4] Add TH1520 GPU support with power sequencing
+Date: Fri, 01 Aug 2025 12:31:00 +0200
+Message-Id: <20250801-apr_14_for_sending-v10-0-e85802902a29@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7segp7ac5cyefa5g"
-Content-Disposition: inline
-In-Reply-To: <20250722-mdb-max7360-support-v12-4-3747721a8d02@bootlin.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGWXjGgC/33QTU7DMBAF4KtUXhNkj/9ZcQ+EIndst140qWyIQ
+	FXujpNNgmJYvifNN6N5kBJyCoW8nB4khymVNA41MPp0Inh1wyV0ydeCAAVJBROdu+eeiT6OuS9
+	h8Gm4dPLMLdOGaYdI6uA9h5i+VvXtveZrKh9j/l6XTLC0/3ITdLTTFKWL4KJV+FrcrXwOl2ccb
+	2QBJ74hktMmwitiuJdaCG+tbiBiQ9Qfl4gFCdwKiYZZ9EdE7hHTRGRFQAfPeXASVTwiaocAbyK
+	qIkoajoFGhSCPiN4jqonoFbFcAwQKTB8RsyEa2j8xFaGaiXOI9Rxpj4jdIZw1EVsRBAEeWYzIx
+	G9knucfQZBdA5oCAAA=
+X-Change-ID: 20250414-apr_14_for_sending-5b3917817acc
+To: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,  Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+	<conor+dt@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Paul Walmsley
+	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson
+	<ulf.hansson@linaro.org>,  Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Drew Fustini <fustini@kernel.org>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org,  Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.15-dev
+X-CMS-MailID: 20250801103104eucas1p1dae57601c48faae879b154f11af8a4f1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250801103104eucas1p1dae57601c48faae879b154f11af8a4f1
+X-EPHeader: CA
+X-CMS-RootMailID: 20250801103104eucas1p1dae57601c48faae879b154f11af8a4f1
+References: <CGME20250801103104eucas1p1dae57601c48faae879b154f11af8a4f1@eucas1p1.samsung.com>
 
+This patch series introduces support for the Imagination IMG BXM-4-64
+GPU found on the T-HEAD TH1520 SoC. A key aspect of this support is
+managing the GPU's complex power-up and power-down sequence, which
+involves multiple clocks and resets.
 
---7segp7ac5cyefa5g
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
-MIME-Version: 1.0
+The TH1520 GPU requires a specific sequence to be followed for its
+clocks and resets to ensure correct operation. Initial discussions and
+an earlier version of this series explored managing this via the generic
+power domain (genpd) framework. However, following further discussions
+with kernel maintainers [1], the approach has been reworked to utilize
+the dedicated power sequencing (pwrseq) framework.
 
-On Tue, Jul 22, 2025 at 06:23:48PM +0200, Mathieu Dubois-Briand wrote:
-> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
-> +					   struct pwm_device *pwm,
-> +					   const struct pwm_waveform *wf,
-> +					   void *_wfhw)
-> +{
-> +	struct max7360_pwm_waveform *wfhw = _wfhw;
-> +	u64 duty_steps;
-> +
-> +	/*
-> +	 * Ignore user provided values for period_length_ns and duty_offset_ns:
-> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of 0.
-> +	 * Values from 0 to 254 as duty_steps will provide duty cycles of 0/256
-> +	 * to 254/256, while value 255 will provide a duty cycle of 100%.
-> +	 */
-> +	if (wf->duty_length_ns >= MAX7360_PWM_PERIOD_NS) {
-> +		duty_steps = MAX7360_PWM_MAX;
-> +	} else {
-> +		duty_steps = (u32)wf->duty_length_ns * MAX7360_PWM_STEPS / MAX7360_PWM_PERIOD_NS;
-> +		if (duty_steps == MAX7360_PWM_MAX)
-> +			duty_steps = MAX7360_PWM_MAX - 1;
-> +	}
-> +
-> +	wfhw->duty_steps = min(MAX7360_PWM_MAX, duty_steps);
-> +	wfhw->enabled = !!wf->period_length_ns;
-> +
-> +	return 0;
+This revised series now employs a new pwrseq provider driver
+(pwrseq-thead-gpu.c) specifically for the TH1520 GPU. This driver
+encapsulates the SoC specific power sequence details. The Imagination
+GPU driver (pvr_device.c) is updated to act as a consumer of this power
+sequencer, requesting the "gpu-power" target. The sequencer driver,
+during its match phase with the GPU device, acquires the necessary clock
+and reset handles from the GPU device node to perform the full sequence.
 
-The unconditional return 0 is wrong and testing with PWM_DEBUG enabled
-should tell you that.
+This approach aligns with the goal of abstracting SoC specific power
+management details away from generic device drivers and leverages the
+pwrseq framework as recommended.
 
-I think the right thing to do here is:
+The series is structured as follows:
 
-	if (wf->period_length_ns > MAX7360_PWM_PERIOD_NS)
-		return 1;
-	else
-		return 0;
+Three patches below are NOT included in this revision, as they were
+merged to maintainers trees:
 
-Otherwise looks fine.
+Patch 1: Introduces the pwrseq-thead-gpu auxiliary driver to manage the
+         GPU's power-on/off sequence. (already in maintainer tree)
+Patch 2: Adds device tree bindings for the gpu-clkgen reset to the
+         existing thead,th1520-aon binding. (already in maintainer tree)
+Patch 3: Extends the pm-domains driver to detect the gpu-clkgen reset
+         and spawn the pwrseq-thead-gpu auxiliary driver. (already in
+         maintainer tree)
+Patch 4: Adds the gpu-clkgen reset property to the aon node in the
+         TH1520 device tree source.
 
-Best regards
-Uwe
+Revised numbering for the rest of un-merged patches:
 
---7segp7ac5cyefa5g
-Content-Type: application/pgp-signature; name="signature.asc"
+Patch 1: Updates the Imagination DRM driver to utilize the pwrseq
+         framework for TH1520 GPU power management.
+Patch 2: Adds the thead,th1520-gpu compatible string to the PowerVR GPU
+         device tree bindings.
+Patch 3: Adds the device tree node for the IMG BXM-4-64 GPU and its
+         required fixed-clock.
+Patch 4: Enables compilation of the Imagination PowerVR driver on the
+         RISC-V architecture.
 
------BEGIN PGP SIGNATURE-----
+This patchset finishes the work started in bigger series [2] by adding
+remaining GPU power sequencing piece. After this patchset the GPU probes
+correctly.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiMkuEACgkQj4D7WH0S
-/k5GpggAoRMGf6bBt76DGferXRgCHrKnAuG70WtM4Ae+thaAxNDvteHX/NGrc9nv
-CH3nIMUgYGFo8OtBBVJkHtlV/Bl44mbxk9cXLGOupuOoM3J2rHV3ex+kVJzYkT5b
-j6nCZiDaDwu4G8KVN0I1o5sNam7BvUHo2kBSpyJrTcMKDtcGcKly2nS2y4RTJZ5w
-n/Jip/bw0kOJIR9+n2tCwmkmHOH56WXFyMYjvqb8z1gdnr4F/tDp+XGuK3Fs2a1q
-Bn1nqXtqJZWtoMIUWD943ekNcpYolqMkeM7SqEDuyIo6wpbKwMbNy//CIr/ZhSmb
-7Qly62VCNOd/6dx4wssh+LMOgd5Png==
-=y1VP
------END PGP SIGNATURE-----
+This series supersedes the previous genpd based approach. Testing on
+T-HEAD TH1520 SoC indicates the new pwrseq based solution works
+correctly.
 
---7segp7ac5cyefa5g--
+Link to v9 of this series - [3].
+
+v10:
+ - Squashed the two dt-binding patches back into a single commit.
+ - Simplified the B-series GPU rule by removing the not clause.
+ - Reverted the removal of the items definition from the top-level
+   power-domain-names property, per maintainer feedback.
+
+v9:
+ - Split the dt-bidning patch to two patches: one for refactoring the
+   binding and one for adding TH1520 BXM-4-64 support
+ - Reworked the device tree binding entirely to define power domain
+   constraints on a per-variant basis, per maintainer feedback. This
+   replaces the previous generic rules with explicit definitions for
+   each GPU variant.
+ - Removed Reviewed-by tags from Patch 1 and the dt-binding patches, as
+   they have changed significantly since they were provided.
+
+v8:
+- Re-base on top of linux-next.
+- Refactor the power management logic to use an ->init() callback on
+  the pvr_power_sequence_ops struct. This eliminates platform-specific
+  initialization code from pvr_device.c, decoupling the generic
+  driver from the power sequencing implementation details.
+- Improve dt-binding to forbid the power-domain-names for thead.
+
+v7:
+- Re-based on linux-next patch 1 from v6 made it there, while I believe
+  the 2-3 will join shortly as well
+
+- Implemented conditional devicetree binding constraints. The binding
+  now enforces one power domain for the TH1520 SoC while requiring two
+  for other BXM/BXS GPUs, using an `if/not` construct to create a
+  specific exception for the TH1520
+
+- Rework the Imagination DRM driver's power management. The
+  platform-specific logic is now abstracted into a new
+  `pvr_power_sequence_ops` struct. The `of_device_id` table uses pointers
+  to constant instances of this struct, allowing for a cleaner, more
+  robust check at probe time
+
+- Add stubs for the pwrseq functions which return -ENOTSUPP and issue a
+  warning if the driver is used on a pwrseq-based platform without
+  CONFIG_POWER_SEQUENCING enabled
+
+- Update Kconfig dependencies to restrict RISC-V support to 64-bit
+  platforms and ensure correct alphabetical ordering of the
+  dependencies
+
+v6:
+ - check return values from reset_control_assert() and propagate the
+   first error, ensuring all teardown steps are still attempted
+ - the driver now stores a reference to the consumer's device node to
+   ensure it binds to a single, specific device
+ - rename Kconfig option to POWER_SEQUENCING_TH1520_GPU
+ - remove COMPILE_TEST
+
+v5:
+
+- reworked the pwrseq-thead-gpu driver, now using manual resource
+  management in .match and a .remove callback
+- refactored the drm/imagination driver to use function pointers for
+  power management instead of a boolean flag
+- switched the pmdomain driver to use the generic
+  device_property_match_string() helper
+- added MMU and COMPILE_TEST dependencies to Kconfig to fix RISC-V
+  build warnings.
+
+v4:
+
+- the pwrseq driver is now an auxiliary driver with a robust match
+  function based on the power-domains property, spawned from the AON
+  node
+- Imagination DRM driver now uses of_device_id match data to
+  conditionally probe for the pwrseq, solving the cross platform
+  probe deferral issue
+- add Reviewed-by from Ulf for the entire series
+
+v3:
+
+- re-worked cover letter completely
+- complete architectural rework from using extended genpd callbacks to a
+  dedicated pwrseq provider driver
+- introduced pwrseq-thead-gpu.c and associated DT bindings
+   (thead,th1520-gpu-pwrseq)
+- the Imagination driver now calls devm_pwrseq_get() and uses
+  pwrseq_power_on() / pwrseq_power_off() for the TH1520 GPU
+- removed the platform_resources_managed flag from dev_pm_info and
+  associated logic
+- the new pwrseq driver's match() function now acquires consumer-specific
+  resources (GPU clocks, GPU core reset) directly from the consumer device
+
+v2:
+
+Extended the series by adding two new commits:
+ - introduced a new platform_resources_managed flag in dev_pm_info along
+   with helper functions, allowing drivers to detect when clocks and resets
+   are managed by the platform
+ - updated the DRM Imagination driver to skip claiming clocks when
+   platform_resources_managed is set
+
+Split the original bindings update:
+ - the AON firmware bindings now only add the GPU clkgen reset (the GPU
+   core reset remains handled by the GPU node)
+
+Reworked the TH1520 PM domain driver to:
+ - acquire GPU clocks and reset dynamically using attach_dev/detach_dev
+   callbacks
+ - handle clkgen reset internally, while GPU core reset is obtained from
+   the consumer device node
+ - added a check to enforce that only a single device can be attached to
+   the GPU PM domain
+
+[1] - https://lore.kernel.org/all/CAPDyKFpi6_CD++a9sbGBvJCuBSQS6YcpNttkRQhQMTWy1yyrRg@mail.gmail.com/
+[2] - https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
+[3] - https://lore.kernel.org/all/20250731-apr_14_for_sending-v9-0-c242dc1ffc14@samsung.com/
+
+---
+Michal Wilczynski (4):
+      drm/imagination: Use pwrseq for TH1520 GPU power management
+      dt-bindings: gpu: img,powervr-rogue: Add TH1520 GPU support
+      riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
+      drm/imagination: Enable PowerVR driver for RISC-V
+
+ .../devicetree/bindings/gpu/img,powervr-rogue.yaml |  33 +++-
+ arch/riscv/boot/dts/thead/th1520.dtsi              |  21 +++
+ drivers/gpu/drm/imagination/Kconfig                |   3 +-
+ drivers/gpu/drm/imagination/pvr_device.c           |  22 +--
+ drivers/gpu/drm/imagination/pvr_device.h           |  22 +++
+ drivers/gpu/drm/imagination/pvr_drv.c              |  27 +++-
+ drivers/gpu/drm/imagination/pvr_power.c            | 174 ++++++++++++++++-----
+ drivers/gpu/drm/imagination/pvr_power.h            |  19 ++-
+ 8 files changed, 251 insertions(+), 70 deletions(-)
+---
+base-commit: a933d3dc1968fcfb0ab72879ec304b1971ed1b9a
+change-id: 20250414-apr_14_for_sending-5b3917817acc
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
+
 
