@@ -1,90 +1,89 @@
-Return-Path: <devicetree+bounces-201311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94284B18089
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 13:00:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFF4B18092
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 13:01:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E84121AA6BFB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:00:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 455D9A8482E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 11:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84331242D7A;
-	Fri,  1 Aug 2025 11:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3D32459EC;
+	Fri,  1 Aug 2025 11:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pMjT9RvH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K/ucVyCp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B397A242927
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 11:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 917B22451C3
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 11:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754046007; cv=none; b=sPg9Oh0WixJ9eXVOEFOUt2ha4nfhfmycYg1wkLxCNBitLD5UCDwwV+mqu9fY9lS5rC7Cx4Qa8da8nbkiL4xoN/AMSSWrhe8RrGGP6OlBe+DR/lSu9KLqPA80MtK1UpL+YN9OW4rCKolVODo9QIO5LWYTQyAhhuqt6QlRkaqvtnQ=
+	t=1754046013; cv=none; b=lFhPgON+GdP76pbQ1u3HnDf3rSbUcOpr2zl7sifoGexByUQyPXO3z8VzBp9P2KKSBMPa3xQbEU7Cduaamu6oUd+SZ2+YJAmfapfjgk0hAPmuUt5mSgfnkh52DEjBRI+CdE1GDwrT8w1riMcfBsNgYTYV6P7iOXnzofKAsohCLjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754046007; c=relaxed/simple;
-	bh=LnbQg2sDe0pqchIakyRVwGVYUjeMZzMPTINu0g316oY=;
+	s=arc-20240116; t=1754046013; c=relaxed/simple;
+	bh=Kp7aLz6ua2U/kn6vy6jAG2izbyo0Wnrw280JYTZZa0o=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NpUB56tj2X0ON1iWkRIV6wpRMpx2cLzDjUgpigAiVtNNGFOTouo4q6VG1q5GxledZY2yuaqF5mfXKi/OAahWnnJiKTF3zrp5iUvAI2ERfXBYz3IPJ/FE0XwF0b/Gn4nQaVc/AWqOiBPkri79caVzYKb9Op9S1M3/fEvK+gVE1Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pMjT9RvH; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=hECN9r02FGmjv4jU6eNvLWBPTvRhJ1jCT+kuPV4nLCfU26KQKqJW1ccaszdGjEj6jiTxs3peq8HM8f0Yn0mKNj5ynSd7Xs53OyZdyNjG9qzZm2fe+SjiXlis/bN+C6gch59OmLqJtJ6OV3inRrgT9fEF/2aVC1qHhNaskG0Ed84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K/ucVyCp; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5719OYQE004905
-	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 11:00:05 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5719Dmh2010214
+	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 11:00:10 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iOs/tTl/xKfZcN3YtOj2BRULWxgX1Hen/AyY+WRXmYY=; b=pMjT9RvH/m8D3pdb
-	mhbRRgQhVSQxrWI5z4/NrJW3cJRilwy+0PmrV62TKpjpinZYLPRKIjPffwBHWwn/
-	AuUTL5rOKIZq4ePRYdJvahcU+F3HK4gay19oyTP64FBpny620wF1NSE0n3tctZS9
-	xKtJVqbE3FZSPzvoV5rYyaIDAAt2R/Ov+DPfvWmKfEe1tA4y9RELetq2srTwvx5I
-	bnw+7wrDymYir6yVKW2rXQL0o6TuNu7mdW7afDZdFFGwnExulFoXklG8VbrodZjE
-	uKnK0f/Z/0nXGATQ+frOYDRDf6N43D0uyza+y61N27fr87+R6vOLxaCxSI8/kRe0
-	+sGdOg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 484q86bw9q-1
+	oEMFi3yFFkbpJ7pR+UhigZi4QAV8nxhHoe8LrmMYYTA=; b=K/ucVyCpYUpqLgBZ
+	j9GS7cUVB/ZmfFQ7ErzZdU9dVKOI3j6dUUXM/6jUZKZg5QudjVAJk4D0t8WbfiZE
+	jw6dcjvhPlt8R0UwVpkuhviGsQ3m+BB0KzhvSftt2khlHv7+vbOQt6IFYS4R4Ej5
+	dxCTh6MPjGt/d8g0K1w2TKNRKeqA9GaoAyO1YtKn46dPw7Q+aF2Nz0voJo+PhATO
+	joA5Y8m03fAM6bSh9jsYqvRjQwSnBmtC3pCQRpFcVvszoyCAm7q1L8tqpI+/oMzv
+	7WAyRXOB2VBSI16rfzvM/gQyPWBONmil1xALZfTf6ODexU8FeQ1+iWHBfCjPx2p0
+	7m+qJQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4860ep92eb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 11:00:04 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b0e0c573531so1620023a12.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 04:00:04 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 11:00:09 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b3510c0cfc7so1488080a12.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 04:00:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754046003; x=1754650803;
+        d=1e100.net; s=20230601; t=1754046009; x=1754650809;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iOs/tTl/xKfZcN3YtOj2BRULWxgX1Hen/AyY+WRXmYY=;
-        b=BAUx82l6p1eCtPEZiwKw5xRb72WZn8nD/cbIR86DKpH/gJcGJT+GshXpGTWpWCMCoE
-         OYEJGacqq/GPshQQuUZ8S3sIGyMt6cbCGsgdNLmiguwHM2G6EdZ9vxzAXBGXbevvloMU
-         iVq5gDT/ZJfyrvVxBUbsU+BvuLzkrRD9bBEUddKiY29n5J1YHX/m6D5KPd6EY5Br1yz6
-         x9xbF3Ws5aoXgD0JMZ1E1TZNVgayHeRs1nC5gGuVUMaD1k4/9TadmLo/NGs5wAO0BS4P
-         U9NjbAYJmHRvJYLSlXko5e1mtsv6ZBx5ODQ0J2olxMbSPsk7MYteUFwNc5qZSawU2pqi
-         YSAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJDZC+eocgplBrfmHLCZNlDGbOPvNLs/oDa3JKW6BhpBct/XmuCHu6vQRBZUPdOPXAHwqfCgVKMElV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfh3mPmQoZlx0KjQegRgocpqAUvAYRBcFLuAkBuawijv+pPTP+
-	UOkhZfTy7ZmToqRnwNVRbCNW41GXh0RH6ocIOaB++V6IxwnEfY1a/29QnIodG0ychf0o1D3np9+
-	ipcdDWsLWSgtcIZXVeHrQatpF7fwI/5YJeOPaJiz0rqIHs9/WA5xVgZMbbJh5P2Bc
-X-Gm-Gg: ASbGncuwG2QjN27YGOV+YftrR9UV2kZTf6tV3FEzPTBhNJXiSD6VEXiVNTnIDFSGgRK
-	exCjZ2+z7p1S1pZX+JEt3b+9mKHp/3sfSRhucBidvmn9CMI6lRNAbdtukVT2cNTlnzuSBGuA0rl
-	0JqkB456xdOd1jKADKKChavgLAmlFeZJWMK2KNTkxttNsj8GFDaro7sb8fqLyG77QgoWVSzKrr+
-	VQlnazFb3F1nFBEA511x2rTE46mr+qhNGEzMtL4/XBWzU9HfpItII8kZu1P1Cye8G3HDtmKK+wv
-	vwQddmOmaVzD6JIrxQ7Z7rMazjnHRt4514l2SX23YOtzV2MqajZ5lwzhGiAsNyTe1UiteEuHHTc
+        bh=oEMFi3yFFkbpJ7pR+UhigZi4QAV8nxhHoe8LrmMYYTA=;
+        b=Ct3dOjO+qb7TK9eOG05pnqmElm/NwEEUKxSu/ViszCwrInQ4fRGa9diFcgVF2qPPsa
+         htbO3OoCSIPfufE7O03sadIR1RIIJgM7eaJvngk1fef9RyK4s8HIrWEmcwugeHW5mwiU
+         m8RcRkk7GxR5w76XftDytvEcwM5qfHRSSixbO7vyiSWimiw5Kwr1lnXQRePBUNXR+U6f
+         nh3Kcp85mHXYu3lLAGskzTRjQca5UDpSn/ti04HJWijuXhtcL6qwAkKgE0mjcKwPCIhg
+         O/JVtMGGHEUTn8QIz8X/czGkcCfmsr59yyZfEnqKrRJTPv/j/bkVSBElUb9E/tYMAYVR
+         kZXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXZ37g4OAA0bb4FRRFq0eUi1Mbo4Bt3ZvuoY5zUVCuLKlfHirORkMHvjsco5/P8b+tEy63dZGtpKJto@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4D3JDUatGOus5dvSWSShp0gWub1W5evBk+8FQS2zSif4ZDxct
+	irYDoo4ivavmXqTace3CLd+eFmKauze1/bfn220tkkl1YzieW7o0oxUV0VkNimJAcVyjvSftMxk
+	NNSUvjQrTt6v0B3OYiu28Nt6q7TGTrl0LWrMSf4J9V2A4uDqtGJHyfWoonr6aDWsF
+X-Gm-Gg: ASbGncuJ2Ml+fBvuz5Nj6wUWWJZX4yxggRhnHqpGadf3W+UCY3HV8tQueRviF8tc9De
+	RIn8rh2Y6Sf/Pkp213oDsOS9SDV+LQaIsMcDNV7N6U/xaZpI3Z8yqUwqa2okHo6KDz06BkG+76G
+	HmLkiDPF9MQar5KA85PDaVvXyx8JX9/EkAdvOZ0GEaYassLndZfFy/q3b9twRxUMIJH6kwmO5Em
+	XUJOcU1Jqf8I9pzvEGRcCRtf5FVQeqa2jSymiMplWLuzXLLHyhAQdJzr89dGzsbTLaIgHcrtLeZ
+	TUQsk2xjkP6W54HeQxH/u3BWX3gwy+X4g8xhYWl5sPhY9WJbsdkg8qcBBGSjk+spLlJhRR+gw5Y
 	=
-X-Received: by 2002:a17:902:e786:b0:240:41a3:8e0d with SMTP id d9443c01a7336-24096b1fd84mr163736185ad.36.1754046003002;
-        Fri, 01 Aug 2025 04:00:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE1oklYkkLVuvg1lUtd8rA4DNw1Seyh/RpKrSPQnHDnpw4ds0kW0/fxyTCKKQmXfrV/KuX3tw==
-X-Received: by 2002:a17:902:e786:b0:240:41a3:8e0d with SMTP id d9443c01a7336-24096b1fd84mr163735735ad.36.1754046002514;
-        Fri, 01 Aug 2025 04:00:02 -0700 (PDT)
+X-Received: by 2002:a17:90b:2511:b0:31e:3bbc:e9e6 with SMTP id 98e67ed59e1d1-31f5de4b9demr10317704a91.19.1754046008557;
+        Fri, 01 Aug 2025 04:00:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE1a77JjJtoze4OxqCff+khRd9sEZFHd1GYlo3bjukpx9Fh2DsfOlLdvQnBiwD1wkCTknZygw==
+X-Received: by 2002:a17:90b:2511:b0:31e:3bbc:e9e6 with SMTP id 98e67ed59e1d1-31f5de4b9demr10317670a91.19.1754046008033;
+        Fri, 01 Aug 2025 04:00:08 -0700 (PDT)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63f0b4aesm7154395a91.26.2025.08.01.03.59.57
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63f0b4aesm7154395a91.26.2025.08.01.04.00.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Aug 2025 04:00:02 -0700 (PDT)
+        Fri, 01 Aug 2025 04:00:07 -0700 (PDT)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Fri, 01 Aug 2025 16:29:43 +0530
-Subject: [PATCH v4 2/3] PM: sleep: wakeirq: Add support for custom IRQ
- flags in dedicated wake IRQ setup
+Date: Fri, 01 Aug 2025 16:29:44 +0530
+Subject: [PATCH v4 3/3] PCI: Add support for PCIe WAKE# interrupt
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250801-wake_irq_support-v4-2-6b6639013a1a@oss.qualcomm.com>
+Message-Id: <20250801-wake_irq_support-v4-3-6b6639013a1a@oss.qualcomm.com>
 References: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
 In-Reply-To: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -112,159 +111,268 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754045985; l=5089;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754045985; l=8173;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=LnbQg2sDe0pqchIakyRVwGVYUjeMZzMPTINu0g316oY=;
- b=dRzVe3xH76u3yaU2qJkF2Tvf4F20Kw17oEh9rcPNjEMDT8IKfWWqeN4Gyvw7jMhohjC5xGGg2
- DN9X4DkY410CqB8TBKkSP6iSRU9w3h8l2N/Cpw+KLjn7JE+7yMA9J1n
+ bh=Kp7aLz6ua2U/kn6vy6jAG2izbyo0Wnrw280JYTZZa0o=;
+ b=g5pBTW9TyAhCznAys9dfE3nfBdbVVklgPlSnpz/26ZyyOP0ZwZd9UFUCPgPPKpx0XXuyv6oCU
+ xT7IcLaN/26Bq9HgztbUiMbg8NLAbcxlscON+J7HEGNAJGc9AN8aywm
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA4MSBTYWx0ZWRfX6JEIrsiI9y2l
- o8Ng8B8YXFp5eMsDghWpWf0jN7gSL1SqNq1Zf65k/hz5t60Aw+sLbxHi4Bq1gQBScK+S1pudoEm
- RBw3p1/cJSai0QcDMV3lqRM2LrIszNXbXHy7dQd/+WqiTxyCk/226fUg8U8/1jZEr2KRWOdCzYP
- lp2EMu4ERkisjo4d3D2/EWAsNNCkpNy/O56e2lba4q2kq9dbdGu+GqFS4q3aVkwRHRgnsfC86Go
- 4Wncq2zMmtcf8nBp7M5VRQLesKmvhmj6zPo4hAwccMRJyzdCPR3aoRGrF9sm6SrsUkkOH/nCcIF
- LciuGfkgoxj3ZXoqKBk9koprTCBy5cz5dFXimUY0QdmDRCB9lpVxtAJfbjaAy9BQcIvAegTpGFl
- QrwH/o1mACBuyqh/lqtG9Yu2oCylZMruJ0HC2eGjdkpmqbLqF46YJmTJqYe5NzDfb1TfRBHi
-X-Authority-Analysis: v=2.4 cv=TqLmhCXh c=1 sm=1 tr=0 ts=688c9e34 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=GqrSgIjjxmp09zFQf4gA:9
- a=0bXxn9q0MV6snEgNplNhOjQmxlI=:19 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
-X-Proofpoint-ORIG-GUID: hGMIWD_c3U18-21Ns5b-3SqaHHkNifEt
-X-Proofpoint-GUID: hGMIWD_c3U18-21Ns5b-3SqaHHkNifEt
+X-Proofpoint-GUID: 3rakZquN2OCDO0DhZDbCt1mzSffHzeHX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDA4MSBTYWx0ZWRfX8P8j7tfAz3J9
+ w/ITMKNUQsUNguJmQG8ma3HfpKFvb/qleDV3pMl3Q8Oi/kuJQUOcaYiWTUc0/9MIVQSSSJjT4y3
+ kX/lZAozwZ57LHxGxvNryonjlpWAyQ0Gi7yh/MDfstnWrUsOowx0fjlk2iYxlq3MNW4u9bu0bO9
+ AXya1E7lXHyVPXtBbkn8BGmlWxK/pnrp0f0aGmku6+OdeCtQ913bGVyTYIlAv0KR8OwLGWUd1qB
+ 0qYKtMVC6HOHlkpd3vPgPQtZ1qT8bNpIX4yxNwkecbO4UzlENCaqvO/vmN2ZjJztiUAgiXqkZIa
+ wkdyDvEFFspM9Gyz6UZco6q2KE3etKkphWcsthshHfCgK54oIUaSk6HaAK+D6Y7nFaZRVdrfroI
+ Ct/DQYmAedYlKgZiiNrMZL58s3LS8ypV5WSwlRQ/hFZYFUaZi17SWshhLjkzrWB9LSz2mUtd
+X-Authority-Analysis: v=2.4 cv=DIWP4zNb c=1 sm=1 tr=0 ts=688c9e39 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=pg203nmD_v0msc3Z_NIA:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: 3rakZquN2OCDO0DhZDbCt1mzSffHzeHX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-01_03,2025-07-31_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- malwarescore=0 adultscore=0 spamscore=0 priorityscore=1501 clxscore=1015
- impostorscore=0 mlxlogscore=657 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508010081
+ lowpriorityscore=0 clxscore=1015 bulkscore=0 mlxscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508010081
 
-Some devices require more flexibility when configuring their dedicated
-wake-up interrupts, such as support for IRQF_SHARED or other IRQ flags.
-This is particularly useful in PCIe systems where multiple endpoints
-(e.g., Wi-Fi and Bluetooth controllers) share a common WAKE# signal
-line for waking the device from D3cold to D0. In such cases, drivers
-can use this API with IRQF_SHARED to register a shared wake IRQ handler.
+According to the PCIe specification 6, sec 5.3.3.2, there are two defined
+wakeup mechanisms: Beacon and WAKE# for the Link wakeup mechanisms to
+provide a means of signaling the platform to re-establish power and
+reference clocks to the components within its domain. Adding WAKE#
+support in PCI framework.
 
-Update the internal helper __dev_pm_set_dedicated_wake_irq() to accept an
-irq_flags argument. Modify the existing dev_pm_set_dedicated_wake_irq()
-and dev_pm_set_dedicated_wake_irq_reverse() to preserve current behavior
-by passing default flags (IRQF_ONESHOT | IRQF_NO_AUTOEN).
+According to the PCIe specification, multiple WAKE# signals can exist in a
+system. In configurations involving a PCIe switch, each downstream port
+(DSP) of the switch may be connected to a separate WAKE# line, allowing
+each endpoint to signal WAKE# independently. To support this, the WAKE#
+should be described in the device tree node of the upstream bridge to which
+the endpoint is connected. For example, in a switch-based topology, the
+WAKE# can be defined in the DSP of the switch. In a direct connection
+scenario, the WAKE# can be defined in the root port. If all endpoints share
+a single WAKE# line, the GPIO should be defined in the root port.
 
-Introduce a new API, dev_pm_set_dedicated_wake_irq_flags(), to allow
-callers to specify custom IRQ flags. If IRQF_SHARED is used, remove
-IRQF_NO_AUTOEN and disable the IRQ after setup to prevent spurious wakeups.
+During endpoint probe, the driver searches for the WAKE# in its immediate
+upstream bridge. If not found, it continues walking up the hierarchy until
+it either finds a WAKE# or reaches the root port. Once found, the driver
+registers the wake IRQ in shared mode, as the WAKE# may be shared among
+multiple endpoints.
 
+When the IRQ is asserted, the wake handler triggers a pm_runtime_resume().
+The PM framework ensures that the parent device is resumed before the
+child i.e controller driver which can bring back link to D0.
+
+WAKE# is added in dts schema and merged based on this link.
+
+Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/base/power/wakeirq.c | 43 ++++++++++++++++++++++++++++++++++++++-----
- include/linux/pm_wakeirq.h   |  6 ++++++
- 2 files changed, 44 insertions(+), 5 deletions(-)
+ drivers/pci/of.c         | 66 ++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/pci/pci-driver.c | 10 ++++++++
+ drivers/pci/pci.h        | 10 ++++++++
+ drivers/pci/probe.c      |  2 ++
+ drivers/pci/remove.c     |  1 +
+ include/linux/pci.h      |  2 ++
+ 6 files changed, 91 insertions(+)
 
-diff --git a/drivers/base/power/wakeirq.c b/drivers/base/power/wakeirq.c
-index 8aa28c08b2891f3af490175362cc1a759069bd50..655c28d5fc6850f50fc2ed74c5fbc066a21ae7b3 100644
---- a/drivers/base/power/wakeirq.c
-+++ b/drivers/base/power/wakeirq.c
-@@ -168,7 +168,8 @@ static irqreturn_t handle_threaded_wake_irq(int irq, void *_wirq)
- 	return IRQ_HANDLED;
+diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+index 3579265f119845637e163d9051437c89662762f8..5a832bbf2dd5da728080f83220f47c3578cb6b5a 100644
+--- a/drivers/pci/of.c
++++ b/drivers/pci/of.c
+@@ -7,6 +7,7 @@
+ #define pr_fmt(fmt)	"PCI: OF: " fmt
+ 
+ #include <linux/cleanup.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/irqdomain.h>
+ #include <linux/kernel.h>
+ #include <linux/pci.h>
+@@ -15,6 +16,7 @@
+ #include <linux/of_address.h>
+ #include <linux/of_pci.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_wakeirq.h>
+ #include "pci.h"
+ 
+ #ifdef CONFIG_PCI
+@@ -586,6 +588,29 @@ int of_irq_parse_and_map_pci(const struct pci_dev *dev, u8 slot, u8 pin)
+ 	return irq_create_of_mapping(&oirq);
  }
- 
--static int __dev_pm_set_dedicated_wake_irq(struct device *dev, int irq, unsigned int flag)
-+static int __dev_pm_set_dedicated_wake_irq(struct device *dev, int irq, unsigned int flag,
-+					   unsigned int irq_flags)
- {
- 	struct wake_irq *wirq;
- 	int err;
-@@ -197,8 +198,7 @@ static int __dev_pm_set_dedicated_wake_irq(struct device *dev, int irq, unsigned
- 	 * so we use a threaded irq.
- 	 */
- 	err = request_threaded_irq(irq, NULL, handle_threaded_wake_irq,
--				   IRQF_ONESHOT | IRQF_NO_AUTOEN,
--				   wirq->name, wirq);
-+				   irq_flags, wirq->name, wirq);
- 	if (err)
- 		goto err_free_name;
- 
-@@ -234,7 +234,7 @@ static int __dev_pm_set_dedicated_wake_irq(struct device *dev, int irq, unsigned
-  */
- int dev_pm_set_dedicated_wake_irq(struct device *dev, int irq)
- {
--	return __dev_pm_set_dedicated_wake_irq(dev, irq, 0);
-+	return __dev_pm_set_dedicated_wake_irq(dev, irq, 0, IRQF_ONESHOT | IRQF_NO_AUTOEN);
- }
- EXPORT_SYMBOL_GPL(dev_pm_set_dedicated_wake_irq);
- 
-@@ -255,10 +255,43 @@ EXPORT_SYMBOL_GPL(dev_pm_set_dedicated_wake_irq);
-  */
- int dev_pm_set_dedicated_wake_irq_reverse(struct device *dev, int irq)
- {
--	return __dev_pm_set_dedicated_wake_irq(dev, irq, WAKE_IRQ_DEDICATED_REVERSE);
-+	return __dev_pm_set_dedicated_wake_irq(dev, irq, WAKE_IRQ_DEDICATED_REVERSE,
-+					       IRQF_ONESHOT | IRQF_NO_AUTOEN);
- }
- EXPORT_SYMBOL_GPL(dev_pm_set_dedicated_wake_irq_reverse);
- 
-+/**
-+ * dev_pm_set_dedicated_wake_irq_flags - Request a dedicated wake-up interrupt
-+ *                                       with custom flags
-+ * @dev: Device entry
-+ * @irq: Device wake-up interrupt
-+ * @flags: IRQ flags (e.g., IRQF_SHARED)
-+ *
-+ * This API sets up a threaded interrupt handler for a device that has
-+ * a dedicated wake-up interrupt in addition to the device IO interrupt,
-+ * allowing the caller to specify custom IRQ flags such as IRQF_SHARED.
-+ *
-+ * Returns 0 on success or a negative error code on failure.
-+ */
-+int dev_pm_set_dedicated_wake_irq_flags(struct device *dev, int irq, unsigned long flags)
+ EXPORT_SYMBOL_GPL(of_irq_parse_and_map_pci);
++
++void pci_parse_of_wake_gpio(struct pci_dev *dev)
 +{
-+	struct wake_irq *wirq;
-+	int ret;
++	struct device_node *dn __free(device_node) = pci_device_to_OF_node(dev);
++	struct gpio_desc *gpio;
 +
-+	flags |= IRQF_ONESHOT;
-+	if (!(flags & IRQF_SHARED))
-+		flags |= IRQF_NO_AUTOEN;
++	if (!dn)
++		return;
 +
-+	ret =  __dev_pm_set_dedicated_wake_irq(dev, irq, 0, flags);
-+	if (!ret && (flags & IRQF_SHARED)) {
-+		wirq = dev->power.wakeirq;
-+		disable_irq_nosync(wirq->irq);
++	gpio = fwnode_gpiod_get_index(of_fwnode_handle(no_free_ptr(dn)),
++				      "wake", 0, GPIOD_IN, NULL);
++	if (!IS_ERR(gpio))
++		dev->wake = gpio;
++}
++
++void pci_remove_of_wake_gpio(struct pci_dev *dev)
++{
++	if (!dev->wake)
++		return;
++
++	gpiod_put(dev->wake);
++	dev->wake = NULL;
++}
+ #endif	/* CONFIG_OF_IRQ */
+ 
+ static int pci_parse_request_of_pci_ranges(struct device *dev,
+@@ -1010,3 +1035,44 @@ int of_pci_get_equalization_presets(struct device *dev,
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
++
++int pci_configure_wake_irq(struct pci_dev *pdev)
++{
++	struct pci_dev *bridge = pdev;
++	struct gpio_desc *wake;
++	int ret, wake_irq;
++
++	while (bridge) {
++		wake = bridge->wake;
++		if (wake)
++			break;
++		bridge = pci_upstream_bridge(bridge);  // Move to upstream bridge
 +	}
 +
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(dev_pm_set_dedicated_wake_irq_flags);
++	if (!wake)
++		return 0;
 +
- /**
-  * dev_pm_enable_wake_irq_check - Checks and enables wake-up interrupt
-  * @dev: Device
-diff --git a/include/linux/pm_wakeirq.h b/include/linux/pm_wakeirq.h
-index 25b63ed51b765c2c6919f259668a12675330835e..14950616efe34f4fa5408ca54cd8eeb1f7f0ff13 100644
---- a/include/linux/pm_wakeirq.h
-+++ b/include/linux/pm_wakeirq.h
-@@ -11,6 +11,7 @@ extern int dev_pm_set_dedicated_wake_irq(struct device *dev, int irq);
- extern int dev_pm_set_dedicated_wake_irq_reverse(struct device *dev, int irq);
- extern void dev_pm_clear_wake_irq(struct device *dev);
- extern int devm_pm_set_wake_irq(struct device *dev, int irq);
-+extern int dev_pm_set_dedicated_wake_irq_flags(struct device *dev, int irq, unsigned long flags);
++	wake_irq = gpiod_to_irq(wake);
++	if (wake_irq < 0) {
++		dev_err(&pdev->dev, "Failed to get wake irq: %d\n", wake_irq);
++		return wake_irq;
++	}
++
++	device_init_wakeup(&pdev->dev, true);
++
++	ret = dev_pm_set_dedicated_wake_irq_flags(&pdev->dev, wake_irq,
++						  IRQF_SHARED | IRQ_TYPE_EDGE_FALLING);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "Failed to set wake IRQ: %d\n", ret);
++		device_init_wakeup(&pdev->dev, false);
++		return ret;
++	}
++
++	return 0;
++}
++
++void pci_remove_wake_irq(struct pci_dev *pdev)
++{
++	dev_pm_clear_wake_irq(&pdev->dev);
++	device_init_wakeup(&pdev->dev, false);
++}
+diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
+index b853585cb1f87216981bde2a7782b8ed9c337636..2a1dca1d19b914d21b300ea78be0e0dce418cc88 100644
+--- a/drivers/pci/pci-driver.c
++++ b/drivers/pci/pci-driver.c
+@@ -447,10 +447,19 @@ static int pci_device_probe(struct device *dev)
+ 	if (error < 0)
+ 		return error;
  
- #else	/* !CONFIG_PM */
++	if (pci_pcie_type(pci_dev) == PCI_EXP_TYPE_ENDPOINT) {
++		error =  pci_configure_wake_irq(pci_dev);
++		if (error) {
++			pcibios_free_irq(pci_dev);
++			return error;
++		}
++	}
++
+ 	pci_dev_get(pci_dev);
+ 	error = __pci_device_probe(drv, pci_dev);
+ 	if (error) {
+ 		pcibios_free_irq(pci_dev);
++		pci_remove_wake_irq(pci_dev);
+ 		pci_dev_put(pci_dev);
+ 	}
  
-@@ -38,5 +39,10 @@ static inline int devm_pm_set_wake_irq(struct device *dev, int irq)
+@@ -475,6 +484,7 @@ static void pci_device_remove(struct device *dev)
+ 		pm_runtime_put_noidle(dev);
+ 	}
+ 	pcibios_free_irq(pci_dev);
++	pci_remove_wake_irq(pci_dev);
+ 	pci_dev->driver = NULL;
+ 	pci_iov_remove(pci_dev);
+ 
+diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+index 12215ee72afb682b669c0e3a582b5379828e70c4..c8cf0b404a4f31b271f187dddd75a007c7566982 100644
+--- a/drivers/pci/pci.h
++++ b/drivers/pci/pci.h
+@@ -920,6 +920,11 @@ void pci_release_of_node(struct pci_dev *dev);
+ void pci_set_bus_of_node(struct pci_bus *bus);
+ void pci_release_bus_of_node(struct pci_bus *bus);
+ 
++void pci_parse_of_wake_gpio(struct pci_dev *dev);
++void pci_remove_of_wake_gpio(struct pci_dev *dev);
++int pci_configure_wake_irq(struct pci_dev *pdev);
++void pci_remove_wake_irq(struct pci_dev *pdev);
++
+ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge);
+ bool of_pci_supply_present(struct device_node *np);
+ int of_pci_get_equalization_presets(struct device *dev,
+@@ -965,6 +970,11 @@ static inline int devm_of_pci_bridge_init(struct device *dev, struct pci_host_br
  	return 0;
  }
  
-+static inline int dev_pm_set_dedicated_wake_irq_flags(struct device *dev,
-+						      int irq, unsigned long flags)
-+{
-+	return 0;
-+}
- #endif	/* CONFIG_PM */
- #endif	/* _LINUX_PM_WAKEIRQ_H */
++static inline void pci_parse_of_wake_gpio(struct pci_dev *dev) { }
++static inline void pci_remove_of_wake_gpio(struct pci_dev *dev) { }
++static inline int pci_configure_wake_irq(struct pci_dev *pdev) { return 0; }
++static inline void pci_remove_wake_irq(struct pci_dev *pdev) { }
++
+ static inline bool of_pci_supply_present(struct device_node *np)
+ {
+ 	return false;
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index e6a34db778266862564532becc2a30aec09bab22..4fb9d8df19bc41cb84dcd1886546076bcc867a43 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -2717,6 +2717,8 @@ void pci_device_add(struct pci_dev *dev, struct pci_bus *bus)
+ 	/* Set up MSI IRQ domain */
+ 	pci_set_msi_domain(dev);
+ 
++	pci_parse_of_wake_gpio(dev);
++
+ 	/* Notifier could use PCI capabilities */
+ 	ret = device_add(&dev->dev);
+ 	WARN_ON(ret < 0);
+diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+index 445afdfa6498edc88f1ef89df279af1419025495..1910f7c18b8f9b11c8136fea970788aaf834c97f 100644
+--- a/drivers/pci/remove.c
++++ b/drivers/pci/remove.c
+@@ -52,6 +52,7 @@ static void pci_destroy_dev(struct pci_dev *dev)
+ 	if (pci_dev_test_and_set_removed(dev))
+ 		return;
+ 
++	pci_remove_of_wake_gpio(dev);
+ 	pci_doe_sysfs_teardown(dev);
+ 	pci_npem_remove(dev);
+ 
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 05e68f35f39238f8b9ce08df97b384d1c1e89bbe..8f861298e41d2f0d2dd0fc3f5778fe0e77a93511 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -548,6 +548,8 @@ struct pci_dev {
+ 	/* These methods index pci_reset_fn_methods[] */
+ 	u8 reset_methods[PCI_NUM_RESET_METHODS]; /* In priority order */
+ 
++	struct gpio_desc *wake; /* Holds WAKE# gpio */
++
+ #ifdef CONFIG_PCIE_TPH
+ 	u16		tph_cap;	/* TPH capability offset */
+ 	u8		tph_mode;	/* TPH mode */
 
 -- 
 2.34.1
