@@ -1,238 +1,226 @@
-Return-Path: <devicetree+bounces-201407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4A4B186E9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 19:54:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B97AB1871B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 20:04:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DB80E4E021A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 17:54:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F73918857A7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 18:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A2B28C5D2;
-	Fri,  1 Aug 2025 17:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB0C1DF749;
+	Fri,  1 Aug 2025 18:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ov/k89LR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PuI8XG8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5C62701C2
-	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 17:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A3D1DC99C;
+	Fri,  1 Aug 2025 18:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754070853; cv=none; b=YW5DvHMTsAgCLn1Hz2d991d/Ckn737ETvgIK2uq0iwutX9wk5rJzzUQ/L/vGgmHwftUaE6ENAYtBY6iTzaVIFZsSl0XQTNSzEcUwqRc6ggZsrW2lDAYncj8qzK25ndJs1DKJMKpe2ykfF3kTxA0xAJR3LqHk8r0mNlHNku+aC6g=
+	t=1754071465; cv=none; b=fLXlOPRKREOcd5C6yfHpDvCV0jcyU1j620aOlzjvr66BMt5A7phXu/gITXLN3yR160BC8lRAafn5vFnRi3xilgnEXA/1wCVmYMVlAbZsEI5759xv3lgxJqgHvrWwJiWBZIxcF1VRc4NSswCLVcbLOcA4jwU2Nqoiv8q6c4AbHcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754070853; c=relaxed/simple;
-	bh=fAoe6Y6LPeN/HPnLbHqLpj5NHlL21pCUIdALDreDr8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nBa3kuyZ0HTs3SPSkqgYMfIkIOCQRXC2mjstFiFXzYnVpmyWw6ag1qLL1KKTStk4/IzQVNqdQ+hHQImuC4alfVuyTnL9wPHk3zyOROW+r0JJzAzltBhl4Ewr4n09NtgjigKjl2ES4HyjL+R7giubdpSGGuPDXIXwkbCsgG0+ggY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ov/k89LR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 571HfK52001382
-	for <devicetree@vger.kernel.org>; Fri, 1 Aug 2025 17:54:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S7f4+guRHjktBbGeLl9ySxS18aKIvptkhBuK8g5+Jd4=; b=Ov/k89LROPmGZoQe
-	SQAxcIV7umVQbtY/pAM0wiLm5Ws6FY8LL08LCLsfmWOaFNxw0nxhRSIURDSWWMjG
-	W1ruyLxnfK42G6+kx0h1F5J1vN5GPnrNE+RGHAbnoqOfMysDe9E8ArDEEUvJH2dF
-	zl7yaMDDTZXMJYHl1Ssv+yisSLc5N692DEuRlzM3E+mhNgrMRW4fsOtpc/Lsr2EP
-	iKsEO6PUHTrXsT5mX3Brf9ceJT4bF5KAVxBypajuD+eFnESllc3sm6PxrIm2L2qM
-	6939zY52TGg7bwNIpJ1F0jMWGeRMJuXXBDxOUHn/LbJi3jR+gHKwvodCOuqhJ2GE
-	lOHJNA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 488q7xtc30-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 17:54:11 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4af117ffc70so3034561cf.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 10:54:11 -0700 (PDT)
+	s=arc-20240116; t=1754071465; c=relaxed/simple;
+	bh=jtVs4YM3HugwAbhWrHuORF3i3AWrbmHy7uCsJ4n4FSc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iVX/lkV2/6kyFUXu8yNZiNbxVDEnjX3m0nMvBX1/3AYNx3H2QANlk4cEN8BajE2pyhQRxrHgwMl83zaHoaFNnJIh1cxDDhkqiFNLV6TMHhz04hu6FkYQlXPaEAgz3cbXj26v1HcihNkeZZBA2rIGxZJ+Z9LhVU4D8NYWV7e4/0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PuI8XG8X; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-31effad130bso964713a91.3;
+        Fri, 01 Aug 2025 11:04:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754071463; x=1754676263; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=gn8QwK2PIACuutr4KjQ3PXKlXST9xlDrnNTcVggzZy4=;
+        b=PuI8XG8XrGU7Z0iyQmJVT4KeCPiEmk/eYxy1J1x1tbpuIc3InqLMnGX68hcygwS1s9
+         joNw8c4U5gm6pwI38MyoMxiDLtraE4Z49FSrEbhTVT7s716l+a6nNfSwQzp4n1TSX5W3
+         7nBxOdL6+MdPbGqXxaFq4D7cQaaLM+bob/yEFm6YegPpNCjyITCTAGPZsFN1qt5VewVw
+         lZCOmU6cFjEwLWsLx8VyJIoWc763LfDvCA8qysplFHAB5UY4jk3qSgZAzF+p2H2DjVNv
+         EmhZjng46bomij984lHRDqYwJHFWF8O/QMrMeyug0CMbLzu/ittS/oUUMewen+UCyBlo
+         gtzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754070850; x=1754675650;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S7f4+guRHjktBbGeLl9ySxS18aKIvptkhBuK8g5+Jd4=;
-        b=n1XyTTUgrxoj46ijTEqT6k89cEm1VIbwYVI5YGbmEXaNvb6z/uLjJqa1O4J5TNSP8/
-         Eb5LUs4fSiCDkNXWpQKNKZ7sfN9czStPyPTVr1Q4jOQ9GWbJ7AC4KHf+dpHC8uKxeAgF
-         H1CY40saiNiKrjSSU61Ab00Z2ISfb5Xa5pVMVExi9NVuMj3rBL+4cLrlq4cW8ABTEbzB
-         lHS90p563wDWl8AV/BUntws+jgDToAc2qlMuSxoDdRBALwm42htB90qTCNZ9/xy6iKC6
-         UUata5YWgyMUiEb1JQ3yFEAwSHmRN8nUDsiG43nWbIbq6tMhhGZg4f6ARoeOdpk1QkQI
-         IHnw==
-X-Forwarded-Encrypted: i=1; AJvYcCW2KJ115zZP8kRxgNNn68xG4ZzC8CMU5GBZF9cT64mrWaGkBgxuvMcmzkD1ol3id+vUxQZmg/gDD7gj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAaV1uyyUi4jouz+OWLqnDHpvseEWng0InqobIrAT/JlVVLizL
-	ERBHnOURhHAQhf/ZGdc6trch5Kq9a3NM47Nm+s3A8ix9FDGQUw6jf+Bpoy7Qx/LVjAKJIPqeD/X
-	mLcg5FGVAq4u1T0NGHu9OnXaKhFhNv3osvxtTcvnkoeDQ41gGHcvC29DTXAuRvZU5
-X-Gm-Gg: ASbGncvwjpWi4hdcA/JO76BtHS31HiRJRVNT1aqeispyrAKSZvnyqmW3zJVpqWLDWHH
-	4LpdByNrL90Uzb9SifYD7lZEmPyPa2bznnWRl/cedAEUUWc0Ze0cPDSjIAbzPwWS/YLlW2BbVct
-	POOxmGtvQDR3Zq7O6vPlmwvO7hB04VLvbOxy+mLfCTVZhxRvhIhMT08WUGSbSNYEeiINxdm5Xdu
-	vU59j7edHO8OMzEuYty5DesbcC/qYiCa6gZUg6T8eIjbgBnX5ypuAfptxsldDJ+H7iaCDzFxvw2
-	SqEtMjXLB6a2IPbOvefMKpQ2yaDjt56xTIqs/fXAwk5A2fYvfxnge3kkr7KMRpnMnNKCuJrpLSs
-	Yn03ue3q+DU2+VU5SiBRvUegqPke76fyHsRLg0CvFW2dv+66Dg0r4
-X-Received: by 2002:ac8:5755:0:b0:4ae:f502:d62e with SMTP id d75a77b69052e-4af10d19299mr10950431cf.50.1754070849500;
-        Fri, 01 Aug 2025 10:54:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF3kthbEbHtl8fTjc7vGgklihIbJVuQF5n8TQ1Xt9JTa+3yTNpRoKu//yUU3XhxhYkcsc/6cQ==
-X-Received: by 2002:ac8:5755:0:b0:4ae:f502:d62e with SMTP id d75a77b69052e-4af10d19299mr10950041cf.50.1754070849010;
-        Fri, 01 Aug 2025 10:54:09 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88cb7fd2sm666886e87.179.2025.08.01.10.54.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Aug 2025 10:54:08 -0700 (PDT)
-Date: Fri, 1 Aug 2025 20:54:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-Message-ID: <myk2qvna427nmfz37p7xniafueu2akpmqzq2y7qmqnzsmggwks@fctmeqkgdkrc>
-References: <20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com>
- <20250729-hamoa_initial-v3-4-806e092789dc@oss.qualcomm.com>
- <pbvyog477v32s4lu72z52dhsond5yud5w3nxmcouvr6ljlndlh@ws46dncy35c6>
- <b4a3f568-f41f-4141-b421-8b158973f810@oss.qualcomm.com>
- <cawg456ucsvssm2ngbcjvpprxke7s3sfqf4fzoj5dtfj2flnzw@2e3h5ojgn4s5>
- <391b8214-37f2-460d-94d0-3bd0daa00066@oss.qualcomm.com>
- <mlbutlxudl5i32zrqegxiefaa2sbkntriwdftn7hxo4khidtf2@oiljtmtktovu>
- <31b03c1b-513a-4eae-9233-568aab12e0c8@oss.qualcomm.com>
- <afd9e24f-b432-494c-8ea6-dbfe4c51e048@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1754071463; x=1754676263;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gn8QwK2PIACuutr4KjQ3PXKlXST9xlDrnNTcVggzZy4=;
+        b=pB0FX+4hp0jCeBaCbJ5pVVKasA0LzBDVcYuZ0RuuwjdMV6w6XuGly3OOZDB9WrcRz8
+         PZfflpB2sB7mrAzC3nKAJrYvzwlFeZV0ievviZGJPU0iokt+No1ruIo7wLXxevo5U0qM
+         c337CByOed4Nhxucb/WQh8a1iTikmTRra917gAEsmKwMkc6jy/6TIu1vN3sDLKJAxsQR
+         TmJyueVJXvjj/dcOZFpas0IRh4q6amB/OZ/iIpEoRIuW+R0hZcxdsLYZEq4CrgDkSqAS
+         A07IrKQsuG+20ztjdn2Ow+yLcFPKx2HimnWTlmp68gzWa4mmSEdXWY+GHp4komApxTce
+         9hTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV53KPhIY3rQhphn9McqpohEVyoCTcac8xfOWZ1YSlkMa7or1WxOddyxQE9wuZhOVmiSq5I2jwVPRYcvL9X@vger.kernel.org, AJvYcCW8SaihE1az9+1G63KolkLyENoUwoHApdL/UP27qxjVwBHsd5t4gIENv2YwFBK2SAZ9aM6plQo2pgePTTNcP5s=@vger.kernel.org, AJvYcCXDtqvbbObzOF65I1A9qYpGFmYVq8CHkVFbhtun2ZYaVpyvGyravMhp3g95RuKfHqeuYkW2dtkG6UrC/ILi+sIUnQ8=@vger.kernel.org, AJvYcCXdose+WxMYGXgqTZ0rl0YWVvaSdtgC3IP3wDVmgToCahZjM2jv1R1syy0MyBNdnSZlA2SVfy+AOOma@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNAPMV+sQ2IQARzaJBLS/aj7XaS4fhkQ9sMGRAw4yE0taz44DR
+	JHlRRYhK+lp3KJNRPj4K2kbFEpX+uaWo8RgtrvYo+HNSll2LDJxVpI3i
+X-Gm-Gg: ASbGncuNHHUSvsBFCIKjON3hovIDjvqOOP9E7VHo/JKPYmraxzf45QUFXYW+nnY5V3P
+	JgjAqmUN79tDZP6+MQ2wWSVul7ajvNUZxE+RfEYF6NjvaalohgJG76YjFJ4IIdRhWb/ri5sIAVl
+	CU/nHFP+4AQrlskPMaAOJE3Iys9tBhuWVXIp4XRnDcSYJ1XqpSHQ5u3aOUsNt7ggMhn4huTaypT
+	rd/K+lqggBEEwVA4sMs4kXjH8+0/lFjRfvlzsDvEhfkM+QiPSK0JvcOSahDBQrH7PX1L1Qxo0S6
+	HQhJyZfetVw9DrrERGdTg50aukAyZN/EpKOJoM2dmgM6JZ88s8/10wKE36K34DtTPZNCtD4/oSg
+	T11dmpny9fkfrMj1z4lwj/CwEKSdmYMBDuy06IJBRneWhrihOI+AoSa4h171qb65UkB09mkygFj
+	QfuyN+ArnIjXR+pnF5
+X-Google-Smtp-Source: AGHT+IF/Q5VicR3q+/5Ioe/gArLWmCx1gbjfP7yi6cWvPwNAjxEGFO3teqYgxHOSgy3WnTbbVxouqw==
+X-Received: by 2002:a17:90b:38c9:b0:311:ea13:2e61 with SMTP id 98e67ed59e1d1-32116306ccbmr737677a91.34.1754071462801;
+        Fri, 01 Aug 2025 11:04:22 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32106bab5ecsm1734437a91.19.2025.08.01.11.04.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Aug 2025 11:04:22 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <cd0653d0-4a2f-4361-8eb2-c1937d988a8c@roeck-us.net>
+Date: Fri, 1 Aug 2025 11:04:20 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/9] watchdog: rzv2h: Set min_timeout based on
+ max_hw_heartbeat_ms
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250729155915.67758-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250729155915.67758-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <aIw-P6zkQSOhvYJW@shikoro>
+ <CA+V-a8txrQoweVrd7uK4LLvDonqrEQGT_gV1r28RFhy8-m=9VQ@mail.gmail.com>
+ <c06bcde9-0aa5-46d1-a5bf-bae5a319565c@roeck-us.net>
+ <CA+V-a8sDP7iir-bPetbCw0fakPRxua5F-F1hVvXUD8bGAMdhFA@mail.gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <CA+V-a8sDP7iir-bPetbCw0fakPRxua5F-F1hVvXUD8bGAMdhFA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <afd9e24f-b432-494c-8ea6-dbfe4c51e048@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=EqPSrTcA c=1 sm=1 tr=0 ts=688cff43 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=2OwXVqhp2XgA:10 a=ugY2ukpke_LRrYEqQncA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-ORIG-GUID: V4NCtRxmOUV5RPu7LlimM9lgCpqRNK6R
-X-Proofpoint-GUID: V4NCtRxmOUV5RPu7LlimM9lgCpqRNK6R
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAxMDEzOCBTYWx0ZWRfX7wUjFTgODeiH
- 7SRYDGr8uhgVjuAD40SjLwG4LpEs+D6S2vFix8nkAmoV2L+H2UttcxpsgbXO/n+ubszMgj63sy3
- 8qXTRFpyD+eDeeYc6/50tj3ayS/3/Ev1izvBMo+b4kjOYBh9pjyC1Bg0Ulw97EtUMO0gvIS7fa9
- 3IuPmF2DJJLSbAoTS32LfuoH/bsGOzt4nlyaSrw3Fn9EIV6WQv5unRmRBNN8Wi2cDoOUXdJ4t8d
- cVcC5lAxuzrezQSZ2qyqgsCuF0xJjn9eG8i/Giu2aMeQ2XQbySF2fv+Md3upOqa9GUj4cocb+HE
- yXzJjmYkAmzESMRK6RgpmFDu2d8hDj+1mAXwvjuA/3D6S8jwJ0DBWwi8qB0Yk8kNnQocM9LBJ+8
- pf7Wb+4J9IvXfkr31vNuMoqUbo+YlJVH4zrfDiU2+wzCAuxB21BSy9lK5oH98eeC9FGpX3z3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-01_06,2025-08-01_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 spamscore=0 adultscore=0 mlxlogscore=999
- impostorscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 malwarescore=0
- phishscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508010138
 
-On Fri, Aug 01, 2025 at 12:39:09PM +0200, Konrad Dybcio wrote:
-> On 8/1/25 3:48 AM, Yijie Yang wrote:
-> > 
-> > 
-> > On 2025-08-01 04:22, Dmitry Baryshkov wrote:
-> >> On Thu, Jul 31, 2025 at 04:45:33PM +0800, Yijie Yang wrote:
-> >>>
-> >>>
-> >>> On 2025-07-31 02:42, Dmitry Baryshkov wrote:
-> >>>> On Wed, Jul 30, 2025 at 02:28:25PM +0800, Yijie Yang wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 2025-07-29 18:37, Dmitry Baryshkov wrote:
-> >>>>>> On Tue, Jul 29, 2025 at 09:32:00AM +0800, Yijie Yang wrote:
-> >>>>>>> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
-> >>>>>>> the Hamoa IoT SoM and a carrier board. Together, they form a complete
-> >>>>>>> embedded system capable of booting to UART.
-> >>>>>>>
-> >>>>>>> This change enables and overlays the following peripherals on the carrier
-> >>>>>>> board:
-> >>>>>>> - UART
-> >>>>>>> - On-board regulators
-> >>>>>>> - USB Type-C mux
-> >>>>>>> - Pinctrl
-> >>>>>>> - Embedded USB (EUSB) repeaters
-> >>>>>>> - NVMe
-> >>>>>>> - pmic-glink
-> >>>>>>> - USB DisplayPorts
-> >>>>>>>
-> >>>>
-> >>>>
-> >>>>>>> +    vreg_rtmr0_1p15: regulator-rtmr0-1p15 {
-> >>>>>>
-> >>>>>> Hmm, so there are regulators for the retimer, but they are not used.
-> >>>>>> Could you please point out, why?
-> >>>>>
-> >>>>> According to the schematic, there is a regulator and a retimer (PS8830).
-> >>>>> However, as mentioned above, the retimer is not connected to USB 0 and is
-> >>>>> therefore not used in the EVK. As a result, the regulator is left unused in
-> >>>>> this context.
-> >>>>
-> >>>> What is connected to the retimer then?
-> >>>
-> >>> All data lines are broken, except for some power lines.
-> >>
-> >> Ok. please add a comment. If the retimer is connected to I2C bus, please
-> >> define it too.
-> > 
-> > It’s not connected to I2C. I will add a comment here.
-> > 
-> >>
-> >>>
-> >>>>
-> >>>>>
-> >>>>>>
-> >>>>>>> +        compatible = "regulator-fixed";
-> >>>>>>> +
-> >>>>
-> >>>> [...]
-> >>>>
-> >>>>>>> +
-> >>>>>>> +    usb_1_ss0_sbu_default: usb-1-ss0-sbu-state {
-> >>>>>>> +        mode-pins {
-> >>>>>>> +            pins = "gpio166";
-> >>>>>>> +            function = "gpio";
-> >>>>>>> +            bias-disable;
-> >>>>>>> +            drive-strength = <2>;
-> >>>>>>> +            output-high;
-> >>>>>>
-> >>>>>> What does this pin do? It's not recommended to set GPIO values through
-> >>>>>> pinctrl.
-> >>>>>
-> >>>>> It is used to switch data lines between USB Type-C orientation detection and
-> >>>>> DisplayPort AUX channels.
-> >>>>
-> >>>> I don't think I follow it here. Which data lines? Type-C orientation
-> >>>> detection uses CC1 / CC2, DP AUX use SBU lines.
-> >>>
-> >>> I made a mistake here — this pin switches between two data sources: one is
-> >>> DP AUX, and the other is a GPIO pair configured with the function
-> >>> usb0_sbrx/usb0_sbtx. Both data sources originate from the SoC and are routed
-> >>> to the USB0_SBU1 and USB0_SBU2 lines of the USB Type-C connector.
-> >>
-> >> So, it's some USB4 stuff. Ideally it should be described via the
-> >> gpio-sbu-mux, but I don't think we can do that for now. I'd let Bjorn,
-> >> Konrad or Abel comment on this.
-> > 
-> > Sure.
+On 8/1/25 08:30, Lad, Prabhakar wrote:
+> Hi Guenter,
 > 
-> There is no DT representation of USB4 hardware at the moment, feel
-> free to pretend it doesn't exist for now.
+> On Fri, Aug 1, 2025 at 2:52 PM Guenter Roeck <linux@roeck-us.net> wrote:
+>>
+>> On 8/1/25 04:05, Lad, Prabhakar wrote:
+>>> Hi Wolfram,
+>>>
+>>> Thank you for the review.
+>>>
+>>> On Fri, Aug 1, 2025 at 5:10 AM Wolfram Sang
+>>> <wsa+renesas@sang-engineering.com> wrote:
+>>>>
+>>>> On Tue, Jul 29, 2025 at 04:59:13PM +0100, Prabhakar wrote:
+>>>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>>>>
+>>>>> Update the watchdog minimum timeout value to be derived from
+>>>>> `max_hw_heartbeat_ms` using `DIV_ROUND_UP()` to ensure a valid and
+>>>>> consistent minimum timeout in seconds.
+>>>>
+>>>> I don't understand this change. Why is the _minimum_ timeout based on
+>>>> the _maximum_ heartbeat?
+>>>>
+>>> The reason for deriving min_timeout from max_hw_heartbeat_ms is to
+>>> ensure the minimum watchdog period (in seconds) is compatible with the
+>>> underlying hardware.
+>>>
+>>> max_hw_heartbeat_ms is calculated as:
+>>> max_hw_heartbeat_ms = (1000 * 16384 * cks_div) / clk_rate;
+>>>
+>>> This value varies by SoC:
+>>>    RZ/T2H: cks_div = 8192, clk ≈ 62.5 MHz -> max_hw_heartbeat_ms ~ 2147ms
+>>>    RZ/V2H: cks_div = 256, clk ≈ 240 MHz -> max_hw_heartbeat_ms ~ 174ms
+>>>
+>>> Since min_timeout is in seconds, setting it to:
+>>> min_timeout = DIV_ROUND_UP(max_hw_heartbeat_ms, 1000);
+>>>
+>>> ensures:
+>>> The minimum timeout period is never less than what the hardware can support.
+>>> - For T2H, this results in a min_timeout of 3s (2147ms -> 3s).
+>>> - For V2H, it’s just 1s (174ms -> 1s).
+>>>
+>>
+>> Sorry, I completely fail to understand the logic.
+>>
+>> If the maximum timeout is, say, 2 seconds, why would the hardware
+>> not be able to support a timeout of 1 second ?
+>>
+> The watchdog timer on RZ/V2H (and RZ/T2H) is a 14 bit down counter. On
+> initialization the down counters on the SoCs are configured to the max
+> down counter. On RZ/V2H down counter value 4194304 (which evaluates to
+> 174ms) is and on RZ/T2H is 134217728 (which evaluates to 2147ms). The
+> board will be reset when we get an underflow error.
 > 
-> If we wanted to be hyper-correct, the way USB(3) is plugged into the
-> bigger picture isn't quite pristine either, but that's a story for
-> another day - need some puzzle pieces to come together first
+> So for example on T2H consider this example:
+> - down counter is 134217728
+> - min_timeout is set to 1 in the driver
+> - When set  WDIOC_SETTIMEOUT to 1
+> In this case the board will be reset after 2147ms, i.e. incorrect
+> behaviour as we expect the board to be reset after 1 sec. Hence the
+> min_timeout is set to 3s (2147ms -> 3s).
+> 
+> Please let me know if my understanding of min_timeout is incorrect here.
+> 
 
-Ack. Then the current description is fine.
+The driver is missing a set_timeout function. It should set RZ/T2H
+to 62514079 if a timeout of 1 second is configured.
 
--- 
-With best wishes
-Dmitry
+Guenter
+
 
