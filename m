@@ -1,183 +1,166 @@
-Return-Path: <devicetree+bounces-201215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F018EB17C32
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 06:45:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7382EB17C5B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 07:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1C231639FD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 04:45:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5484F1AA793E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 05:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A46818DB1C;
-	Fri,  1 Aug 2025 04:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623261E3787;
+	Fri,  1 Aug 2025 05:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="gz+Z5D+i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DFwAjjs6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4FB26ACB;
-	Fri,  1 Aug 2025 04:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8310245009
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 05:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754023545; cv=none; b=SA5WSvwTQkuU/FtKrxXpwR+OzUm+jod1LqNKougyN1TJUfLd38jGvPN8LvDOxUmuiX/ehFn0dgKOnXQib+XHo41PEZrf80CDDs8SNDk4ctxh+O3wOd3+5XWb9F7jWl1jFo8516qRRJr6t52yjhtYQ2j7x1yVqDBZUxnSTUU/moc=
+	t=1754026286; cv=none; b=VEsV7oHGlXZ0ewcaARMljo7R3p3ii8bu/E7Tfh/Krd57W5cBbokLofA5vf7wkSX1pF8DdGmljKLxGv2ByIevuIqbDD7rkx5jtZWPz/RQTk/4A5E6aBqgZNU59ihKK82m7kLO778cjC15TyM08wz9RA4iQus4zYgxbs+PCfZxpMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754023545; c=relaxed/simple;
-	bh=f0kSnytsj68XbFg2s9F9w28FfWo8pGYjLeMe3biLdCQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lJmyRLV6we9q8PCPriRwvZJfqOyh9ueWFgKlspU54PzfmGGlZHCpKVuLaeMiWejwJni4ZlBb0LE7hxCm1RzM1DqqOYOsFsgVw1bopxyQe2/3rHV/6XjnI2lHhL4oUmL2qhnk2hi6IuCC0TB4au7LLVw67ksKAcPXhdImH0tcY9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=gz+Z5D+i; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id F28EA1038C126;
-	Fri,  1 Aug 2025 06:45:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1754023534;
-	h=from:reply-to:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=cazfz037LmHclW8XHXBHFZq0vEjND40W4TWSxFvy07E=;
-	b=gz+Z5D+i9YMV7qtc9jV2wB6l2n5mM6a5kkQ8N5Nrm4TkChr51IhcMCajFKXKFKQIDQsjt4
-	ShW3SLCe9XFh86uBmcTWkbHL2WbZATD/fRJZArT33UNgyIIrrdu4BBXN/LgGL0EgOfgJKe
-	kpEJ1HUwHN3gjuI/8WQAdhOM6WfrmJD3mlm/T+2Wss+jq3N+L3LfjcIxIipHcGxUU/MI2m
-	r1YZkcuFOuap5h6DZ3ytvYUiNMClLZyFlPKjbZO5LgT7qxUlivfIemKy9HNtBkvFhAx3cc
-	0IBrCFR61MfOwW9lvrYnv978S00+JLzejurw223yvP9RyOXsg3NBCeigGls2Sw==
-Message-ID: <0c6dcc6f-e09c-266d-f65a-12d18244a2c6@denx.de>
-Date: Fri, 1 Aug 2025 06:45:48 +0200
+	s=arc-20240116; t=1754026286; c=relaxed/simple;
+	bh=Mi0EJz0k9BDT73y9pKnwu2ug/iY7A8vmCWUIL9F4FBs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1nWPmRVNkYL8HVv5tqNa4mWfa3iGfwLX+Q2hDVBn43BIeoBz2xq+41JoOdf27YkXPE9STeiEcdQeE9CEfoyuHfnxnOY2kmnLdAjeaPJ9rN3XAYCLEz9nfTK5o1JbSIG1PZgY9i4nIVHFj8VnKF5KDOa7DieJuujMX4rRDR5zMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DFwAjjs6; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ae360b6249fso313266066b.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Jul 2025 22:31:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754026283; x=1754631083; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TaCQzaa2dwnZgyymkO8fe+rPIoXFap0GNWHfkgImPMc=;
+        b=DFwAjjs6kUvh4a0XABMFKcmSL/abszKzeeRGG0IZroeaAQKLlOPQ77Rug6jERxe8mI
+         G8IgIoMJYo1285f2oIgYzCQSgZrORuq1t34uZxKR43NxJ4UNjCqItngAYhxuYoGt6pEe
+         H6+NSTffmdozME76C2Az0v093jYSKKfcztXtDxPvuDiS4Wn6Yhye1n/BrHRCgfhQTF6x
+         jME5vq6OzEFkjLmOdRGIENRZOx1uCdhdQsYC8LW5clE+eR51Bap7/meY+F43Vc6v5YSi
+         MeQM8E74xSbe6HPLj+qln6mnukZolyn6rKdYWYB/YikOfDIhXX9B19V0aLtTfEDuH263
+         PRFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754026283; x=1754631083;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TaCQzaa2dwnZgyymkO8fe+rPIoXFap0GNWHfkgImPMc=;
+        b=ab8wdI/ufy2S8XZBb0jy3+UY1zZIK+iCwMeU9uPdiRE6O2wKtVMSlE0Z+9x4GcaR7t
+         BRfZ/lL9FYaIvMQZ0aQ2pbPROwTuIBRlkBXBUxfqxEKYfrPsMla/gVfcsRUoTBUVHMRY
+         33M6BBdtq0lph+dTJVfhystyB62qe+/cMZIf2zorlWMT9wPwUOx8ctMRHD7vP8suMG+L
+         3+tNTd66HvNkZ9m4+g4te03VES584IdfndR2gmS7bVGjKycwIzS8os0NRX4PBy0TnSAs
+         IQanrqOsqd7XDfjejx7EbnwmsHpHtiwlQNVFDLuEwbNYeEsb/58WGi5SBsMSWAQTZ3Nh
+         Dthw==
+X-Forwarded-Encrypted: i=1; AJvYcCVmaTlmL9RBS1IZ/WGMHccJ3yn14zYY8bz7pfTF9azkaCkSkV0unPVObPG44nDpB/34U+hz7+Txb+V7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2cOT79T2AB6CCjK0JjK2CrVBcQLeI5TyoW/ScqMkJigYhwyVj
+	iHLALQHOg/08DOvZa7Azlk23s/KqqLhGMNIQBclE59WDfn5s9eQh5m0kZDERODgFuTeDz6GJtok
+	owEg65ZM=
+X-Gm-Gg: ASbGncss3fB+IDfrPmTKRVACE+iTMWV7Z1dtqY6hf0iQGBFPLGwV3/ONJBh09BAzmyA
+	7GoWHxE9Vjglo8hOc2/6RGlFauJkYMkewuNRcobs/CaVJAnYVCmLuIVrECrLHxobVxPStD/wmpg
+	DfPMwk2lTLof6dIaL/ggBwG66RGHNoQhxfJWGXvzCiL5dtdGagglGKuYFqRCwWXx+GqWKVvWaSD
+	H4/fH1ddpji5VlXM0Pdz/hbPkwo2Gz22pwOs5txcB7/eTSMJoRb2Q70NTgPN++Aof9vBFnmzJYt
+	PdeJuAScLCTZuKCs/TTz/WbLK3U7igcCQ7gC1EecYwbt5Xt/xsekHjJRtGTeEneOS3D9U5KhVFK
+	BBnLVQB6KFii+++PUE/g=
+X-Google-Smtp-Source: AGHT+IEib5eiaxVwRs6/V1E29IVcZo3CV59wUTIddsg/LgmBOBUV6aR7agFxmqPxj4KqH6y5QX+9Fg==
+X-Received: by 2002:a17:907:7b97:b0:ae9:876a:4f14 with SMTP id a640c23a62f3a-af8fda95ecfmr1117987866b.59.1754026282746;
+        Thu, 31 Jul 2025 22:31:22 -0700 (PDT)
+Received: from linaro.org ([82.79.186.23])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a1e82a5sm232281666b.82.2025.07.31.22.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Jul 2025 22:31:21 -0700 (PDT)
+Date: Fri, 1 Aug 2025 08:31:20 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] clk: qcom: Add TCSR clock driver for Glymur
+Message-ID: <aIxRKHKdBHDefDs2@linaro.org>
+References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
+ <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-3-227cfe5c8ef4@oss.qualcomm.com>
+ <aIoBFeo00PPZncCs@linaro.org>
+ <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: (subset) [PATCH v1 0/3] spidev: introduce trivial abb sensor
- device
-Content-Language: en-US
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Guenter Roeck <linux@roeck-us.net>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- Andrei Lalaev <andrey.lalaev@gmail.com>,
- Chanh Nguyen <chanh@os.amperecomputing.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Grant Peltier <grantpeltier93@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Michal Simek <michal.simek@amd.com>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20250719063355.73111-1-hs@denx.de>
- <175311337130.327079.7374455187420344577.b4-ty@kernel.org>
- <d677ecd9-42d6-43fe-8fe1-a5afd4d270e2@kernel.org>
- <8a8106ea-83d3-e02a-9ae7-ea4a66e4c248@denx.de>
- <2e9c96c6-6dfb-4232-a9ab-a3e78b718fc2@roeck-us.net>
- <20250722112013.0000597e@huawei.com>
-Reply-To: hs@denx.de
-From: Heiko Schocher <hs@denx.de>
-In-Reply-To: <20250722112013.0000597e@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
 
-Hello Jonathan,
-
-On 22.07.25 12:20, Jonathan Cameron wrote:
-> On Mon, 21 Jul 2025 21:58:10 -0700
-> Guenter Roeck <linux@roeck-us.net> wrote:
+On 25-08-01 10:02:15, Taniya Das wrote:
 > 
->> On 7/21/25 21:05, Heiko Schocher wrote:
->>> Hello Krzysztof,
->>>
->>> On 21.07.25 18:24, Krzysztof Kozlowski wrote:
->>>> On 21/07/2025 17:56, Mark Brown wrote:
->>>>> On Sat, 19 Jul 2025 08:33:51 +0200, Heiko Schocher wrote:
->>>>>> This series introduces the changes needed for trivial spi
->>>>>> based sensors from ABB, currently operated from userspace.
->>>>>>
->>>>>> The last patch adds the spidevices to the DTS files, already
->>>>>> in mainline.
->>>>>>
->>>>>> make dtbs_check showed no errors/warnings for the dts files
->>>>>>
->>>>>> [...]
->>>>>
->>>>> Applied to
->>>>>
->>>>>      https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
->>>>>
->>>>> Thanks!
->>>>>
->>>>> [1/3] dt-bindings: trivial-devices: Document ABB sensors
->>>>>         commit: aad2f87cbcab56b322109d26d7b11842a09df91f
->>>>> [2/3] spi: spidev: Add an entry for the ABB spi sensors
->>>>>         commit: d60f7cab7c04944a79af16caa43c141e780a59c6
->>>>>   
->>>>
->>>>
->>>> That's unexpected, Mark. Patches received two objections/comments and I
->>>> don't think discussion was resolved.
->>>>
->>>> ABB is huge company, probably making hundreds or more of sensors. The
->>>> patchset basically claims that all of them work with spidev. It does not
->>>> providing any model names or details, so it seems really incomplete to
->>>> call them trivial devices.
->>>
->>> I do not know how many different sensors they have, nor if that department can
->>> speak for the whole company...
->>>
->>> What I have as information is:
->>> https://lore.kernel.org/linux-spi/2477dc64-92a0-9dc9-d168-56646d0d796e@denx.de/
->>>
->>> and I get no more information about them currently. May I should
->>> add some sort of trivial into compatible name? Something like
->>>
->>> "abb,spi-trivial-sensor"
->>> or
->>> "abb,spidev-trivial-sensor"
->>>
->>> which makes it clearer, that only ABB trivial sensor, controlled through spidev
->>> driver, is connected here?
->>>    
->>
->> FWIW, I always thought that devicetree is not supposed to contain such generic
->> information. Is it even appropriate to list something like this in devicetree
->> in the first place ?
->>
->> If so, what prevents anyone from submitting hundreds of
->> "<company>,spidev-trivial-<device-type>" entries, using the same line of argument ?
 > 
-> Agreed.  These should have separate compatibles based on what any OS etc
-> might want to bind to them.  Just because their model in Linux is spidev etc
-> that shouldn't mean a generic ID is appropriate.
+> On 7/30/2025 4:55 PM, Abel Vesa wrote:
+> > On 25-07-29 11:12:37, Taniya Das wrote:
+> >> Add a clock driver for the TCSR clock controller found on Glymur, which
+> >> provides refclks for PCIE, USB, and UFS.
+> >>
+> >> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> >> ---
+> >>  drivers/clk/qcom/Kconfig         |   8 ++
+> >>  drivers/clk/qcom/Makefile        |   1 +
+> >>  drivers/clk/qcom/tcsrcc-glymur.c | 257 +++++++++++++++++++++++++++++++++++++++
+> >>  3 files changed, 266 insertions(+)
+> >>
+> > 
+> > [...]
+> > 
+> >> +
+> >> +static struct clk_branch tcsr_edp_clkref_en = {
+> >> +	.halt_reg = 0x1c,
+> >> +	.halt_check = BRANCH_HALT_DELAY,
+> >> +	.clkr = {
+> >> +		.enable_reg = 0x1c,
+> >> +		.enable_mask = BIT(0),
+> >> +		.hw.init = &(const struct clk_init_data) {
+> >> +			.name = "tcsr_edp_clkref_en",
+> >> +			.ops = &clk_branch2_ops,
+> > 
+> > As discussed off-list, these clocks need to have the bi_tcxo as parent.
+> > 
+> > Otherwise, as far as the CCF is concerned these clocks will have rate 0,
+> > which is obviously not the case.
+> > 
+> > Bringing this here since there is a disconnect between X Elite and
+> > Glymur w.r.t this now.
 > 
-> Can we at least have some examples to motivate the discussion?
-
-I am sorry, I get no more information about the sensors... even I do
-not know the count of variants. What I can say is, that this sensors
-measure gases, and are only used "internal" on the aristainetos3 carriers.
-
-So a proposal would be:
-
-# ABB gas sensor on aristainetos3 carriers
-compatible "abb,aristainetos-gas-sensor"
-
-bye,
-Heiko
-> Jonathan
 > 
->>
->> Guenter
->>
+> The ref clocks are not required to be have a parent of bi_tcxo as these
+> ideally can be left enabled(as a subsystem requirement) even if HLOS
+> (APSS) goes to suspend. With the bi_tcxo parent the ARC vote from
+> HLOS/APSS will not allow APSS to collapse.
 
--- 
-DENX Software Engineering GmbH, Managing Director: Johanna Denk, Tabea Lutz
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+Is there a scenario where the APSS is collapsed and still the ref clock
+needs to stay enabled ? Sorry, this doesn't make sense to me.
+
+> 
+> If any consumers needs the clock rate, the driver should take the
+> BI_TCXO handle.
+
+This kind of breaks the CCF design. If the ref clock is a gate of the
+bi_tcxo HW-wise, then not marking it so in CCF is wrong. Passing the 
+bi_tcxo to the PHYs separately because of this, makes the assumption that
+the PHY drivers should know not to disable the bi_tcxo themselves
+either.
+
+> 
+> 
+> -- 
+> Thanks,
+> Taniya Das
+> 
 
