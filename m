@@ -1,146 +1,308 @@
-Return-Path: <devicetree+bounces-201352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6AAB18251
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:17:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E539B1826C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 15:26:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D05D81AA713A
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 13:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D27856255C2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 13:26:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0656526056D;
-	Fri,  1 Aug 2025 13:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F59255F2B;
+	Fri,  1 Aug 2025 13:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZRHanWdp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nHamCO91"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B058B253B64;
-	Fri,  1 Aug 2025 13:16:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8513924887E;
+	Fri,  1 Aug 2025 13:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754054218; cv=none; b=Qsp5JS+fEB9uV+43LnKVjr1waMcyPc20usX6y2Gz6BFZ13wJToKmQwqiblS50vudXphWJ8S/A3lcR6dJ/epc24Z3tmtGqmj+SvxWpXzbvTvzZkOQDU2VCoda88xa9Ip5yQSCn2DVGkxRLW3R6Ya9tr/Md/RVzVqk67LrStTtVIw=
+	t=1754054762; cv=none; b=My+nGQnA7Pu5vAW8VqCEEpbbbFg3MKB4ULKOWVtL/3b1i/JXrineuUzBs4pw7OSI24Z/jtaqWNLgCNLz3ZJpg2nwojMy054+ZRSM9K/5cyNWV7JL7pUDC+fp2QnuvW0GFyvQ3OpNuYMlU+qvqGRn/v60ZNuwr2UHyxjR07IguH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754054218; c=relaxed/simple;
-	bh=8dchQqi4TIXOkNjmPENd+y2u2n3RjTnFEQP+olfB+Xs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nVeRM2aFtUw5j1RcHfeAcXrwNE/NwvB3L6r0J+eIyEOxVLPC3X+gv22WuRcaZPxS6Z9iOzA7ZEOcIfrJ6Eg8BhM9DUb6u5vQVWOgq4L3uwqmIW1PlgxK5MIhh7B/khyltPi2+ODiMqzraJy1Py5IGrBBnE8mkvY1pFzjyERkEAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZRHanWdp; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754054214;
-	bh=8dchQqi4TIXOkNjmPENd+y2u2n3RjTnFEQP+olfB+Xs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=ZRHanWdpElEYhuQM6x/oecXJEwYMmV3QA5K+YiepFDMRKXLxMZIxmDjTzUk/J/RbJ
-	 R1Kd0VxPCYsgLdrLk+DJCh9USPbSP4J7wsD3EBJ53Eau6pstXjomdV9zzeK+O6O7Hw
-	 NMUjQS+3HLw5joqFVz5K6r6ppXNkXAZC3IhKiv6XWCt9I+uCbrEAbEjptxkqE7cESL
-	 Xzd3ZKtE7qSqdxFTFassl3WwCGEmg0V1bAubUnjcGVeahR+bt7TcuFIRYHiWBRdfD4
-	 q+cs6V0ejX8zYqZ54U0S8/NQlRGM8gRiFTb4F5pzU7F3S50WRwZrWhRCppv6McA3LR
-	 1AXz6yZRzfpqw==
-Received: from 2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr (2a01cb0892f2d600c8f85cf092d4af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 53A5917E129D;
-	Fri,  1 Aug 2025 15:16:54 +0200 (CEST)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Fri, 01 Aug 2025 15:16:51 +0200
-Subject: [PATCH 3/3] arm64: dts: mediatek: mt8395-nio-12l: add support for
- blue and red LEDs
+	s=arc-20240116; t=1754054762; c=relaxed/simple;
+	bh=3fkoib6zS9k9KGl4QspNIQJTwl5g86vgWf3jffF3XSM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=gR12aVECZP+vm2UGynu3W5KU4LU4G0HQORtRWwdMWvi8Bc7IflB0ipq2222BBRvLJ3JD5bON/IxFiqWJrdqtv0jP6VTmqI0DaU+C8a6sCRJ7TRCglnp5gTGarvcgtvOY/sLLNsANaGFGHXCGLXWu1m4HE0s0FilJGrcBZXKHc6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nHamCO91; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5F4AC4CEE7;
+	Fri,  1 Aug 2025 13:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754054762;
+	bh=3fkoib6zS9k9KGl4QspNIQJTwl5g86vgWf3jffF3XSM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=nHamCO91sZ4nOP4TKoP5gN7kz+NwDMa6OK1ibw/pFxSvb0kGOabs1lZ5LnTwP+Sm4
+	 Vw//MEhcpDvBxEjpm8rfb+bKSOO+4LFDQpZXhsi44aA0TZjfCQiOTA85fBrmG3xhis
+	 m7e2r+1JMTUCUp98KH5ppDL10szg0hr/U7r6NyxC/Xla075gq7O0gtKEtxCAyncedP
+	 f4CoT5/yLf23mx941rx5wORqIy8VqxIJJXGUGJHmMfBQsMrzLhCFTxBRln/3H/JyhL
+	 m1BqsgVOBWp4LmyhbZ/U7Lg8OutyrLh9mCOFclok/G85nb9Zqjm26tknD//0vame4u
+	 KdYeBV0RRs2IQ==
+Date: Fri, 01 Aug 2025 08:26:01 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250801-radxa-nio-12-l-gpio-v1-3-d0840f85d2c8@collabora.com>
-References: <20250801-radxa-nio-12-l-gpio-v1-0-d0840f85d2c8@collabora.com>
-In-Reply-To: <20250801-radxa-nio-12-l-gpio-v1-0-d0840f85d2c8@collabora.com>
-To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, linux-sound@vger.kernel.org, 
+ Eugen Hristev <eugen.hristev@linaro.org>, Ikjoon Jang <ikjn@chromium.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
+ Michael Turquette <mturquette@baylibre.com>, devicetree@vger.kernel.org, 
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+ kernel@collabora.com, linux-kernel@vger.kernel.org, 
+ Stephen Boyd <sboyd@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ Julien Massot <jmassot@collabora.com>, linux-mediatek@lists.infradead.org, 
+ Enric Balletbo i Serra <eballetbo@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Weiyi Lu <weiyi.lu@mediatek.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, Mark Brown <broonie@kernel.org>, 
+ Sean Wang <sean.wang@kernel.org>
+To: Julien Massot <julien.massot@collabora.com>
+In-Reply-To: <20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com>
+References: <20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com>
+Message-Id: <175405458876.3005254.17331851790078510513.robh@kernel.org>
+Subject: Re: [PATCH 0/9] MediaTek devicetree/bindings warnings sanitization
+ second round
 
-The Radxa NIO 12L board has an RGB LED, of which only red and blue
-are controllable.
 
-Red and blue LEDs: no need to choose, both are enabled.
+On Fri, 01 Aug 2025 13:18:02 +0200, Julien Massot wrote:
+> This patch series continues the effort to address Device Tree validation warnings for MediaTek platforms, with a focus on MT8183. It follows the initial cleanup series by Angelo (https://www.spinics.net/lists/kernel/msg5780177.html)
+> 
+> The patches in this set eliminate several of the remaining warnings by improving or converting DT bindings to YAML, adding missing properties, and updating device tree files accordingly.
+> 
+> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> ---
+> Julien Massot (9):
+>       dt-bindings: clock: mediatek: Add power-domains property
+>       dt-bindings: arm: mediatek: Support mt8183-audiosys binding variant
+>       arm64: dts: mt8183: Rename nodes to match audiosys binding schema
+>       ASoc: dt-binding: Convert mt8183-afe-pcm binding to YAML
+>       dt-bindings: sound: Convert MT8183 DA7219 sound card bindings to YAML
+>       ASoC: dt-binding: Convert MediaTek mt8183-mt6358 bindings to YAML
+>       dt-bindings: pinctrl: mediatek: mt8183: Allow gpio-line-names
+>       arm64: dts: mediatek: mt8183-kukui: Fix pull-down/up-adv values
+>       arm64: dts: mediatek: mt8183-pumkin: Fix pull-down/up-adv values
+> 
+>  .../bindings/arm/mediatek/mediatek,audsys.yaml     |  17 +-
+>  .../devicetree/bindings/clock/mediatek,syscon.yaml |   3 +
+>  .../bindings/pinctrl/mediatek,mt8183-pinctrl.yaml  |   2 +
+>  .../devicetree/bindings/sound/mt8183-afe-pcm.txt   |  42 ----
+>  .../devicetree/bindings/sound/mt8183-afe-pcm.yaml  | 225 +++++++++++++++++++++
+>  .../bindings/sound/mt8183-da7219-max98357.txt      |  21 --
+>  .../devicetree/bindings/sound/mt8183-da7219.yaml   |  49 +++++
+>  .../sound/mt8183-mt6358-ts3a227-max98357.txt       |  25 ---
+>  .../devicetree/bindings/sound/mt8183-mt6358.yaml   |  59 ++++++
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi     |  22 +-
+>  arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts    |  22 +-
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi           |   4 +-
+>  12 files changed, 378 insertions(+), 113 deletions(-)
+> ---
+> base-commit: b9ddaa95fd283bce7041550ddbbe7e764c477110
+> change-id: 20250801-mtk-dtb-warnings-157d4fc10f77
+> 
+> Best regards,
+> --
+> Julien Massot <julien.massot@collabora.com>
+> 
+> 
+> 
 
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index fd596e2298285361ad7c2fb828feec598d75a73e..12288ad4d2932b7f78c96c0efe366a046721f919 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
- #include <dt-bindings/spmi/spmi.h>
-@@ -73,6 +74,28 @@ button-volume-up {
- 		};
- 	};
- 
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&gpio_leds_pins>;
-+		pinctrl-names = "default";
-+
-+		/*
-+		 * This board has a RGB LED, of which only R and B
-+		 * are controllable.
-+		 */
-+		led-0 {
-+			label = "rgb-blue";
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "rgb-red";
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
- 	wifi_vreg: regulator-wifi-3v3-en {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wifi_3v3_en";
-@@ -647,6 +670,14 @@ pins {
- 		};
- 	};
- 
-+	gpio_leds_pins: gpio-leds-pins {
-+		pins {
-+			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>,
-+				 <PINMUX_GPIO7__FUNC_GPIO7>;
-+			output-low;
-+		};
-+	};
-+
- 	i2c2_pins: i2c2-pins {
- 		pins-bus {
- 			pinmux = <PINMUX_GPIO12__FUNC_SDA2>,
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
--- 
-2.50.1
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit b9ddaa95fd283bce7041550ddbbe7e764c477110
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com:
+
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'touchdefault', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku1.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku1.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku1.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'touchdefault', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku7.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-sku2.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-sku2.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14-sku2.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cozmo.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku0.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku0.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-makomo-sku0.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'peneject', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'touchdefault', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'peneject', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'peneject', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'open_touch', 'peneject', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb: pinctrl@10005000 (mediatek,mt8183-pinctrl): 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'ec-ap-int-odl', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1800-lcd-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'touchdefault', 'ts3a227e_pins' do not match any of the regexes: '-pins(-[a-z]+)?$', '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb: clock-controller@11220000 (mediatek,mt8183-audiosys): audio-controller: 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,audsys.yaml#
+arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dtb: audio-controller (mediatek,mt8183-audio): 'memory-region' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/sound/mt8183-afe-pcm.yaml#
+
+
+
+
 
 
