@@ -1,255 +1,389 @@
-Return-Path: <devicetree+bounces-201419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59AE0B18880
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 23:04:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8490B18898
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 23:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BDFC91C84FC4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 21:04:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 082AE166B35
+	for <lists+devicetree@lfdr.de>; Fri,  1 Aug 2025 21:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBB828CF70;
-	Fri,  1 Aug 2025 21:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F51A2701D1;
+	Fri,  1 Aug 2025 21:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kNjX+wMg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vtEreAKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E14A61E0DD8;
-	Fri,  1 Aug 2025 21:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F299D13A3ED
+	for <devicetree@vger.kernel.org>; Fri,  1 Aug 2025 21:16:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754082252; cv=none; b=PUc+ywOd25u1eoFDOVQY7EiHBv6KWMktpQnMe0+L7mk0cO3SRsavrb40wRbH7T+jYDpmLuU9m8XI8YYvmuoi3BUFazU4xx3WTH1MTJPmBf9Lou2p/gAWnXzKCWk6pKq0IlqRuUtXxkd5HcHeLE1PYagZCZngp0U4dOapl2LTfUM=
+	t=1754083002; cv=none; b=rXuwmt/GrtBQT/SUaN/Ax3XHIQum+NE1tjcYUL2rH2kADuEgxBs093OTsiJP4SK6Waj81oTwL5XITYyPePwLP8Tyb/DbblPiH7ZB+vYNuX50hm/g/BoBNKJ1SNNEdYC46t9pS4ucoq7Hh4Wf2+ShAly7ddg3Irp0PnAFq4JFhog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754082252; c=relaxed/simple;
-	bh=5fG5UG6W2WEuQtpPCNSo9mrN3oYlA2oKdSmUSPppxLo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GXUpGOZpf51bAnr5/IXVnhwuhNlQfZGedJL8NXZWpmv+QWuIu2AmqUzGQfF6l09cQgWtqMBGGRrHYo/iFvgKpT6PagTYbdx4GUu2LIGWZfR4mDFwlw1HrQAYaE9IBtn9tsL0m04yWB0I+67HvoGbp0H2X7gRUFTHnllWu+K/jLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kNjX+wMg; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-31f3b54da19so1779013a91.1;
-        Fri, 01 Aug 2025 14:04:10 -0700 (PDT)
+	s=arc-20240116; t=1754083002; c=relaxed/simple;
+	bh=myFVlq87fklKUPiuIQ7mZxuvGWj2qxghqoRQXzRge6o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mOzWmLxwOx4PfRgXEvKp9OzmDZw8U/6U5+g3nKvcy2GZXt62XG3KKEKntxM4uG7WJX9G32VvBi03oMKWxooGNTu9NfWHlwHD7A033yIqoM/a6pTLGOIWkLsvtd5stBIRSWTpXJTJj7KBx011bFi/cGBY3+Cx6qsHQPUjtCdF03U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vtEreAKC; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e8fd38cb37bso1604287276.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 14:16:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754082250; x=1754687050; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=eJK+fkQbaJl/onlEGRaY6MmLyVCsFLJvmbnJkWyUVVU=;
-        b=kNjX+wMgIaxEnyCF2pCWEWFZ5f3JW8RUjRLJN7yBZwwAwdrOnu7uF7zLGPkeybvk9K
-         iD2PvGrLqPxn/uv9gDNYJzUqMfy+ptRFiDZeuOUhb/IS8qhMIShhRBpJlNnWRb2k89JT
-         M+oMogOtOrniaFtGzlOW5ot/buK1bXq2eIGVFSkYz0uLS/cUxmsUo/48YWd2WBdofPlc
-         od2V+iI5C2fCjrpcspPe0xjY2gZq3PxwkCHfax1S3m87u9FvRBZZeyfLti9Ps7j691MD
-         ApvnGqZ6OjlPfijpZnreSi6sGiCLzlupx88RScUtejcNdN3AxXot+RBU+O8NonJ1sU6B
-         TdsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754082250; x=1754687050;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1754082999; x=1754687799; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eJK+fkQbaJl/onlEGRaY6MmLyVCsFLJvmbnJkWyUVVU=;
-        b=GkNScModkyvZyw5DUDt1Cw9s0p6xc/QYxrDuUHAMlj0nTmuvkKvqBv/nRo6BVGf9Qo
-         4DeqBi+da0jWl0O5pfOEMaW1ugIrAkNIpAiVyhYt6ga290JQJeRGSOOVwjQV4OhFP6lK
-         rI7+hPqkyerIcNwHCRs6AOZIUkAVARUvjoRTiVRY1Z8zbvfigWCeGYMx5P05rx9aH6mX
-         8QGXyI2jLFid38cMn54uspxv2fhf/SKEHAKPOc7cb/mSWp3HEkJxaUCBQ1ZVliiT2xO4
-         RCw5QSHd0xDHL+jO3P1dFdGadm1cyCYlMNV8lSnAJnzYqn7rm/oy/PKO6Cwk/nLeugFB
-         8i/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWlHb97MEZUly04rYPFoByU/efwCRS3Mh7TjjKbgt3LjGOfdxrizrLxCy+DfAz2knozfOi2JanHd8WO@vger.kernel.org, AJvYcCWqkN9N1V+ham4S4qv9UpQ76tYZcP2zDF0gyKatqLPgU8z0vTHb3w9ZQ7Zt50QdN2lDpuJSHVYmCCMjCyPSxnAvW5w=@vger.kernel.org, AJvYcCX5w7YQz4Ep7AC73t5yGBDSeYbYXIrTMAEu2vGQfduHjtDWQZx4w45GhGosQmSSKmpDl/H9ZrJayfaxZffc@vger.kernel.org, AJvYcCXBhYrgceGXjGor3DXNcKd9fhRWbuMC77s6sumWCMHiaiPjnTTyI2imEjTqooeSP7lP9B6Ldh3LbGqPvjrV2PA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkVowrh7CfTQLxHmObdjETnyxsjUMh6WVGeuJxd4gcDfbe+I7x
-	yMTdJNklG0Acb1T8xxVRgA0w1kKRMsmvntZBTdHfXWf8QfdcyMxH7gLN
-X-Gm-Gg: ASbGncuOaEDDO2ZChIfMgMI/nLRtYqSO9U5xD9zcA/xpKTYqiOgBH6dd+SP272jzPhQ
-	YayfaApuyeDD8iZBkp229hIqxmlJahqjPIuwCb3VR+XcBVVR25s/uUXWhE3zP6QGQP9JuFVLINY
-	Q/O+ioJFa0Mt1BLhKHJ97WeFCk1FmG/y27nOC6bFk0IQ5lSeGFtMoe4/WhSpeGqrDn4emiORseV
-	f5b0wsT91jhIs3Ja2ZsXanL43jERWg1M0EL6ED0n63Y0XKufOlbRSIghM6pygkzaDMdHtDggtM8
-	b8eOQVmW8ajRyyR4nUNYEfxY9vV89U1NIyPkzM6LykuF3UCBuupt+/OYl6NtUwThR0tjlo9l1KG
-	zpEhEWS7xOHk7Dyo7h0x8fvSGgOz51/m3PUicYLfJAlkthpf+1zHTldGR9VzNL7qgWLc1lYs=
-X-Google-Smtp-Source: AGHT+IGHcOYigzHIAUS0Fj07O1hbtXB+Bi/0NCv/FJrkxjisyDWs3KCdlZlpMW8IhDoHQPG+qbQnBw==
-X-Received: by 2002:a17:90a:dfcc:b0:31f:12d:ee4f with SMTP id 98e67ed59e1d1-321162d62e0mr1421893a91.23.1754082249976;
-        Fri, 01 Aug 2025 14:04:09 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63ee49c7sm8173291a91.21.2025.08.01.14.04.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Aug 2025 14:04:09 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <6b9338c0-e333-47dd-a3e0-0446b346f008@roeck-us.net>
-Date: Fri, 1 Aug 2025 14:04:07 -0700
+        bh=ZqytGXi5W+0oM2gaVZGROmPugYrBG6LtgSr2NAWPIkU=;
+        b=vtEreAKCkmqiBVsog63qJEcPFnJmdpOJNXstxwo+sQhC5AxhgUIBX9Y2uAwrkPeZGP
+         edmTOLvWIotvvZR2ErncX1zXjK/Wj8H6gg/AM7l0H7SlRchJNGpTAEYehKW+WmfGamqJ
+         EDkdz6uXQm2p9aWFNqARGinltoLSKaIkcG4bI/rC2wZYu3hoGZ/WO42zWqHPkDr0WGwY
+         7gE6CXMLgXsKX+68xhzuMY6TQCcYLM7FMDyeqT2FeK/8/sL+Xtp5F3NCqyb7oGFx1jrm
+         wdUTxMRUqlYNelR9zu1ANkamRMtgwj9YsPL9jtrj2NPAXv10lNrhKb2GZFmzM9gcpBpM
+         XtHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754082999; x=1754687799;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZqytGXi5W+0oM2gaVZGROmPugYrBG6LtgSr2NAWPIkU=;
+        b=BjC7YOezWaz3hnrr77FTVmKtCb8jKfT/TjwUtXElFk5Dhg0HlLHlNYkCGloP0xXR2n
+         ZmhDYohAKLnVNOzev+/ElwyyZUogoqgCO7U2StHUrUNp+bli8Pye48gXeGkfuwm4tIl+
+         ANmmmarZJEIsWLc9C7JjqwTLmtLpp4J22RJxAP/MwUJwhDauIoZNojmC4goqw1+iu1TA
+         mc8bwVs9eGSxIVREmDmqjq2uqHGdHMikXYwyQkQihAvQ/TJeDaIA3tN+rj4ynZePpTJV
+         lwyU3o3wKkMz+tTW1+oWG51my13QiM+9nqsXssOwskFnReg63Sp1S3zxOAq+faNYF26m
+         LpxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUdqbOqWeq/B94A9YJzuZJzBe/zd+HQbE3Tiza3zXkVXs2lXpqlmR0Ou+SWOAzG7FtSWGHd0zYGI2sn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHWYJoK3KsrbEBNtpvfcBc5swTmCUCdCz63BoeysAYC7Zs8g4K
+	q2zWEw1ekEmwmcPShJARoO7HR/Asz2/L88r4wOqZ4wcH54uapZXbWlOCIKce05zRsFYdLDfCIU6
+	A56I1rDCc//zqBmw9dYk10vAivHFzB4xn94t4rjeFwQ==
+X-Gm-Gg: ASbGncupadn5w+myHtF3XLV6HS1p1zTJsL+xl9Q5mxeSMztXCoXlNNmRigdaFlLgBaF
+	EDmFcq6mSLahTMdhRCWbXV2nxKMXRDNrfE/png7n5fEsVkRAxIzBJ8YOhapRJE8HpWOotENH3CX
+	XJzVwXogjB8Y0A4rskUM/rJ50ZbTNpRgok9KxQoBzd6m/3AKvFsekiVAWWLV9qrP1vrDo4QKQhz
+	KW/1g==
+X-Google-Smtp-Source: AGHT+IHHaG/CRQsgr7p3Tfo0TOmissc2XOtsczFCXIZQMTy/37MHX8ykJpsP195uACiVjXZcG5lM7NxM/YllXNG+MPA=
+X-Received: by 2002:a05:690c:d92:b0:710:f46d:cec3 with SMTP id
+ 00721157ae682-71b7f5bc0cemr14721927b3.5.1754082998934; Fri, 01 Aug 2025
+ 14:16:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/9] watchdog: rzv2h: Set min_timeout based on
- max_hw_heartbeat_ms
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250729155915.67758-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250729155915.67758-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <aIw-P6zkQSOhvYJW@shikoro>
- <CA+V-a8txrQoweVrd7uK4LLvDonqrEQGT_gV1r28RFhy8-m=9VQ@mail.gmail.com>
- <c06bcde9-0aa5-46d1-a5bf-bae5a319565c@roeck-us.net>
- <CA+V-a8sDP7iir-bPetbCw0fakPRxua5F-F1hVvXUD8bGAMdhFA@mail.gmail.com>
- <cd0653d0-4a2f-4361-8eb2-c1937d988a8c@roeck-us.net>
- <CA+V-a8v0KZaeJwJAmEpRRdS3F3vC_CYv7zGN_n9a+M6qhFDMHg@mail.gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <CA+V-a8v0KZaeJwJAmEpRRdS3F3vC_CYv7zGN_n9a+M6qhFDMHg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250730074253.1884111-1-ivo.ivanov.ivanov1@gmail.com> <20250730074253.1884111-3-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250730074253.1884111-3-ivo.ivanov.ivanov1@gmail.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Fri, 1 Aug 2025 16:16:25 -0500
+X-Gm-Features: Ac12FXwMiWZ8AseZWaIlhH5Rvp_XOCb061jYqpt1d42-G4p8qP_4Vml5fYl6nvg
+Message-ID: <CAPLW+4nONOm+86vfPNMbTVFUGT7mo5qnefs=S3kSn0R8EEqpRg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] arm64: dts: exynos2200: use 32-bit address space
+ for /soc
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 8/1/25 13:51, Lad, Prabhakar wrote:
-> Hi Guenter,
-> 
-> On Fri, Aug 1, 2025 at 7:04 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>
->> On 8/1/25 08:30, Lad, Prabhakar wrote:
->>> Hi Guenter,
->>>
->>> On Fri, Aug 1, 2025 at 2:52 PM Guenter Roeck <linux@roeck-us.net> wrote:
->>>>
->>>> On 8/1/25 04:05, Lad, Prabhakar wrote:
->>>>> Hi Wolfram,
->>>>>
->>>>> Thank you for the review.
->>>>>
->>>>> On Fri, Aug 1, 2025 at 5:10 AM Wolfram Sang
->>>>> <wsa+renesas@sang-engineering.com> wrote:
->>>>>>
->>>>>> On Tue, Jul 29, 2025 at 04:59:13PM +0100, Prabhakar wrote:
->>>>>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>>>>>
->>>>>>> Update the watchdog minimum timeout value to be derived from
->>>>>>> `max_hw_heartbeat_ms` using `DIV_ROUND_UP()` to ensure a valid and
->>>>>>> consistent minimum timeout in seconds.
->>>>>>
->>>>>> I don't understand this change. Why is the _minimum_ timeout based on
->>>>>> the _maximum_ heartbeat?
->>>>>>
->>>>> The reason for deriving min_timeout from max_hw_heartbeat_ms is to
->>>>> ensure the minimum watchdog period (in seconds) is compatible with the
->>>>> underlying hardware.
->>>>>
->>>>> max_hw_heartbeat_ms is calculated as:
->>>>> max_hw_heartbeat_ms = (1000 * 16384 * cks_div) / clk_rate;
->>>>>
->>>>> This value varies by SoC:
->>>>>     RZ/T2H: cks_div = 8192, clk ≈ 62.5 MHz -> max_hw_heartbeat_ms ~ 2147ms
->>>>>     RZ/V2H: cks_div = 256, clk ≈ 240 MHz -> max_hw_heartbeat_ms ~ 174ms
->>>>>
->>>>> Since min_timeout is in seconds, setting it to:
->>>>> min_timeout = DIV_ROUND_UP(max_hw_heartbeat_ms, 1000);
->>>>>
->>>>> ensures:
->>>>> The minimum timeout period is never less than what the hardware can support.
->>>>> - For T2H, this results in a min_timeout of 3s (2147ms -> 3s).
->>>>> - For V2H, it’s just 1s (174ms -> 1s).
->>>>>
->>>>
->>>> Sorry, I completely fail to understand the logic.
->>>>
->>>> If the maximum timeout is, say, 2 seconds, why would the hardware
->>>> not be able to support a timeout of 1 second ?
->>>>
->>> The watchdog timer on RZ/V2H (and RZ/T2H) is a 14 bit down counter. On
->>> initialization the down counters on the SoCs are configured to the max
->>> down counter. On RZ/V2H down counter value 4194304 (which evaluates to
->>> 174ms) is and on RZ/T2H is 134217728 (which evaluates to 2147ms). The
->>> board will be reset when we get an underflow error.
->>>
->>> So for example on T2H consider this example:
->>> - down counter is 134217728
->>> - min_timeout is set to 1 in the driver
->>> - When set  WDIOC_SETTIMEOUT to 1
->>> In this case the board will be reset after 2147ms, i.e. incorrect
->>> behaviour as we expect the board to be reset after 1 sec. Hence the
->>> min_timeout is set to 3s (2147ms -> 3s).
->>>
->>> Please let me know if my understanding of min_timeout is incorrect here.
->>>
->>
->> The driver is missing a set_timeout function. It should set RZ/T2H
->> to 62514079 if a timeout of 1 second is configured.
->>
-> Ok, you mean to handle the 1sec case, introduce the set_timeout for RZ/T2H SoC.
-> 
-> Although we cannot achieve the exact 1sec case as we can have only 4
-> timeout period options (number of cycles):
-> 
-> 1] For TIMEOUT_CYCLES = 1024
->   - (1000×1024×8192)/62500000 = 134.22 ms
-> 2] For TIMEOUT_CYCLES = 4096
-> - (1000×4096×8192)/62500000 = 536.87 ms
-> 3] For TIMEOUT_CYCLES = 8192
-> - (1000×8192×8192)/62500000 = 1,073.74 ms
-> 4] For TIMEOUT_CYCLES = 16384
-> - (1000×16384×8192)/62500000 = 2,147.48 ms
-> 
-> So to handle the 1sec case I'll set the timeout period to 8192 with
-> which we get a timeout of 1,073.74 ms.
-> 
+On Wed, Jul 30, 2025 at 2:43=E2=80=AFAM Ivaylo Ivanov
+<ivo.ivanov.ivanov1@gmail.com> wrote:
+>
+> All peripherals on this SoC are mapped under the 32-bit address space
+> (0x0 -> 0x20000000), so enforce that.
+>
+> Suggested-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>
+> ---
+> This was suggested at [1].
+>
+> [1] https://lore.kernel.org/all/CAPLW+4kPN65uX0tyG_F-4u5FQpPnwX9y6F1zrobq=
+5UyVbks+-w@mail.gmail.com
+> ---
 
-Just four possible values to set the hardware timeout ? That is an odd
-hardware. In that case, you could also set the period to 1024 or 4096
-and set max_hw_heartbeat_ms accordingly. That would avoid the rounding
-error.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Guenter
-
+>  arch/arm64/boot/dts/exynos/exynos2200.dtsi | 72 +++++++++++-----------
+>  1 file changed, 36 insertions(+), 36 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynos2200.dtsi b/arch/arm64/boot=
+/dts/exynos/exynos2200.dtsi
+> index 6b5ac02d0..943e83851 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos2200.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
+> @@ -221,22 +221,22 @@ psci {
+>                 method =3D "smc";
+>         };
+>
+> -       soc {
+> +       soc@0 {
+>                 compatible =3D "simple-bus";
+> -               ranges;
+> +               ranges =3D <0x0 0x0 0x0 0x20000000>;
+>
+> -               #address-cells =3D <2>;
+> -               #size-cells =3D <2>;
+> +               #address-cells =3D <1>;
+> +               #size-cells =3D <1>;
+>
+>                 chipid@10000000 {
+>                         compatible =3D "samsung,exynos2200-chipid",
+>                                      "samsung,exynos850-chipid";
+> -                       reg =3D <0x0 0x10000000 0x0 0x24>;
+> +                       reg =3D <0x10000000 0x24>;
+>                 };
+>
+>                 cmu_peris: clock-controller@10020000 {
+>                         compatible =3D "samsung,exynos2200-cmu-peris";
+> -                       reg =3D <0x0 0x10020000 0x0 0x8000>;
+> +                       reg =3D <0x10020000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&cmu_top CLK_DOUT_TCXO_DIV3>,
+> @@ -250,7 +250,7 @@ cmu_peris: clock-controller@10020000 {
+>                 mct_peris: timer@10040000 {
+>                         compatible =3D "samsung,exynos2200-mct-peris",
+>                                      "samsung,exynos4210-mct";
+> -                       reg =3D <0x0 0x10040000 0x0 0x800>;
+> +                       reg =3D <0x10040000 0x800>;
+>                         clocks =3D <&cmu_top CLK_DOUT_TCXO_DIV3>, <&cmu_p=
+eris CLK_MOUT_PERIS_GIC>;
+>                         clock-names =3D "fin_pll", "mct";
+>                         interrupts =3D <GIC_SPI 943 IRQ_TYPE_LEVEL_HIGH 0=
+>,
+> @@ -270,8 +270,8 @@ mct_peris: timer@10040000 {
+>
+>                 gic: interrupt-controller@10200000 {
+>                         compatible =3D "arm,gic-v3";
+> -                       reg =3D <0x0 0x10200000 0x0 0x10000>,     /* GICD=
+ */
+> -                             <0x0 0x10240000 0x0 0x200000>;    /* GICR *=
+ 8 */
+> +                       reg =3D <0x10200000 0x10000>,     /* GICD */
+> +                             <0x10240000 0x200000>;    /* GICR * 8 */
+>
+>                         #interrupt-cells =3D <4>;
+>                         interrupt-controller;
+> @@ -294,7 +294,7 @@ ppi_cluster2: interrupt-partition-2 {
+>
+>                 cmu_peric0: clock-controller@10400000 {
+>                         compatible =3D "samsung,exynos2200-cmu-peric0";
+> -                       reg =3D <0x0 0x10400000 0x0 0x8000>;
+> +                       reg =3D <0x10400000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -306,17 +306,17 @@ cmu_peric0: clock-controller@10400000 {
+>
+>                 syscon_peric0: syscon@10420000 {
+>                         compatible =3D "samsung,exynos2200-peric0-sysreg"=
+, "syscon";
+> -                       reg =3D <0x0 0x10420000 0x0 0x2000>;
+> +                       reg =3D <0x10420000 0x2000>;
+>                 };
+>
+>                 pinctrl_peric0: pinctrl@10430000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x10430000 0x0 0x1000>;
+> +                       reg =3D <0x10430000 0x1000>;
+>                 };
+>
+>                 cmu_peric1: clock-controller@10700000 {
+>                         compatible =3D "samsung,exynos2200-cmu-peric1";
+> -                       reg =3D <0x0 0x10700000 0x0 0x8000>;
+> +                       reg =3D <0x10700000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -328,23 +328,23 @@ cmu_peric1: clock-controller@10700000 {
+>
+>                 syscon_peric1: syscon@10720000 {
+>                         compatible =3D "samsung,exynos2200-peric1-sysreg"=
+, "syscon";
+> -                       reg =3D <0x0 0x10720000 0x0 0x2000>;
+> +                       reg =3D <0x10720000 0x2000>;
+>                 };
+>
+>                 pinctrl_peric1: pinctrl@10730000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x10730000 0x0 0x1000>;
+> +                       reg =3D <0x10730000 0x1000>;
+>                 };
+>
+>                 cmu_hsi0: clock-controller@10a00000 {
+>                         compatible =3D "samsung,exynos2200-cmu-hsi0";
+> -                       reg =3D <0x0 0x10a00000 0x0 0x8000>;
+> +                       reg =3D <0x10a00000 0x8000>;
+>                         #clock-cells =3D <1>;
+>                 };
+>
+>                 usb32drd: phy@10aa0000 {
+>                         compatible =3D "samsung,exynos2200-usb32drd-phy";
+> -                       reg =3D <0x0 0x10aa0000 0x0 0x10000>;
+> +                       reg =3D <0x10aa0000 0x10000>;
+>
+>                         clocks =3D <&cmu_hsi0 CLK_MOUT_HSI0_NOC>;
+>                         clock-names =3D "phy";
+> @@ -360,7 +360,7 @@ usb32drd: phy@10aa0000 {
+>
+>                 usb_hsphy: phy@10ab0000 {
+>                         compatible =3D "samsung,exynos2200-eusb2-phy";
+> -                       reg =3D <0x0 0x10ab0000 0x0 0x10000>;
+> +                       reg =3D <0x10ab0000 0x10000>;
+>
+>                         clocks =3D <&cmu_hsi0 CLK_MOUT_HSI0_USB32DRD>,
+>                                  <&cmu_hsi0 CLK_MOUT_HSI0_NOC>,
+> @@ -374,7 +374,7 @@ usb_hsphy: phy@10ab0000 {
+>
+>                 usb: usb@10b00000 {
+>                         compatible =3D "samsung,exynos2200-dwusb3";
+> -                       ranges =3D <0x0 0x0 0x10b00000 0x10000>;
+> +                       ranges =3D <0x0 0x10b00000 0x10000>;
+>
+>                         clocks =3D <&cmu_hsi0 CLK_MOUT_HSI0_NOC>;
+>                         clock-names =3D "link_aclk";
+> @@ -406,7 +406,7 @@ usb_dwc3: usb@0 {
+>
+>                 cmu_ufs: clock-controller@11000000 {
+>                         compatible =3D "samsung,exynos2200-cmu-ufs";
+> -                       reg =3D <0x0 0x11000000 0x0 0x8000>;
+> +                       reg =3D <0x11000000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -418,27 +418,27 @@ cmu_ufs: clock-controller@11000000 {
+>
+>                 syscon_ufs: syscon@11020000 {
+>                         compatible =3D "samsung,exynos2200-ufs-sysreg", "=
+syscon";
+> -                       reg =3D <0x0 0x11020000 0x0 0x2000>;
+> +                       reg =3D <0x11020000 0x2000>;
+>                 };
+>
+>                 pinctrl_ufs: pinctrl@11040000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x11040000 0x0 0x1000>;
+> +                       reg =3D <0x11040000 0x1000>;
+>                 };
+>
+>                 pinctrl_hsi1ufs: pinctrl@11060000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x11060000 0x0 0x1000>;
+> +                       reg =3D <0x11060000 0x1000>;
+>                 };
+>
+>                 pinctrl_hsi1: pinctrl@11240000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x11240000 0x0 0x1000>;
+> +                       reg =3D <0x11240000 0x1000>;
+>                 };
+>
+>                 cmu_peric2: clock-controller@11c00000 {
+>                         compatible =3D "samsung,exynos2200-cmu-peric2";
+> -                       reg =3D <0x0 0x11c00000 0x0 0x8000>;
+> +                       reg =3D <0x11c00000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -450,17 +450,17 @@ cmu_peric2: clock-controller@11c00000 {
+>
+>                 syscon_peric2: syscon@11c20000 {
+>                         compatible =3D "samsung,exynos2200-peric2-sysreg"=
+, "syscon";
+> -                       reg =3D <0x0 0x11c20000 0x0 0x4000>;
+> +                       reg =3D <0x11c20000 0x4000>;
+>                 };
+>
+>                 pinctrl_peric2: pinctrl@11c30000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x11c30000 0x0 0x1000>;
+> +                       reg =3D <0x11c30000 0x1000>;
+>                 };
+>
+>                 cmu_cmgp: clock-controller@14e00000 {
+>                         compatible =3D "samsung,exynos2200-cmu-cmgp";
+> -                       reg =3D <0x0 0x14e00000 0x0 0x8000>;
+> +                       reg =3D <0x14e00000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -471,12 +471,12 @@ cmu_cmgp: clock-controller@14e00000 {
+>
+>                 syscon_cmgp: syscon@14e20000 {
+>                         compatible =3D "samsung,exynos2200-cmgp-sysreg", =
+"syscon";
+> -                       reg =3D <0x0 0x14e20000 0x0 0x2000>;
+> +                       reg =3D <0x14e20000 0x2000>;
+>                 };
+>
+>                 pinctrl_cmgp: pinctrl@14e30000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x14e30000 0x0 0x1000>;
+> +                       reg =3D <0x14e30000 0x1000>;
+>
+>                         wakeup-interrupt-controller {
+>                                 compatible =3D "samsung,exynos2200-wakeup=
+-eint",
+> @@ -487,7 +487,7 @@ wakeup-interrupt-controller {
+>
+>                 cmu_vts: clock-controller@15300000 {
+>                         compatible =3D "samsung,exynos2200-cmu-vts";
+> -                       reg =3D <0x0 0x15300000 0x0 0x8000>;
+> +                       reg =3D <0x15300000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -497,12 +497,12 @@ cmu_vts: clock-controller@15300000 {
+>
+>                 pinctrl_vts: pinctrl@15320000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x15320000 0x0 0x1000>;
+> +                       reg =3D <0x15320000 0x1000>;
+>                 };
+>
+>                 cmu_alive: clock-controller@15800000 {
+>                         compatible =3D "samsung,exynos2200-cmu-alive";
+> -                       reg =3D <0x0 0x15800000 0x0 0x8000>;
+> +                       reg =3D <0x15800000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>,
+> @@ -512,7 +512,7 @@ cmu_alive: clock-controller@15800000 {
+>
+>                 pinctrl_alive: pinctrl@15850000 {
+>                         compatible =3D "samsung,exynos2200-pinctrl";
+> -                       reg =3D <0x0 0x15850000 0x0 0x1000>;
+> +                       reg =3D <0x15850000 0x1000>;
+>
+>                         wakeup-interrupt-controller {
+>                                 compatible =3D "samsung,exynos2200-wakeup=
+-eint",
+> @@ -524,7 +524,7 @@ wakeup-interrupt-controller {
+>                 pmu_system_controller: system-controller@15860000 {
+>                         compatible =3D "samsung,exynos2200-pmu",
+>                                      "samsung,exynos7-pmu", "syscon";
+> -                       reg =3D <0x0 0x15860000 0x0 0x10000>;
+> +                       reg =3D <0x15860000 0x10000>;
+>
+>                         reboot: syscon-reboot {
+>                                 compatible =3D "syscon-reboot";
+> @@ -536,7 +536,7 @@ reboot: syscon-reboot {
+>
+>                 cmu_top: clock-controller@1a320000 {
+>                         compatible =3D "samsung,exynos2200-cmu-top";
+> -                       reg =3D <0x0 0x1a320000 0x0 0x8000>;
+> +                       reg =3D <0x1a320000 0x8000>;
+>                         #clock-cells =3D <1>;
+>
+>                         clocks =3D <&xtcxo>;
+> --
+> 2.43.0
+>
+>
 
