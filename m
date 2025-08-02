@@ -1,233 +1,172 @@
-Return-Path: <devicetree+bounces-201457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFBCBB18E7B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 14:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EFDAB18EA0
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 15:18:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5626717E3FF
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 12:40:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61B16563580
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 13:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102B822F74D;
-	Sat,  2 Aug 2025 12:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14A0238150;
+	Sat,  2 Aug 2025 13:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DOQMtJD9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PS/Hx2vi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45B2022AE65
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 12:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAEA1E489;
+	Sat,  2 Aug 2025 13:18:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754138402; cv=none; b=jAaniAAMnaL1rmTSzBj+8iYdNlgwWXyFn/4gdBIgQk0RWoJTU5VbLOC9XRz35wy59PHM+4NdgG0atH2Rt6Z3TfOA4CHjFtTuiNsB64MWRrxR6XHGnn3F98iSLkOAm4wQuPy19jpjX79sHMlhCrU+jKldfuNZiijz1LlIc0HjY4o=
+	t=1754140692; cv=none; b=ndSR4XL+qUNksh4WSBdEnvrhbqaV2dQFNKulVttbmM79nbuPrOPNYg5s8/8q0f+1oVHfgcg5ip4uknoAwAgxBhGilbRtiP8I5KIvmk3dUUOQwA1j8hg1Rkn2Q7S2sXDTiO7Xg2czteDicR3yMVOfOnrsPLGqP9YC3AJm4Hf1VPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754138402; c=relaxed/simple;
-	bh=20GZjV/9etu8Dh+QrGksTZEKnBLbOiAfPjovI45mWjE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PfvzpQQ7sgNg0kjkN4Vnrpr87/x1YQwBDsHLhcZJYxx6Ez5pAN78/7Vdy928ziq+hmioPj67WbV2hlmajQwumCNPhl39OGJx94h8ESelzfugzKaNWGxW4+6RaINjW5oyyGZ2UVJf4XBh+O+qJ0+rO6+ztWA7A8vH+h3kyv6lPds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DOQMtJD9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5725gnX4010265
-	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 12:39:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	r9VK3kXUy5TNVKQthyOGQ0SFCHNZ+dt1IH8nz2OWv34=; b=DOQMtJD9xjdE7K4H
-	vt+tAL+ijFCF/Ppx46PTq6wc0Tn4/X98XLLrGBLGuzMvbAxreC3RezQp8EyPZa0+
-	UzJW6dPZmAIDc6+9IQeviwcJmVcn12IlqcBecAfYSutXBJr+KyZvSqxFtgMMo9du
-	llmeNIzI2yHwmB8wloQBV8amiGbLg6kLeWquA++hJ11zyqHDF33b7slzh3B0tFYr
-	A1fOQ+7KHo3LhiJjF1ji/no0ao8zJy6eh31X7yiFpqa2FD+ip3SBTFBwj/8a5s4d
-	xvZZXb4ZGPo/7wRpiihVK7awCZ1GbbBUY6miBEig1e3yCvdFUp5HadPxMnra5b45
-	h8VRQw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489b2a0rsn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 12:39:59 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4abc1e8bd11so9122191cf.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 05:39:59 -0700 (PDT)
+	s=arc-20240116; t=1754140692; c=relaxed/simple;
+	bh=rwM7aZc0/79RFn/uBW4n1pV92J+gZDfBn551fgemfKQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DDk6OJZGc2QcsZlEXoGSvWe9XQz/E0MXZu7BwsSK/wO4AxBjRbEhYTob9onx1PwnfOsTdqEkpDCHpe3vhmpuyWV89rW4ECts8IjRwPn59DQtKrGR37Zf3CTIVAqQn9qbkLV0wQWzfAGwumcas9GKCm32RsR2/hVnbxYMbU+MuSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PS/Hx2vi; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-60bfcada295so3071014a12.1;
+        Sat, 02 Aug 2025 06:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754140689; x=1754745489; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=851sI+0lSVYLOYz2PZ6RCpHKug8iuu20s6r18n52W5c=;
+        b=PS/Hx2vi/DgmzLpKLVuwfDw8jYNLCxyUYBsWAF+odA/oepGVlwZJoY6lfZYsyIfsP1
+         NpgHP3U0fllxSRUp4yZhqfkjzHwncVxS4h5j8HAyQAgUcpVz++d8pN0RZJ+POcGbO8Ly
+         8W7UdJpuKTDq+bNqX3Mw5vQxI/sdEQB1XayEU/dtJfxGHX0T2SeG43uUPipQFthP2AMw
+         QlSyIEpasLl93KaYgyfV5vpchIHclnxcSNbl2/7ruGm8xRzXcfbTQuJaOWM+8qaYzCyF
+         nyG1qTIvd3lNksD43t5P1Su3nEO0bWIUxXVCYXx2pCOUIGWAKWBDY5NcKCqTbESZDYwm
+         ghyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754138398; x=1754743198;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r9VK3kXUy5TNVKQthyOGQ0SFCHNZ+dt1IH8nz2OWv34=;
-        b=AL49TD3dtKqSwz5e7WihJOcsHvAYAChUhWJZbOX590C82a0/evbv4m9BlekT++dxwf
-         kpE6A7bHbNBF1T1UnAPdUYgjDqAWZDWgz+amRzeUHRyFZTAhuThbKVmBJEWYd27n70+D
-         RyKn241LFGrIbsPvVi7WR8bHip5RlWnshsS/FI3FozJ0UA33fUPImTWOR+sIRYBynezS
-         zTCBAgAxH5mHJxKW+YYmME//F2F1sIW0EDnSXL61yEDITe4VBuI0S5feBwE5AC2/22Gh
-         FqhrM0g1JVQTUJIoAhO32jep8ELfpiEIPEItu2CTn1gxI9aEuTo6Y/WT7zFLcBXIewzu
-         eCXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVq/ZwnfEeQYsj/XOaP3fk1GKIJevPN3S5ukEPlWGAJ4mwfy4ME5DYfuMb6u8DBUfKygxpLacXVoLk7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiJv9jsbgQVrTuBZkkVjgmUJ8FUmohYNeRxI53y1QhaDuM8E5N
-	v0VWF+SO4mkr/g9iqlqupYEEekR0cFqVRxBjZ7TGlQuGT/hV9tErb1P5pniJXTzX0pUgnQQ5IjN
-	mkOyR4IIb9qGtG+FAGjizQwUYdmrnxJ41KlR/KMk739PZxvf5ZM0d/QyAxgyPQ8et
-X-Gm-Gg: ASbGnctds0UlMSaCl64qCwOiO2xXlZLdXHvjY350EN0LjdJ4WMy/SxoD71yHhFALMyy
-	iB9+zFoNjPrNiI3EYWLCVvznqEBJwefhhmkQsvVKsk0lf0ITJ5OoWvgSHyFBh923guTGZRr3mlO
-	f8M4fPRYYZ+MxAu9M0x2QwqgKGOXJstV6ZabRMlgJzwOgsJcL0PMvKrAw/G5IK5PkDF6CCrOwR5
-	kRDaV3ck/wlme+/pVQ/I2rfCmlf4aWK78Mz0dvRuGdBivImYIW/5yNuEs4ZXuRs+ypSGatXtUR/
-	tPzkLaXpbkEA5vpUoPR/OXZVzrsAIfNUVu7l8q4gHiqHbxOlrgVveZ83jL1fpdpBsEp7V2Q41hq
-	vFERi7tazwfnCKBIeDQ==
-X-Received: by 2002:ac8:5f90:0:b0:4ab:5ac3:1347 with SMTP id d75a77b69052e-4af10a84c91mr23334111cf.13.1754138398242;
-        Sat, 02 Aug 2025 05:39:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEm4NEl6EUx3LCCGFmAhcLGEPc2/M/pvg1mmL0vg2ErLHKHgVKDYHB4PV/P/gfOCagScMPDYw==
-X-Received: by 2002:ac8:5f90:0:b0:4ab:5ac3:1347 with SMTP id d75a77b69052e-4af10a84c91mr23333291cf.13.1754138397693;
-        Sat, 02 Aug 2025 05:39:57 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8fe77cfsm4167407a12.42.2025.08.02.05.39.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Aug 2025 05:39:57 -0700 (PDT)
-Message-ID: <e0886f9e-bcc1-48dc-a175-2147d8d4fc3e@oss.qualcomm.com>
-Date: Sat, 2 Aug 2025 14:39:48 +0200
+        d=1e100.net; s=20230601; t=1754140689; x=1754745489;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=851sI+0lSVYLOYz2PZ6RCpHKug8iuu20s6r18n52W5c=;
+        b=kHR2PS7jR7CYi7pr9HVjWBiZ+ZidY2DFw1HF7cNviS6HH3PZfIHEv12KunHwnQ/teL
+         822apEQfwrVi3Y3o9pzIEkQrfMDh40rVF4/wCBQjK9umEqZ4M2cTzP1a1D4bxdvFLRzQ
+         RtMAShPPllA+UYnMzYQPCwycZSNyYq09HfnXMyraQyMDKc5xsdORQ5X1WoxtCa9Lj7i4
+         chE8GY2V9S8zqvfEs5B6UUS4AOcrs/Jfrg/SN5pTax+rmEtR5B+kSBdrYdr/TgXh0T5N
+         VdEeFEavpiDKi+nP9HBhWQ5TP7gms5ehDn3pn9nUSUxA/6ywRtLlxbbo5ekqm8UYSeBb
+         yKPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVeh3l3iKg7LijiJ76xYwvMcfnlD6vdBDnu0dEf8baRbI6ApOKsJ+aCCc4Y8iM/M4RzUL01ZlfhCp6N@vger.kernel.org, AJvYcCW0A2HOTFToR2ELn3KM7M9VK7GMd2FU0ar/rgX+EeHI+ncUNRP2Y1N0DIdNUrAD558k5xh7MV7DEKSk@vger.kernel.org, AJvYcCXIrs0s3NpZSsWNZa/1DzyivZNcKRlrZXaYgqctrnSh8tQfZHMyhQdLIliswEfeziNkv2gpHJtB614wjGKT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGvu2irzQv3hr8EFnJKF77AcEZTaWKSCK3P9ymkQc9v+THaoko
+	5FRUgex82DNs5i2eKVyavArIV9TQXVxQGfkeUnB/YKLHY4CQW3D8ZGm5u7JMd8Ohdx469J4G0bB
+	IRJCfAjH+xmHRNFF9Io09AFniiB74gH8=
+X-Gm-Gg: ASbGncuI8HDIlq83ILu3pDdv6ul2ZiC91zMsFJUUcbdJu4cNU+YqGJ7l72lFsS3UAme
+	P5DmSTeAYhFZt/1hoa5IyxrWUJ5YMzygpesHi8jr3qQbPrd8VeBohjPdtB2lH4UmAhyjMzsBsL0
+	0t6eQdiVfLG/9p1lAGObcyXQ+xONBZJQGuFKJRTh17cDXzPdUcWOtIWuLuh8bI73ers1yj30Ucq
+	bVQMjlxHg==
+X-Google-Smtp-Source: AGHT+IEtMEI17hNXHe0GwF9SHO7tnCgjtyIkpF5rCMet+Hw8Mh2ic7Ic2pJQBAVoIyUv9fNGjcWO8xhTx5j6u7095eE=
+X-Received: by 2002:a17:906:6a0a:b0:ae3:6659:180b with SMTP id
+ a640c23a62f3a-af9401ee944mr330584866b.29.1754140688962; Sat, 02 Aug 2025
+ 06:18:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/6] dmaengine: qcom: gpi: Accept protocol ID hints
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Sven Peter <sven@kernel.org>,
-        Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Neal Gompa <neal@gompa.dev>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Frank Li <Frank.Li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Taichi Sugaya <sugaya.taichi@socionext.com>,
-        Takao Orito <orito.takao@socionext.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?=
- <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Am=C3=A9lie_Delaunay?= <amelie.delaunay@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chen-Yu Tsai
- <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Laxman Dewangan
- <ldewangan@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Michal Simek <michal.simek@amd.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-        =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Krzysztof Kozlowski
- <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        imx@lists.linux.dev, linux-actions@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-sound@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-spi@vger.kernel.org
-References: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
- <20250730-topic-dma_genise_cookie-v1-3-b505c1238f9f@oss.qualcomm.com>
- <CAMuHMdV0JO=qtregrrHsBZ-6tpNdPUj3G1_LWRfRsj0vBb+qyw@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAMuHMdV0JO=qtregrrHsBZ-6tpNdPUj3G1_LWRfRsj0vBb+qyw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=OKwn3TaB c=1 sm=1 tr=0 ts=688e071f cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=sidZTQT7lcrlHK7IIakA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-ORIG-GUID: pW-NV9jsr_RQz4AGS6nC_qqmoAa171ky
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDEwNSBTYWx0ZWRfXxcKCx/WS55TX
- izAi3Vel9HP/PdTBoUSN4l2k6AK/00ybje2aUbyAd32Zs2qnYS7ckeQ+B2+e23QJI+Z2BaJM+v5
- XkJWXJwoF9lKAO0DJR5jvP20ASLS74L3xuqIsixfSm/Bcvc5k5JJCAPLjqGPXYfC9ootTdDTJUc
- NO9dy6kv9sUi/2wlMAfmS94DO67tJbUgr4bsiE9GMRoLmpeeHT5SyS5Pngo45Ftd2juwWtNzoww
- Z3UyaAvS67uKgJnHMHtlORqhaW1c7rFj67Ux/EEundxeDHGN3pHyMz+zSsLpvn6wPXV7vgf+UJM
- tJ5fOagjDmMk/v0RmYPl9+OSz86LMw9eBFU241pw5e6dAtwLycE7kBjfS5y5rKhPiRv8Gyd1fFB
- qXnTBdWiTjeXM73yJCms+aJkVLg+SKXFo7mr3CcD9j8WAtMuig4aWYAzqORkzyhuvNvYDqeF
-X-Proofpoint-GUID: pW-NV9jsr_RQz4AGS6nC_qqmoAa171ky
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-01_08,2025-08-01_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 spamscore=0 suspectscore=0 mlxlogscore=864 clxscore=1015
- phishscore=0 impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0
- malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508020105
+References: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
+ <CAHp75Vdc7RB8MG+jYcSxkvD2EY2weZJMnvkbgmqibYGLkcUEBQ@mail.gmail.com> <20250802121556.36440419@jic23-huawei>
+In-Reply-To: <20250802121556.36440419@jic23-huawei>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 2 Aug 2025 15:17:32 +0200
+X-Gm-Features: Ac12FXy7X71a8oTk748EvwK_PRQ77GO746ailvjW076YYe5H9yN1b9iPNUJfg18
+Message-ID: <CAHp75Ve8GOGYLSYgWDncTJOE5_iJqzxQ4BYmvgQ0AO5YYF1K3A@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magnetic Sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Dixit Parmar <dixitparmar19@gmail.com>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/30/25 1:32 PM, Geert Uytterhoeven wrote:
-> Hi Konrad,
-> 
-> On Wed, 30 Jul 2025 at 11:35, Konrad Dybcio <konradybcio@kernel.org> wrote:
->> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>
->> Client drivers may now pass hints to dmaengine drivers. GPI DMA's only
->> consumers (GENI SEs) need to pass a protocol (I2C, I3C, SPI, etc.) ID
->> to the DMA engine driver, for it to take different actions.
->>
->> Currently, that's done through passing that ID through device tree,
->> with each Serial Engine expressed NUM_PROTOCOL times, resulting in
->> terrible dt-bindings that are full of useless copypasta.
->>
->> To help get rid of that, accept the driver cookie instead, while
->> keeping backwards compatibility.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Thanks for your patch!
-> 
->> --- a/drivers/dma/qcom/gpi.c
->> +++ b/drivers/dma/qcom/gpi.c
->> @@ -2145,7 +2151,8 @@ static struct dma_chan *gpi_of_dma_xlate(struct of_phandle_args *args,
->>         }
->>
->>         gchan->seid = seid;
->> -       gchan->protocol = args->args[2];
->> +       /* The protocol ID is in the teens range, simply ignore the higher bits */
->> +       gchan->protocol = (u32)((u64)proto);
-> 
-> A single cast "(uintptr_t)" should be sufficient.
-> Casing the pointer to u64 on 32-bit may trigger:
-> 
->     warning: cast from pointer to integer of different size
-> [-Wpointer-to-int-cast]
+On Sat, Aug 2, 2025 at 1:16=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+>
+> On Sat, 2 Aug 2025 10:53:30 +0200
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Sat, Aug 2, 2025 at 8:44=E2=80=AFAM Dixit Parmar <dixitparmar19@gmai=
+l.com> wrote:
+> > >
+> > > The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> > > applications includes joysticks, control elements (white goods,
+> > > multifunction knops), or electric meters (anti tampering) and any
+> > > other application that requires accurate angular measurements at
+> > > low power consumptions.
+> > >
+> > > The Sensor is configured over I2C, and as part of Sensor measurement
+> > > data it provides 3-Axis magnetic fields and temperature core measurem=
+ent.
+> > >
+> > > The driver supports raw value read and buffered input via external tr=
+igger
+> > > to allow streaming values with the same sensing timestamp.
+> > >
+> > > While sensor has interrupt pin multiplexed with I2C SCL pin. But for =
+bus
+> >
+> > the sensor
+> > an interrupt
+> > an I2C
+> >
+> > > configurations interrupt(INT) is not recommended, unless timing const=
+raints
+> > > between I2C data transfers and interrupt pulses are monitored and ali=
+gned.
+> > >
+> > > The Sensor's I2C register map and mode information is described in pr=
+oduct
+> > > User Manual[Link].
+> >
+> > Replace Link here with 1...
+> >
+> > > Datasheet: https://www.infineon.com/assets/row/public/documents/24/49=
+/infineon-tlv493d-a1b6-datasheet-en.pdf
+> > > Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic=
+-UserManual-v01_03-EN.pdf
+> >
+> > ...and add space followed by [1] here.
 
-Good point, not compiling for 32-bit always ends up biting.. thanks
+Note, my above comment also applies to the actual patch.
 
-Konrad
+...
+
+> > > Changes in v2:
+> > > - Drop regmap implementation in favor of using direct i2c APIs to
+> > >   have uniform communication APIs across the driver.
+> >
+> > This I don't understand. I mean the motivation behind this. Usually
+> > direct I2C communication is used to do some initial checks and
+> > configuration and rarely for the actuall run-time driver
+> > functionality. Otherwise it means that the regmap may be used with a
+> > customised read and write methods.
+>
+> This was my suggestion.  The device has very odd characteristics that
+> means writes really are not register based.  You have to write them all
+> every time with now addressing.
+>
+> So to me regmap just wasn't a good choice here. You could do something
+> some nasty stuff to hammer it into a custom regmap, but to me it's just
+> not a good fit.
+
+I see, thanks for explaining this to me. Okay, let's leave for now
+with the direct use of I2C APIs.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
