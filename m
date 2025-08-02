@@ -1,236 +1,218 @@
-Return-Path: <devicetree+bounces-201450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E55B18DDA
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 11:56:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 008DAB18E24
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 13:12:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 461DE188AA29
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 09:56:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A6E017D709
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 11:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21D41F78E6;
-	Sat,  2 Aug 2025 09:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3DE221280;
+	Sat,  2 Aug 2025 11:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eOMTQSLa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jS/xVOb9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44E6C1D6DA9
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 09:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5A91E7C23;
+	Sat,  2 Aug 2025 11:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754128591; cv=none; b=X6A0IJO/hJoigRCrImHhj4pppL13zwFL7natn+zjp5Ro2jOjSmwdpUgS+Y/I62ar9LmDcrPPTr6F1LmzbtQoX7jBbcljd1WtQVhfNEU7b7im+I4hkDLwmgwotBmC8efVOoHj2b2IgccgnkMakGMlEF8rOewvGBfc8O0rDPFcePM=
+	t=1754133168; cv=none; b=riRPuwN0xtQnIDcYwGXLTvHA6igtGPGpON7ECRgS1Ey3tRZ2OPVePygr+hGS6yNyZxijyNOnB95YKriSac+0Mj0P3BFAMf/UkBTnpuFtnK29jC55CSg7BO0zI1ehA29cZNtD+I42edODxB7DCvCu8zi3DJzoyQzCV/TwxyAJngU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754128591; c=relaxed/simple;
-	bh=dbfKLcbC8BEtdi4oWfWEgX+I8SPqVMEqxYDY0MC41HY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ARdNon/DKADYK47qkQABDjW4gNPuF73uG5zq0ZgURJz5n6QcRUB+gz1NdFZ8MICzDGV0WaFiNvkbGeIR3f4Dq1yznN3+qVEFhgx8uXzKd816r6+Jb632Cxsi75TAz2oi4VnD/93c97ZbE1TwuHVTDznp6d1IOv6fN2JOV1YUuHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eOMTQSLa; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5725exVQ009192
-	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 09:56:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=tgapHTEIyirK94bcuh79Jkb2
-	NHYVIyca+jtZheFWZ+c=; b=eOMTQSLaaM+CPoqDc2v/btTMTF1q7UxFxQ959aCg
-	IqSx3thWCL0zZ6fNRr9MUFDd1ykMheaBZd0IkF+rgaMjUPeWsYb0OxQtqPX33UBY
-	tshAm3VwA8ldYiXAkkfB0ydBgxnpciOwqiLGSsN/wdDWkSHcEcKY39zjUE1BxJTf
-	MBuftNk2bjbjyw9LKC6R3YbxUF/mVOP6K5tqY8SfReM24BTNx7cesNrFDjjYBDQd
-	qD8EPrhwCpV29BZO6Qp394fdKPI/6EmG6oU009mRqptUAoEvyKlnFnrxLsle+kvo
-	/H9HzMdErvwxNxudQi7/D95NKVPml/8r4OfZJUHfOQ0LCw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489a91rnak-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 09:56:29 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e32df3ace0so168018985a.0
-        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 02:56:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754128588; x=1754733388;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tgapHTEIyirK94bcuh79Jkb2NHYVIyca+jtZheFWZ+c=;
-        b=M2jTAVKl6ePKj5KauKoF1juLFJbFfm0yZKKDZ2ddkTuWYi3HpllxQKvt5VBtk0pzd0
-         zReL0LQIU/T4cd/QkUKVyxUXt5eNeD1PT5VzGBwP4oWC0O+7E1/e5HmKoDZU08vXYLXy
-         r8IuOgpjzBML1k5ot094lx5LNAwY1zaIWZh2l/UyOksUUECUdlMS4KpfsCf7bu/6K/C6
-         xleucWQn7Ju6tUEvkTktHC2OghBNzgEEkn3WBK/dlNewF2NSBGEY4I/YTzmDka49MWdg
-         QeBgum5N0Dngx2zg/OClHbwE96rE3R1qvulPLTxY9uHb2/XCVkMAMoG0CzJCYqbjh2oh
-         Zx3A==
-X-Forwarded-Encrypted: i=1; AJvYcCW96okRPZqWmyJPm+rAyNTNHtyP5o+x717ui9LZ0e98P8Nbp2QCMHfPDbfvu8Usl71EAezvDxkCtPBf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdWgM2CHskmT/ZslABCca07EbfUQyVKbaM3LEBoroKj2DReA37
-	XGRlsBENQAtrxZOFJs77OUmoGdB/ydNW8gA4gxFnmrrcbhxZDjo9GfA+UNLjcDIHzI8/P0+MOQ1
-	i3Ol7Nj4HqX/sz7hrv449o00sfVAL/0fXdEnw0mI2hY+mC4xOrUDhprLPr2Lf5vQQ
-X-Gm-Gg: ASbGncusJZ2sGwlUJvx+iZrv+uUS1esa46M2SrxD9SzwXTZjA6zo8llJpYJEi4FcuDa
-	GhaxCU5s14rOxHh+DNmzITY7vN9xT5u3wXSYsUiMk0v5CtHN2dBdhHJGC/alSPgRs+zco43PIcI
-	qgEntgnHTQrS/bg2aLfiM4f06tSdzueN7OumkH90grUlaRCDg/Rvj/RfloFfUahJZYOshO7ggaa
-	J/FysX3wXg1ky4IDLt+3uYKHvIqq55c3J9856qxbjIFk4iLcB7TnzUm5h1u70H61+Vs3AO6I3CZ
-	2/oJDicAPd1SvRtI6G0gcJ9DW7Y1cmuzFHWrc8ZMY6ho6JdnLZ7E/w9ioMDMF89rdkLNV4GjfJx
-	z9e+PcLaKHKUXz5hmSR6uDIE+KJUxDaHmyAeBivR2eBeHepOpnMSF
-X-Received: by 2002:a05:6214:124c:b0:707:452e:1e9b with SMTP id 6a1803df08f44-709363276c0mr30228526d6.44.1754128588142;
-        Sat, 02 Aug 2025 02:56:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHWmPmGi7bSzZLL/ufth6B1UYrxlQ6n2myVT51dGj1PWD8ll7fyJ3i928JLrowb7W4FELQxbw==
-X-Received: by 2002:a05:6214:124c:b0:707:452e:1e9b with SMTP id 6a1803df08f44-709363276c0mr30228296d6.44.1754128587672;
-        Sat, 02 Aug 2025 02:56:27 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-332388fb356sm9193871fa.61.2025.08.02.02.56.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Aug 2025 02:56:25 -0700 (PDT)
-Date: Sat, 2 Aug 2025 12:56:24 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Yongxing Mou <quic_yongmou@quicinc.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] dt-bindings: display/msm: Document MDSS on QCS8300
-Message-ID: <deefg7w3ot6cd3woexfwagetmkg4nvu37f66h4ulbdqegdgi3u@plj6puxcsil4>
-References: <20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com>
- <20250730-mdssdt_qcs8300-v5-3-bc8ea35bbed6@quicinc.com>
+	s=arc-20240116; t=1754133168; c=relaxed/simple;
+	bh=c755nBEa9bQXGf+BATDawtAt/ZtiYh8OMcGeTiO/fyQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bmS4he+C7SsOinb2Z7WEbbRAKB6J3TpFnw9ovzYjp+wVjFMqQsies/ly0oI3Sv0shY6hzM3UK7l+2weNUxjJC+46BIKyhm1qt6ne7q3LZpiDJSALRBxsGTNmK66FBzK5ftnTp9vBRUNTlJO7TUklb+cyc48oEtS3VWK6Z8NyHwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jS/xVOb9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C5BDC4CEEF;
+	Sat,  2 Aug 2025 11:12:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754133168;
+	bh=c755nBEa9bQXGf+BATDawtAt/ZtiYh8OMcGeTiO/fyQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=jS/xVOb9R41WZ9owNE3eIiX4LaNg88SS1n50SxPyK/lID/ZY9bu8pUtSmgTCmgDex
+	 2IkTUt+5IQeVJ2U805apBYwIZ3upPqkS18T1LKThaFLLEvH7qFqeAyp4Q3jYn0BuSY
+	 BY7HJAlaI6NngCsyWnHCrLRb6TPl2YG/xWgAyT5r9SyAKyI0hn9TUEK9xmdtcOGKtS
+	 IpV7XD1ODNw9l1uxgh4f7BAcdEW/zsf0/SZ62w+lKRt1xK/kVufrrk0dxahJmyTn50
+	 vDdmvmq9nDLnHGx5OqpaGcMV/wc767iAF4p/ezbq5l6XcbocjzZSNuWTlFdIPxBT6V
+	 KLF1ArNt5ANWA==
+Date: Sat, 2 Aug 2025 12:12:38 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, conor+dt@kernel.org,
+ mranostay@gmail.com, ~lkcamp/patches@lists.sr.ht,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, William Breathitt Gray <wbg@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: iio: proximity: Add Lidar-lite-v2
+Message-ID: <20250802121238.108ebfad@jic23-huawei>
+In-Reply-To: <20250801224112.135918-1-rodrigo.gobbi.7@gmail.com>
+References: <20250801224112.135918-1-rodrigo.gobbi.7@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250730-mdssdt_qcs8300-v5-3-bc8ea35bbed6@quicinc.com>
-X-Proofpoint-ORIG-GUID: 5e2w_aC00_UHaPDVb8haDFQdNn6aWpr5
-X-Proofpoint-GUID: 5e2w_aC00_UHaPDVb8haDFQdNn6aWpr5
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDA4MyBTYWx0ZWRfX8QrQzSswJr8Q
- H5YwIXmD89bfBJ3Juri/MAwUElb6Rgu1kjxZIv+9UQm+7Gi4m0yjfPjSLAfFlwmZ93LgfXaMoyr
- T1hmqP2aG36HOg3TjZDinQ1q+/qxlv+5p1dtbDvdLvWYh9jPNR4+kbumZOYg2RNrouIArUsra1w
- sEJYbkj/YpbM6HrIFnWgdo7Lk/aYPY0RdiXFcnG8HCNrX7Zf+vgcqbjd9UFwFOE2UDTBXPXuXiv
- btZ12QuszMJa6ZO/f6QQ0RKHy0LULA/nB6pO6TWggKUaFEWYQohKJ/nXLqjv9em7+96qPPdE7nP
- 1aFNbYfl0Fz0sVwUTIRx0YdNJTy09P0/yh6fxtHh5sSWgSLqXy6mtQHfjN/CfZwknsIrhdsFBVr
- fnB/Ovmome4bYsHFxwVUZr0iiUvBY1R4OWHD3KvOCuAFvnc7BiwlOVt9nBnvAowOhVfVii5J
-X-Authority-Analysis: v=2.4 cv=UdpRSLSN c=1 sm=1 tr=0 ts=688de0cd cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=COk6AnOGAAAA:8 a=BQMJ-ZqQIgEHPhERFsAA:9
- a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=sptkURWiP4Gy88Gu7hUp:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-01_08,2025-08-01_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 adultscore=0 spamscore=0 mlxlogscore=999
- priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508020083
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jul 30, 2025 at 05:42:28PM +0800, Yongxing Mou wrote:
-> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
+On Fri,  1 Aug 2025 19:39:15 -0300
+Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com> wrote:
+
+> Move existing ABI documentation from trivial to
+> a dedicated binding file since Lidar is not a trivial
+> device considering power-enable and mode control pin.
 > 
-> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+> Also, add a fallback compatible for v3, which has the
+> same pinout and is already supported by the driver.
+> 
+> Fixes: b257c1a45e99 ("iio: pulsedlight-lidar-lite-v2: add lidar-lite-v3 property")
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
 > ---
->  .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 284 +++++++++++++++++++++
->  1 file changed, 284 insertions(+)
+> I was unsure about sending a new v0 patch for this or send a v2. To avoid losing
+> the lore about this topic, I`m sending a v2. If this is not correct, I can send a
+> new patch later.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml
+> On 7/3/25 18:26, David Lechner wrote:
+> > On 7/1/25 5:30 PM, Rodrigo Gobbi wrote:  
+> >> The compatible grmn,lidar-lite-v3 is managed by the same
+> >> driver of pulsedlight,lidar-lite-v2, which is a trivial device.  
+> > 
+> > As a general rule of thumb, using the driver as justification for
+> > dt-bindings is never a good reason. The bindings describe the hardware,
+> > not the driver.
+> > 
+> > Assuming I found the correct datasheet [1], I see a power enable pin
+> > and a mode control pin, so I would say that this isn't a trivial device.
+> > Therefore this will need it's own new file. We could at least add
+> > power-gpios and power-supply properties. How to handle the mode pin
+> > isn't so clear to me though, so might omit that for now.  
+> About the mode control pin and the data being returned within PWM, it`s also
+> unclear to me how to describe that here. Looking other kind of existing iio
+> devices, couldn`t find a reference for it so I`ve not described that.
+
+So far we've never supported a sensor with a PWM output.  Needs some capture logic
+and whilst there is some supported in the kernel, I don't think we have the
+infrastructure to describe the sensor beyond it. It relies on an odd combination
+of triggering via a light pull low that the device then drives high.  To make
+that work with a standard capture unit is probably a case of wiring multiple pins
+or some external components.
+
++CC counters subsystem maintainer William.
+
+https://static.garmin.com/pumac/LIDAR_Lite_v3_Operation_Manual_and_Technical_Specifications.pdf
+for reference
+
+However, I'm also in agreement with others that this is an unusual case where
+we are very likely to missdesign a DT-binding without having explored what the
+driver stack looks like and so are best just leaving a gap for now.
+
+Even if we did describe the mode stuff it would be optional so not describing it
+for now should be fine.
+
+
+> 
+> Also, I`m quoting the driver author about this binding due the maintainer ref for it.
+> 
+> Dear @Matt Ranostay, I`ve noticed you were the original driver author.
+> During the discussion about adding lidar-v3 as trivial [1], we noticed that
+> this HW is not actually a trivial due other pins like power-enable
+> and mode control. We are considering moving v2 and v3 (which was not documented)
+> out of trivial and this is what this patch is trying to do. 
+> Also, we need a maintainer for the binding file and I`ve quoted you there.
+> I would appreciate your comments or suggestions over this topic.
+> 
+> Tks and regards to all.
+> 
+> Changelog:
+> v2: creating an initial binding for lidar v2 and v3 (fallback to v2)
+>     also, moving v2 out of trivial
+> v1: https://lore.kernel.org/all/20250701223341.36835-1-rodrigo.gobbi.7@gmail.com/#t
+> ---
+>  .../proximity/pulsedlight,lidar-lite-v2.yaml  | 54 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>  2 files changed, 54 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..ae4bc16395326bffd6c9eff92778d9f207209526
+> index 000000000000..f49a1c365f3a
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml
-> @@ -0,0 +1,284 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/iio/proximity/pulsedlight,lidar-lite-v2.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,qcs8300-mdss.yaml#
+> +$id: http://devicetree.org/schemas/iio/proximity/pulsedlight,lidar-lite-v2.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Technologies, Inc. QCS8300 Display MDSS
+> +title: Pulsedlight LIDAR-Lite v2 range-finding sensor
 > +
 > +maintainers:
-> +  - Yongxing Mou <quic_yongmou@quicinc.com>
+> +  - Matt Ranostay <mranostay@gmail.com>
 > +
-> +description:
-> +  QCS8300 MSM Mobile Display Subsystem(MDSS), which encapsulates sub-blocks like
-> +  DPU display controller, DP interfaces and EDP etc.
-> +
-> +$ref: /schemas/display/msm/mdss-common.yaml#
+> +description: |
+> +  Support for LIDAR_Lite v2 and v3 laser rangefinders. These devices
+> +  can use a simple I2C communication bus or can operate in a PWM mode using a
+> +  mode control pin to trigger acquisitions and return the measured distance.
+> +  It also have a power enable pin, which can be used to shut off the device.
 > +
 > +properties:
 > +  compatible:
-> +    const: qcom,qcs8300-mdss
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - grmn,lidar-lite-v3
+> +          - const: pulsedlight,lidar-lite-v2
+> +      - const: pulsedlight,lidar-lite-v2
 > +
-> +  clocks:
-> +    items:
-> +      - description: Display AHB
-> +      - description: Display hf AXI
-> +      - description: Display core
-> +
-> +  iommus:
+> +  reg:
 > +    maxItems: 1
 > +
-> +  interconnects:
-> +    maxItems: 3
+> +  power-gpios:
+> +    description: GPIO that can be driven low to shut off power to the device.
+> +    maxItems: 1
 > +
-> +  interconnect-names:
-> +    maxItems: 3
-> +
-> +patternProperties:
-> +  "^display-controller@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,qcs8300-dpu
-> +          - const: qcom,sa8775p-dpu
-
-Use contains: instead of listing both of them
-
-> +
-> +  "^displayport-controller@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,qcs8300-dp
-> +
-> +  "^phy@[0-9a-f]+$":
-> +    type: object
-> +    additionalProperties: true
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,qcs8300-edp-phy
-> +          - const: qcom,sa8775p-edp-phy
-
-Use contains: instead of listing both of them
-
+> +  vdd-supply: true
 > +
 > +required:
 > +  - compatible
+> +  - reg
+> +  - vdd-supply
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        proximity@62 {
+> +            compatible = "grmn,lidar-lite-v3", "pulsedlight,lidar-lite-v2";
+> +            reg = <0x62>;
+> +            vdd-supply = <&vdd_5v0>;
+> +        };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 8da408107e55..347897b999c9 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -313,8 +313,6 @@ properties:
+>            - onnn,adt7462
+>              # 48-Lane, 12-Port PCI Express Gen 2 (5.0 GT/s) Switch
+>            - plx,pex8648
+> -            # Pulsedlight LIDAR range-finding sensor
+> -          - pulsedlight,lidar-lite-v2
+>              # Renesas HS3001 Temperature and Relative Humidity Sensors
+>            - renesas,hs3001
+>              # Renesas ISL29501 time-of-flight sensor
 
--- 
-With best wishes
-Dmitry
 
