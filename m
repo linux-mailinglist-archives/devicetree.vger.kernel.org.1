@@ -1,194 +1,146 @@
-Return-Path: <devicetree+bounces-201462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD616B1900E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 23:20:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B98B19053
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 00:24:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDF8917B4DE
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 21:20:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 057CD17AC98
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 22:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4780B25B1C4;
-	Sat,  2 Aug 2025 21:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2CC27A935;
+	Sat,  2 Aug 2025 22:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EpFRIQZ8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aeMnVJPp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D50173
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 21:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8D51E2853
+	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 22:24:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754169596; cv=none; b=lBzQVDGnB/e/BGzAT9GScTtHCRWRQgtIohIvrEnr0Bx2NMb+Xbw6CDd5d7YH2mlvi0jLay8Nm0VsrdGcPiNUbE8ADTHswuhOox5qmXe7i8SdxUmuXvIZJzBIGa/JMrpMjciTIfwx+icPGuKH969lvLRx6u+u8dFfkgoiBiB+0UI=
+	t=1754173443; cv=none; b=q5ER408Dn2I+BaPLpy6uyNOS76UabmByy9ep0ptOujLocQRJD5iFHg5nwhnifZcZYiRNZ0B6tuf0gkNuHjAp4Yy5UGIOPpenVB+hqFZWHPmYEyIHWcMJj8PFjzQhdXqVrtUt1mjyJR8GzuKFEduhCzoTgNcHyh3MfWAlnNriSzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754169596; c=relaxed/simple;
-	bh=vSlkJ+vsxjOY9oI9RrIgABm9WROts/lXyLnQDsNHTsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=cus6uMlOBwY+kTyPAnSQnpl68mMu5hds805Di8GvdL23jeBjYgjvq1vd4aBhQ82z4T8+MF8w8NqpL9ZPyaaG7recoKh3kQ8O7D3uAKG/QVX6pYfMlYVO5vfV+36OFDQT35VkChRzHBh3ZufsZpBvW3sKSyEEFEAzzlHBXtG7oMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EpFRIQZ8; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250802211942euoutp0100cd215c3c09d62973d11666ccd30e9b~YD-ER-1mb0413004130euoutp01C
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 21:19:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250802211942euoutp0100cd215c3c09d62973d11666ccd30e9b~YD-ER-1mb0413004130euoutp01C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754169582;
-	bh=I/2dlcrRSy99Csm9t0csY8wO5EgDCaan9WuLdFU4wKo=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=EpFRIQZ8LLOuFWzKbRFsRkWiNGnIpvgnSv4CkeDD+Z0507Bl1e6tIAl/BavHUXJY5
-	 AR03YHTD4/seVr+AgVgSqZJYRK0knahEZDpsHvspK+0d5tJNfK2/rf5Pt8aaZFpbB2
-	 wDUBQdKT5Iti9RhtLhv4vsEczunEWp82ckPG67c0=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250802211941eucas1p1872fbfcbece711926d059e0e5d14df1d~YD-DYQxnX2180321803eucas1p1j;
-	Sat,  2 Aug 2025 21:19:41 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250802211940eusmtip18530543824eaf584b29d76a65b2312ae~YD-CRmpZK2541225412eusmtip1h;
-	Sat,  2 Aug 2025 21:19:40 +0000 (GMT)
-Message-ID: <8a99664b-8acb-4ace-9c2a-bdada5cac5cb@samsung.com>
-Date: Sat, 2 Aug 2025 23:19:40 +0200
+	s=arc-20240116; t=1754173443; c=relaxed/simple;
+	bh=m0iEYRjcdnU65R3FMXTSoPGOUxzRvVQB9ercshE0cqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dqnh5RCYUCSQ7WnPek8FUhsG92LtksCAachHWCMu2tgXNPqoy+VxaZwfYE3KeBjSA+VYiPQSD8OtEg5JPjjrUsarOh7W6CIV246sWXbEcAZn2ZRCv/ZLg1tMOUte9jraMujCD5C34a/JWaJ+OjeqeikoW6PrHk5pss+gX2yXVVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aeMnVJPp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 572KXnRp030386
+	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 22:24:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=xl0OxxNA7ca072iJm6M/zPG6
+	jGGT3ai/1U553419los=; b=aeMnVJPpOqTPR3I2WDmw51lqLpvUV2fYhyARPtzJ
+	SBY2x5WNIE57zCPGcVper6imusSo8jxDorgVgWeJX/aCGimBRqOdNIqF+WBI6uq2
+	6nHGncnFUryddtwt3fyA80U5I6LqtoW6pHJfOWSFjzspVoEbk2xGx1GPQgOxl4WY
+	fvF8d7J2RFihfDNHah1LU2RCO3LBGxZVFpnZ4OB7fu6ItVyTwTZnLt17G3F5BPe0
+	+rVzOdk9X/GFYA4poaOBg6Lrdk5V9Ism/2L0LX+2heAaaBLpTMa5zcFH6vKbCh3+
+	GU5sp+rKsLgR8ph1MVvu97s7OnDKIPp7fR1C9fHarRMeYg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489aw71cun-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 22:24:01 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4aa826c9464so46970881cf.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 15:24:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754173440; x=1754778240;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xl0OxxNA7ca072iJm6M/zPG6jGGT3ai/1U553419los=;
+        b=una2aQi5qNCwl2k3/eCbEEeQM5wJwkPvRRNVQw59groj0hqZH+vfykg/7QMosAy2YF
+         stuFUiAGczkOkHHLCvDCUx7pHVUKT2tkv8x54+yuQDvsiQ7DJdhkjluoCWhTLsN2P9rq
+         l0FB5Glc4NkiThitZ5cuMymvxglRYSd8sVcwv4aDBFfJUk60Tp+AFV6ZmXqdGxukOoun
+         TBYsXv2fQWKG2URZzoGWOq6aqHvUO1sak/DCp8MuBcZFlM6Ua/bGTJ+RzFjxXa6wiiaQ
+         Dqb8sY6CQH1LiZiZdLLNof61+xhaOZI+3UWfnHToGVYpc0iTa3xJQGxqo6filFcgtoId
+         B28Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWGatrNFFF+81waK9Pu7ftSAu7Y3Om0HAbheW0NZJq4bER/LUUoTBAN8ltRYcDfz+60u3Z7xsgXg78H@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYLb8ivsQj1a193XHhO52mbuPMYq1GkoBXLZVtIT7deoNItgc6
+	b8HMMBpI7/Qz0p4YK7vRETI3JKSOq7l7BETs7R+b25aIrh3MkkTiKLHe7RT/RlNU6ZeES5gzNOK
+	/yhl//mQdUToy+Oa0WpZjDKK3sbdEJo8/M2fIPNU0XSOC5l9oxyfOHYwfOpXUR1Q9
+X-Gm-Gg: ASbGncuq4sq9w5/WbD0re0tDPMB4bmjZpPDoqo+PfNiSC7halkynNIe646wFub9TF3G
+	BJ+lhrmhdd6gDe8MCmSO/V+UvmI3l178zoRrZkrSy+a15wMA/tQJqXTXIeZrZ0ZLdAJMlbANJOD
+	o+8dX4inwOy+dqyejv+OpiRjgwPQBcFbXN901Ru7Q1Ior9VQLRvfhQIuw7c9RYeWMqL+xfFqhxf
+	HrDUj20npkou7KOA2kEVVn1RI123LjPBhtpxErOaouPFT6rtFFU10pLghe7AykHjoauHRfVb6uV
+	E2KDgJh8JxHika2nC8ecchYtRw7233doNlkwvFt/MyCDndlX5R6MrEFZ/N5LQVLqgYArgRQkMwG
+	XtTAIkGxA4xKxWFCZ7aS2yZx0Il0WjqmcSuFyie9pe6k0kqvPfqPS
+X-Received: by 2002:a05:622a:2614:b0:4a4:2c4c:ccb3 with SMTP id d75a77b69052e-4af10a4a6f8mr71115871cf.38.1754173439766;
+        Sat, 02 Aug 2025 15:23:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGrRsxcmSymm/iOQUBWA1JUQnU1xwsXzPXR9p1T+dpkt3Av38hBwrNFCZmoKC0DXjNEzzqClg==
+X-Received: by 2002:a05:622a:2614:b0:4a4:2c4c:ccb3 with SMTP id d75a77b69052e-4af10a4a6f8mr71115661cf.38.1754173439390;
+        Sat, 02 Aug 2025 15:23:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88ca6776sm1105446e87.141.2025.08.02.15.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Aug 2025 15:23:58 -0700 (PDT)
+Date: Sun, 3 Aug 2025 01:23:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+        simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com, ck.hu@mediatek.com,
+        jitao.shi@mediatek.com, jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
+        dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+        dmitry.baryshkov@linaro.org, lewis.liao@mediatek.com,
+        ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com,
+        jason-jh.lin@mediatek.com
+Subject: Re: [PATCH v9 00/23] Add support for MT8195/88 HDMIv2 and DDCv2
+Message-ID: <2eq5je6xk4ly5lxijit3ufor7pmm7mgivbuigzr35lrbe2ryvr@3axnsyabigm7>
+References: <20250415104321.51149-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/3] rust: pwm: Add Kconfig and basic data
- structures
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <437DA583-95FF-4ADF-9947-1F39D242E157@collabora.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250802211941eucas1p1872fbfcbece711926d059e0e5d14df1d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250717090831eucas1p282ac3df2e2f1fc2a46e12c440abfbba1
-X-EPHeader: CA
-X-CMS-RootMailID: 20250717090831eucas1p282ac3df2e2f1fc2a46e12c440abfbba1
-References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
-	<CGME20250717090831eucas1p282ac3df2e2f1fc2a46e12c440abfbba1@eucas1p2.samsung.com>
-	<20250717-rust-next-pwm-working-fan-for-sending-v12-2-40f73defae0c@samsung.com>
-	<437DA583-95FF-4ADF-9947-1F39D242E157@collabora.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250415104321.51149-1-angelogioacchino.delregno@collabora.com>
+X-Proofpoint-GUID: odxlPuvWfUgQANqnykEcEmfmjVtAvqKe
+X-Proofpoint-ORIG-GUID: odxlPuvWfUgQANqnykEcEmfmjVtAvqKe
+X-Authority-Analysis: v=2.4 cv=MrZS63ae c=1 sm=1 tr=0 ts=688e9001 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=k3YYP44_YlkhweOvE2wA:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDE4MyBTYWx0ZWRfX5471L3U9nlgR
+ TCWCadFgeDDGTBGhSWx4rD0vEnk/qQZ5+AYilon8/QzduOghug/wy4s9pNFc1sCJi0XRXPlfJxo
+ 48EbBwiiAQcwwrPUh2uCpmhP3bTzBirhTD/8YtUwWuLKKkYIkbbqyGvbcDpVw6GbGEwB0IBHPCG
+ mDPA6LlDgUibewjP/DC6f7vuzdbEU/df0GAsx1ZgNT2NkPM2uvQbPj1ov8nmo/IofKf4oTuCaCI
+ f/tl43Yy5BMSV6mag/aJV/aHohs/QEyMm/PfH30jN29s5w2t+G6JboICfn3tCpOI957sri4RvQI
+ h4SQ61UxWZDODdDs8BHLgpc6pfVEZoxtgM8E0rBGu4O2x0c+Av9ehtQ/dYZwdNzgkz65F3WdYdY
+ QxJpEbL+oSkfomAd02CvK4EYYQNKR3akgAUgdvLs57O1Zh7OYENYFw7YW6phs5obs0MWERdT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-02_01,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 clxscore=1015 adultscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 phishscore=0 mlxlogscore=665 priorityscore=1501
+ malwarescore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508020183
 
-
-
-On 7/25/25 17:08, Daniel Almeida wrote:
-> Hi Michal,
+On Tue, Apr 15, 2025 at 12:42:58PM +0200, AngeloGioacchino Del Regno wrote:
 > 
-> 
-> Overall looks good, a few minor comments:
+> This series adds support for the HDMI-TX v2 Encoder and DDCv2, and for
+> the direct connection DPI as found in MT8195, MT8188 and their variants.
 
-Hi,
-Congratulations for getting your IoMem series merged. Thank you for your
-work, as it will allow me to proceed and re-add the driver part for this
-series.
+Angelo, just wanted to check, what is the fate of this series? I think
+it wasn't updated since April. It was a really good example of utilizing
+the HDMI framework(s). Wink.
 
 > 
-> […]
-> 
->> +
->> +/// Wrapper for board-dependent PWM arguments [`struct pwm_args`](srctree/include/linux/pwm.h).
->> +#[repr(transparent)]
->> +pub struct Args(Opaque<bindings::pwm_args>);
->> +
->> +impl Args {
->> +    /// Creates an `Args` wrapper from a C struct pointer.
->> +    ///
->> +    /// # Safety
->> +    ///
->> +    /// The caller must ensure that `c_args_ptr` is a valid, non-null pointer
->> +    /// to `bindings::pwm_args` and that the pointed-to data is valid
->> +    /// for the duration of this function call (as data is copied).
->> +    unsafe fn from_c_ptr(c_args_ptr: *const bindings::pwm_args) -> Self {
->> +        // SAFETY: Caller guarantees `c_args_ptr` is valid. We dereference it to copy.
->> +        Args(Opaque::new(unsafe { *c_args_ptr }))
->> +    }
-> 
-> from_raw()
-> 
-> 
->> +
->> +    /// Returns the period of the PWM signal in nanoseconds.
->> +    pub fn period(&self) -> u64 {
->> +        // SAFETY: `self.0.get()` returns a pointer to the `bindings::pwm_args`
->> +        // managed by the `Opaque` wrapper. This pointer is guaranteed to be
->> +        // valid and aligned for the lifetime of `self` because `Opaque` owns a copy.
->> +        unsafe { (*self.0.get()).period }
->> +    }
->> +
->> +    /// Returns the polarity of the PWM signal.
->> +    pub fn polarity(&self) -> Result<Polarity, Error> {
->> +        // SAFETY: `self.0.get()` returns a pointer to the `bindings::pwm_args`
->> +        // managed by the `Opaque` wrapper. This pointer is guaranteed to be
->> +        // valid and aligned for the lifetime of `self`.
->> +        let raw_polarity = unsafe { (*self.0.get()).polarity };
->> +        Polarity::try_from(raw_polarity)
->> +    }
->> +}
->> +
->> +/// Wrapper for PWM state [`struct pwm_state`](srctree/include/linux/pwm.h).
->> +#[repr(transparent)]
->> +pub struct State(bindings::pwm_state);
-> 
-> No Opaque<T>?
 
-Since this is a copy of the state it's fine. The Args above should
-follow similar pattern, the divergence stemmed when iterating with this
-series. So I would rather fix the Args to also not be Opaque as it
-doesn't need to be, since it's also a copy of the original (since it's
-so small and read only).
-
-> 
->> +
->> +impl State {
->> +    /// Creates a `State` wrapper by taking ownership of a C `pwm_state` value.
->> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
->> +        State(c_state)
->> +    }
->> +
->> +    /// Returns `true` if the PWM signal is enabled.
->> +    pub fn enabled(&self) -> bool {
->> +        self.0.enabled
->> +    }
->> +}
->>
->> -- 
->> 2.34.1
->>
->>
-> 
-> If the lack of Opaque<T> is not a problem for whatever reason:
-> 
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> 
-> — Daniel
-> 
-> 
-
-Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+With best wishes
+Dmitry
 
