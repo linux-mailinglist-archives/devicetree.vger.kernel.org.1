@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FA2B18B29
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 09:49:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BBBB18B4D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 10:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE1061AA28CC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 07:49:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4FEE564A82
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 08:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DBC1E832A;
-	Sat,  2 Aug 2025 07:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225B71D95A3;
+	Sat,  2 Aug 2025 08:24:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="haxEe9CO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="soCx0QuU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9924B672;
-	Sat,  2 Aug 2025 07:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66828F7D;
+	Sat,  2 Aug 2025 08:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754120957; cv=none; b=KZgfen9IMo2c0l9ImVzjvcLTMs++Gd9WSo1V0tvD44R+yTAViGPTrF2sBdnLIkZtkNBqDP2ID2AQzv02qJ2Bzyh5R09YcvA3U3SpPXZ4SoogRWdlMktuHh30iO2x/qWzTZ6hk/kWfOBwwcvE12peokP9X0XTxB/cMb8WQ9au5no=
+	t=1754123066; cv=none; b=G5dSQgWBhJLItE2cD8ekeC+91appCHYJ1kJwtB6XfpH8AYh7Idf+J4ZNM0kSTCUzdceTua8myn5A5eOrFYbLo0iuvXN+h+rOrdtX4aR60NJNmsRblmsdiI6RT9UI6VTMySFMFyO6NvcCLvfF3Y0HTSKot37dxLnNHlSWsJaGDj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754120957; c=relaxed/simple;
-	bh=j/x0lvRC01nhS+mjeoGyX9G8P1Xp8IfgG3dxRtTDwx4=;
+	s=arc-20240116; t=1754123066; c=relaxed/simple;
+	bh=9TeLuMIA5QjbrZT+LVxSbbP+nYvNf4qxndO6xNCMFe4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cywlgpN0DVdOO0tQbkxwD+Yqiflq8502UwHnAg84Kc5qsYEAIDrkoql1Gmt6hCg7EOA+wlOa0/zQ2TzsSRyyz26EamUT6OD+EBp1u6JXkpMHR+D9hGzP+mh4bg391JKkfDHx8rBvGL6704LUImRRvTW6RrFruzjk+VoYmWi9naI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=haxEe9CO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFD1FC4CEF6;
-	Sat,  2 Aug 2025 07:49:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dMsAQE+7op8dQsXjlLV1KXOsRYHR9wrFbLoWegMQIqGeGSjnpwku95TDTeL4NI8oTL4YJZE0ucM7zcT5BpqXaCaibO5aIZ485r3Sq6bDPW0+qRDpD2/5tDtUzmDuLHStec9vsUixeOPjpwlLCB7+b8rE/uQiOEqk9rNZCgCnhzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=soCx0QuU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D1BCC4CEEF;
+	Sat,  2 Aug 2025 08:24:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754120957;
-	bh=j/x0lvRC01nhS+mjeoGyX9G8P1Xp8IfgG3dxRtTDwx4=;
+	s=k20201202; t=1754123065;
+	bh=9TeLuMIA5QjbrZT+LVxSbbP+nYvNf4qxndO6xNCMFe4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=haxEe9COlIf+vjf0BXm4zJksjCjc58hu/geo+wadRXs+X+zDd7ZWRchB9KxTE2HKz
-	 a2tXWdUdQ0UbcC/lVaUc6kZ0Etvhcy8zx29vdRpkrNrmi3xXcvRuzkFDGArnDLMq6N
-	 kFcpc5bhBIndls27RCCAL27eoa7MDsMnjRzLoLD0PKgXFu+LlzLD/1RL1g7PQhKQ2+
-	 /OtObR9PqM82ooBLmKL0PvF8hoi0FLGQ/6JWrHyiffJ3YNxWN1qakJzkCloeEZRw4R
-	 XuApfzBQqHkE38N3Ors/No0NF/eoSRU6tI1g5a0JtP9ADgglUeEebxZum24XAXK6lE
-	 0n/0phuf2FWKA==
-Message-ID: <551e85b1-e0aa-4d0b-a532-ec670bd055a2@kernel.org>
-Date: Sat, 2 Aug 2025 09:49:13 +0200
+	b=soCx0QuUW7lmvlGlyAGWnmv849wtOjqu+RvKYqh0+kcHAaDBcugktRGCQWf36nBpZ
+	 x7sSnDT5LDQrWYlNJb7SEBJ/BNR9dUrjf9zz0yAycmRE+0TLQfwECrQ3LYWqdXeTYt
+	 PipVQX9zKtmymYmsqT38cBAPa6N5yTiurHiyj/Mir6NMyI3XKd8Q4TDOecska7uS1a
+	 W4b3vJLF/fIPA7COYobmyLl7nZ1mJGw3HOJqP1ItGzLmAJ7Rt+Z8e9oKdH1hHhedZr
+	 7tCn5d35NUvdNISBkQEpVMJheX+UOfa3sNqt9RzFrskXK8xiAaM3JYwqgivQM6tyHl
+	 uP3TXiZpov+rw==
+Message-ID: <4033d554-c537-4124-8a0f-24875ff9c2af@kernel.org>
+Date: Sat, 2 Aug 2025 10:24:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 0/2] Introduce initial support for Monaco Evaluation
- Kit
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250801163607.1464037-1-umang.chheda@oss.qualcomm.com>
+Subject: Re: [PATCH v2] dt-bindings: iio: proximity: Add Lidar-lite-v2
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, conor+dt@kernel.org, mranostay@gmail.com
+Cc: ~lkcamp/patches@lists.sr.ht, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250801224112.135918-1-rodrigo.gobbi.7@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,33 +102,88 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250801163607.1464037-1-umang.chheda@oss.qualcomm.com>
+In-Reply-To: <20250801224112.135918-1-rodrigo.gobbi.7@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 01/08/2025 18:36, Umang Chheda wrote:
-> This series:
+On 02/08/2025 00:39, Rodrigo Gobbi wrote:
+> Move existing ABI documentation from trivial to
+> a dedicated binding file since Lidar is not a trivial
+> device considering power-enable and mode control pin.
 > 
-> Add support for Qualcomm's Monaco Evaluation Kit (EVK) without
-> safety monitoring feature of Safety Island(SAIL) subsystem.
-> This board is based on Qualcomm's QCS8300 SoC.
-> 
-> Monaco EVK board is a single board computer (SBC) that supports various
-> industrial applications, including factory automation, industrial
-> robots, drones, edge AI boxes, machine vision, autonomous mobile
-> robots (AMRs), and industrial gateways.
-> 
-> Below are detailed informations on monaco-evk HW:
-> ------------------------------------------------------
-> monaco-evk is single board supporting these peripherals:
->   - Storage: 1 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
->     eMMC on mezzanine card
->   - Audio/Video, Camera & Display ports
->   - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD
->   - PCIe ports
->   - USB & UART ports
+> Also, add a fallback compatible for v3, which has the
+> same pinout and is already supported by the driver.
 
-This belongs to one of the commit messages, not cover letter.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+
+You add completely new compatible grmn,lidar-lite-v3 and nothing in
+subject or commit msg explains that. Actually subject is completely
+opposite - says v2, not v3.
+
+
+> 
+> Fixes: b257c1a45e99 ("iio: pulsedlight-lidar-lite-v2: add lidar-lite-v3 property")
+
+What is being fixed? I already asked to describe the issue and I do not
+see here issue being fixed. You add new stuff mixed with something else.
+
+See submitting patches how to organize your patchset.
+
+
+> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+> ---
+> I was unsure about sending a new v0 patch for this or send a v2. To avoid losing
+> the lore about this topic, I`m sending a v2. If this is not correct, I can send a
+> new patch later.
+> 
+
+
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - grmn,lidar-lite-v3
+> +          - const: pulsedlight,lidar-lite-v2
+> +      - const: pulsedlight,lidar-lite-v2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-gpios:
+
+Please use standard gpio naming, see gpio-consumer-common.yaml.
+
+> +    description: GPIO that can be driven low to shut off power to the device.
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        proximity@62 {
+
+lidar@
+
+> +            compatible = "grmn,lidar-lite-v3", "pulsedlight,lidar-lite-v2";
+> +            reg = <0x62>;
+> +            vdd-supply = <&vdd_5v0>;
+> +        };
+> +    };
+
 
 Best regards,
 Krzysztof
