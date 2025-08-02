@@ -1,192 +1,143 @@
-Return-Path: <devicetree+bounces-201428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDAEB189E7
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 02:29:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390BFB18A04
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 03:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFB823A3A37
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 00:29:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6D206277A9
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 01:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22846182D2;
-	Sat,  2 Aug 2025 00:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9834C8F6F;
+	Sat,  2 Aug 2025 01:03:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DFz66w5k"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K2JaZVyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47ECF12E7F
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 00:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A05A48;
+	Sat,  2 Aug 2025 01:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754094564; cv=none; b=Wxx5Otxt2p+5chyTjVY2LLp9HnVIodcs9Pqq8Hhopadl0l3Tnj0Uf0u4FzhbzuVyWCoW03PUiUBCCbfkpGLSx5aHJrZBrG+W9GYnUpDA4FersUyQ3LXKAX4uVH+kcRN4L/Fs7a7+jf1N4KXGqhrMhhoPGv8lXTcA+WWGw8GdwEc=
+	t=1754096593; cv=none; b=qANotd8kaEXenlxEyN0IQ8kiD7ieQJSTXhM1K0Zx5TT7B65wogUSjdyUxPMu5WTKAgyyc7BmKRt6ADHpOf6/RKcQLwDMb0IUU/vjNCkU0BI8/x2NI6Nuo0oPimNi9BX0CwiN3IQ02IWs5Tu4GJqWbfE0VXkjksWOHb5GmAtSg3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754094564; c=relaxed/simple;
-	bh=/e3HiXOOhmzJYdmEluxt28mSjbsOiXAfIZ5KId+BGtI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YfF8oJc30wPRa4nVop8eYE7ZCljSyt8evFQ/HDOVGVX0HUQpMvTLOnRFzSmK2lIqnnhxfq9KGfQjGSNgdkGHLTIVUakz76jvM2l7JqaaH09Rsi0ZjSRKt9Rl1jTcfvuH9egLXGug5ujRz0SXh4y2xqyc0L1PyEnRBLoDYmDDqEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DFz66w5k; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-71b6d27113fso14940207b3.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 17:29:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754094561; x=1754699361; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b1ukSKhmtxKEyX7FOOTcTRSkRm/xtlj9BuhhycLdVw0=;
-        b=DFz66w5k0qUmNTadhV4g0/lKF++F8G2fPKsYyWmgsWy59GYENDqOus397dwEKeDtWq
-         WTgkiHHzQwgerX/kippvJnQE8syFnRfduooO5YE1FWnd4+FokY2JoHaFeakDqiDRv2Kl
-         PV8FrEvrYTOkIo4XAoyHlnOubUsbMGkyoeqGrcj1JxRsnFbgYbiYrBckDCP60RQ3Ziq4
-         D/B5Zdn0S2/sJj/Yaka5RfBAdHDGFFDAu0pKAjKqp3hFmnAlrza4OXcuvSd6AbYxmuMD
-         Iw2mlYZiiV+3nVKJZAk7rmKrniXZUJx5KRel/6++6Xe9nRrffySm9kkXobU9CBvFzSHw
-         jRUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754094561; x=1754699361;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b1ukSKhmtxKEyX7FOOTcTRSkRm/xtlj9BuhhycLdVw0=;
-        b=vw+Zen1NfeTgAAqG7VHP48M0C+zYngGKeP2otJKahoIaoX22+X5esQAXGyTVanYm2K
-         aqKPmbc2chRy2OBAqR9KnsCv3rp/TwuukTAS3rmuFCNRLm83nKGW82FvitWl3muk2ezL
-         bApyRHejpMa2JmkXMBWzZVfOPcIqTWIDLxIHmSqE16Vccwi7L/1rdz6TDxpODC72DJiH
-         pIcW3f0lzttUGF2NHrLhTavPxofRFp93v86cXcR0lcUCxPWEL3SaD/Js0TCPc2dqX89/
-         1q5lm0JvKqlewSYwPxGGKctBNdwWAzIuqTyu1rwH4LGpuxzxKeswRzPCWL9CWnT+nFbS
-         HDeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8O5oMRNsmBt+y0Je/j3bqliIWpziFh2g/wg7l5Z+Ef86N1pToKn7h7wmT8E1rs3R+Z6N2h0K2TT5L@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywgno4ShP1TqwHeyOvMQCYgypool13VGdiMVsjICPqispuxaZyX
-	hODTpujVRKw9AhfXOdbr1usdBi3CySjD79GbwosTqLl8b3/xZDDJchP6aFW6ejdWraKBEmAIobP
-	mLoBF1yQX8sqz9CVI4b2Dvhreo14xASRqhdb4+fDnpw==
-X-Gm-Gg: ASbGnctisT0ttgGVFk5osaJhnmHmd4olDueYhuCxkPmFgMJbEBMQM6NJNgjiqaEQFRY
-	ZiDo80VB1IBp+4+NVu4smq6aiTw2FDVr6aS1hD1eyTEQjrc25mQdsWohUDbB2+7/9wxlxOnf0nu
-	d1qdcWRPiS10Gn7e3H38f5erp40mGpnZwPa40DaEgsOOOlpP6z+ACWkRQwLD1/1uzhCXI5f7TzT
-	uxvgg==
-X-Google-Smtp-Source: AGHT+IE8ocrwfW+jYi1b+PwwdH776i/4xWR5LD9i+ONjyo97j81erbD7o9iAQzRF40MbhmQx3aXjuOwbFFA0dvMS4Yc=
-X-Received: by 2002:a05:690c:3343:b0:71a:38ee:1ff with SMTP id
- 00721157ae682-71b7ef4db59mr22292567b3.25.1754094561179; Fri, 01 Aug 2025
- 17:29:21 -0700 (PDT)
+	s=arc-20240116; t=1754096593; c=relaxed/simple;
+	bh=AY7j+7mv2dE5hcJpd/tAvFtobFcD1mgqJgfqGiQynVE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PfB49F//3rlDuToLmSqNUxYEpyERIRIkJlNaMaGjrgR7X0znHGt5+6EWqm1ms2SktiuTSekph/iySPUoomsbr8CYSpNOdwWE9KC2TWOJmSGrXH3xFwwfldOIEJU+kpdzn7MBKzoMfkbTuixvptR2a0z2Pq0Bl316c8kZSdniB5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K2JaZVyq; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754096592; x=1785632592;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AY7j+7mv2dE5hcJpd/tAvFtobFcD1mgqJgfqGiQynVE=;
+  b=K2JaZVyq1etD/zfzt4vPgIBgHKKIr8CToFSZDH/Hr5elfUzuY4pXd6ZR
+   +uWDe40Xsp83xNdFRf7LaATQk8i4fHtvkR/wmsOw6TmT+g98DerLRwspk
+   bVM4ymctXowZhK609325X5c/E97jFLr1keakIIz7Xt19IP3vQ1tdOwU+C
+   seXszXSBCKi2WfiSqFet08Dcyjm8gAB5JwO+eWJ21rZGNc2DeXtSjrKDA
+   E17MQgIJqhahzy+OhtbxXmBX+JpKkDmH8cSRXjWkzndNF6l+Xh7BzrxhW
+   +DHMEmWtwSpQ0KSunNn/Cg7JbnvIAkD0IWg7NeMaS11Lf4abwDu3vLddt
+   Q==;
+X-CSE-ConnectionGUID: AURiZbY/RWi8kc0hH73cKQ==
+X-CSE-MsgGUID: xUY5J8TkSWOIplD3lz9BxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="56586896"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
+   d="scan'208";a="56586896"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2025 18:03:12 -0700
+X-CSE-ConnectionGUID: k31tPsVwSPa+bMhbp3/FQA==
+X-CSE-MsgGUID: 5Bej1XubQpKWWuO99tKLyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
+   d="scan'208";a="168165493"
+Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 01 Aug 2025 18:03:08 -0700
+Received: from kbuild by 160750d4a34c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ui0eQ-00053c-00;
+	Sat, 02 Aug 2025 01:03:06 +0000
+Date: Sat, 2 Aug 2025 09:02:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	Julien Massot <julien.massot@collabora.com>
+Subject: Re: [PATCH 1/3] Input: mtk-pmic-keys - MT6359 has a specific release
+ irq
+Message-ID: <202508020802.nZBo2mGV-lkp@intel.com>
+References: <20250801-radxa-nio-12-l-gpio-v1-1-d0840f85d2c8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250730074253.1884111-1-ivo.ivanov.ivanov1@gmail.com> <20250730074253.1884111-6-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20250730074253.1884111-6-ivo.ivanov.ivanov1@gmail.com>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Fri, 1 Aug 2025 19:29:09 -0500
-X-Gm-Features: Ac12FXzIeJyXP9m27_ER8_SL561hmtMLHZi1Z0J-tLh9l2MOkqp5S4hnFCva6J8
-Message-ID: <CAPLW+4maFxYv4RrvzUXWwteXAVm64ocj2LSAgtM6RMtzbM_p-w@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: exynos2200: define all usi nodes
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250801-radxa-nio-12-l-gpio-v1-1-d0840f85d2c8@collabora.com>
 
-On Wed, Jul 30, 2025 at 2:44=E2=80=AFAM Ivaylo Ivanov
-<ivo.ivanov.ivanov1@gmail.com> wrote:
->
-> Universal Serial Interface (USI) supports three types of serial
-> interfaces - uart, i2c and spi. Each protocol can work independently
-> and configured using external configuration inputs.
->
-> As each USI instance has access to 4 pins, there are multiple possible
-> configurations:
-> - the first 2 and the last 2 pins can be i2c (sda/scl) or uart (rx/tx)
-> - the 4 pins can be used for 4 pin uart or spi
->
-> Such configuration can be achieved by setting the mode property of usiX
-> and usiX_i2c nodes correctly - if usiX is set to take up 2 pins, then
-> usiX_i2c can be set to take the other 2. If usiX is set for 4 pins, then
-> usiX_i2c should be left disabled.
->
+Hi Julien,
 
-The whole naming scheme is a bit confusing: one might think that
-because both usiX and usiX_i2c have the same number (X), they
-represent the same USI block. I can see how they might share the same
-pins, but it doesn't seem enough to me to justify this convention. If
-I'm missing something, please help me understand why it should be done
-like that?
+kernel test robot noticed the following build errors:
 
-> Define all the USI nodes from peric0 (usi4), peric1 (usi7-10), peric2
-> (usi0-6, usi11) and cmgp (usi0-6_cmgp, 2 pin usi7_cmgp) blocks, as well
-> as their respective uart and i2c subnodes. As Samsung, for some reason,
-> has decided to restart the counting of usi instances for cmgp, suffix
-> labels for nodes of such with _cmgp.
->
+[auto build test ERROR on b9ddaa95fd283bce7041550ddbbe7e764c477110]
 
-Yeah, they probably meant to number CMGP instances, not USI instances.
-Because CMGP (stands for Common GPIO) is actually a separate IP block
-containing:
-  - 2 x USIs
-  - 1 GPIO controller (8 GPIO lines)
-  - One general purpose ADC
-  - 6 interrupt combiners
+url:    https://github.com/intel-lab-lkp/linux/commits/Julien-Massot/Input-mtk-pmic-keys-MT6359-has-a-specific-release-irq/20250801-211817
+base:   b9ddaa95fd283bce7041550ddbbe7e764c477110
+patch link:    https://lore.kernel.org/r/20250801-radxa-nio-12-l-gpio-v1-1-d0840f85d2c8%40collabora.com
+patch subject: [PATCH 1/3] Input: mtk-pmic-keys - MT6359 has a specific release irq
+config: arc-randconfig-002-20250802 (https://download.01.org/0day-ci/archive/20250802/202508020802.nZBo2mGV-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 14.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250802/202508020802.nZBo2mGV-lkp@intel.com/reproduce)
 
-So some USI blocks are separate USIs, and some USI blocks are a part
-of bigger CMGP blocks. And instead of using "usi_01_cmgp" for example,
-they should've gone with "usi_cmgp01".
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508020802.nZBo2mGV-lkp@intel.com/
 
-Usually it's recommended to follow the naming scheme from the TRM, but
-AFAIU you don't have one. And the scheme used in the downstream device
-tree looks like comlete garbage. Anyways, I don't have strong
-preference on the naming scheme. Frankly I'd just do the consecutive
-numbering for all the USI nodes in this case, like: usi0, usi1, etc.
-And add the comments when needed, like "USI from CMGP01 block".
+All error/warnings (new ones prefixed by >>):
 
-> Spi support will be added later on.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  arch/arm64/boot/dts/exynos/exynos2200.dtsi | 1361 ++++++++++++++++++++
->  1 file changed, 1361 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos2200.dtsi b/arch/arm64/boot=
-/dts/exynos/exynos2200.dtsi
-> index 22c6da907..f83e6cf24 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos2200.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
-> @@ -7,6 +7,7 @@
->
->  #include <dt-bindings/clock/samsung,exynos2200-cmu.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         compatible =3D "samsung,exynos2200";
-> @@ -314,6 +315,76 @@ pinctrl_peric0: pinctrl@10430000 {
->                         reg =3D <0x10430000 0x1000>;
->                 };
->
-> +               usi4: usi@105000c0 {
-> +                       compatible =3D "samsung,exynos2200-usi", "samsung=
-,exynos850-usi";
-> +                       reg =3D <0x105000c0 0x20>;
-> +                       ranges;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <1>;
-> +                       clocks =3D <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>=
-,
-> +                                <&cmu_peric0 CLK_DOUT_PERIC0_USI04>;
-> +                       clock-names =3D "pclk", "ipclk";
-> +                       samsung,sysreg =3D <&syscon_peric0 0x1024>;
-> +                       status =3D "disabled";
-> +
-> +                       hsi2c_8: i2c@10500000 {
+>> drivers/input/keyboard/mtk-pmic-keys.c:132:10: error: 'const struct mtk_pmic_regs' has no member named 'key_release_irq'
+     132 |         .key_release_irq = true,
+         |          ^~~~~~~~~~~~~~~
+>> drivers/input/keyboard/mtk-pmic-keys.c:132:28: warning: excess elements in struct initializer
+     132 |         .key_release_irq = true,
+         |                            ^~~~
+   drivers/input/keyboard/mtk-pmic-keys.c:132:28: note: (near initialization for 'mt6359_regs')
 
-Why not number all the underlying protocol nodes using the same number
-as the USI node? Like it's done in gs101.dtsi. And maybe even follow
-USI naming scheme used in gs101 in general? Like, sort all USI nodes
-by unit address, and then number them starting from 0. If some other
-USIs are missing (like I mentioned in my review for the previous
-patch), add those too, first.
 
-[snip]
+vim +132 drivers/input/keyboard/mtk-pmic-keys.c
+
+   120	
+   121	static const struct mtk_pmic_regs mt6359_regs = {
+   122		.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
+   123			MTK_PMIC_KEYS_REGS(MT6359_TOPSTATUS,
+   124					   0x2, MT6359_PSC_TOP_INT_CON0, 0x5,
+   125					   MTK_PMIC_PWRKEY_RST),
+   126		.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
+   127			MTK_PMIC_KEYS_REGS(MT6359_TOPSTATUS,
+   128					   0x8, MT6359_PSC_TOP_INT_CON0, 0xa,
+   129					   MTK_PMIC_HOMEKEY_RST),
+   130		.pmic_rst_reg = MT6359_TOP_RST_MISC,
+   131		.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
+ > 132		.key_release_irq = true,
+   133	};
+   134	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
