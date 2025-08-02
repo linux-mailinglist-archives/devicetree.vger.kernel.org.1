@@ -1,166 +1,168 @@
-Return-Path: <devicetree+bounces-201432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA149B18ABE
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 07:31:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31272B18AE5
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 08:44:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83C02189FDED
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 05:32:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84C8B189F4D6
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 06:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240511A3BD7;
-	Sat,  2 Aug 2025 05:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D191E520D;
+	Sat,  2 Aug 2025 06:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Zl2DMW9D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YnWSVOMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2C7367;
-	Sat,  2 Aug 2025 05:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425261ADC93;
+	Sat,  2 Aug 2025 06:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754112699; cv=none; b=C7oWightZfJ9keLSRvLz0l0ynGc89atgujaCFb1LExrZKCONhcRyK+O6ps9xjOcOlr8Xn0pdfX4Gfh4GBSDDt879NsDEWX0eqsigzVJFwQa+48w4Hev69tvFkXxBtTUSIN0kBWDiePWJDLSLPG64nHVcgYSvlbY97RMO2uN4+hY=
+	t=1754117080; cv=none; b=LwO0yImiNxo4ZVap/nSDxYoLgTFqZO46NWRY5X4/S5lT90YA8u52ymkEMYm6FL9FQkP4cteD3YuOY9xShVCo5Mmm48XGAi+ppIiwLPfOj3B/c5OYTUvPSi8CGpdpReF3Q2ot99tAy8XhxhlEJhXtw20u9rnEyUSwzAnf2phMU5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754112699; c=relaxed/simple;
-	bh=ZRLdGwSqLnclEoXX/4J/rmkHU+mE/M/nSHHqiMZELEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BFTeWi0z2WBuc77kOGNXlGMoW+l8Tdr99xlC0Kss4Am0JV8c4xT5IWTRHJ6nXX1JIdDp4F/TqRiHQ1QoTD2AoxGU/dMoF1VhH1nW9td/YA5Cy59ExW0xRH2lD4RLmMMj5AiHFS4n66X3/KHOaTqM6Gaxpd5b3gDId1un8IY7/r8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Zl2DMW9D; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754112697; x=1785648697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZRLdGwSqLnclEoXX/4J/rmkHU+mE/M/nSHHqiMZELEk=;
-  b=Zl2DMW9DjQ5JJehFSx3fv7ypqkKVirCjz3caxU2fuif5HUOJnvPmfBnx
-   kcT9NP91mXn1KSGh/wtGgIW1yldbCfACt2+gHw/FUIb9cIfR+Lz/ZDCLp
-   +hICCFlYzSkN5S6TvmvkoibuSKAh7ZDI9tEkjSp9yvsxqZNbQUzP5VWH0
-   SoQOWeFrxkOm3bmF6rbqkOJNJcY7Y8yk6/IW6DENRVzzun03JP85tseA1
-   oaz6sKDq0er2aaS0HSXZ8LT48+jGVbY/4Un0LiRcp8X17gTOWIPQMhnL8
-   sTyU64yNHJ0YM1hV75awY2cTjN9I7QHxgy6oz3chbRtgUYH3ggaTM/z32
-   g==;
-X-CSE-ConnectionGUID: /lh2stC1QlKYhsC47FwXxg==
-X-CSE-MsgGUID: VuokqIvySgmDl85PXRZsOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="59077185"
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
-   d="scan'208";a="59077185"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2025 22:31:36 -0700
-X-CSE-ConnectionGUID: 9lV5Yxb2S8+W5MRccSjssQ==
-X-CSE-MsgGUID: j4cU7ZYqSbShgDAsFQAmQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
-   d="scan'208";a="169106513"
-Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 01 Aug 2025 22:31:31 -0700
-Received: from kbuild by 160750d4a34c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ui4q9-0005C8-0k;
-	Sat, 02 Aug 2025 05:31:29 +0000
-Date: Sat, 2 Aug 2025 13:30:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Haotien Hsu <haotienh@nvidia.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	Brad Griffis <bgriffis@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
-	Vedant Deshpande <vedantd@nvidia.com>,
-	Akhil R <akhilrajeev@nvidia.com>,
-	Jinjie Ruan <ruanjinjie@huawei.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Haotien Hsu <haotienh@nvidia.com>, Henry Lin <henryl@nvidia.com>,
-	Jui Chang Kuo <jckuo@nvidia.com>, Wayne Chang <waynec@nvidia.com>,
-	WK Tsai <wtsai@nvidia.com>
-Subject: Re: [PATCH 4/4] usb: xhci: tegra: Support USB wakeup function for
- Tegra234
-Message-ID: <202508021305.3ENY5oQC-lkp@intel.com>
-References: <20250801095748.385437-5-haotienh@nvidia.com>
+	s=arc-20240116; t=1754117080; c=relaxed/simple;
+	bh=0mQPov0rVCRElCFXUgeMav7fHbvPFpDuvftPRtczvPI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gcAUqibI8vwdeOpMbhVISV/mIN6nFjVkwng35MxoG/vHk+1PM3iU2nvVmKTYBOxe1OgDNv7Q/wh409v04hYf6MixeWWBvSjlIYpQ9wxIbBkxU2oiaieKnlChO1z0EeieQk8uEFlChLZQzFLst4nnVNdkPLTNGMVvb3kJxpvYMNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YnWSVOMC; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-76a3818eb9bso1515288b3a.3;
+        Fri, 01 Aug 2025 23:44:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754117078; x=1754721878; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7hSbLG/kXsTfrc0omd0Uf8l9GUcnOAkkKSRkCbB5vVo=;
+        b=YnWSVOMC6ahtK1r11C/PsDaduHFoNTICnsAyPLJyabJTUh459ULBpRBLyCiigyJ8S2
+         47+LPxO8k9YiHl+Bx+nErL+CUNYifnRXQnGfI0taXJZFYZNlYmQvpBC06hoL85CTpzi0
+         YQTsPhqj/N8sCL0aCK7NH29SXtz+3Fzpgjiio2Uao6o4U6LD3iqQFo4tcC2WxeGtu7KU
+         8cmOZW7YUSyLkpL5Ubd8oDKXoPJFeHVXuu/SLjmuFvmncBfvZNOfT4GV/P70qsgGp65n
+         znC/eRDY+FD5qrxhxHKCCayQ4DFWObH8MYThRca/LRokKbTAhXxtMJID7TNHKVzWVZxG
+         562Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754117078; x=1754721878;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7hSbLG/kXsTfrc0omd0Uf8l9GUcnOAkkKSRkCbB5vVo=;
+        b=cllxRn7cqPoM0zhWxlPasqN756Eb+ZVRMFrcmZSfhz5Ydk9z5KWLf70RBCZVoans0Z
+         QBgIEfSkSvtbOa+JJiUkzLwS4blJ2JR4kNFKzIgUslB/40aTBQI5Bygf6QmUbJ8zXGG9
+         CPSN6RZr1y35pzx/kjx7ArY9uS8Njt/vxd6CIe+SeosZlS4kMWcYRLWzlbG26Dxbropt
+         pC/liAYt8dT4+7UWrCNTG9lRV4bh9My3Jdq3VhrDGjY+q6NG0IWKinn5HyMFETjGJLAo
+         E2dncbwW+O0do5QCLOTtESfYQC8ge4OAZoxr3b3iWkRzNuQ0hVOjMspI16TO7V3ET7sv
+         7OaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVC2BlqervPDtRFdbziAqsveHTPRN7t7A7bQYMYgpafWAimDyYvnHf9mN6GO8VS0qpYcnRsEZjuLZ6+@vger.kernel.org, AJvYcCWJP+eU4fNjgEYr9TzxU/mFXOa8KvRSPmkWgiPdP8XLDS6ySrAWW5/+oGeW+pfNkCMpIGQ+DcZPsA10@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBIahb5oxLPRXLZ2+dJoSR4EjdB6VFuBLoRXAyxrmMoq2PuuWo
+	74wDKBIJydE/NFNLkEcTpXkWBEoZ/symYpTBDMoxNzAPyf7N3hnXIq1qm93t0Zz0Zf0=
+X-Gm-Gg: ASbGnctDzGz3ytkWcvUWvaqraQo5m9BcSsXL8sKh8qiqwpTNbD6dGI5JzEZtIVvoyNz
+	eoYlboaj50chT22rvpLe+0Zg8tugY1tEqQyKR81H6RAhjqFL5HvCfvN+bZACBq8SVC7gKTnB0JL
+	cd6gVNR+g3qkWe1o3VXg7Vy2ca+UZKfjvzqerAsG+Li9KxiGUUbvU98fxdjuXAbqPmUxN49eKjj
+	B+msiazgrWFgHfXrvg4RM5dT7qv4I7wzCYrc2k0eKWdyibVFiydd19DYKUFNEx17A5Y8uAikOOU
+	KULpfMI6+qmKoNg2CUinKMulxFZ1G54cR6wzMR5XDrnUdrKTkoMM40s9yFmgcF1MpA9oamHW03f
+	PAd5uB/KMVW23jrd9aDkWGa7srcwHAJo=
+X-Google-Smtp-Source: AGHT+IHfAxGhYe3/HsjF60/jsO7axYdU9Dm+rvGTwd6Ds1cQzOQT6OAtuF8+9Qiw/p2lU5mb+Q0oKw==
+X-Received: by 2002:a05:6a00:23c5:b0:748:f74f:6d27 with SMTP id d2e1a72fcca58-76bec4ec39bmr3091386b3a.24.1754117078143;
+        Fri, 01 Aug 2025 23:44:38 -0700 (PDT)
+Received: from [127.0.1.1] ([2401:4900:1c43:2e47:cb90:ffcc:76af:a5b9])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfe9003sm5639676b3a.125.2025.08.01.23.44.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Aug 2025 23:44:37 -0700 (PDT)
+From: Dixit Parmar <dixitparmar19@gmail.com>
+Subject: [PATCH v2 0/2] iio: magnetometer: add support for Infineon TLV493D
+ 3D Magnetic Sensor
+Date: Sat, 02 Aug 2025 12:14:26 +0530
+Message-Id: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250801095748.385437-5-haotienh@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMqzjWgC/42NQQ6CMBBFr2Jm7Zh2kFZceQ9DDJYBJgFqWtJoC
+ He3cgKX7yX//RUiB+EI18MKgZNE8XMGOh7ADc3cM0qbGUhRqSwZXMZ0rooWI8/RB0zmoQ0GV6K
+ +OKtJVcWTLOT5K3An7z19rzMPEhcfPvtT0j/7RzRpVNhy4xRZNl1Bt35qZDw5P0G9bdsXIAr0j
+ sAAAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dixit Parmar <dixitparmar19@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754117073; l=2823;
+ i=dixitparmar19@gmail.com; s=20250726; h=from:subject:message-id;
+ bh=0mQPov0rVCRElCFXUgeMav7fHbvPFpDuvftPRtczvPI=;
+ b=0V7O3YzB19tSDjPnpVgepEEBAZ+rbqhTfEJH9d8C/x93RykR74ErwVfufuwYLvHeWmqGUHXLO
+ FizKoqUG0ZiD2eL8/CKj2Qmy5N1sjbYi5mtsecT+AI2BKbmUrTDcRpl
+X-Developer-Key: i=dixitparmar19@gmail.com; a=ed25519;
+ pk=TI6k8pjTuLFcYiHazsate3W8rZGU2lbOrSJ4IWNoQhI=
 
-Hi Haotien,
+The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+applications includes joysticks, control elements (white goods,
+multifunction knops), or electric meters (anti tampering) and any
+other application that requires accurate angular measurements at
+low power consumptions.
 
-kernel test robot noticed the following build warnings:
+The Sensor is configured over I2C, and as part of Sensor measurement
+data it provides 3-Axis magnetic fields and temperature core measurement.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on usb/usb-testing usb/usb-next usb/usb-linus tegra/for-next linus/master v6.16 next-20250801]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The driver supports raw value read and buffered input via external trigger
+to allow streaming values with the same sensing timestamp.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Haotien-Hsu/dt-bindings-usb-Add-wake-up-support-for-Tegra234-XUSB-host-controller/20250801-180040
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250801095748.385437-5-haotienh%40nvidia.com
-patch subject: [PATCH 4/4] usb: xhci: tegra: Support USB wakeup function for Tegra234
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20250802/202508021305.3ENY5oQC-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 8f09b03aebb71c154f3bbe725c29e3f47d37c26e)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250802/202508021305.3ENY5oQC-lkp@intel.com/reproduce)
+While sensor has interrupt pin multiplexed with I2C SCL pin. But for bus
+configurations interrupt(INT) is not recommended, unless timing constraints
+between I2C data transfers and interrupt pulses are monitored and aligned.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508021305.3ENY5oQC-lkp@intel.com/
+The Sensor's I2C register map and mode information is described in product
+User Manual[Link].
 
-All warnings (new ones prefixed by >>):
+Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-UserManual-v01_03-EN.pdf
+Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+---
+Changes in v2:
+- Drop regmap implementation in favor of using direct i2c APIs to
+  have uniform communication APIs across the driver.
+- Remove custom device-tree properties as suggested and hardcode
+  setting operating mode in probe().
+- Derive and hardcode temperature offset from raw offset and compensation.
+- Add missing device name(tlv493_) prefix in global variables.
+- Change float operation with multiplier to fixed value(1100).
+- Change Magnetic field reporting to Guass SI unit.
+- User FIELD_PREP instead of direct bitwise ops.
+- Convert sensor channel parsing logic from Macro to function for
+  better readability.
+- Discard unused #define's.
+- Discard IIO_CHAN_INFO_PROCESSED.
+- Maintain alphabetical order of config options in Makefile and Kconfig.
+- Readability fixes.
+- Link to v1: https://lore.kernel.org/r/20250726-tlv493d-sensor-v6_16-rc5-v1-0-deac027e6f32@gmail.com
 
->> drivers/usb/host/xhci-tegra.c:1997:15: warning: unused variable 'i' [-Wunused-variable]
-    1997 |         unsigned int i;
-         |                      ^
-   1 warning generated.
+---
+Dixit Parmar (2):
+      iio: magnetometer: add support for Infineon TLV493D 3D Magentic sensor
+      dt-bindings: iio: magnetometer: document Infineon TLV493D 3D Magnetic sensor
 
+ .../iio/magnetometer/infineon,tlv493d.yaml         |  45 ++
+ .../devicetree/bindings/trivial-devices.yaml       |   2 -
+ drivers/iio/magnetometer/Kconfig                   |  13 +
+ drivers/iio/magnetometer/Makefile                  |   2 +
+ drivers/iio/magnetometer/tlv493d.c                 | 556 +++++++++++++++++++++
+ 5 files changed, 616 insertions(+), 2 deletions(-)
+---
+base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
+change-id: 20250726-tlv493d-sensor-v6_16-rc5-18c712093b27
 
-vim +/i +1997 drivers/usb/host/xhci-tegra.c
-
-  1992	
-  1993	static void tegra_xusb_remove(struct platform_device *pdev)
-  1994	{
-  1995		struct tegra_xusb *tegra = platform_get_drvdata(pdev);
-  1996		struct xhci_hcd *xhci = hcd_to_xhci(tegra->hcd);
-> 1997		unsigned int i;
-  1998	
-  1999		tegra_xusb_deinit_usb_phy(tegra);
-  2000	
-  2001		pm_runtime_get_sync(&pdev->dev);
-  2002		usb_remove_hcd(xhci->shared_hcd);
-  2003		usb_put_hcd(xhci->shared_hcd);
-  2004		xhci->shared_hcd = NULL;
-  2005		usb_remove_hcd(tegra->hcd);
-  2006		usb_put_hcd(tegra->hcd);
-  2007	
-  2008		dma_free_coherent(&pdev->dev, tegra->fw.size, tegra->fw.virt,
-  2009				  tegra->fw.phys);
-  2010	
-  2011		if (tegra->padctl_irq)
-  2012			pm_runtime_disable(&pdev->dev);
-  2013	
-  2014		tegra_xusb_dispose_wake(tegra);
-  2015	
-  2016		pm_runtime_put(&pdev->dev);
-  2017	
-  2018		tegra_xusb_disable(tegra);
-  2019		tegra_xusb_padctl_put(tegra->padctl);
-  2020	}
-  2021	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dixit Parmar <dixitparmar19@gmail.com>
+
 
