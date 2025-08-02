@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-201455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14452B18E57
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 14:04:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B28B18E6C
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 14:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2F67AA52E5
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 12:04:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3A5EAA3673
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 12:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044832248A4;
-	Sat,  2 Aug 2025 12:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5388230D0A;
+	Sat,  2 Aug 2025 12:38:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UWM3ocOQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iLj+yzbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FB0210F59
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 12:04:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A11228CB5
+	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 12:38:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754136271; cv=none; b=Q6fdglcLdP+0QAGDTZSC37INITjUQkfjN4COnjotitO4/ouNlLIHqB5pCm9jpbJxOhV1Xqz+zbUWwgqFio+XRyb06yAYU1oYMqTohwX40b03hAW2K2rIcFrvGI+kRmUGT5rqlBSOz2wAGsGejAQ8XiPquOXBQtXxjDhjZpi7Ryg=
+	t=1754138290; cv=none; b=sarB42UZd0g52sgK7oM2zTvJ/gh65D6fz6ro0LZ9RwLKfsuEYCLMuOAzOSMCoDBe4Utyi0E/UfICGAJcTxs95Sf3quyQRnuPfHj40aH9BvwYyw6MBWFy1TWyLVttg05KR9yqyLXbwAXhiFH5w4nYYQkfbNAMHb0oIXeo+D/U1O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754136271; c=relaxed/simple;
-	bh=1uzB9r6w4x1mX3RQ6Geex7yxzg322VObRaZu0yQ2zp4=;
+	s=arc-20240116; t=1754138290; c=relaxed/simple;
+	bh=kjNMGi0IvuVGXF8RnqYfZcDE+z5GAU+wzdFjcp7iLnM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HhI4N+pcCZkPoe9i/0km/VTv0FUCDliSGefIOWDhWFORsSmPZK1m4fOXKfK8d1mKqkw/OKnwCMoc1hEGEHinkvIkLZVwhwS9qXiErlRTc9lvDylE06HOC4jIfDX6zGwkQrRI/WFJ7hFB+nuJJNGaTZW3WrRZuOt+/1mut3shXiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UWM3ocOQ; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=sTjq4nEN6r3gt4P1EFf5gtNAVdyZeYWyiy6qGyAQFHCVq6ljAZ98KPU7hOJ397/yTrYTNY6PIirye62+iKxBnh6eYlR+lXlrxH+UkQ9s0Onti4q41Az/gUi9t7ASE0sNX33H35Xb3/esvg00vbXjZSKmugKKnnwQuFxZWHiiKCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iLj+yzbI; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5727PJ6t010025
-	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 12:04:29 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 572AtQ0r023708
+	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 12:38:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vCSAiNPoWEksGD85Y1vvHR/fUZ2hueivl1eXMSvDOnU=; b=UWM3ocOQ+HzZFmFm
-	EKT7uAZPdG3p6+e087FTZgXEGhjyrCSdKk7LDW4Pv42XZmfEHQxCZMMlSK3XbcXF
-	YVpuA6dgKz/WpXdNItfqKFZmlKBBQoaIpTUOf9s4Stt+xm2RMfeH35+U0IindvQu
-	CWhMJHMadNrtObCKFOOxWHaJg/2Wi24kiqARnlFXIFUaO7mS6inwdsF7H6wUFCMx
-	qrlgFHC5Sfys/6s4Sb3FHp5A+d7j2mDomWaDCqkJW71gHT0UQFG5ggv73vSWX635
-	OagCwra1zd8P9lWqXZSNqHIcnW6Oy169cI6QRXPwIC8HoM3HQCrk6PIlnCX2bfSU
-	iDCZmQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4899pa8uvc-1
+	yY+5Vc4wWCp8Q+lqkXgyh1f1Eka3dbE6PZDRDj30axM=; b=iLj+yzbIUQdJmpPE
+	HSCMNc/WukNLpBT4WQTMuU2Elh3jlNsbdJ3wd7gziWpdQ65t+tBxIrNYtMU+MFuJ
+	HkIflk49HRXLBE2e9aKmEFEMADiJXGpyVkCfWqzZ2oRbpsC/Is+DUfmvIOCD1CL7
+	+su5CJLM5ymQuGWntuLQlXV8emoqlaA1Boot08Xzssob33f1R3HI/ecNvYw7Rexb
+	A0P7DlMACxYME3GtSMcdlQDuCabxpvlQxkQpGykwEkKpz6XKqy0U5VviVBINJlk4
+	vqmrWlp/XyTcfHt6AsjKW9089optU/83B4pIoedJbH9vwu6CHrl90A4PA/AyXS0L
+	8x2ZGA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489buqgnhx-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 12:04:28 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7073674bc2aso5519216d6.3
-        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 05:04:28 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 12:38:06 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4aefe21386fso2620951cf.2
+        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 05:38:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754136268; x=1754741068;
+        d=1e100.net; s=20230601; t=1754138285; x=1754743085;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vCSAiNPoWEksGD85Y1vvHR/fUZ2hueivl1eXMSvDOnU=;
-        b=Vd0u1myNbNw5iZeViCZkvaNTlPqQwInABwUr0ijhxyF4FtF7gzHsWcT8eIyJIvGCui
-         Vf+Pbh8oOukK4GUTnM0wtTXr0I6DDfBa35CleUMUBte/sV6+QhGGs4aQOFOsfBD9ekQ6
-         btc6neiAKOVu2SfR9sRH71XfFad4SFUdhngAfM5I+Eme/YmDlHNaHwizEIpPKN32Qf1Y
-         9GQPd+jRJCFun3kOjyuD3RBnrGfNdETT0Ac1KGyDOWh92UR/HVuqW6ASjVLokNwhaAAj
-         lxPw2v5oSy08beMoOBRR4d7XChQZRkiw6FfpJmoicvLXZ0M+Hz6RQ4zZP+nxeRBjMFew
-         3VjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUY+/wUKM2QyMQ77vdrRpdVK3ehJoLG/CFYt3bhK/fgYDIwLNm+UL++CnI+MLsiZpFgYQ9DZQdxLFAn@vger.kernel.org
-X-Gm-Message-State: AOJu0YybO3TpCPs/ytyu48h+Uk0ClrHUiGp+d5sNKl5BqjuFhEmymvAS
-	in+sGCk8KhH8nIabPLdvvs609iFM3yLhokmJes8G8+T3/H0Hmiij7QkBqryjseyWUR+eE+2sd9q
-	vb49BL4XXhBXUrVw0upzEUZ7Dp8Cy3ZaW2X6S0enyTC5D0aowpDFiZKnIZOyGSsBi
-X-Gm-Gg: ASbGncsKVjS3cRWMX89yDp/1Iyn1V0suhsZHOLGkZh029c7MyaVBsZeavWKyrnWB8Jp
-	pFzctj+JBNyYdRV4mjTzg8r8yAgS/B+yCFkC15bpbjVifla0vLVz5o+lrONpj5UMTg9Xg4gpIfQ
-	71bDICtJKznzcugJzETIZslTEXBa69K8ohCYHIbmBac5cE2r37zFuuAsNEkM53OXzPsUDndFXQS
-	y8xgFL7L5JCLlDyJvR0XcVCfc4xrDDk1VuxXchG77s4OWcaPYGsK86BPr3dbIiSYIi73mIbf989
-	ND8ZP/NFjYgwneCZ9/ngHFJMyJUlViyfOwo1k5DVyJ7b/j8KpROeaRnCK6Aef9c4/kmc9r6lBMX
-	zVrHNObLEVB6yxYYqAQ==
-X-Received: by 2002:a05:622a:1a27:b0:4ae:f8d8:b0fb with SMTP id d75a77b69052e-4af10978640mr22589961cf.5.1754136267945;
-        Sat, 02 Aug 2025 05:04:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGHRqglWcLnh7BFuPTAQfd/4FrslPHxTGZAg9UU256erRSiEGc77z4U8yY2TghDqr4GcFIe7A==
-X-Received: by 2002:a05:622a:1a27:b0:4ae:f8d8:b0fb with SMTP id d75a77b69052e-4af10978640mr22589701cf.5.1754136267429;
-        Sat, 02 Aug 2025 05:04:27 -0700 (PDT)
+        bh=yY+5Vc4wWCp8Q+lqkXgyh1f1Eka3dbE6PZDRDj30axM=;
+        b=Ag6i1dHfBeaOwSu4n0eV4sh585sBc5Qcxvkb++dOaEhx56+gbRri6+Hw+zOGcZV0ja
+         pODxxCExZ3XOALok2k+1XMbYzsMT8JVk5jFGK2KZjxaE1Y+apHTkb3baID4Y3TB3ijKV
+         aiZ+tspOI0E5o0zsTff+I0uy8iQzlZ63kDGSbhVahOwefHjCAFQv75qW1qnoETbcfUYA
+         yzOr8IsraVSEGNelnptxb0M7N68xzW1m2Y07g2haNLvN4WYcRjk+r6Rz4aBkkkjRGNgl
+         ThLvKD2DOWpSle9ssDZtTnsKwFbxx2PStmIDU5YFdKFuCaXPx5EBJZ8A5/vWTw1vXVPu
+         IuiA==
+X-Forwarded-Encrypted: i=1; AJvYcCXazaxUhEioLZoanA4gnawip5+QSQd3e4Bm7YhE4yVVjnHycadGS3GapsfI7PGf9mQy1p8TLiih0/vk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYTU4I5hj4fs531utkTXNZErhWN/+H31Vn7LfLJaVMuuhaXbEr
+	ZoGL6P3sBBvRUf82gRc4WqIjeOhQ1gtzwpR3cA3Sq6jpuQIF/31bniZgPkMFROx8jyQ4mTBIvOI
+	msZ+G6knbAMeXpfIIr2PwWaCZ530mYiHn65GtYE1gZe0pNdHlB1fvN6MN0blB725T
+X-Gm-Gg: ASbGncsR4VM/N9CI6ztfVr2I3a9Wo3/K5HfDTi8XJote6uqF7OvHHYtr01E+hEbJCi5
+	5TA7NsstZkfwcESX8fgQYbAuVx0/VaN3XkY2sCU3ZbNHuoJTCZaLv9hqUET/qCZc0jmAXP1siTE
+	OKJHH7CUQT/dSfTaQXKsXe3iYg6L7DptUeOj5kx6BIV69bhIY14bbzYVaSrtNA734zGr2uD+DYN
+	FSFR5e/96Ai/Fg75vj+8rtKhFiy+RlhPSxn50LZxOlANwYZLrrtKQ2uzkBu73dhX0XXoTZu0Qrs
+	IyTmtKyc3qMrApqsBaGiCtVxKXDhwQpnByglIHwhSGz4vBhk1FLKMxbBUn98D6BRCtvxG/vajCN
+	0lhmSySE1y0G3lITcUQ==
+X-Received: by 2002:a05:622a:54e:b0:4ab:67a3:ec09 with SMTP id d75a77b69052e-4af1094cd78mr22382651cf.6.1754138285344;
+        Sat, 02 Aug 2025 05:38:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGFPF9qOzJpGO98jPyAvuhk/RML1vSf6VMcwdOoFpMcr/LQVR1VYdVHuTAn5xus4wthkO0plg==
+X-Received: by 2002:a05:622a:54e:b0:4ab:67a3:ec09 with SMTP id d75a77b69052e-4af1094cd78mr22381721cf.6.1754138284551;
+        Sat, 02 Aug 2025 05:38:04 -0700 (PDT)
 Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c099sm421786166b.108.2025.08.02.05.04.21
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0761f2sm434931766b.11.2025.08.02.05.37.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Aug 2025 05:04:26 -0700 (PDT)
-Message-ID: <55420d89-fcd4-4cb5-a918-d8bbe2a03d19@oss.qualcomm.com>
-Date: Sat, 2 Aug 2025 14:04:20 +0200
+        Sat, 02 Aug 2025 05:38:03 -0700 (PDT)
+Message-ID: <0c2cc631-21fd-41fd-9293-fd86dd09a2d2@oss.qualcomm.com>
+Date: Sat, 2 Aug 2025 14:37:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,155 +90,220 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
-To: Luca Weiss <luca.weiss@fairphone.com>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+Subject: Re: [PATCH RFC 2/6] dmaengine: Make of_dma_request_slave_channel pass
+ a cookie to of_xlate
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Frank Li <Frank.li@nxp.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Taichi Sugaya <sugaya.taichi@socionext.com>,
+        Takao Orito <orito.takao@socionext.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>,
         Manivannan Sadhasivam <mani@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+        Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Am=C3=A9lie_Delaunay?= <amelie.delaunay@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chen-Yu Tsai
+ <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Laxman Dewangan
+ <ldewangan@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        Thomas Gleixner
- <tglx@linutronix.de>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
- <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
- <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
- <DBE6TK1KDOTP.IIT72I1LUN5M@fairphone.com>
- <DBE8G88CIQ53.2N51CABIBJOOO@fairphone.com>
- <DBOC7QBND54K.1SI5V9C2Z76BY@fairphone.com>
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        imx@lists.linux.dev, linux-actions@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-sound@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-spi@vger.kernel.org
+References: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
+ <20250730-topic-dma_genise_cookie-v1-2-b505c1238f9f@oss.qualcomm.com>
+ <aIpKz495WI1SJTeB@lizhi-Precision-Tower-5810>
+ <20250730180417.GC21430@pendragon.ideasonboard.com>
+ <aIpmgpXME1BmThxU@lizhi-Precision-Tower-5810>
+ <20250801120007.GB4906@pendragon.ideasonboard.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <DBOC7QBND54K.1SI5V9C2Z76BY@fairphone.com>
+In-Reply-To: <20250801120007.GB4906@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDEwMiBTYWx0ZWRfX7vW8bmyhGKCj
- 0aW0EeBxKmCaObewSg9OCDib9pX7Z2G5rZZ+1vU4W4OkU3lfIZAhcQjIo1iMYEmCNHJSVP44HQ9
- nvyRZXVNOAEopzsNr1w/Bk7faV8H91nYYPoQpW2BdmBjbP2/h5Oz66wbDl7xN8J7iSALzGDkPYe
- wn9eaLR7mq/YKRX6Ifxopv5PTIUErlm/VsSL48KeAwc9b0FVzow2VN3SGHu8DRyOYH2LLrfkCpS
- Bj3YZ7ijFy6JkGXOXBwbe9QQRZcKkS5fffJ03huGcyF7Eob444Aps6cmm81KMZ22wueSRD3cSUE
- ffVWi6EevMpX3BrzKNSaE08Jh9iQ4F6RCQXFzfjtwkgrtnW1AZGfQbEbbEi1MKbwXO/xjYlT6oz
- IcjVguszBoPUZsXXAnYpyf23U5ARm4/GtDbHJ+qtHwjq+H7ehdYpDt7wwQVjIuLL/Cln5HUG
-X-Proofpoint-GUID: qSdt4gKhYYwzbi9t0L3Z3Vt-kUySu-nj
-X-Authority-Analysis: v=2.4 cv=N88pF39B c=1 sm=1 tr=0 ts=688dfecc cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=6H0WHjuAAAAA:8 a=GauJToF0qxMHlBv3vicA:9
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: qSdt4gKhYYwzbi9t0L3Z3Vt-kUySu-nj
+X-Proofpoint-GUID: 6NexxowH4PIaNp3iQxkLNteODERK_YB_
+X-Authority-Analysis: v=2.4 cv=VZT3PEp9 c=1 sm=1 tr=0 ts=688e06af cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Hh3C_mqfd76DgmRPW0UA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDA5OSBTYWx0ZWRfX5keaKO/XOIRr
+ SkfXs2jG6Qobxux9sUj9fpS5dB+robrqnTidMersDqx9sPbDn0xogv//ne/SLe4eE+8wzwB51QJ
+ EnphrdM6tjXB0B95o+nRraPqx3joOVIlhlpUm9ibtRMTkI9lhUd+yFas9jXgAue5MREp09UUUTp
+ JE3uqu0vPHG+5b9cvx8jui1hAwdXp1Cn7vl/cQkL+JOyfhrkOZBVVXtjOhqDJzuX+kSbXYm/dU2
+ J5VQ+RCAm1jbevCPW35F4ek0tHQk01JZ4ySErhbxUm+mxHaJa+ze16wQfYM1D6JdD6jy8RmGZI2
+ jFwtE4ZjVdYFc5VSa4zuQWCMN1WknSZPNShNugsHWn1Bu7SiH5Kqs1F0G4GMyGUM5d8zhijBMw8
+ vA2ZAFe2jAh3lVnOKXM6gc+lK4E4IRyCiQsmvsziz5hdi919BWNvDK8HMIV47hp+/T4V5/Gk
+X-Proofpoint-ORIG-GUID: 6NexxowH4PIaNp3iQxkLNteODERK_YB_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-01_08,2025-08-01_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 mlxlogscore=999 spamscore=0 phishscore=0
- bulkscore=0 adultscore=0 suspectscore=0 impostorscore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ adultscore=0 mlxlogscore=999 malwarescore=0 bulkscore=0 phishscore=0
+ spamscore=0 mlxscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a
  authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508020102
+ engine=8.19.0-2505280000 definitions=main-2508020099
 
-On 7/29/25 8:49 AM, Luca Weiss wrote:
-> Hi Konrad,
+On 8/1/25 2:00 PM, Laurent Pinchart wrote:
+> Hi Frank,
 > 
-> On Thu Jul 17, 2025 at 11:46 AM CEST, Luca Weiss wrote:
->> Hi Konrad,
->>
->> On Thu Jul 17, 2025 at 10:29 AM CEST, Luca Weiss wrote:
->>> On Mon Jul 14, 2025 at 1:06 PM CEST, Konrad Dybcio wrote:
->>>> On 7/13/25 10:05 AM, Luca Weiss wrote:
->>>>> Add a devicetree description for the Milos SoC, which is for example
->>>>> Snapdragon 7s Gen 3 (SM7635).
+> On Wed, Jul 30, 2025 at 02:37:54PM -0400, Frank Li wrote:
+>> On Wed, Jul 30, 2025 at 09:04:17PM +0300, Laurent Pinchart wrote:
+>>> On Wed, Jul 30, 2025 at 12:39:43PM -0400, Frank Li wrote:
+>>>> On Wed, Jul 30, 2025 at 11:33:29AM +0200, Konrad Dybcio wrote:
+>>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 >>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> The DMA subsystem attempts to make it theoretically possible to pair
+>>>>> any DMA block with any user. While that's convenient from a
+>>>>> codebase sanity perspective, some blocks are more intertwined.
+>>>>>
+>>>>> One such case is the Qualcomm GENI, where each wrapper contains a
+>>>>> number of Serial Engine instances, each one of which can be programmed
+>>>>> to support a different protocol (such as I2C, I3C, SPI, UART, etc.).
+>>>>>
+>>>>> The GPI DMA it's designed together with, needs to receive the ID of the
+>>>>> protocol that's in use, to adjust its behavior accordingly. Currently,
+>>>>> that's done through passing that ID through device tree, with each
+>>>>> Serial Engine expressed NUM_PROTOCOL times, resulting in terrible
+>>>>> dt-bindings that are full of useless copypasta.
+>>>>>
+>>>>> In a step to cut down on that, let the DMA user give the engine driver
+>>>>> a hint at request time.
+>>>>>
+>>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 >>>>> ---
+
+[...]
+
+>>>>> diff --git a/include/linux/of_dma.h b/include/linux/of_dma.h
+>>>>> index fd706cdf255c61c82ce30ef9a2c44930bef34bc8..9f9bc4207b85d48d73c25aad4b362e7c84c01756 100644
+>>>>> --- a/include/linux/of_dma.h
+>>>>> +++ b/include/linux/of_dma.h
+>>>>> @@ -19,7 +19,7 @@ struct of_dma {
+>>>>>  	struct list_head	of_dma_controllers;
+>>>>>  	struct device_node	*of_node;
+>>>>>  	struct dma_chan		*(*of_dma_xlate)
+>>>>> -				(struct of_phandle_args *, struct of_dma *);
+>>>>> +				(struct of_phandle_args *, struct of_dma *, void *);
 >>>>
->>>> [...]
->>>>> +
->>>>> +		spmi_bus: spmi@c400000 {
->>>>> +			compatible = "qcom,spmi-pmic-arb";
->>>>
->>>> There's two bus instances on this platform, check out the x1e binding
+>>>> I suggest pass down more informaiton, like client's dev point. So we can
+>>>> auto create device link between client's dev and dma chan's device.
 >>>
->>> Will do
+>>> Is .of_dma_xlate() really the right place to do that ? If you want to
+>>> create a device link for PM reasons, isn't it better created when the
+>>> channel is requested ? It should also be removed when the channel is
+>>> freed.
 >>
->> One problem: If we make the labels spmi_bus0 and spmi_bus1 then we can't
->> reuse the existing PMIC dtsi files since they all reference &spmi_bus.
+>> I remember just need record client device pointer here.
 >>
->> On FP6 everything's connected to PMIC_SPMI0_*, and PMIC_SPMI1_* is not
->> connected to anything so just adding the label spmi_bus on spmi_bus0
->> would be fine.
+>>>>
+>>>> DMA Engineer device
+>>>>    DMA chan device
+>>>>        consumer clients' device.
+>>>>
+>>>> If consumer device runtime pm suspend can auto trigger DMA chan's device's
+>>>> runtime pm function.
+>>>>
+>>>> It will simplifly DMA engine's run time pm manage. Currently many DMA run
+>>>> time pm implement as, runtime_pm_get() when alloc and runtime_pm_put() at
+>>>> free channel.  But many devices request dma channel at probe, which make
+>>>> dma engine work at always 'on' state.
+>>>>
+>>>> But ideally, dma chan should be resume only when it is used to transfer.
+>>>
+>>> This is exactly what I was going to mention after reading the last
+>>> paragraph. Is there anything that prevents a DMA engine driver to
+>>> perform a rutime PM get() when a transfer is submitted
 >>
->> Can I add this to the device dts? Not going to be pretty though...
+>> DMA description is a queue, It is hard to track each descriptor submit and
+>> finished. espcially cycle buffer case.
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->> index d12eaa585b31..69605c9ed344 100644
->> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
->> @@ -11,6 +11,9 @@
->>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>  #include "milos.dtsi"
->> +
->> +spmi_bus: &spmi_bus0 {};
->> +
->>  #include "pm7550.dtsi"
->>  #include "pm8550vs.dtsi"
->>  #include "pmiv0104.dtsi" /* PMIV0108 */
+>> And according to dma engine API defination, submit a descriptor not
+>> neccessary to turn on clock, maybe just pure software operation, such as
+>> enqueue it to a software list.
 >>
->> Or I can add a second label for the spmi_bus0 as 'spmi_bus'. Not sure
->> other designs than SM7635 recommend using spmi_bus1 for some stuff.
+>> Many driver call dmaengine_submit() in irq context,  submit new descriptor
+>> when previous descriptor finished. runtime_pm_get() can NOT be called in
+>> atomic context.
 >>
->> But I guess longer term we'd need to figure out a solution to this, how
->> to place a PMIC on a given SPMI bus, if reference designs start to
->> recommend putting different PMIC on the separate busses.
+>> And some driver submit many descripor advance. Only issue_transfer() is
+>> actually trigger hardware to start transfer.
+>>
+>> Some client use cycle descripor, such audio devices.  Some audio devices
+>> have not free descriptor at their run time suspend function, just disable
+>> audio devices's clocks.  Audio devices run time suspend, which means no
+>> one use this dma channel, dma channel can auto suspend if built device link
+>> between audio device and dma chan devices.
+>>
+>> Some DMA client have not devices, such as memory to memory. for this kind
+>> case, it need keep chan always on.
+>>
+>> issue_transfer() can be call in atomic context. but trigger hardware transfer
+>> need clock and runtime_pm_get() can't be called in atomic context.
+>>
+>> Most case issue_transfer() is call in irq handle, which means device should
+>> already be in runtime resume statue.  DMA engine can safely access their
+>> register if using device link.
 > 
-> Any feedback on this regarding the spmi_bus label?
+> You have good points there, in particular the fact the issue_transfer()
+> can be called in interrupt context.
+> 
+> For me this calls for new DMA engine operations to "start/stop" the DMA
+> engine (better names are likely needed) from a client perspective.
+> 
+>>> and a put() when
+>>> it completes ? (Logically speaking, the actual implementation would
+>>> likely be a bit different in drivers, but the result would be similar.)
 
-I had an offline chat with Bjorn and we only came up with janky
-solutions :)
-
-What you propose works well if the PMICs are all on bus0, which is
-not the case for the newest platforms. If some instances are on bus0
-and others are on bus1, things get ugly really quick and we're going
-to drown in #ifdefs.
-
-
-An alternative that I've seen downstream is to define PMIC nodes in
-the root of a dtsi file (not in the root of DT, i.e. NOT under / { })
-and do the following:
-
-&spmi_busN {
-	#include "pmABCDX.dtsi"
-};
-
-Which is "okay", but has the visible downside of having to define the
-temp alarm thermal zone in each board's DT separately (and doing
-mid-file includes which is.. fine I guess, but also something we avoided
-upstream for the longest time)
-
-
-Both are less than ideal when it comes to altering the SID under
-"interrupts", fixing that would help immensely. We were hoping to
-leverage something like Johan's work on drivers/mfd/qcom-pm8008.c,
-but that seems like a longer term project.
-
-Please voice your opinions
+So.. do you folks want me to alter the patch in any way?
 
 Konrad
 
