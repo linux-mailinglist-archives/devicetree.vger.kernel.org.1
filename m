@@ -1,556 +1,244 @@
-Return-Path: <devicetree+bounces-201454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A282B18E3A
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 13:43:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14452B18E57
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 14:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F413AA3FBC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 11:43:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2F67AA52E5
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 12:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A84221555;
-	Sat,  2 Aug 2025 11:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044832248A4;
+	Sat,  2 Aug 2025 12:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F1Twnu4k"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UWM3ocOQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33890256D;
-	Sat,  2 Aug 2025 11:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FB0210F59
+	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 12:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754135024; cv=none; b=nklYSLGRANl6oKTCBF6YoxmSmPPZIzyY2Sml1d08lV2cSSWmsVs9iWwctCO8TpnBSCQq6Fhay76EA6BVwPdH6AYuZYxsM0UcBwIDPRKX7R2LcaolI/0SiXQ12wupUUu93wa50xkG8YuGh0zzm8pZLG4l3pmOMUOqxRBi8GXUPMc=
+	t=1754136271; cv=none; b=Q6fdglcLdP+0QAGDTZSC37INITjUQkfjN4COnjotitO4/ouNlLIHqB5pCm9jpbJxOhV1Xqz+zbUWwgqFio+XRyb06yAYU1oYMqTohwX40b03hAW2K2rIcFrvGI+kRmUGT5rqlBSOz2wAGsGejAQ8XiPquOXBQtXxjDhjZpi7Ryg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754135024; c=relaxed/simple;
-	bh=KN5mq0xSB8X9KKs/tm6snivXjWaEfNYoAHad5h2MKwc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I4sgvQfBG8R96zqMqA5FVXwVqkCNpeYv9PaT6HXo8hWXIhyKaqdIupUkdUiKBd68Tgd42QxWs4HRjbP/Kz0l+7Y8N1NEYlUsrr+z3g+pi5kf3gHWeUDAtKq+cwR7u+x9JkGKJ0ScboJH/9kUlWxmgyqBetdSoZ6Xxw6oIX+kWmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F1Twnu4k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42722C4CEEF;
-	Sat,  2 Aug 2025 11:43:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754135023;
-	bh=KN5mq0xSB8X9KKs/tm6snivXjWaEfNYoAHad5h2MKwc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=F1Twnu4k1FevZ17/ExKfO3nlPTXo8QJpCYDHqfIEU/W7CLcsqTIc7IQBDNCSiNj0k
-	 GI/5cYRAOh+jmLtO619fh3pf9wViH0aTUXbyTedap8gg+b1r/SLYCIntlmBxIhCen5
-	 1fyMLOHZqLM0f1bwMAnjiFkOakqYmRtPw5tdnzsgIvLneoY/kUjWA4ymudgZMv06Vz
-	 RRUTPZuc3t+/sXsM644s9ZELYGM2VD3Lw2/zr6+heLTxxCRLPa/yWRIFylAzrsawET
-	 3k96Nd0EfODNMMhIsrBaHJolFq3kgw6teeRHuVJgepvnvghlx5remmTaJqc1rqTXGP
-	 iPs6BisQdp0YQ==
-Date: Sat, 2 Aug 2025 12:43:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <20250802124333.67f64863@jic23-huawei>
-In-Reply-To: <20250802-tlv493d-sensor-v6_16-rc5-v2-1-e867df86ad93@gmail.com>
-References: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
-	<20250802-tlv493d-sensor-v6_16-rc5-v2-1-e867df86ad93@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1754136271; c=relaxed/simple;
+	bh=1uzB9r6w4x1mX3RQ6Geex7yxzg322VObRaZu0yQ2zp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HhI4N+pcCZkPoe9i/0km/VTv0FUCDliSGefIOWDhWFORsSmPZK1m4fOXKfK8d1mKqkw/OKnwCMoc1hEGEHinkvIkLZVwhwS9qXiErlRTc9lvDylE06HOC4jIfDX6zGwkQrRI/WFJ7hFB+nuJJNGaTZW3WrRZuOt+/1mut3shXiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UWM3ocOQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5727PJ6t010025
+	for <devicetree@vger.kernel.org>; Sat, 2 Aug 2025 12:04:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vCSAiNPoWEksGD85Y1vvHR/fUZ2hueivl1eXMSvDOnU=; b=UWM3ocOQ+HzZFmFm
+	EKT7uAZPdG3p6+e087FTZgXEGhjyrCSdKk7LDW4Pv42XZmfEHQxCZMMlSK3XbcXF
+	YVpuA6dgKz/WpXdNItfqKFZmlKBBQoaIpTUOf9s4Stt+xm2RMfeH35+U0IindvQu
+	CWhMJHMadNrtObCKFOOxWHaJg/2Wi24kiqARnlFXIFUaO7mS6inwdsF7H6wUFCMx
+	qrlgFHC5Sfys/6s4Sb3FHp5A+d7j2mDomWaDCqkJW71gHT0UQFG5ggv73vSWX635
+	OagCwra1zd8P9lWqXZSNqHIcnW6Oy169cI6QRXPwIC8HoM3HQCrk6PIlnCX2bfSU
+	iDCZmQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4899pa8uvc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 12:04:28 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7073674bc2aso5519216d6.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Aug 2025 05:04:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754136268; x=1754741068;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vCSAiNPoWEksGD85Y1vvHR/fUZ2hueivl1eXMSvDOnU=;
+        b=Vd0u1myNbNw5iZeViCZkvaNTlPqQwInABwUr0ijhxyF4FtF7gzHsWcT8eIyJIvGCui
+         Vf+Pbh8oOukK4GUTnM0wtTXr0I6DDfBa35CleUMUBte/sV6+QhGGs4aQOFOsfBD9ekQ6
+         btc6neiAKOVu2SfR9sRH71XfFad4SFUdhngAfM5I+Eme/YmDlHNaHwizEIpPKN32Qf1Y
+         9GQPd+jRJCFun3kOjyuD3RBnrGfNdETT0Ac1KGyDOWh92UR/HVuqW6ASjVLokNwhaAAj
+         lxPw2v5oSy08beMoOBRR4d7XChQZRkiw6FfpJmoicvLXZ0M+Hz6RQ4zZP+nxeRBjMFew
+         3VjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUY+/wUKM2QyMQ77vdrRpdVK3ehJoLG/CFYt3bhK/fgYDIwLNm+UL++CnI+MLsiZpFgYQ9DZQdxLFAn@vger.kernel.org
+X-Gm-Message-State: AOJu0YybO3TpCPs/ytyu48h+Uk0ClrHUiGp+d5sNKl5BqjuFhEmymvAS
+	in+sGCk8KhH8nIabPLdvvs609iFM3yLhokmJes8G8+T3/H0Hmiij7QkBqryjseyWUR+eE+2sd9q
+	vb49BL4XXhBXUrVw0upzEUZ7Dp8Cy3ZaW2X6S0enyTC5D0aowpDFiZKnIZOyGSsBi
+X-Gm-Gg: ASbGncsKVjS3cRWMX89yDp/1Iyn1V0suhsZHOLGkZh029c7MyaVBsZeavWKyrnWB8Jp
+	pFzctj+JBNyYdRV4mjTzg8r8yAgS/B+yCFkC15bpbjVifla0vLVz5o+lrONpj5UMTg9Xg4gpIfQ
+	71bDICtJKznzcugJzETIZslTEXBa69K8ohCYHIbmBac5cE2r37zFuuAsNEkM53OXzPsUDndFXQS
+	y8xgFL7L5JCLlDyJvR0XcVCfc4xrDDk1VuxXchG77s4OWcaPYGsK86BPr3dbIiSYIi73mIbf989
+	ND8ZP/NFjYgwneCZ9/ngHFJMyJUlViyfOwo1k5DVyJ7b/j8KpROeaRnCK6Aef9c4/kmc9r6lBMX
+	zVrHNObLEVB6yxYYqAQ==
+X-Received: by 2002:a05:622a:1a27:b0:4ae:f8d8:b0fb with SMTP id d75a77b69052e-4af10978640mr22589961cf.5.1754136267945;
+        Sat, 02 Aug 2025 05:04:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGHRqglWcLnh7BFuPTAQfd/4FrslPHxTGZAg9UU256erRSiEGc77z4U8yY2TghDqr4GcFIe7A==
+X-Received: by 2002:a05:622a:1a27:b0:4ae:f8d8:b0fb with SMTP id d75a77b69052e-4af10978640mr22589701cf.5.1754136267429;
+        Sat, 02 Aug 2025 05:04:27 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c099sm421786166b.108.2025.08.02.05.04.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Aug 2025 05:04:26 -0700 (PDT)
+Message-ID: <55420d89-fcd4-4cb5-a918-d8bbe2a03d19@oss.qualcomm.com>
+Date: Sat, 2 Aug 2025 14:04:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: Add initial Milos dtsi
+To: Luca Weiss <luca.weiss@fairphone.com>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        Thomas Gleixner
+ <tglx@linutronix.de>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+References: <20250713-sm7635-fp6-initial-v2-0-e8f9a789505b@fairphone.com>
+ <20250713-sm7635-fp6-initial-v2-14-e8f9a789505b@fairphone.com>
+ <3e0299ad-766a-4876-912e-438fe2cc856d@oss.qualcomm.com>
+ <DBE6TK1KDOTP.IIT72I1LUN5M@fairphone.com>
+ <DBE8G88CIQ53.2N51CABIBJOOO@fairphone.com>
+ <DBOC7QBND54K.1SI5V9C2Z76BY@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <DBOC7QBND54K.1SI5V9C2Z76BY@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODAyMDEwMiBTYWx0ZWRfX7vW8bmyhGKCj
+ 0aW0EeBxKmCaObewSg9OCDib9pX7Z2G5rZZ+1vU4W4OkU3lfIZAhcQjIo1iMYEmCNHJSVP44HQ9
+ nvyRZXVNOAEopzsNr1w/Bk7faV8H91nYYPoQpW2BdmBjbP2/h5Oz66wbDl7xN8J7iSALzGDkPYe
+ wn9eaLR7mq/YKRX6Ifxopv5PTIUErlm/VsSL48KeAwc9b0FVzow2VN3SGHu8DRyOYH2LLrfkCpS
+ Bj3YZ7ijFy6JkGXOXBwbe9QQRZcKkS5fffJ03huGcyF7Eob444Aps6cmm81KMZ22wueSRD3cSUE
+ ffVWi6EevMpX3BrzKNSaE08Jh9iQ4F6RCQXFzfjtwkgrtnW1AZGfQbEbbEi1MKbwXO/xjYlT6oz
+ IcjVguszBoPUZsXXAnYpyf23U5ARm4/GtDbHJ+qtHwjq+H7ehdYpDt7wwQVjIuLL/Cln5HUG
+X-Proofpoint-GUID: qSdt4gKhYYwzbi9t0L3Z3Vt-kUySu-nj
+X-Authority-Analysis: v=2.4 cv=N88pF39B c=1 sm=1 tr=0 ts=688dfecc cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=6H0WHjuAAAAA:8 a=GauJToF0qxMHlBv3vicA:9
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=Soq9LBFxuPC4vsCAQt-j:22
+X-Proofpoint-ORIG-GUID: qSdt4gKhYYwzbi9t0L3Z3Vt-kUySu-nj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-01_08,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 mlxlogscore=999 spamscore=0 phishscore=0
+ bulkscore=0 adultscore=0 suspectscore=0 impostorscore=0 mlxscore=0
+ lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2508020102
 
-On Sat, 02 Aug 2025 12:14:27 +0530
-Dixit Parmar <dixitparmar19@gmail.com> wrote:
+On 7/29/25 8:49 AM, Luca Weiss wrote:
+> Hi Konrad,
+> 
+> On Thu Jul 17, 2025 at 11:46 AM CEST, Luca Weiss wrote:
+>> Hi Konrad,
+>>
+>> On Thu Jul 17, 2025 at 10:29 AM CEST, Luca Weiss wrote:
+>>> On Mon Jul 14, 2025 at 1:06 PM CEST, Konrad Dybcio wrote:
+>>>> On 7/13/25 10:05 AM, Luca Weiss wrote:
+>>>>> Add a devicetree description for the Milos SoC, which is for example
+>>>>> Snapdragon 7s Gen 3 (SM7635).
+>>>>>
+>>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>> +
+>>>>> +		spmi_bus: spmi@c400000 {
+>>>>> +			compatible = "qcom,spmi-pmic-arb";
+>>>>
+>>>> There's two bus instances on this platform, check out the x1e binding
+>>>
+>>> Will do
+>>
+>> One problem: If we make the labels spmi_bus0 and spmi_bus1 then we can't
+>> reuse the existing PMIC dtsi files since they all reference &spmi_bus.
+>>
+>> On FP6 everything's connected to PMIC_SPMI0_*, and PMIC_SPMI1_* is not
+>> connected to anything so just adding the label spmi_bus on spmi_bus0
+>> would be fine.
+>>
+>> Can I add this to the device dts? Not going to be pretty though...
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>> index d12eaa585b31..69605c9ed344 100644
+>> --- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>> +++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
+>> @@ -11,6 +11,9 @@
+>>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>  #include "milos.dtsi"
+>> +
+>> +spmi_bus: &spmi_bus0 {};
+>> +
+>>  #include "pm7550.dtsi"
+>>  #include "pm8550vs.dtsi"
+>>  #include "pmiv0104.dtsi" /* PMIV0108 */
+>>
+>> Or I can add a second label for the spmi_bus0 as 'spmi_bus'. Not sure
+>> other designs than SM7635 recommend using spmi_bus1 for some stuff.
+>>
+>> But I guess longer term we'd need to figure out a solution to this, how
+>> to place a PMIC on a given SPMI bus, if reference designs start to
+>> recommend putting different PMIC on the separate busses.
+> 
+> Any feedback on this regarding the spmi_bus label?
 
-> The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
-> applications includes joysticks, control elements (white goods,
-> multifunction knops), or electric meters (anti tampering) and any
-> other application that requires accurate angular measurements at
-> low power consumptions.
->=20
-> The Sensor is configured over I2C, and as part of Sensor measurement
-> data it provides 3-Axis magnetic fields and temperature core measurement.
->=20
-> The driver supports raw value read and buffered input via external trigger
-> to allow streaming values with the same sensing timestamp.
->=20
-> While sensor has interrupt pin multiplexed with I2C SCL pin. But for bus
-> configurations interrupt(INT) is not recommended, unless timing constrain=
-ts
-> between I2C data transfers and interrupt pulses are monitored and aligned.
->=20
-> The Sensor's I2C register map and mode information is described in product
-> User Manual[Link].
->=20
-> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/inf=
-ineon-tlv493d-a1b6-datasheet-en.pdf
-> Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-Use=
-rManual-v01_03-EN.pdf
-> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+I had an offline chat with Bjorn and we only came up with janky
+solutions :)
 
-Hi Dixit,
-
-Some additional comments inline.
-
-> diff --git a/drivers/iio/magnetometer/tlv493d.c b/drivers/iio/magnetomete=
-r/tlv493d.c
-> new file mode 100644
-> index 000000000000..da1569ae97bf
-> --- /dev/null
-> +++ b/drivers/iio/magnetometer/tlv493d.c
-
-> +enum tlv493d_op_mode {
-> +	TLV493D_OP_MODE_POWERDOWN =3D 0,
-> +	TLV493D_OP_MODE_FAST,
-> +	TLV493D_OP_MODE_LOWPOWER,
-> +	TLV493D_OP_MODE_ULTRA_LOWPOWER,
-> +	TLV493D_OP_MODE_MASTERCONTROLLED,
-> +	TLV493D_OP_MODE_MAX
-In order to be able to use this as the type for a parameter as suggested
-below, you'll need to drop MODE_MAX.  Comments on why you shouldn't
-need that anyway below.
-
-> +};
-> +
-> +struct tlv493d_mode {
-> +	u8 m;
-You have an enum type.  Much better to use it.
-
-> +	u32 sleep_us;
-> +};
-> +
-> +struct tlv493d_data {
-> +	struct device *dev;
-> +	struct i2c_client *client;
-> +	/* protects from simultaneous sensor access and register readings */
-> +	struct mutex lock;
-> +	u8 mode;
-> +	u8 wr_regs[TLV493D_WR_REG_MAX];
-> +};
-> +
-> +/*
-> + * Different mode has different measurement cycle time, this time is
-> + * used in deriving the sleep and timemout while reading the data from
-> + * sensor in polling.
-> + * Power-down mode: No measurement.
-> + * Fast mode: Freq:3.3 KHz. Measurement time:305 usec.
-> + * Low-power mode: Freq:100 Hz. Measurement time:10 msec.
-> + * Ultra low-power mode: Freq:10 Hz. Measurement time:100 msec.
-> + * Master controlled mode: Freq:3.3 Khz. Measurement time:305 usec.
-> + */
-> +static struct tlv493d_mode tlv493d_mode_info[TLV493D_OP_MODE_MAX] =3D {
-If you want to size it, do it using the enum values. [] is fine here
-	[TLV493D_OP_MODE_POWERDOWN] =3D { }
-
-I'm not sure why this should embed the index.  Can you just drop .m?
-
-> +	{ .m =3D TLV493D_OP_MODE_POWERDOWN, .sleep_us =3D 0 },
-> +	{ .m =3D TLV493D_OP_MODE_FAST, .sleep_us =3D 305 },
-> +	{ .m =3D TLV493D_OP_MODE_LOWPOWER, .sleep_us =3D 10 * USEC_PER_MSEC	},
-> +	{ .m =3D TLV493D_OP_MODE_ULTRA_LOWPOWER, .sleep_us =3D 100 * USEC_PER_M=
-SEC },
-> +	{ .m =3D TLV493D_OP_MODE_MASTERCONTROLLED, .sleep_us =3D 305 }
-> +};
-> +
-> +/*
-> + * The datasheet mentions the sensor supports only direct byte-stream wr=
-ite
-> + * starting from register address 0x0. So for any modification to be mad=
-e to
-> + * any write registers, it must be written starting from the register ad=
-dress
-> + * 0x0. I2C write operation should not contain register address in the I=
-2C
-> + * frame, it should contains only raw byte stream for the write register=
-s.
-> + * I2C Frame: |S|SlaveAddr Wr|Ack|Byte[0]|Ack|Byte[1]|Ack|.....|Sp|
-> + */
-> +static int tlv493d_write_all_regs(struct tlv493d_data *data)
-> +{
-> +	int ret;
-> +
-> +	if (!data || !data->client)
-If either of these happen, something went very very wrong.
-No need for the checks.  Remove all similar ones.
-
-> +		return -EINVAL;
-> +
-> +	ret =3D i2c_master_send(data->client, data->wr_regs, ARRAY_SIZE(data->w=
-r_regs));
-> +	if (ret < 0) {
-> +		dev_err(data->dev, "i2c write registers failed, error: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int tlv493d_set_operating_mode(struct tlv493d_data *data, u8 mode)
-As below. Use the enum type.
-> +{
-> +	if (!data)
-> +		return -EINVAL;
-
-As above. Data is never going to be NULL, so don't check it.
-
-> +
-> +	u8 mode1_cfg, mode2_cfg;
-> +
-> +	switch (mode) {
-> +	case TLV493D_OP_MODE_POWERDOWN:
-> +		mode1_cfg =3D FIELD_PREP(TLV493D_MODE1_MOD_LOWFAST, 0);
-> +		mode2_cfg =3D FIELD_PREP(TLV493D_MODE2_LP_PERIOD, 0);
-> +		break;
-> +
-> +	case TLV493D_OP_MODE_FAST:
-> +		mode1_cfg =3D FIELD_PREP(TLV493D_MODE1_MOD_LOWFAST, 1);
-> +		mode2_cfg =3D FIELD_PREP(TLV493D_MODE2_LP_PERIOD, 0);
-> +		break;
-> +
-> +	case TLV493D_OP_MODE_LOWPOWER:
-> +		mode1_cfg =3D FIELD_PREP(TLV493D_MODE1_MOD_LOWFAST, 2);
-> +		mode2_cfg =3D FIELD_PREP(TLV493D_MODE2_LP_PERIOD, 1);
-> +		break;
-> +
-> +	case TLV493D_OP_MODE_ULTRA_LOWPOWER:
-> +		mode1_cfg =3D FIELD_PREP(TLV493D_MODE1_MOD_LOWFAST, 2);
-> +		mode2_cfg =3D FIELD_PREP(TLV493D_MODE2_LP_PERIOD, 0);
-> +		break;
-> +
-> +	case TLV493D_OP_MODE_MASTERCONTROLLED:
-> +		mode1_cfg =3D FIELD_PREP(TLV493D_MODE1_MOD_LOWFAST, 3);
-> +		mode2_cfg =3D FIELD_PREP(TLV493D_MODE2_LP_PERIOD, 0);
-> +		break;
-> +
-> +	default:
-> +		dev_err(data->dev, "invalid mode configuration\n");
-> +		return -EINVAL;
-And with the enum type you shouldn't need a default.
-
-> +	}
-> +
-> +	data->wr_regs[TLV493D_WR_REG_MODE1] |=3D mode1_cfg;
-> +	data->wr_regs[TLV493D_WR_REG_MODE2] |=3D mode2_cfg;
-> +
-> +	return tlv493d_write_all_regs(data);
-> +}
-> +
-> +static s16 tlv493d_get_channel_data(u8 *b, u8 ch)
-Use the enum.=20
-> +{
-> +	if (!b)
-> +		return -EINVAL;
-Unnecessary check
-> +
-> +	u16 val =3D 0;
-Variable declarations at the top of scope unless strong reason to do otherw=
-ise
-(only normally done for auto cleanup)
-> +
-> +	switch (ch) {
-> +	case TLV493D_AXIS_X:
-> +		val =3D FIELD_GET(TLV493D_BX_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << =
-4 |
-> +			FIELD_GET(TLV493D_BX2_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4;
-> +		break;
-> +	case TLV493D_AXIS_Y:
-> +		val =3D FIELD_GET(TLV493D_BY_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << =
-4 |
-> +			FIELD_GET(TLV493D_BX2_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
-> +		break;
-> +	case TLV493D_AXIS_Z:
-> +		val =3D FIELD_GET(TLV493D_BZ_MAG_Z_AXIS_MSB, b[TLV493D_RD_REG_BZ]) << =
-4 |
-> +			FIELD_GET(TLV493D_BZ2_MAG_Z_AXIS_LSB, b[TLV493D_RD_REG_BZ2]);
-> +		break;
-> +	case TLV493D_TEMPERATURE:
-> +		val =3D FIELD_GET(TLV493D_TEMP_TEMP_MSB, b[TLV493D_RD_REG_TEMP]) << 8 |
-> +			FIELD_GET(TLV493D_TEMP2_TEMP_LSB, b[TLV493D_RD_REG_TEMP2]);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-And with the enum, there will be no need to have a default.
-Not to mention passing -EINVAL through an s16 is unusual and I doubt wise.
-
-> +	}
-> +
-> +	return sign_extend32(val, 11);
-> +}
-> +
-> +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *x, s=
-16 *y,
-> +				s16 *z, s16 *t)
-> +{
-> +	u8 buff[7] =3D {};
-> +	int err, ret;
-> +	struct tlv493d_mode *mode;
-> +
-> +	if (!data)
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&data->lock);
-> +
-> +	ret =3D pm_runtime_resume_and_get(data->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	mode =3D &tlv493d_mode_info[data->mode];
-> +
-> +	/*
-> +	 * Poll until data is valid,
-> +	 * For a valid data TLV493D_TEMP_CHANNEL bit of TLV493D_RD_REG_TEMP sho=
-uld be set to 0.
-> +	 * The sampling time depends on the sensor mode. poll 3x the time of th=
-e sampling time.
-> +	 */
-> +	ret =3D read_poll_timeout(i2c_master_recv, err, err ||
-> +			FIELD_GET(TLV493D_TEMP_CHANNEL, buff[TLV493D_RD_REG_TEMP]) =3D=3D 0,
-> +			mode->sleep_us, (3 * mode->sleep_us), false, data->client, buff,
-> +			ARRAY_SIZE(buff));
-> +	if (ret) {
-> +		dev_err(data->dev, "i2c read poll timeout, error:%d\n", ret);
-> +		goto out;
-> +	}
-> +	if (err < 0) {
-> +		dev_err(data->dev, "i2c read data failed, error:%d\n", err);
-> +		ret =3D err;
-> +		goto out;
-> +	}
-> +
-> +	*x =3D tlv493d_get_channel_data(buff, TLV493D_AXIS_X);
-> +	*y =3D tlv493d_get_channel_data(buff, TLV493D_AXIS_Y);
-> +	*z =3D tlv493d_get_channel_data(buff, TLV493D_AXIS_Z);
-> +	*t =3D tlv493d_get_channel_data(buff, TLV493D_TEMPERATURE);
-> +
-> +out:
-> +	pm_runtime_mark_last_busy(data->dev);
-I've just rebased (mid merge window so i'll do it again on rc1) and now
-have the version of pm_runtime_put_autosuspend() that internally calls
-pm_runtime_mark_last_busy().
-
-So please drop the line above if you need to do a v3.
-=20
-> +	pm_runtime_put_autosuspend(data->dev);
-> +	return ret;
-> +}
-
-> +static int tlv493d_read_raw(struct iio_dev *indio_dev,
-> +			const struct iio_chan_spec *chan, int *val,
-> +			int *val2, long mask)
-> +{
-> +	struct tlv493d_data *data =3D iio_priv(indio_dev);
-> +	s16 x, y, z, t;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret =3D tlv493d_get_measurements(data, &x, &y, &z, &t);
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* Return raw values for requested channel */
-> +		switch (chan->address) {
-> +		case TLV493D_AXIS_X:
-> +			*val =3D x;
-> +			return IIO_VAL_INT;
-> +		case TLV493D_AXIS_Y:
-> +			*val =3D y;
-> +			return IIO_VAL_INT;
-> +		case TLV493D_AXIS_Z:
-> +			*val =3D z;
-> +			return IIO_VAL_INT;
-> +		case TLV493D_TEMPERATURE:
-> +			*val =3D t;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_SCALE:
-> +		switch (chan->type) {
-> +		case IIO_MAGN:
-> +			/*
-> +			 * Magnetic field scale: 0.0098 mTesla (i.e. 9.8 =C2=B5T)
-> +			 * Magnetic filed in Guass: mT * 10 =3D 0.098.
-> +			 */
-> +			*val =3D 98;
-> +			*val2 =3D 1000;
-> +			return IIO_VAL_FRACTIONAL;
-> +		case IIO_TEMP:
-> +			/*
-> +			 * Temperature scale: 1.1 =C2=B0C per LSB, expressed as 1100 m=C2=B0C
-> +			 * Returned as integer for IIO core to apply:
-> +			 * temp =3D (raw + offset) * scale
-> +			 */
-> +			*val =3D 1100;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		switch (chan->type) {
-> +		case IIO_TEMP:
-> +			/*
-> +			 * Temperature offset includes sensor-specific raw offset
-> +			 * plus compensation for +25=C2=B0C bias in formula.
-> +			 * offset =3D -raw_offset + (25000 / 1100)
-> +			 * -340 + 22.72 =3D -317.28
-> +			 */
-> +			*val =3D -31728;
-> +			*val2 =3D 100;
-> +			return IIO_VAL_FRACTIONAL;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-
-Can you get here? If not drop this.  Compilers are very good at complaining=
- if
-code changes later such that we should add this back.
-
-> +}
-
-> +static const struct iio_info tlv493d_info =3D {
-> +	.read_raw =3D tlv493d_read_raw,
-> +};
-> +
-> +static const struct iio_buffer_setup_ops tlv493d_setup_ops =3D { NULL };
-
-No need specify that NULL. Due to some odd quirks of compiler specific
-handling and C spec evolution (none of which apply to the kernel because
-we carefully choose build options) that is actually less likely to do what
-you want than =3D { };
+What you propose works well if the PMICs are all on bus0, which is
+not the case for the newest platforms. If some instances are on bus0
+and others are on bus1, things get ugly really quick and we're going
+to drown in #ifdefs.
 
 
+An alternative that I've seen downstream is to define PMIC nodes in
+the root of a dtsi file (not in the root of DT, i.e. NOT under / { })
+and do the following:
 
-> +
-> +static const unsigned long tlv493d_scan_masks[] =3D { GENMASK(3, 0), 0 };
-> +
-> +static int tlv493d_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct tlv493d_data *data;
-> +	int ret;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	data =3D iio_priv(indio_dev);
-> +	data->dev =3D dev;
-> +	data->client =3D client;
-> +	i2c_set_clientdata(client, indio_dev);
-> +
-> +	ret =3D devm_mutex_init(dev, &data->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D devm_regulator_get_enable(dev, "vdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to enable regulator\n");
-> +
-> +	/*
-> +	 * Setting Sensor default operating mode as Master Controlled mode as
-> +	 * it performs measurement cycle on-request only and stays in Power-Down
-> +	 * mode until next cycle is initiated.
-> +	 */
-> +	data->mode =3D TLV493D_OP_MODE_MASTERCONTROLLED;
-> +	ret =3D tlv493d_init(data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to initialize\n");
-> +
-> +	indio_dev->info =3D &tlv493d_info;
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +	indio_dev->name =3D client->name;
-> +	indio_dev->channels =3D tlv493d_channels;
-> +	indio_dev->num_channels =3D ARRAY_SIZE(tlv493d_channels);
-> +	indio_dev->available_scan_masks =3D tlv493d_scan_masks;
-> +
-> +	ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +			iio_pollfunc_store_time, tlv493d_trigger_handler,
-> +			&tlv493d_setup_ops);
-Similar to below no alignment. Something like;
-	ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev,
-					      iio_pollfunc_store_time,
-					      tlv493d_trigger_handler,
-					      &tlv493d_setup_ops);
+&spmi_busN {
+	#include "pmABCDX.dtsi"
+};
 
-If you do have a case where the line ends up very long with this style, then
-indent only one tab more than line above. If that applied here it would be.
-
-	ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev,
-		iio_pollfunc_store_time, tlv493d_trigger_handler,
-		&tlv493d_setup_ops);
+Which is "okay", but has the visible downside of having to define the
+temp alarm thermal zone in each board's DT separately (and doing
+mid-file includes which is.. fine I guess, but also something we avoided
+upstream for the longest time)
 
 
+Both are less than ideal when it comes to altering the SID under
+"interrupts", fixing that would help immensely. We were hoping to
+leverage something like Johan's work on drivers/mfd/qcom-pm8008.c,
+but that seems like a longer term project.
 
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "iio triggered buffer setup failed\n");
-> +
-> +	ret =3D pm_runtime_set_active(dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret =3D devm_pm_runtime_enable(dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_set_autosuspend_delay(dev, 500);
-> +	pm_runtime_use_autosuspend(dev);
-> +
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	ret =3D devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "iio device register failed\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int tlv493d_runtime_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct tlv493d_data *data =3D iio_priv(indio_dev);
-> +
-> +	return tlv493d_set_operating_mode(data, TLV493D_OP_MODE_POWERDOWN);
-> +}
-> +
-> +static int tlv493d_runtime_resume(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct tlv493d_data *data =3D iio_priv(indio_dev);
+Please voice your opinions
 
-Trivial but you could do
-	struct tlv493d_data *data =3D iio_priv(dev_get_drvdata(dev));
-with no real loss of readability.
-
-> +
-> +	return tlv493d_set_operating_mode(data, data->mode);
-> +}
-> +
-> +static DEFINE_RUNTIME_DEV_PM_OPS(tlv493d_pm_ops,
-> +			tlv493d_runtime_suspend, tlv493d_runtime_resume, NULL);
-Preferred wrapping here is
-static DEFINE_RUNTIME_DEV_PM_OPS(tlv493d_pm_ops, tlv493d_runtime_suspend,
-				 tlv493d_runtime_resume, NULL);
-
-So go nearer 80 chars on first line and align second line below the paramet=
-ers
-on the first line.
-
-Jonathan
-
+Konrad
 
