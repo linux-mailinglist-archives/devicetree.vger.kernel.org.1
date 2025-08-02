@@ -1,198 +1,166 @@
-Return-Path: <devicetree+bounces-201431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58D49B18AA5
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 06:12:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA149B18ABE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 07:31:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB0421AA4865
-	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 04:12:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83C02189FDED
+	for <lists+devicetree@lfdr.de>; Sat,  2 Aug 2025 05:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEF61A3142;
-	Sat,  2 Aug 2025 04:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240511A3BD7;
+	Sat,  2 Aug 2025 05:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="L+QSlnhy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Zl2DMW9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECC715E5DC
-	for <devicetree@vger.kernel.org>; Sat,  2 Aug 2025 04:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2C7367;
+	Sat,  2 Aug 2025 05:31:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754107953; cv=none; b=AYue3/c5+UpqKAuCyY6dOTMfz+wX2+XaQ5ga+pZEy9/Pt+SeAnUw/vl0MFBfOrtR1R7fHLKMPf6+Nk05dWPw3WnFrVw+b6kaWG6n038CD3Ww6YrLaatH+Zpy5rTr0orb9OWrgg4GT4BBvi1TN5mMYUvGQvVnKywtT4GEp9B14mA=
+	t=1754112699; cv=none; b=C7oWightZfJ9keLSRvLz0l0ynGc89atgujaCFb1LExrZKCONhcRyK+O6ps9xjOcOlr8Xn0pdfX4Gfh4GBSDDt879NsDEWX0eqsigzVJFwQa+48w4Hev69tvFkXxBtTUSIN0kBWDiePWJDLSLPG64nHVcgYSvlbY97RMO2uN4+hY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754107953; c=relaxed/simple;
-	bh=jiSy6EgaRG9Ud8aFoKJwA0IhJhNFA8CwUL0Sj/LVdWg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WyBlFvGrC4BIanj9gF1vGJ6c+boMHeQuuOev4H9iV2V4JOUey6iHcRuJ0WhAvIMqeglp9fjrhnWXAZhT6w6tIIlElmAHxJRR+P2qjpuQuHb5MTtSzU30sr1Wp/qSpZUYpWa/G0LAZKnnlOUwvd1mSzRERmsjo97mAJ4alcfUswA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=L+QSlnhy; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3e3e4a5715dso5828905ab.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Aug 2025 21:12:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1754107951; x=1754712751; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ip2rHPlCiGFGcr5YGyF7kmeRLuJtKeayor/PNig1fgE=;
-        b=L+QSlnhy6ypqQOWBUSQhU9qaWdi+P2lVkRTeDvbiXhEVh1j8gr3vZ4bo/wovMmrpkm
-         edSpm3fhBnetYfo+t4SKySHWSScwW6IFkj6AeE5KiuJ657Ibw9X37WWeuzJEiquet8Zx
-         osRZ8esPNb5PSu6npexUrUO7PzkNP8f5KsKNqNdp9Sd8a8lHmI1bgw5/aMddsSIy1q8i
-         gl2NuOHISk4Y4OSGu6GL1iIIYvJGNx3cDUTW9y8l6N1AHOBtJPOTg0/QDgDQ/88Ny/Vr
-         ARUvI1dtpBKGxiXUmBbtVOtGrauDCFUpTnG/jP1UE6fAIEmqwmQyy3YaWIX91H5aBaZA
-         tJaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754107951; x=1754712751;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ip2rHPlCiGFGcr5YGyF7kmeRLuJtKeayor/PNig1fgE=;
-        b=bwlqpzJ/r5oh06RO1l7XpREoYUIh9S+PLpPFuGF9qxwCVPeGHmFEunGTz+h3WhBIKo
-         rX7fqvAAIGQl9Pt2Tx1uD2hQnCN+UkCf/tKLt21CzbmeHpUHJGzx7hrAYxdyxD9yd3Pc
-         nFpdyS4aGFEo9T7gna3acqFow7PEytYq5OyS1idVS5zNXpkSKovef3rPoPrHsxhAlJex
-         PkWj/wLS4m2+QNmuzaYwvqS2SRPjUcc4uBrtsINlT3+5TNV0V09qowYtTwkgowZFQhg3
-         T9YanMPxAeUyIeLRSFloaJsr9QRiqhUCNQHG8/T2DGmVdns7vR18TuoQ+nomWkl7Jxfq
-         fopw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQR6qkZt6MmUjAPEKQIiWixuzrUx+kMwleWdNocx9yc2tE7NBxoioN6atJRihwdK3H9vyU5umP4dU+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxP/NE5DHWOjlnaGk7ZhMiJOgw7tdToQx566xTuMYn4RncPQesV
-	tQcAvkQ1SZeyIn6bbOXyp1jqeSgUJAA/EwDG2no4ZDVOY0zn24naiurYy1+02pOWOh0=
-X-Gm-Gg: ASbGncu5LQGfFfoJUR0sqJ+NA6RD5m+lTSaGgyNaVftwo6BtGaSHGPcRDNGMVmoHPFJ
-	6Zl21GIB65LyR1qjIcg8D0D09a/8t+zubGqKM2Kf4a6AC+nzTnBZdA/kc2QA2cUPw9ZEFtK2/Bw
-	v3Ymy9P7JPT37S+Gd2YDXrMyx3/IMNyS0hZMTGyYXk7YPLkEL/GErQuSa7GRZSbEJHli39ecexf
-	/iWKpKrWLFYautwjukhieEG295LuOzLtQF/Y64TmoUeIC3Qq2/dAUI/zFNIRm55u7Dd0t63yApk
-	NikxkssZB1ySiEPQMr0rR+Ojp7oUUHo2F8g8bZIwzEx+HZ7epKh5yRgFUg9H9ol85G+03dGNYDA
-	y0Os5WhHpkFCTSyh2u7AVHncVJW9fiGwxiRx6Q0FSfvzWG2c4
-X-Google-Smtp-Source: AGHT+IFWXv/meUt6qnzrJTilZJBXyZAntv/HisFVx8CQALlAxTer9z3pL9Su5iQx9S/dGPdOHi5YGA==
-X-Received: by 2002:a05:6e02:2487:b0:3e3:b6ab:f869 with SMTP id e9e14a558f8ab-3e416191ba5mr36293525ab.13.1754107950776;
-        Fri, 01 Aug 2025 21:12:30 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.11.2])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50a55d5da1csm1652544173.65.2025.08.01.21.12.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Aug 2025 21:12:30 -0700 (PDT)
-Message-ID: <612a13d3-d3a6-460b-90fd-c26e47b80711@sifive.com>
-Date: Fri, 1 Aug 2025 23:12:28 -0500
+	s=arc-20240116; t=1754112699; c=relaxed/simple;
+	bh=ZRLdGwSqLnclEoXX/4J/rmkHU+mE/M/nSHHqiMZELEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFTeWi0z2WBuc77kOGNXlGMoW+l8Tdr99xlC0Kss4Am0JV8c4xT5IWTRHJ6nXX1JIdDp4F/TqRiHQ1QoTD2AoxGU/dMoF1VhH1nW9td/YA5Cy59ExW0xRH2lD4RLmMMj5AiHFS4n66X3/KHOaTqM6Gaxpd5b3gDId1un8IY7/r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Zl2DMW9D; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754112697; x=1785648697;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZRLdGwSqLnclEoXX/4J/rmkHU+mE/M/nSHHqiMZELEk=;
+  b=Zl2DMW9DjQ5JJehFSx3fv7ypqkKVirCjz3caxU2fuif5HUOJnvPmfBnx
+   kcT9NP91mXn1KSGh/wtGgIW1yldbCfACt2+gHw/FUIb9cIfR+Lz/ZDCLp
+   +hICCFlYzSkN5S6TvmvkoibuSKAh7ZDI9tEkjSp9yvsxqZNbQUzP5VWH0
+   SoQOWeFrxkOm3bmF6rbqkOJNJcY7Y8yk6/IW6DENRVzzun03JP85tseA1
+   oaz6sKDq0er2aaS0HSXZ8LT48+jGVbY/4Un0LiRcp8X17gTOWIPQMhnL8
+   sTyU64yNHJ0YM1hV75awY2cTjN9I7QHxgy6oz3chbRtgUYH3ggaTM/z32
+   g==;
+X-CSE-ConnectionGUID: /lh2stC1QlKYhsC47FwXxg==
+X-CSE-MsgGUID: VuokqIvySgmDl85PXRZsOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11508"; a="59077185"
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
+   d="scan'208";a="59077185"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2025 22:31:36 -0700
+X-CSE-ConnectionGUID: 9lV5Yxb2S8+W5MRccSjssQ==
+X-CSE-MsgGUID: j4cU7ZYqSbShgDAsFQAmQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
+   d="scan'208";a="169106513"
+Received: from lkp-server01.sh.intel.com (HELO 160750d4a34c) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 01 Aug 2025 22:31:31 -0700
+Received: from kbuild by 160750d4a34c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ui4q9-0005C8-0k;
+	Sat, 02 Aug 2025 05:31:29 +0000
+Date: Sat, 2 Aug 2025 13:30:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Haotien Hsu <haotienh@nvidia.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	Brad Griffis <bgriffis@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>,
+	Vedant Deshpande <vedantd@nvidia.com>,
+	Akhil R <akhilrajeev@nvidia.com>,
+	Jinjie Ruan <ruanjinjie@huawei.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Haotien Hsu <haotienh@nvidia.com>, Henry Lin <henryl@nvidia.com>,
+	Jui Chang Kuo <jckuo@nvidia.com>, Wayne Chang <waynec@nvidia.com>,
+	WK Tsai <wtsai@nvidia.com>
+Subject: Re: [PATCH 4/4] usb: xhci: tegra: Support USB wakeup function for
+ Tegra234
+Message-ID: <202508021305.3ENY5oQC-lkp@intel.com>
+References: <20250801095748.385437-5-haotienh@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 02/24] dt-bindings: mailbox: Add bindings for RISC-V
- SBI MPXY extension
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Alexandre Ghiti <alex@ghiti.fr>,
- Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
- Rahul Pathak <rpathak@ventanamicro.com>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>,
- Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>,
- Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, "Rafael J . Wysocki"
- <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-References: <20250728094032.63545-1-apatel@ventanamicro.com>
- <20250728094032.63545-3-apatel@ventanamicro.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20250728094032.63545-3-apatel@ventanamicro.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250801095748.385437-5-haotienh@nvidia.com>
 
-Hi Anup,
+Hi Haotien,
 
-On 2025-07-28 4:40 AM, Anup Patel wrote:
-> Add device tree bindings for the RISC-V SBI Message Proxy (MPXY)
-> extension as a mailbox controller.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  .../bindings/mailbox/riscv,sbi-mpxy-mbox.yaml | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml b/Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
-> new file mode 100644
-> index 000000000000..061437a0b45a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/riscv,sbi-mpxy-mbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V SBI Message Proxy (MPXY) extension based mailbox
-> +
-> +maintainers:
-> +  - Anup Patel <anup@brainfault.org>
-> +
-> +description: |
-> +  The RISC-V SBI Message Proxy (MPXY) extension [1] allows supervisor
-> +  software to send messages through the SBI implementation (M-mode
-> +  firmware or HS-mode hypervisor). The underlying message protocol
-> +  and message format used by the supervisor software could be some
-> +  other standard protocol compatible with the SBI MPXY extension
-> +  (such as RISC-V Platform Management Interface (RPMI) [2]).
-> +
-> +  ===========================================
-> +  References
-> +  ===========================================
-> +
-> +  [1] RISC-V Supervisor Binary Interface (SBI) v3.0 (or higher)
-> +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
-> +
-> +  [2] RISC-V Platform Management Interface (RPMI) v1.0 (or higher)
-> +      https://github.com/riscv-non-isa/riscv-rpmi/releases
-> +
-> +properties:
-> +  compatible:
-> +    const: riscv,sbi-mpxy-mbox
-> +
-> +  "#mbox-cells":
-> +    const: 2
-> +    description:
-> +      The first cell specifies channel_id of the SBI MPXY channel,
-> +      the second cell specifies MSG_PROT_ID of the SBI MPXY channel
+kernel test robot noticed the following build warnings:
 
-What is the purpose of the second mailbox cell?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on usb/usb-testing usb/usb-next usb/usb-linus tegra/for-next linus/master v6.16 next-20250801]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The client can probe the message protocol using a SBI call, if it doesn't just
-assume a protocol based on the kind of node that references this mailbox. The
-SBI implementation knows the message protocol from the kind of node that
-instantiates the channel (for example riscv,rpmi-mpxy-clock has
-riscv,sbi-mpxy-channel-id). So this cell looks redundant.
+url:    https://github.com/intel-lab-lkp/linux/commits/Haotien-Hsu/dt-bindings-usb-Add-wake-up-support-for-Tegra234-XUSB-host-controller/20250801-180040
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250801095748.385437-5-haotienh%40nvidia.com
+patch subject: [PATCH 4/4] usb: xhci: tegra: Support USB wakeup function for Tegra234
+config: arm-defconfig (https://download.01.org/0day-ci/archive/20250802/202508021305.3ENY5oQC-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 8f09b03aebb71c154f3bbe725c29e3f47d37c26e)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250802/202508021305.3ENY5oQC-lkp@intel.com/reproduce)
 
-Regards,
-Samuel
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508021305.3ENY5oQC-lkp@intel.com/
 
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mailbox {
-> +          compatible = "riscv,sbi-mpxy-mbox";
-> +          #mbox-cells = <2>;
-> +    };
+All warnings (new ones prefixed by >>):
 
+>> drivers/usb/host/xhci-tegra.c:1997:15: warning: unused variable 'i' [-Wunused-variable]
+    1997 |         unsigned int i;
+         |                      ^
+   1 warning generated.
+
+
+vim +/i +1997 drivers/usb/host/xhci-tegra.c
+
+  1992	
+  1993	static void tegra_xusb_remove(struct platform_device *pdev)
+  1994	{
+  1995		struct tegra_xusb *tegra = platform_get_drvdata(pdev);
+  1996		struct xhci_hcd *xhci = hcd_to_xhci(tegra->hcd);
+> 1997		unsigned int i;
+  1998	
+  1999		tegra_xusb_deinit_usb_phy(tegra);
+  2000	
+  2001		pm_runtime_get_sync(&pdev->dev);
+  2002		usb_remove_hcd(xhci->shared_hcd);
+  2003		usb_put_hcd(xhci->shared_hcd);
+  2004		xhci->shared_hcd = NULL;
+  2005		usb_remove_hcd(tegra->hcd);
+  2006		usb_put_hcd(tegra->hcd);
+  2007	
+  2008		dma_free_coherent(&pdev->dev, tegra->fw.size, tegra->fw.virt,
+  2009				  tegra->fw.phys);
+  2010	
+  2011		if (tegra->padctl_irq)
+  2012			pm_runtime_disable(&pdev->dev);
+  2013	
+  2014		tegra_xusb_dispose_wake(tegra);
+  2015	
+  2016		pm_runtime_put(&pdev->dev);
+  2017	
+  2018		tegra_xusb_disable(tegra);
+  2019		tegra_xusb_padctl_put(tegra->padctl);
+  2020	}
+  2021	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
