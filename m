@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-201507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC2B2B1949E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 19:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49ACBB194CC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 20:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85A973B50E1
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 17:08:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E35ED3B30FA
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 18:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19191C5D59;
-	Sun,  3 Aug 2025 17:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784CC1DE4F6;
+	Sun,  3 Aug 2025 18:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDeZilT7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCIvEGXx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB561A08A4;
-	Sun,  3 Aug 2025 17:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B19142AA1;
+	Sun,  3 Aug 2025 18:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754240913; cv=none; b=lS/YRT4yPHIGvWHlKqDiJdymwkxvaqvoDTBUPGF8rnLIAIu9mwmq1TssCQLytqGD2KvUyAYcH0xad7zijo1TzmdnEAxsSFbXOEceAG7Z0K0tV+DvrAfYY1aPU6IEvTsGoT29CFIRUBgETGU7zeEiBq6jlgYI7hHWjqpWhUILxPo=
+	t=1754246492; cv=none; b=DCPRoOixiKttL32UGdIhFdiO4tHTc7SDoGl01I2WkYG1etOFHBKiRdaVWpZv2C/h3O/Ba6G3OLEpcg3GDpT9ydXs7N4m3g+WWIfg6SVMQ1KQFeHEhJkGFihGwfvU2ig0Q6CiXYVH1/KSc2tnxaSkBkPQOjeprnkGdTrHfFUA06Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754240913; c=relaxed/simple;
-	bh=/ZZtatKkLrPIKjN/Dctlo4xJJmel6AFn/3nBEM2/hvg=;
+	s=arc-20240116; t=1754246492; c=relaxed/simple;
+	bh=pJSchiabA1YRkiP0bPpnxJ359/pK8eXxW74NJWXuqas=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YAArtDXubk36UZX5HGVZ0yUDtULFeox9v3hiJxo+Vc2lri3U7iwKGhXoInkzqubQeu+BjV+8+1LVHzQtj3WlXTXv21BwRDhwRx1EeqsSy+Kqld4lk8ni1biDCH87wXachoM+xq1pBM3d2Mkz7ItxcT/x7LHEcyL3L3zquBG3v/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDeZilT7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAF58C4CEEB;
-	Sun,  3 Aug 2025 17:08:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TRSGs3xSbKN5QqYXE0r+lgvi9ksiG6bkxt21qWiWnYeTUq4KemD7cd0acvF1K7in6pfvwDfRKxAdmMV71Kwo5u3zi3oow2XK3OweQVngWDcRQsVzFJoP0ixvhVkNEinixTfemHk0P00UuGMwzeM5ucIufN8uGxi1Um+YRbK0C1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCIvEGXx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CE3DC4CEEB;
+	Sun,  3 Aug 2025 18:41:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754240913;
-	bh=/ZZtatKkLrPIKjN/Dctlo4xJJmel6AFn/3nBEM2/hvg=;
+	s=k20201202; t=1754246491;
+	bh=pJSchiabA1YRkiP0bPpnxJ359/pK8eXxW74NJWXuqas=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WDeZilT7Sz7ehXlkGHJ7sVIixzH7xQFhJFCuR+ZUcbvlaANVa+jSeYcttAsrUg7o8
-	 4IGHgLgVz5r2EocKcer6JXv38SshWucqQQatOnW33pUWl3K6OoAvH8Er2DYp4O2FJK
-	 zOKOnxyYGGJrer05HHMktnK7T6y4BPM7tIs4qZwiCKxmQ6xkLWVFwkGFjHsY3xtEkg
-	 rydyhQgi0OCDiotyWJmt/dF7VulVEdvfqXVaGZp/AE1BCy0sT3Ykt4sLP/dCLEJTSF
-	 vDo2sDZU6HtQzPzp9f9jMd3QfWJj/Oix+MRmJfd3nPgD7pBl2u9Zx+AKm9YslsrI35
-	 e7XTChQ3tTAOg==
-Date: Sun, 3 Aug 2025 12:08:32 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	b=SCIvEGXxXcaJO7lhp3U+LpgyENujnhMCxTpx6ocsZeW1drmbEMm4p4oYQIZTp8V/Q
+	 85IpAkiJem8EkFX+fPMj66W0/8QFgLr8O7T3AYpal4jC2NgoTZZWQ+cG1zYxZqKFmN
+	 KpJDKxFJdRtko9VgrbcjDVh8KaLrg3UDvTtyY9I8rxUPMQ6RXNZrTP+4i3OuOKL7Kh
+	 v3qd7fjIMPxeN2oVQLbM89wIkipSg+PCzkM25wGrHxfhAlbpNtDeo7pjVIpTQ4t7Aq
+	 0O7cxtRStpGSu26pbtUAgbuDEt4GPTvoqUnrI6+3ZJ/h5wCiexuxjNd/IyJ1gASew+
+	 SkC8ae8zIAJMA==
+Date: Sun, 3 Aug 2025 11:41:27 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: renesas: document RZ/T2H
- and RZ/N2H SoCs
-Message-ID: <175424091132.539145.9156019133375295764.robh@kernel.org>
-References: <20250801154550.3898494-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250801154550.3898494-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2 1/3] dt-bindings: net: thead,th1520-gmac: Describe
+ APB interface clock
+Message-ID: <aI-tV0qk6fGP7yJ-@gen8>
+References: <20250801091240.46114-1-ziyao@disroot.org>
+ <20250801091240.46114-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,42 +72,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250801154550.3898494-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250801091240.46114-2-ziyao@disroot.org>
 
-
-On Fri, 01 Aug 2025 16:45:48 +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, Aug 01, 2025 at 09:12:38AM +0000, Yao Zi wrote:
+> Besides ones for GMAC core and peripheral registers, the TH1520 GMAC
+> requires one more clock for configuring APB glue registers. Describe
+> it in the binding.
 > 
-> Document the pin and GPIO controller IP for the Renesas RZ/T2H
-> (R9A09G077) and RZ/N2H (R9A09G087) SoCs, and add the shared DTSI
-> header file used by both the bindings and the driver.
-> 
-> The RZ/T2H SoC supports 729 pins, while the RZ/N2H supports 576 pins.
-> Both share the same controller architecture; separate compatible
-> strings are added for each SoC to distinguish them.
-> 
-> Co-developed-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Fixes: f920ce04c399 ("dt-bindings: net: Add T-HEAD dwmac support")
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Tested-by: Drew Fustini <fustini@kernel.org>
 > ---
-> v3->v4:
-> - Used patternProperties for pin configuration nodes
-> - Expanded example nodes
+>  .../devicetree/bindings/net/thead,th1520-gmac.yaml          | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> v2->v3:
-> - Dropped refference to gpio.txt instead pointed to
->   in include/dt-bindings/gpio/gpio.h.
-> 
-> v1->v2:
-> - Added a new DT binding file
-> ---
->  .../pinctrl/renesas,rzt2h-pinctrl.yaml        | 177 ++++++++++++++++++
->  .../pinctrl/renesas,r9a09g077-pinctrl.h       |  22 +++
->  2 files changed, 199 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzt2h-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h
+> diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> index 6d9de3303762..b3492a9aa4ef 100644
+> --- a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+> @@ -62,11 +62,13 @@ properties:
+>      items:
+>        - description: GMAC main clock
+>        - description: Peripheral registers interface clock
+> +      - description: APB glue registers interface clock
+>  
+>    clock-names:
+>      items:
+>        - const: stmmaceth
+>        - const: pclk
+> +      - const: apb
+>  
+>    interrupts:
+>      items:
+> @@ -88,8 +90,8 @@ examples:
+>          compatible = "thead,th1520-gmac", "snps,dwmac-3.70a";
+>          reg = <0xe7070000 0x2000>, <0xec003000 0x1000>;
+>          reg-names = "dwmac", "apb";
+> -        clocks = <&clk 1>, <&clk 2>;
+> -        clock-names = "stmmaceth", "pclk";
+> +        clocks = <&clk 1>, <&clk 2>, <&clk 3>;
+> +        clock-names = "stmmaceth", "pclk", "apb";
+>          interrupts = <66>;
+>          interrupt-names = "macirq";
+>          phy-mode = "rgmii-id";
+> -- 
+> 2.50.1
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Drew Fustini <fustini@kernel.org>
+
+Thank you for making all 3 clocks required.
+
+Drew
+
 
 
