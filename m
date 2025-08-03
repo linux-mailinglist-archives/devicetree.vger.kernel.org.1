@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F588B19310
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 10:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDED3B19316
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 10:18:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A92A16BF2B
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 08:17:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3350171890
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 08:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3732326D4C1;
-	Sun,  3 Aug 2025 08:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117C2286433;
+	Sun,  3 Aug 2025 08:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KmaIPYrn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gmYmuOQg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065C46ADD;
-	Sun,  3 Aug 2025 08:17:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7800284669;
+	Sun,  3 Aug 2025 08:18:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754209048; cv=none; b=uO9kV0oCOeqbyRjHpYu9ibXKx48Dvl3ap8lKaZReipocBnxVt7Or0vPtsjMrsqod8svy3HyBxE6EdjK8qaRKwYlt/v9hbj9hSJf4hnKXF5RpVldcVv/EFW/Zu7EFG/5ZZKyOnW4DGl2BhhbpSoog4MKzCrGsRp3im48Il0IPik4=
+	t=1754209113; cv=none; b=b3d+5LQbKRPbyT+obqyuQBg89KVEx1VAwqw4lNdr627TfER76MybJQ8gDqhFvSETA/d0IBiFnLzO9Jf78ml96bUqNONLhgKxR4n6YO2UO6/CbrhUhhMcV+wEfjGUs4iU9xNS8SsJyBzmap96gtSHfxj4S/j5ohsegVm0aENZKdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754209048; c=relaxed/simple;
-	bh=dG5Q14Vv2tG8ILJ0dE05rABknNd8Pl7HaZzDqnCNezo=;
+	s=arc-20240116; t=1754209113; c=relaxed/simple;
+	bh=H3Qe7OOM+iEVU40OI4Jad68EOrknCQC876wU3kNEge0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVcA2HZqsx1hkHvlsXfFchyqJw5vjrddyo8MLQbQPq+NzBUUih5T8VM/szrwBmintstFuYARkV4L8KaEB/7SCvyhVBbTY49YAKSUwQyIuaU2wiypK/o31ye2DZ7nIf+7Uk64qBk691qYFRLNNsUD0KUo1Iuy28Ol7VNILB8Xgp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KmaIPYrn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D895C4CEF8;
-	Sun,  3 Aug 2025 08:17:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hkPa7CX2XC8PIsXwjDlYvS5/Nwn4oODEm/LC66Yapo9xUq5gHW5IS7rJ6HYVH4ubBvktPNnTZmh5eLgk2J6cHCO1Dvx4VBSO2oclMn+pH/UHD5khaS/O++AMbv870UufvBlEj4JCw3aZkjreiE/25fnbb8blRhG+PyWBfVGLreI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gmYmuOQg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01C59C4CEEB;
+	Sun,  3 Aug 2025 08:18:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754209047;
-	bh=dG5Q14Vv2tG8ILJ0dE05rABknNd8Pl7HaZzDqnCNezo=;
+	s=k20201202; t=1754209112;
+	bh=H3Qe7OOM+iEVU40OI4Jad68EOrknCQC876wU3kNEge0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KmaIPYrn/8NwQLEGCvtM6+8llJX7vEXD820E83K7OaYX3+LF+MvRhDInEBUjAUF9l
-	 Nh3M9d3WwsKtr9oSZFqBuN2WPdAgnOV2J6VWT276fK3iHSSZYnyaObxp0G1JbAPMq2
-	 bYwmUHrXdurSc0kqW2R4BZlFeC/EX0+o/F2hRaXAK97TUwsoFjJ9wMG1ckJEpwF4Xg
-	 Zlf3GTusnBKNloEvNJAFPVY9s44pLpRhy6OAQ0fEDUMAbDyCwWscksyTLw3psO1PRe
-	 sgfP1C+KN++ZvilYyPucuG0V5Ni3RiEBQWFOl6sNg9sR1uh6SaO2VAqeP/8BHrHCcP
-	 20jsr6CI2zQSg==
-Message-ID: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
-Date: Sun, 3 Aug 2025 10:17:21 +0200
+	b=gmYmuOQglDHc8Dhub6N28oyK07r+M8hwy195nRQPR2a6MxstB3TmoI54lLCnm6E48
+	 vXOZTI3RxqQaoX1O3hxJSItiRyc9/tlSUn56pDi3BTODtmF390hnpZsF41ZcmAErhM
+	 JdB5aaCkE+8xzTD6eOMjKJXuNnnVV5CS9oI9xEq2j5gowBevj0udjY2tRmzi2NVB0d
+	 JzyJeG71sWBK2etj1XYQcir+ansxNEo0HjTwNz2zeYR72u7FrhgIiIzTHu8Gl2n5Ws
+	 mcyzv/zqYH43/L7V9imvR+/TMqrorE16HoX+RqJ0luNxb0UrRv2aRW6SG4+zJqa2ZS
+	 riSR+XOcziAug==
+Message-ID: <2889bb9d-8d0d-44a9-a224-0d04562b4a0f@kernel.org>
+Date: Sun, 3 Aug 2025 10:18:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/27] dt-bindings: clock: mediatek: Describe MT8196
- clock controllers
-To: Rob Herring <robh@kernel.org>, Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de,
- richardcochran@gmail.com, guangjie.song@mediatek.com, wenst@chromium.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
- kernel@collabora.com, =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>
-References: <20250730105653.64910-1-laura.nao@collabora.com>
- <20250730105653.64910-10-laura.nao@collabora.com>
- <20250801135604.GA3045005-robh@kernel.org>
+Subject: Re: [PATCH v2 9/9] dt-bindings: nvmem: mediatek: efuse: Add support
+ for MT8196
+To: Laura Nao <laura.nao@collabora.com>, robh@kernel.org
+Cc: andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
+ arnd@arndb.de, bchihi@baylibre.com, colin.i.king@gmail.com,
+ conor+dt@kernel.org, daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+ frank-w@public-files.de, kernel@collabora.com, krzk+dt@kernel.org,
+ lala.lin@mediatek.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org, lukasz.luba@arm.com, matthias.bgg@gmail.com,
+ nfraprado@collabora.com, rafael@kernel.org, rui.zhang@intel.com,
+ srini@kernel.org, u.kleine-koenig@baylibre.com, wenst@chromium.org
+References: <20250730235451.GA1911689-robh@kernel.org>
+ <20250731102650.145641-1-laura.nao@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,37 +109,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250801135604.GA3045005-robh@kernel.org>
+In-Reply-To: <20250731102650.145641-1-laura.nao@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/08/2025 15:57, Rob Herring wrote:
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +    description:
->> +      Reset lines for PEXTP0/1 and UFS blocks.
->> +
->> +  mediatek,hardware-voter:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
->> +      MCU manages clock and power domain control across the AP and other
->> +      remote processors. By aggregating their votes, it ensures clocks are
->> +      safely enabled/disabled and power domains are active before register
->> +      access.
+On 31/07/2025 12:26, Laura Nao wrote:
+>>>        - items:
+>>> +          - const: mediatek,mt8196-efuse
+>>>            - const: mediatek,mt8188-efuse
+>>>            - const: mediatek,mt8186-efuse
+>>
+>> You just broke mt8188 as it had 2 entries and now has 3. I think 
+>> (based on the commit msg) you want to change 8188 entry to an enum with 
+>> mediatek,mt8196-efuse and mediatek,mt8188-efuse.
+>>
 > 
-> I thought this was going away based on v2 discussion?
-
-Yes, I asked to drop it and do not include it in v3. There was also
-discussion clarifying review.
-
-I am really surprised that review meant nothing and code is still the same.
+> You're absolutely right, not sure how I missed that.
+Please test your bindings and DTS BEFORE you send. The testing would
+point you new warnings.
 
 Best regards,
 Krzysztof
