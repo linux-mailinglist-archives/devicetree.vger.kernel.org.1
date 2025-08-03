@@ -1,102 +1,118 @@
-Return-Path: <devicetree+bounces-201505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206DAB19487
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 18:54:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F43B1949C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 19:02:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC3F83B4EB1
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 16:54:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 302BC173A57
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 17:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DCF1CDFAC;
-	Sun,  3 Aug 2025 16:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4481547D2;
+	Sun,  3 Aug 2025 17:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OdDhpMmI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/Df5T8M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0B123AD;
-	Sun,  3 Aug 2025 16:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC8922EE5;
+	Sun,  3 Aug 2025 17:02:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754240061; cv=none; b=fY/tvLWFz7nCK4fn2fwf4AOySLkQikiCwRrrHeahDhvFrzAVvAKhOkzSyoJ5pFGHsMbevDZ1Dkro4i33z25XTsloPRfcB26AepiZvztuKHXTekvC+a7CQbIdLLLd78WhMRqj+Q2tsHDXWYlOyec2FSfSr7L4xoJPWhljkBg3eZ8=
+	t=1754240527; cv=none; b=PPYlIzcVbtPBJ24XiI7IhNByJz37vR4At7jo54hVGp0Nmh/i0KjqlrXbzNsUNPwH7d+L27ctvgnXuHQFGe6dIO24DM+SjNDKDBeiPXpApNrSV9obKQ30gr9jd0Snh0k1Iix0zdF5pqk5w9NKpRiJIWMETiRPqjmpqjGPR1FV0D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754240061; c=relaxed/simple;
-	bh=MBm7ZsvVwbCPe3opDnhyrGNHaw8Vwe/UA3+xsVo/aKI=;
+	s=arc-20240116; t=1754240527; c=relaxed/simple;
+	bh=yeMd9S61zQJBzdMgfsYSWmeH8iA/N3MjZcTgFm57cVE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YuJyj4wmqyLsRIaapLVP/mhEQMEQlVcO8BTe2npwdIR5B8zIiYSnFR8IHW2DYjU4/6ToN54Lsoj332bSRHxqT6ZvIIFIguk4KZ5FyLN4/lVV5QXB5cgpr3BU0Dx7lLP3D1eoVDhs4GpNGnbaS2NhPA6mIdLnTIkeN+yRWy8s0qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OdDhpMmI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91DE5C4CEEB;
-	Sun,  3 Aug 2025 16:54:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=idCOoiL8jCiixYJzkJHkx+MTP1tZWaRW0vMwe/4KW+C5bxzkV4OaO/z5HG5snoewpOlHiOnf7Fzi7M5utdee97B5+Jt2mBFPvHVcB5nDMdaQQ7Ox7tUPm387oFg8Diymc+lSY6giIx3d7LGv2LqJ0Vyrvt+oazOtgOdQuZX+oXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/Df5T8M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13550C4CEEB;
+	Sun,  3 Aug 2025 17:02:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754240060;
-	bh=MBm7ZsvVwbCPe3opDnhyrGNHaw8Vwe/UA3+xsVo/aKI=;
+	s=k20201202; t=1754240527;
+	bh=yeMd9S61zQJBzdMgfsYSWmeH8iA/N3MjZcTgFm57cVE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OdDhpMmIBqHp/G+ox1idH2muGXJGz0SMy4auV88TnspXhNfNr8irsr93brC0357u4
-	 tATQ0Cr7K90a/M/BfCie3lPRdIVKN3ef62MaswJkucUS3/s2eyQ87o6RVJ+DZvSaMd
-	 6XaPVzYUWuiyyaDFaWCoohod5TbcwpyvfELGrwWsqYTc/tPKn6ajQiFyhO5B5cayWX
-	 iw30lFWDtNNihKYaQF3WOokaBIVGxc7Hrw83I+k00A7/r2os9c96hu1Hn5pf08M7uB
-	 gqllGe54KV1dlv7I1k4hubz/JRnvLVGlCaNmhWOikyGtO+pXQNcI6onxQzSXTXPp+6
-	 Xt5ymue6tTxag==
-Date: Sun, 3 Aug 2025 11:54:19 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Cc: Orson Zhai <orsonzhai@gmail.com>,
+	b=n/Df5T8MFbtXlP/svzW+LiMDaNunwgHen4dZ+lQobRJLDTWFQP56YOYFoGu3zJGpu
+	 k26k+Zyh17a7lHe78llTk1oV9o8FhnghYz1D85DkY9wmrCFQkjitx7GwxQ9L0G8v2F
+	 UHuha7W8laInDknD2T7FlS7d/7sq/H3poduKHeZJj37K934kw8wQIo8DGcie2AyVpU
+	 bxOIIYv//jiptUr5gDINeNd3Ax8oMEVTKZmP1eOhcIOiyGGYuFOtBnQsfD8KCB8j9K
+	 iNtwWb1rDT9KWVDvTHl7pRznXwMbInPxHcUKnQZ/UIz6jJ0qjVTKxOuuQGjINOEIto
+	 uuwMy798nza+Q==
+Date: Sun, 3 Aug 2025 12:02:06 -0500
+From: Rob Herring <robh@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Kevin Tang <kevin3.tang@gmail.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
-	Thomas Zimmermann <tzimmermann@suse.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <Liviu.Dudau@arm.com>, David Airlie <airlied@gmail.com>,
-	Russell King <rmk+kernel@arm.linux.org.uk>,
-	Kevin Tang <kevin.tang@unisoc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Eric Anholt <eric@anholt.net>
-Subject: Re: [PATCH v3 02/16] dt-bindings: display: sprd: use more
- descriptive clock names
-Message-ID: <175424005938.523766.7181495703090197785.robh@kernel.org>
-References: <20250731-ums9230-drm-v3-0-06d4f57c4b08@abscue.de>
- <20250731-ums9230-drm-v3-2-06d4f57c4b08@abscue.de>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2 2/3] net: stmmac: thead: Get and enable APB clock
+ on initialization
+Message-ID: <20250803170206.GA525144-robh@kernel.org>
+References: <20250801091240.46114-1-ziyao@disroot.org>
+ <20250801091240.46114-3-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250731-ums9230-drm-v3-2-06d4f57c4b08@abscue.de>
+In-Reply-To: <20250801091240.46114-3-ziyao@disroot.org>
 
-
-On Thu, 31 Jul 2025 17:51:15 +0200, Otto Pflüger wrote:
-> Introduce new clock names that actually describe what the clock input is
-> used for instead of referring to a specific clock source.
+On Fri, Aug 01, 2025 at 09:12:39AM +0000, Yao Zi wrote:
+> It's necessary to adjust the MAC TX clock when the linkspeed changes,
+> but it's noted such adjustment always fails on TH1520 SoC, and reading
+> back from APB glue registers that control clock generation results in
+> garbage, causing broken link.
 > 
-> The new clock input names are based on information from clock drivers
-> such as drivers/clk/sprd/ums512-clk.c. The 128M clock appears to be
-> CLK_DISPC0_DPI, the clock used for the DPI output from the DPU, while
-> the 384M clock is CLK_DISPC0, the actual DPU core clock. The DSI
-> controller's 96M clock is most likely CLK_DSI_APB, the APB clock used
-> for accessing its control registers.
+> With some testing, it's found a clock must be ungated for access to APB
+> glue registers. Without any consumer, the clock is automatically
+> disabled during late kernel startup. Let's get and enable it if it's
+> described in devicetree.
 > 
-> Since it seems possible to configure different frequencies for these
-> clocks, the old bindings do not even accurately describe the hardware.
-> Deprecate the old clock names.
-> 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> Fixes: 33a1a01e3afa ("net: stmmac: Add glue layer for T-HEAD TH1520 SoC")
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Reviewed-by: Drew Fustini <fustini@kernel.org>
+> Tested-by: Drew Fustini <fustini@kernel.org>
 > ---
->  .../bindings/display/sprd/sprd,sharkl3-dpu.yaml         | 17 +++++++++++------
->  .../bindings/display/sprd/sprd,sharkl3-dsi-host.yaml    | 11 ++++++++---
->  2 files changed, 19 insertions(+), 9 deletions(-)
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> index c72ee759aae5..95096244a846 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> @@ -211,6 +211,7 @@ static int thead_dwmac_probe(struct platform_device *pdev)
+>  	struct stmmac_resources stmmac_res;
+>  	struct plat_stmmacenet_data *plat;
+>  	struct thead_dwmac *dwmac;
+> +	struct clk *apb_clk;
+>  	void __iomem *apb;
+>  	int ret;
+>  
+> @@ -224,6 +225,11 @@ static int thead_dwmac_probe(struct platform_device *pdev)
+>  		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
+>  				     "dt configuration failed\n");
+>  
+> +	apb_clk = devm_clk_get_optional_enabled(&pdev->dev, "apb");
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The description sounds like this should not be optional. The binding 
+change also makes it not optional.
+
+Rob
 
 
