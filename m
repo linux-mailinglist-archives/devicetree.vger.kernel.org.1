@@ -1,177 +1,115 @@
-Return-Path: <devicetree+bounces-201475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A846B191B1
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 05:37:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3D2B192A6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 06:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58F4F176B37
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 03:37:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6569C7ADCC7
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 04:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C411F418F;
-	Sun,  3 Aug 2025 03:37:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C416B1A9B46;
+	Sun,  3 Aug 2025 04:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HZmL5PNs"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="dj5jaYhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31FD19F12A;
-	Sun,  3 Aug 2025 03:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F2481A08B8
+	for <devicetree@vger.kernel.org>; Sun,  3 Aug 2025 04:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754192220; cv=none; b=DlV94g2NHmrWZc6zjC3l4yM/XU3p6eTMBAJv2fJzRQUaLX7nDVqSDVylRmogWQoe66yBSgNyELOXIVmdcfOAYxkqXQtLU5YVvsj9M8bEeB4x4qjdGSAwNeQdMxEnMouSOlFs5OVM+zOrhNrtJKk6GF4GYnZXnwYnTIR3p/GZubM=
+	t=1754193956; cv=none; b=up7ucqTjRVIe3oeIpdThEAGWzHVBG5WfWbVOsGvi2qBtwY1U8UoFkK4/FsQk5oNMxN++Ap9QNWTAmpYi1tQXTrEC4p1c76lLdhVf+EnwrtIzM53jD7ofnlkzgzQDrOuvNvzXyD5wTcsyQXgLO/Of3vryYfRAqAc4uMYWQ7gpMfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754192220; c=relaxed/simple;
-	bh=NBUzMqNLJI5hO+Q0ct5dTkWMq4OCLDRMJmxjTyC3ccY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mmq2w9/ZdBDcaAwgvfoiO2HFEV7oB8tvH9tLv3KQ7Tkts6HNuHgoKYzobjEXg6Ku6pUPmlZi4E0Sb2vv+dDzMFz2/XhhFw0Uj7iairSiRvMOZX/T9Wdrm7geDDGS2lLNqKvxD7mfsCg5dcBscBkf5OokEyY8Py4EdHYXL+QRrAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HZmL5PNs; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-539329de448so2500331e0c.1;
-        Sat, 02 Aug 2025 20:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754192216; x=1754797016; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=goqU0AWS84aQxcO5Z7IrmPTxY4Ao6SZVD0LuCk91VlM=;
-        b=HZmL5PNsfIoVa7ZpwARoB6g0plcciTDK+COiBeiDFTBR8bW2FBIxiGpjj2dOG6QSh9
-         uEIuCCGlJnGIxqKByvKzBe9AOqMC46YAcL4I4iK5tlcd2rS2pSDqyUlaz6RqPbzcp3gp
-         yMBVhcEmX+MLhGxpWnUynz5iRRpZOSeLOg8bwM51QK5O+Z7o7PE+XKb+rrGPoOP17X0E
-         zy6494Mb6coGl7TC1TZqvzY8Xa7BY179XhnMSQrMESQRJQR3pkniGsScRRmQlWs+yYsd
-         GL+pTsNmKO9JxGikCztsnq40yTbJ/Nj2eUP45qOQClqJ+QS/XxfwJa0Bt8aJdvEZ5Xv7
-         MOIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754192216; x=1754797016;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=goqU0AWS84aQxcO5Z7IrmPTxY4Ao6SZVD0LuCk91VlM=;
-        b=ajfpo27IIoeRlEv4LwcruSjXEWPBI7JUbJxislE0DoDNOl0yv9nQ0D0KMddftAwcr1
-         8xW1JliU4eFf6WPgiLtMyfyuj+6X6+JBb+LS0z7Ux7cc9nH6DG+ZPBoCsiKRns2rXctY
-         hXiN0e5XWA0AWvmHQzSUV9sjVrDBPHxISN+rWvz0EH/5U/N6bl4QWMlmZOqAEpwiv67r
-         YfUiv1mjKS7Dt8N8QYGdRXu+RfiQ7tsj5RMCUdXNVpepKEhs6KK8NQQf0RWwlQzNeSeM
-         CpLDw686UxCZWYNtxzpHuKpNXxIBJiGADovkrc7xsUmtfzxB88A9AO6QV66ZmmKcwkEx
-         g+yA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5cZEWelGLAO9RNp6JXktutAoMk5vPlCpcpCBPeSA1lkuTPh1X0AmMbGVRy1QNXf4Bu/spSSQMgem0@vger.kernel.org, AJvYcCVrOq+OVQaEqJ4WkENz7AYh7m4sENZo3dtVoqgN6+Ld7oUCrhKZ6nfPIZPVU9hb3Zc+LL80LODOzVdi7A10QQ==@vger.kernel.org, AJvYcCWzEBfAsv0nvbr7nai8nxPM4xrcyHt39TcVBtpCk0s6sKzTj3lRcL6LiwuczyZEGAz+xOK88N6ou4l96iz4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpW81HXkL8w7hIrvE+W5dmPwOML/9lqUAeEhWagegiOIroFsrz
-	CKBMibwOFbKLo4BpxBzrK4pjV3zyTHJ5g+GUFgwMBqh/iRtzpx8a/0uLmtgYrbyNVM6nMLdZCP5
-	JoXR+U7QrOWd0We8Ng7oe5tWb2rOND5CZzEG1SlryFeWt
-X-Gm-Gg: ASbGncsNPbKMdVcPQxHRnbVagEue2e7M7m7Dkkky/BqqAYaDJP76/YQocu4t+LH/RrY
-	NvxDkj8oKuAtAtoWeTW/ZESdmOuh0NzpsxsJX+iwm35n8vxTDckmMNN2xIrjGUst5MLeZUH8qoB
-	qwzRfpqyP/AK/CFbbhFnNYV7AnR0WpMrLUDzljJO7FiygEsW1zu8AuguvQvCsH04xJJ7dy/Iorn
-	Mbi4JrNRV5jX6ihykTSVZhQ4dubX8mzUFHS
-X-Google-Smtp-Source: AGHT+IFxQ680ymJ/Dgv7xkeonYThdx1143GJKD6h2r5rJw8UOZoVvBJazRmw8GPuTbvMfKS0K9RGNTfKP2uj0D8Q7jc=
-X-Received: by 2002:a05:6122:62ca:b0:538:e454:ea8e with SMTP id
- 71dfb90a1353d-53938905a99mr6213579e0c.7.1754192216483; Sat, 02 Aug 2025
- 20:36:56 -0700 (PDT)
+	s=arc-20240116; t=1754193956; c=relaxed/simple;
+	bh=h/k6ojZO8XiSn6OLsgC0yQY/fafYJVlLS5/4h77f/g0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KDuAGEpXAJfYuuSg6sXW4jf6sTnORJr1+3WjwNta3kpTgCxBplx9Mw6uULPRd0V/XG+FXYH1264Mf+AMX2J8wEz7bpEHvo8XWs4cY5w1SidxzWCEqP+Z5IVuNcJDRCGbNztgqpSxgM5//Wbq+eULoZNkCMu4+XcdjNveShPGIS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=dj5jaYhm; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1754193950;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EoOkZOeOKNBWaDehCjjVCVpOpwcj59N5p8x5bREgwH8=;
+	b=dj5jaYhmyK6BAYvOzHFz0pZPA7klbS/Rn2Be0S0hfsz7MU63ZJfC7dZFOGRKC75BJByDuX
+	CLLj9qyzWEsTfEHShPUKeSLalJkFcqWUcI3UG6KFNmawXAh8RqPQPvMyXzf2XaEwGOtZe+
+	Op4BUs5DzSqz2i01+0UYlWRerSMGtoc=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-630-95tvEVS2PE-gfrSu9SPQRw-1; Sun,
+ 03 Aug 2025 00:05:43 -0400
+X-MC-Unique: 95tvEVS2PE-gfrSu9SPQRw-1
+X-Mimecast-MFC-AGG-ID: 95tvEVS2PE-gfrSu9SPQRw_1754193934
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 55423195609D;
+	Sun,  3 Aug 2025 04:05:33 +0000 (UTC)
+Received: from localhost (unknown [10.72.112.43])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 82EB63000199;
+	Sun,  3 Aug 2025 04:05:30 +0000 (UTC)
+Date: Sun, 3 Aug 2025 12:05:26 +0800
+From: Baoquan He <bhe@redhat.com>
+To: Brian Mak <makb@juniper.net>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"x86@kernel.org" <x86@kernel.org>,
+	"kexec@lists.infradead.org" <kexec@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RESEND] x86/kexec: Carry forward the boot DTB on kexec
+Message-ID: <aI7gBld/+yKQ2EXM@MiWiFi-R3L-srv>
+References: <20250729182142.4875-1-makb@juniper.net>
+ <aIwuSFKSUJDI6ULl@MiWiFi-R3L-srv>
+ <5A9FE2FF-800A-4458-9929-124EB89FE1D9@juniper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <de111b27-9126-4c03-a7bb-8cce9ea2780e@oss.qualcomm.com>
- <20250706034303.5404-1-mitltlatltl@gmail.com> <f2f0f25b-40b0-452c-ad9e-01b84b32e163@oss.qualcomm.com>
- <CAH2e8h6XWAz-pqmuvzK8JqOb=ggiDGb2U3TvAR2+43D_zdsZpQ@mail.gmail.com>
- <9efafa16-e6db-4227-9b47-5803f5933a7d@oss.qualcomm.com> <CAH2e8h5Eov+827X3W_EZSHRoaUHgP119fXJA+WEUdmdJ6f3gkg@mail.gmail.com>
- <0cf8f99c-a64b-43c4-a747-d5dd6fe28996@oss.qualcomm.com> <CAH2e8h6m6q+fq==cVGA-=iUJC7qxZvomhCqm904AtH9CceL6ow@mail.gmail.com>
- <t7fbgze3hnwbget5nkf3i2rd22pk5vufyimiiec5i7rblzb7x4@rtiuwnyfbmtb>
-In-Reply-To: <t7fbgze3hnwbget5nkf3i2rd22pk5vufyimiiec5i7rblzb7x4@rtiuwnyfbmtb>
-From: Pengyu Luo <mitltlatltl@gmail.com>
-Date: Sun, 3 Aug 2025 11:36:07 +0800
-X-Gm-Features: Ac12FXxaMPDjcFH_ikXFCpRLSv3WL_j4288oH9v5u20Jqo92XCOn2AM2pLeGTXs
-Message-ID: <CAH2e8h6oN1VYevLe1NPpvcAjDjUNBrGUtEWy9y3pDhboCjabMA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280xp: Add initial support for
- Ntmer TW220
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, aliceryhl@google.com, 
-	andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	ebiggers@google.com, ilpo.jarvinen@linux.intel.com, joel.granados@kernel.org, 
-	konradybcio@kernel.org, krzk+dt@kernel.org, len.brown@intel.com, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	lossin@kernel.org, mingo@kernel.org, ojeda@kernel.org, robh@kernel.org, 
-	sfr@canb.auug.org.au, vanyang@smail.nju.edu.cn, viro@zeniv.linux.org.uk
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5A9FE2FF-800A-4458-9929-124EB89FE1D9@juniper.net>
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On Sat, Aug 2, 2025 at 1:27=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> On Fri, Aug 01, 2025 at 10:27:33PM +0800, Pengyu Luo wrote:
-> > On Fri, Aug 1, 2025 at 8:29=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> > >
-> > > On 7/31/25 5:05 AM, Pengyu Luo wrote:
-> > > > Linux:
-> > > >> ae94000 20050001 000001f3 0000000b dddd1011
-> > > >> ae94010 00009130 31211101 3e2e1e0e 00001900
-> > > >> ae94020 00000000 05190019 064c000c 065f0528
-> > > >> ae94030 00060000 00000000 00040000 14000000
-> > > >> ae94040 06100006 00003c2c 00001000 00000008
-> > > > Windows:
-> > > >> ae94000 20050001 000001f7 00000008 00001010
-> > > >> ae94010 00009130 31211101 3e2e1e0e 00001900
-> > > >> ae94020 00000000 05320032 064c000c 065f0551
-> > > >> ae94030 000c0000 00000000 00040000 14000000
-> > > >> ae94040 00100008 00013c2c 9bb9b000 00000004
-> > >
-> > > 0xae94008 differs, bits 0 and 1 say that the cmd mode engine
-> > > is busy doing something (did you set MIPI_DSI_MODE_VIDEO?)
-> > >
-> >
-> > Yes. I can confirm MIPI_DSI_MODE_VIDEO is set.
-> >
-> > Speaking of cmd mode, I still have no idea why DSI_CTRL_CMD_MODE_EN
-> > (BIT(2) of 0xae94004) is enabled on Windows.
-> >
-> > > 0xae94024 says:
-> > > Linux:
-> > > ACTIVE_H_END=3D1305
-> > > ACTIVE_H_START=3D25
-> > > Windows:
-> > > ACTIVE_H_END=3D1330
-> > > ACTIVE_H_START=3D50
-> > >
-> > > 0xae9402c:
-> > > Linux:
-> > > VTOTAL=3D1631
-> > > HTOTAL=3D1320
-> > > Windows:
-> > > VTOTAL=3D1631
-> > > HTOTAL=3D1361
-> > >
-> > > 0xae94030:
-> > > Linux:
-> > > HS_END=3D6
-> > > Windows:
-> > > HS_END=3D12
-> > >
-> >
-> > I believe we can ignore them now, I found the final dump and verified
-> > it=E2=80=99s correct. Previously, I mistakenly halved the porch timings=
-:
-> >
-> > Incorrect:
-> > .hsync_total =3D (1280 + (32 + 12 + 38) / 2) * 2.
->
-> If you halved the porches... Is this panel using a single DSI host or
-> two DSI hosts? In the latter case you need to assign parents for DSI
-> clocks (see how it's done on the sdm845-db845c)
->
+On 08/01/25 at 07:24pm, Brian Mak wrote:
+> On Jul 31, 2025, at 8:02 PM, Baoquan He <bhe@redhat.com> wrote:
+> 
+> > On 07/29/25 at 11:21am, Brian Mak wrote:
+> >> The kexec_file_load syscall on x86 currently does not support passing
+> >> a device tree blob to the new kernel.
+> >> 
+> >> To add support for this, we copy the behavior of ARM64 and PowerPC and
+> >> copy the current boot's device tree blob for use in the new kernel. We
+> >> do this on x86 by passing the device tree blob as a setup_data entry in
+> >> accordance with the x86 boot protocol.
+> > 
+> > I see how, but no why. Why do we need to add DTB for x86?
+> 
+> Hi Baoquan,
+> 
+> Thanks for your comment. Some embedded x86 systems, such as ours at
+> Juniper, use device trees. Currently, the x86 kexec_file_load syscall
+> has no support for passing the device tree to the new kernel, which is a
+> problem for us since we use kexec for some software upgrade related
+> features. Not passing a device tree to the new kernel would cause a boot
+> failure here.
 
-Two dsi hosts. I was using your OOT patches for dual dsi cases until
-you upstreamed them. So I have set
+Thanks for the info. Please add these into patch log to let reviewers
+know them. We don't add code w/o objective.
 
-assigned-clock-parents =3D <&mdss_dsi0_phy DSI_BYTE_PLL_CLK>,
-                         <&mdss_dsi0_phy DSI_PIXEL_PLL_CLK>;
-
-as you did in your msm-next repo.
-
-Best wishes,
-Pengyu
 
