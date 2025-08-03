@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AB3B19319
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 10:22:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFA2B1932C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 11:21:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB7DD173BCC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 08:22:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 526D01892D4E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Aug 2025 09:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5826627FB0E;
-	Sun,  3 Aug 2025 08:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDE02874E5;
+	Sun,  3 Aug 2025 09:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PveAAsoB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aw/j3Oeq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1318834;
-	Sun,  3 Aug 2025 08:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C85E2AD3D;
+	Sun,  3 Aug 2025 09:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754209358; cv=none; b=ZAq4Qn9MqqZde6VkDpN78/TtBcOfrUKVGMxKca7K2ykBNHVUY7zijLtXLtGpFaep1b8lnePNQteLxtBwpEn6idHG0IyArZ1pKjxGqv+OEs9NzwuRlot9g8eAKbb0KI9ZizTI/NAyQUgxZ2bwC2wYcdfc17w52mMGu7qri1cOoxI=
+	t=1754212865; cv=none; b=b2UybWkUNW/LXMFYQua08spj9gnSSkOyRhLPE66PSkkWRz7Yii1pUPuEF0WnkDCUKhTP5pouhHoIUF0X5t3rEGD4ESja6V/fQPIUafpIDG/vTQnjXXmvOPKPkQBqxcTo+bv1a8ggjBuBCi/1HrLsY2deZUd7aUn1OgJWZ6UhqvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754209358; c=relaxed/simple;
-	bh=ELG7zMAKHeSy4fPpy7ykVCCtCN0vHQ+obFd4AJX/FxM=;
+	s=arc-20240116; t=1754212865; c=relaxed/simple;
+	bh=6SiqmzgUPZiU3wRacVGyFYA2GVYo9ShBH5POmw4XLeQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C8gmBsSnc49tuQISSFPQ1hdmoS2VKsual4IXshZk0kEA9Q1muBAQ7PkS8fEwJa9pwbBLkQHwcuOF1u0NNGURpgIV9Awgm06+uM68wPkf1CtQowzwqxQhJuWKXGI9UvyvL0uAgv2aBWzAFScLOpepWkNEt/VcC6ZHfBSnJ8NiD/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PveAAsoB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66A2AC4CEEB;
-	Sun,  3 Aug 2025 08:22:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IDixJWpfR2O4hsV3/PC2VeXjiLatlu4cHPXuHyghAcrrT/e1SSMge6oarIz/Ij5xx5vAt4Y+ZXa1qUtPhFd2SOUOckxRMc9EnnNAdr6yO9SUjH5cr5bm4u8sgcpUnolWNoTxZsYpvOGkibE8BAFQ0fDyZ59CBzfiWBOZ0xF9Wfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aw/j3Oeq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBF17C4CEF8;
+	Sun,  3 Aug 2025 09:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754209357;
-	bh=ELG7zMAKHeSy4fPpy7ykVCCtCN0vHQ+obFd4AJX/FxM=;
+	s=k20201202; t=1754212864;
+	bh=6SiqmzgUPZiU3wRacVGyFYA2GVYo9ShBH5POmw4XLeQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PveAAsoB0TGRYWQF+J34mpo1HHNlPCPN4F2fYv9loOLUIR0JXOCPDqKHqTXxKGBnd
-	 Gpf1cUv6/L9cQoDzTfZ0yE3JGppSa89IAUX0YazlWhaaK3NZBtZs3aYOh7nB6XlXrS
-	 2iTnY3adW+wEL6Osg7GPyQu0M0/08F1SKSK0dQ+vIbH+aa2U/qycmo9pneM0Pm9vHc
-	 jxUgrMXfGoGqJKp531QwqB1nHx2MFihS9fRspptj/yaaFdtCspNivFBZ4f0KKnr8CS
-	 p0qF3uKW+H6QqMg75f2OeFFEb3bVNOGh9DKtBhqs5iM/xxDO+ZT4exWSnXsny5ta33
-	 eNDYlhS3LzzJQ==
-Message-ID: <dc1482a7-a69e-40ec-83ee-98ecc2e57bf1@kernel.org>
-Date: Sun, 3 Aug 2025 10:22:33 +0200
+	b=aw/j3OeqjQ/iFCgHi/RWGqYq7syYaTdWk/XyaeXaSWa/9B/gULAeCtn3X6d553UIT
+	 zis3vGT82aTx9/lCXCvzYcBu6UkuBARnGc3HWPN89gcd5+5AKhF/uOjCtMv7xIGNf+
+	 6nr3x9rSCH6NIZ4Zu9h/+pq+ejCwjM6eVVraXwfbPEkoX4ERw9PLA5qrzxuXeZId1k
+	 jizU6mOr5TVMPndjKUw94sL3dLiBKouEb3aDrUpApjcD3ItpNOso2S1yhNL+lSnWJr
+	 /QYUSABbIQBwuVFEwEhHlWDn0e8liZTWYDl0K1HOfCZA1XFM6u1z8TXQGIN2fS1Uec
+	 EZfHP5PhhuURA==
+Message-ID: <00f6d696-a8d2-41a5-819a-dc1ed87d35bb@kernel.org>
+Date: Sun, 3 Aug 2025 11:20:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] regulator: add s2dos05 regulator support
-To: Dzmitry Sankouski <dsankouski@gmail.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: sram: qcom,imem: Allow
+ modem-tables
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Alex Elder <elder@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Alex Elder <elder@riscstar.com>
+References: <20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com>
+ <20250527-topic-ipa_imem-v2-1-6d1aad91b841@oss.qualcomm.com>
+ <97724a4d-fad5-4e98-b415-985e5f19f911@kernel.org>
+ <e7ee4653-194c-417a-9eda-2666e9f5244d@oss.qualcomm.com>
+ <68622599-02d0-45ca-82f5-cf321c153cde@kernel.org>
+ <bf78d681-723b-4372-86e0-c0643ecc2399@oss.qualcomm.com>
+ <62b0f514-a8a9-4147-a5c0-da9dbe13ce39@kernel.org>
+ <747e5221-0fb1-4081-9e98-94b330ebf8c7@oss.qualcomm.com>
+ <e4c5ecc3-fd97-4b13-a057-bb1a3b7f9207@kernel.org>
+ <f6b16d1d-3730-46d1-81aa-bfaf09c20754@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,51 +119,77 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com>
+In-Reply-To: <f6b16d1d-3730-46d1-81aa-bfaf09c20754@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/08/2025 13:22, Dzmitry Sankouski wrote:
-> +
-> +	platform_set_drvdata(pdev, s2dos05);
-> +
-> +	rdata = devm_kcalloc(dev, rdev_num, sizeof(*rdata), GFP_KERNEL);
-> +	if (!rdata)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < rdev_num; i++)
-> +		rdata[i].name = regulators[i].name;
-> +
-> +	s2dos05->regmap = iodev->regmap_pmic;
-> +	s2dos05->dev = dev;
-> +	if (!dev->of_node)
-> +		dev->of_node = dev->parent->of_node;
-> +
-> +	for (i = 0; i < rdev_num; i++) {
-> +		struct regulator_dev *regulator;
-> +
-> +		config.init_data = rdata[i].init_data;
-> +		config.of_node = rdata[i].of_node;
-> +		config.dev = dev;
-> +		config.driver_data = s2dos05;
-> +		regulator = devm_regulator_register(&pdev->dev,
-> +						&regulators[i], &config);
-> +		if (IS_ERR(regulator)) {
-> +			ret = PTR_ERR(regulator);
-> +			dev_err(&pdev->dev, "regulator init failed for %d\n",
-> +				i);
-> +		}
-> +	}
-> +
-> +	return ret;
+On 31/07/2025 11:47, Konrad Dybcio wrote:
+> On 7/30/25 3:14 PM, Krzysztof Kozlowski wrote:
+>> On 30/07/2025 14:07, Konrad Dybcio wrote:
+>>>>>>>>
+>>>>>>>> Missing additionalProperties: false, which would point you that this is
+>>>>>>>> incomplete (or useless because empty).
+>>>>>>>
+>>>>>>> How do I describe a 'stupid' node that is just a reg?
+>>>>>> With "reg" - similarly to many syscon bindings.
+>>>>>
+>>>>> Is this sort of inline style acceptable, or should I introduce
+>>>>> a separate file?
+>>>>
+>>>> It's fine, assuming that it is desired in general. We do not describe
+>>>> individual memory regions of syscon nodes and this is a syscon.
+>>>>
+>>>> If this is NVMEM (which it looks like), then could use NVMEM bindings to
+>>>> describe its cells - individual regions. But otherwise we just don't.
+>>>
+>>> It's volatile on-chip memory
+>>>
+>>>> There are many exceptions in other platforms, mostly old or even
+>>>> unreviewed by DT maintainers, so they are not a recommended example.
+>>>>
+>>>> This would need serious justification WHY you need to describe the
+>>>> child. Why phandle to the main node is not enough for consumers.
+>>>
+>>> It's simply a region of the SRAM, which needs to be IOMMU-mapped in a
+>>> specific manner (should IMEM move away from syscon+simple-mfd to
+>>> mmio-sram?). Describing slices is the DT way to pass them (like under
+>>> NVMEM providers).
+>>
+>>
+>> Then this might be not a syscon, IMO. I don't think mixing syscon and
+>> SRAM is appropriate, even though Linux could treat it very similar.
+>>
+>> syscon is for registers. mmio-sram is for SRAM or other parts of
+>> non-volatile RAM.
+>>
+>> Indeed you might need to move towards mmio-sram.
+>>
+>>>
+>>>>
+>>>> If the reason is - to instantiate child device driver - then as well no.
+>>>> This has been NAKed on the lists many times - you need resources if the
+>>>> child should be a separate node. Address space is one resource but not
+>>>> enough, because it can easily be obtained from the parent/main node.
+>>>
+>>> There is no additional driver for this
+>>
+>> Then it is not a simple-mfd...
+> 
+> Indeed it's really not
+> 
+> I found out however that the computer history museum (i.e.
+> qcom-apq8064-asus-nexus7-flo.dts and qcom-msm8974.dtsi) seems to
+> have used simple-mfd, so that the subnode (syscon-reboot-mode) is
+> matched against a driver
+> 
+> The same can be achieved if we stick an of_platform_populate() at
+> the end of mmio-sram probe - thoughts?
+You cannot (or should not) remove simple-mfd from existing binding. But
+the point is that the list should not grow.
 
-I do not understand your logic here and I already commented on issues
-with 'ret'. If 1st regulator fails, but the last one succeeds, you
-return 0. If 1st succeeds, but the last one fails, you return failure
-failing the probe.
-
-Why only last regulator is important? I see it is a buck, so maybe there
-is a difference, but this should be clearly explained. Or fixed.
+Maybe the binding should receive a comment next to compatible:
+" # Do not grow this, if you add here new compatible, you agree to buy
+round of drinks on next LPC to all upstream maintainers" ?
 
 Best regards,
 Krzysztof
