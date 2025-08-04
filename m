@@ -1,104 +1,109 @@
-Return-Path: <devicetree+bounces-201517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00D7B199F4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 03:39:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01401B19A19
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 04:14:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9D4C3B53ED
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 01:38:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3230216C754
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 02:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792C51EA7E9;
-	Mon,  4 Aug 2025 01:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="IoCV9S6H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DF01FAC37;
+	Mon,  4 Aug 2025 02:14:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5E6381AF;
-	Mon,  4 Aug 2025 01:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0027BA3D;
+	Mon,  4 Aug 2025 02:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754271524; cv=none; b=WvUVfgViHVzPyYXkfdXwpkcT8IRoq8iOyB+oKjRiBW/FTJpxiqvbknd7HWl9fxD+Q5vB6PM5PgoATy12CUkTlf16Pj1rJSw/FTKtK828zkvWrlThdpc9YwSAULGwKiJ3MhaP6wikdxIs495UHw2rZAj13/F5s9UlMaiLX1lCRwY=
+	t=1754273650; cv=none; b=O976AF024ONKXdhedQO52AJr+4rlULqjjMb7DsYp3Os1Cixbozos0cgZEeLjrfpnNLAg6LBdGYPjd3K2QFIY50PLmVG38HjwT5aatvFsQubXXaGiPIYOU5BYMKCyykLADofMlc5p3KY8tcXAbOor8OX1WtrOcOog3EHlOzWa468=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754271524; c=relaxed/simple;
-	bh=K0fmX2jpwV/gvmwq7SFAn/6INWSi5gMMueD8SBA981g=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XYI7Tkb7kwyHjCrWUfIviiriX50nY56pdVmN7kcLwhrJyI3aRqiTlBixBrMB9BCiH0LzLCTSuMhVVMmS6PXPV6PS6z8IEmdQ44+yY/rleSOUUf6Y5Io8qaa8n0rm4NTklVx3pWKA/4Ay/aWftKlEb814Kyah+9wQBFL2ZKf3mrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=IoCV9S6H; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1754271513;
-	bh=K0fmX2jpwV/gvmwq7SFAn/6INWSi5gMMueD8SBA981g=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=IoCV9S6HbSiiB7Te0cgkRtVTIjvsS7DCtdWqbWirzzDtD9Iic3sT/pwyTHnauvshR
-	 Bijw02uFdbBL9sDjji/iyVbfexp5n1r9EzLdfYwN3ofVi5zeXNknYPBXPxUKoYsMcQ
-	 rehrpPgqkK3P63R0kOGrYecXI93nHTA0y0RY0MP/4eUeG98CPuaB+KsJeOm6oOaYgg
-	 lE3Lg0bTnSLPnRFmmE+GCzf4y24t0nX9/FkOd9rQQIYkkBmFrgbuHXcTiENtxamUUZ
-	 NJgv3eqNxqKR6SkTgh0VBdSFtMD/TCJlUSeLqk4tuHwl2QpDU5sPdOqcHq+x2mEbeG
-	 gpi5U6yV2zbxQ==
-Received: from [192.168.68.112] (unknown [180.150.112.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id CD4BD67B49;
-	Mon,  4 Aug 2025 09:38:31 +0800 (AWST)
-Message-ID: <1afcfa0244bb2ad184fac49145fe6856b257c5af.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 0/6] ASpeed FSI DT clean-ups
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, Benjamin Herrenschmidt <benh@kernel.crashing.org>, Eddie
-	James <eajames@linux.ibm.com>, Ninad Palsule <ninad@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-fsi@lists.ozlabs.org
-Date: Mon, 04 Aug 2025 11:08:30 +0930
-In-Reply-To: <20250731-dt-fsi-cleanups-v1-0-e7b695a29fc3@kernel.org>
-References: <20250731-dt-fsi-cleanups-v1-0-e7b695a29fc3@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1754273650; c=relaxed/simple;
+	bh=WZG/25/2PwRokdOdDSxWnIPRrCKihV0abcBOwtEpyLs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cb5/YtVaVt0DByPVdZzkXy4UhsjTvcWEwvm8EGklTfm2vnr3oZZlYYFMJe65VZNcDQCa64+Uvw9PlojszLC5YfoDQyJk6u5XNqp9XoX3iqPkR4GDTVBg7pCyDWME1B+9YOrcSVkdPet3qcHXwZlBYoyJbOPpGUlmntD6+VPkuy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 707AE2001E6;
+	Mon,  4 Aug 2025 04:08:00 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 28448200352;
+	Mon,  4 Aug 2025 04:08:00 +0200 (CEST)
+Received: from lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com [10.52.9.99])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 5C22818000AB;
+	Mon,  4 Aug 2025 10:07:57 +0800 (+08)
+From: Joseph Guo <qijian.guo@nxp.com>
+Subject: [PATCH v2 0/3] Add support for Waveshare DSI2DPI unit
+Date: Mon, 04 Aug 2025 11:07:39 +0900
+Message-Id: <20250804-waveshare-v2-0-0a1b3ce92a95@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOsVkGgC/03MSw7CIBSF4a00dyyGR9DiyH2YDihchIHQgMGah
+ r2LTUwc/icn3wYFc8ACl2GDjDWUkGIPfhjAeB3vSILtDZxySc9MkpeuWLzOSKy2SqBWaqQO+n/
+ J6MK6W7eptw/lmfJ7pyv7rj/l9KdURigZmZmpcDOXWlzjuhxNesDUWvsAgow9yaAAAAA=
+X-Change-ID: 20250715-waveshare-dad93ea9980f
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, victor.liu@nxp.com, 
+ Joseph Guo <qijian.guo@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754273277; l=1009;
+ i=qijian.guo@nxp.com; s=20250519; h=from:subject:message-id;
+ bh=WZG/25/2PwRokdOdDSxWnIPRrCKihV0abcBOwtEpyLs=;
+ b=euJjIK7soNMUx2lCG9yR+87sYQ9cweH6+IJQhd5b8aLCVZwhI9mf3yHB78YflsBtrowQ3ioRC
+ 96bhFj/M3DEDfzMVbgEizqhQ00dB/CD+2xmaClo5NbHilgxiDNhrkdA
+X-Developer-Key: i=qijian.guo@nxp.com; a=ed25519;
+ pk=VRjOOFhVecTRwBzK4mt/k3JBnHoYfuXKCm9FM+hHQhs=
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi Rob,
+This patchset add support for waveshare DSI2DPI unit.
 
-On Thu, 2025-07-31 at 17:12 -0500, Rob Herring (Arm) wrote:
-> There's a whole bunch of FSI related DT warnings on ASpeed platforms.
-> This series fixes most of them except some related to SBEFIFO.
->=20
-> The remaining SBEFIFO warnings are from some deprecated properties noted=
-=20
-> with 'remove when userspace is fixed'. Not sure if they can be removed=
-=20
-> now or soon. If not, perhaps the deprecated properties need to be=20
-> properly documented.
->=20
-> All the patches here are independent, so DTS changes can go via ASpeed=
-=20
-> tree and FSI bindings via FSI tree (or ack if you want me to take the
-> bindings instead).
->=20
-> Rob
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Rob Herring (Arm) (6):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARM: dts: aspeed: Drop "no-gpio-delays"
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARM: dts: aspeed: Drop "fsi-master" compat=
-ibles
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ARM: dts: aspeed: Add missing "ibm,spi-fsi=
-" compatibles
+Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
+---
+Changes in v2:
+- /s/i2c0/i2c/ in patch 1
+- Add Review tags
+- Link to v1: https://lore.kernel.org/r/20250716-waveshare-v1-0-81cb03fb25a3@nxp.com
 
-Thanks for this. I've applied patches 1-3 to the BMC tree. I'll leave
-the binding changes for you to take as indicated by Eddie in his
-response on patch 1.
+---
+Joseph Guo (3):
+      dt-bindings: display: bridge: Add waveshare DSI2DPI unit support
+      dt-bindings: display: panel: Add waveshare DPI panel support
+      drm: bridge: Add waveshare DSI2DPI unit driver
 
-Andrew
+ .../bindings/display/bridge/waveshare,dsi2dpi.yaml | 103 ++++++++++
+ .../bindings/display/panel/panel-simple.yaml       |   4 +
+ drivers/gpu/drm/bridge/Kconfig                     |  11 ++
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/waveshare-dsi.c             | 210 +++++++++++++++++++++
+ 5 files changed, 329 insertions(+)
+---
+base-commit: 0952d89c3acf6590b89bcfb8505595d7c0e6f367
+change-id: 20250715-waveshare-dad93ea9980f
+
+Best regards,
+-- 
+Joseph Guo <qijian.guo@nxp.com>
+
 
