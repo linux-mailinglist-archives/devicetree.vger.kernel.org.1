@@ -1,210 +1,222 @@
-Return-Path: <devicetree+bounces-201665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DC7B1A31C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:20:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 972F4B1A333
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BB4564E1597
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 13:20:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19E8218909F1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 13:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CB6265CAB;
-	Mon,  4 Aug 2025 13:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D74266EEA;
+	Mon,  4 Aug 2025 13:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m+3xJstu"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EyfmxvdX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C2F262FE5;
-	Mon,  4 Aug 2025 13:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A999259CA0;
+	Mon,  4 Aug 2025 13:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754313638; cv=none; b=gsKqa/QCsdcErlAg+PYkrsPSArRvqPAFwG0r5DHCRzdLWDOHS/YAtwhKt4pNHWkhfHq+QggIzLX4uKB24/J7VfdKksYlFPn5RZHT6z7DPNjdd0E+J4BqjE3n5FIUBoYRw+D/sH9LJ5p+NgwysV7c5Fj+jqs/3tm+WSAMFwlST8E=
+	t=1754314033; cv=none; b=CwK9G3UbPtC/K75aFRXx7QRQGVs0zJZEDitnb0K/dV6NgGVe5t2kiXHUB0k9bZ36FFVb3kZjV5xvGf/kDZHSJ40cPbeThRRuZUOzLRb2jaq33laOpVnYoyu+WfQgFFBSC1jyBxRyWM40DYbszasUy75/90Pv3gwTcJ948HUyWqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754313638; c=relaxed/simple;
-	bh=xUJp6yI+hjv4UYDrCNusaF8cgIWHM7CBfcUbTfyFUF4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K9TtLrdrUZA0meArFnDgWV7J8nSerpTkYo+NVDnBB31jdz34DVyJ83USk9uaAAE9ER8DEMogizWXZqdW7rCYgJMZdaT2iHyEUxURj62gtx1JScyQVKFtx8h0PA3ZImiZ8v7Twc2LeeuZZVATUoTvWuQLq/fU4/aGaYHJlEKU55I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m+3xJstu; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af8fd1b80e5so729226866b.2;
-        Mon, 04 Aug 2025 06:20:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754313633; x=1754918433; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8uNMJX530UJ5/FMBVTRpdxGyIh+Z1Pm9NrQtCU29omM=;
-        b=m+3xJstumtX4UImZyLUeveBAqV3/e6FVbG6j/ItnGint5zYbPDlJjT+lAhvY+uhldL
-         2imagpQDVZCgxPWgYppy7vEbienRC2iUqxPMLBVUDFp9Tq4Ew8qlHJJPFjQFXmtF7y4x
-         6WRzhtbJCPgcJK8HP/m8scFUFoi1UA3CLAUheJSU8kLSykRiuuG9O31tBaFYy38JX3kG
-         YCVlLDneONET4JM6LPcv5UhDmwT3XCM5XTZ/SQPiaM6/ze++WhIjO5QoQTTNdhZdthuK
-         gS6p7UuENoMeXqTlEiNZGvj9o40u7YaXvNKIVmntCinYMTTbExLAgFuH97IQXBFTRlEH
-         fJSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754313633; x=1754918433;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8uNMJX530UJ5/FMBVTRpdxGyIh+Z1Pm9NrQtCU29omM=;
-        b=RKKVeHoAoyYWwjbLkUBvoMgdA4F3X/23auUqqtzeThZe0ZX3mfYfTqm4QWcJyhfS80
-         dXEo+8hAMDH9G/GNdAHay05q8gohAbPhY4cWPTT2P+XOwk3tXgurwdMKgFaslukfxuVA
-         HHOyizGcxGfJaLjlkauONt8oWUydMDEADViGvG/ria9mQ3XH8dfjGQyuJ0L5PZMmHyti
-         xxEET7J/3EOSR32jtNQARIOyTcepBy6V1Qo+lhKKfS4xiyaxxD3a2EQTRFeVG7lAp+CC
-         DjaPWZo5x3q71JzsFdoIng8b5LMA7azEYkw1GwRQZKlitVrYTkEps8Ph4nyXSjFgYQxw
-         W3dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDjQIHjNK7gkbwDV8P4S3gihKDUZ8W2ovNcotx1AapcmDk93LzPIwAsDogW47mMZd9XZp24VVTUQMs@vger.kernel.org, AJvYcCXSCwd3PBKn4tmGEeKhdYPWhlU6R9/YrJzOyh8f0JotqPZt4D1AuGgkmrdbRhl7s03+iRUaFqBMIL5MmU/2@vger.kernel.org, AJvYcCXaHzfuKhuLsU5GVezvYb+wV9YAil/9kGNYSgjxqBtKGpuYccn3sMRl4vjiiD0yF8MY8n6iEm4dQCTb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+XwxMbu7AF6RLGAeJUjvQUuoV11j+CisBqYF0gDPNHjbVXhOP
-	1qKcSaC1acztb0Zi7QFbXjz9doF4M0XZ8acdp8b25JMI7PayxX/3JzAbVrg/p3dvlmglHBxRTU6
-	h0Ep5hNIxgTRAJGS6dlm8d+pltE23e+U=
-X-Gm-Gg: ASbGncs5KU1/iFIjlocQt88XhxI6TR18OThkQs6asuZEOHp6drnvOcRkJYKC+4OZAKg
-	e9Ghcozb9vz2KIxFbUhh4a4HjWPxWIGQZIvssxsXoabWypvN34qilKyrKzvGZIka2sLpCcn5z4s
-	Ms89q0XuEZ7ISBvE/qj85i0KQD8FS+ddRcjIgTNlV+0Ocd2eHuLLxm/YNplKUNo8JIPJIAEbzvr
-	oGOtNiRNg==
-X-Google-Smtp-Source: AGHT+IH55Yo1BgDPedqMf76upD4RRZOwqu/nbofA0uIoYKNZwi6dqXWIkk5A1EpmC7x7m7FwcTy17me/S9RW0g81Zc8=
-X-Received: by 2002:a17:907:9812:b0:af6:3194:f024 with SMTP id
- a640c23a62f3a-af940081981mr890827266b.13.1754313632780; Mon, 04 Aug 2025
- 06:20:32 -0700 (PDT)
+	s=arc-20240116; t=1754314033; c=relaxed/simple;
+	bh=HdvT5261gzhE4aRSmJHv+tFzObgX93mplUmVc06GufI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bJi/S4/2XfIOi0dgcKAhS5b1Zo9+2BUnVVgw2SivzCa6hv8pvdC8BRebuBuUo71VIx0Y2JAOwew7KB0FS8odAgTj0WS9qqcAn9ShplmdqCH3a6yPJQ/bPm86Cl/ZFQYGD8NPceyx428vCW2f9VS27tH6cu/m3ucwDrePhtNWKJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EyfmxvdX; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1754314028;
+	bh=HdvT5261gzhE4aRSmJHv+tFzObgX93mplUmVc06GufI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EyfmxvdXZ+NzDsRzzPqikBca7aExVvjMxp9273QrCTmQDt5W03Ujk77tESdn04Cko
+	 0xSGbdjRQJHSijFEarIcVioaWZakdnvAoCCaSPc/gxCt1hPn64sI47ckjYMeHCmtw/
+	 VRfHcDkV2IjUclj1M2UBJ8IwGDrns57lcScN4xdZbM0UwsciK4xIrPk7151HRdQlmx
+	 lZT6iYkRYJZVLKZq40Ihoygwa70YWtTLZ75HCHrewFFF7J1RtLmn4tIg5xD1HgGJBU
+	 XP2U1JXD+JLDo8+oFCuob8guMEtN+qP5Wn4fxuCJOx727NVTWfCtWG0nC5xNkuFeIC
+	 m42FsuLYnQlzQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7A25817E01CC;
+	Mon,  4 Aug 2025 15:27:07 +0200 (CEST)
+Message-ID: <00a12553-b248-4193-8017-22fea07ee196@collabora.com>
+Date: Mon, 4 Aug 2025 15:27:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250804100219.63325-1-varshini.rajendran@microchip.com> <20250804100219.63325-10-varshini.rajendran@microchip.com>
-In-Reply-To: <20250804100219.63325-10-varshini.rajendran@microchip.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 4 Aug 2025 15:19:55 +0200
-X-Gm-Features: Ac12FXyVSAOQ2aISM_03IMhcULkAAa8cSQa55tHeNKnPhc_HQaN3w3aON3y7Tjs
-Message-ID: <CAHp75VddM_4efeC_YpTya81DrSzdo2AQKJEQ4z21KiCT3gt0TQ@mail.gmail.com>
-Subject: Re: [PATCH 09/15] iio: adc: at91-sama5d2_adc: adapt the driver for sama7d65
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: eugen.hristev@linaro.org, jic23@kernel.org, dlechner@baylibre.com, 
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nicolas.ferre@microchip.com, 
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, srini@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/27] dt-bindings: clock: mediatek: Describe MT8196
+ clock controllers
+To: Krzysztof Kozlowski <krzk@kernel.org>, Laura Nao
+ <laura.nao@collabora.com>, wenst@chromium.org
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ guangjie.song@mediatek.com, kernel@collabora.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ matthias.bgg@gmail.com, mturquette@baylibre.com, netdev@vger.kernel.org,
+ nfraprado@collabora.com, p.zabel@pengutronix.de, richardcochran@gmail.com,
+ robh@kernel.org, sboyd@kernel.org
+References: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
+ <20250804083540.19099-1-laura.nao@collabora.com>
+ <373f44c3-8a6a-4d52-ba6b-4c9484e2eac1@kernel.org>
+ <1db77784-a59a-49bd-89b5-9e81e6d3bafc@collabora.com>
+ <e9ee33b0-d6b0-4641-aeeb-9803b4d1658a@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <e9ee33b0-d6b0-4641-aeeb-9803b4d1658a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 4, 2025 at 12:03=E2=80=AFPM Varshini Rajendran
-<varshini.rajendran@microchip.com> wrote:
->
-> Add support to sama7d65 ADC. The differences are highlighted with the
-> compatible. The init and parsing of the temperature sensor and
-> calibration indexes are the main differences.
+Il 04/08/25 13:01, Krzysztof Kozlowski ha scritto:
+> On 04/08/2025 11:27, AngeloGioacchino Del Regno wrote:
+>> Il 04/08/25 11:16, Krzysztof Kozlowski ha scritto:
+>>> On 04/08/2025 10:35, Laura Nao wrote:
+>>>> Hi,
+>>>>
+>>>> On 8/3/25 10:17, Krzysztof Kozlowski wrote:
+>>>>> On 01/08/2025 15:57, Rob Herring wrote:
+>>>>>>> +  reg:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  '#clock-cells':
+>>>>>>> +    const: 1
+>>>>>>> +
+>>>>>>> +  '#reset-cells':
+>>>>>>> +    const: 1
+>>>>>>> +    description:
+>>>>>>> +      Reset lines for PEXTP0/1 and UFS blocks.
+>>>>>>> +
+>>>>>>> +  mediatek,hardware-voter:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>>>> +    description:
+>>>>>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
+>>>>>>> +      MCU manages clock and power domain control across the AP and other
+>>>>>>> +      remote processors. By aggregating their votes, it ensures clocks are
+>>>>>>> +      safely enabled/disabled and power domains are active before register
+>>>>>>> +      access.
+>>>>>>
+>>>>>> I thought this was going away based on v2 discussion?
+>>>>>
+>>>>> Yes, I asked to drop it and do not include it in v3. There was also
+>>>>> discussion clarifying review.
+>>>>>
+>>>>> I am really surprised that review meant nothing and code is still the same.
+>>>>>
+>>>>
+>>>> This has been re-submitted as-is, following the outcome of the discussion
+>>>> here: https://lore.kernel.org/all/242bf682-cf8f-4469-8a0b-9ec982095f04@collabora.com/
+>>>>
+>>>> We haven't found a viable alternative to the current approach so far, and
+>>>> the thread outlines why other options don’t apply. I'm happy to continue
+>>>> the discussion there if anyone has further suggestions or ideas on how
+>>>> to address this.
+>>>>
+>>>
+>>> And where is any of that resolution/new facts in the commit msg? You
+>>> must clearly reflect long discussions like that in the commit msg.
+>>
+>> On that, I agree. That's a miss.
+>>
+>>>
+>>> There was no objection from Chen to use clocks or power domains as I
+>>> requested.
+>>
+>> Sorry Krzysztof, but now I really think that you don't understand the basics of
+>> MediaTek SoCs and how they're split in hardware - and I'm sorry again, but to me
+>> it really looks like that you're not even trying to understand it.
+> 
+> There is no DTS here. No diagrams or some simplified drawings to help me
+> understand.
+> 
+>>
+>>> The objection was about DUPLICATING interfaces or nodes.
+>>
+>> I don't see that duplication. The interface to each clock controller for each
+>> of the hardware subdomains of each controller is scattered all around the (broken
+>> by hardware and by concept, if you missed that in the discussion) HW Voter MMIO.
+>>
+>> There are multiple clock controllers in the hardware.
+>> Each of those has its own interface to the HWV.
+>>
+>> And there are some that require you to write to both its HWV interface and to the
+>> clock controller specific MMIO at the same time for the same operation. I explained
+>> that in the big discussion that Laura linked.
+> 
+> That's not what property description says. I discussed that part. Your
+> description says - to aggregate votes.
+> 
 
-...
+Yes. That is what the datasheets say, but read down there.
 
-> +static int at91_sama7d65_adc_temp_sensor_init(struct at91_adc_state *st,
-> +                                             struct device *dev);
+> Above you say that control is split between two different MMIO blocks.
+> 
 
-Again, please try to avoid forward declarations. They make code harder
-to maintain.
+Also yes.
 
-...
+> Aggregating votes is exactly what we discussed last time and you should
+> not use custom phandle for it.
+> 
 
-> +enum at91_sama7d65_adc_ts_clb_idx {
-> +       AT91_SAMA7D65_ADC_TS_CLB_IDX_P1 =3D 2,
-> +       AT91_SAMA7D65_ADC_TS_CLB_IDX_P4 =3D 1,
-> +       AT91_SAMA7D65_ADC_TS_CLB_IDX_P6 =3D 4,
-> +       AT91_SAMA7D65_ADC_TS_CLB_IDX_MAX =3D 10,
+We discussed about aggregating votes, yes, in software - this instead is a
+*broken* hardware that does the aggregation internally and does not require
+nor want external drivers to do the aggregation.
 
-MAX and trailing comma are odd when they go together.
+> Maybe it is just the name, so avoid all the confusing "votes" if this is
+> not voting system. If this is a voting system, then don't use custom
+> phandles.
 
-> +};
+Being it fundamentally *broken*, this being a voting system is what the hardware
+initially wanted to be - but effectively, since it requires YOU to:
+  - Make sure that power supplies are turned on, if not, turn them on by "touching"
+    HW registers (so, without any assistance from the voter MCU), if any;
+  - Turn on parent clocks manually, if any, before using the "voter mcu" to try
+    to ungate that clock; and
+    - Enable the "FENC" manually, after the mcu says that the clock was ungated.
 
-...
+in the current state, it is just an hardware managed refcounting system and
+nothing else, because the MCU seems to be unfinished, hence, again, b r o k e n.
 
-> +static const struct at91_adc_platform sama7d65_platform =3D {
-> +       .layout =3D &sama7g5_layout,
-> +       .adc_channels =3D &at91_sama7g5_adc_channels,
-> +#define AT91_SAMA7D65_SINGLE_CHAN_CNT  16
-> +#define AT91_SAMA7D65_DIFF_CHAN_CNT    8
-> +#define AT91_SAMA7D65_TEMP_CHAN_CNT    1
-> +       .nr_channels =3D AT91_SAMA7D65_SINGLE_CHAN_CNT +
-> +                      AT91_SAMA7D65_DIFF_CHAN_CNT +
-> +                      AT91_SAMA7D65_TEMP_CHAN_CNT,
-> +#define AT91_SAMA7D65_MAX_CHAN_IDX     (AT91_SAMA7D65_SINGLE_CHAN_CNT + =
-\
-> +                                       AT91_SAMA7D65_DIFF_CHAN_CNT + \
-> +                                       AT91_SAMA7D65_TEMP_CHAN_CNT)
-> +       .max_channels =3D ARRAY_SIZE(at91_sama7g5_adc_channels),
-> +       .max_index =3D AT91_SAMA7D65_MAX_CHAN_IDX,
-> +#define AT91_SAMA7G5_HW_TRIG_CNT       3
-> +       .hw_trig_cnt =3D AT91_SAMA7G5_HW_TRIG_CNT,
-> +       .osr_mask =3D GENMASK(18, 16),
-> +       .oversampling_avail =3D { 1, 4, 16, 64, 256, },
-> +       .oversampling_avail_no =3D 5,
-> +       .chan_realbits =3D 16,
-> +       .temp_sensor =3D true,
-> +       .temp_chan =3D AT91_SAMA7G5_ADC_TEMP_CHANNEL,
-> +       .temp_init =3D at91_sama7d65_adc_temp_sensor_init,
-> +};
+Note that by "manually" I always mean "with direct writes to a clock controller's
+registerS, and without any automation/assistance from the HWV MCU".
 
-It's harder to read the static assignment interleaved by the sparse
-definitions. Can't you group definitions followed by the initialiser?
+We're using the "hardware-voter" name because this is how MediaTek calls it in the
+datasheets, and no it doesn't really *deserve* that name for what it is exactly in
+MT8196 and MT6991.
 
-...
+And mind you - if using the "interconnect" property for this means that we have to
+add an interconnect driver for it, no, we will not do that, as placing a software
+vote that votes clocks in a a voter MCU that does exactly what the interconnect
+driver would do - then requiring virtual/fake clocks - is not a good solution.
 
-> +static int at91_sama7d65_adc_temp_sensor_init(struct at91_adc_state *st,
-> +                                             struct device *dev)
-> +{
-> +       struct at91_adc_temp_sensor_clb *clb =3D &st->soc_info.temp_senso=
-r_clb;
-> +       struct nvmem_cell *temp_calib;
-> +       u32 *buf =3D NULL;
+So, what should we do then?
 
-What for this NULL initialiser?
+Change it to "mediatek,clock-hw-refcounter", and adding a comment to the binding
+saying that this is called "Hardware Voter (HWV)" in the datasheets?
 
-> +       size_t len;
-> +       int ret =3D 0;
+Or is using the "interconnect" property without any driver in the interconnect API
+actually legit? - Because to me it doesn't look like being legit (and if it is, it
+shouldn't be, as I'm sure that everyone would expect an interconnect API driver
+when encountering an "interconnect" property in DT), and if so, we should just add
+a new "hw-interconnect" or "interconnect-hw" instead to not create confusion.
 
-This initialisation can be avoided (see below how).
+Regards,
+Angelo
 
-> +       if (!st->soc_info.platform->temp_sensor)
-> +               return 0;
-> +
-> +       /* Get the calibration data from NVMEM. */
-> +       temp_calib =3D devm_nvmem_cell_get(dev, "temperature_calib");
-> +       if (IS_ERR(temp_calib)) {
-> +               ret =3D PTR_ERR(temp_calib);
-> +               if (ret !=3D -ENOENT)
-> +                       dev_err(dev, "Failed to get temperature_calib cel=
-l!\n");
-> +               return ret;
-> +       }
-> +
-> +       buf =3D nvmem_cell_read(temp_calib, &len);
-> +       if (IS_ERR(buf)) {
-> +               dev_err(dev, "Failed to read calibration data!\n");
-> +               return PTR_ERR(buf);
-> +       }
+> 
+> Best regards,
+> Krzysztof
 
-...
 
-> +       /*
-> +        * We prepare here the conversion to milli from micro to avoid
-
-Here we prepare the...
-
-> +        * doing it on hotpath.
-> +        */
-
-...
-
-> +free_buf:
-> +       kfree(buf);
-> +       return ret;
-
-Can't use cleanup.h? I.e. __free().
-
---=20
-With Best Regards,
-Andy Shevchenko
 
