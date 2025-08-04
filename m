@@ -1,87 +1,81 @@
-Return-Path: <devicetree+bounces-201590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65BE4B19E19
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 11:01:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE337B19E1E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 11:02:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 214B53AA179
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:01:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A4E564E0F80
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C2B242938;
-	Mon,  4 Aug 2025 09:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A051239E7F;
+	Mon,  4 Aug 2025 09:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ld5Z1aLI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iV1oOM2m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0AE1E520D
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 09:01:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B596517D346;
+	Mon,  4 Aug 2025 09:02:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754298101; cv=none; b=q2BDcR6y8AJX8AGvVc/v4BhKbeQOqGyahUgRfPfTEpY3CQhwo6UN6BDQq+Fyxz3jvfT30nDsNYEljHPAvZPFlgnv5HLaPfHsJ+LYkkmrNlM6u3YsfdLKdws7tV+GJb4snMyZeS80KuML3SFWJs5nwc00/xNVUruN+tlLAHNeNDk=
+	t=1754298142; cv=none; b=Tda1I6KGpWoUnmaAx3KildiUIGDyMHKPkbLGhAOB3wcK6Ftk/WZMZPrfbtbt84DUZ425XtRrUG0Ddg4UU54xs+Bd/BeeHyIzj8RCqqqDcIvKFPRp+GQFCIlqP7xmE/A2VYWmGcub/Q0G6Wrk1wNBDTSOjEBpuJoh41Q/Lc+d6OY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754298101; c=relaxed/simple;
-	bh=8dT0hCsSa+pOFyIm2orcWN2fXAkvYbs0ddIV1PMTUy0=;
+	s=arc-20240116; t=1754298142; c=relaxed/simple;
+	bh=pBkKwyaysTI2tNSOJlV8HJWUyiE4eecoZ3LwUDB9goE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uHPu3Qvx/xOt9ogRGPCF6C6gBajqDguQOw9Zi8/lM/ywp807HqmucixzcZPFdZ705fiyD/B+z/TKevBPcPzSJnW6VZ0CMJ99uie46aj/ien2WUDAZtLm8yea8NLW1GC5ptC7JR6QgRg8uHMHJ+fZCZ7nZwwmTbJjpDQj4T+3eAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ld5Z1aLI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 573Na5QJ010359
-	for <devicetree@vger.kernel.org>; Mon, 4 Aug 2025 09:01:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YSVwT60Y5j6SK3F/zYcMZ5PZCH+z92QqbFAGhTVhlu4=; b=ld5Z1aLIRZYNK8R7
-	AkhNXfCzDQ4MLhIQFUZ5VRa+HNIveY4DVZavOyenNPwP+96h7bhgJ4r8RZ1yBrD6
-	ORIOt7gGd0Crdve2Z83IlTbQhtt3eOgyt5B7pdi6q1MM5sW47PPwg+AfwAjIvrmA
-	xfXJX4fBQ4Kj+HdXNf0GpHs/mbWeWZpCzaBZ5RX8ahHa/T58KhRr9XDZ7rogveux
-	4eFaWEWR36qE0HevDHGvHocze+9f6O1bVDXWvaqMjESB4guNdyEStTtH8PJUxZiu
-	KpEJTqNsJvoSfygcOyMG8iTowfVrYZVz5A7Q2GHashz/q7OzLyhRhcs9yn8P8C7y
-	TEdJkA==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489bek46tp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 09:01:39 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-76bb73b63d2so3886608b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 02:01:39 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=OFCRt1JMnU0dKFmGZ1jEhxTyd0Nr7PpDpIbeUAzKb+/3tx+50UMxuhFJvlkDzEvZKLA4eo3yO6BQ5nWoQRIPYT1rkNlfztmgWVtRoxLltUt7ToOOepm7n11ipBKapg2HKQb80IkcGAGWJYjbY57ZbeNZeBht4AIHbWDRMZ9yXUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iV1oOM2m; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-af96524c5a9so121995166b.1;
+        Mon, 04 Aug 2025 02:02:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754298139; x=1754902939; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KMarMyQx0dw4VTpe/KpEJ2eJd5u+1X9ZMvVB5mW57UY=;
+        b=iV1oOM2mUDgI4PSrN4Os59QlqmZEn4+u5yP+fZyAC8vYNq21fgMgFDZr8570XINyrT
+         BU7jKETxdkJTMeZJzY5cNY1yOa/TJAUPCV9CsV8zFP6pC5nRF1HB1NOUudwCDhzAZEwl
+         k2gFIJYnoDiO88BQxCdkosL/6kQpM3oKKKuoQMzU4qMR29/d2HeIIEAmIsvNgMxRxrQR
+         mUm+anUvwhMpxRbkHHDrnn7R9aXJrtLGciJ6UWmCrYPoj0D8P7ZxfOR3VoBFjymCSXag
+         0YDU7oG91jAwtJgEjr/HqR6+jRVXWnbvJSIFH02jRJ694sRi7ZfwT4DTsY+nS/phSDZE
+         O3Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754298098; x=1754902898;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1754298139; x=1754902939;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YSVwT60Y5j6SK3F/zYcMZ5PZCH+z92QqbFAGhTVhlu4=;
-        b=izO2RmwX9kW9DK4gT/qmy2crqiX44xtvsvOGD/5GCDdk7qQHcyAUe8LINBqGGvfWQt
-         BwjZ1nOQu0WZ8dLjHivUGqXVlCuw2VbJbcQTuin3WHrNmvHBE+1Y++neA6h77ocXj2lY
-         xYG9lIc6sfEAK47zzDw7oTtubgow9fCVMjDQZokWD5WSn6icCjcIJFrnhopMha5mEw8T
-         2DBwQOaIyL9zWZV38s1pdFRQoE1X0dqb0lmr8PwjvOoJQuh5gmQgbhR3TsyPc71wAbWS
-         1Tmkj98jUvqN5H0vAteXZ4bg2XlbvtOaQmZ512g7OSVADUsiekocfgTd/vFI2Y9FiH5l
-         8v6g==
-X-Forwarded-Encrypted: i=1; AJvYcCV+2tFeSdNI+woER51On1HufzEXNyP9hUrK4YNp0mvppqXDz4h3QDx3OUrypreZbNiiHhyAcpY8Ea68@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxLBk2BBcLV5IU9JvjIxSzcmE+/pMPW485wtla2550hTWZl0Qm
-	AZKBLbrjaPvjInCrftdjVAjyxFjHkftBzNCIShjsVBNpup0oKd/k52Fku1UPe+gOyyy0hzzKR3A
-	IBlF7vDr7zMwCg8J+t32QOdJZmFzkZUaEzODz4KfYFzLVScD6K6BPT2Uu4CsdoRs7
-X-Gm-Gg: ASbGnct8ijd6vNL1gd9PboRuxvw2vfxHRTYXqUlJkSivBbZpuCyxVh6LLzZ7ZYlxBCN
-	auQ0nClj0dMmh/0s5dEpUGHuaWOw0eWtpc1PNypenxz4aP+9f7tkBdc+w26eHFUwocmTPJGZ3kD
-	saRIX1REBPdwV8qszuyqbs//DdjAKpwB8Wa+OaP4UXMoojYIEDFZYM21pog6UnyqkGQNqJ51Gic
-	Y/bkQ4aWriA1LBZ269tiE3KMo+BzCwyTcAF5sqCPfGG5KHgakVIClE408WjyHf3OrDBR82WFYZ1
-	zKyQfGjEHbZyHLDLqvgRwpmoRAueZyKEauJ3h7FsDJYrTc5tKrtiXw6oww+reqQeGuo=
-X-Received: by 2002:a05:6a20:a10b:b0:240:116b:cc4e with SMTP id adf61e73a8af0-240116bdcfamr2552172637.5.1754298097818;
-        Mon, 04 Aug 2025 02:01:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHMWc3XRarjZz0UicInQJgk7t7SP2zauTJ6j3s03rAStb/JNHrgMbiOAy2gd9heuPOjjuKTWg==
-X-Received: by 2002:a05:6a20:a10b:b0:240:116b:cc4e with SMTP id adf61e73a8af0-240116bdcfamr2552105637.5.1754298097274;
-        Mon, 04 Aug 2025 02:01:37 -0700 (PDT)
-Received: from [10.218.30.152] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63da6141sm13929997a91.1.2025.08.04.02.01.32
+        bh=KMarMyQx0dw4VTpe/KpEJ2eJd5u+1X9ZMvVB5mW57UY=;
+        b=qayZlquZ2tfUFwpjG/76Vkf+vLbh3pdJaakeWUom1Ar5AWCkGopifjmZsP/O5ZyUVI
+         uYxiDVwb5GHhAh9qOyl/7NYh1/YK0vU4lqqqUliQG63g6SgOVYbzIj8Rl1ujEYT9XRN4
+         YxTQkyRrTvna26lI6WMB2tc22yOSQwp9koZNklGEKeGCjXmUYUcGttNLXOEMwQaFLJpl
+         bnOOBgKkr+cn6i1nHgRnF4Jjr1m/kacStEgILd7aNEOYwbWZue6l6vkGPNrIWhhzwxI1
+         wzLxuXYP+OXZ+0mfr9hjpsxzNcaNlVqOMitd1RanjkI18cViwFOkGGS6bPFO+jAFurwb
+         Ooiw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgpiGuL4KWuGSq7pUqm5JqKwk4INCb9gAKyvpVGZZ5IXNVkz25has0fntHFx88PucLJXieXn+kWPCbhg5+@vger.kernel.org, AJvYcCWUdfewBirtcnMEBPan1jRMmm4Pw6Nuep2AXZATosZJpPL2o7mN9L1MAiEiEHSko+alNkhOE3OY2Wjf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxd2fYfN8Td4ifwrMbbpNWyLVETU+tJo3zm7C4OyF5I+rAtfjUf
+	UFw9HDm0f3zoHSi9AgE9SAbBhpWDeo/uV3tdJGVNODT2OAdAD/sEdn7o517LeQ==
+X-Gm-Gg: ASbGncswPSXKBT0QPYDUWuyID2S2K2HqcxImnoEk7Cozg2b0knV0Oiz1EjPqE48sLQB
+	OrCY2ScfY0Ysdf/6tdFKYDA/M1FFuR7Ll+kZuY3aWyS3IqyAaVoI8SNfd44lTy15yBiNdyzC1tl
+	Yxmzq29bjHkB+pJcHtLfIcKvwtOSYDxE/LYezgXkY2o4yELgeEobMeid8ob1bPztJw57Jev+K3v
+	Qpdt2TQ1030ht2pmnxV9yWMz92x2YQJH8uw+jU7l93OivGEjGMGYtn32L6k4LELSjMU6dLjWXGg
+	WbuEpUf8PGCzdvCSJSTYFKNGt9zD4iv8idWx10SneeU8kGU7ijp+YqTTNagnrexbQa0NvB5742N
+	u02K8GJtRji8UHNtloT+D0Y4yL2UxedBVKe1ziZ9iLvGSJK9/glwmYtG0M6YSOfaqCcMSaXyqNX
+	U8+CgIQf8JdbkHSi/kRPIdSQ==
+X-Google-Smtp-Source: AGHT+IEpUQUYLFv1wDK6DW5cCKG+ayi+mhCPSNVKGBiR3YM5k3cHeZOIyab9J1PQqbnKwsdKUlYHgA==
+X-Received: by 2002:a17:907:7f90:b0:ade:8720:70a0 with SMTP id a640c23a62f3a-af94001cb4cmr939119366b.20.1754298138717;
+        Mon, 04 Aug 2025 02:02:18 -0700 (PDT)
+Received: from ?IPV6:2001:9e8:f109:3c32:c90f:30eb:29c2:ee3a? ([2001:9e8:f109:3c32:c90f:30eb:29c2:ee3a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af96e2bf721sm93853266b.52.2025.08.04.02.02.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Aug 2025 02:01:36 -0700 (PDT)
-Message-ID: <677e1143-e38a-4c73-a445-923c9df5fcce@oss.qualcomm.com>
-Date: Mon, 4 Aug 2025 14:31:30 +0530
+        Mon, 04 Aug 2025 02:02:18 -0700 (PDT)
+Message-ID: <1f1a4185-0995-4bee-a45b-2e9d329cc90f@gmail.com>
+Date: Mon, 4 Aug 2025 11:02:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,90 +83,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] dt-bindings: clock: qcom: Document the Glymur TCSR
- Clock Controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
- <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-2-227cfe5c8ef4@oss.qualcomm.com>
- <20250730-mottled-myrtle-bull-3ae03c@kuoka>
- <9cb06263-2a61-4acd-a9cc-157abb832d62@oss.qualcomm.com>
- <48610dd9-16c0-48ec-9997-2de9e0f7b3b6@kernel.org>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <48610dd9-16c0-48ec-9997-2de9e0f7b3b6@kernel.org>
+Subject: Re: [PATCH v4 0/3] i2c: rework and extend RTL9300 I2C driver
+Content-Language: en-GB
+To: linux-i2c@vger.kernel.org,
+ Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Sven Eckelmann <sven@narfation.org>
+References: <20250729075145.2972-1-jelonek.jonas@gmail.com>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <20250729075145.2972-1-jelonek.jonas@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=M7tNKzws c=1 sm=1 tr=0 ts=689076f3 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=3e4NYzSl0HTm_xoazEIA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDA0OCBTYWx0ZWRfX4rAOA4iUOQD/
- nT0jFjr9pqky7iapVCE7bElLwrur3oaoenc2dvjOgQIc5O/qvm9W0BfIxxr6qKCick0Z+aG+pn4
- /FoEnVuG1NuLRQDBHAkIC3iuhM4An4f7F7tMMpuJGqmZaLaI7vBd1J17fchp3q37UCYCK4RS/e7
- 0XaXjqh6mYP0/HFiV/o8DocGp3bgBlvPIUaZH6DwdICrQITXm33jLeF8q1Iu/bJe5QPRANHpf7s
- dwdLrf5LDbXiy5u2bjl0r6YPPV+GTD2roGR/HbOX5KHrAChRtRZa/Z9ZtCSCAzOWtuYeQjT9DwX
- AoSiLOT/RQuHiKEEqCw7OLNKvov4qf24nxfW8Z7abN+urYQlmig0kPJfg5ROqFwReQzWHqGyEIg
- LJIxUg15rvKtnlz+6i2rkchnHKGCiJ/L77gxQ29YzKCsDrXIIHyW6+LetUky0GhoC86/DWHb
-X-Proofpoint-ORIG-GUID: jEzX4TPElBXr5Y95Nx6zQkJqnEIh6RRS
-X-Proofpoint-GUID: jEzX4TPElBXr5Y95Nx6zQkJqnEIh6RRS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-04_04,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 mlxlogscore=999 mlxscore=0 bulkscore=0 spamscore=0
- suspectscore=0 phishscore=0 adultscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508040048
 
+Hi all,
 
+On 29.07.2025 09:51, Jonas Jelonek wrote:
+> This patch series reworks the current implementation of the driver for
+> I2C controller integrated into RTL9300 SoCs to simplify support
+> extension, and adds support for the RTL9310 series.
+> Goal of this is to have RTL9310 support upstream in a proper
+> implementation to be able to drop downstream versions of this driver.
+>
+> The first patch reworks the driver to use more of the regmap API.
+> Instead of using macros, all registers are defined as reg_field and
+> operations on these registers are performed using regmap_field and the
+> corresponding API. This simplifies adding support for further chip
+> families and avoids potential redundant code by just providing
+> chip-specific functions for every chip family.
+>
+> The second patch extends the existing dt-bindings of RTL9300 for RTL9310
+> support.
+>
+> The third patch makes use of previous changes by adding support for the
+> RTL9310 series, providing the correct register definitions and a few
+> specifics. This also uses a new vendor dt-property which was added by
+> the second patch to properly manage the I2C controllers. Having this
+> property is necessary to properly describe the hardware and allow the
+> driver to correctly work with the I2C controllers.
+>
+> Both has been tested successfully on RTL9302B-based Zyxel XGS1210-12
+> and RTL9313-based Netgear MS510TXM.
+>
+> Compile-tested with Linux, run-tested as backport in OpenWrt on the
+> aforementioned devices.
+>
+> --
+> Changelog
+>
+> v4: - fixed an incorrect check for number of channels which was already
+>       present in original code
+>
+> v3: - narrowed vendor property per variant to be required only
+>       for RTL9310
+>     - narrowed usable child-node i2c addresses per variant
+>     - no changes to driver patches
+>
+> v2: - Patch 1:
+>         - adjusted commit message
+>         - retained Tested-By and Reviewed-By from Chris Packham
+>     - Patch 2:
+>         - simplified check as suggested by Markus Stockhausen
+>         - fixed commit message
+>     - Patch 3 (all requested by Krzysztof):
+>         - use vendor property instead of generic
+>         - add front compatibles to make binding complete
+>         - fix commit message
+>     - reordered patches, dt-bindings patch now comes before its 'user'
+>     - properly add device-tree list and relevant maintainers to To/Cc
+>
+> --
+>
+> Jonas Jelonek (3):
+>   i2c: rework RTL9300 I2C controller driver
+>   dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
+>   i2c: add RTL9310 support to RTL9300 I2C controller driver
+>
+>  .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  58 ++++-
+>  drivers/i2c/busses/i2c-rtl9300.c              | 231 +++++++++++++-----
+>  2 files changed, 218 insertions(+), 71 deletions(-)
+>
 
-On 8/1/2025 2:40 PM, Krzysztof Kozlowski wrote:
-> On 01/08/2025 06:14, Taniya Das wrote:
->>
->>
->> On 7/30/2025 12:47 PM, Krzysztof Kozlowski wrote:
->>> On Tue, Jul 29, 2025 at 11:12:36AM +0530, Taniya Das wrote:
->>>> Add bindings documentation for the Glymur TCSR Clock Controller.
->>>
->>> Same question as for v1, what is Glymur?
->>
->> Glymur is the Qualcomm's next gen compute SoC.
-> 
-> Explain it in at least one commit msg, not in reply to me.
-> 
+If accepted, this should be merged AFTER the recent patchset from Sven [1].
 
-Yes, I will add it in the next patch set.
+I'll rebase this on top of [1], fix outstanding issues and probably propose some
+more cleanup in the next version (because I'm not satisfied with how the code is
+currently structured).
 
->>
->>>
->>> Where is any DTS using this (or explanation of lack of DTS)?
->>>
->>
->> Krzysztof, the DTS will be posted separately once the driver and
->> bindings are reviewed.
-> 
-> Hm? That's not what I was told thus I ask. I am sure that above is not
-> true, but if you insist and put it that way it is incorrect. You cannot
-> send DTS because you wait with drivers to be reviewed. We want to see
-> entire picture.
-> 
-> Best regards,
-> Krzysztof
+Best regards,
+Jonas
 
--- 
-Thanks,
-Taniya Das
-
+[1] https://lore.kernel.org/linux-i2c/20250803-i2c-rtl9300-multi-byte-v2-0-9b7b759fe2b6@narfation.org/
 
