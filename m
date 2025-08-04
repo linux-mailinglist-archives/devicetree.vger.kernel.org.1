@@ -1,120 +1,135 @@
-Return-Path: <devicetree+bounces-201585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C536CB19D97
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 10:27:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DA94B19DBB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 10:36:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 874591899CD7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 08:27:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC51A3B99F3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 08:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3388C24166F;
-	Mon,  4 Aug 2025 08:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4628C241668;
+	Mon,  4 Aug 2025 08:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VOlqozXG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GEWJMHXX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134761DF985;
-	Mon,  4 Aug 2025 08:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A7917D346;
+	Mon,  4 Aug 2025 08:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754296051; cv=none; b=kVVf+5sfpSTYzIDnKR1wzSWqK/zoiEUk9dhhcHIa8+65stcVLuEVKZSavRY15Sq+0pvwmWjhBU05D6rfODdp7qk0jbT3fVvoZV4EiiMsSMcx5Ua8feYGXXMA3iiUnnfrDuj6r7qxSJu1NpjpHPvqMiN6/qDG/Oc3ylmvqSxBj0Q=
+	t=1754296594; cv=none; b=s9NXQqHacf+oxBpMCrhN544kYLlS4OUtTPf4aMtX4wxHhEwG+zala8YZiLvz/jtguJed6iwUDVlfKrqIhYmt6pyvnkUJHvicTCVQsuor3GasunC48rLiVzkK2lLa52UKWq0eTwLeySM55Y7u3iIsJSung05feNKtm/KudNdIYbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754296051; c=relaxed/simple;
-	bh=WBkM16+jIJE2ThEr1976D3BhzdAkH74SvuKumd7owH4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=okWAixLgFLzNThVvYrtBvv4Pq/7QJjpsIv+pHO5Xw29UWQprEtjvzmGgLO8GZeETHXFPVviVCeqnOSuRf8cFwWcnL1XKAV87kQmbR9nABDHsIkKdiLnwBwW0qeevAkWFZXDrxGdUsrlz+crZyoQeXYgzqkZkSPChg54CJv/fJJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VOlqozXG; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1754296594; c=relaxed/simple;
+	bh=q5NIFYfPGBPjvoRsywWnULzZC4/llLvrlCsM4PPmad8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KUgj0kdI15kLWuhBXOII0nuO0sK0tBI/NHLCyIshqIO0KIX/lFJFnUlPPrEN8Kyrj705GsCaD/BFKsGNvXx8uCjhiR/KKgxQkpykfVI9WTeH0dbHByPudTcLikd8DrvVj3UfXljeovimIyWLuCTZFeZ/7Ko9pcEerpw47g8+4bQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GEWJMHXX; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754296047;
-	bh=WBkM16+jIJE2ThEr1976D3BhzdAkH74SvuKumd7owH4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VOlqozXGjYZdW/D8GSK4R8eucLjxxlvsVD5QlkUk2b+xl+UZvv3RMyzbpNdCSuoxm
-	 7JJQlhLFafz8NjtlbbWQueaL91M8KFeeTfTW/sFhdzFMHay523qLuITYUhZljdR3xy
-	 zzvrd+e+19SAOIoO9727ICqwZhUUeaOj3pjBgCWGdqxng6KABWIVNWzLmHCLtOnuvN
-	 WOTvvVgIOKl9ZOQ0ehRhKBNvG6RdUp9Lzlr/GEn+ghgw2lvouKlxa0gL4XC4xXonrR
-	 Q1NiNsMPrR6OX7O6nd7b1w3rSiDbBgMszEfH8g2uG5hZoObfRnFjgJhtDapNpyJwiq
-	 gpjufi90fcsOg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=mail; t=1754296589;
+	bh=q5NIFYfPGBPjvoRsywWnULzZC4/llLvrlCsM4PPmad8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=GEWJMHXX5RsnmTOJN70LagzbEdSWbWeG4Gm61w/fGPuV9/F2aWcIOTOKQ7vzDwUyN
+	 OkenWlIlBSnw9Tv6NaFVkxYARemn6szzVyFYaTjo5LWRmmRwvElFOoEDQLZ4e7uR6v
+	 XXeCXGjhOr0eUfI56Cv8Ca62P7gl4EJ1YuCCOW41LGr3PbvaZI1DjnARAP02ZgAgxR
+	 1fm88wpkzejL8TBWl0wcpl1Yxz9Pgf0lAC2MAJ2ACjY+qOFmbnP9+y2CA9p+F7co5W
+	 cR1Ah377dwBdY/0CVgJzYZ4zDm2DJlbVoSdh/NJDYcbIrtNhKBQNPPe3LPLwiV4FU1
+	 aErpIcMLRVAww==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:169:2004:39f0:9afe])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B0ABE17E017D;
-	Mon,  4 Aug 2025 10:27:26 +0200 (CEST)
-Message-ID: <7aececf2-438a-4dbc-90e6-fd457a12ace6@collabora.com>
-Date: Mon, 4 Aug 2025 10:27:26 +0200
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 38AC217E0B8C;
+	Mon,  4 Aug 2025 10:36:28 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: krzk@kernel.org
+Cc: angelogioacchino.delregno@collabora.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	guangjie.song@mediatek.com,
+	kernel@collabora.com,
+	krzk+dt@kernel.org,
+	laura.nao@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	matthias.bgg@gmail.com,
+	mturquette@baylibre.com,
+	netdev@vger.kernel.org,
+	nfraprado@collabora.com,
+	p.zabel@pengutronix.de,
+	richardcochran@gmail.com,
+	robh@kernel.org,
+	sboyd@kernel.org,
+	wenst@chromium.org
+Subject: Re: [PATCH v3 09/27] dt-bindings: clock: mediatek: Describe MT8196 clock controllers
+Date: Mon,  4 Aug 2025 10:35:40 +0200
+Message-Id: <20250804083540.19099-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
+References: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: remoteproc: mediatek: Add binding for
- mt8189 scp
-To: Huayu Zong <huayu.zong@mediatek.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250729023125.9036-1-huayu.zong@mediatek.com>
- <20250729023125.9036-2-huayu.zong@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250729023125.9036-2-huayu.zong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Il 29/07/25 04:31, Huayu Zong ha scritto:
-> Add the compatible for mt8189 SCP to the binding.
-> 
-> Signed-off-by: Huayu Zong <huayu.zong@mediatek.com>
+Hi,
 
-Is MT8189's SCP really single-core?
+On 8/3/25 10:17, Krzysztof Kozlowski wrote:
+> On 01/08/2025 15:57, Rob Herring wrote:
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  '#clock-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#reset-cells':
+>>> +    const: 1
+>>> +    description:
+>>> +      Reset lines for PEXTP0/1 and UFS blocks.
+>>> +
+>>> +  mediatek,hardware-voter:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description:
+>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
+>>> +      MCU manages clock and power domain control across the AP and other
+>>> +      remote processors. By aggregating their votes, it ensures clocks are
+>>> +      safely enabled/disabled and power domains are active before register
+>>> +      access.
+>>
+>> I thought this was going away based on v2 discussion?
+>
+> Yes, I asked to drop it and do not include it in v3. There was also
+> discussion clarifying review.
+>
+> I am really surprised that review meant nothing and code is still the same.
+>
 
-All of the new SoCs have two SCP cores - it's a bit strange to see that 8189 has
-only one... hence, please triple check and confirm.
+This has been re-submitted as-is, following the outcome of the discussion 
+here: https://lore.kernel.org/all/242bf682-cf8f-4469-8a0b-9ec982095f04@collabora.com/
 
-Cheers,
-Angelo
+We haven't found a viable alternative to the current approach so far, and
+the thread outlines why other options don’t apply. I'm happy to continue 
+the discussion there if anyone has further suggestions or ideas on how 
+to address this.
 
-> ---
->   Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index adc6b3f36fde..88e240430f3f 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -20,6 +20,7 @@ properties:
->         - mediatek,mt8186-scp
->         - mediatek,mt8188-scp
->         - mediatek,mt8188-scp-dual
-> +      - mediatek,mt8189-scp
->         - mediatek,mt8192-scp
->         - mediatek,mt8195-scp
->         - mediatek,mt8195-scp-dual
-> @@ -168,6 +169,7 @@ allOf:
->               - mediatek,mt8183-scp
->               - mediatek,mt8186-scp
->               - mediatek,mt8188-scp
-> +            - mediatek,mt8189-scp
->       then:
->         properties:
->           reg:
+Thanks,
 
+Laura
 
+> Best regards,
+> Krzysztof
 
 
