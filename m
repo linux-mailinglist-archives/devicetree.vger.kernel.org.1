@@ -1,82 +1,80 @@
-Return-Path: <devicetree+bounces-201732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B90EB1A6E7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C83B1A70A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 18:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217DC1884B44
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:59:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2F2F18A43B6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 16:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37FA221F11;
-	Mon,  4 Aug 2025 15:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A46421930B;
+	Mon,  4 Aug 2025 16:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DZeOAckk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JdKd3iN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0085C2040BF;
-	Mon,  4 Aug 2025 15:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327BC217F33
+	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 16:08:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754323154; cv=none; b=r2ziU3K2+CxY1BBA4ldTJXfFcJCOqzdvZkD3gO1uss7+Tq2Z23ecEFhsIy8cucFHItvgRTSSxe4MCBPVB20Ukfv5y/TqHTxTFSIhMg70U8nf2a8vkbodGN1jbMyCCKJeCShIxjcOep9gVzhur8t+zyGZ/FohlmHg+3S3tNOZEcw=
+	t=1754323689; cv=none; b=ki159/q1r+l77JkN8StuHbFM8MMfvQd1CgnTBaDc1R1WRTZUU6zypBHk3XLnOi0eQzU4aasHQmhD08tLH5ZTvrAH9y745G7Q9xogVrWQWT8bY4ZO+/RkjDnGjatuqHf89jc6XZzbtVd2DaDT3CakNvwW1sAdYZgf2B94J0tRXBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754323154; c=relaxed/simple;
-	bh=sd1DyY6a3415VkW6baLPe78I+RH8CXZI1Y8mTPQ+22M=;
+	s=arc-20240116; t=1754323689; c=relaxed/simple;
+	bh=S9yuT+weSY5miLU3AyaItyOypGFL+jNnY+GzO8Hq2NM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qurcWxcjAZTTU0MCoO0rcQ0ia3ndH5unRL0qntsktohfUEmOhLdCSiJ5GdhdwhHmQBgqzTGzA1j5H6Sb0R9jYGG2uH1uR77aAtlGOr/qqezR/hqP/iBvvBsA5ZiKkpF16lS6y5P/jKdPTCGRWa+6MYOVpLC4PuHhktNR86uZcQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DZeOAckk; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76bd6e84eddso4396863b3a.0;
-        Mon, 04 Aug 2025 08:59:12 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=X/CY7OOdb98FI+ZkOGyUDnmpI3j3/HrDsTMNEXV80NkVbj7B0k7/E9USMPOeXgt0TEH3aesxKY0wFPawp81qK9rr2RWWqDiD/M4XyTJzNcnPaZ1wwb1DgvHmbiYTbVysmAI1puJA2Zn2MTeEv17dujtlSs3eWj8ccSCdw8QwmR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JdKd3iN0; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b7834f2e72so2966230f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 09:08:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754323152; x=1754927952; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=3D7R9Rrhve+hM9PUIlOpvhIjLJ/daYnHplpqSry3RH0=;
-        b=DZeOAckkqx54sPj2QecnVdkeWOoNT/uf9s0J+j1cL8zdYtRlu4wtvMCT+sjZdM4pBK
-         lENSR1XkY9xXLku3eyAVjva5jgUoyPButjzfhDJ64Ek4uqNcmYE18Jk2nvYXZRlgXlAs
-         /GB729PNT48IgIk7hT6xqQzS9UQGkVfjJW9nz5sYu7Us98HKSCFStu4nnmEnikdcAsiQ
-         nvihj0fxLGYOJfBoq3BMApiuWFqx/Q7fBMJgo+CIqYzfFXdydf93cGr5pGRd4Fsg0tLj
-         B+hEEOQLxf12z+sbtTQ803PVPMtBdKZOk/BcHlZVHUGLqmlGIHAUr/EAs51AsVM0ySFP
-         Enpg==
+        d=linaro.org; s=google; t=1754323685; x=1754928485; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2Aaib/NaydwLH1J4xHrdqxdoR2E0SlQgXrBILFXZ4d4=;
+        b=JdKd3iN0F98ojpAUOxP6F5XK7x5kAzRZbnev+LQE7f3kHCpw2Kdegg5OYV29nC0h60
+         i/BGqcUYJQdldCEw9EcsZGwTTQALi0xq/sImYvFqejqwoGSTosHRd7Sal6Ab7MMN4XHr
+         CnRlM9Ylu9URzQQsNoZQHI5T8gkd6CRGBPaVQDahA0XmND8enikY83Uqdbh2x9E95ZhB
+         by4zDjpxqSJD/0UX6kN+2UNbO/8nM/cFTu7lODy2Uo/mzoRzZl6mRXH4ueRQQsna+Cf0
+         q8P3CGeLN5ybNKGFWhJKFeULNv6Ifb/gj2yN+Py76yExr739oGB41lmNaMDCZlqibiXi
+         xjXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754323152; x=1754927952;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3D7R9Rrhve+hM9PUIlOpvhIjLJ/daYnHplpqSry3RH0=;
-        b=o1wlqCpCmZ8oYOZDfJ1E47Po6svZdpgVQM9uu8fvjwdKx3DPQRnYOsWezk5VqJXrEL
-         nAyFXKQEw6a81AehbArHTPeMMHUZoe6imFwOiIeR6E2G3JySLOZ8704kyKhmLyTKrnt8
-         wahMmjQZwOsjwNL/8qlCkyAISiWq4xSrW9HkicousGMZeIGbwrOABjPXK+4+hBc2C5bO
-         c9AKprZezYwrz5UTWNl7An0ipCediO2lwPikIcisJGtE1iZMesOqtzJ9B0q3j2LekGH5
-         vXmY3n7n7V+eVC7tmWXAF+/ZEYlDEBBz+c0ywkcDzkf+IdKZILLbjTLmNIw8dSSN62Y2
-         OB8A==
-X-Forwarded-Encrypted: i=1; AJvYcCV2bF1qEyxvfS9rZwdO3y5rlGXQeyHf9LtnPryU57PfnderUv+Pqsm19wWIPXKj9qETQ8Yy0yASDzYQ@vger.kernel.org, AJvYcCWU61isSw0g+mnUKWoGVUQKNAG/kZZ2VIzOAMN6VJ6DJmDvnw/KPy/kjQn01RT8z9NcJSK61VDg+WFkuE57@vger.kernel.org, AJvYcCX8283uotJHtbl2rwHiZuCi1y/iFCvHFk7/q3pwnYEB+LVUezHbgG3QuX0wTNExXBOOtXV8M/O6Pj9XitM=@vger.kernel.org, AJvYcCXp0uoCaVa4O+Zgn5G0hwuL9COGqUjJ9f/HrD4bdkUVgf52s1QihodAaCx25tz2dl3hGSHgmt98qZey@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbOPbX5omS4VptUGJurtTtXDC+dIxgRk2FC8TIVWy2u2OBkKKa
-	LjGFpb1MbdmWlyWCs01apq46WTKUALRMERXPU/luODevGbeMC2iCII5Q
-X-Gm-Gg: ASbGncufoMiLhfi4dKvIEqJhCezPJnMwlLV3XhOz3ejzYJ4dW9WSC7JvlwJCSVBv64T
-	IPIybvOZlq5PPVjrPE7PI0hhB2ctne4eRgmSJrPgYOZfkhI9YeESwHvpzhpXyfDY2fe4FygUsaO
-	2MA2l4ICbiUMA6HH+RYEaX2qJHI7OX/qefS1IGfnOl+txB0ZCQ1myu36dML9sgGta5kBQbER4dI
-	mM8S/Qx/QMkZWAoFwYUNK5xcJALdMIKNaDxSWzFrK9tr2LBKsiyjHVnkBjAHYsk0OFbmRht8xJ/
-	kP0GrPFlqAfQg+cQvoaF7uZiPMEcGzRSkPYJuWOf9EvD5T+mngfCxeHb3u20Cy+4uCsqAKlEf9Z
-	qj+yyGRuCByIg2rqklabpgtjYg6q2w8ydZ6KHlIpWVgN/qErXvkq8N+Xw3SDHLU+sKUPNZ8Y=
-X-Google-Smtp-Source: AGHT+IFIjfh7+B5gIa+W7wBeAos+g9NcG4vkouxm4nYWg0auWlvWAzh5TCtv529Y+kQX/Tuai8CTqw==
-X-Received: by 2002:a05:6a20:b598:b0:23f:fd87:427c with SMTP id adf61e73a8af0-23ffd875051mr8683696637.18.1754323152281;
-        Mon, 04 Aug 2025 08:59:12 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b422b7ceb3fsm9293138a12.22.2025.08.04.08.59.10
+        d=1e100.net; s=20230601; t=1754323685; x=1754928485;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Aaib/NaydwLH1J4xHrdqxdoR2E0SlQgXrBILFXZ4d4=;
+        b=GemOxRP5lCHjNgL6v4pfBK1Ej54rrxJmiV2EqvcFi9FqXK/DEzScoLT0K9Cx9aImci
+         Pm5w7S4G1kQBkbvCALfK6t/lhuTAz8HCBwHYGrCH2fux/BRiAScjawPNU9dyE1cThdKH
+         l/WWBDBPRw/z7ZJQlNDgMh9peKImEhVwPPfaEs18ngRY6k+u+t9q6Mox0e5p8lPEzOKt
+         5sFTfotYymcvOJSGu0AmXLHTi6mZi49Olx59+uWDXcIyNiEWMQhsCbLkGqIx89RQTOC9
+         5+p9rKNEDxcmJxqI6RPkF7zG56GLophVdQ254yR0LEfLF7EEFJH0xRTiwxDGIAIpdLbz
+         sYzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVtWY2dXzr+jm0GRVrnoO9yLNtJDMd3EamuzinGEHV8ddpCxci7mPZSjOlthc+ShT2B5A51YUTPjMSp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDsASLJOwtWwQfgDimntxVbNG49UeBSRw8UZbjPt1tWhmFp0Za
+	MmABLr/xq4Z71nq4NCfQ6cjplJjGyp8MeBUkhVFfHyjtH/LbqtYd6xxBafnVr2IJapA=
+X-Gm-Gg: ASbGncuVEQh7est4ZXT3aQTKyKsx6dGNTZI9/8TCHNcubeZ68SpfIQRzs+sx98JGTET
+	qIk/PmwYBWQA12vMr3I7oXNe6wtWMH72MFo/p6ykmzinb9FHX6chcTRSI9VvGAOJs6KC3Gm27uQ
+	0mGPsgYdSsCFPbWjDWqnoAzF9GjS/WnCPl4vzq5l9PlDamNHjZIInvKLQsalrgwkJiPatpsxVLD
+	baCWNOOpDcWEkauebcxUG0x9iMr+4f3AYmO9o6FpYEnnNoqtZxVr0UYbHwEC+1lBHTRa00V56uI
+	8GU917/VkWBg5mUxdHup8wlAL5m2mjVwmu65r74hOkJlBOnUW/TS00pb6gVdWepxRTir63r3owB
+	fnKZedAtWZ7W8XNZV7pNiORTQ1oggIe+fY7rNu6dmJrt9bwNX0izx9/ZjkpHFTtT/UJjbSVBq
+X-Google-Smtp-Source: AGHT+IEohChU750lDHoZ0kT83zI/nxMNcmkkIL5wgE8PiBZtIvHt4vP9RiqS9PltkOKHSOsX9HxMyw==
+X-Received: by 2002:a05:6000:2f85:b0:3b7:9c28:f856 with SMTP id ffacd0b85a97d-3b8d94c3f4bmr6867167f8f.48.1754323685345;
+        Mon, 04 Aug 2025 09:08:05 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-459a1c79b0asm39287285e9.3.2025.08.04.09.08.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Aug 2025 08:59:11 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <48996ed0-8d5f-4bb0-ab66-8be71c0a59e4@roeck-us.net>
-Date: Mon, 4 Aug 2025 08:59:09 -0700
+        Mon, 04 Aug 2025 09:08:04 -0700 (PDT)
+Message-ID: <64622ffd-05d1-43c3-85d0-cf98f3012477@linaro.org>
+Date: Mon, 4 Aug 2025 18:08:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,133 +82,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: adm1275: add sq24905c support
-To: ChiShih Tsai <tomtsai764@gmail.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, corbet@lwn.net, t630619@gmail.com
-References: <20250804124806.540-1-tomtsai764@gmail.com>
- <20250804124806.540-2-tomtsai764@gmail.com>
+Subject: Re: [PATCH v6 3/5] thermal: renesas: rzg3e: Add thermal driver for
+ the Renesas RZ/G3E SoC
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "rafael@kernel.org" <rafael@kernel.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "john.madieu@gmail.com" <john.madieu@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "lukasz.luba@arm.com" <lukasz.luba@arm.com>,
+ "magnus.damm" <magnus.damm@gmail.com>, "robh@kernel.org" <robh@kernel.org>,
+ "rui.zhang@intel.com" <rui.zhang@intel.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "niklas.soderlund+renesas@ragnatech.se"
+ <niklas.soderlund+renesas@ragnatech.se>
+References: <20250522182252.1593159-1-john.madieu.xa@bp.renesas.com>
+ <20250522182252.1593159-4-john.madieu.xa@bp.renesas.com>
+ <aHgVe0YwPWapIYed@mai.linaro.org>
+ <OSCPR01MB14647DE009925C982AE6BB5D2FF27A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250804124806.540-2-tomtsai764@gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <OSCPR01MB14647DE009925C982AE6BB5D2FF27A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/4/25 05:48, ChiShih Tsai wrote:
-> Add support for sq24905c Hot-Swap Controller and Digital Power Monitor.
+On 31/07/2025 19:19, John Madieu wrote:
+> Hi Daniel,
 > 
-> Signed-off-by: ChiShih Tsai <tomtsai764@gmail.com>
-> ---
->   .../bindings/hwmon/adi,adm1275.yaml           | 20 +++++++++++++++++++
->   1 file changed, 20 insertions(+)
+> Thanks for your review.
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-> index ddb72857c846..6aa300086c84 100644
-> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-> @@ -30,6 +30,7 @@ properties:
->         - adi,adm1281
->         - adi,adm1293
->         - adi,adm1294
-> +      - silergy,sq24905c
->   
->     reg:
->       maxItems: 1
-> @@ -46,6 +47,18 @@ properties:
->       $ref: /schemas/types.yaml#/definitions/uint32
->       enum: [1, 2, 4, 8, 16, 32, 64, 128]
->   
-> +  silergy,volt-curr-sample-average:
-> +    description: |
-> +      Number of samples to be used to report voltage and current values.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-> +
-> +  silergy,power-sample-average:
-> +    description: |
-> +      Number of samples to be used to report power values.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-> +
->   allOf:
->     - $ref: hwmon-common.yaml#
->     - if:
-> @@ -96,12 +109,17 @@ allOf:
->                 - adi,adm1281
->                 - adi,adm1293
->                 - adi,adm1294
-> +              - silergy,sq24905c
->       then:
->         properties:
->           adi,volt-curr-sample-average:
->             default: 128
->           adi,power-sample-average:
->             default: 1
-> +        silergy,volt-curr-sample-average:
-> +          default: 128
-> +        silergy,power-sample-average:
-> +          default: 1
->   
+>> -----Original Message-----
+>> From: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> Sent: Wednesday, July 16, 2025 11:11 PM
+>> To: John Madieu <john.madieu.xa@bp.renesas.com>
+>> Subject: Re: [PATCH v6 3/5] thermal: renesas: rzg3e: Add thermal driver
+>> for the Renesas RZ/G3E SoC
+>>
+>> On Thu, May 22, 2025 at 08:22:46PM +0200, John Madieu wrote:
+>>> The RZ/G3E SoC integrates a Temperature Sensor Unit (TSU) block
+>>> designed to monitor the chip's junction temperature. This sensor is
+>>> connected to channel 1 of the APB port clock/reset and provides
+>> temperature measurements.
+>>>
+>>> It also requires calibration values stored in the system controller
+>>> registers for accurate temperature measurement. Add a driver for the
+>> Renesas RZ/G3E TSU.
+>>>
+>>> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+>>> ---
 
-I personally don't think this warrants new properties. However, if warranted,
-this needs to be qualified to only apply for the Silergy parts.
+[ ... ]
 
-Guenter
+>>> +static int rzg3e_thermal_get_temp(struct thermal_zone_device *zone,
+>>> +int *temp) {
+>>> +	struct rzg3e_thermal_priv *priv = thermal_zone_device_priv(zone);
+>>> +	u32 val;
+>>> +	int ret;
+>>> +
+>>> +	if (priv->mode == THERMAL_DEVICE_DISABLED)
+>>> +		return -EBUSY;
 
->   required:
->     - compatible
-> @@ -121,5 +139,7 @@ examples:
->               shunt-resistor-micro-ohms = <500>;
->               adi,volt-curr-sample-average = <128>;
->               adi,power-sample-average = <128>;
-> +            silergy,volt-curr-sample-average = <128>;
-> +            silergy,power-sample-average = <1>;
->           };
->       };
+[ ... ]
 
+>>> +	reinit_completion(&priv->conv_complete);
+>>> +
+>>> +	/* Enable ADC interrupt */
+>>> +	writel(TSU_SIER_ADIE, priv->base + TSU_SIER);
+>>
+>> Why enable irq here ?
+>>
+> 
+> I did it this way because, in 'set_trips' callback, the
+> driver does trigger conversion to check whether the current
+> temperature is part of the window or not, and triggers the
+> comparison interrupt accordingly. Because of that, I did not
+> want the conversion-complete interrupt to also be triggered.
+> 
+> That's the reason why I enable conversion-complete interrupt
+> in 'get_temp', to make sure its interrupt is being triggered
+> only when the thermal core calls it.
+> 
+> Should I do it another way ?
+
+I don't ATM, the approach is very unusual so I'm still trying to figure 
+out what is this completion approach and readl_poll_timeout_atomic. At 
+the first glance I would say it is wrong.
+
+
+>>> +	/* Verify no ongoing conversion */
+>>> +	ret = readl_poll_timeout_atomic(priv->base + TSU_SSR, val,
+>>> +					!(val & TSU_SSR_CONV_RUNNING),
+>>> +					TSU_POLL_DELAY_US, TSU_TIMEOUT_US);
+>>> +	if (ret) {
+>>> +		dev_err(priv->dev, "ADC conversion timed out\n");
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	/* Start conversion */
+>>> +	writel(TSU_STRGR_ADST, priv->base + TSU_STRGR);
+>>> +
+>>> +	if (!wait_for_completion_timeout(&priv->conv_complete,
+>>> +					 msecs_to_jiffies(100))) {
+>>> +		dev_err(priv->dev, "ADC conversion completion timeout\n");
+>>> +		return -ETIMEDOUT;
+>>> +	}
+>>
+>> Can you explain what is happening here ?
+>>
+> 
+> I might not get what you are asking, but since I compute the
+> temperature in the hard IRQ handler, I just wait for it to complete
+> and notify the completion so I can grab the processed value to notify
+> the thermal core.
+> 
+> Please let me know if this does not answer your question.
+
+Can you describe how the sensor works ? And perhaps if you have a 
+pointer to some documentation ?
+  [ ... ]
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
