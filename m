@@ -1,57 +1,78 @@
-Return-Path: <devicetree+bounces-201737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E42B1A8C9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 19:53:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C125CB1A8D2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 20:01:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E71877ADE91
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:51:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C9C918A2FFC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 18:01:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70EDC226D1B;
-	Mon,  4 Aug 2025 17:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27A222A4E1;
+	Mon,  4 Aug 2025 18:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ozMIoOBI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Sp8Nh5z+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBB51CDFAC;
-	Mon,  4 Aug 2025 17:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A89D620487E;
+	Mon,  4 Aug 2025 18:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754329991; cv=none; b=ivS8S1JvsTrsPkHA+Wn/NY8WL9CB1lwi02lv/C5Z8ywyq53XWDsudIuQvv0VYRyDdkq/yzlx+kPuw0tOo6AyJx1YoQOdxfOFf06gal5LbQiuJlFqV/JPzrWSaMxXwm4/oKMD5z4UNQuE7igiGcSsMABANKoNXNmC55sY4pZUtNY=
+	t=1754330490; cv=none; b=S0eDpk7zwU8Xh0cn46qEsEEymnavxlBRqzx3a+pzlBvpCsuEE9EiFl+3UdXP6kcmDpQk8kg9T87KP40EVG3NZF13pN2L7Q1Y8oxLAO8eXeJS2OUwrypvcsJVuA7r7cN8SwK2G7MX11djBuJWPcxc0z1+0HLfWvfiVIFl0k+6sDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754329991; c=relaxed/simple;
-	bh=4ZUewZb/IJjlaLFe+A4oMDhAWXkvNOXghdEp4eD0OD0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nlOosR3K5sYfT8Pd2KnuVGjS/ZZvUgfdNaIcgKCiOSTZv5xTZCYN4KGZPB1cy6NOFWMU66gBRf2csosKLf1pDiDhTDB8P2btq8zvFFlCjzrNnsk9gZc4QEXyd5cqXOinquWY9KVx3vV7OLCWsM8rvtSKBMR2qe5vBBYovo1U5Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ozMIoOBI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 923A6C4CEF0;
-	Mon,  4 Aug 2025 17:53:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754329990;
-	bh=4ZUewZb/IJjlaLFe+A4oMDhAWXkvNOXghdEp4eD0OD0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=ozMIoOBISKwr2JV3D/sMGQTxDbcQn5xF/tQlODetA23NvpZGP8LMuvLc+cEeJRc28
-	 ACgeI93TefDs4JXwcrBOc0k9igzee94mxxiEhrj+K8q6b6NDgmQTVdHxVCc6LOUlMJ
-	 HHDUVvHJG7p1HIWcvClKESErC6Py2lgoAL91eNyG0SEKlsDptM1ly3CJXHZR0XwcKf
-	 bDp7kXbB6nfShwQoeUx6vk4rwsoI97CNw6sLdoQyVh/Il5xdtDXfDcSfy6UVvgNLI1
-	 kHmwRrSr5MSmyqnSgnLfl9jLx5sqTcw/G20oVt3yRFw4dM8QMGzYmf9FDu7E33/+QH
-	 MI0iLW/kbmnEQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: clock: Remove unused fujitsu,mb86s70-crg11 binding
-Date: Mon,  4 Aug 2025 12:53:03 -0500
-Message-ID: <20250804175304.3423965-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1754330490; c=relaxed/simple;
+	bh=IGNY9Kt84YUjsnSscs5E+UAonICkwkmmpBHuKQ/exKE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OAcv9Bf/IWavCVom2TxygpEtfdwp5vrGix914ba025p+bqZi16CBjeLUJeFb6mheSbJ0nTPjFMeyx7lTFvM5ae8XhSeKoKYtSy+9SAYehTcJCHqVLvPVjsIuN+6bH2awQtG7Jct2PsjZDXHNjqQBzlHI19uVwSRKjzfinZqYszI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Sp8Nh5z+; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 574I1G483898163;
+	Mon, 4 Aug 2025 13:01:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754330476;
+	bh=5wTAMFKayqLsd0iSt+JhcYZiEaGhndqDGSrLqbFalIE=;
+	h=From:To:CC:Subject:Date;
+	b=Sp8Nh5z+oxrxxEwMpGcD4K19WN1yTeGmFNOEmoC5B3GkX1FOXG5oRM6lHmv1Ev7ph
+	 J2cilWPfa28Pd5/+UpgjuVr+pJvxO63IzOLfhyTCA4m5oBLGfb1yrAiEOqDoSWJdyF
+	 UNPo7Ug3LdBy76AT6tGo1XYaRMOEYOXlsUpwwyOY=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 574I1GKO3008401
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 4 Aug 2025 13:01:16 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 4
+ Aug 2025 13:01:16 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 4 Aug 2025 13:01:15 -0500
+Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.190])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 574I1Fp4533532;
+	Mon, 4 Aug 2025 13:01:15 -0500
+From: Brandon Brnich <b-brnich@ti.com>
+To: <linux-kernel@vger.kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Darren Etheridge
+	<detheridge@ti.com>,
+        Brandon Brnich <b-brnich@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
+Date: Mon, 4 Aug 2025 13:01:06 -0500
+Message-ID: <20250804180106.2393256-1-b-brnich@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,50 +80,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The fujitsu,mb86s70-crg11 binding is unused. The driver for it was removed
-in 2017. It's not used for Synquacer DT either like some other mb86s70
-bindings are.
+This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
+present in J722s SoC, supporting baseline encoding of semiplanar based
+YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
+supported from 64x64 to 8kx8k.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Brandon Brnich <b-brnich@ti.com>
 ---
- .../bindings/clock/fujitsu,mb86s70-crg11.txt  | 26 -------------------
- 1 file changed, 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/fujitsu,mb86s70-crg11.txt
 
-diff --git a/Documentation/devicetree/bindings/clock/fujitsu,mb86s70-crg11.txt b/Documentation/devicetree/bindings/clock/fujitsu,mb86s70-crg11.txt
-deleted file mode 100644
-index 332396265689..000000000000
---- a/Documentation/devicetree/bindings/clock/fujitsu,mb86s70-crg11.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Fujitsu CRG11 clock driver bindings
-------------------------------------
--
--Required properties :
--- compatible : Shall contain "fujitsu,mb86s70-crg11"
--- #clock-cells : Shall be 3 {cntrlr domain port}
--
--The consumer specifies the desired clock pointing to its phandle.
--
--Example:
--
--	clock: crg11 {
--		compatible = "fujitsu,mb86s70-crg11";
--		#clock-cells = <3>;
--	};
--
--	mhu: mhu0@2b1f0000 {
--		#mbox-cells = <1>;
--		compatible = "arm,mhu";
--		reg = <0 0x2B1F0000 0x1000>;
--		interrupts = <0 36 4>, /* LP Non-Sec */
--			     <0 35 4>, /* HP Non-Sec */
--			     <0 37 4>; /* Secure */
--		clocks = <&clock 0 2 1>; /* Cntrlr:0 Domain:2 Port:1 */
--		clock-names = "clk";
--	};
+Changes in v2:
+  - remove invalid clock-names attribute
+
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+index 5cfa7bf36641..fb24c14614b4 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+@@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
+ 		ti,sci-proc-ids = <0x31 0xff>;
+ 		status = "disabled";
+ 	};
++
++	e5010: e5010@fd20000 {
++		compatible = "img,e5010-jpeg-enc";
++		reg = <0x00 0xfd20000 0x00 0x100>,
++		      <0x00 0xfd20200 0x00 0x200>;
++		reg-names = "core","mmu";
++		clocks = <&k3_clks 201 0>;
++		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
++		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++	};
+ };
+ 
+ &main_bcdma_csi {
 -- 
-2.47.2
+2.34.1
 
 
