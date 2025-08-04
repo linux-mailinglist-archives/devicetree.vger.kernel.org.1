@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B0CB19CB8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:33:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D47DDB19CC1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:37:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 956707A80B0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 07:31:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 355EC1898D54
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 07:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA8023A994;
-	Mon,  4 Aug 2025 07:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C174023AB8F;
+	Mon,  4 Aug 2025 07:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s8xpDdSN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFQpk1K0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238C723A58B;
-	Mon,  4 Aug 2025 07:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930AC2E3705;
+	Mon,  4 Aug 2025 07:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754292764; cv=none; b=ZTnMvzqX+vXOkmZgxB1/dmrxELb9ZtlVIaqfJQMrAuvQ8ZL+/57T9zyamL4WXiHr/Sx7oj17jM/LsRRr9UpAdLWtr843PDW6IB6NtJz3Qa8f1FFqS5h/O8QMs4+M6MSnSeyoqYHhAAjjvKu7jyTg22e5UEryOYVaefVfzrZnay8=
+	t=1754293059; cv=none; b=boWGemAYGP4D7vd4LMEgmaeTO04hCnyeiVIX4IhMKGEggztrU1t30HIADGTx1swussj7LTl0xdvL0bHxvilvv+jqKY4HY+cpNLU9XmGesEjKKIBvJWHO8F3eVMyndnA9sHkYYWnVDaBmReEeV0UNbHmaZtQWC5PJRySTL8EWjK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754292764; c=relaxed/simple;
-	bh=wB6I/j32PkE+YUbjoUKC4S9/gwmEdIKjLTMub/MU7mo=;
+	s=arc-20240116; t=1754293059; c=relaxed/simple;
+	bh=vRsliMlm1RJCfGUkrLHzVOsYr/4zcMccaUxXarqteYo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=EjMw0iOIvuXmJNQlBTs1KYFP1cUqtF3uENIXy/zAVRaWUTIudcvSQmPsmYm5Ud1Yu8YBkb5fIfSwF6PPaZhKMVr50oorii+ppfZMe4fqwACLrb4KQMUAlaQXHlnUUwfAAd7yieR60aAUwhLAe5hsLkQINrFPlm29CHSFYINfowE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s8xpDdSN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2CDCC4CEE7;
-	Mon,  4 Aug 2025 07:32:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LySgoDBOwUDdmxEeRw3SN8IJ1ukIFwXTGouUNAI4hcL4mcj4T3EXtGLmjddaCDvWsEC24E8+CatYSoa9HEEk7YEBSTAKzJcDchAKbH/BKmSMOf5j9mjg8sVTMSwCkXNEaWQdcYsN2ILfYOL9SpqE1x9i1o/YLw9c9raGP4o0In4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFQpk1K0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DF6C4CEE7;
+	Mon,  4 Aug 2025 07:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754292763;
-	bh=wB6I/j32PkE+YUbjoUKC4S9/gwmEdIKjLTMub/MU7mo=;
+	s=k20201202; t=1754293059;
+	bh=vRsliMlm1RJCfGUkrLHzVOsYr/4zcMccaUxXarqteYo=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=s8xpDdSNmkV3PbR7bOx6S9BBBXrySDUbKg5GuviCeBHvZ2gDpjeGOnVvn51MrbNFh
-	 rPbKWfcAW8alQxpvpGvO2SHCijgh/SZnSOGzn//+HEoh2CCRPJ9TjX1Ym8xcILYxv+
-	 1kYycH5iFR3o+i0aHrvjOysdaXO3PQ/ufUmIgWWpH2/oKh916JWWfWPNGhf/cUZL/Q
-	 TzAnN/Z9bG4lX8TFbjZ7gDfA0flcM779qhGr0AjJOg0Gry25qp1J267tvgvrMRXOfP
-	 P2oSveIbo31VZwOIbfOpnzxBa1PumRfs0rTMlFthSzGMU6WWs0m5RlnWFe13DRc2A1
-	 7pCKetQJOqhPA==
-Message-ID: <19b91a3b-a330-41d5-ba45-39279185a2d1@kernel.org>
-Date: Mon, 4 Aug 2025 09:32:38 +0200
+	b=rFQpk1K0vadskyFHFhVl6tNeCs5+/KarvhfQI7wQgODvtfjDiWL1hFWaEVQWfC/Sn
+	 cPIIAeBySh2b5HDcR4Fa+sIFHycWthApdXfNjZAzvGcm6w5hQPsijISP3Xf9LXC5ix
+	 J/vJG3LbcRwi+4DoR8PaDWGhiVlzO4gJQQ1Ao7y0u+M4grHC6GFg3OjAwAPhutPf1j
+	 U72j+fafpqf34YNyUKao8755qKTMdhPVmzbe9Q4AGZNMmc3nmE08ylUuYlumsJAyJI
+	 3CbwA9nHbDpLXcs88xAj2v0SNlW9x3Ast6zUHRHErWgJtUWynW5IZIwa4zLjZWqmur
+	 zg0qK0sPt81wQ==
+Message-ID: <c868c9b0-0f4c-4cc0-af6b-7f97aa822bfe@kernel.org>
+Date: Mon, 4 Aug 2025 09:37:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: aspeed: add
- AST2700 SCU IC compatibles
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Eddie James
- <eajames@linux.ibm.com>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
- <20250804053445.1482749-2-ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: Add Tegra256 support
+To: Prathamesh Shete <pshete@nvidia.com>, linus.walleij@linaro.org,
+ brgl@bgdev.pl, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250804041657.27688-1-pshete@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,20 +102,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250804053445.1482749-2-ryan_chen@aspeedtech.com>
+In-Reply-To: <20250804041657.27688-1-pshete@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/08/2025 07:34, Ryan Chen wrote:
-> - Add "aspeed,ast2700-scu-ic0,1,2,3" to the compatible
->  list in aspeed,ast2500-scu-ic.yaml.
-> - Document support for AST27XX SCU interrupt controllers.
+On 04/08/2025 06:16, Prathamesh Shete wrote:
+>      then:
+>        properties:
+>          interrupts:
+> diff --git a/include/dt-bindings/gpio/tegra256-gpio.h b/include/dt-bindings/gpio/tegra256-gpio.h
+> new file mode 100644
+> index 000000000000..36485b4bf47d
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/tegra256-gpio.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/* Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved. */
+> +
+> +/*
+> + ** This header provides constants for binding nvidia,tegra256-gpio*.
 
-We see that from the diff.  Explain the differences between them. Also,
-do not use lists - it seems you are mixing two independent tasks in one
-commit.
+Use Linux style comments. See Coding style.
 
 
+> + **
+> + ** The first cell in Tegra's GPIO specifier is the GPIO ID. The macros below
+> + ** provide names for this.
+> + **
+> + ** The second cell contains standard flag values specified in gpio.h.
+> + **/
+> +
+> +#ifndef _DT_BINDINGS_GPIO_TEGRA256_GPIO_H
+> +#define _DT_BINDINGS_GPIO_TEGRA256_GPIO_H
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/* GPIOs implemented by main GPIO controller */
+> +#define TEGRA256_MAIN_GPIO_PORT_A 0
+> +#define TEGRA256_MAIN_GPIO_PORT_B 1
+> +#define TEGRA256_MAIN_GPIO_PORT_C 2
+> +#define TEGRA256_MAIN_GPIO_PORT_D 3
+> +
+> +#define TEGRA256_MAIN_GPIO(port, offset) \
+> +		((TEGRA256_MAIN_GPIO_PORT_##port * 8) + (offset))
+I don't see this macro being used in the drivers. I guess you need it
+for embedding hardware constant (so not really bindings)? You have
+entire commit msg to explain that...
 
 Best regards,
 Krzysztof
