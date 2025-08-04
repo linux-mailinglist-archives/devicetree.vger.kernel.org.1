@@ -1,118 +1,156 @@
-Return-Path: <devicetree+bounces-201676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDC8B1A363
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:35:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3B1B1A36A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:35:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DF24188D0C4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 13:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F82F189DCDC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 13:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64A027467A;
-	Mon,  4 Aug 2025 13:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6F526D4DD;
+	Mon,  4 Aug 2025 13:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="e3lJoDgQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JAUh1LIj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A822737EE;
-	Mon,  4 Aug 2025 13:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF7926058D;
+	Mon,  4 Aug 2025 13:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754314374; cv=none; b=vAkz5C0l6A9M1+RfjKJzi9P4YP1X0PkfYqXBdLKPCclzpv5KMMPD/uRxs0AkUqWQxrIl13GGLJVhITqfT7YYlB0bbrfjGuHQ2QC3e339pbsW3yzMAlHt7aOj1XwyD1nf6C0+ZqOKyETlW5R9nlWTsk3isspUR7li2gZ96uCIj8c=
+	t=1754314446; cv=none; b=mcCsm5hne73ncQEV/yKFSq/spzyN9iT90fBh6B+1cBhRAYxcnNfRfgXCMOhxlBYOWoTb33IfrMwQEqAH/5bdgtTitmP3yDqXHdJvo25CaCJB9SUXpS8YjQOZBqtTzRTvzlgFLuKel9yEGJ+CLRZVsAfU/MJVvB7+1ADaZ0YuVsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754314374; c=relaxed/simple;
-	bh=ercQN29j590aHpm9+xA8hm1HdQq4WZB6Q1EllLqESa8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aetmZZyJ68vlbjCgdHM0E4r6qHJ9mP4NpzkFmWGWm+n4G73UDRnd4sMPIXJ6X9IAnxai7/Qb3loZbNbSpXxtQ/ZHFHtQVWAN40bVlH90TrjGwNi6+ZP70NCtMl+zXAaYP52/7XP8r3LwC1bp0hP6jsW4SoAcyFP5lIvWfQ7ym4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=e3lJoDgQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754314371;
-	bh=ercQN29j590aHpm9+xA8hm1HdQq4WZB6Q1EllLqESa8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=e3lJoDgQEhq4oap7y5IdSE+kxRF8tHZ0W6wDxkCfzrAhotv2C9LzW6zlLkj4H8UnX
-	 NcOtDy7AUvpdovsyjs/0izCwO29xV8zPZWPrByJla0OfMJbbD8i+qd0gOeDJbCb9vI
-	 CGXQEy0mAk/pIKU8ebVQZjO82DJAJ4OHQ/ARXyfAUYP7bbv2cXyDIxQgyUluH+hHI7
-	 zOE1H3WID+aVItyRnp5gA110WH9cfosb7WR9GojVccK/QOks62ULgL+8A8QUD36NcY
-	 TtbfYNfgMf1Rxh5v871sm/V+mRYmaGhfOy6IYKHWsYdntL8FBfmAVzGMx65i0Pn6iq
-	 h/czDa+NKrIJg==
-Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:865e:547d:4830:837d])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laura.nao)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D5F6F17E132A;
-	Mon,  4 Aug 2025 15:32:49 +0200 (CEST)
-From: Laura Nao <laura.nao@collabora.com>
-To: srini@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	rafael@kernel.org,
-	daniel.lezcano@linaro.org,
-	rui.zhang@intel.com,
-	lukasz.luba@arm.com,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Cc: nfraprado@collabora.com,
-	arnd@arndb.de,
-	colin.i.king@gmail.com,
-	u.kleine-koenig@baylibre.com,
-	andrew-ct.chen@mediatek.com,
-	lala.lin@mediatek.com,
-	bchihi@baylibre.com,
-	frank-w@public-files.de,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	Laura Nao <laura.nao@collabora.com>
-Subject: [PATCH v3 9/9] dt-bindings: nvmem: mediatek: efuse: Add support for MT8196
-Date: Mon,  4 Aug 2025 15:30:35 +0200
-Message-Id: <20250804133035.309990-10-laura.nao@collabora.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250804133035.309990-1-laura.nao@collabora.com>
-References: <20250804133035.309990-1-laura.nao@collabora.com>
+	s=arc-20240116; t=1754314446; c=relaxed/simple;
+	bh=11wdTRrZtYzeH6eb9PhpkmebUR1B+lmtQaeXm6DqDbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UaJYGn9PJkpmNzTSWOzAklbbVsodSsPRp28WKtbyobF9+bL5kNAF+60RQSzAFNl7gR5sz9k+nda/dPpu60ldKyMLlf4pLbVUalWox+QfFFuRMSZoGYpjjqgyqrzehooul9befIQ/I93SmgQSLYodJWYQ2XaXXnRwMa8ZPCzZsYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JAUh1LIj; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 23EB744278;
+	Mon,  4 Aug 2025 13:33:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1754314440;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=L3F19ni0D0rMQE6sBKRDx0Kq08dUhlD3d42RuDyW7RI=;
+	b=JAUh1LIjf6sGsOeF1M+6HCgaexWuinu/lk6NSlxbE3jGH4S88jLQU9gZfO1w8D7RWs93fj
+	jzkTPbtsGSWQFf+egVqwudIj/F6hANfSBIkTqtPA2GOgPtmgUI0veeF4GKl46le5yeQ5Do
+	9AI4hsZQ32HS/pnkncf9m5AVEUsbCgMDN5GONSwawocMO/mzk6MN9NoZ7nniKjF79jJr2n
+	OJru1HkcpnIeQKmRk5MEfzHpHUhuYJB7vP5sGLTMyY88+gyMibvYYhNjfEf1eQlGc9n/d8
+	C+xRQDPkZS34u4RTd1cvKmmRPIZ/lr+FvXzFH56cE/NT4824/vShpuFXkyWD+A==
+Date: Mon, 4 Aug 2025 15:33:53 +0200
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Jakub Kicinski <kuba@kernel.org>, Eric
+ Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Russell
+ King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, Herve Codina
+ <herve.codina@bootlin.com>, Florian Fainelli <f.fainelli@gmail.com>, Heiner
+ Kallweit <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
+ =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
+ <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
+ mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Romain
+ Gantois <romain.gantois@bootlin.com>, Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject: Re: [PATCH net-next v10 04/15] net: phy: Introduce PHY ports
+ representation
+Message-ID: <20250804153353.1d83f8ab@fedora.home>
+In-Reply-To: <a915e167-1490-4a20-98a8-35b4e5c6c23c@lunn.ch>
+References: <20250722121623.609732-1-maxime.chevallier@bootlin.com>
+	<20250722121623.609732-5-maxime.chevallier@bootlin.com>
+	<a915e167-1490-4a20-98a8-35b4e5c6c23c@lunn.ch>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduuddvgeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpeforgigihhmvgcuvehhvghvrghllhhivghruceomhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeevledtvdevueehhfevhfelhfekveeftdfgiedufeffieeltddtgfefuefhueeknecukfhppedvrgdtudemtggsudelmeekugegheemgeeltddtmeeiheeikeemvdelsgdumeelvghfheemvgektgejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkegugeehmeegledttdemieehieekmedvlegsudemlegvfhehmegvkegtjedphhgvlhhopehfvgguohhrrgdrhhhomhgvpdhmrghilhhfrhhomhepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepfedtpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopehnvghtuggvvhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtp
+ hhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhmshhmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhm
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-The MT8196 eFuse layout is compatible with MT8186 and shares the same
-decoding scheme for the gpu-speedbin cell.
+On Sat, 26 Jul 2025 22:33:33 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Laura Nao <laura.nao@collabora.com>
----
- Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> > +
+> > +/**
+> > + * phy_caps_medium_get_supported() - Returns linkmodes supported on a given medium
+> > + * @supported: After this call, contains all possible linkmodes on a given medium,
+> > + *	       and with the given number of lanes.  
+> 
+> Maybe nit picking, but maybe append:
+> 
+> , or less.
+> 
+> > +		/* For most cases, min_lanes == lanes, except for 10/100BaseT that work
+> > +		 * on 2 lanes but are compatible with 4 lanes mediums
+> > +		 */
+> > +		if (link_mode_params[i].mediums & BIT(medium) &&
+> > +		    link_mode_params[i].lanes >= lanes &&
+> > +		    link_mode_params[i].min_lanes <= lanes) {  
+> 
+> We should only care about min_lanes here. I don't think the
+> link_mode_params[i].lanes >= lanes is needed.
+> 
+> Maybe you can add a BUILD_BUG_ON() into the macro to ensure
+> min_lanes <= lanes?
+> 
+> > +struct phy_port *phy_of_parse_port(struct device_node *dn)
+> > +{
+> > +	struct fwnode_handle *fwnode = of_fwnode_handle(dn);
+> > +	enum ethtool_link_medium medium;
+> > +	struct phy_port *port;
+> > +	const char *med_str;
+> > +	u32 lanes, mediums = 0;
+> > +	int ret;
+> > +
+> > +	ret = fwnode_property_read_u32(fwnode, "lanes", &lanes);
+> > +	if (ret)
+> > +		lanes = 0;  
+> 
+> The DT binding says that both properties are required. So i think this
+> should be:
+> 
+> 		return ret;
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-index 4dc0d42df3e6..c90b026e40bd 100644
---- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-@@ -25,7 +25,9 @@ properties:
-   compatible:
-     oneOf:
-       - items:
--          - const: mediatek,mt8188-efuse
-+          - enum:
-+              - mediatek,mt8196-efuse
-+              - mediatek,mt8188-efuse
-           - const: mediatek,mt8186-efuse
-       - const: mediatek,mt8186-efuse
- 
--- 
-2.39.5
+Ah true indeed, let me fix that then :)
 
+> 
+> > + * phy_port_get_type() - get the PORT_* attribut for that port.  
+> 
+> attribut_e_
+> 
+> > +	 * If the port isn't initialized, the port->mediums and port->lanes
+> > +	 * fields must be set, possibly according to stapping information.  
+> 
+> st_r_apping
+> 
+> 	Andrew
+
+Sorry for all the typos, it's a weak excuse but lately my laptop's
+keayboard has been acting up, and it either misses strokes or gets the
+letters stuck in repeat-mode. Russell has similar issues, so I'm still
+unsure if this is a hardware or software thing... I'll install and pass
+spellcheck for the next iteration to avoid that :)
+
+Maxime
 
