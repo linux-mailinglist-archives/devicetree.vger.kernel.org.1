@@ -1,138 +1,143 @@
-Return-Path: <devicetree+bounces-201541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4FAB19B01
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 07:13:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE09B19B07
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 07:26:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D4FF1892CF4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 05:13:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54DD1175D3B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 05:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6615E226177;
-	Mon,  4 Aug 2025 05:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25942264C5;
+	Mon,  4 Aug 2025 05:26:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="KnFuzqsZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aRz4/Uiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5EE4225417;
-	Mon,  4 Aug 2025 05:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7422E3700;
+	Mon,  4 Aug 2025 05:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754284385; cv=none; b=lZCpE5PaAKyFyF+gN55AYiyIEi122LhV4jBeQjSbzx90bygHybtrruweZlRyNEK6UTebQpdEi/E7CwKdi1iET3RUGk1bJ0tV91+zdlIvDYfBuuCSoL83HV19J8OkO3YuaEI98AP7+KQmvJWTKsdLmJ1t7YBc1JPLle/Tjxv8H9c=
+	t=1754285202; cv=none; b=Bb3fTPUf+y8W3ETQUmaTr+m/YRRJT5MtNmckX+KM2FQsuflaH40o5+Stkb5epYb+aAaHl7HCDh4hksYwBlLEL83V33kp79ySXKCp2R+P91HUNDIn15zbRKon/1nW7Z4IRbzAZB+RAW0/LwvIYkYMApLxmyMumBXtJFU/ZqupWbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754284385; c=relaxed/simple;
-	bh=SUW5D5b5WsWlP0YMXjvvOTVOjakybqdppS5vTfywQuo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r8yb6GdTbx+T+AIFGWiSDyu8NIr+N+VjAcSBChlc0t/wzNUTiyTuO+7PyxzppXfW4nN9xMZsbzHfdfD+H2s3LOl139o2TPC3xd8TGQGsVXHWgcRTLdf1T6k2kpL7d8DYRaiPv5wthQVBv5VHYBARCQ/NMFAR6Xj2ba/AeDQTH/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=KnFuzqsZ; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 5F48320A6A;
-	Mon,  4 Aug 2025 07:12:54 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id BJneWLsAwyEm; Mon,  4 Aug 2025 07:12:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1754284373; bh=SUW5D5b5WsWlP0YMXjvvOTVOjakybqdppS5vTfywQuo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=KnFuzqsZn6Eu779yf9Zjp2zeH9TzXtH0ko/GWr/qkEkXclWSEbOcY7RI51Y3Q02tY
-	 v+YDuPEz3tihyNqYug7+rVri3pLwnVEmaImpCGBao2hWTPC/XTEZVfetkvLNYgbsp2
-	 Bm47ovlo1P9xSqxzVTabKRShhrSLx+oNtJzGY56dgdJQaPHT9lPR8yk1X49EXRqvK/
-	 b/kGzebPdI83cxvfkSHPJzCbuHPA3wJ6Y1ZdTHE51/2vmPoQK/1LhRwPDTXgs49qcP
-	 glOhiTuCkiv7ddJG7du/Wjd+a0pxoRfrGKUHvcz+N/k4Tf9SYfr2fmoRZIZgSVYmME
-	 mkS+if9wO21pA==
-Date: Mon, 4 Aug 2025 05:12:26 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2 2/3] net: stmmac: thead: Get and enable APB clock
- on initialization
-Message-ID: <aJBBOptU4IXilK3I@pie>
-References: <20250801091240.46114-1-ziyao@disroot.org>
- <20250801091240.46114-3-ziyao@disroot.org>
- <20250803170206.GA525144-robh@kernel.org>
+	s=arc-20240116; t=1754285202; c=relaxed/simple;
+	bh=8+SICm9T0nIjgH/zBLSXN/HXO61ycWSipS4HLigNX5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ngP8aYTkj4K9NNAtsmC6rvds9uIv23Jr5W8Ya6sRCry6y8IA6ogdLUcOgWAzIdNpftdDd707Ukyw4oRLFU8gul1vuUmPzLNO2QuZRl97QxLrbKU2wtZvkPVwHOo1jFjCdaLsDF8PNDRsVpmnFgOHLFKeEEY4ZAz05nTUkOhJ/R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aRz4/Uiz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 573MpL5J014583;
+	Mon, 4 Aug 2025 05:26:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hFGkS54YVV1zT1y+FDj06DTTUmT2+doAase5afQ5Xks=; b=aRz4/Uizc22Hw+Ox
+	VXlc/akGK2IrRk7OSNyVWqEJE6sjVoqFdmUm9HJh6NTMWhGYaEJuFHa/mbAXOblc
+	A0eDDMp0/6A3haQZHPVadpbzLBQRdTpnxLPar1vpMVIIUN/HmLXxDzQHg5qtq/Oq
+	DRzWCQW0U9tMvEWU+atpP7R7Pv8fJn4hlsxYKs3BumwI7suwk/nkS8inCzaJ2CxO
+	o2otFXTk4gvIunjJicKNMIQx3ai0n26EDJ3wJQlAsr5zOJkI/7MsmrqIeyICUai2
+	LyBktD6bRHUgS1tlDw15v1oKHp5QM6ztGxpN7tiq1GGy1Ne2vu9rSG5YSE8ogDEI
+	02/eKQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489byc3g3x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Aug 2025 05:26:38 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5745Qbr3020903
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Aug 2025 05:26:37 GMT
+Received: from [10.218.33.29] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 3 Aug
+ 2025 22:26:33 -0700
+Message-ID: <a9d9f421-1bde-4609-81db-b139952bfd3d@quicinc.com>
+Date: Mon, 4 Aug 2025 10:56:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250803170206.GA525144-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Add OSM l3 interconnect
+ provider node and CPU OPP tables to scale DDR/L3
+To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        "Georgi
+ Djakov" <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Odelu Kukatla
+	<quic_okukatla@quicinc.com>,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250804050542.100806-1-raviteja.laggyshetty@oss.qualcomm.com>
+ <20250804050542.100806-3-raviteja.laggyshetty@oss.qualcomm.com>
+Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <20250804050542.100806-3-raviteja.laggyshetty@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: v4oskueLB_Nw6eZ2GoKMkGx_9jOvzuXa
+X-Authority-Analysis: v=2.4 cv=Y6D4sgeN c=1 sm=1 tr=0 ts=6890448e cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=m_ZRiPf0wcHI9QKGqZsA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: v4oskueLB_Nw6eZ2GoKMkGx_9jOvzuXa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDAyNSBTYWx0ZWRfX7PezlHO1SWJw
+ Zx1a8IQ+x7HOni44pKU1aCxhArWiHloWHYfOjokoPYshoCurJYO+YpnfHbIbiMEhkR02rkhET2f
+ u7fXu7V5chp9MwyDhtzAzDMJh1vFsFqAERNlqJRG8+yUM4c7k9cc4d/iPPjnYP/clTI3yrrZNRe
+ RPDpPvpHJS3FfNZfc/CsyHUW3ewUFJEZGzP1paVb+gSBVjK5Jl3CKp5QT1p9eR/6v1FqKenoIf8
+ AXImSy281MEkZ3T2su8JoAtZm5X1t7Om4Mz/1V1tTrzBcpC/NJLhd3LbY6WNz5ICkTRqXi6olKc
+ N0nAmx9UCMFOKiUPLlHnYtdXRK5IVlVkmkjeCNC8DpXhPK4xh2Vbo6l/uSzVMP/wrYhDRXIdYFt
+ JmOMh8J+8kvIpxCFBRFLEePqbnP96GBCVTaT5CoOxLhtg55g7bEmog5iERz4Bu5Bl31JZUvl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-04_02,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=731 suspectscore=0 clxscore=1011 lowpriorityscore=0
+ phishscore=0 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508040025
 
-On Sun, Aug 03, 2025 at 12:02:06PM -0500, Rob Herring wrote:
-> On Fri, Aug 01, 2025 at 09:12:39AM +0000, Yao Zi wrote:
-> > It's necessary to adjust the MAC TX clock when the linkspeed changes,
-> > but it's noted such adjustment always fails on TH1520 SoC, and reading
-> > back from APB glue registers that control clock generation results in
-> > garbage, causing broken link.
-> > 
-> > With some testing, it's found a clock must be ungated for access to APB
-> > glue registers. Without any consumer, the clock is automatically
-> > disabled during late kernel startup. Let's get and enable it if it's
-> > described in devicetree.
-> > 
-> > Fixes: 33a1a01e3afa ("net: stmmac: Add glue layer for T-HEAD TH1520 SoC")
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > Reviewed-by: Drew Fustini <fustini@kernel.org>
-> > Tested-by: Drew Fustini <fustini@kernel.org>
-> > ---
-> >  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > index c72ee759aae5..95096244a846 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > @@ -211,6 +211,7 @@ static int thead_dwmac_probe(struct platform_device *pdev)
-> >  	struct stmmac_resources stmmac_res;
-> >  	struct plat_stmmacenet_data *plat;
-> >  	struct thead_dwmac *dwmac;
-> > +	struct clk *apb_clk;
-> >  	void __iomem *apb;
-> >  	int ret;
-> >  
-> > @@ -224,6 +225,11 @@ static int thead_dwmac_probe(struct platform_device *pdev)
-> >  		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
-> >  				     "dt configuration failed\n");
-> >  
-> > +	apb_clk = devm_clk_get_optional_enabled(&pdev->dev, "apb");
+
+
+On 8/4/2025 10:35 AM, Raviteja Laggyshetty wrote:
+> Add Operation State Manager (OSM) L3 interconnect provide node and OPP
+> tables required to scale DDR and L3 per freq-domain on QCS615 SoC.
+> As QCS615 and SM8150 SoCs have same OSM hardware, added SM8150
+> compatible as fallback for QCS615 OSM device node.
 > 
-> The description sounds like this should not be optional. The binding 
-> change also makes it not optional.
-
-Yes, it shouldn't be. But using the non-optional API will cause the
-driver fails to probe with the old (problematic) devicetree, IOW, it
-breaks the ABI. Comparing to unusable ethernet, failing to adjust the
-link speed sounds a minor point to me.
-
-Maybe we could add a comment to explain why optional API is used, or
-just use the non-optional one if such ABI breakages are acceptable --
-for which I'd like to wait for more opinions.
-
-> Rob
+> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm6150.dtsi | 148 +++++++++++++++++++++++++++
+>  1 file changed, 148 insertions(+)
 > 
+
+This patch is functionally depends on cpufreq-w node change [1].
+
+[1] https://lore.kernel.org/all/20250702-qcs615-mm-cpu-dt-v4-v5-3-df24896cbb26@quicinc.com/
+
+Raviteja, As discussed, please mark the dependency on this change.
 
 Thanks,
-Yao Zi
+Imran
 
