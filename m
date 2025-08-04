@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-201553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A99B19B70
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 08:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF7AB19B8B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 08:27:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5B2B3A6B53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 06:16:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5A203A87A5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 06:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C289B227581;
-	Mon,  4 Aug 2025 06:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41FA22FAF8;
+	Mon,  4 Aug 2025 06:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4//2Lzo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j1LA/nvt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D657DA6D;
-	Mon,  4 Aug 2025 06:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914D97DA6D;
+	Mon,  4 Aug 2025 06:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754288206; cv=none; b=MnTgx45qr+v6jwYVzEcywqJIS73tpebuL93+dT3z59qBhj7wviGBry7cZkGPjSIIFWiMww8wl52aPhPTUOzdH220wp+NtGNxTN6InxQwKcWmRfoE03RdTUPyc0WGdnzXmc62zEO6NTsJO2kwMj+zEyeYBQv41AAt3iWXfJnQHDc=
+	t=1754288815; cv=none; b=GbSOPJGmwLrwi74ObJZgBw7RNn6gUzrjE2XDvo/pfaz56pf67TpKWnpp8GCXCpd87hJmsBPTY8dF6KUye1RdLMsfMgC6vyOPY0PSKM+mRinaqjT/9Es34jpdT5oGMzZIMP2P6BYedHTjYSzlWuErVznPwydd7RBSuAYgBLhEYoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754288206; c=relaxed/simple;
-	bh=JmBO1VEqzufgUpdUpdI3KBVxFu0LB9WVBNbx0Cnbrhs=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DZW6DY/WuFIbAjQdcX3Ek2l5at0o9RcZBQ9CU9xQPaEgLIzFqWi/Qk+XJ3GWhvbyRWNPzCteuntIesmDUpfztnGQbaKtVw/7bktCIf2RqQ2xCPJ5Wmn70czVxKLYh1m/vlDHDytSh9wTTp/6TMALwqiHaDi3fiYaNeJbi0Vi0pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4//2Lzo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 131B9C4CEE7;
-	Mon,  4 Aug 2025 06:16:39 +0000 (UTC)
+	s=arc-20240116; t=1754288815; c=relaxed/simple;
+	bh=NgbIMF6y43/XK3ADCiD/92me5winEKCdjRz7a+Mj6kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Yu+6SRp2ksMdxVxMy1SQkJZuantE07XldvoJhcNel9PbyxIlZ4sVKLDQIzN7djvy756lJMS+QvQmda0WSsCv9fvBP+N38//XrLw9oIHW5Gq76sU5NNunJRgVALBoWy0zVotnibkwuIYkLUTr6izjlk/+T/aFafXY44PBLW9fjbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j1LA/nvt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68AE4C4CEE7;
+	Mon,  4 Aug 2025 06:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754288206;
-	bh=JmBO1VEqzufgUpdUpdI3KBVxFu0LB9WVBNbx0Cnbrhs=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=D4//2Lzou7ZBmYoN/VjNp2Bo1B0O5AJ5P/qUdcAtvVmZmUowRVlTkVCDYUEPOuO59
-	 L/o3CV5lgS+kHB4hJU22e1Do/TAgtgNvaDvoxGjPDVT1pCE+irEyyU9RR9pNlXVurq
-	 gf344T3hDLdK9eQJYIs4dmZ2YGqi5Jr06TX+MNrMd1dR31JYJ5pOyJy2GB4bnO5KZc
-	 8pjdBLDRyjlSRNbdjxzChrTp1FeAfZqDBZXyhraDRuF5iltdsEUtViWiJNmw5IA8gK
-	 xjEbrvLWuipteJHZbsVC+28IZ9LcNf064rt8xcquLgfBkgBdYRS3jfnwW6ps5SrzSo
-	 qzfJb3mudZ6+A==
-Message-ID: <5999ba4a-79ec-45b1-9d91-0252669917fe@kernel.org>
-Date: Mon, 4 Aug 2025 08:16:36 +0200
+	s=k20201202; t=1754288815;
+	bh=NgbIMF6y43/XK3ADCiD/92me5winEKCdjRz7a+Mj6kk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j1LA/nvte66TKBI1VxbeGOOkcaZI7Rbt6hx20HdaUzuD2/vFv4AcRvxfm6df636SW
+	 7z02fIU3pVlzfXQooSStj/swKoNf2C944dChV2uh9MONXNFJdP52HDlT4+2qVKNjZQ
+	 JBRaGfVm1itEaz0dEMKMKFJxXYbFiSaTv1TBOYfw1eU1L9a8XtJtPOLiLYsAAF5RYP
+	 LhKgQ2KPn9lRjVdk/DVGNFaaW7OiOBDfl6oRyDTxs3zNu1xaQK8Qm5k0ds86paz3jx
+	 Cnv10BRZ9q4R16g16uW5l5CFYsjPWWKsyOaF5Vr7dZ2o/vFCt8LUXu8QlSUl1qGk7F
+	 NrOOEuJ2xvj9A==
+Message-ID: <3b79dc0c-0bcd-47d0-ab10-ba1514466d65@kernel.org>
+Date: Mon, 4 Aug 2025 08:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: magnetometer: document Infineon
- TLV493D 3D Magnetic sensor
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH V2 1/2] dt-bindings: interconnect: Add OSM L3 compatible
+ for QCS615 SoC
+To: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
- <20250802-tlv493d-sensor-v6_16-rc5-v2-2-e867df86ad93@gmail.com>
- <fc15279a-bf3e-4500-8dfc-651e6e2431d9@kernel.org> <aJAeoI4Iz_U06Wmo@dixit>
- <6b691092-f931-4140-8097-0ad67d02bde9@kernel.org>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Sibi Sankar
+ <quic_sibis@quicinc.com>, Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250804061536.110-1-raviteja.laggyshetty@oss.qualcomm.com>
+ <20250804061536.110-2-raviteja.laggyshetty@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,33 +109,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <6b691092-f931-4140-8097-0ad67d02bde9@kernel.org>
+In-Reply-To: <20250804061536.110-2-raviteja.laggyshetty@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/08/2025 08:03, Krzysztof Kozlowski wrote:
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
->>>> new file mode 100644
->>>> index 000000000000..ebcf29067a16
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
->>>
->>>
->>> Filename should match compatible. Otherwise a1b6 is just confusing.
->>>
->> Idea behind having a1b6 is that the TLV493D is sensor series and this
->> a1b6 is one of the models. As this driver is intended, developed and
->> validated on a1b6 I kept it in compatible, though the file name contains
->> only the sensor series. In my undertanding, this same file & driver can
->> be reused for other drivers from same family with new compatible fields.
->> Does that make sense?
-> 
-> No, because I did not speak about drivers at all. Please follow
-> kernel/DT conventions.
-> 
+On 04/08/2025 08:15, Raviteja Laggyshetty wrote:
+> Add Operation State Manager (OSM) L3 interconnect provider binding for
+> QCS615 SoC. As the OSM hardware in QCS615 and SM8150 are same,
+> added a family-level compatible for SM8150 SoC. This shared fallback
+> compatible allows grouping of SoCs with similar hardware, reducing
+> the need to explicitly list each variant in the driver match table.
 
-And now I see this wasn't ever tested. :/
+Drop last sentence, it is completely redundant. Do not explain to us how
+DT works. We all know that.
+
+> 
+> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml        | 5 +++++
+>  1 file changed, 5 insertions(+)
+No, slow down, this conflicts with other patch and makes your entry
+duplicated. Just squash both commits.
 
 Best regards,
 Krzysztof
