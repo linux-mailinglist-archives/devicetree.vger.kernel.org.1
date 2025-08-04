@@ -1,191 +1,147 @@
-Return-Path: <devicetree+bounces-201744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3FCB1A9B7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 21:38:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4822B1A9D7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 21:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 707A317D5C6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 19:38:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EE30171BC4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 19:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA322B8C5;
-	Mon,  4 Aug 2025 19:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C911238C33;
+	Mon,  4 Aug 2025 19:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h9bdvuKm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NCgQL3Ey"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D70204083
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 19:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E598EEB2;
+	Mon,  4 Aug 2025 19:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754336281; cv=none; b=uB2O3XW2aOQSbYpF8yRY7voqdWBHYtBN5FoINO1064Sz3k8xJ/Ep5XBfbDSiFlRj5jCv2ZbceXN+t8djzFxOB8MChRppxhK5V2NqT5ONE4COnDDnRhAZEg+YLe8uetjKvR0oyZpT51t9kts4ikHVtcLsBz3RTRz3o+1cTwUZ2qk=
+	t=1754337451; cv=none; b=EFCKg+yf9nYcXgC5MfsCMyYPBwn9c/JRZkriCcJ943J6lJIYq55m6mqihFIjLM7MkpUHmPLrdXwtkvl89Mgxu9V3Pl0jSunSPMK+a9IqYoIMmmBp3p+YFrqoqJpyBthSN+f3qYJJYH6FaoX5nV5TXByC9/iIhKWJOd9Av/cCRAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754336281; c=relaxed/simple;
-	bh=gMNa7ghysRE0GnTzj2DIg8E+Jw4M+z2ED1KRbbrmldw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DURiC8ooY9qPqgX6sYuC5GhVBAhge6cXzFyYkGjcJ3HOkjg6Ncg3XPIsV0EK65iUZFbV9vdt58xcv6vqet1ZEvIO9F3lHl4NFnA9sj/DGNIP3/f13oGvnTIcpdUHBLDvJIgO52CL1x384/NSLYxp212bRe7JrqOouLNQX+s1IW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h9bdvuKm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574H1m4G015496
-	for <devicetree@vger.kernel.org>; Mon, 4 Aug 2025 19:37:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZhETA39faQ5nTi2zmiEubPl3YqYzVEJnQSXgNm1akj4=; b=h9bdvuKmNN1pHB6D
-	6/S6iaiA3kebkj+3OBMN1l8fKLNXd3v/6xNZ4J8JQu/KYQTicGIfqudUZmYhOdaR
-	+UatLFVjmTXQDIavXf3Xt5NADVn5DO1iznFm9UHtMzndaggB/nShF2sLsGNBMPd0
-	n6Sd/SQWbRS+qBVUkKpauOZGL12+Xr5knN+wmTwcFgzWtpuwlk0UShiItN1ODtyu
-	DNZ5pjuHmv35gr8ijhjFOW1FRfmaDdxSg7KHUnyTFHtiCVtMpkztMFrNmO3i1Mi9
-	2nw2GdUQyIfLj8y/Gcm8FS+L77n34tIoMhD38lXira66iLtmXP4Xp3QZLyWgj/NF
-	OWbifQ==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4898cjpc3b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 19:37:58 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b00e4358a34so2357786a12.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 12:37:58 -0700 (PDT)
+	s=arc-20240116; t=1754337451; c=relaxed/simple;
+	bh=Ls1I6xnwjKB9nxx4YVwaD8SDpqVui6e9YgwpysNbbIA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AtDPtB9T3Of/VOVGO8d0YNXpo5m4lbDqadtLGdH7oxK//uKblXsH1hXnN0Xt29lJHMaJXb5Ucb6/skJDto7kh4nwsZOyc4QQAgBT5WC9DoHsgsF1d2N/ITT0WzXmcU7/0DM9oXyiicNPtRAnU6bi6UXLFcnUM2zIUf3gFp87mrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NCgQL3Ey; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3b790dbb112so2632958f8f.3;
+        Mon, 04 Aug 2025 12:57:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754337448; x=1754942248; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=x/MyHblJ7uyowUrCYk/Yn8tFlGh2tU0BHZTDwTmz4Yc=;
+        b=NCgQL3EyYTwo+tuLqGwIBmZb02UqpF4YwZuNQLRCKsZ+Dze7j0i9EI0K0H8nGdryAI
+         FPjaUCrbGXkaNagosT2tB4fpZW5gbnjgo7yUkTWkXNHMgRouV/ostsTO2r2rdSh6sGpZ
+         jF8Lk5xo7Md3eXxY4uI2QsoJAsiF+CaTvUxbQwhQ6klw3jGFL82Xo/jjf6t+rcBoOQf3
+         DypswV5ZPesla3O6RkBpr0RU/o6tpPPTdywzIzObZKUlmudGpc/b1KQKKeD2lTJRSEhS
+         3fTd5iGm7+6C5uKz8t0xFAX1nqpB5ZBqq+kFqzirmARz3kb6c0W97Fmnl1zEPjB0x1Ae
+         U6jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754336278; x=1754941078;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhETA39faQ5nTi2zmiEubPl3YqYzVEJnQSXgNm1akj4=;
-        b=mlE4wYLCAMNqRq94k29lgkU281Uh0fww8mt7LK72SjdvTf5tpTc14h4AhBxlG4sBh4
-         XfVgu4iut5dFj3BXOd5u49GE0t0tVei8emqWUK88OPDWQ3z1b4YfPUSds0E4JgFziJ+m
-         O8JQ+SRoLe0GltAJJkM0j+4+KWHiVolUIj4tim+v/0kZvvo6mUzxbUWoHKkX9C5N/riZ
-         t5uKRZ2Vdsq0fTZbnO5wkkoll++E8+NVM0Mnh7ModEYOEXFVebPJ0prBlGSAVgaNO2F8
-         QX2GmxL0mZYZQz31PshdjXk5WuT5sx9zhqcyXDL6TB+KF/uxwGU/cnf9N88HOIaY2lsV
-         NfsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpvjEipknfgrOok84usLgouuKRiVW0LwOuYTTfHSPO5Si4GUIcjCaRqq/FBOb2YZheONd26FcRWk5F@vger.kernel.org
-X-Gm-Message-State: AOJu0YycjFeOd3BO4a44/jxO7m+2mjsh4DXIRkiDK/TNl7N6WiG0KenA
-	DQGlQrmh5z5nPL7RENVUQFO7WeUChJ3Ka0g/egamAyqLqCzT7nQQAI/QPtYJ4ApCVXZnPGdWb5m
-	Si/r8zJxOL6thuFwm2zHQlJmofuwFCgEgu+3K7oU7ADksFnwGEqzYS5AhIr8AQPdPkgpuI5zt
-X-Gm-Gg: ASbGncvUhWs4bAGiM7lEOgb492RfVralU99r5ZZrpu11xAO7kBvb9GmtH2bUeC379ss
-	Pqq7uAVGsffWaYJNznUy4+4qwMKBJwioVpqfFKH7GsIWZzi1WxDS2E2V+RXLTvN97wuLbSlrGYi
-	H+7gEqgBrV5z4J3P0GGXJXG3RgLhg/Mko2vIrWIGX7+VXwV3/uSN+Otw2xFqppyDCvNQfJGex5y
-	W7qeoyxbHDUuMuPj7gCgezqqWfsyQ3+bTiEFFq55Ie4JnkEJDi58elPsM19VtPUOjxV3DvtNFOZ
-	3fqI3BK3iGZIvXZa9SrTtwS7hWlIVA7YGYtG7b7UUWNtF8OmiAL6tOkRJfxbumdeLds+cZp4wYg
-	UP3p4SFaThNYxcrzk2NdncM+G6taZ
-X-Received: by 2002:a05:6a21:32a8:b0:240:af8:1784 with SMTP id adf61e73a8af0-2400af81b60mr6755152637.1.1754336277823;
-        Mon, 04 Aug 2025 12:37:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjZtGErtEqr0mN/bYFEtV8ckk8GVvca6gvVir73rQPTbuaRSj7qE7ZcUwxOg9STp9FAz1DkA==
-X-Received: by 2002:a05:6a21:32a8:b0:240:af8:1784 with SMTP id adf61e73a8af0-2400af81b60mr6755113637.1.1754336277347;
-        Mon, 04 Aug 2025 12:37:57 -0700 (PDT)
-Received: from [10.71.110.42] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4252b83822sm4242439a12.66.2025.08.04.12.37.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Aug 2025 12:37:56 -0700 (PDT)
-Message-ID: <4becbced-8e88-4588-9de6-06f98eae0736@oss.qualcomm.com>
-Date: Mon, 4 Aug 2025 12:37:39 -0700
+        d=1e100.net; s=20230601; t=1754337448; x=1754942248;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x/MyHblJ7uyowUrCYk/Yn8tFlGh2tU0BHZTDwTmz4Yc=;
+        b=fjqANI+Prwgx8XSbLBt+dAiJty+w33M6CxTiK7xCQcvjUZTJ68Kd3+kENas5a0/zc8
+         AGg4HAwwN78QO104fpuSCDipGtOxGPuuerelm0VN+pXxUYoEU/r7wxmjMDHNTdippoCa
+         eQZBTHoR13QvmMHlBDDN9znVzm2PBPjmyWNYmKO029cU0WnEfD85V0ZQIVVtU0/Qa9VT
+         hrI2yx0v9ccg8z0515W9AlA1Fr52zDH42x55Ubl02TJWqcna8NUYDzfkwIW2vBo78thu
+         MQ5829LR6DRa1t5ha4ge6mZXF1VRToQZi5ZtO6Zn0vbFCnYuxqqSqbfdwX9zZO9zg6If
+         uQWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVf2XarO2V1xS2ClBOuI569ZCm6qRJx+LU5LLSWX6lPrA7bSOQTFZaMxQGxmZz5NuW7+CtmsayS6g73@vger.kernel.org, AJvYcCWzf7LsTuzlzWpwF5i/DW9eVbJ0HdqgdTsTaUEbV5VspcK3SrmAHoqCCVeJKkltT9w1yAmZEM+yajOVUagqlPncnk8=@vger.kernel.org, AJvYcCXIg6VYKZkEaKt2W2eUFVp7HOlNTCiOJMDZj1MMw4jeIQbrnZtT9vOYpnBXChTS18jBSHbr2QqdtWU0t7ec@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEB+EI7YaR6Q/EnvutjaE2Nmae1OSYE+IF+CE9qaDNv32pN8wr
+	P1eJOnR0TXGlAxiOajI+oG8+Cqk42K/0/jqSSmy1tdIGmb0DqfjN/Qnq
+X-Gm-Gg: ASbGncsh5B+2uB9BrC2ErbxoZKSteeLnI1+7x3Xk/TFlo3IMiGoo8hueJKTH86qT7y7
+	gCNNONFe8XxJBOK3pR17GKH085Dsf5UXqW70+lOblpvfI4ZbvZpuX7sRegRsJY23pSTTdgiS4OX
+	mJ14idC1zHCp+NyI2SDn9b1DRw1Qo6lU5jGG8uVMTiUQbQcTWz9iQXDjB72f90gLMG129sxWDr4
+	0Wyj3NMFFi8pYt0NXdTRriBNOIuwzu7tzwuCxios6ep7jFIOQaWcgDvLGr4fKOTH5/tZvfwl1RT
+	CJ+SF2bCs26/uIb7tV/0Wl3uBmKg6qQSq23p4vQKnYGEd0zrKacKplfaAiHnOWCg1Q7ee8SZmU8
+	pWHrRyWXjRGOAHTpmJXPmXznGZklTzjK1qOKctuduCaVv4fd1EUls7rizXO7okR9TgprVptQprQ
+	==
+X-Google-Smtp-Source: AGHT+IHKjHoSmJl6K3x29t/xHimifONWBZQqAL6qPDzkRebqVVmffzoLpnolqmH405PnzLib2DShvA==
+X-Received: by 2002:a05:6000:2388:b0:3b8:d15e:ed35 with SMTP id ffacd0b85a97d-3b8d947296emr6440136f8f.23.1754337448241;
+        Mon, 04 Aug 2025 12:57:28 -0700 (PDT)
+Received: from iku.Home (97e54365.skybroadband.com. [151.229.67.101])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3b9074sm16293840f8f.17.2025.08.04.12.57.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Aug 2025 12:57:27 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/6] Add watchdog driver support for RZ/T2H and RZ/N2H SoCs
+Date: Mon,  4 Aug 2025 20:57:17 +0100
+Message-ID: <20250804195723.3963524-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] of: reserved_mem: Restructure call site for
- dma_contiguous_early_fixup()
-To: Rob Herring <robh@kernel.org>
-Cc: m.szyprowski@samsung.com, robin.murphy@arm.com, saravanak@google.com,
-        quic_obabatun@quicinc.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        william.zhang@broadcom.com, kernel@oss.qualcomm.com, will@kernel.org,
-        djakov@kernel.org
-References: <20250730002956.1812694-1-oreoluwa.babatunde@oss.qualcomm.com>
- <20250730224132.GA1822233-robh@kernel.org>
-Content-Language: en-US
-From: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
-In-Reply-To: <20250730224132.GA1822233-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=MNBgmNZl c=1 sm=1 tr=0 ts=68910c16 cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Q-fNiiVtAAAA:8
- a=U-hEzrufn-yrS9YAMqUA:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-ORIG-GUID: sZ51S8EvylWpQP-gu1yeDKJbzkqiCwqU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDExNSBTYWx0ZWRfX7Qy+6lkC+2ix
- l2ws3LFnLsCHy/qL+j8tQiZnjbpvPDYQgmpSmUsYa2iFvBTkGP6cbpzZH2uOStwqx5pr/v0FpMR
- bvUX35n0kEDF21ykzCc87e9BKHR7FboqtzQUgKJPo6QxMPzR0cg4RI7ATUH7XFM9ZAmMM1s05Qz
- KHlKLzHSx0xBnYQs9TQYJck7YkIVZWXvgWQBUSXhPzVhDeNyqeYk4IjdQhW1jkc4UBJx4U7uoDz
- b52+UtqNoY7hRKEW9drbLf8swxL1t1Bx6oxFVOtqSrkpLaJyHh3E6Qf2cXp9mXYXG2NY7dzHeq0
- fe4PnfkkD5c5LMqzb8+27n17W4AoL4zzDIldYXDLIEfbka3NqhOd6oUw35cVPkTfAwYMW4NXrOi
- E92+irh5OqUeRfdb7vDio5MsZQS3LMc5l+dQFo3hCVrlDIj4eUJHa2mInU6i1D1Zic7Ok53w
-X-Proofpoint-GUID: sZ51S8EvylWpQP-gu1yeDKJbzkqiCwqU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-04_08,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=545 suspectscore=0
- spamscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 adultscore=0
- lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508040115
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
-On 7/30/2025 3:41 PM, Rob Herring wrote:
-> On Tue, Jul 29, 2025 at 05:29:56PM -0700, Oreoluwa Babatunde wrote:
->> Restructure the call site for dma_contiguous_early_fixup() to
->> where the reserved_mem nodes are being parsed from the DT so that
->> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
->>
->> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
->> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
->> Tested-by: William Zhang <william.zhang@broadcom.com>
->> ---
->> v3: Wrap the call to dma_contiguous_early_fixup() with a check for
->>     CONFIG_DMA_CMA to fix compile error seen on x86. The __weak function
->>     definition introduced in v2 was not sufficient to prevent the issue,
->>     so remove that as well.
->>     Also add Tested-by tag from William Zhang.
->>
->> v2: Add a check for the "reusable" property to narrow things down to
->>     only cma regions.
->>     Also add __weak function definition for dma_contiguous_early_fixup()
->>     to avoid compile errors on architectures that do not define the
->>     function.
->>
->>  drivers/of/of_reserved_mem.c | 20 ++++++++++++++++----
->>  kernel/dma/contiguous.c      |  2 --
->>  2 files changed, 16 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
->> index 77016c0cc296..cfffecb91c3a 100644
->> --- a/drivers/of/of_reserved_mem.c
->> +++ b/drivers/of/of_reserved_mem.c
->> @@ -25,6 +25,7 @@
->>  #include <linux/memblock.h>
->>  #include <linux/kmemleak.h>
->>  #include <linux/cma.h>
->> +#include <linux/dma-map-ops.h>
->>  
->>  #include "of_private.h"
->>  
->> @@ -175,13 +176,19 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->>  		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
->>  		size = dt_mem_next_cell(dt_root_size_cells, &prop);
->>  
->> -		if (size &&
->> -		    early_init_dt_reserve_memory(base, size, nomap) == 0)
->> +		if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
->> +			/* Architecture specific contiguous memory fixup. */
->> +#ifdef CONFIG_DMA_CMA
->> +			if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
->> +			    of_get_flat_dt_prop(node, "reusable", NULL))
->> +				dma_contiguous_early_fixup(base, size);
->> +#endif
-> 
-> Add a static inline for dma_contiguous_early_fixup() instead of having 
-> an #ifdef.
+This patch series adds watchdog driver support for the Renesas RZ/T2H
+(R9A09G077) and RZ/N2H (R9A09G087) SoCs. The necessary device tree
+bindings and driver modifications are included.
 
-ACK.
+v2->v3:
+- Fixed commit header for the patches rzv2h_wdt->rzv2h
+- Added reviewed-by from Wolfram
+- Merged "watchdog: rzv2h_wdt: Make reset controller optional"
+  patch with "watchdog: rzv2h: Make "oscclk" and reset controller optional"
+- Dropped patch "watchdog: rzv2h: Set min_timeout based on
+  max_hw_heartbeat_ms" instead updated the period for RZ/T2H.
+- Updated rzv2h_of_data structure to include tops and timeout_cycles
+  for RZ/T2H.
 
-Thanks!
+v1->v2:
+- Dropped items from clock-names and instead added maxItems: 1.
+- Added reviewed-by from Rob.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  dt-bindings: watchdog: renesas,wdt: Add support for RZ/T2H and RZ/N2H
+  watchdog: rzv2h: Obtain clock-divider and timeout values from OF match
+    data
+  watchdog: rzv2h: Make "oscclk" and reset controller optional
+  watchdog: rzv2h: Add support for configurable count clock source
+  watchdog: rzv2h: Add support for RZ/T2H
+  watchdog: rzv2h: Improve error strings and add newlines
+
+ .../bindings/watchdog/renesas,wdt.yaml        |  36 ++++-
+ drivers/watchdog/rzv2h_wdt.c                  | 148 ++++++++++++++++--
+ 2 files changed, 164 insertions(+), 20 deletions(-)
+
+-- 
+2.50.1
+
 
