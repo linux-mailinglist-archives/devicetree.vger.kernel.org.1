@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-201715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 623FDB1A59F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 099D9B1A5A2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:16:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5B2117F6AC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:16:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C2A817FAEC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3011FF1C8;
-	Mon,  4 Aug 2025 15:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4A921FF25;
+	Mon,  4 Aug 2025 15:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QYvr2eC3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ObWorKFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186864C8F
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 15:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF3B2116F6
+	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 15:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754320583; cv=none; b=XSuchpxMXQcCrxT7krjqBytInWSLOTM5VwZkGFsXXJ7nq8sqF4UkUXwyaGQNA5qjx4NLYOzSZ2hLqEaOTAYIWmNjpWSky/i4tlELnMfqDaCjgK7SJyEh/7TJhTT9rq6RChzn2bx0BM11KkFUn3YFSjLrfdq5TtWm2X/ez4BFjE0=
+	t=1754320597; cv=none; b=Iy2ED2EENrnPg8o7L9xEuRBHyfW6lU2sxt7Ah7mjKVV9UvKvudo0nDQRwHkuCYRkJ8R8U6aXYZrghSjrchDMRtA0+CCeRd9NbTYQv1M7mSC2PbMqlkfjdoQr0UUb0kM+zAytlsZtjvT0xe8/nu3TkrJrQlIwIf1B3/vLnj1EsFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754320583; c=relaxed/simple;
-	bh=9YRdWSjdxgZIRwrd5rQDdKvT/vMdugq6cOXz9f33l+U=;
+	s=arc-20240116; t=1754320597; c=relaxed/simple;
+	bh=pB8TF+y6fjTVWuJywuXjV1oN/JoHE9Z8YbpKBz27v+Q=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=M4jROmowGdv5EZ41vmogIwiTIcE1OCmPpp+HxlLcfqVa7JdmS3IrGFCFI3S+YvGdVK6gITX8bKyc8qOAUn7hU4svoczZgci77r33RCa/7bzrRj0Uyh4ccwpDxObEqIiArTdIKLkf6QxVZDD++HzWg74wVOZVGf9MqteQs8wZgqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QYvr2eC3; arc=none smtp.client-ip=209.85.128.53
+	 In-Reply-To:Content-Type; b=Wqz5Tp6t/id+br3p5ar3AZZv9VtTK+gPM1Lo4W/tYypqVdhcw/yDGDMgPNN4KyDCtcASHsMME+Z+6lz/aV/euPOdImC2bd7qF4E/mAsiW+CPaIk7MnDvNV4Q9r2F7fJM1ARRUM8rSFGMorzxvtBZMaX7rbpF22da37PTTHxNAAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ObWorKFf; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-458baf449cbso20659755e9.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 08:16:20 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-458bdde7dedso14560205e9.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 08:16:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754320579; x=1754925379; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1754320592; x=1754925392; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ifdQYtMoMbUhaDaLztKpCS+6vqQS+9SK4PGyB6S6f3U=;
-        b=QYvr2eC3aZt0lLXpkU2364elB7KrMOyC1AFYbnS6C/8pyPgBfhQEUpWulOoBNbL2nD
-         PRL562VHB+Xiknr3u0VaKRETayA7m36Iph5ivRzUgrRB5ZyGythiHRjIQytj8Tgugwra
-         hk2ElYUJsj3pPyHZy2m9jwhFWDLtMtuH0Pe9tSLAcst0ABvKCOB9enyQb2NCaZVle3JP
-         PYp0yuQRRoo2fzupqHHLHu2GZ/h3Bm2aXs+mmgXHdCd+vgLjk61YaXmY+VkPF6qTWPJu
-         yLmwO1zJ2nmbSB6Novjk4x+8YIgBcrIelooANlzuoPD5XSj0dKbhC3GYNEGZkmuTjxoS
-         mKqw==
+        bh=OSZPvv7Tv/o6wrsadccULFFTeGgqWHvCCUhxjgSXGeU=;
+        b=ObWorKFfk2eZrhXJ6tyUmw46466EM5ZjevXRlMXGl0sMIjIN3MI81D1jwL3H+Z3Uws
+         S5DcbvAqPnq23dmUtxk17aympMqR3JVjNnSxDnlVRos5uWslhKah6GCLSn6bSxIsfQPz
+         tk90easFQ0lqkHli1JnvgZt5O81bqQKnvZbdKrU2U2XkrDLmI6g29nZZXQYKPZkebStA
+         l7VrQyHMLPS8HWT0lRa3AJcJ56iuJB/zAV7HlXZhQBXrqtdf5E3YOXl0X0H/1bYg+i8z
+         YyXmhcR2uRAcByIwX8TTSaifvOVcCO/ogbNIYcERWRgsYZKuChrMZy81AVAjoXVKmRUg
+         Pdag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754320579; x=1754925379;
+        d=1e100.net; s=20230601; t=1754320592; x=1754925392;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=ifdQYtMoMbUhaDaLztKpCS+6vqQS+9SK4PGyB6S6f3U=;
-        b=mIlO7qdn911N91GuFkvBUEwUh6Wa6X5pKUBwshjnTafA9zec/jMosm/27FBGzoSEI2
-         a/R3+pBCvf/PIoY2hGa8Qd4GPcO/TCBOStoEdEdQ0w744v9HajOY8j5SgD05qV11OLI/
-         imz4imSpvb2PvYvOsLEpcfZvZhS1aMIs4d59XM5TrVODMVw9B6mPBttWj5iKyRvkY23X
-         lr6qzAlpLdWfhS/0gY8iP9ZSqJ+9WdyRmBiiTPkXk221wzSw1BpPxZVISFlcRt7fLVzg
-         cTC6LNx6nz8QPp0ovpkZkbZzY9jcArOWJG99mEWZ47HQMBuFLSJHS8NQ44DcatP2Upxp
-         C3oA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmif/2onC00tfOaMGEsR/caWlzercMqli6OzJZTZKww+N2tq0kwD20HXStT7ZgBfthUF5Sslz50J5v@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJgk01U+mmVMYeBL/iOlTb+hiR7NCY7tLw8C92/buXqKfVUhCF
-	yGWLZUjV4Q4vOWP22GIJCi1rEq5pP9kIvJ63lIVCbwHtjrXoNEJGNjByiid6e5NXVZ4=
-X-Gm-Gg: ASbGncsQY0QygQwSSb/q/6v/1jN4FTmUIQy7YrSiCJ+dlctGrQPTn60xioI6l78mnaP
-	CtdtYBwYoxJM9aqgwsSJWTLJhgKKLMy07QJmgX7uIbAMVhYvJOngXjSdVkdv62gxlJzT76Bvd1/
-	QVuYw+pynP5kcJeZj6JFsrAB4cntTgTF7dA/PgRmd9eMD85ys2v93/Y6JiCfE3pGMbAcnarh5gE
-	YVXMxXAqIPoe4EIUG0ZcNdvnB5YniOE1tufXm9kTy3S5PGMg/ahfeGAZdXLui1sGc6DqjKpuvbX
-	k2gN2HGLylAtVnMT+nrkKlSggyl9uaGA3wdLFP8HQlnuwZzX6/aS+cNE9cGtxOavYQn/Q+KT/fl
-	uLC0CazZH2fAiUDxOOaPytC5X6oCZ5+FFSCQXySja57Ow1bBq4rYg0tJv1atOW3o5TiQ/TU/aER
-	s=
-X-Google-Smtp-Source: AGHT+IHPPDD9D0qxXu9jHrNySpU2UAtNfOEP8mZOWyrtTy6JCiloSri0pkmDPr9668JfOlIhW9A5cA==
-X-Received: by 2002:a05:6000:2881:b0:3b7:8146:4642 with SMTP id ffacd0b85a97d-3b8d9472439mr6472193f8f.20.1754320579282;
-        Mon, 04 Aug 2025 08:16:19 -0700 (PDT)
+        bh=OSZPvv7Tv/o6wrsadccULFFTeGgqWHvCCUhxjgSXGeU=;
+        b=XPZhG3h6cYGk4o/0TWTj9dP/mYmzAz5qSf9bUFivXCb5l4M3g0DmJXz2z+6HF6r3C+
+         An0h4DF4RAwlXEEUfRonLcvLkOaAPRY1NHQnpqzCVuDrHyn2bRS8hnf6aOh/RPzpIg61
+         0qrei65/eixEWgeZ89MKVZA3rb3i6C9KwVKhTR4iV/0jLZp4fGbYbWXoibo1iZY8a+ZN
+         GrEdt3PMTiBbrtEIkrunmvTpAmKkDbCX4y8YhHdpavzP0VLN16PBtGxPXsrmcezBhQrH
+         gbYQniTDPQ6nQywogkby41LFykVKR9UhyDYigfkR+2u+wQRBVC/jrxxf7Tmy4fUWcV6y
+         0/5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW4UB/04vG0NEuVRzgULjf2kWb+uph89LaV3ZiFSD5xiWEM/dXDCzsbk0ru275PNTubNHbetcw4WBYa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQ59s1lWXw0/CVEcP44zsM2XxnW8/RfRBgQUMdiW0tjr6Rglxb
+	7UhcrYyhv6UMx0qxGkjJGiZoqyzOT8+X7XrNsCh5uQGSZyBqX81o0IfmZ0hOWfZ6ozY=
+X-Gm-Gg: ASbGncvQaj7hJcWjrkikrJNNBIe3oL0BKPqpX/Su05RvVUlqO4VT2SW2hz4n1XgQ/M0
+	aZMkDJXvHMnVM+0IhsE/POPOgmbyy/ZG3zXk1gr9epJ0145sNsj5e8cFgAm5+rV6H4VCCIONSr+
+	btVGv8BoLTHMh7sdtGsA516lGTl+6xeGONi7YsTOOClCrFbLtmJHVfTw6gathGwTjVACEjhHGgy
+	enVxpUOoaHpfmL3+GT7/LAFSihcEkJh2DjCnrChzN5usmp5WoIxDkufPvSsOsWj2inDwZsz4d9E
+	LhvckPHNicTAfrAwqQsq2kcztMwuaqIOCX6Z3uQP7FPBQ9FnizLr6AzBkdy4Ckn9zQ3dZSrIwgp
+	VthrQx9lu88rkTY94Y+qlx60cEqYZxQMkSPzzXbIvZsCpDDyH0D5PMytbcwU7hsXrHq4NsfNU59
+	M=
+X-Google-Smtp-Source: AGHT+IFxuKH+nNMu2qV/i2wzQSOCFyQkJpi9CB3eOzRm6JIcvPsDKvvXkV75j7SnV7Bgq8DJnSJ4Yg==
+X-Received: by 2002:a05:600c:3145:b0:43d:42b:e186 with SMTP id 5b1f17b1804b1-458b69dd41cmr74958475e9.8.1754320592365;
+        Mon, 04 Aug 2025 08:16:32 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:3030:f63e:fedd:700f? ([2a01:e0a:3d9:2080:3030:f63e:fedd:700f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458b73868a4sm99448145e9.11.2025.08.04.08.16.18
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4589ee57c18sm171568985e9.28.2025.08.04.08.16.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Aug 2025 08:16:18 -0700 (PDT)
-Message-ID: <a8c59d2c-4c4f-4eb8-a371-03c1169c479e@linaro.org>
-Date: Mon, 4 Aug 2025 17:16:18 +0200
+        Mon, 04 Aug 2025 08:16:32 -0700 (PDT)
+Message-ID: <6053afaa-b7eb-4be3-8c57-717c40465bda@linaro.org>
+Date: Mon, 4 Aug 2025 17:16:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,8 +87,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 03/13] drm/panel: ilitek-ili9881c: convert (un-)prepare to
- mipi_dsi_multi_context
+Subject: Re: [PATCH 06/13] drm/panel: ilitek-ili9881c: Add Bestar
+ BSD1218-A101KL68 support
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
@@ -98,7 +98,7 @@ Cc: quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org
 References: <20250707164906.1445288-1-heiko@sntech.de>
- <20250707164906.1445288-4-heiko@sntech.de>
+ <20250707164906.1445288-7-heiko@sntech.de>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -125,135 +125,269 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250707164906.1445288-4-heiko@sntech.de>
+In-Reply-To: <20250707164906.1445288-7-heiko@sntech.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 07/07/2025 18:48, Heiko Stuebner wrote:
-> This saves some lines for error handling.
+> Add support for the Bestar BSD1218-A101KL68 panel.
 > 
-> For the address mode change, that value is always an u8, so switching
-> to dcs_write_buffer function should be appropriate.
+> The init table comes from the Firefly BSP ([1]).
+> 
+> [1] https://gitlab.com/firefly-linux/kernel/-/blob/rk3588/firefly/arch/arm64/boot/dts/rockchip/aio-3588l-mipi101-BSD1218-A101KL68.dtsi
 > 
 > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 > ---
->   drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 66 ++++++-------------
->   1 file changed, 21 insertions(+), 45 deletions(-)
+>   drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 220 ++++++++++++++++++
+>   1 file changed, 220 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-> index a20b52181ea0..154eea5f4d77 100644
+> index 154eea5f4d77..3095a8bd1ebf 100644
 > --- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
 > +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-> @@ -1239,33 +1239,24 @@ static inline struct ili9881c *panel_to_ili9881c(struct drm_panel *panel)
->    * So before any attempt at sending a command or data, we have to be
->    * sure if we're in the right page or not.
->    */
-> -static int ili9881c_switch_page(struct ili9881c *ctx, u8 page)
-> +static void ili9881c_switch_page(struct mipi_dsi_multi_context *mctx, u8 page)
+> @@ -1223,6 +1223,200 @@ static const struct ili9881c_instr am8001280g_init[] = {
+>   	ILI9881C_COMMAND_INSTR(MIPI_DCS_WRITE_POWER_SAVE, 0x00),
+>   };
+>   
+> +static const struct ili9881c_instr bsd1218_a101kl68_init[] = {
+> +	ILI9881C_SWITCH_PAGE_INSTR(3),
+> +	ILI9881C_COMMAND_INSTR(0x01, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x02, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x03, 0x55),
+> +	ILI9881C_COMMAND_INSTR(0x04, 0x55),
+> +	ILI9881C_COMMAND_INSTR(0x05, 0x03),
+> +	ILI9881C_COMMAND_INSTR(0x06, 0x06),
+> +	ILI9881C_COMMAND_INSTR(0x07, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x08, 0x07),
+> +	ILI9881C_COMMAND_INSTR(0x09, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0a, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0b, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0c, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0d, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0e, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x0f, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x10, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x11, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x12, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x13, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x14, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x15, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x16, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x17, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x18, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x19, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x1a, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x1b, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x1c, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x1d, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x1e, 0xc0),
+> +	ILI9881C_COMMAND_INSTR(0x1f, 0x80),
+> +	ILI9881C_COMMAND_INSTR(0x20, 0x04),
+> +	ILI9881C_COMMAND_INSTR(0x21, 0x03),
+> +	ILI9881C_COMMAND_INSTR(0x22, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x23, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x24, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x25, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x26, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x27, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x28, 0x33),
+> +	ILI9881C_COMMAND_INSTR(0x29, 0x33),
+> +	ILI9881C_COMMAND_INSTR(0x2a, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x2b, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x2c, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x2d, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x2e, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x2f, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x30, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x31, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x32, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x33, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x34, 0x04),
+> +	ILI9881C_COMMAND_INSTR(0x35, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x36, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x37, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x38, 0x3c),
+> +	ILI9881C_COMMAND_INSTR(0x39, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3a, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3b, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3c, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3d, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3e, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x3f, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x40, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x41, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x42, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x43, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x44, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x50, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x51, 0x11),
+> +	ILI9881C_COMMAND_INSTR(0x52, 0x44),
+> +	ILI9881C_COMMAND_INSTR(0x53, 0x55),
+> +	ILI9881C_COMMAND_INSTR(0x54, 0x88),
+> +	ILI9881C_COMMAND_INSTR(0x55, 0xab),
+> +	ILI9881C_COMMAND_INSTR(0x56, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x57, 0x11),
+> +	ILI9881C_COMMAND_INSTR(0x58, 0x22),
+> +	ILI9881C_COMMAND_INSTR(0x59, 0x33),
+> +	ILI9881C_COMMAND_INSTR(0x5a, 0x44),
+> +	ILI9881C_COMMAND_INSTR(0x5b, 0x55),
+> +	ILI9881C_COMMAND_INSTR(0x5c, 0x66),
+> +	ILI9881C_COMMAND_INSTR(0x5d, 0x77),
+> +	ILI9881C_COMMAND_INSTR(0x5e, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0x5f, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x60, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x61, 0x0a),
+> +	ILI9881C_COMMAND_INSTR(0x62, 0x09),
+> +	ILI9881C_COMMAND_INSTR(0x63, 0x08),
+> +	ILI9881C_COMMAND_INSTR(0x64, 0x13),
+> +	ILI9881C_COMMAND_INSTR(0x65, 0x12),
+> +	ILI9881C_COMMAND_INSTR(0x66, 0x11),
+> +	ILI9881C_COMMAND_INSTR(0x67, 0x10),
+> +	ILI9881C_COMMAND_INSTR(0x68, 0x0f),
+> +	ILI9881C_COMMAND_INSTR(0x69, 0x0e),
+> +	ILI9881C_COMMAND_INSTR(0x6a, 0x0d),
+> +	ILI9881C_COMMAND_INSTR(0x6b, 0x0c),
+> +	ILI9881C_COMMAND_INSTR(0x6c, 0x06),
+> +	ILI9881C_COMMAND_INSTR(0x6d, 0x07),
+> +	ILI9881C_COMMAND_INSTR(0x6e, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x6f, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x70, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x71, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x72, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x73, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x74, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x75, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x76, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x77, 0x0a),
+> +	ILI9881C_COMMAND_INSTR(0x78, 0x06),
+> +	ILI9881C_COMMAND_INSTR(0x79, 0x07),
+> +	ILI9881C_COMMAND_INSTR(0x7a, 0x10),
+> +	ILI9881C_COMMAND_INSTR(0x7b, 0x11),
+> +	ILI9881C_COMMAND_INSTR(0x7c, 0x12),
+> +	ILI9881C_COMMAND_INSTR(0x7d, 0x13),
+> +	ILI9881C_COMMAND_INSTR(0x7e, 0x0c),
+> +	ILI9881C_COMMAND_INSTR(0x7f, 0x0d),
+> +	ILI9881C_COMMAND_INSTR(0x80, 0x0e),
+> +	ILI9881C_COMMAND_INSTR(0x81, 0x0f),
+> +	ILI9881C_COMMAND_INSTR(0x82, 0x09),
+> +	ILI9881C_COMMAND_INSTR(0x83, 0x08),
+> +	ILI9881C_COMMAND_INSTR(0x84, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x85, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x86, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x87, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x88, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x89, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x8a, 0x02),
+> +
+> +	ILI9881C_SWITCH_PAGE_INSTR(4),
+> +	ILI9881C_COMMAND_INSTR(0x6e, 0x2a),
+> +	ILI9881C_COMMAND_INSTR(0x6f, 0x37),
+> +	ILI9881C_COMMAND_INSTR(0x3a, 0x24),
+> +	ILI9881C_COMMAND_INSTR(0x8d, 0x19),
+> +	ILI9881C_COMMAND_INSTR(0x87, 0xba),
+> +	ILI9881C_COMMAND_INSTR(0xb2, 0xd1),
+> +	ILI9881C_COMMAND_INSTR(0x88, 0x0b),
+> +	ILI9881C_COMMAND_INSTR(0x38, 0x01),
+> +	ILI9881C_COMMAND_INSTR(0x39, 0x00),
+> +	ILI9881C_COMMAND_INSTR(0xb5, 0x02),
+> +	ILI9881C_COMMAND_INSTR(0x31, 0x25),
+> +	ILI9881C_COMMAND_INSTR(0x3b, 0x98),
+> +
+> +	ILI9881C_SWITCH_PAGE_INSTR(1),
+> +	ILI9881C_COMMAND_INSTR(0x22, 0x0a),
+> +	ILI9881C_COMMAND_INSTR(0x31, 0x0c),
+> +	ILI9881C_COMMAND_INSTR(0x53, 0x40),
+> +	ILI9881C_COMMAND_INSTR(0x55, 0x45),
+> +	ILI9881C_COMMAND_INSTR(0x50, 0xb7),
+> +	ILI9881C_COMMAND_INSTR(0x51, 0xb2),
+> +	ILI9881C_COMMAND_INSTR(0x60, 0x07),
+> +	ILI9881C_COMMAND_INSTR(0xa0, 0x22),
+> +	ILI9881C_COMMAND_INSTR(0xa1, 0x3f),
+> +	ILI9881C_COMMAND_INSTR(0xa2, 0x4e),
+> +	ILI9881C_COMMAND_INSTR(0xa3, 0x17),
+> +	ILI9881C_COMMAND_INSTR(0xa4, 0x1a),
+> +	ILI9881C_COMMAND_INSTR(0xa5, 0x2d),
+> +	ILI9881C_COMMAND_INSTR(0xa6, 0x21),
+> +	ILI9881C_COMMAND_INSTR(0xa7, 0x22),
+> +	ILI9881C_COMMAND_INSTR(0xa8, 0xc4),
+> +	ILI9881C_COMMAND_INSTR(0xa9, 0x1b),
+> +	ILI9881C_COMMAND_INSTR(0xaa, 0x25),
+> +	ILI9881C_COMMAND_INSTR(0xab, 0xa7),
+> +	ILI9881C_COMMAND_INSTR(0xac, 0x1a),
+> +	ILI9881C_COMMAND_INSTR(0xad, 0x19),
+> +	ILI9881C_COMMAND_INSTR(0xae, 0x4b),
+> +	ILI9881C_COMMAND_INSTR(0xaf, 0x1f),
+> +	ILI9881C_COMMAND_INSTR(0xb0, 0x2a),
+> +	ILI9881C_COMMAND_INSTR(0xb1, 0x59),
+> +	ILI9881C_COMMAND_INSTR(0xb2, 0x64),
+> +	ILI9881C_COMMAND_INSTR(0xb3, 0x3f),
+> +	ILI9881C_COMMAND_INSTR(0xc0, 0x22),
+> +	ILI9881C_COMMAND_INSTR(0xc1, 0x48),
+> +	ILI9881C_COMMAND_INSTR(0xc2, 0x59),
+> +	ILI9881C_COMMAND_INSTR(0xc3, 0x15),
+> +	ILI9881C_COMMAND_INSTR(0xc4, 0x15),
+> +	ILI9881C_COMMAND_INSTR(0xc5, 0x28),
+> +	ILI9881C_COMMAND_INSTR(0xc6, 0x1c),
+> +	ILI9881C_COMMAND_INSTR(0xc7, 0x1e),
+> +	ILI9881C_COMMAND_INSTR(0xc8, 0xc4),
+> +	ILI9881C_COMMAND_INSTR(0xc9, 0x1c),
+> +	ILI9881C_COMMAND_INSTR(0xca, 0x2b),
+> +	ILI9881C_COMMAND_INSTR(0xcb, 0xa3),
+> +	ILI9881C_COMMAND_INSTR(0xcc, 0x1f),
+> +	ILI9881C_COMMAND_INSTR(0xcd, 0x1e),
+> +	ILI9881C_COMMAND_INSTR(0xce, 0x52),
+> +	ILI9881C_COMMAND_INSTR(0xcf, 0x24),
+> +	ILI9881C_COMMAND_INSTR(0xd0, 0x2a),
+> +	ILI9881C_COMMAND_INSTR(0xd1, 0x58),
+> +	ILI9881C_COMMAND_INSTR(0xd2, 0x68),
+> +	ILI9881C_COMMAND_INSTR(0xd3, 0x3f),
+> +};
+> +
+>   static inline struct ili9881c *panel_to_ili9881c(struct drm_panel *panel)
 >   {
->   	u8 buf[4] = { 0xff, 0x98, 0x81, page };
-> -	int ret;
-> -
-> -	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, buf, sizeof(buf));
-> -	if (ret < 0)
-> -		return ret;
+>   	return container_of(panel, struct ili9881c, panel);
+> @@ -1418,6 +1612,23 @@ static const struct drm_display_mode am8001280g_default_mode = {
+>   	.height_mm	= 151,
+>   };
 >   
-> -	return 0;
-> +	mipi_dsi_dcs_write_buffer_multi(mctx, buf, sizeof(buf));
->   }
->   
-> -static int ili9881c_send_cmd_data(struct ili9881c *ctx, u8 cmd, u8 data)
-> +static void ili9881c_send_cmd_data(struct mipi_dsi_multi_context *mctx, u8 cmd, u8 data)
+> +static const struct drm_display_mode bsd1218_a101kl68_default_mode = {
+> +	.clock		= 70000,
+> +
+> +	.hdisplay	= 800,
+> +	.hsync_start	= 800 + 40,
+> +	.hsync_end	= 800 + 40 + 20,
+> +	.htotal		= 800 + 40 + 20 + 20,
+> +
+> +	.vdisplay	= 1280,
+> +	.vsync_start	= 1280 + 20,
+> +	.vsync_end	= 1280 + 20 + 4,
+> +	.vtotal		= 1280 + 20 + 4 + 20,
+> +
+> +	.width_mm	= 120,
+> +	.height_mm	= 170,
+> +};
+> +
+>   static int ili9881c_get_modes(struct drm_panel *panel,
+>   			      struct drm_connector *connector)
 >   {
->   	u8 buf[2] = { cmd, data };
-> -	int ret;
+> @@ -1576,8 +1787,17 @@ static const struct ili9881c_desc am8001280g_desc = {
+>   		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
+>   };
 >   
-> -	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, buf, sizeof(buf));
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	return 0;
-> +	mipi_dsi_dcs_write_buffer_multi(mctx, buf, sizeof(buf));
->   }
->   
->   static int ili9881c_prepare(struct drm_panel *panel)
->   {
->   	struct ili9881c *ctx = panel_to_ili9881c(panel);
-> +	struct mipi_dsi_multi_context mctx = { .dsi = ctx->dsi };
->   	unsigned int i;
->   	int ret;
->   
-> @@ -1286,54 +1277,39 @@ static int ili9881c_prepare(struct drm_panel *panel)
->   		const struct ili9881c_instr *instr = &ctx->desc->init[i];
->   
->   		if (instr->op == ILI9881C_SWITCH_PAGE)
-> -			ret = ili9881c_switch_page(ctx, instr->arg.page);
-> +			ili9881c_switch_page(&mctx, instr->arg.page);
->   		else if (instr->op == ILI9881C_COMMAND)
-> -			ret = ili9881c_send_cmd_data(ctx, instr->arg.cmd.cmd,
-> -						      instr->arg.cmd.data);
-> -
-> -		if (ret)
-> -			goto disable_power;
-> -	}
-> -
-> -	ret = ili9881c_switch_page(ctx, 0);
-> -	if (ret)
-> -		return ret;
-> -
-> -	if (ctx->address_mode) {
-> -		ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_SET_ADDRESS_MODE,
-> -					 &ctx->address_mode,
-> -					 sizeof(ctx->address_mode));
-> -		if (ret < 0)
-> -			goto disable_power;
-> +			ili9881c_send_cmd_data(&mctx, instr->arg.cmd.cmd,
-> +					       instr->arg.cmd.data);
->   	}
->   
-> -	ret = mipi_dsi_dcs_set_tear_on(ctx->dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> -	if (ret)
-> -		goto disable_power;
-> -
-> -	ret = mipi_dsi_dcs_exit_sleep_mode(ctx->dsi);
-> -	if (ret)
-> -		goto disable_power;
-> +	ili9881c_switch_page(&mctx, 0);
->   
-> -	msleep(120);
-> +	if (ctx->address_mode)
-> +		ili9881c_send_cmd_data(&mctx, MIPI_DCS_SET_ADDRESS_MODE,
-> +				       ctx->address_mode);
->   
-> -	ret = mipi_dsi_dcs_set_display_on(ctx->dsi);
-> -	if (ret)
-> +	mipi_dsi_dcs_set_tear_on_multi(&mctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> +	mipi_dsi_dcs_exit_sleep_mode_multi(&mctx);
-> +	mipi_dsi_msleep(&mctx, 120);
-> +	mipi_dsi_dcs_set_display_on_multi(&mctx);
-> +	if (mctx.accum_err)
->   		goto disable_power;
->   
->   	return 0;
->   
->   disable_power:
->   	regulator_disable(ctx->power);
-> -	return ret;
-> +	return mctx.accum_err;
->   }
->   
->   static int ili9881c_unprepare(struct drm_panel *panel)
->   {
->   	struct ili9881c *ctx = panel_to_ili9881c(panel);
-> +	struct mipi_dsi_multi_context mctx = { .dsi = ctx->dsi };
->   
-> -	mipi_dsi_dcs_set_display_off(ctx->dsi);
-> -	mipi_dsi_dcs_enter_sleep_mode(ctx->dsi);
-> +	mipi_dsi_dcs_set_display_off_multi(&mctx);
-> +	mipi_dsi_dcs_enter_sleep_mode_multi(&mctx);
->   	regulator_disable(ctx->power);
->   	gpiod_set_value_cansleep(ctx->reset, 1);
->   
+> +static const struct ili9881c_desc bsd1218_a101kl68_desc = {
+> +	.init = bsd1218_a101kl68_init,
+> +	.init_length = ARRAY_SIZE(bsd1218_a101kl68_init),
+> +	.mode = &bsd1218_a101kl68_default_mode,
+> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> +		      MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET,
+> +};
+> +
+>   static const struct of_device_id ili9881c_of_match[] = {
+>   	{ .compatible = "bananapi,lhr050h41", .data = &lhr050h41_desc },
+> +	{ .compatible = "bestar,bsd1218-a101kl68", .data = &bsd1218_a101kl68_desc },
+>   	{ .compatible = "feixin,k101-im2byl02", .data = &k101_im2byl02_desc },
+>   	{ .compatible = "startek,kd050hdfia020", .data = &kd050hdfia020_desc },
+>   	{ .compatible = "tdo,tl050hdv35", .data = &tl050hdv35_desc },
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
