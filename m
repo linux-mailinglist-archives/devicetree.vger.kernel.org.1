@@ -1,172 +1,180 @@
-Return-Path: <devicetree+bounces-201598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFB80B19EA1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 11:17:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF11CB19EAB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 11:19:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BB35189ACCD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:17:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7413E3A8125
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024D424113D;
-	Mon,  4 Aug 2025 09:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osMPqxSo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEC323FC66;
+	Mon,  4 Aug 2025 09:19:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE681E25ED;
-	Mon,  4 Aug 2025 09:17:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA9C31DDC1E;
+	Mon,  4 Aug 2025 09:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754299023; cv=none; b=u5Ax7P2GO08lUk14VnPAovxcgQycgNIUBtUuMBZDo5n8r+rB/HaVh33elnFQeNMcaeSogznBW1MVTF9ZzOzpZzKHosuqDDMbjLuDB5GAkiAr00oMFvqsGqlqkVwPLzlz8UfJ73zedNH9bIBMP4hU+sl1ZpJpLlgAUwmA3/crFPA=
+	t=1754299162; cv=none; b=MRfh5xo931f4Y/QCN1qc7XG7N235bkqIXBkfY8E/B8184hX0ikHZF95GBA9e7x9WXY0MCn9MWMWbmZGwE8Z2oMD+ul5tOiaLQnbbWEIWTQDdzqwjMFCU0aONBpJmpWcBgF0ejjxT97cwIVfUuP0CkUS8WVji3TBrLLv3nanes+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754299023; c=relaxed/simple;
-	bh=dQCuhqytT40JMQLRIFWrKP8s4sli2w4egXw1PnO/acA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=REtUDmZpQkqmmoD5nYkRS1vVxeDSvfLPph/2R9joi52EFQ31NoL23DDq/ZAyTDVEq5rBUZTzCBcsBnQhzqmufB7Nb1tUqAlsGHmiSPaGw9eZJaSjtpe/0NDGlfewolVRxiTSsmkqvt04EzmuhT1nXMmzclr8OMmbQFwP12zfONk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osMPqxSo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B3AC4CEE7;
-	Mon,  4 Aug 2025 09:16:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754299023;
-	bh=dQCuhqytT40JMQLRIFWrKP8s4sli2w4egXw1PnO/acA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=osMPqxSoJzNl3bn01WpryG1a0u/BHDAg9w4pIEkbtevWpxJxtf2+VjPb7lAl7BLBU
-	 Qs/AIkmK94xLthtXzHJJ4Z+KQAW4ZM8tcEBFTup56paTzwnG3RJmOxZmq5wco+WXv6
-	 YIWLmSAuv0xtVJQSSWBN+gyVyesB4eAGWzug/ehK3qJiTZ8miE3IZ/VgAY52FM2DLw
-	 JN/hiX+XFF2P8uOqQeHNV9IMhqCB7sn8KGd/f/gWJvRCxTbiKoUzzGoY8EEOuGe6Lx
-	 UW4THIK1X1qmKlpBdeVs5zOtCzBnccha6rNfXq6hxBjlVlTOVz5dRUIFqJmWinIQvj
-	 SM+p0QWiJFQKA==
-Message-ID: <373f44c3-8a6a-4d52-ba6b-4c9484e2eac1@kernel.org>
-Date: Mon, 4 Aug 2025 11:16:56 +0200
+	s=arc-20240116; t=1754299162; c=relaxed/simple;
+	bh=f89soe1tWcJWlj9nKeYQYQNz90r+oVX/YBCtfmZK0ig=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ahx0g+WHqf2rgZggKK8hFH0vIQjBSiEup7w9uEEfdoVW3Zg477n6CNBCymEQRvkP0vEhKcJPLqdwkp/zCgAsX4Bxu3Ixta2kEEO2TaobWE9CdMIBiZI6dITsYJrafEwJzJ9ySIp4/R9DwylKk5v9bKUZ0OcxrPloSBuLOuiByRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-88db7a27cdcso560320241.1;
+        Mon, 04 Aug 2025 02:19:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754299158; x=1754903958;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3R0MwzTtyzGqGjBOQSRXBmPgHP9p4YXhAFmXsT8hO5g=;
+        b=Nhf9C/XY+5gfpXElaJ5LC/Q2mAuaFQHjxv+brByRtveph8raxGmhSxCPi/Q4NGIA7A
+         yzOI2RgqvxwRtE/9F0+xVbwMbH/t76FJYNmSqHi/om9FWHyHG4Mblr7jVPSR1wdwhFP4
+         nLRdDUxWIxHsmYAv0ftjiJX25NOnHWxUwPBD2vQ6gNxEEoKXmntX3AsGTuaI2iNTenlp
+         1+osDzKR8opbarUgvS70FIM8ZuLYGOJIP8+nivM/K8ZfUXQl3k3rzITMd3+bTFkUPoaT
+         q4NMF5KHMlHdfqYDIk0qlEimu2SFWU2DYyus22oJs2K5mnnTTmj7jlwvUMnV1N0F7h3x
+         my7A==
+X-Forwarded-Encrypted: i=1; AJvYcCU2uHIRqiG4s4DpbFWEMnbBTijFg87sasgL9IaIkW8I5dwh+wTMgHDtuWHuu3QmhT4xMvJ1jm5PoME=@vger.kernel.org, AJvYcCV+q4lVyzPIyBxTjapk3QCebBkUTwraAjoMblOnlkr1YxACz6+fjoERnfLzYHW7h4c4lEW5AN00HTkmwJYi@vger.kernel.org, AJvYcCVOgKLVtl2eN9i2s2FmwIrnv3QomIk3K/HsnpER83mAP2u95p0k652JyfCwgIaIWoqkJO9Yt8h1fZXEa2NKcsDrBOI=@vger.kernel.org, AJvYcCXPthYgU/GaPyQ+Qd7bezP7fXYsy6TUDyk2+NOcN0de6EVzzbdwU6IBtgI6hFuH5sm8TtbTJq8xk60y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqQxzjd0/ns0OCenambwuKqORTAyu0aan5RLj+vIjsJcIm79gG
+	47WMkjagi02aEPqZJdG33pO8odVEBAD6PxnehhktfDJAxf4V1SaVqJ7geW+jXsYR
+X-Gm-Gg: ASbGncvxP6Kb6M6LsKoGUPh0O8tp+VSqj6BAVDY93v1XGi4VQxg6i9WoaCyieewDbnG
+	XNwS5mt2TI6CzjGAeqG/SxP6UCHnN9izZlWFTToFF6u8KzjEKcgFsEQsLVF2IK2E0/bNBNvr+tE
+	+IkiY8yIe4XmoXkf/9sROEbrC2YlABeuEtIwU9R4UfiTsYXXYDz0/J/SeCgNWWOIh3iWap8IWaj
+	HrJHyjugJWd+hHmN5SY/K6RfAXNUZYawMMQ1NCLxXA3GIHBmoMIJE+5atliwwQHw/mNW/kyyf3G
+	DxGpF4H7mB655lo/WKJoG0lxHdSt5FzD3b66x9eEx3EvRmSwVDtJcQOUhEbXBfCibS8RT4kNgrW
+	H8+wTYJ93U1EcSRCnRnbCCLhhqegTiBGVXJYbA1Fp3hkdEOqwDGiy41hYqaCI
+X-Google-Smtp-Source: AGHT+IGKXfhagjxGC9GSb9habokJFXPtLKtqwtzmBGtnu4J07Jqy1EMb+OR/43pnYxseANkzh6TtvA==
+X-Received: by 2002:a05:6102:2914:b0:4fb:f6ea:cf88 with SMTP id ada2fe7eead31-4fdc24463ddmr2795769137.10.1754299158546;
+        Mon, 04 Aug 2025 02:19:18 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4fc0d229c37sm2345306137.9.2025.08.04.02.19.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Aug 2025 02:19:18 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-88dc7abaf5cso237659241.3;
+        Mon, 04 Aug 2025 02:19:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUPnm/Duy3M3CAire5KVg4mz/53bycLime72fo9dcIQondmWvREpEaJvvOI6Ur/BBWP4PSPmhaGoIqaHuLzZ/kb3L0=@vger.kernel.org, AJvYcCVXYd5hL1TsZY/qz1wXcRIx3X4Q8AU7tltsCfg33MnWmsSb7CGgVfLcf9rLzQFAd3j62s+kX5rmxxmBJXik@vger.kernel.org, AJvYcCWU4sgf9QjN/W08Jzag+fQhWZZC8InyEW1eBJ3p2gCSS+z5kDKFi6UV+7hSkAYtPRXIqH3r9eXrLxM=@vger.kernel.org, AJvYcCWhZVZ1kPdZxZ4s30R/YH7DrGYElvqX5/YtwfXb8PkHUD8+Igkgi7xC+Vlk5gMCkfTwEW+m5n/HPGOr@vger.kernel.org
+X-Received: by 2002:a05:6102:3a0c:b0:4f9:6a91:cc95 with SMTP id
+ ada2fe7eead31-4fdc4908436mr3061626137.27.1754299156951; Mon, 04 Aug 2025
+ 02:19:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/27] dt-bindings: clock: mediatek: Describe MT8196
- clock controllers
-To: Laura Nao <laura.nao@collabora.com>
-Cc: angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, guangjie.song@mediatek.com,
- kernel@collabora.com, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, mturquette@baylibre.com, netdev@vger.kernel.org,
- nfraprado@collabora.com, p.zabel@pengutronix.de, richardcochran@gmail.com,
- robh@kernel.org, sboyd@kernel.org, wenst@chromium.org
-References: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
- <20250804083540.19099-1-laura.nao@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250804083540.19099-1-laura.nao@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250522182252.1593159-1-john.madieu.xa@bp.renesas.com> <20250522182252.1593159-2-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250522182252.1593159-2-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 4 Aug 2025 11:19:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVyf3Xtpw=LWHrnD2CVQX4xYm=FBHvY_dx9OesHDz5zNg@mail.gmail.com>
+X-Gm-Features: Ac12FXwHScgQqxb8jp9Bi-4OprqVlMn-h0o34YuqFCKjhIYkG7o2nMt4nEhunAs
+Message-ID: <CAMuHMdVyf3Xtpw=LWHrnD2CVQX4xYm=FBHvY_dx9OesHDz5zNg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/5] soc: renesas: rz-sysc: Add syscon/regmap support
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: conor+dt@kernel.org, daniel.lezcano@linaro.org, krzk+dt@kernel.org, 
+	rafael@kernel.org, biju.das.jz@bp.renesas.com, devicetree@vger.kernel.org, 
+	john.madieu@gmail.com, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, lukasz.luba@arm.com, magnus.damm@gmail.com, 
+	robh@kernel.org, rui.zhang@intel.com, sboyd@kernel.org, 
+	niklas.soderlund+renesas@ragnatech.se, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 04/08/2025 10:35, Laura Nao wrote:
-> Hi,
-> 
-> On 8/3/25 10:17, Krzysztof Kozlowski wrote:
->> On 01/08/2025 15:57, Rob Herring wrote:
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  '#clock-cells':
->>>> +    const: 1
->>>> +
->>>> +  '#reset-cells':
->>>> +    const: 1
->>>> +    description:
->>>> +      Reset lines for PEXTP0/1 and UFS blocks.
->>>> +
->>>> +  mediatek,hardware-voter:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description:
->>>> +      On the MT8196 SoC, a Hardware Voter (HWV) backed by a fixed-function
->>>> +      MCU manages clock and power domain control across the AP and other
->>>> +      remote processors. By aggregating their votes, it ensures clocks are
->>>> +      safely enabled/disabled and power domains are active before register
->>>> +      access.
->>>
->>> I thought this was going away based on v2 discussion?
->>
->> Yes, I asked to drop it and do not include it in v3. There was also
->> discussion clarifying review.
->>
->> I am really surprised that review meant nothing and code is still the same.
->>
-> 
-> This has been re-submitted as-is, following the outcome of the discussion 
-> here: https://lore.kernel.org/all/242bf682-cf8f-4469-8a0b-9ec982095f04@collabora.com/
-> 
-> We haven't found a viable alternative to the current approach so far, and
-> the thread outlines why other options don’t apply. I'm happy to continue 
-> the discussion there if anyone has further suggestions or ideas on how 
-> to address this.
-> 
+Hi John,
 
-And where is any of that resolution/new facts in the commit msg? You
-must clearly reflect long discussions like that in the commit msg.
+On Thu, 22 May 2025 at 20:23, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> The RZ/G3E system controller has various registers that control or report
+> some properties specific to individual IPs. The regmap is registered as a
+> syscon device to allow these IP drivers to access the registers through the
+> regmap API.
+>
+> As other RZ SoCs might have custom read/write callbacks or max-offsets,
+> add register a custom regmap configuration.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> [claudiu.beznea:
+>  - s/rzg3e_sysc_regmap/rzv2h_sysc_regmap in RZ/V2H sysc
+>    file
+>  - do not check the match->data validity in rz_sysc_probe() as it is
+>    always valid
+>  - register the regmap if data->regmap_cfg is valid]
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-There was no objection from Chen to use clocks or power domains as I
-requested. The objection was about DUPLICATING interfaces or nodes.
+Thanks for your patch!
 
-And what was the resolution:
+As you probably noticed, I am not a big fan of syscon, so I try
+to avoid getting involved with syscon patches as much as possible.
+But this patch has appeared in multiple series, so I am afraid I cannot
+avoid it anymore ;-)
 
-"Regarding that to be a single clock controller,"
+> --- a/drivers/soc/renesas/r9a08g045-sysc.c
+> +++ b/drivers/soc/renesas/r9a08g045-sysc.c
+> @@ -18,6 +18,16 @@ static const struct rz_sysc_soc_id_init_data rzg3s_sysc_soc_id_init_data __initc
+>         .specific_id_mask = GENMASK(27, 0),
+>  };
+>
+> +static const struct regmap_config rzg3s_sysc_regmap __initconst = {
+> +       .name = "rzg3s_sysc_regs",
+> +       .reg_bits = 32,
+> +       .reg_stride = 4,
+> +       .val_bits = 32,
+> +       .fast_io = true,
+> +       .max_register = 0xe20,
+> +};
 
-So where is the clock controller? I still see HW voter!
+Struct regmap_config is a rather large structure, and the only
+SoC-specific members are the .name (which doesn't really matter) and
+.max_register members.  Hence please move .max_register back to struct
+rz_sysc_init_data (like in v5), and allocate struct regmap_config
+dynamically (by embedding it into struct rz_sysc).
 
+> +
+>  const struct rz_sysc_init_data rzg3s_sysc_init_data __initconst = {
+>         .soc_id_init_data = &rzg3s_sysc_soc_id_init_data,
+> +       .regmap_cfg = &rzg3s_sysc_regmap,
+>  };
 
-Best regards,
-Krzysztof
+> --- a/drivers/soc/renesas/rz-sysc.c
+> +++ b/drivers/soc/renesas/rz-sysc.c
+> @@ -117,7 +124,15 @@ static int rz_sysc_probe(struct platform_device *pdev)
+>                 return PTR_ERR(sysc->base);
+>
+>         sysc->dev = dev;
+> -       return rz_sysc_soc_init(sysc, match);
+> +       ret = rz_sysc_soc_init(sysc, match);
+> +       if (ret || !data->regmap_cfg)
+
+data->regmap_cfg should never be NULL (but this doesn't matter anymore,
+in the context of my request above).
+
+> +               return ret;
+> +
+> +       regmap = devm_regmap_init_mmio(dev, sysc->base, data->regmap_cfg);
+> +       if (IS_ERR(regmap))
+> +               return PTR_ERR(regmap);
+> +
+> +       return of_syscon_register_regmap(dev->of_node, regmap);
+>  }
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
