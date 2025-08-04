@@ -1,121 +1,115 @@
-Return-Path: <devicetree+bounces-201648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1032AB1A185
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 14:37:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B60AB1A1E0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 14:45:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CE9817B878
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 12:37:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B920717DE16
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 12:45:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8264C25B1FF;
-	Mon,  4 Aug 2025 12:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NXZ+TWQ/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9ED126A1B5;
+	Mon,  4 Aug 2025 12:43:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5556D45C14;
-	Mon,  4 Aug 2025 12:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3A6F2673B0;
+	Mon,  4 Aug 2025 12:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754311008; cv=none; b=dmJIvQzcLoBUHnVfTjXpPBU5aNleZCREtjbgoCL1IaDXkIPPnk/XO/N5RZKnJCrHMrb8LE5Lv92cpHnTbjvchyuhD874dcxqJtLmCC9c4tpDP4z6o3xE8BtgiSP1CZxqC0LJwzn5FxLQRM9xJrfjR2pKN65m/5qQYRfZGC/8PIE=
+	t=1754311411; cv=none; b=XBXIVslJyMislR7nYZoVgMOmBRNh0dX7p9QIg7DxRqlLQdnd6fye9Xo3G9D10aUNfrOhiFz4L+ydPYpwbEmFooNf9VXbPupzyhLRMPr94u2pXi4SiacxtBRTAtW2SO2x0SmE7Ev3pFhFDNsdAUZ2PNrqH7dCN99AgCO6won19Mg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754311008; c=relaxed/simple;
-	bh=pzlCwWnn3o5vFXHTupjp1TmlOp0v5jeNK85Nzj184ns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V5066v/5iAcjWqHB62amAHI4/oADU+zZCEuIqqPtjxMcTetHw3PkQ6+h0CsfecvpOhzcUkt2QaJ0FbIVJDX4Ji6JUpe6Q3HrD/wzE6yEbO0lbKvut7TFnWWQPFUuRghI7f3rr39N34ToixXMA57lFwRPunvSxSkCujNHBDZeFwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NXZ+TWQ/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D50C4CEE7;
-	Mon,  4 Aug 2025 12:36:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754311008;
-	bh=pzlCwWnn3o5vFXHTupjp1TmlOp0v5jeNK85Nzj184ns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NXZ+TWQ/oWKeDnl+HwXouGAOm/rWemZktPmaxmrnrLoIAWISMo2FNba4efuicV1KS
-	 JhHSVbx+mqcD+dQ4B9ca4NRljZ/XqHieVdhHd2FcZXs/QIk2LBoaeyhrKxQNpCkyTI
-	 vLz/uvXxOvmFBSe7ly22EaYQFJaxqAty+zZ463gks7dZFc+ZXRlODJGEufRIj8EZSw
-	 W3V/jpbKEpvP3OAbHFoA09xP+FxLNneWgw6IeAY0byHFGuuIrWgJJ+p5r/4dkEWlAl
-	 7GYkZ0RHdFiCrHAGFHO/rrWbfhBiIil1cW1EkGlbFga/uwjKYVtJE1cDn2OnpyzwC0
-	 1cM7Y4x6ldu2A==
-Date: Mon, 4 Aug 2025 13:36:43 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dzmitry Sankouski <dsankouski@gmail.com>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7] regulator: add s2dos05 regulator support
-Message-ID: <489609c7-3f11-4254-b5e3-6df5ec75b043@sirena.org.uk>
-References: <20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com>
- <dc1482a7-a69e-40ec-83ee-98ecc2e57bf1@kernel.org>
+	s=arc-20240116; t=1754311411; c=relaxed/simple;
+	bh=AwIB8d/q3k4NIHWqWxhwujek8W+jlfHNccY7uEjmU7A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cJDagDkZZoHuJEa5+V6fyqvVYiyyrCh8e4AMGmkNUsiGqadZ8y/t9HKUhJjXhULAi/ysFKmUYS4JEmTv7ivrRxEVC1RguQqYWqaer077u8RmMkUINM4Lw7PG1IiSvLGxwVC/tdaZ92Tt/Zt1nveUoRgS0ExvAKUfxAnfbwRPAS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4fc042790f1so2154870137.1;
+        Mon, 04 Aug 2025 05:43:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754311408; x=1754916208;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q+ksWIFzKcuowT/35PUUtmV4Ltd0ZzS0T02cXh+GQLo=;
+        b=DIDUELFWNsaVhqwTdyshBp6adSMvAATYCF60nfBZPM0Zc8Po1l1b36nSUdVWaM00QT
+         Epb7JIMMIkOTC7ZWwZoqKzOqT9QrMZlEZqT/sJ8Zx9Gh0OVg3PCqI955G8UIFl3WXTZV
+         JH+aU68yFa6pDR7Vcb7LICiztrbmt4x+YPqRgGNtSE0fp10eLtO9Si1rXmSVErHQ3enx
+         ahvg3blq5GfrYuq8ihjTyBNH0fMcAGkycPfZD0CyFwJ5qQttTIa9fJ7BzmTP0/5DJq+a
+         GMvQpRxT/P9QQXmgAqGUzT71Ug5O9t7eILbb655hUCDzmngBRYrId58WiGG/TBZziXiX
+         RV7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVkU8A7JpOj/2z1Iy4vpQE2qoFHiuiZcx86XMylKX9kDRyeUhZdOe3sOXSXxoDK96LTwvXbRop+erKE8XVBn/a7q04=@vger.kernel.org, AJvYcCVljvQ7r1D3LeFUZ0bo0st8fPdZjslSOeLp0J3/qoRgY0OvzadIFGMqsMBCoqmnqYKHg74rOUl8zJtv@vger.kernel.org, AJvYcCWMB5OoICEFwctVVj8FdQFPHMN6nsVNzgfGQvBsXpFvKVNi/AWFi1BW8Qqfc4+Zk9DthZuEaL7K1FWf@vger.kernel.org, AJvYcCWyQW6EGVLD+mL/TGAVaPJT13ukzfU0D9uT7RIutY6Wd3OBvd4h1DuTj1dTw41+xtcnVygt7VHy1+w2@vger.kernel.org, AJvYcCXzmUGCyEgus5k9JxN4O+NmufDFYr/Oec5toOvGudg6Mr81sTeo+r/olLrVEzEz9v+pEiDtiGjUhi/iEKnh@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywux3B4ZjpAcQT5a9bgLm7hIQ2/y6B7y3eYSusveBt5V4bvQdyY
+	VDpZ6USy3b8Rr9gCl4bxMVbnI2zTMrMh3XYXEWSixfAN3MX25/zSDoq/4nT4M+iN
+X-Gm-Gg: ASbGncuOgqtQOe/EOPYrr5WFocKP7FYRuRFPUyGQZ1KPE7nxMaplOtn2M2dIjBNBoxS
+	TmiWUSmGnCQfJDbpDEoEoYsowUuLulK50puo8tBb/pSZfRMxx3d85WHsb4joifuWpQm2uvIX0SD
+	QlkwEj0N2L2pXXtS195C2VvuTJsCRUpTDBu4Cemu49c11LICQzMVweXq/eg0DYjDaM4n6It7C72
+	jc0OMry7dQGRePCtHD0k0GfG5pqnrLiOUAsmGq5igSCy4tBtQX+LHqNOhqQOxFGXZRIZ8btC6TM
+	gmLVJyZLsR8uaSE29+IhkS8cyc17yPgz8oarQsnTvJSRTjSJobZYTuuWl7Yg+H2aRFzzI8B/vR3
+	Jlh/gLUn97v3DBP50bsLZDFpKw7dqAfJf4w+odiL2Gqj2ZceY+eH+eYN4zV2l
+X-Google-Smtp-Source: AGHT+IGTgxWsBjpTpbgCKbt0cM8L7Gwal/1XJCom1WhuwcIKr8hxJtHYSss+lZ8MbqSqJlVUZFZKbA==
+X-Received: by 2002:a05:6102:54a1:b0:4e5:ade7:eb7c with SMTP id ada2fe7eead31-4fdc2957724mr3200743137.12.1754311408155;
+        Mon, 04 Aug 2025 05:43:28 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-88d8f3263d6sm2209773241.5.2025.08.04.05.43.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Aug 2025 05:43:27 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4fc10abc179so1958281137.3;
+        Mon, 04 Aug 2025 05:43:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUgJpfT3qTASCAUSdTNo5b1BsU95MckWRTqMZ0kNg2+zM/E2Hjn3VDgzxbtSGmNMKeUH/GMARXNTDAk@vger.kernel.org, AJvYcCV6CHctLjJ0g9PQw7GdwB615pAc1liny4npjS4f/4HXjXUB17+awAjfhiiXE6LjeszxkkhYEQfuMcSz@vger.kernel.org, AJvYcCVJ2mBBfPZv2Z3NUwyPIV6DhiGaDBVcJAoyupYEguGLD4btG2DkAi6T9rhFzt/ywd0/9uENQPjU0bB5q+UyrmtkyK8=@vger.kernel.org, AJvYcCVtfq9AdnDHdocCTjXxD2wVutr3Bll/OINC9BoQPlknW+OFgJ03oTMBLD43XumeDGtAD0So3vzDygLYFBRy@vger.kernel.org, AJvYcCXjimYLQP+0NvQkw81Y4Zfyw8Y0PB00Tl0vWVvJlSf7qonRqbVxRPuR8BvLnbhpgaMAFICj40qk3h+I@vger.kernel.org
+X-Received: by 2002:a05:6102:dcb:b0:4e4:5df7:a10a with SMTP id
+ ada2fe7eead31-4fdc3e179d8mr3547288137.16.1754311407222; Mon, 04 Aug 2025
+ 05:43:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GyhI1YsioTt8RPbf"
-Content-Disposition: inline
-In-Reply-To: <dc1482a7-a69e-40ec-83ee-98ecc2e57bf1@kernel.org>
-X-Cookie: Shading within a garment may occur.
+References: <20250801084825.471011-1-tommaso.merciai.xr@bp.renesas.com> <20250801084825.471011-3-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250801084825.471011-3-tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 4 Aug 2025 14:43:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUoqSJEzEZsNkOtpDwCytQHGWxS4WBfTiJNOdC3v3ACEw@mail.gmail.com>
+X-Gm-Features: Ac12FXxmuJu7VAAwl5EVX-3cOsTXnZkIIiE3nPUF6WDs0EYHBcEOAFk9RR_CHsc
+Message-ID: <CAMuHMdUoqSJEzEZsNkOtpDwCytQHGWxS4WBfTiJNOdC3v3ACEw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: dma: rz-dmac: Document RZ/G3E family of SoCs
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Fri, 1 Aug 2025 at 10:49, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> The DMAC block on the RZ/G3E SoC is identical to the one found on the
+> RZ/V2H(P) SoC.
+>
+> No driver changes are required, as `renesas,r9a09g057-dmac` will be used
+> as a fallback compatible string on the RZ/G3E SoC.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
---GyhI1YsioTt8RPbf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On Sun, Aug 03, 2025 at 10:22:33AM +0200, Krzysztof Kozlowski wrote:
-> On 02/08/2025 13:22, Dzmitry Sankouski wrote:
+Gr{oetje,eeting}s,
 
-> > +	for (i = 0; i < rdev_num; i++) {
-> > +		struct regulator_dev *regulator;
-> > +
-> > +		regulator = devm_regulator_register(&pdev->dev,
-> > +						&regulators[i], &config);
-> > +		if (IS_ERR(regulator)) {
-> > +			ret = PTR_ERR(regulator);
-> > +                     dev_err(&pdev->dev, "regulator init failed for %d\n",
-> > +                             i);
-> > +             }
-> > +     }
-> > +
-> > +	return ret;
+                        Geert
 
-> I do not understand your logic here and I already commented on issues
-> with 'ret'. If 1st regulator fails, but the last one succeeds, you
-> return 0. If 1st succeeds, but the last one fails, you return failure
-> failing the probe.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-No, ret is assigned within the IS_ERR() check so it only records
-failures - it'll take the return value from the last regulator that
-failed, or otherwise return 0 if they all registered OK.  It'd be as
-well to just return immediately and save the bother of winding and
-unwinding the later regulator setups but the error reporting should
-work.
-
-Should be a dev_err_probe() though.
-
---GyhI1YsioTt8RPbf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiQqVoACgkQJNaLcl1U
-h9C/Qwf9EZ8/lNClhCJENr7YQRiLfxAkVXu8VXIYLdwXe3WwMv/DpmgvFlk1vIxO
-tURo7sQdQBFIBERnRysAOXBvtEXxfwTv5TgRjFJM5480ywDKJmlPUvd82xV2JEMp
-CCJjjrvrw+P3LQXzHUGohQEmaHe5GhTt+crlGTKacEmeQl7q3kK6vi8eI0bcvNe8
-MXbBC+JYhf2z0sWCSgvV5fQ3owzXhR4cJC0cj/0Rsxu6rGgt0wB3CH6tkXRi6hKv
-Pi+DNj9WQdR/zc+yuqhuwBRRo+wBExMDnM2/Gc/zarh+Yc2XcoE5jKkv5aQQnQno
-n7iSXKCUa6FhF9mCny99t51Gc0mBmQ==
-=RUG8
------END PGP SIGNATURE-----
-
---GyhI1YsioTt8RPbf--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
