@@ -1,386 +1,152 @@
-Return-Path: <devicetree+bounces-201547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A92B19B26
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 07:40:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FAFB19B45
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 08:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DBBB54E04F2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 05:40:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C6191770BA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 06:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A5E230BD4;
-	Mon,  4 Aug 2025 05:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A56B722A4FC;
+	Mon,  4 Aug 2025 06:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i67NM+P3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFB522F389;
-	Mon,  4 Aug 2025 05:40:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742522264A1;
+	Mon,  4 Aug 2025 06:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754286002; cv=none; b=dRFAWQ90p0yyBDr3CJys4pEsc2kbtKbrvWRvttBiOWLrzhbfxQcm7HqAHBn6W/gTJLXmRCWmag16g9nMreAmyFg44AYI3iZubgerci4YmXABlbKA47Ye/a1T+WQKzbds+W3DLllhKW1S9R7Fv3owfokog8LUUFrYy6D6B8WsaW8=
+	t=1754287425; cv=none; b=hRMk1j5Y8qMRWJ326KHubyPVmKbJ66hA07YmHXoLnitvJhH4H/jZgq+mubZgtj4lwvBAc21yXzNKMm0M6LZZXcfUi3rBrP+SBtZjWuTvVLCs2klE60OB3nfWNIDCsnSlmH7eXu9Zf9P5ofGf9EEXZEvZKDPjg9InLOUU50863Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754286002; c=relaxed/simple;
-	bh=2xUSNUF8jeyAE+lpKX9oB2IefX6JlJqVkqOLh7l0vBA=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M+YAKPG8A37W+qg4nOnad0VWhqqSWO5ZWTm6EUiZnWeHEHojMsxtEd7AfChoN1U65t9MqP8oQe7TBJUuluDCTu9n7KB1Ui2CqazKMk0mHaHJKjdvbpGEkHn/2AII3nhZmJlOzTFwNP4MUq749De+HUq4ZpceFVbesqTNL15bwsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 4 Aug
- 2025 13:34:45 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Mon, 4 Aug 2025 13:34:45 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU interrupt controllers
-Date: Mon, 4 Aug 2025 13:34:45 +0800
-Message-ID: <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
-References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1754287425; c=relaxed/simple;
+	bh=4g0So/KscdPaJ/4ZDhKbcEVg37nP7IyjIZTcN8FOlYs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eSuQywTNQhhWCQ/iZYFilLuR3MjK2fgbbDwEckRWiQqz7+QhTHX7XNWOs1web2CBY6kYBfignfquQ2l1A6YCxvhHwMQTKSIolqldEWY7jA5hyiGCzRyTi1diyhGzjNveZka3f22rKCaicgPzDNZkE8fXEkQs4tt4SbWcf2nQnyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i67NM+P3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70421C4CEE7;
+	Mon,  4 Aug 2025 06:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754287425;
+	bh=4g0So/KscdPaJ/4ZDhKbcEVg37nP7IyjIZTcN8FOlYs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i67NM+P3Ta4ThzfaAcgW5tK0WgueBOE2EW4GG9PgHkN7LGr2TnLR+VbkEfe1vSjkK
+	 sjRn7Z08taHIDt+mHIT+sQ0I5QzZm4UlZ5+qYKJjah5rQ8oYCIU29Pn+0KQlrIiP6p
+	 7XdDLjRlemUis7rZmkc5Br8SwONtsutn29+6Eu6NoSo7VvwhEe1O3/Y0Usb9M/jy//
+	 oR4ZqKYRzheTrnjsvc+9WTGBtpx6T2SuwlhCkuy6vwXJ/ypnTDpqdmWjp0KZRU65Qj
+	 bcVlr4dGPSrq9D6F3bDu7jskVr2aEsaLlCQ0mjn0MIXOchD93Ljph6DkHpVKQUcHan
+	 6rNw8ku4ZTJiA==
+Message-ID: <6b691092-f931-4140-8097-0ad67d02bde9@kernel.org>
+Date: Mon, 4 Aug 2025 08:03:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
+ <20250802-tlv493d-sensor-v6_16-rc5-v2-2-e867df86ad93@gmail.com>
+ <fc15279a-bf3e-4500-8dfc-651e6e2431d9@kernel.org> <aJAeoI4Iz_U06Wmo@dixit>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aJAeoI4Iz_U06Wmo@dixit>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The AST2700 SoC follows the multi-instance interrupt controller architecture
-introduced in the AST2600, where each SCU interrupt group (IC0–IC3) is treated
-as an independent interrupt domain.
+On 04/08/2025 04:44, Dixit Parmar wrote:
+> On Sat, Aug 02, 2025 at 09:45:29AM +0200, Krzysztof Kozlowski wrote:
+>> On 02/08/2025 08:44, Dixit Parmar wrote:
+>>> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+>>> controlled by I2C interface. Main applications includes joysticks, control
+>>> elements (white goods, multifunction knops), or electric meters (anti-
+>>> tampering).
+>>> Drop duplicated entry for infineon,tlv493d from trivial-devices.yaml as
+>>> its documented in infineon,tlv493d.yaml now.
+>>>
+>>> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+>>> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+>>> ---
+>>>  .../iio/magnetometer/infineon,tlv493d.yaml         | 45 ++++++++++++++++++++++
+>>>  .../devicetree/bindings/trivial-devices.yaml       |  2 -
+>>>  2 files changed, 45 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+>>> new file mode 100644
+>>> index 000000000000..ebcf29067a16
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml
+>>
+>>
+>> Filename should match compatible. Otherwise a1b6 is just confusing.
+>>
+> Idea behind having a1b6 is that the TLV493D is sensor series and this
+> a1b6 is one of the models. As this driver is intended, developed and
+> validated on a1b6 I kept it in compatible, though the file name contains
+> only the sensor series. In my undertanding, this same file & driver can
+> be reused for other drivers from same family with new compatible fields.
+> Does that make sense?
 
-Unlike the AST2600, which uses a combined register for interrupt enable and
-status bits, the AST2700 separates these into distinct registers: one for
-interrupt enable (IER) and another for interrupt status (ISR). This architectural
-change requires explicit handling of split registers for interrupt control.
+No, because I did not speak about drivers at all. Please follow
+kernel/DT conventions.
 
-- Register definitions and configuration for AST2700 SCU IC instances
-  (compatible: aspeed,ast2700-scu-ic0/1/2/3)
-- Initialization logic for handling split IER/ISR registers
-- Chained IRQ handling and mask/unmask logic
-- Table-driven registration using IRQCHIP_DECLARE per compatible
-
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/irqchip/irq-aspeed-scu-ic.c | 240 ++++++++++++++++++++++------
- 1 file changed, 195 insertions(+), 45 deletions(-)
-
-diff --git a/drivers/irqchip/irq-aspeed-scu-ic.c b/drivers/irqchip/irq-aspeed-scu-ic.c
-index 1c7045467c48..b6f3ba269c5b 100644
---- a/drivers/irqchip/irq-aspeed-scu-ic.c
-+++ b/drivers/irqchip/irq-aspeed-scu-ic.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-or-later
- /*
-- * Aspeed AST24XX, AST25XX, and AST26XX SCU Interrupt Controller
-+ * Aspeed AST24XX, AST25XX, AST26XX, AST27XX SCU Interrupt Controller
-  * Copyright 2019 IBM Corporation
-  *
-  * Eddie James <eajames@linux.ibm.com>
-@@ -34,11 +34,42 @@
- 	GENMASK(5, ASPEED_AST2600_SCU_IC1_SHIFT)
- #define ASPEED_AST2600_SCU_IC1_NUM_IRQS	2
- 
-+#define ASPEED_AST2700_SCU_IC0_EN_REG	0x1d0
-+#define ASPEED_AST2700_SCU_IC0_STS_REG	0x1d4
-+#define ASPEED_AST2700_SCU_IC0_SHIFT	0
-+#define ASPEED_AST2700_SCU_IC0_ENABLE	\
-+	GENMASK(3, ASPEED_AST2700_SCU_IC0_SHIFT)
-+#define ASPEED_AST2700_SCU_IC0_NUM_IRQS	4
-+
-+#define ASPEED_AST2700_SCU_IC1_EN_REG	0x1e0
-+#define ASPEED_AST2700_SCU_IC1_STS_REG	0x1e4
-+#define ASPEED_AST2700_SCU_IC1_SHIFT	0
-+#define ASPEED_AST2700_SCU_IC1_ENABLE	\
-+	GENMASK(3, ASPEED_AST2700_SCU_IC1_SHIFT)
-+#define ASPEED_AST2700_SCU_IC1_NUM_IRQS	4
-+
-+#define ASPEED_AST2700_SCU_IC2_EN_REG	0x104
-+#define ASPEED_AST2700_SCU_IC2_STS_REG	0x100
-+#define ASPEED_AST2700_SCU_IC2_SHIFT	0
-+#define ASPEED_AST2700_SCU_IC2_ENABLE	\
-+	GENMASK(3, ASPEED_AST2700_SCU_IC2_SHIFT)
-+#define ASPEED_AST2700_SCU_IC2_NUM_IRQS	4
-+
-+#define ASPEED_AST2700_SCU_IC3_EN_REG	0x10c
-+#define ASPEED_AST2700_SCU_IC3_STS_REG	0x108
-+#define ASPEED_AST2700_SCU_IC3_SHIFT	0
-+#define ASPEED_AST2700_SCU_IC3_ENABLE	\
-+	GENMASK(1, ASPEED_AST2700_SCU_IC3_SHIFT)
-+#define ASPEED_AST2700_SCU_IC3_NUM_IRQS	2
-+
- struct aspeed_scu_ic {
- 	unsigned long irq_enable;
- 	unsigned long irq_shift;
- 	unsigned int num_irqs;
- 	unsigned int reg;
-+	unsigned int en_reg;
-+	unsigned int sts_reg;
-+	bool split_ier_isr;
- 	struct regmap *scu;
- 	struct irq_domain *irq_domain;
- };
-@@ -52,33 +83,51 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
- 	unsigned long status;
- 	struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
- 	struct irq_chip *chip = irq_desc_get_chip(desc);
--	unsigned int mask = scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT;
-+	unsigned int mask;
- 
- 	chained_irq_enter(chip, desc);
- 
--	/*
--	 * The SCU IC has just one register to control its operation and read
--	 * status. The interrupt enable bits occupy the lower 16 bits of the
--	 * register, while the interrupt status bits occupy the upper 16 bits.
--	 * The status bit for a given interrupt is always 16 bits shifted from
--	 * the enable bit for the same interrupt.
--	 * Therefore, perform the IRQ operations in the enable bit space by
--	 * shifting the status down to get the mapping and then back up to
--	 * clear the bit.
--	 */
--	regmap_read(scu_ic->scu, scu_ic->reg, &sts);
--	enabled = sts & scu_ic->irq_enable;
--	status = (sts >> ASPEED_SCU_IC_STATUS_SHIFT) & enabled;
--
--	bit = scu_ic->irq_shift;
--	max = scu_ic->num_irqs + bit;
--
--	for_each_set_bit_from(bit, &status, max) {
--		generic_handle_domain_irq(scu_ic->irq_domain,
--					  bit - scu_ic->irq_shift);
--
--		regmap_write_bits(scu_ic->scu, scu_ic->reg, mask,
--				  BIT(bit + ASPEED_SCU_IC_STATUS_SHIFT));
-+	if (scu_ic->split_ier_isr) {
-+		mask = scu_ic->irq_enable;
-+		regmap_read(scu_ic->scu, scu_ic->en_reg, &sts);
-+		enabled = sts & scu_ic->irq_enable;
-+		regmap_read(scu_ic->scu, scu_ic->sts_reg, &sts);
-+		status = sts & enabled;
-+
-+		bit = scu_ic->irq_shift;
-+		max = scu_ic->num_irqs + bit;
-+
-+		for_each_set_bit_from(bit, &status, max) {
-+			generic_handle_domain_irq(scu_ic->irq_domain, bit - scu_ic->irq_shift);
-+
-+			regmap_write_bits(scu_ic->scu, scu_ic->sts_reg, mask, BIT(bit));
-+		}
-+	} else {
-+		mask = scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT;
-+		/*
-+		 * The SCU IC has just one register to control its operation and read
-+		 * status. The interrupt enable bits occupy the lower 16 bits of the
-+		 * register, while the interrupt status bits occupy the upper 16 bits.
-+		 * The status bit for a given interrupt is always 16 bits shifted from
-+		 * the enable bit for the same interrupt.
-+		 * Therefore, perform the IRQ operations in the enable bit space by
-+		 * shifting the status down to get the mapping and then back up to
-+		 * clear the bit.
-+		 */
-+		regmap_read(scu_ic->scu, scu_ic->reg, &sts);
-+		enabled = sts & scu_ic->irq_enable;
-+		status = (sts >> ASPEED_SCU_IC_STATUS_SHIFT) & enabled;
-+
-+		bit = scu_ic->irq_shift;
-+		max = scu_ic->num_irqs + bit;
-+
-+		for_each_set_bit_from(bit, &status, max) {
-+			generic_handle_domain_irq(scu_ic->irq_domain,
-+						  bit - scu_ic->irq_shift);
-+
-+			regmap_write_bits(scu_ic->scu, scu_ic->reg, mask,
-+					  BIT(bit + ASPEED_SCU_IC_STATUS_SHIFT));
-+		}
- 	}
- 
- 	chained_irq_exit(chip, desc);
-@@ -87,30 +136,42 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
- static void aspeed_scu_ic_irq_mask(struct irq_data *data)
- {
- 	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
--	unsigned int mask = BIT(data->hwirq + scu_ic->irq_shift) |
--		(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
--
--	/*
--	 * Status bits are cleared by writing 1. In order to prevent the mask
--	 * operation from clearing the status bits, they should be under the
--	 * mask and written with 0.
--	 */
--	regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, 0);
-+	unsigned int mask;
-+
-+	if (scu_ic->split_ier_isr) {
-+		mask = BIT(data->hwirq + scu_ic->irq_shift);
-+		regmap_update_bits(scu_ic->scu, scu_ic->en_reg, mask, 0);
-+	} else {
-+		mask = BIT(data->hwirq + scu_ic->irq_shift) |
-+		       (scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-+		/*
-+		 * Status bits are cleared by writing 1. In order to prevent the mask
-+		 * operation from clearing the status bits, they should be under the
-+		 * mask and written with 0.
-+		 */
-+		regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, 0);
-+	}
- }
- 
- static void aspeed_scu_ic_irq_unmask(struct irq_data *data)
- {
- 	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
- 	unsigned int bit = BIT(data->hwirq + scu_ic->irq_shift);
--	unsigned int mask = bit |
--		(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
--
--	/*
--	 * Status bits are cleared by writing 1. In order to prevent the unmask
--	 * operation from clearing the status bits, they should be under the
--	 * mask and written with 0.
--	 */
--	regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, bit);
-+	unsigned int mask;
-+
-+	if (scu_ic->split_ier_isr) {
-+		mask = bit;
-+		regmap_update_bits(scu_ic->scu, scu_ic->en_reg, mask, bit);
-+	} else {
-+		mask = bit | (scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-+
-+		/*
-+		 * Status bits are cleared by writing 1. In order to prevent the unmask
-+		 * operation from clearing the status bits, they should be under the
-+		 * mask and written with 0.
-+		 */
-+		regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, bit);
-+	}
- }
- 
- static int aspeed_scu_ic_irq_set_affinity(struct irq_data *data,
-@@ -156,8 +217,17 @@ static int aspeed_scu_ic_of_init_common(struct aspeed_scu_ic *scu_ic,
- 		rc = PTR_ERR(scu_ic->scu);
- 		goto err;
- 	}
--	regmap_write_bits(scu_ic->scu, scu_ic->reg, ASPEED_SCU_IC_STATUS, ASPEED_SCU_IC_STATUS);
--	regmap_write_bits(scu_ic->scu, scu_ic->reg, ASPEED_SCU_IC_ENABLE, 0);
-+
-+	if (scu_ic->split_ier_isr) {
-+		regmap_write_bits(scu_ic->scu, scu_ic->sts_reg,
-+				  scu_ic->irq_enable, scu_ic->irq_enable);
-+		regmap_write_bits(scu_ic->scu, scu_ic->en_reg, scu_ic->irq_enable, 0);
-+
-+	} else {
-+		regmap_write_bits(scu_ic->scu, scu_ic->reg,
-+				  ASPEED_SCU_IC_STATUS, ASPEED_SCU_IC_STATUS);
-+		regmap_write_bits(scu_ic->scu, scu_ic->reg, ASPEED_SCU_IC_ENABLE, 0);
-+	}
- 
- 	irq = irq_of_parse_and_map(node, 0);
- 	if (!irq) {
-@@ -232,9 +302,89 @@ static int __init aspeed_ast2600_scu_ic1_of_init(struct device_node *node,
- 	return aspeed_scu_ic_of_init_common(scu_ic, node);
- }
- 
-+static int __init aspeed_ast2700_scu_ic0_of_init(struct device_node *node,
-+						 struct device_node *parent)
-+{
-+	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-+
-+	if (!scu_ic)
-+		return -ENOMEM;
-+
-+	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC0_ENABLE;
-+	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC0_SHIFT;
-+	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC0_NUM_IRQS;
-+	scu_ic->split_ier_isr = true;
-+	scu_ic->en_reg = ASPEED_AST2700_SCU_IC0_EN_REG;
-+	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC0_STS_REG;
-+
-+	return aspeed_scu_ic_of_init_common(scu_ic, node);
-+}
-+
-+static int __init aspeed_ast2700_scu_ic1_of_init(struct device_node *node,
-+						 struct device_node *parent)
-+{
-+	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-+
-+	if (!scu_ic)
-+		return -ENOMEM;
-+
-+	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC1_ENABLE;
-+	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC1_SHIFT;
-+	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC1_NUM_IRQS;
-+	scu_ic->split_ier_isr = true;
-+	scu_ic->en_reg = ASPEED_AST2700_SCU_IC1_EN_REG;
-+	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC1_STS_REG;
-+
-+	return aspeed_scu_ic_of_init_common(scu_ic, node);
-+}
-+
-+static int __init aspeed_ast2700_scu_ic2_of_init(struct device_node *node,
-+						 struct device_node *parent)
-+{
-+	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-+
-+	if (!scu_ic)
-+		return -ENOMEM;
-+
-+	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC2_ENABLE;
-+	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC2_SHIFT;
-+	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC2_NUM_IRQS;
-+	scu_ic->split_ier_isr = true;
-+	scu_ic->en_reg = ASPEED_AST2700_SCU_IC2_EN_REG;
-+	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC2_STS_REG;
-+
-+	return aspeed_scu_ic_of_init_common(scu_ic, node);
-+}
-+
-+static int __init aspeed_ast2700_scu_ic3_of_init(struct device_node *node,
-+						 struct device_node *parent)
-+{
-+	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-+
-+	if (!scu_ic)
-+		return -ENOMEM;
-+
-+	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC3_ENABLE;
-+	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC3_SHIFT;
-+	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC3_NUM_IRQS;
-+	scu_ic->split_ier_isr = true;
-+	scu_ic->en_reg = ASPEED_AST2700_SCU_IC3_EN_REG;
-+	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC3_STS_REG;
-+
-+	return aspeed_scu_ic_of_init_common(scu_ic, node);
-+}
-+
- IRQCHIP_DECLARE(ast2400_scu_ic, "aspeed,ast2400-scu-ic", aspeed_scu_ic_of_init);
- IRQCHIP_DECLARE(ast2500_scu_ic, "aspeed,ast2500-scu-ic", aspeed_scu_ic_of_init);
- IRQCHIP_DECLARE(ast2600_scu_ic0, "aspeed,ast2600-scu-ic0",
- 		aspeed_ast2600_scu_ic0_of_init);
- IRQCHIP_DECLARE(ast2600_scu_ic1, "aspeed,ast2600-scu-ic1",
- 		aspeed_ast2600_scu_ic1_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic0, "aspeed,ast2700-scu-ic0",
-+		aspeed_ast2700_scu_ic0_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic1, "aspeed,ast2700-scu-ic1",
-+		aspeed_ast2700_scu_ic1_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic2, "aspeed,ast2700-scu-ic2",
-+		aspeed_ast2700_scu_ic2_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic3, "aspeed,ast2700-scu-ic3",
-+		aspeed_ast2700_scu_ic3_of_init);
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
