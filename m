@@ -1,142 +1,191 @@
-Return-Path: <devicetree+bounces-201743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F41B1A941
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 20:45:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3FCB1A9B7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 21:38:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8CFF6222E4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 18:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 707A317D5C6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 19:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76051CEACB;
-	Mon,  4 Aug 2025 18:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA322B8C5;
+	Mon,  4 Aug 2025 19:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="S/qNRyHO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h9bdvuKm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF5D1B6D06;
-	Mon,  4 Aug 2025 18:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D70204083
+	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 19:37:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754333121; cv=none; b=Yc9kpzs8maZy0AK8z3k4WgXYxHVYM25oMPdT+Pc0Amruo34Qqk3dbkDOOULqqvoFjZZt0gHGBdpxf9bpH10t6Y1YKWtUTHDZzKCVC6IW+YbYUeFlRGKt+I0CoHwxibUXSL4fSJcQBthSUrf+eOGGFsLSdH+2emEgU//ERomZj54=
+	t=1754336281; cv=none; b=uB2O3XW2aOQSbYpF8yRY7voqdWBHYtBN5FoINO1064Sz3k8xJ/Ep5XBfbDSiFlRj5jCv2ZbceXN+t8djzFxOB8MChRppxhK5V2NqT5ONE4COnDDnRhAZEg+YLe8uetjKvR0oyZpT51t9kts4ikHVtcLsBz3RTRz3o+1cTwUZ2qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754333121; c=relaxed/simple;
-	bh=rCHXXNdpkcJiBsgVoWsJ5vVB4UmsYjtQbJYvAuwkKS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RDqjXrV+AdAipuZPGuWi7EwTWOqooaPV44kXwUb/vLK5fA7bfWSUlBdyAQokaOJ8Rtw1JQiC+CZ0fJMBCS77h5JD0vJWBlux269Q9XU+u1sXSEJ6xjgkeDsvNr3H+pXNtcy0oJZL/h0uuOdkGaHNiPxswD+lIJLTlUCT4t4XVIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=S/qNRyHO; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cIXfpbELo7S5Ma6kNEHmduu6tJrsk3tl7WgR7nkYNeE=; b=S/qNRyHO5dOMC8M6ZLhYLce0HU
-	YkwpeIgj42pq+hEkqzsT14p6FuZ+5P5gCeIza/UPqzD7WVcrZO4jrQEw2mZxt8sLTifW6jntTS2ij
-	ysKe/txFLmA/k+GkTKpWGPbkIAYBea6IZc5rt6COEVevHKlyHaBo3h4eKqnMsUSS66KM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uj0BF-003jbX-B2; Mon, 04 Aug 2025 20:45:05 +0200
-Date: Mon, 4 Aug 2025 20:45:05 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
-Message-ID: <1419bca0-b85a-4d4b-af1a-b0540c25933a@lunn.ch>
-References: <20250717171100.2245998-1-ivecera@redhat.com>
- <20250717171100.2245998-2-ivecera@redhat.com>
- <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
- <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
- <20250721-lean-strong-sponge-7ab0be@kuoka>
- <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
- <9220f776-8c82-474b-93fc-ad6b84faf5cc@kernel.org>
- <466e293c-122f-4e11-97d2-6f2611a5178e@redhat.com>
- <db39e1ff-8f83-468c-a8cb-0dd7c5a98b85@kernel.org>
- <f96b3236-f8e6-40c1-afb2-7e76894462f9@redhat.com>
+	s=arc-20240116; t=1754336281; c=relaxed/simple;
+	bh=gMNa7ghysRE0GnTzj2DIg8E+Jw4M+z2ED1KRbbrmldw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DURiC8ooY9qPqgX6sYuC5GhVBAhge6cXzFyYkGjcJ3HOkjg6Ncg3XPIsV0EK65iUZFbV9vdt58xcv6vqet1ZEvIO9F3lHl4NFnA9sj/DGNIP3/f13oGvnTIcpdUHBLDvJIgO52CL1x384/NSLYxp212bRe7JrqOouLNQX+s1IW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h9bdvuKm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574H1m4G015496
+	for <devicetree@vger.kernel.org>; Mon, 4 Aug 2025 19:37:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZhETA39faQ5nTi2zmiEubPl3YqYzVEJnQSXgNm1akj4=; b=h9bdvuKmNN1pHB6D
+	6/S6iaiA3kebkj+3OBMN1l8fKLNXd3v/6xNZ4J8JQu/KYQTicGIfqudUZmYhOdaR
+	+UatLFVjmTXQDIavXf3Xt5NADVn5DO1iznFm9UHtMzndaggB/nShF2sLsGNBMPd0
+	n6Sd/SQWbRS+qBVUkKpauOZGL12+Xr5knN+wmTwcFgzWtpuwlk0UShiItN1ODtyu
+	DNZ5pjuHmv35gr8ijhjFOW1FRfmaDdxSg7KHUnyTFHtiCVtMpkztMFrNmO3i1Mi9
+	2nw2GdUQyIfLj8y/Gcm8FS+L77n34tIoMhD38lXira66iLtmXP4Xp3QZLyWgj/NF
+	OWbifQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4898cjpc3b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 19:37:58 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b00e4358a34so2357786a12.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 12:37:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754336278; x=1754941078;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZhETA39faQ5nTi2zmiEubPl3YqYzVEJnQSXgNm1akj4=;
+        b=mlE4wYLCAMNqRq94k29lgkU281Uh0fww8mt7LK72SjdvTf5tpTc14h4AhBxlG4sBh4
+         XfVgu4iut5dFj3BXOd5u49GE0t0tVei8emqWUK88OPDWQ3z1b4YfPUSds0E4JgFziJ+m
+         O8JQ+SRoLe0GltAJJkM0j+4+KWHiVolUIj4tim+v/0kZvvo6mUzxbUWoHKkX9C5N/riZ
+         t5uKRZ2Vdsq0fTZbnO5wkkoll++E8+NVM0Mnh7ModEYOEXFVebPJ0prBlGSAVgaNO2F8
+         QX2GmxL0mZYZQz31PshdjXk5WuT5sx9zhqcyXDL6TB+KF/uxwGU/cnf9N88HOIaY2lsV
+         NfsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUpvjEipknfgrOok84usLgouuKRiVW0LwOuYTTfHSPO5Si4GUIcjCaRqq/FBOb2YZheONd26FcRWk5F@vger.kernel.org
+X-Gm-Message-State: AOJu0YycjFeOd3BO4a44/jxO7m+2mjsh4DXIRkiDK/TNl7N6WiG0KenA
+	DQGlQrmh5z5nPL7RENVUQFO7WeUChJ3Ka0g/egamAyqLqCzT7nQQAI/QPtYJ4ApCVXZnPGdWb5m
+	Si/r8zJxOL6thuFwm2zHQlJmofuwFCgEgu+3K7oU7ADksFnwGEqzYS5AhIr8AQPdPkgpuI5zt
+X-Gm-Gg: ASbGncvUhWs4bAGiM7lEOgb492RfVralU99r5ZZrpu11xAO7kBvb9GmtH2bUeC379ss
+	Pqq7uAVGsffWaYJNznUy4+4qwMKBJwioVpqfFKH7GsIWZzi1WxDS2E2V+RXLTvN97wuLbSlrGYi
+	H+7gEqgBrV5z4J3P0GGXJXG3RgLhg/Mko2vIrWIGX7+VXwV3/uSN+Otw2xFqppyDCvNQfJGex5y
+	W7qeoyxbHDUuMuPj7gCgezqqWfsyQ3+bTiEFFq55Ie4JnkEJDi58elPsM19VtPUOjxV3DvtNFOZ
+	3fqI3BK3iGZIvXZa9SrTtwS7hWlIVA7YGYtG7b7UUWNtF8OmiAL6tOkRJfxbumdeLds+cZp4wYg
+	UP3p4SFaThNYxcrzk2NdncM+G6taZ
+X-Received: by 2002:a05:6a21:32a8:b0:240:af8:1784 with SMTP id adf61e73a8af0-2400af81b60mr6755152637.1.1754336277823;
+        Mon, 04 Aug 2025 12:37:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGjZtGErtEqr0mN/bYFEtV8ckk8GVvca6gvVir73rQPTbuaRSj7qE7ZcUwxOg9STp9FAz1DkA==
+X-Received: by 2002:a05:6a21:32a8:b0:240:af8:1784 with SMTP id adf61e73a8af0-2400af81b60mr6755113637.1.1754336277347;
+        Mon, 04 Aug 2025 12:37:57 -0700 (PDT)
+Received: from [10.71.110.42] (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4252b83822sm4242439a12.66.2025.08.04.12.37.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Aug 2025 12:37:56 -0700 (PDT)
+Message-ID: <4becbced-8e88-4588-9de6-06f98eae0736@oss.qualcomm.com>
+Date: Mon, 4 Aug 2025 12:37:39 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f96b3236-f8e6-40c1-afb2-7e76894462f9@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] of: reserved_mem: Restructure call site for
+ dma_contiguous_early_fixup()
+To: Rob Herring <robh@kernel.org>
+Cc: m.szyprowski@samsung.com, robin.murphy@arm.com, saravanak@google.com,
+        quic_obabatun@quicinc.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        william.zhang@broadcom.com, kernel@oss.qualcomm.com, will@kernel.org,
+        djakov@kernel.org
+References: <20250730002956.1812694-1-oreoluwa.babatunde@oss.qualcomm.com>
+ <20250730224132.GA1822233-robh@kernel.org>
+Content-Language: en-US
+From: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+In-Reply-To: <20250730224132.GA1822233-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=MNBgmNZl c=1 sm=1 tr=0 ts=68910c16 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=Q-fNiiVtAAAA:8
+ a=U-hEzrufn-yrS9YAMqUA:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: sZ51S8EvylWpQP-gu1yeDKJbzkqiCwqU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDExNSBTYWx0ZWRfX7Qy+6lkC+2ix
+ l2ws3LFnLsCHy/qL+j8tQiZnjbpvPDYQgmpSmUsYa2iFvBTkGP6cbpzZH2uOStwqx5pr/v0FpMR
+ bvUX35n0kEDF21ykzCc87e9BKHR7FboqtzQUgKJPo6QxMPzR0cg4RI7ATUH7XFM9ZAmMM1s05Qz
+ KHlKLzHSx0xBnYQs9TQYJck7YkIVZWXvgWQBUSXhPzVhDeNyqeYk4IjdQhW1jkc4UBJx4U7uoDz
+ b52+UtqNoY7hRKEW9drbLf8swxL1t1Bx6oxFVOtqSrkpLaJyHh3E6Qf2cXp9mXYXG2NY7dzHeq0
+ fe4PnfkkD5c5LMqzb8+27n17W4AoL4zzDIldYXDLIEfbka3NqhOd6oUw35cVPkTfAwYMW4NXrOi
+ E92+irh5OqUeRfdb7vDio5MsZQS3LMc5l+dQFo3hCVrlDIj4eUJHa2mInU6i1D1Zic7Ok53w
+X-Proofpoint-GUID: sZ51S8EvylWpQP-gu1yeDKJbzkqiCwqU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-04_08,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=545 suspectscore=0
+ spamscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508040115
 
-> Let's say we have a SyncE setup with two network controllers where each
-> of them feeds a DPLL channel with recovered clock received from some of
-> its PHY. The DPLL channel cleans/stabilizes this input signal (generates
-> phase aligned signal locked to the same frequency as the input one) and
-> routes it back to the network controller.
-> 
->     +-----------+
->  +--|   NIC 1   |<-+
->  |  +-----------+  |
->  |                 |
->  | RxCLK     TxCLK |
->  |                 |
->  |  +-----------+  |
->  +->| channel 1 |--+
->     |-- DPLL ---|
->  +->| channel 2 |--+
->  |  +-----------+  |
->  |                 |
->  | RxCLK     TxCLK |
->  |                 |
->  |  +-----------+  |
->  +--|   NIC 2   |<-+
->     +-----------+
-> 
-> The PHCs implemented by the NICs have associated the ClockIdentity
-> (according IEEE 1588-2008) whose value is typically derived from
-> the NIC's MAC address using EUI-64. The DPLL channel should be
-> registered to DPLL subsystem using the same ClockIdentity as the PHC
-> it drives. In above example DPLL channel 1 should have the same clock ID
-> as NIC1 PHC and channel 2 as NIC2 PHC.
-> 
-> During the discussion, Andrew had the idea to provide NIC phandles
-> instead of clock ID values.
-> 
-> Something like this:
-> 
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> b/Documenta
-> tion/devicetree/bindings/dpll/dpll-device.yaml
-> index fb8d7a9a3693f..159d9253bc8ae 100644
-> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> @@ -33,6 +33,13 @@ properties:
->      items:
->        enum: [pps, eec]
-> 
-> +  ethernet-handles:
-> +    description:
-> +      List of phandles to Ethernet devices, one per DPLL instance. Each of
-> +      these handles identifies Ethernet device that uses particular DPLL
-> +      instance to synchronize its hardware clock.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
 
-I personally would not use a list. I would have a node per channel,
-and within that node, have the ethernet-handle property. This gives
-you a more flexible scheme where you can easily add more per channel
-properties in the future.
 
-It took us a while to understand what you actually wanted. The ASCII
-art helps. So i would include that and some text in the binding.
+On 7/30/2025 3:41 PM, Rob Herring wrote:
+> On Tue, Jul 29, 2025 at 05:29:56PM -0700, Oreoluwa Babatunde wrote:
+>> Restructure the call site for dma_contiguous_early_fixup() to
+>> where the reserved_mem nodes are being parsed from the DT so that
+>> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+>>
+>> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
+>> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+>> Tested-by: William Zhang <william.zhang@broadcom.com>
+>> ---
+>> v3: Wrap the call to dma_contiguous_early_fixup() with a check for
+>>     CONFIG_DMA_CMA to fix compile error seen on x86. The __weak function
+>>     definition introduced in v2 was not sufficient to prevent the issue,
+>>     so remove that as well.
+>>     Also add Tested-by tag from William Zhang.
+>>
+>> v2: Add a check for the "reusable" property to narrow things down to
+>>     only cma regions.
+>>     Also add __weak function definition for dma_contiguous_early_fixup()
+>>     to avoid compile errors on architectures that do not define the
+>>     function.
+>>
+>>  drivers/of/of_reserved_mem.c | 20 ++++++++++++++++----
+>>  kernel/dma/contiguous.c      |  2 --
+>>  2 files changed, 16 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+>> index 77016c0cc296..cfffecb91c3a 100644
+>> --- a/drivers/of/of_reserved_mem.c
+>> +++ b/drivers/of/of_reserved_mem.c
+>> @@ -25,6 +25,7 @@
+>>  #include <linux/memblock.h>
+>>  #include <linux/kmemleak.h>
+>>  #include <linux/cma.h>
+>> +#include <linux/dma-map-ops.h>
+>>  
+>>  #include "of_private.h"
+>>  
+>> @@ -175,13 +176,19 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+>>  		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+>>  		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+>>  
+>> -		if (size &&
+>> -		    early_init_dt_reserve_memory(base, size, nomap) == 0)
+>> +		if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
+>> +			/* Architecture specific contiguous memory fixup. */
+>> +#ifdef CONFIG_DMA_CMA
+>> +			if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
+>> +			    of_get_flat_dt_prop(node, "reusable", NULL))
+>> +				dma_contiguous_early_fixup(base, size);
+>> +#endif
+> 
+> Add a static inline for dma_contiguous_early_fixup() instead of having 
+> an #ifdef.
 
-	Andrew
+ACK.
+
+Thanks!
 
