@@ -1,1174 +1,134 @@
-Return-Path: <devicetree+bounces-201717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559D9B1A5AD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:18:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 174D0B1A5E9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:28:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E68483A2384
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:18:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09AF018A355C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F321E5B9A;
-	Mon,  4 Aug 2025 15:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C13277C8C;
+	Mon,  4 Aug 2025 15:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wCNUrO3S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e7nVCRSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85BE2E3707
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 15:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAAD27700A
+	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 15:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754320707; cv=none; b=bbgGWDtT+wkDtcVwYjSHzo6lKQ4yimlmSdOV7apXn+WntWTk68qwOFGja3kzAfA81NS/JXdSEQmxI4LO/RshSLQX3Ubldz5KCo0NEc2fzqjoPep1z+jD20OZrgmuI1mkfykKhcW8mtrLAcGy34/2a/h9qwoStDcuVEyU04v65Ws=
+	t=1754321056; cv=none; b=nmBnQ5n0cKqaxbnEFFCGhwTJNOKXOVWo582zfdeiVOuRQ6D393eqz21VFWSBEZ6falbJErwc8/87YKdCdUuy7rfkVoDveT5scwAVvtjHXBkgZaR0KJAUs1idFy/qiAkK17XHqMOzKQX/naIqMO68wsWjiCcUgHJ2pTQ3ByN4dqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754320707; c=relaxed/simple;
-	bh=jSDbtpfnBwAe9AUdRdXDTg9L8c1zbz1VBHc58oDdxtE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bMAP0lG650sFu7QCtpwJSe3pUuIfB7oOezcGkYq2xWmZ3p4RnShXi/iXhV4h4eavL5u6zMA3u1WnPruN/sSs1vzkrOn5BaSypvv1hFyWp8KgHAyVYojM0ABmlLhtycMrdXkdiVMY+t/UICh3lC3cRBwPCN5O0Wl1vsm/uyGZD2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wCNUrO3S; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1754321056; c=relaxed/simple;
+	bh=0UvZE3k+XFIsWL7U4sT1dC/irQDhudNW/Glb0WMicdM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=X1GPFqCQKIoMUiQghEprkIvMFi9ta7y76vCOoKRlzx/5FhfUHaW1wE3Z3nVK0sZbab6U7xM0hA1Hq91TiDKfYVWlqIxvUt4KGY30qtzyXk2pQLaFrpdW31Guxgxj/xrrIpToRMWdmPrfBHq/UYTrvVfzLuQcNe6cBgjpGhOc6ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e7nVCRSY; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-459ddb41539so3858695e9.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 08:18:24 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b78d337dd9so2157419f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 08:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754320703; x=1754925503; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EHZ9AbZyd4zV2QZUlJQorhNyMcF4TmYj2BfDLkj+QnU=;
-        b=wCNUrO3SfiPZOUdL9bkfWl2D8u6lQF5H9lGi5EsucVR+1OmMqYHj3NkU2npDwtDooW
-         crlkuyUjj56+gsnOHqST4KpqEN5iSZ5BTwXsMvwBU6xAK2pq0ke+QwsWEqPtM8EfKo/g
-         5sOPNlPGQLY3a0CmhiP0IlT28iYmHOrVC1fhBRYlC0Jsz2e7Lmx1e0/PUyKgSSDRL+Zj
-         /DYLkg66ljodQlSGhKX8isBQ+csivOzNMU7AtBRfN5G1/5K37ry3Hxa/M9gd8hXVAHXw
-         F+0eP94TESycfwuhtcdEo3mhevEMkmF5rBB+CKhUSjJrCFNbwkgz0NAgTteC3Wx8zjk0
-         EVcQ==
+        d=linaro.org; s=google; t=1754321053; x=1754925853; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MSMHDKm2fVBb5I+HzgHVkcktydoNZjtlzbBXl5Tc0aw=;
+        b=e7nVCRSY/DwxDc0ow8FMCuAZ2rfNNrTmPb67oCsnoEz4mcv4ffR1cfX+L5Hxgmlu/W
+         47F64ulDzA+gHsUlaJ+dzNDn1Ibc2Od36XkrzpWk1eLqmXYBOYVfztxIKEp/vG0i7LK0
+         MmkNO7POnBLcXZg1lvHxpYdvzRxibvs4ZRDgh2fBGT0YjihXBqhvAJmh6zkcsIY7A8/j
+         aPcKpenefvveIsqQUmSaneBdbEeVYAtic2DB0bCz/reQdPvywdHOt/Q+u35MhJheh9jb
+         E0UIzHlBLE8O2+FyaNJF+nfNGEM1BNsPo9N8CUVvCo8MkJznq3nk7N2ku9AkhheWzq6+
+         efhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754320703; x=1754925503;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=EHZ9AbZyd4zV2QZUlJQorhNyMcF4TmYj2BfDLkj+QnU=;
-        b=sQsT7KUGzUIW/+opXxFLYV3y+jM2fpFjaB9UEqJIMc73hVbt4SChZxDEVt0PlXhYb7
-         WfO2nRzMU3E8j9zcm5U0P0CxV8D9HdwldEqwX2IbEwM8TszDe26U2awfuWt7LRLnQ7Ky
-         wl+2BglpwhmmPb7n+4mI0tzH1OGib2vG35t5NHM60YUZIvP54TpoGGgnt1vbYc+jsM7U
-         Pr4k/V/jm9gxTNlsO33/BX+WuR65lAK1hk8xQzOAHIlsJlo2RbBeXNVbvYZT8g9basQQ
-         ECzXI7qS5OKM9HeSztOyqBb4zQ4ZLjIcM6U/xnXlVlUdUDGmM7Slx13VG+m0GzmICRY+
-         nbug==
-X-Forwarded-Encrypted: i=1; AJvYcCXktIfP3WBq3/dr1zOOmNqbDIjCqnr6H4OJN1HFZzp+U/vKwfHDhT5dB9AcLAWqHu39O554fUA2RSn4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBgivQxhFs4xguL/gDb1b7UqZRP7UOb0DS2cIBj2g1ntVrlN91
-	K+gt9d+bzjeLhulSq8BgdAaOmLYdGhkmG5xDVR7X8ZVU8QpeqfrYseP/IGhCxHSOiQBilnilj6U
-	GLyhtQ+Q=
-X-Gm-Gg: ASbGncsuUmeXQb0gCJZIn0d1dW7mHzbZnVX4MvdfEXoX8ZTlOsnxhTQSy14lLFuj7R6
-	YdlBCunBAKdS6Uv8w3DsUV71UF1xwvFv1pTaxBnPabtwlQMKoud/nowqo97CbhvCdI9iRdipWUJ
-	dgtusrKtM4BlcyeRJ4K//2V1P5RRHLtz0k8X1Yco48ngccn7oOspk6BqXjNHuXzrZvqfUiIl07h
-	wkrkOL7MRhnvf5AtXlRSXaKG1hukpOseSftHuc7FPQt4MLlZqfPst1s+RC9gsspsJsswNzrJxvp
-	OZe+yPc6Hk+z7sqUEaKzDlJAIoj8ftnYFwF0ZcjU/NcRTER/w8RgTDAhnZSUPCwYm9eLFAHCczc
-	OuBAwDfAuz1J6jq7lsrruwkkRaRMHbCOMaaFRrl0f3eVvtAPWiP038xF2Z9gIYglWCnM2OkEv/e
-	w=
-X-Google-Smtp-Source: AGHT+IEThAyOoipEe6RuZxZiiS5BlJWvn83vbmHu2oKpr3m13PuNLXK5n3c3mh8vvSQe3102JmGA+g==
-X-Received: by 2002:a05:600c:4683:b0:43c:f8fc:f697 with SMTP id 5b1f17b1804b1-458b69df312mr79191485e9.9.1754320702647;
-        Mon, 04 Aug 2025 08:18:22 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:3030:f63e:fedd:700f? ([2a01:e0a:3d9:2080:3030:f63e:fedd:700f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3ac158sm16154673f8f.4.2025.08.04.08.18.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Aug 2025 08:18:22 -0700 (PDT)
-Message-ID: <ed294e88-4203-4626-9ece-1682197317fd@linaro.org>
-Date: Mon, 4 Aug 2025 17:18:21 +0200
+        d=1e100.net; s=20230601; t=1754321053; x=1754925853;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MSMHDKm2fVBb5I+HzgHVkcktydoNZjtlzbBXl5Tc0aw=;
+        b=Xfr9jeJvjqVLgNDuP6MrPQ24/U9C+C3Cung7KwU9XUybS43Z/omTyLrAXa6i8995U1
+         a3D5Hzs0Vs623eFou1qaoMvRbtqM1kGxbZKvuzQKTU5whNJDfi3fk+/TbBGRcda/a4sB
+         k+5s81Telzt2cdYCusiByISpkXk8rsSgER6d5UGdFjhJRmcjgTs8SGdB/1CnQNpdphil
+         doWVqGHGq+Gvf0nFTUQ1RZpbgBLwg3AWJnWQ6cHf9Mrle2dhwrjXg2BEEPlsr+AdTWkG
+         i/oGkKG4tZB7vS1RRonhQrIQPynTJCPss9boYg4Ftb7BtV4JzELr0TdNSobSsxgcWn5f
+         bydQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWI/EQJANPJfP0AIlWIhhehm77loPSz3PFSE5NHkpPqrZh/MICfJNq3PiDWKKdr4+WBmjpzwuHfygDc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym4tNLbfkAlDzaKIK56v/2SPioykO4umlb9nzRVAU6TFKqgxkD
+	OloRj2EBoHmzMRBW7WvlK4BSkj5j7JtI7oP9pQtsrvfRL5J1AwW0uxuu6eXvPmxMm6Y=
+X-Gm-Gg: ASbGnctsdINip65kgWurcfiT/4IDMUOdOFtfH459scLMy6KdxURMXlVuL+3ps2+/EvT
+	n8Sxh4JSB9gzVTzEB0vg2r8QFVxnUJtKQJ0MpEEXjAF1lNd17m4YqzKigvB719vUgalOf1l+6Ue
+	z4Y6/3+mbbq1RB8yOSzbLM1o7w+dD8/7WL5FEmuKJLr6WI4GKbKyByMotgwWDFPfqhZLyooI8su
+	kTFSe7P/bIRLqNPIlTr9UPCkYBB825RqR1CV4eq5ygwIKGQf12coGXQWfe4CN0kIfJ/XZsGCj4S
+	RbsQXCTL2QIlTNhbaBTYSzU+f4jnDkfUAlypUUDc/QB8G4qjhSdHa4JAeRLa9OGOSLrltH0lJhU
+	ITowVRPcObczw0K0HKZk3t/ne89M6yLolPyChTeCg7sQRASMt
+X-Google-Smtp-Source: AGHT+IHHSKgAOk2QSQQTS8KtsNeLFrmfp5jVQGwgWUaRhP71DYG7ooscPk+f2g4vk2n5Dyr8OqNoYg==
+X-Received: by 2002:a05:6000:2381:b0:3b7:9c79:32bb with SMTP id ffacd0b85a97d-3b8d94bacc9mr7805669f8f.44.1754321053029;
+        Mon, 04 Aug 2025 08:24:13 -0700 (PDT)
+Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c4530b3sm16335579f8f.34.2025.08.04.08.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Aug 2025 08:24:12 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: daniel.lezcano@linaro.org,
+	tglx@linutronix.de
+Cc: S32@nxp.com,
+	linux-kernel@vger.kernel.org,
+	ghennadi.procopciuc@oss.nxp.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Subject: [PATCH v3 19/20] dt: bindings: fsl,vf610-pit: Add compatible for s32g2 and s32g3
+Date: Mon,  4 Aug 2025 17:23:37 +0200
+Message-ID: <20250804152344.1109310-20-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250804152344.1109310-1-daniel.lezcano@linaro.org>
+References: <20250804152344.1109310-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 2/2] drm: panel: add support for Samsung AMS561RA01
- panel with S6E8AA5X01 controller
-To: Kaustabh Chakraborty <kauschluss@disroot.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250721-panel-samsung-s6e8aa5x01-v5-0-1a315aba530b@disroot.org>
- <20250721-panel-samsung-s6e8aa5x01-v5-2-1a315aba530b@disroot.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250721-panel-samsung-s6e8aa5x01-v5-2-1a315aba530b@disroot.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/07/2025 16:39, Kaustabh Chakraborty wrote:
-> Samsung AMS561RA01 is an AMOLED panel, using the Samsung S6E8AA5X01 MIPI
-> DSI controller. Implement a basic panel driver for such panels.
-> 
-> The driver also initializes a backlight device, which works by changing
-> the panel's gamma values and aid brightness levels appropriately, with
-> the help of look-up tables acquired from downstream kernel sources.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->   drivers/gpu/drm/panel/Kconfig                      |  11 +
->   drivers/gpu/drm/panel/Makefile                     |   1 +
->   .../panel/panel-samsung-s6e8aa5x01-ams561ra01.c    | 981 +++++++++++++++++++++
->   3 files changed, 993 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 09b9f7ff9340abb708a503f7564acc46b2faaf7d..a5d89b13de06d79b4fc9b6566d08de0df45cf81b 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -843,6 +843,17 @@ config DRM_PANEL_SAMSUNG_S6E8AA0
->   	select DRM_MIPI_DSI
->   	select VIDEOMODE_HELPERS
->   
-> +config DRM_PANEL_SAMSUNG_S6E8AA5X01_AMS561RA01
-> +	tristate "Samsung AMS561RA01 panel with S6E8AA5X01 controller"
-> +	depends on GPIOLIB && OF && REGULATOR
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for Samsung AMS561RA01
-> +	  panel, which uses Samsung's S6E8AA5X01 controller. The panel has a
-> +	  ~5.6 inch AMOLED display, and the controller is driven by the MIPI
-> +	  DSI protocol with 4 lanes.
-> +
->   config DRM_PANEL_SAMSUNG_SOFEF00
->   	tristate "Samsung sofef00/s6e3fc2x01 OnePlus 6/6T DSI cmd mode panels"
->   	depends on OF
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index 957555b499968ebbfb55c87d2729ce88b5d48a57..c425eb2940b0d6fef6bd852f9ac24937efdc573f 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -87,6 +87,7 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0_DSI) += panel-samsung-s6e63m0-dsi.o
->   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24) += panel-samsung-s6e88a0-ams427ap24.o
->   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01) += panel-samsung-s6e88a0-ams452ef01.o
->   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0) += panel-samsung-s6e8aa0.o
-> +obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E8AA5X01_AMS561RA01) += panel-samsung-s6e8aa5x01-ams561ra01.o
->   obj-$(CONFIG_DRM_PANEL_SAMSUNG_SOFEF00) += panel-samsung-sofef00.o
->   obj-$(CONFIG_DRM_PANEL_SEIKO_43WVF1G) += panel-seiko-43wvf1g.o
->   obj-$(CONFIG_DRM_PANEL_SHARP_LQ101R1SX01) += panel-sharp-lq101r1sx01.o
-> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e8aa5x01-ams561ra01.c b/drivers/gpu/drm/panel/panel-samsung-s6e8aa5x01-ams561ra01.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..56e10c7c3a76dc704e818998a72824e5ebbc16c1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-samsung-s6e8aa5x01-ams561ra01.c
-> @@ -0,0 +1,981 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Samsung AMS561RA01 panel with S6E8AA5X01 controller.
-> + *
-> + * Copyright (C) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_probe_helper.h>
-> +
-> +/* Manufacturer Command Set */
-> +#define MCS_AIDCTL		0xb2
-> +#define MCS_ADAPTIVECTL		0xb5
-> +#define MCS_ELVSS		0xb6
-> +#define MCS_TEMPERCTL		0xb8
-> +#define MCS_PENTILE		0xc0
-> +#define MCS_GAMMACTL		0xca
-> +#define MCS_LTPSCTL		0xcb
-> +#define MCS_PCD			0xcc
-> +#define MCS_ERRFLAG		0xe7
-> +#define MCS_ACCESSPROT		0xf0
-> +#define MCS_DISPCTL		0xf2
-> +#define MCS_GAMMAUPD		0xf7
-> +
-> +#define GAMMA_CMD_LEN	34
-> +#define AID_CMD_LEN	3
-> +
-> +static const struct {
-> +	u8 gamma[GAMMA_CMD_LEN];
-> +	u8 aid[AID_CMD_LEN];
-> +} s6e8aa5x01_ams561ra01_cmds[] = {
-> +	{
-> +		/* 5 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x94,
-> +		  0x88, 0x89, 0x8a, 0x87, 0x87, 0x89,
-> +		  0x8d, 0x8c, 0x8d, 0x89, 0x8c, 0x8e,
-> +		  0x8e, 0x8f, 0x90, 0xa3, 0xa2, 0x9a,
-> +		  0xcf, 0xca, 0x9f, 0xe6, 0xff, 0xb4,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0xa5 },
-> +	}, {
-> +		/* 6 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x95,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x8c, 0x8a, 0x8c, 0x85, 0x88, 0x8c,
-> +		  0x8b, 0x8c, 0x8e, 0xa2, 0xa2, 0x9a,
-> +		  0xd0, 0xcc, 0xa2, 0xed, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x95 },
-> +	}, {
-> +		/* 7 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x95,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x8c, 0x8a, 0x8c, 0x85, 0x88, 0x8c,
-> +		  0x8b, 0x8c, 0x8e, 0xa2, 0xa2, 0x99,
-> +		  0xc8, 0xc4, 0x9d, 0xed, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x89 },
-> +	}, {
-> +		/* 8 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8a, 0x87, 0x87, 0x89,
-> +		  0x8a, 0x88, 0x8b, 0x83, 0x86, 0x8b,
-> +		  0x8c, 0x8b, 0x8d, 0x9d, 0x9f, 0x97,
-> +		  0xc7, 0xc3, 0x9c, 0xf5, 0xff, 0xbb,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x7e },
-> +	}, {
-> +		/* 9 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8a, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x8a, 0x82, 0x84, 0x88,
-> +		  0x90, 0x8f, 0x91, 0x95, 0x97, 0x94,
-> +		  0xc6, 0xc2, 0x9d, 0xf5, 0xff, 0xbb,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x73 },
-> +	}, {
-> +		/* 10 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8a, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x8a, 0x82, 0x84, 0x88,
-> +		  0x90, 0x8f, 0x91, 0x94, 0x97, 0x93,
-> +		  0xc6, 0xc2, 0x9e, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x67 },
-> +	}, {
-> +		/* 11 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8a, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x8a, 0x82, 0x84, 0x88,
-> +		  0x8b, 0x8b, 0x8d, 0x90, 0x93, 0x92,
-> +		  0xc5, 0xc1, 0x9c, 0xf5, 0xff, 0xbb,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x56 },
-> +	}, {
-> +		/* 12 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x82, 0x84, 0x88,
-> +		  0x87, 0x86, 0x8a, 0x8c, 0x90, 0x8f,
-> +		  0xcd, 0xc9, 0xa1, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x4a },
-> +	}, {
-> +		/* 13 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x82, 0x84, 0x88,
-> +		  0x87, 0x86, 0x8a, 0x8c, 0x90, 0x8e,
-> +		  0xc4, 0xbf, 0x9c, 0xf5, 0xff, 0xbb,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x3b },
-> +	}, {
-> +		/* 14 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x82, 0x84, 0x88,
-> +		  0x87, 0x86, 0x89, 0x8c, 0x90, 0x8f,
-> +		  0xc2, 0xbf, 0x9c, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x35 },
-> +	}, {
-> +		/* 15 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x82, 0x84, 0x88,
-> +		  0x87, 0x86, 0x89, 0x8c, 0x90, 0x8f,
-> +		  0xb7, 0xb6, 0x96, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x25 },
-> +	}, {
-> +		/* 16 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x82, 0x84, 0x88,
-> +		  0x88, 0x86, 0x89, 0x8c, 0x90, 0x8f,
-> +		  0xb7, 0xb6, 0x96, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x20 },
-> +	}, {
-> +		/* 17 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x7f, 0x80, 0x86,
-> +		  0x86, 0x85, 0x89, 0x88, 0x8c, 0x8e,
-> +		  0xbf, 0xbe, 0x9c, 0xec, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x05, 0x11 },
-> +	}, {
-> +		/* 19 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x7f, 0x80, 0x86,
-> +		  0x87, 0x85, 0x89, 0x88, 0x8c, 0x8e,
-> +		  0xb3, 0xb4, 0x97, 0xeb, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0xf2 },
-> +	}, {
-> +		/* 20 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x95,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x89, 0x86, 0x89, 0x7f, 0x80, 0x86,
-> +		  0x87, 0x85, 0x89, 0x89, 0x8c, 0x8e,
-> +		  0xb3, 0xb4, 0x97, 0xeb, 0xff, 0xb7,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0xe4 },
-> +	}, {
-> +		/* 21 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x96,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x8a, 0x88, 0x8b, 0x7d, 0x7e, 0x84,
-> +		  0x8c, 0x8a, 0x8c, 0x8e, 0x90, 0x8f,
-> +		  0xb6, 0xb6, 0x97, 0xe3, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0xd5 },
-> +	}, {
-> +		/* 22 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x97,
-> +		  0x88, 0x89, 0x8b, 0x87, 0x87, 0x89,
-> +		  0x8a, 0x88, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x87, 0x86, 0x88, 0x8e, 0x90, 0x8f,
-> +		  0xb6, 0xb6, 0x95, 0xe3, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0xc5 },
-> +	}, {
-> +		/* 24 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x97,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x81, 0x82, 0x86,
-> +		  0x87, 0x86, 0x88, 0x8e, 0x90, 0x8f,
-> +		  0xb6, 0xb6, 0x94, 0xe3, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0xa7 },
-> +	}, {
-> +		/* 25 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x98,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x81, 0x82, 0x86,
-> +		  0x87, 0x86, 0x87, 0x8e, 0x90, 0x8f,
-> +		  0xbf, 0xbf, 0x9a, 0xda, 0xfa, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0x95 },
-> +	}, {
-> +		/* 27 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x99,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x83, 0x86, 0x8a,
-> +		  0x88, 0x87, 0x87, 0x88, 0x8b, 0x8c,
-> +		  0xbf, 0xbf, 0x9a, 0xda, 0xfa, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0x76 },
-> +	}, {
-> +		/* 29 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x99,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x83, 0x86, 0x89,
-> +		  0x88, 0x87, 0x88, 0x88, 0x8b, 0x8b,
-> +		  0xbf, 0xbf, 0x9a, 0xda, 0xfa, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0x54 },
-> +	}, {
-> +		/* 30 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9a,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x84, 0x86, 0x8a,
-> +		  0x87, 0x87, 0x87, 0x88, 0x8b, 0x8b,
-> +		  0xbf, 0xbf, 0x99, 0xda, 0xfa, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0x44 },
-> +	}, {
-> +		/* 32 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9a,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x89, 0x87, 0x8a, 0x84, 0x86, 0x8a,
-> +		  0x87, 0x87, 0x87, 0x89, 0x8b, 0x8b,
-> +		  0xbf, 0xbf, 0x98, 0xd2, 0xf2, 0xac,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x04, 0x1f },
-> +	}, {
-> +		/* 34 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x88, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8b, 0x87, 0x8b, 0x83, 0x86, 0x89,
-> +		  0x87, 0x87, 0x88, 0x88, 0x8b, 0x8a,
-> +		  0xbf, 0xbf, 0x98, 0xd2, 0xf2, 0xac,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0xff },
-> +	}, {
-> +		/* 37 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x81, 0x82, 0x86,
-> +		  0x86, 0x86, 0x86, 0x8d, 0x90, 0x8d,
-> +		  0xc0, 0xbf, 0x9a, 0xd2, 0xf2, 0xac,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0xd3 },
-> +	}, {
-> +		/* 39 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8a, 0x81, 0x82, 0x86,
-> +		  0x87, 0x86, 0x87, 0x8d, 0x90, 0x8d,
-> +		  0xb6, 0xb6, 0x93, 0xda, 0xf9, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0xb3 },
-> +	}, {
-> +		/* 41 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x85,
-> +		  0x87, 0x86, 0x87, 0x8d, 0x90, 0x8d,
-> +		  0xb6, 0xb6, 0x94, 0xda, 0xf9, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0x93 },
-> +	}, {
-> +		/* 44 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x87, 0x86, 0x86, 0x85, 0x87, 0x8a,
-> +		  0xbe, 0xbe, 0x99, 0xda, 0xf9, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0x66 },
-> +	}, {
-> +		/* 47 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9b,
-> +		  0x89, 0x89, 0x8c, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x88, 0x86, 0x87, 0x84, 0x87, 0x89,
-> +		  0xb4, 0xb4, 0x94, 0xe2, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0x40 },
-> +	}, {
-> +		/* 50 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9c,
-> +		  0x89, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x88, 0x86, 0x87, 0x84, 0x87, 0x89,
-> +		  0xb4, 0xb4, 0x95, 0xe2, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x03, 0x0e },
-> +	}, {
-> +		/* 53 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9c,
-> +		  0x89, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x88, 0x86, 0x87, 0x85, 0x87, 0x8a,
-> +		  0xb4, 0xb4, 0x96, 0xe2, 0xff, 0xb3,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0xe2 },
-> +	}, {
-> +		/* 56 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9c,
-> +		  0x89, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x81, 0x82, 0x86,
-> +		  0x88, 0x86, 0x87, 0x85, 0x87, 0x8a,
-> +		  0xab, 0xab, 0x90, 0xdd, 0xf7, 0xaf,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0xb5 },
-> +	}, {
-> +		/* 60 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9c,
-> +		  0x89, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x82, 0x82, 0x87,
-> +		  0x83, 0x81, 0x84, 0x81, 0x84, 0x88,
-> +		  0xb3, 0xb3, 0x96, 0xcf, 0xe5, 0xa8,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x77 },
-> +	}, {
-> +		/* 64 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x98, 0x00, 0xa4, 0x00, 0x9c,
-> +		  0x89, 0x89, 0x8b, 0x88, 0x88, 0x8a,
-> +		  0x8a, 0x87, 0x8b, 0x82, 0x82, 0x87,
-> +		  0x83, 0x81, 0x84, 0x82, 0x84, 0x88,
-> +		  0xb2, 0xb3, 0x97, 0xcf, 0xe5, 0xa8,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x36 },
-> +	}, {
-> +		/* 68 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x9b, 0x00, 0xa6, 0x00, 0x9d,
-> +		  0x88, 0x88, 0x89, 0x89, 0x89, 0x8b,
-> +		  0x8a, 0x88, 0x8b, 0x7f, 0x80, 0x86,
-> +		  0x88, 0x86, 0x87, 0x7d, 0x7f, 0x85,
-> +		  0xb2, 0xb3, 0x97, 0xcf, 0xe5, 0xa8,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 72 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0x9c, 0x00, 0xa9, 0x00, 0xa0,
-> +		  0x88, 0x88, 0x89, 0x88, 0x88, 0x8a,
-> +		  0x8c, 0x8a, 0x8d, 0x7f, 0x81, 0x85,
-> +		  0x84, 0x82, 0x84, 0x85, 0x87, 0x8a,
-> +		  0xaa, 0xab, 0x93, 0xcf, 0xe5, 0xa8,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 77 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xa1, 0x00, 0xad, 0x00, 0xa5,
-> +		  0x89, 0x89, 0x8a, 0x88, 0x87, 0x89,
-> +		  0x8c, 0x89, 0x8d, 0x7f, 0x81, 0x85,
-> +		  0x84, 0x83, 0x84, 0x81, 0x83, 0x86,
-> +		  0xaa, 0xab, 0x93, 0xc0, 0xd3, 0xa1,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 82 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xa5, 0x00, 0xb0, 0x00, 0xa9,
-> +		  0x88, 0x89, 0x89, 0x85, 0x86, 0x89,
-> +		  0x8a, 0x88, 0x8b, 0x82, 0x82, 0x87,
-> +		  0x81, 0x80, 0x82, 0x89, 0x8b, 0x8b,
-> +		  0xa2, 0xa3, 0x8e, 0xc0, 0xd3, 0xa1,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 87 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xab, 0x00, 0xb4, 0x00, 0xad,
-> +		  0x88, 0x89, 0x8a, 0x84, 0x86, 0x88,
-> +		  0x8a, 0x88, 0x8b, 0x7f, 0x7f, 0x84,
-> +		  0x86, 0x84, 0x85, 0x85, 0x86, 0x88,
-> +		  0xa2, 0xa3, 0x8f, 0xc0, 0xd3, 0xa1,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 93 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xaf, 0x00, 0xb9, 0x00, 0xb1,
-> +		  0x88, 0x89, 0x8a, 0x84, 0x85, 0x87,
-> +		  0x8a, 0x89, 0x8b, 0x7e, 0x7e, 0x83,
-> +		  0x87, 0x86, 0x86, 0x88, 0x8a, 0x89,
-> +		  0x9c, 0x9c, 0x8b, 0xc0, 0xd3, 0xa1,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 98 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xb3, 0x00, 0xbc, 0x00, 0xb5,
-> +		  0x88, 0x88, 0x88, 0x84, 0x84, 0x86,
-> +		  0x8a, 0x88, 0x8a, 0x7f, 0x7f, 0x84,
-> +		  0x84, 0x83, 0x84, 0x88, 0x8a, 0x89,
-> +		  0x9c, 0x9c, 0x8b, 0xc0, 0xd3, 0xa1,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 105 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xb7, 0x00, 0xc0, 0x00, 0xba,
-> +		  0x87, 0x87, 0x88, 0x85, 0x85, 0x87,
-> +		  0x89, 0x88, 0x89, 0x7f, 0x7f, 0x83,
-> +		  0x81, 0x80, 0x82, 0x88, 0x8a, 0x89,
-> +		  0x9c, 0x9c, 0x8c, 0xb2, 0xc2, 0x9a,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 111 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xbb, 0x00, 0xc3, 0x00, 0xbe,
-> +		  0x87, 0x87, 0x88, 0x85, 0x85, 0x88,
-> +		  0x88, 0x87, 0x89, 0x80, 0x80, 0x84,
-> +		  0x81, 0x81, 0x82, 0x85, 0x86, 0x87,
-> +		  0x9c, 0x9c, 0x8b, 0xb2, 0xc2, 0x9a,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x15 },
-> +	}, {
-> +		/* 119 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc4,
-> +		  0x87, 0x87, 0x88, 0x82, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x82, 0x81, 0x84,
-> +		  0x83, 0x82, 0x83, 0x80, 0x81, 0x84,
-> +		  0x9c, 0x9c, 0x8c, 0xb2, 0xc2, 0x9a,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x02, 0x14 },
-> +	}, {
-> +		/* 126 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc4,
-> +		  0x87, 0x87, 0x88, 0x82, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x82, 0x81, 0x84,
-> +		  0x83, 0x82, 0x83, 0x80, 0x81, 0x84,
-> +		  0x9c, 0x9c, 0x8d, 0xb2, 0xc2, 0x9a,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x01, 0xde },
-> +	}, {
-> +		/* 134 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc4,
-> +		  0x87, 0x87, 0x88, 0x82, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x82, 0x81, 0x84,
-> +		  0x83, 0x82, 0x83, 0x80, 0x81, 0x84,
-> +		  0x9c, 0x9c, 0x8d, 0xa4, 0xb0, 0x92,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x01, 0x94 },
-> +	}, {
-> +		/* 143 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc3,
-> +		  0x87, 0x87, 0x88, 0x82, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x82, 0x81, 0x85,
-> +		  0x83, 0x82, 0x83, 0x80, 0x81, 0x84,
-> +		  0x92, 0x92, 0x89, 0xab, 0xb6, 0x96,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x01, 0x46 },
-> +	}, {
-> +		/* 152 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc3,
-> +		  0x87, 0x87, 0x88, 0x83, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x81, 0x81, 0x85,
-> +		  0x84, 0x82, 0x83, 0x80, 0x81, 0x83,
-> +		  0x92, 0x92, 0x8b, 0xab, 0xb6, 0x96,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0xfa },
-> +	}, {
-> +		/* 162 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc3,
-> +		  0x87, 0x87, 0x88, 0x83, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x81, 0x81, 0x84,
-> +		  0x84, 0x82, 0x84, 0x80, 0x81, 0x83,
-> +		  0x92, 0x92, 0x8b, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0xac },
-> +	}, {
-> +		/* 172 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc0, 0x00, 0xc8, 0x00, 0xc3,
-> +		  0x87, 0x87, 0x88, 0x83, 0x84, 0x86,
-> +		  0x87, 0x85, 0x87, 0x81, 0x81, 0x84,
-> +		  0x84, 0x82, 0x83, 0x80, 0x81, 0x84,
-> +		  0x93, 0x92, 0x8c, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x57 },
-> +	}, {
-> +		/* 183 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc2, 0x00, 0xca, 0x00, 0xc5,
-> +		  0x86, 0x86, 0x87, 0x85, 0x84, 0x87,
-> +		  0x87, 0x86, 0x88, 0x7e, 0x80, 0x83,
-> +		  0x84, 0x82, 0x83, 0x80, 0x81, 0x83,
-> +		  0x93, 0x92, 0x8c, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 195 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xc7, 0x00, 0xce, 0x00, 0xc9,
-> +		  0x86, 0x87, 0x86, 0x83, 0x83, 0x85,
-> +		  0x85, 0x84, 0x86, 0x82, 0x82, 0x85,
-> +		  0x80, 0x80, 0x81, 0x81, 0x81, 0x84,
-> +		  0x93, 0x92, 0x8c, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 207 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xcc, 0x00, 0xd2, 0x00, 0xce,
-> +		  0x86, 0x86, 0x87, 0x81, 0x83, 0x84,
-> +		  0x84, 0x82, 0x84, 0x83, 0x83, 0x85,
-> +		  0x81, 0x81, 0x82, 0x7c, 0x7d, 0x81,
-> +		  0x93, 0x92, 0x8c, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 220 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xd1, 0x00, 0xd6, 0x00, 0xd3,
-> +		  0x86, 0x86, 0x86, 0x81, 0x83, 0x84,
-> +		  0x84, 0x82, 0x84, 0x80, 0x80, 0x83,
-> +		  0x81, 0x81, 0x82, 0x7c, 0x7d, 0x81,
-> +		  0x93, 0x92, 0x8c, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 234 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xd6, 0x00, 0xdb, 0x00, 0xd8,
-> +		  0x85, 0x85, 0x85, 0x81, 0x83, 0x84,
-> +		  0x83, 0x82, 0x83, 0x80, 0x80, 0x82,
-> +		  0x84, 0x82, 0x83, 0x79, 0x79, 0x7e,
-> +		  0x93, 0x92, 0x8d, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 249 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xdc, 0x00, 0xe0, 0x00, 0xdd,
-> +		  0x84, 0x84, 0x84, 0x81, 0x82, 0x83,
-> +		  0x84, 0x82, 0x84, 0x7f, 0x7f, 0x82,
-> +		  0x81, 0x80, 0x81, 0x80, 0x81, 0x82,
-> +		  0x8c, 0x8c, 0x86, 0x9d, 0xa4, 0x8e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 265 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xe2, 0x00, 0xe5, 0x00, 0xe3,
-> +		  0x83, 0x83, 0x83, 0x81, 0x82, 0x83,
-> +		  0x82, 0x82, 0x83, 0x82, 0x81, 0x83,
-> +		  0x7f, 0x7e, 0x80, 0x7c, 0x7d, 0x80,
-> +		  0x8c, 0x8c, 0x86, 0x8e, 0x92, 0x87,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 282 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xe8, 0x00, 0xea, 0x00, 0xe9,
-> +		  0x83, 0x83, 0x83, 0x80, 0x82, 0x82,
-> +		  0x81, 0x82, 0x82, 0x82, 0x81, 0x82,
-> +		  0x81, 0x80, 0x81, 0x80, 0x80, 0x81,
-> +		  0x85, 0x85, 0x83, 0x8e, 0x92, 0x87,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 300 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xed, 0x00, 0xef, 0x00, 0xed,
-> +		  0x81, 0x82, 0x81, 0x81, 0x81, 0x82,
-> +		  0x82, 0x82, 0x83, 0x80, 0x80, 0x81,
-> +		  0x81, 0x81, 0x82, 0x83, 0x83, 0x83,
-> +		  0x80, 0x80, 0x7f, 0x8e, 0x92, 0x87,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 316 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xf3, 0x00, 0xf4, 0x00, 0xf3,
-> +		  0x80, 0x81, 0x80, 0x81, 0x81, 0x81,
-> +		  0x82, 0x82, 0x82, 0x81, 0x80, 0x81,
-> +		  0x82, 0x82, 0x83, 0x80, 0x80, 0x80,
-> +		  0x80, 0x80, 0x7f, 0x80, 0x80, 0x80,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 333 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x00, 0xf8, 0x00, 0xf8, 0x00, 0xf8,
-> +		  0x80, 0x81, 0x80, 0x81, 0x80, 0x81,
-> +		  0x81, 0x82, 0x82, 0x81, 0x80, 0x81,
-> +		  0x83, 0x83, 0x83, 0x7e, 0x7d, 0x7e,
-> +		  0x80, 0x80, 0x7f, 0x80, 0x80, 0x80,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 360 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x00, 0x01, 0x00, 0x01, 0x00,
-> +		  0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
-> +		  0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
-> +		  0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
-> +		  0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 378 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x04, 0x01, 0x03, 0x01, 0x04,
-> +		  0x7f, 0x7f, 0x80, 0x7f, 0x7f, 0x7f,
-> +		  0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f,
-> +		  0x80, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f,
-> +		  0x80, 0x80, 0x7f, 0x7f, 0x7f, 0x7f,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 395 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x09, 0x01, 0x07, 0x01, 0x08,
-> +		  0x7e, 0x7f, 0x80, 0x7f, 0x7f, 0x7f,
-> +		  0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f,
-> +		  0x80, 0x7f, 0x7f, 0x7e, 0x7e, 0x7e,
-> +		  0x80, 0x80, 0x7f, 0x7e, 0x7e, 0x7f,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 413 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x0e, 0x01, 0x0b, 0x01, 0x0c,
-> +		  0x7e, 0x7f, 0x80, 0x7e, 0x7e, 0x7e,
-> +		  0x7e, 0x7e, 0x7e, 0x7f, 0x7f, 0x7f,
-> +		  0x80, 0x7f, 0x7f, 0x7d, 0x7d, 0x7d,
-> +		  0x80, 0x80, 0x7f, 0x7d, 0x7e, 0x7e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 430 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x13, 0x01, 0x0f, 0x01, 0x10,
-> +		  0x7d, 0x7f, 0x80, 0x7e, 0x7e, 0x7e,
-> +		  0x7e, 0x7e, 0x7e, 0x7f, 0x7f, 0x7f,
-> +		  0x80, 0x7f, 0x7f, 0x7d, 0x7d, 0x7d,
-> +		  0x80, 0x80, 0x7f, 0x7c, 0x7d, 0x7e,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 448 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x18, 0x01, 0x13, 0x01, 0x14,
-> +		  0x7c, 0x7e, 0x80, 0x7e, 0x7e, 0x7e,
-> +		  0x7e, 0x7e, 0x7d, 0x7e, 0x7f, 0x7e,
-> +		  0x80, 0x7f, 0x7f, 0x7c, 0x7c, 0x7c,
-> +		  0x80, 0x80, 0x7e, 0x7b, 0x7c, 0x7d,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 465 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x1d, 0x01, 0x17, 0x01, 0x18,
-> +		  0x7c, 0x7e, 0x80, 0x7d, 0x7d, 0x7d,
-> +		  0x7d, 0x7d, 0x7d, 0x7e, 0x7f, 0x7e,
-> +		  0x80, 0x7f, 0x7f, 0x7b, 0x7b, 0x7b,
-> +		  0x80, 0x80, 0x7e, 0x7a, 0x7c, 0x7d,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 483 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x22, 0x01, 0x1b, 0x01, 0x1c,
-> +		  0x7b, 0x7e, 0x80, 0x7d, 0x7d, 0x7d,
-> +		  0x7d, 0x7d, 0x7c, 0x7e, 0x7f, 0x7e,
-> +		  0x80, 0x7f, 0x7f, 0x7a, 0x7a, 0x7a,
-> +		  0x80, 0x80, 0x7e, 0x79, 0x7b, 0x7c,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	}, {
-> +		/* 500 nits */
-> +		{ MCS_GAMMACTL,
-> +		  0x01, 0x27, 0x01, 0x1f, 0x01, 0x20,
-> +		  0x7b, 0x7e, 0x80, 0x7d, 0x7d, 0x7d,
-> +		  0x7d, 0x7d, 0x7c, 0x7e, 0x7f, 0x7e,
-> +		  0x80, 0x7f, 0x7f, 0x7a, 0x7a, 0x7a,
-> +		  0x81, 0x80, 0x7e, 0x79, 0x7b, 0x7c,
-> +		  0x00, 0x00, 0x00, },
-> +		{ MCS_AIDCTL, 0x00, 0x10 },
-> +	},
-> +};
-> +
-> +struct s6e8aa5x01_ams561ra01_ctx {
-> +	struct drm_panel panel;
-> +	struct mipi_dsi_device *dsi;
-> +	struct backlight_device *bl;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data *supplies;
-> +	u32 nr_supplies;
-> +};
-> +
-> +static const struct regulator_bulk_data s6e8aa5x01_ams561ra01_supplies[] = {
-> +	{ .supply = "vdd" },
-> +	{ .supply = "vci" },
-> +};
-> +
-> +static inline struct s6e8aa5x01_ams561ra01_ctx *to_ctx(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct s6e8aa5x01_ams561ra01_ctx, panel);
-> +}
-> +
-> +static int s6e8aa5x01_ams561ra01_update_status(struct backlight_device *bl)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = bl_get_data(bl);
-> +	struct mipi_dsi_multi_context dsi = { .dsi = ctx->dsi };
-> +	u16 lvl = backlight_get_brightness(bl);
-> +
-> +	if (!ctx->panel.enabled)
-> +		return 0;
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_ACCESSPROT, 0x5a, 0x5a);
-> +
-> +	mipi_dsi_dcs_write_buffer_multi(&dsi,
-> +					s6e8aa5x01_ams561ra01_cmds[lvl].gamma,
-> +					GAMMA_CMD_LEN);
-> +	mipi_dsi_dcs_write_buffer_multi(&dsi,
-> +					s6e8aa5x01_ams561ra01_cmds[lvl].aid,
-> +					AID_CMD_LEN);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_GAMMAUPD, 0x03);
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_ACCESSPROT, 0xa5, 0xa5);
-> +
-> +	return dsi.accum_err;
-> +}
-> +
-> +static int s6e8aa5x01_ams561ra01_prepare(struct drm_panel *panel)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = to_ctx(panel);
-> +	struct device *dev = &ctx->dsi->dev;
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(ctx->nr_supplies, ctx->supplies);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to enable regulators: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(5000, 6000);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +	usleep_range(5000, 6000);
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +	usleep_range(10000, 11000);
-> +
-> +	return 0;
-> +}
-> +
-> +static int s6e8aa5x01_ams561ra01_unprepare(struct drm_panel *panel)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = to_ctx(panel);
-> +
-> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +	usleep_range(5000, 6000);
-> +
-> +	regulator_bulk_disable(ctx->nr_supplies, ctx->supplies);
-> +
-> +	return 0;
-> +}
-> +
-> +static int s6e8aa5x01_ams561ra01_enable(struct drm_panel *panel)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = to_ctx(panel);
-> +	struct mipi_dsi_multi_context dsi = { .dsi = ctx->dsi };
-> +
-> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi);
-> +	mipi_dsi_msleep(&dsi, 100);
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_ACCESSPROT, 0x5a, 0x5a);
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_PENTILE, 0xd8, 0xd8, 0x00);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_PCD, 0x5c);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_ERRFLAG, 0xed, 0xc7, 0x23, 0x67);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_DISPCTL, 0x0c, 0x0c, 0xb9, 0x01);
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_LTPSCTL,
-> +				0x00, 0x45, 0x10, 0x10, 0x08, 0x32, 0x54, 0x00,
-> +				0x00, 0x00, 0x00, 0x07, 0x06, 0x00, 0x00, 0x00,
-> +				0x00, 0x00, 0x48, 0x5e, 0x00, 0x00, 0x00, 0x00,
-> +				0x00, 0x03, 0x00, 0x00, 0x00, 0xad, 0x00, 0x00,
-> +				0x08, 0x05, 0x2a, 0x54, 0x03, 0xcc, 0x00, 0xff,
-> +				0xfb, 0x03, 0x0d, 0x00, 0x11, 0x0f, 0x02, 0x03,
-> +				0x0b, 0x0c, 0x13, 0x13, 0x13, 0x13, 0x13, 0x13,
-> +				0x13, 0x13, 0x13, 0x13, 0x00, 0x02, 0x03, 0x0b,
-> +				0x0c, 0x13, 0x13, 0x13, 0x13, 0x13, 0x13, 0x13,
-> +				0x13, 0x13);
-> +
-> +	mipi_dsi_dcs_write_seq_multi(&dsi, MCS_ACCESSPROT, 0xa5, 0xa5);
-> +
-> +	mipi_dsi_dcs_set_display_on_multi(&dsi);
-> +
-> +	return dsi.accum_err;
-> +}
-> +
-> +static int s6e8aa5x01_ams561ra01_disable(struct drm_panel *panel)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = to_ctx(panel);
-> +	struct mipi_dsi_multi_context dsi = { .dsi = ctx->dsi };
-> +
-> +	mipi_dsi_dcs_set_display_off_multi(&dsi);
-> +	mipi_dsi_msleep(&dsi, 100);
-> +
-> +	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi);
-> +	mipi_dsi_msleep(&dsi, 150);
-> +
-> +	return dsi.accum_err;
-> +}
-> +
-> +static const struct drm_display_mode s6e8aa5x01_ams561ra01_mode = {
-> +	.clock = (720 + 62 + 2 + 26) * (1480 + 12 + 2 + 10) * 60 / 1000,
-> +	.hdisplay = 720,
-> +	.hsync_start = 720 + 62,
-> +	.hsync_end = 720 + 62 + 2,
-> +	.htotal = 720 + 62 + 2 + 26,
-> +	.vdisplay = 1480,
-> +	.vsync_start = 1480 + 12,
-> +	.vsync_end = 1480 + 12 + 2,
-> +	.vtotal = 1480 + 12 + 2 + 10,
-> +	.width_mm = 62,
-> +	.height_mm = 128,
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +};
-> +
-> +static int s6e8aa5x01_ams561ra01_get_modes(struct drm_panel *panel,
-> +					   struct drm_connector *connector)
-> +{
-> +	return drm_connector_helper_get_modes_fixed(connector,
-> +						    &s6e8aa5x01_ams561ra01_mode);
-> +}
-> +
-> +static const struct backlight_ops s6e8aa5x01_ams561ra01_bl_ops = {
-> +	.update_status = s6e8aa5x01_ams561ra01_update_status,
-> +};
-> +
-> +static const struct drm_panel_funcs s6e8aa5x01_ams561ra01_panel_funcs = {
-> +	.prepare = s6e8aa5x01_ams561ra01_prepare,
-> +	.unprepare = s6e8aa5x01_ams561ra01_unprepare,
-> +	.enable = s6e8aa5x01_ams561ra01_enable,
-> +	.disable = s6e8aa5x01_ams561ra01_disable,
-> +	.get_modes = s6e8aa5x01_ams561ra01_get_modes,
-> +};
-> +
-> +static int s6e8aa5x01_ams561ra01_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct device *dev = &dsi->dev;
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx;
-> +	int ret;
-> +
-> +	ctx = devm_drm_panel_alloc(dev, struct s6e8aa5x01_ams561ra01_ctx, panel,
-> +				   &s6e8aa5x01_ams561ra01_panel_funcs,
-> +				   DRM_MODE_CONNECTOR_DSI);
-> +	if (IS_ERR(ctx))
-> +		return PTR_ERR(ctx);
-> +
-> +	ctx->dsi = dsi;
-> +	mipi_dsi_set_drvdata(dsi, ctx);
-> +
-> +	ctx->nr_supplies = ARRAY_SIZE(s6e8aa5x01_ams561ra01_supplies);
-> +	ret = devm_regulator_bulk_get_const(dev, ctx->nr_supplies,
-> +					    s6e8aa5x01_ams561ra01_supplies,
-> +					    &ctx->supplies);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to get regulators\n");
-> +
-> +	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_ASIS);
-> +	if (IS_ERR(ctx->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-> +				     "failed to get reset-gpios\n");
-> +
-> +	ctx->bl = devm_backlight_device_register(dev, dev_name(dev), dev, ctx,
-> +						 &s6e8aa5x01_ams561ra01_bl_ops,
-> +						 NULL);
-> +	if (IS_ERR(ctx->bl))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->bl),
-> +				     "failed to register backlight device\n");
-> +
-> +	ctx->bl->props.type = BACKLIGHT_PLATFORM;
-> +	ctx->bl->props.brightness = ARRAY_SIZE(s6e8aa5x01_ams561ra01_cmds) - 1;
-> +	ctx->bl->props.max_brightness = ctx->bl->props.brightness;
-> +
-> +	dsi->lanes = 4;
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +			  MIPI_DSI_MODE_VIDEO_NO_HFP;
-> +
-> +	ctx->panel.prepare_prev_first = true;
-> +	drm_panel_add(&ctx->panel);
-> +
-> +	ret = devm_mipi_dsi_attach(dev, dsi);
-> +	if (ret < 0) {
-> +		drm_panel_remove(&ctx->panel);
-> +		return dev_err_probe(dev, ret, "failed to attach to DSI host\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void s6e8aa5x01_ams561ra01_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct s6e8aa5x01_ams561ra01_ctx *ctx = mipi_dsi_get_drvdata(dsi);
-> +
-> +	drm_panel_remove(&ctx->panel);
-> +}
-> +
-> +static const struct of_device_id s6e8aa5x01_ams561ra01_of_device_id[] = {
-> +	{ .compatible = "samsung,s6e8aa5x01-ams561ra01" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, s6e8aa5x01_ams561ra01_of_device_id);
-> +
-> +static struct mipi_dsi_driver s6e8aa5x01_ams561ra01_dsi_driver = {
-> +	.probe = s6e8aa5x01_ams561ra01_probe,
-> +	.remove = s6e8aa5x01_ams561ra01_remove,
-> +	.driver = {
-> +		.name = "panel-samsung-s6e8aa5x01-ams561ra01",
-> +		.of_match_table = s6e8aa5x01_ams561ra01_of_device_id,
-> +	},
-> +};
-> +module_mipi_dsi_driver(s6e8aa5x01_ams561ra01_dsi_driver);
-> +
-> +MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
-> +MODULE_DESCRIPTION("Samsung AMS561RA01 Panel with S6E8AA5X01 Controller");
-> +MODULE_LICENSE("GPL");
-> 
+The Vybrid Family is a NXP (formerly Freescale) platform having a
+Programmable Interrupt Timer (PIT). This timer is an IP found also on
+the NXP Automotive platform S32G2 and S32G3.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Add the compatible for those platforms to describe the timer.
+
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../devicetree/bindings/timer/fsl,vf610-pit.yaml         | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+index bee2c35bd0e2..42e130654d58 100644
+--- a/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
++++ b/Documentation/devicetree/bindings/timer/fsl,vf610-pit.yaml
+@@ -15,8 +15,13 @@ description:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fsl,vf610-pit
++    oneOf:
++      - enum:
++          - fsl,vf610-pit
++          - nxp,s32g2-pit
++      - items:
++          - const: nxp,s32g3-pit
++          - const: nxp,s32g2-pit
+ 
+   reg:
+     maxItems: 1
+-- 
+2.43.0
+
 
