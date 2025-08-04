@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-201707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC3DB1A512
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 16:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE168B1A52E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 16:45:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D18BE18815AE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 14:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CCC9189DC40
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 14:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96314270EC1;
-	Mon,  4 Aug 2025 14:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED348137C2A;
+	Mon,  4 Aug 2025 14:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZuhHqwjq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HhpJ0cuD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BE8E571;
-	Mon,  4 Aug 2025 14:36:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F3572615;
+	Mon,  4 Aug 2025 14:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754318162; cv=none; b=Zjpwfhmdd7jTpHFUz9yIXiNU5quUXFDjtbnVSAmxfmvoTHvf1PlchS60pPFyVmXKou9QKsrkq4sjcV8EbWGqU+Jnjhx7Y2foNOu8HxugSroiFeY+5yPDMMHQfVNNynFdZ0kX+5kWD5VPlxszLmzm8EXPtxQM+NEK3r2U78Vbq7c=
+	t=1754318718; cv=none; b=Rbi8k05HtCLvxEgwJSz12Duqq/nLxUhV+vwqQQ4H1BWIpMVbx6J8j1i7xVFu/0irs7y0czbFuXq49u5+0EaIJR2ha8XPd8T/YElwdVV6Dh6n9kP9MO2K7lXMjIN36Pq5T1c9V3jni73WufnSuyIQlTOIz6Pb0L/uascsP2I8mdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754318162; c=relaxed/simple;
-	bh=sWaXa9Y+pMSXtZBUh/MPyteQ3dMc1Cweu4GCjbTzfro=;
+	s=arc-20240116; t=1754318718; c=relaxed/simple;
+	bh=Be30OiusCaeSqddavkiEXv3LWsIde8jXsUpqcxomgog=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qpi7D/WTDYnDrZfMR2hZCt1jdbb2N8Oeb51bUP1LdaSyp8nngmwWzrRt7ziXz5IrY8rCiB58c/bBrpnyWaYOUwTfJ5k3+freXKrGbo2wgdRH/6bBB/+qHk8tiwoIRk+HsLiZGp04hyt6Nq/evMurbTf4LCk/uQB/lvNjijsSiDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZuhHqwjq; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754318158;
-	bh=sWaXa9Y+pMSXtZBUh/MPyteQ3dMc1Cweu4GCjbTzfro=;
+	 In-Reply-To:Content-Type; b=ugg5lI2UB4jDvDZngF4d7S6fscSmn773ZI5EBh+IbfUHg+O0zQN17UmDkCRMIv7wCVFoynuy4yVwjO/6+8AyZz61RskgiMvRCfAegyHhRpn7oBYU7IUHMwhLbNP6nDDfxoULRsm/hHEqNDUtNVbWxe3fNvL4h7hK5h8sWHdHWb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HhpJ0cuD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA1DBC4CEE7;
+	Mon,  4 Aug 2025 14:45:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754318718;
+	bh=Be30OiusCaeSqddavkiEXv3LWsIde8jXsUpqcxomgog=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZuhHqwjq+73WlntaHabAZHUCB+U/ijomZ3hYfYsyyoFIhD8clx+ycmXKN2gwQpMae
-	 CbcYXeBNKXVXbufjrpWLQCcdwwh1/GZTy4TX7lbQ27ycPgZZyWAxvhIferpVfh8mcj
-	 bkOyCOTbih0d8JB5iwVMRimtvLnB2vmikTx4GDlOOJtWjw6zFpESeZnpcc9kpO6pVX
-	 cy8jd/MoEXJTu1qXnUlRQIr1ZFDl54Goa61QK1E6Y/hmttwde0tiCxfheKpKb+02fP
-	 Rzu7OMcrWdYFbr6iAjyTv99vJoRnnxQlpMkjZp7CY0ORe4BxSUD/9wPOzpO+lE0zs6
-	 fV4ZRwQqMGXtw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F3FFB17E0DD0;
-	Mon,  4 Aug 2025 16:35:57 +0200 (CEST)
-Message-ID: <4330785c-6564-4c66-b298-75655106e99f@collabora.com>
-Date: Mon, 4 Aug 2025 16:35:57 +0200
+	b=HhpJ0cuDFRnvowJFe7JndP7Y0pfAU5nNOJRiV4C+Gk7aIpMC3E4eZTU6eJ+Gdb1Jx
+	 xR5dwk/ZZejBTcdsCxQDzLlztUoIOuG4hVm+NM0cGDmeHhMkTln2JKe35DQ7z8nt5o
+	 xN5GyVorXS7O+SyV0/HL504qqulDEvJZZpjt/s2IYN4W+I6OYv/U3QP3d0rJor4CMS
+	 YG7ucgIDHVn2Dg60dnA6lzwpEHc6naaAECMBhCFBN4JkypKZRcK+LbkzwBcAYNi9xD
+	 ugw59fveCjII1sW5xaYWXg3XMaA1zlBlUWp1l8BEI05JxVPe17vjV9flheOOkGAvCQ
+	 4XAg0k4BCSujg==
+Message-ID: <72354ec9-7dc8-4192-9c25-d37abf33b5f0@kernel.org>
+Date: Mon, 4 Aug 2025 16:45:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,112 +50,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/27] dt-bindings: clock: mediatek: Describe MT8196
- clock controllers
-To: Krzysztof Kozlowski <krzk@kernel.org>, Laura Nao
- <laura.nao@collabora.com>, wenst@chromium.org
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- guangjie.song@mediatek.com, kernel@collabora.com, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, mturquette@baylibre.com, netdev@vger.kernel.org,
- nfraprado@collabora.com, p.zabel@pengutronix.de, richardcochran@gmail.com,
- robh@kernel.org, sboyd@kernel.org
-References: <fbe7b083-bc3f-4156-8056-e45c9adcb607@kernel.org>
- <20250804083540.19099-1-laura.nao@collabora.com>
- <373f44c3-8a6a-4d52-ba6b-4c9484e2eac1@kernel.org>
- <1db77784-a59a-49bd-89b5-9e81e6d3bafc@collabora.com>
- <e9ee33b0-d6b0-4641-aeeb-9803b4d1658a@kernel.org>
- <00a12553-b248-4193-8017-22fea07ee196@collabora.com>
- <2555e9fe-3bc0-4f89-9d0b-2f7f946632e7@kernel.org>
- <ed0884fc-e43a-4f5b-8701-3645c406b37d@kernel.org>
- <3a499702-ba75-4d8a-b38d-222a62bffb34@collabora.com>
- <0fe4165d-f198-42cc-9c2f-f1e51bd96716@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [External] Re: [PATCH v4 0/7] Basic device tree support for ESWIN
+ EIC7700 RISC-V SoC
+To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Min Lin <linmin@eswincomputing.com>,
+ Pritesh Patel <pritesh.patel@einfochips.com>, Yangyu Chen
+ <cyy@cyyself.name>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Yu Chien Peter Lin <peterlin@andestech.com>,
+ Charlie Jenkins <charlie@rivosinc.com>,
+ Kanak Shilledar <kanakshilledar@gmail.com>,
+ Darshan Prajapati <darshan.prajapati@einfochips.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
+ <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+ "rafal@milecki.pl" <rafal@milecki.pl>, Anup Patel <anup@brainfault.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20250616112316.3833343-1-pinkesh.vaghela@einfochips.com>
+ <SA3PR04MB8931098CC4A73E8FDD481DA78326A@SA3PR04MB8931.namprd04.prod.outlook.com>
+ <2ed69301-f787-4257-8d44-a8544c1a43c9@kernel.org>
+ <SA3PR04MB89312063FB96E85ABB6F3D3E8323A@SA3PR04MB8931.namprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <0fe4165d-f198-42cc-9c2f-f1e51bd96716@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <SA3PR04MB89312063FB96E85ABB6F3D3E8323A@SA3PR04MB8931.namprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 04/08/25 16:33, Krzysztof Kozlowski ha scritto:
-> On 04/08/2025 16:31, AngeloGioacchino Del Regno wrote:
->> Il 04/08/25 16:19, Krzysztof Kozlowski ha scritto:
->>> On 04/08/2025 15:58, Krzysztof Kozlowski wrote:
->>>>>
->>>>> So, what should we do then?
->>>>>
->>>>> Change it to "mediatek,clock-hw-refcounter", and adding a comment to the binding
->>>>> saying that this is called "Hardware Voter (HWV)" in the datasheets?
->>>>>
->>>>> Or is using the "interconnect" property without any driver in the interconnect API
->>>>> actually legit? - Because to me it doesn't look like being legit (and if it is, it
->>>>> shouldn't be, as I'm sure that everyone would expect an interconnect API driver
->>>>> when encountering an "interconnect" property in DT), and if so, we should just add
->>>>
->>>> Why you would not add any interconnect driver for interconnect API?
->>>> Look, the current phandle allows you to poke in some other MMIO space
->>>> for the purpose of enabling the clock FOO? So interconnect or power
->>>> domains or whatever allows you to have existing or new driver to receive
->>>> xlate() and, when requested resources associated with clock FOO.
->>>
->>> Something got here cut. Last sentence is supposed to be:
->>>
->>> "So interconnect or power
->>> domains or whatever allows you to have existing or new driver to receive
->>> xlate() and, when requested, toggle the resources associated with clock
->>> FOO."
->>>
->>>>
->>>> Instead of the FOO clock driver poking resources, you do
->>>> clk_prepare_enable() or pm_domain or icc_enable().
->>>
->>> I looked now at the driver and see your clock drivers poking via regmap
->>> to other MMIO. That's exactly usecase of syscon and exactly the pattern
->>> *we are usually discouraging*. It's limited, non-scalable and vendor-driven.
->>>
->>
->> If the HWV wasn't BROKEN, I'd be the first one to go for generic stuff, but
->> since it is what it is, adding bloat to generic, non vendor-driven APIs would
->> be bad.
->>
->>> If this was a power domain provider then:
->>> 1. Your clock drivers would only do runtime PM.
->>
->> The clock drivers would have to get a list of power domain that is *equal to*
->> (in their amount) the list of clocks.
->> But then those are not power domains, as those registers in the MCU are ONLY
->> ungating a clock and nothing else in the current state of the hardware.
->>
->>> 2. Your MCU would be the power domain controller doing whatever is
->>> necessary - toggling these set/clr bits - when given clock is enabled.
->>
->> That MCU does support power domain voting (for two power domains in the main
->> PD Controller, and for all power domains in the multimedia PD controller), and
->> this is something completely separated from the *clock* controllers.
->>
->> Just to make the picture complete for you: the power domains that this MCU can
->> manage are not in any way related to the clocks that it can manage. At all.
+On 04/08/2025 15:10, Pinkesh Vaghela wrote:
+> Hello Krzysztof,
 > 
-> 
-> OK, thanks for explanations. Please rephrase commit msg and property
-> description in v4. I am fine in using "hardware voter" terminology in
-> some places, so it will match datasheet, but I want to make it clear
-> that it is not voting for resources how we usually understand it. It's
-> just syscon stuff, poking in other system-like device registers because
-> hardware is like that.
-> 
+> Sorry to bother you. I pinged because we addressed all the review comments of V3 in V4. But on V4 we have not received any comments since last 6 weeks.
+> Could you please let us know what should be the further steps?
 
-I'm happy that we finally reached a conclusion that works for both of us, and
-I am sorry that all this went on for weeks with (very) long discussions.
+Please don't top post.
 
-Thanks for that.
+That is a bit different question than you asked before: "Gentle reminder
+to review DT patches.".
 
-Regards,
-Angelo
+Please read SoC subsystem maintainer profile document. For ARM platforms
+you would send now pull request or patches to soc. For RISC-V - not sure
+some trees are handled by Conor, but rest go directly to soc tree.
 
-> 
-> Best regards,
-> Krzysztof
+I would suggest following standard SoC way, same as for every other new
+SoC (but carefully observe the kernel process cycle). You can easily
+check archives to see how people also did it...
 
-
+Best regards,
+Krzysztof
 
