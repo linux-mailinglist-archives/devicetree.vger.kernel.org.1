@@ -1,249 +1,127 @@
-Return-Path: <devicetree+bounces-201604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB24EB19F14
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 11:56:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 067C5B19F3A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 12:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9A35171A96
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 09:56:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85345189C731
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 10:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DBA2459D4;
-	Mon,  4 Aug 2025 09:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B08324677C;
+	Mon,  4 Aug 2025 10:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mE6GWYG0"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EQD87ILy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791A71FBCA7;
-	Mon,  4 Aug 2025 09:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB3E246335;
+	Mon,  4 Aug 2025 10:03:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754301401; cv=none; b=Dm8FHtqimM/JlyCqvGvu8IshbLWv0PEWzWnrFFm+0DdCXFh0Co0eh2b2rEwsrSWXY7PTwqgWb0ByYmsIJkNKPGrDuceMHv9IsdwR5oNYoV/7+g1PvlFkq8TcYDfwYmTWlsfagJtxuMDt2Rtoq8625OnmlhThdmzelYnagRfcGEA=
+	t=1754301787; cv=none; b=TO+kyXOIe0YIw3egj2FPB/d9FCz/eQgiBpzU0MOli4RHH9kCCvwCWYQuo5xH+7nPjW/U9wtPHCvcM1RXXXG7BtM3tWABMq+3chALcqM/wlrfUEW4aTP1hC5yPUp4SlEwFYjG8/riTNMOeTITdAUNjxf4L+jShVUb495cTvbbG28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754301401; c=relaxed/simple;
-	bh=C/ENhUEs3LsCipsjC9Q/ykoF43mS7sYAKJg8VhQad9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z1hHSkCmiwoDMfOudAO21sz2NwsR77utLMjO4yyKTJ1AM8GmaXbMZYQgn8Di7WLQHVoAiqyQcAAZZeyV9B6TXxKq9VSDxifx9fK+5kda/bNPU88Oc5QvU2Z2C/rMeUBlVK0GUXMQwxiTPQam+JS0TJYaRtIiFz+BgbpVWXBvWVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mE6GWYG0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54E72C4CEE7;
-	Mon,  4 Aug 2025 09:56:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754301401;
-	bh=C/ENhUEs3LsCipsjC9Q/ykoF43mS7sYAKJg8VhQad9w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mE6GWYG0POB+f7AgXEyeCI/r4BKRJGuWe6RltdxLIUboA41fonIDXFFSLRTP5uO3V
-	 pLOQ+SimG90YYKj1fv+71yaXJ9T5uOhXhW8M7zFiqrM2vGvtvYYgI1LIpFPPq2kVLM
-	 6997pjzttYxysj6eepYrOeENSCV4NaRNslO1oOCsdpYfkbiBK2pWlcDv4U8R49Kg5f
-	 XYzukgBUCQ5/xOKG3kDJ5ZACUwMscTKUhQNPF3dfYxferMVzcdcpcIrJ1b57m28jqU
-	 xCOTopap/vEtk6r7/YQxbJEev5DqRrTl2s/2zpW4D3SxAWObH29wNzWn1FqlBGgB1v
-	 JhjCuOnCoeD/A==
-Date: Mon, 4 Aug 2025 15:26:30 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Helgaas <bhelgaas@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, 
-	sherry.sun@nxp.com, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] PCI: Add support for PCIe WAKE# interrupt
-Message-ID: <tipgh2nf5yz7sevz3mef43f7dgagwbhx6vi42qay7xmz2wtxg4@kv3nkctpqe5z>
-References: <20250801-wake_irq_support-v4-3-6b6639013a1a@oss.qualcomm.com>
- <20250801212725.GA3506354@bhelgaas>
+	s=arc-20240116; t=1754301787; c=relaxed/simple;
+	bh=QiaSZaDg5pwD3xGJiJSSgLa32uZMitwv/bGano/kVtc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=J+GLeWDN5fL4q/4Nj3cW4XpQDegWDEJm+l4tRtskLKGcTCgRl9qtDs4Q5AcwHGksZbgIFLA+d5N0Lwzn7N7ZtGmm6Ohp1qpZvGdqy2HXFajZXUOok/B1LTThO+Tx+rsNi21SwWK056zHgkOcD6W1gfOeYmhCCHE0XgyCXzO5IEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EQD87ILy; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1754301786; x=1785837786;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QiaSZaDg5pwD3xGJiJSSgLa32uZMitwv/bGano/kVtc=;
+  b=EQD87ILyB0vglauKB1R6goVYTX/JhDDROyrJ6/uL9e2bp3EFhtr+6qKS
+   7ald7OdMP0lFMCj4k+Ek6KxGNKMgm7U0kRikp/CaQfcoWZvbeg7R/QgB3
+   o1hqFWKdfiRljP+Cpbd/gvqV9hF75UZLx6ke0Nja3NtdRSsAE/LtHS90/
+   HtZa95YubGXVHTJZGsBxGWzSB9m762zCIn0lKHO8x38TzS1Lm/e/h6hs4
+   WoMhl1qZ6cWHyPPz1J3diENaaKSXqGVngARVBXw9ium/hSx3sggUBHcjt
+   OI9ym85Dki63zySG2fcrsXtYTdvBsKeUqnBeq1vb/UZQONHW2Qnmg5tWB
+   A==;
+X-CSE-ConnectionGUID: GJeNwV3dT46CHM5uTLCa7g==
+X-CSE-MsgGUID: B4x9i4pqTW2Ob+bdOk4Cew==
+X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
+   d="scan'208";a="276166361"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Aug 2025 03:02:59 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 4 Aug 2025 03:02:28 -0700
+Received: from che-ll-i67070.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Mon, 4 Aug 2025 03:02:22 -0700
+From: Varshini Rajendran <varshini.rajendran@microchip.com>
+To: <eugen.hristev@linaro.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
+	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<srini@kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <varshini.rajendran@microchip.com>
+Subject: [PATCH 00/15] Add thermal management support for sama7d65
+Date: Mon, 4 Aug 2025 15:32:04 +0530
+Message-ID: <20250804100219.63325-1-varshini.rajendran@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250801212725.GA3506354@bhelgaas>
+Content-Type: text/plain
 
-On Fri, Aug 01, 2025 at 04:27:25PM GMT, Bjorn Helgaas wrote:
-> On Fri, Aug 01, 2025 at 04:29:44PM +0530, Krishna Chaitanya Chundru wrote:
-> > According to the PCIe specification 6, sec 5.3.3.2, there are two defined
-> > wakeup mechanisms: Beacon and WAKE# for the Link wakeup mechanisms to
-> > provide a means of signaling the platform to re-establish power and
-> > reference clocks to the components within its domain. Adding WAKE#
-> > support in PCI framework.
-> 
-> I think Beacon is a hardware mechanism invisible to software (PCIe
-> r7.0, sec 4.2.7.8.1).
-> 
-> > According to the PCIe specification, multiple WAKE# signals can exist in a
-> > system. In configurations involving a PCIe switch, each downstream port
-> > (DSP) of the switch may be connected to a separate WAKE# line, allowing
-> > each endpoint to signal WAKE# independently. To support this, the WAKE#
-> > should be described in the device tree node of the upstream bridge to which
-> > the endpoint is connected.
-> 
-> I think this says a bit more than we know.  AFAICS, the PCIe spec does
-> not require any particular WAKE# routing.  WAKE# *could* be routed to
-> an upstream bridge (as shown in the 5.3.3.2 implementation note), but
-> it doesn't have to be.  I think we need to allow WAKE# to be described
-> by an Endpoint directly (which I think this patch does).
-> 
-> I'm not sure about searching upstream PCI bridges.  I don't think
-> there's anything in the PCIe spec about a connection between WAKE#
-> routing and the PCI topology.  Maybe we need to search enclosing DT
-> scopes?  I'm not really sure how DT works in this respect.  WAKE#
-> could be routed to some GPIO completely unrelated to the PCI host
-> bridge.
-> 
+The thermal management system of sama7d65 includes
 
-PCIe spec r5, fig 5-4 describes that WAKE# is supposed to be connected to a
-*slot*, not directly to the endpointi, though endpoint is the one toggling it.
-And in devicetree, we describe the slot using the bridge node. So it makes sense
-to add the 'wake-gpios' property to the bridge node only. It is what allowed by
-the dtschema today.
+- Temperature sensor as a part of ADC channel
+- Temperature calibration data retreived from the OTP memory for
+  improved accuracy of the readings
+- DVFS implementation
+- And finally a thermal system with DVFS as cooling cell.
 
-> I don't see anything that would prevent a Switch Port from asserting a
-> WAKE# interrupt, so I'm not sure we should restrict it to Endpoints.
-> 
+This patch series adds support for the following
 
-Atleast fig 5-4 describes that the switch has to generate Beacon to RC for WAKE#
-asserted by the endpoints connected to the downstream slots.
+- New and improved version of the OTP driver
+- Adaptation of the above in existing DT, DT doc and ADC driver
+- DVFS, OTP, ADC, Thermal system support in DT of new sama7d65
 
-> > For example, in a switch-based topology, the
-> > WAKE# can be defined in the DSP of the switch. In a direct connection
-> > scenario, the WAKE# can be defined in the root port. If all endpoints share
-> > a single WAKE# line, the GPIO should be defined in the root port.
-> > 
-> > During endpoint probe, the driver searches for the WAKE# in its immediate
-> > upstream bridge. If not found, it continues walking up the hierarchy until
-> > it either finds a WAKE# or reaches the root port. Once found, the driver
-> > registers the wake IRQ in shared mode, as the WAKE# may be shared among
-> > multiple endpoints.
-> > 
-> > When the IRQ is asserted, the wake handler triggers a pm_runtime_resume().
-> 
-> I guess "wake handler" refers to handle_threaded_wake_irq()?  If so,
-> just use the name directly to make it easier for people to follow
-> this.
-> 
-> > The PM framework ensures that the parent device is resumed before the
-> > child i.e controller driver which can bring back link to D0.
-> 
-> Nit: a *device* can be in D0.  Links would be in L0, etc.
-> 
-> > WAKE# is added in dts schema and merged based on this link.
-> > 
-> > Link: https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
-> > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> > ...
-> 
-> > +void pci_parse_of_wake_gpio(struct pci_dev *dev)
-> > +{
-> > +	struct device_node *dn __free(device_node) = pci_device_to_OF_node(dev);
-> 
-> I'm still trying to wrap my head around __free().  Why are we using
-> __free() and no_free_ptr() here?  AFAICS we're not allocating anything
-> here.
-> 
-> > +	struct gpio_desc *gpio;
-> > +
-> > +	if (!dn)
-> > +		return;
-> > +
-> > +	gpio = fwnode_gpiod_get_index(of_fwnode_handle(no_free_ptr(dn)),
-> > +				      "wake", 0, GPIOD_IN, NULL);
-> > +	if (!IS_ERR(gpio))
-> > +		dev->wake = gpio;
-> > +}
-> > +
-> > +void pci_remove_of_wake_gpio(struct pci_dev *dev)
-> > +{
-> > +	if (!dev->wake)
-> > +		return;
-> > +
-> > +	gpiod_put(dev->wake);
-> > +	dev->wake = NULL;
-> > +}
-> >  #endif	/* CONFIG_OF_IRQ */
-> >  
-> >  static int pci_parse_request_of_pci_ranges(struct device *dev,
-> > @@ -1010,3 +1035,44 @@ int of_pci_get_equalization_presets(struct device *dev,
-> >  	return 0;
-> >  }
-> >  EXPORT_SYMBOL_GPL(of_pci_get_equalization_presets);
-> > +
-> > +int pci_configure_wake_irq(struct pci_dev *pdev)
-> > +{
-> > +	struct pci_dev *bridge = pdev;
-> > +	struct gpio_desc *wake;
-> > +	int ret, wake_irq;
-> > +
-> > +	while (bridge) {
-> > +		wake = bridge->wake;
-> > +		if (wake)
-> > +			break;
-> > +		bridge = pci_upstream_bridge(bridge);  // Move to upstream bridge
-> 
-> If we need to search more scopes, I think we should be searching DT
-> scopes, not PCI bridges.
-> 
-> > +	}
-> > +
-> > +	if (!wake)
-> > +		return 0;
-> > +
-> > +	wake_irq = gpiod_to_irq(wake);
-> > +	if (wake_irq < 0) {
-> > +		dev_err(&pdev->dev, "Failed to get wake irq: %d\n", wake_irq);
-> > +		return wake_irq;
-> > +	}
-> > +
-> > +	device_init_wakeup(&pdev->dev, true);
-> > +
-> > +	ret = dev_pm_set_dedicated_wake_irq_flags(&pdev->dev, wake_irq,
-> > +						  IRQF_SHARED | IRQ_TYPE_EDGE_FALLING);
-> > +	if (ret < 0) {
-> > +		dev_err(&pdev->dev, "Failed to set wake IRQ: %d\n", ret);
-> > +		device_init_wakeup(&pdev->dev, false);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +void pci_remove_wake_irq(struct pci_dev *pdev)
-> > +{
-> > +	dev_pm_clear_wake_irq(&pdev->dev);
-> > +	device_init_wakeup(&pdev->dev, false);
-> > +}
-> > diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
-> > index b853585cb1f87216981bde2a7782b8ed9c337636..2a1dca1d19b914d21b300ea78be0e0dce418cc88 100644
-> > --- a/drivers/pci/pci-driver.c
-> > +++ b/drivers/pci/pci-driver.c
-> > @@ -447,10 +447,19 @@ static int pci_device_probe(struct device *dev)
-> >  	if (error < 0)
-> >  		return error;
-> >  
-> > +	if (pci_pcie_type(pci_dev) == PCI_EXP_TYPE_ENDPOINT) {
-> 
-> I guess there's a policy question here: configuring this in
-> pci_device_probe() implies that we only pay attention to WAKE# when a
-> driver is bound to the device.  Or, since WAKE# may be shared, I guess
-> we pay attention to it if any device sharing this WAKE# IRQ has a
-> driver?
-> 
+Varshini Rajendran (15):
+  ARM: dts: microchip: sama7d65: add cpu opps
+  nvmem: microchip-otpc: rework to access packets based on tag
+  dt-bindings: microchip-otpc: update dt node example
+  iio: adc: at91-sama5d2_adc: update calibration index, validation
+    condition
+  ARM: dts: microchip: sama7g5: add packet tag as offset for calib
+  dt-bindings: nvmem: microchip-otpc: remove stride details
+  iio: adc: at91-sama5d2_adc: add temp init function as callback
+  dt-bindings: iio: adc: at91-sama5d2: document sama7d65
+  iio: adc: at91-sama5d2_adc: adapt the driver for sama7d65
+  ARM: dts: microchip: sama7d65: add node for the ADC
+  dt-bindings: microchip-otpc: document sama7d65
+  ARM: dts: microchip: sama7d65: add otpc node
+  ARM: dts: microchip: sama7d65: add cells for temperature calibration
+  ARM: dts: microchip: sama7d65: add temperature sensor
+  ARM: dts: microchip: sama7d65: add thermal zones node
 
-I don't think we check if the driver is bind to the device before putting it
-into D3Cold. If the device was previously enabled from sysfs, then it cannot
-ask host to wake it up.
-
-- Mani
+ .../bindings/iio/adc/atmel,sama5d2-adc.yaml   |   1 +
+ .../nvmem/microchip,sama7g5-otpc.yaml         |  17 ++-
+ .../dts/microchip/at91-sama7d65_curiosity.dts |  23 ++++
+ arch/arm/boot/dts/microchip/sama7d65.dtsi     | 128 +++++++++++++++++
+ arch/arm/boot/dts/microchip/sama7g5.dtsi      |   4 +-
+ drivers/iio/adc/at91-sama5d2_adc.c            | 123 ++++++++++++++++-
+ drivers/nvmem/microchip-otpc.c                | 130 ++++++++++++++----
+ .../nvmem/microchip,sama7g5-otpc.h            |   6 -
+ 8 files changed, 383 insertions(+), 49 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
