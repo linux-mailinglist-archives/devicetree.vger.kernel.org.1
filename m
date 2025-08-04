@@ -1,141 +1,216 @@
-Return-Path: <devicetree+bounces-201731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC8BB1A6CD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:57:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B90EB1A6E7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 17:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0AEF182510
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:57:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217DC1884B44
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 15:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B01C27510C;
-	Mon,  4 Aug 2025 15:55:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37FA221F11;
+	Mon,  4 Aug 2025 15:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FFgxI2PE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DZeOAckk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90E0C2750E3;
-	Mon,  4 Aug 2025 15:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0085C2040BF;
+	Mon,  4 Aug 2025 15:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754322931; cv=none; b=bzrXqc4AcNjPyGi+DYWyL1rQcIt8rWWkbTnfrix4RNN/UBLQSFPL5fxxRGUxVEjTEWoG9yFKb9ZoFoqE2vgjrE5XItGyb9QsIENdMC9l62qLmB9Iispl2vmKRy7aNXIBFZnpJSGQkUXpDLo8QzxEaQCFpqVemyxOPlFK33e5lqY=
+	t=1754323154; cv=none; b=r2ziU3K2+CxY1BBA4ldTJXfFcJCOqzdvZkD3gO1uss7+Tq2Z23ecEFhsIy8cucFHItvgRTSSxe4MCBPVB20Ukfv5y/TqHTxTFSIhMg70U8nf2a8vkbodGN1jbMyCCKJeCShIxjcOep9gVzhur8t+zyGZ/FohlmHg+3S3tNOZEcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754322931; c=relaxed/simple;
-	bh=G3AOG/bEGmhO/+ziIgJS1IJ9V+kVnQuf2DhW0m1MM1w=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aSP+Ot/N/Dv5bfkj7Q4p7NAT1EMFjjPmRZT8zJtEtxBXKppF4Hsk6QIJaNu36Y0jeIlXb900cTksPmCj4TxIcBo5C8xsRUHwH7kHObAfNhd5/rIToB7aZZo4AvWTlITdaSp0LAQQDdeyDVj6uxbZd0z4DtW1lYcUwLoNnd1PEYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FFgxI2PE; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1754323154; c=relaxed/simple;
+	bh=sd1DyY6a3415VkW6baLPe78I+RH8CXZI1Y8mTPQ+22M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qurcWxcjAZTTU0MCoO0rcQ0ia3ndH5unRL0qntsktohfUEmOhLdCSiJ5GdhdwhHmQBgqzTGzA1j5H6Sb0R9jYGG2uH1uR77aAtlGOr/qqezR/hqP/iBvvBsA5ZiKkpF16lS6y5P/jKdPTCGRWa+6MYOVpLC4PuHhktNR86uZcQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DZeOAckk; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-615756b1e99so5177097a12.0;
-        Mon, 04 Aug 2025 08:55:29 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76bd6e84eddso4396863b3a.0;
+        Mon, 04 Aug 2025 08:59:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754322928; x=1754927728; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wLlT+oF+y8eGG+KGSJRAGU5NF1zSKfS78wOa934bYI4=;
-        b=FFgxI2PE+QAgssf+gCxi5dBnBqCsAfZmwZlUN2vMPkV13XY8mkV7591VCEXQH6ZQvc
-         fDAhwaGDCxkTbDrAmRJRIOZSxP0IDmWzatdbgojkb1vYW3yvaH11PmfzZ+QTnuBsClb3
-         yxd2oVCdk53aaqslODQI/05XA6SeLpbL/HinQrbjFTKxzVcl2eGpVRHyWdo5BVLKd4uH
-         FeR5MvW8mufaQQ4Yze3f8gibTpUOvjnf0oNwOC7rkmxFYR/IFHFHBuYPOqgosU8CYXD6
-         GT7uxGfSKDQjn11nmIo5RHSbUIw0NqagJ8V+SkhZFy78hzX4TajJbtXJCC8yr1HMUlXR
-         CT8A==
+        d=gmail.com; s=20230601; t=1754323152; x=1754927952; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=3D7R9Rrhve+hM9PUIlOpvhIjLJ/daYnHplpqSry3RH0=;
+        b=DZeOAckkqx54sPj2QecnVdkeWOoNT/uf9s0J+j1cL8zdYtRlu4wtvMCT+sjZdM4pBK
+         lENSR1XkY9xXLku3eyAVjva5jgUoyPButjzfhDJ64Ek4uqNcmYE18Jk2nvYXZRlgXlAs
+         /GB729PNT48IgIk7hT6xqQzS9UQGkVfjJW9nz5sYu7Us98HKSCFStu4nnmEnikdcAsiQ
+         nvihj0fxLGYOJfBoq3BMApiuWFqx/Q7fBMJgo+CIqYzfFXdydf93cGr5pGRd4Fsg0tLj
+         B+hEEOQLxf12z+sbtTQ803PVPMtBdKZOk/BcHlZVHUGLqmlGIHAUr/EAs51AsVM0ySFP
+         Enpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754322928; x=1754927728;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wLlT+oF+y8eGG+KGSJRAGU5NF1zSKfS78wOa934bYI4=;
-        b=rSCw/44c6b7k1THkX4xMg5ctIyw5yu37A06HEbmZli38rssxtUe2k26ipJLypCMRgF
-         kvZXkvE7GRDid1KCz90AFRkxDTA48l1ZHcr24vbcCL7hGqJjAVulCRzI7ZJ4HnnyHRjG
-         bIxqfyPrdPPlXZct/dkcXPcXAmPM7t+YyCJRzvhIsgSyOAkrZ0kPKggyFkFJBBrggxe2
-         a69HDj5ChDe7i4fcZyVDkgjXDjIPzpYRKyPd2OWQTfd31vkvvTid+u2RVPXaLs+FliH8
-         yP+WZ/k2yiITG0JTWRWv59p1UVn1QTsFjxYK2XxdzGa1IlmH0/aosnKQrq5R6fw5N2RX
-         kleg==
-X-Forwarded-Encrypted: i=1; AJvYcCV2JL8Ox7NcnJc9f4+dqbhfXEqT4n+QgfMI1k+S8MGF+Yk1nn37UGpLfHaO35Uw01cy4L613uTeEqGW47LE@vger.kernel.org, AJvYcCWDwLj3Ez3Tyf18+LrvDvSHjSzm2LOVNKi44RbYOUfMezengvjK4LQC5kS+ySaEZtOk1QkMHk+L8tTp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzjb88axVm9mEGGkSE4a3UBdFwmNM3Sidtk7apEaSyeZwAPZDaj
-	njZh3I7BV/ejDfqkzgdxFOypWYvGO7m8OGjSfxCfhWUslLhkou2y+glS
-X-Gm-Gg: ASbGnct37a7GLas2AXc/0/3DHjpGeTIrgR4R+UUZC3hJjCk8029bebHO8yf4ewVpmZ0
-	oUvNn67JGLCOGNoNecFlkxqHvLKN+QZKnV/Fx096REsSQU4f0UwkM+rJJtvoT4P6uCLW+4NtqSw
-	3tePUV5C3HzxtDBpLt2PnE83C0O5udsE6YGeFEs9g9W5xmXCPF/cfE4KGOAMoxDNk8b35bDyZcU
-	gS6qie/jhUKKF0Zv4mrU5Au3l3likIhQBQoWhVzImBdLnjcgl/p2l30IQI6R3uzdCgRECi42H3b
-	EcQwLX+/hYnejf34bNOOvKU0quepSKp4ZScIY40q95JToDZoBfDgSKAVHfbEofQT6GufAccHGhw
-	r8V25mHdfeAipumgI2J02WjN9e6zcRE5PdvQ4Rk2S6uwuidinHVAOR3Emw4c=
-X-Google-Smtp-Source: AGHT+IFkQCoHBvtFXtmc6tn7x2i+nDP+sB5y4q5vfMQOe0tSDU1cK5lDy/Byu6GA2X7xwsf3VhALxw==
-X-Received: by 2002:a17:907:97c5:b0:af9:3773:8232 with SMTP id a640c23a62f3a-af94001e6eamr1176790666b.18.1754322927566;
-        Mon, 04 Aug 2025 08:55:27 -0700 (PDT)
-Received: from playground.localdomain ([82.79.237.20])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a075a74sm761114266b.17.2025.08.04.08.55.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Aug 2025 08:55:27 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH 7/7] arm64: dts: imx8ulp: add sim lpav node
-Date: Mon,  4 Aug 2025 11:54:07 -0400
-Message-Id: <20250804155407.285353-8-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250804155407.285353-1-laurentiumihalcea111@gmail.com>
-References: <20250804155407.285353-1-laurentiumihalcea111@gmail.com>
+        d=1e100.net; s=20230601; t=1754323152; x=1754927952;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3D7R9Rrhve+hM9PUIlOpvhIjLJ/daYnHplpqSry3RH0=;
+        b=o1wlqCpCmZ8oYOZDfJ1E47Po6svZdpgVQM9uu8fvjwdKx3DPQRnYOsWezk5VqJXrEL
+         nAyFXKQEw6a81AehbArHTPeMMHUZoe6imFwOiIeR6E2G3JySLOZ8704kyKhmLyTKrnt8
+         wahMmjQZwOsjwNL/8qlCkyAISiWq4xSrW9HkicousGMZeIGbwrOABjPXK+4+hBc2C5bO
+         c9AKprZezYwrz5UTWNl7An0ipCediO2lwPikIcisJGtE1iZMesOqtzJ9B0q3j2LekGH5
+         vXmY3n7n7V+eVC7tmWXAF+/ZEYlDEBBz+c0ywkcDzkf+IdKZILLbjTLmNIw8dSSN62Y2
+         OB8A==
+X-Forwarded-Encrypted: i=1; AJvYcCV2bF1qEyxvfS9rZwdO3y5rlGXQeyHf9LtnPryU57PfnderUv+Pqsm19wWIPXKj9qETQ8Yy0yASDzYQ@vger.kernel.org, AJvYcCWU61isSw0g+mnUKWoGVUQKNAG/kZZ2VIzOAMN6VJ6DJmDvnw/KPy/kjQn01RT8z9NcJSK61VDg+WFkuE57@vger.kernel.org, AJvYcCX8283uotJHtbl2rwHiZuCi1y/iFCvHFk7/q3pwnYEB+LVUezHbgG3QuX0wTNExXBOOtXV8M/O6Pj9XitM=@vger.kernel.org, AJvYcCXp0uoCaVa4O+Zgn5G0hwuL9COGqUjJ9f/HrD4bdkUVgf52s1QihodAaCx25tz2dl3hGSHgmt98qZey@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbOPbX5omS4VptUGJurtTtXDC+dIxgRk2FC8TIVWy2u2OBkKKa
+	LjGFpb1MbdmWlyWCs01apq46WTKUALRMERXPU/luODevGbeMC2iCII5Q
+X-Gm-Gg: ASbGncufoMiLhfi4dKvIEqJhCezPJnMwlLV3XhOz3ejzYJ4dW9WSC7JvlwJCSVBv64T
+	IPIybvOZlq5PPVjrPE7PI0hhB2ctne4eRgmSJrPgYOZfkhI9YeESwHvpzhpXyfDY2fe4FygUsaO
+	2MA2l4ICbiUMA6HH+RYEaX2qJHI7OX/qefS1IGfnOl+txB0ZCQ1myu36dML9sgGta5kBQbER4dI
+	mM8S/Qx/QMkZWAoFwYUNK5xcJALdMIKNaDxSWzFrK9tr2LBKsiyjHVnkBjAHYsk0OFbmRht8xJ/
+	kP0GrPFlqAfQg+cQvoaF7uZiPMEcGzRSkPYJuWOf9EvD5T+mngfCxeHb3u20Cy+4uCsqAKlEf9Z
+	qj+yyGRuCByIg2rqklabpgtjYg6q2w8ydZ6KHlIpWVgN/qErXvkq8N+Xw3SDHLU+sKUPNZ8Y=
+X-Google-Smtp-Source: AGHT+IFIjfh7+B5gIa+W7wBeAos+g9NcG4vkouxm4nYWg0auWlvWAzh5TCtv529Y+kQX/Tuai8CTqw==
+X-Received: by 2002:a05:6a20:b598:b0:23f:fd87:427c with SMTP id adf61e73a8af0-23ffd875051mr8683696637.18.1754323152281;
+        Mon, 04 Aug 2025 08:59:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b422b7ceb3fsm9293138a12.22.2025.08.04.08.59.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Aug 2025 08:59:11 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <48996ed0-8d5f-4bb0-ab66-8be71c0a59e4@roeck-us.net>
+Date: Mon, 4 Aug 2025 08:59:09 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: adm1275: add sq24905c support
+To: ChiShih Tsai <tomtsai764@gmail.com>, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, corbet@lwn.net, t630619@gmail.com
+References: <20250804124806.540-1-tomtsai764@gmail.com>
+ <20250804124806.540-2-tomtsai764@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20250804124806.540-2-tomtsai764@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+On 8/4/25 05:48, ChiShih Tsai wrote:
+> Add support for sq24905c Hot-Swap Controller and Digital Power Monitor.
+> 
+> Signed-off-by: ChiShih Tsai <tomtsai764@gmail.com>
+> ---
+>   .../bindings/hwmon/adi,adm1275.yaml           | 20 +++++++++++++++++++
+>   1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> index ddb72857c846..6aa300086c84 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> @@ -30,6 +30,7 @@ properties:
+>         - adi,adm1281
+>         - adi,adm1293
+>         - adi,adm1294
+> +      - silergy,sq24905c
+>   
+>     reg:
+>       maxItems: 1
+> @@ -46,6 +47,18 @@ properties:
+>       $ref: /schemas/types.yaml#/definitions/uint32
+>       enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>   
+> +  silergy,volt-curr-sample-average:
+> +    description: |
+> +      Number of samples to be used to report voltage and current values.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+> +
+> +  silergy,power-sample-average:
+> +    description: |
+> +      Number of samples to be used to report power values.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+> +
+>   allOf:
+>     - $ref: hwmon-common.yaml#
+>     - if:
+> @@ -96,12 +109,17 @@ allOf:
+>                 - adi,adm1281
+>                 - adi,adm1293
+>                 - adi,adm1294
+> +              - silergy,sq24905c
+>       then:
+>         properties:
+>           adi,volt-curr-sample-average:
+>             default: 128
+>           adi,power-sample-average:
+>             default: 1
+> +        silergy,volt-curr-sample-average:
+> +          default: 128
+> +        silergy,power-sample-average:
+> +          default: 1
+>   
 
-Add DT node for the SIM LPAV module.
+I personally don't think this warrants new properties. However, if warranted,
+this needs to be qualified to only apply for the Silergy parts.
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Guenter
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 13b01f3aa2a4..d84f50d8ecc0 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -776,6 +776,17 @@ edma2: dma-controller@2d800000 {
- 						"ch28", "ch29", "ch30", "ch31";
- 			};
- 
-+			sim_lpav: clock-controller@2da50000 {
-+				compatible = "fsl,imx8ulp-sim-lpav", "syscon";
-+				reg = <0x2da50000 0x10000>;
-+				clocks = <&cgc2 IMX8ULP_CLK_LPAV_BUS_DIV>,
-+					 <&cgc2 IMX8ULP_CLK_HIFI_DIVCORE>,
-+					 <&cgc2 IMX8ULP_CLK_HIFI_DIVPLAT>;
-+				clock-names = "lpav_bus", "hifi_core", "hifi_plat";
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
-+
- 			cgc2: clock-controller@2da60000 {
- 				compatible = "fsl,imx8ulp-cgc2";
- 				reg = <0x2da60000 0x10000>;
--- 
-2.34.1
+>   required:
+>     - compatible
+> @@ -121,5 +139,7 @@ examples:
+>               shunt-resistor-micro-ohms = <500>;
+>               adi,volt-curr-sample-average = <128>;
+>               adi,power-sample-average = <128>;
+> +            silergy,volt-curr-sample-average = <128>;
+> +            silergy,power-sample-average = <1>;
+>           };
+>       };
 
 
