@@ -1,242 +1,217 @@
-Return-Path: <devicetree+bounces-201760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC0EB1AAF0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 00:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D9EB1AB02
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 00:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0DEF18A32F0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 22:29:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61E6D18A06FD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 22:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAB628FFCB;
-	Mon,  4 Aug 2025 22:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C05B528B7EA;
+	Mon,  4 Aug 2025 22:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Vn+YsQSa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y6V4gYdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A23D28FFC7
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 22:29:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9688D17BA9;
+	Mon,  4 Aug 2025 22:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754346558; cv=none; b=WciCzfxGnNh9N34/14l8xcdfpAf/JsxolU/Kl3BK6001kH61JnAtqkCJeYqWQepWmwaVoB/rfE3Q0o1BMWUpjJN6Le81GDYAYKzGX5Ye+zovtT1tD98gud6krOsdUGYF1aEPY4He50I+oMnBhRCPJDmCsq5usGz8ZNWeP7e2NpI=
+	t=1754347469; cv=none; b=nUPiMNbxJZ7zsZrFzoKZqYTxF3TchKccweHQejqyxizXwDw5ZhSBoKpmVh7TSlAP/cNDSilAgvt6+zBurTbQQLDNXfHeXLyyk/S/7hjA8XbECUW6+qUwx7S63X1104QsjFJoxyV2V10W+hiM9ZzcJenh0DNKnp4WCfu/42/vcb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754346558; c=relaxed/simple;
-	bh=JUbN3dA5dKNNRuRtqrLVgoTZPHAgBAWedgfI4WsY4zw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=Ht+1OLJ1sfnB0r2ymO0OEwPMBwDZ+eoRvLYsBxqpQK3rlWRTVK61oj8Oz9XfyGyFJzGbtW4AY/bZ64BnWzt+kC4JQryNeHmT2cKshB21GUN/V/U0SdK7+y6OuzyZQTcZbrxy+dcEaBj6SZjAA25WrmvqxDahyZnQQLSQv72hyeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Vn+YsQSa; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250804222909euoutp02abb0e039b9798247efafff0df18e3a86~YsORM0rgX1676216762euoutp02D
-	for <devicetree@vger.kernel.org>; Mon,  4 Aug 2025 22:29:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250804222909euoutp02abb0e039b9798247efafff0df18e3a86~YsORM0rgX1676216762euoutp02D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754346549;
-	bh=+RcFBByccHQrOvrGhevDXqOYgnFEm0AztkkNSDHAn7k=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=Vn+YsQSaL0tPxgww8oXD504OWFUXRUE0GW+bGSWeh6qa2POk61TgkpqaJE3a8sTUd
-	 E3JwCg5oUh1snmdb7S15cMQ8OqYhyTooR4N9odzWsQ0ePCsOEGWyI7T5XJzOhpiZYE
-	 +O7aRtumJURiCvFQ3X/+4+apX1dTnxjz4YdtnWn8=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250804222908eucas1p2069b21749bbab1ebf085f972ec5fd707~YsOQcXlc72283222832eucas1p2i;
-	Mon,  4 Aug 2025 22:29:08 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250804222907eusmtip275da20eec177f6ac18638286e0ca7330~YsOPU6M9h2458224582eusmtip2W;
-	Mon,  4 Aug 2025 22:29:07 +0000 (GMT)
-Message-ID: <8ad10cc3-6e7d-4a8b-b6f6-9568403ee2b3@samsung.com>
-Date: Tue, 5 Aug 2025 00:29:07 +0200
+	s=arc-20240116; t=1754347469; c=relaxed/simple;
+	bh=A/gmTNGkxJCuYjgNPgHdo50hOP3nYxb3saeb42KSLbk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mr+1rIVTF/a9+wBSFMCBxPtuhJu9XUIxC3K7Sq5XXp5+g/l9YkwyLmK5n2mCgs65+ys23fjNcPwbEI24Qq2Pjf5qzZyFftUphOQpXS9muOUEmG8QYpZbj/Q7K5mC3AnpwK5QU++myC78tqMQJDh5ZeobZPuSm8fwsZxr1sh962g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y6V4gYdE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A755C4CEE7;
+	Mon,  4 Aug 2025 22:44:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754347469;
+	bh=A/gmTNGkxJCuYjgNPgHdo50hOP3nYxb3saeb42KSLbk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Y6V4gYdEfbQGemhv1Z+BENG5n4yj+p/d0tSuUyK02sG14UV75z9TN2rOhktg2BEBi
+	 0+zm4JwKr4W+vMDwvOd4EHGdLCYu9AC6Ak1rKLSVlq3wbdeXuY1t+9Ob1yWqC4L8Ug
+	 CoVgemt+k71cWdfkttxKnWMtiRXqLQ7AVDcjLKZqBFkYP7NAEE4pd+FpxBtZBnlbY1
+	 pAghxJJGb5dO2jn44VClO+WSkeoWGv/ChaH1a7+nfbk6kBWDEKkRHwzTNwykZaV0vr
+	 xM1hpjXvY8lZd5/ruaAwHAnzJW8KRmFgOFS5D/iCuA597WsQMiTLCqFcKF5N9J1Ogn
+	 XrQ43a5Rv3w/A==
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-af925cbd73aso794553666b.1;
+        Mon, 04 Aug 2025 15:44:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUbJMiUDX7WToWx4+XHbwWcl8JVhhlid2Rj2y2cUdTomY+VGu5OPLveS8owKOZ46upHJhU+oXjUi6pxhEM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHuxEmXWbnwFDEnp4DWXBtPBFZFFp9KsEk3cgqnkHRgAED/oP4
+	5vzTkXiglXfzzj7WjwN38WdoVD3iJRLWPw2U4OYq83DTq+NUG/EMp6wZR0r8K+5N3DTrNaeksGA
+	I2z/BS4wTKmMOIBGM4Lyyj5zfVLVeag==
+X-Google-Smtp-Source: AGHT+IEBcUu9b2gOAqZee2jbXAiv0RPVSRoyo60pTqn8Iz+hsBZYmyDy6z8blihD+g6akKNCtv5vSQPKepdGjmR5wwE=
+X-Received: by 2002:a17:907:6d04:b0:ae3:f524:b51 with SMTP id
+ a640c23a62f3a-af93ffa04d4mr1238512066b.10.1754347467727; Mon, 04 Aug 2025
+ 15:44:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/3] rust: pwm: Add complete abstraction layer
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <42C9DF97-2E0F-453B-800A-1DA49BF8F29F@collabora.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250804222908eucas1p2069b21749bbab1ebf085f972ec5fd707
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250717090833eucas1p16c916450b59a77d81bd013527755cb21
-X-EPHeader: CA
-X-CMS-RootMailID: 20250717090833eucas1p16c916450b59a77d81bd013527755cb21
-References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
-	<CGME20250717090833eucas1p16c916450b59a77d81bd013527755cb21@eucas1p1.samsung.com>
-	<20250717-rust-next-pwm-working-fan-for-sending-v12-3-40f73defae0c@samsung.com>
-	<42C9DF97-2E0F-453B-800A-1DA49BF8F29F@collabora.com>
+References: <CAL_Jsq+J+6gxOzsXe9t9==GGJ721jrbNhaGMHZyfCTxkM8B0eA@mail.gmail.com>
+ <20250804164329.98971-1-kjw1627@gmail.com>
+In-Reply-To: <20250804164329.98971-1-kjw1627@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 4 Aug 2025 17:44:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJjbtrn8KjLa=wSZf+g-j9GtmSt-LVuW42A+2eBvRwJtw@mail.gmail.com>
+X-Gm-Features: Ac12FXzr0glTSuau1yEkesBqX2lyUO6QagOJkS1Kg-7UaglLgV-Z8LfsPRyR8S0
+Message-ID: <CAL_JsqJjbtrn8KjLa=wSZf+g-j9GtmSt-LVuW42A+2eBvRwJtw@mail.gmail.com>
+Subject: Re: [PATCH] of: address: Fix bug to get the highest cpu address of
+ subtrees for dma
+To: Joonwon Kang <kjw1627@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	nsaenzjulienne@suse.de, saravanak@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Aug 4, 2025 at 11:43=E2=80=AFAM Joonwon Kang <kjw1627@gmail.com> wr=
+ote:
+>
+> On Sun, Jul 27, 2025 at 1:01=E2=80=AFPM Joonwon Kang <kjw1627@gmail.com> =
+wrote:
+> > >
+> > > The function of_dma_get_max_cpu_address() for a device node should ch=
+oose
+> > > the highest cpu address among the ones that nodes can access.
+> > > However, there was a bug of choosing the lowest cpu address and this
+> > > commit is to fix it.
+> >
+> > Please provide a test case in the DT unittests or at least details on
+> > the DT that is affected by the bug.
+>
+> While working on the DT unittests, I got two questions to which I had fai=
+led to
+> have clear answers. Let's assume that the device tree looks as follows.
+>
+> parent_bus@... {
+>         #address-cells =3D <1>;
+>         #size-cells =3D <1>;
+>         dma-ranges =3D <0x0 0x0 0x1000>;
+>
+>         child_bus@... {
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <1>;
+>                 /* Note that the size part exceeds the `parent_bus`' dma =
+size. */
+>                 dma-ranges =3D <0x0 0x0 0x2000>;
+>
+>                 child_device_1@... {
+>                         /*
+>                          * Note that the size part exceeds the `child_bus=
+`' dma size and
+>                          * also the `parent_bus`' dma size.
+>                          */
+>                         reg =3D <0x0 0x3000>;
 
-On 7/25/25 17:56, Daniel Almeida wrote:
->> +
->> +    /// Gets the label for this PWM device, if any.
->> +    pub fn label(&self) -> Option<&CStr> {
->> +        // SAFETY: self.as_raw() provides a valid pointer.
->> +        let label_ptr = unsafe { (*self.as_raw()).label };
->> +        if label_ptr.is_null() {
->> +            None
->> +        } else {
->> +            // SAFETY: label_ptr is non-null and points to a C string
->> +            // managed by the kernel, valid for the lifetime of the PWM device.
->> +            Some(unsafe { CStr::from_char_ptr(label_ptr) })
->> +        }
->> +    }
-> 
-> nit: this can be written more concisely, but I personally don’t mind.
+dma-ranges is irrelevant for 'reg'. 'ranges' applies to 'reg'.
 
-Do you have something specific in mind ? I think the alternative way of
-expressing this would use NonNull, but somehow this feels less readable
-for me.
+>                 };
+>
+>                 child_device_2@... {
+>                         /*
+>                          * Note that the address part transitively exceed=
+s the
+>                          *`parent_bus`' end address.
+>                          */
+>                         reg =3D <0x1000 0x1000>
+>                 };
+>         };
+>
+>         another_child_bus@... {
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <1>;
+>                 dma-ranges =3D <0x0 0x0 0x300>;
+>         };
+> };
+>
+> Q1: What is the expected output of `of_dma_get_max_cpu_address(parent_bus=
+)`?
+> I think it should be 0xfff since the `dma-ranges` in the `child_bus` shou=
+ld be
+> capped to the parent max cpu address instead of treating it as if the
+> `dma-ranges` in the `child_bus` does not exist. The current expectation i=
+s
+> 0x2ff which is for `another_child_bus` based on the existing test case
+> in drivers/of/unittest.c and drivers/of/tests-address.dtsi.
 
+0x2FF is correct. The max address returned is the minimum.
 
->> +
->> +/// Trait defining the operations for a PWM driver.
->> +pub trait PwmOps: 'static + Sized {
->> +    /// The driver-specific hardware representation of a waveform.
->> +    ///
->> +    /// This type must be [`Copy`], [`Default`], and fit within `PWM_WFHWSIZE`.
->> +    type WfHw: Copy + Default;
-> 
-> Can’t you use a build_assert!() here? i.e.:
-> 
->     #[doc(hidden)]
->     const _CHECK_SZ: () = {
->         build_assert!(core::mem::size_of::<Self::WfHw>() <= bindings::PWM_WFHWSIZE as usize);
->     };
+>
+> Q2: `of_dma_get_max_cpu_address(child_device_1, reg_prop, &addr, &length)=
+`
+> returns a success with `addr` set to 0x0 and `length` set to 0x3000. Simi=
+larly,
+> `of_translate_dma_address(child_device_1, reg_prop)` returns a success. O=
+n the
+> other hand, both functions for `child_device_2` return a failure since th=
+e
+> address is out of parent ranges. I think those functions should also fail
+> for `child_device_1` since the dma "end" address of the `child_device_1` =
+node
+> is not valid in the first place. Are the current behaviors of both functi=
+ons
+> intended?
 
-This doesn't work i.e the driver using oversized WfHw compiles
-correctly, but putting the assert inside the serialize did work, please
-see below.
+Passing in child_device_1 is invalid. It doesn't contain dma-ranges,
+so it will return PHYS_ADDR_MAX.
 
+Passing 'reg' into the DMA translation functions is invalid. 'reg' has
+0 to do with DMA addresses.
 
-> 
->> +        Err(ENOTSUPP)
->> +    }
->> +
->> +    /// Convert a hardware-specific representation back to a generic waveform.
->> +    /// This is typically a pure calculation and does not perform I/O.
->> +    fn round_waveform_fromhw(
->> +        _chip: &Chip<Self>,
->> +        _pwm: &Device,
->> +        _wfhw: &Self::WfHw,
->> +        _wf: &mut Waveform,
->> +    ) -> Result<c_int> {
->> +        Err(ENOTSUPP)
->> +    }
-> 
-> Please include at least a description of what this returns.
+Rob
 
-Instead I think it should just return Result, reviewed the code and it's
-fine.
-
-> 
->> +/// Bridges Rust `PwmOps` to the C `pwm_ops` vtable.
->> +struct Adapter<T: PwmOps> {
->> +    _p: PhantomData<T>,
->> +}
->> +
->> +impl<T: PwmOps> Adapter<T> {
->> +    const VTABLE: PwmOpsVTable = create_pwm_ops::<T>();
->> +
->> +    /// # Safety
->> +    ///
->> +    /// `wfhw_ptr` must be valid for writes of `size_of::<T::WfHw>()` bytes.
->> +    unsafe fn serialize_wfhw(wfhw: &T::WfHw, wfhw_ptr: *mut c_void) -> Result {
->> +        let size = core::mem::size_of::<T::WfHw>();
->> +        if size > bindings::PWM_WFHWSIZE as usize {
->> +            return Err(EINVAL);
->> +        }
-> 
-> See my previous comment on using build_assert if possible.
-
-So I did try this and it does work, however it results in a cryptic
-linker error:
-ld.lld: error: undefined symbol: rust_build_error
->>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
->>>               drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDriverData>>::read_waveform_callback) in archive vmlinux.a
->>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
->>>               drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDriverData>>::round_waveform_tohw_callback) in archive vmlinux.a
-make[2]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
-  
-I assume this could be fixed at some point to better explain what
-failed? I think putting the assert in serialize functions is fine and
-the proposed _CHECK_SZ isn't really required.
-
-I would love to do some debugging and find out why that is myself if
-time allows :-)
-
-> 
->> +        // SAFETY: `self.as_raw()` provides a valid pointer for `self`'s lifetime.
->> +        unsafe { (*self.as_raw()).npwm }
->> +    }
->> +
->> +    /// Returns `true` if the chip supports atomic operations for configuration.
->> +    pub fn is_atomic(&self) -> bool {
->> +        // SAFETY: `self.as_raw()` provides a valid pointer for `self`'s lifetime.
->> +        unsafe { (*self.as_raw()).atomic }
->> +    }
->> +
->> +    /// Returns a reference to the embedded `struct device` abstraction.
->> +    pub fn device(&self) -> &device::Device {
->> +        // SAFETY: `self.as_raw()` provides a valid pointer to `bindings::pwm_chip`.
->> +        // The `dev` field is an instance of `bindings::device` embedded within `pwm_chip`.
->> +        // Taking a pointer to this embedded field is valid.
->> +        // `device::Device` is `#[repr(transparent)]`.
->> +        // The lifetime of the returned reference is tied to `self`.
->> +        unsafe { device::Device::as_ref(&raw mut (*self.as_raw()).dev) }
->> +    }
-> 
-> IIRC, these are supposed to be prefixed with “-“ to highlight that it’s a bulleted list.
-> 
->> +
->> +    /// Gets the *typed* driver specific data associated with this chip's embedded device.
-> 
-> I don’t think this emphasis adds anything of value. (IMHO)
-> 
->> +    pub fn drvdata(&self) -> &T {
-> 
-> This is off-topic (sorry), but I wonder if this shouldn’t be renamed “driver_data()” across the tree.
-
-Agree
-
-
-> 
-> 
-> — Daniel
-> 
-> [0] https://lore.kernel.org/rust-for-linux/20250711-device-as-ref-v2-0-1b16ab6402d7@google.com/
-> 
-> 
-
-For readability cut the rest of the comments, but they will be fixed
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+>
+> > > Signed-off-by: Joonwon Kang <kjw1627@gmail.com>
+> > > ---
+> > >  drivers/of/address.c | 12 ++++++++++--
+> > >  1 file changed, 10 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/of/address.c b/drivers/of/address.c
+> > > index f0f8f0dd191c..5e984e0d372b 100644
+> > > --- a/drivers/of/address.c
+> > > +++ b/drivers/of/address.c
+> > > @@ -969,6 +969,7 @@ phys_addr_t __init of_dma_get_max_cpu_address(str=
+uct device_node *np)
+> > >  {
+> > >         phys_addr_t max_cpu_addr =3D PHYS_ADDR_MAX;
+> > >         struct of_range_parser parser;
+> > > +       phys_addr_t max_subtree_max_addr =3D PHYS_ADDR_MAX;
+> > >         phys_addr_t subtree_max_addr;
+> > >         struct device_node *child;
+> > >         struct of_range range;
+> > > @@ -992,10 +993,17 @@ phys_addr_t __init of_dma_get_max_cpu_address(s=
+truct device_node *np)
+> > >
+> > >         for_each_available_child_of_node(np, child) {
+> > >                 subtree_max_addr =3D of_dma_get_max_cpu_address(child=
+);
+> > > -               if (max_cpu_addr > subtree_max_addr)
+> > > -                       max_cpu_addr =3D subtree_max_addr;
+> > > +               if (subtree_max_addr =3D=3D PHYS_ADDR_MAX)
+> > > +                       continue;
+> > > +
+> > > +               if (max_subtree_max_addr =3D=3D PHYS_ADDR_MAX)
+> > > +                       max_subtree_max_addr =3D subtree_max_addr;
+> > > +               else
+> > > +                       max_subtree_max_addr =3D max(max_subtree_max_=
+addr, subtree_max_addr);
+> > >         }
+> > >
+> > > +       max_cpu_addr =3D min(max_cpu_addr, max_subtree_max_addr);
+> > > +
+> > >         return max_cpu_addr;
+> > >  }
+> > >
+> > > --
+> > > 2.46.0
+> > >
 
