@@ -1,166 +1,121 @@
-Return-Path: <devicetree+bounces-201620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73137B19F6C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 12:07:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D13B19F8A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 12:15:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3657B1887F77
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 10:07:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 768DE177B49
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 10:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06F32550D0;
-	Mon,  4 Aug 2025 10:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB45D248F78;
+	Mon,  4 Aug 2025 10:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="M39levsm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itflykcG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F102512E6;
-	Mon,  4 Aug 2025 10:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859C7191F92;
+	Mon,  4 Aug 2025 10:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754301889; cv=none; b=WnkSLDGBGySFHRaMF1ozQtOwWiyhnr3r2d7keid4JMygCYyA7iFEqN7i2dNww9tsk/UF0NS2a3eu9x5PkpA6en1vZhsn4k+3ClVJDvmWvz2m7swKp2zYavuV8TifRiUa1+Mt82+Vppq6DpWNaU3ob5l9FPWT1ORiYQ76XM3mZsE=
+	t=1754302516; cv=none; b=KCFpgTbjxV3t4+m9TGRKZYQkiwlRLhtA69Uue2eRmdHFVczsE7wH3dm5qPWowX1t2VY/LQuQHZlN1lG3wUC4CZ44ZQFIduZK0R6puJDeu15RjuAH4DPR3eiX4LfWgIjRpyu6stPo4nnvef3F2shwKmFDiC7LSXexIZzT+OCEd/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754301889; c=relaxed/simple;
-	bh=0I0mIx+jCtAYkBXL2kVeCEA9sezb9K7m6lEQk5mGw1w=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L1V/TJ50pwRET2fQ0iaGLr3ZfSXGZvK/NVUdaKej58XtTIzhZEcdmomPf4ahp4AIIpVtpkElY0RnzYTuOLOjMTWoEwoMT7cm3kbK2Jh4MdkC1Agvw3qVIM6YblNBWTGtii6xYANx6BX+CNa0SXvBbLGYbOvJzwbV82IMUrDskiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=M39levsm; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1754301887; x=1785837887;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0I0mIx+jCtAYkBXL2kVeCEA9sezb9K7m6lEQk5mGw1w=;
-  b=M39levsmX9H+CV2G0mBcxkf5HUwSEsU79h6fZX3jRn70cB/9XZOzIMGh
-   Pi3iIVknXGtByHgaFt8TKosld2IX406pYnuavJezbplu3Cqp2BKtu/JfA
-   14aFFqI6+W0odJkrn2alxHa0Wwfl0fSn1ekJKY5Tca02bb6N2BaDK2SNh
-   OEdxzzbB6Vr/VYWbj/JKInXUt4Nzh+53dYUXikedQrYxuYFbNDgtfGkvW
-   q1glv/BM86g9gmTWlUYID6oYjq8xZmUtWAKNt/4GEa/uY1euCRFjrsqSG
-   E/IkmXaYHIYS9oOHGyb5lu9lZa0eIEaeI3Wt5dhc9koAtaPcLoOI7woYp
-   g==;
-X-CSE-ConnectionGUID: wNfd+jCsRiWEXMNUBP5DNg==
-X-CSE-MsgGUID: n+pSyMdtR/KhPy3oIEgnMA==
-X-IronPort-AV: E=Sophos;i="6.17,258,1747724400"; 
-   d="scan'208";a="212197476"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Aug 2025 03:04:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 4 Aug 2025 03:04:04 -0700
-Received: from che-ll-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.44 via Frontend Transport; Mon, 4 Aug 2025 03:03:58 -0700
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <eugen.hristev@linaro.org>, <jic23@kernel.org>, <dlechner@baylibre.com>,
-	<nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<srini@kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <varshini.rajendran@microchip.com>
-Subject: [PATCH 15/15] ARM: dts: microchip: sama7d65: add thermal zones node
-Date: Mon, 4 Aug 2025 15:32:19 +0530
-Message-ID: <20250804100219.63325-16-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250804100219.63325-1-varshini.rajendran@microchip.com>
-References: <20250804100219.63325-1-varshini.rajendran@microchip.com>
+	s=arc-20240116; t=1754302516; c=relaxed/simple;
+	bh=5GXyI5WQgYW0XNhorvAF6Ny+suzgD9hCJ5O0rd419ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qnIRQ/DnXs2snHUShCEiSvFUlZZr0W8h7As1cHleLC2JDSDTpNW7LD7jE91nH2uIwcattoZQ6iuesj5ZhRDYoByQaMK08v5I7ukMx1pjuBHtzVDvDYBImKfGtfviuAW9GYOG7bI0GI8a8wV0MozC33n+NvS7vRercqRFHrBjMp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itflykcG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90028C4CEE7;
+	Mon,  4 Aug 2025 10:15:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754302516;
+	bh=5GXyI5WQgYW0XNhorvAF6Ny+suzgD9hCJ5O0rd419ew=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=itflykcG9xdsYbAzgpu/vyg/3CjW/R5SlpYTE3nXfBZ4Ds3vS6KLWn7ZV8724FkzC
+	 R/BDbmArCbW6MaI2mLtCu0uywnK00/dEjie2ns9xx/o/XAbSLbwohwgopn2eLhf1zn
+	 9BvhTlYKpXvkxsgsyhHjr3yMNjAp2bdDvUsex44a/m87f6ZjL7K63bnLzQhHOThTBN
+	 jhZehDmW762t96uonQ4kwzyJiAoZopa/QU31WLrz6zdo9fF4i5Ck4Uiesch6aFNKKj
+	 phs08UQ0MtHQE0m0qPilqX8Fx6NdrJPx9IidaCwOTbas/IeZnMvicO+uzMMvWqCFox
+	 fY9vki8dGwqgQ==
+Date: Mon, 4 Aug 2025 15:45:05 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, Bjorn Helgaas <bhelgaas@google.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, 
+	sherry.sun@nxp.com, linux-pm@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 0/3] PCI: Add support for PCIe WAKE# interrupt
+Message-ID: <b6b4tzs73n63d565k52pqbep4bqhctibjv5gzm2wenbf2ji45b@npgoqscnbbpn>
+References: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
 
-Add thermal zones node with its associated trips and cooling-maps.
-It uses CPUFreq as cooling device for temperatures in the interval
-[90, 100) degrees Celsius and describe the temperature of 100 degrees
-Celsius as critical temperature. System will be is shutting down when
-reaching critical temperature.
+On Fri, Aug 01, 2025 at 04:29:41PM GMT, Krishna Chaitanya Chundru wrote:
+> PCIe WAKE# interrupt is needed for bringing back PCIe device state from
+> D3cold to D0.
+> 
+> This is pending from long time, there was two attempts done previously to
+> add WAKE# support[1], [2]. Those series tried to add support for legacy
+> interrupts along with WAKE#. Legacy interrupts are already available in
+> the latest kernel and we can ignore them. For the wake IRQ the series is
+> trying to use interrupts property define in the device tree.
+> 
+> This series is using gpio property instead of interrupts, from
+> gpio desc driver will allocate the dedicate IRQ.
+> 
+> According to the PCIe specification 6, sec 5.3.3.2, there are two defined
+> wakeup mechanisms: Beacon and WAKE# for the Link wakeup mechanisms to
+> provide a means of signaling the platform to re-establish power and
+> reference clocks to the components within its domain. Adding WAKE#
+> support in PCI framework.
+> 
+> According to the PCIe specification, multiple WAKE# signals can exist in a
+> system. In configurations involving a PCIe switch, each downstream port
+> (DSP) of the switch may be connected to a separate WAKE# line, allowing
+> each endpoint to signal WAKE# independently. To support this, the WAKE#
+> should be described in the device tree node of the upstream bridge to which
+> the endpoint is connected. For example, in a switch-based topology, the
+> WAKE# GPIO can be defined in the DSP of the switch. In a direct connection
+> scenario, the WAKE# can be defined in the root port. If all endpoints share
+> a single WAKE# line, the GPIO should be defined in the root port.
+> 
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
----
- arch/arm/boot/dts/microchip/sama7d65.dtsi | 42 +++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+I think you should stop saying 'endpoint' here and switch to 'slot' as that's
+the terminology the PCIe spec uses while defining WAKE#.
 
-diff --git a/arch/arm/boot/dts/microchip/sama7d65.dtsi b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-index aefdd72cb59c..a4e5ef6a9cf2 100644
---- a/arch/arm/boot/dts/microchip/sama7d65.dtsi
-+++ b/arch/arm/boot/dts/microchip/sama7d65.dtsi
-@@ -16,6 +16,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/mfd/at91-usart.h>
- #include <dt-bindings/nvmem/microchip,sama7g5-otpc.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	model = "Microchip SAMA7D65 family SoC";
-@@ -35,6 +36,7 @@ cpu0: cpu@0 {
- 			clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>; /* min followed by max */
- 		};
- 	};
- 
-@@ -110,6 +112,46 @@ thermal_sensor: thermal-sensor {
- 		io-channel-names = "sensor-channel";
- 	};
- 
-+	thermal-zones {
-+		cpu_thermal: cpu-thermal {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&thermal_sensor>;
-+
-+			trips {
-+				cpu_normal: cpu-alert0 {
-+					temperature = <90000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				cpu_hot: cpu-alert1 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				cpu_critical: cpu-critical {
-+					temperature = <100000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_normal>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+
-+				map1 {
-+					trip = <&cpu_hot>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		ranges;
+> During endpoint probe, the driver searches for the WAKE# in its immediate
+> upstream bridge. If not found, it continues walking up the hierarchy until
+> it either finds a WAKE# or reaches the root port. Once found, the driver
+> registers the wake IRQ in shared mode, as the WAKE# may be shared among
+> multiple endpoints.
+> 
+
+I don't think we should walk the hierarchy all the way up to RP. If the slot
+supports WAKE#, it should be defined in the immediate bridge node of the
+endpoint (as DT uses bridge node to described the slot). Otherwise, if the slot
+doesn't use WAKE#, walking up till RP may falsely assign wake IRQ to the
+endpoint.
+
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
