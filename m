@@ -1,217 +1,238 @@
-Return-Path: <devicetree+bounces-201531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F848B19AA8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 06:17:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71005B19AC2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 06:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4E5D18965C5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 04:17:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 929FB174E86
+	for <lists+devicetree@lfdr.de>; Mon,  4 Aug 2025 04:32:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB8DA1A238C;
-	Mon,  4 Aug 2025 04:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B2E15B54A;
+	Mon,  4 Aug 2025 04:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="gv+LoM5a"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fkurjv3v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2042.outbound.protection.outlook.com [40.107.94.42])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0770D3207;
-	Mon,  4 Aug 2025 04:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754281038; cv=fail; b=PzBdjYGUL6MGx4TuhuQ9JICe+ii1NmRZcFirUfpUYEB/SNbkK+v1qOk1ceLF+hyU4iln5m4tgADVsfZrmz8jXaWtHncDzg8txYU+MnqrWiXMOCDK6UtWqPPuoO6YGlZCg36V3YYGrgDlaiB4AXEnrTm9fhC7gXZkZktsobic5c4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754281038; c=relaxed/simple;
-	bh=jwcFhOrJOtjR4H5S7sm3AwHwiPYiA0VhNNDjqXRp2yw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hLa0Hs/jLJfhtja9WQoAm+OG9nlskWEL1uL05ypt5QMTTr7fSzAW+GcsXV3GFX7wQ8hYrnC0S3ptoCxm/lImaVcb35VJBVY8Ph2pKx3884ZTipcpn6xgvgNIHdij6PRgobfXRielvAmJDLmZdUbbPJPt6xNled18nNiclw71GvQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=gv+LoM5a; arc=fail smtp.client-ip=40.107.94.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nSprck8qsrhIELq1GH2MiTil0JsSX4w5E9TnPmizgmHqXSVLxdSX81CmPZsJZxloD/OyZ39PbHbX2zK4DyMmxMpZRdhKl+xlmBggvm6nbXeArfjEr9wn5b/KfwrikWRiztvn2IkMtKmKrGBWNRTG4BcXi2PGd1j/nKoS34YeEynxtohT+bf5X8kjhg1hGnQp0cVZJRxRHevotDij6TcryhdmvRStGq2qeeUoETIxrP91xTzh010U4/P2+uR0kb7iTy9tu6VucNf1n6VCX81mwEIAjFrCQSG7DZ2R6oZkIhIdhhEp2ObYp0mcBmg+bBga2lBvj586bgAwLBRBn9eCBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LRFtEDDDr5LFBv37grq+a9Y5PB3aj2HWMCkeDWrff78=;
- b=tWpoIbLbFliN2GIIAI/kkMysG+JWlNq6kgPH6/NLw7L32hgBw3A6C6jGgHjMgZWONAtBuQ8BNsjF3AOy1X3TXo0Qf6iXTZGkyM7lFjwS/YtMIyfBALyo+SqDGjfXvNmmxH2qywhsAe43mahpzWGNJmZAsQpYkrZBGBmPyPHm+3Ac1eTqFtvIi5XLpcXIFRxh6BOqtoLGB1HyD8HND7ZocivkqELKStrLpp9yl1LXH9hRnospyRCj7lyleZ6y469mCbg8jbt5cQ4fh57k3R9PEduu5COtrt9dbTU7/HWe/JCx3w6GDDEMpqSni4a0W5IJJOr7EPxoYhQsKfLkopziow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=linaro.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LRFtEDDDr5LFBv37grq+a9Y5PB3aj2HWMCkeDWrff78=;
- b=gv+LoM5a8HB/GuumWOVAc9pF5JnZaBrYxjYruX6mjhgUqc4+T5JWhGF6O6yvia3OnE7Knx6sjMDfyXqR0xR67sCgoyVbQF7WXbAEUBFTDGKUyTRQJ7iUMJPmXFJ74kROzGfXCtKPKFsoFRGAIECw4rc7szvDXWwnK4fbO0h8neNr9AKZb1LOrFRufYG47uzflv5Jnj8K3FG7ai98MlhJv6By1wmapqVdmxIwRI+JZD0c7k44aYrBdUGkVzs2cqRHSDc5CKKK/9E7yvK9wGqqvZzkENH4PjZTT8WkMuwPS3JIvySRtg0wBz7cnopdw+4e25IVs2fnS6ahRqT5hK+qYw==
-Received: from SN1PR12CA0070.namprd12.prod.outlook.com (2603:10b6:802:20::41)
- by MN2PR12MB4109.namprd12.prod.outlook.com (2603:10b6:208:1d9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Mon, 4 Aug
- 2025 04:17:11 +0000
-Received: from SA2PEPF00001505.namprd04.prod.outlook.com
- (2603:10b6:802:20:cafe::1e) by SN1PR12CA0070.outlook.office365.com
- (2603:10b6:802:20::41) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8989.20 via Frontend Transport; Mon,
- 4 Aug 2025 04:17:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- SA2PEPF00001505.mail.protection.outlook.com (10.167.242.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9009.8 via Frontend Transport; Mon, 4 Aug 2025 04:17:11 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Sun, 3 Aug
- 2025 21:17:07 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 3 Aug 2025 21:17:07 -0700
-Received: from pshete-ubuntu.nvidia.com (10.127.8.12) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Sun, 3 Aug 2025 21:17:04 -0700
-From: Prathamesh Shete <pshete@nvidia.com>
-To: <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <pshete@nvidia.com>
-Subject: [PATCH 2/2] gpio: tegra186: Add support for Tegra256
-Date: Mon, 4 Aug 2025 09:46:57 +0530
-Message-ID: <20250804041657.27688-2-pshete@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250804041657.27688-1-pshete@nvidia.com>
-References: <20250804041657.27688-1-pshete@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F39752E36F0;
+	Mon,  4 Aug 2025 04:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754281921; cv=none; b=gfSDgXF2OBToGOwoGbClYJaHVhf+cnkjoSHd81Kb60C8hUgyNz4FmtsCzU7okHmJ1QnpUxEe220H90mcQ3hFzdN5p2JXD4o5ZN4x+SBmM5/05/fQ4CeWmFNwGUuaB1u2jQXIcBLzog/tRlL7RVVuNfykFloNdOewvnekfGgPeQE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754281921; c=relaxed/simple;
+	bh=1PlWvVgQG/AtM4TFsh9OSKM/2jMOCP3QDi1J/SDF3O4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tli5h9V3tRbIWYKdDPHbWATQAXSNHiwSYj20h298bJIfApX+FiqnrIx8hDVOIUF4y4n3RoEdXZqpNeuiBegT1NbOQp5dYZGfYLuyG+vOBCLpcFnYo0EI7qnUf/LDUldgJRbQAk9T/Xxv5M0ljWKoqXWBwqQWfGwIPha4d5Pbl18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fkurjv3v; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 573No1f3011168;
+	Mon, 4 Aug 2025 04:31:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vssEbq0+ZIxOehsdS4FA8hybmmmRjis7q0tY5Oxpr/s=; b=fkurjv3vyIeeS8Eg
+	jnGGX0ijMXRBKcqizFKUfx4akpuBKoOr9A+s+hM3QqsO4AJVtloomxlEGfCUmcU9
+	o59l8HiQJr1mMeOHlswnvTe7PAwYxBljQ0Gf/cdjHTAQRkvj0l9bMO3fLWroaaR8
+	9hh+Tq45G1N5YoWKcEPwopBwbVUUqmaXLSyxZYyZGlPrcAnzRAqTyJsNS4G74k94
+	fJHHAeIWY8r24/brYl2D4a5b9Aqb5Mhkx6zRp3yeT7SDc5483UTU8SRW1LzmrIvo
+	YfXpQl3MFbGjVjGhmvFwLm3jdt1HeuDoKQnxo4StyxNMNVOVqmzOa6xidTso5km4
+	/dDOfQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489b2a3dqw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Aug 2025 04:31:41 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5744Ve7x010663
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Aug 2025 04:31:40 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 3 Aug
+ 2025 21:31:34 -0700
+Message-ID: <477bebcc-2d1a-4183-8e3d-d792e876c63a@quicinc.com>
+Date: Mon, 4 Aug 2025 12:31:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00001505:EE_|MN2PR12MB4109:EE_
-X-MS-Office365-Filtering-Correlation-Id: e10e1a76-8d1c-4aa5-7d33-08ddd30dc8c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|7416014|376014|82310400026|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?/SQlaf/kUHldfTcVoRMU+BhXnXAEY839/TqmDJpBeyrUuK0lpjvTLSwM0QIY?=
- =?us-ascii?Q?Y1anZThi75a2xSt79BCnCavh2io4TJTsSaASLVS3cnl/Fz+dMx6K5H0GaL2Q?=
- =?us-ascii?Q?F7d4ODkTnrRz7ZWoz0Hft+bGXJDjLjpbJ48Ks8c3vUEwph2DtfdeS1O6J7kb?=
- =?us-ascii?Q?RE01gFqEurQTzsvAM0wB8rL20XNP2RiqJDKZmQd6n1H/ljkFTqvQPMXtdIrc?=
- =?us-ascii?Q?W/4jcyVpK4f+l+kSZ9K+O7/mwWok6KhCy5nOMhHi5HoJL4V7d+NKQOA1miSJ?=
- =?us-ascii?Q?bVZm0KBEaPrVFiToJ0FIk6AxB8wH5csayf9m1IU36Ac1rN3i/68hX5YFMnP4?=
- =?us-ascii?Q?9rwlMAPBISlEGH5m/ZsC/a1rxizHV3pP7GeGnBWRQeJtbOJKogYicMOEYTTQ?=
- =?us-ascii?Q?KnWKCCw83CUgLRb9Hj7UOR9e1lQLqeQPzG11LM2nHrxcoNHa7cMXpbbHuMd2?=
- =?us-ascii?Q?BBAywKz4mVhhxbMFPDUfaDcd+ZR3SL+UlnYKkH0trXM+HCHFsJUhCPTkbMz0?=
- =?us-ascii?Q?ZR8bSDYIQ7s5WgzRxu4nwCl5R/JEKlM5aN9cx/JmJ3YpD36rd3gfJBIPzjDz?=
- =?us-ascii?Q?pxnhwx8JSKYSBQmRBkI9oouuDPlI+/z26lDfgdM1FUQlLtQxzv5VDGcSofYW?=
- =?us-ascii?Q?6cv5PldSt92sHCP2s810M6QQqy4DkWEKgvRMiSpeRtG5GVKjuYYqzDMkD9YC?=
- =?us-ascii?Q?H6hfgGCCs6ABgxm4BE6LJjzWfWk2jLykpQqfOiVWA5K0B/OKLGqYRxPYBDZW?=
- =?us-ascii?Q?gWStdm8eQZsbLKErcf02TpHuRGnQRxreTUU4v/7FPwWcjks4ZNldXYp3V+5X?=
- =?us-ascii?Q?FLXpaF/3ITFTSZbyqUgH0AdyKafBjeHdzcDhgpopTPwMofOYp2+oEcFnubRH?=
- =?us-ascii?Q?2s7v9Mcq6yBXbFwXhFcn42DAWK0SykpI1p/ZU6OWTswkIBGAuxim0lvsEecI?=
- =?us-ascii?Q?SDkSsLPJJhleMwJFwSxvDDDgOfNElSFS6/EAjrG0OKKI/kR7FsR6gLFF6swe?=
- =?us-ascii?Q?jM9BOZSGC76LKNm4Ye1zLNTbGEG02w1GRlb3eB4dbJyTEFZdCyFdjo4ylNuA?=
- =?us-ascii?Q?ftzskQPRHmrGmyLYYlkJT/ekTqUDMyNL8j7hhizRAiyaZIvPf1F6Xx+bgrtX?=
- =?us-ascii?Q?uV1KbsesJ5MwYa5cSFjvO4RxN1hWPlsfdoORVRzGl3mHs0K7EjCHH5FPS6QZ?=
- =?us-ascii?Q?kYdTJgYmurL4IX1w1jgcdu4oR2NtPkxuFv9m9vpRoHAMAYdApU75DVF840M/?=
- =?us-ascii?Q?f+5JEVoWkoSM6P8bLrBlnm0IcroWp/uwlqn9VtD2qEZ+9Y07rSBip8FvnLW5?=
- =?us-ascii?Q?1Ulf57r9zp+9rHbz7ykR38CQ96nMrFK0tRwTjugjkNMd0/Y3aDL5CU8xGrGN?=
- =?us-ascii?Q?1JrBr1tCniG6taCmHaNqqQXjQlgOnResJW/L8Wa696OzPpa9UVhEiEqPPMsc?=
- =?us-ascii?Q?1YHf5OFlknrVcpj5Y1arDTPSd4h8BfqBWMTB+h86u4+Eu7AVZQeCFxGFMvp0?=
- =?us-ascii?Q?ZD3yI/Pq9HrysDfNXZCrLyjr8zCrNOiXIdyHFEhF9nT5nWbmGCcgDzCPyg?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(7416014)(376014)(82310400026)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2025 04:17:11.1600
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e10e1a76-8d1c-4aa5-7d33-08ddd30dc8c0
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SA2PEPF00001505.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4109
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/5] dt-bindings: display/msm: Document MDSS on QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+	<lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang
+	<jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Neil
+ Armstrong" <neil.armstrong@linaro.org>,
+        Kuogee Hsieh
+	<quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com>
+ <20250730-mdssdt_qcs8300-v5-3-bc8ea35bbed6@quicinc.com>
+ <deefg7w3ot6cd3woexfwagetmkg4nvu37f66h4ulbdqegdgi3u@plj6puxcsil4>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <deefg7w3ot6cd3woexfwagetmkg4nvu37f66h4ulbdqegdgi3u@plj6puxcsil4>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=OKwn3TaB c=1 sm=1 tr=0 ts=689037ad cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8
+ a=COk6AnOGAAAA:8 a=bNVB-QMxkSv05INpNXEA:9 a=QEXdDO2ut3YA:10
+ a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: kMsO4wlwWm10GvYRcOrHi36Gavl3yD2N
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDAyMCBTYWx0ZWRfX6tB76TrhnJEn
+ sP5HiVh0Zks8N8JMcAKLf6pLtUNFXBx1Y3Z6KuE3HFkYDl0Hlm2NXohu+uA+eWcXtTzAQPqecpL
+ RFYCSO8qae40tx61epe/qeDiQ1rMzazejCfCExOAdQNChhpflGHGzTlqP0Nf5eiWlqrxSJwz/3L
+ Yve62LFi9i2tcpY0N3oI6ueioyAvmEHmdrzSRq6nPG1FKtfBblTHqYzrVax5P2o3jQq0upqJVJi
+ ToP8sVv0gxT/MSxcIXoHzF0hTpVG/va6K5TWboe6ovkDKJkVRE0LN+IDNZev13hgfhxpSn3pBiW
+ 9/925dJo1wEPlMmzwbtrJnNQ1+hqER5fE9erk/e9y2LHsdG0OvvXfu8bag662imA32Q8OL8kYcT
+ q0nUaX8kelQYsUs+4k14v0sx6qrvxcI12qm+lcHl6Y2COlmYjjDVh9cZO5kEQykTDv+QA6bw
+X-Proofpoint-GUID: kMsO4wlwWm10GvYRcOrHi36Gavl3yD2N
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-04_02,2025-08-01_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
+ phishscore=0 impostorscore=0 priorityscore=1501 adultscore=0 mlxscore=0
+ malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2508040020
 
-Extend the existing Tegra186 GPIO controller driver with support for the
-GPIO controller found on Tegra256. While the programming model remains
-the same, the number of pins has slightly changed.
 
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
----
- drivers/gpio/gpio-tegra186.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
 
-diff --git a/drivers/gpio/gpio-tegra186.c b/drivers/gpio/gpio-tegra186.c
-index d27bfac6c9f5..c9f1441a7b30 100644
---- a/drivers/gpio/gpio-tegra186.c
-+++ b/drivers/gpio/gpio-tegra186.c
-@@ -20,6 +20,7 @@
- #include <dt-bindings/gpio/tegra194-gpio.h>
- #include <dt-bindings/gpio/tegra234-gpio.h>
- #include <dt-bindings/gpio/tegra241-gpio.h>
-+#include <dt-bindings/gpio/tegra256-gpio.h>
- 
- /* security registers */
- #define TEGRA186_GPIO_CTL_SCR 0x0c
-@@ -1274,6 +1275,30 @@ static const struct tegra_gpio_soc tegra241_aon_soc = {
- 	.has_vm_support = false,
- };
- 
-+#define TEGRA256_MAIN_GPIO_PORT(_name, _bank, _port, _pins)	\
-+	[TEGRA256_MAIN_GPIO_PORT_##_name] = {			\
-+		.name = #_name,					\
-+		.bank = _bank,					\
-+		.port = _port,					\
-+		.pins = _pins,					\
-+	}
-+
-+static const struct tegra_gpio_port tegra256_main_ports[] = {
-+	TEGRA256_MAIN_GPIO_PORT(A, 0, 0, 8),
-+	TEGRA256_MAIN_GPIO_PORT(B, 0, 1, 8),
-+	TEGRA256_MAIN_GPIO_PORT(C, 0, 2, 8),
-+	TEGRA256_MAIN_GPIO_PORT(D, 0, 3, 8),
-+};
-+
-+static const struct tegra_gpio_soc tegra256_main_soc = {
-+	.num_ports = ARRAY_SIZE(tegra256_main_ports),
-+	.ports = tegra256_main_ports,
-+	.name = "tegra256-gpio-main",
-+	.instance = 1,
-+	.num_irqs_per_bank = 8,
-+	.has_vm_support = true,
-+};
-+
- static const struct of_device_id tegra186_gpio_of_match[] = {
- 	{
- 		.compatible = "nvidia,tegra186-gpio",
-@@ -1293,6 +1318,9 @@ static const struct of_device_id tegra186_gpio_of_match[] = {
- 	}, {
- 		.compatible = "nvidia,tegra234-gpio-aon",
- 		.data = &tegra234_aon_soc
-+	}, {
-+		.compatible = "nvidia,tegra256-gpio",
-+		.data = &tegra256_main_soc
- 	}, {
- 		/* sentinel */
- 	}
--- 
-2.17.1
+On 2025/8/2 17:56, Dmitry Baryshkov wrote:
+> On Wed, Jul 30, 2025 at 05:42:28PM +0800, Yongxing Mou wrote:
+>> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
+>>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+>> ---
+>>   .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 284 +++++++++++++++++++++
+>>   1 file changed, 284 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..ae4bc16395326bffd6c9eff92778d9f207209526
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.yaml
+>> @@ -0,0 +1,284 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/msm/qcom,qcs8300-mdss.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Technologies, Inc. QCS8300 Display MDSS
+>> +
+>> +maintainers:
+>> +  - Yongxing Mou <quic_yongmou@quicinc.com>
+>> +
+>> +description:
+>> +  QCS8300 MSM Mobile Display Subsystem(MDSS), which encapsulates sub-blocks like
+>> +  DPU display controller, DP interfaces and EDP etc.
+>> +
+>> +$ref: /schemas/display/msm/mdss-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,qcs8300-mdss
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Display AHB
+>> +      - description: Display hf AXI
+>> +      - description: Display core
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    maxItems: 3
+>> +
+>> +  interconnect-names:
+>> +    maxItems: 3
+>> +
+>> +patternProperties:
+>> +  "^display-controller@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: true
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        items:
+>> +          - const: qcom,qcs8300-dpu
+>> +          - const: qcom,sa8775p-dpu
+> 
+> Use contains: instead of listing both of them
+> 
+Got it, thanks~ here we want to fallback qcs8300 to sa8775p.
+Should we update it to :
++        contains:
++          enum:
++            - qcom,qcs8300-dpu
++            - qcom,sa8775p-dpu
+
+  above method can be validated using dt_binding_check.
+>> +
+>> +  "^displayport-controller@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: true
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        items:
+>> +          - const: qcom,qcs8300-dp
+>> +
+>> +  "^phy@[0-9a-f]+$":
+>> +    type: object
+>> +    additionalProperties: true
+>> +    properties:
+>> +      compatible:
+>> +        items:
+>> +          - const: qcom,qcs8300-edp-phy
+>> +          - const: qcom,sa8775p-edp-phy
+> 
+> Use contains: instead of listing both of them
+> 
+Same as above
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +unevaluatedProperties: false
+>> +
+> 
 
 
