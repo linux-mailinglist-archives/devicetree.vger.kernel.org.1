@@ -1,130 +1,99 @@
-Return-Path: <devicetree+bounces-201786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B7B6B1AD4E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 06:56:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B86B1AD5C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 06:58:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A26CC16E6B3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 04:56:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8A8C18A2851
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 04:59:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1523121639B;
-	Tue,  5 Aug 2025 04:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B8F218ACC;
+	Tue,  5 Aug 2025 04:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G3Z6h5jZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N3O1Xs24"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61132288DB;
-	Tue,  5 Aug 2025 04:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9179B288DB;
+	Tue,  5 Aug 2025 04:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754369788; cv=none; b=uAQTCk29RcEpfY1rn3ibrwyC4wFJhz/M3CIChjym44P6/7IYUSj3I5ReSpFM7QNWs+OCqZkHH+VjZHsbA2qVZ3XSI6bM5FswugpuWjfY1o2Soka0WudVIJmRPPGIlthuARwqlFcY1rgI3j8xKt2e9N1Ad6QFJTgYAUHAxv1mFkk=
+	t=1754369919; cv=none; b=FLVncG0MuOtTE8+fBzs7b2SnI8sS+YjDnTaWfr8eA3zrix3bEmq9Y0C7RbJam73AOXj7xQjnD5buRvJ44Czx1HWrmBh7ZzCvn6YEZerufhQN0yBMvcd6Qj+3cJoW7jH4WF1xlIjtJCa9hKT20tzTRU4DNNSOAMiaOrngTwl3IPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754369788; c=relaxed/simple;
-	bh=4UMJ7AYTejC0cbJn4XRjuEKExVDbgONFQ2SxHGgIoy4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LxdDCKfrPFLAL7JKXR/MuM6l7OSrKBonAy0ef9IBlHKFP976j6RMuecDwKgc4tzJY4T1YXGmP7IVGkWOGBMg9pC5LA4n9cN12TxSPTiroE9qW9/qN7KiDXd+jd3YhZ+LGDRk5f+M8ZwNdejRB/NnblfJcn4rTz07zvCrN6jGUqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G3Z6h5jZ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5754uGaO206029;
-	Mon, 4 Aug 2025 23:56:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754369776;
-	bh=DRU7MBSf2wWijMMbUefq1mXuYp0x7VCTRKxEugD/E+o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=G3Z6h5jZvN1fnqoWcZmjOkbHJQKq+XtmD+mb6onaxsjXu3J4ysgPJXkjThlWOZCFV
-	 XMhcQiI5LUdSMwsYyzqEioeQwHpRTrybU9n1oLqpYsaQ5B79rlONY0xCFpVnej78/0
-	 0+5xB/0UkLSLwqxkliMf+zKyd5GqUhVNbY3PdkkI=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5754uGEV2542974
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 4 Aug 2025 23:56:16 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 4
- Aug 2025 23:56:15 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 4 Aug 2025 23:56:16 -0500
-Received: from [10.249.145.16] ([10.249.145.16])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5754uBGR1259545;
-	Mon, 4 Aug 2025 23:56:12 -0500
-Message-ID: <dcacfd08-8a2b-4da3-a7b2-42150540eaab@ti.com>
-Date: Tue, 5 Aug 2025 10:26:11 +0530
+	s=arc-20240116; t=1754369919; c=relaxed/simple;
+	bh=p3Ctln5ArnuqEriQVMrjSsSycEXSlWingWpH88cmVVY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=W1YiCk1fFqqaj0aubGqZ0J+YE8JDkOVJ32kQwSTLD+DWsVpFSskdFak31Q4Ihq3FROq/TQMYQOhmA8Q/6WQk8BN+DPR5Q/8+MdXwKijI0qfmpiXEM+1v9nq6BTkJdLMMGQt4PmsN5qDllv2lDsi9W+AAIinDOmaY7w23BoFIijQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N3O1Xs24; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21656C4CEF4;
+	Tue,  5 Aug 2025 04:58:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754369918;
+	bh=p3Ctln5ArnuqEriQVMrjSsSycEXSlWingWpH88cmVVY=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=N3O1Xs243//hGVgduP9ucmQLc1mAU0+00JxEYL8S/mHxpbCYQj9YGa3ns+J0f+wbY
+	 XvH1iHOKTKJttx+GFQiutBfSbVUixllJOWlSwpQmhdJK5Qtb/0LnKeJBdghiHojBuO
+	 c1M5fhSZV8ex0HXNQYodcoubSS7yGINLqkaiXDjge2mBMnWefEE61tRyZK1UGo0sj3
+	 M8tPxg5kUSxKUKr77ExSfJsg7eFUKrECodT5HIy6M5ai1LZ8JFh53r20tCF2YpO3pw
+	 9irhgqipyxlolSqDyVR2cGCZmANlFRx9dfoJwEfgdC7Sgn+/IUi9pmf/bxqoLsRE3j
+	 MUe8qchs9beJQ==
+From: Vinod Koul <vkoul@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Yuvaraj Ranganathan <quic_yrangana@quicinc.com>, 
+ Anusha Rao <quic_anusha@quicinc.com>, 
+ Md Sadre Alam <quic_mdalam@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Srinivas Kandagatla <srini@kernel.org>
+In-Reply-To: <20250212-bam-dma-fixes-v1-0-f560889e65d8@linaro.org>
+References: <20250212-bam-dma-fixes-v1-0-f560889e65d8@linaro.org>
+Subject: Re: (subset) [PATCH 0/8] dmaengine: qcom: bam_dma: Fix DT error
+ handling for num-channels/ees
+Message-Id: <175436991267.243171.3381840472442505364.b4-ty@kernel.org>
+Date: Tue, 05 Aug 2025 10:28:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
-To: Brandon Brnich <b-brnich@ti.com>, <linux-kernel@vger.kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Udit
- Kumar <u-kumar1@ti.com>, Darren Etheridge <detheridge@ti.com>
-References: <20250804180106.2393256-1-b-brnich@ti.com>
-Content-Language: en-US
-From: devarsh <devarsht@ti.com>
-In-Reply-To: <20250804180106.2393256-1-b-brnich@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Mailer: b4 0.13.0
 
-Hi Brandon,
 
-Thanks for the patch.
-On 04/08/25 23:31, Brandon Brnich wrote:
-> This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
-> present in J722s SoC, supporting baseline encoding of semiplanar based
-> YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
-> supported from 64x64 to 8kx8k.
+On Wed, 12 Feb 2025 18:03:46 +0100, Stephan Gerhold wrote:
+> num-channels and qcom,num-ees are required for BAM nodes without clock,
+> because the driver cannot ensure the hardware is powered on when trying to
+> obtain the information from the hardware registers. Specifying the node
+> without these properties is unsafe and has caused early boot crashes for
+> other SoCs before [1, 2].
 > 
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
-> ---
+> The bam_dma driver has always printed an error to the kernel log in these
+> situations, but that was not enough to prevent people from upstreaming
+> patches without the required properties.
 > 
-> Changes in v2:
->   - remove invalid clock-names attribute
-> 
->  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> index 5cfa7bf36641..fb24c14614b4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
->  		ti,sci-proc-ids = <0x31 0xff>;
->  		status = "disabled";
->  	};
-> +
-> +	e5010: e5010@fd20000 {
-> +		compatible = "img,e5010-jpeg-enc";
+> [...]
 
-This is missing ti specific compatible. As we don't use the IP block
-directly but there is a wrapper used to integrate with TI platform, so
-it is better to use TI specific compatible too to account for the future
-compatibility as discussed here [1]. You can refer AM62A device-tree [2]
-for references on this.
+Applied, thanks!
 
-[1]:
-https://lore.kernel.org/all/50d97c30-4926-0bbf-1209-dfd25043e359@ti.com/
-[2] :
-https://gitlab.com/linux-kernel/linux-next/-/blob/master/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi?ref_type=heads#L1150
+[7/8] dt-bindings: dma: qcom: bam-dma: Add missing required properties
+      commit: e0e2cea86f75c8255b7da13ec92a34bb35a9c4fb
+[8/8] dmaengine: qcom: bam_dma: Fix DT error handling for num-channels/ees
+      commit: 2f8a2cfd0994adf5f71737bb0946a76800479220
 
-Regards
-Devarsh
+Best regards,
+-- 
+~Vinod
+
+
 
