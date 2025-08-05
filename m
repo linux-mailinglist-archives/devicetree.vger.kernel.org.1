@@ -1,243 +1,329 @@
-Return-Path: <devicetree+bounces-202012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54FC4B1B9E8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:18:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D67B0B1BA04
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC54B189DD3E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:18:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BC18189E904
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3FA215F6B;
-	Tue,  5 Aug 2025 18:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C862957CD;
+	Tue,  5 Aug 2025 18:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="F0TKz4qX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a93Oo/fb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2055.outbound.protection.outlook.com [40.107.237.55])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA0754F81;
-	Tue,  5 Aug 2025 18:18:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754417903; cv=fail; b=D+ZErMzYsmTOsjgPyEJgILXsB2wFtxp9deix/dM1LOhbSz9U+DOygkfZj5EPGnvrKc2Axve5OheuEfyMMG+WvQ9K3poE+MInlC8pBpddBxL5jRhi6UZSZSTNOPCFYDLtldQ3wea+ZP+uea4up4MTmcGlLpZm+vEx8Ci6iIamaPA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754417903; c=relaxed/simple;
-	bh=BWIx8j4S9slAo0QraSy+yuFc26OphtMjqFyG4f/iT68=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=dcRYPw8aCZDpj0co0p9He0khEVGrOFuJMWJ2XdAYGy3zky30It8E2vxr6YakTzGuxAATXYeitQkIdDNV3gMH2DqEqTQ9O81CGZ65xKxKwtv7l9P4GH/XiKo22fjBOQFdn7mPiJhLDdJBZDtbi+i5u3cYR4RAjIt+CBjjTzS+4z4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=F0TKz4qX; arc=fail smtp.client-ip=40.107.237.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pCN/1h8vc2dQG9tXkCGTkEpWHWakrTziD7bsy0DSboBKqDZDHg6km+x4MA2ApU8Wkoksuu1WLZqtppsHuFmddItQCei6b9Bknq+fMAPl8w6zS84BsYxTOLB35SbepSiIYGYiPBpmSe5rLTOROkFBeu3ByXwpabf18nGCL8EZ82GKi1iy7sb4iSuU7vUIHgkxSl52uYx/6baQSH364rIUfCZIfo4xkCF+RQR77IcyFpk6mTCMsoWVY6kp3zxcakMi2ho/T2pDyRrK/iQ7oHHTyt4sa5Ka22MJ8u58KO/2hUMNhrKIdDpmcOxmCnNgwzhEpFzOwI5YKpXyfMIv9WFWRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rmKGeYWvQHe2rzs2KU0PVpn2KOQLV5F0TFnsjDZxgCE=;
- b=KNHl5VggSipHF6zY0g3Pzr0ZShO3gX4tSkepn5If5GtNa7qus+88lbRrJ6TOIVKoNIZ704ii9EnDvqOW/X+SX9rRGQXivm7C89fXnMWLEvR9RMoOCj0J/aQHaKwP1aNDVY9nJH23LJE4Qda0IvAMZUFv5/TfSsXGGxNLtzBQQhQPU4dfVrYXdr30vw6Aswhc1upLpCCslE3y5bN46NmIoj5y+ytG0W65QbRA5vUuNrx9SbmX8SHIGqAH3C/cGmHQUlbis4/Va83yQNXx/Fs0sl+3DAtsOEhwxLW7AXKax8mF9I94eJUKgXDG7OBnxXYtCMKuXtmZ+VZXBPj4//52rA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rmKGeYWvQHe2rzs2KU0PVpn2KOQLV5F0TFnsjDZxgCE=;
- b=F0TKz4qXCN0MQ7X3TMGsuaoFt3pK5kB+NWFSwQuZJHIDXEXKrAs7jw7onhXqk6PGZaMZ+yuKAJPzn7oyc4cq02692njdLYsvVCojwmsKDb1CtQKJHSe/4XozXw6gw7fLXDu7VwF0TMg6rcbo4XBzIhu9WXbyRwzxDSp9oVFYNMWM4+0hVtKKeUP4XmiMOVexTuBxjVGMs3d5060x2EgQCfUPlw98E/LWH4Vj9w9dVWdnqKA/aE2IhH+xdW+fjV4Qd+w1N2tbVzJHsB3u0eSdhWqh+SY0MsQbImAD5j8ORSwwulctOuTDHzv4sAgknmMiT9Wua6qyqChib8iW7hdjig==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com (2603:10b6:510:209::7)
- by IA0PR12MB8256.namprd12.prod.outlook.com (2603:10b6:208:407::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.20; Tue, 5 Aug
- 2025 18:18:14 +0000
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d]) by PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d%7]) with mapi id 15.20.8989.018; Tue, 5 Aug 2025
- 18:18:14 +0000
-Message-ID: <5e5c8bd2-4c4b-4371-a6b2-d4d4359a4233@nvidia.com>
-Date: Tue, 5 Aug 2025 11:18:12 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] Adding device tree and binding for NVIDIA
- GB200-UT3.0b
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20250723222350.200094-1-donalds@nvidia.com>
- <20250724-affable-gorgeous-dragon-130ac6@kuoka>
-Content-Language: en-US
-From: Donald Shannon <donalds@nvidia.com>
-In-Reply-To: <20250724-affable-gorgeous-dragon-130ac6@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR07CA0049.namprd07.prod.outlook.com
- (2603:10b6:a03:60::26) To PH7PR12MB7282.namprd12.prod.outlook.com
- (2603:10b6:510:209::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CE225A2B4
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 18:27:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754418425; cv=none; b=hfzDeNK424PUwB67gyZgzOEm0CdWae/hJDQs4KMXliLBGYNvokdRKB0T3NrH/DeTJeXSGTaq2rxxFXjCsS1zcvq6CfY9tsFQ/IahnTt9BPS9oNrdatF9h45UEXKD8BTz9yncNnJoKKAM5XjIv3/WpoWVPZveCyHjDiNCFm4rNnY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754418425; c=relaxed/simple;
+	bh=6y8nlc9gd+kcsuPS309XlKj1GjKIPI4qnHhdViPlT3Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FkwHunzrSr+N18fPKFARLe1cWwByAYKZ7T3Pa59WVACa9mYPC3ptdx06pY6htG+/S4lbe2+wxiVLd/BVFglEhUzcjlPDFF2GkU7TyO+mCEYK+eYjLYkwEagtlu/SzukLvN6GG29Kbe/Fye3LEaapMf3h8lNAb0Is8QqanxWDazE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a93Oo/fb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575I7gLY012192
+	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 18:27:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8X+rFEyh78q3PUoe5+Y4jMYH5oFL6y+MBtI/T1H47EQ=; b=a93Oo/fb/ngIEVQ9
+	j0Ro2fFoX2FjfFDx8J6daWRewfH7wfgLBqQCkv8pvlwyXlhQmnc1ZLsvGClMeQbq
+	lOUgwBfjE1cu1QyAWV4nLp1D5sSdvhhmaNdUgk+rCim+3UuABe90F/7XpdoEco+o
+	KemsCIKonzMWpixuqLxPJ7Xl/JjF5hr2x4aWFhn5q03GnhBi9x6CTSarjS+k7fLP
+	0OXTV0UgY07aXBB3R0zCxlWEZ36BY6RmnoPB7nIYE+XgwHAwQCZnpZzUp8Fukn2o
+	8VriSv/HoQknP9QBDjspEpyAzVeTlkcchmArVZFrg1y02+a8SnZA0O2QjmIppw5h
+	3D8/Ig==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpy6r1qr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 18:27:02 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b07ae72350so4330331cf.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 11:27:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754418421; x=1755023221;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8X+rFEyh78q3PUoe5+Y4jMYH5oFL6y+MBtI/T1H47EQ=;
+        b=QBg9c/xrt/R4NW0QlLn+eMoPOkdbvLiMZnynwwgtAS7jvxvcdAs+qiJRQCjItUiUf2
+         P4s4VXsR6IHkWI+kZ961TuewbQJcLbmZR4R/ZyYwDVxwxvytFT3nQH0/f7Yj1LJEoqVm
+         THq8t7croftqQFF5uRrZD193/4Mix19+dB6W2cXYtYQN8hvZ/pk5qwfkh5OXVnMcZzQi
+         MXC03FQcbH7VM7ACpOpKqvMM9K/zI9DI9bGpq77ir7JjnxDgLJkFoOvDnNQLMUe54OLt
+         9zuIezzx+YJzocTi+sFXimJq9pXLM0/B4gCQP95lOduV8/qasTHVdSxS4vsbvFunvAQy
+         2H3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVdyG0C72Rvqbnn+b4MufhxtjNhZEZunkQpvkZTXrhNUcXyc/uZyoi2+ohQp5+iMsh45A0V2tA0AMg/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9U2sLqxFLKoVK/vFPH6DFu4QC1jaBSA23su4pAOcaWbJTgf10
+	Kyc50ej8JAjvjQP3WWAjg+Fo2XtpWAbQEABOyrciZe0njmSFlgyoWQ4zvvKep2hY4g5Tp+dX0W2
+	X4Wn6SJynZ6TbUKRYdepiZOzewnVoDBK2FLLEhWEdczZDiNUFq6ntBMPegHFj6q7e
+X-Gm-Gg: ASbGncslAUXkEUontliO1eqzDreeONLMTJL492EFi/3OdtGdzDqlE1K8EyQ7qKZodeD
+	+kDAt9mvMcp8gZ/Yw7zjeYbYlh2LRz8hkFuBMmBgIw4KxRDD0UMkFU4502mniE7mHlB7mJUP2JF
+	04ZJdc7lYeT/1nZi4frcSf9MFf1E2+yZE60JtW1M5MS25kXsNtfhcGFPEicsEZJfnLT084u/uW2
+	IHS9dsao3hNGIQkE7q8guv5M9feRXxWWh/V3FHa28xNva0mAnKdYFN4xdI8RSnnvhaHD4mC5eho
+	vr2rjR5bTADSArQWQ4mqzmmysYSOpzH94LF71mZPCubzPt8OG16wSzIU/H5c++Y035Fr385odOY
+	8JvTjPd1EnXBUGmFymg==
+X-Received: by 2002:a05:622a:8358:b0:4b0:7e9f:aff8 with SMTP id d75a77b69052e-4b07e9fbdfbmr31517491cf.11.1754418421172;
+        Tue, 05 Aug 2025 11:27:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEZlCU8CvK41aG98FrS4OVUGBpHFuya4XLRz4mNMlXfYenvsD4229VwAFQ/ihh8G6Z8SHozlA==
+X-Received: by 2002:a05:622a:8358:b0:4b0:7e9f:aff8 with SMTP id d75a77b69052e-4b07e9fbdfbmr31517091cf.11.1754418420464;
+        Tue, 05 Aug 2025 11:27:00 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a37a8sm957277266b.40.2025.08.05.11.26.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Aug 2025 11:26:59 -0700 (PDT)
+Message-ID: <3cd33dce-f6b9-4f60-8cb2-a3bf2942a1e5@oss.qualcomm.com>
+Date: Tue, 5 Aug 2025 20:26:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB7282:EE_|IA0PR12MB8256:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1dfcfc1e-b822-4645-1398-08ddd44c7155
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UzhTdUZvTEx6cnc4ZThxdWg5MzB3UXRqUE9QTE9kc0VDWDBaTnBQVDlQSjlP?=
- =?utf-8?B?WW9CbHo3bFBDRlc4Yzg5djJlMEFHbWZGU1FTTCt3Vy96K25BRFk3V0MxeFo1?=
- =?utf-8?B?cjAyWURoMzM4Y0FFamFLOEgrekJuaHFVdkJFd3MrUGVXTi9uWU4wNU5yRHVF?=
- =?utf-8?B?R09MZVRlemd6THJxcHR5Vk1CdmdFWHpQRVB3SzdUeW5xcGxPL3ZubENDbVZh?=
- =?utf-8?B?RDEzOVJvUjVzZC9JL2RMbTdUQzhCWHRiVkVuTkkyWnhuSEs1ZGZwVWxpK0dv?=
- =?utf-8?B?S3JubFQrTXV6TXFSUlJXNVlhWDlOS1VxLzNkekI1bHJpbFVGQ3piakx4V3E0?=
- =?utf-8?B?WHpUbXpUc1ZYbGxSa2QzZHpOTzFGK1FrVFZ5NXRlOWR2TjgvWHg1L1orOFZH?=
- =?utf-8?B?dUdBTDNtNTZmNTJORDh4QzNvSlZUMkV4U282YzZ0cWljTGxWS3NBdC91OEZ0?=
- =?utf-8?B?emtmYVJaZFZXQXdEVmU2RTY0enBvdDJMVEVpQ2R6WXdDRUVLTGtBWDlJK0Nu?=
- =?utf-8?B?bzVnZWl5cVN3cFk5aXJZS1h5dnMzMTNGdFdiRmVSY2ZSTzA3VDdYb0tUUGxX?=
- =?utf-8?B?UkU2VXdrRjRJZUsrTHB6MGRGelFuYVlta3RoblpjM0p3ZURidTFRQjNTZjFO?=
- =?utf-8?B?WnhFRGdVZFhQOHpLZTlsMGtMR09sUkxVaVlWNldGYXhQYi9USmdmV3lieUZG?=
- =?utf-8?B?K2ZzQnM2cS95MncvMU8xVUdUOVh0aWp5Q3Q0b3gzVlJlREw3T28wVjV0Qlc0?=
- =?utf-8?B?QUNwbDdHTXMrSXBzb0lFYisrWWtEYUs5RjdWcWJ3R00wL0hwWHdmWE9Cbmh5?=
- =?utf-8?B?ZVNUVUkyQ2pSdGlaRXAzUVBmZVkzL283ZThpMXdVTFlHYU1LcXFFVm1UenNi?=
- =?utf-8?B?SmFod1I4UDlBVmFEQnpmbVZRMElXNTRJTlpwZGtrWTRBYktIR1I0ME4rK1d1?=
- =?utf-8?B?YWpkWUp0SzR6L0VvemR1VmZOVG5ST0Y4YmtaQU02am5TeEN5Vkd5eUIxZGNP?=
- =?utf-8?B?bHBSdittajd0TlFTc3BpeUVKRWpGVlNlTVlMeERjV1h0dzh1N2wxQzM2eHNy?=
- =?utf-8?B?b3Z0UWlYYWZxbmhaNHU3MS9jd3BwN2hqalI0RzJsek8xeDgyaWE0bjRma0M5?=
- =?utf-8?B?bUg1cFlOVHVZVWNmT1BybjBIQmROd3h0TmN5YWFsWVg2cUVZYVlFdm5hYURv?=
- =?utf-8?B?NU0yWCtoWW9LRkp6OE9BTjR2TzNqckY1eVVtR1pRUWYrbkpBdUNSc05VemRC?=
- =?utf-8?B?eUdXR1FkdkM2YncwY1JkUWxCY3hKRWVRaGdYcVNubE1pZWhMQUtxbnpjNnBn?=
- =?utf-8?B?dzdrSS9WREFua3RrT2NWaGh6OWR1UmZzaEJ3SzI3OW9HZnc2RXZVUWxOeHd0?=
- =?utf-8?B?V0NGR3hNRWd2Z2t3Titkd0V1blBpVm1KRkdrMTE4VUVzeTF6UC9WUWtRNXEr?=
- =?utf-8?B?eUZ3eE1RWnZvU0F6S24xOFh6a1o3TjcrM051bVA5QWhTQ3I4cHBqRlpuNHpl?=
- =?utf-8?B?S1lUazNiU1hlSENHSDJKdDRnRWdFUzlJOFVvemJRckVhNitpTGduQkpOL3d1?=
- =?utf-8?B?Q0lXS1ZFL2FHTGY0MFV5Q0JiN1NMTmZMT25ZRk9hZ0xVVHVkbGVWOFZDOEJy?=
- =?utf-8?B?VDcvRHR1Y09PNUVHZVJoWktMWTVheFhVRzRJYzdIcWpUTlQwVm1MdzloVDdh?=
- =?utf-8?B?dm1Rd2syZ1o1RFZMMHlJL1htYnZsUkowUzZoOWFONG52UnlLaFhpejc2bW5O?=
- =?utf-8?B?dy9DNnJ3M1l1Z0xJcjBZVGR3Q2x1YytRdXNqTVJ3NzJNVEUzZTBwUGtaRGUv?=
- =?utf-8?B?V3Zna1kyY3VVWTVmYUxuSk9YTDBLZ3lZVFFVSGpCa3o4WFlBVGtpWURxaUs5?=
- =?utf-8?B?MUQwV1VYMVRCd2hDdGttRmMvM01qOHJrNnZkdWZ4UDV3Rmc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB7282.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Q1VXano3SzR1amhkdERjR1MxZkJ2am9PVjliUURsNHd2WGZaZDFVUFFrK1Qx?=
- =?utf-8?B?bWhEWEttYnR0UFpTRVhnbk50WUZqajBtVzl5OUhDaHNIck1VODVoUklMN1FB?=
- =?utf-8?B?YzUwanBORGxYTVBGWmlkZlRZS2tpY3VxeXRZcWVUalNnQytDKzdPUnhnakto?=
- =?utf-8?B?Qm16OUtQalIyYUVxclh6eVZYa2JzdlpHUmNFKzRDRGVBL3BpNkdnNC9kcUFa?=
- =?utf-8?B?Q1NFeGlFY3lMdTdjN2QxMFhLQTNzMG5XZlpkRGFzOGVuUng0eHhZNUdGbmhE?=
- =?utf-8?B?dGwzZk1QNnc1UXpQV200SEc5OFB4NWpuQ1V5a2k1VzlubmpscXVOWWFaUXFs?=
- =?utf-8?B?TGk0ZmtJSzcwWHRKRHNyMEZwT2Q3dVJDZVhwNXhScTJrN1FiSXRGYi94bTgr?=
- =?utf-8?B?QjNLMS9EWS9BWHQrZElOcUNBZkhzQ2I0aW9UYWczZU4xeW0zY0tCSUlFMUpQ?=
- =?utf-8?B?S2hjV3JFMjFVeUdyWDRmOUphdjJzZHJNOFZNM1FkSWdSV05VKzI2SFhtaCtD?=
- =?utf-8?B?MndnZ3lmeWkwNXJvbjdYOEVmemhlTUpFQkh3RElpNXYyTkF6RVBFVlRGdXB5?=
- =?utf-8?B?L2RIckJhQ0ZHU2lrLzZORVBQR1ZWeGtMVXR6NEtXRzYyR2UwMktGdWdaR3Zw?=
- =?utf-8?B?UzNUQ2FZS0dGSEZicVEzUnZqS3hYQ2xyaVpKVzVTT2U5clFGMUluQmdGUWtL?=
- =?utf-8?B?VUFVSGM4aER3dlpwMW9nV2lqcjczMWhmeGdWK2tIYU5qcGsySThSbVRMTHJD?=
- =?utf-8?B?Q01vMWg2azZ2RHNIUHJ5NkRtV0F6RlRRN2pMT0g1NDc0WkR1WFkzdnJBVVBv?=
- =?utf-8?B?Sm5LVDR0NjlGcGJsVE15eWsyeGxCdnpnWG9oYS9GaXQ5Uk1tb2NBUTZ0Wmhs?=
- =?utf-8?B?M1Nvc1FvNzNzaTc3ODg5dHovWFRIbDhnWVlqN3NuYjdMMWhFVVhHczF4d0d3?=
- =?utf-8?B?dHNYODlrU25obXBJMWhXemVqNy9JK0FEZlJJS3dhbUhXMVhmQjJUc0grOUly?=
- =?utf-8?B?TXIxNTFYUjcrTjhMQWlMSHRFSXZIbzZxYXVjMWkzeWl6bWJuN0ludjBUSVZP?=
- =?utf-8?B?U29ldUFhNGVqcU5XUW1CeGJCdmlCY1BmV2pWa1BCR09kK0RjSkdIR0FKMnVt?=
- =?utf-8?B?TkFrYVpubEN3YTBuR2lZZU9YY3ZlY2YvSGR1dndoMDFJNnNSSnpmdnRmeWxU?=
- =?utf-8?B?N3hWRWhiTUVZQkt6YTYzZ3BLcE1NbnpzeUsxZVY0emRzQldJNUtoOEZLcDJo?=
- =?utf-8?B?Yk5ybW5yYXJSQnFLVTlpVnM1ekFvLzJHdUdEdWt1d2lKYUdCejNSNVVzK3Fs?=
- =?utf-8?B?Q2dGVk1ocXlOZW9SQm9ELzVTNjliQ0FseUR0R0l0cEdkZXF4TXpJNjIvdmxk?=
- =?utf-8?B?UjRqL3o0eDQ2YUNKQy82aVNOMWlQWWxxRHk4c0RBK2dTaTVHdlFRMmVDYkVy?=
- =?utf-8?B?a1gwNnAvcUFQV3A5dW9JaW9tVVVZVENGS3N1R1RaVUFsc1JtRU9VcnEzSTRB?=
- =?utf-8?B?aDFDbTAycENyZ29WeE1nK1pid25LeFlBMkNuV080bFIySFdXNFVTSG9VcVFW?=
- =?utf-8?B?NC9xT3RTS3Ira2lUZERoenNaK0RLbDVjNkVLaUx3VzYvektvMXo4a0Q5NGpI?=
- =?utf-8?B?WUNLU2hxSmtyY1RNQ2dma1Jqa3NRVERoaXozRUJWMU4zN29rL0ZqdFhEU3dz?=
- =?utf-8?B?TlVGOFBNd3ZlVmx0dllnVmdFQnI1UjRhZVlvU1BqYld3azg5b1JnR2Y5TzB6?=
- =?utf-8?B?SXRSWmUwWGhPdUVFbFFPbUo0MC8wLzNiWklDenFDR05lT2F6aXNxaXZhamlG?=
- =?utf-8?B?dVFLcU4zVnZiNXgxWnczWWVpSjhBSlhVNlg5QThhc3d5UlhCVDNCdTdTVDBm?=
- =?utf-8?B?TFptTnlFNkF0eWVKdnlpRFNCS014UUgzLzZrcUVBcURPVlpIN0hodytSRVBk?=
- =?utf-8?B?d3N3RnVkendCR2VkUmdINWpPQkxwQU5hTzNPOHM2YnJUWDVXUWhDaXdwNFJv?=
- =?utf-8?B?cnVocURMbU44MS9uTE5QVmRUNTl6NjBpS0VoWmlsMDEwaXhKYWVaLzFVeVJs?=
- =?utf-8?B?Zm44LzBGWWV4emJlS0RiblRNaU9JSFh3eUVPV1owcm9qVFcxbFgybG1uRjRR?=
- =?utf-8?Q?ZeF0okqmeD07n7zQ8G0F2Sl3w?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dfcfc1e-b822-4645-1398-08ddd44c7155
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7282.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 18:18:14.3693
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t97jt63eJ4n0e45Uv95HZgPFzJI2JbpC5Z0AMA1QmUCbtE0wYk1eFJDDYCaduoJ0mY1wkNWBngTJ2dbCKwNqKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8256
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
+ properties to UFS
+To: Alim Akhtar <alim.akhtar@samsung.com>,
+        'Manivannan Sadhasivam' <mani@kernel.org>
+Cc: 'Krzysztof Kozlowski' <krzk@kernel.org>,
+        'Ram Kumar Dwivedi' <quic_rdwivedi@quicinc.com>, avri.altman@wdc.com,
+        bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
+        agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <2a3c8867-7745-4f0a-8618-0f0f1bea1d14@kernel.org>
+ <jpawj3pob2qqa47qgxcuyabiva3ync7zxnybrazqnfx3vbbevs@sgbegaucevzx>
+ <fa1847e3-7dab-45d0-8c1c-0aca1e365a2a@quicinc.com>
+ <1701ec08-21bc-45b8-90bc-1cd64401abd8@kernel.org>
+ <2nm7xurqgzrnffustrsmswy2rbug6geadaho42qlb7tr2jirlr@uw5gaery445y>
+ <11ea828a-6d35-4ac6-a207-0284870c28fc@oss.qualcomm.com>
+ <jogwisri2gs77j5cs3xwyezmfsotnizvlruzzelemdj5xadqh4@loe7fsatoass>
+ <CGME20250805170638epcas5p4cb0cc78c5b5d77072cec547380b9f03d@epcas5p4.samsung.com>
+ <b235e338-8c16-439b-b7a5-24856893fb5d@oss.qualcomm.com>
+ <061b01dc062d$25c47800$714d6800$@samsung.com>
+ <i6eyiscdf2554znc4aaglhi22opfgyicif3y7kzjafwsrtdrtm@jjpzak64gdft>
+ <061c01dc062f$70ec34b0$52c49e10$@samsung.com>
+ <87c37d65-5ab1-4443-a428-dc3592062cdc@oss.qualcomm.com>
+ <061d01dc0631$c1766c00$44634400$@samsung.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <061d01dc0631$c1766c00$44634400$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: wYDzrltJTqpHQFMNDChi8_V9UkV62fih
+X-Proofpoint-GUID: wYDzrltJTqpHQFMNDChi8_V9UkV62fih
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDEyOSBTYWx0ZWRfX/G/lHEKT7pL0
+ FztAVeqlY8jubs4J1bXg5gG4q48wBnRAVcDfpf2HpuXls8E7OAlX9roPWLb6xtv+NvqbjPxrn21
+ WyyRjqSHwgMDZC3SjS37sgzQ9Ds5X4YmzHkouvVJOTIzam4XFl0e3s0bNdlieZ+WtDdL8nLCy1U
+ SOTjUYzcK/XacO/m5lKpN8wJPF0zgr5fT31X4dMX5xyEGcMo7JdW3pjTkS6evkXPAZCI7TVAmAd
+ uDDQjB41KAQt0jq9dzcBWZncjLJZTfyJyeyyrpwc0kfubpiBKtFBPRtCpLh4jrI3SkhP9NeKkSD
+ 18wwRJLbhNSubsLM2xjcACKgFHyuu68ucsgUUyDeY/FmfbLxlNy0V3YPpxg+A7tWVn5RtZ7Ju2C
+ ZiNlpCN0Ts6YU7lQXZJpl5SZ1PTPk4uZN8AYAWupDxZuq49aJBENZ6x8grYrrXgW8lk/ZKYN
+X-Authority-Analysis: v=2.4 cv=LNVmQIW9 c=1 sm=1 tr=0 ts=68924cf6 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=hD80L64hAAAA:8
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=JF9118EUAAAA:8 a=N54-gffFAAAA:8
+ a=bLk-5xynAAAA:8 a=yPCof4ZbAAAA:8 a=vENURVL_7Fm7xlK8qQ8A:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+ a=xVlTc564ipvMDusKsbsT:22 a=zSyb8xVVt2t83sZkrLMb:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-05_04,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 impostorscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508050129
 
-On 7/24/25 00:54, Krzysztof Kozlowski wrote:
-
-> External email: Use caution opening links or attachments
->
->
-> On Wed, Jul 23, 2025 at 03:23:48PM -0700, Donald Shannon wrote:
->> Patch 1 adds the binding for the NVIDIA GB200-UT3.0b platform.
->> Patch 2 adds the device tree for the NVIDIA GB200-UT3.0b platform.
+On 8/5/25 7:52 PM, Alim Akhtar wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Sent: Tuesday, August 5, 2025 11:10 PM
+>> To: Alim Akhtar <alim.akhtar@samsung.com>; 'Manivannan Sadhasivam'
+>> <mani@kernel.org>
+>> Cc: 'Krzysztof Kozlowski' <krzk@kernel.org>; 'Ram Kumar Dwivedi'
+>> <quic_rdwivedi@quicinc.com>; avri.altman@wdc.com;
+>> bvanassche@acm.org; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; andersson@kernel.org; konradybcio@kernel.org;
+>> James.Bottomley@hansenpartnership.com; martin.petersen@oracle.com;
+>> agross@kernel.org; linux-arm-msm@vger.kernel.org; linux-
+>> scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
+>> properties to UFS
 >>
->> This is an Aspeed AST2600 based unit testing platform for GB200.
->> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
->> differences, additional gpio expanders, and voltage regulator gating
->> some devices.
+>> On 8/5/25 7:36 PM, Alim Akhtar wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: 'Manivannan Sadhasivam' <mani@kernel.org>
+>>>> Sent: Tuesday, August 5, 2025 10:52 PM
+>>>> To: Alim Akhtar <alim.akhtar@samsung.com>
+>>>> Cc: 'Konrad Dybcio' <konrad.dybcio@oss.qualcomm.com>; 'Krzysztof
+>>>> Kozlowski' <krzk@kernel.org>; 'Ram Kumar Dwivedi'
+>>>> <quic_rdwivedi@quicinc.com>; avri.altman@wdc.com;
+>> bvanassche@acm.org;
+>>>> robh@kernel.org; krzk+dt@kernel.org;
+>>>> conor+dt@kernel.org; andersson@kernel.org; konradybcio@kernel.org;
+>>>> James.Bottomley@hansenpartnership.com;
+>> martin.petersen@oracle.com;
+>>>> agross@kernel.org; linux-arm-msm@vger.kernel.org; linux-
+>>>> scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>>>> kernel@vger.kernel.org
+>>>> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate
+>>>> limit properties to UFS
+>>>>
+>>>> On Tue, Aug 05, 2025 at 10:49:45PM GMT, Alim Akhtar wrote:
+>>>>>
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>>>> Sent: Tuesday, August 5, 2025 10:36 PM
+>>>>>> To: Manivannan Sadhasivam <mani@kernel.org>
+>>>>>> Cc: Krzysztof Kozlowski <krzk@kernel.org>; Ram Kumar Dwivedi
+>>>>>> <quic_rdwivedi@quicinc.com>; alim.akhtar@samsung.com;
+>>>>>> avri.altman@wdc.com; bvanassche@acm.org; robh@kernel.org;
+>>>>>> krzk+dt@kernel.org; conor+dt@kernel.org; andersson@kernel.org;
+>>>>>> konradybcio@kernel.org; James.Bottomley@hansenpartnership.com;
+>>>>>> martin.petersen@oracle.com; agross@kernel.org; linux-arm-
+>>>>>> msm@vger.kernel.org; linux-scsi@vger.kernel.org;
+>>>>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>>>>>> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and
+>>>>>> rate limit properties to UFS
+>>>>>>
+>>>>>> On 8/5/25 6:55 PM, Manivannan Sadhasivam wrote:
+>>>>>>> On Tue, Aug 05, 2025 at 03:16:33PM GMT, Konrad Dybcio wrote:
+>>>>>>>> On 8/1/25 2:19 PM, Manivannan Sadhasivam wrote:
+>>>>>>>>> On Fri, Aug 01, 2025 at 11:12:42AM GMT, Krzysztof Kozlowski
+>> wrote:
+>>>>>>>>>> On 01/08/2025 11:10, Ram Kumar Dwivedi wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> On 01-Aug-25 1:58 PM, Manivannan Sadhasivam wrote:
+>>>>>>>>>>>> On Thu, Jul 24, 2025 at 09:48:53AM GMT, Krzysztof Kozlowski
+>>>> wrote:
+>>>>>>>>>>>>> On 22/07/2025 18:11, Ram Kumar Dwivedi wrote:
+>>>>>>>>>>>>>> Add optional limit-hs-gear and limit-rate properties to the
+>>>>>>>>>>>>>> UFS node to support automotive use cases that require
+>>>>>>>>>>>>>> limiting the maximum Tx/Rx HS gear and rate due to
+>> hardware
+>>>> constraints.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> What hardware constraints? This needs to be clearly
+>>>> documented.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Ram, both Krzysztof and I asked this question, but you never
+>>>>>>>>>>>> bothered to reply, but keep on responding to other comments.
+>>>>>>>>>>>> This won't help you to get this series merged in any form.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Please address *all* review comments before posting next
+>>>> iteration.
+>>>>>>>>>>>
+>>>>>>>>>>> Hi Mani,
+>>>>>>>>>>>
+>>>>>>>>>>> Apologies for the delay in responding.
+>>>>>>>>>>> I had planned to explain the hardware constraints in the next
+>>>>>> patchset’s commit message, which is why I didn’t reply earlier.
+>>>>>>>>>>>
+>>>>>>>>>>> To clarify: the limitations are due to customer board designs,
+>>>>>>>>>>> not our
+>>>>>> SoC. Some boards can't support higher gear operation, hence the
+>>>>>> need for optional limit-hs-gear and limit-rate properties.
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> That's vague and does not justify the property. You need to
+>>>>>>>>>> document instead hardware capabilities or characteristic. Or
+>>>>>>>>>> explain why they cannot. With such form I will object to your
+>>>>>>>>>> next
+>>>>>> patch.
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> I had an offline chat with Ram and got clarified on what these
+>>>>>>>>> properties
+>>>>>> are.
+>>>>>>>>> The problem here is not with the SoC, but with the board design.
+>>>>>>>>> On some Qcom customer designs, both the UFS controller in the
+>>>>>>>>> SoC and the UFS device are capable of operating at higher gears
+>>>>>>>>> (say
+>>>> G5).
+>>>>>>>>> But due to board constraints like poor thermal dissipation,
+>>>>>>>>> routing loss, the board cannot efficiently operate at the higher
+>>>> speeds.
+>>>>>>>>>
+>>>>>>>>> So the customers wanted a way to limit the gear speed (say G3)
+>>>>>>>>> and rate (say Mode-A) on the specific board DTS.
+>>>>>>>>
+>>>>>>>> I'm not necessarily saying no, but have you explored sysfs for this?
+>>>>>>>>
+>>>>>>>> I suppose it may be too late (if the driver would e.g. init the
+>>>>>>>> UFS at max gear/rate at probe time, it could cause havoc as it
+>>>>>>>> tries to load the userland)..
+>>>>>>>>
+>>>>>>>
+>>>>>>> If the driver tries to run with unsupported max gear speed/mode,
+>>>>>>> it will just crash with the error spit.
+>>>>>>
+>>>>>> OK
+>>>>>>
+>>>>>> just a couple related nits that I won't bother splitting into
+>>>>>> separate emails
+>>>>>>
+>>>>>> rate (mode? I'm seeing both names) should probably have dt-bindings
+>>>>>> defines while gear doesn't have to since they're called G<number>
+>>>>>> anyway, with the bindings description strongly discouraging use,
+>>>>>> unless absolutely necessary (e.g. in the situation we have right
+>>>>>> there)
+>>>>>>
+>>>>>> I'd also assume the code should be moved into the ufs-common code,
+>>>>>> rather than making it ufs-qcom specific
+>>>>>>
+>>>>>> Konrad
+>>>>> Since this is a board specific constrains and not a SoC properties,
+>>>>> have an
+>>>> option of handling this via bootloader is explored?
+>>>>
+>>>> Both board and SoC specific properties *should* be described in
+>>>> devicetree if they are purely describing the hardware.
+>>>>
+>>> Agreed, what I understood from above conversation is that, we are try
+>>> to solve a very *specific* board problem here, this does not looks like a
+>> generic problem to me and probably should be handled within the specific
+>> driver.
 >>
->> Reference to Ast2600 SOC [1].
->> Reference to Blackwell GB200NVL Platform [2].
+>> Introducing generic solutions preemptively for problems that are simple in
+>> concept and can occur widely is good practice (although it's sometimes hard
+>> to gauge whether this is a one-off), as if the issue spreads a generic solution
+>> will appear at some point, but we'll have to keep supporting the odd ones as
+>> well
 >>
->> Link: https://www.aspeedtech.com/server_ast2600/ [1]
->> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
->> Signed-off-by: Donald Shannon <donalds@nvidia.com>
->> ---
->> Changes v1 -> v2:
->>    - Changed phy-mode to rgmii-id [Lunn]
->>    - Removed redundant max-speed for mac0 [Lunn]
->>    - Fixed typo from gb200nvl to gb200 in Makefile
->> Changes v2 -> v3:
->>   - Fixed whitespace issues [Krzysztof]
->>   - Fixed schema validation issues from my end ( there are still issues
->>   with the aspeed dtsi file that are not related to this new dts)
->>   [Herring]
->>   - Reordered to follow style guide [Krzysztof]
->>   - Removed redundant status okays
->>   - Changed vcc to vdd for the power gating on the gpio expanders
->> Changes v3 -> v4:
->>    - Added changelog [Krzysztof]
->>    - Added nvidia,gb200-ut30b board binding [Krzysztof]
->>    - Removed unused imports
->>    - Reordered a couple other style guide violations
->>    - Added back in a couple needed "status okay"s
->> Changes v4 -> v5:
->>   - Resumed my patch after a pause
->>   - Don't plan to make this include of nvidia-gb200nvl-bmc due to some
->>   platform differences
->>   - Fixed io expanders that weren't gated by the 3.3V standby regulator
->>   - Fixed incorrect interrupt pin for one IO expander
->>   - Removed some IO expanders and I2C busses
->> Changes v5 -> v6:
->>   - Fixed subject line
->>   - Added missing gpio-key compatible type to buttons
->> Changes v6 -> v7:
->>    - Removed Acked-by Krzysztof
-> Why? You did not even give me chance to respond to your reply.
->
-> Best regards,
-> Krzysztof
+> Ok, 
+> I would prefer if we add a property which sounds like "poor thermal dissipation" or 
+> "routing channel loss" rather than adding limiting UFS gear properties. 
+> Poor thermal design or channel losses are generic enough and can happen on any board.
 
-Hi Krzysztof,
+This is exactly what I'm trying to avoid through my suggestion - one
+board may have poor thermal dissipation, another may have channel
+losses, yet another one may feature a special batch of UFS chips that
+will set the world on fire if instructed to attempt link training at
+gear 7 - they all are causes, as opposed to describing what needs to
+happen (i.e. what the hardware must be treated as - gear N incapable
+despite what can be discovered at runtime), with perhaps a comment on
+the side
 
-I will reply here to keep our discussion together.
-
-I think that the issue was me using your kernel.org email and not your linaro.org email.
-I will fix this in the next patch series along with some fixes for the warnings from the other thread.
-
-Thanks,
-Don
-
+Konrad
 
