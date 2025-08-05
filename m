@@ -1,91 +1,118 @@
-Return-Path: <devicetree+bounces-202007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EC35B1B9AA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 19:56:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EB8B1B9BD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4B52174738
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:56:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D51803BA493
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7F2F295D86;
-	Tue,  5 Aug 2025 17:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155C01D416C;
+	Tue,  5 Aug 2025 18:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDIK0c9m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OHTMyxGF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5EF2264B8;
-	Tue,  5 Aug 2025 17:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB231B043C;
+	Tue,  5 Aug 2025 18:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754416576; cv=none; b=YtcHxqZf2mW7IiasHF0PTpfITojbupUPIFgVB6ID06GMTHakxChMD9yagAleVQ49g8Y729f4fV5zBqzV0s1/T4ojpNpa3yTCjxbpnySMw05lOD+dGspENWtPgk6bZ3yLr8QKOui1g84aoSoO5bTk8Nw4lhFBKpoBERfZFDm+oXg=
+	t=1754416846; cv=none; b=tYn8+rQ3syTXt+3HkBZraJXXyRADx5efhrvCkvp91WHgDMCaKgr9gXkTw//72G5kWCcbM2BLRRIzGeKYVYk3RZTFnqXfKbpswPYzJB9Sm1c1Kp3StwZFDyDscwwzXQjsofW7udM09cEqSz5F/EHnIHglRLUrjSADc9Ygo0Ypv1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754416576; c=relaxed/simple;
-	bh=xoZA+uUKJ8g3le1aL8FGyrdIWdGhhNTmI8dVLAWUCOQ=;
+	s=arc-20240116; t=1754416846; c=relaxed/simple;
+	bh=ln/2JVk6NhVsQlWmJ0evfyIiDUEGD4I1liy5tXtZuD0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a5Y6YqLe5Dfpxms5/dgwezgOuNYrjOEsaQ2coDRKRia2KoZR+h8SggMrkGA6NHnErDlfrVQITqiKHyk4HK8e+HPWR3yftVBFtpMU+Fm4ERAdq6sEBmdtOXEVlfUgtM2LCRgUwvoJkp0UHXTDQ2zYQCYqlzlX9W1uP8GD9NNvvXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDIK0c9m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD950C4CEF0;
-	Tue,  5 Aug 2025 17:56:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HLxuMFTwuCCckcI1v12Oy6ac5+ZZwHQd3zGWAUbtEsay4cGJzJbiyGoNra04iedqVIlQLcogLsYFz54EM3axJ/7ft7E76aegYvJWqnZzAEAtue21YqkZtbgNmm3mCiQXDd0jDfAQKmknuv7kV4xQ5MCC18In8vRZO5quXVnmxMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OHTMyxGF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49ED5C4CEF0;
+	Tue,  5 Aug 2025 18:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754416575;
-	bh=xoZA+uUKJ8g3le1aL8FGyrdIWdGhhNTmI8dVLAWUCOQ=;
+	s=k20201202; t=1754416845;
+	bh=ln/2JVk6NhVsQlWmJ0evfyIiDUEGD4I1liy5tXtZuD0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pDIK0c9mv9LDR8SNvohHlyAKw9MYIIglVHWG/YpuE5escfKmrGg2Crfjd5kLYN1zl
-	 woHNyxS2MJpmaPbLuo9GHFQ+4kbrR+e2DzHaYxE9nwEvYm3L7XxLX0XbeFvIFTQS6G
-	 8HQWrzGRuF5hNcNyK5p60Jn5RB62l3qRRpyqx2q62fbW4pPXGuKND5FirUcOtm1vqw
-	 hquOKXg+mjUhv2u5q1+bpO8JbP2vtXA1BbkCh+gRN3A832oQzhMnxmqMHM3kC2gRrE
-	 xm8d+uQYNo0wZsh8JR5pO1dpV0l0CzHa8b4G6hHufnRPKv+3CW2mPARQ7tsCqFmWIn
-	 EKMfnieV3CkcA==
-Date: Tue, 5 Aug 2025 12:56:14 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: y.oudjana@protonmail.com, linux-pm@vger.kernel.org,
-	mandyjh.liu@mediatek.com, linux-arm-kernel@lists.infradead.org,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	lihongbo22@huawei.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	ulf.hansson@linaro.org, mbrugger@suse.com, matthias.bgg@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@collabora.com, fshao@chromium.org, wenst@chromium.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 03/10] dt-bindings: power: mediatek: Document
- access-controllers property
-Message-ID: <175441657381.2010253.3126745610510211797.robh@kernel.org>
-References: <20250805074746.29457-1-angelogioacchino.delregno@collabora.com>
- <20250805074746.29457-4-angelogioacchino.delregno@collabora.com>
+	b=OHTMyxGFQQfgBiaX7nV3hZMsQsP0NpZz6nRiI8HdmNNfiscY6MXw04aK7hY6kH/qj
+	 Cy1suNpKCB1VUqy3Brcn+gQOX0I0HH6qET2dp4Cc7Mit1jS0JzLKxSbuFDY6qTyeBE
+	 mx1EITer5jd8EgHB0IZaJMuuscpLCK//s3SUpmOXM91CtLO+6C9+BZu2SVhmjtpSY3
+	 AD2IP2ObVh7++LSiBvKKMJPOhv2h+k3d4ZIAFyO5wggV3tTGO/KF2swc8jHputQFm/
+	 h1Cb3Yh1RJXJiL/S/1OfP4N8Rw/95v46g45YOWbq1prYPpbm6fXUodBa1iOD+E9vR9
+	 CcSatEMMhK6iA==
+Date: Tue, 5 Aug 2025 13:00:44 -0500
+From: Rob Herring <robh@kernel.org>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, ryan.wanner@microchip.com,
+	tudor.ambarus@linaro.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add
+ support for optional 'spi_gclk' clock
+Message-ID: <20250805180044.GA2012043-robh@kernel.org>
+References: <20250805102510.36507-1-manikandan.m@microchip.com>
+ <20250805102510.36507-3-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250805074746.29457-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250805102510.36507-3-manikandan.m@microchip.com>
 
-
-On Tue, 05 Aug 2025 09:47:39 +0200, AngeloGioacchino Del Regno wrote:
-> Allow specifying access-controllers in the main power controller
-> node and deprecate the old mediatek,infracfg, mediatek,infracfg-nao
-> and mediatek,smi properties located in the children.
+On Tue, Aug 05, 2025 at 03:55:09PM +0530, Manikandan Muralidharan wrote:
+> The Atmel SPI controller supports both the peripheral clock and the
+> Generic Clock (GCLK) as sources for SPCK generation. On platforms like
+> the SAM9X7 SoC, the peripheral clock can reach frequencies up to
+> 266â€¯MHz, which may exceed the maximum value supported by the Serial
+> Clock Baud Rate (SCBR) divider, leading to SPI transfer failures. In such
+> cases, the GCLK can be used as an alternative source for SPCK generation"
 > 
-> This is done in order to both simplify the power controller
-> nodes and in preparation for adding support for new generation
-> SoCs like MT8196/MT6991 and other variants, which will need
-> to set protection on new busses.
+> This patch updates the Atmel SPI DT binding to support an optional
+> programmable SPI generic clock, specified as 'spi_gclk', in addition to
+> the required 'spi_clk'.
 > 
-> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
 > ---
->  .../power/mediatek,power-controller.yaml      | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
+>  .../devicetree/bindings/spi/atmel,at91rm9200-spi.yaml | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+> index d29772994cf5..11885d0cc209 100644
+> --- a/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/atmel,at91rm9200-spi.yaml
+> @@ -31,11 +31,16 @@ properties:
+>      maxItems: 1
+>  
+>    clock-names:
+> -    contains:
+> -      const: spi_clk
+> +    items:
+> +      - const: spi_clk
+> +      - const: spi_gclk
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Well, "spi_clk" was a terrible name as it is completely redundant as 
+this is the "spi" block and everything in the list is a "clk". So don't 
+continue it and just do "gclk".
 
+> +    minItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    items:
+> +      - description: Peripheral Bus clock
+> +      - description: Programmable Generic clock
+> +    minItems: 1
+>  
+>    dmas:
+>      items:
+> -- 
+> 2.25.1
+> 
 
