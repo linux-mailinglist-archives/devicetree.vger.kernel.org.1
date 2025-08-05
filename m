@@ -1,170 +1,190 @@
-Return-Path: <devicetree+bounces-201930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE0AB1B4CE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:22:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72821B1B507
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:35:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AC681883178
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:23:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E8A43BE10B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F7F2749DA;
-	Tue,  5 Aug 2025 13:22:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DE827145D;
+	Tue,  5 Aug 2025 13:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SUOyD6o9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lU+lLa4Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EE92737FA
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 13:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290E3218E91;
+	Tue,  5 Aug 2025 13:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754400173; cv=none; b=eH972mcaPYqYv3bLZr01U13Uw9DqukBriXY2YbSFEABMi/zaWgQzX3XJ2c0rv4abjfJjKQgFezZ9rr+O92+xeJ4X+imC/fMyBGExcO2ultEto8hiJFpsq6FgACYr0n+70wThxAAfwVV/7POm3gwmxtdYn7SJTA239JFA/Pgvadw=
+	t=1754400903; cv=none; b=DwU0eNPPQyxYcbhCAmChCGWEycsjDb3Wx5N0Eg67SBaLqfiSfcuYs84e2YPd5ewlSOBJuar19U6RBx6HD3WrxStDw+kBunk4zhoPgUl+6Qc81TSHW+xDfkqwp4SinfPepI/qReaVqR3sUQ3BfoO+eXpgZmPY0nOgQL0pTyi1Ozc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754400173; c=relaxed/simple;
-	bh=vM69YlZ1vil1Kc6o0Mk0jcGWkrgMRscriQoGPfFNdic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nlvqOlIjgFrP/Ehs/hWFRXd69Jhaf8Ciqc7FwLR85rvQmzuTcEhNFZOGVFEwA3ZaMJEsTMFWQ2nKsdaURwUU8VIX2iv1wbcCeWV+hfQlueFAxmhTEQTnJqsZrm372l0qXPpE0gWXN8byCyoT2hbFlf9UlYgWLAPDAVbb5GEbuJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SUOyD6o9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575AZ3JE009970
-	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 13:22:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	szCBzR4GviCnbp8YCyWuodHs17KNEjfZFGcMBSEkhp4=; b=SUOyD6o9vp0ATFRw
-	+BcD3UNJgebeKKlDmEfwtUF9XNGt9eeZQ72fzTPdrIZ6EnBrsiMqW6JQuIZ/QuRN
-	xkCEdSTm43qqzkbwgcgNl/IcnFsyQ+FYNGt48catnX5w2g6K1aHX2+z2w3lqD4lB
-	CUtzLNmHKciOXyFUa73mTeV/FlIfZOkEjC6nZzXnq5yOSaxyttljkUYALMswg9AY
-	wTLYW/vcbIvrubEm+hzOn07YLH2jYYHMK03jITDbJrvqty4St/FsLEQg74U8s8R7
-	99fQ2YR6uw/wJGxgM4x1CfuoOnL1p457qgP9/k9gFyNhlixb1g38+66mliYPYWQu
-	5B5qIw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48avvubjfk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 13:22:50 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7e7f8e1dfd3so43741585a.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 06:22:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754400169; x=1755004969;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=szCBzR4GviCnbp8YCyWuodHs17KNEjfZFGcMBSEkhp4=;
-        b=Ungr33IvAcP42IQxr/kPT6gd6tQDlY0qQBEYLGv5Yj2snPyXkyQnc37lm7PHQIzmkj
-         nIdVIAOniK908Nn0d9MuxgLsAWcjSfrErTl3Q/OQtUFYhTJESdVr7692eo/dB0mzbBfs
-         pnaFTXSfwPTrb8EQnHFBEoTtiHvLqenJfp+o1kzpenb2YmP2nAvkmLmHRuZiRlosbQ3f
-         u5M/sDTysCu3ao986NU9wr5XvYOjMMWeuJ6BAKGKJOC0j8hg/YHskWKiZtoBQNzHkSu3
-         brlC4xxsOF3MwRa1EVc75kNSDwxIKUSdEdTpfpR2nIs9SXZYuduPlg600WiF9/MBdXdL
-         1S6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWvkqe2pVnfiAZvl3IFW/XhKYAoyQQHq82XXCjUW5KkwdY1jo6cfg6rfOK3CRG9DteLcidGjosCXD1O@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzkHROJqoH1QS2TtBvAiw+/8epqIqVjimLl4cP3jOjAQH7V4p5
-	crdtUTNEqMUAisq7gC5S3vpx/wW7XCYvayY8jSi8UD5xjnOhcAu8z6g3HhlIhJTHrlKzdelVSX8
-	C5MbfTafMwk9HGpa0mS0LxfwB0f+PTqnXyQ+rIjdcJASb/yXZcT/UTaNeRz9PRvxZ
-X-Gm-Gg: ASbGncuBhvkoYupwcj1ZB0g0A3UZqs823TMu1FWp3GssB0CI/SL3dMf28mSyI3ncJMO
-	CtCCCBenvknWPnNkCQGQqOMntlROraq6UH1Fy4Lj3UrUVxuDOIPJ8r8SwqGhBrNCWrBp3WYl7Na
-	UlIyEh3CtWd9q1dt3sQtluTUtULjjgNa8mjT1IWcE1zD9sBkvvd+wVyVHbCfeTRz1q2Wa/lFMZI
-	QiuYF0jtwUjVyowvkIE6byaJfFFbGUMYt3GyR9IpBbg9nA9yqfgRNS4jj8RPyCWcSTmo4njC02X
-	grike2xDOO0irAZjBedOr0H4pYBM9wxU5rrW1GWURK+GPuDfDIb20stXD7xQtSQc96c5nn3X2e1
-	8OFv8gXE66VFjxIS04A==
-X-Received: by 2002:a05:620a:404f:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7e696346fefmr816816485a.10.1754400169172;
-        Tue, 05 Aug 2025 06:22:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGFXEmIee6IbP26kuAnbrZ1NnF5HlWu3jLRuHodegxh1SfCqr3ws+7CGE6x21Dl6JbNvMNXMw==
-X-Received: by 2002:a05:620a:404f:b0:7c0:b3cd:9be0 with SMTP id af79cd13be357-7e696346fefmr816813585a.10.1754400168652;
-        Tue, 05 Aug 2025 06:22:48 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c099sm892748566b.108.2025.08.05.06.22.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 06:22:47 -0700 (PDT)
-Message-ID: <95959a89-655b-4ac9-86ba-d8d943809b6b@oss.qualcomm.com>
-Date: Tue, 5 Aug 2025 15:22:45 +0200
+	s=arc-20240116; t=1754400903; c=relaxed/simple;
+	bh=/0ZE234TeSw9xjJpsbQakcX1dsGmzNxtfI+WMMXz2Kk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C4OCQvm9+iWJxXC/u84NcczE5tdmxd/M6Lx+E1AIqhnksbBXQwvrL/9floZhsh3aUwAo9wAJFdqh6ovyre/Kw/bPDaw9eD36e3VU7TB+bXHVmWai09P5TQJQDKY7X0U+W/oDE7tihhbnHPGMXQkNOm7zxdbjMVFhul+jnI54Hvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lU+lLa4Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C45BC4CEF7;
+	Tue,  5 Aug 2025 13:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754400901;
+	bh=/0ZE234TeSw9xjJpsbQakcX1dsGmzNxtfI+WMMXz2Kk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=lU+lLa4Zrpe/uj+pWg2ZxX89B5r4JrzaxePFTDj8FhpjrDcq3CfN5sbou/RNgS0pJ
+	 7jLrGu10EEKOou8IK+saOPLUuu5vIp2E0ynNnoM7IYXL9hDm1YeYhUVhm31lisHfdt
+	 dtZwexUTb4hGIdQVru11j6aIKVCoyrpCtMwZfqymeBHOpKmnZeJHWL3AJYlCFjMkjR
+	 4jZLhZzJmCbSKAILgJRPQ+atWOY4PJ2kWNDpFhKdVDPc+2lvF47AVAqD2NWlTF13lM
+	 KDyU8JmdoRgMv8lmA6UUd/rDY8Pu/X38IYSDL/87TpfGbBtd53uMVnhuDtF0QF0HnB
+	 Vc/PzUijScXxg==
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Marc Zyngier <maz@kernel.org>
+Subject: [PATCH] of/irq: Convert of_msi_map_id() callers to of_msi_xlate()
+Date: Tue,  5 Aug 2025 15:34:43 +0200
+Message-ID: <20250805133443.936955-1-lpieralisi@kernel.org>
+X-Mailer: git-send-email 2.48.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq5424: Add reserved memory for TF-A
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Vignesh Viswanathan <quic_viswanat@quicinc.com>
-References: <20250624-atf-reserved-mem-v1-1-43b1940e2853@oss.qualcomm.com>
- <0826de9f-0125-44d9-84cd-1c52ba199a4a@oss.qualcomm.com>
- <7d641576-7ec7-46f2-ad53-e0b8b36351d1@oss.qualcomm.com>
- <64febbd6-abca-4ab2-abe9-93812bc115cb@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <64febbd6-abca-4ab2-abe9-93812bc115cb@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDA5NiBTYWx0ZWRfXwGHFXSPgtrm3
- U4trfT2c7e/Vecg1aC0smIwKdO9jbVIipL+4D65eIz3/JUNi9RegleQ11p/04oZkrzSZkMTC081
- ZYKotSLpRdPoQBdB/9LfSMZzCjJAOg2Ey18bYbZ5DF4fele10ymkspw7bZiPqL8kTpPE/q7NW/Z
- 1YluyvU4mb6IZgl6TrM4F2mz5E9mNCQnJ4XnnpblPAJU5qwo7udJJP3Q944bkzVruSVS8ywDilM
- iAaAzBtq+qWFfj976XD5ZDIhAK+GJ/I7xwviFNU+/SB0W6hc03SzWzRn+FBCVv4PLPm3oK22joC
- Si8qwNoBLQxwd/k+yGQIJ46RoHrOiVyG1qTqSZH/aAQn/SMRxTcLqlEfM03qmwQopwTi+qd7V5b
- TqFYXVfHZV0B7J9inRcXpdvBTRYPacuX/M5y2cpFv7Q/uCqWpYHN4Lp0N0VhrOMssytuL67A
-X-Proofpoint-GUID: YoMXmwZY8jvMTBDZ9cNzPAPw9y5UL6j8
-X-Authority-Analysis: v=2.4 cv=OYKYDgTY c=1 sm=1 tr=0 ts=689205aa cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=ZhiXV8X_0r9cGbBKTBIA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: YoMXmwZY8jvMTBDZ9cNzPAPw9y5UL6j8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_03,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
- priorityscore=1501 mlxlogscore=519 malwarescore=0 adultscore=0 suspectscore=0
- clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050096
+Content-Transfer-Encoding: 8bit
 
-On 7/23/25 9:04 AM, Kathiravan Thirumoorthy wrote:
-> 
-> On 6/25/2025 10:20 AM, Kathiravan Thirumoorthy wrote:
->>
->> On 6/24/2025 6:57 PM, Konrad Dybcio wrote:
->>> On 6/24/25 12:36 PM, Kathiravan Thirumoorthy wrote:
->>>> From: Vignesh Viswanathan <quic_viswanat@quicinc.com>
->>>>
->>>> IPQ5424 supports both TZ and TF-A as secure software options and various
->>>> DDR sizes. In most cases, TF-A or TZ is loaded at the same memory
->>>> location, but in the 256MB DDR configuration TF-A is loaded at a different
->>>> region.
->>>>
->>>> So, add the reserved memory node for TF-A and keep it disabled by default.
->>>> During bootup, U-Boot will detect which secure software is running and
->>>> enable or disable the node accordingly.
->>>>
->>>> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
->>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->>>> ---
->>> Can the said u-boot simply dynamically add the reservation then?
->>
->> Yeah it could have been done in U-Boot itself but it wasn't. 256MB DDR configuration solution is already shipped out and the stock U-Boot enable this node to avoid the random issues.
-> 
-> 
-> Konrad, Do you have any further comments on this?
+With the introduction of the of_msi_xlate() function, the OF layer
+provides an API to map a device ID and retrieve the MSI controller
+node the ID is mapped to with a single call.
 
-I really don't like it, but fine, I won't be blocking this either..
+of_msi_map_id() is currently used to map a deviceID to a specific
+MSI controller node; of_msi_xlate() can be used for that purpose
+too, there is no need to keep the two functions.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Convert of_msi_map_id() to of_msi_xlate() calls and update the
+of_msi_xlate() documentation to describe how the struct device_node
+pointer passed in should be set-up to either provide the MSI controller
+node target or receive its pointer upon mapping completion.
 
-Please make sure that the next time around the bootloader reserves
-its own memory and doesn't depend on what the OS decides to do
+Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>
+---
+As suggested by RobH:
 
-Konrad
+https://lore.kernel.org/lkml/20250627213241.GA168190-robh@kernel.org/
+
+ drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c |  2 +-
+ drivers/of/irq.c                            | 25 +++++----------------
+ drivers/pci/msi/irqdomain.c                 |  2 +-
+ include/linux/of_irq.h                      |  6 -----
+ 4 files changed, 7 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c b/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
+index 11549d85f23b..b5785472765a 100644
+--- a/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
++++ b/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
+@@ -30,7 +30,7 @@ static u32 fsl_mc_msi_domain_get_msi_id(struct irq_domain *domain,
+ 	u32 out_id;
+ 
+ 	of_node = irq_domain_get_of_node(domain);
+-	out_id = of_node ? of_msi_map_id(&mc_dev->dev, of_node, mc_dev->icid) :
++	out_id = of_node ? of_msi_xlate(&mc_dev->dev, &of_node, mc_dev->icid) :
+ 			iort_msi_map_id(&mc_dev->dev, mc_dev->icid);
+ 
+ 	return out_id;
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 74aaea61de13..e7c12abd10ab 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -673,13 +673,14 @@ void __init of_irq_init(const struct of_device_id *matches)
+ /**
+  * of_msi_xlate - map a MSI ID and find relevant MSI controller node
+  * @dev: device for which the mapping is to be done.
+- * @msi_np: Pointer to store the MSI controller node
++ * @msi_np: Pointer to target MSI controller node
+  * @id_in: Device ID.
+  *
+  * Walk up the device hierarchy looking for devices with a "msi-map"
+- * property. If found, apply the mapping to @id_in. @msi_np pointed
+- * value must be NULL on entry, if an MSI controller is found @msi_np is
+- * initialized to the MSI controller node with a reference held.
++ * property. If found, apply the mapping to @id_in.
++ * If @msi_np points to a non-NULL device node pointer, only entries targeting
++ * that node will be matched; if it points to a NULL value, it will receive the
++ * device node of the first matching target phandle, with a reference held.
+  *
+  * Returns: The mapped MSI id.
+  */
+@@ -699,22 +700,6 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
+ 	return id_out;
+ }
+ 
+-/**
+- * of_msi_map_id - Map a MSI ID for a device.
+- * @dev: device for which the mapping is to be done.
+- * @msi_np: device node of the expected msi controller.
+- * @id_in: unmapped MSI ID for the device.
+- *
+- * Walk up the device hierarchy looking for devices with a "msi-map"
+- * property.  If found, apply the mapping to @id_in.
+- *
+- * Return: The mapped MSI ID.
+- */
+-u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in)
+-{
+-	return of_msi_xlate(dev, &msi_np, id_in);
+-}
+-
+ /**
+  * of_msi_map_get_device_domain - Use msi-map to find the relevant MSI domain
+  * @dev: device for which the mapping is to be done.
+diff --git a/drivers/pci/msi/irqdomain.c b/drivers/pci/msi/irqdomain.c
+index 0938ef7ebabf..555c61b1fc36 100644
+--- a/drivers/pci/msi/irqdomain.c
++++ b/drivers/pci/msi/irqdomain.c
+@@ -422,7 +422,7 @@ u32 pci_msi_domain_get_msi_rid(struct irq_domain *domain, struct pci_dev *pdev)
+ 	pci_for_each_dma_alias(pdev, get_msi_id_cb, &rid);
+ 
+ 	of_node = irq_domain_get_of_node(domain);
+-	rid = of_node ? of_msi_map_id(&pdev->dev, of_node, rid) :
++	rid = of_node ? of_msi_xlate(&pdev->dev, &of_node, rid) :
+ 			iort_msi_map_id(&pdev->dev, rid);
+ 
+ 	return rid;
+diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
+index a480063c9cb1..1db8543dfc8a 100644
+--- a/include/linux/of_irq.h
++++ b/include/linux/of_irq.h
+@@ -55,7 +55,6 @@ extern struct irq_domain *of_msi_map_get_device_domain(struct device *dev,
+ 							u32 bus_token);
+ extern void of_msi_configure(struct device *dev, const struct device_node *np);
+ extern u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in);
+-u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in);
+ #else
+ static inline void of_irq_init(const struct of_device_id *matches)
+ {
+@@ -105,11 +104,6 @@ static inline u32 of_msi_xlate(struct device *dev, struct device_node **msi_np,
+ {
+ 	return id_in;
+ }
+-static inline u32 of_msi_map_id(struct device *dev,
+-				 struct device_node *msi_np, u32 id_in)
+-{
+-	return id_in;
+-}
+ #endif
+ 
+ #if defined(CONFIG_OF_IRQ) || defined(CONFIG_SPARC)
+-- 
+2.48.0
+
 
