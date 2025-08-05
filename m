@@ -1,136 +1,170 @@
-Return-Path: <devicetree+bounces-202018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02F6AB1BBC2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 23:32:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3771AB1BC62
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 00:08:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8BC71899008
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 21:32:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5395917D872
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 22:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C0E20B7ED;
-	Tue,  5 Aug 2025 21:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65C9248871;
+	Tue,  5 Aug 2025 22:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bIhQMfOS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="b2NjuO8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101BB1C8633;
-	Tue,  5 Aug 2025 21:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80BD200127;
+	Tue,  5 Aug 2025 22:08:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754429532; cv=none; b=QFeqTQ+tFZ270xnwAL0ZE/icAHesEGgu9IIrRJbhs0+gTdclkO6Tcb2TxoOp5zNLo/uYcrNbKop41Oj0LuM1gTJil9ZU/Z0W/1mjEJWYoFBD6mU/FEgZa/SJ97kxzO0YEl2KQdFHyK9oNH+vIAZHA1AOFBIIIqjtM/NeGp0c+cs=
+	t=1754431715; cv=none; b=EpC2It5y7dcM7aqZwagOxgTyeM04F/Kw79mpFwoN06fUi1eMzE1GnP8zy0hI3IWaxTAJmaYpyp2/wo1005vm/tQNUXsv9A+S9NL009YjlDSyywHidyQ03IjpEegHa95/mvfkyfw+Igne6wXNbqeIGtsRQYYlax4fennFav8Zt7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754429532; c=relaxed/simple;
-	bh=ldwf5W7T+7CJjPkbQHiEy0ZwCv91sQ3XtdOVhU9/DUc=;
+	s=arc-20240116; t=1754431715; c=relaxed/simple;
+	bh=/aoxjBnanB6z5ZymLaTy2qG1GykI0n2CxoPSGTJMDc4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lzrXs40m/m3uEn8RLvZ1h23TXHJAH2TQ/1QZwMhnhdUAP9cTD9UEh/h3ESAFgbPGaaLwZqpbS3LSCOHGDu1z1IsbMPUwwPe2AL/dlrnNXtNDIQPsHPw7PUiWdtKUOD0MuWVl11ZGVuQAtj2xnBh7/rG9ujiqN9DhlcQKF9vTPV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bIhQMfOS; arc=none smtp.client-ip=192.198.163.15
+	 Content-Type:Content-Disposition:In-Reply-To; b=DyDB85tvR610tvDSoFcMTV/SyXAlh/vpyOO2ExdNNMC5lj6mmPUZIcntAoQe/O6/aT7/yEprwTK2tHGPknLuQ3Jvl3l0gRoYKsR+PKFEL3E5vMsTyBFSWqyX7Wl8ShIvC30a+kDBX9tZHroa9DvQaE0WkBDS4f4oKGwUQOwGiFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=b2NjuO8i; arc=none smtp.client-ip=192.198.163.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754429531; x=1785965531;
+  t=1754431714; x=1785967714;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=ldwf5W7T+7CJjPkbQHiEy0ZwCv91sQ3XtdOVhU9/DUc=;
-  b=bIhQMfOSCvl8dxus1fvwEb1G7l0gOA9/d1fWGnres5A9Kri+5quMEcr5
-   MexOTsyln/hqKRkgE+8TF+iouwArnzXlmqxpkSjudbh8QuS/ykBWjwDss
-   WUzgtbZMqZ/Qhd13UvX+j5DzK5YsmbYnONaS00pKZKyH09q5EORueQ/JD
-   PUofsmlkrvw7lJR18zUfKpuLFXGl3gEJCoJIeTQDWuX1yswNmMf/R8WFo
-   cdF8K9M32GCQ5E/x/bE6FdBx8N6xq/z4pc1CgQe4sMmKXRoQkv/UioX/e
-   YKWN6IgcTGwbCOIxi8uKeAu1ai7z/XbkVWL2qq09D5niPhrOny0mJ636J
-   A==;
-X-CSE-ConnectionGUID: xmNDeYafT0GR8e2th9uH6w==
-X-CSE-MsgGUID: 630FUHypRpemvuNrVyhQIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56875535"
+   mime-version:in-reply-to;
+  bh=/aoxjBnanB6z5ZymLaTy2qG1GykI0n2CxoPSGTJMDc4=;
+  b=b2NjuO8iTJIz0Qa11KYK5cBntET/zISaNwW9gGnM4qCOKwKQaFWzjRUZ
+   hlqv+3DlBUvapOVF8iKTD6fONZcj984qRGr6P43l6oWhW0ULbrfWMLayv
+   MRrBaU3zi7UTtOpdD2yYVGNP0DW9Jo0+MMixRGHLK781k/+C16X+goEY0
+   cHdLG2twL40QWhyV0/sMNTI6FllBwtQxUo0KWN2cUMGpcuFaWmzt5JcLI
+   lzPf7ZwXqxZzfp9kBBK7SKgEXqPb+fXDYArw/1K4Iw1MYgwAJJQMNxC6G
+   Jpy4vufPM89a9/u21rben3iuTNjdIMbgUcP5yH+hlnK0AnrsRrQIBotkN
+   Q==;
+X-CSE-ConnectionGUID: 7JyA5hHQQF+77Qe2lZlMPA==
+X-CSE-MsgGUID: IeyhPkPyQQSJhwRlOc8Tqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="44334918"
 X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; 
-   d="scan'208";a="56875535"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 14:32:10 -0700
-X-CSE-ConnectionGUID: sS+4LaZBRxWUPoJHjnyjmg==
-X-CSE-MsgGUID: xwqXsN4iS6q1y+pqves5PA==
+   d="scan'208";a="44334918"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 15:08:31 -0700
+X-CSE-ConnectionGUID: cvABU6gySmCN+nSbWkFxIg==
+X-CSE-MsgGUID: QOXnb3dlQReNBMfKeCvA3A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.17,268,1747724400"; 
-   d="scan'208";a="188275254"
+   d="scan'208";a="164139100"
 Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 14:32:07 -0700
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 15:08:13 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
 	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1ujPGN-00000003rEk-3LnA;
-	Wed, 06 Aug 2025 00:32:03 +0300
-Date: Wed, 6 Aug 2025 00:32:03 +0300
+	id 1ujPpG-00000003rhU-3uHR;
+	Wed, 06 Aug 2025 01:08:06 +0300
+Date: Wed, 6 Aug 2025 01:08:06 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Danny Kaehn <danny.kaehn@plexus.com>
-Cc: Willie Thai <wthai@nvidia.com>, bartosz.golaszewski@linaro.org,
-	bentiss@kernel.org, devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com, ethan.twardy@plexus.com,
-	jikos@kernel.org, krzk+dt@kernel.org, linux-input@vger.kernel.org,
-	robh@kernel.org, tingkaic@nvidia.com, rastekar@nvidia.com,
-	dkodihalli@nvidia.com, mhn@nvidia.com, arundp@nvidia.com
-Subject: Re: Re [PATCH v11 0/4] Firmware Support for USB-HID Devices and
- CP2112
-Message-ID: <aJJ4U_qJY63jIvZm@smile.fi.intel.com>
-References: <20240605-cp2112-dt-v11-0-d55f0f945a62@plexus.com>
- <20250729145350.3538324-1-wthai@nvidia.com>
- <20250729174951.GB4111945@LNDCL34533.neenah.na.plexus.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>,
+	Ludovic Desroches <ludovic.desroches@microchip.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Paul Cercueil <paul@crapouillou.net>,
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Viresh Kumar <vireshk@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Taichi Sugaya <sugaya.taichi@socionext.com>,
+	Takao Orito <orito.takao@socionext.com>,
+	Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	=?iso-8859-1?Q?Am=E9lie?= Delaunay <amelie.delaunay@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+	Masami Hiramatsu <mhiramat@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	imx@lists.linux.dev, linux-actions@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH RFC 3/6] dmaengine: qcom: gpi: Accept protocol ID hints
+Message-ID: <aJKAxkXO7csIi5Oi@smile.fi.intel.com>
+References: <20250730-topic-dma_genise_cookie-v1-0-b505c1238f9f@oss.qualcomm.com>
+ <20250730-topic-dma_genise_cookie-v1-3-b505c1238f9f@oss.qualcomm.com>
+ <CAMuHMdV0JO=qtregrrHsBZ-6tpNdPUj3G1_LWRfRsj0vBb+qyw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250729174951.GB4111945@LNDCL34533.neenah.na.plexus.com>
+In-Reply-To: <CAMuHMdV0JO=qtregrrHsBZ-6tpNdPUj3G1_LWRfRsj0vBb+qyw@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On Tue, Jul 29, 2025 at 12:49:51PM -0500, Danny Kaehn wrote:
-> On Tue, Jul 29, 2025 at 02:53:50PM +0000, Willie Thai wrote:
-> > Hi Danny,
-> > 
-> > I hope this message finds you well.
-> > Thank you for the patch set — it’s exactly what we need for the I2C-over-USB feature in our new products.
-> > Could you please let us know when we can expect the next version of the patch set?
-> > If you've paused work on it, we're happy to take over and continue from where you left off.
-> > 
-> > Thanks!
-> 
-> Thanks for reaching out!
-> 
-> Apologies, I haven't been working on this in a while, and have only been able
-> to intermittently return to attempt to bring it forward.
-> 
-> Feel free to take over and move this forward! I'm not sure what the protocol
-> is for that, as far as changelogs and versions and whatnot. If your product's
-> timeline for needing this mainlined is not urgent; however, I can prioritize
-> coming back to this and having a v12 submitted, likely by the end of next
-> week, to remove the overhead needed for you to assume ownership of the
-> patchset.
-> 
-> The last several versions of this patchset have all revolved around trying
-> to get this change working for ACPI as well as DeviceTree in such a way which
-> make the ACPI and DeviceTree interface/binding acceptable to their respective
-> maintainers. With this latest version, it seemed that there was not going to
-> be any consensus between the two firmware languages, so it seemed an entirely
-> different binding/interface and corresponding logic in the device driver
-> would be needed. This seems unfortunate, as it seemed the whole purpose of
-> the fwnode / device_*() functions was to unify the driver interface to the
-> firmware language used... but this is presumably a special case, being almost
-> exclusively a device composed of different generic device functions...
-> 
-> Let me know if you plan to take this over and if there's any
-> documentation/context/test procedures you would need from me; else I would be
-> happy to start moving this forward again now that there is someone waiting
-> on it.
+On Wed, Jul 30, 2025 at 01:32:58PM +0200, Geert Uytterhoeven wrote:
+> On Wed, 30 Jul 2025 at 11:35, Konrad Dybcio <konradybcio@kernel.org> wrote:
 
-Right and I'm, for instance, lost the context long time ago, so please Cc me on
-a new version to have a fresh look at it.
+...
+
+> > +       /* The protocol ID is in the teens range, simply ignore the higher bits */
+> > +       gchan->protocol = (u32)((u64)proto);
+> 
+> A single cast "(uintptr_t)" should be sufficient.
+
+FWIW, this means (unsigned long) as Torvalds is quite against uintptr_t in the kernel.
+
+> Casing the pointer to u64 on 32-bit may trigger:
+> 
+>     warning: cast from pointer to integer of different size
+> [-Wpointer-to-int-cast]
+> 
+> >         return dma_get_slave_channel(&gchan->vc.chan);
+> >  }
 
 -- 
 With Best Regards,
