@@ -1,166 +1,165 @@
-Return-Path: <devicetree+bounces-201781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B00B1ACD0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 05:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC765B1ADD4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 08:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61DE4189EE3F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 03:39:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 506D11898055
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 06:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE251C75E2;
-	Tue,  5 Aug 2025 03:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE79A1D5150;
+	Tue,  5 Aug 2025 06:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Y7HGxkOc"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="DcW3YuHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49196.qiye.163.com (mail-m49196.qiye.163.com [45.254.49.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A4CA146D45
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 03:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F065134AC;
+	Tue,  5 Aug 2025 06:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754365127; cv=none; b=UqPO9ZWwcH0u7r6cFC4JOyf7Zba1fmnKfmwodvz3ASAjbtxgK7H4u17TGDPmJQI9PsZjSC5wz698Sy5X0d3n0TzwsptHb1YAzdqrc/Xf3azAaFhF3MLXrLnlckCKx0uREOYdf08ZJ/qvSTqjl0lSJP7FVgb7eHRvRgfAnnUG2Mk=
+	t=1754373948; cv=none; b=hziRWDX7UQSC/XkN2RK/oRxRq2OFh7unq1HOaGnbpGax7TMXMg4qS+nLiyZnFN5HTwarSY61v+2VbTjbHCSHNlb1AsV+HE+/N+lS7q3Mx5vy6rBV6Yg+RPD2cg7jyD0JxAh3U9gPNQTZxeYzUzWqNJsuzOed9e3gg28BdGU+1Rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754365127; c=relaxed/simple;
-	bh=/SNZxRzFlk/QovwahhIvN5xPQltbQzvBaYBF+ln5fNo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NBeRb7E9YwnUtHXA68P3RbM5aen5Ev/6NiRu2mLDhBx7Z3eZcloxp8tJsphPt+/5VrtVmaUJ1WNbDQIZ1YZNjWJ6WUVpsEHYY1xGYd/Xdd+lf0lUwvlxLrGbDhLI44uW2I1hG3QSmGHJhtpmdcQ1u0jkafgYFRFVGoJUKo7Z3iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Y7HGxkOc; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e7311e66a8eso3468310276.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Aug 2025 20:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1754365125; x=1754969925; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=POVkbC6m0FbsZQCVqqY6DRqPTZCsdOevFhpQTRfzR3k=;
-        b=Y7HGxkOcHr4yWrB9l4k4gFiShYCQpv3DEdX1Y2qvrmmBdTPxY/kaxcqjBl8g4ushO+
-         EW2OvHNdaS1X1ipVS7Dvz1N2YP/JsXX37rpUJer5+OEOnv/Fj2L02jkVOaTFstfcW1iW
-         MKGq320cSpdgmCL5dhYo1gU212qldzTgCj4Sua0OkoEP6jwJ+iegLFHoOn1JViPmD476
-         Q+c5kPHKjWV99GioKiCn6gK+Px8oyfcQA+S54UAhRlbde1P7PI7joue4Zgt87k1+CoLj
-         nUS+tDCqYkO9OgeovDNd6my9kIqsK2wpHmrqnnMYGCSmqGoggWkGtf37sZ8Xf7uWaw8e
-         09hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754365125; x=1754969925;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=POVkbC6m0FbsZQCVqqY6DRqPTZCsdOevFhpQTRfzR3k=;
-        b=rTDK17dQ1vBZ95MSQkPN+Vn91IJFufgVwNDCnuvbhmza07ape5dAXdHkw+1GuTOdWj
-         wcjW7sl4NpG4mNYzxTiRZwDNRb7Bl3s/SQQs5mcUdVP4Hd0RJpGkNTJQ9R5gt3euqfQq
-         ZxAQgelCS2f60kXmeWNZk8UELrMtf1vFbPYmifyOVaPsIq9sHXrHd8sQoR1Lp6nz2P8n
-         sSvmMYXXb+DujUB8DCZcXW9ZqRH078CKiYeAQUvH73EJI1Lgp9Iyn2V+6kmB6dhRfvhr
-         eDhmjArI5msG1cKUCKZl6l1DqGsF1INPjNXd866VsWUr7Wyd2olzXSOiDtd4/ee5yDQQ
-         HYFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUalh5d9KR0cgN4merbG1TCrscu43wyB9GzJkvLIBaxeZduX4dIGa+dF+/Wlr/9KKhXdwD+3NRNbtZu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKBevF32/MsEcbjR9AhJu2vdFlQ//f+Usy4IhvFpWRk84BXxvJ
-	n1VV1mC2Y6J71y9gFU8WLfFRLOAC1SVPMmPyZvLP07nE5fE2qG5zeFXj5jR1H7Sqs7p731ciOM4
-	eyzy6L6k0EjONTkJoLWxrlShAZ+HABkzjwbT6cJnc6w==
-X-Gm-Gg: ASbGncs03b7RbPudZgb0lHCeFKooSK8USfdXI44YtVra2USzllAMX8YT6pthCTfVGf6
-	4lZjVdV9GiSiQQse9Yo1nREydZhlgEqo0Xa5V6k/k0c4//ZVRw2KKbkDB4sx19D+amQ684r0Cr8
-	3JKCKI3ZkXf5H0oAKowxv1ZaouAC64SK9IytrlnOI6rIr3SHGi2m5sHDoyp0NNe8OylTXWZGgUL
-	UOqbdkLQjNlzFJ1/Xah
-X-Google-Smtp-Source: AGHT+IHQC+FWa/sBV6PObYXRFHKF0ipC8ClxXs0v16B6xElYzTA11LPuJqwPvrY3kuC7CE6fdD+FC5kTAS4MnOQ2ZQY=
-X-Received: by 2002:a05:6902:4187:b0:e8e:288d:1f53 with SMTP id
- 3f1490d57ef6-e8fee03324amr14194932276.26.1754365125300; Mon, 04 Aug 2025
- 20:38:45 -0700 (PDT)
+	s=arc-20240116; t=1754373948; c=relaxed/simple;
+	bh=iPDG3HUXHf4ktrD7pDU8Ud/y4jJ4GDK5tslOB3tz9aU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WObTPoWE5+E3OWuh9IaIZF0BprrsqVhauOcfIW4d6TA/gcu+KJ1wn/vzw40qmVx0UoLjhthYokrjsx/Wqm0rh5sUrrRJIdIa2hlg2uHziWxCp0IrU0Oirc+85otn5O+IJRVqJtHT9yjreAEcy4VzgOQ7LmyA/XgZR2HjhtE0AhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=DcW3YuHA; arc=none smtp.client-ip=45.254.49.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.153] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1e4f07c8f;
+	Tue, 5 Aug 2025 11:43:07 +0800 (GMT+08:00)
+Message-ID: <0207826d-a987-4464-b306-29bdbfac45bc@rock-chips.com>
+Date: Tue, 5 Aug 2025 11:43:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250801070112.12071-1-nick.hu@sifive.com> <20250801-lunar-stream-0fdb3f0febec@spud>
-In-Reply-To: <20250801-lunar-stream-0fdb3f0febec@spud>
-From: Nick Hu <nick.hu@sifive.com>
-Date: Tue, 5 Aug 2025 11:38:34 +0800
-X-Gm-Features: Ac12FXwV9XevZuRxzcMDGn197rKxsHebzj--29n5CzxP2OQ9om678fcPueT4y3Y
-Message-ID: <CAKddAkDMd27icz6sa5xONAiWGcb8Un8CddHKyX1=jQzH7DCvZA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: riscv: Add SiFive vendor extensions description
-To: Conor Dooley <conor@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Samuel Holland <samuel.holland@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Add Type-C DP support for RK3399 EVB IND board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org
+References: <20250729090032.97-1-kernel@airkyi.com>
+ <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
+ <63ec11cf-7927-431a-995e-a5fc35ef1ba7@rock-chips.com>
+ <pk5wecbbpxn7v4bdwtghhdnm76fmrmglelytljwfb4cgvpu2i6@rk5turgyt5xq>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <pk5wecbbpxn7v4bdwtghhdnm76fmrmglelytljwfb4cgvpu2i6@rk5turgyt5xq>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a987853630a03abkunm29211595654c93
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkIYH1ZIHUhDHktITkoaTklWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=DcW3YuHAeSLpncKSFOsCLJAbVOk5HpVT5YoVQRKf2eexdA+SyxwhHdv7unhzrVeAYJNonLSqdn2TPVQJEo0QQ0LepLQK0eyqWM9QYGQ0JxsTI9aypW6Li4QgId8ZTAt7SiRbhIqshpUL9ue/FelgdhYiOgTqQcnB5jG5DlqWBv8=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=28swiPqyhJ+wqthzGqPRfqoTRJZZiDtTt4jtzU7sc6A=;
+	h=date:mime-version:subject:message-id:from;
 
-On Sat, Aug 2, 2025 at 3:31=E2=80=AFAM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Fri, Aug 01, 2025 at 03:01:12PM +0800, Nick Hu wrote:
-> > Add description for SiFive vendor extensions "xsfcflushdlone",
-> > "xsfpgflushdlone" and "xsfcease". This is used in the SBI
-> > implementation [1].
-> >
-> > [1] https://lore.kernel.org/opensbi/20250708074940.10904-1-nick.hu@sifi=
-ve.com/
-> >
->
-> > Changes in v2:
-> > - Update the message to indicate the user of the extensions.
->
-> This should be below the --- line.
-> With that,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> although I suppose it'll be me taking this and I can fix it up on
-> application?
->
-Thanks! That would be really helpful.
+Hi Dmitry,
 
-Best Regards,
-Nick
-> >
-> > Signed-off-by: Nick Hu <nick.hu@sifive.com>
-> > ---
-> >  .../devicetree/bindings/riscv/extensions.yaml  | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index ede6a58ccf53..5638297759df 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -663,6 +663,24 @@ properties:
-> >              https://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev=
-.-5.0.0-Datasheet.pdf
-> >
-> >          # SiFive
-> > +        - const: xsfcease
-> > +          description:
-> > +            SiFive CEASE Instruction Extensions Specification.
-> > +            See more details in
-> > +            https://www.sifive.com/document-file/freedom-u740-c000-man=
-ual
-> > +
-> > +        - const: xsfcflushdlone
-> > +          description:
-> > +            SiFive L1D Cache Flush Instruction Extensions Specificatio=
-n.
-> > +            See more details in
-> > +            https://www.sifive.com/document-file/freedom-u740-c000-man=
-ual
-> > +
-> > +        - const: xsfpgflushdlone
-> > +          description:
-> > +            SiFive PGFLUSH Instruction Extensions for the power manage=
-ment. The
-> > +            CPU will flush the L1D and enter the cease state after exe=
-cuting
-> > +            the instruction.
-> > +
-> >          - const: xsfvqmaccdod
-> >            description:
-> >              SiFive Int8 Matrix Multiplication Extensions Specification=
-.
-> > --
-> > 2.17.1
-> >
+On 8/2/2025 5:55 PM, Dmitry Baryshkov wrote:
+
+[...]
+
+
+>> Currently, the software simply selects the first available port. So if user
+>> plugs in DP dongles in both USB-C ports, the DP driver will select the first
+>> port. This process is implemented in cdn_dp_connected_port() .
+>>
+> I think Stephen Boyd has been looking on similar issues for Chromebooks,
+> which were sharing DP controller between several USB-C ports. I don't
+> remember what was his last status. I think there it was easier since the
+> bifurcation point was the EC.
+
+I think the latest progress should be here: [0]. It seems that it hasn't 
+been updated for a while.
+
+[0]: 
+https://lore.kernel.org/all/20240901040658.157425-1-swboyd@chromium.org/
+
+
+>
+> I think, CDN-DP needs to register up to two encoders and up to two
+> connectors, having a separate drm_bridge chain for each of the DP
+> signals paths (in the end, you can not guarantee that both branches will
+> have the same simple CDN-DP -> PHY -> USB-C configuration: there can be
+> different retimers, etc).
+>
+> Both encoders should list the same CRTC in possible_crtcs, etc. Of
+> course, it should not be possible to enable both of them.
+>
+> This way if the user plugs in two DP dongles, it would be possible to
+> select, which output actually gets a signal.
+
+That makes sense, but this might make the DP driver quite complex. I 
+will see if I can make it happen.
+
+
+>
+>>
+>>>> BTW, one of the important things to do is to implement extcon-like
+>>>> notifications. I found include/drm/bridge/aux-bridge.h , but if the
+>>>> aux-bridge is used, the bridge chain would look like this:
+>>>>
+>>>> PHY0 aux-bridge ---+
+>>>>                      | ----> CDN-DP bridge
+>>>> PHY1 aux-bridge ---+
+>>>>
+>>>> Oh, CDN-DP bridge has two previous aux-bridge!
+>>>>
+>>>> Now, I try to use drm_connector_oob_hotplug_event() to notify HPD
+>>>> state between PHY and CDN-DP controller.
+>>> Does it actually work? The OOB HPD event will be repoted for the usb-c
+>>> connector's fwnode, but the DP controller isn't connected to that node
+>>> anyhow. If I'm not mistaken, the HPD signal will not reach DP driver in
+>>> this case.
+>> Yes.  What you mentioned is the case in
+>> drivers/usb/typec/altmodes/displayport.c . I have also added a new OOB event
+>> notify in the PHY driver in Patch 3, where the expected fwnode is used in
+>> the PHY. So now we have two OOB HPD events, one from altmodes/displayport.c
+>> and the other from PHY. Only the HPD from PHY is eventually passed to the DP
+>> driver.
+> This way you will loose IRQ_HPD pulse events from the DP. They are used
+> by DPRX (aka DP Sink) to signal to DPTX (DP Source) that there was a
+> change on the DPRX side and the DPTX should reread link params and maybe
+> retrain the link.
+
+Sorry, I still don't quite understand your point. I think the entire 
+notification path is as follows:
+
+Type-C mux callback -> RK3399 USBDP PHY -> PHY calls 
+drm_connector_oob_hotplug_event() -> DP driver
+
+Are you concerned that the IRQ_HPD event is not being handled somewhere 
+along the path? Is it that the Type-C mux callback didn't notify the 
+PHY, or that after the PHY passed the event to the DP driver via the OOB 
+event, the DP driver didn't handle it?
+
 
