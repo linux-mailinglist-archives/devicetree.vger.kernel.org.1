@@ -1,171 +1,238 @@
-Return-Path: <devicetree+bounces-201899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B09AB1B2AD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:43:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A28B1B297
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:27:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AAAB181287
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 11:43:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0389B62057D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 11:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAED258CD3;
-	Tue,  5 Aug 2025 11:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4AD24BC0A;
+	Tue,  5 Aug 2025 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QO3VG4Co"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="esY4Z7jq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15571.qiye.163.com (mail-m15571.qiye.163.com [101.71.155.71])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BCA2F30;
-	Tue,  5 Aug 2025 11:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.71
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C00D15A8;
+	Tue,  5 Aug 2025 11:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754394174; cv=none; b=ugsY06mJhkK/CLp4AQNBWMwBaiudH4+9lSzQtZNVioeK3XEUWLlURC3bPeO6v1tsBf/0ED/4QhXIGHmGf/XrTHYy3HG8TK7cZbVKx9kmHzekb50G3YOQwx5utVsAv83PNMlMytE7w3TUK+1WxBoOwqJPvjCxj0GHlHkb0qBxTBI=
+	t=1754393261; cv=none; b=GNnsa4JCqq2MN+1vqueaeGlHHxcq9sVHLibm0gyycFISji2JfwQfJgfeB1/5PjM8tW7571ZXn73E8XRvSUkgoeIO/ZtjQ0vuyc5b6UQoC0ZIDO7Cs0OzkpzhaiyBJbJeuOu5/KgJTLAkFkf1l0dfX7T2RvPFxSIAy9RKWKqq4Kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754394174; c=relaxed/simple;
-	bh=L5ldlbFu5pDoOtnpE4tyXKBO8AqpD2Fapi9uut7eKq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N+kq8zUAGBhRj3E80EKpRgmQMLHKIvAVL8cvfb5UilxW0P3rJDrDOUPg2YAROTRPKR+kjTUXe9QnJYTuiuCfrEqwSekGafdYlWvEUvEwYL9/ym8Xkce/bg99WPanWeyoUe+yV6G4KjZoRbrHXRfFcaR0tM8NFMQMwwApl/lUlDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QO3VG4Co; arc=none smtp.client-ip=101.71.155.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.153] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1e5e73aa8;
-	Tue, 5 Aug 2025 19:07:10 +0800 (GMT+08:00)
-Message-ID: <a7988745-ea31-45cd-8ffd-905e6e4d1315@rock-chips.com>
-Date: Tue, 5 Aug 2025 19:07:09 +0800
+	s=arc-20240116; t=1754393261; c=relaxed/simple;
+	bh=5bV8swrKPxegKK0V/mNd74UNbap2bZYh8I72lHpL+Vw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CZ3EVO7HQaczv8wFD6yPkxim73KaqU/Q/J66Wt9TSkFzUkVF0LeYKgC4B78ZC7ly43FOdm7LQQ5j9lzxROfefifo46ZbGmG8+IA3DmOrTrEjgiKosp0jicV5fUy96jIxHcpdXjT3ptRBHI6LqLFxPzvg/872QHc+LPcl1xzIzfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=esY4Z7jq; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8BED6176B;
+	Tue,  5 Aug 2025 13:26:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754393206;
+	bh=5bV8swrKPxegKK0V/mNd74UNbap2bZYh8I72lHpL+Vw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=esY4Z7jqJWLMvcBaNXYvl51W8rWBxFbzwoLBY4qyHtWcnjV+sCE1gMwuUPMqXFC9R
+	 2Ug840vA0qJSCa95LhWNI1sY5hjDKNSjAlYTzRagcGHrtxNO1n3X3UMNaAOn7ekPp7
+	 vi0M22xqyt+llU+rA+WD7V+F/ZDTEOX8KWCjnJwA=
+Date: Tue, 5 Aug 2025 13:27:30 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, 
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: Re: [PATCH v11 08/19] media: uapi: Add controls for Mali-C55 ISP
+Message-ID: <rixk2meihmzkixemu7uygd6ebojhwgxi5xfgcwbamydzk25yt5@j4t4eliandqq>
+References: <20250714-c55-v11-0-bc20e460e42a@ideasonboard.com>
+ <20250714-c55-v11-8-bc20e460e42a@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Add Type-C DP support for RK3399 EVB IND board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org
-References: <20250729090032.97-1-kernel@airkyi.com>
- <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
- <63ec11cf-7927-431a-995e-a5fc35ef1ba7@rock-chips.com>
- <pk5wecbbpxn7v4bdwtghhdnm76fmrmglelytljwfb4cgvpu2i6@rk5turgyt5xq>
- <0207826d-a987-4464-b306-29bdbfac45bc@rock-chips.com>
- <3e880194-5ac8-4056-929c-ac103bedc737@oss.qualcomm.com>
- <f726862a-bd18-43ee-b307-8daef2451e6b@rock-chips.com>
- <6nfmxwtwcvuyo2jaao7fele7jcgcykfpy7czbcbjmjxv7cs5sc@dmbtot73kw63>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <6nfmxwtwcvuyo2jaao7fele7jcgcykfpy7czbcbjmjxv7cs5sc@dmbtot73kw63>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9879e9ebce03abkunm2a7119d6701883
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGksaS1YZHR1IHR8ZTUoZGRpWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=QO3VG4Co4nsteQv8Qv57Hfls+cf5t683+xOusxx1peKmZ26y3oXrzV2n1Yh8IPkMsUuZPGO92FYmZYsqJJuvr7R1Do+nJTWWLEytFOuX7IY7byJ2OCGPylXYwmvRz5z63+IDQxi0wCeE+ZhGlRNJmm2zpuZgUlf2I/6B0gWLdlA=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=DcI3MBPSj0BIlngssBgBDQc0EsKF1spVCU2qV220AlE=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250714-c55-v11-8-bc20e460e42a@ideasonboard.com>
 
-On 8/5/2025 6:44 PM, Dmitry Baryshkov wrote:
+Hi Dan
 
-> On Tue, Aug 05, 2025 at 02:32:17PM +0800, Chaoyi Chen wrote:
->> Hi Dmitry,
->>
->> On 8/5/2025 12:26 PM, Dmitry Baryshkov wrote:
->>> On 05/08/2025 09:13, Chaoyi Chen wrote:
->>>> Hi Dmitry,
->>>>
->>>> On 8/2/2025 5:55 PM, Dmitry Baryshkov wrote:
->>>>
->>>> [...]
->>>>
->>>>
->>>>>>>> BTW, one of the important things to do is to implement extcon-like
->>>>>>>> notifications. I found include/drm/bridge/aux-bridge.h , but if the
->>>>>>>> aux-bridge is used, the bridge chain would look like this:
->>>>>>>>
->>>>>>>> PHY0 aux-bridge ---+
->>>>>>>>                       | ----> CDN-DP bridge
->>>>>>>> PHY1 aux-bridge ---+
->>>>>>>>
->>>>>>>> Oh, CDN-DP bridge has two previous aux-bridge!
->>>>>>>>
->>>>>>>> Now, I try to use drm_connector_oob_hotplug_event() to notify HPD
->>>>>>>> state between PHY and CDN-DP controller.
->>>>>>> Does it actually work? The OOB HPD event will be repoted
->>>>>>> for the usb-c
->>>>>>> connector's fwnode, but the DP controller isn't
->>>>>>> connected to that node
->>>>>>> anyhow. If I'm not mistaken, the HPD signal will not
->>>>>>> reach DP driver in
->>>>>>> this case.
->>>>>> Yes.  What you mentioned is the case in
->>>>>> drivers/usb/typec/altmodes/displayport.c . I have also added
->>>>>> a new OOB event
->>>>>> notify in the PHY driver in Patch 3, where the expected
->>>>>> fwnode is used in
->>>>>> the PHY. So now we have two OOB HPD events, one from
->>>>>> altmodes/ displayport.c
->>>>>> and the other from PHY. Only the HPD from PHY is eventually
->>>>>> passed to the DP
->>>>>> driver.
->>>>> This way you will loose IRQ_HPD pulse events from the DP. They are used
->>>>> by DPRX (aka DP Sink) to signal to DPTX (DP Source) that there was a
->>>>> change on the DPRX side and the DPTX should reread link params
->>>>> and maybe
->>>>> retrain the link.
->>>> Sorry, I still don't quite understand your point. I think the entire
->>>> notification path is as follows:
->>>>
->>>> Type-C mux callback -> RK3399 USBDP PHY -> PHY calls
->>>> drm_connector_oob_hotplug_event() -> DP driver
->>>>
->>>> Are you concerned that the IRQ_HPD event is not being handled
->>>> somewhere along the path? Is it that the Type-C mux callback didn't
->>>> notify the PHY, or that after the PHY passed the event to the DP
->>>> driver via the OOB event, the DP driver didn't handle it?
->>> The IRQ_HPD is an event coming from DPRX, it is delivered as a part of
->>> the attention VDM, see DP_STATUS_IRQ_HPD. It's being handled by the
->>> altmode displayport.c driver and is then delivered as an OOB hotplug
->>> call. However, it's not a mux event, so it is not (and it should not)
->>> being broadcasted over the typec_mux devices.
->>>
->>> The way we were handling that is by having a chain of drm_aux_bridges
->>> for all interim devices, ending up with a drm_dp_hpd_bridge registered
->>> by the TCPM. This way when the DPRX triggers the IRQ_HPD event, it is
->>> being handled by the displayport.c and then delivered through that
->>> bridge to the DP driver.
->> I think the issue goes back to the beginning. The key is to reuse the logic
->> in displayport.c, and the previous approach of directly setting the fwnode
->> has already been rejected. Is it a good idea to register the aux hpd bridge
->> in displayport.c? In this way, we don't need to register it with a bunch of
->> PD drivers (such as fusb302), which seems like a more generic solution.
-> displayport.c comes into play only when you actually attach a DP dongle,
-> which is too late for bringing up the display pipeline. But your point
-> is valid, it might be worth moving drm_dp_hpd registration to
-> typec_port_register_altmode().
+On Mon, Jul 14, 2025 at 04:06:34PM +0100, Daniel Scally wrote:
+> Add definitions and documentation for the custom control that will
+> be needed by the Mali-C55 ISP driver. This will be a read only
+> bitmask of the driver's capabilities, informing userspace of which
+> blocks are fitted and which are absent.
+>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
+> ---
+> Changes in v11:
+>
+> 	- Reserve 16 controls in line with other drivers
+>
+> Changes in v10:
+>
+> 	- None
+>
+> Changes in v9:
+>
+> 	- New patch
+> ---
+>  .../userspace-api/media/drivers/index.rst          |  1 +
+>  .../userspace-api/media/drivers/mali-c55.rst       | 55 ++++++++++++++++++++++
+>  include/uapi/linux/media/arm/mali-c55-config.h     | 26 ++++++++++
+>  include/uapi/linux/v4l2-controls.h                 |  6 +++
+>  4 files changed, 88 insertions(+)
+>
+> diff --git a/Documentation/userspace-api/media/drivers/index.rst b/Documentation/userspace-api/media/drivers/index.rst
+> index d706cb47b1122b6e145a02ab826eb3ecc7997c2b..02967c9b18d6e90f414ccc1329c09bffee895e68 100644
+> --- a/Documentation/userspace-api/media/drivers/index.rst
+> +++ b/Documentation/userspace-api/media/drivers/index.rst
+> @@ -32,6 +32,7 @@ For more details see the file COPYING in the source distribution of Linux.
+>  	cx2341x-uapi
+>  	dw100
+>  	imx-uapi
+> +	mali-c55
+>  	max2175
+>  	npcm-video
+>  	omap3isp-uapi
+> diff --git a/Documentation/userspace-api/media/drivers/mali-c55.rst b/Documentation/userspace-api/media/drivers/mali-c55.rst
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e8519da77d737b91a931bbe47920af707eebf110
+> --- /dev/null
+> +++ b/Documentation/userspace-api/media/drivers/mali-c55.rst
+> @@ -0,0 +1,55 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Arm Mali-C55 ISP driver
+> +=======================
+> +
+> +The Arm Mali-C55 ISP driver implements a single driver-specific control:
+> +
+> +``V4L2_CID_MALI_C55_CAPABILITIES``
+> +    Detail the capabilities of the ISP by giving detail about the fitted blocks.
 
-Very insightful, thank you! I will try to do this in v4 :)
+This doesn't tell what is the control type. Just add "(bitmask)" to the
+control name
 
+``V4L2_CID_MALI_C55_CAPABILITIES (bitmask)``
 
+> +
+> +    .. flat-table:: Bitmask meaning definitions
+> +	:header-rows: 1
+> +	:widths: 2 4 8
+> +
+> +	* - Bit
+> +	  - Macro
+> +	  - Meaning
+> +        * - 0
+> +          - MALI_C55_GPS_PONG_FITTED
+
+Do we want "_FITTED" in the control values ?
+
+> +          - Pong configuration space is fitted in the ISP
+> +        * - 1
+> +          - MALI_C55_GPS_WDR_FITTED
+> +          - WDR Framestitch, offset and gain is fitted in the ISP
+> +        * - 2
+> +          - MALI_C55_GPS_COMPRESSION_FITTED
+> +          - Temper compression is fitted in the ISP
+> +        * - 3
+> +          - MALI_C55_GPS_TEMPER_FITTED
+> +          - Temper is fitted in the ISP
+> +        * - 4
+> +          - MALI_C55_GPS_SINTER_LITE_FITTED
+> +          - Sinter Lite is fitted in the ISP instead of the full Sinter version
+> +        * - 5
+> +          - MALI_C55_GPS_SINTER_FITTED
+> +          - Sinter is fitted in the ISP
+> +        * - 6
+> +          - MALI_C55_GPS_IRIDIX_LTM_FITTED
+> +          - Iridix local tone mappine is fitted in the ISP
+> +        * - 7
+> +          - MALI_C55_GPS_IRIDIX_GTM_FITTED
+> +          - Iridix global tone mapping is fitted in the ISP
+> +        * - 8
+> +          - MALI_C55_GPS_CNR_FITTED
+> +          - Colour noise reduction is fitted in the ISP
+> +        * - 9
+> +          - MALI_C55_GPS_FRSCALER_FITTED
+> +          - The full resolution pipe scaler is fitted in the ISP
+> +        * - 10
+> +          - MALI_C55_GPS_DS_PIPE_FITTED
+> +          - The downscale pipe is fitted in the ISP
+> +
+> +    The Mali-C55 ISP can be configured in a number of ways to include or exclude
+> +    blocks which may not be necessary. This control provides a way for the
+> +    driver to communicate to userspace which of the blocks are fitted in the
+> +    design.
+> \ No newline at end of file
+> diff --git a/include/uapi/linux/media/arm/mali-c55-config.h b/include/uapi/linux/media/arm/mali-c55-config.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2bd60a0d78786be368c2e51b1a0a63fd2a5f690b
+> --- /dev/null
+> +++ b/include/uapi/linux/media/arm/mali-c55-config.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> +/*
+> + * ARM Mali-C55 ISP Driver - Userspace API
+> + *
+> + * Copyright (C) 2023 Ideas on Board Oy
+> + */
+> +
+> +#ifndef __UAPI_MALI_C55_CONFIG_H
+> +#define __UAPI_MALI_C55_CONFIG_H
+> +
+> +#include <linux/v4l2-controls.h>
+> +
+> +#define V4L2_CID_MALI_C55_CAPABILITIES		(V4L2_CID_USER_MALI_C55_BASE + 0x0)
+> +#define MALI_C55_GPS_PONG_FITTED		BIT(0)
+
+afaik you can't use BIT() in uapi headers. Use (1U << 0)
+
+> +#define MALI_C55_GPS_WDR_FITTED			BIT(1)
+> +#define MALI_C55_GPS_COMPRESSION_FITTED		BIT(2)
+> +#define MALI_C55_GPS_TEMPER_FITTED		BIT(3)
+> +#define MALI_C55_GPS_SINTER_LITE_FITTED		BIT(4)
+> +#define MALI_C55_GPS_SINTER_FITTED		BIT(5)
+> +#define MALI_C55_GPS_IRIDIX_LTM_FITTED		BIT(6)
+> +#define MALI_C55_GPS_IRIDIX_GTM_FITTED		BIT(7)
+> +#define MALI_C55_GPS_CNR_FITTED			BIT(8)
+> +#define MALI_C55_GPS_FRSCALER_FITTED		BIT(9)
+> +#define MALI_C55_GPS_DS_PIPE_FITTED		BIT(10)
+> +
+> +#endif /* __UAPI_MALI_C55_CONFIG_H */
+> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
+> index f836512e9debbc65d62a9fe04069b056be42f7b2..9f07d80d7af1dfb347fca6e2c65b25bc2cb86af1 100644
+> --- a/include/uapi/linux/v4l2-controls.h
+> +++ b/include/uapi/linux/v4l2-controls.h
+> @@ -228,6 +228,12 @@ enum v4l2_colorfx {
+>   */
+>  #define V4L2_CID_USER_RKISP1_BASE		(V4L2_CID_USER_BASE + 0x1220)
+>
+> +/*
+> + * The base for the Arm Mali-C55 ISP driver controls.
+> + * We reserve 8 controls for this driver
+
+Doesn't the commit message says 16 ?
+
+> + */
+> +#define V4L2_CID_USER_MALI_C55_BASE		(V4L2_CID_USER_BASE + 0x1230)
+> +
+>  /* MPEG-class control IDs */
+>  /* The MPEG controls are applicable to all codec controls
+>   * and the 'MPEG' part of the define is historical */
+>
+> --
+> 2.34.1
+>
+>
 
