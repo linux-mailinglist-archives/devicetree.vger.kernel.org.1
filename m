@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-201853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E459B1B030
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:30:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B545B1B03F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D96EF3BB57D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 08:30:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A81907A882E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 08:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE73253F3A;
-	Tue,  5 Aug 2025 08:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A891243376;
+	Tue,  5 Aug 2025 08:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IZCCYivz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B2NZl6Nr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D23253F05
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 08:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CB3C8CE;
+	Tue,  5 Aug 2025 08:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754382600; cv=none; b=PGjVPqXWMzpEzI3TJMvEcCMfKLIdH0+cbjAukeF2GRQadlKLmzek+OHfeO+DedLiu4KOyl28Nt+kTqU1P7zkkTpD36jeHF/doy6UezX+EvrNY0ty5AoTkZlY6IO6MDd5uVOhzzzb6Kq2pCBww+mg9uta3X5RXNrJ//DZff798QY=
+	t=1754382781; cv=none; b=G8/RnB86ZKAEyGgYdoCGT22vtXqz7CniKx8pg7Sbi15w9b1uUocVuT+aGOjsB6eE/zvvxNAeoD25F3eKtV+q+QrDVySAydkzcip/z7on1DZvUh6t4/JbOOfrWLg/O4Op2OiZj8oS0XzzaMvsKCA0Mge8WOSEZ9Xsjr52Ui8gPLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754382600; c=relaxed/simple;
-	bh=vwzQhfg01r+binZbgcr7a/QRd8jw9d+nqmk4LD/Ao7g=;
+	s=arc-20240116; t=1754382781; c=relaxed/simple;
+	bh=H+195tupBnrAgDGdlIgQ3BH2CjjoT2sHHXaqRr4/ORs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nnGDW3swVfkRIjJyVDf5Kof6NCZOIGlRiRXWiBvYPsqTs+y2pscoKfPJQhSBqelrd0zpte5Vwf+fs2fEWkWXLlpJLAUGDkoq6+yIRdoOiF10UOJYUR9EAtdKlqsCCvBd4HTN3bShx0BTu9RHpLAcY4HRFG0C/cDZQPHbcOApvsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IZCCYivz; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a6cd1a6fecso4482614f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 01:29:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754382597; x=1754987397; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LyLVSQpb0tLUDxNzw0tajIN36UwJANGlESlbNcPlm/w=;
-        b=IZCCYivz1UdBYRbyqXOFsSsdBD+OVewZ2mq5hBYhG3Ysk4YBNTV8sTXheoEQ7WccX9
-         0p1QNCnqkUZ1awpVfCwbDdmD7Gx1MHFIQ6rKdeZlZy/JsiZL4HMFpV+GKt4atwHu+hwj
-         tHtdzZ3pFFJ7rrBGj4AkirlShDMOaOWqQmUzv1vvZPzmx+2zowDn8Gtziu5dSwIql7DF
-         EYTg/5E1vZnYkFv/KRWjoukykaO/P1H6jOwG6U46ubKnXR33QCUVeYEBOkUe2/QD4ZsO
-         V1BfJK/0HXhtaS8h/X+GophK3v23cg9GNetIO8xAc65kI+YcSf/gKhRtwwFxUYxKm7Aq
-         ra4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754382597; x=1754987397;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LyLVSQpb0tLUDxNzw0tajIN36UwJANGlESlbNcPlm/w=;
-        b=Lv2TTog74zQ+g4GVDIVBMWl0HcUXsUYPFUTyWP2rwy+n0iMtY6PQ1hwefnjv64ySYM
-         M/lK72+emxoOa24aLbnzyzJsIi/u5Fo1WAonPAXedOIvfTIXhECVCvqe2loO+mNcEhGT
-         U6pp+oTUSW3z7iTAQG7B+HQCtYjZb80brKkp11DssLsPl0TAU0s/t2hiiyJaf7VmWb4f
-         uxNlG1TU5wa4/ERUnT1LZNWDcn0kpTYTF0tsFU9c5WhPEaKNYzha4k51DAXXZcfZn+2+
-         4ak1S/xIDlliNAlSZVw7liHVWrnZnZPOjYvIQmR2cR7vtQVK+kL8Vpkp79nDc3za07KF
-         juDg==
-X-Forwarded-Encrypted: i=1; AJvYcCV4DNTOa0GaXOnrQpxmKfPfhHCKAKIRmg7fXoyClJmlXQaiP5nWRBlARO3+yxChgE0RyZ13c+68SkxM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzd/y7HmwZRTRlwESZcRdfJTQz38APb6Cnf4j7XGqDoUmG9muzw
-	gk7brcj2nXOHZMoaNz8+yXhVZriIjluNboayYSBmKbGppay0t6HFR061IsQxwpcjZqY=
-X-Gm-Gg: ASbGncvj0KAYkk8O0uAnWxjCV1iexpkCuzxOwA/qLp6Hr2++RYqk+Akkov/KmT8TMKw
-	UZLD8a2tK8DmpxZm1Ij7qkYP/ZMrflTvz6qS4aGBhiv9ueiacEWcViN00KaiVjupz9ORViS04aj
-	8JfB++pFVrkJ0TzZnIFScaemdCIDWnFZjGXfBMyfdNMc+EK1fnoj2yWrgzyyo/pZJjipJFHV+pa
-	8n2nCcgyFU7hbyI6J2rBkSWwxsprXGmNh+UPi2RfSFtTD5eh1J1eKLUTaVJ0NtI3iqJjnSHBA7i
-	wLtZaPhwltSy20U4syk42T4Vgks5hBM7PBpxigg7SRkHxov2ycMwjCEhnIVlilvdcqzy0iIYEmi
-	+GGKi1YSG5KlNRO/srfdRbdBNCxM5NJ5Z0P9pkBifj9QMjVUI+OZj94D06nGQyExckcbvUZ2Ceg
-	==
-X-Google-Smtp-Source: AGHT+IHxXn2yLf/O2bw0wSVQuR2yrp3qNWp/lca6o04wzOt6BocP+pKYn0NEJrwyp2gbNHx+3bV2CA==
-X-Received: by 2002:a5d:5c84:0:b0:3b8:d79a:6a7d with SMTP id ffacd0b85a97d-3b8d947167fmr8598420f8f.13.1754382597141;
-        Tue, 05 Aug 2025 01:29:57 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4595cffdb28sm98597745e9.32.2025.08.05.01.29.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 01:29:56 -0700 (PDT)
-Message-ID: <a5c292ec-e59b-49f0-9681-a990128cbdfe@linaro.org>
-Date: Tue, 5 Aug 2025 09:29:55 +0100
+	 In-Reply-To:Content-Type; b=NpY6WWD+VZ/8BQfRXC9NQFwHetTAjDygAzLRG88N5PVUkjWbGCb4458DalV4StzbHQ2xWm1btwcKM3adM5H3NzEs9IrGh36P/FrOpdKl/DN9pgNllejqFoWvtn2QWmlt0hssEWWR8Hp2+TIFm8NhAmZvpLc9j7iajvoLYISpafM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B2NZl6Nr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F12CFC4CEF4;
+	Tue,  5 Aug 2025 08:32:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754382780;
+	bh=H+195tupBnrAgDGdlIgQ3BH2CjjoT2sHHXaqRr4/ORs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B2NZl6Nr9/SxTW59A3tJ1Rgt0Rc8Lgi/6qbX7oD/moywv08iB6rxtDJTqJyg/CsAg
+	 p0T7bTnrLipNOx7L1gG/krytcUFRVxl5Fkf7+BND+dAV1VFuM17FNYHd8kw51FfXt4
+	 pDi00T0dDelWcA0ubEUudVR8n/lFJTkiqrskq04MScVIv1AVphYVSf9LGBb5oD4+nq
+	 AnFqq0bUB/Dc7cuxWjiVjhF1bsI3IKIW8GQHHfzfMNUemPSfaesfAd2nBPilGN2KAZ
+	 77XTs8hr6GZdnJZDPfkoKAoC3YneILHvyelUQdLLUbmAanwTpxhXnimDLrbq0h5pJy
+	 PrfZg21hGa51Q==
+Message-ID: <b7b22093-539d-48af-8f78-54754b4412bb@kernel.org>
+Date: Tue, 5 Aug 2025 10:32:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,34 +50,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/7] media: venus: Define minimum valid firmware
- version
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
- quic_dikshita@quicinc.com, quic_vgarodia@quicinc.com,
- konradybcio@kernel.org, krzk+dt@kernel.org
-Cc: mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-3-jorge.ramirez@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v5 2/4] dt-bindings: power: supply: add support for
+ MAX77759 fuel gauge
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20250804-b4-gs101_max77759_fg-v5-0-03a40e6c0e3d@uclouvain.be>
+ <20250804-b4-gs101_max77759_fg-v5-2-03a40e6c0e3d@uclouvain.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20250805064430.782201-3-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250804-b4-gs101_max77759_fg-v5-2-03a40e6c0e3d@uclouvain.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/08/2025 07:44, Jorge Ramirez-Ortiz wrote:
-> +	if (!is_fw_rev_or_newer(core, ver->major, ver->minor, ver->rev))
-> +		return -EINVAL;
+On 04/08/2025 16:26, Thomas Antoine via B4 Relay wrote:
+> +  monitored-battery:
+
+You don't have the type defined because of missing power supply ref.
+
+> +    description: |
+> +      The fuel gauge needs the following battery properties:
+> +      - charge-full-design-microamp-hours
+> +      - charge-term-current-microamp
 > +
+> +  nvmem-cells:
+> +    maxItems: 1
+> +    description: |
+> +      Saved fuel gauge state. This state will be used during the initialization
+> +      and saved on exit. It must be initialized beforehand.
+> +      Its layout must be composed of
+> +        - RCOMP0 (characterization of the open-circuit voltage)
+> +        - TCOMPO (temperature compensation information)
+> +        - FULLCAPREP (reported full capacity)
+> +        - QRTABLE00, QRTABLE10, QRTABLE20, QRTABLE30 (cell capacity information)
+> +        - cv_mixcap (remaining capacity of the cell without empty compensation)
+> +        - cv_halftime (time-to-full characterization time constant)
+> +      They must all be aligned on 2 bytes. A valid CRC8 checksum must
+> +      also be found at the end (polynomial x^8 + x^2 + x + 1).
+> +
+> +  nvmem-cell-names:
+> +    const: fg_state
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - shunt-resistor-micro-ohms
+> +  - monitored-battery
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fuel-gauge@36 {
+> +        compatible = "maxim,max77759-fg";
+> +        reg = <0x36>;
+> +        interrupt-parent = <&gpa9>;
+> +        interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +        shunt-resistor-micro-ohms = <5000>;
+> +        monitored-battery = <&battery>;
+> +        nvmem-cell-names = "fg_state";
+> +        nvmem-cells = <&fg_state>;
 
-This is the sort of error case that deserves a kernel log.
+Reverse the order of these two.
 
-dev_err(dev, "Firmware version %d.%d < minimum version %d.%d\n, etc);
+> +      };
+> +    };
+> 
 
-If I were to try booting venus with an old/unsupported I wouldn't know 
-why the probe was failing.
 
----
-bod
+Best regards,
+Krzysztof
 
