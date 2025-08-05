@@ -1,143 +1,164 @@
-Return-Path: <devicetree+bounces-201921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31F49B1B3B5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:46:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C6DB1B3C0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8D33189C5C0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:46:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E9FA621069
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:48:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C3524E4D4;
-	Tue,  5 Aug 2025 12:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18ADE272E51;
+	Tue,  5 Aug 2025 12:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IQmrItHN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XOLh531q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B1D17BA9;
-	Tue,  5 Aug 2025 12:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F3BE2727F5;
+	Tue,  5 Aug 2025 12:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754397994; cv=none; b=COMPImHFzSqNw6AqMz6YR+UlSXcHFsAjC0/KKtF8PHtra4mOP3MCS4sGAKvDu2mQVCocTOWE1SnHNdzfmHsHDBzBnTxzubLzhkv/hr5OltHG0h/+oNoyPuBANahkB7pl/A/D/exKq7kz7r2E1WPKIrhbVKsR5/V/aQwNdma8pbg=
+	t=1754398098; cv=none; b=Trmg2Vm06ZezYRLGfpeMKDIkokw7otYG3yV6RX19DyIkoRysZaWTsrB/7AuMSNkiwK2y9Z9WdpyTFlQH7gFIbAlRcDfU9isS13j6vWUqWc0pbPeINnX5GG2DiYEt3wvrFAvfaAJdLzrlJ2Zu+O8CtVEWaw61yeVM3GJxvLc0Nxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754397994; c=relaxed/simple;
-	bh=QcCNjtZ8ljDHa+br/x98Jk8fa0gmUzucMn7T55a0Ci8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RmOmVtLptYfxfMzrzOYoolmAkwIGBH4ZtI7ARuR2IrX94NP4r2jESljMFRgLN2/KEClzjh4CLqncBITd2iLEvsIHjdh+T/JiRdYQEfagFtwtIYyaI4yjH8PPwW2ayIfkylxXB3S0RZZ10EztUL//6lqenYG/QSuGbrVunfcNP1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IQmrItHN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BBCEC4CEF0;
-	Tue,  5 Aug 2025 12:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754397993;
-	bh=QcCNjtZ8ljDHa+br/x98Jk8fa0gmUzucMn7T55a0Ci8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IQmrItHNA1v8UkW9nESLT9nCGQOKH+yEBrEHODnHFZ6Fepx/NH9PJ2g3orlaRYAX7
-	 K9Bcps4gqRvtEMP11G703j0XNB1n7GMgbTW5tk740hQK+h/P0GFcQjUE/ocmvIRCGR
-	 7fHgxdHqxW2mtBg/pYCmrbjSocb7BXfx8m9gld23KATp3NurJQaj069iQafM32pA/a
-	 l++uQcvSr9MSQvAVdx6VfBuT4IDCYMN5EU971dC/cK3IoVTcq9uCMl2nFuu8yV0Dll
-	 5eo0N9/6n7JCQuC0MpL1KQnXy78HTDvUilMuucSZhyaFjhzkKBcPBAhYhBuilkcF/W
-	 7YncGNL+q+5fw==
-Message-ID: <a0f97029-86f7-4a97-aa67-497ca6615e23@kernel.org>
-Date: Tue, 5 Aug 2025 14:46:28 +0200
+	s=arc-20240116; t=1754398098; c=relaxed/simple;
+	bh=zMYW5Dc+amN5HAgb+PGEOgBovaSlEsCMYnLaFnLlMXI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JT1q3H2ZxgCnWmK3aYSlX/jMAH8ym5e8SUHn8dYcV+Fr9+pkCuCKtKXNFU5cMQYUzmpk4QsMGtFwWj0zeQUtA8TqnAMW8/zMy8fCh6wHMrCu5heuYbymdEpgWZ3yhpq6uw3uwAEHoSGATzpk7UdhBgHLvDiQKYtz0U6ko+7yIzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XOLh531q; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76bc68cc9e4so4672141b3a.2;
+        Tue, 05 Aug 2025 05:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754398096; x=1755002896; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PwJfXNbCpAaf1tvDKNhH5lAo52g5GzwEwWVp4t5FoPI=;
+        b=XOLh531qpcochHpJYreUE2+98zjCvxnoNisLc+2+XYxrNaYbrO+919X3+St6w0PMbs
+         agMQb5Q0tT1Dr8PcwNSdEQxB7BvoCtwBdyXmKkFKWr5knVLbUkfbgSwtzTPoVO3zui1m
+         Od+BnK+mZ+nY2GAaHCspQthd1HZoQNrmolwC/OZz6OnvXlg/eFXqR6Lv2hUOWOAKuEZE
+         uNojL/679tetZNXJhVd1mtkpH1snNolqPKdHczPDSBBbt8K33IiZvpoFJWfLPRuq0yM8
+         dSQTswy8wrWUIFnUvf5tK753B+iKEUvP2CTREmEwtcOWxe8yjMD3STwl7dxMX9XayWmE
+         OiaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754398096; x=1755002896;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PwJfXNbCpAaf1tvDKNhH5lAo52g5GzwEwWVp4t5FoPI=;
+        b=XCivwM12rONsPCOYViXHOcDU7VHoAoZQlatXbPvgUZOOfB2U00dNBN+QvIh5pUscMD
+         3QHk0/JgR9z+mcEJVIDvWnyGnEyaSwlUJHaYOLWXD5q7CcN524SCKkkc5qkPoGdn2j7M
+         2kUmxQ0jURdKWrYgA7YlwwmLqvaJaOVpKxi7WDdxWZZRFClldxFrx1hlTWmMrk4w+IqT
+         H3UHDqR+Ls/ik40uyfxRKCrb440Yybhi5sr64fjlL/rUlMXVnnlaCfwEYAcn5Xaqzcr/
+         o915ySjkM117jEing7Y9C6mxxuZ1EJm5U3lWy43TzggPugI/e9gbIhaYb3GaMxFS2Nd2
+         AU8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUAe2IgK9JZLmWEJCfkX5RvSx4DDNM74e2NsSYES0Ph9cybjBP6ynAeoIkW2m8kvyEQ0duGblT1c6MPqOW/@vger.kernel.org, AJvYcCUiuEcitVcYCt9cRoziY1EQrGLLbIr70n6aulL27nT0HCQ47BoaK4scj9kEtCGwXc+e0ffHoYnb@vger.kernel.org, AJvYcCV1gLytK7tUndeKob0gFjsTCW1RCFjtj0Y6k5Y9cYJBgamyTSTeU6LXJWuyUnLB67JWKkmNzVlnN8ab@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhshadTqPDmfB6Cfn1PQqTEhydt/0dfhY45j4V2J5h1bR33HSO
+	6bwlrPDHguFzN5Dm+pEOtOQNbqPmobwaS0VJFniqCiPrg1M2vHDyuPnR
+X-Gm-Gg: ASbGnctHL5MBaCbzZFzPOzp5PYJYzRCDzeoaYeY8HG7psa8pd+85xeoZsTfE3kZjiwp
+	p3uDcrZ2cU0dtLqux+eneJ0Mbji3hDKwl1K8e6LACdTcUejF6pXusQ0z1tZ7XL7ZFvDQpZt8CxO
+	CLKX6TlORzRWmGF7jGnsVy6b0ByTAwfUrseIanGuEiBG8B/hDjHwtlawULBONDHRxiLgKG2PK2G
+	C65pWQ3x7X/GM7UADbbkYfmbA9SWCK7KNAiQx5hQ4jOvgzDNgEGykPp5HxhAn8Z3OUDjQwfw8Lv
+	wFSgXweLtn4otrhzwyXvl5XPhPaQxVdqFjOQaYP2hxDSjvWvaXC3oY7/FQaBrOM1++VhUhPP598
+	c3Q/ideaI1m2K8IerRTmjBgk9ck3tuRQ=
+X-Google-Smtp-Source: AGHT+IGLP0rIe8sm1sv9dF85p8HSkB21IbSlnit3fmQUaj2sMz2867GX9FBja2F/tMnc9XANdtsdjQ==
+X-Received: by 2002:a05:6a00:1403:b0:76b:d67b:2ee0 with SMTP id d2e1a72fcca58-76bec308509mr17921117b3a.6.1754398095668;
+        Tue, 05 Aug 2025 05:48:15 -0700 (PDT)
+Received: from localhost ([2804:30c:1f50:da00:c6fb:5400:5af6:282f])
+        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-76bccfd8f8dsm12923915b3a.104.2025.08.05.05.48.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Aug 2025 05:48:14 -0700 (PDT)
+Date: Tue, 5 Aug 2025 09:48:24 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: Replace bouncing Alexandru
+ Tachici emails
+Message-ID: <aJH9mE55UjqdFoQk@debian-BULLSEYE-live-builder-AMD64>
+References: <20250724113758.61874-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: adm1275: add sq24905c support
-To: ChiShih Tsai <tomtsai764@gmail.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, t630619@gmail.com
-References: <20250805124449.15187-1-tomtsai764@gmail.com>
- <20250805124449.15187-2-tomtsai764@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250805124449.15187-2-tomtsai764@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250724113758.61874-2-krzysztof.kozlowski@linaro.org>
 
-On 05/08/2025 14:44, ChiShih Tsai wrote:
-> Add support for sq24905c Hot-Swap Controller and Digital Power Monitor.
+Hi All,
+
+On 07/24, Krzysztof Kozlowski wrote:
+> Emails to alexandru.tachici@analog.com bounce permanently:
 > 
-> Signed-off-by: ChiShih Tsai <tomtsai764@gmail.com>
+>   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
+> 
+> so replace him with Marcelo Schmitt from Analog.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+
 > ---
->  Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> 
+> I don't know who from Analog should maintain these devices, so I chosen
+> author from Analog of one of last commits.
+> 
+> Marcelo Schmitt, could you confirm that you are okay (or not) with this?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, I'm okay in taking maintainership of those.
 
+Thanks,
+Marcelo
 
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
-
-Best regards,
-Krzysztof
+> ---
+>  Documentation/devicetree/bindings/net/adi,adin.yaml     | 2 +-
+>  Documentation/devicetree/bindings/net/adi,adin1110.yaml | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> index 929cf8c0b0fd..c425a9f1886d 100644
+> --- a/Documentation/devicetree/bindings/net/adi,adin.yaml
+> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADIN1200/ADIN1300 PHY
+>  
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+>  
+>  description: |
+>    Bindings for Analog Devices Industrial Ethernet PHYs
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin1110.yaml b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+> index 9de865295d7a..0a73e01d7f97 100644
+> --- a/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+> +++ b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: ADI ADIN1110 MAC-PHY
+>  
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+>  
+>  description: |
+>    The ADIN1110 is a low power single port 10BASE-T1L MAC-
+> -- 
+> 2.48.1
+> 
+> 
 
