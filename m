@@ -1,495 +1,1004 @@
-Return-Path: <devicetree+bounces-202003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9F7B1B952
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 19:24:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778CEB1B336
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 234241850D5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:24:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8994A16E8F4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1538299A94;
-	Tue,  5 Aug 2025 17:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5370525DCF0;
+	Tue,  5 Aug 2025 12:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="bxUFRXij"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ahsjTLff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE684295DB8
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 17:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BA815ECCC
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 12:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754414577; cv=none; b=CJ0RuWbkxAFwK3cq4AwoC5p/BsZS3xd37LfR2t1a8sSbIQSZ/KbvJQUmtINM+D54i6GBa7hn9MAwLxbRr4da1l0kapqfYyDTZtTpu0XrKLjCRknrVSVE24MyECLjGj2g/PKtKH572kLhHZ9ZxHu0s2GVutN/rVNEHmhUG6wz0BA=
+	t=1754396467; cv=none; b=XbuTXj6PCxP0mV827Li/6ReAs5jxQAa4SWOBe1c6AFN3iPxtZpspMSCffEFAlrIZiYLe0yczYUJuphuYf/1/zQb1/9NRRzHATJ0NStmQUzkpeuh6yg3e0UAmoRW6osmXof/nb7Ow+A87VMfh+8GkD1vNBv9ojJ/unpc9y5XDzP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754414577; c=relaxed/simple;
-	bh=HaKyof1V231K5b4P2GZ2qiW0NVa5NHAb8veYpYnQQlU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=tV1L6X2BlDebTY6RSkuOYg4CIjS4hun6kpeZlff4zzKnxtPD7h1/U6EsQWkRukreq2WOozdOQkR4qGB3gBNaC5/lZxAfB9f6xIL2gm2Ne2Epny3HNEB+oeCpKXA03R/2yOS3zMNJjbOyMmNXvxFpvgHWJOZ6yGYDUjkGkP12Hq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=bxUFRXij; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250805172254epoutp0165581c4f627afe71593d522caf3416b9~Y7sKAuVe72140921409epoutp01p
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 17:22:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250805172254epoutp0165581c4f627afe71593d522caf3416b9~Y7sKAuVe72140921409epoutp01p
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754414574;
-	bh=7qlEmXtUe88tYGGLiS67TbZMPfh8OvX4Lcv4IHrwwh0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bxUFRXijLZN86xasIXt9DKGemVxNiD3R+/tFeonXRsJbLJJhotGR2XvE2Xk68gXf8
-	 +cHKQGyqsQicJUOKnYXNUbj4KIKeKp5h0g83kw+cRr+KKidpzW7Zgz5BM2rkUsj6fy
-	 8HASbSBscno2CYpycUW1hnM56Dx/mwQm3eM2Iuvc=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250805172253epcas5p3b7d4a6b9dca682c57c7db1fc4f44b72a~Y7sJfchN51099910999epcas5p3v;
-	Tue,  5 Aug 2025 17:22:53 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.89]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4bxKxm5RDhz2SSKY; Tue,  5 Aug
-	2025 17:22:52 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9~Y3DuehpYS1320213202epcas5p3O;
-	Tue,  5 Aug 2025 11:43:23 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250805114320epsmtip1e718719114067311541af92e1c7cd1b1~Y3DrlBtv01422814228epsmtip1K;
-	Tue,  5 Aug 2025 11:43:20 +0000 (GMT)
-From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
-	ivo.ivanov.ivanov1@gmail.com, igor.belwon@mentallysanemainliners.org,
-	m.szyprowski@samsung.com, s.nawrocki@samsung.com, pritam.sutar@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
-	selvarasu.g@samsung.com
-Subject: [PATCH v5 6/6] phy: exynos5-usbdrd: support SS combo phy for
- ExynosAutov920
-Date: Tue,  5 Aug 2025 17:22:16 +0530
-Message-Id: <20250805115216.3798121-7-pritam.sutar@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+	s=arc-20240116; t=1754396467; c=relaxed/simple;
+	bh=a0UMDh5jP/f890IY3i+ZFC4ojkk2vDalCxAMCT94zbQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DaST7AKpmBXtnukp758ZVEzN2hTj99l3NX9NaGEzWdwL3kqIFHXM9Hi99xTp2CD5BUEIV898DJOGnx4hCxbnjN2h/CuOF5nFz9RoIVeSHvTT6NinSdHBU47TmdWYYsCsXOCS+59Cy9NSuiQ9OhGKLVSz9Q7jl4urA5CQUcj1Hec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ahsjTLff; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-76c18568e5eso1299004b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 05:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754396464; x=1755001264; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZN9TxnTX0jKI2utFknDqBh6efwBYZRO5RUzihffdrlo=;
+        b=ahsjTLff6CccUCjNbTFpslQZmV4XcdXlMufbhRUXOwv/Nfx2D3qrw1ke3FVmuundVn
+         JmjzW7cyCtANq1aDXW5wNwOd73i3O5+ubFkhzQAl0UpXkVsXxvOPodOhX4YxgrCzXDoT
+         YpvjYPVt+bUPVMEbi3ogZBCZIYdiPYxwu6GhGX+pgGkY3lFPUXsmnXnVR7GMxDKTyVoj
+         XF8O+GofCP4VxmXnKHnM6eRbZlPLi+v4ZsdHZsRFmf8rpLMmU/xJODWNzNiCQoWc1AZj
+         a2RRC3lYg5akLnAaBTCPpEPgFowaM6DAlZqJzzqtNSKJR0+Cxjer//xL7BwXMZNvrXNu
+         H/oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754396464; x=1755001264;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZN9TxnTX0jKI2utFknDqBh6efwBYZRO5RUzihffdrlo=;
+        b=FJkLPY+VU3cHz8JUACzaZrc85L2JfLMUg8b3TtLx0WfodiGP7yGpEOX7FLEFB01obc
+         KmXWJ298TmFLlYRTPhcaaNJlD6M9tQzBzA08vy004bq/aIPIUbNdb2YFCYOWOYAzUpKq
+         0kCg28623LoQmeB26OWEM1S9gXLH64iNFVXE7iXb93XSXva+GkAhvAKtztPtQyU2pLTC
+         fKrSUd/F6BTLFGTj1rv0bbFuI7jhb06Z7H2sIW4htJZX9pU0eZQ6ZPnoMGtar8IBRwr5
+         H4FZpU1z7xlFaXGL9pn67HhBUGy2ArmQeDcCUr9zIzxbfkyz/BTBf9x0FF4DLe83E6HW
+         Huag==
+X-Forwarded-Encrypted: i=1; AJvYcCU0WS+CU6dZegSHFIEvVtTaOUfSOUjkUWMmB5/vBAgYcQ6JGaS4jVK4vpHtBal8ZjDbNMPatccgYpEc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvTtIC8Nd485Zk69tQzXLbXFk5tzIrjGN9v/A5PX1GgW8ts84X
+	TlQWj38PFw6ikaSbOudPGHwgLACpZXtSAjYj2YWG1u1dLQdV+THkF/15wnj2//z2iAM2fKVT3/z
+	rQNAPQkj2qDnjoXAnNX+IE6SZFXFKZImKzjsPv6JECvag573xqYovHiA=
+X-Gm-Gg: ASbGncsuzvhYCGapmKujbJzJIDkQ27xWMasfrZwgT8s67oRYP8uMlJQd7nQCnT7ltdo
+	JkVVFafulTFHZeuVLELIEWXNkMnHOOMaBDF+EiRX2J2y/V4bYuGfmw3jcQaM17z6WNQtIUW6EDH
+	TY2MtrgZth+MhPDncRrvuoP6oBF2jw3Q2siwwAc9vxrvkdAy9D2XmuKYwSDSUrSyGuIWUuGWCRA
+	zeJKPGmTg0AyaWY
+X-Google-Smtp-Source: AGHT+IEHmSX274Q0tSdhIl66o9BBHZpg6BJ4e5uuXUvo69qG0g1UHn9D1LEbqlSmmjVdRNMuJJ8aAYru64IjzvIBwrY=
+X-Received: by 2002:a05:6a00:1ac9:b0:74e:ac5b:17ff with SMTP id
+ d2e1a72fcca58-76bec48bbddmr16872257b3a.13.1754396463619; Tue, 05 Aug 2025
+ 05:21:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9
-References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
-	<CGME20250805114323epcas5p39bf73c5e0a9382ff54b1832724804cc9@epcas5p3.samsung.com>
+References: <20250722081405.2947294-1-quic_jinlmao@quicinc.com>
+ <20250722081405.2947294-3-quic_jinlmao@quicinc.com> <CAJ9a7VhSLdPnVdJfbsCTKLri7i8SKP4WaO9W8=mOU4Wjo0VbyQ@mail.gmail.com>
+In-Reply-To: <CAJ9a7VhSLdPnVdJfbsCTKLri7i8SKP4WaO9W8=mOU4Wjo0VbyQ@mail.gmail.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Tue, 5 Aug 2025 13:20:52 +0100
+X-Gm-Features: Ac12FXwgaNsBAyrtUPWBM9viZl-PkqMUlgP9hXnsVRmhOIrCJfJhJJ-Q66EfRqs
+Message-ID: <CAJ9a7Vhh_DV1McYuLp9y4hCuzj7sdYNhd2g7vT32B_pN0L3YPw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] coresight: cti: Add Qualcomm extended CTI support
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+	Yingchao Deng <quic_yingdeng@quicinc.com>, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add required change in phy driver to support combo SS phy for this SoC.
+Hi
 
-Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
----
- drivers/phy/samsung/phy-exynos5-usbdrd.c    | 327 +++++++++++++++++++-
- include/linux/soc/samsung/exynos-regs-pmu.h |   1 +
- 2 files changed, 324 insertions(+), 4 deletions(-)
+On Mon, 4 Aug 2025 at 21:49, Mike Leach <mike.leach@linaro.org> wrote:
+>
+> Hi
+>
+> On Tue, 22 Jul 2025 at 09:14, Mao Jinlong <quic_jinlmao@quicinc.com> wrot=
+e:
+> >
+> > From: Yingchao Deng <quic_yingdeng@quicinc.com>
+> >
+> > The QCOM extended CTI is a heavily parameterized version of ARM=E2=80=
+=99s CSCTI.
+> > It allows a debugger to send to trigger events to a processor or to sen=
+d
+> > a trigger event to one or more processors when a trigger event occurs
+> > on another processor on the same SoC, or even between SoCs. For Qualcom=
+m
+> > extended CTI, it supports up to 128 triggers.
+> >
+> > Signed-off-by: Yingchao Deng <quic_yingdeng@quicinc.com>
+> > Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> > ---
+> >  .../hwtracing/coresight/coresight-cti-core.c  | 127 +++++++++++++----
+> >  .../coresight/coresight-cti-platform.c        |  16 ++-
+> >  .../hwtracing/coresight/coresight-cti-sysfs.c | 128 ++++++++++++++----
+> >  drivers/hwtracing/coresight/coresight-cti.h   |  75 +++++-----
+> >  4 files changed, 245 insertions(+), 101 deletions(-)
+> >
+> > diff --git a/drivers/hwtracing/coresight/coresight-cti-core.c b/drivers=
+/hwtracing/coresight/coresight-cti-core.c
+> > index 8fb30dd73fd2..d6a28df48484 100644
+> > --- a/drivers/hwtracing/coresight/coresight-cti-core.c
+> > +++ b/drivers/hwtracing/coresight/coresight-cti-core.c
+> > @@ -15,6 +15,7 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/list.h>
+> >  #include <linux/mutex.h>
+> > +#include <linux/of.h>
+> >  #include <linux/pm_runtime.h>
+> >  #include <linux/property.h>
+> >  #include <linux/spinlock.h>
+> > @@ -22,6 +23,54 @@
+> >  #include "coresight-priv.h"
+> >  #include "coresight-cti.h"
+> >
+> > +#define CTI_EXTENDED "qcom,coresight-cti-extended"
+> > +
+> > +static const int cti_normal_offset[] =3D {
+> > +       [CTIINTACK]             =3D 0x010,
+> > +       [CTIAPPSET]             =3D 0x014,
+> > +       [CTIAPPCLEAR]           =3D 0x018,
+> > +       [CTIAPPPULSE]           =3D 0x01C,
+> > +       [CTIINEN]               =3D 0x020,
+> > +       [CTIOUTEN]              =3D 0x0A0,
+> > +       [CTITRIGINSTATUS]       =3D 0x130,
+> > +       [CTITRIGOUTSTATUS]      =3D 0x134,
+> > +       [CTICHINSTATUS]         =3D 0x138,
+> > +       [CTICHOUTSTATUS]        =3D 0x13C,
+> > +       [CTIGATE]               =3D 0x140,
+> > +       [ASICCTL]               =3D 0x144,
+> > +       [ITCHINACK]             =3D 0xEDC,
+> > +       [ITTRIGINACK]           =3D 0xEE0,
+> > +       [ITCHOUT]               =3D 0xEE4,
+> > +       [ITTRIGOUT]             =3D 0xEE8,
+> > +       [ITCHOUTACK]            =3D 0xEEC,
+> > +       [ITTRIGOUTACK]          =3D 0xEF0,
+> > +       [ITCHIN]                =3D 0xEF4,
+> > +       [ITTRIGIN]              =3D 0xEF8,
+> > +};
+> > +
+>
+> Why not all CTI registers in these arrays?
+> Do not use hardcoded values in here - use the #defines from the header fi=
+le.
+>
+>
+> > +static const int cti_extended_offset[] =3D {
+> > +       [CTIINTACK]             =3D 0x020,
+> > +       [CTIAPPSET]             =3D 0x004,
+> > +       [CTIAPPCLEAR]           =3D 0x008,
+> > +       [CTIAPPPULSE]           =3D 0x00C,
+> > +       [CTIINEN]               =3D 0x400,
+> > +       [CTIOUTEN]              =3D 0x800,
+> > +       [CTITRIGINSTATUS]       =3D 0x040,
+> > +       [CTITRIGOUTSTATUS]      =3D 0x060,
+> > +       [CTICHINSTATUS]         =3D 0x080,
+> > +       [CTICHOUTSTATUS]        =3D 0x084,
+> > +       [CTIGATE]               =3D 0x088,
+> > +       [ASICCTL]               =3D 0x08c,
+> > +       [ITCHINACK]             =3D 0xE70,
+> > +       [ITTRIGINACK]           =3D 0xE80,
+> > +       [ITCHOUT]               =3D 0xE74,
+> > +       [ITTRIGOUT]             =3D 0xEA0,
+> > +       [ITCHOUTACK]            =3D 0xE78,
+> > +       [ITTRIGOUTACK]          =3D 0xEC0,
+> > +       [ITCHIN]                =3D 0xE7C,
+> > +       [ITTRIGIN]              =3D 0xEE0,
+> > +};
+> > +
+>
+> Again use #defines from header - in this case prehaps a new
+> qcom-cti.h, #define values QCOM_CTINTACK etc...
+>
+> >  /*
+> >   * CTI devices can be associated with a PE, or be connected to CoreSig=
+ht
+> >   * hardware. We have a list of all CTIs irrespective of CPU bound or
+> > @@ -57,6 +106,12 @@ static struct cti_drvdata *cti_cpu_drvdata[NR_CPUS]=
+;
+> >   */
+> >  DEFINE_CORESIGHT_DEVLIST(cti_sys_devs, "cti_sys");
+> >
+> > +u32 cti_offset(struct cti_drvdata *drvdata, int index, int num)
+> > +{
+> > +       return (drvdata->is_extended_cti ? cti_extended_offset[index]
+> > +                       : cti_normal_offset[index]) + (4 * num);
+>
+> have a pointer to the offset array in drvdata and set it at probe
+> time. This fn could probalb ybe inlines and then becomes
+>
+> return drvdata->offsets[index] + (4 * num);
+>
+>
+> > +}
+> > +
+> >  /* write set of regs to hardware - call with spinlock claimed */
+> >  void cti_write_all_hw_regs(struct cti_drvdata *drvdata)
+> >  {
+> > @@ -70,15 +125,15 @@ void cti_write_all_hw_regs(struct cti_drvdata *drv=
+data)
+> >
+> >         /* write the CTI trigger registers */
+> >         for (i =3D 0; i < config->nr_trig_max; i++) {
+> > -               writel_relaxed(config->ctiinen[i], drvdata->base + CTII=
+NEN(i));
+> > +               writel_relaxed(config->ctiinen[i], drvdata->base + cti_=
+offset(drvdata, CTIINEN, i));
+> >                 writel_relaxed(config->ctiouten[i],
+> > -                              drvdata->base + CTIOUTEN(i));
+> > +                               drvdata->base + cti_offset(drvdata, CTI=
+OUTEN, i));
+> >         }
+> >
+> >         /* other regs */
+> > -       writel_relaxed(config->ctigate, drvdata->base + CTIGATE);
+> > -       writel_relaxed(config->asicctl, drvdata->base + ASICCTL);
+> > -       writel_relaxed(config->ctiappset, drvdata->base + CTIAPPSET);
+> > +       writel_relaxed(config->ctigate, drvdata->base + cti_offset(drvd=
+ata, CTIGATE, 0));
+> > +       writel_relaxed(config->asicctl, drvdata->base + cti_offset(drvd=
+ata, ASICCTL, 0));
+> > +       writel_relaxed(config->ctiappset, drvdata->base + cti_offset(dr=
+vdata, CTIAPPSET, 0));
+> >
+> >         /* re-enable CTI */
+> >         writel_relaxed(1, drvdata->base + CTICONTROL);
+> > @@ -99,10 +154,13 @@ static int cti_enable_hw(struct cti_drvdata *drvda=
+ta)
+> >         if (config->hw_enabled || !config->hw_powered)
+> >                 goto cti_state_unchanged;
+> >
+> > -       /* claim the device */
+> > -       rc =3D coresight_claim_device(drvdata->csdev);
+> > -       if (rc)
+> > -               goto cti_err_not_enabled;
+> > +       /* There is no relationship between the CLR and SET pair for ex=
+tended CTI. */
+>
+> What does this mean? - these are CoreSight required management
+> registers required by software to claim the resource. Are they not
+> present of this device or has the functionality of these registers
+> been dropped.
+> Either way this is no longer a Coresight compatible CTI device without th=
+ese.
 
-diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-index c22f4de7d094..1108f0c07755 100644
---- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-+++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-@@ -273,6 +273,36 @@
- #define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
- #define HSPPLLTUNE_FSEL				GENMASK(18, 16)
- 
-+/* ExynosAutov920 phy usb31drd port reg */
-+#define EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL	0x000
-+#define PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN	BIT(5)
-+#define PHY_RST_CTRL_PIPE_LANE0_RESET_N		BIT(4)
-+#define PHY_RST_CTRL_PHY_RESET_OVRD_EN		BIT(1)
-+#define PHY_RST_CTRL_PHY_RESET			BIT(0)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0	0x0004
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR		GENMASK(31, 16)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK		BIT(8)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK		BIT(4)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL		BIT(0)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1	0x0008
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2	0x000c
-+#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN		BIT(0)
-+#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA		GENMASK(31, 16)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0	0x100
-+#define PHY_CONFIG0_PHY0_PMA_PWR_STABLE		BIT(14)
-+#define PHY_CONFIG0_PHY0_PCS_PWR_STABLE		BIT(13)
-+#define PHY_CONFIG0_PHY0_ANA_PWR_EN		BIT(1)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7	0x11c
-+#define PHY_CONFIG7_PHY_TEST_POWERDOWN		BIT(24)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4	0x110
-+#define PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN	BIT(2)
-+
- /* Exynos9 - GS101 */
- #define EXYNOS850_DRD_SECPMACTL			0x48
- #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL		GENMASK(13, 12)
-@@ -2077,6 +2107,253 @@ static const struct exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
- 	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
- };
- 
-+static void
-+exynosautov920_usb31drd_cr_clk(struct exynos5_usbdrd_phy *phy_drd, bool high)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg = 0;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	if (high)
-+		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+	else
-+		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	fsleep(1);
-+}
-+
-+static void
-+exynosautov920_usb31drd_port_phy_ready(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	struct device *dev = phy_drd->dev;
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	static const unsigned int timeout_us = 20000;
-+	static const unsigned int sleep_us = 40;
-+	u32 reg = 0;
-+	int err;
-+
-+	/* Clear cr_para_con */
-+	reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-+			PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
-+	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	writel(0x0, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1);
-+	writel(0x0, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+
-+	exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+	exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+
-+	/*
-+	 * The maximum time from phy reset de-assertion to de-assertion of
-+	 * tx/rx_ack can be as high as 5ms in fast simulation mode.
-+	 * Time to phy ready is < 20ms
-+	 */
-+	err = readl_poll_timeout(reg_phy +
-+				EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0,
-+			reg, !(reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK),
-+			sleep_us, timeout_us);
-+	if (err)
-+		dev_err(dev, "timed out waiting for rx/tx_ack: %#.8x\n", reg);
-+
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+}
-+
-+static void
-+exynosautov920_usb31drd_cr_write(struct exynos5_usbdrd_phy *phy_drd,
-+				 u16 addr, u16 data)
-+{
-+	struct device *dev = phy_drd->dev;
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 cnt = 0;
-+	u32 reg = 0;
-+
-+	/* Pre Clocking */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/*
-+	 * tx clks must be available prior to assertion of tx req.
-+	 * tx pstate p2 to p0 transition directly is not permitted.
-+	 * tx clk ready must be asserted synchronously on tx clk prior
-+	 * to internal transmit clk alignment sequence in the phy
-+	 * when entering from p2 to p1 to p0.
-+	 */
-+	do {
-+		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+		cnt++;
-+	} while (cnt < 15);
-+
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/*
-+	 * tx data path is active when tx lane is in p0 state
-+	 * and tx data en asserted. enable cr_para_wr_en.
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+	reg &= ~PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA;
-+	reg |= FIELD_PREP(PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA, data) |
-+		PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+
-+	/* write addr */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR;
-+	reg |= FIELD_PREP(PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR, addr) |
-+		PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-+		PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/* check cr_para_ack*/
-+	cnt = 0;
-+	do {
-+		/*
-+		 * data symbols are captured by phy on rising edge of the
-+		 * tx_clk when tx data enabled.
-+		 * completion of the write cycle is acknowledged by assertion
-+		 * of the cr_para_ack.
-+		 */
-+		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+		reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+		if ((reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK))
-+			break;
-+
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+
-+		/*
-+		 * wait for minimum of 10 cr_para_clk cycles after phy reset
-+		 * is negated, before accessing control regs to allow for
-+		 * internal resets.
-+		 */
-+		cnt++;
-+	} while (cnt < 10);
-+
-+	if (cnt == 10)
-+		dev_dbg(dev, "CR write failed to 0x%04x\n", addr);
-+	else
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+}
-+
-+static void
-+exynosautov920_usb31drd_phy_reset(struct exynos5_usbdrd_phy *phy_drd, int val)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	reg &= ~PHY_RST_CTRL_PHY_RESET_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	if (val)
-+		reg |= PHY_RST_CTRL_PHY_RESET;
-+	else
-+		reg &= ~PHY_RST_CTRL_PHY_RESET;
-+
-+	reg |= PHY_RST_CTRL_PHY_RESET_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+}
-+
-+static void
-+exynosautov920_usb31drd_lane0_reset(struct exynos5_usbdrd_phy *phy_drd, int val)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	reg |= PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	if (val)
-+		reg &= ~PHY_RST_CTRL_PIPE_LANE0_RESET_N;
-+	else
-+		reg |= PHY_RST_CTRL_PIPE_LANE0_RESET_N;
-+
-+	reg &= ~PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+}
-+
-+static void
-+exynosautov920_usb31drd_pipe3_init(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	/*
-+	 * Phy and Pipe Lane reset assert.
-+	 * assert reset (phy_reset = 1).
-+	 * The lane-ack outputs are asserted during reset (tx_ack = rx_ack = 1)
-+	 */
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 1);
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 1);
-+
-+	/*
-+	 * ANA Power En, PCS & PMA PWR Stable Set
-+	 * ramp-up power suppiles
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0);
-+	reg |= PHY_CONFIG0_PHY0_ANA_PWR_EN | PHY_CONFIG0_PHY0_PCS_PWR_STABLE |
-+		PHY_CONFIG0_PHY0_PMA_PWR_STABLE;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0);
-+
-+	fsleep(10);
-+
-+	/*
-+	 * phy is not functional in test_powerdown mode, test_powerdown to be
-+	 * de-asserted for normal operation
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+	reg &= ~PHY_CONFIG7_PHY_TEST_POWERDOWN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+
-+	/*
-+	 * phy reset signal be asserted for minimum 10us after power
-+	 * supplies are ramped-up
-+	 */
-+	fsleep(10);
-+
-+	/*
-+	 * Phy and Pipe Lane reset assert de-assert
-+	 */
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 0);
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 0);
-+
-+	/* Pipe_rx0_sris_mode_en  = 1 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4);
-+	reg |= PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4);
-+
-+	/*
-+	 * wait for lane ack outputs to de-assert (tx_ack = rx_ack = 0)
-+	 * Exit from the reset state is indicated by de-assertion of *_ack
-+	 */
-+	exynosautov920_usb31drd_port_phy_ready(phy_drd);
-+
-+	/* override values for level settings */
-+	exynosautov920_usb31drd_cr_write(phy_drd, 0x22, 0x00F5);
-+}
-+
-+static void
-+exynosautov920_usb31drd_ssphy_disable(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	/* 1. Assert reset (phy_reset = 1) */
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 1);
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 1);
-+
-+	/* phy test power down */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+	reg |= PHY_CONFIG7_PHY_TEST_POWERDOWN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+}
-+
- static void
- exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
- {
-@@ -2171,12 +2448,15 @@ exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
- 	/* after POR low and delay 75us, PHYCLOCK is guaranteed. */
- 	fsleep(75);
- 
--	/* force pipe3 signal for link */
-+	/* Disable forcing pipe interface */
- 	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
--	reg |= LINKCTRL_FORCE_PIPE_EN;
--	reg &= ~LINKCTRL_FORCE_PHYSTATUS;
--	reg |= LINKCTRL_FORCE_RXELECIDLE;
-+	reg &= ~LINKCTRL_FORCE_PIPE_EN;
- 	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
-+
-+	/* Pclk to pipe_clk */
-+	reg = readl(reg_phy + EXYNOS2200_DRD_CLKRST);
-+	reg |= EXYNOS2200_CLKRST_LINK_PCLK_SEL;
-+	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST);
- }
- 
- static void
-@@ -2263,6 +2543,8 @@ static int exynosautov920_usbdrd_combo_phy_exit(struct phy *phy)
- 
- 	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
- 		exynosautov920_usbdrd_hsphy_disable(phy_drd);
-+	else if (inst->phy_cfg->id == EXYNOS5_DRDPHY_PIPE3)
-+		exynosautov920_usb31drd_ssphy_disable(phy_drd);
- 
- 	/* enable PHY isol */
- 	inst->phy_cfg->phy_isol(inst, true);
-@@ -2319,10 +2601,44 @@ static int exynosautov920_usbdrd_phy_power_off(struct phy *phy)
- 	return 0;
- }
- 
-+static const char * const exynosautov920_usb30_regulators[] = {
-+	"dvdd075-usb30", "vdd18-usb30",
-+};
-+
- static const char * const exynosautov920_usb20_regulators[] = {
- 	"dvdd075-usb20", "vdd18-usb20", "vdd33-usb20",
- };
- 
-+static const struct
-+exynos5_usbdrd_phy_config usb31drd_phy_cfg_exynosautov920[] = {
-+	{
-+		.id		= EXYNOS5_DRDPHY_PIPE3,
-+		.phy_isol	= exynos5_usbdrd_phy_isol,
-+		.phy_init	= exynosautov920_usb31drd_pipe3_init,
-+	},
-+};
-+
-+static const struct phy_ops exynosautov920_usb31drd_combo_ssphy_ops = {
-+	.init		= exynosautov920_usbdrd_phy_init,
-+	.exit		= exynosautov920_usbdrd_combo_phy_exit,
-+	.power_on	= exynosautov920_usbdrd_phy_power_on,
-+	.power_off	= exynosautov920_usbdrd_phy_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static const
-+struct exynos5_usbdrd_phy_drvdata exynosautov920_usb31drd_combo_ssphy = {
-+	.phy_cfg		= usb31drd_phy_cfg_exynosautov920,
-+	.phy_ops		= &exynosautov920_usb31drd_combo_ssphy_ops,
-+	.pmu_offset_usbdrd0_phy	= EXYNOSAUTOV920_PHY_CTRL_USB31,
-+	.clk_names		= exynos5_clk_names,
-+	.n_clks			= ARRAY_SIZE(exynos5_clk_names),
-+	.core_clk_names		= exynos5_core_clk_names,
-+	.n_core_clks		= ARRAY_SIZE(exynos5_core_clk_names),
-+	.regulator_names	= exynosautov920_usb30_regulators,
-+	.n_regulators		= ARRAY_SIZE(exynosautov920_usb30_regulators),
-+};
-+
- static const struct phy_ops exynosautov920_usbdrd_combo_hsphy_ops = {
- 	.init		= exynosautov920_usbdrd_phy_init,
- 	.exit		= exynosautov920_usbdrd_combo_phy_exit,
-@@ -2587,6 +2903,9 @@ static const struct of_device_id exynos5_usbdrd_phy_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos990-usbdrd-phy",
- 		.data = &exynos990_usbdrd_phy
-+	}, {
-+		.compatible = "samsung,exynosautov920-usb31drd-combo-ssphy",
-+		.data = &exynosautov920_usb31drd_combo_ssphy
- 	}, {
- 		.compatible = "samsung,exynosautov920-usbdrd-combo-hsphy",
- 		.data = &exynosautov920_usbdrd_combo_hsphy
-diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
-index 4923f9be3d1f..f96c773b85c9 100644
---- a/include/linux/soc/samsung/exynos-regs-pmu.h
-+++ b/include/linux/soc/samsung/exynos-regs-pmu.h
-@@ -690,4 +690,5 @@
- 
- /* exynosautov920 */
- #define EXYNOSAUTOV920_PHY_CTRL_USB20				(0x0710)
-+#define EXYNOSAUTOV920_PHY_CTRL_USB31				(0x0714)
- #endif /* __LINUX_SOC_EXYNOS_REGS_PMU_H */
--- 
-2.34.1
+Quick clarification - after dicussions with the CoreSight architect in
+ARM, these locations must be readable, but can return 0 indicating no
+claim tags present.
 
+>
+> > +       if (!drvdata->is_extended_cti) {
+> > +               /* claim the device */
+> > +               rc =3D coresight_claim_device(drvdata->csdev);
+> > +               if (rc)
+> > +                       goto cti_err_not_enabled;
+> > +       }
+> >
+> >         cti_write_all_hw_regs(drvdata);
+> >
+> > @@ -175,7 +233,8 @@ static int cti_disable_hw(struct cti_drvdata *drvda=
+ta)
+> >         writel_relaxed(0, drvdata->base + CTICONTROL);
+> >         config->hw_enabled =3D false;
+> >
+> > -       coresight_disclaim_device_unlocked(csdev);
+> > +       if (!drvdata->is_extended_cti)
+> > +               coresight_disclaim_device_unlocked(csdev);
+> >         CS_LOCK(drvdata->base);
+> >         raw_spin_unlock(&drvdata->spinlock);
+> >         return ret;
+> > @@ -270,8 +329,10 @@ int cti_add_connection_entry(struct device *dev, s=
+truct cti_drvdata *drvdata,
+> >         cti_dev->nr_trig_con++;
+> >
+> >         /* add connection usage bit info to overall info */
+> > -       drvdata->config.trig_in_use |=3D tc->con_in->used_mask;
+> > -       drvdata->config.trig_out_use |=3D tc->con_out->used_mask;
+> > +       bitmap_or(drvdata->config.trig_in_use, drvdata->config.trig_in_=
+use,
+> > +                 tc->con_in->used_mask, drvdata->config.nr_trig_max);
+> > +       bitmap_or(drvdata->config.trig_out_use, drvdata->config.trig_ou=
+t_use,
+> > +                 tc->con_out->used_mask, drvdata->config.nr_trig_max);
+> >
+> >         return 0;
+> >  }
+> > @@ -314,7 +375,6 @@ int cti_add_default_connection(struct device *dev, =
+struct cti_drvdata *drvdata)
+> >  {
+> >         int ret =3D 0;
+> >         int n_trigs =3D drvdata->config.nr_trig_max;
+> > -       u32 n_trig_mask =3D GENMASK(n_trigs - 1, 0);
+> >         struct cti_trig_con *tc =3D NULL;
+> >
+> >         /*
+> > @@ -325,8 +385,9 @@ int cti_add_default_connection(struct device *dev, =
+struct cti_drvdata *drvdata)
+> >         if (!tc)
+> >                 return -ENOMEM;
+> >
+> > -       tc->con_in->used_mask =3D n_trig_mask;
+> > -       tc->con_out->used_mask =3D n_trig_mask;
+> > +       bitmap_fill(tc->con_in->used_mask, n_trigs);
+> > +       bitmap_fill(tc->con_out->used_mask, n_trigs);
+> > +
+> >         ret =3D cti_add_connection_entry(dev, drvdata, tc, NULL, "defau=
+lt");
+> >         return ret;
+> >  }
+> > @@ -339,7 +400,6 @@ int cti_channel_trig_op(struct device *dev, enum ct=
+i_chan_op op,
+> >  {
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cti_config *config =3D &drvdata->config;
+> > -       u32 trig_bitmask;
+> >         u32 chan_bitmask;
+> >         u32 reg_value;
+> >         int reg_offset;
+> > @@ -349,25 +409,23 @@ int cti_channel_trig_op(struct device *dev, enum =
+cti_chan_op op,
+> >            (trigger_idx >=3D config->nr_trig_max))
+> >                 return -EINVAL;
+> >
+> > -       trig_bitmask =3D BIT(trigger_idx);
+> > -
+> >         /* ensure registered triggers and not out filtered */
+> >         if (direction =3D=3D CTI_TRIG_IN)   {
+> > -               if (!(trig_bitmask & config->trig_in_use))
+> > +               if (!(test_bit(trigger_idx, config->trig_in_use)))
+> >                         return -EINVAL;
+> >         } else {
+> > -               if (!(trig_bitmask & config->trig_out_use))
+> > +               if (!(test_bit(trigger_idx, config->trig_out_use)))
+> >                         return -EINVAL;
+> >
+> >                 if ((config->trig_filter_enable) &&
+> > -                   (config->trig_out_filter & trig_bitmask))
+> > +                   test_bit(trigger_idx, config->trig_out_filter))
+> >                         return -EINVAL;
+> >         }
+> >
+> >         /* update the local register values */
+> >         chan_bitmask =3D BIT(channel_idx);
+> > -       reg_offset =3D (direction =3D=3D CTI_TRIG_IN ? CTIINEN(trigger_=
+idx) :
+> > -                     CTIOUTEN(trigger_idx));
+> > +       reg_offset =3D (direction =3D=3D CTI_TRIG_IN ? cti_offset(drvda=
+ta, CTIINEN, trigger_idx) :
+> > +                       cti_offset(drvdata, CTIOUTEN, trigger_idx));
+> >
+> >         raw_spin_lock(&drvdata->spinlock);
+> >
+> > @@ -451,19 +509,19 @@ int cti_channel_setop(struct device *dev, enum ct=
+i_chan_set_op op,
+> >         case CTI_CHAN_SET:
+> >                 config->ctiappset |=3D chan_bitmask;
+> >                 reg_value  =3D config->ctiappset;
+> > -               reg_offset =3D CTIAPPSET;
+> > +               reg_offset =3D cti_offset(drvdata, CTIAPPSET, 0);
+> >                 break;
+> >
+> >         case CTI_CHAN_CLR:
+> >                 config->ctiappset &=3D ~chan_bitmask;
+> >                 reg_value =3D chan_bitmask;
+> > -               reg_offset =3D CTIAPPCLEAR;
+> > +               reg_offset =3D cti_offset(drvdata, CTIAPPCLEAR, 0);
+> >                 break;
+> >
+> >         case CTI_CHAN_PULSE:
+> >                 config->ctiappset &=3D ~chan_bitmask;
+> >                 reg_value =3D chan_bitmask;
+> > -               reg_offset =3D CTIAPPPULSE;
+> > +               reg_offset =3D cti_offset(drvdata, CTIAPPPULSE, 0);
+> >                 break;
+> >
+> >         default:
+> > @@ -857,6 +915,19 @@ static void cti_remove(struct amba_device *adev)
+> >         coresight_unregister(drvdata->csdev);
+> >  }
+> >
+> > +static bool of_is_extended_cti(struct device *dev)
+> > +{
+> > +       struct fwnode_handle *fwnode =3D dev_fwnode(dev);
+> > +
+> > +       if (is_of_node(fwnode)) {
+> > +               if (of_device_is_compatible(to_of_node(fwnode),
+> > +                                           CTI_EXTENDED))
+> > +                       return true;
+> > +       }
+> > +
+> > +       return false;
+> > +}
+> > +
+> >  static int cti_probe(struct amba_device *adev, const struct amba_id *i=
+d)
+> >  {
+> >         int ret =3D 0;
+> > @@ -950,9 +1021,11 @@ static int cti_probe(struct amba_device *adev, co=
+nst struct amba_id *id)
+> >         drvdata->csdev_release =3D drvdata->csdev->dev.release;
+> >         drvdata->csdev->dev.release =3D cti_device_release;
+> >
+> > +       drvdata->is_extended_cti =3D of_is_extended_cti(dev);
+>
+> Better as drvdata->cti_subtype - see comments below.
+> > +
+> >         /* all done - dec pm refcount */
+> >         pm_runtime_put(&adev->dev);
+> > -       dev_info(&drvdata->csdev->dev, "CTI initialized\n");
+> > +       dev_info(&drvdata->csdev->dev, "CTI initialized %d\n", drvdata-=
+>is_extended_cti);
+> >         return 0;
+> >
+> >  pm_release:
+> > diff --git a/drivers/hwtracing/coresight/coresight-cti-platform.c b/dri=
+vers/hwtracing/coresight/coresight-cti-platform.c
+> > index d0ae10bf6128..4bef860a0484 100644
+> > --- a/drivers/hwtracing/coresight/coresight-cti-platform.c
+> > +++ b/drivers/hwtracing/coresight/coresight-cti-platform.c
+> > @@ -136,8 +136,8 @@ static int cti_plat_create_v8_etm_connection(struct=
+ device *dev,
+> >                 goto create_v8_etm_out;
+> >
+> >         /* build connection data */
+> > -       tc->con_in->used_mask =3D 0xF0; /* sigs <4,5,6,7> */
+> > -       tc->con_out->used_mask =3D 0xF0; /* sigs <4,5,6,7> */
+> > +       bitmap_set(tc->con_in->used_mask, 4, 4); /* sigs <4,5,6,7> */
+> > +       bitmap_set(tc->con_out->used_mask, 4, 4); /* sigs <4,5,6,7> */
+> >
+> >         /*
+> >          * The EXTOUT type signals from the ETM are connected to a set =
+of input
+> > @@ -194,10 +194,10 @@ static int cti_plat_create_v8_connections(struct =
+device *dev,
+> >                 goto of_create_v8_out;
+> >
+> >         /* Set the v8 PE CTI connection data */
+> > -       tc->con_in->used_mask =3D 0x3; /* sigs <0 1> */
+> > +       bitmap_set(tc->con_in->used_mask, 0, 2); /* sigs <0 1> */
+> >         tc->con_in->sig_types[0] =3D PE_DBGTRIGGER;
+> >         tc->con_in->sig_types[1] =3D PE_PMUIRQ;
+> > -       tc->con_out->used_mask =3D 0x7; /* sigs <0 1 2 > */
+> > +       bitmap_set(tc->con_out->used_mask, 0, 3); /* sigs <0 1 2 > */
+> >         tc->con_out->sig_types[0] =3D PE_EDBGREQ;
+> >         tc->con_out->sig_types[1] =3D PE_DBGRESTART;
+> >         tc->con_out->sig_types[2] =3D PE_CTIIRQ;
+> > @@ -213,7 +213,7 @@ static int cti_plat_create_v8_connections(struct de=
+vice *dev,
+> >                 goto of_create_v8_out;
+> >
+> >         /* filter pe_edbgreq - PE trigout sig <0> */
+> > -       drvdata->config.trig_out_filter |=3D 0x1;
+> > +       set_bit(0, drvdata->config.trig_out_filter);
+> >
+> >  of_create_v8_out:
+> >         return ret;
+> > @@ -257,7 +257,7 @@ static int cti_plat_read_trig_group(struct cti_trig=
+_grp *tgrp,
+> >         if (!err) {
+> >                 /* set the signal usage mask */
+> >                 for (idx =3D 0; idx < tgrp->nr_sigs; idx++)
+> > -                       tgrp->used_mask |=3D BIT(values[idx]);
+> > +                       set_bit(values[idx], tgrp->used_mask);
+> >         }
+> >
+> >         kfree(values);
+> > @@ -331,7 +331,9 @@ static int cti_plat_process_filter_sigs(struct cti_=
+drvdata *drvdata,
+> >
+> >         err =3D cti_plat_read_trig_group(tg, fwnode, CTI_DT_FILTER_OUT_=
+SIGS);
+> >         if (!err)
+> > -               drvdata->config.trig_out_filter |=3D tg->used_mask;
+> > +               bitmap_or(drvdata->config.trig_out_filter,
+> > +                         drvdata->config.trig_out_filter,
+> > +                         tg->used_mask, drvdata->config.nr_trig_max);
+> >
+> >         kfree(tg);
+> >         return err;
+> > diff --git a/drivers/hwtracing/coresight/coresight-cti-sysfs.c b/driver=
+s/hwtracing/coresight/coresight-cti-sysfs.c
+> > index 572b80ee96fb..cc680a4b900a 100644
+> > --- a/drivers/hwtracing/coresight/coresight-cti-sysfs.c
+> > +++ b/drivers/hwtracing/coresight/coresight-cti-sysfs.c
+> > @@ -172,9 +172,8 @@ static struct attribute *coresight_cti_attrs[] =3D =
+{
+> >
+> >  /* register based attributes */
+> >
+> > -/* Read registers with power check only (no enable check). */
+> > -static ssize_t coresight_cti_reg_show(struct device *dev,
+> > -                          struct device_attribute *attr, char *buf)
+> > +static ssize_t coresight_cti_mgmt_reg_show(struct device *dev,
+> > +                                          struct device_attribute *att=
+r, char *buf)
+> >  {
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cs_off_attribute *cti_attr =3D container_of(attr, struct=
+ cs_off_attribute, attr);
+> > @@ -189,6 +188,53 @@ static ssize_t coresight_cti_reg_show(struct devic=
+e *dev,
+> >         return sysfs_emit(buf, "0x%x\n", val);
+> >  }
+> >
+> > +/* Read registers with power check only (no enable check). */
+> > +static ssize_t coresight_cti_reg_show(struct device *dev,
+> > +                                     struct device_attribute *attr, ch=
+ar *buf)
+> > +{
+> > +       struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> > +       struct cs_off_attribute *cti_attr =3D container_of(attr, struct=
+ cs_off_attribute, attr);
+> > +       struct cti_config *cfg =3D &drvdata->config;
+> > +       u32 val =3D 0;
+> > +       int i, num;
+> > +       ssize_t size =3D 0;
+> > +
+> > +       pm_runtime_get_sync(dev->parent);
+> > +       raw_spin_lock(&drvdata->spinlock);
+> > +       if (drvdata->config.hw_powered) {
+> > +               switch (cti_attr->off) {
+> > +               case CTICHINSTATUS:
+> > +               case CTICHOUTSTATUS:
+> > +               case ITCHINACK:
+> > +               case ITCHOUT:
+> > +               case ITCHOUTACK:
+> > +               case ITCHIN:
+> > +                       val =3D readl_relaxed(drvdata->base + cti_offse=
+t(drvdata, cti_attr->off, 0));
+> > +                       size +=3D sysfs_emit(buf, "0x%x\n", val);
+> > +                       break;
+> > +
+> > +               case CTITRIGINSTATUS:
+> > +               case CTITRIGOUTSTATUS:
+> > +               case ITTRIGINACK:
+> > +               case ITTRIGOUT:
+> > +               case ITTRIGOUTACK:
+> > +               case ITTRIGIN:
+> > +                       num =3D (cfg->nr_trig_max - 1) / 32;
+> > +                       for (i =3D 0; i <=3D num; i++) {
+> > +                               val =3D readl_relaxed(drvdata->base +
+> > +                                               cti_offset(drvdata, cti=
+_attr->off, i));
+> > +                               size +=3D sysfs_emit_at(buf, size, "0x%=
+x ", val);
+> > +                       }
+> > +                       if (size > 0)
+> > +                               buf[size - 1] =3D '\n';
+> > +                       break;
+> > +               }
+> > +       }
+> > +       raw_spin_unlock(&drvdata->spinlock);
+> > +       pm_runtime_put_sync(dev->parent);
+> > +       return size;
+> > +}
+> > +
+> >  /* Write registers with power check only (no enable check). */
+> >  static __maybe_unused ssize_t coresight_cti_reg_store(struct device *d=
+ev,
+> >                                                       struct device_att=
+ribute *attr,
+> > @@ -197,19 +243,45 @@ static __maybe_unused ssize_t coresight_cti_reg_s=
+tore(struct device *dev,
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cs_off_attribute *cti_attr =3D container_of(attr, struct=
+ cs_off_attribute, attr);
+> >         unsigned long val =3D 0;
+> > +       int num, i;
+> >
+> >         if (kstrtoul(buf, 0, &val))
+> >                 return -EINVAL;
+> >
+> >         pm_runtime_get_sync(dev->parent);
+> >         raw_spin_lock(&drvdata->spinlock);
+> > -       if (drvdata->config.hw_powered)
+> > -               cti_write_single_reg(drvdata, cti_attr->off, val);
+> > +       if (drvdata->config.hw_powered) {
+> > +               switch (cti_attr->off) {
+> > +               case ITCHINACK:
+> > +               case ITCHOUT:
+> > +                       cti_write_single_reg(drvdata, cti_offset(drvdat=
+a, cti_attr->off, 0), val);
+> > +                       break;
+> > +
+> > +               case ITTRIGINACK:
+> > +               case ITTRIGOUT:
+> > +               case ITTRIGOUTACK:
+> > +                       num =3D val / 32;
+>
+> Why?
+>
+> > +                       i =3D val % 32;
+>
+> Why? - "val" is the 32 bit value you want ot put into a 32 bit register.
+>
+> > +                       for (i =3D 0; i <=3D num; i++)
+> > +                               cti_write_single_reg(drvdata,
+> > +                                                    cti_offset(drvdata=
+, cti_attr->off, i), BIT(i));
+>
+> I cannot understand what this code is trying to do. Why is this
+> attempting to write to multiple registers with some BIT(i) value
+> rather than the input "val"
+> e.g. The complete 32biut value "val" should be written to ITTRIGOUT -
+> which is what the original code did. This breaks the original
+> functionality
+>
+> Has this code been tested?
+>
+> > +                       break;
+> > +               }
+> > +       }
+> > +
+> >         raw_spin_unlock(&drvdata->spinlock);
+> >         pm_runtime_put_sync(dev->parent);
+> >         return size;
+> >  }
+> >
+> > +#define coresight_cti_mgmt_reg(name, offset)                          =
+         \
+> > +       (&((struct cs_off_attribute[]) {                               =
+ \
+> > +          {                                                           =
+ \
+> > +               __ATTR(name, 0444, coresight_cti_mgmt_reg_show, NULL), =
+ \
+> > +               offset                                                 =
+ \
+> > +          }                                                           =
+ \
+> > +       })[0].attr.attr)
+> > +
+> >  #define coresight_cti_reg(name, offset)                               =
+         \
+> >         (&((struct cs_off_attribute[]) {                               =
+ \
+> >            {                                                           =
+ \
+> > @@ -237,17 +309,17 @@ static __maybe_unused ssize_t coresight_cti_reg_s=
+tore(struct device *dev,
+> >
+> >  /* coresight management registers */
+> >  static struct attribute *coresight_cti_mgmt_attrs[] =3D {
+> > -       coresight_cti_reg(devaff0, CTIDEVAFF0),
+> > -       coresight_cti_reg(devaff1, CTIDEVAFF1),
+> > -       coresight_cti_reg(authstatus, CORESIGHT_AUTHSTATUS),
+> > -       coresight_cti_reg(devarch, CORESIGHT_DEVARCH),
+> > -       coresight_cti_reg(devid, CORESIGHT_DEVID),
+> > -       coresight_cti_reg(devtype, CORESIGHT_DEVTYPE),
+> > -       coresight_cti_reg(pidr0, CORESIGHT_PERIPHIDR0),
+> > -       coresight_cti_reg(pidr1, CORESIGHT_PERIPHIDR1),
+> > -       coresight_cti_reg(pidr2, CORESIGHT_PERIPHIDR2),
+> > -       coresight_cti_reg(pidr3, CORESIGHT_PERIPHIDR3),
+> > -       coresight_cti_reg(pidr4, CORESIGHT_PERIPHIDR4),
+> > +       coresight_cti_mgmt_reg(devaff0, CTIDEVAFF0),
+> > +       coresight_cti_mgmt_reg(devaff1, CTIDEVAFF1),
+> > +       coresight_cti_mgmt_reg(authstatus, CORESIGHT_AUTHSTATUS),
+> > +       coresight_cti_mgmt_reg(devarch, CORESIGHT_DEVARCH),
+> > +       coresight_cti_mgmt_reg(devid, CORESIGHT_DEVID),
+> > +       coresight_cti_mgmt_reg(devtype, CORESIGHT_DEVTYPE),
+> > +       coresight_cti_mgmt_reg(pidr0, CORESIGHT_PERIPHIDR0),
+> > +       coresight_cti_mgmt_reg(pidr1, CORESIGHT_PERIPHIDR1),
+> > +       coresight_cti_mgmt_reg(pidr2, CORESIGHT_PERIPHIDR2),
+> > +       coresight_cti_mgmt_reg(pidr3, CORESIGHT_PERIPHIDR3),
+> > +       coresight_cti_mgmt_reg(pidr4, CORESIGHT_PERIPHIDR4),
+> >         NULL,
+> >  };
+> >
+> > @@ -284,11 +356,12 @@ static ssize_t cti_reg32_show(struct device *dev,=
+ char *buf,
+> >   * if reg_offset >=3D 0 then write through if enabled.
+> >   */
+> >  static ssize_t cti_reg32_store(struct device *dev, const char *buf,
+> > -                              size_t size, u32 *pcached_val, int reg_o=
+ffset)
+> > +                              size_t size, u32 *pcached_val, int index=
+)
+> >  {
+> >         unsigned long val;
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cti_config *config =3D &drvdata->config;
+> > +       int reg_offset;
+> >
+> >         if (kstrtoul(buf, 0, &val))
+> >                 return -EINVAL;
+> > @@ -298,6 +371,7 @@ static ssize_t cti_reg32_store(struct device *dev, =
+const char *buf,
+> >         if (pcached_val)
+> >                 *pcached_val =3D (u32)val;
+> >
+> > +       reg_offset =3D cti_offset(drvdata, index, 0);
+> >         /* write through if offset and enabled */
+> >         if ((reg_offset >=3D 0) && cti_active(config))
+> >                 cti_write_single_reg(drvdata, reg_offset, val);
+> > @@ -306,14 +380,14 @@ static ssize_t cti_reg32_store(struct device *dev=
+, const char *buf,
+> >  }
+> >
+> >  /* Standard macro for simple rw cti config registers */
+> > -#define cti_config_reg32_rw(name, cfgname, offset)                    =
+ \
+> > +#define cti_config_reg32_rw(name, cfgname, index)                     =
+ \
+>
+> Why the pointless change of a parameter name in a macro?
+>
+> >  static ssize_t name##_show(struct device *dev,                        =
+ \
+> >                            struct device_attribute *attr,              =
+ \
+> >                            char *buf)                                  =
+ \
+> >  {                                                                     =
+ \
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);  =
+   \
+> >         return cti_reg32_show(dev, buf,                                =
+ \
+> > -                             &drvdata->config.cfgname, offset);       =
+ \
+> > +                             &drvdata->config.cfgname, index);        =
+ \
+> >  }                                                                     =
+ \
+> >                                                                        =
+ \
+> >  static ssize_t name##_store(struct device *dev,                       =
+         \
+> > @@ -322,7 +396,7 @@ static ssize_t name##_store(struct device *dev,    =
+                         \
+> >  {                                                                     =
+ \
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);  =
+   \
+> >         return cti_reg32_store(dev, buf, size,                         =
+ \
+> > -                              &drvdata->config.cfgname, offset);      =
+ \
+> > +                              &drvdata->config.cfgname, index);       =
+ \
+> >  }                                                                     =
+ \
+> >  static DEVICE_ATTR_RW(name)
+> >
+> > @@ -389,7 +463,7 @@ static ssize_t inen_store(struct device *dev,
+> >
+> >         /* write through if enabled */
+> >         if (cti_active(config))
+> > -               cti_write_single_reg(drvdata, CTIINEN(index), val);
+> > +               cti_write_single_reg(drvdata, cti_offset(drvdata, CTIIN=
+EN, index), val);
+> >         raw_spin_unlock(&drvdata->spinlock);
+> >         return size;
+> >  }
+> > @@ -428,7 +502,7 @@ static ssize_t outen_store(struct device *dev,
+> >
+> >         /* write through if enabled */
+> >         if (cti_active(config))
+> > -               cti_write_single_reg(drvdata, CTIOUTEN(index), val);
+> > +               cti_write_single_reg(drvdata, cti_offset(drvdata, CTIOU=
+TEN, index), val);
+> >         raw_spin_unlock(&drvdata->spinlock);
+> >         return size;
+> >  }
+> > @@ -711,10 +785,8 @@ static ssize_t trigout_filtered_show(struct device=
+ *dev,
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cti_config *cfg =3D &drvdata->config;
+> >         int size =3D 0, nr_trig_max =3D cfg->nr_trig_max;
+> > -       unsigned long mask =3D cfg->trig_out_filter;
+> >
+> > -       if (mask)
+> > -               size =3D bitmap_print_to_pagebuf(true, buf, &mask, nr_t=
+rig_max);
+> > +       size =3D bitmap_print_to_pagebuf(true, buf, cfg->trig_out_filte=
+r, nr_trig_max);
+> >         return size;
+> >  }
+> >  static DEVICE_ATTR_RO(trigout_filtered);
+> > @@ -926,9 +998,8 @@ static ssize_t trigin_sig_show(struct device *dev,
+> >         struct cti_trig_con *con =3D (struct cti_trig_con *)ext_attr->v=
+ar;
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cti_config *cfg =3D &drvdata->config;
+> > -       unsigned long mask =3D con->con_in->used_mask;
+> >
+> > -       return bitmap_print_to_pagebuf(true, buf, &mask, cfg->nr_trig_m=
+ax);
+> > +       return bitmap_print_to_pagebuf(true, buf, con->con_in->used_mas=
+k, cfg->nr_trig_max);
+> >  }
+> >
+> >  static ssize_t trigout_sig_show(struct device *dev,
+> > @@ -940,9 +1011,8 @@ static ssize_t trigout_sig_show(struct device *dev=
+,
+> >         struct cti_trig_con *con =3D (struct cti_trig_con *)ext_attr->v=
+ar;
+> >         struct cti_drvdata *drvdata =3D dev_get_drvdata(dev->parent);
+> >         struct cti_config *cfg =3D &drvdata->config;
+> > -       unsigned long mask =3D con->con_out->used_mask;
+> >
+> > -       return bitmap_print_to_pagebuf(true, buf, &mask, cfg->nr_trig_m=
+ax);
+> > +       return bitmap_print_to_pagebuf(true, buf, con->con_out->used_ma=
+sk, cfg->nr_trig_max);
+> >  }
+> >
+> >  /* convert a sig type id to a name */
+> > diff --git a/drivers/hwtracing/coresight/coresight-cti.h b/drivers/hwtr=
+acing/coresight/coresight-cti.h
+> > index 8362a47c939c..7d052e76d116 100644
+> > --- a/drivers/hwtracing/coresight/coresight-cti.h
+> > +++ b/drivers/hwtracing/coresight/coresight-cti.h
+> > @@ -18,46 +18,42 @@
+> >
+> >  struct fwnode_handle;
+> >
+> > -/*
+> > - * Device registers
+> > - * 0x000 - 0x144: CTI programming and status
+> > - * 0xEDC - 0xEF8: CTI integration test.
+> > - * 0xF00 - 0xFFC: Coresight management registers.
+> > - */
+> > -/* CTI programming registers */
+> > -#define CTICONTROL             0x000
+> > -#define CTIINTACK              0x010
+> > -#define CTIAPPSET              0x014
+> > -#define CTIAPPCLEAR            0x018
+> > -#define CTIAPPPULSE            0x01C
+> > -#define CTIINEN(n)             (0x020 + (4 * n))
+> > -#define CTIOUTEN(n)            (0x0A0 + (4 * n))
+> > -#define CTITRIGINSTATUS                0x130
+> > -#define CTITRIGOUTSTATUS       0x134
+> > -#define CTICHINSTATUS          0x138
+> > -#define CTICHOUTSTATUS         0x13C
+> > -#define CTIGATE                        0x140
+> > -#define ASICCTL                        0x144
+> > -/* Integration test registers */
+> > -#define ITCHINACK              0xEDC /* WO CTI CSSoc 400 only*/
+> > -#define ITTRIGINACK            0xEE0 /* WO CTI CSSoc 400 only*/
+> > -#define ITCHOUT                        0xEE4 /* WO RW-600 */
+> > -#define ITTRIGOUT              0xEE8 /* WO RW-600 */
+> > -#define ITCHOUTACK             0xEEC /* RO CTI CSSoc 400 only*/
+> > -#define ITTRIGOUTACK           0xEF0 /* RO CTI CSSoc 400 only*/
+> > -#define ITCHIN                 0xEF4 /* RO */
+> > -#define ITTRIGIN               0xEF8 /* RO */
+> > -/* management registers */
+> > -#define CTIDEVAFF0             0xFA8
+> > -#define CTIDEVAFF1             0xFAC
+> > -
+>
+> Do not remove these from this file. Use them in the .c file to
+> populate the offset array. See above comments
+>
+>
+> >  /*
+> >   * CTI CSSoc 600 has a max of 32 trigger signals per direction.
+> >   * CTI CSSoc 400 has 8 IO triggers - other CTIs can be impl def.
+> >   * Max of in and out defined in the DEVID register.
+> >   * - pick up actual number used from .dts parameters if present.
+> >   */
+> > -#define CTIINOUTEN_MAX         32
+> > +#define CTIINOUTEN_MAX         128
+> > +
+> > +#define CTICONTROL             0x000
+> > +
+> > +/* management registers */
+> > +#define CTIDEVAFF0             0xFA8
+> > +#define CTIDEVAFF1             0xFAC
+> > +
+> > +enum cti_offset_index {
+> > +       CTIINTACK,
+> > +       CTIAPPSET,
+> > +       CTIAPPCLEAR,
+> > +       CTIAPPPULSE,
+> > +       CTIINEN,
+> > +       CTIOUTEN,
+> > +       CTITRIGINSTATUS,
+> > +       CTITRIGOUTSTATUS,
+> > +       CTICHINSTATUS,
+> > +       CTICHOUTSTATUS,
+> > +       CTIGATE,
+> > +       ASICCTL,
+> > +       ITCHINACK,
+> > +       ITTRIGINACK,
+> > +       ITCHOUT,
+> > +       ITTRIGOUT,
+> > +       ITCHOUTACK,
+> > +       ITTRIGOUTACK,
+> > +       ITCHIN,
+> > +       ITTRIGIN,
+> > +};
+> >
+> >  /**
+> >   * Group of related trigger signals
+> > @@ -68,7 +64,7 @@ struct fwnode_handle;
+> >   */
+> >  struct cti_trig_grp {
+> >         int nr_sigs;
+> > -       u32 used_mask;
+> > +       DECLARE_BITMAP(used_mask, CTIINOUTEN_MAX);
+> >         int sig_types[];
+> >  };
+> >
+> > @@ -147,9 +143,10 @@ struct cti_config {
+> >         bool hw_powered;
+> >
+> >         /* registered triggers and filtering */
+> > -       u32 trig_in_use;
+> > -       u32 trig_out_use;
+> > -       u32 trig_out_filter;
+> > +       DECLARE_BITMAP(trig_in_use, CTIINOUTEN_MAX);
+> > +       DECLARE_BITMAP(trig_out_use, CTIINOUTEN_MAX);
+> > +       DECLARE_BITMAP(trig_out_filter, CTIINOUTEN_MAX);
+> > +
+> >         bool trig_filter_enable;
+> >         u8 xtrig_rchan_sel;
+> >
+> > @@ -180,6 +177,7 @@ struct cti_drvdata {
+> >         struct cti_config config;
+> >         struct list_head node;
+> >         void (*csdev_release)(struct device *dev);
+> > +       bool is_extended_cti;
+>
+> use an enum type here - e.g. enum cti_subtype {  ARM_STD_CTI, QCOM_CTI };
+>
+>
+> >  };
+> >
+> >  /*
+> > @@ -232,6 +230,7 @@ int cti_create_cons_sysfs(struct device *dev, struc=
+t cti_drvdata *drvdata);
+> >  struct coresight_platform_data *
+> >  coresight_cti_get_platform_data(struct device *dev);
+> >  const char *cti_plat_get_node_name(struct fwnode_handle *fwnode);
+> > +u32 cti_offset(struct cti_drvdata *drvdata, int index, int num);
+> >
+> >  /* cti powered and enabled */
+> >  static inline bool cti_active(struct cti_config *cfg)
+> > --
+> > 2.25.1
+> >
+>
+> Regards
+>
+> Mike
+> --
+> Mike Leach
+> Principal Engineer, ARM Ltd.
+> Manchester Design Centre. UK
+
+Further to the ID regs issues, we also have the following clarificaiton :-
+
+" The CIDRn registers I expect to be common across all CoreSight
+components. However it's the PIDRn registers that really matter
+because that's where the designer+partnum are indicated.
+
+  - CIDRn values are the same for all CoreSight compliant components
+
+  - DEVARCH needs to be different between Arm CTI and QC CTI because
+the programmers model is different between the 2 CTIs.
+
+  - DEVTYPE I don't care much for (DEVARCH is more useful).
+
+  - PIDRn needs to indicate this is a QC designed part with a
+QC-allocated part number."
+
+Regards
+
+Mike
+
+
+
+--=20
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
