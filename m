@@ -1,137 +1,144 @@
-Return-Path: <devicetree+bounces-201980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673ADB1B77F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:32:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5C4B1B7B1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:39:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C6F97AFB85
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:30:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A175B3A2E1F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:39:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450CB78F2E;
-	Tue,  5 Aug 2025 15:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC2827145B;
+	Tue,  5 Aug 2025 15:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tmvcjC22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvLIBxj8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49894A28;
-	Tue,  5 Aug 2025 15:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36A64A28;
+	Tue,  5 Aug 2025 15:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754407926; cv=none; b=N9NfjerYqm+Vxo10tTQc6A5Wnu+v35vDCd0e8Xw+7mpTtzHBGGze3ff2g/F686SslRrGJyFV390f5SggkfLIMKav6Zn9/QftKQzNuTjsQzWF0lQKpl9woTk12RF+GzEPw7M3iIgEx11L8LKKHkxzoabciChsPlY4a/MXnqVxnzY=
+	t=1754408351; cv=none; b=m5cn4QqnHH5k9SvRbqI1u68eI/errNi/RCMWXfGax84g8WVt1Yf8N0xqVo0WfzjBoQlKP5BLK6tSWj2vsy6c9WUbQgjeAHkPYixp9yYzt2XCMSWQB6pXIV66BlFKJPI/zLiwE5wRJgJIrGgrurhaOhjdLHmv/Ibq0KxX8teOPOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754407926; c=relaxed/simple;
-	bh=zYc7c7d/i8Ql+qF+dnrBKCxeKxXeIyUFSPFcsCvQc5g=;
+	s=arc-20240116; t=1754408351; c=relaxed/simple;
+	bh=Sfc3xMxHGqVoflK676SStVZbw5uDGyunMmKEB2eOesM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uzlcUh0Z7oqsiQFuK8AqL0x0jMfi8MNdNwtDAHT5e2DpZsrKmTo9Vb/30U7XT3tbLJtqPAZnZ8ZT6iWS+ZqzT4+BwRa4muc0eH5RsfCk+MxDxvQYSFqP4PY7m9SsXIdkf7Ss8iKoM8xVKiMJMOv10p66i9KXrt+IIv3XMDxMDZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tmvcjC22; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PXyobKWbJw7huI969vcAU8isGv2OVX47I8Rs8Gm3eDk=; b=tmvcjC22yhmD1AcNl4Rky/fc1P
-	kdPOdRT5B63v65VBnB6TEWLW8omk7NhxEwmXzsjEQtA0hu4nnwQV74b8I7YNfUFQ8cXGU9iuPTG+m
-	qptmPQaAac2kOXRwe6Uov+9vnKU0ViY6rYcfMrLHrUtt/AjPHe+hUAoEdw9zl6mqjdJ0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ujJdp-003nnS-7I; Tue, 05 Aug 2025 17:31:53 +0200
-Date: Tue, 5 Aug 2025 17:31:53 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JnMJG0ZhL/KE8Tg0y26816hDZJlAtdvrjY25Ul2eU5xJCehkmcvy5qwVXKC+GG38l8dVgS5W36FeFXO4qomuHPHr15vN5LvYcRY11a+X6LhYdr3UqEFKE4M8NG/m7CddaHVTL2UHjvpP2lIu7lHSngljIIoIiQqg7mDf5oHnNBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvLIBxj8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E53C4CEF0;
+	Tue,  5 Aug 2025 15:39:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754408351;
+	bh=Sfc3xMxHGqVoflK676SStVZbw5uDGyunMmKEB2eOesM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tvLIBxj8IsgIX41sw53OtzX3fdSThyLyVyGhoI1inGTzM5sMCj5lU9fDrUeBDXkUd
+	 aKZd4ZF2s2RWT+H3CnkZFF+w7jF7GgHW8UBtprj+4UVk4Zk5LBFJVwPdVcgFwgu5zA
+	 DpVn4bKnqDeuI7G9lSY1QVAjN4L7LkdnISkvQFOJjJbXhC1ONbkAwrSnfCWkiZScoI
+	 b7dJkTlw1a8merA/t75DOoawK+KnPSH6o12t33UxdV/RJyve4f8cHuGdKPqdxIuoTB
+	 0q99GD1EaJ7h6gVRa3dku3gsRFpk3Ba0r0dmdriLLPz/mcuSQ9C5s+4BJ+JjuyfwFK
+	 mPLUnqRSi/iSg==
+Date: Tue, 5 Aug 2025 10:39:08 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Eddie James <eajames@linux.ibm.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Michal Schmidt <mschmidt@redhat.com>, Petr Oros <poros@redhat.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: dpll: Add clock ID property
-Message-ID: <47cf42a2-bc8e-4ed8-8619-79975b95230f@lunn.ch>
-References: <5ff2bb3e-789e-4543-a951-e7f2c0cde80d@kernel.org>
- <6937b833-4f3b-46cc-84a6-d259c5dc842a@redhat.com>
- <20250721-lean-strong-sponge-7ab0be@kuoka>
- <804b4a5f-06bc-4943-8801-2582463c28ef@redhat.com>
- <9220f776-8c82-474b-93fc-ad6b84faf5cc@kernel.org>
- <466e293c-122f-4e11-97d2-6f2611a5178e@redhat.com>
- <db39e1ff-8f83-468c-a8cb-0dd7c5a98b85@kernel.org>
- <f96b3236-f8e6-40c1-afb2-7e76894462f9@redhat.com>
- <1419bca0-b85a-4d4b-af1a-b0540c25933a@lunn.ch>
- <b33c76da-8ce1-402f-b252-f6d439ec39c7@redhat.com>
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
+ interrupt controllers
+Message-ID: <20250805153908.GA1807801-robh@kernel.org>
+References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
+ <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b33c76da-8ce1-402f-b252-f6d439ec39c7@redhat.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
 
-> Like this?
+On Mon, Aug 04, 2025 at 01:34:45PM +0800, Ryan Chen wrote:
+> The AST2700 SoC follows the multi-instance interrupt controller architecture
+> introduced in the AST2600, where each SCU interrupt group (IC0–IC3) is treated
+> as an independent interrupt domain.
 > 
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> index fb8d7a9a3693f..798c5484657cf 100644
-> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> @@ -27,11 +27,41 @@ properties:
->    "#size-cells":
->      const: 0
+> Unlike the AST2600, which uses a combined register for interrupt enable and
+> status bits, the AST2700 separates these into distinct registers: one for
+> interrupt enable (IER) and another for interrupt status (ISR). This architectural
+> change requires explicit handling of split registers for interrupt control.
 > 
-> -  dpll-types:
-> -    description: List of DPLL channel types, one per DPLL instance.
-> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> -    items:
-> -      enum: [pps, eec]
-> +  channels:
-> +    type: object
-> +    description: DPLL channels
-> +    unevaluatedProperties: false
+> - Register definitions and configuration for AST2700 SCU IC instances
+>   (compatible: aspeed,ast2700-scu-ic0/1/2/3)
+> - Initialization logic for handling split IER/ISR registers
+> - Chained IRQ handling and mask/unmask logic
+> - Table-driven registration using IRQCHIP_DECLARE per compatible
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/irqchip/irq-aspeed-scu-ic.c | 240 ++++++++++++++++++++++------
+>  1 file changed, 195 insertions(+), 45 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-aspeed-scu-ic.c b/drivers/irqchip/irq-aspeed-scu-ic.c
+> index 1c7045467c48..b6f3ba269c5b 100644
+> --- a/drivers/irqchip/irq-aspeed-scu-ic.c
+> +++ b/drivers/irqchip/irq-aspeed-scu-ic.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-or-later
+>  /*
+> - * Aspeed AST24XX, AST25XX, and AST26XX SCU Interrupt Controller
+> + * Aspeed AST24XX, AST25XX, AST26XX, AST27XX SCU Interrupt Controller
+>   * Copyright 2019 IBM Corporation
+>   *
+>   * Eddie James <eajames@linux.ibm.com>
+> @@ -34,11 +34,42 @@
+>  	GENMASK(5, ASPEED_AST2600_SCU_IC1_SHIFT)
+>  #define ASPEED_AST2600_SCU_IC1_NUM_IRQS	2
+>  
+> +#define ASPEED_AST2700_SCU_IC0_EN_REG	0x1d0
+> +#define ASPEED_AST2700_SCU_IC0_STS_REG	0x1d4
+> +#define ASPEED_AST2700_SCU_IC0_SHIFT	0
+> +#define ASPEED_AST2700_SCU_IC0_ENABLE	\
+> +	GENMASK(3, ASPEED_AST2700_SCU_IC0_SHIFT)
+> +#define ASPEED_AST2700_SCU_IC0_NUM_IRQS	4
 > +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +      "#size-cells":
-> +        const: 0
+> +#define ASPEED_AST2700_SCU_IC1_EN_REG	0x1e0
+> +#define ASPEED_AST2700_SCU_IC1_STS_REG	0x1e4
+> +#define ASPEED_AST2700_SCU_IC1_SHIFT	0
+> +#define ASPEED_AST2700_SCU_IC1_ENABLE	\
+> +	GENMASK(3, ASPEED_AST2700_SCU_IC1_SHIFT)
+> +#define ASPEED_AST2700_SCU_IC1_NUM_IRQS	4
 > +
-> +    patternProperties:
-> +      "^channel@[0-9a-f]+$":
-> +        type: object
-> +        description: DPLL channel
-> +        unevaluatedProperties: false
+> +#define ASPEED_AST2700_SCU_IC2_EN_REG	0x104
+> +#define ASPEED_AST2700_SCU_IC2_STS_REG	0x100
+> +#define ASPEED_AST2700_SCU_IC2_SHIFT	0
+> +#define ASPEED_AST2700_SCU_IC2_ENABLE	\
+> +	GENMASK(3, ASPEED_AST2700_SCU_IC2_SHIFT)
+> +#define ASPEED_AST2700_SCU_IC2_NUM_IRQS	4
 > +
-> +        properties:
-> +          reg:
-> +            description: Hardware index of the DPLL channel
-> +            maxItems: 1
+> +#define ASPEED_AST2700_SCU_IC3_EN_REG	0x10c
+> +#define ASPEED_AST2700_SCU_IC3_STS_REG	0x108
+> +#define ASPEED_AST2700_SCU_IC3_SHIFT	0
+> +#define ASPEED_AST2700_SCU_IC3_ENABLE	\
+> +	GENMASK(1, ASPEED_AST2700_SCU_IC3_SHIFT)
+> +#define ASPEED_AST2700_SCU_IC3_NUM_IRQS	2
 > +
-> +          dpll-type:
-> +            description: DPLL channel type
-> +            $ref: /schemas/types.yaml#/definitions/string
-> +            enum: [pps, eec]
-> +
-> +          ethernet-handle:
-> +            description:
-> +              Specifies a reference to a node representing an Ethernet
-> device
-> +              that uses this channel to synchronize its hardware clock.
-> +            $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +        required:
-> +          - reg
 
-Yes, but i will leave the DT Maintainers to give it a deeper review,
-but this what i meant. And it makes your dpll-type much easier to
-handle.
+The reason for ic0/ic1 compatibles before was the enable field was 
+different. Now it's at least at the same shift. Do you really need a 
+different value for IC3? 
 
-	Andrew
+The register addresses should come from "reg". I don't understand why 
+they are hardcoded in the driver.
+
+Rob
 
