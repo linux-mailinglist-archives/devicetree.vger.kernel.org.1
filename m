@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-201877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D89AEB1B1B1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:05:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F65B1B1B5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2624C7A2718
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:03:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3061162033
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A367B2652AF;
-	Tue,  5 Aug 2025 10:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C767269B1C;
+	Tue,  5 Aug 2025 10:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LuKoO6EX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F00kzYyM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099A81DEFD2
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 10:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCCA25B2E7
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 10:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754388297; cv=none; b=P6QLXOto3c/UlaskzHYlJmsA/E7pN2UcGRI5fULg8lbksdkijljnlpG3L49GHdrD3OCjF7e3SZcJayGdEM2D3m2V9YMNQqalJ8jTCy6efvXKBxxtD0NKFgRD0aaT6q19YmSCTyGHbHe1GVh7RdQCWm4WzQgwrD89tcwLMp/NWsM=
+	t=1754388349; cv=none; b=FHV3/rzak3p/sChsGDSRlWaN26ncg+9gKwpuZNO+zjqGHPOc68z3f6Z5NJRmikGykVK2jvnoEbySyyQquAiygfWPGE4bwwTu/3GZ705IP58xzlnYx3M/7zb7QcFV5tMaNsFgLUAMVNDIGOqy89ZWW4ZGBVUECYC5oGYoEWmnMUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754388297; c=relaxed/simple;
-	bh=16NaxHMSEZhPQMhjlmNpZcKyw1FlxxouGtxWL5uWmvA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kl9XYeyiBaDXIAdoC2U8ju0v7Z/MBNsaM4nuV+HpAI7irfQXPZHhCaQx8VpeSAQZTYmAtmLk9a85cST6hMsnjnaYHGFQk1v8gkoujjbHctbu6FWkLI0lZy0aJllSnCJV0MVC9VJvIWkXYtJ1ZRedsU/g+NaDGo5J73/KnV5HZck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LuKoO6EX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5753dGQm031895
-	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 10:04:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=LZ1Q7mltGYgZKuRjlXj10Xho
-	1f26ht9lWK5c6ij/Em8=; b=LuKoO6EXUBF3DJ3QOFvbziK7d2B+xJruqrjmTwWQ
-	HQGi0xUweghEiGaO1TCmBXJdUPjaTQTXBxHp+880PfmTamLyYm2ilfpcIDw03eBG
-	c+mMLgCOBMzBL/b1XL2oxgskxsRB3frhm8Hxbd6MXYuA+WveRUn1rZhx5yiMPnIb
-	gNpQapczuBtAOMSPxz65AYoChJuJTkX0SPVu5tbvYNFXTzORII9jH7ibxDROdiKM
-	x3YHb9G1gcnZe5VtTDIPZOPICp9HXHlR5udn6fDMpV7x+7rceQKa589aEQZDKerb
-	qhkW3l1drm8MYMNMce0XjFmu0U4pDv4Y4YF5mSyiTXZ0ZA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48981rr92f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 10:04:54 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b068c25f04so40397881cf.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 03:04:54 -0700 (PDT)
+	s=arc-20240116; t=1754388349; c=relaxed/simple;
+	bh=6C+1KQrRGEVs5yevENfdWXMJjYaH1qtssIzaEcKbKsQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qXLx4Y3ccYLGYErOt6gC6BnV3gaG+N/qB7PuXto6TZI91guw79eqCSCukUKlGY5wtDWwGADDL3fGYs4dXKVAzB+4rmIiAja40Fc0bOoAifJsrIplSoE9bPvXglyV7IpoaP7kELPxHPjzoCBQ6MoKMLnRKG/gXWe51qxUz2Diu/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F00kzYyM; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-458ba079338so21384715e9.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 03:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754388346; x=1754993146; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5WlJi9cGntow0MX8lCUDCRyZGY71FSIx/7fRRzmtG1E=;
+        b=F00kzYyMEQxFqtv/g7wiZp8ZAX+n9IM+PU13a4ryesbNAm/oz67tgIoAWgp/ew5csO
+         t1a9JCOh1M42LRjpYYfz/n2q3m74KxqJGSxBaqn40Dh3xURAMvytxKoL9rnmy9FP4bZj
+         JILZ4hObWOjKVyg6wYrk6YoTKZZhfwRjBdaJDmAacMripyQZV8MtYjjtyqyZqRwmxzTE
+         JA6OvyPcq01D1xZO1gWeq8nClslaS/cTTgHpwfgO7jgZYyrS/Ida5cPA4ek2Em8spxP0
+         Z99BQB9qBvnV4nDCNBmlbzIyxppy8ZoRGlaGxyGJaS5aGsafHUsCI44y7sjFMzm1jqbk
+         xxkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754388294; x=1754993094;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LZ1Q7mltGYgZKuRjlXj10Xho1f26ht9lWK5c6ij/Em8=;
-        b=YqvLCGQE1kuhilMdkY383Y/0/F687vBg4gwRrkRDlrdRWVR4mijeDkKTEmJaJsMq5T
-         rkoAJsBvE2QJwqplRPCT76pW9tdgk1nc1Ns0+AbbRVwgKYO5f08CTawgFB/12KQJK1NG
-         FEy+l4KLrcq/MWtncX/ptCFxO+kuTRr0u6n7rN9IUgnmYlUfXH+lASFjHwRda5mMrHOF
-         YZpqX5UhV/VVR/TEzljd9i/lefMw7ZeYYasKh8vx+/RkdYb1bE1Z7Ef8eOdzGaNHYpZl
-         Nmx/rG0ZJJhkmd2Xw1ipsEAQIa+DwszzsaHPz7bRsz15LU+K60v1BsLiX1zyngrag+03
-         Zy7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWzDD8FYNNYaRx4x+ahCg/y+vSdGFPfqnvDlt4UudlOJlFmE7geNj20wS9HtW4bn+z9k51zbdI45LsK@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoY4DEw33kODitHiuSGwnnSi+QZVEqq85aHFZd/OcbG0ajrZAR
-	bZNyV5LEa5+r4l2TpG+8MB5LGg46cxf7n23R3Yqw/5oXLbyFDgOLIGmL5LcLY8plSvKQRr71WEm
-	UmuqR8CH9UxSDdIjF2SUvw9H2f2FjAs/QLXjDS9ZqhKcPXVxq8h2/W9ScwqHQvab8
-X-Gm-Gg: ASbGncsfCjjxrliprhrDBQr/SpP3zmeY7AgqqDNmxjiZkzQUmr0rbTNGNTMEAUg1dw6
-	FEr1ZnmwI/RPM701spw0m+iNlcFEQHeW2ONq/Azrv5eC15GN0YOdgsvLhJUNttk5+9SDLUlL+1C
-	grk+k9/LrT4kFjsGTEIH5r6uTVVi9Z8FZm+EZD0IXb058aqgcGxEaeWcebonE5EJorQ1CIcFnil
-	yE2ZlY7NiFg13ICFpfxzHsnUP+kNm/7JzUn3xsPynrVXlzPXMLGrFiXLVIpBPRlU5gms9aOuDud
-	isgyvw6z3Hh86vfjGLU2L4TAkcSLs+8Q3mPRnydHjZcYmipvvqdoJznUARKWB0PgB8ZD9U62H0w
-	sSr1mTqicPC14csxgz3pbGPsXnDXLPnn4+iz+fyWjV3z4oYdV37qZ
-X-Received: by 2002:ac8:7d12:0:b0:4ae:cc49:e9ac with SMTP id d75a77b69052e-4b07fae5b1bmr48884321cf.29.1754388294018;
-        Tue, 05 Aug 2025 03:04:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFjc6p47qGpkwh31qlCKW+VV6tTU4R+W2maetJnUC3VlVpc14sJK3TH5Iz5iQDFhJnukuCBxg==
-X-Received: by 2002:ac8:7d12:0:b0:4ae:cc49:e9ac with SMTP id d75a77b69052e-4b07fae5b1bmr48883671cf.29.1754388293461;
-        Tue, 05 Aug 2025 03:04:53 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b8898beb4sm1926807e87.30.2025.08.05.03.04.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Aug 2025 03:04:52 -0700 (PDT)
-Date: Tue, 5 Aug 2025 13:04:50 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-Cc: bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        quic_vgarodia@quicinc.com, konradybcio@kernel.org, krzk+dt@kernel.org,
-        mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-Message-ID: <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1754388346; x=1754993146;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5WlJi9cGntow0MX8lCUDCRyZGY71FSIx/7fRRzmtG1E=;
+        b=tHSa3O/je9Qt6rKyY7D1ipbYHbJHe1+/7ToSosFTkh9pCfgJ5aJH3bg1PC/O/zASE/
+         CJXSBEViHkB53iAkdjiwoJzxpKN/y/9WnGNA1t8MQpWOeN8FhBu5WWcpYvcXFgUnu+Z3
+         wJ7hIsUBmBs9SQaJ0xlwIpBRrvryVskvh233EezwJroqEw2RIMY+lHoqlPvwQTJoowmW
+         sUy7z1mW6O706IFHifvcNz52FrHDJwf4h+Adm2cQX2LMMBWP/ZFqe1w21nMekLjm4FxP
+         ffzDbZTwX5tyjEVWe4mIuQ8xTzdjgpwbnyov0UyRjcSrAfZwGmNFMGw0OKDQHTG3Evjg
+         cU8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXC16+mlO8lE4O5sG+CVciDxMqW6EjfAccSyJkrO/nyGwquYAFry6idESW2KTV0y7vcHqi3Tp7ySjG3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbkKhW1CKjkRGEOSKH1FBEpYld5KupSLFfFeG3rdTsu9rQdxnH
+	kXCQKmzxMzZPFk+oqenoGpE4QlRDPEClpwKmJXvxrM9jz51plkhjerx53gbH3Pm8lhU=
+X-Gm-Gg: ASbGnctlaF3A+Kq4bY3S1LYDb6INt4cbAea3NR3ZUmPUtCGI1O/YIVf7//DyQ8orJPF
+	+iALR6jiSRmavlZgn8bhB+gXvXN6rt4vm4wNFmGA/e3b+9SAROrxmvA739o/8BE9ynwn8FJhzSk
+	b2+C3c5ax6YuTD0VnnMtvHYqwCBI9yAfrwa5LOBSfRt9gQxyPcrw/CUK8OM7oVGHt5lxmPgghqT
+	4cVj85NUN/1mgbCMIzQ+76QxARW+N+GH8cb4Sx2mc4coYQ04AQenzmt+IijPuuJiq7iSrOXsLiS
+	jy79JgdBZpmYZqaUK05lDKGxn4qIV7PDeIrcmi1BXA0wpF7PJFCOxnEUiH5iJXS1Z/ZbBje443i
+	GpJNmKrAUw1C/2qIqBCEZ3UHawW22pdhwk8lQyPypPfSVPm8vIFL9x6AOcfbBJp39XziUmCzq
+X-Google-Smtp-Source: AGHT+IH+DQ96eXMvvGEe+t/KMa5/NOiWF9sy7ZABIms9qVBZ7ZnokCJwIj+c1GxCOC9C5xJiKziJOg==
+X-Received: by 2002:a05:600c:6748:b0:456:1d06:f37d with SMTP id 5b1f17b1804b1-459e0d12436mr25547225e9.16.1754388346499;
+        Tue, 05 Aug 2025 03:05:46 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-458ba0a133bsm124646055e9.0.2025.08.05.03.05.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Aug 2025 03:05:46 -0700 (PDT)
+Message-ID: <6e496737-3cec-425e-a4a1-29b576f8eade@linaro.org>
+Date: Tue, 5 Aug 2025 12:05:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: MEko_4acMd6JI0IW_IiIPdf44id7Z6M_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDA3MyBTYWx0ZWRfXxngtaFeSF2xx
- qNamGCfQBBV17RR8wf40pnMSIAPKzipmapYLU4X1ZSbjmCdIEVSpLkfOjxnZ4B8i6/YdSv5zkrI
- q5NxS+52EbRg4ZlIUP+0VxfTUeXa5EWnpvjkj8VDRKhOrC8C8m3AUA7upovim1iuEiaaHkimjBH
- xV6D7Xld7QYAcee0te2pti7j+g/ncW1hkcvT5t+lUpyCmebhIQVFqvNF7HVxtKr+amUKEHnx5fD
- WOY0Z3kieepBmZg1LEdzTKqxc4R2FhcflXTu6rsW54pdf5GeD6Inruo6204pwY9lDdKkXF6HbTS
- CG92YlnJqaB6FDQtwB1tR9VroND39GTPEi2WOlrGLMAD94LIIfY4qHhodsFu030jtUHWrN0/+wv
- YZl46WXVTT03quswEuV/X783GODC0OQCB+jr/dbc61y3x6AKIMzSRdCLlXd2tSYDCda7em+p
-X-Proofpoint-GUID: MEko_4acMd6JI0IW_IiIPdf44id7Z6M_
-X-Authority-Analysis: v=2.4 cv=a8Mw9VSF c=1 sm=1 tr=0 ts=6891d746 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
- a=lzajS59LejGemfuab08A:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_02,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 phishscore=0
- spamscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050073
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/5] thermal: renesas: rzg3e: Add thermal driver for
+ the Renesas RZ/G3E SoC
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "rafael@kernel.org" <rafael@kernel.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "john.madieu@gmail.com" <john.madieu@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "lukasz.luba@arm.com" <lukasz.luba@arm.com>,
+ "magnus.damm" <magnus.damm@gmail.com>, "robh@kernel.org" <robh@kernel.org>,
+ "rui.zhang@intel.com" <rui.zhang@intel.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "niklas.soderlund+renesas@ragnatech.se"
+ <niklas.soderlund+renesas@ragnatech.se>
+References: <20250522182252.1593159-1-john.madieu.xa@bp.renesas.com>
+ <20250522182252.1593159-4-john.madieu.xa@bp.renesas.com>
+ <aHgVe0YwPWapIYed@mai.linaro.org>
+ <OSCPR01MB14647DE009925C982AE6BB5D2FF27A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
+ <64622ffd-05d1-43c3-85d0-cf98f3012477@linaro.org>
+ <OSCPR01MB1464771054F720542F817E84FFF22A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <OSCPR01MB1464771054F720542F817E84FFF22A@OSCPR01MB14647.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 05, 2025 at 08:44:28AM +0200, Jorge Ramirez-Ortiz wrote:
-> Add a qcm2290 compatible binding to the Cenus core.
-> 
-> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
-> encode at 1280x720 (HD).
-> 
-> The driver is not available to firmware versions below 6.0.55 due to an
-> internal requirement for secure buffers.
-> 
-> The bandwidth tables incorporate a conservative safety margin to ensure
-> stability under peak DDR and interconnect load conditions.
-> 
-> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->  drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index adc38fbc9d79..753a16f53622 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -1070,6 +1070,55 @@ static const struct venus_resources sc7280_res = {
->  	.enc_nodename = "video-encoder",
->  };
->  
-> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
-> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
-> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
-> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
-> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
-> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct firmware_version min_fw = {
-> +	.major = 6, .minor = 0, .rev = 55,
-> +};
 
-This will make venus driver error out with the firmware which is
-available in Debian trixie (and possibly other distributions). If I
-remember correctly, the driver can work with that firmware with the
-limited functionality. Can we please support that instead of erroring
-out completely?
+Hi John,
 
-> @@ -1080,6 +1129,7 @@ static const struct of_device_id venus_dt_match[] = {
->  	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->  	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
->  	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
-> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
 
-Please keep the table sorted.
+On 05/08/2025 09:49, John Madieu wrote:
 
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, venus_dt_match);
-> -- 
-> 2.34.1
+[ ... ]
+
+>>> I might not get what you are asking, but since I compute the
+>>> temperature in the hard IRQ handler, I just wait for it to complete
+>>> and notify the completion so I can grab the processed value to notify
+>>> the thermal core.
+>>>
+>>> Please let me know if this does not answer your question.
+>>
+>> Can you describe how the sensor works ? And perhaps if you have a pointer
+>> to some documentation ?
 > 
+> Here is the documentation [1]. The thermal device is referred to as TSU.
+> 
+> [1] https://www.renesas.com/en/document/mah/rzg3e-group-users-manual-hardware?r=25574493
+> 
+>>    [ ... ]
+
+Thanks for the pointer. I got it now ;)
+
+I'm a bit worried about the latency introduced by this mechanism when 
+the system is entering in a thermal pressure episode.
+
+The get_temp function wait for a completion up to 100ms, it is a lot. 
+Especially if the userspace can be reading the temperature and blocking 
+the read.
+
+There is also the spin_lock taken introducing another lock while the 
+get_temp function is holding a mutex on the thermal zone.
+
+Did you it that under stress ?
 
 -- 
-With best wishes
-Dmitry
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
