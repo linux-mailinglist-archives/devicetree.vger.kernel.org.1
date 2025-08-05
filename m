@@ -1,232 +1,122 @@
-Return-Path: <devicetree+bounces-201891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 447DAB1B232
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:45:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E125B1B23E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:48:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FCA07A82DB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:43:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C2B3180890
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 10:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD5C241667;
-	Tue,  5 Aug 2025 10:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DED81E832A;
+	Tue,  5 Aug 2025 10:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="D0/F8yS6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QR0Xu4AX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB8823F412
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 10:45:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC29FA41;
+	Tue,  5 Aug 2025 10:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754390709; cv=none; b=s9+f0Bi+RQC2UT1CETLjkwXKz7mJZCbjMJBa66/+WMsKOPA0akUlvHAMTnZw0VY+zqQeGLDyPV6ZY/spZZ4yOCWWNPw8eK7R+AeF2tnZgdenp5/RjbwkS7Y/j3ja46THG86c/GOsig/YKhkSesIZzL9jWXVFdsX1NoOJpKewimw=
+	t=1754390906; cv=none; b=a/PY3QqgdMxWgkhc8fclNQAIXcYSUSnBoBwvMIwjJMpAgvKYRs2kQIrhZur/ya00j4SZDZajuWZo6ev/WOToyhOKtrd8UjfR5itWiTY3iAFMzU0UmjjHS68s7aqNhOo0aNT/CEIIJh1YgvSwKMp8fpvrvyybS5e2o1eU6F1jdmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754390709; c=relaxed/simple;
-	bh=vAtp33loiC2OMmromK/yoEFrGTmr8r510VQ51S+OcaA=;
+	s=arc-20240116; t=1754390906; c=relaxed/simple;
+	bh=WGVS5ezly+moX5D6PQd+oukCd6IzVK1WbUbYtvId5HI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j8X6IPnzByjWAwPjBnoLbLMOtB093mpyroHEyvhXgG0r795t67Gosj3BvnEDHivhBv1+0rNcmxAMEexTc8uDcu6e1SEBNAMzpQDhbdGRLqulnRTRK49MGgj6ifiIrxK3QvzhT9pAiYtQA0lGcqBe8a687Ee8+BGGXN95jfN8c3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=D0/F8yS6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5757I5ND012229
-	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 10:45:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HQj3FZoctR5ZS2xg/dOfzXuT0Dr0fvmcc9XZPTdXy0Y=; b=D0/F8yS6/OcIy9ah
-	7YaYrsXNvAazegfh/GMt3/QvEy/j3/9zjhmhDdSZN5eOoxX0//gOc93vmKCwwaio
-	tuQrFNy8O1HrQHG+Ye3CNeQqk2LaLBk00aHITaNjZm9dy6BCLlC2vhe614Pgqm/H
-	IsBydYHwgenHTj0I2Ffgd36qePbfRXGL34H7NhfPxok74Q5WUhg7qpasftnYSMPG
-	dmQJO7tUjBd5FtDTP8CcORgTyjhKfOpWBJWxLmrxA5oNclvJjLAvJCoJPE7U8Md1
-	iKB+ndNvnLf99f4CTyG4cDWhe9YRVij8SDgNTVpAkEC/M9eY1nlKQzoUc2CpNKqW
-	JMxy1w==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48981rrcgm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 10:45:06 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7e7ffe84278so331926885a.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 03:45:06 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oIdtuspRLOUtkfEg8vXH7D6tOMFFQ+jEikomIIu5DM0hD+AZ5h4CyzohGdeiZ7VMg4enpQfnOKBc+sr+zA21E3PcoUNd0Hc0aKH6Re8T4y65Y4Ee2Ouay7ieCwek/WtDODQhuUa6RMGyizSJ0wM7VEDRuuRuV3PgRiyQBAMlNkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QR0Xu4AX; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-459d40d16bdso15135895e9.0;
+        Tue, 05 Aug 2025 03:48:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754390903; x=1754995703; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eFjhrBEqlkaveJaCgIwUUbswLHsCvi6mC7lTuJNEgrA=;
+        b=QR0Xu4AX8hXfCZbdRiMucEeOi0JQaUNLcubwGSxQVI77OGITcVMXLF4cGOH8Xd0wTh
+         cebYBxQVAo5k2vmCoywBIwdsBD4ZM8iUKYSUOKjkKLLOXiLMJCZUho34BnlSmqSDr0Gy
+         rXSvkmGGbFSz0AGDfBWJhKSagKFIk4EEpQP+R6Br0Ue6AFkBgSs4TTUfAteYeU6DMGvm
+         ADVqpOdXCKC1XErHvAaO3TdMqaurWte2uovwcFAC+x6a6hlEW6rpQtmmLwSVwwRRuZGY
+         +6fazUQrHOYED1IVXnAOo2thoXzgJ/KYduY4fpH+Dyl7GqRM2J64iZsTTaU9iJFz3ePA
+         YwfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754390680; x=1754995480;
+        d=1e100.net; s=20230601; t=1754390903; x=1754995703;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HQj3FZoctR5ZS2xg/dOfzXuT0Dr0fvmcc9XZPTdXy0Y=;
-        b=JjZUJtsUf8N3rXiUHt/CvF9temGVgVlQRkyHkMy/j0p90MiU6SUxSD1WQ/5bG/LirL
-         jJhFW52LP2uUQd8kWQF4+McoJtyoJBQOBoDC5OjFR6oJoomWcWUV/ksWEJzB6Ffb1/fB
-         Q7w2YxPettVO9m0RGsQqkuJ19gi1+wktFIlbK4In4B1LoBN9iHcRK4TRULTxBW28FQTn
-         oVPEIDabg+yRKC4i1Ob4zFwttwpyPP4RcM4dnvRq4F2i6ZPj2rJrCjfxI15CvYj/MWid
-         DHGBXh9QfJc6I7yos0bVE2nU0mNv4uCaXj/9Y4K2KoUd/nOHC0XflB1DnYBCFXm+rUMb
-         192w==
-X-Forwarded-Encrypted: i=1; AJvYcCXzcBHyvSA/GfUBLZ4pokbrk7Pm5sAS2eANe/gInzw8bsIAU71EyxzeWXlILZwBg68v1vdYb66h12hW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVG2CwYgM40a0cO1vXrI3V1BgI9sX4r93jWBYfNWljWJzk0Mi+
-	uOMgA+E6bDdfLb52gat17jHC3uQDgg8xGlTTL02qVhnrQLqom+Ckgmk5by8S36tPeQTUvfhT1Zm
-	iUqibfERJZOh6oFuT23pUY5WutqYlMvfBe3PjkRYyT1jgZ0UkSdULNbKQW96yVQ4A
-X-Gm-Gg: ASbGncucbV0yTqNe0ydOm60olb8tVzbdiQ0wDFrmrQLc4tkgrvfv4fX6aY5WNFlEqAz
-	wvu1hTjraC7Vg85z0TPET9p021CBNxOwgA6cij9Mjm38PClIKs4fy7kIOmQMSa0kzyUI6oMwBBV
-	5gBStyB3TzLvvUiK/BTqw/3AY/wIyFMUH6Le92VeHEhiTCkhfReEjy+XpVZ3F56l3Kvlb4QKzmw
-	x01/Fcalsr7wL6PZssMLiUGryPentAJWS//qkaUOfrqm4myLW7DjucmRY2clqQmWkfALRAczoDx
-	3ZTKXbEq8+NguV5s1Kj/1QNaC0zGrtddqEwpGDUJui9kcnWgvC58Fe/2hctMRhZ/Koau3RU9jCz
-	rcIKbXwJuyAw1mmPe/7yEDW16I1yTMEXHY1qgjnqYpVS9dcaqgmJ4
-X-Received: by 2002:a05:6214:5001:b0:707:6425:23fc with SMTP id 6a1803df08f44-709362430abmr166449086d6.26.1754390680337;
-        Tue, 05 Aug 2025 03:44:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG+lMiAsbHz8RoaMN5eHDsdtapu2Nr4qMF3fZ3qhDMKzwzlcVX/R3oTueoOHY1lwn3LqnbIIg==
-X-Received: by 2002:a05:6214:5001:b0:707:6425:23fc with SMTP id 6a1803df08f44-709362430abmr166448516d6.26.1754390679809;
-        Tue, 05 Aug 2025 03:44:39 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-332389807eesm19601341fa.88.2025.08.05.03.44.38
+        bh=eFjhrBEqlkaveJaCgIwUUbswLHsCvi6mC7lTuJNEgrA=;
+        b=H3/FZHfEctyI0omeHnnDoXUnr9MmdL68CToOYjTKt8oo2nKZjIDQ11v+JZ2O5sGTbK
+         7EvvSOoJfOQYLeyj1MXX9PVVCBoDxDib+f5wvchP4n8MSc+nhjSq7KAXMO8doSOYHDXi
+         bOR1zS4jR6BHTbQcNDW9fxzKU9DnwrXq73OQ6z6fXZPraRisjV8u9CbBLqT+e57jyuuj
+         b+Y1IZEm1SweSU1rTwlp/VIO4BkDr984/fVatk7BulccoXN9vhd5uCaNZGaBHGiVOswy
+         aNbIz6MSIdzBb4OXe+rufnANHZNaufKP+E+oG1gw9AYivvOf33y8Hc5KWFwKuECmAR21
+         EPrw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVCZTPMzvEcvVGDMzabqhAKYA/zXrLFmXF9mWQiFA1YcrjXQdOpQBg4Bp5OPK9jYCxjCySRH1INwTwy84U@vger.kernel.org, AJvYcCUmUo6UNNBJe6xGPxehogg5uo1aCmmnGpTduBAA13IYQFBCe636woMuHzm0GjRcCIAPmQo1bZyrV79G@vger.kernel.org, AJvYcCWJ6+WecCYMiIEzLDMkH/CWJIrQ6f/q9QSoxmFScBiY525ShE/LoTBL+ZDPFbALH2Y/aXeG5nM3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQpzZ6nOWWo7OYbr33lPRnBeuHGACSyiVCD4vs2mmHzz4E9Igl
+	jz9UEbo0hnLW5t13/GMtmuoRcjdzYDWgyftcDPZJ6nG5JBEi0Ot9J+9O
+X-Gm-Gg: ASbGncvi+TbYDnjCQqk0pDTBrUoy2bbm8woErV7IyFiGHWzhRX+cm1xDJFHNKaAEfmn
+	PDohG98ERL+Ht+NYW0CDq+7wgyRp2DKKhgIAU68rEOs6JN7cs/3pjQd+at4Je8Yt59wtFwFu1Xa
+	E+q3AuVa7S6MYIWeI9+domlVjvnhYipj/Aq6F5EEtrhzcwlXJk6VS65rrrUJIvuzi5d7XfJXBJm
+	QMPg6TQwe390F621hmQqOahm26+lgq+Pl40PuLeoVglwQPH0zYBA3adbpw3bF3MQJBs17I4Uvtm
+	F6iJPObC8B9pIyPG1BzMk4gvxClYbz0S4Z0+wwxFxXKtQBww9MaFFexqu/KERCGgcpu/DVOuf2r
+	9SK6agxx1hcAO4w==
+X-Google-Smtp-Source: AGHT+IEp1B/j8vOHbyW62rr111CZYVZiRClUs66HrVgWJ37G/YiM74ESAOC0+IZA231Mi/D4WOjiVA==
+X-Received: by 2002:a05:600c:4505:b0:458:b4a6:19e9 with SMTP id 5b1f17b1804b1-458b6a03d43mr102866165e9.13.1754390902838;
+        Tue, 05 Aug 2025 03:48:22 -0700 (PDT)
+Received: from nsa ([91.205.230.243])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e3315a74sm15225375e9.6.2025.08.05.03.48.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Aug 2025 03:44:38 -0700 (PDT)
-Date: Tue, 5 Aug 2025 13:44:37 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Yubing Zhang <yubing.zhang@rock-chips.com>,
-        Frank Wang <frank.wang@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Amit Sunil Dhamne <amitsd@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-        Diederik de Haas <didi.debian@cknow.org>,
-        Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 0/5] Add Type-C DP support for RK3399 EVB IND board
-Message-ID: <6nfmxwtwcvuyo2jaao7fele7jcgcykfpy7czbcbjmjxv7cs5sc@dmbtot73kw63>
-References: <20250729090032.97-1-kernel@airkyi.com>
- <3kefqzjewmsyzfvyi33kvlgjd6jphjg3fsnixb3of7yb3xkgs2@hgi6xfkgd653>
- <63ec11cf-7927-431a-995e-a5fc35ef1ba7@rock-chips.com>
- <pk5wecbbpxn7v4bdwtghhdnm76fmrmglelytljwfb4cgvpu2i6@rk5turgyt5xq>
- <0207826d-a987-4464-b306-29bdbfac45bc@rock-chips.com>
- <3e880194-5ac8-4056-929c-ac103bedc737@oss.qualcomm.com>
- <f726862a-bd18-43ee-b307-8daef2451e6b@rock-chips.com>
+        Tue, 05 Aug 2025 03:48:22 -0700 (PDT)
+Date: Tue, 5 Aug 2025 11:48:39 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jakub Kicinski <kuba@kernel.org>, 
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, Cedric Encarnacion <cedricjustine.encarnacion@analog.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Michael Hennerich <michael.hennerich@analog.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: Replace bouncing Alexandru
+ Tachici emails
+Message-ID: <mjeyywrkyhvhhm3v34ys4kgtn4milx3ge65ztdmxh4qovllo3s@lfzjtyysg447>
+References: <20250724113758.61874-2-krzysztof.kozlowski@linaro.org>
+ <20250801131647.316347ed@kernel.org>
+ <895ad082-bc6f-48e3-ae1c-29675ff0e949@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f726862a-bd18-43ee-b307-8daef2451e6b@rock-chips.com>
-X-Proofpoint-ORIG-GUID: cXBH3-UoOM1jdVRZYsrP9nu5uMNWMjZu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDA3NiBTYWx0ZWRfX/xy9qU/REQoV
- CmlBeJvfZZWMZvv3FVJ5oNJIWmHXgW1OuJywMDOA8z+lMlRzLj32IgzPgGti3X+vnpbvBs4Ky7H
- iWX+uqandb73GLeXbn2Ciob/vKTA1hNrCZCXvnsXPwQSHoSuUW1+rdltUomeTPSyY6PnVk4WOkm
- W/42wv/ikV1nbCEc4eXRdDvj7hrpqlzaVqoSII156cZ3miE51pw0Yq8I/Vij5hW4jDJxeWO0ur+
- H5++YQQ8P3Z1EAZtVId5lz/D/eQ0+NslbbeDk54cpcO4QFfjdLb7IhNajUfoIciZADURgRmuCyF
- A6s5nPkSAoEhUic4iSi5hIcRN4Hpy4j5lNZ007F78V3Lb3shfgCFCPq2RllQhI93WV7ugpzpA3J
- Q8Te1siu6rlXROvd5hW6CO0PpDU76Ed8H8sWDKTR4PCMcScNU/HxrsdF9eS5kFJVlhwknHc6
-X-Proofpoint-GUID: cXBH3-UoOM1jdVRZYsrP9nu5uMNWMjZu
-X-Authority-Analysis: v=2.4 cv=a8Mw9VSF c=1 sm=1 tr=0 ts=6891e0b2 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=2OwXVqhp2XgA:10 a=rd-FPC7Uua5lUePm5bYA:9 a=3ZKOabzyN94A:10
- a=wPNLvfGTeEIA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_03,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 phishscore=0
- spamscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050076
+In-Reply-To: <895ad082-bc6f-48e3-ae1c-29675ff0e949@linaro.org>
 
-On Tue, Aug 05, 2025 at 02:32:17PM +0800, Chaoyi Chen wrote:
-> Hi Dmitry,
-> 
-> On 8/5/2025 12:26 PM, Dmitry Baryshkov wrote:
-> > On 05/08/2025 09:13, Chaoyi Chen wrote:
-> > > Hi Dmitry,
-> > > 
-> > > On 8/2/2025 5:55 PM, Dmitry Baryshkov wrote:
-> > > 
-> > > [...]
-> > > 
-> > > 
-> > > > > > > BTW, one of the important things to do is to implement extcon-like
-> > > > > > > notifications. I found include/drm/bridge/aux-bridge.h , but if the
-> > > > > > > aux-bridge is used, the bridge chain would look like this:
-> > > > > > > 
-> > > > > > > PHY0 aux-bridge ---+
-> > > > > > >                      | ----> CDN-DP bridge
-> > > > > > > PHY1 aux-bridge ---+
-> > > > > > > 
-> > > > > > > Oh, CDN-DP bridge has two previous aux-bridge!
-> > > > > > > 
-> > > > > > > Now, I try to use drm_connector_oob_hotplug_event() to notify HPD
-> > > > > > > state between PHY and CDN-DP controller.
-> > > > > > Does it actually work? The OOB HPD event will be repoted
-> > > > > > for the usb-c
-> > > > > > connector's fwnode, but the DP controller isn't
-> > > > > > connected to that node
-> > > > > > anyhow. If I'm not mistaken, the HPD signal will not
-> > > > > > reach DP driver in
-> > > > > > this case.
-> > > > > Yes.  What you mentioned is the case in
-> > > > > drivers/usb/typec/altmodes/displayport.c . I have also added
-> > > > > a new OOB event
-> > > > > notify in the PHY driver in Patch 3, where the expected
-> > > > > fwnode is used in
-> > > > > the PHY. So now we have two OOB HPD events, one from
-> > > > > altmodes/ displayport.c
-> > > > > and the other from PHY. Only the HPD from PHY is eventually
-> > > > > passed to the DP
-> > > > > driver.
-> > > > This way you will loose IRQ_HPD pulse events from the DP. They are used
-> > > > by DPRX (aka DP Sink) to signal to DPTX (DP Source) that there was a
-> > > > change on the DPRX side and the DPTX should reread link params
-> > > > and maybe
-> > > > retrain the link.
-> > > 
-> > > Sorry, I still don't quite understand your point. I think the entire
-> > > notification path is as follows:
-> > > 
-> > > Type-C mux callback -> RK3399 USBDP PHY -> PHY calls
-> > > drm_connector_oob_hotplug_event() -> DP driver
-> > > 
-> > > Are you concerned that the IRQ_HPD event is not being handled
-> > > somewhere along the path? Is it that the Type-C mux callback didn't
-> > > notify the PHY, or that after the PHY passed the event to the DP
-> > > driver via the OOB event, the DP driver didn't handle it?
+On Sat, Aug 02, 2025 at 09:43:13AM +0200, Krzysztof Kozlowski wrote:
+> On 01/08/2025 22:16, Jakub Kicinski wrote:
+> > On Thu, 24 Jul 2025 13:37:59 +0200 Krzysztof Kozlowski wrote:
+> >> Marcelo Schmitt, could you confirm that you are okay (or not) with this?
 > > 
-> > The IRQ_HPD is an event coming from DPRX, it is delivered as a part of
-> > the attention VDM, see DP_STATUS_IRQ_HPD. It's being handled by the
-> > altmode displayport.c driver and is then delivered as an OOB hotplug
-> > call. However, it's not a mux event, so it is not (and it should not)
-> > being broadcasted over the typec_mux devices.
-> > 
-> > The way we were handling that is by having a chain of drm_aux_bridges
-> > for all interim devices, ending up with a drm_dp_hpd_bridge registered
-> > by the TCPM. This way when the DPRX triggers the IRQ_HPD event, it is
-> > being handled by the displayport.c and then delivered through that
-> > bridge to the DP driver.
+> > Doesn't look like Marcelo is responding, Marcelo?
 > 
-> I think the issue goes back to the beginning. The key is to reuse the logic
-> in displayport.c, and the previous approach of directly setting the fwnode
-> has already been rejected. Is it a good idea to register the aux hpd bridge
-> in displayport.c? In this way, we don't need to register it with a bunch of
-> PD drivers (such as fusb302), which seems like a more generic solution.
+> 
+> Maybe we should just remove support for these Analog devices?
+> 
+> Cc two more recent addresses from analog.com.
+> 
 
-displayport.c comes into play only when you actually attach a DP dongle,
-which is too late for bringing up the display pipeline. But your point
-is valid, it might be worth moving drm_dp_hpd registration to
-typec_port_register_altmode().
+Oh sorry, somehow I missed this one! Feel me free to add me...
 
--- 
-With best wishes
-Dmitry
+I'll ping Marcelo internally.
+
+- Nuno SÃ¡
+
 
