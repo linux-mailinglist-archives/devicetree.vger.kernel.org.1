@@ -1,66 +1,68 @@
-Return-Path: <devicetree+bounces-201991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8F2B1B903
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 19:10:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F5BB1B90D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 19:14:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A6B23AE141
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:10:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4426B7A333F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:12:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 464AF275B02;
-	Tue,  5 Aug 2025 17:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA394292B47;
+	Tue,  5 Aug 2025 17:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhjCiUpa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mzsjP5ci"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1305B1DF258;
-	Tue,  5 Aug 2025 17:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7CD28136B;
+	Tue,  5 Aug 2025 17:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754413848; cv=none; b=oNbExkeQGz3xXC8cnhZcUTUejz49YuCCPis+2h1CYpGMQsF4F4pjr5ggMbWH75dK4fcHdzfGfefhWUs2WsjyveeVS81nYldsmjxcsj5zpPTEOZZAG+6EbbXfUVW1sL+O6JVVQ9AJ7LjcZH4teAiGiC54eyuG2JDBVYMZcHEwcaE=
+	t=1754414033; cv=none; b=SoFgf1pW1b/WDR+M1o0vKvVF0M7prV7WN8B94/s8xg41e/BdMmJvjscO55H5HVBfottnh1RfPSOnMsbaCn3uK/0Pk1VaMcDyZzHSQHCNcLYAZ9bTs//BPCt1di6bXxb0kd5myhcc3KFGC7E6oYA94LxdTwf/77KQh8Zjj/DUIf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754413848; c=relaxed/simple;
-	bh=1sf/JRZ3V8bfGDagRlSzmSgwhPtXnaKUvMYT5avoy1g=;
+	s=arc-20240116; t=1754414033; c=relaxed/simple;
+	bh=kFLtP7kLi6TZXaFEe1UXPz9zTqnkNWTqbzGcM1j1sPw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=slTRNQXo0PK6QOS8mRUGbsWi9xhk2wf5unTWOBmQeKMVNFemR1lnyF1aj1SY/Dvj1oeqxX+O1rDOuEg0+8zLnNXwMDyRuVUw2DdsQPNYXCTnH+LVL9HzoUC2uUwfvZHFgpUavra2nhMN3Orp4xOMeT6KyiO+mwHaFL2seAdLuB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uhjCiUpa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 757A6C4CEF0;
-	Tue,  5 Aug 2025 17:10:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ksCahA2xgyHdjYUpta+9LbxEw1HXr7p6xrhSfxeLKUT3ugGZXrXrvqsz9VRi020FTQ/nbT0lFyZHjeK+53CeJy3HKe8Up4m9mG6VqOTr75J2Lm4KtbTgOBOsR6VPtDeev/Wms3DUehV+FL9JQyFwfWhsFiSBrpbz8222CFB2AFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzsjP5ci; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFE6C4CEF0;
+	Tue,  5 Aug 2025 17:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754413847;
-	bh=1sf/JRZ3V8bfGDagRlSzmSgwhPtXnaKUvMYT5avoy1g=;
+	s=k20201202; t=1754414033;
+	bh=kFLtP7kLi6TZXaFEe1UXPz9zTqnkNWTqbzGcM1j1sPw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uhjCiUpaVILTMXxH2XAUJ06SOWn80oWAFZ1WNJAOnkJGDt15wyAO9E8jGZWh+FBuS
-	 x5t2KkiS6vYTq4ezcAaxCLQgHp9bv5Y7lymAcjJubLYLxdDu6iySjOhcEp+ho4lJVq
-	 PQUkK2skWvNht/S+HQDSP4DfXK1Ij8+byC/0ndoE/F8fH78ddDIhmd/XE03vb75y70
-	 silc4AZ/Z/XfWKgOy9gwBjPpRNvjLmk1RszGSoruWsfC4Xi67k0IN9hPEJW4D/6uaH
-	 RvprrX83gXxoRkv80oZ6pO49EOLiJhIT0AVJL8ZkaOyyB+gP6YFzZAqf5bTPiw9H/F
-	 usDqIGAgwPFEw==
-Date: Tue, 5 Aug 2025 18:10:42 +0100
+	b=mzsjP5ciz19VA8OYXPXGI3ps14D5SxS7bD9pxYQPAycE7Y4pHpSw4SS0UcE7MZLJK
+	 T0nkWr8PsG/9TjOF1GRpxVkvzT7db4zoXaZdRtioihy15x5sVlSB8Bs7VFkS4USG+H
+	 Jh8TXTGLuuhc2eWztbTmwYGT/92FpvmiC7XnpNWVLkRkIATERWrsm+4LumZ0x/SisN
+	 2Gugtnz8V8UuBGzMQgNBJ2r7eA4Qo27++wMMC4E07nPsGl+UN4J0Ds/hvhUs0pb2M1
+	 GPJCs5jNFr05si0U+WdLxZcTfZde5GzbWAjEOalxyRTUAQY34FeGxmnKczRm4z5JzF
+	 8oifLKq6fY5+w==
+Date: Tue, 5 Aug 2025 18:13:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+Cc: sboyd@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: renesas,usbhs: Add RZ/T2H and
- RZ/N2H support
-Message-ID: <20250805-lent-tiptop-23a687d0cf78@spud>
-References: <20250805114730.2491238-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250805114730.2491238-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 8/9] clk: divider, gate: create regmap-backed copies
+ of gate and divider clocks
+Message-ID: <20250805-slit-scrunch-e19f8afec16d@spud>
+References: <20250623-levitate-nugget-08c9a01f401d@spud>
+ <20250623-spleen-rambling-8bd898f2788e@spud>
+ <f059ef8e-1834-4d21-bb17-8670cf7cd90f@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,45 +70,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qyKjxRWY/MsYfqbX"
+	protocol="application/pgp-signature"; boundary="M9zeZAJc7XAA2HBY"
 Content-Disposition: inline
-In-Reply-To: <20250805114730.2491238-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <f059ef8e-1834-4d21-bb17-8670cf7cd90f@foss.st.com>
 
 
---qyKjxRWY/MsYfqbX
-Content-Type: text/plain; charset=us-ascii
+--M9zeZAJc7XAA2HBY
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 05, 2025 at 12:47:29PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Jul 31, 2025 at 01:23:49PM +0200, Gabriel FERNANDEZ wrote:
 >=20
-> Document the USBHS controller for the Renesas RZ/T2H (r9a09g077) and
-> RZ/N2H (r9a09g087) SoCs. While the USBHS block is similar to the one found
-> on the RZ/G2L SoC, it differs slightly in terms of interrupt configuratio=
-n,
-> clock/reset requirements, and register bit definitions. Due to these
-> differences, a new compatible string `renesas,usbhs-r9a09g077` is
-> introduced for the RZ/T2H SoC.
+> On 6/23/25 14:56, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Implement regmap-backed copies of gate and divider clocks by replacing
+> > the iomem pointer to the clock registers with a regmap and offset
+> > within.
+> >=20
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 >=20
-> The USBHS controller on the RZ/N2H (r9a09g087) SoC is identical to that on
-> the RZ/T2H, so it uses the `renesas,usbhs-r9a09g077` compatible string as
-> a fallback.
+> Hi Conor,
 >=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Excellent patch, thank you! I really needed this and will be using it.
+>=20
+> I would also be interested in having a similar regmap-backed implementati=
+on
+> for the multiplexer clock.=C2=A0 Do you have any plans to work on this as=
+ well?
+> If not, I=E2=80=99d be happy to propose a patch for it, with your agreeme=
+nt.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The only types of clock my driver needed were gate and divider, so those
+were all I focused on. I don't really have a plan to implement more,
+particular given the lack of feedback here means that I don't even know
+if what I have done is what Stephen wants. The rest of your comments
+seem reasonable, and I'll try to implement them in a new version.
 
---qyKjxRWY/MsYfqbX
+--M9zeZAJc7XAA2HBY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJI7EQAKCRB4tDGHoIJi
-0t0LAP9GcYU3aBgLHPyaSfxMX5QqrZr5peYTWml64R/ts8+rRwD9GYv1Z1Q4IzyT
-GGtL1Lix63V9jXAlvk2pLRmU9OzJDQg=
-=QN3z
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJI7ywAKCRB4tDGHoIJi
+0sR1AP4zQnrLebu8U863VAtOFHm+6M8gEW/WnUp3VMypOqgoIAEA6d9iEeY01BHW
+S8o+uJeKAfF5/WvpbXoU0kZQT2osNwQ=
+=urpw
 -----END PGP SIGNATURE-----
 
---qyKjxRWY/MsYfqbX--
+--M9zeZAJc7XAA2HBY--
 
