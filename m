@@ -1,329 +1,498 @@
-Return-Path: <devicetree+bounces-202013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67B0B1BA04
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:27:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3320B1BB1A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 21:42:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BC18189E904
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:27:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CC1A7B15B7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 19:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C862957CD;
-	Tue,  5 Aug 2025 18:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68AC238159;
+	Tue,  5 Aug 2025 19:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a93Oo/fb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B1R1p2BZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87CE225A2B4
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 18:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDE422D7B9;
+	Tue,  5 Aug 2025 19:41:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754418425; cv=none; b=hfzDeNK424PUwB67gyZgzOEm0CdWae/hJDQs4KMXliLBGYNvokdRKB0T3NrH/DeTJeXSGTaq2rxxFXjCsS1zcvq6CfY9tsFQ/IahnTt9BPS9oNrdatF9h45UEXKD8BTz9yncNnJoKKAM5XjIv3/WpoWVPZveCyHjDiNCFm4rNnY=
+	t=1754422872; cv=none; b=FxjTkuRgWsJ0WzT39QzwldYJM0hm9owjDXYaaM5g5b9XDoX1mIA8s1KeIRRV1I630z6aUcllqGs5EjMKEK3qlbt8ycHToCSvJ0fvE7PCamP/HxXaH7xdmoe6VnIeNxcH1U/Vyn75ntoeqUp2c9jooNXqgarwI4YBLS8uc92IXqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754418425; c=relaxed/simple;
-	bh=6y8nlc9gd+kcsuPS309XlKj1GjKIPI4qnHhdViPlT3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FkwHunzrSr+N18fPKFARLe1cWwByAYKZ7T3Pa59WVACa9mYPC3ptdx06pY6htG+/S4lbe2+wxiVLd/BVFglEhUzcjlPDFF2GkU7TyO+mCEYK+eYjLYkwEagtlu/SzukLvN6GG29Kbe/Fye3LEaapMf3h8lNAb0Is8QqanxWDazE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a93Oo/fb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575I7gLY012192
-	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 18:27:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8X+rFEyh78q3PUoe5+Y4jMYH5oFL6y+MBtI/T1H47EQ=; b=a93Oo/fb/ngIEVQ9
-	j0Ro2fFoX2FjfFDx8J6daWRewfH7wfgLBqQCkv8pvlwyXlhQmnc1ZLsvGClMeQbq
-	lOUgwBfjE1cu1QyAWV4nLp1D5sSdvhhmaNdUgk+rCim+3UuABe90F/7XpdoEco+o
-	KemsCIKonzMWpixuqLxPJ7Xl/JjF5hr2x4aWFhn5q03GnhBi9x6CTSarjS+k7fLP
-	0OXTV0UgY07aXBB3R0zCxlWEZ36BY6RmnoPB7nIYE+XgwHAwQCZnpZzUp8Fukn2o
-	8VriSv/HoQknP9QBDjspEpyAzVeTlkcchmArVZFrg1y02+a8SnZA0O2QjmIppw5h
-	3D8/Ig==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpy6r1qr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 18:27:02 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b07ae72350so4330331cf.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 11:27:02 -0700 (PDT)
+	s=arc-20240116; t=1754422872; c=relaxed/simple;
+	bh=cZ5A941PIX5p3q9ZLh7wIq4D+H8hcqPZ4/uE7wEntNw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GizUoqHGIMvFdlNOypPgFwYCs9PJWioFhYsslDH2NuNHcPqGNkgsEe14wi/QMXKL2aa1LP/YT0nQaxrTcYd9Sumo4j9ZAJyshRipDMuZ0syKuGQvf2M7VdCWVn4hv3dRvuWeNinwFPdc+j1qlEdwnI+0HwuWaiNMUaakv1y2q5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B1R1p2BZ; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-615a115f0c0so10231787a12.0;
+        Tue, 05 Aug 2025 12:41:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754422869; x=1755027669; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZrxJHeIy9K3JESzozmIGkXmezGiVB7yhw3NLf5ihkms=;
+        b=B1R1p2BZuMAtV/29Vd+9JnHuL2sEUgfryEoiR72O1h8I4zIPV33L3LKrStPH03EqM4
+         PIu9W0ba3nO/2DoF/EwwBANoS+zeTfs5HXZrzyCIH6JMZbrDA+cgoyE36b8LO0353Ft1
+         +R6e71QSHYlq9GNXHzylcG4RllzOgEu3GxKOOVNxvD38rj1AqVAYAAaF9SN7W64FbHRJ
+         AuxezHsVxa0DgBYNh1wavTUmdctczdoCPneCFoORtrZSYAJDVJXlxwQbtEKlY2zeMCJB
+         CBVzGtVKjJ+/ICqDG1NhluWVZowSvL2I/a4jKOo+DPbwwZ8t4LvOfsWqHqMMKn02Amr9
+         ZEVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754418421; x=1755023221;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8X+rFEyh78q3PUoe5+Y4jMYH5oFL6y+MBtI/T1H47EQ=;
-        b=QBg9c/xrt/R4NW0QlLn+eMoPOkdbvLiMZnynwwgtAS7jvxvcdAs+qiJRQCjItUiUf2
-         P4s4VXsR6IHkWI+kZ961TuewbQJcLbmZR4R/ZyYwDVxwxvytFT3nQH0/f7Yj1LJEoqVm
-         THq8t7croftqQFF5uRrZD193/4Mix19+dB6W2cXYtYQN8hvZ/pk5qwfkh5OXVnMcZzQi
-         MXC03FQcbH7VM7ACpOpKqvMM9K/zI9DI9bGpq77ir7JjnxDgLJkFoOvDnNQLMUe54OLt
-         9zuIezzx+YJzocTi+sFXimJq9pXLM0/B4gCQP95lOduV8/qasTHVdSxS4vsbvFunvAQy
-         2H3A==
-X-Forwarded-Encrypted: i=1; AJvYcCVdyG0C72Rvqbnn+b4MufhxtjNhZEZunkQpvkZTXrhNUcXyc/uZyoi2+ohQp5+iMsh45A0V2tA0AMg/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9U2sLqxFLKoVK/vFPH6DFu4QC1jaBSA23su4pAOcaWbJTgf10
-	Kyc50ej8JAjvjQP3WWAjg+Fo2XtpWAbQEABOyrciZe0njmSFlgyoWQ4zvvKep2hY4g5Tp+dX0W2
-	X4Wn6SJynZ6TbUKRYdepiZOzewnVoDBK2FLLEhWEdczZDiNUFq6ntBMPegHFj6q7e
-X-Gm-Gg: ASbGncslAUXkEUontliO1eqzDreeONLMTJL492EFi/3OdtGdzDqlE1K8EyQ7qKZodeD
-	+kDAt9mvMcp8gZ/Yw7zjeYbYlh2LRz8hkFuBMmBgIw4KxRDD0UMkFU4502mniE7mHlB7mJUP2JF
-	04ZJdc7lYeT/1nZi4frcSf9MFf1E2+yZE60JtW1M5MS25kXsNtfhcGFPEicsEZJfnLT084u/uW2
-	IHS9dsao3hNGIQkE7q8guv5M9feRXxWWh/V3FHa28xNva0mAnKdYFN4xdI8RSnnvhaHD4mC5eho
-	vr2rjR5bTADSArQWQ4mqzmmysYSOpzH94LF71mZPCubzPt8OG16wSzIU/H5c++Y035Fr385odOY
-	8JvTjPd1EnXBUGmFymg==
-X-Received: by 2002:a05:622a:8358:b0:4b0:7e9f:aff8 with SMTP id d75a77b69052e-4b07e9fbdfbmr31517491cf.11.1754418421172;
-        Tue, 05 Aug 2025 11:27:01 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEZlCU8CvK41aG98FrS4OVUGBpHFuya4XLRz4mNMlXfYenvsD4229VwAFQ/ihh8G6Z8SHozlA==
-X-Received: by 2002:a05:622a:8358:b0:4b0:7e9f:aff8 with SMTP id d75a77b69052e-4b07e9fbdfbmr31517091cf.11.1754418420464;
-        Tue, 05 Aug 2025 11:27:00 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a37a8sm957277266b.40.2025.08.05.11.26.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 11:26:59 -0700 (PDT)
-Message-ID: <3cd33dce-f6b9-4f60-8cb2-a3bf2942a1e5@oss.qualcomm.com>
-Date: Tue, 5 Aug 2025 20:26:57 +0200
+        d=1e100.net; s=20230601; t=1754422869; x=1755027669;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZrxJHeIy9K3JESzozmIGkXmezGiVB7yhw3NLf5ihkms=;
+        b=uJkrGVyLtenNyJRzCTzSsYWvtrW8U70lHkqkNkoDAr1IBKcoSdfoMz1jlncXkc9+0h
+         4Lo2LJw3bENxh1EKwaX4P7H4SH21sKyFmF3GiHBkX7dkIAIgoxWDnEZ9OGTYxLTSyM+X
+         MAgeab8boEn6PshVC9AQodWolM+RXJSWAodvBoDOp6uEpqr8qpBxlrScfG9dUzDWuT4h
+         h45UmnDPy76OHwack23/iiBFugti+syYw2PYDuw1OOywnANYS92nmAxQiin3lipG38Hn
+         /e8vAdLnbE3F81hbhULwtG9rs0JIivm0QyiQ/H7CmwMwlrj0YaSLYgHXAuurL6d91JZ1
+         Bq+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW5sobydz4dR8V8yO8HIsw7xrNHvHcUtlISr7GkdHEXrqGZoHoXGJBKgzF3bL052q/Gh08pogAj5r77@vger.kernel.org, AJvYcCWmNhOirFbYBzAVNgNvzutR2csEV1G6zo+ja4LVM5e271kVhyoB65PBBCe0vaTx/jT3kfJwVA/W+rhyTnvW6ePeEk0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoeNLTNE6vL28RxB/yfpPfb0761qW4jYa2z/+ZWtrwntdzJwyn
+	gVVjWgM6jKZJPBDv7gSkquGjAt5YvCAY2NR8AwhiOQFdT0jV97Qt3T4M
+X-Gm-Gg: ASbGnctKa/0XBvleNQxRkGqO8Yy/rowScEY5O68bWqljOglMQlNYSLsCbYRfvpawrF+
+	ioxNhqeKfaS52UCpyv64AiL0UaSuf5dPJl9uDk5sDxJiioSfcsNAZEkGkVgcRiqALZK2gp9hJk3
+	InxciYPDa2uj9wYt/af2FZkSGw1/2s5p0N1rVn+09Hy9DxdWgoPTP3dgz9gF3lP451M2XCsfAiE
+	AVjl+N5ppSr0vsLUxCkd1Qzyl9mbxSlMDb0xhX7R1h0NtR7HdKK87nj2VKbaCAciowCTvmla5A8
+	otdCUgeSMs+aye46yQpXlXALKPCV3/6rpk8CtFhHpHj8u+06s4oGwskm64ec85EDh+2h4P17oHz
+	pjHYwIO1iJgC6pI/zfcqz
+X-Google-Smtp-Source: AGHT+IGiR9i2DvFBpSQOnyvWervs2/FRYmFmR8em008BFJyUznR7Fm5JmSFCWmXsnhxPhqzkov9iPw==
+X-Received: by 2002:a17:907:c13:b0:af9:495b:99e4 with SMTP id a640c23a62f3a-af9904b672bmr18360066b.60.1754422868403;
+        Tue, 05 Aug 2025 12:41:08 -0700 (PDT)
+Received: from [127.0.1.1] ([46.53.240.58])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-af91a750253sm963500766b.86.2025.08.05.12.41.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Aug 2025 12:41:07 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Tue, 05 Aug 2025 22:40:56 +0300
+Subject: [PATCH v8] regulator: add s2dos05 regulator support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-To: Alim Akhtar <alim.akhtar@samsung.com>,
-        'Manivannan Sadhasivam' <mani@kernel.org>
-Cc: 'Krzysztof Kozlowski' <krzk@kernel.org>,
-        'Ram Kumar Dwivedi' <quic_rdwivedi@quicinc.com>, avri.altman@wdc.com,
-        bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <2a3c8867-7745-4f0a-8618-0f0f1bea1d14@kernel.org>
- <jpawj3pob2qqa47qgxcuyabiva3ync7zxnybrazqnfx3vbbevs@sgbegaucevzx>
- <fa1847e3-7dab-45d0-8c1c-0aca1e365a2a@quicinc.com>
- <1701ec08-21bc-45b8-90bc-1cd64401abd8@kernel.org>
- <2nm7xurqgzrnffustrsmswy2rbug6geadaho42qlb7tr2jirlr@uw5gaery445y>
- <11ea828a-6d35-4ac6-a207-0284870c28fc@oss.qualcomm.com>
- <jogwisri2gs77j5cs3xwyezmfsotnizvlruzzelemdj5xadqh4@loe7fsatoass>
- <CGME20250805170638epcas5p4cb0cc78c5b5d77072cec547380b9f03d@epcas5p4.samsung.com>
- <b235e338-8c16-439b-b7a5-24856893fb5d@oss.qualcomm.com>
- <061b01dc062d$25c47800$714d6800$@samsung.com>
- <i6eyiscdf2554znc4aaglhi22opfgyicif3y7kzjafwsrtdrtm@jjpzak64gdft>
- <061c01dc062f$70ec34b0$52c49e10$@samsung.com>
- <87c37d65-5ab1-4443-a428-dc3592062cdc@oss.qualcomm.com>
- <061d01dc0631$c1766c00$44634400$@samsung.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <061d01dc0631$c1766c00$44634400$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: wYDzrltJTqpHQFMNDChi8_V9UkV62fih
-X-Proofpoint-GUID: wYDzrltJTqpHQFMNDChi8_V9UkV62fih
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDEyOSBTYWx0ZWRfX/G/lHEKT7pL0
- FztAVeqlY8jubs4J1bXg5gG4q48wBnRAVcDfpf2HpuXls8E7OAlX9roPWLb6xtv+NvqbjPxrn21
- WyyRjqSHwgMDZC3SjS37sgzQ9Ds5X4YmzHkouvVJOTIzam4XFl0e3s0bNdlieZ+WtDdL8nLCy1U
- SOTjUYzcK/XacO/m5lKpN8wJPF0zgr5fT31X4dMX5xyEGcMo7JdW3pjTkS6evkXPAZCI7TVAmAd
- uDDQjB41KAQt0jq9dzcBWZncjLJZTfyJyeyyrpwc0kfubpiBKtFBPRtCpLh4jrI3SkhP9NeKkSD
- 18wwRJLbhNSubsLM2xjcACKgFHyuu68ucsgUUyDeY/FmfbLxlNy0V3YPpxg+A7tWVn5RtZ7Ju2C
- ZiNlpCN0Ts6YU7lQXZJpl5SZ1PTPk4uZN8AYAWupDxZuq49aJBENZ6x8grYrrXgW8lk/ZKYN
-X-Authority-Analysis: v=2.4 cv=LNVmQIW9 c=1 sm=1 tr=0 ts=68924cf6 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=hD80L64hAAAA:8
- a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=JF9118EUAAAA:8 a=N54-gffFAAAA:8
- a=bLk-5xynAAAA:8 a=yPCof4ZbAAAA:8 a=vENURVL_7Fm7xlK8qQ8A:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
- a=xVlTc564ipvMDusKsbsT:22 a=zSyb8xVVt2t83sZkrLMb:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_04,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 phishscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=999 impostorscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508050129
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250805-starqltechn_integration_upstream-v8-1-09d8a321fafe@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAEdekmgC/43Qy27DIBAF0F+JWJdqAPNwVv2PqoowHttIDk6BW
+ K0i/3txpPThTb28I3HuFTeSMHpM5Hi4kYizT34KJZinA3GDDT1S35ZMOPAKFNM0ZRvfx4xuCCc
+ fMvbR5vLmdL2kHNGeaeOMMhIa3qEghWlsQtpEG9xQoHAdx3K8ROz8x7339a3kwac8xc/7jFms1
+ 0ej+b9xFhQoik4pxYFp6176s/Xjs5vOZMXn6gesmdgBVgXkLceulU4arbeg/L1wx5/Mcl1oGYM
+ aeN1YuQXVN8gA9oBqXagqAbW1SrW4BfUDlGCA7wA1ZbQ22AIyZMz8Wbgsyxc6LYEsKQIAAA==
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754422867; l=12968;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=cZ5A941PIX5p3q9ZLh7wIq4D+H8hcqPZ4/uE7wEntNw=;
+ b=o6x3KAZ0TvKqjiG90AHCha0Lws1DnhXV4HUUEu7sSOpEInR1PdhnwTWi2Vp0GbV1rSKzS7DMF
+ 4DZ1X15ck0zAJAHdydSbnciQEfv9MV1V6ZdkqLQZE5kN6V98LPq6Vp3
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-On 8/5/25 7:52 PM, Alim Akhtar wrote:
-> 
-> 
->> -----Original Message-----
->> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Sent: Tuesday, August 5, 2025 11:10 PM
->> To: Alim Akhtar <alim.akhtar@samsung.com>; 'Manivannan Sadhasivam'
->> <mani@kernel.org>
->> Cc: 'Krzysztof Kozlowski' <krzk@kernel.org>; 'Ram Kumar Dwivedi'
->> <quic_rdwivedi@quicinc.com>; avri.altman@wdc.com;
->> bvanassche@acm.org; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; andersson@kernel.org; konradybcio@kernel.org;
->> James.Bottomley@hansenpartnership.com; martin.petersen@oracle.com;
->> agross@kernel.org; linux-arm-msm@vger.kernel.org; linux-
->> scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org
->> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
->> properties to UFS
->>
->> On 8/5/25 7:36 PM, Alim Akhtar wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: 'Manivannan Sadhasivam' <mani@kernel.org>
->>>> Sent: Tuesday, August 5, 2025 10:52 PM
->>>> To: Alim Akhtar <alim.akhtar@samsung.com>
->>>> Cc: 'Konrad Dybcio' <konrad.dybcio@oss.qualcomm.com>; 'Krzysztof
->>>> Kozlowski' <krzk@kernel.org>; 'Ram Kumar Dwivedi'
->>>> <quic_rdwivedi@quicinc.com>; avri.altman@wdc.com;
->> bvanassche@acm.org;
->>>> robh@kernel.org; krzk+dt@kernel.org;
->>>> conor+dt@kernel.org; andersson@kernel.org; konradybcio@kernel.org;
->>>> James.Bottomley@hansenpartnership.com;
->> martin.petersen@oracle.com;
->>>> agross@kernel.org; linux-arm-msm@vger.kernel.org; linux-
->>>> scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
->>>> kernel@vger.kernel.org
->>>> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate
->>>> limit properties to UFS
->>>>
->>>> On Tue, Aug 05, 2025 at 10:49:45PM GMT, Alim Akhtar wrote:
->>>>>
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>>> Sent: Tuesday, August 5, 2025 10:36 PM
->>>>>> To: Manivannan Sadhasivam <mani@kernel.org>
->>>>>> Cc: Krzysztof Kozlowski <krzk@kernel.org>; Ram Kumar Dwivedi
->>>>>> <quic_rdwivedi@quicinc.com>; alim.akhtar@samsung.com;
->>>>>> avri.altman@wdc.com; bvanassche@acm.org; robh@kernel.org;
->>>>>> krzk+dt@kernel.org; conor+dt@kernel.org; andersson@kernel.org;
->>>>>> konradybcio@kernel.org; James.Bottomley@hansenpartnership.com;
->>>>>> martin.petersen@oracle.com; agross@kernel.org; linux-arm-
->>>>>> msm@vger.kernel.org; linux-scsi@vger.kernel.org;
->>>>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
->>>>>> Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and
->>>>>> rate limit properties to UFS
->>>>>>
->>>>>> On 8/5/25 6:55 PM, Manivannan Sadhasivam wrote:
->>>>>>> On Tue, Aug 05, 2025 at 03:16:33PM GMT, Konrad Dybcio wrote:
->>>>>>>> On 8/1/25 2:19 PM, Manivannan Sadhasivam wrote:
->>>>>>>>> On Fri, Aug 01, 2025 at 11:12:42AM GMT, Krzysztof Kozlowski
->> wrote:
->>>>>>>>>> On 01/08/2025 11:10, Ram Kumar Dwivedi wrote:
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On 01-Aug-25 1:58 PM, Manivannan Sadhasivam wrote:
->>>>>>>>>>>> On Thu, Jul 24, 2025 at 09:48:53AM GMT, Krzysztof Kozlowski
->>>> wrote:
->>>>>>>>>>>>> On 22/07/2025 18:11, Ram Kumar Dwivedi wrote:
->>>>>>>>>>>>>> Add optional limit-hs-gear and limit-rate properties to the
->>>>>>>>>>>>>> UFS node to support automotive use cases that require
->>>>>>>>>>>>>> limiting the maximum Tx/Rx HS gear and rate due to
->> hardware
->>>> constraints.
->>>>>>>>>>>>>
->>>>>>>>>>>>> What hardware constraints? This needs to be clearly
->>>> documented.
->>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> Ram, both Krzysztof and I asked this question, but you never
->>>>>>>>>>>> bothered to reply, but keep on responding to other comments.
->>>>>>>>>>>> This won't help you to get this series merged in any form.
->>>>>>>>>>>>
->>>>>>>>>>>> Please address *all* review comments before posting next
->>>> iteration.
->>>>>>>>>>>
->>>>>>>>>>> Hi Mani,
->>>>>>>>>>>
->>>>>>>>>>> Apologies for the delay in responding.
->>>>>>>>>>> I had planned to explain the hardware constraints in the next
->>>>>> patchset’s commit message, which is why I didn’t reply earlier.
->>>>>>>>>>>
->>>>>>>>>>> To clarify: the limitations are due to customer board designs,
->>>>>>>>>>> not our
->>>>>> SoC. Some boards can't support higher gear operation, hence the
->>>>>> need for optional limit-hs-gear and limit-rate properties.
->>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> That's vague and does not justify the property. You need to
->>>>>>>>>> document instead hardware capabilities or characteristic. Or
->>>>>>>>>> explain why they cannot. With such form I will object to your
->>>>>>>>>> next
->>>>>> patch.
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> I had an offline chat with Ram and got clarified on what these
->>>>>>>>> properties
->>>>>> are.
->>>>>>>>> The problem here is not with the SoC, but with the board design.
->>>>>>>>> On some Qcom customer designs, both the UFS controller in the
->>>>>>>>> SoC and the UFS device are capable of operating at higher gears
->>>>>>>>> (say
->>>> G5).
->>>>>>>>> But due to board constraints like poor thermal dissipation,
->>>>>>>>> routing loss, the board cannot efficiently operate at the higher
->>>> speeds.
->>>>>>>>>
->>>>>>>>> So the customers wanted a way to limit the gear speed (say G3)
->>>>>>>>> and rate (say Mode-A) on the specific board DTS.
->>>>>>>>
->>>>>>>> I'm not necessarily saying no, but have you explored sysfs for this?
->>>>>>>>
->>>>>>>> I suppose it may be too late (if the driver would e.g. init the
->>>>>>>> UFS at max gear/rate at probe time, it could cause havoc as it
->>>>>>>> tries to load the userland)..
->>>>>>>>
->>>>>>>
->>>>>>> If the driver tries to run with unsupported max gear speed/mode,
->>>>>>> it will just crash with the error spit.
->>>>>>
->>>>>> OK
->>>>>>
->>>>>> just a couple related nits that I won't bother splitting into
->>>>>> separate emails
->>>>>>
->>>>>> rate (mode? I'm seeing both names) should probably have dt-bindings
->>>>>> defines while gear doesn't have to since they're called G<number>
->>>>>> anyway, with the bindings description strongly discouraging use,
->>>>>> unless absolutely necessary (e.g. in the situation we have right
->>>>>> there)
->>>>>>
->>>>>> I'd also assume the code should be moved into the ufs-common code,
->>>>>> rather than making it ufs-qcom specific
->>>>>>
->>>>>> Konrad
->>>>> Since this is a board specific constrains and not a SoC properties,
->>>>> have an
->>>> option of handling this via bootloader is explored?
->>>>
->>>> Both board and SoC specific properties *should* be described in
->>>> devicetree if they are purely describing the hardware.
->>>>
->>> Agreed, what I understood from above conversation is that, we are try
->>> to solve a very *specific* board problem here, this does not looks like a
->> generic problem to me and probably should be handled within the specific
->> driver.
->>
->> Introducing generic solutions preemptively for problems that are simple in
->> concept and can occur widely is good practice (although it's sometimes hard
->> to gauge whether this is a one-off), as if the issue spreads a generic solution
->> will appear at some point, but we'll have to keep supporting the odd ones as
->> well
->>
-> Ok, 
-> I would prefer if we add a property which sounds like "poor thermal dissipation" or 
-> "routing channel loss" rather than adding limiting UFS gear properties. 
-> Poor thermal design or channel losses are generic enough and can happen on any board.
+S2DOS05 has 1 buck and 4 LDO regulators, used for powering
+panel/touchscreen.
 
-This is exactly what I'm trying to avoid through my suggestion - one
-board may have poor thermal dissipation, another may have channel
-losses, yet another one may feature a special batch of UFS chips that
-will set the world on fire if instructed to attempt link training at
-gear 7 - they all are causes, as opposed to describing what needs to
-happen (i.e. what the hardware must be treated as - gear N incapable
-despite what can be discovered at runtime), with perhaps a comment on
-the side
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+The S2DOS05 is a companion power management IC for the panel and touchscreen
+in smart phones. Provides voltage regulators and
+ADC for power/current measurements.
+---
+Changes in v8:
+- refactoring and optimizations
+- Link to v7: https://lore.kernel.org/r/20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com
 
-Konrad
+Changes in v7:
+- rebase on latest linux-next
+- update cc list
+- Link to v6: https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com
+
+Changes in v6:
+- fix uninitialized ret variable
+- Link to v5: https://lore.kernel.org/r/20240617-starqltechn_integration_upstream-v5-0-ea1109029ba5@gmail.com
+
+Changes in v5:
+- Split patchset per subsystem
+- Rewrite cover letter
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
+
+Changes in v4:
+- Rewrite max77705, max77705_charger, max77705_fuel_gauge from scratch
+- Reorder patches:
+  - squash max77705 subdevice bindings in core file because
+    no resources there
+  - split device tree changes
+- Use _ as space for filenames in power/supply like the majority
+- Replace gcc-845 freq_tbl frequencies patch with new approach,
+  based on automatic m/n/pre_div value generation
+- Link to v3: https://lore.kernel.org/r/20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com
+
+Changes in version 3:
+- s2dos05 driver converted to MFD
+
+Changes in version 2:
+- s2dos05 regulator:
+  - hex to decimal in regulator values
+  - fix compatible value
+  - remove interrupt specific code, because it's
+    empty in vendor kernel, and I cannot test it on
+    available hardware anyway.
+---
+Changes in v8:
+- return immediately, if any regulator register fails
+- move config assignment out of regulator loop
+- inline ret variable
+- remove unneeded rdata
+- inline `i` declaration
+- use dev_err_probe over dev_err in probe function
+- increment copyright year
+
+Changes in v7:
+- rebase on latest linux-next
+- update cc list
+- run sparse and smatch again
+
+Changes in v6:
+- run sparse and smatch
+- initialize ret variable
+
+Changes in v5:
+- fix Kconfig and module description to be the same
+- make regulators const
+- code refactoring
+- replace s2m* pattern on s2* to include s2dos05
+
+Changes in v4:
+- remove excessive linux/module.h import
+- use generic regulator helpers
+- use of_match
+- use devm_* for mem allocations
+- use // style comment
+- drop all junk Samsung code
+- adjust to depend on sec-core
+---
+ MAINTAINERS                           |   2 +-
+ drivers/regulator/Kconfig             |   8 ++
+ drivers/regulator/Makefile            |   1 +
+ drivers/regulator/s2dos05-regulator.c | 165 ++++++++++++++++++++++++++++++++++
+ include/linux/regulator/s2dos05.h     |  73 +++++++++++++++
+ 5 files changed, 248 insertions(+), 1 deletion(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 494b12c03de7..12dd90438bd7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22391,7 +22391,7 @@ F:	Documentation/devicetree/bindings/regulator/samsung,s2m*.yaml
+ F:	Documentation/devicetree/bindings/regulator/samsung,s5m*.yaml
+ F:	drivers/clk/clk-s2mps11.c
+ F:	drivers/mfd/sec*.[ch]
+-F:	drivers/regulator/s2m*.c
++F:	drivers/regulator/s2*.c
+ F:	drivers/regulator/s5m*.c
+ F:	drivers/rtc/rtc-s5m.c
+ F:	include/linux/mfd/samsung/
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index eaa6df1c9f80..2399c8a9a1c5 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -1344,6 +1344,14 @@ config REGULATOR_RTQ2208
+ 	  and two ldos. It features wide output voltage range from 0.4V to 2.05V
+ 	  and the capability to configure the corresponding power stages.
+ 
++config REGULATOR_S2DOS05
++	tristate "Samsung S2DOS05 voltage regulator"
++	depends on MFD_SEC_CORE || COMPILE_TEST
++	help
++	  This driver provides support for the voltage regulators of the S2DOS05.
++	  The S2DOS05 is a companion power management IC for the smart phones.
++	  The S2DOS05 has 4 LDOs and 1 BUCK outputs.
++
+ config REGULATOR_S2MPA01
+ 	tristate "Samsung S2MPA01 voltage regulator"
+ 	depends on MFD_SEC_CORE || COMPILE_TEST
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+index be98b29d6675..78605b0fa0b2 100644
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -156,6 +156,7 @@ obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
+ obj-$(CONFIG_REGULATOR_RTQ2134) += rtq2134-regulator.o
+ obj-$(CONFIG_REGULATOR_RTQ6752)	+= rtq6752-regulator.o
+ obj-$(CONFIG_REGULATOR_RTQ2208) += rtq2208-regulator.o
++obj-$(CONFIG_REGULATOR_S2DOS05) += s2dos05-regulator.o
+ obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
+ obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
+ obj-$(CONFIG_REGULATOR_S5M8767) += s5m8767.o
+diff --git a/drivers/regulator/s2dos05-regulator.c b/drivers/regulator/s2dos05-regulator.c
+new file mode 100644
+index 000000000000..1463585c4565
+--- /dev/null
++++ b/drivers/regulator/s2dos05-regulator.c
+@@ -0,0 +1,165 @@
++// SPDX-License-Identifier: GPL-2.0+
++//
++// s2dos05.c - Regulator driver for the Samsung s2dos05
++//
++// Copyright (C) 2025 Dzmitry Sankouski <dsankouski@gmail.com>
++
++#include <linux/bug.h>
++#include <linux/delay.h>
++#include <linux/err.h>
++#include <linux/slab.h>
++#include <linux/module.h>
++#include <linux/regmap.h>
++#include <linux/interrupt.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/driver.h>
++#include <linux/regulator/machine.h>
++#include <linux/regulator/of_regulator.h>
++#include <linux/mfd/samsung/core.h>
++#include <linux/regulator/s2dos05.h>
++#include <linux/i2c.h>
++
++struct s2dos05_data {
++	struct regmap *regmap;
++	struct device *dev;
++};
++
++#define _BUCK(macro)	S2DOS05_BUCK##macro
++#define _buck_ops(num)	s2dos05_ops##num
++#define _LDO(macro)	S2DOS05_LDO##macro
++#define _REG(ctrl)	S2DOS05_REG##ctrl
++#define _ldo_ops(num)	s2dos05_ops##num
++#define _MASK(macro)	S2DOS05_ENABLE_MASK##macro
++#define _TIME(macro)	S2DOS05_ENABLE_TIME##macro
++
++#define BUCK_DESC(_name, _id, _ops, m, s, v, e, em, t, a) {	\
++	.name		= _name,				\
++	.id		= _id,					\
++	.ops		= _ops,					\
++	.of_match = of_match_ptr(_name),			\
++	.of_match_full_name = true,				\
++	.regulators_node = of_match_ptr("regulators"),		\
++	.type		= REGULATOR_VOLTAGE,			\
++	.owner		= THIS_MODULE,				\
++	.min_uV		= m,					\
++	.uV_step	= s,					\
++	.n_voltages	= S2DOS05_BUCK_N_VOLTAGES,		\
++	.vsel_reg	= v,					\
++	.vsel_mask	= S2DOS05_BUCK_VSEL_MASK,		\
++	.enable_reg	= e,					\
++	.enable_mask	= em,					\
++	.enable_time	= t,					\
++	.active_discharge_off = 0,				\
++	.active_discharge_on = S2DOS05_BUCK_FD_MASK,		\
++	.active_discharge_reg	= a,				\
++	.active_discharge_mask	= S2DOS05_BUCK_FD_MASK		\
++}
++
++#define LDO_DESC(_name, _id, _ops, m, s, v, e, em, t, a) {	\
++	.name		= _name,				\
++	.id		= _id,					\
++	.ops		= _ops,					\
++	.of_match = of_match_ptr(_name),			\
++	.of_match_full_name = true,				\
++	.regulators_node = of_match_ptr("regulators"),		\
++	.type		= REGULATOR_VOLTAGE,			\
++	.owner		= THIS_MODULE,				\
++	.min_uV		= m,					\
++	.uV_step	= s,					\
++	.n_voltages	= S2DOS05_LDO_N_VOLTAGES,		\
++	.vsel_reg	= v,					\
++	.vsel_mask	= S2DOS05_LDO_VSEL_MASK,		\
++	.enable_reg	= e,					\
++	.enable_mask	= em,					\
++	.enable_time	= t,					\
++	.active_discharge_off = 0,				\
++	.active_discharge_on = S2DOS05_LDO_FD_MASK,		\
++	.active_discharge_reg	= a,				\
++	.active_discharge_mask	= S2DOS05_LDO_FD_MASK		\
++}
++
++static const struct regulator_ops s2dos05_ops = {
++	.list_voltage		= regulator_list_voltage_linear,
++	.map_voltage		= regulator_map_voltage_linear,
++	.is_enabled		= regulator_is_enabled_regmap,
++	.enable			= regulator_enable_regmap,
++	.disable		= regulator_disable_regmap,
++	.get_voltage_sel	= regulator_get_voltage_sel_regmap,
++	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
++	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
++	.set_active_discharge	= regulator_set_active_discharge_regmap,
++};
++
++static const struct regulator_desc regulators[S2DOS05_REGULATOR_MAX] = {
++		// name, id, ops, min_uv, uV_step, vsel_reg, enable_reg
++		LDO_DESC("ldo1", _LDO(1), &_ldo_ops(), _LDO(_MIN1),
++			_LDO(_STEP1), _REG(_LDO1_CFG),
++			_REG(_EN), _MASK(_L1), _TIME(_LDO), _REG(_LDO1_CFG)),
++		LDO_DESC("ldo2", _LDO(2), &_ldo_ops(), _LDO(_MIN1),
++			_LDO(_STEP1), _REG(_LDO2_CFG),
++			_REG(_EN), _MASK(_L2), _TIME(_LDO), _REG(_LDO2_CFG)),
++		LDO_DESC("ldo3", _LDO(3), &_ldo_ops(), _LDO(_MIN2),
++			_LDO(_STEP1), _REG(_LDO3_CFG),
++			_REG(_EN), _MASK(_L3), _TIME(_LDO), _REG(_LDO3_CFG)),
++		LDO_DESC("ldo4", _LDO(4), &_ldo_ops(), _LDO(_MIN2),
++			_LDO(_STEP1), _REG(_LDO4_CFG),
++			_REG(_EN), _MASK(_L4), _TIME(_LDO), _REG(_LDO4_CFG)),
++		BUCK_DESC("buck", _BUCK(1), &_buck_ops(), _BUCK(_MIN1),
++			_BUCK(_STEP1), _REG(_BUCK_VOUT),
++			_REG(_EN), _MASK(_B1), _TIME(_BUCK), _REG(_BUCK_CFG)),
++};
++
++static int s2dos05_pmic_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct sec_pmic_dev *iodev = dev_get_drvdata(pdev->dev.parent);
++	struct s2dos05_data *s2dos05;
++	struct regulator_config config = { };
++	unsigned int rdev_num = ARRAY_SIZE(regulators);
++
++	s2dos05 = devm_kzalloc(dev, sizeof(*s2dos05), GFP_KERNEL);
++	if (!s2dos05)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, s2dos05);
++
++	s2dos05->regmap = iodev->regmap_pmic;
++	s2dos05->dev = dev;
++	if (!dev->of_node)
++		dev->of_node = dev->parent->of_node;
++
++	config.dev = dev;
++	config.driver_data = s2dos05;
++
++	for (int i = 0; i < rdev_num; i++) {
++		struct regulator_dev *regulator;
++
++		regulator = devm_regulator_register(&pdev->dev,
++						&regulators[i], &config);
++		if (IS_ERR(regulator)) {
++			return dev_err_probe(&pdev->dev, PTR_ERR(regulator),
++					"regulator init failed for %d\n", i);
++		}
++	}
++
++	return 0;
++}
++
++static const struct platform_device_id s2dos05_pmic_id[] = {
++	{ "s2dos05-regulator" },
++	{ },
++};
++MODULE_DEVICE_TABLE(platform, s2dos05_pmic_id);
++
++static struct platform_driver s2dos05_platform_driver = {
++	.driver = {
++		.name = "s2dos05",
++	},
++	.probe = s2dos05_pmic_probe,
++	.id_table = s2dos05_pmic_id,
++};
++module_platform_driver(s2dos05_platform_driver);
++
++MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
++MODULE_DESCRIPTION("Samsung S2DOS05 Regulator Driver");
++MODULE_LICENSE("GPL");
+diff --git a/include/linux/regulator/s2dos05.h b/include/linux/regulator/s2dos05.h
+new file mode 100644
+index 000000000000..2e89fcbce769
+--- /dev/null
++++ b/include/linux/regulator/s2dos05.h
+@@ -0,0 +1,73 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++// s2dos05.h
++//
++// Copyright (c) 2016 Samsung Electronics Co., Ltd
++//              http://www.samsung.com
++// Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
++
++#ifndef __LINUX_S2DOS05_H
++#define __LINUX_S2DOS05_H
++
++// S2DOS05 registers
++// Slave Addr : 0xC0
++enum S2DOS05_reg {
++	S2DOS05_REG_DEV_ID,
++	S2DOS05_REG_TOPSYS_STAT,
++	S2DOS05_REG_STAT,
++	S2DOS05_REG_EN,
++	S2DOS05_REG_LDO1_CFG,
++	S2DOS05_REG_LDO2_CFG,
++	S2DOS05_REG_LDO3_CFG,
++	S2DOS05_REG_LDO4_CFG,
++	S2DOS05_REG_BUCK_CFG,
++	S2DOS05_REG_BUCK_VOUT,
++	S2DOS05_REG_IRQ_MASK = 0x0D,
++	S2DOS05_REG_SSD_TSD = 0x0E,
++	S2DOS05_REG_OCL = 0x10,
++	S2DOS05_REG_IRQ = 0x11
++};
++
++// S2DOS05 regulator ids
++enum S2DOS05_regulators {
++	S2DOS05_LDO1,
++	S2DOS05_LDO2,
++	S2DOS05_LDO3,
++	S2DOS05_LDO4,
++	S2DOS05_BUCK1,
++	S2DOS05_REG_MAX,
++};
++
++#define S2DOS05_IRQ_PWRMT_MASK	BIT(5)
++#define S2DOS05_IRQ_TSD_MASK	BIT(4)
++#define S2DOS05_IRQ_SSD_MASK	BIT(3)
++#define S2DOS05_IRQ_SCP_MASK	BIT(2)
++#define S2DOS05_IRQ_UVLO_MASK	BIT(1)
++#define S2DOS05_IRQ_OCD_MASK	BIT(0)
++
++#define S2DOS05_BUCK_MIN1	506250
++#define S2DOS05_LDO_MIN1	1500000
++#define S2DOS05_LDO_MIN2	2700000
++#define S2DOS05_BUCK_STEP1	6250
++#define S2DOS05_LDO_STEP1	25000
++#define S2DOS05_LDO_VSEL_MASK	0x7F
++#define S2DOS05_LDO_FD_MASK	0x80
++#define S2DOS05_BUCK_VSEL_MASK	0xFF
++#define S2DOS05_BUCK_FD_MASK	0x08
++
++#define S2DOS05_ENABLE_MASK_L1	BIT(0)
++#define S2DOS05_ENABLE_MASK_L2	BIT(1)
++#define S2DOS05_ENABLE_MASK_L3	BIT(2)
++#define S2DOS05_ENABLE_MASK_L4	BIT(3)
++#define S2DOS05_ENABLE_MASK_B1	BIT(4)
++
++#define S2DOS05_RAMP_DELAY	12000
++
++#define S2DOS05_ENABLE_TIME_LDO		50
++#define S2DOS05_ENABLE_TIME_BUCK	350
++
++#define S2DOS05_LDO_N_VOLTAGES	(S2DOS05_LDO_VSEL_MASK + 1)
++#define S2DOS05_BUCK_N_VOLTAGES (S2DOS05_BUCK_VSEL_MASK + 1)
++
++#define S2DOS05_REGULATOR_MAX	(S2DOS05_REG_MAX)
++
++#endif // __LINUX_S2DOS05_H
+
+---
+base-commit: b9ddaa95fd283bce7041550ddbbe7e764c477110
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
+
+Best regards,
+-- 
+Dzmitry Sankouski <dsankouski@gmail.com>
+
 
