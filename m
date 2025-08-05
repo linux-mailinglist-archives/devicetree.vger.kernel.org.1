@@ -1,332 +1,125 @@
-Return-Path: <devicetree+bounces-201847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B1A2B1AFD9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 09:52:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29286B1AFC9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 09:51:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7A993B1050
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 07:52:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB4AC16E5BF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 07:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C8123ABA7;
-	Tue,  5 Aug 2025 07:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F0624C07A;
+	Tue,  5 Aug 2025 07:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ENkdKStn";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="kDsAWd4d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EadUrHEr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED40D23AB8F;
-	Tue,  5 Aug 2025 07:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D342494C2;
+	Tue,  5 Aug 2025 07:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754380263; cv=none; b=blJDIVrP66WDXKm4qTjyb22awStt3Bgfx+0FyEDER8YPUcrlfnu5Y6RVj0QuASSRvAyG+fapGCaGUwFRIyIzYDqZIa3WxUydj72Lzv2bAkd6eU3cB+Awt1ZzDDBxzLfqzs5DYr4VF0TzcaUBiun9B2jGhQnjeq78TzZLzo54GPk=
+	t=1754380193; cv=none; b=cM6KmndKSzD0akYC2TLo6FZk9j9S5+1RsTNLiRNXvqoz07Wm+vHfakl0h13UoKgGilmsqyW1rrvQO7SNN5Ltik0kX+j1Q8pkHu94rRu8lOzoFDNFVsbqb7toaiAJR/u/DOOR0jtwbM2W6t7+JwlNdxJDTfqcuYGFi8GzzXfYbvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754380263; c=relaxed/simple;
-	bh=JV1JLj4pZFDTkT0IcqmLzcpjmLokdPTSEXz5/ZTakT4=;
-	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=BQtxYSD+8c+JQP5oQeXhc84UlfJ+JCC88DpvEjj3GFFCAvPwlnanfwuuXZjBEnF2ZHaNAtjqiiNaadjRI731idH/a+DIADmZR/gYxkJFXwGHQLtcNzy66J9BA7fBS12N31psv9kAQEz82w7+/WxxGyBRSh4ucWDWIfc9zjDexDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ENkdKStn; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=kDsAWd4d; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1754380253;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+So4wv8Zly3BtM63OQvZFyoVi+SRY/LO7UXsrqv6fcM=;
-	b=ENkdKStnJoAkA7rx4rCYyNvtfAObVJucm1RTLx0dCnp6fLEhYmmtees1scz01sZcNuGQ72
-	LYetv4m5hNv8baU3Hoc+i4/m/gX775ghEjIpGKHkW02GP5mlcQw7Qq4dATqHCRJefyXSnC
-	PfbtP8lYlQEexNFMGYPbRabIjdcm9C1SAbbRQe040we8pcNLcDqbgP+PoKaOLXO8QlCPsH
-	PeLl7os0fgf1FbKd6FRrZyfo0OdKXKHCPx2zVjQDR4PvOPkB39R9GrRj3YXuQtTFCR7r4k
-	80RVHm0udF+/eLGnmh0+49AKNmGEeu5PfqINf7a8XQe8MVejCN43T47tjXLQwQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1754380253;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+So4wv8Zly3BtM63OQvZFyoVi+SRY/LO7UXsrqv6fcM=;
-	b=kDsAWd4dy48cmoYwpT8I4eiUq6h6MDpAhKchcYikjsGh9zQmB8lOuDP9cO66j1qoC3gMqQ
-	MnNkyv4iYe2pTqBA==
-To: Ryan Chen <ryan_chen@aspeedtech.com>, ryan_chen
- <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
- Jeffery <andrew@codeconstruct.com.au>, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
- interrupt controllers
-In-Reply-To: <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
-References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
- <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
-Date: Tue, 05 Aug 2025 09:50:52 +0200
-Message-ID: <874iumgqar.ffs@tglx>
+	s=arc-20240116; t=1754380193; c=relaxed/simple;
+	bh=nWNH5eCqyP/FjxukcloV1DRoOBCv8QarpVQi1BOYK0s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=javb0XHf7I4QoZ+4thDE1FITeZGWxGbq3O9ijk0sa+MK7xWT6ZC+RgKSXq0Y0IVoAyT0sGfOzxMx1FCm2Ck0IdDuCOBEO5sUZydJkEI2MPb7xfZOqsdI1vlareiXJ1Irt/nb+bbpwHTP+Ral09lY8CPJdDDE5f68lRx1d3bqdPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EadUrHEr; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-320dfa8cfa3so4217064a91.3;
+        Tue, 05 Aug 2025 00:49:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754380191; x=1754984991; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nWNH5eCqyP/FjxukcloV1DRoOBCv8QarpVQi1BOYK0s=;
+        b=EadUrHErW7vkKVzl00F3FnUKop06BdBOUwAWBTJ/jLXlgIsxqZ+8kqL88766on1UwV
+         eQfx9ktCLHWBeq/H0YuyzJ0+kMN0iTz+/ZJQvlRjbaD5bzE7f8ToqGKr7xjGvRN3BzVi
+         xmAworfeB+0VRbIiGG03DsDUBwHGl/eJzHfcgd3GNu94nBwQzEK0XnnRNAk6TFzeLK7O
+         X9ZK5lnoI/i2NpMg4VZDacHorXYwVxFB+pF3hcrlnMgr5/l+oAygz2BuOqJFADamye46
+         pJPEBmWiqyg9dnTsSDKkc9iVCHK3OPENjEmIg2ixO27gRZ1q2VhChzNt89v7lZUtN1tX
+         uP+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754380191; x=1754984991;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nWNH5eCqyP/FjxukcloV1DRoOBCv8QarpVQi1BOYK0s=;
+        b=cFb4j6q0HqXorDVtP2O4iKF1PoB+PW5tII80FMsjzb8B35sP3V2Tkq6aXtnt3ornEF
+         MxQapLveu/XNvhetzV6uBrL+Uovq+Q20OzBre6gB5LJfK4OSFLsBpS3IlfQjXwmHc0Wn
+         mNaWDWLlrzjTWh6tQvtxT2vV6kp/TrRWwPLDSf13TMm7ODZbjjE8WD4gHnbanKlZe24M
+         OvXxGgbkDsu/PkSs6B4GQ5Gc1gHNBUV9uJnKzyLVllxQ+NS11ztAfPFrUSp2YbbGsHvG
+         IRX6nI4s0VG6XGggGyrCn4N0E6Q+vNxyZH1I5mCvKfaLwF896htt2g18YD86qpWHgM7b
+         Yc/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUnUnVDL3BKkr5HOjapt32R3IP27+U58Ti+hUGXizeeWy0o+6t9E/UfuRppZx6qFmgkV2jzVLMSyeZFh+x/@vger.kernel.org, AJvYcCV+lNOxyNTWseiE90V0eJ2wgcxgxp8Qum/TrE2cA/uOvtkH7YLFGBouJs8mZTv5NlJm180qibnd05D7@vger.kernel.org, AJvYcCWvirG7aCPvtX1SyV9/dw/42nM36oIe+HYoFW9ZYGBuftTePQdL0XWv9T64zEc+xoTVlYOqdBrtzugd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrH0jkNSrgIqzG6gT3xMgXqvjC6379zBYxGVFjXJXsImGpePfU
+	DuwTxrrGx89AVHpBiBRj9wknUlCLSdVOrOUwtx0v4tZ2+4ESoRV/vb6lCke8ibgonbnsML5lswx
+	iI6me6L1znQ4SnNcu0QGb3q6AzxwNNMI=
+X-Gm-Gg: ASbGncvFd4momJpNrv6P7wDbpE1ASeMcC25ZvhCTEb1oXCYZQo7OnZCGbINAelFljfX
+	bj9ZwyJesdlqIRuV8CE84v1A86N98aTTpSaqp0mVn4TEoi3WfG0DM7sqXQ189lawizbIA1PU848
+	6bPRLpu8rjS4aeY1qJhi5dENm2e/e/FAUKMXMfCpyC9dsSGdD0jBsLMqGECgDyHviwQg7TpR6MP
+	DJ9
+X-Google-Smtp-Source: AGHT+IGzN/lG60iP8C5y42/6GZHUdwFTfQPnirMANk8NvV5b0No4/sTpu/QFLlH7OULW0Qi45yw+Mon+tegHBGVKjCQ=
+X-Received: by 2002:a17:90b:3e84:b0:321:1df6:97d3 with SMTP id
+ 98e67ed59e1d1-3211df698c4mr12468336a91.4.1754380190738; Tue, 05 Aug 2025
+ 00:49:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20250804155407.285353-1-laurentiumihalcea111@gmail.com> <20250804155407.285353-6-laurentiumihalcea111@gmail.com>
+In-Reply-To: <20250804155407.285353-6-laurentiumihalcea111@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 5 Aug 2025 10:51:56 +0300
+X-Gm-Features: Ac12FXz_yTxmGlhhGe-fi7WMSXizT1iAGAYfFnkICkWhi-5XkkI01xGLjDZkakI
+Message-ID: <CAEnQRZAAwmivz-uu2Z88Ky71eJ=5oRjdSJqqSQ2S4JT2cwQpOA@mail.gmail.com>
+Subject: Re: [PATCH 5/7] reset: imx8mp-audiomix: Extend the driver usage
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 04 2025 at 13:34, Ryan Chen wrote:
-> +#define ASPEED_AST2700_SCU_IC0_EN_REG	0x1d0
-> +#define ASPEED_AST2700_SCU_IC0_STS_REG	0x1d4
-> +#define ASPEED_AST2700_SCU_IC0_SHIFT	0
-> +#define ASPEED_AST2700_SCU_IC0_ENABLE	\
-> +	GENMASK(3, ASPEED_AST2700_SCU_IC0_SHIFT)
+On Mon, Aug 4, 2025 at 6:57=E2=80=AFPM Laurentiu Mihalcea
+<laurentiumihalcea111@gmail.com> wrote:
+>
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+>
+> Some NXP SoCs integrate one or more, per-subsystem, block control IPs,
+> which allow users to control the assertion and de-assertion of the
+> reset lines tied to some peripherals present in said subsystems. Some
+> examples of such SoCs include i.MX8MP with AUDIOMIX block control and
+> i.MX8ULP with SIM LPAV.
+>
+> Some of the aformentioned block control IPs exhibit a common pattern with
+> respect to the assertion and de-assertion of the reset lines. Namely, the
+> user is able to control the state of the reset line by toggling a bit fro=
+m
+> one of the IP's registers.
+>
+> Linux can take advantage of this pattern and, instead of having one drive=
+r
+> for each block control IP, a single, more generic driver could be used.
+>
+> To allow this to happen, the previous approach, in which a single reset
+> map is used, is replaced by a per-driver approach, in which each auxiliar=
+y
+> device driver holds a reference to a certain reset map.
+>
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Let it stick out, you have 100 characters
-
->  struct aspeed_scu_ic {
->  	unsigned long irq_enable;
->  	unsigned long irq_shift;
->  	unsigned int num_irqs;
->  	unsigned int reg;
-> +	unsigned int en_reg;
-> +	unsigned int sts_reg;
-> +	bool split_ier_isr;
-
-Please reformat this struct declaration according to:
-
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
-
->  	struct regmap *scu;
->  	struct irq_domain *irq_domain;
->  };
-> @@ -52,33 +83,51 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
->  	unsigned long status;
->  	struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
-> -	unsigned int mask = scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT;
-> +	unsigned int mask;
-
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
-
->  	chained_irq_enter(chip, desc);
->  
-> -	/*
-> -	 * The SCU IC has just one register to control its operation and read
-> -	 * status. The interrupt enable bits occupy the lower 16 bits of the
-> -	 * register, while the interrupt status bits occupy the upper 16 bits.
-> -	 * The status bit for a given interrupt is always 16 bits shifted from
-> -	 * the enable bit for the same interrupt.
-> -	 * Therefore, perform the IRQ operations in the enable bit space by
-> -	 * shifting the status down to get the mapping and then back up to
-> -	 * clear the bit.
-> -	 */
-> -	regmap_read(scu_ic->scu, scu_ic->reg, &sts);
-> -	enabled = sts & scu_ic->irq_enable;
-> -	status = (sts >> ASPEED_SCU_IC_STATUS_SHIFT) & enabled;
-> -
-> -	bit = scu_ic->irq_shift;
-> -	max = scu_ic->num_irqs + bit;
-> -
-> -	for_each_set_bit_from(bit, &status, max) {
-> -		generic_handle_domain_irq(scu_ic->irq_domain,
-> -					  bit - scu_ic->irq_shift);
-> -
-> -		regmap_write_bits(scu_ic->scu, scu_ic->reg, mask,
-> -				  BIT(bit + ASPEED_SCU_IC_STATUS_SHIFT));
-> +	if (scu_ic->split_ier_isr) {
-> +		mask = scu_ic->irq_enable;
-> +		regmap_read(scu_ic->scu, scu_ic->en_reg, &sts);
-> +		enabled = sts & scu_ic->irq_enable;
-> +		regmap_read(scu_ic->scu, scu_ic->sts_reg, &sts);
-> +		status = sts & enabled;
-> +
-> +		bit = scu_ic->irq_shift;
-> +		max = scu_ic->num_irqs + bit;
-> +
-> +		for_each_set_bit_from(bit, &status, max) {
-> +			generic_handle_domain_irq(scu_ic->irq_domain, bit - scu_ic->irq_shift);
-> +
-> +			regmap_write_bits(scu_ic->scu, scu_ic->sts_reg, mask, BIT(bit));
-> +		}
-> +	} else {
-> +		mask = scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT;
-> +		/*
-> +		 * The SCU IC has just one register to control its operation and read
-> +		 * status. The interrupt enable bits occupy the lower 16 bits of the
-> +		 * register, while the interrupt status bits occupy the upper 16 bits.
-> +		 * The status bit for a given interrupt is always 16 bits shifted from
-> +		 * the enable bit for the same interrupt.
-> +		 * Therefore, perform the IRQ operations in the enable bit space by
-> +		 * shifting the status down to get the mapping and then back up to
-> +		 * clear the bit.
-> +		 */
-> +		regmap_read(scu_ic->scu, scu_ic->reg, &sts);
-> +		enabled = sts & scu_ic->irq_enable;
-> +		status = (sts >> ASPEED_SCU_IC_STATUS_SHIFT) & enabled;
-> +
-> +		bit = scu_ic->irq_shift;
-> +		max = scu_ic->num_irqs + bit;
-> +
-> +		for_each_set_bit_from(bit, &status, max) {
-> +			generic_handle_domain_irq(scu_ic->irq_domain,
-> +						  bit - scu_ic->irq_shift);
-> +
-> +			regmap_write_bits(scu_ic->scu, scu_ic->reg, mask,
-> +					  BIT(bit + ASPEED_SCU_IC_STATUS_SHIFT));
-> +		}
-
-This is horrible, really. Either rework the code so that both chips can
-share it with minimal conditionals or provide seperate handlers. It's
-not rocket science.
-  
->  	chained_irq_exit(chip, desc);
-> @@ -87,30 +136,42 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
-
->  static void aspeed_scu_ic_irq_mask(struct irq_data *data)
->  static void aspeed_scu_ic_irq_unmask(struct irq_data *data)
-
->  {
->  	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
->  	unsigned int bit = BIT(data->hwirq + scu_ic->irq_shift);
-> -	unsigned int mask = bit |
-> -		(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-> -
-> -	/*
-> -	 * Status bits are cleared by writing 1. In order to prevent the unmask
-> -	 * operation from clearing the status bits, they should be under the
-> -	 * mask and written with 0.
-> -	 */
-> -	regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, bit);
-> +	unsigned int mask;
-> +
-> +	if (scu_ic->split_ier_isr) {
-> +		mask = bit;
-> +		regmap_update_bits(scu_ic->scu, scu_ic->en_reg, mask, bit);
-> +	} else {
-> +		mask = bit | (scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-> +
-> +		/*
-> +		 * Status bits are cleared by writing 1. In order to prevent the unmask
-> +		 * operation from clearing the status bits, they should be under the
-> +		 * mask and written with 0.
-> +		 */
-> +		regmap_update_bits(scu_ic->scu, scu_ic->reg, mask, bit);
-> +	}
-
-This also wants to be consolidated or seperated.
-
->  }
->  
-> +static int __init aspeed_ast2700_scu_ic0_of_init(struct device_node *node,
-> +						 struct device_node *parent)
-> +{
-> +	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-> +
-> +	if (!scu_ic)
-> +		return -ENOMEM;
-> +
-> +	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC0_ENABLE;
-> +	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC0_SHIFT;
-> +	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC0_NUM_IRQS;
-> +	scu_ic->split_ier_isr = true;
-> +	scu_ic->en_reg = ASPEED_AST2700_SCU_IC0_EN_REG;
-> +	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC0_STS_REG;
-> +
-> +	return aspeed_scu_ic_of_init_common(scu_ic, node);
-> +}
-> +
-> +static int __init aspeed_ast2700_scu_ic1_of_init(struct device_node *node,
-> +						 struct device_node *parent)
-> +{
-> +	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-> +
-> +	if (!scu_ic)
-> +		return -ENOMEM;
-> +
-> +	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC1_ENABLE;
-> +	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC1_SHIFT;
-> +	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC1_NUM_IRQS;
-> +	scu_ic->split_ier_isr = true;
-> +	scu_ic->en_reg = ASPEED_AST2700_SCU_IC1_EN_REG;
-> +	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC1_STS_REG;
-> +
-> +	return aspeed_scu_ic_of_init_common(scu_ic, node);
-> +}
-> +
-> +static int __init aspeed_ast2700_scu_ic2_of_init(struct device_node *node,
-> +						 struct device_node *parent)
-> +{
-> +	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-> +
-> +	if (!scu_ic)
-> +		return -ENOMEM;
-> +
-> +	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC2_ENABLE;
-> +	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC2_SHIFT;
-> +	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC2_NUM_IRQS;
-> +	scu_ic->split_ier_isr = true;
-> +	scu_ic->en_reg = ASPEED_AST2700_SCU_IC2_EN_REG;
-> +	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC2_STS_REG;
-> +
-> +	return aspeed_scu_ic_of_init_common(scu_ic, node);
-> +}
-> +
-> +static int __init aspeed_ast2700_scu_ic3_of_init(struct device_node *node,
-> +						 struct device_node *parent)
-> +{
-> +	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
-> +
-> +	if (!scu_ic)
-> +		return -ENOMEM;
-> +
-> +	scu_ic->irq_enable = ASPEED_AST2700_SCU_IC3_ENABLE;
-> +	scu_ic->irq_shift = ASPEED_AST2700_SCU_IC3_SHIFT;
-> +	scu_ic->num_irqs = ASPEED_AST2700_SCU_IC3_NUM_IRQS;
-> +	scu_ic->split_ier_isr = true;
-> +	scu_ic->en_reg = ASPEED_AST2700_SCU_IC3_EN_REG;
-> +	scu_ic->sts_reg = ASPEED_AST2700_SCU_IC3_STS_REG;
-> +
-> +	return aspeed_scu_ic_of_init_common(scu_ic, node);
-> +}
-
-You seriously have no better idea than this copy & pasta orgy?
-
-static struct scu_variant variants = {
-	SCU("aspeed,ast2400-scu-ic", ......, whatever...),
-        ...
-	SCU("aspeed,ast2700-scu-ic0", 0x1D0, 0x1D4, 0, GENMASK(3, 0),
-            4, whatever...),
-        ...
-	SCU("aspeed,ast2700-scu-ic3", 0x10C, 0x108, 0, GENMASK(1, 0),
-            2, ......),
-} __initdata;
-
-static struct scu_variant *find_variant(struct device_node *node)
-{
-        for (int i = 0; i < ARRAY_SIZE(variant); i++) {
-        	if (!strcmp(variant[i].name, node->name))
-                	return &variant[i];
-	}                               
-        return NULL;
-}
-
-static int __init ast_scu_of_init(struct device_node *node, struct device_node *parent)
-{
-        struct variant *v = find_variant(node);
-
-        if (!v)
-          	...
-
-        scu_ic = kzalloc(...);
-        *scu_ic = v->scu;
-        ...
-
-You get the idea.
-
-This rework needs to come first and then you can add your new 2700 muck
-on top.
-
-Thanks,
-
-        tglx
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
