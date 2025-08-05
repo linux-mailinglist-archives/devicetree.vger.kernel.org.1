@@ -1,313 +1,175 @@
-Return-Path: <devicetree+bounces-201985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D82B1B8B8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97111B1B8CE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE3A189109A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:45:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D10618A6AB9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDE827933E;
-	Tue,  5 Aug 2025 16:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD764292B42;
+	Tue,  5 Aug 2025 16:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TeJQp+tB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pCAT0AcO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013004.outbound.protection.outlook.com [40.107.159.4])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83BC1292B52;
-	Tue,  5 Aug 2025 16:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754412284; cv=fail; b=bsQ1XELUCZw1DAgpjTIHR/2LtXJY2VzQ7SJkDAnT0hcdvXF00/BNnGXtlkgWOcHDENSC2Am3zyegNyequ6/c3Sn7+RJmVAVMU9/v1Fe5awELEllPDsYnPbrYrBhLWA07huRbETh3iEI2LwvYl9XPtJqIhygTLUp/7QJMMRNsiAc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754412284; c=relaxed/simple;
-	bh=zZ49hlunI80GkiisMjSZZ4aLp6dbTqxg8KYT9ApuMKA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=uh6057Uk77+IGEXHh0/LamM1QZHsH5utJ6V7S+hyI/sbF7S18jlLcLfG3EPxXZBNg+iVbxKUSiq1M8Wj+nBJsO488Mh9zWWkrmgC78gzvmDg7aMZ5MZwbn6hDDy7L79W9w8oINeeQHGnwcVbGnQjRlDSvn0MZzSK/uX5OHhttuQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TeJQp+tB; arc=fail smtp.client-ip=40.107.159.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E8dkE6KZUjtp1py8BqrFzoByDcOtnIGX4HQN31C5gn9JXqghArlfC/HDsUDmNYvskmyVmhOX9TXBS2qWN5JlW7C8F39bOBdG7RsLG/e2uFE9FMithQfsWmH78U3ma2nbZbfm7rdlNj8NK87N14EFb8P2f6YzyNxbS4eldkMx3mvhjp4Y6lL8nbvou68rbAv+lSvPC4dHTuu3YgNF2xfQlyHDxQyXWHs9FNL7wRpiW4Mlxb1h8uC5I9zdv+SMlAu4xkz1p+zGdu9ynLPe6qvAw8tlxWhBd/+apAlwTR6J7RIa/7jqpmV67GHeyhICAhmAjiSd7P5kSKv7Wth3yqWxBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/9b8Jjx9AKdlaRhtRJ2sXJYh70EDIf+RteQNhWv8XTg=;
- b=MkxNYPDUfXxTXmt2HldOpWyUOoeuKahKPWsSk3vFzTMTdQFPMkR9qXPjPlnnP+yLwE9J6lI/obRU104nyDPhZu96d8v+djz/0M2fIfFYiDZUdSCWA4NfB+LLg790XM/HuPKnsRw/X8cPiiAEuRA28bdOia9utH4QbO9lXNHxyYTz5E6jBQKWwzRs6sZajE2lSUCtDrtVx42oMhZ/5JIMTipjSO1msiTftbPuL9M1xC7KP+igNH61teZMX4HlUlWA4srC+b8IpjMdoEb3okrpF7hG1eRksdQkVYhny3zbaebNmd9z2ZgQ0x/4tQyM9LIKuZp9CP+zdTI7BRD6ou0lAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/9b8Jjx9AKdlaRhtRJ2sXJYh70EDIf+RteQNhWv8XTg=;
- b=TeJQp+tBrGEGk6jYbviuO3p6hBmNgmzJt3myo8h91JxHAndNw6Rf0usNn7K8LUreLuyFUDU9PUGV2Nibc2HZnLFWdkzmWwIpl7rlxQ2FcIikVnVn6DLKWlft1Gq3JNrSzSigf4vHs9ZOkuSbQxrbhKL7WKYEz42b65sRlpAq1mbJYaIlD1GWsEY2EEDKg6WyZaRsamfVZx/HLR1paiFnzkgSc5fmPfswWagTsW+IBYP4RwcTEmra1BBLTksiU18CX2y39eENXB9ExUIKviefnaKmRuBb2KjyOpCaFy1OpXgd8i0N0z9vntYf+w4utC2dl/a0Rg3mqGxKL9jKxPKL9g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB8PR04MB6972.eurprd04.prod.outlook.com (2603:10a6:10:11c::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.21; Tue, 5 Aug
- 2025 16:44:38 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8989.018; Tue, 5 Aug 2025
- 16:44:38 +0000
-Date: Tue, 5 Aug 2025 12:44:30 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	bhelgaas@google.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp
-Subject: Re: [PATCH v2 1/2] arm64: dts: toshiba: Update SoC and PCIe ranges
- to reflect hardware behavior
-Message-ID: <aJI07hBmKNrsGFv9@lizhi-Precision-Tower-5810>
-References: <1754358421-12578-1-git-send-email-nobuhiro1.iwamatsu@toshiba.co.jp>
- <1754358421-12578-2-git-send-email-nobuhiro1.iwamatsu@toshiba.co.jp>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1754358421-12578-2-git-send-email-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-ClientProxiedBy: SJ0PR05CA0158.namprd05.prod.outlook.com
- (2603:10b6:a03:339::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3713926CE30
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 16:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754412713; cv=none; b=rvRI0btPx2KXmO+we4niSR2IL/Ot0+l1be3BHy9gV1zHTSVkZGOXHJyXDhpKZ2gp3GfluApiNsvoe7V/LReDjWhn80kUea3Lk8h6074/CggX9RFPv76a6Kzy99uDLxdLlUkfDT4Uf2YeuFGEHd2rzJ0DRCBK2v+dVR/SO0ZZcFw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754412713; c=relaxed/simple;
+	bh=9HuhvcVgcVWA8vrm4ARyM9LsZ5rPP/+FsBZiP8MsXi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nKxpnDLLNjdKy0goMTv9L0EbED1hXavblEJWwEkPLjVbUOGqPseSiInpU6rYbP8xl0PagRl5DEdmdIM2Hvp9dFuhFRXGd3xutSwKjDpQzDyx1zS0nYrZa3hO3fvB51J/B2jP3kIE3WkMW6HaeA+Ddo9rbRzE7RiPHcST+GSjXDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pCAT0AcO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5758O8iH031930
+	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 16:51:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OrW1DzUyVVmeukVpqBYLRBGHiHi6hAxmrlXRAz69Tg4=; b=pCAT0AcO0mia2Krn
+	I5LdhZKGCdJhYIpHxXpH//mQqwhzDd1SuRsAm8+r3L0kU2A5sPIwaREWyg7O5+vE
+	V6VO/yX6j8x0dL36xOKSon9f4dMuXYroUovwSc+te9rqlDfDn37q/JRjU4TIrTEo
+	KVvLFYopbObI5IjIab/JM2vz+V9gI93DFVKhbgENPjfcRgEXuhcbvrfZl47NrenQ
+	zvLa5DZ5PHEpG/ICyvleB85odDupRjAQXwNRnRlfsjHGz8rE8myWwj0tNa63fmiU
+	EJwU0iCYpHOb7XgaQZiUD8Bfp5VDSAJPU8GMm4JZyLV4t++AjTOvZC1qzJcUPbDb
+	/EXP+Q==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ak5a5wws-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 16:51:50 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e800094c82so52017285a.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 09:51:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754412709; x=1755017509;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OrW1DzUyVVmeukVpqBYLRBGHiHi6hAxmrlXRAz69Tg4=;
+        b=XsG9M6kDGCPr+2n4LDUHwnjt9M1PEElBTXgq0CGhySX5zmWVC8q3LRLe39xw43/ini
+         ijqnIFZHcrzWsBqxiFrbhbL+rr2eqGKk2mn2z/lPdQ48TsaksXsBJkB/fd5HOkCRZKNO
+         RmLqJWdvFtXwvPujV18HlzMJcST8DbfifQ9eZqZZZHIRQQdHulrcR8VneYkltdpPLMhH
+         ahah+pdu4tB5JU6AhaKN7KLwwPGcyK2xWQUrt18qgWXcvLaCAxDr5JSPZv9gbW6qZA82
+         Jfnyj0ZHO2Kn8CGQ92fP+ZfMXW/2p0qB0jirr4ec0vsxs4rSOdqnWCg5lBEEeH9uxgvf
+         iG6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVqk286ftXuC8OAyqXLnfavgf4SBPnW9isL65JkNYJjaOpJIamHXj0wft0Sqpo5KGldxpApxq4QjTWl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3arseW7PwKvq8TD18K7rm+D1LFkMFfraLl8xBdN89ydo8OX1y
+	XCyc5Rww86IV7/Tz729uwO4U5mNnHTWqWVyUgdPeE29d0R0uuQC02t0KCMDPmT8C6r8s8JoJ0FA
+	kQPbYuU38QtjbRTqlY/jM+65VmEmDUrI1M26nzxsWkihXJfgKRaCObpiKAeg1bq+8
+X-Gm-Gg: ASbGncszXzeMAQr8TcQKXal7D1nECyCf8d6rtFd2OcsxliOLNIKR0wyHpNIdo+Sn5rg
+	XjGI6YJlwmDSL+Yt/NSJ/6MJDqf+gKNUQRRt01I8EQdQJ1XuAcvbjrjfo8nwl6zQ2dzwTRYZKoa
+	jGoE5CmvsQ4anXAz27gqGKLtKl6hw3pRc74rWexYl4AuN8zuEnO/VV8TbtxgwG/OxMGt7Uf+e+7
+	gW4E7c7lRvkSpwt/TeCpdsHW7xzlRtvNfOKBNdM0gTCJ5BUqF00RAfQIMC0UqcQV/2KBoKCdU+b
+	H7RYc4RHjMHdqV9YgiEWD2iztmpcFmN5ftucILr2vWRGxRkJdVqBdAsOUuUk+P+b5KqUjSWywwM
+	1DLCm4dlK2QECcFyShg==
+X-Received: by 2002:a05:620a:198b:b0:7e8:c4f:614b with SMTP id af79cd13be357-7e80c4f6500mr234285385a.7.1754412709502;
+        Tue, 05 Aug 2025 09:51:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEsRfnZFgHHEyQmRgmvW0pHpImAXIwU7QUOWWa17SPxgdAKAosD77jO4lD+OvVYYq1NIsK+5A==
+X-Received: by 2002:a05:620a:198b:b0:7e8:c4f:614b with SMTP id af79cd13be357-7e80c4f6500mr234281985a.7.1754412709002;
+        Tue, 05 Aug 2025 09:51:49 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a076aecsm933342866b.9.2025.08.05.09.51.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Aug 2025 09:51:48 -0700 (PDT)
+Message-ID: <5590fdab-0fa3-4ac0-bcbf-d2cb41be16dc@oss.qualcomm.com>
+Date: Tue, 5 Aug 2025 18:51:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB8PR04MB6972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e3d1d37-757a-4ca2-6efa-08ddd43f5df3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|19092799006|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZmFQbEdad2RaNnNORkxxaVBKSmRNSnVuTWErVEZDa04xQ2FWTFpyV1lOT3FS?=
- =?utf-8?B?bnZMdjE4WU9vS2tRWkdKT2hTZnhJbmhqSngzclphTjFkekpBYkdWd0lXcC9T?=
- =?utf-8?B?b3dzY05NRTFEdCtQK2w0ZENjL3A4a0tUeTJLQXpjdmt3blBGOGEzL2llZG4z?=
- =?utf-8?B?c0xlTjlMY0NQamZxY2ZtUzVuTFUrRkFLWXlvcHV6QnltTWxGTlI4YSt5a3Bh?=
- =?utf-8?B?TEpxaVVYUWdnRzVwSWVXbXh6NWk4RTZMVlpkMk5jSDBrWlYrekVoQ3NiL2tk?=
- =?utf-8?B?OHZhckl0M2VpUHJJV3RMWllveVB3TmZFNkNnaXZNbUtjUk1wYnd5LzFSb3Ux?=
- =?utf-8?B?dDJPZlBnRC9FWXZKV0liVjJOT0lkVUhVZ0U3ZllpUEdzbks0SXFaSjNkYlMy?=
- =?utf-8?B?UUlBb0JWcWNXK3ZPZklua2JxTnpXS252N00rWE1aUUpCbXZESC8zdURQdWxk?=
- =?utf-8?B?V1BPcEFBQ0c2NnJhVHpGayswUDVQTXNuREFGQ24wOHB0Z0ZvdmR3SGZUdEYv?=
- =?utf-8?B?YndPR1NpbHVVbmZhNTd6WWFzNVIrTU9wQ0kyUVBNbGxpWE9FN0hacFZ3K3Mz?=
- =?utf-8?B?dUdMd01ZcGg2bndvSGlzQk50UE0yYS9PRmVJSWRGWGwxTVM4aGRMWHhPSkNs?=
- =?utf-8?B?R2ttYk1KcjlLeGc1Szh0d3ViK1Q0M0t1TENUWTFTenJrWFVOdFBZakozZitQ?=
- =?utf-8?B?WFJhb1BacGp3cXZISWpzVmNiTjR4dkU4Y2FpZVM0N3dDa0dwUDczNURDazEv?=
- =?utf-8?B?S2U3dnc3MW9XZHdVK1JIcTFKaGJNRU13S3JjV3JXZ3VBUEQ3QlpSUEw2cUo4?=
- =?utf-8?B?Nlp2N1JVc2pCTWZDdDhJaUZRb2dqK0hjZWtxcC9qWE5Ud1ZlM3pQSVpCVHZG?=
- =?utf-8?B?c3F4ajNXWmtOTWU2RkR4cWtVU3ZpZGs4T1M4WGFRdTFSUDU3T2xUVVhGVkgz?=
- =?utf-8?B?Q3JGcS9EaGh6WDc4d0lxV283VE5sVnNnb3hJWGNudGhZVkpFSlN1cFhZcWJG?=
- =?utf-8?B?S1lvL0hOaEk3dGdPakRsVmtwTlFablM3OFJ4Z3hHRFpUZzJxcmdZd0NvTFdU?=
- =?utf-8?B?Q3lIL21ybnMxL0tOYkdib2pDdWExVEgzaGhLakYvM1c0ZUlGaDI1Zy94SWVH?=
- =?utf-8?B?ckpuVFpTSUUwOGxsaHQ4Y1ozWmR1cnEwY0dQYmxDRnJzT0NwYmVwN2llU0hL?=
- =?utf-8?B?QXdSSmpJeTV2bE1UMmZtRk1TN1VyYlEwaTJucUs4bFlTZXhreFlkUXdwVW5y?=
- =?utf-8?B?K2lXUnFIUnJTeHlpTkExVGNPcmNHMUo4ZG1DMzVnNWc2NDhadEpMWFZZMmlZ?=
- =?utf-8?B?WXJOZWx1TFNUOURYSWFiS2EzWlBiUW5PUVJuOGo3Tzlmb2JTS2czZmxQOUZr?=
- =?utf-8?B?V2JRSCtpK0o1ZlU3K2QwbGdYS053Z2tmTTVhOVducmZiY3NwNDZBb1RTSkpQ?=
- =?utf-8?B?T3E1OVFnRmtwYjlUeDhFVW5HZlBJMCt2a3djQ2Y5dTF0TUQxRDNaTmc3SWtq?=
- =?utf-8?B?eUVOTVFxNVBtRGpJd0JlSDhjSk1aUXlqRGExanl5aGF3VnFCYTNiS055emxn?=
- =?utf-8?B?Qll2QmIwR1JBWlVCZ0Y0SGNJb2lRQ3psWDZjeG9vV1lNVnJ2MXJseFlONXYy?=
- =?utf-8?B?aEhCaXpzUktPL3cybTRhSklzU3lWZlRrTitxbktzak9hdXp4QVQ0dG5sRzVD?=
- =?utf-8?B?QURrL2lXalE4Tk05d3ZudGRhL2x0b2ZoTXVyN24wNkxyWVFVVGhkbFdnV0Mz?=
- =?utf-8?B?M2FMdTFCa0NVWkovcS9zMEJyTDlwODJUL3VLM0Fhb05ISC94eTg1OVQvbVFS?=
- =?utf-8?B?YzEvL1ZVNXFITVhKNmpqdjBxSjJ3RzFjWUUrcGsvdmlLMXora1J3WWUvRnNy?=
- =?utf-8?B?NFE1UUdoVzltbXBTVFh3ckF0T3ZtUmxqRE1MRDl3aHFoSWRpbFlRUlZoY2F5?=
- =?utf-8?B?YytwQzdseHBkVWZZZDVkNXRPdzM2cnM0VnBHa0NYd1U1d3dwYTJQMjRGSCsr?=
- =?utf-8?B?RnZrOHh6OXBRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(19092799006)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RXpUVFJSeS9KT2cxYkxWcFVjWHhzaVM4bG5CQzQ2b0lFRjdjYnZSQTdrWnAz?=
- =?utf-8?B?eTJLdkRtaVg2bExPR2psd1NWOEFnL0oyUStRUG5ZSktNOUJPd2JhM2xaa1BI?=
- =?utf-8?B?c0dSa2FQT2htakY3OHMxWEw1VlM5bklRUUc2VnBEMGk0MWlEbjdBSndvMzli?=
- =?utf-8?B?SkNZUHlGbDRPYS8xVHpEQkVCYmRIM3ZaTWF2Y2ZxNXNnZjF0NXozdjc3aXhx?=
- =?utf-8?B?UXU1dUhweG03QTl2UXBWQkw4Wk1tZkJhYTVGeDF4cUZiMWFBTDg2V1RGOUFz?=
- =?utf-8?B?SG5ha1dmSTNKRHJKVVVNL1UwVVhWOFQ5YjlVYy9CVS80Q2IzT3JIbVZPMHA3?=
- =?utf-8?B?TUpBMkFTdzREMWZvYXc1dWlKS3A3ZUlQSjlsT3p6Q0dBODRXRDloZm5YZGNK?=
- =?utf-8?B?U3VnVzQvUERRYUROSm03aklHV0U0UTc5OXJWWVhkaHUyS3FNKzlBUEYyYVJQ?=
- =?utf-8?B?dVd2RXM0N2ZOVlJuTk9uRzE3WVJHTlpORU1ZU0pzR2FZRkR5bGFrY0hVUVQr?=
- =?utf-8?B?Tk10UW1PaDhTREJZNFZkRmxsRWZCVG1PQjAwd3psV2ZBb0wwbzM2TlA3cVFh?=
- =?utf-8?B?SGpaTzB3VnZFSDRBajVPWE85dU1FWitKcmFleHlXMjV0TFljc2kxZWZMc1No?=
- =?utf-8?B?djY4WmJDVkczODNaakJTWk1RVFFsQWx5R1N4N2ZiWW05MDYvdEZ3VEZzamJm?=
- =?utf-8?B?S2prR2VaQTBqQjdkYko3ZHRzMXBZdlhWbGRUUUQ2NmtrbWpCVkRDYXRFdU1N?=
- =?utf-8?B?OFNkeCtjUEg0Mlp4WDYxQUh0MnZIL2k5dkJjOTkxYTdxUkJGZnNCbTNpNjZO?=
- =?utf-8?B?UjhuOUdUaEc0QzNtUnA1UUZwUDhSQ3d5TW1pYXY5R0VPcmtUd1pmSy9zSmlV?=
- =?utf-8?B?MzdoNDJmRjdteDdqamtXd2lxTzRTbHlKRnFGWFFWUkVZYXFmYVY5N0ZYakhH?=
- =?utf-8?B?ZC8ydWE3UTBUWExGanhFR1RHOXpiejJPTE01a2ZUQlhhQUlsdCtaZUplOTFQ?=
- =?utf-8?B?cXU1WnVSa3pRL0pLQm90NDMzQXgxTkdjQ3RUNzlyeWFvWk93WklKbGRNdnV6?=
- =?utf-8?B?K0xqY0V2VkFESjE3NnZ3a1d4a1Jnb3BGSDhPdmhZaTQ4YzJ5MXM2NEY5b05M?=
- =?utf-8?B?M2RYOGRITldwdG9qaExidm5GRXg3WXdiQ3N0R2prT3ZtclpNQmppTjgxZjlv?=
- =?utf-8?B?ZGhyVHJZOWRWQWlPU0hPMGJONEFaMEFRVzNrMlE5dUZqVys4K0QxeXNhL3Fu?=
- =?utf-8?B?WUhoaW96M3lxc3NPMWZzYUliOHR6dG50ZVQ0TzNaRkUwNEdpaVYxbmppREI1?=
- =?utf-8?B?V2o1ZXoyT0FiODY4ZE1vWDRtVkpXeTc5ZWs4cERTUklxUTNuUUN3WVI4WFlq?=
- =?utf-8?B?RzBJSDRQeUtpb24zSDdCUTc3Z2RRTE1BQkMwcUh6VzlmcXcvZVRhL1prK2Jt?=
- =?utf-8?B?Nm10V3dJaGJFSmFZWUh2SEprWVBLWHJ0c3Npc2dzd0t2Z3BNUTVOcm12OHlp?=
- =?utf-8?B?c3hLSi8zOXRwUjk2eTdGeVBsdTFyZGViUEdGRGFrcGNYOXFlNEVsUnFvZEwv?=
- =?utf-8?B?bFZuZ1JGb1ZvVDlRMTNwU0FuZW5tcVF0dmZhUjJWRUFGd2cyNnFlMU1oSjV4?=
- =?utf-8?B?bTlFNWtTWEFhNk12RDFpNjgrKzF5YklpQzkzekRXYy9VYWlLRHl2ZXhBT24r?=
- =?utf-8?B?K3prOTY1bTI2L20wSCtSVERvaUJIM0o5Sm82VlczaWpWNjd6cFR0dlhIYTQz?=
- =?utf-8?B?a0VwTkRQcTBFT1cxYWxCRSt6bWY2MExpWTl3T2JSdGx0VWtqUEhCSGdkbjRF?=
- =?utf-8?B?NkF6alc2SWJvcit5cFkwSFhENXNNTExrc0RFR0ZWUGlrN0N4ZE9hb25SblFB?=
- =?utf-8?B?cU1NbGY0UDl5V2xOMlhjUVovSS80bGhFUlRPUSs0Nk1sTEFCbnFqZ05ML2tE?=
- =?utf-8?B?V1Fua0ZQWjhwOVFyRXMvRHNmc2JvWFhvU0pHMzJUSDMxUkE4YmNLTjFQOGxL?=
- =?utf-8?B?cEgwTHU5UlV3K25hTU1NT3lJQnR0RWc3U0RvZlo1NDNIQWtxS2U2T3Q1MWU2?=
- =?utf-8?B?WUhSdGFkWnpTVHBJdTZTVk96Y0NMSXJKdXJIc1NvZ3BrSjQ2eVN0Slo2UHRL?=
- =?utf-8?Q?3R6M=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e3d1d37-757a-4ca2-6efa-08ddd43f5df3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 16:44:38.2742
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: crRPNGD18UuJye0/pWPDs4B9Jr6Kgs84xz4gPJA4T3wdTEJfPPxNLHmrYFWmR0EynPkfEvi7CKnKrdX4TKAj0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6972
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8750: Add adsp fastrpc
+ nodes/support
+To: Alexey Klimov <alexey.klimov@linaro.org>, andersson@kernel.org,
+        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        srini@kernel.org, quic_ekangupt@quicinc.com,
+        krzysztof.kozlowski@linaro.org, dmitry.baryshkov@oss.qualcomm.com
+References: <20250805162041.47412-1-alexey.klimov@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250805162041.47412-1-alexey.klimov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDExNiBTYWx0ZWRfX/Lz7sQMA2oCe
+ eS6mZhUXl35+2HLm0V+Chws6GC8UPx5oCr4RTuEFoqiUj9oe4/2pgIQPjqlbApFXNRFnh8ileIY
+ dihCdeyj3OlF0zI5FdiVVxharIgVSAWg6G2De7CNzQdP9fDehxEBwsf8CJshZDOebIo5NtdikA+
+ CvR0062a31Lmo24uImgePA1vkNUNxIDdhMBoUc4nKZNc5hD06qc38VUr8m9GlSzF7Y1cgO2fpTx
+ Zw1hr9+BdAI0/uG8LhzHiWfCtoGch+pL5Ak8qEN4aOHD4rYkMBV5m8AR9J/m6pkyOT4j8VdXRVq
+ PoLQmSvJuNogiImRtT+9TzeX0wgXVCrYskIPDeWsA04CwtyckagKFFn69ir97gF2O3vAORo29t9
+ 24e2x/VOnSWI04oBMdfhNf2x3X4W8K1aVuj9ApCCLc/qrGflK1SjjFnpNoKH3jTFecPH10/0
+X-Proofpoint-GUID: RBDxLnPSJhQ8l54pX7EgLhZZddZ3Z-ca
+X-Authority-Analysis: v=2.4 cv=LP1mQIW9 c=1 sm=1 tr=0 ts=689236a6 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=i5LmXQDNGShexaeZTkYA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: RBDxLnPSJhQ8l54pX7EgLhZZddZ3Z-ca
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-05_04,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxlogscore=999 suspectscore=0 spamscore=0 impostorscore=0
+ phishscore=0 adultscore=0 malwarescore=0 clxscore=1015 bulkscore=0
+ lowpriorityscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508050116
 
-On Tue, Aug 05, 2025 at 10:47:00AM +0900, Nobuhiro Iwamatsu wrote:
-> From: Frank Li <Frank.Li@nxp.com>
->
-> tmpv7708 trim address bit[31:30] in tmpv7708 before passing to the PCIe
-> controller. Since only PCIe controller needs to convert the address range
-> 0x40000000 - 0x80000000, add a bus definition, describe the ranges in it,
-> and move the PCIe definition.
->
-> Prepare for the removal of the driver’s cpu_addr_fixup().
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> Suggested-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+On 8/5/25 6:20 PM, Alexey Klimov wrote:
+> While at this, also add required memory region for adsp fastrpc.
+> 
+> Tested on sm8750-mtp device with adsprpdcd.
+> 
+> Cc: Ekansh Gupta <quic_ekangupt@quicinc.com>
+> Cc: Srinivas Kandagatla <srini@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 > ---
+> 
 > v2:
->   Update commit message.
->   Fix range.
->   Set true to use_parent_dt_ranges in pcie-visconti.c.
->   move pcie under the dedicated sub-bus.
->
->  arch/arm64/boot/dts/toshiba/tmpv7708.dtsi  | 75 +++++++++++++---------
->  drivers/pci/controller/dwc/pcie-visconti.c |  2 +
->  2 files changed, 47 insertions(+), 30 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> index 39806f0ae5133..b754965a76ca6 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> @@ -478,37 +478,52 @@ pwm: pwm@241c0000 {
->  			status = "disabled";
+> - removed qcom,non-secure-domain flag as requested by Srini.
+> 
+> Prev version: https://lore.kernel.org/linux-arm-msm/20250502011539.739937-1-alexey.klimov@linaro.org/
+> 
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 69 ++++++++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index 4643705021c6..cc74fb2e27de 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/clock/qcom,sm8750-gcc.h>
+>  #include <dt-bindings/clock/qcom,sm8750-tcsr.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interconnect/qcom,icc.h>
+>  #include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
+> @@ -523,6 +524,14 @@ llcc_lpi_mem: llcc-lpi@ff800000 {
+>  			reg = <0x0 0xff800000 0x0 0x800000>;
+>  			no-map;
 >  		};
->
-> -		pcie: pcie@28400000 {
-> -			compatible = "toshiba,visconti-pcie";
-> -			reg = <0x0 0x28400000 0x0 0x00400000>,
-> -			      <0x0 0x70000000 0x0 0x10000000>,
-> -			      <0x0 0x28050000 0x0 0x00010000>,
-> -			      <0x0 0x24200000 0x0 0x00002000>,
-> -			      <0x0 0x24162000 0x0 0x00001000>;
-> -			reg-names = "dbi", "config", "ulreg", "smu", "mpu";
-> -			device_type = "pci";
-> -			bus-range = <0x00 0xff>;
-> -			num-lanes = <2>;
-> -			num-viewport = <8>;
-> -
-> -			#address-cells = <3>;
-> +		pcie_bus: bus@24000000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
->  			#size-cells = <2>;
-> -			#interrupt-cells = <1>;
-> -			ranges = <0x81000000 0 0x40000000 0 0x40000000 0 0x00010000
-> -				  0x82000000 0 0x50000000 0 0x50000000 0 0x20000000>;
-> -			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi", "intr";
-> -			interrupt-map-mask = <0 0 0 7>;
-> -			interrupt-map =
-> -				<0 0 0 1 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> -				 0 0 0 2 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> -				 0 0 0 3 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> -				 0 0 0 4 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> -			max-link-speed = <2>;
-> -			clocks = <&extclk100mhz>, <&pismu TMPV770X_CLK_PCIE_MSTR>, <&pismu TMPV770X_CLK_PCIE_AUX>;
-> -			clock-names = "ref", "core", "aux";
-> -			status = "disabled";
-> +			ranges = /* register 1:1 map */
-> +				 <0x0 0x24000000 0x0 0x24000000 0x0 0x0C000000>,
-> +				 /*
-> +				  * bus fabric mask address bit 30 and 31 to 0
-> +				  * before send to PCIe controller.
-> +				  *
-> +				  * PCIe map address 0 to cpu's 0x40000000
-> +				  */
-> +				 <0x0 0x00000000 0x0 0x40000000 0x0 0x40000000>;
 > +
-> +			pcie: pcie@28400000 {
-> +				compatible = "toshiba,visconti-pcie";
-> +				reg = <0x0 0x28400000 0x0 0x00400000>,
-> +				      <0x0 0x30000000 0x0 0x10000000>,
-> +				      <0x0 0x28050000 0x0 0x00010000>,
-> +				      <0x0 0x24200000 0x0 0x00002000>,
-> +				      <0x0 0x24162000 0x0 0x00001000>;
-> +				reg-names = "dbi", "config", "ulreg", "smu", "mpu";
-> +				device_type = "pci";
-> +				bus-range = <0x00 0xff>;
-> +				num-lanes = <2>;
-> +				num-viewport = <8>;
-> +
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				#interrupt-cells = <1>;
-> +				ranges = <0x81000000 0 0x00000000 0 0x00000000 0 0x00010000
-> +					  0x82000000 0 0x10000000 0 0x10000000 0 0x20000000>;
-> +				interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>,
-> +					     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-names = "msi", "intr";
-> +				interrupt-map-mask = <0 0 0 7>;
-> +				interrupt-map =
-> +					<0 0 0 1 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> +					 0 0 0 2 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> +					 0 0 0 3 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH
-> +					 0 0 0 4 &gic GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-> +				max-link-speed = <2>;
-> +				clocks = <&extclk100mhz>, <&pismu TMPV770X_CLK_PCIE_MSTR>, <&pismu TMPV770X_CLK_PCIE_AUX>;
-> +				clock-names = "ref", "core", "aux";
-> +				status = "disabled";
-> +			};
->  		};
->  	};
->  };
-> diff --git a/drivers/pci/controller/dwc/pcie-visconti.c b/drivers/pci/controller/dwc/pcie-visconti.c
-> index cdeac6177143c..2a724ab587f78 100644
-> --- a/drivers/pci/controller/dwc/pcie-visconti.c
-> +++ b/drivers/pci/controller/dwc/pcie-visconti.c
-> @@ -310,6 +310,8 @@ static int visconti_pcie_probe(struct platform_device *pdev)
->
->  	platform_set_drvdata(pdev, pcie);
->
-> +	pci->use_parent_dt_ranges = true;
-> +
+> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
+> +			compatible = "shared-dma-pool";
+> +			alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 
-This change belong to PATCH 2. It still works with old driver after add
-pci-bus in dts, just a warning will print.
+perhaps size=<0x1 0x0> (1<<32) is what we really want, unless the hw/sw
+is allergic to accessing the very last byte in the 32-bit space
 
-Frank
-
->  	return visconti_add_pcie_port(pcie, pdev);
->  }
->
-> --
-> 2.49.0
->
->
+Konrad
 
