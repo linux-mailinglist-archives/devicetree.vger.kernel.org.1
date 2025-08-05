@@ -1,135 +1,126 @@
-Return-Path: <devicetree+bounces-201967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8C2B1B6E1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:51:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCE7B1B702
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 17:03:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA063623E3F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:51:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC517189FD21
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B082C27702B;
-	Tue,  5 Aug 2025 14:51:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3C5278143;
+	Tue,  5 Aug 2025 15:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OLVJi5ke"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="mQIvw7Pq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC242264A0;
-	Tue,  5 Aug 2025 14:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667261607A4;
+	Tue,  5 Aug 2025 15:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754405474; cv=none; b=LMGeNDiIOZDV5om+x1mtVLnaGO4yitQE1r7escy+44qBT4I7BxSNCaVjIIpbG+oCNe/8FdDfsJ2JCo5nSlZAXCXiS9STTpiB8WWbhgPLHJTDBFVJATOTTbejmExkjFsq6Gxe+o1u60QuiDfiMGRRkvbq2fEE4Qr0t4/bvzYkfcQ=
+	t=1754406195; cv=none; b=JoRJo02JACstxiux0HMuZcLQtbWql4HjkfnRDeO1iXdZ5al4Y8UsnSOCrYFHNbhyaTEEYsunZ9nQGwkCNTZIQFpxAJpQBOGBLmWbWtZxLHHX0pqxePtN3G0W2rk9DlH4p68fcV8eCDkIgLzjJp3l4FkBRU0NfZCo/+9qolUyTr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754405474; c=relaxed/simple;
-	bh=6JJJUKSGwNvzbye1CXhMaN2YPY31Ne0NqIPIES62I2I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ji2f1dkh3GfOn6RKkOqq0TkZp+u/YU3egprrmLslJfw5dspCrTfmeQjW1NlhYHGmfjcZV7xAdHjTBRhj1zjmhQA3Js5jCPRQ6HLApP9uNyWB0rD8YKIUpWZcV3fRnwfTiRRaR0Fu63vPQc5wAX8zKdRM5IuaLFAp5vlPScPx81o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OLVJi5ke; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754405473; x=1785941473;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6JJJUKSGwNvzbye1CXhMaN2YPY31Ne0NqIPIES62I2I=;
-  b=OLVJi5kessqO2IwWmkmbAgGKWQoCMSPRy+jgQKWtaycxiOHX77dNQ/27
-   0yR8WfpeHRec7znvl7LHSkvitQlUYgCsDaK7w0V7gTLEHOd2P3om1P94l
-   HNB41yL7apPDDT7Uvh/DhduWq1g5oxFj0MMdnFyyJCja237jmIqLt1xNr
-   pK1D/Wgo4wD+f5EagoBLn1b+n535NiiBvcoyPycglEU4fAUv2Hrgbq7iP
-   pKV3wsNUJzjoK38TfRdC7OU9u5YAmbe8S4PRwVvhWXR27/91MK9eCl88S
-   k5PaS1j9c0JXKvR3kRx3ky+J80PsTdIWcKn0IEMP8LNZqi3531ijmpB/T
-   g==;
-X-CSE-ConnectionGUID: mTgge7pmRe6kl/2r/8MNVQ==
-X-CSE-MsgGUID: HCisg9p3RCiKZUFJZPmrcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56780801"
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; 
-   d="scan'208";a="56780801"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 07:51:12 -0700
-X-CSE-ConnectionGUID: dg9Yxn2AQQmm7J+UhiEFxg==
-X-CSE-MsgGUID: WnuoX+2FRrmneZllg/7wMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; 
-   d="scan'208";a="195476429"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 05 Aug 2025 07:51:05 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ujJ0E-0000d8-1a;
-	Tue, 05 Aug 2025 14:51:00 +0000
-Date: Tue, 5 Aug 2025 22:50:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel
- Audio Interface
-Message-ID: <202508052225.u407ulE0-lkp@intel.com>
-References: <20250804104722.601440-6-shengjiu.wang@nxp.com>
+	s=arc-20240116; t=1754406195; c=relaxed/simple;
+	bh=PM0ucKzjFtT3FImy4Ip367R0u7NFzW5Ncae8+HumlbY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HucJNWzKjv3tQL6DHPlj3gatE0ixCYhkdvNFiwDnyBHwXSUPH9qYMNxf7cAy5qNVtygUlZ53xPGIVwSbuove4PUNBPyEx1FXPDkNFTYVw4p+JpmVEj3k6Qrs8pxz55/+qooudv+7luOBDcObnK5DsciyyYFF47jT84WMgHGso38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=mQIvw7Pq; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 2743C25EE6;
+	Tue,  5 Aug 2025 17:03:06 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id xiyP9XL3EPH5; Tue,  5 Aug 2025 17:03:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1754406185; bh=PM0ucKzjFtT3FImy4Ip367R0u7NFzW5Ncae8+HumlbY=;
+	h=From:To:Cc:Subject:Date;
+	b=mQIvw7PqtPV9iLkRADe2XZeVIeLuPECOsv9VknZRMImvsctAHDC78gU9qmFkH2BvX
+	 0cztnradAWemwRFkIcJYzzdnyxfWPM4OQqp4nh9nVyrKw06uJkkpcYe3Pr6Q7lZbRU
+	 th2yOFLGWEXVqNs4pDRikumAuW7DP3W1xVPgRA1IdGUNEHsE1JEX/hm8kvBs1l556h
+	 zcUcav/JPwZNpap24SdqJr99Z3Wm11cmaCqfHSbYBDmxrqtwtsgtHZvV9HZX/etk4j
+	 pRtv/DlgeGxK0ZMviDtn4LgaGVdQTXNpdU+H81h8A0VMEKVARl+dD4j48KjDqe4Pgn
+	 P+zwEIPE9+OAA==
+From: Yao Zi <ziyao@disroot.org>
+To: Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>,
+	Kexy Biscuit <kexybiscuit@aosc.io>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v3 0/8] Add clock support for Loongson 2K0300 SoC
+Date: Tue,  5 Aug 2025 15:01:39 +0000
+Message-ID: <20250805150147.25909-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250804104722.601440-6-shengjiu.wang@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Shengjiu,
+This series adds support for Loongson 2K0300's clock controller.
+Loongson 2 clock driver is prepared to support more clock variants and
+its flexibility is improved. All clock hardwares except the output one
+for GMAC module are then defined.
 
-kernel test robot noticed the following build errors:
+A clock tree dump could be obtained here[1]. This series depends on v3
+of series "Initial support for CTCISZ Forever Pi"[2] to apply.
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on robh/for-next tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.16 next-20250805]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Krzysztof, sorry I don't fully understand your comments in v2, I've
+asked once again later[3] but got no reply, thus sent this new version
+with my current understanding. I'm willing to hear from you more on the
+binding issue, thanks.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Shengjiu-Wang/dt-bindings-display-imx-add-HDMI-PAI-for-i-MX8MP/20250804-185254
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250804104722.601440-6-shengjiu.wang%40nxp.com
-patch subject: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
-config: xtensa-randconfig-001-20250805 (https://download.01.org/0day-ci/archive/20250805/202508052225.u407ulE0-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 14.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250805/202508052225.u407ulE0-lkp@intel.com/reproduce)
+[1]: https://gist.github.com/ziyao233/f7c4edcfbc1d6b325c71117af7233cc2
+[2]: https://lore.kernel.org/all/20250523095408.25919-1-ziyao@disroot.org/
+[3]: https://lore.kernel.org/all/aHB3Wvu-CVlYzhU7@pie.lan/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508052225.u407ulE0-lkp@intel.com/
+Changed from v2:
+- Disallow clock-names property for loongson,2k0300-clk's binding, avoid
+  overriding content of clock-names property within an allOf block
+- Correct clock-controller's MMIO-region size in SoC devicetree
+- Link to v2: https://lore.kernel.org/all/20250617162426.12629-1-ziyao@disroot.org/
 
-All errors (new ones prefixed by >>):
+Changed from v1:
+- Fold loongson,ls2k0300-clk.yaml into loongson,ls2k-clk.yaml
+- Include the new binding header in MAINTAINERS
+- Link to v1: https://lore.kernel.org/all/20250523104552.32742-1-ziyao@disroot.org/
 
-   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
-   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
-   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_remove':
->> imx8mp-hdmi-pai.c:(.text+0x8c): undefined reference to `dw_hdmi_to_plat_data'
-   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_disable':
-   imx8mp-hdmi-pai.c:(.text+0x9a): undefined reference to `dw_hdmi_to_plat_data'
->> xtensa-linux-ld: imx8mp-hdmi-pai.c:(.text+0xbc): undefined reference to `dw_hdmi_to_plat_data'
-   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_enable':
-   imx8mp-hdmi-pai.c:(.text+0xd2): undefined reference to `dw_hdmi_to_plat_data'
-   `.exit.text' referenced in section `__jump_table' of net/ceph/ceph_common.o: defined in discarded section `.exit.text' of net/ceph/ceph_common.o
-   `.exit.text' referenced in section `__jump_table' of net/ceph/ceph_common.o: defined in discarded section `.exit.text' of net/ceph/ceph_common.o
+Yao Zi (8):
+  dt-bindings: clock: loongson2: Add Loongson 2K0300 compatible
+  clk: loongson2: Allow specifying clock flags for gate clock
+  clk: loongson2: Support scale clocks with an alternative mode
+  clk: loongson2: Allow zero divisors for dividers
+  clk: loongson2: Avoid hardcoding firmware name of the reference clock
+  clk: loongson2: Add clock definitions for Loongson 2K0300 SoC
+  LoongArch: dts: Add clock tree for Loongson 2K0300
+  LoongArch: dts: Remove clock-frquency from UART0 of CTCISZ Forever Pi
+
+ .../bindings/clock/loongson,ls2k-clk.yaml     |  21 ++-
+ MAINTAINERS                                   |   1 +
+ .../dts/loongson-2k0300-ctcisz-forever-pi.dts |   1 -
+ arch/loongarch/boot/dts/loongson-2k0300.dtsi  |  16 ++-
+ drivers/clk/clk-loongson2.c                   | 124 +++++++++++++++---
+ .../dt-bindings/clock/loongson,ls2k0300-clk.h |  54 ++++++++
+ 6 files changed, 189 insertions(+), 28 deletions(-)
+ create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.50.1
+
 
