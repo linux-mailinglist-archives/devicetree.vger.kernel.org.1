@@ -1,165 +1,143 @@
-Return-Path: <devicetree+bounces-201963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDF5B1B609
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:13:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C0FAB1B63F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3F911883563
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:09:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4735C7A9CE1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B68224886E;
-	Tue,  5 Aug 2025 14:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275E1274FE9;
+	Tue,  5 Aug 2025 14:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="timMHIc8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hkNCQekX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5951C84CB;
-	Tue,  5 Aug 2025 14:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22BC274FDA;
+	Tue,  5 Aug 2025 14:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754402771; cv=none; b=AUqoRRuszdD9Sk/10DdIaJf8Trh/N4yzp03Mfe82ugXmrdHQ489JxU3rEkxII0L48W/RKAcM67GSmtdr/B9xTUdNi74uDiRJye6roH9ag5lQv1LkUQz94ZOAF8bn5K/N9ZlMqUXtSa4FcQwEi4Y5Yg7FXRrv6tISXTARsdx/BV8=
+	t=1754403678; cv=none; b=sZM+yKqm4hg+Q6kf1Rc3WZbiQQQl45oHUZ+Ir9Bb8Pq74m6w75PHcLjt3kGo/g9p2lia1jwHZMW8f59XU6Mecbq1yC8Z5MYpRjaAPZvhmQApKTMCZr+bMvn6sui1ieV+Ehr3lLf8q+vcfNwllX0QqR+9gwOJTABB2nV/muBSpqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754402771; c=relaxed/simple;
-	bh=MNG+a38PQofKHypXt1CPqMvHNjsLHe2AAEsrZBTBd84=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=FcAnrw8Jk2By0h224IQ2pqCNs0Akh2sE2jV1DYrVOoH9AafibpNJzVh5V44ylzDT4ZQqnpoc6lKVTncSfselahw5TQGWvIfmSYjxUBOPcToSt9L/xvcR0H9b+PF0BoFCofMoiK2DZizIKoF8zMKUzaRAfXkZmkSXQ/UJ6RjlGIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=timMHIc8; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 575E5wPf4055648;
-	Tue, 5 Aug 2025 09:05:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754402758;
-	bh=5pqwMScuPTwzx0lyuc5MF37k0uqjqh5/S7oN85LSRqI=;
-	h=Date:Subject:From:To:CC:References:In-Reply-To;
-	b=timMHIc8NKwRvpd+gXcAFdjLUIPylpbG6DYc1V3fi+tmzewXaCGClsKpRHs2v0Tef
-	 Fw+UetwtQBW5POwb2L+5/jjdA6rvCpfL+vssv0gn5GPdB4umxQTfxZSyWNRhLNJvpI
-	 YdEpgnZzBvzEdqIuZhxkAdAWKU3+B+S4r1+rIqsY=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 575E5wjF3496847
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 5 Aug 2025 09:05:58 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 5
- Aug 2025 09:05:57 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 5 Aug 2025 09:05:57 -0500
-Received: from [10.249.34.164] ([10.249.34.164])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 575E5uk02223144;
-	Tue, 5 Aug 2025 09:05:56 -0500
-Message-ID: <f28d866d-3123-4484-9524-054442fa3cec@ti.com>
-Date: Tue, 5 Aug 2025 09:05:56 -0500
+	s=arc-20240116; t=1754403678; c=relaxed/simple;
+	bh=whNVERXr8/AN2Vvfa653Gd5vcbSu7aoK+Gs6t3i+W5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PegIfl/P6xIwPU2CzseQLBmlWRNG8Yz4BRJeyVPBUF/I1YjoqlO7TRMWKIqkGwke5nlC5JHGddax46Iq8hBxZfrBfpQgMpWgYt39B5hMxIUiM4PLbni9tJm/XrLjRJsOveATVUHzZxtXLSHz/Biu/8cu456kHeKA18h9DrRdww8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hkNCQekX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 449B1C4CEF0;
+	Tue,  5 Aug 2025 14:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754403677;
+	bh=whNVERXr8/AN2Vvfa653Gd5vcbSu7aoK+Gs6t3i+W5E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hkNCQekXfQ5zz7SFOm1X7LU/T8JpA9F6gAsS3c6+9y+qglrwIbLwFIyBWP0D7ry9L
+	 GNhbEPDSTXig2ETCkjlyEQjsdVC+Esbhv/Mb6sC4EIXYY6JR+pDMVBPqqMyLZbPmV7
+	 zCXEyHeM3myKgWKd3MxjVBE8NTyWb7P0zROsiSR2Ao8hISoyvyhrvyXOgF3UaB+Klv
+	 nppZ4E0Y9K/XyXaSW7LqmDdDoxSCWK+Fgvj0t1nTVbxwcdQp5c/QjtjWZvjgaTOo29
+	 +Qi5Lyikzld4at0TH6QtlFDyU5soOqU4XCrww1smX/qa1O+f2NrdrUwYW5PN9JBJ3u
+	 OORGr+Kr6H51w==
+Date: Tue, 5 Aug 2025 15:21:09 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Min Lin <linmin@eswincomputing.com>,
+	Pritesh Patel <pritesh.patel@einfochips.com>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Yu Chien Peter Lin <peterlin@andestech.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Darshan Prajapati <darshan.prajapati@einfochips.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Aradhya Bhatia <a-bhatia1@ti.com>,
+	"rafal@milecki.pl" <rafal@milecki.pl>,
+	Anup Patel <anup@brainfault.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [External] Re: [PATCH v4 0/7] Basic device tree support for
+ ESWIN EIC7700 RISC-V SoC
+Message-ID: <20250805-equinox-setup-cd37520d2586@spud>
+References: <20250616112316.3833343-1-pinkesh.vaghela@einfochips.com>
+ <SA3PR04MB8931098CC4A73E8FDD481DA78326A@SA3PR04MB8931.namprd04.prod.outlook.com>
+ <2ed69301-f787-4257-8d44-a8544c1a43c9@kernel.org>
+ <SA3PR04MB89312063FB96E85ABB6F3D3E8323A@SA3PR04MB8931.namprd04.prod.outlook.com>
+ <72354ec9-7dc8-4192-9c25-d37abf33b5f0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
-From: Brandon Brnich <b-brnich@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Devarsh
- Thakkar <devarsht@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Darren Etheridge
-	<detheridge@ti.com>
-References: <20250804180106.2393256-1-b-brnich@ti.com>
- <b5ba5a22-dc0a-423b-963f-5db6c7e04665@kernel.org>
- <b52fd6d4-b907-44dd-bd9b-e15c3321ad79@ti.com>
-Content-Language: en-US
-In-Reply-To: <b52fd6d4-b907-44dd-bd9b-e15c3321ad79@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hello,
-
-On 8/5/2025 8:34 AM, Brandon Brnich wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the review.
-> 
-> On 8/5/2025 1:02 AM, Krzysztof Kozlowski wrote:
->> On 04/08/2025 20:01, Brandon Brnich wrote:
->>> This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
->>> present in J722s SoC, supporting baseline encoding of semiplanar based
->>> YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
->>> supported from 64x64 to 8kx8k.
->>>
->>> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
->>> ---
->>>
->>> Changes in v2:
->>>    - remove invalid clock-names attribute
->>>
->>>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
->>>   1 file changed, 10 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/ 
->>> boot/dts/ti/k3-j722s-main.dtsi
->>> index 5cfa7bf36641..fb24c14614b4 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->>> @@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
->>>           ti,sci-proc-ids = <0x31 0xff>;
->>>           status = "disabled";
->>>       };
->>> +
->>> +    e5010: e5010@fd20000 {
->>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2- 
->> devicetree-basics.html#generic-names-recommendation
-> 
-> I got this name from the already present node in the am62a device 
-> tree[0]. Should I replace both of these with more generic name such as 
-> jpegenc?
-
-Please ignore above comment, I was thinking about the label and not the 
-node name. I understand node name needs to be jpeg-encoder.
-
-Should label also be more generic? I see a few examples where the label 
-is jpegenc or something more generic than the specific part name. But I 
-don't see any specific rules in the devicetree specs on labels.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="90osRGvCEAKF0z/s"
+Content-Disposition: inline
+In-Reply-To: <72354ec9-7dc8-4192-9c25-d37abf33b5f0@kernel.org>
 
 
-> 
->>
->>
->>> +        compatible = "img,e5010-jpeg-enc";
->>
->> Wrong compatible. This is TI, not IMG.
-> 
-> Devarsh has pointed out the same, I will update compatible that matches 
-> TI version in v3.
-> 
-> Best,
-> Brandon
-> 
-> [0]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/ 
-> tree/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi#n1149
-> 
->>
->>
->> Best regards,
->> Krzysztof
-> 
+--90osRGvCEAKF0z/s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Aug 04, 2025 at 04:45:10PM +0200, Krzysztof Kozlowski wrote:
+> On 04/08/2025 15:10, Pinkesh Vaghela wrote:
+> > Hello Krzysztof,
+> >=20
+> > Sorry to bother you. I pinged because we addressed all the review comme=
+nts of V3 in V4. But on V4 we have not received any comments since last 6 w=
+eeks.
+> > Could you please let us know what should be the further steps?
+>=20
+> Please don't top post.
+>=20
+> That is a bit different question than you asked before: "Gentle reminder
+> to review DT patches.".
+>=20
+> Please read SoC subsystem maintainer profile document. For ARM platforms
+> you would send now pull request or patches to soc.
+>=20
+> I would suggest following standard SoC way, same as for every other new
+> SoC (but carefully observe the kernel process cycle). You can easily
+> check archives to see how people also did it...
+
+Yes, standard SoC way please. Arnd expressed recently a preference for
+the initial series for a new SoC vendor to go as a patchset to
+soc@lists.linux.dev rather than as a pull-request.
+
+> For RISC-V - not sure
+> some trees are handled by Conor, but rest go directly to soc tree.
+
+I'm only doing the canaan/sifive/microchip/starfive ones that were there
+when I started, all the "new" platforms have dedicated maintainers that
+send direct to Arnd.
+
+Cheers,
+Conor.
+
+--90osRGvCEAKF0z/s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJITVQAKCRB4tDGHoIJi
+0rfRAPsE27O+0eBI7GpGuWCrShsC8OmvPSMg1HZpeLJfBi4P4QD/dHgMhoqf1QeQ
+1euvTqb8q7cSCtui9wi8PvuYBEqxoAQ=
+=0EsT
+-----END PGP SIGNATURE-----
+
+--90osRGvCEAKF0z/s--
 
