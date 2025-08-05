@@ -1,149 +1,192 @@
-Return-Path: <devicetree+bounces-201932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B0FB1B50B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:35:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1631DB1B559
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 15:56:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B80A7A68D1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:33:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25FB16E977
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FE3276046;
-	Tue,  5 Aug 2025 13:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9524A277C9C;
+	Tue,  5 Aug 2025 13:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z7OPCWI1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nPkAnAf3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23CD274FF0;
-	Tue,  5 Aug 2025 13:35:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BFAE275847;
+	Tue,  5 Aug 2025 13:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754400906; cv=none; b=QxDVwNPxZIoQVoIptAB/YeFSBa21qPgc9AaR6tUgeidcUnVHvUvJUG+mLhYFyVyAXv+Rz3BC0RSCb9N/ixq/4GuGMrfXuQbJiW7hH0pGLMRgQYvlskZFscpOyTI17DdUeJajNZy7oOZfAlxteuyBvHJLIbpuSXG+jFse+h4mim0=
+	t=1754402143; cv=none; b=dRb1srwbWd06u8CvCubq+v6rU/eMsXpYQ35Gp9lDiXIk5P0+laZqvIhHtrj74kSwe1U72DaNulgFk184iI9X8NCsTKEcB/qY8qnGzL7GAcZ7DlMvu6R327kwvihQfD2LLpL9ATj6nhuiRvcnPXUOHY+L60Scbe65H7zMchJ5iTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754400906; c=relaxed/simple;
-	bh=9pLc3dkIGSk6R/8cCh52WAo8L/RTrQWG+3jmS5Hdrsg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DujZ1TiiKS/e76Timv1QiAZmzCjGxuXwj44CtxhZp199ITylyiT1qVZ51lem08pduWNF7fWzQSCsn+22RJijmr+helwUugWhi+LYFDNASGKIDn8FIyjlKmJuJPf3Q1BPYpPWawhrWQwwZknhYDt2od2/Ii/won/Y+6U5M1ZqAo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z7OPCWI1; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 575DYuhe4087700;
-	Tue, 5 Aug 2025 08:34:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754400896;
-	bh=w/auADTZf57vdDvNnTOht1gIs0Ij1FRUC+wCoKdxz3w=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Z7OPCWI1pmjwLwolY5Lx0NUNULPI+7gmZQE/Kb2MrMxdaYtgMtttpDeGwjo5RmFBR
-	 1jp1slPfZBSH0LoRuy/chTgT8xUEus3IZPdtdfzqg+uFUG8BPTzKETVHOjCLgdF3Q5
-	 fQb8uN/HfDlyXDrEuYCi9UkzjftnI3cK2fCOU7d0=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 575DYuvj3615752
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 5 Aug 2025 08:34:56 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 5
- Aug 2025 08:34:56 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 5 Aug 2025 08:34:56 -0500
-Received: from [10.249.34.164] ([10.249.34.164])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 575DYtLF2186580;
-	Tue, 5 Aug 2025 08:34:55 -0500
-Message-ID: <b52fd6d4-b907-44dd-bd9b-e15c3321ad79@ti.com>
-Date: Tue, 5 Aug 2025 08:34:55 -0500
+	s=arc-20240116; t=1754402143; c=relaxed/simple;
+	bh=JPcbvjRPjjNe9bbbbk11sMxPdeYwCinklYCS9ZsYp2U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=SKvD2qQGxZzooyGY48OWyI6INAa8X5jmDGoO7XIu9lgJL+6zvSB29sHPlt8mozOrKywqN0rJM9eYa3hvmNTPhkfxGzgSgseynQI0oEGFCHygEL/vAqWgqCNUwaXwI4odRRQerumnKpr0qkgXPuAchX4f+7VgmklsdMC63lbX56E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nPkAnAf3; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1754402139;
+	bh=JPcbvjRPjjNe9bbbbk11sMxPdeYwCinklYCS9ZsYp2U=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nPkAnAf3AnmP+5CJ3pdbEsXE+vs+Dgbg1j5iblS/SeGjwcEnJWDmbVaTzROY2tUpM
+	 qgYjtKg0Wv1gTDxZWj1w8URCSWLxfZuhSI9HYiDn+t8NdfTgIZsBatu9GuaOGmSspi
+	 iZSZ8zO1QZMeuVv9gRhvPOAVDPYOat4BGjPVNRWuhNQ42WcbgD6k35N4JjmeBQWJQ6
+	 m/A/MFfzkU/Z5qv+7GmyiukO82xaWJZcB5DqhIwxgjhOWSXvUrZDCkps+0gwr7UfFy
+	 4/hSiUQMHOO2UKh/sdppRvZpBmLOyGfP1bPQedSsQ3QVjfM9HvlmUki3kfEeOI9zsh
+	 2DjL4LC91ezBA==
+Received: from laura.lan (unknown [IPv6:2001:b07:646b:e2:1976:d3fe:e682:e398])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 307A317E0506;
+	Tue,  5 Aug 2025 15:55:38 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	p.zabel@pengutronix.de,
+	richardcochran@gmail.com
+Cc: guangjie.song@mediatek.com,
+	wenst@chromium.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	netdev@vger.kernel.org,
+	kernel@collabora.com,
+	Laura Nao <laura.nao@collabora.com>
+Subject: [PATCH v4 00/27] Add support for MT8196 clock controllers
+Date: Tue,  5 Aug 2025 15:54:20 +0200
+Message-Id: <20250805135447.149231-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
-To: Krzysztof Kozlowski <krzk@kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Devarsh
- Thakkar <devarsht@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Darren Etheridge
-	<detheridge@ti.com>
-References: <20250804180106.2393256-1-b-brnich@ti.com>
- <b5ba5a22-dc0a-423b-963f-5db6c7e04665@kernel.org>
-Content-Language: en-US
-From: Brandon Brnich <b-brnich@ti.com>
-In-Reply-To: <b5ba5a22-dc0a-423b-963f-5db6c7e04665@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+This patch series introduces support for the clock controllers on the
+MediaTek MT8196 platform, following up on an earlier submission[1].
 
-Thanks for the review.
+MT8196 uses a hardware voting mechanism to control some of the clock muxes
+and gates, along with a fence register responsible for tracking PLL and mux
+gate readiness. The series introduces support for these voting and fence
+mechanisms, and includes drivers for all clock controllers on the platform.
 
-On 8/5/2025 1:02 AM, Krzysztof Kozlowski wrote:
-> On 04/08/2025 20:01, Brandon Brnich wrote:
->> This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
->> present in J722s SoC, supporting baseline encoding of semiplanar based
->> YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
->> supported from 64x64 to 8kx8k.
->>
->> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
->> ---
->>
->> Changes in v2:
->>    - remove invalid clock-names attribute
->>
->>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> index 5cfa7bf36641..fb24c14614b4 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> @@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
->>   		ti,sci-proc-ids = <0x31 0xff>;
->>   		status = "disabled";
->>   	};
->> +
->> +	e5010: e5010@fd20000 {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+[1] https://lore.kernel.org/all/20250307032942.10447-1-guangjie.song@mediatek.com/
 
-I got this name from the already present node in the am62a device 
-tree[0]. Should I replace both of these with more generic name such as 
-jpegenc?
+Changes in v4:
+- Expanded the commit message for the clock controller bindings to include
+the addition of the hardware voter handle
+- Extended the description of the mediatek,hardware-voter phandle to
+explain the limitations of the HWV implementation on MT8196 and justify the
+use of a custom handle instead of relying on generic APIs
 
-> 
-> 
->> +		compatible = "img,e5010-jpeg-enc";
-> 
-> Wrong compatible. This is TI, not IMG.
+Link to v3: https://lore.kernel.org/all/20250624143220.244549-1-laura.nao@collabora.com
 
-Devarsh has pointed out the same, I will update compatible that matches 
-TI version in v3.
+Laura Nao (27):
+  clk: mediatek: clk-pll: Add set/clr regs for shared PLL enable control
+  clk: mediatek: clk-pll: Add ops for PLLs using set/clr regs and FENC
+  clk: mediatek: clk-mux: Add ops for mux gates with set/clr/upd and
+    FENC
+  clk: mediatek: clk-mtk: Introduce mtk_clk_get_hwv_regmap()
+  clk: mediatek: clk-mux: Add ops for mux gates with HW voter and FENC
+  clk: mediatek: clk-gate: Refactor mtk_clk_register_gate to use
+    mtk_gate struct
+  clk: mediatek: clk-gate: Add ops for gates with HW voter
+  clk: mediatek: clk-mtk: Add MUX_DIV_GATE macro
+  dt-bindings: clock: mediatek: Describe MT8196 clock controllers
+  clk: mediatek: Add MT8196 apmixedsys clock support
+  clk: mediatek: Add MT8196 topckgen clock support
+  clk: mediatek: Add MT8196 topckgen2 clock support
+  clk: mediatek: Add MT8196 vlpckgen clock support
+  clk: mediatek: Add MT8196 peripheral clock support
+  clk: mediatek: Add MT8196 ufssys clock support
+  clk: mediatek: Add MT8196 pextpsys clock support
+  clk: mediatek: Add MT8196 I2C clock support
+  clk: mediatek: Add MT8196 mcu clock support
+  clk: mediatek: Add MT8196 mdpsys clock support
+  clk: mediatek: Add MT8196 mfg clock support
+  clk: mediatek: Add MT8196 disp0 clock support
+  clk: mediatek: Add MT8196 disp1 clock support
+  clk: mediatek: Add MT8196 disp-ao clock support
+  clk: mediatek: Add MT8196 ovl0 clock support
+  clk: mediatek: Add MT8196 ovl1 clock support
+  clk: mediatek: Add MT8196 vdecsys clock support
+  clk: mediatek: Add MT8196 vencsys clock support
 
-Best,
-Brandon
+ .../bindings/clock/mediatek,mt8196-clock.yaml | 112 ++
+ .../clock/mediatek,mt8196-sys-clock.yaml      | 107 ++
+ drivers/clk/mediatek/Kconfig                  |  71 ++
+ drivers/clk/mediatek/Makefile                 |  13 +
+ drivers/clk/mediatek/clk-gate.c               | 106 +-
+ drivers/clk/mediatek/clk-gate.h               |   3 +
+ drivers/clk/mediatek/clk-mt8196-apmixedsys.c  | 203 ++++
+ drivers/clk/mediatek/clk-mt8196-disp0.c       | 169 +++
+ drivers/clk/mediatek/clk-mt8196-disp1.c       | 170 +++
+ .../clk/mediatek/clk-mt8196-imp_iic_wrap.c    | 117 +++
+ drivers/clk/mediatek/clk-mt8196-mcu.c         | 166 +++
+ drivers/clk/mediatek/clk-mt8196-mdpsys.c      | 187 ++++
+ drivers/clk/mediatek/clk-mt8196-mfg.c         | 149 +++
+ drivers/clk/mediatek/clk-mt8196-ovl0.c        | 154 +++
+ drivers/clk/mediatek/clk-mt8196-ovl1.c        | 153 +++
+ drivers/clk/mediatek/clk-mt8196-peri_ao.c     | 144 +++
+ drivers/clk/mediatek/clk-mt8196-pextp.c       | 131 +++
+ drivers/clk/mediatek/clk-mt8196-topckgen.c    | 984 ++++++++++++++++++
+ drivers/clk/mediatek/clk-mt8196-topckgen2.c   | 567 ++++++++++
+ drivers/clk/mediatek/clk-mt8196-ufs_ao.c      | 109 ++
+ drivers/clk/mediatek/clk-mt8196-vdec.c        | 253 +++++
+ drivers/clk/mediatek/clk-mt8196-vdisp_ao.c    |  79 ++
+ drivers/clk/mediatek/clk-mt8196-venc.c        | 235 +++++
+ drivers/clk/mediatek/clk-mt8196-vlpckgen.c    | 726 +++++++++++++
+ drivers/clk/mediatek/clk-mtk.c                |  16 +
+ drivers/clk/mediatek/clk-mtk.h                |  23 +
+ drivers/clk/mediatek/clk-mux.c                | 119 ++-
+ drivers/clk/mediatek/clk-mux.h                |  87 ++
+ drivers/clk/mediatek/clk-pll.c                |  46 +-
+ drivers/clk/mediatek/clk-pll.h                |   9 +
+ .../dt-bindings/clock/mediatek,mt8196-clock.h | 802 ++++++++++++++
+ .../reset/mediatek,mt8196-resets.h            |  26 +
+ 32 files changed, 6212 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8196-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-disp0.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-disp1.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-imp_iic_wrap.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mcu.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mdpsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ovl0.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ovl1.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-peri_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-pextp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-topckgen2.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-ufs_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vdec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vdisp_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-venc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8196-vlpckgen.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8196-clock.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mt8196-resets.h
 
-[0]: 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi#n1149
-
-> 
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.39.5
 
 
