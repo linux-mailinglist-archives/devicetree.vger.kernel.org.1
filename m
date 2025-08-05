@@ -1,240 +1,135 @@
-Return-Path: <devicetree+bounces-201966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F93B1B6A4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:36:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B8C2B1B6E1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:51:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEA65189910C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:37:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA063623E3F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F22127814F;
-	Tue,  5 Aug 2025 14:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B082C27702B;
+	Tue,  5 Aug 2025 14:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2fhACyV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OLVJi5ke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70E4F273D99;
-	Tue,  5 Aug 2025 14:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC242264A0;
+	Tue,  5 Aug 2025 14:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754404595; cv=none; b=CtR5Jq8OLmaVfONrkXsgpuJn7VIfpyZkUUPzgySIsfuNOWx+qoAmG/J6V/LTc6Iglj9O/IsVfBMrJ6DfYHfefeQIhTzKG7+uRmSpnY2I4xBFlCt8f/ZbwrLQdKsnt7Qlg29MJqPkqNQZoFmG1HmVs7mspACKHg4dk88oAeb9HTY=
+	t=1754405474; cv=none; b=LMGeNDiIOZDV5om+x1mtVLnaGO4yitQE1r7escy+44qBT4I7BxSNCaVjIIpbG+oCNe/8FdDfsJ2JCo5nSlZAXCXiS9STTpiB8WWbhgPLHJTDBFVJATOTTbejmExkjFsq6Gxe+o1u60QuiDfiMGRRkvbq2fEE4Qr0t4/bvzYkfcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754404595; c=relaxed/simple;
-	bh=w44VePDoslCBQmbyhcmLPxQ8EP9h0hyA++ku5mPHf3g=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MCsS9+rcyRmddsBeoHbWNVxuqaeZ/rbYgr4X412+7/sVhvTL12BmrsfaiVoDmUeoJgsyOJXlaUiHzXKx9kb10I4h+RrRmph6pK5YNcE+x3ptOVOLeeqlNdW2o/jWLwagyD+330ADi5PSpPaurBgcSht+xJ6ZvWlf/2A//pMUiP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2fhACyV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50079C4CEF0;
-	Tue,  5 Aug 2025 14:36:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754404594;
-	bh=w44VePDoslCBQmbyhcmLPxQ8EP9h0hyA++ku5mPHf3g=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=n2fhACyVyCVvYGuPP5yMUtOJLO69zohrl67B4qO7tkrc85q6AhS4HjOpKq0IO06bx
-	 VLOboqGBT7smqDbTFjCjnp2DG/po4EcjHpfGR+JZzM+IT6QVECop5qsXyHugSDQVn1
-	 7BxqhQncciEoyBbL90Tleof1s2k1YIBjNcc/G6VkKx9VK9DZYHWJmt0BeV8bGLwals
-	 jVcfnveLCEGmUfV72Wqta+sV+RLjN4QoW+l7EnzBS27caLKnsqRCSbbuO8ts3bESBT
-	 uZRvfvo06OiRv/fMXlJzoKPT59UHy7yOPcsip0yUx7VPtwZ/MS2HXmhai2mdCjkufK
-	 6DrQgtBEh+o6g==
-Date: Tue, 05 Aug 2025 09:36:32 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1754405474; c=relaxed/simple;
+	bh=6JJJUKSGwNvzbye1CXhMaN2YPY31Ne0NqIPIES62I2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ji2f1dkh3GfOn6RKkOqq0TkZp+u/YU3egprrmLslJfw5dspCrTfmeQjW1NlhYHGmfjcZV7xAdHjTBRhj1zjmhQA3Js5jCPRQ6HLApP9uNyWB0rD8YKIUpWZcV3fRnwfTiRRaR0Fu63vPQc5wAX8zKdRM5IuaLFAp5vlPScPx81o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OLVJi5ke; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754405473; x=1785941473;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6JJJUKSGwNvzbye1CXhMaN2YPY31Ne0NqIPIES62I2I=;
+  b=OLVJi5kessqO2IwWmkmbAgGKWQoCMSPRy+jgQKWtaycxiOHX77dNQ/27
+   0yR8WfpeHRec7znvl7LHSkvitQlUYgCsDaK7w0V7gTLEHOd2P3om1P94l
+   HNB41yL7apPDDT7Uvh/DhduWq1g5oxFj0MMdnFyyJCja237jmIqLt1xNr
+   pK1D/Wgo4wD+f5EagoBLn1b+n535NiiBvcoyPycglEU4fAUv2Hrgbq7iP
+   pKV3wsNUJzjoK38TfRdC7OU9u5YAmbe8S4PRwVvhWXR27/91MK9eCl88S
+   k5PaS1j9c0JXKvR3kRx3ky+J80PsTdIWcKn0IEMP8LNZqi3531ijmpB/T
+   g==;
+X-CSE-ConnectionGUID: mTgge7pmRe6kl/2r/8MNVQ==
+X-CSE-MsgGUID: HCisg9p3RCiKZUFJZPmrcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11513"; a="56780801"
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; 
+   d="scan'208";a="56780801"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2025 07:51:12 -0700
+X-CSE-ConnectionGUID: dg9Yxn2AQQmm7J+UhiEFxg==
+X-CSE-MsgGUID: WnuoX+2FRrmneZllg/7wMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,265,1747724400"; 
+   d="scan'208";a="195476429"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 05 Aug 2025 07:51:05 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ujJ0E-0000d8-1a;
+	Tue, 05 Aug 2025 14:51:00 +0000
+Date: Tue, 5 Aug 2025 22:50:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
+	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org, l.stach@pengutronix.de
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel
+ Audio Interface
+Message-ID: <202508052225.u407ulE0-lkp@intel.com>
+References: <20250804104722.601440-6-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, fshao@chromium.org, 
- wenst@chromium.org, matthias.bgg@gmail.com, ulf.hansson@linaro.org, 
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- mandyjh.liu@mediatek.com, mbrugger@suse.com, y.oudjana@protonmail.com, 
- devicetree@vger.kernel.org, kernel@collabora.com, conor+dt@kernel.org, 
- krzk+dt@kernel.org, lihongbo22@huawei.com, 
- linux-mediatek@lists.infradead.org
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20250805074746.29457-1-angelogioacchino.delregno@collabora.com>
-References: <20250805074746.29457-1-angelogioacchino.delregno@collabora.com>
-Message-Id: <175440455336.1687500.12826833378916085402.robh@kernel.org>
-Subject: Re: [PATCH v3 00/10] pmdomain: Partial refactor, support modem and
- RTFF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250804104722.601440-6-shengjiu.wang@nxp.com>
 
+Hi Shengjiu,
 
-On Tue, 05 Aug 2025 09:47:36 +0200, AngeloGioacchino Del Regno wrote:
-> Changes in v3:
->  - Dropped specified items for cells restriction as suggested by Rob
->  - Fixed an issue in patch 4 still referencing "mediatek,bus-protection"
->    as it is entirely replaced by "access-controllers"
-> 
-> Changes in v2:
->  - Added #access-controller-cells allowance for MT8188/95 infracfg_ao
-> 
-> This series is a subset of [1], leaving out the Hardware Voter specific
-> bits for MT8196 until the discussion around it reaches a conclusion.
-> 
-> Even though the proposed code was born as a preparation to support the
-> MT8196/MT6991 SoCs power domain controllers, it is a necessary cleanup
-> for all power domain controllers of all of the currently supported SoCs
-> from MediaTek.
-> 
-> You may also notice the addition of support for modem power sequences:
-> this was brought up 6 months ago (or more) by community contributors
-> (mainly Yassine Oudjana) that were trying to upstream the MediaTek
-> MT6735 Smartphone SoC and needed support to provide power to the MD
-> subsystem - so, even though in this specific series the code for the
-> modem power sequence is not yet triggered by any SoC, please please
-> please, let it in.
-> Besides, "a bunch" of upstream supported SoCs do have the MD power
-> domain even though it wasn't added to their drivers (because if there
-> was no support in the driver, it would just crash the system); the
-> addition is something that I plan to do at some point, but definitely
-> not now as I have no bandwidth for that (bar MT8196, which will have
-> this domain).
-> 
-> Compared to v1 in [1]:
->  - Changed mediatek,bus-protection to access-controllers
->    as suggested by Rob (thanks!)
->  - Added commits to document #access-controller-cells on all of
->    the access control providers
-> 
-> In the meanwhile.... relevant excerpt from the old series:
-> 
-> This series refactors the bus protection regmaps retrieval to avoid
-> searching in all power domain devicetree subnodes for vendor properties
-> to get syscons for different busses, and adds a new property which is
-> located in the power controller root node containing handles to the same.
-> 
-> Retrocompatibility is retained and was tested on multiple SoCs in the
-> Collabora lab - specifically, on Genio 350/510/700/1200, and manually
-> on MT6795 Helio (Xperia M5 Smartphone), MT8186, MT8192 and MT8195
-> Chromebooks.
-> 
-> This was tested *three times*:
->  - Before the per-SoC conversion in drivers/pmdomain/mediatek
->  - With per-SoC conversion code but with *legacy* devicetree
->  - With per-SoC conversion code and with *new* devicetree conversion
-> 
-> All of those tests were successful on all of the aforementioned SoCs.
-> 
-> This also adds support for:
->  - Modem power domain for both old and new MediaTek SoCs, useful for
->    bringing up the GSM/3G/4G/5G modem for both laptop and smartphone use
->  - RTFF MCU HW, as found in MT8196 Chromebooks and MT6991 Dimensity 9400
-> 
-> ...and prepares the pmdomain code to accomodate only the directly
-> controlled power domains for MT8196 (HW Voter support was left out).
-> 
-> [1] https://lore.kernel.org/all/20250623120154.109429-1-angelogioacchino.delregno@collabora.com
-> 
-> AngeloGioacchino Del Regno (10):
->   dt-bindings: memory: mtk-smi: Document #access-controller-cells
->   dt-bindings: clock: mediatek: Document #access-controller-cells
->   dt-bindings: power: mediatek: Document access-controllers property
->   pmdomain: mediatek: Refactor bus protection regmaps retrieval
->   pmdomain: mediatek: Handle SoCs with inverted SRAM power-down bits
->   pmdomain: mediatek: Move ctl sequences out of power_on/off functions
->   pmdomain: mediatek: Add support for modem power sequences
->   pmdomain: mediatek: Add support for RTFF Hardware in MT8196/MT6991
->   pmdomain: mediatek: Convert all SoCs to new style regmap retrieval
->   arm64: dts: mediatek: Convert all SoCs to use access-controllers
-> 
->  .../bindings/clock/mediatek,infracfg.yaml     |   3 +
->  .../clock/mediatek,mt8186-sys-clock.yaml      |  15 +
->  .../clock/mediatek,mt8188-sys-clock.yaml      |  15 +
->  .../clock/mediatek,mt8192-sys-clock.yaml      |  15 +
->  .../clock/mediatek,mt8195-sys-clock.yaml      |  15 +
->  .../clock/mediatek,mt8365-sys-clock.yaml      |  15 +
->  .../mediatek,smi-common.yaml                  |  16 +
->  .../power/mediatek,power-controller.yaml      |  37 ++
->  arch/arm64/boot/dts/mediatek/mt6795.dtsi      |   5 +-
->  arch/arm64/boot/dts/mediatek/mt8167.dtsi      |   6 +-
->  arch/arm64/boot/dts/mediatek/mt8173.dtsi      |   4 +-
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  17 +-
->  arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  12 +-
->  arch/arm64/boot/dts/mediatek/mt8188.dtsi      |  23 +-
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  13 +-
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  20 +-
->  arch/arm64/boot/dts/mediatek/mt8365.dtsi      |  16 +-
->  drivers/pmdomain/mediatek/mt6795-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8167-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8173-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8183-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8186-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8188-pm-domains.h |   6 +
->  drivers/pmdomain/mediatek/mt8192-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8195-pm-domains.h |   5 +
->  drivers/pmdomain/mediatek/mt8365-pm-domains.h |  14 +-
->  drivers/pmdomain/mediatek/mtk-pm-domains.c    | 399 +++++++++++++++---
->  drivers/pmdomain/mediatek/mtk-pm-domains.h    |  74 +++-
->  28 files changed, 594 insertions(+), 181 deletions(-)
-> 
-> --
-> 2.50.1
-> 
-> 
-> 
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on robh/for-next tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.16 next-20250805]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+url:    https://github.com/intel-lab-lkp/linux/commits/Shengjiu-Wang/dt-bindings-display-imx-add-HDMI-PAI-for-i-MX8MP/20250804-185254
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250804104722.601440-6-shengjiu.wang%40nxp.com
+patch subject: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
+config: xtensa-randconfig-001-20250805 (https://download.01.org/0day-ci/archive/20250805/202508052225.u407ulE0-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 14.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250805/202508052225.u407ulE0-lkp@intel.com/reproduce)
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508052225.u407ulE0-lkp@intel.com/
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+All errors (new ones prefixed by >>):
 
-  pip3 install dtschema --upgrade
+   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
+   `.exit.text' referenced in section `__jump_table' of lib/test_dynamic_debug.o: defined in discarded section `.exit.text' of lib/test_dynamic_debug.o
+   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_remove':
+>> imx8mp-hdmi-pai.c:(.text+0x8c): undefined reference to `dw_hdmi_to_plat_data'
+   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_disable':
+   imx8mp-hdmi-pai.c:(.text+0x9a): undefined reference to `dw_hdmi_to_plat_data'
+>> xtensa-linux-ld: imx8mp-hdmi-pai.c:(.text+0xbc): undefined reference to `dw_hdmi_to_plat_data'
+   xtensa-linux-ld: drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.o: in function `imx8mp_hdmi_pai_enable':
+   imx8mp-hdmi-pai.c:(.text+0xd2): undefined reference to `dw_hdmi_to_plat_data'
+   `.exit.text' referenced in section `__jump_table' of net/ceph/ceph_common.o: defined in discarded section `.exit.text' of net/ceph/ceph_common.o
+   `.exit.text' referenced in section `__jump_table' of net/ceph/ceph_common.o: defined in discarded section `.exit.text' of net/ceph/ceph_common.o
 
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250805 (exact match)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250805074746.29457-1-angelogioacchino.delregno@collabora.com:
-
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[59, 0], [59, 7], [59, 8], [59, 6], [59, 21], [59, 1], [59, 2], [59, 4], [59, 3], [59, 5], [59, 9], [59, 10], [59, 18], [59, 19], [59, 20], [59, 22], [59, 23], [59, 24], [59, 25], [59, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[56, 0], [56, 7], [56, 8], [56, 6], [56, 21], [56, 1], [56, 2], [56, 4], [56, 3], [56, 5], [56, 9], [56, 10], [56, 18], [56, 19], [56, 20], [56, 22], [56, 23], [56, 24], [56, 25], [56, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-arch/arm64/boot/dts/mediatek/mt8192-evb.dtb: mt8192-afe-pcm (mediatek,mt8192-audio): clocks: [[45, 0], [45, 7], [45, 8], [45, 6], [45, 21], [45, 1], [45, 2], [45, 4], [45, 3], [45, 5], [45, 9], [45, 10], [45, 18], [45, 19], [45, 20], [45, 22], [45, 23], [45, 24], [45, 25], [45, 26], [22, 47], [22, 58], [23, 27], [23, 28], [23, 72], [23, 47], [23, 101], [23, 48], [23, 105], [23, 43], [23, 103], [23, 44], [23, 107], [23, 59], [23, 60], [23, 61], [23, 62], [23, 63], [23, 64], [23, 65], [23, 66], [23, 67], [23, 68], [23, 142], [23, 143], [23, 144], [23, 145], [23, 146], [23, 147], [23, 148], [23, 149], [23, 150], [23, 151], [23, 152], [23, 55], [2]] is too long
-	from schema $id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtb: syscon@10001000 (mediatek,mt8188-infracfg-ao): #access-controller-cells: False schema does not allow 0
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,mt8188-sys-clock.yaml#
-
-
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
