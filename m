@@ -1,134 +1,157 @@
-Return-Path: <devicetree+bounces-202009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC422B1B9C2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA224B1B9CE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 20:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52C257AEB91
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:00:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2B457AEAA4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6B8292936;
-	Tue,  5 Aug 2025 18:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94600293C67;
+	Tue,  5 Aug 2025 18:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="op3YUS62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54CB1B043C;
-	Tue,  5 Aug 2025 18:01:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D40173;
+	Tue,  5 Aug 2025 18:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754416885; cv=none; b=cO6cgGFnsQjICjmSSQrmu0e75161Gja2pa8Hxd43/6ngs3Wf642nh7MyNF5yvMNKySUp2crfJ6OWfpkNEyAhD4WH7SXs4XFOmoW37E3QeUZPCX27/2p5qGVaZcrdOjalCs8588qKPsPJDR8ZyuNkNnnXastXzQ8Y8l7SmgIIMqk=
+	t=1754417133; cv=none; b=TPfIeESUevcVDVM0bspl/5DP3HsTkqcOSE7DZzey14vvYx7hlmRd4E25agnvsLZzmr5SqdoGQKboQ/TRjQ/O002H7L0AJ+9bzpC+fu9HAmYJQMSWOWt8uDGYzI0QVPTtD7zhR5oVgPbiWHYFs70/r3to26WYskm8DkgswzoAkW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754416885; c=relaxed/simple;
-	bh=v/LPVoyr9guUgma6ueQgLdA0NQU3TQ2dgvrIbsGqERc=;
+	s=arc-20240116; t=1754417133; c=relaxed/simple;
+	bh=I8l4aEPhunyIiXsphJiO2yvHDN3RGwpiOWAw7vGoz/w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=prymTWKRtAXb5CCe8G5zW2droGuxtMQh6O37iX3SdmKvCJ2t2y+m8k+rYcIkuu2K1MULxnbqqDpjlSCaNeDySV4eHz+7DuQXxD7V0LwR+iMgT11aX9Bql5sDBV0g0ErFqeDw7YVJ9aA922VwvM3iv2hDL4jLfwl3ZH3IY46Wxm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id 8BF8B1F00050;
-	Tue,  5 Aug 2025 18:01:14 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id 36146B011EE; Tue,  5 Aug 2025 18:01:12 +0000 (UTC)
-X-Spam-Level: 
-Received: from collins (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id 7B3B7B011EA;
-	Tue,  5 Aug 2025 18:01:10 +0000 (UTC)
-Date: Tue, 5 Aug 2025 20:01:08 +0200
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=nqN9umCU6a9Vk5fYr2DtpLQtazCDij0AELNNuGWuNP+XkfAQxAqsfXtt66Ef4LOvBLS0f9X3CDwXIvRVZZxwWI2gs5Q+rRqB4FPmntVS1YRLAzKw2r2cAzUc5VR3oxL193CtDmi2+6gkNrtJ5PjEiEvAVDnyD9Rvr/VTUu522pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=op3YUS62; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A6FC4CEF0;
+	Tue,  5 Aug 2025 18:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754417133;
+	bh=I8l4aEPhunyIiXsphJiO2yvHDN3RGwpiOWAw7vGoz/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=op3YUS6265cXhd+My1YsGad9AV27PDz+VTP8/WsrMWqFxSudtHzhe1ymMLrPBCBik
+	 +qkk7L+idjGN7g/YtAAu2ijGybT+7CTujSy+PtoM5kMbFYqq4gUzh3GrfeDhSQond0
+	 K3uOg46ik/Timi7wcdKGG6qMgHA+P0/Bpi1owj9NMV6Kw7nduenteMgGaZPFxTF7kk
+	 azUJmbA15/O1c7WLaJiFLF5m6l6HmW/O5h3SrBX03joISlYjbbG3aa9uNVVuTljcys
+	 qdnhEseGcyZCndLSLU28g9St7H5qtpMqy6aMsdRq0kTn2N+YmnKUYAirkv7/3IKYWZ
+	 bAT7xnCh8yhqA==
+Date: Tue, 5 Aug 2025 11:05:31 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add Olimex
- LCD-OLinuXino-5CTS
-Message-ID: <aJJG5PU3hIJJrQ6i@collins>
-References: <20250702082230.1291953-1-paulk@sys-base.io>
- <175432157672.3671011.14707033702603455664.b4-ty@linaro.org>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2 2/3] net: stmmac: thead: Get and enable APB clock
+ on initialization
+Message-ID: <aJJH6wLqMO5XRTeW@x1>
+References: <20250801091240.46114-1-ziyao@disroot.org>
+ <20250801091240.46114-3-ziyao@disroot.org>
+ <20250803170206.GA525144-robh@kernel.org>
+ <aJBBOptU4IXilK3I@pie>
+ <aJDeZJrKkqH23V/V@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gB+aj2eJYR9cQpGK"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <175432157672.3671011.14707033702603455664.b4-ty@linaro.org>
+In-Reply-To: <aJDeZJrKkqH23V/V@x1>
 
+On Mon, Aug 04, 2025 at 09:23:00AM -0700, Drew Fustini wrote:
+> On Mon, Aug 04, 2025 at 05:12:26AM +0000, Yao Zi wrote:
+> > On Sun, Aug 03, 2025 at 12:02:06PM -0500, Rob Herring wrote:
+> > > On Fri, Aug 01, 2025 at 09:12:39AM +0000, Yao Zi wrote:
+> > > > It's necessary to adjust the MAC TX clock when the linkspeed changes,
+> > > > but it's noted such adjustment always fails on TH1520 SoC, and reading
+> > > > back from APB glue registers that control clock generation results in
+> > > > garbage, causing broken link.
+> > > > 
+> > > > With some testing, it's found a clock must be ungated for access to APB
+> > > > glue registers. Without any consumer, the clock is automatically
+> > > > disabled during late kernel startup. Let's get and enable it if it's
+> > > > described in devicetree.
+> > > > 
+> > > > Fixes: 33a1a01e3afa ("net: stmmac: Add glue layer for T-HEAD TH1520 SoC")
+> > > > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > > > Reviewed-by: Drew Fustini <fustini@kernel.org>
+> > > > Tested-by: Drew Fustini <fustini@kernel.org>
+> > > > ---
+> > > >  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 6 ++++++
+> > > >  1 file changed, 6 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> > > > index c72ee759aae5..95096244a846 100644
+> > > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> > > > @@ -211,6 +211,7 @@ static int thead_dwmac_probe(struct platform_device *pdev)
+> > > >  	struct stmmac_resources stmmac_res;
+> > > >  	struct plat_stmmacenet_data *plat;
+> > > >  	struct thead_dwmac *dwmac;
+> > > > +	struct clk *apb_clk;
+> > > >  	void __iomem *apb;
+> > > >  	int ret;
+> > > >  
+> > > > @@ -224,6 +225,11 @@ static int thead_dwmac_probe(struct platform_device *pdev)
+> > > >  		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
+> > > >  				     "dt configuration failed\n");
+> > > >  
+> > > > +	apb_clk = devm_clk_get_optional_enabled(&pdev->dev, "apb");
+> > > 
+> > > The description sounds like this should not be optional. The binding 
+> > > change also makes it not optional.
+> > 
+> > Yes, it shouldn't be. But using the non-optional API will cause the
+> > driver fails to probe with the old (problematic) devicetree, IOW, it
+> > breaks the ABI. Comparing to unusable ethernet, failing to adjust the
+> > link speed sounds a minor point to me.
+> 
+> I've just read Conor's comment in the v1 again: 
+> 
+>  Nah, introduce the warnings. If the clock is required for operation, it
+>  should be marked as such. You've made it optional in the driver, which
+>  is the important part (backwards compatible) and you've got the dts
+>  patch in the series.
+> 
+> Thus I think the argument I made in my reply to this thread is
+> incorrect and the driver should remain backwards compatible.
+> 
+> > Maybe we could add a comment to explain why optional API is used, or
+> > just use the non-optional one if such ABI breakages are acceptable --
+> > for which I'd like to wait for more opinions.
+> 
+> I think a comment in the code about why it uses the optional variant of
+> the function is a good idea.
 
---gB+aj2eJYR9cQpGK
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I was chatting on devicetree irc channel, and I think that it would be
+good to add something like this to the commit message:
 
-Hi,
+ For the purposes of backwards compatibility, the probe will not fail if
+ 'apb' is not found, but the link will break if the speed changes after
+ probe.
 
-Le Mon 04 Aug 25, 17:32, Neil Armstrong a =C3=A9crit :
-> On Wed, 02 Jul 2025 10:22:29 +0200, Paul Kocialkowski wrote:
-> > Add the Olimex LCD-OLinuXino-5CTS, a 5-inch TFT LCD panel.
->=20
-> Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (dr=
-m-misc-next)
+Also, if devm_clk_get_optional_enabled("apb") fails, then I think it
+would be a good idea to warn the user that changing the link speed will
+not be supported.
 
-Thanks for the review and merge!
-
-All the best,
-
-Paul
-
->=20
-> [1/2] dt-bindings: display: simple: Add Olimex LCD-OLinuXino-5CTS
->       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/1da71a08080=
-bb5cf5601f237e94c3dd5cede446b
-> [2/2] drm/panel: simple: Add Olimex LCD-OLinuXino-5CTS support
->       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/26232780077=
-b3e6147fabb6111afd0bd9a60f973
->=20
-> --=20
-> Neil
->=20
-
---=20
-Paul Kocialkowski,
-
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
-
-Expert in multimedia, graphics and embedded hardware support with Linux.
-
---gB+aj2eJYR9cQpGK
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmiSRuQACgkQhP3B6o/u
-lQyoOhAAmJnQfFcOAssGCV/hD7wAv9KgYX8Ys/d6LwaZdnwgJ+l2oHdv36fH5rq7
-JJuYydPP/7DrAWnuSWlI3oPW5I1tEPXeOcY6kTVFVD/4rXRSLRXqPcHw91+BEU6s
-20pLAzNvRnjG5zzRugE5rd8CYmtAmINmczEAvzlaCVNWmrg8+wwexsdUKb8oe4mI
-T/kVN2JT0aTrosb5wvDSYhanA+Q2GPTUh1HKCm7tJFgVRBwCb6TF1Q/HWL5smGEV
-capM3il6vZqKMeSUgc9qOUNnWoZl4zyMyX0AMPboWbxGxTmbormvgwyRpXwuYwVq
-Vj/yB3bm3gNQY2fZhBmATGvW20nflldLeFRW44RdSQ5EIsVzJ2U6oq/bhKmYEL9a
-MvwBWMjQGY8HdyN4STrq7wkyy4Q2zofeJornKCxU50FYoIy16ge8sHU0SGMfMwxU
-EAgNid2nNgY0vYMocwdhugtX4I+ngGHAHA92WC+pKUiVW0v1Pc1lt8xxYjEMGXPG
-C++brVvCCS8X3HSPpUmSetYkV4HlOAgzHFip5Xqx1O63lTiCrWxjFWe4JPpRGcad
-8QFCW63VkGnbbyrgM0FG0pb4uzPV6CMDR2H1oX5E4E3OyqitWLLmAwLsy6nN5v+T
-TEuBRs2vm6wtTOQ+etniDUpo8f9L8hP0er9Jqy7yM+r8knVGYS8=
-=ufcX
------END PGP SIGNATURE-----
-
---gB+aj2eJYR9cQpGK--
+Thanks,
+Drew
 
