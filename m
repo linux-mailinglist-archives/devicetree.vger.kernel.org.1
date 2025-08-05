@@ -1,195 +1,394 @@
-Return-Path: <devicetree+bounces-201898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE3B5B1B29B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:27:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F3BB1B2B1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 13:44:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5867E17B8F4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 11:27:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF561181BDD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 11:44:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990DA256C84;
-	Tue,  5 Aug 2025 11:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486A725A2DA;
+	Tue,  5 Aug 2025 11:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cw2X+wcC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wJFuQnos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C4A247DEA
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 11:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5762F30
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 11:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754393262; cv=none; b=rOIBsmefyiU7HAPW/viYmbrpPXtFFUMH/Zm2EljWBeOZXYzPYSdM9JeXt25UZ2Mu8mhb5sPd27gxcjKQ35wZYJdU6LW8s22GeK3NUsdjfHnxmc2ptyrai2hZSirjiMru8fIWox6EmgXPuyZKzffFac88/116nZc8XVqUPolkG2s=
+	t=1754394238; cv=none; b=NGetIaOUU2s1B9MOmsmFgpapa9yydGdGS9l2Bhw3P5HwmaQyi3CAw1THrXkCagVSMhE+m/o4OWD7n5u1XTwus3LLlw7pRVH2SXpTsVnUYVr9vxNO7ulJVCjqupl4cpLGfQqXgn+RQXWM2u6PBdUq+pScSBP+yem0/Ke32C/T2FM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754393262; c=relaxed/simple;
-	bh=DVXddEgeZPuQcDtEKtxLaY59mZ2sxeocu63HSG0+8+U=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EeXZGYYQHesp0VihtZtA+7bSeMr416xHXquiGdmQNyb6T4KRs60XrojB8uJzZbOXYFGRa1A4QvGyoOkfMOiJA79yjOrhj9LHW+wTKBeMuifcy6y9+MRuOe4BlR5M1EphjiOeFYQNIUY6QoENrormQYPz4BkZByqo2wovGBk5a5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cw2X+wcC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5756h5Wo015496
-	for <devicetree@vger.kernel.org>; Tue, 5 Aug 2025 11:27:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1gPoqe4y4yIUUPTwhZsEUYLD
-	5BOfc3h2wVUekz4+9NM=; b=cw2X+wcCKQ8oVP/V6Yb96P3FsimYKqX+BJZA2ybW
-	PUhWTy2Mjt7aii6st4/IQjBVuzYWLJyCFLhx4171pfR0t0ILoMZ5EbptKkaeAyu5
-	ipemR4L6DyOoEoQSUA9GIWqSqI+1PsmUFKVIbnk3Fh/v+KnbMfmvuzBOfNX6Cr9t
-	h/r6os//QcNMA6BSJITOjm2wxM0SIaG02ufHCeb5/qWaYIkszbRLf3sN/EZEl7aM
-	zc6tXMHe6XuZMdwfhxYbFqvdnbOJIyDoRkwpJMizbQ5jdKrE9Vkr6tcHaoX1XkIE
-	XS1X7Bu318M+ViqEp/Ooi4iEP/U9+Jn7HZWjwlwpHWKRuQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4898cjrj5a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 11:27:38 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b068c25f04so41347131cf.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 04:27:38 -0700 (PDT)
+	s=arc-20240116; t=1754394238; c=relaxed/simple;
+	bh=qQFbXAdVddS139994BH2eru2jJIxaSkSenZ1cOMHaHM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XJKnaujDx28X+DR/MyHmjbCf1UpDAQp6MnsRy6hbyqhW0y1ECNivT+M7CdkYL3AwuRQR3u24asrklqBPIBTdSb/S0IxswJzK5DIHylmjajmafFM0sExfyrR5NJfX4Ka4PysvuNQqojwgHzzBKKCl8+Raw1jpaBbLykqotPEDHsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wJFuQnos; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-313a001d781so4558656a91.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 04:43:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754394235; x=1754999035; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tDSem0VEHhNCiFbhAejGqkNC7DQu7KRaDbsToqiPuSI=;
+        b=wJFuQnos4fIqYR59KevA3Mp/gr1rj16V4NJu6JA5PYK+Nvk6Iat6Dd0PU4Hh+VbrCj
+         T6tl/o9ZUrpSfz0JILELXdbH8yXWR9QtqaGyyBmoxdE95QMYl1/2bvGp3S3pUZZH2p54
+         AdOCkBJifkK3eCXzWK+Ybm/cMPuuvA47KzGn8+2GY8QDm0moBVp04xDCokooYpnN6ZD/
+         gxOQIW9CWa+gepY4o/shfZKD6Qz75asj6GQCWs6tRbIQJFNns0apKwBwCVSkf5emg9NK
+         1BbppwhmJ3TDcOG/leb/rmsKOtyAkAHLCCW7wT6iG6mbjSrE4KKhZENNIbCgKuJi/lwt
+         9rcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754393257; x=1754998057;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1gPoqe4y4yIUUPTwhZsEUYLD5BOfc3h2wVUekz4+9NM=;
-        b=ePLUCcFomokuJWypt/F6z57iIgo76zljSpDsg7yZj9XbJQmsCnV1mnC9vC8dCMudqu
-         0mMbAsckr7pjdt5qdtaERx7XyjlNODSViuylsGOOUkXZDUndLXDI0KEe5UfymjclVI9Z
-         024aC9a4OW8yZLRxSWKYfLG0JQhpJEN0ddkRqDeohRiYdtdE3xypH6D/kRuklI4fUQQK
-         FoebKwq0PRb8vdLTxdOP3gHFyR8GMNH3GpxMudEGAItfH4thoN+HNHYNFladV0F93pxL
-         5QjjxGAO1CyJf7ZhrwKdxYhGbugPV10gbPIivFIBJ7neOb1utfK0Ef2EGAENdjaLpbsI
-         ZdXg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6YyCe7zaUbvmxsZ3w1jfI3CPRjXwBffkkAsqjTKhE6caDGGrN0K8zrpNVLJ4EMmz7KHzX7BQ5pfSN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yygo0+ZtST28xJZ4xFY/myYUIupfGk/kv7CU304Hj4yv1EmqGjd
-	+kqp9gwdDDoX0EsbIkr2le4l3IWPUjv3kfprsuWgfYIEyd1SNDN1Q+w+d42S4tNiqaEY6M2J+5B
-	Pv1hBFOm9SQeQX6Ys8E/lSh6Nmeq/Q1yyAdH8HjGOmCwxxCT+xAZT5doqbwCJlwkA
-X-Gm-Gg: ASbGnct+PjetAF7MlcmRkk11cpg0cOmmhGh+SP5q6d/EBsRDf3i/wuhza9iRO69ArKF
-	JjoYUX57SyNSJLdAMkLKqCJgm8y0KlEYUMxX2AA2J4plJQxvmWEpUY8JcP8geO3cFCydcE7IwuC
-	jH9xwb0+rgr/jRyQRvyrExAsGcwwBQ749QnxssjsjiNNzeWESMH5mV8aZ2wFhEMtkgMulCMuEpf
-	f6TTNDIeliNGoKsTiW3DWOXCgYIm80EnLJW/bGi6YmyC/39JkOEYchimQyICx7nEMU7qU8AEIDa
-	O0L9QL68gMjcLZwrggMCPttctMzIT4WRSyUthJluVzDfM5+wGoSUZiAxStRD/WarXXCBJQ==
-X-Received: by 2002:a05:622a:148a:b0:4af:21a0:c65b with SMTP id d75a77b69052e-4b07f8b757cmr45494701cf.13.1754393257253;
-        Tue, 05 Aug 2025 04:27:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG0101lXC5zt5OQUJJcCTrjM72+E5bMhWeTi/5/EpeoZ4H4alza+OtyPzFZhjZskEOxR4CjkA==
-X-Received: by 2002:a05:622a:148a:b0:4af:21a0:c65b with SMTP id d75a77b69052e-4b07f8b757cmr45494321cf.13.1754393256695;
-        Tue, 05 Aug 2025 04:27:36 -0700 (PDT)
-Received: from trex (205.red-83-60-94.dynamicip.rima-tde.net. [83.60.94.205])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c469582sm18593886f8f.52.2025.08.05.04.27.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Aug 2025 04:27:36 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Tue, 5 Aug 2025 13:27:34 +0200
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        quic_vgarodia@quicinc.com, konradybcio@kernel.org, krzk+dt@kernel.org,
-        mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-Message-ID: <aJHqpiqvulGY2BYH@trex>
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
- <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
- <aJHgh8mon9auOHzi@trex>
+        d=1e100.net; s=20230601; t=1754394235; x=1754999035;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tDSem0VEHhNCiFbhAejGqkNC7DQu7KRaDbsToqiPuSI=;
+        b=ZqZ6hYRF9/XGIhcmTCTJCqvHctBvTVY0KzOmpxkA22jTdRj+cyO2MTkh1ZNsLugzvZ
+         k2rhZVnzl8uiJjJ3aDGiWzGzHX20Vqt5BziUvBwchPVxfVG0YRsuikOE//a/DxVsIoTw
+         UDyArpBsdNnsZyEDba4q18SVxwLRBkwgDtikZaLvoajtVpldKfw0OAefZh+DQUQdDHjG
+         HTV0fsDQxo099gKvXtUsGkdeWud7SIwz0b2zR3fcl0YVF/9D/R5sSri0xaSN7qrbL00j
+         K2pR6PBCqRtty9z9+V54qNTyduNrbIzED1g9KJVSSSPb3rXdP/CpeAWtApzU+ggCfsMv
+         j+1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWVWwwSihl4K50FyR8j7ofqcOabizv0Q7p3H7HyXWrgD2BH5iKk0DPCoQz4gYBJcwpRzdy+EzHEhQA3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz18wda8+yIAKJAUJ9v1yPkOyDYOxxXWele9n4yAO0/M30lmNFL
+	xxz/46G1sGpuPEKBPQbu5da5PwnnGuhmUnU1jznPLNFi3nhoc0LMIVEACj9kcz9K0iO/e+dO/MK
+	0wVqfQzEwdokljxmguyXpXuGxhyH9nDNZULIiHNqB9Q==
+X-Gm-Gg: ASbGnctASy+bIRe1X+dU6s1GwkcWF3gDfcPKh97OsPMwqa/yJKz6EEmx0wvh6CypwSC
+	VfWG7vVMKcCx8HTmIHQDxcna4KlKLx3DYMYT6W45AoPCjnUJj8XABQiA6ZxFRynIUt8pmGP+KIM
+	brWYX5MH2lKA8jkW4NTVY85WltoTiXD8UnAKwkriqDygWyRTaCkfVVSdskDh10VicrOvSC24RXE
+	wuUTG2zrsHKoFtB
+X-Google-Smtp-Source: AGHT+IGQh1IHldLd0Xsa7DV3WGgE48Y3oh+lMpkw5CWGb+Xj011SVcOFfY2rdo3TaHAT5I0VaX6ImgYZfxqtKmD2FQg=
+X-Received: by 2002:a17:90b:3146:b0:313:15fe:4c13 with SMTP id
+ 98e67ed59e1d1-321162c9366mr18968548a91.27.1754394234942; Tue, 05 Aug 2025
+ 04:43:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aJHgh8mon9auOHzi@trex>
-X-Authority-Analysis: v=2.4 cv=MNBgmNZl c=1 sm=1 tr=0 ts=6891eaaa cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=Rr2dNH5/fcnoRoBmcVUeRg==:17
- a=kj9zAlcOel0A:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=uolHg1VUeg_AKm6FvgQA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: tTezEZ2yU_WLixCaWRZ77aEu3N_7d-Uy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDA4MCBTYWx0ZWRfX3LXJWoXdsO9N
- M1aBONvxX5hMu2GyxU1t9DqK0i8hJFtIOKgKw/GoJtEgdb2J/e2+AhqpXYRz2HujnQgAK6UvqWa
- 1iq2w0/J70AAVqO9XR9wZwrJ+SHd8Nw2a4Se9c2t6eNDeiyH9OU97RXp//uV6x8m65uyfbbtiOj
- r0zb6T5gOBL2ZICHjBBjM5N3dYDWdk3lBI3+8twEBz2eYOjQhEEU64aX6nbKK8l4i5n5T9/0Hbx
- gexT2f0X8NB3MRVqVpHNqx3MDD6sXczV+eYmpAq7AIrSIdjThwBnrw5JnR6R35n+OTsbYVf7dQm
- UkjUz1ldA7JqZgV324mJb0Qs1nWUKtfwHmGd907RUFA1MnuZqC6zp1RGxgVWLCirjI1g5BY9XwW
- ckF62c/xwqGbEx/t0oLzrV4gexa3HJzs9iBmcfHFQmpiCPVXGFu7Qj4HS9MsU7Wj5l5ok+gR
-X-Proofpoint-GUID: tTezEZ2yU_WLixCaWRZ77aEu3N_7d-Uy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_03,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=999 suspectscore=0
- spamscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 adultscore=0
- lowpriorityscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050080
+References: <20250717125343.3820505-1-quic_jinlmao@quicinc.com> <20250717125343.3820505-3-quic_jinlmao@quicinc.com>
+In-Reply-To: <20250717125343.3820505-3-quic_jinlmao@quicinc.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Tue, 5 Aug 2025 12:43:43 +0100
+X-Gm-Features: Ac12FXwQ6TRr8fi74oMe-Ptz9AMCTyfI7J3MuYdWjVEh0hc8XNY3WysaB9ylgCw
+Message-ID: <CAJ9a7ViD6MqOrtBp6LYnEg-rs6x0c9HuGfy4pWHG1iW67OdT=g@mail.gmail.com>
+Subject: Re: [PATCH v9 2/2] coresight: Add label sysfs node support
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@arm.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 05/08/25 12:44:23, Jorge Ramirez wrote:
-> On 05/08/25 13:04:50, Dmitry Baryshkov wrote:
-> > On Tue, Aug 05, 2025 at 08:44:28AM +0200, Jorge Ramirez-Ortiz wrote:
-> > > Add a qcm2290 compatible binding to the Cenus core.
-> > > 
-> > > The maximum concurrency is video decode at 1920x1080 (FullHD) with video
-> > > encode at 1280x720 (HD).
-> > > 
-> > > The driver is not available to firmware versions below 6.0.55 due to an
-> > > internal requirement for secure buffers.
-> > > 
-> > > The bandwidth tables incorporate a conservative safety margin to ensure
-> > > stability under peak DDR and interconnect load conditions.
-> > > 
-> > > Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> > > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> > > Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> > > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > > ---
-> > >  drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
-> > >  1 file changed, 50 insertions(+)
-> > > 
-> > > diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> > > index adc38fbc9d79..753a16f53622 100644
-> > > --- a/drivers/media/platform/qcom/venus/core.c
-> > > +++ b/drivers/media/platform/qcom/venus/core.c
-> > > @@ -1070,6 +1070,55 @@ static const struct venus_resources sc7280_res = {
-> > >  	.enc_nodename = "video-encoder",
-> > >  };
-> > >  
-> > > +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> > > +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-> > > +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
-> > > +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
-> > > +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
-> > > +};
-> > > +
-> > > +static const struct bw_tbl qcm2290_bw_table_enc[] = {
-> > > +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
-> > > +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
-> > > +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
-> > > +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
-> > > +};
-> > > +
-> > > +static const struct firmware_version min_fw = {
-> > > +	.major = 6, .minor = 0, .rev = 55,
-> > > +};
-> > 
-> > This will make venus driver error out with the firmware which is
-> > available in Debian trixie (and possibly other distributions). If I
-> > remember correctly, the driver can work with that firmware with the
-> > limited functionality. Can we please support that instead of erroring
-> > out completely?
-> 
-> yes, in V7 I did implement this functionality plus a fix for EOS
-> handling (broken in pre 6.0.55 firmwares).
+Hi
 
-just re-reading your note, in case this was not clear, the _current_
-driver upstream will never work with the current firmware if that is
-what you were thinking (it would need v7 of this series to enable video
-decoding).
+On Thu, 17 Jul 2025 at 13:54, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
+>
+> For some coresight components like CTI and TPDM, there could be
+> numerous of them. From the node name, we can only get the type and
+> register address of the component. We can't identify the HW or the
+> system the component belongs to. Add label sysfs node support for
+> showing the intuitive name of the device.
+>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+> ---
+>  .../testing/sysfs-bus-coresight-devices-cti   |  6 ++
+>  .../sysfs-bus-coresight-devices-dummy-source  |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-etb10 |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-etm3x |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-etm4x |  6 ++
+>  .../sysfs-bus-coresight-devices-funnel        |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-stm   |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-tmc   |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++
+>  .../testing/sysfs-bus-coresight-devices-trbe  |  6 ++
+>  drivers/hwtracing/coresight/coresight-sysfs.c | 71 ++++++++++++++++++-
+>  11 files changed, 129 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> index a97b70f588da..55367bbc696f 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> @@ -239,3 +239,9 @@ Date:               March 2020
+>  KernelVersion: 5.7
+>  Contact:       Mike Leach or Mathieu Poirier
+>  Description:   (Write) Clear all channel / trigger programming.
+> +
+> +What:           /sys/bus/coresight/devices/<cti-name>/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> index 0830661ef656..9a11bd5b15cc 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> @@ -13,3 +13,9 @@ KernelVersion:        6.14
+>  Contact:       Mao Jinlong <quic_jinlmao@quicinc.com>
+>  Description:   (R) Show the trace ID that will appear in the trace stream
+>                 coming from this trace entity.
+> +
+> +What:           /sys/bus/coresight/devices/dummy_source<N>/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10 b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
+> index 9a383f6a74eb..ff1f89795188 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
+> @@ -19,6 +19,12 @@ Description: (RW) Disables write access to the Trace RAM by stopping the
+>                 into the Trace RAM following the trigger event is equal to the
+>                 value stored in this register+1 (from ARM ETB-TRM).
+>
+> +What:           /sys/bus/coresight/devices/<memory_map>.etb/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> +
+>  What:          /sys/bus/coresight/devices/<memory_map>.etb/mgmt/rdp
+>  Date:          March 2016
+>  KernelVersion: 4.7
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
+> index 271b57c571aa..743f26619c69 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
+> @@ -251,6 +251,12 @@ KernelVersion:     4.4
+>  Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
+>  Description:   (RO) Holds the cpu number this tracer is affined to.
+>
+> +What:           /sys/bus/coresight/devices/<memory_map>.[etm|ptm]/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> +
+>  What:          /sys/bus/coresight/devices/<memory_map>.[etm|ptm]/mgmt/etmccr
+>  Date:          September 2015
+>  KernelVersion: 4.4
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
+> index a0425d70d009..e6a584a4b040 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
+> @@ -329,6 +329,12 @@ Contact:   Mathieu Poirier <mathieu.poirier@linaro.org>
+>  Description:   (RW) Access the selected single show PE comparator control
+>                 register.
+>
+> +What:           /sys/bus/coresight/devices/etm<N>/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> +
+>  What:          /sys/bus/coresight/devices/etm<N>/mgmt/trcoslsr
+>  Date:          April 2015
+>  KernelVersion: 4.01
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> index d75acda5e1b3..5578fa5f6f02 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> @@ -10,3 +10,9 @@ Date:         November 2014
+>  KernelVersion: 3.19
+>  Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
+>  Description:   (RW) Defines input port priority order.
+> +
+> +What:           /sys/bus/coresight/devices/<memory_map>.funnel/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
+> index 53e1f4815d64..c3a81978e30b 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
+> @@ -51,3 +51,9 @@ KernelVersion:        4.7
+>  Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
+>  Description:   (RW) Holds the trace ID that will appear in the trace stream
+>                 coming from this trace entity.
+> +
+> +What:           /sys/bus/coresight/devices/<memory_map>.stm/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+> index 339cec3b2f1a..9554f4f453a3 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+> @@ -107,3 +107,9 @@ Contact:    Anshuman Khandual <anshuman.khandual@arm.com>
+>  Description:   (RW) Current Coresight TMC-ETR buffer mode selected. But user could
+>                 only provide a mode which is supported for a given ETR device. This
+>                 file is available only for TMC ETR devices.
+> +
+> +What:           /sys/bus/coresight/devices/<memory_map>.tmc/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> index a341b08ae70b..e6d935e83042 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> @@ -272,3 +272,9 @@ KernelVersion       6.15
+>  Contact:       Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+>  Description:
+>                 (RW) Set/Get the enablement of the individual lane.
+> +
+> +What:           /sys/bus/coresight/devices/<tpdm-name>/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe b/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
+> index ad3bbc6fa751..2a5868ba3d6b 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
+> @@ -12,3 +12,9 @@ Contact:      Anshuman Khandual <anshuman.khandual@arm.com>
+>  Description:   (Read) Shows if TRBE updates in the memory are with access
+>                 and dirty flag updates as well. This value is fetched from
+>                 the TRBIDR register.
+> +
+> +What:           /sys/bus/coresight/devices/trbe<cpu>/label
+> +Date:           Jul 2025
+> +KernelVersion   6.17
+> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:    (Read) Show hardware context information of device.
+> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/drivers/hwtracing/coresight/coresight-sysfs.c
+> index feadaf065b53..f7a0c9056854 100644
+> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
+> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/device.h>
+>  #include <linux/idr.h>
+>  #include <linux/kernel.h>
+> +#include <linux/property.h>
+>
+>  #include "coresight-priv.h"
+>  #include "coresight-trace-id.h"
+> @@ -371,17 +372,81 @@ static ssize_t enable_source_store(struct device *dev,
+>  }
+>  static DEVICE_ATTR_RW(enable_source);
+>
+> +static ssize_t label_show(struct device *dev,
+> +               struct device_attribute *attr, char *buf)
+> +{
+> +
+> +       const char *str;
+> +       int ret;
+> +
+> +       ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
+> +       if (ret == 0)
+> +               return scnprintf(buf, PAGE_SIZE, "%s\n", str);
 
+sysfs_emit() here.
+
+> +       else
+> +               return ret;
+> +}
+> +static DEVICE_ATTR_RO(label);
+> +
+> +static umode_t label_is_visible(struct kobject *kobj,
+> +                                  struct attribute *attr, int n)
+> +{
+> +       struct device *dev = kobj_to_dev(kobj);
+> +
+> +       if (attr == &dev_attr_label.attr) {
+> +               if (fwnode_property_present(dev_fwnode(dev), "label"))
+> +                       return attr->mode;
+> +               else
+> +                       return 0;
+> +       }
+> +
+> +       return attr->mode;
+> +}
+> +
+>  static struct attribute *coresight_sink_attrs[] = {
+>         &dev_attr_enable_sink.attr,
+> +       &dev_attr_label.attr,
+>         NULL,
+>  };
+> -ATTRIBUTE_GROUPS(coresight_sink);
+> +
+> +static struct attribute_group coresight_sink_group = {
+> +       .attrs = coresight_sink_attrs,
+> +       .is_visible = label_is_visible,
+> +};
+> +__ATTRIBUTE_GROUPS(coresight_sink);
+>
+>  static struct attribute *coresight_source_attrs[] = {
+>         &dev_attr_enable_source.attr,
+> +       &dev_attr_label.attr,
+>         NULL,
+>  };
+> -ATTRIBUTE_GROUPS(coresight_source);
+> +
+> +static struct attribute_group coresight_source_group = {
+> +       .attrs = coresight_source_attrs,
+> +       .is_visible = label_is_visible,
+> +};
+> +__ATTRIBUTE_GROUPS(coresight_source);
+> +
+> +static struct attribute *coresight_link_attrs[] = {
+> +       &dev_attr_label.attr,
+> +       NULL,
+> +};
+> +
+> +static struct attribute_group coresight_link_group = {
+> +       .attrs = coresight_link_attrs,
+> +       .is_visible = label_is_visible,
+> +};
+> +__ATTRIBUTE_GROUPS(coresight_link);
+> +
+> +static struct attribute *coresight_helper_attrs[] = {
+> +       &dev_attr_label.attr,
+> +       NULL,
+> +};
+> +
+> +static struct attribute_group coresight_helper_group = {
+> +       .attrs = coresight_helper_attrs,
+> +       .is_visible = label_is_visible,
+> +};
+> +__ATTRIBUTE_GROUPS(coresight_helper);
+>
+>  const struct device_type coresight_dev_type[] = {
+>         [CORESIGHT_DEV_TYPE_SINK] = {
+> @@ -390,6 +455,7 @@ const struct device_type coresight_dev_type[] = {
+>         },
+>         [CORESIGHT_DEV_TYPE_LINK] = {
+>                 .name = "link",
+> +               .groups = coresight_link_groups,
+>         },
+>         [CORESIGHT_DEV_TYPE_LINKSINK] = {
+>                 .name = "linksink",
+> @@ -401,6 +467,7 @@ const struct device_type coresight_dev_type[] = {
+>         },
+>         [CORESIGHT_DEV_TYPE_HELPER] = {
+>                 .name = "helper",
+> +               .groups = coresight_helper_groups,
+>         }
+>  };
+>  /* Ensure the enum matches the names and groups */
+> --
+> 2.25.1
+>
+
+with the above change
+
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
