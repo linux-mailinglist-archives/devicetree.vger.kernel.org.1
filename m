@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-201983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F106EB1B88C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:32:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12812B1B89C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 18:35:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B08C73A660A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:32:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 483487A585D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 16:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F92121CA1C;
-	Tue,  5 Aug 2025 16:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB41C28BABE;
+	Tue,  5 Aug 2025 16:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="olh5lgbJ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MF+YFD4f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5E11F4C99
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 16:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E625259CB1
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 16:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754411525; cv=none; b=TpLCHOiagd8R/BsB0xlED1wxN5qGz2TKMfbKK9nFRM23Sx5lXStEI5rKlOFczN/i/4lOZ99W8uG/GK8SEDkaXwe0qv2j6Kl3v0y0ax5mcyQ+Tze6EABP16KDqz2qoqlLyTnF2qcpgqDQrFZU4TowJUleVTbt3WBPBW6/wdHUFoQ=
+	t=1754411733; cv=none; b=dd/YkKBaeIahqMAIN0NSvfRXVlObJLnyMlnKFhovuIa52HEZgRu5+Vb2CxmqtFoJxiHhgyXXlu/b+lj+h80x3BtZYuXNYVBl2LDARzdeT0SJm5VlatQMcN47xq+iecW2wDJEcSHCgfjnBjcQfm4lLBbvDkBGfqRznuIHFEvPwG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754411525; c=relaxed/simple;
-	bh=BtAiTgvkkjlBfBvo6XtHgXIfvNar7zG5HMSPnNCDLis=;
+	s=arc-20240116; t=1754411733; c=relaxed/simple;
+	bh=PIBhZdO238ZvHLBX3rQTGOO8coLsWI3R3RgIsssqLNM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RUBMSNGlD6zWPJaUKM1XS+wu5TzuWoqFyMTNZ7BOQrF2ZGIBvlR71ehl39kei0tc+0SCbbkkzKJ8MaLQ9UKpn4EbtBVGwIYw9lk1q3wYU2vBREvTL86d4xlLn3MO8N4t99NUQmMMQakR6qkB6WxsCpGYbRonLUMiYi8qh8koWpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=olh5lgbJ; arc=none smtp.client-ip=209.85.210.44
+	 In-Reply-To:Content-Type; b=bC6sJwRoIQqRU9Kq1RTTELYcaKHqf5IcJS9uAfhTcKFyNWn5cVS1ZuaFTxEMqyy+bPsSsye6ldjoP38Ex8KgvcixY5Km9BXWM7Ql1neSqFx90g/xXEd5l/hctzPetCnEOPN/6C9SpLfEyObdyX59UKCvWwTlwemFwx5On1ELWm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MF+YFD4f; arc=none smtp.client-ip=209.85.161.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-741a905439eso2004586a34.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 09:32:03 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-61b50eddbc8so315160eaf.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 09:35:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1754411522; x=1755016322; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1754411730; x=1755016530; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uur0nAlqBULqZvR/jwBKMPpy4vyoMv3vayFy80V0+TM=;
-        b=olh5lgbJz3G8eGxz3o1+JTfTxq8xc6A7F/ypesiL0QnKyk8KGlHZvIyF5mPt2BxtBb
-         36b0C299hrljswibQaZ/8l244n7/XLt4uAA1OjHGrg08J3YWM7wanPwq0i//l2FxW1hU
-         R+TYVrkjDCN65gny2zW76xDKuyTAI2+vDkxGFrCp8NDsAofGwECNnxofrCJLgBikzIAX
-         oZFyorRgzmWBdzgtEEXF2RZiuV9ONMEh+mMltZObCgg5PqH8QJx7R98hGGOWKaJlcugb
-         M4jHJOGCuvdjoBanNPDew715cUcntDzU6wkeTV1Gti0H3hPduRwo/PdQIuNSCul9I9cA
-         PGuQ==
+        bh=jtUgL/kOLZJGMiSwsdGyte+QD2BT5vIBoeVeTYduHPY=;
+        b=MF+YFD4fpZTEXaurr304BsEf457BRWfUm4sgUvQTvXQ8MXePGChr2AkVN3sRpb4eG2
+         4GZE8r3zRZE6GRFUjRRlGqxjeu6pM57niWZilhLJpfP5rRFmdcuPQSD00fsdOVxkJNuG
+         InxHwDtVjyZMBy1Bk5S7TZIpAQYkLa8hMJx+CXlbXc1us1fg2tH76UcoSFlFFBOW9F9L
+         gVUEv+rjYCmBzcjOTORrUxWMlk3nFX91/bEW7uUUJD0WPVQUApHwqVjcHyWCnISKsEkG
+         XxSKX+on9GRUrDNZ8FyCBnAxjMHFfd/VjDUsm/84K4tn7pvgIU5o17W2uG2bf8SbAx39
+         xkMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754411522; x=1755016322;
+        d=1e100.net; s=20230601; t=1754411730; x=1755016530;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uur0nAlqBULqZvR/jwBKMPpy4vyoMv3vayFy80V0+TM=;
-        b=r0WXsQyj79/YTks6UvwS0O723sa8aGnRyqqGyqSYagpjOeCCoH0c025T4LK44/HM5E
-         Ev9ZwD7cbi3LZbPLxLHN5Lh4EdvkhQixCVJYsB9h5Oyo+y6Vs4yJXOKdSQTL7XBTPR+O
-         2jnH3ZJr8GWepu+QD1+cVV7eV7bDQAM9QHlivkHNOye0U57EglsI8p4RCsI5I3bkc6Z1
-         32Kops96jVFD0IER7KQK7/7gUqXJD/ND/ysrRD2BmdZrLDoGxSdyAj3BEN3AC1GLe7FG
-         eSOgRJFdrRwcUxbiVDg1ykfqYmzWQ5rcB59soOIYypqsMXgZ3pKJWT9od0cUejipyCrY
-         fL+A==
-X-Forwarded-Encrypted: i=1; AJvYcCXQd30SPeNdhNeMMTPPwU6xHzqet1k01wMwsD5RnDNecPHK0yOwRhDAbkIvkakPJUj2KZAsNflHyOmL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQWRhooDSy9nsrAQawjceq13aZ5Lxp5Ty6K9UAg78R0AjWKf22
-	zr6OBb6YYLp/8sBQCzU5wAIaElzvurtaHssMxlvC4EmGbhmOqlsCri9IzPZvDc3Jeeo=
-X-Gm-Gg: ASbGncsxy3YKj9zEICQcQozPa0cyomegyLro6Sd/7JjMbbAHxJZQ1/JX+sLMjdRjqI4
-	OR+busXUeKvRTq/t4xF7JviG9VX0a5T+uLYdpyrG8LQb7oSvqRr53mpHi9S1Kxe05YYBq8/YwYY
-	1VyiA/xDenvqwJJKxdkAQVlmRMYoqzUlibtts69gGSiswatRGRcmDDnU1rjsSSMJxi3W3qoOF/c
-	Ojv+s/sHR3KQoU1asHieRZpYEzZzxTt/Xhkj75iRBF+ccQjuqKc9ufNhzaKhp9VBR3sUt3890Ex
-	RNNUgJl5UkAGl18y9WA8uHngJGLCeH3lrjOHToU/LoOv6RMao+6BDeaT3e0F5SAepN2r3MR/GFq
-	ePsTxjT+tyG7lUu+NIMjcyvPHAQujqnZO1yfynhDcp39S+KfZg+VlENvJ7TNLDuH/8OrVL5Uo5F
-	A=
-X-Google-Smtp-Source: AGHT+IEnvk2d31UKd+tMc+mbVq2Ah+wE3Sz5iHZ3ZBziMqKMBF0tm8r034C7Lrlr2Q0zurnS1hQADw==
-X-Received: by 2002:a05:6830:280b:b0:741:21b8:b24d with SMTP id 46e09a7af769-7419d0e6299mr9460158a34.5.1754411522370;
-        Tue, 05 Aug 2025 09:32:02 -0700 (PDT)
+        bh=jtUgL/kOLZJGMiSwsdGyte+QD2BT5vIBoeVeTYduHPY=;
+        b=tARQskeuvUSmY14X11qtnAKU+lYcly6rssI3KbQIuv/u3+dhqOYQ+Ra4VudCI1DTc6
+         e/RIbeC0wrXo+ggHshlO3xdZvQn83a6sYL+KG3qVM3rnyyMh7uxx6s1nBM6Kw9HqhktK
+         o6CX4xSJZfFs7GOYGdEobzGAzCn1kJnV+QXTKf08+kQtCcPeUMGsxWllcnWy5kEVEonm
+         USlc7gFT5Nd67XgNyi5JcSLS9t0OriNbAuP7tjK1Z1eSsW4SeRVI1YumBoiEyqWiLLab
+         vWjCzUJpI1VQ7gtZ18Ue3Nc43DuoykEd5WaRjriZpyUyiagqF5Lu4xmrPIQSAayV8lON
+         2iDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUntoiObbtcKTRCgSQ55guGdQDLfPCa4O6AXZdvn8B/8VzrCIVVfGjmM/QnIuWvkICrG5237zkBV+SM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdL3civgD9VKdWqTwKXYkU8tVG170zhk77FJgTglfTb/h+74Sk
+	j4v+TZhP7FEodoZVSIIXPXqgnuFQhpGjzKQomQJSFy9dxHsv9BJek7+5G2EOhQ+hKG8=
+X-Gm-Gg: ASbGncsTBV7Cjj8pCYMUN+0zHrFTOVg6valZHcEAoqYutDUVGQxXrBRiYNczolt5MEH
+	JqVVgmmAtEw0l9t6lV+53WeuI70k8pyWK1/WhfJXW2Fl0dX1Nzh21P0gpj7GrhqssW/u+Uw4sth
+	C5DiwD9XijEJoFFkxR8WSPkcOvzuaUuHqOaEd3mh9ESaf6HUG4gr0c97Y0XKAgOp4pGY0K2f9u/
+	x/hSSqJZ5tXv27sfkBiryVkE2eTOZLO1gEnDaIqI7X5RfvOmEJQEfH36p4xqA4ryAcnoWOzxrxP
+	WyOY6FVcOUd722uYVusyKL3vGOpqPZCqvUAK/42eeVUuh4GfHQu5h96RGuNGXr87d3imRSk5G5t
+	Fty7lRAg5C1MT0RPJlk3X+Tm6Eosbr/xvIR7LM09mH0M9g6is348NoCcloqlbMh2ddlnjC8VaK/
+	R0bf1LRHELjg==
+X-Google-Smtp-Source: AGHT+IEPj9WGncyEEwV8zCSGGOL8c8u23+Kwz+ZdJ9c7mTbLm+37ER2spgJtBiQCyb7d39tvDl8XQA==
+X-Received: by 2002:a05:6808:1b0e:b0:41c:8cba:1ac9 with SMTP id 5614622812f47-433f03438d8mr8283663b6e.28.1754411730347;
+        Tue, 05 Aug 2025 09:35:30 -0700 (PDT)
 Received: from ?IPV6:2600:8803:e7e4:1d00:cc63:6a65:89f9:fe4a? ([2600:8803:e7e4:1d00:cc63:6a65:89f9:fe4a])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-74186a0f8c1sm2849781a34.0.2025.08.05.09.32.01
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61b4e4ac995sm244569eaf.18.2025.08.05.09.35.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 09:32:01 -0700 (PDT)
-Message-ID: <b0764ff2-1361-457e-b240-2d08c0916a1f@baylibre.com>
-Date: Tue, 5 Aug 2025 11:32:01 -0500
+        Tue, 05 Aug 2025 09:35:29 -0700 (PDT)
+Message-ID: <a36d35b8-0f11-4a57-a20c-b00e16f293f9@baylibre.com>
+Date: Tue, 5 Aug 2025 11:35:29 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,41 +83,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
 To: Dixit Parmar <dixitparmar19@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>
+ "Rob Herring (Arm)" <robh@kernel.org>
 Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+ Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-iio@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20250802-tlv493d-sensor-v6_16-rc5-v2-0-e867df86ad93@gmail.com>
- <20250802-tlv493d-sensor-v6_16-rc5-v2-1-e867df86ad93@gmail.com>
- <20250802124333.67f64863@jic23-huawei> <aJAmgX0876tu5Ss0@dixit>
+ <20250802-tlv493d-sensor-v6_16-rc5-v2-2-e867df86ad93@gmail.com>
+ <175423802305.483875.12095436762674457962.robh@kernel.org>
+ <aJAd0k-PGbQJqD_R@dixit>
 Content-Language: en-US
 From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aJAmgX0876tu5Ss0@dixit>
+In-Reply-To: <aJAd0k-PGbQJqD_R@dixit>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 8/3/25 10:18 PM, Dixit Parmar wrote:
->>> +static const struct iio_buffer_setup_ops tlv493d_setup_ops = { NULL };
+On 8/3/25 9:41 PM, Dixit Parmar wrote:
+> On Sun, Aug 03, 2025 at 11:20:40AM -0500, Rob Herring (Arm) wrote:
 >>
->> No need specify that NULL. Due to some odd quirks of compiler specific
->> handling and C spec evolution (none of which apply to the kernel because
->> we carefully choose build options) that is actually less likely to do what
->> you want than = { };
+>> On Sat, 02 Aug 2025 12:14:28 +0530, Dixit Parmar wrote:
+>>> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+>>> controlled by I2C interface. Main applications includes joysticks, control
+>>> elements (white goods, multifunction knops), or electric meters (anti-
+>>> tampering).
+>>> Drop duplicated entry for infineon,tlv493d from trivial-devices.yaml as
+>>> its documented in infineon,tlv493d.yaml now.
+>>>
+>>> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+>>> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+>>> ---
+>>>  .../iio/magnetometer/infineon,tlv493d.yaml         | 45 ++++++++++++++++++++++
+>>>  .../devicetree/bindings/trivial-devices.yaml       |  2 -
+>>>  2 files changed, 45 insertions(+), 2 deletions(-)
+>>>
 >>
-> Originally it was { } in V1. Got review comment that it must have NULL
-> if no ops is being passed, so I added (May be I would have asked and
-> understand their point). Nevertheless will remove NULL.
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml: vdd: missing type definition
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d.yaml: 'example' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'not', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+>> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+>>
+> Ack.
+>> doc reference errors (make refcheckdocs):
+>>
+>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250802-tlv493d-sensor-v6_16-rc5-v2-2-e867df86ad93@gmail.com
+>>
+>> The base for the series is generally the latest rc1. A different dependency
+>> should be noted in *this* patch.
+>>
+> I did not get this fully, is this concerning?
 
-We don't need tlv493d_setup_ops at all. The NULL comes later where
-tlv493d_setup_ops was used:
+Nothing to worry about in this case. This is a new binding with nothing
+unusual, so there are no dependencies.
 
-ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-			iio_pollfunc_store_time,
-			tlv493d_trigger_handler,
-			NULL);
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your schema.
+>>
+> Thanks,
+> Dixit
+
 
