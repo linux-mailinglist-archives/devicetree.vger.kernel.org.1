@@ -1,196 +1,206 @@
-Return-Path: <devicetree+bounces-201779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC8CB1AC94
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 04:55:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 426DAB1ACC7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 05:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5F7F1805DB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 02:55:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70ADD17E151
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 03:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0766D1DB92C;
-	Tue,  5 Aug 2025 02:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1268A146D45;
+	Tue,  5 Aug 2025 03:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="W4tLOclK"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dQ7h+RuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010036.outbound.protection.outlook.com [52.101.84.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273DF19067C;
-	Tue,  5 Aug 2025 02:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754362532; cv=none; b=LJmhAJLflYiYdcY+xUo0kdQAG4oi/zTV1PwPbU3JZFzeUAXUxWRxPzYM5VtxEy51IDCM7LIffktw12c1HylT+EggPP6v/Mf502MarhHxKkEw3DDjgLOZUEA0R+yknRtE6gj4ckPePwjmQWmuD6OeFstKVBp+EEYkqMqTnEJRJHs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754362532; c=relaxed/simple;
-	bh=+Oa1SYk7rH7RR7dwTN4cNqhgSPkcTFZqD/QlZ4EoxYY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mv3r6EsIXIL9qWWL09OG8RCHnn8hPflI1uhMkdzInaxyzYSMx/cHLNIHMQ20kL+ly3P5d5nh9YkiseXxqKCMKMKGYIgsK7I5Zb3oo2KN/onHmq50mohHzPjHV6CU+CVufXM2gH2AoTPbwBuys+DPvzszdafqGHu7w7Mw6ybgwqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=W4tLOclK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574E2AWT026093;
-	Tue, 5 Aug 2025 02:55:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	L2lMJIGQ2wZkzoNhGgGAp72JyXMQq+SgmtR2nOQ+WF8=; b=W4tLOclKhFzdJ7TY
-	p1hlSh7RUdotHoFcssmqkAuoB8qHv10Amc08xArT1J2Dt5oVwVng+qD3dkjtLyeq
-	4YYVI+JRUtn/Prz+pcrTnHzUI26B7I2sc5KDB9ngWupi9qLO2kdGlTAGFErOQ9bq
-	eScXdJ+fgd1oNuCzizmljkgxNvsU2ZVvMdHaVIKiicZqOoF/RA3GziLVOrsuYChi
-	8S4pOa1r0Vjt/PAebWZsNYZ18WHOGkZqvwIIqjr/RVKQgesa/Mj9wCkYQgRCHlkD
-	EQyKP03E2kMR2Nh7YDzhxXhWuPPaHe2kXHctUqmWzu0xxwn+/F7seh5PbGQQ+LZT
-	KNtm/w==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48avvu9yeh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Aug 2025 02:55:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5752tFDl016636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 5 Aug 2025 02:55:15 GMT
-Received: from [10.133.33.160] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 4 Aug
- 2025 19:55:12 -0700
-Message-ID: <13cd5f5c-99a8-483b-a722-86dd636e092e@quicinc.com>
-Date: Tue, 5 Aug 2025 10:55:10 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED4E41A8F;
+	Tue,  5 Aug 2025 03:33:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.36
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754364786; cv=fail; b=nDUnYpOvuMhyJlh6srUXzikLIzehSGoWjeNjkkMFvuPATCV6WKc3f7xHvsImvg+4ACP8qGBo3T1/zZIUhVxvs9fwjlvsS29dw6KwXmk/Gv5hx8h+Ub2vu4Cp18bebo3V5nNNmGfXNde6EFqf+CnW9nxmsyoO6jXexltMbuNfLWc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754364786; c=relaxed/simple;
+	bh=0mJp99Zl4WpLwEvFYjLCoYDmgtQZR+S3RC2/78nPuy4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=EnnsAcIEhDPjamoTHR8VEkdJHW8TrVE5jIIgAnCeg6Xsu/PNIIsd1RgEow6ocVd/Z5vJw1hjDyJbv3bxgbJ78oARIMNRoBS+Gh6MQHr5Iyh1kHKksyIwJ9DtiILbUJvtnKAqoMpfvkNkk9dWys4wHWzGgyoU2LXRdvQtlxD6tlU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dQ7h+RuI; arc=fail smtp.client-ip=52.101.84.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HrZzSpsC9a1syTPC7Tl52JYJqdAYRmAFICIc9SjAhSQ8cVx5zw0M2m4sOkMcSBDXZli+mKI0BdSoF08hsYA8HQXYFV1UvtZDw+mMLc7fFoLCwov3KOQSx2vX+ibuNsW9dlo47Kt7QWUtn5g0cfJqbnpgxnwsEeVx9xGhE3jKNx89Z5jzuRw1SRFAu3m4D0pSGJ+27CEkfbgt/OjXLnaQLAANankfVM9TFaPKpZdDgVvKggWYZcA0PAyM5dy258SZ/TVEeON+wwWNUgsgLm3P0rGA8y3d/f630EnVhmyig2gFB0nlKAUidqXEkkMDGDhJZPmDSvPd+u9olce0WiHM4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uhU10mZDu9TEcPQKpZeqsZKzlYSrOqfvxMl2UDkBDnU=;
+ b=RFT2ZuunqUOv99MaUCP5wzE0gCU6c75IbelZ08hZEbV/ts7rpRyO/JW7Y8uDQK8LF+LOf6QWTKoBHColtKpObDEzC4iU+qnPFA+Avy0PArB/yS7GXgiC64hej4VOPO9GohiWUgJZ7q3f3QTCy3JARX1xmYgHoVZNWc0HhC0Uw8519hyaNJAeUCFjK2oFidwpxyR7pm1HNACVXtBBzSuCLIG1apv3142BvxtNa370FP1i0G04lwaDj35RLMfssfKTVrBdTFPik7K6kHcyOXGf59KulKfFC2/fwhAMMhQUWljkBxQVs4CxWU++trwYibcQVR2gG6+/3k0vnYUvpkHsog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uhU10mZDu9TEcPQKpZeqsZKzlYSrOqfvxMl2UDkBDnU=;
+ b=dQ7h+RuIHjO0Ug8DFdw2FXYqhfmXT4S6LEHwYcVA/a4zf8mVIZaIpWJkM4lpo57kuSu8JFQbcqGet7JkBv0rJIt0WNJgGs8naIelUvlb3KScUdU00n/M3Pn5PTfgHbYi2HA5+YrP4VB14OzVumrWJaXhJlzqQo4/wQFtbU+vkvr5QU5McZ5FVgqqCmxOsekAvMmkiItn0qWvKpyPVfDJNabs6oDW1bdoWp4YEyAgr9+aaUj2BQdFRalJmglJ6kGYn2XXt0W+qMiruD44NEZyVotog9z3Sx2dWCL300kgFThb+a92cFxkHAzQxYKTWIQ9bzw0KISpgYlXJrNskl3Ctg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DU2PR04MB9180.eurprd04.prod.outlook.com (2603:10a6:10:2f7::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.21; Tue, 5 Aug
+ 2025 03:33:00 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%5]) with mapi id 15.20.8989.020; Tue, 5 Aug 2025
+ 03:33:00 +0000
+Message-ID: <cc99ab50-64c4-4ebf-8147-4ebca96ccc41@nxp.com>
+Date: Tue, 5 Aug 2025 11:34:29 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm: bridge: Add waveshare DSI2DPI unit driver
+To: Joseph Guo <qijian.guo@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250804-waveshare-v2-0-0a1b3ce92a95@nxp.com>
+ <20250804-waveshare-v2-3-0a1b3ce92a95@nxp.com>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <20250804-waveshare-v2-3-0a1b3ce92a95@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR02CA0003.apcprd02.prod.outlook.com
+ (2603:1096:3:17::15) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/2] coresight: Add label sysfs node support
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20250717125343.3820505-1-quic_jinlmao@quicinc.com>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <20250717125343.3820505-1-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDAxNiBTYWx0ZWRfX+Qr43J75r3TG
- HCF035D1DuIckO3bcKgRL+sDnns8Dpjuu3DCBLmaOMtzWU/CxxJHi6VPwPLwXz1aR6KhMe76gl4
- ByM6iejaJ9vWs9AglB/dkpH4YCNbpFnCuEMITsYrfOoOmn6qV+FWaq2WpHSZsrC96rKJgaABMu/
- IxD8aewS0Msai/tnFXqnbaYrlz9FslrD9KfHfiuOpqUi5G2EWW4vubaYlG9ktrYVzk33Ox0SATf
- LFrqUQFvOdU5hxAcPj50pq8A4ArIunOkjL9TZeV4O9IMkHsAuZwyagsN33BjuCq47qCXz26mTfi
- 37dGhALa6ABhTlYMaUGeZDKq+b72rf2E8xcR+cFiFrlmG9QSVNqnLMXsrK2v1M/OD2+ZzQaC8Wh
- a3cXszeEFSw32dYTVETuuNDJlMjc5OSAUt+8LwwNmoCJ5ntzt2/YbMl8Jjb2KKXWKjostcUA
-X-Proofpoint-GUID: l2AN4s8sIN7w-plOzh3hZP6lef8ODsAx
-X-Authority-Analysis: v=2.4 cv=OYKYDgTY c=1 sm=1 tr=0 ts=68917294 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=D19gQVrFAAAA:8
- a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=z2QAkc51omxNimOJtHIA:9 a=QEXdDO2ut3YA:10
- a=W4TVW4IDbPiebHqcZpNg:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: l2AN4s8sIN7w-plOzh3hZP6lef8ODsAx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-04_10,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
- priorityscore=1501 mlxlogscore=999 malwarescore=0 adultscore=0 suspectscore=0
- clxscore=1015 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050016
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DU2PR04MB9180:EE_
+X-MS-Office365-Filtering-Correlation-Id: 84475c2f-6768-47d1-4741-08ddd3d0c6c7
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|19092799006|921020;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?akFnS0YzNjNBZ3JHRFl0eVdFMER0Y1JZajI2NGFmWFFsUG5kdXJxS0lwVUlB?=
+ =?utf-8?B?ZXdBR00vVjlCZjhmMHVuK0lOUUNTWVZHQTcyUC9OYmZBb2RNbXBVZ0R6elkz?=
+ =?utf-8?B?SU5PdS85QVhiekVQcEtEdlRsYTBXN0Z0akYxd3lTTlRCeEVKM2cydkY0OE1u?=
+ =?utf-8?B?dGxmYVhFM1E4MHI5aVVuUlJ3aHpwaURzNFJSYnpEV05mclo3MjVjdVpraVA0?=
+ =?utf-8?B?Z0pNZm9zUjNoRHpDcEJkeEh0QVVwZExJdTRTVVlVY1d1cFIzZ01Nb3dOQTRG?=
+ =?utf-8?B?cVhjZTV5WFlnWDFQUVpHaUIxWlAvV3hPQVkyRXJVUktSZGFJVnlnZ3V6TFZH?=
+ =?utf-8?B?b21ybUxuaTRZbTF6VkFtK0NqUXgzTFJiZ3NYQ3lsbkM2djI1ODJsaU14d2xQ?=
+ =?utf-8?B?bDlLeU5NbGJJb29NRmNUUnZobm5Ca1ZzcDJYUjZYa1pPL1h5TzVNSG9ZQlY2?=
+ =?utf-8?B?L2VOeDFxdTBYQlM0bFhEUVBtTE0xMjMramxnZnJqL1Z1T0dVc0p5NmJZUG0w?=
+ =?utf-8?B?b1ozbTR6T0pmb1hmTmJJbkxDcUFvajBPOUpSSFdYZ2ttOVc1S2dZeDRiNjVQ?=
+ =?utf-8?B?aXVIRTRwWDJOb3RxdFFSbld5eHUxWDVSOTBMVmFVMVg0bkF6K3B6dUQ5TmhB?=
+ =?utf-8?B?bFlUV2thaFhXSGxnNXNhN1FjZ3ZiWDkyNFcrdHE5SUM3bHpwbjN4TjBDWDA2?=
+ =?utf-8?B?WC9LeThnaTRtVFRYWFJBRUFra2tZaUtKeHY5NHE0RDk3bTRyRGRCaEZha1JY?=
+ =?utf-8?B?WS9BUmZrV1FjbjZqZkwvSXhOcnZYelk0L3kzVzhoVXNvWEhqM2IwMGJzU0dm?=
+ =?utf-8?B?dkdoWnc4V3NtQ1ZCS0lDaTNOelNHTnhDL1k5SGQ2SUYwMEU4WVY2MjlSOW9G?=
+ =?utf-8?B?cHNPd293eXUvZHJsYktHUkU4TEJpNUw5bzdLNzhCck1ubjFGV1N6dExiUlND?=
+ =?utf-8?B?M0daK3gwTXNLdUtYWW1TeWlnZU5lNy9jb2hOQUs2bEpabko5eU00WmVQKzB0?=
+ =?utf-8?B?SWpKVTh6b0hMZC8xWkFBZk8rTjB1ZmZHSW1LVDYvY29ZVk5zT2N4NVlwNXMz?=
+ =?utf-8?B?T1lxWURFQ24xeE5uU3V0Rm5SVWxhazhxS0FsU0NtbEVsT1RjOUZOMmY1eERj?=
+ =?utf-8?B?RWFvSUV5b2gxL1RzTFNUQ1lXb3dPekpuZUZ4aVpTUnU3RFUxTHR3QktOeFhK?=
+ =?utf-8?B?bzJxMk9Lbnh4cGRWMmY5U1NmeHBaQXc2S3ZVWmRWTHRPWTR6WXZ6bGFLTUkv?=
+ =?utf-8?B?YXd0WVJmay9SbnpNaG5BQzN4bm1ObEVYQk1sQTBjUUFsK0FPaFFHdW9vS2xi?=
+ =?utf-8?B?QTk2L2VQbUVIUGhpaHBBa3lDSkl2WEhENGF1SitRUmJyeUhnYnVFaXhHNVUv?=
+ =?utf-8?B?VG9BZUpzUlNmbHZ6eTBPM245YnJIbnFyUEFZZ0g3LzFyejJiQzVIeXNUTTFk?=
+ =?utf-8?B?bHVHdWZObkp5ZEZHWEFOaCs2Z3JSOTdsN2FUVi9OSFR0UlY2b1dnNTNzZzFB?=
+ =?utf-8?B?NXdndzlBQXlSVllDYnYyV2NBM0tSMCtGWXBOZ3lVUW5IODhsRERpWmdBV0Vz?=
+ =?utf-8?B?NmZDUVBaVUwrSWErSkc4MFJORU1HY0NJd0JJOS9KKzJmd0FxVG4wYUtSdmxO?=
+ =?utf-8?B?L3ZwR3p2a3NoN2xTcklmcTBRVWlOOHZHZG8xZzhxQ09saDR1Z2Z0ZHZ2TTgr?=
+ =?utf-8?B?aGJaK0d4QW9sa1llZkc5Wi9BL1VnWnJic0FOR1lkaExUU0dTRjBaalFiVUFv?=
+ =?utf-8?B?Nkd1QUdXTUpBYWhzTWJOS1UwU1REclNpYlpHK2piWlRWTGtCR2tOUHFydmdB?=
+ =?utf-8?B?aGRZYURqTmNKOWd4REJhb0hPMkRQQU9aS0R2ZVNRRit3VkdFRzVVRFZ5bUc3?=
+ =?utf-8?B?VS85dDFhR1VWaFRQN2NkZVF6UHArMlBXZnl6T3VtcXhNZlFTcnlMYUxxdCtM?=
+ =?utf-8?B?aGg1SVpDbktuQzVhSXlieVd5WE1vOXJmWjBVWU9HdXA2ZTZiOTJ0SzM2Nldh?=
+ =?utf-8?B?ODRmWENsVUtnPT0=?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(19092799006)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?andPbWNWeGFxcGRWM2FOK05oYUIvTnAweWlNVEhoV2hLd0x0Ritrd09vQTdX?=
+ =?utf-8?B?b3F1bk9DYkREb2c2Y0VqUjIvZHg1d2piUXVJQURoRmdLVGhRMDByNVkwSGN4?=
+ =?utf-8?B?M2JxeUFsb1J2YnByQkNoYjFFdTRVL05mQWk5aTlZWitYQWx0czMrOHU5YlJT?=
+ =?utf-8?B?SktqSjRmcDZRc1FTTnVqUTRMU0dTOG5qZ1RabmcxTXVwY1M1S1gwTFM0azNV?=
+ =?utf-8?B?Qzhjcy9YVi8xeUNNbXFhS2Z3QnUvQ2xJdHFkMHJaZ2xkajBhd1Z4OXVqeXFR?=
+ =?utf-8?B?NDV6cS9lZTFZblVTNk96NWNnOHlSVkxseSszVWE4ZlYzRWNLZ2Zwc1JiQ2xL?=
+ =?utf-8?B?M3hKamx0SThic3V3cEpQM2FLYS9pYjJ3Z2pLdGl6d0prb3NrcWlkSWtGelFj?=
+ =?utf-8?B?MnNGVVBacFg2bC9tVGNFeTQvVkhyeUJKNDQwM1FKY3pSam90MEVaOW9Ra1JL?=
+ =?utf-8?B?YjZ2emNJYjhxcjZaL25kR2xITDRPUGxjMlp5S0NEMlJCNGQ1bmYwVDZ1ZXZK?=
+ =?utf-8?B?VUtOeGx3OHBZRGVDMXZWOWYyQlZGejJ3eXlxZ0ZFWlVSMVdiZnQrUWJtZk5w?=
+ =?utf-8?B?bjl2OGpHT3d6MGJrU0FERG5tU1RnZmpRdEJOR0ZLRE04d0dQZUlzb0RORnps?=
+ =?utf-8?B?TEw4SGo0N2FLZzV1dC95Z0g0TjhGajZlYmR3dkE3MW95aC9sa2dGaHVLN3Rk?=
+ =?utf-8?B?R2FydnFsTnlmME4vTlNLQ1N3NDJDaDVWRU03bG52bENhdHp3alpyL29lUHpU?=
+ =?utf-8?B?YVlKM3pmWjY5Q29sc1RHaGNuM3F3M0Y2WHUzVDJCdlFhV2NpeWtBUDhUOTJS?=
+ =?utf-8?B?WmhwL0ZKNTFQWEt3c3ZGTU40L3VKeFNwWE05NzlMeHJLOTJBU1RjQloxWm9l?=
+ =?utf-8?B?SHVNMXl5d2E0SUxOdXZiVng4a3BzSFc4ZktkVXhKUmhKclRzVDF1NlUxWnBz?=
+ =?utf-8?B?a1FzNFlMdWROM0ZXc2JnNnF3ZXpyZzdGNHFzcHRZV1QrZXluM1ZkbE1rNUZN?=
+ =?utf-8?B?QTJraGpjT3RTOWZUczk2RFpnT2p2RHAwV3o5Z0M1a0cxT1Jac2Q1TTNPSzFq?=
+ =?utf-8?B?ZmRaVEhvM2c5emVscVEveGt0eFN1amZMMTJPMFBCcVI5dXhIc2NwMHBIYUs0?=
+ =?utf-8?B?cHpsWkxaMDhYbGZ0REk3VnVQRE1KTGlxaVlzYm50TEg2YjNVYnZaZE9jMUZD?=
+ =?utf-8?B?bWowNmp2WXEvSDVmTnBRb1NCQ3NxMXVHQTVBTXkvUXF3UHMwY1dXSmJCUzNV?=
+ =?utf-8?B?b2dhMHNQLy81ZG5OVWl5cm9nNTRVeitPcnMxa3FyU0RUdVNwN3djU0JIRm10?=
+ =?utf-8?B?SDZDSzlZdFU2NXV2TnZ2cDh5Y3RVQmFoUzRwY0JBb3dCNFlWaUl3dVRSMVBm?=
+ =?utf-8?B?MS9SUDhNRHNhcW1mbXY3TndPR0JhQjhjUjRRZ1J1cERxaWlPUGtia21tV0lh?=
+ =?utf-8?B?MW84aENSenFyaHk2TXB6VWl4OURVOEYxRlY3QzRmbWEwcEJTSHBrdmNQY2tW?=
+ =?utf-8?B?M0s1VGszUkZoQnkrS0tRVlprbWZoN0pqVTY4ZTE1WXJOaXQ3YzRGaG9ISVVU?=
+ =?utf-8?B?aDhzbStSeWZBQzNIY2NUMzFScmE1cW1naG1BK1BObTV2TU9xUTNadjE3RWY5?=
+ =?utf-8?B?ckVxNVRWUFpqVmJFVkdLa0dBc2dJMUt4Rm8xdjdHNWRvOVE0d1lmbTRxTHFZ?=
+ =?utf-8?B?MzhwRVdQbDdzdDhRMXhCRjhOeWVTUERTdUVrQ0FEZ1dkaC9IK1FBNTlVYzJG?=
+ =?utf-8?B?cVpKZ2M4czVOVmhJeExXelNiS2k5UldpOFRKOHlFYndSeU02M1l6RTRCL2FV?=
+ =?utf-8?B?NzhiTFR4Z0FScjlUN3hxaGhZRVhraC9BYXJ5dU9yUnpaUHhhejBaT0lQMEpE?=
+ =?utf-8?B?ZWVPM1F3TDFCY0o0UEtZTUNyaURtODBzQnYwQnY0TlhwWU45UFM2MDZwMVRv?=
+ =?utf-8?B?QlIxbnJQN2tOMEt3WUIycU5XUnlWSi9vMnJpSmlJc1k1MHNpRk5kb3pCK2RQ?=
+ =?utf-8?B?VmNtK2ZLRTdwYVpzVzNoS1l2cWhJMitmZXZuN0xPQ2J5bmNUVE5FSWI1cWd1?=
+ =?utf-8?B?QUxlbVF6RVRydmhaZ0tMNkR1aXduMmxma21oRklUbnFiYzN4aUVVQzY4UDMw?=
+ =?utf-8?Q?LRC/xqRf+ZMSftU1Ued+i9cug?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84475c2f-6768-47d1-4741-08ddd3d0c6c7
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2025 03:33:00.1000
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Pfb/lRc05OIR6wPnMTccRJcWaT8P/LENXM1CJxqzn5n15+DeBQm3BKvBBGCbRZl+EGIJGUn6eRyOnyKOiOE2MA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9180
 
+On 08/04/2025, Joseph Guo wrote:
 
-On 7/17/2025 8:53 PM, Mao Jinlong wrote:
-> Change since V8:
-> 1. Add label in all documentations of coresight components.
-> 2. Add control of the visibility of the label sysfs attribute.
-> V8 link: https://lkml.org/lkml/2025/7/3/985
+[...]
 
-Gentle reminder for the review of V9.
+> +#include <drm/drm_atomic_helper.h>
 
-> 
-> Change since V7:
-> 1. Update the conflict when apply to coresight next.
-> 2. Update the Date and version in ABI file.
-> V7 link: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250226121926.2687497-3-quic_jinlmao@quicinc.com/
-> 
-> Change since V6:
-> 1. Update the date and verison in ABI file.
-> 
-> Change since V5:
-> 1. Update the kernel version of ABI files.
-> 2. Add link of different patch versions.
-> V5 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20241210122253.31926-1-quic_jinlmao@quicinc.com/
-> 
-> Change since V4:
-> 1. Add label in DT and add label sysfs node for each coresight device.
-> V4 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240703122340.26864-1-quic_jinlmao@quicinc.com/
-> 
-> Change since V3:
-> 1. Change device-name to arm,cs-dev-name.
-> 2. Add arm,cs-dev-name to only CTI and sources' dt-binding.
-> V3 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240131082628.6288-1-quic_jinlmao@quicinc.com/
-> 
-> Change since V2:
-> 1. Fix the error in coresight core.
-> drivers/hwtracing/coresight/coresight-core.c:1775:7: error: assigning to 'char *' from 'const char *' discards qualifiers
-> 
-> 2. Fix the warning when run dtbinding check.
-> Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml: device-name: missing type definition
-> V2 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240115164252.26510-1-quic_jinlmao@quicinc.com/
-> 
-> Change since V1:
-> 1. Change coresight-name to device name.
-> 2. Add the device-name in coresight dt bindings.
-> V1 link: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230208110716.18321-1-quic_jinlmao@quicinc.com/#25231737
-> 
-> Mao Jinlong (2):
->    dt-bindings: arm: Add label in the coresight components
->    coresight: Add label sysfs node support
-> 
->   .../testing/sysfs-bus-coresight-devices-cti   |  6 ++
->   .../sysfs-bus-coresight-devices-dummy-source  |  6 ++
->   .../testing/sysfs-bus-coresight-devices-etb10 |  6 ++
->   .../testing/sysfs-bus-coresight-devices-etm3x |  6 ++
->   .../testing/sysfs-bus-coresight-devices-etm4x |  6 ++
->   .../sysfs-bus-coresight-devices-funnel        |  6 ++
->   .../testing/sysfs-bus-coresight-devices-stm   |  6 ++
->   .../testing/sysfs-bus-coresight-devices-tmc   |  6 ++
->   .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++
->   .../testing/sysfs-bus-coresight-devices-trbe  |  6 ++
->   .../bindings/arm/arm,coresight-cti.yaml       |  4 ++
->   .../arm/arm,coresight-dummy-sink.yaml         |  4 ++
->   .../arm/arm,coresight-dummy-source.yaml       |  4 ++
->   .../arm/arm,coresight-dynamic-funnel.yaml     |  4 ++
->   .../arm/arm,coresight-dynamic-replicator.yaml |  4 ++
->   .../bindings/arm/arm,coresight-etb10.yaml     |  4 ++
->   .../bindings/arm/arm,coresight-etm.yaml       |  4 ++
->   .../arm/arm,coresight-static-funnel.yaml      |  4 ++
->   .../arm/arm,coresight-static-replicator.yaml  |  4 ++
->   .../bindings/arm/arm,coresight-tmc.yaml       |  4 ++
->   .../bindings/arm/arm,coresight-tpiu.yaml      |  4 ++
->   .../bindings/arm/qcom,coresight-ctcu.yaml     |  4 ++
->   .../arm/qcom,coresight-remote-etm.yaml        |  4 ++
->   .../bindings/arm/qcom,coresight-tpda.yaml     |  4 ++
->   .../bindings/arm/qcom,coresight-tpdm.yaml     |  4 ++
->   drivers/hwtracing/coresight/coresight-sysfs.c | 71 ++++++++++++++++++-
->   26 files changed, 189 insertions(+), 2 deletions(-)
-> 
+Unused header file. Drop.
 
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_print.h>
+
+Ditto.
+
+-- 
+Regards,
+Liu Ying
 
