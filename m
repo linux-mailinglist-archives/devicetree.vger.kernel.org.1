@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-201805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED85B1AE70
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 08:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCAAB1AE7B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 08:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF03C3A60EB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 06:36:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAD353BB679
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 06:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530C721579F;
-	Tue,  5 Aug 2025 06:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD31F21B9DE;
+	Tue,  5 Aug 2025 06:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vOetwG6w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EExD8YAy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2441B1EFF96;
-	Tue,  5 Aug 2025 06:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2BCA927;
+	Tue,  5 Aug 2025 06:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754375761; cv=none; b=O0FDRK5iLmgxabfgz67XDgEKv/q1vmWQw3Ihe6BEs9O1F622o4AOYK/ea2no/+mFeKULjFXodpGQETPjYuznXX6h0mmdUK38WlmKZ+7BPpIrfI7IZDVpGbaA7m7Y/YvUv9u5CmO8Juzs3ral7x1XFQQ/6ntiFAnqpZcHykUC0mM=
+	t=1754376003; cv=none; b=PtZxElX4h+7XqiXwXy9sreqcfyY/JQa5z3GdlGNoUPmZPoFyDXK5NYvfXE9pfz7bLA8W9rjmxRtEQYLjeQQl7o15OzUHGkdd7N09suH0shqWB2MOPlGApjsgcb6SfweMH+nKFfNecngXU66XdHvGrJuGhsrlO3mZjH6P0cMQxgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754375761; c=relaxed/simple;
-	bh=sIHPITH9zG/L0PbzCUmZDWaszbXx38hkA/bHt1tkCsY=;
+	s=arc-20240116; t=1754376003; c=relaxed/simple;
+	bh=y43eChycutdYzUFJz6MO9DSyRcPKyMzwMzBdeUn8eDg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fKo2Q3SkqQQVFmEd7JuPAzOq0iv0O/bNfnxNLuSiaE1Jl3XuvOSUPjgnBvTMVU4C7oOwCJXdTFQRcWXJHyRaOGE9UixasiUq7OsYNYi4TQCGCGgJtsWyZq7w99Paq6WkvfBFgQXkMeMLAWlN9wY0PA+hzMWdOmet1PE3YQ7dTXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vOetwG6w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEB18C4CEF4;
-	Tue,  5 Aug 2025 06:35:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FwAbjflXEPABIEcffvj4saFaQmrMw6uurj7PqMm1X8uLd46BXCXOIDuFzwIqNw3kXBLWG5u+muvKR6z0jmhwlO8prBzVtr9HpFjNq1yIegz3PrIHv6M15Qd7VPL4wvVJdGzBY3AMglS2H9bmLcZxMF9M4x5katL365tHyPmMuGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EExD8YAy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE1AC4CEF8;
+	Tue,  5 Aug 2025 06:40:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754375760;
-	bh=sIHPITH9zG/L0PbzCUmZDWaszbXx38hkA/bHt1tkCsY=;
+	s=k20201202; t=1754376002;
+	bh=y43eChycutdYzUFJz6MO9DSyRcPKyMzwMzBdeUn8eDg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vOetwG6wjPaFORrkROIrDOatq5ormVU2vdtjv/cTfRt7ABu2cGpYaG7vuXplt88PO
-	 eKnp/n+o346f6/YG8oB0r+bYIfWKNkbsnmX+moad9d9FBnPPpmHy/EUXFx4NgLHNtx
-	 ucu3PxmCL14qKSC1XJlI9SENNJMRxUivtYlWFKW+ongQ7WgRYC9uAtSV41x2PE8zHP
-	 m/Lz5HNXUpJPaTn7ZgTHnrUFAF8qwvfwH4HGRn7Vrm+Z+7NUxXbpxVBjhaL/zzqzdc
-	 IQfC4RvRWmK8w2Hq2+tZKGZ9PNcDLQCQ/t08gO4s/GcwGBq4BWIthFB+6lAEzlJ+jY
-	 BGGAuyxnJFixg==
-Date: Tue, 5 Aug 2025 08:35:58 +0200
+	b=EExD8YAyPy4IntVrNv5HTw9a1S6WReOOAccYEoeuwQqzW9g5z9BuZfedX6pSz20zP
+	 orXKOtidCIjP+kxPbYY1e+lLSNgDfrKR+/EH4KPG/xXnptdo1zMWniyJoNRxMjfkYg
+	 CWQXzDHySZnCw3Q2wzVl7TrIFgUQ9Mas0WBCPbOrGDc2aFYQqjFCCTjqgnmS9chBOv
+	 75eseopcjBLp7ptbCoiV59ighwvz9ClTA/cbuw7Tf9Xy1rORgy4EZQ3wZEigiL/HyQ
+	 RAHNiLuvfWa4B6R5/qyDoYmeJEfeTsSgYCt4V3OnMiQCBhjf1xAzIgyQB9mB2JrGBq
+	 d+54i7k65Ecsg==
+Date: Tue, 5 Aug 2025 08:39:59 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, devicetree@vger.kernel.org, l.stach@pengutronix.de, 
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: display: imx: add HDMI PAI for
- i.MX8MP
-Message-ID: <20250805-realistic-hawk-of-merriment-f84ef2@kuoka>
-References: <20250804104722.601440-1-shengjiu.wang@nxp.com>
- <20250804104722.601440-2-shengjiu.wang@nxp.com>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Jisheng Zhang <jszhang@kernel.org>, 
+	linux-riscv@lists.infradead.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2 1/3] dt-bindings: net: thead,th1520-gmac: Describe
+ APB interface clock
+Message-ID: <20250805-portable-jasmine-marmoset-e34026@kuoka>
+References: <20250801091240.46114-1-ziyao@disroot.org>
+ <20250801091240.46114-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,28 +67,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250804104722.601440-2-shengjiu.wang@nxp.com>
+In-Reply-To: <20250801091240.46114-2-ziyao@disroot.org>
 
-On Mon, Aug 04, 2025 at 06:47:17PM +0800, Shengjiu Wang wrote:
-> Add binding for the i.MX8MP HDMI parallel Audio interface block.
+On Fri, Aug 01, 2025 at 09:12:38AM +0000, Yao Zi wrote:
+> Besides ones for GMAC core and peripheral registers, the TH1520 GMAC
+> requires one more clock for configuring APB glue registers. Describe
+> it in the binding.
 > 
-> The HDMI TX Parallel Audio Interface (HTX_PAI) is a digital module that
-> acts as the bridge between the Audio Subsystem to the HDMI TX Controller.
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC.
-> 
-> Aud2htx module in Audio Subsystem, HDMI PAI module and HDMI TX
-> Controller compose the HDMI audio pipeline.
-> 
-> In fsl,imx8mp-hdmi-tx.yaml, add port@2 that is linked to pai_to_hdmi_tx.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Fixes: f920ce04c399 ("dt-bindings: net: Add T-HEAD dwmac support")
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Tested-by: Drew Fustini <fustini@kernel.org>
+
+You cannoy really test the binding, except part of build process and we
+do not consider building something equal to testing.
+
 > ---
->  .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    | 12 ++++
->  .../display/imx/fsl,imx8mp-hdmi-pai.yaml      | 69 +++++++++++++++++++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+>  .../devicetree/bindings/net/thead,th1520-gmac.yaml          | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
