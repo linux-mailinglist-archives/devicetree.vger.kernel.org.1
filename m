@@ -1,131 +1,114 @@
-Return-Path: <devicetree+bounces-202032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C923B1BD7F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 01:46:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A1CB1BD8D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 01:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CFEC189A011
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 23:47:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4017182A3D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 23:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD1E26A1A3;
-	Tue,  5 Aug 2025 23:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319542BDC32;
+	Tue,  5 Aug 2025 23:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="w2Qiwep7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED0422D4F2;
-	Tue,  5 Aug 2025 23:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994DA29C344;
+	Tue,  5 Aug 2025 23:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754437596; cv=none; b=hDsyEQO9WRY+ciq/7x35ZAHQz1MyNXLkLren5oDYhIymhSIqJH6v/KVYXd+3sx+R067yVgrn7XToyBQKBu/STT1CQPEBN8YNTB15A6Us0bP8Yh3UcjNn1vArfsOt9Lu56SDgxj9osWSacAfd0bpULG3KP/UP9WCD3qqWtJIg2zk=
+	t=1754437809; cv=none; b=fuxqqIzPkF4LZgDGH/F0i9Jdrd+IJ/yAZNQRSLsA1saFnkXZVEOe8HaDoVnIir7tnsRYdKWDnNUXaWvp5rj9i6Ui4KtzacGPVH/9C7zvBLmiXAk+l7UU7MlPgBRMOTIlXuLhF+IScCcigebP65rlvvkeDMkF4a3C0ATLE8rS/mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754437596; c=relaxed/simple;
-	bh=w4z6xFQYkr2sNj97KT129xjharVtY+vWjsTy7fHWazI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3GGEfRwTldfs78CQD5SJPFXgMD9JMF7tVobtHDDsbuUKzNZ1mdI2mNwLdwwfROhE2RuFJTmGK704tJ8Q29gpHlqtM1qaPQB6WEBADeqGAqcZo+4U+2AXwkhTF0esp1ZzcPWk5yc1OeLJygbQiEqm1n+A7NA5j60JQNPh//mzeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.147.33])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 7517F34072E;
-	Tue, 05 Aug 2025 23:46:34 +0000 (UTC)
-Date: Wed, 6 Aug 2025 07:46:30 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Alex Elder <elder@riscstar.com>,
-	Haylen Chu <heylenay@4d2.org>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: Re: [PATCH v4 0/2] clk: spacemit: fix sspax_clk
-Message-ID: <20250805234630-GYC937575@gentoo>
-References: <20250805-k1-clk-i2s-v4-0-038181284dd4@linux.spacemit.com>
+	s=arc-20240116; t=1754437809; c=relaxed/simple;
+	bh=QoFut0sNVspIKBsVRbd5bf7YRdyQU5XMw1QWasF1wJY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ij2QrvObLEqKGBHwDeTvXQZzTTiTWZOwqIX24QeBn6jfcD12ZNlhse7Oy1l5kdiZpKbHrIR7DsRQ7wta9Jj0TlCahFBHByvqJVl7ni87isKq6f6njH9iXGIZgRbe4cqp2lit8hhg5ROHxnenl71KJufItm0phRYVSEXsPqUXDxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=w2Qiwep7; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 575NnpKh4185345;
+	Tue, 5 Aug 2025 18:49:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754437791;
+	bh=++94R41tQyeJMdud8WPd0oi+7jsV3EpN/nsCDMPrqME=;
+	h=From:To:CC:Subject:Date;
+	b=w2Qiwep7h4n2O+tFZMAhFUwlz/41MguqHiKzfPVXbZcznSLPSmM/1qapo2t2ePHRd
+	 q2sEw508wmFZD0lmkDHgNuumaqBp0ChVC9QYUn3o4x30f+mL9tmz2y3K6HLs8FMJwi
+	 K2hQnxAtXhioMzZMH9bM4wmlOx5Jn+xbGXVNqo/s=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 575NnpPu3796004
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 5 Aug 2025 18:49:51 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 5
+ Aug 2025 18:49:50 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 5 Aug 2025 18:49:50 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 575Nno6m2624898;
+	Tue, 5 Aug 2025 18:49:50 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Adrian Hunter
+	<adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Santosh Shilimkar
+	<ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>
+Subject: [PATCH 0/4] Add support for AM62P SR1.2
+Date: Tue, 5 Aug 2025 18:49:46 -0500
+Message-ID: <20250805234950.3781367-1-jm@ti.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250805-k1-clk-i2s-v4-0-038181284dd4@linux.spacemit.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Troy,
+This patch series adds support for the AM62P SR1.2 silicon revision by
+adding logic in k3-socinfo to detect AM62P variants. Also update binding
+doc to account for second register range GP_SW.
 
-On 21:01 Tue 05 Aug     , Troy Mitchell wrote:
-> In the SpacemiT public document, when the FNCLKSEL field of
-> the APBC_SSPAX_CLK_RST register is 7 (3'b111),
-> which is a reserved value. And BIT3 of the same register is
-> a reserved bit.
-> 
-> But the documentation is incorrect. In reality, the value 7 (3'b111)
-> of FNCLKSEL is not reserved. Instead, it indicates that i2s_bclk is
-> selected as the parent clock. Similarly, bit 3 is not reserved either.
-> When FNCLKSEL is set to 7, bit 3 determines whether i2s_bclk is actually
-> enabled as the parent clock.
-> 
-> In all other cases (i.e., when FNCLKSEL is not 7), bit 3 has no effect.
-> 
-> Importantly, whenever FNCLKSEL is set to 7, bit 3 must also be set to 1,
-> otherwise the selection of i2s_bclk becomes invalid.
-> 
-> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-Fixes tag get lost when applying this series, please move to patch [2/2]
-or apply to both of the two patches? (I think it doesn't hurt)
+This also disables HS400 support for AM62P SR1.0 and SR1.1 in sdhci host
+driver and enable by default for AM62P SR1.2.
 
-also, please rebase this series once 6.17-rc1 tagged as currently patch [1/2]
-can't be applied cleanly
+Tested against AM62P SR1.2, SR1.1, SR1.0 and AM62X SK.
+Log for AM62P SR1.2:
+https://gist.github.com/jmenti/5d06c60a94104a476eda9371ab6c7f37
 
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> ---
-> I sent with a wrong email so resend.
-> ---
-> Changes in v4:
->   - add comments
->   - add tags
->   - Link to v3: https://lore.kernel.org/r/20250731-k1-clk-i2s-v3-0-2f655ddb0c6f@linux.spacemit.com
-> 
-> Changes in v3:
->   - Fixing ABI-breaking behavior
->   - Modify commit msgs
->   - Link to v2: https://lore.kernel.org/r/20250722-k1-clk-i2s-v2-0-2f8edfe3dab4@linux.spacemit.com
-> 
-> Changes in v2:
->   - Use virtual gate instead of new function for sspa
->   - Add Suggested-by tag: Yao Zi
->   - Add Fixes tag
->   - Link to v1: https://lore.kernel.org/all/20250718-k1-clk-i2s-v1-1-e92c10fd0f60@linux.spacemit.com/
-> 
-> ---
-> Troy Mitchell (2):
->       dt-bindings: clock: spacemit: CLK_SSPA_I2S_BCLK for SSPA
->       clk: spacemit: fix sspax_clk
-> 
->  drivers/clk/spacemit/ccu-k1.c                  | 29 ++++++++++++++++++++++----
->  include/dt-bindings/clock/spacemit,k1-syscon.h |  2 ++
->  2 files changed, 27 insertions(+), 4 deletions(-)
-> ---
-> base-commit: 733923397fd95405a48f165c9b1fbc8c4b0a4681
-> change-id: 20250717-k1-clk-i2s-e4272f1f915b
-> 
-> Best regards,
-> -- 
-> Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> 
-> 
+Judith Mendez (4):
+  dt-bindings: hwinfo: Add second register range for GP_SW
+  soc: ti: k3-socinfo: Add support for AM62P variants
+  mmc: sdhci_am654: Disable HS400 for AM62P SR1.0 and SR1.1
+  arm64: dts: ti: k3-am62p-j722s-common-wakeup: Add GP_SW reg range to
+    chipid node
+
+ .../bindings/hwinfo/ti,k3-socinfo.yaml        |  9 +-
+ .../dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |  3 +-
+ drivers/mmc/host/sdhci_am654.c                | 16 ++++
+ drivers/soc/ti/k3-socinfo.c                   | 82 +++++++++++++++++--
+ 4 files changed, 98 insertions(+), 12 deletions(-)
 
 -- 
-Yixun Lan (dlan)
+2.49.0
+
 
