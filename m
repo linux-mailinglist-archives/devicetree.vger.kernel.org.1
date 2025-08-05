@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-201914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC24B1B368
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:29:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EE5B1B371
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 14:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E8703AB23B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:29:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AA8C1890B98
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 12:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8902701DF;
-	Tue,  5 Aug 2025 12:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6D226F44D;
+	Tue,  5 Aug 2025 12:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HdKbrHzG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zSvRNnnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9830A26B2D2
-	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 12:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F57B1DFFD
+	for <devicetree@vger.kernel.org>; Tue,  5 Aug 2025 12:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754396937; cv=none; b=e/dbE7GhxjejPS9CloMfBxfoxTNTU14YafnVY9y1Lxmkgc8BNgJ+s+4YFy7K/ggdqaojd5mlALCbgKnPtaHNMYmo1Ery8OJIybD1LlGLdViVeEk9EfDLbqknOj2Oofl/MZV0mDcPepMuVUZDHvMPb+MiqoRpraen6UEZq4Pl9O0=
+	t=1754397029; cv=none; b=FPdKRcF6qQ+0ac88uagsqjvwdUCwMZiSKBJ938UFWcTcXkgE71CX0BhF5m95Qt89DaDQyuUzJ+x3Xhbt5SnXiCW1KenEXEqUVLtycHbwxuBIVd7C/VFyDe4wWw52UoE5mWhNPDFWyM/wOWC8e45EYJ9n0z2gc0rKHrrManEWKi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754396937; c=relaxed/simple;
-	bh=tNplBE4E2NM1jt0AGyio97MrBV+ORT9HliebtqMQWH8=;
+	s=arc-20240116; t=1754397029; c=relaxed/simple;
+	bh=ZJz0tNNkvUF1Vc8YVUZwxnG597hpAdWW2evUVrgmEWE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q2zMvE8wq0r03q0HCDJlNgFL9PR6LV8YzBijyeJnRRdn+PMajjvNFyPz0XbQP5AMH+/z6S4rv9ilmvAjLOwIj/QZ+zm+QbpRlSh6i622e4t25UsGnUeGN6fNM567cAjtme9oMI24vnJ1r3mtk+eNJW7Ol4mVuo/0a0uQ/5Anvyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HdKbrHzG; arc=none smtp.client-ip=209.85.210.181
+	 To:Cc:Content-Type; b=BlR4XiUSuhTcIVyU14jfE8q1Fj/a5jN5v2Bwo8cBtQN2GLYj8RstkwxqofFrpQbVul0v4fPlunMkhJhrZWU3U5WDOi16nLw5DVFo9s/jc61gPejlMumB+Rk2hE8dk/O5CATWw2UdsmSgmsAozLXMgRmN05eWEZ9h9S0r1BeLBHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zSvRNnnw; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76bd202ef81so5998043b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 05:28:55 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-76bd202ef81so5999455b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 05:30:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754396935; x=1755001735; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1754397026; x=1755001826; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+p+3kxq3ntOlQXSdZIEKvX59/vh/dnjsv8DSeV6UdvM=;
-        b=HdKbrHzGtIHnyWhrcN2aDskBzVwQuQ5Lv+nliFZOlixpST1bFofsZYqJ+j5VypPWcf
-         hG/TPaUoOgi5VswDEFZoysNqtvR30CCsgUCV5lP0637jhsJpONGWNkWXp/O1gwk5ssZy
-         6z2euehveNeCn5K5jYYmEZ/he98aZwuaFk/+7pn6w36wfB3jAZJIunA640u5TxGB4Gc+
-         6izf17IkBhceA3wCx3P5PR8woUKcCYc+zMMzI2Ww5dYQcaQgadi52CzY0oeXwE7QgEpF
-         2IN8PAzIcnuAMnaY7l8L/X+ORsqBvhKwCZhBLgZYo8ZsyMDyu5L1ToumVwqqC7h+lDKs
-         icJA==
+        bh=u2ob3i08zLMGbbPJV+x4UsT8JaLRG3gVzUr6pbYBjtM=;
+        b=zSvRNnnwWllQWS2mkVmWd1qKs2o6dBrLEmnVDS4Bua7Gq9vU2pfgh3kZsHotKVbHs2
+         sPEsXxtj2U0mANUQFrSNmuPzNgrM3GgmG1A634YQWELuPH96lCBXbMwoNEWu0USV9U8n
+         x+KtyIHbviQjV+Z7RfH7PaNroPs+O/pIHEiBSXD0yT6e5K3vMESptleGPV5ix9shG2Nk
+         siFCOWPR2zVgVAV+45hiz8BAEZ1N1Q2jmUW0mKj3LCzQwy5yP6FtrodAmsGrqYV7OJHB
+         iMMNxA+dmo68QHO29SW9RR7jR/8C7RlpIjsaT38sszlqmAEm/12yQUyKMhPm61yO0RCe
+         4ecA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754396935; x=1755001735;
+        d=1e100.net; s=20230601; t=1754397026; x=1755001826;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+p+3kxq3ntOlQXSdZIEKvX59/vh/dnjsv8DSeV6UdvM=;
-        b=qq8bhs0DnmB6Ed1npv7pAyqi8WuZIjcWty6l0w6S8du2HGZz46P3glpGR7Ic0cebBT
-         HBgRNaf+IVPA7ycY6Gf4+QEwrmEGpq4FQ8fwVANcTyf5A3wgpPcNCftSRHLpfb6ocyU3
-         CSScAHShcLqlDwDFCFNxrJE5TwZarV/VDp2ZxkcIN9mc3pfQ/cRPL/vOynUZ9DxM1bWL
-         /P4+imvqumaGVNzFRLytW9F4UhyobbithMVqENaI3VkU47Ej6tAfzERcAZ2vc74H1ctb
-         H1QM0RAsijF8aSLPAn6FzusEKsUsLItRjS9O5AmRD10aXUAVRdgd6yuD4vI6LpBDxaYg
-         Yg9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUuYCB4FPF2AWrdM7Ma0uzgfh6V4k21SKOJndr3nYkY/ccivvTGn4pqL7h53N/7PAmK6vcv4N69UXd4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+JqbAvxfMQG4nAyx7KYfXJs2ZE0OcEZRclHT2iwVPvl97CACV
-	HNlUaZa/vTq0Vy7F2V87YEI68H0MDYeXdQtzbyd0XymE4vjK4Bhou1bA6O1DJ34uoCVkmx44h8d
-	3Jg7GarlmxYOtFXZRiyv+ND0yKIQdeEAyHiDr3phoGw==
-X-Gm-Gg: ASbGnctwsWlIVuFD5iMdY5UjF2FLqhPL6gNV0VyNwkc8pMNwinZ5D/zLOtCztGJVj1X
-	sJvdqk7eDZyavCPal9w5rjjjM24NiqNqO9fgSOlfgrAaf/fUreP4ILo1ml9bnavEUoMt8gFwCnu
-	4yzYPdmMxffl1w/oS3ue8vUyog6MJtI7NzhR3ceml/hWygx9fiFXpVtJEYkYebMRDt8VJay0PQ1
-	rrBSQ==
-X-Google-Smtp-Source: AGHT+IExvJ4N1aljdcQ1wuCSC3UpK9yzFpm/S0FUzyPbPH6TNyJqC4OGMrFOG+eOwOOVTv5X+OTdnmr6+Qic86Q26FY=
-X-Received: by 2002:a05:6a00:21c3:b0:76b:de63:4341 with SMTP id
- d2e1a72fcca58-76bec4f3eaemr17001782b3a.23.1754396934498; Tue, 05 Aug 2025
- 05:28:54 -0700 (PDT)
+        bh=u2ob3i08zLMGbbPJV+x4UsT8JaLRG3gVzUr6pbYBjtM=;
+        b=wWPhIbLiDRLeIpiRuw+ipJnITP8WP3JBx5Kt1PNkvXtDFDTh4MozAiDeu2xDN5if/V
+         ydbluZBP1J6j3plDfkqwpP6I98k7an8L1jRiUyEgEKfdByTbiX2iEQ8xNaHZmGBo/eS7
+         gophMzwKTJuveBlT+KXXucmMEQ/n1uYDr7zhItJIM4qlmyC7w4+18pFaeMxe+F1FzFmE
+         8f1fCW01E/k27CzlnG8+bxCvPf9UCsN5WD9LtpMkJPa+OQPjvedEZSPYVSNmspyaP5eg
+         kuwlpLQhz4M7AGr2GhLquqAtkrCxb6uha4JjjJcgc5oGjaJ46tcU/1l8oL/fG6B88nZh
+         S/XA==
+X-Forwarded-Encrypted: i=1; AJvYcCXfvFVW+ik7jgT1J4AR5Gu6FKgpwAD2TQT+l5yoDKTz1FDzH69JdZkooIXCDOMRg1eT7MWd6u07Sb6w@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTMxBZn7kizR4wdt8gwizMBp7ciqoSw0Bys2D5opyplOJi6SoP
+	UqKVCzHyQB71lpyUn5VouDt2uitA2jPUNHso8U+FfTz6xXAXXJfewg16G7REp7f812rHW5B6vYV
+	pUS7yi4f+tWlScM4OvRk+f2kbQXqlSBx5gO0fkpcnzw==
+X-Gm-Gg: ASbGncu27kytmwrh97k/xW8pwTnPfuibdkqFAEbhB2cv5A8SpOiIXjrf2/bU1vQW/6f
+	zsS853vSP22zsrUwBjjtQXhBaQa1KQy4+RDE4L+dbxo8LhA+8M1y+osXM+1Rbzay9tni3C3ILBn
+	L11SCuaeH6bpgFTrA82kYg45gw54hdbdMQkKlBI3k5cyS9+piH7K0imIJUPy/e2cmdX4qLHFfM/
+	ZRMYA==
+X-Google-Smtp-Source: AGHT+IG07ByK7vPtNDPAezjfjStcLbJ8lUJFVAVvDENQfYbYAPX0NPP/UC9e1+u8wnpzRfxKRdU83UiM5oeocg1jgoA=
+X-Received: by 2002:a05:6a00:ace:b0:76b:e868:eedd with SMTP id
+ d2e1a72fcca58-76bec4fc0bfmr16869805b3a.24.1754397025608; Tue, 05 Aug 2025
+ 05:30:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,9 +77,9 @@ MIME-Version: 1.0
 References: <20250725100806.1157-1-jie.gan@oss.qualcomm.com> <20250725100806.1157-9-jie.gan@oss.qualcomm.com>
 In-Reply-To: <20250725100806.1157-9-jie.gan@oss.qualcomm.com>
 From: Mike Leach <mike.leach@linaro.org>
-Date: Tue, 5 Aug 2025 13:28:42 +0100
-X-Gm-Features: Ac12FXwYp4daB8lz5LB9vGwAGirh3SOTL_q0uxZYc7ZOfj216c9w3BrZkoxGXog
-Message-ID: <CAJ9a7Vhw22ZoDSUced4tpBUx-Ej+8njQa+Z1SVGfyesMh-ChRg@mail.gmail.com>
+Date: Tue, 5 Aug 2025 13:30:14 +0100
+X-Gm-Features: Ac12FXzhAbwcmWH8YH5Gri0KwxI-ciY9ES_IFaBVtdo9nO4aocbHgsFn_WqCcjQ
+Message-ID: <CAJ9a7Vi8qpHH2SjmKNjgeY4gdRXY9wnQXhkjN71EcbYSKqayuw@mail.gmail.com>
 Subject: Re: [PATCH v4 08/10] coresight: add a new function in helper_ops
 To: Jie Gan <jie.gan@oss.qualcomm.com>
 Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
@@ -154,6 +154,15 @@ On Fri, 25 Jul 2025 at 11:08, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
 >         .enable = ctcu_enable,
 >         .disable = ctcu_disable,
 > +       .qcom_byte_cntr_in_use = ctcu_qcom_byte_cntr_in_use,
+
+These ops structures are for generic functions used throughout the
+devices. Do not put this function here.
+
+This is a specific ctcu helper. Make it external to the file and
+declare it in coresight-ctcu.h
+
+Mike
+
 >  };
 >
 >  static const struct coresight_ops ctcu_ops = {
