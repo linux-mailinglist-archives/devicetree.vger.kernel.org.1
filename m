@@ -1,202 +1,283 @@
-Return-Path: <devicetree+bounces-201832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-201833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF1D4B1AF2F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 09:10:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 040FBB1AF92
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 09:46:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DED52178F5B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 07:10:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A163F3B0D4F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Aug 2025 07:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179A7230997;
-	Tue,  5 Aug 2025 07:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFDC1EB5FD;
+	Tue,  5 Aug 2025 07:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="no8kx89s";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="glCnyA+f"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="W0MHZPoW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1BD122F767;
-	Tue,  5 Aug 2025 07:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1522A932;
+	Tue,  5 Aug 2025 07:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754377837; cv=none; b=Z/dvl4dVYTJkIWat3uoKvhJzB8nNGe8Y+dKWN+deKcwBFx6BOI/ziykr0lXMEN3/lKThups2O/sQXa/U2qbYLAd+sg8enSrjH9PwnRbnh0/XZWgpaLC6edGnqflY8xajdv3BdCvZxPrZ6WVtO9dbYNH/qh6ddE2BOLUSENs2ZWM=
+	t=1754379969; cv=none; b=cV0c6E64B4wmoT9Bh/ZIjhNO6aLeLZ5mojVnOjgjRXmGFiPWtrZv0yoEuFHCUNduRp9+sX2qXwGsbYp6OLMKyv/y4UaJ11NFi8AeHhwCqjS3wIz7A9OWeiXnChnweOmab+BpBXtKS+OuZgzMkzn2JINS4vMXS57QyGZGFwHPQX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754377837; c=relaxed/simple;
-	bh=zSNJZOZFX9hckn6mXpstET/OnFkhJk3WprzXlL1fO90=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BfC91QNjalsVhlNf3SAZbLTTj5eVjHVzzfAzvbKhkHoLHi6v2/Ai+HPv39Ygxt042LxdkLkN7RLssX0APaqhXQUBvonMpAvpDGESImIBfRowVGULO7JO/dMkBeRzsq+bdWs1cIxKOWGTUEqLgglAySNf12m5XU456TzBrvTcxPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=no8kx89s; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=glCnyA+f reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1754377834; x=1785913834;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=EeUMDc2WntfI8A+x14TyU5FunBo17nAG01EM1yXferM=;
-  b=no8kx89s5PZc+b4B/nUvwtfJd1Kmdx7gyIqnya1Z2cqlFAL0drVGYhUb
-   jaMl4glCh8BdzuYpV9Keej0JSzH15k/YuwS3eI/fyjoFQGi+xxYGAAPlo
-   hD/vGIsDx95FuSixJvBZxE83zKL2Sh1BT2yJTa3uNxE82MHDdGBYv2nLO
-   clZn6/2Z+Fpf0QYKNmMPBFqwYpQchmGuGHdXmn9L22PZWQ/ixzvfNrPPk
-   RmIxQgcbKYtqYVbYwKmsWZILaedH6Lvx1LTwtI30czE4nwWjQuuNChzZa
-   FUmmCExwDr9gW4X9TkZafDR6FPWmm9j4FfkAZ8q7hGkwOQR0csFH9dNEH
-   Q==;
-X-CSE-ConnectionGUID: 8OggMXCVRb67Yq9VaFkfPg==
-X-CSE-MsgGUID: 8IVFNqAAS7ej/ExTuYvMvg==
-X-IronPort-AV: E=Sophos;i="6.17,265,1747692000"; 
-   d="scan'208";a="45583489"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 05 Aug 2025 09:10:30 +0200
-X-CheckPoint: {6891AE67-1-D4215818-E44699D1}
-X-MAIL-CPID: 2D3DFB7860E93CFACCD9674F0CED3F89_0
-X-Control-Analysis: str=0001.0A00210F.6891ADD9.008C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8BCE91726E2;
-	Tue,  5 Aug 2025 09:10:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1754377826;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EeUMDc2WntfI8A+x14TyU5FunBo17nAG01EM1yXferM=;
-	b=glCnyA+fmdYQNcL4hjR8TMji7ODikkmnhi0R1O5XQKeNugloKyyvHZQ83XwJsYjuB6+8Ae
-	1udmhwtm9IlRZMmkW5O1u4TvP2X52nDpukEcApOm7q1jggNxlhFiQhYMnuxkCUJjAVr7Vn
-	tfIQBcOQ7fdpjlqABQzQMMWOql2v0VjnXLsJ2ofukHDzU+/Pw5YpmRrN/NdoFKg1UVpgJB
-	yKrDxvf9s14PS8vHOXhKatmVvMjbNox2QiHoGEdtuIblD/2y4CEOtq7+KQPObM2JexudQy
-	Ov1xWntFqW8YSfXdMs5lUCO5+PAVsG9gunueaE/fPDP386+Ov+rHz04r9B8CsQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
- cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org,
- l.stach@pengutronix.de, shengjiu.wang@gmail.com, perex@perex.cz,
- tiwai@suse.com, linux-sound@vger.kernel.org
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>
-Subject:
- Re: [PATCH v3 6/6] arm64: dts: imx8mp: Add hdmi parallel audio interface node
-Date: Tue, 05 Aug 2025 09:10:25 +0200
-Message-ID: <1932645.tdWV9SEqCh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250804104722.601440-7-shengjiu.wang@nxp.com>
-References:
- <20250804104722.601440-1-shengjiu.wang@nxp.com>
- <20250804104722.601440-7-shengjiu.wang@nxp.com>
+	s=arc-20240116; t=1754379969; c=relaxed/simple;
+	bh=gnPMY+bjgJHtePly1Zpr7RSgl4DEQB09mIpl2nUlJXE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cj4FUAqK0XvZY0IXGPiDXizyW3EYS9HAgNqvNQvSXbvtYfNcfwPNnDlRKsVdmAVUpK4T7rfs2RPo0zGM4jS2FXk2/uynj0yUr1+LQOfywmgy+tHpu5vGSxbp8Plrb1KTSISIXeDIprxo5eoLfwmhSkdp684vRgg1e/+jVMCkLCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=W0MHZPoW; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5DE7E3997;
+	Tue,  5 Aug 2025 09:45:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754379914;
+	bh=gnPMY+bjgJHtePly1Zpr7RSgl4DEQB09mIpl2nUlJXE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W0MHZPoWJxeiDNr6pGXUIx4n+v9t1ZJcFgrD/YrMJtreLAP1CEpy3rPggTEH0sZXe
+	 drIdCgE8tK0tQgE/QCvUkfjlMVvh+t9V0+Ny8PSAzSabBY84DuvIyD552iNxIaUFxg
+	 lFUun0GQ8vzCJe54NIT4sIjGAd/mRhCVb1lRvkc8=
+Date: Tue, 5 Aug 2025 09:45:57 +0200
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com, 
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, 
+	kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: Re: [PATCH v11 01/19] media: mc: entity: Add
+ pipeline_started/stopped ops
+Message-ID: <wgve5k52jxfiscon77trvg6iyyc3k7ud6agz7czydgefmbvpha@56jbro6w4yqa>
+References: <20250714-c55-v11-0-bc20e460e42a@ideasonboard.com>
+ <20250714-c55-v11-1-bc20e460e42a@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250714-c55-v11-1-bc20e460e42a@ideasonboard.com>
 
-Am Montag, 4. August 2025, 12:47:22 CEST schrieb Shengjiu Wang:
-> The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
-> Audio Subsystem to the HDMI TX Controller.
->=20
-> Shrink register map size of hdmi_pvi to avoid overlapped hdmi_pai device.
->=20
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Hi Dan
+
+On Mon, Jul 14, 2025 at 04:06:27PM +0100, Daniel Scally wrote:
+> Add two new members to struct media_entity_operations, along with new
+> functions in media-entity.c to traverse a media pipeline and call the
+> new operations. The new functions are intended to be used to signal
+> to a media pipeline that it has fully started, with the entity ops
+> allowing drivers to define some action to be taken when those
+> conditions are met.
+>
+> The combination of the new functions and operations allows drivers
+> which are part of a multi-driver pipeline to delay actually starting
+> streaming until all of the conditions for streaming succcessfully are
+> met across all drivers.
+>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts |  4 +++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 28 +++++++++++++++++++-
+> Changes in v5:
+>
+> 	- Update kerneldoc comments with Optional statement in the
+> 	  right place
+>
+> Changes in v4:
+>
+> 	- Reverted to having the iter variable
+>
+> Changes in v3:
+>
+> 	- Dropped the iter variable now that the pipeline entity
+> 	  iterator functions don't need it.
+> 	- Updated documentation to specify Optional and return
+> 	  values
+>
+> Changes in v2:
+>
+> 	- Refactored media_pipeline_started() such that the cleanup
+> 	  function for media_pipeline_entity_iter is unconditionally
+> 	  called
+> 	- Avoided using media_entity_call() helper for operation that
+> 	  has return type void to avoid compiler warnings
+> ---
+>  drivers/media/mc/mc-entity.c | 46 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/media/media-entity.h | 29 ++++++++++++++++++++++++++++
+>  2 files changed, 75 insertions(+)
+>
+> diff --git a/drivers/media/mc/mc-entity.c b/drivers/media/mc/mc-entity.c
+> index 045590905582054c46656e20463271b1f93fa6b4..d3443537d4304e12cb015630101efba22375c011 100644
+> --- a/drivers/media/mc/mc-entity.c
+> +++ b/drivers/media/mc/mc-entity.c
+> @@ -1053,6 +1053,52 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
+>  }
+>  EXPORT_SYMBOL_GPL(__media_pipeline_entity_iter_next);
+>
+> +int media_pipeline_started(struct media_pipeline *pipe)
+> +{
+> +	struct media_pipeline_entity_iter iter;
+> +	struct media_entity *entity;
+> +	int ret;
+> +
+> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
+> +	if (ret)
+> +		return ret;
+> +
+> +	media_pipeline_for_each_entity(pipe, &iter, entity) {
+> +		ret = media_entity_call(entity, pipeline_started);
+> +		if (ret && ret != -ENOIOCTLCMD)
+> +			break;
+> +	}
+> +
+> +	media_pipeline_entity_iter_cleanup(&iter);
+> +
+> +	ret = ret == -ENOIOCTLCMD ? 0 : ret;
+> +	if (ret)
+> +		media_pipeline_stopped(pipe);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(media_pipeline_started);
+> +
+> +int media_pipeline_stopped(struct media_pipeline *pipe)
+> +{
+> +	struct media_pipeline_entity_iter iter;
+> +	struct media_entity *entity;
+> +	int ret;
+> +
+> +	ret = media_pipeline_entity_iter_init(pipe, &iter);
+> +	if (ret)
+> +		return ret;
+> +
+> +	media_pipeline_for_each_entity(pipe, &iter, entity)
+> +		if (entity->ops && entity->ops->pipeline_stopped)
+> +			entity->ops->pipeline_stopped(entity);
 
-Please separate commits for SoC and board files. Thanks
+I was sure I asked this already, but I wasn't able to find any
+reference to this in the review of the previous version, so I'll
+re-ask (sorry if it's the second time):
 
-Best regards,
-Alexander
+why can't you use media_entity_call() here as well ?
 
->  2 files changed, 31 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx8mp-evk.dts
-> index c0cc5611048e..cc9351a5bd65 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -442,6 +442,10 @@ &flexcan2 {
->  	status =3D "disabled";/* can2 pin conflict with pdm */
+> +
+> +	media_pipeline_entity_iter_cleanup(&iter);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(media_pipeline_stopped);
+> +
+>  /* -----------------------------------------------------------------------------
+>   * Links management
+>   */
+> diff --git a/include/media/media-entity.h b/include/media/media-entity.h
+> index 64cf590b11343f68a456c5870ca2f32917c122f9..1e1026f65f2050bb9aa39bde68794da8d2d0a669 100644
+> --- a/include/media/media-entity.h
+> +++ b/include/media/media-entity.h
+> @@ -269,6 +269,10 @@ struct media_pad {
+>   *			media_entity_has_pad_interdep().
+>   *			Optional: If the operation isn't implemented all pads
+>   *			will be considered as interdependent.
+> + * @pipeline_started:	Optional: Notify this entity that the pipeline it is a
+> + *			part of has been started.
+> + * @pipeline_stopped:	Optional: Notify this entity that the pipeline it is a
+> + *			part of has been stopped.
+
+Why not use the same style as the other entries ?
+
+ * @get_fwnode_pad:	Return the pad number based on a fwnode endpoint or
+ *			a negative value on error. This operation can be used
+ *			to map a fwnode to a media pad number. Optional.
+
+ Or
+ * @has_pad_interdep:	Return whether two pads of the entity are
+ *			interdependent. If two pads are interdependent they are
+ *			part of the same pipeline and enabling one of the pads
+ *			means that the other pad will become "locked" and
+ *			doesn't allow configuration changes. pad0 and pad1 are
+ *			guaranteed to not both be sinks or sources. Never call
+ *			the .has_pad_interdep() operation directly, always use
+ *			media_entity_has_pad_interdep().
+ *			Optional: If the operation isn't implemented all pads
+ *			will be considered as interdependent.
+
+Also, the existing doc uses "the entity" and not "this entity"
+
+
+These would then be
+
+* @pipeline_started:	Notify the entity that the pipeline it is a
+*			part of has been started. Optional.
+* @pipeline_stopped:	Notify the entity that the pipeline it is a
+*			part of has been stopped. Optional
+
+Question from a non-native speaker: "it is a part of" or "it is part
+of" ?
+
+>   *
+>   * .. note::
+>   *
+> @@ -284,6 +288,8 @@ struct media_entity_operations {
+>  	int (*link_validate)(struct media_link *link);
+>  	bool (*has_pad_interdep)(struct media_entity *entity, unsigned int pad0,
+>  				 unsigned int pad1);
+> +	int (*pipeline_started)(struct media_entity *entity);
+> +	void (*pipeline_stopped)(struct media_entity *entity);
 >  };
-> =20
-> +&hdmi_pai {
-> +	status =3D "okay";
-> +};
-> +
->  &hdmi_pvi {
->  	status =3D "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mp.dtsi
-> index 841d155685ee..00d8474bd1b1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -2066,7 +2066,7 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
-> =20
->  			hdmi_pvi: display-bridge@32fc4000 {
->  				compatible =3D "fsl,imx8mp-hdmi-pvi";
-> -				reg =3D <0x32fc4000 0x1000>;
-> +				reg =3D <0x32fc4000 0x800>;
->  				interrupt-parent =3D <&irqsteer_hdmi>;
->  				interrupts =3D <12>;
->  				power-domains =3D <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
-> @@ -2092,6 +2092,24 @@ pvi_to_hdmi_tx: endpoint {
->  				};
->  			};
-> =20
-> +			hdmi_pai: audio-bridge@32fc4800 {
-> +				compatible =3D "fsl,imx8mp-hdmi-pai";
-> +				reg =3D <0x32fc4800 0x800>;
-> +				interrupt-parent =3D <&irqsteer_hdmi>;
-> +				interrupts =3D <14>;
-> +				clocks =3D <&clk IMX8MP_CLK_HDMI_APB>;
-> +				clock-names =3D "apb";
-> +				power-domains =3D <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PAI>;
-> +				status =3D "disabled";
-> +
-> +				port {
-> +
-> +					pai_to_hdmi_tx: endpoint {
-> +						remote-endpoint =3D <&hdmi_tx_from_pai>;
-> +					};
-> +				};
-> +			};
-> +
->  			lcdif3: display-controller@32fc6000 {
->  				compatible =3D "fsl,imx8mp-lcdif";
->  				reg =3D <0x32fc6000 0x1000>;
-> @@ -2143,6 +2161,14 @@ port@1 {
->  						reg =3D <1>;
->  						/* Point endpoint to the HDMI connector */
->  					};
-> +
-> +					port@2 {
-> +						reg =3D <2>;
-> +
-> +						hdmi_tx_from_pai: endpoint {
-> +							remote-endpoint =3D <&pai_to_hdmi_tx>;
-> +						};
-> +					};
->  				};
->  			};
-> =20
->=20
+>
+>  /**
+> @@ -1261,6 +1267,29 @@ __media_pipeline_entity_iter_next(struct media_pipeline *pipe,
+>  	     entity != NULL;							\
+>  	     entity = __media_pipeline_entity_iter_next((pipe), iter, entity))
+>
+> +/**
+> + * media_pipeline_started - Inform entities in a pipeline that it has started
+> + * @pipe:	The pipeline
+> + *
+> + * Iterate on all entities in a media pipeline and call their pipeline_started
+> + * member of media_entity_operations.
+> + *
+> + * Return: zero on success, or a negative error code passed through from an
+> + * entity's .pipeline_started() operation.
 
+If you don't have specific return codes to document you could consider
+a simpler
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+ * Returns zero on success or a negative error code otherwise.
 
+Up to you on this one.
 
+With the above documentation aligned to the existing one and a
+clarification on the media_entity_call usage:
+
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+
+> + */
+> +int media_pipeline_started(struct media_pipeline *pipe);
+> +
+> +/**
+> + * media_pipeline_stopped - Inform entities in a pipeline that it has stopped
+> + * @pipe:	The pipeline
+> + *
+> + * Iterate on all entities in a media pipeline and call their pipeline_stopped
+> + * member of media_entity_operations.
+> + *
+> + * Return: zero on success, or -ENOMEM if the iterator initialisation failed.
+> + */
+> +int media_pipeline_stopped(struct media_pipeline *pipe);
+> +
+>  /**
+>   * media_pipeline_alloc_start - Mark a pipeline as streaming
+>   * @pad: Starting pad
+>
+> --
+> 2.34.1
+>
+>
 
