@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-202057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A29B1BEF6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD604B1BEFF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:04:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57CCC18A58E9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:03:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFA4818A5993
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C423595C;
-	Wed,  6 Aug 2025 03:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731CE1CAA79;
+	Wed,  6 Aug 2025 03:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Hdj7aSvw"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w+3l+Dsi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F7B79F2;
-	Wed,  6 Aug 2025 03:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6F3190676;
+	Wed,  6 Aug 2025 03:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754449395; cv=none; b=t5SnNc0UGI8gsblMxfh0AuYlu9OVlkFb1hwezZ0pTVzrruxx0PTV5jc7OHcp7GhsSDJeTUqmfnrb3KzIuoVontCjqjG8YSgPVQEoYBVqRPIKhmZZemRyUuZgE0arUzO+rdsrycESpD9LpKQNxRXUEQDyOPdJaCLhtuFvN6WLJ44=
+	t=1754449428; cv=none; b=tij0Qo5FqJcApXdwiaUipNnLwGui65Zsz0hZETso70xUBmBD7ENFuRdq3sj7I/4vbc1HS4ITok3ZnkZlnCqUlT0pkBoa4eW4eydwDFcH31d+b1xWi77u+2uR3VdcbSEdO6PCLnkr79Z4BOHPDKhI/hO2ECK9EOw2jW2jtoHKXo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754449395; c=relaxed/simple;
-	bh=fyIkXN5YxBF92Jk3fC3dvGetl4/UPKeitt9ZBL/oLWQ=;
+	s=arc-20240116; t=1754449428; c=relaxed/simple;
+	bh=0ANyj2k6YdrkOVdwRG1Q2t1sdgmZXj1r7jhRTU/J5e8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t716SKwozL3TkLsiZWg2y5AjnhvHASW8FM7aYNIsV/q5mw8r07K3iB6rOO+X0E24lI+5GEmCIb0hgjTkIOZrNipeGUkEUoocc8IyuuGLpcguFbnB0ds6EJPvAMzO5PlVtvPPjlF8YCfHLntKMpTSZUNsN1QX9TS9feDmlDOFWoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Hdj7aSvw; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id B5984206A5;
-	Wed,  6 Aug 2025 05:03:09 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id DiazYPl_U3fV; Wed,  6 Aug 2025 05:03:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1754449383; bh=fyIkXN5YxBF92Jk3fC3dvGetl4/UPKeitt9ZBL/oLWQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Hdj7aSvwPl9zceSTDOp6/Ns1r+OOpra44MJmXsq39Mjf63o5V2uI9lLbYAU6KCf6s
-	 s6qYgqE5FZTJzT9DCUkZH2Mh5WH4tw7OTHIcWpcOlpaDKotUBo3BVk+bkyWpfDDiKD
-	 w+OrJYkDc+sDFG2WiBmivd1q4Ooq6ZMopyHa7x95KoRjhFXliP/4tYJAvfZ89YCSYR
-	 NlLpc+XCQGuA7MaAGh+kgSOrYdzA3LHS3aaeGF+3RgeNoG9HseUgBy8Cs1APwH1Uys
-	 sHrb05ZOsDzp3ou2CFUDEkaS2ypL1AxqwQPxy8At1PasNfyydI17yBn7yASO+hKJ9C
-	 toKEEnEB9IA2w==
-Date: Wed, 6 Aug 2025 03:02:43 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZFXctRRJ+EtXz2hrwlvwm/k6UZ4/VrIuWnJsgLZhDzdNwE1BYsT+Ng0qsc2NwKS8WkdP2tmJvsuAjwSXlSElXdwm+YrP37g9EZpbvre2ifXAyNMuSF2bSJiqVdrdKQvsAcUUahV6FfSxeQrNyyqhc/P7nDYFYu/JgyY2HyM8GXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w+3l+Dsi; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Tr7NN2jphfR6xHA/UzGXZWi6sl0YOUmnWotym5mZwz4=; b=w+3l+DsiNEdtl4SdPo25MfoSwx
+	6zeqoaeDGmSxgzZ9JnskLH7Dz9SULlis8/dRT0QOqH/Y1EtVKBrEC3uQEsYfEYxYKm1c3ZEDnWwk5
+	DHX5iBtN23GQB1oNZdi/GBgRSA0gned3RSnZrlzpkmj1vuZxQlxck5hyU2fafIu61at4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ujUR3-003qp3-Fc; Wed, 06 Aug 2025 05:03:25 +0200
+Date: Wed, 6 Aug 2025 05:03:25 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Mo Elbadry <elbadrym@google.com>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2 2/3] net: stmmac: thead: Get and enable APB clock
- on initialization
-Message-ID: <aJLF07Sw9IatHmUq@pie>
-References: <20250801091240.46114-1-ziyao@disroot.org>
- <20250801091240.46114-3-ziyao@disroot.org>
- <20250803170206.GA525144-robh@kernel.org>
- <aJBBOptU4IXilK3I@pie>
- <aJDeZJrKkqH23V/V@x1>
- <aJJH6wLqMO5XRTeW@x1>
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rom Lemarchand <romlem@google.com>,
+	William Kennington <wak@google.com>,
+	Yuxiao Zhang <yuxiaozhang@google.com>,
+	"wthai@nvidia.com" <wthai@nvidia.com>,
+	"leohu@nvidia.com" <leohu@nvidia.com>,
+	"dkodihalli@nvidia.com" <dkodihalli@nvidia.com>,
+	"spuranik@nvidia.com" <spuranik@nvidia.com>
+Subject: Re: [PATCH v12 3/3] clk: aspeed: add AST2700 clock driver
+Message-ID: <e53edafb-bfb0-45ab-8224-7b393af4e0ad@lunn.ch>
+References: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
+ <20250708052909.4145983-4-ryan_chen@aspeedtech.com>
+ <OS8PR06MB7541E7FCB367AE610EBBE121F249A@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <CAOO6b=tEigCRXZ47BMgsTvxiZdO0P32+jFhQ313O044VALgaWA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,90 +80,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aJJH6wLqMO5XRTeW@x1>
+In-Reply-To: <CAOO6b=tEigCRXZ47BMgsTvxiZdO0P32+jFhQ313O044VALgaWA@mail.gmail.com>
 
-On Tue, Aug 05, 2025 at 11:05:31AM -0700, Drew Fustini wrote:
-> On Mon, Aug 04, 2025 at 09:23:00AM -0700, Drew Fustini wrote:
-> > On Mon, Aug 04, 2025 at 05:12:26AM +0000, Yao Zi wrote:
-> > > On Sun, Aug 03, 2025 at 12:02:06PM -0500, Rob Herring wrote:
-> > > > On Fri, Aug 01, 2025 at 09:12:39AM +0000, Yao Zi wrote:
-> > > > > It's necessary to adjust the MAC TX clock when the linkspeed changes,
-> > > > > but it's noted such adjustment always fails on TH1520 SoC, and reading
-> > > > > back from APB glue registers that control clock generation results in
-> > > > > garbage, causing broken link.
-> > > > > 
-> > > > > With some testing, it's found a clock must be ungated for access to APB
-> > > > > glue registers. Without any consumer, the clock is automatically
-> > > > > disabled during late kernel startup. Let's get and enable it if it's
-> > > > > described in devicetree.
-> > > > > 
-> > > > > Fixes: 33a1a01e3afa ("net: stmmac: Add glue layer for T-HEAD TH1520 SoC")
-> > > > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > > > Reviewed-by: Drew Fustini <fustini@kernel.org>
-> > > > > Tested-by: Drew Fustini <fustini@kernel.org>
-> > > > > ---
-> > > > >  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 6 ++++++
-> > > > >  1 file changed, 6 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > > > > index c72ee759aae5..95096244a846 100644
-> > > > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > > > > @@ -211,6 +211,7 @@ static int thead_dwmac_probe(struct platform_device *pdev)
-> > > > >  	struct stmmac_resources stmmac_res;
-> > > > >  	struct plat_stmmacenet_data *plat;
-> > > > >  	struct thead_dwmac *dwmac;
-> > > > > +	struct clk *apb_clk;
-> > > > >  	void __iomem *apb;
-> > > > >  	int ret;
-> > > > >  
-> > > > > @@ -224,6 +225,11 @@ static int thead_dwmac_probe(struct platform_device *pdev)
-> > > > >  		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
-> > > > >  				     "dt configuration failed\n");
-> > > > >  
-> > > > > +	apb_clk = devm_clk_get_optional_enabled(&pdev->dev, "apb");
-> > > > 
-> > > > The description sounds like this should not be optional. The binding 
-> > > > change also makes it not optional.
-> > > 
-> > > Yes, it shouldn't be. But using the non-optional API will cause the
-> > > driver fails to probe with the old (problematic) devicetree, IOW, it
-> > > breaks the ABI. Comparing to unusable ethernet, failing to adjust the
-> > > link speed sounds a minor point to me.
-> > 
-> > I've just read Conor's comment in the v1 again: 
-> > 
-> >  Nah, introduce the warnings. If the clock is required for operation, it
-> >  should be marked as such. You've made it optional in the driver, which
-> >  is the important part (backwards compatible) and you've got the dts
-> >  patch in the series.
-> > 
-> > Thus I think the argument I made in my reply to this thread is
-> > incorrect and the driver should remain backwards compatible.
-> > 
-> > > Maybe we could add a comment to explain why optional API is used, or
-> > > just use the non-optional one if such ABI breakages are acceptable --
-> > > for which I'd like to wait for more opinions.
-> > 
-> > I think a comment in the code about why it uses the optional variant of
-> > the function is a good idea.
-> 
-> I was chatting on devicetree irc channel, and I think that it would be
-> good to add something like this to the commit message:
-> 
->  For the purposes of backwards compatibility, the probe will not fail if
->  'apb' is not found, but the link will break if the speed changes after
->  probe.
-> 
-> Also, if devm_clk_get_optional_enabled("apb") fails, then I think it
-> would be a good idea to warn the user that changing the link speed will
-> not be supported.
+> > > +static const struct clk_div_table ast2700_rgmii_div_table[] = {
+> > > +     { 0x0, 4 },
+> > > +     { 0x1, 4 },
+> > > +     { 0x2, 6 },
+> > > +     { 0x3, 8 },
+> > > +     { 0x4, 10 },
+> > > +     { 0x5, 12 },
+> > > +     { 0x6, 14 },
+> > > +     { 0x7, 16 },
+> > > +     { 0 }
+> > > +};
 
-Both sound reasonable to me, and I'll add them in v3, thanks.
+> > > +     DIVIDER_CLK(SCU1_CLK_RGMII, "rgmii", soc1_hpll,
+> > > +                 SCU1_CLK_SEL1, 25, 3, ast2700_rgmii_div_table),
 
-> Thanks,
-> Drew
 
-Best regards,
-Yao Zi
+Historically, aspeed has got RGMII delays wrong. Could you confirm
+this has nothing to do with the 2ns delay needed by RGMII.
+
+What exactly is this clock used for? RGMII needs 2.5MHz, 25MHz and
+125MHz, which none of these dividers seems to provide.
+
+	Andrew
 
