@@ -1,230 +1,120 @@
-Return-Path: <devicetree+bounces-202135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A2FB1C243
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:37:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB28AB1C26E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:50:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 335053A5C1F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:37:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 145B9183C69
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB692882C6;
-	Wed,  6 Aug 2025 08:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNXN/SdR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C20F275AF0;
+	Wed,  6 Aug 2025 08:50:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C312882BD;
-	Wed,  6 Aug 2025 08:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0631E766E;
+	Wed,  6 Aug 2025 08:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754469424; cv=none; b=j6ePp+Kb+qU6gnXTh541K/ltRRuRYO4VHPmLiQyfNvnz5rlXWfg4oR3ltBI00/GbXqIlqn6kDqibMBQT1yAvtLCwCvAuTuANt94cr4qfOMFPjTM8DjSAtMecVFZnzkeZHm85sZ93jVBnyK6d+yPKQkHZdzAFujLiEjeenRP0yDw=
+	t=1754470247; cv=none; b=ZcVoqAASgCA0UwDAH57Kt3ICx2GZh4V4U2c6tm7BBluCYyAIEN7+hQRK09fJ3ql79ZVR2esoO7ksUd0zDrE5jBgfV0HVYXvxXxyIvZvOOEa2BPlxbvLw2qChJcRhPp4I/+qSl0n9cXbNS55vnFbHuFtyzgjUxbGDHx1pcLfK1eA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754469424; c=relaxed/simple;
-	bh=+tM2U507y50uxCWotBt15DsJaGyXiGHGD85A7mY1xPI=;
+	s=arc-20240116; t=1754470247; c=relaxed/simple;
+	bh=zTLXxRmwS50E8iCjpUm8xHlzWL2Fvbbcr/d4M3YSzVE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A05A0LYSvcoVjfer0+JsQ2tVfk80p3JF22bsvjxgid7lRoUWvf/WU9V7J/EM1EN5/ZLBFgU8mLMCFLakVmTofX1Rx7t5RN13QOvUSSNoNHUV75DsdLFwqeZj6qNXER5aU2enqPEaf/3g+ECrYipO6H0aOW9VCqfy7hJM+bfDvIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNXN/SdR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01D76C4CEFE;
-	Wed,  6 Aug 2025 08:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754469424;
-	bh=+tM2U507y50uxCWotBt15DsJaGyXiGHGD85A7mY1xPI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=SNXN/SdRx334pPkXDTT/iLUXKF1sMojvcJGySR0DNPHw+SiQGHTxvJbwOnYJRlP5f
-	 1wD6i6ImPvAd/YKHkHvmUkM+KQL8ur1wEl0O7Pr/WfYGI3g1fao5ON6Ic+7SQ+uIb2
-	 lqQYJECvMCC83zxpGv8Ba3TRf7ttoiGXaXbr3FXiJB6Pfl0H2pqdVfoSiETLxVrGt6
-	 +D1tD62+uo/Jw8NuCXqPOoLhn4417KdcDD0ODuqpyNm5VtppXPCw4XycMg5LE0LEi9
-	 mOcwa+S7VRdMNP5sF5XZYdo2cLaOHjLluweuRdvpCcivdpJxg+u+NULUPohHlODphS
-	 8R02bgFmkfdMw==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6153a19dddfso10081678a12.1;
-        Wed, 06 Aug 2025 01:37:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUP2NFF0GsCla+gTi5py7Pr+e93MExCtTCNckPx+tPdewA+pCDQNG0rihPY2MkWsye6/fwr7mhfYwjS@vger.kernel.org, AJvYcCUzRKP3gtSjdzwF1X6P5wU/mNXXletrXkwb4Xl535gTW3zqH1GOVx/jQTWaPQ8JpHAIqBFL3bvuoVvP@vger.kernel.org, AJvYcCXdh3qvBoZ4LkucZnAj94O2Ap+nTF73jb3UsTb+ieGonT0an9GhcjApBfM+liLZBr396CCRzKXSCCYeFrSq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrjLd7SbwuT+cDLbpSAm48l1fk7TtuzSHfXJxFPgjVz7tA0dke
-	vuujmqitB7hoDJB679dponMWgU5+CVUvQIdF4/PSyImcLHnAO+6U6ItCuwX+5cBnT0x5P1c7Qf2
-	nxzerXgPOzgoDtwr+UX6sNB+s09OH1D0=
-X-Google-Smtp-Source: AGHT+IFl/Ho99IKjMDHObXC2WzdxXQ2KiWP4Lf4SzO5H9RulUyOOzsY0NvycU94uedohVUFGDJcCDKUwO86IwS3WXW0=
-X-Received: by 2002:a50:cd48:0:b0:615:b9cf:ef3b with SMTP id
- 4fb4d7f45d1cf-617961c7fb2mr1192544a12.34.1754469422424; Wed, 06 Aug 2025
- 01:37:02 -0700 (PDT)
+	 To:Cc:Content-Type; b=aEiAsE1r7P1eUM27lrj6TW1GjDJ2oaXVkeG6vyalGBmxjOnF6JdEZ6jbrav7akvj/woK+eu8zdrk2oyb4CoTPHfVCnEQuOW9pFNR11t7dMrfQfk9/SWH336nuyQuvH5mjYPxI0Wv/amnSmA59NvR/IRIcQ2ouzY+HpkNP3UKiBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5396c1d72dbso2591680e0c.2;
+        Wed, 06 Aug 2025 01:50:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754470244; x=1755075044;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=67NaUlX10oTgepae7uOpNwDzs2oEs7i1yEI/7g9wvX0=;
+        b=SMA/GfKIWkezAYKD6JY41jSK8c5kHQyr+R4rRd5Q5C/sxm6n9Khpx3upXWjVRNYema
+         ZAvSGtzXMmdraFaSS7nvpe1fYZBILIM8QqWF++graCXHKlYC9/CrSjqAoI2wmL3TBRPQ
+         SAQWxPEBw8Qpc4iRWqSlbSt1uA4I4R2nCK+HEKp6nc+rcxfkzPldA0IWHrwR/pRh1SSZ
+         rcIc5DjQb+lEfrKhYtwoJ6r2DwOcmTxGvC1BgQUC8zG+PJ+A+OTc5v6zd6GwAVrEz0dM
+         UdNNv+OLIdUxtrUC1bW4DsqJPnP6qotqrJ1pVS+T+dTME3bes7yLI9ysI/BPUklRYHGY
+         0mxw==
+X-Forwarded-Encrypted: i=1; AJvYcCWjk9V12d/lcLXaSpAhHJ4YFxzzVDuUhpqVJVkliMiYMlqmkJ4ccVVK09CzbdzrCaA3jPYoY/DzdlCI@vger.kernel.org, AJvYcCWvjs48HQRTH3fLIApFp8bmGz6mJx3EWO0Yi7L/nAUBrckBp0A2Acs6mMznFeM+5yhFx/QGqVBYon+98aeI8qOZneA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrKTCM72QRhfHGP+LGiYuRs4ojbFlT0tpGiDQXKIGs664rtoGW
+	Ct9roolOjvWdynLIjN6JfPmc/cv3hVwiylIA+s/vspGZrp1SWFOqy/bdZAIkGVOU
+X-Gm-Gg: ASbGncv9Xbz3gowaGXG/bow2YiM0ld6kNn27VJZJDetF5InuFqQkebav4dG84uU+enN
+	J4PWx7jQBv/kojf828pvcoPiIvUhv4pquN2P8NKZLHYcF+18aQTSUM5XS9wE9K9ckwqhgiHYgEM
+	siNWJk19oaSjJtF8U96Iip/015YvLVrDDVtqSekUKb+TS5UF6ETnIZC03y4InXCHsD8EwlNZ3tR
+	i1Pb+e612zkI/+68YcTnRCltsVUjPaFaYet3NkDuhOyjGjzzw06fa7LHHsIniT/0ErdlSNVqLBe
+	t4YbNY6B2E3J7E9NnAM/Vj7/jIddtHcPpMVI8UN2SgNkUyubBnPfcyTwhYGC7CNuky7BRh6qPiM
+	FDNNAP2AQWPi0erdC+lRKufeMeE8OIOjh6AmpYcG1I6AsRaIWC2LlzgRjQlVO
+X-Google-Smtp-Source: AGHT+IGVZwgmbVElBG019brSaBYQLDQRiIPa7hrDldOrN48vHRkWwBJkjtOoEdwjK6S79NWY6Yu88A==
+X-Received: by 2002:a05:6122:2219:b0:539:1dd2:22fa with SMTP id 71dfb90a1353d-539a03a4161mr796150e0c.1.1754470243911;
+        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53936b15df5sm4114235e0c.3.2025.08.06.01.50.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
+Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-87f04817bf6so4472227241.0;
+        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVmnWRTJeZY1tTFO97vo8izgCRzUZSuNRfaoKXs2WymJcfs5WAMwJTlRlen/8JKNtK+BWAeB8OTvJ8gha/bM4an8VQ=@vger.kernel.org, AJvYcCWQdbBwmV/y5v3oc3iDigo4ivkgfnBAo/MA/Dt5xDbADTlVnxxIAeUP3piVBjpsIhnmJ/tKRa1yt3ik@vger.kernel.org
+X-Received: by 2002:a05:6102:2910:b0:4e5:9c06:39d8 with SMTP id
+ ada2fe7eead31-503722a56bbmr726573137.5.1754470242932; Wed, 06 Aug 2025
+ 01:50:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805150147.25909-1-ziyao@disroot.org> <20250805150147.25909-2-ziyao@disroot.org>
-In-Reply-To: <20250805150147.25909-2-ziyao@disroot.org>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Wed, 6 Aug 2025 16:36:50 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6fDjVFX_gyT3m39j09RWFu4O89FVdEumyV-dzUnU9Wig@mail.gmail.com>
-X-Gm-Features: Ac12FXwsHY949EROGQFtheK1q58kJXA_--J_SpsB9oSiHp4or_ne-v3DwX_FsEE
-Message-ID: <CAAhV-H6fDjVFX_gyT3m39j09RWFu4O89FVdEumyV-dzUnU9Wig@mail.gmail.com>
-Subject: Re: [PATCH v3 1/8] dt-bindings: clock: loongson2: Add Loongson 2K0300 compatible
-To: Yao Zi <ziyao@disroot.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250720194756.413341-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250720194756.413341-1-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 6 Aug 2025 10:50:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX9LzH6zqZTmitwmBpLCqLn+=MK8LxJGdBBp6uABwH67A@mail.gmail.com>
+X-Gm-Features: Ac12FXxrT45x6X7YTOqNpVc_gzzfmkQ9G50H_zgTu-Yqdf2-Oq5tksnUmX_Lqj8
+Message-ID: <CAMuHMdX9LzH6zqZTmitwmBpLCqLn+=MK8LxJGdBBp6uABwH67A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Describe generic SPI NOR
+ support on Retronix R-Car V4H Sparrow Hawk board
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 5, 2025 at 11:03=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> Document the clock controller shipped in Loongson 2K0300 SoC, which
-> generates various clock signals for SoC peripherals.
->
-> Differing from previous generations of SoCs, 2K0300 requires a 120MHz
-> external clock input, and a separate dt-binding header is used for
-> cleanness.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  .../bindings/clock/loongson,ls2k-clk.yaml     | 21 ++++++--
->  MAINTAINERS                                   |  1 +
->  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
->  3 files changed, 72 insertions(+), 4 deletions(-)
->  create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
->
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.ya=
-ml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> index 4f79cdb417ab..47eb6c0f85bc 100644
-> --- a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-> @@ -16,6 +16,7 @@ description: |
->  properties:
->    compatible:
->      enum:
-> +      - loongson,ls2k0300-clk
->        - loongson,ls2k0500-clk
->        - loongson,ls2k-clk  # This is for Loongson-2K1000
->        - loongson,ls2k2000-clk
-> @@ -24,8 +25,7 @@ properties:
->      maxItems: 1
->
->    clocks:
-> -    items:
-> -      - description: 100m ref
-> +    maxItems: 1
->
->    clock-names:
->      items:
-> @@ -36,13 +36,26 @@ properties:
->      description:
->        The clock consumer should specify the desired clock by having the =
-clock
->        ID in its "clocks" phandle cell. See include/dt-bindings/clock/loo=
-ngson,ls2k-clk.h
-> -      for the full list of Loongson-2 SoC clock IDs.
-> +      and include/dt-bindings/clock/loongson,ls2k0300-clk.h for the full=
- list of
-> +      Loongson-2 SoC clock IDs.
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: loongson,ls2k0300-clk
-> +    then:
-> +      properties:
-> +        clock-names: false
-> +    else:
-> +      required:
-> +        - clock-names
->
->  required:
->    - compatible
->    - reg
->    - clocks
-> -  - clock-names
->    - '#clock-cells'
->
->  additionalProperties: false
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4912b8a83bbb..7960e65d7dfc 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14365,6 +14365,7 @@ S:      Maintained
->  F:     Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
->  F:     drivers/clk/clk-loongson2.c
->  F:     include/dt-bindings/clock/loongson,ls2k-clk.h
-> +F:     include/dt-bindings/clock/loongson,ls2k0300-clk.h
-I think ls2k0300-clk.h can be merged into ls2k-clk.h
+Hi Marek,
 
-Huacai
+Thanks for your patch!
 
+On Sun, 20 Jul 2025 at 21:48, Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> Retronix R-Car V4H Sparrow Hawk EVTA1 is populated with Spansion S25FS512S,
+> EVTB1 is populated with Winbond W77Q51NW. Describe the SPI NOR using generic
+> "spi-flash" compatible, because both flashes can be auto-detected based on
+
+s/spi-flash/jedec,spi-nor/
+
+> their built-in IDs.
 >
->  LOONGSON SPI DRIVER
->  M:     Yinbo Zhu <zhuyinbo@loongson.cn>
-> diff --git a/include/dt-bindings/clock/loongson,ls2k0300-clk.h b/include/=
-dt-bindings/clock/loongson,ls2k0300-clk.h
-> new file mode 100644
-> index 000000000000..5e8f7b2f33f2
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/loongson,ls2k0300-clk.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (C) 2025 Yao Zi <ziyao@disroot.org>
-> + */
-> +#ifndef _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> +#define _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> +
-> +/* Derivied from REFCLK */
-> +#define LS2K0300_CLK_STABLE                    0
-> +#define LS2K0300_PLL_NODE                      1
-> +#define LS2K0300_PLL_DDR                       2
-> +#define LS2K0300_PLL_PIX                       3
-> +#define LS2K0300_CLK_THSENS                    4
-> +
-> +/* Derived from PLL_NODE */
-> +#define LS2K0300_CLK_NODE_DIV                  5
-> +#define LS2K0300_CLK_NODE_PLL_GATE             6
-> +#define LS2K0300_CLK_NODE_SCALE                        7
-> +#define LS2K0300_CLK_NODE_GATE                 8
-> +#define LS2K0300_CLK_GMAC_DIV                  9
-> +#define LS2K0300_CLK_GMAC_GATE                 10
-> +#define LS2K0300_CLK_I2S_DIV                   11
-> +#define LS2K0300_CLK_I2S_SCALE                 12
-> +#define LS2K0300_CLK_I2S_GATE                  13
-> +
-> +/* Derived from PLL_DDR */
-> +#define LS2K0300_CLK_DDR_DIV                   14
-> +#define LS2K0300_CLK_DDR_GATE                  15
-> +#define LS2K0300_CLK_NET_DIV                   16
-> +#define LS2K0300_CLK_NET_GATE                  17
-> +#define LS2K0300_CLK_DEV_DIV                   18
-> +#define LS2K0300_CLK_DEV_GATE                  19
-> +
-> +/* Derived from PLL_PIX */
-> +#define LS2K0300_CLK_PIX_DIV                   20
-> +#define LS2K0300_CLK_PIX_PLL_GATE              21
-> +#define LS2K0300_CLK_PIX_SCALE                 22
-> +#define LS2K0300_CLK_PIX_GATE                  23
-> +#define LS2K0300_CLK_GMACBP_DIV                        24
-> +#define LS2K0300_CLK_GMACBP_GATE               25
-> +
-> +/* Derived from CLK_DEV */
-> +#define LS2K0300_CLK_USB_SCALE                 26
-> +#define LS2K0300_CLK_USB_GATE                  27
-> +#define LS2K0300_CLK_APB_SCALE                 28
-> +#define LS2K0300_CLK_APB_GATE                  29
-> +#define LS2K0300_CLK_BOOT_SCALE                        30
-> +#define LS2K0300_CLK_BOOT_GATE                 31
-> +#define LS2K0300_CLK_SDIO_SCALE                        32
-> +#define LS2K0300_CLK_SDIO_GATE                 33
-> +
-> +#define LS2K0300_CLK_GMAC_IN                   34
-> +
-> +#endif // _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> --
-> 2.50.1
->
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+
+LGTM (I don't have EVTB1 schematics), so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
