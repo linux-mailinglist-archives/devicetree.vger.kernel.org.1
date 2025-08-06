@@ -1,238 +1,169 @@
-Return-Path: <devicetree+bounces-202093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4EBB1C087
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A1AB1C08D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:41:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 725A21894EF8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 06:39:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 543E118933DA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 06:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3523F20469E;
-	Wed,  6 Aug 2025 06:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F79209F2E;
+	Wed,  6 Aug 2025 06:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IlkPj7sm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a8uVsGY2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0090420468E
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 06:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7598147C9B;
+	Wed,  6 Aug 2025 06:40:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754462344; cv=none; b=FDUbh6MiV2EgGq2XWmCRr6ebex69+mz2aZzd+GGuI5eHBiBeYqylvJq8FcJqr2AeKWd05I88+mdCwsLJ0dwbxUbgg996yad7dR+F3aojIb9vukWZpgocNeHqlvKfFvI/psKhFw2B5VlCJt+eMucJRp28SU78AkNgw2Efs0HTto0=
+	t=1754462459; cv=none; b=u4DYhpBRmD8QrBPlMQ5WIapIT7QoLLZ4z5pkPe36oH+GGpCNfac/EJWaNEBbUxel4N0Iv68itwrLEkWc3wENb2ERv5bnXd5BGh/pOAaikAlLjxguzdbFIqA7eHHHAsHQlLGSAtUA1fYWVgqTzli3nMQzggsl4vQ83DkH4vqM6S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754462344; c=relaxed/simple;
-	bh=cJ0u7ROhO3Zb5FCdQibLh0y7+nwoCvz+FtEn5JB6+GE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n5DaEZGmX0VniFWw9uAvjV8PdI6MiASmVRdf5A8pjUDoIejZM0xcTmL0sr/G/6R2csPw8Px9Qr1B1No9uTsWnxZPWdNsgxOU/0oTvljiePqeXeAnYnyWk70LOP4TaEsrDRCTOJcd/CIxBEvqFCXenwTpPyvl1tNODAowiju534k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IlkPj7sm; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-55b975b459aso5056128e87.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 23:39:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1754462339; x=1755067139; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VhtoojIstWLZMvAWUii3e0nHW5CIpKIzqhojK1vhx0E=;
-        b=IlkPj7smnhv5fcqhha0jo2kOAMUCAUshFBBF61Qnb4GybUdw/uz8rkDrdDefZsMT2r
-         PCjzQtNSHF02oMJH78tw2NKOfAM8+GSA5ihE4N3hgsACb+Bn1Gyv9lMFESQHLlDuZp4g
-         +ddiy48WxMf0pI98Gwd0z54ZP/Wezgf5roh8E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754462339; x=1755067139;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VhtoojIstWLZMvAWUii3e0nHW5CIpKIzqhojK1vhx0E=;
-        b=F3ol4uYHGRST6lKWcrhSwDYjz9wVVrzPvYbUk8gMX7K6n8Y+5lIWc9SvK1QZ0w+MJa
-         oERAA0+y07UgMH8zTyZmI0Py6IAQfVQAfsROG4/HPJZqN88IIWbC8lGXi14HgFtAygm4
-         76c5B8b4VEBplOv5TiPwUgLTwjHl+ip2apk2tqW0t9bKxTdX7Q2WeMwNQq1AIZ/3CY8b
-         f52TN5xUTY9xz/egeX21OFASY+OiJdrTQ8RklGBrYcuSrAx+7uWDt5wmsuZT7bstdgyb
-         p+OViOul9ahkx8WWL+AFd5bWoUc8aeRcD776KOQNkfQNPALXerWg1eIs3dwWPgGMSFat
-         0RGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfWV5q/DxFjRrN3aGNC/2vj3BrdUuno0NPpzkgeZ0aysFhZH0OyiXaqml8rcqozppnQO00eOjMZTve@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjAXj3U0tvmtEK0htui1uAa8ujtA9mO6vInTQmJdmaPShNDYaR
-	hNyjoajUB/yvxrMXcanLhtPs1cD6Eqf9MzrkJ5s2V+Mp9QUXokWZ7iuSAGsz2w+9UUcy8ghj9Gn
-	e93TOJ0MzBnQLfQor+OIQ5nXEE5pkwsqCiO16BBJ1
-X-Gm-Gg: ASbGncsfrTMHGejUYQi30KSUZhSG9Xiv0bCfCuthQp1EoT0z+XOtL9j7HGntF8N4x6t
-	BVT5VoLU+bTr9Nmvy7j9+OYmAkSuVy8mSTiCPUiyFDNGYGRC9as/isfVdftNx3RYp8MYrW82btL
-	rWZjBmAnOcQZ/h8fFtsDIFjQVEYjDh/9H3Lkqmd9qAPt29asB+FSk89Yfhw2DVqb6GN4d5TH0Kb
-	LaviEXQfBe+fkxsXTCq9Jgd0ilI8ivnd3I=
-X-Google-Smtp-Source: AGHT+IEQpBY1+GYkqQqfR5rfDKIpVNEsVsD4XjBG59L6bS42oOLB3npxd/OiMhM0pzS9tJDOxKoUlXs1gPu0gbIUws0=
-X-Received: by 2002:a05:651c:1986:b0:332:5fd5:e3c7 with SMTP id
- 38308e7fff4ca-33381426bb6mr5405841fa.33.1754462339071; Tue, 05 Aug 2025
- 23:38:59 -0700 (PDT)
+	s=arc-20240116; t=1754462459; c=relaxed/simple;
+	bh=bv6SL8zTbN9CYXKmH50FRGh3j+YHsT0RhPhBJxUuKow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ey3c30o35hCHhSptpE8bD9wfkQtlT7mogkpddqQLtJ8zjcn2RaNOLFdzoGyWjhpGcY7zA+k2zP9pUyYtlI1AKYshUYrZtY00U8D//dqN9BdWeoCbPumY9QSICMQ1wtPkPx27DXfBnW9mqfh7gH0zG+EG9h0E7PVKYeFIUE8Yh4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a8uVsGY2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D0AC4CEFB;
+	Wed,  6 Aug 2025 06:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754462459;
+	bh=bv6SL8zTbN9CYXKmH50FRGh3j+YHsT0RhPhBJxUuKow=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=a8uVsGY2B6rZU13J8Se1fgqQe6Kafv+wi/T4CNVC7cpOjXWBLrule8LfKAdTuvq7g
+	 kmxnrG85VUJsFluqq3JaxW5C3Std0CI9l7+vQ6AJqO5qJlrkhsg558JWIyZlVNT1XG
+	 oitmnSM+ZQ2punzwx4ccykveBFTtZbCHUCGNdE7AEHo7OMD4B/ETAiKeAPi+d4IaaF
+	 tgcY70R+4+NSFFmcDMQAu3eVZNAQBV15+I5JO24ZHcOtd5IZ6yOmBM3TwsLa4Lt2ma
+	 d/GWWyK8zAtwxv4tj2+YCXLvTazj+6zpZbt8VFn3R0uq1Mf89nUBqpqzLteREjTEEg
+	 4KkZZ8DEBq+5w==
+Message-ID: <0f1cbec6-6032-48f6-8887-e526484c0d20@kernel.org>
+Date: Wed, 6 Aug 2025 08:40:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250801-mtk-dtb-warnings-v1-0-6ba4e432427b@collabora.com> <20250801-mtk-dtb-warnings-v1-8-6ba4e432427b@collabora.com>
-In-Reply-To: <20250801-mtk-dtb-warnings-v1-8-6ba4e432427b@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 6 Aug 2025 14:38:47 +0800
-X-Gm-Features: Ac12FXzbV3K2KVqpeLliCyv42tL4lMejc8rYQr4TjPtkAaTNfrGgDJMp31K_Lv0
-Message-ID: <CAGXv+5EHk=f62+KiLo-aWMcd0-q+_59kno+uOW5rdYaq5q+5tQ@mail.gmail.com>
-Subject: Re: [PATCH 8/9] arm64: dts: mediatek: mt8183-kukui: Fix
- pull-down/up-adv values
-To: Julien Massot <julien.massot@collabora.com>
-Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ikjoon Jang <ikjn@chromium.org>, 
-	Enric Balletbo i Serra <eballetbo@kernel.org>, Weiyi Lu <weiyi.lu@mediatek.com>, 
-	Eugen Hristev <eugen.hristev@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Julien Massot <jmassot@collabora.com>, 
-	Sean Wang <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: hwinfo: Add second register range for
+ GP_SW
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+ Santosh Shilimkar <ssantosh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+References: <20250805234950.3781367-1-jm@ti.com>
+ <20250805234950.3781367-2-jm@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250805234950.3781367-2-jm@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 1, 2025 at 7:18=E2=80=AFPM Julien Massot
-<julien.massot@collabora.com> wrote:
->
-> The properties `mediatek,pull-up-adv` and `mediatek,pull-down-adv`
-> were using incorrect values like `<10>` and `<01>`. These values
-> are parsed as decimal (10 and 1 respectively), not binary.
->
-> However, the driver interprets these as bitfields:
->   - BIT(0): R0
->   - BIT(1): R1
->
-> So valid values are:
->   - 0 =3D> no pull
->   - 1 =3D> enable R0
->   - 2 =3D> enable R1
->   - 3 =3D> enable R0 + R1
->
-> Using `<10>` is invalid as it exceeds the accepted range.
-> It was likely intended as binary `0b10` (i.e., `2`),
-> to enable R1 only.
->
-> This patch replaces incorrect values with the correct ones
-> and removes the leading zero from `<01>` to avoid confusion
-> with bitfield notation.
->
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+On 06/08/2025 01:49, Judith Mendez wrote:
+> This adds a second register range in ti,k3-socinfo. This register
+
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+
+> range can also be used to detect silicon revisions.
+> 
+> AM62px SR1.0, SR1.1, and SR1.2 can only be distinguished with GP_SW
+> registers, so increase maximum items to 2 for reg property and update
+> the example.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 22 +++++++++++---------=
---
->  1 file changed, 11 insertions(+), 11 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/=
-boot/dts/mediatek/mt8183-kukui.dtsi
-> index 400c61d1103561db6ee0fb2d2e1c157529d03206..02bdfdb8e53c87dba0ba0024e=
-0c69fcee825552b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -574,19 +574,19 @@ pins-cmd-dat {
->                                  <PINMUX_GPIO122__FUNC_MSDC0_CMD>;
->                         input-enable;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-up-adv =3D <01>;
-> +                       mediatek,pull-up-adv =3D <1>;
+>  .../devicetree/bindings/hwinfo/ti,k3-socinfo.yaml        | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> index dada28b47ea0..3b656fc0cb5a 100644
+> --- a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> +++ b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+> @@ -24,7 +24,8 @@ properties:
+>        - const: ti,am654-chipid
+>  
+>    reg:
+> -    maxItems: 1
+> +    maxItems: 2
+> +    minItems: 1
 
-I suggest we just convert them to the standard bias-* properties:
+They always come with reversed order... but anyway, you instead must
+list the items with minItems.
 
-        bias-pull-up =3D <MTK_PUPD_SET_R1R0_01>;
+another problem is that this is not supposed to be per register. I
+already complained more than once about some of TI bindings: stop
+creating device nodes or address spaces per register.
 
->                 };
->
->                 pins-clk {
->                         pinmux =3D <PINMUX_GPIO124__FUNC_MSDC0_CLK>;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-down-adv =3D <10>;
-> +                       mediatek,pull-down-adv =3D <2>;
+That's one address space.
 
-        bias-pull-down =3D <MTK_PUPD_SET_R1R0_10>;
+>  
+>  required:
+>    - compatible
+> @@ -34,7 +35,9 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    chipid@43000014 {
+> +    chipid@14 {
 
-and so on.
+And this was never even checked :/ You have clear warnings here.
 
-ChenYu
-
->                 };
->
->                 pins-rst {
->                         pinmux =3D <PINMUX_GPIO133__FUNC_MSDC0_RSTB>;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-down-adv =3D <01>;
-> +                       mediatek,pull-down-adv =3D <1>;
->                 };
->         };
->
-> @@ -603,25 +603,25 @@ pins-cmd-dat {
->                                  <PINMUX_GPIO122__FUNC_MSDC0_CMD>;
->                         input-enable;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-up-adv =3D <01>;
-> +                       mediatek,pull-up-adv =3D <1>;
->                 };
->
->                 pins-clk {
->                         pinmux =3D <PINMUX_GPIO124__FUNC_MSDC0_CLK>;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-down-adv =3D <10>;
-> +                       mediatek,pull-down-adv =3D <2>;
->                 };
->
->                 pins-ds {
->                         pinmux =3D <PINMUX_GPIO131__FUNC_MSDC0_DSL>;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-down-adv =3D <10>;
-> +                       mediatek,pull-down-adv =3D <2>;
->                 };
->
->                 pins-rst {
->                         pinmux =3D <PINMUX_GPIO133__FUNC_MSDC0_RSTB>;
->                         drive-strength =3D <MTK_DRIVE_14mA>;
-> -                       mediatek,pull-up-adv =3D <01>;
-> +                       mediatek,pull-up-adv =3D <1>;
->                 };
->         };
->
-> @@ -633,13 +633,13 @@ pins-cmd-dat {
->                                  <PINMUX_GPIO33__FUNC_MSDC1_DAT2>,
->                                  <PINMUX_GPIO30__FUNC_MSDC1_DAT3>;
->                         input-enable;
-> -                       mediatek,pull-up-adv =3D <10>;
-> +                       mediatek,pull-up-adv =3D <2>;
->                 };
->
->                 pins-clk {
->                         pinmux =3D <PINMUX_GPIO29__FUNC_MSDC1_CLK>;
->                         input-enable;
-> -                       mediatek,pull-down-adv =3D <10>;
-> +                       mediatek,pull-down-adv =3D <2>;
->                 };
->         };
->
-> @@ -652,13 +652,13 @@ pins-cmd-dat {
->                                  <PINMUX_GPIO30__FUNC_MSDC1_DAT3>;
->                         drive-strength =3D <6>;
->                         input-enable;
-> -                       mediatek,pull-up-adv =3D <10>;
-> +                       mediatek,pull-up-adv =3D <2>;
->                 };
->
->                 pins-clk {
->                         pinmux =3D <PINMUX_GPIO29__FUNC_MSDC1_CLK>;
->                         drive-strength =3D <8>;
-> -                       mediatek,pull-down-adv =3D <10>;
-> +                       mediatek,pull-down-adv =3D <2>;
->                         input-enable;
->                 };
->         };
->
-> --
-> 2.50.1
->
+Best regards,
+Krzysztof
 
