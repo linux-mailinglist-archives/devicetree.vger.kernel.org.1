@@ -1,139 +1,184 @@
-Return-Path: <devicetree+bounces-202183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7403EB1C561
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:49:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1867B1C590
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:07:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43D42562FE3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:49:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 908E53AD5C2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFA9328C2AE;
-	Wed,  6 Aug 2025 11:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7CFF26D4E3;
+	Wed,  6 Aug 2025 12:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzqf0A5S"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dvGZB10n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A653289E2A;
-	Wed,  6 Aug 2025 11:47:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F31241686;
+	Wed,  6 Aug 2025 12:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754480861; cv=none; b=gF09/ryVzfQ1//hG1SFa2Jjdo09d+n98zM2arfCIq67fkSZ2yWlJvBJu4t3hmQiBCEmMZz4xrMi8d5SzH3i8KY0XYW0yvcgi+M9zye/1u/SdelcdFe9LoA4FIRALG+oA3DDehIHyI5YyxFRxLEOGHEAT9k++2tbA80X6zJbqHaw=
+	t=1754482043; cv=none; b=n+fGw4XPZGBrtvPckUP/3Pi0G2ani6TwJERbxGscPt6IMfvhxa6ZVSZjmyGJe4LGSEl1reD+B8F9emYcBPWIBRx2ykC+jS0Xv3u0H+rWDzyuwlflUzV21HlM0GQBg06jYdUvfqfRJM1sCYnCEstmDiTP/+Av7W9Kx3H7Z5+iqLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754480861; c=relaxed/simple;
-	bh=RheRVwO2FUpu0rsXqKFB0Lfg7HiZelCTGFoLKDQeza0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TtWRnvVAR1NPn9pLvYyVs7qzybnJCwufKiQA0OhYXkBIkcRko4hk6bRPfL3lYfNj64dG/AESwta1UmXZEjnR7eEfQ5NgBFKnAs0+7wjdVukQCOG9kJcvyxVQ/8T5hsptXi4Lr8o842nRRqqhWwEeKBnud/E8qyHYPs7ZcMNvJtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzqf0A5S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7675C4CEE7;
-	Wed,  6 Aug 2025 11:47:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754480861;
-	bh=RheRVwO2FUpu0rsXqKFB0Lfg7HiZelCTGFoLKDQeza0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jzqf0A5SwGAQSZMDlWO9vYFStboxN1q7RIlaqsxZR1JXlCz2JJI6eObw5YnajiSqX
-	 AIvx5Xo5HJELRn8eqVYMSbRvD3gYJxStIk5JE0BWTFVhXuIqEV28h7nK0unDv9E+Zr
-	 hSgaaDQhnx/gEJ/UKuXrRk5u94+KaUyAQWicron54Vv8VlFZSWguG2GqS8chhS1RjW
-	 VlfJEAMJTMd8HNQI/g/8SHippEdfxoz4hqAWx8wrhdn71bAj9PwmD21rwUhUAaHjxY
-	 0wvQ6AhuYvU5bUNjcNLi1jC22EAB24VGiIAUkSVf1CJ6BKr1TLWca+9PzDIKjI6Ppv
-	 Nb5TmLUr/5K2A==
-Message-ID: <70bd9beb-2f7f-4132-88a4-8d81d70ac50b@kernel.org>
-Date: Wed, 6 Aug 2025 13:47:34 +0200
+	s=arc-20240116; t=1754482043; c=relaxed/simple;
+	bh=uMLS3kl181+zJ2KZz7stLl3uqTez7wEpxx0Rw9KU3xo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
+	 References:In-Reply-To; b=q95M2JEnqogJTQGH4bqMi4ba3F57YH10paUmEXnLNDycMbJqhiIy/akoGHqSrbbvCGbHAi2AdqIEkqV1mIhiZN0mWC5PG5YTjFo0MyXNA9W1YieOCmkYgGpaEG/TbzRwkEVAwZfARu8W1ftlBsTD0i3b/s5M1lRzweDghpvM2HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dvGZB10n; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0707543192;
+	Wed,  6 Aug 2025 12:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1754482037;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1ieCQkax/o1sbLwS9rDmJAq1iaG9KJ313X0JbnZ9CIE=;
+	b=dvGZB10nvi0gl9A/a/kN6PwObcOU/1bqsnUaMHFRuTpsuFjXnJNJk45EH+a47K3cUNGIWF
+	S4oBeVvM3ki78LOIrCg7Ph70Bhb4FLE5rYyPssuGr36qGfzpUpBF+hXbNvSf5P0qF/mIZk
+	HxSD2YWXAzNH+DCh0/Lj1ihPE64IJkmKIwSomK/RPrCf4wV4OKnb2ZSyU0jszFHVqOEjc/
+	GjmqfrUKUXPvm+hf2zKpAVQ3gKQuNKDpiPAV33fj2YnaL/rtGYaZXQAuw4EBFODdyDLWuL
+	ylQ4FU1NNPQ5sjVgkY+20oTNJE8VA7RMJBYUXufJ1Ts1vIcq5meGpk7c1dccpQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/4] dt-bindings: clock: ipq5424-apss-clk: Add ipq5424
- apss clock controller
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org,
- rafael@kernel.org, viresh.kumar@linaro.org, ilia.lin@kernel.org,
- djakov@kernel.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-Cc: Sricharan Ramabadhran <quic_srichara@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Md Sadre Alam <quic_mdalam@quicinc.com>
-References: <20250806112807.2726890-1-quic_varada@quicinc.com>
- <20250806112807.2726890-2-quic_varada@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250806112807.2726890-2-quic_varada@quicinc.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Wed, 06 Aug 2025 14:07:15 +0200
+Message-Id: <DBVBZ48R7DNR.850O5X7MLMEF@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Michael Walle"
+ <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Andy Shevchenko"
+ <andriy.shevchenko@linux.intel.com>
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
+ <20250722-mdb-max7360-support-v12-4-3747721a8d02@bootlin.com>
+ <2msg7e7q42ocjewv35rytdtxwrfqrndpm2y5ustqeaeodencsd@nfdufgtevxte>
+In-Reply-To: <2msg7e7q42ocjewv35rytdtxwrfqrndpm2y5ustqeaeodencsd@nfdufgtevxte>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduudektdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkhffvufevofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeehvedtkeffueelheektddvjefhiefhgedtudevgeehvdevlefgveetkeevleelteenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpt
+ hhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On 06/08/2025 13:28, Varadarajan Narayanan wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> 
-> The CPU core in ipq5424 is clocked by a huayra PLL with RCG support.
-> The RCG and PLL have a separate register space from the GCC.
-> Also the L3 cache has a separate pll and needs to be scaled along
-> with the CPU.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri Aug 1, 2025 at 12:11 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
+> On Tue, Jul 22, 2025 at 06:23:48PM +0200, Mathieu Dubois-Briand wrote:
+>> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
+>> +					   struct pwm_device *pwm,
+>> +					   const struct pwm_waveform *wf,
+>> +					   void *_wfhw)
+>> +{
+>> +	struct max7360_pwm_waveform *wfhw =3D _wfhw;
+>> +	u64 duty_steps;
+>> +
+>> +	/*
+>> +	 * Ignore user provided values for period_length_ns and duty_offset_ns=
+:
+>> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset of=
+ 0.
+>> +	 * Values from 0 to 254 as duty_steps will provide duty cycles of 0/25=
+6
+>> +	 * to 254/256, while value 255 will provide a duty cycle of 100%.
+>> +	 */
+>> +	if (wf->duty_length_ns >=3D MAX7360_PWM_PERIOD_NS) {
+>> +		duty_steps =3D MAX7360_PWM_MAX;
+>> +	} else {
+>> +		duty_steps =3D (u32)wf->duty_length_ns * MAX7360_PWM_STEPS / MAX7360_=
+PWM_PERIOD_NS;
+>> +		if (duty_steps =3D=3D MAX7360_PWM_MAX)
+>> +			duty_steps =3D MAX7360_PWM_MAX - 1;
+>> +	}
+>> +
+>> +	wfhw->duty_steps =3D min(MAX7360_PWM_MAX, duty_steps);
+>> +	wfhw->enabled =3D !!wf->period_length_ns;
+>> +
+>> +	return 0;
+>
+> The unconditional return 0 is wrong and testing with PWM_DEBUG enabled
+> should tell you that.
+>
 
-This is oddly placed. Did you use b4 that it appeared here?
+When you say should, does that mean the current version of PWM core will
+tell me that with PWM_DEBUG enabled, or does that mean we should modify
+the code so it does show a warning? As I did not see any warning when
+specifying a wf->period_length_ns > MAX7360_PWM_PERIOD_NS, even with
+PWM_DEBUG enabled.
 
-> Co-developed-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> [ Added interconnect related changes ]
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v6: Add 'Reviewed-by: Krzysztof Kozlowski'
->     Drop 'clock-names'
+On the other hand, if I specify a wf->period_length_ns value below
+MAX7360_PWM_PERIOD_NS, I indeed get an error:
+pwm pwmchip0: Wrong rounding: requested 1000000/1000000 [+0], result 100000=
+0/2000000 [+0]
+
+> I think the right thing to do here is:
+>
+> 	if (wf->period_length_ns > MAX7360_PWM_PERIOD_NS)
+> 		return 1;
+> 	else
+> 		return 0;
+
+I can definitely do that, but now I'm a bit confused by the meaning of
+this return value: is it 0 on success, 1 if some rounding was made,
+-errno on error? So I believe I should only return 0 if
+wf->period_length_ns =3D=3D MAX7360_PWM_PERIOD_NS, no?
+
+Or reading this comment on pwm_round_waveform_might_sleep(), maybe we
+only have to return 1 if some value is rounded UP. So I believe the test
+should be (wf->period_length_ns < MAX7360_PWM_PERIOD_NS).
+
+>  * Returns: 0 on success, 1 if at least one value had to be rounded up or=
+ a
+>  * negative errno.
+
+This is kinda confirmed by this other comment, in the code checking the
+above returned value in __pwm_apply(), even its just typical examples:
+
+> if (err > 0)
+> 	/*
+> 	 * This signals an invalid request, typically
+> 	 * the requested period (or duty_offset) is
+> 	 * smaller than possible with the hardware.
+> 	 */
+> 	return -EINVAL;
+
+So, yeah, sorry, but I'm really confused about what is the correct
+return value here.
+
+>
+> Otherwise looks fine.
+>
+> Best regards
+> Uwe
+
+Thanks again for your time.
 
 Best regards,
-Krzysztof
+Mathieu
+
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
