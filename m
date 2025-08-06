@@ -1,219 +1,212 @@
-Return-Path: <devicetree+bounces-202142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B0CCB1C2AC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:02:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BB5B1C2DD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C013F160F80
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:02:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31D713A4222
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45F022332E;
-	Wed,  6 Aug 2025 09:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF4128A406;
+	Wed,  6 Aug 2025 09:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LmWZchVg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P1zSpn3k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C59289816
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 09:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E880E28A1EA;
+	Wed,  6 Aug 2025 09:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754470885; cv=none; b=CGmItWaxqbtzINTy8gnlL+QgLws9ZE2kiu0cEVTiHnzYViarJh6v4mksGQ2MUXYufomxsB99csjjjijT+2nIjrrALYgP2y6NJzv8HkvgHcQDJrX6auGSj6Yiip6mhN09+Jqs+m2YFrt14YXRZI66JSt6weFD8/01L4IcY++bIaA=
+	t=1754471168; cv=none; b=TiChFK4TUKccgaHDo8MbpC0/EeHA0JGX2Qz+UI8v0LCHT/3Al9zyGE0ph0I4n/NJtpOvMFOy/qhipurzlm3U6TyEez0H7Iogj7dGidnXFQsahhirRJx1fOIZoFDd8zrywupieADzsPyy4Zry8ewX4/WBAOb+I7YD52qqgxpgXcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754470885; c=relaxed/simple;
-	bh=eXeFflPzyYElNM7RCdEcYbzkvkU93X8aeiBdOj0Htg8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mXxxtXGnLtLv06SQhAeElRY0EKqMZ+97V8ErwwN9U3ewmUFiSoaI7BOw+KKCnhRHGnQOrdV966PtE/aC0S5oUCsT+y0Eak0Q/LN8ehAM/KnqC2fgc2N/QDzCZJKDzMNOMlzjeWa+iqgUsZ4U2ksZK0Mpa+HZk15TCsAsF+ipRsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LmWZchVg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5765kFbf025172
-	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 09:01:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6D+xwxfaNPC764NxYBxFtb97mFQ1jkjyZhyg4hVCh4U=; b=LmWZchVg8NuIE4jQ
-	rM42U7p52Jc28Jo3fLE3S84DQLS8UD3F/D06WIwMjPM69EXfsNbaNlGjI+uB0ugk
-	MOWJPyZpWL7YEVLSoeF+6e0/CchKFvX7n8IpWij3pYFuignp0xwgJc4iMGzOcWa4
-	hVazFSaNR9dT06CaZAaN9lz3odHtq/Aa27D+M49rn83mS0PA77pSqn7qI0MaIFgT
-	hbauKmydFUSt70hbO98EsPp6S1Iwo04geC8KitENwE4xLkefnSA2M6nIGK4rBSP0
-	mKzOJe1qgw2vfl/c6YgOf4RWNZfagMd6XqPVpdIywTH7LI2Ec5SmMsLqTNpiZvZn
-	1FGS0A==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvyt7at-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 09:01:14 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-70778c8179eso11858526d6.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 02:01:14 -0700 (PDT)
+	s=arc-20240116; t=1754471168; c=relaxed/simple;
+	bh=Ql6ugviBMrRn2Jki9AiqpQUa8C9VR1NQomKZHOWqAio=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=IfcwiOmHnb/zvQOyEXy0FLIaUNY3OO3WLmyBl60eo/KA2AY8NH2eeo7T40dz2x6s8TkS9/aYdme3f6SuIvx72hIEaS8QocIxUEqNLN3lY9A5m9kirJmTvIiXCG2NiOmklp4XQrikfIlAsHrC86yYrsk6yBFFbgOSqby6zlAdLJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P1zSpn3k; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-3325cb38a78so31162251fa.3;
+        Wed, 06 Aug 2025 02:06:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754471165; x=1755075965; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Qkylg8c+Vm8Og/kqbuMD24rtUr9muU2ntVmVz7XAj0=;
+        b=P1zSpn3kJ63c+10R296zZNd8HDOfSdFUd6rgNGyUaO9Aln4ni+DziqE7qrmuF7PK4H
+         u7MuSwuLLBvk3hTSX/guYsb42HT1NTawo2OX4JLwZb5IJgr5BpaFUrONDm5T+rmLATEq
+         xrPI/XaOcGpwIBk9J8mtRUiSFKYgw/YWGJNxWvewcAD4JSG2DTx72q0u/VSBUWun+emm
+         fLlbgFEWGlWA6TsnCmvX+o4D+u8M9DcPCt9WPv7mnbrLlpslimo3Atfqg4W9EkFedao8
+         g5XJJrqIwJdv2iZUuALGzoVa91nJzJ6RQyP2Y+WZR5/tzKaTofnPa08Wtl86LQiFWxEV
+         iXqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754470873; x=1755075673;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6D+xwxfaNPC764NxYBxFtb97mFQ1jkjyZhyg4hVCh4U=;
-        b=P+KOrpSOfsNrq2OiNXdKQubwphtXcBTqiwmv1VDv4V5YdVrLTcYB9ZyLsdr75tDcqX
-         +8/vDxtlV+Uh2acVDIqLzeQACOsemOoddUvf11LI3N/DUndpCpm6PYRk7hzjruqNExdL
-         jU4nN4NjRnktEfYkgbd6Crg2pc8XMOjz5eJA6CbnaUQamHwxzbdbizgU58FltZmsvu6L
-         oY9nuG+fd/YjUAgKcV2I5lpkqsABoBgBVV/np7CbsBnaRucAac+Ni4m/nirzhICo4zNp
-         LwgbPasRJd1xpiTe3/g4jGh3CfLarhvfgweL3Q0JMeQspAJg037OVdoH6AyALWCnmkG5
-         PAOw==
-X-Forwarded-Encrypted: i=1; AJvYcCVduM3b+ra18463luF7di09jnnow0LsTJfZ/cLNRjqQrJlj79Axfhi2LWGS8cJb0GMx2BCAWmHqohIT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMcvQvmdFp6rzdEG5WKzfPabS9uzwLAgyDEd9JptxNuV9Eqnq1
-	7oj2i3Bm1NtKhSFV/tLGkqmQKuOlPdAbAj7++8ogsYtA/FW96K6rI2Lu2DsnbGAZbZVHsUYoq9M
-	WSFi4ObcE9sd8YKMrva/S4lJ2kcAfNeQilkoVXrAPRLjnRKgCzgRDlDJq2MNCUvb9
-X-Gm-Gg: ASbGncvisphPvJU0Wvzk6MMQTkG41S1JMZ845Ku2tRYdtaOZFhbRAjFVVDptV27Zwyj
-	xAFRbhWK1lF7Y9AFCf+65jBHQWcv1Sl3O3bfYWSZFEX1m6Iw563Ktk+nTuZ/df73nbJol3oOwvy
-	acVsWutb4h0ro4HOXsLiNRygp7BHJ3IUHMBGrxH/8QBfV6TMURPrJm+pQtFoJzUzoEqxe0ZKvdd
-	pSty0b5FjgAynWmKCY8CDM9CmW4DJBmOFwp2wuGPhVFqduSsCjhCQ3hebmq5550eqOYDlqPKl3t
-	bgjqgk0EhF/QfQZYaILxy2x1iUyxhhsX9pO6BzdmtBYaTZiC+oOJQ5ghgoRPcaA8PIrzeV1sqS1
-	r5e86hsAW45x0poULwQ==
-X-Received: by 2002:ac8:5d08:0:b0:4ab:701c:aa54 with SMTP id d75a77b69052e-4b0913f27a6mr15927891cf.4.1754470872826;
-        Wed, 06 Aug 2025 02:01:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQfhvBz/y7VBf77xH41t0vN0JNTEXgDYwxJcvoC4l/blB8yRe/xKAvpfQqePz0oZyARObcPw==
-X-Received: by 2002:ac8:5d08:0:b0:4ab:701c:aa54 with SMTP id d75a77b69052e-4b0913f27a6mr15927561cf.4.1754470872234;
-        Wed, 06 Aug 2025 02:01:12 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a078cbasm1067576766b.5.2025.08.06.02.01.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 02:01:11 -0700 (PDT)
-Message-ID: <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
-Date: Wed, 6 Aug 2025 11:01:09 +0200
+        d=1e100.net; s=20230601; t=1754471165; x=1755075965;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Qkylg8c+Vm8Og/kqbuMD24rtUr9muU2ntVmVz7XAj0=;
+        b=U6p3viSspL12aNBscqYYPO1FuZXO4bAma45GhTEcyAPwACat3ygZ/nsOAlmvExmdjw
+         yfGCfD4CUhCh2bvDqRWwW0p5fAafWIoH7oaOj9DIil19QNjZzIRe84HUd3eBAspQAbp2
+         EsFvfC7OG0G+C4LIeTvM5muKYwCnzVsf/8i0MO5lwS0Rfo0TSL137NIiiwX89daXr5KZ
+         MCn86IsalmEOWCwPssTX+ORTnTwZgBBz5bi3xCvokw2VA1rifTVi98+xl+oAMxJUKW5q
+         2NF4xD3VtZTr3JGLDwa+rKEj4FItn00TmYnGDCHRNRV8A1sVsdez1U3cDQXHdLmSmdQV
+         7+Og==
+X-Forwarded-Encrypted: i=1; AJvYcCVeS2l6H75gaus9lN9a+T9fiQECy/Q8SSYN79rxiw75g4PALEXa4OkevQUJfHnzahON1l3i7vtt0skWSzA=@vger.kernel.org, AJvYcCWYu0IxBszCwd8knKcKNa3Oz1N6Ku3Ia7GHkvRsCQVzHZHkxGDuwp0DugzuJn8vOijH/2fwXnsUAs+UZVs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7kFj+L3iFpmCD4Q9bcPKAPq1YpAfpLg0v9zxoj16VJ+njWdaO
+	E4oCcc8vYwGz2VdtdtGS8wJv1qqUf/cCK+SEh3QhZMtroCH8RPQUXEsM5vH+Kr7auaxzrw==
+X-Gm-Gg: ASbGncukkVHzRIDt1GaYnmfhgaLkS0EaBQBeG0FdjSGKg4gCHh62HlV8l7cDzLkG6Kh
+	v0h4JekdE//xjWRK2+nYByCBwccy3uNbHwyZllyGq/XfOI0vDR+zpyK6JdwamsbMcuspzt9EWEJ
+	2J6iMP/l13XlBQIyG+gpx0tFvCmwBlV2GPlTSCbgpleHsHuvZy9TxCvzU75u4oTqp7eBgsc/vLi
+	wxyjk7n9Ybesjgvx/429MHntrH6PPxb3GsSeeNUBR1wBwhAPkXHhnlFvB0HAbBwkMTb7S/101ZE
+	vi7TzgWvcnBuWu6fOAnLE1Q0Nzb9u0mWaLrghxAslDaIpyarEA8+ALAhFIp09QBvAoos4Drr2ac
+	pkjyH+lDr1jhJ
+X-Google-Smtp-Source: AGHT+IGl5k22XEtZ0k33mu0NCbb4izNeDFKhn4yf7lsjV+I4es/iwHtGOxVjAGcmXSs3Rk+NQ8Er+Q==
+X-Received: by 2002:a2e:a00f:0:b0:32b:7811:d48d with SMTP id 38308e7fff4ca-33381231618mr3734311fa.4.1754471164415;
+        Wed, 06 Aug 2025 02:06:04 -0700 (PDT)
+Received: from mmk-tp ([139.179.215.86])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-33238272e3asm22512691fa.2.2025.08.06.02.06.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Aug 2025 02:06:03 -0700 (PDT)
+From: Mahdi Khosravi <mmk1776@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mahdi Khosravi <mmk1776@gmail.com>
+Subject: [PATCH v2] ASoC: dt-bindings: realtek,alc5623: convert binding to YAML
+Date: Wed,  6 Aug 2025 12:05:10 +0300
+Message-ID: <20250806090510.105731-1-mmk1776@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250730093713.104003-1-mmk1776@gmail.com>
+References: <20250730093713.104003-1-mmk1776@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        quic_vgarodia@quicinc.com, konradybcio@kernel.org, krzk+dt@kernel.org,
-        mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
- <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
- <aJHgh8mon9auOHzi@trex> <aJHqpiqvulGY2BYH@trex>
- <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
- <aJMMhIqNupwPjCN+@trex>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <aJMMhIqNupwPjCN+@trex>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: NUF-B6WlWiqO6exoWEOxTKb4ztLxdaJR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXz+IkfYPA2PRm
- +jQSTBGBwOOtfL9RsiM0YMYwVLxYRFBnRD1CbnRoYSkRmyLnhK9h8NYs0STruvUS7lmZZzTwOXJ
- k2htE2znpM3QJ+TO3pIvBdhPKOx5Chn6dx6+wBuAEu3s+teUutQahGLCiNFBh5uXLs57NQnYNbY
- dLpv9/h1ckKt5ykwXcDGrmqwFbTFDSfuZ68yr+0WEdO/FgYrWkLjFsNp9QWhiVWfQYbwweDWd8Z
- vcB6YQEqta5M/WNAnV0YbKvUNxCNLrtXqz7OPuzu2Xv4lzZOvtIWvFF25WKsQzLsMGGL/yqzm94
- mXSCSgPHeh+q4VWk5ro4TkE+2faVFijglS/RVoKDOCKkV+kAnnzKowMKkqKulUWUMb4o6IFzghH
- yqYIPltb
-X-Proofpoint-ORIG-GUID: NUF-B6WlWiqO6exoWEOxTKb4ztLxdaJR
-X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=689319da cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=JpaEw4Cn0_AnavUb80UA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_02,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
- adultscore=0 malwarescore=0 spamscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
 
-On 8/6/25 10:04 AM, Jorge Ramirez wrote:
-> On 06/08/25 04:37:05, Dmitry Baryshkov wrote:
->> On Tue, Aug 05, 2025 at 01:27:34PM +0200, Jorge Ramirez wrote:
->>> On 05/08/25 12:44:23, Jorge Ramirez wrote:
->>>> On 05/08/25 13:04:50, Dmitry Baryshkov wrote:
->>>>> On Tue, Aug 05, 2025 at 08:44:28AM +0200, Jorge Ramirez-Ortiz wrote:
->>>>>> Add a qcm2290 compatible binding to the Cenus core.
->>>>>>
->>>>>> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
->>>>>> encode at 1280x720 (HD).
->>>>>>
->>>>>> The driver is not available to firmware versions below 6.0.55 due to an
->>>>>> internal requirement for secure buffers.
->>>>>>
->>>>>> The bandwidth tables incorporate a conservative safety margin to ensure
->>>>>> stability under peak DDR and interconnect load conditions.
->>>>>>
->>>>>> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
->>>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
->>>>>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
->>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>>>>> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
->>>>>> ---
->>>>>>  drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
->>>>>>  1 file changed, 50 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->>>>>> index adc38fbc9d79..753a16f53622 100644
->>>>>> --- a/drivers/media/platform/qcom/venus/core.c
->>>>>> +++ b/drivers/media/platform/qcom/venus/core.c
->>>>>> @@ -1070,6 +1070,55 @@ static const struct venus_resources sc7280_res = {
->>>>>>  	.enc_nodename = "video-encoder",
->>>>>>  };
->>>>>>  
->>>>>> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
->>>>>> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
->>>>>> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
->>>>>> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
->>>>>> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
->>>>>> +};
->>>>>> +
->>>>>> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
->>>>>> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
->>>>>> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
->>>>>> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
->>>>>> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
->>>>>> +};
->>>>>> +
->>>>>> +static const struct firmware_version min_fw = {
->>>>>> +	.major = 6, .minor = 0, .rev = 55,
->>>>>> +};
->>>>>
->>>>> This will make venus driver error out with the firmware which is
->>>>> available in Debian trixie (and possibly other distributions). If I
->>>>> remember correctly, the driver can work with that firmware with the
->>>>> limited functionality. Can we please support that instead of erroring
->>>>> out completely?
->>>>
->>>> yes, in V7 I did implement this functionality plus a fix for EOS
->>>> handling (broken in pre 6.0.55 firmwares).
->>>
->>> just re-reading your note, in case this was not clear, the _current_
->>> driver upstream will never work with the current firmware if that is
->>> what you were thinking (it would need v7 of this series to enable video
->>> decoding).
->>
->> I'd really prefer if we could support firmware that is present in Debian
->> trixie and that has been upstreamed more than a year ago.
-> 
-> 
-> I share your view — which is why I put the effort into v7 — but I also
-> understand that maintaining the extra code and EOS workaround for
-> decoding needs to be justifiable. So I chose to align with the
-> maintainers' perspective on this and removed it on v8 (partially also
-> because I wanted to unblock the current EOS discussion).
+I converted the alc5623 audio codec binding from text to DT schema.
+This is my first try and I used make dt_binding_check & make dtbs_check to verify
+without getting any errors.
 
-+$0.05
+Changes since v1:
+- Add dai-common ref
+- switch add-ctrl/jack-det-ctrl to allOf uint32
+- use unevaluatedProperties
+- fix example compatible
 
-I thought we were going to eventually relax/drop the fw requirement
-when the driver learns some new cool tricks, but are we now straying
-away from that? (particularly thinking about the EOS part)
+Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+---
+ .../devicetree/bindings/sound/alc5623.txt     | 25 ---------
+ .../bindings/sound/realtek,alc5623.yaml       | 54 +++++++++++++++++++
+ 2 files changed, 54 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/alc5623.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
 
-Konrad
+diff --git a/Documentation/devicetree/bindings/sound/alc5623.txt b/Documentation/devicetree/bindings/sound/alc5623.txt
+deleted file mode 100644
+index 26c86c98d671..000000000000
+--- a/Documentation/devicetree/bindings/sound/alc5623.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-ALC5621/ALC5622/ALC5623 audio Codec
+-
+-Required properties:
+-
+- - compatible:	"realtek,alc5623"
+- - reg:		the I2C address of the device.
+-
+-Optional properties:
+-
+- - add-ctrl:	  Default register value for Reg-40h, Additional Control
+-		  Register. If absent or has the value of 0, the
+-		  register is untouched.
+-
+- - jack-det-ctrl: Default register value for Reg-5Ah, Jack Detect
+-		  Control Register. If absent or has value 0, the
+-		  register is untouched.
+-
+-Example:
+-
+-	alc5621: alc5621@1a {
+-		compatible = "alc5621";
+-		reg = <0x1a>;
+-		add-ctrl = <0x3700>;
+-		jack-det-ctrl = <0x4810>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+new file mode 100644
+index 000000000000..0b9dc324f04d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ALC5621/ALC5622/ALC5623 Audio Codec
++
++maintainers:
++  - Mahdi Khosravi <mmk1776@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,alc5623
++
++  reg:
++    maxItems: 1
++
++  add-ctrl:
++    description: >
++      Default register value for Reg-40h, Additional Control Register.
++      If absent or zero, the register is left untouched.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++
++  jack-det-ctrl:
++    description: >
++      Default register value for Reg-5Ah, Jack Detect Control Register.
++      If absent or zero, the register is left untouched.
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,alc5623";
++            reg = <0x1a>;
++            add-ctrl = <0x3700>;
++            jack-det-ctrl = <0x4810>;
++        };
++    };
+-- 
+2.50.1
+
 
