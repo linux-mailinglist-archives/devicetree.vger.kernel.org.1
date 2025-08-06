@@ -1,153 +1,229 @@
-Return-Path: <devicetree+bounces-202060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0927B1BF15
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:15:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 592D7B1BF28
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:18:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA75B7A4146
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:13:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FE117A32A1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FF01E0083;
-	Wed,  6 Aug 2025 03:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FFC43AA1;
+	Wed,  6 Aug 2025 03:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MfdPMSq1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CH4KyWXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521EE199931;
-	Wed,  6 Aug 2025 03:15:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2233538D;
+	Wed,  6 Aug 2025 03:18:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754450102; cv=none; b=W2+o1jNHSIdnWioJfBp7G6mfRuU7P5SrYJQLnbjoUq5AqGkAOa30Rdu8nykFbBYAkRVZc8owq0acUYIHjZoVGr2IoJ+HkT76hJNpsF9ysKuW2miP/9foXn8EZm2vA3M1sl0nLQQYL9WC2xqUDrZyBgPWrtpzKjf1bERHvyklHUQ=
+	t=1754450285; cv=none; b=R/iNZ2eSjJZXoyAbxK99lszdlBKLuUjueoQ1q3XWiYIOGnLL7X69AuD52OuXbHTOJxfbnvYOylGBhzxXgWu7kjQ4ubHC01h9pzVdXxxfWeWlFUloAy/Wl6mg+wqrxBwwg5WWP/v89ZaTCMHuqTuf9YdbMwujl3jKaItqiN/k3A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754450102; c=relaxed/simple;
-	bh=EbY3vb5nJiuhstH/MUgZ/kdqRmd3CcCHo2dRcTLXkOk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lsbI8JvZz2wTSat3wPrj95ZGe2sEjKl3Q9odFcWH8yM6MC2+sQOQ4EphTNJCRUqw7uEkBAVRVQ52Ps2xv0o/jbunQdn7qse4KWDOK0VhYXDdft6AWugQHHobQgXvRcjNLw3IvL/pqFWJ02DdYRd4CCrBU6nCB/nwY3ZBixcmOAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MfdPMSq1; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-313a001d781so5273015a91.3;
-        Tue, 05 Aug 2025 20:15:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754450100; x=1755054900; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKlo96Z8h7/Xm6bQzZ0wd+2ryR6dxIsF/X2HceDzkGE=;
-        b=MfdPMSq18dcyT80LT2MkE2WDeghGNbiDYspLYDFGt3yOROX1KqVa+zDye5AU7DERBl
-         hLOfx1R88oE+7TTa9JkWkp3G1wxqfC/3q4KxYF3lrNdAfWD1BdFrKzRc07icqm4xPSyl
-         +bV0MFt3U1VyyPBQEtcD2dS1FY9WWjXYqHbFNYPSNrTZKq7FMTgwlXrCUUAJ0TG2BG80
-         dRpyJE4qpVy/+iXav+DMttmP/pq4VUsWG34PyT6OYElf9yfa4KPE4klG/npR01Tpn0+5
-         Naf4D0XocBGlm7IZqXrY5zu0//V5E29G1SjNZc5o55YH139PjwEDLn0LpCPCx4Kcaajn
-         tFcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754450100; x=1755054900;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FKlo96Z8h7/Xm6bQzZ0wd+2ryR6dxIsF/X2HceDzkGE=;
-        b=PLnpvenVXaTsk8yeFGycum/krnwDWTVNU7Trzb6XX3lbYVwjlTONc2UMZaCOMrRI6w
-         IfQfkPsv0gPr6naUpF3Onf/flW9GZla+hbSzNaqsZ+GZMGGwaPU2IwRX5hGl+d2QOeM7
-         slMlnJLsEf+gQ3/me6Ia8Lnp5Uq8eS3Peb6ZNadPOrs+DzpH1yEHwKddn2uDtZWFy9/z
-         NriSLJzaqIPDANwFTG2jRMrI96WBDOEq1Xju5piw57hpKOzZf6EmvibIkpXn7lZV7TWs
-         LDyD20masvCvOp/8p9RBizOU7HBkgaetOagwzdmtL3+rfF0FcN3P9HIFdz6wDNYlwBCT
-         rDsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFXNLqvrygvXezgP92LSbodROGqXF/RWY7pF3tBPB796bV04Ug9QRk4I9asZVY3NzETAov7Z3MlrGn@vger.kernel.org, AJvYcCVSQRICYAn25w394J40Rj6zZ2GL9DMxefEm/xM3Dfsx5h8+HPgg2vGPhbuzygAZFpp+cIBHWG13ORtJAART@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkKG6plHA6AuuxzPFnKfQxUDR8EdUWDZ9e3Yemuimr8A4Y1q+i
-	Hb2szonABaxb9ftE87qD1551YfVIB2Gu4oor2dwAoefJ1hh15nYLPL64Xphf+Q==
-X-Gm-Gg: ASbGncuzDXOWS19Bh6FWAhP+E8kIui+4ZvYGUh19ZP1xcpXJjxc4CiLOH2+hUYlG2Ye
-	I4WRmiVq1TgTx5l9GQhcXXZNZx+oZimc2fNXdqlRPSnWYEz8zhRAoeBS1c3g5Jk4kWrV1/oRX5V
-	pe3RqTcHG2j8C6OqDTiuNWi+O6sRzxpLerBjGRDKY39GGqYkYi9OBpdx4rYu5wAvQ6Y9NuoLrYt
-	EjI8xDLxVCpx7LypDuhDHiggchFl5XckkhtvmL937eHCXUosMBUJUXifEGwSMzprrLA+VK+ijjG
-	R+9YOIP4qy8hdc6VebqcJ26I33/+lasxuM/0QT5E/RpM42HhCCNz5VAdfvMrWSa/FgE5ZXKqth4
-	8qEyDtIhE+Uzh5922qvdDyAusRiYbaN9gIzwZawdh25otNrlPihKPiBLsKaebnOjbohLINdM=
-X-Google-Smtp-Source: AGHT+IGecgNQRjmTC7HzaMwNFKebma9In7w2RFIWD5TjU4S0tMtUhhqovlxsKk4bF6wyvxohXmLfPQ==
-X-Received: by 2002:a17:90b:1d50:b0:31e:e88b:ee0d with SMTP id 98e67ed59e1d1-32166c2bd3emr1602159a91.9.1754450099438;
-        Tue, 05 Aug 2025 20:14:59 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-321612950c7sm1443811a91.31.2025.08.05.20.14.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Aug 2025 20:14:58 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <fa1b8f0f-23a3-4baa-a424-9b1506a9699c@roeck-us.net>
-Date: Tue, 5 Aug 2025 20:14:57 -0700
+	s=arc-20240116; t=1754450285; c=relaxed/simple;
+	bh=zyEHq+SsGfd1r8KY8nj2AXUlL7cvjBDfG/yNO39pRLI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bJ15jfwVapgoFtM2j8A/iMkTPfyDN7/YOxx+xOl3QxOLxyepd1eBYeeNSYDbM2voAk4SS9e69LyKvZpxQ2aXACkreTcR7EFUzg3N7Jp09/3CkRzYT1OEl8EWxSLfcHCVP887eNew/aj3uWRRwBjMudFW6cJvkO0mdSTznI6vd0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CH4KyWXF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5761ekpH008619;
+	Wed, 6 Aug 2025 03:17:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yOT2CnCbTagf5bPAOGbBwo
+	kc8ZhH7hgxro3rWIgHyoM=; b=CH4KyWXFRAavuJiruaL9DggzB1P8ROhTfXEQId
+	3ZIU/shjfLxNfQA2USfxSLvGr2jgTnz+XqbLCbXVV4clORtCa5zZ1sYxwIVBkeCO
+	1YTMJBPk6D1SYdYSap7dZKw6n1RtwK3PZ8vd6e/wiuMAXAEe1W1+BibWWxR+4LwJ
+	QsDzVsa7pVxDG7AQ+jz1lmffJ6Ub9m3RmmnjkCpb55u52LRfYJfgc2xAHC7b0S0l
+	UW9t8chFsu+sQyuWDqqWNzZSlAY16vgJnjle10MeTTaiMVWLVwEfazSbMztJBCh9
+	FKgmtnvWQFMsqJSo4LrqXemEf2CfSsy9qiFBipj2EcHJE2dQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpy897tv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Aug 2025 03:17:43 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5763HgUI028449
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Aug 2025 03:17:42 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 5 Aug 2025 20:17:36 -0700
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+Subject: [PATCH v6 0/6] Display enablement changes for Qualcomm QCS8300
+ platform
+Date: Wed, 6 Aug 2025 11:16:44 +0800
+Message-ID: <20250806-mdssdt_qcs8300-v6-0-dbc17a8b86af@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] hwmon: (ina780) Add driver for TI INA780
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, jdelvare@suse.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250806005127.542298-1-chris.packham@alliedtelesis.co.nz>
- <20250806005127.542298-2-chris.packham@alliedtelesis.co.nz>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250806005127.542298-2-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACvJkmgC/23R227CMAwG4FdBvV5QEudUNE28xzRVObgQaW2hK
+ dUQ4t2XAttg5dKW/i+2cyoS9hFTsVqcih7HmGLX5kK9LAq/te0GSQy5LjjlgnEuSBNSCkO198k
+ ApYQxp42B4BV1RQ7teqzj1wV8/7jWPe4P2R2uzaLBlOzFXS1eMyupzpDmmsslEwCgskpyxFfHr
+ t003WE9FbH1S981b9MjTwimSdhVTRoqF9sQ200iIxBKNPdIDTdSU1h3KS33B/uZneYXczYhmTp
+ xWC3ylkhLFEK4wB1VFrEMrIYatQMGXlseauZcMe22jWno+uPldiO/LHc7k/x/ppHnWRj13tWA0
+ vjyfqdpiltQPQ1a7ywNTgJ4fAhOU4zw87KkjMEMmK6gvMEShCwVpXNA3AGczgAxja6MRm0EZ1z
+ OAfkH5L+cATIDLk9gQTqHQT0C5/P5G9vOJMmGAgAA
+X-Change-ID: 20241224-mdssdt_qcs8300-11b7883dc60b
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+	<lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang
+	<jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Neil
+ Armstrong" <neil.armstrong@linaro.org>,
+        Kuogee Hsieh
+	<quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Yongxing Mou <quic_yongmou@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754450254; l=4482;
+ i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
+ bh=zyEHq+SsGfd1r8KY8nj2AXUlL7cvjBDfG/yNO39pRLI=;
+ b=oiVSCXOJkKybOHTuUT9fj8sJF81hZezmmcICcPKT40MsLM9TUs3nlJ0La5kAOqDyXKARmjBTX
+ pbTdLtw/KZgBc3j5Q84qMzce+tbIguNjP+xVtr7vHfl7Uw7GEI97KLf
+X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
+ pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 1phOKCwgY35JWdeO6CEZk4oCFbKEG7uC
+X-Proofpoint-ORIG-GUID: 1phOKCwgY35JWdeO6CEZk4oCFbKEG7uC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX52jHx08skMla
+ 5xnjfUoLlzXPTr6FNXybFpXuIWUvJAO/Qd47qAILmmkhaz99Pgr+v8AxpBYhVlJWSwZGMVZ8Axv
+ CuADYKIXuWUaRPYwsLEVVdBoSGuoiP1k2UqL94VbQjXfjjTZ5BAjj3ylWM+qxQzAqbsXLBCNMxd
+ fSwJFWddkJnY838EJqI9NSkenAAtoorbziW4SrN8YQ0S2esO6vC4Jjok5TpOzRSg7EJEsdbZPqG
+ Na029A0cfUslGw+aQ5pjv+gy2ZH1IrigXCXhfcoJqk3zusxB90JciEmZoAjTfSixYrfG1Pfdvjx
+ RBTU2VvE2fInSmbRFlFdiIzRtdCGKm0Zo0J9WBdSpfwgzLIbTK+axDyQlvkzCxQLGrn2PjIHeE3
+ N3392xi+
+X-Authority-Analysis: v=2.4 cv=GrlC+l1C c=1 sm=1 tr=0 ts=6892c957 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=iD6vXzWbp0dc2yQZ6nwA:9
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-05_05,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ phishscore=0 adultscore=0 bulkscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
-On 8/5/25 17:51, Chris Packham wrote:
-> Add support for the TI INA780 Digital Power Monitor.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+This series introduces support to enable the Mobile Display Subsystem (MDSS)
+, Display Processing Unit (DPU), DisplayPort controller for the Qualcomm 
+QCS8300 target. It includes the addition of the hardware catalog, compatible
+string, and their YAML bindings.
 
-Looking at the registers, the chip seems to be almost identical to INA237/238.
-Why a new driver ?
+Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+---
+Changes in v6: Fixed review comments from Konrad, Dmitry.
+- Rewrite commit msg in dp-controller dt-binding change.[Dmitry]
+- Optimize the description in MDSS dt-binding.[Dmitry]
+- Pass the sc8280xp_data as fallback in the UBWC change.[Konrad]
+- Add the DP controller driver change.
+- Link to v5: https://lore.kernel.org/r/20250730-mdssdt_qcs8300-v5-0-bc8ea35bbed6@quicinc.com
 
-Guenter
+Changes in v5:Fixed review comments from Krzysztof, Dmitry.
+- Rebase to next-20250717.
+- Change DP compatible to qcs8300-dp due to add 4 streams support.
+- Add QCS8300 UBWC config change due to rebase.
+- Add 4 streams clk and phy in the mdss yaml.
+- Link to v4: https://lore.kernel.org/r/20250120-mdssdt_qcs8300-v4-0-1687e7842125@quicinc.com
+
+Changes in v4:Fixed review comments from Krzysztof, Dmitry.
+- Use the common style for the dt-bindings commits.[Dmitry]
+- Update the commits msg for the mdss binding patch, explain why they
+  reuse different platform drivers.[Krzysztof]
+- Link to v3: https://lore.kernel.org/r/20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com
+
+Changes in v3:Fixed review comments from Krzysztof, Dmitry.
+- Fix the missing space issue in commit message.[Krzysztof]
+- Separate the patch for the phy from this series.[Dmitry]
+- Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
+- Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
+
+Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+- Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+- Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+- Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+- Correct formatting errors and remove unnecessary status in MDSS
+  bindings.[Krzysztof]
+- Add the the necessary information in MDSS changes commit msg.[Dmitry]
+- Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+  20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+- Package the DisplayPort controller and eDP PHY bindings document to
+  this patch series.
+- Collecting MDSS changes reviewd-by Dmitry.
+- Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+- Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+- Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+---
+This series depend on 4 pixel streams dt-binding series:
+https://lore.kernel.org/all/20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com/
+
+and separate eDP PHY binding:
+https://lore.kernel.org/all/20250730072725.1433360-1-quic_yongmou@quicinc.com/
+
+---
+Yongxing Mou (6):
+      dt-bindings: display/msm: Document the DPU for QCS8300
+      dt-bindings: display/msm: dp-controller: document QCS8300 compatible
+      dt-bindings: display/msm: Document MDSS on QCS8300
+      drm/msm: mdss: Add QCS8300 support
+      soc: qcom: ubwc: Add QCS8300 UBWC cfg
+      drm/msm/dp: Add DisplayPort controller for QCS8300
+
+ .../bindings/display/msm/dp-controller.yaml        |   2 +
+ .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 282 +++++++++++++++++++++
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  15 +-
+ drivers/gpu/drm/msm/dp/dp_display.c                |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                     |   1 +
+ drivers/soc/qcom/ubwc_config.c                     |   1 +
+ 6 files changed, 297 insertions(+), 5 deletions(-)
+---
+base-commit: 024e09e444bd2b06aee9d1f3fe7b313c7a2df1bb
+change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
+prerequisite-message-id: <20250730072725.1433360-1-quic_yongmou@quicinc.com>
+prerequisite-patch-id: 2ea89bba3c9c6ba37250ebd947c1d4acedc78a5d
+prerequisite-message-id: <20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com>
+prerequisite-patch-id: 4782272bb7d2403e2f2dbf762586d4570e6b6ba6
+prerequisite-patch-id: cfdd5c37d38b2a4f1386af4021ba3920c6d8dcf8
+prerequisite-patch-id: c874bf64aec8cb2ff0bc91051620ac771cbeeeea
+prerequisite-patch-id: 63defbfb812a2f9c6365a98538421aea374e0e13
+prerequisite-patch-id: 0ffa9d544d516d4e14700229a4ab6a9c7751823f
+
+Best regards,
+-- 
+Yongxing Mou <quic_yongmou@quicinc.com>
 
 
