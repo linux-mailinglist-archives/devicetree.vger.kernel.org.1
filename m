@@ -1,184 +1,180 @@
-Return-Path: <devicetree+bounces-202153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F5F8B1C39F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:44:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14918B1C3E4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:57:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D54318881D8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:44:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C0A216A6AB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48E128A41F;
-	Wed,  6 Aug 2025 09:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C67289345;
+	Wed,  6 Aug 2025 09:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="tfE4rBTy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OsJ6d9NW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB24528A1E6;
-	Wed,  6 Aug 2025 09:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4E22367D6
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 09:57:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754473470; cv=none; b=cgb4dY1McQEkJ7pDQTka7hFx3CC9nG0EoYGUQygCGsi5C9ddDI1XoM5Xw2iAB36PwZNhRR9jPyfZoX1Yt23PXGS2figKDfPOGEo/2/LGw/eMQYjfS1ZWV4AdM1DaImH/aPyL1YtasrsLgA+vfOzNmBOqw0nd3u5joMX8Yj3xhIc=
+	t=1754474257; cv=none; b=LIkBPnQsLYvsK1gnFxUW+ISZg0/OsC6UKag8c9Bs/ixE5scXdlGCbkGG+8nZZZRut6XV7kGkxyDB+qpe03MTIucnSDtCsNXyc5LbLsIq3eyh4UTB7yj2nNB6hKmHMe7bxbGV/p6F0OmpBXKGkBCvgWvuzhg456bOdmK7eLBnSeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754473470; c=relaxed/simple;
-	bh=u/Tn+A6diotaqys1c9iYH8Z2AYljLLraPst/MX8tZNU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GZsT/Lr8PX86IjTNMmOhaKFuz2+qW3QDkH7q9f8nca1M6mAdq9sjoGulx6Aab2bU6NyG0jGl93ulfx21bOzpw1HLR2y5RKDDAH131HdMpWersGoXGQK7oApoGMQpwiEhjeC0DmxNbGnSixVFKz/OGmlKv6O809lUriX7Bfb8ZS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=tfE4rBTy; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=VsdEDTQz5mNEccwWC/xjHwJT4LECnNHlR21b+AgE4fw=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1754473445; v=1; x=1754905445;
- b=tfE4rBTyG4K0c8GCFnAs+ENpB5IjCIo04ZjH6jA/oPRH/UlZs3kCXU41irItzIeeFdZVFgoX
- TOcgQvFBUl8dhqS1hJhsFdGnqfyIiQPpoCvkK4ZlIYMr0dfvry0+fhhf5XHONlZjxWic77iN2mE
- zjtrQYuypMQeRG/ihx3PzAocvp98FtsYuGtXoZUQLwxw67kqXEP0X3+RC0cJc5YG2ZnZAIg0Gs3
- I3wXRFNMnNPz+6b/5/RB8W2ej5YeyWiCYUUNwkvVfru1PmNkqU5yRlRN66hlGENu2vGKdP3Q7Kf
- 5Rz0DtsY46sBPF73AyEd80ugD0gtz4aPvvuK4iTRqs3aQ==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id cdd574cd; Wed, 06 Aug 2025 11:44:05 +0200
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Wed, 06 Aug 2025 11:43:54 +0200
-Subject: [PATCH v3 2/2] mmc: sdhci-pxav3: add state_uhs pinctrl setting
+	s=arc-20240116; t=1754474257; c=relaxed/simple;
+	bh=lsYFOYME95FfYHQgxD2fXes4j/sNpClVL4HShdy3UpQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bz8PJAkbg4EPQxsBkSmU6ec7pw2GZ2Uca0BY/DkJiRnfkA8hSky0cgV7kuyR/1CDxPh/y1FsOlFCyJ3BjF7cEAjryn8WTN6ZBwXRjP4ZjiUn+lFkyXtuWBVAiraEpRXUM5xj60NVOAUxhzwGSrcay7cjztey/JdvzovetqxM7zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OsJ6d9NW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5765kEC5025033
+	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 09:57:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IqxXBbq7cPgkYcO7MMpR2qxt2qS4qD02969cwFn8hIk=; b=OsJ6d9NWKHJkMZoa
+	hswbPYW7K9UASdz9PiijZCTgAMlVGh6jlG1/CShuLCAd3YwCCmKUoXO4qtn7bJ9L
+	M/N4wGTswbUQzraUQD25IqWF0JAIUIaE9zCy/VFuL3x9C8WKNOeQXjm8L92UV/5G
+	QBSdlA30mx9SiuY3mdQYnlNDIExNRl2YasdrSG12Hluh3BtlXwwjPdd2yfpjCQv9
+	T+TgBjbHSVOmsFPXmp81Yv1MRqVxjem/jt2wJfH9g4XZUScn4DAIe0aq7lOT7BFq
+	BkgSm+MjcqfEmCXlxcwvbFwtl26XSn1k7McNKHkdp8YC5HyxfeHREY7RctRd1GI3
+	QPtZEw==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvytdae-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 09:57:34 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b38d8ee46a5so759233a12.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 02:57:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754474253; x=1755079053;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IqxXBbq7cPgkYcO7MMpR2qxt2qS4qD02969cwFn8hIk=;
+        b=tpfDyC6JwSskk1cOM3zKIxSyOr/O1su8Oxb9tYWqDLy3R/3xvDn9Mwcp8REitNNWi9
+         6Vdca/Zcw9akowLS1xMKbmfBREsIX3AAEPF3f7Uz9jpvAj3eVK54qVLL9EaxeXfoUV5k
+         EBL1i+Rhv6KiIvYJy+aSoapAFzOKiATN79gPZZsb0etdJkuqTjGdqj5307nc7/tbeR3Z
+         +yF4jE1c3qUe/K5lNsnqTQ9sfwzyGXNcK/LxTyC6YY9CEAxo6reidspYssPn76rsfjdR
+         7oLNP+j1TZMj17qCWKslRak08FcsmYntp6fnFYo3PpoaMOQLHX5Rt5KsZ7xZ5MGEDzNF
+         vchw==
+X-Forwarded-Encrypted: i=1; AJvYcCXz76cZMIxhwHdnT7hjkUJNjj6MqDX9tKA43JdehoyOgSiOlP0qjvIA1/ukAtWMUhZ3spGcRImhykQq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxY5hQKxTSHA3Z6MWE9ExVdSagN6Vw8Del2Cd5CaB/8kWl1QYw+
+	VAiRfHBHXxmrDl4LoBHo903xBTfh0w0fb+b5aDZQhrzZhLnLUbc5QahbxbN4tQxilTVPGXMN4Iy
+	z6tFcCQKgBEcqO67G2Z2G74qLwiR52A7wZKWndmCrOmoklgWIY0w56qptmIrU9wV6
+X-Gm-Gg: ASbGncsDEf480Oz04ZiNuJebrrSYpjrC3xgI6dp1lurZ1HDSgXkl/w4y+0oabKUISql
+	uBL+Ai0n0UjybkZJUJqWMhOKQqGoSP/0hgy2O0SOUUtZvBNY4Asdtt7CLXoHwa7pfsS+2B+hatV
+	O98f3hYw7TNEIl8hiArMrMv77gg2BJE5QAlhP1T/+e00FTIVhkELt4NUpnupioPzsOvAVnKA9CM
+	WB2vvoccpx0JqSWzKVAhvd9SXKqcBK7XqsBJY3gI9Bevk2VWKtQQGo30KFGTOTyYk3W5gzANv7e
+	D0g9a7l7mDmqu6PIqV85riKBRXDjd0fjatpXVeeox8hcv0tyCMz1AQ9w9Ym6EouYOHA=
+X-Received: by 2002:a05:6a21:9989:b0:240:1132:6ff with SMTP id adf61e73a8af0-2403193f793mr4134195637.7.1754474253324;
+        Wed, 06 Aug 2025 02:57:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFvOm29N4CcerImZ0VqJXj8dtUuBPdLJmLmcso/logCxwkr3fV34DG4P2Oi7ic0GJV//FM8EA==
+X-Received: by 2002:a05:6a21:9989:b0:240:1132:6ff with SMTP id adf61e73a8af0-2403193f793mr4134150637.7.1754474252843;
+        Wed, 06 Aug 2025 02:57:32 -0700 (PDT)
+Received: from [10.217.216.26] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b422bac0b57sm13036378a12.31.2025.08.06.02.57.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 02:57:32 -0700 (PDT)
+Message-ID: <5d75904a-05f5-4cee-9ff3-821b692f6a6f@oss.qualcomm.com>
+Date: Wed, 6 Aug 2025 15:27:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] dt-bindings: clock: qcom: Document the Glymur TCSR
+ Clock Controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
+ <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-2-227cfe5c8ef4@oss.qualcomm.com>
+ <20250730-mottled-myrtle-bull-3ae03c@kuoka>
+ <9cb06263-2a61-4acd-a9cc-157abb832d62@oss.qualcomm.com>
+ <48610dd9-16c0-48ec-9997-2de9e0f7b3b6@kernel.org>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <48610dd9-16c0-48ec-9997-2de9e0f7b3b6@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250806-pxav3-uhs-v3-2-2f03fee380b0@dujemihanovic.xyz>
-References: <20250806-pxav3-uhs-v3-0-2f03fee380b0@dujemihanovic.xyz>
-In-Reply-To: <20250806-pxav3-uhs-v3-0-2f03fee380b0@dujemihanovic.xyz>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>
-Cc: Karel Balej <balejk@matfyz.cz>, David Wronek <david@mainlining.org>, 
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3445;
- i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=u/Tn+A6diotaqys1c9iYH8Z2AYljLLraPst/MX8tZNU=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBmTlR8/MA2fn6hQnJt0Qdtm7dLK1otir7//Six4Gr6yP
- 3Diep65HaUsDGJcDLJiiiy5/x2v8X4W2bo9e5kBzBxWJpAhDFycAjCRbEuGv3LPsnSa5wgd3Mfv
- 8kL2msephntLb/Lu9v9xpJ6p2VyJj42RofvmQS0N5cWqbrEnU0+afjetllfgUtl5fKrM7QUsnzL
- ZuQE=
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+X-Proofpoint-GUID: bpiNWOzfYqFlxETQPtuLacgqQozvxlJV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXw+LhQEfVc/Xv
+ 5QQPHmvg58QeaXQINvliJ1F1XAtaxT4vIJVH6Gv6uZMvO2NU4+xNfsKOyL0kqVjgRD4DW7+t9oQ
+ P3lkPiVC3g1fdXVSBu3cWMzkOac2RO9kaZWHV9yiyaZcGii+uJcoNNoFGSQT5rfT1YcemWDzU1g
+ Eqy0EI5Uzb07gLh/PqBEBSPmGdeB8d5wvPWo0sAB6YiozJ/uYVDFOdfSS7xFxnvfYdg8m+l1Can
+ gW4uVtAPnYhwDtO999J3uNdNCXs9FhcLLmW8+xF1QEIZ4iQ+QCmgHwdgtIYPc02Fboi5+VcWliw
+ 27lMG0Z3AY+ewA0WhCPMO3a9uuUIqBUWVZ0qVP7sSPahGc9YV0svk5o2NDjnqdq0GZ5B6VMzKIq
+ lxhP7KrT
+X-Proofpoint-ORIG-GUID: bpiNWOzfYqFlxETQPtuLacgqQozvxlJV
+X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=6893270e cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=xJKRXGaZASgMo-ZfVxMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-06_02,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ adultscore=0 malwarescore=0 spamscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
-Different bus clocks require different pinctrl states to remain stable.
-Add support for selecting between a default and UHS state according to
-the bus clock.
 
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
-Changes in v3:
-- Move pinctrl stuff out of platdata
-- Add helper for pinstate lookup
-- Thanks to Adrian for the suggestions
 
-Changes in v2:
-- Don't attempt to lookup pinstates if getting pinctrl fails
-- Only select pinstates if both of them are valid
-- dev_warn() -> dev_dbg()
----
- drivers/mmc/host/sdhci-pxav3.c | 40 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 39 insertions(+), 1 deletion(-)
+On 8/1/2025 2:40 PM, Krzysztof Kozlowski wrote:
+> On 01/08/2025 06:14, Taniya Das wrote:
+>>
+>>
+>> On 7/30/2025 12:47 PM, Krzysztof Kozlowski wrote:
+>>> On Tue, Jul 29, 2025 at 11:12:36AM +0530, Taniya Das wrote:
+>>>> Add bindings documentation for the Glymur TCSR Clock Controller.
+>>>
+>>> Same question as for v1, what is Glymur?
+>>
+>> Glymur is the Qualcomm's next gen compute SoC.
+> 
+> Explain it in at least one commit msg, not in reply to me.
+> 
 
-diff --git a/drivers/mmc/host/sdhci-pxav3.c b/drivers/mmc/host/sdhci-pxav3.c
-index 3fb56face3d81259b693c8569682d05c95be2880..ceb06f1c18146eac296c6d20483a9f006567a978 100644
---- a/drivers/mmc/host/sdhci-pxav3.c
-+++ b/drivers/mmc/host/sdhci-pxav3.c
-@@ -20,9 +20,11 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-+#include <linux/pinctrl/consumer.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
- #include <linux/mbus.h>
-+#include <linux/units.h>
- 
- #include "sdhci.h"
- #include "sdhci-pltfm.h"
-@@ -51,6 +53,9 @@ struct sdhci_pxa {
- 	struct clk *clk_io;
- 	u8	power_mode;
- 	void __iomem *sdio3_conf_reg;
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pins_default;
-+	struct pinctrl_state *pins_uhs;
- };
- 
- /*
-@@ -313,8 +318,20 @@ static void pxav3_set_power(struct sdhci_host *host, unsigned char mode,
- 		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
- }
- 
-+static void pxav3_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	struct sdhci_pltfm_host *phost = sdhci_priv(host);
-+	struct sdhci_pxa *pxa = sdhci_pltfm_priv(phost);
-+	struct pinctrl_state *pins = clock < 100 * HZ_PER_MHZ ? pxa->pins_default : pxa->pins_uhs;
-+
-+	if (pins)
-+		pinctrl_select_state(pxa->pinctrl, pins);
-+
-+	sdhci_set_clock(host, clock);
-+}
-+
- static const struct sdhci_ops pxav3_sdhci_ops = {
--	.set_clock = sdhci_set_clock,
-+	.set_clock = pxav3_set_clock,
- 	.set_power = pxav3_set_power,
- 	.platform_send_init_74_clocks = pxav3_gen_init_74_clocks,
- 	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-@@ -366,6 +383,19 @@ static inline struct sdhci_pxa_platdata *pxav3_get_mmc_pdata(struct device *dev)
- }
- #endif
- 
-+static struct pinctrl_state *pxav3_lookup_pinstate(struct device *dev, struct pinctrl *pinctrl,
-+						   const char *name)
-+{
-+	struct pinctrl_state *pins = pinctrl_lookup_state(pinctrl, name);
-+
-+	if (IS_ERR(pins)) {
-+		dev_dbg(dev, "could not get pinstate '%s': %ld\n", name, PTR_ERR(pins));
-+		return NULL;
-+	}
-+
-+	return pins;
-+}
-+
- static int sdhci_pxav3_probe(struct platform_device *pdev)
- {
- 	struct sdhci_pltfm_host *pltfm_host;
-@@ -441,6 +471,14 @@ static int sdhci_pxav3_probe(struct platform_device *pdev)
- 			host->mmc->pm_caps |= pdata->pm_caps;
- 	}
- 
-+	pxa->pinctrl = devm_pinctrl_get(dev);
-+	if (!IS_ERR(pxa->pinctrl)) {
-+		pxa->pins_default = pxav3_lookup_pinstate(dev, pxa->pinctrl, "default");
-+		if (pxa->pins_default)
-+			pxa->pins_uhs = pxav3_lookup_pinstate(dev, pxa->pinctrl, "state_uhs");
-+	} else
-+		dev_dbg(dev, "could not get pinctrl handle: %ld\n", PTR_ERR(pxa->pinctrl));
-+
- 	pm_runtime_get_noresume(&pdev->dev);
- 	pm_runtime_set_active(&pdev->dev);
- 	pm_runtime_set_autosuspend_delay(&pdev->dev, PXAV3_RPM_DELAY_MS);
+Yes, I will explain it in my next patchset.
+
+>>
+>>>
+>>> Where is any DTS using this (or explanation of lack of DTS)?
+>>>
+>>
+>> Krzysztof, the DTS will be posted separately once the driver and
+>> bindings are reviewed.
+> 
+> Hm? That's not what I was told thus I ask. I am sure that above is not
+> true, but if you insist and put it that way it is incorrect. You cannot
+> send DTS because you wait with drivers to be reviewed. We want to see
+> entire picture.
+> 
+
+Sorry for the confusion, Krzysztof. What I meant to convey is that we
+plan to post the DTS after the public announcement of the SoC, which is
+expected to happen within the next couple of months. In the meantime,
+we’re hoping to get the code reviewed.
 
 -- 
-2.50.1
+Thanks,
+Taniya Das
 
 
