@@ -1,149 +1,218 @@
-Return-Path: <devicetree+bounces-202309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970ADB1CDF1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 22:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB56B1CE60
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 23:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E72016DBC5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:47:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84093567F75
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 21:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7412C08AD;
-	Wed,  6 Aug 2025 20:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A65225765;
+	Wed,  6 Aug 2025 21:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T1wE9T46"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EOP8XvGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20DDB2BD024;
-	Wed,  6 Aug 2025 20:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6176619A;
+	Wed,  6 Aug 2025 21:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754512879; cv=none; b=IwPeeWfOWgsT3MS7wKhOQ3YOA4RGYfWqFuXhlU5B5l9jOIYnyZvyaVCojnAM9trTP9BKpoKaLvxlzWlVyTWERuI3udDBn07YKfj7sANvCqRDDATpVy1BMgVnWIr6JmRKbCCqXH7j/vKhxGg8JGlAsZXqX30oU0HgOrj5KW8FckI=
+	t=1754515659; cv=none; b=qYlt0d6nbL8YexsqOjNJxdEG5cOZfa3VN6iASUAQr4VEpi9G2dLwGiEsHzcam7DdlyWia/pR3YUDzfgLeTqNCUTSjewzJnO7sL/RmjaWUK60ctfgUUF689GKYd5de/wvO/h3aJTnobpEw77VC27UrkXSOCXFt5k1VUTWD7DeDtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754512879; c=relaxed/simple;
-	bh=DFFBqOU97HE0nR2qSPkrnVv9gJuOVEFJ2zas/p2pGts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qBCVOMXD7l4OjnHnRBgypSM4mo3gtdLrWZSfNK68U2w431+7n3W7BozGPiHAvsS8I1zLMMJEj1OflxtIFHDMCZPDA6ET5Pm7yAeUBRCu8z1mnqBDAPfbnj2nZ06GfXhCeZ9BL5zT2R3cfqMqyk610V/bodJUPNhaUdBp/TqREEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=T1wE9T46; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754512878; x=1786048878;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DFFBqOU97HE0nR2qSPkrnVv9gJuOVEFJ2zas/p2pGts=;
-  b=T1wE9T460ZSStP0Bnes7L6ItjL/30jw662JLTSLnnoGbIIfRJ/jXPc5u
-   U0VrbbZ3Jzx9/oJ8WkItRrE+7fz1qzH0FvxDLotXL/oaNmRwbvB9GQASh
-   vlscKh5v3OMCU9kqi/EwqMCycPaCStwKYgo3NxzbhjLksPjsNs081LMJj
-   kS82bsICkc396vdWhiIwC5MePARIqtvz4L7K5q1QDdyDGfzuhqtlBquZk
-   Lf1123kEqZqPMa+Naz0ANa4pu1wNQKOAkZZ7QBGVNAgyZpzH9MODsKJFc
-   EyuX5+r6y+PtzDaHtedL0HXiwgcslk3PXy8Sy40fG6sPZL4nW8qvNBziF
-   g==;
-X-CSE-ConnectionGUID: f7mEmOlPTpyugG+g/z7Urg==
-X-CSE-MsgGUID: 4TpSozQDTFqq/LWrHhp5fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="74303199"
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
-   d="scan'208";a="74303199"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2025 13:41:14 -0700
-X-CSE-ConnectionGUID: DCtWjkSnRVeS+4HjoSDtRQ==
-X-CSE-MsgGUID: 22OCQZEfQlCArsJ/l0JX5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
-   d="scan'208";a="164389454"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 06 Aug 2025 13:41:09 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ujkwa-00024u-0Q;
-	Wed, 06 Aug 2025 20:41:04 +0000
-Date: Thu, 7 Aug 2025 04:40:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1754515659; c=relaxed/simple;
+	bh=08Wxxhicy7RjPrvuW2a5F8Vbn8jGqmaOXzdFx3JaNKM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CQYCxnVp77soX4cR0k301Rgj3y9tTUF6k/+2S464xMhWziEUyp5uDCcyVWF4h0Jrl748hMneV5Wf2/KTx/hqgtlCpXXSEvzGvtN1gfJfNe0BH6Hbs7baXNJK7dJT8G8Ps0xiCuE7EUFcHBHUcf9VLKeQPcG4FOPJQ418cHXSktM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EOP8XvGJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BC2C4CEE7;
+	Wed,  6 Aug 2025 21:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754515657;
+	bh=08Wxxhicy7RjPrvuW2a5F8Vbn8jGqmaOXzdFx3JaNKM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=EOP8XvGJv/3MRyOlEwTZgRFVggBWWEFcZE3hm4PYrEmvD/S28/i1Td1hBtJXDSMHg
+	 +kjhY8eVu1lDQrOuKsVeMD/CPaAZ7AgDHcFcfc9ejXvI12EosxGo4eVzJR6vBOE8tR
+	 wRr1PPMbYVjVwK5kJF6D+I9/MCDh9cnke/r/sf+RQ+GQrotLRsxxVSAFugxAuVJNX0
+	 2I8s6QITnJM9Ray0HE8xrwvHB7y8SYIQlOP8R1uGbtAFWixkRGk+9OYov3RgWX20bt
+	 0lFAZrlQ5ijLCz0mzfFcaN0PQCrcR/rjIioTDHs3bsRGzNTqPynKRVB1hD6nMgdQGx
+	 r+MCaRWkn3Y2w==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 4/5] phy: renesas: rcar-gen3-usb2: Add support for RZ/T2H
- SoC
-Message-ID: <202508070430.wK3sK6kB-lkp@intel.com>
-References: <20250805122529.2566580-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Jisheng Zhang <jszhang@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: Convert marvell,berlin to DT schema
+Date: Wed,  6 Aug 2025 16:27:32 -0500
+Message-ID: <20250806212733.1633662-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250805122529.2566580-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Prabhakar,
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/arm/marvell,berlin.yaml          | 45 ++++++++++
+ .../devicetree/bindings/arm/syna.txt          | 89 -------------------
+ 2 files changed, 45 insertions(+), 89 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/marvell,berlin.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/syna.txt
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on next-20250805]
-[also build test ERROR on linus/master]
-[cannot apply to geert-renesas-devel/next robh/for-next v6.16 v6.16-rc7 v6.16-rc6 v6.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/dt-bindings-phy-renesas-usb2-phy-Add-RZ-T2H-and-RZ-N2H-support/20250806-122832
-base:   next-20250805
-patch link:    https://lore.kernel.org/r/20250805122529.2566580-5-prabhakar.mahadev-lad.rj%40bp.renesas.com
-patch subject: [PATCH 4/5] phy: renesas: rcar-gen3-usb2: Add support for RZ/T2H SoC
-config: riscv-randconfig-002-20250807 (https://download.01.org/0day-ci/archive/20250807/202508070430.wK3sK6kB-lkp@intel.com/config)
-compiler: riscv32-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250807/202508070430.wK3sK6kB-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508070430.wK3sK6kB-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/phy/renesas/phy-rcar-gen3-usb2.c: In function 'rcar_gen3_init_otg':
->> drivers/phy/renesas/phy-rcar-gen3-usb2.c:82:31: error: implicit declaration of function 'FIELD_PREP_CONST'; did you mean 'FILE_REF_NOREF'? [-Werror=implicit-function-declaration]
-    #define USB2_VBCTRL_VBLVL(m)  FIELD_PREP_CONST(USB2_VBCTRL_VBLVL_MASK, (m))
-                                  ^~~~~~~~~~~~~~~~
-   drivers/phy/renesas/phy-rcar-gen3-usb2.c:448:44: note: in expansion of macro 'USB2_VBCTRL_VBLVL'
-       val = (val & ~USB2_VBCTRL_VBLVL_MASK) | USB2_VBCTRL_VBLVL(2);
-                                               ^~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +82 drivers/phy/renesas/phy-rcar-gen3-usb2.c
-
-    77	
-    78	/* VBCTRL */
-    79	#define USB2_VBCTRL_VBSTA_MASK		GENMASK(31, 28)
-    80	#define USB2_VBCTRL_VBSTA_DEFAULT	2
-    81	#define USB2_VBCTRL_VBLVL_MASK		GENMASK(23, 20)
-  > 82	#define USB2_VBCTRL_VBLVL(m)		FIELD_PREP_CONST(USB2_VBCTRL_VBLVL_MASK, (m))
-    83	#define USB2_VBCTRL_OCCLREN		BIT(16)
-    84	#define USB2_VBCTRL_DRVVBUSSEL		BIT(8)
-    85	#define USB2_VBCTRL_SIDDQREL		BIT(2)
-    86	#define USB2_VBCTRL_VBOUT		BIT(0)
-    87	
-
+diff --git a/Documentation/devicetree/bindings/arm/marvell,berlin.yaml b/Documentation/devicetree/bindings/arm/marvell,berlin.yaml
+new file mode 100644
+index 000000000000..4e8442980dcb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/marvell,berlin.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/marvell,berlin.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Synaptics/Marvell Berlin SoC
++
++maintainers:
++  - Jisheng Zhang <jszhang@kernel.org>
++
++description:
++  According to https://www.synaptics.com/company/news/conexant-marvell
++  Synaptics has acquired the Multimedia Solutions Business of Marvell, so
++  Berlin SoCs are now Synaptics' SoCs.
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - sony,nsz-gs7
++          - const: marvell,berlin2
++          - const: marvell,berlin
++      - items:
++          - enum:
++              - google,chromecast
++              - valve,steamlink
++          - const: marvell,berlin2cd
++          - const: marvell,berlin
++      - items:
++          - enum:
++              - marvell,berlin2q-dmp
++          - const: marvell,berlin2q
++          - const: marvell,berlin
++      - items:
++          - enum:
++              - marvell,berlin4ct-dmp
++              - marvell,berlin4ct-stb
++          - const: marvell,berlin4ct
++          - const: marvell,berlin
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/arm/syna.txt b/Documentation/devicetree/bindings/arm/syna.txt
+deleted file mode 100644
+index f53c430f648c..000000000000
+--- a/Documentation/devicetree/bindings/arm/syna.txt
++++ /dev/null
+@@ -1,89 +0,0 @@
+-Synaptics SoC Device Tree Bindings
+-
+-According to https://www.synaptics.com/company/news/conexant-marvell
+-Synaptics has acquired the Multimedia Solutions Business of Marvell, so
+-berlin SoCs are now Synaptics' SoCs now.
+-
+----------------------------------------------------------------
+-
+-Boards with a SoC of the Marvell Berlin family, e.g. Armada 1500
+-shall have the following properties:
+-
+-* Required root node properties:
+-compatible: must contain "marvell,berlin"
+-
+-In addition, the above compatible shall be extended with the specific
+-SoC and board used. Currently known SoC compatibles are:
+-    "marvell,berlin2"      for Marvell Armada 1500 (BG2, 88DE3100),
+-    "marvell,berlin2cd"    for Marvell Armada 1500-mini (BG2CD, 88DE3005)
+-    "marvell,berlin2ct"    for Marvell Armada ? (BG2CT, 88DE????)
+-    "marvell,berlin2q"     for Marvell Armada 1500-pro (BG2Q, 88DE3114)
+-    "marvell,berlin3"      for Marvell Armada ? (BG3, 88DE????)
+-
+-* Example:
+-
+-/ {
+-	model = "Sony NSZ-GS7";
+-	compatible = "sony,nsz-gs7", "marvell,berlin2", "marvell,berlin";
+-
+-	...
+-}
+-
+-* Marvell Berlin CPU control bindings
+-
+-CPU control register allows various operations on CPUs, like resetting them
+-independently.
+-
+-Required properties:
+-- compatible: should be "marvell,berlin-cpu-ctrl"
+-- reg: address and length of the register set
+-
+-Example:
+-
+-cpu-ctrl@f7dd0000 {
+-	compatible = "marvell,berlin-cpu-ctrl";
+-	reg = <0xf7dd0000 0x10000>;
+-};
+-
+-* Marvell Berlin2 chip control binding
+-
+-Marvell Berlin SoCs have a chip control register set providing several
+-individual registers dealing with pinmux, padmux, clock, reset, and secondary
+-CPU boot address. Unfortunately, the individual registers are spread among the
+-chip control registers, so there should be a single DT node only providing the
+-different functions which are described below.
+-
+-Required properties:
+-- compatible:
+-	* the first and second values must be:
+-		"simple-mfd", "syscon"
+-- reg: address and length of following register sets for
+-  BG2/BG2CD: chip control register set
+-  BG2Q: chip control register set and cpu pll registers
+-
+-* Marvell Berlin2 system control binding
+-
+-Marvell Berlin SoCs have a system control register set providing several
+-individual registers dealing with pinmux, padmux, and reset.
+-
+-Required properties:
+-- compatible:
+-	* the first and second values must be:
+-		"simple-mfd", "syscon"
+-- reg: address and length of the system control register set
+-
+-Example:
+-
+-chip: chip-control@ea0000 {
+-	compatible = "simple-mfd", "syscon";
+-	reg = <0xea0000 0x400>;
+-
+-	/* sub-device nodes */
+-};
+-
+-sysctrl: system-controller@d000 {
+-	compatible = "simple-mfd", "syscon";
+-	reg = <0xd000 0x100>;
+-
+-	/* sub-device nodes */
+-};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.2
+
 
