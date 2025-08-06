@@ -1,88 +1,81 @@
-Return-Path: <devicetree+bounces-202246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D7BB1C870
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:13:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 403AFB1C87E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:15:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F677162DBF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:13:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4747C18A33B2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C57828DEF0;
-	Wed,  6 Aug 2025 15:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFAC290DAC;
+	Wed,  6 Aug 2025 15:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="khTcZuR5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y1bilnj0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39403AC1C
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 15:13:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDB42918D5
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 15:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754493202; cv=none; b=j8cfFbLXbkO+xFe0st2EPFfiSlAD8iNGfTboiHknlgVqVrnfHEPBuq6qGksIoBd86pC+X9nRV/28HeO7c67KrxkNORWFpNu35PiDBJtAiaOBpg6S3ZVe3uzZ/2cb6bpkgjCCEH8niwXiCYuEEVQe/A5cCjBBRUfWpfAbc+jr6a4=
+	t=1754493315; cv=none; b=Zrw5ZEvt5wwoPb4uAPYAgE71MJ9F5d7fE6QYe7XDfHI8siE6XP7GAcsUdUZDjFuwh1EK1+evM0pLK/4av07WIQxJMuBesdH0k0cnf3/z7qejzq/OpzYyVFFIGfGfxxuBmQPPa8GAVqR/p82hoKN0Wv1dhdmxL/dO2B3xKA3CK4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754493202; c=relaxed/simple;
-	bh=E1ywD+6b5TLidW881C8mih+zT9s566iOTR/teEUThjs=;
+	s=arc-20240116; t=1754493315; c=relaxed/simple;
+	bh=4jBazG5zYk2rS+2cf/v/0ufmFOcZH62LVA+dp+dr8mQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Udp77Ywxd5OxxyoqkpTF7pbYSydQ5GcrHY7kwWaoQ98zKPTeIXaEjhkZI0H8bKP2p3vOjhw7IRjU7PsxWsBgTjdUtkkUaivOoP1GZyJFhRt7M7dqTIytJIoZWEh35SlzkKP7CSW89b4AUIT9sxRpfvb5+oBLdJVO4QvuawWRLWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=khTcZuR5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5769epCB032380
-	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 15:13:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FoD5ue7FLv/tVVaOYwgBAkYsHyRWsTQqwoytYtbdy8s=; b=khTcZuR5SEhABMhO
-	WwwhLWA5NvWeZ3UTRbz//6qHPRP6zoOaKH+jm41Ar0R3QiURPxJlIeRaiCI1mjvJ
-	hf2GyoYqtjuusjbVywIroHfjbUZoftoUdB+Dn8a5hYBAhE11k/OuvYZrGVRq7q8i
-	Ts6pnSkBprKFdNFQyTDqDEvkZKzRLA2icIDCFnLQO0w60667mcNcNV6q+UZh4NzO
-	eYvDXM4aJVtOpRmQX6zGoby+oVH6PiLU2dsSKrQUNCkSHkqU/NOjxpGD0IDhYwdO
-	nQeI6eDpKV3q5tURWaYc190g3xOcnhBcfkE3sNPHAD3z6siBecp0rT0Js/sLJDVJ
-	ebpO+g==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpw2u7af-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 15:13:19 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-707428e0cd2so80996d6.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 08:13:19 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=ifUK4ztDn1I4+cCbyqKBQz4TIE8WnIiN+20h9f4byVdSXvS4k5X2wkycspeQmgZyHWEJCbtthDo/LJIpNCACGYG/G+hEpMb+NGf9f/OlmFS31yuoUw7pRXc3gj665olmBJNcMVceo6CbSEp7fUiY2reLvvfONazN+6XTwgz7ORQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y1bilnj0; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-743048c1fcbso12991a34.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 08:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1754493312; x=1755098112; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vwjt9aIF2ZwUy5PzdCx1sYJ/afXlRKHayAs+g7h+FzM=;
+        b=y1bilnj0Fr/M/rRmUkj7GhgVlu8eq1IYY8V8i6+Z7vkPsBkzy1/C0xm7PimnBcl11l
+         jw7b+qdcpN7QH13Ib2Rl7WebpZwRrozmOyMwisMuYx+E+sgcjBBCjF7KXjJzrqn4FV5w
+         zsR8SQApKHejsX9OHXgYk1ZK3TJNE322dEgVcwPEMI9dQSzI+QCi909SUIDHFD+Mypyc
+         o0ZX3yFlEyFJ/LmiGZdZ0CHhMaZ9Ax6fewUt7WxbmyIDVfz8B22om0pOdJP8o4caAhzC
+         XrIRGUH4ltIvCdwlLmyY2fu14uDJgsKOWcdjbOgrsft59peKaKwhvfPqUGXNUkMfqREP
+         C2ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754493199; x=1755097999;
+        d=1e100.net; s=20230601; t=1754493312; x=1755098112;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FoD5ue7FLv/tVVaOYwgBAkYsHyRWsTQqwoytYtbdy8s=;
-        b=FmPgTvXu2yeE78MTyonolSF7fNU+rhsM+0NUUvqRWHr4W0pGwa9l5z7S2iZp3Pb/86
-         /Nwmn6XE/QTVSR5sGGchc+0Ls4SgO59dpmuJtt4FEkvLiXxFBxkKtCtF0OHPL7CogOMQ
-         ItsL2AHxImd5QLlmNYZTHCMZjKulNFzKkbEFICtdvcRTzwfNL3OtExSgK73LJ8wjP3vi
-         YzxMjrG3xy9ZglvnQOI9j66N/AYZxTLgQoYaAzVofxIA8+FNlCbDRmHYnPKQ3N56AuSW
-         RkWibLW6/urb8K/wJRBHJyxW7X1mpIKjmrual21B+iNIGNlSygPoOWUxCVnSiHHTh4W/
-         6jog==
-X-Forwarded-Encrypted: i=1; AJvYcCXdfDPRR4PRqWTbfiuEcAPEOBML5ZdTwy1roGqHyJ+LLvEnzslBvQ0RovrlTvBW7GQMlhMVKEfAFIUf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPKS2rtGUWE8WuM4dIfc49zyzxuonNKQyY2OFQJRsE903H0A9+
-	1XpQ5eg0sS4lFyjWp3Wi3i2BdhXALssh7ylUPy3OCUkPzZCRv1WYHKOqCvoX2xfB7JMGC2ukC8V
-	x5+hCxfgCwb0N1v3PJFUuJhM+SigUotXpN0pIj3F77Oz91NeusK5/bl8VgidFIleD
-X-Gm-Gg: ASbGncu2LHmQguJjq9brtvZN35SFfDXpqSfKdrH7fHoahwUhz3qb45t2kKRx7L2Rygs
-	QSZGTEnRhLZXYJiTkb1Vzxa7q0NRB3iQLGO3LvNFkaF90eSrxwQ16oXu5EZLGWg9qnX/OXIXfmK
-	E2b3YSIj4z3+W7TqSlt6GsBsi+adxZBbJKzqQCeZ0YtO3O9jhpUAbFPZ7KjPURoHGk7R1uQyurI
-	ubWBb1TLCrnThhNfwzgJvOgQSrJM9ih5V9PSF2G0oVM7K+DRSQCJZ1Nv1e8wjJRzQnoxSFRMxP1
-	NmbsIBuvDZIkxM+E7JVoCZ628wSs18wEMn/OyYe5DpOQSknDwooNhAjT+rFJOEk+03xkl2+DzJG
-	0/VfGVO+//js8hvah7Q==
-X-Received: by 2002:a05:622a:486:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b091575d69mr22519781cf.8.1754493198920;
-        Wed, 06 Aug 2025 08:13:18 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEVjPaBvVyXemUS3cDbhkwc4YdKlt9IkD9oqd8GDTb3Ol2Pm9hJNwgpylnDtIcL+fPMzpoJVQ==
-X-Received: by 2002:a05:622a:486:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b091575d69mr22519121cf.8.1754493198074;
-        Wed, 06 Aug 2025 08:13:18 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a219ecfsm1118111766b.94.2025.08.06.08.13.16
+        bh=vwjt9aIF2ZwUy5PzdCx1sYJ/afXlRKHayAs+g7h+FzM=;
+        b=Gy+kC59oM9V7QLjNOVGxqv6oUBWPVj4qmmP2e0ZfV/REOAvbFzyxux3R6Yvu47OaTS
+         ZYEqOj8zdeVTTfrl6L7awRwnB7nhaPVPciKgsYjpyyR9nyKOBwdCX2wkTKwP2tzoDUZs
+         FFJLWZGYLv0zvxNQXneN/OKnPNrpmtynFdyXbCt7IYEhF3vp/wBEsE5xM7IfvpamdJW6
+         OA6olIQ5Y0BipfshV/O3272F8TiefTFhWW27PzTSMcPm4BdGrFdGk7G5R2Ry1+nZUrYb
+         zhLvgSwvBXWnX7dgvdbml/eBpYEjnY4pKpNygS//ldiClUSDVoPQpr5aFojcNdeXeLDn
+         cwbw==
+X-Forwarded-Encrypted: i=1; AJvYcCULpmVNb5ttgOgAvfcW5nWOgUij/wflLKrN5USo+8RqIVBNIkVPpPkOLLg75qITpl4nSKkWm6G/Dnby@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywa2mvIuWrX3mLTUQMOZsD5huOkyz4G4Lpb1s/YiODi3EgBVQ08
+	kNDHMdv5EEITqUCXmjaRITNXAsXqVzql9LLOaSD4l3W+hrloxziCke00qKwyYzf3rJw=
+X-Gm-Gg: ASbGnct9XpiL3xh/tWlWjQWJkuhoqmv6h9hGtjlcZapXogcDXWDRrw9i1Vu/U6Lz0MP
+	jRgv2aagpsLOROncIzjBXkjBdpcfaQn6Hzlz9obeJ2r5Cp7tGFjc8xbMr7M4XXAYwOwJ0ru7Xyj
+	hiJENQgF1U2Wrzpf+Ur3B8Env09GP5JaFdif+Wgfem034VWWbwaD+5Vqeu2bLRAsX3R5eBh3C/T
+	vPHp7N3SYw9l0NTODm1dxJoMwys+u82Ba3KzAZumMh3WGUs0HDjw96+ZZcN703akotCxR/Y1ARV
+	PqarOHkFwEKPVb8TzD4TK9gof4gkHDB5CkI//PQm+EmCqqqyRMKONSM0Wtk3QdyaZ61dCRBH0ZW
+	co+eA+4LWHQukYCArDY8BgEDDEoI33wrPPIJHr6sJHi5hadAEQHbyblghLetf23vjDwtRd1AYlC
+	s=
+X-Google-Smtp-Source: AGHT+IGCESCBCXrWJZWUhhFLLtiv++FNPRq4nMWQZi2pwIQ9FHPV1Mrzbz1pksW3SKTGn1YPFjak+g==
+X-Received: by 2002:a05:6830:2a0c:b0:741:b263:4ded with SMTP id 46e09a7af769-74308eb9546mr2175713a34.15.1754493312449;
+        Wed, 06 Aug 2025 08:15:12 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:a4aa:5c40:1610:d43d? ([2600:8803:e7e4:1d00:a4aa:5c40:1610:d43d])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-741abaa74c0sm2163802a34.3.2025.08.06.08.15.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 08:13:17 -0700 (PDT)
-Message-ID: <581aaa8f-9e08-475e-ad23-3369fa05e53e@oss.qualcomm.com>
-Date: Wed, 6 Aug 2025 17:13:15 +0200
+        Wed, 06 Aug 2025 08:15:11 -0700 (PDT)
+Message-ID: <d37371a8-4a03-4893-a6bc-48b7f367c916@baylibre.com>
+Date: Wed, 6 Aug 2025 10:15:09 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,74 +83,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: qcm6490-fairphone-fp5: Add vibrator
- support
-To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250806-aw86927-v1-0-23d8a6d0f2b2@fairphone.com>
- <20250806-aw86927-v1-3-23d8a6d0f2b2@fairphone.com>
+Subject: Re: [PATCH 6/8] dt-bindings: iio: adc: ad7476: Add ROHM bd79105
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1754463393.git.mazziesaccount@gmail.com>
+ <3066337cb183afa5f53a4e6cf94ce15a36d14ec8.1754463393.git.mazziesaccount@gmail.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250806-aw86927-v1-3-23d8a6d0f2b2@fairphone.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <3066337cb183afa5f53a4e6cf94ce15a36d14ec8.1754463393.git.mazziesaccount@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Vbz3PEp9 c=1 sm=1 tr=0 ts=6893710f cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
- a=ZdkvxXOI2w3T0V8kwTkA:9 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
- a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-ORIG-GUID: ooMCXdQMWylwwWNtfN7XhDL7RO6bbWoS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOCBTYWx0ZWRfXwidkYJ88+Ojl
- SyJEsbmK7OPU63dol9T8Af2RoH3cBissnI36NvkUM6hyypS+D7077JC2FF0/RHmVamPPWwiff9C
- yZdTInn+bfqSHCGmgzoBAfDVUOSxkpOxHiQCBRn6cuV6WD+qxL1B52FSRF9bToNVcdvfR2OKTOp
- LvQgNv6v3S21Zm4zc+bM05gd7r2Iay/GonzG0SHpN4mXWtWicwV+LX2BlnQBF3xPeJT1mxQPyiC
- ui3TUkvJYCOx2FTx+eDwJW4QzYqarATOmdmwzW7hreVtmKJmST6SEsX/f1HbqDKSOFC09qCjdUu
- KZsW4wo+Fq3PjISPC5Nad80i7YrMZC4vOs1kxIOfKFNsseeD/c9b7QSzEF/EZUmI/zOkhqY176N
- bRwNnxGV
-X-Proofpoint-GUID: ooMCXdQMWylwwWNtfN7XhDL7RO6bbWoS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_04,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 adultscore=0 suspectscore=0 bulkscore=0
- phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060008
 
-On 8/6/25 5:10 PM, Griffin Kroah-Hartman wrote:
-> Add the required node for haptic playback (Awinic AW86927).
+On 8/6/25 2:04 AM, Matti Vaittinen wrote:
+> The ROHM BD79105 is a simple, 16-bit, 1-channel ADC with a 'CONVSTART'
+> pin used to start the ADC conversion. Other than the 'CONVSTART', there
+> are 3 supply pins (one used as a reference), analog inputs, ground and
+> communication pins. It's worth noting that the pin somewhat confusingly
+> labeled as 'DIN', is a pin which should be used as a chip-select. The IC
+> does not have any writable registers.
 > 
-> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+> The device is designed so that the output pin can, in addition to
+> outputting the data, be used as a 'data-ready'-IRQ. This, however, would
+> require the IRQ to be masked from host side for the duration of the data
+> reads - and it wouldn't also work when the SPI is shared. (As access to
+> the other SPI devices would cause data line changes to be detected as
+> IRQs - and the BD79105 provides no means to detect if it has generated
+> an IRQ).
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> index 4c6cb4a644e2..9576efdf1e8d 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> @@ -866,7 +866,16 @@ ocp96011_sbu_mux: endpoint {
->  		};
->  	};
->  
-> -	/* AW86927FCR haptics @ 5a */
-> +	vibrator@5a {
-> +		compatible = "awinic,aw86927";
+> Hence the device-tree does not contain any IRQ properties.
 
-I noticed the suffix is absent in the compatible - does it matter
-for discerning the particular chip and other variants?
-Anyway, so long as you and the bindings folks agree on it:
+There are lots of other ADC chips that have a ready signal like this
+and we've made them work. Since devicetree bindings should be as
+complete as possible even if the driver doesn't use all of the
+features, I think we should be including the interrupt in the binding.
+We have also found that some interrupt controllers won't work
+as you have suggested and in that case we also needed a ready-gpios
+to be able to read the state of the pin.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
 
