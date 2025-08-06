@@ -1,211 +1,236 @@
-Return-Path: <devicetree+bounces-202205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7CAB1C6B3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:18:34 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F32B1C6CB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6613C18C029E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:18:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7BE624E1863
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D25F1F9F73;
-	Wed,  6 Aug 2025 13:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9wf9jvQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FE61E4AB;
+	Wed,  6 Aug 2025 13:27:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520763398B;
-	Wed,  6 Aug 2025 13:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645A238FB9
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 13:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754486311; cv=none; b=c2FyRIxwwcD0mY9K8mx2MZCoTahNyfQpIFP22NCmPUd74dQkF8iNK8hxPvPE2dX+HaOm9AOtq8QNzJgxe1SWT6bu6s4ro5AvedZtwFonTpNBQsp35E5SsHDG8FRZYICdyQ76feNauXbMsCMSrtWzzFvmWB9BbuAmGmyBGzNQaWk=
+	t=1754486842; cv=none; b=XwbUnVny0zGk7MYXDP6JCUVIMNuRswIyqMCbyoNf67doknnYMMX9f967DA/OeWuBgs1c3T/YOS1B88UPYn960Mod0cWchBHT4tDwWwjfOoB/5NmB5sJw9RYYA/ERRvmsyu2TEJAprNhh/AJ6Onw3F7rKQA9du2cQtDO9QDoUVZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754486311; c=relaxed/simple;
-	bh=rfgaiLWxVI97cRVXmy6XfavdY84+4UY8Gyiw4Qz4hwg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rSG+C0kQZO5MjqM6E3kNuDvN0rdk2+sxLaxDiGf85wtpBDPtmf7IH7SoEeosGPafK2UhlqUdMHf+BJQ3ep9vLUHe4APCDJL0yXgV8MM56eYIPGDLkxUIz5nzPYB/T0OrIl4dLuzgm/oCWRGRn+q8U2mb8oe6faLGV5wDJq6hlfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N9wf9jvQ; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-458bc3ce3beso27461045e9.1;
-        Wed, 06 Aug 2025 06:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754486307; x=1755091107; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xPGiRTcpm1yV3vPw5mjGOqDhanwq+tGNym74Y47LA5I=;
-        b=N9wf9jvQ98uFdssBcti+huf++FeH1T26i0bMk07MwvcTCRnipkkz/Hpff/He7gOkZY
-         GUV73VkToiyz0G+yyKfOQ/rVeo/fXwryAFb+eYN2TVLaWMwER+AeIqduRVTajYnUcGRR
-         m/uaBooBoL3YrQXj+uTUTGCK7nTwNsAvHqWWOSIQPHLXgTpFBy9Sr9jzdT5Kh6vSYyt7
-         R2hwUitM1KNvypEOD4DqcqaN5YVPsQ2JJ9/vaCM2/8BmwRcu1siTb9P/EEYuHL2cx7N4
-         TVqpEEY6j+PNNRyhuu6tTuRRQe66XHjQEjt9048DJ2SUke5H9Lj9LgFEMRjeBbFIAz7H
-         uN+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754486307; x=1755091107;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xPGiRTcpm1yV3vPw5mjGOqDhanwq+tGNym74Y47LA5I=;
-        b=Obl/nWRl7hEE/tVwy0jrRJ98ByOnY2Kx+ZLS5PrISeV3bTb54Dz02pV85HZu8RIypw
-         FTD0MLrs78+KmdV3GKXGk5WhSnmbDenLSd+siLD6mESTgjKVXNcKkxpPTYzJU2AYt/Sd
-         azKiaW0bf+z2vXR4y2DZ38E4hv+GLIRZUQia9ge3YjfktIkRZ0hjuQpS2ya+jdrkaE9T
-         DHuq2O5VwWx34Du+meoKWAPriz6PH4lH1nPttanEp7RQ80p27saYwAbtlgwq+H7bSasF
-         eiLsBx0nc46f9vfzLXXl3DV70hcCaxdeiru7YQKfz64GQjgR6uNsRM+76RvQqk7rNg75
-         oxZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOsiR9xikAw8NAyKUwpnSKdfml4FhAug2rd9/1zS9nD0J1Ibb8rKAVdlTjTnwgndzubbSh1fkZKAJR9zk=@vger.kernel.org, AJvYcCV9Jb0Idq/M4zViG40lEoUHoy6B0FGII2ZzNb3amxPN1LmYnioeqW02yJr8jEvDjxw9G4SS60G0XICswc8=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylxtq54azZv9JWlH7BIG8IWGeZ80jEZXbS2Z45a7WmEJYZtz0U
-	0FJUlBjAuCQJzGacytEvEOeGLGOIDbZYCKHNJ39wKoFnN7b+7GhDCYjjWHUanFbreaJoEg==
-X-Gm-Gg: ASbGncuDBNbeBd9lHgfA1DFEPBX+yO31JdQQJpvyzVNCqPkaVjBfpccRYD4WZXKyuj1
-	258vap3Fq4Dn/2lQAUA1ctsfDAgXgnENB0gdIKP3mtJ9s1BqseiN+V58UuKjqlhfdkUGVF+FY3o
-	aMnzZuwqLW9vSUJL92++7cm5U8qwG4V77ZUDFsns24m5HXpKL0tsIfbPnFjA6rU+JNujPkQhbD8
-	qUj83KZqTkurp46QFi/EbaF2Pg129kXdzbeY+xrXmjregkTQorFa8IwWHnQMkbMf6jRDvD4nFPV
-	jGnmz6D1uiOx6Cq7PTmZWDRlmb5+gwczSKmPiicMY0dlOZCTPp+FwAjVmPFpI6JdeZJeH049Q0+
-	2i6aKiTyb6pfA
-X-Google-Smtp-Source: AGHT+IG5eSmjKB0oUsyK5jzp73+3ckIw7mQ2dBrq516QfGUOitH4EY69ekvQ8//92ihFcZCNmeZoiA==
-X-Received: by 2002:a05:600c:19d1:b0:456:19eb:2e09 with SMTP id 5b1f17b1804b1-459e744f690mr23561195e9.8.1754486306829;
-        Wed, 06 Aug 2025 06:18:26 -0700 (PDT)
-Received: from mmk-tp ([139.179.138.38])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5862be7sm53219795e9.15.2025.08.06.06.18.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 06:18:26 -0700 (PDT)
-From: Mahdi Khosravi <mmk1776@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1754486842; c=relaxed/simple;
+	bh=2SL2HIqFBKBgfphArow9T9jHTK03gKBHImShrrU36+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oLA15qYaGHneigBa0pR2xakpOO8zT1hBU4HAjsX//f49BaPchYRsTDhlJ6k0/wMf59jt22sf/sP3hRvIiDqj+8dxj8zs1kH53hHcdvSiPH2UqoL1KHNHvERiL9bQXGejuPt3ME1EkI/BZjRSP9eVYVTgCvoTUmjUhHrIk2SGWbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ujeAY-0007wq-Ev; Wed, 06 Aug 2025 15:27:02 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ujeAX-00CDWu-2f;
+	Wed, 06 Aug 2025 15:27:01 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1ujeAX-00CH9C-2J;
+	Wed, 06 Aug 2025 15:27:01 +0200
+Date: Wed, 6 Aug 2025 15:27:01 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Mahdi Khosravi <mmk1776@gmail.com>
-Subject: [PATCH v3] ASoC: dt-bindings: realtek,alc5623: convert to DT schema
-Date: Wed,  6 Aug 2025 16:18:18 +0300
-Message-ID: <20250806131818.38278-1-mmk1776@gmail.com>
-X-Mailer: git-send-email 2.50.1
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	Frank Li <frank.li@nxp.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v18 3/7] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Message-ID: <20250806132701.fouikyuqtzdsxqwh@pengutronix.de>
+References: <20250619-imx-se-if-v18-3-c98391ba446d@nxp.com>
+ <20250625105546.pxuatcnfpe7mssgs@pengutronix.de>
+ <AM9PR04MB8604611B8D91B5526C9704E69545A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20250627084653.6vgwnm3llf3zknlp@pengutronix.de>
+ <b02055bb-0995-4fd8-99f3-4ca5146eedd4@kontron.de>
+ <20250630121722.wviidlggt7hguyt7@pengutronix.de>
+ <087b8689-7443-4720-a94c-160edd31a5da@kontron.de>
+ <AM9PR04MB8604C05882605EDB4913DA089549A@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <20250714094124.e6fnkrocnqagbm22@pengutronix.de>
+ <AM9PR04MB8604EFCC5400DEBB7DF0CF49952DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB8604EFCC5400DEBB7DF0CF49952DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-I converted the alc5623 audio codec binding from text to DT schema.
-This is my first try and I used make dt_binding_check & make dtbs_check to verify
-without getting any errors.
+On 25-08-06, Pankaj Gupta wrote:
+> > On 25-07-09, Pankaj Gupta wrote:
+> > > > Am 30.06.25 um 14:17 schrieb Marco Felsch:
 
-Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
----
-Changes in v3:
-- Drop allOf, just use $ref for uint32
-- Remove stray '>' in descriptions
-- Fix subject to "to DT schema"
+...
 
-Changes in v2:
-- Add dai-common ref
-- Switch add-ctrl/jack-det-ctrl to allOf uint32
-- Use unevaluatedProperties
-- Fix example compatible
----
- .../devicetree/bindings/sound/alc5623.txt     | 25 ---------
- .../bindings/sound/realtek,alc5623.yaml       | 52 +++++++++++++++++++
- 2 files changed, 52 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/alc5623.txt
- create mode 100644 Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> > Lockdown: For a verified boot setup you need to burn an eFuse at some
+> point,
+> > to tell the bootROM to boot only correct verified firmware images.
+> > 
+> > After this lockdown it's no longer possible to burn eFuses from the REE
+> albeit
+> > the production line setup still requires the support.
+> > 
+> Understood. ELE access from both secure and non-secure world is fixed in Q3
+> release.
+> User can be able to modify eFuses via OPTEE.
 
-diff --git a/Documentation/devicetree/bindings/sound/alc5623.txt b/Documentation/devicetree/bindings/sound/alc5623.txt
-deleted file mode 100644
-index 26c86c98d671..000000000000
---- a/Documentation/devicetree/bindings/sound/alc5623.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--ALC5621/ALC5622/ALC5623 audio Codec
--
--Required properties:
--
-- - compatible:	"realtek,alc5623"
-- - reg:		the I2C address of the device.
--
--Optional properties:
--
-- - add-ctrl:	  Default register value for Reg-40h, Additional Control
--		  Register. If absent or has the value of 0, the
--		  register is untouched.
--
-- - jack-det-ctrl: Default register value for Reg-5Ah, Jack Detect
--		  Control Register. If absent or has value 0, the
--		  register is untouched.
--
--Example:
--
--	alc5621: alc5621@1a {
--		compatible = "alc5621";
--		reg = <0x1a>;
--		add-ctrl = <0x3700>;
--		jack-det-ctrl = <0x4810>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
-new file mode 100644
-index 000000000000..2a389ca95b0d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ALC5621/ALC5622/ALC5623 Audio Codec
-+
-+maintainers:
-+  - Mahdi Khosravi <mmk1776@gmail.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: realtek,alc5623
-+
-+  reg:
-+    maxItems: 1
-+
-+  add-ctrl:
-+    description:
-+      Default register value for Reg-40h, Additional Control Register.
-+      If absent or zero, the register is left untouched.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  jack-det-ctrl:
-+    description:
-+      Default register value for Reg-5Ah, Jack Detect Control Register.
-+      If absent or zero, the register is left untouched.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        codec@1a {
-+            compatible = "realtek,alc5623";
-+            reg = <0x1a>;
-+            add-ctrl = <0x3700>;
-+            jack-det-ctrl = <0x4810>;
-+        };
-+    };
--- 
-2.50.1
+Splitting the read and write between two drivers is even worse.
 
+Can you please point out why you can't just move the driver parts into
+the tee? I do see many advantages if only op-tee is used:
+
+ + Minimize the maintainer effort, because only one driver
+   implementation is used.
+ + TEE code could be reused by other OSes
+ + You could already start adding the support for it to OP-TEE because
+   no ELE-FW update is required.
+ + TEE is used anyway for new projects due to CRA and friends
+ + Concurrent access handling is done by the TEE core
+
+The only downside of this approach is the integration effort for the
+TEE, but this shouldn't be an excuse. Mostly all well known buildsystems
+like: Yocto/OE, buildroot, ptxdist do have mainline support for OP-TEE.
+
+> > > >>  - With new regulations like the EU CRA I think we need some sort of
+> > > >>    secure-enclave anyway.
+> > >
+> > > > Probably some sort of, yes. But not necessarily in the form of TEE
+> > > > or TrustZone, I guess.
+> > > To use ELE features through Linux, there is no dependency on OPTEE-OS.
+> > 
+> > Once again, still no fix available and if your system requires a TEE
+> you're forced
+> > to move the ELE communication into the TEE (at least until now).
+> > 
+> > Also the eFuse R/W access is not possible from the REE/Linux after doing
+> the
+> > device lockdown.
+> > 
+> ELE access from both secure and non-secure world will be fixed in Q3
+> release.
+> User can be able to modify eFuses via OPTEE.
+
+NACK, please see my comment above.
+
+> > > >>  - Making it optional cause more paths of potential errors e.g. by
+> not
+> > > >>    including the correct "secure.dtsi". Multiple paths also require
+> more
+> > > >>    maintain- and testing effort. IMHO I do think that one of the
+> paths
+> > > >>    get unmaintened at some point but we would need to keep it for
+> > > >>    backward compatibility.
+> > > >>
+> > > >>    Having one implementation eliminates this since.
+> > > >>
+> > > >>  - All above points assume that the ELE-FW and -HW is capable of
+> talking
+> > > >>    to both world, which is not the case. As we learned NXP doesn't
+> have
+> > > >>    a fix for the 2-MUs ELE yet and even more important there are 1-MU
+> > > >>    ELE-IPs.
+> > >
+> > > For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
+> > > world - Linux(one or more) and OPTEE-OS (one or more), that needs to
+> > > be shared between them.
+> > 
+> > Please mention this within your commit message.
+> Accepted & mentioned.
+> 
+> > 
+> > > As mentioned earlier, there is an issue of using MUs simultaneously,
+> > > from both worlds. Fix is in progress.
+> > 
+> > So until now no fix available and i.MX93 based products which do use a TEE
+> > are forced to move the communication into OP-TEE.
+> > 
+> > > >> I do see the (minimal) drawback of having +1 FW but I think this is
+> > > >> more an integration problem.
+> > > >> Speaking of FW files, for the new i.MX9* you already have plenty fo
+> > > >> them: bootloader, TF-A, ele-fw, scu-fw (i.MX95). So your integation
+> > > >> needs to handle multiple firmware files already.
+> > >
+> > > > Sure, but I really like to keep the complexity and therefore the
+> > > > number of FW files as low as possible. I'm not sure what has more
+> > > > weight in terms of
+> > > > security: shipping an additional firmware and therefore increasing
+> > > > the attack surface or maintaining an additional code-path.
+> > >
+> > > There is no +1 firmware in case of i.MX93.
+> > >
+> > > >>
+> > > >>> Anyway, I see your point of having a single implementation for the
+> > > >>> ELE API in the "right" place. But as far as I know other platforms
+> > > >>> like
+> > > >>> STM32MP1 also implement both ways for the HWRNG, secure access via
+> > > >>> OPTEE and non-secure access via kernel directly.
+> > > >>
+> > > >> I'm not a STM32MP1 expert but here you have this setup with the
+> > > >> *-scmi.dtsi. So you have two code paths which needs to be
+> > > >> maintained and tested. Also if one customer of yours want to use
+> > > >> OP-TEE you need the integration anyway, so you (Kontron) needs to
+> > > >> maintain multiple configuration as well. I don't see the added value.
+> > > >>
+> > > >> I think for STM32MP1 the *-scmi.dtsi support was added later
+> > > >> because it required a lot effort to support it. This is not the
+> > > >> case for the
+> > > >> i.MX9* series.
+> > >
+> > > > Anyway, thanks for elaborating. Your points are all valid and
+> > > > basically I
+> > > agree. I'm fine with either way. But I'm afraid that implementing the
+> > > ELE API in OP-TEE only will cause another tremendous delay for having
+> > > ELE access in the kernel, especially seeing how slow NXP seems to be
+> > > working on these topics right now.
+> > >
+> > > To use ELE features through Linux, there is no dependency on OPTEE-OS.
+> > 
+> > How exactly do you provide the eFuse write access after the device was
+> locked
+> > down?
+> As mentioned above by you. It will be done via OPTEE-OS (or may be via TFA).
+
+Why TF-A? Please see my comments above.
+
+At the moment I don't see why the ELE must be a Linux driver. You could
+start adding a TEE driver now, because there is no need to wait 3 months
+for a ELE-FW fix.
+
+IMHO having a dedicated normal-world driver makes only sense for
+bootlaoders which don't have support for the TEE communication but need
+access to the ELE. This is not the case for the kernel.
+
+Regards,
+  Marco
 
