@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-202147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462D0B1C335
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E821B1C34E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:27:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5BD618A11D3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:23:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E03018A6DFC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920FD28A1D0;
-	Wed,  6 Aug 2025 09:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7931328A1FE;
+	Wed,  6 Aug 2025 09:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i6GNOto+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UENI7Lrf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C150288CA1;
-	Wed,  6 Aug 2025 09:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9B928A1CB;
+	Wed,  6 Aug 2025 09:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754472211; cv=none; b=SbeGXjyvSddYWJtPPBXN0XUArPb0ONp+ju1RQ8ifPtLJJ9FyV5uZrxbXaAGi7EOAUWN11Xf44GlzOWwDz8ZT4WQfwAw6p3B52FFmCHew6cICmPOOAbu2onRoE3Ee8rhicGLdHcGONkmy9nWfV/Oyg+OezvAHwE7x/AdRJIy8pxs=
+	t=1754472411; cv=none; b=iweHS5Qw19rzir9Gn++vs/TkKuLxrGM0JGwupUSrMrfnMZCcV2rnvUm+tGYjBf6R1wltM0F8nEsFzBqe3enz179N5rCmMaFXeIqvv9Yx7dJdtmBcSP/ko2toqwT5Kg3UNrsEFk2vLDYVc/nqCv7tvVNkzldt+np67L0mqjhj5iU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754472211; c=relaxed/simple;
-	bh=Hwk7vf4HuAvJ7UE5NKvVA2XssqjK1pHzEDmND+upm+w=;
+	s=arc-20240116; t=1754472411; c=relaxed/simple;
+	bh=RFB/IBeb3TpzuBo/Adg9VqfrllD7bqoz/rEAuh1db6M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VEVXopUZC1whf1Ep4dwsY0gac/ojTUMe+ljCGbnwDvecb74hNoaw81X8L34tjcrqamRBwvyUomhRVG6Db+Wr+B5hqGkwFoTEC6JBl1AWsj+1MPK3J1NVfF7JinhNGKaS1TMKb+ygSYoi6+SnadY9ZRyiczsmyRkVfmqoAxDe4VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i6GNOto+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 538D7C4CEE7;
-	Wed,  6 Aug 2025 09:23:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R9YR8eSWh+9OTZCOY/VvScn9N+kmsthuFBUzHJMw5oVvkwh/J/jqYHcuuLo3D07tbeHdWqPnBy8UAoHguopueyNojBI57alr8xMwYWOmq8CQnbBYM7CwNKeIiLV965xZEiq3s78T7i18DypTGpOsLWfgX6MDgcS9fPZ9ZiKxqTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UENI7Lrf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABACDC4CEF6;
+	Wed,  6 Aug 2025 09:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754472210;
-	bh=Hwk7vf4HuAvJ7UE5NKvVA2XssqjK1pHzEDmND+upm+w=;
+	s=k20201202; t=1754472410;
+	bh=RFB/IBeb3TpzuBo/Adg9VqfrllD7bqoz/rEAuh1db6M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i6GNOto+ufwZENyRkRe/0U2+uH/1sJM9g0wsZ61Ffeoees9k2birWd0oPEd/qr7QX
-	 1tErIhLbKSjseupyE4qMugARknExUz+FDgWq06s5mJgRN+me57kwAzEVm0KZYfg66X
-	 JR/AN8nU2UsLuJZ5fJiaHI5tnfKTm7F/R+/2ZfwkjBA/orFv19vzXWuh/lNh6qXWqq
-	 KOqOS37KyZXWVmoYqRuvUXX4Okpne/HTVHYwLhGJnGcRx9DR2UCyrdy7sLTroDbI1c
-	 VcexKBfRy5HQB8mHPo/seo5c8xMfa9x8ETmEaKwUcoC160BsgykC0u6Ke6n1wA9v7c
-	 etW7oMX8cjHZw==
-Message-ID: <ef3b8e12-0677-4e49-bf2c-b8136c9a6908@kernel.org>
-Date: Wed, 6 Aug 2025 11:23:21 +0200
+	b=UENI7LrflowbobZMC/MwyBgjjghxz9oejwHpou0dN5MgzFyvWDVSTodOVeGpcQdCj
+	 etK03axmEt/SreIdOxOT+ppmfCegJKgSjVvPv1yh0ptm0dKc6MjIEgouWqDYoDTeI0
+	 opT0ee4uajdC5dUG9lXgS3DB+dkqwMpAYbWc/BpEOhW7+RJk/twTBImgV/9/2pLRSm
+	 mV5SS6vIqEM+KOoxfR5bGU2bEL0AqO75iADEGxQZPVmTQZGmOUsnIXYzZwnCX87RfI
+	 KDDFyxeuBRlMAn7fHO7a5Y9f4aNBlAW8YWdTXWzhOip5zZoXgC6WRjPwIppNS5eOoS
+	 DfqI32Ac93sww==
+Message-ID: <4acfd68a-7350-4e3b-82b1-fff8dcbe59b6@kernel.org>
+Date: Wed, 6 Aug 2025 11:26:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,40 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
-To: Pankaj Dubey <pankaj.dubey@samsung.com>,
- 'SeonGu Kang' <ksk4725@coasia.com>,
- 'Jesper Nilsson' <jesper.nilsson@axis.com>,
- 'Michael Turquette' <mturquette@baylibre.com>,
- 'Stephen Boyd' <sboyd@kernel.org>, 'Rob Herring' <robh@kernel.org>,
- 'Krzysztof Kozlowski' <krzk+dt@kernel.org>,
- 'Conor Dooley' <conor+dt@kernel.org>,
- 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
- 'Chanwoo Choi' <cw00.choi@samsung.com>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>,
- 'Linus Walleij' <linus.walleij@linaro.org>,
- 'Tomasz Figa' <tomasz.figa@gmail.com>,
- 'Catalin Marinas' <catalin.marinas@arm.com>, 'Will Deacon'
- <will@kernel.org>, 'Arnd Bergmann' <arnd@arndb.de>
-Cc: 'kenkim' <kenkim@coasia.com>, 'Jongshin Park' <pjsin865@coasia.com>,
- 'GunWoo Kim' <gwk1013@coasia.com>, 'HaGyeong Kim' <hgkim05@coasia.com>,
- 'GyoungBo Min' <mingyoungbo@coasia.com>, 'SungMin Park'
- <smn1196@coasia.com>, 'Shradha Todi' <shradha.t@samsung.com>,
- 'Ravi Patel' <ravi.patel@samsung.com>, 'Inbaraj E' <inbaraj.e@samsung.com>,
- 'Swathi K S' <swathi.ks@samsung.com>, 'Hrishikesh'
- <hrishikesh.d@samsung.com>, 'Dongjin Yang' <dj76.yang@samsung.com>,
- 'Sang Min Kim' <hypmean.kim@samsung.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@axis.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, soc@lists.linux.dev
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
- <847e908b-1073-46ea-93f3-1f36cc93d8b8@kernel.org>
- <bfdc2eddde554e1d1808dd8399bc6a693f681c9b.camel@coasia.com>
- <CGME20250721064006epcas5p4617b0450e69f72c94d2b3ae7b1d200e7@epcas5p4.samsung.com>
- <99977f38-f055-46ed-8eb0-4b757da2bcdd@kernel.org>
- <000501dc06ab$37f09440$a7d1bcc0$@samsung.com>
- <e334f106-d9f3-4a21-8cdd-e9d23dd2755d@kernel.org>
- <002001dc06b1$540dc980$fc295c80$@samsung.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: realtek,alc5623: convert binding to
+ YAML
+To: Mahdi Khosravi <mmk1776@gmail.com>, devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250730093713.104003-1-mmk1776@gmail.com>
+ <20250806090510.105731-1-mmk1776@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -129,111 +104,87 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <002001dc06b1$540dc980$fc295c80$@samsung.com>
+In-Reply-To: <20250806090510.105731-1-mmk1776@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/08/2025 11:05, Pankaj Dubey wrote:
-> 
->> Also SAME strict DT compliance profile will be applied. (see more on
->> that below)
->>
->>>
->>> Given that ARTPEC-8 is a distinct SoC with its own set of IPs, we believe it's
->> reasonable
->>> to create a separate directory for it, similar to FSD.
->>
->> No. It was a mistake for FSD to keep it separate why? Because there is
->> no single non-Samsung stuff there. I am afraid exactly the same will
->> happen there.
->>
-> 
-> I am not sure, why you are saying this as a mistake, in case next version of FSD
+On 06/08/2025 11:05, Mahdi Khosravi wrote:
+> I converted the alc5623 audio codec binding from text to DT schema.
+> This is my first try and I used make dt_binding_check & make dtbs_check to verify
+> without getting any errors.
 
-
-My mistake that I agreed on that, based on promise that "there will be
-non Samsung stuff" and that "non Samsung stuff" never happened.
-
-> or ARTPEC is manufactured (ODM) by another vendor in that case, won't it
-> create problems? 
-
-
-No problems here. Non-Samsung Artpec/Axis soc will not go there. It will
-go the top-level axis directory, just like artpec-6
-
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
 
 > 
-> For example ARTPEC-6/7 (ARM based) have their own directories as "arch/arm/boot/dts/axis/"
-> These were not Samsung (ODM) manufactures SoCs. 
-> 
-> But ARTPEC-8/9 (ARM64) based SoCs are samsung manufactured. What if the next version say
-> ARTPEC-10 is not samsung manufactured, so different version of products (SoCs) from
-> same vendor (OEM), in this case Axis, will have code in separate directories and with different maintainers? 
+> Changes since v1:
 
-It will be the same with Google Pixel for whatever they decide in the
-future. dts/exynos/google/ + dts/google/.
+This goes to changelog, so under ---.
 
-I know that this is not ideal, but for me grouping samsung stuff
-together is far more important, because there is much, much more to
-share between two SoCs designed by Samsung, than Axis-9 and future
-non-Samsung Axis-10. And I have `git grep` as argument:
-git grep compatible -- arch/arm64/boot/dts/tesla/
+> - Add dai-common ref
+> - switch add-ctrl/jack-det-ctrl to allOf uint32
+> - use unevaluatedProperties
+> - fix example compatible
 
-and point me to any Tesla IP. Zero results.
-
+Subject: "convert to DT Schema"
+Not to YAML.
 
 > 
->> Based on above list of blocks this should be done like Google is done,
->> so it goes as subdirectory of samsung (exynos). Can be called axis or
->> artpec-8.
-> 
-> I will suggest to keep axis, knowing the fact that sooner after artpec-8 patches gets approved and merged
-> we have plan to upstream artpec-9 (ARM64, Samsung manufactured) as well.
-> 
->>
->> To clarify: Only this SoC, not others which are not Samsung.
->>
->>>
->>> We will remove Samsung and Coasia teams from the maintainers list in v2
->> and only
->>> Axis team will be maintainer.
->>
->> A bit unexpected or rather: just use names of people who WILL be
->> maintaining it. If this is Jesper and Lars, great. Just don't add
->> entries just because they are managers.
-> 
-> AFAIK, Jesper will be taking care. 
-> 
->>
->>>
->>> Maintainer list for previous generation of Axis chips (ARM based) is already
->> present,
->>> so this will be merged into that.
->>
->> Existing Artpec entry does not have tree mentioned, so if you choose
->> above, you must not add the tree, since the tree is provided by Samsung SoC.
->>
-> 
-> OK
-> 
->> OTOH, how are you going to add there strict DT compliance? Existing axis
->> is not following this, but artpec-8, as a Samsung derivative, MUST
->> FOLLOW strict DT compliance. And this should be clearly marked in
->> maintainer entry, just like everywhere else.
->>
-> 
-> As I said this is tricky situation, though artpec-8 is derivative of samsung, we can't confirm 
-> if future versions (> 9) will be samsung derivative. 
-> 
-> But this would be case for all such custom ASIC manufactured by samsung, so I would like to
-> understand how this will be handled? 
+> Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+> ---
 
 
-I suggest to do the same as Google and when I say Google in this email,
-I mean Pixel/GS101. Google was easier because there was no prior entry
-and Axis has, so you will have two Axis entries. But I don't see how we
-can add clean-dts profiles to the existing Axis entry, if you decide to
-include Artpec-8 in that one.
+...
+
+> diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> new file mode 100644
+> index 000000000000..0b9dc324f04d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ALC5621/ALC5622/ALC5623 Audio Codec
+> +
+> +maintainers:
+> +  - Mahdi Khosravi <mmk1776@gmail.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,alc5623
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  add-ctrl:
+> +    description: >
+
+Why did > appear?
+
+> +      Default register value for Reg-40h, Additional Control Register.
+> +      If absent or zero, the register is left untouched.
+> +    allOf:
+
+Drop allOf, just $ref. Look at other bindings or example-schema.
+
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  jack-det-ctrl:
+> +    description: >
+> +      Default register value for Reg-5Ah, Jack Detect Control Register.
+> +      If absent or zero, the register is left untouched.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +
+
 
 
 Best regards,
