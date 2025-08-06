@@ -1,249 +1,211 @@
-Return-Path: <devicetree+bounces-202204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817B0B1C69C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:07:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA7CAB1C6B3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:18:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A03F317A39B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:07:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6613C18C029E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8112528C00B;
-	Wed,  6 Aug 2025 13:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D25F1F9F73;
+	Wed,  6 Aug 2025 13:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AqzHMc3E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9wf9jvQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCFA244691
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 13:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520763398B;
+	Wed,  6 Aug 2025 13:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754485651; cv=none; b=GNN5ZO+/55XntLFBBgx5y+bCMAuDeijbGlV0eBuoJ+nlYt0DyeuLW3L641Vl54vkq7ihv8nJoaWpWTBeWVKjB6hOPP0NBwpihjraybbL6aihK/GwlwPqTrHpUhk1Nc6tP3y46UffwBvJPzVx5gz/qsITTckvn0L836A8bgyIM9U=
+	t=1754486311; cv=none; b=c2FyRIxwwcD0mY9K8mx2MZCoTahNyfQpIFP22NCmPUd74dQkF8iNK8hxPvPE2dX+HaOm9AOtq8QNzJgxe1SWT6bu6s4ro5AvedZtwFonTpNBQsp35E5SsHDG8FRZYICdyQ76feNauXbMsCMSrtWzzFvmWB9BbuAmGmyBGzNQaWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754485651; c=relaxed/simple;
-	bh=aYeJJMheOEdjV6tYcETsLaUCoj40eP9v/azCo6hYPzc=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V221kjKcfVFHL+mhxXhyt8nZCHrrxsPacsUzZlRqA0o04859/mRD0VX+IZfMfYQwKSVqxoRD+cWezdY8FegAlxOSF4z5XdGE7Xe7HQ7rJ68rT9Uw19l+5dVRp2Zcf06jEdZ1d5siAV/qy4BXQfTgghaVgoGS5XDRMwSmwpemMBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AqzHMc3E; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5769ekGR032244
-	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 13:07:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aUJd/u0P4u2xrS8qlnxXVGpkugZ9tcch8pBOz945UxI=; b=AqzHMc3EeM2kJ7EW
-	ilj/eLNuYP6bArxLaakiXHUaD23h59Efb6Ky9bbpfwkl+rKT+SxFNe6nrsvCDkf2
-	jDVeAiuZctGdbXx8Laetk+P0PytuDFN0pknhS0Pw8C/hL71VULYd42IyihBwI3T+
-	WW63+rDgoH27Fj6HV+WtdXFkPPvrbdYOASj4WfnoKbcgr9Gx5FC1sTRZ4Eb192ks
-	FrFqI2/kRtYD/RXzVWvliJNjuMdPgei4nAjAgnaqMX9QlIrPHT7s6h+DlEBu8Tg9
-	A/PaTTo0GoPwip0uyjg4YH5nyLj9TZTpn6QhWhB0SigqsmOkQw1bktl4egtKzm1H
-	J//CKA==
-Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpw2tucp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 13:07:27 +0000 (GMT)
-Received: by mail-il1-f197.google.com with SMTP id e9e14a558f8ab-3e3ecc7278bso125451945ab.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 06:07:27 -0700 (PDT)
+	s=arc-20240116; t=1754486311; c=relaxed/simple;
+	bh=rfgaiLWxVI97cRVXmy6XfavdY84+4UY8Gyiw4Qz4hwg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rSG+C0kQZO5MjqM6E3kNuDvN0rdk2+sxLaxDiGf85wtpBDPtmf7IH7SoEeosGPafK2UhlqUdMHf+BJQ3ep9vLUHe4APCDJL0yXgV8MM56eYIPGDLkxUIz5nzPYB/T0OrIl4dLuzgm/oCWRGRn+q8U2mb8oe6faLGV5wDJq6hlfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N9wf9jvQ; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-458bc3ce3beso27461045e9.1;
+        Wed, 06 Aug 2025 06:18:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754486307; x=1755091107; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xPGiRTcpm1yV3vPw5mjGOqDhanwq+tGNym74Y47LA5I=;
+        b=N9wf9jvQ98uFdssBcti+huf++FeH1T26i0bMk07MwvcTCRnipkkz/Hpff/He7gOkZY
+         GUV73VkToiyz0G+yyKfOQ/rVeo/fXwryAFb+eYN2TVLaWMwER+AeIqduRVTajYnUcGRR
+         m/uaBooBoL3YrQXj+uTUTGCK7nTwNsAvHqWWOSIQPHLXgTpFBy9Sr9jzdT5Kh6vSYyt7
+         R2hwUitM1KNvypEOD4DqcqaN5YVPsQ2JJ9/vaCM2/8BmwRcu1siTb9P/EEYuHL2cx7N4
+         TVqpEEY6j+PNNRyhuu6tTuRRQe66XHjQEjt9048DJ2SUke5H9Lj9LgFEMRjeBbFIAz7H
+         uN+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754485646; x=1755090446;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aUJd/u0P4u2xrS8qlnxXVGpkugZ9tcch8pBOz945UxI=;
-        b=fe2JYGlPtAlQzC8Mv13m9w1aHqunur0H3h4lo9XfdgHpdNkx+M3IQcMj1XZHZqVwoV
-         h97gXWekhM2fozQo4LHajnyxpbMtPR5uZ/iH8JZHKBp7IRzq5LA6NfQ/ketDk7q7iAUD
-         ED50Le/guHh/srgEiZuLQYdwTkkNGafNK75anginhC/lAFnxNwqRGyCnyEFPnXRthMLb
-         d+FturFNspyO29RxJOR4tlx47qUaCtMnQSqFrV9BQx6CS38FtR/7CWm28+NwQ+T8bvWm
-         famKHxa7e9DbjyZTFcREmzbqo+RxmZmwLDL1E2enLY87OYajGhjyB12uICmuWpY/rUne
-         fS3g==
-X-Forwarded-Encrypted: i=1; AJvYcCVNJ/A1q6gQ4ezx1TvgHL5hhxV1Pd1vYDUx1gZKWTM0E1H5aQIUXLnxElgw5uJIbgi4WjRvmuiSynmj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlzjeJng+XxMqdVSQbJiY9FT4b2EwOS6qT95KKZcrqoRUvfq5F
-	tswKwNf2S1Uo9Amz1Z0hcz/1J+NlkhTg8DqbK4prc+WKY8xJkQzyEhgvWQCPiNHNiibadZlbZVi
-	AASesLGErnEUj+Irw87SEzcgqQUXa5CMLxS+Gdpwk6wmW7VnLGAQpleULKR4aQeZ8
-X-Gm-Gg: ASbGncvQ4VFDS7MNRkVsICFVEI/AO2cfSueZxugA4jNAuBRClFe5NTgMhILIN0vP7kd
-	NGqRmbFwOhgv+CzuCk4JyoQoRvbOpvFL9RrQbTdbdVZTbAzMLxwJ0Jfbx34fu7FSbGU6Np151xS
-	Z2YUy0cIUFjqL0OR4eXzlaNniyzxyNTeJtjBD06+Gum9D9lWZJHIvD7i6AEzcX/v5J24uV4fet4
-	JgbDyYP91C27APnNomjdSpCJObP7l3mE/R+Zy+eGu+4VwjForLSnfMo6uYEivF7nfz15VkK9ejy
-	jDWkZJJRauUoPN/dCjcBCnzqHBAWnF+gn8bqBaBn3c9GYU16CyuuTC0kIYzvjtwh8I7wdg==
-X-Received: by 2002:a05:6e02:148c:b0:3e3:fe5e:9b96 with SMTP id e9e14a558f8ab-3e51b8ec632mr41720055ab.11.1754485646326;
-        Wed, 06 Aug 2025 06:07:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHWtia5YTXIWsB8teOlyMifK/iGB3a9CpX0BwSJO8pUmmxHJYLjKu71r3Cg4hIyRpYWnfn7Ow==
-X-Received: by 2002:a05:6e02:148c:b0:3e3:fe5e:9b96 with SMTP id e9e14a558f8ab-3e51b8ec632mr41719225ab.11.1754485645687;
-        Wed, 06 Aug 2025 06:07:25 -0700 (PDT)
-Received: from trex (205.red-83-60-94.dynamicip.rima-tde.net. [83.60.94.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5852e28sm48063915e9.9.2025.08.06.06.07.22
+        d=1e100.net; s=20230601; t=1754486307; x=1755091107;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xPGiRTcpm1yV3vPw5mjGOqDhanwq+tGNym74Y47LA5I=;
+        b=Obl/nWRl7hEE/tVwy0jrRJ98ByOnY2Kx+ZLS5PrISeV3bTb54Dz02pV85HZu8RIypw
+         FTD0MLrs78+KmdV3GKXGk5WhSnmbDenLSd+siLD6mESTgjKVXNcKkxpPTYzJU2AYt/Sd
+         azKiaW0bf+z2vXR4y2DZ38E4hv+GLIRZUQia9ge3YjfktIkRZ0hjuQpS2ya+jdrkaE9T
+         DHuq2O5VwWx34Du+meoKWAPriz6PH4lH1nPttanEp7RQ80p27saYwAbtlgwq+H7bSasF
+         eiLsBx0nc46f9vfzLXXl3DV70hcCaxdeiru7YQKfz64GQjgR6uNsRM+76RvQqk7rNg75
+         oxZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUOsiR9xikAw8NAyKUwpnSKdfml4FhAug2rd9/1zS9nD0J1Ibb8rKAVdlTjTnwgndzubbSh1fkZKAJR9zk=@vger.kernel.org, AJvYcCV9Jb0Idq/M4zViG40lEoUHoy6B0FGII2ZzNb3amxPN1LmYnioeqW02yJr8jEvDjxw9G4SS60G0XICswc8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylxtq54azZv9JWlH7BIG8IWGeZ80jEZXbS2Z45a7WmEJYZtz0U
+	0FJUlBjAuCQJzGacytEvEOeGLGOIDbZYCKHNJ39wKoFnN7b+7GhDCYjjWHUanFbreaJoEg==
+X-Gm-Gg: ASbGncuDBNbeBd9lHgfA1DFEPBX+yO31JdQQJpvyzVNCqPkaVjBfpccRYD4WZXKyuj1
+	258vap3Fq4Dn/2lQAUA1ctsfDAgXgnENB0gdIKP3mtJ9s1BqseiN+V58UuKjqlhfdkUGVF+FY3o
+	aMnzZuwqLW9vSUJL92++7cm5U8qwG4V77ZUDFsns24m5HXpKL0tsIfbPnFjA6rU+JNujPkQhbD8
+	qUj83KZqTkurp46QFi/EbaF2Pg129kXdzbeY+xrXmjregkTQorFa8IwWHnQMkbMf6jRDvD4nFPV
+	jGnmz6D1uiOx6Cq7PTmZWDRlmb5+gwczSKmPiicMY0dlOZCTPp+FwAjVmPFpI6JdeZJeH049Q0+
+	2i6aKiTyb6pfA
+X-Google-Smtp-Source: AGHT+IG5eSmjKB0oUsyK5jzp73+3ckIw7mQ2dBrq516QfGUOitH4EY69ekvQ8//92ihFcZCNmeZoiA==
+X-Received: by 2002:a05:600c:19d1:b0:456:19eb:2e09 with SMTP id 5b1f17b1804b1-459e744f690mr23561195e9.8.1754486306829;
+        Wed, 06 Aug 2025 06:18:26 -0700 (PDT)
+Received: from mmk-tp ([139.179.138.38])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5862be7sm53219795e9.15.2025.08.06.06.18.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 06:07:23 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Wed, 6 Aug 2025 15:07:22 +0200
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        quic_vgarodia@quicinc.com, konradybcio@kernel.org, krzk+dt@kernel.org,
-        mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-Message-ID: <aJNTigOMy1JFOxot@trex>
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
- <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
- <aJHgh8mon9auOHzi@trex>
- <aJHqpiqvulGY2BYH@trex>
- <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
- <aJMMhIqNupwPjCN+@trex>
- <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
+        Wed, 06 Aug 2025 06:18:26 -0700 (PDT)
+From: Mahdi Khosravi <mmk1776@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mahdi Khosravi <mmk1776@gmail.com>
+Subject: [PATCH v3] ASoC: dt-bindings: realtek,alc5623: convert to DT schema
+Date: Wed,  6 Aug 2025 16:18:18 +0300
+Message-ID: <20250806131818.38278-1-mmk1776@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=Vbz3PEp9 c=1 sm=1 tr=0 ts=6893538f cx=c_pps
- a=5fI0PjkolUL5rJELGcJ+0g==:117 a=Rr2dNH5/fcnoRoBmcVUeRg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=ozpgGUE-rs04tbkcxKEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=HaQ4K6lYObfyUnnIi04v:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 76FaW_HXQp5CvNsWeMUL2z6ANJwLIHcd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOCBTYWx0ZWRfX/keQZtM+D11D
- C5DeYJhRVsTHSVdz8aQYWixX6SkXHsFJPGiggwD0/2uSkkuDQk/hxe0W03Uwaji3A4aJ4/EqBYg
- J0U4EJUxdcLvLkYRhta0XDuSSjOXkirBOxl4LkNVHGS4wOCXIOLISBNIGK2+0KfRME+k4Jl2Ukx
- Mp5CJw+m9oT0jfSYGPNE+PdhsHu62iUjDJMtSV2DlzAC8VIe7CAXEcn6ioAZr7wbgHsNjXXVI5u
- 1FCrPSzj0URL/pFyWXiGBvxXZo/SWjk2xZuyc9bPj4i4+rmSixQtXrZutle37TDL7otYT+MFZ8v
- 4sRTpw5KK0tkpIXuZPMUxM5DxGLQT/6kiEibFG2a8/RbyhQnKQFxL6J02N1+9vpQW2GAEApTqzX
- EziZWLtS
-X-Proofpoint-GUID: 76FaW_HXQp5CvNsWeMUL2z6ANJwLIHcd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_03,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 adultscore=0 suspectscore=0 bulkscore=0
- phishscore=0 priorityscore=1501 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060008
 
-On 06/08/25 11:01:09, Konrad Dybcio wrote:
-> On 8/6/25 10:04 AM, Jorge Ramirez wrote:
-> > On 06/08/25 04:37:05, Dmitry Baryshkov wrote:
-> >> On Tue, Aug 05, 2025 at 01:27:34PM +0200, Jorge Ramirez wrote:
-> >>> On 05/08/25 12:44:23, Jorge Ramirez wrote:
-> >>>> On 05/08/25 13:04:50, Dmitry Baryshkov wrote:
-> >>>>> On Tue, Aug 05, 2025 at 08:44:28AM +0200, Jorge Ramirez-Ortiz wrote:
-> >>>>>> Add a qcm2290 compatible binding to the Cenus core.
-> >>>>>>
-> >>>>>> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
-> >>>>>> encode at 1280x720 (HD).
-> >>>>>>
-> >>>>>> The driver is not available to firmware versions below 6.0.55 due to an
-> >>>>>> internal requirement for secure buffers.
-> >>>>>>
-> >>>>>> The bandwidth tables incorporate a conservative safety margin to ensure
-> >>>>>> stability under peak DDR and interconnect load conditions.
-> >>>>>>
-> >>>>>> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> >>>>>> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> >>>>>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> >>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >>>>>> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> >>>>>> ---
-> >>>>>>  drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
-> >>>>>>  1 file changed, 50 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> >>>>>> index adc38fbc9d79..753a16f53622 100644
-> >>>>>> --- a/drivers/media/platform/qcom/venus/core.c
-> >>>>>> +++ b/drivers/media/platform/qcom/venus/core.c
-> >>>>>> @@ -1070,6 +1070,55 @@ static const struct venus_resources sc7280_res = {
-> >>>>>>  	.enc_nodename = "video-encoder",
-> >>>>>>  };
-> >>>>>>  
-> >>>>>> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> >>>>>> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-> >>>>>> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
-> >>>>>> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
-> >>>>>> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
-> >>>>>> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
-> >>>>>> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
-> >>>>>> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
-> >>>>>> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
-> >>>>>> +};
-> >>>>>> +
-> >>>>>> +static const struct firmware_version min_fw = {
-> >>>>>> +	.major = 6, .minor = 0, .rev = 55,
-> >>>>>> +};
-> >>>>>
-> >>>>> This will make venus driver error out with the firmware which is
-> >>>>> available in Debian trixie (and possibly other distributions). If I
-> >>>>> remember correctly, the driver can work with that firmware with the
-> >>>>> limited functionality. Can we please support that instead of erroring
-> >>>>> out completely?
-> >>>>
-> >>>> yes, in V7 I did implement this functionality plus a fix for EOS
-> >>>> handling (broken in pre 6.0.55 firmwares).
-> >>>
-> >>> just re-reading your note, in case this was not clear, the _current_
-> >>> driver upstream will never work with the current firmware if that is
-> >>> what you were thinking (it would need v7 of this series to enable video
-> >>> decoding).
-> >>
-> >> I'd really prefer if we could support firmware that is present in Debian
-> >> trixie and that has been upstreamed more than a year ago.
-> > 
-> > 
-> > I share your view — which is why I put the effort into v7 — but I also
-> > understand that maintaining the extra code and EOS workaround for
-> > decoding needs to be justifiable. So I chose to align with the
-> > maintainers' perspective on this and removed it on v8 (partially also
-> > because I wanted to unblock the current EOS discussion).
-> 
-> +$0.05
-> 
-> I thought we were going to eventually relax/drop the fw requirement
-> when the driver learns some new cool tricks, but are we now straying
-> away from that? (particularly thinking about the EOS part)
-> 
+I converted the alc5623 audio codec binding from text to DT schema.
+This is my first try and I used make dt_binding_check & make dtbs_check to verify
+without getting any errors.
 
-um, no not really: the decision was to simply drop support for pre
-6.0.55 firmwares for the AR50_LITE.
+Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+---
+Changes in v3:
+- Drop allOf, just use $ref for uint32
+- Remove stray '>' in descriptions
+- Fix subject to "to DT schema"
 
-Pre 6.0.55:
+Changes in v2:
+- Add dai-common ref
+- Switch add-ctrl/jack-det-ctrl to allOf uint32
+- Use unevaluatedProperties
+- Fix example compatible
+---
+ .../devicetree/bindings/sound/alc5623.txt     | 25 ---------
+ .../bindings/sound/realtek,alc5623.yaml       | 52 +++++++++++++++++++
+ 2 files changed, 52 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/alc5623.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
 
--  has a requirement for secure buffers to support encoding
--  requires a driver workaround for EOS (providing a dummy length)
--  during video encoding.
-
-To support < 6.0.55, v7 of the driver patchset:
-
-- uses the version to disable the encode node
-- enables the video decode node
-- implements the EOS workaround.
-
-It was agreed that this complexity was not necessary and that we should
-just drop <6.0.55 firmware support (which would in any case only include
-video decode).
-
-And so on v8, I removed the above.
-
-Now I have v9 ready to post it, but Dmitry is asking why cant we have
-the v7 functionality so I am waiting for direction.
-
-
-
+diff --git a/Documentation/devicetree/bindings/sound/alc5623.txt b/Documentation/devicetree/bindings/sound/alc5623.txt
+deleted file mode 100644
+index 26c86c98d671..000000000000
+--- a/Documentation/devicetree/bindings/sound/alc5623.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-ALC5621/ALC5622/ALC5623 audio Codec
+-
+-Required properties:
+-
+- - compatible:	"realtek,alc5623"
+- - reg:		the I2C address of the device.
+-
+-Optional properties:
+-
+- - add-ctrl:	  Default register value for Reg-40h, Additional Control
+-		  Register. If absent or has the value of 0, the
+-		  register is untouched.
+-
+- - jack-det-ctrl: Default register value for Reg-5Ah, Jack Detect
+-		  Control Register. If absent or has value 0, the
+-		  register is untouched.
+-
+-Example:
+-
+-	alc5621: alc5621@1a {
+-		compatible = "alc5621";
+-		reg = <0x1a>;
+-		add-ctrl = <0x3700>;
+-		jack-det-ctrl = <0x4810>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+new file mode 100644
+index 000000000000..2a389ca95b0d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ALC5621/ALC5622/ALC5623 Audio Codec
++
++maintainers:
++  - Mahdi Khosravi <mmk1776@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: realtek,alc5623
++
++  reg:
++    maxItems: 1
++
++  add-ctrl:
++    description:
++      Default register value for Reg-40h, Additional Control Register.
++      If absent or zero, the register is left untouched.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  jack-det-ctrl:
++    description:
++      Default register value for Reg-5Ah, Jack Detect Control Register.
++      If absent or zero, the register is left untouched.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,alc5623";
++            reg = <0x1a>;
++            add-ctrl = <0x3700>;
++            jack-det-ctrl = <0x4810>;
++        };
++    };
+-- 
+2.50.1
 
 
