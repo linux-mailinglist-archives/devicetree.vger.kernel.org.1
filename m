@@ -1,157 +1,141 @@
-Return-Path: <devicetree+bounces-202195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90C76B1C60C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:39:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E60B1C62F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:45:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4322B18A852A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:39:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E72E3A5478
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE3C28C5A5;
-	Wed,  6 Aug 2025 12:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE914289808;
+	Wed,  6 Aug 2025 12:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MVZP7i65"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+gAZvNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19DD028C02E
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 12:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33AD23E358;
+	Wed,  6 Aug 2025 12:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754483930; cv=none; b=KLU+OEsrJbyjGSc+O28Yk6JUccC39Q1JlMQ0znlL3+Jaa1DeaEvn0pfYF3jGbtNl8p24vNZ0hYMKGbzSzgySyCfsye3ZDQmayOuSkUAitkhG7BN10XkwBsRnmwjX/qObABrZyTv7DeSJJmt3RdjgCZB8d/rFfkluRqfSEUjVPEE=
+	t=1754484269; cv=none; b=lZILF7J56+6gFDw2yva7SLcWZVQ3Na5AybfdPwxl19cVhi7+bT/dWvDYyVgyYBmwfsXrw4dJUfX8cG4nbsUYFKJC3Y4zG069qiJSpJHx3uc4yS5m4yZhDjtFfP+tBLTPxSqG7XpxWQtXi4m68RWyVrSkSY0BUFu3l2WAkbzdinQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754483930; c=relaxed/simple;
-	bh=Eu8xqyxmJT4cy+IkwFfzScYWzL17LKhf3pxRBEd5zMc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=seC4JDEqQMc9fRC96Q5emY6nbXWPYDUqiLf5r1r2xm/yep+2u5s0kBimbjT7OSruFtaGYS1LP5qZwdSFIaEqB4VKzWD7NzBQnBykO30rJvKWjBsR2ZXcleY5cKa7F2XIWPo067pE8hfK3p8OMmHjZYI8YUKs+UQX/riNMWZm3wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MVZP7i65; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-af946c07c84so92979066b.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 05:38:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754483927; x=1755088727; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Iq1dXsHIjnJQgOoLlFKfB9bYrlfRitC3gfcfuZAFbrc=;
-        b=MVZP7i65XSbQrAR7rXu3inuUW1Bddbs9ltTsF8SR2YF8vxH8idvJS9C98eHFQozYwA
-         yQxU/yH9vpW2JvRKWgh7JBKLTIjyOlh5ZkExISQGhpYfM6Bu3QryCMNwwxafDKg1CmHm
-         /P7gDrLyhTDi++EUiPmyMXpIUKjfshgf6ElvZhDLoRMlfE7ur8vhVXvTdlOGACrffXAk
-         yC9MSOPCezohWNu33Z0V7xXmli3Vu0o7XKWVCZE3Frv3thqkfD2+NfASDPUqC5mH756x
-         qKqZfsq9vxXTtJb42rFKzVobRml97/j6QOdoOsIkxRbCmXasyFXvXoh45CsteyiiTMkz
-         ojYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754483927; x=1755088727;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Iq1dXsHIjnJQgOoLlFKfB9bYrlfRitC3gfcfuZAFbrc=;
-        b=ET/IK9Er8spsCUXKaBRv+ec9yUs8RSiyFYZB9xSEd4K94uWZD/vaaQRmNABfygL5d4
-         P2ilr4fVwqM3aw42MAj+WvXZbKA+grIG5skOjKi68z5hT+HHuzOIpCY9Et+IXEcv+nBC
-         Qcu7a49Lt2vIQzAJai+00ct3XUYqIaIrIDkH5Ni9y6wAr3aG/85I5A3rbMPaW1tILzYv
-         HvCR+/XqdLrS0E1/jOaVcv3ai8kBArVmZfO749vzvHpJqDOVEZeW1DBaazLSm/zORztp
-         CqTCBjU1KsvTuwkfz7rBKZoIRHe5tmTOqUcj/v3xwd7CVg7FrvDAo4QFt4/vKsASbMlz
-         EuAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqgWVjtF+yQ3qq74fUkmXPwuQl7sDtFdLLthTq9cUlRGgo+ttuvTvlMga71MuCVxYkN0U31m5TJxQ4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0nAKsDQUgVqVr85T2yBIRHTCaQ14qitAr1LOC7wBwxxW9Z1sB
-	ubeZyt2ZINDEYp8ttqBH7MWRz/+AKgIeB54bjj0Wnp+bMl6UYDcGsp4oVvbgjBrfXYw=
-X-Gm-Gg: ASbGncthgtB2uC6bKNkZUd650yYd4wPM6kykvMnQNasuzMddgJ8uKI1dgfeHGi2lRWn
-	HDiMZW2NV8wqtH/Y7ZCsRvpLX6gjQ8h8hAayk4CLH8UW/ne2meObgSEgbTzmYD6nxiZJT2KTiD7
-	EdIdjdOvgpnpvXNFzdwTN33yjAuci1RIFC5BTcI1tp1mB5eXE/WOj/94wApC8eNPyOJnu9AVACm
-	uf/metwsGVfFZcSFz1OfaQ1ICMiyKch8itGlfqq/4cwnihOd/Uv9Z78amVfO182uilxs7+UwW3Y
-	5w4AXXVm7L9lo+4spnlhiq2O6wGACiSneicF2kj0X20qTrfBiWtVC/KrdWkIpx5p/HzpJW08xDJ
-	l9+GhHh9UHuAXc63H2vDs2lyiStv3dDKVfTkl5f0=
-X-Google-Smtp-Source: AGHT+IH1MCcEAYbFWkRzhmxuZA3++Z7ES4Zu+n2T5+SGS8RGQVPQvJUlm5h2QcPvISw4DO4/Z8tu2w==
-X-Received: by 2002:a17:907:7e89:b0:ae3:63fd:c3b4 with SMTP id a640c23a62f3a-af99031ce8fmr121559966b.5.1754483927349;
-        Wed, 06 Aug 2025 05:38:47 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.218.223])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c081sm1083866766b.97.2025.08.06.05.38.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 05:38:46 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 06 Aug 2025 14:38:32 +0200
-Subject: [PATCH DO NOT MERGE RFC v2 3/3] arm64: dts: qcom: sm8750-qrd:
- Enable Iris codec
+	s=arc-20240116; t=1754484269; c=relaxed/simple;
+	bh=AYcRRwKF83d6LifD+7Ls/YkkCIq9XeoyHMqkAJL4NGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Bg/bFICzRHfcgyOud450YcV7NejEPl7N5udzjn745/iNsF3UoxFfbiewOVPv2+N9Jllwb6j6RmzjuEzihQVtVTZ/R2Nv1DRZeE7aDuGR6acd2vjkqOXL+o4VeBX24zVVCUqc/3vatSKdZEXeWd1jvi/kwLkCpSb0wtkUvgalnqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+gAZvNk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0372AC4CEE7;
+	Wed,  6 Aug 2025 12:44:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754484269;
+	bh=AYcRRwKF83d6LifD+7Ls/YkkCIq9XeoyHMqkAJL4NGI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q+gAZvNkgUJt1dE1E6dFZvaCdhTsYQ+Bw3KQkycMgrK9q7Fi58ABXyt8PefsEbcop
+	 NQFjj1NrJcbkVh1Mh2yHioHw0uHpSKkXjxGxa4vHXHU1e8mWgb+8tLMK0RJOE34jgJ
+	 mTgFzVG4lxGlND4uggyCZfQGzTyTVj+h69xIF+FjAu5hPNdTcuTLtNZSa5whx3KdWl
+	 KJKPJkdedMT3Qqs0sfVytds9dAZZ1Sb7j/4/oSC3vsIys/qrTe7kLi10VBazxUdzQd
+	 WREem4YR4QuTaVp12ifuPTwjsVjcLqhNqLnwBzWD2gEJlVdljHmO6g5snDnFKAXGM0
+	 oyJ4YUdfAl+1Q==
+Message-ID: <5924a691-2533-4856-a169-d16c3e577c42@kernel.org>
+Date: Wed, 6 Aug 2025 14:44:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: st: Add memory-region-names property for
+ stm32mp257f-ev1
+To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+References: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
+ <9e0c5453-b8f4-4d0a-8e8d-82014aac67dd@kernel.org>
+ <832fb088-8862-4bd7-82a4-0e7ad58efe76@foss.st.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <832fb088-8862-4bd7-82a4-0e7ad58efe76@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250806-b4-sm8750-iris-dts-v2-3-2ce197525eed@linaro.org>
-References: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
-In-Reply-To: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1068;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=Eu8xqyxmJT4cy+IkwFfzScYWzL17LKhf3pxRBEd5zMc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBok0zQvyzCAYOL7BMZJSO9B6MNXCHo9gjkmhG0e
- Ry42X5ZExaJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaJNM0AAKCRDBN2bmhouD
- 1649D/43FW6NDwKmazwEJrMxnzlc3KeXTnZnUw07I4ESJBiy0o44hxwfLy+qUz638ISoPl6cUbb
- Pu0OMk+SYBLhRjOcMZl/TboRkcdmncXsH15/zZveNm7wO5Cx1fM+odrferMgRhMMF7JRP9N9qqw
- okPLTpatYigUIGGk/ArTpmGKdeA6RV+FnKDA43qENTcuXCz+ZFuvQwRvIF2wQ+5pQ0b2bNG86tB
- Y6z4G8cbcbD8hVL0OkF4KyWB2tg4Gm2bB0Nuz5MiFvf6lUWdcFRsxNjnL7PWqkPZogSQepR0qeU
- +IFCSPSZccr7Kdlyix6DwuMwBHSrYT10W5Bh2nEKJc0o66yunch/eIYDQTBxpyMCVJyYVVbIaff
- vZeyMn09U5g1qSoEJHuZgeLMeyPnr/PGNaFE2nvO1Du1+a9Kz0MyR8qJ2M8CEBCqAOcj/OYaBW5
- 6wWxzOJ/C9DiRM3S78OExQp0vf/i44RgQOBWhf+PQi+QnWLjB4IpiDtSfVxcIdmA0tq36FRLB37
- pkHtn4vb4AYYMW14pDYBrjm+R6DRZzQAh2UMjMxUINibUYwYMbtyXVhAXigEu632g8NprkX448r
- 10fTazC18qOPvUHaPWk+OhlU2WCEYwEV9gxIbwXcwXRFM5Ui72UgnPv11zqy3YeVQ1LQ+/R4e6G
- aNXF2QZvNbkM0TA==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Enable on SM8750 QRD the Iris video codec for accelerated video
-encoding/decoding.
+On 06/08/2025 14:36, Patrice CHOTARD wrote:
+>>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>>> ---
+>>>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>> index 2f561ad4066544445e93db78557bc4be1c27095a..16309029758cf24834f406f5203046ded371a8f9 100644
+>>> --- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>> +++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>> @@ -197,6 +197,7 @@ &i2c8 {
+>>>  
+>>>  &ommanager {
+>>>  	memory-region = <&mm_ospi1>;
+>>> +	memory-region-names = "mm_ospi1";
+>>
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+> 
+> My bad, i am preparing the v2.
+Why? I claim this is not needed according to your description. You said
+it is necessary to identify "memory-map area's configuration." but
+memory-region already tells that. What exactly is not identified?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-Do not merge because firmware (hard-coded in the driver) is not released.
-
-For Rob's bot reports:
-
-qcom,sm8750-videocc bindings and clock headers dependency (will fail
-build):
-https://lore.kernel.org/all/20241206-sm8750_videocc-v1-0-5da6e7eea2bd@quicinc.com/
-
-qcom,sm8750-iris bindings:
-https://lore.kernel.org/r/20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org
----
- arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-index 13c7b9664c89cffb68a1f941c16b30074816af8b..369623f8e4c921e99532d5e22fe9f0049746ebaf 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-@@ -813,6 +813,10 @@ vreg_l7n_3p3: ldo7 {
- 	};
- };
- 
-+&iris {
-+	status = "okay";
-+};
-+
- &pm8550_flash {
- 	status = "okay";
- 
-
--- 
-2.48.1
-
+Best regards,
+Krzysztof
 
