@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-202313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A654B1CE66
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 23:28:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84150B1CEB8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 23:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 631E918A6E67
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 21:28:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E38C3B1597
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 21:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C2022618F;
-	Wed,  6 Aug 2025 21:28:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A192422D7B1;
+	Wed,  6 Aug 2025 21:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOuVpqo9"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="rfGsuz8d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4EC22577E;
-	Wed,  6 Aug 2025 21:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D6D322A4E5
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 21:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754515708; cv=none; b=BvWcbYC4ljYgsDF//b7j/j/2Le/2pYoFjT2fynEGJdg3mMe5DtgcX2owzYZSkaWZ1H8xGF0UR8A1hGX6OtvP9OBDc1Wo7APBXlTD+pJDBOGI/K4qXgMHvWeeaNE8gUO1uQfD90rsDFwr46gayFCHFQCiUV4SZZjKqFF2pKkM6LA=
+	t=1754517350; cv=none; b=uudthLCEGwL6KQ0+2Lyx92FTN4EvioR1XwZk7axn+jQFSzacx2I3FXv7arki7+Cr2UV2fvZXNdjd++ljStqkScYunDwf547PenpherfoOVNK+qUqjsIXNRHHukRNqfiXww4eWgSm+truXv0wm7DKhy2N8awNSJow+6NLHBuqDnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754515708; c=relaxed/simple;
-	bh=21xpyzPK1VoPmhAptjeM1xFg2OZkfCF6vLurfNbjVkQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m8fBtOfzY41LxPKfuAUofiE9O59kgsF9MY15/7CPkfHFUWRClHNnkj/xD2cPpomhXTH2VmLstti+Aot3+POP3OQxqXlmZeqGVTiWBM9e8uWwsjO/qw4Yd4XJnn9jCtRA4O9N0w1deSWivmi0otQ6UFzl6zFjQUB2duSJnhbVMao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOuVpqo9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 575F4C4CEE7;
-	Wed,  6 Aug 2025 21:28:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754515708;
-	bh=21xpyzPK1VoPmhAptjeM1xFg2OZkfCF6vLurfNbjVkQ=;
+	s=arc-20240116; t=1754517350; c=relaxed/simple;
+	bh=j95Df0u1twPoNe4ufuiyqZ4gjJJnOCPJvR8Y38Unaa4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mP9q7h//MxLXBhjTO9KbYm7xlRbcth+DhEf/rw3XhsSgxrIr/9umMgaBwJ4juNZ6q9h+WztZPUUyzSA49bTerE4kwEm6M2epvgaQopKFEIsgoftaxbd0xY5WQbzjSoiWsuUUBtn0xUp3gfE5/EcTjeLxqazLnEGcdNwoZJKS2A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=rfGsuz8d; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [40.65.108.177])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 6D9BD2018F33;
+	Wed,  6 Aug 2025 14:55:48 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6D9BD2018F33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1754517348;
+	bh=EB5F7X0QTQBLYUeJTZBsEDkMArE5SLaRkOQ9lia3kO8=;
 	h=From:To:Cc:Subject:Date:From;
-	b=NOuVpqo9s3/+DOw8hsbxuEne6c61pq/YK6G5fsAL+W8ztYLGk9xBrnu8sc0CIejyh
-	 GVNRhI3lklWnGYHTGbunYDqeqefxCIPxHAq6FLf6VADUtr73XCrCmIHhkWiraPD2gD
-	 nR2Anqo7Cok0XrSj08SBLStlHE8cY6I3s3K4FuEYA2ez6ViKkvL0qMdfGr6fOGLYkr
-	 q62NwIaYbXbkQqOE7SltOsP2Vy88oG9oOLIuMA2kemuNXP+aHKW1U4oTQt8Qq/piSG
-	 CPaKvWZNZNy832T2bgOZkZVKnZMOhcLkXp96DxRcOJiBPDaqsk1/uN/lriILzFJLeA
-	 NSewonyZzDEDA==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: Convert ti,keystone to DT schema
-Date: Wed,  6 Aug 2025 16:28:23 -0500
-Message-ID: <20250806212824.1635084-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	b=rfGsuz8deZNit4jb/h6AAxRxsJrJRm5iHZARB0RYBxr38DNSJnTp1Pl6AJBdkQ4dE
+	 vl7PB/Pg8MKcRk6pIMjkzLlMaZbc+RdW0Qzm28cyv0SnwA3+WKl+gQOtRGZhKGUG99
+	 hb5kWS7YYT/TdX46xMv7YyL7BhxMr1/weJku+I2U=
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev
+Cc: jgg@ziepe.ca,
+	will@kernel.org,
+	jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com,
+	code@tyhicks.com,
+	eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com
+Subject: [PATCH v3 0/3] arm-smmu: select suitable MSI IOVA
+Date: Wed,  6 Aug 2025 14:55:36 -0700
+Message-Id: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,112 +63,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Level: **
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Hi,
+
+Currently, the MSI_IOVA_BASE address is hard-coded to 0x80000000,
+assuming that all platforms have this address available for MSI IOVA
+reservation. However, this is not always the case, as some platforms
+reserve this address for other purposes. Consequently, these platforms
+cannot reserve the MSI_IOVA_BASE address for MSI.
+
+There was an [1] attempt to fix this problem by passing the MSI IOVA
+base as a kernel command line parameter.
+
+This patch series aims to address the issue by reserving faulty MSI_IOVA
+and selecting suitable MSI IOVA address for a given platform.
+
+This approach accommodates platforms that do not have the default MSI base address
+available for MSI reservation.
+
+[1]: https://lore.kernel.org/lkml/20200914181307.117792-1-vemegava@linux.microsoft.com/
+
+Thanks,
+Shyam
+
 ---
- .../bindings/arm/keystone/keystone.txt        | 42 -------------------
- .../bindings/arm/ti/ti,keystone.yaml          | 42 +++++++++++++++++++
- 2 files changed, 42 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/keystone/keystone.txt
- create mode 100644 Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
+v3:
+- Drop "arm,smmu-faulty-msi-iova" property change
+- Fix iommu driver device tree configuration for PCI devices
+- Use "iommu-addresses" property to identify reserved MSI IOVA regions,
+  and introduce an additional MSI_IOVA_BASE2 macro to select a suitable
+  MSI IOVA base if the default overlaps with a reserved region (suggested by Jason)
 
-diff --git a/Documentation/devicetree/bindings/arm/keystone/keystone.txt b/Documentation/devicetree/bindings/arm/keystone/keystone.txt
-deleted file mode 100644
-index f310bad04483..000000000000
---- a/Documentation/devicetree/bindings/arm/keystone/keystone.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--TI Keystone Platforms Device Tree Bindings
-------------------------------------------------
--
--Boards with Keystone2 based devices (TCI66xxK2H) SOC shall have the
--following properties.
--
--Required properties:
-- - compatible: All TI specific devices present in Keystone SOC should be in
--   the form "ti,keystone-*". Generic devices like gic, arch_timers, ns16550
--   type UART should use the specified compatible for those devices.
--
--SoC families:
--
--- Keystone 2 generic SoC:
--   compatible = "ti,keystone"
--
--SoCs:
--
--- Keystone 2 Hawking/Kepler
--   compatible = "ti,k2hk", "ti,keystone"
--- Keystone 2 Lamarr
--   compatible = "ti,k2l", "ti,keystone"
--- Keystone 2 Edison
--   compatible = "ti,k2e", "ti,keystone"
--- K2G
--   compatible = "ti,k2g", "ti,keystone"
--
--Boards:
---  Keystone 2 Hawking/Kepler EVM
--   compatible = "ti,k2hk-evm", "ti,k2hk", "ti,keystone"
--
---  Keystone 2 Lamarr EVM
--   compatible = "ti,k2l-evm", "ti, k2l", "ti,keystone"
--
---  Keystone 2 Edison EVM
--   compatible = "ti,k2e-evm", "ti,k2e", "ti,keystone"
--
---  K2G EVM
--   compatible = "ti,k2g-evm", "ti,k2g", "ti-keystone"
--
---  K2G Industrial Communication Engine EVM
--   compatible = "ti,k2g-ice", "ti,k2g", "ti-keystone"
-diff --git a/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
-new file mode 100644
-index 000000000000..20d4084f4506
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/ti/ti,keystone.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI Keystone Platforms
-+
-+maintainers:
-+  - Nishanth Menon <nm@ti.com>
-+  - Santosh Shilimkar <ssantosh@kernel.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: K2G
-+        items:
-+          - enum:
-+              - ti,k2g-evm
-+              - ti,k2g-ice
-+          - const: ti,k2g
-+          - const: ti,keystone
-+      - description: Keystone 2 Edison
-+        items:
-+          - enum:
-+              - ti,k2e-evm
-+          - const: ti,k2e
-+          - const: ti,keystone
-+      - description: Keystone 2 Lamarr
-+        items:
-+          - enum:
-+              - ti,k2l-evm
-+          - const: ti,k2l
-+          - const: ti,keystone
-+      - description: Keystone 2 Hawking/Kepler
-+        items:
-+          - enum:
-+              - ti,k2hk-evm
-+          - const: ti,k2hk
-+          - const: ti,keystone
-+
-+additionalProperties: true
+v2:
+- add new dts property to hold faulty MSI IOVA and select appropriate
+  MSI IOVA address
+Link: https://lore.kernel.org/linux-iommu/20250410225030.2528385-1-shyamsaini@linux.microsoft.com/
+
+v1:
+Link: https://lore.kernel.org/linux-iommu/20250116232307.1436693-1-shyamsaini@linux.microsoft.com/
+
+Shyam Saini (3):
+  arm-smmu: move MSI_IOVA macro definitions
+  iommu/of: fix device tree configuration for PCI devices
+  arm-smmu: select suitable MSI IOVA
+
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 27 ++++++++++++++-----
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h |  3 ---
+ drivers/iommu/arm/arm-smmu/arm-smmu.c       | 30 ++++++++++++++-------
+ drivers/iommu/of_iommu.c                    | 11 ++++++++
+ drivers/iommu/virtio-iommu.c                |  2 --
+ include/linux/iommu.h                       | 28 +++++++++++++++++++
+ 6 files changed, 79 insertions(+), 22 deletions(-)
+
 -- 
-2.47.2
+2.34.1
 
 
