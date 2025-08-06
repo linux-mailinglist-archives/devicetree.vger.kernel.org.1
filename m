@@ -1,352 +1,202 @@
-Return-Path: <devicetree+bounces-202050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9FDB1BE59
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:35:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAB0B1BE62
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 03:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62D1C189075D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 01:35:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9C583B68A4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 01:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DE51B0F1E;
-	Wed,  6 Aug 2025 01:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391B617A2F6;
+	Wed,  6 Aug 2025 01:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ar7upmIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5DD19E992;
-	Wed,  6 Aug 2025 01:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBF813B293
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 01:37:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754444067; cv=none; b=bgQmmmxJtpn4p1IPtZZJsx5/5v5/aJX9LZZMDUfqqSaDiJRko9fKox1ZNYaYSWTttPDCqiFGPmetbakxfR10WjdOSYuNj1sqtA/CImfsamfO6c6VO9KWhiL+bfyiv0RbM/IkZ8yjaDn3PhBC+a2+yXqEaqeTFG8G43m9Hde5+yA=
+	t=1754444234; cv=none; b=rpUhs2ZgPHeiYBRo/whmAhsfJ8RNv4CTT9BJokD4aSNNT6CX8tCmKsB6IAyxooai4IwEzbRS2WMlmqFhiMlgR6oLdOrbZ/FFAHw4sgRdbTN5QEH3WUJRXeAz0GhPUYvQMUin8lvwrWDNARZkHj54wZGYkh7wVkGYgxnKIF7vNOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754444067; c=relaxed/simple;
-	bh=WdFAsa0ufaMayNtK1EnOAsVxDcm3sLPL+1c7SzaBcwk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l8ZrxMdk9TT+Pzj4en8HWesSwdodqBy05bMML2efE3XRzW3f/4NBnHUxWobqhzHsjL8/HNZN9mJChqGiV88TYhagFcXjlL/mHJw9BnfSbEXf4eRANFTWdjCKObKOJV3yRFuIb5RvTZqpE8IFWvx0e2kL+rEpz7TT2ZozfoA7ckM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1339F1A1D4F;
-	Wed,  6 Aug 2025 03:34:18 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D39951A1D4A;
-	Wed,  6 Aug 2025 03:34:17 +0200 (CEST)
-Received: from lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com [10.52.9.99])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 1538818000AB;
-	Wed,  6 Aug 2025 09:34:14 +0800 (+08)
-From: Joseph Guo <qijian.guo@nxp.com>
-Date: Wed, 06 Aug 2025 10:33:34 +0900
-Subject: [PATCH v3 3/3] drm: bridge: Add waveshare DSI2DPI unit driver
+	s=arc-20240116; t=1754444234; c=relaxed/simple;
+	bh=RRE7SubbvLGoTInPGjBxocoPugbap9T5IPFdYvgN7rc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NSSE9ziyhaoeZyv+MprCCPfW84FWTX3RKPEAeZKI7v+WqMZQpHqUi/bg1MYRiAByZGVW/FN8dpqstKUlI9AywOeXImWq15vYsYktaHfFIUVZKtw2qnqmXg+f4yLfWRlWgDiMp9/R5eVpTG7yiHRADxrSLnaKtsOH3d4rFiqvxh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ar7upmIc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575I2puT011143
+	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 01:37:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Y5BGHsX5GwN0R/WPVZybiA6n
+	q6pOn7ZZQtqZPvsh1ZI=; b=ar7upmIcTc761VOtLtdC7DInUh1WzBUWngqNPJef
+	kyutXZ7bURFerkcVxvAMZGYzkJgT2d7x4TgcfZtmBbXxii3bCXoSflUqV4AIohc/
+	Eb0uYZCcKhXcS3mJ/DSTrX8MwVPrpLpgSIg3NGKkY2GFV/y6fHluxEbM03nJgvde
+	gmyEAPkDe0iPP/31TCgrn24ytFI75NFKZZDLFwImuW+YUzblEHFpio/LyiMHVxnR
+	6qeO0pvhdPqHhi6GnkOIjo6IMlRiS0ZKpeNOTbVMsxBMMjthMXVOLJhOk06Hd50f
+	+kmQIGTqvsB1pIOBT0mNNJ6ZDwiExAMt0OfJRgaUkzskLg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvys0am-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 01:37:11 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b06a73b580so6410071cf.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 18:37:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754444230; x=1755049030;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y5BGHsX5GwN0R/WPVZybiA6nq6pOn7ZZQtqZPvsh1ZI=;
+        b=YAD0LQPPQaadviYaDzY9aRRX7ej72MMOX2lL03cvINR0WUeVbZyKrs7nL+1NomrpeN
+         reRApDLraV+VWF6BiS4U/PXUW4mvm774uAeeGIAdGcCZzhQmcwqisueAZVeLeFAw8+rD
+         kfw473xDkao+YvmHi64myCzZs28DaB6fIcJEBeAL4cWpKK4fPIXDcBhufkwuV8Wa9LD9
+         qDQ6k7bNyCi/3MvkZ1zhyBpxYIkhcLiCqOaNaOX9OZ//UlRrvSmtAkxEf9/XTTioYv33
+         gLENvXSq4NDE4ZghmvjAGnCLzq7ESY9JhLmfaUkKjVrOyOeiOAsfOEiNhe8Shi2xWGOa
+         XkVg==
+X-Forwarded-Encrypted: i=1; AJvYcCVfYRANOIZTdrdV9pQV46hw6AlkOyfmwhsfQA8r/tctRIA4+JAIy6v3sfWCrArrQt6HkJdoZlr9frDk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSoaOA0g5qs3qB4PZeqPXu7aln4WDaF8AHL6uWDMPp63aOWoiu
+	zLySPKA4F9xaJ/Y8b3dS/Pz1PJP6nZQ63FFiIRF1ykukZvYiHVF6b9HYm8cZax0mMfcEDD7zJGX
+	8N2xxzsPD6zI67iaTr4J0BDU0LOms7HOinO//55AzTXyYxAB1MiK6WgbnWv8fpKMU
+X-Gm-Gg: ASbGncum4qoiCZBNYTWXtVnED8rHxVJ3vmBUD+mh32oisrr3TjBsZqZxLmfRfAqyzSB
+	rUQL50SXvgkktmg2U5atkNCv+qToL6kfAiueC1yg+MX8Mh6RBj2QmEUsl+PsIVn7z9bJNn+iqvI
+	EHCoH4yV0PayixCw1BoCjo/JuObV9RmGF6jIix6P9Yj1Vougy7eg8bPFyQFIywyMmDBaeAJGv5u
+	VHiE98kc92oXT3kZfzcSgzZU3PbyUfuvTwvoqHVCP7IfoacRhH89k4m+4gv0HsLEgYArJAfo39M
+	ooPgb+kvyuuqxR+Sw6DwZ8OSCoWX54mzpZfe0wx5vQUuXHbz+AeYKLxI4Q9aVTIt8UKfFAQkTuL
+	vm5PIxgv+hS+IVjUATSgfvsNauhUDmQVhwPFQLdUd8BkvaQjdKjMu
+X-Received: by 2002:a05:622a:178c:b0:4b0:6ac0:c768 with SMTP id d75a77b69052e-4b0914d50e1mr16270601cf.30.1754444230373;
+        Tue, 05 Aug 2025 18:37:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFRPy+CB7VNKZJKeGujjW/TC3XEhIKX487sXoFYQjy1GNxVzzWwyH5iYaG7LsA4AjRzdpZUzg==
+X-Received: by 2002:a05:622a:178c:b0:4b0:6ac0:c768 with SMTP id d75a77b69052e-4b0914d50e1mr16270471cf.30.1754444229806;
+        Tue, 05 Aug 2025 18:37:09 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b8898bd6esm2197151e87.6.2025.08.05.18.37.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Aug 2025 18:37:08 -0700 (PDT)
+Date: Wed, 6 Aug 2025 04:37:05 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+Cc: bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
+        quic_vgarodia@quicinc.com, konradybcio@kernel.org, krzk+dt@kernel.org,
+        mchehab@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
+ resource data
+Message-ID: <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
+References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
+ <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
+ <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
+ <aJHgh8mon9auOHzi@trex>
+ <aJHqpiqvulGY2BYH@trex>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250806-waveshare-v3-3-fd28e01f064f@nxp.com>
-References: <20250806-waveshare-v3-0-fd28e01f064f@nxp.com>
-In-Reply-To: <20250806-waveshare-v3-0-fd28e01f064f@nxp.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, victor.liu@nxp.com, 
- Joseph Guo <qijian.guo@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754444048; l=8308;
- i=qijian.guo@nxp.com; s=20250519; h=from:subject:message-id;
- bh=WdFAsa0ufaMayNtK1EnOAsVxDcm3sLPL+1c7SzaBcwk=;
- b=dg6jnFh7be3vjeF8KWQ0FY0xJPXuYaLvEnpybswkUY3OwLtgu0VpHHZAE/yTogYyEGUtb7ivR
- diyvFZyoQiODfJ2/7D8GQgedjZ/5Xr/ZWe8BV9L35MR97xaXK2r/k4N
-X-Developer-Key: i=qijian.guo@nxp.com; a=ed25519;
- pk=VRjOOFhVecTRwBzK4mt/k3JBnHoYfuXKCm9FM+hHQhs=
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aJHqpiqvulGY2BYH@trex>
+X-Proofpoint-GUID: 2X-OuHdDDBilmzR32HiS6jJ7kU7iQFxy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX1lZ1L8QDdfzQ
+ KKLcPzDxsQKV3EJEhNWbJWqmAmFbHPZovT7RJhFsmYiquwpVTIHNgQp1BHsjol/qPpRblNrl9UZ
+ BC3oX2DLQ6u6GQufTDOi7VEedDTQlrUm6gJdCDXKrYq6Y80EOXNH5KO4I6OAH4VUisZOXFucYbf
+ 9uoHLcZbMN7SrHyOqoIE88tEQeETYrY07Ytys6QH1Lr0SQmR+zsLdeBYKXdLneoB/zn5kMqzKMV
+ Yyt9io/Cc8Kxf6Rm3BnyeU9kU2TeDnyh6fBV1115bT6gR/7reKEmTvfK/3oEvE6uCKyGkEf0wkD
+ 2WViyi0rYuVjGfzymiP1KNoQq6j+eseB4RO9ggAq1LbBVtFbZcCekPXEfAxfrm0HBW2VlMSuiLB
+ HLjYwnxAj8voY6pnrGnrQNxQ2aQCn1FjchPb2CzYCBRQxvjEBEGq09Di59i+V65Ta4Lh5AFK
+X-Proofpoint-ORIG-GUID: 2X-OuHdDDBilmzR32HiS6jJ7kU7iQFxy
+X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=6892b1c7 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=2yNqk32ZLtqgZHoNgFQA:9 a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-05_05,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 spamscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
+ definitions=main-2508060009
 
-Waveshare touchscreen consists of a DPI panel and a driver board.
-The waveshare driver board consists of ICN6211 and a MCU to
-convert DSI to DPI and control the backlight.
-This driver treats the MCU and ICN6211 board as a whole unit.
-It can support all resolution waveshare DSI2DPI based panel,
-the timing table should come from 'panel-dpi' panel in the device tree.
+On Tue, Aug 05, 2025 at 01:27:34PM +0200, Jorge Ramirez wrote:
+> On 05/08/25 12:44:23, Jorge Ramirez wrote:
+> > On 05/08/25 13:04:50, Dmitry Baryshkov wrote:
+> > > On Tue, Aug 05, 2025 at 08:44:28AM +0200, Jorge Ramirez-Ortiz wrote:
+> > > > Add a qcm2290 compatible binding to the Cenus core.
+> > > > 
+> > > > The maximum concurrency is video decode at 1920x1080 (FullHD) with video
+> > > > encode at 1280x720 (HD).
+> > > > 
+> > > > The driver is not available to firmware versions below 6.0.55 due to an
+> > > > internal requirement for secure buffers.
+> > > > 
+> > > > The bandwidth tables incorporate a conservative safety margin to ensure
+> > > > stability under peak DDR and interconnect load conditions.
+> > > > 
+> > > > Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > > > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> > > > Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> > > > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > > Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> > > > ---
+> > > >  drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
+> > > >  1 file changed, 50 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> > > > index adc38fbc9d79..753a16f53622 100644
+> > > > --- a/drivers/media/platform/qcom/venus/core.c
+> > > > +++ b/drivers/media/platform/qcom/venus/core.c
+> > > > @@ -1070,6 +1070,55 @@ static const struct venus_resources sc7280_res = {
+> > > >  	.enc_nodename = "video-encoder",
+> > > >  };
+> > > >  
+> > > > +static const struct bw_tbl qcm2290_bw_table_dec[] = {
+> > > > +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
+> > > > +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
+> > > > +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
+> > > > +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
+> > > > +};
+> > > > +
+> > > > +static const struct bw_tbl qcm2290_bw_table_enc[] = {
+> > > > +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
+> > > > +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
+> > > > +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
+> > > > +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
+> > > > +};
+> > > > +
+> > > > +static const struct firmware_version min_fw = {
+> > > > +	.major = 6, .minor = 0, .rev = 55,
+> > > > +};
+> > > 
+> > > This will make venus driver error out with the firmware which is
+> > > available in Debian trixie (and possibly other distributions). If I
+> > > remember correctly, the driver can work with that firmware with the
+> > > limited functionality. Can we please support that instead of erroring
+> > > out completely?
+> > 
+> > yes, in V7 I did implement this functionality plus a fix for EOS
+> > handling (broken in pre 6.0.55 firmwares).
+> 
+> just re-reading your note, in case this was not clear, the _current_
+> driver upstream will never work with the current firmware if that is
+> what you were thinking (it would need v7 of this series to enable video
+> decoding).
 
-Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
-Suggested-by: Liu Ying <victor.liu@nxp.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Change from v2 to v3
-- Sort the config names alphabetically
-- Add depends on BACKLIGHT_CLASS_DEVICE
-- Drop disable_debugfs in regmap_config
-- Sort the variables in reverse Christmas tree
-- Drop inappropriate blank line
-- Drop duplicate backlight variable
-- Change API to upstream version
----
- drivers/gpu/drm/bridge/Kconfig         |  12 ++
- drivers/gpu/drm/bridge/Makefile        |   1 +
- drivers/gpu/drm/bridge/waveshare-dsi.c | 203 +++++++++++++++++++++++++++++++++
- 3 files changed, 216 insertions(+)
-
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index cb3b797fcea1c73e83c9187fef6582296b340305..0447967d125fe8c4cb7dccf3f55323086e7c6ef7 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -446,6 +446,18 @@ config DRM_TI_TPD12S015
- 	  Texas Instruments TPD12S015 HDMI level shifter and ESD protection
- 	  driver.
- 
-+config DRM_WAVESHARE_BRIDGE
-+	tristate "Waveshare DSI bridge"
-+	depends on OF
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select DRM_PANEL_BRIDGE
-+	select DRM_KMS_HELPER
-+	select DRM_MIPI_DSI
-+	select REGMAP_I2C
-+	help
-+	  Driver for waveshare DSI to DPI bridge board.
-+	  Please say Y if you have such hardware
-+
- source "drivers/gpu/drm/bridge/analogix/Kconfig"
- 
- source "drivers/gpu/drm/bridge/adv7511/Kconfig"
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 72185bfd87e4ff6e6ef367edb9d9f52d92bc75fa..fcec44cb273eb99fce08fc924d0d86eab67356ad 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -38,6 +38,7 @@ obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
- obj-$(CONFIG_DRM_TI_TDP158) += ti-tdp158.o
- obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
- obj-$(CONFIG_DRM_TI_TPD12S015) += ti-tpd12s015.o
-+obj-$(CONFIG_DRM_WAVESHARE_BRIDGE) += waveshare-dsi.o
- obj-$(CONFIG_DRM_NWL_MIPI_DSI) += nwl-dsi.o
- obj-$(CONFIG_DRM_ITE_IT66121) += ite-it66121.o
- 
-diff --git a/drivers/gpu/drm/bridge/waveshare-dsi.c b/drivers/gpu/drm/bridge/waveshare-dsi.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..01c70e7d3d3bd50b17b25396ed9507a2a7e96d18
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/waveshare-dsi.c
-@@ -0,0 +1,203 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2025 NXP
-+ * Based on panel-raspberrypi-touchscreen by Broadcom
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/regmap.h>
-+
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_of.h>
-+#include <drm/drm_panel.h>
-+
-+struct ws_bridge {
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next_bridge;
-+	struct backlight_device *backlight;
-+	struct device *dev;
-+	struct regmap *reg_map;
-+};
-+
-+static const struct regmap_config ws_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0xff,
-+};
-+
-+static struct ws_bridge *bridge_to_ws_bridge(struct drm_bridge *bridge)
-+{
-+	return container_of(bridge, struct ws_bridge, bridge);
-+}
-+
-+static int ws_bridge_attach_dsi(struct ws_bridge *ws)
-+{
-+	const struct mipi_dsi_device_info info = {
-+		.type = "ws-bridge",
-+		.channel = 0,
-+		.node = NULL,
-+	};
-+	struct device_node *dsi_host_node;
-+	struct device *dev = ws->dev;
-+	struct mipi_dsi_device *dsi;
-+	struct mipi_dsi_host *host;
-+	int ret;
-+
-+	dsi_host_node = of_graph_get_remote_node(dev->of_node, 0, 0);
-+	if (!dsi_host_node) {
-+		dev_err(dev, "Failed to get remote port\n");
-+		return -ENODEV;
-+	}
-+	host = of_find_mipi_dsi_host_by_node(dsi_host_node);
-+	of_node_put(dsi_host_node);
-+	if (!host)
-+		return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find dsi_host\n");
-+
-+	dsi = devm_mipi_dsi_device_register_full(dev, host, &info);
-+	if (IS_ERR(dsi))
-+		return dev_err_probe(dev, PTR_ERR(dsi), "Failed to create dsi device\n");
-+
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_VIDEO |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->lanes = 2;
-+
-+	ret = devm_mipi_dsi_attach(dev, dsi);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Failed to attach dsi to host\n");
-+
-+	return 0;
-+}
-+
-+static int ws_bridge_bridge_attach(struct drm_bridge *bridge,
-+				   struct drm_encoder *encoder,
-+				   enum drm_bridge_attach_flags flags)
-+{
-+	struct ws_bridge *ws = bridge_to_ws_bridge(bridge);
-+	int ret;
-+
-+	ret = ws_bridge_attach_dsi(ws);
-+	if (ret)
-+		return ret;
-+
-+	return drm_bridge_attach(encoder, ws->next_bridge,
-+				 &ws->bridge, flags);
-+}
-+
-+static void ws_bridge_bridge_enable(struct drm_bridge *bridge)
-+{
-+	struct ws_bridge *ws = bridge_to_ws_bridge(bridge);
-+
-+	regmap_write(ws->reg_map, 0xad, 0x01);
-+	backlight_enable(ws->backlight);
-+}
-+
-+static void ws_bridge_bridge_disable(struct drm_bridge *bridge)
-+{
-+	struct ws_bridge *ws = bridge_to_ws_bridge(bridge);
-+
-+	backlight_disable(ws->backlight);
-+	regmap_write(ws->reg_map, 0xad, 0x00);
-+}
-+
-+static const struct drm_bridge_funcs ws_bridge_bridge_funcs = {
-+	.enable = ws_bridge_bridge_enable,
-+	.disable = ws_bridge_bridge_disable,
-+	.attach = ws_bridge_bridge_attach,
-+};
-+
-+static int ws_bridge_bl_update_status(struct backlight_device *bl)
-+{
-+	struct ws_bridge *ws = bl_get_data(bl);
-+
-+	regmap_write(ws->reg_map, 0xab, 0xff - backlight_get_brightness(bl));
-+	regmap_write(ws->reg_map, 0xaa, 0x01);
-+
-+	return 0;
-+}
-+
-+static const struct backlight_ops ws_bridge_bl_ops = {
-+	.update_status = ws_bridge_bl_update_status,
-+};
-+
-+static struct backlight_device *ws_bridge_create_backlight(struct ws_bridge *ws)
-+{
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 255,
-+		.max_brightness = 255,
-+	};
-+	struct device *dev = ws->dev;
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, ws,
-+					      &ws_bridge_bl_ops, &props);
-+}
-+
-+static int ws_bridge_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct drm_panel *panel;
-+	struct ws_bridge *ws;
-+	int ret;
-+
-+	ws = devm_drm_bridge_alloc(dev, struct ws_bridge, bridge, &ws_bridge_bridge_funcs);
-+	if (!ws)
-+		return -ENOMEM;
-+
-+	ws->dev = dev;
-+
-+	ws->reg_map = devm_regmap_init_i2c(i2c, &ws_regmap_config);
-+	if (IS_ERR(ws->reg_map))
-+		return dev_err_probe(dev, PTR_ERR(ws->reg_map), "Failed to allocate regmap\n");
-+
-+	ret = drm_of_find_panel_or_bridge(dev->of_node, 1, -1, &panel, NULL);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to find remote panel\n");
-+
-+	ws->next_bridge = devm_drm_panel_bridge_add(dev, panel);
-+	if (IS_ERR(ws->next_bridge))
-+		return PTR_ERR(ws->next_bridge);
-+
-+	ws->backlight = ws_bridge_create_backlight(ws);
-+	if (IS_ERR(ws->backlight)) {
-+		ret = PTR_ERR(ws->backlight);
-+		dev_err(dev, "Failed to create backlight: %d\n", ret);
-+		return ret;
-+	}
-+
-+	regmap_write(ws->reg_map, 0xc0, 0x01);
-+	regmap_write(ws->reg_map, 0xc2, 0x01);
-+	regmap_write(ws->reg_map, 0xac, 0x01);
-+
-+	ws->bridge.type = DRM_MODE_CONNECTOR_DPI;
-+	ws->bridge.of_node = dev->of_node;
-+	devm_drm_bridge_add(dev, &ws->bridge);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ws_bridge_of_ids[] = {
-+	{.compatible = "waveshare,dsi2dpi",},
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, ws_bridge_of_ids);
-+
-+static struct i2c_driver ws_bridge_driver = {
-+	.driver = {
-+		.name = "ws_dsi2dpi",
-+		.of_match_table = ws_bridge_of_ids,
-+	},
-+	.probe = ws_bridge_probe,
-+};
-+module_i2c_driver(ws_bridge_driver);
-+
-+MODULE_AUTHOR("Joseph Guo <qijian.guo@nxp.com>");
-+MODULE_DESCRIPTION("Waveshare DSI2DPI bridge driver");
-+MODULE_LICENSE("GPL");
+I'd really prefer if we could support firmware that is present in Debian
+trixie and that has been upstreamed more than a year ago.
 
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
