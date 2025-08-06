@@ -1,128 +1,133 @@
-Return-Path: <devicetree+bounces-202231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC84B1C81C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:02:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153ABB1C82A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:05:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 599627B137A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:00:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3B43A1E4C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD07292B35;
-	Wed,  6 Aug 2025 15:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="GxLzgTIp";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="VFxuh2X0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421D228F520;
+	Wed,  6 Aug 2025 15:04:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56E4291C16;
-	Wed,  6 Aug 2025 15:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8444C19A;
+	Wed,  6 Aug 2025 15:04:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754492475; cv=none; b=fP+IqfpALi/mjBYv8pJzxQi0Fh6U2LqISjkVcS4+a8SnLBvPNcuLObPTrlEw5KVgh5REq5NKkKVFRpDjFevWmSlJRJxoz/58u8/iE37WiqkhGHT/+/qEBksq6t8PSQaWxFx2mvq2E6GmJNnyJ3Br10vA4m2w+xY9QirnVYT1yzI=
+	t=1754492662; cv=none; b=CDhz/PpKeL9uY9oM4nMSLzxBSlh3xQp07E/WekOlx1lVtSg2Z5mtlnkhwb/hB6dhzRKWfApJlExFP4maRwGnbMzdTMlwDtaH6Dt6uFZ8w3jhIWkIip0oxZtmNiL/zpDoUIC6PGT4+Jy0jAcYIAGFqDzsE6guO3RYuoVH9b7WiWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754492475; c=relaxed/simple;
-	bh=2t9dXe/p6e8LfSiRUApci8B46BpQnjg7lxNHNHXgmig=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jFcW5QSDiLil7fggK4yJLptgGVKoHOYE+PLVYYGwHpTlchNO7hABTEOqAvKJ2G17eh6BwjMkm72hdjQmdFF2GMkK5sXXr/YG6nUg+HwhWkypCd198XTo2hG+y5+XrgtYtwVsxrM4D4WoISbtJRNaAHGqrGMzoLt0LYSrPWme6mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=GxLzgTIp; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=VFxuh2X0; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bxtlq558Dz9tV8;
-	Wed,  6 Aug 2025 17:01:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1754492471;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=WtLG5gR3sMthibXuvk5Bd9l4Kb8kbXsv3wJprPxhgBk=;
-	b=GxLzgTIpVQILsuTwSC9mDg7HXtxDFE2egKGtcC2QDylzjVVIu9gwzs+BXYh44z5wIV46EO
-	0ot9/AtTjpWq/yOWqezrFMYkc285yN4SGsvLMbwrWPoCrZlvlAUH6AxRgcRnnVmKzW+k34
-	iinKgI1s/1/3YQ3HG0NGHj/mKqCMWbYOik6U99OVJVvmeGR2AVTeEKy4igl79jOz0KTqzn
-	JJ3E9bO2j0RWmY5KY9Km+72k17OtqrW0CLn2LkZ06mSJ3I9f6kb2Bj+hK4PaIm7Qd9ms+q
-	EU81jAqOABcevJgTDYayfpcTfmF+zSBsu8Y1LrlScuI+EyLxKKSnliGKKCdDIQ==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1754492469;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=WtLG5gR3sMthibXuvk5Bd9l4Kb8kbXsv3wJprPxhgBk=;
-	b=VFxuh2X06o7Id6jccCf4sMfDuIW6Ehqty0b4/dAdAVc/nbiYf0pjOvc512u0miDl3P1W37
-	lacnMBSLzB4PvbfRd4qNOFORC0VTanrJ4HT2w0a2TSJ46LF2frC2+TS6mHOhUnwtTlxbG6
-	75iz/ijeuDUssbF6T8Jngk3gASdNRQ35ks5vGAQshLOEgo1x9g9tvJQhO9FYTTS5wmEwCg
-	msZwG3bZy7AGZhCT3DUMVqGCuYqvuuJgnCMftk1jThailcOiFxzUCWOUdCK+muRamS8Epx
-	PzKYawMvNh9at7vZm5WtyiDeq5aEDh/tzz6USohT93T7nbKKzOjiiN+5Btc5aA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: renesas: r8a779g3: Describe generic SPI NOR support on Retronix R-Car V4H Sparrow Hawk board
-Date: Wed,  6 Aug 2025 17:00:36 +0200
-Message-ID: <20250806150048.9364-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1754492662; c=relaxed/simple;
+	bh=aWaX+/h6Iw/2wULa0z+ppkkZt8pkVDSpW2CCqqjLcEE=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pDQ+pxjyR1BAwjC5EpDRcli7wyMBycZ5W25MYqkC10lZH5t49YpKaatbq/QG/Ml6VT8l786tSLYYfE7wOmkgQ4cBi4wJ+IiY88gBxrkME7UvoyqtN03PPiYdMPJJYujGbXZTK9d8jUbz6SgX9JHUXGJzDyO7aQIv68PV/qTCbHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4bxtnL2xwqz6M4RQ;
+	Wed,  6 Aug 2025 23:02:30 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 9F25C1402EC;
+	Wed,  6 Aug 2025 23:04:17 +0800 (CST)
+Received: from localhost (10.81.207.60) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 6 Aug
+ 2025 17:04:16 +0200
+Date: Wed, 6 Aug 2025 16:04:13 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+CC: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen
+	<lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan
+ Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/8] iio: adc: ad7476: Use correct channel for bit info
+Message-ID: <20250806160413.00005a75@huawei.com>
+In-Reply-To: <7c353ad496e0056e9fb3869bf07e7fd66d816018.1754463393.git.mazziesaccount@gmail.com>
+References: <cover.1754463393.git.mazziesaccount@gmail.com>
+	<7c353ad496e0056e9fb3869bf07e7fd66d816018.1754463393.git.mazziesaccount@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: qpdbkyocr5pt4993qbeqcmi5bda499ok
-X-MBO-RS-ID: 89bfb218fdeb541d283
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Retronix R-Car V4H Sparrow Hawk EVTA1 is populated with Spansion S25FS512S,
-EVTB1 is populated with Winbond W77Q51NW. Describe the SPI NOR using generic
-"jedec,spi-nor" compatible, because both flashes can be auto-detected based on
-their built-in IDs.
+On Wed, 6 Aug 2025 10:03:43 +0300
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: - Update commit message, s@spi-flash@jedec,spi-nor@
-    - Add RB from Geert
-    - Use capital f in the fS part of code comment, s@S25fS512S@S25FS512S@
----
- arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-index ba81df3c779d..a40b65a35ab6 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-@@ -757,7 +757,11 @@ &rpc {
- 	status = "okay";
- 
- 	flash@0 {
--		compatible = "spansion,s25fs512s", "jedec,spi-nor";
-+		/*
-+		 * EVTA1 is populated with Spansion S25FS512S
-+		 * EVTB1 is populated with Winbond W77Q51NW
-+		 */
-+		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <40000000>;
- 		spi-rx-bus-width = <4>;
--- 
-2.47.2
+> The ad7476 supports ADCs which use separate GPIO for starting the
+> conversion. For such devices, the driver uses different channel
+> information if the GPIO is found. The bit information is still always
+> used from the original (non 'convstart') channels.
+> 
+> This has not been causing problems because the bit information for the
+> 'convstart' -channel and the 'normal' -channel is identical. It,
+> however, will cause issues if an IC has different characteristics for an
+> 'convstart' -channel and regular channel. Furthermore, this will cause
+> problems if a device always requires the convstart GPIO and thus only
+> defines the convstart channel.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> It appears that the _only_ difference between the 'convstart' -channel
+> and the 'normal' channel is a lack of the 'raw-read' support. I might
+> prefer seeing the _same_ channel information being used for 'convstart'
+> and 'normal' channels, just setting the IIO_CHAN_INFO_RAW -bit when the
+> CONVSTART GPIO is found. This would allow getting rid of the 'convstart'
+> -channel spec altogeher. Having only one channel info spec would also
+> help the code-reader to understand that the driver really provides only
+> one data channel to the users. Currently a quick reader may assume the
+> driver for some reason provides both the 'convstart' and the 'normal'
+> channels.
+> 
+> Adding the IIO_CHAN_INFO_RAW when CONVSTART GPIO is obtained would
+> however require the channel information structs to be mutable - which may
+> be seen as a "no, no" by some. Hence this minimally intrusive patch.
+If you duplicate them before updating that is probably fine, just keep the
+ones in the chip info static const. 
+> ---
+>  drivers/iio/adc/ad7476.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> index 7b6d36999afc..fc701267358e 100644
+> --- a/drivers/iio/adc/ad7476.c
+> +++ b/drivers/iio/adc/ad7476.c
+> @@ -121,8 +121,8 @@ static int ad7476_read_raw(struct iio_dev *indio_dev,
+>  
+>  		if (ret < 0)
+>  			return ret;
+> -		*val = (ret >> st->chip_info->channel[0].scan_type.shift) &
+> -			GENMASK(st->chip_info->channel[0].scan_type.realbits - 1, 0);
+> +		*val = (ret >> chan->scan_type.shift) &
+> +			GENMASK(chan->scan_type.realbits - 1, 0);
+>  		return IIO_VAL_INT;
+>  	case IIO_CHAN_INFO_SCALE:
+>  		*val = st->scale_mv;
+> @@ -345,7 +345,7 @@ static int ad7476_probe(struct spi_device *spi)
+>  	/* Setup default message */
+>  
+>  	st->xfer.rx_buf = &st->data;
+> -	st->xfer.len = st->chip_info->channel[0].scan_type.storagebits / 8;
+> +	st->xfer.len = indio_dev->channels[0].scan_type.storagebits / 8;
+>  
+>  	spi_message_init(&st->msg);
+>  	spi_message_add_tail(&st->xfer, &st->msg);
 
 
