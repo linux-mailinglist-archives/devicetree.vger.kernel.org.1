@@ -1,141 +1,155 @@
-Return-Path: <devicetree+bounces-202197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E60B1C62F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:45:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23DAFB1C643
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E72E3A5478
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:44:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67470167690
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE914289808;
-	Wed,  6 Aug 2025 12:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B04928AAE6;
+	Wed,  6 Aug 2025 12:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+gAZvNk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y563eKZL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33AD23E358;
-	Wed,  6 Aug 2025 12:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A4072602
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 12:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754484269; cv=none; b=lZILF7J56+6gFDw2yva7SLcWZVQ3Na5AybfdPwxl19cVhi7+bT/dWvDYyVgyYBmwfsXrw4dJUfX8cG4nbsUYFKJC3Y4zG069qiJSpJHx3uc4yS5m4yZhDjtFfP+tBLTPxSqG7XpxWQtXi4m68RWyVrSkSY0BUFu3l2WAkbzdinQ=
+	t=1754484459; cv=none; b=eoOc13Ryr1hx2Iv35g//+W241YXuUpcqgFFIRPL1qPC7zmst9bWYlOfHuMnQEW7iDmyHRcOfmHu/3mArsMciJEpwaLz0CHX1h97ZVJ0+c6eUPQeFyGiWDT5GQsHoms2tGMY/ckBKEtN/EB+GGy15EPe2yvaqwyBiMYQwiQpdzhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754484269; c=relaxed/simple;
-	bh=AYcRRwKF83d6LifD+7Ls/YkkCIq9XeoyHMqkAJL4NGI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bg/bFICzRHfcgyOud450YcV7NejEPl7N5udzjn745/iNsF3UoxFfbiewOVPv2+N9Jllwb6j6RmzjuEzihQVtVTZ/R2Nv1DRZeE7aDuGR6acd2vjkqOXL+o4VeBX24zVVCUqc/3vatSKdZEXeWd1jvi/kwLkCpSb0wtkUvgalnqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+gAZvNk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0372AC4CEE7;
-	Wed,  6 Aug 2025 12:44:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754484269;
-	bh=AYcRRwKF83d6LifD+7Ls/YkkCIq9XeoyHMqkAJL4NGI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q+gAZvNkgUJt1dE1E6dFZvaCdhTsYQ+Bw3KQkycMgrK9q7Fi58ABXyt8PefsEbcop
-	 NQFjj1NrJcbkVh1Mh2yHioHw0uHpSKkXjxGxa4vHXHU1e8mWgb+8tLMK0RJOE34jgJ
-	 mTgFzVG4lxGlND4uggyCZfQGzTyTVj+h69xIF+FjAu5hPNdTcuTLtNZSa5whx3KdWl
-	 KJKPJkdedMT3Qqs0sfVytds9dAZZ1Sb7j/4/oSC3vsIys/qrTe7kLi10VBazxUdzQd
-	 WREem4YR4QuTaVp12ifuPTwjsVjcLqhNqLnwBzWD2gEJlVdljHmO6g5snDnFKAXGM0
-	 oyJ4YUdfAl+1Q==
-Message-ID: <5924a691-2533-4856-a169-d16c3e577c42@kernel.org>
-Date: Wed, 6 Aug 2025 14:44:25 +0200
+	s=arc-20240116; t=1754484459; c=relaxed/simple;
+	bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=IFmgnjnuq0AAUtKUUylEBUCaE7fqOEUB+t0QYEbaCTyzNoQ0x5aHSH80WNEXnpjr3zmJi9kiS88r+i7jsRao1jqhd2Xb3eRzha2xt/d0C8vACrV72Etk6/GaF5QBQrF/XMJShy/VvV3/cEO9sCcuxFjnJwQF3AizE290TOwCSQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y563eKZL; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b8de6f7556so2031668f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 05:47:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754484455; x=1755089255; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
+        b=Y563eKZLs+dk82ECbRE0AshTXvJznIRc9cr9MhygBCmWO9RGAjre7XgSyN2uhhG4oL
+         JiV9glDJlbuMJy79Jwq739tZO6+Pur+dXeFYnifU/COFNt3SrUEOUFozPW54qBKZ/+P3
+         XgA0TCLCs7Xsr8VK9HBBNXzDF43DJLSwkNC0azEfRuwiJR69QSRvniv9YfPPiGwNzzk8
+         4BHOyz2OBV26cB8qnMiUJSvhlSBX//dUKHa3WyO9UhRwytEaDOXiIXT8/FN3ez1B75D+
+         WKXigqjr+pJpFNLMG/6FsU5Z+xC1PbV1onB5XpxyDh+9NBawNkpCJbRaMKhXMW8VYXj6
+         /cgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754484455; x=1755089255;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
+        b=duWDpvJ0klGPW1pycv+nCYmmyCHgjx9uFgl+qMkjUT+IrOpJb6df1N88KIzbgZH6uz
+         +pLbJHaSsN1g7IEzcH1/OLgDi9ZSDrNrwILSRPX5L0X8vm4VspZ23EV95FnAPJhD1Ppg
+         8zaoWp76slf39cg+oDgVwrlWIVcdMgfDGxTFtiO6BxXw2DOt4zRrp33Ul450+O46pj7E
+         KboHB94ZTQUAz0rHpiFMVPB5tAwXhDKWGafwDCaDt1j0W3leNju75bwTTYREcW1irVbV
+         X76U/HVEN844VFkbezZiwxA4KV1Lwnb5W2Pg8LYzmPmAbMeQygjXjO6mGfBfL7ufYrAq
+         eG5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWa816UwgfRN7wxLwmWocNQyPPtYpAeMRGeimL3MUFofxHYduEiRDirubFLV+VDvgtw+hRC/liHC9nT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpcuNzDCHkF77Xc/2rRWnMECb26YqK23RzYOfekV46NNUCbia+
+	bB91lLrXkCOPmi175uGrbKANEOg1MdlAZw/cPnmt71IB1dzGJPQIGKIPCVlL+LqGvqQ=
+X-Gm-Gg: ASbGnculOxpGNG+aVm0IFs8hlPRZoisTTXyzs5SYAaGIJ3a4fSgAuWy6q/TIPdUk1vE
+	0Uv9eI3gf1A6JYegVOD+4L3YxtM3PcKvEJPvUjkaxG9T40PPOW9zixEqKnLRvZb7KGECy/DGVNS
+	dEEmAvwl2oYBY9MNebzRvp1x5L7vof1446JTbUgNe4sdqAlqwWAW3e/OTljE8JdHUXPbeBgpfoQ
+	72oU4s0oaLOz5jNvlf16ToYGfcgSU36xs3OpFNkd7ZLPgZK1xBwcNM15VRl8+aKSXR+EV7GV+hU
+	i0iKM5TRK/pO2z7r/C88W6oe6N8ELOPYGF15J+vPJBDtbHfjM/N9YsEVEPo1U5DZ++yPIhHeD1w
+	Kr/IKrAPso6/vtU4pOO+cZRc14m0=
+X-Google-Smtp-Source: AGHT+IHxO9MmitvfhjqylFKRguuox3GDfzQYiukqSwzJ38jFMewGzXEj8G2vcOvegX7ujhbfTAcxKg==
+X-Received: by 2002:a05:6000:188f:b0:3b8:d16a:a4b1 with SMTP id ffacd0b85a97d-3b8f420ee27mr2057195f8f.58.1754484454941;
+        Wed, 06 Aug 2025 05:47:34 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c453aeasm23738876f8f.40.2025.08.06.05.47.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 05:47:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: st: Add memory-region-names property for
- stm32mp257f-ev1
-To: Patrice CHOTARD <patrice.chotard@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
- <9e0c5453-b8f4-4d0a-8e8d-82014aac67dd@kernel.org>
- <832fb088-8862-4bd7-82a4-0e7ad58efe76@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <832fb088-8862-4bd7-82a4-0e7ad58efe76@foss.st.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Wed, 06 Aug 2025 13:47:33 +0100
+Message-Id: <DBVCTYZVRR8C.39D28DAAS36UX@linaro.org>
+Cc: <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <srini@kernel.org>, <quic_ekangupt@quicinc.com>,
+ <krzysztof.kozlowski@linaro.org>, <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sm8750: Add adsp fastrpc
+ nodes/support
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Bjorn Andersson" <andersson@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250805162041.47412-1-alexey.klimov@linaro.org>
+ <ovlwlyuwj3q2g4eudesq7qtc3q6omylvnnriagd2nfsrbkbldk@zwdw2yovumeh>
+In-Reply-To: <ovlwlyuwj3q2g4eudesq7qtc3q6omylvnnriagd2nfsrbkbldk@zwdw2yovumeh>
 
-On 06/08/2025 14:36, Patrice CHOTARD wrote:
->>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
->>> ---
->>>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
->>> index 2f561ad4066544445e93db78557bc4be1c27095a..16309029758cf24834f406f5203046ded371a8f9 100644
->>> --- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
->>> +++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
->>> @@ -197,6 +197,7 @@ &i2c8 {
->>>  
->>>  &ommanager {
->>>  	memory-region = <&mm_ospi1>;
->>> +	memory-region-names = "mm_ospi1";
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
-> 
-> My bad, i am preparing the v2.
-Why? I claim this is not needed according to your description. You said
-it is necessary to identify "memory-map area's configuration." but
-memory-region already tells that. What exactly is not identified?
+On Wed Aug 6, 2025 at 1:25 AM BST, Bjorn Andersson wrote:
 
-Best regards,
-Krzysztof
+Previous version was sent few months back.
+
+> On Tue, Aug 05, 2025 at 05:20:41PM +0100, Alexey Klimov wrote:
+>> While at this, also add required memory region for adsp fastrpc.
+>
+> Please https://docs.kernel.org/process/submitting-patches.html#describe-y=
+our-changes
+> rather than lazily continue the subject.
+
+Ok.
+It also seems that some other commits that were merged doesn't
+really describe addition of fastrpc nodes well.
+
+> Also, the way you wrote this makes me believe adsp_rpc_remote_heap_mem
+> is optional, and as I don't know what it's for I don't understand why
+> that would be part of this patch.
+
+Yeah, after looking further at the bindings I agree that this should be
+described better.
+
+Although some of this is confusing:
+>required memory region
+>adsp_rpc_remote_heap_mem is optional
+
+Anyhow this mem region seems to be optional so I'll try to split it into
+two patches (need to check that dtbs check will be happy with that).
+It also seems that when adsp_rpc_remote_heap_mem was merged for other
+dtsi-es then no questions were asked.
+
+>> Tested on sm8750-mtp device with adsprpdcd.
+>
+> Just adsprpdcd?
+
+Yeah, I forgot to mention that getserial can libcalculator tests.
+
+
+> Is that sufficient to say that fastrpc is functional? Or
+> at least that the information here is sufficiently tested?
+
+The testing of fastrpc for adsp is quite limited. If you or Qualcomm can
+provide the usable tests to run and verify then please do so.
+
+I think what happens is that often the info for fastrpc nodes just being
+copied and filled in with info from downstream with no requests to provide
+test results.
+
+Here it was tested with adsprpdcd with compressed playback and two tests
+above I forgot to mention.
+
+[..]
+
+Thanks,
+Alexey
 
