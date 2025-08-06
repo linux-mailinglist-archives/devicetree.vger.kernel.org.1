@@ -1,286 +1,171 @@
-Return-Path: <devicetree+bounces-202255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86859B1C8B3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:28:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9CFBB1C8BB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:29:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3543B18900C1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:28:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 097355656F2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F249E28F520;
-	Wed,  6 Aug 2025 15:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DB4293C67;
+	Wed,  6 Aug 2025 15:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JyCSyr2u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7P08CXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013026.outbound.protection.outlook.com [40.107.159.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B8B1DF75D;
-	Wed,  6 Aug 2025 15:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754494083; cv=fail; b=P+ms4BDL0yVAIN4aJiRXpPWf60woWFg4tYy8qMerlgYqY8rhiKXZ6Z+XLiBOXqknEIWQ52pTPbJsHoZtTKQ4cghPY02PnxPALrcx1El6vQgmfA4L1fCTvn4qPPzcTWS24/yFBCV50wa0RTVKWXGKgxUGqTO9brVcZHtYHT7pnks=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754494083; c=relaxed/simple;
-	bh=Zr3q9xMvTHRjCnsiMRL57uNSm64JdhF7v6gilLa+WyI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=e1LvojGw696M5/315fNmMnvDxccgrSahzcTYO3Wnv6YZyCJWRVGCS5981jyeWSgqSK/68VCBC8IcozH4Y5/i1QAU/ZuTXNp2hNhSIzlCEfdGBEw7FPmKiA0LrKpFWT2hjE/0cmS0m7v7O403rhL9WhuYk0VN1Bz7TKGYn8iDI/8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JyCSyr2u; arc=fail smtp.client-ip=40.107.159.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NyQojvUFHTKBEV8PxArGBGlvci842/ks6f7DkGd7HwgE1MXEPjnVHmbTUoCiNdryzy7BcInHwK5leaC+ny570/js6I4Ch/uMvZBDlDVC4ZlIMDwA0X77DMbOSD2Bt1D4hsfQgFVBUQRH1y4CvPjXV0sHXi0UbejjhRdeGxa9ZfZuQbz9y7AovjVqu2tdi1kig9h+t8xlzl3LYV/fXqLJVQl3nVyI+u4gVh8x5fyevcWs0kEoXQQNnI4Q5M185a1TMI8Rt91f3yTlDzxupGlWyL3IqXaYpwWd1Tjggeb3EP8Li6XUQUvX02FEfdqoyZ8sbTET7NdqDf8xzcz/rYTJng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LGzATCLvCt/zpmTc+0dopRKmTJVKC1CuChhcgkKmqY0=;
- b=dKwdSLmnAQsqak7bsC6PCJlUJMwR4DNQmoBoF3C7bpaL4+w8hROY1DcSw4IgTgn7Kovv2kjFd0lbBG4Qslh7vnLmwu4yETr0+d77BxE4yZr9YHdOIL+WNGJMPH1ClEMyW2jysIIVDOvVFYyzb469rP1/hT3a/4ENOCfA7jVD0XCUMsBc9HdgQYSFdHYuOhGyqSW/zPCSMQbx41FZn49ixoOswC3D4O2n0+NVoPEQEhQHi3JS3IsJKLeaNcQK+jAKF/PqmMC/zeM05Fz7KMAGRcthsboJalaxIqpGDQP8KbKXcPEbbTPon004jaA86Ot/q6iJ16t1I9yvti6CIHAeyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LGzATCLvCt/zpmTc+0dopRKmTJVKC1CuChhcgkKmqY0=;
- b=JyCSyr2ufbWx9sux/yWkt2ReN7fkEX1KnEQxNIhU3iixMULZ/nSYrWaAzJuoJJKn2yL/A+WZga24yf21gZ75wP09TTpewc7zgi+osyHa1sLB+lIIZ0VWKBIL0jtRHBV+laUzCpDioWQT2o9TXOTc/yxKHjIkyDlaBldI/Dq44AG1wpbMO/ir7CKhI6Dl7GUjVVC7AFy+0nHziGmX/BLwme+QhdVt7sK5DgKrCV6/kFqrNGF/OyHTsa9uSN3Xff0SA+wf3/+LtoqPQ/yx8+G1o+GxyWJIbmO1PgytngVkYDXUZxG7KCnXp8+SR5vWfGd3qI5fKqa05S7BNMYnjiE2Ow==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8865.eurprd04.prod.outlook.com (2603:10a6:20b:42c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.18; Wed, 6 Aug
- 2025 15:27:55 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
- 15:27:54 +0000
-Date: Wed, 6 Aug 2025 11:27:44 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: imx@lists.linux.dev, Philipp Zabel <p.zabel@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/9] dt-bindings: display: imx: Add bindings for
- i.MX94 DCIF
-Message-ID: <aJN0cI+VEXjI8zPC@lizhi-Precision-Tower-5810>
-References: <20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com>
- <20250806150521.2174797-5-laurentiu.palcu@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250806150521.2174797-5-laurentiu.palcu@oss.nxp.com>
-X-ClientProxiedBy: SJ0PR13CA0218.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA7B292B38
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 15:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754494140; cv=none; b=UsrstteLyzLUxarU2hKG8WhSxr8i7jB063CXYwrt+E9VMcrbBWX1qT2IhBz2xZUfV06l8jHUEq3OeSoz3paZACHg1yIgtKkjfgMuQWp2T/AK13fSQV4+gCxi4+q/zhmxFmMEEvtNsdB1nE++n/99L9LZa6Fw+P1Mq4mQYV0RhUw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754494140; c=relaxed/simple;
+	bh=njnkMeXbBDfv59fZU5JyPP1/vQsmLknJZSUpgVpQIic=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=Pr548VwEsg2aKP9d4Rvt6E9ryy8b00BcweOPIj7Dn7rE2fjwhy+B/2v/b6YRYcSxsXKfJhnJxBmtuEAm+wr87zrK1tLmGFNi4BIy1twN3TgK7UoBGQYhzWc9Nlx4ONeAwsoQI1vrGEueRNh5bwPEDpfuQqHVYGf4csxN6uXRdrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7P08CXk; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3b782cca9a0so4082948f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 08:28:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754494136; x=1755098936; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6ASSxJEQXfE633CevXWqyyh5f9WPRpCDbV8wTQIWfMY=;
+        b=u7P08CXklqtrakIE7WQtSZt9fTEh9XfBYF0vu9B6liWJjyNQ5Wef+qDfYQQUnHl7E3
+         qrdIp7Uo9nBrQ9VP2ldUknh2jA88XN/TPUqu0sfePGGNMQDAhGrVaMLEZaCF9yK7KL+F
+         Fb2f2GxF/eTd3d00nk9Ryji0lqW4vFhO/bT3Rd0Bxs8/jwXj5j+TUvcxTEVWta+pp1qX
+         IgTU68NoEA7ABggj0D25BhvBfjhO/8u4j5Tmy7Qpsa21hDrDwZt6BgMJbIFpbms9GPj6
+         8667NnK52xUICloHNOtOSOrRRpvBQbt3gwFR/XKuRkqdSpiqEcO+e1zJblVfNZ+z4J5t
+         aBfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754494136; x=1755098936;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6ASSxJEQXfE633CevXWqyyh5f9WPRpCDbV8wTQIWfMY=;
+        b=IgmyLcdNfa0m/ExwPyN9ptwF0oHOWpNmES28ajWvnrOgcBNKGPTO18S3E+UOrgf6Zg
+         fxd0FDX1ikx+UILio9LOfYw7IaI6zzDoJkHVQRJ04AKQ9XNC58k3IBdb783RZ/Nkq94W
+         eUASxg5bDjnP2lR8/FVfLmc8xpuSNlNwBIpaEaPgMu0+uJ+8rLBcGAOERlD8yicK15aL
+         qoTW3w9niq50kY33YDRGQSYUsBCjU3AKCMOY5WvHwkei7snDWCyVe9nLS8O+K3ugUpS4
+         49etgxcG2RdpoWXeUBRjmBaI9GQ3Wcz/EKKx8LztChzJ5mxjc8Fi8BaGzhpxSVioxH5y
+         qUlw==
+X-Forwarded-Encrypted: i=1; AJvYcCUOX+XxopmcTbJz1gSjVynjIvZh6Wtz6Xqm0VfJAYJItvWyj/7OQvdkmRLhpm/GrceHnyP1710yYwiw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlQu7F84Tta4GNPp25tnt2XXwOyeyxVPAqs9U21Ls1gKTRefY8
+	bOEbVf2QDe92SSW8uuCRpEAD4qLD5ZAak3S8CjsAVtCuR8/xzpZnmzBXaqT22mHns80=
+X-Gm-Gg: ASbGncs9uw9v2XtBJk3pTENrxnd8whTyQkCXIOGZuz2oRKu1HXrbbLmdBul4FOq8Fju
+	GMobQSLON7YPt2l0aPo2Z1tM4oY17HdhzNntxnHQ+T7Q+pZtUAMzfzIJIaNjSxZ5UqHY/OiZMLv
+	pboPTn92EukYaI8mkonyb6lOxdMn9JaYCgQxzdNTHoMQaWJ5C+9vt0EYLrHN6c4sXr+eIGXiMkH
+	uOZFk9Y0I6gZTXnY37jzU6GGr4Njw8CMfafQFwtdLHh5u/E22nKfIdyobBvtv8ENkyr5Lu4CpOW
+	EMc5nS1FAzilyyOdnM8G0IT6sstDMcpX4DbjQr+cN9AihMta5Q2uBIEgpMPM1cLwUymPpMTjBf1
+	iCPG0BSc8n6+zzQukDGpdFcRABj4=
+X-Google-Smtp-Source: AGHT+IGms6BpP/B6mpjSuEArIcBP3P6tAGM77/jKb6ok4h3wKMwoMthR/0suEVsblhKxO8hTtm5llg==
+X-Received: by 2002:a5d:64e8:0:b0:3b8:d3cc:8dc with SMTP id ffacd0b85a97d-3b8f491cc2emr2641189f8f.28.1754494135791;
+        Wed, 06 Aug 2025 08:28:55 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c48de68sm23490188f8f.67.2025.08.06.08.28.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 08:28:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8865:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8fb66dc-6105-4108-71b2-08ddd4fdd088
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|7416014|376014|52116014|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?T6ctYLMaRujhyxuKLb8Bi+zGL0XxY869vgK0Tsfxe75Pvh5e6Ogiv0bS1CIe?=
- =?us-ascii?Q?2aanTRE96/nh32heH9jcOXCFaPxfuOoubSJ63t1+GfSzHBHsMSbjj0xBEI66?=
- =?us-ascii?Q?S7H+25/7KKM5c78RyeAhyAz+96vbcPjseF2sN3vFuKdk1AbT5hiJz8//TGDn?=
- =?us-ascii?Q?mk3HFO8FH4tjMhK1qo179ZFYUvkfHW/gFnJc6uOEw2Poney/qESQYgGW5fLX?=
- =?us-ascii?Q?rZ+jDAIeAv+OPy50izTiA2EKkzw5KuJpYzPCF32g2o/mHwLFZ70wHrSYZ4Ut?=
- =?us-ascii?Q?C4SldN3YIsCz5dBmiNgjyayFNGNgvcC3Go17kWSqE2naTyQtkGKwBkCishws?=
- =?us-ascii?Q?EWsFmhKjlq+Ef2BtV6mtQ6YDHdzvWG6gbMyMeVLD5Mkry6nsvrGwqTVRy3Qe?=
- =?us-ascii?Q?W0Hvbw3IQOpn01p7XGIIMdB5DlXcZ4Ga7IvkGOpaf64At1InugUQpLazG2TI?=
- =?us-ascii?Q?EsMJa6krl+kQxWrV2OwdrOSwBVTFPgdfl2coRmyo9woSCNGrfPh8q8ItdeR5?=
- =?us-ascii?Q?tgTMMX7zK1gucTmip8YAoR2fAb5xHe0yZt324YTLPF+q3ExmUOwKD7Vd3p4s?=
- =?us-ascii?Q?PdGusAxJbj4B5rMjn3vrGOqIYzQDZO1gyIoFmUetGzGHRPi8chOUTLa3peVg?=
- =?us-ascii?Q?hZbGdJA6DdGoDJuI1N0pIBsVQauEoIXyPdkCm4AbOG3477DrQ7j47L5fWISG?=
- =?us-ascii?Q?tY9A1OG+XRZiguVyFXsJFwTGgZ42mxmN+i48uzeAAjKVbsyWr3nUNIl1D9eY?=
- =?us-ascii?Q?6T/EQeYyQdHr41lI+feBb+UPG2oVRFVAu5uFyVZCd9jEJvECy4ktZZMckjbi?=
- =?us-ascii?Q?tPrlPsVSwnJRhSnkOeauTBwxQOu4i6KCeBfDi8nMO3Z/jPwUBb0EJUBaP3Iu?=
- =?us-ascii?Q?yyoYRBxRA3rWYhZF7H1FvYpzfDx9USXXSYg7J8pcGLgQpOnwhkrShQIuP5p8?=
- =?us-ascii?Q?k9LZ0OvBymWVGyEzpSpcGS54FXxb2vMzIasn2juLIppSOVzgoTMtsgAeDK9h?=
- =?us-ascii?Q?DQhID45TCbvBCF+FTSvdoQFT/sWcYw9tOpThZ6qkVyTB0trNrDMecZAD3DML?=
- =?us-ascii?Q?9vo8sEh2GSLRGZLUgC8WywGE43XcEmbPKp9oPt9B7SPUS8K6WTAfMpgoZXOl?=
- =?us-ascii?Q?tc0DeGk5jQbnCy7gQ0MkYKZ8IOC//A6/28BKq8wlQbnQEBJg0pFD/nbDpmLk?=
- =?us-ascii?Q?pe9KRgPz4zUXkEsQIxflo0O7ms+OSRBHJve/mbjRhPvJkocbifmSKJnvod6T?=
- =?us-ascii?Q?C/JKQ+oRWfor2oE78BsirEjNgLIZxBjYCTnSG3GKxvcTwlc5eSyqLzoeTXzq?=
- =?us-ascii?Q?2Y2uecjtWYJwr5zn3BZo8dzl0ZGDBiB95EolP+OCAjwTGzA2BFW1i8spmNRM?=
- =?us-ascii?Q?JVO97OKfsZM0HCzVaM5lSZ9RgoeV0KUVKEyBQOw+YDpR0A9O6r6qxAHXwfvL?=
- =?us-ascii?Q?szyNlsmUrcnyBHEUeL/SIeOOuzKM91hl?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(52116014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?k7XQ06cj+sF68Ts9qW2DtG4qAB/5LuyGpEIQdZTreQiQAaKEfRxtb8ZyC/Ba?=
- =?us-ascii?Q?8yAs1Jg2w09Nj38BNqTalRT0L+YqdTAsirS3tOJSwQrFXCdxQHyMO5ethWCo?=
- =?us-ascii?Q?p/4JwSgH/aH+aY1urjK8JY46lCqMWEh70yxBnGwPCE053je2NYT3smh7G3Ya?=
- =?us-ascii?Q?6OCjySnArLvLtq7cNhvWPzCu4ldAIdOvEQi/DYRqo84uZZ0pSQZ8BhoHmNRC?=
- =?us-ascii?Q?GB4ckK+VvYAqHD7Z8j/FlQE5DUkGS3b1gWH+Yv/wRP+fDK7NNQVsEA0MQFsF?=
- =?us-ascii?Q?JFmzo9G6L0gx18Vy16Owf4+TX3zhO+oL53umGpDqgi10+17j1EWmHqyrMWGc?=
- =?us-ascii?Q?cDuqoPkRxNPJ12pYmMPbmaEYxZpxk4eyqWAvu3lOfHDKJHJMTFbflL4WtBZw?=
- =?us-ascii?Q?sCUNc3Z28/niw72YLm74jNjX1y19o6W8qjFTToUn09C9PNsUTn0/nWqoaS/q?=
- =?us-ascii?Q?9wWVTg70+vSPq5tCKoqKfvd/jixsPf3Lh1zrZSz40agAFxedMvZm7nndQIu6?=
- =?us-ascii?Q?3+osOnJCYw2jTon11r6ApuxN8BlkzelHVC0/Drb8LERaLTakgf7dbYhDCwCA?=
- =?us-ascii?Q?ZlqgjEEBl3smL8BuCyZKtW+lx1GurEhMDvrLrHkTNsw/8KU23+qlEAHbsGb4?=
- =?us-ascii?Q?fllwkzQPf9Fy9nHf0Djpo5H3Yd2uUey1iSZrcJ8nzfJAJJ3a9FwVebLAh1tr?=
- =?us-ascii?Q?hwmNds1LD4IVfV3PrPIvK91o2Cr+3uGRQHB4Pe2MuY8SuwE+SFUAu0AqeLJM?=
- =?us-ascii?Q?zmfB0plm1RzsW1sXkAm/6TRx9CaD5TeAAovIfsDM78Y8jvmUGbqY0HHApJCr?=
- =?us-ascii?Q?9dFPA9356Y9jKKUN2LpjNZfIqbi5K1ho9rCszEKmYjpa30zVz+LLWHWxaFZK?=
- =?us-ascii?Q?XCxuX7bTES3qVsiF7o1Ow4vzh2eXc6kOiStsBk8qpwq2u9LtbTeg+l2eAa1c?=
- =?us-ascii?Q?R7Z3+8+arb9EgU1m+NqNv7dP9FwPOuccUm7FSKdE0AcGLUErgWtgLRK8+MlI?=
- =?us-ascii?Q?8xG+i9ZU75i2rgHQnMxI4C4If19VAbGy+aIwZwlB2+TjZ6OpvKvVVTCJN2ui?=
- =?us-ascii?Q?8OMcGum67k8RMMvdyPIsEx/e4vy3n4J3A1yJrW8RRNGrtnLg6UEllMW3MRwN?=
- =?us-ascii?Q?FN4//J2YFMjfgJEG1pl6JO8P5B076tvydyrjsxLM8xX8/AZ+R4+tU6mDpcs1?=
- =?us-ascii?Q?Y5RgGkS5myztmnYeP3d7UjopHTHofS/ZhtPqxp37CFs6Y6ge2Gyak/uHXju2?=
- =?us-ascii?Q?zIhhU6CrYHQJfCIL03OLms92H5zkrdaKFOAgdaRdcUMSTlag3FNX3VAJ1+1e?=
- =?us-ascii?Q?aJSUBC4gt80WNat7Wq8Cu4HeNjuon8XwsACEHGsFDLiLFpDq7F/6vVmwq0VE?=
- =?us-ascii?Q?gEIzHe5+iwhOHPMDXJHt7hf5vwB3ezGbZCK+rkwBjrBxslUNxY/klrvZnCq4?=
- =?us-ascii?Q?4RjEVGf3JlvaOL2RK7Eh0hw1VD2swHanMgWeS0xxnrcALnaoZodhPtOTa25F?=
- =?us-ascii?Q?ELyRyZd3xIgXOX5otDZuyjlwGeBhWdoqp2gvPgEHhDTn3zNG9b7ZRt2qwtQp?=
- =?us-ascii?Q?xi37RDA2VsXM71sgS3TEZ77ICRE17mdGaeafGGWe?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8fb66dc-6105-4108-71b2-08ddd4fdd088
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 15:27:54.8614
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ak/gZPp5yP3CNlE4A7hEa8sbzlhHpssLr6k7tmRyDqCoPqHXnj1025m6R5JE223AyR9YK9xP97gY81JmxT8J8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8865
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 06 Aug 2025 16:28:54 +0100
+Message-Id: <DBVG9ID1KS59.27QTXCZOWJVNM@linaro.org>
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Griffin Kroah-Hartman" <griffin.kroah@fairphone.com>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Luca Weiss" <luca.weiss@fairphone.com>
+Cc: <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 2/3] Input: aw86927 - add driver for Awinic AW86927
+X-Mailer: aerc 0.20.0
+References: <20250806-aw86927-v1-0-23d8a6d0f2b2@fairphone.com>
+ <20250806-aw86927-v1-2-23d8a6d0f2b2@fairphone.com>
+In-Reply-To: <20250806-aw86927-v1-2-23d8a6d0f2b2@fairphone.com>
 
-On Wed, Aug 06, 2025 at 06:05:11PM +0300, Laurentiu Palcu wrote:
-> DCIF is the i.MX94 Display Controller Interface which is used to
-> drive a TFT LCD panel or connects to a display interface depending
-> on the chip configuration.
+Hi Griffin,
 
-nit: wrap at 75 chars
-
+On Wed Aug 6, 2025 at 4:10 PM BST, Griffin Kroah-Hartman wrote:
+> Add support for the I2C-connected Awinic AW86927 LRA haptic driver.
 >
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> This driver includes a hardcoded sine waveform to be uploaded to the
+> AW86927's SRAM for haptic playback.
+> This driver does not currently support all the capabilities of the
+> AW86927, such as F0 calibration, RTP mode, and CONT mode.
+>
+> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 > ---
->  .../bindings/display/imx/nxp,imx94-dcif.yaml  | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> new file mode 100644
-> index 0000000000000..54419c589ef74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/nxp,imx94-dcif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX94 Display Control Interface (DCIF)
-> +
-> +maintainers:
-> +  - Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> +
-> +description:
-> +  The Display Control Interface(DCIF) is a system master that fetches graphics
-> +  stored in memory and displays them on a TFT LCD panel or connects to a
-> +  display interface depending on the chip configuration.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,imx94-dcif
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: CPU domain 0 (controlled by common registers group).
-> +      - description: CPU domain 1 (controlled by background layer registers group).
-> +      - description: CPU domain 2 (controlled by foreground layer registers group).
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: common
-> +      - const: bg_layer
-> +      - const: fg_layer
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +      - const: axi
-> +      - const: pix
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Display Pixel Interface(DPI) output port
+>  drivers/input/misc/Kconfig   |  11 +
+>  drivers/input/misc/Makefile  |   1 +
+>  drivers/input/misc/aw86927.c | 841 +++++++++++++++++++++++++++++++++++++=
+++++++
 
-I think need
+[...]
 
-    properties:
-      endpoint:
-        $ref: video-interfaces.yaml#
-        unevaluatedProperties: false
+> +static int aw86927_probe(struct i2c_client *client)
+> +{
+> +	struct aw86927_data *haptics;
+> +	unsigned int read_buf;
+> +	int err;
+> +
+> +	haptics =3D devm_kzalloc(&client->dev, sizeof(struct aw86927_data), GFP=
+_KERNEL);
+> +	if (!haptics)
+> +		return -ENOMEM;
+> +
+> +	haptics->dev =3D &client->dev;
+> +	haptics->client =3D client;
+> +
+> +	i2c_set_clientdata(client, haptics);
+> +	dev_set_drvdata(&client->dev, haptics);
+> +
+> +	haptics->regmap =3D devm_regmap_init_i2c(client, &aw86927_regmap_config=
+);
+> +	if (IS_ERR(haptics->regmap))
+> +		return dev_err_probe(haptics->dev, PTR_ERR(haptics->regmap),
+> +					"Failed to allocate register map\n");
+> +
+> +	haptics->input_dev =3D devm_input_allocate_device(haptics->dev);
+> +	if (!haptics->input_dev)
+> +		return -ENOMEM;
+> +
+> +	haptics->reset_gpio =3D devm_gpiod_get(haptics->dev, "reset", GPIOD_OUT=
+_HIGH);
+> +	if (IS_ERR(haptics->reset_gpio))
+> +		return dev_err_probe(haptics->dev, PTR_ERR(haptics->reset_gpio),
+> +				     "Failed to get reset gpio\n");
+> +
+> +	/* Hardware reset */
+> +	aw86927_hw_reset(haptics);
+> +
+> +	/* Software reset */
+> +	err =3D regmap_write(haptics->regmap, AW86927_RSTCFG, AW86927_RSTCFG_SO=
+FTRST);
+> +	if (err)
+> +		return dev_err_probe(haptics->dev, PTR_ERR(haptics->regmap),
+> +					"Failed Software reset\n");
+> +
+> +	/* Wait ~3s until I2C is accessible */
+> +	usleep_range(3000, 3500);
 
-Most likely need set
+3 ms or 3 seconds?
 
-bus-width, hsync-active, vsync-active
+[..]
 
-Frank
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        display-controller@4b120000 {
-> +            compatible = "nxp,imx94-dcif";
-> +            reg = <0x0 0x4b120000 0x0 0x300000>;
-> +            interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "common", "bg_layer", "fg_layer";
-> +            clocks = <&scmi_clk 69>, <&scmi_clk 70>, <&dispmix_csr 0>;
-> +            clock-names = "apb", "axi", "pix";
-> +            assigned-clocks = <&dispmix_csr 0>;
-> +            assigned-clock-parents = <&ldb_pll_pixel>;
-> +            power-domains = <&scmi_devpd 11>;
-> +
-> +            port {
-> +                dcif_out: endpoint {
-> +                    remote-endpoint = <&ldb_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> --
-> 2.49.0
->
+Best regards,
+Alexey
 
