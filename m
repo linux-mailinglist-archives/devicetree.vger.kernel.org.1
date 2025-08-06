@@ -1,126 +1,142 @@
-Return-Path: <devicetree+bounces-202325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B48DEB1CF40
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 00:59:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3BBB1CF7D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 01:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA153567936
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 22:59:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 167EA18C4C50
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 23:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7504622DFA7;
-	Wed,  6 Aug 2025 22:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD9F277CA4;
+	Wed,  6 Aug 2025 23:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OgglgPiz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6FbtGLu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D2D634
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 22:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4976277C98;
+	Wed,  6 Aug 2025 23:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754521188; cv=none; b=roLopsakYn99vI4sNG3csryZCV9gM2cmZ+veNuGECwK9h3DqXQWqRyJ/gQVltf8A+enXI0FT42d2fkXuB7ObevEQm1ceeeLs0QNGNjWbBsblHofiDAqXN+VagTPrkS2ejdrcWy0ecgepLxR31Pr0zZeM0VMqyO1f6JBbH23ITy4=
+	t=1754523740; cv=none; b=CxcKQbFz/ZQLxFyqhZFtFZ0bhzbERiHFmP9olCyPHWY+omacwev3pPmoL+HPG3slPAdkynUgTPYH1XomanGf51C1P1etmnrbrt0KLFV2QxqGpBVm1ElZDXBUsKhedQr5OtYjoVx+Se3fpFsJZb8Grrd/gDm7JEN6RH4VsahRZOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754521188; c=relaxed/simple;
-	bh=dDM7iYy/AIyraTR1O/TqJPxcWhBNEAq3Tvg3vZpZnGU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jEwNjYL66HnRnvs6mBsY01OQ9kswlTHmwAKC2xj1fewlUHB3n4QUoo4J1aDy5smTFHalhHT1GLlRFxDI7M12vYPazJwzbA7jC4g27NRUnxyN0PV8Mmd0QikUU5WCXyBgSVtZHkdVqorQA6xh+Etj02MbiGTesgVDpwp9xUJjqAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OgglgPiz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0047C4CEE7
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 22:59:47 +0000 (UTC)
+	s=arc-20240116; t=1754523740; c=relaxed/simple;
+	bh=fT+0nxGaI/I9WVL1BF+SKc8auvCNd+sDv/v6lTZlbh4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VIoCcrgMjnNKdUL8tLvsXXfiaMVzf2CNsRs4tg/Iu8iyVt8Mk/30I4PkrOta4tmLjBX/DJPmW2hOGeng0SbGcX4tgCZbXlYI6t0Hxqal4GsKN3lidGbVpY6jrv2C50k+sDvsvi8924XN5f+b2IRXEHl5a0n2FAmPRLLL5wvr9zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m6FbtGLu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E403C4CEE7;
+	Wed,  6 Aug 2025 23:42:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754521187;
-	bh=dDM7iYy/AIyraTR1O/TqJPxcWhBNEAq3Tvg3vZpZnGU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=OgglgPizuO6/3WaBbwiRRUJBy0VGQxZw0/pWpmTdTwVS0a67YXDlooZTxgD7bTxSe
-	 +etPPVvI1Dn3N7oPtSsUuqOWHL0Xic86727Bnd3NefzUGC0nn2y0itOCmgjYmsvGwP
-	 kK2FNOLbfou4xIzjY9pGGwlA/4RC/OXz/lcr++glR2XNNC+Bk2kib3AI1rtX4eWpzu
-	 WSW0BtCYNDwA8AB0opTVEZSgEl4B8lN7FlG4jbIlEZ3+CKxJij4efJe5zTBDAfKazV
-	 /L1lNFRWeJmwrrzPjuoLLAaQYzJelcVwiLjKvxZvxm3BvwwEqkqxm0k0vN7f/9VwyJ
-	 /Ivd83Vz4CfOA==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae6f8d3bcd4so70175266b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 15:59:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVFcyvGWaDCHh55tDRpkMC/CJi86fqxtzALcZQG4PVPPJIAtTpnQBRMO3sx9Gz705yGs7DHR1uMzJku@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGZ+FEKvMGhIH2dPxUXiUmVXKjR607SxqMyeclY6uH30/bQBjd
-	AZqUbu1fCoPQENxVU2akGhI8gJmyUAmDlw764eim2OkPMmQe9R/b0JcL9TXBqs6/lJVPFXRmouZ
-	xv/fJxG6cVToPcFyHs8eWTSjCRnBs4A==
-X-Google-Smtp-Source: AGHT+IFJm49FQ3qDs9QJ4zSUztXvxUUkXzeHHTnblRFgK77C0PGfkTOh6h/psk/FFnm7rWpnCJR4cDmmHjfc2gQuIl4=
-X-Received: by 2002:a17:906:6a0e:b0:ae3:caba:2c07 with SMTP id
- a640c23a62f3a-af9a60bd3d8mr66628566b.18.1754521186262; Wed, 06 Aug 2025
- 15:59:46 -0700 (PDT)
+	s=k20201202; t=1754523738;
+	bh=fT+0nxGaI/I9WVL1BF+SKc8auvCNd+sDv/v6lTZlbh4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m6FbtGLuBIsaxm9rAcCORBKES0EYWoX6s/2EZ0HirwpLVzAoXocRpQ7Wf6KdRSriA
+	 paPcxDCTqwVX91F3IYgz53wtrEfOW9z/IW7PzbesLbolDRUsuYhMVB5CDklCpG5EYT
+	 1JJqcebLBRAwgfPtG6Y4LmxEsT967vKr7bcxp6f1jyAebMl8rBSZD6x2BTBlM9cFv6
+	 o20FyeacpZ5sefYTkdcs1EsoW3BjaS0h6KB4D71epHNNQmI9t5cALb2QXrHygOTL4V
+	 9axVKctbXg3sUkmkYvSPEOHDN4zZWg6nnuoQmhntZR/1skJXXtVJyl1tuzJvUZuv9x
+	 VyUtl+vl/G0DQ==
+Date: Wed, 6 Aug 2025 18:42:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com,
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
+	igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com,
+	s.nawrocki@samsung.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+	dev.tailor@samsung.com, faraz.ata@samsung.com,
+	muhammed.ali@samsung.com, selvarasu.g@samsung.com
+Subject: Re: [PATCH v5 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Message-ID: <20250806234217.GA2030512-robh@kernel.org>
+References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+ <CGME20250805114306epcas5p37782c02ae0ddc6b77094786c90af247a@epcas5p3.samsung.com>
+ <20250805115216.3798121-2-pritam.sutar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250806184711.1882725-1-eajames@linux.ibm.com>
- <20250806184711.1882725-4-eajames@linux.ibm.com> <CAL_Jsq+JBhak=YS33tG=KFtbb+Ckz69s5Chz6daEUY0O95QOSQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+JBhak=YS33tG=KFtbb+Ckz69s5Chz6daEUY0O95QOSQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 6 Aug 2025 17:59:34 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
-X-Gm-Features: Ac12FXwBLC02AdrQvR4Z1RK5nwIRSy2xeBZ701G7FQt_sUSyqWFUOdOSyfJmI2U
-Message-ID: <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: trivial-devices: Document max31785 sensors
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org, 
-	andrew@codeconstruct.com.au, conor+dt@kernel.org, krzk+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250805115216.3798121-2-pritam.sutar@samsung.com>
 
-On Wed, Aug 6, 2025 at 5:04=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Aug 6, 2025 at 1:47=E2=80=AFPM Eddie James <eajames@linux.ibm.com=
-> wrote:
-> >
-> > Remove the old .txt max31785 documentation and add the compatibles
-> > to trivial-devices.yaml.
-> >
-> > Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> > ---
-> >  .../devicetree/bindings/hwmon/max31785.txt    | 22 -------------------
-> >  .../devicetree/bindings/trivial-devices.yaml  |  4 ++++
-> >  2 files changed, 4 insertions(+), 22 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.tx=
-t
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/max31785.txt b/Doc=
-umentation/devicetree/bindings/hwmon/max31785.txt
-> > deleted file mode 100644
-> > index 106e08c56aaa..000000000000
-> > --- a/Documentation/devicetree/bindings/hwmon/max31785.txt
-> > +++ /dev/null
-> > @@ -1,22 +0,0 @@
-> > -Bindings for the Maxim MAX31785 Intelligent Fan Controller
-> > -=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > -
-> > -Reference:
-> > -
-> > -https://datasheets.maximintegrated.com/en/ds/MAX31785.pdf
-> > -
-> > -The Maxim MAX31785 is a PMBus device providing closed-loop, multi-chan=
-nel fan
-> > -management with temperature and remote voltage sensing. Various fan co=
-ntrol
-> > -features are provided, including PWM frequency control, temperature hy=
-steresis,
-> > -dual tachometer measurements, and fan health monitoring.
->
-> While technically the binding is trivial, I don't think this device
-> really is. It has got 6 PWMs and 6 tach inputs, a reset line, 2
-> interrupts (alert and fault?), and an I2C master. Not really trivial.
->
-> However, better to have this documented as a schema than not, so I'll app=
-ly it.
+On Tue, Aug 05, 2025 at 05:22:11PM +0530, Pritam Manohar Sutar wrote:
+> This SoC has USB2.0 phy and supports only UTMI+ interface. This phy
+> requires two clocks, named as "phy" and "ref". The required supplies for
+> this phy are vdd075_usb20(0.75v), vdd18_usb20(1.8v), vdd33_usb20(3.3v).
+> 
+> Add a dedicated compatible string for USB HS phy found in this SoC.
+> 
+> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> ---
+>  .../bindings/phy/samsung,usb3-drd-phy.yaml    | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> index e906403208c0..1932a2272ef9 100644
+> --- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> @@ -34,6 +34,7 @@ properties:
+>        - samsung,exynos7870-usbdrd-phy
+>        - samsung,exynos850-usbdrd-phy
+>        - samsung,exynos990-usbdrd-phy
+> +      - samsung,exynosautov920-usbdrd-phy
+>  
+>    clocks:
+>      minItems: 1
+> @@ -110,6 +111,12 @@ properties:
+>    vddh-usbdp-supply:
+>      description: VDDh power supply for the USB DP phy.
+>  
+> +  dvdd075-usb20-supply:
+> +    description: 0.75V power supply for the USB 2.0 phy.
+> +
+> +  vdd18-usb20-supply:
+> +    description: 1.8V power supply for the USB 2.0 phy.
+> +
+>  required:
+>    - compatible
+>    - clocks
+> @@ -219,6 +226,7 @@ allOf:
+>                - samsung,exynos7870-usbdrd-phy
+>                - samsung,exynos850-usbdrd-phy
+>                - samsung,exynos990-usbdrd-phy
+> +              - samsung,exynosautov920-usbdrd-phy
+>      then:
+>        properties:
+>          clocks:
+> @@ -235,6 +243,17 @@ allOf:
+>  
+>          reg-names:
+>            maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - samsung,exynosautov920-usbdrd-phy
+> +    then:
+> +      required:
+> +        - dvdd075-usb20-supply
+> +        - vdd18-usb20-supply
+> +        - vdd33-usb20-supply
 
-I take that back. You already have 'fan' child nodes, so this isn't a
-trivial device/binding.
+Presumably the existing devices don't have these new supplies, so:
 
-Rob
+else:
+  properties:
+    dvdd075-usb20-supply: false
+    vdd18-usb20-supply: false
+
 
