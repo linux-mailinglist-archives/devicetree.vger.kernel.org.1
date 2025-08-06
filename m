@@ -1,626 +1,232 @@
-Return-Path: <devicetree+bounces-202086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E0EB1C031
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:00:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17D6B1C052
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B429F7AA8CD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:59:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD87F3A46F4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 06:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D251FBE80;
-	Wed,  6 Aug 2025 06:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c2y+cQWX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336AB1FBC91;
+	Wed,  6 Aug 2025 06:09:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazon11021086.outbound.protection.outlook.com [40.107.57.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A11A1C01;
-	Wed,  6 Aug 2025 06:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754460028; cv=none; b=tEpodSMV+yPzwNnq2l0T82p0i9Qp8WR2VB7PG5+rHENpHFEHA/5XMMPq8Ox9cL2JsbuFs73whiQTVLzaIPZRyL6PyySafK+nJEk1VtV47de8/eaCWq95jKUOEHHcDGjltxX83TZpd2YQ4QeQV6H0k18rWHbM29nZipWvQM/shjo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754460028; c=relaxed/simple;
-	bh=TyxJGKUYLvDm7A+CsbW7a2gkxaF33iKAsGeXuyBY7/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LW0/z1xbQyz4dyc8rT4BTHH4CvNDzEo3S3YUtsk9i4QmuANWLAzMpHaBaTkTWEoQOgmnwi+Y6hOQxBtV66U9bOGidKAh9gOGy8d+XUy/q3GcUIHBGuSK7Gu7rr3T08CviGaaUM4D3BKA5yOrU271T/cZmI+2kEM+gXSGyZXRHbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c2y+cQWX; arc=none smtp.client-ip=209.85.166.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-87999c368e9so455258539f.0;
-        Tue, 05 Aug 2025 23:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754460025; x=1755064825; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7LOjQGBKez5S1iGyBaU0i1tLauar5otkV86mmIjmqK0=;
-        b=c2y+cQWXTrE4ss4Y9Zirtt57cpmWly4DaL7qpf05O9b80yeEGWXxUx4bywG/rbkbTj
-         fP4Enl/FA5LSiQcMSSZKSpzZvmNGoSLTf4TWtg98g/iePh80aQTw+jjlkAjlv03wB7MX
-         hwozHcm7Q0a/91RejyTMH2MGU1CRz0a22DVepSV8a87BuspnbR0EcvEguzweo8PEtfBC
-         G2C9I7bwkU3cVJMd/jdG/4BGnYqgu+L5ciXsdVv5ZZt8vqkZ/5OJVj+LeOYCekEQQl4b
-         NrvuZxvUOP/u5bmn8njK14WBqf9/4u1JgFGqnSxW+koXOBhHbKjSwElDyYbN+IV85Qh4
-         +LBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754460025; x=1755064825;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7LOjQGBKez5S1iGyBaU0i1tLauar5otkV86mmIjmqK0=;
-        b=B3WceDXmbxvQYVD4gzJpifK+Q/aBwQey8Oqh0k5ndow4znJrIyLfzj2DCBMwWFqF8D
-         ZQlnLJ8QY9jv6GpLXEdsOnWcbgmx+4pWzRDcq9AK3wKDRbx8IwDSNC9dCbhR8FbTeGya
-         VxMNYu12yXHEkP17wLK/Z+eu3U3FCVKf7HUZUMbwICDmruhHhrOT8YmBj8y96WGDe3PO
-         1plbrozZ+vx1Gk0oDRYgWRmSCmcYIEPYAB7FoWytA0yMJQ5yb11moS24RLhkTVd4hiwA
-         R1ifB+bYMWv/fvawSnspYIgC26MhtTQJ0SLhXvHrolPnJPotRfRaMEtua/urXk6n2+gs
-         oJkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXaror54Zkyt4KgqewkqcZ/6zBMCDY9i0MYlvYUJW0t4W1AcjBUmoZTqWfjdGqFDZGjsflV25sc5X8JIor@vger.kernel.org, AJvYcCVzFCAGgLOEI06VtYdcpFtBDTLQtfyKHZnJJdF3UQpvZatF9dK6Xw4riVF794zkEagBOPoYDxmaeZum@vger.kernel.org, AJvYcCWEbbPw2FmIHF6W+abQojWp4EHOlKreGvprnFbHKopg0WNWPZakvYk25D06pGnWVivWfL1hWDFD2PT7bj0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM/aNaJ7c/er3vfc4/HQkcedWYB+ZC5mLK4pwrdKep+WRDq+Zo
-	qp7jae/sw/kuXkF7P5DsVcIl7ZOpoIEO2YeI4Q7mknJ6oHHOpDTRGy7PaZ2waqZGAAXVHDERa7d
-	yhNoZ8iJK2Ba6gjob+Ot1aIfkNzmrHhQ=
-X-Gm-Gg: ASbGncurIqWWa5yxyEC9G8WndwriuDVYgorEJpf9K6d6TJ1ALx4gseerFDGGl5xtCbR
-	PtLFeZWbNDiYWwrAK8ZNmX3V14r3mAFQG0CseYhXV+7XeNqqOxo5y5ww/073p0qj3q84DBTOC+z
-	Iow94Up+JMAMph+NZ8aKywt2PaPds/zZR4SwgbmyLwloZ5iCjT71aT3KdIbdAGQ8LsKK9spKRpj
-	ff+/WQ=
-X-Google-Smtp-Source: AGHT+IGXTd343+VF/DxWVcdW2rLvvEJ8x/TFUG5Tpo/FEQ7fHX2BzAtVcAbQoY4hyy1ohYC0jFv/9H1yMpGG0tLM+1M=
-X-Received: by 2002:a05:6602:6c14:b0:87c:30d4:65f2 with SMTP id
- ca18e2360f4ac-8819f2dc2f6mr259724639f.3.1754460025324; Tue, 05 Aug 2025
- 23:00:25 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260FF2BCF5;
+	Wed,  6 Aug 2025 06:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.57.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754460579; cv=fail; b=u4LPWgiUw1OlrZD/coCSu+zd/Vizq2s57XebzhPVftxDKQdXlI/Mjyvnx1vTRYqRxv4eobd0vc5adCO3Pt1/gbkxp91A8Sp++2GV6bgD7ifhgxTGG4SHOaPcuPUQYkw4PyPfFbxZCbRryp2yr6gAPgv7M/a/pbJtsCJukE/ETvs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754460579; c=relaxed/simple;
+	bh=iTagbxKLk6EBhd24efx8F1lcHVaOQMphHGQowgFrA3E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=I4hOwnrzRA6uqYRgjfxL7A+05LVzTV/gWloIY/HXwAz7lJp9+GO77uXKFwiWRIhXJjZUCkL0Gr//awK/BdI1PGy26OcmbXW2Cj7QcJcaS6auQFv4j0TRAN0+VnLg/6P1oO9Hw5jea760Rem/L0h/yN+DsOYteK/JVRZ+/ktmdg8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.57.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M7ozQUc3BYUmlmvu8qYQi5o2gbsoCnEdwccsbJwvZkbEwPz7x9bInOy7rbQhZdjPiBzuyr6keHFCifSOPgbHlA/M7Zsfy6QQjgeX75rxdCNHHKu+2PdVTmSI4C8KO3B9kvqiP/FR1fnTDxBWEHguUl9Sh1SnmHcGi8xcN0zrtNRwmeonH6yKKx1pMBPKxOoY+OI0JMLqtKDkBSVxJ8EBBGpsZPerHh1/d9Jdrlh8O1q0hH0NoO5IvfrQsbDN+BBfskLJ/aP6ucYKxhDpxrdb/yZyYDJP6Ej55t0OZQUTtw+U1VMsuZRL+ECsZ/JQE4+4EM6683HhPFqaw1P1zoFKxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iTagbxKLk6EBhd24efx8F1lcHVaOQMphHGQowgFrA3E=;
+ b=g9qcnTLN0U4JdqVUjaktLMwbtei4SuaicabFjNI6Hep9IQNAxC9MpyZURY7kmXnPmNR07KlImYw8Cu6HvRYXegQ//2EsB+UxtJnY1bYWYyhv+75ENQveaREznKyba467YyK+nJCLvsnFxgw5+fdlyDKJFyFO28Z6+JCu28QA9uSfvGo0q9O2VrIH2bBD09DBsTXuQE7WS67BJgcIpOpxCAb//e+kV+vd3r8EaIL+eDEQEf4zL/bH2kC/cPg18dJbUQChnBuVaRDOFX+33hrkaziMqpVX5jZNduNk9CkiMhOrdKDGfJDEywcTpf7Lc+3JGySIz3KMHd9wYcF5XE/BaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:229::21)
+ by PN3PPF829F3F944.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::ba) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Wed, 6 Aug
+ 2025 06:09:31 +0000
+Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418]) by PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+ ([fe80::5c9a:906e:318b:c418%6]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 06:09:30 +0000
+From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"kieran.bingham@ideasonboard.com" <kieran.bingham@ideasonboard.com>, Himanshu
+ Bhavani <himanshu.bhavani@siliconsignals.io>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hans Verkuil
+	<hverkuil@xs4all.nl>, Ricardo Ribalda <ribalda@chromium.org>, Hans de Goede
+	<hansg@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	=?Windows-1252?Q?Andr=E9_Apitzsch?= <git@apitzsch.eu>, Arnd Bergmann
+	<arnd@arndb.de>, Sylvain Petinot <sylvain.petinot@foss.st.com>, Dongcheng Yan
+	<dongcheng.yan@intel.com>, Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>, Matthias Fend
+	<matthias.fend@emfend.at>, Heimir Thor Sverrisson
+	<heimir.sverrisson@gmail.com>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/2] media: i2c: add ov2735 image sensor driver
+Thread-Topic: [PATCH v6 2/2] media: i2c: add ov2735 image sensor driver
+Thread-Index: AQHcAeHiVCljdpdLHE+nzjgq9sz23bRUsgcAgAB7Obk=
+Date: Wed, 6 Aug 2025 06:09:30 +0000
+Message-ID:
+ <PN3P287MB35196F4C68AF1E0B69EED511FF2DA@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
+References: <20250731061004.5447-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250731061004.5447-3-hardevsinh.palaniya@siliconsignals.io>
+ <aJKJ9l_j2VJFEcHe@smile.fi.intel.com>
+In-Reply-To: <aJKJ9l_j2VJFEcHe@smile.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PN3P287MB3519:EE_|PN3PPF829F3F944:EE_
+x-ms-office365-filtering-correlation-id: 4f96798e-3778-44f3-269d-08ddd4afce75
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?BPymQ6Q0DgN8KDu3M8N7ZNT57UWLPFxO0rR1Zq85JEVJk8lE0eAVXHHP?=
+ =?Windows-1252?Q?RJpLwwwmosYOZjfCyV5GzDGXM03AGJBFQP4vxkM2gn3RMimju4WikolU?=
+ =?Windows-1252?Q?ptyZ2BOzikcWWQWLu/UVjPyooggUg/BIMX/cO1n7ZA29EqOLW5nmfbCb?=
+ =?Windows-1252?Q?xaGz/PnlVGLB92wg7rGNLDtB/gFY+gJEta6dHr+cfKDmF+BzvrE8X858?=
+ =?Windows-1252?Q?mES9BjVa/kJfKVYqKuA6gd9M9IZxhI7uWh8BjdUNdN4LhVtRPxpTh6kl?=
+ =?Windows-1252?Q?fRj29r5JGq5wimWn8wbFtHmYWvYNFw8TMahbQEtXASsvi20inOu+Af7y?=
+ =?Windows-1252?Q?waZmPmRJ7jqIdgiDVhXiAXPbxIOvztF8Sn5j0AneD4ATfRm7U6BMOjKS?=
+ =?Windows-1252?Q?obvEdYs5Q3ebVduBOHt3hoQsaU9jjLMXrp6yAQr7TF1o3/a5vHUGE3MI?=
+ =?Windows-1252?Q?Ftx8fJ7pqf9TwfRw5jF2KgX6Bl6nNbfkREKYmbQyhuWQl+rPNbJm8LNZ?=
+ =?Windows-1252?Q?KG4hmwWYOhYuY56VxRLqnAzIBoELEavE8e+SZpncOwWSY1aUyDmSHhVb?=
+ =?Windows-1252?Q?XjRWEum+Z60yopCxG9QxYWqPsTTFUyq8Rhwi16dVb8cNy2yHGpMWSCyX?=
+ =?Windows-1252?Q?R2W2WPqGzM6WevlyQKZG4OvH24gaPfeZl0oLdPMAp/127ruoQ/rF4ZUl?=
+ =?Windows-1252?Q?brJd1ID0oJm0oZOHs7bsJNSEWmqR5oDj8PfNfTw00b9JjVmKzkCWjMQZ?=
+ =?Windows-1252?Q?LYbiRmUBbY+MVixBrLMJvWp+QH5+1/r6bKNKtR53FYwcWD68e7j4LyLg?=
+ =?Windows-1252?Q?chHhXNp8+nJAyu71kseQ1dk1O4qI8QhNaOOXDPg1aUDXyM+DHrHnC82p?=
+ =?Windows-1252?Q?VD8Qxsa8QefqV3n6Q8EAxRG60eN7fjbdZOMAH+VA7ot1MPp05jkILtfG?=
+ =?Windows-1252?Q?B4u6NWfDTNawITl8W0DgO0Rv6LYvqvCErAvMQztu5LJlU6iuJ6mW5EL1?=
+ =?Windows-1252?Q?aB7NIOydLcDJrIGC7BT4UkCcCdSEQMXbPB4waOOHZptV2OKlBfVFYrbV?=
+ =?Windows-1252?Q?xTG420uzJC5bXcIHx8MFHo39jlzahmhFkfCiZuX/bW4faL5ZlkCYxEcp?=
+ =?Windows-1252?Q?MpO4Oi0Fjk2+keEx7z2Wfm/ostJL3iW3ZB5KumfSCy3qzsBkTw+fXK4/?=
+ =?Windows-1252?Q?qLHeUGWG8JSr5gzanmSzRcDh03YQMC4Uk15yu4awTqe/wbPhsYbZtmAm?=
+ =?Windows-1252?Q?ItZiAhEhO5x2yhpZNfXoLdajuRBOL+G+HPjzU9BesjUQy8cLeFmrvKBO?=
+ =?Windows-1252?Q?DGoBS3T4VjY52Gv5jVeWW4WFhugdZA4fqw8ZSzxNriZCURczT4N3DLwE?=
+ =?Windows-1252?Q?qM6tA1ALu1+kWQzLHlRxUY+Fwkv0Jem/i2jmHZCkcFC3ZT4OXx0XokrQ?=
+ =?Windows-1252?Q?aD4LKoKUkuEyswBGIt9ufD7ZavwRVeSEusFWAlkGKBoIQDVlQLv/im0L?=
+ =?Windows-1252?Q?5t2lfnKGMh5itiVIpXmPbg2FtKCKdc6rzNUZQMpacIYI6cHSz1BdEKk4?=
+ =?Windows-1252?Q?g0qXTb1aUH8B/QfmVsiSoZyPVZmZnO6a/FzEXg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB3519.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?6xHsJN3snYBNQpDYmnCLHURyUsux7KpAuiYtgRYM9dGIqQDY+IbVaGdM?=
+ =?Windows-1252?Q?vTvWxvlg+Za/vNIskh8+qwLDGSgGMcxNDz5ONUVqXqwqI0fEc/RjZ0gM?=
+ =?Windows-1252?Q?erbVA6OaagBwFDGwdBEf/VGmaQTRGaUysCYKMI4iKP01QeSJEpAevH2S?=
+ =?Windows-1252?Q?H2xJyDUBrBpEv0HkaEYJ/JItvy9RNyu4dFqYhTZVlFUByWWsCHcqN3YX?=
+ =?Windows-1252?Q?tuWxnqh3TZau5un3okClksd63H2A7NFCR6EViQn2JSmHgTTGqroly43Q?=
+ =?Windows-1252?Q?TmvbZw6qwmSRVx12wlyK7NRhBfWlJAhnI0C2sExwS3veepu6LtMRSxEM?=
+ =?Windows-1252?Q?dSI/H1j0daQN3I1JISnx97kQpNk7TIRtuOsrCzE2Fs7nL8rJLHuL7ioT?=
+ =?Windows-1252?Q?tq8NkzbglN9f2pqMOn9tDdMfNzTlp331ar8OX0F4+8TooK2rbHq8EaKP?=
+ =?Windows-1252?Q?XkhRnnJgPdWS4nsbUAAnMA111Rr+U3qr5FGhojk03IggTRv2nT2Orf/8?=
+ =?Windows-1252?Q?WK5LHZhDJ/bmjPHUYZFwKPUBEgDiA1VDHgatnHH/0xhRRT8w2hfAGl7U?=
+ =?Windows-1252?Q?/+HT6HVubj85xPbPaB1MlXZoP2adAXP79iWNURjNFfoZIIYu0cZZOoAq?=
+ =?Windows-1252?Q?bg2i5NkCsK8P01iLFT/sueoyJHQxhYD5ztPgKqbnHGDiecf8UttGUBAw?=
+ =?Windows-1252?Q?0NqJtlFKDRgx9hap9PlZstcLdkuBYz/IZCcU5/PBnj/CusoQjW93duvm?=
+ =?Windows-1252?Q?/A0YdpkH3z5tb6kLoRHRe4xCz89GhuElN9q/tCq7UxmT6gVeOVkGMnWt?=
+ =?Windows-1252?Q?fBCUn945BR1rPQfCHTc7lehG+47gUZ/LDlPa+0hJ/vSWALEpGubBTmTF?=
+ =?Windows-1252?Q?+Mda/wHmzKEYsTPdfhrYiqeWffgQJOf7qxaY9HkuJ9ZSiCsUZbHyErOU?=
+ =?Windows-1252?Q?HKH6L1xHIukamDxU6kVGmElV5aoVxNsh8mPHBeRWqLoH7KHYpE41biC4?=
+ =?Windows-1252?Q?3n5APh1UPBjbjBfjrU8o8BWgmtqtwq623mcCZnk10vxu1YrkJlB09l2a?=
+ =?Windows-1252?Q?RbvDA0WqiRxvQBTQ5dY88H+O8uQZhtknCanxkFmpHXPQZ/xQRHX9s++W?=
+ =?Windows-1252?Q?fnlKMYmWkK4YC3x79cS4pNEvvnF+v/5TZ+KuzAG8+iAkTjNXKIiZvzkF?=
+ =?Windows-1252?Q?fsc0r5RZ0HfNzylY+qm08nsCI9sQ07Q6j5fHxNaMatWFTvJqzMVOJHcb?=
+ =?Windows-1252?Q?F2i6ITwtUNSUabeonSW37jWSDE2bjMUxsEtTN5zk/uHiLa9kwFtjy4cF?=
+ =?Windows-1252?Q?bjPgIR9UY1s4BIIYdvU2wVgWUcRXJLUlNoJmqqd0iqCPc0Rnqu0M0A3q?=
+ =?Windows-1252?Q?j2ZuL+1h/YTqxSHdQ453AGzWEBYC0jhlL+VZZhQSZ0vkVr7FzZnxaKuy?=
+ =?Windows-1252?Q?Z9kTazpHFO64dsmqdgekD1jY8RdQkpQJvlz8CL4DkOONde0gfZ8/F4MG?=
+ =?Windows-1252?Q?LRdqgas58m7h9G2A/RlYzt8ApWGLIHKger2KZtkqNXCS6KSIG1HMQgGC?=
+ =?Windows-1252?Q?LX80lMfMIpB1hjZ4LTzsRgKMWrMqGTCjWMsMPhZ8YGkhV84QEF37IO/V?=
+ =?Windows-1252?Q?xVnfIJPBjlYgyh8BmPcSY5K1MAo7veukECqbXlz1a5siMtZ5u6EyKKa8?=
+ =?Windows-1252?Q?tATYicAwMlXmjFm48lGSto6Dq9fgvwKxS2ciHXBkbQUGmWs11TI+w5v+?=
+ =?Windows-1252?Q?rAS1rPw/u3eL69VdTyI=3D?=
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250804104722.601440-1-shengjiu.wang@nxp.com>
- <20250804104722.601440-6-shengjiu.wang@nxp.com> <fa455148-a071-4433-8c9c-26add3872604@nxp.com>
-In-Reply-To: <fa455148-a071-4433-8c9c-26add3872604@nxp.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Wed, 6 Aug 2025 14:00:05 +0800
-X-Gm-Features: Ac12FXw0nnoM3OTdXQVUBKMi5kWO9s__PdvorJUHLc_FVvpTTZTj4ms-phKQiNs
-Message-ID: <CAA+D8AN9Ay8jnSS=h3G_Kepc_5WYQRAUrWmtu5N056GsnvGrTA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel
- Audio Interface
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	airlied@gmail.com, simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, devicetree@vger.kernel.org, l.stach@pengutronix.de, 
-	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f96798e-3778-44f3-269d-08ddd4afce75
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 06:09:30.4344
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sSFu1v7mn72gk4aoVeu88gE2oAevmumfNsoIQ5wz50rFnELAV0leW1dEqHyK9vSenxPGSUZVS1I2pk/2a/Aj+cFKCUj896SjziFr4fwlOpcwOm1Z9IGUHHmMCXDWiJD2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3PPF829F3F944
 
-On Tue, Aug 5, 2025 at 4:55=E2=80=AFPM Liu Ying <victor.liu@nxp.com> wrote:
->
-> On 08/04/2025, Shengjiu Wang wrote:
-> > The HDMI TX Parallel Audio Interface (HTX_PAI) is a digital module that
-> > acts as the bridge between the Audio Subsystem to the HDMI TX Controlle=
-r.
-> > This IP block is found in the HDMI subsystem of the i.MX8MP SoC.
-> >
-> > Data received from the audio subsystem can have an arbitrary component
-> > ordering. The HTX_PAI block has integrated muxing options to select whi=
-ch
-> > sections of the 32-bit input data word will be mapped to each IEC60958
-> > field. The HTX_PAI_FIELD_CTRL register contains mux selects to
-> > individually select P,C,U,V,Data, and Preamble.
-> >
-> > Use component helper that imx8mp-hdmi-tx will be aggregate driver,
->
-> s/that/so that/
->
-> > imx8mp-hdmi-pai will be component driver, then imx8mp-hdmi-pai can use
-> > bind() ops to get the plat_data from imx8mp-hdmi-tx device.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > ---
-> >  drivers/gpu/drm/bridge/imx/Kconfig           |   8 +
-> >  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
-> >  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c | 205 +++++++++++++++++++
-> >  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c  |  55 +++++
-> >  include/drm/bridge/dw_hdmi.h                 |   6 +
-> >  5 files changed, 275 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
-> >
-> > diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridg=
-e/imx/Kconfig
-> > index 9a480c6abb85..6c1a8bc5d4a0 100644
-> > --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> > +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> > @@ -18,12 +18,20 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
-> >       depends on OF
-> >       depends on COMMON_CLK
-> >       select DRM_DW_HDMI
-> > +     imply DRM_IMX8MP_HDMI_PAI
-> >       imply DRM_IMX8MP_HDMI_PVI
-> >       imply PHY_FSL_SAMSUNG_HDMI_PHY
-> >       help
-> >         Choose this to enable support for the internal HDMI encoder fou=
-nd
-> >         on the i.MX8MP SoC.
-> >
-> > +config DRM_IMX8MP_HDMI_PAI
-> > +     tristate "Freescale i.MX8MP HDMI PAI bridge support"
-> > +     depends on OF
->
-> select REGMAP
-> select REGMAP_MMIO
-
-
-will add them.
-
->
-> > +     help
-> > +       Choose this to enable support for the internal HDMI TX Parallel
-> > +       Audio Interface found on the Freescale i.MX8MP SoC.
-> > +
-> >  config DRM_IMX8MP_HDMI_PVI
-> >       tristate "Freescale i.MX8MP HDMI PVI bridge support"
-> >       depends on OF
-> > diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/brid=
-ge/imx/Makefile
-> > index dd5d48584806..8d01fda25451 100644
-> > --- a/drivers/gpu/drm/bridge/imx/Makefile
-> > +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> > @@ -1,6 +1,7 @@
-> >  obj-$(CONFIG_DRM_IMX_LDB_HELPER) +=3D imx-ldb-helper.o
-> >  obj-$(CONFIG_DRM_IMX_LEGACY_BRIDGE) +=3D imx-legacy-bridge.o
-> >  obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE) +=3D imx8mp-hdmi-tx.o
-> > +obj-$(CONFIG_DRM_IMX8MP_HDMI_PAI) +=3D imx8mp-hdmi-pai.o
-> >  obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) +=3D imx8mp-hdmi-pvi.o
-> >  obj-$(CONFIG_DRM_IMX8QM_LDB) +=3D imx8qm-ldb.o
-> >  obj-$(CONFIG_DRM_IMX8QXP_LDB) +=3D imx8qxp-ldb.o
-> > diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c b/drivers/gpu=
-/drm/bridge/imx/imx8mp-hdmi-pai.c
-> > new file mode 100644
-> > index 000000000000..9002974073ca
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
-> > @@ -0,0 +1,205 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright 2025 NXP
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/component.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/platform_device.h>
->
-> #include <linux/regmap.h>
-
-ok,
->
-> > +#include <drm/bridge/dw_hdmi.h>
-> > +#include <sound/asoundef.h>
-> > +
-> > +#define HTX_PAI_CTRL                 0x00
-> > +#define   ENABLE                     BIT(0)
-> > +
-> > +#define HTX_PAI_CTRL_EXT             0x04
-> > +#define   WTMK_HIGH_MASK             GENMASK(31, 24)
-> > +#define   WTMK_LOW_MASK                      GENMASK(23, 16)
-> > +#define   NUM_CH_MASK                        GENMASK(10, 8)
->
-> Add NUM_CH(n) and use it when programming HTX_PAI_CTRL_EXT.
-> #define NUM_CH(n)                       FIELD_PREP(NUM_CH_MASK, (n - 1))
-
-Ok, will add it.
-
->
-> > +#define   WTMK_HIGH(n)                       FIELD_PREP(WTMK_HIGH_MASK=
-, (n))
-> > +#define   WTMK_LOW(n)                        FIELD_PREP(WTMK_LOW_MASK,=
- (n))
-> > +
-> > +#define HTX_PAI_FIELD_CTRL           0x08
-> > +#define   B_FILT                     BIT(31)
-> > +#define   PARITY_EN                  BIT(30)
-> > +#define   END_SEL                    BIT(29)
->
-> The above 3 bits are unused.  Drop.
-
-Ok.
-
->
-> > +#define   PRE_SEL                    GENMASK(28, 24)
-> > +#define   D_SEL                              GENMASK(23, 20)
-> > +#define   V_SEL                              GENMASK(19, 15)
-> > +#define   U_SEL                              GENMASK(14, 10)
-> > +#define   C_SEL                              GENMASK(9, 5)
-> > +#define   P_SEL                              GENMASK(4, 0)
-> > +
-> > +#define HTX_PAI_STAT                 0x0c
-> > +#define HTX_PAI_IRQ_NOMASK           0x10
-> > +#define HTX_PAI_IRQ_MASKED           0x14
-> > +#define HTX_PAI_IRQ_MASK             0x18
->
-> The above 4 registers are not pratically used.  Drop.
-
-They are used by regmap to make a full definition.
-
->
-> > +
-> > +struct imx8mp_hdmi_pai {
-> > +     struct device   *dev;
-> > +     struct regmap   *regmap;
-> > +};
-> > +
-> > +static void imx8mp_hdmi_pai_enable(struct dw_hdmi *dw_hdmi, int channe=
-l,
-> > +                                int width, int rate, int non_pcm,
-> > +                                int iec958)
-> > +{
-> > +     const struct dw_hdmi_plat_data *pdata =3D dw_hdmi_to_plat_data(dw=
-_hdmi);
-> > +     struct imx8mp_hdmi_pai *hdmi_pai =3D (struct imx8mp_hdmi_pai *)pd=
-ata->priv_audio;
->
-> I don't think you need to convert type explicitly.  Same for the other
-> explicit conversions in this driver.
-
-ok, can be removed.
->
-> > +     int val;
-> > +
-> > +     /* PAI set control extended */
-> > +     val =3D  WTMK_HIGH(3) | WTMK_LOW(3);
-> > +     val |=3D FIELD_PREP(NUM_CH_MASK, channel - 1);
-> > +     regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL_EXT, val);
-> > +
-> > +     /* IEC60958 format */
-> > +     if (iec958) {
-> > +             val =3D FIELD_PREP_CONST(P_SEL,
-> > +                                    __bf_shf(IEC958_SUBFRAME_PARITY));
-> > +             val |=3D FIELD_PREP_CONST(C_SEL,
-> > +                                     __bf_shf(IEC958_SUBFRAME_CHANNEL_=
-STATUS));
-> > +             val |=3D FIELD_PREP_CONST(U_SEL,
-> > +                                     __bf_shf(IEC958_SUBFRAME_USER_DAT=
-A));
-> > +             val |=3D FIELD_PREP_CONST(V_SEL,
-> > +                                     __bf_shf(IEC958_SUBFRAME_VALIDITY=
-));
-> > +             val |=3D FIELD_PREP_CONST(D_SEL,
-> > +                                     __bf_shf(IEC958_SUBFRAME_SAMPLE_2=
-4_MASK));
-> > +             val |=3D FIELD_PREP_CONST(PRE_SEL,
-> > +                                     __bf_shf(IEC958_SUBFRAME_PREAMBLE=
-_MASK));
-> > +     } else {
-> > +             /* PCM choose 24bit*/
-> > +             val =3D FIELD_PREP(D_SEL, width - 24);
->
-> Why 'width - 24'?  Can it be expressed by a helper or macro?
-
-                /*
-                 * The allowed width are 24bit and 32bit, as they are
-supported by
-                 * aud2htx module.
-                 * for 24bit, D_SEL =3D 0, select all the bits.
-                 * for 32bit, D_SEL =3D 8, select the MSB.
-                 */
-will add such comments.
-
-best regards
-Shengjiu wang
->
-> > +     }
-> > +
-> > +     regmap_write(hdmi_pai->regmap, HTX_PAI_FIELD_CTRL, val);
-> > +
-> > +     /* PAI start running */
-> > +     regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL, ENABLE);
-> > +}
-> > +
-> > +static void imx8mp_hdmi_pai_disable(struct dw_hdmi *dw_hdmi)
-> > +{
-> > +     const struct dw_hdmi_plat_data *pdata =3D dw_hdmi_to_plat_data(dw=
-_hdmi);
-> > +     struct imx8mp_hdmi_pai *hdmi_pai =3D (struct imx8mp_hdmi_pai *)pd=
-ata->priv_audio;
-> > +
-> > +     /* Stop PAI */
-> > +     regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL, 0);
-> > +}
-> > +
-> > +static int imx8mp_hdmi_pai_bind(struct device *dev, struct device *mas=
-ter, void *data)
-> > +{
-> > +     struct dw_hdmi_plat_data *plat_data =3D (struct dw_hdmi_plat_data=
- *)data;
-> > +     struct imx8mp_hdmi_pai *hdmi_pai;
-> > +
-> > +     hdmi_pai =3D dev_get_drvdata(dev);
-> > +
-> > +     plat_data->enable_audio =3D imx8mp_hdmi_pai_enable;
-> > +     plat_data->disable_audio =3D imx8mp_hdmi_pai_disable;
-> > +     plat_data->priv_audio =3D hdmi_pai;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void imx8mp_hdmi_pai_unbind(struct device *dev, struct device *=
-master, void *data)
-> > +{
-> > +     struct dw_hdmi_plat_data *plat_data =3D (struct dw_hdmi_plat_data=
- *)data;
-> > +
-> > +     plat_data->enable_audio =3D NULL;
-> > +     plat_data->disable_audio =3D NULL;
-> > +     plat_data->priv_audio =3D NULL;
->
-> Do you really need to set these ptrs to NULL?
->
-> > +}
-> > +
-> > +static const struct component_ops imx8mp_hdmi_pai_ops =3D {
-> > +     .bind   =3D imx8mp_hdmi_pai_bind,
-> > +     .unbind =3D imx8mp_hdmi_pai_unbind,
-> > +};
-> > +
-> > +static bool imx8mp_hdmi_pai_volatile_reg(struct device *dev, unsigned =
-int reg)
-> > +{
-> > +     switch (reg) {
-> > +     case HTX_PAI_IRQ_NOMASK:
-> > +     case HTX_PAI_IRQ_MASKED:
-> > +             return true;
-> > +     default:
-> > +             return false;
-> > +     }
-> > +}
-> > +
-> > +static bool imx8mp_hdmi_pai_writeable_reg(struct device *dev, unsigned=
- int reg)
-> > +{
-> > +     switch (reg) {
-> > +     case HTX_PAI_CTRL:
-> > +     case HTX_PAI_CTRL_EXT:
-> > +     case HTX_PAI_FIELD_CTRL:
-> > +     case HTX_PAI_IRQ_NOMASK:
-> > +     case HTX_PAI_IRQ_MASKED:
-> > +     case HTX_PAI_IRQ_MASK:
-> > +             return true;
-> > +     default:
-> > +             return false;
-> > +     }
-> > +}
-> > +
-> > +static const struct regmap_config imx8mp_hdmi_pai_regmap_config =3D {
-> > +     .reg_bits =3D 32,
-> > +     .reg_stride =3D 4,
-> > +     .val_bits =3D 32,
-> > +     .max_register =3D HTX_PAI_IRQ_MASK,
-> > +     .volatile_reg =3D imx8mp_hdmi_pai_volatile_reg,
-> > +     .writeable_reg =3D imx8mp_hdmi_pai_writeable_reg,
-> > +};
-> > +
-> > +static int imx8mp_hdmi_pai_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct imx8mp_hdmi_pai *hdmi_pai;
-> > +     struct resource *res;
-> > +     void __iomem *base;
-> > +
-> > +     hdmi_pai =3D devm_kzalloc(dev, sizeof(*hdmi_pai), GFP_KERNEL);
-> > +     if (!hdmi_pai)
-> > +             return -ENOMEM;
-> > +
-> > +     base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> > +     if (IS_ERR(base))
-> > +             return PTR_ERR(base);
-> > +
-> > +     hdmi_pai->dev =3D dev;
-> > +
-> > +     hdmi_pai->regmap =3D devm_regmap_init_mmio(dev, base, &imx8mp_hdm=
-i_pai_regmap_config);
->
-> Now that DT binding says there is an APB clock, use devm_regmap_init_mmio=
-_clk()
-> to ensure registers can be accessed with clock enabled even via debugfs.
->
-> > +     if (IS_ERR(hdmi_pai->regmap)) {
-> > +             dev_err(dev, "regmap init failed\n");
-> > +             return PTR_ERR(hdmi_pai->regmap);
-> > +     }
-> > +
-> > +     dev_set_drvdata(dev, hdmi_pai);
-> > +
-> > +     return component_add(dev, &imx8mp_hdmi_pai_ops);
->
-> Imagine that users could enable this driver without enabling imx8mp-hdmi-=
-tx
-> driver, you may add the component in this probe() callback only and move =
-all
-> the other stuff to bind() callback to avoid unnecessary things being done=
- here.
->
-> > +}
-> > +
-> > +static void imx8mp_hdmi_pai_remove(struct platform_device *pdev)
-> > +{
-> > +     component_del(&pdev->dev, &imx8mp_hdmi_pai_ops);
-> > +}
-> > +
-> > +static const struct of_device_id imx8mp_hdmi_pai_of_table[] =3D {
-> > +     { .compatible =3D "fsl,imx8mp-hdmi-pai" },
-> > +     { /* Sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pai_of_table);
-> > +
-> > +static struct platform_driver imx8mp_hdmi_pai_platform_driver =3D {
-> > +     .probe          =3D imx8mp_hdmi_pai_probe,
-> > +     .remove         =3D imx8mp_hdmi_pai_remove,
-> > +     .driver         =3D {
-> > +             .name   =3D "imx8mp-hdmi-pai",
-> > +             .of_match_table =3D imx8mp_hdmi_pai_of_table,
-> > +     },
-> > +};
-> > +module_platform_driver(imx8mp_hdmi_pai_platform_driver);
-> > +
-> > +MODULE_DESCRIPTION("i.MX8MP HDMI PAI driver");
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c b/drivers/gpu/=
-drm/bridge/imx/imx8mp-hdmi-tx.c
-> > index 1e7a789ec289..ee08084d2394 100644
-> > --- a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-> > +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-> > @@ -5,11 +5,13 @@
-> >   */
-> >
-> >  #include <linux/clk.h>
-> > +#include <linux/component.h>
-> >  #include <linux/mod_devicetable.h>
-> >  #include <linux/module.h>
-> >  #include <linux/platform_device.h>
-> >  #include <drm/bridge/dw_hdmi.h>
-> >  #include <drm/drm_modes.h>
-> > +#include <drm/drm_of.h>
-> >
-> >  struct imx8mp_hdmi {
-> >       struct dw_hdmi_plat_data plat_data;
-> > @@ -79,11 +81,46 @@ static const struct dw_hdmi_phy_ops imx8mp_hdmi_phy=
-_ops =3D {
-> >       .update_hpd     =3D dw_hdmi_phy_update_hpd,
-> >  };
-> >
-> > +static int imx8mp_dw_hdmi_bind(struct device *dev)
-> > +{
-> > +     struct dw_hdmi_plat_data *plat_data;
-> > +     struct imx8mp_hdmi *hdmi;
-> > +     int ret;
-> > +
-> > +     hdmi =3D dev_get_drvdata(dev);
-> > +     plat_data =3D &hdmi->plat_data;
-> > +
-> > +     ret =3D component_bind_all(dev, plat_data);
-> > +     if (ret)
-> > +             return dev_err_probe(dev, ret, "component_bind_all failed=
-!\n");
->
-> As component_bind_all() would bind imx8mp-hdmi-pai and hence set
-> {enable,disable}_audio callbacks, you need to call dw_hdmi_probe() after
-> component_bind_all() instead of too early in probe() callback.
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void imx8mp_dw_hdmi_unbind(struct device *dev)
-> > +{
-> > +     struct dw_hdmi_plat_data *plat_data;
-> > +     struct imx8mp_hdmi *hdmi;
-> > +
-> > +     hdmi =3D dev_get_drvdata(dev);
-> > +     plat_data =3D &hdmi->plat_data;
-> > +
-> > +     component_unbind_all(dev, plat_data);
-> > +}
-> > +
-> > +static const struct component_master_ops imx8mp_dw_hdmi_ops =3D {
-> > +     .bind   =3D imx8mp_dw_hdmi_bind,
-> > +     .unbind =3D imx8mp_dw_hdmi_unbind,
-> > +};
-> > +
-> >  static int imx8mp_dw_hdmi_probe(struct platform_device *pdev)
-> >  {
-> >       struct device *dev =3D &pdev->dev;
-> >       struct dw_hdmi_plat_data *plat_data;
-> > +     struct component_match *match;
->
-> As Alexander pointed out, this needs to be set to NULL.
-> See how other drivers which are component masters do.
->
-> > +     struct device_node *remote;
-> >       struct imx8mp_hdmi *hdmi;
-> > +     int ret;
-> >
-> >       hdmi =3D devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
-> >       if (!hdmi)
-> > @@ -108,6 +145,22 @@ static int imx8mp_dw_hdmi_probe(struct platform_de=
-vice *pdev)
-> >
-> >       platform_set_drvdata(pdev, hdmi);
-> >
-> > +     /* port@2 is for hdmi_pai device */
-> > +     remote =3D of_graph_get_remote_node(pdev->dev.of_node, 2, 0);
-> > +     if (remote && of_device_is_available(remote)) {
->
-> Doesn't of_graph_get_remote_node() ensure that remote is avaiable?
->
-> > +             drm_of_component_match_add(dev, &match, component_compare=
-_of, remote);
-> > +
-> > +             of_node_put(remote);
-> > +
-> > +             ret =3D component_master_add_with_match(dev, &imx8mp_dw_h=
-dmi_ops, match);
-> > +             if (ret)
-> > +                     dev_warn(dev, "Unable to register aggregate drive=
-r\n");
-> > +             /*
-> > +              * This audio function is optional for avoid blocking dis=
-play.
-> > +              * So just print warning message and no error is returned=
-.
->
-> No, since PAI node is available here, it has to be bound.  Yet you still =
-need
-> to properly handle the case where PAI node is inavailable.
->
-> > +              */
-> > +     }
-> > +
-> >       return 0;
-> >  }
-> >
-> > @@ -115,6 +168,8 @@ static void imx8mp_dw_hdmi_remove(struct platform_d=
-evice *pdev)
-> >  {
-> >       struct imx8mp_hdmi *hdmi =3D platform_get_drvdata(pdev);
-> >
-> > +     component_master_del(&pdev->dev, &imx8mp_dw_hdmi_ops);
-> > +
-> >       dw_hdmi_remove(hdmi->dw_hdmi);
-> >  }
-> >
-> > diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.=
-h
-> > index 095cdd9b7424..336f062e1f9d 100644
-> > --- a/include/drm/bridge/dw_hdmi.h
-> > +++ b/include/drm/bridge/dw_hdmi.h
-> > @@ -143,6 +143,12 @@ struct dw_hdmi_plat_data {
-> >                                          const struct drm_display_info =
-*info,
-> >                                          const struct drm_display_mode =
-*mode);
-> >
-> > +     /*
-> > +      * priv_audio is specially used for additional audio device to ge=
-t
-> > +      * driver data through this dw_hdmi_plat_data.
-> > +      */
-> > +     void *priv_audio;
-> > +
-> >       /* Platform-specific audio enable/disable (optional) */
-> >       void (*enable_audio)(struct dw_hdmi *hdmi, int channel,
-> >                            int width, int rate, int non_pcm, int iec958=
-);
->
->
-> --
-> Regards,
-> Liu Ying
+> On Thu, Jul 31, 2025 at 11:39:58AM +0530, Hardevsinh Palaniya wrote:=0A=
+> > Add a v4l2 subdevice driver for the Omnivision OV2735 sensor.=0A=
+> >=0A=
+> > The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an=0A=
+> > active array size of 1920 x 1080.=0A=
+> >=0A=
+> > The following features are supported:=0A=
+> > - Manual exposure an gain control support=0A=
+> > - vblank/hblank control support=0A=
+> > - Test pattern support control=0A=
+> > - Supported resolution: 1920 x 1080 @ 30fps (SGRBG10)=0A=
+> =0A=
+> ...=0A=
+> =0A=
+> > +#define OV2735_REG_LONG_EXPOSURE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 O=
+V2735_PAGE_REG16(0x01, 0x03)=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_EXPOSURE_MIN=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_EXPOSURE_STEP=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1=0A=
+> > +=0A=
+> > +#define OV2735_REG_ANALOG_GAIN=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 OV2735_PAGE_REG8(0x01, 0x24)=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_ANALOG_GAIN_MIN=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0 0x10=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_ANALOG_GAIN_MAX=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0 0xff=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_ANALOG_GAIN_STEP=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0 1=0A=
+> > +#define=A0=A0=A0=A0=A0 OV2735_ANALOG_GAIN_DEFAULT=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 0x10=0A=
+> =0A=
+> I dunno if the TAB after #define is something being required here, to me =
+sounds=0A=
+> like a misplacement.=0A=
+ =0A=
+When I applied the patch, I didn=92t see those tabs either.=0A=
+I'm not sure how they appeared in the patch, but I will correct them.=0A=
+ =0A=
+> > +static int ov2735_page_access(struct ov2735 *ov2735, u32 reg, int *err=
+)=0A=
+> > +{=0A=
+> > +=A0=A0=A0=A0 u8 page =3D reg >> CCI_REG_PRIVATE_SHIFT;=0A=
+> > +=A0=A0=A0=A0 int ret =3D 0;=0A=
+> > +=0A=
+> > +=A0=A0=A0=A0 if (err && *err)=0A=
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return *err;=0A=
+> =0A=
+> > +=A0=A0=A0=A0 mutex_lock(&ov2735->page_lock);=0A=
+> =0A=
+> Since you have cleanup.h, why not use guard() here?=0A=
+=0A=
+will update=0A=
+=0A=
+Best Regards,=0A=
+Hardev=
 
