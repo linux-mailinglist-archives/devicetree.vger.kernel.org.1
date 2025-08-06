@@ -1,196 +1,289 @@
-Return-Path: <devicetree+bounces-202270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7930BB1C96E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:58:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7DDB1C98E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 18:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5FB974E35F5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:58:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 059DF1885075
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4377A293C4A;
-	Wed,  6 Aug 2025 15:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DAD28B7ED;
+	Wed,  6 Aug 2025 16:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AVYKFz1j"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DF6TA5tn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013046.outbound.protection.outlook.com [52.101.72.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B710828FFCD
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 15:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754495921; cv=none; b=RNzuLGwpXgQbMv+L3ao2ZgldZzgw95qVpghrTaLwAOKPI+4izsfkZTOFqA50lmbvN76p58otU+SyrX7kuqyzo+Cd1/W+yjqsjBu4K8Pr6qCx5eapT3cDd6SMIcLLXlZ4zvSYnlZo9tdIACCHHyGzF2dKPbAkp8j6wtD5RGm9Gvo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754495921; c=relaxed/simple;
-	bh=unBw+GnMWnnx7sxRmdXg/LrEJMSOpQKmyIAZWWmxFYk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HgX3t+aMbfv0nLtIpKWApEv5xVucngWs+FmJQQ5g/45e1D/kJeMc6MNwsJMF9Y1jz+TUwpK5hzUvz9t3EtKQQRyWUjKPSar290tPF2Tf7DvvYRYpmApVT3sBNiJTUFm0HGmP4OTBfg3KyoZVLX2d1soHvynqodIScVJD9fM8d1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AVYKFz1j; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 576E6wVC010330
-	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 15:58:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QNS/uT0UsRLTZGD2d6XkWPD5SB9JWddvW75QWH/H0eU=; b=AVYKFz1jdDIocdhe
-	0o5fmMz+DfjGieO6x0g+rQWNH5CaTK8jk7KRHLUEISUv8IEDX2O+f8VVue8xWmpc
-	8OwMlUTuzuVivad8WHfjixUvac4VTIyiMT2UwiuuBf0w1LMStUAhV7Nfq4TfdgTF
-	58nAu6jegsO4PaWqb25GfMeisXKhUFfHW0SHQ52xgr4yjdIuNWOrGKGxd3+qSeFe
-	509UJeVj5T09RmA3gKSbgyU/0pR6oeon8uOf+iHHo53iiXoHCAacxCeuxoZzxrtj
-	xBMtA3/Euf7oMzFiFCnC1CNJY4W7ZjKQ5udtDyN2sGp9S6SFW/fSazgsK1w5XOIF
-	n1WscQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpy7uapu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 15:58:38 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7e698aaff5bso177485a.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 08:58:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754495917; x=1755100717;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QNS/uT0UsRLTZGD2d6XkWPD5SB9JWddvW75QWH/H0eU=;
-        b=S5ZoLf7oLTDX/RUnduT1SwHcjXT/mZ6ckSur8OvdZAMzwWbuKLsRKDGPa6yUHo7P51
-         COEqPbd6QPKJ+6IMzVsIxJXwkLLf6wkZOQNmOQljcgsl702aHymyZEzxV7OVC+K4apt4
-         9qblItSlS2wp6KDbFbF57WKQZOAINkqAkvfrC3M4461R9wkttKJh4vQOJCix7d9JcH9U
-         46Kjbxrmmq83I/gg6Y8+t6hdB0Ue/hhIHRYeubmuvCMLxi3wFEZApe7F/wkPHeqhw6tj
-         7/inIXI6T4mMe0qdIugEFbCfkNd9bd4L4pgLvBaEKrcTAzbW/2QBwzzAiaLfikjp5uCm
-         WC8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXyHOD+MwtjLCb4X/ry5s2j0Bm1+MZmOdiYEMp3JlHPyal0x1Bc1ccYQ7KsP+827W4XtMhFDjDIRJD4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw97TJVqDAX0YiNZnpxGPGKtxViwO3NFHKhR9HX5a5uhRkWfFHe
-	+TzGzsdMYMmFsrOaNuD83K/1aQcBgzvHBozWAmChJ5hoYUakpiTOqfGz+HhZ7vhqBE8JU+gepjl
-	xqjRC8E5QIYMqZlJHgFFw7wG9/CfO+A8mrWLWEfaxG6WDsSHKV2LZ7qqDz0GAI9eL
-X-Gm-Gg: ASbGncvJAUBfOa1Z+ZuFHFCpphqvj286pSIj3TC/GKfU7IUY6qbSfyZckud93XqqUAj
-	O2Eg5tJTkkVsnz7i7Kp9vzgNloUX0+0xD//VoRc5Y3wVMCoNLxyzJJX34mKgqAiOKLU3qm0U0Vh
-	3X+Fno47drUMru3UYk+4keol0h8b9DbJZWySS/S/aEV7E4ql/7OomRGvVTeeu/neozjKe/ILIFt
-	vs6shVw4KwbPbmT94jeHbOCmeSSlONi++PHKvJhFJbiygj5x5/xN50C2HlGwm9Z5xNowA8/193C
-	Lt9zoBBUsg0ajUkWszCDK23FCM1m4zQyjJT8vDLSGd8HGZ9JhfmBSJgOXfUdMZt9HCxa6n1DAsz
-	zWEUE7t2U+zzOrI/1Xw==
-X-Received: by 2002:a05:620a:2584:b0:7e6:81d9:359a with SMTP id af79cd13be357-7e814df0c35mr241156485a.9.1754495917395;
-        Wed, 06 Aug 2025 08:58:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE2XRnua00uhBgXJfMjuaXYjlV+/ag9i/MerbwZyjSbEZJVYDAvoxc5k5/SUInzS+jgdX/iJg==
-X-Received: by 2002:a05:620a:2584:b0:7e6:81d9:359a with SMTP id af79cd13be357-7e814df0c35mr241144185a.9.1754495914102;
-        Wed, 06 Aug 2025 08:58:34 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8feaf2fsm10329223a12.38.2025.08.06.08.58.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 08:58:33 -0700 (PDT)
-Message-ID: <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
-Date: Wed, 6 Aug 2025 17:58:30 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF85D1A08BC;
+	Wed,  6 Aug 2025 16:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754496153; cv=fail; b=fDKxbNNFqvnjzze1dPibEVexiQ8HqWpqkUr+Rj8uiBHGN3GBzJphxADZMcWzAKaCqfvzrD2Xe3jmlBa3l4vDo/KyXvr8BXrqcL0S2tbeWkf8Fy08l4qsNUY3af689hZQr4y6VmzAW1iEXXyTIz8jiTwD5c8+S7X/ibrwtF+Bv9Q=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754496153; c=relaxed/simple;
+	bh=+gnz3cO1+Yi1WU+gEACVH6nlczIpf085EltLc2bDooc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=COtiM4SF7nlK2uvNjGIB3ANrhCL30i4+5qVhEH5TOm/Fpaggm7am8vEn7FA4mk3P9ESrbYUyny6dtEvL61775t2rXGK3D/2Q35f8F+2O/5QxyBlrZAl8IDlQhE4HHYRLVNeNuD2lAJRLRkftOv7IwlesJvahJfw9skDM0tixqw8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DF6TA5tn; arc=fail smtp.client-ip=52.101.72.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QfrfJq0lui8tbfwLuJVvn7L+NyoKubTFa2Nfs6VRqQzC+sqSku1EIKGYND3Gt7+GTNOt8m+N9Tmq2+iVvj7qSMshqxMZjfeEiIEJrqI0aZaEBx49BBUqBlwxHYr+kYGPTRo8ed4SILbDXLuQ87IpEc+NFrReX9KtX6TL/7kG8+NFhd/HxVWWYA8ZPLx/+XxeF8pWyhWdlbASwcjIu6vrPr7X7Cw6xUqoqfWOKfERFoUbkLtjjAu11JurAF0tiezda2uECv8ZtW4aN4Mlt1Qo5ayc3aBBdj9ZrAFn7VCxbsE65MBCQ0HroUgwUkrKXhcKztCk9hR7h/WTYvUhHa8smw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K3LQpO2npOEp+xwsNPirQutqFBm5c8swK8zM2nt5Bro=;
+ b=UFSVixtwfULDxEuy1E1E4BquK5NSZuRE6KWba2UaHIGPzYUZ7viytpSqzXFU2cNcS++Iuu8R36LANhr42a4Mc2Hkc+su9albQ84xa+hsmT9Grrt50/oun+YVQ7EGe12UdTOTPKdOv3+oMDMPakvpcIjf60aJ3VF+p/K3I1HRM/WE0NuCBlPR3FL+/hRdjV3w/YO2hSc3aH9FMc30lm1d+aPV/MQjtYNorazRpf8X7Nzh9auJZ+3NFBf7V/5wRhuwCGK6EjZ46A7ibWIIUpbaEMGdMdPntXu67HMqc3cuJDRtx+Dp/QWU4uq1Dfkfs8bdXWun6ioHIDdg8gcAxIHGsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K3LQpO2npOEp+xwsNPirQutqFBm5c8swK8zM2nt5Bro=;
+ b=DF6TA5tn2ox10wSAg+dXaBN7B7lhs9UOzEO6ve5e+fKUxXJsA5x6vw2eBwB3P9D3u2MRHMM62f9oJj5pnBKdoSL1CGiY+FOSPB4Ehw7uhRMVkjuT8F5aaOgmyULwGLXmiI5qm1+MJK3gxFDKtCfd0HMd11tGTb9oluhFluafRzWhdsstmgh4fF2T5W2meYcwXBu/oRx5ghEWyJeUrSae29IOsQxFxYPLuOjQ51AnvDBmtrKATEiXtATlqJrQutPUe0PmMspssNhXy+KUxqJ2f03I+f1JeThs9uR8P5LvPCeNpGg3V+iq4EWU20OYgJfKOPfEy5wxZ5tRD7m5peiP5A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8322.eurprd04.prod.outlook.com (2603:10a6:20b:3e3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.14; Wed, 6 Aug
+ 2025 16:02:27 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 16:02:27 +0000
+Date: Wed, 6 Aug 2025 12:02:20 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH] of/irq: Convert of_msi_map_id() callers to of_msi_xlate()
+Message-ID: <aJN8jOQ8VeDjmwil@lizhi-Precision-Tower-5810>
+References: <20250805133443.936955-1-lpieralisi@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250805133443.936955-1-lpieralisi@kernel.org>
+X-ClientProxiedBy: PH7P221CA0089.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:328::7) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
- device tree
-To: Mark Brown <broonie@kernel.org>, Nitin Rawat <quic_nitirawa@quicinc.com>,
-        vkoul@kernel.org, kishon@kernel.org, mani@kernel.org,
-        conor+dt@kernel.org, bvanassche@acm.org, andersson@kernel.org,
-        neil.armstrong@linaro.org, dmitry.baryshkov@oss.qualcomm.com,
-        konradybcio@kernel.org, krzk+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-5-quic_nitirawa@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250806154340.20122-5-quic_nitirawa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Mftsu4/f c=1 sm=1 tr=0 ts=68937baf cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=LTPa4ebz5QvcgEhxLXIA:9
- a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: pkSNOgePdeX3AtTCmb61BeEHDUgJPuNk
-X-Proofpoint-GUID: pkSNOgePdeX3AtTCmb61BeEHDUgJPuNk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXyr885CL3yP16
- 51uiEMqblOkU6Uc2hQvEOrRMWAdx5YwtIqcwVSTxNSC29JqZycNyxfxLTyH2vMxIbEXLyeKou+u
- ZdjnD5XfM/bePeI+zX/O8yOWxvQJELc2IPcUw2/6fSlQxGuDUy+dTrKd8f8arBK2loax1nYeXk4
- 4r58ZivFc3XUp1A6y4KtCX1keugSqVbXxaggrXQuDhIdRwBuN3XBvNRHzjN3sWwio3GeEwcqx/M
- 4ugjXQtQLa7BNnsS3QvJhlQ2Ge37oxZCIpM6TVCPvIXZVYv2N70dHSzxgG6W+QHobQDBUkFcU1T
- DGG/tvSdDYq0iQhGuOnVWheFEJOw5mxxXicjwH8WfudKNlyVuvJL1cwf0yzzM39enOY1a0Oz65/
- cE/d7dlW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_04,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 priorityscore=1501 phishscore=0 bulkscore=0
- spamscore=0 suspectscore=0 adultscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8322:EE_
+X-MS-Office365-Filtering-Correlation-Id: d7ad327c-3209-4501-e4c8-08ddd502a3ca
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|19092799006|1800799024|366016|376014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?E5ze58Ypv9actzr8VZrCpG8l0fjymavIc8juMbZL8CVC5NK8VlMnup23Q8tQ?=
+ =?us-ascii?Q?iz6HIzCyLMbmBid7dLMfA8KPAz8QDIyNx0IEpP7ytQ9lWDnKff6Rv3tp2jKt?=
+ =?us-ascii?Q?y9VPPJ+rM+QlSfQwTNhk6aV5Wgc9+i7cw13tkxpAExd3clhUGJfruw6MnNjX?=
+ =?us-ascii?Q?JNokxZkvq91Ib6gHh0e9sHSsMEuj/s+00GdIlULuJAhQoO1BSPSPCtJ0cksf?=
+ =?us-ascii?Q?VXeDUI1cmHJmx1GjNh6hkCFJVJA1FMdofEe1Z05BYXUsN2lD3ffZ/3FNETh/?=
+ =?us-ascii?Q?n40IKpoBb/jFv1CEl1PwbGcc6ADtJT/Ci9uWgXKPK43jNub8JVJa7efWG2o+?=
+ =?us-ascii?Q?oRcT2x7nkG15nUYazpRhvo72nDtm1bN1bB+Ek7pAYOTUoDYk+WsJgH+ARhKj?=
+ =?us-ascii?Q?SRjsY/iZneIpmbXR1JiSdcgSv4J2u4YO/ZmiSGTjem7cWhJbBPDIH/YvkpMW?=
+ =?us-ascii?Q?1WmPql0/UNlniAA98F84GJ+bPY8rcrgc14JiJWE7IOiONyGSuT55lR0NsVDZ?=
+ =?us-ascii?Q?N+hPUkIDuNYSNQaUtr8am2XVTg+Oj9TWqpKP1LK8XYGDOJ+q9YnwrVszJejt?=
+ =?us-ascii?Q?bQ7SE/pS8YD3zTMcJF5kXsNkIl3F8kJFJOMGpn1QATx7dDZG+J0NPzCXMrA5?=
+ =?us-ascii?Q?juGc8EDZIP1PNiGXaETTaWPM/DZIBuxlP97DDJtUMIONY4I+dbeG7k5r3I9O?=
+ =?us-ascii?Q?0xASHP0kya/nV9Euk6ytcuAwrlI5LWrAm7D+4CqNDyj+6w8HS7Z1DHlVpWdJ?=
+ =?us-ascii?Q?amHyGNVupbrgr271T3uV9dlT7xeyeEJ/JHUkv+JIUa6Tm7D0zl5I95OZl6Fu?=
+ =?us-ascii?Q?VXQZHBtOJ4dn/xSSGNmpCVp9VK6vDfH9AmN7/cb5h9hNUHJaFYqw5hEF5CS6?=
+ =?us-ascii?Q?IthGEI+kMKPY+ye7BXgX/J+1vQ27vqmLFiWJwk55rf3CFzNfmg71eR+x/ObB?=
+ =?us-ascii?Q?cHNsbEK8hDlsK4cgODv4DTZtJfgK4sk7cmctYhVBrLt4BwGidqgR0akUipEQ?=
+ =?us-ascii?Q?GHT1impzFQUEeSSJoI8lF4VXEJUpvb5s+pUW3AAdw4CJc4P+yTNzjcmtXgJQ?=
+ =?us-ascii?Q?1mroz4YeODbMGD+KOTJfftArw5kc0Ij4NJ1V2xLVGpaw8OX8LKtB4Ijt/D6H?=
+ =?us-ascii?Q?bfE82Dm+GTmNEcW1myjXtnjCQssovTAhtoBavtdszhhh+oj7tXYS82BsIbFa?=
+ =?us-ascii?Q?VIe4JlsSMI4/MSUurLRRKfO685wuxGYVgCb1i28XjiWv7vS0+pZFUY2dGjeo?=
+ =?us-ascii?Q?MqMIq3Ndz6QlnfW88FFEHt8KgwiC6XabistXU9JKCniyQj9FiG/rlvw100C7?=
+ =?us-ascii?Q?SJ7gqc2ypfjit4zcIuJnuFC0aUZ3S2iVYksYDZlKH/DTApSe+lrbiKl5G9k+?=
+ =?us-ascii?Q?Q3ORjBIYI6/40wXQtIe6RLHnCGsLimfY9fxfZ1t8taiyJqSXDUBse5s1M5Rl?=
+ =?us-ascii?Q?1HTwFH7bW5woJZTHkJWI+NJ9HY8tFwjPXa1Om2siN2959pzPoyhwkLM52lYE?=
+ =?us-ascii?Q?7CoDyAGT6dkYKzw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(19092799006)(1800799024)(366016)(376014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Bqks+UQxcC6WZC31tSMtRVujrUDQJbMLJXSk4pFAGbIHVEvLNCx7OeKAjWKg?=
+ =?us-ascii?Q?auiFzaFsmNYYwd3DTZLK3bXZ0R4u17Fc7Wcn+YlqBdBLKx5OEuvmle8E5mNV?=
+ =?us-ascii?Q?f5F45dUD/LZJxWusjee6qdaxFLPkGtmP+dn8cuF9iJGBC3zjJy2l9L8V4Kjj?=
+ =?us-ascii?Q?+LDXQejHnHvAWA46ZdQTmS3NXR0h/DiMfGD2F/YhN6oMcpxyOU72Tvk7KTxz?=
+ =?us-ascii?Q?h1yxg80+Vr9474k1H7rFpHANTGZfR1bkwGN5nnHPva8O3QK6gkWDWTMVJBH7?=
+ =?us-ascii?Q?fd3M9jTFplR/d/9ZZ9Hl2u05Md/tlAE+tkoRKOSvkRdHV68ucGtXjNgOHtI+?=
+ =?us-ascii?Q?P9zto4arAsZ0bbiQ7/N5FDpqzlVyVfQcMyuyQEMu+wCcvWyBTRMTHEb4recW?=
+ =?us-ascii?Q?U+FWNl216mJq0S6x/Ij3Lkq5g0Rw6sfor0dJlZyhGgyM6mtJ2Qhpx0qhQ0Vz?=
+ =?us-ascii?Q?KTa1eSdRT9ykP7O2wqRXeIR3iC02xI4PDMaeGfTiv+SmL39TOHp+bk5kMaie?=
+ =?us-ascii?Q?U4BpvVAo7shQdDF1Bt9bFgZtqvXrWQgMIIVXZWR6rZgbuN9BONXDXPShWl1O?=
+ =?us-ascii?Q?PMksG9x3q6U7r2tfa94Qoh8DPRRM9f6SX9P55LLQe3I9CxiwwZKYGzBe09Ek?=
+ =?us-ascii?Q?4wp+YERAkmlcb+0mR4UO7VDJLOwiBg2IBHDKs2ZOv9XYds/zg5siJcuuO1iT?=
+ =?us-ascii?Q?89aRIIFtLcUf2ObGgyow2W68yi9STJlB9a9MLlVf2AMvbraq5IFUxxEMc6D7?=
+ =?us-ascii?Q?HRNL4tW80amXEsPwhLJXfWESw5R3yMw1/GIiyDh/uU+N9OQu6rLhk2u0uyLY?=
+ =?us-ascii?Q?HDTXmQfFZHKOhx5rLvDzIpQW/d4DBmQcXgdlVYz/qTYSBiK1oV3sdABWAMNJ?=
+ =?us-ascii?Q?v2aEb3Y/sbwZ/rzH4mEV27+9l6lChiA15LtCOPVrA3MKe08ewjb+ga/hXOGS?=
+ =?us-ascii?Q?CFlFH8dn0IlMTAHDnnGtcLRQCB1Zdp+awjdOxfotcspc2MhvFXDqddHvM77h?=
+ =?us-ascii?Q?s9rE/nnu+A3cNGXSXpYNKEJmHEufb2HJw2fQr9qE5zoAxgu5ftWAS0s+eCRA?=
+ =?us-ascii?Q?K4OzUjqUv+laGTXJ3nBF37WbmJ5NsDmklNwMt9bhghn0LpP6xSWzj01325vN?=
+ =?us-ascii?Q?Fqo/moeTYM2JRRnGdWeKm7CTstLsc2kRE7YE829EyKhzVzr16+osecUR/Za0?=
+ =?us-ascii?Q?I1+Z24HLObMLNs6AaFBSw5E2SQz3yIMkEJvt0S/ly1RV3kpu4FQuP8eWk7Ry?=
+ =?us-ascii?Q?z9IP/r84YApQ674jTFy2XpbfC32CbgxbbfBRyrB39zLi0mirqN28PTyr+YCx?=
+ =?us-ascii?Q?t4NXsGhptaJ3/o50e0JZIygaiikhq1GssULV28GTQtNPWGywnso6JWeGY09R?=
+ =?us-ascii?Q?6nmtF4dL0ys0nbJNxLix4sOTxSjx3ejoHkGEDqXmAccf2wd/l7uH5HfjP6v+?=
+ =?us-ascii?Q?K84d3GjV+Z6QOEY1naFrD/q/TU/mZhG5b5KRXrWccxJ67jZ+qYRmTE8LxOqp?=
+ =?us-ascii?Q?1+NkrI7b12gae8QoUEuhGZyrmG9xIETiR+qGicqlB0v/wqxHzPKxd2FXQMMi?=
+ =?us-ascii?Q?pqYA1BZyJaytauVWA9d8rzhvO2Oxrab6qCgM1glx?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7ad327c-3209-4501-e4c8-08ddd502a3ca
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2025 16:02:27.3355
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gA0u0JZ7bVtuuwGIQEVfmC3NFUm4uX01MI4NfwaFcUE1qs6JhGnqgW1Xqkav05PSZki0tduRREJVxJZxXbN6hw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8322
 
-On 8/6/25 5:43 PM, Nitin Rawat wrote:
-> Add support in QMP PHY driver to read optional vdda-phy-max-microamp
-> and vdda-pll-max-microamp properties from the device tree.
-> 
-> These properties define the expected maximum current (in microamps) for
-> each supply. The driver uses this information to configure regulators
-> more accurately and ensure they operate in the correct mode based on
-> client load requirements.
-> 
-> If the property is not present, the driver defaults load to
-> `QMP_VREG_UNUSED`.
-> 
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+On Tue, Aug 05, 2025 at 03:34:43PM +0200, Lorenzo Pieralisi wrote:
+> With the introduction of the of_msi_xlate() function, the OF layer
+> provides an API to map a device ID and retrieve the MSI controller
+> node the ID is mapped to with a single call.
+>
+> of_msi_map_id() is currently used to map a deviceID to a specific
+> MSI controller node; of_msi_xlate() can be used for that purpose
+> too, there is no need to keep the two functions.
+>
+> Convert of_msi_map_id() to of_msi_xlate() calls and update the
+> of_msi_xlate() documentation to describe how the struct device_node
+> pointer passed in should be set-up to either provide the MSI controller
+> node target or receive its pointer upon mapping completion.
+>
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
 > ---
->  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 22 +++++++++++++++++++---
->  1 file changed, 19 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 9c69c77d10c8..6e116f7370c3 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> @@ -39,6 +39,8 @@
->  #define PHY_INIT_COMPLETE_TIMEOUT		10000
->  
->  #define NUM_OVERLAY				2
-> +#define QMP_VREG_UNUSED				-1
-> +#define MAX_PROP_NAME				32
->  
->  /* set of registers with offsets different per-PHY */
->  enum qphy_reg_layout {
-> @@ -1894,15 +1896,29 @@ static int qmp_ufs_vreg_init(struct qmp_ufs *qmp)
+> As suggested by RobH:
+>
+> https://lore.kernel.org/lkml/20250627213241.GA168190-robh@kernel.org/
+>
+>  drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c |  2 +-
+>  drivers/of/irq.c                            | 25 +++++----------------
+>  drivers/pci/msi/irqdomain.c                 |  2 +-
+>  include/linux/of_irq.h                      |  6 -----
+>  4 files changed, 7 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c b/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
+> index 11549d85f23b..b5785472765a 100644
+> --- a/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
+> +++ b/drivers/irqchip/irq-gic-v3-its-fsl-mc-msi.c
+> @@ -30,7 +30,7 @@ static u32 fsl_mc_msi_domain_get_msi_id(struct irq_domain *domain,
+>  	u32 out_id;
+>
+>  	of_node = irq_domain_get_of_node(domain);
+> -	out_id = of_node ? of_msi_map_id(&mc_dev->dev, of_node, mc_dev->icid) :
+> +	out_id = of_node ? of_msi_xlate(&mc_dev->dev, &of_node, mc_dev->icid) :
+>  			iort_msi_map_id(&mc_dev->dev, mc_dev->icid);
+>
+>  	return out_id;
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index 74aaea61de13..e7c12abd10ab 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -673,13 +673,14 @@ void __init of_irq_init(const struct of_device_id *matches)
+>  /**
+>   * of_msi_xlate - map a MSI ID and find relevant MSI controller node
+>   * @dev: device for which the mapping is to be done.
+> - * @msi_np: Pointer to store the MSI controller node
+> + * @msi_np: Pointer to target MSI controller node
+>   * @id_in: Device ID.
+>   *
+>   * Walk up the device hierarchy looking for devices with a "msi-map"
+> - * property. If found, apply the mapping to @id_in. @msi_np pointed
+> - * value must be NULL on entry, if an MSI controller is found @msi_np is
+> - * initialized to the MSI controller node with a reference held.
+> + * property. If found, apply the mapping to @id_in.
+> + * If @msi_np points to a non-NULL device node pointer, only entries targeting
+> + * that node will be matched; if it points to a NULL value, it will receive the
+> + * device node of the first matching target phandle, with a reference held.
+>   *
+>   * Returns: The mapped MSI id.
+>   */
+> @@ -699,22 +700,6 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
+>  	return id_out;
+>  }
+>
+> -/**
+> - * of_msi_map_id - Map a MSI ID for a device.
+> - * @dev: device for which the mapping is to be done.
+> - * @msi_np: device node of the expected msi controller.
+> - * @id_in: unmapped MSI ID for the device.
+> - *
+> - * Walk up the device hierarchy looking for devices with a "msi-map"
+> - * property.  If found, apply the mapping to @id_in.
+> - *
+> - * Return: The mapped MSI ID.
+> - */
+> -u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in)
+> -{
+> -	return of_msi_xlate(dev, &msi_np, id_in);
+> -}
+> -
+>  /**
+>   * of_msi_map_get_device_domain - Use msi-map to find the relevant MSI domain
+>   * @dev: device for which the mapping is to be done.
+> diff --git a/drivers/pci/msi/irqdomain.c b/drivers/pci/msi/irqdomain.c
+> index 0938ef7ebabf..555c61b1fc36 100644
+> --- a/drivers/pci/msi/irqdomain.c
+> +++ b/drivers/pci/msi/irqdomain.c
+> @@ -422,7 +422,7 @@ u32 pci_msi_domain_get_msi_rid(struct irq_domain *domain, struct pci_dev *pdev)
+>  	pci_for_each_dma_alias(pdev, get_msi_id_cb, &rid);
+>
+>  	of_node = irq_domain_get_of_node(domain);
+> -	rid = of_node ? of_msi_map_id(&pdev->dev, of_node, rid) :
+> +	rid = of_node ? of_msi_xlate(&pdev->dev, &of_node, rid) :
+>  			iort_msi_map_id(&pdev->dev, rid);
+>
+>  	return rid;
+> diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
+> index a480063c9cb1..1db8543dfc8a 100644
+> --- a/include/linux/of_irq.h
+> +++ b/include/linux/of_irq.h
+> @@ -55,7 +55,6 @@ extern struct irq_domain *of_msi_map_get_device_domain(struct device *dev,
+>  							u32 bus_token);
+>  extern void of_msi_configure(struct device *dev, const struct device_node *np);
+>  extern u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in);
+> -u32 of_msi_map_id(struct device *dev, struct device_node *msi_np, u32 id_in);
+>  #else
+>  static inline void of_irq_init(const struct of_device_id *matches)
 >  {
->  	const struct qmp_phy_cfg *cfg = qmp->cfg;
->  	struct device *dev = qmp->dev;
-> +	struct device_node *np = dev->of_node;
-> +	char prop_name[MAX_PROP_NAME];
->  	int num = cfg->num_vregs;
-> -	int i;
-> +	const char *supply;
-> +	int i, ret;
->  
->  	qmp->vregs = devm_kcalloc(dev, num, sizeof(*qmp->vregs), GFP_KERNEL);
->  	if (!qmp->vregs)
->  		return -ENOMEM;
->  
-> -	for (i = 0; i < num; i++)
-> -		qmp->vregs[i].supply = cfg->vreg_list[i];
-> +	for (i = 0; i < num; i++) {
-> +		supply = cfg->vreg_list[i];
-> +		qmp->vregs[i].supply = supply;
-> +
-> +		/* Defaults to unused */
-> +		qmp->vregs[i].init_load_uA = QMP_VREG_UNUSED;
-> +
-> +		snprintf(prop_name, sizeof(prop_name), "%s-max-microamp", supply);
-> +		ret = of_property_read_u32(np, prop_name, &qmp->vregs[i].init_load_uA);
-> +		if (ret)
-> +			dev_dbg(qmp->dev, "No max microamp for %s, using default %d\n",
-> +				supply, QMP_VREG_UNUSED);
-
-+Mark
-
-do you think having this in regulator core would make sense?
-
-Konrad
+> @@ -105,11 +104,6 @@ static inline u32 of_msi_xlate(struct device *dev, struct device_node **msi_np,
+>  {
+>  	return id_in;
+>  }
+> -static inline u32 of_msi_map_id(struct device *dev,
+> -				 struct device_node *msi_np, u32 id_in)
+> -{
+> -	return id_in;
+> -}
+>  #endif
+>
+>  #if defined(CONFIG_OF_IRQ) || defined(CONFIG_SPARC)
+> --
+> 2.48.0
+>
 
