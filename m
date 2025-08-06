@@ -1,109 +1,178 @@
-Return-Path: <devicetree+bounces-202276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46259B1CA79
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 19:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFDFB1CA99
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 19:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B79218C4971
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:16:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B024D18C396F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 775A62BE031;
-	Wed,  6 Aug 2025 17:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C29F2293C45;
+	Wed,  6 Aug 2025 17:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVnFYxq4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOfxbTAo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 499EE29B783;
-	Wed,  6 Aug 2025 17:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5312F30;
+	Wed,  6 Aug 2025 17:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754500531; cv=none; b=JSG5ofsYeyDcuWkU0uLmnDoImGv47LYH06MU2GcCdJIm3Gp7KgwWoQywNKAehJDaQatSQS5/qqBia5rBfuC4paZhLnRxMqvfLV4bLDR+RqbKiGZa/4Yfvmd4+g4VhScCSBzIBJ3EFQVNBSka40nCYbunScc3Mk5leZoQfJk07Xg=
+	t=1754500957; cv=none; b=DLdW7ZcA9fFVgHoPiDm7cBKA0pO9vQeSSeKDbFguTtwLYyN7l6pIDTQ1kmyRwMM6G2k2myMhSKsrMDm0fEbYfBfLBME8HsWaq/825ygBlD47YLEBFHnc5NB7mxthjjxEA3nSy8a3Qby00MoIcIH32gucBcDJTMEZ7e14QsPFynY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754500531; c=relaxed/simple;
-	bh=dP7LyJUuqyT/LSIjq7xZNcRuTUR3KNybdoTzyNUZlc0=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=P4fFgAfOX7msT8sVTDI6gvbB0FAbPSp/LqtuODzdM6LmXP7K8HK2R9VPCeyU8pXXRLjTgweeqLeX1VoWu5ejF/O3m0M/EOKL9+dLseTi0B7za92Kr6O0+1+qBorvSWHTIHLCr/Ur+stvVle1FieIO/XySIiGT80sbJXviuuaJJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVnFYxq4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2350AC4CEE7;
-	Wed,  6 Aug 2025 17:15:31 +0000 (UTC)
+	s=arc-20240116; t=1754500957; c=relaxed/simple;
+	bh=gYQ6c5dWzSfZxOgWBka1UO6gIcE9AQVGbQWooNNv3Tk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IFZ6WzIBn6JPf0VPykeMhA4VRpb2Ctzp0E7QriHyBLfC2dXXcm+VYVUlBfnPqSRU56FvbTp5TlMlAM8PdJZfoY9p0zoLpA6fseMj3yjeFIc7Dz+Agfs5MMKFh7J77lQbxXvxrLON7yeDYhP8KUnxj7B6imlSn+4vxE7tkiiRi1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOfxbTAo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7BBAC4CEE7;
+	Wed,  6 Aug 2025 17:22:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754500531;
-	bh=dP7LyJUuqyT/LSIjq7xZNcRuTUR3KNybdoTzyNUZlc0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=NVnFYxq4+64ZbTuTkRxzPZd+V9z/QGfybK++rPtLHonfQu4qIXoV4XNXJDM8BsJLw
-	 Y25OUy64NbX3NbHfc7LsoGKJaC9kSP4/xazcIQ5CLBYqyW7Y/pPivZ9fhBP8pzzsj0
-	 ANBzHfSPrasxaqPbgb3QbcXyX0pzsy6iBr9Pex8Qad9X/IGhME/4UVahmBfHlu4uB3
-	 tSZZ11kygnjAiz1cae2EpqvOiLlO4Ue+eIBc1NrewxhclzTn3IFAlPuNb6y9BWq630
-	 IFzSEP1yj5huksV/s5bpDdbo4nbXBIMvuZY9AL/kA+tCsUbqY9kO+sH/6Og1SoZkIG
-	 XnYVJ4fPGtc9A==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 33D0E383BF63;
-	Wed,  6 Aug 2025 17:15:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1754500957;
+	bh=gYQ6c5dWzSfZxOgWBka1UO6gIcE9AQVGbQWooNNv3Tk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AOfxbTAoG2YGp6j2BENEn/arpS/1dP3KamEWAaZ9w9o1+QUovQpw5cH9gP2szJyEC
+	 xaMchNgDrWERluE/3baEOdMVQ97LmGXriveDnYcuQ2i/Bx1i94+vdWJwBR+c6cuEoH
+	 CcX3YwvUswegmddUexuX95AZ0ZFvEIt3mrqiED2s8tQCO//Awhduj3DY66QDYQhcI8
+	 fcTJpcLYA4iTzdH8m+e7rRDMy23wYd8V4et746RjY86oLnf8/KuQL5B/YwJ/Mf8K8O
+	 eDIDkh0dG0ORioC3q4g0n9Gie5Pga5szbxWPiALr0I8XPeQbxfw6cyJXWftrnoVf0u
+	 r61ssjfJxLdtA==
+Date: Wed, 6 Aug 2025 18:22:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: display: sitronix,st7920: Add DT schema
+Message-ID: <20250806-contend-retread-066519296adc@spud>
+References: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
+ <20250806-st7920-v1-2-64ab5a34f9a0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 0/7] riscv: Add support for xmipsexectl
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <175450054474.2863135.5887102129908490866.git-patchwork-notify@kernel.org>
-Date: Wed, 06 Aug 2025 17:15:44 +0000
-References: <20250724-p8700-pause-v5-0-a6cbbe1c3412@htecgroup.com>
-In-Reply-To: <20250724-p8700-pause-v5-0-a6cbbe1c3412@htecgroup.com>
-To: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Cc: linux-riscv@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, corbet@lwn.net, palmer@sifive.com,
- conor@kernel.org, djordje.todorovic@htecgroup.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, conor.dooley@microchip.com,
- alexghiti@rivosinc.com, arikalo@gmail.com, rvishwanathan@mips.com
-
-Hello:
-
-This series was applied to riscv/linux.git (for-next)
-by Alexandre Ghiti <alexghiti@rivosinc.com>:
-
-On Thu, 24 Jul 2025 17:23:24 +0200 you wrote:
-> This patch series adds support for the xmipsexectl vendor extension.
-> A new hardware probe key has also been added to allow userspace to probe for MIPS vendor extensions.
-> 
-> Additionally, since the standard Zihintpause PAUSE instruction encoding is not supported on some MIPS CPUs,
-> an errata was implemented for replacing this instruction with the xmipsexectl MIPS.PAUSE alternative encoding.
-> 
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> 
-> [...]
-
-Here is the summary with links:
-  - [v5,1/7] dt-bindings: riscv: Add xmipsexectl ISA extension description
-    https://git.kernel.org/riscv/c/06d48c2c4f83
-  - [v5,2/7] riscv: Add xmipsexectl as a vendor extension
-    https://git.kernel.org/riscv/c/02b01dfaf4fa
-  - [v5,3/7] riscv: Add xmipsexectl instructions
-    https://git.kernel.org/riscv/c/d85071f97570
-  - [v5,4/7] riscv: hwprobe: Add MIPS vendor extension probing
-    https://git.kernel.org/riscv/c/20b80c735c05
-  - [v5,5/7] riscv: hwprobe: Document MIPS xmipsexectl vendor extension
-    https://git.kernel.org/riscv/c/c714fbc023df
-  - [v5,6/7] riscv: Add tools support for xmipsexectl
-    https://git.kernel.org/riscv/c/378afb53aab2
-  - [v5,7/7] riscv: errata: Fix the PAUSE Opcode for MIPS P8700
-    https://git.kernel.org/riscv/c/838218910ea3
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1LYms6pz+HKcRlUi"
+Content-Disposition: inline
+In-Reply-To: <20250806-st7920-v1-2-64ab5a34f9a0@gmail.com>
 
 
+--1LYms6pz+HKcRlUi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 06, 2025 at 02:48:10PM +0200, Iker Pedrosa wrote:
+> Add binding for Sitronix ST7920 display.
+>=20
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>  .../bindings/display/sitronix,st7920.yaml          | 55 ++++++++++++++++=
+++++++
+>  1 file changed, 55 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7920.ya=
+ml b/Documentation/devicetree/bindings/display/sitronix,st7920.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..caee85f98c6d242dfab737292=
+10f8c34b23a3a99
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/sitronix,st7920.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/sitronix,st7920.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sitronix ST7920 LCD Display Controllers
+> +
+> +maintainers:
+> +  - Iker Pedrosa <ikerpedrosam@gmail.com>
+> +
+> +description: |
+> +  The Sitronix ST7920 is a controller for monochrome dot-matrix graphica=
+l LCDs,
+> +  most commonly used for 128x64 pixel displays.
+> +  This binding supports connecting the display via a standard SPI bus.
+> +
+> +properties:
+> +  compatible:
+> +    const: sitronix,st7920
+> +
+> +  reg:
+> +    description: The chip-select number for the device on the SPI bus.
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    description: Maximum SPI clock frequency in Hz.
+> +    maximum: 600000
+> +
+> +  spi-cs-high:
+> +    type: boolean
+> +    description: Indicates the chip select is active high.
+
+Don't redefine this, it's defined in spi-peripheral-props.yaml:
+  spi-cs-high:
+    $ref: /schemas/types.yaml#/definitions/flag
+    description:
+      The device requires the chip select active high.
+
+spi-max-frequency's type comes from there, so you need it for that too.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    // Example: ST7920 connected to an SPI bus
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi0 {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        display@0 {
+> +            compatible =3D "sitronix,st7920";
+> +            reg =3D <0>; // Chip select 0
+> +            spi-max-frequency =3D <600000>;
+> +            spi-cs-high;
+> +        };
+> +    };
+>=20
+> --=20
+> 2.50.1
+>=20
+
+--1LYms6pz+HKcRlUi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJOPWAAKCRB4tDGHoIJi
+0sA6AQCF0ossiP7vgh/45UnUA5I1avEKhd0F7ScxlmG+sn0wpwD+NHhKInkH4WMh
++ZgnvS3mmW0e0vj6/+mphoI7Nt9GyQQ=
+=d4yO
+-----END PGP SIGNATURE-----
+
+--1LYms6pz+HKcRlUi--
 
