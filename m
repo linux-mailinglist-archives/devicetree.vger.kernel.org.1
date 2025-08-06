@@ -1,131 +1,147 @@
-Return-Path: <devicetree+bounces-202223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AA8B1C7B4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:36:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10F4FB1C7C2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:40:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 062B856541B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:36:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F18F16B8A8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A755428C84B;
-	Wed,  6 Aug 2025 14:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E1628D8C8;
+	Wed,  6 Aug 2025 14:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KY9Y+E59"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o4DTWTcF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D41823DD;
-	Wed,  6 Aug 2025 14:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E633428C5BF;
+	Wed,  6 Aug 2025 14:40:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754490998; cv=none; b=MNDvcLC5e0F/9hjOd3PGlNdfNMq8Hr4pR1G2nsw7u+dyLowsC1BsLO4WmujnxrGSlw9PnQ1oER+ofwqgzGfxO1U8i0AWgjhV4qln7sgtN1VCtFvs0K7Q6kz8zQK3EHfyLL8Lahra6tsUyS92pxCoF7uTeTH/GNKJOQwvci8Zclw=
+	t=1754491231; cv=none; b=tiCUfdPptMgGCCRkkPIg2wJYP0A5AcfYJ2CwD2GkZrtcCgBwtO329U2rMrxYD+cPuAnsp3fC7Rlx9yqMHa7lrjt4Ak8avEzcmoWJ3x1lYh3EVSImQyqiYw1srkPnUecZk9ZWXSMzOzhDPBtzrTJXQfOxVvTYJdOw6yr3CYXO9O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754490998; c=relaxed/simple;
-	bh=3vnFjNfdaPh9SkFU3xP/Tt9Wl47FarfEWi3jrckk/M0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=pDA/lL22ol9sgMpgd/u3r57mktipVA186dKnbaIHFllF1tGlF/M84tka3/YdYCCJ2hWFdG9UPjxccdLZvTaJdNglmI8rMnGvmPh2BfzUcdt3npwBu9/xeVVUwxaQWiMSn0DNo5lnE2KcXAlnIIyidSrF3sUhvC/r8rvzKX/yQhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KY9Y+E59; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C9683438ED;
-	Wed,  6 Aug 2025 14:36:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1754490994;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JTJr4tzpqtVoTjg53YR9Pm/8memoRI7DH2lY0xra0mI=;
-	b=KY9Y+E59AUQWeNFvBIpOIf7XAa1Bh8a0TQRAnd6eEEo4LNTOTd6g8n/G3ZOOa0Nwi3LnaT
-	zIl3QZEocK4LNBQlJiuLSpuv6F06Zq9cQM9GjIkZ/LHiwE94EGJL22bWAilud3HlOuujnu
-	Q9q9tSMlo42aQXmp6OJl3j9iapfgWM3QcloMvC/YEr2yjIXUd3d6K8DjweMkF7U67TsXW3
-	vhxizfgJJ+FyF5GNnkUfVNJVZdf30ksz7St7wKj0yFRx/6yPuVH+HReS0SeWrQS2LJDanu
-	4jblGZcX1JlBx2l1MYxE4d53DPqPG2KA0bDH/S/RDt89AV/ST/iAuE+v3nWk2A==
+	s=arc-20240116; t=1754491231; c=relaxed/simple;
+	bh=IkP5zCNemQYmyt6yqGgfOTiHen1wjFgC2/LbB4Hw44E=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=QN4HXcIu72sbz5c0AJPUhikbAP1aJ/8VTdz5D9jcv1qapN62WmqS2x+T0zfij67LY9xmuZmYJLMXIRP6ONkFjnWq8O/gy8XtBM3v1Z+XQVqxWsdZD4JdG9U1wqy9knCCS3YWM53Za0vDre0U1YJLXezNTL9/OR0rIhLcuxnOLs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o4DTWTcF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 641E4C4CEE7;
+	Wed,  6 Aug 2025 14:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754491230;
+	bh=IkP5zCNemQYmyt6yqGgfOTiHen1wjFgC2/LbB4Hw44E=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=o4DTWTcFbeng2GWjWaxI9OPPL63VAhk6K7TaGazUGEXOqvTfDJUTEEPVkC7M0Dll0
+	 K7hIW+bXdcw1ZrA0fxa1oBcuOZOjDSMnAY7UpAj9mi3dsc4va37qles+2N6dO2NTuw
+	 lxYrjx3VL1ns4ePqf6964Sp5O9Jdnl/u7sXlW9Zuu50LyE/5D011JJFLdjPT9MJdHc
+	 q+p/oANBwEdiXE76BMB59tE7m/1v1h+3v2n76fTzePtNZpIKyZUhMVlYFA67465kwe
+	 Hw4LD2hZi3C2t3zPbkfe0pK591XsEYGK3G1AlGD7rksDAY3Yy9IB2dNrsE+EIaxUuM
+	 JTc1lIL0l4y7A==
+Date: Wed, 06 Aug 2025 09:40:29 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 06 Aug 2025 16:36:32 +0200
-Message-Id: <DBVF5EWK7WRF.3Q0CRECYQOER0@bootlin.com>
-Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>, "Michael Walle"
- <mwalle@kernel.org>, "Mark Brown" <broonie@kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Danilo Krummrich" <dakr@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Andy Shevchenko"
- <andriy.shevchenko@linux.intel.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-X-Mailer: aerc 0.19.0-0-gadd9e15e475d
-References: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
- <20250722-mdb-max7360-support-v12-4-3747721a8d02@bootlin.com>
- <2msg7e7q42ocjewv35rytdtxwrfqrndpm2y5ustqeaeodencsd@nfdufgtevxte>
- <DBVBZ48R7DNR.850O5X7MLMEF@bootlin.com>
- <praujgmc3c63j6brecp5kwn7tbdd7rcxmrxn67kxhxcr7rpyhw@pfbsgycx4aop>
-In-Reply-To: <praujgmc3c63j6brecp5kwn7tbdd7rcxmrxn67kxhxcr7rpyhw@pfbsgycx4aop>
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduudekfedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdforghthhhivghuucffuhgsohhishdquehrihgrnhgufdcuoehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekhfekieeftefhjeetveefudehuddvvdeuvddvudfgfffhveekffethfeuffdtudenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeffhgtfhemfhgstdgumeduvdeivdemvdgvjeeipdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehmrghthhhivghurdguuhgsohhishdqsghrihgrnhgusegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvfedprhgtphhtthhopehukhhlvghinhgvkheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpt
- hhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhgrmhgvlhdrsghouhhhrghrrgessghoohhtlhhinhdrtghomhdprhgtphhtthhopehlihhnuhhsrdifrghllhgvihhjsehlihhnrghrohdrohhrghdprhgtphhtthhopegsrhhglhessghguggvvhdrphhl
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
-
-On Wed Aug 6, 2025 at 4:02 PM CEST, Uwe Kleine-K=C3=B6nig wrote:
-> On Wed, Aug 06, 2025 at 02:07:15PM +0200, Mathieu Dubois-Briand wrote:
->> > I think the right thing to do here is:
->> >
->> > 	if (wf->period_length_ns > MAX7360_PWM_PERIOD_NS)
->> > 		return 1;
->> > 	else
->> > 		return 0;
->>=20
->> I can definitely do that, but now I'm a bit confused by the meaning of
->> this return value: is it 0 on success, 1 if some rounding was made,
->> -errno on error? So I believe I should only return 0 if
->> wf->period_length_ns =3D=3D MAX7360_PWM_PERIOD_NS, no?
->>=20
->> Or reading this comment on pwm_round_waveform_might_sleep(), maybe we
->> only have to return 1 if some value is rounded UP. So I believe the test
->> should be (wf->period_length_ns < MAX7360_PWM_PERIOD_NS).
->
-> Right,
->
-> 	if (wf->period_length_ns < MAX7360_PWM_PERIOD_NS)
-> 		return 1;
-> 	else
-> 		return 0;
->
-> So 0 =3D request could be matched by only rounding down, 1 =3D request co=
-uld
-> be matched but rounding up was needed, negative value =3D error.
->
-
-Ok, thanks for the explanation.
-
-I will fix the return value, and a new version should come soon.
-
-Best regards,
-Mathieu
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
+References: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
+Message-Id: <175449112353.639494.1882304081892662235.robh@kernel.org>
+Subject: Re: [PATCH RFC v2 0/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
 
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Wed, 06 Aug 2025 14:38:29 +0200, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> Changes in v2:
+> - Patch #1: Add RPMHPD_MXC (Konrad)
+> - Link to v1: https://lore.kernel.org/r/20250714-b4-sm8750-iris-dts-v1-0-93629b246d2e@linaro.org
+> 
+> RFC because depends on old series (6 months old!) which received
+> feedback and nothing happened since that time.  I assume author
+> abandoned that series, but unfortunately unmerged bindings for
+> qcom,sm8750-videocc block this patchset:
+> https://lore.kernel.org/all/20241206-sm8750_videocc-v1-0-5da6e7eea2bd@quicinc.com/
+> 
+> The bindings for new compatible qcom,sm8750-iris:
+> https://lore.kernel.org/r/20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org
+> 
+> Best regards,
+> Krzysztof
+> 
+> ---
+> Krzysztof Kozlowski (3):
+>       arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+>       [DO NOT MERGE] arm64: dts: qcom: sm8750-mtp: Enable Iris codec
+>       [DO NOT MERGE] arm64: dts: qcom: sm8750-qrd: Enable Iris codec
+> 
+>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts |   4 ++
+>  arch/arm64/boot/dts/qcom/sm8750-qrd.dts |   4 ++
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi    | 113 ++++++++++++++++++++++++++++++++
+>  3 files changed, 121 insertions(+)
+> ---
+> base-commit: 709a73d51f11d75ee2aee4f690e4ecd8bc8e9bf3
+> change-id: 20250714-b4-sm8750-iris-dts-ebdb5dc4ee27
+> prerequisite-message-id: 20241206-sm8750_videocc-v1-0-5da6e7eea2bd@quicinc.com
+> prerequisite-patch-id: ada17af875101625f7754335fabc909c8ab9cd20
+> prerequisite-patch-id: 3cb47a7c47cd96e02b5a4a05490088541f97c629
+> prerequisite-patch-id: 8c77b8e0c611b5e28086a456157940d773b323ab
+> 
+> Best regards,
+> --
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit 709a73d51f11d75ee2aee4f690e4ecd8bc8e9bf3
+ Deps: looking for dependencies matching 3 patch-ids
+ Deps: Applying prerequisite patch: [PATCH 1/3] clk: qcom: branch: Extend invert logic for branch2 mem clocks
+ Deps: Applying prerequisite patch: [PATCH 2/3] dt-bindings: clock: qcom: Add SM8750 video clock controller
+ Deps: Applying prerequisite patch: [PATCH 3/3] clk: qcom: videocc-sm8750: Add video clock controller driver for SM8750
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org:
+
+arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: /soc@0/video-codec@aa00000: failed to match any schema with compatible: ['qcom,sm8750-iris']
+arch/arm64/boot/dts/qcom/sm8750-mtp.dtb: clock-controller@aaf0000 (qcom,sm8750-videocc): 'required-opps' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
+arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: /soc@0/video-codec@aa00000: failed to match any schema with compatible: ['qcom,sm8750-iris']
+arch/arm64/boot/dts/qcom/sm8750-qrd.dtb: clock-controller@aaf0000 (qcom,sm8750-videocc): 'required-opps' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/qcom,sm8450-videocc.yaml#
+
+
+
+
 
 
