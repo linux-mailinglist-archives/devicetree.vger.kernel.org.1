@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-202292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E50B1CC27
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:47:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86580B1CC24
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:47:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13C82622D0B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 18:47:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34AF218C4497
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 18:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3EF291C09;
-	Wed,  6 Aug 2025 18:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DEB2298CB6;
+	Wed,  6 Aug 2025 18:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="fFSEPKie"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="cHDqIJzG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D31921C16E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E420A1FFC6D
 	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 18:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754506052; cv=none; b=EH0Fj6vjDJlUQwV4WMU0gdlGiR9I+XbrEDDpgTGDDEyGFDiG1SM4qbxu66tDrXZL6ufjcLGcNDUmjXjwjaalM6pA28bDR2v0aEprjx7pejO9FMdVhCQhRKqp2pzpaE5e2ddX853+Iux+YNvbpL/IZjoRz8kvjLCiU/SHBJlwg14=
+	t=1754506051; cv=none; b=JBR1S2S4FLIzmCvE4mYQqDkDdvWkSKeXWphTX7Zri88XwfJSDKpinySaNvG9jhlaNBa63OvVtrNWI18dxvyYkD1X8MAdf5NQR+2lRaeD+aZYfa2Ki9ebrpZvSZHXFFSTbxnGAgr8nWBVCJhjiocCo76JEjAsIWVooxY1tqw3FnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754506052; c=relaxed/simple;
-	bh=qsrX02vCr1s1dih1yZqbosdNXnPFV9KYcI8kwZnfGpM=;
+	s=arc-20240116; t=1754506051; c=relaxed/simple;
+	bh=hfG/5d6iyZXeHk5oOSyX2czantrfgy0uSZE0boUTshs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uZ8fwBxk7Pi3YvtJygO7JOGF1UqGw+GXiM3NmegCEirmLowjoLDO6jOl/JeHnUGwVgPqWNueg27JZlNaCXnA04oZvo7dSjMbyPzEqV6DPDYZygKJ9hGjzteJDlwV4bgie9DkcHwqu6nrK2D0KYvVlw01jGIhHX/oTA5UYPwaFsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=fFSEPKie; arc=none smtp.client-ip=148.163.156.1
+	 MIME-Version; b=bC189VaF/y/BlcUknUS5XuapjHhCTVIxucemMw024LxJjuGDXQZBBeB9pkgiADu96PsusvdmhG5HmjmVZGXrcyd6AgjFXkukHdTjM4sr37JZMoAa/yH9ZWhOUdYpAsM/JgH3mR6o/H7Qkl6dmUBjEV7uf565nu59aoPKvzzD+Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=cHDqIJzG; arc=none smtp.client-ip=148.163.156.1
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
 Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 576HeT4k028225;
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 576ElSAL029069;
 	Wed, 6 Aug 2025 18:47:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=pp1; bh=aq03Oign6ozBRQLAE
-	AlVAgEzlc9zoUaGxhZQewpsOdo=; b=fFSEPKielHNVUlO9LKQN4ytcx0bewFY81
-	tlhljgn1rF2woj3H9AEDotcEGFZwdGIYPHyZJmdg4M/peDcDLnFBwfiHAH8V7+9Z
-	RhSJI41C9YIeBI514RrqauJQZqHhx+qLuJxQ/3untXfHYK469Vx6D1tsqU82/VEc
-	jTedKZZch/hN8JDENh5kUlunv3TQOASWmoALnKQq1FrxnaRfojoQoEqx/hiEeUgY
-	0DyCPNZESOSKpYZVutVkGRhvTLrZROsxN+Nj+5rK9V+WvOHvLUbvw4nPJAbDbgfN
-	N1RpIpGInkEbYA0l2aadd4jLSsu7UQfRBz2oEGbyhry31GpzoeSWg==
+	:mime-version:references:subject:to; s=pp1; bh=pWGHH7b1TqEtjQnDk
+	2nsq0mhjycRDStWpxay+XrGyGU=; b=cHDqIJzGI9l13TaPzEDf01+dsgUc7Tce1
+	FTU2eynrz8ZwOQKp6vef1Gcg1XjZumtI6qISDn6eyCHRzYYO5/15g8Tlc9YjAaSI
+	I5PFkp/It/Dbm4w1XZrLIAsqCXY7u5CLg3FLyE72bTxPUg9CH1vOF8bLZ8Eo13zE
+	7N92U0h3PESwmL7uvwMt/C2I/3zPB4tbfdQFVXAyZ8H+ePObKuKPkeh16z7Ju6xU
+	oKjcbP6z3BpeHf0jcjEpdTtnb67/K28uOyF8RFBAufGNPY0Zon3a2KAQxZt0lNzC
+	34jEKWhmKNguRbUPHMBaNovFRR1fLtAVqbUp7bV63G7Pvf0errpiQ==
 Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48bq60x221-1
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48bq60x222-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 06 Aug 2025 18:47:21 +0000 (GMT)
 Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 576GAxO5022628;
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 576GF4e6022640;
 	Wed, 6 Aug 2025 18:47:20 GMT
-Received: from smtprelay03.wdc07v.mail.ibm.com ([172.16.1.70])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 48bpwqd182-1
+Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 48bpwqd183-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
 	Wed, 06 Aug 2025 18:47:20 +0000
 Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
-	by smtprelay03.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 576IlCHV30409270
+	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 576IlKwF59703566
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 6 Aug 2025 18:47:12 GMT
+	Wed, 6 Aug 2025 18:47:20 GMT
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id E0A185805A;
-	Wed,  6 Aug 2025 18:47:19 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 196B658060;
+	Wed,  6 Aug 2025 18:47:20 +0000 (GMT)
 Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B995C58060;
+	by IMSVA (Postfix) with ESMTP id E740358061;
 	Wed,  6 Aug 2025 18:47:19 +0000 (GMT)
 Received: from slate16 (unknown [9.61.84.78])
 	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
@@ -72,9 +72,9 @@ To: linux-aspeed@lists.ozlabs.org
 Cc: devicetree@vger.kernel.org, andrew@codeconstruct.com.au,
         conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
         eajames@linux.ibm.com
-Subject: [PATCH v3 2/4] dt-bindings: iio: Add Infineon DPS310 sensor documentation
-Date: Wed,  6 Aug 2025 13:47:09 -0500
-Message-ID: <20250806184711.1882725-3-eajames@linux.ibm.com>
+Subject: [PATCH v3 3/4] dt-bindings: trivial-devices: Document max31785 sensors
+Date: Wed,  6 Aug 2025 13:47:10 -0500
+Message-ID: <20250806184711.1882725-4-eajames@linux.ibm.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20250806184711.1882725-1-eajames@linux.ibm.com>
 References: <20250806184711.1882725-1-eajames@linux.ibm.com>
@@ -86,19 +86,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: EwbWYU6YztvcroEbu06d1zkhBIHuTJ18
-X-Proofpoint-ORIG-GUID: EwbWYU6YztvcroEbu06d1zkhBIHuTJ18
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDEyMSBTYWx0ZWRfX3TCrLKrwRjjP
- imYHikmgZ5sQAKUTOo/gbNPnrv4to2QCjhaHLBI6C9zmzbbuZOuFcVTqJ9j8PZfqq2qlIHHHKKr
- zkQ74VcO6ug+SNQnkOkT7U/huuWuwzvGad9wmDHKjIoe+eziyphElk8zjR4PM2exWaEAWXPsSkT
- lXTnycagHULNlCOqpFVyOHWtfzmGZnybdhN3pVyONrzq1VSe5MTaFIj0oI82d8zNLTsJLiRgCQh
- g7/9G6D+B89rH1WlqQefogt3mq2UBa0m23kv5jAP4cMPSdCMTHS453+ThcS4vzbSuTn4j2+YZqK
- 5Pw3GDwZ9+NlAUB585bDE6RgoNacX+/oPNbwgWIQ/Lg+5DfHIs932WFa/6W4r8hsVsGjj/B2VEE
- gG+IKe5sag2Yx9YEqegA9hg0Gd+2j7NOr5xbb1iCjDvRKJVKf3sLSbgIrmXTaAqPJFS2Ry/M
-X-Authority-Analysis: v=2.4 cv=TayWtQQh c=1 sm=1 tr=0 ts=6893a339 cx=c_pps
+X-Proofpoint-GUID: eFsdpKCD6GVMs22vexZf2pwhXptPY3GL
+X-Proofpoint-ORIG-GUID: eFsdpKCD6GVMs22vexZf2pwhXptPY3GL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDEyMSBTYWx0ZWRfX1myDQKTXODVA
+ P2IwpdWg1emyzpxMa2t5M9V5H5ATKC7wpqnd0Bz7z9ch4N/+WFOvZYSQs6JCwjIJ9g4GSY6SO5h
+ f30MZHdXbbxrkugwnVG4gLW5lqcyCYOWdWlxBMBoQyND7zMmKRtFLCbzPO48OIbGj17asIWP/sV
+ oltJxqvm4z6nHAHpf0gDOu9x6QmoAtDs7pHn5BFKFVkp2u7UNPt0f7K2ecg9P/mVOuUr5WcYBK7
+ COA2TZOxm0C5Y0XuxSqsvq0K+8ryjVNkXxCRKNLx3ni2wTxbdWj79TxgdmvNEIk6AoLXeWU0bF0
+ xIzdyYaI41xyxNIVfbMQwGHH2awrN9gbIGrnGgZAJiQknImHISs8lFzjmTEujXLuO6dWOLPsP6G
+ l3bT8YjVzaEOmuk4ePCq4Alq2wh0le5U+aqPYvFkiE9rpvVmdSUb62UgOjHtS+r8tbQqyXVf
+X-Authority-Analysis: v=2.4 cv=TayWtQQh c=1 sm=1 tr=0 ts=6893a33a cx=c_pps
  a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=VnNF1IyMAAAA:8 a=VwQbUJbxAAAA:8
- a=bXeKShIA4ZCQSYCXJPgA:9 a=sptkURWiP4Gy88Gu7hUp:22
+ a=2OwXVqhp2XgA:10 a=jtbBNqsHAAAA:8 a=VnNF1IyMAAAA:8 a=brXxiGoeIixPC4QSiM8A:9
+ a=RWaeYqt-Cn-VcsFsiLGo:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-06_04,2025-08-06_01,2025-03-28_01
@@ -109,93 +109,59 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
  definitions=main-2508060121
 
-The DPS310 is a barometric pressure and temperature sensor with
-an I2C interface. Remove it from trivial-devices.yaml and add it's
-own documentation.
+Remove the old .txt max31785 documentation and add the compatibles
+to trivial-devices.yaml.
 
 Signed-off-by: Eddie James <eajames@linux.ibm.com>
 ---
- .../iio/pressure/infineon,dps310.yaml         | 44 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- MAINTAINERS                                   |  1 +
- 3 files changed, 45 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+ .../devicetree/bindings/hwmon/max31785.txt    | 22 -------------------
+ .../devicetree/bindings/trivial-devices.yaml  |  4 ++++
+ 2 files changed, 4 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-new file mode 100644
-index 000000000000..3c2d807e4939
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon DPS310 barometric pressure and temperature sensor
-+
-+maintainers:
-+  - Eddie James <eajames@linux.ibm.com>
-+
-+description: |
-+  The DPS310 is a barometric pressure and temperature sensor with an I2C
-+  interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - infineon,dps310
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#io-channel-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure-sensor@76 {
-+          compatible = "infineon,dps310";
-+          reg = <0x76>;
-+          #io-channel-cells = <0>;
-+        };
-+    };
+diff --git a/Documentation/devicetree/bindings/hwmon/max31785.txt b/Documentation/devicetree/bindings/hwmon/max31785.txt
+deleted file mode 100644
+index 106e08c56aaa..000000000000
+--- a/Documentation/devicetree/bindings/hwmon/max31785.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Bindings for the Maxim MAX31785 Intelligent Fan Controller
+-==========================================================
+-
+-Reference:
+-
+-https://datasheets.maximintegrated.com/en/ds/MAX31785.pdf
+-
+-The Maxim MAX31785 is a PMBus device providing closed-loop, multi-channel fan
+-management with temperature and remote voltage sensing. Various fan control
+-features are provided, including PWM frequency control, temperature hysteresis,
+-dual tachometer measurements, and fan health monitoring.
+-
+-Required properties:
+-- compatible     : One of "maxim,max31785" or "maxim,max31785a"
+-- reg            : I2C address, one of 0x52, 0x53, 0x54, 0x55.
+-
+-Example:
+-
+-        fans@52 {
+-                compatible = "maxim,max31785";
+-                reg = <0x52>;
+-        };
 diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index f3dd18681aa6..3f2c5b815d0d 100644
+index 3f2c5b815d0d..72ee7bad36fc 100644
 --- a/Documentation/devicetree/bindings/trivial-devices.yaml
 +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -127,8 +127,6 @@ properties:
-           - ibm,cffps2
-             # IBM On-Chip Controller hwmon device
-           - ibm,p8-occ-hwmon
--            # Infineon barometric pressure and temperature sensor
--          - infineon,dps310
-             # Infineon IR36021 digital POL buck controller
-           - infineon,ir36021
-             # Infineon IRPS5401 Voltage Regulator (PMIC)
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4912b8a83bbb..756d988933d3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11996,6 +11996,7 @@ INFINEON DPS310 Driver
- M:	Eddie James <eajames@linux.ibm.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
- F:	drivers/iio/pressure/dps310.c
- 
- INFINEON PEB2466 ASoC CODEC
+@@ -201,6 +201,10 @@ properties:
+           - maxim,max15303
+             # Multiphase Master with PMBus Interface and Internal Buck Converter
+           - maxim,max20751
++            # 6-Channel PWM fan controller
++          - maxim,max31785
++          - maxim,max31785a
++          - maxim,max31785b
+             # mCube 3-axis 8-bit digital accelerometer
+           - mcube,mc3230
+             # mCube 3-axis 8-bit digital accelerometer
 -- 
 2.50.1
 
