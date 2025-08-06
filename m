@@ -1,222 +1,143 @@
-Return-Path: <devicetree+bounces-202149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B41FB1C36D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:35:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DC8B1C386
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 11:41:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89E8316CB68
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:35:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 132E87206E0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE69C209F2E;
-	Wed,  6 Aug 2025 09:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72ED4289E2E;
+	Wed,  6 Aug 2025 09:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="huTiya0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBBA2B2D7;
-	Wed,  6 Aug 2025 09:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10DA199E89
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 09:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754472934; cv=none; b=FPphLUrpfDbkooiYrVQyJK1MhvzLwJk1sS32M0PwaPImM4Sn1P257AlW945ZG8ztxWIgB7AjdC7lCKRB4HaZI71RBw67qhcK1y0Um3ln4wD2+vgdxkgGyFSZJBvraaVFPGCQvcqSe7HhctqkbkV3my5fZfIHsX2j7S0V6Py4Yrk=
+	t=1754473300; cv=none; b=nptrV8+7wgtbs5qjm9MwJYuXaKZtdzzQhYnXDQL3XtKGLuOmGplgJcx0VAjp4p2LHETI55/mk5qiVgalHDmD9zQvKu1ZME3sLa4ANDI4rLzLGo7koZEMh7RHssCOo+ORu1FU28cN/PjWyx7SgCZKTzzBGe84M0J6zhNUYpuMKzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754472934; c=relaxed/simple;
-	bh=TiLe8TYKDWkzHthBwCk1ge3ltkHRnATXzDx8yWYiNKQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PYAhcrHgqM4FdOiMBxTOz23UFJ2N/EqtXVA5ElU9KUeIKoQKuQtT18gCLP2IXMqMEebDGb143qOM6AxvBBSPYZO8mlfTGJnkLUpxyW3xkSD2PJj1EsNOADAkUXvfea2evQq56tyAWqefAOXSgxbBWg5zhd7+2tTLIu7jADl819k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-88dc40608c1so1646463241.2;
-        Wed, 06 Aug 2025 02:35:32 -0700 (PDT)
+	s=arc-20240116; t=1754473300; c=relaxed/simple;
+	bh=pgv0yQkNz/DBClC/IvaptKaPbaQzzYBOnrzrNVwFKnE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V6cOyIsSQekgB50SBCMM6gy7N4vTn9DAVUJXHQTmJOUqZ11er7aV5VKPAKT3RPgogo7nLOSJLqiSY6F8vyZkzWMnWD8IUb+2N9v44vAuzZ79EXCbPU91ojh/2h/6VsY9kHN9AZzmvjOF+ITLpLoerN2QYbVF+5TDuYzZ7DWp6Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=huTiya0X; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5765iqmA028205
+	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 09:41:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7VakF4VB+aL+NaS1MnqeG+4TxHm+weWhZ7lip1w6QDk=; b=huTiya0X94aXfKGs
+	P5deAgB+8aDXBQ8MSQLYApgbol2kiwjgdDqxq/R6KQIVl+a6Vo80w9YWE9nu+bg+
+	47objIpX+U4R4fBiSCVgz16uf0wEb0zKikT+eZoY7sBhkHqlQZmUruEvKopWIUl4
+	hygomckaxoPnDh9L0A8OlqwKDnnTmrTkaCCp0qjIdLtUuAyWCS/EknqVCn7i47Ke
+	q8LHW2mvDXg8JqPojNE4Ytfh3pOi0ubsD6TzBOO+6rXH2xIGEWduRDIJVK3wgptg
+	Na31JYnDJUAzM8XaLDWuOHh5u2d0dphm0mDWVA39BLMRixlDyl1be9QUPuh3JNqJ
+	uygLuw==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvxtb91-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 09:41:38 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7092ee7f3cfso14267346d6.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 02:41:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754472931; x=1755077731;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uDkF0BLoXFgSE926je2WgpTyIl4N2UFYP5ht23EU0t4=;
-        b=f9FObMCh3Nm1/VJ2jAll9jmyNa786VpBWLaMViakQgTkldYgP1SfY02+r39OHpTywX
-         BcBX+ux0ahHFkqcNjhpHLYG6JOKSgcZ8h2zrlOdW1YLZGB2SzJ8AKjaQPQ7Y37/kXM1X
-         1/sqihdo+5w+Dwwr7GOJb2FVO7ixaOkqsz9eD+YpaBAywajYe0pvkrB0YVOwmzqBGZZN
-         qMS4IoK1uySwWsbth6g+plSvLfx/vDBPatjUDZo96pljqwbkPKmzgcIRBTXjX9prf4Jw
-         bFSrxMdO0yVou9n/hqn9eRtvmjGHqSCf/H2HAKGHH9fN3Q8F3oHPKQXKrXWq6+QCiMXm
-         kfAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZn9eW60el2DKuUXhj36/6IcqiqNlf4LH+i5cn0CWFC9mbZa8Soe9KhLGmFqupvmDy1lk6LDtckbjSj1PByt2HHBk=@vger.kernel.org, AJvYcCXNkEXQ2oAIoar+5tSK+SskMCx0ty75cVF6PLz8mMV86y0pHbAOiF+fYVX8lBu0iTTwOA4zwScoNm/k@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNTSembsV8r36M+6JUwf2HB6Jfbn/jN6/Z0gjUyCJGJUcuznZc
-	qMuE/LDmZVYqC8De0VIJhbbQwiTJOxXwP4GYSTj2ptDfq2ThAqMv5WqjQd+aMfEs
-X-Gm-Gg: ASbGnct8aJ/mUaQ+7Q0WSW7/9/PYrMnq+4jxCYlbAI8yYrkifUEAkJtGcnX8jXoX+Kr
-	2XIDHQ8gK4cFfdTwGs0/MG10HatsKu/6/UXLe4xaPwefR7nhZ176NWbwcAjj8bR7y2MfxBBnBhM
-	YEXDVW7ugkIj/0mj3olsH+F0caa7br4Q4Cc0k60WeXFnV/EHN/dP4DYh8JV2GsgmgC7sjx5NNeh
-	qwyAoJMGxjPtNPYCBJbo8/W11DL7wkiDLZXziS+e1yPFzcXJZNwuZQ/ycSH1Ow/d0ynhqETZukx
-	jpUjvgxa6YV64ocnRR2n415Rg7yp5Szr5W2krjSFKXVF8Y2fsfm5TsfOY0wdkclG1ufJWM3dm54
-	bzgj29iJPc5mBwTbBW07sNXNuUZ0QD28dQ0ElletG4TNJ+T+TrPoxMSTIZwQpELtTfgBLvgI=
-X-Google-Smtp-Source: AGHT+IGbf/AfBDLZOlQ/0VNAyif4Qv030yAe5Bi0UWv2iX5vLQ3m7hwqeouvK+P0YBAzH928TJyKmg==
-X-Received: by 2002:a05:6102:1620:b0:4e9:d847:edab with SMTP id ada2fe7eead31-50373e1cc23mr795932137.14.1754472931213;
-        Wed, 06 Aug 2025 02:35:31 -0700 (PDT)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-88d8f3f0291sm3331923241.16.2025.08.06.02.35.30
+        d=1e100.net; s=20230601; t=1754473297; x=1755078097;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7VakF4VB+aL+NaS1MnqeG+4TxHm+weWhZ7lip1w6QDk=;
+        b=nrZDYLQyN9YAYwI9dbcW0iPDTxIgRXJfikVi4VkXT+s7AroWHH96Nm9G04Zu665at6
+         zWXywrNCDIPtW/FS54/lsZrZ4+Xgc6ywLAHli56yv0uhGtglSacIoQ9e2qrp6Y0Vh7X9
+         01u9SFIDfYawIgzDQTDOfaruK+a3vvrwMOwWjQJb85Kq+17qdHuBotef55370fPJ5hv0
+         lELLwp5SfHltc7eFuICJOeb/H+o9U/ksVJ5haP6eZz97FKkkpUUsw9h83PJyCHoTOpk7
+         MgxUnknbY4A1IZDMBBdAOh2YzUnLv3UOK5agNqfLKJZ+PZmh9XR16+Wpj3mHbdj5i9cp
+         xiMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVbWOoShjsYgwJFg2jVr8NUKKhTHPyTiXbny43bpZRLzXTII2cCvPJrK2c63qO7LMxz7JaqvrGSanUz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDffVjl+eOaY+dShBVyaKRl8+Kg/CW7etqaZ8+ldr2+MsIMReP
+	/kI6IbI2nV0BcTGh0J5NLeCkfyr+UXEvnlHOVDXqZ0Xh+vwf/MDjoRLNgCsYnypQ/6K95F+HzVG
+	i4bV+9tPis3kud4Y8RokaEjLE69HvvS6mHILYQX6YCyj8d0nqYOOlmjA5by41uP9r
+X-Gm-Gg: ASbGncsYyzBM1Ww3+soIIS21aRu4l4vLVxk9j2YhnRKCBTsoaV75O8pBkI/da5w0duk
+	qkG5Mlq8JWftuY6z7vlZ60OxjOXSxcs9v3RRc0wvG+40bABGaUTrwTQJMbybohhQpqjjySIsDOi
+	1Ie9yM8/5bCdGrGGmtw69a2ceuDX6E9FL5jYGpDX8mgU/3xuSvBVow9G6p8pwtcgo6Qa8QuowDu
+	/NiCAgt69mcFHAUJuiEUwUg1Ng8c/RGMMP30mqpMVr8TIUk2a/xY39wTiBNC9DEeOSoagrSphN7
+	fMuUvCsWz8qxgE3QwPgl8SStJwawPLp0w6HMdBDjTRxC1NTTZ8rVWH0CFimsRP7jAm/0tlrcHSa
+	9M6F9ux8h+Y9PBcRkdQ==
+X-Received: by 2002:a05:6214:226f:b0:707:40d4:44e1 with SMTP id 6a1803df08f44-70979352168mr17998186d6.0.1754473296909;
+        Wed, 06 Aug 2025 02:41:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHnpjpBA0gv0Qyb9rFEQ373wlImQP3wj+mzhJoMbEtEK39NrrxF/4L/FOwxD6DmpkrQ47JJFw==
+X-Received: by 2002:a05:6214:226f:b0:707:40d4:44e1 with SMTP id 6a1803df08f44-70979352168mr17997986d6.0.1754473296303;
+        Wed, 06 Aug 2025 02:41:36 -0700 (PDT)
+Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8fe7c88sm9857004a12.41.2025.08.06.02.41.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 02:35:30 -0700 (PDT)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4fc1094c24eso3922536137.0;
-        Wed, 06 Aug 2025 02:35:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUMqEAtGqmIMHZB0R+iY0cH8zLYbC/OS0Amwv0FrV96aHJPTJ9PzrsmMCamhew6fTJ9hOuxN3XojYn4@vger.kernel.org, AJvYcCX5TUISCzmUI/dIX7Z75ayys2gDqNN3bny/ljmVaeRB1hN7i/ikJZJnKjWg9pDNQ3iNqvbMDGegyEY+xwPI3PGsTC0=@vger.kernel.org
-X-Received: by 2002:a67:e715:0:b0:4e5:fe5e:2be4 with SMTP id
- ada2fe7eead31-50374836fa4mr834200137.22.1754472930463; Wed, 06 Aug 2025
- 02:35:30 -0700 (PDT)
+        Wed, 06 Aug 2025 02:41:35 -0700 (PDT)
+Message-ID: <55e9cac5-3803-40b1-8431-52510a8932fe@oss.qualcomm.com>
+Date: Wed, 6 Aug 2025 11:41:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 6 Aug 2025 11:35:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV3=c24KxO_Sbt50FGsFnNVYNnHAUhk-yoa+nM1f+7+kA@mail.gmail.com>
-X-Gm-Features: Ac12FXxkFhtyguB3aGvA7SYrNZpS8Rh9K4bGzADHoB8_URkfClNeKozYh9_ZFkU
-Message-ID: <CAMuHMdV3=c24KxO_Sbt50FGsFnNVYNnHAUhk-yoa+nM1f+7+kA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Update thermal trip points
- on V4H Sparrow Hawk
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] arm64: dts: qcom: qcs8300: add display dt nodes
+ for MDSS, DPU, DisplayPort and eDP PHY
+To: Yongxing Mou <quic_yongmou@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250806-dts_qcs8300-v5-0-60c554ec3974@quicinc.com>
+ <20250806-dts_qcs8300-v5-1-60c554ec3974@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250806-dts_qcs8300-v5-1-60c554ec3974@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX68URqcrK5w7i
+ ap2NZdzRDkl7Vou7k4R7Uzjuoc/YFMUST21fnuvSkB58Cqghv987W82kpwSlkrnrL4u9bJZKAQv
+ Hd5E5MtZr0iDNaH7tF1koMzQ90IJQmD1uhLormreJanwcLgTE9plNqcA1wA9aUionJBOSS0aMIN
+ eibWrYdNfXC4+LOpJsmd1sMfso/pUiY6DB96hu1kxj8tCjaX6N0AL4HA9i3yCOqHLyrNeORn0Rs
+ gtNtGhMAureud6Ribq0L3gHcoGpCl6o3pZn+MOlp9+Vy2N05rMJVOSb9AVQK2wVvXunZIGMJ+vz
+ OANoEkHLywodryFff9JFH5ZUxxQ6UFBtQHRfSvq5GNp2ufmQEvab2xS022qcvPb8IR5SUGeYib3
+ eacZD9NR
+X-Proofpoint-ORIG-GUID: M4Q7UXH890CmAs78toqznBPdmUsYZ8AO
+X-Proofpoint-GUID: M4Q7UXH890CmAs78toqznBPdmUsYZ8AO
+X-Authority-Analysis: v=2.4 cv=U5WSDfru c=1 sm=1 tr=0 ts=68932352 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=ggSMAipNaOlLgWN-UjYA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-06_02,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ phishscore=0 impostorscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060009
 
-Hi Marek,
+On 8/6/25 9:12 AM, Yongxing Mou wrote:
+> Add devicetree changes to enable MDSS display-subsystem,
+> display-controller(DPU), DisplayPort controller and eDP PHY for
+> Qualcomm QCS8300 platform.
+> 
+> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+> ---
 
-On Wed, 25 Jun 2025 at 12:03, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Since the Sparrow Hawk has a smaller PCB than the White Hawk, it tends
-> to generate more heat. To prevent potential damage to the board, adjust
-> the temperature trip points.
->
-> Add four "passive" trip points which increasingly throttle the CPU to
-> prevent overheating. The first trip point at 68=C2=B0C disables the 1.8 G=
-Hz
-> and 1.7 GHz modes and limits the CPU to 1.5 GHz frequency. The second
-> trip point at 72=C2=B0C disables the 1.5 GHz mode and limits the CPU to 1=
-.0
-> GHz frequency. The third trip point at 76=C2=B0C uses thermal-idle to sta=
-rt
-> inserting idle cycles into the CPU instruction stream to cool the CPU
-> cores down. The fourth and last trip point at 80=C2=B0C disables the 1.0 =
-GHz
-> mode and limits the CPU to 500 MHz frequency.
->
-> In case the SoC heats up further, in case either of the thermal sensors
-> readings passes the 100=C2=B0C, a thermal shutdown is triggered to preven=
-t
-> any damage to the hardware.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
-> @@ -38,6 +38,7 @@
->
->  /dts-v1/;
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/thermal/thermal.h>
->
->  #include "r8a779g3.dtsi"
->
-> @@ -797,3 +798,139 @@ &rwdt {
->  &scif_clk {    /* X12 */
->         clock-frequency =3D <24000000>;
->  };
-> +
-> +/* thermal-idle cooling for all SoC cores */
-> +&a76_0 {
-
-Please keep nodes sorted (alphabetically by label).
-
-> +       #cooling-cells =3D <2>;
-
-This is only present for the first CPU core, and map{0,1,3} refer
-only to a76_0, because all four CPU cores are driven by a single clock
-(Z0), right?
-
-> +
-> +       a76_0_thermal_idle: thermal-idle {
-> +               #cooling-cells =3D <2>;
-> +               duration-us =3D <10000>;
-> +               exit-latency-us =3D <500>;
-> +       };
-> +};
-
-> +/* THS sensor in SoC near CA76 cores does more progressive cooling. */
-> +&sensor_thermal_ca76 {
-> +       critical-action =3D "shutdown";
-> +
-> +       cooling-maps {
-> +               /*
-> +                * The cooling-device minimum and maximum parameters inve=
-rsely
-> +                * match opp-table-0 {} node entries in r8a779g0.dtsi, in=
- other
-> +                * words, 0 refers to 1.8 GHz OPP and 4 refers to 500 MHz=
- OPP.
-> +                * This is because they refer to cooling levels, where ma=
-ximum
-> +                * cooling level happens at 500 MHz OPP, when the CPU cor=
-e is
-> +                * running slowly and therefore generates least heat.
-
-That applies to cooling-device =3D <&a76_[0-3] ...>...
-
-> +                */
-> +               map0 {
-> +                       /* At 68C, inhibit 1.7 GHz and 1.8 GHz modes */
-> +                       trip =3D <&sensor3_passive_low>;
-> +                       cooling-device =3D <&a76_0 2 4>;
-> +                       contribution =3D <128>;
-> +               };
-> +
-> +               map1 {
-> +                       /* At 72C, inhibit 1.5 GHz mode */
-> +                       trip =3D <&sensor3_passive_mid>;
-> +                       cooling-device =3D <&a76_0 3 4>;
-> +                       contribution =3D <256>;
-> +               };
-> +
-> +               map2 {
-> +                       /* At 76C, start injecting idle states */
-> +                       trip =3D <&sensor3_passive_hi>;
-> +                       cooling-device =3D <&a76_0_thermal_idle 0 80>,
-> +                                        <&a76_1_thermal_idle 0 80>,
-> +                                        <&a76_2_thermal_idle 0 80>,
-> +                                        <&a76_3_thermal_idle 0 80>;
-
-... but what do "0 80" refer to? I couldn't find in the thermal-idle
-bindings what exactly are the minimum and maximum cooling states here.
-
-> +                       contribution =3D <512>;
-> +               };
-
-The rest LGTM, so with the sort order fixed, and the thermal-idle
-states clarified:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
