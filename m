@@ -1,124 +1,212 @@
-Return-Path: <devicetree+bounces-202130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916D9B1C1DC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09246B1C210
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6494E189049E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:12:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B88018A47E7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49C422173F;
-	Wed,  6 Aug 2025 08:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359012222C3;
+	Wed,  6 Aug 2025 08:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="m6DaK9Ye"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="gEmTUuxm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C867A221275;
-	Wed,  6 Aug 2025 08:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28691DE89B
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 08:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754467889; cv=none; b=F8tXQAIilxoCZCm7Vt679fpzp53YhFMZbu85vFWlOx+iGihDbNXkczc2XrJmZsZLnWt7HhV72q/uuvOkshxP48aw3PepP/NkfsbBIYXc4Je55iacEJ0Z3YM8zmUbZs6TpNSU8nlZedqWp9uGFKIHqBzgb2jQNStl0aumAdwAEfo=
+	t=1754468543; cv=none; b=WD6tLBd3GVk2virxUBHlwccnAc+9KdqH5rd2y5hmWwVj6omWbiiaxXamgekzeLY0XFNKMYdPxIS4h6KmHSu+qVdSbxNP/x39pLWi35MOfkcTf/aAHizV04zR1Yy1qPXlcyMDKLUsB1B3Zbc86txifG9xr7K06aOQ/+SS6ntNHQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754467889; c=relaxed/simple;
-	bh=P+57ZUeXhlIPUWR+Lz1h+MLTlAkz+5+vW8yH9ah4+Xo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=CCZWe8X5GaMFhYnxMMEfCZybZN4QvYaKXoKmV2jEbJFjOGdj0DiGYMFEL4u00uMiryDsC/dn5wDFBPc4MyACcnUy7lUgE3VbaElIBgn22/bdw8OX/3RuNPgchPGBHc22JNx1I21+eSnCbelHCqk5GJCwgz37lqpsQv24RqnUE70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=m6DaK9Ye; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5767po1t012123;
-	Wed, 6 Aug 2025 10:11:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=selector1; bh=HXxUnDHaYNU0mMmrMfCxsA
-	ctTXfb2hYKcIpCLaZtg2c=; b=m6DaK9YeW5mfl4x4oa5iLccXPZ6A4nrBkmmftK
-	12qzjCQ77d+4m6uWsyhI9k9oSCojdH90GjG66kwHlcI0Ncm2xsRd/P2LmxjRruqk
-	TQWfZidTKkXYmyj7Kh/YRGMZPB3KTMmE04nP2/kcS+jF9//a14fEJQ1rHd9jC5d3
-	d8blssokPrpQJZjbtV8XtAraQO5HlIrRZm71ZhIJwyGlT40KCMYSoaRdxbjfngLA
-	5r9OPmNDUo4DhvsQiKqHQwpgazDLS2Ryr+6ZR7wbVZzaffmhcMkE9cUADBn+ppuf
-	kDj3CZY+w5goj8bM7mcmnnk9UAUlpDJ+0nsN6f+j+E6d5LKg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48bpx8ac4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Aug 2025 10:11:09 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B1CBA4004B;
-	Wed,  6 Aug 2025 10:10:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8DD2B767CC2;
-	Wed,  6 Aug 2025 10:09:37 +0200 (CEST)
-Received: from localhost (10.48.87.62) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 6 Aug
- 2025 10:09:37 +0200
-From: Patrice Chotard <patrice.chotard@foss.st.com>
-Date: Wed, 6 Aug 2025 10:09:35 +0200
-Subject: [PATCH] arm64: dts: st: Add memory-region-names property for
- stm32mp257f-ev1
+	s=arc-20240116; t=1754468543; c=relaxed/simple;
+	bh=m7sqR9B0NN86kX0PoItCJADw/zIvrr2/IE+k7Ve7aao=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=cLNYqwJRf1jM+oqVhpQ8RuAYRqoyH+NzHsDMNluxRH9dJolWLb4j5kxURlCXwhb9BfPXtwIuzYxq7r6QF7J+qM8yHCmloKJNPdpSbfKCvDzISPqgtsaYMZFi4tXYYWFc5wmwU8jqdsObAVTXG6rlxyYqUGqTrLrFLWUN77W9/hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=gEmTUuxm; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250806082219epoutp04d1edb2810cd7f1c0aecd1bbdb481def4~ZH9c8K8MW1212612126epoutp04Q
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 08:22:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250806082219epoutp04d1edb2810cd7f1c0aecd1bbdb481def4~ZH9c8K8MW1212612126epoutp04Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754468539;
+	bh=m7sqR9B0NN86kX0PoItCJADw/zIvrr2/IE+k7Ve7aao=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=gEmTUuxmCfuWXNYVyJZg2seg6+c/BelnYnxR4CcGOhNf17X7Hue/dVeyWjq4tx8xE
+	 2tvbG55Uw39nHba6Ar3DhTzhReZ/rWsaxONqjFRVJGEJ/ahww82P+ZQDLQTV8jVhlW
+	 x86fXNbvlvlPvKNqe1PXIUWR/jDTszJgLSl1WU7w=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250806082218epcas5p33aecd08f1649afbc6048ea4b3067297c~ZH9b645E70885208852epcas5p3z;
+	Wed,  6 Aug 2025 08:22:18 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4bxjvX6p3sz2SSKY; Wed,  6 Aug
+	2025 08:22:16 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250806082216epcas5p2976661d5f4c9a10835fe831e97cf7fd1~ZH9aWh2GV0281802818epcas5p2V;
+	Wed,  6 Aug 2025 08:22:16 +0000 (GMT)
+Received: from INBRO001561 (unknown [107.122.12.6]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250806082211epsmtip1d80097c73b45e759d745e4b959969147~ZH9V88NzW1683116831epsmtip1R;
+	Wed,  6 Aug 2025 08:22:11 +0000 (GMT)
+From: "Pankaj Dubey" <pankaj.dubey@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'SeonGu Kang'"
+	<ksk4725@coasia.com>, "'Jesper Nilsson'" <jesper.nilsson@axis.com>,
+	"'Michael Turquette'" <mturquette@baylibre.com>, "'Stephen Boyd'"
+	<sboyd@kernel.org>, "'Rob Herring'" <robh@kernel.org>, "'Krzysztof
+ Kozlowski'" <krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Sylwester Nawrocki'" <s.nawrocki@samsung.com>, "'Chanwoo Choi'"
+	<cw00.choi@samsung.com>, "'Alim Akhtar'" <alim.akhtar@samsung.com>, "'Linus
+ Walleij'" <linus.walleij@linaro.org>, "'Tomasz Figa'"
+	<tomasz.figa@gmail.com>, "'Catalin Marinas'" <catalin.marinas@arm.com>,
+	"'Will Deacon'" <will@kernel.org>, "'Arnd Bergmann'" <arnd@arndb.de>
+Cc: "'kenkim'" <kenkim@coasia.com>, "'Jongshin Park'" <pjsin865@coasia.com>,
+	"'GunWoo	Kim'" <gwk1013@coasia.com>, "'HaGyeong Kim'" <hgkim05@coasia.com>,
+	"'GyoungBo Min'" <mingyoungbo@coasia.com>, "'SungMin Park'"
+	<smn1196@coasia.com>, "'Shradha Todi'" <shradha.t@samsung.com>, "'Ravi
+ Patel'" <ravi.patel@samsung.com>, "'Inbaraj E'" <inbaraj.e@samsung.com>,
+	"'Swathi K S'" <swathi.ks@samsung.com>, "'Hrishikesh'"
+	<hrishikesh.d@samsung.com>, "'Dongjin Yang'" <dj76.yang@samsung.com>, "'Sang
+ Min Kim'" <hypmean.kim@samsung.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-arm-kernel@axis.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<soc@lists.linux.dev>
+In-Reply-To: <99977f38-f055-46ed-8eb0-4b757da2bcdd@kernel.org>
+Subject: RE: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
+Date: Wed, 6 Aug 2025 13:52:10 +0530
+Message-ID: <000501dc06ab$37f09440$a7d1bcc0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGJY/8wx4BImu0YLFPVfwpfqUmFNgKXZrJuAgeQag4A83Fv2QHBXkcOtL/uTdA=
+Content-Language: en-us
+X-CMS-MailID: 20250806082216epcas5p2976661d5f4c9a10835fe831e97cf7fd1
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
-X-B4-Tracking: v=1; b=H4sIAL4Nk2gC/x2M0QpAQBAAf0X77GpdXPgV6cLtsQ+HbpGSf3d5n
- KaZB4Qik0CbPRDpYuFtTVDkGUzLsM6k2CUGjbrCGo06dzkiDcF6vq07xG4hqAnRjKbBUvsCUrp
- HSvrfdv37fk1vT8RmAAAA
-X-Change-ID: 20250806-upstream_fix_dts_omm-c006b69042f1
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_01,2025-08-04_01,2025-03-28_01
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250721064006epcas5p4617b0450e69f72c94d2b3ae7b1d200e7
+References: <20250710002047.1573841-1-ksk4725@coasia.com>
+	<847e908b-1073-46ea-93f3-1f36cc93d8b8@kernel.org>
+	<bfdc2eddde554e1d1808dd8399bc6a693f681c9b.camel@coasia.com>
+	<CGME20250721064006epcas5p4617b0450e69f72c94d2b3ae7b1d200e7@epcas5p4.samsung.com>
+	<99977f38-f055-46ed-8eb0-4b757da2bcdd@kernel.org>
 
-Add memory-region-names property for stm32mp257f-ev1.
-This allows to identify and check memory-map area's configuration.
 
-Cc: stable@vger.kernel.org
-Fixes: cad2492de91c ("arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board")
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 2f561ad4066544445e93db78557bc4be1c27095a..16309029758cf24834f406f5203046ded371a8f9 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -197,6 +197,7 @@ &i2c8 {
- 
- &ommanager {
- 	memory-region = <&mm_ospi1>;
-+	memory-region-names = "mm_ospi1";
- 	pinctrl-0 = <&ospi_port1_clk_pins_a
- 		     &ospi_port1_io03_pins_a
- 		     &ospi_port1_cs0_pins_a>;
-
----
-base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-change-id: 20250806-upstream_fix_dts_omm-c006b69042f1
-
-Best regards,
--- 
-Patrice Chotard <patrice.chotard@foss.st.com>
-
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Monday, July 21, 2025 12:10 PM
+> To: SeonGu Kang <ksk4725=40coasia.com>; Jesper Nilsson
+> <jesper.nilsson=40axis.com>; Michael Turquette <mturquette=40baylibre.com=
+>;
+> Stephen Boyd <sboyd=40kernel.org>; Rob Herring <robh=40kernel.org>;
+> Krzysztof Kozlowski <krzk+dt=40kernel.org>; Conor Dooley
+> <conor+dt=40kernel.org>; Sylwester Nawrocki <s.nawrocki=40samsung.com>;
+> Chanwoo Choi <cw00.choi=40samsung.com>; Alim Akhtar
+> <alim.akhtar=40samsung.com>; Linus Walleij <linus.walleij=40linaro.org>;
+> Tomasz Figa <tomasz.figa=40gmail.com>; Catalin Marinas
+> <catalin.marinas=40arm.com>; Will Deacon <will=40kernel.org>; Arnd Bergma=
+nn
+> <arnd=40arndb.de>
+> Cc: kenkim <kenkim=40coasia.com>; Jongshin Park <pjsin865=40coasia.com>;
+> GunWoo Kim <gwk1013=40coasia.com>; HaGyeong Kim
+> <hgkim05=40coasia.com>; GyoungBo Min <mingyoungbo=40coasia.com>;
+> SungMin Park <smn1196=40coasia.com>; Pankaj Dubey
+> <pankaj.dubey=40samsung.com>; Shradha Todi <shradha.t=40samsung.com>;
+> Ravi Patel <ravi.patel=40samsung.com>; Inbaraj E <inbaraj.e=40samsung.com=
+>;
+> Swathi K S <swathi.ks=40samsung.com>; Hrishikesh
+> <hrishikesh.d=40samsung.com>; Dongjin Yang <dj76.yang=40samsung.com>;
+> Sang Min Kim <hypmean.kim=40samsung.com>; linux-kernel=40vger.kernel.org;
+> linux-arm-kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.o=
+rg;
+> linux-arm-kernel=40axis.com; linux-clk=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-gpio=40vger.kernel.org; soc=40lists.l=
+inux.dev
+> Subject: Re: =5BPATCH 00/16=5D Add support for the Axis ARTPEC-8 SoC
+>=20
+> On 21/07/2025 06:50, SeonGu Kang wrote:
+> > 2025-07-10 (=EB=AA=A9),=2009:07=20+0200,=20Krzysztof=20Kozlowski:=0D=0A=
+>=20>>=20On=2010/07/2025=2002:20,=20ksk4725=40coasia.com=20wrote:=0D=0A>=20=
+>>>=20From:=20SeonGu=20Kang=20<ksk4725=40coasia.com>=0D=0A>=20>>>=0D=0A>=20=
+>>>=20Add=20basic=20support=20for=20the=20Axis=20ARTPEC-8=20SoC.=0D=0A>=20>=
+>>=20This=20SoC=20contains=20four=20Cortex-A53=20CPUs=20and=20other=20sever=
+al=20IPs.=0D=0A>=20>>>=0D=0A>=20>>>=20Patches=201=20to=2010=20provide=20the=
+=20support=20for=20the=20clock=20controller,=20which=0D=0A>=20>>>=20is=20si=
+milar=20to=20other=20Samsung=20SoCs.=0D=0A>=20>>>=0D=0A>=20>>=20You=20shoul=
+d=20explain=20here=20(and=20in=20DTS=20patches=20or=20the=20bindings)=20the=
+=0D=0A>=20>>=20hardware,=20that=20this=20is=20Samsung=20SoC.=0D=0A>=20>>=0D=
+=0A>=20>>=20You=20could=20also=20explain=20the=20differences=20from=20Exyno=
+s=20and=20proposed=0D=0A>=20>>=20handling=20of=20patches=20(because=20this=
+=20is=20odd)=0D=0A>=20>>=0D=0A>=20>>=20Also,=20entire=20patchset=20has=20wr=
+ong=20and=20incomplete=20SoBs.=20Your=20SoB=20is=0D=0A>=20>>=20missing=20ev=
+erywhere,=20others=20have=20wrong=20order.=0D=0A>=20>>=0D=0A>=20>>=20Please=
+=20read=20submitting=20patches=20first.=0D=0A>=20>>=0D=0A>=20>=0D=0A>=20>=
+=20This=20Custom=20SoC=20is=20owned=20by=20the=20Axis=20(OEM)=20and=20manuf=
+actured=20by=20the=0D=0A>=20>=20Samsung=20(ODM).=20It=20has=20standard=20Sa=
+msung=20specific=20IP=20blocks.=0D=0A>=20=0D=0A>=20=0D=0A>=20It=20is=20desi=
+gned=20by=20Samsung.=20It=20is=20Samsung=20SoC.=0D=0A>=20=0D=0A>=20Anyway,=
+=20don't=20explain=20to=20me,=20but=20in=20your=20patchset.=0D=0A=0D=0AHi=
+=20Krzysztof,=0D=0A=0D=0AThank=20you=20for=20your=20review=20comments=20on=
+=20the=20ARTPEC-8=20platform=20patches.=0D=0AI'd=20like=20to=20add=20more=
+=20context=20about=20the=20ARTPEC-8=20SoC=20to=20help=20clarify=20its=0D=0A=
+relationship=20with=20Exynos.=0D=0A=0D=0AHere=20are=20the=20key=20details=
+=20about=20ARTPEC-8:=0D=0A=20=20=20-=20Manufactured=20by=20Samsung=20Foundr=
+y=0D=0A=20=20=20-=20SoC=20architecture=20is=20owned=20by=20Axis=20Communica=
+tions=0D=0A=09-=20On=20similar=20model=20as=20Tesla's=20FSD=20chip=20owned=
+=20by=20Tesla=20and=20=0D=0A=20=20=20=20=20=20=20=20=20=20=20=20=20=20manuf=
+actured=20and=20=20by=20Samsung=0D=0A=20=20=20-=20IPs=20from=20both=20Samsu=
+ng=20and=20Axis=20Communications=0D=0A=0D=0ASamsung-provided=20IPs:=0D=0A=
+=20=20-=20UART=0D=0A=20=20-=20Ethernet=20(Vendor:=20Synopsys)=0D=0A=20=20=
+=20=20=20=20=20-=20Same=20IP=20has=20been=20integrated=20as=20integrated=20=
+in=20FSD=20Chip=0D=0A=20=20-=20SDIO=0D=0A=20=20-=20SPI=0D=0A=20=20-=20HSI2C=
+=0D=0A=20=20-=20I2S=0D=0A=20=20-=20CMU=20(Clock=20Management=20Unit)=0D=0A=
+=20=20=20=20=20=20=20Follows=20same=20CMU=20HW=20architecture=20as=20Exynos=
+=20SoC=20have=0D=0A=20=20-=20Pinctrl=20(GPIO)=0D=0A=20=20-=20PCIe=20(Vendor=
+:=20Synopsys)=0D=0A=20=20=20=20=20=20=20Though=20Exynos,=20FSD,=20ARTPEC=20=
+have=20same=20DesignWare=20Controller,=20=0D=0A=20=20=20=20=20=20=20the=20g=
+lue/wrapper=20layer=20around=20DWC=20Core=20has=20differences=20across=0D=
+=0A=20=20=20=20=20=20=20these=20SoCs.=20All=20manufactured=20by=20Samsung,=
+=20but=20differences=20are=20there=0D=0A=20=20=20=20=20=20=20in=20HW=20desi=
+gn=20and=20for=20different=20products.=20For=20the=20same=20reason=20PCIe=
+=20patch=0D=0A=20=20=20=20=20=20=20refactoring=20effort=20is=20being=20put=
+=20by=20us=20=5B1=5D=20to=20streamline=20single=20Exynos=20driver=0D=0A=20=
+=20=20=20=20=20=20which=20can=20support=20all=20Samsung=20manufactured=20So=
+Cs=20having=20DWC=20PCIe=20controller.=0D=0A=20=20=20=20=20=20=5B1=5D:=20ht=
+tps://patchwork.ozlabs.org/project/linux-pci/patch/20250625165229.3458-2-sh=
+radha.t=40samsung.com/=0D=0A=0D=0AAxis-provided=20IPs:=0D=0A=20=20=20=20-=
+=20VIP=20(Image=20Sensor=20Processing=20IP)=0D=0A=20=20=20=20-=20VPP=20(Vid=
+eo=20Post=20Processing)=0D=0A=20=20=20=20-=20GPU=0D=0A=20=20=20=20-=20CDC=
+=20(Video=20Encoder)=0D=0A=0D=0AAs=20part=20of=20the=20upstreaming=20effort=
+,=20Samsung=20and=20Coasia=20(DSP)=20team=20will=20work=20together=0D=0Ato=
+=20upstream=20basic=20SoC=20support=20and=20Samsung=20IPs=20support.=0D=0AT=
+he=20Axis=20team=20will=20be=20the=20primary=20maintainer=20for=20the=20ART=
+PEC-8=20SoC=20codebase.=0D=0A=0D=0AGiven=20that=20ARTPEC-8=20is=20a=20disti=
+nct=20SoC=20with=20its=20own=20set=20of=20IPs,=20we=20believe=20it's=20reas=
+onable=0D=0Ato=20create=20a=20separate=20directory=20for=20it,=20similar=20=
+to=20FSD.=0D=0A=0D=0AWe=20will=20remove=20Samsung=20and=20Coasia=20teams=20=
+from=20the=20maintainers=20list=20in=20v2=20and=20only=0D=0AAxis=20team=20w=
+ill=20be=20maintainer.=0D=0A=0D=0AMaintainer=20list=20for=20previous=20gene=
+ration=20of=20Axis=20chips=20(ARM=20based)=20is=20already=20present,=0D=0As=
+o=20this=20will=20be=20merged=20into=20that.=0D=0A=0D=0APlease=20let=20us=
+=20know=20if=20this=20explanation=20addresses=20your=20concerns.=20=0D=0AWe=
+'ll=20update=20the=20commit=20message=20and=20cover=20letter=20accordingly.=
+=0D=0A=0D=0AThanks,=0D=0APankaj=20Dubey=0D=0A=0D=0A>=20=0D=0A>=20Best=20reg=
+ards,=0D=0A>=20Krzysztof=0D=0A=0D=0A
 
