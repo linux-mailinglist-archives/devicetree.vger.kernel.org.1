@@ -1,236 +1,134 @@
-Return-Path: <devicetree+bounces-202206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F32B1C6CB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:27:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932ECB1C6E5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:38:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7BE624E1863
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:27:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 465B418C179E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FE61E4AB;
-	Wed,  6 Aug 2025 13:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5EC028C5A1;
+	Wed,  6 Aug 2025 13:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EdvgN5Nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 645A238FB9
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 13:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F6228C2B6;
+	Wed,  6 Aug 2025 13:38:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754486842; cv=none; b=XwbUnVny0zGk7MYXDP6JCUVIMNuRswIyqMCbyoNf67doknnYMMX9f967DA/OeWuBgs1c3T/YOS1B88UPYn960Mod0cWchBHT4tDwWwjfOoB/5NmB5sJw9RYYA/ERRvmsyu2TEJAprNhh/AJ6Onw3F7rKQA9du2cQtDO9QDoUVZU=
+	t=1754487511; cv=none; b=uDKQdLGoP4UQwXIEcWdAbJzyYzkbDzD+7KLy3wM+r+SRL3Etw61FnLkQxFeefFY9LBIhxFojVmreoQGYDntCyWzWYy0LNTs37M21JOV0oP7DA0S+Zk7ubGt5zzG4CyyVVB5AE9R+LQci932dAXhqwKuxn9woM/jKnurBuvHefjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754486842; c=relaxed/simple;
-	bh=2SL2HIqFBKBgfphArow9T9jHTK03gKBHImShrrU36+E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oLA15qYaGHneigBa0pR2xakpOO8zT1hBU4HAjsX//f49BaPchYRsTDhlJ6k0/wMf59jt22sf/sP3hRvIiDqj+8dxj8zs1kH53hHcdvSiPH2UqoL1KHNHvERiL9bQXGejuPt3ME1EkI/BZjRSP9eVYVTgCvoTUmjUhHrIk2SGWbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1ujeAY-0007wq-Ev; Wed, 06 Aug 2025 15:27:02 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1ujeAX-00CDWu-2f;
-	Wed, 06 Aug 2025 15:27:01 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1ujeAX-00CH9C-2J;
-	Wed, 06 Aug 2025 15:27:01 +0200
-Date: Wed, 6 Aug 2025 15:27:01 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1754487511; c=relaxed/simple;
+	bh=/1gBzi59LU1FpVeTQMr8A9/AcnzkFZ0Hci74mudEZmc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZExerlOUn4SiPX4BaHYXKIWEbnh36vA255guevpYYkHSh8EjVFp66DRfgonKZWFE1LFgbCj4Al5gHHvMtwQxvn3yU3l/etUPjim7q7rr2ZbejDAI1mEaU5t+/MTRmWq1coedCXtrU0YJLNwOqEYWNXC2cqaBa1JC3PJb2ECxVZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EdvgN5Nh; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso11546118a12.1;
+        Wed, 06 Aug 2025 06:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754487508; x=1755092308; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TpB+PfzuWs/TM6R4B5yVrE9x1IKZVmu2ttqHx5YHmbA=;
+        b=EdvgN5NhJgU41CnzNSaaJfF4Tw8jc1GDpYwcrMu65D7lRvi073HUvEz1cz0VqnneEz
+         mCS8mPiy/8DpppnIQSM/4OqP56/NqMgNR0qkpYjoupSpUlrW45i8XJir8XMy9WKBshFQ
+         Acbm/4k/xXzZ9I9S3gUt6KMl6RTnDKt/YTeNElzWH/fMkQONg3o342LrEikaRaA1ZLpx
+         kq6oIzA8UkxU9jKxa+I3HD2+h2OucTC+9UDYshpUvt+e+fvg0fByQQzvv/inGfGbXaAf
+         mFXbGl4bOVeYAChQ2zgEQBiFEQBume6ezwX5TCpYk1RnWqSOFVXf7RBjMX6I+3bwZUcf
+         AR0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754487508; x=1755092308;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TpB+PfzuWs/TM6R4B5yVrE9x1IKZVmu2ttqHx5YHmbA=;
+        b=ngSEJfjcrTHqeqJ4xd4qWzv9FwRtm8EC9gNODpuHiUbUSblGIfrdoy1RBwxsOYesLq
+         P0jHxuqjam2KO5QXqtfWjo1qFx4ObJ7o1BdWPBTY+b3sKDq44k1HXmvme886UDJHbgHf
+         /aTgQyq01np4qPOq8wrABhAW9mEEdwe1t+5nDYi6XJ5eCJhltJorfS8pXGmVVMstTQVe
+         dWVpv6yKlamrrzaExr46NslZHTJJ1bt2pzqHw4ai86yFIwc+94RuQDMtPpvkjO1X27DE
+         PGPjJeQ5V78chm0E1FGlOPYs0F/gKKtIWE17uxAeTl6hD4//vES3U25nIheug7XMp0xM
+         FKjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVi78lJubmPDS0g9UMcRhoQXOUZPjC6kz7kVxWyOSKt0/A5b9uQs+Uc+y/IiVRVYZDwz5C2OGFl14GTPQO4@vger.kernel.org, AJvYcCXeFXRxfR2zkXKRynE2SOHIPcmnAYsK3YXjfA4lE1n+LYbG79pP9Pr93ozn0Jx5dUngDUXlU1P11gug@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7OTE7bB58DbqgOsxfKS16aYgzitApnuKtgaNtNEUAwHVOAh/U
+	dJ30uVpu430hgaqtRytzEWL423CTaz6dZeD5vER5oZSgTmKR6vh7zfFV
+X-Gm-Gg: ASbGncvUSf4MdNSdqFKFGtfUJloM6jjcNYmRvibRM9mzq0YbhBtqqzU79c3eqXZ3Lxq
+	NYHkIaDdt6fVL/HlpczGr0nYbZE1dEI06bKjdETIuGyoUJVDvWTqgfPzDsHLAtTV6ztpAqFotQG
+	tBHCSkkOYKV6n0O7pzKyYkdovBSRzvwcpIkkus82cS848Fmmaqz4sW7iA8O7jL7xkl0QZISWz8p
+	isQ76i6FUg4bYmg9SyRy3imJMOaY9z86mXtVU/3HPoahEX3kTRfwh7ZJNYLa3eIfLn+b7Evjft8
+	cQ+7WD2mk6+KUhjJPsEREWDzTX5vTRHeuo+k9Rs+MqW9uQymcRc8yCwzOdtBkHOAGzjBoMbQovK
+	712Hwry5dzJo/w2cvIBZXv7YXrb+abJ/rGCXB+RfkyxZ2Hgnw
+X-Google-Smtp-Source: AGHT+IGei8vPsctsojGNv2hAMLvUFfLXGEm+CbuctTYxSQujN3sBsnPBDJoEEmvPeoL2QEoXA5JJdQ==
+X-Received: by 2002:a17:907:7ba4:b0:ae0:c690:1bed with SMTP id a640c23a62f3a-af9903e69c1mr287290466b.51.1754487507913;
+        Wed, 06 Aug 2025 06:38:27 -0700 (PDT)
+Received: from A13PC04R.einet.ad.eivd.ch ([185.144.39.75])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c10asm1113170666b.116.2025.08.06.06.38.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Aug 2025 06:38:27 -0700 (PDT)
+From: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+To: 
+Cc: rick.wertenbroek@heig-vd.ch,
+	dlemoal@kernel.org,
+	alberto.dassatti@heig-vd.ch,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v18 3/7] firmware: imx: add driver for NXP
- EdgeLock Enclave
-Message-ID: <20250806132701.fouikyuqtzdsxqwh@pengutronix.de>
-References: <20250619-imx-se-if-v18-3-c98391ba446d@nxp.com>
- <20250625105546.pxuatcnfpe7mssgs@pengutronix.de>
- <AM9PR04MB8604611B8D91B5526C9704E69545A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250627084653.6vgwnm3llf3zknlp@pengutronix.de>
- <b02055bb-0995-4fd8-99f3-4ca5146eedd4@kontron.de>
- <20250630121722.wviidlggt7hguyt7@pengutronix.de>
- <087b8689-7443-4720-a94c-160edd31a5da@kontron.de>
- <AM9PR04MB8604C05882605EDB4913DA089549A@AM9PR04MB8604.eurprd04.prod.outlook.com>
- <20250714094124.e6fnkrocnqagbm22@pengutronix.de>
- <AM9PR04MB8604EFCC5400DEBB7DF0CF49952DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] phy: rockchip-snps-pcie3: add support for rockchip,phy-ref-use-pad
+Date: Wed,  6 Aug 2025 15:38:20 +0200
+Message-Id: <20250806133824.525871-1-rick.wertenbroek@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8604EFCC5400DEBB7DF0CF49952DA@AM9PR04MB8604.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-On 25-08-06, Pankaj Gupta wrote:
-> > On 25-07-09, Pankaj Gupta wrote:
-> > > > Am 30.06.25 um 14:17 schrieb Marco Felsch:
+Add the possibility for the RK3588 PCIe PHYs to use an internal clock instead of
+a clock provided on a pin of the device. This allows boards that don't have a
+PCIe clock connected to the reference pad to still function in separate clock
+mode by using an internal reference clock for the PCIe PHYs.
 
-...
+This was tested with a CM3588 compute module on a custom PCB.
 
-> > Lockdown: For a verified boot setup you need to burn an eFuse at some
-> point,
-> > to tell the bootROM to boot only correct verified firmware images.
-> > 
-> > After this lockdown it's no longer possible to burn eFuses from the REE
-> albeit
-> > the production line setup still requires the support.
-> > 
-> Understood. ELE access from both secure and non-secure world is fixed in Q3
-> release.
-> User can be able to modify eFuses via OPTEE.
+Without the new option, the default behaviour (PHYs using external pad for clock)
+is applied, to keep compatibility with existing device trees.
 
-Splitting the read and write between two drivers is even worse.
+Differences from V1 [1] :
 
-Can you please point out why you can't just move the driver parts into
-the tee? I do see many advantages if only op-tee is used:
+- Documented the phy-ref-use-pad option in the DT bindings.
+- Documented the extra optional differential clocks for the PHYs in the DT
+  bindings.
 
- + Minimize the maintainer effort, because only one driver
-   implementation is used.
- + TEE code could be reused by other OSes
- + You could already start adding the support for it to OP-TEE because
-   no ELE-FW update is required.
- + TEE is used anyway for new projects due to CRA and friends
- + Concurrent access handling is done by the TEE core
+[1] https://lore.kernel.org/all/20250715105820.4037272-1-rick.wertenbroek@gmail.com/
 
-The only downside of this approach is the integration effort for the
-TEE, but this shouldn't be an excuse. Mostly all well known buildsystems
-like: Yocto/OE, buildroot, ptxdist do have mainline support for OP-TEE.
+Rick Wertenbroek (3):
+  dt-bindings: phy: rockchip,pcie3-phy: add optional differential phy
+    clocks
+  phy: rockchip-snps-pcie3: add support for rockchip,phy-ref-use-pad
+  dt-bindings: phy: rockchip,pcie3-phy: add rockchip,phy-ref-use-pad
 
-> > > >>  - With new regulations like the EU CRA I think we need some sort of
-> > > >>    secure-enclave anyway.
-> > >
-> > > > Probably some sort of, yes. But not necessarily in the form of TEE
-> > > > or TrustZone, I guess.
-> > > To use ELE features through Linux, there is no dependency on OPTEE-OS.
-> > 
-> > Once again, still no fix available and if your system requires a TEE
-> you're forced
-> > to move the ELE communication into the TEE (at least until now).
-> > 
-> > Also the eFuse R/W access is not possible from the REE/Linux after doing
-> the
-> > device lockdown.
-> > 
-> ELE access from both secure and non-secure world will be fixed in Q3
-> release.
-> User can be able to modify eFuses via OPTEE.
+ .../bindings/phy/rockchip,pcie3-phy.yaml      | 21 ++++++++++--
+ .../phy/rockchip/phy-rockchip-snps-pcie3.c    | 32 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 3 deletions(-)
 
-NACK, please see my comment above.
+-- 
+2.25.1
 
-> > > >>  - Making it optional cause more paths of potential errors e.g. by
-> not
-> > > >>    including the correct "secure.dtsi". Multiple paths also require
-> more
-> > > >>    maintain- and testing effort. IMHO I do think that one of the
-> paths
-> > > >>    get unmaintened at some point but we would need to keep it for
-> > > >>    backward compatibility.
-> > > >>
-> > > >>    Having one implementation eliminates this since.
-> > > >>
-> > > >>  - All above points assume that the ELE-FW and -HW is capable of
-> talking
-> > > >>    to both world, which is not the case. As we learned NXP doesn't
-> have
-> > > >>    a fix for the 2-MUs ELE yet and even more important there are 1-MU
-> > > >>    ELE-IPs.
-> > >
-> > > For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
-> > > world - Linux(one or more) and OPTEE-OS (one or more), that needs to
-> > > be shared between them.
-> > 
-> > Please mention this within your commit message.
-> Accepted & mentioned.
-> 
-> > 
-> > > As mentioned earlier, there is an issue of using MUs simultaneously,
-> > > from both worlds. Fix is in progress.
-> > 
-> > So until now no fix available and i.MX93 based products which do use a TEE
-> > are forced to move the communication into OP-TEE.
-> > 
-> > > >> I do see the (minimal) drawback of having +1 FW but I think this is
-> > > >> more an integration problem.
-> > > >> Speaking of FW files, for the new i.MX9* you already have plenty fo
-> > > >> them: bootloader, TF-A, ele-fw, scu-fw (i.MX95). So your integation
-> > > >> needs to handle multiple firmware files already.
-> > >
-> > > > Sure, but I really like to keep the complexity and therefore the
-> > > > number of FW files as low as possible. I'm not sure what has more
-> > > > weight in terms of
-> > > > security: shipping an additional firmware and therefore increasing
-> > > > the attack surface or maintaining an additional code-path.
-> > >
-> > > There is no +1 firmware in case of i.MX93.
-> > >
-> > > >>
-> > > >>> Anyway, I see your point of having a single implementation for the
-> > > >>> ELE API in the "right" place. But as far as I know other platforms
-> > > >>> like
-> > > >>> STM32MP1 also implement both ways for the HWRNG, secure access via
-> > > >>> OPTEE and non-secure access via kernel directly.
-> > > >>
-> > > >> I'm not a STM32MP1 expert but here you have this setup with the
-> > > >> *-scmi.dtsi. So you have two code paths which needs to be
-> > > >> maintained and tested. Also if one customer of yours want to use
-> > > >> OP-TEE you need the integration anyway, so you (Kontron) needs to
-> > > >> maintain multiple configuration as well. I don't see the added value.
-> > > >>
-> > > >> I think for STM32MP1 the *-scmi.dtsi support was added later
-> > > >> because it required a lot effort to support it. This is not the
-> > > >> case for the
-> > > >> i.MX9* series.
-> > >
-> > > > Anyway, thanks for elaborating. Your points are all valid and
-> > > > basically I
-> > > agree. I'm fine with either way. But I'm afraid that implementing the
-> > > ELE API in OP-TEE only will cause another tremendous delay for having
-> > > ELE access in the kernel, especially seeing how slow NXP seems to be
-> > > working on these topics right now.
-> > >
-> > > To use ELE features through Linux, there is no dependency on OPTEE-OS.
-> > 
-> > How exactly do you provide the eFuse write access after the device was
-> locked
-> > down?
-> As mentioned above by you. It will be done via OPTEE-OS (or may be via TFA).
-
-Why TF-A? Please see my comments above.
-
-At the moment I don't see why the ELE must be a Linux driver. You could
-start adding a TEE driver now, because there is no need to wait 3 months
-for a ELE-FW fix.
-
-IMHO having a dedicated normal-world driver makes only sense for
-bootlaoders which don't have support for the TEE communication but need
-access to the ELE. This is not the case for the kernel.
-
-Regards,
-  Marco
 
