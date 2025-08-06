@@ -1,169 +1,167 @@
-Return-Path: <devicetree+bounces-202284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C0CB1CAF1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 19:35:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4ADBB1CBCB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0D56171F5D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 17:35:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEE37163505
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 18:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270D729E118;
-	Wed,  6 Aug 2025 17:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DDDC207A18;
+	Wed,  6 Aug 2025 18:18:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="BACPZPJE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yz6GLYbS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B41928A41C;
-	Wed,  6 Aug 2025 17:33:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D33971B5EB5
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 18:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754501718; cv=none; b=u76UVCMbRYcHIP2hk4g0oTZ3bd1tHF6qSfRWCUiOteL1JqLdf84hBLUv4xDnhqKWBAWZwUq3LkSpwHTHIPvEpi9pGjYuDPZRDkuZ0uNgAkyJX5iXJQI96l8mwENNoU7GgLWGoHm/xA3ywxIFpzZNpLzYlV1FDwDCLKaf9FGmH74=
+	t=1754504334; cv=none; b=infLUUuUP1Qidfkmc/1WNyi/Ck+uioH1LyQGg/4/NYgIdyH5wqVSUsUyUPl8n7PRyzSrH7dMhPzh4MbgAZNZ0cyyDf0W21IRUOIhoWUqeWVEaMdazXQp6OmZ+LxkAXVRwNvptPJFSkhw0Re0SaP7r5R2O8Lnz064u6DXaGBBE1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754501718; c=relaxed/simple;
-	bh=r71dXU2Xc5Ubgu7RiIpKZnrZBJi4GnFBtADrF7xkhxA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=m3cuMYx0Xk7ng6CS7mMu17IKWCrV7QvGFJkZefQl18I5ZmyRZ0j+ZrhFsMbIav5u1m/Z8fU6nhh163ZR3hmCoqtzMLYBrDjBF+5eDO/7UEbGPnxNRRujHRrPCWzH3uitt3LQ/O0NHfh8LetbzaDwVSrJIxfVmI+J3rt2zvrlq8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=BACPZPJE; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=5EbWJqb/4DQjpXk7DGdlXqTWFl1RcFeqMA81OaV2jIo=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1754501633; v=1; x=1754933633;
- b=BACPZPJEum2eh/RUaHF9aC9eREO6BSmTetkPH28gaiwtw1FenJ4q09Fv9iZg/K2cKXZoYDbI
- MtyhXzJqW+AladUj+zPVkQi6PXv5n4rW5FYQ09/BQYjfUsy2rvFb1J8sUSguamwsIoM+IrtHqYj
- c+8pBsGEaJWP2bSM/zr0lZtQDOfQMYFGA2HW2UQ/iE+ADu559t3PTZZJ+Lp6vDyZekjMSbLXQfp
- ke4DMTWp5r0glj7/Gd91u5Z7ckSm8wV1pKuB9uxa/jx+YAWEmxVl2h+RW2dpQRxGnIw5bxjpupc
- nooIOSbwJVQgr35MFUwdOaUdlFWiO6Jq6F9dlXy44Zc7A==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id f43a9c5f; Wed, 06 Aug 2025 19:33:53 +0200
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Wed, 06 Aug 2025 19:33:24 +0200
-Subject: [PATCH RFC 5/5] arm64: dts: marvell: pxa1908: Add power controller
+	s=arc-20240116; t=1754504334; c=relaxed/simple;
+	bh=gltay6gHOTujsw+u6lXUTehNXIZtIgzLPCEbcmXqR7U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cVRSr8AWEjsXyOkcAkeNWAxbprRelz5ntcWsh1vy5XK7L/2JnsxAiuQY3BNhu/94dNiEak9lfDQZCZH/rW46kFX4cNbrV4BmCy0EYP460Y2+F5I8b+NaVLDKjB4orE2cONJGG3xv1Pfpcn+4Xci5bjSCSVMGosuzzQkIHrZbXDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yz6GLYbS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 576CdVVl025261
+	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 18:18:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=7EtcQneqFbay0S3BezmpHKQD8tPt2h3nFwN
+	SuVeutIs=; b=Yz6GLYbShmltUGe3PZGOUeYoPiUFeaJqCKQq0FVjMA2B1+yMoJZ
+	feQ1pfYJoFA4UW+2pCea7u9H8DBx3NmE0rVchA6iRHXM7EEZjdNgdMSx8Fu/k/oq
+	xxy+P/gYIiwtgi0XYGkqTEaPmsMQyQJTxDrs25zrg0OAD7yQnikWvGvlAQk5rJkY
+	aJ8OEXrjp1PQavenczvXk4NUY+A3saRLqYFjDtvIjNYdzsRCAK7hfJfVBgfYz+o3
+	9i4yC9x4W+uwiJOl5fqDy/QuG9sZyPvmfeYYrSSIuWX2pchNTvERwzVOUTBukZq0
+	6Ex8NsxZf0PRp1m0umihCXPbWBX0mXxQ0Jg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvyusx9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 18:18:51 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-240607653f4so832415ad.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 11:18:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754504330; x=1755109130;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7EtcQneqFbay0S3BezmpHKQD8tPt2h3nFwNSuVeutIs=;
+        b=P9xzMsqbJjtLrH93ot+QyL7zS41OiIYQX5/2heNP7//aOmTyT9Jwi4FoPrCiECSRvK
+         8wcbqZefTZqwLSdyWwmM+AJdGTtQmyduFvvlTLfxcan4JN0aUhOiA+U7INqaI69vafx/
+         Iu7jqGYOx/3k9GVnAvuIDJnozR0ELGgwzGScVzuzPwd59YB8pnz1VkvTreiJ+7QDoENL
+         iko7/COE+MNdjMu4lwO8aDXDH53939fkfE1HeFkwwL0I2HCDm3UyP5dPQBaRdFURLtlc
+         ojKns+EjNvLNtvPkM34bpx85FYIPGAGim9l1jdi0qyNvZHF+14P6NKsvpnpHH3A2e2IC
+         N5bA==
+X-Forwarded-Encrypted: i=1; AJvYcCXH81xlK3PMmKg+o37Ity4IQNrrUWc4w7fG8WdDwXKqia38fgwfS5CCIqPNcbW+vZ/Mu6SZc+bd6rR/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMSXB2CmrRTetAqgfZW86y5rPPGLX++zy7w65AI0RqN7xL5qAa
+	LJlWLBumDtf6NZvCe+sMYgIG8FgwRbsmxXRvnk35HG7KoLQJaxIf5HGczrsM6qBnXt+2C3u6QT7
+	Gm05PJAWhEDx++sM5UkAQqgXbyKhiciGSsFuuriTfGr7KSZEH0UZwTKnHmQ9RgqsS
+X-Gm-Gg: ASbGncu8XXj6pzXlM9GPRk8DRy5/TgRKuTxjGLrVIqykIIDnp2aoLC6nUtGwIPTEMzo
+	LDYRuR2TWsT7ubshXSXU4Pv+nf88z2cEnjrBWsxG/XHUdd3Mooy6MvO5tje5mNWwZ+WMbd2zW+p
+	iIYsFq5chU1RrE4GWSSotJ9LyyXN5tmroTt1824XLgIwElL1NGFl4oNi2oHhIYRPy3MIhNaScMH
+	CauMPrEFrbHb9s9P0zLUx4CyAvfG3ODhs+4noMSpeC1NBBdHlzqxZSLoCiZGczQU9Dm8MXK/Eme
+	TqiIHWBvB416FCtwxS4SWgKY2ifQ+vOEM0Y9/jY+SEca1rlLq0/LgQ2A3zoAWMMFjUoxhdfuaTx
+	u
+X-Received: by 2002:a17:903:2f81:b0:234:ef42:5d65 with SMTP id d9443c01a7336-242a0bfe495mr48029065ad.52.1754504330352;
+        Wed, 06 Aug 2025 11:18:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG1Jjp74fSOAUZPkCo24NljY5UCf/PFKkDfQbKzSbRPxCaZMFEt+QxieBL3ATAUpTk1S+I4mg==
+X-Received: by 2002:a17:903:2f81:b0:234:ef42:5d65 with SMTP id d9443c01a7336-242a0bfe495mr48028645ad.52.1754504329772;
+        Wed, 06 Aug 2025 11:18:49 -0700 (PDT)
+Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63f36311sm20235186a91.34.2025.08.06.11.18.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Aug 2025 11:18:49 -0700 (PDT)
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
+        kernel@oss.qualcomm.com
+Subject: [PATCH v4 0/2] Handle shared reset GPIO for WSA883x speakers
+Date: Wed,  6 Aug 2025 23:48:16 +0530
+Message-Id: <20250806181818.2817356-1-mohammad.rafi.shaik@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250806-pxa1908-genpd-v1-5-16409309fc72@dujemihanovic.xyz>
-References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
-In-Reply-To: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3014;
- i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=r71dXU2Xc5Ubgu7RiIpKZnrZBJi4GnFBtADrF7xkhxA=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBmTJ/6pnXBOdlbNHyWGuEoz91lLbK4zHM7cOL1uSf4nG
- fkOG5u1HaUsDGJcDLJiiiy5/x2v8X4W2bo9e5kBzBxWJpAhDFycAjCR6WyMDHdZLaVifnivnSG1
- Y4NwJoudZe2Sx4dN18zQ5mu7Nm2KlAEjw8vnsS4aSRuYcpM+bAmpf/j/ufXxZCOdj9IK+R92sZW
- 3swMA
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+X-Proofpoint-GUID: BHVhdMIbRL2wmMx4f6gBJ7cJ9S-I-4k-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXyfJSyr5DtU9i
+ tYo9gzVwGYq8eUC4vgfuxGyg6aH5VzmbAQT/cpfvX4vspGUTZEt6edeG1aBTW+IvI1W8Bxw1wDF
+ /8ZYpdFfJDB7wDWwb9+7PJ/O+0X+U4Vg612MIzTJDqlNtWBy8V0oXELUaSzzFFDiE9HtnWUIUtq
+ MazxmNAmgsdMprpSr17R5aZ0HrJRRlG6AbZlvmbiXfrNf+8TRchWf4rln+khHiR5r4AKGGvZI+g
+ kwZLoeXZ5IiI/5vVDpZfyVnIfbhl5HY1+qZEnKlpqsVgfIgrS4Q2BHW20DXppN1Q5HFaoM2MRn/
+ +VoUKrscyw0mMftQgsqi7pUAQ4kRLXALBnyyqlzln49L6aPfhWM7YpW1KOpQ5ZBijJ6pwmZIFjo
+ 5ZT4JdIS
+X-Proofpoint-ORIG-GUID: BHVhdMIbRL2wmMx4f6gBJ7cJ9S-I-4k-
+X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=68939c8b cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=PJR2aAOtTfpWL2UOpAQA:9
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-06_04,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ adultscore=0 malwarescore=0 spamscore=0 suspectscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
-Add a node for the newly implemented power domain controller. Also add
-the first two power domain consumers: IOMMU (fixes probing) and
-framebuffer.
+On some Qualcomm platforms such as QCS6490-RB3Gen2, the multiple
+WSA8830/WSA8835 speakers share a common reset (shutdown) GPIO.
+To handle such cases, use the reset controller framework along with the
+"reset-gpio" driver.
 
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
- .../marvell/mmp/pxa1908-samsung-coreprimevelte.dts |  1 +
- arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi       | 36 +++++++++++++++++++++-
- 2 files changed, 36 insertions(+), 1 deletion(-)
+Tested on:
+	- QCS6490-RB3Gen2
 
-diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-index 47a4f01a7077bfafe2cc50d0e59c37685ec9c2e9..2f175ae48c6a2371c407b3a6ffd3cdd577f44e56 100644
---- a/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-+++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908-samsung-coreprimevelte.dts
-@@ -23,6 +23,7 @@ chosen {
- 		fb0: framebuffer@17177000 {
- 			compatible = "simple-framebuffer";
- 			reg = <0 0x17177000 0 (480 * 800 * 4)>;
-+			power-domains = <&pd PXA1908_POWER_DOMAIN_DSI>;
- 			width = <480>;
- 			height = <800>;
- 			stride = <(480 * 4)>;
-diff --git a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-index cf2b9109688ce560eec8a1397251ead68d78a239..630e99f2c309dca0872d824a098ac93b6e55c3a4 100644
---- a/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-+++ b/arch/arm64/boot/dts/marvell/mmp/pxa1908.dtsi
-@@ -3,6 +3,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/marvell,pxa1908.h>
-+#include <dt-bindings/power/marvell,pxa1908-power.h>
- 
- / {
- 	model = "Marvell Armada PXA1908";
-@@ -79,6 +80,7 @@ smmu: iommu@c0010000 {
- 			#iommu-cells = <1>;
- 			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
- 				<GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&pd PXA1908_POWER_DOMAIN_VPU>;
- 			status = "disabled";
- 		};
- 
-@@ -291,9 +293,41 @@ sdh2: mmc@81000 {
- 			};
- 
- 			apmu: clock-controller@82800 {
--				compatible = "marvell,pxa1908-apmu";
-+				compatible = "marvell,pxa1908-apmu", "simple-mfd", "syscon";
- 				reg = <0x82800 0x400>;
- 				#clock-cells = <1>;
-+
-+				pd: power-controller {
-+					compatible = "marvell,pxa1908-power-controller";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					power-domain@PXA1908_POWER_DOMAIN_VPU {
-+						reg = <PXA1908_POWER_DOMAIN_VPU>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					power-domain@PXA1908_POWER_DOMAIN_GPU {
-+						reg = <PXA1908_POWER_DOMAIN_GPU>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					power-domain@PXA1908_POWER_DOMAIN_GPU2D {
-+						reg = <PXA1908_POWER_DOMAIN_GPU2D>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					power-domain@PXA1908_POWER_DOMAIN_DSI {
-+						reg = <PXA1908_POWER_DOMAIN_DSI>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					power-domain@PXA1908_POWER_DOMAIN_ISP {
-+						reg = <PXA1908_POWER_DOMAIN_ISP>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
- 			};
- 		};
- 	};
+changes in [v4]:
+	- Dropped v3-0002 patch, which is not required.
+	  Fixed with proper error handling for failure cases.
+	- Link to V3: https://lore.kernel.org/linux-arm-msm/20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com/
 
+changes in [v3]:
+	- Created separate patch for devm action to safely disable
+	  regulator.
+	- cleanup the v2-0002 patch.
+	- Link to V2: https://lore.kernel.org/linux-sound/20250718104628.3732645-1-mohammad.rafi.shaik@oss.qualcomm.com/
+
+changes in [v2]:
+	- Addressed the review comments from Krzysztof, Dmitry, Philipp.
+	- Used devm_reset_control_get_optional_shared_deasserted() api.
+	- created deasserts/asserts functions to handle reset gpios.
+	- Register devm action to safely disable the regulator on device removal.
+	- Link to V1: https://lore.kernel.org/linux-sound/20250620103012.360794-1-mohammad.rafi.shaik@oss.qualcomm.com/	
+
+Mohammad Rafi Shaik (2):
+  ASoC: dt-bindings: qcom,wsa8830: Add reset-gpios for shared line
+  ASoC: codecs: wsa883x: Handle shared reset GPIO for WSA883x speakers
+
+ .../bindings/sound/qcom,wsa883x.yaml          | 11 +++-
+ sound/soc/codecs/wsa883x.c                    | 57 ++++++++++++++++---
+ 2 files changed, 60 insertions(+), 8 deletions(-)
+
+
+base-commit: b7d4e259682caccb51a25283655f2c8f02e32d23
 -- 
-2.50.1
+2.34.1
 
 
