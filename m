@@ -1,83 +1,88 @@
-Return-Path: <devicetree+bounces-202221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3937FB1C75B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E64B1C7AB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:35:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36F67722342
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:08:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654E062130C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E5128D8EF;
-	Wed,  6 Aug 2025 14:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1BA28C022;
+	Wed,  6 Aug 2025 14:35:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iC1nArsS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ncGQH0HZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6C828D8E9
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 14:08:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F7E25A2BB
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 14:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754489302; cv=none; b=noj7hom7ilLF68oxud/KGG9fWsJNVvT52UTu8q62mLAVLtl4S5bR6nBPb1x0EjZw/z1ST2frmk6V/pcHWG5WNUWlZe7vAkLUHQeUiWqd3wnyEvNrXzsc7XcfiWtQ1fMEFqW2G42hBjTxr6Qw97jq+iKoKdbEhB7Gg5LBcN87bxc=
+	t=1754490950; cv=none; b=fu0LHRYUtykM6EFWJz++AFJSNJgDWiYXh4ewZhC5P9S3lVNYyI8dl22Qt+H4K6WKuMni04GMphwADUvr7xmBW6vkD3vGt9Ga61VI8RHI8C3ycUWnyjVaRJ+vMAwlfhH+k++5A9WvWQzq6KhuAzVlNSpIkCfO4rbP6Pq+FWs3tMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754489302; c=relaxed/simple;
-	bh=fOem8/Drn9fO4S7BgBEZAM8Qym4SdMGfgwgEwyW+A1w=;
+	s=arc-20240116; t=1754490950; c=relaxed/simple;
+	bh=IzAyAJfpY0pHbWneABeVrlnmE6GZCoVRzfOeZKBvWZw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SLqLTCFxYVhffeU+adsTFgQXVt1s+bSeaRYoEEa/RDArMQb2VElrT0hvURfhitIq3mYp2qXCgY/v9xb5Jd7PTJh9Xtq9mMvqfABd2H2rrWSrD+3W8xsJyTye/vFlyAW8yVqrCtgSNftW+SnBfRZVovYR66+MtZ88QWSjFHrnqQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iC1nArsS; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-459d4d7c745so35816675e9.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 07:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754489299; x=1755094099; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fCGd7O4GoIlOmdTKiKq8YgxWKegKI2Il/UfNC/LUBwo=;
-        b=iC1nArsSKAnRC+xLRDtB34wRGER+7fR8Ya2r4oMCx5Fk1CNXWC9f2qfCRGkZ6waTBs
-         twcBIg0occLSmXpZet7BEk64V8C3CKQCfgvIfBjvwgZgDxecv2EL6pPFc9oUvCoSNFOL
-         ESNP5JLEhF5M2bhwAdc3ZqKuJFoY7Rh6u2hw4+k9T/O1iJn7Si2nstJBnp4IWSfIH98P
-         IBMQRt5/ZbRv22KiTNlGOHMm4welf8mI4H4zysLtJiYMBjvz8g2HOx0cafatAO8HUN6A
-         VqVR4SxOsfyxTmOaL6zgQXcx75ACFXuCIoT/RI61BPwnvpggNg8PIlGG1Bl6HExX/9Cr
-         nY0A==
+	 In-Reply-To:Content-Type; b=M7R5dHxICr/CzG3EKDeZ2589c0LCz/qGN8ang7VlThtQ/k0W+zP+GZ9nxj1VdrxL7Qoo6yUtDbetwQnqHKWoHGSv2b0W7y2WoUlcaN5ASGblsULFJ8x2CHnQlhrk/Awy0baiCsjFMz/qaL84QOlfKaJHZxsk5Xq8TmlO8PGxhNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ncGQH0HZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 576Dslq1013404
+	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 14:35:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TwlR+oMZlALuIJKmyusyfjuF4+MmPOO9KSk2h10iAKA=; b=ncGQH0HZlicVhpPT
+	+V8slmxae8bXQI5IjyQAeE4LbwHJ3NsovDM3FpX2x2G+flTtwLNqS2UG97JVK3y2
+	xKPS71sxRvd8CxnU9Q3lC1IUOqDYwCKpSus6RHPE/Gxp6Zglh1/mOi/yzF8xO2M7
+	t4OPUd7qW4vS7v7mSKenSHB1vFq93Z0d1d1FRIqC8PWzniK/EMqoMiWLYKDE/dfz
+	z2uIqjBt+SIouVtAGCJAsBHYDL3Zfa13N/BlDrIbsM39Z31aXmUXgZ54eLZtUgUQ
+	QUdbpPMJmh3OOEtTJFJ7lk7HdCWQakskfICL8KpW3XbfrAt6RyBELfF6CfJBpnnk
+	cdjUPg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvvu1c5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 14:35:48 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-240908dd108so8982445ad.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 07:35:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754489299; x=1755094099;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fCGd7O4GoIlOmdTKiKq8YgxWKegKI2Il/UfNC/LUBwo=;
-        b=EPtwJhmfoCyzhqcnPQQl0maI/qoOFyjU2niF3MtT0G6kM1G20YCDYUE0RFIiC4mADq
-         uVsrfOsnhx8uFDZ3H7IYgDY7HCwe0D/nSgZwQPmqxer+k7oppvdPBudJuBUkjOcUxlQT
-         3/WrNsZrgt4LVTIxnUw62Wzl/PJvIfzdsU74UORhX/514s+ZFmbdhNnOgjQ4uy8gmDol
-         mT4pbgQDlg7ZWIhcyhfegJAByWr9moqdjyWPhFAZp3Pw4Y1wyuV2noXV35X19TzJx3W6
-         jUN+aGByD4/APErq2T8htsdGSgsOkkdKBTzvMpCnewpSOkmpzmyNX9Tv6rmbTKDgWwMI
-         y11Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXwOVNNfsJRXKy/bxyWIO6CtjAXo1WbhQzFRAlyT7Um3jya8oQqez2sVLSbsPLv9RaCFKafgBeY08Zk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxN+hhkA+B7U8aG2fCR+D7y0snEqfSZVtyN2FT2pMCrOK5S/Q9A
-	oDPU5B0vkvvKD7dcjsj9OXL4krgNDuA5z4sLU6OfjDSVyy+sXcrznez1xsw+hqQvKdo=
-X-Gm-Gg: ASbGncvaehE7LPU58qc7ak7jUxwhzE/Fw1bjsKu1DIS2fIBzlk/4+q8dPMvE5LgfN0P
-	OynbRg96RLkhqVqdJNquniWKINkIPZbrXOB5n0YtE2Ygotkqp6PYSQpuHfhxd5cfAYNp/OXY8sO
-	tBh3ToHSWa2LpGJDwSiT9yJywIp2sO6eABAwJgviobAaThXsqrkIXV+moYmJisjVXR7WIzWOSaS
-	4mEerJzFSEkpIuXrOhkBgqdLkDqCfO83yqsqmrpvyZo2LxbqXNKrHn3+uyCkrlp8s3kdhDzUvrV
-	4DhRBfzijGYvqK5frFlbx2YDQMzU4k4WDznjNu8dREsaqSVZOUBqAYxIBO5XjnTb4B6n+vYycJr
-	LFWcnJR/SxzTbJg0WE75Ue8gAQi4aPOpy7nG4SAd9WTfYx8wTxEiEjfD17FqYDsgk8TBMH/VTu+
-	M=
-X-Google-Smtp-Source: AGHT+IFOELUtC52z9Q26FCR174suBx8TNGvfiZiHi0AzwFaFFL6FW1oxmFvuk08xuGo3H6BQgIw75g==
-X-Received: by 2002:a05:600c:34c2:b0:456:1dd2:4e3a with SMTP id 5b1f17b1804b1-459e7bfdeb1mr32593785e9.3.1754489298722;
-        Wed, 06 Aug 2025 07:08:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:96df:e381:55b8:1990? ([2a01:e0a:3d9:2080:96df:e381:55b8:1990])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458953eaeeesm319154575e9.25.2025.08.06.07.08.17
+        d=1e100.net; s=20230601; t=1754490947; x=1755095747;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TwlR+oMZlALuIJKmyusyfjuF4+MmPOO9KSk2h10iAKA=;
+        b=okIQatE+mbzDeGa0BW4JPhblVZbUmOqyL+6UCLBCUEz7N8gndWy1Urru+sX60Ay3Ga
+         O+ojgK91RYKlP/UrLF/Wuhb5Z+3NS13I9CVyFogntrBOjoZlKiMy01COdqVn9kSxTlMN
+         YrSbDSTFdYbntSNo0l7N+KBT2wDvWesVDAWH5Yz/upMjVRFQcD60oUZeLTomEJdOCB0l
+         /EmjYuMPxfmFsuhPVlFc+9sSb7KXmLZIDoJcDkDQ0oU1yeGjO0TwpBGbmcetSEFbtGH8
+         84jnv3mhuho0EbRQk2li9rxriPqDK5f8z4YOaPKZnVrbKWWQU/BXwVplY9o2LqQwErLd
+         zm5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUwiyStxerCUIqHCp/TAoHKR6FX2mD5brtvN0Hqso7j2k5JhlNepBRRp4SAQrkt/heEghf2FJ2+dpxm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhdgTUt/NVHN3ZUH6Jh6z1MEygeWtU+stvjLlAvcruqUZhdviY
+	2W42DZPMkDASqieuGb3afXzBaWfJBGqRmi2u0+/JRvz1oI3vy7ccFKRUGUMfcmHvQ5a4A8RWmxa
+	7smmEOpD/OoE0F+FukjQN/h09l0+3wGEVu5HqC5P0YrRikR17IRP4XnB6pEZhNeU0
+X-Gm-Gg: ASbGncvJ8N9hfjgWx+S4ADPGdX/OAXBvXzCTPWinUoyIEWHwnJJ0DBsG322Q+Y9Bebb
+	Zy1cBLssCLd+d2YrLuozdjYugQv1iDg3Ly9o00eOhgkT7d8+d/4BmF0lr7H7AqhWf4LuCunbPAv
+	EWgcmkWPd0DAcKXmcT29Z1Ax6DX0yVywFJlEFlyhOj5/YwvwH07IFkq/LFB0AVeGhm+IYSlze/N
+	VVEgXZU/Agm3zl3/CIxHroGUlLY20isjZXOuCS6TK1qlUg8i+Whro7rPM5pm/47xjn98UsqGjsb
+	RWn4i455wsDkcA1GGRePi1GeuQLEmosnGxevCm3bP/P22YLJQeK87YsxQLkoG6nbaQAtCZrFshT
+	zYoY=
+X-Received: by 2002:a17:903:1250:b0:240:3cab:a57a with SMTP id d9443c01a7336-2429f9869cbmr43861625ad.12.1754490947323;
+        Wed, 06 Aug 2025 07:35:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+NPjGR/ioIEs8rIKpi433E6HkfZN/NsX24RQq9faA59sT+8283L0e/mv+qkQqKGbp1uO9ww==
+X-Received: by 2002:a17:903:1250:b0:240:3cab:a57a with SMTP id d9443c01a7336-2429f9869cbmr43861085ad.12.1754490946675;
+        Wed, 06 Aug 2025 07:35:46 -0700 (PDT)
+Received: from [192.168.1.4] ([110.227.163.12])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef75bdsm160361515ad.11.2025.08.06.07.35.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 07:08:18 -0700 (PDT)
-Message-ID: <8f1ded5f-430d-4e9d-a328-aecaef1e6d60@linaro.org>
-Date: Wed, 6 Aug 2025 16:08:17 +0200
+        Wed, 06 Aug 2025 07:35:46 -0700 (PDT)
+Message-ID: <6d2f71a5-72a6-4ba6-956d-19f053d73c2e@oss.qualcomm.com>
+Date: Wed, 6 Aug 2025 20:05:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,67 +90,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 5/5] phy: renesas: rcar-gen3-usb2: Move debug print after
- register value is updated
-To: Prabhakar <prabhakar.csengg@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250805122529.2566580-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250805122529.2566580-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250805122529.2566580-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 2/3] ASoC: codecs: wsa883x: Add devm action to safely
+ disable regulator on device removal
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, quic_pkumpatl@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20250727083117.2415725-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250727083117.2415725-3-mohammad.rafi.shaik@oss.qualcomm.com>
+ <07faf0cc-a8e6-426d-b397-dfc321a7f3df@kernel.org>
+ <aae92260-5169-4af1-97b0-48f364612dca@oss.qualcomm.com>
+ <4bc486cb-9d94-4bad-ae07-e9a7aeed481a@kernel.org>
+Content-Language: en-US
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <4bc486cb-9d94-4bad-ae07-e9a7aeed481a@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: fydk6_PdtSBm47BUVIemEcQe4zeTwZqo
+X-Authority-Analysis: v=2.4 cv=GttC+l1C c=1 sm=1 tr=0 ts=68936844 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Q/58bkKydBp6VmYC+FnXRg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=usrlyX-CWiNRApQyylIA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: fydk6_PdtSBm47BUVIemEcQe4zeTwZqo
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX6XIzVkTgjFg6
+ mc+uah0n1H2oYrZNFm7yh5wYm1tU9lXSGYcTJbHZO3Ztpe7EF9//zIdpfs3QXlK+0oeOOoBNycK
+ 4zgrLWmxpLgelVoXx/MjrBvXXRPZeh//YKn4Ki7UhwKbxGaqn/x4AtQfanAQUfzxWWMnrMOoejg
+ w0GrPiPYGc0vBwMsXgDbP9fAMXb6gM+zebjj9o61gtO0hTrRSTa0/Ks1LcmyxtgOXR/jdQYg6pH
+ 3DegVAsWsXaCRTV2/Ah8z0mAQ+T6jYkq2M/klL4o+7omkq7XwLfI/Lqb43mb0pM8k2JQS5l5KN/
+ gk2qCBI+mD0tD1Ya4FdG3y7rwzphAOizcZ+tA0vD2Fsugn1iwQIPXkBfmBsQJq5gWActzc5nGhz
+ hxlIN4d9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-06_04,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 phishscore=0 impostorscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 malwarescore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
-On 05/08/2025 14:25, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Relocate the debug print in rcar_gen3_enable_vbus_ctrl() to appear after
-> the `val` variable is assigned and updated based on the VBUS state. This
-> ensures that the debug log reflects the actual register value being
-> written, improving debugging accuracy.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->   drivers/phy/renesas/phy-rcar-gen3-usb2.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-<snip>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+On 7/28/2025 6:32 PM, Krzysztof Kozlowski wrote:
+> On 28/07/2025 14:36, Mohammad Rafi Shaik wrote:
+>>
+>>
+>> On 7/27/2025 3:00 PM, Krzysztof Kozlowski wrote:
+>>> On 27/07/2025 10:31, Mohammad Rafi Shaik wrote:
+>>>> To prevent potential warnings from _regulator_put() during device
+>>>
+>>> Warning is either there or not. Either you fix real, specific issue or
+>>> not. The code looks correct at first glance, so please describe exactly
+>>> how these warnings happen or how what is the bug being fixed.
+>>>
+>>
+>> The current wsa883x codec driver manually enables and disables
+>> regulators during probe and remove.
+>> In patch v3-0003, reset functionality was added using
+>> devm_reset_control_get_optional_shared_deasserted() for shared gpios.
+> 
+> 
+> There is no such code at this point. Each patch is a separate commit and
+> must stand on its own. With its own explanation. You cannot say that you
+> add bugs later, so you need to fix something now.
+> 
+> Describe actual problem here. If there is no problem here, describe why
+> you are doing this.
+> 
+
+Identified the actual root cause of the issue observed in the reset changes.
+
+The failure condition was not properly handled in the reset patch.
+
+I will update the patch to include error handling for failure scenarios 
+and ensure regulators are disabled appropriately.
+
+will Drop this patch for next version, only will keep the reset changes.
+
+Thanks & Regards,
+Rafi.
+
+>>
+>> However, during cleanup, this led to a warning:
+>> "WARNING: CPU: 2 PID: 195 at drivers/regulator/core.c:2450
+>> _regulator_put+0x50/0x58"
+>>
+>> This occurs because the regulator is still enabled/released when the
+>> devm-managed cleanup path attempts to release it.
+> 
+> So that patch was broken? You just did not properly clean up there?
+> 
+>>
+>> To resolve this, remove the manual regulator disable logic and instead
+>> register a devm-managed cleanup action using devm_add_action_or_reset().
+>> This ensures proper cleanup and avoids regulator misuse warnings.
+>>
+>> For reference, the wsa884x codec driver already follows this approach by
+>> using devm actions for regulator management.
+>>
+>>>> removal, register a devm-managed cleanup action using
+>>>> devm_add_action_or_reset() to safely disable the regulator
+>>>> associated with the WSA883x codec, ensuring that the regulator
+>>>> is properly disabled when the device is removed, even if the
+>>>
+>>> Device cannot be removed/unloaded, AFAIK, because of suppressed bind.
+>>> Regulator is already disabled during error paths, so that part of above
+>>> sentences is just misleading.
+>>>
+>>> How can one trigger the warnings?
+>>>
+>>
+>> The warning in _regulator_put() can be triggered by applying patch
+>> v3-0003, which introduces reset functionality using
+>> devm_reset_control_get_optional_shared_deasserted().
+> 
+> 
+> There is no such code now. You say "potential warnings" are here.
+> 
+>>
+>> Since the existing driver handles regulator enable/disable manually, the
+>> devm-managed reset cleanup path may attempt to release regulators that
+>> are still enabled, leading to the warning.
+>>
+>> This issue highlights the need to replace manual regulator handling with
+>> devm_add_action_or_reset() to ensure proper cleanup and avoid such warnings.
+>>
+>>>
+>>>> probe fails or the driver is unloaded unexpectedly.
+>>>
+>>> How driver can be unloaded unexpectedly?
+>>>
+>>
+>> "Unloaded" might not be the most accurate term here. What I meant is
+>> that the driver’s probe can fail due to an error—such as missing
+>> resources or improper regulator handling.
+> 
+> 
+> Use standard Linux terms, e.g. probe failure, probe deferral etc.
+
+Ack,
+
+will ensure all upcoming changes are managed effectively.
+
+Thanks & Regards,
+Rafi.
+
+
+> 
+> Best regards,
+> Krzysztof
+
 
