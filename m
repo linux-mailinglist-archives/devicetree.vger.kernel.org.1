@@ -1,169 +1,128 @@
-Return-Path: <devicetree+bounces-202304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1790B1CD36
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 22:13:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E406B1CD60
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 22:21:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 575183AABBE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:13:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9880172E8D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 20:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E03A42BE7B3;
-	Wed,  6 Aug 2025 20:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3004D218851;
+	Wed,  6 Aug 2025 20:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aUZ6ViRm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NF3Y6Eul"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C2E2BDC24;
-	Wed,  6 Aug 2025 20:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877D71EFFB7;
+	Wed,  6 Aug 2025 20:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754510831; cv=none; b=lyEPdsAchnz2d1eoXp1U8oho6kCcttbXzjgI7aGE1N4TgBNeveG7p3Tw9J+1eL91rtgqxSCVGq0xqpaHje2MdSug1b7D/uB88WxPwctVqVdAFMi1Y52z+8cviadtBIYnkVhx3MP9HYwHAab0efU5x+B2SaSK9ft4SPvA1rAk1Zs=
+	t=1754511678; cv=none; b=l1uuzRFQKWqMf922anvTCvnmO5x0Fxj0+ZGVuQhQfYgaq2o+kVi+YWT8VTIPZVK+dncjRXguUokCsb4LUMXRm0J1m9DXEV3TvVKm39ZPLoxFqa33AGI9xZLXSnM4n6SQ4D7eETNbG1gq4wwp4+UktuuATqXrt/8QEkMhjAiIRoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754510831; c=relaxed/simple;
-	bh=F6dBVKNVGW0SVfDm6GCOPGv5own4aunOLuUfzSL0X/E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NMADfumOJ8uKGkoznuIbqAjE8rioCy/wVD+mToxAsqi5wxkDhbGXRlFzigAL+u+hs1VnniOuo3cFgIbabzZEK0OMoGb5XA2NZ4nWyQvS+GgTiO7PLEX6p056C2GyFaRD0VnJRDdg4XtMsU6FuIyuMxerxvtQSmBMd/ePIAcKt2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aUZ6ViRm; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-617b36cc489so528444a12.0;
-        Wed, 06 Aug 2025 13:07:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754510828; x=1755115628; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1y//2z3GOpDTsyDCJpqXABs/fund7CJdbSsFET0LtjE=;
-        b=aUZ6ViRmbfCWxoE754dzV3FsdXwwev/5e7PhN8R2oBKKQfe+256nFzMrvCGGoPSGL6
-         mEfnr0LPfzRIcrjZXhzax20ud6n1HIR7VBJJEWaY/I/9C8cnHpQ+dHuLMysmEr3FtljL
-         bY542bUBnBGgTH644jRtvT+T3OLZ+bxack0o89ac4FGs41Av0zcplsKm9lri4q6dqiEv
-         Tf/9Jo6/F9VeTA59R/0hMu6OFX9PucVJIH+ed1S0Q2VQlJmPI23e0rld4Le8ff4fgL6V
-         U/xAR6IrQixsiC/50LWaFrOGwsH4+1uUPVEqcpqYAT+/QzLH7kbnUWNgo5YAanPmNDVo
-         we9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754510828; x=1755115628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1y//2z3GOpDTsyDCJpqXABs/fund7CJdbSsFET0LtjE=;
-        b=FBeVUdmCO7hCWCoLB2uuF6GZUHnYyvowYK2XyewTODmJkNRD5af/KurVHpAyng53mf
-         WS8tU7nnLq91NeHh0jChZJlxBfCCXoFK3D22dmeKH1TtQcD4ktrQaM+g26wIrcc++cc3
-         sEmJOOUGsF1IDo8pKqTIS7Q2vP5mR+uRorMl5OpTR9pViVZ8BsS/VWji/kiTaZcruC8v
-         +LRzLoWm4Qh4vO5/z36L+SDm63tV6HH51Vg+vo1hC1dOuXmZJgnViiE6KBF1jn9kw4Rb
-         hPKyMtn3ridvv6PexjM+uHG67FCWT8QNbOgNCtS8xu3ZrIoErWBIrZ+E7zrRyF2mr9Lj
-         7/GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOw52sSq8Xv3t61EpbtWlbK/PPVRQJQww1S3UU+z1rYePhnOvOv9EJQZQ6LWa/H2Cs1XMm7zmU+lGZVvVswmxE3CA=@vger.kernel.org, AJvYcCVPWasuNZdgFY/cFxHUGjmXi2zJwp/bwlF/xhFq42o2VqTnFj1UaODUo2AGBqPMeDcE3UdAMtDf5nyKt1AL@vger.kernel.org, AJvYcCXWApaMwVpvwEq1AyT7kWGh/n9xisTgZlNDnZoDnI216huTGECHcDTn/ZxmE9CUgJElC59wt9AlCYOI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3QGAY8k4vV3RZw3801suuvInuyZuPE+I4CRjkCHIpbRJ7VMuy
-	xdCPF37nzaipaU4rACTSCH40V94An+ZkD9pJdJwk6tQ944xCf/sOasSoIZjycUbhkvGOZrqIUiI
-	cTENhDBxCKyvhx9sCEstUWoh/yQM4QdQ=
-X-Gm-Gg: ASbGnctpBDx8U4AeCeLyFYlvy2WFElWZYYoOYvZMoKaVplnKfo4rfWAu/nG2ZYFoHx/
-	5WkkLTovP4i01hRlyxz/ve8zTCx+6AI+o21xfTStCmvM1giQvajiw1u4f5fZEEnnmxNCmE8Pmil
-	uXWvYbKQEIENFMbr6JOZfy6HJXQBAlfjDzJUh8BmV08z5nvxFKc0Pe6nQ0P4iQOJcYyeQH1fZwQ
-	D5M0g==
-X-Google-Smtp-Source: AGHT+IHhhQEGu5BtXcY7VW+xT3nmIjVY4G2aymShY3a3bD46hWVFOr2Hqt0MPzl3Os8CHo+qZbAd4sJv2gxENx2f08Y=
-X-Received: by 2002:a05:6402:1ec6:b0:615:c767:5ba1 with SMTP id
- 4fb4d7f45d1cf-61796094c0fmr3817267a12.3.1754510828182; Wed, 06 Aug 2025
- 13:07:08 -0700 (PDT)
+	s=arc-20240116; t=1754511678; c=relaxed/simple;
+	bh=GhUYINd18AX2enAG4jJkuEbtK/ker1ziFX5YVu+5vzc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DxeLom1jBzmopO8FDRUovUnPWrduUORQoaWHcejPRiUG/bl81FIPMNTdRO3eL8k4faj4elhDQ5iv5bMHZQHAA9wDOXPJY1rE3PYNir4mRXKX8r9/PFGRTpHsGfUxFHED7UYVn3Ajk9jiOQky3lVPwM/fv12yERkbgDfVF1BV/U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NF3Y6Eul; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754511677; x=1786047677;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GhUYINd18AX2enAG4jJkuEbtK/ker1ziFX5YVu+5vzc=;
+  b=NF3Y6EulO9V1s4Uq0nfCsDorfV/EHbqvOWHgoUPgqby0g3POuEnczebr
+   a9gm7mYCZUg8avlYvs33hAYeFZ4YJpvmEvE5Gy1vqEeBbGsIrgioK9HhY
+   zEIONgZcb/OmdGrrYkKtJ7qZ/wkElzWxMCIkK8jvCELcS6HWiTFLzq/UN
+   34h5cYr7oP8tlb/ZTK6kUgeyE/3uPn+QtF4oS4qiRmHCdkRrokhCcl/nY
+   UkdTRAigUnj1ygynFt5txM1gIkaae0PgIJIUgbQrRo4UHbg1N9X0XlRR1
+   jmXRUeUh08QkWsWn6dDMZ+2AXZ0G7rnnCkaY2XununUAw9IL1kkQl2g5i
+   A==;
+X-CSE-ConnectionGUID: MapPORZiRMyFBgqDQjyZhg==
+X-CSE-MsgGUID: Ww4/Hx48SsmpaHvz415XQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="59456574"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
+   d="scan'208";a="59456574"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2025 13:21:16 -0700
+X-CSE-ConnectionGUID: 3Bjj3fr2TFGV7sLR4pXiQA==
+X-CSE-MsgGUID: rDyNSKfPTNS73cTGIdMvHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
+   d="scan'208";a="165232439"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2025 13:21:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1ujkdJ-000000046if-1kug;
+	Wed, 06 Aug 2025 23:21:09 +0300
+Date: Wed, 6 Aug 2025 23:21:09 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/8] iio: adc: ad7476: Simplify scale handling
+Message-ID: <aJO5NRESqxFfxi3s@smile.fi.intel.com>
+References: <cover.1754463393.git.mazziesaccount@gmail.com>
+ <645ac6fb917e12db6cdc0fc343487531f61c176a.1754463393.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805122529.2566580-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250805122529.2566580-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVMKzJtomQzzZaHXbhhEJ_3u71Kj7QcMhRgCXcDWY-Kqw@mail.gmail.com>
-In-Reply-To: <CAMuHMdVMKzJtomQzzZaHXbhhEJ_3u71Kj7QcMhRgCXcDWY-Kqw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 6 Aug 2025 21:06:42 +0100
-X-Gm-Features: Ac12FXyyRAJ6bblVH7gGupbmqizl2-LRtb7rxFThhwX2ialL0d0fLzcb_vMcqyY
-Message-ID: <CA+V-a8tQxJ6y-7odV-V9fZt90v4oiRwvqjcTh8-Fs7xfJAm9fg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] phy: renesas: rcar-gen3-usb2: Add support for RZ/T2H SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <645ac6fb917e12db6cdc0fc343487531f61c176a.1754463393.git.mazziesaccount@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Geert,
+On Wed, Aug 06, 2025 at 10:03:07AM +0300, Matti Vaittinen wrote:
+> The ad7476 driver supports variants with different amount of supply
+> regulators. On some variants there is only VCC, which is used as a
+> reference voltage. Others have separate VREF regulator, and some rely on
+> internal VREF. Some have both internal VREF and option to connect
+> external one.
+> 
+> The ad7476 driver reads the regulator voltage only when the user asks to
+> get the scale. This means the driver needs to do some dancing while
+> picking the correct reference regulator (or internal reference), and
+> store it for the later use.
 
-Thank you for the review.
+> According to the discussion:
+> https://lore.kernel.org/linux-iio/20250331122247.05c6b09d@jic23-huawei/
 
-On Wed, Aug 6, 2025 at 3:59=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, 5 Aug 2025 at 14:25, Prabhakar <prabhakar.csengg@gmail.com> wrote=
-:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add initial support for the Renesas RZ/T2H SoC to the R-Car Gen3 USB2 P=
-HY
-> > driver. The RZ/T2H SoC requires configuration of additional
-> > hardware-specific bits for proper VBUS level control and OTG operation.
-> >
-> > Introduce the `vblvl_ctrl` flag in the SoC-specific driver data to enab=
-le
-> > handling of VBUS level selection logic using `VBCTRL.VBLVL` bits. This =
-is
-> > required for managing the VBUS status detection and drive logic based o=
-n
-> > SoC-specific needs.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-> > +++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
->
-> > @@ -284,6 +293,21 @@ static void rcar_gen3_init_from_a_peri_to_a_host(s=
-truct rcar_gen3_chan *ch)
-> >
-> >  static bool rcar_gen3_check_id(struct rcar_gen3_chan *ch)
-> >  {
-> > +       if (ch->drvdata->vblvl_ctrl) {
-> > +               bool vbus_valid =3D false;
-> > +               bool device =3D false;
->
-> No need to preinitialize these two variables.
->
-Agreed, I will drop it.
+This may be made a Link tag
 
-> > +
-> > +               device =3D !!(readl(ch->base + USB2_ADPCTRL) & USB2_ADP=
-CTRL_IDDIG);
-> > +               vbus_valid =3D !!(readl(ch->base + USB2_ADPCTRL) & USB2=
-_ADPCTRL_VBUSVALID);
-> > +
-> > +               if (device && vbus_valid)
-> > +                       return true;
-> > +               else if (!device && vbus_valid)
->
-> No need for else after return, but...
->
-> > +                       return false;
-> > +
-> > +               return !(device && !vbus_valid);
->
-> ... all logic above can be simplified to
->
->     return vbus_valid ? device : !device;
->
-Ahha thanks for the pointer!
+According to the discussion [1] ...
+...
+Link: $URL #1
 
-Cheers,
-Prabhakar
+> variable voltage references are rare, making it hard to justify the
+> added complexity for supporting those.
+> 
+> Drop the support for the variable voltage references and simplify things
+> by using the managed regulator get and enable interfaces.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
