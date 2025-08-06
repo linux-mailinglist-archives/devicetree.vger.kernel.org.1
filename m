@@ -1,121 +1,85 @@
-Return-Path: <devicetree+bounces-202127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008FCB1C1BD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:03:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3E8B1C1B3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:01:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FB037AEF36
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 083AF174870
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 770E121D00A;
-	Wed,  6 Aug 2025 08:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B74205AA1;
+	Wed,  6 Aug 2025 08:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iL+TN5Gb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NSm2SjEy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9984D21D3EC;
-	Wed,  6 Aug 2025 08:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF0319D092;
+	Wed,  6 Aug 2025 08:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754467316; cv=none; b=qpew18VS7hpQNgeDFeaVmxSZRINGUxyECeVq+8vS+R9HwbyUWWZMwzU24L0mUUS95aHCFFE6kwXEJzizgjxSFI5sMojB3jrrQms8gG9wtnnk9msMlWg0XhADjXDZfLn/synwE6tyhTAZ4bR5PYxkDRuq2t198d1RFPsC5clRbvg=
+	t=1754467282; cv=none; b=WMpqBL272eFZpdznN6lVHDIPz0au/YoV4xwVkU+IFg7jYopzFmXTILcBt/Yl5XPPn3zHqrTPXlnHh2imUArvfE1iIl7IYa54M75hT8Rj/4WFXRycLF0b7dFQCu2EUaT6r5IdGt5/B8A+IL0Xe7wf005CIbnPpZbST1+zlSBWhyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754467316; c=relaxed/simple;
-	bh=KWNUw1uurBwbVYMMXqCSCxlKIRGI/xDpu4xRO6XnF68=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FQVyW11PyEBqTZfMzHmksl0C+lQUbbNenCwvtTJPJBUUqj7Jnl0WOkoKXvY7BHXrKkGfkUupbElmyOZQkWOkQdsT89U6cfs4HVndXl2jYBZYNQmakZAaw0KbASueYfzqsTxaS4biLRl0rmILIZ/CAmTNv7niKvkMOimw44CgxYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iL+TN5Gb; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6157ed5dc51so11292899a12.1;
-        Wed, 06 Aug 2025 01:01:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754467313; x=1755072113; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6iCzFRU8kKIqKUJirQf+HWWFYyGorAzIYLXfyzdGgPQ=;
-        b=iL+TN5Gbm5RFofgoIadSAo6oCGXF50QLuiKr5AjQ0xrItbG6vKojz8DfG8OhoCJrAZ
-         DuL/nTs3lkcVuUidoPBKTAkVpi27+dvUXLIS8dz6qyj+Xtqg0udDkhwaWakZFdzc0tiF
-         VjHQj4C448pyCP+6iivK3YVLlu+Sj4iA+NwZ59KUeP3bq09Nb5KjM2QaPMD/N/cXAjjW
-         KWCOze905fhRnIDTLokeHguNWdf3KDkmTtgi1Z58WJY1cPp79Ldoi2Djmo8qSiD2Zwxa
-         kE2AEen+4JzpP9jmOW301aAQBxodRfKlNWuU6p8YIxAfmFSfVl9x6HGca51jhfvnq46H
-         sayg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754467313; x=1755072113;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6iCzFRU8kKIqKUJirQf+HWWFYyGorAzIYLXfyzdGgPQ=;
-        b=HapDwnZY4vwiL1n0O9u/L2KlA0f4e+szVI/KYi/GykZVlVqa+N+Y4oLNdyWrqSjK+8
-         zOAddli+roQW3O90QprMcwAzc/3HoXUinZzHKUnwY0GsB/vUc3ZD/gehgLUFsuGtSdgX
-         4Rb/F/sjQew/3KYwK6oDYJKr0K4+89EvZ0VHpW+Q/J6wXnsM2bsq2WX53u1ZQ01/BuYl
-         1JmHulw9ao7NGVkvVc0GaPPSciHP5XQX4MkQVLFyfKxDZELkiBsIZB7FXgGfSjWH8P9M
-         PzfjUQgLrEKRWSJ59wvwAa+KYb/fxSdrjDrTs6lNeQd1w5uLwEsnp2TiQx/Sxk3arWFa
-         g7aA==
-X-Forwarded-Encrypted: i=1; AJvYcCWf9sWQ8lM0QNtYXkkSjI6l5KlTWmEJcqPgtsNJd22lxXIB3f+jhml0OXMNbLeXbqSMAXA/fybOlt4Wf0Gw@vger.kernel.org, AJvYcCXMEablYGzZamcQdg6JTJv9Ot2QSTxWZr1lI+UbYeXRYH65WdGNiqcLTWTishym5h+WMC8wGVRuwanA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQlCK8PNWKZVXawm59k9OwGwaoDGO+rO4v8YcEKwO+suiZl8Qn
-	s91caOMja8mcU0Ch0a9Py7an3d9tx+IlYdSkfwJ2c0FEv7Pym3CxNhZk9THeXgxidhk+3ViPj0M
-	eHH9YNIlaZEW87w/cbucQKtRaKe0yo1Q=
-X-Gm-Gg: ASbGncvnkRejtKDauLkrkh6sMZ7S5M2NKymiJ9hzQVtdDXfdgE2xN6EDFZeCQ55c/0Q
-	0Z54AxGBh/fl9IQONJjz3jVp996nyqGfBGKwaG8fYDYfORaYwRUJzQLjgsWV+7ETJ5swdiNTfwF
-	MwiTQk8lzH+3tzvKfDExEAgIdwu2AM/pf0t9S6Ac7b3UyJFjQ5Rce2jLgt2qCTrDD9tQ9EMXczC
-	tbN1ervALb4aSRBzfvuKLUvD8JJBg==
-X-Google-Smtp-Source: AGHT+IFLnS66PAFjbYXbRkE65+dBg7IT74rclUu90hts6vAYoZ9fqvLM2kqGkYBQPfmT60uh5xRuPSJY4tL4HkJ4oXs=
-X-Received: by 2002:a50:baa6:0:b0:612:bfb2:386 with SMTP id
- 4fb4d7f45d1cf-6179617bfefmr1195837a12.28.1754467312584; Wed, 06 Aug 2025
- 01:01:52 -0700 (PDT)
+	s=arc-20240116; t=1754467282; c=relaxed/simple;
+	bh=6UhUEqB5zUWrUJaIZUr6ZCMybHfzLK+onh28xTaTaPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lx6hxrWXzb4a7vqHwGPOdfOd2HLAfmLYpHRiLrD8CbPaCeMHtwBRSgiaWr7MU32nhiAQ0vTbHEN3vOLZsXAMljg1Q4226nbUXM5CedWyvXdk6flsRhsM9IDXdB9cGgafPrRMSegvc8Kp26/i5rxXQO2JseMavWvzP5L7V28z2oE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NSm2SjEy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2C68C4CEE7;
+	Wed,  6 Aug 2025 08:01:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754467279;
+	bh=6UhUEqB5zUWrUJaIZUr6ZCMybHfzLK+onh28xTaTaPM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NSm2SjEyotdCuxepfN5zSHXLzO6tn2yWyH5fY4bIBuswIVop0zgl2rN1lt7tKC9Ls
+	 jumzBit81toImP8A3a3wxsVBI3nJKPlJMgjgTWrhFTDYPfVxDvD0bNGHGJ64RLijqz
+	 9dJmYIsOBy8gieZESNykSGvE6ffuF8wtnpQs8L7TBmYmq86gcG60zP7PA+n4Hpw4nf
+	 MoglhlJ4gFpDJjz5Yp81ewi1DuIf+ALrbb5HXS6AQOn2dHxs8mvTay6mp3aHepIb2R
+	 ktFbDGg/A6VeQ6Tl7f0fW2esJY4Lpss3MRrWv3qMR3hOPecIfGClGWL2OK3mdJKhA4
+	 xxdE/+Xo38UaQ==
+Date: Wed, 6 Aug 2025 10:01:16 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH v3 1/8] dt-bindings: clock: loongson2: Add Loongson
+ 2K0300 compatible
+Message-ID: <20250806-ruby-polecat-of-imagination-8b0a34@kuoka>
+References: <20250805150147.25909-1-ziyao@disroot.org>
+ <20250805150147.25909-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250731-ums9230-drm-v3-0-06d4f57c4b08@abscue.de>
- <20250731-ums9230-drm-v3-1-06d4f57c4b08@abscue.de> <175424000200.522677.10470224183997281701.robh@kernel.org>
-In-Reply-To: <175424000200.522677.10470224183997281701.robh@kernel.org>
-From: Cixi Geng <gengcixi@gmail.com>
-Date: Wed, 6 Aug 2025 16:01:15 +0800
-X-Gm-Features: Ac12FXwuP9GqGL7vRUeucDLGxlVViCM53h0qDTc6CYWtwi-PmaWkTPBHQBO-hmA
-Message-ID: <CAF12kFsczEgNWY09A8PCSyVqSGwQ0xHqxthrqoHfX20q8x3HFg@mail.gmail.com>
-Subject: Re: [PATCH v3 01/16] dt-bindings: display: sprd: adapt for UMS9230 support
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Russell King <rmk+kernel@arm.linux.org.uk>, 
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Tang <kevin3.tang@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Kevin Tang <kevin.tang@unisoc.com>, Liviu Dudau <Liviu.Dudau@arm.com>, 
-	Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	Eric Anholt <eric@anholt.net>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250805150147.25909-2-ziyao@disroot.org>
 
-Rob Herring (Arm) <robh@kernel.org> =E4=BA=8E2025=E5=B9=B48=E6=9C=884=E6=97=
-=A5=E5=91=A8=E4=B8=80 00:53=E5=86=99=E9=81=93=EF=BC=9A
->
->
-> On Thu, 31 Jul 2025 17:51:14 +0200, Otto Pfl=C3=BCger wrote:
-> > Add new compatible strings for the DPU and DSI controller found in the
-> > UMS9230 SoC.
-> >
-> > Signed-off-by: Otto Pfl=C3=BCger <otto.pflueger@abscue.de>
-> > ---
-> >  .../devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml         | 7=
- ++++++-
-> >  .../devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml    | 4=
- +++-
-> >  2 files changed, 9 insertions(+), 2 deletions(-)
-> >
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->
->
-Reviewed-by: Cixi Geng <cixi.geng@linux.dev>
+On Tue, Aug 05, 2025 at 03:01:40PM +0000, Yao Zi wrote:
+> Document the clock controller shipped in Loongson 2K0300 SoC, which
+> generates various clock signals for SoC peripherals.
+> 
+> Differing from previous generations of SoCs, 2K0300 requires a 120MHz
+> external clock input, and a separate dt-binding header is used for
+> cleanness.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  .../bindings/clock/loongson,ls2k-clk.yaml     | 21 ++++++--
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
