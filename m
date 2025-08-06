@@ -1,298 +1,156 @@
-Return-Path: <devicetree+bounces-202101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EC2B1C0B9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:56:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A25B1C0DC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D93B44E1A01
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 06:56:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D1D218A4A39
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 07:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CA12135DD;
-	Wed,  6 Aug 2025 06:56:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A116520299B;
+	Wed,  6 Aug 2025 07:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LvVSb9Bf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PTYXDA3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43BE19004E
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 06:56:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67151E572F;
+	Wed,  6 Aug 2025 07:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754463406; cv=none; b=ES45kZwmAKSAxF+HEtJ7gOy0KxNrVDRPlNpK+9PLnw9UswSaM4XPxTwRn3zWMBCXrqJTNMP5SRyeIlalRvvMkxr3fLoK9Z0P496wOG8k8x2lxOFgumX3txrHVL4B1Y5jGooV01O2pZjkNxgO02hNhOZZsY7+GoRS+BnPudOgKJ4=
+	t=1754463754; cv=none; b=ZGEI0KmPbDkMpLAipG96lD6JN8lyr1OFVzLAn3uQi2kGOvH4JX3DePZfLJsJd4OwjS9a9z3lYHLZm7pvXFuAvHDRl9oYUVnORmTvz3crNqC3zmPtMrKUMIbA+qpRFQeoOIInSreXQQRJ+0IbHRHvrQr1zmotjEbP+MlXaBW5sow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754463406; c=relaxed/simple;
-	bh=8SW3rfTL8/OejY6ueCEYcCpI7x2u8v0/UM2RH/6/+wo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mS3UWTEPYHF1m0rwSqWLSbzrr7zFDvqKisXv3mGl1aMbqDbfb5cBZKePMOAB/rS2NvxGR7h4BTFXy3suU81pWNQk9JrfBDyVYzQ1oPMfa2LxCJIuNYkKcDSjjVnA07Bzj5VUAU2eGIjvnqt/roov34k2HBG49sMQtBb6oKIqzDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LvVSb9Bf; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-76bc5e68e26so6410678b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 23:56:44 -0700 (PDT)
+	s=arc-20240116; t=1754463754; c=relaxed/simple;
+	bh=poC4XVaA8B7YjkMeMwvT4Z2vsTNM3GbduKIm2z/TI3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Gkre/VCu6COWAjnTmg1HNUl0kg8Z8guDVFfRq2UwC5vSThGjIeodCpzwsFrTkEHh8674mTtjX5mBPjyc6RTnXXWL2UWgK4KI2pmaHmkKj2lYALKt0Efe7YbfQSEQDeUXAQ9yAAXxQpgK/gxdJq8YeLrh4XOBmrNAjEeaIKVlFhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PTYXDA3C; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-55b93104888so5403028e87.1;
+        Wed, 06 Aug 2025 00:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754463404; x=1755068204; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YF//15yqZSlqqumHm5+I1dKqkACpOoAiiur9eCb1Jyo=;
-        b=LvVSb9BfcpNwyhxrQGZ+/5mklNvCLJl1qc92Tlg7+Hkz/kWJ2D/+qFS7yqLtoPAgjN
-         LW4tMt+5KjJedBQgbcqWvBqdW0j71Gll+M+Kd0punr43BQcamhIRtZHIWNNwXRHMEmn6
-         3CNHhHHAXSvTGmfetiKCXyCbRIKJw/WoovSO/+pbWqa0oYbOQCa0cFfNB9J4N1p0qHma
-         zhF8bIgtGMNW2YDERxN6QnHJVyi+/EPjIu9IDQJa303MoMl8XMEnaZIMOZzKiRLiDZxP
-         Kuv18RGthy4impbqKQGD6py1iCBd3CRWcJbP3E2aOy5JK8XQLyOBRwtuMmhQwB9r09SD
-         RbdA==
+        d=gmail.com; s=20230601; t=1754463751; x=1755068551; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S+EPybaLVAUi5QIFTBdyFeFLaZuSxryGuhqzOkKwhms=;
+        b=PTYXDA3Cj5JUw0Fr6bu+rRN01k0jZG5ScOlxu4nYDT5qd6NVRAPawaXwOoOZ6MvZji
+         Es8CePRee2UUVlmsLgBEtEjIBzS0SmydO4lvHNCy7tCuvns0+ylaNJuI7RGRpL0ugOlW
+         QuG5eQfrLBe6Tv7hg+rVVFlSuX0qqusRJvs0cFEx4C5vjNzJkQwsBszvWvm/cyVzgRYh
+         WdmjpZkVJpm6DsuI836T2q5u1md7UHoxG7Gv+fx8Vif+jnh6WILTohJiuWIMu3aPjceV
+         IFtm+RhLP6BQDAcCqr0UGRyRtMCpH4Qe0Vg/FYHfDz7VaJ+UvICIOJxiY1hy6UfZoRzW
+         TpaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754463404; x=1755068204;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YF//15yqZSlqqumHm5+I1dKqkACpOoAiiur9eCb1Jyo=;
-        b=gCiLX9bJfdtDinCN+9jU5267cp4WBZioakUYvaLoywnmTZM2JN1yzX0C3MffJ4p5Ly
-         c34DaXHRUuqrONe1CGFE8/SsxgrG10rrahXmtqrAFkTbo/LT6t4Sssbr3EOxggaE7jJG
-         4iTkBOkljz5qLnqEsHgfRiEvUkWOYKBP77ahReDH8novEG8h0iOUzHK0RaEiUmCP3qos
-         s1PLJ9byUP30438f3zb0ZLng4zXFykp8sd3jfknm6AVkJ3/U7djMDgExCMgsQJ/PFvsm
-         wHDXiSmU59qPPEHuC+sNbJgw23pp2bJaq+nMRLcZtnzB3DmY1cS/DeBoOqYnpC87VFFY
-         3gZg==
-X-Forwarded-Encrypted: i=1; AJvYcCXNjQYpwvp9pr85DH/T59fEUYs/xpKyWLxxYa4j+8T+f91wpNIqXvsZ8+21DlSHhZatCHc5DrFMWAZE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlJAxDqLUD8X27qgEZyws96IitHDzIsmjolzbDtDAu6AZwTdv+
-	/Wu0ki4ULarvxlBmSNAFquZ9Co4OMBy+6d/wi8LQV/fSsIX3MKCz1mEILPjn84gfxezG58+w0h9
-	T3myV4KILS6kTcrexjaEfiDPOdPu5evA09OjUhUkzQA==
-X-Gm-Gg: ASbGncs5buUIJq1J+ngOP0HKOD3tSXs0JhNoHAvMkWwP8m/BZ6/ShJFzBl84oCNoWTi
-	VEhLWvMQWfkuUWXwJ20DSPa1iBU37CmQiIPVPWEB2MyS8sdCTG9+Y+hatXkmdAPfpivX7SQM6np
-	rvFA895uhKAB2Ci/8q4c4bG2gfic0kKA/sUUBD71tYUlDw9yqQqVP1omXbsNSLUaxc9DRGHXitC
-	y6YMRe4j8ZTDv5ygCQFOjHGBfzLzFlYLpPH7Xl7
-X-Google-Smtp-Source: AGHT+IG/NnFO90EFyREBzeUJTQVnE81eCptHFDA8wq6F7FCqcH2EFp5FH3fAorJsFe129JIXWBiwYYR+36/rIKv43Tg=
-X-Received: by 2002:a05:6a21:339c:b0:233:927b:3ffa with SMTP id
- adf61e73a8af0-2403131d8b2mr2874171637.12.1754463403646; Tue, 05 Aug 2025
- 23:56:43 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754463751; x=1755068551;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S+EPybaLVAUi5QIFTBdyFeFLaZuSxryGuhqzOkKwhms=;
+        b=iUIz+D0rP1qFVwOWrg9gD8J41YvfcITINbhTpoZzTLf2e47HaAtAXEHX1btMIwsAIw
+         xEfQbs9g/mOqXnqUVHZuO9P0kfMG2ZsXa/tIxLQ5eo7CjnoW1W599HVDop745W7+01JS
+         c0ADbbwDQBJu8hI7sopBZ4XN4alhHU0swtHn6DMGjExV5mPmlaGiXjWPS1FMNI8rSAcT
+         hXAhS/r711z/JdS/obzgG6BvS55c9J3qf9oXNEFsDsHRzEvO0MHaVszJxWVih7opO/pm
+         ZjIDvQK7WKK8bIFPZYSdnegU2bJmglYqKEIjheLJZC9xjgeJEH9dlJuT8IToWSAg1I4F
+         x95w==
+X-Forwarded-Encrypted: i=1; AJvYcCUzvI0o85rW3oR+Latt5Lh06ooUo0SwH+nOG3EDfPVsv79NWzo8kA8O5dkGL6jtAAOggkiok7VmU9nB@vger.kernel.org, AJvYcCVmZ+xX47XFNUPFZQGahVEQWX/yS+hkMlDgKA4ntb/W++s5d2w8h7raxjxa3Svu4tio9Eaf5oYogxzA9zDq@vger.kernel.org, AJvYcCXWH0F0hjot7xh4qfqkyHsTjexI6Mw500JGwZ4JOWFUPWjNO/95jYIqelk7wgwNmT00rnJM1WnB4N1R@vger.kernel.org
+X-Gm-Message-State: AOJu0YytzrPmWacuYBg2Z3S8L0myueo4RpNFiiXc2yjGgeC5ps4X96Fk
+	g1o8ZcDZdFy/nxCiRR3V+nYPWHBda/EaBtCmgRGxJ6K8dLYqxsnq7LDp
+X-Gm-Gg: ASbGncsQsolDz4VN3+E0Ew1440ZotIRcfUVgCGA/aXRprlGTKrzQGei1lp3TjqnjQhh
+	4td9ae0kJJMqbxjbd5sBt0Xn8qksue1IkzJmt7FXRGareGsT4MQj/q1NhCaHGR7IVysjdPSsGDV
+	lRXZWXi7v0Y+l47mM17KupxriyDT/fD/d/0a3tSooFBtTFaSDwj3gMkCIgmGHaGKWnKBat1mN0M
+	RRNMHUL4v0tJixjxWXpReXcxA4us91KgsM2T40ObrE3jxguYgbb2hmkU+WKbvBI/X77wl7OltS1
+	XsXbs4zsmSrdohgymxpDon6uF8B4opi7toxgC365E8NeegJ5b7jZWvptzT3jDblG9MmwbNLcJc9
+	OADhF4/HKSj1r30bBazqB6bd22+Vb
+X-Google-Smtp-Source: AGHT+IGE2pjKmZUujmGI1tpTWxY40tAh/zfONWVeuViemxGcZKuUptVoLESwZyRVp+SKJAwZO+k6CA==
+X-Received: by 2002:a05:6512:12cd:b0:55b:9647:8e64 with SMTP id 2adb3069b0e04-55caf37a531mr587209e87.36.1754463750298;
+        Wed, 06 Aug 2025 00:02:30 -0700 (PDT)
+Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b889ac54fsm2230928e87.62.2025.08.06.00.02.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Aug 2025 00:02:29 -0700 (PDT)
+Date: Wed, 6 Aug 2025 10:02:23 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] Support ROHM BD79105 ADC
+Message-ID: <cover.1754463393.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250725100806.1157-1-jie.gan@oss.qualcomm.com>
- <20250725100806.1157-6-jie.gan@oss.qualcomm.com> <CAJ9a7VgYTUsBn8=qtfwmkoS6Lib-8LgESLBDxXrRVqLnScLKZA@mail.gmail.com>
- <70bf0c0c-4a78-4caa-ab86-76a2c99c113a@oss.qualcomm.com>
-In-Reply-To: <70bf0c0c-4a78-4caa-ab86-76a2c99c113a@oss.qualcomm.com>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Wed, 6 Aug 2025 07:56:32 +0100
-X-Gm-Features: Ac12FXwaby67uLz0_UOrF1Ong2A1ayI6v2u4tME5WMfEjkOI4dnPs8iNbSSg6cs
-Message-ID: <CAJ9a7VjTYSePycUrL7jODLD7Vgj-qFHz0rUtfBPDhgKx59xKJA@mail.gmail.com>
-Subject: Re: [PATCH v4 05/10] coresight: tmc: Introduce tmc_read_ops to wrap
- read operations
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
-	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, Jinlong Mao <jinlong.mao@oss.qualcomm.com>, 
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, 6 Aug 2025 at 07:30, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
->
->
->
-> On 8/5/2025 6:55 PM, Mike Leach wrote:
-> > Hi
-> >
-> > On Fri, 25 Jul 2025 at 11:08, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
-> >>
-> >> Introduce tmc_read_ops as a wrapper, wrap read operations, for reading
-> >> trace data from the TMC buffer.
-> >>
-> >> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> >> ---
-> >>   .../hwtracing/coresight/coresight-tmc-core.c  | 50 +++++++++----------
-> >>   drivers/hwtracing/coresight/coresight-tmc.h   | 17 +++++++
-> >>   2 files changed, 40 insertions(+), 27 deletions(-)
-> >>
-> >> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> >> index 4d249af93097..f668047c5df4 100644
-> >> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> >> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> >> @@ -232,17 +232,10 @@ static int tmc_read_prepare(struct tmc_drvdata *drvdata)
-> >>   {
-> >>          int ret = 0;
-> >>
-> >> -       switch (drvdata->config_type) {
-> >> -       case TMC_CONFIG_TYPE_ETB:
-> >> -       case TMC_CONFIG_TYPE_ETF:
-> >> -               ret = tmc_read_prepare_etb(drvdata);
-> >> -               break;
-> >> -       case TMC_CONFIG_TYPE_ETR:
-> >> -               ret = tmc_read_prepare_etr(drvdata);
-> >> -               break;
-> >> -       default:
-> >> +       if (drvdata->read_ops)
-> >> +               ret = drvdata->read_ops->read_prepare(drvdata);
-> >> +       else
-> >>                  ret = -EINVAL;
-> >> -       }
-> >>
-> >>          if (!ret)
-> >>                  dev_dbg(&drvdata->csdev->dev, "TMC read start\n");
-> >> @@ -254,17 +247,10 @@ static int tmc_read_unprepare(struct tmc_drvdata *drvdata)
-> >>   {
-> >>          int ret = 0;
-> >>
-> >> -       switch (drvdata->config_type) {
-> >> -       case TMC_CONFIG_TYPE_ETB:
-> >> -       case TMC_CONFIG_TYPE_ETF:
-> >> -               ret = tmc_read_unprepare_etb(drvdata);
-> >> -               break;
-> >> -       case TMC_CONFIG_TYPE_ETR:
-> >> -               ret = tmc_read_unprepare_etr(drvdata);
-> >> -               break;
-> >> -       default:
-> >> +       if (drvdata->read_ops)
-> >> +               ret = drvdata->read_ops->read_unprepare(drvdata);
-> >> +       else
-> >>                  ret = -EINVAL;
-> >> -       }
-> >>
-> >>          if (!ret)
-> >>                  dev_dbg(&drvdata->csdev->dev, "TMC read end\n");
-> >> @@ -291,13 +277,8 @@ static int tmc_open(struct inode *inode, struct file *file)
-> >>   static ssize_t tmc_get_sysfs_trace(struct tmc_drvdata *drvdata, loff_t pos, size_t len,
-> >>                                     char **bufpp)
-> >>   {
-> >> -       switch (drvdata->config_type) {
-> >> -       case TMC_CONFIG_TYPE_ETB:
-> >> -       case TMC_CONFIG_TYPE_ETF:
-> >> -               return tmc_etb_get_sysfs_trace(drvdata, pos, len, bufpp);
-> >> -       case TMC_CONFIG_TYPE_ETR:
-> >> -               return tmc_etr_get_sysfs_trace(drvdata, pos, len, bufpp);
-> >> -       }
-> >> +       if (drvdata->read_ops)
-> >> +               return drvdata->read_ops->get_trace_data(drvdata, pos, len, bufpp);
-> >>
-> >>          return -EINVAL;
-> >>   }
-> >> @@ -769,6 +750,18 @@ static void register_crash_dev_interface(struct tmc_drvdata *drvdata,
-> >>                          "Valid crash tracedata found\n");
-> >>   }
-> >>
-> >> +static const struct tmc_read_ops tmc_etb_read_ops = {
-> >> +       .read_prepare   = tmc_read_prepare_etb,
-> >> +       .read_unprepare = tmc_read_unprepare_etb,
-> >> +       .get_trace_data = tmc_etb_get_sysfs_trace,
-> >> +};
-> >> +
-> >> +static const struct tmc_read_ops tmc_etr_read_ops = {
-> >> +       .read_prepare   = tmc_read_prepare_etr,
-> >> +       .read_unprepare = tmc_read_unprepare_etr,
-> >> +       .get_trace_data = tmc_etr_get_sysfs_trace,
-> >> +};
-> >> +
-> >>   static int __tmc_probe(struct device *dev, struct resource *res)
-> >>   {
-> >>          int ret = 0;
-> >> @@ -818,6 +811,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
-> >>                  desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
-> >>                  desc.ops = &tmc_etb_cs_ops;
-> >>                  dev_list = &etb_devs;
-> >> +               drvdata->read_ops = &tmc_etb_read_ops;
-> >>                  break;
-> >>          case TMC_CONFIG_TYPE_ETR:
-> >>                  desc.groups = coresight_etr_groups;
-> >> @@ -831,6 +825,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
-> >>                  mutex_init(&drvdata->idr_mutex);
-> >>                  dev_list = &etr_devs;
-> >>                  INIT_LIST_HEAD(&drvdata->etr_buf_list);
-> >> +               drvdata->read_ops = &tmc_etr_read_ops;
-> >>                  break;
-> >>          case TMC_CONFIG_TYPE_ETF:
-> >>                  desc.groups = coresight_etf_groups;
-> >> @@ -839,6 +834,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
-> >>                  desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_FIFO;
-> >>                  desc.ops = &tmc_etf_cs_ops;
-> >>                  dev_list = &etf_devs;
-> >> +               drvdata->read_ops = &tmc_etb_read_ops;
-> >>                  break;
-> >>          default:
-> >>                  pr_err("%s: Unsupported TMC config\n", desc.name);
-> >> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> >> index 3cb8ba9f88f5..2ad8e288c94b 100644
-> >> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> >> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> >> @@ -223,6 +223,8 @@ struct etr_buf_node {
-> >>          struct list_head        node;
-> >>   };
-> >>
-> >> +struct tmc_read_ops;
-> >> +
-> >
-> > declare the entire structure here rather than later.
->
-> There is an issue of declare the entire structure here because the
-> function pointer needs use the struct tmc_drvdata which is not defined
-> at this point and it will cause a compile error.
->
-
-Understood.
-
-Mike
-
-> Thanks,
-> Jie
->
-> >
-> >>   /**
-> >>    * struct tmc_drvdata - specifics associated to an TMC component
-> >>    * @pclk:      APB clock if present, otherwise NULL
-> >> @@ -259,6 +261,7 @@ struct etr_buf_node {
-> >>    *              Used by ETR/ETF.
-> >>    * @etr_buf_list: List that is used to manage allocated etr_buf.
-> >>    * @reading_node: Available buffer for byte-cntr reading.
-> >> + * @tmc_read_ops: Read operations for TMC device.
-> >>    */
-> >>   struct tmc_drvdata {
-> >>          struct clk              *pclk;
-> >> @@ -290,6 +293,20 @@ struct tmc_drvdata {
-> >>          struct tmc_resrv_buf    crash_mdata;
-> >>          struct list_head        etr_buf_list;
-> >>          struct etr_buf_node     *reading_node;
-> >> +       const struct tmc_read_ops       *read_ops;
-> >
-> > probably should be named sysfs_read_ops to be consistent with the
-> > perf/sysfs differentiation within the rest of the structure
-> >
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct tmc_read_ops - read operations for TMC and its helper devices
-> >> + * @read_prepare:      prepare operation.
-> >> + * @read_unprepare:    unprepare operation.
-> >> + * @get_trace_data:    read operation.
-> >> + */
-> >> +struct tmc_read_ops {
-> >> +       int (*read_prepare)(struct tmc_drvdata *drvdata);
-> >> +       int (*read_unprepare)(struct tmc_drvdata *drvdata);
-> >> +       ssize_t (*get_trace_data)(struct tmc_drvdata *drvdata, loff_t pos,
-> >> +                                 size_t len, char **bufpp);
-> >>   };
-> >>
-> >>   struct etr_buf_operations {
-> >> --
-> >> 2.34.1
-> >>
-> >
-> > with the above changes:-
-> >
-> > Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> >
->
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="orNGruq7eq6exArY"
+Content-Disposition: inline
 
 
--- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+--orNGruq7eq6exArY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Add support for the ROHM BD79105 ADC
+(and do some minor simplifications to the ad7476 driver while at it).
+
+The first 2 patches were originally sent as an RFC:
+https://lore.kernel.org/all/cover.1754041258.git.mazziesaccount@gmail.com/
+
+Revision history:
+  Simplification RFC =3D> ROHM BD79105 support series v1:
+   - Use spi_get_device_match_data()
+   - Fix uV to mV conversion
+   - Rewording of commit message
+   - Added patches 3 to 8.
+
+Matti Vaittinen (8):
+  iio: adc: ad7476: Simplify chip type detection
+  iio: adc: ad7476: Simplify scale handling
+  iio: adc: ad7476: Use mV for internal reference
+  iio: adc: ad7476: Use correct channel for bit info
+  iio: adc: ad7476: Conditionally call convstart
+  dt-bindings: iio: adc: ad7476: Add ROHM bd79105
+  iio: adc: ad7476: Support ROHM BD79105
+  MAINTAINERS: A driver for simple 1-channel SPI ADCs
+
+ .../bindings/iio/adc/adi,ad7476.yaml          |  16 +
+ MAINTAINERS                                   |   5 +
+ drivers/iio/adc/ad7476.c                      | 428 +++++++++---------
+ 3 files changed, 231 insertions(+), 218 deletions(-)
+
+--=20
+2.50.1
+
+
+--orNGruq7eq6exArY
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmiS/egACgkQeFA3/03a
+ocVo5Qf/cQqbMFbY5+GAjw5vzJ+wO4+ixRM4WZMvkvzZwCmXPXhdslzfU6S0USut
+j2PjuZOStq/3kHKEpkB9rMD8Blo70upg+dnIdiGThB322xwblksKxjrDuao3vFbH
+8hd0hxZ+Cq4+CdLxMxv+esaQ8XynSTcp2N+/BpQn8BwvHBUxCNH7a72I2pUTNnEb
+mph/8lJHOuZGTvxGqRyOU7WB7oB+jmWzCvjXwpRxPRHRDgWG5bVqff38r7zgpHTO
+vzvAlWSexoV2+nu6jogR8M6voVCsKUnkdvJZF4FW2eK4tK0B4MFF2VbesLhGBDCO
+bul4q9fhQUr5dal0jvqwwIjhbxBv7g==
+=gJ6O
+-----END PGP SIGNATURE-----
+
+--orNGruq7eq6exArY--
 
