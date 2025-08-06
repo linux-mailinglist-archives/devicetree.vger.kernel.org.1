@@ -1,422 +1,250 @@
-Return-Path: <devicetree+bounces-202115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CF3B1C117
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:13:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F8DBB1C11D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 09:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEEAA3B1130
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 07:13:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 292067A1B71
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 07:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B5F218821;
-	Wed,  6 Aug 2025 07:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AD221773F;
+	Wed,  6 Aug 2025 07:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DNUz+dek"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="BHZrKCug"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022106.outbound.protection.outlook.com [40.107.75.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0118B217704;
-	Wed,  6 Aug 2025 07:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754464396; cv=none; b=iy2OqZdbW58RSP3dJA3aqw+0t3udQhDTxYVF1v7UKETmvImflBoFFn3D3zmwB8588/UWy56W5/TOuTsHv3DQ6pNCs5NmGIFyujglMHGsKwaPy7bqpwnpgzbMyYdJ72d3w4b/eL+L4Xr23VFuAlpjWa/M0jCc7FSRzD+lV6VfBSo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754464396; c=relaxed/simple;
-	bh=EkyoR567kTv24/ZJPuUj4M+ICQHVDB95l7z2DaEwl24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yp2p1odzfwpeZuYr5hBcdV9I5eC3aJoMfgx8ABF0jom6mWQlseQUWN1j+8j+ZSpKTPPsd/2JT8pBZygPgBqCkh1XkGpDqKKI7/Qs/kdQo11jUoCN6yF7r8Bs+XhzHUDkonN62D+HNK4P5UzCagGbcwvkvr7koWO95QcB4TL1faA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DNUz+dek; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5766Eoie022908;
-	Wed, 6 Aug 2025 07:13:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i/GtAIYDD5rcGDyR+usmHd7mDChZFA080DV7cCwDjF0=; b=DNUz+dekanb0A2WD
-	DSjaD92lL7OSoHRl/1jeI/MRO9QPvZN1NF3YySjOwpne5MeTynWCYzw2BizAKtCQ
-	qouR7OP0dzsLsHLiuzSSxqAsDHewou4j8Ho2CGtmkptKRbNCALA1WyVT7ONFZXU5
-	UmTgX6Tj77mW4vuIEmmvkBLFVp6Q5tJx/dcHHNBhoCsG6IsxDo9pvEYlX8d6/iar
-	nQJoL+QD1OXk76nFOD6ww3bWo7ZMYTUQ5BsJjjhPg3DVZUCbDvb9SP1+4ctkGIgr
-	CYdzthafoVCNNGMTWjWfcy9zJhKD2w6tdXxzlejG4G2PuwYxSLqgP0bwwbHuVQut
-	tvfp/g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpya9q5t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Aug 2025 07:13:04 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5767D3c0013945
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Aug 2025 07:13:03 GMT
-Received: from [10.133.33.160] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 6 Aug
- 2025 00:12:59 -0700
-Message-ID: <14aa800f-9585-41ee-bd51-81457045d893@quicinc.com>
-Date: Wed, 6 Aug 2025 15:12:56 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863D4217654;
+	Wed,  6 Aug 2025 07:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754464462; cv=fail; b=NqJSdSMTGWb7Az9G3s3bgBoyD5dqHPKKtHG5SK7oRtGXbr3zewNn1+AZaKqoGvRY5XBOupfllCBLIcHSktkZmW9Z0BfY5JhnRvnzYCX2yVzHRG5PJStk6q9ta0LY5Pe2dhLyK1Krsu2i3cm4aUgpzGlvYJcGzFTRGxESYIozkAg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754464462; c=relaxed/simple;
+	bh=4+luBFgK18eI05hqQoeX2XJb45T/DS6s+A2Kelz/RcA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=C+P0im6OsZ9z4L190OgZ7xq14oP+UQ1khNoGqgPhQzhSuVwmNeu/iG936XbHbvWBAoJTxTCs0ZOiUb5yNeCIKMpHua3lD98j1sQCQobpIAOY/kL5d4UwUdW9FT3S2nAdM5PUSL3aLOGRhqRJ5BJIuUFv3WIiuf3/ih73jX2IWy4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=BHZrKCug; arc=fail smtp.client-ip=40.107.75.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BDV1izE/I4RsjUpl0ihATi/RiscjATSmIszDyYl3vh5JdXLL5Hd3HQl7vSYWIlQuqmrIT8mfs+9NvQwOSzkIlOcLPuE3MNOVckNBZbr1yPD60pU7Qty6/XSRjhAzHa3PI9UXnz5iDqVsjh9iABDuU6BfvADPE0WwQ6sfuEEBpH0mtexvwtTBrzyN1WnZZDL7k9mpIMADltQgASfMnZvQnZBdapkGZWLyxGJ3L0y+MOj0vATTp6hnbgbC7k8dxOLCyheYdvyQxBpuojnzcLK9DvI/hQmnJ+tz3Rgw/0FBhhltKeaFgKI/nGJVsnFQ0wnniJhrdtUYBR7NFItDlSqRBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4+luBFgK18eI05hqQoeX2XJb45T/DS6s+A2Kelz/RcA=;
+ b=H04aAaXgXtWcPAWpBxslUWGnf59vlMgnnVtYBTzbJ0bUpTEfiyhPKA29RVAQsMJDNgVaZX7YO7oti9A5QqUVoQvdu4ao+jstGLgAxZUjd6N2lAYZ9dglTSUjCry82VmxrO+ixmPPHdb6igGE3FD/SfFMgGil8ZrXd8sKvhmYBMyLa8LY39b17hQc1hOT2FE0cfeBwQE90MRij5rUrbIyPMP5005cPCHARN6OqfYCPKLEyGZVEUZAb+kE9MfhiA7bq9IdXYeuSkt/rhtywCYIEyFxSTl72MPgc1GbVoWNjCmyUQ6uFGAseukroVXmiNemPzQ7SvLKgb2EOkZp2nFowg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4+luBFgK18eI05hqQoeX2XJb45T/DS6s+A2Kelz/RcA=;
+ b=BHZrKCugvkmUEt2trwXg04q+IbJAbR6lxkXVDwMntGXJa4oLQKxEGbsaWVvkH9Xu0n146b66BtMVYc8rPZVc2EhiTVyD9mcMYk33NAKzLARUAXQN8gQGA0nAWF0/0K+1RFBlGYzjzK2d1HAsxYDdJQuNbopVv8i627r+5Pts4IVInZDidE46nvvdmqvEa6WkwQBTXh89w4P0QpkGh1+CpWj8ekaqsx6MnYEBLhi66TrMXvV9JXGx6AFuiQgLvq0LYaFVy8Q7jVqJihFLQ7uES8MddzyjyHFabVlG7152b+VWYwCDahKS01OqS1pW0Glk1WYz1BIw+OyD8qeVCoUyTQ==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by PUZPR06MB6266.apcprd06.prod.outlook.com (2603:1096:301:11f::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.21; Wed, 6 Aug
+ 2025 07:14:15 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.9009.013; Wed, 6 Aug 2025
+ 07:14:15 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Rob Herring <robh@kernel.org>
+CC: Eddie James <eajames@linux.ibm.com>, Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
+ interrupt controllers
+Thread-Topic: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
+ interrupt controllers
+Thread-Index: AQHcBQGAHPbqy57A20e2dQZRkDylV7RUNCYAgAECPsA=
+Date: Wed, 6 Aug 2025 07:14:15 +0000
+Message-ID:
+ <OS8PR06MB75414ECA0290018D5D113B62F22DA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
+ <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
+ <20250805153908.GA1807801-robh@kernel.org>
+In-Reply-To: <20250805153908.GA1807801-robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|PUZPR06MB6266:EE_
+x-ms-office365-filtering-correlation-id: cf08e347-ea4a-44c8-d2fc-08ddd4b8da40
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?M2l2VUlVSm9NQ01IOXJCTlUyZk9NejZLSVA0VW9QNWRQZUtmQ0QwUWVQWEtx?=
+ =?utf-8?B?ZkFIRE9mSWY4ekVPNkttWEFQTmZ6QjBOTjhVQVNXR1FZMHM5RlpuSTJ5TEgr?=
+ =?utf-8?B?YWNqRTlqMnhtZllWeVJhTUl6NXVlYllHV2IwK21DejJhMjVyZVkyNmw2Yjcx?=
+ =?utf-8?B?SEV3R2FVMnZtZjVwMHUwMEhxYXdWc3c5ZEd3NkVhR1JoNysyL2hvQjREN2w3?=
+ =?utf-8?B?Y050VTdzYU9uK1VDdW1hRjhiQ2VwMWExZjh6R3dIL1NyUHE2dFA5NEkrZUZH?=
+ =?utf-8?B?VjBQc2lOMUN4L2pvM0s0NG9Id0dRcGkzSzFIQ2w3bDIxT0R3ZktncGtEZ29m?=
+ =?utf-8?B?VVRMRWk2a0pUUFVkelBrMFhtTnNNZFp3M3ZQb0dHMG1iem5IemRiUUp0MHZW?=
+ =?utf-8?B?dzVJdHNTQzVJQ0lQVDVXWWhuMk4zWWI2VUJ3MFdGSjdrUG5Nbjg1VUdPTGdn?=
+ =?utf-8?B?cHRPUFpvbkNidVp5Z2s2SW9SUU5DUWFubnhLdFFSdHZOZFpVbFZnbFE3VHdp?=
+ =?utf-8?B?Z3VWN2pENFJDamdBeGpITEtpcXRtT0pJaDRYNHhrQlIwUDhJWFpRRGdWcWVo?=
+ =?utf-8?B?My9ueWxrQkdSa1NUczdrZE5lMHJYdkpPVU10aHZTUDdRN2Q2VTBKTEppU0xa?=
+ =?utf-8?B?cjFEendVbW91emtLdG1zSjBrNzdEOUljY1RzcDhLcmlVUnE1WnRQQVBGTnZG?=
+ =?utf-8?B?Ny9BazVLZU94cTRudGtFRldpTVdGZkRreG5WaTQ1MlBCNlRUU05TYnp0U0Mv?=
+ =?utf-8?B?MURHclBxcW5VUkJJdTdUcmFrNTVYTU1pY003S0FhRkFhNG1Fbm55bXpPM2cz?=
+ =?utf-8?B?cXlsTm9LbWROUmdIankzS01DRHY2djRScm9XZERjcHkvczVhQnZyRlA5dSt1?=
+ =?utf-8?B?SDdjYXRXcjY0azFBU3A3MU1xZ0p4blhIODdTQjByaDE1ck1WTFkxV00zWGZp?=
+ =?utf-8?B?ZWZBb0tyK3luMHNUOTJKSVV6TC9lclNlOWVPenRrODZqa0I5ZEFHNXBIOGRq?=
+ =?utf-8?B?VE5nY0FPUzBhSGptSjE5azg1ZW9vTnVBYTdkTkIzU05yWUpFWWFDQTlCOW1v?=
+ =?utf-8?B?R2hIc20renRydUp1bmJ5TUgrMnczMXM5c2RGT2hhV0lTQVpDQlE3MVdnQUFk?=
+ =?utf-8?B?VHp2WVlpUFdVc3k4ZHhaTS9CbVg2T2ViYnZpQ2ZvdWZHZ2cvN29YL0Y3NmpH?=
+ =?utf-8?B?VWxwTXd4Z0lOT3hXNkNabjk5Qnh5UEpocU9hM2F6UDR0Slgxb3Z0L2M5RG1q?=
+ =?utf-8?B?S1pkc3VIRnpoaXVzSU8xU0hpVWdwQjM3N05vdjNMYzYzK2RkWXFaL25MN09K?=
+ =?utf-8?B?TllQOFowQVFMTWRjbGNpTmtSNm1SZFRLeCtZN1Y5NmtqWmJQWEphR0xJN0d3?=
+ =?utf-8?B?ZjljMVF0SHp0S3RMTEdjb1gxYnN2R3Q4T3NZWXFkYitRNkh4Z2lzcldpblFr?=
+ =?utf-8?B?ZktSYXMvR1E5dDk3UjhnVlo4U0FkWnN0QVlPV3EwVmNzbzRMUGlpR2FXc1VF?=
+ =?utf-8?B?K2tBNVFMY2pQOGNpWmxUYWExa3Y4b3RLWTFlR1B3VTIyZjdiL0FwUmQvRlpx?=
+ =?utf-8?B?RWs2Mnd6YWEvazJscmZna3NMUG1nZE9TMXFDS1JUNmpLMURMZU1OTitoOTZs?=
+ =?utf-8?B?aEwxajliYndWMlpVMjA4aVRPNnRXZ1FZdHNBdkhTU055M1ZyaDFxNzg3NVFE?=
+ =?utf-8?B?ZWJFZnlmTnVTOGcrRTdldXY1Y3pCTU4ycHlEL254YURGcWMwcGlwUkkxMmRG?=
+ =?utf-8?B?ekZINi9aNmVzc25hVk1Ba0VKd2tDZ0J3TVlVV05UclhRaERkVS84Ymw4SnZX?=
+ =?utf-8?B?MndJWDRVeUN3NVVXNlJMTFFuYmpRV2x5MXlqaFhMa3pTbThQK2U0SFNPUFJi?=
+ =?utf-8?B?ZTB5Z3EzMUg5eFluZzEvY1V3bnllU0JvSHB3ekZDbERqNVorTHRaTEtJVkk0?=
+ =?utf-8?B?cDNrdytuZ1FwT3ZBaTFVMEkvRGRtNFN1dVQ3QjZIRStIVE5aL1VqdzZER056?=
+ =?utf-8?B?OHJhQk84d2hBPT0=?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?L1A5WkpRRVp6dUdHOVpjR3lkQlJycjhuU2xqNXdrSDZ3cElBdGVONkhObm5N?=
+ =?utf-8?B?cmRYNmRrQ2dUQ24wcGxRc2Q5dThvN0dZdGg2ZXh3c2QrRUZzeWRXVHlteTY5?=
+ =?utf-8?B?YSs4K2pZNWwyV1IvQkt5azZDbWx2Nm94SWhHMXJGU1dLS09nSzlUaGYwM3JU?=
+ =?utf-8?B?bXd2ZXl3bng3OTEvb20xZGlEMnpWeTU1OHczZ2dJK2RpcjBLVWtqamV0YkFR?=
+ =?utf-8?B?MGU0eEpGbitORUVZMmdCeXZGM0szNTFRUWI5THY2NzRuT29EbStYeDFFeHRI?=
+ =?utf-8?B?cnVPMHk4OW56YkdPYU11Ri8reTJyQVpwQW96dGlXNTQ4d25nL0EvZVBVZjQ0?=
+ =?utf-8?B?RzNudlRZTmZLMytrR3Bld29LS2dpOWRHSGFKaEorYVN3cjVpZEtHbGZhTzVy?=
+ =?utf-8?B?YjlsN2huL0ptWFYrNlF5c09JaHRhdmd6N1ViVUxKMk5TUGl2K0J2c1loM0lr?=
+ =?utf-8?B?UzcrL091WDZTY25MZ3RsQ1pVdEZDSHRSWVBFM1dmRVBCMEcyUnJoQ0ovS241?=
+ =?utf-8?B?RGV3QTJvK3lvdkdHdldkQW1wQWphamVBZVRqd1I0bmVCMWErbmFpQ09MajBJ?=
+ =?utf-8?B?cUVjanV3cFR2amZqbnl6dHlOOTdpSjk3NGpuc1RoQjF5M3RTOFlxWkw4d1Ax?=
+ =?utf-8?B?azNJU0pHK00rdFdHMmVMWTluU2VrVS9mRk4wNGFyRGpyOVJNU3Z1VnRYV1kz?=
+ =?utf-8?B?SE0yMDROZUVSaXgxQmR4MllpMkhmeHgwTkRic29DU01Hdk5PN1hWUUpMU2tk?=
+ =?utf-8?B?Y0h0bkNOWTE3bzFUUU5mTHYzemVhbDR2OG5vS1YxdHRZbWxWeC9GSUhlcnRL?=
+ =?utf-8?B?ckVoN2o4VnFjYTMrdjg5alBlRHh3YVN1RHBPMHpyM1FBUE9HTnZWSE10dzRh?=
+ =?utf-8?B?UG0rWHduL0E0ZXRxcjJWMS9lTDVmWWEvZzR4VnMwR0NIclBScjg0MnlyR1lZ?=
+ =?utf-8?B?OXRTQTZWcGhIdEZpN2ZoWTZCQThoVWtTNFp1ZHBUZGZMekNLRk5CdC9qaGlw?=
+ =?utf-8?B?MVFsOGtwOHYzTGlsMi9aWUtEVG1XVUdFcHpnaktBWVlHSWR1dDRJdmUxWlFp?=
+ =?utf-8?B?SE4xaGtZK1JtVU5COU15SW15bHI0eTlRSkpPenJNMmJrc0tPdGUyQmVoMzJM?=
+ =?utf-8?B?VGp5czVOc0Jma0xaMWg1VEs2ejM3QlZSc3l3Q011MG8xYUw0L1Y1Z2xaRmJG?=
+ =?utf-8?B?SjRMSW9vZnlZUnl6M0NNZkdSWVlWWFlxMmR6bHYyVXhwaXRwck9YOER5d3l6?=
+ =?utf-8?B?VlUwK3BXOHBzVDAwV0E2ZlB0Z0hNc2FFM0I4VVhIdEZXTnJJWmF4M1BrK2ZS?=
+ =?utf-8?B?M2E4RGV4ZndIcS9KN0MzT2dyUEVIMzloek5sR1A0T2RMa0pZSUFuTzc0L3VL?=
+ =?utf-8?B?dDJ3Q2lYN2EyeDNjQTVtS2lmc29tTTE0QTlaUDV6WkN6QnhabjkvUStkTVR6?=
+ =?utf-8?B?YzBPb0JuWDhZYVNJQ1psSk9kc2pzRHFGaFRkMFV4dFhQSnNlNnVyOXUwM24z?=
+ =?utf-8?B?dWMvekNaRzYvOXAvRUI0SzA0LzMzWk1BQ3VOeFJLSTRKcDJadHRBMTZaVm0w?=
+ =?utf-8?B?bGpYSWJQcEt2SUF5cFU3ZXo1YndKeWRPaHk4ZnZFUlVUbnFtSnFDRmtqUHkr?=
+ =?utf-8?B?NEpNTk5NeGJLeG1Cd3JZNWJKRk44dmZLYlBSRlVseTh1b1o0NS84Z2wwSU55?=
+ =?utf-8?B?WS9saGE4SWVjc25QRkhLelVPK2oyeXMvNlRTd3JkczB4bXJFa1dxMmNiQUM3?=
+ =?utf-8?B?QVYxQTNVcm5FVkhrTVJVMGJmUWwxWWpFZTdCbCtmcHMwRlZNQXhELzdFS3Zk?=
+ =?utf-8?B?N2RmOXNhQzBsVG54M1ErTmtrUDFXSjZ0R1psQk54SHoyZUhRVkVITHhRNVVB?=
+ =?utf-8?B?YkJOcmJvakxyRENwZWpXRXlmdmMyZXk0bmRRZGo2bTlDelZLZzMwbmUzUkJo?=
+ =?utf-8?B?NTJsaXVZTVpHdzhscmVkZUJDdlhlSXpaNzZ1RmJMeDBZK1J5WXNLdmI4cWZQ?=
+ =?utf-8?B?aWZ2SmRabjQ0TjljMkQvVGZIZnU0K2UvTUpCM3V6eE4zaTJlTEVEc1JxU2FM?=
+ =?utf-8?B?WTVVUFR6WDYrL2VWTURZbFNzU2g5dWM5RzJuVnk4d0JEWlZLSkJGY3pvVVZW?=
+ =?utf-8?Q?QGi6RMQEsbTZe5MtAi3BDRi7P?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/2] coresight: Add label sysfs node support
-To: Mike Leach <mike.leach@linaro.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        James Clark
-	<james.clark@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad
- Dybcio <konradybcio@kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20250717125343.3820505-1-quic_jinlmao@quicinc.com>
- <20250717125343.3820505-3-quic_jinlmao@quicinc.com>
- <CAJ9a7ViD6MqOrtBp6LYnEg-rs6x0c9HuGfy4pWHG1iW67OdT=g@mail.gmail.com>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <CAJ9a7ViD6MqOrtBp6LYnEg-rs6x0c9HuGfy4pWHG1iW67OdT=g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: l7HlQcKL_uC_Z9_8b372g9n8lqMYiYy8
-X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=68930080 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=KKAkSRfTAAAA:8 a=7CQSdrXTAAAA:8 a=Q327Jk2ll2QABhRSXNsA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX2rUnxsR65sR4
- YmCPEtVamJ2qV+8s5L1z76v4KdfADmUX2LCg8TBwOIGfFqvcz2WNhCTZdRtWQJ6Vd8910ficbZX
- /qnzb8pWzyMPqtTNuqtBSUQpATHTSD6uJP4cfc/nDX1KafCf/2xMmPi2StYi/1skBt80RvATt2n
- xtK2zpbvDjWU5tKGgOF5GvIJxDlgZgi1DPB6TxJ+BtXbFhvTgRPGWGAMijZ92c9d2jLhVAY4G1H
- OUM3kzag9lKyJCby0in+Mu12/UNCQW05Sz2RlLC99hJRm0fBskFm/xlyekcXWFaczKLle91tmIG
- /XqYhvGNsYgyGIJwR6MHqZRFKZB+l+yFjM0S/OUf4AP4xAgRkBC6wnF3PDCU+/FUdGaZ6fNy5h3
- fM+2FTx6
-X-Proofpoint-GUID: l7HlQcKL_uC_Z9_8b372g9n8lqMYiYy8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-06_01,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf08e347-ea4a-44c8-d2fc-08ddd4b8da40
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2025 07:14:15.6704
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0G6N58ym5lhfBTr59uJ1kvhmiJkE7cdCpdbM3mU3T2S4puOgrphWX8eB6H4cLG5+OKutgNXaBmbvu13uaBHfY40Gti242IxKKiNCyWbOqis=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6266
 
-
-
-On 8/5/2025 7:43 PM, Mike Leach wrote:
-> Hi
-> 
-> On Thu, 17 Jul 2025 at 13:54, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
->>
->> For some coresight components like CTI and TPDM, there could be
->> numerous of them. From the node name, we can only get the type and
->> register address of the component. We can't identify the HW or the
->> system the component belongs to. Add label sysfs node support for
->> showing the intuitive name of the device.
->>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->> Reviewed-by: Mike Leach <mike.leach@linaro.org>
->> ---
->>   .../testing/sysfs-bus-coresight-devices-cti   |  6 ++
->>   .../sysfs-bus-coresight-devices-dummy-source  |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-etb10 |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-etm3x |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-etm4x |  6 ++
->>   .../sysfs-bus-coresight-devices-funnel        |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-stm   |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-tmc   |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++
->>   .../testing/sysfs-bus-coresight-devices-trbe  |  6 ++
->>   drivers/hwtracing/coresight/coresight-sysfs.c | 71 ++++++++++++++++++-
->>   11 files changed, 129 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> index a97b70f588da..55367bbc696f 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> @@ -239,3 +239,9 @@ Date:               March 2020
->>   KernelVersion: 5.7
->>   Contact:       Mike Leach or Mathieu Poirier
->>   Description:   (Write) Clear all channel / trigger programming.
->> +
->> +What:           /sys/bus/coresight/devices/<cti-name>/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
->> index 0830661ef656..9a11bd5b15cc 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
->> @@ -13,3 +13,9 @@ KernelVersion:        6.14
->>   Contact:       Mao Jinlong <quic_jinlmao@quicinc.com>
->>   Description:   (R) Show the trace ID that will appear in the trace stream
->>                  coming from this trace entity.
->> +
->> +What:           /sys/bus/coresight/devices/dummy_source<N>/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10 b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
->> index 9a383f6a74eb..ff1f89795188 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
->> @@ -19,6 +19,12 @@ Description: (RW) Disables write access to the Trace RAM by stopping the
->>                  into the Trace RAM following the trigger event is equal to the
->>                  value stored in this register+1 (from ARM ETB-TRM).
->>
->> +What:           /sys/bus/coresight/devices/<memory_map>.etb/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> +
->>   What:          /sys/bus/coresight/devices/<memory_map>.etb/mgmt/rdp
->>   Date:          March 2016
->>   KernelVersion: 4.7
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
->> index 271b57c571aa..743f26619c69 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
->> @@ -251,6 +251,12 @@ KernelVersion:     4.4
->>   Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
->>   Description:   (RO) Holds the cpu number this tracer is affined to.
->>
->> +What:           /sys/bus/coresight/devices/<memory_map>.[etm|ptm]/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> +
->>   What:          /sys/bus/coresight/devices/<memory_map>.[etm|ptm]/mgmt/etmccr
->>   Date:          September 2015
->>   KernelVersion: 4.4
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
->> index a0425d70d009..e6a584a4b040 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-etm4x
->> @@ -329,6 +329,12 @@ Contact:   Mathieu Poirier <mathieu.poirier@linaro.org>
->>   Description:   (RW) Access the selected single show PE comparator control
->>                  register.
->>
->> +What:           /sys/bus/coresight/devices/etm<N>/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> +
->>   What:          /sys/bus/coresight/devices/etm<N>/mgmt/trcoslsr
->>   Date:          April 2015
->>   KernelVersion: 4.01
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> index d75acda5e1b3..5578fa5f6f02 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> @@ -10,3 +10,9 @@ Date:         November 2014
->>   KernelVersion: 3.19
->>   Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
->>   Description:   (RW) Defines input port priority order.
->> +
->> +What:           /sys/bus/coresight/devices/<memory_map>.funnel/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
->> index 53e1f4815d64..c3a81978e30b 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-stm
->> @@ -51,3 +51,9 @@ KernelVersion:        4.7
->>   Contact:       Mathieu Poirier <mathieu.poirier@linaro.org>
->>   Description:   (RW) Holds the trace ID that will appear in the trace stream
->>                  coming from this trace entity.
->> +
->> +What:           /sys/bus/coresight/devices/<memory_map>.stm/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
->> index 339cec3b2f1a..9554f4f453a3 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
->> @@ -107,3 +107,9 @@ Contact:    Anshuman Khandual <anshuman.khandual@arm.com>
->>   Description:   (RW) Current Coresight TMC-ETR buffer mode selected. But user could
->>                  only provide a mode which is supported for a given ETR device. This
->>                  file is available only for TMC ETR devices.
->> +
->> +What:           /sys/bus/coresight/devices/<memory_map>.tmc/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index a341b08ae70b..e6d935e83042 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -272,3 +272,9 @@ KernelVersion       6.15
->>   Contact:       Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
->>   Description:
->>                  (RW) Set/Get the enablement of the individual lane.
->> +
->> +What:           /sys/bus/coresight/devices/<tpdm-name>/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe b/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
->> index ad3bbc6fa751..2a5868ba3d6b 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-trbe
->> @@ -12,3 +12,9 @@ Contact:      Anshuman Khandual <anshuman.khandual@arm.com>
->>   Description:   (Read) Shows if TRBE updates in the memory are with access
->>                  and dirty flag updates as well. This value is fetched from
->>                  the TRBIDR register.
->> +
->> +What:           /sys/bus/coresight/devices/trbe<cpu>/label
->> +Date:           Jul 2025
->> +KernelVersion   6.17
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/drivers/hwtracing/coresight/coresight-sysfs.c
->> index feadaf065b53..f7a0c9056854 100644
->> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
->> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
->> @@ -7,6 +7,7 @@
->>   #include <linux/device.h>
->>   #include <linux/idr.h>
->>   #include <linux/kernel.h>
->> +#include <linux/property.h>
->>
->>   #include "coresight-priv.h"
->>   #include "coresight-trace-id.h"
->> @@ -371,17 +372,81 @@ static ssize_t enable_source_store(struct device *dev,
->>   }
->>   static DEVICE_ATTR_RW(enable_source);
->>
->> +static ssize_t label_show(struct device *dev,
->> +               struct device_attribute *attr, char *buf)
->> +{
->> +
->> +       const char *str;
->> +       int ret;
->> +
->> +       ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
->> +       if (ret == 0)
->> +               return scnprintf(buf, PAGE_SIZE, "%s\n", str);
-> 
-> sysfs_emit() here.
-
-I will update it.
-
-> 
->> +       else
->> +               return ret;
->> +}
->> +static DEVICE_ATTR_RO(label);
->> +
->> +static umode_t label_is_visible(struct kobject *kobj,
->> +                                  struct attribute *attr, int n)
->> +{
->> +       struct device *dev = kobj_to_dev(kobj);
->> +
->> +       if (attr == &dev_attr_label.attr) {
->> +               if (fwnode_property_present(dev_fwnode(dev), "label"))
->> +                       return attr->mode;
->> +               else
->> +                       return 0;
->> +       }
->> +
->> +       return attr->mode;
->> +}
->> +
->>   static struct attribute *coresight_sink_attrs[] = {
->>          &dev_attr_enable_sink.attr,
->> +       &dev_attr_label.attr,
->>          NULL,
->>   };
->> -ATTRIBUTE_GROUPS(coresight_sink);
->> +
->> +static struct attribute_group coresight_sink_group = {
->> +       .attrs = coresight_sink_attrs,
->> +       .is_visible = label_is_visible,
->> +};
->> +__ATTRIBUTE_GROUPS(coresight_sink);
->>
->>   static struct attribute *coresight_source_attrs[] = {
->>          &dev_attr_enable_source.attr,
->> +       &dev_attr_label.attr,
->>          NULL,
->>   };
->> -ATTRIBUTE_GROUPS(coresight_source);
->> +
->> +static struct attribute_group coresight_source_group = {
->> +       .attrs = coresight_source_attrs,
->> +       .is_visible = label_is_visible,
->> +};
->> +__ATTRIBUTE_GROUPS(coresight_source);
->> +
->> +static struct attribute *coresight_link_attrs[] = {
->> +       &dev_attr_label.attr,
->> +       NULL,
->> +};
->> +
->> +static struct attribute_group coresight_link_group = {
->> +       .attrs = coresight_link_attrs,
->> +       .is_visible = label_is_visible,
->> +};
->> +__ATTRIBUTE_GROUPS(coresight_link);
->> +
->> +static struct attribute *coresight_helper_attrs[] = {
->> +       &dev_attr_label.attr,
->> +       NULL,
->> +};
->> +
->> +static struct attribute_group coresight_helper_group = {
->> +       .attrs = coresight_helper_attrs,
->> +       .is_visible = label_is_visible,
->> +};
->> +__ATTRIBUTE_GROUPS(coresight_helper);
->>
->>   const struct device_type coresight_dev_type[] = {
->>          [CORESIGHT_DEV_TYPE_SINK] = {
->> @@ -390,6 +455,7 @@ const struct device_type coresight_dev_type[] = {
->>          },
->>          [CORESIGHT_DEV_TYPE_LINK] = {
->>                  .name = "link",
->> +               .groups = coresight_link_groups,
->>          },
->>          [CORESIGHT_DEV_TYPE_LINKSINK] = {
->>                  .name = "linksink",
->> @@ -401,6 +467,7 @@ const struct device_type coresight_dev_type[] = {
->>          },
->>          [CORESIGHT_DEV_TYPE_HELPER] = {
->>                  .name = "helper",
->> +               .groups = coresight_helper_groups,
->>          }
->>   };
->>   /* Ensure the enum matches the names and groups */
->> --
->> 2.25.1
->>
-> 
-> with the above change
-> 
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-
+PiBTdWJqZWN0OiBSZTogW1BBVENIIDIvMl0gaXJxY2hpcC9hc3BlZWQtc2N1LWljOiBBZGQgc3Vw
+cG9ydCBmb3IgQVNUMjcwMCBTQ1UNCj4gaW50ZXJydXB0IGNvbnRyb2xsZXJzDQo+IA0KPiBPbiBN
+b24sIEF1ZyAwNCwgMjAyNSBhdCAwMTozNDo0NVBNICswODAwLCBSeWFuIENoZW4gd3JvdGU6DQo+
+ID4gVGhlIEFTVDI3MDAgU29DIGZvbGxvd3MgdGhlIG11bHRpLWluc3RhbmNlIGludGVycnVwdCBj
+b250cm9sbGVyDQo+ID4gYXJjaGl0ZWN0dXJlIGludHJvZHVjZWQgaW4gdGhlIEFTVDI2MDAsIHdo
+ZXJlIGVhY2ggU0NVIGludGVycnVwdCBncm91cA0KPiA+IChJQzDigJNJQzMpIGlzIHRyZWF0ZWQg
+YXMgYW4gaW5kZXBlbmRlbnQgaW50ZXJydXB0IGRvbWFpbi4NCj4gPg0KPiA+IFVubGlrZSB0aGUg
+QVNUMjYwMCwgd2hpY2ggdXNlcyBhIGNvbWJpbmVkIHJlZ2lzdGVyIGZvciBpbnRlcnJ1cHQNCj4g
+PiBlbmFibGUgYW5kIHN0YXR1cyBiaXRzLCB0aGUgQVNUMjcwMCBzZXBhcmF0ZXMgdGhlc2UgaW50
+byBkaXN0aW5jdA0KPiA+IHJlZ2lzdGVyczogb25lIGZvciBpbnRlcnJ1cHQgZW5hYmxlIChJRVIp
+IGFuZCBhbm90aGVyIGZvciBpbnRlcnJ1cHQNCj4gPiBzdGF0dXMgKElTUikuIFRoaXMgYXJjaGl0
+ZWN0dXJhbCBjaGFuZ2UgcmVxdWlyZXMgZXhwbGljaXQgaGFuZGxpbmcgb2Ygc3BsaXQNCj4gcmVn
+aXN0ZXJzIGZvciBpbnRlcnJ1cHQgY29udHJvbC4NCj4gPg0KPiA+IC0gUmVnaXN0ZXIgZGVmaW5p
+dGlvbnMgYW5kIGNvbmZpZ3VyYXRpb24gZm9yIEFTVDI3MDAgU0NVIElDIGluc3RhbmNlcw0KPiA+
+ICAgKGNvbXBhdGlibGU6IGFzcGVlZCxhc3QyNzAwLXNjdS1pYzAvMS8yLzMpDQo+ID4gLSBJbml0
+aWFsaXphdGlvbiBsb2dpYyBmb3IgaGFuZGxpbmcgc3BsaXQgSUVSL0lTUiByZWdpc3RlcnMNCj4g
+PiAtIENoYWluZWQgSVJRIGhhbmRsaW5nIGFuZCBtYXNrL3VubWFzayBsb2dpYw0KPiA+IC0gVGFi
+bGUtZHJpdmVuIHJlZ2lzdHJhdGlvbiB1c2luZyBJUlFDSElQX0RFQ0xBUkUgcGVyIGNvbXBhdGli
+bGUNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFJ5YW4gQ2hlbiA8cnlhbl9jaGVuQGFzcGVlZHRl
+Y2guY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2lycWNoaXAvaXJxLWFzcGVlZC1zY3UtaWMu
+YyB8IDI0MA0KPiA+ICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0NCj4gPiAgMSBmaWxlIGNo
+YW5nZWQsIDE5NSBpbnNlcnRpb25zKCspLCA0NSBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2lycWNoaXAvaXJxLWFzcGVlZC1zY3UtaWMuYw0KPiA+IGIvZHJpdmVy
+cy9pcnFjaGlwL2lycS1hc3BlZWQtc2N1LWljLmMNCj4gPiBpbmRleCAxYzcwNDU0NjdjNDguLmI2
+ZjNiYTI2OWM1YiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2lycWNoaXAvaXJxLWFzcGVlZC1z
+Y3UtaWMuYw0KPiA+ICsrKyBiL2RyaXZlcnMvaXJxY2hpcC9pcnEtYXNwZWVkLXNjdS1pYy5jDQo+
+ID4gQEAgLTEsNiArMSw2IEBADQo+ID4gIC8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwt
+Mi4wLW9yLWxhdGVyDQo+ID4gIC8qDQo+ID4gLSAqIEFzcGVlZCBBU1QyNFhYLCBBU1QyNVhYLCBh
+bmQgQVNUMjZYWCBTQ1UgSW50ZXJydXB0IENvbnRyb2xsZXINCj4gPiArICogQXNwZWVkIEFTVDI0
+WFgsIEFTVDI1WFgsIEFTVDI2WFgsIEFTVDI3WFggU0NVIEludGVycnVwdCBDb250cm9sbGVyDQo+
+ID4gICAqIENvcHlyaWdodCAyMDE5IElCTSBDb3Jwb3JhdGlvbg0KPiA+ICAgKg0KPiA+ICAgKiBF
+ZGRpZSBKYW1lcyA8ZWFqYW1lc0BsaW51eC5pYm0uY29tPiBAQCAtMzQsMTEgKzM0LDQyIEBADQo+
+ID4gIAlHRU5NQVNLKDUsIEFTUEVFRF9BU1QyNjAwX1NDVV9JQzFfU0hJRlQpDQo+ID4gICNkZWZp
+bmUgQVNQRUVEX0FTVDI2MDBfU0NVX0lDMV9OVU1fSVJRUwkyDQo+ID4NCj4gPiArI2RlZmluZSBB
+U1BFRURfQVNUMjcwMF9TQ1VfSUMwX0VOX1JFRwkweDFkMA0KPiA+ICsjZGVmaW5lIEFTUEVFRF9B
+U1QyNzAwX1NDVV9JQzBfU1RTX1JFRwkweDFkNA0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAw
+X1NDVV9JQzBfU0hJRlQJMA0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzBfRU5B
+QkxFCVwNCj4gPiArCUdFTk1BU0soMywgQVNQRUVEX0FTVDI3MDBfU0NVX0lDMF9TSElGVCkNCj4g
+PiArI2RlZmluZSBBU1BFRURfQVNUMjcwMF9TQ1VfSUMwX05VTV9JUlFTCTQNCj4gPiArDQo+ID4g
+KyNkZWZpbmUgQVNQRUVEX0FTVDI3MDBfU0NVX0lDMV9FTl9SRUcJMHgxZTANCj4gPiArI2RlZmlu
+ZSBBU1BFRURfQVNUMjcwMF9TQ1VfSUMxX1NUU19SRUcJMHgxZTQNCj4gPiArI2RlZmluZSBBU1BF
+RURfQVNUMjcwMF9TQ1VfSUMxX1NISUZUCTANCj4gPiArI2RlZmluZSBBU1BFRURfQVNUMjcwMF9T
+Q1VfSUMxX0VOQUJMRQlcDQo+ID4gKwlHRU5NQVNLKDMsIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzFf
+U0hJRlQpDQo+ID4gKyNkZWZpbmUgQVNQRUVEX0FTVDI3MDBfU0NVX0lDMV9OVU1fSVJRUwk0DQo+
+ID4gKw0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzJfRU5fUkVHCTB4MTA0DQo+
+ID4gKyNkZWZpbmUgQVNQRUVEX0FTVDI3MDBfU0NVX0lDMl9TVFNfUkVHCTB4MTAwDQo+ID4gKyNk
+ZWZpbmUgQVNQRUVEX0FTVDI3MDBfU0NVX0lDMl9TSElGVAkwDQo+ID4gKyNkZWZpbmUgQVNQRUVE
+X0FTVDI3MDBfU0NVX0lDMl9FTkFCTEUJXA0KPiA+ICsJR0VOTUFTSygzLCBBU1BFRURfQVNUMjcw
+MF9TQ1VfSUMyX1NISUZUKQ0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzJfTlVN
+X0lSUVMJNA0KPiA+ICsNCj4gPiArI2RlZmluZSBBU1BFRURfQVNUMjcwMF9TQ1VfSUMzX0VOX1JF
+RwkweDEwYw0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzNfU1RTX1JFRwkweDEw
+OA0KPiA+ICsjZGVmaW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzNfU0hJRlQJMA0KPiA+ICsjZGVm
+aW5lIEFTUEVFRF9BU1QyNzAwX1NDVV9JQzNfRU5BQkxFCVwNCj4gPiArCUdFTk1BU0soMSwgQVNQ
+RUVEX0FTVDI3MDBfU0NVX0lDM19TSElGVCkNCj4gPiArI2RlZmluZSBBU1BFRURfQVNUMjcwMF9T
+Q1VfSUMzX05VTV9JUlFTCTINCj4gPiArDQo+IA0KPiBUaGUgcmVhc29uIGZvciBpYzAvaWMxIGNv
+bXBhdGlibGVzIGJlZm9yZSB3YXMgdGhlIGVuYWJsZSBmaWVsZCB3YXMgZGlmZmVyZW50Lg0KPiBO
+b3cgaXQncyBhdCBsZWFzdCBhdCB0aGUgc2FtZSBzaGlmdC4gRG8geW91IHJlYWxseSBuZWVkIGEg
+ZGlmZmVyZW50IHZhbHVlIGZvciBJQzM/DQo+IA0KT0ssIEkgY2FuIHJlbW92ZSB0aGlzIGRlZmlu
+ZS4NCg0KPiBUaGUgcmVnaXN0ZXIgYWRkcmVzc2VzIHNob3VsZCBjb21lIGZyb20gInJlZyIuIEkg
+ZG9uJ3QgdW5kZXJzdGFuZCB3aHkgdGhleQ0KPiBhcmUgaGFyZGNvZGVkIGluIHRoZSBkcml2ZXIu
+DQpUaGUgb3JpZ2luYWwgY29kZSByZWdpc3RlciBpcyBjb21lIGZyb20gcGFyZW50LiBzY3VfaWMt
+PnNjdSA9IHN5c2Nvbl9ub2RlX3RvX3JlZ21hcChub2RlLT5wYXJlbnQpOw0KSSBrZWVwIHRoZSBv
+cmlnaW5hbCBjb2RlIGxvZ2ljLCBhbmQgYWRkIEFTVDI3MDAuDQo+IA0KPiBSb2INCg==
 
