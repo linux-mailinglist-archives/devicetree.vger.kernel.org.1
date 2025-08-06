@@ -1,229 +1,190 @@
-Return-Path: <devicetree+bounces-202214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7820EB1C725
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 15:57:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB08FB1C73A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26B261883A38
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 13:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A53D93BD755
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7955B28C5AB;
-	Wed,  6 Aug 2025 13:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF6A28C016;
+	Wed,  6 Aug 2025 14:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixufnPeF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nk0w+Mq+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989F828B516;
-	Wed,  6 Aug 2025 13:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B86E45038;
+	Wed,  6 Aug 2025 14:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754488668; cv=none; b=KmRBxG+dDJ3lNMjBm0PAOJUHotXTTGIavDYQxBKk5MntPMwHZLavgAZ4Dn4G7rPDQu2wf8lAcyyx3r21Kss5lpBdXFgw+18KUwG6IVV/vffOSAr64XPVJjxicRvS1X3QODElzxMW6bSArPJiDkKLN1dlvGTDBMzpsYEZu4kCQVo=
+	t=1754488978; cv=none; b=sHKwfsrTmFRfjemzTQXDJ6YDyl6lkgLwsDDxijekSYtQsLLllNd5JcoMWctA76zHmOqgvbkoOKje2pmNotpO9iUdlPC50WfZtbnAJjld3u+hMs9N5rm/nYWIep69gjiRJ4W1oDY3vH1m9DIyzvBp7fIFaDgrpspnquWSfnCr3Ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754488668; c=relaxed/simple;
-	bh=n/ObepZyGgjKds95g5+xh+xWSxe6QfTejtKfyZCffzk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ogcyEngT8K0eBmAF6mBso9xvIvaDabnbEWRluMAgQLUQINrC36me9oRc9sKcVAmZAepJbSRmW5zetFgy4nup/DHD614TGa1hg/pdMaaLjvRj3Z1BtMeLL+YMfDmE85BniAgM/9AXLKrLXDaaIL7TOeXyi52AB1Iay+I0EgGv71k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixufnPeF; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-af949bdf36cso774320066b.0;
-        Wed, 06 Aug 2025 06:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754488665; x=1755093465; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nHzr4MA8aqHB6jajAWjKyzRf2MPIdZd6EmOAFNAHckc=;
-        b=ixufnPeFZWZWL+U7dONizLSVXMhOcE+xOYcwCKqcY6dA7RJW1BImckZ3nkLbmbXC9e
-         JUQNINh9ASCnE3ITE2WTgoXcLji6NJpn8190FA+O+Ln7ZPCN0Dd9ddf6icXt6IQW5Tcu
-         6Aba7hZFIv6Ipd1oBW7A4Gmi3wA2PNgvz352FCjdBnhfARNApXKM7pliYib7W6s3jYr3
-         eSI/qodluaYihe4ce6tXnzXuQaqXFQhWXdwVXVJzSC/3I9UEQAyg9ki5xPRzGhhpad4a
-         Izd5oPRsdLFRsWRorH2yY3nj0AJzqjK/NNz3Qwyl1UkBSB5hVmCRb1T9L6oq3ykDdvrU
-         dFPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754488665; x=1755093465;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nHzr4MA8aqHB6jajAWjKyzRf2MPIdZd6EmOAFNAHckc=;
-        b=BgqJK8jEsrHBlJHgmwvMluANZhv0vkuhi0oX2xf6jrorcKnVprHsB3df+P9FFxu6XU
-         0e99I3eojmb77w4d56tHdGG6odh3k10Dzf7HRdkeUA/V2dk+J7lf0/8uFJj5/vkaTQ+4
-         RLqDBckTwSXWCBq//qnwUKLjFx4Zd1fXaYMsBsG90uZ3rBgNLec5IORAGfUEn2Kn01Wn
-         +FtzE4nokjBxNw/ZvRy9fytWd/4uyn0dci8eyxj70cB4tLxGj2ej4F8lj0uw+zgzi73q
-         yb1gmwIQm0Yh3SASXE5CehA+PpqQ2N/VBgxY2HhJJCoM9G7f45c+hMeMSqY9o2N9R7JQ
-         PQug==
-X-Forwarded-Encrypted: i=1; AJvYcCUiDDU9KJ1DKre7rBPj7nRbGAbycwDRmX4yJXe4wiKFdICD+nqD55XzMw6jjtDkjCN/VSpfNTkeboUnT27sDzhtIXM=@vger.kernel.org, AJvYcCV2Z7jhakL+L5GW5eYp5rxSvVw1ZxCQg48ywlOVqoKcp8Ga3c9Gss8mi42wkXHyYqGONolBTp/ayFJl@vger.kernel.org, AJvYcCW95p0POUrThDAJB5h18KyglatdaUVmGpKPK5VhAtbIBJQRK65NOUIhq10OfOAYpeWgIJ1U6X07+L7fVFUs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4qNWA/krtCsUIUtcTu8npjPpYqgZcqaLXX37b0JV/FVtRAA08
-	kGYjF+me9G7/XXJvhajkZoIREK7McNi8DpVDc3pehdYko8+yJHQc9z4S
-X-Gm-Gg: ASbGncvhSdfFCJndOZiyncF/OsX6/ZdHZn0HtCOaSZKdbaYXk35/8cxiH21m2aQGzaJ
-	yhwck/lzRPB2lNCDixA2ZS0JiFWTubXU962HIHaK5vVGeXeRBt6PngWAB0TAWZ83NHrVRKFhfqi
-	H/QNymdRB7wkNIATu6QZE2YTkL9mi3sUbDuo6KGEn/4JRaVWzVVLCMCIvKVae53ur4H3JOaJZLf
-	3i9lwZU48AWTjns7+tKyOgcuHOsawdT9NQcoTJh9iKPe9Y78ppywCohWsRagVnmcK6AcwGvdJqj
-	BrFSGDC1r5oQ4PYCgOAEH2Y20AJPuCoYOL0lu9qp9vnDll3ThXJ0mnHyLIbBDA0nISwPm0wr1g2
-	0FEftrXb8SDTJ7/07CblU3pmw7nPoN/Xkm7iz0MsBI1mjDhM7r1aokh7WcMGT/kxbBXw9kXsf+h
-	8rFRmcVlW063E=
-X-Google-Smtp-Source: AGHT+IGQ3QZUaLC8+topY1n9SlLxxAbYjEO2ebSd3f+30oUx/XN3GCsmaSZCHF1ta/LFIKgiqEA7eQ==
-X-Received: by 2002:a17:907:7f18:b0:af9:2502:7772 with SMTP id a640c23a62f3a-af992bc37femr270882566b.54.1754488664645;
-        Wed, 06 Aug 2025 06:57:44 -0700 (PDT)
-Received: from [192.168.1.106] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91ee3c1f7sm1045900366b.68.2025.08.06.06.57.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 06:57:44 -0700 (PDT)
-Message-ID: <cd17cfb4-5708-4c15-b616-505f669bf2eb@gmail.com>
-Date: Wed, 6 Aug 2025 16:57:42 +0300
+	s=arc-20240116; t=1754488978; c=relaxed/simple;
+	bh=Ld10HX6wcdjfxV5yipYWv01NFSUYgG22JBf72BAdDas=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LK1JBU8F0ck50GabG5hz4ggq3wEcjVCutTsTfhfYxLN/B2shy0qN8uA/Vaxb8EUx+nO0LTGJNdpAp9+r6ro888uWd4OA0P4Ff0JB2Oc80MXgrJKB3LOTcPIgU7gX31d6KouTkDIAWqRl8cMYljQH8nZ+lWfLrNdBlovJx6pGrDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nk0w+Mq+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27CE5C4CEE7;
+	Wed,  6 Aug 2025 14:02:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754488977;
+	bh=Ld10HX6wcdjfxV5yipYWv01NFSUYgG22JBf72BAdDas=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nk0w+Mq+QoCcYJy7kSTNbI/5ViGQHX3jC7m7Y899CwwtidK440N++gOQZJUH4PXnB
+	 LIr91wt8hGhocNtVqVzuRKzuBwNKp0TcMb7QcfvzKSbNYvCJYO+QQC2D3MaXaRuDV+
+	 O/OzGb0jOId5i7b8Qzr36wcy8bdzBHjdBI05Ov2Bg1+6/yPeLGZn6ivaa6fR46f35X
+	 p2689VS7/YeiL46YGee6KZkoEnElNCIz/BEgkdhoSSWGcP32BIkFyordMa/RIjWbEM
+	 LhN+xnuxLOkao2PobEYAn1N5lA6M/Nm7vsqxymbf40qHNDpk4sgAt4yWTiz+7pTskC
+	 oNUlY3nLrU3Xg==
+Date: Wed, 6 Aug 2025 16:02:54 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	andriy.shevchenko@intel.com, =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
+Message-ID: <praujgmc3c63j6brecp5kwn7tbdd7rcxmrxn67kxhxcr7rpyhw@pfbsgycx4aop>
+References: <20250722-mdb-max7360-support-v12-0-3747721a8d02@bootlin.com>
+ <20250722-mdb-max7360-support-v12-4-3747721a8d02@bootlin.com>
+ <2msg7e7q42ocjewv35rytdtxwrfqrndpm2y5ustqeaeodencsd@nfdufgtevxte>
+ <DBVBZ48R7DNR.850O5X7MLMEF@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: exynos2200: define all usi nodes
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250730074253.1884111-1-ivo.ivanov.ivanov1@gmail.com>
- <20250730074253.1884111-6-ivo.ivanov.ivanov1@gmail.com>
- <CAPLW+4maFxYv4RrvzUXWwteXAVm64ocj2LSAgtM6RMtzbM_p-w@mail.gmail.com>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <CAPLW+4maFxYv4RrvzUXWwteXAVm64ocj2LSAgtM6RMtzbM_p-w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zq2dttqccfhukbbe"
+Content-Disposition: inline
+In-Reply-To: <DBVBZ48R7DNR.850O5X7MLMEF@bootlin.com>
 
-On 8/2/25 03:29, Sam Protsenko wrote:
-> On Wed, Jul 30, 2025 at 2:44 AM Ivaylo Ivanov
-> <ivo.ivanov.ivanov1@gmail.com> wrote:
->> Universal Serial Interface (USI) supports three types of serial
->> interfaces - uart, i2c and spi. Each protocol can work independently
->> and configured using external configuration inputs.
->>
->> As each USI instance has access to 4 pins, there are multiple possible
->> configurations:
->> - the first 2 and the last 2 pins can be i2c (sda/scl) or uart (rx/tx)
->> - the 4 pins can be used for 4 pin uart or spi
->>
->> Such configuration can be achieved by setting the mode property of usiX
->> and usiX_i2c nodes correctly - if usiX is set to take up 2 pins, then
->> usiX_i2c can be set to take the other 2. If usiX is set for 4 pins, then
->> usiX_i2c should be left disabled.
->>
-> The whole naming scheme is a bit confusing: one might think that
-> because both usiX and usiX_i2c have the same number (X), they
-> represent the same USI block.
 
-Mapped to a different address? Hm, I doubt.
+--zq2dttqccfhukbbe
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v12 04/10] pwm: max7360: Add MAX7360 PWM support
+MIME-Version: 1.0
 
->  I can see how they might share the same
-> pins, but it doesn't seem enough to me to justify this convention. If
-> I'm missing something, please help me understand why it should be done
-> like that?
+On Wed, Aug 06, 2025 at 02:07:15PM +0200, Mathieu Dubois-Briand wrote:
+> On Fri Aug 1, 2025 at 12:11 PM CEST, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Jul 22, 2025 at 06:23:48PM +0200, Mathieu Dubois-Briand wrote:
+> >> +static int max7360_pwm_round_waveform_tohw(struct pwm_chip *chip,
+> >> +					   struct pwm_device *pwm,
+> >> +					   const struct pwm_waveform *wf,
+> >> +					   void *_wfhw)
+> >> +{
+> >> +	struct max7360_pwm_waveform *wfhw =3D _wfhw;
+> >> +	u64 duty_steps;
+> >> +
+> >> +	/*
+> >> +	 * Ignore user provided values for period_length_ns and duty_offset_=
+ns:
+> >> +	 * we only support fixed period of MAX7360_PWM_PERIOD_NS and offset =
+of 0.
+> >> +	 * Values from 0 to 254 as duty_steps will provide duty cycles of 0/=
+256
+> >> +	 * to 254/256, while value 255 will provide a duty cycle of 100%.
+> >> +	 */
+> >> +	if (wf->duty_length_ns >=3D MAX7360_PWM_PERIOD_NS) {
+> >> +		duty_steps =3D MAX7360_PWM_MAX;
+> >> +	} else {
+> >> +		duty_steps =3D (u32)wf->duty_length_ns * MAX7360_PWM_STEPS / MAX736=
+0_PWM_PERIOD_NS;
+> >> +		if (duty_steps =3D=3D MAX7360_PWM_MAX)
+> >> +			duty_steps =3D MAX7360_PWM_MAX - 1;
+> >> +	}
+> >> +
+> >> +	wfhw->duty_steps =3D min(MAX7360_PWM_MAX, duty_steps);
+> >> +	wfhw->enabled =3D !!wf->period_length_ns;
+> >> +
+> >> +	return 0;
+> >
+> > The unconditional return 0 is wrong and testing with PWM_DEBUG enabled
+> > should tell you that.
+> >
+>=20
+> When you say should, does that mean the current version of PWM core will
+> tell me that with PWM_DEBUG enabled, or does that mean we should modify
+> the code so it does show a warning? As I did not see any warning when
+> specifying a wf->period_length_ns > MAX7360_PWM_PERIOD_NS, even with
+> PWM_DEBUG enabled.
+>=20
+> On the other hand, if I specify a wf->period_length_ns value below
+> MAX7360_PWM_PERIOD_NS, I indeed get an error:
+> pwm pwmchip0: Wrong rounding: requested 1000000/1000000 [+0], result 1000=
+000/2000000 [+0]
 
-That's the way it was done by Samsung in downstream, and specifically in
-upstream for autov9 [1]. Clocks are already merged and definitions expect
-the convention implied by my patch. Iit'll be way more mangled if we use
-non-matching node to header-definition names.
+Yes, that's how I expect it.
 
->
->> Define all the USI nodes from peric0 (usi4), peric1 (usi7-10), peric2
->> (usi0-6, usi11) and cmgp (usi0-6_cmgp, 2 pin usi7_cmgp) blocks, as well
->> as their respective uart and i2c subnodes. As Samsung, for some reason,
->> has decided to restart the counting of usi instances for cmgp, suffix
->> labels for nodes of such with _cmgp.
->>
-> Yeah, they probably meant to number CMGP instances, not USI instances.
-> Because CMGP (stands for Common GPIO) is actually a separate IP block
-> containing:
->   - 2 x USIs
->   - 1 GPIO controller (8 GPIO lines)
->   - One general purpose ADC
->   - 6 interrupt combiners
->
-> So some USI blocks are separate USIs, and some USI blocks are a part
-> of bigger CMGP blocks. And instead of using "usi_01_cmgp" for example,
-> they should've gone with "usi_cmgp01".
+> > I think the right thing to do here is:
+> >
+> > 	if (wf->period_length_ns > MAX7360_PWM_PERIOD_NS)
+> > 		return 1;
+> > 	else
+> > 		return 0;
+>=20
+> I can definitely do that, but now I'm a bit confused by the meaning of
+> this return value: is it 0 on success, 1 if some rounding was made,
+> -errno on error? So I believe I should only return 0 if
+> wf->period_length_ns =3D=3D MAX7360_PWM_PERIOD_NS, no?
+>=20
+> Or reading this comment on pwm_round_waveform_might_sleep(), maybe we
+> only have to return 1 if some value is rounded UP. So I believe the test
+> should be (wf->period_length_ns < MAX7360_PWM_PERIOD_NS).
 
-I guess.
+Right,
 
->
-> Usually it's recommended to follow the naming scheme from the TRM, but
-> AFAIU you don't have one.
+	if (wf->period_length_ns < MAX7360_PWM_PERIOD_NS)
+		return 1;
+	else
+		return 0;
 
-Yes...
+So 0 =3D request could be matched by only rounding down, 1 =3D request could
+be matched but rounding up was needed, negative value =3D error.
 
->  And the scheme used in the downstream device
-> tree looks like comlete garbage. Anyways, I don't have strong
-> preference on the naming scheme. Frankly I'd just do the consecutive
-> numbering for all the USI nodes in this case, like: usi0, usi1, etc.
-> And add the comments when needed, like "USI from CMGP01 block".
+> >  * Returns: 0 on success, 1 if at least one value had to be rounded up =
+or a
+> >  * negative errno.
+>=20
+> This is kinda confirmed by this other comment, in the code checking the
+> above returned value in __pwm_apply(), even its just typical examples:
 
-This will mangle stuff way too much for my preference. People will be
-way more confused when comparing this to the downstream device tree
-too, as the average Jo does not have access to anything apart from kernel
-source (like me -_-).
+pwm_apply() has different rules. (.apply() fails when .period is too
+small. This has the downside that finding a valid period is hard. For
+that reason the waveform callbacks round up and signal that by returning
+1.)
 
->
->> Spi support will be added later on.
->>
->> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->> ---
->>  arch/arm64/boot/dts/exynos/exynos2200.dtsi | 1361 ++++++++++++++++++++
->>  1 file changed, 1361 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/exynos2200.dtsi b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
->> index 22c6da907..f83e6cf24 100644
->> --- a/arch/arm64/boot/dts/exynos/exynos2200.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/exynos2200.dtsi
->> @@ -7,6 +7,7 @@
->>
->>  #include <dt-bindings/clock/samsung,exynos2200-cmu.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/soc/samsung,exynos-usi.h>
->>
->>  / {
->>         compatible = "samsung,exynos2200";
->> @@ -314,6 +315,76 @@ pinctrl_peric0: pinctrl@10430000 {
->>                         reg = <0x10430000 0x1000>;
->>                 };
->>
->> +               usi4: usi@105000c0 {
->> +                       compatible = "samsung,exynos2200-usi", "samsung,exynos850-usi";
->> +                       reg = <0x105000c0 0x20>;
->> +                       ranges;
->> +                       #address-cells = <1>;
->> +                       #size-cells = <1>;
->> +                       clocks = <&cmu_peric0 CLK_MOUT_PERIC0_NOC_USER>,
->> +                                <&cmu_peric0 CLK_DOUT_PERIC0_USI04>;
->> +                       clock-names = "pclk", "ipclk";
->> +                       samsung,sysreg = <&syscon_peric0 0x1024>;
->> +                       status = "disabled";
->> +
->> +                       hsi2c_8: i2c@10500000 {
-> Why not number all the underlying protocol nodes using the same number
-> as the USI node?
+Best regards
+Uwe
 
-Same as above, my wild guess is that Samsung ordered them by physical
-position.
+--zq2dttqccfhukbbe
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Ivaylo
+-----BEGIN PGP SIGNATURE-----
 
-[1] https://github.com/torvalds/linux/blob/cca7a0aae8958c9b1cd14116cb8b2f22ace2205e/arch/arm64/boot/dts/exynos/exynosautov9.dtsi#L503
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiTYIQACgkQj4D7WH0S
+/k727wf8Cn26RaEXwkMI8JYfUk9FVhUwgJHCUzDgN2ENtdhCyWse7bHI3dIHY0w1
+/c4hyw9YGVbZVv3jKebuHDdbRA8z7XMIYc6ZpqwGiOhzwUTXh91zZBzgcqKrt0yq
+xIHJsLT/8YxFMb8g5cGnoX145K22M9ciuwCbaHCXj8NB7plu7zsYvbkJxxRErxAC
+F0AihAj6BDXOSFUKy8ZsPDo5joj3PTxwpff+oNXRHokuPnmdKlkb0nB0mWKVDwkC
+jKU9+qRLp1uda+EtDEydpASkY5tbuO4JMSTcSxcaxwWS8YY0+i/dJYBxRaK1vZ/u
+02o36rGywRxJMVpXb+KOVrz/fr+OnA==
+=4kNb
+-----END PGP SIGNATURE-----
 
->  Like it's done in gs101.dtsi. And maybe even follow
-> USI naming scheme used in gs101 in general? Like, sort all USI nodes
-> by unit address, and then number them starting from 0. If some other
-> USIs are missing (like I mentioned in my review for the previous
-> patch), add those too, first.
->
-> [snip]
-
+--zq2dttqccfhukbbe--
 
