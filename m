@@ -1,127 +1,257 @@
-Return-Path: <devicetree+bounces-202202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33783B1C653
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC7FB1C65C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7FEA564ABB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:49:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 819AA563255
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F0F28C5CF;
-	Wed,  6 Aug 2025 12:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC781289369;
+	Wed,  6 Aug 2025 12:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b9Ul48Y9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="NNL+i1UD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555D228C2DB;
-	Wed,  6 Aug 2025 12:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754484508; cv=none; b=ar9AsQl37tBz6oW7CeMXKvdfbDza5H02wHkutx+BW9b6NKYtZoqUx2bpIh08iPUgUHcDaxZAKu6ETBREbctkqw1hxNaiA2mSo1w/A0JYk5wit2PuGMKOGAGgnUhNgyXxNK947aHzaBReHFZXLDM9MIvs68vhkqaRHONVN6q1DJ0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754484508; c=relaxed/simple;
-	bh=WqMwp9qSIcAJgErbpmLbXWzuEoVOvyeCqKyTVE9IAKI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QGEtJRZXyvUSoqRZocfYB8bxdx6UFLQ8b8nijQtIFQkLJSjS5BRYYe5Q3upZuyRwtAPTplG+ds+LaX+YfYpapeT9LojuWJ55SF/Nh/bl5hEi7pNde9cz23xH3IaKBm3wMhMh8/2JX9jcKXJo3YjbloIMs1/Ot0ZcI5DbsSRJzoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b9Ul48Y9; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-459d4d7c745so34950655e9.1;
-        Wed, 06 Aug 2025 05:48:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754484505; x=1755089305; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h6ZoVWUi0mbYvISDXeGEuG7qHw/hvGQuxorTcLyCsEQ=;
-        b=b9Ul48Y9jH3QLVILvDueOb0qmZTAQEwwp/cr8IuPBGZRGspAPvs1W7EZbTdEYnatP9
-         5LknFP1MRHBSGjfawJWepkXexMqmaBW5FYcVBtkjk+LDkTjjQSl+As0hW+0jV7kekVUt
-         sfFR+o1I01ZUY0okVC35pduCwTJaT9r1Cv7pL8xz0rI2yBbvh0FYyKJA2UhChMfW/ZtE
-         V9qMhZsfYwBXA4wh5rbVETam5wXwFrysjIYUjzWlyoHufSddg9YV/jdkhuKoOu9R6E3q
-         ecCwktd0whtfhGrsmuvXjE0kX3VVGD0klpdskwDhTxHjiONBZvRkqSFQG8yj6sxu+tYE
-         SoCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754484505; x=1755089305;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h6ZoVWUi0mbYvISDXeGEuG7qHw/hvGQuxorTcLyCsEQ=;
-        b=qKR0bz1EGhi4caJR5kPtTNoAVbLKRkUZ9v9g2zWSpOTTAw4KEtdnw9mcvV6VutCB5G
-         x1se7pPmmgS9wKX8CxHU/nZJXcBcdlfTMEZjMcII0L/HE4s5Tzhpx28jlb8ild88ZNCw
-         N2eVA03yOd+9jok4KKxEaQO5u6ki9Z+5qWMiCgEXzgRohJlU5DP2gUw/JYNA3lnC/IPT
-         6u9o9+ykD/AaUj0W6XL3SkXFilm5jk6fNn05plRebF7EdXQmgzVuX5YCrTLUx6Hl4JKj
-         k6rBiikKsoxDinJVLcYZTIkjFKvoL3K4yyJBDaRh2g/EgFpE3DgvCEfXUloHk/J8CQVp
-         SsfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUsuXfTV6IzC+sJeQuCr2fJoTNrGe8HBYc4bEb//4o9mBe269DRE1HQgxnwtT2UKe1aIYQDGuLYBFnm@vger.kernel.org
-X-Gm-Message-State: AOJu0YznPCxDRwQl0DZjs8KOgmlH+0Z/O0a21wiRFhOjjLa03gMRBgO8
-	elxuSU3QXBPl+mvkXAvrYzwnA8W1VjxRm9DtCL733U+ykdbFvXdLx8SP
-X-Gm-Gg: ASbGncuTtNKPea7fwmoOeibIjsKYhEbfh6yFkv4OqTeD1AWKryBFB3dTaeQtPuNqzpc
-	Pb6DEoUM/7/65HyOWxr0ivGnbKi0qVCTlybmkxG/wsmqwXRs/nYaiOwsdV/Qi9Phk45EdDtJpBm
-	7t94w5RxdKeNeTvbrrqL//cHgn9Q6RUma5OCNbfupOvjk2KW4JWVKMSlJNjlflCNMFEvhYb7HNR
-	IURb9Za9GxycsR0RZfkTT0ac96ARcKYCUlxq2fe4oiHelAO4N/NDGyKyVrhxt/gqcHXbRFZ0a6z
-	xx13vmNzioZPotiPmWJY/Z2hhohQLdMvj7UIXyzO5tB8hIS8f4NlA3sJnuWzz6uVFiaKeWdD4kx
-	C04+tnlXD++/IKdcQu0BAUWILYnz6gF55eY0efAw1+GZgeFkX/a5lsgK9wDjFgdrX
-X-Google-Smtp-Source: AGHT+IFF8zdXOoNmcjXgHZMPyq4WgiA452mu+C2vn8zmOBgjSQgzIx5YlyDMYhd821Zkj/obFIPOpg==
-X-Received: by 2002:a05:6000:4029:b0:3b7:dd87:d741 with SMTP id ffacd0b85a97d-3b8f4927443mr2082165f8f.42.1754484504562;
-        Wed, 06 Aug 2025 05:48:24 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([91.116.162.236])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458be70c5f7sm170110045e9.26.2025.08.06.05.48.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 05:48:24 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Wed, 06 Aug 2025 14:48:11 +0200
-Subject: [PATCH 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC86E18035;
+	Wed,  6 Aug 2025 12:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754484613; cv=pass; b=Wr+ejYL/9fEI5mqDTy62oYPF1nfsGk5J2ZN0j2jae0SvFFuuKB+4PowspZPxVTn8LLouWV8gUSyV7Hg/8Qc7i8JonkWJ66IkA27uzzp4as4wEkgj/V5RBGwroFkv26s1kJLqqvKNtjijlpMPHAJfpPVy25QxCySE3MH+T3oFSMI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754484613; c=relaxed/simple;
+	bh=qsNPYd7JE3LVhYFm81593Z/HO+ZNsVr6ff5n10xfmqM=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=kHUqBgj7NVtZm6naATX3ibp6PrmeaHvgvlKOVVaFWXFAVqQyrk4gNz/INlD0vtzWe9dgbfUJh4TwtxzP8LmMH6Y8kzt2NQEkj+VB0s6cZ101gNtnUS72K1f82uGH3BEF1Hbi4jUUDW3mGKhOEPYRNfguGBerIopJ4c1y94dVF14=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=NNL+i1UD; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1754484581; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=TdIYSsrpWIPTG1jidR1iuSPofUBS7dA1PyO7N+53KeFo91HY/CU5M81cEjLj16G20LoN18ziCK0qtw6J1NHw2pVD75q/+GLYYuZzypgX+9TdwWw8lXNHt4nJqF06vQHPz0WXyLukwUtQQDKfOlCtfCU7rJGGgmMXGdPOvcJNHlI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1754484581; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=bJtLcKeKURRlW9n36AmDiYBFj9adzcRfgds4/JvblNc=; 
+	b=U9H9GMvUxhBuK2Fauj81NTtTMjiLs9x7S+F3+4VNd1oEVb6kQys0eDwnvDdydOfq5MjdMvyIzqRuPgpbRRx4ALN2XrZzR3N+P4j0f5BB/tbPQ5u11QhAvo9I83maLxs3NkfEZmgElVvDMdKzG5FpP89LttIhYub1J1lrjvhevFs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+	dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1754484581;
+	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+	bh=bJtLcKeKURRlW9n36AmDiYBFj9adzcRfgds4/JvblNc=;
+	b=NNL+i1UDcH2FhizRgwdMRIzcKnkcnBXUCwN39+K/lO4hsc994E/1kkmEwesytZN8
+	DtWMIlr1wF20rszBl9U0PkJ/A1ZYewGvBJ0thoKP0WmDTKVI3QRzxC1JmQ5iedm3NSL
+	GQj1AMDpR2e96zpfTyfo6e09f7gWBsinvEBk9Kv0=
+Received: by mx.zohomail.com with SMTPS id 1754484579257241.02773267205032;
+	Wed, 6 Aug 2025 05:49:39 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250806-st7920-v1-3-64ab5a34f9a0@gmail.com>
-References: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
-In-Reply-To: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, Iker Pedrosa <ikerpedrosam@gmail.com>
-X-Mailer: b4 0.14.2
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Re: [PATCH v12 3/3] rust: pwm: Add complete abstraction layer
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <8ad10cc3-6e7d-4a8b-b6f6-9568403ee2b3@samsung.com>
+Date: Wed, 6 Aug 2025 09:49:21 -0300
+Cc: =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Drew Fustini <drew@pdp7.com>,
+ Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Benno Lossin <lossin@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Drew Fustini <fustini@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org,
+ rust-for-linux@vger.kernel.org,
+ linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <8C20C615-DBF2-4DF9-9AB3-E78C4B1E7493@collabora.com>
+References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
+ <CGME20250717090833eucas1p16c916450b59a77d81bd013527755cb21@eucas1p1.samsung.com>
+ <20250717-rust-next-pwm-working-fan-for-sending-v12-3-40f73defae0c@samsung.com>
+ <42C9DF97-2E0F-453B-800A-1DA49BF8F29F@collabora.com>
+ <8ad10cc3-6e7d-4a8b-b6f6-9568403ee2b3@samsung.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
+X-ZohoMailClient: External
 
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Hi Michal,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
- F:	drivers/gpu/drm/sitronix/st7735r.c
- 
-+DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-+M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-+F:	drivers/gpu/drm/sitronix/st7920.c
-+
- DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
- M:	Javier Martinez Canillas <javierm@redhat.com>
- S:	Maintained
+> On 4 Aug 2025, at 19:29, Michal Wilczynski <m.wilczynski@samsung.com> =
+wrote:
+>=20
+>=20
+> On 7/25/25 17:56, Daniel Almeida wrote:
+>>> +
+>>> +    /// Gets the label for this PWM device, if any.
+>>> +    pub fn label(&self) -> Option<&CStr> {
+>>> +        // SAFETY: self.as_raw() provides a valid pointer.
+>>> +        let label_ptr =3D unsafe { (*self.as_raw()).label };
+>>> +        if label_ptr.is_null() {
+>>> +            None
+>>> +        } else {
+>>> +            // SAFETY: label_ptr is non-null and points to a C =
+string
+>>> +            // managed by the kernel, valid for the lifetime of the =
+PWM device.
+>>> +            Some(unsafe { CStr::from_char_ptr(label_ptr) })
+>>> +        }
+>>> +    }
+>>=20
+>> nit: this can be written more concisely, but I personally don=E2=80=99t=
+ mind.
+>=20
+> Do you have something specific in mind ? I think the alternative way =
+of
+> expressing this would use NonNull, but somehow this feels less =
+readable
+> for me.
 
--- 
-2.50.1
+Yes, an early return, i.e.:
+
+if label_ptr.is_null() {
+  return None
+}
+
+It saves you one level of indentation by removing the else branch.
+
+>=20
+>=20
+>>> +
+>>> +/// Trait defining the operations for a PWM driver.
+>>> +pub trait PwmOps: 'static + Sized {
+>>> +    /// The driver-specific hardware representation of a waveform.
+>>> +    ///
+>>> +    /// This type must be [`Copy`], [`Default`], and fit within =
+`PWM_WFHWSIZE`.
+>>> +    type WfHw: Copy + Default;
+>>=20
+>> Can=E2=80=99t you use a build_assert!() here? i.e.:
+>>=20
+>>    #[doc(hidden)]
+>>    const _CHECK_SZ: () =3D {
+>>        build_assert!(core::mem::size_of::<Self::WfHw>() <=3D =
+bindings::PWM_WFHWSIZE as usize);
+>>    };
+>=20
+> This doesn't work i.e the driver using oversized WfHw compiles
+> correctly, but putting the assert inside the serialize did work, =
+please
+> see below.
+
+Can you show how it looks like with the build_assert included? Just as a =
+sanity check.
+
+>=20
+>=20
+>>=20
+>>> +        Err(ENOTSUPP)
+>>> +    }
+>>> +
+>>> +    /// Convert a hardware-specific representation back to a =
+generic waveform.
+>>> +    /// This is typically a pure calculation and does not perform =
+I/O.
+>>> +    fn round_waveform_fromhw(
+>>> +        _chip: &Chip<Self>,
+>>> +        _pwm: &Device,
+>>> +        _wfhw: &Self::WfHw,
+>>> +        _wf: &mut Waveform,
+>>> +    ) -> Result<c_int> {
+>>> +        Err(ENOTSUPP)
+>>> +    }
+>>=20
+>> Please include at least a description of what this returns.
+>=20
+> Instead I think it should just return Result, reviewed the code and =
+it's
+> fine.
+>=20
+
+Ack.
+
+>>=20
+>>> +/// Bridges Rust `PwmOps` to the C `pwm_ops` vtable.
+>>> +struct Adapter<T: PwmOps> {
+>>> +    _p: PhantomData<T>,
+>>> +}
+>>> +
+>>> +impl<T: PwmOps> Adapter<T> {
+>>> +    const VTABLE: PwmOpsVTable =3D create_pwm_ops::<T>();
+>>> +
+>>> +    /// # Safety
+>>> +    ///
+>>> +    /// `wfhw_ptr` must be valid for writes of =
+`size_of::<T::WfHw>()` bytes.
+>>> +    unsafe fn serialize_wfhw(wfhw: &T::WfHw, wfhw_ptr: *mut c_void) =
+-> Result {
+>>> +        let size =3D core::mem::size_of::<T::WfHw>();
+>>> +        if size > bindings::PWM_WFHWSIZE as usize {
+>>> +            return Err(EINVAL);
+>>> +        }
+>>=20
+>> See my previous comment on using build_assert if possible.
+>=20
+> So I did try this and it does work, however it results in a cryptic
+> linker error:
+> ld.lld: error: undefined symbol: rust_build_error
+>>>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
+>>>>              =
+drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDrive=
+rData>>::read_waveform_callback) in archive vmlinux.a
+>>>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
+>>>>              =
+drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDrive=
+rData>>::round_waveform_tohw_callback) in archive vmlinux.a
+> make[2]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
+>=20
+> I assume this could be fixed at some point to better explain what
+> failed? I think putting the assert in serialize functions is fine and
+> the proposed _CHECK_SZ isn't really required.
+>=20
+> I would love to do some debugging and find out why that is myself if
+> time allows :-)
+
+There is nothing wrong here. A canonical Rust-for-Linux experience is =
+stumbling
+upon the error generated by build_assert and being rightly confused. =
+People ask
+about this every few months :)
+
+This just means that the build_assert triggered and the build failed as =
+a
+result. IOW, it means that your build_assert is working properly to =
+catch
+errors.
+
+=E2=80=94 Daniel
 
 
