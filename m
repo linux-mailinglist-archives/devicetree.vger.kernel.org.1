@@ -1,237 +1,192 @@
-Return-Path: <devicetree+bounces-202158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38B81B1C422
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 510F6B1C441
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:27:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E026718A5AFE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:22:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D1218C114E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B08023FC4C;
-	Wed,  6 Aug 2025 10:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA4D128B4EA;
+	Wed,  6 Aug 2025 10:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lFs2chKE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="H04/9vE+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAF1428A416
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 10:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F28428A40F;
+	Wed,  6 Aug 2025 10:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754475712; cv=none; b=nRQC/yd/3ddqUQ7CLNOOpbJq7Ta6aEnyknM1PMitZKuJvaDfgDKHq7HCAN5dsqfx9UMh7GO22O5k30AURpAXh2t//4f6Yp8UBY0L59Lac9jAN3g8283NyvyHM/Akxfa1GkyZUXdRotGhtLj5SdhRSgq7EboU5RWnB3tFuaHXq9I=
+	t=1754476044; cv=none; b=rScbWNob63ZxQDEoZvMRTeW7fXGfzQqfrAX9LQaVGE9X8OkUBa2cb1X4QLLPwG7VXoiFxdaRG26iRM22+acTpIQAhadqt9+PExoQXXnpNH0dYbvji+veMnA2mRJ4esKAZqyMEuomlL0iybSNPjMRANuFwCPn3Dvbhtu1zEyE9Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754475712; c=relaxed/simple;
-	bh=Vx+Qg0xbNvJrFhBrsrJXY1zmN75V5/PJ+Qk+ctRkfuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gfcrwvOjHm40BF7nLaV8g0olw4EAUKAAYxrQD40xtaCZy5UmDaF/u1If649xxeSX0AgT1MzogI/STwBoBdExV/AvoMqnKoBL3dCHBbPeg4JKd0qeH+OXHiDqsNqH4OQAC0+16SHYmkKS9Q/+wxVh67sNQ3bSppEuC2vyk2BjDBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lFs2chKE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5766RGr5019544
-	for <devicetree@vger.kernel.org>; Wed, 6 Aug 2025 10:21:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	maMdfnpIgAbmJajtAO/s5Dg7V7mDrcNXJHl2QuXtG/c=; b=lFs2chKEsc8IHcXe
-	0hRZm0x7gPIrATW4vgxoTF+VsNZXdlU6xL0+tuVXZwVdLexwQ4nCubX5sBWJWmsY
-	W0DZ95PYYo6ILIRzLliIQU9O1KkOOR4q/NKLh66VHdk/iDBVzdYbx89SjU3lTZz5
-	VnIWg7y0sNT6mKtzjYKUPX3UvARtj9ABLRDA1fMCicgkBDA9a8Yn1OJBvIOOJ5qv
-	xBF776B24Tt+DKbymSJkZ1GfTj7WSF+T4wIfMnYv2c9A8+C9c2kBRwEC8nmp8VY4
-	LMV1XfIVn4W3j6zQvpyGbUC8pks7JkyOOH6VRSssKVhgC3fikd34fXfju7aLEhrR
-	P5Ptjg==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpy6ta32-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 10:21:50 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-74ea7007866so5418531b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 03:21:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754475709; x=1755080509;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=maMdfnpIgAbmJajtAO/s5Dg7V7mDrcNXJHl2QuXtG/c=;
-        b=fR51DeOaIrrAqzVIpx0T2Q0/X2W1RxrBzirt/oz+c56VYVjJXEp/1rpJ/CEBAf4CkG
-         Cf4rG2JTGjpwNKARjuHaiTPANJQmxRhUfgG2zrHSK4diyFKEBEW4L0/IysEoD26Go2iX
-         vwZOAi7ajqAuLBdBStNIPDfawJx3LfmVu9WLbi5xxutW4C4iGQAY3NH+2Cba4buiIDXI
-         hqCzghmZuGf+8rC1bE0Pgmj1jxzUqYbvdKfGQ04yl5cKLnQJy5FquNj2lAPJHG77dD2y
-         +epeA1VrYSmKnUjxd4hFhchNJMeogJcccM5g3a8cV1TsXH9oquKWvYO1wr3V7qM0yWUH
-         Pp8g==
-X-Forwarded-Encrypted: i=1; AJvYcCXIHW5TNW7fwxsaDScT4S6BBxl1/4WLCcWND0+tp/+rvmaMGOLq6kH1IJoy4UzU7XfEhYAKrtdZipOk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8BLuUAuQ5J7MW8dXYrsfhMPGiFI/pjYexS2PBdWNIeBoozTVO
-	iYSGAOy918Wj3thtYU/N1qYY9HEA30fNYDFslHYmfLvqatigOblVAqJwYn69MDI5zE6hbJFpWiU
-	WqhqQJkuHU7x9q1p6IQgVMLHijt/LfTvh0/Uivhn4PJg9hq7xvXCQhXHxAfdaZhgA
-X-Gm-Gg: ASbGnctHsRm9NtvssmLQX5Ns7bIH18ulQoqMCpcFMGofkEO/JVMJWH2QL7nB/+5yFWE
-	iG/6hno3c9bSmKHa+NxYLCPkjeXBl1SKlwmoRlw6ZT9cI3lQU4S+LVR/kupxrVVv1/i4D9v5yy0
-	y4BS3XICpa1rx6WfGiIF4WVkec7oMqF0p1mpjmrGwdb1SquYu9ysFUpyeZ9SzOvBjC/YyH8JoYj
-	UGvGagpxM4ZXV0MhvdxtDgD2UqaEauz5lJp67cJw2gOrGgp7qHY4qYP5IyJ3Z8OBIuh1MCVHoB4
-	yY7/L2bxa3PzQg+DSbq/ZdiSOvAiPjr5276cE18ExpPhfsXC8gr44KPFiHqDOJgkGho=
-X-Received: by 2002:a05:6a00:21cc:b0:76b:f16b:b186 with SMTP id d2e1a72fcca58-76c2b00506bmr2574607b3a.17.1754475709252;
-        Wed, 06 Aug 2025 03:21:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGTKqHYf0s4xNLUVrvUtUmMVpKYxo7AnBKsVVS0NjaKjwOresU2P1m4/qqw3+J47JBXSXVmOA==
-X-Received: by 2002:a05:6a00:21cc:b0:76b:f16b:b186 with SMTP id d2e1a72fcca58-76c2b00506bmr2574586b3a.17.1754475708781;
-        Wed, 06 Aug 2025 03:21:48 -0700 (PDT)
-Received: from [10.217.216.26] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfbd7d1sm15188844b3a.80.2025.08.06.03.21.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 03:21:48 -0700 (PDT)
-Message-ID: <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
-Date: Wed, 6 Aug 2025 15:51:42 +0530
+	s=arc-20240116; t=1754476044; c=relaxed/simple;
+	bh=TlN1HaCL6uk/FnlDEk5L31NC3werVUINEYaa2ZoDE0U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SMYdjvK/s7iegaesPYYNq4as81SeP0HxpOBT4ZOG3VqC1JklY/67HbKnt3FeWvMap2obYkpOReeOrNSOefqf7Sx41++s/q8yX2gDQS7RhjU3bhcH881WHWx1cToWx2qRM3T7vWv8COk3/NRP2261dAYjQ833+zDx4aE3UHsXBE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=H04/9vE+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5765ffgG031580;
+	Wed, 6 Aug 2025 10:27:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=rBK/XJFxnA4H+qs+vmLEXS
+	Ye5OyqDwA6i9lNg270YFs=; b=H04/9vE+u22JMSTTjqz6+cId8V8/dE2/4YhkHf
+	3QBzTJTtn6kwQ8lOnbyhIjs83R36jpI8MUxrIubNqLi4ijT80H1/Yhxt+HQF7Eod
+	nP6hxR4AOAm4R1VF6bChfVbl3FcBM10xnkrRqrxOtVI05uX+hlKO5WP1O5lcefRQ
+	+hL73lAemrLYvuArZxyCUuUc9Wg1/s42I8li8Oq7T7gn7rO0P1ZnjdYhDYdJIEiO
+	OTG3JRfXJ2cKIsn4PaRnfFoqHp/1I0upBbSvXdzxJF7UtDsrn+0gO5H4qkzdxWiW
+	DqOmZ2hfYG8cYpZOiVrXxlHowCxu11AvzATSXaA6NYEbR0mw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpybaetq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Aug 2025 10:27:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 576ARBPe012436
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Aug 2025 10:27:11 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 6 Aug 2025 03:27:11 -0700
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v10 0/2] coresight: Add label sysfs node support
+Date: Wed, 6 Aug 2025 03:26:56 -0700
+Message-ID: <20250806102658.536683-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] clk: qcom: Add TCSR clock driver for Glymur
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Abel Vesa <abel.vesa@linaro.org>
-Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
- <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-3-227cfe5c8ef4@oss.qualcomm.com>
- <aIoBFeo00PPZncCs@linaro.org>
- <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
- <aIxRKHKdBHDefDs2@linaro.org>
- <d2c17575-f188-4154-bb63-e0b1b89d8100@oss.qualcomm.com>
- <b2f219d6-d441-45d0-a168-b2cdbc01b852@oss.qualcomm.com>
- <3fc425fd-39fa-4efc-bc98-da86a88bfb1a@oss.qualcomm.com>
- <c2f39786-5780-4124-9e41-6971428aa267@oss.qualcomm.com>
- <9e3b4706-c61a-4d69-be84-a5b6fc90eb35@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <9e3b4706-c61a-4d69-be84-a5b6fc90eb35@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: g6Cj3jRtpBMpK7FXQpodju9TrtQc7GTi
-X-Proofpoint-GUID: g6Cj3jRtpBMpK7FXQpodju9TrtQc7GTi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXy5mTe0OJsvrN
- avXF/NCcpNG0PHp2Fv0j9ho6TL3+EOKa5cJzAV2NiR+gpv0W69O9AvR6HZZlo+6mJnz/f+0zcBe
- WOPxUcNB2x9tnS4eNGibos85FlTIPvxKkIjfUI40NJAJ0CN21K1Jt9SfL+PjUBgdhm5iwqNr6IZ
- WAuU4ZGLZZGUWqyT2d6pW+YYsEWM9nxcx++qsAqb8iDr1Ao7N/ItVAVP2XEet8nJt7bqnvwjErl
- RJpN2BRf16ATJy/yvDlqOP1qw9SeoByaoZfuotApKCmc1YZwqM5KWE8eh0e5XVVEU0g3AZskPY5
- nAoE4nYxn1aHx5o1CT5cXfOeLrU6XA2V+tnLnl+jEJpkw2Ksoj2nam2fpNXGdXBEXrUuf+4cvzt
- Pa2oueF+
-X-Authority-Analysis: v=2.4 cv=LNVmQIW9 c=1 sm=1 tr=0 ts=68932cbe cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=6OsRm2FtRiLRZBPAYcoA:9
- a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX+G16V8e7ecj7
+ sEOqEpbQ/CCU5eJYMSB1jaApZ2LmE707D2LAJw7nZKHIsuPx4jgqycV0VCr4+BZHFlBaOETA8Hy
+ oUgClfvcIep+12mXWnjUHNeSgGPJFIEYeTd3efaKPWTQlndMeydC/xxQ/PadC8pqLDxfRnvFi1r
+ X9BdZdnmUxK1ZsyGZUDHWAf2WKqxDie1rtKmPCS6waxUIKCJNKPYeB4GiiS5PnmF9kI7OJvwdO5
+ 1ad+MawgWdaqryzoHnHiyja50gFzAbUljUesU+o2SWaf+imOFTtjSNZsO1xl8VcmGiKZxwhJKcc
+ hXKBgABjlP4VZ6TrYljTTAgJpVJEMbbQg8fxgnj/crmj8ziIFRkz4bo6LCHiHmcI6vdsLq00ZI2
+ 2AEAWd+W
+X-Proofpoint-GUID: XWokKa2HX_RX6fpQLFVOqbp6wZvXW5Ta
+X-Authority-Analysis: v=2.4 cv=EavIQOmC c=1 sm=1 tr=0 ts=68932e00 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=3H110R4YSZwA:10 a=2OwXVqhp2XgA:10 a=D19gQVrFAAAA:8 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=C_w9g3tfadNPII6ijWgA:9 a=W4TVW4IDbPiebHqcZpNg:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: XWokKa2HX_RX6fpQLFVOqbp6wZvXW5Ta
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-06_02,2025-08-04_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 adultscore=0
- phishscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060009
+ impostorscore=0 clxscore=1015 priorityscore=1501 adultscore=0 bulkscore=0
+ phishscore=0 spamscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
+Change since V9:
+1. Replace scnprintf with sysfs_emit.
+2. Update date in ABI files.
+V9 link: https://lkml.org/lkml/2025/7/17/832
 
+Change since V8:
+1. Add label in all documentations of coresight components.
+2. Add control of the visibility of the label sysfs attribute.
+V8 link: https://lkml.org/lkml/2025/7/3/985
 
-On 8/6/2025 3:34 PM, Konrad Dybcio wrote:
-> On 8/4/25 4:21 PM, Taniya Das wrote:
->>
->>
->> On 8/4/2025 6:40 PM, Konrad Dybcio wrote:
->>> On 8/4/25 11:00 AM, Taniya Das wrote:
->>>>
->>>>
->>>> On 8/1/2025 5:24 PM, Konrad Dybcio wrote:
->>>>> On 8/1/25 7:31 AM, Abel Vesa wrote:
->>>>>> On 25-08-01 10:02:15, Taniya Das wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 7/30/2025 4:55 PM, Abel Vesa wrote:
->>>>>>>> On 25-07-29 11:12:37, Taniya Das wrote:
->>>>>>>>> Add a clock driver for the TCSR clock controller found on Glymur, which
->>>>>>>>> provides refclks for PCIE, USB, and UFS.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>>>>>>> ---
->>>>>>>>>  drivers/clk/qcom/Kconfig         |   8 ++
->>>>>>>>>  drivers/clk/qcom/Makefile        |   1 +
->>>>>>>>>  drivers/clk/qcom/tcsrcc-glymur.c | 257 +++++++++++++++++++++++++++++++++++++++
->>>>>>>>>  3 files changed, 266 insertions(+)
->>>>>>>>>
->>>>>>>>
->>>>>>>> [...]
->>>>>>>>
->>>>>>>>> +
->>>>>>>>> +static struct clk_branch tcsr_edp_clkref_en = {
->>>>>>>>> +	.halt_reg = 0x1c,
->>>>>>>>> +	.halt_check = BRANCH_HALT_DELAY,
->>>>>>>>> +	.clkr = {
->>>>>>>>> +		.enable_reg = 0x1c,
->>>>>>>>> +		.enable_mask = BIT(0),
->>>>>>>>> +		.hw.init = &(const struct clk_init_data) {
->>>>>>>>> +			.name = "tcsr_edp_clkref_en",
->>>>>>>>> +			.ops = &clk_branch2_ops,
->>>>>>>>
->>>>>>>> As discussed off-list, these clocks need to have the bi_tcxo as parent.
->>>>>>>>
->>>>>>>> Otherwise, as far as the CCF is concerned these clocks will have rate 0,
->>>>>>>> which is obviously not the case.
->>>>>>>>
->>>>>>>> Bringing this here since there is a disconnect between X Elite and
->>>>>>>> Glymur w.r.t this now.
->>>>>>>
->>>>>>>
->>>>>>> The ref clocks are not required to be have a parent of bi_tcxo as these
->>>>>>> ideally can be left enabled(as a subsystem requirement) even if HLOS
->>>>>>> (APSS) goes to suspend. With the bi_tcxo parent the ARC vote from
->>>>>>> HLOS/APSS will not allow APSS to collapse.
->>>>>>
->>>>>> Is there a scenario where the APSS is collapsed and still the ref clock
->>>>>> needs to stay enabled ? Sorry, this doesn't make sense to me.
->>>>>
->>>>> MDSS is capable of displaying things from a buffer when the CPU is off,
->>>>> AFAICU
->>>>>
->>>>> We can do CXO_AO instead to have it auto-collapse if it's just Linux
->>>>> requesting it to stay on, I think.
->>>>>
->>>>
->>>> Thanks Konrad for adding the display use case.
->>>> Abel, we earlier also had some PCIe, USB use cases where we had to leave
->>>> the ref clocks ON and APSS could collapse.
->>>
->>> XO votes will prevent CX collapse, not APSS collapse. CX also powers
->>> USB and PCIe so that only makes sense.
->>>
->>> I think it's fair to just stick XO as the parent of every refclock
->>> today and think about the what-ifs (such as the mdss case I mentioned
->>> above) later - especially since we have no infra to take full advantage
->>> of it today (non-APSS RSCs etc.)
->>>
->>
->> When ref clock have been part of GCC, then also they didn't have any xo
->> as the parent, similar design we kept when it was moved to TCSR as well.
-> 
-> Perhaps we've been running on luck (i.e. XO votes being cast through
-> another device / clock as a second order effect) all this time.. I'd
-> happily move towards formal correctness.
-> 
+Change since V7:
+1. Update the conflict when apply to coresight next.
+2. Update the Date and version in ABI file.
+V7 link: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250226121926.2687497-3-quic_jinlmao@quicinc.com/
 
-I would like to stay with no XO linkage to TCSR. Any driver has specific
-XO requirement should vote for the rpmhcc XO or XO_AO.
+Change since V6:
+1. Update the date and version in ABI file.
 
+Change since V5:
+1. Update the kernel version of ABI files.
+2. Add link of different patch versions.
+V5 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20241210122253.31926-1-quic_jinlmao@quicinc.com/
+
+Change since V4:
+1. Add label in DT and add label sysfs node for each coresight device.
+V4 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240703122340.26864-1-quic_jinlmao@quicinc.com/
+
+Change since V3:
+1. Change device-name to arm,cs-dev-name.
+2. Add arm,cs-dev-name to only CTI and sources' dt-binding.
+V3 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240131082628.6288-1-quic_jinlmao@quicinc.com/
+
+Change since V2:
+1. Fix the error in coresight core.
+drivers/hwtracing/coresight/coresight-core.c:1775:7: error: assigning to 'char *' from 'const char *' discards qualifiers
+
+2. Fix the warning when run dtbinding check.
+Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml: device-name: missing type definition
+V2 link: https://patchwork.kernel.org/project/linux-arm-msm/cover/20240115164252.26510-1-quic_jinlmao@quicinc.com/
+
+Change since V1:
+1. Change coresight-name to device name.
+2. Add the device-name in coresight dt bindings.
+V1 link: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230208110716.18321-1-quic_jinlmao@quicinc.com/#25231737
+
+Mao Jinlong (2):
+  dt-bindings: arm: Add label in the coresight components
+  coresight: Add label sysfs node support
+
+ .../testing/sysfs-bus-coresight-devices-cti   |  6 ++
+ .../sysfs-bus-coresight-devices-dummy-source  |  6 ++
+ .../testing/sysfs-bus-coresight-devices-etb10 |  6 ++
+ .../testing/sysfs-bus-coresight-devices-etm3x |  6 ++
+ .../testing/sysfs-bus-coresight-devices-etm4x |  6 ++
+ .../sysfs-bus-coresight-devices-funnel        |  6 ++
+ .../testing/sysfs-bus-coresight-devices-stm   |  6 ++
+ .../testing/sysfs-bus-coresight-devices-tmc   |  6 ++
+ .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++
+ .../testing/sysfs-bus-coresight-devices-trbe  |  6 ++
+ .../bindings/arm/arm,coresight-cti.yaml       |  4 ++
+ .../arm/arm,coresight-dummy-sink.yaml         |  4 ++
+ .../arm/arm,coresight-dummy-source.yaml       |  4 ++
+ .../arm/arm,coresight-dynamic-funnel.yaml     |  4 ++
+ .../arm/arm,coresight-dynamic-replicator.yaml |  4 ++
+ .../bindings/arm/arm,coresight-etb10.yaml     |  4 ++
+ .../bindings/arm/arm,coresight-etm.yaml       |  4 ++
+ .../arm/arm,coresight-static-funnel.yaml      |  4 ++
+ .../arm/arm,coresight-static-replicator.yaml  |  4 ++
+ .../bindings/arm/arm,coresight-tmc.yaml       |  4 ++
+ .../bindings/arm/arm,coresight-tpiu.yaml      |  4 ++
+ .../bindings/arm/qcom,coresight-ctcu.yaml     |  4 ++
+ .../arm/qcom,coresight-remote-etm.yaml        |  4 ++
+ .../bindings/arm/qcom,coresight-tpda.yaml     |  4 ++
+ .../bindings/arm/qcom,coresight-tpdm.yaml     |  4 ++
+ drivers/hwtracing/coresight/coresight-sysfs.c | 71 ++++++++++++++++++-
+ 26 files changed, 189 insertions(+), 2 deletions(-)
 
 -- 
-Thanks,
-Taniya Das
+2.25.1
 
 
