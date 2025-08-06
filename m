@@ -1,111 +1,90 @@
-Return-Path: <devicetree+bounces-202226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05CBFB1C7C7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:40:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19163B1C7D1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 16:45:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F6D9168CEE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:40:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C52206223D8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:45:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEEC28E575;
-	Wed,  6 Aug 2025 14:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD57728CF64;
+	Wed,  6 Aug 2025 14:44:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IskJItYm"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="N9H4ngx6";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="lASAwrt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E332128DF33;
-	Wed,  6 Aug 2025 14:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309AC9463;
+	Wed,  6 Aug 2025 14:44:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754491233; cv=none; b=NY0emowDPahNNINUWXlI2AvPstDFhhyuzlsCR+i/km3gIwlZtkKzohpXtBxW7XvAs3dQhMQq7o1jbFH+odpCmuVmdPNS0Mr+xQ+pp5w9LoRY3h1Ecu3le0zDsT9zJXMFfTGws0Etg9zgXjBGdRgyCCDOZ1LJX3LwaZJtFJmR5iw=
+	t=1754491499; cv=none; b=Ru90g5Eb3sWzuo8x7BgH+/AMi6Zq1McqFPcpjjB/stZT0d4SZyYEwtI4QnWSLQ8jomvOk53tIxb1zr3RMpEEs6g4fQMfhXnyUnnpYnQTrbJ4wauncxxaDacVf/CuwGfx340LaTpNHJfmdGXs/FrjbzT+B7isrjZNF2qEoTltw7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754491233; c=relaxed/simple;
-	bh=HUIQMF66FePlPJPI95nNDJ3aspbdARZuuJ251SnikDY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ke3b7GobxETHQ63IIfGSU/fGsschP/CPU29dDZxcDm6NPGvTS8eatV3QDvtcWi9CA0hEZ62rCBxgET+xuhwaPeCptmCEDxjnAsdDfotZU3gTqmqvcschTic4ZodYxAzWkCLJ6hFz9k6lfEFDwtPYY0aS/6tB1BpJBDde6iZHAvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IskJItYm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 656DDC4CEEB;
-	Wed,  6 Aug 2025 14:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754491232;
-	bh=HUIQMF66FePlPJPI95nNDJ3aspbdARZuuJ251SnikDY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=IskJItYmLX5jAxfvXhleCpKfKPoi3Vkbu7FwALAhjf8RypT/4QavaYWH5zCy5Ueem
-	 bJIgqpiyLjnsaMf9XCKTtGZdsh5R7kBqHa2CG5SG69O+SW2TEP9SQ1vWlNjW+WviTs
-	 BK2kqREG9emx/bW4dNggalAuQ/JtpWwK0eynay43oAN7oomekJjih61UR03g+V4DoO
-	 ji0vEIWQp9kAt1NSYGYdX/Y9/oginVWqdLtr56wageF1TO45IXzJf/mzJrlvoBNCtZ
-	 vEew0PzJ6iEYXXF0WHORm8aEArs+E7w/5cnokyiYS6HVvbMinfzmru9B8gBkkVAWHk
-	 +W4Eq0FkZM76Q==
-Date: Wed, 06 Aug 2025 09:40:31 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1754491499; c=relaxed/simple;
+	bh=rCbH2iPI+uyyouoQK9xPomgE62XvVdeIuPwdHrAXxdI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=tshHHQve2EbgMhatsBqTulp9UyLWAjp3+xxW93sxotk79CM1tWkZLhMu6BjlhLQnndehoEyimxYUA0qPZSro2VgqfBEsCIntLMMZSQM62D8dPXoHZtKwi80kNIlDS2sp/FceWo0sSzAoh55W0T7ILQy42kj5H0Dg9tOsXqVEsmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=N9H4ngx6; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=lASAwrt6; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1754491495;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9dKSnmyZhBtsAHpcDfwkp4+zP/Y5X/HnAHpBN0o8UN4=;
+	b=N9H4ngx68JBjI+CbEYzUEvOnNXD/Q6OJGe1uzRJazZvmOAOq21F1qC9dAupcKLSxl4q3SO
+	79ebFfOGuYvCJVjSHAOz4Fb1BP2cSfdb7HwM1sOOVNmCDOpw3LPqVNsEIyzwVfiNfKzbFR
+	pnHyoy1SSxeiaDdh4J7V9mi/bfHRx/GRD5W3virKQZOYw2BFY4AuUcXuzlpVsn5a7eTayU
+	ALC26UxbEr4FBDdtG2IhRLh7mHfmehwyKSM37iYyYmVbFAJqE8GzWyqTGmsV2P9Z4p/ZdM
+	fDorgcfgO18MHPF93cg2Um9Qm0yoZcjnun7pcBGtlKKivz6ecZvAjUVfhMX6/w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1754491495;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9dKSnmyZhBtsAHpcDfwkp4+zP/Y5X/HnAHpBN0o8UN4=;
+	b=lASAwrt6n8amrUQUmEoeShj8JgZ2xMaBO+EriCZrbtsqgS+AkjEQPlEGR8itBoqhSxEygY
+	Z5pRdhqRdttGdDAA==
+To: Eddie James <eajames@linux.ibm.com>, Ryan Chen
+ <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+ <andrew@codeconstruct.com.au>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
+ interrupt controllers
+In-Reply-To: <5c46082a-c31b-4d12-a1d6-f315c8ce7aaa@linux.ibm.com>
+References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
+ <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
+ <20250805153908.GA1807801-robh@kernel.org>
+ <OS8PR06MB75414ECA0290018D5D113B62F22DA@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <5c46082a-c31b-4d12-a1d6-f315c8ce7aaa@linux.ibm.com>
+Date: Wed, 06 Aug 2025 16:44:54 +0200
+Message-ID: <8734a4ecgp.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, stable@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org
-To: Patrice Chotard <patrice.chotard@foss.st.com>
-In-Reply-To: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
-References: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
-Message-Id: <175449112431.639622.3115502959226804810.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: st: Add memory-region-names property for
- stm32mp257f-ev1
+Content-Type: text/plain
 
+On Wed, Aug 06 2025 at 08:41, Eddie James wrote:
+> On 8/6/25 2:14 AM, Ryan Chen wrote:
+>
+> How much is common with 2500/2600? I wonder if it would be easier to 
+> just create a new driver only for AST2700, instead of all in the same 
+> file/driver?
 
-On Wed, 06 Aug 2025 10:09:35 +0200, Patrice Chotard wrote:
-> Add memory-region-names property for stm32mp257f-ev1.
-> This allows to identify and check memory-map area's configuration.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: cad2492de91c ("arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board")
-> 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
->  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 038d61fd642278bab63ee8ef722c50d10ab01e8f
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/st/' for 20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com:
-
-arch/arm64/boot/dts/st/stm32mp257f-ev1.dtb: ommanager@40500000 (st,stm32mp25-omm): memory-region-names:0: 'mm_ospi1' is not one of ['ospi1', 'ospi2']
-	from schema $id: http://devicetree.org/schemas/memory-controllers/st,stm32mp25-omm.yaml#
-
-
-
-
-
+There is enough consolidation potential to keep them in the same file.
 
