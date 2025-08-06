@@ -1,155 +1,135 @@
-Return-Path: <devicetree+bounces-202198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23DAFB1C643
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:47:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A30B1C64E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 14:48:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67470167690
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:47:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EFCF24E3208
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 12:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B04928AAE6;
-	Wed,  6 Aug 2025 12:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864B628B51F;
+	Wed,  6 Aug 2025 12:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y563eKZL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YnZ7zfvF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A4072602
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 12:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8311C18035;
+	Wed,  6 Aug 2025 12:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754484459; cv=none; b=eoOc13Ryr1hx2Iv35g//+W241YXuUpcqgFFIRPL1qPC7zmst9bWYlOfHuMnQEW7iDmyHRcOfmHu/3mArsMciJEpwaLz0CHX1h97ZVJ0+c6eUPQeFyGiWDT5GQsHoms2tGMY/ckBKEtN/EB+GGy15EPe2yvaqwyBiMYQwiQpdzhU=
+	t=1754484505; cv=none; b=VRKM/tWnCnHwHiForYqrid7X8HJS5tMbXYXswDNZiqT/FDZhgym6eFjfRMb2E+J2BBowW9zcrKcdA/JQ9SUIZaJ8XTHXOB8nf+V/W4ZVuqkL2GJxngx9bUDRryuYHAqTa4wh+Q3b46M1bQrqg1VJJcNb9THQLrA1HFwe+6YgJM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754484459; c=relaxed/simple;
-	bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=IFmgnjnuq0AAUtKUUylEBUCaE7fqOEUB+t0QYEbaCTyzNoQ0x5aHSH80WNEXnpjr3zmJi9kiS88r+i7jsRao1jqhd2Xb3eRzha2xt/d0C8vACrV72Etk6/GaF5QBQrF/XMJShy/VvV3/cEO9sCcuxFjnJwQF3AizE290TOwCSQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y563eKZL; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b8de6f7556so2031668f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 05:47:36 -0700 (PDT)
+	s=arc-20240116; t=1754484505; c=relaxed/simple;
+	bh=wawPi9AOaooZpaSkkidqzN9MmLVJ9arThmBgl/y7SaE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dHftpEEL8rYPgBawkdJ6M2jxYy+PG491TwekRRjU33g7oIHr/NUMcBK7CasTc4WAoO0UOIdxoHK0ulSpwTFVvvi0tB0++U0Kdq4z7xooSEyC3eCUsg+EGzPVCkiywoVlEbMwfXcQ1MuH5G9wl4G4aFmdBZknhCvKjMsFAsedHB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YnZ7zfvF; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-455b00339c8so43034105e9.3;
+        Wed, 06 Aug 2025 05:48:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754484455; x=1755089255; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
-        b=Y563eKZLs+dk82ECbRE0AshTXvJznIRc9cr9MhygBCmWO9RGAjre7XgSyN2uhhG4oL
-         JiV9glDJlbuMJy79Jwq739tZO6+Pur+dXeFYnifU/COFNt3SrUEOUFozPW54qBKZ/+P3
-         XgA0TCLCs7Xsr8VK9HBBNXzDF43DJLSwkNC0azEfRuwiJR69QSRvniv9YfPPiGwNzzk8
-         4BHOyz2OBV26cB8qnMiUJSvhlSBX//dUKHa3WyO9UhRwytEaDOXiIXT8/FN3ez1B75D+
-         WKXigqjr+pJpFNLMG/6FsU5Z+xC1PbV1onB5XpxyDh+9NBawNkpCJbRaMKhXMW8VYXj6
-         /cgQ==
+        d=gmail.com; s=20230601; t=1754484502; x=1755089302; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D53t7Gt4BgTj27r6S11MtMrbQ1+uu9jwiGO/fo4z3ao=;
+        b=YnZ7zfvFwiGK0NqzZssMTV6Yb1sALLyVx5JrXA8bGJxFtUK3VpDKU4kDzHDfVc2ZWl
+         n7CAbjn1IUvtdrj1IZ2BzMAViRC7VEJTfj7NhUir/UcN2Z63b5vJl9b958jfsM2ZB9/a
+         rRB/9Y6oLNug6S+qEei3Xty+AsdElUqPrcMalvLONODT8gq+ZTQyl4ZiD1AYVeK35yUD
+         tH8VSJSRau54fEUZ0nOtDoEIn0v9/LNLN7DxBDztBoVhn24Xq2Qy9hZxjcDChMB9TzlW
+         d59zb/VSCdVNB07orqh1UD60OYI8o6bp8WRlQS2PVljuxQ0TNQmTReM1R0r0/vTH83U6
+         +J6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754484455; x=1755089255;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uMQQAh8WcEu02JuyRqG+sm8RrNuWu2jygYPIttRgVMs=;
-        b=duWDpvJ0klGPW1pycv+nCYmmyCHgjx9uFgl+qMkjUT+IrOpJb6df1N88KIzbgZH6uz
-         +pLbJHaSsN1g7IEzcH1/OLgDi9ZSDrNrwILSRPX5L0X8vm4VspZ23EV95FnAPJhD1Ppg
-         8zaoWp76slf39cg+oDgVwrlWIVcdMgfDGxTFtiO6BxXw2DOt4zRrp33Ul450+O46pj7E
-         KboHB94ZTQUAz0rHpiFMVPB5tAwXhDKWGafwDCaDt1j0W3leNju75bwTTYREcW1irVbV
-         X76U/HVEN844VFkbezZiwxA4KV1Lwnb5W2Pg8LYzmPmAbMeQygjXjO6mGfBfL7ufYrAq
-         eG5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWa816UwgfRN7wxLwmWocNQyPPtYpAeMRGeimL3MUFofxHYduEiRDirubFLV+VDvgtw+hRC/liHC9nT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpcuNzDCHkF77Xc/2rRWnMECb26YqK23RzYOfekV46NNUCbia+
-	bB91lLrXkCOPmi175uGrbKANEOg1MdlAZw/cPnmt71IB1dzGJPQIGKIPCVlL+LqGvqQ=
-X-Gm-Gg: ASbGnculOxpGNG+aVm0IFs8hlPRZoisTTXyzs5SYAaGIJ3a4fSgAuWy6q/TIPdUk1vE
-	0Uv9eI3gf1A6JYegVOD+4L3YxtM3PcKvEJPvUjkaxG9T40PPOW9zixEqKnLRvZb7KGECy/DGVNS
-	dEEmAvwl2oYBY9MNebzRvp1x5L7vof1446JTbUgNe4sdqAlqwWAW3e/OTljE8JdHUXPbeBgpfoQ
-	72oU4s0oaLOz5jNvlf16ToYGfcgSU36xs3OpFNkd7ZLPgZK1xBwcNM15VRl8+aKSXR+EV7GV+hU
-	i0iKM5TRK/pO2z7r/C88W6oe6N8ELOPYGF15J+vPJBDtbHfjM/N9YsEVEPo1U5DZ++yPIhHeD1w
-	Kr/IKrAPso6/vtU4pOO+cZRc14m0=
-X-Google-Smtp-Source: AGHT+IHxO9MmitvfhjqylFKRguuox3GDfzQYiukqSwzJ38jFMewGzXEj8G2vcOvegX7ujhbfTAcxKg==
-X-Received: by 2002:a05:6000:188f:b0:3b8:d16a:a4b1 with SMTP id ffacd0b85a97d-3b8f420ee27mr2057195f8f.58.1754484454941;
-        Wed, 06 Aug 2025 05:47:34 -0700 (PDT)
-Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c453aeasm23738876f8f.40.2025.08.06.05.47.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 05:47:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754484502; x=1755089302;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D53t7Gt4BgTj27r6S11MtMrbQ1+uu9jwiGO/fo4z3ao=;
+        b=qjgN8XIz/BbeDhx2ottqg4TJ1qY7mCsv+pIy3JRRu4nrvRcjmZfMdm3Cmr8DW5zu7L
+         Xc1/YFhnBQ+fu587c6fp61Rb6pT5w7/OZQVfjHKqjAWSx7430fvXBpz6yG/rdY40YuMO
+         +UZMrW1peGdlNKDqbwS9ecAg4Cq/JCOWR7L86DmEJOweDJsMf8GO1CpkGBcZSDtZ2iOi
+         Ir6t/bsNfLzH/e30TfugbaMuqTe/+PgmMBjWKZvEhjTXbxK13TchK+l85LHuI2N4hr3L
+         ls6OsuBRSS5y6uHus3LuQ5vd+6mViVvULDDBHEe5w/BPW+VOUI2m/2IfojUUMY2EZgWx
+         WX5w==
+X-Forwarded-Encrypted: i=1; AJvYcCWwpZNjQjqu9+rPzqkLuCyd/c+lOd5nLF4l4FOA/1ByJ+sf0clcZQhgefm0oF92DMqOlUHmpreyOrHP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoOtIraqKLQlDLhknBPLwbttCP/VQlRWAiTZeKow7whroHuafy
+	ZfwxrIVNimCTXQRdET6jz/kpDhdLHSZf2gdDcHWXNd8PZHiJN0/K+XD0
+X-Gm-Gg: ASbGncuGO8zq67fIhp1dvOSCHMozEFSD4+La/mQzOQiyCnELj1e5xcHWTSK6FZEqhjP
+	DPBQF3bs5WFWKpMsMYjz6G5aihpzvCbxiM8UaMOA/tatUcmTve0DiM/Q4zoCYHfzU30be8lHb5t
+	uQVBXIc868YJzZsIKEV5TbjVUHIFsx6Epr9SWi3pg8DmjqewhS9NAjUHQmYXxAc68U7k41XfMol
+	wozf0Qy2cTO8bM+eWlT1g0ok8ACWFc12/PWtOt093VGuLwfjfuduDPyE4V5RZqN1U68ukXsZ8ew
+	otnVdf5zkLkIQ16TItT/j/Pizww7sGZjxv6Ct3w1NMac3Gr+WHTdttdpSDPRJgld1Tcai5Zo1/0
+	tv5+QqLGy/SB7jg8Z1qzXaDXHJxOoLpYU5onG79xGJYCXJivhXTnb97Jh/naFWrE83DUkI9x5Er
+	c=
+X-Google-Smtp-Source: AGHT+IEMGRZoqIzd1YpdMiOznQ3MbLmfPYCb+cml25DJJ2TOqFLSOHhSTx31kwUALgscCaGAHNC6BA==
+X-Received: by 2002:a05:600c:4ec6:b0:456:29ae:3dbe with SMTP id 5b1f17b1804b1-459e7103684mr22614175e9.24.1754484501337;
+        Wed, 06 Aug 2025 05:48:21 -0700 (PDT)
+Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([91.116.162.236])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458be70c5f7sm170110045e9.26.2025.08.06.05.48.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Aug 2025 05:48:21 -0700 (PDT)
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Subject: [PATCH 0/3] drm/sitronix/st7920: Add support for the ST7920
+ controller
+Date: Wed, 06 Aug 2025 14:48:08 +0200
+Message-Id: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 06 Aug 2025 13:47:33 +0100
-Message-Id: <DBVCTYZVRR8C.39D28DAAS36UX@linaro.org>
-Cc: <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <srini@kernel.org>, <quic_ekangupt@quicinc.com>,
- <krzysztof.kozlowski@linaro.org>, <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8750: Add adsp fastrpc
- nodes/support
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Bjorn Andersson" <andersson@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250805162041.47412-1-alexey.klimov@linaro.org>
- <ovlwlyuwj3q2g4eudesq7qtc3q6omylvnnriagd2nfsrbkbldk@zwdw2yovumeh>
-In-Reply-To: <ovlwlyuwj3q2g4eudesq7qtc3q6omylvnnriagd2nfsrbkbldk@zwdw2yovumeh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAhPk2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDCwMz3eISc0sjA91U88SkRGOjJOPEJDMloOKCotS0zAqwQdGxtbUAg49
+ 2xFgAAAA=
+X-Change-ID: 20250806-st7920-e7aba32b3ab6
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, Iker Pedrosa <ikerpedrosam@gmail.com>
+X-Mailer: b4 0.14.2
 
-On Wed Aug 6, 2025 at 1:25 AM BST, Bjorn Andersson wrote:
+This patch-series adds support for the Sitronix ST7920 controller, which
+is a monochrome dot-matrix graphical LCD controller that has SPI and
+parallel interfaces.
 
-Previous version was sent few months back.
+The st7920 driver only has support for SPI so displays using other
+transport protocols are currently not supported.
 
-> On Tue, Aug 05, 2025 at 05:20:41PM +0100, Alexey Klimov wrote:
->> While at this, also add required memory region for adsp fastrpc.
->
-> Please https://docs.kernel.org/process/submitting-patches.html#describe-y=
-our-changes
-> rather than lazily continue the subject.
+* Patch #1 adds the driver.
+* Patch #2 adds the DT binding schema.
+* Patch #3 adds the MAINTAINERS information.
 
-Ok.
-It also seems that some other commits that were merged doesn't
-really describe addition of fastrpc nodes well.
+Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+---
+Iker Pedrosa (3):
+      drm: Add driver for Sitronix ST7920 LCD displays
+      dt-bindings: display: sitronix,st7920: Add DT schema
+      MAINTAINERS: Add entry for Sitronix ST7920 driver
 
-> Also, the way you wrote this makes me believe adsp_rpc_remote_heap_mem
-> is optional, and as I don't know what it's for I don't understand why
-> that would be part of this patch.
+ .../bindings/display/sitronix,st7920.yaml          |  55 ++
+ MAINTAINERS                                        |   7 +
+ drivers/gpu/drm/sitronix/Kconfig                   |  10 +
+ drivers/gpu/drm/sitronix/Makefile                  |   1 +
+ drivers/gpu/drm/sitronix/st7920.c                  | 869 +++++++++++++++++++++
+ drivers/gpu/drm/sitronix/st7920.h                  |  55 ++
+ 6 files changed, 997 insertions(+)
+---
+base-commit: c571cb70e1ed43ee543c70151e61a001ab2eefa2
+change-id: 20250806-st7920-e7aba32b3ab6
 
-Yeah, after looking further at the bindings I agree that this should be
-described better.
+Best regards,
+-- 
+Iker Pedrosa <ikerpedrosam@gmail.com>
 
-Although some of this is confusing:
->required memory region
->adsp_rpc_remote_heap_mem is optional
-
-Anyhow this mem region seems to be optional so I'll try to split it into
-two patches (need to check that dtbs check will be happy with that).
-It also seems that when adsp_rpc_remote_heap_mem was merged for other
-dtsi-es then no questions were asked.
-
->> Tested on sm8750-mtp device with adsprpdcd.
->
-> Just adsprpdcd?
-
-Yeah, I forgot to mention that getserial can libcalculator tests.
-
-
-> Is that sufficient to say that fastrpc is functional? Or
-> at least that the information here is sufficiently tested?
-
-The testing of fastrpc for adsp is quite limited. If you or Qualcomm can
-provide the usable tests to run and verify then please do so.
-
-I think what happens is that often the info for fastrpc nodes just being
-copied and filled in with info from downstream with no requests to provide
-test results.
-
-Here it was tested with adsprpdcd with compressed playback and two tests
-above I forgot to mention.
-
-[..]
-
-Thanks,
-Alexey
 
