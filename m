@@ -1,199 +1,166 @@
-Return-Path: <devicetree+bounces-202084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA7BB1C00C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 07:46:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C40B7B1C02A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 07:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34D453BFE91
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:46:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE7627B0CF4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 05:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0729A1FECB0;
-	Wed,  6 Aug 2025 05:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F751FDA9E;
+	Wed,  6 Aug 2025 05:58:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="JMCwzpF1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="buB0JW6U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1FF81E260A
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 05:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614CE1FCFEF
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 05:58:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754459182; cv=none; b=p1V1Jp6Z/qEBa4WUBLlXJ1DHlaT2UjAcMUWetf9dLyH5CxM4+kicDS13QE6XervW2yYF1E8CxFY/eaJJNYc9wEThi8bLJdYc35lWYRWLFXAAyXHDoHH+jta1EeHNa2Ax1yDL9cCVyWm2A+M2wLxvcHuzosVj8TrAkvcpzR1XkIg=
+	t=1754459899; cv=none; b=bsunXGX7oey13ooK7NCvqkfUBIU8hLcXgeHDD9duNBloEtT0B2/B/f1qPsqFMG+F6UxNUOLGy2HSzff8w4jnK48wfXxHlUctPZu6eqYVqdT02orGk8yOj9jQvfVA1si8pislD2qTqhPxf3WWyNu9mFJXrxxXMgRUDEtrXAASLFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754459182; c=relaxed/simple;
-	bh=okxzfA4ehROgnHZTTGa7DbT14N2ToN6xblvJZauS86s=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=YIDZ9YF+WOPgquGALDv9Z13Q+NEoshq2l+190rL35NTBRlur1ahuFW/YiJ+rviAqPKXKLpBLI6MvGaD+zEyCJEbFLK1Oo3bVsixaN/4RI4ilxdotnJ9RCbvSOeFX8b3UQcAGVnGl3rUdCDRc0ixuR64BjCFA35nLbYPYFAfGEkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=JMCwzpF1; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250806054617epoutp016a4350b67a10d5fae3dd45918825d56a~ZF1OlaUoE2811228112epoutp01U
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 05:46:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250806054617epoutp016a4350b67a10d5fae3dd45918825d56a~ZF1OlaUoE2811228112epoutp01U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754459177;
-	bh=okxzfA4ehROgnHZTTGa7DbT14N2ToN6xblvJZauS86s=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=JMCwzpF1LapP8C3VpkUCYSHyCuSi4glkJKhLHkcSAs128tckaHT1a/B2TdwL2CnFq
-	 KBT2t9wKL0qjbu+zAC1O9r5tfuRbfXm2DTVHK4GwzPEvgX/FCoWDhlCDYgHV+bV8r6
-	 pPzmUROS08QLcG/NMmHlqrM+fv/RWl8wbNmpbNIY=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250806054617epcas5p255ba667ff67703ace638e1e6388274e9~ZF1OHOEFd0123401234epcas5p2D;
-	Wed,  6 Aug 2025 05:46:17 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.90]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4bxfRW26z6z6B9mH; Wed,  6 Aug
-	2025 05:46:15 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250806054614epcas5p3407494fd3bf0360c722af9c7c6ada6c5~ZF1LrX9Z32821128211epcas5p3Y;
-	Wed,  6 Aug 2025 05:46:14 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250806054612epsmtip21f6922fa6ab9f9435ba827c8073ab5b1~ZF1JdqIk70912409124epsmtip2f;
-	Wed,  6 Aug 2025 05:46:12 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Manivannan Sadhasivam'" <mani@kernel.org>
-Cc: "'Konrad Dybcio'" <konrad.dybcio@oss.qualcomm.com>, "'Krzysztof
- Kozlowski'" <krzk@kernel.org>, "'Ram Kumar Dwivedi'"
-	<quic_rdwivedi@quicinc.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<andersson@kernel.org>, <konradybcio@kernel.org>,
-	<James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-	<agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <wpfchmssbrfhcxnoe37agonyc5s7e2onark77dxrlt5jrxxzo2@g57mdqrgj7uk>
-Subject: RE: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-Date: Wed, 6 Aug 2025 11:16:11 +0530
-Message-ID: <06f301dc0695$6bf25690$43d703b0$@samsung.com>
+	s=arc-20240116; t=1754459899; c=relaxed/simple;
+	bh=0wRXWn07qZNdwQLWXGu6/e6uroSeA3oZMDdv+cemm/Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ebtu4DauW4iCkOyV0ogQ/7g5EZarwzbetU4hNm/ZUSrSLn0KIpRP8Af5dS9kJgwabktLOYWz/Z2O/umst+ZeftoSLVJCMXTEmX+BTxMuRAd19AYWfudian7s+gwtBU5wpDTqWgiZhZW72xrKm9jMrYJkbwrkwi476zqhaQpQOWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=buB0JW6U; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-615547ee514so1026371a12.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Aug 2025 22:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754459896; x=1755064696; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=lujnusIOjVna7AWXW37RrttIaPYgCcALZjbW0FcrlsY=;
+        b=buB0JW6U1frAANZoApn/DEBHagqDYAP1ZGDEKb8bn2lDnYhEKCam4Mgabl73S8QTZf
+         zSirLjJ96biPP5dlgHMTU1bHYAdPGmcjFEekgAJEdte+H6QJ9bAQb1c78jMy+4tdecEh
+         zeYE7Hy74NiivKIzgrzpm4dYid29MdDbreMNfsW6BV8X5weMCKkyC8LH+lzk7CMZg2pc
+         7oubyX4HMROp+DtB4+q884UavLUIx6jlTWNRe9Y/SSDKo8y5DVJHbW0TtzL6tsZcdywM
+         yTiX3Uh13EhcusumjS6WVwqvut1Hip7GQMYMxja3ODmXW9iEFol6c8G0s/MmY1j2otwm
+         lDvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754459896; x=1755064696;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lujnusIOjVna7AWXW37RrttIaPYgCcALZjbW0FcrlsY=;
+        b=CUw/O4z28zCINnCS9uopfAMUv5FRqA3V/Gubxxt6EHxMERx6t0KKiusIYW7GhypcNY
+         CMSgga+R5dF68rELhxHQ5RQqgMu48KUFewi7JTdUVqfDFPZHz5T5AWLZHm/6g6oIHnUr
+         7NHnG6BLWPbBzlejC7dxucyXDKewW9lJVTicd1meMxsjs5kRXh2mMrxtFupEfr6uP2wa
+         xiCFdkNhV2zbdSt8s+4w9pT2Jg9XIXMDj9dQEuMNTpljjfNGJ9hFWXSbpMxKOX4PfeWS
+         hX3wo0ehNrv1oib29C3JgrX7PuYyegnHXbXO59KUVgo9I18EY4Z+w2z7ReJcvPP6LZVp
+         Fo8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVW+P1U4TzgT/sD+mJWDY+o7Vb18Gba3urtHoG2QXJa5cCaDmssOq3GkIJg1UXcg2q3TQSDHwI7KlRB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/zsHJ7TAptPEzFBHNAmnSE9Xo4GyX5UJ5hcTEzSPZBKuAtcj3
+	0CRAxYk/Jolm+pKn4292luMjUc2OIqC1QKcORLA7bYz/Iq8rmp9k4K7mjMHrUSgl6iM=
+X-Gm-Gg: ASbGncuuhL5FknZ+TzwL7OqEWnVHm+dulnBMKaIK5N99jDKI/+BgbtfCIQvTtFD4IIs
+	fiNDGGFQxyVxOD9nd2vJ9eSYXRKaKbwWfYWVyRBFYy5I1ID3VmrPlKT5iBPvu2dRYsZr8R8KPLP
+	61tkdRbgiIsRdpn2hK/luO49XA2qs7Yr8OETHNAPllzldv3g/NSIBqCQ7hFX5xlaDsMIXEjlQD+
+	3O+7i8QlGuue08sSso9gcIXkmKfpgFlzAkh0sAL0bBDJCoa6FBhC9E405ZWrXy64pd34XD3v3l1
+	qubYU+UQF7oEdJEJ5aXSV4j9beB4zUY0H7kW13vSwMEaBuCsN3mgmdX4mFuGczgVZx+N7kHMsdM
+	WucdvnxkDCPk77yW48Mpuz5bQp5GbWa7Grlx9FIgSB0U=
+X-Google-Smtp-Source: AGHT+IF5PBw1AWigxP/i3lXZ9qZ3IjP70cb7iYCKvwuxa85ErvQ/KvH596gR5FjO/aMn2ru4M+YOEg==
+X-Received: by 2002:a05:6402:3595:b0:612:e258:33e2 with SMTP id 4fb4d7f45d1cf-617961d10dfmr592247a12.4.1754459895685;
+        Tue, 05 Aug 2025 22:58:15 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.218.223])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a9115562sm9686773a12.59.2025.08.05.22.58.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Aug 2025 22:58:15 -0700 (PDT)
+Message-ID: <279fb589-d22c-47f8-9c71-4e959bce3800@linaro.org>
+Date: Wed, 6 Aug 2025 07:58:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQKnlt0Ez4U7OU6i7DDtpxZiPKvKiQEsJt2OAdY+bWECqijPQgIPv58TAQlCtSUCbRSB8gJXYzfzAduHMkYBp6Y8EQJl+KeTsiJiETA=
-X-CMS-MailID: 20250806054614epcas5p3407494fd3bf0360c722af9c7c6ada6c5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250805170638epcas5p4cb0cc78c5b5d77072cec547380b9f03d
-References: <jogwisri2gs77j5cs3xwyezmfsotnizvlruzzelemdj5xadqh4@loe7fsatoass>
-	<CGME20250805170638epcas5p4cb0cc78c5b5d77072cec547380b9f03d@epcas5p4.samsung.com>
-	<b235e338-8c16-439b-b7a5-24856893fb5d@oss.qualcomm.com>
-	<061b01dc062d$25c47800$714d6800$@samsung.com>
-	<i6eyiscdf2554znc4aaglhi22opfgyicif3y7kzjafwsrtdrtm@jjpzak64gdft>
-	<061c01dc062f$70ec34b0$52c49e10$@samsung.com>
-	<87c37d65-5ab1-4443-a428-dc3592062cdc@oss.qualcomm.com>
-	<061d01dc0631$c1766c00$44634400$@samsung.com>
-	<3cd33dce-f6b9-4f60-8cb2-a3bf2942a1e5@oss.qualcomm.com>
-	<06d201dc0689$9f438200$ddca8600$@samsung.com>
-	<wpfchmssbrfhcxnoe37agonyc5s7e2onark77dxrlt5jrxxzo2@g57mdqrgj7uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] dt-bindings: ufs: qcom: Split SC7180, SM8650 and
+ similar into separate file
+To: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250731-dt-bindings-ufs-qcom-v2-0-53bb634bf95a@linaro.org>
+ <yq1ms8d9nx2.fsf@ca-mkp.ca.oracle.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+AhsD
+ BQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEm9B+DgxR+NWWd7dUG5NDfTtBYpsFAmgXUEoF
+ CRaWdJoACgkQG5NDfTtBYpudig/+Inb3Kjx1B7w2IpPKmpCT20QQQstx14Wi+rh2FcnV6+/9
+ tyHtYwdirraBGGerrNY1c14MX0Tsmzqu9NyZ43heQB2uJuQb35rmI4dn1G+ZH0BD7cwR+M9m
+ lSV9YlF7z3Ycz2zHjxL1QXBVvwJRyE0sCIoe+0O9AW9Xj8L/dmvmRfDdtRhYVGyU7fze+lsH
+ 1pXaq9fdef8QsAETCg5q0zxD+VS+OoZFx4ZtFqvzmhCs0eFvM7gNqiyczeVGUciVlO3+1ZUn
+ eqQnxTXnqfJHptZTtK05uXGBwxjTHJrlSKnDslhZNkzv4JfTQhmERyx8BPHDkzpuPjfZ5Jp3
+ INcYsxgttyeDS4prv+XWlT7DUjIzcKih0tFDoW5/k6OZeFPba5PATHO78rcWFcduN8xB23B4
+ WFQAt5jpsP7/ngKQR9drMXfQGcEmqBq+aoVHobwOfEJTErdku05zjFmm1VnD55CzFJvG7Ll9
+ OsRfZD/1MKbl0k39NiRuf8IYFOxVCKrMSgnqED1eacLgj3AWnmfPlyB3Xka0FimVu5Q7r1H/
+ 9CCfHiOjjPsTAjE+Woh+/8Q0IyHzr+2sCe4g9w2tlsMQJhixykXC1KvzqMdUYKuE00CT+wdK
+ nXj0hlNnThRfcA9VPYzKlx3W6GLlyB6umd6WBGGKyiOmOcPqUK3GIvnLzfTXR5DOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCaBdQXwUJFpZbKgAKCRAbk0N9O0Fim07TD/92Vcmzn/jaEBcq
+ yT48ODfDIQVvg2nIDW+qbHtJ8DOT0d/qVbBTU7oBuo0xuHo+MTBp0pSTWbThLsSN1AuyP8wF
+ KChC0JPcwOZZRS0dl3lFgg+c+rdZUHjsa247r+7fvm2zGG1/u+33lBJgnAIH5lSCjhP4VXiG
+ q5ngCxGRuBq+0jNCKyAOC/vq2cS/dgdXwmf2aL8G7QVREX7mSl0x+CjWyrpFc1D/9NV/zIWB
+ G1NR1fFb+oeOVhRGubYfiS62htUQjGLK7qbTmrd715kH9Noww1U5HH7WQzePt/SvC0RhQXNj
+ XKBB+lwwM+XulFigmMF1KybRm7MNoLBrGDa3yGpAkHMkJ7NM4iSMdSxYAr60RtThnhKc2kLI
+ zd8GqyBh0nGPIL+1ZVMBDXw1Eu0/Du0rWt1zAKXQYVAfBLCTmkOnPU0fjR7qVT41xdJ6KqQM
+ NGQeV+0o9X91X6VBeK6Na3zt5y4eWkve65DRlk1aoeBmhAteioLZlXkqu0pZv+PKIVf+zFKu
+ h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
+ vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <yq1ms8d9nx2.fsf@ca-mkp.ca.oracle.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 06/08/2025 04:37, Martin K. Petersen wrote:
+> 
+> Krzysztof,
+> 
+>> The binding for Qualcomm SoC UFS controllers grew and it will grow
+>> further. It already includes several conditionals, partially for
+>> difference in handling encryption block (ICE, either as phandle or as
+>> IO address space) but it will further grow for MCQ.
+> 
+> Which tree did you intend to route this through?
 
 
+These are bindings, so please take them via UFS tree. Just like with
+every other driver or bindings patch.
 
-> -----Original Message-----
-> From: 'Manivannan Sadhasivam' <mani=40kernel.org>
-> Sent: Wednesday, August 6, 2025 10:35 AM
-> To: Alim Akhtar <alim.akhtar=40samsung.com>
-> Cc: 'Konrad Dybcio' <konrad.dybcio=40oss.qualcomm.com>; 'Krzysztof
-> Kozlowski' <krzk=40kernel.org>; 'Ram Kumar Dwivedi'
-> <quic_rdwivedi=40quicinc.com>; avri.altman=40wdc.com;
-> bvanassche=40acm.org; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; andersson=40kernel.org; konradybcio=40kernel.org;
-> James.Bottomley=40hansenpartnership.com; martin.petersen=40oracle.com;
-> agross=40kernel.org; linux-arm-msm=40vger.kernel.org; linux-
-> scsi=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH 2/3=5D arm64: dts: qcom: sa8155: Add gear and rate =
-limit
-> properties to UFS
->=20
-> On Wed, Aug 06, 2025 at 09:51:43AM GMT, Alim Akhtar wrote:
->=20
-> =5B...=5D
->=20
-> > > >> Introducing generic solutions preemptively for problems that are
-> > > >> simple in concept and can occur widely is good practice (although
-> > > >> it's sometimes hard to gauge whether this is a one-off), as if
-> > > >> the issue spreads a generic solution will appear at some point,
-> > > >> but we'll have to keep supporting the odd ones as well
-> > > >>
-> > > > Ok,
-> > > > I would prefer if we add a property which sounds like =22poor
-> > > > thermal dissipation=22 or =22routing channel loss=22 rather than ad=
-ding
-> > > > limiting UFS gear
-> > > properties.
-> > > > Poor thermal design or channel losses are generic enough and can
-> > > > happen
-> > > on any board.
-> > >
-> > > This is exactly what I'm trying to avoid through my suggestion - one
-> > > board may have poor thermal dissipation, another may have channel
-> > > losses, yet another one may feature a special batch of UFS chips
-> > > that will set the world on fire if instructed to attempt link
-> > > training at gear 7 - they all are causes, as opposed to describing
-> > > what needs to happen (i.e. what the hardware must be treated as -
-> > > gear N incapable despite what can be discovered at runtime), with
-> > > perhaps a comment on the side
-> > >
-> > But the solution for all possible board problems can't be by limiting G=
-ear
-> speed.
->=20
-> Devicetree properties should precisely reflect how they are relevant to t=
-he
-> hardware. 'limiting-gear-speed' is self-explanatory that the gear speed i=
-s
-> getting limited (for a reason), but the devicetree doesn't need to descri=
-be
-> the
-> *reason* itself.
->=20
-> > So it should be known why one particular board need to limit the gear.
->=20
-> That goes into the description, not in the property name.
->=20
-> > I understand that this is a static configuration, where it is already k=
-nown
-> that board is broken for higher Gear.
-> > Can this be achieved by limiting the clock? If not, can we add a board
-> specific _quirk_ and let the _quirk_ to be enabled from vendor specific
-> hooks?
-> >
->=20
-> How can we limit the clock without limiting the gears? When we limit the
-> gear/mode, both clock and power are implicitly limited.
->=20
-Possibly someone need to check with designer of the SoC if that is possible=
- or not.
-Did we already tried _quirk_? If not, why not?=20
-If the board is so poorly designed and can't take care of the channel loses=
- or heat dissipation etc,
-Then I assumed the gear negotiation between host and device should fail for=
- the higher gear=20
-and driver can have a re-try logic to re-init / re-try =22power mode change=
-=22 at the lower gear. Is that not possible / feasible?
-
-
-
-> - Mani
->=20
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D=20=E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D=0D=0A=0D=0A
+Best regards,
+Krzysztof
 
