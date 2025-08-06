@@ -1,120 +1,135 @@
-Return-Path: <devicetree+bounces-202136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB28AB1C26E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:50:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2C5CB1C292
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 10:59:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 145B9183C69
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:50:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B1F180A1A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 08:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C20F275AF0;
-	Wed,  6 Aug 2025 08:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBBF289362;
+	Wed,  6 Aug 2025 08:59:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0631E766E;
-	Wed,  6 Aug 2025 08:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0601D63F7
+	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 08:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754470247; cv=none; b=ZcVoqAASgCA0UwDAH57Kt3ICx2GZh4V4U2c6tm7BBluCYyAIEN7+hQRK09fJ3ql79ZVR2esoO7ksUd0zDrE5jBgfV0HVYXvxXxyIvZvOOEa2BPlxbvLw2qChJcRhPp4I/+qSl0n9cXbNS55vnFbHuFtyzgjUxbGDHx1pcLfK1eA=
+	t=1754470769; cv=none; b=D/UiYKKJVEg+/05Oetn8hk+OFNBBKWf0s/TAbu4TQYoYvlJLehiQnacrKCmBcFCh2bU7yQsN2fFvf868G2891BhwcMnrdPdA0kC9moaLDltdUPKWGiD2deAKZunxtR6KUC9VV7mIRCVA8tYo4kU8zsbJnbgO8hVq7cmUDWr5wmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754470247; c=relaxed/simple;
-	bh=zTLXxRmwS50E8iCjpUm8xHlzWL2Fvbbcr/d4M3YSzVE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aEiAsE1r7P1eUM27lrj6TW1GjDJ2oaXVkeG6vyalGBmxjOnF6JdEZ6jbrav7akvj/woK+eu8zdrk2oyb4CoTPHfVCnEQuOW9pFNR11t7dMrfQfk9/SWH336nuyQuvH5mjYPxI0Wv/amnSmA59NvR/IRIcQ2ouzY+HpkNP3UKiBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-5396c1d72dbso2591680e0c.2;
-        Wed, 06 Aug 2025 01:50:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754470244; x=1755075044;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=67NaUlX10oTgepae7uOpNwDzs2oEs7i1yEI/7g9wvX0=;
-        b=SMA/GfKIWkezAYKD6JY41jSK8c5kHQyr+R4rRd5Q5C/sxm6n9Khpx3upXWjVRNYema
-         ZAvSGtzXMmdraFaSS7nvpe1fYZBILIM8QqWF++graCXHKlYC9/CrSjqAoI2wmL3TBRPQ
-         SAQWxPEBw8Qpc4iRWqSlbSt1uA4I4R2nCK+HEKp6nc+rcxfkzPldA0IWHrwR/pRh1SSZ
-         rcIc5DjQb+lEfrKhYtwoJ6r2DwOcmTxGvC1BgQUC8zG+PJ+A+OTc5v6zd6GwAVrEz0dM
-         UdNNv+OLIdUxtrUC1bW4DsqJPnP6qotqrJ1pVS+T+dTME3bes7yLI9ysI/BPUklRYHGY
-         0mxw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjk9V12d/lcLXaSpAhHJ4YFxzzVDuUhpqVJVkliMiYMlqmkJ4ccVVK09CzbdzrCaA3jPYoY/DzdlCI@vger.kernel.org, AJvYcCWvjs48HQRTH3fLIApFp8bmGz6mJx3EWO0Yi7L/nAUBrckBp0A2Acs6mMznFeM+5yhFx/QGqVBYon+98aeI8qOZneA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrKTCM72QRhfHGP+LGiYuRs4ojbFlT0tpGiDQXKIGs664rtoGW
-	Ct9roolOjvWdynLIjN6JfPmc/cv3hVwiylIA+s/vspGZrp1SWFOqy/bdZAIkGVOU
-X-Gm-Gg: ASbGncv9Xbz3gowaGXG/bow2YiM0ld6kNn27VJZJDetF5InuFqQkebav4dG84uU+enN
-	J4PWx7jQBv/kojf828pvcoPiIvUhv4pquN2P8NKZLHYcF+18aQTSUM5XS9wE9K9ckwqhgiHYgEM
-	siNWJk19oaSjJtF8U96Iip/015YvLVrDDVtqSekUKb+TS5UF6ETnIZC03y4InXCHsD8EwlNZ3tR
-	i1Pb+e612zkI/+68YcTnRCltsVUjPaFaYet3NkDuhOyjGjzzw06fa7LHHsIniT/0ErdlSNVqLBe
-	t4YbNY6B2E3J7E9NnAM/Vj7/jIddtHcPpMVI8UN2SgNkUyubBnPfcyTwhYGC7CNuky7BRh6qPiM
-	FDNNAP2AQWPi0erdC+lRKufeMeE8OIOjh6AmpYcG1I6AsRaIWC2LlzgRjQlVO
-X-Google-Smtp-Source: AGHT+IGVZwgmbVElBG019brSaBYQLDQRiIPa7hrDldOrN48vHRkWwBJkjtOoEdwjK6S79NWY6Yu88A==
-X-Received: by 2002:a05:6122:2219:b0:539:1dd2:22fa with SMTP id 71dfb90a1353d-539a03a4161mr796150e0c.1.1754470243911;
-        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53936b15df5sm4114235e0c.3.2025.08.06.01.50.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-87f04817bf6so4472227241.0;
-        Wed, 06 Aug 2025 01:50:43 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVmnWRTJeZY1tTFO97vo8izgCRzUZSuNRfaoKXs2WymJcfs5WAMwJTlRlen/8JKNtK+BWAeB8OTvJ8gha/bM4an8VQ=@vger.kernel.org, AJvYcCWQdbBwmV/y5v3oc3iDigo4ivkgfnBAo/MA/Dt5xDbADTlVnxxIAeUP3piVBjpsIhnmJ/tKRa1yt3ik@vger.kernel.org
-X-Received: by 2002:a05:6102:2910:b0:4e5:9c06:39d8 with SMTP id
- ada2fe7eead31-503722a56bbmr726573137.5.1754470242932; Wed, 06 Aug 2025
- 01:50:42 -0700 (PDT)
+	s=arc-20240116; t=1754470769; c=relaxed/simple;
+	bh=/UzzYtavlagWyGGtegXWanhdJH6wLaCLupCcryhZtHg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=B/crEc6/UgmIOgtphSm81KW7T7a72Qtp+rkvW2xEPAjJ3vGqBt635NjDWlJVH6LFkNDgx+xm+pU1TP50HdGtJPPA+r/Q3J/wPf8bzMmsDsHH1wmg6OI2IPOjm9gfg1QFJt1jJB0RdgbOFKxcu69XzpIoyYowfoZ2JB506tgSWSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1ujZzT-00023X-D3
+	for devicetree@vger.kernel.org; Wed, 06 Aug 2025 10:59:19 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1ujZzT-00CBCv-0f
+	for devicetree@vger.kernel.org;
+	Wed, 06 Aug 2025 10:59:19 +0200
+Received: from dspam.blackshift.org (localhost [127.0.0.1])
+	by bjornoya.blackshift.org (Postfix) with SMTP id D7F76451D90
+	for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 08:59:18 +0000 (UTC)
+Received: from hardanger.blackshift.org (unknown [172.20.34.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by bjornoya.blackshift.org (Postfix) with ESMTPS id 8355F451D86;
+	Wed, 06 Aug 2025 08:59:16 +0000 (UTC)
+Received: from hardanger.blackshift.org (localhost [::1])
+	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 00ed67c6;
+	Wed, 6 Aug 2025 08:59:15 +0000 (UTC)
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+Date: Wed, 06 Aug 2025 10:59:12 +0200
+Subject: [PATCH] ARM: dts: stm32: add resets property to m_can nodes in the
+ stm32mp153
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250720194756.413341-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20250720194756.413341-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 6 Aug 2025 10:50:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX9LzH6zqZTmitwmBpLCqLn+=MK8LxJGdBBp6uABwH67A@mail.gmail.com>
-X-Gm-Features: Ac12FXxrT45x6X7YTOqNpVc_gzzfmkQ9G50H_zgTu-Yqdf2-Oq5tksnUmX_Lqj8
-Message-ID: <CAMuHMdX9LzH6zqZTmitwmBpLCqLn+=MK8LxJGdBBp6uABwH67A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Describe generic SPI NOR
- support on Retronix R-Car V4H Sparrow Hawk board
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250806-stm32mp15-m_can-add-reset-v1-1-9d81f9c29d65@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAF8Zk2gC/x3MTQqDMBBA4avIrDuQn2qLVylS0smos0iUjIgg3
+ r3B5bd47wTlIqzQNycU3kVlyRX20QDNIU+MEqvBGdeat+lQt+RdWm2L6UshY4gRCytvSDTS8+W
+ s/wUPtV8Lj3Lc789wXX+e+odgawAAAA==
+X-Change-ID: 20250806-stm32mp15-m_can-add-reset-ccfc47213ba3
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Marc Kleine-Budde <mkl@pengutronix.de>
+X-Mailer: b4 0.15-dev-e44bb
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1268; i=mkl@pengutronix.de;
+ h=from:subject:message-id; bh=/UzzYtavlagWyGGtegXWanhdJH6wLaCLupCcryhZtHg=;
+ b=owEBbQGS/pANAwAKAQx0Zd/5kJGcAcsmYgBokxlgVg8zS2uNYYWdg1S46Cypmh+yR3HopVysb
+ +06kIcnXIKJATMEAAEKAB0WIQSf+wzYr2eoX/wVbPMMdGXf+ZCRnAUCaJMZYAAKCRAMdGXf+ZCR
+ nOfyB/0ev9RiEJlbXX/m469X//l77QlSs4AudFDZQX1cvyMLVeUwBYvT1kJ26UI6wIW2RTc1Ntx
+ mFhprYlW4a6KmvMZ2CW5GCKRnhziKFn2Zvlk8ll6dVAb+QerxknCiv6CrD98PKRG79UzWcUOZWb
+ Nu6TDg5xjooAsu6SByoVFwojnFckxQ0Wm1iEqZJJIQss1hxbGgJ4gFXGOUkmDtmF/3RCCwISwn6
+ RKElfRPKK7coK+aF9Cymz+1MLOobBT9/ngQ3MbJM5YI7BwYTnb913KHqMG7SJm1UtgCoPR5O0k+
+ dAEPydAYN9EyctqPSTwrldXtpi9EdTzCGsjkvYp7+r1VFLvh
+X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
+ fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Marek,
+On the STM32MP153 the m_cam IP cores (a.k.a. FDCAN) have an external
+shared reset in the RCC. Add the reset to both m_can nodes.
 
-Thanks for your patch!
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+---
+ arch/arm/boot/dts/st/stm32mp153.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-On Sun, 20 Jul 2025 at 21:48, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Retronix R-Car V4H Sparrow Hawk EVTA1 is populated with Spansion S25FS512S,
-> EVTB1 is populated with Winbond W77Q51NW. Describe the SPI NOR using generic
-> "spi-flash" compatible, because both flashes can be auto-detected based on
+diff --git a/arch/arm/boot/dts/st/stm32mp153.dtsi b/arch/arm/boot/dts/st/stm32mp153.dtsi
+index 4640dafb1598..92794b942ab2 100644
+--- a/arch/arm/boot/dts/st/stm32mp153.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp153.dtsi
+@@ -40,6 +40,7 @@ m_can1: can@4400e000 {
+ 		interrupt-names = "int0", "int1";
+ 		clocks = <&rcc CK_HSE>, <&rcc FDCAN_K>;
+ 		clock-names = "hclk", "cclk";
++		resets = <&rcc FDCAN_R>;
+ 		bosch,mram-cfg = <0x0 0 0 32 0 0 2 2>;
+ 		access-controllers = <&etzpc 62>;
+ 		status = "disabled";
+@@ -54,6 +55,7 @@ m_can2: can@4400f000 {
+ 		interrupt-names = "int0", "int1";
+ 		clocks = <&rcc CK_HSE>, <&rcc FDCAN_K>;
+ 		clock-names = "hclk", "cclk";
++		resets = <&rcc FDCAN_R>;
+ 		bosch,mram-cfg = <0x1400 0 0 32 0 0 2 2>;
+ 		access-controllers = <&etzpc 62>;
+ 		status = "disabled";
 
-s/spi-flash/jedec,spi-nor/
+---
+base-commit: 1a32f7427eb3d1248bc64cd745b93f88cc838933
+change-id: 20250806-stm32mp15-m_can-add-reset-ccfc47213ba3
 
-> their built-in IDs.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Best regards,
+--  
+Marc Kleine-Budde <mkl@pengutronix.de>
 
-LGTM (I don't have EVTB1 schematics), so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.18.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
