@@ -1,89 +1,129 @@
-Return-Path: <devicetree+bounces-202349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B69B1D27D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:31:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B50F9B1D287
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:35:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C86B16F73C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 06:31:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76348722C98
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 06:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09A3218858;
-	Thu,  7 Aug 2025 06:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2246521A931;
+	Thu,  7 Aug 2025 06:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lIxgQMWr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 202464438B;
-	Thu,  7 Aug 2025 06:30:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF84BE46
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 06:35:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754548258; cv=none; b=VL+SsHL1abiH/PWuL17YeO8PG281rQek3xhXa1+N/IwPGHeUURBoaQ/hDG1Tfi6JSRaNiUIxpj+CNf1MRAr2CsWo7snlcmb/37mkzMhfATIU8u9ptvrYjchZ2zENat3X4Tj5c4aa6BBPbT4xIjwvDBN1zRrBL4vZH4fe9WEKb28=
+	t=1754548540; cv=none; b=WhCuvumdf8lZhFZSYZX182r90Qyzkep8mc5Tm4OZsNEZUXPMq0h847ZjRpLTaQ5uzEydJDcjd0Z76pecx5EkSlL6gaBsMeRa0kfVxN1W39DfiKlMlkeTxr8AepCGi8yLj4LDHi2K/RjMRTNJsrcvhFxQay/w8Pyjba0++2KVdAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754548258; c=relaxed/simple;
-	bh=o4Ha1FVFN2uUU+67c9KnfECEJZ9OCvPmJ/d97dfxDMA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GpWmPssdTdvY4MZ7rWvLVnkijLWKDX0ESfTbgozWEUCFT6O4wBX2Nzwh7Tn5kHUHYDfi6sT21pY04Jd2lmnkaUUqVFMyeCFj+rqUp3IygV6ZRg3xLKkLJmOKtvzR1yixsdTmcdrWMGZDh1r3an3Vdo4ZtfKYDWfeEcc8DqumrLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.7])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1e971c1a0;
-	Thu, 7 Aug 2025 14:30:44 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: ziyao@disroot.org
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	kishon@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	neil.armstrong@linaro.org,
-	shresthprasad7@gmail.com,
-	vkoul@kernel.org
-Subject: Re: [PATCH v5 5/6] phy: rockchip: naneng-combphy: Add RK3528 support
-Date: Thu,  7 Aug 2025 14:30:36 +0800
-Message-Id: <20250807063036.480766-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250728102947.38984-7-ziyao@disroot.org>
-References: <20250728102947.38984-7-ziyao@disroot.org>
+	s=arc-20240116; t=1754548540; c=relaxed/simple;
+	bh=BFDv8KwOdxE5b9FJvxGKqE2UTyIruoDsFRiENIG9Q+Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bhLy9gsrXOTIcyp9JCLHeN1m8uSwrs5mL1eKHQTrkMLx78liy34pPoSZPxb91r5DL+6mLrxUeIYvYvpfpGGIx7LsxOgGlHzodhcA9MHxAfEKUxNxBnMye5p09PdOlGmo1rgvExQ9zAcdg6XlTaVXstu4LtJ3ahsKoNRRmhakAKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lIxgQMWr; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45994a72356so4824505e9.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 23:35:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754548537; x=1755153337; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R87XAIEmPfqrUnpUN7cuFO3Ri3HR4f4oxIPKr+mmdB4=;
+        b=lIxgQMWrE/7IJj45biPk+YrbgBjz/x9MOf9EQK8H7azA3vxio72tu3SHuQhJnzDWjq
+         r6q/Ftyq7c3O2TuvysUGLgqfzR+N7wBLcA3boh0qnGvH8PzngM3UauEfOvJhb7FRJqvv
+         eFZ264lC5fWS2NFJo/cdUmezrj8ir59fZqxLD1McOLCwW3qVzZcsU24nzPmBQpPShpDD
+         kLrfpjo+B2P3I1ytu//kX4QvPLsn8QXuiuSSQERWh/7TDQ1oj4wc7e3kLyEfab8mVJem
+         Mz0x8PrnQyEgVFp+iI4ODNv0fzC1oXVbs0PCkqD0y75LN9kjlxBVUQLWJ5bcHwBXdNQT
+         D+Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754548537; x=1755153337;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R87XAIEmPfqrUnpUN7cuFO3Ri3HR4f4oxIPKr+mmdB4=;
+        b=pQdHuWadQvW2OmnpjoKpt9TuTFJ+I3zN6d9wzNOe9qKyd+jegQMLFzuJYPSibItTa1
+         yqFpP8FfK/znsLUyEa72Fshy+pqR3aEQgGhHdWy3cqvKDjqqFSK0u0oK3WRMs7ZApWUp
+         Jic5J7y0/ZLKc8T3T2V0KgyKiTnxYXONM2hkO9I16SoIS9mVMWW7k9JWD+xN485Tgl6l
+         ygtAO8eqiUEM3XLOyD7X0ZLxaxsKjqVxCPArPqX0p0E2nPthgvxACa1DccFTHkkG1RGl
+         D2kLXNuFMlf+e7X1t7HQwx0YIB2j4rg13gma8jwC8tTZugWkrmSj0pOguwtClX4Cqu2h
+         gr5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUnUE32uxdG0WXfymw5XVrN4eDWU3/TfxLLIJOv20PexKimZHk8Q+BwKhMFB0Uh1hZSOE4dDEXF1mX4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzSLQvZMytb+Qnpo9+IIUNYTH/Za2+OXVpgJWyXfezrZn9f73i
+	ioxR2uSbaxHM7xZHXx9URymf259V84yF9At9gnHJ4JF6GDmjQoDSM6cavN4N9l+X2LY=
+X-Gm-Gg: ASbGncv8/wmrlm/x3fsdOmq9w0062ViyczG2i9y7mhgngYPua0mUgBMpwWhZcgwzIpw
+	EQ/NT3IFF1UNMoahb9BR+nYTWoDdvYXIsTaP4f7FLdDFdO4QWkKqmhdXb2GMZx6wUT4ZDJn+Cy8
+	Ab7sZsSDpsRHm/nNbyRUl+9M5BtMcytKXqb+P2QNI7qvMfTzm3Gbhm0e/5YZWy32av++yKnyX2a
+	J+WSPGP65R/mrT9kqzMEz88fHQjMz8TQ2T6FtObUlUexTCHYSoVPCIj+3QnPDg8IZ4AcwYTIceA
+	DT9+CyFxhMKtrD6BV+boOjuZhLwrQk4bFBjaNzqYgVf+awjtYSJqusIUDP8vVKoETdtgERgbddC
+	Ma0upvcxYarnE7OXB7a1QrsvM/u+uXDA4+V1jUkBDE+0Q2oMJ0wMNzwgkVpACRorh
+X-Google-Smtp-Source: AGHT+IG/0hVZUCxEE95MZHpW6pcKniy4zaPb2rML34xuy+jP9E9jyGGasF0CZWrS36AX5D4SzgV2BQ==
+X-Received: by 2002:a05:600c:8593:b0:459:e002:8b1e with SMTP id 5b1f17b1804b1-459ee0c729dmr16878855e9.13.1754548536626;
+        Wed, 06 Aug 2025 23:35:36 -0700 (PDT)
+Received: from [192.168.0.13] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459db13fc9fsm151255515e9.7.2025.08.06.23.35.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Aug 2025 23:35:36 -0700 (PDT)
+Message-ID: <ce9cf017-5447-457c-9579-700782f9f0c2@linaro.org>
+Date: Thu, 7 Aug 2025 07:35:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a98833990b803a2kunm2e2160d534958b
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZS09DVh0dSRhNTU1NTE9IQlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVMWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09LVUpLS1VLWQ
-	Y+
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
+ resource data
+To: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: quic_dikshita@quicinc.com, quic_vgarodia@quicinc.com,
+ konradybcio@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
+ <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
+ <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
+ <aJHgh8mon9auOHzi@trex>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <aJHgh8mon9auOHzi@trex>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 05/08/2025 11:44, Jorge Ramirez wrote:
+> yes, in V7 I did implement this functionality plus a fix for EOS
+> handling (broken in pre 6.0.55 firmwares).
+> 
+> This added some complexity to the driver. And so in internal discussions
+> it was agreed that it was not worth to carry it and that it should be dropped.
+> 
+> I'll let Vikash and Bryan comment on the decision.
 
-> Rockchip RK3528 integrates one naneng-combphy that is able to operate in
-> PCIe and USB3 mode. The control logic is similar to previous variants of
-> naneng-combphy but the register layout is apperantly different from the
-> RK3568 one.
+TBH I think there's not alot of value in supporting a broken firmware 
+which only does decode.
 
-Is this a typo? apperantly -> apparently
+There's not alot of value to the user in that configuration.
 
-Thanks,
-Chukun
+Provided you have done the work to get the fixed firmware into 
+linux-firmware just cut at that point and have the driver reject lesser 
+versions.
 
---
-2.25.1
+I as a user have no use-case or value in a broken old firmware which 
+supports decode only, I'd much rather have the full transcoder.
 
+Its Vikash/Dikshita's call though.
 
+---
+bod
 
