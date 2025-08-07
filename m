@@ -1,176 +1,162 @@
-Return-Path: <devicetree+bounces-202539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C155B1DF54
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 00:28:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F173B1DF55
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 00:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 014A37AB31C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 22:27:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37D293ABA5A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 22:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F4D8253F07;
-	Thu,  7 Aug 2025 22:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CBE255F53;
+	Thu,  7 Aug 2025 22:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i2kvjnYw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ERzNQZ3m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E89190498;
-	Thu,  7 Aug 2025 22:28:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293E5190498;
+	Thu,  7 Aug 2025 22:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754605710; cv=none; b=uuCvR09QhOaNuNxDM/Ek3w7TJ9I3hdXdn5s9B6R1WbXy9ECmW3Pkqe9kKtB+vhEsPlOQ1ctenTCWVEGpjUCmg2kHlCk2rmxtVGtw/hnKLkmCduOWS7fidRJxGaDClAlvaUnbpezYn4jYO+Ou9ePdIWkvwd+0xMmx3OzwJChUoiA=
+	t=1754605775; cv=none; b=VZlko6jXevzq68uxYswVN6Rn5iOz1lxVSzaG72V3WYUxA/T6eCFEgG8+uQvwog7pvlE/Bn3E/Doamvj5CuFKzdRYd2cBjjBIxsVhkgukFUDLXMNIfEAxdFqQFYQseqy/aN0yHJLjL/dZRkw7C18GKpXSFpe9oYqc2R6nDf3kajM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754605710; c=relaxed/simple;
-	bh=tepQER/B3Q2AaKkdBc/YTjlxzZjsKce20rx9wrGtiWM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XfGNowjmpET+WZ9NTmsb17Mq5B+9CTufRHJPC4zeGcBiVjvEyGZJCvOMrTbugoTpoeZivHXjiIh3/05dcRKAYkIER9SsuEe2qYX+bgSkthuZhhilg+zDyQAePV0oOnEE93cqlRsMEsbO8F2ciMKyUOS5F29FWgds4oBtT8tr0N0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i2kvjnYw; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3218283cf21so259926a91.3;
-        Thu, 07 Aug 2025 15:28:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754605708; x=1755210508; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zKwkh4VaAp+S1exgnODdmPTJqqGRa7jXrFsl/hUqQzY=;
-        b=i2kvjnYw7tg97FkyN6Yqxnp/eKbB/7vQdGrOWabzvdA6Jk1iBbR4O8i20CsDMlBG2N
-         CvJBb6uX5Gb1P6BaAioIiX1vc/WO5LLUMlLrotlCB2h+si7BIxYYg4yVb40z3YhaoAtc
-         TjHQAqn+B+NDPWBTAsrIiueq/R+ITeu6gIfqipJlU+fUN3dpd9oBBcH0ayVbVAh4jKzr
-         LBD4kBaGSgB3rOqlWKvCiVTu5TqOaj9tzVzMYkJxmKys1wojmFBD/of1ta3zg5bD6NeY
-         6O00R7Vmrx2qUWi0utACjimcFYWAOvv0szMN1O3lhiDkdM06DteNTXZ6fxtZOn7HaZjO
-         BxAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754605708; x=1755210508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zKwkh4VaAp+S1exgnODdmPTJqqGRa7jXrFsl/hUqQzY=;
-        b=VTvVp+B0xx0ZnYSTbb8wkiq3w8PUgAalvGyAoEiZ+NmzgB8xKvg0wCEBHkNI1Mqb+/
-         /wOKT8kKNsoNk+hUYuEjAeMe2UTEyUI4bZxphzpDkNDRdtaGAAeL8JgR7J23O8Dwbfti
-         Z+rFYNs3LUtKioQdDdVtw+6DlV+HOkDmO2cfLuElWTZORq16/DUzN9dgiWlp6N4UdWQI
-         H7ENmE+pgFWh8uPkyq0dKS5l8Bac2s2VOahxffltcpGV7R1uQxHH91LMzZe+LyIefoTh
-         oqC0TdwoWuN9HC/5scJafvw8SabX1e2uzsweq6243bIkPanScQ4t/gzqhkpHgdrCEiJ7
-         X6Rw==
-X-Forwarded-Encrypted: i=1; AJvYcCWk6VkWO452g3fenyQjxmSp8yM2NDzENI8pw9aN2mhD646xOc9GASFzUrR58IHp6h7afyriz78TQVHn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTpJz4DdYIDFykedMzBP/UaiA6i8AtRhAVsBXc8Qp8ZoqiQSDJ
-	5V75nYrLe5CSNbU6AS9L09IDIEFOGC+/22NxMzUtg3ZIAXarwVsrXiXQVfMymyXSrYzJZa14udm
-	bzUSUQDWN0/fQXJVNFP8gHj9ixhKy/vk8pOo=
-X-Gm-Gg: ASbGncu/vWakWg1+Kr96/WGH1MUPnA/1HvM10dsqH+piliTk9BwuOvZEkFIPpO7OO5H
-	wd6H5KX1sj72okeShJSZHc1vl9qxgppdxDmXh9Lk0Qa2aAGvc78yLk3EHoRzir5yu12Upc6JhjA
-	F8CWYTiXRjpIWb+bKe2Ln3XGjJuLcwtqyWID4MfWLaVfZDiqW2E/aAZn7S6D0gLPpGV4vzissAD
-	e5ryotb17/YZ0fZnJbgO/+W/c5H8rgccUCd05UG
-X-Google-Smtp-Source: AGHT+IESYxBHFA4uYPN/+uA3OHnZMD9hYgNrtllwU+PZefaQWJDWtjUg0+OCZc7iktp5NIl4QTrN3pl96XeW9OTHtNE=
-X-Received: by 2002:a17:90b:3902:b0:31e:8203:4b9d with SMTP id
- 98e67ed59e1d1-32183e4f157mr781964a91.29.1754605707866; Thu, 07 Aug 2025
- 15:28:27 -0700 (PDT)
+	s=arc-20240116; t=1754605775; c=relaxed/simple;
+	bh=GnhXBlhan00EnWMeW6CfAY8zoMr8CZr1dFclyjoHcpc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HR3vaKXqk8RI0JVmCrlUh3+3m0+ChKuRgI48usBrX37v2hP9A1bPMwgUYz6YXUahuGroRtY9pRzrGLrHAzN0dc4Xqqmr2kAooPaobGSDssqpvpRWTv7rhslcGORmtwjzs7jOY4l5ojR0vU45llsYRkfu5ZDwQnj6zlZHV8Rlots=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ERzNQZ3m; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 577MTP5M902301;
+	Thu, 7 Aug 2025 17:29:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754605765;
+	bh=vGg0k6siYa6ZSIVgo5SD6iu9EKp7AtLaUnHfY9l895Q=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ERzNQZ3mdvKb80aeNo3DpUYphXfZLnY45zeAjNzQIjUxTUwrc75Oa4QAj/fd0ShHF
+	 gcgx/100x5BIM33bsFEIeSv/wOct/nxx/09J4SHjf1sToUE1Nn3uUr106e3L9H70Sc
+	 WBDpPZb8bAjICh0NDARBBS9unBN+iMFAkA9Musag=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 577MTPak465544
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 7 Aug 2025 17:29:25 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 7
+ Aug 2025 17:29:24 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 7 Aug 2025 17:29:24 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 577MTOBE1764481;
+	Thu, 7 Aug 2025 17:29:24 -0500
+Message-ID: <da9c4afb-84ce-49ee-86b3-b7f50457a067@ti.com>
+Date: Thu, 7 Aug 2025 17:29:24 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CANBuOYpLNAtLVWBvR9E74Ju4cM1K7H_bS2Z_UhthQFrJaZXmiQ@mail.gmail.com>
- <aIOHm4AOrhHBf6Xv@finisterre.sirena.org.uk>
-In-Reply-To: <aIOHm4AOrhHBf6Xv@finisterre.sirena.org.uk>
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Date: Fri, 8 Aug 2025 00:28:16 +0200
-X-Gm-Features: Ac12FXzK2GC3jOYi6VfNhIpak5X5ZBvlkLFU0I4pabgsBuIDIGVE8v3R54fc1UU
-Message-ID: <CANBuOYrtmA-UgTo6X87pND9eTfub-R633scTzDef56gVvBVwig@mail.gmail.com>
-Subject: Re: [Guidance Request] LFX Mentee looking to contribute to ASoC / DT
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shuah@kernel.org, 
-	kuninori.morimoto.gx@renesas.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] soc: ti: k3-socinfo: Add support for AM62P variants
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Adrian Hunter
+	<adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC: Vignesh Raghavendra <vigneshr@ti.com>,
+        Santosh Shilimkar
+	<ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>
+References: <20250805234950.3781367-1-jm@ti.com>
+ <20250805234950.3781367-3-jm@ti.com>
+ <37f73812-be0c-43b2-a5bc-a41e09db85ea@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <37f73812-be0c-43b2-a5bc-a41e09db85ea@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Jul 25, 2025 at 3:33=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
->
-> On Fri, Jul 25, 2025 at 12:50:15AM +0200, Jihed Chaibi wrote:
->
-> > My name is Jihed Chaibi. I am currently a mentee in the Linux
-> > Foundation Mentorship Program, working with Shuah Khan.
->
-> > With a professional background in embedded systems and a strong
-> > personal interest in audio that extends to my own projects, the ASoC
-> > subsystem seems like the perfect place to blend these two passions.
-> > I'm eager to apply my experience with hardware bring-up and Device
-> > Trees by becoming an active contributor.
->
-> That's great.  To be honest it sounds like you're already very up to
-> speed so I'm not sure I'm going to have anything here that isn't pretty
-> generic.
->
-> > As I look to deepen my involvement, I am writing to seek advice on
-> > where I can best apply my efforts. I'm particularly interested in
-> > finding a substantive task where my skills would be a good fit, such
-> > as:
->
-> >     - Enabling audio support for a new board using Device Trees.
-> >     - Assisting with bug fixes or small feature additions in the ASoC C=
- drivers.
-> >     - Tackling items from the TODO list where my DT experience would
-> > be applicable.
-> >     - Helping with other driver enhancements or cleanups within the
-> > ASoC framework.
->
-> > Any guidance on finding a suitable project would be highly appreciated!
->
-> One big thing with embedded stuff like this is hardware access to test -
-> an awful lot of stuff is going to be hard to work on just purely with
-> software.  Given that it's probably useful to take a look at what
-> systems you have or can readily get hold of and then consider what
-> problems they have that might be good to work on - things like board
-> enablement would be an obvious example there, and it's common that
-> boards have some support but pretty basic so there's useful things can
-> be done extending that (eg, leaving a lot of features unused and just
-> supporting basic playback/capture).  Knowing what you've got to hand
-> would make it a lot easier to suggest concrete ideas.
->
-> It's worth noting that a lot of x86 laptops these days are ASoC based,
-> their SoCs are built in the same way as mobile SoCs, so might be worth
-> considering those too.
+Hi Andrew,
 
-Hi Mark, and everyone,
+On 8/7/25 12:24 PM, Andrew Davis wrote:
+> On 8/5/25 6:49 PM, Judith Mendez wrote:
+>> This adds a support for detecting AM62P SR1.0, SR1.1, SR1.2.
+>>
+>> On AM62P, silicon revision is discovered with GP_SW1 instead of JTAGID
+>> register, so introduce GP_SW register range to determine SoC revision.
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   drivers/soc/ti/k3-socinfo.c | 82 +++++++++++++++++++++++++++++++++----
+>>   1 file changed, 74 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/soc/ti/k3-socinfo.c b/drivers/soc/ti/k3-socinfo.c
+>> index d716be113c84..9daeced656d6 100644
+>> --- a/drivers/soc/ti/k3-socinfo.c
+>> +++ b/drivers/soc/ti/k3-socinfo.c
+>> @@ -15,6 +15,7 @@
+>>   #include <linux/sys_soc.h>
+>>   #define CTRLMMR_WKUP_JTAGID_REG        0
+>> +#define CTRLMMR_WKUP_GP_SW1_REG        4
+>>   /*
+>>    * Bits:
+>>    *  31-28 VARIANT    Device variant
+>> @@ -62,10 +63,63 @@ static const struct k3_soc_id {
+>>       { JTAG_ID_PARTNO_AM62LX, "AM62LX" },
+>>   };
+>> +static const struct regmap_config k3_chipinfo_regmap_cfg = {
+>> +    .reg_bits = 32,
+>> +    .val_bits = 32,
+>> +    .reg_stride = 4,
+>> +};
+>> +
+>>   static const char * const j721e_rev_string_map[] = {
+>>       "1.0", "1.1", "2.0",
+>>   };
+>> +static const char * const am62p_gpsw_rev_string_map[] = {
+>> +    "1.0", "1.1", "1.2",
+>> +};
+>> +
+>> +static int
+>> +k3_chipinfo_get_variant_alternate(struct platform_device *pdev, 
+>> unsigned int partno, u32 *variant)
+>> +{
+>> +    struct device *dev = &pdev->dev;
+>> +    struct regmap *regmap;
+>> +    void __iomem *base;
+>> +    u32 offset;
+>> +    int ret;
+>> +
+>> +    base = devm_platform_ioremap_resource(pdev, 1);
+>> +    if (IS_ERR(base))
+>> +        return PTR_ERR(base);
+>> +
+>> +    regmap = regmap_init_mmio(dev, base, &k3_chipinfo_regmap_cfg);
+> 
+> devm_regmap_init_mmio()
+> 
+> Otherwise this regmap never gets freed up in the error paths.
 
-Thank you for the thoughtful advice, I am currently researching a few
-newer boards to order, specifically looking for ones with incomplete
-audio support.
+Thanks for reviewing, but....
 
-For an immediate contribution that I can start on without specific
-hardware, I've been digging into the DT bindings and identified a
-challenge I'd like to help solve.
+I have completely changed this patch in v2, feel free to review v2
+though (:
 
-While learning to configure audio, I found that discovering the valid
-routing strings (simple-audio-card,routing) for a lot of codecs is
-kind of difficult. Currently, for most codecs, the only way to find
-those is to read the ASoC C driver source for the specific codec. This
-seems problematic for a few reasons:
 
-    - It creates a high barrier for developers who are focused on
-board bring-up, forcing them to navigate complex C driver code just to
-configure a (simple) device tree node.
+..
 
-    - The process is inefficient and error-prone, as typos when
-copying strings can lead to audio routes failing silently and being
-difficult to debug.
-
-I believe documenting these strings directly in each codec's DT
-binding file (.yaml) would be a significant improvement. It would make
-the binding self-contained and greatly improve the experience for
-anyone setting up audio on a board.
-
-Does this seem like a useful contribution? If you agree, I can get
-started immediately on preparing a patch for a popular codec to serve
-as an example.
-
-Thanks again for your time,
-Jihed
 
