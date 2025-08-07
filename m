@@ -1,151 +1,197 @@
-Return-Path: <devicetree+bounces-202401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 432A9B1D568
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:04:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB5BB1D583
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598EC565F4B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:04:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BD5C1882A1C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814BD22759D;
-	Thu,  7 Aug 2025 10:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20E4223DF9;
+	Thu,  7 Aug 2025 10:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="sER3LyUg"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="UMnhxlT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2572253BA
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 10:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1365712E7F;
+	Thu,  7 Aug 2025 10:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754561067; cv=none; b=muhcN6CBU8ESch/aAk4FYxIqrzRsEjpzHX+vAwjIJ4UYR7dbv649Lth1q4o00dYPh519Jtlaqax9pWCTAZGlyZildQvKhfClMuIUHOQt0wXSKQ0mJWxnIHDUPGhKlSXPhpC5ubC0FUVkYqq/n/+rDYhjrzt/10I8djYpJCJ9QRY=
+	t=1754561373; cv=none; b=ES0VEwjuiYd2RwX0iG4P6KVzRwDBX9llPo8E0V2mF0AxYo86If9itpyvB945++Nf+PyBXfwxCLVUjjZLS5XVNwqYhlATEWwl0psaDuDAwnvzxj6NXDcVPu0aENJ1jxXZCD2P8JZpD2Tu+Zo+7sRqcqhZ2fGXq+/fAz4XkgpbIw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754561067; c=relaxed/simple;
-	bh=v5J95RbVq1z7j0CBduLbYcWe25djTBYTApvThmtWUbg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZdrI0BX9ZZKYnW3r+7ybGkOp600RoBVd7pQnwY0lLaPpfMturPkOC9w+gxqHrylz9a0hYeigmD1I8VSmW+A/zb0OiOUm5TAFwCuZXalE/Ls11UkvnZPHTA046jCmpXdOtZERM7lzUuwH9MpHO2+zPBpA+rnqG6fqZ/9KZ7hbIKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=sER3LyUg; arc=none smtp.client-ip=95.215.58.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <85c9d06b-b62a-45b8-964c-d37f1176f0b0@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1754561062;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1eg2qejZVe0Hwmtk3aZSvEFkMvRjpU3KbucvKTo7QaA=;
-	b=sER3LyUgpOZl05+iAak3MJa/McPHLLz0+GbGgiNgTk5LE7MFU9uQU6Rd3gjaz6Xv4UENFT
-	+9JgbB3R41YDXON1qn0A5WiK/eMIZjzEpTTT6G5qi0hBIioWnfYkwWsiL4cdoC37aCXF+b
-	cqpZjqxgsjy2v0HOiSqkrh4/6abyD3Y=
-Date: Thu, 7 Aug 2025 18:04:04 +0800
+	s=arc-20240116; t=1754561373; c=relaxed/simple;
+	bh=V1nydN8gNugZAMNzR2LP9TE59bgTN1UQV6hiBgznw40=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=N/1N/1Nu7NV8XaWHKM13WJLEBH3EBBHVQN7msv3pVwFi7eqaZ3t/+6q7XgxdlaKMo1AlRnTHzxyDqzgjcF72afpbbUO/idM2OtbVyl+4KXEcRagK8Uiq7pSONcnpZMqKh61Fi8aGCgM52s63GZHRokMQB19BbOJJu/+Ir7t1pF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=UMnhxlT2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=lJQ8t6Wg5SpMe7LvBgmK2KLgjKo0GUwMiAaC0qTb9SQ=; b=UMnhxlT2HczqXK7idPMzlrhtqS
+	BW1Y8yUJ2Ea17ppOxN1cZku1MiCcGJgw2VpLlpmofmvgPZZSASO7APlIND1OoQIW3nCaL7hqmNEmF
+	AnJyZV2EN4CQ1vu4SJ7ATWn97l0nRXSx09dYZnucaqtb7ZN6bPM3Y5i8ISwulaRvziHhKxfw5AKuG
+	Ke2Okxrtxj0Gi0ZLA4cIkgHB1FmtGKioF/nNr1nWE6r28aonV5HzdlFSg6pMBAXIKZfGR26u3q3H9
+	ZBYDOOtujciuPjI1FcGp/qZumnqR83GilVFXu4i0esSJAYUVcxco6f2xMA9MG/RCHxMB02eqCZOO7
+	I6Oo5CCQ==;
+Received: from i53875a15.versanet.de ([83.135.90.21] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1ujxYo-0007HP-VI; Thu, 07 Aug 2025 12:09:23 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: linux-leds@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc: Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+ Christian Marangi <ansuelsmth@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Lukasz Majewski <lukma@denx.de>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
+ netdev-trigger-mode property
+Date: Thu, 07 Aug 2025 12:09:22 +0200
+Message-ID: <2598568.Sgy9Pd6rRy@diego>
+In-Reply-To: <20250113002346.297481-1-marex@denx.de>
+References: <20250113002346.297481-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 1/8] dt-bindings: clock: loongson2: Add Loongson 2K0300
- compatible
-To: Huacai Chen <chenhuacai@kernel.org>, Yao Zi <ziyao@disroot.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-References: <20250805150147.25909-1-ziyao@disroot.org>
- <20250805150147.25909-2-ziyao@disroot.org>
- <CAAhV-H6fDjVFX_gyT3m39j09RWFu4O89FVdEumyV-dzUnU9Wig@mail.gmail.com>
- <aJNK2uI4HTIV99vz@pie>
- <CAAhV-H5XQ9+dL+QE50aO3XNZ4ic9QqA5frMi8y+eMb83Dv0Gyw@mail.gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Yanteng Si <si.yanteng@linux.dev>
-In-Reply-To: <CAAhV-H5XQ9+dL+QE50aO3XNZ4ic9QqA5frMi8y+eMb83Dv0Gyw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-在 8/7/25 12:44 PM, Huacai Chen 写道:
-> On Wed, Aug 6, 2025 at 8:30 PM Yao Zi <ziyao@disroot.org> wrote:
->>
->> On Wed, Aug 06, 2025 at 04:36:50PM +0800, Huacai Chen wrote:
->>> On Tue, Aug 5, 2025 at 11:03 PM Yao Zi <ziyao@disroot.org> wrote:
->>>>
->>>> Document the clock controller shipped in Loongson 2K0300 SoC, which
->>>> generates various clock signals for SoC peripherals.
->>>>
->>>> Differing from previous generations of SoCs, 2K0300 requires a 120MHz
->>>> external clock input, and a separate dt-binding header is used for
->>>> cleanness.
->>>>
->>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
->>>> ---
->>>>   .../bindings/clock/loongson,ls2k-clk.yaml     | 21 ++++++--
->>>>   MAINTAINERS                                   |  1 +
->>>>   .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
->>>>   3 files changed, 72 insertions(+), 4 deletions(-)
->>>>   create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
->>>>
->>
->> ...
->>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 4912b8a83bbb..7960e65d7dfc 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -14365,6 +14365,7 @@ S:      Maintained
->>>>   F:     Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
->>>>   F:     drivers/clk/clk-loongson2.c
->>>>   F:     include/dt-bindings/clock/loongson,ls2k-clk.h
->>>> +F:     include/dt-bindings/clock/loongson,ls2k0300-clk.h
->>> I think ls2k0300-clk.h can be merged into ls2k-clk.h
->>
->> Honestly I think a separate header makes the purpose more clear, and
->> follows the convention that name of binding header matches the
->> compatible, but I'm willing to change if you really consider merging
->> them together is better and dt-binding maintainer agrees on this.
+Hi,
 
-> I think merging is better, because:
-On this premise，pick my tag:
+Am Montag, 13. Januar 2025, 01:23:37 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Marek Vasut:
+> Document netdev trigger specific netdev-trigger-mode property which
+> is used to configure the netdev trigger mode flags. Those mode flags
+> define events on which the LED acts upon when the hardware offload is
+> enabled. This is traditionally configured via sysfs, but that depends
+> on udev rules which are available either too late or never in case of
+> non-Linux systems.
+>=20
+> For each LED with linux,default-trigger =3D "netdev" described in DT, this
+> optional netdev-trigger-mode property supplies the default configuration
+> of the PHY LED mode via DT. This property should be set to a subset of
+> TRIGGER_NETDEV_* flags.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Reviewed-by: Yanteng Si <siyanteng@cqsoftware.com.cn>
+while this is already half a year old, neither me nor b4 have found a
+newer thread, so I hope this is still the most recent one to reply to.
 
-Thanks,
-Yanteng
-> 1, loongson,ls2k-clk.h has already contains ls2k500, ls2k1000,
-> ls2k2000, so ls2k300 is not special.
-> 2, ls2k500, ls2k1000, ls2k2000 and ls2k300 use the same driver
-> (drivers/clk/clk-loongson2.c), it is not necessary to include two
-> headers.
-> 
-> And moreover, existing code uses NODE_PLL/DDR_PLL naming, ls2k300 uses
-> PLL_NODE/PLL_DDR is not so good.
-> 
-> 
-> Huacai
-> 
->>
->>> Huacai
->>
->> Thanks,
->> Yao Zi
->>
->>>>
->>>>   LOONGSON SPI DRIVER
->>>>   M:     Yinbo Zhu <zhuyinbo@loongson.cn>
->>>> diff --git a/include/dt-bindings/clock/loongson,ls2k0300-clk.h b/include/dt-bindings/clock/loongson,ls2k0300-clk.h
 
->>>> 2.50.1
->>>>
->>>
->>
+> ---
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Christian Marangi <ansuelsmth@gmail.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Lukasz Majewski <lukma@denx.de>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documen=
+tation/devicetree/bindings/leds/common.yaml
+> index 3e8319e443392..1f1148fdf20c0 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -233,6 +233,12 @@ properties:
+>        Maximum timeout in microseconds after which the flash LED is turne=
+d off.
+>        Required for flash LED nodes with configurable timeout.
+> =20
+> +  # Requires netdev trigger
+> +  netdev-trigger-mode:
+> +    description:
+> +      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * f=
+lags.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +
+
+as DT is supposed to be a hardware description, I think throwing arbitary
+binary values around is not very readable - especially as the above would
+be a combination of setting-bits for the TRIGGER_NETDEV_* things.
+
+Instead I'd think using boolean dt props would reflect the binary "or"
+way better and also keep all the bitwise nastiness out of the dt.
+
+Also "netdev" is a Linux thing, and therefore also set in the
+"linux,default-trigger" property, so I'd think any added netdev-props
+should probably also have a linux,* prefix.
+
+
+So in sum, I think the following might look better?
+
+  linux,netdev-trigger-link:
+    description:
+      LED is lit on established link
+    type: boolean
+
+  linux,netdev-trigger-link-10:
+    description:
+      LED is lit on established link with 10MBit
+    type: boolean
+
+  linux,netdev-trigger-link-100:
+    description:
+      LED is lit on established link with 100MBit
+    type: boolean
+
+[...]
+
+  linux,netdev-trigger-link-tx:
+    description:
+      LED is triggered when sending data
+    type: boolean
+
+  linux,netdev-trigger-link-rx:
+    description:
+      LED is triggered when receiving data
+    type: boolean
+
+[...]
+
+for each element of the led_trigger_netdev_modes enum [0], with the node
+then looking something like:
+
+               leds {
+                       #address-cells =3D <1>;
+                       #size-cells =3D <0>;
+
+                       /* Network LED on the front panel */
+                       led@0 {
+                               reg =3D <0>;
+                               color =3D <LED_COLOR_ID_AMBER>;
+                               function =3D LED_FUNCTION_LAN;
+                               linux,default-trigger =3D "netdev";
+                               linux,netdev-trigger-rx;
+                               linux,netdev-trigger-tx;
+                       };
+
+
+Heiko
+
+
+[0] https://elixir.bootlin.com/linux/v6.16/source/include/linux/leds.h#L603
+
 
 
