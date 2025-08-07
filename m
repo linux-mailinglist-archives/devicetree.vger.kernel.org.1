@@ -1,107 +1,152 @@
-Return-Path: <devicetree+bounces-202473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241BCB1DA51
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF9EB1DA60
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:48:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1ED417B1580
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:45:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4116C7A54A6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ABD1EA7CE;
-	Thu,  7 Aug 2025 14:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BA725CC66;
+	Thu,  7 Aug 2025 14:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="YSioIBpR"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dc460t1D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from relay15.mail.gandi.net (relay15.mail.gandi.net [217.70.178.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83EC26281;
-	Thu,  7 Aug 2025 14:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD5D033086;
+	Thu,  7 Aug 2025 14:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754577992; cv=none; b=PEoacSp0XxYd9G9wdg6JO/RvTKEjl5IwtKTY5gaNyk99Pn1+9gj7O3tefnZkvO1i6KMCmQRi/gJmT++bTynZfFPkjS4Ji47DePmGZw1Bc4cu/vZnCKsfMsxI6gSyac04WPTW5X5rxIWbLNPFVoenME7P8j+yhYWcWV/eDndYaAo=
+	t=1754578121; cv=none; b=bEF0EjoeqmVkFHCam5OrZe4yD9Tat9wh5x1Yt5LcBGh+6ymbVqWWLFDJt6kw0jTQTgx/Zm7MUFH0wQvATtYMzGs7NSFh/dvciAmfDW4UZOg6ECdx8ZXPzddLDooKsSnKgonbuO35sedWbZtdXINMWhJeEd3W9FHQyz6sURrlkZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754577992; c=relaxed/simple;
-	bh=eE0vXntSXv93+fow/5pZN0W0ecGonbmWsyek0dW9ZII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BAN2j43W+je989f6a+TgzOF9Ju7XR3UnRxlERMUN2ysqsAx0lIRe7F+/S/NoMS5J8p7IXBVBNqv5esvvKuQxzr3f4Yd4CpaD1zUkninr7T1cVOyGdZLl1BVDIk0m8h3WOEUFKKsFB2u/ubDBZ02ghDfgYnukzHpQyLd1V1lemkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=YSioIBpR; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 7D22AA037B;
-	Thu,  7 Aug 2025 16:46:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=/fVtAmdmgI6XZ8jo+rVb
-	YlNMoKW2iCrPKAgX23Mg/I0=; b=YSioIBpRF0LEzdGibex50F2nrdgvfkwj+lNa
-	vh2BQVGrwLIYZVALjU1grM9TwX3coPUT23E9V0Z2jOgO7tuBzcKAMMtGzkLXBu1y
-	ZYMHQmPFDsiW6Rc3ns1oHUjrlUC/YPgZgBq+eii2GlOml2LiIAMxK/i8467+R63/
-	U8GQvnqXH8rAYAm+AWigzfk1DM84pEkHSHyq3zU60cAA+FDnzTiSx55J/tfbwJBo
-	YmevfCRJ7LR6yXl3oz7+MK+S/kYT1FtDLS7ugzLIn8PpFOYbvlc8ZbpWhP3qDqjW
-	ERIstPFv8dWBt2h74/GjZ0cfKjTZijk9NTZA8wpLkgcPfZEcLPnsdg13tq/s/sKa
-	sBUwDOGAHGnmrCudUui11aDC4BpzH3VCFoXbxToCCHm8HnIJmQCqD8gZ3SC8jRhZ
-	OdiXPr0KNF2gG16ge45efsFDuvyfj0S+WN8SpRA7nFd7Pbbejy9azLYr9FhxtJQL
-	bzo6gyIJMKV0HNMLH6pjkyVsOhntzjnt/u7EB8Qlmag8n857GXNmp/J8d+WwWXUt
-	1DkVm2bVoIIJpi3NJ+N4dtdiePq7bQXYZAZ/0XO1jPbup1MPujHMWnbt9wrIO1BM
-	SZUPTKUxAZZGAxdabl5FPP+KnWSphnSkgI8wJbggqgLp9YwiJtU8aVCrwxgmK81O
-	vVEK4WA=
-Message-ID: <0fdab5ac-604b-46fd-bd25-cfa7afd06f98@prolan.hu>
-Date: Thu, 7 Aug 2025 16:46:26 +0200
+	s=arc-20240116; t=1754578121; c=relaxed/simple;
+	bh=Fh5Ixr2mw08FiVNp1PHoL2g/L2km494MqXVDRGlCZmY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=FtyrnSCe4ECJaHZE+VTxLf1SU4QERBlWwHJY0dftxLsf/QVV8TW9otDlwu8vqGE7kd/s+6FPl/cO+MaPce1VjzXG9GYu3nXYmmuDfOdlI9S9AjEGVal3dcrqrfGULJC0H8K5Uy79ftakb9XVoZyhWuXvqF4xondYqoBoO3vzPbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dc460t1D; arc=none smtp.client-ip=217.70.178.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B93CD43136;
+	Thu,  7 Aug 2025 14:48:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1754578111;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Msx94y0SDrajFtd2r5knNPPeel3I8uSUHF21B2iumHI=;
+	b=dc460t1DfGOwUj8YDJJbl4IqqZwtR9DPwyVzAEZjO1BmD4IALnt9rVUR0N8M6ffKVISYec
+	VLw9G2Q1DAkfQHSMoh1CUvuTR2sJTT3eGZq/HhFXqyYLXlYdfzBrhvtt5TRMvsrW+CizNX
+	6A1ITZA2AANUIfe25Maz/wa82byPK0azaXkXcocxW+RBEg/+aDUYYEhtYbcoCWE1Pmy/G4
+	BYA0crnBsJSgCOL+0oPas1vB9tBGT1JcIQjizCg0FeCdWtyb1ftSl9fWo/DfQleqstIVGc
+	oMnxdfWFw9ofzVmfKLJo3gvW5Qi4FiMPtQv06OkfQALcxB/9TQrIvrAbpWO7zQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: imx6-karo: Replace license text comment with
- SPDX identifier
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	=?UTF-8?Q?Lothar_Wa=C3=9Fmann?= <LW@KARO-electronics.de>
-References: <20250703-karo-dts-lic-v2-1-329f4c55913e@prolan.hu>
-Content-Language: en-US
-From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
-In-Reply-To: <20250703-karo-dts-lic-v2-1-329f4c55913e@prolan.hu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
- ATLAS.intranet.prolan.hu (10.254.0.229)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155E667361
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 07 Aug 2025 16:48:27 +0200
+Message-Id: <DBWA12ZND9TY.2SA3R9T5UJTZR@bootlin.com>
+Subject: Re: [PATCH net-next v2 11/18] net: macb: single
+ dma_alloc_coherent() for DMA descriptors
+Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+ <linux-mips@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Sean Anderson" <sean.anderson@linux.dev>, "Andrew Lunn"
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Claudiu Beznea"
+ <claudiu.beznea@tuxon.dev>, "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Alexandre Ghiti" <alex@ghiti.fr>, "Samuel Holland"
+ <samuel.holland@sifive.com>, "Richard Cochran" <richardcochran@gmail.com>,
+ "Russell King" <linux@armlinux.org.uk>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Gregory CLEMENT"
+ <gregory.clement@bootlin.com>, "Cyrille Pitchen"
+ <cyrille.pitchen@atmel.com>, "Harini Katakam" <harini.katakam@xilinx.com>,
+ "Rafal Ozieblo" <rafalo@cadence.com>, "Haavard Skinnemoen"
+ <hskinnemoen@atmel.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
+References: <20250627-macb-v2-0-ff8207d0bb77@bootlin.com>
+ <20250627-macb-v2-11-ff8207d0bb77@bootlin.com>
+ <7752e805-0a06-46ed-b4ac-a51081a73f78@linux.dev>
+In-Reply-To: <7752e805-0a06-46ed-b4ac-a51081a73f78@linux.dev>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduvdduvdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpegggfgtfffkufevvffhofhfjgesthhqredtredtjeenucfhrhhomhepvfhhrohoucfnvggsrhhunhcuoehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeduteeltdevjedvkeelueejhfdvleeiueetvdfgveffffekueeghffhieduleejveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeeiieegsgemfhdtfhhfmehfvgdutdemlegvfhgupdhhvghloheplhhotggrlhhhohhsthdpmhgrihhlfhhrohhmpehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefvddprhgtphhtthhopehsvggrnhdrrghnuggvrhhsohhnsehlihhnuhigrdguvghvpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnv
+ ghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
 
-Hi,
+Hello Sean,
 
-On 2025. 07. 03. 11:09, Bence Csókás wrote:
-> Replace verbatim license text with a `SPDX-License-Identifier`
-> 
-> The comment header mis-attributes this license to be "X11", but the
-> license text does not include the last line "Except as contained in this
-> notice, the name of the X Consortium shall not be used in advertising or
-> otherwise to promote the sale, use or other dealings in this Software
-> without prior written authorization from the X Consortium.". Therefore,
-> this license is actually equivalent to the SPDX "MIT" license (confirmed
-> by text diffing).
-> 
-> Cc: Lothar Waßmann <LW@KARO-electronics.de>
-> Acked-By: Lothar Waßmann <LW@KARO-electronics.de>
-> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
-> ---
-> Changes in v2:
-> - fix message tags and typos
-> - collect Lothar's Ack
+Thanks for the review! I'll reply only to questions (or comments about
+which I have questions).
 
-So, what do you think, is this patch acceptable now this way?
+On Tue Jul 1, 2025 at 6:32 PM CEST, Sean Anderson wrote:
+> On 6/27/25 05:08, Th=C3=A9o Lebrun wrote:
+>> Move from two (Tx/Rx) dma_alloc_coherent() for DMA descriptor rings *per
+>> queue* to two dma_alloc_coherent() overall.
+>>=20
+>> Issue is with how all queues share the same register for configuring the
+>> upper 32-bits of Tx/Rx descriptor rings. For example, with Tx, notice
+>> how TBQPH does *not* depend on the queue index:
+>>=20
+>> 	#define GEM_TBQP(hw_q)		(0x0440 + ((hw_q) << 2))
+>> 	#define GEM_TBQPH(hw_q)		(0x04C8)
+>>=20
+>> 	queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
+>> 	#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+>> 	if (bp->hw_dma_cap & HW_DMA_CAP_64B)
+>> 		queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
+>> 	#endif
+>>=20
+>> To maxime our chances of getting valid DMA addresses, we do a single
+>
+> maximize
+>
+>> dma_alloc_coherent() across queues.
+>
+> Is there really any chance involved (other than avoiding ENOMEM)?
 
-Bence
+If we land in the the page allocator codepath of dma_alloc_coherent(),
+then we get natural alignment guarantees, see alloc_pages() comment [0].
+
+[0]: https://elixir.bootlin.com/linux/v6.16/source/mm/mempolicy.c#L2499-L25=
+02
+
+However, we cannot be certain we land in that path. If we have an
+IOMMU, then I don't think the API provides strong enough guarantees.
+
+Same for custom `struct dma_map_ops`, be it per-device or arch-specific.
+I am not aware (is anything documented on that?) of any alignment
+guarantees.
+
+Even if those give us page-aligned allocations, that isn't enough. For
+example let's say we want 256KiB. We get 0xFFFF0000 from an allocator.
+That is page aligned, but:
+
+   upper_32_bits(START)      !=3D upper_32_bits(START + SIZE - 1)
+   upper_32_bits(0xFFFF0000) !=3D upper_32_bits(0xFFFF0000 + 0x40000 - 1)
+   0x0                       !=3D 0x1
+
+Thanks!
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
