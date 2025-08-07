@@ -1,173 +1,235 @@
-Return-Path: <devicetree+bounces-202450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6721B1D810
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:37:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7A9B1D81F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:41:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC3CA189D194
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:37:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C6F3B14A1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1717825392D;
-	Thu,  7 Aug 2025 12:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0EC25524C;
+	Thu,  7 Aug 2025 12:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V+KcYBcm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cNp6FsM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513AB25392A
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 12:37:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FBA253F1D;
+	Thu,  7 Aug 2025 12:41:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754570245; cv=none; b=ShXVXZ5kDDnV79Q52mq7u7sz1kkLWsTP4x7xBECrx8t6k2WJsFRJz3IBv70QdfKwmO8T1iczmZOo4Unf6a9bThEPPqSDQ17psnRg8n0Lp11TLDbX5WYoCCvhbzSXEaCdtpHTowmtdXBpiZZyMh32VGD17whz0E3niJjJVGKWijU=
+	t=1754570478; cv=none; b=OllugN+3xiLQRX9nA1qoYrTz6iqD6Pg1HXwj4RGtpqnjBv96JVZhdmdmFUSswWJEmlcZLt3JIk5dEuZc++sDPUKSXqzOOLAEHESQnrU7bVMHtQOsaoty6W1tyLIsj/u1+ndPQhfQboiPbF7vwTDLMEKpVVDYM2cukroDqdl5OJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754570245; c=relaxed/simple;
-	bh=0HJeJ81F/fe85KKd6Kapj27WSnTdBWo7pAlxPgJ+W+8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j6c7jCDO/tJfuShCLNotL02TsqPWKT2i8AjiFLE9ZXcowld0FluWTLov2AGPdi+zCgWvPoahXTe74kmEbm/fAPz1NE6t62dLVLtmzdxh4CJG0bM7pq6EdfKoeVBDEsEv4q3N4WiMBGRJvriZLoCH4skhyIRc/WAUnzLB+444OzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V+KcYBcm; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-459e210bd2dso7019745e9.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 05:37:22 -0700 (PDT)
+	s=arc-20240116; t=1754570478; c=relaxed/simple;
+	bh=TXGyvaGyMPPVNg79PAuVHfmrGIvwkuLJcVwwkb3efdg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DzgrbUWFLsYAI6uXSj9m7QEfq89rvu6WRxtow554ZFxDQDUTDlNSDq6MaGCiZGH8CtV+UeghIsBLWrLeyF3fPVaRbMP7IkkIrnbNNqCx9x2hyaY6EaFbUUxg1gmJIUkYdJGJK63TjZcP6BXFo5grM9GDL9ibq3aD22XVQTVBBLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cNp6FsM9; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso1462012a12.1;
+        Thu, 07 Aug 2025 05:41:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754570241; x=1755175041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SssdXwaRmyli//zxIcsg2m9oDnPDhQ01niz7e6EkH/Y=;
-        b=V+KcYBcm6vor/TLEdzELJDMbBpcx4fn4qeRyde73qXR311YugSs+lgKZudvQlCSDyr
-         ONP8fn0i6y7u2MJvdxoK4zn6ks+y74Yj4EfC2f9P1RHd5AuJZb8hbF9usmaH5lianoFg
-         b5J5Qobjc9FtpHjS814twCjD3O9y/C/oFxRXpyGGTcoRJdmx5HgGlyLA88dLWzqkMohn
-         A5Jod/JCd5jLuHvYelCbIJpNX7m53nlFv6ycjw+d0mo8ctxR4N+maP5Rg6K/htP0pYJk
-         YGQof2W1e8Q+80zZH1irv7r7TxEiWWZv5djNIZq9Xje8m1/5dAKTwLnJa3ZW76bsgS1B
-         YR1Q==
+        d=gmail.com; s=20230601; t=1754570475; x=1755175275; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=01XnmLDiSywh1IksP4ISoM8TkZ79wUU132NpH98B/mk=;
+        b=cNp6FsM9cCV1VepOM0+9CVHdVnacb9rTnKuCTXUyVDyqIMc0s2HVzJErfqdTiscvOK
+         7sUa7r6mECmQ14rQH0ohG2W9Uia8up03ANGefwxugrmkicbxDHDnhLTdWJwGXKk8R6Rq
+         M+QFGdpbvca+GZ20PvCCeycuUNrSh/T3/rzdlWJ+9FaO7CFyaaSwIlRGWAbdf3Gu4Tt6
+         p4ONTNlhTTdvSCCnRZ6fBc6xbnsU6SMGJevF6/jHFhfhImGhFUZtRp+8VWTZJW+/ZjC8
+         OGwTMHy859gmhK/wy254TWLdZPalooDyqMCAJjKC80jvbFePY64ZQhFDJae9qhpjvpdk
+         0PMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754570241; x=1755175041;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1754570475; x=1755175275;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SssdXwaRmyli//zxIcsg2m9oDnPDhQ01niz7e6EkH/Y=;
-        b=Qud2wvFmYTGRYLMGvnfA4JIet+MNT2ouRY6zSpH+d5okS6bHvzRf2sUg89v3uhGKl+
-         CsFKRBBEALZqaUatzvQ9jHAxnjVDrYl1vKapi/RxQcKt2OnbZVbv0vhWSwZx/QwMLNcl
-         ORm6e+Tgq2nSi8pLVo4YbBus+R8XCFcx4EE0iXQRns/rPTQsyRIYpXp7UXf3HzPuQxTJ
-         re/hnc/GJ2uY/VNSDlTO/iDHnW0m8Y6N8I8ZASJwkJTzGMcnRfiKtxXs6767uL3GQPgl
-         w8sljx+EgnLT9wC+pCuwbTUWouTEnU/0WC0njirczzURGREdOiLua3tCvjh/hExCEX2v
-         mCVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUKVBQ8DlyG6tZVpqa8yA13WO3kfRY67nqdirK8GussPHe98YbM94TKy/Km9xnrCcpfmv0Te8lXt9pI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIinIqhN2fwD4xqcQRFyOUcjxZjzROOqmhSDHK6pu3JpBWRgNn
-	QUwV6cqBxOJ8sfe2M4du3xl2odniOaH9FhSHxGZh67CphQk783BVF/1bGWb93d6nDq0=
-X-Gm-Gg: ASbGncvzr6BbQcQnKm8KX8GYealn1sncU3SIeApNLHluaYh1+67o98cb0QaXoeaVTg+
-	YuQv3BvA4DLZTsL42SwC80mpmaT23A8ywebtXECE7qO8Jhqjz49OwJR9nPbzyorAqzshpY7GEi6
-	S26CspG2s6o43D5bEN/41SbAPutYZ19iLdrLc8vLFuhIcwp6y994Yju62j4Jz4nN9jC6mmMV05c
-	F7KS+Ot8Mz7QvUUCc05YeMmCfhzwYMQv0KhQxflwx7CJc1xGk9+PIJ3L5mcYEJwueXOCinN2awZ
-	HiMtxRp4xrjDshbbYdyTd2ZQcIyncmy5zhtyCuXsA4gn1ypYU8FpoSH4sWNNFa8vYkRXNSCV6Ds
-	N+8h8HDK0qJ5NwQX6HoAYVg/Ajj2YDBT+2crSCVCzftCpMQ1Ut8uG2ggSPBAxXx4=
-X-Google-Smtp-Source: AGHT+IFOEsRG8ebIvvAsL7B/AJ9oBvQYifwwUwKVZY3a9oI94ficILiwiXeFUjcUVB8C/IvgBehkEw==
-X-Received: by 2002:a05:6000:310b:b0:3b8:de54:6e64 with SMTP id ffacd0b85a97d-3b8f97e6e52mr3149326f8f.26.1754570240565;
-        Thu, 07 Aug 2025 05:37:20 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c4532c4sm26483493f8f.36.2025.08.07.05.37.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Aug 2025 05:37:20 -0700 (PDT)
-Message-ID: <dcc33f04-1b19-47d7-aca2-03d38173b6b6@linaro.org>
-Date: Thu, 7 Aug 2025 13:37:18 +0100
+        bh=01XnmLDiSywh1IksP4ISoM8TkZ79wUU132NpH98B/mk=;
+        b=JAyimAVNhnaS5rBtJRdxUaETD6pZm3cUnoFrofK7FEYAnPQN6Hw4pLRT/kFg84Gc9j
+         xYoZsuqzXHXuHJpVZXVGb/3oat/wQm3aEqFWWDGgUlEuFc1W1/bF0qnGgqc+jE62a/GN
+         Eg29DGIcpTfcq0URdpKjeMXEcni+2GuLTDgJ6FD7+FOqYnaSGeL8PErR9wBhvYbtighO
+         nY/BPThJi2T9iRWsiqYs36uKu6wKpsAue2l9nRa7iIiGJM8+FxmlgrOe5Mb0bpzHBWK5
+         LyEoJuoSc4l3W5yrX1WiLsCk7Ibaf4KCiQPQ+cRstnjHvJ8z3l2r1uztnLBpux+8g20q
+         ZYaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUCh4VPxh02z9c0jYBoiwdFz/ocRgrjuOmpx3geFthhjjuR+TXvH1NESs9MoLqPjD5xS2wokJAFpjnI8Om@vger.kernel.org, AJvYcCUqj+9XdCbpxeY3OIwehvm3LFOfTDeRfd01UqhEgWuzdRbPP5L72niCD+9diInSxDSysK/mzoWV9G8O@vger.kernel.org, AJvYcCXmw4KPL2dsAmr9Lc2C73yZXWEWTqXLR+i43uCfx2p0AvoT8ZneVq31KjiwTC9yF4yC4wvRWutdSCmx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxj1y8zPYBG5uqu4nv2pu+gF6UnOfm2R1nbOxq2pvV5gdcJGqC9
+	jDABSOC8lYNh9BI8K9P66KCULTqZej4geFfODqdpn3JjVxuRo6gm6SyW
+X-Gm-Gg: ASbGnctSTavd93Dki+svPQ/h+Zb86bTvEQbnbBm0XP8kmMVfBL5n7B3Z9MQtsfojZLY
+	M2qrGLpk57nHmDMWQx++GoQPgZH/v4IK07z7plqbXHlaMucX+Ae4lOrjnz1U8PBT+6P+DoQpsKr
+	3y2+FZ4a9eEb+3u9jnvUuoEqaFhJ5jb2xTiYqZyHHVa9HHDMXy88fom+mZffjQso7enRg8d98du
+	uWn0Qe5WwFoUbQzvHcwwEk4hieLC0OFtqfZjJsPp2Hi6bqYq5LRGl65WOZpDvYWl0/Tls5l7nqE
+	sd/3CQCPEcPWQTl3Ne3bzxDMDFFPA89eJZSv14JjqHt2/WIAIISQceEH1bfb7Hls5Rbx1ZGYG5+
+	2oOBisOgbZ8M=
+X-Google-Smtp-Source: AGHT+IGku22djVhhVWppa2oQyT6ofOGRDGpP0ni3lMyo+dSJab9QhN1xKuqjT7L6D4y/OJ6hykUz2Q==
+X-Received: by 2002:a05:6402:1d29:b0:5fc:9979:78f7 with SMTP id 4fb4d7f45d1cf-617b662665dmr1594352a12.14.1754570474882;
+        Thu, 07 Aug 2025 05:41:14 -0700 (PDT)
+Received: from nsa ([185.128.9.33])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-617c843c48fsm718011a12.10.2025.08.07.05.41.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Aug 2025 05:41:14 -0700 (PDT)
+Date: Thu, 7 Aug 2025 13:41:31 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
+Message-ID: <tc4od3jtqnj743naxefx5lxkha46wohuuvw46mik6nullvsqbe@knj4t23eaodw>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] [RFT] arm64: dts: qcom: sm8250: extend CAMSS with
- new CSIPHY subdevices
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
- <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
 
-On 12/06/2025 02:15, Vladimir Zapolskiy wrote:
-> Following the new device tree bindings for CAMSS IPs introduce csiphy2
-> device tree node under SM8250 CAMSS, which allows to perform camera
-> tests of the model on an RB5 board with an attached vision mezzanine.
+On Thu, Aug 07, 2025 at 12:34:52PM +0300, Matti Vaittinen wrote:
+> The ad7476 driver defines separate chan_spec structures for operation
+> with and without convstart GPIO. At quick glance this may seem as if the
+> driver did provide more than 1 data-channel to users - one for the
+> regular data, other for the data obtained with the convstart GPIO.
 > 
-> Note that the optional 'phys' property is deliberately not added.
+> The only difference between the 'convstart' and 'non convstart'
+> -channels is presence / absence of the BIT(IIO_CHAN_INFO_RAW) in
+> channel's flags.
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> We can drop the convstart channel spec, and related convstart macro, by
+> allocating a mutable per driver instance channel spec an adding the flag
+> in probe if needed. This will simplify the driver with the cost of added
+> memory consumption.
+> 
+> Assuming there aren't systems with very many ADCs and very few
+> resources, this tradeoff seems worth making.
+> 
+> Simplify the driver by dropping the 'convstart' channel spec and
+> allocating the chan spec for each driver instance.
+
+I do not agree with this one. Looking at the diff, code does not look
+simpler to me...
+
+- Nuno Sá
+
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> 
 > ---
-> For testing only, do not merge.
+> Revision history:
+>  v1 => v2:
+>  - New patch
 > 
->   arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
+> I considered squashing this change with the one limiting the chip_info
+> scope. Having this as a separate change should help reverting if someone
+> complains about the increased memory consumption though.
+> ---
+>  drivers/iio/adc/ad7476.c | 31 ++++++++++++++++++-------------
+>  1 file changed, 18 insertions(+), 13 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index f0d18fd37aaf..401a32679580 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -4613,6 +4613,10 @@ camss: camss@ac6a000 {
->   					     "cam_sf_0_mnoc",
->   					     "cam_sf_icp_mnoc";
->   
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
+> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> index e97742912b8e..a30eb016c11c 100644
+> --- a/drivers/iio/adc/ad7476.c
+> +++ b/drivers/iio/adc/ad7476.c
+> @@ -29,8 +29,6 @@ struct ad7476_state;
+>  struct ad7476_chip_info {
+>  	unsigned int			int_vref_mv;
+>  	struct iio_chan_spec		channel[2];
+> -	/* channels used when convst gpio is defined */
+> -	struct iio_chan_spec		convst_channel[2];
+>  	void (*reset)(struct ad7476_state *);
+>  	bool				has_vref;
+>  	bool				has_vdrive;
+> @@ -41,6 +39,7 @@ struct ad7476_state {
+>  	struct gpio_desc		*convst_gpio;
+>  	struct spi_transfer		xfer;
+>  	struct spi_message		msg;
+> +	struct iio_chan_spec		channel[2];
+>  	int				scale_mv;
+>  	/*
+>  	 * DMA (thus cache coherency maintenance) may require the
+> @@ -153,24 +152,18 @@ static int ad7476_read_raw(struct iio_dev *indio_dev,
+>  #define AD7940_CHAN(bits) _AD7476_CHAN((bits), 15 - (bits), \
+>  		BIT(IIO_CHAN_INFO_RAW))
+>  #define AD7091R_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), 0)
+> -#define AD7091R_CONVST_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), \
+> -		BIT(IIO_CHAN_INFO_RAW))
+>  #define ADS786X_CHAN(bits) _AD7476_CHAN((bits), 12 - (bits), \
+>  		BIT(IIO_CHAN_INFO_RAW))
+>  
+>  static const struct ad7476_chip_info ad7091_chip_info = {
+>  	.channel[0] = AD7091R_CHAN(12),
+>  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+>  	.reset = ad7091_reset,
+>  };
+>  
+>  static const struct ad7476_chip_info ad7091r_chip_info = {
+>  	.channel[0] = AD7091R_CHAN(12),
+>  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+>  	.int_vref_mv = 2500,
+>  	.has_vref = true,
+>  	.reset = ad7091_reset,
+> @@ -282,7 +275,7 @@ static int ad7476_probe(struct spi_device *spi)
+>  	const struct ad7476_chip_info *chip_info;
+>  	struct ad7476_state *st;
+>  	struct iio_dev *indio_dev;
+> -	int ret;
+> +	int ret, i;
+>  
+>  	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+>  	if (!indio_dev)
+> @@ -332,16 +325,28 @@ static int ad7476_probe(struct spi_device *spi)
+>  	if (IS_ERR(st->convst_gpio))
+>  		return PTR_ERR(st->convst_gpio);
+>  
+> +	/*
+> +	 * This will never realize. Unless someone changes the channel specs
+> +	 * in this driver. And if someone does, without changing the loop
+> +	 * below, then we'd better immediately produce a big fat error, before
+> +	 * the change proceeds from that developer's table.
+> +	 */
+> +	BUILD_BUG_ON(ARRAY_SIZE(st->channel) != ARRAY_SIZE(chip_info->channel));
+> +	for (i = 0; i < ARRAY_SIZE(st->channel); i++) {
+> +		st->channel[i] = chip_info->channel[i];
+> +		if (st->convst_gpio)
+> +			st->channel[i].info_mask_separate |=
+> +				BIT(IIO_CHAN_INFO_RAW);
+> +	}
 > +
->   			ports {
->   				#address-cells = <1>;
->   				#size-cells = <0>;
-> @@ -4641,6 +4645,16 @@ port@5 {
->   					reg = <5>;
->   				};
->   			};
-> +
-> +			csiphy2: phy@ac6e000 {
-> +				compatible = "qcom,csiphy";
-> +				reg = <0 0x0ac6e000 0 0x1000>;
-> +				clocks = <&camcc CAM_CC_CSIPHY2_CLK>,
-> +					 <&camcc CAM_CC_CSI2PHYTIMER_CLK>;
-> +				clock-names = "csiphy", "csiphy_timer";
-> +				interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
-> +				#phy-cells = <0>;
-> +			};
->   		};
->   
-I don't think we should make this change, for CAMSS in general and 
-specifically for sm8250.
+>  	st->spi = spi;
+>  
+>  	indio_dev->name = spi_get_device_id(spi)->name;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+> -	indio_dev->channels = chip_info->channel;
+> -	indio_dev->num_channels = 2;
+> +	indio_dev->channels = st->channel;
+> +	indio_dev->num_channels = ARRAY_SIZE(st->channel);
+>  	indio_dev->info = &ad7476_info;
+>  
+> -	if (st->convst_gpio)
+> -		indio_dev->channels = chip_info->convst_channel;
+>  	/* Setup default message */
+>  
+>  	st->xfer.rx_buf = &st->data;
+> -- 
+> 2.50.1
+> 
 
-Instead I think we should go this way:
 
-https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
-
-With separate standalone nodes, and reuse of the upstream PHY API.
-
-I believe you have a series for the 8650, please rebase on
-
-https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
-
-and
-
-https://lore.kernel.org/linux-media/20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org
-
-V2 of the CSIPHY above will incorporate feedback from Neil and yourself 
-on adding endpoint@ to the PHY however I think we need to have a 
-conversation about standards compliance at attaching two sensors to one 
-CSIPHY without VCs or TDM.
-
----
-bod
 
