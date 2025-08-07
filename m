@@ -1,182 +1,136 @@
-Return-Path: <devicetree+bounces-202376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD808B1D3BF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:55:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0F2B1D3DD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B33D47AD3F8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:54:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30C79189C092
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038D323C38C;
-	Thu,  7 Aug 2025 07:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0002248F59;
+	Thu,  7 Aug 2025 07:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2QNJUW1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ilwVLM76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA51231C8D;
-	Thu,  7 Aug 2025 07:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFF8E246BDE;
+	Thu,  7 Aug 2025 07:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754553344; cv=none; b=i0fhyCEKXjwd4yexSJVe/oqWoILgFBrncp+bU76P+DN3v4iLRl5oLgIFnq/vEmx7FtSA4wlYKGSA/2I2VZeL6MPJANev/oxEWrpl0K74q0KnCwf57SmuhU6YSUIv0e/jsnUBaXfYkpV24kgNZd24Kja5mAMN1E9m8Myg8YHF0ss=
+	t=1754553530; cv=none; b=jgFDwj3TXBHCsDOdDwHZGZUh8JwCMbhSsCzLDWdH7r4WubYbEtonxLoSU2W3y3D08q0upWKM76HRvTmMQDtJx5GKppQT86kchGxowjrAp6rFf0VIX4XJSTdKC+ilPVEUfxV+vVxyIMvioMmUcvAXq/2ruw1Hgvxph2v5gJUudi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754553344; c=relaxed/simple;
-	bh=dEHgSM22sblspxi3jWP8fT7feJl+4lJSdt4mMsidWVg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jXRDSY3+xWDSjpOXbBlm+E1r6BdXBy9V8QTwtkpeMm6SE0dUS5CxbGHIa8ZnEJBSqPl06fdt5sBXeop1YGaU4YpsVusFCv3BrIr+ysR7+8VhKtXKB71EmTvmgDqHKvSqO9puz36tl1hOO5t+M3CsgPzsebSvnVZu+/aOw8kNGCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2QNJUW1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12E76C4CEED;
-	Thu,  7 Aug 2025 07:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754553344;
-	bh=dEHgSM22sblspxi3jWP8fT7feJl+4lJSdt4mMsidWVg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=b2QNJUW1gu0rDpVOR96PxHKl9OZIm7k8Y3Fs3xoK+/rHSjMyIMBSxl1dhAxO3GcM5
-	 zWmtS/7NgRELMQybHJOJl3ZNPOWn244yZPkyoA1H8YJMGWYMEY5l57NjNRWXuiJG1D
-	 ud6BSNmpSwDvZjTjHNpARJEQ+SQ08gViJAlGJ1c327gmb2JhorHepdPeT4xidGZz/E
-	 NZPcR8OVzWJEj+G05j6GQGKYAPTYSxed0B//qfna0qPyJdpPgxFfMlFabn73D3iKBT
-	 xripiokRCKj9mnZL6tkk2VwGAWsuactaIfP4rAWabgCWpqw0HM8cSjhHrcLDRH9P0V
-	 vUHFdCJORAYqw==
-Message-ID: <c86bcdf0-f692-4263-a597-f8e36a53e8d9@kernel.org>
-Date: Thu, 7 Aug 2025 09:55:39 +0200
+	s=arc-20240116; t=1754553530; c=relaxed/simple;
+	bh=DDU4mUfLGa/kC/rD4398PtK/yjh8S6aRiKIZIanDiL0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E+rbhIK3rY68fhaHgCgiZQ5ROV1vQvLJ0L6LaftcMfZSLItmuxzIUO+1/rjb08cS/Wowdoe6oHYWCrd4TnBhK9sULame04L41eFZa5o8oU/zKuCnFn0pVzGqzpjpFZ5pyf4MsKKZI0pd3dqD2xAPLFBRIg48IhNCOqIqjuWKdHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ilwVLM76; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-718409593b9so7131267b3.3;
+        Thu, 07 Aug 2025 00:58:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754553528; x=1755158328; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DDU4mUfLGa/kC/rD4398PtK/yjh8S6aRiKIZIanDiL0=;
+        b=ilwVLM76HbNieyenFnYK2rY1ysohkjxxV+r9IqqpKmYhtEvoI06Hw2fiZAUjMOip4O
+         u2vIKhB/+LXB+8eX1I4HhkOJy+mCgoFNut2Wcs1xOHopiiG2gT9kHdpqLxLOsBIHu2dT
+         /be6x5EEkIza5REaIsL1qiX2gbdpITa8Ts2Ly7Ghj4ndjuFlwOwgQ8DIbSLTzozixoN3
+         YxVyMdWujf9q92k9np+CasjsS1m5oKmVntLCYRL+88yM1pWVU1KOHpowNEvqUZBRPie6
+         /iwZotfpDhYX5xDMOI0pUF7nrFYT+8Lca7nmIWP5iW+OnKhaGu6BEEIx02w/CoGWszdt
+         9mKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754553528; x=1755158328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DDU4mUfLGa/kC/rD4398PtK/yjh8S6aRiKIZIanDiL0=;
+        b=ugqbYoZEyt7nepEmgLjoAoWEzGuxGI+8YWdXpc2Zhw9Jy67Rl7eR9AzCETQf92oOHR
+         sspGgquR0tl9yRme9xR2j3cMstZ1ZeT4Aa2ywa60Y/r8XZMRwkQCVPhaZCpSYA5Ihh2h
+         Pfbi4zRXKOcyl2L1645mEWT/yeOZCPcKHtBU7JuA2c4tHOaiYT5ApXSn8/9yzyYpQ31n
+         9z4BNtaQeEqtI+RMtB97J09YpIyz5nsjBgc+1Fsh8J47mC8IopcnxXH2HAsWOfA3/zWj
+         d2IGewE4Iw3i/e7HYxY95Ru7qoANkG/OFVzHB92i9zxjSIeyn1EHeUEcjqIrRlJWzJdJ
+         wyDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVq5pfexFCh0pAojoHHBDOiYDGzcDmdq8XmsV12rpPG3ixwdd27jY6SGudQlXtQ+TUYjHD4Xl7Tnwgm@vger.kernel.org, AJvYcCXzd8M6wFD4Ecvg5GqE9xQBNUyJHm1aiN1LqQW2sBRA2LltgvtseIS53X7r4Wgv7sb9mJ8NFDd2dppTmGv2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGRghpsu9b+ocnq4IexAMMeRP6gWvUGdD9St+mWW1zVbJbGXcN
+	aiU63u60wODOI/8CLmFUSeDaU1AOY7h1F9pmpMxIdRuzjR3F6P9VeSh/QLQkkyHDDO55xU89I3/
+	j8WBkPKJ5u68hSKwwpicY3rEulxDya24=
+X-Gm-Gg: ASbGnctTaSj2NX4yAapcUCDC/zP75lfLI+K7nXJ9Jl2BskrYqOsHxZ9I2TIbL7QC8r9
+	b698h2XBvvg+gRJNcOA07/+DdycLtGj6cr6foA3Ct/4Ehh0JqLdAYBco+w1ncFZuX7JIxIuFLsC
+	HK9xFxFTFDBZWZrzySLpHf595nsLdO4OztXBsKmOiVCnSH0H1icTWwFOQpw3Udp8uxAhlSlfmF6
+	M98sd+eunK8HFGxeed9D/lCa4+IBLNM32AGcVA=
+X-Google-Smtp-Source: AGHT+IGZKz1tpSwZENVH7eq2lbQKS/ckKC1RJ5Elh7kv3TzcssZgVYBUSlfRHCr803DVDFTPFP0Xzi7enXaZL6INYzQ=
+X-Received: by 2002:a05:690c:6d8b:b0:718:3b9f:f1f0 with SMTP id
+ 00721157ae682-71bc991cebdmr84514327b3.26.1754553527739; Thu, 07 Aug 2025
+ 00:58:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: phy: rockchip,pcie3-phy: add
- rockchip,phy-ref-use-pad
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rick Wertenbroek <rick.wertenbroek@gmail.com>
-Cc: rick.wertenbroek@heig-vd.ch, dlemoal@kernel.org,
- alberto.dassatti@heig-vd.ch, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
 References: <20250806133824.525871-1-rick.wertenbroek@gmail.com>
- <20250806133824.525871-4-rick.wertenbroek@gmail.com>
- <20250807-inquisitive-speedy-rooster-0a8488@kuoka>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250807-inquisitive-speedy-rooster-0a8488@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <20250806133824.525871-2-rick.wertenbroek@gmail.com> <20250807-amphibian-fanatic-muskrat-b1365b@kuoka>
+ <7ea03b71-d36d-49a4-b848-34eba4c1620d@kernel.org>
+In-Reply-To: <7ea03b71-d36d-49a4-b848-34eba4c1620d@kernel.org>
+From: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Date: Thu, 7 Aug 2025 09:58:11 +0200
+X-Gm-Features: Ac12FXykZEwvQuAbP1opdqmWRhEGs-r5-vMCR-fxkqHt9AuoJgwdnEGvT3Iy_Qg
+Message-ID: <CAAEEuhpZGbuGkAKRiYQouAwDwnJbP+9ppi7BtrZekKpp20iOgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: rockchip,pcie3-phy: add optional
+ differential phy clocks
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: rick.wertenbroek@heig-vd.ch, dlemoal@kernel.org, 
+	alberto.dassatti@heig-vd.ch, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/08/2025 09:54, Krzysztof Kozlowski wrote:
-> On Wed, Aug 06, 2025 at 03:38:23PM +0200, Rick Wertenbroek wrote:
->> >From the RK3588 Technical Reference Manual, Part1,
->> section 6.19 PCIe3PHY_GRF Register Description: "ref_use_pad"
->>
->> "Select reference clock connected to ref_pad_clk_p/ref_pad_clk_m.
->> Selects the external ref_pad_clk_p and ref_pad_clk_m inputs as the
->> reference clock source when asserted. When de-asserted, ref_alt_clk_p
->> and ref_alt_clk_m are the sources of the reference clock."
->>
->> The hardware reset value for this field is 0x1 (enabled).
->> Note that this register field is only available on RK3588, not on RK3568.
-> 
-> Then you miss restricting it (:false) in one of if:then: blocks.
-> 
-> Also, binding cannot be after the user. You need to reorder patches.
-> 
-> ...
-> 
->>  
->> +  rockchip,phy-ref-use-pad:
->> +    description: which PHY should use the external pad as PCIe reference clock.
->> +      1 means use pad (default), 0 means use internal clock (PLL_PPLL).
-> 
-> Can't you deduce it from the presence of clock inputs? IOW, if the
-> clocks are physically connected, is it even reasonable or possible to
-> use internal clock?
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 2
->> +    maxItems: 2
->> +    items:
->> +      minimum: 0
->> +      maximum: 1
-> 
-> More precise:
-> 
-> items:
->   - description: PHY0 reference clock config
->   - description: PHY1 reference clock config
->   enum: [ 0, 1 ]
+On Thu, Aug 7, 2025 at 9:44=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 07/08/2025 09:42, Krzysztof Kozlowski wrote:
+> > On Wed, Aug 06, 2025 at 03:38:21PM +0200, Rick Wertenbroek wrote:
+> >> Both PHYs can use an alternate reference differential clock, add the c=
+locks
+> >
+> > I do not see any changes in rockchip,rk3588-pcie3-phy, so your "both" i=
+s
+>
+> I meant 3568, the other one.
+>
 
-Eh, no, rather if this stays as int:
+By "both" I meant both PHYs of the RK3588 as the rk3588-pcie-phy is
+actually a dual PHY (PHY0 and PHY1 which both can use independent
+clocks).
 
-    items:
-      - description: PHY0 reference clock config
-        enum: [ 0, 1 ]
-      - description: PHY1 reference clock config
-        enum: [ 0, 1 ]
-    default: [ 1, 1 ]
+The RK3588 PHY is a dual PHY with two independent PCIe 3.0 x2
+interfaces (that can be combined into an x4 or used independently).
+The RK3568 PHY is a single PHY with one PCIe 3.0 x2 interface.
 
+The RK3568 already has the bindings for the extra differential clock
+for its PHY, but the RK3588 did not, so I added them.
 
-> default: [ 1, 1 ]
-> 
-> Anyway, default 1, 1 is pretty non-obvious, so this should be just
-> non-unique-string-array (and property should be like
-> rockchip,phy-ref-clk-source/sel).
-> 
-> 
+I should maybe rephrase this to make it clearer it applies only to the
+RK3588 and that by both PHYs I mean RK3588 PHY0 and PHY1
+
+> > either incorrect or ambiguous.
+> >
+> > ...
+> >
+> >> to the DT bindings
+> >>
+>
 > Best regards,
 > Krzysztof
-> 
-
-
-Best regards,
-Krzysztof
 
