@@ -1,101 +1,107 @@
-Return-Path: <devicetree+bounces-202371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7EDB1D38B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:42:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCDD0B1D389
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:42:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBFD118A55BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:42:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02FED16442F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03DD223F417;
-	Thu,  7 Aug 2025 07:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E83A23BD1A;
+	Thu,  7 Aug 2025 07:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="JCLPVV6V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KRRjPl7K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110E623C512;
-	Thu,  7 Aug 2025 07:42:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA20234963;
+	Thu,  7 Aug 2025 07:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754552544; cv=none; b=mbNYbURJI/ikaCTWG8MNumCCizMamnojIytJH86AADx1ixPK4wiVhaxHjCCcuLPZHnQwkAPd+fHyGYwP0pm6h8ANNxTcTaHmRp3+/oEiHkOAHPTDELrLOCRX8SO0xmfDcynz92P14T31zXT6E/lWHH3hBliyAc/8uiZw8MIB1o8=
+	t=1754552532; cv=none; b=sM9rbNJm0mMVQUzzLxtAkWgRIjNz8sHVgHddw+OaJ8hzHkTQ6tNMCnMF86BEMsfpMKCSkyeEQgeJXKtq//DRGmbnZioRyOkY15KzD0EwO15vkQuXPIq078QFb7dS9Xz0TRpLJMqOy09JjG5k7lKZar/DOHD9pEX7VjBe863ST+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754552544; c=relaxed/simple;
-	bh=H7gI/QkU5mGOp6GhLKlxsKsfd/y/Y4/o0Q88QZH7wIo=;
+	s=arc-20240116; t=1754552532; c=relaxed/simple;
+	bh=837mQHXOHMq1NakvNPj7uXsEJJUJV1kK1b2YQLagO/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nYOxLc1ZiRKT8NvK2QNY1Z/S4dKtjg0c4FeN6fM+AopwBVdwTIuHDNA06v22OtN+m1lpNntLkU1J1zWPOqB7Fhm27zg9kvFeMIPoKvtA5roWQPf3yZRhQ64XfgEm/M8+p6ZImBGRRRLywlg+IoHcq1elXj91hHKEZuNsmKGkTdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=JCLPVV6V; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 159E220692;
-	Thu,  7 Aug 2025 09:42:20 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id HHqSeRq_gcEW; Thu,  7 Aug 2025 09:42:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1754552539; bh=H7gI/QkU5mGOp6GhLKlxsKsfd/y/Y4/o0Q88QZH7wIo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=JCLPVV6VnmiVpULyLwqu7CfnSt+w+68YFkSquR/haFOVOQvt3Tp1NyANmDsLS+n5v
-	 0r3bomtLEYHgOX9MMUIgbYJBCSHb0tpkZ+4s0zz5powu+MNVt2GctxggttBF+pLnxS
-	 qvhi3/aGsVapnSEaC4Dh2FuhIVT1tBbu2U+xLGdBrq+h9PeD5tYOkEIUhhf9UBeBMK
-	 YNHKIWEcAt5u1T8d+0BZbULxj90ZJk/Mr+HfYv1y+9YsoTq8VvFXKaOMAhSUfTF7W7
-	 ixfn0kCsmTO1KaQaciEOAP+zHNQOFQ0GhKb43uoKtJw4GZAZ2u76mK1ENpK86odBIt
-	 Us8mvwZV0xVRA==
-Date: Thu, 7 Aug 2025 07:42:06 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, cristian.ciocaltea@collabora.com,
-	detlev.casanova@collabora.com, devicetree@vger.kernel.org,
-	heiko@sntech.de, jonas@kwiboo.se, kishon@kernel.org,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, neil.armstrong@linaro.org,
-	shresthprasad7@gmail.com, vkoul@kernel.org
-Subject: Re: [PATCH v5 5/6] phy: rockchip: naneng-combphy: Add RK3528 support
-Message-ID: <aJRYlA6jo9l-XrHt@pie>
-References: <20250728102947.38984-7-ziyao@disroot.org>
- <20250807063036.480766-1-amadeus@jmu.edu.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YAWnunmHOGrTdCZeJrF1NF//Vc9+C290pThYQluLRxKG6ArzjOqbvbQY0paWva9DfM350m1dlXR6bBTT63vROgZpEy/k8kQOVGKNcwHtgBhhqZfN0mfOW5U6YsyteyUOSToy050UZIB/lAYkAq08wcriNZPT95Tj/ScJHvIyIhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KRRjPl7K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F1C7C4CEEB;
+	Thu,  7 Aug 2025 07:42:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754552531;
+	bh=837mQHXOHMq1NakvNPj7uXsEJJUJV1kK1b2YQLagO/g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KRRjPl7KUmf+n7lotlGsrBKmvZzqt937kebxj2Cl95QtuzsnwiwW4il4ULH9hFRiu
+	 pd31xCi7/Whq7M99ma/GXUUi1DG9YpCLLPTcTcDfQrjvw5eQ6JxqH/gR3PIl3GbGB/
+	 oRuf+QVMHfi3LfVsgsuQO51mmVH61uajU5pVVF4YBPRA310dWEM8SMPXmu+azNU2pn
+	 IgHrESr4SFeNczYmiyY7nOjw535GmxaYItRyQMBWeitBK5TWUMhffZhcaoxUREsUk1
+	 Fg4ggog+8LZREaZ3SDzevERfXvP+605UbAZwTHRHMRJwVs0jg4jUBx9YXj43tpzWV6
+	 kBGIHq48LDoAw==
+Date: Thu, 7 Aug 2025 09:42:09 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rick Wertenbroek <rick.wertenbroek@gmail.com>
+Cc: rick.wertenbroek@heig-vd.ch, dlemoal@kernel.org, 
+	alberto.dassatti@heig-vd.ch, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: rockchip,pcie3-phy: add
+ optional differential phy clocks
+Message-ID: <20250807-amphibian-fanatic-muskrat-b1365b@kuoka>
+References: <20250806133824.525871-1-rick.wertenbroek@gmail.com>
+ <20250806133824.525871-2-rick.wertenbroek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250807063036.480766-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250806133824.525871-2-rick.wertenbroek@gmail.com>
 
-On Thu, Aug 07, 2025 at 02:30:36PM +0800, Chukun Pan wrote:
-> Hi,
+On Wed, Aug 06, 2025 at 03:38:21PM +0200, Rick Wertenbroek wrote:
+> Both PHYs can use an alternate reference differential clock, add the clocks
+
+I do not see any changes in rockchip,rk3588-pcie3-phy, so your "both" is
+either incorrect or ambiguous.
+
+...
+
+> to the DT bindings
 > 
-> > Rockchip RK3528 integrates one naneng-combphy that is able to operate in
-> > PCIe and USB3 mode. The control logic is similar to previous variants of
-> > naneng-combphy but the register layout is apperantly different from the
-> > RK3568 one.
-> 
-> Is this a typo? apperantly -> apparently
+  
+>    data-lanes:
+>      description: which lanes (by position) should be mapped to which
+> @@ -82,10 +82,15 @@ allOf:
+>      then:
+>        properties:
+>          clocks:
+> -          maxItems: 1
+> +          minItems: 1
+> +          maxItems: 5
+>          clock-names:
+>            items:
+>              - const: pclk
+> +            - const: phy0_ref_alt_p
+> +            - const: phy0_ref_alt_m
+> +            - const: phy1_ref_alt_p
+> +            - const: phy1_ref_alt_m
 
-Ahh, yes, thanks for catching it.
+These are different clock inputs?
 
-I think this series (at least the binding and driver parts) is mostly
-ready for merging, so I'll be thankful if the maintainer could fix it
-while picking up, or I will carry the fix in a new version if it's found
-that larger changes are necessary.
+>      else:
+>        properties:
+>          clocks:
 
-> Thanks,
-> Chukun
+You need to update the example as well.
 
-Best regards,
-Yao Zi
-
-> --
+> -- 
 > 2.25.1
-> 
 > 
 
