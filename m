@@ -1,94 +1,58 @@
-Return-Path: <devicetree+bounces-202328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6B8B1CF91
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 01:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49184B1CFA5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 02:04:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9925418C3E47
-	for <lists+devicetree@lfdr.de>; Wed,  6 Aug 2025 23:59:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31EDF18C40D9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 00:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B13278146;
-	Wed,  6 Aug 2025 23:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69A21FC8;
+	Thu,  7 Aug 2025 00:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="pAPzJSPH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XW6Y1ix6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DE3277814
-	for <devicetree@vger.kernel.org>; Wed,  6 Aug 2025 23:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A796B38B;
+	Thu,  7 Aug 2025 00:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754524732; cv=none; b=tEjzmeDRo9VYp2NKfe90aogYfBekXJ3M4bsdmGmHKuuYsroV6CkVNw+P2nIfLE0zb5csi/Jq//mFELs+nFDmPNZL85EUeIbGDPBdJVbFX9kds1v12wAVg/nI/rusCOx0Ajf26uZar+HFc7Er/weIz8hx0BtPq6z75QR8j4UbumE=
+	t=1754525037; cv=none; b=KI15ta3UKEM/Tiby/QHvJ9EE60QNXgNJ5hEHsRUa25MNrSxKVFJOBB1T1mvZ+Tfa1TJZL+J6+ldY/9Ayk/nxs4TugHFt1yikif8tJbjTb+sNf0Fo6JyESXNfZlTmUhHkFptNXahsmBNa/5atf95UQcoAUXzuI1IdGs/+u3/sApM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754524732; c=relaxed/simple;
-	bh=Ch3Lu3JNorrE3DqTb4s0lvqvQJV5+k082o5zzm77yE0=;
+	s=arc-20240116; t=1754525037; c=relaxed/simple;
+	bh=Mo5zZx6+Ls09o6HSEjQ6aurVFAO/GmKzPOOACnlaro4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kXALvslyrZ2xtk5lvG6mGyh36yGbqaRF47hmBHmBK00/5xDioHhjteOwK79HUGrzqzzUSKUsqHGztCWS81kOa1vyex+BFhTt9ZgDiOWfu6VC7UuF94TDZNqrFQ3CMKa+gISZ64zy9XT0yPfKLbpzNav3ju3KmYpOOTthCYgfPPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=pAPzJSPH; arc=none smtp.client-ip=209.85.222.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7e809baeef7so54125185a.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Aug 2025 16:58:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1754524730; x=1755129530; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I4DgF6Vw8xGQncqmkZy1+xUkx+suIzKaCcwcVTdjpkA=;
-        b=pAPzJSPHfy1Z5JM3E06VVRh2//C8vlFaA82zgglyttv5mSJ2aOIGPh2KEorwICV6t2
-         sdgNhuhTp4VAseHpBW/nQFt0zZMsM4CHlf7uWyNahTb641HECLfNzSDafxgRVGQsNpJ8
-         cu9U7KqOvfUBpZZstm91M5Evp7ZTOSHkSdAPFkQ5+VDSVrypfTKrKK1hAlJ1ELYI5XbP
-         7tCxzeUjTXUMVoyLOEvvjsKGFJTGJEJv9YP17iTJVo/QRHNxHdz0XzpdoKNfIllHgf5r
-         9DSlhXZ+pE3yOWq652aPD13GqzNPMsns/mKnBz8lUKgsGL98MSxUoFHtDb+0CopzQi0O
-         OnWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754524730; x=1755129530;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I4DgF6Vw8xGQncqmkZy1+xUkx+suIzKaCcwcVTdjpkA=;
-        b=HgNnG9MjxI2F9avLBCo1QFOcruShNatISH+U71mF0j8HrvQKar72JR4TmjGDx6FPdC
-         SAtX5bnh/sN7i4oix3dP2GsVFaVXk++24FltA4ldNTjL94gm1/uNE+fnyAoWjH+Fgwo1
-         36+gwlB08F3llykH/AiSPmsUIitaQbw0hDk3dTDxDvaeOnUYouzZit/V1tEokfhMy2cP
-         BwemGAprEXzdSaOJosY7Yle1tUY3UGhMYk7vGfp7DO9b2R8LxuRgBTq7Lm7Nq4qu34wR
-         feDdcwGefy208a8F2+oO4BqBZYXGCibFwj7DHiamVoKYMraI5nDC2edXstrwEyHAs5mc
-         d1Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCVuMMLzkvSOBelEAl63S0oZq1ozNkyNT7sekvGEpBcM8gAsKboAK2uZTxMO7nJO+lsns0X9h1AjdykW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqMMFG1+WwvpgZ2UJDcTtc89PoxIuh/FgnKez97hOIfIwEN8nF
-	RKgnR+YQEGcwpoLhJUiYMQrVTZ7RGkzR6H58OoOOlgft8o/SRplEYPYcbyWjgRrEmpA=
-X-Gm-Gg: ASbGncsFW6jPMzmGmR0zrudTORMuEhj2O7cs+eMMPjim7JA5gwI0NNPAjejJMZQ0gU3
-	km0FGHpxJfpTYReXcEkRy4gq0CoKsbSXWcqTGdV6ZitY5AJpBSTFAGyOsP5hQwN4TO93KO9oXUK
-	TaALMBJwxE9l+DUHmGdDv06dzCopO4A8MjCPZGOC8ED8hhe3yJvIfvFtbLiRF41ZpJa+HsL1y3Y
-	lUQUS+jyba7s7X5W8ZYHToQovAmZRlX7s2hPu4dNFgmsgfoiq8jqt0EMMgw8i9EXI+3UW362/CR
-	no1+KBvNMSCBKcFdLahgS9PClOPaHJaLvv3lPiUU30Il257UOLlh6oUPh6Wc0kk7VeKbtvS4+Nj
-	JTiOEG/M1JLcjouwndg/gIVnwhG0vHWZbYNY+ZOn3SOpfJm6R9sxChCiHRILB6WR3L5RY
-X-Google-Smtp-Source: AGHT+IGnS032BQYfbSfwSqYTvKso8Ea62PyX+fE1vpQVHfXPFL26cVNK4i9ZyLJUzr/PgtuVEArJEg==
-X-Received: by 2002:a05:620a:4045:b0:7e6:97a2:ea7d with SMTP id af79cd13be357-7e81677da93mr625181985a.62.1754524729857;
-        Wed, 06 Aug 2025 16:58:49 -0700 (PDT)
-Received: from ziepe.ca (hlfxns017vw-47-55-120-4.dhcp-dynamic.fibreop.ns.bellaliant.net. [47.55.120.4])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e80b869d4bsm310283985a.24.2025.08.06.16.58.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 16:58:49 -0700 (PDT)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1ujo1w-00000001sk1-2RDU;
-	Wed, 06 Aug 2025 20:58:48 -0300
-Date: Wed, 6 Aug 2025 20:58:48 -0300
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Shyam Saini <shyamsaini@linux.microsoft.com>
-Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
-	will@kernel.org, jacob.pan@linux.microsoft.com,
-	eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
-	bboscaccy@linux.microsoft.com
-Subject: Re: [PATCH v3 3/3] arm-smmu: select suitable MSI IOVA
-Message-ID: <20250806235848.GD377696@ziepe.ca>
-References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
- <20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=femVmVyVPChfMf3Dv2ioJqMa8XbErCIg47KtPoZUucLR56lCLQUhK7hAi8MKT8Kbu6h5EAqXKlspPlvf4xKtniVnjEAY753piU1F6kwE9KYvHuODzALRcmFMsU9bJoF+VVjXq/BKzWoUxrNcCs+mTBB5Uh7zb1LMM14H7EST87E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XW6Y1ix6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B110C4CEE7;
+	Thu,  7 Aug 2025 00:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754525037;
+	bh=Mo5zZx6+Ls09o6HSEjQ6aurVFAO/GmKzPOOACnlaro4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XW6Y1ix6oPV0ctapSPBEJFFdUM6EWr6QHnqe10meQ90DcEhnSKyu4lM0rSDMLJwrA
+	 AxJXWiVvHEHxxoRho/xDcchl12cFK/y3kSEvrfROiC2uVgMbzdnBwivClPcX+HtJJx
+	 WYK47ohKJv4IUvoFy4UJmaxsWsRG3cnYxT5v5DzRyBPxXYDdPkDnKF8dWBw+wzefJT
+	 p81ZMy0MlVZqkq5aPbWL6E9ADfUEAiRW9qt8ad1X99W8tm9upYqSwWPa91KqSfFV4i
+	 WAhdSdBppef0yuPr+jj3jMIE/N9ujTk0dTN2oN8fEZwj4/Lpsw1QCcq3u5p4vROp8+
+	 xPptFRmbnVOpw==
+Date: Wed, 6 Aug 2025 19:03:56 -0500
+From: Rob Herring <robh@kernel.org>
+To: Mahdi Khosravi <mmk1776@gmail.com>
+Cc: devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] ASoC: dt-bindings: realtek,alc5623: convert to DT
+ schema
+Message-ID: <20250807000356.GA2072715-robh@kernel.org>
+References: <20250806131818.38278-1-mmk1776@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,55 +61,134 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
+In-Reply-To: <20250806131818.38278-1-mmk1776@gmail.com>
 
-On Wed, Aug 06, 2025 at 02:55:39PM -0700, Shyam Saini wrote:
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -3642,17 +3642,30 @@ static int arm_smmu_of_xlate(struct device *dev,
->  static void arm_smmu_get_resv_regions(struct device *dev,
->  				      struct list_head *head)
->  {
-> -	struct iommu_resv_region *region;
->  	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
->  
-> -	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
-> -					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
-> -	if (!region)
-> -		return;
+On Wed, Aug 06, 2025 at 04:18:18PM +0300, Mahdi Khosravi wrote:
+> I converted the alc5623 audio codec binding from text to DT schema.
+
+Convert the alc5623...
+
+> This is my first try and I used make dt_binding_check & make dtbs_check to verify
+> without getting any errors.
+
+Drop this. Passing is assumed. Actually, 'make dtbs_check' warnings are 
+fine if you think the .dts has a mistake.
+
+> 
+> Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+> ---
+> Changes in v3:
+> - Drop allOf, just use $ref for uint32
+> - Remove stray '>' in descriptions
+> - Fix subject to "to DT schema"
+> 
+> Changes in v2:
+> - Add dai-common ref
+> - Switch add-ctrl/jack-det-ctrl to allOf uint32
+> - Use unevaluatedProperties
+> - Fix example compatible
+> ---
+>  .../devicetree/bindings/sound/alc5623.txt     | 25 ---------
+>  .../bindings/sound/realtek,alc5623.yaml       | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/alc5623.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/alc5623.txt b/Documentation/devicetree/bindings/sound/alc5623.txt
+> deleted file mode 100644
+> index 26c86c98d671..000000000000
+> --- a/Documentation/devicetree/bindings/sound/alc5623.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -ALC5621/ALC5622/ALC5623 audio Codec
 > -
-> -	list_add_tail(&region->list, head);
-> +	static const u64 msi_bases[] = { MSI_IOVA_BASE, MSI_IOVA_BASE2 };
->  
->  	iommu_dma_get_resv_regions(dev, head);
+> -Required properties:
+> -
+> - - compatible:	"realtek,alc5623"
+> - - reg:		the I2C address of the device.
+> -
+> -Optional properties:
+> -
+> - - add-ctrl:	  Default register value for Reg-40h, Additional Control
+> -		  Register. If absent or has the value of 0, the
+> -		  register is untouched.
+> -
+> - - jack-det-ctrl: Default register value for Reg-5Ah, Jack Detect
+> -		  Control Register. If absent or has value 0, the
+> -		  register is untouched.
+> -
+> -Example:
+> -
+> -	alc5621: alc5621@1a {
+> -		compatible = "alc5621";
+> -		reg = <0x1a>;
+> -		add-ctrl = <0x3700>;
+> -		jack-det-ctrl = <0x4810>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> new file mode 100644
+> index 000000000000..2a389ca95b0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	/*
-> +	 * Use the first msi_base that does not intersect with a platform
-> +	 * reserved region. The SW MSI base selection is entirely arbitrary.
-> +	 */
-> +	for (int i = 0; i != ARRAY_SIZE(msi_bases); i++) {
-> +		struct iommu_resv_region *region;
+> +title: ALC5621/ALC5622/ALC5623 Audio Codec
 > +
-> +		if (resv_region_intersects(msi_bases[i], MSI_IOVA_LENGTH, head))
-> +			continue;
+> +maintainers:
+> +  - Mahdi Khosravi <mmk1776@gmail.com>
 > +
-> +		region = iommu_alloc_resv_region(msi_bases[i], MSI_IOVA_LENGTH, prot,
-> +						 IOMMU_RESV_SW_MSI, GFP_KERNEL);
-> +		if (!region)
-> +			return;
+> +allOf:
+> +  - $ref: dai-common.yaml#
 > +
-> +		list_add_tail(&region->list, head);
-> +		return;
-> +	}
->  }
+> +properties:
+> +  compatible:
+> +    const: realtek,alc5623
 
-I think this whole series looks pretty good, but I would suggest to
-put this in a helper..
+What about alc5621/22? At least 21 is in use:
 
-'iommu_set_sw_msi()' perhaps, must be called after iommu_dma_get_resv_regions()
+arch/arm/boot/dts/marvell/kirkwood-t5325.dts:                           compatible = "realtek,alc5621";
 
-Then maybe the constants can just be placed in the .c file inside the
-helper function.
-
-Jsaon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  add-ctrl:
+> +    description:
+> +      Default register value for Reg-40h, Additional Control Register.
+> +      If absent or zero, the register is left untouched.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  jack-det-ctrl:
+> +    description:
+> +      Default register value for Reg-5Ah, Jack Detect Control Register.
+> +      If absent or zero, the register is left untouched.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        codec@1a {
+> +            compatible = "realtek,alc5623";
+> +            reg = <0x1a>;
+> +            add-ctrl = <0x3700>;
+> +            jack-det-ctrl = <0x4810>;
+> +        };
+> +    };
+> -- 
+> 2.50.1
+> 
 
