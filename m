@@ -1,144 +1,176 @@
-Return-Path: <devicetree+bounces-202514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 325A0B1DC94
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:44:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63B6CB1DCBA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BE7918A7B9F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 17:44:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE3E21AA021C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 17:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D70EB273D80;
-	Thu,  7 Aug 2025 17:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8874D1F8AC5;
+	Thu,  7 Aug 2025 17:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="py81cQlr"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O6M8D/Vf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7D725B2FA;
-	Thu,  7 Aug 2025 17:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914041FECCD
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 17:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754588632; cv=none; b=tXwKtY0/IutkKDi8li3tcR+1plYilgYEUB789gI3dJtNbwenkHoNe8ZWnCB+sJUuT6jHQ6QuEfUV8bs0AVG2u/mFOGgR86mrYkToSvno8ZkarNrdK6PXe9xIgbfg8M9mHwv9kbuV7wsLuO3NGuem8hFLRmtsxQyFqNGfT5Bfwzs=
+	t=1754589366; cv=none; b=em6tKknu2T+OHgrfXH4H0v5G6psDeOPNn9RQiOY+j5fLB0P0Yfq7W7LlQ53vGpx7ywZPkQ1zxMOrC5muREVxu4B02TZ0SN+0x1YtzX1SfAAUbC5RZBUquRCVJoAMWH3Nf9Z2713Bls1CrAFGh/rEmyjgQMwVsO9SKr7kZ50Whzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754588632; c=relaxed/simple;
-	bh=hsJ20AJl02FZvdjaBaFD/7kmVr1aVFSkgrbL9mdgx8Y=;
+	s=arc-20240116; t=1754589366; c=relaxed/simple;
+	bh=TAXqubzsBEIA8arpECTj6N2IP2QqQQyNT2bLiy8zTkI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JLmBvmBCTZjW3kKfy4nhW98zKOB9epyRrQz1eUWMHZwTj4bHgd9WbGZwO1xmfBUTatK5Q9rVCRJ0lgX96MliQ6Eq4OHj8xrK3AeTIfork5Ue3LG9Kf76jB4kigyh2eEsDbw4meeSA9EgbCMudLAJ6OfqY9tgRTbggyaluw5qsSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=py81cQlr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25837C4CEEB;
-	Thu,  7 Aug 2025 17:43:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754588632;
-	bh=hsJ20AJl02FZvdjaBaFD/7kmVr1aVFSkgrbL9mdgx8Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=py81cQlrN4yMFMilgTcUb9828p9+/sKb8uMKTBcuF4nfljeMZsqBFLzGdNgHgC69Y
-	 Xo6lFkl6Qi+2oZIqVqJxoykTjWRQMsLGN95tEQHgyoARmBaZb65jt9Hel2my6rJ1O8
-	 EoZupmAzmcBK1Sr9S2xwpcdoCLIJp2/uSueQL64+erED5ZOvFeGBDpdMdCUneC3hh6
-	 2ji7Z+fSsAzlEuMf2ySVBvxE2Mlj9q9VxUGu9AcpBTGIItWwOKzEULRxfeO6gv3KwD
-	 vex19T/MYYcvPH5yecJUUxFsOGOcQ+/8mZmxgCRmoS0KYbKcB0MvraAH8f4NUIa4rq
-	 G4kozVdG2i75Q==
-Date: Thu, 7 Aug 2025 18:43:46 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, vkoul@kernel.org,
-	kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
-	bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org,
-	dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-	krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
- device tree
-Message-ID: <c1435858-6288-4525-8c92-e27ed86cb55e@sirena.org.uk>
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-5-quic_nitirawa@quicinc.com>
- <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
- <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
- <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
- <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
- <599b8a4b-324a-4543-ba27-0451f05c3dfd@quicinc.com>
- <3aa82f65-4812-4bf0-9323-96f40824a004@sirena.org.uk>
- <685e3d36-c0e3-4faa-b817-aecc15976a25@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sKvC14hl/6ZuMuUtZjZ17kqBrQTUFvzyzh0sLD4X6ZYBxaCtSXiFkvgTA1mw7LgPieYzJ3i1Y04G48uJanOs4kmUeH92tDOI6gjFJVGVP/Y6zCC5qsFw5UkZJ71LMRWktBdeBp6WgEVR6wQyh3gL1CTpfnXfYNRereUqiBsmkeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O6M8D/Vf; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754589365; x=1786125365;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TAXqubzsBEIA8arpECTj6N2IP2QqQQyNT2bLiy8zTkI=;
+  b=O6M8D/VfNFZLPPDqqj/mL4eThO9xG4HxF+fbpyANd3f4ybMP/ryCMWeO
+   8ArMb1vF9kSOciwhEurUnKIsnjSYCBzWZWMHIg+Nffqc/3u9VrOmuBRE1
+   t1DnKISsH7NEn/PW2YwVDx7p852m8driMuiVSiNpfR3uL7fqcdOwbG2Gi
+   yHdfIUpEDftcsulm6oEMnfXk9Ice94FmKtUp5Pwtv9zFsqNkDUztY5KF7
+   HnJvHXyvj7oWbvEe+Xftiy0jX2bDpmUR5f3ThS+eK41z0q3tfDuubigKj
+   23uqgG8xjKpEGeDmd+ZoF2R9hkgw2slCuAL0b8kMVpW4kY1ZHtJPVXNVB
+   g==;
+X-CSE-ConnectionGUID: 62FhiRDOTb2r9Tp+ymT0rA==
+X-CSE-MsgGUID: iSt86rvERSqEByrclLAbWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11514"; a="56141676"
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
+   d="scan'208";a="56141676"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2025 10:56:04 -0700
+X-CSE-ConnectionGUID: sgd3Ks+xRWWyEHltsJTu+w==
+X-CSE-MsgGUID: 3Dd3cOroRKuj9Wq4M4u96A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,271,1747724400"; 
+   d="scan'208";a="165139305"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 07 Aug 2025 10:56:00 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uk4qG-00034I-2D;
+	Thu, 07 Aug 2025 17:55:55 +0000
+Date: Fri, 8 Aug 2025 01:55:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev
+Cc: oe-kbuild-all@lists.linux.dev, jgg@ziepe.ca, will@kernel.org,
+	jacob.pan@linux.microsoft.com, eric.auger@redhat.com,
+	code@tyhicks.com, eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com, bboscaccy@linux.microsoft.com
+Subject: Re: [PATCH v3 3/3] arm-smmu: select suitable MSI IOVA
+Message-ID: <202508080104.M1bnmiMo-lkp@intel.com>
+References: <20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UswwCFe1kiMt6NyH"
-Content-Disposition: inline
-In-Reply-To: <685e3d36-c0e3-4faa-b817-aecc15976a25@quicinc.com>
-X-Cookie: Real Users hate Real Programmers.
-
-
---UswwCFe1kiMt6NyH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
 
-On Thu, Aug 07, 2025 at 11:05:08PM +0530, Nitin Rawat wrote:
-> On 8/7/2025 10:56 PM, Mark Brown wrote:
+Hi Shyam,
 
-> > The issue isn't using regulator_set_load(), that's perfectly fine and
-> > expected.  The issue is either reading the value to use from the
-> > constraint information (which is just buggy) or adding a generic
-> > property for this (which I'm not convinced is a good idea, I'd expect a
-> > large propoprtion of drivers should just know what their requirements
-> > are and that a generic property would just get abused).
+kernel test robot noticed the following build errors:
 
-> > > These drivers also define corresponding binding properties, as seen i=
-n the
-> > > UFS instances documented here:
+[auto build test ERROR on soc/for-next]
+[also build test ERROR on linus/master v6.16 next-20250807]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > > UFS Common DT Binding ((link - https://git.kernel.org/pub/scm/linux/k=
-ernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/ufs/uf=
-s-common.yaml?h=3Dnext-20250807)
+url:    https://github.com/intel-lab-lkp/linux/commits/Shyam-Saini/arm-smmu-move-MSI_IOVA-macro-definitions/20250807-055741
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
+patch link:    https://lore.kernel.org/r/20250806215539.1240561-4-shyamsaini%40linux.microsoft.com
+patch subject: [PATCH v3 3/3] arm-smmu: select suitable MSI IOVA
+config: um-randconfig-r071-20250807 (https://download.01.org/0day-ci/archive/20250808/202508080104.M1bnmiMo-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 7b8dea265e72c3037b6b1e54d5ab51b7e14f328b)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250808/202508080104.M1bnmiMo-lkp@intel.com/reproduce)
 
-> > Note that that's specifying OPPs which is different...
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508080104.M1bnmiMo-lkp@intel.com/
 
-> Sorry for the confusion .Instead, I meant the following three properties
-> defined in the link to ufs-common.yaml binding, which specify the maximum
-> load that can be drawn from the respective power supplies.
+All errors (new ones prefixed by >>):
 
->   vcc-max-microamp:
->     description:
->       Specifies max. load that can be drawn from VCC supply.
->=20
->   vccq-max-microamp:
->     description:
->       Specifies max. load that can be drawn from VCCQ supply.
->=20
->   vccq2-max-microamp:
->     description:
->       Specifies max. load that can be drawn from VCCQ2 supply.
+   In file included from drivers/iommu/arm/arm-smmu/arm-smmu.c:24:
+   In file included from include/linux/dma-mapping.h:8:
+   In file included from include/linux/scatterlist.h:9:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:1175:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+    1175 |         return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
+         |                                                   ~~~~~~~~~~ ^
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1602:35: error: use of undeclared identifier 'MSI_IOVA_BASE'
+    1602 |         static const u64 msi_bases[] = { MSI_IOVA_BASE, MSI_IOVA_BASE2 };
+         |                                          ^~~~~~~~~~~~~
+>> drivers/iommu/arm/arm-smmu/arm-smmu.c:1602:50: error: use of undeclared identifier 'MSI_IOVA_BASE2'
+    1602 |         static const u64 msi_bases[] = { MSI_IOVA_BASE, MSI_IOVA_BASE2 };
+         |                                                         ^~~~~~~~~~~~~~
+>> drivers/iommu/arm/arm-smmu/arm-smmu.c:1610:23: error: invalid application of 'sizeof' to an incomplete type 'const u64[]' (aka 'const unsigned long long[]')
+    1610 |         for (int i = 0; i != ARRAY_SIZE(msi_bases); i++) {
+         |                              ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:32: note: expanded from macro 'ARRAY_SIZE'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                ^~~~~
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1613:44: error: use of undeclared identifier 'MSI_IOVA_LENGTH'
+    1613 |                 if (resv_region_intersects(msi_bases[i], MSI_IOVA_LENGTH, head))
+         |                                                          ^~~~~~~~~~~~~~~
+   drivers/iommu/arm/arm-smmu/arm-smmu.c:1616:50: error: use of undeclared identifier 'MSI_IOVA_LENGTH'
+    1616 |                 region = iommu_alloc_resv_region(msi_bases[i], MSI_IOVA_LENGTH, prot,
+         |                                                                ^~~~~~~~~~~~~~~
+   1 warning and 5 errors generated.
 
-OK, but that's still not motivating putting things in DT (the properties
-are there but don't explain why) and having this for some devices
-doesn't really address the why make it a generic rather than device
-specific part of things like Konrad was suggesting.  Perhaps there's
-enough board specific variation that it does make sense to put something
-specific to this consumer in DT, but it'd be another step to make it a
-generic thing that applies to all regulators.
 
---UswwCFe1kiMt6NyH
-Content-Type: application/pgp-signature; name="signature.asc"
+vim +/MSI_IOVA_BASE2 +1602 drivers/iommu/arm/arm-smmu/arm-smmu.c
 
------BEGIN PGP SIGNATURE-----
+  1596	
+  1597	static void arm_smmu_get_resv_regions(struct device *dev,
+  1598					      struct list_head *head)
+  1599	{
+  1600		int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+  1601	
+> 1602		static const u64 msi_bases[] = { MSI_IOVA_BASE, MSI_IOVA_BASE2 };
+  1603	
+  1604		iommu_dma_get_resv_regions(dev, head);
+  1605	
+  1606		/*
+  1607		 * Use the first msi_base that does not intersect with a platform
+  1608		 * reserved region. The SW MSI base selection is entirely arbitrary.
+  1609		 */
+> 1610		for (int i = 0; i != ARRAY_SIZE(msi_bases); i++) {
+  1611			struct iommu_resv_region *region;
+  1612	
+  1613			if (resv_region_intersects(msi_bases[i], MSI_IOVA_LENGTH, head))
+  1614				continue;
+  1615	
+  1616			region = iommu_alloc_resv_region(msi_bases[i], MSI_IOVA_LENGTH, prot,
+  1617							 IOMMU_RESV_SW_MSI, GFP_KERNEL);
+  1618			if (!region)
+  1619				return;
+  1620	
+  1621			list_add_tail(&region->list, head);
+  1622			return;
+  1623		}
+  1624	}
+  1625	
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiU5dEACgkQJNaLcl1U
-h9Dm9gf/czgCATFH8mHfsPQL7Jgte8mnqHdX8h7kP9EPNkqEGeVXbPEFYvflgjDn
-DG0TXYgKYTC7xK4KbyOHNW4s5xaF6l5vQaLI3Aqzgu8vjGtosl3wW+SB25Ndiq+k
-nYplTOOtPb5chlqkoZVzzcLAaJgniCDslLi3rcegCbWq6+E+QgFRKPhlWNaidizi
-M5RCpyrno7rTaOZ/cFSnRGStemFTWPdw9N79hJabWESTK4+M9dYQciM0yTanMfhf
-cvbNZnMqBp4CVEGl+e5l8p9MjUeyBKFkCY0rPHlPHRX3kKKpq68E6eQu8EoRjJly
-u7+Oq3myiTklfSI/f3sAD6iQwdlhVA==
-=dtCN
------END PGP SIGNATURE-----
-
---UswwCFe1kiMt6NyH--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
