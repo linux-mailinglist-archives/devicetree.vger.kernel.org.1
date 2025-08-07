@@ -1,75 +1,83 @@
-Return-Path: <devicetree+bounces-202470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55346B1D9B4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:11:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFD43B1D9C9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F144462071D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:11:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA01E5800AD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B12262FE4;
-	Thu,  7 Aug 2025 14:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F28B87082A;
+	Thu,  7 Aug 2025 14:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="mJBKLLYS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a3JgVtHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF3E1400C
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 14:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4DE17736
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 14:17:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754575866; cv=none; b=jAGBhuwq8c4DKN5fSqM/d5PRZqr+DFIW9D+iPEkfKzN/aZr0Ds10b18Fcsqd/plW6Gw7mf/GN6eBDXVNmfymMptt3asFBJkMMBrJfGdjUgyiQubXFXs0/x9yeGn8gyhIU7xFUl7wwhY/Fu1Gyuz3j1m7ac5RNC4sOLv3vYHCBsA=
+	t=1754576237; cv=none; b=lQuSdA6fWzejgVbZHp5bDjyApWghA/g0YGjreYA/clx6zneW121bchJkWgMiqjvpDDNcm0wiBNby84gF7rZ0wUZkGWyTh4AxKlE42ub0t9SqaReEEBeRIpncWtkJt/v2BbNI7e7QgR8avCI8mAqPlhkpw3GCxoqTWa9PHWi2Pmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754575866; c=relaxed/simple;
-	bh=HzFCR8qIbtdhnZ6X4A/0afYLZkMez/jG33vKoCGIbaQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J8G0U0cdgXrtjtCcQB8BWahIEHBBd22h9QE9Txibij6332DDR1uSWe9LScMt6/ATGDMXP8LbDk+PNgXiovDU1UiRIlZZsn+32BywCimc2a4v9V2I5726diSjGup2Rg4LCH0XOabMZ6vyPXQtXSMl7/NPBVM47Co3PLdZZi7uu50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=mJBKLLYS; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 577DYtvA009977;
-	Thu, 7 Aug 2025 14:10:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=uaVLiY
-	spnYWDuI13bWNGEm5rQbPJSHbjCGX5H7vdxtQ=; b=mJBKLLYSXn/bhMBhPt1FhG
-	aTEmzVBBRUk+FDweBa1KoY/yammJONzoVcbZVNKUVY2LTsgV+eS5h1CUf972DE8b
-	1ZlQ4eQGeoDdtMZ8NvFhNQ1PNUwW6INaE88OGUMNVxEOhCrn+SRw/3UHrDb97Md+
-	coHXluwpZZvLuXYL5xKhGXr6aYUtLLAkvsak99ouf4qdbVRLMTxCYscL5h81Im3Q
-	dcXM6mVcYVYIilZe/4/j5tI5UankKZ8/7ERRcPU9GJV0XVqVk6iMsUBhS9VjvoBa
-	hn3bnmJDds45/izA498NYZ1bHuCSLenGNTJeDmV+O/MsZlNHeSkVj2TD33pXnG9g
-	==
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48bq612pbd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Aug 2025 14:10:52 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 577DcdbB022699;
-	Thu, 7 Aug 2025 14:10:51 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 48bpwqgyfs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Aug 2025 14:10:51 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
-	by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 577EAo9t17433284
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 7 Aug 2025 14:10:50 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 5147358059;
-	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 239C258055;
-	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
-Received: from [9.61.15.215] (unknown [9.61.15.215])
-	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
-Message-ID: <dd4a521e-f122-4122-af62-20ce113497ac@linux.ibm.com>
-Date: Thu, 7 Aug 2025 09:10:49 -0500
+	s=arc-20240116; t=1754576237; c=relaxed/simple;
+	bh=J8ImUBo6k11PmLTRi9ueapBPrpFIObd3Z5925Bgdke4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Zfdp+KNZ2UcfU9h518173hH5rcKGgEyCJe2IkS7eenM3JdR2U+SKZnHz+GVS8HP9DTymdSB50QdlgsgUZsgQ7tYPDrwKlFxcZbG+xjpY2O7aZg+FNZ8kwg+Nn6ZZZBNal+l5uNaaMrL4CMzpZrtmEdXo8F7ZzFs9scv06pybal8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a3JgVtHg; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3b7862bd22bso1076289f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 07:17:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754576234; x=1755181034; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5DMkxCmKEcDzAQwWDeiQkackfhplB7h7dFl1ES31WYs=;
+        b=a3JgVtHgE05Y2/8YHSse7V//BxupdCTBLBfdsfzeI1lkH5JZUfqonEW0R4JsXf/2pv
+         vH4bLPWFzjLESKdX1V27RQQ4MTku9zSymn8vEkjDL3TlQNajfDtuOVapYjscWTduJcpU
+         twCjDK1GGCp3eRjHJIseylLAJdhYmS800vise2j6mi84pxJBCHNVToRnilqc8ZxsXssX
+         JHfyJSArrbciZ715J4vA9po8XG39h4XB0YYvo6ouqo7kB2nALeCFQJj5pAl9wgJhgwz0
+         wLMoU3WjS1XrNsLQNMp/rbMqDa0gIyscU/ch8IbjJCIz+4y2G6DuFAJg/tSmyJDZR0LH
+         oY8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754576234; x=1755181034;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5DMkxCmKEcDzAQwWDeiQkackfhplB7h7dFl1ES31WYs=;
+        b=mdfFex/Qq023hC8MpxsFTFPq2BAT31TXSNbpDvPpDrIeld6Z9JX0l7ebhR+xOSM3HA
+         WYEkw3GYb7BNJC+DOAhPCQ15c0kNic7kcmHMkp2KMkyIUzBwDWF7z8ExNluI5keEtFfd
+         redyeOKvsK38ozU2L4Sm4bgyvHZqnqwzOSgwYy2zC1TCbmDjX7oItA8qZSTcrPiDlXV8
+         l3FImSMXXZQ+chFEmNAb49E99MgTtf6TEwoEJk+Jd2bIUqRYsjd7BxOWNAW1aIAwdvtd
+         yUp3ByOYskSZpwGtSylDmr7pKI0w79yP1LwMYLdWSh2gtW0G9zar323/PIh3pH5NX/f5
+         z0zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX1QHMiGwXzgy8EPxtraAR9voJ3NAFz1jBa/4GlFjn+2ozBeKsDhYXvrTu+4YW4jPn58BQuVio+V3f8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3TEU/JDuMilXBV+ylrxxmXY4jYiq+f+3hJ7yj5276C4DPNyEP
+	Ewt71Pev6GyCpGB3J2iXAnt1vH5r5gB9OqyjWWQWokibikXC6x0bXLhMxAAD9dddJTQ=
+X-Gm-Gg: ASbGncuJwXLIH9J5cy5RA9rJwfqx+bdb/lnPr3G+OrrXGtaqu4gZbegyoz6owxjSTQn
+	HcRDakHRgHscdt+9h8kPFBGkv57fml/YlEeD7npBMS3etolP4AxJDfI5iwX74uCAsEqLeLpgDdC
+	x7m+1v2VKLqVCCtR6V95SQja7taAi2hOKYz0Eshbj5ZEIc/gqV8NqwFiM+GT+/XcGSThtcpRMdD
+	t/wSmBASJKwXhDvkDmnYVWy2FkcG1SbU9NxSMyE6PtXUXn43QnReEVQB+yyl50zqrMNZbb0JU5I
+	vmXKlBaD9qdUD7OVYu1cqL2OgLZmy+70+ytntONB+2OtWmmRolz/uLQxfgkPG/23QaHVwKcl9WM
+	6+Zp1/QosEGK8PYeJmACg7XHeL7pVvRhgP7XyvLLxwYSFvgFgbTIYmndKIvNXbBehWmXxGFNi98
+	o=
+X-Google-Smtp-Source: AGHT+IFz6uCC0YYRe9nWXy3/iGewWRQEgH33Nf36nFwo6jhM8HFNPyL4Wp6EentkfsIY4v5Ki9fvjg==
+X-Received: by 2002:a05:6000:2c01:b0:3a5:8991:64b7 with SMTP id ffacd0b85a97d-3b8f97f50c7mr3782203f8f.26.1754576234128;
+        Thu, 07 Aug 2025 07:17:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5bf9:b40c:d741:ea95? ([2a01:e0a:3d9:2080:5bf9:b40c:d741:ea95])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c4533f1sm27292199f8f.42.2025.08.07.07.17.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Aug 2025 07:17:13 -0700 (PDT)
+Message-ID: <eb42d052-1fe0-49a2-9a83-05c5a5b7394e@linaro.org>
+Date: Thu, 7 Aug 2025 16:17:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,93 +85,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: trivial-devices: Document max31785
- sensors
-To: Rob Herring <robh@kernel.org>
-Cc: linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@codeconstruct.com.au, conor+dt@kernel.org, krzk+dt@kernel.org
-References: <20250806184711.1882725-1-eajames@linux.ibm.com>
- <20250806184711.1882725-4-eajames@linux.ibm.com>
- <CAL_Jsq+JBhak=YS33tG=KFtbb+Ckz69s5Chz6daEUY0O95QOSQ@mail.gmail.com>
- <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 09/10] [RFT] arm64: dts: qcom: sm8250: extend CAMSS with
+ new CSIPHY subdevices
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+ <dcc33f04-1b19-47d7-aca2-03d38173b6b6@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <dcc33f04-1b19-47d7-aca2-03d38173b6b6@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: TLZo-HDNly3k3Yu_lJEb-DARaXrKBVMZ
-X-Proofpoint-ORIG-GUID: TLZo-HDNly3k3Yu_lJEb-DARaXrKBVMZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA3MDExMiBTYWx0ZWRfXzp9GJPLSuRpm
- UTXvHi+NyGwkwhhVKYDSBefHMYzX7s9/599Kbdm2u6/+mfutv4E2tz+XljAImSVoE+5yhBRNSbQ
- M6wsaWROtK60Z9WrW7byCNaZUcqCV6svi1cojyWbCVz3zoHLOdja3xrBe/T3bs/zNyjh5QTA7we
- p3Km6IrQZ1tOGuF7mgE0PjtojiwroVWY6/vY8G3QDUY+SqfL/mjop/gW2n2Fc6Ftibw/kHjld13
- yd70OZfWcvl15QK5btI7jfJRJNaEcYf3ND/WnpMVlzLOLV1i7XF8N4NydkDyVryB/TiZFObB0Lw
- nbYzobBC7/UFfBW6GdL2rsdgeh+y8XKipkmnhkXB5Uu8neSt9VgsKe/ZbP1xwwRyyfqJUbPVHst
- 63c+9mkIwy2Ns45cREY2AjDcBPZEm3StCYRWMXrHZj0e/XZZsCisqHakQsLn0DpVOH4k5XmM
-X-Authority-Analysis: v=2.4 cv=TayWtQQh c=1 sm=1 tr=0 ts=6894b3ec cx=c_pps
- a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=jtbBNqsHAAAA:8 a=VwQbUJbxAAAA:8
- a=VnNF1IyMAAAA:8 a=rfOngFd2pyIVqCWdBOYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=RWaeYqt-Cn-VcsFsiLGo:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-07_02,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 phishscore=0 impostorscore=0 spamscore=0
- mlxlogscore=999 bulkscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
- definitions=main-2508070112
 
-
-On 8/6/25 5:59 PM, Rob Herring wrote:
-> On Wed, Aug 6, 2025 at 5:04 PM Rob Herring <robh@kernel.org> wrote:
->> On Wed, Aug 6, 2025 at 1:47 PM Eddie James <eajames@linux.ibm.com> wrote:
->>> Remove the old .txt max31785 documentation and add the compatibles
->>> to trivial-devices.yaml.
->>>
->>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->>> ---
->>>   .../devicetree/bindings/hwmon/max31785.txt    | 22 -------------------
->>>   .../devicetree/bindings/trivial-devices.yaml  |  4 ++++
->>>   2 files changed, 4 insertions(+), 22 deletions(-)
->>>   delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/max31785.txt b/Documentation/devicetree/bindings/hwmon/max31785.txt
->>> deleted file mode 100644
->>> index 106e08c56aaa..000000000000
->>> --- a/Documentation/devicetree/bindings/hwmon/max31785.txt
->>> +++ /dev/null
->>> @@ -1,22 +0,0 @@
->>> -Bindings for the Maxim MAX31785 Intelligent Fan Controller
->>> -==========================================================
->>> -
->>> -Reference:
->>> -
->>> -https://datasheets.maximintegrated.com/en/ds/MAX31785.pdf
->>> -
->>> -The Maxim MAX31785 is a PMBus device providing closed-loop, multi-channel fan
->>> -management with temperature and remote voltage sensing. Various fan control
->>> -features are provided, including PWM frequency control, temperature hysteresis,
->>> -dual tachometer measurements, and fan health monitoring.
->> While technically the binding is trivial, I don't think this device
->> really is. It has got 6 PWMs and 6 tach inputs, a reset line, 2
->> interrupts (alert and fault?), and an I2C master. Not really trivial.
+On 07/08/2025 14:37, Bryan O'Donoghue wrote:
+> On 12/06/2025 02:15, Vladimir Zapolskiy wrote:
+>> Following the new device tree bindings for CAMSS IPs introduce csiphy2
+>> device tree node under SM8250 CAMSS, which allows to perform camera
+>> tests of the model on an RB5 board with an attached vision mezzanine.
 >>
->> However, better to have this documented as a schema than not, so I'll apply it.
-> I take that back. You already have 'fan' child nodes, so this isn't a
-> trivial device/binding.
+>> Note that the optional 'phys' property is deliberately not added.
+>>
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>> For testing only, do not merge.
+>>
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
+>>   1 file changed, 14 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index f0d18fd37aaf..401a32679580 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -4613,6 +4613,10 @@ camss: camss@ac6a000 {
+>>                            "cam_sf_0_mnoc",
+>>                            "cam_sf_icp_mnoc";
+>> +            #address-cells = <2>;
+>> +            #size-cells = <2>;
+>> +            ranges;
+>> +
+>>               ports {
+>>                   #address-cells = <1>;
+>>                   #size-cells = <0>;
+>> @@ -4641,6 +4645,16 @@ port@5 {
+>>                       reg = <5>;
+>>                   };
+>>               };
+>> +
+>> +            csiphy2: phy@ac6e000 {
+>> +                compatible = "qcom,csiphy";
+>> +                reg = <0 0x0ac6e000 0 0x1000>;
+>> +                clocks = <&camcc CAM_CC_CSIPHY2_CLK>,
+>> +                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>;
+>> +                clock-names = "csiphy", "csiphy_timer";
+>> +                interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
+>> +                #phy-cells = <0>;
+>> +            };
+>>           };
+> I don't think we should make this change, for CAMSS in general and specifically for sm8250.
+> 
+> Instead I think we should go this way:
+> 
+> https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
+> 
+> With separate standalone nodes, and reuse of the upstream PHY API.
+> 
+> I believe you have a series for the 8650, please rebase on
+> 
+> https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
+> 
+> and
+> 
+> https://lore.kernel.org/linux-media/20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org
+> 
+> V2 of the CSIPHY above will incorporate feedback from Neil and yourself on adding endpoint@ to the PHY however I think we need to have a conversation about standards compliance at attaching two sensors to one CSIPHY without VCs or TDM.
 
+The PHY is able to setup 2 lanes as clock and connect 2 sensors over the 5 lanes available, like for example:
+- lane0: cam0 data0
+- lane1: cam0 data1
+- lane2: cam1 data0
+- lane3: cam1 clk
+- lane4: cam0 clk
 
-That's true, I will add a proper binding.
+Any lane mapping is compliant. There some Meta slides about that at:
+https://www.edge-ai-vision.com/wp-content/uploads/2024/09/T2R10_Kumaran-Ayyalluseshagiri-Viswanathan_Meta_2024.pdf slide 13
 
+Neil
 
-Thanks,
+> 
+> ---
+> bod
 
-Eddie
-
-
->
-> Rob
 
