@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-202364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5DFDB1D35F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:31:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 115DCB1D365
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:34:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 319133ADE82
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:31:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 009F5188A753
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:34:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB0B226CEB;
-	Thu,  7 Aug 2025 07:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53217214813;
+	Thu,  7 Aug 2025 07:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="coaz+St/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ay4onxIC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA981A8F97;
-	Thu,  7 Aug 2025 07:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250832AD32;
+	Thu,  7 Aug 2025 07:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754551909; cv=none; b=iAzDtiIuwCn6Lg47w03mAc0XmpFVhG+yxGXBnOgYv3R6iT9sp1JzT4u9a8lEON+102nTIBaOFIyqVnl1FdUheGE01R7vAH4OzIirSvSM5WX3IsDjA/IAV+mV3/7nBcGobo4y10ASHBJ4PYcqFeqKZD/l8wPxk9lXyGVnQtng8kc=
+	t=1754552074; cv=none; b=CbBRM4hbhNq/ZMGWA1RnDgpBvojcwdZon1QP6uacG5M7yvOuYeqveI0dHGx+pJzePfHvaP9peSq+cmjfbVu2xst4+RzsWtn+qNtXfBtx4Sbo/opgP+HOHs7RTkyJKNgDgjGDn9FEMnu/Z0mNdb5nLXKLoqJiQqlwfmAC3sIQRd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754551909; c=relaxed/simple;
-	bh=4THJ8Z+Q9mlw0DN/9Ry88kfBt+XVJ3Smmy5qShyVwkY=;
+	s=arc-20240116; t=1754552074; c=relaxed/simple;
+	bh=B/UtvXcFOeY5envt9lydHp3nNSJG8mqKsutu+u1GSlA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VlkT7sJ9lif1//PeHk+c8dEr6ncaklFZqNra7XujH1ZgeMGhL/9XMmKNd7H/4k88vXuUgdDXvAfhHkfCdRnaKipfF2HLM92hF03eu7DmdibR9eyOkvybdY+L5uhrS/qP/98OcfuwZyfr696BvzE55DaIqtbYojaUid5jfKViOqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=coaz+St/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B22AC4CEEB;
-	Thu,  7 Aug 2025 07:31:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rnEdRyaHefo/U2tEZoLxW/AWJ+5Swn5KIHxGbTy/p2K94NDVG+cAE9zCzFriNbBwIiKkz0nEad7GeCrlPtiLI8gcWy34KznQuy1jG5xNaUIDcw/oude2GnajIWwfPncp8xC0sDwZHbFSU2yomr0UbP4V9ai7trpQvoxmvczBKrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ay4onxIC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A47DC4CEF6;
+	Thu,  7 Aug 2025 07:34:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754551909;
-	bh=4THJ8Z+Q9mlw0DN/9Ry88kfBt+XVJ3Smmy5qShyVwkY=;
+	s=k20201202; t=1754552073;
+	bh=B/UtvXcFOeY5envt9lydHp3nNSJG8mqKsutu+u1GSlA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=coaz+St/3IS8hCIwa8TQ+vz4/c+RH9vUh8a046Yo+8zvm0nGdai47maL19XNycBee
-	 2Kkf0fVgxnFgmbdv3J2/jU/Nu5mtYcPgAjvC+PLC+zghYSbyXEnzau09n9rUy1f6qJ
-	 8FRAX2EWv+mLVwuerfUtKhmZ5YKZuj0YaFzG/ffbAdHFLxA1uS+uvqGTxFo1323dbb
-	 TYTGMKdk1bZB2gZCpQ+wfb1ruTwmhPjzvkyxaanHPF9I7n37SRnsohybwfT8rlEf9g
-	 3F5yTCl2uyEaDxT4cA4Jiu0fpKd6rAwOTjIabN9l5JPw4k4mQULoCLgKSa9D0AdJJJ
-	 Uy2ATNJmGqzjg==
-Date: Thu, 7 Aug 2025 09:31:46 +0200
+	b=ay4onxIC/SboKhYrSARaX2TQi08DvUcGSD38g2FgUS4F7NrNSwtp+QB+I76QJbt/e
+	 yMSEFMunwFuOpwpaZbJkwxX6UCu1oiL+RCnLlkt+txXr5ynZCKlVrXjwR3OF6voCRz
+	 tJm2H7hNbmb0pS0CuD0LaJSo+lbzc1vIrAzz8GJoqpPRaqZET0o7mE8Bkgs9OeBNb3
+	 7MT4zW2A0dA3exY8Azhh234KQlzBjo4Z6Nm1fqmCPvrvwA54xvcBmFSDyAA5nA6RQH
+	 8L3q+50tSK5DaYfsXCkeyo0a30e9rsQNjJcxA8YctfY6Ya3dblMT60F3/Nf4CRbF2/
+	 Fgns0S43ZsSww==
+Date: Thu, 7 Aug 2025 09:34:31 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: imx@lists.linux.dev, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] arm64: dts: imx943: Add display pipeline nodes
-Message-ID: <20250807-illustrious-cuckoo-of-management-dacca0@kuoka>
-References: <20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com>
- <20250806150521.2174797-8-laurentiu.palcu@oss.nxp.com>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: magnetometer: document Infineon
+ TLV493D 3D Magnetic sensor
+Message-ID: <20250807-offbeat-vehement-starfish-d4cee9@kuoka>
+References: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
+ <20250807-tlv493d-sensor-v6_16-rc5-v3-2-b80d2cb41232@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,51 +62,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250806150521.2174797-8-laurentiu.palcu@oss.nxp.com>
+In-Reply-To: <20250807-tlv493d-sensor-v6_16-rc5-v3-2-b80d2cb41232@gmail.com>
 
-On Wed, Aug 06, 2025 at 06:05:14PM +0300, Laurentiu Palcu wrote:
-> Add display controller and LDB support in imx943.
+On Thu, Aug 07, 2025 at 08:26:36AM +0530, Dixit Parmar wrote:
+> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+> controlled by I2C interface. Main applications includes joysticks, control
+> elements (white goods, multifunction knops), or electric meters (anti-
+> tampering).
+> Drop duplicate entry for infineon,tlv493d from trivial-devices.yaml as
+> its documented in this seperate dt-binding file now.
+
+Typo, separate
+
 > 
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx943.dtsi | 55 ++++++++++++++++++++++-
->  1 file changed, 54 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx943.dtsi b/arch/arm64/boot/dts/freescale/imx943.dtsi
-> index 657c81b6016f2..70dec03c5608e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx943.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx943.dtsi
-> @@ -148,7 +148,7 @@ l3_cache: l3-cache {
->  		};
->  	};
->  
-> -	clock-ldb-pll-div7 {
-> +	clock_ldb_pll_div7: clock-ldb-pll-div7 {
->  		compatible = "fixed-factor-clock";
->  		#clock-cells = <0>;
->  		clocks = <&scmi_clk IMX94_CLK_LDBPLL>;
-> @@ -174,9 +174,62 @@ dispmix_csr: syscon@4b010000 {
->  		lvds_csr: syscon@4b0c0000 {
->  			compatible = "nxp,imx94-lvds-csr", "syscon";
->  			reg = <0x0 0x4b0c0000 0x0 0x10000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
->  			clocks = <&scmi_clk IMX94_CLK_DISPAPB>;
->  			#clock-cells = <1>;
->  			power-domains = <&scmi_devpd IMX94_PD_DISPLAY>;
-> +
-> +			ldb: ldb@4 {
-> +				compatible = "fsl,imx94-ldb";
-> +				reg = <0x4 0x4>, <0x8 0x4>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
 
-Why? There are no children with addressing. You never tested it because
-this would easily be flagged by tools.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> +				reg-names = "ldb", "lvds";
+<form letter>
+This is an automated instruction, just in case, because many review
+tags are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
 
-Follow DTS coding style.
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
+However, there's no need to repost patches *only* to add the tags. The
+upstream maintainer will do that for tags received on the version they
+apply.
+
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+</form letter>
 
 Best regards,
 Krzysztof
