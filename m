@@ -1,101 +1,117 @@
-Return-Path: <devicetree+bounces-202357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6A7DB1D2C0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:58:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B848B1D2D7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C1F416180C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 06:58:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E3C83AAA71
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FDE2221F26;
-	Thu,  7 Aug 2025 06:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LP3KnmTs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFDF22A7E0;
+	Thu,  7 Aug 2025 07:00:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E67C4A06;
-	Thu,  7 Aug 2025 06:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D74522A4D5;
+	Thu,  7 Aug 2025 07:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754549894; cv=none; b=PSVErpeSzVqNSCvIJ+PUMY+CrEzYQrYfrKVEoBGSdZYYE2pFTW2OPSuOwrDmsaWHm0eGX1h60h2o0/6ujUMI1K/ddSdPniEMgIgC/V4Sw+nszIE360/LWxG64FZkhZxtX9CAdvieXmdN3fv7gPyfYjPoVVJ4I9CtXcAa2v1a5Tw=
+	t=1754550048; cv=none; b=n5DUNavKJIXMmde9phPaPB5sdomsn1eE4mfIjAW9vQ4j90X14/snfSNHxXiiDxztgx533MfBT0au5I2jB4MLau6TD2ZzJzKa57DaQEmL9rFWXn1zDjjukpztLAbHG5IqtmyUdkMkOqxRSTRSCxqqJBnDLSnNqUuaYJjWYNhyGhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754549894; c=relaxed/simple;
-	bh=4Lbxqf6/CNfYbxwExDCoo3uJIOj0YFPbDWdDOOzBd+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tfi2vGCA37Yvv7mCBYq2TgzWXTodWwnYJLpsv36Mc2ldcipfutH90peOUcnyr2s8X/7oPvhQPLbeAgx7Q0n+rRuiXRexuJUZdoQUfEjijorPp65M0ZSeqiCaHrMwtP+vsCm+Pmb1YSON3jGPi7O1XKtrREY7fk0EHL69+AnpIYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LP3KnmTs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 295B2C4CEED;
-	Thu,  7 Aug 2025 06:58:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754549893;
-	bh=4Lbxqf6/CNfYbxwExDCoo3uJIOj0YFPbDWdDOOzBd+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LP3KnmTsJ4qGJUkalbyFcJijelz6GMzVGQpnWnmLXSurp7VH0OhgS8lu531eKvWYq
-	 VslWvZqel4mtXyc864qUuHh63fHF6GYmgl8qQDjOB5GTsrsP8BndJ6JRc2yLli3Tih
-	 k6lJZHVZVW6zcZ4gi3s86ADgfInhNM27RINr2UcX5wByJbgyaNB4wYbie3EEISfN8P
-	 uRE//alEFxenHMiFBR2g/YQs95fDhEsJ8vPT1SjXtrXHOUS8IYA3O1tLXYhInEmF1/
-	 7iomM0GXm+ou4Lp/6u4PZZUYkJThMmPsIn6qaY/PC6+CmdSTLqyNq12WKlrRncrLJB
-	 6RNKYRG3Rhw9g==
-Date: Thu, 7 Aug 2025 08:58:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, richardcochran@gmail.com, 
-	guangjie.song@mediatek.com, wenst@chromium.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	kernel@collabora.com, 
-	=?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>
-Subject: Re: [PATCH v4 09/27] dt-bindings: clock: mediatek: Describe MT8196
- clock controllers
-Message-ID: <20250807-smoky-mature-eagle-a0feae@kuoka>
-References: <20250805135447.149231-1-laura.nao@collabora.com>
- <20250805135447.149231-10-laura.nao@collabora.com>
+	s=arc-20240116; t=1754550048; c=relaxed/simple;
+	bh=mTaw/yCTCLjJ/AtFs46IhzJ6KWZ7VLMNFqKOSJjPiMc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=p6C93gZoEQnDZkS9M1yN5IAner9crLrJbg9lY+Tl+Su4znGon+xHhz2djlRomWOdlb1n1mXiETXJ6YZzCO563p0TKB2nemC3jVbkS+vlBcoI3MYr3ZYBgfcEIGFu/QPfIiZKoqmbelNpp/pVqVauUvVb7c+fYqpfIVoTut1F3UQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.212.7])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1e99a9ce4;
+	Thu, 7 Aug 2025 15:00:41 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: amadeus@jmu.edu.cn,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	kishon@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org,
+	vkoul@kernel.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH 07/11] arm64: dts: rockchip: Add USB nodes for RK3528
+Date: Thu,  7 Aug 2025 15:00:35 +0800
+Message-Id: <20250807070035.486388-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <94357eb2-d8aa-4928-8816-9f6529530170@kwiboo.se>
+References: <94357eb2-d8aa-4928-8816-9f6529530170@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250805135447.149231-10-laura.nao@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a988354f95403a2kunmaaa1b00034bd94
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTEpNVkhDTU5MSUNCS0MaHlYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVMWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
+	tLWQY+
 
-On Tue, Aug 05, 2025 at 03:54:29PM +0200, Laura Nao wrote:
-> Introduce binding documentation for system clocks, functional clocks,
-> and PEXTP0/1 and UFS reset controllers on MediaTek MT8196.
->=20
-> This binding also includes a handle to the hardware voter, a
-> fixed-function MCU designed to aggregate votes from the application
-> processor and other remote processors to manage clocks and power
-> domains.
->=20
-> The HWV on MT8196/MT6991 is incomplete and requires software to manually
-> enable power supplies, parent clocks, and FENC, as well as write to both
-> the HWV MMIO and the controller registers.
-> Because of these constraints, the HWV cannot be modeled using generic
-> clock, power domain, or interconnect APIs. Instead, a custom phandle is
-> exceptionally used to provide direct, syscon-like register access to
-> drivers.
->=20
-> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> ---
+Hi,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> That is what I did for ROCK 2A testing I added the usb3-phy to the board
+> dts. Mostly for two reasons, first because I did not want to make this
+> series fully depend on the naneng-combphy series. And secondly because
+> the ROCK 2A also have some sort of GPIO controlled mux for USB3 and PCIe
+> signals that may affect how usb3 support is described in the device tree.
 
-Best regards,
-Krzysztof
+I tested this on a rk3528 board (usb3 only) with a usb hub:
+
+~# lsusb -t
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=[unknown], Driver=hub/4p, 480M
+/:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+    |__ Port 001: Dev 002, If 0, Class=[unknown], Driver=hub/4p, 5000M
+        |__ Port 002: Dev 003, If 0, Class=[unknown], Driver=usb-storage, 5000M
+/:  Bus 003.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+/:  Bus 004.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+
+> I am open to ideas on how or what default phys to include in soc dtsi.
+
+I have no problem with this, either is fine.
+
+> > Maybe "snps,dis_u2_susphy_quirk" is needed?
+>
+> Maybe, it did not seem to be needed when I tested USB2.0 only or USB3.0,
+> will run some more tests on my boards.
+>
+> Any issues you know that snps,dis_u2_susphy_quirk would help fix?
+
+This appears to be to allow the DWC3 core to reliably detect the Vbus
+status of the connected PHY. Not sure if this is really needed.
+
+> From what I could see these nodes are named u2phy for 8 other Rockchip
+> SoCs and only named usb2phy for 3. So I went with what the majority seem
+> to be calling them.
+
+The name u2phy comes from the downstream BSP, and I think it doesn't hurt
+to call it usb2phy.
+
+Thanks,
+Chukun
+
+--
+2.25.1
+
 
 
