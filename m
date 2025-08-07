@@ -1,48 +1,83 @@
-Return-Path: <devicetree+bounces-202380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B57EB1D41F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:13:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A727CB1D42C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:16:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CB221899B8F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:14:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DB0E17DB1B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:16:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD2324A061;
-	Thu,  7 Aug 2025 08:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8308723BCF8;
+	Thu,  7 Aug 2025 08:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ITYlz7R1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J+mYe0eb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52794246BB7;
-	Thu,  7 Aug 2025 08:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0192505AF
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 08:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754554393; cv=none; b=FYDSyMUcTFjxHFk/3gCDesxWsGvBT4JQtJIL1OR+smVjzGLdV19wqAsoA49cHYbJmTMTH368Sr3vsPFGXz8U4fphOJsTUfse4KPZn7qxhoy5OysW8MT2dUPB1CXhBFWfLTKHmpyjc0FeEGR+gAzr/2no8B8eO1G+j2k7BD9+9/k=
+	t=1754554609; cv=none; b=INfu6TVn/z67+xnjPvs0oKQlUZ+MY+h9TK+sY1gVnpVOs+wecphwlC1PGW0BTIgptfUu7n24AT02FNaBYSF3U8+ojH5w3Mv/rw/kFOO2pCqXadjXatYEQ2cfrk3svZy/HazDb/o9Jum573hVoBUerPYLJgDTuvI94Tm0EN72DUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754554393; c=relaxed/simple;
-	bh=A51/Rqu8ChKnnqJyQB7GXr9rO6OuMmU/1Y4g1/PZF04=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u9mnCRQrX8X68C6N26hAQ/DckdTWPQL+3m9FFOMbe/ONJ0CNyw8K5A1Von5IlL3KN23QZ60vfnkIQ+boaK8yJVe8KpLPqhXBUvif9BI4hf4YbtJE95FOoUDEZaOq7yJyZ6FISgyrcKE6TmTKHEth58YzlnvOpDj0edVmI+iFFfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ITYlz7R1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC76EC4CEEB;
-	Thu,  7 Aug 2025 08:13:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754554392;
-	bh=A51/Rqu8ChKnnqJyQB7GXr9rO6OuMmU/1Y4g1/PZF04=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ITYlz7R1JNbfGV+hsFTvC+oIYHKQTKsVcN+CTSh231gRIlqYG7zlqdaZkU46+XC5/
-	 AfGpzWy+HLENLFPMgn19axIxHCk6pauDPkETYiyXBJD5QtZxjpocTcC50aeWEhbyWr
-	 UZhTIDhx7W3Azi2r1i9jymX+MjRIaMhQky41LiYRPO6tjA9iSlHUoe2OHoDX+jQcq8
-	 I0Sfb+6VmL4E260BtVsdY94BDqSoI7oeQ6hsy0xqi2rVvkgdUIRePmFTEcvymHKMsc
-	 gik6yBvAtLWDkeXMekyC/ZFJRwVtw5sSm5t5LSAKEbcx9E7SQm4eE/H+zfv6RHXe5S
-	 WH2YDY1K8d7cA==
-Message-ID: <24a5ac33-945b-4861-ac0b-94eaa647e893@kernel.org>
-Date: Thu, 7 Aug 2025 10:13:07 +0200
+	s=arc-20240116; t=1754554609; c=relaxed/simple;
+	bh=nvSsWiWlahEL/YIHHQEs+kyFmfgMPh33og87qelaI0g=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Ln7M64H7HxMepd5Tq+C9bxYZC3JxihDD5lf5mviEhDeaFc/Q32CpEp/LqTC1hrZaycL10ALCCqJ+d4XJkh5l9vwD2XklMPBmANyJRHoPzR/cEK0vdFnlrF1gkP58aCnKuZm5jtH87moXRNL85Hr20iIz0hTR23oFA0Hn99JxV50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J+mYe0eb; arc=none smtp.client-ip=209.85.128.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-4589b3e3820so7431705e9.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 01:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754554606; x=1755159406; darn=vger.kernel.org;
+        h=content-transfer-encoding:organization:autocrypt:in-reply-to
+         :content-language:references:cc:to:reply-to:subject:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H5IyuxQqHejRxrIntChIgL7/V1gkWqVgKsSi/w4O9eY=;
+        b=J+mYe0ebcAcOnuOXQzbq4FAVnQFtnkRvoULu6csrPVbyxfjCwiBgKxKo3GI/MYhdFA
+         +9j87UbBoTAyHHgURt5A/UGMltcZ0dLsv+TUfx9HlgHm5KKg+sBzcKfnOIF+OavDVUWo
+         BwFdJTOTadHQILIQG9vOnHFfr8WunsTiTqjea6RthEpEO0MPjmfSQgpqzV0wtjBnNmXw
+         mKp9UrSkpugdefLrpeN3s9hGpVJeDBqsGslkJ9RziHK71Tiz1GVFJO2US6vNJGzAV/Hh
+         0KizfqpgeqJfJc6v0b5Z0iqYgmgpvV2NR2TBB97uLfZJpqDWYN2oLa74PiDCRzZuTwmO
+         MZRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754554606; x=1755159406;
+        h=content-transfer-encoding:organization:autocrypt:in-reply-to
+         :content-language:references:cc:to:reply-to:subject:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=H5IyuxQqHejRxrIntChIgL7/V1gkWqVgKsSi/w4O9eY=;
+        b=i9E29NPNQKFi+Zv+ngkZ+/Pd0b+s3/fFiO81yjKA2VHlvHmGPo/lhGG2ext4YqC1mI
+         G1i4JCI8UgvUZV4YAlBbveXPusTzKTRo3uqQTtmRP0tJIryAi5qbZhyS+sONCLdgZxJu
+         q5wqRw37nJZ2Gnxoa17NmFUEtz8uodJ3G/kld5tuDAmzuvQfHHyzFvY/LYcHBrF9Km7E
+         /RK9gbbfOeeMroKw0q4xa6upV1e50xzQJ3iLBdqrpTWVT8sBsPrZvGWwd+uqmM78KpPi
+         5f83l+xMAlJ38sRYrx0fMMX/5TosyPI7FceXn5apiDqislX4bMPzQLSOF50givyuPBzi
+         pnuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWXEjBKIFcXWZQImyQ6NUvFgJsbfIRygBLSKgxhl18/7D/S6ELZmV79zce8nqr8ErgVub4ujd7G24Bz@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywt6BZSe+HPDlxrlN76cAjqYaQLyYX+R4UsUiMdSuIs8pQjbS1k
+	f33QsQ7z8OrF06jencdbulptjsbX8iK5czygbuhz6q9uIJc/fPnXrY5hSBbncaYZe8w=
+X-Gm-Gg: ASbGncto6W2Puf7Qw9ob2cxJNVOeAtUpU+R0+m9wS6B+sKvsjDuLlqvtkNlpdcMn+cc
+	E2bN1lTN3Zl9RuzqLnegETcT47kizR3Cw946EZqHV7Ubp/Wd+SNr4Qs+afGQQW3EtcYL/sWXwDv
+	TuagOn5mp9F2IJC+0SCIyA5hEO8UBLnZAC1u9+xleRDskkJq4UNW+9YTmQAoLHFlsb/TGvPpFbW
+	VC6FSU/zfQ+z9uQh9mz/saauzwbnLGD1R6bGfaTFwQ/0Evg/dugeCE/XG2sQlyX+E2M6LUoOxxB
+	ca9Rl6Ji+I2iwDkUUo6+C5VxLXWEBGCulmku43nQ6ovtO25rdkaLxm+Qg+DYKxM+Umua1+rstkF
+	SUHov975f4zQxA7WHOrSTBuc5lsQVZlRU1W+XGlppE6Df+l1arwcxQlY6hCM7WXT0/pP+x0RYKX
+	Q=
+X-Google-Smtp-Source: AGHT+IE0JSDUhtZYJf+1hlq6gbKvK3R+qgk4DROtTWG7rlJ5CNJyG/EJ5m/YoUjrHW3xfQaY3SXBaA==
+X-Received: by 2002:a05:600c:4586:b0:459:dfa8:b881 with SMTP id 5b1f17b1804b1-459e7078e62mr51416305e9.7.1754554605785;
+        Thu, 07 Aug 2025 01:16:45 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5bf9:b40c:d741:ea95? ([2a01:e0a:3d9:2080:5bf9:b40c:d741:ea95])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459db13fc9fsm154959135e9.7.2025.08.07.01.16.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Aug 2025 01:16:45 -0700 (PDT)
+Message-ID: <c2f2ba36-1a25-450e-99b9-79aa4fd4913d@linaro.org>
+Date: Thu, 7 Aug 2025 10:16:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,93 +85,203 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
-To: Iker Pedrosa <ikerpedrosam@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Martinez Canillas <javierm@redhat.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
- <20250806-st7920-v1-3-64ab5a34f9a0@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250806-st7920-v1-3-64ab5a34f9a0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>
+References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
+ <styd5gjksbsqt7efylpfn6bgwgyvt6zexxiooihjsnmp25yigp@unq7dor6gso2>
+ <447c3b13-8d6d-4bcb-83c1-9456b915a77e@oss.qualcomm.com>
+ <inpfuxskvmrebxitqtqwzvpnpicibo6zakgk4ujpcrqrpef2vw@nhclj5rg7axr>
+ <9037fefe-aa40-4884-97ee-b81ff8346944@oss.qualcomm.com>
+ <htufwjvfgdtav2gtgrytc356py6xqhrffbwjg42sgo7k4zzxof@z4xaf35qz7kq>
+ <aa17d7d4-b77d-4a0a-88c3-86255dfbc29d@oss.qualcomm.com>
+ <75dde9a2-3c0d-481b-bc73-089ba89a77e0@linaro.org>
+ <71196aad-6d80-4356-bbe5-3070f6b74bfe@oss.qualcomm.com>
+ <fhzdhzxdwcoiuhx2eogpshwt5cxagjkrygrefqikmfbx3cfcov@awmhgrvurnfi>
+ <f21b7d52-4c3f-4e5b-bee7-f8b2945b5b02@oss.qualcomm.com>
+Content-Language: en-US, fr
+In-Reply-To: <f21b7d52-4c3f-4e5b-bee7-f8b2945b5b02@oss.qualcomm.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 06/08/2025 14:48, Iker Pedrosa wrote:
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-
-Missing commit msg or just squash it with patch #2.
-
-> ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+On 06/08/2025 17:48, Konrad Dybcio wrote:
+> On 6/3/25 3:17 PM, Dmitry Baryshkov wrote:
+>> On Tue, Jun 03, 2025 at 01:03:11PM +0200, Konrad Dybcio wrote:
+>>> On 6/2/25 10:55 AM, Neil Armstrong wrote:
+>>>> On 28/05/2025 18:56, Konrad Dybcio wrote:
+>>>>> On 5/28/25 1:22 PM, Dmitry Baryshkov wrote:
+>>>>>> On Wed, May 28, 2025 at 01:13:26PM +0200, Konrad Dybcio wrote:
+>>>>>>> On 5/28/25 11:00 AM, Dmitry Baryshkov wrote:
+>>>>>>>> On Wed, May 28, 2025 at 12:24:02AM +0200, Konrad Dybcio wrote:
+>>>>>>>>> On 5/27/25 11:10 PM, Dmitry Baryshkov wrote:
+>>>>>>>>>> On Tue, May 27, 2025 at 10:40:02PM +0200, Konrad Dybcio wrote:
+>>>>>>>>>>> Register a typec mux in order to change the PHY mode on the Type-C
+>>>>>>>>>>> mux events depending on the mode and the svid when in Altmode setup.
+>>>>>>>>>>>
+>>>>>>>>>>> The DisplayPort phy should be left enabled if is still powered on
+>>>>>>>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>>>>>>>>>>> PHY is not powered off.
+>>>>>>>>>>
+>>>>>>>>>> This series doesn't seem to solve the USB side of a problem. When the
+>>>>>>>>>> PHY is being switch to the 4-lane mode, USB controller looses PIPE
+>>>>>>>>>> clock, so it needs to be switched to the USB-2 mode.
+>>>>>>>>>
+>>>>>>>>> I didn't find issues with that on X13s.. Not sure if it's related, but
+>>>>>>>>> on the SL7, after plugging in a 4ln DP connection, I need to plug in
+>>>>>>>>> the USB thumb drive twice for the first time (only in that sequence)
+>>>>>>>>
+>>>>>>>> Might be.
+>>>>>>>>
+>>>>>>>>> But there's nothing interesting in dmesg and the phy seems to be
+>>>>>>>>> programmed with the same values on both the initial and the subsequent
+>>>>>>>>> working plug-in
+>>>>>>>>
+>>>>>>>> Please try using a DP dongle with USB 2 passthrough (there are some).
+>>>>>>>> Or just emulate this by enabling DP PHY / DP chain for plugged in USB3
+>>>>>>>> devices. Would you be able to see the USB device on a bus?
+>>>>>>>
+>>>>>>> I only have a dongle with both display and usb that does 2ln dp
+>>>>>>> (I tested 4ln dp on a type-c display that I don't think has a hub)
+>>>>>>>
+>>>>>>> USB3 - yes, USB2 - no (but it works after a replug)
+>>>>>>>
+>>>>>>> Are you talking about essentially doing qcom,select-utmi-as-pipe-clk
+>>>>>>> at runtime?
+>>>>>>
+>>>>>> I think so.
+>>>>>
+>>>>> So after quite some time playing with that, I noticed that the USB2
+>>>>> device was never actually kicked off the bus.. and works totally fine
+>>>>> after connecting the display output (2ln DP)
+>>>>>
+>>>>> I was looking at dmesg, checking for discovery/disconnect messages,
+>>>>> but the device was simply never disconnected (which makes sense given
+>>>>> repurposing USB3 TX/RX lanes doesn't affect the D+/D- of USB2)
+>>>>>
+>>>>> I also read some docs and learnt that what we call
+>>>>> qcom,select-utmi-as-pipe-clk is suppossed to be a debug feature
+>>>>> and is unnecessary to set on USB2.0-only controllers
+>>>>>
+>>>>> The USB controller programming guide though doesn't talk about DP,
+>>>>> but I'd expect that we may need to set that override for 4lnDP+USB2
+>>>>> use cases (which I don't have a dongle for)
+>>>>
+>>>> Yeah basically we need to:
+>>>> 1) power-off the USB3 PHY
+>>>> 2) switch to UTMI clock
+>>>>
+>>>> In the following states:
+>>>> - USB safe mode (USB2 lanes may still be connected)
+>>>> - 4lanes DP mode
+>>>> - DP-only mode
+>>>>
+>>>> But for this, the dwc3 should also get USB-C events with an addition mode-switch property.
+>>>> The flatten DWC3 node now allows that !
+>>>
+>>> Yeah, I got even more confirmation this is intended..
+>>>
+>>> I hacked up something that boils down to:
+>>>
+>>> diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
+>>> index 7977860932b1..e5a0a8ec624d 100644
+>>> --- a/drivers/usb/dwc3/drd.c
+>>> +++ b/drivers/usb/dwc3/drd.c
+>>> @@ -464,6 +464,11 @@ static int dwc3_usb_role_switch_set(struct usb_role_switch *sw,
+>>>   		break;
+>>>   	}
+>>>   
+>>> +	if (dwc->mode_fn)
+>>> +		dwc->mode_fn(dwc, mode);
+>>>
+>>> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+>>> index 7334de85ad10..ea56f5087ecb 100644
+>>> --- a/drivers/usb/dwc3/dwc3-qcom.c
+>>> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+>>> +static void mode_fn(struct dwc3 *dwc, enum usb_role role)
+>>> +{
+>>> +	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
+>>> +
+>>> +	if (dwc->usb3_generic_phy[0])
+>>> +		dwc3_qcom_select_utmi_clk(qcom, role == USB_ROLE_NONE);
+>>
+>> This part is a hack for devices with no USB-2 passthrough, isn't it?
+>>
+>>>   }
+>>>
+>>>
+>>> It was easy to tap into because there's already mode switch handling..
+>>> But obviously it's a hack - should I register a typec_mux in there?
+>>
+>> I think so, we should listen to mode changes, instead of host/device
+>> changes.
+>>
+>>> Should it go to dwc3-common or dwc3-qcom?
+>>
+>> I'd say, dwc3-qcom. Not all dwc3 controllers are USB 3 capable, not
+>> talking about the USB-C.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->  F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
->  F:	drivers/gpu/drm/sitronix/st7735r.c
->  
-> +DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-> +M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-> +S:	Maintained
-> +T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+> I did some coding and we can't switch clock sources at runtime (not a
+> huge shocker), but the bigger issue is that, paraphrasing the HPG, the
+> DWC3 controller must be programmed as if it was not SS-capable (probably
+> skipping starting some subcores), which is not trivial
+> 
+> I also came up with a sneaky workaround of simply keeping the USB PLL
+> always-on, but the hardware disagrees to do so if the PHY is configured
+> in the DP_ONLY mode (which I suppose makes sense)
+> 
+> All in all, I was not able to find people with a device that actually
+> does 4ln DP + USB2 and IIUC the only drawback would be that USB2 would
+> not work (and not stall the system). Not sure if/how it recovers after
+> you'd plug something else into that port later on, but again, I don't
+> have anyone that could test it.
+> 
+> With that in mind, would you be okay with me resubmitting this series
+> with just a rebase & taking care of the comment to patch 5 (pertaining
+> to the default mode setting if svid != DP)?
+
+Sure please do so, and I'll retest on the SM8550 & SM8650 platforms.
+
+Thanks for looking !
+Neil
+
+> 
+> Konrad
 
 
-Drop, unless you have commit rights there. Parent entry already covers
-this, doesn't it?
-
-Best regards,
-Krzysztof
 
