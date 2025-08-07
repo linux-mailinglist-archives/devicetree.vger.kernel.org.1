@@ -1,187 +1,211 @@
-Return-Path: <devicetree+bounces-202444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB8AB1D7E1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:31:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D50B1D84F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AC9018A1D48
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:31:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 453D1188C71C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFBC26290;
-	Thu,  7 Aug 2025 12:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243B6255F2D;
+	Thu,  7 Aug 2025 12:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gzcdR1LM"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="riD+zuYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5B24A0A;
-	Thu,  7 Aug 2025 12:31:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EBB254B1B
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 12:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754569877; cv=none; b=Wd6LHUzw8xR9Q17rOaXzO/4e6g11+/zqwoTots+Gq+tkwDmYSmhz3xmZMkD3j13Chp+QZyo2CQiqPh/TFAcCB6Ji0RkyYf7N4mKMoHcInNYRj1997+b32yZ3memGNaiOl1B8GSlr+BJ5FuAfK8HTCGVqhO0rFe3+0luY5zrv4Yc=
+	t=1754571252; cv=none; b=sDWAaenPdlGWlEDO0usEc/XPXn9JgV0C9lfrQSmVAIRki71uKmlIxA6oit47XMw7LmoPdddwYwsgJWka2am5SYFAD4X5erncLun8LYvcvlqI6AZXTqwBrm2m1+fhRSjVAgqNCZpaMnDzLdv1TBbaUnDpF+n2o4e+mp8NefbcUUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754569877; c=relaxed/simple;
-	bh=1UeunbsNm3H6NZWYFoXSQI5UObs2SKNxCJQGZqsfbGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RPyiiHAm/nn2tZh92glKDGF+Cco5Ve0BXR4wyqMozvppjS9s8wwxNBRy7uf7qaK9eJFhXy121hhbqO5J3hkjDWg4SKEUYjNQMVM0R107J7XiLOYoH3DfeIBuYvdHEfD17svOy7z5ta4Ttwb9hj6+xASVLrvpWLHRTmSFlRdPJuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gzcdR1LM; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-61571192c3aso1185192a12.2;
-        Thu, 07 Aug 2025 05:31:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754569874; x=1755174674; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/LclELrM2SPH3nt2lTqDvMka2Ew8PsvYc5UKtsfndag=;
-        b=gzcdR1LMAvL8sOWbWhZrxtP63JfJtJsvi4GILaobHMmzV65EK4BbZhixO5636mXrAw
-         qNN0k7EbAUOGPXCf47UDoWWOeahqcwG2+FpcRKtcn1331SGbwpEn5oj+noi0aQpLoEtL
-         VBvPBt0WumMQnDhPk2ag9delU8ba1exr5sotM6dPMwr6L3DP59r/w3hyUd4b13jUSa8r
-         0En9UmWygtadBzHkdS2ERwd8y83W//+xqhBBnYROynUH1YJ6Z4eqqt6WToP9sUzrTozM
-         P29TntfEgvZL8EDIA/6dSgx1D8tLzsYbWJyEq6ADcBHlNj3450TJ7PU2IvS0kklLgbLk
-         GLjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754569874; x=1755174674;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LclELrM2SPH3nt2lTqDvMka2Ew8PsvYc5UKtsfndag=;
-        b=i8OX/trV6RJ+i86VmK105Gap7POSvqcds4QhKrULjSSNdo8GOC6/9z2g4F8/4rbiiJ
-         TMIGgu1vglBHPAn+OgY5ZraIlVkUpxaROyr/GfRNUiIFqkIhDUKSjPbQYaa3aSXspsRE
-         axc5ORKHQtjhmdNvgP3w36twHXh2YA1ubS678dfjweiHlLueU91Z0dhCO0nxpXObKI3B
-         f+MVw5W0oTnA1y2wy0Jk3wqZdnIZLQI5kc/7PFSoLLR5R1FXhBvv/MzHAyS5aGeTEXEq
-         pKnuKeC2BYazwAxKA6OE+eyys0LN+Fcl69CQdYq7fu/8eRbsOhR7FHflijLa7duyy/MF
-         kv1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUDkXFbL+V47SsLENPPtywSEg1Ef0BzTFBVdJ9+s3mi3ksUFDGEGSs8SvY7jiO9Tg2uffgHQZRHIpQT@vger.kernel.org, AJvYcCWjyto8Pl0Ul2+ks41rpbJqY4yNBBOXnyDiOP9gxN1V8wqG3BAHYXSICMNGV+kgbpxa37MIdyROy6zo@vger.kernel.org, AJvYcCXSE7n9tp5268PEH1ZegNWA8Cfzc+UHjRu8RCNnPGikVzA6HKuRAeyTTyd/DbXh/qLp+PGW+G5WKqvswlZL@vger.kernel.org
-X-Gm-Message-State: AOJu0YypL4f5XKJxfvRya1f1Ftkl9r0HQAgZgyu0a7mSfe87d6F+qUm5
-	Yh5tUhCmx0lt9Bj+o2JL6/Z02TmrSJ250Fj+UPYbgoafFVIBurF7AOKx
-X-Gm-Gg: ASbGnctuwDuw8rvlPlE5rrxXn8wv8NbykEt7sC0kfdQ1KQmMLOiWAK05qn96u3EHa6V
-	27h/aqe9xgA0N9tUmPRY443gMTIv0KUPqg1xFu4HDPdxn6xG+mnBmkCjwlJzrOhe5/QSdGwcQ+2
-	Hl6ytFBAA22qUg0GqGm+mEUovgCruYZP4ReGfxXtEERbVTE/LH8w8xFOT/yCDDm5nrvYPIuA5jH
-	1V2+N78F9zZLpbhsSVU1jBvkVd5sWUTFGIU+YmNHzsRV7rT4ERlRQIU8auQX14j93iyBf4+TFzL
-	SDx6ZTIID1OlTsiGBfr1nNZJ+f4c72JiY3YvIo+4bqDjUKvesEjXLOY1qaJoRQeHezr+C3/iNh6
-	37HPqMnqHPJA=
-X-Google-Smtp-Source: AGHT+IGAhxVVkCTaCyoJrxrCIohxaqzXqSvGlz/ZaiVjLTl9Dk7WwS8lDL2sFAwcEcteMWPGvy4sWg==
-X-Received: by 2002:a17:907:9409:b0:af6:361a:eac0 with SMTP id a640c23a62f3a-af992b4c219mr543952766b.32.1754569873554;
-        Thu, 07 Aug 2025 05:31:13 -0700 (PDT)
-Received: from nsa ([185.128.9.33])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a39c4sm1306188066b.43.2025.08.07.05.31.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Aug 2025 05:31:13 -0700 (PDT)
-Date: Thu, 7 Aug 2025 13:31:29 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] iio: adc: ad7476: Use mV for internal reference
-Message-ID: <qxgzakplhavmxk5ri6yghm3fkq33cbneclqrbwdlyviyzcadmx@cilvs5lb7kwp>
-References: <cover.1754559149.git.mazziesaccount@gmail.com>
- <415c4c8f8301395aee2a85d071722fd6bcb488ec.1754559149.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1754571252; c=relaxed/simple;
+	bh=LjldSkJQMPE8uHzTH3tzxcJpt8WEj+V3/bsFC4+mGW4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=a15kJtiYB7/2qM5jAGwx3QUoPaM/nfAgA8ID7L650AcXgb+kvo1nyS7KXEgeaRDz7RUkcy15OGAgMDA4cfzIxeGW6AQThWcqkCSje79OxwyMjWwK+fuFPOEc3+D2CulT6XIggDoqt+lyG94izq1zEli5950x1QzhaRkJTol+Gb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=riD+zuYP; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250807125408epoutp039387dd4c1505819ddfe92c6bc5694b18~ZfUEKuAZY2177621776epoutp038
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 12:54:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250807125408epoutp039387dd4c1505819ddfe92c6bc5694b18~ZfUEKuAZY2177621776epoutp038
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754571248;
+	bh=I7mb2jIbUh0JiJnEyqZvPWnQq89a45lYPc+Vw9PnUkQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=riD+zuYPQ8FMAYHqyVWVoIVckw9fUxPWmsqyJwBu/tNFxfbZREjBb53BTrmH+zd7+
+	 EYcYJGpUCHNTJwHb4vptQSPFciJ0cQNSHHwCLhm8xrUcoA8gizupYYN6K3niUNa2aU
+	 8iL/ZXvA6Rg9huEgoHaxiUpuC8Lj0ufXAsbvvMQ8=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250807125407epcas5p35e4cd40e01599ed1499d270c002fba5e~ZfUDKUl9m0574505745epcas5p3v;
+	Thu,  7 Aug 2025 12:54:07 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.89]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4byRtj5Pnyz6B9m4; Thu,  7 Aug
+	2025 12:54:05 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250807123301epcas5p1a3fbda824228f6723950c0207141e282~ZfBoRl6Kc1848318483epcas5p1q;
+	Thu,  7 Aug 2025 12:33:01 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250807123258epsmtip17d549f336ff5d3b7aad36c60d56f06ae~ZfBleqNA-0496104961epsmtip1Q;
+	Thu,  7 Aug 2025 12:32:58 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Rob Herring'" <robh@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <20250806234309.GA2032999-robh@kernel.org>
+Subject: RE: [PATCH v5 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 combo ssphy
+Date: Thu, 7 Aug 2025 18:02:57 +0530
+Message-ID: <000101dc0797$69cb0080$3d610180$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <415c4c8f8301395aee2a85d071722fd6bcb488ec.1754559149.git.mazziesaccount@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJ+ZgWj3OwstM5ZbwFL0KmcSzrOlQD+pBMSAdNyF8MCWOIs27LpCJrA
+Content-Language: en-in
+X-CMS-MailID: 20250807123301epcas5p1a3fbda824228f6723950c0207141e282
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250805114320epcas5p3968288f8d01944d3d730b3094a7befe4
+References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+	<CGME20250805114320epcas5p3968288f8d01944d3d730b3094a7befe4@epcas5p3.samsung.com>
+	<20250805115216.3798121-6-pritam.sutar@samsung.com>
+	<20250806234309.GA2032999-robh@kernel.org>
 
-On Thu, Aug 07, 2025 at 12:34:18PM +0300, Matti Vaittinen wrote:
-> The ad7476 supports some ICs with an internal reference voltage. For
-> those ICs the reference voltage has been hard-coded as micro volts, but
-> the value which is later used in code needs to be milli volts. This
-> results the need to divide hard coded voltage by 1000 before using it.
+Hi Rob,
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 07 August 2025 05:13 AM
+> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> Cc: vkoul@kernel.org; kishon@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
+> peter.griffin@linaro.org; kauschluss@disroot.org;
+> ivo.ivanov.ivanov1@gmail.com; igor.belwon@mentallysanemainliners.org;
+> m.szyprowski@samsung.com; s.nawrocki@samsung.com; linux-
+> phy@lists.infradead.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; rosa.pila@samsung.com;
+> dev.tailor@samsung.com; faraz.ata@samsung.com;
+> muhammed.ali@samsung.com; selvarasu.g@samsung.com
+> Subject: Re: [PATCH v5 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+> ExynosAutov920 combo ssphy
 > 
-> Simplify code by changing the hard-coded voltage to millivolts and by
-> dropping the division.
+> On Tue, Aug 05, 2025 at 05:22:15PM +0530, Pritam Manohar Sutar wrote:
+> > This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
+> > compatible to the USB3.0 SS(5Gbps). It requires two clocks, named
+> > "phy" and "ref". The required supplies for USB3.1 are named as
+> > vdd075_usb30(0.75v), vdd18_usb30(1.8v).
+> >
+> > Add schemas for combo ssphy found on this SoC.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> > ---
+> >  .../bindings/phy/samsung,usb3-drd-phy.yaml    | 19
+> +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+> > index 4a84b5405cd2..7a71cff10fb5 100644
+> > --- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-
+> phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-
+> phy.yaml
+> > @@ -34,6 +34,7 @@ properties:
+> >        - samsung,exynos7870-usbdrd-phy
+> >        - samsung,exynos850-usbdrd-phy
+> >        - samsung,exynos990-usbdrd-phy
+> > +      - samsung,exynosautov920-usb31drd-combo-ssphy
+> >        - samsung,exynosautov920-usbdrd-combo-hsphy
+> >        - samsung,exynosautov920-usbdrd-phy
+> >
+> > @@ -118,6 +119,12 @@ properties:
+> >    vdd18-usb20-supply:
+> >      description: 1.8V power supply for the USB 2.0 phy.
+> >
+> > +  dvdd075-usb30-supply:
+> > +    description: 0.75V power supply for the USB 3.0 phy.
+> > +
+> > +  vdd18-usb30-supply:
+> > +    description: 1.8V power supply for the USB 3.0 phy.
+> > +
+> >  required:
+> >    - compatible
+> >    - clocks
+> > @@ -227,6 +234,7 @@ allOf:
+> >                - samsung,exynos7870-usbdrd-phy
+> >                - samsung,exynos850-usbdrd-phy
+> >                - samsung,exynos990-usbdrd-phy
+> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
+> >                - samsung,exynosautov920-usbdrd-combo-hsphy
+> >                - samsung,exynosautov920-usbdrd-phy
+> >      then:
+> > @@ -258,6 +266,17 @@ allOf:
+> >          - vdd18-usb20-supply
+> >          - vdd33-usb20-supply
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - samsung,exynosautov920-usb31drd-combo-ssphy
+> > +    then:
+> > +      required:
+> > +        - dvdd075-usb30-supply
+> > +        - vdd18-usb30-supply
 > 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
-> Revision history:
->  v1 => :
->  - No changes
-> ---
+> Similar issue here.
 
-Makes sense
+Will the suggested lines of the code in next version of the patch-set.
+Snippet will look as below.
 
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynosautov920-usb31drd-combo-ssphy
++    then:
++      required:
++        - dvdd075-usb30-supply
++        - vdd18-usb30-supply
++
++    else:
++      properties:
++        dvdd075-usb30-supply: false
++        vdd18-usb30-supply: false
 
->  drivers/iio/adc/ad7476.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
-> index f117aafd8fad..7b6d36999afc 100644
-> --- a/drivers/iio/adc/ad7476.c
-> +++ b/drivers/iio/adc/ad7476.c
-> @@ -27,7 +27,7 @@
->  struct ad7476_state;
->  
->  struct ad7476_chip_info {
-> -	unsigned int			int_vref_uv;
-> +	unsigned int			int_vref_mv;
->  	struct iio_chan_spec		channel[2];
->  	/* channels used when convst gpio is defined */
->  	struct iio_chan_spec		convst_channel[2];
-> @@ -172,7 +172,7 @@ static const struct ad7476_chip_info ad7091r_chip_info = {
->  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
->  	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
->  	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
-> -	.int_vref_uv = 2500000,
-> +	.int_vref_mv = 2500,
->  	.has_vref = true,
->  	.reset = ad7091_reset,
->  };
-> @@ -229,7 +229,7 @@ static const struct ad7476_chip_info ad7475_chip_info = {
->  static const struct ad7476_chip_info ad7495_chip_info = {
->  	.channel[0] = AD7476_CHAN(12),
->  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
-> -	.int_vref_uv = 2500000,
-> +	.int_vref_mv = 2500,
->  	.has_vdrive = true,
->  };
->  
-> @@ -295,7 +295,7 @@ static int ad7476_probe(struct spi_device *spi)
->  		return -ENODEV;
->  
->  	/* Use VCC for reference voltage if vref / internal vref aren't used */
-> -	if (!st->chip_info->int_vref_uv && !st->chip_info->has_vref) {
-> +	if (!st->chip_info->int_vref_mv && !st->chip_info->has_vref) {
->  		ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vcc");
->  		if (ret < 0)
->  			return ret;
-> @@ -310,7 +310,7 @@ static int ad7476_probe(struct spi_device *spi)
->  		ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vref");
->  		if (ret < 0) {
->  			/* Vref is optional if a device has an internal reference */
-> -			if (!st->chip_info->int_vref_uv || ret != -ENODEV)
-> +			if (!st->chip_info->int_vref_mv || ret != -ENODEV)
->  				return ret;
->  		} else {
->  			st->scale_mv = ret / 1000;
-> @@ -318,7 +318,7 @@ static int ad7476_probe(struct spi_device *spi)
->  	}
->  
->  	if (!st->scale_mv)
-> -		st->scale_mv = st->chip_info->int_vref_uv / 1000;
-> +		st->scale_mv = st->chip_info->int_vref_mv;
->  
->  	if (st->chip_info->has_vdrive) {
->  		ret = devm_regulator_get_enable(&spi->dev, "vdrive");
-> -- 
-> 2.50.1
-> 
+Thank you.
 
+Regards,
+Pritam
 
 
