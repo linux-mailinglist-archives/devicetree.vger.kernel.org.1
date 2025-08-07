@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-202492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 362C9B1DB6C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:13:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4E3B1DB8A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:20:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F45D1AA57BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:13:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6132316B010
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1204026D4E8;
-	Thu,  7 Aug 2025 16:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D18E26FD9F;
+	Thu,  7 Aug 2025 16:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kb8C12SR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iOEoXXJw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2A21940A1;
-	Thu,  7 Aug 2025 16:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F290926FA6A;
+	Thu,  7 Aug 2025 16:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754583200; cv=none; b=gwiWwVjnrR5/RaSE/Vfg28IZq4AtClj7tJO1XPiRsQ0eKVKe5Ihm6W246uMkAB6rZtOADKlbOe9x5BEJwb5zrQ/7a8A+0Q+f3wKwcBfuzIVTHYaNjkDGgPhOOkeuABwylOCUbqr5OgW8n/RI73+FZjYqAzpSEnl5+oEBllbFIZ0=
+	t=1754583598; cv=none; b=G4oB1zi+f5bEMwvJt1YimtjMabJM3/5E8GitDTOgFM9b45ZYf9wf6NlPlVk7Jk+Db6IPjAPSYzAIeYcjAtvLQ8x59QW2lKgkwhvJgawsNkKBFuc80URPJRgckmSWxDhCLHAPgMqEd8bOn1O4qOhsM0CYJi4S6gqyR2UCEENqyW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754583200; c=relaxed/simple;
-	bh=IQPqKFUBZOqlBbuHBV2txu01LxbimFRPE66N8YJtaCA=;
+	s=arc-20240116; t=1754583598; c=relaxed/simple;
+	bh=71l1WbPfSqzMfZQuYilf4vVUCeTfgFXR+IWoTWtgAZs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rjhipqpIhhonAjKqR/sptLOczlf+nG1Z0nUPUifgd0X8/wDLmdhEhkNK2SivcRxs7b3utKQ3LARUt8bR840ouZqAsyWhPTVyQOgSpbZUr0yg76KPGDjTZOntcMpQMxdEWtgNi/HLa4ZD+MMeP6z88RL/qicsBIe96ixZ15VcKAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kb8C12SR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4429FC4CEEB;
-	Thu,  7 Aug 2025 16:13:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z7tl7dV/TM+SOaAHLOKmoyc44Ng2NTc3OgO4ttr3LFC5pUGzAu9cRKWeLl5wQxp8FfV8qpODtR6dP/dAOu8WVtPfH6AJnIU+EZerqKuogCfRwpGxytfqYEufyN3n5ZxbkW//Otdxby7R5hE4M/K0FgtynaDZbREGZbl4sY40MUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iOEoXXJw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B145C4CEF6;
+	Thu,  7 Aug 2025 16:19:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754583196;
-	bh=IQPqKFUBZOqlBbuHBV2txu01LxbimFRPE66N8YJtaCA=;
+	s=k20201202; t=1754583597;
+	bh=71l1WbPfSqzMfZQuYilf4vVUCeTfgFXR+IWoTWtgAZs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kb8C12SRmA/TCjvwM17rooJf+h6BfX17To5G2qICOvSQ7rgY6iEy5iB2BdNO6I+wg
-	 QtiKQCPlMs2wxf0Fk0XeV8vRqHdGuzaPcWd98lPlVLbDVtFwUNHfQtYctPTwKpYuOn
-	 zHXhgN5/QlqEgt8DAwYUJkk7sppkZBMn31yWzntAkQi8rhE6H6W4pIRZfAZ2Pf6wJx
-	 0RnqGxEA2h3hPkrWxlLGFxkIHy+6sPVXfB9x3J3DiprbAUxRJGPltD8buyC+KpAWeF
-	 AZVKC2TgRR6e6YaEPpN0ELZfPbXVN+bQiEQjyjzftbEkAVp7tQyDsOWE9oh0FhGLRs
-	 yHwPnjRhXpK3Q==
-Date: Thu, 7 Aug 2025 17:13:10 +0100
+	b=iOEoXXJwEzKxABOK2piOyFyGcOGYq8gYy7PKw6jSnPdq0qXY4eONlgysv6P+NDBAq
+	 UbXqbOeioVzmwsCyw0FUhLcOtciG47kW0QS7GkC5LE7Wgx/VqL6GzxzpQvhnCJx+Wx
+	 eKA1vFqOH46fkH6dXM2B4hE1DmclhSXeVOsQYyC1NxgA+HFVyvu5/+V1Iu5+R7X7Sr
+	 rsiR8Tc26KmY0AoKwR/Jf5jCzIp7AbJ+pVPU+qqc1pJayJvgWGc+JsgFvaD1nSv2Fq
+	 HWH8q7StUg/0WBQYSIwSJJGhQDPrDcT3tDEZj7r799mvuGHfF19KgLMrc27shTqzks
+	 HXWz0m8QZSWCA==
+Date: Thu, 7 Aug 2025 17:19:51 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de, linux-can@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-binding: can: m_can: add optional resets
- property
-Message-ID: <20250807-polar-ruse-b30ef402c9fa@spud>
-References: <20250807-stm32mp15-m_can-add-reset-v2-0-f69ebbfced1f@pengutronix.de>
- <20250807-stm32mp15-m_can-add-reset-v2-1-f69ebbfced1f@pengutronix.de>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: spacemit: introduce i2s pre-clock
+Message-ID: <20250807-untrained-anthology-bcf760fe73cb@spud>
+References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
+ <20250807-k1-clk-i2s-generation-v1-1-7dc25eb4e4d3@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,34 +64,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="95eIz5YQcH/glHyT"
+	protocol="application/pgp-signature"; boundary="MGb6O0jv4+1CWhb1"
 Content-Disposition: inline
-In-Reply-To: <20250807-stm32mp15-m_can-add-reset-v2-1-f69ebbfced1f@pengutronix.de>
+In-Reply-To: <20250807-k1-clk-i2s-generation-v1-1-7dc25eb4e4d3@linux.spacemit.com>
 
 
---95eIz5YQcH/glHyT
+--MGb6O0jv4+1CWhb1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 07, 2025 at 08:09:30AM +0200, Marc Kleine-Budde wrote:
-> The m_can IP core has an external reset line. Add it to the bindings
-> documentation.
+On Thu, Aug 07, 2025 at 09:30:10AM +0800, Troy Mitchell wrote:
+> Previously, the K1 clock driver did not include the parent clocks of
+> the I2S sysclk.
 >=20
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> This patch adds their definitions to allow proper registration
+> in the driver and usage in the device tree.
+>=20
+> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 S=
+oC")
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'm not sure that a fixes tag is suitable here, seems to be some new
+feature/development. The driver change seems to talk about how modelling
+as a fixed-clock is incorrect, but this change mentions none of that.
+Without whatever context that provides, it's hard to see how this can be
+justified as a fix rather than a new feature being added.
 
---95eIz5YQcH/glHyT
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  include/dt-bindings/clock/spacemit,k1-syscon.h | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-=
+bindings/clock/spacemit,k1-syscon.h
+> index 2714c3fe66cd5b49e12c8b20689f5b01da36b774..524268246fedd3f1238320f35=
+244baf32354fbd2 100644
+> --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
+> +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
+> @@ -77,6 +77,9 @@
+>  #define CLK_I2S_BCLK		30
+>  #define CLK_APB			31
+>  #define CLK_WDT_BUS		32
+> +#define CLK_I2S_153P6		33
+> +#define CLK_I2S_153P6_BASE	34
+> +#define CLK_I2S_SYSCLK_SRC	35
+> =20
+>  /* MPMU resets */
+>  #define RESET_WDT		0
+>=20
+> --=20
+> 2.50.1
+>=20
+>=20
+
+--MGb6O0jv4+1CWhb1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJTQlgAKCRB4tDGHoIJi
-0kUJAP9nSDad7BkpEvlqTnkas2ereywm7R/blr7FIwjgf3067AEA/KXy2nxKIAPs
-Jh3qLPDZl+RhlWwEh2w4flquuzXXAgU=
-=gIXt
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJTSJwAKCRB4tDGHoIJi
+0lrAAPwLeTxg0DmEWOZuiKramMswKD+FBk48f8HQ5cra59xk+wEA+uDoxchmMLyD
+O74kiFlXHVfpag4BaRKO/wVQczwXmAQ=
+=y1/8
 -----END PGP SIGNATURE-----
 
---95eIz5YQcH/glHyT--
+--MGb6O0jv4+1CWhb1--
 
