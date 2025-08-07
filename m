@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-202378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4ABB1D406
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:09:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56E75B1D415
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35E1516381E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:09:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 119293AFE52
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 08:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFF123F405;
-	Thu,  7 Aug 2025 08:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4797D242D8C;
+	Thu,  7 Aug 2025 08:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ATKap2O9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rvJ7YEah"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540932236F4;
-	Thu,  7 Aug 2025 08:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F83B22068D;
+	Thu,  7 Aug 2025 08:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754554153; cv=none; b=ZE1F7fNvnBYHVfy7NyLfjwApbTiBvY8DOeg0iCbBQcyGTvDtNTIMkmIFeJl7g1fvDWhk1ywYd14BM5kD1o7rUbE0tQJZhvEsY6Yp9zaWv2OoR6PN1sqOcLYOHJmyw0Tn/O/jQ5I4gHCXxTRnRZvwip3SM0L6rcbU9eaaPlGveGI=
+	t=1754554344; cv=none; b=c94fuWtKZJbA9o9n62xu220uZp9HjazqpAgLm7j1IYF8IlVMDOlULKRCUmc22OqGg+8EJ5XOze0g4Gf4b7KtKapbNAxOeIC6nhRGfH6zHRF6lWpLQGHatntb45nPIfeeuW/WmsN/I4My/X+P9fJgjozzgf6IXN0QSJEMwC60S6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754554153; c=relaxed/simple;
-	bh=1fAo7M0jBlXKRquCCC4HBju9WC4VuWnfN1O1usBPWyU=;
+	s=arc-20240116; t=1754554344; c=relaxed/simple;
+	bh=ikf6ssEW+m4fXYrnJWWge9brgZ8WUunADfPrWN6Gu60=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q+X27ZAc15DYfvuLKfW+9PythJq1Sj4yNAM9SVYIsUruf6/Vur8Sp18lzp2Zka3pCJxoyuaUfPdam0XleNY1GtehrtbA9TqebqNGcBaQHNL0xvHipYg8LgoHIHEH9ctl1IkWaMy+r72bHoWoSOWWPpq3B4cLRT7R5PN/eH6k1lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ATKap2O9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFB1DC4CEEB;
-	Thu,  7 Aug 2025 08:09:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=daAhPDnuzp2TDq6z7ulfZgL8qDfDnnNrkl6XeFAb+4yz4eObOCFp0oWJD5hUnmhM2v9WaqwQ0r0eZVkg/fSzOi4e+lplqSrOLInThUB8PcuKPU4rqOR+mvv3dafmMkKPd6+T2b6JTPRPtEqC13yKVk6WwezefZMew+2dfSO7anA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rvJ7YEah; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF77DC4CEEB;
+	Thu,  7 Aug 2025 08:12:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754554152;
-	bh=1fAo7M0jBlXKRquCCC4HBju9WC4VuWnfN1O1usBPWyU=;
+	s=k20201202; t=1754554343;
+	bh=ikf6ssEW+m4fXYrnJWWge9brgZ8WUunADfPrWN6Gu60=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ATKap2O9VyWyhmILaijF0q7skMYB7Iod7SixyEVAYljXmkqPTms92OfFedvUOMRGR
-	 OuQY1XU28xp9GG9gnEzjTJ1T0ERDXlAg0zF5f0PDl7FSZUvMTjepCiHheF5ClSo1Fe
-	 k0RGu1c34zyEGppAIXEJbk33V0SPD9qSYzCno4e2gIZeo6GQtzCXCmuKIn315FPLPF
-	 cvWzwwYZFwaTkP/Vj6lzT62D685OAkPdKgi072uj5Jt979HvqZMSpo6L8elyMnWCUW
-	 KqnQOAKOVsEsxBMmrnBveN1z4x0t9BzLQM5gPQSPJE4tfeV4PC+/w/NAHJNvkjuoGE
-	 xqmNnyYlgWzhg==
-Message-ID: <a211c028-b6f4-4f0f-9dea-842eff201c8f@kernel.org>
-Date: Thu, 7 Aug 2025 10:09:06 +0200
+	b=rvJ7YEahZ/e/rbh8/gNhPQqyW1g5Pi3rzl6b09kh21bX8LTTxWBB79j0dCP6OTAt6
+	 oQS/jRrXBzq3+3BOw5L4jti83m/9XscLVAFBvXTLY88cFeaWktgVKu8VTiOyyHRbB0
+	 mz9sPjWMWY+hfdM9VOgVywPSpd5eKM0WtotSV3gts1vHOwgUSj0kLIwqYT26bBHrEZ
+	 EDepLbGTAKzx5YNCsBzE/9Bf6IU2o1G6La5v37YEWuUqX0OG9EGkkQ4oJ/GPRpfQmS
+	 wb6zc5bXxP9J/CVKx6lstPiocnrmN8v1IL6U+O8NotgQMtjELvjouzvsuHPOXlyozj
+	 U9Zl0z1iUmB+g==
+Message-ID: <285eee30-58ab-4837-9fc4-ff5cd5118037@kernel.org>
+Date: Thu, 7 Aug 2025 10:12:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: display: sitronix,st7920: Add DT schema
+Subject: Re: [PATCH 1/3] drm: Add driver for Sitronix ST7920 LCD displays
 To: Iker Pedrosa <ikerpedrosam@gmail.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
@@ -61,7 +61,7 @@ To: Iker Pedrosa <ikerpedrosam@gmail.com>,
 Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org
 References: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
- <20250806-st7920-v1-2-64ab5a34f9a0@gmail.com>
+ <20250806-st7920-v1-1-64ab5a34f9a0@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,85 +107,66 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250806-st7920-v1-2-64ab5a34f9a0@gmail.com>
+In-Reply-To: <20250806-st7920-v1-1-64ab5a34f9a0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/08/2025 14:48, Iker Pedrosa wrote:
-> +title: Sitronix ST7920 LCD Display Controllers
-> +
-> +maintainers:
-> +  - Iker Pedrosa <ikerpedrosam@gmail.com>
-> +
-> +description: |
+> This adds a functional DRM driver for ST7920 that communicates with the
+> display via the SPI bus.
 
-Do not need '|' unless you need to preserve formatting.
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-> +  The Sitronix ST7920 is a controller for monochrome dot-matrix graphical LCDs,
-> +  most commonly used for 128x64 pixel displays.
-> +  This binding supports connecting the display via a standard SPI bus.
-
-Drop last sentence. You should write complete bindings for complete
-hardware. Binding cannot support something and should not cover only one
-bus.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: sitronix,st7920
-> +
-> +  reg:
-> +    description: The chip-select number for the device on the SPI bus.
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    description: Maximum SPI clock frequency in Hz.
-> +    maximum: 600000
-> +
-> +  spi-cs-high:
-> +    type: boolean
-> +    description: Indicates the chip select is active high.
-
-No supplies?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-
-Missing allOf: with ref to spi properties
-
-> +
-> +additionalProperties: false
-
-And this is unevaluatedProperties. Please look at other examples of
-devices like that.
-
-> +
-> +examples:
-> +  - |
-> +    // Example: ST7920 connected to an SPI bus
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi0 {
-
-spi {
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        display@0 {
-> +            compatible = "sitronix,st7920";
-> +            reg = <0>; // Chip select 0
-
-Drop comment, obvious.
-
-> +            spi-max-frequency = <600000>;
-> +            spi-cs-high;
-> +        };
-> +    };
 > 
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+
+
+...
+
+
+> +#define BOTTOM_HORIZONTAL_ADDRESS	0x80
+> +
+> +#define CMD_SIZE			35
+> +
+> +const struct st7920_deviceinfo st7920_variants[] = {
+> +	[ST7920_ID] = {
+> +		.default_width = 128,
+> +		.default_height = 64,
+> +		.family_id = ST7920_FAMILY,
+
+Don't add dead code. This cannot be anything else than ST7920_FAMILY.
+
+Several places here can be simplified (and "possible" future code is not
+an argument here - this patch must be correct, simple and stand on its
+own because we do not write code just in case).
+
+
+...
+
+> +static int st7920_probe(struct spi_device *spi)
+> +{
+> +	struct st7920_device *st7920;
+> +	struct regmap *regmap;
+> +	struct device *dev = &spi->dev;
+> +	struct drm_device *drm;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_spi(spi, &st7920_spi_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	st7920 = devm_drm_dev_alloc(dev, &st7920_drm_driver,
+> +				    struct st7920_device, drm);
+> +	if (IS_ERR(st7920))
+> +		return dev_err_probe(dev, PTR_ERR(st7920),
+> +							 "Failed to allocate DRM device\n");
+
+Misaligned but also this looks like ENOMEM error and such should never
+have dev_err.
+
 
 
 Best regards,
