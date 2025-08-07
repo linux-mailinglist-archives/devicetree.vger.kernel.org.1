@@ -1,186 +1,144 @@
-Return-Path: <devicetree+bounces-202332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D046B1CFC9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 02:23:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2594BB1D012
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 03:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCB073B2ADF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 00:23:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00F797A930D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 01:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF75F2940B;
-	Thu,  7 Aug 2025 00:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCA113C9D4;
+	Thu,  7 Aug 2025 01:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="UGERFPDU"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Q3NgA8OL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023115.outbound.protection.outlook.com [40.107.44.115])
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5716F9461;
-	Thu,  7 Aug 2025 00:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.115
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754526216; cv=fail; b=qu/QGidjCCk1jxBn4Z7ihxtS3y8I9kylW99vdyDTuY7nIiay5r6bgH1dGniKGjOu1IUzUoVBHESZZ8DtpIPVvz34OBbo1zvZOq03Y4yodgjE4t2mLD3p3dFrL4SQwUfE51DE161jcFVoXP3LJllL4+5IHzJwzU6o55dv3LTspj0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754526216; c=relaxed/simple;
-	bh=NO9JZueEcZdBajxKEFh68i1LcagX+IkBNh6wXZF/Bec=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=OBstGaJpqc/e9Exuyaeb6V3nlaK4Yc02lowVnyhLCGHl9+9l1esOwiyFWNfa2jDOjJlPai2OeHzwrUcGad+dQNUNPdVxWHhHXmI/lba9eRiLT99DyANJcEF8q85GULtO+7RGvSX4npop3f5z5Gl26WYIFsBwqoZKUqppF6gHaWI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=UGERFPDU; arc=fail smtp.client-ip=40.107.44.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U3CmWjuFyF5AaVM8rh8ycg9PMFrbCokTFpEPqQ6GC5jLs++sf0A9Uxw9zTtodCuT6uGYAb95fM6IFKiOj7xgeH1Vgnxq9esR9pIFo6cCrdhkqmsG5A4Lyr4auKfLYRY/JooW8UDTdFsZGgNnE2McV/LjTKDAryK4lIo6LUBnyXdf6qmFKuQgiLg6/jWeTov5DZZCG42gXLEUKOjZ/4WD1v+Oa/bzYmEIUpZ1Bv+pB6BBqdpnSAwgdRmCEPFjTG34szsRtBQECvGffivIAGzeSpuMOIEjf5WwNdTFxNsF0w7nfK1ueu4EEGuEPdkDUJ/k/ssnxeKgUZYlju0A4yJiXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NO9JZueEcZdBajxKEFh68i1LcagX+IkBNh6wXZF/Bec=;
- b=As/tTLee7c9WQ1Ra+ER6hEm+FzeTQJh8651IMXO7w16x9H3DJQLPkM89lzDuqYgasfaG42NvXTDmaw5AEChtxW2x+GQBaJP2ef22THhf+tK81MXo/A3qgOAovRaGw0KLeaMPJ1i5ivvWFnIOvrFYJwa8gjR0PnEOUh0N/kYCuhWzqqR+CQTm1ckdA0UisG7M5v4oZEnHLAxgyaQIgjG4E9EBSbZ3NwZVfl0zLD8loCjZSFl7ZZfYwgqo3nEipA8kWf/9lzXBtl1Mp8lSbLpc4xljyazP2eL0a+dFJ/2NlwvlgvfTMc6Mda3kIfIcuWDABe++d3ZKDw1g3lmWUt8aSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NO9JZueEcZdBajxKEFh68i1LcagX+IkBNh6wXZF/Bec=;
- b=UGERFPDU78i0DkiOKjQbNA+nAtyrnZ2OTq6SYXtFy0pmXYX89LnrnQ5ErbRYAblyLxAK1S0+hSdvajqg5HPmIKWLkN1LhHhijsvq/Z34/LuOXFqSkBnxPzoHiQOFjJZtrPaNSKjZjvlKn5EUeFqcY5+DQghEcVyQfXQYElLPNUOXtu3Em4xpXcsVrkwjD7VfWZqBJ8tdDisqfp5Pi9718drARRxWYaTH6DIU0XY1Tk2CELBNnAbUALOoZCTMUnC+ZWOacls2TKuTpBvswz64/a92QxQMu00+CfB71jJ0Z8sMnkco9wYlke8xbTngyKrbHp3xai6ESg5bN09avLsXjg==
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
- by SEZPR06MB6088.apcprd06.prod.outlook.com (2603:1096:101:ef::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Thu, 7 Aug
- 2025 00:23:30 +0000
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.9009.013; Thu, 7 Aug 2025
- 00:23:30 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Eddie James <eajames@linux.ibm.com>,
-	Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
- interrupt controllers
-Thread-Topic: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 SCU
- interrupt controllers
-Thread-Index: AQHcBQGAHPbqy57A20e2dQZRkDylV7RUNCYAgAECPsCAAG85AIAAEbcAgAChi1A=
-Date: Thu, 7 Aug 2025 00:23:30 +0000
-Message-ID:
- <OS8PR06MB7541E8D33688BA44E4EE988BF22CA@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20250804053445.1482749-1-ryan_chen@aspeedtech.com>
- <20250804053445.1482749-3-ryan_chen@aspeedtech.com>
- <20250805153908.GA1807801-robh@kernel.org>
- <OS8PR06MB75414ECA0290018D5D113B62F22DA@OS8PR06MB7541.apcprd06.prod.outlook.com>
- <5c46082a-c31b-4d12-a1d6-f315c8ce7aaa@linux.ibm.com> <8734a4ecgp.ffs@tglx>
-In-Reply-To: <8734a4ecgp.ffs@tglx>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|SEZPR06MB6088:EE_
-x-ms-office365-filtering-correlation-id: b73c685e-6199-4978-bda5-08ddd548a2b8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?5lfsI8wOPY2qeW9HBZ66gpUy6DegxES8NeYljdlBsFoIVqaIaXp43z6LRGd8?=
- =?us-ascii?Q?Rcye9Obl5/UTfZ+MOoDOKme4SJliOZSwccQ859lYT4b60SPk4xGYBHhtmQYW?=
- =?us-ascii?Q?8QGOVocLcB8OjTSG21jxn34WF3EOn6usBZS7/GJxNz+GoRxyc+JJcWG/Ub/L?=
- =?us-ascii?Q?rIeFS7e/PDLB8/tIxjd4Mv+IdiR++S+t1aHwrnmR3uYhsO84Jijrb0CkI1EC?=
- =?us-ascii?Q?8KePK2MK5FmjS5L2XFJ4QRIcSUCSuxfW5VsMRFJjv2JQZJlj523LLxV1kwRd?=
- =?us-ascii?Q?IP5e55zYsfSVFksI/ePvQ2wteDfbuDzmHBs6n4wRhA1XLyhEZWfld/lnMBlG?=
- =?us-ascii?Q?28+JfFoEoUow6AXhmOcoUYFqwdZi0HZ9y5L/GMS1RpweGMHvUvNQUzgaTTsC?=
- =?us-ascii?Q?duOuFCsouLzeytKTyowTzeuulVIbnIrLL3FpqUbJByZbYpUIBZ8vmluRWuQs?=
- =?us-ascii?Q?AYc5Jpg/Ebxudjq3kz0NZ342LURXPtdLNzN24lM1tJPv28LJ1JqYBiv3TRca?=
- =?us-ascii?Q?I8VTKeWfwCL0HT+zBD0DcEAFfmgptGhvEWBylrTPXK6xjuVdRmFYve1t0wu6?=
- =?us-ascii?Q?+tispMKwOXIXR3f5FqUUHrkUUa6FUzaWTx4idn3P2SrMY15NLzfjxjPGGVGS?=
- =?us-ascii?Q?9BzFi5TI3ra+4BREbWlentInrWvov8dsbLPGhVDXPOphfXl5VgMzoGUlRMDH?=
- =?us-ascii?Q?mn8xM8ljBdvFK5m9UBMlz9NUogCIWPsnzckFIny1rWGT9ky5p5K/MpiFEW0w?=
- =?us-ascii?Q?dD6+4SvNOe82bDunoKCRr/9YkQf1EIQU76c1aOmwHGO4Pn9rWZA2MIJwReSV?=
- =?us-ascii?Q?IX+2bi9rwgDDmB1tPfJCgA3KPuacyUhS0KUXQt5xAizdWiLULo2jVdJQQqaK?=
- =?us-ascii?Q?e2NWab0EQDdxEpPZsC0SgwO/2iX/uYSqnWB6vYoJiKIOB2p9OvrEWlKevzJg?=
- =?us-ascii?Q?zY2nnfxqfD34vB+8FPDZSMU25+0/SqahTozoRDQmuZZ/gsyRVPrnuqIxiLpl?=
- =?us-ascii?Q?cVfXc1Inp9gtAKrn+7gAJW+YMDmEvySAFpKQ9qlgof4yWsXAGrLpKNuXGG2l?=
- =?us-ascii?Q?4t3wwffHQ6waKn55aU2j8CdFrUrtpr10CqMfbmKayYNeup1AaZOo1onNsSmU?=
- =?us-ascii?Q?Ltnqsmnv/7wqdcM0elAl6H+xt8BZ14XsUNR6Tssf2LBQd1SlawcUESdWVTcp?=
- =?us-ascii?Q?N50m+Gm7sw79LgtUMI5dD5WbwS0dJOiLp2CpsHSK2WnkaSclXY5flcf+oquf?=
- =?us-ascii?Q?p4Vyywhx4apH1OnZmldRbGdjM+1acAuNJOZnbLFRGrKnQJGC45Kx4bZ2/JiA?=
- =?us-ascii?Q?Bvjs4XPRZiqHuTusXjML9V7MrcfdZheHqkWC+xjGJBuxwedWLikgkdDf4zzB?=
- =?us-ascii?Q?kZ2rpCcvLHhSpsRmvEL3vysuow9k1vJHRnj8BPSKw8x1QS3mIDf5HpfZ6+iI?=
- =?us-ascii?Q?gZ6UnnulvutBe28xuRfgd8q7YIBo+4Mym/CYlrT8zlx+Zot8Xu/sUA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Evo+mQ0gkOcjvUSIezLhM7OK/H3w3/Mpgkm357HuZZtyGX/wfpAI1zrEhNzQ?=
- =?us-ascii?Q?F/jmkDepqJnTCTXOjgfiDkDzOwXSFW2QFWGTgi++z9zgIJcrrKRbO6Q5FKm2?=
- =?us-ascii?Q?5DlYKRbbwr9B5oE3PoisA4pNXXxG7kkjtVE6B7RyQAWcU+lqmdVjO6znwPrW?=
- =?us-ascii?Q?2IqnbTTLxRhd1VyHKsAiyqP/XpNDLocn4Bn7KA3nNVTXsVLR3rkD5FH1qxvV?=
- =?us-ascii?Q?ZFG+bWqTk04hH57D6wyKaqmXA/mHHcFIb6bsWJB/ro8DrW40m+glSaBFaOo/?=
- =?us-ascii?Q?LKz7elQX5iJZiHmiY3qKsL/eT4muJS5p6bVNliFwGR6rMx5eqgaFPBu40u1p?=
- =?us-ascii?Q?PXWloixc/RWKSeuL8fL6YbzVn23mSg8TWa+MteDEoofss/RBorqFKSOtA+GZ?=
- =?us-ascii?Q?1ayNRtltQ8Pi6ucJ2rhTgYcVb6q/PFRNNKP7/kRFZlwCgvCF5an5QRl+Zaz5?=
- =?us-ascii?Q?CwLy/DzfFtosQziHEU3AjkeXY/mgz0OWK5EvlKQRoizgXRmLeKNRfsmIPaBb?=
- =?us-ascii?Q?UpDHf7LGojJ06FCDmCnc14HN3HffJbSSzJM4/8y1fszWUSEnOknLuZ2HFdgz?=
- =?us-ascii?Q?TV8NXVtLZXE6nRf+AovBehRLAOZAT3jfuj7mpkuuTUuEXL9fb8XBtBc3NJAa?=
- =?us-ascii?Q?T6jMv8kn7A+/141+Q/029N5DqAWJj6MUca2tQbjL/NbSAKnGNtzXVBMmwD5l?=
- =?us-ascii?Q?s+c7hDDp5TSbDVXk1FGf/TFdjWtKvMa8C7L3bDiP6ghOENPFvxfIO6zqDzv8?=
- =?us-ascii?Q?ZuLSZuSicpfvVvR+6tuTslu+/8TycvHokHVs6JKuRYoj5wl26SRHmXBpmPaX?=
- =?us-ascii?Q?AJuBZ0hQThf+Jswf10XFguwxBGoBu7Snqi2JVr90GZnk2RdKxuTSKPjQe6Yk?=
- =?us-ascii?Q?Ntf7kiNuirfhpdXb3e2TEnImf2oKJjI568BisnhkFnYaJNWNtuDy5CB/pvWf?=
- =?us-ascii?Q?o5YZ792qpxqyW+Uv9xCA9QHYHLmLo+pvSJd7ZbMCV48mSBx/eNGNU3lddKj/?=
- =?us-ascii?Q?bowQoDjjw/sz0RZzvmsOrF+eXN6Xj+DKFD9cmFRvCoV7qqmGzqgq/0t5ZGOn?=
- =?us-ascii?Q?+SX54hM34PybCrtBmNueMu1P7MQTEAPugJl+ERLPjxc5+5JQT3T2vNM6biGJ?=
- =?us-ascii?Q?xIS1PWczUSBDdx6zpHaEQWDVpY8PNVh05VkmyV3m9K8lUpa7gErGY2+YcMCe?=
- =?us-ascii?Q?QpOj3+4gdAbtvf6//i6PJzlCTrezJr7yiTBc0nbj8/4F1KyXZ3rY81E8qGfr?=
- =?us-ascii?Q?YgoYjiYVKnhErPycwANLNeWfGxmwxvt9yDOWwl3awpw1Jdu7HKc6BmRTGpi+?=
- =?us-ascii?Q?Me1vbry2rsrlMiwVTqziiTjzu77AzZiFdmAa3UPWxpEAqAHx2OOPzOQ6q3FD?=
- =?us-ascii?Q?zW0SmiatHG1tUZZ3Ciz+qpxr61dk1/Iz2EwrkSDHZgsBdyj+W+8EvtY7QDY7?=
- =?us-ascii?Q?uBGxndEbGpgFZyElMToxrClpyIy/jB82aXAtZJjupVbrFohfaf7oNmCDka4P?=
- =?us-ascii?Q?aSu7SYmk52XsZK2fvhQojWM03bdLAXdEvDJBYNh6DxZWuH/Up2f2tRUnZiPP?=
- =?us-ascii?Q?gML+1bpkN/Ak7Xa3bY16YW4mpxbJWyj97LlnkPVP?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585724C6C;
+	Thu,  7 Aug 2025 01:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754530239; cv=none; b=BzdN3Y00YQTYvbEgx0TbrRoSzS7OcMZH1pqY9PUIVB5UPa4r0noH/6h1IdKSBgVo+HfwgIszHC7n5FV0w0kfWqnIoPsnWQv+SE++wBpUkGyO/hxKLnLNLn//ARj5jeCbInkRnmH540qbsIMPOzj083EHCfNv6MnEAtbLvQlqY+0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754530239; c=relaxed/simple;
+	bh=Zsnd2yhm0e8Z7N/XbjGsxi9+PjwfVA0yvEOrhmxO1r8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UBwTEvMFTiUPF9yTjt0kFhz6mEp3Umdzg28r6G+nRzApVanOekC5Qp/77qOOBVR/I4faWX23T+63RE5Zb2wKxEUK4PW6okeQ0EQYw3gKgU0jK4Y0s2PvN6MwvCN0Nt0tBiyXuck41v9oAIto90PPlzUct1UR22wqzQi7ZrvI1bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Q3NgA8OL; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1754530213;
+	bh=R55Ce30YMHeTG1lDNGUKrl/+gpE/GNdMkbzIFbY7bEI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=Q3NgA8OLeYRV5iBUy+2dGz2qBTQU8LjhtidAZdKz/Vz+rbIhH7Up/tfdfzVmnO+hS
+	 /hSiHa/ivVVwDQW+Av93e6h1kVUwvYlgHlaEbpLvVgotPGE/NGPu2ixRCgugBB18Tb
+	 B90jKWVQz0YTTk68tYoOHMT/RvecvwgWMDDMOamA=
+X-QQ-mid: esmtpgz16t1754530212t66e66a1a
+X-QQ-Originating-IP: 87YQa/E+l5byIBWQdG0icPTbS7PxkSsJP/II3qCKtys=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 07 Aug 2025 09:30:10 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 5881493761293327476
+EX-QQ-RecipientCnt: 16
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH 0/2] clk: spacemit: fix i2s clock
+Date: Thu, 07 Aug 2025 09:30:09 +0800
+Message-Id: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b73c685e-6199-4978-bda5-08ddd548a2b8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2025 00:23:30.0230
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f8yy6QyHYNBCfd1JBV4nbWgWUdYrN2UN1ucFxZz8z/rr9+squaUnJnBmGk7q3JbBjNC8yhXYjejtud11PHdO8FaXjmpqLb1CVJn7AV/nx5Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB6088
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKEBlGgC/x3MSwqAIBRG4a3IHXdBpeixlWgg9VeXwkIjAmnvS
+ cMz+E6iiCCI1KlEAbdEOXwOUygaV+cXsEy5yWpb6UaXvBke943FRl7gEdyVBQOoddkCpnaU7Rk
+ wy/N/++F9PyMipt1nAAAA
+X-Change-ID: 20250804-k1-clk-i2s-generation-eee7049ee17a
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
+ Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754530210; l=1573;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=Zsnd2yhm0e8Z7N/XbjGsxi9+PjwfVA0yvEOrhmxO1r8=;
+ b=0y4pPVuvzy8we9mgGSoUWCZEz15xMZi/SA/847+BJGpcTkqgMsSMohCJM+mYV7GLAqMsRhOle
+ LXLTBsvHm+6Cxooaj4TmFAcWbbyM7yOuDY9ZtiUXZegifGLQyE6s7is
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: OPv1v8QuUFDkJsuwDqEIRadsHqLmzvDVecahBjMLuUPJ0NX57+fmdXMx
+	3G4Jfk/vA9kMJlkz6r+ENoe8rLKQ9MCXsjx7WOqQHKd796JvgvtbaLxeE3I/QUqj8B8RLRj
+	wNsDSanul2lqSo+Xr1Pxi6QFWu79vzgdBRRobArxj6ix3Zb32mTs7qvhO0H46OIr39iNj1r
+	sa57hH8wRgHhgFMfe9j+J7TQ97Bp+SwvkTnet6hcRSTNROfR7Ilu8y/paTyhtdSIucTE+x8
+	KiM9gj9nli2zGh4WAmdWubh2efivCRS0lMbACUkoZtEdBCfTHYnxv0gy106PhpEek8Y6lcS
+	ksvT8hwSHbha7NWCcVKzVunnXyt5reEw6UcNKF1/nZzpuDEz4CPfK1V7n+ce2Afj39B+WJB
+	RminYSU1yjnQBBfsaCkVJvleKcCoHb1T2Ze6gxgIJ9AZRMwBFSfc5uhTTJB3u2Yc3alGvvF
+	BO6iEQ3dcW7g2VxwYA/fC664igyaeSRD9sFBbrKV1GRqYh7MFTC4XAjVzfni/5b+C0g6ojB
+	vH0CNLGDEmzEBNUf+3vsNjhIa7crJGP222OZzBI9hElTBzwBUsW0n9JQjAzFyzvwrHljEEN
+	MOaR2Ox8CpQxxfFIOFsSOjtnD4Zn+4v+pUSQx1FBj1kWOUhD+VqPsWl7hNQqV0PqO7p01DH
+	f5OE8Qnd1FfqgUTk+gXQ15SrsC3T//4b45pD0uuvLx8AreCh/ng0mgrGrFNMZjCgXmzSYlD
+	wNS7s91KZV/UhSnxnjpEBx+rLTLJUKQPYp8eN96cu4EYUZ/ryDQrju6sCpfkFQWrKXBbHmD
+	vRTJuS+6u5BfcsVnsEaR/fRI0OILezRtETcrLwdwylS0pzAl4xOxr2ANw8GBuQOGdw3X3OF
+	oZBt615UVTu56sBt1bHhmyU6sjKLLI2/Z6oJ/qqnjlWyu+7onCkcgNTU3I4UxKfNETbz8n7
+	9xq7AepOWpDeRWNWolvCUEoo8/DMUIdGA4rwaKpEyDOAuRdOEvqLU1mjThqdqOoXVmz1H/+
+	QRoNZJI+u7ZHBdWpHvWv0onLLNC2sowiwB6KSrmt3aywhtwsM5fAmwgYBtYL/NBp3fEWWPE
+	pLn53GFduAXG3/B7Bo/t6bn8DnD0IMt0FxIVwjmyGNGkzMUQmS/WS+WdBsldfvjcw==
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-RECHKSPAM: 0
 
-> Subject: Re: [PATCH 2/2] irqchip/aspeed-scu-ic: Add support for AST2700 S=
-CU
-> interrupt controllers
->=20
-> On Wed, Aug 06 2025 at 08:41, Eddie James wrote:
-> > On 8/6/25 2:14 AM, Ryan Chen wrote:
-> >
-> > How much is common with 2500/2600? I wonder if it would be easier to
-> > just create a new driver only for AST2700, instead of all in the same
-> > file/driver?
->=20
-> There is enough consolidation potential to keep them in the same file.
+Previously, the driver defined two clocks for the I2S controller:
+i2s_bclk and its parent i2s_sysclk.
 
-Yes, I will keep the same file.
+Both i2s_bclk and i2s_sysclk were treated as fixed-rate clocks,
+which clearly does not reflect the practical requirements for I2S operation.
+
+Additionally, the original driver overlooked some upstream clock sources.
+
+To fix the I2S clock, this series also introduces several new clock definition macros.
+
+The I2S clock hierarchy can be found here [1].
+
+Link:
+https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+[1]
+
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+Troy Mitchell (2):
+      dt-bindings: clock: spacemit: introduce i2s pre-clock
+      clk: spacemit: introduce i2s pre-clock and fix i2s clock
+
+ drivers/clk/spacemit/ccu-k1.c                  | 34 ++++++++++++++++---
+ drivers/clk/spacemit/ccu_common.h              | 13 +++++++
+ drivers/clk/spacemit/ccu_ddn.c                 | 47 ++++++++++++++++++++++----
+ drivers/clk/spacemit/ccu_ddn.h                 | 25 ++++++++++++--
+ drivers/clk/spacemit/ccu_mix.c                 | 47 +++++++++++++++++++-------
+ drivers/clk/spacemit/ccu_mix.h                 | 26 ++++++++------
+ include/dt-bindings/clock/spacemit,k1-syscon.h |  3 ++
+ include/soc/spacemit/k1-syscon.h               |  7 ++--
+ 8 files changed, 164 insertions(+), 38 deletions(-)
+---
+base-commit: e991acf1bce7a428794514cbbe216973c9c0a3c8
+change-id: 20250804-k1-clk-i2s-generation-eee7049ee17a
+
+Best regards,
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
+
 
