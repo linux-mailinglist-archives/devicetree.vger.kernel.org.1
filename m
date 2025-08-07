@@ -1,239 +1,257 @@
-Return-Path: <devicetree+bounces-202459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A52AB1D88E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:08:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B5EB1D8A0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:09:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 157D03B4F94
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:08:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22A7B7AFEEE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4FA259CA7;
-	Thu,  7 Aug 2025 13:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444FE258CFA;
+	Thu,  7 Aug 2025 13:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CU9Aji/S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eF9xhdhP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4878242D89
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 13:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0A72E36EC;
+	Thu,  7 Aug 2025 13:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754572076; cv=none; b=fsVQAxcknJR+pWPnVANhppWlnKTU28tcl+h4mznFSzR0NV7wX9FUPtaOsz6qjglJGwfSIPgEHOCoaWfswndm6Ji6bY3txzwMewzxeD3LlqrA4TfPYgAXswsuwHToO31TiR/gPr3qtRBO459Phd4ADs+jjeJ1YBllBBKdwA7yJqg=
+	t=1754572189; cv=none; b=I3bx9C6Bf0ZIM4P26Cslf12Lmb8WVxcgIPoSJUn8BpIf4nJs9jopXtSRSqgdAhNvnihf6wa2Q082j8CgfHwLwcU407lqGmzr1fah7UPdwEeH6OOGiLEO+vr1KOW0mX5XNucTtGYuFz79fLDHPgp08CFt28+rluMA3RRGrXHE/lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754572076; c=relaxed/simple;
-	bh=vC1L5uHVJJ5u5AqxaDxekBHje77miJh9Ju0KRoMlzjk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FOyKgh7oKVlx0xymSTEZqUP53oE73LfO+UeAZrV8DO0HL8RrBaYLJK88qYv7MO6lWo+0DaMufB8KSkk5s3LieTgaVYDbcufbKHgTc+ascJyQEs1MlwfwxShQa787HJSZ+Rxq+SlafiPGqneAhYyU++82X1boPuMkIAuQJyqiBVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CU9Aji/S; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5779D18K003513
-	for <devicetree@vger.kernel.org>; Thu, 7 Aug 2025 13:07:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eK9XSXOchQCfWi8EBFJeSJTCKKXnDgji8hN/xsZotU0=; b=CU9Aji/S/yZbPrjO
-	cHAmqlqJ1KF0VzHdMTEIjWaofLXxPJJ8fZK5FFf40wdYCt/W01Es+dmPPvZgOM4k
-	muuiM1JT+oUo107dyedCJ5vrenv67Ugxjyqwa5Kw7C7+yAj/p8SnWqwOkQ4+BdJL
-	7ZToOwl6BYbbuaEA2isxFFd4NLIcnbTe3gCQkpi6tfJZDghiUdodWwYBO1/oLOik
-	FvZBeRu0QwwBgNlln3jiKIOhsBF/6I8syh+CMbld344tzclxP3khJEDVjSB5Y2If
-	mp9zzjXaZtTQUeNGH2FemQ8h4o/2cBCfv2VU73T0Z1JYCZkCJIJN8KVsPkTWBXOh
-	Byg2UQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvyxgkp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 13:07:52 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4abc1e8bd11so3356161cf.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 06:07:52 -0700 (PDT)
+	s=arc-20240116; t=1754572189; c=relaxed/simple;
+	bh=60f0HspwGwMFdmSTzD2KBC/tMa1Xtd0DilHBC581pJM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ukoOh7YR0wKRZStEW0vzGp6WWLr98yD3jyx6Pkt4LIbS+ibWcSKHFBpgafH1XgeRNhRhoStrn8UkMQtFxUDY9HQCYNfJTWbxgZFxb9mz7BS3F6QPHxTl7enaED5YJcmvmIo+o+xH9RCHdfaAeMNaLNJSBMgIUbt4flhEhqgiW58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eF9xhdhP; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-459ddf9019cso3667465e9.0;
+        Thu, 07 Aug 2025 06:09:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754572185; x=1755176985; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=t21oNJ2+kEwHVDNe/DBt9NKLDmLG4nx1kTuI1yhdKLE=;
+        b=eF9xhdhPuLeMRpxNBANbdm2mZ1xnE4KnF2R5v52aFz0NOPn9toOFMuLjL6KkLvpDYH
+         wweYh2D8C+3rS+Gpd1eX1+YmF6btcCrFfhNscI13lA66qkOS+EekpNVLfVjmSZLxQFSK
+         wNOaet5xwEsxf9Bfvh7+y03PIQ26riEeyQZ5DPwp9RlW+YVwdGxeSloeKqxdtUpJKfSF
+         6rJOxOtm5/ptfRGU6zmUXhH3xLnz7dSeBZDkHNeguqNUhRMUzi0HDLEBkYt39ODPI+SG
+         jsjzyjU2tPaHD0IHDnSNEDOmbko/yMkoyDWny/Fy9Dhyic83rMFCCS3HkNlUu6UCKP/8
+         VovQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754572072; x=1755176872;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1754572185; x=1755176985;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eK9XSXOchQCfWi8EBFJeSJTCKKXnDgji8hN/xsZotU0=;
-        b=lwYvRwYmKWTRXczP0E8bTaURjlb49y4CICRxQjHTZtv7htMi8poJTv/NvCYrFHtn+F
-         /BvguGLZYGvpBROsRjl08mi0BqOZp/fKMkqB4PIsmiZyB3g9ByGYf9j121we3Det7NX2
-         7Gi98zksvFeo+sKXhcI3oUrtIcRmk9aetVAQCzkXDD8e6Q1DK+WkCIDSqYfx81HOivqB
-         X97LB00XQU3vPJ/VQAi1SoNf+ooNZW8C64WFIUVYyq0WgglI+Kj7aToRnKTSM4gU1STI
-         sbGWYQQ/TUX62clTMHAxWN/S6KOenN5jGu6NZVU5VzewZFgPY8oaPiogYP2hz/RS4PKg
-         synA==
-X-Forwarded-Encrypted: i=1; AJvYcCVuNG/rKkF45q5XWLV1kfbX3w6SIzCFmQ/LO6/x2P/td6sVUVwlykqqg1vD/ftM1e9uSDYNKhJvE4cJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+9b1aw/SyDBM6+P22f9WWa3U3M/jZ8CxVtN3T20Ap9NADgkbF
-	JINDX1uO9EHLh4SazwnmbD3LIynnUtXEOoQF9Q0r4ymmI/D913d1AQPYqqAvIB2IZAB9rt16grz
-	KroQVhsOC13xUJDnTOhCc8t96nr1+SCTBR1DYFop8QCGN5D06wtgW/MA4YF3Ypsaw
-X-Gm-Gg: ASbGnct2Hsn/yfW3d2Tyd6dbYHkf1itBXe3a0y8+eN7sQkiM47uzaFYyylRqFmO+66w
-	ThaG4aLdQoByEVLgu1yJrTCQRnn+bmtvc6njWrP6N0Iye1vdNnPfkfgX6I0+kPisO4M9ANvO+qa
-	Z3y5pnWKdXZpzYknPRlRxfe6h0rOu/t4Gkrjh4mBzKGLw3zUmDYgCUdF1TLoymU9ASTDwwl9npu
-	eMfolY8zNvyB9r86UnrIhrbyA7MVRBscWGvYtu74HyMYI9Jfu7IRUT36KoTlcY3y1FNNSYMo3JF
-	picrjsaMm9LsuIs9LnKpRInmwiO+RjDNPD5OPfTj8GIJ8RzTI/T2SbHGrXgcPirUVPeMzZGeKtF
-	qRrr9OFAojcz4+Ei7Kg==
-X-Received: by 2002:ac8:5e4f:0:b0:4ab:723e:fba7 with SMTP id d75a77b69052e-4b09147d336mr39191761cf.7.1754572071680;
-        Thu, 07 Aug 2025 06:07:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGAEVtX/FaNdkuqT6pyYcuVANHG3E3H7uatYjqkdIYJFTr1QtjKQ9o+lK4E/zBtcVM8O+8/+A==
-X-Received: by 2002:ac8:5e4f:0:b0:4ab:723e:fba7 with SMTP id d75a77b69052e-4b09147d336mr39191281cf.7.1754572071039;
-        Thu, 07 Aug 2025 06:07:51 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a1e82bbsm1310874666b.81.2025.08.07.06.07.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Aug 2025 06:07:50 -0700 (PDT)
-Message-ID: <ffbd9302-75f1-4148-881a-767fa413c825@oss.qualcomm.com>
-Date: Thu, 7 Aug 2025 15:07:47 +0200
+        bh=t21oNJ2+kEwHVDNe/DBt9NKLDmLG4nx1kTuI1yhdKLE=;
+        b=fxn24JEKKsFFhULqEioSfYHVAqU5ASU5q6fQAj+GOLOQ3tNqFeKoNdI13EUaPkeQ0z
+         gt4kW21qzOfiOAxM8+6xoGWnVldbhSxJzd0NtMqbO6b5gj9mshCdVheoiDc+6ES1lZO2
+         GTiFPC2veTN4wqzLfw3CTukXkbpk3kiI8ujAW0mSsXFHJYgHJWeIgmoYmf9dFSWiD3Vl
+         uCFzXe74pLvWixw9TaDCahk0QSgwDkZhuvLlIUa+nyMXij6oMkLetFYNR0WTPNB/VerP
+         tgNbpZGkrwn23ToBxfQkWHKPJ+Yt03S9tWocWB8QdRt1XF1cGzjsq7ZOUNUi3n3sW4GQ
+         wsrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLEfwruFh8e/mgsselSInheQ482IXe2rBrTztJaInXBeVmuKckUUv5jFpH/Yv2tCnk3FIM3SgKjgvn@vger.kernel.org, AJvYcCWrYVJDoohSVvUlBtYCdArNQCEQhBw+XWiMKNE7M8YlzFgVnjQLkK31SP2e/WyiV5qUCPJ6t0oSYazv@vger.kernel.org, AJvYcCXEO2YmzzMqz3EZCamTYav2fwE/a1x0yY0cOLomLom/rkYIEhRdxvMpKMCfn/TJWQxAy/YAcSYD10MBfnL1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+51dwEt4Lp99//mhuxaZOPhK8ZaUYCXdY5475y2Oif2q77tuB
+	8ewFxk8eSz1TssvWAVhCyR7alKv1Azl/7Q3k+0CePIgKi/zKDOPPtLAn
+X-Gm-Gg: ASbGncvY3kdnnC84m0KH+YgyWoQmgLTtSODcv7eTL1l7AZEw5eLkK7bDXto8qPXQWEC
+	GeDx+s9vF1FO0uFApcYZhztWwlCXgcWPi1c+C7b+iUaiDt/ivI8LPuLq0xbe9iTZCslrn52NQrj
+	tgbZzJbQJAgEGikLelDpXkYZJYyzcQh4kj5UzEtXczccPY8VB/PrJLZWUyby6tlDb05vKckEiuJ
+	7ZPKdC/lfXJ0t9CUbcSOhLmKwmJJ/p0WFRsz4TXeWDxYFoTZBVPqpJZISg0+dPe93T7Z+YJ+lve
+	3grBchIPOXFNhy8gpk4QVKlnc6V8/ObsW096W5PikXh0s59D/P4mgQlSlJuqSH3PlcFGXs38km8
+	KLPmx8+TjUka63XS43knkvQ==
+X-Google-Smtp-Source: AGHT+IEO9mb5h7m1yfmZXglvzVxbi25FeHRc2cxk1zk2vVJv/ksCknRQ5Qep3lXrYEZ8tCUKzAvMXA==
+X-Received: by 2002:a05:600c:4fd5:b0:456:26a1:a0c1 with SMTP id 5b1f17b1804b1-459e70eeb5cmr73207005e9.17.1754572185368;
+        Thu, 07 Aug 2025 06:09:45 -0700 (PDT)
+Received: from nsa ([185.128.9.33])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459de91ea4csm146945685e9.10.2025.08.07.06.09.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Aug 2025 06:09:45 -0700 (PDT)
+Date: Thu, 7 Aug 2025 14:10:01 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
+Message-ID: <ngcbj6p7vfakah5fqsxqjlmrcycpg5rxfrbh4s34fll2kb3zq2@eyesluawn5w2>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
+ <tc4od3jtqnj743naxefx5lxkha46wohuuvw46mik6nullvsqbe@knj4t23eaodw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] clk: qcom: Add TCSR clock driver for Glymur
-To: Taniya Das <taniya.das@oss.qualcomm.com>, Abel Vesa <abel.vesa@linaro.org>
-Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
- <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-3-227cfe5c8ef4@oss.qualcomm.com>
- <aIoBFeo00PPZncCs@linaro.org>
- <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
- <aIxRKHKdBHDefDs2@linaro.org>
- <d2c17575-f188-4154-bb63-e0b1b89d8100@oss.qualcomm.com>
- <b2f219d6-d441-45d0-a168-b2cdbc01b852@oss.qualcomm.com>
- <3fc425fd-39fa-4efc-bc98-da86a88bfb1a@oss.qualcomm.com>
- <c2f39786-5780-4124-9e41-6971428aa267@oss.qualcomm.com>
- <9e3b4706-c61a-4d69-be84-a5b6fc90eb35@oss.qualcomm.com>
- <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 0cNZeQ0aFEWOQrLuKIQFiCW7LqV3sBI_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXyQuEqFKCBW0M
- NPfI4pj3bBY90XNAtth52OUuv0R2oWSDql+hHzNOcqsHfmKGiHE7j1t3MOPD5jlS3iZMA/oMcJN
- DHfuB68Z9Bc6Wam8V3o+plFE1rpYx4bKfeZX3vWbAExnc+JFc0OKs3ZmJbCePHKR9or2QjxVijh
- vbLVhMjKoK3eEukv9Sm4CnyfISJ6iHxO1RhCdLdXqcuvDOCs5ieJ+BpYtYDWL3j2FPAp+ZQFAcR
- ExdET/PrZCUp+8MUIxAiJC8DpFEhGBeSoSgW7BjWb7+PbpiEFQenosBQVJMIPTYLdWyFvU93IiQ
- hVGiCPfmumAsx73ezMI60baVOMJ0jXtWoCaT8Tb5kRh21Wuvk7efvJQbLWvOkGaLEowkFLGSr7v
- Lowhzi+x
-X-Proofpoint-ORIG-GUID: 0cNZeQ0aFEWOQrLuKIQFiCW7LqV3sBI_
-X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=6894a528 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=PLusG5baLZIICTn4gS8A:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-07_02,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
- adultscore=0 malwarescore=0 spamscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <tc4od3jtqnj743naxefx5lxkha46wohuuvw46mik6nullvsqbe@knj4t23eaodw>
 
-On 8/6/25 12:21 PM, Taniya Das wrote:
+On Thu, Aug 07, 2025 at 01:41:31PM +0100, Nuno Sá wrote:
+> On Thu, Aug 07, 2025 at 12:34:52PM +0300, Matti Vaittinen wrote:
+> > The ad7476 driver defines separate chan_spec structures for operation
+> > with and without convstart GPIO. At quick glance this may seem as if the
+> > driver did provide more than 1 data-channel to users - one for the
+> > regular data, other for the data obtained with the convstart GPIO.
+> > 
+> > The only difference between the 'convstart' and 'non convstart'
+> > -channels is presence / absence of the BIT(IIO_CHAN_INFO_RAW) in
+> > channel's flags.
+> > 
+> > We can drop the convstart channel spec, and related convstart macro, by
+> > allocating a mutable per driver instance channel spec an adding the flag
+> > in probe if needed. This will simplify the driver with the cost of added
+> > memory consumption.
+> > 
+> > Assuming there aren't systems with very many ADCs and very few
+> > resources, this tradeoff seems worth making.
+> > 
+> > Simplify the driver by dropping the 'convstart' channel spec and
+> > allocating the chan spec for each driver instance.
+> 
+> I do not agree with this one. Looking at the diff, code does not look
+> simpler to me...
+
+Ok, on a second thought I'm ok with this. It makes adding devices easier
+and (IIUC) for the one you're adding later we only have "convst_channel"
+channels.
+
+On comment though...
+
+> 
+> - Nuno Sá
+> 
+> > 
+> > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > 
+> > ---
+> > Revision history:
+> >  v1 => v2:
+> >  - New patch
+> > 
+> > I considered squashing this change with the one limiting the chip_info
+> > scope. Having this as a separate change should help reverting if someone
+> > complains about the increased memory consumption though.
+> > ---
+> >  drivers/iio/adc/ad7476.c | 31 ++++++++++++++++++-------------
+> >  1 file changed, 18 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> > index e97742912b8e..a30eb016c11c 100644
+> > --- a/drivers/iio/adc/ad7476.c
+> > +++ b/drivers/iio/adc/ad7476.c
+> > @@ -29,8 +29,6 @@ struct ad7476_state;
+> >  struct ad7476_chip_info {
+> >  	unsigned int			int_vref_mv;
+> >  	struct iio_chan_spec		channel[2];
+> > -	/* channels used when convst gpio is defined */
+> > -	struct iio_chan_spec		convst_channel[2];
+> >  	void (*reset)(struct ad7476_state *);
+> >  	bool				has_vref;
+> >  	bool				has_vdrive;
+> > @@ -41,6 +39,7 @@ struct ad7476_state {
+> >  	struct gpio_desc		*convst_gpio;
+> >  	struct spi_transfer		xfer;
+> >  	struct spi_message		msg;
+> > +	struct iio_chan_spec		channel[2];
+> >  	int				scale_mv;
+> >  	/*
+> >  	 * DMA (thus cache coherency maintenance) may require the
+> > @@ -153,24 +152,18 @@ static int ad7476_read_raw(struct iio_dev *indio_dev,
+> >  #define AD7940_CHAN(bits) _AD7476_CHAN((bits), 15 - (bits), \
+> >  		BIT(IIO_CHAN_INFO_RAW))
+> >  #define AD7091R_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), 0)
+> > -#define AD7091R_CONVST_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), \
+> > -		BIT(IIO_CHAN_INFO_RAW))
+> >  #define ADS786X_CHAN(bits) _AD7476_CHAN((bits), 12 - (bits), \
+> >  		BIT(IIO_CHAN_INFO_RAW))
+> >  
+> >  static const struct ad7476_chip_info ad7091_chip_info = {
+> >  	.channel[0] = AD7091R_CHAN(12),
+> >  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> > -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> >  	.reset = ad7091_reset,
+> >  };
+> >  
+> >  static const struct ad7476_chip_info ad7091r_chip_info = {
+> >  	.channel[0] = AD7091R_CHAN(12),
+> >  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> > -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> >  	.int_vref_mv = 2500,
+> >  	.has_vref = true,
+> >  	.reset = ad7091_reset,
+> > @@ -282,7 +275,7 @@ static int ad7476_probe(struct spi_device *spi)
+> >  	const struct ad7476_chip_info *chip_info;
+> >  	struct ad7476_state *st;
+> >  	struct iio_dev *indio_dev;
+> > -	int ret;
+> > +	int ret, i;
+> >  
+> >  	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> >  	if (!indio_dev)
+> > @@ -332,16 +325,28 @@ static int ad7476_probe(struct spi_device *spi)
+> >  	if (IS_ERR(st->convst_gpio))
+> >  		return PTR_ERR(st->convst_gpio);
+> >  
+> > +	/*
+> > +	 * This will never realize. Unless someone changes the channel specs
+> > +	 * in this driver. And if someone does, without changing the loop
+> > +	 * below, then we'd better immediately produce a big fat error, before
+> > +	 * the change proceeds from that developer's table.
+> > +	 */
+> > +	BUILD_BUG_ON(ARRAY_SIZE(st->channel) != ARRAY_SIZE(chip_info->channel));
+
+I guess it make sense but still looks too fancy for this :)
+
+> > +	for (i = 0; i < ARRAY_SIZE(st->channel); i++) {
+> > +		st->channel[i] = chip_info->channel[i];
+> > +		if (st->convst_gpio)
+
+I would flip this an do:
+	if (!st->convst_gpio)
+		break;
+		
+> > +			st->channel[i].info_mask_separate |=
+> > +				BIT(IIO_CHAN_INFO_RAW);
+		
+		__set_bit()...
+
+- Nuno Sá
+
+> > +	}
+> > +
+> >  	st->spi = spi;
+> >  
+> >  	indio_dev->name = spi_get_device_id(spi)->name;
+> >  	indio_dev->modes = INDIO_DIRECT_MODE;
+> > -	indio_dev->channels = chip_info->channel;
+> > -	indio_dev->num_channels = 2;
+> > +	indio_dev->channels = st->channel;
+> > +	indio_dev->num_channels = ARRAY_SIZE(st->channel);
+> >  	indio_dev->info = &ad7476_info;
+> >  
+> > -	if (st->convst_gpio)
+> > -		indio_dev->channels = chip_info->convst_channel;
+> >  	/* Setup default message */
+> >  
+> >  	st->xfer.rx_buf = &st->data;
+> > -- 
+> > 2.50.1
+> > 
 > 
 > 
-> On 8/6/2025 3:34 PM, Konrad Dybcio wrote:
->> On 8/4/25 4:21 PM, Taniya Das wrote:
->>>
->>>
->>> On 8/4/2025 6:40 PM, Konrad Dybcio wrote:
->>>> On 8/4/25 11:00 AM, Taniya Das wrote:
->>>>>
->>>>>
->>>>> On 8/1/2025 5:24 PM, Konrad Dybcio wrote:
->>>>>> On 8/1/25 7:31 AM, Abel Vesa wrote:
->>>>>>> On 25-08-01 10:02:15, Taniya Das wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 7/30/2025 4:55 PM, Abel Vesa wrote:
->>>>>>>>> On 25-07-29 11:12:37, Taniya Das wrote:
->>>>>>>>>> Add a clock driver for the TCSR clock controller found on Glymur, which
->>>>>>>>>> provides refclks for PCIE, USB, and UFS.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>>>>>>>>> ---
->>>>>>>>>>  drivers/clk/qcom/Kconfig         |   8 ++
->>>>>>>>>>  drivers/clk/qcom/Makefile        |   1 +
->>>>>>>>>>  drivers/clk/qcom/tcsrcc-glymur.c | 257 +++++++++++++++++++++++++++++++++++++++
->>>>>>>>>>  3 files changed, 266 insertions(+)
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> [...]
->>>>>>>>>
->>>>>>>>>> +
->>>>>>>>>> +static struct clk_branch tcsr_edp_clkref_en = {
->>>>>>>>>> +	.halt_reg = 0x1c,
->>>>>>>>>> +	.halt_check = BRANCH_HALT_DELAY,
->>>>>>>>>> +	.clkr = {
->>>>>>>>>> +		.enable_reg = 0x1c,
->>>>>>>>>> +		.enable_mask = BIT(0),
->>>>>>>>>> +		.hw.init = &(const struct clk_init_data) {
->>>>>>>>>> +			.name = "tcsr_edp_clkref_en",
->>>>>>>>>> +			.ops = &clk_branch2_ops,
->>>>>>>>>
->>>>>>>>> As discussed off-list, these clocks need to have the bi_tcxo as parent.
->>>>>>>>>
->>>>>>>>> Otherwise, as far as the CCF is concerned these clocks will have rate 0,
->>>>>>>>> which is obviously not the case.
->>>>>>>>>
->>>>>>>>> Bringing this here since there is a disconnect between X Elite and
->>>>>>>>> Glymur w.r.t this now.
->>>>>>>>
->>>>>>>>
->>>>>>>> The ref clocks are not required to be have a parent of bi_tcxo as these
->>>>>>>> ideally can be left enabled(as a subsystem requirement) even if HLOS
->>>>>>>> (APSS) goes to suspend. With the bi_tcxo parent the ARC vote from
->>>>>>>> HLOS/APSS will not allow APSS to collapse.
->>>>>>>
->>>>>>> Is there a scenario where the APSS is collapsed and still the ref clock
->>>>>>> needs to stay enabled ? Sorry, this doesn't make sense to me.
->>>>>>
->>>>>> MDSS is capable of displaying things from a buffer when the CPU is off,
->>>>>> AFAICU
->>>>>>
->>>>>> We can do CXO_AO instead to have it auto-collapse if it's just Linux
->>>>>> requesting it to stay on, I think.
->>>>>>
->>>>>
->>>>> Thanks Konrad for adding the display use case.
->>>>> Abel, we earlier also had some PCIe, USB use cases where we had to leave
->>>>> the ref clocks ON and APSS could collapse.
->>>>
->>>> XO votes will prevent CX collapse, not APSS collapse. CX also powers
->>>> USB and PCIe so that only makes sense.
->>>>
->>>> I think it's fair to just stick XO as the parent of every refclock
->>>> today and think about the what-ifs (such as the mdss case I mentioned
->>>> above) later - especially since we have no infra to take full advantage
->>>> of it today (non-APSS RSCs etc.)
->>>>
->>>
->>> When ref clock have been part of GCC, then also they didn't have any xo
->>> as the parent, similar design we kept when it was moved to TCSR as well.
->>
->> Perhaps we've been running on luck (i.e. XO votes being cast through
->> another device / clock as a second order effect) all this time.. I'd
->> happily move towards formal correctness.
->>
-> 
-> I would like to stay with no XO linkage to TCSR. Any driver has specific
-> XO requirement should vote for the rpmhcc XO or XO_AO.
-
-Every driver has an XO requirement, as we happen not to have any
-other crystals onboard.. The clock plan says that these refclks
-are direct children of XO too
-
-Konrad
 
