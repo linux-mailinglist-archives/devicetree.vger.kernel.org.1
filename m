@@ -1,135 +1,300 @@
-Return-Path: <devicetree+bounces-202340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F7BB1D176
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 06:29:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26D61B1D1C7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:00:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A76E1AA1679
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 04:29:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D078618A10AD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 05:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F9A1E0083;
-	Thu,  7 Aug 2025 04:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89EF61F4622;
+	Thu,  7 Aug 2025 05:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T0DJwjlL"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="QmRBNN0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 456218F6E;
-	Thu,  7 Aug 2025 04:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B121F4E57;
+	Thu,  7 Aug 2025 05:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754540959; cv=none; b=Ny1r9HS5nB193ztwGUmfqaN2xGntMMYnf0nenYAkqmhQQoJ2JRWYo3ysyLgcUE6kCUAfgQter5OCKnLMKPuBOcC7M29RoJonxaL+UdlHQr7YcWi6gc8/KosGI1D3LvKLaTr6KNZsUXFiCBHYCiFiNWe9SmkXu8TAaBPG9qXchpk=
+	t=1754542812; cv=none; b=m58xdVasBZWAi+G0X35uSsvr4hcs4Ea6MB9xocE1GbRBP4b3p2/u15f92/N2K0303en8lz5EZiCNO2MnHEf0IoXoqiACDn3wZAOwz1uz388fT+UItkj1zmhNZzbxQoSzu7gsH57A6gk3KgW033/AD0rZEoqr0Ig/bYrm8fuYb5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754540959; c=relaxed/simple;
-	bh=Rqs7qqQtk1AFIV8i5FvyH/sbeMnqewCvwMdL0VhH/Vs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SvGxYaMXpKVIU37fQihbT7wc0WLcytmiHbThk9jEzeGKGgoOvYdFra3Ww5/pd+MotTiAqQtQt0Zd5M7L9XAOkknUbo0itk+IVQCxOc0vmqxj+D53KiicCtNMCV3SyY7U+UXijU6eQbgXNxWZOG6ALy/pDa4NI8IXdBolu1fTFpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T0DJwjlL; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2407235722bso5529485ad.1;
-        Wed, 06 Aug 2025 21:29:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754540957; x=1755145757; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fLjoW/JR7SYyN82M64yJPv3/KhQEznxNWUu4jcinAK4=;
-        b=T0DJwjlL0FhR0Jkb5i5uY63i5XL9Fdv7K4xSeTxePdjgWdSW9xQPj6SHLesMnnx1A7
-         +ebeJA8GGCbCmXIEIXpygKdFN7fz1TBUV58APF63zjQOOlvexYxuOhYMD15N5Ex9iAbY
-         1SlwBx+oW/soCDY4cZSix7i9B5ALwd1gr04O/vRUdGLoYG1EECu3vluHOGAyRSANCLTT
-         as00y3Z62IqhW5jVtkLKj9Jq3GiOk6PcyTkKrt+n6+hZn1nr27oaFnClo3ZqE3pK38CU
-         YUc+O6STXtBSAGceE/E2quOURXpuEODLI7D/Z4OS2OScJCRMKcOytcSiOU98Xfjp/6Y7
-         IslQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754540957; x=1755145757;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fLjoW/JR7SYyN82M64yJPv3/KhQEznxNWUu4jcinAK4=;
-        b=dfnNRfeKxpnJ9pJBPdxg+A0lgffWjyG4uKJPYpHwTaS0OSprhI0J8kypacGd46neIC
-         Qn8puJ61FcTwmPA6CgKbyezn+Tf3+VbSbKHD6XFqZVA8orvzbRY+5BR0bmuCcuuJkmtn
-         OvsCpOuZZmBES1g8paXQuiCqkRgkGrnXzbjpnvORvE70u4wwQQQjxM6HdGu+t3zB3Hqb
-         PC53IZeQD3Ymi6lWWZl8kyZkElwp4tnjecwE6n1BMxJeB3brkj4wghwDQEvJtDdtN2vS
-         k7+x1U1QwTaoF2dllg7yfbq6+lIB8bu1RpnD0yfz3He81EvQm2vXDTvAEZrhYwshgaee
-         K7ug==
-X-Forwarded-Encrypted: i=1; AJvYcCW0n5qnNEWF7Eog1WxY2QbsgIv0v2Jkmfbso4Djgzjaa/YOqwLja5gBOMuhRCkTaUftTZV+Un5Kulo4BWU=@vger.kernel.org, AJvYcCWPb6UmkJ6ubzKqzDLjN3+lLaSOPqM9kXnpERVjpcV33waoCXTBTpDPkLHM2iWq+uiRostVsvJ1QKvW@vger.kernel.org, AJvYcCWXInNj2BS9NnxUe8KdkgciT/Za+UOTvzC4SOwuZE7eV2WBwYhotzC2aK7w/FmH5tQkTwjY45r/V5zsmK5L@vger.kernel.org, AJvYcCXXKrxtvlUQcflBHojyns4jeEmICzq24lMtOzDLk/k5HgOXdjWLdeh4CUj7t5ed4+h+jkvxa2br6uRMRYo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNovoiL2TjtK0+h0n9DgJCmG9JjBvj1WZbfHwxyFchyI+K2Ciw
-	yGdpdJ4inik8+wRczwG9jiW8hXWRxVI046+2iGLSzIc2h7WUGzCfPViN
-X-Gm-Gg: ASbGncuA06lNrWDmQ1bErR52/CzCij01Qat5/T499SW6C+XYSdqU7SD0L1u7qhukDtH
-	Cy/FjJHFlT55FjsWd5DDr5Tvc0i5PlItTFzggIJGnJRTj1lDYdFhbCgxxBt+JUbBbz70A2BIRHt
-	YtRU880pyi/aio3GMH2e+IcD2Vj+iFF10xbQ4Z87TfjqxoiH3Om7W9D8HShzxbTjg4q7jqurdPC
-	wzbcB9va5qO9zheYP4GhaGM872Ww+fpt5vcLsoUJge/R4K2r88namNvm/xrW1oxchkGJmP2+a16
-	N1TNVhuEtGhX4h/n7VNWWDqTOHd7fORs3RH6PkGIT3GPCA5Lv6I+92YmcEVBj/KWOWjKorI9iSI
-	qcrxLoGbXfjgg/zs3hFCiAYM=
-X-Google-Smtp-Source: AGHT+IH7Ykgv5OaxQo1cMX7bcE1ucqXXe+QxvHYtt8i6uHT6Rug4kEWpU6ysRLV/oIs0MlSvGS3Yag==
-X-Received: by 2002:a17:902:ec92:b0:238:120:134a with SMTP id d9443c01a7336-2429f4380d2mr84511455ad.22.1754540957372;
-        Wed, 06 Aug 2025 21:29:17 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:1dc7:76a8:a227:b1c7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241e8aaaf05sm173046435ad.162.2025.08.06.21.29.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 21:29:16 -0700 (PDT)
-Date: Wed, 6 Aug 2025 21:29:14 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: david@ixit.cz
-Cc: Kaustabh Chakraborty <kauschluss@disroot.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vincent Huang <vincent.huang@tw.synaptics.com>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	Casey Connolly <casey.connolly@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v5 0/7] Input: synaptics-rmi4 - add quirks for
- third party touchscreen controllers
-Message-ID: <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
-References: <20250731-synaptics-rmi4-v5-0-cd0d87d34afa@ixit.cz>
+	s=arc-20240116; t=1754542812; c=relaxed/simple;
+	bh=yOYzFohhd2o0XfNFY9p4eemwAkmIDupzEGpfmoODdWc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=umOpaGIYCs6gQLukiFK0OEma664umqz0XsqT3HdHQdpDqJyxa5yOIAjBRQHtM3NEH9AtsLuE2Shg3mvhdxRmU+z5usGn9Qa4hdhmBnIo4I4Ni647Mb0s2ZfQXjW+L6633jLoZ/+mPVaBDB6t92iBBKIChRSNOoR5Xxvyp1BE5nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=QmRBNN0h; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=PBcZyW0XcKbk668IHk0f4cPCJPghlABu1S2hNa+xTlg=; b=QmRBNN0hK8PStTUgV85T22s04e
+	WgqmOQqb5nXuQpUSPTVtrFJ4jwiyUDSLnFrlT34DlyUR3XY45NEjHReEKGI2+lJXn1WLnYRsxNcQ8
+	dwG7cMEsEbcdG47oMPalE/S5HHg283Q+9m3utRi0MqnjIaR1F+qHTI0dOtmMLdSzuDLM3OZbEMw5d
+	dK7GxCyKLtc+lKuORHZHR7jbgc1HMtvgCtR1T5dsJuPQ3dDXntI4A5Ua+bHG/6eXp4v7eDFdBHAPM
+	0RU/NegtPqNNHBDxRdomtCd3n/2M/ge8X0tlWJqU+5zCB7D52m21lvCgDG4Ldhlv+kTlTOyIhPdS3
+	ysVTpW6A==;
+Received: from [89.212.21.243] (port=38786 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1ujsNe-00BlMl-0p;
+	Thu, 07 Aug 2025 06:37:29 +0200
+Message-ID: <19634e51-0568-421a-a3c4-b9988c2ccfb1@norik.com>
+Date: Thu, 7 Aug 2025 06:37:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250731-synaptics-rmi4-v5-0-cd0d87d34afa@ixit.cz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration
+ properties
+To: Bough Chen <haibo.chen@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Nuno S? <noname.nuno@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno Sa <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
+ "andrej.picej@norik.com" <andrej.picej@norik.com>
+References: <20250710073905.1105417-1-primoz.fiser@norik.com>
+ <20250710073905.1105417-2-primoz.fiser@norik.com>
+ <2bcd758b-c2d0-488a-8ead-ec7fb39f93e2@baylibre.com>
+ <20250713160247.0f22bbfe@jic23-huawei>
+ <de2c8e15-14e9-4c61-9a13-97ef1ec567a4@norik.com>
+ <6b32118a13e9e28b7cf12152af33642c76367c34.camel@gmail.com>
+ <20250721093847.GD4844@nxa18884-linux.ap.freescale.net>
+ <DU0PR04MB9496FCE8DF07CD0E270B72AF905DA@DU0PR04MB9496.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <DU0PR04MB9496FCE8DF07CD0E270B72AF905DA@DU0PR04MB9496.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-Hi David,
+Hi,
 
-On Thu, Jul 31, 2025 at 11:06:50PM +0200, David Heidelberg via B4 Relay wrote:
-> With the growing popularity of running upstream Linux on mobile devices,
-> we're beginning to run into more and more edgecases. The OnePlus 6 is a
-> fairly well supported 2018 era smartphone, selling over a million units
-> in it's first 22 days. With this level of popularity, it's almost
-> inevitable that we get third party replacement displays, and as a
-> result, replacement touchscreen controllers.
+On 21. 07. 25 11:09, Bough Chen wrote:
+>> -----Original Message-----
+>> From: Peng Fan (OSS) <peng.fan@oss.nxp.com>
+>> Sent: 2025年7月21日 17:39
+>> To: Nuno S? <noname.nuno@gmail.com>
+>> Cc: Primoz Fiser <primoz.fiser@norik.com>; Jonathan Cameron
+>> <jic23@kernel.org>; David Lechner <dlechner@baylibre.com>; Bough Chen
+>> <haibo.chen@nxp.com>; Nuno Sa <nuno.sa@analog.com>; Andy Shevchenko
+>> <andy@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Shawn Guo
+>> <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>;
+>> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+>> <festevam@gmail.com>; linux-iio@vger.kernel.org; imx@lists.linux.dev;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-kernel@vger.kernel.org; upstream@lists.phytec.de;
+>> andrej.picej@norik.com
+>> Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: imx93: Add calibration properties
+>>
+>> On Mon, Jul 14, 2025 at 05:11:31PM +0100, Nuno S? wrote:
+>>> On Mon, 2025-07-14 at 07:56 +0200, Primoz Fiser wrote:
+>>>> Hi all,
+>>>>
+>>>> On 13. 07. 25 17:02, Jonathan Cameron wrote:
+>>>>> On Thu, 10 Jul 2025 10:46:44 -0500
+>>>>> David Lechner <dlechner@baylibre.com> wrote:
+>>>>>
+>>>>>> On 7/10/25 2:39 AM, Primoz Fiser wrote:
+>>>>>>> From: Andrej Picej <andrej.picej@norik.com>
+>>>>>>>
+>>>>>>> Document i.MX93 ADC calibration properties and how to set them.
+>>>>>>>
+>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>>>>> Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+>>>>>>> ---
+>>>>>>> ??.../bindings/iio/adc/nxp,imx93-adc.yaml???????????? | 21
+>>>>>>> +++++++++++++++++++
+>>>>>>> ??1 file changed, 21 insertions(+)
+>>>>>>>
+>>>>>>> diff --git
+>>>>>>> a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-
+>>>>>>> adc.yaml
+>>>>>>> b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>>>> index c2e5ff418920..d1c04cf85fe6 100644
+>>>>>>> ---
+>>>>>>> a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.y
+>>>>>>> +++ aml
+>>>>>>> @@ -52,6 +52,27 @@ properties:
+>>>>>>> ???? "#io-channel-cells":
+>>>>>>> ???????? const: 1
+>>>>>>> ??
+>>>>>>> +?? nxp,calib-avg-en:
+>>>>>>> +?????? default: 1
+>>>>>>> +?????? description:
+>>>>>>> +?????????? Enable or disable calibration averaging function (AVGEN).
+>>>>>>> +?????? $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>> +?????? enum: [ 0, 1 ]
+>>>>>>> +
+>>>>>>> +?? nxp,calib-nr-samples:
+>>>>>>> +?????? default: 512
+>>>>>>> +?????? description:
+>>>>>>> +?????????? Selects number of samples (NRSMPL) to be used during
+>> calibration.
+>>>>>>> +?????? $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>> +?????? enum: [ 16, 32, 128, 512 ]
+>>>>>
+>>>>> Allow 1 as a value and drop the enabled above.???? Averaging over 1
+>>>>> sample is same as no averaging and gives simpler binding.
+>>>>>
+>>>>>>> +
+>>>>>>> +?? nxp,calib-t-sample:
+>>>>>>> +?????? default: 22
+>>>>>>> +?????? description:
+>>>>>>> +?????????? Selects sample time (TSAMP) of calibration
+>>>>>>> +conversions in ADC
+>>>>>>> clock cycles
+>>>>>>> +?????? $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>>> +?????? enum: [ 8, 16, 22, 32 ]
+>>>>>>> +
+>>>>>>> ??required:
+>>>>>>> ???? - compatible
+>>>>>>> ???? - reg??
+>>>>>>
+>>>>>> This seem like things that should be set at runtime rather than
+>>>>>> in the devicetree. Unless there is some justification on why
+>>>>>> these values depend on how the chip is wired up?
+>>>>
+>>>> It depends how ADC 1.8V Vref is wired up, especially how noisy it is.
+>>>>
+>>>>>
+>>>>> Further to that, I'd like to see some explanation of why we care to
+>>>>> change it at all. Is it ever a bad idea to enable averaging and
+>>>>> pick a large number of samples for calibration?
+>>>>
+>>>> This is a snippet from the i.MX93 TRM, chapter Analog-to-Digital
+>>>> Converter (SAR_ADC) describing calibration steps:
+>>>>
+>>>> 1. Wait for deassertion of functional reset.
+>>>> 2. Configure SAR controller operating clock (MCR[ADCLKSE] = 0).
+>>>> 3. Bring ADC out of Power-down state (MCR[PWDN] = 0).
+>>>> 4. Configure desired calibration settings (default values kept for
+>>>> highest accuracy maximum time).
+>>>> ??? MCR[TSAMP]: Sample time for calibration conversion ???
+>>>> MCR[NRSMPL]: Number of samples in averaging ??? MCR[AVGEN]: Averaging
+>>>> function enable in calibration 5. Run calibration by writing a one to
+>>>> MCR[CALSTART].
+>>>> 6. Check calibration run status in MSR[CALBUSY]???wait until
+>>>> MSR[CALBUSY] = 0; alternatively, MSR[ADCSTAT] can be used to check
+>>>> status.
+>>>> 7. Check calibration pass/fail status in MSR[CALFAIL] field. If
+>>>> MSR[CALFAIL] = 1 then calibration failed. Detailed status can be
+>>>> checked in CALSTAT.
+>>>>
+>>>>
+>>>> See point 4).
+>>>>
+>>>> Not sure why would there be an option to configure i.MX93 ADC
+>>>> calibration parameters if one use-case (max accuracy max time) to
+>>>> rule them all?
+>>>>
+>>>
+>>> Sometimes HW guys just want to give you some options. Does not mean we
+>>> have to use them all :).
+>>>
+>>> I guess what Jonathan is interested in, is to understand in what
+>>> conditions the defaults are no good for the calibration? If we can have
+>>> a set of values that should pretty much always work, no need to further
+>>> complicate the bindings or the driver.
+>>
+>> Just my understanding, it is hard to use one fixed settings to fit all kinds of
+>> conditions.
+>>
+>>                  Noise induced from PCB tracks  Electro- magnetic noise
+>> 		     |                           |
+>> 		     V                           V
+>>  ---------
+>> |SOC(ADC)|   <---------------------------------<- (~) external Signal
+>>  ---------
+>>                  ^                 ^
+>>                  |                 |
+>>              I/O coupled noise    Internal noise
+>>
+>>
+>> So OEM A's board may needs different settings compared with OEM B's board.
 > 
-> The OnePlus 6 shipped with an extremely usecase specific touchscreen
-> driver, it implemented only the bare minimum parts of the highly generic
-> rmi4 protocol, instead hardcoding most of the register addresses.
+> The noise on Vref did impact the calibration, we did get report from customer, and IC guys suggested to do like the following patch, what's your comments?
 > 
-> As a result, the third party touchscreen controllers that are often
-> found in replacement screens, implement only the registers that the
-> downstream driver reads from. They additionally have other restrictions
-> such as heavy penalties on unaligned reads.
-> 
-> This series attempts to implement the necessary workaround to support
-> some of these chips with the rmi4 driver. Although it's worth noting
-> that at the time of writing there are other unofficial controllers in
-> the wild that don't work even with these patches.
-> 
-> We have been shipping these patches in postmarketOS for the last several
-> years, and they are known to not cause any regressions on the OnePlus
-> 6/6T (with the official Synaptics controller), however I don't own any
-> other rmi4 hardware to further validate this.
+> https://patchwork.kernel.org/project/linux-iio/patch/20250423-adcpatch-v1-1-b0e84c27ae98@nxp.com/
 
-Sorry for not handling the patches in the last few submissions. I am
-planning on addressing them once merge window opens.
+With this patch we still get calibration warning however ADC is
+eventually working.
 
-Thanks.
+Where can we get mapping for this register:
+
+#define IMX93_ADC_CALCFG0	0X3A0
+
+It seems that public i.MX 93 TRM goes up to offset 0x39C only?
+
+BR,
+Primoz
+
+> 
+> Regards
+> Haibo Chen 
+>>
+>> Regards,
+>> Peng
+>>
+>>>
+>>> - Nuno S??
+>>>> On the other hand, public TRM doesn't give much more information and
+>>>>>
 
 -- 
-Dmitry
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
+--
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
