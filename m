@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-202527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6C4B1DEAD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 23:17:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 618BBB1DEDE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 23:29:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2EED3A33E2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:17:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57D5B7A3C17
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0C6237165;
-	Thu,  7 Aug 2025 21:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE130239E6A;
+	Thu,  7 Aug 2025 21:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HYz+tPmN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mzR2A4CW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F5C9478;
-	Thu,  7 Aug 2025 21:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6464430;
+	Thu,  7 Aug 2025 21:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754601415; cv=none; b=PYPupb6nommkYV0C3becF9ahAlcR5P/FSRWwCBohHQG5iDzlrApsTosPgreco9bTMsIOJn4bzPaliZLTcCu9G173Jb+L632vpOMCJj+FNc3/inOYshtRKuYE6WmfqxuiRsvqXNgriWT9UTrg4ZcTpi2JhYQfOPvdWdg75/icFrs=
+	t=1754602147; cv=none; b=IyQdbR3N3t44BFoQGIILifWbaZWmDrMkZdy/4g/ghxMR8XbyJrYRIiw8LdOJtMkn2pQV2zVpHqmUqAGJD47aH6pOQ5BN3m0ZIaLd3eDzxPQEsMa+iRjfri94qL9GEaiF8R48P+fPFRQ5/ppGcQZGKzlE6M1MY/zpIvl/sKQw47M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754601415; c=relaxed/simple;
-	bh=9eUhhK5dfV8YL1qqjnFaB8UyCfsTlH1y3uerlBWSZeE=;
+	s=arc-20240116; t=1754602147; c=relaxed/simple;
+	bh=e5ZroBIz+n4D+tQJf8o64lB4daFJ+ZpSVvOGHo1c41U=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U6RfQRer/hHrJE7/0d8ecABCtooetDbQdCDUF7Om2WaUx0Ibk0IT3zlts+Ki4bT3c2df4oFDnbh1WtGhMlu26Arna3HPjykAC4LMIz4YC3A1biV16y+ycph3WhzwIrrHY4vQhlV8Ewv0VMG1OmCK3nnTUkTBZ1IkHzd7jpdnAs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HYz+tPmN; arc=none smtp.client-ip=209.85.218.45
+	 To:Cc:Content-Type; b=CHeazdRYgJ4VefnJCZNkmvzprZ0Ae2DxkjsDHWdPRNtoovR55Bu9YA/Pttn/N0EKbpRONa8/WqlklKypIJKSK+rC3yWLS7XZfgwIeX3JCxy7q8YdLWSkxUZFnJyRt2Zev0eSLaXBQLo9MGw69D4Mt3aeBetSttHRtr00F+mYgXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mzR2A4CW; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af937728c3eso426197266b.0;
-        Thu, 07 Aug 2025 14:16:53 -0700 (PDT)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-55b88369530so1657383e87.0;
+        Thu, 07 Aug 2025 14:29:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754601412; x=1755206212; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1754602144; x=1755206944; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YW5VKuizdz3uQCAD3P3uaQbe86Sv96LJNl4VjT7BKPw=;
-        b=HYz+tPmNnTNWjbC25e5lgggvlbEIPbUPX4+NSb/dVTwGnS5KOBlHV+BhQ/4j8D+92s
-         CCjUuMthwnbsB22IqudR/Ynd4BDELr0zgiZVuSj64lxXtzw0YZ2igasjEylHKqWG0p4V
-         SgKkTBAn/J87FNzOlSbYgTmWrgp5khBuwKEWyVGJ22RIDuZgKdb8uNz2xd14OzogOM4K
-         06PClJATN0Sj0XDdLvvEjkHHocqjZ8KQgRcHdUfJ+JoYDmA6MsbEenODPDU/dA7QWk5g
-         iVyb54/yBYMEQ5LIt+kaTM/7y22+MoCFHtGOQ4gbFCoSJKfZ73EOfHXon9DO5Rq3bMm/
-         Q1Gw==
+        bh=2o6wy1hxsqYKmmF+f3dxWhM/eGBJynYmK8a0QZYd+z8=;
+        b=mzR2A4CWxPpIkaILWT1LBwO25IM+M/5vsPAyTlOlDZQ942I5lB9C7jyjRtSOujsUle
+         Jof7y7Xhu5z77tuj3iu8My9oZEA429psYAQupe6nol3zyPQTVyFZHe5eZXC6ft2r1aVe
+         DTq47BoAaIIy9g9tzL5iPGbmQHDGAXVRGkE/jLBuLBBpHRfgj5KD48+NNt9Cq2hVQiOA
+         zf85jJAB+FIhOTI4+G/1WVvWN4Z0a4/Xe7OKwz/OHB/RfaKpReFixP00j80CZUlNd5yL
+         jLWQ8/0sZyQtflSwnIZyc1eYfnX+zjbYAi7zKB/j4qNr7ksqD0NS00fLrHDB+WN+NHHb
+         CDxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754601412; x=1755206212;
+        d=1e100.net; s=20230601; t=1754602144; x=1755206944;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YW5VKuizdz3uQCAD3P3uaQbe86Sv96LJNl4VjT7BKPw=;
-        b=jTm0+bUYn8pB4Cvwracq6vESvmkD1zIVCUZrv8EfZHngywmejPRFJHESagN5fXPm2T
-         dHk9D2zGlU1YqaTJoWsZZSGmn23K9zNgx76EP7iyoaTLMH3S6MPrJ1l0Gkf5lua4u7Wp
-         iqKb+AorSdXcyJ0izGCDZQcu3Os6OTLGBh/FA0krGgW60AdxKoCcY9fn3fYbWUG3mu1+
-         9yHnMqEsL9JLQCwHuSklaUGeue4V4YBR8s2EI9+z6CHwivgL9vOvIJFleVlg2lbv6K4Q
-         pFz7HWULXWkq3gVzrczOJzz2aKOsFw7tWHgMFh+I/p0q0deDV8LAaDUQMrSlUH3bYCcw
-         TPBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsyJgCGl96XmFgRsN85hCN0z2/n2ZCwjbnKzfiTa73sKcr9Gf17NEOBPhbcZ6woZJ3hII+unKKTIVy@vger.kernel.org, AJvYcCVcUnSxWv36xyJw22s85TPYoV+7lKey6Xg/7/n3PN37RYhuWFwLnvrcoSZq8AE5t/pn/8Xyjw/bMa+8@vger.kernel.org, AJvYcCWJgtXN8IIH7bQvNbhKw1Pdo7cIApRg8aQP//T4h6idwT5ixQ7bM878twiAnDpEvbEUDEDMs1UKEsKQSA0T@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrU83azi89ogkZUXWwyUWAH8D6emn4GWtEHmN9Y3LnXR+6FyHh
-	xUERGrT65wmRPDeXcCyBY9R3M1e/isIXD0Lf/OQz3tV5AYntneO/xaw2svma0iaR5UMD1Fagmc8
-	XBkD2hMghgSX2plOMMfxPz67YJdG6Y60=
-X-Gm-Gg: ASbGncs2KhQkBPwJiW+E01nBjiTNqTdtwITc7q9DoVwSi9RSeDwzS5U5LWWSnHE0dkA
-	p8SH6H73haf4diVbgv+j95EHrmstafWL41mencn/22UeNV6nw+8YM8hpnrMCjLMKbT5a0r5k2Xm
-	GCn8OQp4jk066MqP1lMfXq3Pa2lKKCf3Srjjxs8IENcW7NaQdM2RQ6DcvxLSrRh6eN+1C1S7rPE
-	fxH9g7EVRtg0raXOB5Q8sKnuFtIgK0SRCGCOyc/QA==
-X-Google-Smtp-Source: AGHT+IF5mbNBW94ntEyvRzUawU+yBnKWoEcM/OnUqQN7n9Ea/8VYGKZD45os8JeDIaa6K+ZOhjnNz0shSTGeBPPSwns=
-X-Received: by 2002:a17:907:7e9d:b0:af8:fded:6bad with SMTP id
- a640c23a62f3a-af9a3e3e611mr529635666b.18.1754601411885; Thu, 07 Aug 2025
- 14:16:51 -0700 (PDT)
+        bh=2o6wy1hxsqYKmmF+f3dxWhM/eGBJynYmK8a0QZYd+z8=;
+        b=eBdECQvrP9u8xq7L+GoHLAC1PJKnX+StSfm5qYi62/2ws74rLiAet64FdVUNcpo2sW
+         QJvfQe/lAWx0ZcvhU0S+SeCKP7rfFQVznoDjZb6dsFmTpb4lMysbJz+5Bvrq6sWFgIb+
+         MdADsIEq5e3DdAqDu5a8ivAqhJXLzd1vcKlJdofvcRJXFnDT1LmAsBWKn81QLd98TpVy
+         rlVJdB6maW6+2VrU/Jl4vKERgz5ix32Yuq8YtC2WoeDv7MkeTY4wk4aGJ63PjY12WzYk
+         IY5yI9zAJJUqNr/HNTikzX3TwnR3c+ADS7GanBAwdXiqVw+KtYNyw43CYD8nXhNSHD4H
+         OCEg==
+X-Forwarded-Encrypted: i=1; AJvYcCUEqCEmD9ZhfGoI+M+SMC0pRIU+3Sz9Fvtr6g54m+Dz6XfkEaUwJIFh2erdmbGdkM8U/bgO1ENmDh/d@vger.kernel.org, AJvYcCVEbuGMx/x5f2U0b+P/CwTuCvjkV3oF8Cg3/6oEymlJgknSnG/uIk0QtqHqDL3Vkk4qCDG6ouLOCyGV4piJ@vger.kernel.org, AJvYcCVP1m0V5BTKph1BEBXC2NeRLTwycJYWH6lTEzDVd0SMG4ttNoQ6VdneVAWmf0TKFDy/9obBy7jtagKh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTXcAwS8CDZTSoHU2ecQB8y3bVaZhe2PWCs15LL0zdGyQLtlMX
+	nEby8Dhi9ovOeay++FBYfE1itHWzfwtEIplNmBncvUzDTdSD/TJru1A1RdgPOKFB4+Dp9qFuDHD
+	5TRZXDS6rWRpl91UxMQvfaaVa9QtGKoY=
+X-Gm-Gg: ASbGnctWrPiOqp3EXQp5yAu1JqXYiaXTgvojflquc1AWLQNdpV2fvPpBAYsXTGaSCTf
+	dXpwPrVjqIRIEL69wa0ndyI3eMwuZUy2GytbcwNazEtuBWtCT2cZ3NHj9Jnh/TNLjJEkThTDDD1
+	+CyIE/x41wnB+qAJ66somWtyM0FlGMIEHBpzLBO0u8C1gAIjPS6vukYDy/Mo0U3W8bGGKwn734h
+	3AESuYT978swFlmZZiQEqCVi3z5qnaDLSLLGfySLg==
+X-Google-Smtp-Source: AGHT+IF2gn9Jbw2iuW9TmBoqCfY6sXuVmxhSrPEdUtl5zQbjv/HZcAEM7A9krusR9oI/gvhf/frzYunkfyCgqaF6we4=
+X-Received: by 2002:a05:6512:39c3:b0:55b:8273:5190 with SMTP id
+ 2adb3069b0e04-55cc00eb78bmr91681e87.18.1754602143932; Thu, 07 Aug 2025
+ 14:29:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754559149.git.mazziesaccount@gmail.com> <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
-In-Reply-To: <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
+References: <cover.1754559149.git.mazziesaccount@gmail.com> <da7e6b31a0f25106d7e2f56fb089c8fe71224654.1754559149.git.mazziesaccount@gmail.com>
+In-Reply-To: <da7e6b31a0f25106d7e2f56fb089c8fe71224654.1754559149.git.mazziesaccount@gmail.com>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 7 Aug 2025 23:16:15 +0200
-X-Gm-Features: Ac12FXykDcbCUdUI9iHmPN3WsJWpiJjJXg5mSCfo0Pc5LWH32gtNwUrRRah3vi4
-Message-ID: <CAHp75VcHR78Uwgo74n-i3a1sSfDxBwVKWihcnFp5x3d=puAySQ@mail.gmail.com>
-Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
+Date: Thu, 7 Aug 2025 23:28:27 +0200
+X-Gm-Features: Ac12FXwukEbIXj-ZESPmfX-vzfO2suKhMqGuLrQ8trHV1ZCoeJdpa7KaO-sFewo
+Message-ID: <CAHp75VfBvqzKR53qTbiGxE-JQdLOuA3+M-Z=9S6LTf0fGnwmvg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/10] iio: adc: ad7476: Support ROHM BD79105
 To: Matti Vaittinen <mazziesaccount@gmail.com>
 Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>, 
 	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
@@ -96,57 +96,58 @@ Content-Transfer-Encoding: quoted-printable
 On Thu, Aug 7, 2025 at 11:35=E2=80=AFAM Matti Vaittinen
 <mazziesaccount@gmail.com> wrote:
 >
-> The ad7476 driver defines separate chan_spec structures for operation
-> with and without convstart GPIO. At quick glance this may seem as if the
-> driver did provide more than 1 data-channel to users - one for the
-> regular data, other for the data obtained with the convstart GPIO.
+> The ROHM BD79105 is a simple 16-bit ADC accessible via SPI*.
 >
-> The only difference between the 'convstart' and 'non convstart'
-> -channels is presence / absence of the BIT(IIO_CHAN_INFO_RAW) in
-> channel's flags.
+> The BD79105 has a CONVSTART pin, which must be set high to start the ADC
+> conversion. Unlike with the ad7091 and ad7091r which also have a
+> CONVSTART pin, the BD79105 requires that the pin must remain high also
+> for the duration of the SPI access.
 >
-> We can drop the convstart channel spec, and related convstart macro, by
-> allocating a mutable per driver instance channel spec an adding the flag
-
-and adding
-
-> in probe if needed. This will simplify the driver with the cost of added
-> memory consumption.
+> (*) Couple of words about the SPI. The BD79105 has pins named as
+> CONVSTART, SCLK, DIN and DOUT. For the curious reader, DIN is not SPI
+> ISO.
 >
-> Assuming there aren't systems with very many ADCs and very few
-> resources, this tradeoff seems worth making.
+> DIN is a signal which can be used as a chip-select. When DIN is pulled
+> low, the ADC will output the completed measurement via DOUT as SCLK is
+> clocked. According to the data-sheet, the DIN can also be used for
+> daisy-chaining multiple ADCs. Furthermore, DOUT can be used also for a
+> 'data-ready' -IRQ. These modes aren't supported by this driver.
 >
-> Simplify the driver by dropping the 'convstart' channel spec and
-> allocating the chan spec for each driver instance.
-
-channel
-
-(you already used 'channel spec' above, be consistent)
+> Support reading ADC scale and data from the BD79105 using SPI, when DIN
+> is used as a chip-select.
 
 ...
 
-> -       int ret;
-> +       int ret, i;
+> +static void bd79105_convst_enable(struct ad7476_state *st)
+> +{
+> +       if (!st->convst_gpio)
+> +               return;
 
-Why? Is 'i' going to be used to hold a signed value?
+Still consider this unneeded churn. 3us delay is tolerable in almost
+any setup with this driver.
+
+> +       gpiod_set_value(st->convst_gpio, 1);
+> +       /* Worst case, 2790 nS required for conversion */
+
+nS --> ns (SI unit for seconds is 's')
+
+> +       ndelay(2790);
+> +}
 
 ...
 
 > +       /*
-> +        * This will never realize. Unless someone changes the channel sp=
-ecs
+> +        * The BD79105 starts ADC data conversion when the CONVSTART line=
+ is
+> +        * set HIGH. The CONVSTART must be kept HIGH until the data has b=
+een
+> +        * read from the ADC.
 
-realize --> happen
+Is this terminology in absolute levels of the pin or logical ones
+(that implied active-low)? If it's the latter, use active/inactive
+instead as the GPIO subsystem does.
 
-> +        * in this driver. And if someone does, without changing the loop
-> +        * below, then we'd better immediately produce a big fat error, b=
-efore
-> +        * the change proceeds from that developer's table.
 > +        */
-> +       BUILD_BUG_ON(ARRAY_SIZE(st->channel) !=3D ARRAY_SIZE(chip_info->c=
-hannel));
-
-We have static_assert(). Why can't it be used?
 
 --=20
 With Best Regards,
