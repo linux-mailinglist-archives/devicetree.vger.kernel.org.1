@@ -1,190 +1,229 @@
-Return-Path: <devicetree+bounces-202338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0EBB1D10F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 04:57:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73193B1D118
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 05:02:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92404720833
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 02:57:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13C2762405C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 03:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F52A1DDC07;
-	Thu,  7 Aug 2025 02:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6F118A6DB;
+	Thu,  7 Aug 2025 03:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JK4eF9oj"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="TXTN/5mf";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="jdQbIJFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876AD1DFDA1;
-	Thu,  7 Aug 2025 02:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C1B23CB;
+	Thu,  7 Aug 2025 03:02:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754535434; cv=none; b=s7YYM2IL39g0UZakwxcuGxdZpNRTEDQykWXcq9Fm16eYl6KiCkA7/VgpTjd0EBRcuMeTtPs6FEt8TEDNUQ42YwEqMxsJVCdz2vX8Caheuj6E/NPylmbj7qVKylztE9RC/RY5LwBk0p+le3V5xHbtAXrpXLMSTk1wPwcEYFjGK1s=
+	t=1754535742; cv=none; b=qWLMoYwitAHfB0LAZbgVR6Cz4AOpH9f6KYybzNS2zmMD/d1RKgHzJ/0/1imSMhn4WwFBOnhV7x/1dyQZkXnL983afyJZwPwLAQ6FwCzAhbxv1HYklzrTCy/nOAWLodncnk2B0VYUNMMTUNaySbyvUrRkZ/icAA6qA5LFQgedFzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754535434; c=relaxed/simple;
-	bh=bOLhCcNIxbO/FxlWnwWskZdUyag+PTgwApgoUECAfp8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E+ikWhT+E0YuJj4zdoV8CXLgFJ8fqZkBdqRYcAwGu1Xp1m4Z3RtFrVSpMjNKV7OOLuSSdEEWThXTB+i3oEBANVut8swYs07hFG32NGqV/EKljORZoiT10IBFXTuzTVSy/KoG2HtaHc2dIK7zudeXQ3qBLwOKWXA6iotqHy50ISg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JK4eF9oj; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b3220c39cffso510476a12.0;
-        Wed, 06 Aug 2025 19:57:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754535429; x=1755140229; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IB37SNi4OaidRxCM7g2VptqviWWEfsKIftPlg0cQSZo=;
-        b=JK4eF9ojCBl0ZmfngRNX4eMxKShdAuf3R11wEFneVjKA21aS9jlsTMRuOkjE/fD46m
-         FTptFh3QJJBmzdcmrp6FtfBuPYSsnSdtBT47J5OkqYYPk2oyrU71bzU1CPfWV3Ik8Ouf
-         NynNMf4wbsz781XRBXS+QTJE+nKa6W0EbaIuPsLWMbo5KTrBlbwbggRLnn6Vun/qsyfO
-         iMGrQZm+cMEFpAFnyuUrChPzzjsyHt2j0//O11/sA3QBxhbZu2Z1uXUzWixtBSRb4xhO
-         flbJFIQKXqnQQHLI0NFS6Yf3ZWY8WYLm067hIFYEaR07AmevZI9vx/BXfqhmM3NmXT8G
-         4U1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754535429; x=1755140229;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IB37SNi4OaidRxCM7g2VptqviWWEfsKIftPlg0cQSZo=;
-        b=uC7dwB+yzYpykCaPTrxYp/3u042N5PTetnnUhWB+SzcJKpltQvNFUwngAnyR1k3iu4
-         arnXGnC3UPJzobji38EIIuUtOVtYNrRWHATAkdK+dNyHOGtVnVxEUbEhSX9AqRxiXUUV
-         VRoHWAh0BD8Mcg5q9XSntWuKHXpwwIwi/rJ3HvUpC7LNmvsvm5FUEHKkWoGBFpFITcXu
-         fB/aoQZI5VYJyqduigDdNY00K1T9/3Yg07sqJnN/wpGPRLCGJEQ+PfzKzDSbXW+1EJYw
-         CWz7CHfDSTsG+Z00LwS27i0Rf2aIXPXBjJ7SIeuCOPTk9blYrXyTdbiOzJGhAk1Ousls
-         vGEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUwIBASWxAzTOkf2I/aQBnVK9V7yf2ZQ8JpRCeNGwVbSPdzQ1gy8jGhl7Y9MF5DlkGUuqnHsLA2eTMP@vger.kernel.org, AJvYcCXTjjNoP2GQvF/O5KbnodES1wm1RFhfMllAjV8jPpBw09+EBPz2uxr6vEgocKION0TMjSHExLaAY7IH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpcvV6b90s6qZRpe4qdJRTHU1oL3ufjCexUBWidNCqk5O9voTw
-	L6no0EWkAwdm6fn4v2yL8wGxUSViyE7LRqIfH5jfRJiq4qk0c8oYSkzl3r6Du1oL
-X-Gm-Gg: ASbGncvWNyL1ZlNHvjVcLR2mItQjhFAXMQOs28GPvT2ckT65Jzeovr1KszEdu8H0+W/
-	vysEniuT+S/D3QIwi44Xv3Pl6IQqAcKTvCiCXJWPaSmVdDIJhIDslC/VjN8eR8VdyGT5r/2MyQM
-	Voq2/0z+4DItMBxqUB/2TWJ59DV9dGiFPRjtyqx6YDqM1tn9dTNWsynPUxyTxF8qQ1OyPs5L8mg
-	cUijWvB3wUapyT2oxlJG0e1chXgN4+pWGQTAbgQgbG3vTJEmMaFE9w9dzvxfA1x2pj4GqnNhRcN
-	EGIBDPeaXay8nHQG0pQByxIR+wr1Vgtn09CxGu/F7/j8911ErL3Vva4FGr1z4BAZTYW+o7NN4It
-	agyZzroZofNU1+b9/UL+/fUFNrTUDous=
-X-Google-Smtp-Source: AGHT+IH5N0RbIJtId5GHxBdQ+OPWWu05aLlaAvu5MyjNd5om3qdHE0sCko7v5+zLyTu53BkoNXXl8w==
-X-Received: by 2002:a17:903:1510:b0:240:3f4d:b9b1 with SMTP id d9443c01a7336-242a0b70a52mr58416545ad.29.1754535428652;
-        Wed, 06 Aug 2025 19:57:08 -0700 (PDT)
-Received: from [127.0.1.1] ([2401:4900:1c44:c940:e6ba:2cae:4deb:130b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-31f63f0bb79sm20885560a91.31.2025.08.06.19.57.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Aug 2025 19:57:08 -0700 (PDT)
-From: Dixit Parmar <dixitparmar19@gmail.com>
-Date: Thu, 07 Aug 2025 08:26:36 +0530
-Subject: [PATCH v3 2/2] dt-bindings: iio: magnetometer: document Infineon
- TLV493D 3D Magnetic sensor
+	s=arc-20240116; t=1754535742; c=relaxed/simple;
+	bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rSIimaWwXywN4jf2n6axy7JCav/NdjqTsQSq9GXVz+XDNFiYEZ8ufNnKdZmyPNDfcpfdGdHsPzSEmTFJIVs4fYF5em/+6253LyhASIT7aIlar0TTvOttYrAF0XlRe7D6CA2g4Xy/WZGIq5a89BybRyF9tUVTII633IS3Ao3CW8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=TXTN/5mf; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=jdQbIJFM; arc=none smtp.client-ip=155.254.16.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from localhost (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 0651212FB437;
+	Wed, 06 Aug 2025 20:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1754535732; bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TXTN/5mfzl3clvuzeNNCQqhgS3ri7dhlpu+I0HZ8hCExsjLgQZza5mRYngJnFOCdt
+	 QMMHl5PeQUnYrYfRdZqF42XnbQ8I/InFsaqP2Ga5ukt1tGP7sDkN65jOBI0th2zjbm
+	 yZQDO3vtBhsLMGn2ATB3fAtWx2HnTwoeovg1fRoh87KZ+zSDrerKPfitBL0AlxL0el
+	 KoTDIrCPbFDH7T5fMAWIjhiSLNqUemLUQQh7W97JORnHnP/jjCtR0z2zMPlnoB/YcB
+	 ZON1baYiSywej3CmQdkF4CfP29vHh4Tg4BMEIrNgOvfwBMc7SO1VNa1R4y5RzxfExI
+	 fvZZZXxUu72Xw==
+X-Virus-Scanned: amavis at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id gl8dWHxY44b0; Wed,  6 Aug 2025 20:02:08 -0700 (PDT)
+Received: from ketchup (unknown [117.171.64.140])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id DFB9F12FB405;
+	Wed, 06 Aug 2025 20:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1754535728; bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jdQbIJFMt8WAoxsnjXZFVNWrtk5ZoKmMLJKLhs+Sty3jfPVUykp/dEx5g5p8GM1vE
+	 tz0BI+Q8zz4xuY1mi/aheQnq8s3erhUaSWzITIJhoWX0m0SZgPQ0OyIO35fbV3FXeX
+	 P3Lu1RbtHCwfmW6TPt4wzDep3irr9FB57xSeUhWhO007dfJ3h3WVI3pAQxONgFglSQ
+	 51+k7EWCuf0/i2BRrKwwdRS2Sc5YlR2QaPc95GDu8gkWjqDSioIY1dVCu3+ol79apX
+	 6rT5aAUKX8NAEby3Q4qljx8zXn2Nh+TlCoENJOcKh9/ZOTXNYv90jfhJvEkBPGFPiB
+	 iS0r5elCNRvSw==
+Date: Thu, 7 Aug 2025 03:02:00 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH 2/2] clk: spacemit: introduce i2s pre-clock and fix i2s
+ clock
+Message-ID: <aJQXKN_ccpWVJ5oZ@ketchup>
+References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
+ <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250807-tlv493d-sensor-v6_16-rc5-v3-2-b80d2cb41232@gmail.com>
-References: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
-In-Reply-To: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Dixit Parmar <dixitparmar19@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754535409; l=2726;
- i=dixitparmar19@gmail.com; s=20250726; h=from:subject:message-id;
- bh=bOLhCcNIxbO/FxlWnwWskZdUyag+PTgwApgoUECAfp8=;
- b=tuE7TuqhsMhNagWYcy+SUWtB/mXN5WM/0eaZrm4rPIWY6i5J9xjWZ/fTDnbN/Yfe5fYnijUsu
- 8S/qJrMNne6APD/eiIBR1Mokcz2UXLg5e6sgsD2wCZXnz4b9e6Y6h7U
-X-Developer-Key: i=dixitparmar19@gmail.com; a=ed25519;
- pk=TI6k8pjTuLFcYiHazsate3W8rZGU2lbOrSJ4IWNoQhI=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
 
-Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
-controlled by I2C interface. Main applications includes joysticks, control
-elements (white goods, multifunction knops), or electric meters (anti-
-tampering).
-Drop duplicate entry for infineon,tlv493d from trivial-devices.yaml as
-its documented in this seperate dt-binding file now.
+On Thu, Aug 07, 2025 at 09:30:11AM +0800, Troy Mitchell wrote:
+> Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
+> for real I2S use cases.
 
-Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
-Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
----
- .../iio/magnetometer/infineon,tlv493d-a1b6.yaml    | 45 ++++++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml       |  2 -
- 2 files changed, 45 insertions(+), 2 deletions(-)
+This is a little misleading: they're modeled as gates with fixed-factor
+for now whose rate is calculated from their parents instead of defined
+statically. You could avoid possible confusion by replacing "fixed-rate"
+with "fixed-factor".
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
-new file mode 100644
-index 000000000000..dd23a9370a71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d-a1b6.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
-+
-+maintainers:
-+  - Dixit Parmar <dixitparmar19@gmail.com>
-+
-+properties:
-+  $nodename:
-+    pattern: '^magnetometer@[0-9a-f]+$'
-+
-+  compatible:
-+    const: infineon,tlv493d-a1b6
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: 2.8V to 3.5V VDD supply
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      magnetometer@5e {
-+        compatible = "infineon,tlv493d-a1b6";
-+        reg = <0x5e>;
-+        vdd-supply = <&hall_vcc>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 27930708ccd5..9e0eb5c873d2 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -125,8 +125,6 @@ properties:
-           - infineon,ir36021
-             # Infineon IRPS5401 Voltage Regulator (PMIC)
-           - infineon,irps5401
--            # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
--          - infineon,tlv493d-a1b6
-             # Infineon Hot-swap controller xdp710
-           - infineon,xdp710
-             # Infineon Multi-phase Digital VR Controller xdpe11280
+> Moreover, the current I2S clock configuration does not work as expected
+> due to missing parent clocks.
+> 
+> This patch adds the missing parent clocks, defines i2s_sysclk as
+> a DDN clock, and i2s_bclk as a DIV clock.
+> 
+> The i2s_sysclk behaves as an M/N fractional divider in hardware,
+> with an additional gate control.
+> 
+> To properly model this, CCU_DDN_GATE_DEFINE is introduced.
 
--- 
-2.43.0
+Could it be represented as a DDN clock taking a gate as parent? Just
+like what is described in the published clock diagram. Generally I'd
+like to avoid introducing more clock types, there're already a lot.
 
+> The original DDN operations applied an implicit divide-by-2, which should
+> not be a default behavior.
+> 
+> This patch removes that assumption, letting each clock define its
+> actual behavior explicitly.
+> 
+> The i2s_bclk is a non-linear, discrete divider clock.
+> The previous macro only supported linear dividers,
+> so CCU_DIV_TABLE_GATE_DEFINE is introduced to support
+> the hardware accurately.
+
+The divider IS linear, from the perspective of functionality, it just
+implies a 1/2 factor. Could it be represented as an usual divider and a
+1/2 fixed factor?
+
+> The I2S-related clock registers can be found here [1].
+
+So this patch actually does four separate things,
+
+- Introduce a gate-capable variant of DDN clocks
+- Make the pre-divider of DDN clocks flexible
+- Support looking up mappings between register values and divisors
+  through a table when calculating rates of dividers
+- Fix the definition of i2s_bclk and i2s_sysclk
+
+IMHO it's better to split them into separate patches for clearness.
+
+> Link:
+> https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+> [1]
+> 
+> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
+> Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  drivers/clk/spacemit/ccu-k1.c     | 34 ++++++++++++++++++++++++----
+>  drivers/clk/spacemit/ccu_common.h | 13 +++++++++++
+>  drivers/clk/spacemit/ccu_ddn.c    | 47 ++++++++++++++++++++++++++++++++++-----
+>  drivers/clk/spacemit/ccu_ddn.h    | 25 +++++++++++++++++++--
+>  drivers/clk/spacemit/ccu_mix.c    | 47 +++++++++++++++++++++++++++++----------
+>  drivers/clk/spacemit/ccu_mix.h    | 26 +++++++++++++---------
+>  include/soc/spacemit/k1-syscon.h  |  7 +++---
+>  7 files changed, 161 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
+> index 65e6de030717afa60eefab7bda88f9a13b857650..a6773d4c2ff32d270e1f09b0d93cfff727ea98fa 100644
+> --- a/drivers/clk/spacemit/ccu-k1.c
+> +++ b/drivers/clk/spacemit/ccu-k1.c
+> @@ -136,13 +136,36 @@ CCU_GATE_DEFINE(pll1_d3_819p2, CCU_PARENT_HW(pll1_d3), MPMU_ACGR, BIT(14), 0);
+
+...
+
+> +static const struct clk_div_table i2s_bclk_div_table[] = {
+> +	{ .val = 0, .div = 2 },
+> +	{ .val = 1, .div = 4 },
+> +	{ .val = 2, .div = 6 },
+> +	{ .val = 3, .div = 8 },
+> +	{ /* sentinel */ },
+> +};
+
+This is just a normal 0-based divider if you divide the divisor by 2.
+
+> +CCU_DIV_TABLE_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR,
+> +			  27, 2, i2s_bclk_div_table, BIT(29), 0);
+>  
+>  static const struct clk_parent_data apb_parents[] = {
+>  	CCU_PARENT_HW(pll1_d96_25p6),
+> @@ -756,6 +779,9 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
+>  	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
+>  	[CLK_APB]		= &apb_clk.common.hw,
+>  	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
+> +	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
+> +	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
+> +	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
+>  };
+>  
+>  static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
+
+...
+
+> diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
+> index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..253db8a602fe43a1109e2ba248af11109c7baa22 100644
+> --- a/include/soc/spacemit/k1-syscon.h
+> +++ b/include/soc/spacemit/k1-syscon.h
+> @@ -29,10 +29,11 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
+>  #define APBS_PLL3_SWCR3			0x12c
+>  
+>  /* MPMU register offset */
+> +#define MPMU_FCCR			0x0008
+>  #define MPMU_POSR			0x0010
+> -#define  POSR_PLL1_LOCK			BIT(27)
+> -#define  POSR_PLL2_LOCK			BIT(28)
+> -#define  POSR_PLL3_LOCK			BIT(29)
+> +#define POSR_PLL1_LOCK			BIT(27)
+> +#define POSR_PLL2_LOCK			BIT(28)
+> +#define POSR_PLL3_LOCK			BIT(29)
+
+This reformatting doesn't seem related to the patch.
+
+>  #define MPMU_SUCCR			0x0014
+>  #define MPMU_ISCCR			0x0044
+>  #define MPMU_WDTPCR			0x0200
+> 
+> -- 
+> 2.50.1
+> 
+
+Best regards,
+Haylen Chu
 
