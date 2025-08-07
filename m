@@ -1,146 +1,193 @@
-Return-Path: <devicetree+bounces-202503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0165B1DBF2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:50:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E35B1DC05
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:55:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A726D189E27C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 436F416D02B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2881F4162;
-	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED6926D4C6;
+	Thu,  7 Aug 2025 16:55:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lIaF/mDM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A6Z4M6hf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC81186A;
-	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA846186A;
+	Thu,  7 Aug 2025 16:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754585427; cv=none; b=DRYTww9Z1S4MxIX5jkiaqp/m/e55ptS+sCWyS1f8iTEDezaoY4sfmnopwf7Dpf5YN2/PA0VMpRFSdBoA40Ae9AVgkL86Qw97dLe7eS6bJYVBFYFOhg/qBtjMNoWZut69JCPW1V/2rCSFXazw39sZvDsZ+sCkIMaijwvW7whTJEI=
+	t=1754585739; cv=none; b=ZW9/AkQ4XW8nQB4DOZQ2DDboL82W26Jpy73Z4X8YT7vcL9Sh/chUlNeZGBHr+HKnIjJluYcP/iYX3yaC+tSMKmrb6vu3yqfTOq+C1A0ZbAXtnK7MSJrO+3IqGD+BdVIl0ClG0j5lC9doYZYqgF7lssFMdaWL01tDZJs6ozQXxUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754585427; c=relaxed/simple;
-	bh=RiEGjWMeRpLrAhRA2swG+3oVM1h20C6FfR6nWAJKqaI=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=tY0xO6/21wskAN9A2bby3Yg+MR+KhYOSZ3aPg/JiU0enyomqS2HXoRaNwMuJcjTMJiK1H9xPAqkUS8p61ugqetYjMG9ElVecCagz+C7DK3layX/VI4j9SfRuLCwUN24IxMTifbcrxbxTIFHfYq5vCzaEMGXxze2XIB7hKu+0W1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lIaF/mDM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F9E1C4CEEB;
-	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754585427;
-	bh=RiEGjWMeRpLrAhRA2swG+3oVM1h20C6FfR6nWAJKqaI=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=lIaF/mDMS2H/wVMeSCtD+CrDT2B1XWtYl7DiXKzODzhFTHINWINdeSq3R+Gou8rB3
-	 sGR2UuGotuFFTWNqLK/Tvl30SDaTrFuK70Ik2dQ5wBWjcme6Lk8bGAUwwTpO6wca/3
-	 B5Y2zSl/OUueVdJjGqn+/ag14joR2DkJqkeebVrFXM63Q2C2+G05xb3oXgzTXeOgzA
-	 ZYUY3f2lnOvMMMeVkweGZRNYJh9B9aC5hc5ccW7Lg8u1HvXL2/BmBo/BeZl2SrAp7A
-	 oP19YQbreNH7MelXP2v3XzcBCsJESBYXpkSLdMlUodcjbzG32qSB4ch8zG2LWcfz+I
-	 /4RriIm62d3rw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB24A383BF4E;
-	Thu,  7 Aug 2025 16:50:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1754585739; c=relaxed/simple;
+	bh=LHMSEcsoebGC9EJHozewBHkA4UA9nKXrl/+pyd3FhuA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ePI8xn1VEdhCgZddym7jodPzIGCjefdWvS46MpmqCmPWTHhTqZeEKAjcPqgPqujiRKcqaZ7pBo2qx3pGrTTl7oHAxYOf8NnY9RM000gnxfMh5isYI5eI1PosBV/aQJGTv0G+O7ZIp2ssdmMG5FmoTN9T5Xa8KJCEqH/yuwmdXtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A6Z4M6hf; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 577GtLoJ357219;
+	Thu, 7 Aug 2025 11:55:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754585721;
+	bh=fyNnhg4lijQ4v6QmS/629cAiN3798tTQNEz0d9moVMM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=A6Z4M6hfPXyzEe4lh33jMZO/WciwcaV+08K8yxl+sTcpX6ifTttw2h7sDsQ/6KnIx
+	 85/RDY7/hU/aRLN/OQ0caPkKbVwQ7xygnWWwWRlpncmTwImKs4Dg6S6sS5YDAq2G0x
+	 7H7lLHvQwYkktfLCKiA/7NZ+DdHf7FcckOB3gNFM=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 577GtLTB947670
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 7 Aug 2025 11:55:21 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 7
+ Aug 2025 11:55:20 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 7 Aug 2025 11:55:20 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 577GtKo61672369;
+	Thu, 7 Aug 2025 11:55:20 -0500
+Message-ID: <fca8e682-9db6-4726-95e9-db437042e98e@ti.com>
+Date: Thu, 7 Aug 2025 11:55:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v9 00/24] Linux SBI MPXY and RPMI drivers
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <175458544049.3624981.13613580736849122114.git-patchwork-notify@kernel.org>
-Date: Thu, 07 Aug 2025 16:50:40 +0000
-References: <20250728094032.63545-1-apatel@ventanamicro.com>
-In-Reply-To: <20250728094032.63545-1-apatel@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: linux-riscv@lists.infradead.org, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jassisinghbrar@gmail.com, tglx@linutronix.de, rafael@kernel.org,
- mika.westerberg@linux.intel.com, andriy.shevchenko@linux.intel.com,
- linus.walleij@linaro.org, brgl@bgdev.pl, ukleinek@kernel.org,
- devicetree@vger.kernel.org, ajones@ventanamicro.com, alex@ghiti.fr,
- atish.patra@linux.dev, leyfoon.tan@starfivetech.com, anup@brainfault.org,
- linux-kernel@vger.kernel.org, samuel.holland@sifive.com,
- linux-acpi@vger.kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
- lenb@kernel.org, linux-clk@vger.kernel.org, rpathak@ventanamicro.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: Convert ti,keystone to DT schema
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250806212824.1635084-1-robh@kernel.org>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250806212824.1635084-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello:
+On 8/6/25 4:28 PM, Rob Herring (Arm) wrote:
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@dabbelt.com>:
+Reviewed-by: Andrew Davis <afd@ti.com>
 
-On Mon, 28 Jul 2025 15:10:08 +0530 you wrote:
-> The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
-> are ratified by the RISC-V International.
+>   .../bindings/arm/keystone/keystone.txt        | 42 -------------------
+>   .../bindings/arm/ti/ti,keystone.yaml          | 42 +++++++++++++++++++
+>   2 files changed, 42 insertions(+), 42 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/arm/keystone/keystone.txt
+>   create mode 100644 Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
 > 
-> Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
-> Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
-> and RPMI system MSI driver This series also includes ACPI support
-> for SBI MPXY mailbox controller and RPMI system MSI drivers.
-> 
-> [...]
-
-Here is the summary with links:
-  - [v9,01/24] dt-bindings: mailbox: Add bindings for RPMI shared memory transport
-    https://git.kernel.org/riscv/c/e6ef156cbf20
-  - [v9,02/24] dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
-    https://git.kernel.org/riscv/c/f24d93a2a11b
-  - [v9,03/24] RISC-V: Add defines for the SBI message proxy extension
-    https://git.kernel.org/riscv/c/0f2705c52e4a
-  - [v9,04/24] mailbox: Add common header for RPMI messages sent via mailbox
-    https://git.kernel.org/riscv/c/c949af8fce93
-  - [v9,05/24] mailbox: Allow controller specific mapping using fwnode
-    https://git.kernel.org/riscv/c/bbc108db8712
-  - [v9,06/24] byteorder: Add memcpy_to_le32() and memcpy_from_le32()
-    https://git.kernel.org/riscv/c/1419b7bcaff5
-  - [v9,07/24] mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
-    https://git.kernel.org/riscv/c/81db83e750ca
-  - [v9,08/24] dt-bindings: clock: Add RPMI clock service message proxy bindings
-    https://git.kernel.org/riscv/c/3d8d1343d4b3
-  - [v9,09/24] dt-bindings: clock: Add RPMI clock service controller bindings
-    https://git.kernel.org/riscv/c/9231349d789f
-  - [v9,10/24] clk: Add clock driver for the RISC-V RPMI clock service group
-    https://git.kernel.org/riscv/c/f10b3b886a26
-  - [v9,11/24] dt-bindings: Add RPMI system MSI message proxy bindings
-    https://git.kernel.org/riscv/c/f421f9dadf4b
-  - [v9,12/24] dt-bindings: Add RPMI system MSI interrupt controller bindings
-    https://git.kernel.org/riscv/c/dad7051158aa
-  - [v9,13/24] irqchip: Add driver for the RPMI system MSI service group
-    https://git.kernel.org/riscv/c/087f01ae8138
-  - [v9,14/24] ACPI: property: Refactor acpi_fwnode_get_reference_args() to support nargs_prop
-    https://git.kernel.org/riscv/c/dfb5dd686542
-  - [v9,15/24] ACPI: Add support for nargs_prop in acpi_fwnode_get_reference_args()
-    https://git.kernel.org/riscv/c/b39b9be6cf10
-  - [v9,16/24] ACPI: scan: Update honor list for RPMI System MSI
-    https://git.kernel.org/riscv/c/3061eca5a86f
-  - [v9,17/24] ACPI: RISC-V: Create interrupt controller list in sorted order
-    https://git.kernel.org/riscv/c/cc57a1b47003
-  - [v9,18/24] ACPI: RISC-V: Add support to update gsi range
-    https://git.kernel.org/riscv/c/5515df185704
-  - [v9,19/24] ACPI: RISC-V: Add RPMI System MSI to GSI mapping
-    https://git.kernel.org/riscv/c/a7339aedb006
-  - [v9,20/24] irqchip/irq-riscv-imsic-early: Export imsic_acpi_get_fwnode()
-    https://git.kernel.org/riscv/c/eeaac5b3a430
-  - [v9,21/24] mailbox/riscv-sbi-mpxy: Add ACPI support
-    https://git.kernel.org/riscv/c/79ccd8be2527
-  - [v9,22/24] irqchip/riscv-rpmi-sysmsi: Add ACPI support
-    https://git.kernel.org/riscv/c/515799045fca
-  - [v9,23/24] RISC-V: Enable GPIO keyboard and event device in RV64 defconfig
-    https://git.kernel.org/riscv/c/b84b1867766c
-  - [v9,24/24] MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
-    https://git.kernel.org/riscv/c/a10b9984fdfc
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+> diff --git a/Documentation/devicetree/bindings/arm/keystone/keystone.txt b/Documentation/devicetree/bindings/arm/keystone/keystone.txt
+> deleted file mode 100644
+> index f310bad04483..000000000000
+> --- a/Documentation/devicetree/bindings/arm/keystone/keystone.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -TI Keystone Platforms Device Tree Bindings
+> ------------------------------------------------
+> -
+> -Boards with Keystone2 based devices (TCI66xxK2H) SOC shall have the
+> -following properties.
+> -
+> -Required properties:
+> - - compatible: All TI specific devices present in Keystone SOC should be in
+> -   the form "ti,keystone-*". Generic devices like gic, arch_timers, ns16550
+> -   type UART should use the specified compatible for those devices.
+> -
+> -SoC families:
+> -
+> -- Keystone 2 generic SoC:
+> -   compatible = "ti,keystone"
+> -
+> -SoCs:
+> -
+> -- Keystone 2 Hawking/Kepler
+> -   compatible = "ti,k2hk", "ti,keystone"
+> -- Keystone 2 Lamarr
+> -   compatible = "ti,k2l", "ti,keystone"
+> -- Keystone 2 Edison
+> -   compatible = "ti,k2e", "ti,keystone"
+> -- K2G
+> -   compatible = "ti,k2g", "ti,keystone"
+> -
+> -Boards:
+> --  Keystone 2 Hawking/Kepler EVM
+> -   compatible = "ti,k2hk-evm", "ti,k2hk", "ti,keystone"
+> -
+> --  Keystone 2 Lamarr EVM
+> -   compatible = "ti,k2l-evm", "ti, k2l", "ti,keystone"
+> -
+> --  Keystone 2 Edison EVM
+> -   compatible = "ti,k2e-evm", "ti,k2e", "ti,keystone"
+> -
+> --  K2G EVM
+> -   compatible = "ti,k2g-evm", "ti,k2g", "ti-keystone"
+> -
+> --  K2G Industrial Communication Engine EVM
+> -   compatible = "ti,k2g-ice", "ti,k2g", "ti-keystone"
+> diff --git a/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
+> new file mode 100644
+> index 000000000000..20d4084f4506
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/ti/ti,keystone.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI Keystone Platforms
+> +
+> +maintainers:
+> +  - Nishanth Menon <nm@ti.com>
+> +  - Santosh Shilimkar <ssantosh@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: K2G
+> +        items:
+> +          - enum:
+> +              - ti,k2g-evm
+> +              - ti,k2g-ice
+> +          - const: ti,k2g
+> +          - const: ti,keystone
+> +      - description: Keystone 2 Edison
+> +        items:
+> +          - enum:
+> +              - ti,k2e-evm
+> +          - const: ti,k2e
+> +          - const: ti,keystone
+> +      - description: Keystone 2 Lamarr
+> +        items:
+> +          - enum:
+> +              - ti,k2l-evm
+> +          - const: ti,k2l
+> +          - const: ti,keystone
+> +      - description: Keystone 2 Hawking/Kepler
+> +        items:
+> +          - enum:
+> +              - ti,k2hk-evm
+> +          - const: ti,k2hk
+> +          - const: ti,keystone
+> +
+> +additionalProperties: true
 
 
