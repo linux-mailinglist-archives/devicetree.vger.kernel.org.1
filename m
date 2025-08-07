@@ -1,156 +1,173 @@
-Return-Path: <devicetree+bounces-202448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E69B1D809
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:36:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6721B1D810
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FED4178586
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:36:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC3CA189D194
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C60E3248F70;
-	Thu,  7 Aug 2025 12:36:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1717825392D;
+	Thu,  7 Aug 2025 12:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MbwUcW3I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V+KcYBcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C3B7E9;
-	Thu,  7 Aug 2025 12:36:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513AB25392A
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 12:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754570177; cv=none; b=Wkmz/GBkV2+y3Epjafk9XRV9r+NXaEWKan14xOhTMYxSZK47paT2q5rYiWFAQ4q+6ckO5G7OSSWM55keXU8OzeNGs5IKOI0fuu8rwlyqCTbDm67SdasIp8kLp8bDoGfjjrC0XGksuRaz/mMBSYduF01TTuWH0vw9m7WnbwGSsWs=
+	t=1754570245; cv=none; b=ShXVXZ5kDDnV79Q52mq7u7sz1kkLWsTP4x7xBECrx8t6k2WJsFRJz3IBv70QdfKwmO8T1iczmZOo4Unf6a9bThEPPqSDQ17psnRg8n0Lp11TLDbX5WYoCCvhbzSXEaCdtpHTowmtdXBpiZZyMh32VGD17whz0E3niJjJVGKWijU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754570177; c=relaxed/simple;
-	bh=7Qc79qmokKmkGc2DoArf30XE1/1SyEXBr9TKp4BQMc8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E1B/gHlJ8//NHFa0kf6ufpthViAcfypS5lC2EYBDspwZLt4uSc28mQQRJKpd7j4hbjbRPNsOgp6DKisuday2k0fhmC5AtRlPnr6lTMyZ/8SLBPPeJEepPkrIONUHGD1uQBZv6yE4fxrZov7AoBl5bDVOf/g04jaOvOpiaQCQZm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MbwUcW3I; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-acb5ec407b1so144627866b.1;
-        Thu, 07 Aug 2025 05:36:15 -0700 (PDT)
+	s=arc-20240116; t=1754570245; c=relaxed/simple;
+	bh=0HJeJ81F/fe85KKd6Kapj27WSnTdBWo7pAlxPgJ+W+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j6c7jCDO/tJfuShCLNotL02TsqPWKT2i8AjiFLE9ZXcowld0FluWTLov2AGPdi+zCgWvPoahXTe74kmEbm/fAPz1NE6t62dLVLtmzdxh4CJG0bM7pq6EdfKoeVBDEsEv4q3N4WiMBGRJvriZLoCH4skhyIRc/WAUnzLB+444OzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V+KcYBcm; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-459e210bd2dso7019745e9.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 05:37:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754570174; x=1755174974; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UEZ6JMjMFWq/ajIytlyIukchYS0I5o5itIY5eZHJYRk=;
-        b=MbwUcW3I4G+z4AJdKznUxLtcNdHgS8yxtzDH9oSUkh5FI3rH6ldNVJoRPTXYo41GAy
-         /rUGbxoIAJdJF6LDs0tccS8ypIA4k8Zl0WMM1norROV8iHNeRRSF6HqcHiFn+rjrhyAt
-         XSnOy9Jqmwt4G5p894bHSssr+Nfqjm/dei+P/wYX/5/7LemXIBX0WHh+y1IKlL3C+30i
-         DQ31XPmSD9ZSXjebVnRKiSABEPFwsectYOskbCRXJccT2tNtDLOPjGhoBNQvW0J49xyp
-         lgLbcltQIpT5o9sxr6mLsH4Ls532PQ2BmYaYjK2clifvw+TMxNyPiCLXRb91TZ+MbCYG
-         zSTA==
+        d=linaro.org; s=google; t=1754570241; x=1755175041; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SssdXwaRmyli//zxIcsg2m9oDnPDhQ01niz7e6EkH/Y=;
+        b=V+KcYBcm6vor/TLEdzELJDMbBpcx4fn4qeRyde73qXR311YugSs+lgKZudvQlCSDyr
+         ONP8fn0i6y7u2MJvdxoK4zn6ks+y74Yj4EfC2f9P1RHd5AuJZb8hbF9usmaH5lianoFg
+         b5J5Qobjc9FtpHjS814twCjD3O9y/C/oFxRXpyGGTcoRJdmx5HgGlyLA88dLWzqkMohn
+         A5Jod/JCd5jLuHvYelCbIJpNX7m53nlFv6ycjw+d0mo8ctxR4N+maP5Rg6K/htP0pYJk
+         YGQof2W1e8Q+80zZH1irv7r7TxEiWWZv5djNIZq9Xje8m1/5dAKTwLnJa3ZW76bsgS1B
+         YR1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754570174; x=1755174974;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1754570241; x=1755175041;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UEZ6JMjMFWq/ajIytlyIukchYS0I5o5itIY5eZHJYRk=;
-        b=pwUSXzEHWdyMRWnaHU5EKMMGlilP35pR1e3JwA0iufM8iaDoAkGmqOR1Tut4aaEiN5
-         d+xhR1KCJPrrUhy2grMnqtwJSmxwDMv9T5uOxFVHQn45mV8Sq5oBnFFjSz4DT7S8wBFY
-         A7O/gDXu+sHZu1spg1jWkhQy0ssvV74rkNoDhC3XCyR2KE0M23U9x+/zvGilBkFjvuIt
-         YRHge3rGJG/HEapwYa+VOT9FiiyK0owXwDflRmap8w9lyk/ucCToy0c/t3C8oQtMdcoE
-         zEnXOKlXUxx3fFPelVSyyVxoVUZEZsqJFLZxFYsmxJwVeDXH/GVzPbqlp76dJc93opk8
-         BqKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTqN9TuYt4N8lxaNvwN6thmenbbkDNtKejXFR8m5uNYcEoK0+g5cQbusdbE8Mz8ak99nx8KfJcaLun@vger.kernel.org, AJvYcCXWU/oVbxQvIEjPW3puAZK7xDjO4xzzHrdf2iYP222HdMwkaCDlTKBCYzTx1wH3UrmaZuUUFUUhwpt/@vger.kernel.org, AJvYcCXx7I2ELPQFGvHLzWSE9P/9WMEq3IjfV4CtcJ9qT7P1v8Y349g0raXrDDUQomQmup/rG/zM1xZ60c2V0eZP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQXlFaUM13xEHCYstg2CkzMsOmCIhugeIn9CuzqCLIXk9wHir3
-	J7IGx67M/tw9DlC99wr7agh7eWknrQ4aNNiZTyjbwjN5PZO1IOo1NABO
-X-Gm-Gg: ASbGnctkTiTR9iP/stPRCQoMaXz0UxXd17jdEUMExuAyt/EOir5sZaftJ63mmPlXvTd
-	SxhUFui+yEVltghrcSHuUfxLvcp9dz08MrCVMygoGI24ZDJrX3Ce5oLwXxeWe/ud3xQvtiNgJ3Q
-	zC8VzgV5qgJnyCw7cVo8YXKWZ+kXx+BOYBnnSEOTDcRFPKpLedEFrBtIF444hIyDKfRyhc7+bMR
-	y3HgH+po2YiQA7ArNJmzkRr9b29OUM0Ds6KSDmhsPOCJUB9QLjCehXV+qDP51DROe4hipOYfW4F
-	7yUY93e9QiXcjpNVyKLKTLX5yAY1N4uLKgHL1+hmkZwuS3aBvXLz8+B4+lP42tl9r3MYWtXQpuV
-	3aI1agi5e0mM=
-X-Google-Smtp-Source: AGHT+IHk2AcS+bLdWTHxF1OqJx/oUlvpaaN2dcXOog3JeWq/xuwaQ4xdOXUhvBifyXQXzMv2Zks6ZA==
-X-Received: by 2002:a17:907:3e8d:b0:ae0:bdc2:9957 with SMTP id a640c23a62f3a-af9904e86e2mr613390066b.61.1754570174100;
-        Thu, 07 Aug 2025 05:36:14 -0700 (PDT)
-Received: from nsa ([185.128.9.33])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a3375sm1298171666b.41.2025.08.07.05.36.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Aug 2025 05:36:13 -0700 (PDT)
-Date: Thu, 7 Aug 2025 13:36:30 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/10] iio: adc: ad7476: Use correct channel for bit
- info
-Message-ID: <zjcwfs4litbfhrq2ho6znuoiwzytp3ty7kwxn6obf6hle73nui@ez6xsjluwoki>
-References: <cover.1754559149.git.mazziesaccount@gmail.com>
- <3d3ccb9195271c8c0cf4b476a10b81fe309d3564.1754559149.git.mazziesaccount@gmail.com>
+        bh=SssdXwaRmyli//zxIcsg2m9oDnPDhQ01niz7e6EkH/Y=;
+        b=Qud2wvFmYTGRYLMGvnfA4JIet+MNT2ouRY6zSpH+d5okS6bHvzRf2sUg89v3uhGKl+
+         CsFKRBBEALZqaUatzvQ9jHAxnjVDrYl1vKapi/RxQcKt2OnbZVbv0vhWSwZx/QwMLNcl
+         ORm6e+Tgq2nSi8pLVo4YbBus+R8XCFcx4EE0iXQRns/rPTQsyRIYpXp7UXf3HzPuQxTJ
+         re/hnc/GJ2uY/VNSDlTO/iDHnW0m8Y6N8I8ZASJwkJTzGMcnRfiKtxXs6767uL3GQPgl
+         w8sljx+EgnLT9wC+pCuwbTUWouTEnU/0WC0njirczzURGREdOiLua3tCvjh/hExCEX2v
+         mCVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKVBQ8DlyG6tZVpqa8yA13WO3kfRY67nqdirK8GussPHe98YbM94TKy/Km9xnrCcpfmv0Te8lXt9pI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIinIqhN2fwD4xqcQRFyOUcjxZjzROOqmhSDHK6pu3JpBWRgNn
+	QUwV6cqBxOJ8sfe2M4du3xl2odniOaH9FhSHxGZh67CphQk783BVF/1bGWb93d6nDq0=
+X-Gm-Gg: ASbGncvzr6BbQcQnKm8KX8GYealn1sncU3SIeApNLHluaYh1+67o98cb0QaXoeaVTg+
+	YuQv3BvA4DLZTsL42SwC80mpmaT23A8ywebtXECE7qO8Jhqjz49OwJR9nPbzyorAqzshpY7GEi6
+	S26CspG2s6o43D5bEN/41SbAPutYZ19iLdrLc8vLFuhIcwp6y994Yju62j4Jz4nN9jC6mmMV05c
+	F7KS+Ot8Mz7QvUUCc05YeMmCfhzwYMQv0KhQxflwx7CJc1xGk9+PIJ3L5mcYEJwueXOCinN2awZ
+	HiMtxRp4xrjDshbbYdyTd2ZQcIyncmy5zhtyCuXsA4gn1ypYU8FpoSH4sWNNFa8vYkRXNSCV6Ds
+	N+8h8HDK0qJ5NwQX6HoAYVg/Ajj2YDBT+2crSCVCzftCpMQ1Ut8uG2ggSPBAxXx4=
+X-Google-Smtp-Source: AGHT+IFOEsRG8ebIvvAsL7B/AJ9oBvQYifwwUwKVZY3a9oI94ficILiwiXeFUjcUVB8C/IvgBehkEw==
+X-Received: by 2002:a05:6000:310b:b0:3b8:de54:6e64 with SMTP id ffacd0b85a97d-3b8f97e6e52mr3149326f8f.26.1754570240565;
+        Thu, 07 Aug 2025 05:37:20 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c4532c4sm26483493f8f.36.2025.08.07.05.37.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Aug 2025 05:37:20 -0700 (PDT)
+Message-ID: <dcc33f04-1b19-47d7-aca2-03d38173b6b6@linaro.org>
+Date: Thu, 7 Aug 2025 13:37:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3d3ccb9195271c8c0cf4b476a10b81fe309d3564.1754559149.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/10] [RFT] arm64: dts: qcom: sm8250: extend CAMSS with
+ new CSIPHY subdevices
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250612011531.2923701-1-vladimir.zapolskiy@linaro.org>
+ <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20250612011531.2923701-10-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 07, 2025 at 12:34:30PM +0300, Matti Vaittinen wrote:
-> The ad7476 supports ADCs which use separate GPIO for starting the
-> conversion. For such devices, the driver uses different channel
-> information if the GPIO is found. The bit information is still always
-> used from the original (non 'convstart') channels.
+On 12/06/2025 02:15, Vladimir Zapolskiy wrote:
+> Following the new device tree bindings for CAMSS IPs introduce csiphy2
+> device tree node under SM8250 CAMSS, which allows to perform camera
+> tests of the model on an RB5 board with an attached vision mezzanine.
 > 
-> This has not been causing problems because the bit information for the
-> 'convstart' -channel and the 'normal' -channel is identical. It,
-> however, will cause issues if an IC has different characteristics for an
-> 'convstart' -channel and regular channel. Furthermore, this will cause
-> problems if a device always requires the convstart GPIO and thus only
-> defines the convstart channel.
+> Note that the optional 'phys' property is deliberately not added.
 > 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
-> Revision history:
->  v1 => :
->  - No changes
-> ---
-
-Reviewed-by: Nuno Sá <nuno.sa@analog.com>
-
->  drivers/iio/adc/ad7476.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> For testing only, do not merge.
 > 
-> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
-> index 7b6d36999afc..fc701267358e 100644
-> --- a/drivers/iio/adc/ad7476.c
-> +++ b/drivers/iio/adc/ad7476.c
-> @@ -121,8 +121,8 @@ static int ad7476_read_raw(struct iio_dev *indio_dev,
->  
->  		if (ret < 0)
->  			return ret;
-> -		*val = (ret >> st->chip_info->channel[0].scan_type.shift) &
-> -			GENMASK(st->chip_info->channel[0].scan_type.realbits - 1, 0);
-> +		*val = (ret >> chan->scan_type.shift) &
-> +			GENMASK(chan->scan_type.realbits - 1, 0);
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
->  		*val = st->scale_mv;
-> @@ -345,7 +345,7 @@ static int ad7476_probe(struct spi_device *spi)
->  	/* Setup default message */
->  
->  	st->xfer.rx_buf = &st->data;
-> -	st->xfer.len = st->chip_info->channel[0].scan_type.storagebits / 8;
-> +	st->xfer.len = indio_dev->channels[0].scan_type.storagebits / 8;
->  
->  	spi_message_init(&st->msg);
->  	spi_message_add_tail(&st->xfer, &st->msg);
-> -- 
-> 2.50.1
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index f0d18fd37aaf..401a32679580 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -4613,6 +4613,10 @@ camss: camss@ac6a000 {
+>   					     "cam_sf_0_mnoc",
+>   					     "cam_sf_icp_mnoc";
+>   
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+>   			ports {
+>   				#address-cells = <1>;
+>   				#size-cells = <0>;
+> @@ -4641,6 +4645,16 @@ port@5 {
+>   					reg = <5>;
+>   				};
+>   			};
+> +
+> +			csiphy2: phy@ac6e000 {
+> +				compatible = "qcom,csiphy";
+> +				reg = <0 0x0ac6e000 0 0x1000>;
+> +				clocks = <&camcc CAM_CC_CSIPHY2_CLK>,
+> +					 <&camcc CAM_CC_CSI2PHYTIMER_CLK>;
+> +				clock-names = "csiphy", "csiphy_timer";
+> +				interrupts = <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>;
+> +				#phy-cells = <0>;
+> +			};
+>   		};
+>   
+I don't think we should make this change, for CAMSS in general and 
+specifically for sm8250.
 
+Instead I think we should go this way:
 
+https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
+
+With separate standalone nodes, and reuse of the upstream PHY API.
+
+I believe you have a series for the 8650, please rebase on
+
+https://lore.kernel.org/linux-media/20250710-x1e-csi2-phy-v1-1-74acbb5b162b@linaro.org/
+
+and
+
+https://lore.kernel.org/linux-media/20250711-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v7-0-0bc5da82f526@linaro.org
+
+V2 of the CSIPHY above will incorporate feedback from Neil and yourself 
+on adding endpoint@ to the PHY however I think we need to have a 
+conversation about standards compliance at attaching two sensors to one 
+CSIPHY without VCs or TDM.
+
+---
+bod
 
