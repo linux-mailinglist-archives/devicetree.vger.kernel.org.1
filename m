@@ -1,155 +1,169 @@
-Return-Path: <devicetree+bounces-202469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC9A0B1D967
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:52:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55346B1D9B4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:11:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13DDE173564
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:52:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F144462071D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C0A25DB1C;
-	Thu,  7 Aug 2025 13:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B12262FE4;
+	Thu,  7 Aug 2025 14:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fL+ZZ/nQ"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="mJBKLLYS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9A025D202
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 13:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF3E1400C
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 14:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754574741; cv=none; b=Qh4eeb99ffp0JvZyOPUpX0gtmTaimhsPNSdqpl1Jc5PTIijdZhEOvgCNiQ386vRt5OP6QqCpVnruE7cV6p0CtxvjwJ1V6/tYLwzEvCO7b4q+pxmVWA+ZUlG9nvvlkSaycqQGD3E9++b9B6Q2V8Jc3YZYtK5vLi2yL752nK+oGxg=
+	t=1754575866; cv=none; b=jAGBhuwq8c4DKN5fSqM/d5PRZqr+DFIW9D+iPEkfKzN/aZr0Ds10b18Fcsqd/plW6Gw7mf/GN6eBDXVNmfymMptt3asFBJkMMBrJfGdjUgyiQubXFXs0/x9yeGn8gyhIU7xFUl7wwhY/Fu1Gyuz3j1m7ac5RNC4sOLv3vYHCBsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754574741; c=relaxed/simple;
-	bh=3RJmbFyaEI/2Q7w0DwSZjNnb3wdVv2MTkMkwaeC/i14=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jdBfmHLrYApL0KfJYtOBOFzlQAr4bPSll0x8g/tKt5Msb4nNxtCtDN0y5BrVMZBXql9Yyu0nxGevoRqlxMrKt760IHK5Ka8jLzlu9YTuqG/Dn+hI/A06eOPZL/kniba29ckZnR1imRBEGl9g9ZznWS9/9Ijbd+S8BN5FYuZ0Aj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fL+ZZ/nQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5779CvVF003579
-	for <devicetree@vger.kernel.org>; Thu, 7 Aug 2025 13:52:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rx2HlkhZ5XkdhRBXb9tvkQ1L
-	h/1Dq2jL/Wn7+DWmLHM=; b=fL+ZZ/nQQyDavnPSVlOqAFsFopj4WqOMip1q3L3z
-	KKhq2DQ3WVJg2G8MOLXnT502V1wrxmy5HGTxs1OCW/VSlbA1H7bNyqtl6uj7+Ga/
-	MGOvBTmRBE2dsy/h75ql3hnLQfmd2KYjFiK0M9f0VGR3YA2dzOdFb11w4v8wr5/E
-	ifrYNfotJa9YAScxKFO+XwxOEcpiExapssaYQzkct/E86XoNClncG/4h2Wvh3mTa
-	GBHsYJxpFBAB2a4avfUIxSPcwNO4hgn3iHmotKNVlIe7vxvyihii++g0GubTuyYi
-	+X/ii7mDBIHkqZNEuD7dE+wNOMk9vqxch1rReb5zCW6gsg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpyaeef5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 13:52:18 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b08431923dso22817221cf.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 06:52:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754574737; x=1755179537;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rx2HlkhZ5XkdhRBXb9tvkQ1Lh/1Dq2jL/Wn7+DWmLHM=;
-        b=Aj8SaFMy2w4aDp+t8Z53UIvZpwd41L5m0QkVy8nuAZJvTpNN4er5gefjf4IwlVG9Dk
-         jReT5qKA8Ei6nK+sw9svnAvB+MuOgwtj8n7ziCX+sSbvP42GNa8BfNS4xKuYRcKo21D/
-         kRFPfaWBIDkT5IFGqH2/sOs3p6RDrtA5LjLEpR5hqyuT3dFRuMxtvZD/k6Hm4wSwLMF/
-         TXSgw3kGV7U23YyI/e4N62clczaU1wW28lxw99dSjUNbqz4MA96KKXkqcpTZ040/Wv4v
-         iKy4vMR619W3vMhU9dfTdP49okHh8oZupxYb6z3QwcrVQoPH/PrUu4Pqb+za2QG3xaCt
-         GIPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVk1Yi3V9Rx3twCeTVFw7ae7r2fVVdp8Fnl6wCfJKKUyDlQRJDDZJSIKrNAPQT8Sr7kW1jtNbfl5WT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1T/BRhdNMchAol2ELZBF72K32/Cu9IGUNfmR4USb28I7B5nH0
-	ckR4xmXWPHUhHn6pi5KmuD2Ch8b+92lgHK+X+lvcim78Cx7mSXQZv7k91aHohs9mmozSGEiIubB
-	pkKzQzxeO4zuge5SICQUw0HKnV5xneIxPzacVe4KVqjUftBtG2tMldCl/btBaxMAv
-X-Gm-Gg: ASbGncvZNV1fjJ1tWSM35FntpHoxNh8yaG48bAHJNs11mpjrRN986MEfa9Pn5SxxEzp
-	CaNccBp/1waJ8850NwvExs4pjFtqRicQ8gH/YSK9dZIy6p5OJFjoZeETluOOMVIOd/OBjFhuEBC
-	EnFWOxKx9co04qDprLM7FRpzdm2XesC3pxzTX+yeNpIxUuqDmJXtO4q2LtP7eScQGn2nSmlUnnu
-	mKDTWHYh6bV1My5HRKlvAeP+qHJerfMokry9EHn8za2B2rVvq7dE8Z1PcOpLfkSMRqaMf04rl38
-	FYgkp2LlwkzOspgiqhLF5VS2TF3kU5g5N94ffZvpVCNBC1R+wT3B91AxLeFIE435luVj0A==
-X-Received: by 2002:ac8:7f48:0:b0:4ab:aa73:9600 with SMTP id d75a77b69052e-4b0a16adddcmr44580691cf.51.1754574737236;
-        Thu, 07 Aug 2025 06:52:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH8h/LmSHvY2xjExIpWEd1N45JRbMyTF9ezrl99kb/xqJfV6y+UvYKQinxMnY+ofhU4FWNwBQ==
-X-Received: by 2002:ac8:7f48:0:b0:4ab:aa73:9600 with SMTP id d75a77b69052e-4b0a16adddcmr44580261cf.51.1754574736758;
-        Thu, 07 Aug 2025 06:52:16 -0700 (PDT)
-Received: from trex (205.red-83-60-94.dynamicip.rima-tde.net. [83.60.94.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-458b501f22dsm145939755e9.0.2025.08.07.06.52.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Aug 2025 06:52:16 -0700 (PDT)
-From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
-X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
-Date: Thu, 7 Aug 2025 15:52:14 +0200
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        konradybcio@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-Message-ID: <aJSvjqfQw3kNrVVH@trex>
-References: <20250805064430.782201-1-jorge.ramirez@oss.qualcomm.com>
- <20250805064430.782201-6-jorge.ramirez@oss.qualcomm.com>
- <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
- <aJHgh8mon9auOHzi@trex>
- <aJHqpiqvulGY2BYH@trex>
- <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
- <aJMMhIqNupwPjCN+@trex>
- <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
- <aJNTigOMy1JFOxot@trex>
- <fcdd9534-d494-3fdb-dfa7-1d15da6f697a@quicinc.com>
+	s=arc-20240116; t=1754575866; c=relaxed/simple;
+	bh=HzFCR8qIbtdhnZ6X4A/0afYLZkMez/jG33vKoCGIbaQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J8G0U0cdgXrtjtCcQB8BWahIEHBBd22h9QE9Txibij6332DDR1uSWe9LScMt6/ATGDMXP8LbDk+PNgXiovDU1UiRIlZZsn+32BywCimc2a4v9V2I5726diSjGup2Rg4LCH0XOabMZ6vyPXQtXSMl7/NPBVM47Co3PLdZZi7uu50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=mJBKLLYS; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 577DYtvA009977;
+	Thu, 7 Aug 2025 14:10:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=uaVLiY
+	spnYWDuI13bWNGEm5rQbPJSHbjCGX5H7vdxtQ=; b=mJBKLLYSXn/bhMBhPt1FhG
+	aTEmzVBBRUk+FDweBa1KoY/yammJONzoVcbZVNKUVY2LTsgV+eS5h1CUf972DE8b
+	1ZlQ4eQGeoDdtMZ8NvFhNQ1PNUwW6INaE88OGUMNVxEOhCrn+SRw/3UHrDb97Md+
+	coHXluwpZZvLuXYL5xKhGXr6aYUtLLAkvsak99ouf4qdbVRLMTxCYscL5h81Im3Q
+	dcXM6mVcYVYIilZe/4/j5tI5UankKZ8/7ERRcPU9GJV0XVqVk6iMsUBhS9VjvoBa
+	hn3bnmJDds45/izA498NYZ1bHuCSLenGNTJeDmV+O/MsZlNHeSkVj2TD33pXnG9g
+	==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 48bq612pbd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Aug 2025 14:10:52 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 577DcdbB022699;
+	Thu, 7 Aug 2025 14:10:51 GMT
+Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 48bpwqgyfs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Aug 2025 14:10:51 +0000
+Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
+	by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 577EAo9t17433284
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 7 Aug 2025 14:10:50 GMT
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5147358059;
+	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
+Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 239C258055;
+	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
+Received: from [9.61.15.215] (unknown [9.61.15.215])
+	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Thu,  7 Aug 2025 14:10:50 +0000 (GMT)
+Message-ID: <dd4a521e-f122-4122-af62-20ce113497ac@linux.ibm.com>
+Date: Thu, 7 Aug 2025 09:10:49 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fcdd9534-d494-3fdb-dfa7-1d15da6f697a@quicinc.com>
-X-Proofpoint-ORIG-GUID: Uw4HxgpT6OK5OXXraO4k4uHz4kLKGVgn
-X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=6894af92 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=Rr2dNH5/fcnoRoBmcVUeRg==:17
- a=kj9zAlcOel0A:10 a=2OwXVqhp2XgA:10 a=FCMjqHPL4a2t-UUgg6oA:9
- a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXwvumWvE2V+2T
- FQE5YJ0KVEd7HqP59nO/ZzlRIGJE2i8uoMHO41ghSwaQvewtAGq8Oi2fUbJD68u72yid/T4JP2G
- 9Swk8fMEEIHD6LTwdgqYUtlT0JdEa8yz6mt1bgYD5tcmgwH6d2Ivd460TLcaTVadtCT8/DUX62B
- gPurGOVWHoH8iPHOCQXRpx0PyOxV6Blqv+pVCbhATagaT8sJaPLZSo070r/bARrHp/6YM4EKaPb
- 3A5RcedHbCkNpGnlTaIDbGU1aoUkxGEwV1+JiGkJZP7JqLEJPIUjNVFjh4VZh4yGb/b4Tm2iOuu
- 6mXPIDJRdqUog4yllEnc6cqiK3/N3z63dzT8ZWqkqt92o4UB4j6s2sPosfA0eH/M3B9ecHcUn+I
- iefRUvbM
-X-Proofpoint-GUID: Uw4HxgpT6OK5OXXraO4k4uHz4kLKGVgn
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] dt-bindings: trivial-devices: Document max31785
+ sensors
+To: Rob Herring <robh@kernel.org>
+Cc: linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        andrew@codeconstruct.com.au, conor+dt@kernel.org, krzk+dt@kernel.org
+References: <20250806184711.1882725-1-eajames@linux.ibm.com>
+ <20250806184711.1882725-4-eajames@linux.ibm.com>
+ <CAL_Jsq+JBhak=YS33tG=KFtbb+Ckz69s5Chz6daEUY0O95QOSQ@mail.gmail.com>
+ <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
+Content-Language: en-US
+From: Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <CAL_JsqKa6R2WQQsaJ-Rm8NwVAt7gk2yRSyjnZ44yYn1un2C12Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: TLZo-HDNly3k3Yu_lJEb-DARaXrKBVMZ
+X-Proofpoint-ORIG-GUID: TLZo-HDNly3k3Yu_lJEb-DARaXrKBVMZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA3MDExMiBTYWx0ZWRfXzp9GJPLSuRpm
+ UTXvHi+NyGwkwhhVKYDSBefHMYzX7s9/599Kbdm2u6/+mfutv4E2tz+XljAImSVoE+5yhBRNSbQ
+ M6wsaWROtK60Z9WrW7byCNaZUcqCV6svi1cojyWbCVz3zoHLOdja3xrBe/T3bs/zNyjh5QTA7we
+ p3Km6IrQZ1tOGuF7mgE0PjtojiwroVWY6/vY8G3QDUY+SqfL/mjop/gW2n2Fc6Ftibw/kHjld13
+ yd70OZfWcvl15QK5btI7jfJRJNaEcYf3ND/WnpMVlzLOLV1i7XF8N4NydkDyVryB/TiZFObB0Lw
+ nbYzobBC7/UFfBW6GdL2rsdgeh+y8XKipkmnhkXB5Uu8neSt9VgsKe/ZbP1xwwRyyfqJUbPVHst
+ 63c+9mkIwy2Ns45cREY2AjDcBPZEm3StCYRWMXrHZj0e/XZZsCisqHakQsLn0DpVOH4k5XmM
+X-Authority-Analysis: v=2.4 cv=TayWtQQh c=1 sm=1 tr=0 ts=6894b3ec cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=jtbBNqsHAAAA:8 a=VwQbUJbxAAAA:8
+ a=VnNF1IyMAAAA:8 a=rfOngFd2pyIVqCWdBOYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=RWaeYqt-Cn-VcsFsiLGo:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-07_02,2025-08-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
+ suspectscore=0 adultscore=0 phishscore=0 impostorscore=0 spamscore=0
+ mlxlogscore=999 bulkscore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2507300000
+ definitions=main-2508070112
 
-On 07/08/25 16:36:41, Vikash Garodia wrote:
-> 
-> > It was agreed that this complexity was not necessary and that we should
-> > just drop <6.0.55 firmware support (which would in any case only include
-> > video decode).
-> > 
-> > And so on v8, I removed the above.
-> > 
-> > Now I have v9 ready to post it, but Dmitry is asking why cant we have
-> > the v7 functionality so I am waiting for direction.
-> 
-> the issue is in firmware for both encoder and decoder. Didn't like the idea of
-> driver carrying the hack for a firmware issue. Just because, for encoder, we are
-> unable to hack it in driver, we are ok to have it enabled in a newer version of
-> the firmware, we can follow the same for decoders as well.
 
-if that is the only reason please do explain what do you mean by hack.
+On 8/6/25 5:59 PM, Rob Herring wrote:
+> On Wed, Aug 6, 2025 at 5:04 PM Rob Herring <robh@kernel.org> wrote:
+>> On Wed, Aug 6, 2025 at 1:47 PM Eddie James <eajames@linux.ibm.com> wrote:
+>>> Remove the old .txt max31785 documentation and add the compatibles
+>>> to trivial-devices.yaml.
+>>>
+>>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>>> ---
+>>>   .../devicetree/bindings/hwmon/max31785.txt    | 22 -------------------
+>>>   .../devicetree/bindings/trivial-devices.yaml  |  4 ++++
+>>>   2 files changed, 4 insertions(+), 22 deletions(-)
+>>>   delete mode 100644 Documentation/devicetree/bindings/hwmon/max31785.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/hwmon/max31785.txt b/Documentation/devicetree/bindings/hwmon/max31785.txt
+>>> deleted file mode 100644
+>>> index 106e08c56aaa..000000000000
+>>> --- a/Documentation/devicetree/bindings/hwmon/max31785.txt
+>>> +++ /dev/null
+>>> @@ -1,22 +0,0 @@
+>>> -Bindings for the Maxim MAX31785 Intelligent Fan Controller
+>>> -==========================================================
+>>> -
+>>> -Reference:
+>>> -
+>>> -https://datasheets.maximintegrated.com/en/ds/MAX31785.pdf
+>>> -
+>>> -The Maxim MAX31785 is a PMBus device providing closed-loop, multi-channel fan
+>>> -management with temperature and remote voltage sensing. Various fan control
+>>> -features are provided, including PWM frequency control, temperature hysteresis,
+>>> -dual tachometer measurements, and fan health monitoring.
+>> While technically the binding is trivial, I don't think this device
+>> really is. It has got 6 PWMs and 6 tach inputs, a reset line, 2
+>> interrupts (alert and fault?), and an I2C master. Not really trivial.
+>>
+>> However, better to have this documented as a schema than not, so I'll apply it.
+> I take that back. You already have 'fan' child nodes, so this isn't a
+> trivial device/binding.
+
+
+That's true, I will add a proper binding.
+
+
+Thanks,
+
+Eddie
+
+
+>
+> Rob
 
