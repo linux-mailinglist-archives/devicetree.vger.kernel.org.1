@@ -1,141 +1,200 @@
-Return-Path: <devicetree+bounces-202520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68F7DB1DD60
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:10:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D916B1DD70
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5939A7A5543
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:08:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9BA3BDBE7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:19:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E372686A0;
-	Thu,  7 Aug 2025 19:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4549B21E091;
+	Thu,  7 Aug 2025 19:19:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U72ma2+j"
+	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="V3vtkqtN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34702222DA;
-	Thu,  7 Aug 2025 19:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EC821D011
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 19:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754593803; cv=none; b=HjkP8hBPBHQR4Dj2+NaHLcfWj4JbpK1j7CX+U61kpszk98m7S+7DFwhXxb7KtY6k8Qc7vmRjKPUVmq/CG5o6wqkDTbxsWRqzxCU6mKSQ/+umaW1pvIghqG9lNgxK/2z+3TNyv/i+RsrsUeLzpmdfUarWiOqGvyMfcKBjgjS8AJU=
+	t=1754594341; cv=none; b=ewyNcZqOGEVqj+c+36id8+4dG9/MlFagKdE88f2NsWKhNgC8FeAL2jhLIjM94XSvfeEB2iyqKhR9NVH2VzlSXGxm0kG+cxFGQyTLt9I2Ple/tnEvRdMEWO1KyrZrVNKHhZDquQogyS778RxbWI7MWyAjjrrNXiiGfPj4uCjWaNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754593803; c=relaxed/simple;
-	bh=PcBVixaPhZIma1L0iYmSkiKVbdxAykP6NlB0vN5Hd9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gHYIxgZVdvoeNwC9JgiPMZEB7iU+p94pfomeGyx09P58Axd61XE7BOh/KxcX0DeNnVtPaHaoG2dTWud6Wd0Xa7XR3a6PBwC1l9SF5MK9vEY9QBNgI/CcR7maiy3h2UmRBGvut7G/E1V/Ic+Y/y1JomzobedKQEEeBg4NKQ0g5Bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U72ma2+j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846AEC4CEEB;
-	Thu,  7 Aug 2025 19:09:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754593802;
-	bh=PcBVixaPhZIma1L0iYmSkiKVbdxAykP6NlB0vN5Hd9k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U72ma2+jatKX2tdaIBlq82L/EbRZmu4VJqzECPOaIGMb5HdtGfpvr5N3eTwQ/aPA5
-	 9wWkvLV5pfDVm65CCodhw1kgGX0aYz5fqClorxgeFBdkHCikGQmwkeiwQEwF4euV8S
-	 4Nvlsdhvl1AfgTrORb8wfiKAKCCkmyIDtqDj/l+YNlN1kmHaspMusfYyaqWXPWGba5
-	 ao+uAIV7N8S681aPK4QJkdXgJ7FnrxsZ8maorziVw+xHXIzq3McR+7TB2che+XILW3
-	 q+K6WCCPtcsUDzG1b2vHJykKq+VsiPeR5Dyd7SvthO+aIhzYI+3tCzJTKqnacUfO8o
-	 NwzM41d68w/Iw==
-Date: Thu, 7 Aug 2025 20:09:56 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Nitin Rawat <quic_nitirawa@quicinc.com>, vkoul@kernel.org,
-	kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
-	bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org,
-	dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-	krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
- device tree
-Message-ID: <14566f49-7f7b-4583-98b7-8a473054f7c3@sirena.org.uk>
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-5-quic_nitirawa@quicinc.com>
- <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
- <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
- <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
- <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
- <599b8a4b-324a-4543-ba27-0451f05c3dfd@quicinc.com>
- <3aa82f65-4812-4bf0-9323-96f40824a004@sirena.org.uk>
- <8c7f8cfc-2090-449e-b6ec-688a0021bac4@oss.qualcomm.com>
+	s=arc-20240116; t=1754594341; c=relaxed/simple;
+	bh=P6CYGkCBsS2/j/K0E7tBx1r/xDresPDft3Hy8CqhCSI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=giboGZ5SIKHm0/30IuBXjBDjwEYK3nEaG46J9G3DwYbnTSXCKsC8tD38s3/KyAFeMXWMKtKocgqSlzpclc9qajRLflY5CVomKdUOHPfQhQ0vdGwC5X89JvNDM7whcuvPHXaLpFZXFfC5SZZNOj4L1n1hlLnsn5jREHfehKm/xSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=V3vtkqtN; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b7920354f9so1096935f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 12:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1754594336; x=1755199136; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TMojSpDs0TkBAWsUruscamCHlztjGhkLSL63bamzheI=;
+        b=V3vtkqtNNN04JiPQ0ZJhIUhwRoB5EWtUW+BmasHBjB4U1p/NyWgpC7G/jYNZE5F/xD
+         4MoBkJYvguw5u0+CwDDpvOG8V5AIfFT5hIs9ge8SKtTPU58SlZyua/kPLWwcFscRXIpp
+         rX9y/yvsJgPz/vAKD/cLzGYHUmV58ZvQ3OBwc0ksvLdJefrF1RSME/bJnUXKP7/8Rso5
+         p9UsF0BPtZMIV/CijsXostTaKgly2nQAl9Jrfu67QwvGN3/H2jUkPFLQgpZc9vc9+BFz
+         fpoa2m/4O38aC3j+MOoVOLop/yoxbR9ppyvywkGr6fzbOFrYbLoJKrk0LdTU24lGvjk6
+         uKgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754594336; x=1755199136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TMojSpDs0TkBAWsUruscamCHlztjGhkLSL63bamzheI=;
+        b=allH8UPOB4S142nrCwRQkohGK2LRjNxTe4CBYflNiqbKrBerXO+kp3tt2Pqcy66buK
+         JNUPrN/acycf8whH30NQaNpkEb4s3e+2tbVxGbe0kS7IOdML5GoOa9u3IRLdBYWbKjF4
+         ua+xNgrLxw1TOhR1gQEctG/BrAOuhKr/addwfw6+4dxZXn6+SaXd5AmFpqMerPVAPBMF
+         E5CXUEImb6wg8WCi4Mys7GVvrB9eaGFqpWkz1gmwnbkj8vNxDKxNpoTiO6KS6iB12/1a
+         yLn5UQHPez6HXwwdfEhMDvfhF+RhQdNjUJgAVsY9i1KB5k1dAXsc0DUuR/AlbWYJYq1p
+         HP8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWDBx0q71HKICRTkpi1SqQL7CxqO1dS1/dv/6WnO/+Yo4PdoWzwsBKNzKtDKG6vhbS0BZSwZT4QtZmy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyURIkyNBLv92P9heleMT8hF42+QsOqe/4qWuxEtQm1YETwLvFS
+	SXpKF6E2cS/pNpyZcPkE1aB6+2sSfwK3HFJBbje0flxtsnNpMhiSPCpPvBa6wR9t8X4=
+X-Gm-Gg: ASbGnctlsspOgVmNXeu7uodTQG5OFBqkZPQ6tyPJJn6K6C4ZZchVzAmAYUDlqlptaCB
+	ivkuSbEFyypjEe2to7VXcyOFQ7nzD4zZkN8Kn/ogGR6Fus9iR3QXxXeO5XR7X3TsU1XWG0AMjte
+	Ys1pMhNnMrA/6exUbpvMxRgj/BmEz0KMNhoXic4Q4JmPRHSoK7uFBNpdG4eB7mA+9uEB6zjrPlT
+	ZnNRtay7JCtCtRUNv3fpYwOlub/i+GKpeZlc5GCzHzDpHmCRX3xhcoZUl6EJt2dErmri3DtoNF9
+	tShoAMI9q+tTbVU+rfXyNTWbJqh1OydbrukivcimQGJsO1i5tSe9Hw1BpGoDYAsKf+rLo2swity
+	AaVwVByuiTMpC7mIydnBuLOcoahRi//54JkhlfkUtFRkzklkooA==
+X-Google-Smtp-Source: AGHT+IGmsZp5QGEdNPY5skMi/ehXySxn/2GJ+zanQmX1/LX2oBeqJ3fxjEoYN3cf/lF9eTayqWyhUQ==
+X-Received: by 2002:a05:6000:40ce:b0:3a3:65b5:51d7 with SMTP id ffacd0b85a97d-3b900b54b20mr297294f8f.26.1754594335784;
+        Thu, 07 Aug 2025 12:18:55 -0700 (PDT)
+Received: from pop-os.telenet.be ([2a02:1807:2a00:3400:3bcd:db43:406c:324d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3c4d02sm26988589f8f.33.2025.08.07.12.18.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Aug 2025 12:18:54 -0700 (PDT)
+From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+To: dlan@gentoo.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr
+Cc: skhan@linuxfoundation.org,
+	linux-kernel-mentees@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Subject: [PATCH] riscv: dts: spacemit: add UART resets for Soc K1
+Date: Thu,  7 Aug 2025 21:18:17 +0200
+Message-ID: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZQ/9gvUlZUpmI6Wa"
-Content-Disposition: inline
-In-Reply-To: <8c7f8cfc-2090-449e-b6ec-688a0021bac4@oss.qualcomm.com>
-X-Cookie: Real Users hate Real Programmers.
+Content-Transfer-Encoding: 8bit
 
+Add reset control entries for all UARTs in the SpaceMIT K1 SoC Device Tree.
+UART0 was functional as it did not need a reset. But the other UARTs were
+unable to access their registers without the reset being applied.
 
---ZQ/9gvUlZUpmI6Wa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Although perhaps not needed I did add the reset for UART0 as well,
+to ensure consistency across all UARTs. With the current-speed set to
+112500 baud rate, it matches the factory U-Boot settings.
+This should not give issues with early console usage. But perhaps it could
+be a good idea to let somebody else confirm this as well.
 
-On Thu, Aug 07, 2025 at 07:43:15PM +0200, Konrad Dybcio wrote:
-> On 8/7/25 7:26 PM, Mark Brown wrote:
+Tested this locally on both Orange Pi RV2 and Banana Pi BPI-F3 boards. 
+I enabled the UART9 and was able to use it successfully.
 
-> > Note that that's specifying OPPs which is different...
+Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+---
+ arch/riscv/boot/dts/spacemit/k1.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-> The microamp properties are in the top-level, not under OPP if
-> that's what you meant
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index abde8bb07c95..7a5196a98085 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -667,6 +667,8 @@ uart0: serial@d4017000 {
+ 				clocks = <&syscon_apbc CLK_UART0>,
+ 					 <&syscon_apbc CLK_UART0_BUS>;
+ 				clock-names = "core", "bus";
++				current-speed = <115200>;
++				resets = <&syscon_apbc RESET_UART0>;
+ 				interrupts = <42>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -680,6 +682,7 @@ uart2: serial@d4017100 {
+ 				clocks = <&syscon_apbc CLK_UART2>,
+ 					 <&syscon_apbc CLK_UART2_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART2>;
+ 				interrupts = <44>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -693,6 +696,7 @@ uart3: serial@d4017200 {
+ 				clocks = <&syscon_apbc CLK_UART3>,
+ 					 <&syscon_apbc CLK_UART3_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART3>;
+ 				interrupts = <45>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -706,6 +710,7 @@ uart4: serial@d4017300 {
+ 				clocks = <&syscon_apbc CLK_UART4>,
+ 					 <&syscon_apbc CLK_UART4_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART4>;
+ 				interrupts = <46>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -719,6 +724,7 @@ uart5: serial@d4017400 {
+ 				clocks = <&syscon_apbc CLK_UART5>,
+ 					 <&syscon_apbc CLK_UART5_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART5>;
+ 				interrupts = <47>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -732,6 +738,7 @@ uart6: serial@d4017500 {
+ 				clocks = <&syscon_apbc CLK_UART6>,
+ 					 <&syscon_apbc CLK_UART6_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART6>;
+ 				interrupts = <48>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -745,6 +752,7 @@ uart7: serial@d4017600 {
+ 				clocks = <&syscon_apbc CLK_UART7>,
+ 					 <&syscon_apbc CLK_UART7_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART7>;
+ 				interrupts = <49>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -758,6 +766,7 @@ uart8: serial@d4017700 {
+ 				clocks = <&syscon_apbc CLK_UART8>,
+ 					 <&syscon_apbc CLK_UART8_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART8>;
+ 				interrupts = <50>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+@@ -771,6 +780,7 @@ uart9: serial@d4017800 {
+ 				clocks = <&syscon_apbc CLK_UART9>,
+ 					 <&syscon_apbc CLK_UART9_BUS>;
+ 				clock-names = "core", "bus";
++				resets = <&syscon_apbc RESET_UART9>;
+ 				interrupts = <51>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
+-- 
+2.43.0
 
-I mean the OPPs use case is an existing well known one for dumping stuff
-into DT.
-
-> > That doesn't mean that it's a good idea to put that information in the
-> > DT, nor if it is sensible to put in DT does it mean that it's a good
-> > idea to define a generic property that applies to all regulator
-> > consumers which is what I now think Konrad is proposing.
-
-> Yeah, that's what I had in mind
-
-> I was never able to get a reliable source for those numbers myselfe
-> either.. At least some of them are prooooobably? chosen based on the
-> used regulator type, to ensure it's always in HPM..
-
-That's what set_mode() is for.  Like I say it's becoming less and less
-relevant though.
-
-> That said, our drivers cover a wide variety of hardware, built on a
-> wide variety of process nodes, with different configurations, etc.,
-> so it's either polluting the DT, or polluting the driver with
-> per-compatible hardcoded data (and additional compatibles because
-> fallbacks wouldn't work most of the time)
-
-That's really not a persuasive argument for adding a genric property
-that applies to all regulator consumers...
-
-My instinct with this stuff is generally to avoid putting it in the DT,
-we see far too many instances where someone's typed some numbers in
-wrongly or discovers the ability to drive the hardware harder and needs
-to tune the numbers - once something is ABI you're stuck just trusting
-the numbers.  That said I'm not going to stop you putting something
-specific to this driver in there, I just don't think this is a good idea
-as a generic property.
-
---ZQ/9gvUlZUpmI6Wa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiU+gQACgkQJNaLcl1U
-h9A6+Qf+P9rMcaISs2p5ORHNQ/KdH3BurrkFhaK5oNZcLsN/cOuTcSjAMt7Ln8rw
-Nj+TKRTJ/mByw4x7wgCunOwGRcUVJ840ilAA1jAsHIQZMKUCDqTNfLRc1PmeqG/e
-pdTpE+It81dpY5XpoulAhwu8h8fc9GX1YFw3/43/NWYX4NkGh94r8sLDtjv8jHwX
-enIET9goOxiiyfECGkBfpwXN8fjUVQX4Y9f5LeIiunXQk3/tRwzNqncI2m9+vAsB
-aSXD7Jg9yvrIzgC97tLsAVuD8weoo4w9YBYWczMwvmvywLXPgzCIjx1tL/6tG2Cz
-gJsPOQ9NajGkZ8Ud/Q5EPaqyiGb+hQ==
-=V89y
------END PGP SIGNATURE-----
-
---ZQ/9gvUlZUpmI6Wa--
 
