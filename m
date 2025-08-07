@@ -1,193 +1,106 @@
-Return-Path: <devicetree+bounces-202504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26E35B1DC05
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:55:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 259B2B1DC0E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:00:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 436F416D02B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:55:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0E07F4E3C14
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 17:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED6926D4C6;
-	Thu,  7 Aug 2025 16:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B1227380E;
+	Thu,  7 Aug 2025 17:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A6Z4M6hf"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="EYZkSGpq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA846186A;
-	Thu,  7 Aug 2025 16:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD80F271A6D
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 17:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754585739; cv=none; b=ZW9/AkQ4XW8nQB4DOZQ2DDboL82W26Jpy73Z4X8YT7vcL9Sh/chUlNeZGBHr+HKnIjJluYcP/iYX3yaC+tSMKmrb6vu3yqfTOq+C1A0ZbAXtnK7MSJrO+3IqGD+BdVIl0ClG0j5lC9doYZYqgF7lssFMdaWL01tDZJs6ozQXxUw=
+	t=1754586013; cv=none; b=Ho+GPr8snjbZOPU9dsFKHqYTbYlBiXU9p0D5LShdVWkGV8ipcoM+VJgFQXvrSXzHVAtxRgAXA6d6yijyNhtPEl3zJCnxKPs2YjwiUwn2xs2B6Kn02EreftGaZejhokiBLVwraH+zDulMMf+Jn14ESbdScn2+Ap1KSENgW0xW3hA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754585739; c=relaxed/simple;
-	bh=LHMSEcsoebGC9EJHozewBHkA4UA9nKXrl/+pyd3FhuA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ePI8xn1VEdhCgZddym7jodPzIGCjefdWvS46MpmqCmPWTHhTqZeEKAjcPqgPqujiRKcqaZ7pBo2qx3pGrTTl7oHAxYOf8NnY9RM000gnxfMh5isYI5eI1PosBV/aQJGTv0G+O7ZIp2ssdmMG5FmoTN9T5Xa8KJCEqH/yuwmdXtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A6Z4M6hf; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 577GtLoJ357219;
-	Thu, 7 Aug 2025 11:55:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754585721;
-	bh=fyNnhg4lijQ4v6QmS/629cAiN3798tTQNEz0d9moVMM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=A6Z4M6hfPXyzEe4lh33jMZO/WciwcaV+08K8yxl+sTcpX6ifTttw2h7sDsQ/6KnIx
-	 85/RDY7/hU/aRLN/OQ0caPkKbVwQ7xygnWWwWRlpncmTwImKs4Dg6S6sS5YDAq2G0x
-	 7H7lLHvQwYkktfLCKiA/7NZ+DdHf7FcckOB3gNFM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 577GtLTB947670
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 7 Aug 2025 11:55:21 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 7
- Aug 2025 11:55:20 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 7 Aug 2025 11:55:20 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 577GtKo61672369;
-	Thu, 7 Aug 2025 11:55:20 -0500
-Message-ID: <fca8e682-9db6-4726-95e9-db437042e98e@ti.com>
-Date: Thu, 7 Aug 2025 11:55:20 -0500
+	s=arc-20240116; t=1754586013; c=relaxed/simple;
+	bh=rRMpC/WIh/XATi5A8/vl4uXGO1/nAMpEgW6dEHv4VQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kcAaR1CVAaN4lUTPI8YXd94pQxggqXhe+P+awmy90J9oUpJDVx5Jcjs07OFOINipIQ4zG7y65t1rzt8SrFcuVgDi6C1vkeCmd4/6NtB0g5Nih/faKE3YYAxNjdZrvmRZ9RGspVD5T4ql79rZXX7AiYP3Wy5iU3kqzQvOCMpbiqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=EYZkSGpq; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=rRMp
+	C/WIh/XATi5A8/vl4uXGO1/nAMpEgW6dEHv4VQM=; b=EYZkSGpqoBJ1+VFUAVqx
+	219a3csW6GERQTeAS1nB8Yd0p2G2O3RnwFsQX2PbpB62NIKNR46F6RPhmZqZ07ks
+	fkNOuV3cgoSWeKXdH5SUnqise2Nr8H5lnnPwxDUULmk+I3fd6SniT5stORNCc3h1
+	rSXmfjzQ23v0txkWhtfZ7YiAlV8kXBrVvuHQZk8IP2/e1EkBqNLJqLEfs21CH5Ef
+	PNIEy0mNFOr2PYU+evNxuLtZq1ub0D30kWPoxouCn6lrV9nKDGsXfQ90xBYaahiu
+	GUAMqnfUjOq17xyctaRDuyFx6rD6/Eri0eX9WH9+2yCxfDUQYPUdT1Nx5KkLYWJh
+	ew==
+Received: (qmail 1318772 invoked from network); 7 Aug 2025 19:00:06 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Aug 2025 19:00:06 +0200
+X-UD-Smtp-Session: l3s3148p1@OQyfY8k7kL6S97a6
+Date: Thu, 7 Aug 2025 19:00:04 +0200
+From: wsa+renesas <wsa+renesas@sang-engineering.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+Message-ID: <aJTblGZwYSBqzavm@shikoro>
+References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com>
+ <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
+ <TY3PR01MB1134633EEEB64A0F24711E522862CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: Convert ti,keystone to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon
-	<nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250806212824.1635084-1-robh@kernel.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250806212824.1635084-1-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qlQYkzDjMaec/XX2"
+Content-Disposition: inline
+In-Reply-To: <TY3PR01MB1134633EEEB64A0F24711E522862CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On 8/6/25 4:28 PM, Rob Herring (Arm) wrote:
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+--qlQYkzDjMaec/XX2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->   .../bindings/arm/keystone/keystone.txt        | 42 -------------------
->   .../bindings/arm/ti/ti,keystone.yaml          | 42 +++++++++++++++++++
->   2 files changed, 42 insertions(+), 42 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/arm/keystone/keystone.txt
->   create mode 100644 Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/keystone/keystone.txt b/Documentation/devicetree/bindings/arm/keystone/keystone.txt
-> deleted file mode 100644
-> index f310bad04483..000000000000
-> --- a/Documentation/devicetree/bindings/arm/keystone/keystone.txt
-> +++ /dev/null
-> @@ -1,42 +0,0 @@
-> -TI Keystone Platforms Device Tree Bindings
-> ------------------------------------------------
-> -
-> -Boards with Keystone2 based devices (TCI66xxK2H) SOC shall have the
-> -following properties.
-> -
-> -Required properties:
-> - - compatible: All TI specific devices present in Keystone SOC should be in
-> -   the form "ti,keystone-*". Generic devices like gic, arch_timers, ns16550
-> -   type UART should use the specified compatible for those devices.
-> -
-> -SoC families:
-> -
-> -- Keystone 2 generic SoC:
-> -   compatible = "ti,keystone"
-> -
-> -SoCs:
-> -
-> -- Keystone 2 Hawking/Kepler
-> -   compatible = "ti,k2hk", "ti,keystone"
-> -- Keystone 2 Lamarr
-> -   compatible = "ti,k2l", "ti,keystone"
-> -- Keystone 2 Edison
-> -   compatible = "ti,k2e", "ti,keystone"
-> -- K2G
-> -   compatible = "ti,k2g", "ti,keystone"
-> -
-> -Boards:
-> --  Keystone 2 Hawking/Kepler EVM
-> -   compatible = "ti,k2hk-evm", "ti,k2hk", "ti,keystone"
-> -
-> --  Keystone 2 Lamarr EVM
-> -   compatible = "ti,k2l-evm", "ti, k2l", "ti,keystone"
-> -
-> --  Keystone 2 Edison EVM
-> -   compatible = "ti,k2e-evm", "ti,k2e", "ti,keystone"
-> -
-> --  K2G EVM
-> -   compatible = "ti,k2g-evm", "ti,k2g", "ti-keystone"
-> -
-> --  K2G Industrial Communication Engine EVM
-> -   compatible = "ti,k2g-ice", "ti,k2g", "ti-keystone"
-> diff --git a/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
-> new file mode 100644
-> index 000000000000..20d4084f4506
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/ti/ti,keystone.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/ti/ti,keystone.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI Keystone Platforms
-> +
-> +maintainers:
-> +  - Nishanth Menon <nm@ti.com>
-> +  - Santosh Shilimkar <ssantosh@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: K2G
-> +        items:
-> +          - enum:
-> +              - ti,k2g-evm
-> +              - ti,k2g-ice
-> +          - const: ti,k2g
-> +          - const: ti,keystone
-> +      - description: Keystone 2 Edison
-> +        items:
-> +          - enum:
-> +              - ti,k2e-evm
-> +          - const: ti,k2e
-> +          - const: ti,keystone
-> +      - description: Keystone 2 Lamarr
-> +        items:
-> +          - enum:
-> +              - ti,k2l-evm
-> +          - const: ti,k2l
-> +          - const: ti,keystone
-> +      - description: Keystone 2 Hawking/Kepler
-> +        items:
-> +          - enum:
-> +              - ti,k2hk-evm
-> +          - const: ti,k2hk
-> +          - const: ti,keystone
-> +
-> +additionalProperties: true
 
+> What about pinctrl settings here?
+
+I overlooked them :( I will let Tommaso handle this because it is not
+as trivial as on G3S.
+
+
+--qlQYkzDjMaec/XX2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmiU25AACgkQFA3kzBSg
+KbZbxA//dH4+LXBirXDgZYhh8+ihULXNbqk4cFCOtEDbZM+EGZfGFRkPrW5yGrv2
+riY4hZBQrFa1u+qt8qVjZ3VgD/5uoWe6OqeKFMAC5M/IeMnreShqYr9a37nqLp30
+BM5vjvaqFRxbRclU5A0dYxx1EHQbrdLyIyxtuCogy0trOGZbWHdBC+TiANeiFEAX
+mpes8fnn1QRHB5BhVtV119QikmK33lVNQBVbunhRmI4NqrWnmniwZ60GlzvUkR8c
+bGu/+koRhbkzGCftjIJjfro37XeFewrkZo4vAm69gxgVgkZuOszMr8sGY1X1TxlQ
+8go25CvCx0/78+0tvb41uYoVrFmzicDsWpcq/3N7nmHkkiNZHCE/ylL+czeO1B0I
+4GYDAybgzatDT2VShUavVQIcgQW9WXEmVxHdZ07W682tpvZHoYVP8y9epbkLtzGE
+0K41yeZefJjVASznDGvWbmIFddlgZgv+nRyMEPWbd4Wijqqgf1G4n+VwYm3x5673
+CZWlByVUFbtvWFm9nTvqeOJdiSr8A9RsV7xMabQqv3kNC2uiVdFfIEKAcwnSqFgP
+sSZWn2gaS/xOaQbCzvJqIgSc6FpWLczeWvpAh3++qJRSgkLiQUe1z+qrlOIyRc8B
+Thj9HSc5TfFyweuy3jsZh37vIYpycxAkxYgA0ZU+LMv5J7s/5Gg=
+=aZXg
+-----END PGP SIGNATURE-----
+
+--qlQYkzDjMaec/XX2--
 
