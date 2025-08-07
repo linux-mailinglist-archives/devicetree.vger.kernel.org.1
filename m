@@ -1,155 +1,275 @@
-Return-Path: <devicetree+bounces-202528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618BBB1DEDE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 23:29:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BFF4B1DEF1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 23:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57D5B7A3C17
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:27:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 864B11798F0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE130239E6A;
-	Thu,  7 Aug 2025 21:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5562367D2;
+	Thu,  7 Aug 2025 21:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mzR2A4CW"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="NRzAOoRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6464430;
-	Thu,  7 Aug 2025 21:29:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CA121E08B;
+	Thu,  7 Aug 2025 21:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754602147; cv=none; b=IyQdbR3N3t44BFoQGIILifWbaZWmDrMkZdy/4g/ghxMR8XbyJrYRIiw8LdOJtMkn2pQV2zVpHqmUqAGJD47aH6pOQ5BN3m0ZIaLd3eDzxPQEsMa+iRjfri94qL9GEaiF8R48P+fPFRQ5/ppGcQZGKzlE6M1MY/zpIvl/sKQw47M=
+	t=1754602875; cv=none; b=ahIQZb/Sq3EZsPdYp5WLbc1lTAFSx4o1PkaxTYycDzHzypMQchB3kcgjgYKQMMCFJvno1uSONXOVl7Myrn6FYPZ9F2xbL/TuMp9duHNW9xCN+7UPGL2r36YCYi6p5+YEuBHAIAmfPUIUJD5Qc+0wjnviXy1EU7iYGC7sWXQJhsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754602147; c=relaxed/simple;
-	bh=e5ZroBIz+n4D+tQJf8o64lB4daFJ+ZpSVvOGHo1c41U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CHeazdRYgJ4VefnJCZNkmvzprZ0Ae2DxkjsDHWdPRNtoovR55Bu9YA/Pttn/N0EKbpRONa8/WqlklKypIJKSK+rC3yWLS7XZfgwIeX3JCxy7q8YdLWSkxUZFnJyRt2Zev0eSLaXBQLo9MGw69D4Mt3aeBetSttHRtr00F+mYgXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mzR2A4CW; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-55b88369530so1657383e87.0;
-        Thu, 07 Aug 2025 14:29:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754602144; x=1755206944; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2o6wy1hxsqYKmmF+f3dxWhM/eGBJynYmK8a0QZYd+z8=;
-        b=mzR2A4CWxPpIkaILWT1LBwO25IM+M/5vsPAyTlOlDZQ942I5lB9C7jyjRtSOujsUle
-         Jof7y7Xhu5z77tuj3iu8My9oZEA429psYAQupe6nol3zyPQTVyFZHe5eZXC6ft2r1aVe
-         DTq47BoAaIIy9g9tzL5iPGbmQHDGAXVRGkE/jLBuLBBpHRfgj5KD48+NNt9Cq2hVQiOA
-         zf85jJAB+FIhOTI4+G/1WVvWN4Z0a4/Xe7OKwz/OHB/RfaKpReFixP00j80CZUlNd5yL
-         jLWQ8/0sZyQtflSwnIZyc1eYfnX+zjbYAi7zKB/j4qNr7ksqD0NS00fLrHDB+WN+NHHb
-         CDxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754602144; x=1755206944;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2o6wy1hxsqYKmmF+f3dxWhM/eGBJynYmK8a0QZYd+z8=;
-        b=eBdECQvrP9u8xq7L+GoHLAC1PJKnX+StSfm5qYi62/2ws74rLiAet64FdVUNcpo2sW
-         QJvfQe/lAWx0ZcvhU0S+SeCKP7rfFQVznoDjZb6dsFmTpb4lMysbJz+5Bvrq6sWFgIb+
-         MdADsIEq5e3DdAqDu5a8ivAqhJXLzd1vcKlJdofvcRJXFnDT1LmAsBWKn81QLd98TpVy
-         rlVJdB6maW6+2VrU/Jl4vKERgz5ix32Yuq8YtC2WoeDv7MkeTY4wk4aGJ63PjY12WzYk
-         IY5yI9zAJJUqNr/HNTikzX3TwnR3c+ADS7GanBAwdXiqVw+KtYNyw43CYD8nXhNSHD4H
-         OCEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUEqCEmD9ZhfGoI+M+SMC0pRIU+3Sz9Fvtr6g54m+Dz6XfkEaUwJIFh2erdmbGdkM8U/bgO1ENmDh/d@vger.kernel.org, AJvYcCVEbuGMx/x5f2U0b+P/CwTuCvjkV3oF8Cg3/6oEymlJgknSnG/uIk0QtqHqDL3Vkk4qCDG6ouLOCyGV4piJ@vger.kernel.org, AJvYcCVP1m0V5BTKph1BEBXC2NeRLTwycJYWH6lTEzDVd0SMG4ttNoQ6VdneVAWmf0TKFDy/9obBy7jtagKh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTXcAwS8CDZTSoHU2ecQB8y3bVaZhe2PWCs15LL0zdGyQLtlMX
-	nEby8Dhi9ovOeay++FBYfE1itHWzfwtEIplNmBncvUzDTdSD/TJru1A1RdgPOKFB4+Dp9qFuDHD
-	5TRZXDS6rWRpl91UxMQvfaaVa9QtGKoY=
-X-Gm-Gg: ASbGnctWrPiOqp3EXQp5yAu1JqXYiaXTgvojflquc1AWLQNdpV2fvPpBAYsXTGaSCTf
-	dXpwPrVjqIRIEL69wa0ndyI3eMwuZUy2GytbcwNazEtuBWtCT2cZ3NHj9Jnh/TNLjJEkThTDDD1
-	+CyIE/x41wnB+qAJ66somWtyM0FlGMIEHBpzLBO0u8C1gAIjPS6vukYDy/Mo0U3W8bGGKwn734h
-	3AESuYT978swFlmZZiQEqCVi3z5qnaDLSLLGfySLg==
-X-Google-Smtp-Source: AGHT+IF2gn9Jbw2iuW9TmBoqCfY6sXuVmxhSrPEdUtl5zQbjv/HZcAEM7A9krusR9oI/gvhf/frzYunkfyCgqaF6we4=
-X-Received: by 2002:a05:6512:39c3:b0:55b:8273:5190 with SMTP id
- 2adb3069b0e04-55cc00eb78bmr91681e87.18.1754602143932; Thu, 07 Aug 2025
- 14:29:03 -0700 (PDT)
+	s=arc-20240116; t=1754602875; c=relaxed/simple;
+	bh=cXqM5gD6Mo+hyClIWPcFbhJR/YkC1nSwbKBF2DqWaow=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s8azKFtla9ngt8EMPXXc3edqkMTTMYBT8iIL352aVBhIgM2Ec59mNXru0UT4W3PA6Gc+cfNNOySBAZl69SUNXJe4tye/ue9+XXOKpLj/Y9eXvnPb0heFrp0ZCiHV19yF1Ykc1zkqME7q5FijJ3jorRXiEAXCxcqtGHMY/4j3oKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=NRzAOoRv; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=aD1yMUZ3KDpwCaBKtljTbiBmqXW5mc9WhwaVhgSkbXA=; b=NRzAOoRv/BbjP3VTzTERG6MZ9I
+	i6kge7eA2XZwrrMT9juShx1B0Sown58W3xfBtCaWSJmm488DYwNzJdxxjowSmhKgevFneY5FHYSEb
+	WmP82OYYJOjhCmbybsf0l6NM0Xac9dh9qcdGWA4IIrF1XYQpHdzEva9Eh84VUjKkQUneZq/5AGUUS
+	4S3Is4rNt10QwD7sDcm7IqJ18/5LT1RCgMlcR8Lqtu5j9DRcNHOdsvRnk8sb0Y/QWJuAb1APPlnb1
+	7qtBy66cYlljjJadYJ2EwWv3i8AfXvtKMQ/QzcdqSKJefUxUcgKnoo77mz79FgT+vibqNyS5HbHmQ
+	DS35VwLw==;
+Received: from i53875a15.versanet.de ([83.135.90.21] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uk8MA-0002s9-89; Thu, 07 Aug 2025 23:41:02 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: linux-leds@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc: Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+ Christian Marangi <ansuelsmth@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Lukasz Majewski <lukma@denx.de>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH 2/2] leds: trigger: netdev: Introduce OF mode configuration using
+ netdev-trigger-mode property
+Date: Thu, 07 Aug 2025 23:41:01 +0200
+Message-ID: <3258356.fEcJ0Lxnt5@diego>
+In-Reply-To: <20250113002346.297481-2-marex@denx.de>
+References:
+ <20250113002346.297481-1-marex@denx.de>
+ <20250113002346.297481-2-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754559149.git.mazziesaccount@gmail.com> <da7e6b31a0f25106d7e2f56fb089c8fe71224654.1754559149.git.mazziesaccount@gmail.com>
-In-Reply-To: <da7e6b31a0f25106d7e2f56fb089c8fe71224654.1754559149.git.mazziesaccount@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 7 Aug 2025 23:28:27 +0200
-X-Gm-Features: Ac12FXwukEbIXj-ZESPmfX-vzfO2suKhMqGuLrQ8trHV1ZCoeJdpa7KaO-sFewo
-Message-ID: <CAHp75VfBvqzKR53qTbiGxE-JQdLOuA3+M-Z=9S6LTf0fGnwmvg@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] iio: adc: ad7476: Support ROHM BD79105
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Aug 7, 2025 at 11:35=E2=80=AFAM Matti Vaittinen
-<mazziesaccount@gmail.com> wrote:
->
-> The ROHM BD79105 is a simple 16-bit ADC accessible via SPI*.
->
-> The BD79105 has a CONVSTART pin, which must be set high to start the ADC
-> conversion. Unlike with the ad7091 and ad7091r which also have a
-> CONVSTART pin, the BD79105 requires that the pin must remain high also
-> for the duration of the SPI access.
->
-> (*) Couple of words about the SPI. The BD79105 has pins named as
-> CONVSTART, SCLK, DIN and DOUT. For the curious reader, DIN is not SPI
-> ISO.
->
-> DIN is a signal which can be used as a chip-select. When DIN is pulled
-> low, the ADC will output the completed measurement via DOUT as SCLK is
-> clocked. According to the data-sheet, the DIN can also be used for
-> daisy-chaining multiple ADCs. Furthermore, DOUT can be used also for a
-> 'data-ready' -IRQ. These modes aren't supported by this driver.
->
-> Support reading ADC scale and data from the BD79105 using SPI, when DIN
-> is used as a chip-select.
+Hi Marek,
 
-...
-
-> +static void bd79105_convst_enable(struct ad7476_state *st)
-> +{
-> +       if (!st->convst_gpio)
-> +               return;
-
-Still consider this unneeded churn. 3us delay is tolerable in almost
-any setup with this driver.
-
-> +       gpiod_set_value(st->convst_gpio, 1);
-> +       /* Worst case, 2790 nS required for conversion */
-
-nS --> ns (SI unit for seconds is 's')
-
-> +       ndelay(2790);
+Am Montag, 13. Januar 2025, 01:23:38 Mitteleurop=C3=A4ische Sommerzeit schr=
+ieb Marek Vasut:
+> Introduce netdev trigger specific netdev-trigger-mode property which
+> is used to configure the netdev trigger mode flags. Those mode flags
+> define events on which the LED acts upon when the hardware offload is
+> enabled. This is traditionally configured via sysfs, but that depends
+> on userspace, which is available too late and makes ethernet PHY LEDs
+> not work e.g. when NFS root is being mounted.
+>=20
+> For each LED with linux,default-trigger =3D "netdev" described in DT, the
+> optional netdev-trigger-mode property supplies the default configuration
+> of the PHY LED mode via DT. This property should be set to a subset of
+> TRIGGER_NETDEV_* flags.
+>=20
+> For each LED with linux,default-trigger =3D "netdev" described in DT, the
+> netdev trigger is activated during kernel boot. The trigger is extended
+> the parse the netdev-trigger-mode property and set it as a default value
+> of trigger_data->mode.
+>=20
+> It is not possible to immediately configure the LED mode, because the
+> interface to which the PHY and the LED is connected to might not be
+> attached to the PHY yet. The netdev_trig_notify() is called when the
+> PHY got attached to interface, extend netdev_trig_notify() to detect
+> the condition where the LED does have netdev trigger configured in DT
+> but the mode was not yet configured and configure the baseline mode
+> from the notifier. This can reuse most of set_device_name() except for
+> the rtnl_lock() which cannot be claimed in the notifier, so split the
+> relevant core code into set_device_name_locked() and call only the core
+> code.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+>  drivers/leds/trigger/ledtrig-netdev.c | 51 ++++++++++++++++++++-------
+>  1 file changed, 38 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger=
+/ledtrig-netdev.c
+> index c15efe3e50780..20dfc9506c0a6 100644
+> --- a/drivers/leds/trigger/ledtrig-netdev.c
+> +++ b/drivers/leds/trigger/ledtrig-netdev.c
+> @@ -23,6 +23,7 @@
+>  #include <linux/module.h>
+>  #include <linux/netdevice.h>
+>  #include <linux/mutex.h>
+> +#include <linux/of.h>
+>  #include <linux/phy.h>
+>  #include <linux/rtnetlink.h>
+>  #include <linux/timer.h>
+> @@ -256,19 +257,9 @@ static ssize_t device_name_show(struct device *dev,
+>  	return len;
+>  }
+> =20
+> -static int set_device_name(struct led_netdev_data *trigger_data,
+> -			   const char *name, size_t size)
+> +static void set_device_name_locked(struct led_netdev_data *trigger_data,
+> +				  const char *name, size_t size)
+>  {
+> -	if (size >=3D IFNAMSIZ)
+> -		return -EINVAL;
+> -
+> -	cancel_delayed_work_sync(&trigger_data->work);
+> -
+> -	/*
+> -	 * Take RTNL lock before trigger_data lock to prevent potential
+> -	 * deadlock with netdev notifier registration.
+> -	 */
+> -	rtnl_lock();
+>  	mutex_lock(&trigger_data->lock);
+> =20
+>  	if (trigger_data->net_dev) {
+> @@ -298,6 +289,24 @@ static int set_device_name(struct led_netdev_data *t=
+rigger_data,
+>  		set_baseline_state(trigger_data);
+> =20
+>  	mutex_unlock(&trigger_data->lock);
 > +}
+> +
+> +static int set_device_name(struct led_netdev_data *trigger_data,
+> +			   const char *name, size_t size)
+> +{
+> +	if (size >=3D IFNAMSIZ)
+> +		return -EINVAL;
+> +
+> +	cancel_delayed_work_sync(&trigger_data->work);
+> +
+> +	/*
+> +	 * Take RTNL lock before trigger_data lock to prevent potential
+> +	 * deadlock with netdev notifier registration.
+> +	 */
+> +	rtnl_lock();
+> +
+> +	set_device_name_locked(trigger_data, name, size);
+> +
+>  	rtnl_unlock();
+> =20
+>  	return 0;
+> @@ -579,6 +588,20 @@ static int netdev_trig_notify(struct notifier_block =
+*nb,
+>  	    && evt !=3D NETDEV_CHANGENAME)
+>  		return NOTIFY_DONE;
+> =20
+> +	if (evt =3D=3D NETDEV_REGISTER && !trigger_data->device_name[0] &&
+> +	    led_cdev->hw_control_get && led_cdev->hw_control_set &&
+> +	    led_cdev->hw_control_is_supported) {
+> +		struct device *ndev =3D led_cdev->hw_control_get_device(led_cdev);
+> +		if (ndev) {
+> +			const char *name =3D dev_name(ndev);
+> +
+> +			trigger_data->hw_control =3D true;
+> +
+> +			cancel_delayed_work_sync(&trigger_data->work);
+> +			set_device_name_locked(trigger_data, name, strlen(name));
+> +		}
+> +	}
+> +
 
-...
+hmm, somehow this did not work for me as is, because the devicename
+never makes it to the trigger. It seems because
+	phy_led_hw_control_get_device()
+of course only returns a device after the phy got attached somewhere and
+NULL otherwise.
 
-> +       /*
-> +        * The BD79105 starts ADC data conversion when the CONVSTART line=
- is
-> +        * set HIGH. The CONVSTART must be kept HIGH until the data has b=
-een
-> +        * read from the ADC.
+Testsystem is a Qnap TS233 NAS with RK3568 SoC using a dwmac on
+6.16 kernel and 3 LEDs attached to the Motorcomm PHY.
 
-Is this terminology in absolute levels of the pin or logical ones
-(that implied active-low)? If it's the latter, use active/inactive
-instead as the GPIO subsystem does.
 
-> +        */
+On boot into regular Debian I see some separate steps, generating
+events in the netdev trigger:
 
---=20
-With Best Regards,
-Andy Shevchenko
+=2D dwmac probes and probes the phy
+I see a number of expected NETDEV_REGISTER events
+
+
+=2D systemd renames the interface to end0
+[    6.502455] rk_gmac-dwmac fe2a0000.ethernet end0: renamed from eth0
+[    6.509696] netdev_trig_notify evt 11
+
+=2D dhclient end0
+[   62.156033] rk_gmac-dwmac fe2a0000.ethernet end0: Register MEM_TYPE_PAGE=
+_POOL RxQ-0
+[   62.165292] phy_attach_direct
+   ... only here phydev->attached_dev is set ...
+[...]
+[   62.240004] rk_gmac-dwmac fe2a0000.ethernet end0: configuring for phy/rg=
+mii link mode
+[   62.250517] netdev_trig_notify evt 1
+[   65.315407] rk_gmac-dwmac fe2a0000.ethernet end0: Link is Up - 1Gbps/Ful=
+l - flow control rx/tx
+[   65.315415] netdev_trig_notify evt 4
+
+
+changing from
+	evt =3D=3D NETDEV_REGISTER
+to
+	evt =3D=3D NETDEV_UP
+in the conditional up there, makes the device_name resolve work for me.
+But right now, I have no clue if that is a bit no-no :-)
+
+Or do we want a NETDEV_PHY_ATTACH (+_DETACH) event type ?
+
+
+I'll try to poke things more
+Heiko
+
+
+
+>  	if (!(dev =3D=3D trigger_data->net_dev ||
+>  	      (evt =3D=3D NETDEV_CHANGENAME && !strcmp(dev->name, trigger_data-=
+>device_name)) ||
+>  	      (evt =3D=3D NETDEV_REGISTER && !strcmp(dev->name, trigger_data->d=
+evice_name))))
+> @@ -689,6 +712,7 @@ static int netdev_trig_activate(struct led_classdev *=
+led_cdev)
+>  	struct led_netdev_data *trigger_data;
+>  	unsigned long mode =3D 0;
+>  	struct device *dev;
+> +	u32 val;
+>  	int rc;
+> =20
+>  	trigger_data =3D kzalloc(sizeof(struct led_netdev_data), GFP_KERNEL);
+> @@ -706,7 +730,8 @@ static int netdev_trig_activate(struct led_classdev *=
+led_cdev)
+>  	trigger_data->net_dev =3D NULL;
+>  	trigger_data->device_name[0] =3D 0;
+> =20
+> -	trigger_data->mode =3D 0;
+> +	rc =3D of_property_read_u32(led_cdev->dev->of_node, "netdev-trigger-mod=
+e", &val);
+> +	trigger_data->mode =3D rc ? 0 : val;
+>  	atomic_set(&trigger_data->interval, msecs_to_jiffies(NETDEV_LED_DEFAULT=
+_INTERVAL));
+>  	trigger_data->last_activity =3D 0;
+> =20
+>=20
+
+
+
+
 
