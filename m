@@ -1,207 +1,146 @@
-Return-Path: <devicetree+bounces-202502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0608AB1DBE1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:38:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0165B1DBF2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 18:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08270163EB8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:38:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A726D189E27C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 16:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9C6326FDA4;
-	Thu,  7 Aug 2025 16:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2881F4162;
+	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="RRrqPL7I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lIaF/mDM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B801326F469
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 16:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC81186A;
+	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754584722; cv=none; b=sAIjezGZCQQ+kDT07IDZutp/n8UI9GrTraaKdURlqmS2BMwgUua2LZQ2lFUAihOm8JSRWsEFbgW+QkEcd6wcx2Ecf1vklrvf+i0TXZwQLmgF2bd63Lj48rrGJOV8EWlzQYYg5zFFovOwd8wo1NF1Gq0kXKu32/9eguMP87vEOEg=
+	t=1754585427; cv=none; b=DRYTww9Z1S4MxIX5jkiaqp/m/e55ptS+sCWyS1f8iTEDezaoY4sfmnopwf7Dpf5YN2/PA0VMpRFSdBoA40Ae9AVgkL86Qw97dLe7eS6bJYVBFYFOhg/qBtjMNoWZut69JCPW1V/2rCSFXazw39sZvDsZ+sCkIMaijwvW7whTJEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754584722; c=relaxed/simple;
-	bh=RNN38tsTm5gD4/5zcgMkN8UqPOSEJ3iJYtKGRjL3GEo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=iwT8ltR8slo8Pi4V3HJpC58IY3rnifiNBC84z2p0jvINNPpwfDHCCh31yTApcJXNd1xuUauo/wKQiAuCBOXfYZPd952lJ7U+9hdIDk+i3AXqDZ9JFSGym0+fwY50Z3Tvg93P9LGXS2/JKKFIcYolFvHxLBCrFx4rU0kYIvgfCT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=RRrqPL7I; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250807163838epoutp020ba18f1f188cf3e120d1628e40659cc5~ZiYFkh63Y1538615386epoutp02T
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 16:38:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250807163838epoutp020ba18f1f188cf3e120d1628e40659cc5~ZiYFkh63Y1538615386epoutp02T
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754584718;
-	bh=RNN38tsTm5gD4/5zcgMkN8UqPOSEJ3iJYtKGRjL3GEo=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=RRrqPL7I1BR8u5+IhTUXbdIyg84Nu+3FtTbZUnq42fRt9nfCz4qBX8jq7bRhQw1Cp
-	 HXl8wqC+o0ErtP2+pj3nL7GXvy7Y3/6R/zoQ9RDn2II6eYCK7HoVw1X3JIglDcjie9
-	 XyvmQFvgk/CoFA/IYjMXP3eafxhjwdzFraUF48FE=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250807163837epcas5p14ae55f821c4afb408ac72af9bbb0e179~ZiYEvxws-1656116561epcas5p1h;
-	Thu,  7 Aug 2025 16:38:37 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.95]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4byXsn0gNKz2SSKX; Thu,  7 Aug
-	2025 16:38:37 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250807163836epcas5p15300402e991a5be93922a414f2bd3959~ZiYDPHN-30434604346epcas5p1M;
-	Thu,  7 Aug 2025 16:38:36 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250807163833epsmtip1ba365b680e7c3d3c40d24d2656f73c35~ZiYA86Fky1962119621epsmtip1g;
-	Thu,  7 Aug 2025 16:38:33 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Manivannan Sadhasivam'" <mani@kernel.org>
-Cc: "'Konrad Dybcio'" <konrad.dybcio@oss.qualcomm.com>, "'Krzysztof
- Kozlowski'" <krzk@kernel.org>, "'Ram Kumar Dwivedi'"
-	<quic_rdwivedi@quicinc.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<andersson@kernel.org>, <konradybcio@kernel.org>,
-	<James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-	<agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <nkefidnifmbnhvamjjyl7sq7hspdkhyoc3we7cvjby3qd7sgho@ddmuyngsomzu>
-Subject: RE: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-Date: Thu, 7 Aug 2025 22:08:32 +0530
-Message-ID: <0d6801dc07b9$b869adf0$293d09d0$@samsung.com>
+	s=arc-20240116; t=1754585427; c=relaxed/simple;
+	bh=RiEGjWMeRpLrAhRA2swG+3oVM1h20C6FfR6nWAJKqaI=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=tY0xO6/21wskAN9A2bby3Yg+MR+KhYOSZ3aPg/JiU0enyomqS2HXoRaNwMuJcjTMJiK1H9xPAqkUS8p61ugqetYjMG9ElVecCagz+C7DK3layX/VI4j9SfRuLCwUN24IxMTifbcrxbxTIFHfYq5vCzaEMGXxze2XIB7hKu+0W1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lIaF/mDM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F9E1C4CEEB;
+	Thu,  7 Aug 2025 16:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754585427;
+	bh=RiEGjWMeRpLrAhRA2swG+3oVM1h20C6FfR6nWAJKqaI=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=lIaF/mDMS2H/wVMeSCtD+CrDT2B1XWtYl7DiXKzODzhFTHINWINdeSq3R+Gou8rB3
+	 sGR2UuGotuFFTWNqLK/Tvl30SDaTrFuK70Ik2dQ5wBWjcme6Lk8bGAUwwTpO6wca/3
+	 B5Y2zSl/OUueVdJjGqn+/ag14joR2DkJqkeebVrFXM63Q2C2+G05xb3oXgzTXeOgzA
+	 ZYUY3f2lnOvMMMeVkweGZRNYJh9B9aC5hc5ccW7Lg8u1HvXL2/BmBo/BeZl2SrAp7A
+	 oP19YQbreNH7MelXP2v3XzcBCsJESBYXpkSLdMlUodcjbzG32qSB4ch8zG2LWcfz+I
+	 /4RriIm62d3rw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EB24A383BF4E;
+	Thu,  7 Aug 2025 16:50:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQHWPm1h7sMntUE9BjOfqFdL0FvwlQKqKM9CAg+/nxMBCUK1JQJtFIHyAldjN/MB24cyRgGnpjwRAmX4p5MB936htgLh1QaLARPOx0SzsAOLcA==
-X-CMS-MailID: 20250807163836epcas5p15300402e991a5be93922a414f2bd3959
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250806112542epcas5p15f2fdea9b635a43c54885dbdffa03b60
-References: <b235e338-8c16-439b-b7a5-24856893fb5d@oss.qualcomm.com>
-	<061b01dc062d$25c47800$714d6800$@samsung.com>
-	<i6eyiscdf2554znc4aaglhi22opfgyicif3y7kzjafwsrtdrtm@jjpzak64gdft>
-	<061c01dc062f$70ec34b0$52c49e10$@samsung.com>
-	<87c37d65-5ab1-4443-a428-dc3592062cdc@oss.qualcomm.com>
-	<061d01dc0631$c1766c00$44634400$@samsung.com>
-	<3cd33dce-f6b9-4f60-8cb2-a3bf2942a1e5@oss.qualcomm.com>
-	<06d201dc0689$9f438200$ddca8600$@samsung.com>
-	<wpfchmssbrfhcxnoe37agonyc5s7e2onark77dxrlt5jrxxzo2@g57mdqrgj7uk>
-	<06f301dc0695$6bf25690$43d703b0$@samsung.com>
-	<CGME20250806112542epcas5p15f2fdea9b635a43c54885dbdffa03b60@epcas5p1.samsung.com>
-	<nkefidnifmbnhvamjjyl7sq7hspdkhyoc3we7cvjby3qd7sgho@ddmuyngsomzu>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v9 00/24] Linux SBI MPXY and RPMI drivers
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <175458544049.3624981.13613580736849122114.git-patchwork-notify@kernel.org>
+Date: Thu, 07 Aug 2025 16:50:40 +0000
+References: <20250728094032.63545-1-apatel@ventanamicro.com>
+In-Reply-To: <20250728094032.63545-1-apatel@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jassisinghbrar@gmail.com, tglx@linutronix.de, rafael@kernel.org,
+ mika.westerberg@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, ukleinek@kernel.org,
+ devicetree@vger.kernel.org, ajones@ventanamicro.com, alex@ghiti.fr,
+ atish.patra@linux.dev, leyfoon.tan@starfivetech.com, anup@brainfault.org,
+ linux-kernel@vger.kernel.org, samuel.holland@sifive.com,
+ linux-acpi@vger.kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ lenb@kernel.org, linux-clk@vger.kernel.org, rpathak@ventanamicro.com
+
+Hello:
+
+This series was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@dabbelt.com>:
+
+On Mon, 28 Jul 2025 15:10:08 +0530 you wrote:
+> The SBI v3.0 (MPXY extension) [1] and RPMI v1.0 [2] specifications
+> are ratified by the RISC-V International.
+> 
+> Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
+> Linux only has SBI MPXY mailbox controller driver, RPMI clock driver
+> and RPMI system MSI driver This series also includes ACPI support
+> for SBI MPXY mailbox controller and RPMI system MSI drivers.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v9,01/24] dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+    https://git.kernel.org/riscv/c/e6ef156cbf20
+  - [v9,02/24] dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
+    https://git.kernel.org/riscv/c/f24d93a2a11b
+  - [v9,03/24] RISC-V: Add defines for the SBI message proxy extension
+    https://git.kernel.org/riscv/c/0f2705c52e4a
+  - [v9,04/24] mailbox: Add common header for RPMI messages sent via mailbox
+    https://git.kernel.org/riscv/c/c949af8fce93
+  - [v9,05/24] mailbox: Allow controller specific mapping using fwnode
+    https://git.kernel.org/riscv/c/bbc108db8712
+  - [v9,06/24] byteorder: Add memcpy_to_le32() and memcpy_from_le32()
+    https://git.kernel.org/riscv/c/1419b7bcaff5
+  - [v9,07/24] mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
+    https://git.kernel.org/riscv/c/81db83e750ca
+  - [v9,08/24] dt-bindings: clock: Add RPMI clock service message proxy bindings
+    https://git.kernel.org/riscv/c/3d8d1343d4b3
+  - [v9,09/24] dt-bindings: clock: Add RPMI clock service controller bindings
+    https://git.kernel.org/riscv/c/9231349d789f
+  - [v9,10/24] clk: Add clock driver for the RISC-V RPMI clock service group
+    https://git.kernel.org/riscv/c/f10b3b886a26
+  - [v9,11/24] dt-bindings: Add RPMI system MSI message proxy bindings
+    https://git.kernel.org/riscv/c/f421f9dadf4b
+  - [v9,12/24] dt-bindings: Add RPMI system MSI interrupt controller bindings
+    https://git.kernel.org/riscv/c/dad7051158aa
+  - [v9,13/24] irqchip: Add driver for the RPMI system MSI service group
+    https://git.kernel.org/riscv/c/087f01ae8138
+  - [v9,14/24] ACPI: property: Refactor acpi_fwnode_get_reference_args() to support nargs_prop
+    https://git.kernel.org/riscv/c/dfb5dd686542
+  - [v9,15/24] ACPI: Add support for nargs_prop in acpi_fwnode_get_reference_args()
+    https://git.kernel.org/riscv/c/b39b9be6cf10
+  - [v9,16/24] ACPI: scan: Update honor list for RPMI System MSI
+    https://git.kernel.org/riscv/c/3061eca5a86f
+  - [v9,17/24] ACPI: RISC-V: Create interrupt controller list in sorted order
+    https://git.kernel.org/riscv/c/cc57a1b47003
+  - [v9,18/24] ACPI: RISC-V: Add support to update gsi range
+    https://git.kernel.org/riscv/c/5515df185704
+  - [v9,19/24] ACPI: RISC-V: Add RPMI System MSI to GSI mapping
+    https://git.kernel.org/riscv/c/a7339aedb006
+  - [v9,20/24] irqchip/irq-riscv-imsic-early: Export imsic_acpi_get_fwnode()
+    https://git.kernel.org/riscv/c/eeaac5b3a430
+  - [v9,21/24] mailbox/riscv-sbi-mpxy: Add ACPI support
+    https://git.kernel.org/riscv/c/79ccd8be2527
+  - [v9,22/24] irqchip/riscv-rpmi-sysmsi: Add ACPI support
+    https://git.kernel.org/riscv/c/515799045fca
+  - [v9,23/24] RISC-V: Enable GPIO keyboard and event device in RV64 defconfig
+    https://git.kernel.org/riscv/c/b84b1867766c
+  - [v9,24/24] MAINTAINERS: Add entry for RISC-V RPMI and MPXY drivers
+    https://git.kernel.org/riscv/c/a10b9984fdfc
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-
-> -----Original Message-----
-> From: 'Manivannan Sadhasivam' <mani=40kernel.org>
-> Sent: Wednesday, August 6, 2025 4:56 PM
-> To: Alim Akhtar <alim.akhtar=40samsung.com>
-> Cc: 'Konrad Dybcio' <konrad.dybcio=40oss.qualcomm.com>; 'Krzysztof
-=5B...=5D
-
-> > >
-> > > On Wed, Aug 06, 2025 at 09:51:43AM GMT, Alim Akhtar wrote:
-> > >
-> > > =5B...=5D
-> > >
-> > > > > >> Introducing generic solutions preemptively for problems that
-> > > > > >> are simple in concept and can occur widely is good practice
-> > > > > >> (although it's sometimes hard to gauge whether this is a
-> > > > > >> one-off), as if the issue spreads a generic solution will
-> > > > > >> appear at some point, but we'll have to keep supporting the
-> > > > > >> odd ones as well
-> > > > > >>
-> > > > > > Ok,
-> > > > > > I would prefer if we add a property which sounds like =22poor
-> > > > > > thermal dissipation=22 or =22routing channel loss=22 rather tha=
-n
-> > > > > > adding limiting UFS gear
-> > > > > properties.
-> > > > > > Poor thermal design or channel losses are generic enough and
-> > > > > > can happen
-> > > > > on any board.
-> > > > >
-> > > > > This is exactly what I'm trying to avoid through my suggestion -
-> > > > > one board may have poor thermal dissipation, another may have
-> > > > > channel losses, yet another one may feature a special batch of
-> > > > > UFS chips that will set the world on fire if instructed to
-> > > > > attempt link training at gear 7 - they all are causes, as
-> > > > > opposed to describing what needs to happen (i.e. what the
-> > > > > hardware must be treated as - gear N incapable despite what can
-> > > > > be discovered at runtime), with perhaps a comment on the side
-> > > > >
-> > > > But the solution for all possible board problems can't be by
-> > > > limiting Gear
-> > > speed.
-> > >
-> > > Devicetree properties should precisely reflect how they are relevant
-> > > to the hardware. 'limiting-gear-speed' is self-explanatory that the
-> > > gear speed is getting limited (for a reason), but the devicetree
-> > > doesn't need to describe the
-> > > *reason* itself.
-> > >
-> > > > So it should be known why one particular board need to limit the ge=
-ar.
-> > >
-> > > That goes into the description, not in the property name.
-> > >
-> > > > I understand that this is a static configuration, where it is
-> > > > already known
-> > > that board is broken for higher Gear.
-> > > > Can this be achieved by limiting the clock? If not, can we add a
-> > > > board
-> > > specific _quirk_ and let the _quirk_ to be enabled from vendor
-> > > specific hooks?
-> > > >
-> > >
-> > > How can we limit the clock without limiting the gears? When we limit
-> > > the gear/mode, both clock and power are implicitly limited.
-> > >
-> > Possibly someone need to check with designer of the SoC if that is poss=
-ible
-> or not.
->=20
-> It's not just clock. We need to consider reducing regulator, interconnect
-> votes also. But as I said above, limiting the gear/mode will take care of=
- all
-> these parameters.
->=20
-> > Did we already tried _quirk_? If not, why not?
-> > If the board is so poorly designed and can't take care of the channel
-> > loses or heat dissipation etc, Then I assumed the gear negotiation
-> > between host and device should fail for the higher gear and driver can =
-have
-> a re-try logic to re-init / re-try =22power mode change=22 at the lower g=
-ear. Is
-> that not possible / feasible?
-> >
->=20
-> I don't see why we need to add extra logic in the UFS driver if we can ex=
-tract
-> that information from DT.
->=20
-You didn=E2=80=99t=20answer=20my=20question=20entirely,=20I=20am=20still=20=
-not=20able=20to=20visualised=20how=20come=20Linkup=20is=20happening=20in=20=
-higher=20gear=20and=20then=20=0D=0ASuddenly=20it=20is=20failing=20and=20we=
-=20need=20to=20reduce=20the=20gear=20to=20solve=20that?=0D=0AThat's=20why=
-=20my=20suggestion=20is=20to=20go=20for=20a=20re-try=20at=20lower=20gear=20=
-when=20problem=20happens.=0D=0AIt=20is=20not=20that=20since=20adding=20DT=
-=20property=20is=20simple=20to=20just=20go=20that=20path,=20that=20is=20sol=
-ving=20_just_=20this=20case,=20may=20be.=20=0D=0A=0D=0A=0D=0A=0D=0A>=20-=20=
-Mani=0D=0A>=20=0D=0A>=20--=0D=0A>=20=E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=
-=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=E0=AF=8D=20=E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=
-=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=E0=AF=8D=0D=0A=0D=0A
 
