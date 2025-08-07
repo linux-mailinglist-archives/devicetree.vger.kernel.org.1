@@ -1,85 +1,154 @@
-Return-Path: <devicetree+bounces-202362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA70B1D350
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:29:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A14CB1D35B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 09:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 407301AA4897
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:29:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76D8616F9BC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 07:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A78239E6E;
-	Thu,  7 Aug 2025 07:29:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A120B23C512;
+	Thu,  7 Aug 2025 07:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LdWc4I8g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CS+qtON/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4554423184F;
-	Thu,  7 Aug 2025 07:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0EF1E51F6;
+	Thu,  7 Aug 2025 07:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754551748; cv=none; b=ZKhw6bd1i6fNbxImZwlFdDvLrkv35DIZAHtg4Lqgvhrh/py2ICojJvPc1BO7Sgbr+y8LfpVL00nJrPPOY7YZBrLPQ3xFGAS+eU593XQ4Q4f+pBnnX6+9+s8sdMWWwDGI8sDl4GqQ43BeRCC4gKnqsNlW26WotO9n2JAqpVLSGLQ=
+	t=1754551862; cv=none; b=lL0YpuJSjulWdeQLsPT+YASKh6f6lzq7ZDH/iej6YhqEVzVaXDY5fv0/Vffc4SpsrXGvizDLi/cVjBSQ4n6E+aVrELvtw+9Box04oZuv98cjZf6yUuHSVhDbXSVwnd0ZtcWskJ5mm/CvIn+jvi2LJrQm/mRqQZVDUrfTTZ4KvdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754551748; c=relaxed/simple;
-	bh=BPOrOe6Ks1WSFeqdgv+rLZaq6MjbwOFkeEJJHOUYbIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M71ZtKjYt/FW3fE2hIM8zlETX9bpCjsmJJfku2zxYHUCHz4Uq/GHbKj7ukl1lF3J2wwSxJ/nGpa9HyNw0NNxgaZjFX+UbAeWeEZ0/Ab9TSiEYnJ4+PjP0GM+06SwL2N+BDkR0QNGvBiZt7CuvMANxeG21W3Qn2lIkn1ci0H6Jb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LdWc4I8g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56A37C4CEEB;
-	Thu,  7 Aug 2025 07:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754551747;
-	bh=BPOrOe6Ks1WSFeqdgv+rLZaq6MjbwOFkeEJJHOUYbIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LdWc4I8gF0rtG32Vov1M61PgSNVNH5fNQBqZavWPSx6RrwL9naqlfeKshageFZsEa
-	 pcullofjttvEKmZNgF7FlPvOtXhiaQJ3Hi5idPJqtzJNu6wxBt8tccKuSuqE163Mtt
-	 aw6i++aPgfPE+0fJXFS/uJ5w9tMWlPl2n33m0Tw0fbG52ZnzctZQlUd/kw9tTCWxTl
-	 RZB15zs8KVwtYd8E31X0imhQyAFM2FqUkkxifWTHSzsvwoC6vU9PAi65uBVgW4UvXm
-	 NnXQGhSM7zby1FRQ1uC2w2nZqk+ww7vYElEmLoI+UTD0gD3om89MxeYsxHdpSO9y3v
-	 aglCu0I9UNmXA==
-Date: Thu, 7 Aug 2025 09:29:05 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: imx@lists.linux.dev, Abel Vesa <abelvesa@kernel.org>, 
-	Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/9] dt-bindings: clock: nxp,imx95-blk-ctl: Add
- optional ldb property
-Message-ID: <20250807-airborne-rich-lobster-6f8e2e@kuoka>
-References: <20250806150521.2174797-1-laurentiu.palcu@oss.nxp.com>
- <20250806150521.2174797-7-laurentiu.palcu@oss.nxp.com>
+	s=arc-20240116; t=1754551862; c=relaxed/simple;
+	bh=8bhVfP3E01JnBHl5Sjv9LXWWpcCpjniUzDypYvqNQSU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QXZ8AC+SvM091cvxawciLZTLyM/o+KlBhRVxiO3DDzJPiMIaC1ShPxA1pXo2n7YT/ElIbHxTMoNxqdlvonwZZ4uvjMSfX4xF5m5MLxjtQcPgcYcRr3/8OM8yD5/w7IuNVJXs9yTryfxxodl/1oDBUeS+f/ikWmaQG+hvh9EJlcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CS+qtON/; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-32f1df58f21so6459871fa.3;
+        Thu, 07 Aug 2025 00:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754551859; x=1755156659; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DH0v59CTieRTn3xq/H8g9PIVvtqXLyj735PEGTi5s/M=;
+        b=CS+qtON/dv5+QRV4HV17D4rw0dGQQpnuarDtrk3Tj0M8LBU6RVxc0iJ6CmYprzC7CN
+         JbY6FwUv8NllWyjGYjVw9c+7CCziZIq9DN2GFVxMikS4L7eR0AnWDIZW/xRBCuZymrbk
+         xQ5LXh17/W+ftoXZIAgifP2RZJcCKNrQyt6FuIam/XXPdA58pyzBKf6W9dasZ0D/cxP2
+         eQaaLRMyQd0K2nGWTwqZOWXlZuislofrDNCTZwhqhv70sHk2FmCeOk3vNBbPCxq05jOu
+         e98Wplekn7d0cgNdrDyHLLJ8Ol5OdFvFRW5ZygnX1pqCTdZZoe0UFukdX/+HN/3JlVGa
+         GHzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754551859; x=1755156659;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DH0v59CTieRTn3xq/H8g9PIVvtqXLyj735PEGTi5s/M=;
+        b=N89V0Ayi88LaFEZth/AMkR6qFPHV2rfLIblWEmFThrpuJKGvbBG8uvc+7mOzthgV6w
+         sUrYCsKmxjadJdLvPVlbLEDBrO6Ryy2KX1MhkDbgv5iUd6CUlRfdnwdK9WnY+tnn8R0D
+         XWOvl7Ox1K6r4fpMfYvbyabn/2LHb5MDLBqogxNSL7htnMJSkcm3beKn+rOeJti2igP9
+         9sNSfJKqErJcLx81F7wHF6gZArk8h9wxNOS6bj5G6a6iDjL47TvuLJnInTXBpTf6qQ4I
+         hO7WCK29kRkWw5e3sPpN/SX4wiLfgSJyaIUog2R85FGpu9aKJmWc9bFbfRxyiRbfk12/
+         HKaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUEAhLQgLcH5J3MS6MZFgycV3ZqnAlok/2KBQnjWZpi+W2mXziwA/kZZmzzsaV+nn39jzCPzRzvIGT5@vger.kernel.org, AJvYcCUGs6+OLlr7QErcrDsPlr5Wsk5ppl7XFujtQw41nuToq9bx8YbyTSqs1Yx7eVJik/yd567AcCsuiijz@vger.kernel.org, AJvYcCXif7pTNVFYWrW7qWj2bWQnIw5onZhFlGqfC7cbHp2dRCzYVzdFfmyknjrPUlp/+bgwljUe7rmdMy9ML/UL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLJI1FDUH5ZTmcPl5ESDGmIEcMeoiM388JkX/jNsc1h5XGNeSq
+	oD3Vq8H/w0UnYiGlx+QYxNsTZBwuAB7mdaBG0GSUbAVQPX3cOyM5kd8/
+X-Gm-Gg: ASbGncu7WNHUbSbwDABlouP4JrNcSKaxTKLwsHw7AwFUI49hqEd50QqQKAYwDYzP3n/
+	bvx82IysYK51rPYs19je/uEuBoAX+zboxJzqIoMS43/PlKJJ82j7yAwIGev5FEAjBfe0S2pCK40
+	UA53GuDBV9rXWklmaSSqy1r3h9hGLgVNYkvnpXd/ffFGAjCYFCciyPV1POvi1Jthc4QOuHaVjUL
+	1ILwFWD9eyVQtqLi0D59BIeVTgedIAZzdYkJk/LO91YJs3RdJO+TcnDK5PtDUghDfxj3T2HoKVE
+	DQQ6WE0+x7Jg8z2DX+rD50LYNFYvBUvIBAYhRWp/4mq4lYp0YsFmpAWibX8VsihGpvpJfDtYDgt
+	JWezK9YlVfqm+hu6AV5J3bKcBE5SgUmHzn4TDbG7N66fD6x+meteMhN8jA2F3Q/KD0ckna0ogOk
+	ZhqcU=
+X-Google-Smtp-Source: AGHT+IGdbHSIFcQGIfnqAUowNVGDgy1tLuxa8roYI1ir8BJfTt9tS4PxpKjxMqu/cldNvoJKQViGtA==
+X-Received: by 2002:a2e:a548:0:b0:32a:885b:d0f with SMTP id 38308e7fff4ca-333813bd630mr14814291fa.24.1754551858718;
+        Thu, 07 Aug 2025 00:30:58 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88c9908esm2543273e87.76.2025.08.07.00.30.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Aug 2025 00:30:58 -0700 (PDT)
+Message-ID: <f738f3fb-2ce8-4699-bb13-3778ed1c6606@gmail.com>
+Date: Thu, 7 Aug 2025 10:30:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250806150521.2174797-7-laurentiu.palcu@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] iio: adc: ad7476: Support ROHM BD79105
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1754463393.git.mazziesaccount@gmail.com>
+ <c7f94cdf9bdc6882953f6a074db3fd87570fa98b.1754463393.git.mazziesaccount@gmail.com>
+ <aJO6jVcITlOXp0YB@smile.fi.intel.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <aJO6jVcITlOXp0YB@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 06, 2025 at 06:05:13PM +0300, Laurentiu Palcu wrote:
-> Since the BLK CTL registers, like the LVDS CSR, can be used to control the
-> LVDS Display Bridge controllers, add optional 'ldb' property to handle
-> these use cases.
+On 06/08/2025 23:26, Andy Shevchenko wrote:
+> On Wed, Aug 06, 2025 at 10:04:43AM +0300, Matti Vaittinen wrote:
+>> The ROHM BD79105 is a simple 16-bit ADC accessible via SPI*.
+>>
+>> The BD79105 has a CONVSTART pin, which must be set high to start the ADC
+>> conversion. Unlike with the ad7091 and ad7091r which also have a
+>> CONVSTART pin, the BD79105 requires that the pin must remain high also
+>> for the duration of the SPI access.
+>>
+>> (*) Couple of words about the SPI. The BD79105 has pins named as
+>> CONVSTART, SCLK, DIN and DOUT. For the curious reader, DIN is not SPI
+>> ISO.
+>>
+>> DIN is a signal which can be used as a chip-select. When DIN is pulled
+>> low, the ADC will output the completed measurement via DOUT as SCLK is
+>> clocked. According to the data-sheet, the DIN can also be used for
+>> daisy-chaining multiple ADCs. Also, DOUT can be used also for a
+>> 'data-ready' -IRQ. These modes aren't supported by this driver.
+>>
+>> Support reading ADC scale and data from the BD79105 using SPI, when DIN
+>> is used as a chip-select.
+> 
+> ...
+> 
+>> +
+>> +static void bd79105_convst_enable(struct ad7476_state *st)
+>> +{
+> 
+>> +	if (!st->convst_gpio)
+>> +		return;
+> 
+> With 10ns sleep in mind this is also unneeded check.
+> 
+>> +	gpiod_set_value(st->convst_gpio, 1);
+> 
+>> +	udelay(1); /* 10ns required for conversion */
+> 
+> We have ndelay(). But I believe toggling GPIO is much longer operation.
 
-You did not add property here. You added child node.
+Thanks for the review Andy.
 
-I don't understand the rationale at all. How the registers could appear
-in this hardware? What changed that registers were not there?
+As I replied to David, this 10nS is rubbish. I need to clarify the right 
+value.
 
-Why every device here has ldb child? Why camera has ldb?
 
-Best regards,
-Krzysztof
-
+Yours,
+	-- Matti
 
