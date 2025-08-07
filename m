@@ -1,200 +1,177 @@
-Return-Path: <devicetree+bounces-202521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D916B1DD70
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 21:19:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA37DB1DE68
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 22:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB9BA3BDBE7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 19:19:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B54A1AA5122
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 20:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4549B21E091;
-	Thu,  7 Aug 2025 19:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1686226CFF;
+	Thu,  7 Aug 2025 20:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="V3vtkqtN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q7/iSzqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EC821D011
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 19:18:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2716E19D8BC;
+	Thu,  7 Aug 2025 20:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754594341; cv=none; b=ewyNcZqOGEVqj+c+36id8+4dG9/MlFagKdE88f2NsWKhNgC8FeAL2jhLIjM94XSvfeEB2iyqKhR9NVH2VzlSXGxm0kG+cxFGQyTLt9I2Ple/tnEvRdMEWO1KyrZrVNKHhZDquQogyS778RxbWI7MWyAjjrrNXiiGfPj4uCjWaNg=
+	t=1754599555; cv=none; b=lfhojl5heQsHuTrWJo9oscdd05w1PVJ6WeDyYPY9kmEQ5mjlpeMIdnoTc/rvFqAZ0RWQRbHod4ikeeF1fGi3eShB0B2p76WMGA7+i4yKZ5mZwWVKTP/uHXGOYT2YOFDqBwUunmG+CuKSozoXcpE/oF8yZ/Q1WHT5gmO9SDDrsvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754594341; c=relaxed/simple;
-	bh=P6CYGkCBsS2/j/K0E7tBx1r/xDresPDft3Hy8CqhCSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=giboGZ5SIKHm0/30IuBXjBDjwEYK3nEaG46J9G3DwYbnTSXCKsC8tD38s3/KyAFeMXWMKtKocgqSlzpclc9qajRLflY5CVomKdUOHPfQhQ0vdGwC5X89JvNDM7whcuvPHXaLpFZXFfC5SZZNOj4L1n1hlLnsn5jREHfehKm/xSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=V3vtkqtN; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b7920354f9so1096935f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 12:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1754594336; x=1755199136; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TMojSpDs0TkBAWsUruscamCHlztjGhkLSL63bamzheI=;
-        b=V3vtkqtNNN04JiPQ0ZJhIUhwRoB5EWtUW+BmasHBjB4U1p/NyWgpC7G/jYNZE5F/xD
-         4MoBkJYvguw5u0+CwDDpvOG8V5AIfFT5hIs9ge8SKtTPU58SlZyua/kPLWwcFscRXIpp
-         rX9y/yvsJgPz/vAKD/cLzGYHUmV58ZvQ3OBwc0ksvLdJefrF1RSME/bJnUXKP7/8Rso5
-         p9UsF0BPtZMIV/CijsXostTaKgly2nQAl9Jrfu67QwvGN3/H2jUkPFLQgpZc9vc9+BFz
-         fpoa2m/4O38aC3j+MOoVOLop/yoxbR9ppyvywkGr6fzbOFrYbLoJKrk0LdTU24lGvjk6
-         uKgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754594336; x=1755199136;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TMojSpDs0TkBAWsUruscamCHlztjGhkLSL63bamzheI=;
-        b=allH8UPOB4S142nrCwRQkohGK2LRjNxTe4CBYflNiqbKrBerXO+kp3tt2Pqcy66buK
-         JNUPrN/acycf8whH30NQaNpkEb4s3e+2tbVxGbe0kS7IOdML5GoOa9u3IRLdBYWbKjF4
-         ua+xNgrLxw1TOhR1gQEctG/BrAOuhKr/addwfw6+4dxZXn6+SaXd5AmFpqMerPVAPBMF
-         E5CXUEImb6wg8WCi4Mys7GVvrB9eaGFqpWkz1gmwnbkj8vNxDKxNpoTiO6KS6iB12/1a
-         yLn5UQHPez6HXwwdfEhMDvfhF+RhQdNjUJgAVsY9i1KB5k1dAXsc0DUuR/AlbWYJYq1p
-         HP8g==
-X-Forwarded-Encrypted: i=1; AJvYcCWDBx0q71HKICRTkpi1SqQL7CxqO1dS1/dv/6WnO/+Yo4PdoWzwsBKNzKtDKG6vhbS0BZSwZT4QtZmy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyURIkyNBLv92P9heleMT8hF42+QsOqe/4qWuxEtQm1YETwLvFS
-	SXpKF6E2cS/pNpyZcPkE1aB6+2sSfwK3HFJBbje0flxtsnNpMhiSPCpPvBa6wR9t8X4=
-X-Gm-Gg: ASbGnctlsspOgVmNXeu7uodTQG5OFBqkZPQ6tyPJJn6K6C4ZZchVzAmAYUDlqlptaCB
-	ivkuSbEFyypjEe2to7VXcyOFQ7nzD4zZkN8Kn/ogGR6Fus9iR3QXxXeO5XR7X3TsU1XWG0AMjte
-	Ys1pMhNnMrA/6exUbpvMxRgj/BmEz0KMNhoXic4Q4JmPRHSoK7uFBNpdG4eB7mA+9uEB6zjrPlT
-	ZnNRtay7JCtCtRUNv3fpYwOlub/i+GKpeZlc5GCzHzDpHmCRX3xhcoZUl6EJt2dErmri3DtoNF9
-	tShoAMI9q+tTbVU+rfXyNTWbJqh1OydbrukivcimQGJsO1i5tSe9Hw1BpGoDYAsKf+rLo2swity
-	AaVwVByuiTMpC7mIydnBuLOcoahRi//54JkhlfkUtFRkzklkooA==
-X-Google-Smtp-Source: AGHT+IGmsZp5QGEdNPY5skMi/ehXySxn/2GJ+zanQmX1/LX2oBeqJ3fxjEoYN3cf/lF9eTayqWyhUQ==
-X-Received: by 2002:a05:6000:40ce:b0:3a3:65b5:51d7 with SMTP id ffacd0b85a97d-3b900b54b20mr297294f8f.26.1754594335784;
-        Thu, 07 Aug 2025 12:18:55 -0700 (PDT)
-Received: from pop-os.telenet.be ([2a02:1807:2a00:3400:3bcd:db43:406c:324d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3c4d02sm26988589f8f.33.2025.08.07.12.18.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Aug 2025 12:18:54 -0700 (PDT)
-From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-To: dlan@gentoo.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr
-Cc: skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Subject: [PATCH] riscv: dts: spacemit: add UART resets for Soc K1
-Date: Thu,  7 Aug 2025 21:18:17 +0200
-Message-ID: <20250807191817.157494-1-hendrik.hamerlinck@hammernet.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1754599555; c=relaxed/simple;
+	bh=F+rikjg51mw2kXmO8Js7I/1yjwiRiqG3pWEEEcI0WBE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jGPCc02PydN0dlQgt3MQ98I7COu3nfQjNCACeL+YZO40Ja7sxt9DL5Y4Oc6ULQ5HYAQlFfcEx84jy52XU80BPBrECYhcdj+Vqjiw+P83L8Yek+Nw0RgatNBZrpfKXZ6KIV7d3XraixbFwldzgbEJWXrHS2iVFXngPp4GCyoiEQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q7/iSzqF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 577EDJsh006876;
+	Thu, 7 Aug 2025 20:45:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1y/Zhzh0xKBSqXOG4QAbfLqjcK4EPmh64vtepr7nrYA=; b=Q7/iSzqFZKIwQQO4
+	nKWuJX+3HLVw2jPzx68MALM7KQLqfiVXFRVXqsn06KqDTOiYi9hRajeDt8jHnatH
+	nDmYKCRbO/aE1F1zd0+rJG2GaVgM4k0q4wzl85XDK5PVGRtBs/2wcVjZxC9w2kfY
+	kHZQ1fmxoK5jeArUJE0u5l4Va0QISM43uEr8POZwDV2Rv/abHjWCFaNs6Scsu+1r
+	nhFPX2vNcv7nY3Uno4IXzTQwyHmAayhTADhSEaeGdVUs5AURjf7CZZvj1CkNl4j9
+	EdJnq1XYCMcimVSGkqFQPnWB6NEYSB6pUkUAX/c7eXdqUPG8rFF3dczIXHWNc8dI
+	8HIGYw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpybftpn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Aug 2025 20:45:43 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 577KjgdM002043
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Aug 2025 20:45:42 GMT
+Received: from [10.216.57.148] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 7 Aug
+ 2025 13:45:36 -0700
+Message-ID: <52625e59-c7d0-45d1-8af3-d9958c5ef01a@quicinc.com>
+Date: Fri, 8 Aug 2025 02:15:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
+ device tree
+To: Mark Brown <broonie@kernel.org>
+CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <mani@kernel.org>, <conor+dt@kernel.org>,
+        <bvanassche@acm.org>, <andersson@kernel.org>,
+        <neil.armstrong@linaro.org>, <dmitry.baryshkov@oss.qualcomm.com>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250806154340.20122-5-quic_nitirawa@quicinc.com>
+ <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
+ <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
+ <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
+ <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
+ <599b8a4b-324a-4543-ba27-0451f05c3dfd@quicinc.com>
+ <3aa82f65-4812-4bf0-9323-96f40824a004@sirena.org.uk>
+ <685e3d36-c0e3-4faa-b817-aecc15976a25@quicinc.com>
+ <c1435858-6288-4525-8c92-e27ed86cb55e@sirena.org.uk>
+ <31461227-3f3a-4316-9c8a-c851209d0278@quicinc.com>
+ <4efc8a3a-ceb6-40dc-b877-328b86348e0b@sirena.org.uk>
+Content-Language: en-US
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <4efc8a3a-ceb6-40dc-b877-328b86348e0b@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX0Ab7AMZ7i3/E
+ RXqQB/cLZsmAKhOBD4mDskR1A2Pko7dNEnXTmQeWpWfX/iQPwD9ethuJLj2FFiGEtkRlFx9QeA8
+ EpMbJahXFfYRebhCpTNMTIFY/88T2LDSfRAxl7HcQXTIoCctERXZADYXJqSyW/AAz6wOraEv3Ok
+ bdbWLkbJfmDYP9jSuteHLvblq+Y6HPBbUoMHs5ca0UpSpD9t8NL9pIufEPODQvDTOusKaa6Yk2J
+ 8L3rj0Lm7XbsIsEh2kOnrF6KzHrV5r3jxTb7ab0PP5Ul6rniTFw3Yt89sp7LTMaeqkV3PH4JBXI
+ JSbplRgV+5F1Um74adOhfMRILoWt7tdIGIj696jtl7ajhUusYoE3KUKCcHpwXLgj4zCl2lYr9us
+ 4IY1le4k
+X-Proofpoint-GUID: R58dcDIoPMNJvs0kQ5NPhRSGdgCgz_16
+X-Authority-Analysis: v=2.4 cv=EavIQOmC c=1 sm=1 tr=0 ts=68951077 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
+ a=qAuQnvhxRzsbetId1DgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: R58dcDIoPMNJvs0kQ5NPhRSGdgCgz_16
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-07_05,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 clxscore=1015 priorityscore=1501 adultscore=0 bulkscore=0
+ phishscore=0 spamscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508060009
 
-Add reset control entries for all UARTs in the SpaceMIT K1 SoC Device Tree.
-UART0 was functional as it did not need a reset. But the other UARTs were
-unable to access their registers without the reset being applied.
 
-Although perhaps not needed I did add the reset for UART0 as well,
-to ensure consistency across all UARTs. With the current-speed set to
-112500 baud rate, it matches the factory U-Boot settings.
-This should not give issues with early console usage. But perhaps it could
-be a good idea to let somebody else confirm this as well.
 
-Tested this locally on both Orange Pi RV2 and Banana Pi BPI-F3 boards. 
-I enabled the UART9 and was able to use it successfully.
+On 8/8/2025 12:15 AM, Mark Brown wrote:
+> On Thu, Aug 07, 2025 at 11:26:17PM +0530, Nitin Rawat wrote:
+> 
+>> 1. Regulator and PMIC configurations are board-specific, meaning they can
+>> vary significantly across different platforms. For example, some boards may
+>> use different generations of UFS devices — such as UFS 2.x — which come with
+>> distinct power and load requirements and some with UFS3.x which has it own
+>> power/load requirement.
+> 
+> Requirements from generations of UFS devices presumably come from the
+> UFS spec and should just be known though?
+> 
+>> 2. UFS PHY load and PMIC requirements also varies across targets, depending
+>> on the underlying technology node and the specific PHY capabilities. These
+>> differences can be influenced by the MIPI version or other implementation
+>> details.
+> 
+> If you've got non-enumerable PHYs that have a big impact that's a much
+> clearer use case for putting things in DT.
 
-Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+What I meant is that different boards may use different UFS parts, and 
+the associated PHY load requirements are not governed by the UFS 
+specification itself. Instead, these requirements depend on our specific 
+PHY design and MIPI, which can vary across platforms.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index abde8bb07c95..7a5196a98085 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -667,6 +667,8 @@ uart0: serial@d4017000 {
- 				clocks = <&syscon_apbc CLK_UART0>,
- 					 <&syscon_apbc CLK_UART0_BUS>;
- 				clock-names = "core", "bus";
-+				current-speed = <115200>;
-+				resets = <&syscon_apbc RESET_UART0>;
- 				interrupts = <42>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -680,6 +682,7 @@ uart2: serial@d4017100 {
- 				clocks = <&syscon_apbc CLK_UART2>,
- 					 <&syscon_apbc CLK_UART2_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART2>;
- 				interrupts = <44>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -693,6 +696,7 @@ uart3: serial@d4017200 {
- 				clocks = <&syscon_apbc CLK_UART3>,
- 					 <&syscon_apbc CLK_UART3_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART3>;
- 				interrupts = <45>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -706,6 +710,7 @@ uart4: serial@d4017300 {
- 				clocks = <&syscon_apbc CLK_UART4>,
- 					 <&syscon_apbc CLK_UART4_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART4>;
- 				interrupts = <46>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -719,6 +724,7 @@ uart5: serial@d4017400 {
- 				clocks = <&syscon_apbc CLK_UART5>,
- 					 <&syscon_apbc CLK_UART5_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART5>;
- 				interrupts = <47>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -732,6 +738,7 @@ uart6: serial@d4017500 {
- 				clocks = <&syscon_apbc CLK_UART6>,
- 					 <&syscon_apbc CLK_UART6_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART6>;
- 				interrupts = <48>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -745,6 +752,7 @@ uart7: serial@d4017600 {
- 				clocks = <&syscon_apbc CLK_UART7>,
- 					 <&syscon_apbc CLK_UART7_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART7>;
- 				interrupts = <49>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -758,6 +766,7 @@ uart8: serial@d4017700 {
- 				clocks = <&syscon_apbc CLK_UART8>,
- 					 <&syscon_apbc CLK_UART8_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART8>;
- 				interrupts = <50>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-@@ -771,6 +780,7 @@ uart9: serial@d4017800 {
- 				clocks = <&syscon_apbc CLK_UART9>,
- 					 <&syscon_apbc CLK_UART9_BUS>;
- 				clock-names = "core", "bus";
-+				resets = <&syscon_apbc RESET_UART9>;
- 				interrupts = <51>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
--- 
-2.43.0
+Because these characteristics — such as load requirements — are not 
+enumerable or automatically detectable, it makes sense to describe them 
+explicitly in the device tree. This approach ensures that board-specific 
+variations are accurately captured without hardcoding them into the driver.
+
+> 
+>> Given this variability, expressing these requirements in the device tree
+>> allows for a flexible and accurate way to describe board-specific
+>> constraints without hardcoding them into the driver.
+> 
+> There's still the issue with making this a thing for all regulators, not
+> just for this specific device.
+
+
+I see your point. Just to clarify — my patch is specifically scoped to 
+UFS PHY and PLL regulators. The device tree binding defines these 
+properties as optional, and they are only enabled for targets where load 
+voting is required.
+
+So, this isn’t intended to be a generic change for all regulators, but 
+rather a targeted solution for specific consumers that need it.
+
+That’s why I’ve chosen to keep the regulator parsing logic and 
+corresponding load voting support within the UFS PHY driver, rather than 
+extending it to the core regulator framework.
+
+
+Thanks,
+Nitin
 
 
