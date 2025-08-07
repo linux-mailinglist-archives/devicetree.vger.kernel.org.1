@@ -1,220 +1,223 @@
-Return-Path: <devicetree+bounces-202487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1CAB1DAEC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 17:43:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E6CB1DB0C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 17:52:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 167601AA2E99
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:44:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06D28585339
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B805269CE6;
-	Thu,  7 Aug 2025 15:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56CB25C70D;
+	Thu,  7 Aug 2025 15:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZNKzaOT3"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="o6RfYceq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010004.outbound.protection.outlook.com [52.101.228.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C036262FE6;
-	Thu,  7 Aug 2025 15:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754581415; cv=none; b=J4c69W4W/UUqOeABZ/LZjFqiK0nUMBoxYQizxGKvT3b/ZdrDhI+rvuF4mRffxM7LYirOsAfImUNXorFeeWqw9BxrOXK6Ym101UBpck8DN9g/AEIvioxE4HVFUSSpo9XiT7yeCldukfHQtZDcum2KSyPnuK+uoBtIMfk37fijDBg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754581415; c=relaxed/simple;
-	bh=n2C26bB53uYqLwMArTrdsHaeWmaRvLA9f0GSIbvnRt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EftFfYfdVYVjd5CosaTJTmpeuzTkdEZBqY3u50VvY1Dp0TNN/XPp3nAzuD0RmhWUD+0qXpBOvqyRbw6N2niuwch89gtYrU29OlnCxx75Vi3MBtuFuMWCxkyIScaqlDJ7vWC+D75gn/c4hoRi3hVcg8jUoeUwcmK1BUlm+ZjMQCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZNKzaOT3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5779D8GD008408;
-	Thu, 7 Aug 2025 15:43:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6jO7Z0KtTPlEHzBs5tGbsIj+SNejx7v3PWSrlZ271lA=; b=ZNKzaOT3KtJ1wuy5
-	KmtlUmeT0yQjUjAQM6RE5Cqg3VcZVNyGbAUXlPWRyAizH3FzVVnJUtQ5FfZaW3Vb
-	e423rBTGSZ2bOe0XeuW8kYciVYkEcqOVilbJ4ZtzxXh37qQcwEamk6lNo1pL487p
-	Fj9HLmoCyV0h4OlszPbRtrWLCf4+sK2hBo/C4I+OsdiqLDOEUgFEjucvRdv0iKaB
-	qFXPOUqCY6bdcmjRc/3tpB6ZbOxhKB0Te91vHNBN6dYUX42dz/Oqvhi64yH9rzPw
-	KRoqyLY49Rnvq5gxTJbCCuE7kGpzC8sSl0gtnZfDKaY50Z32o/asDq7+x8nRGGKX
-	yPBpAg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48c8u23tud-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Aug 2025 15:43:23 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 577FhNQJ009672
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Aug 2025 15:43:23 GMT
-Received: from [10.216.57.148] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Thu, 7 Aug
- 2025 08:43:17 -0700
-Message-ID: <599b8a4b-324a-4543-ba27-0451f05c3dfd@quicinc.com>
-Date: Thu, 7 Aug 2025 21:12:53 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A781C5D72;
+	Thu,  7 Aug 2025 15:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.4
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754581961; cv=fail; b=TpxLn4wZlYMWAYCdk8ZhzgBbISu/e3e959Th2W9wLUDuHd9JpX3ed92/9JZph6wKc1qk4/iebUSW/0kABfUYETducJAYqkiKyiNUD6xD3yvw3FNzIIGQCBaZTFbKAqz7okxXBDxhWBxSnFAMFOk8WhYkm+vnP7urPsbTsUZX0fQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754581961; c=relaxed/simple;
+	bh=rKvYySxl06no3qTyfbWKpXtEDAxg2jaZ8YPkncyRpFk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=tbEj5lDWOi68Ip+uVMlk2zg7R3LSkhdmVQKNoQTUpM+mj2qppRHaJ7fZZerunE7UxeLo0aGGNiVGCl2sBjgmJcns3AAlOo4BZ/eP7ZteMBhgdHBNK88vb3L4xUWaXDqnd0ldzA4Z8rZhed+p0YzLYT6nCw4Dlzl/QlJ66eN9kTM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=o6RfYceq; arc=fail smtp.client-ip=52.101.228.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Hq2BeUyQwyE80ANkQhYb5KOeGA0RsMwrTYHejGXk29GSJS8Qrciit7w9O2eiAHFJ2m146QPlj59pMk/yhUxNd4AfgubNm/FN0u0mhK5W8shRRXi13xPfb0ZBNWaArlSfK2b4eTHisXIJmnsppijKovX2KgFybG8ae/BDOzE/+HFLD+tw79oS9i05Se2cjvqLzQWqE2LBZv+xF8O825iDioEr6IJZOMScJrKEBAhgBgQr5AgvXEYQD+31CoRn4L3adGs71es8rKK6kL4F7crpAzvbBOlNpee880EJtPNAI1nR46YHkF80jWudvwrZj6+i5yrQfvcr7dzNm63Dlu2r9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E//MX7aiR+eZRblKs7thP02WbRbGJlLTZ1ef7U6yi9g=;
+ b=Xr0lZSa9hwIXzYyiGhP1s5DMju0XYi06Q+SnPy8BD4f7tXI05+Z77OVfmygM+mF4oXqJW8cd6fJdSwWGyi+OxZZAKKD/PysoTs1g1onitIGB7x9VkyxerS9MXxwgMeKgqe+RdtNn3pnAkDDR5q4gDEBvkW9F8mY3mf48js3MPFuBqGnIhNIGQf1/1mi09ZbarYee+9S0TRpMweVBXQzf12d0i6C9E9QHDLVG7G2Ot4wOboD4eTcW0kEwRhTW6lvOqXUhus9ZZI7XdUVtSLM1fJS7EOldoyONalDDZd/xqjZ9+ogKxPgg2hDnhNbDvXdPGvxX/xOppUr76874EFCuWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E//MX7aiR+eZRblKs7thP02WbRbGJlLTZ1ef7U6yi9g=;
+ b=o6RfYceqj7T6Ws+q4grhT+IlTRL3XUSVdriHGoQuDoR7psLS/t/ZqBRs2PwWHET9S3eahxzXPEMprooCb2KlWaKpxGYhtplpQxlukXR+zpNo9TlVmy4JzqKJk6H7CuK0rYGGy2VOfEaAkucd4cF8NNbpot9IrEul7aeG8KYvkjI=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OS9PR01MB15426.jpnprd01.prod.outlook.com (2603:1096:604:3be::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.16; Thu, 7 Aug
+ 2025 15:52:33 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%7]) with mapi id 15.20.9009.016; Thu, 7 Aug 2025
+ 15:52:33 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: wsa+renesas <wsa+renesas@sang-engineering.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+CC: wsa+renesas <wsa+renesas@sang-engineering.com>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+Thread-Topic: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+Thread-Index: AQHcB64SgansaqhVLkmqdmQQ2H+QybRXVi5A
+Date: Thu, 7 Aug 2025 15:52:33 +0000
+Message-ID:
+ <TY3PR01MB1134633EEEB64A0F24711E522862CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com>
+ <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OS9PR01MB15426:EE_
+x-ms-office365-filtering-correlation-id: 9ad9ce02-4e47-48ef-2d2d-08ddd5ca6c71
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?lceDVQeJ8Sh4bFSiJhp+yBvOyLgSSFrLEwsHIGanzOihupMU32NwwQDWth+s?=
+ =?us-ascii?Q?Unx5G7OW4sX5OaDCFfe+X3a0dsE/Im5d3PdwNRS1UyLRW4yqGcmJXPdj3uNJ?=
+ =?us-ascii?Q?QQndpO0qJz5ycfV9/uRM+0b3VrBnW63vzgscJ6PB79X5f88dnO3qsF+U8JzK?=
+ =?us-ascii?Q?T4hFGyax1Qdrd05CTZ4lYZkDKMV1qWApqEibp3cK9cyhVO8iXDcwG7c8+TKn?=
+ =?us-ascii?Q?EziVGp8JWCnAd5RqNLdKQQxU392xb26HSeGnyDYJ2D0jXdKjWt1BdiLPCESc?=
+ =?us-ascii?Q?vFSLhuTGDyjhqlxqGk8E+irpWmlrBaiWHUqmy/EVHVWvBvJAmxqmzhic8Dm0?=
+ =?us-ascii?Q?PZ5Ohmn7yEDAvpmXeswM5zBiNlBP3X0RVsdnpZwbuiZNdjD7dYF0KruXMStv?=
+ =?us-ascii?Q?mQoLze280W+RkHQo9nhjYwthUO8my9gxEHAMqcm+WnZuMaMwhAU26z6fmi2s?=
+ =?us-ascii?Q?uQ+C0LUPmnc+YkqfQKF4osDhXPHWASvkexhmEYiTYiiSnlotmNPp8fIiTB8J?=
+ =?us-ascii?Q?R/U66yPvJl0mu31z9Y08E54Onc9MVGv2HNhQTGSAbocIlcV0uUaSb68qLCEH?=
+ =?us-ascii?Q?kHfhJWrx0VRHPwxLaazkVXcXyGjWil3m9/CqsAD6mq73tEMdxx5zmTfRLFzU?=
+ =?us-ascii?Q?WDlyJTjrpYipGRZLRXwd7tpsLZn2/vRR2iZtThAXh60SWm/A+R8+ppTRtRSW?=
+ =?us-ascii?Q?bgS60HiO7/H0EqczX+jVFOT2beSndFxELG7Lv+7MDu2rpj11XJ7Z6qd49kf4?=
+ =?us-ascii?Q?RkP/Y2HozhuJr7PomLwcChGR8hIcYop1OHkWQTZq5OqV7S949HH6KErQSHUW?=
+ =?us-ascii?Q?3Mbzm/gzLMNgCUCEDos5D1yuC9uOiBCljK6YDnz0F+zaQ+P0VOI1PL4OG/1/?=
+ =?us-ascii?Q?txNysl8csVSlA+Ul3gADnYJ9W1fmzvLw7g7aicBAihjx6+Va24LIX0SSbBld?=
+ =?us-ascii?Q?WQyS79ALH6qd6g36t12eYjGjNScCJcPjJOxtgeQrabW+OsKhF3GLITx66d/v?=
+ =?us-ascii?Q?ybtwZ0g3feC3CzPz20DVEQsa1KPGZ8oIg9z8nT946BpyrwKBGM+eVPchn75/?=
+ =?us-ascii?Q?3d36Dl1oulkm3+HUHuBA94Nd0hm71jy1f6bV2R5cJiuwi3rY9K0QRCSX4jON?=
+ =?us-ascii?Q?WMYHOww9le2lsVS15IwXpDuMZLHBq3lWnryxh+/3Cw1Xoe3L9VT5tXpkiU8S?=
+ =?us-ascii?Q?d+qwCj9SfR+x0+2CJu74BIqrSa9x8i6fi+g8ssXI00HvgJ7H6gFJafczCmbw?=
+ =?us-ascii?Q?Z3cHi4EiDQ/YkZ/frdDOCwBfxJp/qNNNeUTAAO4CRqKN4OZlDGBObbt4wWsQ?=
+ =?us-ascii?Q?2HqrYMBmct+USBQQDvuCHJF0EoeJPEJd3jlsL//bOezwiKw+5RaLkp1QvTLi?=
+ =?us-ascii?Q?EvFUBKwxrCGkV50kXHelO9lvMCLTwdJa/l6nueSSLwS9sXGhTiGwlGKDis5x?=
+ =?us-ascii?Q?1I4XtHuqdimOMKXrLsbk2h4ZBvqClQmkv+aMJKb6Icgw9bUv6hMNqg=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?G1Xo+IzAN7tN9wx0gOZQZu8sjHVaYbFAUj5K8M679vUyxLuc/K2dPX7CABv4?=
+ =?us-ascii?Q?sfKAodF/uqEKMh9OcoEdD7/w3dHNmzC6lnX7FCtoJ9rPmNm65SpvkusEMwEH?=
+ =?us-ascii?Q?Gwf2QwYui64R5LC+UNVgsSyVzPmLXALHclagPquKPmGLIJ2B2Ufn9snVFDgr?=
+ =?us-ascii?Q?EqzIwXa29hwjMX3S5JMMehn+YZcAzfgxoRk30Ft7Td0H5IX6XbVgCys6BoGz?=
+ =?us-ascii?Q?7Q+g1z8H3IwqkZ8HjFvFz/n1ulOCefWq7Zm3NDFFmk3DsHvs/oULSVu18odW?=
+ =?us-ascii?Q?rdoJkRk3j1DcnjcTZ59dhFPZtj3Mn+aICHXAmBQrqDZOpG74e8plXcBGphOM?=
+ =?us-ascii?Q?tePOmr7xzR9tGl9oIjblRt7jot5o9wcbLfhsgREALPTzb+lPIU9st+b6ihEj?=
+ =?us-ascii?Q?N5a/pmCl2DNGSt/TQTFBhrMNMi/MgPZ5XbWeznVi3pJMY879H1iL4r/JWl8q?=
+ =?us-ascii?Q?QivtXCch+iDBvDFQOxt7PJ6qDyOHFIcpuDUzxcmzch6c1Dq2r7iQVUkczlNE?=
+ =?us-ascii?Q?OtkD9G6CJD89RVx1maSlkmSZKOu4Bd0bP37/cuGqT1pNwltOugVCzzOdHGc8?=
+ =?us-ascii?Q?S2L/Xo/Th6cGsKdKnAi4CstZoYfJ0uOVRiKBS4psOP6ngDZ+R8WHnnYSYejE?=
+ =?us-ascii?Q?81uEAdN7VamhiN6t1lQ4zcJMCfbI2xg0R3QaeFF5jYmQS/YxT20Gc9og170L?=
+ =?us-ascii?Q?m/v/QxMIG3L/iOB1XMDoJzSF8ibUh6k8jUqoglhwo34vNsG8Ngm1Z/DL8fb7?=
+ =?us-ascii?Q?FUkmhlrZZO9QxXTqi1uxolLE4aAD/7CH18g7hAqs6I4zggwYme3eDlOs83JF?=
+ =?us-ascii?Q?e6l1hC3ncIxYoF1ws+4rLr1b9XPdlFm7iVMqthKHblVppUYRYzyXi9OyWqzX?=
+ =?us-ascii?Q?IBol3LAtLBIxc51QieZWvoihk3Bre/G1WH5E3qKL6Ov1sppM5AWZkx9OEyuC?=
+ =?us-ascii?Q?DfcnBy0Q98pfdEpvoSDLudsSIdUVbJAY/+vFuUA4UY6GT1pXDxUv6/MGqyPr?=
+ =?us-ascii?Q?K0HkJRy+Zqx8X9gRD92WKBlkBSgufL4i6S8Ghz/i+ciFZQg/t/8j8dDf+GmN?=
+ =?us-ascii?Q?HvPTHhVnrnLYp0dfz2M1CBRGwZtforpC5B6SUXkGQiwg7K0TP4A0YxpET7f4?=
+ =?us-ascii?Q?w1dmn09bbAQTfeU4gl6MW/W7eKQBQv3yZBk0/8ZN6bmMMTLjaeFHThCM6KB0?=
+ =?us-ascii?Q?PdYb+Ge4uCueMIPhdJsdRlwNwRaRd+en5CVW3RDQIODL+bb0OCYsWRxcZ1pE?=
+ =?us-ascii?Q?eX1h0PVvRolOilsMkbFr9LPnLMR9TDC9QfNg5/5cF2q73rIw0xKr4HqvhU/l?=
+ =?us-ascii?Q?XafBZmvKIBUPyxxUQJrkhe9OirEvdJ5YpEeZ6PR5IYLxuJbc6qllJGUPADu3?=
+ =?us-ascii?Q?MRWvQsAJHEYIAHRNGZuQxD4XroPc9MXdWgoMcEoOfL+qabIjBJI3SrHnZiZY?=
+ =?us-ascii?Q?fJx6B/9qqTrYr6PXGnU1DNKer+jBfXxcId8EcHSJfAUq9HmOIs8zVTDzOLpH?=
+ =?us-ascii?Q?0HQNE9QefNwY8GJZ2VSOf0h7UbLLnW2H+dtiCniCBqgnUScS3jiLjJcJ6iWq?=
+ =?us-ascii?Q?UHcz2kW37BRXWK+NwFWg+8Q3wB4Si2y1HECkjfVczSa/ERsVrTV/LHtLVqAV?=
+ =?us-ascii?Q?4Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
- device tree
-To: Mark Brown <broonie@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-CC: <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
-        <conor+dt@kernel.org>, <bvanassche@acm.org>, <andersson@kernel.org>,
-        <neil.armstrong@linaro.org>, <dmitry.baryshkov@oss.qualcomm.com>,
-        <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-5-quic_nitirawa@quicinc.com>
- <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
- <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
- <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
- <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
-Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 007wsDf4NVvKUWcKyx2JR5oeGzaYx11_
-X-Authority-Analysis: v=2.4 cv=Q/TS452a c=1 sm=1 tr=0 ts=6894c99b cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=QDh6Yc-AApCNb2D2b04A:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 007wsDf4NVvKUWcKyx2JR5oeGzaYx11_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDA5MCBTYWx0ZWRfX2vg4U5E+GGqo
- /JHedMPrJ4SdIFz7Wzk+G6Wl1gtq8x2t/9O4dl/OOrWh6QnClH7khu2RlmoNVLG8A1+2uHV6qou
- wzzxqOCuSafV8skMhpSYhlZS/2CVl8e5wMH99Dm9azLOKL+n4yk61/67/n2SvaO7B4pkNIaRr8f
- RhuYGHLcnrgmXdpZ4lhH0m1K/jQu62mwkFRvdmqU6jGcVWM6Ydvk54S2sKm2okLnSPEyAta949s
- IhSlD6jxWJ/Q5acV66dU/nIEdNQ/GALeA0aHF+2+N7bER1VR7OlZQP/LD1c537JjnwbnY+uYzyM
- QSxTfA/uke329QTPtFxE3KQXD5qVHSErAmyqdzvCjbyRKYnqV+12nKt8OgoJHiCFrRCHwlR3lmL
- N1vK15kv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-07_03,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 clxscore=1015 suspectscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 phishscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060090
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ad9ce02-4e47-48ef-2d2d-08ddd5ca6c71
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2025 15:52:33.5772
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fFqQI/MZCvzpBhGWi8Q3Fi/vsOmLVS/Qf1626xNE3WZH3k9KKEaRJJxzkwTW/NN2VzDRLZaTLtCju924diVTTDMpR7bFH2KSwFrNO6uN8pM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB15426
 
+Hi Wolfram Sang,
 
+Thanks for the patch.
 
-On 8/7/2025 7:14 PM, Mark Brown wrote:
-> On Thu, Aug 07, 2025 at 03:06:01PM +0200, Konrad Dybcio wrote:
->> On 8/6/25 6:51 PM, Mark Brown wrote:
-> 
->>> I'm not clear why the driver is trying to do this at all, the driver is
->>> AFAICT making no other effort to manage the load at all.  We already
->>> impose any constraints that are defined for a regulator while initially
->>> parsing them so it's not clear to me what this is supposed to
->>> accomplish, and it'll be broken if the supply is ever shared since it'll
->>> set the load from this individual consumer to the maximum that's
->>> permitted for the regulator as a whole.
-> 
->> Qualcomm regulators feature a low- and a high-power mode. As one may
->> imagine, low- is preferred, and high- needs to be engaged if we go
->> over a current threshold.
-> 
-> Sure, but the driver is like I say doing nothing to actively manage the
-> current reporting.  It's just pulling a random number not specific to
-> the device (the max-microamp configuration is part of the constraints
-> which apply to the regualtor as a whole) out of the DT and throwing it
-> at the framework.
-> 
->> The specific regulator instances in question are often shared between
->> a couple PHYs (UFS, PCIe, USB..) and we need to convey to the
->> framework how much each consumer requires (and consumers can of course
->> go on/off at runtime). The current value varies between platforms, so
->> we want to read from DT.
-> 
-> In that case this will definitely encounter the bug I mentioned above
-> where it's trying to read the maximum load permitted for the regulator
-> as a whole and report it as the load from this one specific device.
-> 
->> The intended use is to set the load requirement and then only en/disable
->> the consumer, so that the current load is updated in core (like in the
->> kerneldoc of _regulator_handle_consumer_enable())
-> 
->> My question was about moving the custom parsing of
->> $supplyname-max-micromap introduced in this patch into the regulator
->> core, as this seems like a rather common problem.
-> 
-> Wait, is this supposed to be some new property that you want to
-> standardise?  I didn't see a proposal for that, it's not something that
-> currently exists - the only standard properties that currently exist are
-> for the regulator as a whole.
+> -----Original Message-----
+> From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Sent: 07 August 2025 16:15
+> Subject: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+>=20
+> Enable I3C on the dedicated connector of the RZ/G3E module. Provide safe =
+defaults allowing to connect
+> even to slow I2C devices.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm6=
+4/boot/dts/renesas/rzg3e-
+> smarc-som.dtsi
+> index 7faa44510d98..0c3156129aae 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> @@ -5,6 +5,8 @@
+>   * Copyright (C) 2024 Renesas Electronics Corp.
+>   */
+>=20
+> +#include <dt-bindings/i3c/i3c.h>
+> +
+>  /*
+>   * Please set the below switch position on the SoM and the corresponding=
+ macro
+>   * on the board DTS:
+> @@ -122,6 +124,12 @@ raa215300: pmic@12 {
+>  	};
+>  };
+>=20
+> +&i3c {
+> +	i2c-scl-hz =3D <100000>;
+> +	i3c-scl-hz =3D <12500000>;
+> +	status =3D "okay";
 
+What about pinctrl settings here?
 
-Hi Mark,
+Also from the pinctrl xsls sheet there is a note. Have you taken care this?
 
-The UFS QMP PHY driver is not the first client to use regulator_set_load 
-or alternatively set load requirements and invoke enable/disable or 
-alternatively
+When the pin function I3C is selected :							=09
+    I3C Bus Interface has a function to switch the pin output to Nch-OpenDr=
+ain or CMOS.							=09
+    Use the register on the I3C Bus Interface to switch the pin output mode=
+.							=09
+    At this time, the setting value of PFC_NOD.reg should be 0 (N-ch open d=
+rain OFF).
 
-Similar to other PHY drivers (such as USB, Display, and Combo PHYs),
-as well as various subsystem drivers like UFS, SDHCI, Bluetooth, and 
-others, the QMP UFS PHY driver is communicating/setting its load 
-requirements.
-
-These drivers also define corresponding binding properties, as seen in 
-the UFS instances documented here:
-
-UFS Common DT Binding ((link - 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/ufs/ufs-common.yaml?h=next-20250807) 
-
-
-Relevant properties include:
-
-vcc-max-microamp: Specifies the maximum load that can be drawn from the 
-VCC supply
-vccq-max-microamp: Specifies the maximum load that can be drawn from the 
-VCCQ supply
-vccq2-max-microamp: Specifies the maximum load that can be drawn from 
-the VCCQ2 supply
-
-There was a previous effort to introduce similar properties 
-(vdda-phy-max-microamp and vdda-pll-max-microamp) in the device tree 
-bindings.
-Link - (link- 
-https://patchwork.kernel.org/project/linux-arm-msm/patch/20220418205509.1102109-3-bhupesh.sharma@linaro.org/#24820481)
-
-However, at that time, the driver-side implementation for aggregating 
-load requests was not in place, which led to the patch not being merged:
-Patch Reference
-
-Currently, the regulator framework does support automatic aggregation of 
-load requests from multiple client drivers. Therefore, it is reasonable 
-and necessary for each client to individually communicate its expected 
-runtime load to the regulator framework to put the regulators in current
-operation mode.
-
-Regards,
-Nitin
-
-> 
-> I'm not super convinced this is a particularly common issue, most
-> devices perform pretty much the same regardless of the board design so
-> the driver should just know their peak consumption and it's becoming
-> less and less common for regulators to need software help to adapt to
-> loads.  The main use case these days seems to be for safety (eg,
-> constraining how much can be drawn via a USB port) which seems like it'd
-> either be for the full supply or just known by the driver.
-
+Cheers,
+Biju						=09
 
