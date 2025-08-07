@@ -1,229 +1,124 @@
-Return-Path: <devicetree+bounces-202339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73193B1D118
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 05:02:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1204BB1D5F7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13C2762405C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 03:02:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03017167B25
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 10:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6F118A6DB;
-	Thu,  7 Aug 2025 03:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5462273D81;
+	Thu,  7 Aug 2025 10:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="TXTN/5mf";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="jdQbIJFM"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ppYXl6BU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [155.254.16.17])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C1B23CB;
-	Thu,  7 Aug 2025 03:02:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=155.254.16.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F31C10A3E
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 10:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754535742; cv=none; b=qWLMoYwitAHfB0LAZbgVR6Cz4AOpH9f6KYybzNS2zmMD/d1RKgHzJ/0/1imSMhn4WwFBOnhV7x/1dyQZkXnL983afyJZwPwLAQ6FwCzAhbxv1HYklzrTCy/nOAWLodncnk2B0VYUNMMTUNaySbyvUrRkZ/icAA6qA5LFQgedFzw=
+	t=1754563850; cv=none; b=DrEVSbyrg1ONwTVbmjouTi+zsDd8WxtTbsRk3HwlnjUY3Qtpf0SoGAg/Q+C+6coFfvX9syNK9/iQR2SN8N2o/CRo20Cpq0fvi8U/ifduDAXOM3mpHwc9kszsWZ4wVUcSOewb96bc54SKIFPIgf1LbFAG4Kmmp4v6gcmuVd0p0Mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754535742; c=relaxed/simple;
-	bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rSIimaWwXywN4jf2n6axy7JCav/NdjqTsQSq9GXVz+XDNFiYEZ8ufNnKdZmyPNDfcpfdGdHsPzSEmTFJIVs4fYF5em/+6253LyhASIT7aIlar0TTvOttYrAF0XlRe7D6CA2g4Xy/WZGIq5a89BybRyF9tUVTII633IS3Ao3CW8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=TXTN/5mf; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=jdQbIJFM; arc=none smtp.client-ip=155.254.16.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from localhost (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id 0651212FB437;
-	Wed, 06 Aug 2025 20:02:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1754535732; bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TXTN/5mfzl3clvuzeNNCQqhgS3ri7dhlpu+I0HZ8hCExsjLgQZza5mRYngJnFOCdt
-	 QMMHl5PeQUnYrYfRdZqF42XnbQ8I/InFsaqP2Ga5ukt1tGP7sDkN65jOBI0th2zjbm
-	 yZQDO3vtBhsLMGn2ATB3fAtWx2HnTwoeovg1fRoh87KZ+zSDrerKPfitBL0AlxL0el
-	 KoTDIrCPbFDH7T5fMAWIjhiSLNqUemLUQQh7W97JORnHnP/jjCtR0z2zMPlnoB/YcB
-	 ZON1baYiSywej3CmQdkF4CfP29vHh4Tg4BMEIrNgOvfwBMc7SO1VNa1R4y5RzxfExI
-	 fvZZZXxUu72Xw==
-X-Virus-Scanned: amavis at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by localhost (bayard.4d2.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id gl8dWHxY44b0; Wed,  6 Aug 2025 20:02:08 -0700 (PDT)
-Received: from ketchup (unknown [117.171.64.140])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id DFB9F12FB405;
-	Wed, 06 Aug 2025 20:02:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1754535728; bh=OlG6Mjad+haShvjgVxRjEO8qyOkeqUokqCYlSq/LmOk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jdQbIJFMt8WAoxsnjXZFVNWrtk5ZoKmMLJKLhs+Sty3jfPVUykp/dEx5g5p8GM1vE
-	 tz0BI+Q8zz4xuY1mi/aheQnq8s3erhUaSWzITIJhoWX0m0SZgPQ0OyIO35fbV3FXeX
-	 P3Lu1RbtHCwfmW6TPt4wzDep3irr9FB57xSeUhWhO007dfJ3h3WVI3pAQxONgFglSQ
-	 51+k7EWCuf0/i2BRrKwwdRS2Sc5YlR2QaPc95GDu8gkWjqDSioIY1dVCu3+ol79apX
-	 6rT5aAUKX8NAEby3Q4qljx8zXn2Nh+TlCoENJOcKh9/ZOTXNYv90jfhJvEkBPGFPiB
-	 iS0r5elCNRvSw==
-Date: Thu, 7 Aug 2025 03:02:00 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH 2/2] clk: spacemit: introduce i2s pre-clock and fix i2s
- clock
-Message-ID: <aJQXKN_ccpWVJ5oZ@ketchup>
-References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
- <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
+	s=arc-20240116; t=1754563850; c=relaxed/simple;
+	bh=5N0sCYf2Cs1KmNgBKMto4VeDsYyl1/Ny7xhHxwxRX48=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=cd+kaIL+PVXgPSlbWrgHxCxbccWVwkLZs//O/dFeJz7o/Kwap7pF9ZKQW0iVCrNuzMB7+UEtTel6ha0Bs5KGHN5onCTSFW6yEIRQNKSYyRRkKO+nmAga5zdn7Un8c97eyyQB5CmFxeSOfoWDF/wypVBa1FQvFf+u3shle/d3A6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ppYXl6BU; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250807105046epoutp02eb62873a3540b04603e45289c664c326~ZdoWtD6Fy1754117541epoutp02U
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 10:50:46 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250807105046epoutp02eb62873a3540b04603e45289c664c326~ZdoWtD6Fy1754117541epoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754563846;
+	bh=9EFIJet6GwguCOgHXt373HO19RdNPt1XWJDM2bajplk=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=ppYXl6BUAVAeVZr16oTAuTzCiqe7yhCZS+FFgZzvF4nkidEBipqlnZylkV4VUzezu
+	 CB2MBnBBTia4sRLvv5W4Z5g3ZJs3fIBqTRcepasnE5PQZyLIRAwSA7oHHnQdsqBTIM
+	 W4HRgZNEHXl+bbwWKiLK/xzlWe3vfYCA3lEUb/6E=
+Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250807105045epcas5p200483d0bdac63cb3b323ff857f67fdc1~ZdoWNaOIH1874618746epcas5p2P;
+	Thu,  7 Aug 2025 10:50:45 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.88]) by
+	epsnrtp02.localdomain (Postfix) with ESMTP id 4byP8P11ymz2SSKf; Thu,  7 Aug
+	2025 10:50:45 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250807032459epcas5p1d6bd796f5b654c92372bdcc8a7926c22~ZXjJEevMZ2629026290epcas5p1A;
+	Thu,  7 Aug 2025 03:24:59 +0000 (GMT)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250807032457epsmtip217c0a672ffd1a22f97b647b84be6597d~ZXjHGrzJG1346113461epsmtip29;
+	Thu,  7 Aug 2025 03:24:57 +0000 (GMT)
+From: Aakarsh Jain <aakarsh.jain@samsung.com>
+To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
+	andrzej.hajda@intel.com, mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+	alim.akhtar@samsung.com, robh@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc: linux-samsung-soc@vger.kernel.org, aswani.reddy@samsung.com,
+	anindya.sg@samsung.com, Aakarsh Jain <aakarsh.jain@samsung.com>
+Subject: [PATCH 00/10] Use SoC-specific compatible string for Samsung MFC
+Date: Thu,  7 Aug 2025 08:54:39 +0530
+Message-ID: <20250807032449.92770-1-aakarsh.jain@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250807032459epcas5p1d6bd796f5b654c92372bdcc8a7926c22
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250807032459epcas5p1d6bd796f5b654c92372bdcc8a7926c22
+References: <CGME20250807032459epcas5p1d6bd796f5b654c92372bdcc8a7926c22@epcas5p1.samsung.com>
 
-On Thu, Aug 07, 2025 at 09:30:11AM +0800, Troy Mitchell wrote:
-> Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
-> for real I2S use cases.
+This patch series modifies the samsung MFC version compatible to
+SoC-specific compatible.
 
-This is a little misleading: they're modeled as gates with fixed-factor
-for now whose rate is calculated from their parents instead of defined
-statically. You could avoid possible confusion by replacing "fixed-rate"
-with "fixed-factor".
+Aakarsh Jain (10):
+  ARM: dts: samsung: exynos3250: Use SoC-specific compatible string for
+    MFC
+  ARM: dts: samsung: exynos4: Use SoC-specific compatible string for MFC
+  ARM: dts: samsung: exynos5250: Use SoC-specific compatible string for
+    MFC
+  ARM: dts: samsung: exynos5420: Use SoC-specific compatible string for
+    MFC
+  ARM: dts: samsung: exynos5800: Use SoC-specific compatible string for
+    MFC
+  ARM: dts: samsung: s5pv210: Use SoC-specific compatible string for MFC
+  media: s5p-mfc: Modify compatible string check for SoC-specific
+    support
+  media: s5p-mfc: Add new compatible string corresponding to S5pv210 SoC
+  dt-bindings: media: s5p-mfc: Modify compatible string check for
+    SoC-specific support
+  dt-bindings: media: s5p-mfc: Add SoC-specific compatible for
+    'samsung,mfc-v5'
 
-> Moreover, the current I2S clock configuration does not work as expected
-> due to missing parent clocks.
-> 
-> This patch adds the missing parent clocks, defines i2s_sysclk as
-> a DDN clock, and i2s_bclk as a DIV clock.
-> 
-> The i2s_sysclk behaves as an M/N fractional divider in hardware,
-> with an additional gate control.
-> 
-> To properly model this, CCU_DDN_GATE_DEFINE is introduced.
+ .../bindings/media/samsung,s5p-mfc.yaml       | 24 ++++++++++---------
+ arch/arm/boot/dts/samsung/exynos3250.dtsi     |  2 +-
+ arch/arm/boot/dts/samsung/exynos4.dtsi        |  2 +-
+ arch/arm/boot/dts/samsung/exynos5250.dtsi     |  2 +-
+ arch/arm/boot/dts/samsung/exynos5420.dtsi     |  2 +-
+ arch/arm/boot/dts/samsung/exynos5800.dtsi     |  2 +-
+ arch/arm/boot/dts/samsung/s5pv210.dtsi        |  2 +-
+ .../media/platform/samsung/s5p-mfc/s5p_mfc.c  | 13 ++++++----
+ 8 files changed, 27 insertions(+), 22 deletions(-)
 
-Could it be represented as a DDN clock taking a gate as parent? Just
-like what is described in the published clock diagram. Generally I'd
-like to avoid introducing more clock types, there're already a lot.
+-- 
+2.49.0
 
-> The original DDN operations applied an implicit divide-by-2, which should
-> not be a default behavior.
-> 
-> This patch removes that assumption, letting each clock define its
-> actual behavior explicitly.
-> 
-> The i2s_bclk is a non-linear, discrete divider clock.
-> The previous macro only supported linear dividers,
-> so CCU_DIV_TABLE_GATE_DEFINE is introduced to support
-> the hardware accurately.
-
-The divider IS linear, from the perspective of functionality, it just
-implies a 1/2 factor. Could it be represented as an usual divider and a
-1/2 fixed factor?
-
-> The I2S-related clock registers can be found here [1].
-
-So this patch actually does four separate things,
-
-- Introduce a gate-capable variant of DDN clocks
-- Make the pre-divider of DDN clocks flexible
-- Support looking up mappings between register values and divisors
-  through a table when calculating rates of dividers
-- Fix the definition of i2s_bclk and i2s_sysclk
-
-IMHO it's better to split them into separate patches for clearness.
-
-> Link:
-> https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
-> [1]
-> 
-> Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-> Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
-> Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
-> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> ---
->  drivers/clk/spacemit/ccu-k1.c     | 34 ++++++++++++++++++++++++----
->  drivers/clk/spacemit/ccu_common.h | 13 +++++++++++
->  drivers/clk/spacemit/ccu_ddn.c    | 47 ++++++++++++++++++++++++++++++++++-----
->  drivers/clk/spacemit/ccu_ddn.h    | 25 +++++++++++++++++++--
->  drivers/clk/spacemit/ccu_mix.c    | 47 +++++++++++++++++++++++++++++----------
->  drivers/clk/spacemit/ccu_mix.h    | 26 +++++++++++++---------
->  include/soc/spacemit/k1-syscon.h  |  7 +++---
->  7 files changed, 161 insertions(+), 38 deletions(-)
-> 
-> diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-> index 65e6de030717afa60eefab7bda88f9a13b857650..a6773d4c2ff32d270e1f09b0d93cfff727ea98fa 100644
-> --- a/drivers/clk/spacemit/ccu-k1.c
-> +++ b/drivers/clk/spacemit/ccu-k1.c
-> @@ -136,13 +136,36 @@ CCU_GATE_DEFINE(pll1_d3_819p2, CCU_PARENT_HW(pll1_d3), MPMU_ACGR, BIT(14), 0);
-
-...
-
-> +static const struct clk_div_table i2s_bclk_div_table[] = {
-> +	{ .val = 0, .div = 2 },
-> +	{ .val = 1, .div = 4 },
-> +	{ .val = 2, .div = 6 },
-> +	{ .val = 3, .div = 8 },
-> +	{ /* sentinel */ },
-> +};
-
-This is just a normal 0-based divider if you divide the divisor by 2.
-
-> +CCU_DIV_TABLE_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR,
-> +			  27, 2, i2s_bclk_div_table, BIT(29), 0);
->  
->  static const struct clk_parent_data apb_parents[] = {
->  	CCU_PARENT_HW(pll1_d96_25p6),
-> @@ -756,6 +779,9 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
->  	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
->  	[CLK_APB]		= &apb_clk.common.hw,
->  	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
-> +	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
-> +	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
-> +	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
->  };
->  
->  static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
-
-...
-
-> diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
-> index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..253db8a602fe43a1109e2ba248af11109c7baa22 100644
-> --- a/include/soc/spacemit/k1-syscon.h
-> +++ b/include/soc/spacemit/k1-syscon.h
-> @@ -29,10 +29,11 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
->  #define APBS_PLL3_SWCR3			0x12c
->  
->  /* MPMU register offset */
-> +#define MPMU_FCCR			0x0008
->  #define MPMU_POSR			0x0010
-> -#define  POSR_PLL1_LOCK			BIT(27)
-> -#define  POSR_PLL2_LOCK			BIT(28)
-> -#define  POSR_PLL3_LOCK			BIT(29)
-> +#define POSR_PLL1_LOCK			BIT(27)
-> +#define POSR_PLL2_LOCK			BIT(28)
-> +#define POSR_PLL3_LOCK			BIT(29)
-
-This reformatting doesn't seem related to the patch.
-
->  #define MPMU_SUCCR			0x0014
->  #define MPMU_ISCCR			0x0044
->  #define MPMU_WDTPCR			0x0200
-> 
-> -- 
-> 2.50.1
-> 
-
-Best regards,
-Haylen Chu
 
