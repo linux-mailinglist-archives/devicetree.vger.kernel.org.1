@@ -1,122 +1,187 @@
-Return-Path: <devicetree+bounces-202443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC71B1D7D6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:28:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB8AB1D7E1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 14:31:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87553560AA2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:28:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AC9018A1D48
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 12:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04DB24338F;
-	Thu,  7 Aug 2025 12:28:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFBC26290;
+	Thu,  7 Aug 2025 12:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QfRz8/lo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gzcdR1LM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400CD24293B;
-	Thu,  7 Aug 2025 12:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5B24A0A;
+	Thu,  7 Aug 2025 12:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754569730; cv=none; b=bB/NEk5V23zU3lu/IwaSSzshEjPrbLEDur6uZbAfqDT/dSjUgRLCnPzcA3Yj1W7VFvx+Pk5btca8C2o+kvAhCP1fjNY1qKpKsZ/5KjiH33njnidTNouqoe7stg5yuiDlO4ZA32F8ZiqyVgVk1hFm5/y+bq02eSDQFZlTS9qo/14=
+	t=1754569877; cv=none; b=Wd6LHUzw8xR9Q17rOaXzO/4e6g11+/zqwoTots+Gq+tkwDmYSmhz3xmZMkD3j13Chp+QZyo2CQiqPh/TFAcCB6Ji0RkyYf7N4mKMoHcInNYRj1997+b32yZ3memGNaiOl1B8GSlr+BJ5FuAfK8HTCGVqhO0rFe3+0luY5zrv4Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754569730; c=relaxed/simple;
-	bh=kUH5cN8R6K2VxLTJzE/eGBwS7eFdgy3gZa8/khg7FMc=;
+	s=arc-20240116; t=1754569877; c=relaxed/simple;
+	bh=1UeunbsNm3H6NZWYFoXSQI5UObs2SKNxCJQGZqsfbGc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L9e3kBsv5TqLG0d8glRcEl3eesOLWooNxQDuUaw6gAd0Tlqu+7kdnPmnghmn5NHgJ8WyT9r+UbpCzrMr/Sr4YVIxtDK7JSod0dxUmejzAeerUQIc9+xIYj0Ti5U0CbJVxSpONGN6bcIqgBSzWEWQAYwv9UEzShLT1qDgFZLpcf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfRz8/lo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB578C4CEEB;
-	Thu,  7 Aug 2025 12:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754569729;
-	bh=kUH5cN8R6K2VxLTJzE/eGBwS7eFdgy3gZa8/khg7FMc=;
-	h=Date:From:List-Id:To:Cc:Subject:References:In-Reply-To:From;
-	b=QfRz8/lokPQVbrBLQdFUg7Zb/pO83LwtQj6QWEu50ZIIRiNZFCedBiyH1vPKdZCmn
-	 sd6EpNnPi3l2PXkuxCii2LHjBXBHhb8dMe7F02R3uXDPg+W0NEArdn2LzuNZWk4n4C
-	 /Sx0iu7o5KWBtcGI3LpmP5Ug+gPg6/SSSMluaZMDVq7o8iEupbbo1t+inLw6H7xOEs
-	 jqbuylhW2q93qMf3JwvCe+wxRi2FEEeMt64N6gLqFXR4huwOVfenuJMDp6TjvScCLC
-	 7UWGcPsoYmI5swp1B3/noAXrQ9FI+wP3dI6JCb6TOGkWKhf2Oy8Cic2ZCTYFeNZEkL
-	 7GwpI5SHcfNkg==
-Date: Thu, 7 Aug 2025 13:28:36 +0100
-From: Mark Brown <broonie@kernel.org>
-To: patchwork-bot+linux-riscv@kernel.org
-Cc: Deepak Gupta <debug@rivosinc.com>, linux-riscv@lists.infradead.org,
-	tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
-	lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, conor@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
-	brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
-	ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net,
-	shuah@kernel.org, jannh@google.com, conor+dt@kernel.org,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
-	aliceryhl@google.com, tmgross@umich.edu, lossin@kernel.org,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, devicetree@vger.kernel.org,
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
-	richard.henderson@linaro.org, jim.shu@sifive.com,
-	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
-	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
-	alexghiti@rivosinc.com, samitolvanen@google.com,
-	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
-	zong.li@sifive.com, david@redhat.com
-Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
-Message-ID: <db4eb976-693c-426c-a867-66cadd3dd7d8@sirena.org.uk>
-References: <20250731-v5_user_cfi_series-v19-0-09b468d7beab@rivosinc.com>
- <175450053775.2863135.11568399057706626223.git-patchwork-notify@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RPyiiHAm/nn2tZh92glKDGF+Cco5Ve0BXR4wyqMozvppjS9s8wwxNBRy7uf7qaK9eJFhXy121hhbqO5J3hkjDWg4SKEUYjNQMVM0R107J7XiLOYoH3DfeIBuYvdHEfD17svOy7z5ta4Ttwb9hj6+xASVLrvpWLHRTmSFlRdPJuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gzcdR1LM; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-61571192c3aso1185192a12.2;
+        Thu, 07 Aug 2025 05:31:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754569874; x=1755174674; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/LclELrM2SPH3nt2lTqDvMka2Ew8PsvYc5UKtsfndag=;
+        b=gzcdR1LMAvL8sOWbWhZrxtP63JfJtJsvi4GILaobHMmzV65EK4BbZhixO5636mXrAw
+         qNN0k7EbAUOGPXCf47UDoWWOeahqcwG2+FpcRKtcn1331SGbwpEn5oj+noi0aQpLoEtL
+         VBvPBt0WumMQnDhPk2ag9delU8ba1exr5sotM6dPMwr6L3DP59r/w3hyUd4b13jUSa8r
+         0En9UmWygtadBzHkdS2ERwd8y83W//+xqhBBnYROynUH1YJ6Z4eqqt6WToP9sUzrTozM
+         P29TntfEgvZL8EDIA/6dSgx1D8tLzsYbWJyEq6ADcBHlNj3450TJ7PU2IvS0kklLgbLk
+         GLjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754569874; x=1755174674;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/LclELrM2SPH3nt2lTqDvMka2Ew8PsvYc5UKtsfndag=;
+        b=i8OX/trV6RJ+i86VmK105Gap7POSvqcds4QhKrULjSSNdo8GOC6/9z2g4F8/4rbiiJ
+         TMIGgu1vglBHPAn+OgY5ZraIlVkUpxaROyr/GfRNUiIFqkIhDUKSjPbQYaa3aSXspsRE
+         axc5ORKHQtjhmdNvgP3w36twHXh2YA1ubS678dfjweiHlLueU91Z0dhCO0nxpXObKI3B
+         f+MVw5W0oTnA1y2wy0Jk3wqZdnIZLQI5kc/7PFSoLLR5R1FXhBvv/MzHAyS5aGeTEXEq
+         pKnuKeC2BYazwAxKA6OE+eyys0LN+Fcl69CQdYq7fu/8eRbsOhR7FHflijLa7duyy/MF
+         kv1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUDkXFbL+V47SsLENPPtywSEg1Ef0BzTFBVdJ9+s3mi3ksUFDGEGSs8SvY7jiO9Tg2uffgHQZRHIpQT@vger.kernel.org, AJvYcCWjyto8Pl0Ul2+ks41rpbJqY4yNBBOXnyDiOP9gxN1V8wqG3BAHYXSICMNGV+kgbpxa37MIdyROy6zo@vger.kernel.org, AJvYcCXSE7n9tp5268PEH1ZegNWA8Cfzc+UHjRu8RCNnPGikVzA6HKuRAeyTTyd/DbXh/qLp+PGW+G5WKqvswlZL@vger.kernel.org
+X-Gm-Message-State: AOJu0YypL4f5XKJxfvRya1f1Ftkl9r0HQAgZgyu0a7mSfe87d6F+qUm5
+	Yh5tUhCmx0lt9Bj+o2JL6/Z02TmrSJ250Fj+UPYbgoafFVIBurF7AOKx
+X-Gm-Gg: ASbGnctuwDuw8rvlPlE5rrxXn8wv8NbykEt7sC0kfdQ1KQmMLOiWAK05qn96u3EHa6V
+	27h/aqe9xgA0N9tUmPRY443gMTIv0KUPqg1xFu4HDPdxn6xG+mnBmkCjwlJzrOhe5/QSdGwcQ+2
+	Hl6ytFBAA22qUg0GqGm+mEUovgCruYZP4ReGfxXtEERbVTE/LH8w8xFOT/yCDDm5nrvYPIuA5jH
+	1V2+N78F9zZLpbhsSVU1jBvkVd5sWUTFGIU+YmNHzsRV7rT4ERlRQIU8auQX14j93iyBf4+TFzL
+	SDx6ZTIID1OlTsiGBfr1nNZJ+f4c72JiY3YvIo+4bqDjUKvesEjXLOY1qaJoRQeHezr+C3/iNh6
+	37HPqMnqHPJA=
+X-Google-Smtp-Source: AGHT+IGAhxVVkCTaCyoJrxrCIohxaqzXqSvGlz/ZaiVjLTl9Dk7WwS8lDL2sFAwcEcteMWPGvy4sWg==
+X-Received: by 2002:a17:907:9409:b0:af6:361a:eac0 with SMTP id a640c23a62f3a-af992b4c219mr543952766b.32.1754569873554;
+        Thu, 07 Aug 2025 05:31:13 -0700 (PDT)
+Received: from nsa ([185.128.9.33])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a39c4sm1306188066b.43.2025.08.07.05.31.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Aug 2025 05:31:13 -0700 (PDT)
+Date: Thu, 7 Aug 2025 13:31:29 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 03/10] iio: adc: ad7476: Use mV for internal reference
+Message-ID: <qxgzakplhavmxk5ri6yghm3fkq33cbneclqrbwdlyviyzcadmx@cilvs5lb7kwp>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <415c4c8f8301395aee2a85d071722fd6bcb488ec.1754559149.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8Jovl+rM+g+rY2Z6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <175450053775.2863135.11568399057706626223.git-patchwork-notify@kernel.org>
-X-Cookie: Real Users hate Real Programmers.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <415c4c8f8301395aee2a85d071722fd6bcb488ec.1754559149.git.mazziesaccount@gmail.com>
+
+On Thu, Aug 07, 2025 at 12:34:18PM +0300, Matti Vaittinen wrote:
+> The ad7476 supports some ICs with an internal reference voltage. For
+> those ICs the reference voltage has been hard-coded as micro volts, but
+> the value which is later used in code needs to be milli volts. This
+> results the need to divide hard coded voltage by 1000 before using it.
+> 
+> Simplify code by changing the hard-coded voltage to millivolts and by
+> dropping the division.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+> Revision history:
+>  v1 => :
+>  - No changes
+> ---
+
+Makes sense
+
+Reviewed-by: Nuno Sá <nuno.sa@analog.com>
+
+>  drivers/iio/adc/ad7476.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> index f117aafd8fad..7b6d36999afc 100644
+> --- a/drivers/iio/adc/ad7476.c
+> +++ b/drivers/iio/adc/ad7476.c
+> @@ -27,7 +27,7 @@
+>  struct ad7476_state;
+>  
+>  struct ad7476_chip_info {
+> -	unsigned int			int_vref_uv;
+> +	unsigned int			int_vref_mv;
+>  	struct iio_chan_spec		channel[2];
+>  	/* channels used when convst gpio is defined */
+>  	struct iio_chan_spec		convst_channel[2];
+> @@ -172,7 +172,7 @@ static const struct ad7476_chip_info ad7091r_chip_info = {
+>  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+>  	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+>  	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> -	.int_vref_uv = 2500000,
+> +	.int_vref_mv = 2500,
+>  	.has_vref = true,
+>  	.reset = ad7091_reset,
+>  };
+> @@ -229,7 +229,7 @@ static const struct ad7476_chip_info ad7475_chip_info = {
+>  static const struct ad7476_chip_info ad7495_chip_info = {
+>  	.channel[0] = AD7476_CHAN(12),
+>  	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> -	.int_vref_uv = 2500000,
+> +	.int_vref_mv = 2500,
+>  	.has_vdrive = true,
+>  };
+>  
+> @@ -295,7 +295,7 @@ static int ad7476_probe(struct spi_device *spi)
+>  		return -ENODEV;
+>  
+>  	/* Use VCC for reference voltage if vref / internal vref aren't used */
+> -	if (!st->chip_info->int_vref_uv && !st->chip_info->has_vref) {
+> +	if (!st->chip_info->int_vref_mv && !st->chip_info->has_vref) {
+>  		ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vcc");
+>  		if (ret < 0)
+>  			return ret;
+> @@ -310,7 +310,7 @@ static int ad7476_probe(struct spi_device *spi)
+>  		ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vref");
+>  		if (ret < 0) {
+>  			/* Vref is optional if a device has an internal reference */
+> -			if (!st->chip_info->int_vref_uv || ret != -ENODEV)
+> +			if (!st->chip_info->int_vref_mv || ret != -ENODEV)
+>  				return ret;
+>  		} else {
+>  			st->scale_mv = ret / 1000;
+> @@ -318,7 +318,7 @@ static int ad7476_probe(struct spi_device *spi)
+>  	}
+>  
+>  	if (!st->scale_mv)
+> -		st->scale_mv = st->chip_info->int_vref_uv / 1000;
+> +		st->scale_mv = st->chip_info->int_vref_mv;
+>  
+>  	if (st->chip_info->has_vdrive) {
+>  		ret = devm_regulator_get_enable(&spi->dev, "vdrive");
+> -- 
+> 2.50.1
+> 
 
 
---8Jovl+rM+g+rY2Z6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Aug 06, 2025 at 05:15:37PM +0000, patchwork-bot+linux-riscv@kernel.org wrote:
-
-> This series was applied to riscv/linux.git (for-next)
-> by Alexandre Ghiti <alexghiti@rivosinc.com>:
-
->   - [v19,11/27] riscv/shstk: If needed allocate a new shadow stack on clone
->     https://git.kernel.org/riscv/c/9c72a71321a6
->   - [v19,12/27] riscv: Implements arch agnostic shadow stack prctls
->     https://git.kernel.org/riscv/c/52eff0ab5f8e
-
-Congratulations Deepak!  Do you have an update for my clone3() shadow
-stack series that I could roll in for when I repost that after the merge
-window, and/or instructions for how to run this stuff for RISC-V on some
-emulated platform?
-
---8Jovl+rM+g+rY2Z6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiUm/QACgkQJNaLcl1U
-h9BDYgf/Ty4Hzzi0OZOuIjqMAO+hAw56Z5Cp+NT+3TWGYWAJtxuukMORT3mrkWI4
-+lKrRIDqhecWHSZ3jeKvFjPvxTcPu/kwjG7GsseqGj7HJGoOufVlruKUj79xtdKS
-4V/WwyvqakZ4h3F0zy+bCyIrkBkQNbC3TTJVey1+4t0WNSj2uK4ZXespwXt+omY7
-MOsfSOj3AY1ueunPYkofK1g6VWYe4HSldfLRvwJMeUadPJ49XFhfpi41NsqdfhBB
-I8rdBWPSCS47tFoalL0R2oB+Dp78k8LmZhqKIRpPwAhMHIg3sI/kBMK4neka58L2
-d0MPk00RRPiLdsDKGHuaAWzwtLHXaA==
-=viF/
------END PGP SIGNATURE-----
-
---8Jovl+rM+g+rY2Z6--
 
