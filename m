@@ -1,44 +1,65 @@
-Return-Path: <devicetree+bounces-202428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B780B1D6EB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:49:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA942B1D6F4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:51:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 350D15604DD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 11:49:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74FE6188E104
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 11:51:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB638229B28;
-	Thu,  7 Aug 2025 11:49:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCAE41FFC41;
+	Thu,  7 Aug 2025 11:51:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1eupmTda"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F15C196C7C;
-	Thu,  7 Aug 2025 11:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D040BA36;
+	Thu,  7 Aug 2025 11:51:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754567373; cv=none; b=N5Xa/nRmUhqjinkK9N4sPNeqy0GprbQru110iSy8W8rM1JYDbj1jf3xXv7pBivOFZzDOrEeM/PmrR7YCEUrQ/ww6LIwuqyCr/4TTiF1XEZ6LSS6umWYukryzhOVfg0etszH3MTAWEoE4B9HiQBPqbu/MD0woUDY2AyHhEN+rNAE=
+	t=1754567483; cv=none; b=ppQeHVAnNj94Cs02fte10ushhqjCVw+5xPHQJXMQ+WLwo8yn+r/B+Z6uhCOf/C61cuW6p+0xb90+nPvXduQGNi6YvjJ0nslYLJchTCQtnUmLtcSqpbmOSCqzwoXfoCyN7+XdYnu5YwDE+WWfE2rIXetbNxg4MhNGsLw2LyyC70c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754567373; c=relaxed/simple;
-	bh=7VB3deSobFqRRYrxJWdOyLo4eZ2Jg7wtTAQhZHsOn6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CunjWdfLtgXAW2H1diaQR+7eajrMazqxVOkFF9iDJpkb4YaYtl7Z5UO76sW4+h3LjACuqh6hFGkeNgjeTp8jobxpotV14/Mo0YTfazTsoXX66Vukyzlwov8taB7cwoMf2ZosxTC6a8r569+/MPn30umH0RampyXvsNTWSweuCxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1754567235t8a796b49
-X-QQ-Originating-IP: mmCBvCuxEsz+t7Bnuow0glS9H9YFEoLdKihw4Fq2iCc=
-Received: from [IPV6:240f:10b:7440:1:e250:2ab5 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 07 Aug 2025 19:47:11 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 3419397945701426730
-Message-ID: <15182C5FA04DB0A2+e2dbbd1f-24d6-4d9a-a822-222a71cc6dd8@radxa.com>
-Date: Thu, 7 Aug 2025 20:47:11 +0900
+	s=arc-20240116; t=1754567483; c=relaxed/simple;
+	bh=8MgaTvrpwz18SmhD8CDTyOO+VJ8bJqJdwJBStqX61eI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WialkbnU4tCb4eq2Fi2obsmMoSRoHybddBSG52Vuo2N8iaDLMxVn9i7JkxD1NPVMuAEL8nagTpKRkC/vwlEQSh7+D85WYPyCGDEgYFwabGygeoYSQGWfdcJHVZpnot7kAbKfMZPLZ7GT6huxR7Pl5NXB4no1oygBKccoZOawhUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1eupmTda; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 577BcO0H029331;
+	Thu, 7 Aug 2025 13:51:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	HVsSu2JQlkuMay902nxoX0MpAL4pe0AraHz4EjlfA/4=; b=1eupmTdait8w75Di
+	rmc14oVpRPxnbd94Q+JTpKhZInez4rF4BakuCzwkhYQ5xJrv0nphT8jusphCOV99
+	d+FC8Ki805e4PM2bbnIV5nDXr9mkd+pBtznEMX/g7+2H2nbT62V8neuAfek4X5lk
+	9K7QxqiGZJU2GaMlbYlrb9fOBiqLMFVFyZBYGthQhpCzzDKq6geeCWOwHMBP1usD
+	Mp5mq4H8OvsiOeK4QqEaH2x+9FTMkMS56NH9PfVAvDgJV0bbIfSW+0gdiHXZMeDS
+	50nmE+6JxsyyT8OX8dUksu7zFsmsqDEwMhaXt57+O9/2sAj4nA6HvtKQjq6oL/3r
+	9zqW8w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48c7pvuxqr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Aug 2025 13:51:10 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 48F9D4004A;
+	Thu,  7 Aug 2025 13:50:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 769D671FDA0;
+	Thu,  7 Aug 2025 13:49:30 +0200 (CEST)
+Received: from [10.48.87.62] (10.48.87.62) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 7 Aug
+ 2025 13:49:29 +0200
+Message-ID: <48d20fc0-3212-499f-881f-9546607b250d@foss.st.com>
+Date: Thu, 7 Aug 2025 13:49:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,208 +67,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] arm64: dts: rockchip: Add rk3588 based Radxa CM5
-To: Joseph Kogut <joseph.kogut@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Steve deRosier <derosier@cal-sierra.com>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250617-rk3588s-cm5-io-dts-upstream-v5-0-8d96854a5bbd@gmail.com>
- <20250617-rk3588s-cm5-io-dts-upstream-v5-2-8d96854a5bbd@gmail.com>
+Subject: Re: [PATCH] arm64: dts: st: Add memory-region-names property for
+ stm32mp257f-ev1
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <stable@vger.kernel.org>
+References: <20250806-upstream_fix_dts_omm-v1-1-e68c15ed422d@foss.st.com>
+ <9e0c5453-b8f4-4d0a-8e8d-82014aac67dd@kernel.org>
+ <832fb088-8862-4bd7-82a4-0e7ad58efe76@foss.st.com>
+ <5924a691-2533-4856-a169-d16c3e577c42@kernel.org>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20250617-rk3588s-cm5-io-dts-upstream-v5-2-8d96854a5bbd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Patrice CHOTARD <patrice.chotard@foss.st.com>
+In-Reply-To: <5924a691-2533-4856-a169-d16c3e577c42@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MW2WLBvYEeCvozn6IR6114VdDJEeDAXqEaoS5O9L8r0IWBg6EDEfGLiJ
-	WGErZjg1II8kwxfMZQ/BfhhwQyDOib6DhjKfBQGdlypOYWdPL7UmZAU3gzjRWWQ/tszV4t0
-	XsuPcLH6NXxqpZrHR3/64rsarupAxsBYAfHzFL6rCwafApQG3rOQnUU0IqZj9KTB0ymycMV
-	cVosiV3n6XTSjvESHT7ElsfhpJEw53Pim5ecHAwiV98aNaELlSN28Q+Zu36r4HdUHWpawvH
-	zxXyvoZFLTgKcFPn2dsPo8pzbh9n8tjRuamxL6dUnhxxrNag6adrJTqrg2LbaLmJEj76+Gb
-	wVy5S5j+bB+t13n+bhaGnDt5xw487Ihn1kHuO+u2hijKoXe9PKh8vc0KqwQeNz2TWx5JqsY
-	wrs61wDK6nouwyR1WI0QUBRYedwGTemT2LB8LIJUAHzFd3MJH/fUq/5XQ7KKyKSyjkJduUy
-	RwzrrOMr5vDfjinZJEQtHsJQLPnaP+r43F0j/PAsq6u3fLWxhx26TKpTI/aRzWdwsoE15Yj
-	Cr0CErSTuTeeQ1h301HWb3FejdaCCZU9emyhdu8NJkjuk2Ns0mzcFNTDG9LU+nlDEMmQX35
-	9or82EDGtR7/LQV97SUhfc7JxIna1xA508SpbjC7U4Gvm27K87/gbi5N0+fA/PR9mBW3ChK
-	kRtdcET9Lq4DMZuQr2T/elycn27dSQA7Wzl4STyIUUXdFkE6jAsY5SG2Hm+9psOx++kqP0e
-	JeoKC6l5kzuzjjWVq9xwRiqWa5bVjhuNN9uONvSn/0v5ugnY8fTdC7ug772WtOlTDK4iP1I
-	LxPujcdkoIKYgjcx+zy/HZ1NZIc94VSttUPA271Ka+bfGzoFqjX97lPUHJ6mXBiLzfecIKI
-	MiGjahGIjBdmOpYMuezypoX2lJrcV54Fllg65kOEXJxO80pjw9HjslclZDj5Pv0Gk00+19K
-	kHq3pexWm/CaN0f2zW/51+VNctwO/UZh9sv1LbOcZzRdwoA==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-07_02,2025-08-06_01,2025-03-28_01
 
-Hi Joseph,
 
-First of all, thank you very much for your hard work!
 
-On 6/18/25 07:12, Joseph Kogut wrote:
-> Add initial support for the Radxa Compute Module 5 (CM5). The CM5 uses a
-> proprietary connector.
+On 8/6/25 14:44, Krzysztof Kozlowski wrote:
+> On 06/08/2025 14:36, Patrice CHOTARD wrote:
+>>>> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>>> index 2f561ad4066544445e93db78557bc4be1c27095a..16309029758cf24834f406f5203046ded371a8f9 100644
+>>>> --- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>>> +++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
+>>>> @@ -197,6 +197,7 @@ &i2c8 {
+>>>>  
+>>>>  &ommanager {
+>>>>  	memory-region = <&mm_ospi1>;
+>>>> +	memory-region-names = "mm_ospi1";
+>>>
+>>> It does not look like you tested the DTS against bindings. Please run
+>>> `make dtbs_check W=1` (see
+>>
+>> My bad, i am preparing the v2.
+> Why? I claim this is not needed according to your description. You said
+> it is necessary to identify "memory-map area's configuration." but
+> memory-region already tells that. What exactly is not identified?
+
+Sorry but memory-region doesn't tell if this area is dedicated to ospi1 or ospi2.
+
+In order to set the AMCR register, which configure the memory-region split
+between ospi1 and ospi2, we need to identify the ospi instance.
+
+By using memory-region-names, it allows to identify the ospi instance it belongs to.
+
+Thanks
+Patrice
+
 > 
-> Specification:
-> - Rockchip RK3588
-> - Up to 32 GB LPDDR4X
-> - Up to 128 GB eMMC
-> - 1x HDMI TX up to 8k@60 hz
-> - 1x eDP TX up to 4k@60 hz
-> - Gigabit Ethernet PHY
-> 
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> ---
->   .../arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi | 135 +++++++++++++++++++++
->   1 file changed, 135 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..6410ea5255dc783e5d24677853ccf1c78008e834
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi
-> @@ -0,0 +1,135 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2025 Joseph Kogut <joseph.kogut@gmail.com>
-> + */
-> +
-> +/*
-> + * CM5 data sheet
-> + * https://dl.radxa.com/cm5/v2210/radxa_cm5_v2210_schematic.pdf
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/soc/rockchip,vop2.h>
-> +#include <dt-bindings/usb/pd.h>
-> +
-> +/ {
-> +	compatible = "radxa,cm5", "rockchip,rk3588s";
-> +
-> +	aliases {
-> +		mmc0 = &sdhci;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led_sys: led-0 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			default-state = "on";
-> +			function = LED_FUNCTION_HEARTBEAT;
-> +			gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +};
-> +
-> +&cpu_b0 {
-> +	cpu-supply = <&vdd_cpu_big0_s0>;
-> +};
-> +
-> +&cpu_b1 {
-> +	cpu-supply = <&vdd_cpu_big0_s0>;
-> +};
-> +
-> +&cpu_b2 {
-> +	cpu-supply = <&vdd_cpu_big1_s0>;
-> +};
-> +
-> +&cpu_b3 {
-> +	cpu-supply = <&vdd_cpu_big1_s0>;
-> +};
-> +
-> +&cpu_l0 {
-> +	cpu-supply = <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l1 {
-> +	cpu-supply = <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l2 {
-> +	cpu-supply = <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&cpu_l3 {
-> +	cpu-supply = <&vdd_cpu_lit_s0>;
-> +};
-> +
-> +&gpu {
-> +	mali-supply = <&vdd_gpu_s0>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0m2_xfer>;
-> +	status = "okay";
-> +
-> +	vdd_cpu_big0_s0: regulator@42 {
-> +		compatible = "rockchip,rk8602";
-> +		reg = <0x42>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-name = "vdd_cpu_big0_s0";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <550000>;
-> +		regulator-max-microvolt = <1050000>;
-> +		regulator-ramp-delay = <2300>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +
-> +	vdd_cpu_big1_s0: regulator@43 {
-> +		compatible = "rockchip,rk8602";
-> +		reg = <0x43>;
-> +		fcs,suspend-voltage-selector = <1>;
-> +		regulator-name = "vdd_cpu_big1_s0";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <550000>;
-> +		regulator-max-microvolt = <1050000>;
-> +		regulator-ramp-delay = <2300>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-> +};
-> +
-> +&mdio1 {
-> +	rgmii_phy1: phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0x1>;
-> +	};
-> +};
-> +
-> +&pd_gpu {
-> +	domain-supply = <&vdd_gpu_s0>;
-> +};
-> +
-> +&sdhci {
-> +	bus-width = <8>;
-> +	no-sdio;
-> +	no-sd;
-> +	non-removable;
-> +	max-frequency = <200000000>;
-> +	mmc-hs400-1_8v;
-> +	mmc-hs400-enhanced-strobe;
-> +	mmc-hs200-1_8v;
-> +	status = "okay";
-> +};
-> +
-
-Please remove the last blank line.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+> Best regards,
+> Krzysztof
 
