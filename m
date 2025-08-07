@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-202458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0AFB1D888
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:06:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A52AB1D88E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 15:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87C517ACBD5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:04:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 157D03B4F94
+	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 13:08:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767662571A1;
-	Thu,  7 Aug 2025 13:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4FA259CA7;
+	Thu,  7 Aug 2025 13:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DTIiN6OK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CU9Aji/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13955255F3F
-	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 13:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4878242D89
+	for <devicetree@vger.kernel.org>; Thu,  7 Aug 2025 13:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754571969; cv=none; b=C5X0M9RSxr4MOb94nRPv4SF0rv4DZtRYtmkDHEsfFvJ9YQD6SqvguAjI13qKMQCqFWgS8FneVfFUzbh85aadFWYIDnqwKqHRv08bYTHLolPlPY+02DU6ec8EwkLXLQ4zhIvD6oXKH0I+ZbmgW3AQ5yoOkq8s++4WCYziqKIUTjA=
+	t=1754572076; cv=none; b=fsVQAxcknJR+pWPnVANhppWlnKTU28tcl+h4mznFSzR0NV7wX9FUPtaOsz6qjglJGwfSIPgEHOCoaWfswndm6Ji6bY3txzwMewzxeD3LlqrA4TfPYgAXswsuwHToO31TiR/gPr3qtRBO459Phd4ADs+jjeJ1YBllBBKdwA7yJqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754571969; c=relaxed/simple;
-	bh=YhkaZWRCFgO5FeHJ2OKKrnXnUc1X6v1ryYXb+OKrIJw=;
+	s=arc-20240116; t=1754572076; c=relaxed/simple;
+	bh=vC1L5uHVJJ5u5AqxaDxekBHje77miJh9Ju0KRoMlzjk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Od3qI9H31fAq8x0kFX1Irvj0BzYnvDE/ZLFSaLBNhfI9HB6WDdO/U8QhXKClfZS/fS/VREp474VeLPXAbdlUSXsLNQzMdJRydaj21Z4TR9DhobbkoUW076FpA/NCcbb+DmDK/gP2vvGA7RAyxhwbrTBUa0PaQJ7CqWjVGb2MaTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DTIiN6OK; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=FOyKgh7oKVlx0xymSTEZqUP53oE73LfO+UeAZrV8DO0HL8RrBaYLJK88qYv7MO6lWo+0DaMufB8KSkk5s3LieTgaVYDbcufbKHgTc+ascJyQEs1MlwfwxShQa787HJSZ+Rxq+SlafiPGqneAhYyU++82X1boPuMkIAuQJyqiBVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CU9Aji/S; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5779D3nv003741
-	for <devicetree@vger.kernel.org>; Thu, 7 Aug 2025 13:06:07 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5779D18K003513
+	for <devicetree@vger.kernel.org>; Thu, 7 Aug 2025 13:07:53 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FBcHHZfiUOp++mqWXUPK8pryPqtEB0VS2HuB1/078ss=; b=DTIiN6OKDoIjOaO4
-	OC8rpTbQGvguholN17OtKg2iqya2D/ELG3j6EOXCe7rwcyImk7mx5OvoPnJCTB1W
-	jYG06ZuobdmqDG3RUdRuuFa8Aa4azYMIrYM6WkOR2SlVpibF1gSZ44bC70csptE8
-	i1X4/msKGunDC/4xb78WafOpfYasd/80ViVJGd/R52Cn3KswxwECiTBuph2/+Zrd
-	EdsivZD166b58WKRT9lbjT1bUeNZJuiAhjZkBocVo9P8B4GZgFR8ksoklSmGLu1P
-	Rp7y+DjzgOSwzsyq7lgiiS+1NQtALd8iElw2Jn1qoX+YYdnypwyzkPZ8i9GtG1HA
-	MiWfoQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpyaeak9-1
+	eK9XSXOchQCfWi8EBFJeSJTCKKXnDgji8hN/xsZotU0=; b=CU9Aji/S/yZbPrjO
+	cHAmqlqJ1KF0VzHdMTEIjWaofLXxPJJ8fZK5FFf40wdYCt/W01Es+dmPPvZgOM4k
+	muuiM1JT+oUo107dyedCJ5vrenv67Ugxjyqwa5Kw7C7+yAj/p8SnWqwOkQ4+BdJL
+	7ZToOwl6BYbbuaEA2isxFFd4NLIcnbTe3gCQkpi6tfJZDghiUdodWwYBO1/oLOik
+	FvZBeRu0QwwBgNlln3jiKIOhsBF/6I8syh+CMbld344tzclxP3khJEDVjSB5Y2If
+	mp9zzjXaZtTQUeNGH2FemQ8h4o/2cBCfv2VU73T0Z1JYCZkCJIJN8KVsPkTWBXOh
+	Byg2UQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpvyxgkp-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 13:06:07 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b07b805068so2090581cf.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 06:06:07 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 13:07:52 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4abc1e8bd11so3356161cf.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Aug 2025 06:07:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754571966; x=1755176766;
+        d=1e100.net; s=20230601; t=1754572072; x=1755176872;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FBcHHZfiUOp++mqWXUPK8pryPqtEB0VS2HuB1/078ss=;
-        b=X4ng/ZiQceO7ku8y/0hBXRAv9qpTdnVEQVX4aC9fGJsNYbHAOfwLYwC9c2ZR4DioJh
-         bFwR5E8V1pxjL7eeUvNdC1AmPW21mHZu4Q8VJxThzXtpepg9Iwy+MIEv+NxqLYoT0mof
-         xarE3Rp1KcCsck0G8tHVZ2jsuZxfaqZR5dQicV4OcZdFc84YCdSDmiECiIVuYuzv/cbh
-         NtLcACHjFflgkeWSY/yfgy68Lc0XwEAruoZbXFvzGO69mKqoGsxL7XMvCg64HRbXkOm7
-         ejrc88B3ax7xHandtONrbPpjWnN/BNLa2riwmYc8HntFgqNLzfkYXYLyBVYz5cSFkYrt
-         nhVA==
-X-Forwarded-Encrypted: i=1; AJvYcCWWXsy7FvJr7zOIKFXfBZeYdcUI9vkm2rMUfX70mgtICsQ0MNCsbpLWD2Sbkp/kXp87RIVQp1z5lpD4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYOhGFK1qBzUpS9e47zW5tEoBYY/Q4HRbc6ujrTdF4ckHfgCIU
-	QoSLyWM4SVfasZPAkp1voYv91fPBIEiuTQUrQBFUVH2MxFUyKd617lkgOC0mtWpWb++1kPL+BXp
-	OG8WnLr9GjWlgRaymfi3OCTHdqGPEvpaRJG/lDtGvtPNZDMqHPJ6XdoNWwdw3EWlH
-X-Gm-Gg: ASbGncuax6JvsZIn0e2VDgtEp4vuIpST56OdqRTDGwm813iXJ434nH0+tpu+dwcMKMM
-	bjCXNGn0z8CE/tK4oXhvRbtFjkwBSgODGyubvhm00SVi2jlIwBJk5ZSLL91vO+isaCVV8QkJ9Ve
-	x9FK91uSrC6jzt9K+LhDoz9sI4IKu0UYBAEkrftzitDTrzpPKNVEAAD+kOpRkMGGXfPNP6QGXXE
-	Rt8PJVFv8rumjpg4xRkhK9SqqSnSP1oQfOWFSSJvTexBPmHrQ8D8wL1v+aoG8m+6CHTA4HWK6eB
-	BLKWJV3GhFsOUU8VyrwlhZF7Wysb3NiUquiOfopn8thORebP2eytI90TfjwhL37suEZBdX1xczK
-	PWSxSIKE7gBXzBAu3NA==
-X-Received: by 2002:a05:622a:1482:b0:4a9:e46d:ca65 with SMTP id d75a77b69052e-4b0912cb849mr59963591cf.3.1754571965597;
-        Thu, 07 Aug 2025 06:06:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHZ8LROlrHhAO/nx3LuVhJ4aWIUOSeMqQnvYxszMmFd8ZNXQqKXcDSu0gnMVTLJH/zAcvVbmg==
-X-Received: by 2002:a05:622a:1482:b0:4a9:e46d:ca65 with SMTP id d75a77b69052e-4b0912cb849mr59963051cf.3.1754571964966;
-        Thu, 07 Aug 2025 06:06:04 -0700 (PDT)
+        bh=eK9XSXOchQCfWi8EBFJeSJTCKKXnDgji8hN/xsZotU0=;
+        b=lwYvRwYmKWTRXczP0E8bTaURjlb49y4CICRxQjHTZtv7htMi8poJTv/NvCYrFHtn+F
+         /BvguGLZYGvpBROsRjl08mi0BqOZp/fKMkqB4PIsmiZyB3g9ByGYf9j121we3Det7NX2
+         7Gi98zksvFeo+sKXhcI3oUrtIcRmk9aetVAQCzkXDD8e6Q1DK+WkCIDSqYfx81HOivqB
+         X97LB00XQU3vPJ/VQAi1SoNf+ooNZW8C64WFIUVYyq0WgglI+Kj7aToRnKTSM4gU1STI
+         sbGWYQQ/TUX62clTMHAxWN/S6KOenN5jGu6NZVU5VzewZFgPY8oaPiogYP2hz/RS4PKg
+         synA==
+X-Forwarded-Encrypted: i=1; AJvYcCVuNG/rKkF45q5XWLV1kfbX3w6SIzCFmQ/LO6/x2P/td6sVUVwlykqqg1vD/ftM1e9uSDYNKhJvE4cJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+9b1aw/SyDBM6+P22f9WWa3U3M/jZ8CxVtN3T20Ap9NADgkbF
+	JINDX1uO9EHLh4SazwnmbD3LIynnUtXEOoQF9Q0r4ymmI/D913d1AQPYqqAvIB2IZAB9rt16grz
+	KroQVhsOC13xUJDnTOhCc8t96nr1+SCTBR1DYFop8QCGN5D06wtgW/MA4YF3Ypsaw
+X-Gm-Gg: ASbGnct2Hsn/yfW3d2Tyd6dbYHkf1itBXe3a0y8+eN7sQkiM47uzaFYyylRqFmO+66w
+	ThaG4aLdQoByEVLgu1yJrTCQRnn+bmtvc6njWrP6N0Iye1vdNnPfkfgX6I0+kPisO4M9ANvO+qa
+	Z3y5pnWKdXZpzYknPRlRxfe6h0rOu/t4Gkrjh4mBzKGLw3zUmDYgCUdF1TLoymU9ASTDwwl9npu
+	eMfolY8zNvyB9r86UnrIhrbyA7MVRBscWGvYtu74HyMYI9Jfu7IRUT36KoTlcY3y1FNNSYMo3JF
+	picrjsaMm9LsuIs9LnKpRInmwiO+RjDNPD5OPfTj8GIJ8RzTI/T2SbHGrXgcPirUVPeMzZGeKtF
+	qRrr9OFAojcz4+Ei7Kg==
+X-Received: by 2002:ac8:5e4f:0:b0:4ab:723e:fba7 with SMTP id d75a77b69052e-4b09147d336mr39191761cf.7.1754572071680;
+        Thu, 07 Aug 2025 06:07:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGAEVtX/FaNdkuqT6pyYcuVANHG3E3H7uatYjqkdIYJFTr1QtjKQ9o+lK4E/zBtcVM8O+8/+A==
+X-Received: by 2002:ac8:5e4f:0:b0:4ab:723e:fba7 with SMTP id d75a77b69052e-4b09147d336mr39191281cf.7.1754572071039;
+        Thu, 07 Aug 2025 06:07:51 -0700 (PDT)
 Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21b115sm1282528466b.103.2025.08.07.06.06.02
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a1e82bbsm1310874666b.81.2025.08.07.06.07.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Aug 2025 06:06:04 -0700 (PDT)
-Message-ID: <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
-Date: Thu, 7 Aug 2025 15:06:01 +0200
+        Thu, 07 Aug 2025 06:07:50 -0700 (PDT)
+Message-ID: <ffbd9302-75f1-4148-881a-767fa413c825@oss.qualcomm.com>
+Date: Thu, 7 Aug 2025 15:07:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,90 +90,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
- device tree
-To: Mark Brown <broonie@kernel.org>
-Cc: Nitin Rawat <quic_nitirawa@quicinc.com>, vkoul@kernel.org,
-        kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
-        bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org,
-        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-5-quic_nitirawa@quicinc.com>
- <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
- <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
+Subject: Re: [PATCH v3 3/7] clk: qcom: Add TCSR clock driver for Glymur
+To: Taniya Das <taniya.das@oss.qualcomm.com>, Abel Vesa <abel.vesa@linaro.org>
+Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
+ <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-3-227cfe5c8ef4@oss.qualcomm.com>
+ <aIoBFeo00PPZncCs@linaro.org>
+ <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
+ <aIxRKHKdBHDefDs2@linaro.org>
+ <d2c17575-f188-4154-bb63-e0b1b89d8100@oss.qualcomm.com>
+ <b2f219d6-d441-45d0-a168-b2cdbc01b852@oss.qualcomm.com>
+ <3fc425fd-39fa-4efc-bc98-da86a88bfb1a@oss.qualcomm.com>
+ <c2f39786-5780-4124-9e41-6971428aa267@oss.qualcomm.com>
+ <9e3b4706-c61a-4d69-be84-a5b6fc90eb35@oss.qualcomm.com>
+ <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
+In-Reply-To: <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: kKrHTio41a4qlljtAEItkSUuS0CEWVKT
-X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=6894a4bf cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=kfhvm8o0YWoXJs5BtVMA:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX46o3DMpq0SHN
- V12FGE+vy9jxMx6Wze5S1vxM1zPj39/o6yEGfsaiMXcUNN7HZ6LEaEPn9/8j5D5y6ccg0XuQUKQ
- VA8yI4+jiGuzMskl8hItwdjVOXxLwnEs3nud2rCE0ZfG8hi0jsgeVFdqAVG8LHi3P80Rwu96Uh1
- eSS05TrzxYjUi0zZcC/HDnyzuz/VitGft6/ZTKCQMChkG7Ec1OA0W6gN7p/av5rselg7BpF+oB9
- EuEcRSQfGW4RLliFPlVgIBmBwDPJnTEhtC1WFPIDM2aF3i/XGzDKNyTTzV41XvoZkYHyi5J+VnV
- +EwuMioMw18G947zGShTGagolQ3tcHtEzKmvsqG0sLOi5wR59tK7QChQJiW4gLxbPFKFudxESa2
- 4WcZtnkA
-X-Proofpoint-GUID: kKrHTio41a4qlljtAEItkSUuS0CEWVKT
+X-Proofpoint-GUID: 0cNZeQ0aFEWOQrLuKIQFiCW7LqV3sBI_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXyQuEqFKCBW0M
+ NPfI4pj3bBY90XNAtth52OUuv0R2oWSDql+hHzNOcqsHfmKGiHE7j1t3MOPD5jlS3iZMA/oMcJN
+ DHfuB68Z9Bc6Wam8V3o+plFE1rpYx4bKfeZX3vWbAExnc+JFc0OKs3ZmJbCePHKR9or2QjxVijh
+ vbLVhMjKoK3eEukv9Sm4CnyfISJ6iHxO1RhCdLdXqcuvDOCs5ieJ+BpYtYDWL3j2FPAp+ZQFAcR
+ ExdET/PrZCUp+8MUIxAiJC8DpFEhGBeSoSgW7BjWb7+PbpiEFQenosBQVJMIPTYLdWyFvU93IiQ
+ hVGiCPfmumAsx73ezMI60baVOMJ0jXtWoCaT8Tb5kRh21Wuvk7efvJQbLWvOkGaLEowkFLGSr7v
+ Lowhzi+x
+X-Proofpoint-ORIG-GUID: 0cNZeQ0aFEWOQrLuKIQFiCW7LqV3sBI_
+X-Authority-Analysis: v=2.4 cv=NsLRc9dJ c=1 sm=1 tr=0 ts=6894a528 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=PLusG5baLZIICTn4gS8A:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-07_02,2025-08-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 classifier=typeunknown
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0 phishscore=0
+ adultscore=0 malwarescore=0 spamscore=0 suspectscore=0 classifier=typeunknown
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2507300000 definitions=main-2508060009
 
-On 8/6/25 6:51 PM, Mark Brown wrote:
-> On Wed, Aug 06, 2025 at 05:58:30PM +0200, Konrad Dybcio wrote:
->> On 8/6/25 5:43 PM, Nitin Rawat wrote:
+On 8/6/25 12:21 PM, Taniya Das wrote:
 > 
->>> Add support in QMP PHY driver to read optional vdda-phy-max-microamp
->>> and vdda-pll-max-microamp properties from the device tree.
 > 
->>> These properties define the expected maximum current (in microamps) for
->>> each supply. The driver uses this information to configure regulators
->>> more accurately and ensure they operate in the correct mode based on
->>> client load requirements.
+> On 8/6/2025 3:34 PM, Konrad Dybcio wrote:
+>> On 8/4/25 4:21 PM, Taniya Das wrote:
+>>>
+>>>
+>>> On 8/4/2025 6:40 PM, Konrad Dybcio wrote:
+>>>> On 8/4/25 11:00 AM, Taniya Das wrote:
+>>>>>
+>>>>>
+>>>>> On 8/1/2025 5:24 PM, Konrad Dybcio wrote:
+>>>>>> On 8/1/25 7:31 AM, Abel Vesa wrote:
+>>>>>>> On 25-08-01 10:02:15, Taniya Das wrote:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 7/30/2025 4:55 PM, Abel Vesa wrote:
+>>>>>>>>> On 25-07-29 11:12:37, Taniya Das wrote:
+>>>>>>>>>> Add a clock driver for the TCSR clock controller found on Glymur, which
+>>>>>>>>>> provides refclks for PCIE, USB, and UFS.
+>>>>>>>>>>
+>>>>>>>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>>>>>>>>>> ---
+>>>>>>>>>>  drivers/clk/qcom/Kconfig         |   8 ++
+>>>>>>>>>>  drivers/clk/qcom/Makefile        |   1 +
+>>>>>>>>>>  drivers/clk/qcom/tcsrcc-glymur.c | 257 +++++++++++++++++++++++++++++++++++++++
+>>>>>>>>>>  3 files changed, 266 insertions(+)
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> [...]
+>>>>>>>>>
+>>>>>>>>>> +
+>>>>>>>>>> +static struct clk_branch tcsr_edp_clkref_en = {
+>>>>>>>>>> +	.halt_reg = 0x1c,
+>>>>>>>>>> +	.halt_check = BRANCH_HALT_DELAY,
+>>>>>>>>>> +	.clkr = {
+>>>>>>>>>> +		.enable_reg = 0x1c,
+>>>>>>>>>> +		.enable_mask = BIT(0),
+>>>>>>>>>> +		.hw.init = &(const struct clk_init_data) {
+>>>>>>>>>> +			.name = "tcsr_edp_clkref_en",
+>>>>>>>>>> +			.ops = &clk_branch2_ops,
+>>>>>>>>>
+>>>>>>>>> As discussed off-list, these clocks need to have the bi_tcxo as parent.
+>>>>>>>>>
+>>>>>>>>> Otherwise, as far as the CCF is concerned these clocks will have rate 0,
+>>>>>>>>> which is obviously not the case.
+>>>>>>>>>
+>>>>>>>>> Bringing this here since there is a disconnect between X Elite and
+>>>>>>>>> Glymur w.r.t this now.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> The ref clocks are not required to be have a parent of bi_tcxo as these
+>>>>>>>> ideally can be left enabled(as a subsystem requirement) even if HLOS
+>>>>>>>> (APSS) goes to suspend. With the bi_tcxo parent the ARC vote from
+>>>>>>>> HLOS/APSS will not allow APSS to collapse.
+>>>>>>>
+>>>>>>> Is there a scenario where the APSS is collapsed and still the ref clock
+>>>>>>> needs to stay enabled ? Sorry, this doesn't make sense to me.
+>>>>>>
+>>>>>> MDSS is capable of displaying things from a buffer when the CPU is off,
+>>>>>> AFAICU
+>>>>>>
+>>>>>> We can do CXO_AO instead to have it auto-collapse if it's just Linux
+>>>>>> requesting it to stay on, I think.
+>>>>>>
+>>>>>
+>>>>> Thanks Konrad for adding the display use case.
+>>>>> Abel, we earlier also had some PCIe, USB use cases where we had to leave
+>>>>> the ref clocks ON and APSS could collapse.
+>>>>
+>>>> XO votes will prevent CX collapse, not APSS collapse. CX also powers
+>>>> USB and PCIe so that only makes sense.
+>>>>
+>>>> I think it's fair to just stick XO as the parent of every refclock
+>>>> today and think about the what-ifs (such as the mdss case I mentioned
+>>>> above) later - especially since we have no infra to take full advantage
+>>>> of it today (non-APSS RSCs etc.)
+>>>>
+>>>
+>>> When ref clock have been part of GCC, then also they didn't have any xo
+>>> as the parent, similar design we kept when it was moved to TCSR as well.
+>>
+>> Perhaps we've been running on luck (i.e. XO votes being cast through
+>> another device / clock as a second order effect) all this time.. I'd
+>> happily move towards formal correctness.
+>>
 > 
->>> If the property is not present, the driver defaults load to
->>> `QMP_VREG_UNUSED`.
-> 
->> do you think having this in regulator core would make sense?
-> 
-> I'm not clear why the driver is trying to do this at all, the driver is
-> AFAICT making no other effort to manage the load at all.  We already
-> impose any constraints that are defined for a regulator while initially
-> parsing them so it's not clear to me what this is supposed to
-> accomplish, and it'll be broken if the supply is ever shared since it'll
-> set the load from this individual consumer to the maximum that's
-> permitted for the regulator as a whole.
+> I would like to stay with no XO linkage to TCSR. Any driver has specific
+> XO requirement should vote for the rpmhcc XO or XO_AO.
 
-Qualcomm regulators feature a low- and a high-power mode. As one may
-imagine, low- is preferred, and high- needs to be engaged if we go
-over a current threshold.
-
-The specific regulator instances in question are often shared between
-a couple PHYs (UFS, PCIe, USB..) and we need to convey to the
-framework how much each consumer requires (and consumers can of course
-go on/off at runtime). The current value varies between platforms, so
-we want to read from DT.
-The intended use is to set the load requirement and then only en/disable
-the consumer, so that the current load is updated in core (like in the
-kerneldoc of _regulator_handle_consumer_enable())
-
-My question was about moving the custom parsing of
-$supplyname-max-micromap introduced in this patch into the regulator
-core, as this seems like a rather common problem.
-
-Unless you meant to object to the "QMP_VREG_UNUSED" part specifically?
+Every driver has an XO requirement, as we happen not to have any
+other crystals onboard.. The clock plan says that these refclks
+are direct children of XO too
 
 Konrad
 
