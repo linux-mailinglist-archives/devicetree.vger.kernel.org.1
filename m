@@ -1,140 +1,85 @@
-Return-Path: <devicetree+bounces-202871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E66B1F100
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 00:46:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED3E3B1F135
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 01:06:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 44EC74E3A6C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:46:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13DB9179B79
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FD9299AA4;
-	Fri,  8 Aug 2025 22:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60F022B585;
+	Fri,  8 Aug 2025 23:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="egzCnQlt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/rE7DUK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7212E299A96;
-	Fri,  8 Aug 2025 22:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E941D54EE;
+	Fri,  8 Aug 2025 23:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754692940; cv=none; b=g5XPwPyditCTLqS9uktsj6Os/H+QZB96Y0TV8ifi/vWwkQuUF5FY7GZbYaNux2KSkKImlQGB4q/FdeDG1VYT55/210/UqazpgbAUW1JU153aBVPYmzNGJs/yFL8BLL4XfVr84sWHqzGBxgkVKSxZad44AH/GAqGkplGLtXYVQ28=
+	t=1754694378; cv=none; b=qtAaDjKaaN7qjF64IhkacUp+SdLrOpvPFFFZpTGuFXArv0HceTB4BamLHdiCVp4fQYbm3a/zqbrO4XcQ3If63jQCH2fgYC9ff+/OWGt3vwxkY/eZyyiEzS+NjwJpxoBxCBTV+n9jAdl05vJU+fQ2zXhdjYPPIaWTb4UBopLawNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754692940; c=relaxed/simple;
-	bh=rLZBj+I02MJoP2e/2GvebvvCShxDWxP7isVZ958jGIQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1XcGPKK35x/NMGxrUPc8adTDe9+oThfHyL6ddECRlEW+X0+hFlo0lE/IBoU8LkGapzglZsUXzgK6tUzgvdwLIl80TqvTkkyOmgkwg49U8uad8ZPpq/j7SBt1NyELX6MhZFo0YfimDyB5hK3mc3f9t7XUkKPx26IdXVkDcBbjR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=egzCnQlt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5B58C4CEF1;
-	Fri,  8 Aug 2025 22:42:19 +0000 (UTC)
+	s=arc-20240116; t=1754694378; c=relaxed/simple;
+	bh=wk1Rwnl+DQFlLilqKiajb3cVEadjb3JB09vbEstMqps=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XuzIYIDVxQKQ/2UgS5ihamccUb+uIc6+f33zs/SWxNGOZfS0CvPdW79PLvd4spw/7kfAMuQ4Rq1UdVV3tfwfaBLZpl/MwTmXjO9PV2UHJaXIv6EAQnsIaSkxdjRmxRrRgyR2oj6+uushgyC3moNGCwV0UU1/3M7FJ819613DRBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/rE7DUK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F14C4CEED;
+	Fri,  8 Aug 2025 23:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754692940;
-	bh=rLZBj+I02MJoP2e/2GvebvvCShxDWxP7isVZ958jGIQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=egzCnQltzQI4eH2ac1xfMp6bl4YDwg8TXYPhGh3XBShjOXHzkgVs04NeR+H+B4Yyy
-	 PWMyRAw2yEDAtUxSXyr22tWISRoJquWCQ3NhwdOsfsqR2KD5wbj5wdd44bvmbixNCc
-	 R3F7hu4zpJjEjb9swk1tbOH1jiu00afLtLVelssrkxLwlM7M5HY8nUD8qmc8ECbLKP
-	 lvi4Ml/nTabT/U934nBBPQtdeZ+C8HwOZhIHS3ofZYMPB+nCnolUXAAWa3g7jHdFIl
-	 06DLY2RrMv+gsYiapzFkFfQac/FiqnlKoopi87aLq6TM8BkluxTsmeXdFrw6vdb8hJ
-	 KKuHLTsFYoWtg==
-Date: Fri, 8 Aug 2025 15:42:18 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v3 2/3] net: stmmac: thead: Get and enable APB clock
- on initialization
-Message-ID: <aJZ9SkeT56LFzIS2@x1>
-References: <20250808093655.48074-2-ziyao@disroot.org>
- <20250808093655.48074-4-ziyao@disroot.org>
+	s=k20201202; t=1754694377;
+	bh=wk1Rwnl+DQFlLilqKiajb3cVEadjb3JB09vbEstMqps=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=T/rE7DUK+wKkgy8YIR6Z2qIuYHBEdnX5q+0r5r7qhHP77Y2pxFDE10pRpwULrO1Tm
+	 HM3K/5TLqnZQ2+tuzlaHsL5Em0fl+/urShabeYR4QOtqK/YIbsP5JsmFOVdLwgPeKH
+	 VXECacC4ZqpLtVxrqF2NV8Y365sYVtUMMMApNqmpDiScfwi3MUNcwcgJgBsK/JPTdP
+	 wnRs9EbHtzp6zmsOsdxbJFoBdSpIXVwRvPjXa34cbLvZfblMC05M3IpywJjc/YIo4r
+	 lmOC9POh0IwYUw7O1FKdscN+0V21unFKmAalb/2ksSzObN4cIuYmuB6h1xVMWXgYb6
+	 tytaUXuW54OGA==
+Date: Fri, 8 Aug 2025 16:06:15 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
+ <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Harini Katakam
+ <harini.katakam@xilinx.com>, Richard Cochran <richardcochran@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sean Anderson
+ <sean.anderson@linux.dev>, Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH net v3 00/16] net: macb: various fixes & cleanup
+Message-ID: <20250808160615.695beafe@kernel.org>
+In-Reply-To: <20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com>
+References: <20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250808093655.48074-4-ziyao@disroot.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 08, 2025 at 09:36:55AM +0000, Yao Zi wrote:
-> It's necessary to adjust the MAC TX clock when the linkspeed changes,
-> but it's noted such adjustment always fails on TH1520 SoC, and reading
-> back from APB glue registers that control clock generation results in
-> garbage, causing broken link.
-> 
-> With some testing, it's found a clock must be ungated for access to APB
-> glue registers. Without any consumer, the clock is automatically
-> disabled during late kernel startup. Let's get and enable it if it's
-> described in devicetree.
-> 
-> For backward compatibility with older devicetrees, probing won't fail if
-> the APB clock isn't found. In this case, we emit a warning since the
-> link will break if the speed changes.
-> 
-> Fixes: 33a1a01e3afa ("net: stmmac: Add glue layer for T-HEAD TH1520 SoC")
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> Tested-by: Drew Fustini <fustini@kernel.org>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> index c72ee759aae5..f2946bea0bc2 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> @@ -211,6 +211,7 @@ static int thead_dwmac_probe(struct platform_device *pdev)
->  	struct stmmac_resources stmmac_res;
->  	struct plat_stmmacenet_data *plat;
->  	struct thead_dwmac *dwmac;
-> +	struct clk *apb_clk;
->  	void __iomem *apb;
->  	int ret;
->  
-> @@ -224,6 +225,19 @@ static int thead_dwmac_probe(struct platform_device *pdev)
->  		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
->  				     "dt configuration failed\n");
->  
-> +	/*
-> +	 * The APB clock is essential for accessing glue registers. However,
-> +	 * old devicetrees don't describe it correctly. We continue to probe
-> +	 * and emit a warning if it isn't present.
-> +	 */
-> +	apb_clk = devm_clk_get_enabled(&pdev->dev, "apb");
-> +	if (PTR_ERR(apb_clk) == -ENOENT)
-> +		dev_warn(&pdev->dev,
-> +			 "cannot get apb clock, link may break after speed changes\n");
-> +	else if (IS_ERR(apb_clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(apb_clk),
-> +				     "failed to get apb clock\n");
-> +
->  	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
->  	if (!dwmac)
->  		return -ENOMEM;
-> -- 
-> 2.50.1
-> 
+On Fri, 08 Aug 2025 18:52:32 +0200 Th=C3=A9o Lebrun wrote:
+> This is a split off my previous series on MACB [0]. The main goal is to
+> add EyeQ5 support, but there was a lot of independent fixes/cleanup.
+>=20
+> Overall, it is fixes first so they can be applied swiftly, followed by a
+> series of cleanup patches. To clarify, nothing critical. It mostly puts
+> the driver in a better shape and prepares it for EyeQ5 patches.
 
-Reviewed-by: Drew Fustini <fustini@kernel.org>
-
-Thanks for improving the commit description and adding the warning.
-
-Drew
+Nothing past patch 7 is a fix, please separate fixes from other changes
+(unless there's a hard to avoid dependency). Please wrap the code at 80
+chars.
+--=20
+pw-bot: cr
 
