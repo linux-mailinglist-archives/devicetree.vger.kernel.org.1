@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-202788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A0B6B1EC7F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:54:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B832B1EC87
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10B28188954F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:54:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54AA8581001
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F7E285C8D;
-	Fri,  8 Aug 2025 15:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A85A0285CB4;
+	Fri,  8 Aug 2025 15:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WsQ4J6SP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ofc9fAkA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035DF23ABB3;
-	Fri,  8 Aug 2025 15:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8302A23ABB3;
+	Fri,  8 Aug 2025 15:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754668455; cv=none; b=MLHvgZw6VHtYOjEbZF4R2pldjE7gCXa3x5zGBEyU8SJhRaerx4kHb0oHIf8j6KGQCtruoKAaKimpI5rqp4Ehfj3d5ANLYMSGTcXim/c0No9O+6AZPcAEBkXUd8XX7a5OPi2duwBAcuXJXHwqqM1X5vI+qvOPyFx3r9tBhBx6rbA=
+	t=1754668499; cv=none; b=hQwHi6/TnEw+PgKlAj0YBxIT9MexDToMd2/ti5HDGXbocNY450Phjr5KvkO5snpsOVIgyf/l07Uqkw3ZxFLGRNnPq0C7rH0lM4ISTL0/7FHKi2QqoH7fMibQ3333pMOjBOs3xz7BgOKCAq8SZpzOyzNaiYTuDJ5ACa7azOM09+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754668455; c=relaxed/simple;
-	bh=QkTBeKjoqiTYtsZj4TAvkNckToe61OoBlX9hB16EcL0=;
+	s=arc-20240116; t=1754668499; c=relaxed/simple;
+	bh=lgnkbkVduOwdXuXf7x7uzQPLcodvS2Q7o9dW6uo78kg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZziqER/yImEC/D6DswG7S/9J3WegpNhGOLMIkwIbnZUO0qU1vPGZjnSCbiOvo4VRHY3S5+SeOk0UuYMTvxgHZsy8cla9W5VBRc2PcpVDveLyLoAWbpQaS+aHZTkAJsvqsPoyJ//fO1pBv40wS6CT98ORoiq4thAnI0jI7W9CyTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WsQ4J6SP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAE23C4CEED;
-	Fri,  8 Aug 2025 15:54:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q93GgaI08J3561g+P9s4CDso4O5yRczk6IGqN6S7r3bUt3lelukqvT2GB2hOypn7zmD2HkpvxAsBW5VpYi8+nblGMShNjf5FhZqA8Hg8Wdqe9G3g2w0ncjaxPoKrEQqJTr8d7JiQqVT8tJwEvagRTz9tGrodcm3ZWdaemocCBR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ofc9fAkA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 921CDC4CEED;
+	Fri,  8 Aug 2025 15:54:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754668454;
-	bh=QkTBeKjoqiTYtsZj4TAvkNckToe61OoBlX9hB16EcL0=;
+	s=k20201202; t=1754668499;
+	bh=lgnkbkVduOwdXuXf7x7uzQPLcodvS2Q7o9dW6uo78kg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WsQ4J6SPWk8shw4SPDSNN1j4nasGAZUC7D6PsTtOyRs+rN+wfdeW6JPwic5Oa9OVt
-	 e1WiPn4zl6o/+8U7JEXVQhIn+KFIqPUeqpK0hq+zEUwDO8GVtT8PIwxsrX5bVi1Yj/
-	 rXZDYmbpivaBIOigk9DNDpNHE3ukAGg4LMYz/Z36qjRP91sj/aGXnkKl7w+/5UMtQ/
-	 GXNgZSjwqDqAudpB4lvg8lO8C1cCRrHDN176XRECaEURfYrZ9LRpqooi/tLHJONktI
-	 WQ1mPa557qJxSWyX7cEQHacJNBa1y2nzcUi6zO+a6SNBqMFpE6XPeH6Y5kQfLMZQV8
-	 Ls1+lmCWGu9KA==
-Date: Fri, 8 Aug 2025 16:54:07 +0100
+	b=Ofc9fAkAU+7a4uujMtgNa1n9cJhVu0pitr80wnx3yGR9IoOxbZdct8DwUo9f4y5lh
+	 wCRsX1SlteB4rcmrxQDpeqWUL76jXBLUpBAU283d39YHZh2P7+3MBeJOynu0zLKC0Z
+	 21yBg3RZIzm6+Jre5VxmoCnhMLWU1hYhNLXuaW10JmavespXqcjlFaDHNhxyCGkBqp
+	 t0pO9W6x/GsUWcvDF+Q7dAZym7qjROX54CP8oYm+t+AuMh+Mn0N753OmLi2o6fP/bW
+	 /rRFy2L5jDK+5Ts41qylJwfdvXw9QZq2kKpjqh39/POE+jcZl4Ditx4v3IYZLh4S+M
+	 PsUicC0kX91eg==
+Date: Fri, 8 Aug 2025 16:54:54 +0100
 From: Conor Dooley <conor@kernel.org>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] dt-bindings: powerpc: Drop duplicate fsl/mpic.txt
-Message-ID: <20250808-sake-specimen-13313160b9a6@spud>
-References: <20250807214432.4173273-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: Drop duplicate ti,opa362 binding
+Message-ID: <20250808-elude-detail-ee0c8bd3a833@spud>
+References: <20250807214508.4174167-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,35 +62,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sKigfMgF1pPea84g"
+	protocol="application/pgp-signature"; boundary="o5zS9a3DrV3RFezK"
 Content-Disposition: inline
-In-Reply-To: <20250807214432.4173273-1-robh@kernel.org>
+In-Reply-To: <20250807214508.4174167-1-robh@kernel.org>
 
 
---sKigfMgF1pPea84g
+--o5zS9a3DrV3RFezK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 07, 2025 at 04:44:30PM -0500, Rob Herring (Arm) wrote:
-> The chrp,open-pic binding schema already supports the "fsl,mpic"
-> compatible. A couple of properties are missing, so add them and remove
-> fsl/mpic.txt.
+On Thu, Aug 07, 2025 at 04:45:07PM -0500, Rob Herring (Arm) wrote:
+> The "ti,opa362" binding is already supported in simple-bridge.yaml, so
+> remove the old binding doc.
 >=20
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---sKigfMgF1pPea84g
+--o5zS9a3DrV3RFezK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJYdnwAKCRB4tDGHoIJi
-0hEfAP9kk4vmVMA5jFwH7XJWvyF6laSF8vCUSKc4JYmZQYyPUgEA746BN1y0RtWR
-PAGQ7h3RQWwh8A9hbpKAfs8O7cY2PAE=
-=QgBv
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJYdzgAKCRB4tDGHoIJi
+0rCLAQCUZ8fu5dvlD2WAVYrW8ScBubBwZq7aRilZr1iswQxUUQEAqyT3QVMIyIeq
+7KJ+SHBGzMKPRKWt+PdB7qJQ2iQCOQk=
+=20Lm
 -----END PGP SIGNATURE-----
 
---sKigfMgF1pPea84g--
+--o5zS9a3DrV3RFezK--
 
