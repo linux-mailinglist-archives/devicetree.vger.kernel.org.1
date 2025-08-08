@@ -1,163 +1,283 @@
-Return-Path: <devicetree+bounces-202664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F88B1E521
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:59:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAE9B1E52A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60EE21634D9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:58:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3412A1891EF9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5255B267B9B;
-	Fri,  8 Aug 2025 08:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D74826A1A8;
+	Fri,  8 Aug 2025 09:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tej4IWsX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d0kkV5N7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6558266EFC
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 08:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6818825EF90;
+	Fri,  8 Aug 2025 09:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754643507; cv=none; b=r4X257Z00Kh88/cvR37XlYzFuDOau4cFKUs6NhSlIy7uBwnpKsh8uM9I7lZk0BS9Cz7l4P90U5AYdSqDF3qb6qyHJO6lqz31/mmY9XtdJY3ltxNO1kvkTGImP8ckUm/gOfw2GsEPiO9hSY9kD/P1eKSN5YR/zZ/GRB7pJCLyvMw=
+	t=1754643627; cv=none; b=Dj+3jW72mOEnpEbaMIW3NFeLINOnJK9Kptz9DFkF1+x4+zPTgk167KzGz01ademJVp83Kynw2NeMRmHL0XmG2tWudVSH6/G5VQyPPfKbPwb0kdHs4cpoSh+SLAgkTQYWuMaosq40HH3AJhiX22S0BJmAXmZhOzacCnXJEcyUA3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754643507; c=relaxed/simple;
-	bh=t6DFxcyLHMC844tzFgeCODmtYEMwsh8pJywnazP2Xqo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JIgkejmZMqW9zLqKutZIuzmuTWQKZ0MM6nnnh5gOyzapUoljfr/km4m27iCU0IsP10VwVJZxkx4iRzo2quojqU41pQgn2W9aFmYisgIr412kh5KxrCIzTNTTUThwg34J0l/t+kKs4MoQQ0TaLgEVZ4PFytDSi0npAW5jSGbdpvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tej4IWsX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5787Oluc012665
-	for <devicetree@vger.kernel.org>; Fri, 8 Aug 2025 08:58:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	R6Q9n1VBcmPjQskeZ/W9TfLHZuyYCWbxE9Bhoq5xM3o=; b=Tej4IWsX+JmGeVih
-	QSTcVIuaVYUBxkH2Im54AmnuSffT3Spd1cVyUYPXW8bkSPidIuSLIGmbl0kGo2vz
-	k7soJ6D99KF8nTutfdtUlYm75nq8UFgTkWohLTcaNCLAlll2DDDWrOLmlSZDmwrv
-	ka6YRXkaylQzKU7E4/W3s9GYhOKZ6r45OFhKMgGSJv7mKy50uTpJk3QqPB1Br70m
-	xFqMc+l9ddQW9j0Qb0AuqHqyBmx+AVyjsyDBe4E+a90Gb6qLOZTNEC9OlsjzJ4aB
-	aaaT+xbR7fff7DjR17v6OOexpWHE4KE0HiW4BzLu4HePwZfh+bgjw7IoyHUGSETY
-	sW/bbA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpybhh2w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 08:58:24 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-7073ec538e2so5815986d6.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 01:58:24 -0700 (PDT)
+	s=arc-20240116; t=1754643627; c=relaxed/simple;
+	bh=GL2ZrboJ9iHfDfAE0NcP4l10BIigsRXNQYX1hN5Y720=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N8WKMlfbRgTRLVF2NDsPN4SNK/XgHkNG1comVMdbZm/xVcLRBus5DnWK/KdQ6hy3YZDfuo52pAWn9L3IUYnWkr7RZPtRk+NO9m88NR3Z1q736EAwkkeYNKn7F1KOMPgjTTYSA9UFXOsdYAOgZXkHMvA9A+Sfm334Nnov9+GqJgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d0kkV5N7; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-af937728c3eso492434566b.0;
+        Fri, 08 Aug 2025 02:00:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754643623; x=1755248423; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=k8rdjH+Db+Fz5b710nahZQZSQrrrT57SDbAIyGOmM94=;
+        b=d0kkV5N7S9ndL7IgUoL68X1EW4S7leq0xKbH2PVLwJnHowHiV7YMR6+V/zNRaTqg4t
+         5p1N9qCnLqcI3gsJdn2ysZGunOQcquDANRTE+yisPHu2xG4KdvHZrS0kF7vqyeNyYPb1
+         qa2zrIjgli1SK5QpVZK3f0uOyj50QF2wwYnWexrdqs5Wcjt5RIS5Mho2YPkJJvXCbTju
+         WDB5ix3pVGvElkBrf4bh4+1GjqwPUrCcNyTe39GIdUCnA6uXxRtZ1ojJn3l9BHnZlzjP
+         lHuEJSHW0Bu/5NF+2UNEyMQcWsjZQWz+nJHsJzwQrvsf55JzDkZRF9GbSf0pjzyDTvLg
+         R6Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754643504; x=1755248304;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1754643623; x=1755248423;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R6Q9n1VBcmPjQskeZ/W9TfLHZuyYCWbxE9Bhoq5xM3o=;
-        b=bauN9P8hDi/caOCzKABEA9RqQKjLQdRF9oFKCtk0aD/K4m3dPJ2wYoRvT9U1NirKnw
-         IM6bN3s/0lGFgQ+p6uvOCbLAmSWZI2NFTifd2XVB+BlMrN6EP6ggFt3ukRjh8KefOj0i
-         Bvb0vx+zjB1QJ6gR8JHdKh6jq/+BE3n35A+UJvNYYtx2i2sEbUdeSO+fBDaWe2sA3lN6
-         UM1jTWs76fLoW+0RgmYmKI6Jyy2N5y6bWHDfyuKrYSsdGshuHqMGX8ZyK7DQ54wyBrOO
-         2sB4+KAJkXEsg0LEKwBXMwt2gTU4A8FA3NDBxeeptyakLGYQw3OGIRxxCG3E4lAFpZRy
-         SUag==
-X-Forwarded-Encrypted: i=1; AJvYcCXTT0kP5yV99uUIVBTIAXZz8glHeJEjfES+U1HLTiMqhO1vSSLr9Cav8uuGuvbdP3VIwpKiMwOTcbqE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0+uttE2JBU9RX/KbUHUfwrfOUu9zVLSKOT9OcvG5REAu21CwY
-	kzqo5FFC/36gN5YL49c4DTCveksFnQja3ND5fzjWSLxfcLRdTkNARPuzc2jyvNYcMgdcodQXfsV
-	0wl6sZls3qRdoiSBaW98sq4+39dyFbUGjxCfFUSsT+4nF9ZD0WaeldGp+30r7yD2G
-X-Gm-Gg: ASbGncuEgJr2R6yl8v9BbC6GeozNtUHEVEwbFN0lEh5LU6i11TeNNkq3ZlbEScItygR
-	xSpBPj+SpeINle/kiDiOYcjEObeOu4+4i10jL50UtUGX9FjIh/qq+dKqnx6iK5LCqkFQbJqn8GR
-	F3UmOHGc4Lv9j938H4AwryK+hVvNoT/0xCOfDORpQCL5/aljQ7UcMcK7TPb3K/X5whUORPXbUPi
-	/2gO5jxocxx3lAuRlFb4C7cFBqigMsWTc12saNOqYbeE9LMzUTrlUK2XWqzPHmGOkXkhZE+0MDF
-	TNZtomnv4JUc8LRMxiLmZj6iuUMGH+7BuSCryimdL+az2gDQMA8VTmoOZyOEmXDY2lEuJ03g2R6
-	Ghcud5Kko1nxVFKgaTQ==
-X-Received: by 2002:ac8:7e94:0:b0:4ab:67a3:ec09 with SMTP id d75a77b69052e-4b0aed20c07mr17186161cf.6.1754643503758;
-        Fri, 08 Aug 2025 01:58:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEh16OD+ZoyT6jx0iozIhaDryFGFQR4TtUyX+fYll//iyn3c+QGTMne8GP/ly3AC+UnMV9iww==
-X-Received: by 2002:ac8:7e94:0:b0:4ab:67a3:ec09 with SMTP id d75a77b69052e-4b0aed20c07mr17186061cf.6.1754643503317;
-        Fri, 08 Aug 2025 01:58:23 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a1bf9sm1460998466b.31.2025.08.08.01.58.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 01:58:22 -0700 (PDT)
-Message-ID: <9af71063-0629-4ccc-bc76-3fb588677bf4@oss.qualcomm.com>
-Date: Fri, 8 Aug 2025 10:58:20 +0200
+        bh=k8rdjH+Db+Fz5b710nahZQZSQrrrT57SDbAIyGOmM94=;
+        b=HvIP1QBe7FGmbuaA0t9+g8OUZP4M6AvUTNF4ms2IBPVZkPHWZCKjinnoaRm6u5xkkH
+         glyoGg2xHPxD8wgZqpiRRniQav5TlGJIzTlxbPTBQm/oN9wX7ZMA3ilouhOlCdMXZbb/
+         BTpzcG4ole6nMyy5ZCr/u4InuCjZwaQ1Kqc4m0yX1vBfBBOMudx8Nj3xeCJpdUetGRtO
+         DqccDGut8Z/UixsnW1T2a0A43QQyk3QH77qowrGQbUraNthprHnTD/Lx9NzyJNiHCL+r
+         PqDXByT8EvuEzPPUh+ey/tN7xUIJcBQ/xzVqZH7JYN5qCygDePHl3+8E9TupX9iuhA6F
+         C69w==
+X-Forwarded-Encrypted: i=1; AJvYcCUE56uR80nvxXxigsCDhS6tZC5ZjRoSaLbzGhs73Nj6/lrjdKikG+iYVLjC589iZE+UG46Q3Mns9xeK@vger.kernel.org, AJvYcCVjHHW2xmeSbz/0Ca4npDuCq4OBgDwh2JMUm9/6oPrZqi78rcLuMsebMJcM7xspTxxavt1dZXh9zRio@vger.kernel.org, AJvYcCW5IHx+M6+qv8AgJ84Y/+kZ5hRWGOJzKVqO7Vx1qwI8K1J0XpKD01Xkbv7jbwlldDJfnN3SVuHL1hl0wrrQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywp3QfWhaUUE5sIdZcIsbQOgFJkRlWIdzSOenA/cxKqQ5X5PBAW
+	/7ugeUFgwxKYctsMSCFXiXJiB8EAazdKxZWPCqnbiJhOuAj0PUMepJlD
+X-Gm-Gg: ASbGnctWF/iMpGIOeGbvsecVtTQHU9cA5o/UbAVuctIxQqlf3ASEtl9wqIewxsUYI7L
+	aWqb9j4J0IWczK+aBjsu9h7eKjNEA5FgOVIOlVdrRP/aRJPQ/FBSc2XOWwGSqvKUS6irI2+xeqF
+	jwAsrfPN7uNTuZVBTY2x/dIXGahZIqnzKwM2vBRSVUYKWB1G8StxKz6JKZE129hTkQVsOSla5Td
+	BlvK8Rl4ocM/U9hn4QbYRFxFA+Zd4FjkOCAVUojAAE4vqjykcanNWRV1t0ZGRIDHcu4BlrzDzzO
+	6gu/aPpkoElbe0N4r2Jqfw6H3CbtBqbcVJJ4VoFrmwPLNx5bIbdkRrWfPXgTGO6EthoU58RCSg5
+	hBaM6360+iHUMq7k3C1Js
+X-Google-Smtp-Source: AGHT+IHecywVS5Ip+72T+mjbLiYvwjd3kAV0wAjDP6j9FnxibAvP4+TjMFuGgQyhV1yEeCxPZmNa9w==
+X-Received: by 2002:a17:907:948d:b0:af9:21ed:6ebe with SMTP id a640c23a62f3a-af9c700b437mr176174566b.21.1754643623233;
+        Fri, 08 Aug 2025 02:00:23 -0700 (PDT)
+Received: from nsa ([185.128.9.3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a078afbsm1455962766b.4.2025.08.08.02.00.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Aug 2025 02:00:22 -0700 (PDT)
+Date: Fri, 8 Aug 2025 10:00:39 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
+Message-ID: <t54tty4xbcsozeouoqmytdw6saedgoxbemnr2azbiv2f4h2wta@rf4fnooawrgs>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
+ <tc4od3jtqnj743naxefx5lxkha46wohuuvw46mik6nullvsqbe@knj4t23eaodw>
+ <ngcbj6p7vfakah5fqsxqjlmrcycpg5rxfrbh4s34fll2kb3zq2@eyesluawn5w2>
+ <076b7f07-e755-4fe7-84b1-f3f495978008@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 2/4] arm64: dts: qcom: sm8750: add max-microamp for UFS
- PHY and PLL supplies
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
-        bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org,
-        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-3-quic_nitirawa@quicinc.com>
- <20250808-calm-boa-of-swiftness-a4a7ce@kuoka>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250808-calm-boa-of-swiftness-a4a7ce@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX+3EwdbZg2JMu
- f11q65A0FM8PO5wB2ZwAYV8K8gvSNNHqrAtqFeKzax4ea93IEgdsUp20U6NePSNG53kFkW9R6IC
- Vy8nDzEVK7vVeXOZ0LHIpvIoLnivuanXi8aEkeBIajcI0md2hAdxXFmOV6ufRtKpNvLism9qpKE
- BzZThhXFV8txh0PJK3B4RDgqY7QyDyvW8ZGtqfjY9ZC1LEX/oUhbg3w3IaRy9NT4v2iGSeQLNYr
- lt9fys41lc+aAfvP06m1ih9M+4lxOpGretY8TLsNNELCPgt2gI0ZR9ls8zrCJFyG7i5J0hBLWRE
- 2nSTsKWP5NNcOcyXAgTKfGeTt8IHnuZoZdI1AIIuLK/gMwiHVGbmXwUtr5ynriu88Q3BfCGwmzp
- cMCBcPn9
-X-Proofpoint-GUID: 3RmEGFr4osUHxrf4GdMPqcEzIUqkCZKj
-X-Authority-Analysis: v=2.4 cv=EavIQOmC c=1 sm=1 tr=0 ts=6895bc30 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=WmDcBHyyyws--uAXJ9AA:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-ORIG-GUID: 3RmEGFr4osUHxrf4GdMPqcEzIUqkCZKj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-08_02,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 priorityscore=1501 adultscore=0 bulkscore=0
- phishscore=0 spamscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <076b7f07-e755-4fe7-84b1-f3f495978008@gmail.com>
 
-On 8/8/25 9:29 AM, Krzysztof Kozlowski wrote:
-> On Wed, Aug 06, 2025 at 09:13:38PM +0530, Nitin Rawat wrote:
->> Add `vdda-phy-max-microamp` and `vdda-pll-max-microamp` properties to
->> the UFS PHY node in the device tree.
->>
->> These properties define the maximum current (in microamps) expected
->> from the PHY and PLL regulators. This allows the PHY driver to
->> configure regulator load accurately and ensure proper regulator
->> mode based on load requirements.
+On Fri, Aug 08, 2025 at 08:37:07AM +0300, Matti Vaittinen wrote:
+> On 07/08/2025 16:10, Nuno Sá wrote:
+> > On Thu, Aug 07, 2025 at 01:41:31PM +0100, Nuno Sá wrote:
+> > > On Thu, Aug 07, 2025 at 12:34:52PM +0300, Matti Vaittinen wrote:
+> > > > The ad7476 driver defines separate chan_spec structures for operation
+> > > > with and without convstart GPIO. At quick glance this may seem as if the
+> > > > driver did provide more than 1 data-channel to users - one for the
+> > > > regular data, other for the data obtained with the convstart GPIO.
+> > > > 
+> > > > The only difference between the 'convstart' and 'non convstart'
+> > > > -channels is presence / absence of the BIT(IIO_CHAN_INFO_RAW) in
+> > > > channel's flags.
+> > > > 
+> > > > We can drop the convstart channel spec, and related convstart macro, by
+> > > > allocating a mutable per driver instance channel spec an adding the flag
+> > > > in probe if needed. This will simplify the driver with the cost of added
+> > > > memory consumption.
+> > > > 
+> > > > Assuming there aren't systems with very many ADCs and very few
+> > > > resources, this tradeoff seems worth making.
+> > > > 
+> > > > Simplify the driver by dropping the 'convstart' channel spec and
+> > > > allocating the chan spec for each driver instance.
+> > > 
+> > > I do not agree with this one. Looking at the diff, code does not look
+> > > simpler to me...
+> > 
+> > Ok, on a second thought I'm ok with this. It makes adding devices easier
+> > and (IIUC) for the one you're adding later we only have "convst_channel"
+> > channels.
 > 
-> That's not the property of phy, but regulator.
+> Yes, that's right. The BD79105 requires the convstart.
 > 
-> Also reasoning is here incomplete - you just post downstream code. :/
+> > On comment though...
+> > 
+> > > 
+> > > - Nuno Sá
+> > > 
+> > > > 
+> > > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > > > 
+> > > > ---
+> > > > Revision history:
+> > > >   v1 => v2:
+> > > >   - New patch
+> > > > 
+> > > > I considered squashing this change with the one limiting the chip_info
+> > > > scope. Having this as a separate change should help reverting if someone
+> > > > complains about the increased memory consumption though.
+> > > > ---
+> > > >   drivers/iio/adc/ad7476.c | 31 ++++++++++++++++++-------------
+> > > >   1 file changed, 18 insertions(+), 13 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> > > > index e97742912b8e..a30eb016c11c 100644
+> > > > --- a/drivers/iio/adc/ad7476.c
+> > > > +++ b/drivers/iio/adc/ad7476.c
+> > > > @@ -29,8 +29,6 @@ struct ad7476_state;
+> > > >   struct ad7476_chip_info {
+> > > >   	unsigned int			int_vref_mv;
+> > > >   	struct iio_chan_spec		channel[2];
+> > > > -	/* channels used when convst gpio is defined */
+> > > > -	struct iio_chan_spec		convst_channel[2];
+> > > >   	void (*reset)(struct ad7476_state *);
+> > > >   	bool				has_vref;
+> > > >   	bool				has_vdrive;
+> > > > @@ -41,6 +39,7 @@ struct ad7476_state {
+> > > >   	struct gpio_desc		*convst_gpio;
+> > > >   	struct spi_transfer		xfer;
+> > > >   	struct spi_message		msg;
+> > > > +	struct iio_chan_spec		channel[2];
+> > > >   	int				scale_mv;
+> > > >   	/*
+> > > >   	 * DMA (thus cache coherency maintenance) may require the
+> > > > @@ -153,24 +152,18 @@ static int ad7476_read_raw(struct iio_dev *indio_dev,
+> > > >   #define AD7940_CHAN(bits) _AD7476_CHAN((bits), 15 - (bits), \
+> > > >   		BIT(IIO_CHAN_INFO_RAW))
+> > > >   #define AD7091R_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), 0)
+> > > > -#define AD7091R_CONVST_CHAN(bits) _AD7476_CHAN((bits), 16 - (bits), \
+> > > > -		BIT(IIO_CHAN_INFO_RAW))
+> > > >   #define ADS786X_CHAN(bits) _AD7476_CHAN((bits), 12 - (bits), \
+> > > >   		BIT(IIO_CHAN_INFO_RAW))
+> > > >   static const struct ad7476_chip_info ad7091_chip_info = {
+> > > >   	.channel[0] = AD7091R_CHAN(12),
+> > > >   	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > > > -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> > > > -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > > >   	.reset = ad7091_reset,
+> > > >   };
+> > > >   static const struct ad7476_chip_info ad7091r_chip_info = {
+> > > >   	.channel[0] = AD7091R_CHAN(12),
+> > > >   	.channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > > > -	.convst_channel[0] = AD7091R_CONVST_CHAN(12),
+> > > > -	.convst_channel[1] = IIO_CHAN_SOFT_TIMESTAMP(1),
+> > > >   	.int_vref_mv = 2500,
+> > > >   	.has_vref = true,
+> > > >   	.reset = ad7091_reset,
+> > > > @@ -282,7 +275,7 @@ static int ad7476_probe(struct spi_device *spi)
+> > > >   	const struct ad7476_chip_info *chip_info;
+> > > >   	struct ad7476_state *st;
+> > > >   	struct iio_dev *indio_dev;
+> > > > -	int ret;
+> > > > +	int ret, i;
+> > > >   	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> > > >   	if (!indio_dev)
+> > > > @@ -332,16 +325,28 @@ static int ad7476_probe(struct spi_device *spi)
+> > > >   	if (IS_ERR(st->convst_gpio))
+> > > >   		return PTR_ERR(st->convst_gpio);
+> > > > +	/*
+> > > > +	 * This will never realize. Unless someone changes the channel specs
+> > > > +	 * in this driver. And if someone does, without changing the loop
+> > > > +	 * below, then we'd better immediately produce a big fat error, before
+> > > > +	 * the change proceeds from that developer's table.
+> > > > +	 */
+> > > > +	BUILD_BUG_ON(ARRAY_SIZE(st->channel) != ARRAY_SIZE(chip_info->channel));
+> > 
+> > I guess it make sense but still looks too fancy for this :)
+> 
+> Nothing else but a developer's carefulness keeps the number of channels "in
+> sync" for these two structs. I was originally doing WARN_ON() - but then I
+> thought that it's be even better to catch this at build time. Then I found
+> the BUILD_BUG_ON(). I see Andy suggested static_assert() instead - I've no
+> idea why one is preferred over other though. Let's see if I get educated by
+> Andy :)
+> 
+> > 
+> > > > +	for (i = 0; i < ARRAY_SIZE(st->channel); i++) {
+> > > > +		st->channel[i] = chip_info->channel[i];
+> > > > +		if (st->convst_gpio)
+> > 
+> > I would flip this an do:
+> > 	if (!st->convst_gpio)
+> > 		break;
+> 
+> To me this would just add an extra line of code, and more complex flow. I
+> would definitely agree if there were more operations to be done for the
+> 'convstart channels' - but since this is really just "if it's convstart,
+> then set a bit" - the
+> 
+> if (foo)
+> 	bar;
+> 
+> seems simpler than
+> 
+> if (!foo)
+> 	break;
+> bar;
 
-The reason for this change is good, but perhaps not explained clearly
+Yes but in this particular case, you likely would not need to do any
+line break afterward because of indentation. Logically it also makes
+sense because st->convst_gpio is a device property (not a channel one).
+So it makes no sense to check it for all channels (I know we only have two
+channels). So if you prefer, you could even do:
 
-All of these values refer to the maximum current draw that needs to be
-allocated on a shared voltage supply for this peripheral (because the
-supply's capabilities change depending on the maximum potential load
-at any given time, which the regulator driver must be aware of)
+if (st->convst_gpio) {
+	for (...)
+		__set_bit(...);
+}
 
-This is a property of a regulator *consumer*, i.e. if we had a chain
-of LEDs hanging off of this supply, we'd need to specify NUM_LEDS * 
-MAX_CURR under the "led chain" device, to make sure that if the
-aggregated current requirements go over a certain threshold (which is
-unknown to Linux and hidden in RPMh fw), the regulator can be
-reconfigured to allow for a higher current draw (likely at some
-downgrade to efficiency)
+which also would make more sense to me.
 
-Konrad
+Up to you now :)
+
+- Nuno Sá
+
+> 
+> > 		
+> > > > +			st->channel[i].info_mask_separate |=
+> > > > +				BIT(IIO_CHAN_INFO_RAW);
+> > 		
+> > 		__set_bit()...
+> 
+> Ok. Thanks.
+> 
+> 
+> Thanks for the review(s) Nuno!
+> 
+> Yours,
+> 	-- Matti
 
