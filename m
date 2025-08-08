@@ -1,107 +1,121 @@
-Return-Path: <devicetree+bounces-202743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79515B1E8CD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:58:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DFDAB1E8D1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1154E3B1A97
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:58:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8364D1685A7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:01:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC91727B51C;
-	Fri,  8 Aug 2025 12:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AE0279323;
+	Fri,  8 Aug 2025 13:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+6NFGPr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PyuPSzDF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C24D27A90F;
-	Fri,  8 Aug 2025 12:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BE1191F89;
+	Fri,  8 Aug 2025 13:01:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754657898; cv=none; b=INlZdsxW7S1mpL+24JMD+5JNY6xqLLH5A4AP54xZuHCF5ldzOhu3BS4pZRDTrAjIFeINfGkoH/RlYktH211Cx5j54D9tckg3PBD791AePf3GzZDgeEm54/4Q03BgaMKPGd3sUad2gMp9N9hhuEQSbCJZDHOaISUYWygS+UfF4LI=
+	t=1754658076; cv=none; b=OqwAqwdGBGfkHpb/q+29SEPWj2SgLOFNh/ZaHBJBIA4i6CXLeJTn3DJxUnkehdGQYh6PzkX9yaK3kPkvQLJ74YLDvAbog7YqLqrd2puoXci8nQYW5+YenNh1XCiSO9q1U4X10OTlaQjXKZUBaJ1hiL28SUUsKaG7M5NdF5NAma4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754657898; c=relaxed/simple;
-	bh=lVaA2mX0I2nziG8YxKTLSSrhXt/sLGPHrtAbYAygsRE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e8laip8S1Y0vnMZDE8NlZJgLKaz7ZpT8X4gMdL5UiA2nSezUxmW4OWlsSza9wyMIuVanuPmdODirU+Pfik5KfPylu0KynH1kQpO6i/ioskyhgdkFY3r+6k+HMsvyR62dWn1XzbmJqhCYpyBbVEuoX2C0Zn8buHCtDRC5XlJ/3dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+6NFGPr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50D0EC4CEF7;
-	Fri,  8 Aug 2025 12:58:18 +0000 (UTC)
+	s=arc-20240116; t=1754658076; c=relaxed/simple;
+	bh=NkNApSinva40ZpdLZNaOWsWG0bDK7PPoZPG3hAYn7aw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g8CTOKqgK7EEjhFa0HYWLJzDFCVlPW0Ie5jCrxkuB12uqU3CtR1xvoXFmZLts3I3gzVBKumV0X4Eb4zNNHmRQMW24doRSczpl7jhs2auErDN823PTvKRzQYYV8WYTpphiEsnojW1YV0cJFN46w06wy+W2GkR65Ima//FO2D4l40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PyuPSzDF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D97AC4CEED;
+	Fri,  8 Aug 2025 13:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754657898;
-	bh=lVaA2mX0I2nziG8YxKTLSSrhXt/sLGPHrtAbYAygsRE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=P+6NFGPrq9O7OWzFRxiRxIMFBHkISaBASRSL+1gu4ZLRsY+/97P1cjKLOE4XSdiKW
-	 Ekyt6vkFMIN3rWX+lrtNzE6NmgBCRu9I95TagmLyQ4DR/38z4NyIEx1cDMXYJS2j+e
-	 0gUZX1mkYbO/wRcf5UF5GWD3roVOnB06L1P+a128Ws6Sr4LhtUuKXCdhzgptvEK6Ll
-	 iFxvi8o40HvrJFNzq4gruW9Vd2z5B4Pzm1G1mZsMnRcWwvbAGJ8J6f3r5HPQneNi6J
-	 NhPx4+gwsho8xuv+jJS9fDsHhm8F6oNHJHtpRu2Ylgrp4VQ9cABMuLk/tlEfpm0Xyf
-	 9Wam/GCOCEG7Q==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-615756b1e99so3025021a12.0;
-        Fri, 08 Aug 2025 05:58:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUkglUnsxjofNtXmaoRekvHwzbXngCZNYeLQXNByqSrW7KTfJ7UmL/7XIk4l1zsyj+nWKu+TCZzd3vLM8Wo@vger.kernel.org, AJvYcCVDdX6Tf8d3fXiLc0Cn1GhnhyddU7WzFfp16NMX4oJmBCsGo5eRgSI4zYfg/mBrDtM73j3DMTa64iOY@vger.kernel.org, AJvYcCWBg0AmaxdRmvzdgFH8gkcy/rz5TlbiIX7aQuS9hVh+wj61mDoURSC41MGSdNTzMHI/mgj+YBIAr2hK@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywa1tWZGLMGAUYigeTQSoXSYXPunPygbPeMHlPuW3zDMmWcXGxD
-	10wOpAR7k1GT851EDiisV6hl0wyNq1CBVD0IHvIcCw4/vTo6BtvQ0n+reDHWzzU1DAmLpH2JD/I
-	ysgV0fIyUUP90iyg89kPTyk2GpdUWxtI=
-X-Google-Smtp-Source: AGHT+IGmNbPkKaSWcQrKq6uzVCVpLvhQgGFhqcPbV5nqrswxDDZTHLkdroXnK5MrW+qeb5tuXPE5zOV4Uf4jxoaYVCE=
-X-Received: by 2002:a05:6402:520b:b0:617:d155:bc9d with SMTP id
- 4fb4d7f45d1cf-617e2e55b19mr1852451a12.21.1754657896926; Fri, 08 Aug 2025
- 05:58:16 -0700 (PDT)
+	s=k20201202; t=1754658076;
+	bh=NkNApSinva40ZpdLZNaOWsWG0bDK7PPoZPG3hAYn7aw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PyuPSzDFZWrHglWkOsaZdrENIMrndnfnmetP60SZHZuNQyLG7LwT18mEc2NIQ90jw
+	 TnsKwCPsqwh1h8FVuGRmkxfg7gZ8XL/12gbEOA/MRNuor7KPRSq1KLDDCN9vjDusI0
+	 KnToMii9xZBsh/6+8N2wNDVnIa9k6mzkrqNwmBAXGIOgJ77NgWmt++Bp3t33kw7gFK
+	 zO1/5VbEKcMcAbhMpEm5IF4qsy0eTZrbnQba5sqcoer/6wm/oE6lyib7DqpcJGaQFz
+	 rXHXQYl3zYW3SMcWWkIOqQbiexFKVfKdDlyyMmE73wr9OChw3H1v5aeRx5XwmPup3T
+	 vs0Sxbb+UDn8A==
+Date: Fri, 8 Aug 2025 14:01:10 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	robh+dt@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shuah@kernel.org, kuninori.morimoto.gx@renesas.com
+Subject: Re: [Guidance Request] LFX Mentee looking to contribute to ASoC / DT
+Message-ID: <0b89ed97-78d2-47bb-b205-232a20cde624@sirena.org.uk>
+References: <CANBuOYpLNAtLVWBvR9E74Ju4cM1K7H_bS2Z_UhthQFrJaZXmiQ@mail.gmail.com>
+ <aIOHm4AOrhHBf6Xv@finisterre.sirena.org.uk>
+ <CANBuOYrtmA-UgTo6X87pND9eTfub-R633scTzDef56gVvBVwig@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805150147.25909-1-ziyao@disroot.org> <20250805150147.25909-4-ziyao@disroot.org>
- <CAAhV-H59x+KGJ8Jr4bDG7EG78aFSN=Rn7ZbkroPwHw-YPTf49Q@mail.gmail.com> <aJVt_DHt0snAHnY6@pie>
-In-Reply-To: <aJVt_DHt0snAHnY6@pie>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Fri, 8 Aug 2025 20:58:03 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H51aM02T+kg5roB2PSSdYCC+3iZ1pCVTk3CpQ-SYPFozw@mail.gmail.com>
-X-Gm-Features: Ac12FXwmrKSRoG3ecUZYcixWLd3h2iW4VX4Dqh86PYl3RKggbfX7QstuRyXVmAY
-Message-ID: <CAAhV-H51aM02T+kg5roB2PSSdYCC+3iZ1pCVTk3CpQ-SYPFozw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/8] clk: loongson2: Support scale clocks with an
- alternative mode
-To: Yao Zi <ziyao@disroot.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Aug 8, 2025 at 11:24=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
->
-> On Thu, Aug 07, 2025 at 07:18:33PM +0800, Huacai Chen wrote:
-> > Hi, Yao,
-> >
-> > Can the subject line use "clk: loongson2: Allow ..." like Patch-2 and P=
-atch-4?
->
-> Sorry, I don't get the point of rewording the subject... do you think
-> this looks more consistent?
-Yes, it seems Patch-2 and Patch-3 do similar things, but not a big deal.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="24X8Q5J5cCa7Hle3"
+Content-Disposition: inline
+In-Reply-To: <CANBuOYrtmA-UgTo6X87pND9eTfub-R633scTzDef56gVvBVwig@mail.gmail.com>
+X-Cookie: What an artist dies with me!
 
 
-Huacai
+--24X8Q5J5cCa7Hle3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->
-> I'd like to keep the original subject since scale clocks with
-> alternative operation mode are a relateively large feature, while PATCH
-> 2 and 4 only introduces one member or appends a new flag.
->
-> To be honest, actually I don't really see a meaningful reason for
-> rewording...
->
-> > Huacai
->
-> Best regards,
-> Yao Zi
+On Fri, Aug 08, 2025 at 12:28:16AM +0200, Jihed Chaibi wrote:
+
+> For an immediate contribution that I can start on without specific
+> hardware, I've been digging into the DT bindings and identified a
+> challenge I'd like to help solve.
+
+> While learning to configure audio, I found that discovering the valid
+> routing strings (simple-audio-card,routing) for a lot of codecs is
+> kind of difficult. Currently, for most codecs, the only way to find
+> those is to read the ASoC C driver source for the specific codec. This
+> seems problematic for a few reasons:
+
+The names are supposed to be documented in the bindings FWIW, but yes
+this is an oversight in a bunch of bindings.  The general theory is that
+the pins on the edges of devices should be named after the pins on the
+device so hopefully if you just work from the schematic things will work
+out without ever having to reference the bindings.
+
+> I believe documenting these strings directly in each codec's DT
+> binding file (.yaml) would be a significant improvement. It would make
+> the binding self-contained and greatly improve the experience for
+> anyone setting up audio on a board.
+
+> Does this seem like a useful contribution? If you agree, I can get
+> started immediately on preparing a patch for a popular codec to serve
+> as an example.
+
+Yes, that'd definitely be useful.  There are some bindings that document
+these properties already (eg, wm8731) but it's just a text list rather
+than a property so can't be automatically checked which would be another
+step further.  Just getting information into the binding documents at
+all for CODECs that don't yet have it would be good though.
+
+--24X8Q5J5cCa7Hle3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiV9RYACgkQJNaLcl1U
+h9CKqgf/d4DUTvjJrvAFcgOU4bqw9w2ehsRAVKdDY6fqAXkNTQUhBlgzozTPmRvd
+K4VcUstqQAraQ/Wi7XAagnxs9aDBjIWJ/XdANeG2l9JFj0YjAGZqpjQ7Qx2ds3kt
+cxOakwheOsXTwRN5P40RMhF6/qKEb6x/LGfiMnUdbqQtWYZXIti1Gpqb4dF7ZSIA
+I/n6FrvlMJlBr+se5eqYXdcWctvS7NqzXe9efxDFBzE9dpPK00ySnuVDrQf7JesB
+MZaCIbhRmyzmEZEUr20PxQfDMwlc+aRZra9JBKsEC3f6KHBknp+yuZjrV5IXG7Bt
+fzhw4M2tJqhx0ToAb8np+guNgXEUsg==
+=DRqH
+-----END PGP SIGNATURE-----
+
+--24X8Q5J5cCa7Hle3--
 
