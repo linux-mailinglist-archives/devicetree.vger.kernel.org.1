@@ -1,99 +1,187 @@
-Return-Path: <devicetree+bounces-202826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E591B1EF09
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 21:52:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70719B1EF17
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 21:58:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53AAD5A041A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 19:52:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 489A818C3FEA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 19:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD1A288C0D;
-	Fri,  8 Aug 2025 19:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AFF288C2B;
+	Fri,  8 Aug 2025 19:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="FwqlN8NA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eMpJsT0H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6878C285CA1;
-	Fri,  8 Aug 2025 19:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02412288C1A;
+	Fri,  8 Aug 2025 19:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754682719; cv=none; b=WA5MFbg44TcXr+ALovn1YVHKnRd5iJ3rsHcJpoysaDEM4TKsH6ZHGg4ycpIwgekIgArq94PJVkHbzTtMd05/WhqzzFoeOsnH7E2v76KeAKyVrb9m39oGSrcB6krEq1K4uX/VJ5mwOmKKiQAYC+ZsF02J2xquiMWBnS7WiAUIJ9A=
+	t=1754683090; cv=none; b=rXh8v2CCYD720alw2t8sUBr5E2FJ4YSKQqgxK329n7YdNMTdWIfiwWUMUhNlYBPQ2nCKzvFejLAl/m0wdOHcXDZ88+J8QpU+BED3Dcokp2vKe+fYQtGX3AXyovJmILK4uP21zXs2YKL9OmRKYXKRlJ6/Us6rbKqZH2qwUgsQ2eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754682719; c=relaxed/simple;
-	bh=qdUpktaT2gX2CFPhryadTKFXcXwjP0lNYT9ptGL5Ero=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bCIQLTYJ+k8T8ZwsNGdLjOEK2PRYrCEDs8fqYJGDD+sp+mNErQQcZwVBTGcXYBi7cwvc36N3Wh9/2bf2+6cMPbs0goQ5QQUBIjLQ2lEmXGc/Xc6KjkruXeVH9s9gIzzL3dBN7FuYo2zI4O1iWfe2Le5QhYMmGYuh5Jla4rvbtMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=FwqlN8NA; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=qdUpktaT2gX2CFPhryadTKFXcXwjP0lNYT9ptGL5Ero=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1754682705; v=1; x=1755114705;
- b=FwqlN8NAHSWMHPWImW/qCeBBypphh29Fvae2amh997SZV8FG1egAwUkT8FL1GgXqTn4q2iwQ
- /kyfnHPdWEAbwqgvMeqnP/LgTJs9LhXgdtelqkz4VIlyPZ0vqk7CjDNBjLrAq8lWoEuSE4SgJ5j
- 2xgL0xif2573ngFwGRjxWB7cbN8+IKMbrjQfJfr8g/TCj9k3DlIL9CDxp5XuKYv2KWjWfJBkUoQ
- osu1EaE7Yi6W3z4EScUg2i6ALlRfcwRiyYptDRcTJ31iv3eJfx3yS3XS/VrGmcbKjZffQOYNWD/
- g1U0jMCC6FxYWCqR7LS9XiECNiF+Ix7GYD1AdvFDLdT9Q==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id be47afdb; Fri, 08 Aug 2025 21:51:45 +0200
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
-To: Conor Dooley <conor@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, David Wronek <david@mainlining.org>,
- Karel Balej <balejk@matfyz.cz>, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH RFC 0/5] Marvell PXA1908 power domains
-Date: Fri, 08 Aug 2025 21:51:44 +0200
-Message-ID: <3650391.iIbC2pHGDl@radijator>
-In-Reply-To: <20250807-avatar-comply-30aa8001aa82@spud>
-References:
- <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
- <20250807-avatar-comply-30aa8001aa82@spud>
+	s=arc-20240116; t=1754683090; c=relaxed/simple;
+	bh=CIQSbhlMKR1WIuZq4/Rkx2YJl5pIr3xxYoTEGe7WjpA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1AS3Aib8qDMzZ0Wa0fYHKfVGfcEF/wztVsAanYEjS/xYkWcBf07zVrvtJJXCWIzLwzlFRtHzLmkWGZbWicmb5Fz2sGwsFLZ4j6YNP5WgcAczCw72+zNw2GAwm+CpTNtYRpFuZCICpWm7LIT2c0IxnUh+LFZxfbtFgwIO8eE6ZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eMpJsT0H; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754683088; x=1786219088;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CIQSbhlMKR1WIuZq4/Rkx2YJl5pIr3xxYoTEGe7WjpA=;
+  b=eMpJsT0HH1ezGFFsecrJV/qrePPZ0kI4rIRrSe6LRUzr47x73ZkEIvnU
+   sUUJbDjTLtlefeFGT+jprA71RZxz7stjCVhh1f/5NGS0+yvBfyEhktcLL
+   nQTasV1eZLNf/CaNg1hItKFShe3T7SCKmTX86DLtwo+VLEiSwwUeoLh6S
+   1u6Rvf8PP9o4z2U5vT8RZGDRDhxRdikffYwtSBI1BYbKl0oRJMqb3lCp2
+   3ssRUXox0nM0R0lq0pTaaeJNgPdSXwFgWUuBlqXVY1q0Ir7Ar9V+bbKgQ
+   MweCt6LhhL4/SDks3A3QuUshOtYl4VxPaaVaHKB+3mVRnv/itflaB20M9
+   g==;
+X-CSE-ConnectionGUID: /b3TSbWqQQ2dvLICKMU6pA==
+X-CSE-MsgGUID: w1lqaay9RwyMQys73hcORw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="56750881"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
+   d="scan'208";a="56750881"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2025 12:58:07 -0700
+X-CSE-ConnectionGUID: nxAfNcsPTwSLKLoISiPpHw==
+X-CSE-MsgGUID: OefX2H0oReqbAhGTkJXdzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
+   d="scan'208";a="164629461"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa006.jf.intel.com with ESMTP; 08 Aug 2025 12:58:03 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ukTE0-0004G2-2h;
+	Fri, 08 Aug 2025 19:58:00 +0000
+Date: Sat, 9 Aug 2025 03:57:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, mani@kernel.org, robh@kernel.org,
+	kwilczynski@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	mpillai@cadence.com, fugang.duan@cixtech.com,
+	guoyin.chen@cixtech.com, peter.chen@cixtech.com,
+	cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Hans Zhang <hans.zhang@cixtech.com>
+Subject: Re: [PATCH v6 06/12] PCI: cadence: Add support for High Performance
+ Arch(HPA) controller
+Message-ID: <202508090343.TWUqM8E7-lkp@intel.com>
+References: <20250808072929.4090694-7-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250808072929.4090694-7-hans.zhang@cixtech.com>
 
-On Thursday, 7 August 2025 17:40:28 Central European Summer Time Conor Dool=
-ey wrote:
-> On Wed, Aug 06, 2025 at 07:33:19PM +0200, Duje Mihanovi=C4=87 wrote:
-> > Hello,
-> >=20
-> > This series implements support for the power domains found in Marvell's
-> > PXA1908 SoC. The domains control power for the graphics, video and image
-> > processors along with the DSI PHY.
-> >=20
-> > The series is based on master as the MAINTAINERS and device tree patches
-> > depend on the very recently merged initial Marvell PXA1908 support seri=
-es.
-> > That series can be found at the following link:
-> > https://lore.kernel.org/all/20250708-pxa1908-lkml-v16-0-b4392c484180@du=
-jemih
-> > anovic.xyz
-> It's not clear to me, nor mentioned anywhere I could see, why this is an
-> RFC. What are you actually soliciting feedback on?
+Hi,
 
-Apologies for that, should have mentioned it right away. I was unsure
-whether I was handling domain clocks correctly, which is one of the
-things Krzysztof since commented on.
+kernel test robot noticed the following build warnings:
 
-Regards,
-=2D-
-Duje
+[auto build test WARNING on 37816488247ddddbc3de113c78c83572274b1e2e]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/PCI-cadence-Split-PCIe-controller-header-file/20250808-154018
+base:   37816488247ddddbc3de113c78c83572274b1e2e
+patch link:    https://lore.kernel.org/r/20250808072929.4090694-7-hans.zhang%40cixtech.com
+patch subject: [PATCH v6 06/12] PCI: cadence: Add support for High Performance Arch(HPA) controller
+config: arm64-randconfig-002-20250809 (https://download.01.org/0day-ci/archive/20250809/202508090343.TWUqM8E7-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 3769ce013be2879bf0b329c14a16f5cb766f26ce)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250809/202508090343.TWUqM8E7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508090343.TWUqM8E7-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:66:3: warning: variable 'desc0' is uninitialized when used here [-Wuninitialized]
+      66 |                 desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0;
+         |                 ^~~~~
+   drivers/pci/controller/cadence/pcie-cadence-host-hpa.c:28:18: note: initialize the variable 'desc0' to silence this warning
+      28 |         u32 addr0, desc0, desc1, ctrl0;
+         |                         ^
+         |                          = 0
+   1 warning generated.
 
 
+vim +/desc0 +66 drivers/pci/controller/cadence/pcie-cadence-host-hpa.c
+
+    20	
+    21	void __iomem *cdns_pci_hpa_map_bus(struct pci_bus *bus, unsigned int devfn,
+    22					   int where)
+    23	{
+    24		struct pci_host_bridge *bridge = pci_find_host_bridge(bus);
+    25		struct cdns_pcie_rc *rc = pci_host_bridge_priv(bridge);
+    26		struct cdns_pcie *pcie = &rc->pcie;
+    27		unsigned int busn = bus->number;
+    28		u32 addr0, desc0, desc1, ctrl0;
+    29		u32 regval;
+    30	
+    31		if (pci_is_root_bus(bus)) {
+    32			/*
+    33			 * Only the root port (devfn == 0) is connected to this bus.
+    34			 * All other PCI devices are behind some bridge hence on another
+    35			 * bus.
+    36			 */
+    37			if (devfn)
+    38				return NULL;
+    39	
+    40			return pcie->reg_base + (where & 0xfff);
+    41		}
+    42	
+    43		/* Clear AXI link-down status */
+    44		regval = cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE, CDNS_PCIE_HPA_AT_LINKDOWN);
+    45		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE, CDNS_PCIE_HPA_AT_LINKDOWN,
+    46				     (regval & ~GENMASK(0, 0)));
+    47	
+    48		desc1 = 0;
+    49		ctrl0 = 0;
+    50	
+    51		/* Update Output registers for AXI region 0. */
+    52		addr0 = CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(12) |
+    53			CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) |
+    54			CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(busn);
+    55		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+    56				     CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(0), addr0);
+    57	
+    58		desc1 = cdns_pcie_hpa_readl(pcie, REG_BANK_AXI_SLAVE,
+    59					    CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0));
+    60		desc1 &= ~CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK;
+    61		desc1 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(0);
+    62		ctrl0 = CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS |
+    63			CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN;
+    64	
+    65		if (busn == bridge->busnr + 1)
+  > 66			desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0;
+    67		else
+    68			desc0 |= CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE1;
+    69	
+    70		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+    71				     CDNS_PCIE_HPA_AT_OB_REGION_DESC0(0), desc0);
+    72		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+    73				     CDNS_PCIE_HPA_AT_OB_REGION_DESC1(0), desc1);
+    74		cdns_pcie_hpa_writel(pcie, REG_BANK_AXI_SLAVE,
+    75				     CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(0), ctrl0);
+    76	
+    77		return rc->cfg_base + (where & 0xfff);
+    78	}
+    79	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
