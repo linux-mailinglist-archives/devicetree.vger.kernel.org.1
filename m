@@ -1,156 +1,132 @@
-Return-Path: <devicetree+bounces-202678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A79B1E59D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:29:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DB78B1E5D0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:44:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8D9D56149D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:29:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A6707283BF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8724526E14D;
-	Fri,  8 Aug 2025 09:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B9026FA62;
+	Fri,  8 Aug 2025 09:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="lQkxiJ7G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B42D2C181;
-	Fri,  8 Aug 2025 09:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B333234964;
+	Fri,  8 Aug 2025 09:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754645362; cv=none; b=oy8fIHsQFk6BH7SVBeZGw5N/auAwNI+cbKR61FpM32m59mKvBdCTMKrgJYxmNrQ+jUSxiLW4VnwsfoVhi0WNzRxbm0KfKYGQn75zeOb2eg/ACzLEUNjA0NQtWo2p3lTp0sT6RYRB6nG5jAwj4FdaYWdWwe6EvjbJJ3+d6KhnnmY=
+	t=1754646261; cv=none; b=ha4WcImKcN5J79/JlP4sVobk5c5p4n2iU0GyISQQDbgIQKGiMfBILOb+yh9+wuweBWljBfjvOn/qJU652txoc+SWtukEp9sWvDkzDwHWdLoGW4XHZsfLAvV8zUjpvtAHMN3TjoIQQrRGCwKBWhqQNrPZO5rqjk6MqS3pT735GnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754645362; c=relaxed/simple;
-	bh=IiJTQErPW5NICX7cRxQTeWwtpyUdxFcaFOuxYeBGaXw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Iiiy4i79CmyqW1GCcXbezhcLm24bdic+ln7VWseL5wAlvl9hFVpBqkpIrHyq9huKEpuadV4Gwr4cNCZ4t/BQRLLrBFVfFanS1I1ptJkVguCCGi9Cav8rxds4njV3fwQYsYnXqCB0R5NZ8ur26ES/lawECvyXpJHoHn+lGzPIlpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4fd210f8448so2563970137.2;
-        Fri, 08 Aug 2025 02:29:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754645358; x=1755250158;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ONUQQjbxoiIGrp2xGll/nfaLwIlt2Mqw8O1vqEtflFg=;
-        b=rkYfFgxMzD+xlD6xD3/sPjROVf3X4cdukKsy8sbK7PbcDME3J5GNKcXqLxN4l4J3XL
-         4kQFZ13oeRiYrmCLosAAHaX157ML/QJY9QwJ4PettEP+eXYugeSYeyA2FIit5kkHGftX
-         k1X7Ty676ciaTekcqWDk52Ij+K7q3D2ln2sHqbIbrEocQOEYsXIDrv037ogciq2MqzPd
-         PBwIp3bf/t7XUgPyR22ixaRXKptf9/iWDxi0O3W1cI5ewt2othUbzZjv8kXHLYSk8hvo
-         t+y13+RCiLd7O0y/6wbk9l3CIUcwo9OXyXcVpDf0p7skBcrl/WZ2WBMUgsPAX0O4IB9d
-         WfoA==
-X-Forwarded-Encrypted: i=1; AJvYcCWUJcZIQttHw5u3UsYBrqKc+qG2bNgb35OSnJmR0O8dO4GoIBrsWa9jAi2vID9B1rhh3DZM8Xm8NnhqYdm6gztWA3o=@vger.kernel.org, AJvYcCX34Tw9vXZ+Pepy6c6FIWyCq5JZpZ5Bm1pDty8LsrHIWCdLrv6FBTy0g8zXrdUqc512nM4wCYdUL9p82KmB@vger.kernel.org, AJvYcCX3J8TxmvkU3gwVyK05I2w7y33MzELmkTTjCH9lneozqulja0tKWikJMYt12wdIRWI1FjklAbpREU89@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxy9iyJh61b4fOJXe1Qls9L2wFT7a5cS+qQw75cXQWZ2pbaBg3
-	SLNcx9erf+sTk/fEuY4mgnNUfucNRb8sjjWZuuprGkEIjsLVXUkSScX9/7wzFLcN
-X-Gm-Gg: ASbGnctd0M7kzZaip6svPpDONeBtVMYGTYQv9IsSu+9LuNI/ChTITuslgXyYTfk3uuU
-	6YInm0+6yDlphMrJ6rm3dncAdQpb8kf4Axf4B2TAVmfrQfza+lUNsK/hJ5cpBxSJjJ0Nb0kHKlm
-	deF4lf5YR2HtmxmqbAOY4QcomuzePjF4vtxEUUxWHo8xtKNoUDwAH2A+eu52Fz5QbAB9eaN6Ju+
-	5U1EcOhL61lLbs9C2Mgo6DaNlRmUo4GFvksoULB2YQIGXh55qdJx+4saewZXNee3qXfS4qvJyOd
-	jxEagCntMhyJfskvWOn6dHgOf/ElGDB+vj9gX8W731ak+6o8PvNO6Hq+DyNOttBMBoKGchGcERv
-	N0LiAZDrnlAeqZ6ycF4bpNUE7byj6/EM+x2pSGInaimOqV2ZfN6offaVzjP/07jHb
-X-Google-Smtp-Source: AGHT+IF/aDwRW36hiwVcAsW6nYorGluS6UK+xnJp4ngBdOkL/zMfNoYywa9i/8z7M7YvJy3I/+YBKA==
-X-Received: by 2002:a05:6102:d93:b0:4fc:1987:fc5b with SMTP id ada2fe7eead31-5060e9e6216mr834969137.15.1754645358138;
-        Fri, 08 Aug 2025 02:29:18 -0700 (PDT)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-88e0296af29sm711462241.20.2025.08.08.02.29.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 02:29:17 -0700 (PDT)
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5393cfc2e77so1249450e0c.3;
-        Fri, 08 Aug 2025 02:29:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCURQiZIxk9OElVfjvsDXb9zVvn31n/thrF17QnTN5trIB0xIe7ouBTLktgMaJEDpGi9o5JlWjRWL9QO@vger.kernel.org, AJvYcCX/kTi9kgzeSABHqbzqSG6rZ9TCdo+RaUmCXco7bWztDUEuuZAicpk2uu3iOLYaU4iTtE1p/pShIgCmgpknGCtt9H8=@vger.kernel.org, AJvYcCXp4U92R+70mJjqrtslJftFS0yH6q30kO3ekKy5q+zfiU7thogEpiSjxMRnMCmj+T1lPBUdeEMZ1G+hZrDR@vger.kernel.org
-X-Received: by 2002:a05:6122:8285:b0:535:e35d:49f4 with SMTP id
- 71dfb90a1353d-53a52f1316bmr853973e0c.11.1754645357385; Fri, 08 Aug 2025
- 02:29:17 -0700 (PDT)
+	s=arc-20240116; t=1754646261; c=relaxed/simple;
+	bh=6F4MMCjDeOJQTOBiI/kQboYeE8sVAqRfvejXM0WLAGY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e8IjaOpjd4pPDhuh0DpPe3gdENFkkd60UE3dAgV9s7xmE01zF9c2WuayqXjuZ0NpFLu9r9dOK+18off28sI9rT3rrjA4X2NmyJComCs0BkKrMxp/0xoqrHUF2DHoVlLUoXA27tYiM5IDn+xuXdtAn+voFBH3eENE6FMl2zKfzL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=lQkxiJ7G; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id DCCE225B19;
+	Fri,  8 Aug 2025 11:44:14 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id v-OBsePsy6H5; Fri,  8 Aug 2025 11:44:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1754646253; bh=6F4MMCjDeOJQTOBiI/kQboYeE8sVAqRfvejXM0WLAGY=;
+	h=From:To:Cc:Subject:Date;
+	b=lQkxiJ7GL8amk1iNsM0f1VFSXFUbtqeVC9w+I4T/U8Z+AFfrKQQje2rzWNzNiYEah
+	 nxgYnsfL6EiaBivK4JdDs0FiOeboMG2FDp6t86MwxqsovXsJje+BJuMKUugHhvLBfl
+	 0d41UVPpYU5Cgk5+P7H/0DYtCwUYXwUvhvg4WycX1uCqWT5SR9mYv5uhA/uDM6J05Q
+	 vkcMbk/7CxLjkn1A/GE71bEunM9BGStgv70g6R+Slb6uEVuTZDUe5WFQTdfg22YnBk
+	 Oj4YEgEAZ+0tbkLaChdnB8q8IvAPHei2yHp3glhPAS91hBxC3VLTZwl1OOUSrqjOpn
+	 tRyYcegkOWIbw==
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Jisheng Zhang <jszhang@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH net v3 0/3] Fix broken link with TH1520 GMAC when linkspeed changes
+Date: Fri,  8 Aug 2025 09:36:53 +0000
+Message-ID: <20250808093655.48074-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250808061806.2729274-1-claudiu.beznea.uj@bp.renesas.com> <20250808061806.2729274-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250808061806.2729274-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 8 Aug 2025 11:29:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
-X-Gm-Features: Ac12FXx8i1QT-zXz7J1iKPWv5wh3EdWdZPqRg8Ft3ReMHz9bkxHLJxwo8ny7LqM
-Message-ID: <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/8] soc: renesas: rz-sysc: Add syscon/regmap support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	John Madieu <john.madieu.xa@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
+It's noted that on TH1520 SoC, the GMAC's link becomes broken after
+the link speed is changed (for example, running ethtool -s eth0 speed
+100 on the peer when negotiated to 1Gbps), but the GMAC could function
+normally if the speed is brought back to the initial.
 
-On Fri, 8 Aug 2025 at 08:18, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> From: John Madieu <john.madieu.xa@bp.renesas.com>
->
-> The RZ/G3E system controller has various registers that control or report
-> some properties specific to individual IPs. The regmap is registered as a
-> syscon device to allow these IP drivers to access the registers through the
-> regmap API.
->
-> As other RZ SoCs might have custom read/write callbacks or max-offsets,
-> register a custom regmap configuration.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> [claudiu.beznea:
->  - do not check the match->data validity in rz_sysc_probe() as it is
->    always valid
->  - dinamically allocate regmap_cfg]
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v4:
-> - adjusted the patch description by dropping "add" from
->   "add register a custom regmap configuration"
-> - updated the list of changes from Claudiu Beznea
-> - dynamically allocate the regmap_config as proposed at [2]
-> - this patch is needed for proper function of USB (as proposed in this
->   series) that being the reason it is introduced here, as well
->
-> [2] https://lore.kernel.org/all/CAMuHMdVyf3Xtpw=LWHrnD2CVQX4xYm=FBHvY_dx9OesHDz5zNg@mail.gmail.com/
+Just like many other SoCs utilizing STMMAC IP, we need to adjust the TX
+clock supplying TH1520's GMAC through some SoC-specific glue registers
+when linkspeed changes. But it's found that after the full kernel
+startup, reading from them results in garbage and writing to them makes
+no effect, which is the cause of broken link.
 
-Thanks for the update!
+Further testing shows perisys-apb4-hclk must be ungated for normal
+access to Th1520 GMAC APB glue registers, which is neither described in
+dt-binding nor acquired by the driver.
 
-> --- a/drivers/soc/renesas/rz-sysc.c
-> +++ b/drivers/soc/renesas/rz-sysc.c
-=
-> @@ -117,7 +125,26 @@ static int rz_sysc_probe(struct platform_device *pdev)
->                 return PTR_ERR(sysc->base);
->
->         sysc->dev = dev;
-> -       return rz_sysc_soc_init(sysc, match);
-> +       ret = rz_sysc_soc_init(sysc, match);
-> +       if (ret)
-> +               return ret;
-> +
-> +       regmap_cfg = devm_kzalloc(dev, sizeof(*regmap_cfg), GFP_KERNEL);
-> +       if (!regmap_cfg)
-> +               return -ENOMEM;
+This series expands the dt-binding of TH1520's GMAC to allow an extra
+"APB glue registers interface clock", instructs the driver to acquire
+and enable the clock, and finally supplies CLK_PERISYS_APB4_HCLK for
+TH1520's GMACs in SoC devicetree.
 
-Is there any specific reason you decided to allocate regmap_cfg
-separately, instead of embedding it into struct rz_sysc?
+Changed from v2
+- dt-binding: Drop the Tested-by tag
+- driver
+  - Improve the commit message to mention the dt-compatibility problem
+  - Add a comment about the dt-compatibility problem
+  - Emit a warning when failed to get APB clock
+  - Stop using the optional clock-getting API since it doesn't help much
+    when we need to handle the missing case.
+- Collect review tags
+- Link to v2: https://lore.kernel.org/netdev/20250801091240.46114-1-ziyao@disroot.org/
 
-The rest LGTM.
+Changed from v1
+- Make apb clock essential in dt-binding
+- Collect review tags
+- Link to v1: https://lore.kernel.org/all/20250729093734.40132-1-ziyao@disroot.org/
 
-Gr{oetje,eeting}s,
+Yao Zi (3):
+  dt-bindings: net: thead,th1520-gmac: Describe APB interface clock
+  net: stmmac: thead: Get and enable APB clock on initialization
+  riscv: dts: thead: Add APB clocks for TH1520 GMACs
 
-                        Geert
+ .../devicetree/bindings/net/thead,th1520-gmac.yaml |  6 ++++--
+ arch/riscv/boot/dts/thead/th1520.dtsi              | 10 ++++++----
+ drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c  | 14 ++++++++++++++
+ 3 files changed, 24 insertions(+), 6 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.50.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
