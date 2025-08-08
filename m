@@ -1,162 +1,190 @@
-Return-Path: <devicetree+bounces-202540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F173B1DF55
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 00:29:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A73B1E01F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:20:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37D293ABA5A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Aug 2025 22:29:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 904E8723FA9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 01:20:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CBE255F53;
-	Thu,  7 Aug 2025 22:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ERzNQZ3m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032C81BC5C;
+	Fri,  8 Aug 2025 01:20:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293E5190498;
-	Thu,  7 Aug 2025 22:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2650AEAF9;
+	Fri,  8 Aug 2025 01:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754605775; cv=none; b=VZlko6jXevzq68uxYswVN6Rn5iOz1lxVSzaG72V3WYUxA/T6eCFEgG8+uQvwog7pvlE/Bn3E/Doamvj5CuFKzdRYd2cBjjBIxsVhkgukFUDLXMNIfEAxdFqQFYQseqy/aN0yHJLjL/dZRkw7C18GKpXSFpe9oYqc2R6nDf3kajM=
+	t=1754616043; cv=none; b=CTStsafdz8O5oMRhzE3IF63ZMcl+P3Ks/MahAl6NQyZg25BKQcaADa8e5TCJpY6hm1w/ACyFpXyihHmdvxwei3zPbyU3VSxvwrZVaYmtqfx2vuMrtLZPkC7PxhZ4eDUjURblfhU4qhxZbkd+rEDgW70Rkhnv5yrQKUV21Exa0OY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754605775; c=relaxed/simple;
-	bh=GnhXBlhan00EnWMeW6CfAY8zoMr8CZr1dFclyjoHcpc=;
+	s=arc-20240116; t=1754616043; c=relaxed/simple;
+	bh=Gg09YzVfrrD0Ahyvrgz1u9XSWw51btwBjpVpV1tFyX0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HR3vaKXqk8RI0JVmCrlUh3+3m0+ChKuRgI48usBrX37v2hP9A1bPMwgUYz6YXUahuGroRtY9pRzrGLrHAzN0dc4Xqqmr2kAooPaobGSDssqpvpRWTv7rhslcGORmtwjzs7jOY4l5ojR0vU45llsYRkfu5ZDwQnj6zlZHV8Rlots=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ERzNQZ3m; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 577MTP5M902301;
-	Thu, 7 Aug 2025 17:29:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754605765;
-	bh=vGg0k6siYa6ZSIVgo5SD6iu9EKp7AtLaUnHfY9l895Q=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ERzNQZ3mdvKb80aeNo3DpUYphXfZLnY45zeAjNzQIjUxTUwrc75Oa4QAj/fd0ShHF
-	 gcgx/100x5BIM33bsFEIeSv/wOct/nxx/09J4SHjf1sToUE1Nn3uUr106e3L9H70Sc
-	 WBDpPZb8bAjICh0NDARBBS9unBN+iMFAkA9Musag=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 577MTPak465544
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 7 Aug 2025 17:29:25 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 7
- Aug 2025 17:29:24 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 7 Aug 2025 17:29:24 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 577MTOBE1764481;
-	Thu, 7 Aug 2025 17:29:24 -0500
-Message-ID: <da9c4afb-84ce-49ee-86b3-b7f50457a067@ti.com>
-Date: Thu, 7 Aug 2025 17:29:24 -0500
+	 In-Reply-To:Content-Type; b=Go7FYP8bs8Ke6y3sAe/mm5WiN+AWQSq8VJMDBkBQvbQuASJXi0V+2DTDCVJ/OZLIr+/2VGUnkct2AfOvgHcTwi0Of/WqycnxTBrjuXXtwm1N3CAEOEIP5QzTCPFWg5HKtgQ/tYJceDRYMfQ710uSqHRnI+BxM3HxAeWVvg+r1mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.163.48])
+	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4bymLM5xB7z14MC1;
+	Fri,  8 Aug 2025 09:15:39 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id CC83F180080;
+	Fri,  8 Aug 2025 09:20:36 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Fri, 8 Aug 2025 09:20:30 +0800
+Message-ID: <c8e3dc2c-617b-2988-10ff-88082370e787@huawei.com>
+Date: Fri, 8 Aug 2025 09:20:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] soc: ti: k3-socinfo: Add support for AM62P variants
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Adrian Hunter
-	<adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        Santosh Shilimkar
-	<ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>
-References: <20250805234950.3781367-1-jm@ti.com>
- <20250805234950.3781367-3-jm@ti.com>
- <37f73812-be0c-43b2-a5bc-a41e09db85ea@ti.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v7 22/31] irqchip/gic-v5: Add GICv5 LPI/IPI support
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff
+	<sascha.bischoff@arm.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>, Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Peter Maydell
+	<peter.maydell@linaro.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Slaby
+	<jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-22-12e71f1b3528@kernel.org>
+ <cc611dda-d1e4-4793-9bb2-0eaa47277584@huawei.com>
+ <aJSvUWRqLEiARDIW@lpieralisi>
 Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <37f73812-be0c-43b2-a5bc-a41e09db85ea@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <aJSvUWRqLEiARDIW@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: kwepems200002.china.huawei.com (7.221.188.68) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
 
-Hi Andrew,
 
-On 8/7/25 12:24 PM, Andrew Davis wrote:
-> On 8/5/25 6:49 PM, Judith Mendez wrote:
->> This adds a support for detecting AM62P SR1.0, SR1.1, SR1.2.
+
+On 2025/8/7 21:51, Lorenzo Pieralisi wrote:
+> On Thu, Aug 07, 2025 at 07:52:58PM +0800, Jinjie Ruan wrote:
 >>
->> On AM62P, silicon revision is discovered with GP_SW1 instead of JTAGID
->> register, so introduce GP_SW register range to determine SoC revision.
 >>
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->>   drivers/soc/ti/k3-socinfo.c | 82 +++++++++++++++++++++++++++++++++----
->>   1 file changed, 74 insertions(+), 8 deletions(-)
+>> On 2025/7/3 18:25, Lorenzo Pieralisi wrote:
+>>> An IRS supports Logical Peripheral Interrupts (LPIs) and implement
+>>> Linux IPIs on top of it.
+>>>
+
+[...]
+
+>>> +static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data,
+>>> +					    unsigned int lpi_id_bits,
+>>> +					    unsigned int istsz)
+>>> +{
+>>> +	size_t l2istsz;
+>>> +	u32 n, cfgr;
+>>> +	void *ist;
+>>> +	u64 baser;
+>>> +	int ret;
+>>> +
+>>> +	/* Taken from GICv5 specifications 10.2.1.13 IRS_IST_BASER */
+>>> +	n = max(5, lpi_id_bits + 1 + istsz);
+>>> +
+>>> +	l2istsz = BIT(n + 1);
+>>> +	/*
+>>> +	 * Check memory requirements. For a linear IST we cap the
+>>> +	 * number of ID bits to a value that should never exceed
+>>> +	 * kmalloc interface memory allocation limits, so this
+>>> +	 * check is really belt and braces.
+>>> +	 */
+>>> +	if (l2istsz > KMALLOC_MAX_SIZE) {
+>>> +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
+>>> +
+>>> +		pr_warn("Limiting LPI ID bits from %u to %u\n",
+>>> +			lpi_id_bits, lpi_id_cap);
+>>> +		lpi_id_bits = lpi_id_cap;
+>>> +		l2istsz = KMALLOC_MAX_SIZE;
+>>> +	}
+>>> +
+>>> +	ist = kzalloc(l2istsz, GFP_KERNEL);
 >>
->> diff --git a/drivers/soc/ti/k3-socinfo.c b/drivers/soc/ti/k3-socinfo.c
->> index d716be113c84..9daeced656d6 100644
->> --- a/drivers/soc/ti/k3-socinfo.c
->> +++ b/drivers/soc/ti/k3-socinfo.c
->> @@ -15,6 +15,7 @@
->>   #include <linux/sys_soc.h>
->>   #define CTRLMMR_WKUP_JTAGID_REG        0
->> +#define CTRLMMR_WKUP_GP_SW1_REG        4
->>   /*
->>    * Bits:
->>    *  31-28 VARIANT    Device variant
->> @@ -62,10 +63,63 @@ static const struct k3_soc_id {
->>       { JTAG_ID_PARTNO_AM62LX, "AM62LX" },
->>   };
->> +static const struct regmap_config k3_chipinfo_regmap_cfg = {
->> +    .reg_bits = 32,
->> +    .val_bits = 32,
->> +    .reg_stride = 4,
->> +};
->> +
->>   static const char * const j721e_rev_string_map[] = {
->>       "1.0", "1.1", "2.0",
->>   };
->> +static const char * const am62p_gpsw_rev_string_map[] = {
->> +    "1.0", "1.1", "1.2",
->> +};
->> +
->> +static int
->> +k3_chipinfo_get_variant_alternate(struct platform_device *pdev, 
->> unsigned int partno, u32 *variant)
->> +{
->> +    struct device *dev = &pdev->dev;
->> +    struct regmap *regmap;
->> +    void __iomem *base;
->> +    u32 offset;
->> +    int ret;
->> +
->> +    base = devm_platform_ioremap_resource(pdev, 1);
->> +    if (IS_ERR(base))
->> +        return PTR_ERR(base);
->> +
->> +    regmap = regmap_init_mmio(dev, base, &k3_chipinfo_regmap_cfg);
+>>
+>> When kmemleak is on, There is a memory leak occurring as below:
+>>
+>>
+>> unreferenced object 0xffff00080039a000 (size 4096):
+>>   comm "swapper/0", pid 0, jiffies 4294892296
+>>   hex dump (first 32 bytes):
+>>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+>>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+>>   backtrace (crc 0):
+>>     kmemleak_alloc+0x34/0x40
+>>     __kmalloc_noprof+0x320/0x464
+>>     gicv5_irs_iste_alloc+0x1a4/0x484
+>>     gicv5_irq_lpi_domain_alloc+0xe4/0x194
+>>     irq_domain_alloc_irqs_parent+0x78/0xd8
+>>     gicv5_irq_ipi_domain_alloc+0x180/0x238
+>>     irq_domain_alloc_irqs_locked+0x238/0x7d4
+>>     __irq_domain_alloc_irqs+0x88/0x114
+>>     gicv5_of_init+0x284/0x37c
+>>     of_irq_init+0x3b8/0xb18
+>>     irqchip_init+0x18/0x40
+>>     init_IRQ+0x104/0x164
+>>     start_kernel+0x1a4/0x3d4
+>>     __primary_switched+0x8c/0x94
 > 
-> devm_regmap_init_mmio()
+> Thank you for reporting it.
 > 
-> Otherwise this regmap never gets freed up in the error paths.
+> It should be a false positive, we hand over the memory to the GIC but
+> never store the pointer anywhere (only its PA).
+> 
+> Patch below should "fix" it - well, it is obvious, we are telling
+> kmemleak to ignore the pointer value:
 
-Thanks for reviewing, but....
+I also did not see any place in the code where these pointers are
+accessed, nor did I see in section "L2_ISTE, Level 2 interrupt state
+table entry" that L2_ISTE can be accessed by software. So, are these
+states of the LPI interrupt maintained by the GIC hardware itself?
 
-I have completely changed this patch in v2, feel free to review v2
-though (:
-
-
-..
-
+> 
+> -- >8 --
+> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
+> index ad1435a858a4..e8a576f66366 100644
+> --- a/drivers/irqchip/irq-gic-v5-irs.c
+> +++ b/drivers/irqchip/irq-gic-v5-irs.c
+> @@ -5,6 +5,7 @@
+>  
+>  #define pr_fmt(fmt)	"GICv5 IRS: " fmt
+>  
+> +#include <linux/kmemleak.h>
+>  #include <linux/log2.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+> @@ -117,6 +118,7 @@ static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data
+>  		kfree(ist);
+>  		return ret;
+>  	}
+> +	kmemleak_ignore(ist);
+>  
+>  	return 0;
+>  }
+> @@ -232,6 +234,7 @@ int gicv5_irs_iste_alloc(const u32 lpi)
+>  		kfree(l2ist);
+>  		return ret;
+>  	}
+> +	kmemleak_ignore(l2ist);
+>  
+>  	/*
+>  	 * Make sure we invalidate the cache line pulled before the IRS
+> 
 
