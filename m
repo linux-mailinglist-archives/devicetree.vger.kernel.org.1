@@ -1,69 +1,63 @@
-Return-Path: <devicetree+bounces-202783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 770B2B1EB6C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:17:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13786B1EB84
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A1531882A71
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:18:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D415A1976
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C3D27CCEE;
-	Fri,  8 Aug 2025 15:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9088328369A;
+	Fri,  8 Aug 2025 15:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d5pTy9tC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023072.outbound.protection.outlook.com [52.101.127.72])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DEA23741;
-	Fri,  8 Aug 2025 15:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.72
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754666270; cv=fail; b=IuqWSbAwHae+IRVp1zvvIBcQnmY1UL14ddvEA/FUV2fqXXfs8rYsYBp+dYDZ4SbMsVeH9UpH3F6dSykpSkhr7t9nMuyzjydz89ioFzmEzERsAvqRXhNw8E1gnJZO6diak3hTR+44dcNxdQsK1N+RznEfufcZzG9aC7gjAMV5D/w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754666270; c=relaxed/simple;
-	bh=3V5a2n8uXnbEpisPB/uI7+rsDpwoRZ5rAiPGp+WTclE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J9MwG9PEUIlRrgpf56PwfxRCcr/xqiKzKvKBa3et40K91uwMP+rsAtrVePoB1v7FyC9KmGc0Fq1EsiiEZjKCxV8a3cNCRGGFuYHiV8PNr92ok8UZwPaVtgdpn9HuVbBBmn8afjXtmQbBzpCAGhRm7fpMSuoHQVgo8YA9/PtFmD4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u6hYSv+Xqy8ziRAWvRkr8/h/pMs5kFieM5Wft+p6yAgCnTKVtJXS66Pd1vxI68rzCBbe5jQOb9zaZWhYJemANv1wuHPSS6GaPYoVTQlROvZqAjdHV1OJEaRRZuFKvoc2eHAQ2phK5ORXkIzolnCoLfgPx1e6qQLBiMfp1U+W9fALKCGa6LyzWE4dmOzahQ9GrTuBZNvxgY3yAxnGW7XEDPhSQ+yIih2chteMtEEKkOZys+cb2t6w3h0GjuYpo1cotC4iEzObAWb0vdydWhSdbnnLXc8jVqmIc9XSSRGt8PgXtZXTNkIsOfP8TV93hwHwJjQHqv6ruarCHdrPrSTkeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jAbSI6+6aomTRZ2qu5ibQKfPHNwjG5s9XEIsrYbF2eM=;
- b=iCZN/CDn1GPdHvvLAG0lRzwo7NI6/fqLbZ+Xql95kjfg6cA1rshzaxH0B4RTAWjFAcsnWA1DBs8dnoYtlYdl6hOoTlQLbYDLA5Y+nfN67kob0KaJU2YCFA6UptU9o2yQrB5itOHwsvFOQwz3hooAIbKAnlBEIyItxCr68aB1is5JPlCdpjxz5Nku/glDW++zE0kKw33FqZtZb8AWG+BnliHX4Tw8F1pFuCSA6uxFNPouLwlgT4+Dq3z2Hz4/4T08RaoEP+c+NUp/tV55pbPuIegN7Ef+/7gSdXnrWb3NGrNvSDz93vjzKdMB4UAvxr00kVFNUd3xnMLXGcnWKmY9zA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR02CA0082.apcprd02.prod.outlook.com (2603:1096:4:90::22) by
- TYUPR06MB6052.apcprd06.prod.outlook.com (2603:1096:400:354::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9009.15; Fri, 8 Aug 2025 15:17:40 +0000
-Received: from SG1PEPF000082E6.apcprd02.prod.outlook.com
- (2603:1096:4:90:cafe::96) by SG2PR02CA0082.outlook.office365.com
- (2603:1096:4:90::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.16 via Frontend Transport; Fri,
- 8 Aug 2025 15:17:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E6.mail.protection.outlook.com (10.167.240.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9009.8 via Frontend Transport; Fri, 8 Aug 2025 15:17:38 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 145DA40A12CE;
-	Fri,  8 Aug 2025 23:17:33 +0800 (CST)
-Message-ID: <296c1f17-999e-4117-9f09-5f2e844c4bdd@cixtech.com>
-Date: Fri, 8 Aug 2025 23:17:31 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3E4283C87;
+	Fri,  8 Aug 2025 15:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754666417; cv=none; b=AK+hTAER3s5hyUqBgqnr/+8k7kem5QvS8FgG7KMizEdDoCw3c8VHQugWGPGPwoQE5oWXy0BMWRzQ4Tg6FV6yRkU9mQ7btSg1Au2zVQwXUVfRYdbwH8VMzjsTI7t54xxcHMxXwhVGV8vZWhXDLjWkJb+/gbfKmGXPtUTlB6U8boY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754666417; c=relaxed/simple;
+	bh=bz4INqk5MS19bwx/1q9o5BeO8oO9JV4/LsKmtt5ip24=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nP+guWDSM5yTHauBweKog++ArK5E7YXH1Bs2CztfllHns4UIxnUwqNchSkZXKFOYReD1wCM/omWeQR69Khgf5XvaSa9CdG3UhCgsF9ubd4rM65I9ENYPB6EC1S26vOALk7pETpudO7HeFopjfIkYeWT257n9wis52k2kr1vBktk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d5pTy9tC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 578F5NKf000995;
+	Fri, 8 Aug 2025 15:20:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	H+21hjpa8XJ6XRd6SoHfWWI7noNUkNVcdDwUeOUPVmo=; b=d5pTy9tCVXZOwHWY
+	SJwANfzhsGw3MowAgZIpVLwGfGVWlNLP1Mf2BrpcFVNZQGBn+y9o+Wz2ZcqWzLDB
+	7weNpMZac7PgFYuheU9WfbDW0uDzfZAbCrfxRDalgGlD53x2uxV8wbyXkG0c2Kjo
+	bAZjkS+lfFm690bRJsV4RwLE/5l2910tA0DBo/VC4yp0pEkhRLe/kuwQkiJ/wHDJ
+	H/8OePvTA6bjYrB049yozUYZiloFhzFTygqAQh+9KVx4dpk/Chd4XagE9hpwuHjK
+	0QallPYYw/iesthsjjTXqkE6DWflT+knGtHO2cVz3VnFoJBAWhtAGgv2A2EUlu4i
+	DAYljw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpw3ac7y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Aug 2025 15:20:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 578FK2Sx026396
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 8 Aug 2025 15:20:02 GMT
+Received: from [10.216.30.51] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 8 Aug
+ 2025 08:19:55 -0700
+Message-ID: <5e32be05-0dbd-4d6f-879d-8ce97fb430ba@quicinc.com>
+Date: Fri, 8 Aug 2025 20:49:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,157 +65,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 07/12] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: lpieralisi@kernel.org, kw@linux.com, guoyin.chen@cixtech.com,
- krzk+dt@kernel.org, cix-kernel-upstream@cixtech.com, conor+dt@kernel.org,
- mani@kernel.org, linux-pci@vger.kernel.org, peter.chen@cixtech.com,
- devicetree@vger.kernel.org, mpillai@cadence.com,
- linux-kernel@vger.kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
- fugang.duan@cixtech.com
-References: <20250808072929.4090694-1-hans.zhang@cixtech.com>
- <20250808072929.4090694-8-hans.zhang@cixtech.com>
- <175465973854.5889.2255011303498628193.robh@kernel.org>
+Subject: Re: [PATCH V1 2/4] arm64: dts: qcom: sm8750: add max-microamp for UFS
+ PHY and PLL supplies
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@oss.qualcomm.com>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
+        <conor+dt@kernel.org>, <bvanassche@acm.org>, <andersson@kernel.org>,
+        <neil.armstrong@linaro.org>, <dmitry.baryshkov@oss.qualcomm.com>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
+ <20250806154340.20122-3-quic_nitirawa@quicinc.com>
+ <20250808-calm-boa-of-swiftness-a4a7ce@kuoka>
+ <9af71063-0629-4ccc-bc76-3fb588677bf4@oss.qualcomm.com>
+ <292907f3-25d6-40d9-be6e-b6b83e646d73@kernel.org>
 Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <175465973854.5889.2255011303498628193.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E6:EE_|TYUPR06MB6052:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e4dbec2-d73b-442f-a6ee-08ddd68eb665
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|376014|82310400026|36860700013|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UVhJd0dmMURRVThPRGdUcnZZWUp1dHd6TEJ5Q015U01NQXJXQS9YbXZDUzA0?=
- =?utf-8?B?czFsTElNSU11Wks5Ri9HenhnazFVdjBtQ2ZUR05SdTJKVElCK0VTRUVSL2Nl?=
- =?utf-8?B?dDRRK0VzV01QZkQ3NjYvRnkrd0g2aWRJbTgxSUxsSEptcjE2Qjloczd0Q29K?=
- =?utf-8?B?Zkxram9kYkoxcHdUSmNNQTUzTkZ3ZjVPMlRCNjdGSEM4RzBqTzlDcTM2UGUx?=
- =?utf-8?B?MU5ueXg0alRxZy8yb2ZUVk5TVVJXeEVqdzdNU3FCcjlST0dHRHBIbkdBZFIz?=
- =?utf-8?B?YnRDKzA5T2xGMXBVV2lJWURrZmZNNTd0ZHNkek96bjNKM0JqR3hrdGFXT2dv?=
- =?utf-8?B?K2w0WDFtTlRWeTd1K1lTM28yc0F0SjJybE1lQlUyc3J6R3AxdzliRVlNWEpz?=
- =?utf-8?B?OTNWd1Q2a3pMV2YzSmpjbEFZVGN1ZXZWNnlKcHlZbWVKTE1lcmJMZzVmMzdJ?=
- =?utf-8?B?bU1IWHVlRlBJSExKVGlpQjRPVC9sZ2NlakpPWWk3U1BBa20vZjFmSkxDY0lZ?=
- =?utf-8?B?YmtXUEFqNzd1aWp2RDhVV25WM2t1MHM4Qi9RZ1U1Ri83Njh1bzdWdTdVNEQy?=
- =?utf-8?B?Y2tRdHB6NGVNOFJQSXhScWFFUml5b2x2c3AzY2QvelZhY3BQdWRoMHF5NTZm?=
- =?utf-8?B?OUFDVnFGaERjMGtGRk9OaFVkZWpjQkNENnAvNTRBbmpJWnJDZFFDNDd3TG1r?=
- =?utf-8?B?Z0QzS2Z6K3hqckpoWEFWNDBHZDRucXowRmZuRTg1MmR3QjE1Vnh4K2c0SXdn?=
- =?utf-8?B?azIvY3NnbWRjRTZLUlNRcVJGaVVZTGwxWWlPcS9mRWhHdjVKQnVrYWRTSm9r?=
- =?utf-8?B?dUN2QTc2d3VxYUNyOGh6M3pvQXhMZUhBb3dnTkQ2djJEVVdXSjBkSDdQdEVn?=
- =?utf-8?B?bUJkZWE0QU04VDNPY3QvdGdlSGZTM0ZlS1MrTVp2cm5HTlJXL245Y0ErK2tB?=
- =?utf-8?B?aEFLSXFzelE2dlEyMkxteVVNZEVWckZVQkhlZ1JSejErTklrSHNTVFF3c0dF?=
- =?utf-8?B?VkRjcW5sdHB3OVhnalhJWHNCdGUxVVVmakJNeUJ2bjl3eHUzYUJ6RHAxbDVj?=
- =?utf-8?B?TlBDcVN3TWVONWFvUDczNHpmSWdVbVB2Z09PTGpaOVlxZ29ZRGJPVTZXVjM5?=
- =?utf-8?B?Z3BHU1VKbGhwU2lYRUJNdnE0clY5MHhzYytFcGR2MmZhL1NYcmhuWFJ3U2tD?=
- =?utf-8?B?cGJVbi9vRnBOdk9jZit1VnF3a3ROczl4c2NEWWJUeEU2c08vMFc0Y2JKZHJs?=
- =?utf-8?B?RllvZjVpUXh1ZkVselozaGRxV3JaYVh5Unk0S1oxQU1qTHR6bVJINXh1Q3dC?=
- =?utf-8?B?MHRNWmZaeGdVcDVRMkhZWFZ5VFlTRzY4THpuRHg2MlZaaWZlMkQ0N2VwM2lP?=
- =?utf-8?B?c2h6ZWRoZDVPVzJQaEZkQUs2ZkphcHdCamQraWRIaEdYdU5SNDZOZ1l3aVpO?=
- =?utf-8?B?MDgwblZSdWhPcUtHdk9TL1dPQjdJZnovcEFoS1NKRlpFWElId2hRbnB6aGFR?=
- =?utf-8?B?bGdaUFdDSUhyN0pMcG9YbHlodk1GcTZnOGdkb25GQmRZZDFrTUlUZTZHUVhW?=
- =?utf-8?B?NUYzY1J5Qis1RjdlNmdGcUNMeEJvZThQS2RtMWJlcGFETElhY2FiMGk4akg1?=
- =?utf-8?B?U2xMN3A3cTNjbzZBaUNSMjdvc3E4bi83THdpZGlIaDFqNEE0SUw3dk1iYzVy?=
- =?utf-8?B?KysrN0ZHd25VRzBnaWF1VFJxaVFoeDVTTnU3eGRBZitTazdMaWJvMndUOENu?=
- =?utf-8?B?Z2pBbXZtL3c5SjVKdE9Rc2dXdVh0WjZZSFVBSUZ5azdFNTE1UzYyQjg4Zmtz?=
- =?utf-8?B?anVLWkRUMkU2c1BYYzBXd0JORk1hM2FBUUlJYWJ0N2FhekVYZEhEY0NJTTNt?=
- =?utf-8?B?SlJoRVFyRUxaa3FkZ0FMZFVyUms2Zmp4NnFEZGFiL3p3ak1SU0RsWUtSejdG?=
- =?utf-8?B?cmY4bStqeVNqMitLN2UzSVNEZE5KcHkrbHRpN1JYdnBzc0VuN0V2UUMvRTll?=
- =?utf-8?B?bEhtd0c1ZG1RPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(82310400026)(36860700013)(13003099007);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 15:17:38.8515
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e4dbec2-d73b-442f-a6ee-08ddd68eb665
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E6.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR06MB6052
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <292907f3-25d6-40d9-be6e-b6b83e646d73@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOCBTYWx0ZWRfX78XoknspEosh
+ 3OXl0pK59Pa75jpfRdrwTq7trc7HCBDexXL4ZIsyp1LdiYmJbw4jKndVDQJz7SpZ5gLsjoeBUFM
+ Hi6pkPDFQYy7JueFxwvOOoi/BJKVHmbA/qct4sytFFInvj5w3cJceCV+k0IPVqknyRLaKJIVDfQ
+ 6XsJEuE4kxfb8hD07+KyJvll6lNtro1lnNo+bRuwnKArUe63j6mh9s+xjenbutWnbEB7fU0RZWn
+ xR39RmRE6dhtzHCwjq1d9ibh3MeRR1mYJ/fqGuFG4/BV4kmnsN1YxUuLqPgTdlg3blLnPomMVA9
+ 5tCQWFaC4AQDe8u7sB6dINeXq9t35d/S/vLRZF1WwEEabxDKhHSrCP/R84MY13cuprq8inB+gwZ
+ eXUeCHX0
+X-Authority-Analysis: v=2.4 cv=J8Cq7BnS c=1 sm=1 tr=0 ts=689615a4 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
+ a=x0E13wpUDKbC8JPA_PIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: ByLAag_KUVeJdsX6CF77K1wWPjNQXd1S
+X-Proofpoint-ORIG-GUID: ByLAag_KUVeJdsX6CF77K1wWPjNQXd1S
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-08_04,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 adultscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508060008
 
 
 
-On 2025/8/8 21:28, Rob Herring (Arm) wrote:
-> EXTERNAL EMAIL
-> 
-> On Fri, 08 Aug 2025 15:29:24 +0800, hans.zhang@cixtech.com wrote:
->> From: Hans Zhang <hans.zhang@cixtech.com>
+On 8/8/2025 3:09 PM, Krzysztof Kozlowski wrote:
+> On 08/08/2025 10:58, Konrad Dybcio wrote:
+>> On 8/8/25 9:29 AM, Krzysztof Kozlowski wrote:
+>>> On Wed, Aug 06, 2025 at 09:13:38PM +0530, Nitin Rawat wrote:
+>>>> Add `vdda-phy-max-microamp` and `vdda-pll-max-microamp` properties to
+>>>> the UFS PHY node in the device tree.
+>>>>
+>>>> These properties define the maximum current (in microamps) expected
+>>>> from the PHY and PLL regulators. This allows the PHY driver to
+>>>> configure regulator load accurately and ensure proper regulator
+>>>> mode based on load requirements.
+>>>
+>>> That's not the property of phy, but regulator.
+>>>
+>>> Also reasoning is here incomplete - you just post downstream code. :/
 >>
->> Document the bindings for CIX Sky1 PCIe Controller configured in
->> root complex mode with five root port.
+>> The reason for this change is good, but perhaps not explained clearly
 >>
->> Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
+>> All of these values refer to the maximum current draw that needs to be
+>> allocated on a shared voltage supply for this peripheral (because the
+> 
+> 
+> It sounds very different than how much it can be drawn. How much can be
+> drawn is the property of the regulator. The regulator knows how much
+> current it can support.
+
+Consumers are aware of their dynamic load requirements, which can vary 
+at runtime—this awareness is not reciprocal. The power grid is designed 
+based on the collective load requirements of all clients sharing the 
+same power rail.
+
+Since regulators can operate in multiple modes for power optimization, 
+each consumer is expected to vote for its runtime power needs. These 
+votes help the regulator framework maintain the regulator in the 
+appropriate mode, ensuring stable and efficient operation across all 
+clients.
+
+
+Stability issues can arise if each consumer does not vote for its own 
+load requirement.
+For example, consider a scenario where a single regulator is shared by 
+two consumers.
+
+If the first client requests low-power mode by voting for zero or a 
+minimal load to regulator framework during its driver's LPM sequence, 
+and the second client (e.g., UFS PHY) has not voted for its own load 
+requirement through the regulator framework, the regulator may 
+transition to low-power mode. This can lead to issues for the second 
+client, which expects a higher power state to operate correctly.
+
+
+> 
+> 
+>> supply's capabilities change depending on the maximum potential load
+>> at any given time, which the regulator driver must be aware of)
 >>
->> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
->> ---
->>   .../bindings/pci/cix,sky1-pcie-host.yaml      | 73 +++++++++++++++++++
->>   1 file changed, 73 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->>
+>> This is a property of a regulator *consumer*, i.e. if we had a chain
+>> of LEDs hanging off of this supply, we'd need to specify NUM_LEDS *
+>> MAX_CURR under the "led chain" device, to make sure that if the
+>> aggregated current requirements go over a certain threshold (which is
+>> unknown to Linux and hidden in RPMh fw), the regulator can be
+>> reconfigured to allow for a higher current draw (likely at some
+>> downgrade to efficiency)
 > 
-> My bot found errors running 'make dt_binding_check' on your patch:
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml: properties:compatible:oneOf: [{'const': 'cix,sky1-pcie-host'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
->          hint: Use 'enum' rather than 'oneOf' + 'const' entries
->          from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-> Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dts:27.13-29.83: Warning (ranges_format): /example-0/pcie@a010000:ranges: "ranges" property has invalid length (84 bytes) (parent #address-cells == 1, child #address-cells == 3, #size-cells == 2)
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
->          [[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
->          1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
->          0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
->          [0, 4, 0] is too short
->          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): reg: [[0, 167837696], [0, 65536], [0, 738197504], [0, 67108864], [0, 167772160], [0, 65536], [0, 1610612736], [0, 1048576]] is too long
->          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'msi-map', 'ranges', 'reg' were unexpected)
->          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
->          [[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
->          1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
->          0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
->          [0, 4, 0] is too short
->          from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250808072929.4090694-8-hans.zhang@cixtech.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+> The problem is that rationale is downstream. Instead I want to see some
+> reason: e.g. datasheets, spec, type of UFS device (that was the argument
+> in the driver patch discussion).
 
 
-Dear Rob,
+The PHY load requirements for consumers such as UFS, USB, PCIe are 
+defined by Qualcomm’s PHY IP and are well-documented in Qualcomm’s 
+datasheets and power grid documentation. These values can depending on 
+the process or technology node, board design, and even the chip foundry 
+used.
+
+As a result, the load values can differ across SoCs or may be even 
+board(unlikely though) due to variations in any of these parameters.
 
 
-Thank you very much for your reply and reminder.
+Regards,
+Nitin
 
-I executed the following two inspection commands. I overlooked checking 
-the yaml file, and I'm very sorry for that.
-make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
-make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
 
-After the release of v6.17 RC1, I will resubmit the patch.
 
-Best regards,
-Hans
+> 
+> The only argument here for given value is: downstream has it.
+> 
+> Best regards,
+> Krzysztof
+
 
