@@ -1,114 +1,143 @@
-Return-Path: <devicetree+bounces-202757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBBCB1E9B3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:57:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770B5B1E9BC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:59:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48F021C231EB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:57:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 378647A62B4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06F513D53B;
-	Fri,  8 Aug 2025 13:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FC81482F2;
+	Fri,  8 Aug 2025 13:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="PoXuwj3/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RFcI+hyZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF3713AD38;
-	Fri,  8 Aug 2025 13:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD8212CDA5;
+	Fri,  8 Aug 2025 13:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754661449; cv=none; b=IYb6KgZVgAatLKDVQ1XUOQGVhysJtVcTBQGzwvjXpkL1yQRq9XctJofY2Kwt+RlnNvHjbSfj5qAy6VQDW7rXtznuCApLL/BlWuE75P2gA7EO6yts3bO/dlcP37JipQ+m5WYdyAs5inG5yQFzYzdUqJX7n/RF+1Ty+RLk9nMOA0g=
+	t=1754661564; cv=none; b=fyYGM6lO8phasg/Rdw4BEreJDyQpQrTq5v7NGNnvwHkdXG1qGTWt6qlgx6tCnFChqA086VAw9Rl4LeG8CZxq4yCdCLNK2GGo80bWI/dgJmJNHXnAOZE1i9RZUN5ApTDmsq7teUnSf6Uq0wbqcrJ9Y4bN/CdBbyT5hmyBVWHV1uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754661449; c=relaxed/simple;
-	bh=PajUKIG+d1rsxnTFzvD9VhNvGrQHU8UGNQhvUamGvNM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i7TeyqaCRGUBCbr225jw3fuCEthsIw3YolOhoe7G3Ofo4pQI8W0tVClW7wC4ANm/sdXomEn72DepU5oHIt6xtoq5M88Bd7wzc5fw9/027EY0i++E8KX6aeQtBkrsYbJ/UHB67vRp5rnNKYpjqTbn8aFO4E2RdOc6doPxYrg8+dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=PoXuwj3/; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 013C03D84C9E;
-	Fri,  8 Aug 2025 09:46:35 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id x_Dcxyc46QcK; Fri,  8 Aug 2025 09:46:34 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 342083D8510F;
-	Fri,  8 Aug 2025 09:46:34 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 342083D8510F
+	s=arc-20240116; t=1754661564; c=relaxed/simple;
+	bh=n7Ysa+dxm5v8spXQntkPxQkNqTdCEe12rA4bvGJIlsg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jxm8D7Z97bXDtbED8Tn8ibjAzircizCE5vN3Cn4khkv1dk04BIXl8hzXO9MrVrrJ8qggjlhq4RAfF/vO0CCmgkf6og3oifK7tiAjuterLkxGvowB+2CjpbSihR+PyAAzi9pZmw1Q0fW0dt8g9sGxyYSoDfkYpXE4Syyn6BCyImM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RFcI+hyZ; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-af93381a1d2so375340866b.3;
+        Fri, 08 Aug 2025 06:59:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1754660794; bh=SFTtCwYoU+oAHcmhDwphrupUVwagkfJgXHAqpkplwDY=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=PoXuwj3//2SZ7hSSBL9AY2vpf8qXztJke6N9T5Elb+pEK0U/asopRCI7e7bXP1TsF
-	 z00cOQSp+LfZLxvNFjzthSm/O7H8hE01Og1jX8v3mcuwxiBbFxFiobIaXA20Q726iU
-	 /Q9wEbGivRbG6y2Pc2b1kU1EkrTZlvdf6zQaMvvMWs9CjMk2hH/PB8KjE4MA41WiGO
-	 zxrmWaXtCPYYY5TeLTkcoiSJeOcYHuBn4ANdMpD27WUr/iG3i0jn74b+Q8/dROKyCf
-	 9e52zuuz9Yvh0WeqBWKVw6pHCFqKOcdg4POzG/ZG5B95mryPJG48IQqYAJAy4jCSqd
-	 tCeJl6DLm44Bg==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 5Xvk3l-accg2; Fri,  8 Aug 2025 09:46:34 -0400 (EDT)
-Received: from fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id D2E9A3D84C9E;
-	Fri,  8 Aug 2025 09:46:33 -0400 (EDT)
-Date: Fri, 8 Aug 2025 09:46:32 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 0/6] add support for pf1550 PMIC MFD-based drivers
-Message-ID: <aJX_uOmSODmLfWkZ@fedora>
-References: <20250716-pf1550-v9-0-502a647f04ef@savoirfairelinux.com>
- <znrv5235mga6ns4oue63o2acwmj5gge4c2mr32m7pui4lkamji@cu7zk4skmqkg>
+        d=gmail.com; s=20230601; t=1754661561; x=1755266361; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DcLQcAWgsSc68JDGp9ydxgV/pyrE7bzp3NUCYCyeOHo=;
+        b=RFcI+hyZA5l/Zuux9jSP6x8yVPWVaKR8Al6Jb/jhFXQmdlJkTAOL15EUDwZPXPbTox
+         IDehHXu6EmQIHk5yxEjxKUN0Ny7HWa8241gNEEIWlfOHl+MCE2BN93PlKYzm5GYyW2DE
+         shPAPz1BUp28jqzU66O9x/gg+pOcMJfUhwv9xhvEUnKZSN7CIGiZPjkxULdsnmwcJnwn
+         RrAfSwfxR7OxXv2VXDNiypQ5XM4+8vpuF63XKk1FqIEqqZ4AD61htMVq3BmAX54bDJU8
+         w+YVc8eQ1XRbsxB9xGoUg58p8eN+UY7IseANjrcajF64d+UPIxEg64JocfHedBzc+VlJ
+         Xo8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754661561; x=1755266361;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DcLQcAWgsSc68JDGp9ydxgV/pyrE7bzp3NUCYCyeOHo=;
+        b=I/qxUHNDpCAeetsj8XHhQhdUkpEOTLCH1yS0Il+9TsrbzaMfgBBxDlgPsWDnjw9HWa
+         nt9xvI8A1Yee3R5hJ+Mga1OQHaaY2f6d0RZIeQD9o4+NLSHyFK1JfrdgSTRjCgG6K5sb
+         0KOwN3gRWu4BA0OCnTX+ys/G8iJDYMpF+ceWjfJfpQjd3XFiLaR9EgRep2oamtUdRbYn
+         6+vcQBSQV53CbNXYmeXPF7ASFpXQE0fg16laISsOCCeVzI3xFDEz/9t+1o3th6TZvYmm
+         c6s8k0uPiN1f1QCm++VE2aNr1zXRTojT+C5hngolDCNFv8L/EZdgviwZaVGlhaGd59Wx
+         roqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMhz/ZkjUnPwUMDY3crTJAG9mNLBejDAHxz4Iy2IrzVY6VGpgR5My9bIdsXzMl4IQF9xu+kstdGv/uTJTy@vger.kernel.org, AJvYcCVYe/OA9hXP61w+UbiEmzanEQ+1RP+4NYTAHaaCnvzwLa6n809DvaM/FsfuTWEbOpVY9WV4HRqq+Sdr@vger.kernel.org, AJvYcCWlzd0PKDw0zJIr6IdqsyvXjqmxAQayiSw5Xa8djF6i4jr5tqJf1OjBhdOL8VsKhmLtqajqQJLhWc+v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzso44dmzkPD/BtY5ubJ1Dr1K1WppgaCakoY4Mq9LCu6HDraNKr
+	IY9whzfsHeLiLaRhljalgJ6BvTbn+++07lAyBwUDgwQNqAohfLEWhi3Wck+V0KY60oFyJb/r9QN
+	cs4NCFYM7uDYfikX4Ce0CFX3KMk9kfLQ=
+X-Gm-Gg: ASbGnct/kHPEjnaduosXJZjbaUHPSeAo5QMdF+OmIa/Z1NTD+dCFxgLa0twJcf3ZhGy
+	tRgn64qMH6HI9Z6J4Ird2j1Lg+ZM76Z7jAiGdqhq8QVTEyFuaGWgNL1qm5Oluh/ehtPrB1GooS/
+	TNjdJChAF4jpbRq5Wy8N2ZA6UPihr7TU8jk27MqK6W4Vtd6YqnI0sCuN497FkmzA65IUCAtJlPS
+	SbqYFIa+dsdrnHZkprW
+X-Google-Smtp-Source: AGHT+IHpkQ+u2CWeR1dH/haH7QYO+80WoQubSJ75IFnilLoEhsG/sE8G3N6mVHFCCV+EIG0EfIQzD0pvkaTyLYIYcxI=
+X-Received: by 2002:a17:907:9705:b0:ad8:9c97:c2e5 with SMTP id
+ a640c23a62f3a-af9c606d956mr292716666b.0.1754661561089; Fri, 08 Aug 2025
+ 06:59:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <znrv5235mga6ns4oue63o2acwmj5gge4c2mr32m7pui4lkamji@cu7zk4skmqkg>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
+ <CAHp75VcHR78Uwgo74n-i3a1sSfDxBwVKWihcnFp5x3d=puAySQ@mail.gmail.com>
+ <13505077-fb36-4126-9767-fead98e01009@gmail.com> <CAHp75Vf7PbHPFuVjmK1xPMZxotc81S6FAQkgZ0ETNXSWozaUQw@mail.gmail.com>
+ <83a6949b-6e84-4a0d-9a95-a9f45f62e84e@gmail.com>
+In-Reply-To: <83a6949b-6e84-4a0d-9a95-a9f45f62e84e@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 8 Aug 2025 15:58:44 +0200
+X-Gm-Features: Ac12FXzgyAyc3seV6r0ebLtj_x5DG7zqv9HJrT_J2VShUz4lsBzxHTEsdsi5UdE
+Message-ID: <CAHp75VetWyWY9F6u6edADq2aUzdFOz8wWWhPsRs_fWk8eNGKmg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 08, 2025 at 10:12:09AM +0000, Sean Nyekjaer wrote:
-> On Wed, Jul 16, 2025 at 11:11:43AM +0100, Samuel Kayode via B4 Relay wrote:
-> > This series adds support for pf1550 PMIC. It provides the core driver and a
-> > three sub-drivers for the regulator, power supply and input subsystems.
-> > 
-> > Patch 1 adds the DT binding document for the PMIC. Patches 2-5 adds the
-> > pertinent drivers. Last patch adds a MAINTAINERS entry for the drivers.
-> > 
-> > The patches 3-5 depend on the core driver provided in patch 2.
-> > 
-> 
-> Please add to the whole series :)
-> 
-> Tested-by: Sean Nyekjaer <sean@geanix.com>
+On Fri, Aug 8, 2025 at 3:30=E2=80=AFPM Matti Vaittinen <mazziesaccount@gmai=
+l.com> wrote:
 >
-Will do.
+> On 08/08/2025 15:52, Andy Shevchenko wrote:
+> > On Fri, Aug 8, 2025 at 7:38=E2=80=AFAM Matti Vaittinen <mazziesaccount@=
+gmail.com> wrote:
+> >> On 08/08/2025 00:16, Andy Shevchenko wrote:
+> >>> On Thu, Aug 7, 2025 at 11:35=E2=80=AFAM Matti Vaittinen
+> >>> <mazziesaccount@gmail.com> wrote:
 
-Thanks again for testing!
+...
 
-Thanks,
-Sam
+> >>>> +       BUILD_BUG_ON(ARRAY_SIZE(st->channel) !=3D ARRAY_SIZE(chip_in=
+fo->channel));
+> >>>
+> >>> We have static_assert(). Why can't it be used?
+> >>
+> >> Don't know. Can you please enlighten me why one is preferred over the =
+other?
+> >
+> > Despite already made changes, I answer to this. The static_assert()
+> > has at least two benefits over BUILD_BUG_ON():
+> > - it can be declared in a global scope
+> > - it produces more condensed (to the point) error message
+> >
+> > That's why in general it's preferable over BUILD_BUG_ON().
+>
+> Thanks. It's always good to learn something new. One of the great things
+> when working upstream :) (Although neither of those points seem to make
+> a big difference here.
+
+I think the second one is the main point in my comment. Yes, the first
+one doesn't matter.
+
+> Oh, and AFAIR, there was a variant of
+> BUILD_BUG_ON which allows you to add a message(?))
+
+static_assert() can be one or two args, the second variant is with the
+custom message added.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
