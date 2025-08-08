@@ -1,120 +1,127 @@
-Return-Path: <devicetree+bounces-202778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47AD9B1EB02
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:03:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80370B1EB10
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD5A0AA3519
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:01:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 111A6AA3AFF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9112B281341;
-	Fri,  8 Aug 2025 14:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1D1228152D;
+	Fri,  8 Aug 2025 14:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PdJvEX6A"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="WbnCVx14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06B828134F;
-	Fri,  8 Aug 2025 14:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6DC827E7FD;
+	Fri,  8 Aug 2025 14:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754664970; cv=none; b=duHKMqGHmUAX3TcDskNWuFyk7EutDLs6Gl60WjLe6oK7awrG9OVNI8gnZQW/8a6TZwYzOzl7LTMPVc3i1xUV4LPrLYBYlomRuTIg/Ib5S78vSBm1PZ5vDEhWLGOdUv9iYiX3zMYLB44z/YDalscY0T+/mm8NxU8jCwyJXz4FW98=
+	t=1754665154; cv=none; b=oXlhsRdrdOpOvx3EuJoeejIxvh4R+CEZ2dL87OY+utaq9+0zOCGYBmqdsrJPhZmt70GKR2a5JY7ObSpJ8s155ysV5wE6e3kooEwASGBOcN3B36NXRG7bHG5F+qLI4tB2YBnWyCWbNV6iQ7soSKAhTz70ZN1Cs69ScCMtBGltGts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754664970; c=relaxed/simple;
-	bh=9cmQQnt+5Vh9t9k0T6ZjOC/Hqj03S1Kl6bmJEzpiMNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uOBzPSr65rA7pvOXRKgqBn0VFAFqYtnAgP2CiiNazsiNS6q2p/9ccFbFpYFJ2C1UfBY+jBsXDq0BqtdXEAtACCEALlukmubGRtqTfudhpiKQXlCP+6aR6qj8rPBuxfYUbfv3LXQiIKeWlVVZgxIyqMC4F+hCS4vA8wJDNYLHeEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PdJvEX6A; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754664969; x=1786200969;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9cmQQnt+5Vh9t9k0T6ZjOC/Hqj03S1Kl6bmJEzpiMNY=;
-  b=PdJvEX6AU1BcP2vlKtY/mBjbb+YhaVBwQ8ZC3zJsSHA8fr9xzcnxb7+V
-   AQ0bgqLeB/qZPx7Q+EcYtNGW6o4yQPGoxUFRUp+QaRXg6UrehT6nRttDO
-   AzYlkhaeP/HvFUHPSuBFDaup9BOalfjq9byGu8VdAZ3VWuQMnlz4qQGIa
-   J2mIF20AG7Ttb5aEQqqQdaLGWDRi23xiQ8hBC2vmrz+SvMyylLvpHrkzK
-   Jk+0JsPoQJi3vjs1d/6cDG2BiCeg9ixVTOLhQkxiiJZBLR8x4Yh7c5esk
-   DznsRSmsyW5I5zkz4dqhUIIPYbSWz+2NoVbQtCn1XlKAqbLORkUP/8js+
-   w==;
-X-CSE-ConnectionGUID: bm1N5uvVQaWr75REM5l8cg==
-X-CSE-MsgGUID: EghfGIO6Sd22M+fh4tlLXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68379123"
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
-   d="scan'208";a="68379123"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2025 07:56:08 -0700
-X-CSE-ConnectionGUID: X6Yod+yjSSeDE8W/x5Ojgg==
-X-CSE-MsgGUID: VWgRjysaSEilNZcCFOMK9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
-   d="scan'208";a="164583186"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 08 Aug 2025 07:56:06 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ukOVn-000420-0B;
-	Fri, 08 Aug 2025 14:56:03 +0000
-Date: Fri, 8 Aug 2025 22:55:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Wolfram Sang <wsa-dev@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
-Message-ID: <202508082259.wdaPWdYV-lkp@intel.com>
-References: <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1754665154; c=relaxed/simple;
+	bh=JS5l0JTvxjfWhfOl7mWhGheL2sKK5NX/r1b9XGlPSYQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=S3rkz4XzuXljVCnb00OOF+VBlLuKPg1n7lLPtekzISZefGbDh/2qPnhZQyUwxOTJrwS2FkgRWJQTUDpyUcUwYtMkFaimqxLIA32+ucClQXOpN1DEznPXI1PBxe9h80NZY1HMZCJgj3oaaZYQQv6d9DHMKjq5udBOm+1HGHAQu+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=WbnCVx14; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 578DVG8N014777;
+	Fri, 8 Aug 2025 16:58:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	NKA5zhqFYGJHApG3LHZ1wsad9XAvKI/FIK3QKmiMCpI=; b=WbnCVx14jjeuJHN6
+	GJIn+Fy7uBInALd0yOmv8xY1N92s1MboPmYDOVGOfKlyJ1dR9TdIdZfZZ4z7u230
+	hOZgX2ZobRFpBIOy2vaW04NBtp7pze1/toMUiVE1RtWulxbwt1s/1hMJbrSvEsKM
+	mv8O0GZCz25MOCQgGka/uT3VEShhKKugQsfHOZnGaYcy6pyoWjDb679PqL8ypGYf
+	RLUCtOMzNsz/XeURNPf+0IqflqC3ZDk4Ifwp9S9Vi0zr9ltkc3dOgbgt3l/YYUuW
+	ArazUWAES+HMyrjVVRVsnQhgUvAFXTm2W7oQM/aPTere3xJqK2sqyKGuQm7MwPo8
+	C4I3tQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48cq00pdk0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Aug 2025 16:58:44 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A8D2340046;
+	Fri,  8 Aug 2025 16:57:20 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D7F79727648;
+	Fri,  8 Aug 2025 16:55:57 +0200 (CEST)
+Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 8 Aug
+ 2025 16:55:54 +0200
+Message-ID: <e7cd764d-bc6d-4e39-aa03-0eee8e30d3e5@foss.st.com>
+Date: Fri, 8 Aug 2025 16:55:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
+User-Agent: Mozilla Thunderbird
+From: Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH v12 2/9] PCI: stm32: Add PCIe host support for STM32MP25
+To: Bjorn Helgaas <helgaas@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>, <mani@kernel.org>,
+        <robh@kernel.org>, <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@foss.st.com>, <p.zabel@pengutronix.de>,
+        <johan+linaro@kernel.org>, <cassel@kernel.org>,
+        <shradha.t@samsung.com>, <thippeswamy.havalige@amd.com>,
+        <quic_schintav@quicinc.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250807180951.GA56737@bhelgaas>
+Content-Language: en-US
+In-Reply-To: <20250807180951.GA56737@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-08_04,2025-08-06_01,2025-03-28_01
 
-Hi Wolfram,
 
-kernel test robot noticed the following build errors:
 
-[auto build test ERROR on geert-renesas-devel/next]
-[also build test ERROR on linus/master next-20250808]
-[cannot apply to v6.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 8/7/25 20:09, Bjorn Helgaas wrote:
+> [+to Linus for pinctrl usage question below]
+> 
+> On Tue, Jun 10, 2025 at 11:07:07AM +0200, Christian Bruel wrote:
+>> Add driver for the STM32MP25 SoC PCIe Gen1 2.5 GT/s and Gen2 5GT/s
+>> controller based on the DesignWare PCIe core.
+>>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wolfram-Sang/arm64-dts-renesas-r9a08g045-Add-I3C-node/20250807-231733
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
-patch link:    https://lore.kernel.org/r/20250807151434.5241-10-wsa%2Brenesas%40sang-engineering.com
-patch subject: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
-config: arm64-randconfig-001-20250808 (https://download.01.org/0day-ci/archive/20250808/202508082259.wdaPWdYV-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250808/202508082259.wdaPWdYV-lkp@intel.com/reproduce)
+>> +
+>> +	return pinctrl_pm_select_sleep_state(dev);
+> 
+> Isn't there some setup required before we can use
+> pinctrl_select_state(), pinctrl_pm_select_sleep_state(),
+> pinctrl_pm_select_default_state(), etc?
+> 
+> I expected something like devm_pinctrl_get() in the .probe() path, but
+> I don't see anything.  I don't know how pinctrl works, but I don't see
+> how dev->pins gets set up.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508082259.wdaPWdYV-lkp@intel.com/
+Linus knows better, but the dev->pins states are attached to the dev 
+struct before probe by the pinctrl driver
 
-All errors (new ones prefixed by >>):
+/**
+  * pinctrl_bind_pins() - called by the device core before probe
+  * @dev: the device that is just about to probe
+  */
+int pinctrl_bind_pins(struct device *dev)
 
->> Error: arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi:127.1-5 Label or path i3c not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Christian
 
