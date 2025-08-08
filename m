@@ -1,149 +1,151 @@
-Return-Path: <devicetree+bounces-202759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FE7B1E9D6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 16:03:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1907BB1EA03
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 16:11:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F02D1C24747
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:03:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D52816A575
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:11:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05546223710;
-	Fri,  8 Aug 2025 14:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4AC27CB0A;
+	Fri,  8 Aug 2025 14:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="kyJqnXwX"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="AGZd0/Yg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA93C1B7F4;
-	Fri,  8 Aug 2025 14:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3BE827E05E;
+	Fri,  8 Aug 2025 14:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754661803; cv=none; b=YIiULVEMxeiVaJr4YJeiRl7Ivb+x7hGkS+Vbgw9N4M/+/jUs436HfLwoLFUcc7f64c+sXS/xQ47RMPY0M8lXe/TDRSASb8aJQ92aYj7Djhf0Bvx81KDR5sqUPqjMwmTQJFvf0Ap0R7Huq3E+LNAb+hoZuozUvC2VBCvti+10IWs=
+	t=1754662281; cv=none; b=PzQONaL5plztEWUG1JUBIMH9n086d65k5lCobAqgUABDTcqzpcihKNraNklHB/IqLaRRKvoTOcwbAhUbVuYHv7g55Q2f72vjIOjaWjGybVeJQB7tSKd6gwutwOOwxfdSyueN0ajp9LdhDSJU2HKlyAA5IT0xZWIPT81oKJcPHr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754661803; c=relaxed/simple;
-	bh=QwyJWn1v3WAqphWgHvxIPI2oFVDIAeFdWM4Gnk/jbpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KFXBIkw+uryb8RX64qU85ek5Cy98Y9VzTeO99+/i6Ri4blflvbda6jKd+OQFcpT9hcN3JK++7/Yf1onf5nDgcnpvWBC2K82lhV9aY/rhZbSZsggSQDG4hNGc/r5RCMmi2i6aAkkYOGvT/PeK78lBtfBV31ZJ13TvE1plKkflBOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=kyJqnXwX; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 832FD3D8511E;
-	Fri,  8 Aug 2025 10:03:20 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id UiYRFzM-k5nG; Fri,  8 Aug 2025 10:03:19 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id AD3743D8511F;
-	Fri,  8 Aug 2025 10:03:19 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com AD3743D8511F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1754661799; bh=iGxSN543u6zBI2HpCOyAq8UQ3mK2B6N3dnkwlQ0/x54=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=kyJqnXwX/YgUnbw8wKN2P/80haewqhbsbZZvlkPIlsRvkErKhnKJLZSuMhk2qosTg
-	 2YVazIXK3CAEtm6tsGf71CYOseFIYTtzwxzDeY2lnKx+3YuwgbNXpWsHVDvZSRRXPp
-	 7UvDQEM81tkhIlOnRfFneaBHFo04fkMEUpXY0NPHl7PdwFbAzcRJvCFFGSHNi0SkR5
-	 HM4F1R0UOX0x/7UYCaNq2EYfY85OlEW2gp0TsPtzsBKQS9Sf0sLhg++MzWETVToUel
-	 LiHoa3DzJma1+gdvuWOL8z/vDI85zC/oNSFSjh4ft2Dqmn7DrGZKBkoK3BW7Z4vtk5
-	 AbP6Tz33IUWdQ==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id Rp1CR3m8GihI; Fri,  8 Aug 2025 10:03:19 -0400 (EDT)
-Received: from fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 524F03D8511E;
-	Fri,  8 Aug 2025 10:03:19 -0400 (EDT)
-Date: Fri, 8 Aug 2025 10:03:18 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 1/6] dt-bindings: mfd: add pf1550
-Message-ID: <aJYDpp9Y6vLmzUfg@fedora>
-References: <20250716-pf1550-v9-0-502a647f04ef@savoirfairelinux.com>
- <20250716-pf1550-v9-1-502a647f04ef@savoirfairelinux.com>
- <gj565636v5qgohhf5usklfqydkc6lzifzhrbquoyawbwvhdlma@kajszdivkp2e>
+	s=arc-20240116; t=1754662281; c=relaxed/simple;
+	bh=nMg2b6x/9MBlQOj76X/PeJ+VTbAfV3eDFBOfaO6FsZY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dy1/cdt75YeC+NDPbcFAgTZeXGr4KnndBtjBKi5FiL3M3XFws3s5pAt+f5jqaiY8+d7/kwf/+N7ArM8Whob+UJ/w/UYxFw/TxTgPOtC+ULNSjxvVmZlRJ+rDsQBSxMTigZO0JGXOC0EngP61myhRS/dzU26U4x+Kx2maLlLI2wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=AGZd0/Yg; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 578DHp7a026122;
+	Fri, 8 Aug 2025 10:11:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=94LPkGFqnAm2n6dGMBjDHPJUj50
+	096iqhag5yT3Ea8Y=; b=AGZd0/YgNz9kXkOvXq5yF8ifvFB077u4KzUxACI49Ri
+	zcaDrPFrphTA6qLJqaxXHvnQ3DKvo0D5pyw8sM7QxAEZPpb4vIjCsZceGUzIc08s
+	qYabstLnjsbnnUkm2VcLMEemx//Wwj6r3ymNANRX9izsht+dNnlpqbl5G01QgRKT
+	aPaby90eluAf5bul/hqyNIF7PTfaLvOCrg0HIGZFG9dX+nKyaqOCWHRDUo1TQDRR
+	Sv8rkuacd4YrmbgpHLpiyBJUFraeJbkSMT5c2dhv9ZeDkmVO7+Iky3L/xUnT8LzF
+	uVKdPRKkfvEcNXuDgO89PRBH98J+W6Stil2wG43lMvA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 48dj0708ab-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Aug 2025 10:11:03 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 578EB2Ax062919
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 8 Aug 2025 10:11:02 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 8 Aug
+ 2025 10:11:02 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 8 Aug 2025 10:11:02 -0400
+Received: from Ubuntu.ad.analog.com ([10.32.13.94])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 578EAqfA014662;
+	Fri, 8 Aug 2025 10:10:55 -0400
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v3 0/4] iio: adc: add support for ADE9000 Energy Monitoring IC
+Date: Fri, 8 Aug 2025 14:10:12 +0000
+Message-ID: <20250808141020.4384-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gj565636v5qgohhf5usklfqydkc6lzifzhrbquoyawbwvhdlma@kajszdivkp2e>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=R4sDGcRX c=1 sm=1 tr=0 ts=68960577 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=2OwXVqhp2XgA:10 a=MilyVcYQlkyFfA35S9cA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA4MDEwNyBTYWx0ZWRfXy4sicPdqT4TV
+ svuTk0lIYIqlxRtdOMp0dzowY+w7SoK1uhyNXnSnjkZK77zvq+hakqvq1Zq4NN7fE5ejnLyni20
+ I3lj93YbZHQBezG3FEwPYkR/xUH/nt31VS0o2cIys2tgwU0LKzcDmzp5h2wM8gDugj3+6WaPmYe
+ 8hQbJJ9NSCBv6/c9dtU7dYMwFzveEuD8PBg/AMaatuHwfRPCDFadFNlmfKpxWF29Vu8FrvU6u9Z
+ 6Gbs2RrmqnQcat659nfoZpySVby7DP6JHwfXqE0gTLYC7Jq3XDgMlhDiPC1qKpHvUInFOEq/6q8
+ xA/RlxhW+1Hwz+bWD31Y4KOhxJoRao0p30uXBSEU5gwoIuTNoMM+I7G1EIdhxddm1sQGfjnfjvq
+ qTYcVXKJ
+X-Proofpoint-ORIG-GUID: GJ3qRYj0lwvkDXdmAglw3ZtfIJVxtSP5
+X-Proofpoint-GUID: GJ3qRYj0lwvkDXdmAglw3ZtfIJVxtSP5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-08_04,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ adultscore=0 clxscore=1015 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508080107
 
-On Fri, Aug 08, 2025 at 10:10:35AM +0000, Sean Nyekjaer wrote:
-> Does it make sense to show that the driver support suspend to mem
-> states? Like...
-I don't see any reason not to. So, I can add that in the next version.
-> 
-> 
-> 			sw1_reg: sw1 {
-> 				regulator-name = "sw1";
-> 				regulator-min-microvolt = <1325000>;
-> 				regulator-max-microvolt = <1325000>;
-> 				regulator-always-on;
-> 
-> 				regulator-state-mem {
-> 					regulator-on-in-suspend;
-> 					regulator-suspend-max-microvolt = <900000>;
-> 					regulator-suspend-min-microvolt = <900000>;
-> 				};
-> 			};
-> 
-> 			sw2_reg: sw2 {
-> 				regulator-name = "sw2";
-> 				regulator-min-microvolt = <1350000>;
-> 				regulator-max-microvolt = <1350000>;
-> 				regulator-always-on;
-> 
-> 				regulator-state-mem {
-> 					regulator-on-in-suspend;
-> 				};
-> 			};
-> 
-> 			sw3_reg: sw3 {
-> 				regulator-name = "sw3";
-> 				regulator-min-microvolt = <3300000>;
-> 				regulator-max-microvolt = <3300000>;
-> 				regulator-always-on;
-> 
-> 				regulator-state-mem {
-> 					regulator-on-in-suspend;
-> 				};
-> 			};
-> 
-> 			vldo1_reg: ldo1 {
-> 				regulator-name = "ldo1";
-> 				regulator-min-microvolt = <2900000>;
-> 				regulator-max-microvolt = <2900000>;
-> 				regulator-always-on;
-> 
-> 				regulator-state-mem {
-> 					regulator-off-in-suspend;
-> 				};
-> 			};
-Will include these in the next version.
+This patch series adds support for the Analog Devices ADE9000, a highly
+accurate, fully integrated, multiphase energy and power quality monitoring
+device. The ADE9000 is capable of measuring energy consumption and power
+quality parameters in industrial and commercial applications.
 
-Thanks,
-Sam
+The series includes:
+
+1. New IIO modifiers for power and energy measurement devices, including
+   support for active/reactive/apparent power, RMS masurements.
+
+2. Device tree bindings for the ADE9000, supporting waveform buffer
+   configuration, phase configuration, and trigger settings.
+
+3. Complete driver implementation supporting:
+   - Multi-phase energy measurement (3-phase support)
+   - Power quality monitoring (voltage swell/dip detection)
+   - Waveform buffer capture with configurable triggering
+   - Energy accumulation with configurable time windows
+   - IIO buffer interface for continuous data streaming
+   - Event-based notifications for power quality events
+
+The driver provides a comprehensive interface for energy monitoring
+applications through the IIO framework, enabling userspace applications
+to monitor power consumption, quality, and waveform data.
+
+The driver will be extended in the future to support multiple parts such as
+ade9039.
+
+Antoniu Miclaus (4):
+  iio: add power and energy measurement modifiers
+  dt-bindings: iio: adc: add ade9000
+  iio: adc: add ade9000 support
+  Documentation: ABI: iio: add sinc4+lp
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   12 +
+ .../bindings/iio/adc/adi,ade9000.yaml         |  110 +
+ drivers/iio/adc/Kconfig                       |   19 +
+ drivers/iio/adc/Makefile                      |    2 +
+ drivers/iio/adc/ade9000.c                     | 2033 +++++++++++++++++
+ drivers/iio/industrialio-core.c               |    5 +
+ include/linux/iio/types.h                     |    1 +
+ include/uapi/linux/iio/types.h                |    4 +
+ 8 files changed, 2186 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ade9000.yaml
+ create mode 100644 drivers/iio/adc/ade9000.c
+
+-- 
+2.43.0
+
 
