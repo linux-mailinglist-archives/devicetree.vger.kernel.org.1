@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-202786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DEC0B1EC75
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:53:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D15DB1EC7C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D93E7580CD2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 049B3188F75E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:54:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE65A286897;
-	Fri,  8 Aug 2025 15:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AC6285C8D;
+	Fri,  8 Aug 2025 15:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxcxtoVX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d/mvJqO2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D99286413;
-	Fri,  8 Aug 2025 15:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36AE019EED3;
+	Fri,  8 Aug 2025 15:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754668331; cv=none; b=GYzDZdjE+YhSYpO/EVj/O/12ha9WYVqmCIxFf6rfgjLhP4Ybc2eOg4aP6mKT3dej1ayIe+pKXhODK9v6lKGltDxLJFM415zj8FOwu9mioUPNuD6LyyjOjkEf/SHsAdb2kFZXD5b3A6cuZSIu39/cVqhIIi3gvJj83ywV9dOl5HU=
+	t=1754668423; cv=none; b=RG/Hili0DXqepE+cY+AUBiX4qGOiHzZWBtCEGitV9wAoPDts0dPLGVGjQNv41M7B++GRHITBBKlK1Mv+GJbmqpCnDYTxF9CM+gWjogCe3cTDKXLtKRFmOS5ZjiuKuNbMHTKxWxXwbm75AyYgXXUyXFwU/HnUL/Nq85XdukrqIa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754668331; c=relaxed/simple;
-	bh=Gs6NSTTW9TZES8wQNyVAdg6U2mX0mvlwLxDMZvmhOSM=;
+	s=arc-20240116; t=1754668423; c=relaxed/simple;
+	bh=r3lg4SDRoe6KbDxHcwFKZkhZpKory0vDk0Qc6SOJO5Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OOIGvN5wMj0+d+/7UsG36QtD8s9TzV4U74iAOemOqc8cBx5crO8dH8aYQmaR8NMA30cMcLxMUK+SpOlp0amBUqhcLRyQCgRiaAJ98Z9+lPWIQRADeIl4ViZt4yhYcM4lUDk+P+OVYbF5yS+J3W5L5NSQROLUqSehHdslgmyC3wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxcxtoVX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AB66C4CEED;
-	Fri,  8 Aug 2025 15:52:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=P2cIY7smNzB7ABO1FlHvWc6As9Ghb13LWhEuuMCSiJwchZ25Aa7up2D8RgELP1NPK5lYTPlgSbig2XDWfZhWlZ2Bd7VVKkRg/WCrXP3N3tlowNqLCKwDk9hiWoX8mu2iBjntkjkWSht33f60VW2IuzjKdp6L4v4a5AqNyUccgS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d/mvJqO2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B0C2C4CEED;
+	Fri,  8 Aug 2025 15:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754668331;
-	bh=Gs6NSTTW9TZES8wQNyVAdg6U2mX0mvlwLxDMZvmhOSM=;
+	s=k20201202; t=1754668422;
+	bh=r3lg4SDRoe6KbDxHcwFKZkhZpKory0vDk0Qc6SOJO5Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pxcxtoVXvrsE1YfcZf1YFVIBpgAxVUufizVV3RjSG/AB2Arwhh3Nkwn/vVqHAx1pf
-	 50riRRjAPxxkPTTgkCcpJ9FVfahOTO0BqJuUNh+9zj49+YYNyJfrQjKBhq5amX+jpk
-	 pHJ1Vfq3WL050O0FO6G6IztnHCXAgv/BQLqhc+FXybKaxCtCbYXi2DEoV+Vve7SAhl
-	 BbqpJtIIjVifMgJMcNd7shX1OsToB7tMIJ+crwKAXNwe3i/XF5dpfEVLd5H59rpphw
-	 Z/J67krGV9uvwjc2AdGkQzSizkwSdqMCtRhLLn80ymBOsXEpP8sxSaLXR11YthKgVe
-	 O3j9Bh6kU+vig==
-Date: Fri, 8 Aug 2025 16:52:06 +0100
+	b=d/mvJqO2v83g6yEjnIk8rDltIYxCG8DBXGsuPprhn+yzQLX0oeP/IXHkAxpWW6L7x
+	 Pe5J6bL8PMdPmrY2ueSBFVA3Xbf7Ul8gbc5dr3rwUKa0CfMcdHaygGXFLy3rl1Q0wH
+	 712pnt3NCGmUMPPckllP1wq1JK4n3BJTPy6it5w1LqauR56D6qDUsaiiEb5VJrt16H
+	 J1P30j1MDJyDlmxr2BxDxQFea3MW+F4gHCwcVNcL07mFMgXD4OCZgHVmOh/IhiSQ8u
+	 zy4/0wRNyFalPsa3z9oHPH4icGB7+t2X4ST1PwEVfdODGT2qsDtqRCTGMPkhiGehvm
+	 K6FOAYSeUxUiw==
+Date: Fri, 8 Aug 2025 16:53:38 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA780 device
-Message-ID: <20250808-demanding-upscale-821f23db6ea1@spud>
-References: <20250808030510.552724-1-chris.packham@alliedtelesis.co.nz>
- <20250808030510.552724-2-chris.packham@alliedtelesis.co.nz>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: Drop isil,isl12057.txt
+Message-ID: <20250808-fanatic-unblended-63c0414e6ed6@spud>
+References: <20250807214414.4172910-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,33 +58,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2FUh3mvXHkn/E7UG"
+	protocol="application/pgp-signature"; boundary="GwELIG7wYKloDHrN"
 Content-Disposition: inline
-In-Reply-To: <20250808030510.552724-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20250807214414.4172910-1-robh@kernel.org>
 
 
---2FUh3mvXHkn/E7UG
+--GwELIG7wYKloDHrN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 08, 2025 at 03:05:09PM +1200, Chris Packham wrote:
-> Add a compatible string for the INA780 device.
+On Thu, Aug 07, 2025 at 04:44:13PM -0500, Rob Herring (Arm) wrote:
+> The "isil,isl12057" compatible is already supported by rtc-ds1307.yaml,
+> so remove the old text binding.
 >=20
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---2FUh3mvXHkn/E7UG
+--GwELIG7wYKloDHrN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJYdJgAKCRB4tDGHoIJi
-0u/lAP4i/+m/kGSELzeD1XXcaFUfEL5ww6z9C/xi8We6nrFGKAEA9mdMwHA5+wVt
-Gn5clIZRKg8jJZ1hCIGhRJ6UX020+wM=
-=5HNm
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJYdggAKCRB4tDGHoIJi
+0oUDAPsFO9K9ZHbdiNXQMYiEdjw/RivaeL3AREA8tyzOgFFZ+QD/fb424Bd1kCF+
+BvtA7YNoRILpAskkXHBEUjDC3oV2WAE=
+=IxRN
 -----END PGP SIGNATURE-----
 
---2FUh3mvXHkn/E7UG--
+--GwELIG7wYKloDHrN--
 
