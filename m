@@ -1,216 +1,204 @@
-Return-Path: <devicetree+bounces-202626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4EAB1E42B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:09:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA502B1E44A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:20:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1A033B4500
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:08:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B69A37A5B67
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CA232566D3;
-	Fri,  8 Aug 2025 08:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6673259CBB;
+	Fri,  8 Aug 2025 08:20:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cKr4NVpf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ACYMXpLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013041.outbound.protection.outlook.com [40.107.159.41])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3CF2638BF;
-	Fri,  8 Aug 2025 08:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754640481; cv=fail; b=pE1NyIJ+o2Is2RzPdy0WC2W/hCQqks8Bw658xwpuiAuH9QlrTpeJHw38q9mbn2u6gj5JKcHQ0Ep80CLYoDsGcr0wyIW88zf1LD3l3gn7JniIAYP0nq8X6CqRsAYtVHsKfqHDilHBfvReIKJHqfqJniyrP7WGFL8ds9P3caPCM8g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754640481; c=relaxed/simple;
-	bh=8hP3p2ikldoWxE+oVdd9eIrxexltKvFN63gtwky6r8s=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fL1jG0vPcRZAytk+ulzR7wXddxvBSUURTXV8iApYZWL7NzKLzX3AGM+XU6eWrG0wM8kKzEVGlStN4ptHAwmdqtBuWovR9m7kVLsOMAb3v56lA51DPjrOTWo4k+xzExg3+BULnyqqc4EAaYPwjOvX4JGQVqDvqnqhwvsGP4ENBn8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cKr4NVpf; arc=fail smtp.client-ip=40.107.159.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=H1iOYVzWK75EjZAJ5ZqTOMt+0YolLSUIDUKWRTK5O//VBSbnFrBdptFyiQSAfpAQeQewg0DRzv7O/eQhzqxbK4rCFJP6Eaf9ahj6bBsuVDSA8f0rIg1L1VzzGeuT0WXNVwzEbN6jQpLz9CQ35cWVfDf594txyaeCy3FMuTrCA81lKvhTb1Rb13/j3NSitvY0rKdmWAsXsPXVAX6pWUjm3IF9CKOCvEVMJFqCj0gCBPlDAq8QJ8RbkkV3PsXbm65mffN0GtMeExPfF6ewPpDMS7te/cxK8qRfZKETBW1EWL6YnfGfzqxuRC++9ZX1jVtjtS3dL6ch4rvDgw7+dcqklQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kMoPaf7vVFCkt56La2a/yrev0j8Z8aFCG46aMOvwuRw=;
- b=CwsP8hXKrplWRA+87psP/y1DWdWMNFUDFXeTOI0j9PW0iyRctABHF28x8MotDvgGJWP+OL+HoDwHSclg1wRxIGLKjpqAKg8ozMiqaFt39XtrpYwBcu0fzknvtxCwPQzRvcSJVs1dRnztyQysgrgiGukHQM6URC+QWG+BPNes7ha2FqTmhniYmqppZxSXQbivHtH1wLH+4Gk5FdaPygC7b/CzLqY5pb6v5BE6bgdV8+VmAjq3pL6UxbGFFxiu54foLdZ9hkS7UcRECQxvYKGAWN3aOnZIHCEU8H/GWIpadMIWy8jRH8ELQ7QX/c1RbArZE2sjwSNuhRfBtdvLmPnOnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kMoPaf7vVFCkt56La2a/yrev0j8Z8aFCG46aMOvwuRw=;
- b=cKr4NVpfvpncQN/+2s/O6Tody52j+tIs9pGIAe9GDOagX5Fc/fUJRmvkBHEDp3yiZKOf/+jD8w3wN8dwIVknSD8jBC3Ke6sDB5iE2GPmx1FMPpkVmW8LLix2mSFmWAfqMXNSvKP7O3E+uR/+WQblTC2HVuPvwk5PgQgqVPHZJp9onobKPDNbhsNbDwdTZH/ijH95Z9YYlCcOY+C4/pq1aR2KBfNltRK9uYWpfZEHA8+Kzo7DnOU/dvmrAX4sX3V6FdmWhE5QgeTcvyMyVPZwuNRZERpN6zlmhPEcuISVrZWtbFjVF8BhkF49wA7b0RkZyX3F4b7kshzpqjJJb4bD+w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by PAXPR04MB8192.eurprd04.prod.outlook.com (2603:10a6:102:1cd::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 08:07:55 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::7be0:296:768c:e891]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::7be0:296:768c:e891%5]) with mapi id 15.20.9009.017; Fri, 8 Aug 2025
- 08:07:55 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	lumag@kernel.org,
-	dianders@chromium.org,
-	cristian.ciocaltea@collabora.com,
-	luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: [PATCH v4 7/7] arm64: dts: imx8mp-evk: enable hdmi_pai device
-Date: Fri,  8 Aug 2025 16:06:17 +0800
-Message-Id: <20250808080617.2924184-8-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20250808080617.2924184-1-shengjiu.wang@nxp.com>
-References: <20250808080617.2924184-1-shengjiu.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0053.apcprd02.prod.outlook.com
- (2603:1096:4:1f5::8) To AM0PR04MB7044.eurprd04.prod.outlook.com
- (2603:10a6:208:191::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3A74A11;
+	Fri,  8 Aug 2025 08:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754641205; cv=none; b=GxAQZwg1RkjVReQAg2FhOEBeGKZjU4f8NinO7Ogk6TBAZctfZ4vGPWyG9RP3FGYdqTVR4H2ONDSzE8NazO5TBZf2LBEvRi8gD8yRUzPPGeTATaDkmM6YCRq218xNDYQl9jay0OtxvPJUwGmCS8dXlTYD4FFBxAJEv0yxTNEIg8s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754641205; c=relaxed/simple;
+	bh=c3NroZ1PK5QOerK5RtUeTbp8bGlTMhkWlahVSYgFCVQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LxkUCuXeEqefVc7B1OSDr0wp6aAPOOpN43ZOONoDU2pFW/PFbYMm80sZwgvt8gSzsRQDAJY6LrulXMCw8LkrhxDqZisbdhotF6gOGV85ov1g5wjVIhv5Kuq8bcJxR608z2GwwSvnIewSnzUAJf4V0kToCiuS1qcDYebFjdXkExo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ACYMXpLL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4E1C4CEED;
+	Fri,  8 Aug 2025 08:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754641205;
+	bh=c3NroZ1PK5QOerK5RtUeTbp8bGlTMhkWlahVSYgFCVQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ACYMXpLLU39k1efldn2qFTbPWCskR2n7eI7XSl9vjOlW0avJ+zwwzid20DikChGnv
+	 4d+V64Msl8CWbDVUCakPQ9ffBnYzmlvkQ83TS2BWKgpIscASVx+FIQZKYJlZeEL3Nb
+	 I8RMj5rF+jPhewbKF7TRxYwLqJsm0L2fAiNw4mm+OiBe97vvRV8ZBMwcJFIKZDOu69
+	 QFih9I+gPBd5S/NXGYyMNGOWEkk6q8Lir1jntHBH/Haxqa4j05YJ/uq7H0eQ7uoqim
+	 bYZIa0wdgXbq9ZPHfjQuq71uaVrT2eiKQFOh+o1yHZv9H3mSAo8mIblz5ggGD5MrAQ
+	 beCJyGAXdFZRg==
+Date: Fri, 8 Aug 2025 10:19:54 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Peter Maydell <peter.maydell@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH v7 22/31] irqchip/gic-v5: Add GICv5 LPI/IPI support
+Message-ID: <aJWzKqM9bHuKy+1m@lpieralisi>
+References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
+ <20250703-gicv5-host-v7-22-12e71f1b3528@kernel.org>
+ <cc611dda-d1e4-4793-9bb2-0eaa47277584@huawei.com>
+ <aJSvUWRqLEiARDIW@lpieralisi>
+ <c8e3dc2c-617b-2988-10ff-88082370e787@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|PAXPR04MB8192:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3e67be6-1d22-43fd-8c26-08ddd652add6
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|7416014|52116014|376014|19092799006|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?gO5ACPZB5NyB9lshoFk+RFpuXDaMIzajBz3+EYE+DFbo8FAtqOsnx2PhfNz6?=
- =?us-ascii?Q?69IQxxFcB4ukjNs5Mxlo0Z+GEhrXArQRB6v4Gf9S0EJrklmpq/oWiavMo8UT?=
- =?us-ascii?Q?3BDF/JgOlPSNoGGw68cJaC2A8BAvRi7/vidDLweldw88oWEpr+IBOF5/bwLy?=
- =?us-ascii?Q?pG1u9nu9db9zkCNjP+KRgKzQ+biHwJJvAkbLyqDZO0Tm/qsaC+Utk2tej+xa?=
- =?us-ascii?Q?MrSpU7ehWIYPx613CQjwMA+swRNsrWWE65v3Gaxc6u/xzr9PUPl4T7x9eP/8?=
- =?us-ascii?Q?VgDJM/fLRFV7l1u3QnwLauUA4weU/sCISVLihcn8d9Jx46QX87H81V8CzUM7?=
- =?us-ascii?Q?VfuQprc9DOFpOa/O7/sK36gzhobqxZVWeYjMLuKw48orJ63p8xdEck9EuKPZ?=
- =?us-ascii?Q?E2msAGyV4SfbsJX5RlPx+0s4UBGnAVmqr4neMsIF8MsHr8adGzeLUaNZR7cp?=
- =?us-ascii?Q?+D8IM63YpHKo9q1voRljKMn22+9EsM/5WMsXvxxVih4eqmws/nzbHISNkJtF?=
- =?us-ascii?Q?8k75ubqtjozPBid9gqd5SAenoi5u0DgtAIGgZkfg6XKoXXJIjP4fc4DH3dHb?=
- =?us-ascii?Q?U3vaV2bLmIJ3EAKysPF3pAh8Ov+wWdHDz2vrGqXyOyW44Mxpn4nw5PdMHyqY?=
- =?us-ascii?Q?7Y1tDBAY9YfzoTXepooT33IipGKs/93ohrUWD316onC/GcctwCK1by7IUdSC?=
- =?us-ascii?Q?p4tHtj4tx874f0tRG6ikol6UzqgbRsEWjBP1iGrjVRz5jjWLy1MeDzu556xZ?=
- =?us-ascii?Q?IeiWKk+Jdfu1t/hWlrVLZ2kAcH6bVb7D/T49c2SH7yEGUzPo8HfTwECPiix2?=
- =?us-ascii?Q?xaFjC1TsAxUabhCtZC4YLpcDuT7SbEa+xIt2dlZ6IARyNBjStm6NjvUvA6cc?=
- =?us-ascii?Q?NSQ+XRkmVh7bU4bfUcHPfZw76T8jbjgdvgyMePOhI83SHuUi0UVRGr8SMukr?=
- =?us-ascii?Q?sqMiwcyt3WZSG/fF0bzyFPxVIaTKVaFMjNXM65VWxYXIL1+iFbbtuMlHmJQC?=
- =?us-ascii?Q?ZumZnBsv7xGwhlz0vRIkOyFht2/qEijx3eIEK2hvxZUmkDv3Epduh8UGMliB?=
- =?us-ascii?Q?iUdypzoF/bNaxtElxzypBdK/ksW0gxNRtET0/wPPXy9neQRO5sp0KdCgCYUM?=
- =?us-ascii?Q?GlfKufZrPlVLcbtnfqpDpEdEUS5nRIIh86IrnKuYnEQP4wZDqa3P2S2dVjTJ?=
- =?us-ascii?Q?dJD1J1FCjs4+iCHPQ2yianObmuxuXdDaEkT4rcHeB14cb0QklUG8z1LvOqgK?=
- =?us-ascii?Q?vzXu3aSVTMrrXPJujfJHvFsoVGqvjU05qURFH1KrY4xmm+Oi2wzy/tx1myO0?=
- =?us-ascii?Q?5cRBQYTEw9LpL1O8HpGAGstCUJxreeKKIWigBBV42Oa0HcGA8cX4XcfCrHtE?=
- =?us-ascii?Q?hkt+D4xp9xhkqdXFtU+HO3Zq0V4isRYr1t31tQfwy9yVpzi8jPHGzG7LAAs9?=
- =?us-ascii?Q?A7tw+u/7yQh2+EQGz4qTOJFDTS5hM/thzvoFsI2nzpEJq2QBEbFQSvKLLYUL?=
- =?us-ascii?Q?cqOynt7H5h+fv6E=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(376014)(19092799006)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?0TYcwPJfLBGy2yAkBR12iSHNADjwjLHKRRVtsAxVih6zxg0ofJRuiBfFDC5O?=
- =?us-ascii?Q?tj/hbZeWDDAOmeHhT2Ldp4jHByeykhmRegOZCSf741IUkjFYJvUqVQb38UDM?=
- =?us-ascii?Q?vLFhqGqQnpAhlAQGpr65CD809t1n4v3LTyxBmnehSma34kg3owyfJnOsTnGs?=
- =?us-ascii?Q?77p3PwMctkzGr9WGwX6jSEBxKD4vx1jLyN0M5b2byEgDCMFb4cfcpMpoPqpD?=
- =?us-ascii?Q?yw0dvJIU+yXSxZlXd6+nserjrXMOsi2Pa1hJyQTZ4C9t93P6poJJOb8Vp6c5?=
- =?us-ascii?Q?L2b76Z1P36LYqYzQaQ1PXWjWvzbb8n5CSbkCx7eOR8/YAgykhKIt+KpSh2Gu?=
- =?us-ascii?Q?hwjj4F8rkmo8OJdZToFH7fdQKeAvK8+nEQpKHparVXiYt2+xcKNx1zeCGLEY?=
- =?us-ascii?Q?JOmHFKWn2oL84OEgF79NL7R7lBWLioHWdloySnJ8vT0EMXDE6gFg7iZTzvdK?=
- =?us-ascii?Q?gKlRlGR5iGpcgLRNPpyrT8Eu82x95FRNYqqpSKayQLfkH9iZdVZpLlLgS1uC?=
- =?us-ascii?Q?iMk0cRB7U04oz9+d00wwivW0wGy5dQMuys53VeDj/h5xYav4VrvBe/xG2b/e?=
- =?us-ascii?Q?QOP2+R9j4LcckrR98Stqpen4qt/8Oqu5O/ugQfIXmrAff/JVlNRNO4AtmUO+?=
- =?us-ascii?Q?tyqR6xLc21KQN4/NqOPjQUJt4L06542YLUAObiJ6bUf0decuV+CVk/SFrQ+E?=
- =?us-ascii?Q?yx+P3BYFgVheyp8yqr2VUEneGBm3C6J/pYXF9iJzGHl5fSSdkTRJsQOps7e9?=
- =?us-ascii?Q?pP85VT0+U2twgbroCzP3ZaIQ9/g18kqGtiTv6J+tjKOlDeOZkQWpq1MuyeqH?=
- =?us-ascii?Q?mgBBuG2as7HrrTRB5tDMGSjgnFbreBrkXJRPozMwqisj9j4JY7h0qsde/xUv?=
- =?us-ascii?Q?y7NlWp8ZOLUIvh7Z3iQ+YYjAIFgTq8rdBHL/ArzXDRDp3XG3dmvxsAK1M/Sg?=
- =?us-ascii?Q?cTiAshj4oEvwru/P/1YtPmVh9Yjd58LY9ZuOgLKj3bWI5VW/szAEDjdbV95f?=
- =?us-ascii?Q?2WdptaFsWSX4r6HafeA70Q/2iLPKxjiBCZ0Cyk3xwLuZMO2BoELsJeNElIhk?=
- =?us-ascii?Q?9jvoIksJCF/7WA/KdgaYRefoH0XaC12HyAtNYUpHt+4rNeQMY10C02rgSNEs?=
- =?us-ascii?Q?3CcWJl+YqBVEVBXF2FuDZEEhAr+hdyoZDvu8nw3JVEXcBVuhg6QSyFbuOeM+?=
- =?us-ascii?Q?oULLGJ5uDsttmy5q8l0gBXUHNh/SCxlA9v005h0ay4pDBVskmnmzkQxfPv0W?=
- =?us-ascii?Q?cXqYr/GK7Hxr/t4qMuZ9fUh/xmcWQ689JK3hny4AOS9UUqV7K1D6UGvTBAYR?=
- =?us-ascii?Q?xbpcVApL/eTaRPaqQS2gas9AaWvkEEdXh1+j8B9sIKwOWKrRwqDZXIGSug5k?=
- =?us-ascii?Q?p5cqOYsjC7ZQXjh7IGxkF6fq+kiTPbbCbfIz8QtYOz+G5sRjl61eEg4sFrQy?=
- =?us-ascii?Q?DMgKWnQlQGDtWl9joFh1ScMXuauCdo6/CkcJNrjU/fXYDEzefZzl8bOx8rDk?=
- =?us-ascii?Q?jXhe1A9s8qWk7L+bYCXJC1pJkVm1sdZZwoYF6rOgREz0ryaPWrZXJukRCpnX?=
- =?us-ascii?Q?lc2QBVI4VoDyvH9+58+jKl+XNHTvZvjwAwxNN6an?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3e67be6-1d22-43fd-8c26-08ddd652add6
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 08:07:55.1935
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AppvQtwbHNRGUor8PZjOc5kTWuwcfC3s/+ooRq+dBTX+1UEsDiEKTPSqOyS9bzNx6JtaJR481bezQyQxn3cmEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8192
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c8e3dc2c-617b-2988-10ff-88082370e787@huawei.com>
 
-Enable hdmi_pai device.
-Aud2htx module, hdmi_pai and hdmi controller compose the hdmi audio
-pipeline.
+On Fri, Aug 08, 2025 at 09:20:30AM +0800, Jinjie Ruan wrote:
+> 
+> 
+> On 2025/8/7 21:51, Lorenzo Pieralisi wrote:
+> > On Thu, Aug 07, 2025 at 07:52:58PM +0800, Jinjie Ruan wrote:
+> >>
+> >>
+> >> On 2025/7/3 18:25, Lorenzo Pieralisi wrote:
+> >>> An IRS supports Logical Peripheral Interrupts (LPIs) and implement
+> >>> Linux IPIs on top of it.
+> >>>
+> 
+> [...]
+> 
+> >>> +static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data,
+> >>> +					    unsigned int lpi_id_bits,
+> >>> +					    unsigned int istsz)
+> >>> +{
+> >>> +	size_t l2istsz;
+> >>> +	u32 n, cfgr;
+> >>> +	void *ist;
+> >>> +	u64 baser;
+> >>> +	int ret;
+> >>> +
+> >>> +	/* Taken from GICv5 specifications 10.2.1.13 IRS_IST_BASER */
+> >>> +	n = max(5, lpi_id_bits + 1 + istsz);
+> >>> +
+> >>> +	l2istsz = BIT(n + 1);
+> >>> +	/*
+> >>> +	 * Check memory requirements. For a linear IST we cap the
+> >>> +	 * number of ID bits to a value that should never exceed
+> >>> +	 * kmalloc interface memory allocation limits, so this
+> >>> +	 * check is really belt and braces.
+> >>> +	 */
+> >>> +	if (l2istsz > KMALLOC_MAX_SIZE) {
+> >>> +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
+> >>> +
+> >>> +		pr_warn("Limiting LPI ID bits from %u to %u\n",
+> >>> +			lpi_id_bits, lpi_id_cap);
+> >>> +		lpi_id_bits = lpi_id_cap;
+> >>> +		l2istsz = KMALLOC_MAX_SIZE;
+> >>> +	}
+> >>> +
+> >>> +	ist = kzalloc(l2istsz, GFP_KERNEL);
+> >>
+> >>
+> >> When kmemleak is on, There is a memory leak occurring as below:
+> >>
+> >>
+> >> unreferenced object 0xffff00080039a000 (size 4096):
+> >>   comm "swapper/0", pid 0, jiffies 4294892296
+> >>   hex dump (first 32 bytes):
+> >>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+> >>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+> >>   backtrace (crc 0):
+> >>     kmemleak_alloc+0x34/0x40
+> >>     __kmalloc_noprof+0x320/0x464
+> >>     gicv5_irs_iste_alloc+0x1a4/0x484
+> >>     gicv5_irq_lpi_domain_alloc+0xe4/0x194
+> >>     irq_domain_alloc_irqs_parent+0x78/0xd8
+> >>     gicv5_irq_ipi_domain_alloc+0x180/0x238
+> >>     irq_domain_alloc_irqs_locked+0x238/0x7d4
+> >>     __irq_domain_alloc_irqs+0x88/0x114
+> >>     gicv5_of_init+0x284/0x37c
+> >>     of_irq_init+0x3b8/0xb18
+> >>     irqchip_init+0x18/0x40
+> >>     init_IRQ+0x104/0x164
+> >>     start_kernel+0x1a4/0x3d4
+> >>     __primary_switched+0x8c/0x94
+> > 
+> > Thank you for reporting it.
+> > 
+> > It should be a false positive, we hand over the memory to the GIC but
+> > never store the pointer anywhere (only its PA).
+> > 
+> > Patch below should "fix" it - well, it is obvious, we are telling
+> > kmemleak to ignore the pointer value:
+> 
+> I also did not see any place in the code where these pointers are
+> accessed, nor did I see in section "L2_ISTE, Level 2 interrupt state
+> table entry" that L2_ISTE can be accessed by software. So, are these
+> states of the LPI interrupt maintained by the GIC hardware itself?
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+The IST table is where interrupt state and configuration is kept -
+it is managed by GIC IRS HW. SW controls interrupt configuration
+through GIC instructions.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index c0cc5611048e..cc9351a5bd65 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -442,6 +442,10 @@ &flexcan2 {
- 	status = "disabled";/* can2 pin conflict with pdm */
- };
- 
-+&hdmi_pai {
-+	status = "okay";
-+};
-+
- &hdmi_pvi {
- 	status = "okay";
- };
--- 
-2.34.1
+It is therefore a false positive, I will send the patch below for
+inclusion.
 
+Thanks,
+Lorenzo
+
+> > 
+> > -- >8 --
+> > diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
+> > index ad1435a858a4..e8a576f66366 100644
+> > --- a/drivers/irqchip/irq-gic-v5-irs.c
+> > +++ b/drivers/irqchip/irq-gic-v5-irs.c
+> > @@ -5,6 +5,7 @@
+> >  
+> >  #define pr_fmt(fmt)	"GICv5 IRS: " fmt
+> >  
+> > +#include <linux/kmemleak.h>
+> >  #include <linux/log2.h>
+> >  #include <linux/of.h>
+> >  #include <linux/of_address.h>
+> > @@ -117,6 +118,7 @@ static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data
+> >  		kfree(ist);
+> >  		return ret;
+> >  	}
+> > +	kmemleak_ignore(ist);
+> >  
+> >  	return 0;
+> >  }
+> > @@ -232,6 +234,7 @@ int gicv5_irs_iste_alloc(const u32 lpi)
+> >  		kfree(l2ist);
+> >  		return ret;
+> >  	}
+> > +	kmemleak_ignore(l2ist);
+> >  
+> >  	/*
+> >  	 * Make sure we invalidate the cache line pulled before the IRS
+> > 
 
