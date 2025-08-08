@@ -1,237 +1,227 @@
-Return-Path: <devicetree+bounces-202782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5566B1EB22
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:08:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770B2B1EB6C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:17:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B5D1627065
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:08:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A1531882A71
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:18:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC3F27FD4A;
-	Fri,  8 Aug 2025 15:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="YeblZxfC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C3D27CCEE;
+	Fri,  8 Aug 2025 15:17:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023072.outbound.protection.outlook.com [52.101.127.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BDB5FB95
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 15:08:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754665699; cv=none; b=Yc26YVcLGYf/HHBEnCr4LwSmDF5yKHid+8Qn/2029rDZwGLrEdNS1KTaup+fHAqZNjSAhuqZxxKxpYVcTIBQm/W66VUZYYCB7T57S/C3dKts99qTvA+sB8FOn/YGaGqPhy/klfK2B/HYllpRyl0WNoE6ltvzs4j2fRMFRzYLPpk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754665699; c=relaxed/simple;
-	bh=KbyBa2RMxGvUa2qTjS8DYpX+dKFyENEXQ3F7PVCsezM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=iYBY0VdxNbImQBsA39zTMLyZGmOqKPrGcr2QkdNhw/m9KBcrUtCexD43QoY8UbYcrvtcWRM3NEdNvHR7U7D4bQGfMHuLZERBjf9xFJ+RZOq4j1PtyTfYsHg1Mc9+z22ryGyWuokUxHDbo7kzXvqDbvg8YocghTXzcUH0QAUzMgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=YeblZxfC; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250808150815epoutp03db98547ec9aa092b6209b7e84ccc92ff~Z0ydCuKE_1194111941epoutp03p
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 15:08:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250808150815epoutp03db98547ec9aa092b6209b7e84ccc92ff~Z0ydCuKE_1194111941epoutp03p
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754665695;
-	bh=KbyBa2RMxGvUa2qTjS8DYpX+dKFyENEXQ3F7PVCsezM=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=YeblZxfCRgVAJ8Yhk6OeVGS4jBSJVQgSw4NoEDq8vypGi4G2OIvH2FK8R3EIsbqW0
-	 G0LfWv9ovZUUVCvze7Y/PaFncOSoG0USMMFQ8E4IulrWrPa+MBCmsy7axwL2pW/jBl
-	 FPwN/1wvT/oa73OJ5G5pzr6sEWjKivAIMB+0Xn0w=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250808150814epcas5p1819cab380f954c265dfc00d7557e35e9~Z0ycfsPfM2113721137epcas5p1t;
-	Fri,  8 Aug 2025 15:08:14 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.91]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4bz6q20zKBz3hhT3; Fri,  8 Aug
-	2025 15:08:14 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250808150813epcas5p3eb081f2f6e90a15593e545ced68435f1~Z0ya_Ijdo2389323893epcas5p3J;
-	Fri,  8 Aug 2025 15:08:13 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250808150810epsmtip1f6ba1f6f143b53b5c12bf28410693323~Z0yYxxj3c1978819788epsmtip1Y;
-	Fri,  8 Aug 2025 15:08:10 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Manivannan Sadhasivam'" <mani@kernel.org>
-Cc: "'Konrad Dybcio'" <konrad.dybcio@oss.qualcomm.com>, "'Krzysztof
- Kozlowski'" <krzk@kernel.org>, "'Ram Kumar Dwivedi'"
-	<quic_rdwivedi@quicinc.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<andersson@kernel.org>, <konradybcio@kernel.org>,
-	<James.Bottomley@hansenpartnership.com>, <martin.petersen@oracle.com>,
-	<agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-	<linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <fh7y7stt5jm65zlpyhssc7dfmmejh3jzmt75smkz5uirbv6ktf@zyd2qmm2spjs>
-Subject: RE: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-Date: Fri, 8 Aug 2025 20:38:09 +0530
-Message-ID: <0f8c01dc0876$427cf1c0$c776d540$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DEA23741;
+	Fri,  8 Aug 2025 15:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754666270; cv=fail; b=IuqWSbAwHae+IRVp1zvvIBcQnmY1UL14ddvEA/FUV2fqXXfs8rYsYBp+dYDZ4SbMsVeH9UpH3F6dSykpSkhr7t9nMuyzjydz89ioFzmEzERsAvqRXhNw8E1gnJZO6diak3hTR+44dcNxdQsK1N+RznEfufcZzG9aC7gjAMV5D/w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754666270; c=relaxed/simple;
+	bh=3V5a2n8uXnbEpisPB/uI7+rsDpwoRZ5rAiPGp+WTclE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J9MwG9PEUIlRrgpf56PwfxRCcr/xqiKzKvKBa3et40K91uwMP+rsAtrVePoB1v7FyC9KmGc0Fq1EsiiEZjKCxV8a3cNCRGGFuYHiV8PNr92ok8UZwPaVtgdpn9HuVbBBmn8afjXtmQbBzpCAGhRm7fpMSuoHQVgo8YA9/PtFmD4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u6hYSv+Xqy8ziRAWvRkr8/h/pMs5kFieM5Wft+p6yAgCnTKVtJXS66Pd1vxI68rzCBbe5jQOb9zaZWhYJemANv1wuHPSS6GaPYoVTQlROvZqAjdHV1OJEaRRZuFKvoc2eHAQ2phK5ORXkIzolnCoLfgPx1e6qQLBiMfp1U+W9fALKCGa6LyzWE4dmOzahQ9GrTuBZNvxgY3yAxnGW7XEDPhSQ+yIih2chteMtEEKkOZys+cb2t6w3h0GjuYpo1cotC4iEzObAWb0vdydWhSdbnnLXc8jVqmIc9XSSRGt8PgXtZXTNkIsOfP8TV93hwHwJjQHqv6ruarCHdrPrSTkeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jAbSI6+6aomTRZ2qu5ibQKfPHNwjG5s9XEIsrYbF2eM=;
+ b=iCZN/CDn1GPdHvvLAG0lRzwo7NI6/fqLbZ+Xql95kjfg6cA1rshzaxH0B4RTAWjFAcsnWA1DBs8dnoYtlYdl6hOoTlQLbYDLA5Y+nfN67kob0KaJU2YCFA6UptU9o2yQrB5itOHwsvFOQwz3hooAIbKAnlBEIyItxCr68aB1is5JPlCdpjxz5Nku/glDW++zE0kKw33FqZtZb8AWG+BnliHX4Tw8F1pFuCSA6uxFNPouLwlgT4+Dq3z2Hz4/4T08RaoEP+c+NUp/tV55pbPuIegN7Ef+/7gSdXnrWb3NGrNvSDz93vjzKdMB4UAvxr00kVFNUd3xnMLXGcnWKmY9zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2PR02CA0082.apcprd02.prod.outlook.com (2603:1096:4:90::22) by
+ TYUPR06MB6052.apcprd06.prod.outlook.com (2603:1096:400:354::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9009.15; Fri, 8 Aug 2025 15:17:40 +0000
+Received: from SG1PEPF000082E6.apcprd02.prod.outlook.com
+ (2603:1096:4:90:cafe::96) by SG2PR02CA0082.outlook.office365.com
+ (2603:1096:4:90::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.16 via Frontend Transport; Fri,
+ 8 Aug 2025 15:17:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG1PEPF000082E6.mail.protection.outlook.com (10.167.240.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9009.8 via Frontend Transport; Fri, 8 Aug 2025 15:17:38 +0000
+Received: from [172.16.64.208] (unknown [172.16.64.208])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 145DA40A12CE;
+	Fri,  8 Aug 2025 23:17:33 +0800 (CST)
+Message-ID: <296c1f17-999e-4117-9f09-5f2e844c4bdd@cixtech.com>
+Date: Fri, 8 Aug 2025 23:17:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQEJQrUlLhd2k13YhwqtNcYaDataOQJtFIHyAldjN/MB24cyRgGnpjwRAmX4p5MB936htgLh1QaLARPOx0QCD7g8CwGFQGz5tVzi6iA=
-X-CMS-MailID: 20250808150813epcas5p3eb081f2f6e90a15593e545ced68435f1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250806112542epcas5p15f2fdea9b635a43c54885dbdffa03b60
-References: <061c01dc062f$70ec34b0$52c49e10$@samsung.com>
-	<87c37d65-5ab1-4443-a428-dc3592062cdc@oss.qualcomm.com>
-	<061d01dc0631$c1766c00$44634400$@samsung.com>
-	<3cd33dce-f6b9-4f60-8cb2-a3bf2942a1e5@oss.qualcomm.com>
-	<06d201dc0689$9f438200$ddca8600$@samsung.com>
-	<wpfchmssbrfhcxnoe37agonyc5s7e2onark77dxrlt5jrxxzo2@g57mdqrgj7uk>
-	<06f301dc0695$6bf25690$43d703b0$@samsung.com>
-	<CGME20250806112542epcas5p15f2fdea9b635a43c54885dbdffa03b60@epcas5p1.samsung.com>
-	<nkefidnifmbnhvamjjyl7sq7hspdkhyoc3we7cvjby3qd7sgho@ddmuyngsomzu>
-	<0d6801dc07b9$b869adf0$293d09d0$@samsung.com>
-	<fh7y7stt5jm65zlpyhssc7dfmmejh3jzmt75smkz5uirbv6ktf@zyd2qmm2spjs>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 07/12] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
+ bindings
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lpieralisi@kernel.org, kw@linux.com, guoyin.chen@cixtech.com,
+ krzk+dt@kernel.org, cix-kernel-upstream@cixtech.com, conor+dt@kernel.org,
+ mani@kernel.org, linux-pci@vger.kernel.org, peter.chen@cixtech.com,
+ devicetree@vger.kernel.org, mpillai@cadence.com,
+ linux-kernel@vger.kernel.org, kwilczynski@kernel.org, bhelgaas@google.com,
+ fugang.duan@cixtech.com
+References: <20250808072929.4090694-1-hans.zhang@cixtech.com>
+ <20250808072929.4090694-8-hans.zhang@cixtech.com>
+ <175465973854.5889.2255011303498628193.robh@kernel.org>
+Content-Language: en-US
+From: Hans Zhang <hans.zhang@cixtech.com>
+In-Reply-To: <175465973854.5889.2255011303498628193.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG1PEPF000082E6:EE_|TYUPR06MB6052:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e4dbec2-d73b-442f-a6ee-08ddd68eb665
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|1800799024|376014|82310400026|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UVhJd0dmMURRVThPRGdUcnZZWUp1dHd6TEJ5Q015U01NQXJXQS9YbXZDUzA0?=
+ =?utf-8?B?czFsTElNSU11Wks5Ri9HenhnazFVdjBtQ2ZUR05SdTJKVElCK0VTRUVSL2Nl?=
+ =?utf-8?B?dDRRK0VzV01QZkQ3NjYvRnkrd0g2aWRJbTgxSUxsSEptcjE2Qjloczd0Q29K?=
+ =?utf-8?B?Zkxram9kYkoxcHdUSmNNQTUzTkZ3ZjVPMlRCNjdGSEM4RzBqTzlDcTM2UGUx?=
+ =?utf-8?B?MU5ueXg0alRxZy8yb2ZUVk5TVVJXeEVqdzdNU3FCcjlST0dHRHBIbkdBZFIz?=
+ =?utf-8?B?YnRDKzA5T2xGMXBVV2lJWURrZmZNNTd0ZHNkek96bjNKM0JqR3hrdGFXT2dv?=
+ =?utf-8?B?K2w0WDFtTlRWeTd1K1lTM28yc0F0SjJybE1lQlUyc3J6R3AxdzliRVlNWEpz?=
+ =?utf-8?B?OTNWd1Q2a3pMV2YzSmpjbEFZVGN1ZXZWNnlKcHlZbWVKTE1lcmJMZzVmMzdJ?=
+ =?utf-8?B?bU1IWHVlRlBJSExKVGlpQjRPVC9sZ2NlakpPWWk3U1BBa20vZjFmSkxDY0lZ?=
+ =?utf-8?B?YmtXUEFqNzd1aWp2RDhVV25WM2t1MHM4Qi9RZ1U1Ri83Njh1bzdWdTdVNEQy?=
+ =?utf-8?B?Y2tRdHB6NGVNOFJQSXhScWFFUml5b2x2c3AzY2QvelZhY3BQdWRoMHF5NTZm?=
+ =?utf-8?B?OUFDVnFGaERjMGtGRk9OaFVkZWpjQkNENnAvNTRBbmpJWnJDZFFDNDd3TG1r?=
+ =?utf-8?B?Z0QzS2Z6K3hqckpoWEFWNDBHZDRucXowRmZuRTg1MmR3QjE1Vnh4K2c0SXdn?=
+ =?utf-8?B?azIvY3NnbWRjRTZLUlNRcVJGaVVZTGwxWWlPcS9mRWhHdjVKQnVrYWRTSm9r?=
+ =?utf-8?B?dUN2QTc2d3VxYUNyOGh6M3pvQXhMZUhBb3dnTkQ2djJEVVdXSjBkSDdQdEVn?=
+ =?utf-8?B?bUJkZWE0QU04VDNPY3QvdGdlSGZTM0ZlS1MrTVp2cm5HTlJXL245Y0ErK2tB?=
+ =?utf-8?B?aEFLSXFzelE2dlEyMkxteVVNZEVWckZVQkhlZ1JSejErTklrSHNTVFF3c0dF?=
+ =?utf-8?B?VkRjcW5sdHB3OVhnalhJWHNCdGUxVVVmakJNeUJ2bjl3eHUzYUJ6RHAxbDVj?=
+ =?utf-8?B?TlBDcVN3TWVONWFvUDczNHpmSWdVbVB2Z09PTGpaOVlxZ29ZRGJPVTZXVjM5?=
+ =?utf-8?B?Z3BHU1VKbGhwU2lYRUJNdnE0clY5MHhzYytFcGR2MmZhL1NYcmhuWFJ3U2tD?=
+ =?utf-8?B?cGJVbi9vRnBOdk9jZit1VnF3a3ROczl4c2NEWWJUeEU2c08vMFc0Y2JKZHJs?=
+ =?utf-8?B?RllvZjVpUXh1ZkVselozaGRxV3JaYVh5Unk0S1oxQU1qTHR6bVJINXh1Q3dC?=
+ =?utf-8?B?MHRNWmZaeGdVcDVRMkhZWFZ5VFlTRzY4THpuRHg2MlZaaWZlMkQ0N2VwM2lP?=
+ =?utf-8?B?c2h6ZWRoZDVPVzJQaEZkQUs2ZkphcHdCamQraWRIaEdYdU5SNDZOZ1l3aVpO?=
+ =?utf-8?B?MDgwblZSdWhPcUtHdk9TL1dPQjdJZnovcEFoS1NKRlpFWElId2hRbnB6aGFR?=
+ =?utf-8?B?bGdaUFdDSUhyN0pMcG9YbHlodk1GcTZnOGdkb25GQmRZZDFrTUlUZTZHUVhW?=
+ =?utf-8?B?NUYzY1J5Qis1RjdlNmdGcUNMeEJvZThQS2RtMWJlcGFETElhY2FiMGk4akg1?=
+ =?utf-8?B?U2xMN3A3cTNjbzZBaUNSMjdvc3E4bi83THdpZGlIaDFqNEE0SUw3dk1iYzVy?=
+ =?utf-8?B?KysrN0ZHd25VRzBnaWF1VFJxaVFoeDVTTnU3eGRBZitTazdMaWJvMndUOENu?=
+ =?utf-8?B?Z2pBbXZtL3c5SjVKdE9Rc2dXdVh0WjZZSFVBSUZ5azdFNTE1UzYyQjg4Zmtz?=
+ =?utf-8?B?anVLWkRUMkU2c1BYYzBXd0JORk1hM2FBUUlJYWJ0N2FhekVYZEhEY0NJTTNt?=
+ =?utf-8?B?SlJoRVFyRUxaa3FkZ0FMZFVyUms2Zmp4NnFEZGFiL3p3ak1SU0RsWUtSejdG?=
+ =?utf-8?B?cmY4bStqeVNqMitLN2UzSVNEZE5KcHkrbHRpN1JYdnBzc0VuN0V2UUMvRTll?=
+ =?utf-8?B?bEhtd0c1ZG1RPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(82310400026)(36860700013)(13003099007);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 15:17:38.8515
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e4dbec2-d73b-442f-a6ee-08ddd68eb665
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG1PEPF000082E6.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYUPR06MB6052
 
 
 
-> -----Original Message-----
-> From: 'Manivannan Sadhasivam' <mani=40kernel.org>
-> Sent: Friday, August 8, 2025 6:14 PM
-> To: Alim Akhtar <alim.akhtar=40samsung.com>
-> Cc: 'Konrad Dybcio' <konrad.dybcio=40oss.qualcomm.com>; 'Krzysztof
-> Kozlowski' <krzk=40kernel.org>; 'Ram Kumar Dwivedi'
-> <quic_rdwivedi=40quicinc.com>; avri.altman=40wdc.com;
-> bvanassche=40acm.org; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; andersson=40kernel.org; konradybcio=40kernel.org;
-> James.Bottomley=40hansenpartnership.com; martin.petersen=40oracle.com;
-> agross=40kernel.org; linux-arm-msm=40vger.kernel.org; linux-
-> scsi=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH 2/3=5D arm64: dts: qcom: sa8155: Add gear and rate =
-limit
-> properties to UFS
->=20
-> On Thu, Aug 07, 2025 at 10:08:32PM GMT, Alim Akhtar wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: 'Manivannan Sadhasivam' <mani=40kernel.org>
-> > > Sent: Wednesday, August 6, 2025 4:56 PM
-> > > To: Alim Akhtar <alim.akhtar=40samsung.com>
-> > > Cc: 'Konrad Dybcio' <konrad.dybcio=40oss.qualcomm.com>; 'Krzysztof
-> > =5B...=5D
-> >
-> > > > >
-> > > > > On Wed, Aug 06, 2025 at 09:51:43AM GMT, Alim Akhtar wrote:
-> > > > >
-> > > > > =5B...=5D
-> > > > >
-> > > > > > > >> Introducing generic solutions preemptively for problems
-> > > > > > > >> that are simple in concept and can occur widely is good
-> > > > > > > >> practice (although it's sometimes hard to gauge whether
-> > > > > > > >> this is a one-off), as if the issue spreads a generic
-> > > > > > > >> solution will appear at some point, but we'll have to
-> > > > > > > >> keep supporting the odd ones as well
-> > > > > > > >>
-> > > > > > > > Ok,
-> > > > > > > > I would prefer if we add a property which sounds like
-> > > > > > > > =22poor thermal dissipation=22 or =22routing channel loss=
-=22
-> > > > > > > > rather than adding limiting UFS gear
-> > > > > > > properties.
-> > > > > > > > Poor thermal design or channel losses are generic enough
-> > > > > > > > and can happen
-> > > > > > > on any board.
-> > > > > > >
-> > > > > > > This is exactly what I'm trying to avoid through my
-> > > > > > > suggestion - one board may have poor thermal dissipation,
-> > > > > > > another may have channel losses, yet another one may feature
-> > > > > > > a special batch of UFS chips that will set the world on fire
-> > > > > > > if instructed to attempt link training at gear 7 - they all
-> > > > > > > are causes, as opposed to describing what needs to happen
-> > > > > > > (i.e. what the hardware must be treated as - gear N
-> > > > > > > incapable despite what can be discovered at runtime), with
-> > > > > > > perhaps a comment on the side
-> > > > > > >
-> > > > > > But the solution for all possible board problems can't be by
-> > > > > > limiting Gear
-> > > > > speed.
-> > > > >
-> > > > > Devicetree properties should precisely reflect how they are
-> > > > > relevant to the hardware. 'limiting-gear-speed' is
-> > > > > self-explanatory that the gear speed is getting limited (for a
-> > > > > reason), but the devicetree doesn't need to describe the
-> > > > > *reason* itself.
-> > > > >
-> > > > > > So it should be known why one particular board need to limit th=
-e
-> gear.
-> > > > >
-> > > > > That goes into the description, not in the property name.
-> > > > >
-> > > > > > I understand that this is a static configuration, where it is
-> > > > > > already known
-> > > > > that board is broken for higher Gear.
-> > > > > > Can this be achieved by limiting the clock? If not, can we add
-> > > > > > a board
-> > > > > specific _quirk_ and let the _quirk_ to be enabled from vendor
-> > > > > specific hooks?
-> > > > > >
-> > > > >
-> > > > > How can we limit the clock without limiting the gears? When we
-> > > > > limit the gear/mode, both clock and power are implicitly limited.
-> > > > >
-> > > > Possibly someone need to check with designer of the SoC if that is
-> > > > possible
-> > > or not.
-> > >
-> > > It's not just clock. We need to consider reducing regulator,
-> > > interconnect votes also. But as I said above, limiting the gear/mode
-> > > will take care of all these parameters.
-> > >
-> > > > Did we already tried _quirk_? If not, why not?
-> > > > If the board is so poorly designed and can't take care of the
-> > > > channel loses or heat dissipation etc, Then I assumed the gear
-> > > > negotiation between host and device should fail for the higher
-> > > > gear and driver can have
-> > > a re-try logic to re-init / re-try =22power mode change=22 at the low=
-er
-> > > gear. Is that not possible / feasible?
-> > > >
-> > >
-> > > I don't see why we need to add extra logic in the UFS driver if we
-> > > can extract that information from DT.
-> > >
-> > You didn=E2=80=99t=20answer=20my=20question=20entirely,=20I=20am=20stil=
-l=20not=20able=20to=0D=0A>=20>=20visualised=20how=20come=20Linkup=20is=20ha=
-ppening=20in=20higher=20gear=20and=20then=20Suddenly=0D=0A>=20it=20is=20fai=
-ling=20and=20we=20need=20to=20reduce=20the=20gear=20to=20solve=20that?=0D=
-=0A>=20=0D=0A>=20Oh=20well,=20this=20is=20the=20source=20of=20confusion=20h=
-ere.=20I=20didn't=20(also=20the=20patch)=20claim=0D=0A>=20that=20the=20link=
-=20up=20will=20happen=20with=20higher=20speed.=20It=20will=20most=20likely=
-=20fail=20if=20it=0D=0A>=20couldn't=20operate=20at=20the=20higher=20speed=
-=20and=20that's=20why=20we=20need=20to=20limit=20it=20to=0D=0A>=20lower=20g=
-ear/mode=20*before*=20bringing=20the=20link=20up.=0D=0A>=20=0D=0ARight,=20t=
-hat's=20why=20a=20re-try=20logic=20to=20negotiate=20a=20__working__=20power=
-=20mode=20change=20can=20help,=20instead=20of=20introducing=20new=20binding=
-=20for=20this=20case.=0D=0AAnd=20that=20approach=20can=20be=20useful=20for=
-=20many=20platforms.=0D=0AAnyway=20coming=20back=20with=20the=20same=20poin=
-t=20again=20and=20again=20is=20not=20productive.=0D=0AI=20gave=20my=20opini=
-on=20and=20suggestions.=20Rest=20is=20on=20the=20maintainers.=0D=0A=0D=0A>=
-=20As=20you=20can=20see,=20the=20driver=20patch=20is=20parsing=20the=20limi=
-ts=20in=20its=0D=0A>=20ufs_hba_variant_ops::init()=20callback,=20which=20ge=
-ts=20called=20during=0D=0A>=20ufshcd_hba_init().=0D=0A>=20=0D=0A>=20-=20Man=
-i=0D=0A>=20=0D=0A>=20--=0D=0A>=20=E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=
-=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=E0=AF=8D=20=E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=
-=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=E0=AF=8D=0D=0A=0D=0A
+On 2025/8/8 21:28, Rob Herring (Arm) wrote:
+> EXTERNAL EMAIL
+> 
+> On Fri, 08 Aug 2025 15:29:24 +0800, hans.zhang@cixtech.com wrote:
+>> From: Hans Zhang <hans.zhang@cixtech.com>
+>>
+>> Document the bindings for CIX Sky1 PCIe Controller configured in
+>> root complex mode with five root port.
+>>
+>> Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
+>>
+>> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
+>> ---
+>>   .../bindings/pci/cix,sky1-pcie-host.yaml      | 73 +++++++++++++++++++
+>>   1 file changed, 73 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml: properties:compatible:oneOf: [{'const': 'cix,sky1-pcie-host'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
+>          hint: Use 'enum' rather than 'oneOf' + 'const' entries
+>          from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+> Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dts:27.13-29.83: Warning (ranges_format): /example-0/pcie@a010000:ranges: "ranges" property has invalid length (84 bytes) (parent #address-cells == 1, child #address-cells == 3, #size-cells == 2)
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
+>          [[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
+>          1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+>          0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+>          [0, 4, 0] is too short
+>          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): reg: [[0, 167837696], [0, 65536], [0, 738197504], [0, 67108864], [0, 167772160], [0, 65536], [0, 1610612736], [0, 1048576]] is too long
+>          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'msi-map', 'ranges', 'reg' were unexpected)
+>          from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
+>          [[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
+>          1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+>          0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+>          [0, 4, 0] is too short
+>          from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250808072929.4090694-8-hans.zhang@cixtech.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
+
+
+Dear Rob,
+
+
+Thank you very much for your reply and reminder.
+
+I executed the following two inspection commands. I overlooked checking 
+the yaml file, and I'm very sorry for that.
+make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=arm/cix.yaml
+make O=$OUTKNL CHECK_DTBS=y W=1 cix/sky1-orion-o6.dtb
+
+After the release of v6.17 RC1, I will resubmit the patch.
+
+Best regards,
+Hans
 
