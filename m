@@ -1,150 +1,129 @@
-Return-Path: <devicetree+bounces-202716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B650B1E79E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91161B1E7B5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:48:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02696A018F0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:45:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C7E83B1B69
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B258E2749F1;
-	Fri,  8 Aug 2025 11:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D9D274FCA;
+	Fri,  8 Aug 2025 11:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlH2z2/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDDE2273D9B;
-	Fri,  8 Aug 2025 11:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E27125C827;
+	Fri,  8 Aug 2025 11:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754653525; cv=none; b=nwPGnyTUpl3j5Ry1b1VvGGGER1JwZ9WzCjVcZ6fHSCF7bhrSbBYtW/xrVr7F5NUshZdZp/0MkuuQAa54+LP+lzGHjD2vb8gsaVOVtWXwH+R59mAUOebxq9eOyHEDxPeQpB2Wu6XCdKe92l+X1fAMVUoMKUHNFUGrGyjYPdKXxkY=
+	t=1754653725; cv=none; b=rb2vZ8Qjl9+1/jnZNdtdPz/xxc8R5nM0ulPP6lHHfXIa5rdKJImSQAvTEmPPzEWYXcbi7XXfxmsmUJFvkiCFpA8XiDuW/ohp5PBN1ADC/RyHp0vk0HGZBOGmIladYIpl3k4vz2gVjgSPHnzBdxpuaiIM1emfVc6KkcEgz52lEYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754653525; c=relaxed/simple;
-	bh=WBYg6Ly46TKn9kNUQszvbhlGgnkk5kuSW6Ll2fRZeXs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AprMYmWtQvrPEWel5o8IJzTDyc1ZaoQKTEmEpDTX+BTHPE/6HgtagT9LcTnkKRYqn8IKyzkP6p1ahuSGexyU+VnoFBJIj2Phd9Kc9biUsOm/8tQ0yeut+HGtMv1jrpVLMGXmmHNmJvhiUSAYd+Eu6HTtrJjRkfqqF6pR3MiAbTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-53944f65481so658467e0c.2;
-        Fri, 08 Aug 2025 04:45:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754653523; x=1755258323;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VxO/wb5SjqYKhirNQ57pk715Lm2Z0cnx8YRmXgpwJPM=;
-        b=Ci7XEkuDP9MarVNZuGjXPQj9c0b5SjZPUu0GoJXfzoOWDvKu357jOFCgy4c7TGT4jD
-         XVsj39/qUsuAIWzJnlofoNEc+EYkzMPHMkVqkPmOgoUmMgYvm1Prmgd5TkSR9ueMX2MT
-         2jNEvhzD+HHjfKcAS0FLiffhMjm82RrzKMrMT3ZqqKhJY8vdV9sTkvNUsrV57gWuINEg
-         9IPZfFf7PTI6ddpM6EwDgOX2K9h2DerEIMQgD+jvzIq1UFJwJAPh3iKWq7ywQd4w3gvp
-         LByJKTrkRA03urGj5IP3FGA82AIj9QutlmGDzYdkCOp5BJCRqjFjP+U+JTN7l7bU6ys4
-         iq4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVRJEIJfwpklynRxSTxOaLUatumKFRoQPQBHOQqWFkjlSRQ2VDQcPLw9MBT/Y0ZtOBuluwRD/oKnqgA3qV5@vger.kernel.org, AJvYcCVcBczF0vys6zeULq0p+qnRzNFFOjV86INX+RAGe3OOxbJIbPWEFDSGPMP+EC81CGMk7YExqOxHWe15yJEiZTBINAo=@vger.kernel.org, AJvYcCViDx5AQxtKwz+n6urLffiKsawGQfVG+d+v/KsSrZEOIrENBFiOdjyV/vi3n0LNgfhuGCDeFLiPfJYK@vger.kernel.org, AJvYcCWwbZ52ZO77bT7RQ2hiFLrEM0NpgYR48q3Ew0oUzbkMg0pNqzmpbpmbOAxQvlMTpApzYF0NWosj/ZwU@vger.kernel.org, AJvYcCXGmFyREXJVBhJT/cwqmuuGzmJ9Dmg1SRReOp6j9F3rg28/ekB9aMqnmoQKHI3Qv/a9ocsDF36OsTS+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwW850hnkVGJGGprP56MRNAAFw6SRNiQ1Wb73480xOGMKOmrk3j
-	82D9gO4QzAb7gWupJFzuhEYlzoaM5EBxs+p4LdBtwAXf2K5rolGvxoNSevnjE3ae
-X-Gm-Gg: ASbGncvvlTGNsZwA298jAK6fJcRvgmvMlgBc8oG4X893HNjyE+goKKn+eOWoTjMeNjY
-	/nbbgJkcq14pqVo2X/cYFdgrCAmrPPlkjLrr6sFWnkRE8zlf0kaW2Jpl6w0tY8x8zgjK702GjQM
-	yrg2FYys8jNoedQKwKnWBBxnxUDOamGQWZGfj/3PsQVT4b1ABEh3aiv+FkFNJEdFlDgch5cyJrd
-	IdpiFZq3EI/fkSip3MssI6uOodc6gtCgNf1PXcY+KkQYU4q0aOMK1GC3qnadYNZlKQzeiPaW1LA
-	TEnLU7Gss7B1kjRRLH9+cMpGTARqBVhtPI3jYquswK+GE3/x8kYDgGY0u9C3uWym/240fo1T+8+
-	NP4S/euYxTswAgs+DNude74LgFaFzPDo/3/k/2UbqOUQ11HUJYn91zDNh0MgE
-X-Google-Smtp-Source: AGHT+IHBm8/EhEZtraF6A4Q/6qmzcdQI2gDgwOqaPrnwSVO+QmnX5oleXYC68/yzuyfi8/OyE85M5w==
-X-Received: by 2002:a05:6122:1acb:b0:530:5996:63a2 with SMTP id 71dfb90a1353d-53a52eb02d9mr820826e0c.7.1754653522656;
-        Fri, 08 Aug 2025 04:45:22 -0700 (PDT)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-539b018968asm1032185e0c.3.2025.08.08.04.45.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 04:45:22 -0700 (PDT)
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-504dd871d70so647452137.0;
-        Fri, 08 Aug 2025 04:45:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUgs8NBwzJpVWKDN1AkBLX6PNxnpd0F/dSRk7fh0N0GtWlTx27zglnyf+jAQomk/z19vTyTBqvwQskbk0mO4d2SA0A=@vger.kernel.org, AJvYcCVqJ8s7JBgmVIs0XTIK3KgSc7LG2v+5Bf5TpPRyMX0qzml4AugmwSZfJeF5Oxzco+VYrNnMgiVWj8LVBl2R@vger.kernel.org, AJvYcCW5/siLmiC0TFpwsPufqpH1Es6c3MexWx8N5YoKL2fhqt2bJnwGy6B68lKZPZcOvcROMcfeDwrZ8toJ@vger.kernel.org, AJvYcCXSHciOpWspGB38ii7336FVI6PoUUT7D7HSvHEesWsc6wOncI+O9G27VHBfY9Odb3YD+AnRH0DDFl0A@vger.kernel.org, AJvYcCXXkJ3ob2750dHd1Fazyeia+Q9a2/Zehl8A2qiaYS1SLsMvok4h6TKBZ3S4YsiDWw52w2vaq2FvGXd4@vger.kernel.org
-X-Received: by 2002:a05:6102:5ccc:b0:4cb:5d6c:9946 with SMTP id
- ada2fe7eead31-5060d2a74damr861831137.10.1754653521602; Fri, 08 Aug 2025
- 04:45:21 -0700 (PDT)
+	s=arc-20240116; t=1754653725; c=relaxed/simple;
+	bh=FUx4gUgdyZ2ZZBXuzAMKD50bvkFnEcWtdMYMuJy1cVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HGwE/Z/fk7JD4UrBrzwpoch3JP8/PAbCDAJNWqm/HCmCeLY0Oos1nEKnmv69TNbH4yZVMTLWjbHRdmSea5O33HuOI4nO4xjqC992KoaNFgeaW+taVbZNcomiYrVMFTMsCsFEfdvQJx2fPAXxUt8kKE1XKBxpsHnWw0AhqS415OA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlH2z2/S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EFFEC4CEF1;
+	Fri,  8 Aug 2025 11:48:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754653724;
+	bh=FUx4gUgdyZ2ZZBXuzAMKD50bvkFnEcWtdMYMuJy1cVM=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=KlH2z2/SRGW4K4fN/lCfwfHAWCLsioLuNXYi0U8bGmXfTGaqjSCRwOhCs4s6TOA0J
+	 7X5PzrzWTGmySfiKXxgGxB0TXo1/sEh2IwxOimdqCIM5itio7QuZye5qUFhTiowsro
+	 g9QGixSNwxKrLcq5ITi3jqk67TuJhrezSoeLBNFz3QMy7WAmsXR3PnPszSWAp/YNRf
+	 EpX42Uy/odYqRyAa1Gq9Pu3xMZtrRg9Wroqn8PxqGIn7GoY01TQOQU0yKZO8i1uzel
+	 dv/TdTFEOVjWt68sUn36VVGp+5yBeS/m5Bp5b7ElzfFVkSOFUCDepl9vRLQpiKGtKo
+	 ASrYLKLOSRMsg==
+Date: Fri, 8 Aug 2025 12:48:31 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: patchwork-bot+linux-riscv@kernel.org, linux-riscv@lists.infradead.org,
+	tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+	akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
+	lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, conor@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
+	brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
+	ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net,
+	shuah@kernel.org, jannh@google.com, conor+dt@kernel.org,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
+	aliceryhl@google.com, tmgross@umich.edu, lossin@kernel.org,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	zong.li@sifive.com, david@redhat.com
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+Message-ID: <09081487-89ac-4f8d-b9fc-e563f09726d2@sirena.org.uk>
+References: <20250731-v5_user_cfi_series-v19-0-09b468d7beab@rivosinc.com>
+ <175450053775.2863135.11568399057706626223.git-patchwork-notify@kernel.org>
+ <db4eb976-693c-426c-a867-66cadd3dd7d8@sirena.org.uk>
+ <aJWz82F21pVTSVJi@debug.ba.rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <20250704161410.3931884-8-claudiu.beznea.uj@bp.renesas.com>
- <TY3PR01MB113464920ECAC2C3CB89DE2D5864FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <7c8c7a25-c373-452a-9fe8-8b2d92ddd885@tuxon.dev> <TY3PR01MB113467C09DF7D3D0D7833A6598649A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB113467C09DF7D3D0D7833A6598649A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 8 Aug 2025 13:45:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXmOaMo-2JfMmi7fOJxpVhL86U4PsWewrjk1z6hX6agaw@mail.gmail.com>
-X-Gm-Features: Ac12FXz7HpF5HU5dBXnxnL240s782w9rEqQwz4F0XZ8wdldivob67uVHXOAVnQM
-Message-ID: <CAMuHMdXmOaMo-2JfMmi7fOJxpVhL86U4PsWewrjk1z6hX6agaw@mail.gmail.com>
-Subject: Re: [PATCH v3 7/9] arm64: dts: renesas: rzg3s-smarc-som: Update
- dma-ranges for PCIe
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "Claudiu.Beznea" <claudiu.beznea@tuxon.dev>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>, 
-	"mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"geert+renesas@glider.be" <geert+renesas@glider.be>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>, 
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, 
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "lizhi.hou@amd.com" <lizhi.hou@amd.com>, 
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="D45dRbRxMwDeSA/W"
+Content-Disposition: inline
+In-Reply-To: <aJWz82F21pVTSVJi@debug.ba.rivosinc.com>
+X-Cookie: What an artist dies with me!
 
-On Wed, 9 Jul 2025 at 07:05, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> > On 07.07.2025 11:18, Biju Das wrote:
-> > >> From: Claudiu <claudiu.beznea@tuxon.dev>
-> > >> Sent: 04 July 2025 17:14
-> > >> Subject: [PATCH v3 7/9] arm64: dts: renesas: rzg3s-smarc-som: Update
-> > >> dma-ranges for PCIe
-> > >>
-> > >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > >>
-> > >> The first 128MB of memory is reserved on this board for secure area.
-> > >> Update the PCIe dma-ranges property to reflect this.
-> > >
-> > > I see R-Car PCIe dma-ranges[1] and [2] maps all possible DDR area supported by the SoC?
-> > > Do we need to make board specific as well there?
-> >
-> > I'm not familiar with R-Car, but if there are ranges reserved for other purposes, I think we should
-> > reflect it in board specific device trees.
->
-> Already Linux has this DDR info[1]. Linux provides DMA memory only from this region.
->
-> In your testing, have you faced any issue like system allocated DMA region other than [1]
-> and you don't want to use it, then the changes are ok??
 
-Exactly.  PCI memory must be located in the intersection of
-dma-ranges in r9a08g045s33.dtsi and the various memory nodes in
-rzg3s-smarc-som.dtsi.  The latter already excludes the secure area.
+--D45dRbRxMwDeSA/W
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Not sure, PCIe can work on internal memory such as SRAM?
+On Fri, Aug 08, 2025 at 01:23:15AM -0700, Deepak Gupta wrote:
+> On Thu, Aug 07, 2025 at 01:28:36PM +0100, Mark Brown wrote:
 
-If that is the case, it should be reflected in r9a08g045s33.dtsi.
+> > Do you have an update for my clone3() shadow
 
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi?h=next-20250708#n31
+> No I don't.
 
-Gr{oetje,eeting}s,
+> > stack series that I could roll in for when I repost that after the merge
+> > window, and/or instructions for how to run this stuff for RISC-V on some
+> > emulated platform?
 
-                        Geert
+> I would want to write-up instructions. But I don't want you to go through
+> a lot of hassle of building toolchain and bunch of other stuff.
+> Let me see how I can make it easy for you. Will report back.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thanks.  FWIW I should already be sorted for the kernel build, unless
+there's a super new or specialist toolchain required for this feature
+(I'd guess I should be fine for the shadow stacks bit?) - it's userspace
+and emulation for the extension I'm missing.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--D45dRbRxMwDeSA/W
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiV5A4ACgkQJNaLcl1U
+h9BR4gf/Yvc9us1uldFqSA9g7p+0bzU3IY/RfdDdME4qVGVWWXybW7b1P+6OdvKr
+lRLLeAJQkpEzhtLNeXXTVgRijmaDgccqM2d2Vkehw9qrW1+pwA56PX8PQPBtJsGL
+riODDRX0jZSrSVAPE/mwrQRc97vY83Tme2w2Psah2FzICcRcLdsC9vz3BIsquWgp
+5LbvWFyIS7PraLBoSkO76qBYDtRwjw3LzoANXm5rYo9QKsT48UPgjfvmzxLqTSxT
+oDMob4PjC2+1FU6Q1yzo5CUyK+aX58BM0OGwWEq4DDOCu5kd0ltVJen8HWszpfVz
+YgUpgySyAiGsfZTi1JBRv158syBsdQ==
+=5/MC
+-----END PGP SIGNATURE-----
+
+--D45dRbRxMwDeSA/W--
 
