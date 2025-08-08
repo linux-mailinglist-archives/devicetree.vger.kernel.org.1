@@ -1,117 +1,205 @@
-Return-Path: <devicetree+bounces-202548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26F4B1E062
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 04:00:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B88C8B1E078
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 04:11:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A00E4627124
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 02:00:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 595E962555B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 02:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D07918DB27;
-	Fri,  8 Aug 2025 02:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F9872629;
+	Fri,  8 Aug 2025 02:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GOL3NqSc"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="Y3TOwgs6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E522F17A30F;
-	Fri,  8 Aug 2025 02:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540822F30;
+	Fri,  8 Aug 2025 02:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754618437; cv=none; b=tp8PT3//1d0B51yXCPomo5RQgvBceAc01BY0bzMt9QKjUHtfh+EKOm0ICplMoeyA/j6emuvlGrhqLp+XkPNecvMJdlxSElHTSbN6qCaoPPUv7vGSYyuxBW5uelK2QynR6l6dupHRMdxhfrVhttEGucez1qwxxkp1eyPLLK0WgdE=
+	t=1754619091; cv=none; b=AQQWmNfjQRz5Ly7LoSyBggLA4GRkeRWZkVl5OdOeT16q+OCb5D+49B2cvQ0dKWdplDMtgVR8Y9oxeCiHRH4+b76MvQu93VqMhyps2SusXTouHHGVJx1DRWqAin4Y2mzy22toT9dFH8OwW1Q5B/Vmqkx++zYqgc3Zzd/JNMHd0s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754618437; c=relaxed/simple;
-	bh=SGZ/ztM0Jh+alQljhSybFcNPM0P2ohWIF7g13dEMIfs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jHQWoBr/yrJF4QZlgFjzceNLeI09RD7OFa7UHpzCQRseRWBY5rBamzI3VXJcfoPm+mRFf0V90jsqVe+ZOmI6S4M71sqn5ymy+ry6+P96acWH/rbgd/hEmxQYB0FGbzDNzc59crmMnCs4/UxoQvY2Xdyi/2WBmyzhmwjoeB+juTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GOL3NqSc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5A032C4CEF8;
-	Fri,  8 Aug 2025 02:00:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754618436;
-	bh=SGZ/ztM0Jh+alQljhSybFcNPM0P2ohWIF7g13dEMIfs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GOL3NqScBgpqo6yeLjWqG50f0LlmUkbvr5K7XMZkg5N7i7tmtZ+cu2pB4LPSN1CO2
-	 mcQ6I8QMBe5hHnEEbqBYXq4vGONI8lcYWfzklAI76j3XahLi1MiHAJBlTiQ9Dtz66Z
-	 CaBk2jaicb6Ew5lAOMdUtckZnE+iL3F/ti8QsigtFwADZUhIYQqp0+SytZq3olxbD9
-	 W6WW50FHM7gPLvb1Q9Wu/FbpC5VqtjpdlBkvVxhYC/PypCOPnR4qtJ9jSs9v2LaPNh
-	 /nlQ8FK6+vnbV0+vVdvqS1YVolaiTPfUii8cWeNUtAMYJgtAyuAwKEx6S5K+Lv+6Lt
-	 PB6/aR4TFwkHw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F2EECA0EC0;
-	Fri,  8 Aug 2025 02:00:36 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Fri, 08 Aug 2025 10:00:36 +0800
-Subject: [PATCH 3/3] MAINTAINERS: Add an entry for Amlogic spifc driver
+	s=arc-20240116; t=1754619091; c=relaxed/simple;
+	bh=i9lpry8Igk1iVBOghldNQbrNw1AdbekEz7pm+wEbS7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgS03iogTwpyIN0uDa07S+TT/ni0RBDnoFBX98qdUaWXGoKeNeb3UvNzyLCX9YEnVXLvOU6CwZ4eLiHirfh7S6WSdm9OpX6Zk23NYZXrb0LR5uCyNJFJdE8ZzN1PEwiGVBCZViLmG0xAeHSD6JYRXA4wRMERGvp8rUxdetH1psI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=Y3TOwgs6; arc=none smtp.client-ip=52.59.177.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1754619051;
+	bh=XruLpPGKKhIAXV5GiyK/wgZqZKwAzbK6bCViQs/BVy0=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=Y3TOwgs6uWHNHO0+6zs1Wrew+uQ4HO/Yfsy/e1K0i1mUb6nDjywRLiOMZkeWJQGhw
+	 e9TQNLwJPFi+C69H2V2WsAqfkKekaMwV+Cav/xUejmHllowSrcnlgH4+2cp7A9udgE
+	 Hdy0d0NxoAF4m83Xmvv07iaiqWTB4jj8LpMWOvWQ=
+X-QQ-mid: esmtpgz10t1754619050t37e96f67
+X-QQ-Originating-IP: r9yuw17eteziLvplyQDL5/oFpwlod3gjP0a44mCWCbs=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 08 Aug 2025 10:10:48 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4317720997078926859
+EX-QQ-RecipientCnt: 16
+Date: Fri, 8 Aug 2025 10:10:48 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Haylen Chu <heylenay@4d2.org>
+Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Alex Elder <elder@riscstar.com>,
+	Inochi Amaoto <inochiama@outlook.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Jinmei Wei <weijinmei@linux.spacemit.com>
+Subject: Re: [PATCH 2/2] clk: spacemit: introduce i2s pre-clock and fix i2s
+ clock
+Message-ID: <C7EA7A1D0F9884EB+aJVcqFqix0GF_RnX@LT-Guozexi>
+References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
+ <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
+ <aJQXKN_ccpWVJ5oZ@ketchup>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250808-spifc-v1-3-ff4e30e26a6b@amlogic.com>
-References: <20250808-spifc-v1-0-ff4e30e26a6b@amlogic.com>
-In-Reply-To: <20250808-spifc-v1-0-ff4e30e26a6b@amlogic.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liang Yang <liang.yang@amlogic.com>, 
- Feng Chen <feng.chen@amlogic.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754618434; l=935;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=waH2I+tfwvOLzp50Qi+Yg091qChCxHO4Mz5PuoGKYLg=;
- b=pt8fY1G/lcSGV9NWVVM0+SdckNX9lIjxyH6De4Mko+XH9MX4KmlwhnTvU3rFhLQDzzYsNua4B
- x6jOFm3jasND8sm4nNscPvS/7vXNV2fHQHmgHmuBtS6PBdQWPUQENNd
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aJQXKN_ccpWVJ5oZ@ketchup>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NJRsSVeNb6U+SMVN1Hv92O9l6TojnhLKgMmfHiRYYWrcp58NKGb3kaaD
+	aaBXlk20sL/FJbg6+z2YdCw3Mb7kb6wfoXkqFQH/3KR65x0TmFuUlCJ+2eU6Md559N6oWOF
+	yUHRhUEveD23OnWF7NVvGQNXXM7MI37If4nVnFKM18APkhHjmpXKzo1fIvw+V+KibDWYyVP
+	fKF2jfEdUf8+lUdIGdb8oHjEnSTKlXZ+kc6LcfLNqASZHzFZzK8Ori1r+omdaLvNzBVutsE
+	KLucuciOIdaIfbRcK/DQVLuSYfLk+5g8iuiK/JH2ptSlhEq9leNwF7H69btmijYXpSQUgcv
+	zqtLV7/6+jHFum8ZM1Yb58F/Eysj+KAc7zS9zTSHdzlXWk0Nv7cQpt4ts3a7nDwCmVfoNgb
+	MDnSS3eM9Pm8AbS+Tg4H1SVQO22B3Yu095R8P+tcqcwO4NKEnRdbD0BzfhsJ5CWKZHmL1aK
+	RPY2f4IX+xRkjGLtNqIHXPZ2msaHBDShE2kjHoVkGCnvJmLnM9lAHyg+mxRf5fkoTZogCTg
+	6iD3L+RJLnpRtdnEpJRnY40nJbRB2AH0jIuKFYswWBMpnvOqw4c93YI0dDTF+zk762luhqB
+	mAIwaCY3h6UySGcLSK1CZV8WskrlI20DqVSUPEgeV3eLXSlDyvwAxyA1bwSe/ASov5Vo0QX
+	THGVnW0zG+4fhR9x60sRIlhGyGnt/54mN0wXQXnoT8MetTL9JPTo+XtFU/PC6Mf7d4kZFkj
+	gMGhtbt/goYCwHLyzruWzOXwpc4hzswihFA7niCMBu6rkvvtTON9v8QHhFQUpyDffG4HEG2
+	/LWC27w8cdgp6RKZdmaO9i8Kr4YmHAeciTXheHMiA+IES8F/ohsqtojOOr670OPKKbq/AIh
+	A1BLU0hVcWUo2iBVs11u4CZfb5f54DdmKKUv7YIH8WA4cHQlD4XKWdVnvs9JvplYTGxGhrc
+	EgAvVeDT1RfRggM822k5BuAb9hbW2WMNFAuVFzZKuEOQpY3+F6/gmU+e2LmJnD9evlDFxOz
+	T4g507pLBDuXAlIp+ijkJ6PUgpHiQsGUFC6r1QkQJPYqXMKtjh0/w+fV8fzB8=
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Hi, Haylen!
 
-Add Amlogic spi flash controller entry to MAINTAINERS
-to clarify the maintainers.
+On Thu, Aug 07, 2025 at 03:02:00AM +0000, Haylen Chu wrote:
+> On Thu, Aug 07, 2025 at 09:30:11AM +0800, Troy Mitchell wrote:
+> > Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
+> > for real I2S use cases.
+> 
+> This is a little misleading: they're modeled as gates with fixed-factor
+> for now whose rate is calculated from their parents instead of defined
+> statically. You could avoid possible confusion by replacing "fixed-rate"
+> with "fixed-factor".
+>
+I'll change it in next version.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> 
+> > Moreover, the current I2S clock configuration does not work as expected
+> > due to missing parent clocks.
+> > 
+> > This patch adds the missing parent clocks, defines i2s_sysclk as
+> > a DDN clock, and i2s_bclk as a DIV clock.
+> > 
+> > The i2s_sysclk behaves as an M/N fractional divider in hardware,
+> > with an additional gate control.
+> > 
+> > To properly model this, CCU_DDN_GATE_DEFINE is introduced.
+> 
+> Could it be represented as a DDN clock taking a gate as parent? Just
+> like what is described in the published clock diagram. Generally I'd
+> like to avoid introducing more clock types, there're already a lot.
+Uh, our new chip(K3) may uses this macro that I introduced..
+so I don't wanna take a gate as parent everywhere..
+how about we leave it? ;)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b1c081f9c567..9f1f337e9b6d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1306,6 +1306,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
- F:	drivers/rtc/rtc-amlogic-a4.c
- 
-+AMLOGIC SPIFC DRIVER
-+M:	Liang Yang <liang.yang@amlogic.com>
-+M:	Feng Chen <feng.chen@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
-+F:	drivers/spi/spi-amlogic-spifc-a4.c
-+
- AMLOGIC SPISG DRIVER
- M:	Sunny Luo <sunny.luo@amlogic.com>
- M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> > The original DDN operations applied an implicit divide-by-2, which should
+> > not be a default behavior.
+> > 
+> > This patch removes that assumption, letting each clock define its
+> > actual behavior explicitly.
+> > 
+> > The i2s_bclk is a non-linear, discrete divider clock.
+> > The previous macro only supported linear dividers,
+> > so CCU_DIV_TABLE_GATE_DEFINE is introduced to support
+> > the hardware accurately.
+> 
+> The divider IS linear, from the perspective of functionality, it just
+> implies a 1/2 factor. Could it be represented as an usual divider and a
+> 1/2 fixed factor?
+ditto.
 
--- 
-2.37.1
+I know you don't wanna introduce new macro..
+But K3 requires this, so whether it is introduced now or future,
+the final result is the same.
 
+Please leave it..
+> 
+> > The I2S-related clock registers can be found here [1].
+> 
+> So this patch actually does four separate things,
+> 
+> - Introduce a gate-capable variant of DDN clocks
+> - Make the pre-divider of DDN clocks flexible
+> - Support looking up mappings between register values and divisors
+>   through a table when calculating rates of dividers
+> - Fix the definition of i2s_bclk and i2s_sysclk
+> 
+> IMHO it's better to split them into separate patches for clearness.
+Ok, I will split them into separate patches.
 
+...
+> 
+> ...
+> 
+> > diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
+> > index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..253db8a602fe43a1109e2ba248af11109c7baa22 100644
+> > --- a/include/soc/spacemit/k1-syscon.h
+> > +++ b/include/soc/spacemit/k1-syscon.h
+> > @@ -29,10 +29,11 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
+> >  #define APBS_PLL3_SWCR3			0x12c
+> >  
+> >  /* MPMU register offset */
+> > +#define MPMU_FCCR			0x0008
+> >  #define MPMU_POSR			0x0010
+> > -#define  POSR_PLL1_LOCK			BIT(27)
+> > -#define  POSR_PLL2_LOCK			BIT(28)
+> > -#define  POSR_PLL3_LOCK			BIT(29)
+> > +#define POSR_PLL1_LOCK			BIT(27)
+> > +#define POSR_PLL2_LOCK			BIT(28)
+> > +#define POSR_PLL3_LOCK			BIT(29)
+> 
+> This reformatting doesn't seem related to the patch.
+It's worth that create a new commit to reformatting it?
+
+                - Troy
+> 
+> >  #define MPMU_SUCCR			0x0014
+> >  #define MPMU_ISCCR			0x0044
+> >  #define MPMU_WDTPCR			0x0200
+> > 
+> > -- 
+> > 2.50.1
+> > 
+> 
+> Best regards,
+> Haylen Chu
+> 
 
