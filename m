@@ -1,120 +1,119 @@
-Return-Path: <devicetree+bounces-202883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79CAB1F14A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 01:26:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E9DB1F151
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 01:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 962147256F1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:26:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D032416E7B8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE2E28B4E3;
-	Fri,  8 Aug 2025 23:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C765528DEE3;
+	Fri,  8 Aug 2025 23:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sMIbK83A"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hGa68hSC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42F528937B;
-	Fri,  8 Aug 2025 23:26:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD09E28BA8C;
+	Fri,  8 Aug 2025 23:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754695585; cv=none; b=K1XphrcHrFE4f8kYWnSZgZoEIKxStyJ5keQQxLEK9TO3ZkjtqpkOm5pElfmP+BwOJvDM0Zq09KjUZEKDC6WfoRFvawEx0d/kjiNcDzin0WVW8HYjycG3HdN7uQmnaDd+RmoVNadUgAR8QoG9yJad2LUa//LbPsyqIZCmUHRcyTc=
+	t=1754696156; cv=none; b=LCIpG+LuAWUtxh8E6eoZ3vSaFTHP35dMDCvykUr8qPdic0anGC7Uy0I1xSSRawt/ATPPeSX+kp0NQasT8GZMdHCe1Y9oeqExVFsJoqD3OyzmQRqgdzQ0Mr2kgZtGxa5/yBLcX2BoixMb5JNmqY7nhu+monX1qTmSsdorc6y0rKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754695585; c=relaxed/simple;
-	bh=qTy1tWnesG04xe8LijQZPAyTrSd6Nm2TLLVCi72Hcng=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZKT7GLkfJ/fDpKpcVh8pxNXezH2Lb23DjlJegidVR63SPtDR7ZzfCO4J6EtqSvNzM0TqplaE8ZA2jFTc2I6CdYOQhd9NBy+5VEH4UXJ27qYyloL38JsxcGpJFdFv/Rx6zY0S1wIUIK8XSFxt83ijj40/Yrthe20SNXh1V4RE8Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sMIbK83A; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 578NQ315695282;
-	Fri, 8 Aug 2025 18:26:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754695563;
-	bh=Zl3QejqPun2r+LOsmnN/PgiHG24NsWIeEiLN8ztW+jA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=sMIbK83Ab2o6pce6IRt8cSr9ECtZDbR/t7qh2sh5ojhHGWkpaHl1SQQIgnsrQukeU
-	 xq5G5ld1lm4kz8kBQpGUVy2gVxqivCvg4xEgBuWHI9wbnfhkNg7wYdOuWH2FcnEVPd
-	 n6Ae6P8yKTBaaGYr4Y9RMdEF5qWyBR+/GjI8KQ20=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 578NQ2RV1922250
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 8 Aug 2025 18:26:02 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
- Aug 2025 18:26:02 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 8 Aug 2025 18:26:02 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 578NQ2Rv3452261;
-	Fri, 8 Aug 2025 18:26:02 -0500
-From: <rs@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>
-CC: <conor+dt@kernel.org>, <d-gole@ti.com>, <afd@ti.com>, <bb@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <detheridge@ti.com>,
-        <matt.coster@imgtec.com>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the bxs-4-64
-Date: Fri, 8 Aug 2025 18:25:22 -0500
-Message-ID: <20250808232522.1296240-3-rs@ti.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250808232522.1296240-1-rs@ti.com>
-References: <20250808232522.1296240-1-rs@ti.com>
+	s=arc-20240116; t=1754696156; c=relaxed/simple;
+	bh=RVqLSb5Wus76vi2wWeT+TKa7Ra1loEE3/4mGROWKk0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XqRijy7TbxFsl0lYLSOQCtJDe6Y9XMgVdR/5RFBqJWfunwv6c5K8vwinEtwsAejuLkiBML84KsxpGA+DsNxEraAQ0viGL5LkyUzVRCh2/2Cw791YYHzHX2F7fHAP1NRbKHTYarNv0XBn7GAPabkDV7UHcwS4l8zwEN73VWmKLds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hGa68hSC; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754696155; x=1786232155;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RVqLSb5Wus76vi2wWeT+TKa7Ra1loEE3/4mGROWKk0s=;
+  b=hGa68hSCyI7YvPsdexfgi4UUF66sDcI3kcaaN2HScyrUjfVyI9AVnNVx
+   YAfYG7Lwn7zmIhR+kJvEqwAapFDJzIfvF/bBDWCTt10pc+PnF4dCrI26A
+   YZFHYfXSQn6ADjpE66S+WCCK4U6mFYpCxpkh3LoNZiB1MUwP+Y2B7qWwR
+   kksFwk7ZpO1IZdJKVl379HxDEDckusecnERSdZ1DY6mdZ0DQ5+XsreFSv
+   LOc9wdYZCnRY9wlvlUtnSWGxZVEChkpqW0ow7+5mPXPQnNd4I2Sjz0ikp
+   eNgQQizc9eGrtqnD0ouStG3VBEmLyvOIEnUyRLkmraDdueKcrBML1/zre
+   Q==;
+X-CSE-ConnectionGUID: 41+QxxDnS3ix3xUf4xTyig==
+X-CSE-MsgGUID: OLuCFZ4gRpa7AvO7h/n64Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="44639732"
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; 
+   d="scan'208";a="44639732"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2025 16:35:54 -0700
+X-CSE-ConnectionGUID: cFlSZ0XbQGGVgdFO5f+hsA==
+X-CSE-MsgGUID: YluiCMFMRVKJ3Po2psw5vA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; 
+   d="scan'208";a="164941598"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by fmviesa007.fm.intel.com with ESMTP; 08 Aug 2025 16:35:50 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ukWcm-0004PQ-0i;
+	Fri, 08 Aug 2025 23:35:48 +0000
+Date: Sat, 9 Aug 2025 07:35:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, mani@kernel.org, robh@kernel.org,
+	kwilczynski@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, mpillai@cadence.com,
+	fugang.duan@cixtech.com, guoyin.chen@cixtech.com,
+	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Hans Zhang <hans.zhang@cixtech.com>
+Subject: Re: [PATCH v6 04/12] PCI: cadence: Split PCIe RP support into common
+ and specific functions
+Message-ID: <202508090739.3RYjIgG3-lkp@intel.com>
+References: <20250808072929.4090694-5-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250808072929.4090694-5-hans.zhang@cixtech.com>
 
-From: Randolph Sapp <rs@ti.com>
+Hi,
 
-Add the relevant device tree node for Imagination's BXS-4-64 GPU.
+kernel test robot noticed the following build errors:
 
-These devices uses a similar MSMC configuration to the J721S2. As such,
-they also require the use of the dma-coherent attribute.
+[auto build test ERROR on 37816488247ddddbc3de113c78c83572274b1e2e]
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/hans-zhang-cixtech-com/PCI-cadence-Split-PCIe-controller-header-file/20250808-154018
+base:   37816488247ddddbc3de113c78c83572274b1e2e
+patch link:    https://lore.kernel.org/r/20250808072929.4090694-5-hans.zhang%40cixtech.com
+patch subject: [PATCH v6 04/12] PCI: cadence: Split PCIe RP support into common and specific functions
+config: sparc-randconfig-001-20250809 (https://download.01.org/0day-ci/archive/20250809/202508090739.3RYjIgG3-lkp@intel.com/config)
+compiler: sparc-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250809/202508090739.3RYjIgG3-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 7c5b0c69897d..a44ca34dda62 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -2691,4 +2691,18 @@ bist_main14: bist@33c0000 {
- 		bootph-pre-ram;
- 		ti,sci-dev-id = <234>;
- 	};
-+
-+	gpu: gpu@4e20000000 {
-+		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-+		reg = <0x4e 0x20000000 0x00 0x80000>;
-+		clocks = <&k3_clks 181 1>;
-+		clock-names = "core";
-+		assigned-clocks = <&k3_clks 181 1>;
-+		assigned-clock-rates = <800000000>;
-+		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+		power-domains = <&k3_pds 181 TI_SCI_PD_EXCLUSIVE>,
-+				<&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
-+		power-domain-names = "a", "b";
-+		dma-coherent;
-+	};
- };
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508090739.3RYjIgG3-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "cdns_pcie_host_start_link" [drivers/pci/controller/cadence/pcie-cadence-host.ko] undefined!
+>> ERROR: modpost: "cdns_pcie_host_dma_ranges_cmp" [drivers/pci/controller/cadence/pcie-cadence-host.ko] undefined!
+>> ERROR: modpost: "bar_max_size" [drivers/pci/controller/cadence/pcie-cadence-host.ko] undefined!
+>> ERROR: modpost: "cdns_pcie_host_find_min_bar" [drivers/pci/controller/cadence/pcie-cadence-host.ko] undefined!
+>> ERROR: modpost: "cdns_pcie_host_find_max_bar" [drivers/pci/controller/cadence/pcie-cadence-host.ko] undefined!
+
 -- 
-2.50.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
