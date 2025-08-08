@@ -1,116 +1,325 @@
-Return-Path: <devicetree+bounces-202694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16031B1E61C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:00:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E738B1E626
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F23B55842D2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:00:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75FFB4E2C5D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50490273D82;
-	Fri,  8 Aug 2025 09:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B81226B75D;
+	Fri,  8 Aug 2025 10:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bEHbZibP"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="UY2cD6QL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84E3272804;
-	Fri,  8 Aug 2025 09:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D24188A0C;
+	Fri,  8 Aug 2025 10:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=51.77.79.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754647145; cv=none; b=u4HIxz22WjOJpW3V6Hrm0u3x9CHi+HiseHnSSzjv5gh2/cVenFTv/P/b/uDHTXCx/cle/Rm1KeUsR/Kp+xrdonTO85Qj69sHU0uRRieDV7LhBWLveiV5b8QFDIee40Ld0EZtAC0WV7qMNvpJ7pJNH6sqru72e74nzVok+eVeZAw=
+	t=1754647858; cv=none; b=kAv/CBRIYHA3H/1ErOdZKw1AI2y4Tq5K3To+iY9s4Q8w6qnoh9SceH7BVo/7YVc1sNMDudLzxQxU1lmmNM0qWisWzJ4LxFBaRbNZqGTzSEF8edCHlH3dbm5Jn85wnsBnt761BbZI61Lef3PSugNwmP/dn3PTdE+ZFrMeQ8KudM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754647145; c=relaxed/simple;
-	bh=sMi0ZuiUrx+4UhwHrcZgGsVO9bWwxXp/Eyf3mkFDD5s=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Dqxghw88lRmEduLghNmQeWl97bXZ/z3UcLdnbQyf4Si8UL+58zma/v5OojHCtA48S41rCg4ohXY0w7kxmz/0+vWE0V7fIrzzDWDkP02UMaD8aUL3el6qxh8sKOcaQ5Ggr0WxtyJjlfKEvCRB08ILakiWA7jvlhEepUXMD82jsvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bEHbZibP; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5789wwjY524235;
-	Fri, 8 Aug 2025 04:58:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754647139;
-	bh=3v6tAb9E4/28TpvOVeu+wTaWGTyS1q0Gj2c/mcYl6U0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=bEHbZibPhLaUwMdEASSfLMuDrTvxJiVhhGz/g6GXyNaZn9hWaTdeEuCZwAWc/yg7R
-	 yd6hbNbSBeEGwTs2IARklw2icqlwY/7Vj4B1Ajq+QWVCdmlySOgT8dK4MX+eDFfASV
-	 59iX7cRCImiGNhRiZcvwgZjZbX9t9KJlJZw0D9G4=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5789ww5f842259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 8 Aug 2025 04:58:58 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
- Aug 2025 04:58:58 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 8 Aug 2025 04:58:58 -0500
-Received: from abhilash-HP.dhcp.ti.com (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5789wCOw2574818;
-	Fri, 8 Aug 2025 04:58:54 -0500
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <vaishnav.a@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <y-abhilashchandra@ti.com>, Jared McArthur <j-mcarthur@ti.com>
-Subject: [PATCH V2 7/7] arm64: dts: ti: k3-am62a-main: Add interrupts property
-Date: Fri, 8 Aug 2025 15:28:04 +0530
-Message-ID: <20250808095804.544298-8-y-abhilashchandra@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250808095804.544298-1-y-abhilashchandra@ti.com>
-References: <20250808095804.544298-1-y-abhilashchandra@ti.com>
+	s=arc-20240116; t=1754647858; c=relaxed/simple;
+	bh=RggGRjMHU2R6gkBzlubXye+UKgPBHxSYw5o58uEuNPE=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nTSQXFFOU76hVj7weuZyPPQISzRFqDZy0zSR53ggJ3PA6/s2ZIUN9tuXSKooTK1Bl4KRt6E79nPr8DL0B+0+8wBamoBNcb6cRUQhdEruUphWqFB1VPkWajnF5i/PRKbHAaXdbv/atWxtQQvtcv6E80KsIRg+sdo4m20KSJeScOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=UY2cD6QL; arc=none smtp.client-ip=51.77.79.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
+	s=protonmail; t=1754647840; x=1754907040;
+	bh=Yq9VQhZI5mAsxhu/WxdvqFhc+hT1CLK+UVkJM6ho9rw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=UY2cD6QL6Z23vuTH8SwENI1P/vPhlVOC0sEpCxucNH4Fjo70CHZQgdlKNhG+6/yvo
+	 V7Ef8n9eBOhuVxSviIZPpEm8V4Lp0WXUcStRSA+xeGFURo1cgBHsW8r86vaiBeuQ6n
+	 moPZyiqjJcwADczZnZ9BBFqOoM5V3bhZo2w+3n0iQz4Tx6t/sIGyx9FfoZ9GAuzTfz
+	 THoh3WTG/65PJE+v2cEdcfkJASJmTON07MKLQagdl/UQ7+xEWC6DFEk1caJbp48zq1
+	 7S/S2+tGSAm9uEdWLrPeWTGvYBVlTof7qYKFjm/QmPENccZFQGca0bXW4Y878UNaP0
+	 bbyJ3R+6lsSeg==
+Date: Fri, 08 Aug 2025 10:10:35 +0000
+To: samuel.kayode@savoirfairelinux.com
+From: Sean Nyekjaer <sean@geanix.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>, imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, Robin Gong <yibin.gong@nxp.com>, Enric Balletbo i Serra <eballetbo@gmail.com>, Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 1/6] dt-bindings: mfd: add pf1550
+Message-ID: <gj565636v5qgohhf5usklfqydkc6lzifzhrbquoyawbwvhdlma@kajszdivkp2e>
+In-Reply-To: <20250716-pf1550-v9-1-502a647f04ef@savoirfairelinux.com>
+References: <20250716-pf1550-v9-0-502a647f04ef@savoirfairelinux.com> <20250716-pf1550-v9-1-502a647f04ef@savoirfairelinux.com>
+Feedback-ID: 134068486:user:proton
+X-Pm-Message-ID: 2267f331269a8e8c5fc399b9463def7d4fed3f7c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Add interrupts property for CDNS CSI2RX. Interrupt IDs are taken from the
-AM62A TRM [0].
+On Wed, Jul 16, 2025 at 11:11:44AM +0100, Samuel Kayode via B4 Relay wrote:
+> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+>=20
+> Add a DT binding document for pf1550 PMIC. This describes the core mfd
+> device along with its children: regulators, charger and onkey.
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> ---
+> v9:
+>  - Add regulator suspend bindings in example
+>  - Add binding for disabling onkey power down
+>  - Fix thermal regulation temperature range
+> v5:
+>  - Address Krzystof's feedback:
+>    - Drop monitored battery ref already included in power supply schema
+>    - Move `additionalProperties` close to `type` for regulator
+>    - Drop unneccessary |
+>    - Change `additionalProperties` to `unevaluatedProperties` for the
+>      PMIC
+> v4:
+>  - Address Krzystof's feedback:
+>    - Filename changed to nxp,pf1550.yaml
+>    - Replace Freescale with NXP
+>    - Define include before battery-cell
+>    - Drop operating-range-celsius in example since
+>      nxp,thermal-regulation-celsisus already exists
+>  - Not sure if there is similar binding to thermal-regulation...
+>    for regulating temperature on thermal-zones? @Sebastian and @Krzysztof
+> v3:
+>  - Address Krzysztof's feedback:
+>    - Fold charger and onkey objects
+>    - Drop compatible for sub-devices: onkey, charger and regulator.
+>    - Drop constant voltage property already included in
+>      monitored-battery
+>    - Fix whitespace warnings
+>    - Fix license
+> v2:
+>  - Add yamls for the PMIC and the sub-devices
+> ---
+>  .../devicetree/bindings/mfd/nxp,pf1550.yaml        | 144 +++++++++++++++=
+++++++
+>  1 file changed, 144 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml b/Docu=
+mentation/devicetree/bindings/mfd/nxp,pf1550.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ede5b6a2106ff60f4b47b3602=
+fea8dd0b62d6fcf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/nxp,pf1550.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP PF1550 Power Management IC
+> +
+> +maintainers:
+> +  - Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> +
+> +description:
+> +  PF1550 PMIC provides battery charging and power supply for low power I=
+oT and
+> +  wearable applications. This device consists of an i2c controlled MFD t=
+hat
+> +  includes regulators, battery charging and an onkey/power button.
+> +
+> +$ref: /schemas/power/supply/power-supply.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,pf1550
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  wakeup-source: true
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    patternProperties:
+> +      "^(ldo[1-3]|sw[1-3]|vrefddr)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml
+> +        description:
+> +          regulator configuration for ldo1-3, buck converters(sw1-3)
+> +          and DDR termination reference voltage (vrefddr)
+> +        unevaluatedProperties: false
+> +
+> +  monitored-battery:
+> +    description: |
+> +      A phandle to a monitored battery node that contains a valid value
+> +      for:
+> +      constant-charge-voltage-max-microvolt.
+> +
+> +  nxp,thermal-regulation-celsius:
+> +    description:
+> +      Temperature threshold for thermal regulation of charger in celsius=
+.
+> +    enum: [ 80, 95, 110, 125 ]
+> +
+> +  nxp,min-system-microvolt:
+> +    description:
+> +      System specific lower limit voltage.
+> +    enum: [ 3500000, 3700000, 4300000 ]
+> +
+> +  nxp,disable-key-power:
+> +    type: boolean
+> +    description:
+> +      Disable power-down using a long key-press. The onkey driver will r=
+emove
+> +      support for the KEY_POWER key press when triggered using a long pr=
+ess of
+> +      the onkey.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/linux-event-codes.h>
+> +
+> +    battery: battery-cell {
+> +        compatible =3D "simple-battery";
+> +        constant-charge-voltage-max-microvolt =3D <4400000>;
+> +    };
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        pmic@8 {
+> +            compatible =3D "nxp,pf1550";
+> +            reg =3D <0x8>;
+> +
+> +            interrupt-parent =3D <&gpio1>;
+> +            interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +            wakeup-source;
+> +            monitored-battery =3D <&battery>;
+> +            nxp,min-system-microvolt =3D <4300000>;
+> +            nxp,thermal-regulation-celsius =3D <80>;
+> +
+> +            regulators {
+> +                sw1_reg: sw1 {
+> +                    regulator-name =3D "sw1";
+> +                    regulator-min-microvolt =3D <600000>;
+> +                    regulator-max-microvolt =3D <1387500>;
+> +                    regulator-always-on;
+> +                    regulator-ramp-delay =3D <6250>;
+> +                };
+> +
+> +                sw2_reg: sw2 {
+> +                    regulator-name =3D "sw2";
+> +                    regulator-min-microvolt =3D <600000>;
+> +                    regulator-max-microvolt =3D <1387500>;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                sw3_reg: sw3 {
+> +                    regulator-name =3D "sw3";
+> +                    regulator-min-microvolt =3D <1800000>;
+> +                    regulator-max-microvolt =3D <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                vldo1_reg: ldo1 {
+> +                    regulator-name =3D "ldo1";
+> +                    regulator-min-microvolt =3D <750000>;
+> +                    regulator-max-microvolt =3D <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                vldo2_reg: ldo2 {
+> +                    regulator-name =3D "ldo2";
+> +                    regulator-min-microvolt =3D <1800000>;
+> +                    regulator-max-microvolt =3D <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                vldo3_reg: ldo3 {
+> +                    regulator-name =3D "ldo3";
+> +                    regulator-min-microvolt =3D <750000>;
+> +                    regulator-max-microvolt =3D <3300000>;
+> +                    regulator-always-on;
+> +                };
+> +            };
+> +        };
+> +    };
+>=20
+> --
+> 2.50.1
+>=20
+>=20
 
-Interrupt Line             | Source Interrupt
----------------------------|----------------------------------
-GICSS0_COMMON_0_SPI_IN_175 | CSI_RX_IF0_COMMON_0_CSI_ERR_IRQ_0
-GICSS0_COMMON_0_SPI_IN_173 | CSI_RX_IF0_COMMON_0_CSI_IRQ_0
+Does it make sense to show that the driver support suspend to mem
+states? Like...
 
-[0]: https://www.ti.com/lit/pdf/spruj16
 
-Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-Reviewed-by: Jared McArthur <j-mcarthur@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+=09=09=09sw1_reg: sw1 {
+=09=09=09=09regulator-name =3D "sw1";
+=09=09=09=09regulator-min-microvolt =3D <1325000>;
+=09=09=09=09regulator-max-microvolt =3D <1325000>;
+=09=09=09=09regulator-always-on;
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index 44e7e459f176..9cad79d7bbc1 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -1054,6 +1054,9 @@ ti_csi2rx0: ticsi2rx@30102000 {
- 		cdns_csi2rx0: csi-bridge@30101000 {
- 			compatible = "ti,j721e-csi2rx", "cdns,csi2rx";
- 			reg = <0x00 0x30101000 0x00 0x1000>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "error_irq", "irq";
- 			clocks = <&k3_clks 182 0>, <&k3_clks 182 3>, <&k3_clks 182 0>,
- 				<&k3_clks 182 0>, <&k3_clks 182 4>, <&k3_clks 182 4>;
- 			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
--- 
-2.34.1
+=09=09=09=09regulator-state-mem {
+=09=09=09=09=09regulator-on-in-suspend;
+=09=09=09=09=09regulator-suspend-max-microvolt =3D <900000>;
+=09=09=09=09=09regulator-suspend-min-microvolt =3D <900000>;
+=09=09=09=09};
+=09=09=09};
+
+=09=09=09sw2_reg: sw2 {
+=09=09=09=09regulator-name =3D "sw2";
+=09=09=09=09regulator-min-microvolt =3D <1350000>;
+=09=09=09=09regulator-max-microvolt =3D <1350000>;
+=09=09=09=09regulator-always-on;
+
+=09=09=09=09regulator-state-mem {
+=09=09=09=09=09regulator-on-in-suspend;
+=09=09=09=09};
+=09=09=09};
+
+=09=09=09sw3_reg: sw3 {
+=09=09=09=09regulator-name =3D "sw3";
+=09=09=09=09regulator-min-microvolt =3D <3300000>;
+=09=09=09=09regulator-max-microvolt =3D <3300000>;
+=09=09=09=09regulator-always-on;
+
+=09=09=09=09regulator-state-mem {
+=09=09=09=09=09regulator-on-in-suspend;
+=09=09=09=09};
+=09=09=09};
+
+=09=09=09vldo1_reg: ldo1 {
+=09=09=09=09regulator-name =3D "ldo1";
+=09=09=09=09regulator-min-microvolt =3D <2900000>;
+=09=09=09=09regulator-max-microvolt =3D <2900000>;
+=09=09=09=09regulator-always-on;
+
+=09=09=09=09regulator-state-mem {
+=09=09=09=09=09regulator-off-in-suspend;
+=09=09=09=09};
+=09=09=09};
+
+Br,
+Sean
 
 
