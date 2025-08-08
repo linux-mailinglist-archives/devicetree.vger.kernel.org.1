@@ -1,88 +1,105 @@
-Return-Path: <devicetree+bounces-202552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9618BB1E0B8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 04:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF0AB1E0CC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 05:05:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEEE0567615
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 02:50:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF7415637EF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5880F16F0FE;
-	Fri,  8 Aug 2025 02:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C581A0711;
+	Fri,  8 Aug 2025 03:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JcQ7JfKS"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="ceq9Z37m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8AA2EAE5;
-	Fri,  8 Aug 2025 02:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A81224FA
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 03:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754621420; cv=none; b=hmRdzEMIhwbWzndEs9E7jBB96aCxkKGPXH1nrP3SyOQ5/ndpVedR7bgJjfFVvT5vkDQqImA3bJxzbaEWya09it5m40LNJg/yh7RVR4LRHw+HlVs70JOfF/BfVsTOT+PCNiy0RcZBNG79NBklF7pddyf3GYwKyVJzlQibsIlwudI=
+	t=1754622319; cv=none; b=phnxflibZtimKIRWMki7zjvPZqn3UtXaYdNP5olDqYZp5dXlfT0tLiIguILz0UZ39QEl/BaiDf3ZO17rrLCzRCHDYiDBCk6wxAOX2NDIMNGTShEjsc+axRU0sXZLKrVEIqjh7qoWOJ2Yf0iWlPduUN1GiAG8jz9FMsQIwqJNWMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754621420; c=relaxed/simple;
-	bh=g0uv6fnhovJWLtZMN+CHOLUK990XKiCOaLMwHfLXhDE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fxPne+famrlsJsiMFSjycIU9lFQvjihX2H7Q+Kgk0mAG5wMWFuhZcURxRvP6R+hG8jaHqP7MVN1Fz3l77HMkReWwwTfIglfkh4etuBRHAg8alArFy5JqFDKJ+h7iKqPNUUW2A1QApEcYMA3zSikHYJBZEtYqJ7tCB8wyjG+0Mog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JcQ7JfKS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6E82C4CEF4;
-	Fri,  8 Aug 2025 02:50:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754621419;
-	bh=g0uv6fnhovJWLtZMN+CHOLUK990XKiCOaLMwHfLXhDE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JcQ7JfKS4mQn8euZQhnZ62PS7UA61LBBotd01jfmfBScjSFqvxJ+QXTC6Ofb4Xo6g
-	 itaGRmaHzmFKNGnahUsuoHPWLN9xaS42zDT/iErmPW6KmfN8PjCAiux9maLDBJyua1
-	 CQ6enIW2kh3RZM1YDBNQtSCyG3U0TdvPu9HRA+VjN1JaCLmnrtV6qfjtJMw5+upY8e
-	 j5vDS25Avm0LustWQtCcgnA1vxBwiQ2DK/esZc4en3rBf92dH7UBpVWlBEWbH8THn2
-	 tefdbBf8Y7J9ZnWDbtpquDAm46SiiIv3pV1/yLMh2OVwrwfvhxs7HrV+Dne2z4syJD
-	 yMJ72WEFHLHlA==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-60bfcada295so2693761a12.1;
-        Thu, 07 Aug 2025 19:50:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWaMuj5HaJOjtaveTUbtQHff/soqk5+eZDhRlAOWktS4/E4WkKY2Dum0tJTR92Moh0hY4fDlhc/zUWP@vger.kernel.org, AJvYcCWmA3Gx5asYfzBk25XgZYsV1+ZN2SoL742sbj9dqTkHAJa5lKa2j8uH2BgJ+E7JzOE0YwEpBrVnOSGnC4lQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUE4MqUqsdIkIGYtIIURsImdhBwOZYeim5zNGsHr5g07p3yJ/X
-	Diz5DrZWedINSgzSiojG33RP+ebyDDCtNe19FZvFw7qltDT0PWwo880f4G4SHOf/yrOhDEyWhuj
-	vhS1hbCJEQ15ZELz4895oSBfhPWKsXg==
-X-Google-Smtp-Source: AGHT+IEqhXN9gcpvtww/uIXk1g5Jh4VOsYFk+Wmv8cdDGRkjJ5D8DWPxNlHmkDOdq49Uzgu3cSqj67A87cs4uT56pXk=
-X-Received: by 2002:a17:906:4fc9:b0:af9:79a5:d635 with SMTP id
- a640c23a62f3a-af9c6516dd2mr95998666b.37.1754621418361; Thu, 07 Aug 2025
- 19:50:18 -0700 (PDT)
+	s=arc-20240116; t=1754622319; c=relaxed/simple;
+	bh=YufMFNebB+ffC/W8Y13/+/2xtkKfnm3tVZn1lnJUtN4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eUsBv2HqFTaAryXrpVpjH2MwsSQUfFc3Tb++LaKc7nWjUGX4iqkw7Moes+vbq3SvG1qwtrk8uzbnblR8S8gvehZse0w2xCf9NnheEHd0joMlFXtIPJjJf2jp6M5/u/Wq68FCm2VUKcZSAHt+9kfA9GslXO8wNq1HcBMJxZfhiHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=ceq9Z37m; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8234B2C0536;
+	Fri,  8 Aug 2025 15:05:13 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1754622313;
+	bh=ewU04OYaps6nUewboJXJMDglhzziWDcVe/WKKXGnHK4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ceq9Z37msIfml9Toi53DnBJ+yEYoYEsr1FiLpV7c+IVDCT8vh8X8KVrHtHmjQqYH2
+	 riYfTP3SCTychv1QEehmJ41Qnr0ZvdJiJAtT15Ui/HBilrOYWv8LjLwj7bOAZHbB/c
+	 5wXCwMbTl2kenxj9St/piJyk9NrgtG9UOtNZWaoaqclBXBIZqo4DwGNwTQLTTADUaD
+	 ca3YrjNWGFMW4WfnCEABuKAeWTGcOZuW22Q3Jb9nb/PwKuG4uv/V/YwvzTJGwutRwA
+	 kULeoNI60xGNusYvUzy/1AcKuTKvl68sSL+XxcfXCtSP1bBzOusJZwD+6g1fr8A06s
+	 ZZXt7uTwMyAxg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B689569690000>; Fri, 08 Aug 2025 15:05:13 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 64BB213EE2B;
+	Fri,  8 Aug 2025 15:05:13 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 6116D280A41; Fri,  8 Aug 2025 15:05:13 +1200 (NZST)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: jdelvare@suse.com,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 0/2] hwmon: Add support for INA780
+Date: Fri,  8 Aug 2025 15:05:08 +1200
+Message-ID: <20250808030510.552724-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250807214406.4172668-1-robh@kernel.org>
-In-Reply-To: <20250807214406.4172668-1-robh@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 7 Aug 2025 21:50:06 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+vWZhXzfhKSBwmZg+7VggFQtTp2Ssrh5MCrPSBPxbvdQ@mail.gmail.com>
-X-Gm-Features: Ac12FXz_-dmuAPKBHiCgcNMqwLfNX1wH1zFmlS54hiXJ_kacMB-v_mB7IJruyMY
-Message-ID: <CAL_Jsq+vWZhXzfhKSBwmZg+7VggFQtTp2Ssrh5MCrPSBPxbvdQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer/rtc: Remove duplicate st,stih407-lpc bindings
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=dtt4CEg4 c=1 sm=1 tr=0 ts=68956969 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=vD8M-rq02-v07qFL8-YA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Thu, Aug 7, 2025 at 4:44=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
->
-> The "st,stih407-lpc" binding is documented in 3 places as it can
-> function as a timer, watchdog, or RTC. As there's already a schema for
-> it in watchdogy/st,stih407-lpc.yaml, remove the other text bindings.
+This is an alternate approach to the v1[1] I sent earlier. I've added the
+INA780 to the existing ina238.c driver. INA780 can mostly be thought of a=
+s a
+variant of the INA238 that doesn't require an external shunt. This is pro=
+bably
+a little messier than the separate driver but there is about half the amo=
+unt of
+code compared to v1 so perhaps the messiness is worth it.
 
-I'm confused... The schema is only sitting in my tree, so I'll resend
-with the conversion...
+[1] - https://lore.kernel.org/linux-hwmon/20250806005127.542298-1-chris.p=
+ackham@alliedtelesis.co.nz/
 
+Chris Packham (2):
+  dt-bindings: hwmon: ti,ina2xx: Add INA780 device
+  hwmon: (ina238) Add support for INA780
 
-Rob
+ .../devicetree/bindings/hwmon/ti,ina2xx.yaml  |   1 +
+ Documentation/hwmon/ina238.rst                |  20 ++
+ drivers/hwmon/ina238.c                        | 255 ++++++++++++++----
+ 3 files changed, 224 insertions(+), 52 deletions(-)
+
+--=20
+2.50.1
+
 
