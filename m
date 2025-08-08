@@ -1,85 +1,108 @@
-Return-Path: <devicetree+bounces-202881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3E3B1F135
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 01:06:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFC5B1F148
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 01:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13DB9179B79
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:06:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A2A9176E3B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60F022B585;
-	Fri,  8 Aug 2025 23:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E679289E29;
+	Fri,  8 Aug 2025 23:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/rE7DUK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ycwJqYar"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E941D54EE;
-	Fri,  8 Aug 2025 23:06:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB040273D85;
+	Fri,  8 Aug 2025 23:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754694378; cv=none; b=qtAaDjKaaN7qjF64IhkacUp+SdLrOpvPFFFZpTGuFXArv0HceTB4BamLHdiCVp4fQYbm3a/zqbrO4XcQ3If63jQCH2fgYC9ff+/OWGt3vwxkY/eZyyiEzS+NjwJpxoBxCBTV+n9jAdl05vJU+fQ2zXhdjYPPIaWTb4UBopLawNE=
+	t=1754695584; cv=none; b=aQXFEbs91vR4ppuWak+99OychzWIe04OMTwFsuTc5N1VbEQMHRO/uWtuT6FwhScFJ5j/BB3abkXLQfP2LMPG9IN2hkSYlxLINRrhawxvL9aNhM1A5mBswchDnGXHUz3uY6XHwtdpGWm4R0QkHFzp//s740k8TCYsOgdCo7bspFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754694378; c=relaxed/simple;
-	bh=wk1Rwnl+DQFlLilqKiajb3cVEadjb3JB09vbEstMqps=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XuzIYIDVxQKQ/2UgS5ihamccUb+uIc6+f33zs/SWxNGOZfS0CvPdW79PLvd4spw/7kfAMuQ4Rq1UdVV3tfwfaBLZpl/MwTmXjO9PV2UHJaXIv6EAQnsIaSkxdjRmxRrRgyR2oj6+uushgyC3moNGCwV0UU1/3M7FJ819613DRBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/rE7DUK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F14C4CEED;
-	Fri,  8 Aug 2025 23:06:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754694377;
-	bh=wk1Rwnl+DQFlLilqKiajb3cVEadjb3JB09vbEstMqps=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=T/rE7DUK+wKkgy8YIR6Z2qIuYHBEdnX5q+0r5r7qhHP77Y2pxFDE10pRpwULrO1Tm
-	 HM3K/5TLqnZQ2+tuzlaHsL5Em0fl+/urShabeYR4QOtqK/YIbsP5JsmFOVdLwgPeKH
-	 VXECacC4ZqpLtVxrqF2NV8Y365sYVtUMMMApNqmpDiScfwi3MUNcwcgJgBsK/JPTdP
-	 wnRs9EbHtzp6zmsOsdxbJFoBdSpIXVwRvPjXa34cbLvZfblMC05M3IpywJjc/YIo4r
-	 lmOC9POh0IwYUw7O1FKdscN+0V21unFKmAalb/2ksSzObN4cIuYmuB6h1xVMWXgYb6
-	 tytaUXuW54OGA==
-Date: Fri, 8 Aug 2025 16:06:15 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
- <nicolas.ferre@microchip.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Geert Uytterhoeven <geert@linux-m68k.org>, Harini Katakam
- <harini.katakam@xilinx.com>, Richard Cochran <richardcochran@gmail.com>,
- Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Sean Anderson
- <sean.anderson@linux.dev>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH net v3 00/16] net: macb: various fixes & cleanup
-Message-ID: <20250808160615.695beafe@kernel.org>
-In-Reply-To: <20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com>
-References: <20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com>
+	s=arc-20240116; t=1754695584; c=relaxed/simple;
+	bh=IgFz6ism4XHHwS4GyyCh41f/caPtl5rTNdvOgD+RJTc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tKZjh/Q1sF/OWt+vxz3rmsuItXYZHaFpcNnNXS8M9Hq4ipTi7I1cck9iux8j6vsQDDfvPe9ljbrefPMVp+xOK3yljddAQWzr85+MS5XAwR0HF+O4vp1kPAemDijxfu+eQCzsZKIknk2y/P8kCiQ8Vy5/hwkOE8KUSlsBo7+S2/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ycwJqYar; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 578NQ2v01144768;
+	Fri, 8 Aug 2025 18:26:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754695562;
+	bh=kGbx/r+Njk4AKTqhjXVTO4rlHrttX7J5/otdPCt66Xc=;
+	h=From:To:CC:Subject:Date;
+	b=ycwJqYarsYsKe2TXqW7kZh7xx7Eke6Tj9BuizUrLWTIu/IbqPUraM+D10SthUuqkI
+	 vF8S2gvZZYwNdmS+RKp1iGJEA0cLR9mJt41izveOHcIP0t0OnzK/MSkbM4txZ/2veQ
+	 B8i/Di027C5rJDq/hOqCMdpheBs4fgcRsr1uiVkM=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 578NQ2sQ1950632
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 8 Aug 2025 18:26:02 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
+ Aug 2025 18:26:02 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 8 Aug 2025 18:26:02 -0500
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 578NQ2Rt3452261;
+	Fri, 8 Aug 2025 18:26:02 -0500
+From: <rs@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>
+CC: <conor+dt@kernel.org>, <d-gole@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <detheridge@ti.com>,
+        <matt.coster@imgtec.com>
+Subject: [PATCH 1/3] arm64: dts: ti: k3-am62p: Fix memory ranges for GPU
+Date: Fri, 8 Aug 2025 18:25:20 -0500
+Message-ID: <20250808232522.1296240-1-rs@ti.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, 08 Aug 2025 18:52:32 +0200 Th=C3=A9o Lebrun wrote:
-> This is a split off my previous series on MACB [0]. The main goal is to
-> add EyeQ5 support, but there was a lot of independent fixes/cleanup.
->=20
-> Overall, it is fixes first so they can be applied swiftly, followed by a
-> series of cleanup patches. To clarify, nothing critical. It mostly puts
-> the driver in a better shape and prepares it for EyeQ5 patches.
+From: Randolph Sapp <rs@ti.com>
 
-Nothing past patch 7 is a fix, please separate fixes from other changes
-(unless there's a hard to avoid dependency). Please wrap the code at 80
-chars.
---=20
-pw-bot: cr
+Update the memory region listed in the k3-am62p.dtsi for the BXS-4-64
+GPU to match the Main Memory Map described in the TRM [1].
+
+[1] https://www.ti.com/lit/ug/spruj83b/spruj83b.pdf
+
+Fixes: 29075cc09f43 ("arm64: dts: ti: Introduce AM62P5 family of SoCs")
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p.dtsi b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+index 75a15c368c11..dd24c40c7965 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p.dtsi
+@@ -59,7 +59,7 @@ cbass_main: bus@f0000 {
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x01b28400>, /* First peripheral window */
+ 			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+ 			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x01d20000>, /* Second peripheral window */
+-			 <0x00 0x0fd00000 0x00 0x0fd00000 0x00 0x00020000>, /* GPU */
++			 <0x00 0x0fd80000 0x00 0x0fd80000 0x00 0x00080000>, /* GPU */
+ 			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+ 			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
+ 			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00010100>, /* CSI window */
+-- 
+2.50.1
+
 
