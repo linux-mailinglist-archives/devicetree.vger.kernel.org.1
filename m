@@ -1,204 +1,144 @@
-Return-Path: <devicetree+bounces-202627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA502B1E44A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:20:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6C8B1E451
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B69A37A5B67
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:18:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 449337AEC47
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6673259CBB;
-	Fri,  8 Aug 2025 08:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D5C25C804;
+	Fri,  8 Aug 2025 08:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ACYMXpLL"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="cvPx8n4T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3A74A11;
-	Fri,  8 Aug 2025 08:20:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C2525A353
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 08:23:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754641205; cv=none; b=GxAQZwg1RkjVReQAg2FhOEBeGKZjU4f8NinO7Ogk6TBAZctfZ4vGPWyG9RP3FGYdqTVR4H2ONDSzE8NazO5TBZf2LBEvRi8gD8yRUzPPGeTATaDkmM6YCRq218xNDYQl9jay0OtxvPJUwGmCS8dXlTYD4FFBxAJEv0yxTNEIg8s=
+	t=1754641401; cv=none; b=saf5iIt/Ssr4IQmDORXTBzTa+9dajsKNCDwWo7MYtgAMr3fGyaoasvOh8ZzrF7WBCUmmQCkfU4GSMDsDvWSHfgvkgbNtZzSJ17RWXY+u05E/BB0WMHwrobKk97wFrZq7fgSCEl1ou0cGoPNmMtyQY3DeJCIEhb+nyjnoSJd5MF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754641205; c=relaxed/simple;
-	bh=c3NroZ1PK5QOerK5RtUeTbp8bGlTMhkWlahVSYgFCVQ=;
+	s=arc-20240116; t=1754641401; c=relaxed/simple;
+	bh=bsh/7R5V9XNvtRBgbRptJnuST96CsEj614d/3uw/SME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LxkUCuXeEqefVc7B1OSDr0wp6aAPOOpN43ZOONoDU2pFW/PFbYMm80sZwgvt8gSzsRQDAJY6LrulXMCw8LkrhxDqZisbdhotF6gOGV85ov1g5wjVIhv5Kuq8bcJxR608z2GwwSvnIewSnzUAJf4V0kToCiuS1qcDYebFjdXkExo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ACYMXpLL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4E1C4CEED;
-	Fri,  8 Aug 2025 08:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754641205;
-	bh=c3NroZ1PK5QOerK5RtUeTbp8bGlTMhkWlahVSYgFCVQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ACYMXpLLU39k1efldn2qFTbPWCskR2n7eI7XSl9vjOlW0avJ+zwwzid20DikChGnv
-	 4d+V64Msl8CWbDVUCakPQ9ffBnYzmlvkQ83TS2BWKgpIscASVx+FIQZKYJlZeEL3Nb
-	 I8RMj5rF+jPhewbKF7TRxYwLqJsm0L2fAiNw4mm+OiBe97vvRV8ZBMwcJFIKZDOu69
-	 QFih9I+gPBd5S/NXGYyMNGOWEkk6q8Lir1jntHBH/Haxqa4j05YJ/uq7H0eQ7uoqim
-	 bYZIa0wdgXbq9ZPHfjQuq71uaVrT2eiKQFOh+o1yHZv9H3mSAo8mIblz5ggGD5MrAQ
-	 beCJyGAXdFZRg==
-Date: Fri, 8 Aug 2025 10:19:54 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jinjie Ruan <ruanjinjie@huawei.com>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Peter Maydell <peter.maydell@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v7 22/31] irqchip/gic-v5: Add GICv5 LPI/IPI support
-Message-ID: <aJWzKqM9bHuKy+1m@lpieralisi>
-References: <20250703-gicv5-host-v7-0-12e71f1b3528@kernel.org>
- <20250703-gicv5-host-v7-22-12e71f1b3528@kernel.org>
- <cc611dda-d1e4-4793-9bb2-0eaa47277584@huawei.com>
- <aJSvUWRqLEiARDIW@lpieralisi>
- <c8e3dc2c-617b-2988-10ff-88082370e787@huawei.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=M7JSudf0t/KeaFwpJBwaZx1xoAXjQ7B6pVnMNFL4Uz0EKcLy//FjmZzM5YTuZ1RV/fWkVc+IFlDQ8+5t97choIs0mnFezrkivvtGSGA7RiNvKaO8eUmoH2dT7Z/GHEr/JEzN/faZTXDpNKh+79ezZC8G0FMwAmRLXJXnyd5swXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=cvPx8n4T; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2403df11a2aso13379955ad.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 01:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1754641399; x=1755246199; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rqclBjlpReb8Zh2xzaAy1Tthw4Ak4Apujt4wspR+yjo=;
+        b=cvPx8n4Ts3zqRUY2xG6AtHoEFC+hNzZ5gHKFw2TMNfy3bMZrzR2d8hpL+kqLbwSmYR
+         WQt08ukI6iwh0c7HnzBCxequGbVbH3ag+m2JMvUnAqXZzmRxkDtRxIacrlNlCyXthOUH
+         IgzoduBNZj2S3jD5DSUfLv/zUJPROXyNTcLEU5meK8kRSXnpt9FYN8vypJKpbls9GeYI
+         JWhE/0YwY8hwXhJggsRr8VCuj9vpNEERGnUvxPn5WjXqo0915MLiSCeLVHUdpmlKIZV7
+         vzHWIsMCoZDofevhvGraylyWzfrqJd+KwOaoQU11M1rDPanciQKQbvHVUHKgHOex1zgP
+         WGGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754641399; x=1755246199;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rqclBjlpReb8Zh2xzaAy1Tthw4Ak4Apujt4wspR+yjo=;
+        b=SxhQukci/cW9agWwY7vdpbZqQk/+o/snljAtx7VjJRw5xWp7zzNNTCbACWuLAMxdeP
+         jO60NE/w2sYQ9wQenslhL+x84K9goe5lBceeRcOZqwE1Cw5caEbR79cbWs+M/fkmPBW1
+         AuaScvbOKqytrKvxYnw2owcEo4/1dCzo7v0iRFg6gJwIAw3VUmz+sEQD3BY5mmNjSFHI
+         u0/sl68tic+VZveFB+atFwVIoKd0bggofxuOr3T7ZpOenh3bh2b2FufzAE7HnJORVd1Q
+         1NIeQhjFvig9A8djYVKNaESqSeEEY/X5POKzCatNZkhQyqEliBLzvWxEHFVEIGz6E2V1
+         T5wA==
+X-Forwarded-Encrypted: i=1; AJvYcCWr7UV+fBOJ8Yzy1zhNVlmtksBKeyHm7+8Ih6h7d+2jnhZHNintdSCbdvJNehmJBFCE5AOom3dROCws@vger.kernel.org
+X-Gm-Message-State: AOJu0YySwA0AFGnxKRWhIx4oye0iiFbQ/VruGhWJ1LXlnvP5dhTbKwR+
+	BcIjhcM0vzRO8f61NuR0+q+leOicR9OHg4QW3D+W9w2WLc3n3Owyiga4HlgbjyWJVKc=
+X-Gm-Gg: ASbGncvaLU+ni1T7osdHYWd2rqPiXvXGwV1i6EBUjTuYZnIzkrlLAlF8shhLYn43AUz
+	QHI44zAtz6Em5+M3cnqLivEwIZWzDmtXmIrW+SDe9Irt3CwU4FN5qAhtqzp+hHclZqodOgepfd4
+	tVNZ+9jALOD4dL0Yp7elRZkB9PtCzig/O5vJo0M2ZIMeuI+2Etw7nuOsuSTfsvNQq+tTO6AD3O3
+	gzou1fzsoSQaxsN8+ZPyZPZYc1o1kDCxLI9Wk6RkCLgN1pvDCLFEk4PdraSITlkrhPvTdysxDKa
+	qWhPb4p9CSgcNezwzGOyXdq/Wcnv4mbbZWwyt5a2Iw6/owLlyXcrUhscRdPV0ab2SXTgig9SaeI
+	QNi65hQqsIOeJYpDZ21B55IABQj+dh8dJuzaoMXfLz2E=
+X-Google-Smtp-Source: AGHT+IFzkjQpJ+CBSP5FDKaUMlIyJFyzXkrgnGdlTX6xXb/Zh2Ht/mDaf4SC0H4gKEAF5ZgXVLVJMA==
+X-Received: by 2002:a17:903:1207:b0:23f:f6ca:6a3 with SMTP id d9443c01a7336-242c2245139mr30852795ad.43.1754641399054;
+        Fri, 08 Aug 2025 01:23:19 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef5934sm202807465ad.21.2025.08.08.01.23.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Aug 2025 01:23:18 -0700 (PDT)
+Date: Fri, 8 Aug 2025 01:23:15 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: patchwork-bot+linux-riscv@kernel.org, linux-riscv@lists.infradead.org,
+	tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
+	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+	akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
+	lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, conor@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, arnd@arndb.de,
+	brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
+	ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net,
+	shuah@kernel.org, jannh@google.com, conor+dt@kernel.org,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
+	aliceryhl@google.com, tmgross@umich.edu, lossin@kernel.org,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	zong.li@sifive.com, david@redhat.com
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+Message-ID: <aJWz82F21pVTSVJi@debug.ba.rivosinc.com>
+References: <20250731-v5_user_cfi_series-v19-0-09b468d7beab@rivosinc.com>
+ <175450053775.2863135.11568399057706626223.git-patchwork-notify@kernel.org>
+ <db4eb976-693c-426c-a867-66cadd3dd7d8@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <c8e3dc2c-617b-2988-10ff-88082370e787@huawei.com>
+In-Reply-To: <db4eb976-693c-426c-a867-66cadd3dd7d8@sirena.org.uk>
 
-On Fri, Aug 08, 2025 at 09:20:30AM +0800, Jinjie Ruan wrote:
-> 
-> 
-> On 2025/8/7 21:51, Lorenzo Pieralisi wrote:
-> > On Thu, Aug 07, 2025 at 07:52:58PM +0800, Jinjie Ruan wrote:
-> >>
-> >>
-> >> On 2025/7/3 18:25, Lorenzo Pieralisi wrote:
-> >>> An IRS supports Logical Peripheral Interrupts (LPIs) and implement
-> >>> Linux IPIs on top of it.
-> >>>
-> 
-> [...]
-> 
-> >>> +static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data,
-> >>> +					    unsigned int lpi_id_bits,
-> >>> +					    unsigned int istsz)
-> >>> +{
-> >>> +	size_t l2istsz;
-> >>> +	u32 n, cfgr;
-> >>> +	void *ist;
-> >>> +	u64 baser;
-> >>> +	int ret;
-> >>> +
-> >>> +	/* Taken from GICv5 specifications 10.2.1.13 IRS_IST_BASER */
-> >>> +	n = max(5, lpi_id_bits + 1 + istsz);
-> >>> +
-> >>> +	l2istsz = BIT(n + 1);
-> >>> +	/*
-> >>> +	 * Check memory requirements. For a linear IST we cap the
-> >>> +	 * number of ID bits to a value that should never exceed
-> >>> +	 * kmalloc interface memory allocation limits, so this
-> >>> +	 * check is really belt and braces.
-> >>> +	 */
-> >>> +	if (l2istsz > KMALLOC_MAX_SIZE) {
-> >>> +		u8 lpi_id_cap = ilog2(KMALLOC_MAX_SIZE) - 2 + istsz;
-> >>> +
-> >>> +		pr_warn("Limiting LPI ID bits from %u to %u\n",
-> >>> +			lpi_id_bits, lpi_id_cap);
-> >>> +		lpi_id_bits = lpi_id_cap;
-> >>> +		l2istsz = KMALLOC_MAX_SIZE;
-> >>> +	}
-> >>> +
-> >>> +	ist = kzalloc(l2istsz, GFP_KERNEL);
-> >>
-> >>
-> >> When kmemleak is on, There is a memory leak occurring as below:
-> >>
-> >>
-> >> unreferenced object 0xffff00080039a000 (size 4096):
-> >>   comm "swapper/0", pid 0, jiffies 4294892296
-> >>   hex dump (first 32 bytes):
-> >>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-> >>     00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-> >>   backtrace (crc 0):
-> >>     kmemleak_alloc+0x34/0x40
-> >>     __kmalloc_noprof+0x320/0x464
-> >>     gicv5_irs_iste_alloc+0x1a4/0x484
-> >>     gicv5_irq_lpi_domain_alloc+0xe4/0x194
-> >>     irq_domain_alloc_irqs_parent+0x78/0xd8
-> >>     gicv5_irq_ipi_domain_alloc+0x180/0x238
-> >>     irq_domain_alloc_irqs_locked+0x238/0x7d4
-> >>     __irq_domain_alloc_irqs+0x88/0x114
-> >>     gicv5_of_init+0x284/0x37c
-> >>     of_irq_init+0x3b8/0xb18
-> >>     irqchip_init+0x18/0x40
-> >>     init_IRQ+0x104/0x164
-> >>     start_kernel+0x1a4/0x3d4
-> >>     __primary_switched+0x8c/0x94
-> > 
-> > Thank you for reporting it.
-> > 
-> > It should be a false positive, we hand over the memory to the GIC but
-> > never store the pointer anywhere (only its PA).
-> > 
-> > Patch below should "fix" it - well, it is obvious, we are telling
-> > kmemleak to ignore the pointer value:
-> 
-> I also did not see any place in the code where these pointers are
-> accessed, nor did I see in section "L2_ISTE, Level 2 interrupt state
-> table entry" that L2_ISTE can be accessed by software. So, are these
-> states of the LPI interrupt maintained by the GIC hardware itself?
+On Thu, Aug 07, 2025 at 01:28:36PM +0100, Mark Brown wrote:
+>On Wed, Aug 06, 2025 at 05:15:37PM +0000, patchwork-bot+linux-riscv@kernel.org wrote:
+>
+>> This series was applied to riscv/linux.git (for-next)
+>> by Alexandre Ghiti <alexghiti@rivosinc.com>:
+>
+>>   - [v19,11/27] riscv/shstk: If needed allocate a new shadow stack on clone
+>>     https://git.kernel.org/riscv/c/9c72a71321a6
+>>   - [v19,12/27] riscv: Implements arch agnostic shadow stack prctls
+>>     https://git.kernel.org/riscv/c/52eff0ab5f8e
+>
+>Congratulations Deepak!  
 
-The IST table is where interrupt state and configuration is kept -
-it is managed by GIC IRS HW. SW controls interrupt configuration
-through GIC instructions.
+Thank you. Happy that its going in.
 
-It is therefore a false positive, I will send the patch below for
-inclusion.
+> Do you have an update for my clone3() shadow
+No I don't.
 
-Thanks,
-Lorenzo
+>stack series that I could roll in for when I repost that after the merge
+>window, and/or instructions for how to run this stuff for RISC-V on some
+>emulated platform?
+I would want to write-up instructions. But I don't want you to go through
+a lot of hassle of building toolchain and bunch of other stuff.
+Let me see how I can make it easy for you. Will report back.
 
-> > 
-> > -- >8 --
-> > diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
-> > index ad1435a858a4..e8a576f66366 100644
-> > --- a/drivers/irqchip/irq-gic-v5-irs.c
-> > +++ b/drivers/irqchip/irq-gic-v5-irs.c
-> > @@ -5,6 +5,7 @@
-> >  
-> >  #define pr_fmt(fmt)	"GICv5 IRS: " fmt
-> >  
-> > +#include <linux/kmemleak.h>
-> >  #include <linux/log2.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_address.h>
-> > @@ -117,6 +118,7 @@ static int __init gicv5_irs_init_ist_linear(struct gicv5_irs_chip_data *irs_data
-> >  		kfree(ist);
-> >  		return ret;
-> >  	}
-> > +	kmemleak_ignore(ist);
-> >  
-> >  	return 0;
-> >  }
-> > @@ -232,6 +234,7 @@ int gicv5_irs_iste_alloc(const u32 lpi)
-> >  		kfree(l2ist);
-> >  		return ret;
-> >  	}
-> > +	kmemleak_ignore(l2ist);
-> >  
-> >  	/*
-> >  	 * Make sure we invalidate the cache line pulled before the IRS
-> > 
+-Deepak
+
+
 
