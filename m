@@ -1,240 +1,235 @@
-Return-Path: <devicetree+bounces-202834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A338B1EFF2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:54:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F212BB1F02D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:11:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46667217F6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 20:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB3DB1C2443E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 21:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E052253FE;
-	Fri,  8 Aug 2025 20:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9697025F994;
+	Fri,  8 Aug 2025 21:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iikqmAQl"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="p9xaqR+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012018.outbound.protection.outlook.com [52.101.66.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7B978C9C;
-	Fri,  8 Aug 2025 20:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754686476; cv=fail; b=JvFb8TrtyPcSuqwGNPfrSOzZKE6siQKPK0aEzqDmQcDYdkyzFgFFKLUAYab5TPjyghP1J6/k3nc2jppoRWm7bzSDKnCXtSLF5cYbwVC0/v1HEWGtvzPwN8fsmMFLEmipgxHndEd++yXHINDPH+0fTxIjgF3BzxaNbOd7HA8LUUY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754686476; c=relaxed/simple;
-	bh=P/7pGcM1J8bPbnPuXnwYP3zfytWuIy4AhhOt6Ey8Oeo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=V0lyIvEtUyWMJf6lKQ00kwamJ/pz2t5iwEgVAJrHkgWa3Mbn1guPtNsmxlS0JJHl42/l6+0zpIxDtRwgtpNpJmMRnjVd6OLeV6YNcR2gQ0HXeVTr+pv0eeTLhzSDje94M37iyPtlLS+oet3M++SJRa+HkdPhqle4lj2KDbHopmY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iikqmAQl; arc=fail smtp.client-ip=52.101.66.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A8fJOmiL5d3mLgMUv+uXsyOuh8vUXWZiRcA4ODygGdXRu9T+kjHE6/Q4A7GYT8Jg7Cvb8dyxhJK8WB4aTYuBIphT932rb/bhlhVPfGQrXfnrWrurY7gwJpq4ZjVoSA9DSJk5zKOtajdsIxVrVmFuOebx2XaLcQ4imR5/Q8gDh8oJiaq1j2D2GD6dEqchVsQZx7+LPsUKvixSUvXwt1SDze2lcp/16Yl/dkWVhltoAYzXOLHbyywZIiqX9VmOSx0/v+MwnMwYsVTuUg+aK6Uy6lchRtaL5w/k1/lBMYXXXxevzDG7RvbEnZXnIO37mEqEuFvqHHVbJ7/2lSNukIUN0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=55BvJL466GLoH0PCMYJT/pvEAFNCjeJd9vgg1qYVt+4=;
- b=DpuDZ4E/ZGD3AI41ARB7eA2466G6f10flQZkZ9GfhtTYILU6vV+s0q5RFSVAATIs0awk1LYd6kr50Ee+zYDhGLSQYCA5DHGdFafwAErvrZoYNb43HPZY1dgaMayAcgQFKe+FgC2L1jPgMU9EeOnVZicXUMuUJV6NioUEkcSR0TvTEpYLtpuujd69PmRCglGBEwFyM0NQfyYhCwxMXtyxpVrWg+lDQEPcWU2zM4+vfF8ZENbywXot+NeSaGNk0ZllFvkdUZE7A+z6T+2NLMzCw/8htZfnhAbBsGoyxDMz0wVzT7vSszLS3CWY5yPcIkjTWxD7qIVPeib6id7VdZuP3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=55BvJL466GLoH0PCMYJT/pvEAFNCjeJd9vgg1qYVt+4=;
- b=iikqmAQlf0LOMLI7vnibhQf3C77HoKY/GAbhHshrwZtm6UsUxY+R7u9s2ihoXGW0mMxcNgkaMLYnpAcL2y4/DpLGITQA2uJTbk7KN5cmtoo4OrAynGQKztNCKTe0lQnymEQqA30wanQjau4ETdLo6XB1sHqulePN7XMARyIg7lDtgxYHhBaO2xEL0SgLeG5txMQY712f5S5uMMzjk6aNDLiRsBxkHHq9elr5qxtz1q8jhRZ9jnTLKknOKbAhRf+fBfubYmVFPqLxBipJioo8+fls8vyX9gBZReftQXQykTVa/J6oAdXLexZLJo175XARGVTzgClBfw3wjyzOPKfHGw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by DB9PR04MB9474.eurprd04.prod.outlook.com (2603:10a6:10:368::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 20:54:32 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d%5]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
- 20:54:25 +0000
-Date: Fri, 8 Aug 2025 16:54:12 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v4 6/7] arm64: dts: imx8mp: Add hdmi parallel audio
- interface node
-Message-ID: <aJZjKCRehvj9Spke@lizhi-Precision-Tower-5810>
-References: <20250808080617.2924184-1-shengjiu.wang@nxp.com>
- <20250808080617.2924184-7-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250808080617.2924184-7-shengjiu.wang@nxp.com>
-X-ClientProxiedBy: BYAPR04CA0029.namprd04.prod.outlook.com
- (2603:10b6:a03:40::42) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E325125DAFF
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 21:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754687495; cv=none; b=omu7BbOKVVCVR7cqprjmyszJ0t8R6QrLmPm8S19JRQH4qRy/tq3/gTG/NjLR8NJ2sYYu8TOkh0rhCL62vyWYjFGATaGEx84+1cVteqjdf9NMrteaaUrMPZI4l16Fmr8GObvqbs/mp4S9aTZbhve+myGUWnHXQEfNK6u55gPu6/U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754687495; c=relaxed/simple;
+	bh=jhF97vDz++8jIWHAzQbJeoiYqN5kXgsjhzGGekzGyq4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u+Kp1Q5xEdiod9UdiRYwISXhdW+ESF34dUX6TeN/10XJYKr3eA46VuQioonEP0yo08x2cT4LTa47xsf/czPPhF4lX61qw2Gwr0e3rK4Ng5ESJeHbFeJdUgDU43SIivkdIpxSJYO6TdK/UkYlZOOFdZlwyywwJ0FL9K4RbJn7AQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=p9xaqR+8; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-53976b0c59bso408206e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 14:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1754687493; x=1755292293; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ehKnkfmYV1CPBuFBvNcRdQv4DN/OCDrMMAnqBViNyms=;
+        b=p9xaqR+83h0CCaxi0VfN2HH0j9XsI9thirJSCcuNwABJw+2jb09RaDnzXuuHXmHlHx
+         t9F+DPNjSPjJAt4chjuedNlEvNA4ZG/RXqdrfgKtuP0yRG7WA6KRF0omSJT7QNpZEvpE
+         OacDrKd2EPMK/ld0lhRx4+ysV1eTb73mzwoC9KVQxJeJxW+bKSy5kUNokq35rdq5TeZy
+         u8Z88Osed61VdFX18yROkvZrY0hjLqA4eZ67zczlKM1eolkicCv2Of2AFi9lQWm8ZPBH
+         WlGTqe/4mQKogx3a4OZWoDRYq0Yy4sQm/ZULZOf97zFpCqbIP6bt3L+mSQsIDlfJoe1t
+         Qokw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754687493; x=1755292293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ehKnkfmYV1CPBuFBvNcRdQv4DN/OCDrMMAnqBViNyms=;
+        b=u76B8GQqf1mSVgnDitZ6VfFJ6MvCMHoteTjTyRhZYApNkdYjK7oPohWWAJQWpDUGv4
+         Lx0ZDdBC5h14ZJ+SUx3qqP7e/0Ee/j7sksFzYD04oiVTd87CYkL8e0pieFnA8OaQkl2e
+         vb9iz1U38ahm7CZuOAKJ4GpJst8yGA9xcWbLEqQB4cHSrJYtKmNO9MaGuANL26bYjycO
+         sK2tOurU/D0DO3lh2SZc1/gOiKVJLjTiqqDLiOzZ74W3t+0U/tYoBPOjW072Q/bd4U1M
+         kejEL+aXZM3Bo7dn3EbFzipe3MsNROt6YEHiVVtFENsQESeOvm30+N69BbN1zIkJW8hi
+         yNRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUG9vfqVTi2yZoOejvj8fKqZiffnKkR7+LGFfZgireUSIFkSep2pzFGFdTcGQTj/u3wMAEdF82zHQNR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuD1qvbvKaEumdptEwfXS+uYn285PzX+Ct403fgqt31v6HlTf+
+	4Cxo++3LVncwbH37rXzd+rElAOKi2Vvls3AwtLlTm9h3Tuzuc0aJPcmXw+2WNOEtPWlsnNcS8im
+	D3dwgLEnCBfI1PwkeBmOp43IQDDCu2Bhb09nkJCqwr45pMCo6xVgJi9Di
+X-Gm-Gg: ASbGncssSISslV3pTGGMym1eBNC4oWsAm/V3khK8ZOSDIncdsv8EEUyVkDHutYDnaws
+	SdlUGdUFnoDlcKy8OnZonsSiHbA3noEouEW0WZnK4C+yqkLIO0ad4I3GL2qB8j40GXRpR4+Daup
+	Uf2ilE6k6MT2pRw9IcAIlEdcPiiUgdrqRpo67I8rjDw7fk5zgtEmHQ0iY/yUzsjEgwgIOp5Mf9Q
+	9ql90yv5DWZvpgZm/GLZH1+pQgMOA==
+X-Google-Smtp-Source: AGHT+IE2KvKI2CvBT0FadlSYDRqABeGoePxhMGUXap+HsVWMK7ZUZeStgdlxM64AWKrgtdnHhv/ESJ17CItHcvhMQW4=
+X-Received: by 2002:a05:6122:2026:b0:530:6bcb:c97f with SMTP id
+ 71dfb90a1353d-53a52eecdbamr2138142e0c.8.1754687492324; Fri, 08 Aug 2025
+ 14:11:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DB9PR04MB9474:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1781a522-b9f6-4cd1-f6eb-08ddd6bdc24b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?1GzF++TC1avvXmfhjClsBr04W+Bc6wryvA2ouwp7LciNCOGPGZge1RdJ1s4k?=
- =?us-ascii?Q?bhr/zWpAEbC4iWLzybSqMmHMVyJFBcwMQ4snx0dFYg3upUL+Ho94nk2m3mDI?=
- =?us-ascii?Q?dm6ANf8pXJ39y/VW5jqFF3/aMx/f021mvyTybjS0ZblrajclKs9vcw7lz5al?=
- =?us-ascii?Q?dZkNDeL2oF5aglOl19sZdSOV0qsuACaUvHaAUzeTvhZh2uBp6qivaccwhc1i?=
- =?us-ascii?Q?Oh2WgNIkTyTs2LgVt2SlMg9pPjs6fIURfZXpkJ4Jjgk8mpwWQrhlJRM+4sqr?=
- =?us-ascii?Q?a1Drhpx30H9rZpmNkctYQ9mX0tiN90vA5FZ2uJ1NlwPTChTl8OTTB05XnFrB?=
- =?us-ascii?Q?sX0niNnK05vRMtJuKrMJgMPo/PaJmn50aIakS4lG5dWzs7A1pfd/xJD3QmYb?=
- =?us-ascii?Q?o9cqRKezU3fjkunXipMr655/jE54Ua3q7yqpz7ErbX/+J1oyv0wFBSQS5PUF?=
- =?us-ascii?Q?T/9ByE6ZFuWyHZOG6/JCmmFApNFhkOnlq1bKAEkFk7nsl3QTqsS0pOsoYwsI?=
- =?us-ascii?Q?Qb0ZPYTYUQ1eiE1rDrY93AkpcsMLtr8wYbNI2bWy+1shwG6TrTDW7WAjdwVM?=
- =?us-ascii?Q?uNCPjaSKPuUQnDn7YDTh0X/Q//TQSPHt3/n9tjMrkt4AZbpa2HhFoomXYUJZ?=
- =?us-ascii?Q?m0cJiWc7EzYluWcDuvlh9RK3e6rnuLiDhc7j6nGF8sC9EIe6TtcEY9B97B7z?=
- =?us-ascii?Q?QoNQSBLzyE+efz7Epq8kEjbCKU1HnVzGJN3EC5Za7ti4Wejme+ULtTchHx/B?=
- =?us-ascii?Q?/qDHM8w8VdrLt3AfXPBj97rv5m3bDxWe26seT8QVr1BTr3EsDrYz2e0vc/XC?=
- =?us-ascii?Q?lQWUhR60gX8QeXoYG9Sy5/fOE8hKr9biL1kE07958aW5kJzQ2YUVPIK6tAf+?=
- =?us-ascii?Q?SRWZjx3Ej2FwDSDTv3zEYRaSj16b1rGYteBHkW/Rbdt4lTIo7Z/id7gkNEgL?=
- =?us-ascii?Q?Z23qRih38U4J7/fDIW40ZHabvuoMvHYrVFYeYLqPOab2wuKiouFz/JF+QS1M?=
- =?us-ascii?Q?Db9kef6tgW9blf7OYUxKaCOOPw1mreRAiKGVpOd4Gsw+laQYCsVf28DJhJlQ?=
- =?us-ascii?Q?V0z41WtB1qpkU22KQ/rdBANPOj27iqWTTFWxboEhAdcXgyMtTqm3tYpLSSh1?=
- =?us-ascii?Q?94es1Oa7DfMHZNK5HUfs4/OXr/w81ime6kY+CLnyQiBKTDErllM9nA55dI3B?=
- =?us-ascii?Q?0Ko0XojMhXPw4tc34RyH+M9No1RxuPWKpwulOZFVZKY7Lrxhf4QYIdz1Aapv?=
- =?us-ascii?Q?WymIx1/2sm+z58+BmySQlXZorC7NIc6wuo9i9xZsQ9b4T8QOUY7yCJpp9lMJ?=
- =?us-ascii?Q?/ujL4pMBv1VfqFHnkWjyBVRetze4ktHiEQ5fr6e6MyrPXepCGZxp0V7AlnJt?=
- =?us-ascii?Q?pz9UQ2+WwtaKRER7ws9hv+pi/fD9k+iUz6IH2fie/TTMFhgrhdcf4O47l9E7?=
- =?us-ascii?Q?msjryRNGM+kidc9t2+aLWdq7GxZKkaoKTJxbNueplRWP4XJNpMvlhg=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?5KAuv0XZPjGzymAbLAPMMED0bBwP1JeisLaKgK7mtKF6WA3wQ6oU2kCuhJzC?=
- =?us-ascii?Q?E5Dmxbqt4NbkIA107DVVwgWDxXkl/DRY7e9grwKW5yI5HU36Jut7VaX/EcJe?=
- =?us-ascii?Q?phfeZhwoMvmkbZzUU1Y5cskG1eaZxJVrmLmAVPhBPqFTriDeUv43uoPsbxnF?=
- =?us-ascii?Q?75Y1NOJH8wWTPd+eLiGNoZdTLnc9Wpn+kXQ6LEJ0MWuLW5jnxKRSsB5IjuKr?=
- =?us-ascii?Q?/dpsfjHDQDnaadgC0VnLrK+F1RrINfjz5jdWG4oNHV/TSLKHE2qz9XRh8CPx?=
- =?us-ascii?Q?SvUYYCKpeKu+XsUqixzNFKAb7xuU6wUOUp8k8x2LU0rw0dzp5tXdsVuwNo0l?=
- =?us-ascii?Q?l9HD+hvEt1cN5y5KyTJb+1H1symzN+jNYSl+bswI5tviDN0/PTeJqMk4touI?=
- =?us-ascii?Q?1mCroUYkv7Ky6usRfyvr+oPSGQv3Q6NIaOW3+D0uhf55feTRrYENxeKmlyUw?=
- =?us-ascii?Q?CHAkTMtfGUr0FNeBi+HI8Ov4OiKakUA66W/uj4/jkpcwwXL//GvzUjZapgzC?=
- =?us-ascii?Q?j8+cCaEZMJa3srVGaZgmYZ3kSaeCUtT5adfoV+yhfPBPfMCjRz9wPQ9U/b4s?=
- =?us-ascii?Q?YFo2NPfTYYqN00HBSSpnVKMPeZpdZntQ/zvP11W9h8grBC5wZY6dEBVBAnqt?=
- =?us-ascii?Q?pwjES7wA67/6OwBreguhe28zCenxarLQlvJqyKfz2FiExLrwVBO/2xqtXVVg?=
- =?us-ascii?Q?L+o1knsQOp0wCHCIaakMUNMztgIBO28NC5IOu5luzi1csHsbcqWiLLIMToQZ?=
- =?us-ascii?Q?LfzwfCs5/o70/oQu3bGMp5F39DwjFZ1Iyawkqr+C8jHIAs+6+JJ0Za+Z0iK2?=
- =?us-ascii?Q?pAqwsUATkWKwHX/WKWq+HkErCBDuydPG0dQbbTNmFjN+WzOXh3qr2Wan194d?=
- =?us-ascii?Q?SBcEBSN6hmwSuONDMLpJdBqtP4B43twpd8qjQVSTUWl8zy6WELVPc7AERgJK?=
- =?us-ascii?Q?fHAlml2LgnAHRPx3aMPGhEKHZjqbofp+i4SNkUEOzaaRV8NrBPX6CrFg6A23?=
- =?us-ascii?Q?+3R0kQtGvQzg3Uv1wFDffbH3agIovuRA3tIKtBUGiY9rgj7efPgDM00wveof?=
- =?us-ascii?Q?kY4NxiUU4U97rcn0mXWXet3Wx5eTmxg+KtWHzqI6dgcwAAfOIh63alTrFK0o?=
- =?us-ascii?Q?P3TeSTkCnDHO+xjx0xQ2TKwTYguk2A23uhWfxxBhKqkocNXeVbfiCG6Ju+hS?=
- =?us-ascii?Q?+oqzvgzahgXSdWF9vy9Bp4auVVssd8Dt+QFDX1kJtFtA+j0vNO9IJX2VgLrf?=
- =?us-ascii?Q?B/95rQ3fSuuNAynsEu4tnw4E9lOTxDIv1hHMrMy6e3amyqvIZEwgqG6iHvDi?=
- =?us-ascii?Q?6B7YOMpgq/agwxE7DROJpVZP3ozx8sor1l9b91/eOhU1V2OVNvnEmjhxDf2f?=
- =?us-ascii?Q?3CkD8WaCEnok+X9KdpQ1oEGDtUbX91Etmnc3xM+5ylPPZDqvl4iBkjny8gL0?=
- =?us-ascii?Q?BfWp4Kig/Py/8rzPuvYylCfKV4FcDR1rNhE64JCuDRUWUF4cBw/7rnBpU/Iz?=
- =?us-ascii?Q?iyRtPeE0eGF5ZDV20mF1tB/yZSpWyiRHxht8wp3lauADRCmFS8J1iFscyj7u?=
- =?us-ascii?Q?ndeT/4VDkUg0wnC6lkc=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1781a522-b9f6-4cd1-f6eb-08ddd6bdc24b
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 20:54:25.8339
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6kco9vPok4aPy6hOmHNxDA4wotjzhbpzc6vMNQMERCRMaAllvnry+epOl6Y4sEy9hrmstAZYBQYRXxA1jMQe/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9474
+References: <20250808142515.142058-1-ben.dooks@codethink.co.uk> <CAL_JsqJntD-o6zMo-vaCQ+f=QDuyEmUgBJqjztoriq4QF7=zEg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJntD-o6zMo-vaCQ+f=QDuyEmUgBJqjztoriq4QF7=zEg@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Fri, 8 Aug 2025 14:10:55 -0700
+X-Gm-Features: Ac12FXzetJAzjjBU3znMOmqa4Yp1E0tMNtl4mkDvJgGow8ApSkTEnsF69RqbLDU
+Message-ID: <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
+Subject: Re: [RFC/PATCH] drivers/of: add debug for early dump of the dtb strcutrue
+To: Rob Herring <robh@kernel.org>
+Cc: Ben Dooks <ben.dooks@codethink.co.uk>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 08, 2025 at 04:06:16PM +0800, Shengjiu Wang wrote:
-> The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
-> Audio Subsystem to the HDMI TX Controller.
+On Fri, Aug 8, 2025 at 9:25=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
 >
-> Shrink register map size of hdmi_pvi to avoid overlapped hdmi_pai device.
+> On Fri, Aug 8, 2025 at 9:26=E2=80=AFAM Ben Dooks <ben.dooks@codethink.co.=
+uk> wrote:
+> >
+> > When testing for boot issues, it was helpful to dump the
+> > list of nodes and properties in the device-tree passed into
+> > the kernel.
 >
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Shouldn't the bootloader be able to dump that?
+>
+> > Add CONFIG_OF_EARLY_DUMP option to dump the list of nodes
+> > and properties to the standard console output early in the
+> > boot sequence. Note, you may need to have some sort of
+>
+> s/may/will/
+>
+> > early or debug console output if there are issues stopping
+> > the kernel starting properly.
+>
+> Seems to me this is giving the user the haystack to find the needle...
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Completely agree with Rob.
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 28 ++++++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
+Ben, can you give more context on what kind of issues this has helped
+you (or anticipate it will) solve? Maybe there are better ways of
+getting what you need.
+
+-Saravana
+
 >
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 841d155685ee..00d8474bd1b1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -2066,7 +2066,7 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
+> > Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> > ---
+> >  drivers/of/Kconfig |  8 ++++++++
+> >  drivers/of/fdt.c   | 39 +++++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 47 insertions(+)
+> >
+> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> > index 50697cc3b07e..ed2c52c54a7d 100644
+> > --- a/drivers/of/Kconfig
+> > +++ b/drivers/of/Kconfig
+> > @@ -126,4 +126,12 @@ config OF_OVERLAY_KUNIT_TEST
+> >  config OF_NUMA
+> >         bool
+> >
+> > +config OF_EARLY_DUMP
+> > +       bool "Dump node list at startup"
 >
->  			hdmi_pvi: display-bridge@32fc4000 {
->  				compatible = "fsl,imx8mp-hdmi-pvi";
-> -				reg = <0x32fc4000 0x1000>;
-> +				reg = <0x32fc4000 0x800>;
->  				interrupt-parent = <&irqsteer_hdmi>;
->  				interrupts = <12>;
->  				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
-> @@ -2092,6 +2092,24 @@ pvi_to_hdmi_tx: endpoint {
->  				};
->  			};
+> This needs to depend on OF_EARLY_FLATTREE.
 >
-> +			hdmi_pai: audio-bridge@32fc4800 {
-> +				compatible = "fsl,imx8mp-hdmi-pai";
-> +				reg = <0x32fc4800 0x800>;
-> +				interrupt-parent = <&irqsteer_hdmi>;
-> +				interrupts = <14>;
-> +				clocks = <&clk IMX8MP_CLK_HDMI_APB>;
-> +				clock-names = "apb";
-> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PAI>;
-> +				status = "disabled";
-> +
-> +				port {
-> +
-> +					pai_to_hdmi_tx: endpoint {
-> +						remote-endpoint = <&hdmi_tx_from_pai>;
-> +					};
-> +				};
-> +			};
-> +
->  			lcdif3: display-controller@32fc6000 {
->  				compatible = "fsl,imx8mp-lcdif";
->  				reg = <0x32fc6000 0x1000>;
-> @@ -2143,6 +2161,14 @@ port@1 {
->  						reg = <1>;
->  						/* Point endpoint to the HDMI connector */
->  					};
-> +
-> +					port@2 {
-> +						reg = <2>;
-> +
-> +						hdmi_tx_from_pai: endpoint {
-> +							remote-endpoint = <&pai_to_hdmi_tx>;
-> +						};
-> +					};
->  				};
->  			};
+> > +       help
+> > +         This debug feature runs through all the nodes/properties at s=
+tartup
+> > +         to show if the dtb has been passed correctly from the boot st=
+age.
+> > +
+> > +         If unsure, say N here
+> > +
+> >  endif # OF
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index 0edd639898a6..ab40db0e71a5 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -1164,6 +1164,43 @@ static void * __init early_init_dt_alloc_memory_=
+arch(u64 size, u64 align)
+> >         return memblock_alloc_or_panic(size, align);
+> >  }
+> >
+> > +#ifdef CONFIG_OF_EARLY_DUMP
+> > +static int __init early_init_iterate_nodes(unsigned long node,
+> > +                                          const char *uname,
+> > +                                          int depth, void *data)
+> > +{
+> > +       void *blob =3D initial_boot_params;
+> > +       int cur;
+> > +
+> > +       pr_info("node '%s', depth %d\n", uname, depth);
 >
-> --
-> 2.34.1
+> Can you add indentation for the depth rather than printing the depth?
 >
+> I'm not completely sure if calling this is safe always. How early this
+> will run depends on the architecture. So need to test on a variety of
+> architectures. Or perhaps limit in kconfig to tested architectures.
+> I'd rather not do that though.
+>
+> > +
+> > +       for (cur =3D fdt_first_property_offset(blob, node);
+> > +            cur >=3D 0;
+> > +            cur =3D fdt_next_property_offset(blob, cur)) {
+> > +               const char *pname;
+> > +               const __be32 *val;
+> > +               u32 sz;
+> > +
+> > +               val =3D fdt_getprop_by_offset(blob, cur, &pname, &sz);
+> > +               if (!val) {
+> > +                       pr_warn(" Cannot locate property at 0x%x\n", cu=
+r);
+> > +                       continue;
+>
+> If this fails, you should probably just stop and bail out.
+>
+> > +               }
+> > +
+> > +               pr_info("node %s: property %s\n", uname, pname ? pname =
+: "unnamed");
+>
+> Can unnamed actually happen?
+>
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static inline void early_init_dump_dt(void)
+> > +{
+> > +       of_scan_flat_dt(early_init_iterate_nodes, NULL);
+>
+> This way to iterate is left over from before having libfdt. Is there
+> not a libfdt way to iterate thru all nodes?
+>
+> > +}
+> > +#else
+> > +static inline void early_init_dump_dt(void) { }
+> > +#endif /* CONFIG_OF_EARLY_DUMP */
+> > +
+> >  bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
+> >  {
+> >         if (!dt_virt)
+> > @@ -1178,6 +1215,8 @@ bool __init early_init_dt_verify(void *dt_virt, p=
+hys_addr_t dt_phys)
+> >         initial_boot_params_pa =3D dt_phys;
+> >         of_fdt_crc32 =3D crc32_be(~0, initial_boot_params,
+> >                                 fdt_totalsize(initial_boot_params));
+> > +
+> > +       early_init_dump_dt();
+>
+> Use "if (IS_ENABLED(CONFIG_OF_EARLY_DUMP))" here instead of #ifdef.
+>
+> >
+> >         /* Initialize {size,address}-cells info */
+> >         early_init_dt_scan_root();
+> > --
+> > 2.37.2.352.g3c44437643
+> >
 
