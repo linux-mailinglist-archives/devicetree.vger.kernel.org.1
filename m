@@ -1,95 +1,128 @@
-Return-Path: <devicetree+bounces-202790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3FF2B1EC8E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:56:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23AEEB1EC8F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:56:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5AEC1AA2C73
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:56:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1020620AE9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFE9285CB4;
-	Fri,  8 Aug 2025 15:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526BC28688E;
+	Fri,  8 Aug 2025 15:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBOaR7ov"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Efg3ZFSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01508285C9E;
-	Fri,  8 Aug 2025 15:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFFE285CB5;
+	Fri,  8 Aug 2025 15:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754668540; cv=none; b=tI/AdREN0D9Bx+pkwp2+ijn4jUjTK8x0PM3m6P31HfM1wOJZMkW65qO4me8pYWU1N2yzz9KyaOa6Rjqg0veCv4gr8c/lRCfh62YuvsR619TCE8tOAvh/g5GbbJ2keS/+qf0de+m34TEATNGlBb/2Os88Zvp27Tvy9bmlohQamYo=
+	t=1754668570; cv=none; b=LxlgpAqC2Ki1+2os3aCwBRalwRz/jwpvbqjE/yTOJzFOoT/HYUj8MuHUKEj/Jd84OgBY2DNXZqXxeJnOfmZcU4I2cKMz5tZ3W8jB9GNC4tnD1bfYQcj/KhvdjqEcbkvy4ZaLhyESJyO3X1z7A44agyvxkZ1IzW2jW/4kGEULE2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754668540; c=relaxed/simple;
-	bh=nuZ9g9XS98deNhUpvfIEudupikEWzNYWGLOR/GgCxQ4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FGsFNbNZR9blfDZQx2mvfESOFUnGraX6cxdmoWP734f9dzKkuptafWNHJAcr+WTScM6VQJ+bFEU7bIIoUt5bC2czJvWCuKCeBJ2AAacPeTAYovNYVkdYIywO1Dyqu0w8MXtxrjHK5yGY+L/YB6M5Qmv1gXUlOMfIxH7KJdLoWF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBOaR7ov; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73039C4CEED;
-	Fri,  8 Aug 2025 15:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754668539;
-	bh=nuZ9g9XS98deNhUpvfIEudupikEWzNYWGLOR/GgCxQ4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bBOaR7ovp6fjp+sJtSNMhxOPBwVPDbEtsxrPwoTC6RuZZWEwWiSGU3OgWOdQ1yy8e
-	 ddZg8wpqKy611x1gNWPntA1Ji5sumsYlC+XqSKf/X/JaKXCy4PA7T25WTkvaCTInEw
-	 WFcztoaq3N4XJXBy+tieSQ75l0SZ0SBlUVgnVsPtEynZP1Zzmyyam3IDMt9tCWYlNY
-	 nikd64zthJtmhUeFL3d8cvcx3xzpJ7hldSkGjRXlnIvmGq0NZNo2Z0NCuCtSUnV24c
-	 rmvAjdPIYEzgD7Phm7qEr/g3CcxBOWKBgorNwADzhX11tbEKDaoD01xLIlMCv1pESf
-	 geuGtZj8aRPhA==
-Date: Fri, 8 Aug 2025 16:55:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop imx-audio-sgtl5000.txt
-Message-ID: <20250808-pureblood-princess-ee6902b82af7@spud>
-References: <20250807214358.4172451-1-robh@kernel.org>
+	s=arc-20240116; t=1754668570; c=relaxed/simple;
+	bh=qfpzjLlQsWd/dz73rtB8Y4qWAxAkLUPES9eWN9vE8hY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=evqWmG1BQ8p4jV2757jr6bwHOjqFQDki4d/B1/GuEdJwv8oODTsyFTnE/+42RnQRu6/0+9r3EXbAbVB007s95bLYImKFHNkiArhWL9JAlRQbmqRfWaq6FJznAakJO+2bDrG4e6T3gPcsdpKOhbvEBXpEq1iylR+2b1d3TOrnylk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Efg3ZFSc; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 578Ftx23582641;
+	Fri, 8 Aug 2025 10:55:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754668559;
+	bh=D1eanfAkB5EEMvMI6mKH8d/IGekndB5PumogQ8P7NTY=;
+	h=From:To:CC:Subject:Date;
+	b=Efg3ZFSc0zmeTNG06/HXUNXRtG4hqEOUXzRiZ+EzshJoTBVHIqTrgan0OE7RdpcxG
+	 h5FbVAiyT25eu2ohF9zKSqcXByZPlEebgy9pDrGMku7rzjsr+SYfDc6j2py53um8nZ
+	 jtlDIp+JQJc2c4vq32oiBlLkeLI3FaxFp5T8bL4Q=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 578Ftxim1028687
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 8 Aug 2025 10:55:59 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
+ Aug 2025 10:55:58 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 8 Aug 2025 10:55:58 -0500
+Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.190])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 578Ftw3I2977000;
+	Fri, 8 Aug 2025 10:55:58 -0500
+From: Brandon Brnich <b-brnich@ti.com>
+To: <linux-kernel@vger.kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Darren Etheridge
+	<detheridge@ti.com>,
+        Brandon Brnich <b-brnich@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
+Date: Fri, 8 Aug 2025 10:55:55 -0500
+Message-ID: <20250808155555.2632451-1-b-brnich@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PZ/KRAbWhOF6Zls9"
-Content-Disposition: inline
-In-Reply-To: <20250807214358.4172451-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
+present in J722s SoC, supporting baseline encoding of semiplanar based
+YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
+supported from 64x64 to 8kx8k.
 
---PZ/KRAbWhOF6Zls9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+---
 
-On Thu, Aug 07, 2025 at 04:43:57PM -0500, Rob Herring (Arm) wrote:
-> The "fsl,imx-audio-sgtl5000" binding is already covered by
-> fsl-asoc-card.yaml, so remove the old text binding.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Changes in v3:
+  - Add TI compatible
+  - Make node name more generic
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Changes in v2:
+  - remove invalid clock-names attribute
 
---PZ/KRAbWhOF6Zls9
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+index 5cfa7bf36641..c0a104bc87ad 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+@@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
+ 		ti,sci-proc-ids = <0x31 0xff>;
+ 		status = "disabled";
+ 	};
++
++	e5010: jpeg-encoder@fd20000 {
++		compatible = "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc";
++		reg = <0x00 0xfd20000 0x00 0x100>,
++		      <0x00 0xfd20200 0x00 0x200>;
++		reg-names = "core","mmu";
++		clocks = <&k3_clks 201 0>;
++		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
++		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++	};
+ };
+ 
+ &main_bcdma_csi {
+-- 
+2.34.1
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJYd9gAKCRB4tDGHoIJi
-0kNmAQCK+Q/xDJm3yc05xw7IemO22vGZ1iB9oUmNTEPFBvkk8wEAkugWYoCdikr5
-lR7BcpOyJtMbWDS9osCbkCSL4NMsRwo=
-=Krot
------END PGP SIGNATURE-----
-
---PZ/KRAbWhOF6Zls9--
 
