@@ -1,189 +1,179 @@
-Return-Path: <devicetree+bounces-202668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C612CB1E540
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:02:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC6DB1E548
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 488F418A4093
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:02:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F19E189055A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9820726C397;
-	Fri,  8 Aug 2025 09:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8FD2673BD;
+	Fri,  8 Aug 2025 09:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ydXIEDL5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ONRsrKkG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E40621B9E7
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 09:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D8825CC4D;
+	Fri,  8 Aug 2025 09:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754643735; cv=none; b=IxHpLIHCEdHQDrBhc20NK+6judQQFTY8bBle9l3IKcSeVnuKOdBaBs+9K+RwoW9KjjEzLb+ws/55jjp94UbZLXC698x9Ye0V45D0mW0KmzdTnKFxwTuVPxECbhi1BmmSFFcEgIWX1rl0Jb5i9+QLBPN3F98Gr+aFIyUOlMr2d3U=
+	t=1754643885; cv=none; b=FRCQk4o2LwBQNRze/CXithBr+KkI6dITulpaHV+eJr9BSkZtsYoPcu/FBU6hPI2cGhnuEDq31icW8eq99KlvzFbtd95nSBgN68rr2oeBKaLvakSofl2mNwCBnjOZfO3k/EZRfpD7o9CJidWOp//3qLJmz+WtD62qhWa6j99qe3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754643735; c=relaxed/simple;
-	bh=fDzavJLkQQRW13faP4JIo9BN2hll5Ct+MBqPxVN6J7o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cjP5iodt69uk5AoPC1MG9uCec0hkkHEND5g4ScL6EM1gxxv0/iWzOr1xzS20WtLBkA9BRigvs0lwPCjRYkOn7/y3M56pmXnHMKEcgs9OE/LHeU83Q84CDik85lvkx62eQEbiChVJfCuxaEryx7/4C1BK32OUz+Xp0H/37DCpFyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ydXIEDL5; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-459e210bd2dso9727685e9.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 02:02:10 -0700 (PDT)
+	s=arc-20240116; t=1754643885; c=relaxed/simple;
+	bh=QoqrP+WVihWRD1+qh/e/eWTY/l5LNxRxXsBcP+5K5y0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vDUjB3rOvhatS/wG3/r+fr/TcTmDaaW+U1J17PKElr0tiwThebelxDm6v7+/gFPEnDC98jJF0htDRydCOd45i4PJo+nYTwlHVSIlvbFY9iF80b3FyVpwyfbu/optnsEe5cFDk590CHvDYFhwtYyklP09M9zjZd3QGBvSdKM3RSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ONRsrKkG; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-615d0b11621so4938603a12.1;
+        Fri, 08 Aug 2025 02:04:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754643729; x=1755248529; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XcB29esXATuhjwQh2nnDRB1ldhsISGsvF6rcqzubLyU=;
-        b=ydXIEDL5s6IEpk3HGWRXJzmq7PXjUVDDJgjc6jz75VH0Q/DOZ26CdueEBfCL9UVuu3
-         86ntg2oHijBZMGQc0MewUNMmRJ1BrPlbckuEDqzOpfWjSKOWZBNCKL3mLy2ia5H3mtmD
-         JoA/Wsq+v+frqi9L2MrMyMaV/BavofetGY99IALFCtEzQpH/X+PxVyYcyO9CPW/wpyF0
-         aVZJd2DueU5dLr9+PF93NJTLlaERNkq99PrXvV3Qa5UH2ZbB90W56pFVjj6X5KYz4F0i
-         IwNDAwCKnSEzNp1W0mAmbK1UDD5pH68ryvDCONbJ/q0gspA/HkIh/D+RH5ZmZwaCSV28
-         c8wg==
+        d=gmail.com; s=20230601; t=1754643882; x=1755248682; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7W0Vd49dpngshz+Y+Kc7qgpDtsHofkExFIoBFZHJwcQ=;
+        b=ONRsrKkG3433KAHmUxwuWotoihD3DkyrGZlKk0IQLyuJoRLQu1JXMLEho3ceSSIwbA
+         2j0L2IsidO2sKOKwGUZap5suzUH++qj4JIHj1etmINEtO6F/fN8zJ3dLLRn4BjXz9zWk
+         FpLSWuQCgrm3GL3wdfOXbrkQliQZ+FMtWBABSnRSRnpoPTUslOg3vCZyPeH4AbUL3K9M
+         9KTxMPqrOaQfTX1ibdf9D6vKyMhcDcnbrkp5PgUOCcU8TRihwVNUt5M0iHjuNGE8NLnq
+         Hf/rUYzSGz7uu2/AjiQbrrmjWa4vIkdOj0D1AFAJJdPFa+lVarg4Wt/d4DiR+B8ySePU
+         Uo5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754643729; x=1755248529;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1754643882; x=1755248682;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XcB29esXATuhjwQh2nnDRB1ldhsISGsvF6rcqzubLyU=;
-        b=sXeFwmJ+l7wnt1hxuqPQaIVgM6Tgb6P2VdHI4uLo3wISq84oU3OqZdw3GKkwI7r4eA
-         Be8Gqi7BSvLPXliz4LnlUwK1GaHo+0pP7szDueU9kEnTHvpS/12bUePUBlyyp8Nkply1
-         Nb+AWvGk0ASBYd9WAiK903csirPOKuFJNF0RunHrhIyXhhwviuGyvbao5oKyCfqnFmRH
-         J1TMEcCl8nOUyrllauGOqfws2StALTw+CpY0XtllCTTCnOI3mqHkUy4H31maCuvTLgdi
-         uynJiDcGkj/ZskvZORhBf/H77ADuMeutmGonhrqd8SolpKnb0nOIJSjBx/Bcs/k7Gw+d
-         qz1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVaF9nRfSQot+hc/GJEaD2FZ0rQPKOh90inrdAQwtcnH8Dey+rMiqtUzYoaFPDPRaydMR6dPiU2dW2o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6T2IOwh0uzS9bxOJu95RiXebakGBemIxeJR32zD7wlnu7Zp8C
-	n6g5ZCYvacK9INzz9UvXT27MKm2X0CoJ6tGnd3+ZBVlU5Y6RJxn5eH4kXniUIm30txo=
-X-Gm-Gg: ASbGncsjOXLWV9G5AmOEhklOpqa/v2vsQqkv/VcHuBz8BW8vrEP9FhabZx1pcaQYdyX
-	f0xhpVOK1TbU7puJeekDroV6fgLcXQkjtyo5bPYqKgtv610pwH5MnyN9hos1Q2llatlN6+YkSfG
-	apNe8l+d6JGNvjus4lRjyFS7I1oCDEYWIo0nxRclMUWiCzn0HE6dzSUi0pdWl6ROk1WhQaie3s9
-	43T6yDxL/kDM3oa2xwef6pfIl1E05AOCFvSQodLpd4qfcRyjEnS+RAENoYPNH6lGicv9SCtd5sq
-	COdfXDAExNUwY3/mSL6gg5fIdXgwHYF9oZMVUtRs0hx70aSpyxCG3yUvCIZcqafpWgkvMhqSuW6
-	x46RBfwvgotUL28RfqrdrS2QJrip4qReISDtUxgngD1K3yjQdeL4mrZtWk271pSo=
-X-Google-Smtp-Source: AGHT+IF4xWpCF3XDsGBbn+mook9Gvgj49NOgEPXm0we3aHZF2BikwKecUFu5oecUVvF8h37VelrB2Q==
-X-Received: by 2002:a05:6000:2482:b0:3b6:162a:8e08 with SMTP id ffacd0b85a97d-3b8f97c56bfmr6003028f8f.12.1754643728792;
-        Fri, 08 Aug 2025 02:02:08 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e0a24bf1sm153914825e9.1.2025.08.08.02.02.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 02:02:08 -0700 (PDT)
-Message-ID: <00db8dc6-f8a6-42cc-ba5c-803ab56b9a06@linaro.org>
-Date: Fri, 8 Aug 2025 10:02:05 +0100
+        bh=7W0Vd49dpngshz+Y+Kc7qgpDtsHofkExFIoBFZHJwcQ=;
+        b=mZO8AvhkimTPUPIpFnoOGDZeWXG4RNLZ55zzvJGY4aPi90Sxdk89th9rpYscG7nOYa
+         BjkGvDZJWMOITpTUsTqs94v7mcXR/Bma85BbtY4iDhNei93gy+ndq0CtDOL5nMhde/0h
+         AmatSURB6FeINbXWpRhRNOeqoft//MMbcD3l4wpw7D/lCLAumEIZZypDRX3qw2ITQolj
+         yvzKnVT3q8O5wmXyMFcvGCgQ/JH+t1Tt8/S9NpM8j/u/PJBZ0ky3LMG2rGjHLlHEw1Cg
+         CRadJHK8NTBFQ7JiGybpJoLDpQYMCxq5PFGNqACUVUv8AAUJI2YWVA8TiNvdNUNdaeO3
+         FZEw==
+X-Forwarded-Encrypted: i=1; AJvYcCU9nD0V3TaapHgB6Z1u6U+I4oby8dHUOjDmZVNDqgMaNETPsLdVyJIvZMBjBrPbQpsPp4XS6alqs073wzOH@vger.kernel.org, AJvYcCV+Coscov7VX7rKWYHs0rmtsYBDPlp2NmrhWMKutHB/HLrdxsHXSVBx3R3KqYB4MtRyAo74O3GTCK/l@vger.kernel.org, AJvYcCXFdWaUSkFOjHXH8m6OKOS17LFLjyeDtN/e0IErx4WgdYmjplXIZZ56QgxjG4Y2ueKH6EBkPkCoCpmK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYiUFQmB3seVluncgrxJ2bunP/aoLOKjx+zimsB6PUIyrRqB0d
+	frKGbW+/zJG/WPpfeUNErTmVqw1gqAKQ7+pfxKNUhyTmJJxdTaEKCp19
+X-Gm-Gg: ASbGncvvhZBruTUGsZcxS4UhW3K48gRc780tmXYmFaoXjYWD3w4Qt0J9LvNf6SY1LJA
+	jhglhSIGwckQr+N6Bw4DoTz04SKeGWRT9LHUrvk+rl9ZC05dSmdDiP0+BUr96MrTZqfR6BhXEFr
+	yRk4sOf/B8Y3H5KYk5O/m8wLoscLFSRZoiaVk/x9qo+fjM6CeUyPB/uzI1sLWwPLarWIVgwziUA
+	liDcjXCKXxbRbkRgb4epevXL/9ensRdVfiSElxEmHeI2HuBpk8FGUHPf+peKqEYqd5aG5L1JMz0
+	fbs/yPmTkLApSgDj+BujGzpayYbW1GgD4r0JqWiOykS0jvw77DSuWLVYqPuhJcnG0DRC40ZlICu
+	+SVOHiMlAOA==
+X-Google-Smtp-Source: AGHT+IH4iJdQwIiMewCgGZoPiBmVm/K2o0rzpFKXVJtAlkCNjnWxNgVQx3kMPrg7tw+GqXDxWZpR1A==
+X-Received: by 2002:a17:907:3ccc:b0:af3:9a3e:7ea7 with SMTP id a640c23a62f3a-af9a3e7bf88mr587364566b.22.1754643881542;
+        Fri, 08 Aug 2025 02:04:41 -0700 (PDT)
+Received: from nsa ([185.128.9.3])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6178b074a38sm5198587a12.32.2025.08.08.02.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Aug 2025 02:04:41 -0700 (PDT)
+Date: Fri, 8 Aug 2025 10:04:58 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 07/10] iio: adc: ad7476: Conditionally call convstart
+Message-ID: <rgpt3lsbnr7hh4rfg4ye4vxlvecx5sikvb6vahwemirxcefc4r@kq4dtxy2redt>
+References: <cover.1754559149.git.mazziesaccount@gmail.com>
+ <bb96107301b249d4be912fa4384ed4de7791410b.1754559149.git.mazziesaccount@gmail.com>
+ <jqq73v23juc3wj3ykq5df3mevjatnq3zb2aq4w524xnl4xgban@qemnvtvs2twn>
+ <f8c8cbd3-ce40-4b49-b8e4-cbb84e30dfe1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 6/8] media: venus: core: Add qcm2290 DT compatible and
- resource data
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
- quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com, krzk+dt@kernel.org,
- konradybcio@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- mchehab@kernel.org, robh@kernel.org, andersson@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250808085300.1403570-1-jorge.ramirez@oss.qualcomm.com>
- <20250808085300.1403570-7-jorge.ramirez@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250808085300.1403570-7-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f8c8cbd3-ce40-4b49-b8e4-cbb84e30dfe1@gmail.com>
 
-On 08/08/2025 09:52, Jorge Ramirez-Ortiz wrote:
-> Add a qcm2290 compatible binding to the Venus core.
+On Fri, Aug 08, 2025 at 08:43:18AM +0300, Matti Vaittinen wrote:
+> On 07/08/2025 15:47, Nuno Sá wrote:
+> > On Thu, Aug 07, 2025 at 12:35:03PM +0300, Matti Vaittinen wrote:
+> > > The ad7476 supports two IC variants which may have a 'convstart' -GPIO
+> > > for starting the conversion. Currently the driver calls a function which
+> > > tries to access the GPIO for all of the IC variants, whether they
+> > > support 'convstart' or not. This is not an error because this function
+> > > returns early if GPIO information is not populated.
+> > > 
+> > > We can do a tad better by calling this function only for the ICs which
+> > > have the 'convstart' by providing a function pointer to the convstart
+> > > function from the chip_info structure, and calling this function only
+> > > for the ICs which have the function pointer set.
+> > > 
+> > > This does also allow to support ICs which require different convstart
+> > > handling than the currently supported ICs.
+> > > 
+> > > Call convstart function only on the ICs which can support it and allow
+> > > IC-specific convstart functions for the ICs which require different
+> > > handling.
+> > > 
+> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> > > ---
+> > > Revision history:
+> > >   v1 => v2:
+> > >   - Adapt to the change which removed the chip_info pointer from the
+> > >    driver's state structure.
+> > > 
+> > > The follow-up patch adding support for the ROHM BD79105 will bring
+> > > different 'convstart' functions in use. The IC specific pointer will
+> > > also prepare the way for this.
+> > > ---
+> > >   drivers/iio/adc/ad7476.c | 8 +++++++-
+> > >   1 file changed, 7 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/iio/adc/ad7476.c b/drivers/iio/adc/ad7476.c
+> > > index a30eb016c11c..8914861802be 100644
+> > > --- a/drivers/iio/adc/ad7476.c
+> > > +++ b/drivers/iio/adc/ad7476.c
+> > > @@ -30,6 +30,7 @@ struct ad7476_chip_info {
+> > >   	unsigned int			int_vref_mv;
+> > >   	struct iio_chan_spec		channel[2];
+> > >   	void (*reset)(struct ad7476_state *);
+> > > +	void (*conversion_pre_op)(struct ad7476_state *st);
+> > >   	bool				has_vref;
+> > >   	bool				has_vdrive;
+> > >   };
+> > > @@ -37,6 +38,7 @@ struct ad7476_chip_info {
+> > >   struct ad7476_state {
+> > >   	struct spi_device		*spi;
+> > >   	struct gpio_desc		*convst_gpio;
+> > > +	void (*conversion_pre_op)(struct ad7476_state *st);
+> > 
+> > Ok, I was going to reply to patch patch 5 saying I was not sure about
+> > the change. And now this makes it clear. My point would be that it's
+> > fairly easiy to end up needing chip info after probe. The above function
+> > pointer only has to exist because of patch 5. So I would better drop
+> > patch 5 and...
 > 
-> The maximum concurrency is video decode at 1920x1080 (FullHD) with video
-> encode at 1280x720 (HD).
-> 
-> The driver is not available to firmware versions below 6.0.55 due to an
-> internal requirement for secure buffers.
-> 
-> The bandwidth tables incorporate a conservative safety margin to ensure
-> stability under peak DDR and interconnect load conditions.
-> 
-> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> ---
->   drivers/media/platform/qcom/venus/core.c | 50 ++++++++++++++++++++++++
->   1 file changed, 50 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 9604a7eed49d..a7c960d1d818 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
-> @@ -1070,10 +1070,60 @@ static const struct venus_resources sc7280_res = {
->   	.enc_nodename = "video-encoder",
->   };
->   
-> +static const struct bw_tbl qcm2290_bw_table_dec[] = {
-> +	{ 352800, 597000, 0, 746000, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 413000, 0, 516000, 0 }, /* 1080p@30 */
-> +	{ 216000, 364000, 0, 454000, 0 }, /* 720p@60  */
-> +	{ 108000, 182000, 0, 227000, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct bw_tbl qcm2290_bw_table_enc[] = {
-> +	{ 352800, 396000, 0, 0, 0 }, /* 1080p@30 + 720p@30 */
-> +	{ 244800, 275000, 0, 0, 0 }, /* 1080p@30 */
-> +	{ 216000, 242000, 0, 0, 0 }, /* 720p@60  */
-> +	{ 108000, 121000, 0, 0, 0 }, /* 720p@30  */
-> +};
-> +
-> +static const struct firmware_version min_fw = {
-> +	.major = 6, .minor = 0, .rev = 55,
-> +};
-> +
-> +static const struct venus_resources qcm2290_res = {
-> +	.bw_tbl_dec = qcm2290_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(qcm2290_bw_table_dec),
-> +	.bw_tbl_enc = qcm2290_bw_table_enc,
-> +	.bw_tbl_enc_size = ARRAY_SIZE(qcm2290_bw_table_enc),
-> +	.clks = { "core", "iface", "bus", "throttle" },
-> +	.clks_num = 4,
-> +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
-> +	.vcodec_clks_num = 2,
-> +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
-> +	.vcodec_pmdomains_num = 2,
-> +	.opp_pmdomain = (const char *[]) { "cx" },
-> +	.vcodec_num = 1,
-> +	.hfi_version = HFI_VERSION_4XX,
-> +	.vpu_version = VPU_VERSION_AR50_LITE,
-> +	.max_load = 352800,
-> +	.num_vpp_pipes = 1,
-> +	.vmem_id = VIDC_RESOURCE_NONE,
-> +	.vmem_size = 0,
-> +	.vmem_addr = 0,
-> +	.cp_start = 0,
-> +	.cp_size = 0x70800000,
-> +	.cp_nonpixel_start = 0x1000000,
-> +	.cp_nonpixel_size = 0x24800000,
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/venus-6.0/venus.mbn",
-> +	.dec_nodename = "video-decoder",
-> +	.enc_nodename = "video-encoder",
-> +	.min_fw = &min_fw,
-> +};
-> +
->   static const struct of_device_id venus_dt_match[] = {
->   	{ .compatible = "qcom,msm8916-venus", .data = &msm8916_res, },
->   	{ .compatible = "qcom,msm8996-venus", .data = &msm8996_res, },
->   	{ .compatible = "qcom,msm8998-venus", .data = &msm8998_res, },
-> +	{ .compatible = "qcom,qcm2290-venus", .data = &qcm2290_res, },
->   	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
->   	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
->   	{ .compatible = "qcom,sdm660-venus", .data = &sdm660_res, },
+> Andy had the same comment. I personally like to only carry around stuff that
+> is used after probe in the driver's private data. In my eyes it makes things
+> clearer (and cleaner) as you know what is used. But yes, (also) here it
+> leads to some duplication.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+And also remember that like this you're pretending that const stuff needs to
+be set at runtime which is really not the case.
+
+- Nuno Sá
+
+> 
+> Well, I'll drop the patch 5.
+> 
+> Thanks!
+> 
+> Yours,
+> 	-- Matti
 
