@@ -1,143 +1,127 @@
-Return-Path: <devicetree+bounces-202748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF5FB1E91D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:25:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 837A6B1E930
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:29:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 82A294E1969
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:25:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30E7D1C238C7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8850227E06D;
-	Fri,  8 Aug 2025 13:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4835727E05A;
+	Fri,  8 Aug 2025 13:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oPXgVpUk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTwrI4HN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E72C2797A9;
-	Fri,  8 Aug 2025 13:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6E527C84B;
+	Fri,  8 Aug 2025 13:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754659514; cv=none; b=Ac6i+y7OaNXQUYkJ2A4WGTGt/Ln8cnqiRh6yY4XsigSUS8stQD8+/NE8Cnlkyj5S0czZMDgwTBc+pLNNErZNlz5JEWv07OXFpYYk3amMAWk3oe4I9I6Zx+CvdoH+t7V0VtLo9IhSQ5l4S9vTJ/G9u45OT0IsCF7BCPTMGtdpbyQ=
+	t=1754659742; cv=none; b=mrvRNPrYElmMnT8VBgs8jFktzZWCiwRBpM0iucjN7qMuvKR7Tm0fNRMQlf2ZPRENaJRrKrb+ctiJzN3OVmibAa6s2KC6QaPE9yoqj0JIDx0P//ebWGlA0ylK8a1bprKFo5Ir5Ly4WQfOttgf+dRtdPF+3vMj6RQwgejTU2TIvWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754659514; c=relaxed/simple;
-	bh=uki83tZpcn/OHTl3GX/EsCmOHM2028MHeLf0f+1lBZg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fsMRuHUN/ewzMB0dHpIr7Pya3NtvWqwgU2nWnhVlp1mQXNN80kBDZ5yIVLhCS/zsMb7s0/Gl6msPtNf+hmQh62iSufDz2I8lWzKw/C+ODWa5Oo5thpqmMv1GVIH+Zk8tO2kyYdVp6j6saXKY3opzR7b8GTuXneI1i0bzwNcCqTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oPXgVpUk; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 578DOWEo602038;
-	Fri, 8 Aug 2025 08:24:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754659472;
-	bh=i5QrXCqm+pifeK6qyJpbRjapusOqLRIsZv1SdbjtFgM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oPXgVpUky4MiMEuzV1gaxhmE2P+CcZTLHNyN2yEibVfjZ/F5eY7MQ2SGoxsMEMgws
-	 CDyKh2OOKPW2sGr69AInzj4bQcGNAFUnX+p0uOROD4gmIoO7VqqklFxjDyxJgsHdUF
-	 6fXLAC6SNg3YueNO8Qt6voOsWnMUjzmbCnldmJ0M=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 578DOVfQ1612002
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 8 Aug 2025 08:24:31 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
- Aug 2025 08:24:30 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 8 Aug 2025 08:24:30 -0500
-Received: from [10.249.145.16] ([10.249.145.16])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 578DONpB3102888;
-	Fri, 8 Aug 2025 08:24:23 -0500
-Message-ID: <19dd9aa9-43c6-4483-9cdf-f297e41ecdec@ti.com>
-Date: Fri, 8 Aug 2025 18:54:22 +0530
+	s=arc-20240116; t=1754659742; c=relaxed/simple;
+	bh=hfPJSMtqw2tJZNaG7y3abjrWTa3qv4AxzlReGYo3tdI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Plo3nR9dNxliP6F1W9aVyicSaKb8zt6zUrJ6k+qqdefu6t//lXxyLWicwrqJwb9IaI3DYai85v0ugMhk3pSQgSSXKwzzRWfQrDFaag/dbwlFvXdH1uuOK8e8daV+8kG7lmk4id/w1DPkrvQhmG/t3afFL4lap27CvLOtITF+oLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTwrI4HN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A13A9C4CEF4;
+	Fri,  8 Aug 2025 13:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754659741;
+	bh=hfPJSMtqw2tJZNaG7y3abjrWTa3qv4AxzlReGYo3tdI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=rTwrI4HNFH+ORRfvJkxPZUl8sVqUnI8MuBDcRe/5FTsex5noMpYTVlUbneeWavA3U
+	 YxmZg15UPZVl/rXG3AFI/eVI1LyyxBXft4hgLLJXHU0JVqmf70N3c98asGxwC0ItLq
+	 oKyZKxPrxrVwwTJQ/cRnHmUND1UG4T30UNDDVkpHdS0bJitWQ2e2HQqScZXgOoZFmM
+	 dOUA3xr6CTZ6jgd/rwQ2i0E/uoqRe8SrYK9jE9AGt5j59VaLqooYnKQiy4BG4KoJLL
+	 GDLMzTfUhCpC2Wl4JQ13pqad0Zx7yi8dRtJnl0yktd7JeNwmRpbUb6z4ZgEa476Gcf
+	 GUvEzUEiYFnSQ==
+Date: Fri, 08 Aug 2025 08:28:59 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] drm/tidss: Fixes data edge sampling
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Louis Chauvet
-	<louis.chauvet@bootlin.com>
-CC: <thomas.petazzoni@bootlin.com>, Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ti.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <stable@vger.kernel.org>, Jyri Sarha
-	<jyri.sarha@iki.fi>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Benoit Parrot
-	<bparrot@ti.com>, Lee Jones <lee@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, <s-jain1@ti.com>
-References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
- <1951ecfe-d080-464c-8441-f5400f535495@ideasonboard.com>
-Content-Language: en-US
-From: devarsh <devarsht@ti.com>
-In-Reply-To: <1951ecfe-d080-464c-8441-f5400f535495@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: lpieralisi@kernel.org, kw@linux.com, guoyin.chen@cixtech.com, 
+ krzk+dt@kernel.org, cix-kernel-upstream@cixtech.com, conor+dt@kernel.org, 
+ mani@kernel.org, linux-pci@vger.kernel.org, peter.chen@cixtech.com, 
+ devicetree@vger.kernel.org, mpillai@cadence.com, 
+ linux-kernel@vger.kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
+ fugang.duan@cixtech.com
+To: hans.zhang@cixtech.com
+In-Reply-To: <20250808072929.4090694-8-hans.zhang@cixtech.com>
+References: <20250808072929.4090694-1-hans.zhang@cixtech.com>
+ <20250808072929.4090694-8-hans.zhang@cixtech.com>
+Message-Id: <175465973854.5889.2255011303498628193.robh@kernel.org>
+Subject: Re: [PATCH v6 07/12] dt-bindings: PCI: Add CIX Sky1 PCIe Root
+ Complex bindings
 
-Hi Tomi, Louis,
 
-On 07/08/25 18:51, Tomi Valkeinen wrote:
-> Hi,
+On Fri, 08 Aug 2025 15:29:24 +0800, hans.zhang@cixtech.com wrote:
+> From: Hans Zhang <hans.zhang@cixtech.com>
 > 
-> On 30/07/2025 20:02, Louis Chauvet wrote:
->> Currently the driver only configure the data edge sampling partially. The 
->> AM62 require it to be configured in two distincts registers: one in tidss 
->> and one in the general device registers.
->>
->> Introduce a new dt property to link the proper syscon node from the main 
->> device registers into the tidss driver.
->>
->> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
->> ---
->> Cc: stable@vger.kernel.org
->>
->> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+> Document the bindings for CIX Sky1 PCIe Controller configured in
+> root complex mode with five root port.
 > 
-> I understand why you call this a fix, but I think this is not really a
-> fix. From looking at the patches, my understanding is that for DPI
-> outputs we have always only supported certain clock/data edge.
-
-I don't think driver makes a distinction between supported/unsupported
-or errors out in case it is run with "different" clock/data edge panel
-(for e.g  DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE is set per the panel
-configuration). Instead it tries to program the VP registers per the
-DRM_BUS_FLAG* getting passed by framework per the connected panel and
-gives an incorrect behavior if those are different than defaults since
-those settings are not sufficient for these displays and instead extra
-MMR register settings are also required.
-
- So this
-> series is adding a new feature to the driver.
+> Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
+> 
+> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
+> ---
+>  .../bindings/pci/cix,sky1-pcie-host.yaml      | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
 > 
 
-I think it is a bug due to above mentioned behavior, and good to have a
-Fixes tag.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Regards
-Devarsh
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml: properties:compatible:oneOf: [{'const': 'cix,sky1-pcie-host'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
+	hint: Use 'enum' rather than 'oneOf' + 'const' entries
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dts:27.13-29.83: Warning (ranges_format): /example-0/pcie@a010000:ranges: "ranges" property has invalid length (84 bytes) (parent #address-cells == 1, child #address-cells == 3, #size-cells == 2)
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
+	[[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
+	1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+	0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+	[0, 4, 0] is too short
+	from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): reg: [[0, 167837696], [0, 65536], [0, 738197504], [0, 67108864], [0, 167772160], [0, 65536], [0, 1610612736], [0, 1048576]] is too long
+	from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'msi-map', 'ranges', 'reg' were unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: pcie@a010000 (cix,sky1-pcie-host): ranges: 'oneOf' conditional failed, one must be fixed:
+	[[16777216, 0, 1611661312, 0, 1611661312, 0], [1048576, 33554432, 0, 1612709888, 0, 1612709888], [0, 534773760, 1124073472, 24, 0, 24], [0, 4, 0]] is not of type 'boolean'
+	1048576 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+	0 is not one of [16777216, 33554432, 50331648, 1107296256, 1124073472, 2164260864, 2181038080, 2197815296, 3254779904, 3271557120]
+	[0, 4, 0] is too short
+	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250808072929.4090694-8-hans.zhang@cixtech.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
