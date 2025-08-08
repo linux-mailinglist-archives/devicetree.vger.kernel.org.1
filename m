@@ -1,188 +1,156 @@
-Return-Path: <devicetree+bounces-202677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F56B1E589
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A79B1E59D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:29:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2EEE16E037
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:21:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8D9D56149D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3C126CE39;
-	Fri,  8 Aug 2025 09:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VGk9X8jn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8724526E14D;
+	Fri,  8 Aug 2025 09:29:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5A52690C4;
-	Fri,  8 Aug 2025 09:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B42D2C181;
+	Fri,  8 Aug 2025 09:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754644871; cv=none; b=WNqAzTULdHdG0PbDSQz54I23K04lGzV1W/iFZUR0qn/Z+u5OTs6JSlmQKZuJiQIo8V03aPSjNVDwtZi5xhtBmqN9DDhuMpsq1LPa/PG/dXVX6Qu2oIQc9q6casmHo/PsXWAI44SNYsfzffZ0okZTYSzW9ue/jJWcjNnbu1lphig=
+	t=1754645362; cv=none; b=oy8fIHsQFk6BH7SVBeZGw5N/auAwNI+cbKR61FpM32m59mKvBdCTMKrgJYxmNrQ+jUSxiLW4VnwsfoVhi0WNzRxbm0KfKYGQn75zeOb2eg/ACzLEUNjA0NQtWo2p3lTp0sT6RYRB6nG5jAwj4FdaYWdWwe6EvjbJJ3+d6KhnnmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754644871; c=relaxed/simple;
-	bh=sVpR1dYv5o8tfh8Si5svUOMGyW2vn4V8kesXGSXn2gs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Z7C6hx58jcEYQUbsd6no+21xzdr7y7YNyPLPYNe9j7Un9wkrjF1X7AipXqp7D4nqUk5X70Itpk2K2rvlBQGLD3VLPpKlmBBhUX+agy5JiRgD5lQT0YCw1dynw7PO1OtXbWgGy9GTuSp9h84YzCCKPqiaybFCxabv0UwRCkhyrVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VGk9X8jn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F026C4CEED;
-	Fri,  8 Aug 2025 09:21:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754644871;
-	bh=sVpR1dYv5o8tfh8Si5svUOMGyW2vn4V8kesXGSXn2gs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=VGk9X8jnEH+AWZ1sED8xZca1TSyTZsoV8bGyQnhx2dWTgfMPACCcBBOrvFviOpOCj
-	 tk3ehAaL/1+4s8nKoFZ8fp1+LkKAWKrr8rQRpKu5zbrJWNvT5qcQ5qTE6Uz578kEcH
-	 nj+Jbq5CAqRs0jyZa81dwoKwc7Mk55vErpIYudqGtGetomthWgUyFKHzjFdi/xq9RK
-	 Nxc1JkRpblUR2F3YR+29JM2ZoW2GyfzmSZo9QjAThMeVbfgcelFrljUho4AG16HIE+
-	 M5XUqcAKgjUV6D7PeZWCUdE5LvDZQ8acqsIaAh5D+ESeeGY4Fw+g/mV5wWJJ8jrXlf
-	 +Xo7LMx1nOliA==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Fri, 08 Aug 2025 11:20:45 +0200
-Subject: [PATCH] arm64: dts: qcom: sc7180: Describe on-SoC USB-adjacent
- data paths
+	s=arc-20240116; t=1754645362; c=relaxed/simple;
+	bh=IiJTQErPW5NICX7cRxQTeWwtpyUdxFcaFOuxYeBGaXw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iiiy4i79CmyqW1GCcXbezhcLm24bdic+ln7VWseL5wAlvl9hFVpBqkpIrHyq9huKEpuadV4Gwr4cNCZ4t/BQRLLrBFVfFanS1I1ptJkVguCCGi9Cav8rxds4njV3fwQYsYnXqCB0R5NZ8ur26ES/lawECvyXpJHoHn+lGzPIlpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4fd210f8448so2563970137.2;
+        Fri, 08 Aug 2025 02:29:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754645358; x=1755250158;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ONUQQjbxoiIGrp2xGll/nfaLwIlt2Mqw8O1vqEtflFg=;
+        b=rkYfFgxMzD+xlD6xD3/sPjROVf3X4cdukKsy8sbK7PbcDME3J5GNKcXqLxN4l4J3XL
+         4kQFZ13oeRiYrmCLosAAHaX157ML/QJY9QwJ4PettEP+eXYugeSYeyA2FIit5kkHGftX
+         k1X7Ty676ciaTekcqWDk52Ij+K7q3D2ln2sHqbIbrEocQOEYsXIDrv037ogciq2MqzPd
+         PBwIp3bf/t7XUgPyR22ixaRXKptf9/iWDxi0O3W1cI5ewt2othUbzZjv8kXHLYSk8hvo
+         t+y13+RCiLd7O0y/6wbk9l3CIUcwo9OXyXcVpDf0p7skBcrl/WZ2WBMUgsPAX0O4IB9d
+         WfoA==
+X-Forwarded-Encrypted: i=1; AJvYcCWUJcZIQttHw5u3UsYBrqKc+qG2bNgb35OSnJmR0O8dO4GoIBrsWa9jAi2vID9B1rhh3DZM8Xm8NnhqYdm6gztWA3o=@vger.kernel.org, AJvYcCX34Tw9vXZ+Pepy6c6FIWyCq5JZpZ5Bm1pDty8LsrHIWCdLrv6FBTy0g8zXrdUqc512nM4wCYdUL9p82KmB@vger.kernel.org, AJvYcCX3J8TxmvkU3gwVyK05I2w7y33MzELmkTTjCH9lneozqulja0tKWikJMYt12wdIRWI1FjklAbpREU89@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxxy9iyJh61b4fOJXe1Qls9L2wFT7a5cS+qQw75cXQWZ2pbaBg3
+	SLNcx9erf+sTk/fEuY4mgnNUfucNRb8sjjWZuuprGkEIjsLVXUkSScX9/7wzFLcN
+X-Gm-Gg: ASbGnctd0M7kzZaip6svPpDONeBtVMYGTYQv9IsSu+9LuNI/ChTITuslgXyYTfk3uuU
+	6YInm0+6yDlphMrJ6rm3dncAdQpb8kf4Axf4B2TAVmfrQfza+lUNsK/hJ5cpBxSJjJ0Nb0kHKlm
+	deF4lf5YR2HtmxmqbAOY4QcomuzePjF4vtxEUUxWHo8xtKNoUDwAH2A+eu52Fz5QbAB9eaN6Ju+
+	5U1EcOhL61lLbs9C2Mgo6DaNlRmUo4GFvksoULB2YQIGXh55qdJx+4saewZXNee3qXfS4qvJyOd
+	jxEagCntMhyJfskvWOn6dHgOf/ElGDB+vj9gX8W731ak+6o8PvNO6Hq+DyNOttBMBoKGchGcERv
+	N0LiAZDrnlAeqZ6ycF4bpNUE7byj6/EM+x2pSGInaimOqV2ZfN6offaVzjP/07jHb
+X-Google-Smtp-Source: AGHT+IF/aDwRW36hiwVcAsW6nYorGluS6UK+xnJp4ngBdOkL/zMfNoYywa9i/8z7M7YvJy3I/+YBKA==
+X-Received: by 2002:a05:6102:d93:b0:4fc:1987:fc5b with SMTP id ada2fe7eead31-5060e9e6216mr834969137.15.1754645358138;
+        Fri, 08 Aug 2025 02:29:18 -0700 (PDT)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-88e0296af29sm711462241.20.2025.08.08.02.29.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Aug 2025 02:29:17 -0700 (PDT)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-5393cfc2e77so1249450e0c.3;
+        Fri, 08 Aug 2025 02:29:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCURQiZIxk9OElVfjvsDXb9zVvn31n/thrF17QnTN5trIB0xIe7ouBTLktgMaJEDpGi9o5JlWjRWL9QO@vger.kernel.org, AJvYcCX/kTi9kgzeSABHqbzqSG6rZ9TCdo+RaUmCXco7bWztDUEuuZAicpk2uu3iOLYaU4iTtE1p/pShIgCmgpknGCtt9H8=@vger.kernel.org, AJvYcCXp4U92R+70mJjqrtslJftFS0yH6q30kO3ekKy5q+zfiU7thogEpiSjxMRnMCmj+T1lPBUdeEMZ1G+hZrDR@vger.kernel.org
+X-Received: by 2002:a05:6122:8285:b0:535:e35d:49f4 with SMTP id
+ 71dfb90a1353d-53a52f1316bmr853973e0c.11.1754645357385; Fri, 08 Aug 2025
+ 02:29:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250808-topic-7180_qmpphy_ports-v1-1-718d7c52921a@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAGzBlWgC/x3MTQ5AMBBA4avIrDWZqp/GVUREGMyCjlaEiLtrL
- L/Few8E8kwB6uQBTycHdluEThMYln6bSfEYDRlmBVq06nDCg6q0xW5fRZa7E+ePoKg0OebG6NI
- WEGvxNPH1n5v2fT+S24afaQAAAA==
-X-Change-ID: 20250808-topic-7180_qmpphy_ports-e63404331685
-To: cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754644868; l=2683;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=92zZd6eGCxTh3T5m3Hb7fztz7OYLQfUscXG/+J3D4AA=;
- b=8IaIK9N92Y+Bvw8cI23s9VWc0MP3zsbg+GOo+bt4N1sy5gXrwBiaAkM1Xpzr6WyU1kS5m2Gnh
- XAL3HbIAMiwCqhObqO2/GFdzfo/yvqBMLLu/luylBicH2sIBYbGizs9
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+References: <20250808061806.2729274-1-claudiu.beznea.uj@bp.renesas.com> <20250808061806.2729274-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250808061806.2729274-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 8 Aug 2025 11:29:06 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
+X-Gm-Features: Ac12FXx8i1QT-zXz7J1iKPWv5wh3EdWdZPqRg8Ft3ReMHz9bkxHLJxwo8ny7LqM
+Message-ID: <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/8] soc: renesas: rz-sysc: Add syscon/regmap support
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	John Madieu <john.madieu.xa@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Hi Claudiu,
 
-Define ports {} for the DWC controller & the QMPPHY and connect them
-together for the SS lanes.
+On Fri, 8 Aug 2025 at 08:18, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: John Madieu <john.madieu.xa@bp.renesas.com>
+>
+> The RZ/G3E system controller has various registers that control or report
+> some properties specific to individual IPs. The regmap is registered as a
+> syscon device to allow these IP drivers to access the registers through the
+> regmap API.
+>
+> As other RZ SoCs might have custom read/write callbacks or max-offsets,
+> register a custom regmap configuration.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> [claudiu.beznea:
+>  - do not check the match->data validity in rz_sysc_probe() as it is
+>    always valid
+>  - dinamically allocate regmap_cfg]
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v4:
+> - adjusted the patch description by dropping "add" from
+>   "add register a custom regmap configuration"
+> - updated the list of changes from Claudiu Beznea
+> - dynamically allocate the regmap_config as proposed at [2]
+> - this patch is needed for proper function of USB (as proposed in this
+>   series) that being the reason it is introduced here, as well
+>
+> [2] https://lore.kernel.org/all/CAMuHMdVyf3Xtpw=LWHrnD2CVQX4xYm=FBHvY_dx9OesHDz5zNg@mail.gmail.com/
 
-Leave the DP endpoint unconnected for now, as both Aspire 1 and the
-Chromebooks (unmerged, see [1]) seem to have a non-trivial topology.
-Take the creative liberty to add a newline before its ports' subnodes
-though.
+Thanks for the update!
 
-[1] https://lore.kernel.org/linux-arm-msm/20240210070934.2549994-23-swboyd@chromium.org/
+> --- a/drivers/soc/renesas/rz-sysc.c
+> +++ b/drivers/soc/renesas/rz-sysc.c
+=
+> @@ -117,7 +125,26 @@ static int rz_sysc_probe(struct platform_device *pdev)
+>                 return PTR_ERR(sysc->base);
+>
+>         sysc->dev = dev;
+> -       return rz_sysc_soc_init(sysc, match);
+> +       ret = rz_sysc_soc_init(sysc, match);
+> +       if (ret)
+> +               return ret;
+> +
+> +       regmap_cfg = devm_kzalloc(dev, sizeof(*regmap_cfg), GFP_KERNEL);
+> +       if (!regmap_cfg)
+> +               return -ENOMEM;
 
-Suggested-by: Rob Herring (Arm) <robh@kernel.org>
-Closes: https://lore.kernel.org/linux-arm-msm/175462129176.394940.16810637795278334342.robh@kernel.org/
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 48 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+Is there any specific reason you decided to allocate regmap_cfg
+separately, instead of embedding it into struct rz_sysc?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 8f827f1d8515d6113c85a2ecacf7ac364e195242..a0df10a97c7f8aa5cd468c8983e74256490d1d06 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2897,6 +2897,31 @@ usb_1_qmpphy: phy@88e8000 {
- 
- 			#clock-cells = <1>;
- 			#phy-cells = <1>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_1_qmpphy_out: endpoint { };
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_1_qmpphy_usb_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_ss>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usb_1_qmpphy_dp_in: endpoint { };
-+				};
-+			};
- 		};
- 
- 		pmu@90b6300 {
-@@ -3070,6 +3095,26 @@ usb_1_dwc3: usb@a600000 {
- 				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 				maximum-speed = "super-speed";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						usb_1_dwc3_hs: endpoint {
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						usb_1_dwc3_ss: endpoint {
-+							remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
-+						};
-+					};
-+				};
- 			};
- 		};
- 
-@@ -3384,8 +3429,10 @@ mdss_dp: displayport-controller@ae90000 {
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-+
- 					port@0 {
- 						reg = <0>;
-+
- 						dp_in: endpoint {
- 							remote-endpoint = <&dpu_intf0_out>;
- 						};
-@@ -3393,6 +3440,7 @@ dp_in: endpoint {
- 
- 					port@1 {
- 						reg = <1>;
-+
- 						mdss_dp_out: endpoint { };
- 					};
- 				};
+The rest LGTM.
 
----
-base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
-change-id: 20250808-topic-7180_qmpphy_ports-e63404331685
+Gr{oetje,eeting}s,
 
-Best regards,
+                        Geert
+
 -- 
-Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
