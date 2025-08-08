@@ -1,124 +1,122 @@
-Return-Path: <devicetree+bounces-202735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EC5B1E8A1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:53:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B5EB1E8B3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:55:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 294733AA94A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:53:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B57141C21C38
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D978027A12C;
-	Fri,  8 Aug 2025 12:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CFB527A13D;
+	Fri,  8 Aug 2025 12:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jc38OoL6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="m1WxlJVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FAB279DAD;
-	Fri,  8 Aug 2025 12:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E88267F48;
+	Fri,  8 Aug 2025 12:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754657601; cv=none; b=taZCrgqnDWGX0L3p3TQTPSQ3K9nowKhsUnvzvk2AJD/6JWuFt9mrQgZQ/8Ttly2wqNW6qMsLyaY8CVSfhinzNH7enCNS2LcFHoq8dh/DYG7AhzlUFn0Q/bqIn+T83TlJC5l39rKZS8gJxm89GvLxyMMX1kCi6R+SuOx/np4miIw=
+	t=1754657740; cv=none; b=Pwynabg10JA61FDOJt6QsZOtPvhDTAD5OxU1PX90hj97umJ40/T1cL8mnJJc51sWyGl3EOkJUgroNYL9M5GLfXg+iSXjHBjD8GuFkdzTnQDRjt7VxSNMq28iE7hnGmbUItySDvkO8vRivuUXtm7eadtHhWRckO17fKDVAOQp9Vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754657601; c=relaxed/simple;
-	bh=b9w76l/dF5/PsV8fhzagizQRSQEVBdBkYYuMG2nBS30=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oc8ZmaQpx6cpniGsO3jUrfcuibhubf6/lKG1zzmORNJ6BcWg1J23TQwxzDZIei/O+d6LbIv2VLAC0y+rJr5QTEJZqSjcJpcENtMEkS/1tBHUS+8k0hyUmq1pFr3ZrEaa4gdhaVfdTB8ZUKNwMnTxA9JWYGJ5v/3jHap/0/JTR1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jc38OoL6; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-60c9d8a169bso3688728a12.1;
-        Fri, 08 Aug 2025 05:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754657598; x=1755262398; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PbxREPl4QZ5d1d6Rgrjzzhw7jd1PsCQZvw+2e8oVOVw=;
-        b=jc38OoL6e+9k6NKGa4bk5nJltKK7zOSgP3CQ25XyRsR0oUA4C4sQMKEqOboRUETDr0
-         WvMo2r63nzON5L2ey9c8mTX071S5t3QvlyG4+vXJ0kMGleFi2TOiD8jJvHt1ecDujiMB
-         cARcVe7L+K1DZVB0Q329WE62LCg31+bl285LqPto78Ce8nnV8AsTAqhZlHSKz3i5brjq
-         WHJfT4PT3aQOCTLHGk5VfjGGPvtYvijvV1YYpL6btCm+D7/CrY8vEU7ToeczaofqhWuI
-         0ndGuG0y97lZyn6AnBgKO4xrnHrEwtcXxOaq2ABV3PKkkQ4vHAx6PG/R0MgJn2QfBH4H
-         N4yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754657598; x=1755262398;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PbxREPl4QZ5d1d6Rgrjzzhw7jd1PsCQZvw+2e8oVOVw=;
-        b=OFe1CIH8fRBo+pFYRtbpfgaCPXdTzmfYUDh5lo9qWhLaHP6Qaun+u0U473GgQbeDiS
-         7L+qauRPMXFr0/w/Nn02w6noLNNzVpf6WjDVpCj4cg4RoKADp/OpaGvoCWtQ9U+AzgrO
-         7aRp7Ao4DNbsMkxZdlnVLasmdUgb3e7oESxfpXYJka7w+Srtwh38MM9IZpUFPGt5/vvF
-         9kftcYzgFUgaRnYI6muFCgmIwM7Ple0Cb0UNVwsZ7urJDF/zUEHrTI+XRTNW8koxSOmv
-         98FUw8dp/yGz/Mp4uIWnDIAWSFjBJqaeC7V5xQ5B+yJVHkISFSaxx4pGpCxfCLq0nFHq
-         LcKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQnJkkjOVSE4hN5CnZpkEn2asdSw5HkoeUIHfjnnZKYUrHolxX7yzer4z0kOxIPDuLmJU+HLALqiz+@vger.kernel.org, AJvYcCUdlJiDAiHmYEmqh5GtDbqBahAu8Rvqa207AIlVy3iaQV4jR5rYB+S2FbM6C2G1MGBaZZ07KLYTUKIG@vger.kernel.org, AJvYcCXE7H4K4aE5lCZtPL2cgKl8lMm4kPUu2b9zZeLY1uRNfmE0ugu/LxZ3UGFB5x8pQT/7LemRWV4ozkIf1T7u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4y3Rb+FV1IV0aCIdCfzL5TzVdzasYS8YSZjaZb0oM/Q8afHPy
-	6QBNyGk4jBzeUKpBP4wBgry+Y3P9ihK46SBxo8L/H1ZdSGjg7IDSLBR9tlHwuqg3NFyUvnAvFNo
-	87v8d0JKcDRpet2U8F/Oi1jba1XXbPeNcarHJC9zGRg==
-X-Gm-Gg: ASbGncvbEA5zX3tqnPLDWzIZKNnRpq87W6OGW3F7z4Ux+CINgOgFTf/xhFifQuvZL7R
-	mhANBhCut7WsHCeoY29Jt9uxbdc2KMLu0vkIp+WfqLxZ2dRDF6Wbnu/1DxmVWLQ20Q1jzOwIhbr
-	2BgJ4NKc6DMXZLwduCMwYQ3fPpoJ49ZrczC1PYvWOpYxG/qMSsIVVZ8TUHbjbGB/73Z1QJ8Dy7L
-	LkGuTVjaZgYxOvw0BaC
-X-Google-Smtp-Source: AGHT+IE6jxqNr85I7ZGkEkmU01kgCQJ33QIEpCnyzxl3L69ABnE2MV9BjbB9Verf2AUEMGXeGEB+/TMaOHdjorzlUBg=
-X-Received: by 2002:a17:907:d13:b0:af9:4fa9:b0fa with SMTP id
- a640c23a62f3a-af9c6422244mr234707766b.27.1754657598429; Fri, 08 Aug 2025
- 05:53:18 -0700 (PDT)
+	s=arc-20240116; t=1754657740; c=relaxed/simple;
+	bh=ACl/1WpHz0OkVv+Qnb+u4S2zRBwUXojDAQDgxJKgwxk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QYmyj1ZOkIRHAOu9DE5SGcGgmXx9Y1Kxe3ly9v+o4waqsW812Zm/JhBuKNgVRn61cHuhoRK/fYQoRNzd/TnJQ2wzu444NBCqTYnqiW0155inn+yHcmtmxajNd0OiP6PP70o5cd/GQdU0Khjm5ett/MsX544UTqogG6pEZRH7wrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=m1WxlJVz; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: f1c3c70c745611f0b33aeb1e7f16c2b6-20250808
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=K7iyex7lMfUkETiMptOjGboRhBbfG+sCbpLEqjEMdiI=;
+	b=m1WxlJVzzUa7BZ6NdckJueYmkGs9XfvvyK9Suydgu/eES+S6HdJmvZv5Y2SOKZ/0IB0KlPiFtcSyDL/GxFKtYRt5J9+NBZVUHgpwk1kTvK5v43eyV52qDdHvoJrHL59OWOoSXKKaUQ7ZN+1zsopgQVzrcsC6RADvBfzoB0Y/qis=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.3,REQID:c2247f3f-5d15-4f69-a740-08bd1a89e696,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:f1326cf,CLOUDID:d3e635ce-1ac4-40cd-97d9-e8f32bab97d5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
+	nil,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,L
+	ES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: f1c3c70c745611f0b33aeb1e7f16c2b6-20250808
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <jay.liu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1935873791; Fri, 08 Aug 2025 20:55:22 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 8 Aug 2025 20:55:19 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 8 Aug 2025 20:55:18 +0800
+From: Jay Liu <jay.liu@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Jay Liu <jay.liu@mediatek.com>
+Subject: [PATCH v3 0/6] porting pq compnent for MT8196
+Date: Fri, 8 Aug 2025 20:53:55 +0800
+Message-ID: <20250808125512.9788-1-jay.liu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754559149.git.mazziesaccount@gmail.com>
- <09bf5e7973c37413ada950741e6e09c375e37c57.1754559149.git.mazziesaccount@gmail.com>
- <CAHp75VcHR78Uwgo74n-i3a1sSfDxBwVKWihcnFp5x3d=puAySQ@mail.gmail.com> <13505077-fb36-4126-9767-fead98e01009@gmail.com>
-In-Reply-To: <13505077-fb36-4126-9767-fead98e01009@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 8 Aug 2025 14:52:41 +0200
-X-Gm-Features: Ac12FXxd7zmXy-o_lQY2wGMCz9cEmsuTSrLvDzDvDqgNvrZCufAdpIwWoJ7-9H4
-Message-ID: <CAHp75Vf7PbHPFuVjmK1xPMZxotc81S6FAQkgZ0ETNXSWozaUQw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/10] iio: adc: ad7476: Drop convstart chan_spec
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Aug 8, 2025 at 7:38=E2=80=AFAM Matti Vaittinen <mazziesaccount@gmai=
-l.com> wrote:
-> On 08/08/2025 00:16, Andy Shevchenko wrote:
-> > On Thu, Aug 7, 2025 at 11:35=E2=80=AFAM Matti Vaittinen
-> > <mazziesaccount@gmail.com> wrote:
+Change in v3:
+- fix dt_binding_check error
+- remove Signed-off-by: 20220315152503 created <jay.liu@mediatek.com>
+- move fix ccorr issue patch out of this series.
 
-...
+This patch series id base on [1]
+[1] Add components to support PQ in display path for MT8196
+    - https://patchwork.kernel.org/project/linux-mediatek/list/?series=955361
 
-> >> +       BUILD_BUG_ON(ARRAY_SIZE(st->channel) !=3D ARRAY_SIZE(chip_info=
-->channel));
-> >
-> > We have static_assert(). Why can't it be used?
->
-> Don't know. Can you please enlighten me why one is preferred over the oth=
-er?
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Despite already made changes, I answer to this. The static_assert()
-has at least two benefits over BUILD_BUG_ON():
-- it can be declared in a global scope
-- it produces more condensed (to the point) error message
+Jay Liu (6):
+  dt-bindings: display: mediatek: gamma: Add support for MT8196
+  dt-bindings: display: mediatek: dither: Add support for MT8196
+  dt-bindings: display: mediatek: ccorr: Add support for MT8196
+  dt-bindings: display: mediatek: disp-tdshp: Add support for MT8196
+  drm/mediatek: Support multiple CCORR component
+  drm/mediatek: Add TDSHP component support for MT8196
 
-That's why in general it's preferable over BUILD_BUG_ON().
+ .../display/mediatek/mediatek,ccorr.yaml      |  1 +
+ .../display/mediatek/mediatek,disp-tdshp.yaml | 52 +++++++++++++++++++
+ .../display/mediatek/mediatek,dither.yaml     |  1 +
+ .../display/mediatek/mediatek,gamma.yaml      |  1 +
+ drivers/gpu/drm/mediatek/mtk_crtc.c           |  5 +-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       | 52 ++++++++++++++++++-
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |  8 +--
+ drivers/gpu/drm/mediatek/mtk_disp_ccorr.c     |  6 ++-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +
+ 10 files changed, 122 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,disp-tdshp.yaml
 
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+2.46.0
+
 
