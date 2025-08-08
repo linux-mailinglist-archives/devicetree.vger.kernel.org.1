@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-202543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E05B1E035
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:43:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23870B1E03E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:46:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10D4B6228AE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 01:43:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46446227DF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 01:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A1976410;
-	Fri,  8 Aug 2025 01:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F442AD04;
+	Fri,  8 Aug 2025 01:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FHNEVcw7"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hUqof9Hb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D18125D6;
-	Fri,  8 Aug 2025 01:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6E123CB;
+	Fri,  8 Aug 2025 01:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754617414; cv=none; b=BMdUiG6ZPvZv8BlNB8tH0u49wo60HQnzi5yYKow7SchxzHi28SN+DRtKdx3FZYx0dZ0ABjjAeLD1isSzGZq4LDXaAtAEU4CJJLQ5iOfVfsqLR0rcQUreP4OHk4hedwG53e9fJfCZ1XLlwpeHLrpwv9WlNHtKR9LoB8BVXIgPncs=
+	t=1754617595; cv=none; b=p/jpvesClW6Kn/ie8/l7RtPsATR5TeVQ2Q+07cNda8gcarqcULDwY6+8a8h//+GwADhDxwGp0cgg80djQ1XQd7vAUI0wVBsZ4jpF9oUL4+xynG22wURJqD7Xn9v0q8mkYLh1h6WgG8rM3tkbP2VWy84fKWNthHwhEvkTcI1sgss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754617414; c=relaxed/simple;
-	bh=Ts1zobpCK/euzxoCBpLogZaK0KIVWRAOk6N20EwhcMI=;
+	s=arc-20240116; t=1754617595; c=relaxed/simple;
+	bh=yVp+q0OXEFKzrgZ3sx/tEBHw0oQFJlRYZK/S98YsvoQ=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Yx4GFF+9IkYIov6MRbO+SwcLDTsGoPaJ6nozuID5MAdMC1ubDSuLSGDGi5RQ7dMUfRuWPjfrqE9bcF10IO3iEpY7cGUQ25ZA0TBw/C5QtLih5msE1uuCtzLiRGoALhThapMxQBy4ND9Ftswynbg+LiP3A8FEBtUnc+MedA9ZwrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FHNEVcw7; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=Yo+GkeD1IjphzEQQUYcUZiEcEDkZ0jIX0NWx7hTqUIHptWfdGsM1jVnRp4l/rPHY8o0jhj7IGuGj7+4LJX1T4aQhnTeJ9H2vi4Tv+RR2auY2r9r4BTcWFfI2ILXMZdcyt/ozfPULabO5Mie9EaMqJTufln+OrPdVAL6l269Ft/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hUqof9Hb; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1754617407;
-	bh=Ts1zobpCK/euzxoCBpLogZaK0KIVWRAOk6N20EwhcMI=;
+	d=codeconstruct.com.au; s=2022a; t=1754617591;
+	bh=yVp+q0OXEFKzrgZ3sx/tEBHw0oQFJlRYZK/S98YsvoQ=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=FHNEVcw7jWORt5mo5EgNeEBRd3dIcoL/5kB5U83zUl1HwD6KeiVLYcBokMPbHCaRg
-	 6ou1vmExWaWE4rBAJGHNlNxdP3/FMMFy90TxLwoalnTh6qt5N5xhvfW772Dm9NGC9d
-	 LUBTPFp8nDLlQHHPmoJM6lu+4PIc3rxgXNdLYBdqWwaUEtNqZ5Qo3eVBeffXksgC3F
-	 0Z2/E8U0GKsbHniDdgYZF/c7JarjK8Tjz6YjeeEOiJ8RpiJRu2c+un7bYjU2vKKh+j
-	 pEgcpXsLnrXnhuezZEdoX5wCWvLrAPO1L03W15Rq/jxkmRhcasVvZp19MKTZiLKvHc
-	 +iHss2W0MA6DA==
+	b=hUqof9HbnGjzHizOMdz7dyj5F//rbpBuUZZzrwVb8zd823QbWdNCY2r0GbjAXV8Q0
+	 ByI3u6/6ZvmCtcUTIltp0jeanALrnF5bYC3PHSYtQ8LNm/cRGRD/v0lwe9Plo18U3/
+	 PTsElkZRTkzZWwEU6aewBeD4jJqO990eQUKZCkxYv7CepGBFq6KaN6svE2woaEae9g
+	 1e6bqZHGQeRgaOSczGvPzVhow3jfDV+flGn0hHo97KicVebuOKBaIUF3ajZ9DlH3qm
+	 YQmX4vdiKDzINFtflGxbHekmmAIv/+3mkKDVJS/W+a3np5EIjXa/k1WPzgYytYlCzK
+	 PU+viEaUta1bQ==
 Received: from [192.168.68.112] (unknown [180.150.112.70])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8234A6AF39;
-	Fri,  8 Aug 2025 09:43:22 +0800 (AWST)
-Message-ID: <f1aaeb371eb0c753e6ace45e5e1ce5ccd73a0f76.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v10 0/3] ARM: dts: Add support for Meta Clemente BMC
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8A4786AF39;
+	Fri,  8 Aug 2025 09:46:30 +0800 (AWST)
+Message-ID: <54e07d5e67b2d15810d79bc196e92c8bacabf789.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] dt-bindings: mfd: aspeed-lpc: Add missing "clocks"
+ property on lpc-snoop node
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Leo Wang <leo.jt.wang@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Kees Cook
- <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,  "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
-	bruce.jy.hung@fii-foxconn.com, Conor Dooley <conor.dooley@microchip.com>
-Date: Fri, 08 Aug 2025 11:13:21 +0930
-In-Reply-To: <20250801-add-support-for-meta-clemente-bmc-v10-0-c1c27082583d@fii-foxconn.com>
-References: 
-	<20250801-add-support-for-meta-clemente-bmc-v10-0-c1c27082583d@fii-foxconn.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>, Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Cc: Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 08 Aug 2025 11:16:30 +0930
+In-Reply-To: <20250807132909.3291770-1-robh@kernel.org>
+References: <20250807132909.3291770-1-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -72,25 +68,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Leo,
-
-On Fri, 2025-08-01 at 16:22 +0800, Leo Wang wrote:
-> This series adds initial support for the Meta Clemente BMC based on
-> the
-> ASPEED AST2600 SoC.
+On Thu, 2025-08-07 at 08:29 -0500, Rob Herring (Arm) wrote:
+> The ASpeed lpc-snoop nodes have a "clocks" property which isn't
+> documented. It looks like all the LPC child devices have the same clock
+> source. Perhaps it is the parent device that should have the clock, but
+> it's too late for that. The driver for lpc-snoop requires a clock to be
+> present.
 >=20
-> Patch 1 documents the compatible string.
-> Patch 2 adds the device tree for the board.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-There are now three patches :)
+Thanks Rob.
 
-However, the main concern is that these do not apply without fuzz.
-
-Can you please rebase them on the following branch and re-send?
-
-https://git.kernel.org/pub/scm/linux/kernel/git/bmc/linux.git aspeed/dt
-
-Thanks,
-
-Andrew
+Acked-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
