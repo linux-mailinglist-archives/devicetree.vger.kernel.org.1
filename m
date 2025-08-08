@@ -1,142 +1,174 @@
-Return-Path: <devicetree+bounces-202701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C030B1E66A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:26:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1A73B1E681
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:32:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A18C1AA54ED
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:27:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7703858745C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8DD273D8F;
-	Fri,  8 Aug 2025 10:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3858D2749ED;
+	Fri,  8 Aug 2025 10:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d7xbH05o"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="gcBjHvan"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02535156228;
-	Fri,  8 Aug 2025 10:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEFB2749FA
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 10:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754648800; cv=none; b=fHIyJVx3fiQ0CDHTQgbasEBrCAeWwG1IoCEIlUYCT/xoNjoNeGUyFFZxmM/lVHx1O9QlMkTdTOLTHJzNFZG8sx3bJ7uFlueSmZmB4ziXyfUjDTIv3MOY6wDmAYpUO69zPL3ZXVL61/hmfX8D0lkkuOUgdOJD1WU8ub9CLay2S8A=
+	t=1754649129; cv=none; b=CuVl0ybEdau3yGDdMmVatBxFQMuerY0lp4ZrcoeTCvHHp09TESzVJCE0sEYHu6jWiJ+/udi1gC9W7UrGY2L0zCAApY4ZGF1Hb1GediEfrOXrBxcvDWZM9GX0mwccJ2R2xiB4eJXiD2adnOfH0b8O9U7YGtOI3l/p5nsNeOMI2+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754648800; c=relaxed/simple;
-	bh=QXHrkJi5ywvG5YxsIghiv+6+SPOoA7TsBbjvjmzW/6Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZTczVYRhcuhgwcOP3RUQzdFun8GNTB9p+UFxRuOHZ9MiPZ7YKKzVHwbMHT7b2vXAZrid/mGJWXvSOFGhOoBn+Eks6NU3DAozxJuVVJmsi2ODHQttvUm3qO+LxzNxbRSVRu3URmytwHH4+fLqIA44hLkxt9yHy18S5Ud5crSEJn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d7xbH05o; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5787JtMW003594;
-	Fri, 8 Aug 2025 10:26:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	H+JyhFaFgFvJhra706eymzNSGfyeTujWQwu0k1qJ76I=; b=d7xbH05ojjHZfghT
-	harxIH7WoX1h6lOrwuAnCwPzA5m/M5FRJeaWpQ9vgf1b769/cQmXSPIZcP6OBA+r
-	aUz3tTEUjsX4FkAu3+gGqvgFJhJVG0w1jyO46uf52hmkJFelMiUM1aN170cJZl5P
-	6irBan+0+jXCrd1erWZowLuIlZbFXRb8ZvdJbpLURt/tepuOKwQlPmIRED2LS21O
-	XuW+AAd29F6ySjmtR8BRKgj2/bHYNafWk0pqjdOmSRFLygaqO/GL0Vh54B3JHEMC
-	BBkVriWEsB+pINdW2VaPIx83gbe0bt6R9mT1m3NThtL8bnqFnKS2atr6U+Aki4+2
-	mvdoQQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpyahr4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 08 Aug 2025 10:26:36 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 578AQZFk025642
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 8 Aug 2025 10:26:35 GMT
-Received: from [10.50.49.153] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 8 Aug
- 2025 03:26:31 -0700
-Message-ID: <1c37f590-4f79-4128-b036-13510b9825c2@quicinc.com>
-Date: Fri, 8 Aug 2025 15:56:28 +0530
+	s=arc-20240116; t=1754649129; c=relaxed/simple;
+	bh=iY75W6j7pIHjhmtkbP1Hku/h+iHCAu+MbBXJB1XzJpo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AWEVAPJIFJPhWLXc9aTWRvilqZMo6HtQAlFkzpvQlJFvxKogbCCbXii9o/OPvu2aVuD2ZNNcuG9/y3seVGDwmhKKl910TQRZwPTiazNTNZcbY/KbHcX/nvqY7itb61VofxLfkqNe7w+6iCO//10w2lmDbmjfihdWUkR96TMiOqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=gcBjHvan; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-617ed9293d7so625553a12.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 03:32:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1754649125; x=1755253925; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c6TSWrBncc/Rhuijv2C5MP7HYYUBAQpR0KYcqpwTlxE=;
+        b=gcBjHvan0TL0WQ71RJK73V8Q8fgsp0HctchC6H7lZ5bd7VdlYn81ma8yJLJC5n4yAs
+         CSzfjbU3TQcUn+CCBm4sIkpo0XD1GknuAPd1TwRRyxVNmR0eMGNmBWirm6c/Q7p2WCOp
+         0wXfhK+E0YGdgZCJTeheCbWA59rHrhlZrPSS6btvSNejE/UTY1r7TE0Adp9qsWC6b9Df
+         kObNXWVfC+/iqUSohzbmM4FfyAevE/umFiEMsR0f7gRodjJwARW4ODhw8uzVZva9Ve4D
+         CERAk1oUPR+H427r0hj3BYBM4s+Wwr9UolDPJOL5o8aHNpG5J4dmgIx0ElggQemlzyHy
+         FaWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754649125; x=1755253925;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c6TSWrBncc/Rhuijv2C5MP7HYYUBAQpR0KYcqpwTlxE=;
+        b=E5p8KD6tkPjEBp42pWmV/75zp5zsiO4rkJoYoP/T0PiOPoApMPcajF/U5qRQE2yfTb
+         R0+CGxybRR+XK1N2LTCanupXCi2i9l/mDYzCZ9PEIaDtcb09fulWnr5WPQlIz1FDqSML
+         RDE5hNjI38pdv/J9xPywGITmAqKneSXp3oiWAox+BQkrs8n15YV1mpH70TyyrIxFukiD
+         BOCVRIm8RoNOr6KTOeKE/MI/aYFoiRwFsTzqLC54qVM4HV7TSfIdqSXAbwZL1O8+rlyo
+         kw9TjOcr1np9mbdw+cZiXb0aBGgwWFolU3H/tG2D+NVFlyvQkvsS4GiUoVLq2GnKC/FK
+         IgPg==
+X-Forwarded-Encrypted: i=1; AJvYcCXWVOUOHhMJ5C7TIsTGxNzO4OwcGE+oKzCDan1+i8hg5JKuYbdaqAL2dv3NEgdbMnsdez7yyhIi562K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDz6aKkgI67q8LvFYhLNNEaWHGmB22yU5OS4RJDVaZV1gxx6aQ
+	8hwp4FkoIb9VnCWB0p7WxETnutVoOHkPqi/7qUlS9zk3MiOfPXMltbVnCjBCTuiEWcE=
+X-Gm-Gg: ASbGncuFT4sEh5/yeJmoaugOe0xrzHKRBPdfm+gS9LJsx3zLN+ln7uRkijRJw14nsh0
+	OW7Evv9FceL0SZ2+hAiwQutmZ8Vted8QdnJQqKfP33ZS1GFKK2/CgDqBPIFowxcjMoKlIiSOd66
+	JKQxauY7yIolPun0dVf0u37ASTDJZPVPeUoLq94Qg3yvNg5eByp9eUIantSwOJSLuY7I0j7ddSU
+	Rb5MFvyu9dMOoBiLNQoGh0TlvwHS3Nd92F3jNBe2CQk5f2kLFEznQ2EMN2zZegZwpQq4cfOkMFP
+	JJ+aTrdtkbO0NX86R4SJO+IoWIrj1EGc+CIzz8xrmnOxgbwAFrMnB2d3bAlZNlli7ONRe7ge5WX
+	0NmBRJcb/0nSbFLf2EEtfh9HKURlH99I=
+X-Google-Smtp-Source: AGHT+IFiaq/Bs2HBuHCkLqYo5m9SoJu+9pxruSdi2P+MSc/rxt4OTN3JPa39G9gTH7FXPIDev3nAkA==
+X-Received: by 2002:a05:6402:5216:b0:612:a86b:ac79 with SMTP id 4fb4d7f45d1cf-617e2b77876mr1905662a12.2.1754649125126;
+        Fri, 08 Aug 2025 03:32:05 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.188])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8eff596sm13341214a12.5.2025.08.08.03.32.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Aug 2025 03:32:04 -0700 (PDT)
+Message-ID: <cbdfa6fd-e65b-45d7-a21f-3bfdd46af332@tuxon.dev>
+Date: Fri, 8 Aug 2025 13:32:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v9 8/8] arm64: dts: qcom: qrb2210-rb1: Enable Venus
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/8] soc: renesas: rz-sysc: Add syscon/regmap support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com,
+ yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ John Madieu <john.madieu.xa@bp.renesas.com>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250808061806.2729274-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250808061806.2729274-2-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-        <quic_vgarodia@quicinc.com>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>,
-        <dmitry.baryshkov@oss.qualcomm.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250808085300.1403570-1-jorge.ramirez@oss.qualcomm.com>
- <20250808085300.1403570-9-jorge.ramirez@oss.qualcomm.com>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <20250808085300.1403570-9-jorge.ramirez@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAMuHMdUsFFd+orb17oQqoEidzYWMRjPoqMyzpgrdnicc=MRSYQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yOGuCasu4J4fn_nZDufSr58mAihq7Gv7
-X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=6895d0dc cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=vDL6eqkURbsm9iho78EA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXzNmDnORAUrYB
- SjDt+5xqx/vuNYmTjCqydkpQ/xoboQQ99f0qW0wd7gTAZhj9UmDOlI1ZC+O2FoIR9gET7NWE7T0
- +GBWdRzpteprj2NKb/9atfBi1+fIYVdHRAP1DiXQcfhORagsRA0vlpNOq2vzC9jfouxNVf2+1WP
- /Lr5iJLmQysT5HJEeQBpjDEFzUy668Nug6wFQvXEbMtE+9rx/YImBUHM5f0NuUDmnbsbpMhNGCJ
- r8mU2zTgHtxQIK6x05YtrvqlS7uNxwgByqgXU5By8MyN0sgXUxDi+a9i+jsM49KGQOxhOhs1aSN
- gJ5fNNHxcN8RLMHsCtEys43ziswDyP8SPPVz2b8NfegV1XbHs0gC4zluF4j12jKLfbWH3nKOH+L
- GgbP8rab
-X-Proofpoint-GUID: yOGuCasu4J4fn_nZDufSr58mAihq7Gv7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-08_03,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
- spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508060009
 
+Hi, Geert,
 
-
-On 8/8/2025 2:23 PM, Jorge Ramirez-Ortiz wrote:
-> Enable Venus on the QRB2210 RB1 development board.
+On 08.08.2025 12:29, Geert Uytterhoeven wrote:
+> Hi Claudiu,
 > 
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 4 ++++
->  1 file changed, 4 insertions(+)
+> On Fri, 8 Aug 2025 at 08:18, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: John Madieu <john.madieu.xa@bp.renesas.com>
+>>
+>> The RZ/G3E system controller has various registers that control or report
+>> some properties specific to individual IPs. The regmap is registered as a
+>> syscon device to allow these IP drivers to access the registers through the
+>> regmap API.
+>>
+>> As other RZ SoCs might have custom read/write callbacks or max-offsets,
+>> register a custom regmap configuration.
+>>
+>> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+>> [claudiu.beznea:
+>>  - do not check the match->data validity in rz_sysc_probe() as it is
+>>    always valid
+>>  - dinamically allocate regmap_cfg]
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v4:
+>> - adjusted the patch description by dropping "add" from
+>>   "add register a custom regmap configuration"
+>> - updated the list of changes from Claudiu Beznea
+>> - dynamically allocate the regmap_config as proposed at [2]
+>> - this patch is needed for proper function of USB (as proposed in this
+>>   series) that being the reason it is introduced here, as well
+>>
+>> [2] https://lore.kernel.org/all/CAMuHMdVyf3Xtpw=LWHrnD2CVQX4xYm=FBHvY_dx9OesHDz5zNg@mail.gmail.com/
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> index b2e0fc5501c1..e92d0d6ad1b8 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-> @@ -698,6 +698,10 @@ &usb_qmpphy_out {
->  	remote-endpoint = <&pm4125_ss_in>;
->  };
->  
-> +&venus {
-> +	status = "okay";
-> +};
-> +
->  &wifi {
->  	vdd-0.8-cx-mx-supply = <&pm4125_l7>;
->  	vdd-1.8-xo-supply = <&pm4125_l13>;
+> Thanks for the update!
+> 
+>> --- a/drivers/soc/renesas/rz-sysc.c
+>> +++ b/drivers/soc/renesas/rz-sysc.c
+> =
+>> @@ -117,7 +125,26 @@ static int rz_sysc_probe(struct platform_device *pdev)
+>>                 return PTR_ERR(sysc->base);
+>>
+>>         sysc->dev = dev;
+>> -       return rz_sysc_soc_init(sysc, match);
+>> +       ret = rz_sysc_soc_init(sysc, match);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       regmap_cfg = devm_kzalloc(dev, sizeof(*regmap_cfg), GFP_KERNEL);
+>> +       if (!regmap_cfg)
+>> +               return -ENOMEM;
+> 
+> Is there any specific reason you decided to allocate regmap_cfg
+> separately, instead of embedding it into struct rz_sysc?
 
-Reviewed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Sorry, I missed to mention.
 
-Thanks,
-Dikshita
+I chose to have it like this as the regmap_cfg is not used anywhere else
+(through rz_sysc) except in probe.
+
+Thank you for your review,
+Claudiu
+
+> 
+> The rest LGTM.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+
 
