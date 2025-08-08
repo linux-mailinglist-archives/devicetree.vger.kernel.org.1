@@ -1,95 +1,80 @@
-Return-Path: <devicetree+bounces-202777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD385B1EA98
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 16:48:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47AD9B1EB02
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 17:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2C58176EF5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:48:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD5A0AA3519
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B967927EFFB;
-	Fri,  8 Aug 2025 14:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9112B281341;
+	Fri,  8 Aug 2025 14:56:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="B1zFbNK7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PdJvEX6A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 381BF19007D
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 14:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06B828134F;
+	Fri,  8 Aug 2025 14:56:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754664491; cv=none; b=cFo1MOZe0TJ9eszoQabf4Ardf8rFpTyvl1PIPVQ4oyqf3NMUesF9mz8yWIsMrXPD4DSLmZGrvhI0Sz1XFJA0IjCN/ZiERC9FVWSiYvTsr2gerOW2StNNh8Gc1JyMjft3W3jDPOKfHoxuld6nAnHLqKX+97dftwzOAwsCk5t4b88=
+	t=1754664970; cv=none; b=duHKMqGHmUAX3TcDskNWuFyk7EutDLs6Gl60WjLe6oK7awrG9OVNI8gnZQW/8a6TZwYzOzl7LTMPVc3i1xUV4LPrLYBYlomRuTIg/Ib5S78vSBm1PZ5vDEhWLGOdUv9iYiX3zMYLB44z/YDalscY0T+/mm8NxU8jCwyJXz4FW98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754664491; c=relaxed/simple;
-	bh=nTRO0iZtKB5n0+iTP7q3ABoqUJLeXsGT2augMV+mXUU=;
+	s=arc-20240116; t=1754664970; c=relaxed/simple;
+	bh=9cmQQnt+5Vh9t9k0T6ZjOC/Hqj03S1Kl6bmJEzpiMNY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4jOpQkbHxekzuiC18NCkYiiHHr4tquDqOcBZHCwVbvD5SOJi0s9mmU1/Ag+T1+nzLbolazA9zOgSJAI5AKJ335W3douhs2yF9d2ITJw7uZOincNy08Uf5J1BkTHLtVfZbmlZv6ALid/BvdxjlMRaWY4Ivbv4SgA4n1Wu0OuFv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net; spf=none smtp.mailfrom=minyard.net; dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b=B1zFbNK7; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minyard.net
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-30c08969614so1322306fac.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 07:48:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1754664489; x=1755269289; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ewzjsdpoAykHhEBFgJ/UB1pQfM2cO3t1vQCCzVyKC6Q=;
-        b=B1zFbNK7E8JWTQk8T1qafzqsxsIlAmOB70RW8uPmVa4Ml9NE0ALG/mGtr2t1PfiwwL
-         0cDzZcqcKjJTHaxjqR6eUi5imOqvCz9BT2UG7e88Z/UelXwmhhzVmc0ZPLpBWsDlvQP5
-         ju8nWtZZf5IbjW+tDoqhi1lLk/2WbZmsn6Y8o+Ub45XYIn0mu8JiWcQK6mJ75pZ3KnA5
-         vh+b6F9UjjR82O4FrUhjS8zV+VX8zraOyCqBDrVsr4vxiG0pQ7ks1vLgTRnbbyvfL01j
-         8yG+9sPa+/zQ+WtRAx2mrrsJVxIYg1GwN5e/NFNvX7rvMeqo4vY8LIfED7xfzNyxDqGY
-         kyQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754664489; x=1755269289;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ewzjsdpoAykHhEBFgJ/UB1pQfM2cO3t1vQCCzVyKC6Q=;
-        b=w5hy82vwGQ0YprRGivn19VIPlh/ba/4Q427jocBxbgTcma7YmwoSeJEMi7ILQ7342v
-         jmY7JMVMZzVBOOczKx/3/m0DTG6HJ4i8QHjDymiXNSkh5jzJ3Xbpilz2Pgj2w/OC588h
-         K+ZwQTh28vtQUDVoXFhWcIDFB2EGv/3382wwcF7Cfbt+SNUJwVfaVIkbfgJ+AZLodbY8
-         9MqAKlmf9Lwq7IQJphyQ4+Dy6Qaqod6KNpZSJ2Ugrr+EvuYn0VSLWJNlXDOGfV+EYD4a
-         iYz6zq729cwoWFUdAnqRRh2Sj5QduKcWGqp15dQyGFQC8szeUsl8/AODz7KCC0BvfSPF
-         5TmA==
-X-Forwarded-Encrypted: i=1; AJvYcCXme0e3H0ECVqDSr+DhfmPxFowRnX4B4ImvJxWIowvBfvHaa2KtvHiEnuOkpq+0bvKdKA2FD40CrBiF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIkKE2F27s3Xa20d7H74fb8fLvXvTJSrFKEzQNEoSeA+6/EUby
-	F7aHQKOhj7j1VaqCBRq7AM4GwIhNyRchBNDLrN6+emZX585qINmbMInQtjzXFLOMHPm7bIrh0Gv
-	rPD7R
-X-Gm-Gg: ASbGnct4HUmJJqj5N6KQoTQ2AStGt1I9rw2BMLyMiEF8F6MSf5dsyCMCme4q0PPT1ZP
-	G38V+jh2uyJ+pfX4MIN4YOJL9aPYQgluOqvprE9ePwp+7FvhwpJFkhx7szJwLsz6wZBbDeZxAq+
-	xyohiV8/4Qfz3M+/AB0kS09RqVKBzjSCe4Uy7JuQ77mFpMzSiALNvHVHK/oKvpTYl5h0uhZf/Bt
-	a+M8cE7v1mJr1GcRFcBE/nXy1Kslj6NtKjWhZcpiYyxZ+aoYpNtX5uZGCPQ8FWl8bww17KbvHqL
-	g8qzsUCsnTl8axA6xk4RIE3533d8qN2zjvkLrEQSulvSHa/e0KVeirkESNVinAxcrECfrFLp0ty
-	p0Mr6G0a6Yut59qhBeFEXrg3sO5VVk0acnkBS
-X-Google-Smtp-Source: AGHT+IG4hCE+IdcT7gDI6Y/FY4GnDriutfuUfIR5SNfXBdFrj25/eWOpBz8eI1y/JTwOMLKAIgdhrw==
-X-Received: by 2002:a05:6870:e311:b0:2ff:8ee5:d1f7 with SMTP id 586e51a60fabf-30c21080f92mr1906932fac.1.1754664489207;
-        Fri, 08 Aug 2025 07:48:09 -0700 (PDT)
-Received: from mail.minyard.net ([2001:470:b8f6:1b:e698:accb:897b:ca29])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-30c3a9d052asm123722fac.14.2025.08.08.07.48.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Aug 2025 07:48:08 -0700 (PDT)
-Date: Fri, 8 Aug 2025 09:48:03 -0500
-From: Corey Minyard <corey@minyard.net>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@aj.id.au>,
-	openipmi-developer@lists.sourceforge.net,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: ipmi: aspeed,ast2400-kcs-bmc: Add missing
- "clocks" property
-Message-ID: <aJYOI8BzUSeMiuJm@mail.minyard.net>
-Reply-To: corey@minyard.net
-References: <20250807132852.3291305-1-robh@kernel.org>
- <a14b98078554e27453fc1f96a667b299a15fd4c2.camel@codeconstruct.com.au>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uOBzPSr65rA7pvOXRKgqBn0VFAFqYtnAgP2CiiNazsiNS6q2p/9ccFbFpYFJ2C1UfBY+jBsXDq0BqtdXEAtACCEALlukmubGRtqTfudhpiKQXlCP+6aR6qj8rPBuxfYUbfv3LXQiIKeWlVVZgxIyqMC4F+hCS4vA8wJDNYLHeEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PdJvEX6A; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1754664969; x=1786200969;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9cmQQnt+5Vh9t9k0T6ZjOC/Hqj03S1Kl6bmJEzpiMNY=;
+  b=PdJvEX6AU1BcP2vlKtY/mBjbb+YhaVBwQ8ZC3zJsSHA8fr9xzcnxb7+V
+   AQ0bgqLeB/qZPx7Q+EcYtNGW6o4yQPGoxUFRUp+QaRXg6UrehT6nRttDO
+   AzYlkhaeP/HvFUHPSuBFDaup9BOalfjq9byGu8VdAZ3VWuQMnlz4qQGIa
+   J2mIF20AG7Ttb5aEQqqQdaLGWDRi23xiQ8hBC2vmrz+SvMyylLvpHrkzK
+   Jk+0JsPoQJi3vjs1d/6cDG2BiCeg9ixVTOLhQkxiiJZBLR8x4Yh7c5esk
+   DznsRSmsyW5I5zkz4dqhUIIPYbSWz+2NoVbQtCn1XlKAqbLORkUP/8js+
+   w==;
+X-CSE-ConnectionGUID: bm1N5uvVQaWr75REM5l8cg==
+X-CSE-MsgGUID: EghfGIO6Sd22M+fh4tlLXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11515"; a="68379123"
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
+   d="scan'208";a="68379123"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2025 07:56:08 -0700
+X-CSE-ConnectionGUID: X6Yod+yjSSeDE8W/x5Ojgg==
+X-CSE-MsgGUID: VWgRjysaSEilNZcCFOMK9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,274,1747724400"; 
+   d="scan'208";a="164583186"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 08 Aug 2025 07:56:06 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1ukOVn-000420-0B;
+	Fri, 08 Aug 2025 14:56:03 +0000
+Date: Fri, 8 Aug 2025 22:55:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Wolfram Sang <wsa-dev@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+Message-ID: <202508082259.wdaPWdYV-lkp@intel.com>
+References: <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,24 +83,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a14b98078554e27453fc1f96a667b299a15fd4c2.camel@codeconstruct.com.au>
+In-Reply-To: <20250807151434.5241-10-wsa+renesas@sang-engineering.com>
 
-On Fri, Aug 08, 2025 at 11:17:29AM +0930, Andrew Jeffery wrote:
-> On Thu, 2025-08-07 at 08:28 -0500, Rob Herring (Arm) wrote:
-> > The ASpeed kcs-bmc nodes have a "clocks" property which isn't
-> > documented. It looks like all the LPC child devices have the same clock
-> > source and some of the drivers manage their clock. Perhaps it is the
-> > parent device that should have the clock, but it's too late for that.
-> > 
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> 
-> Thanks Rob.
-> 
-> Acked-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+Hi Wolfram,
 
-Queued for 4.18, I'll add it to the next tree when 4.17-rc1 releases.
+kernel test robot noticed the following build errors:
 
-Thanks,
+[auto build test ERROR on geert-renesas-devel/next]
+[also build test ERROR on linus/master next-20250808]
+[cannot apply to v6.16]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
--corey
+url:    https://github.com/intel-lab-lkp/linux/commits/Wolfram-Sang/arm64-dts-renesas-r9a08g045-Add-I3C-node/20250807-231733
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
+patch link:    https://lore.kernel.org/r/20250807151434.5241-10-wsa%2Brenesas%40sang-engineering.com
+patch subject: [PATCH 4/4] arm64: dts: renesas: rzg3e-smarc-som: Enable I3C
+config: arm64-randconfig-001-20250808 (https://download.01.org/0day-ci/archive/20250808/202508082259.wdaPWdYV-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250808/202508082259.wdaPWdYV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508082259.wdaPWdYV-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi:127.1-5 Label or path i3c not found
+   FATAL ERROR: Syntax error parsing input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
