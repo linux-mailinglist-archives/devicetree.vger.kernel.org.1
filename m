@@ -1,191 +1,177 @@
-Return-Path: <devicetree+bounces-202755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED56B1E949
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:30:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B8AB1E979
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:47:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FEEC5A0FA2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:30:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D1D61C23201
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9C227F178;
-	Fri,  8 Aug 2025 13:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E812E62C;
+	Fri,  8 Aug 2025 13:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HEwdoA28"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OB73HsHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFD127A900;
-	Fri,  8 Aug 2025 13:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D70825634;
+	Fri,  8 Aug 2025 13:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754659835; cv=none; b=p0MCgOuV5LCZQlQxzyzWlFFD2YkRFGhqde3Lh2ye6HzxAjgZ0WmkarhOasIoKdkIoySN+56OutRvOTtHpLdnZ2gEIYDNuEp4uubB8LNQt6QiOP4terG4iTMZYBIjzD9g+Ram0BK7YGNaGSwhqGuRBWmQQXnRzi6V/STJe2ZRLRo=
+	t=1754660847; cv=none; b=lM0UBBjgduheKgWY5aXEGHwg8ebhxCPzqrIHZqHfs/LA0zelnr1aQvB/VlDst4qelf8p6Q7Fcv4md+roYN9USsWJugU5BqPyb9w1IdDhjQmzSZv+soMBV66YpMYsiWMIc8VJmCqN8O5J20FAhIbwniOClg1a2qvdslYAXhXB8pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754659835; c=relaxed/simple;
-	bh=bX9dluzRqM5mdjRk9gTs35EbAisH5kH7pOZ7dqDvug8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JnAdYZh+L4bXWQsFePVkYx2ovP6IWaSsZSNTiAXyXO/BNGFRw3M+ClxPQdMUyLiP3EIcT9aRQ8MIEtGMDaeM8BqEM+dKsxV+Z4wRxCa98XMzO9uzFSnG9s+wTJwh49yG0Ana/EDhMlEp2nEAP7Met+nG5C8ynFopi4PYyUPUy8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HEwdoA28; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3b8d0f1fb49so1277866f8f.2;
-        Fri, 08 Aug 2025 06:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754659831; x=1755264631; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a86Ufa8djkdGQgtM21PVIsOEG6bWVbg21mzTs1e7RXs=;
-        b=HEwdoA28k33TcJJz+dx/6p3nBvscY7LSgLBTOs/U9M1/Q79fpFlBrdBIy7gVQ7S2E6
-         m2nOF7jLPCP49+9V56Z/JqXUUi2kXCxmRx0xCHfpF8bGirDLYJz0NkshY7aH/DA3qra2
-         GG1Oi4PiQoSQQmbC84YchS7fbNRNadSx+QrGrloJL5t1yIrX+0NchOfr/sixjF433Z3e
-         vFJBIXU6gk4GN25ICLk2xNGmyQE1zJ5xXEYGywpOoQ6IKImdSv0PSP8YRNIfZW6I4eDA
-         QmexYNMzGqBFqXz8LNCk3gfPPlTBJAoTv8VAQHkNXqYrcG9VZ9u8qHxAm82PBN/vMClA
-         LUWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754659831; x=1755264631;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a86Ufa8djkdGQgtM21PVIsOEG6bWVbg21mzTs1e7RXs=;
-        b=Q9pQYF2Sw1lQC2p+rqxiZYPxVsw6bXLlJVdpRsvN0d9KR8SiQH4b1W+bSHfDO5cvT8
-         ETKNIKIqT2V/7LX771RTR+opeN0+uajp8Kk5AIZBx4FVIog76YDKWGviSaA8KA3QqPVN
-         LECVl7hzw3ONfJ+28fbjUH2PjrILis0/u1qATVPtJ00nuWRK1YYvH159TXh7F184EXu/
-         BEc80f93DnTufz8QsUP2BMTHm/zmb7a8or7OCgbKLAx7HjAdtki+ypEEhp4BJHfHnxoB
-         uBTVD5NZ8DeK3MjJ47zOoUxqbwXxvac9CORY6NyVsIuUpq4sUEFe9btwbyu/y73l8Y3H
-         Cdaw==
-X-Forwarded-Encrypted: i=1; AJvYcCV1Ub/IfvV7gEjl7TzT9PWBIY+7rwkrzThJFOTUacAyYmld+nbV6nklt+FJIiMAnaeEQCwMtpgQwO5btA==@vger.kernel.org, AJvYcCWJAg65IXnU0Lo0ORuvGQ2Ig4L8crTi2IDi6O0OhXCdxNeUu1eA5+EjTSpLlwlyD/c8/U3GptFC44pRp7N7@vger.kernel.org, AJvYcCXCxyrzUotNT0WGxIiui5G68R8PSwbCX7f6yd2aPt++kiue0gFkb3VkMt6NtK5BJmkPLRLjkvLgj/1q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJG4ZIhKm3n317awn64CKx3OlL4jFLzX5kXxygo9qNnugCtvoW
-	u2gJQaNTWGCvIKLamJsmwfb4OIm0ZJ9S+vjQ89vprDGzVsKrAOYiCWxr
-X-Gm-Gg: ASbGncs19htWGvNhU93+NwZAKpjdLJ+qnZj6jf5oVBkJijxh7QnI8qRybnj9d728gHt
-	lvm/Rcq8NVlRAOPe39z52pkmmIhooj5DuaH+wLHrmh/0LsBIvSvc5eCPzZX8LadyxEZq2Cm24YM
-	2APUw+Jct0UMZbE5pnNBmuIffTMMQ1dQ9/voN4QylR5Or2ShApkpW93pwV/qhZDAg0XRAvBXIjL
-	ERqSIefxcGTiBfdREZzqfy2tnkBb9JEKUT44ll52sWMCFYjxFDqTVaBMgETZ2N6M9ah+Nu5bIXy
-	HoZkyXVo9mdzEkKXua75llOd5VrBxJyyqPcmHFkIZ71IVeuhZiJo5NzXJ63G/J5vqutPPyGhd8Q
-	Og5Zj7ASGk6zhM8voV9ZD8kJU3Fthi8+WBJ46wAcKiSqn87Jg39/UhiBGGwRafh5C/iwyRIjgJ3
-	NS/Bv8ho0=
-X-Google-Smtp-Source: AGHT+IEVaoaAXQsBUbC4BN2Dt5wVXjiSSZNAY5YJeQV1g3cRQHQ53oLEuhshJZkTAmEgAjdOWP47Ig==
-X-Received: by 2002:a05:6000:25c4:b0:3b7:76ac:8b72 with SMTP id ffacd0b85a97d-3b9009294e5mr2415131f8f.12.1754659830492;
-        Fri, 08 Aug 2025 06:30:30 -0700 (PDT)
-Received: from iku.example.org (97e54365.skybroadband.com. [151.229.67.101])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c4a2187sm31527769f8f.70.2025.08.08.06.30.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Aug 2025 06:30:29 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v5 3/3] pinctrl: renesas: rzt2h: Add support for RZ/N2H SoC
-Date: Fri,  8 Aug 2025 14:30:17 +0100
-Message-ID: <20250808133017.2053637-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250808133017.2053637-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250808133017.2053637-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1754660847; c=relaxed/simple;
+	bh=qV78hq9Pk6FzTiJPiSy8qLL8t6D8jRO15HvkwrTr+0Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CNlqlOwYbodLmfZ0Sls4Dg0afB2n0puqHPgmyaQ7v0dLx/EGcAMR/3sOuucSGT0JbgfPAurAjiGshlviWuzbt5YYbX/DhK0/NXr9KvhO4UE7yrkiS+lnJGebsGswfTpmy2M58I5iyWf22WR43IcrM5lITclCCroXCYV6uuK9wKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OB73HsHa; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 578DkmqU992990;
+	Fri, 8 Aug 2025 08:46:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754660808;
+	bh=wTg4kG3CjTwaBrWnll3HIQP/TPmGxsMNV/xOfqXmXO4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OB73HsHaP6lFvlDJMOV878MmQImc69xq7hPwAt38IUYsPc0sY5JAZ2pS7fIOzJli0
+	 68Z9aSSAvpIsxPBswgyVeotyVfr6xAgG2hvSg6HDHjgmyPoqvkGawc1/fkzQI7OLvl
+	 D/JsSjsN2Q+hBN4evRtAB8ofmriX8qTOMcW5tFY8=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 578DklxT1623098
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 8 Aug 2025 08:46:47 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 8
+ Aug 2025 08:46:46 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 8 Aug 2025 08:46:46 -0500
+Received: from [10.249.145.16] ([10.249.145.16])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 578DkXb43128040;
+	Fri, 8 Aug 2025 08:46:35 -0500
+Message-ID: <71ef3203-e11d-4244-8d2d-8e47e8ba6140@ti.com>
+Date: Fri, 8 Aug 2025 19:16:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/tidss: Fix sampling edge configuration
+To: Louis Chauvet <louis.chauvet@bootlin.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, "Sam
+ Ravnborg" <sam@ravnborg.org>,
+        Benoit Parrot <bparrot@ti.com>, Lee Jones
+	<lee@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <thomas.petazzoni@bootlin.com>, Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen
+	<tomi.valkeinen@ti.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <stable@vger.kernel.org>, <s-jain1@ti.com>
+References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
+ <20250730-fix-edge-handling-v1-4-1bdfb3fe7922@bootlin.com>
+Content-Language: en-US
+From: devarsh <devarsht@ti.com>
+In-Reply-To: <20250730-fix-edge-handling-v1-4-1bdfb3fe7922@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Louis,
 
-The RZ/N2H (R9A09G087) SoC from Renesas shares a similar pin controller
-architecture with the RZ/T2H (R9A09G077) SoC, differing primarily in the
-number of supported pins-576 on RZ/N2H versus 729 on RZ/T2H.
+Thanks for the patch.
 
-Add the necessary pin configuration data and compatible string to enable
-support for the RZ/N2H SoC in the RZ/T2H pinctrl driver.
+On 30/07/25 22:32, Louis Chauvet wrote:
+> As stated in the AM62x Technical Reference Manual (SPRUIV7B), the data
+> sampling edge needs to be configured in two distinct registers: one in the
+> TIDSS IP and another in the memory-mapped control register modules.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v4->v5:
-- Dropped updating Kconfig help string as that was done in patch 2/3
-- Used 0xXX for consistent formatting in r9a09g087_gpio_configs
-- Added reviewed-by tag from Geert
+I don't think AM62x is thee only one which requires this and on the
+contrary not all SoCs require this extra setting. We had been waiting on
+confirmations from hardware team and very recently they gave a list of
+SoCs which require this, as per that I think we need to limit this to
+AM62x and AM62A per current supported SoCs.
 
-v3->v4:
-- No changes.
+Swamil,
+Please confirm on this and share if any additional details required here.
 
-v2->v3:
-- No changes.
+Regards
+Devarsh
 
-v1->v2:
-- New patch.
----
- drivers/pinctrl/renesas/Kconfig         |  1 +
- drivers/pinctrl/renesas/pinctrl-rzt2h.c | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+)
-
-diff --git a/drivers/pinctrl/renesas/Kconfig b/drivers/pinctrl/renesas/Kconfig
-index c8b84c158e86..8cbd79a13414 100644
---- a/drivers/pinctrl/renesas/Kconfig
-+++ b/drivers/pinctrl/renesas/Kconfig
-@@ -45,6 +45,7 @@ config PINCTRL_RENESAS
- 	select PINCTRL_RZG2L if ARCH_R9A09G056
- 	select PINCTRL_RZG2L if ARCH_R9A09G057
- 	select PINCTRL_RZT2H if ARCH_R9A09G077
-+	select PINCTRL_RZT2H if ARCH_R9A09G087
- 	select PINCTRL_PFC_SH7203 if CPU_SUBTYPE_SH7203
- 	select PINCTRL_PFC_SH7264 if CPU_SUBTYPE_SH7264
- 	select PINCTRL_PFC_SH7269 if CPU_SUBTYPE_SH7269
-diff --git a/drivers/pinctrl/renesas/pinctrl-rzt2h.c b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-index 366071e9164c..a070fc447d96 100644
---- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-+++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-@@ -762,17 +762,33 @@ static const u8 r9a09g077_gpio_configs[] = {
- 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f,
- };
- 
-+static const u8 r9a09g087_gpio_configs[] = {
-+	0x1f, 0xff, 0xff, 0x1f, 0x00, 0xfe, 0xff, 0x00, 0x7e, 0xf0, 0xff, 0x01,
-+	0xff, 0xff, 0xff, 0x00, 0xe0, 0xff, 0xff, 0x00, 0xff, 0xff, 0xff, 0x01,
-+	0xe0, 0xff, 0xff, 0x7f, 0x00, 0xfe, 0xff, 0x7f, 0x00, 0xfc, 0x7f,
-+};
-+
- static struct rzt2h_pinctrl_data r9a09g077_data = {
- 	.n_port_pins = ARRAY_SIZE(r9a09g077_gpio_configs) * RZT2H_PINS_PER_PORT,
- 	.port_pin_configs = r9a09g077_gpio_configs,
- 	.n_ports = ARRAY_SIZE(r9a09g077_gpio_configs),
- };
- 
-+static struct rzt2h_pinctrl_data r9a09g087_data = {
-+	.n_port_pins = ARRAY_SIZE(r9a09g087_gpio_configs) * RZT2H_PINS_PER_PORT,
-+	.port_pin_configs = r9a09g087_gpio_configs,
-+	.n_ports = ARRAY_SIZE(r9a09g087_gpio_configs),
-+};
-+
- static const struct of_device_id rzt2h_pinctrl_of_table[] = {
- 	{
- 		.compatible = "renesas,r9a09g077-pinctrl",
- 		.data = &r9a09g077_data,
- 	},
-+	{
-+		.compatible = "renesas,r9a09g087-pinctrl",
-+		.data = &r9a09g087_data,
-+	},
- 	{ /* sentinel */ }
- };
- 
--- 
-2.50.1
+ Since
+> the latter is not within the same address range, a phandle to a syscon
+> device is used to access the regmap.
+> 
+> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
+> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+> 
+> ---
+> 
+> Cc: stable@vger.kernel.org
+> ---
+>  drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index c0277fa36425ee1f966dccecf2b69a2d01794899..65ca7629a2e75437023bf58f8a1bddc24db5e3da 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -498,6 +498,7 @@ struct dispc_device {
+>  	const struct dispc_features *feat;
+>  
+>  	struct clk *fclk;
+> +	struct regmap *clk_ctrl;
+>  
+>  	bool is_enabled;
+>  
+> @@ -1267,6 +1268,11 @@ void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport,
+>  		       FLD_VAL(mode->vdisplay - 1, 27, 16));
+>  
+>  	VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 1, 0, 0);
+> +
+> +	if (dispc->clk_ctrl) {
+> +		regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 0x000);
+> +		regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 0x000);
+> +	}
+>  }
+>  
+>  void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
+> @@ -3012,6 +3018,14 @@ int dispc_init(struct tidss_device *tidss)
+>  
+>  	dispc_init_errata(dispc);
+>  
+> +	dispc->clk_ctrl = syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
+> +								   "ti,clk-ctrl");
+> +	if (IS_ERR(dispc->clk_ctrl)) {
+> +		r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
+> +				  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
+> +		return r;
+> +	}
+> +
+>  	dispc->fourccs = devm_kcalloc(dev, ARRAY_SIZE(dispc_color_formats),
+>  				      sizeof(*dispc->fourccs), GFP_KERNEL);
+>  	if (!dispc->fourccs)
+> 
 
 
