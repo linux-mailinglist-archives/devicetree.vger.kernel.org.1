@@ -1,144 +1,96 @@
-Return-Path: <devicetree+bounces-202542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90546B1E023
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:21:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68E05B1E035
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 03:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BCE618863C9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 01:21:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10D4B6228AE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 01:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E309752F66;
-	Fri,  8 Aug 2025 01:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A1976410;
+	Fri,  8 Aug 2025 01:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="xUo8yl40"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FHNEVcw7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C071939FCE;
-	Fri,  8 Aug 2025 01:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D18125D6;
+	Fri,  8 Aug 2025 01:43:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754616091; cv=none; b=lU6tcZMVkQuaXEt1eUbrjGSI/+nEk1FlyY4DSd2ApWa0i/F/m4ZgefS380iMjNdn6mg3MjcZmZWzGQfFzymOTwEC37cIfPkbgcTtOsTyPI2++zFr2srnVPVE55VLgiZylcFeOkRYWOxYkv8mYd8hlQGg8crh9Dga7VnOwkuO6rs=
+	t=1754617414; cv=none; b=BMdUiG6ZPvZv8BlNB8tH0u49wo60HQnzi5yYKow7SchxzHi28SN+DRtKdx3FZYx0dZ0ABjjAeLD1isSzGZq4LDXaAtAEU4CJJLQ5iOfVfsqLR0rcQUreP4OHk4hedwG53e9fJfCZ1XLlwpeHLrpwv9WlNHtKR9LoB8BVXIgPncs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754616091; c=relaxed/simple;
-	bh=+DX8W+FwNNw/MDG6n2LqOQwHvg6cOglOY7bkGn1f49I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WNn9SUx2J1LwZuYcC8TXsQ3Jexo8t2vxtmpvrt+7Ovju6MO0nQpNgJ8Sa7Vqs1DJ64QsNgTLLe8kmJHZ+aeJFXxvfBVwzHWkhkJja8qR/p6pH+QRyOWDjC08j8pMdtd7vBIgWtFLjo0DjsqZJ+2aYZswv1qk2Hwx0E5GIFJ+DV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=xUo8yl40; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1754616067;
-	bh=YONhLCtVxAOKYtMTLs/xNzYwEhqj7k/VVs38rD2tJdw=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=xUo8yl40om/6vyjsJ/vdKWhKnFTTL68dj7Oazlh8QICVZD1NOzFifQ6iTFuWNy8nb
-	 E117VGekHAigoQJRaT1dOkEljJBJ/lVoEMxBbhDuchHBOEC8kQx6G0ZAoDnghzcBa/
-	 FGfegd+0k50JIxaRzAtn2JmuXkUgqJrWAXjGwffM=
-X-QQ-mid: zesmtpsz6t1754616061tbef0d426
-X-QQ-Originating-IP: zQHRZWbedkVaYFV1bT3lY2wArHNnLUL6AKgzsJCZB+0=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 08 Aug 2025 09:20:59 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11874263861845849413
-EX-QQ-RecipientCnt: 17
-Date: Fri, 8 Aug 2025 09:20:59 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>,
-	Inochi Amaoto <inochiama@outlook.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: spacemit: introduce i2s pre-clock
-Message-ID: <D09A72E63AAF75B3+aJVQ-75A7NL4CJtb@LT-Guozexi>
-References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
- <20250807-k1-clk-i2s-generation-v1-1-7dc25eb4e4d3@linux.spacemit.com>
- <20250807-untrained-anthology-bcf760fe73cb@spud>
+	s=arc-20240116; t=1754617414; c=relaxed/simple;
+	bh=Ts1zobpCK/euzxoCBpLogZaK0KIVWRAOk6N20EwhcMI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Yx4GFF+9IkYIov6MRbO+SwcLDTsGoPaJ6nozuID5MAdMC1ubDSuLSGDGi5RQ7dMUfRuWPjfrqE9bcF10IO3iEpY7cGUQ25ZA0TBw/C5QtLih5msE1uuCtzLiRGoALhThapMxQBy4ND9Ftswynbg+LiP3A8FEBtUnc+MedA9ZwrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FHNEVcw7; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1754617407;
+	bh=Ts1zobpCK/euzxoCBpLogZaK0KIVWRAOk6N20EwhcMI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=FHNEVcw7jWORt5mo5EgNeEBRd3dIcoL/5kB5U83zUl1HwD6KeiVLYcBokMPbHCaRg
+	 6ou1vmExWaWE4rBAJGHNlNxdP3/FMMFy90TxLwoalnTh6qt5N5xhvfW772Dm9NGC9d
+	 LUBTPFp8nDLlQHHPmoJM6lu+4PIc3rxgXNdLYBdqWwaUEtNqZ5Qo3eVBeffXksgC3F
+	 0Z2/E8U0GKsbHniDdgYZF/c7JarjK8Tjz6YjeeEOiJ8RpiJRu2c+un7bYjU2vKKh+j
+	 pEgcpXsLnrXnhuezZEdoX5wCWvLrAPO1L03W15Rq/jxkmRhcasVvZp19MKTZiLKvHc
+	 +iHss2W0MA6DA==
+Received: from [192.168.68.112] (unknown [180.150.112.70])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8234A6AF39;
+	Fri,  8 Aug 2025 09:43:22 +0800 (AWST)
+Message-ID: <f1aaeb371eb0c753e6ace45e5e1ce5ccd73a0f76.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v10 0/3] ARM: dts: Add support for Meta Clemente BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Leo Wang <leo.jt.wang@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Kees Cook
+ <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,  "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
+ Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
+	bruce.jy.hung@fii-foxconn.com, Conor Dooley <conor.dooley@microchip.com>
+Date: Fri, 08 Aug 2025 11:13:21 +0930
+In-Reply-To: <20250801-add-support-for-meta-clemente-bmc-v10-0-c1c27082583d@fii-foxconn.com>
+References: 
+	<20250801-add-support-for-meta-clemente-bmc-v10-0-c1c27082583d@fii-foxconn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250807-untrained-anthology-bcf760fe73cb@spud>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NhdiEwnVOUqExbdtneD2Nu7R21a/RIjfbpDCHKhuWw+YFgDMDdesIbFO
-	FYhNDcg+NENbRxTOrEdxgHHbIloslw7CpMBVbMhB2nwu4/albAHvopLankj7E/SKTL2KR8Y
-	7vWpf4b5klEq+2qBGF0dbZcwatcwru1XQ2GGOxUxNqGhC+S5wvfQd8yFK6vj+X8fy6sgeEB
-	p8DNMB0YM+12s9cBHANgFTvIefFSO+3UGDK4wsqAo+jYRYmzByy2SPeRTK+d0sj28bNEYk6
-	V8JRB3HZr13+hKYzy9K18aTYEPagOW4tY+rT5F45wAyaVe36T9kzIwPpHEMfKyfgVZRK6Pb
-	uA6ZFzjiIWhdCNJyNeJ8vUrPRQbfjY56Sug8CDfv0BYgmI1d1vKQL2EwDAPYdsefFB2jC/a
-	tmEy22MEEkh+dXNL9aA1G8f+icwe2LbkxJKikzQnDwJyY6iBf/Ansr2gSxJWVgMXY3f4reQ
-	3l7XwQEo0AHpSjpm+pZszBltS9Eqip8qIRKfEnCKW6WoR5MGTEunhf3wlWqJtGepV7LTZMd
-	oZRXwxjrQDrkH87JxR5edVr2iokLfxAh4fFcn3OrxZ8Qj/aIMdJdUFEhWTP3QAs/oGWHVHM
-	USdHbL2NsDtVPkdbK/u4RNRmwuDwG4frdQ/r58KSPQr9ETbqUPvcf1Oule65O7Hvx+de2ED
-	xcPIxQY+JcemPcF9l7W7VLB+XAoxzEx469nXjRBtoCKa8+KnZN60VwsVGdabxI1Otwiw9T8
-	zX0zdkGP+Z7YXnC/USdz6KnObRg/fZqA7xaYwkNCKXEjO8d+beF+I/A480du1B3V2r09MYK
-	fermrziemzJfHLXt0m4g6+sN3yhEy7qUoD/HcZ/iW0UCIc4XACU5MK14TIKjs/e5z0WwN+s
-	lVxOPxyNDQn7s3d5gB0PRo76r+0cOsRqyVVrS7jwHPUf6mq2rEYBdAu9T9zqoVRRKfVICQS
-	HAtm/4mJ0KPns9MutoA++ZUQcuBCLmQP1RzMfBYi8VwGCHizSg0c+qrF8NHJ7lIb0/E9yh1
-	bL6Z1YU1+qndZwBe4epRnBKmkdin4=
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
 
-On Thu, Aug 07, 2025 at 05:19:51PM +0100, Conor Dooley wrote:
-> On Thu, Aug 07, 2025 at 09:30:10AM +0800, Troy Mitchell wrote:
-> > Previously, the K1 clock driver did not include the parent clocks of
-> > the I2S sysclk.
-> > 
-> > This patch adds their definitions to allow proper registration
-> > in the driver and usage in the device tree.
-> > 
-> > Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-> 
-> I'm not sure that a fixes tag is suitable here, seems to be some new
-> feature/development. The driver change seems to talk about how modelling
-> as a fixed-clock is incorrect, but this change mentions none of that.
-> Without whatever context that provides, it's hard to see how this can be
-> justified as a fix rather than a new feature being added.
+Hi Leo,
 
-Introduce pre-clock to fix I2S clock; otherwise, the I2S clock may not work as expected.
+On Fri, 2025-08-01 at 16:22 +0800, Leo Wang wrote:
+> This series adds initial support for the Meta Clemente BMC based on
+> the
+> ASPEED AST2600 SoC.
+>=20
+> Patch 1 documents the compatible string.
+> Patch 2 adds the device tree for the board.
 
-I'll explain it in next version.
-> 
-> > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> > ---
-> >  include/dt-bindings/clock/spacemit,k1-syscon.h | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/include/dt-bindings/clock/spacemit,k1-syscon.h b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > index 2714c3fe66cd5b49e12c8b20689f5b01da36b774..524268246fedd3f1238320f35244baf32354fbd2 100644
-> > --- a/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > +++ b/include/dt-bindings/clock/spacemit,k1-syscon.h
-> > @@ -77,6 +77,9 @@
-> >  #define CLK_I2S_BCLK		30
-> >  #define CLK_APB			31
-> >  #define CLK_WDT_BUS		32
-> > +#define CLK_I2S_153P6		33
-> > +#define CLK_I2S_153P6_BASE	34
-> > +#define CLK_I2S_SYSCLK_SRC	35
-> >  
-> >  /* MPMU resets */
-> >  #define RESET_WDT		0
-> > 
-> > -- 
-> > 2.50.1
-> > 
-> > 
+There are now three patches :)
 
+However, the main concern is that these do not apply without fuzz.
 
+Can you please rebase them on the following branch and re-send?
+
+https://git.kernel.org/pub/scm/linux/kernel/git/bmc/linux.git aspeed/dt
+
+Thanks,
+
+Andrew
 
