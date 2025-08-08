@@ -1,128 +1,162 @@
-Return-Path: <devicetree+bounces-202683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 548ABB1E5E0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:46:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2CFB1E5B4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:39:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11093728714
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:45:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803993A6A74
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D5026FDA4;
-	Fri,  8 Aug 2025 09:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BA5234964;
+	Fri,  8 Aug 2025 09:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="JuWdI/22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qomvNQ/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2D325EF87;
-	Fri,  8 Aug 2025 09:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179BD2AE74;
+	Fri,  8 Aug 2025 09:39:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754646331; cv=none; b=HsCXsKfH7g0Ed8hjkYGmHHIApaQGZ/56bflU4KpxbsQSE2rZCofhSvyRCoR2tn3X+jjij+Y3H2WhNdzMFF2Jpz++jnFoULK0Ug6cD3ygjk8MoHQQ9oWJ77YOqOIU/X0PfA5w9NpjzHdC8ML4/3IIh6kpOj3vsOARlfd/ZL5GgmE=
+	t=1754645966; cv=none; b=nHXSWggWkFWzIvqZA4+FeAbeRzZIXFQHiKdItbEY4eTHMeHPdHJUwjMrlReCVxdMAbZD79ROr7WFuN0iNds99R0l/AcSyVfINiHbe/zgV0tIZLMW+hlNacoyQJvKBOU+P9SjyyqkNwpgR4pRbCI6A+RoprsCXtXSbBSdC29hoDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754646331; c=relaxed/simple;
-	bh=gJCswTbeSm0cfVQDYDQlFj9ENNDHXqLsDS5p8UVfsgY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TwEPulhNjeuuWvnvzZe+Owk4DRJHTejgHyzuVXevmLit0zwnQbDBQLoPkDC0rqytTkplxlpptiUa4V3AZkopQOzlbVKLL2nfa+znP0oBFGBQjgqNOxwT+R9b7sfF9T8BEjyhTPrKBDwZ7eym8TqhR/SWjFZnW6WWJReCuF8i/Gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=JuWdI/22; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A633123CB7;
-	Fri,  8 Aug 2025 11:45:28 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id aQEZZtQOrJMo; Fri,  8 Aug 2025 11:45:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1754646328; bh=gJCswTbeSm0cfVQDYDQlFj9ENNDHXqLsDS5p8UVfsgY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=JuWdI/22rnTfj2+JDLe2ZFyQkwJTP7HMjmbYqFkH//AlUH3gEJbC7WqnExmM4Essq
-	 UxFUpesshFjjPOcR5Mq6H1pkI3xd/GbzIrdN4sDqaZDMwuOq85mMIdKH+FE/Tptx9y
-	 8zW68LQa3IynfDKWmRaT0BHQ2QIvMocS22ZqActTwLrUY1AJmaLsAp4/HWUBWM/p8y
-	 xO27gMxq/Dj7JDyb4W+Sd5L4Ku1xsdvep3P87J0rKgxGqDBdOeueMhJaeil7Oje/I3
-	 X0IjEMhbCU/yX3cSoOf9DekyJnke9GH9qBhZkK7bn1E92EGrVt4PuTrIfKOU2dnA1y
-	 eGYyHIeZPGm0w==
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Jisheng Zhang <jszhang@kernel.org>
-Cc: linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH net v3 3/3] riscv: dts: thead: Add APB clocks for TH1520 GMACs
-Date: Fri,  8 Aug 2025 09:36:56 +0000
-Message-ID: <20250808093655.48074-5-ziyao@disroot.org>
-In-Reply-To: <20250808093655.48074-2-ziyao@disroot.org>
-References: <20250808093655.48074-2-ziyao@disroot.org>
+	s=arc-20240116; t=1754645966; c=relaxed/simple;
+	bh=2ZfGe5j/wyjBFLdMrPOZgs+eBxwkgsC8XOn4yjPUPlc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EdI98rh0GJA9+J30LGyQ/k9jKNfnJVCA22XgQkRfkvespHIYipEd94zVPKwxnBL+3DHo/N7e/bdbT3fSh5OGmitb7b0uZoT8u+kzfnLFbcimyqpbToqekoFtuvV5A49m7QysrlP2Zg1nYqHJqM3bmQ8qzoU6eE4KIW6VcJ/jrgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qomvNQ/N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF30C4CEED;
+	Fri,  8 Aug 2025 09:39:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754645965;
+	bh=2ZfGe5j/wyjBFLdMrPOZgs+eBxwkgsC8XOn4yjPUPlc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qomvNQ/NxywIDtXIjXPrrQ03yu9zW+90DeVin/d5GWQ4L+isCsmjrubnkqMOQbNWF
+	 J/6tokkj2r0/6P5PCy7kynjBGwhd8jCn7iszKchLdwyJfGP5MS3tiqDjlrKLCLiTr3
+	 YI2F5EbIBu6OMZwlamL/dGJClQvAda+Hw8cxWSB/JIVH8sw1wuLLY3TIMCDBfrMdQ2
+	 8IP1SUsDxEBuC+1qCunTZPk3PwGHjJH8mqNPN5ghjLEGCG4fNCWDkQLXwGRd2kCnZX
+	 XuCW+KcAjh9bJgwfo0jNYANdUokXDEvJFglQGLw9RAA3DJS7xUMnmAiyaCbFKrgNGI
+	 KJp6L2SH93mIQ==
+Message-ID: <292907f3-25d6-40d9-be6e-b6b83e646d73@kernel.org>
+Date: Fri, 8 Aug 2025 11:39:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 2/4] arm64: dts: qcom: sm8750: add max-microamp for UFS
+ PHY and PLL supplies
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, mani@kernel.org,
+ conor+dt@kernel.org, bvanassche@acm.org, andersson@kernel.org,
+ neil.armstrong@linaro.org, dmitry.baryshkov@oss.qualcomm.com,
+ konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
+ <20250806154340.20122-3-quic_nitirawa@quicinc.com>
+ <20250808-calm-boa-of-swiftness-a4a7ce@kuoka>
+ <9af71063-0629-4ccc-bc76-3fb588677bf4@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <9af71063-0629-4ccc-bc76-3fb588677bf4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Describe perisys-apb4-hclk as the APB clock for TH1520 SoC, which is
-essential for accessing GMAC glue registers.
+On 08/08/2025 10:58, Konrad Dybcio wrote:
+> On 8/8/25 9:29 AM, Krzysztof Kozlowski wrote:
+>> On Wed, Aug 06, 2025 at 09:13:38PM +0530, Nitin Rawat wrote:
+>>> Add `vdda-phy-max-microamp` and `vdda-pll-max-microamp` properties to
+>>> the UFS PHY node in the device tree.
+>>>
+>>> These properties define the maximum current (in microamps) expected
+>>> from the PHY and PLL regulators. This allows the PHY driver to
+>>> configure regulator load accurately and ensure proper regulator
+>>> mode based on load requirements.
+>>
+>> That's not the property of phy, but regulator.
+>>
+>> Also reasoning is here incomplete - you just post downstream code. :/
+> 
+> The reason for this change is good, but perhaps not explained clearly
+> 
+> All of these values refer to the maximum current draw that needs to be
+> allocated on a shared voltage supply for this peripheral (because the
 
-Fixes: 7e756671a664 ("riscv: dts: thead: Add TH1520 ethernet nodes")
-Signed-off-by: Yao Zi <ziyao@disroot.org>
-Reviewed-by: Drew Fustini <fustini@kernel.org>
-Tested-by: Drew Fustini <fustini@kernel.org>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 42724bf7e90e..03f1d7319049 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -297,8 +297,9 @@ gmac1: ethernet@ffe7060000 {
- 			reg-names = "dwmac", "apb";
- 			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
--			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC1>;
--			clock-names = "stmmaceth", "pclk";
-+			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC1>,
-+				 <&clk CLK_PERISYS_APB4_HCLK>;
-+			clock-names = "stmmaceth", "pclk", "apb";
- 			snps,pbl = <32>;
- 			snps,fixed-burst;
- 			snps,multicast-filter-bins = <64>;
-@@ -319,8 +320,9 @@ gmac0: ethernet@ffe7070000 {
- 			reg-names = "dwmac", "apb";
- 			interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
--			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC0>;
--			clock-names = "stmmaceth", "pclk";
-+			clocks = <&clk CLK_GMAC_AXI>, <&clk CLK_GMAC0>,
-+				 <&clk CLK_PERISYS_APB4_HCLK>;
-+			clock-names = "stmmaceth", "pclk", "apb";
- 			snps,pbl = <32>;
- 			snps,fixed-burst;
- 			snps,multicast-filter-bins = <64>;
--- 
-2.50.1
+It sounds very different than how much it can be drawn. How much can be
+drawn is the property of the regulator. The regulator knows how much
+current it can support.
 
+
+> supply's capabilities change depending on the maximum potential load
+> at any given time, which the regulator driver must be aware of)
+> 
+> This is a property of a regulator *consumer*, i.e. if we had a chain
+> of LEDs hanging off of this supply, we'd need to specify NUM_LEDS * 
+> MAX_CURR under the "led chain" device, to make sure that if the
+> aggregated current requirements go over a certain threshold (which is
+> unknown to Linux and hidden in RPMh fw), the regulator can be
+> reconfigured to allow for a higher current draw (likely at some
+> downgrade to efficiency)
+
+
+The problem is that rationale is downstream. Instead I want to see some
+reason: e.g. datasheets, spec, type of UFS device (that was the argument
+in the driver patch discussion).
+
+The only argument here for given value is: downstream has it.
+
+Best regards,
+Krzysztof
 
