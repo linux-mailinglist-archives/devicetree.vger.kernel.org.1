@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-202573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328D0B1E1F8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:11:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E6BB1E209
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:14:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50AE217B8E6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 06:11:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B57DB722A14
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 06:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2BE1221540;
-	Fri,  8 Aug 2025 06:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641222154B;
+	Fri,  8 Aug 2025 06:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WrMxAviO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KbT84UQJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869AF22126D;
-	Fri,  8 Aug 2025 06:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8893521FF53;
+	Fri,  8 Aug 2025 06:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754633491; cv=none; b=imzTuQamhA+mZvZtY8mE1JRCVzIYN/xXX+iOqCh+p0a/1+rpX8Uz7alx9C1UQhbRV+LxR55bAQemVjnjjO08hsKPKvFs0QL8Sq7ubZfijQ0QDsSIJJWTPWBNy96zX3TQpQqBshlCcviFNMa/+c0CxH9mrNXFALk+SrOGd6MOLHk=
+	t=1754633675; cv=none; b=hIY1dweeWxz2G8X/FuVjn6cynzdYvALt8w2+c3+QJclcDXyjqS/OtEYuxHIHfTxylLo/1ZZ+4voBDsBDy8h0Hz2RhwLgfbgbYRj2/f7vJtJR7sKZEDlo3JSUJtqZ32bCaE5v2Z+lVeRnd4pMjuzNEdXxg+3/a0WtR191sdBhf4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754633491; c=relaxed/simple;
-	bh=aqYxcnkh6l/YJOT84xB0o7oh1kG3jXmJGIEjT8yJZWQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=n6ZXKx+1BRcORvyo+Xg1agHyMrH4GwzVGKnW3XPxzNezgOn/BFLB16vfVwNZmOTFuXKHus7i2kTNN7MEQUn47nyv3QdP+q4eveMQPv6/Q3m0BUhp/km/707lZ5GAfcrP21DgRKlm4Ns3aWqG2FQY5p7NyqEff5VXmBOvEJnNuCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WrMxAviO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D194AC4CEED;
-	Fri,  8 Aug 2025 06:11:27 +0000 (UTC)
+	s=arc-20240116; t=1754633675; c=relaxed/simple;
+	bh=Y/W+sje0EboXCDX6Q4bMj+dHKJHYtmhocoOQxyyA9Pc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rvTdMsIdojOCyLEaTxGCiZsmeD9KiYRsDc+p1OXKzc8yMPIimyunfsdyJ0NcCDiJZ6ymRzO6ukygq2BsxBvKIq9kDG51nelUVT8KASiQiqtHqcYPdmQFQ8ksZW1aqK+xYxZEbT3YWmjq03D8HFmhldeowp+n6uTNapw3CApQdI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KbT84UQJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10357C4CEED;
+	Fri,  8 Aug 2025 06:14:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754633490;
-	bh=aqYxcnkh6l/YJOT84xB0o7oh1kG3jXmJGIEjT8yJZWQ=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WrMxAviO7CBA37FJ78govV/ktWC9kB3sJ5oAxKxX4FX/mQ5gbvucGP6/lEW3EjBE5
-	 3bRX0QUv4YNUBGKEEBl1jbRrmjKnARlGPFAlI4azv4JDiRR8xsV991VtjTRZ+6Ks5B
-	 BeGoLwQ9RUdaUGqPbCufqNjLy+NGvkV0tpYxfXB4iCqgDXYd56GDI1uYZ+YWeqBfYs
-	 PLbIygbxDdgxf97cfDyBSh7zVJTA4jxFram/HrnaIynkoziwuk7XjmTgQFwJ7P5mIg
-	 HVkDYSc9l04fOw5GfREEE0hsgLk1TlrACb4ZH3lBk+54lysxJM7vzSSI/xJzbqhc3d
-	 rf3y2DkGhwB0Q==
-Message-ID: <3f1a35fc-7fda-4179-948e-1a2acafd0f8a@kernel.org>
-Date: Fri, 8 Aug 2025 08:11:25 +0200
+	s=k20201202; t=1754633675;
+	bh=Y/W+sje0EboXCDX6Q4bMj+dHKJHYtmhocoOQxyyA9Pc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KbT84UQJHgZo7GwSHXwLy3U6aFaTNupJQy/Kp1aZCNAvC+G+ID/uRR2wWByGWA6/8
+	 JhtVk4p5inYspk1jUGpEuOEySG64iw980qytzKkEel51qpojHDN65Z27riv+L/OnNb
+	 HM5jRMXGhQK812xn9vE+23FowOknc+PSplSApS+NSj3KKhsyUq1y/YT1vY2zMq00dX
+	 02VnTHwe9c1U7d2BrR7Ds473R/asyqvwPgJ8zbuLDSpedGyFdIVaKaXIiPxS04Dj7s
+	 OZL33/ikjaCdnBqYY7phHSCeiseelnEFCtjU5AA2yre6/8gD9dEkybD47kqfnsuSQX
+	 TA40zM+7AzBMQ==
+Message-ID: <14019ad9-0dd3-49f5-948e-5d0330b764c2@kernel.org>
+Date: Fri, 8 Aug 2025 08:14:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dmaengine: lgm-dma: Added Software management
- functions on HDMA.
-To: Zhu Yixin <yzhu@maxlinear.com>, vkoul@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
- kees@kernel.org, dave.jiang@intel.com, av2082000@gmail.com,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250808032243.3796335-1-yzhu@maxlinear.com>
- <20250808032243.3796335-3-yzhu@maxlinear.com>
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add lemans-evk and
+ monaco-evk sound card
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@oss.qualcomm.com
+References: <20250808052939.1130505-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250808052939.1130505-2-mohammad.rafi.shaik@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,29 +108,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250808032243.3796335-3-yzhu@maxlinear.com>
+In-Reply-To: <20250808052939.1130505-2-mohammad.rafi.shaik@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/08/2025 05:22, Zhu Yixin wrote:
-> +
-> +struct dw4_desc_sw {
-> +	struct virt_dma_desc	vd;
-> +	struct ldma_chan	*chan;
-> +	struct dw4_desc_hw	*desc_hw;
-> +};
-> +
-> +/**
-> + * hdma TX need some sideband info to switch in dw0 and dw1
+On 08/08/2025 07:29, Mohammad Rafi Shaik wrote:
+> Document the bindings for the Qualcomm LEMANS-EVK and MONACO-EVK
+> board specific sound card.
+> 
+> The bindings are the same as for other newer Qualcomm ADSP sound cards,
+> thus keep them in existing qcom,sm8250.yaml file, even though Linux driver
+> is separate.
+> 
+> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index 5d3dbb6cb1ae..c63bfe031b57 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -31,6 +31,8 @@ properties:
+>            - fairphone,fp4-sndcard
+>            - fairphone,fp5-sndcard
+>            - qcom,apq8096-sndcard
+> +          - qcom,lemans-evk-sndcard
 
-That's not a kerneldoc.
 
-Please run standard kernel tools for static analysis, like coccinelle,
-smatch and sparse, and fix reported warnings. Also please check for
-warnings when building with W=1. Most of these commands (checks or W=1
-build) can build specific targets, like some directory, to narrow the
-scope to only your code. The code here looks like it needs a fix. Feel
-free to get in touch if the warning is not clear.
+Lemans is already there under one of the QCS cards. I was told it is the
+same, so you do not get a new compatible.
+
+Monaco maybe as well.
+
+We also name standard cards per SoC, not per board, so evk should be
+dropped or commit msg should explain why this is different.
 
 
 Best regards,
