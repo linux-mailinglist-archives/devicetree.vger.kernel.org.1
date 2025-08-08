@@ -1,195 +1,433 @@
-Return-Path: <devicetree+bounces-202745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144C5B1E907
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 990FCB1E90F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 15:20:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25AB0583EA9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:18:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA1F15A0068
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 13:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5F22797A9;
-	Fri,  8 Aug 2025 13:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="LgW4hyTX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4783927B4F9;
+	Fri,  8 Aug 2025 13:20:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013051.outbound.protection.outlook.com [40.107.159.51])
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92254A35;
-	Fri,  8 Aug 2025 13:18:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754659132; cv=fail; b=c58q6p+fhDpqdJSphW/aOFTiUbicUSw7jB2ESAQq89bcP3yGsaTKf/GYn85MUEEyDeu/oQcPswVdq3Cyga/0ZI3qete+oCRM/qtGe5dNNLLX3MLhA6gn0T1Z+UK5DB0xd7mtZiYZkQTLScQn2fZQtRF+QS1du8NFBEAhMyYCV8s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754659132; c=relaxed/simple;
-	bh=lSz9Jk8mMAL2oLS8seyjMELpd2SCBQ/GyzAwfoPmuhk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MreP6IiH4K3ZMN3AV1S2mKscCeNKFcmx+6yrQbhQbFb34h0ZZxQvH9EQKJXzHoaoEeJ/Xx2sO/nHgSJUa3AN8GszWLB9ISlmackWffGOpfiQ3DiTJVBAzE7Q4gOKQImYcXSTi2UEO5mxNaFzJDdGtCipSxEFJ6nt31khfPU3zio=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=LgW4hyTX; arc=fail smtp.client-ip=40.107.159.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ERTFnSVqJ32W1QL7Fy/+3+Blcqv4+pVaJaiTlonFEPH+2QVpEZ2PFLf2aiTAWwCOyiJx3+ovziUwbQ+8Y03GgStzn9xNxOLdClKmFEB4LpAZfa03+VM8LSqCk8tWwT/QsghwSzvFLQzU9i8hsITdLQCeP5SUQHHuCQ42r1OiYRRCYn4Ojm+XaOi1VMQQUrNlgqRbbUIvyFcxdiwW4ecp7bismyJsVQ0A1bLG7jQlAGyhC4i4ORLalqBILlIsRdnSFm3+6VnZJ82kUfOOrpT9LbJxvWJnJchtcy9gODoPeT8Zl5mjCuK+Febl5kl5cIet/boD9rmw2jMxwKh+hIyVHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vgJDZCrVoLajcVIH79KWLg42KL023a89GVuuHlu4zq4=;
- b=M5qRXoXASVNJ34DQa+snaHD7fJsg80Y/tcuHRB317qygETPvaYdLEek5/rSvfnzeVbVxukzxTzUAIW0dsLNIzPiw+580suCwKwseaTK/BdR8vIbsDZ7oTv9onLDHvcScNxV6bKOyu44cZIvP/S8f0vKduN0zLgF0GOoDkmYSAumjkUi/QSb+o2VFY60pUwhQvHCgnb3vuECwreMRFgTI9t5cUvhjQvYcu+/yqt4zCIrVjH4qN0IDa46PKLbXsN64qLRTIzgiN81T65YKnqs557RCtCs+nYa/Wfv1yeZWXRKrzBSgtT4b4hz61GPz3FOQYFc3JKPjCyyJusNXHeNF0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=arm.com smtp.mailfrom=axis.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=axis.com; dkim=none (message
- not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vgJDZCrVoLajcVIH79KWLg42KL023a89GVuuHlu4zq4=;
- b=LgW4hyTXmc/JAiYWsN0w7LOfpyvBBKUMVnbi4IV0jJzZnVrr2/EhKUWzFZIR3Qzvi4Oqp7I9kndIFlt8U54NjDxvz3B+0OvJn3tiUfpbV3xjOlozFqm0u4UQbWTnJsSHc80LJJgCKJ1ARiYQstzum38SMYbFzklx/Sr+FL8Nsr4=
-Received: from PR0P264CA0284.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1::32) by
- AS4PR02MB8768.eurprd02.prod.outlook.com (2603:10a6:20b:580::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 13:18:42 +0000
-Received: from AM4PEPF00025F9A.EURPRD83.prod.outlook.com
- (2603:10a6:100:1:cafe::d) by PR0P264CA0284.outlook.office365.com
- (2603:10a6:100:1::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.18 via Frontend Transport; Fri,
- 8 Aug 2025 13:18:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM4PEPF00025F9A.mail.protection.outlook.com (10.167.16.9) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9031.0 via Frontend Transport; Fri, 8 Aug 2025 13:18:42 +0000
-Received: from se-mail01w.axis.com (10.20.40.7) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Fri, 8 Aug
- 2025 15:18:41 +0200
-Received: from se-intmail02x.se.axis.com (10.4.0.28) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
- Transport; Fri, 8 Aug 2025 15:18:41 +0200
-Received: from pc36611-1939.se.axis.com (pc36611-1939.se.axis.com [10.88.125.175])
-	by se-intmail02x.se.axis.com (Postfix) with ESMTP id CE1AD17E9;
-	Fri,  8 Aug 2025 15:18:41 +0200 (CEST)
-Received: by pc36611-1939.se.axis.com (Postfix, from userid 363)
-	id C8ADB60C1D; Fri,  8 Aug 2025 15:18:41 +0200 (CEST)
-Date: Fri, 8 Aug 2025 15:18:41 +0200
-From: 'Jesper Nilsson' <jesper.nilsson@axis.com>
-To: Pankaj Dubey <pankaj.dubey@samsung.com>
-CC: 'Krzysztof Kozlowski' <krzk@kernel.org>, 'SeonGu Kang'
-	<ksk4725@coasia.com>, 'Jesper Nilsson' <jesper.nilsson@axis.com>, "'Michael
- Turquette'" <mturquette@baylibre.com>, 'Stephen Boyd' <sboyd@kernel.org>,
-	"'Rob Herring'" <robh@kernel.org>, 'Krzysztof Kozlowski'
-	<krzk+dt@kernel.org>, 'Conor Dooley' <conor+dt@kernel.org>, 'Sylwester
- Nawrocki' <s.nawrocki@samsung.com>, 'Chanwoo Choi' <cw00.choi@samsung.com>,
-	"'Alim Akhtar'" <alim.akhtar@samsung.com>, 'Linus Walleij'
-	<linus.walleij@linaro.org>, 'Tomasz Figa' <tomasz.figa@gmail.com>, "'Catalin
- Marinas'" <catalin.marinas@arm.com>, 'Will Deacon' <will@kernel.org>, "'Arnd
- Bergmann'" <arnd@arndb.de>, 'kenkim' <kenkim@coasia.com>, 'Jongshin Park'
-	<pjsin865@coasia.com>, 'GunWoo Kim' <gwk1013@coasia.com>, 'HaGyeong Kim'
-	<hgkim05@coasia.com>, 'GyoungBo Min' <mingyoungbo@coasia.com>, 'SungMin Park'
-	<smn1196@coasia.com>, 'Shradha Todi' <shradha.t@samsung.com>, 'Ravi Patel'
-	<ravi.patel@samsung.com>, 'Inbaraj E' <inbaraj.e@samsung.com>, 'Swathi K S'
-	<swathi.ks@samsung.com>, 'Hrishikesh' <hrishikesh.d@samsung.com>, "'Dongjin
- Yang'" <dj76.yang@samsung.com>, 'Sang Min Kim' <hypmean.kim@samsung.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-arm-kernel@axis.com>,
-	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <soc@lists.linux.dev>
-Subject: Re: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
-Message-ID: <aJX5MStJwpQENOSE@axis.com>
-References: <20250710002047.1573841-1-ksk4725@coasia.com>
- <847e908b-1073-46ea-93f3-1f36cc93d8b8@kernel.org>
- <bfdc2eddde554e1d1808dd8399bc6a693f681c9b.camel@coasia.com>
- <CGME20250721064006epcas5p4617b0450e69f72c94d2b3ae7b1d200e7@epcas5p4.samsung.com>
- <99977f38-f055-46ed-8eb0-4b757da2bcdd@kernel.org>
- <000501dc06ab$37f09440$a7d1bcc0$@samsung.com>
- <e334f106-d9f3-4a21-8cdd-e9d23dd2755d@kernel.org>
- <002001dc06b1$540dc980$fc295c80$@samsung.com>
- <ef3b8e12-0677-4e49-bf2c-b8136c9a6908@kernel.org>
- <013301dc0768$6f58dc40$4e0a94c0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F308520ED;
+	Fri,  8 Aug 2025 13:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754659249; cv=none; b=RphkgG+Zmp2UACwRu8QvgwGyRiIyfCzV/+T6llwlPfJv2c0YPy51HtqP8zeX2Mm4g/sBgxUSpHV0WXIdM+wvsW5hEL8hQnzSPlxIWjI9rlY6fiT1grcZIgs7VLrllKwd5NQdyQn66g6xP4S8m2oTFgg4ato/r+eAgg+SgEBb11s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754659249; c=relaxed/simple;
+	bh=ccSlfqK98k4Z4CeD+PTJ/CnCVK7D8bzIrMfyEBolLS0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Gd+72hq+3E4W0TatDtHiKfgzS1i8r2lgno6SgH3XUciR1S4qyFEyvZ4imjtM3B7ljJiPqEpUxAQ5GSG7pcACP6eoZ4/SofZixuL7ZuRT9ruBiehTA2/0Bnwwx4RFIG1fbuMuhZL8mL3nNw+m1P93eAAQmceWu2JgFSgeNktOl30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0BE64201BE9;
+	Fri,  8 Aug 2025 15:20:39 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E8FE7201BE4;
+	Fri,  8 Aug 2025 15:20:38 +0200 (CEST)
+Received: from lsv15573.swis.ro-buh01.nxp.com (lsv15573.swis.ro-buh01.nxp.com [10.172.0.77])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id CB8AD2035C;
+	Fri,  8 Aug 2025 15:20:37 +0200 (CEST)
+From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+To: linux-kernel@vger.kernel.org,
+	linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	broonie@kernel.org,
+	lee@kernel.org
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	shashank.rebbapragada@nxp.com,
+	Frank.Li@nxp.com,
+	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Subject: [PATCH v3 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+Date: Fri,  8 Aug 2025 16:20:32 +0300
+Message-Id: <20250808132033.3996614-1-aman.kumarpandey@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <013301dc0768$6f58dc40$4e0a94c0$@samsung.com>
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00025F9A:EE_|AS4PR02MB8768:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3fc9d923-e847-47f8-88f0-08ddd67e18d7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|30052699003|82310400026|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0bQPACZp9g8lQ/qsGehobkwro6PF7+b3+LaqzOcYS2BPXhQDo3tGvABxunWN?=
- =?us-ascii?Q?aeR+ICLxee3b6FxRmFpC1RPYKNTo4I1qoN78KLxnVc6FWaq1moVDC1IcqNsH?=
- =?us-ascii?Q?UKfbTEW/hV0JJCVh2zJYCx0Zi2pGsQBbR5oV2LfF5dRLxFHcJ/kc0tEa4dGZ?=
- =?us-ascii?Q?o0yeeoEe33dA2N4fpnHvvRcu1PKycQ4kkYeaCl/kxsyy12NUr4qhzReZIE+1?=
- =?us-ascii?Q?Gq4qkmJcqb6xxG28r+Lzglqu+/m8xqP5kAWLwH6cHK0EL71vTR5bUIxJ5YsH?=
- =?us-ascii?Q?l62MoxxkB6C03VAfU3QhnTKI50sPc8vwdpTZAKl4St8bPMTTqIqbq18jPXeR?=
- =?us-ascii?Q?Gk6B8mhPPqAhpKs5YlJO11NeZIkuYDnSV6PaZEit8HOyUk51zo5Nlkw+y0Ss?=
- =?us-ascii?Q?39+6oIgkUo/j+Za8MmkTJxGzeLfjS4PLOQdvhYboE1x/elJpKlP+D0hKgqU5?=
- =?us-ascii?Q?xZ0OO10wu/+LDWIwfhE9HaRfRJMHG2MAybU40OJpnRxamZ1lRFe6j04PpVqI?=
- =?us-ascii?Q?HIUZ9O3Wf0QhshIl1faMPqkRUCI6BYNY7S90tF3XqwspC/972vg1/S8sc2UL?=
- =?us-ascii?Q?D11wrfy/VFUlBLquYTNA/4ma74nUV6YGiuUhiHlP9v4z9ewGPC4hFwIyi+zu?=
- =?us-ascii?Q?JcB1rdIDf4xxfGyIb5nSfbRGIhfmVUqMtyrIN7FR86eKdAs7yU1x/pF17R0E?=
- =?us-ascii?Q?SeL26GFql4sCxLjPg3td8P6Tf3RYRHX1ZolQtyAbrs4emeZYrVAYm84cjAUd?=
- =?us-ascii?Q?wFw/Ex6iFJWZHN4yKNfo4bxWKiZe0YH3AhPOuQRONijtetdXkn5Q5mPaPomx?=
- =?us-ascii?Q?rpa7Bvt3Vr4gx0dUSeBc65rx6Zs0m0r/anS/4jH6wfVwJk+1e3JsPG9UmXXZ?=
- =?us-ascii?Q?F73UwOtYWKd2p5GfvbOef79dJQl2YimOGjGC2+2T9/8nTa3zK+ZfX2jJkOf6?=
- =?us-ascii?Q?GuDLY8bOWZlSeiIMZ5SWrYqsPUtoxD5mCVdLGJzYU06njjjbL+4VLzRFQzLp?=
- =?us-ascii?Q?S8jo+a8eYZSghKXtgCf4Qd3gZTgr3kcnImvhKKCU8Mo9lTx+z7Yi61aNMlS7?=
- =?us-ascii?Q?JCOIOKGdUT2VPmNPDajcRth/wireH3cRvkpipsZgaLD1OlHcuxBZnyld5vXR?=
- =?us-ascii?Q?HmCdJIR4INf/Eov3uKrnyYXAiuhiWn2ZChUFSAmLI5W5t9z/GyD7LNfGNEpM?=
- =?us-ascii?Q?wJwAemnEE8ZqcYSMhijVdAiSxE/6Ankw7ZpvBU4+ukeBRT5cE3FG4kzO32Iu?=
- =?us-ascii?Q?b8tOYSa1nH4zhP0kbSgoy/0v1nFhPXZO3n2+qoHwvDZDjV3xnJw/MkoNm5sU?=
- =?us-ascii?Q?zZBUQGmwMq2giMF5/xKznCE0g1DYnVgOoMXQIcYi8My16moO22sCQZhdaMeG?=
- =?us-ascii?Q?HdEoAUYb5S6hdEovD68F+Mzhm6ZWUitPoC7Zyze4Vyi6/jkcjRfQJPRZSE6K?=
- =?us-ascii?Q?t97HYBgkf/SG1xJmNfbGLiX2ZOkGnVcYAQDkzYdB7euRu4gpLdtVHAFmdx3c?=
- =?us-ascii?Q?Pz2LJ/v1Izz2ljOiclP0Cice9NIC1PtFyFm9?=
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(30052699003)(82310400026)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 13:18:42.7039
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fc9d923-e847-47f8-88f0-08ddd67e18d7
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00025F9A.EURPRD83.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR02MB8768
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On Thu, Aug 07, 2025 at 12:26:27PM +0530, Pankaj Dubey wrote
-> > Subject: Re: [PATCH 00/16] Add support for the Axis ARTPEC-8 SoC
-> > On 06/08/2025 11:05, Pankaj Dubey wrote:
-> > > or ARTPEC is manufactured (ODM) by another vendor in that case, won't it
-> > > create problems?
-> >
-> >
-> > No problems here. Non-Samsung Artpec/Axis soc will not go there. It will
-> > go the top-level axis directory, just like artpec-6
-> >
-> 
-> Okay, understood. I assume Axis team will be fine with this approach.
-> Let me align with them internally and address all the review comments in v2.
+Add bindings for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+multiport I3C hub family. These devices connect to a host via
+I3C/I2C/SMBus and allow communication with multiple downstream
+peripherals.
 
-Just for the record, Axis has no problem in having the ARTPEC-8 / ARTPEC-9
-in the Samsung directory, while the older ARTPEC-6 / ARTPEC-7 and
-any other future chips will be separate.
+Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
 
-/^JN - Jesper Nilsson
+---
+V1 -> V2: Cleaned up coding style and addressed review comments
+V2 -> V3: Added mfd device support for i3c hub and regulator.
+---
+ .../bindings/mfd/nxp,p3h2840-i3c-hub.yaml     | 320 ++++++++++++++++++
+ MAINTAINERS                                   |   8 +
+ 2 files changed, 328 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml b/Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml
+new file mode 100644
+index 000000000000..490595c94627
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml
+@@ -0,0 +1,320 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2025 NXP
++
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/nxp,p3h2840-i3c-hub.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP P3H2X4X I3C HUB
++
++maintainers:
++  - Aman Kumar Pandey <aman.kumarpandey@nxp.com>
++  - Vikash Bansal <vikash.bansal@nxp.com>
++
++description: |
++  P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is a family of multiport I3C
++  hub devices that connect to:-
++  1. A host CPU via I3C/I2C/SMBus bus on upstream side and connect to multiple
++     peripheral devices on the downstream  side.
++  2. Have two Controller Ports which can support either
++     I2C/SMBus or I3C buses and connect to a CPU, BMC or SOC.
++  3. P3H2840/ P3H2841 are 8 port I3C hub with eight I3C/I2C Target Port.
++  4. P3H2440/ P3H2441 are 4 port I3C hub with four I3C/I2C Target Port.
++     Target ports can be configured as I2C/SMBus, I3C or GPIO and connect to
++     peripherals.
++
++allOf:
++  - $ref: i3c.yaml#
++
++properties:
++  compatible:
++   items:
++     - const: nxp,p3h2840
++
++  cp0-ldo-microvolt:
++    description:
++      Selects the voltage for controller Port 0, in microvolts.
++    enum: [1000000, 1100000, 1200000, 1800000]
++    default: 1000000
++
++  cp1-ldo-microvolt:
++    description:
++      Selects the voltage for controller Port 1, in microvolts.
++    enum: [1000000, 1100000, 1200000, 1800000]
++    default: 1000000
++
++  tp0145-ldo-microvolt:
++    description:
++      Selects the voltage for target Port 0/1/4/5, in microvolts.
++    enum: [1000000, 1100000, 1200000, 1800000]
++    default: 1000000
++
++  tp2367-ldo-microvolt:
++    description:
++      Selects the voltage for target Port 2/3/6/7, in microvolts.
++    enum: [1000000, 1100000, 1200000, 1800000]
++    default: 1000000
++
++  tp0145-pullup-ohms:
++    description:
++      Selects the pull up resistance for target Port 0/1/4/5, in ohms.
++    enum: [250, 500, 1000, 2000]
++    default: 500
++
++  tp2367-pullup-ohms:
++    description:
++      Selects the pull up resistance for target Port 2/3/6/7, in ohms.
++    enum: [250, 500, 1000, 2000]
++    default: 500
++
++  cp0-io-strength-ohms:
++    description:
++      Selects the IO drive strength for controller Port 0, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  cp1-io-strength-ohms:
++    description:
++      Selects the IO drive strength for controller Port 1, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  tp0145-io-strength-ohms:
++    description:
++      Selects the IO drive strength for target port 0/1/4/5, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  tp2367-io-strength-ohms:
++    description:
++      Selects the IO drive strength for target port 2/3/6/7, in ohms.
++    enum: [20, 30, 40, 50]
++    default: 20
++
++  cp0-supply:
++    description: Phandle to voltage regulator providing power to controller port 0.
++
++  cp1-supply:
++    description: Phandle to voltage regulator providing power to controller port 1.
++
++  tp0145-supply:
++    description: Phandle to voltage regulator providing power to target port 0/1/4/5.
++
++  tp2367-supply:
++    description: Phandle to voltage regulator providing power to target port 2/3/6/7.
++
++  regulators:
++    type: object
++    additionalProperties: false
++
++    properties:
++      cp0:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      cp1:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      tp0145:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++      tp2367:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++patternProperties:
++  "@[0-7]$":
++    type: object
++    additionalProperties: false
++    description:
++      I3C HUB Target Port child, should be named as target-port@<target-port-id>
++
++    properties:
++      reg:
++        description:
++          The I3C HUB Target Port number.
++        minimum: 0
++        maximum: 0x07
++
++      mode:
++        enum: [i3c, smbus, i2c, gpio]
++        description:
++          I3C HUB Target Port mode setting to control Target Port functionality.
++          As per now it is only supporting SMBus, i2c and i3c( i2c mode will work
++          with hub network).
++
++      pullup-enable:
++        type: boolean
++        description:
++          Enables the on-die pull-up for Target Port.
++
++      ibi-enable:
++        type: boolean
++        description:
++          Enables the IBI for Target Port.
++
++      local-dev:
++        $ref: /schemas/types.yaml#/definitions/uint8-array
++        description:
++          SMBus Target Agent can discard transactions of downstream device and not generate an IBI to upstream I3C Hub
++          Controller Port. Up to 8 device (addresses) can be configured as local Devices.
++
++          This property is optional. If not provided, local device list will empty.
++
++      hub_bridge_en:
++        type: boolean
++        description:
++          Enables the hub network (Controller port -> target port).
++
++    patternProperties:
++      "@[0-9a-f]+$":
++        type: object
++        additionalProperties: false
++        description: |
++          I2C child, should be named: <device-type>@<i2c-address>
++
++        properties:
++          compatible:
++            description:
++              Compatible of the I2C/SMBus downstream device.
++
++          reg:
++            description: |
++              I2C address, Downstream device address which are connected to target port.
++            minimum: 0
++            maximum: 0x7f
++
++        required:
++          - compatible
++          - reg
++
++      "@[0-9a-f]+,[0-9a-f]+$":
++        type: object
++        additionalProperties: false
++        description: |
++          I3C child, should be named: <device-type>@<static-i2c-address>,<i3c-pid>
++
++        properties:
++          reg:
++            items:
++              - items:
++                  - description:
++                      Encodes the static I2C address. Should be 0 if the device does
++                      not have one (0 is not a valid I2C address).
++                    minimum: 0
++                    maximum: 0x7f
++                  - description: |
++                      First half of the Provisioned ID (following the PID
++                      definition provided by the I3C specification).
++
++                      Contains the manufacturer ID left-shifted by 1.
++                  - description: |
++                      Second half of the Provisioned ID (following the PID
++                      definition provided by the I3C specification).
++
++                      Contains the ORing of the part ID left-shifted by 16,
++                      the instance ID left-shifted by 12 and extra information.
++
++          assigned-address:
++            $ref: /schemas/types.yaml#/definitions/uint32
++            minimum: 0x1
++            maximum: 0xff
++            description:
++              Dynamic address to be assigned to this device. In case static address is
++              present (first cell of the reg property != 0), this address is assigned
++              through SETDASA. If static address is not present, this address is assigned
++              through SETNEWDA after assigning a temporary address via ENTDAA.
++
++        required:
++          - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i3c {
++        #address-cells = <3>;
++        #size-cells = <0>;
++
++        hub@70,236153000c2 {
++            reg = <0x70 0x236 0x3000c2>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            assigned-address = <0x50>;
++
++            cp0-ldo-microvolt = <1800000>;
++            cp1-ldo-microvolt = <1800000>;
++            tp0145-ldo-microvolt = <1800000>;
++            tp2367-ldo-microvolt = <1800000>;
++            tp0145-pullup-ohm = <1000>;
++            tp2367-pullup-ohm = <1000>;
++            cp0-io-strength-ohm = <50>;
++            cp1-io-strength-ohm = <50>;
++            tp0145-io-strength-ohm = <50>;
++            tp2367-io-strength-ohm = <50>;
++            cp0-supply = <&cp0>;
++            tp0145-supply = <&tp0145>;
++
++            regulators {
++              cp0 {
++                regulator-name = "cp0";
++                regulator-min-microvolt = <1000000>;
++                regulator-max-microvolt = <1800000>;
++              };
++
++              cp1 {
++                regulator-name = "cp1";
++                regulator-min-microvolt = <1000000>;
++                regulator-max-microvolt = <1800000>;
++              };
++
++              tp0145 {
++                regulator-name = "tp0145";
++                regulator-min-microvolt = <1000000>;
++                regulator-max-microvolt = <1800000>;
++              };
++
++              tp2367 {
++                regulator-name = "tp2367";
++                regulator-min-microvolt = <1000000>;
++                regulator-max-microvolt = <1800000>;
++              };
++            };
++
++            target-port@0 {
++                reg = <0x0>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                mode = "smbus";
++                pullup-enable;
++
++                eeprom@57 {
++                    compatible = "atmel,24c32";
++                    reg = <0x57>;
++                    pagesize = <32>;
++                    wp-gpios = <&gpio2 2 0>;
++                    num-addresses = <8>;
++                };
++            };
++
++            target-port@2 {
++                reg = <0x2>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                mode = "i3c";
++                pullup-enable;
++
++                sensor@68,39200144004 {
++                  reg = <0x68 0x392 0x144004>;
++                  assigned-address = <0xa>;
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4262e8d833c4..b33e90030188 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15477,6 +15477,14 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+ F:	sound/soc/codecs/tfa989x.c
+ 
++NXP P3H2X4X I3C-HUB DRIVER
++M:	Vikash Bansal <vikash.bansal@nxp.com>
++M:	Aman Kumar Pandey <aman.kumarpandey@nxp.com>
++L:	linux-kernel@vger.kernel.org
++L:	linux-i3c-owner@lists.infradead.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
++
+ NZXT-KRAKEN2 HARDWARE MONITORING DRIVER
+ M:	Jonas Malaco <jonas@protocubo.io>
+ L:	linux-hwmon@vger.kernel.org
 -- 
-               Jesper Nilsson -- jesper.nilsson@axis.com
+2.25.1
+
 
