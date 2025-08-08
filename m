@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-202617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA3EAB1E3F4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:58:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09908B1E405
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 10:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A4C4166B13
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 07:58:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F27291895D2F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF44324A05B;
-	Fri,  8 Aug 2025 07:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AAC257AF2;
+	Fri,  8 Aug 2025 08:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZ2MAqel"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K1+G4C0B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B9578F39;
-	Fri,  8 Aug 2025 07:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758D74AEE2;
+	Fri,  8 Aug 2025 08:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754639931; cv=none; b=dZOE4xt1/dDRcW3gJjfSbGcwSoDYgPu3GbVSxS+4Ok98W24VTUH7D+Ljq2jto1j0Bsvf2PKglmlvrBCsoEkMuNw36x63hoW6XqcHIpvjA5665jMiqMjupx/Dm+QIOrL5/5JWtnzWiW8xWAraDuypweck4iiLGnRPl2nEYO2bn5U=
+	t=1754640240; cv=none; b=NNsZYpNnUXTo0MqrvPH89FBw1DAP55yWPnCCv24FD2zOSRvA/Ltzri4nfElUEJTjI8Lfy4qSN7QBIr4FDSRg1SzfebzxFUs91O/UgPSydWwG8lqWBnT00oY+qD6aVNUzHDN7qh4GBGShfcKr9/7IVcHwYM/LwX9ceYaVwgNz73s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754639931; c=relaxed/simple;
-	bh=bhYz0q7sZmksGxtqrz5Z9izdRimJdpZwVcCdQnTK6+Q=;
+	s=arc-20240116; t=1754640240; c=relaxed/simple;
+	bh=ql/cRZYDLhA7jP9iJrRhFEoYs9X2U+gQifZ0qjY7Ur0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WzwTF96uu7tC0DOnbyiQKoFGWosLOra7ADzCm6n7Xj84Ng5ZB0KUQI1FnXWoB1+WDTQ4lfhuU43gKlaj64VYhqYEvUrke2mH86jf9blwfGs/65kKt5EWXbgdppiMPfAunjfGuqaDD5+R/LxBQllec3Tr20Mkqs6O9ljJ7yGfsdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZ2MAqel; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAF26C4CEED;
-	Fri,  8 Aug 2025 07:58:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PxBOoPZG0pF6dUBoUZuJK89hiq8iBTKvKVt/TXeiL/DT+RDE3CHMYIR2Ivlgt13O8Nyvpm1xxc6xEsbH4/7dfQ8s4ToYNHSnUEJkdfW7B60j7FPmxoxhpf2xg+YhZpoAyNTMz0+x2VzXMEvjoxmbSOs+wm3JAcMYFBQ/BnFWSxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K1+G4C0B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56FC8C4CEED;
+	Fri,  8 Aug 2025 08:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754639931;
-	bh=bhYz0q7sZmksGxtqrz5Z9izdRimJdpZwVcCdQnTK6+Q=;
+	s=k20201202; t=1754640238;
+	bh=ql/cRZYDLhA7jP9iJrRhFEoYs9X2U+gQifZ0qjY7Ur0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pZ2MAqel0O8SuouEJlBD0NRUR0D89he19cH5jWtUYyHwWCg2Yz8DO9SXgjIeDZd+y
-	 08od+i1Nr52Vf8xefFUv6zBJAlslkMjGanYsbRt+klaK5B006boeiCkfNFE+3by4F9
-	 LlSpkU0BXQzItv7AzoPiWYHTZisBzcUvjQv7tq0GztWAVvkSdrAnJvtpxIVJKyl0Et
-	 YZv1PZZl9sJGHuAmb3LispoeizFPKz4tMfziyI7hxPvWHVsrFYMW+Hyqw4YmVUjFRf
-	 XhyRE4MdvGWedowvfZ79iJmjU680KcM2Hs8Y84LpgbL4vs4rw6mfgM5hs+i6hxa0ld
-	 XsBRpCQtcD7rA==
-Date: Fri, 8 Aug 2025 09:58:48 +0200
+	b=K1+G4C0Bb1s5IIBz4hMmY7bLy5UPqfEjDxSNVrmkak5juoah9iMdWFSNY/PszOCbi
+	 hRTxS0iDXb+ppUFTDSAhyjD64YmgzizpvzI9s7lh00FMtM7xiNWy7wv8ecTbm1HyJK
+	 PLpUxn/ZC/HQQCFxDQ4E/I/da+USOE6O3KZVw4ke+eT72Gzui3kC0hW5Ti1QWOVryv
+	 LbynCAYBTqweN6WiMV6tQxV1rWZfuma8ouCzUpmq0/4HYlvNnZeU23sjpdcYM3ZtVv
+	 758dy7z+KHq4m+WwQaH0irkFr20Z9SUUGLJdYGx99UDZJZk1sp9mrgkxfodYHd0ikd
+	 Dz5s9q4HAM2nA==
+Date: Fri, 8 Aug 2025 10:03:56 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: Drop duplicate
- moxa,moxart-watchdog.txt
-Message-ID: <20250808-tidy-ambrosial-okapi-e5249b@kuoka>
-References: <20250807214222.4170236-1-robh@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liang Yang <liang.yang@amlogic.com>, Feng Chen <feng.chen@amlogic.com>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/3] spi: dt-bindings: add doc for Amlogic A113L2 SFC
+Message-ID: <20250808-adamant-fat-raven-38c8b3@kuoka>
+References: <20250808-spifc-v1-0-ff4e30e26a6b@amlogic.com>
+ <20250808-spifc-v1-1-ff4e30e26a6b@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,17 +60,134 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250807214222.4170236-1-robh@kernel.org>
+In-Reply-To: <20250808-spifc-v1-1-ff4e30e26a6b@amlogic.com>
 
-On Thu, Aug 07, 2025 at 04:42:21PM -0500, Rob Herring (Arm) wrote:
-> "moxa,moxart-watchdog" is already documented in faraday,ftwdt010.yaml,
-> so drop the old text binding.
+On Fri, Aug 08, 2025 at 10:00:34AM +0800, Xianwei Zhao wrote:
+> From: Feng Chen <feng.chen@amlogic.com>
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> The Flash Controller is derived by adding an SPI path to the original
+> raw NAND controller. This controller supports two modes: raw mode and
+> SPI mode. The raw mode has already been implemented in the community,
+> and the SPI mode is described here.
+> 
 
-Fixes: 289660a4af0e ("dt-bindings: watchdog: convert faraday,ftwdt010 to yaml")
+Subject: drop doc, so just "Add Amlogic foo ..."
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add bindings for Amlogic A113L2 SPI Flash Controller.
+> 
+> Signed-off-by: Feng Chen <feng.chen@amlogic.com>
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../devicetree/bindings/spi/amlogic,a4-spifc.yaml  | 104 +++++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
+> new file mode 100644
+> index 000000000000..712a17a4b117
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/amlogic,a4-spifc.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/amlogic,a4-spifc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SPI flash controller for Amlogic ARM SoCs
+> +
+> +maintainers:
+> +  - Liang Yang <liang.yang@amlogic.com>
+> +  - Feng Chen <feng.chen@amlogic.com>
+> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
+> +
+> +description:
+> +  The Amlogic SPI flash controller is an extended version
+> +  of the Amlogic NAND flash controller. It supports SPI Nor
+> +  Flash and SPI NAND Flash(where the Host ECC HW engine could
+> +  be enabled).
+
+Wrap at coding style, 80.
+
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a4-spifc
+> +
+> +  reg:
+> +    items:
+> +      - description: core registers
+> +      - description: parent clk control registers
+
+Why are you poking to parent node or to clock registers? This looks like
+mixing up device address spaces.
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: core
+> +      - const: pclk
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock gate
+
+Are you sure this is separate clock input to this device?
+
+> +      - description: clock used for the controller
+> +      - description: clock used for the SPI bus
+> +
+> +  clock-names:
+> +    items:
+> +      - const: gate
+> +      - const: core
+> +      - const: device
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  amlogic,sfc-enable-random:
+> +    description: Enable data scrambling
+
+Why would this be a property of the board?
+
+> +    type: boolean
+> +
+> +  amlogic,sfc-no-hwecc:
+> +    description: Disable ECC HW engine
+
+Same question, why not having ECC always?
+
+> +    type: boolean
+> +
+> +  amlogic,rx-adj:
+> +    description:
+> +      Adjust sample timing for RX, Sampling time
+> +      move later by 1 bus clock.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    sfc0: spi@fe08d000 {
+> +      compatible = "amlogic,a4-spifc";
+> +      reg = <0xfe08d000 0x800>, <0xfe08c000 0x4>;
+
+One register for the parent clock? This really does not look like part
+of this device.
 
 Best regards,
 Krzysztof
