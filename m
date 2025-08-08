@@ -1,88 +1,87 @@
-Return-Path: <devicetree+bounces-202684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9DC2B1E5E6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80E6CB1E5FA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 11:54:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77BD518916E3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:47:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C8E8189E4C1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 09:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985BF26F45D;
-	Fri,  8 Aug 2025 09:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F01DD2701B8;
+	Fri,  8 Aug 2025 09:54:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gkMAqT5t"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Enr9R5U2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA3525DB07
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 09:47:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4623126FDA4
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 09:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754646439; cv=none; b=qBMFbM/RJ6+PFjQf8Kq2hQ3X24MvWribqpMscE4oCO3l0kab8EA0retI0MUiPePDqwMnaJK3qP84cvgFM8kyYP0Hfy6rhFBsv3bkMZYTJwdZp9sJVPWZpMwyFCZWplGaAhoHyJhWdLIcu0mRWIqdGjSacH6ZxoNFSdGGKX0TJ3M=
+	t=1754646877; cv=none; b=tCzQpRhg6UgmAG72WzBHjujf6huuGxDHtyn2X/eIo+QK5+Lf/t1yrnI3W5I41ZAtVigmUYvP8nYdhSKdeqh8/+77D/7yESECJqO29nVtCptr5sgczCPJmaYwAimDEVGDb0f//fNp2rJ/AVRUxI2iWNSet7taLOgs2aGrM0A+qXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754646439; c=relaxed/simple;
-	bh=N76AjeKqWWaDCP1rb8c1+wvNKkVDpoXrk1DrDsc9vc0=;
+	s=arc-20240116; t=1754646877; c=relaxed/simple;
+	bh=IZewFj/uk0R0C1cmRQpY3xYNslex4bPpK5Xu4ZFWs0o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Go+zfsb0FG1Fsjiq8T9qarTHIidsRx7a2NLRDznUIMP+YHgB1MzPrfK8NWExXOh1o+3wDvc05T4e9eVj9BcoqITtmr2aQaqQhr+WFKdRTyFzRUpx6Mq3ugHq4xCXaRUPCl32bmQ25VsE20ltNUnQWtEJtFuwn7xQ3HhV/MDZeKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gkMAqT5t; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=Xkazpd6FX/nSB32wvBnQP2gLHK16RVi0c1ds4d8qZZjKYt47w3jHjxbSMXTqt6rRZ2zfU8Nh2B2a3OBiMvsl2mvK9G14twAVU4tBjh34xZJjEgnhrNBC9SK0dct9JPcqB7UZCx8X4JAn35hfDmIDE1v+XDKoo1AXsszFjtHAsMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Enr9R5U2; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5787UXVP024747
-	for <devicetree@vger.kernel.org>; Fri, 8 Aug 2025 09:47:17 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5787LMtm003806
+	for <devicetree@vger.kernel.org>; Fri, 8 Aug 2025 09:54:35 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c5LHAQzvnX1on7gg4etzzi9ms/GGnbrPCaWqPhltrcE=; b=gkMAqT5t8cQfD9cS
-	qcYMunlCYEiEYe3EyORPs9nF8uLZv36b20wjbimXWWWE9FbJXQVZfttf/PRvlors
-	GY/fOxK5yXW205ktkdNQW2QnGpU/F0jfjnT+NE343saXYDjeGoR4Yc6s4iXZTpYh
-	WnfiY7SiKWsAtSoOtn2XPndGq31sAOnYJgWLxl8EB+tmEL0uqufsOyZL8ajxFZvf
-	ihUjZl3sxUL4PzPGYBZbT8dFgZrG1MAK4AabRWhKKiG9YHQfezvYijya2MDNVAgT
-	AkTt6XuyZIovmdU71kcJcrMGeRKeNNRfkEomxHHUrxLgrnDHKHh0mIu/FDg5iRYf
-	tsHy6w==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpw1hfpb-1
+	VrNxZb2huOQDxcBDq9vEBgeyKvEis3Dpfn3A/mVFAjo=; b=Enr9R5U2jRHG/1qY
+	xAwRbjDa/z93bN5wnZuSo9+Q5AetTe/yAjx1+te4u6hunpJ571wpZ+l6y7ddlm1V
+	R6ADxwPfgeA2tkVCa1r219C3D8YjrOV9nmcRAcM7ZYTROBbeEo5pLlBwEQIL8zmN
+	0NdM7WVOdLfXnLz1SilT59rTLCu2XtBhtsXk9EE36X7hlrTnhelZt9hE3gKKe4g8
+	sfnYAET2bhPs7t0dahEqafyhROtHuM8kUVuJbDTzIV5+1nfLhNaCcNlVEaOK24bi
+	5mQQpC1IqGcLH7R/C8MjPpC2BTap5UyuC1PM6ESTA4L31S9aDQgYI5mLp/FwieFT
+	hCCjDw==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48bpyahmdf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 09:47:16 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7073674bc2aso6394736d6.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 02:47:16 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 09:54:34 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b2fcbd76b61so3085519a12.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 02:54:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754646436; x=1755251236;
+        d=1e100.net; s=20230601; t=1754646874; x=1755251674;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c5LHAQzvnX1on7gg4etzzi9ms/GGnbrPCaWqPhltrcE=;
-        b=ot8PxiuOOgS0Co/5oEUHaplpFYEZF1FkbYI4Vjnf/Gnr9MW8gTAoAfY3udFfABX4nb
-         wpiZaD78tU+KHSgOReoo44v164l1HcGk7NUbFLJM6p+G3dlHISauaDyBgXTgw+Ai9SCG
-         Uo5AIH+UyGhG4OWgGrETF3VLAe8p8mHEybIYdtDykVpzEqtFKpklD03Riq7NYUeEwG17
-         ++a+xp5pO6e5cDNck3D1THWViXIBMqgUpbB00UAyXafR+W1u+3WhCRPJTUdLpomIaZKF
-         OjNvFKvyO98Nz66rA3X3cUbBCl8wpolIHl05KAOKipTAjVNcMVcPvrS0XVubX8NFdPxz
-         FLDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX4X2LqbOtnwzpPr4z6b0GoT0g5iWyXaxTbuAp4aofLu3s2zm/D+1CHjFzTOmFlVYxp2ttxmsk/JTSO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8VYL6ixUZTw7+bN12a08lBaDMetg5afStnHrm5exmPSHpgXem
-	Jkt5PjYUxiSMmX6IxTD18/6G+XsMWm7hvgH4wP3WFcgyg0vuK012k2KYu1CZYTiyhyGWd90C05R
-	+DUq523nU1bk6TuS5h8PMdrZQ8BOOiaZbObyR/obxvvM5OQjdGNZwZMhCxyJ7poDm
-X-Gm-Gg: ASbGncs2XJDOb3cgSmo7BtotOy4rpBqss+TF9CS7Uo37zS/MxLP4W9cNFXKx31RYLIL
-	6oFzdL5kxy5qpmv0TULEpByUGK3Em2TD4Cykx1gUHN6cWXIVd3/P1q2X1slkVGBP46vkaqGaNkg
-	n+YO8Fs4fD1oWvW5OrMUSMhyKEvwqlUszV0wbTK+jhaboKthYjfWUbZ8BTEjlF2ZCtBZnybLIVS
-	a2aFmDWdFBeHPBOUW5wlqyVl8puHSZa6oJE5EGxcV83iSomab78nfVlIuzfxdD+ChfgTZeBePDU
-	nKCT8U0KlYK4HYd4nmr9NDjnnMvWG2G+PsSVH8vjXsdl+aWPFoljGWhgyfRtPYCgR6egLaS4dto
-	/Z5zgtxaI8ps8aiGHMA==
-X-Received: by 2002:ac8:59d2:0:b0:475:1c59:1748 with SMTP id d75a77b69052e-4b0aee278c8mr15475181cf.11.1754646435981;
-        Fri, 08 Aug 2025 02:47:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFf+bmZXtrB5iN1ZcDOo7CVlLIU0Jwj0Do2OpnxiPusVz7TYkqt0exOl8J3+oBRed9YiUlNlg==
-X-Received: by 2002:ac8:59d2:0:b0:475:1c59:1748 with SMTP id d75a77b69052e-4b0aee278c8mr15474971cf.11.1754646435422;
-        Fri, 08 Aug 2025 02:47:15 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a076620sm1457229666b.10.2025.08.08.02.47.14
+        bh=VrNxZb2huOQDxcBDq9vEBgeyKvEis3Dpfn3A/mVFAjo=;
+        b=UlvO04DMGcU703HRd0JHV6f/TZxsyKgCzSDrFH8g/JgTPY8dE0yi4KGR9ZW99gNXMc
+         mx4ielMn2cQsAsgx4CD6H4AFg2qyQD5EecsNci6FkgmMGzcVaHxO0z262S9tJmGme4L+
+         RqnAYIXYdzrsWg11UQ50ZUWxt5SjO6cR2lHuJMa+46twQ2I2mPfEy5HXndarouL5Aalx
+         hnUeMpF+AxREnjjwyfhYd0oOVg2VFpvYicHN2z1ohesf0QE0doebW4nDd+CAieTWtd+r
+         nH5YmYY2G1aK/U+c35m+YgmyxwLkr16cP1LSURzL6/VycgFsfYBpac1MAcZvkJDEkNKA
+         N92w==
+X-Forwarded-Encrypted: i=1; AJvYcCWbnA4RuEUON91Uaz+ZC8RWVgE1SNAx1IOX3F6Uk8RW0K3k855ZHmZhqX98YcTOp82uPkcfHHqymLaK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjaeiLR8chNrxdG/gc06WMkwW3nU6DQyEqBpHtT/1j0rtXGycE
+	dhGYYOeWE6vhdPTltSYRBxs/xI6JCFG4OYai74BTX/MmQZNjrYtakz4rtO5TwMsYAEUyeoYpJ3j
+	s/D9/g/m6j+kZTKKP8e66AT0hGWa3+hZ1b+R5qhTPW1QPLM2qATqvuqjpU5TbTvKy
+X-Gm-Gg: ASbGncuADdgq3MAWucRoF8oCuwwv7GQZ4co40Ms6jKbxPj6f6P/b+/qtfbzlfCkmoVM
+	Mb8QgbJGgQU8Bt5JQ+Mwb2PGIMuwskJkRsIxO5dZXen8qOR1BtCczsKxVsdlG7DWWWMlfI5gAbx
+	l6uSldUsLyOvEu583M0mwVAeK+91l2xOUA7JKM5CNTx6Mb7Fus00tF+jwbQM9TdPg1Bi4PxnbLd
+	+td6dqIyV/f6eOCFM1fwEI338to9V2r3HmboWWvA9rCbDkgO1D7kgBz9XZSpDnvDxfXOJnX8/yD
+	LwbLWL6pEdneNb0/QBaOMBq1Au8mLikpYBRMRRimYGUpZ7xR5jsLn/0bh0NObsXdUA/E
+X-Received: by 2002:a05:6a20:6a25:b0:238:351a:6442 with SMTP id adf61e73a8af0-2405522ee22mr3230467637.45.1754646873875;
+        Fri, 08 Aug 2025 02:54:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEMdPYl8Hb5De2uaasmqy64rhr2pYi2WZQYfw282Gwlr2/RoFYRSAeOW9+wrqhGxbXy2C32XQ==
+X-Received: by 2002:a05:6a20:6a25:b0:238:351a:6442 with SMTP id adf61e73a8af0-2405522ee22mr3230442637.45.1754646873431;
+        Fri, 08 Aug 2025 02:54:33 -0700 (PDT)
+Received: from [10.217.217.159] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bcce6f6fesm19918035b3a.26.2025.08.08.02.54.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 02:47:14 -0700 (PDT)
-Message-ID: <488da4b7-1017-4582-808e-f8f244d8a975@oss.qualcomm.com>
-Date: Fri, 8 Aug 2025 11:47:13 +0200
+        Fri, 08 Aug 2025 02:54:33 -0700 (PDT)
+Message-ID: <d8c5a4f1-a867-46b6-8519-81c0eba37501@oss.qualcomm.com>
+Date: Fri, 8 Aug 2025 15:24:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,101 +89,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Add Xiaomi Redmi Note 8 support
-To: Gabriel Gonzales <semfault@disroot.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 3/7] clk: qcom: Add TCSR clock driver for Glymur
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@linaro.org>
+Cc: kernel@oss.qualcomm.com, Pankaj Patil <quic_pankpati@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250308013019.10321-1-semfault@disroot.org>
- <20250311003353.8250-1-semfault@disroot.org>
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com>
+ <20250729-glymur-gcc-tcsrcc-rpmhcc-v3-3-227cfe5c8ef4@oss.qualcomm.com>
+ <aIoBFeo00PPZncCs@linaro.org>
+ <784545d0-2173-4a8b-9d5d-bee11226351e@oss.qualcomm.com>
+ <aIxRKHKdBHDefDs2@linaro.org>
+ <d2c17575-f188-4154-bb63-e0b1b89d8100@oss.qualcomm.com>
+ <b2f219d6-d441-45d0-a168-b2cdbc01b852@oss.qualcomm.com>
+ <3fc425fd-39fa-4efc-bc98-da86a88bfb1a@oss.qualcomm.com>
+ <c2f39786-5780-4124-9e41-6971428aa267@oss.qualcomm.com>
+ <9e3b4706-c61a-4d69-be84-a5b6fc90eb35@oss.qualcomm.com>
+ <462b4010-fd79-4682-b9d2-31ffdd53b75a@oss.qualcomm.com>
+ <ffbd9302-75f1-4148-881a-767fa413c825@oss.qualcomm.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250311003353.8250-1-semfault@disroot.org>
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <ffbd9302-75f1-4148-881a-767fa413c825@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfX9e2q23/LpJRP
- apSld9Xaw2cNlcHkwCw0+PZ3u6FLIBubdJ+seccEkot7wb0prSY4zvuGVdzdppN5p5iGWg6VYBo
- wiSJPQ6CptwYQIELlR7yXBpG+Gk3JLUcViZGorw1i3lfzc8qrGQlUvlJSuXMUynrcnfw4d78VuT
- EEXorYWmL+WDrKxEHaywbRVdPLAmmchmYBgqNL7Y61FfxroA1jd/Kv6RnIl49upnVoQMJkVHqld
- UeRyGuBRDYqV4ycpxoC6N++5+Kkpm32TaGkaExAS1hB/tqvRPvzZvqRvrUP8+PL638dsTSzEkrF
- jRyZIxGbvlq2g7SerGtlD4YD66BdNGc7a7u0aNfXjMvHJ8mhJ1CyKcnb/j4feO/+362g+Txw/W5
- pj+AsGIa
-X-Authority-Analysis: v=2.4 cv=Ha4UTjE8 c=1 sm=1 tr=0 ts=6895c7a4 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8
- a=dqPQs9Fgn_eni4IfNrgA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: FeFoMcnOaSROxwWOLUdRjBv2RQgdzXzy
-X-Proofpoint-GUID: FeFoMcnOaSROxwWOLUdRjBv2RQgdzXzy
+X-Proofpoint-ORIG-GUID: szJzmiqkial_iHgaUo-uZVPuj2gkN9uh
+X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=6895c95a cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=zhkC1EFh2bCrlkiyJb0A:9
+ a=QEXdDO2ut3YA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA2MDAwOSBTYWx0ZWRfXwpzEDdEOMHIX
+ w1oJjz8A4sn3VwYbnsbJvtR1AnNRe0htEXJsbYbpwoIv8789WrPAwrM92VjgplqOGkajsMnnGCZ
+ qJP5JW2ds9E6TFbPe14f/G5C3ODePJhD6BNUTy9aPJBnZwBcYAdPbFfdhAekjPV7716VsC05Ioe
+ KI8/mgVeGzctnNV3hqoE1ynXS+SCidFLtXtC7Ho5p5wVdVrHoY3GnKrScoRyRFgtUDIp9z9XGxi
+ v0Mltw0gtz68MhNE6zu6o4qu07jOKFMKTh5taE3WNIA3wsIpZlLAxz5oF7X4SY6ZTtend7HC3lI
+ J513XIgcHTCohZtXg+l14ToeMVnEcswwLkJEzr0FeLty+L9GVnZi8qR4IZy+atMrHt+neSpQwij
+ nAd/zdeD
+X-Proofpoint-GUID: szJzmiqkial_iHgaUo-uZVPuj2gkN9uh
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-08_02,2025-08-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 phishscore=0
- bulkscore=0 adultscore=0 suspectscore=0 spamscore=0 classifier=typeunknown
+ impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0 classifier=typeunknown
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2507300000 definitions=main-2508060009
 
-On 3/11/25 1:33 AM, Gabriel Gonzales wrote:
-> This patchset introduces support for the Redmi Note 8 (codenamed ginkgo). 
+
+
+On 8/7/2025 6:37 PM, Konrad Dybcio wrote:
+> On 8/6/25 12:21 PM, Taniya Das wrote:
+>>
+>>
+>> On 8/6/2025 3:34 PM, Konrad Dybcio wrote:
+>>> On 8/4/25 4:21 PM, Taniya Das wrote:
+>>>>
+>>>>
+>>>> On 8/4/2025 6:40 PM, Konrad Dybcio wrote:
+>>>>> On 8/4/25 11:00 AM, Taniya Das wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 8/1/2025 5:24 PM, Konrad Dybcio wrote:
+>>>>>>> On 8/1/25 7:31 AM, Abel Vesa wrote:
+>>>>>>>> On 25-08-01 10:02:15, Taniya Das wrote:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> On 7/30/2025 4:55 PM, Abel Vesa wrote:
+>>>>>>>>>> On 25-07-29 11:12:37, Taniya Das wrote:
+>>>>>>>>>>> Add a clock driver for the TCSR clock controller found on Glymur, which
+>>>>>>>>>>> provides refclks for PCIE, USB, and UFS.
+>>>>>>>>>>>
+>>>>>>>>>>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>>>>>>>>>>> ---
+>>>>>>>>>>>  drivers/clk/qcom/Kconfig         |   8 ++
+>>>>>>>>>>>  drivers/clk/qcom/Makefile        |   1 +
+>>>>>>>>>>>  drivers/clk/qcom/tcsrcc-glymur.c | 257 +++++++++++++++++++++++++++++++++++++++
+>>>>>>>>>>>  3 files changed, 266 insertions(+)
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> [...]
+>>>>>>>>>>
+>>>>>>>>>>> +
+>>>>>>>>>>> +static struct clk_branch tcsr_edp_clkref_en = {
+>>>>>>>>>>> +	.halt_reg = 0x1c,
+>>>>>>>>>>> +	.halt_check = BRANCH_HALT_DELAY,
+>>>>>>>>>>> +	.clkr = {
+>>>>>>>>>>> +		.enable_reg = 0x1c,
+>>>>>>>>>>> +		.enable_mask = BIT(0),
+>>>>>>>>>>> +		.hw.init = &(const struct clk_init_data) {
+>>>>>>>>>>> +			.name = "tcsr_edp_clkref_en",
+>>>>>>>>>>> +			.ops = &clk_branch2_ops,
+>>>>>>>>>>
+>>>>>>>>>> As discussed off-list, these clocks need to have the bi_tcxo as parent.
+>>>>>>>>>>
+>>>>>>>>>> Otherwise, as far as the CCF is concerned these clocks will have rate 0,
+>>>>>>>>>> which is obviously not the case.
+>>>>>>>>>>
+>>>>>>>>>> Bringing this here since there is a disconnect between X Elite and
+>>>>>>>>>> Glymur w.r.t this now.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> The ref clocks are not required to be have a parent of bi_tcxo as these
+>>>>>>>>> ideally can be left enabled(as a subsystem requirement) even if HLOS
+>>>>>>>>> (APSS) goes to suspend. With the bi_tcxo parent the ARC vote from
+>>>>>>>>> HLOS/APSS will not allow APSS to collapse.
+>>>>>>>>
+>>>>>>>> Is there a scenario where the APSS is collapsed and still the ref clock
+>>>>>>>> needs to stay enabled ? Sorry, this doesn't make sense to me.
+>>>>>>>
+>>>>>>> MDSS is capable of displaying things from a buffer when the CPU is off,
+>>>>>>> AFAICU
+>>>>>>>
+>>>>>>> We can do CXO_AO instead to have it auto-collapse if it's just Linux
+>>>>>>> requesting it to stay on, I think.
+>>>>>>>
+>>>>>>
+>>>>>> Thanks Konrad for adding the display use case.
+>>>>>> Abel, we earlier also had some PCIe, USB use cases where we had to leave
+>>>>>> the ref clocks ON and APSS could collapse.
+>>>>>
+>>>>> XO votes will prevent CX collapse, not APSS collapse. CX also powers
+>>>>> USB and PCIe so that only makes sense.
+>>>>>
+>>>>> I think it's fair to just stick XO as the parent of every refclock
+>>>>> today and think about the what-ifs (such as the mdss case I mentioned
+>>>>> above) later - especially since we have no infra to take full advantage
+>>>>> of it today (non-APSS RSCs etc.)
+>>>>>
+>>>>
+>>>> When ref clock have been part of GCC, then also they didn't have any xo
+>>>> as the parent, similar design we kept when it was moved to TCSR as well.
+>>>
+>>> Perhaps we've been running on luck (i.e. XO votes being cast through
+>>> another device / clock as a second order effect) all this time.. I'd
+>>> happily move towards formal correctness.
+>>>
+>>
+>> I would like to stay with no XO linkage to TCSR. Any driver has specific
+>> XO requirement should vote for the rpmhcc XO or XO_AO.
 > 
-> Changes in v2:
-> - Add missing cover letter
-> - Fix up commit message for schema
-> Changes in v3:
-> - Use qcom ids instead of hardcoded msm-id (and other changes suggested by Konrad)
-> - Switch up model properties and qcom properties position
+> Every driver has an XO requirement, as we happen not to have any
+> other crystals onboard.. The clock plan says that these refclks
+> are direct children of XO too
+> 
 
-Hi, I noticed that the msm-id is failing the dt-bindings check (need
-two values, with the first one being the SoC ID and the second one being
-the revision - 0x10000 as there was only ever a single rev of 6125)
+The refclocks are just not the direct XO, there could be other source as
+well. But I am okay to add the XO parent if it helps the use case on X
+Elite and then following use cases on Glymur. I will add the XO parent
+in the next patchset.
 
-I also found this dt:
-
-https://github.com/xiaomi-ginkgo/android_kernel_xiaomi_ginkgo/blob/main/arch/arm64/boot/dts/xiaomi/ginkgo-trinket-overlay.dts
-
-which suggests that the board ID you used may be incorrect
-
-(you put in 22 and the link above says 34 - FWIW 0x22 == 34, maybe
-that's related?)
-
-Could you please give the below a shot and see if it still boots?
-
-From ccef64e4058ba657ada5000ec3c2aa9b682c552b Mon Sep 17 00:00:00 2001
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Date: Fri, 8 Aug 2025 11:45:06 +0200
-Subject: [PATCH] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Fix up msm/board ID
-
-Include a version in the SoC ID (mostly to appease the bindings
-checker) and fix up the board-id according to match the device's BSP
-kernel.
-
-Link: https://github.com/xiaomi-ginkgo/android_kernel_xiaomi_ginkgo/blob/main/arch/arm64/boot/dts/xiaomi/ginkgo-trinket-overlay.dts
-Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for xiaomi-ginkgo")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-index 68a237215bd1..52f74f22764d 100644
---- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
-@@ -19,8 +19,8 @@ / {
- 	chassis-type = "handset";
- 
- 	/* required for bootloader to select correct board */
--	qcom,msm-id = <QCOM_ID_SM6125>;
--	qcom,board-id = <22 0>;
-+	qcom,msm-id = <QCOM_ID_SM6125 0x10000>;
-+	qcom,board-id = <34 0>;
- 
- 	chosen {
- 		#address-cells = <2>;
 -- 
-2.50.1
+Thanks,
+Taniya Das
 
-Konrad
 
