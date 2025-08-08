@@ -1,260 +1,296 @@
-Return-Path: <devicetree+bounces-202586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8980CB1E260
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:34:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11658B1E25A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 08:33:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C24711881F61
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 06:34:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE89216388E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 06:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBBE9221540;
-	Fri,  8 Aug 2025 06:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A0621ABBB;
+	Fri,  8 Aug 2025 06:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="xgGlrJmx"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hxKsAUQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013001.outbound.protection.outlook.com [52.101.72.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB5B221294;
-	Fri,  8 Aug 2025 06:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.92
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754634869; cv=none; b=mJEyFLCGMU/16v1z+A66hBNjYJVA1rhodJpssAiJuUzyuBSMETxfSSfpfZZNpFK/iGBeUeWbdH2OHDTDM0+gHdbQAQvs6y7iqPPRMg3f0SkM3BgXYx/jpP9lB5dlEmLlgHIffz6r0bggxv568ieJihrfUPuie29HLa8Jqv1750o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754634869; c=relaxed/simple;
-	bh=YngK+0IgR0j5KAC9O8kwtc9pXZLRY7B2jDE94hzuZyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qHH2kVPLAazLzW70i2I5CkEdrsQiUK1vQKPCc1Np5x+IygMq1axPIzhPerQFywnWoh5gDQ56j8srdOJEdTUmQiobDSR6ZSzKmEpFmvuW4KT1OdLupxw037FmUZN1L1pFlbZCTVRZ4jcr2C+gamxN96GpCyAPY02ekLaLBiJSGAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=xgGlrJmx; arc=none smtp.client-ip=54.254.200.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1754634845;
-	bh=QcGiq4w682okKuVdm1qm3v4koeCXrUM8SclcFr1jZ5I=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=xgGlrJmx2SgI/ieCDEWmgy4UtH+CA2hXzAFpzZcnALbLw6KWTSENra6O7vZkYPhD9
-	 KkwcqS0C2b2oYSv6H2MwpoalXozxszcS5v3o3eoy/Z7ctq0rSTHfZ2tXMNQoAQ08Ut
-	 tBrzfNKbizZiXDr1T4VF8aENkyLSeIyB8y/3rLoc=
-X-QQ-mid: esmtpgz15t1754634844tcc2eb4cc
-X-QQ-Originating-IP: 8s9Kpd/fbzV3EuHsEpru298bA5IkZi4aBtRN22rDyq0=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 08 Aug 2025 14:34:00 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 9071104872846208711
-EX-QQ-RecipientCnt: 16
-Date: Fri, 8 Aug 2025 14:34:00 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Haylen Chu <heylenay@4d2.org>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Alex Elder <elder@riscstar.com>,
-	Inochi Amaoto <inochiama@outlook.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Jinmei Wei <weijinmei@linux.spacemit.com>
-Subject: Re: [PATCH 2/2] clk: spacemit: introduce i2s pre-clock and fix i2s
- clock
-Message-ID: <78351F50C5DA0C45+aJWaWKEyO_f2a6Kp@LT-Guozexi>
-References: <20250807-k1-clk-i2s-generation-v1-0-7dc25eb4e4d3@linux.spacemit.com>
- <20250807-k1-clk-i2s-generation-v1-2-7dc25eb4e4d3@linux.spacemit.com>
- <aJQXKN_ccpWVJ5oZ@ketchup>
- <C7EA7A1D0F9884EB+aJVcqFqix0GF_RnX@LT-Guozexi>
- <aJV2EIC_0E1FQX7L@ketchup>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC041C5F27;
+	Fri,  8 Aug 2025 06:32:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.1
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754634769; cv=fail; b=QhNoqyl2+O1viIHsvc3LC43IpOaOkIxkP0JWmhtkun6DOT1uEkhv5UOBASpFXg6hrEtQ0w6j276hotUFw/OZsg1ouWZomJbzP9hAkQffemykKxbgyT87MnSxhqpMZVZPbkaQ8WZDB4I59zmacfxmE0Z0gfFkKc3/y9NpQcU+SV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754634769; c=relaxed/simple;
+	bh=sIk0Lq7YPGXgDN7tZ6wubaprlLbyF/Y8LSnqz/c9TpQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=RyipHoFSm72E+wZUsf5Wd79k+vv7ylx1yD+Kqe+gdYzXwAVtgT20uAYmw8CD486H0GhF+y0zg1YdZGdnRRb+0iv3eMm3WCOj1/WnwbrZnDtZUiGcgw817VFjkQ2jZqFAwBg3ii1rQubftHEGySjXtY6nTMEqm+M9owNitHNh+q0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hxKsAUQW; arc=fail smtp.client-ip=52.101.72.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xWagjXgqJbUD7rjSqxw7a83ztTD0PJRveLbxGS/jt8BprbfE600YuDvbx5k84TGa9WnktcYZHm6o2M5k5tSK02aD5LLVrUqKi6IeY8qrnEuApIe9T3B6obnQMjv8Jfhd6GxgGi7gvsKbOcrRejm1FhKvpOwUoLc0VtHGIcAk0OIGE6lzPP5mEIXJG2Z0v3SC8D26hwCjW7iMx8ABlNJXxGulox12jPdAQA6JcSTBnxh/EwK5fqWRjEgD4Y1UzioE6loiIX7kH8qL6c1TfKVrxhmmx/1yXfgyk/WWSr5VoTiLMIaW0USbkIdzT1rMX/WgJ6t2ueVids4Y2xOosTBX2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QKrno0zM2CUa2Cvwiad9vevpbaBeDywmY1/+Yt/86qQ=;
+ b=nJydgHOyVM3jHoTkmhMDOhSqi17gvaL9hVvUujJayWQqOfSVsoFjvtpxKp2l3egHV9tWszn0RRZhjiwYl0Ktk58+mS41qdAveqrfgs+IB+IeLon9A5RwG1+9APMbB0NxehZcnQh4m8KVT8eCtRoIHVRq5XbTokNruADHAzxafefsL/It8I4f1WgyBiO9dFjsMMdz56Ku8hgvvoWqA+pp8mq8hqX6QnlSKjXf+iIEZdCQZomlw8fA2U1PLS7VI7hRcOKfNUD+ZVNON2YC9oBiIpsMr0JK2SjWVsQF6g0OIz8hzLxi+c7w5pZTSZ9g/sQMRBYSIg47lIuYdeN+p+rqCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QKrno0zM2CUa2Cvwiad9vevpbaBeDywmY1/+Yt/86qQ=;
+ b=hxKsAUQW2cgpD2wPXEyntAQHVazmmR0TXVZ7Y5e9NW6GOFjAvpGyRry5E28EzprIzIh9G0q8d+3OJt4/C3l3KU3zS7jQkv7I9QnDqstY7VomNdvWwvEjLn1KmZMmMehOZLZ5sX3ou2fmwt8Fjdo929TmXPcd/gXYLSuMwiL/CLG7fA1hR8f6n4MvqWQumF5HPMgNo/ObF0TzjYWBoxrTqriNiksrLb7Gnx7PShUVuSGU7z3xcz8BHizVlAP4hgNS3luRYm44iwa0l/tvmUZQpn0p/o0mfB9m5c7xonIk9PcOaU948VJaZDogIAPOGmiTHyWgbYT9b4VACZxwPW62lA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AS1PR04MB9630.eurprd04.prod.outlook.com (2603:10a6:20b:475::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
+ 2025 06:32:44 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%5]) with mapi id 15.20.9009.017; Fri, 8 Aug 2025
+ 06:32:43 +0000
+Message-ID: <481c4a38-e638-49ea-88d4-765e581afca7@nxp.com>
+Date: Fri, 8 Aug 2025 14:34:12 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] drm/bridge: imx: add driver for HDMI TX Parallel
+ Audio Interface
+To: Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ lumag@kernel.org, dianders@chromium.org, cristian.ciocaltea@collabora.com,
+ luca.ceresoli@bootlin.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+ l.stach@pengutronix.de, perex@perex.cz, tiwai@suse.com,
+ linux-sound@vger.kernel.org
+References: <20250804104722.601440-1-shengjiu.wang@nxp.com>
+ <20250804104722.601440-6-shengjiu.wang@nxp.com>
+ <fa455148-a071-4433-8c9c-26add3872604@nxp.com>
+ <CAA+D8AN4n0H6M_0EqX4z_37ViSCyThKbmtMgqPmipintJ8Wtwg@mail.gmail.com>
+ <ba02693b-8ad2-4297-ab89-5b39d5c4315f@nxp.com>
+ <CAA+D8AN3VzFx1g=8wyxJROw96xS2-qoVs3X4vUfFnJtUCqFj_w@mail.gmail.com>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <CAA+D8AN3VzFx1g=8wyxJROw96xS2-qoVs3X4vUfFnJtUCqFj_w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0010.apcprd02.prod.outlook.com
+ (2603:1096:4:194::15) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aJV2EIC_0E1FQX7L@ketchup>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: OAUF/GsESChQugrzVjohqGykBe+ky00ysdsZ/XhXV6nIP54/WdvPaYmi
-	nxKTiY+1pWqXQQydk5yi8FiYk7oqKXm4FFyi6bIdSkIGxCtDm97wxT6Hm/GeycQEPA3Tnlz
-	TddoXsh62EtoZmCjkMaXxdmOgQ+QI+bvH1/cyw8l3rjvxtdbbcTMkKFzzFAXDrAkd0ZK3g/
-	mwoGUefMqH9dnCmcIEfmn3MQh25edCC8d806IDk8Kz0DKhTIBFVU7s97YjTdMCnodnt0seh
-	vPrSCVJPyCjrJp/IGJ/aS4toH0Fui4RgVBbD9wIZqGG2vpShkV+2wYv5BY0B3rUG62pgysX
-	1uCEKUsCOQwvqOHLSjqB1MV9p0QA1mESkjEbIn3nzKPj8rdnu9OafFNFhwm+l/b2F2co7ll
-	Y9FqfLeZLEkewED9/lqR1FD5pQh6HfQ15uN6HDpWGWEVJFexffmldQEcDp4aEXQHyS8njQA
-	HAtq2Zrsl94MhHBB0Z4rNfqjGqBPA0uhr91fJsR59OhGICT+i6W0CUH2nrU0axTqw0GxX8S
-	JXRGC5ChN/J/tUncFSkn+AsH65JOMB0BLPbl8xIgZLzJR88ND0LeKE4AbJGpTb6DDQNGtco
-	4tYG/ktJ55bBGjqoPVRuaY59iYEaSsqL6L9ukgB6JEn8E8VIOoWYdCaNSPoIJ8UHKBK/Ags
-	K37si4kT2BL5i66DyzjZod6EmctcM8rVvQ2PFATLtab6mUNf9DrlvyWpF9j+zzecEDeWtig
-	C4JnZ0Bhh78JApOrQcuFsI/8ATCvI502sMv/aN0twos8h90LaAgNs4rhSsZUlsOFJ9hF3/H
-	VhqDbSZvRsESr1s3giA5Bv9oC2nrgYjKBUIU9K2k9MdH/zcAtM+PiB/tFU6yoTmDcF13UK3
-	wVohiasDNW/1nWEdc+xkQEcB8JfrZ5tbI6NyUwO9Yz3w3uzvPdF2K5efIWtoDQK3wjUXWly
-	LcKr8irG6YDg0l9NnNekD6kaVOxMvgwjEhQruewPMTNUE+z1mMJOdtTNrly7TwMJhXarvS7
-	R4MKjTK4URcG/ow+f5I23p2Qq6ChhvHK5U1V4QEM8Bnfh7At41
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS1PR04MB9630:EE_
+X-MS-Office365-Filtering-Correlation-Id: a84b0d98-59a1-4613-3bf6-08ddd64561ae
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|19092799006|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?M1ZTZUx4OXZLaVh2cVVIVklibW9iWmFjNk9KOVd0UytZWGN4cENpVGxFNWQ2?=
+ =?utf-8?B?SCs2cmZUYnhMYmFPb0ZCdHlIR05YNEs4cUlSWDdBVERKcG5tR3ZlbVNEd2FH?=
+ =?utf-8?B?aC9hamxXVU1GcGt5OVlwZGswMHoxTXpYejY4L01HSVZ1UHQzYlZNQ05BOEIv?=
+ =?utf-8?B?L0JFam40MlNtdjRvVHdzZ0x4TGhZMXEyTFM1RFVKblRZVzVrK2NJUDJmcnd5?=
+ =?utf-8?B?NWIyNlMxelNuVHI1bVBKOE8zUlc0YkxuRHpUZFdvdWU2MUl6ZnNiWFMyYW9O?=
+ =?utf-8?B?clZBT1dFTTg0NDB4WU8veHArMEFhYUdNWWxSemxlRi96b2FQTkZkdE03STE0?=
+ =?utf-8?B?Sko3bVplZ2phaGpKS2xzbEZJQWVFNTAvaml0Ky8xZk56TjJlaEZ4YWdsRFpq?=
+ =?utf-8?B?WllWc05uaHM4WERSRlhqZUFWbXRDUks4SDBmeWpGQnJFbmYrckJuUHNxYUww?=
+ =?utf-8?B?bkhsTXFxaGwreDNiaHdUSC9vQ1NBVHRUOFp5WEowU2kzRkNvMjVoWitSR1N6?=
+ =?utf-8?B?VEFzclhjdUtlZnBWVXpFVGhBczNYK1loejJkblNCSVJwZVZZN0lqVEVmZXJ4?=
+ =?utf-8?B?M3RzalVxd1pQUHVUNXdreHNVS2l5eXhweDBPTFpXUkxwckpDNUNPVFB3Qk5t?=
+ =?utf-8?B?YmJTLzFUUUJac2FWVVZjMFVqaVA2dURhRklEejNEM21wY1JJalFQS1hjeGl4?=
+ =?utf-8?B?Y1ZPQThEY1dwenF3ZzBoUDQ5V3hKUUl6SS9tNmt2TW9uaUw0RXk0SlJEU1lk?=
+ =?utf-8?B?TnhpM1Nuc0daRzRqVmNxamwwTDhVcFRQcmYwbE9wSzVjWkoxc0tUbTlRUnl2?=
+ =?utf-8?B?MEFBQlcwV0NYbldsZFI5T09JaEhHUjVxa2hlVHFCMHVUanRsVkJNcW9GcmZh?=
+ =?utf-8?B?dGFGdVJaRXZVL1FkcEZ3TkpGVUNuVVQ3VFlvSnZ1NHRLZXhUQmY1RHRvdHBm?=
+ =?utf-8?B?TkZSbkg5R3BnVGwrbFkzUWR0VE95elRwYVJrc3l0ZE83YmtNOGhVeHdoRGlw?=
+ =?utf-8?B?UXdvSGdVSEhKa1FvcHEvcGY0cStPOGp3NVR0SDNSYXIyZjFHb2dJRW9KVzlj?=
+ =?utf-8?B?T09MdVp1Nm94OVoraXZ2aUtna3p5N084d0c1aTFBVk5hS0FKZ3UyRkpsY3NE?=
+ =?utf-8?B?Ulc3ME9JenFnZzVubFpDQzI5ZUtYWlJveEJuUTRXc2xIWTVNakx5R1FiOThw?=
+ =?utf-8?B?cGRuSHprMXpFSy9zSE9XYWFVUUppV2tpYi9oZUl0Sm9iT1Z4M0hLTS9xblF2?=
+ =?utf-8?B?V3ZHbVdER2ZUT1ZTbWV3K3hnb2pEUG56ZGFUWVg0bGIzZFowdUNMZUQ3YVFZ?=
+ =?utf-8?B?aXZWMnZFaHJORW5JZUwwaVNLcU9ZeloxVUV4SXZYclZMZVh5cU41NVVDWTVi?=
+ =?utf-8?B?blFuWTk5aEV3eUI0QlQwMEpFRjhuNU5NdndaRHJ2b3J0Z2kzcjJGdldyRkZ5?=
+ =?utf-8?B?aXJaeHYzaUNEM1FqYmVuTHQ2Y1lGd2dhTFVsazMzbXRSMzNORHN4YkwvVndj?=
+ =?utf-8?B?OVhsYkdsM09uT3paOHNhVEppNUo1WHhjbi9Eekl4clcyV3R5RHN5S05BUk96?=
+ =?utf-8?B?cmFXT1J3dU05OUt3OUR3VzY0WjVoR3RPNE9kTlArOWE5QzV6ZDVEcHp0VTIw?=
+ =?utf-8?B?S3M0Nm84RDM5bnFzcDIraGdncFNaMkt1OXlQUmRHY2xGTXRmeTBuU0dZOW9W?=
+ =?utf-8?B?RzUwYTZza0lUYUVTNE1OakJLRFAzMnY2dkdTd1NlUVI3RzBWWlJWdlpsOFFx?=
+ =?utf-8?B?TGNRR09NSG1SK0hmckh6Yy9OVkVZckVaQjl6WjhuWjF2UEo4UmowMUNkVlVU?=
+ =?utf-8?B?dG5nckJ6QTJZUWcwVXRiZ05zaWxyZjNrTFVhUGh2WlJGRzFlUU1LOGtKSitU?=
+ =?utf-8?B?QmJMYmoxTkkyUThucDdCQ294R0tRQnRHSmxmNzk3ZDlFYWU1TU10bHJkTmdm?=
+ =?utf-8?Q?00mqXQ+tuHc=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?c0JPQi9CcEpPTDI5bjNhYUxNMFFsNS91MEFkU3ZUU2NCWGJMRVV2YjNkem9o?=
+ =?utf-8?B?UkdMRUQ2L3FONEM4clhKR29GdlhUWnJIeFlPRTFTMXJieXVyWVA1elNaY1F3?=
+ =?utf-8?B?RG43YVpXUG1hYVFodEVBYVc4R1BaSWlOKzRBZVhiRGRpRWpsMTZ2NjE0UEll?=
+ =?utf-8?B?dmc4cG1zQ2l4S3hEZXRlT0h2dTRDWUtTM0JOc3pGSkgwOEdLcEVoZnF1QXFq?=
+ =?utf-8?B?a0tXa1ZpdGxScjhvWG05cFNxYk9FWTIrcC9lejd1TklwRjFQeFUxQkJHRDBZ?=
+ =?utf-8?B?VWJFTFY1OVpOUHdiM2RzY2c0aWlMN3I3dXhjMlA4NVhkeStUL0ZsQ3dRT1h0?=
+ =?utf-8?B?bmtJMUZqczFkdGxyMWhaWEY5aE01YzM3UTk3K2MzamswcVRlQ0c4SHY3UXls?=
+ =?utf-8?B?cWhvNnlWOEhFMUZxY1Fzc1VGQUY1SlZzVnppUEY2MkJjK2YzbEdiS2FWNmF1?=
+ =?utf-8?B?RTFuaDAzNlVIRG53dndJbGJXMEJEWE1TREdyZmdySFNPUmVFTk5uRGY0ZStB?=
+ =?utf-8?B?NUQ1djRjZlc0cXo3aHRxSWxLWDNBSlhFcks0cnZXZzZSQlo1NTBPbldQKzRQ?=
+ =?utf-8?B?L0oyMCtHK0tKcFBZcVhab2R2ejV1bzArT044TUNaODJNbFFZcmNiOTlpSkVq?=
+ =?utf-8?B?YWVnWUVmMDljZ2xRckZhR3d5bDg3WlBKcElzMkhZR2hocWxLelN3QzJlK0hF?=
+ =?utf-8?B?YVhraVVSUEc5bUZUMnl1YnViU1pPSExkcmVJVlptUUpQZW5sUFlGL09MNTZm?=
+ =?utf-8?B?ZWdWMThDbHp0K3l6ZGY5dzE4dm5nTTJzeE5JanlSTXdWb21BclNLZzluSXdX?=
+ =?utf-8?B?MUkxVjZELzl1L3V3eDhxU3FLenRKS2Mwb2hvYUdQNjZNbXVTbjhvbXZRd0h6?=
+ =?utf-8?B?RWZyTkgzRTN6bHZ6ZlFzVWpUNlM2Nit2aGRoZmw5bitUa3JDTngxeXJBRzJL?=
+ =?utf-8?B?cUpUL2QvQkZkVjRiNHZnQldYQTlObmI3ekZPeVVZVTJ6V1pBdUVHNGZIcm0r?=
+ =?utf-8?B?VmhpZXR5T0VaTmNxYmlEdzhPL01YMzlFWU5kVkdBQkpDWS9mQWtXQjVsMTMw?=
+ =?utf-8?B?dzkramU4enBYMkVUQUU1eEpEWUVoRWMrczRaYlJYT1FGZExsaWZiTmRCenhl?=
+ =?utf-8?B?ajdSdEdIcE4rN3RQVk9vUEo1VjBRWFJSTUFpOFVpNmllbFU5dFRVeHBveDhQ?=
+ =?utf-8?B?OXJMYmdQZWJtWHFOUmpyWWJoZnhJSEM1dGlqS0gwZ0NmOGtIRmgzbXN6UTB2?=
+ =?utf-8?B?enpEUTZtU1NJL2EzR0pnRVUzMnJuVlFHVkFSVHVtNno2b0w3NmRoa2orSU9x?=
+ =?utf-8?B?bWN5aTlsSFlwN3pydDNCWHd4ajF3SkQyOE9QRG5nVENhR2FnTWVRbHZqdTRY?=
+ =?utf-8?B?UnU5UmorclYwT2RTdnp5Qk5IdWMzcjJyZzRnZlhkMWZhVXpBa1J0bklsemJB?=
+ =?utf-8?B?WjdaLzh1bHVIMllNZHRBejBhRzZ6VTg2VzVLYk04bmRBelRBai9tQVI0NlpP?=
+ =?utf-8?B?N3lrM2N1MTAybUhjMWtQUlQ0dXdIZzRReW9wQm5WdGdOMUVHMDAyQm1BQkQ0?=
+ =?utf-8?B?bi9pVE1uUHdXZVN3SHh5SDI5WE1mSDJPbFJ3Lzk0eFBjc1FpT2lnRkc5ZkRp?=
+ =?utf-8?B?UnlGekJRUVRDVkJWSEIyMzQ5eWozaWpnbTZBUHRuaHJrQVVSL1hjMWpoaHhw?=
+ =?utf-8?B?ZjdMUUMreEx6TzdWZTFHRDQyMXRvR1hyZDNLZllsbDZ3dElSU3NWYzRwdG54?=
+ =?utf-8?B?ZW5RYkdrbVVkOXFUZ1F0SytQQWF2eGpmcXZ3QWZpZlRtbTljMFVoZXRGSFJE?=
+ =?utf-8?B?NnNvc2FUd25RcElTY3oxU2xIdTgwYXlTWFhjNmRjenR4RjZMd3lQTGVRbzh6?=
+ =?utf-8?B?YU41dU5CT3VKZnFESUE4dENyV1lPTXVpOWpQaXhha2dWWEFaZzV3MVkwR3VX?=
+ =?utf-8?B?MXNNRHBZQmNqbG84a3Z2aXJGbUdoU1o2RVZrSE5raEI3K2NYc3FmMkpCMWo4?=
+ =?utf-8?B?dndtKzliZWx6Q2ZUNHViVmZHUzNhcUt4MGpCWi82N2hJa1ZzNXpsb0RTVm5u?=
+ =?utf-8?B?b2s5YXc1NXhrZGdvdC9zTU1zT3Flem5SYzRPbndxT3UwZ1BVYzVlQmEvNzFr?=
+ =?utf-8?Q?Sv07th52NXLR2E6tLMvOZGR7v?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a84b0d98-59a1-4613-3bf6-08ddd64561ae
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 06:32:43.8846
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +OAAhUvlQelzsVZcEabBgmZGY9uNCrJQ38T75/Nm420IM/dSgWnK3QKPZK7qk/rzMVnpu01WI8CSixt9izrr3w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9630
 
-On Fri, Aug 08, 2025 at 03:59:12AM +0000, Haylen Chu wrote:
-> On Fri, Aug 08, 2025 at 10:10:48AM +0800, Troy Mitchell wrote:
-> > Hi, Haylen!
-> > 
-> > On Thu, Aug 07, 2025 at 03:02:00AM +0000, Haylen Chu wrote:
-> > > On Thu, Aug 07, 2025 at 09:30:11AM +0800, Troy Mitchell wrote:
-> > > > Defining i2s_bclk and i2s_sysclk as fixed-rate clocks is insufficient
-> > > > for real I2S use cases.
-> > > 
-> > > This is a little misleading: they're modeled as gates with fixed-factor
-> > > for now whose rate is calculated from their parents instead of defined
-> > > statically. You could avoid possible confusion by replacing "fixed-rate"
-> > > with "fixed-factor".
-> > >
-> > I'll change it in next version.
-> > 
-> > > 
-> > > > Moreover, the current I2S clock configuration does not work as expected
-> > > > due to missing parent clocks.
-> > > > 
-> > > > This patch adds the missing parent clocks, defines i2s_sysclk as
-> > > > a DDN clock, and i2s_bclk as a DIV clock.
-> > > > 
-> > > > The i2s_sysclk behaves as an M/N fractional divider in hardware,
-> > > > with an additional gate control.
-> > > > 
-> > > > To properly model this, CCU_DDN_GATE_DEFINE is introduced.
-> > > 
-> > > Could it be represented as a DDN clock taking a gate as parent? Just
-> > > like what is described in the published clock diagram. Generally I'd
-> > > like to avoid introducing more clock types, there're already a lot.
-> > Uh, our new chip(K3) may uses this macro that I introduced..
-> > so I don't wanna take a gate as parent everywhere..
-> > how about we leave it? ;)
+On 08/07/2025, Shengjiu Wang wrote:
+> On Wed, Aug 6, 2025 at 2:52 PM Liu Ying <victor.liu@nxp.com> wrote:
+>>
+>> On 08/06/2025, Shengjiu Wang wrote:
+>>> On Tue, Aug 5, 2025 at 4:55 PM Liu Ying <victor.liu@nxp.com> wrote:
+>>>>
+>>>> On 08/04/2025, Shengjiu Wang wrote:
+>>
+>> [...]
+>>
+>>>>> +static int imx8mp_hdmi_pai_bind(struct device *dev, struct device *master, void *data)
+>>>>> +{
+>>>>> +     struct dw_hdmi_plat_data *plat_data = (struct dw_hdmi_plat_data *)data;
+>>>>> +     struct imx8mp_hdmi_pai *hdmi_pai;
+>>>>> +
+>>>>> +     hdmi_pai = dev_get_drvdata(dev);
+>>>>> +
+>>>>> +     plat_data->enable_audio = imx8mp_hdmi_pai_enable;
+>>>>> +     plat_data->disable_audio = imx8mp_hdmi_pai_disable;
+>>>>> +     plat_data->priv_audio = hdmi_pai;
+>>>>> +
+>>>>> +     return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static void imx8mp_hdmi_pai_unbind(struct device *dev, struct device *master, void *data)
+>>>>> +{
+>>>>> +     struct dw_hdmi_plat_data *plat_data = (struct dw_hdmi_plat_data *)data;
+>>>>> +
+>>>>> +     plat_data->enable_audio = NULL;
+>>>>> +     plat_data->disable_audio = NULL;
+>>>>> +     plat_data->priv_audio = NULL;
+>>>>
+>>>> Do you really need to set these ptrs to NULL?
+>>>
+>>> yes.  below code in dw-hdmi.c use the pdata->enable_audio as condition.
+>>
+>> Note that this is all about tearing down components.
+>> If this is done properly as the below snippet of pseudo-code, then
+>> hdmi->{enable,disable}_audio() and pdata->{enable,disable}_audio() won't be
+>> called after audio device is removed by dw_hdmi_remove().  So, it's unnecessary
+>> to set these pointers to NULL here.
+>>
+>> imx8mp_dw_hdmi_unbind()
+>> {
+>>    dw_hdmi_remove(); // platform_device_unregister(hdmi->audio);
+>>    component_unbind_all(); //imx8mp_hdmi_pai_unbind()
+>> }
+>>
+>> BTW, I suggest the below snippet[1] to bind components.
+>>
+>> imx8mp_dw_hdmi_bind()
+>> {
+>>    component_bind_all(); // imx8mp_hdmi_pai_bind()
+>>                          //   set pdata->{enable,disable}_audio
+>>    dw_hdmi_probe(); // hdmi->audio = platform_device_register_full(&pdevinfo);
+>> }
 > 
-> I wasn't proposing a workaround. What will go wrong if a gate is taken
-> as parent of DDN everywhere? 
-I think this a bit troublesome...
+> Looks like we should use dw_hdmi_bind() here to make unbind -> bind work.
 
-> Not to mention this DDN variant actually
-> duplicates the code in ccu_mix.c.
->
-So I’ve ultimately decided not to introduce DDN_GATE.
-I’ll change the macro for i2s_sysclk_src from
-CCU_MUX_DEFINE to CCU_MUX_GATE_DEFINE.
+I don't get your idea here.
 
-What do you think? From the clock tree perspective, this should be fine.
-> 
-> > > 
-> > > > The original DDN operations applied an implicit divide-by-2, which should
-> > > > not be a default behavior.
-> > > > 
-> > > > This patch removes that assumption, letting each clock define its
-> > > > actual behavior explicitly.
-> > > > 
-> > > > The i2s_bclk is a non-linear, discrete divider clock.
-> > > > The previous macro only supported linear dividers,
-> > > > so CCU_DIV_TABLE_GATE_DEFINE is introduced to support
-> > > > the hardware accurately.
-> > > 
-> > > The divider IS linear, from the perspective of functionality, it just
-> > > implies a 1/2 factor. Could it be represented as an usual divider and a
-> > > 1/2 fixed factor?
-> > ditto.
-> > 
-> > I know you don't wanna introduce new macro..
-> 
-> It's not about new macros. It's about new clock types. And the solution
-> I proposed for the divider with a factor isn't meant to be a workaround.
-> 
-> For the divider's case, I think combining a fixed-factor and a normal
-> divider looks more clean than introducing a new LUT. It solves the
-> problem for K1, right?
-yes, It solves.
+What are you trying to make work?
+Why dw_hdmi_probe() can't be used?
+How does dw_hdmi_bind() help here?
 
-> 
-> > But K3 requires this, so whether it is introduced now or future,
-> > the final result is the same.
-> 
-> Could you please confirm whether K3's dividers requiring this patch are
-> really non-linear or just imply a fixed-factor?
-I will confirm this point.
+> But can't get the encoder pointer.  the encoder pointer is from lcdif_drv.c,
+> the probe sequence of lcdif, pvi, dw_hdmi should be dw_hdmi first, then pvi,
+> then lcdif, because current implementation in lcdif and pvi driver.
 
-If I send v2 without removing the CCU_DIV_TABLE_GATE_DEFINE macro,
-that would mean K3 really needs it.
+We use deferral probe to make sure the probe sequence is
+DW_HDMI -> PVI -> LCDIF.
+
+LCDIF driver would call devm_drm_of_get_bridge() to get the next bridge PVI
+and it defers probe if devm_drm_of_get_bridge() returns ERR_PTR(-EPROBE_DEFER).
+Same to PVI driver, it would call of_drm_find_bridge() to get the next bridge
+DW_HDMI and defers probe if needed.
 
 > 
-> > Please leave it..
-> > > 
-> > > > The I2S-related clock registers can be found here [1].
-> > > 
-> > > So this patch actually does four separate things,
-> > > 
-> > > - Introduce a gate-capable variant of DDN clocks
-> > > - Make the pre-divider of DDN clocks flexible
-> > > - Support looking up mappings between register values and divisors
-> > >   through a table when calculating rates of dividers
-> > > - Fix the definition of i2s_bclk and i2s_sysclk
-> > > 
-> > > IMHO it's better to split them into separate patches for clearness.
-> > Ok, I will split them into separate patches.
-> 
-> Thanks, that'll be easier to review.
-> 
-> > ...
-> > > 
-> > > ...
-> > > 
-> > > > diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
-> > > > index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..253db8a602fe43a1109e2ba248af11109c7baa22 100644
-> > > > --- a/include/soc/spacemit/k1-syscon.h
-> > > > +++ b/include/soc/spacemit/k1-syscon.h
-> > > > @@ -29,10 +29,11 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
-> > > >  #define APBS_PLL3_SWCR3			0x12c
-> > > >  
-> > > >  /* MPMU register offset */
-> > > > +#define MPMU_FCCR			0x0008
-> > > >  #define MPMU_POSR			0x0010
-> > > > -#define  POSR_PLL1_LOCK			BIT(27)
-> > > > -#define  POSR_PLL2_LOCK			BIT(28)
-> > > > -#define  POSR_PLL3_LOCK			BIT(29)
-> > > > +#define POSR_PLL1_LOCK			BIT(27)
-> > > > +#define POSR_PLL2_LOCK			BIT(28)
-> > > > +#define POSR_PLL3_LOCK			BIT(29)
-> > > 
-> > > This reformatting doesn't seem related to the patch.
-> > It's worth that create a new commit to reformatting it?
-> 
-> IIRC, the indentation is intended to show the relationship between
-> register bits and offsets, which seems easier to read for me. 
-Sry I ignore this..
+> Should the lcdif and pvi driver be modified to use component helper?
 
-But isn’t the POSR prefix already sufficient to indicate the relationship?
+Why should they use component helper?
 
-Have a nice day!
+BTW, I've tried testing the snippets suggested by me on i.MX8MP EVK and
+the components bind successfully:
 
-                - Troy
+cat /sys/kernel/debug/device_component/32fd8000.hdmi
+aggregate_device name                                            status
+-----------------------------------------------------------------------
+32fd8000.hdmi                                                     bound
 
-> Do you
-> have a good reason to change it?
+device name                                                      status
+-----------------------------------------------------------------------
+32fc4800.audio-bridge                                             bound
+
+> This seems out of the scope of this patch set.
 > 
-> >                 - Troy
-> > > 
-> > > >  #define MPMU_SUCCR			0x0014
-> > > >  #define MPMU_ISCCR			0x0044
-> > > >  #define MPMU_WDTPCR			0x0200
-> > > > 
-> > > > -- 
-> > > > 2.50.1
-> > > > 
-> > > 
-> > > Best regards,
-> > > Haylen Chu
-> > > 
-> 
-> Best regards,
-> Haylen Chu
-> 
+> Best regards
+> Shengjiu Wang
+
+[...]
+
+-- 
+Regards,
+Liu Ying
 
