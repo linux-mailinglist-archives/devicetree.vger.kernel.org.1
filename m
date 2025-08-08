@@ -1,149 +1,135 @@
-Return-Path: <devicetree+bounces-202844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2DEB1F069
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 23:53:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A74A3B1F0A9
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 00:28:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BC305A410E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 21:53:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 680676228EA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC3A28A41B;
-	Fri,  8 Aug 2025 21:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A195289825;
+	Fri,  8 Aug 2025 22:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gmL/NxpR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QOEOtT19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB954289E39;
-	Fri,  8 Aug 2025 21:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E81289811
+	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 22:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754689944; cv=none; b=uC8VZUBrwyvkoGwWPQ3XjdTEI/87i0DetIFZqKLjgUjVTM4o0BZ7reRgJ5UCC0aK3BY6KErRzPN4ZuFcGMyU6ChGdaIA7HGsy6ZlfaxNeS0Gn/xag/G5ExZPEh5ZrlqKO85Pf3x0LFETMjDe2mJ78+Y32OxPnWXET3pyMDzGh2o=
+	t=1754692118; cv=none; b=Az4jqRhzYylqjwg3nwah9HgI6r+hOzPfa2C6hFKDtzRSWnHws4v60JkCHrMOFXVQxXZ2V53OfEoA82bkT5JmeSV1PaoBJANZQQoNJ0hQv8xfL3jTaz58zqDQ+rzVUpsqTkbbUvz6xjHO7z0htNrSSkASWr5IcliAzH+vxaiWOPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754689944; c=relaxed/simple;
-	bh=MgRQW6IwPCnaCl/We4GjzTXHJKwd4rAbiwcpcw8mUjo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Z1f+ssYhMcFJV6GNPR6X7udJJAkG51qRaIrbY6F3KIdKKwBmnmWhya90VtvRZyPtyGnli5GPCwez1nIIvtWdytBJnrSWw3M4Hd1XbkelaKZ8sP5RAOJ1s50dBM9hXLwF5nMtFB62mVGZDl3Gg7pNFQSAn5m4xiBxQRbOR2YoeNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gmL/NxpR; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3b78d13bf10so2591938f8f.1;
-        Fri, 08 Aug 2025 14:52:22 -0700 (PDT)
+	s=arc-20240116; t=1754692118; c=relaxed/simple;
+	bh=uaHfEqDd/Vc7Vg2XZAn7x4HzGyqtpzws6/5+aFC7Elo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B5tr6wISke5pWqogsjKTtGvfhAJdvIP88juIgK6T1InHgGABCBnBsc+4d+O9tg3KnXc0hoQCdENYj4yG8nnh8EjTJkceagJ08GnkbcPov3EQOoQt7eroCuaTqmLW9sSIN3oPR84dlnuG2UnI3m/d7tjnpmu6dB2Sw3+x3vB9dCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QOEOtT19; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3b78b2c6ecfso1464419f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 15:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754689941; x=1755294741; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cmSdf/9CQUvl70IdXMlZn/po6qGixtnt6qlryVPh128=;
-        b=gmL/NxpRX3hP3eUbZ/BF7bAjzKFMvBWLLrZq48q/G5UbEw+p61znkD4CR3XR/stsK8
-         c56soMm/MOqkSeYe2lLd2+sTAJPt1Y/OKKU7q4Y2JCibdPwty1LctDs6zFXwrZ+mHBPh
-         +c0+z+y+yGyxMFp68WRaGFlWaaCubtZvne/8/Gg89EWmLIRu490VGLLOEe+o2DZSsC41
-         e2Sj6Xt71jgXOu3aEuVwdQ1OMmCUwKqW8NjEBIIrZckFccVqtmwAagDtsXefSmZxUiI/
-         qKq83YnHNbb1lkEM1dMJPbuk2NQBERAM2aEJTws2anW4CNDmIq93fEHxjo5H+Rc/k1BJ
-         D99w==
+        d=linaro.org; s=google; t=1754692115; x=1755296915; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bk4Z92vldvgPQRm+g46xxvwEKtrsTK5zc7BqRXD51dg=;
+        b=QOEOtT19wKrtBOYLQiPirGTfz1xxJcBfhoCP26yr/MkvhnKh1CGZY8AL9DmQ8z8yT4
+         4MMrULA87CTsCnzS3J0e1Afu298Vx7AqVavTkwKkMGZewRvCXK5mMxyvv1x5uVAL8Jdw
+         K48LVWcDfO8GEYDvlgFEMRadmRKWWIv5zEj+rY4o4syq80JMSL6DTL3K6myTywXAX/SH
+         3MXDJS8Bui6mzMcJLgdRYtYwowTlchSCa0FuQgBNiQFrCdmuKF4BFXP6XG9A2iRpAJvq
+         TXFS2VkP8jBSjb1VyzBmwWxbQLnyAYBHbX/qKVroP3FaO1ZeBDh2kXUX8OAniTvLvTlM
+         n4Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754689941; x=1755294741;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cmSdf/9CQUvl70IdXMlZn/po6qGixtnt6qlryVPh128=;
-        b=JfoQNJ603wQ53xa42LscOwhECUo51wmNcnfVUAJGOdJ8r75+lvJyodavOk1jXG56Yl
-         h0KYCLr+bYN8LELa/yWAgz52Npaly1wI3hSboWH7rySFIte/jV/na0dD+WXLHYgKnhlh
-         DmkpV5qc0ucb8Bns/5yU963Ayi/CLKnqKv+mj4RMFYu1sB3e7KKB/mJn0Ji7mlq/Yre0
-         lBuyCdS5zpDQg4nLO+Jlgx/S2sE7mo0dAkqKeuC00rYvYBNK4R/MrbZsSpXDONDFwq4B
-         SoPGLob6kplrIEImv7NnoUwGVHx1Rm8jISGYbHQ3F1TmtVo7uboU+qqcitxcRpgdHskR
-         YeJA==
-X-Forwarded-Encrypted: i=1; AJvYcCVKEg2XYFr/UunQm7rrvncOKMiNJqYBVT0HTsPDXZJPuKmbeCkL6BU1LfKx9QeqVVKA/RTMQBK3x18x89Knc0B0lqs=@vger.kernel.org, AJvYcCVz/iKWCzZy8/gl8G05XhlRgpnrqtPy0uZ1VTh3WzP4w5cFk7DbTV+6AZArH9DC/pj0rWXS0l97vpGdZ3ce@vger.kernel.org, AJvYcCW+yTTn/aum/C+7q/SjQyCEtEFwaqkozkPt8HgxUNAOxKWe35xQbSnzICHIJ+Lyqe36IRvzovmnHSiO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yybp61dgY/5vmsg7yZu1ZozU7vLWH6gXxH+qul1zIkagBjheEu7
-	OU2FkatoigAYeGUqgGJuDWEXGGweCFePDKFQ9aTvqSIXBcMzsQQsuAWP
-X-Gm-Gg: ASbGncuHU/2oK87Qqpq0yIiYdJL6qYibCHleaRXsHpTnqWVuPS9vlPm2EBlfk0FtmNh
-	sU0vGpsRmjJXjizV8w+KUlTJv6vuwzj0V7RMuSkR6h3dEWRHv+9rDCHlFCkgGdXrKpD2m3puOxI
-	iMGdsEOxxxPA0azUPGoE1R7lpeX96n4YtZWyc/UOaXmL4hpl9/veTAnwKPSMmdSy1OezYA9szwj
-	tYWC3cvnwpSJqdhVicRGamhKN9qCgwMW5r8f16OGGP/jed8TwJtEshlmYffeL6WPF6jWmTAcQBK
-	8ID94HX0eqxStLz8mDhVypKG88gNPBSrEDc8lSKLgjDL6vJdp4TWHlsy5TW2hfDvBKQV7Kmfnle
-	eGHmzIkFvfqFaX2QX1TuiC+nSYnbOFzxLJQ1E7lFQRNqCIkMQHZlXWlhB2xemcG8h9lqHg2/jM0
-	jOBI/jkOc=
-X-Google-Smtp-Source: AGHT+IF/05lCcQEipOrmBWnaTpk2Y7mleC1kcTd4heh6tjbXJbUyTuT7e3mrMhTJPNdy+G7l0l5YmQ==
-X-Received: by 2002:a05:6000:4283:b0:3b7:8af8:b91d with SMTP id ffacd0b85a97d-3b900b72e05mr4400030f8f.35.1754689940999;
-        Fri, 08 Aug 2025 14:52:20 -0700 (PDT)
-Received: from iku.example.org (97e54365.skybroadband.com. [151.229.67.101])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b8ff860acbsm5326759f8f.51.2025.08.08.14.52.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Aug 2025 14:52:20 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 5/5] phy: renesas: rcar-gen3-usb2: Move debug print after register value is updated
-Date: Fri,  8 Aug 2025 22:52:09 +0100
-Message-ID: <20250808215209.3692744-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250808215209.3692744-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250808215209.3692744-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1754692115; x=1755296915;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bk4Z92vldvgPQRm+g46xxvwEKtrsTK5zc7BqRXD51dg=;
+        b=BhN0qpbPzjzrmn8hhIyKzqzrkpWvabkHvnWtnABdRltuWLbRRFkVn6gTXCRGNRPEfW
+         aUfB4a0OGVqZgrg0MS9o5Ax7rY3XUZkB8YeAlc3Lpm//U1Diz7fSGiiIDzNFHLKfwW/K
+         ONWGZt96ARFnI9MGjgCcyELRhNA48p6iq5DJxyoXGPRMyo2r7vkLYRXNc2itUt+8nFQD
+         Bk2ztSXXg9wMgjdTg8/Cga3GD4hQXg3ZGrqizdnrl0wAp4efIaSVH/etF2X0EH5isvlP
+         I4DSQgOEby8YFdVwoIxdXLQM7WwZyEyA4KWTR0gdvUzLgh6lmSqrCtmzTwMUlX54vdDr
+         rKNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPZKZwNqWytPNtWea6mybGMOGI9b9/a1pxnDAC7+QiqTRmim3HvFn3HIeP5yDIDhKtl90Mkj36pcuR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7Ib+poZuehflhrvCafuGIXo14dq/9UgMdpbPYzZk/axPtuvGf
+	E0Bwg6ZdSSXXFcouE+iee9R1uahmS0W2YCXml94vg8mBWIQdkyXHzprtRcLmFM4zgBjWToc5lDh
+	KYPOfOc97r57ssJfq0cKSFZHxFdEUvV7t3NlOqx2gng==
+X-Gm-Gg: ASbGnctEgaNjw+pCGzi8BPFq/F6e0OEifIFQBoNJu4WoyJcK4tQVsBceSQ+qWjhoRI0
+	jbaU0LIXpGj5Am+NKyi+fiOL5uTtbWCm3QNugnyL1fwSeQNv3wZvRFRxg7jTKs9hKnGKTQOr07t
+	vD03bKU+B1FCQ4jS+G/F136/qz+YezVCkrqBBfZEPL9ynGTsycLnUvsWTevhrQwZhmbGXe14bix
+	r7JNyDANQ==
+X-Google-Smtp-Source: AGHT+IGy+JfWioN1EZvauRq8fNVKD77kq7pV11eEmcSqXqQw+Ty2x4MuKZfeT7+cYgy3zueauhd1kIbBdcArMua29PY=
+X-Received: by 2002:a05:6000:2f85:b0:3b7:8d70:e0ad with SMTP id
+ ffacd0b85a97d-3b900b4d8c1mr3401099f8f.32.1754692114271; Fri, 08 Aug 2025
+ 15:28:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250731-wip-obbardc-qcom-t14s-oled-panel-v6-0-4782074104d1@linaro.org>
+ <20250731-wip-obbardc-qcom-t14s-oled-panel-v6-1-4782074104d1@linaro.org> <aJCyBbwNjZvTHnjT@hovoldconsulting.com>
+In-Reply-To: <aJCyBbwNjZvTHnjT@hovoldconsulting.com>
+From: Christopher Obbard <christopher.obbard@linaro.org>
+Date: Fri, 8 Aug 2025 23:28:23 +0100
+X-Gm-Features: Ac12FXwR4FUrET6jv0_EOtK5Bc-B0SWbGu_iG6JN5BJKVMzOvOl3cxeCMpqOk-Q
+Message-ID: <CACr-zFCq08Pu2=eLfe5=sYdGWEHmy7w+=Eo++9AjP96uCLCNcQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] arm64: dts: qcom: x1e78100-t14s: add hpd gpio to
+ dp controller
+To: Johan Hovold <johan@kernel.org>
+Cc: Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Johan,
 
-Relocate the debug print in rcar_gen3_enable_vbus_ctrl() to appear after
-the `val` variable is assigned and updated based on the VBUS state. This
-ensures that the debug log reflects the actual register value being
-written, improving debugging accuracy.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-v1->v2:
-- Added Reviewed-by from Neil.
----
- drivers/phy/renesas/phy-rcar-gen3-usb2.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, 4 Aug 2025 at 14:13, Johan Hovold <johan@kernel.org> wrote:
+>
+> On Thu, Jul 31, 2025 at 09:51:26PM +0100, Christopher Obbard wrote:
+> > The eDP controller has an HPD GPIO. Describe it in the device tree
+> > for the generic T14s model, as the HPD GPIO is used in both the
+> > OLED and LCD models which inherit this device tree.
+>
+> > @@ -5779,6 +5779,11 @@ tlmm: pinctrl@f100000 {
+> >                       gpio-ranges = <&tlmm 0 0 239>;
+> >                       wakeup-parent = <&pdc>;
+> >
+> > +                     edp_hpd_active: edp-hpd-active-state {
+>
+> The node name and label needs an index as this SoC has two edp hpd pins
+> as I already pointed out.
 
-diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb2.c b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-index 8caef9cb228c..7b4a6e8b7508 100644
---- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-+++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-@@ -211,7 +211,6 @@ static void rcar_gen3_enable_vbus_ctrl(struct rcar_gen3_chan *ch, int vbus)
- 	u32 vbus_ctrl_val = USB2_ADPCTRL_DRVVBUS;
- 	u32 val;
- 
--	dev_vdbg(ch->dev, "%s: %08x, %d\n", __func__, val, vbus);
- 	if (ch->phy_data->no_adp_ctrl || ch->phy_data->vblvl_ctrl) {
- 		if (ch->vbus)
- 			regulator_hardware_enable(ch->vbus, vbus);
-@@ -225,6 +224,7 @@ static void rcar_gen3_enable_vbus_ctrl(struct rcar_gen3_chan *ch, int vbus)
- 		val |= vbus_ctrl_val;
- 	else
- 		val &= ~vbus_ctrl_val;
-+	dev_vdbg(ch->dev, "%s: %08x, %d\n", __func__, val, vbus);
- 	writel(val, usb2_base + vbus_ctrl_reg);
- }
- 
--- 
-2.50.1
+Sure. After looking at the schematics this should be called
+edp0_hpd_active. I will fix this in the next revision.
 
+
+> > +                             pins = "gpio119";
+> > +                             function = "edp0_hot";
+>
+> And you also need to configure the bias somewhere as you should not rely
+> on the firmware having configured things for you (as I also pointed out
+> before).
+>
+> On my T14s the internal pull-up has been disabled.
+
+I am still unsure of what else needs to be set here. Can you help me
+with the correct settings?
+
+Thanks,
+Chris
 
