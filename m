@@ -1,532 +1,212 @@
-Return-Path: <devicetree+bounces-202832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EEA7B1EFEA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:50:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51026B1EFED
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B04265A32A9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 20:50:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B68721416
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 20:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49865230D08;
-	Fri,  8 Aug 2025 20:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C1A2343C7;
+	Fri,  8 Aug 2025 20:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MdoH+ehw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBKeL+SY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010006.outbound.protection.outlook.com [52.101.69.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB64221FB4;
-	Fri,  8 Aug 2025 20:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754686212; cv=fail; b=uriuVfT5kG1qgMnmDDpkCAkvaO+GlgNzS3G+mLD8stzJkLQ4l/RUPNbvPEKYxDM6EdYu6tg5c4ggQtWrHdmWtDKJgzVC4pUVU/iWcWw0nwL/5+EJsaqyoyrUA2btGsN3xJ4LBBOXdQ/IioK/NMjBx50J1DwQ+fBZoLKinV2p3ic=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754686212; c=relaxed/simple;
-	bh=kGZ4snG9JuDSADJcuLmn7C5i7SS5YEca1Ed8Zyu0hUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=YFvGNLqrO8IHG4g8ZfFrks/vkH00GWCJB3TSq87KsIiFzXFDRBgtmERQ30ACtGOMR2wwRfIqKvUS6d6Cp6hVMt3ZoBas1uzs2+NI/GCWrjm1Q2O6rIg17Hu8hFhMR5oeC4TcbPSgTElKAkeQD7Zwr8/U8uUDtONC7y6knWRbP2Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MdoH+ehw; arc=fail smtp.client-ip=52.101.69.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tHS7Nwyjay3ECWrSDm9z3fD3ApTvmv+eXpGaiIa3vrb4+HkDeeWJRruRcxtDXL93D8Bs+QUYuzOHJiJOpPyGeikIdkRtgh3xWY87WvZO6kwJBbRw/mz4K/i8T8YGMzXQeeA6q4BjaCCuOy3NPtMT0ESHq3F8vfRXECbJIabuIQ0yJedlktxKnIe4yWXEdEgV5GS0wgWcPzrHxzRvqDGuJN3ewE5fR1OrV0EhDwCIT2SV1dAsU/Da6COEuZfZBg99yGCWUNFLo/YtkO9MfCGEvfJto1CvlKxsCBKIVKlsfh8XuNAllaqergtUpnsFyY7CHfvN/AOid6gIzw+16hsT3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DgsMJyf/6AaR8Ms6eprrywtPW2q3WElSO2W7ZEqDUt0=;
- b=bOaZqZe9jJ0i9TECQZSIKOmOXiwDXmCLaXeiTPstpk4xdOb2h78PnqSU5Qiuymbl6Br4X6RzW/OzALKbSOSHf9Z8mMlDaybfgabw3dAd8PnnSphPukZJLZcVAz2DVBrlTTRSweetFGQlPhOJoVsuGLQnR1t9mXKTJzktSKbjZn2AvejWEg2UaGdwFDcesP3XjMk0nwnhID2mF4+tI3noJCo5kAAzl5qEI+iQ9jgJ9ie6Vn6CRZagFoP5pYjKj5Z4j8YLJLk2eiMqDuU+5CNSiALV7ZHDsSwpv1Ll5mYZohGurqZSzXcF9C/2VXX0hdgMm/J2a98jJCHSpnmXIQGRGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DgsMJyf/6AaR8Ms6eprrywtPW2q3WElSO2W7ZEqDUt0=;
- b=MdoH+ehwqa7Me3PP32f+K9xTK08Al3u5zxyys5KO24PTf0L79wiK5DURP0kRWtOBhl5R3n68Y+Q8v/pM2WVy7tt1e54zSoO9nRP0ylhQHhLLkAejtPPTjCt9OR9iIBgicaSzD/r2leCatrCnqsajNXppHiMZ5qeejowciIb5ybuQ+4Zae9j+cyd91K3cqlKCFOiVzNIEHcEAEDFsnmksdj9aAmf2iQo6C7nIlIZbKw+By0pTCc1j9H2MwCpQsiFV5sgEU4Ctun8+ro+WAeeXSRPvJBOc+bIR2rOPQltRiAu8806pr7REVpBgbLkIxyqAdV48KVMohyDEDfndlsCh1g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by DB9PR04MB9474.eurprd04.prod.outlook.com (2603:10a6:10:368::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
- 2025 20:50:01 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d%5]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
- 20:50:01 +0000
-Date: Fri, 8 Aug 2025 16:49:42 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
-	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	devicetree@vger.kernel.org, l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v4 5/7] drm/bridge: imx: add driver for HDMI TX Parallel
- Audio Interface
-Message-ID: <aJZi5sLrcinh3FXX@lizhi-Precision-Tower-5810>
-References: <20250808080617.2924184-1-shengjiu.wang@nxp.com>
- <20250808080617.2924184-6-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250808080617.2924184-6-shengjiu.wang@nxp.com>
-X-ClientProxiedBy: PH8PR21CA0002.namprd21.prod.outlook.com
- (2603:10b6:510:2ce::16) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2AC922A7E9;
+	Fri,  8 Aug 2025 20:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754686301; cv=none; b=SLDrCuhZ1sbD3wJNHA1+rLwqnOe29SMLwLUhWktRtEJy9ocxH++aD2sepDe5DNULaXIXKvaq0YRUeu/WmOLuJbXyU7T7B+njsVQ2ZQlNudheq+GmVYwu5b/QhiXznV9AhoVa9YaZYs79cdBoFz+C4zlzlzUbA1v+cDb4vBzLJsg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754686301; c=relaxed/simple;
+	bh=4c7dcO8cBD9ikUvxoVP8jATQy3ONCOqQNTHYEuyQBdM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E8MZjJrXltjmCATUInNeU26SibSI0+q4tvOTWoX7dpBz2NFbuxYb5XIxEoDxb029L/rzvnaNBZ3WjhIzw5TTSmvDo7eogyl9yLdbl+BtodhxKW85Mu8TXCIxsq8si2KSDwtYPtfEtrXCNRuQQ3bn6gJ8mE3K7SkFOXIbBKSvUZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBKeL+SY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B722C4CEED;
+	Fri,  8 Aug 2025 20:51:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754686301;
+	bh=4c7dcO8cBD9ikUvxoVP8jATQy3ONCOqQNTHYEuyQBdM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QBKeL+SYcyEzKbbmBSU8UI8p/fIkhmUUjyV0ltEVrmhRNTCnGbX4zICtQx9RHJ8le
+	 FdIy1QH8Hvm7vP2i+gBSjJJLuFG/ApPppzWaBfhK4mu0AakIYYonLilAmBxao0pRbW
+	 toFGjGu7RKKSRjntZntsdrQYPu3QniGr7YOd44klA0ugoTT6rFk76dxOF1Cbc0GGg5
+	 i1e4/94Z683Voo62ISDXcvvf8B0zCcOYprU7SA7w4tZMBaVjGZzRd6/dXEd1wl31GQ
+	 7gJ68jGMOJoaxqKVuyUZqxicIN4OS27nKHrNm4i3BS0z+RXpzKOH131Q+RnABBGsCD
+	 ErdSwQxvYkD6g==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae0bde4d5c9so485981966b.3;
+        Fri, 08 Aug 2025 13:51:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUVirRp3+FH5+7Ipy7Vi9uGdsFTkoeiZ7PhpX+b4qN3N8ms6Kg9rgVmFsutSVM6SBePUMwNM9pt8MSk+8RQjIs=@vger.kernel.org, AJvYcCUdXV7FwS0Kfr3qATG5rXVE2ZcgeOCIe2tfKSAmeV+SzF2H/m+zAUBSOO5I10MVsN6Q/6PM+DbgA7wTJQ==@vger.kernel.org, AJvYcCVDVxhHlSGp9Jl6YhYiw85/APKV1S3UuRTxDH9PTX1u8Ue1wMzjpeckt+ks0zjxaFJ4X0QO+fpjaHWr@vger.kernel.org, AJvYcCWeSDWKJoTw1paaS1b9/w712o6Tbh5MA0bbtEuQLbg/LzdJux6v/7noixZH4U0NFaS//5QcDxqNA/P1QGvH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyK+qHDme28Vm/TUfQ3tWFrYoX1dgbfZik1J2JpJPznKky0pUDR
+	jnWOE5IcEFEc60LkEje5zG4mtcSBeOrnUJ+IGUyVKA+KPhp6ZE/9Y10vg+Fm5Co6i8S/iZD8U1B
+	eMXv29OyMCy5BlHI9qCIOss+yZAl4Ug==
+X-Google-Smtp-Source: AGHT+IHQrJOpK4XiBNspBEI4oq5Xzca+wGsnB52qjjmM0BV3Gl1mLQdv12KkSYu/KBIFOkihP1JJ+EasJRhG0Q8Mn4g=
+X-Received: by 2002:a17:907:7f90:b0:af1:8be4:768 with SMTP id
+ a640c23a62f3a-af9c6342033mr407595666b.5.1754686299856; Fri, 08 Aug 2025
+ 13:51:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DB9PR04MB9474:EE_
-X-MS-Office365-Filtering-Correlation-Id: 875fc868-be39-4eab-2863-08ddd6bd247d
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?uKCQ19aEi+ODi7ne9uvpzezBR0LTza4Yd3mRQ8DVSWXteSgHHBkC5Zxnnmjc?=
- =?us-ascii?Q?rJiKO0YqOWY4wfvHPgz55m29TP7SXqX9DViXPcUtSI8gxaag6nleZIriEu5t?=
- =?us-ascii?Q?lEBCfKoU56tbJnI6He4wPUglbl5a/bvUM/ZUP8Gd/BgyRvP4Mz/jfksaWZ6k?=
- =?us-ascii?Q?5U142BI+RWrYyJ3/mhjU9cEjObT3fq2nXFpa2TgJT6cWJQQkZeTFbf4WPd8m?=
- =?us-ascii?Q?Z2YXeW/VhhUktfgIWiDTOYW0z4/sbKd4dO2GZ6LIWkhoi4EgqIs9z66uO68M?=
- =?us-ascii?Q?mysDHg3ZiinOai/URCY4gaiFQt09WrLUvb2h3SfgDiMPVw4yKOH3lB8U29Gb?=
- =?us-ascii?Q?4sJCokQT18vxG+ccQ8SrjaGUdr2XvR0YLbEE75C8k807apigS4mUoRhPyb19?=
- =?us-ascii?Q?8QiUX0KS7srcBswTEysFgQUcEPSMuZoRH8MUDZEXRYe+kXa8qMQO/oxOjKsj?=
- =?us-ascii?Q?PwD6WrjPSTPWkJZgq1y/cJRRyisfBxUPYFIe3Ehxp8FisHvxeVx6BzOxX8tG?=
- =?us-ascii?Q?T2uqLC997y7wNyYCTMl3xTl/WR7jNd6rLTY9XDaPPJNSuNJqO8b4YXSDAtcu?=
- =?us-ascii?Q?O3uIChyshfXJ/3LMvGiWOCvQo4zh4ToDfgJE2LUa/jT0TtUJCMA6DzfNZUkZ?=
- =?us-ascii?Q?1rMSE+CwsFPMptO3erc3wGjYU+M3WIIpwARSHWX0nj+ONtxDCQhFt+DXqX/V?=
- =?us-ascii?Q?hP1/89dR/k8oz7S2oesqsmuERQZreWUOQ48ePWbRUgUSnBxciirribYWyd7b?=
- =?us-ascii?Q?+truwD03OFezowVCmmeF95v0qs9ZrtkT1hveRDn9dDWibwLbUtqDY2rnsY68?=
- =?us-ascii?Q?cXyhFNO4jrSX1gAowavcCSLhmN8eEDiO9mv9BREBmuFs/+doMoYtMFcLwYDs?=
- =?us-ascii?Q?bLnlxU0nHvzj9Oc2qQRBwvkieQkZklBXhvxMnDF1fSjaVp+JkT8a9OfMHz1a?=
- =?us-ascii?Q?5y/llHIB5IV0NITYi/2HuASK7+x6YYY1/xfcnxbU+ie00lf5M2leHe+ym0nc?=
- =?us-ascii?Q?YJNxhOW9AigHYVEIzksMEs2NOJ/mW8sOC+0vDiERb+9qlVN0xfs4HGvKbwYt?=
- =?us-ascii?Q?yPXvqj5oezjaZrhgR2BxF0sICvj7qIX5uPrzcvK682eZf+eMjainwwGlXr7A?=
- =?us-ascii?Q?MjTh8k/WXoUj1wS9eotSalW0o4h1tjuhJV5nHczQNnbbjX0vSFmtpsZBPkuE?=
- =?us-ascii?Q?QQozfCbRVcH9sWtnDD2G+Fvv4v0C+rhs6jbjqdbpOsJ8Oh6xWa9VEuoRkSm4?=
- =?us-ascii?Q?DHXt7HoWdstvciGjc8DnWigadszi4SLmXBb1PXXrCYQcQ5B2TIKKi5wade/A?=
- =?us-ascii?Q?S4+tliZK6GqsAvivUeWmccEJy2nMAdbD6dQ4+55lYfgUF43/yzUChUzjSvEO?=
- =?us-ascii?Q?Cg4q1UqQlYxVw1KqZHfTh/2Dl+gCZybTULCnuvrZl5mcZEIfgVtrGC4dGZgW?=
- =?us-ascii?Q?eQCSmZ64yEsv6uf4rVkl9tLc2/7kR4XM3kxVquoedYYZziQnFEOQxg=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?wU8p7XkWcdzMIT++QudMM6qClmv89wNcgDMRsHT545ekBrVZqIlwrPyFCQsT?=
- =?us-ascii?Q?+9wTZGjUlBSHd+m6Pf5t0Q+326bl+CCIKpfzVtOZU8/64bYAEBh/CboJKLQ6?=
- =?us-ascii?Q?jhlyTRrmKmJ8YqJeWnnUuikm1eEV3MrFZYcxscgWFKwJ+PTBO0nrNxJ0LBAs?=
- =?us-ascii?Q?dW0RSTEHyckP57uQurNvXM//V9HNKVy4zNMG4MDZTNCyR1CPyFta4n5D2ITp?=
- =?us-ascii?Q?QjLYyvmrwky4cZ8hH0gGBXshlgdMS33qnopGpmZb+bSDwXTd7G8OeXPVjMmh?=
- =?us-ascii?Q?nTMdfPF+KlQunKgj7n1I0++PsBuCGAVEJ07rCkFYZZeM2kn58CIKmS0S8Ulh?=
- =?us-ascii?Q?znZZNGduO06MAxooNkRPbK/p7MDDu/KtnoWcVMsPWdkC7XYM5EnGmXxNp8wm?=
- =?us-ascii?Q?SMZlXhQfFnvNVVb0dUY6GvRp4TOcdOLszU+WImJIbhwbJgsvdKv8df5yVP48?=
- =?us-ascii?Q?PjxwY/Qvd98Js5Ph09l1snpxVrDGodgJpuEJi5ieKTc2zXUkUuHAVQxMdWyf?=
- =?us-ascii?Q?k/QC11gqqDESXLOajCskLrSw8GvSuEIyRkf2nOywc+DuD5qQIsh2asNHuexM?=
- =?us-ascii?Q?nKvsmS3WjFgGBim/ufv5dKKyGEcXXfHX9Q3ZemjkudYPq/0cgiH8djNy9VlD?=
- =?us-ascii?Q?xF8Cb/i7FzJ6/CZ8wTokLfKiXEGOyA37hjd0O3RFaShDg14+53mBJ0K6Ssui?=
- =?us-ascii?Q?s3kRLumxeOdfG0Kauj1StooSEGCth4+zSQozE8g+5DdspiX7dzrf2SUsa8/Y?=
- =?us-ascii?Q?GphyaJvYDIvPINVNmSSGb8AGwJKlUJcz6G+mkb21BnKx1y8YOL7H+b1OXSsS?=
- =?us-ascii?Q?r4fCdncfrc0+oCsIvoFW3ZJSkT/s6gLG6ea/3Q6VfREnQO3MnIUGKxDHO2UO?=
- =?us-ascii?Q?I2/mgoK/f9DM63Nec49eU3lahX6xzbUEvvWWaEzTO9vMZ1NzdRnovSUi2Nxh?=
- =?us-ascii?Q?NlYm+1dI/LdC6VzL+LddQwE8ScOBnHzlMOMWVAfPm9VkgMdE6b71Xu0V8IuA?=
- =?us-ascii?Q?cWf3Z7ubZRRZxGyHTWDp0gJ98X4Yyh0gIQce+XQw2TVG0UHqTrMctwA65ww0?=
- =?us-ascii?Q?4ASEhjOaL2qf0zgwJ+A21B6ciY6gBIVAlHhBzs4xNRti0yKPfvKl2DLI2vyQ?=
- =?us-ascii?Q?mx+UtBszIz6EDrM46OgsMzekvXqR0fA7yeYS3MbcoDWMyZGPrJt+MbM1AdU1?=
- =?us-ascii?Q?qPyXLdB2GZDmKFw4S4TfeQkTI1UIV6fH+Hy1k1tH/C4q9oRQ2wNZjZZPrCrK?=
- =?us-ascii?Q?B9ZWh7SOdYfsalCj1pGI3A4EsRyoOrtz+YggsmG7jUqNRLzjs0n3SkriSuCs?=
- =?us-ascii?Q?eby28urXNFrL9WunkI/wup4RbOX1bR339jL1xsSiyJoyIkmJ2/uJ+ef2NCYC?=
- =?us-ascii?Q?4/8jPiW7Z4eW13fOSqsx9oF8/WtUUmzzzBY3VmikB+mWAx2nNt5+xNKh/DSR?=
- =?us-ascii?Q?u3gWM/7mE+gVc/WD4ktVMDNOqau391jzZMlCGbMI1iGsIMO6vF0MJIrbd0UL?=
- =?us-ascii?Q?ehOBdFVxf21e2uamTonSVsZRaiym9oF7DSiJ7ltxvHPIpU1kOGwbLfENjKyQ?=
- =?us-ascii?Q?CEQxoINeSvVbw9PYLGO3Czjty0l1pKVsccB+/Nd6?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 875fc868-be39-4eab-2863-08ddd6bd247d
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 20:50:01.3295
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: naIAbkY16K50K5sfOIuEL63XBz53+Dv1sWut5z9hXCvdfvMoBoRjoRngDdgVhj243MEQO5XkW5+ZBdHmW2yFXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9474
+References: <20250618082313.549140-1-herve.codina@bootlin.com>
+ <20250618082313.549140-2-herve.codina@bootlin.com> <CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
+ <20250808180746.6fa6a6f9@booty>
+In-Reply-To: <20250808180746.6fa6a6f9@booty>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 8 Aug 2025 15:51:27 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
+X-Gm-Features: Ac12FXyhc30cIfb-qG-xW4VJNYGcYBf6hXqiZhkdeEr39aHdgFnYaIY8y6lXS78
+Message-ID: <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Herve Codina <herve.codina@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 08, 2025 at 04:06:15PM +0800, Shengjiu Wang wrote:
-> The HDMI TX Parallel Audio Interface (HTX_PAI) is a digital module that
-> acts as the bridge between the Audio Subsystem to the HDMI TX Controller.
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC.
+On Fri, Aug 8, 2025 at 11:08=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
 >
-> Data received from the audio subsystem can have an arbitrary component
-> ordering. The HTX_PAI block has integrated muxing options to select which
-> sections of the 32-bit input data word will be mapped to each IEC60958
-> field. The HTX_PAI_FIELD_CTRL register contains mux selects to
-> individually select P,C,U,V,Data, and Preamble.
+> Hello Rob, Wolfram,
 >
-> Use component helper so that imx8mp-hdmi-tx will be aggregate driver,
-> imx8mp-hdmi-pai will be component driver, then imx8mp-hdmi-pai can use
-> bind() ops to get the plat_data from imx8mp-hdmi-tx device.
+> [this e-mail is co-written with Herv=C3=A9]
 >
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  drivers/gpu/drm/bridge/imx/Kconfig           |  11 ++
->  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
->  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c | 158 +++++++++++++++++++
->  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c  |  63 +++++++-
->  include/drm/bridge/dw_hdmi.h                 |   6 +
->  5 files changed, 234 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
+> Rob, Wolfram: this e-mail mentions DT description together with
+> implementation ideas, but both of your opinions are very relevant here.
 >
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-> index 9a480c6abb85..b9028a5e5a06 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -18,12 +18,23 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
->  	depends on OF
->  	depends on COMMON_CLK
->  	select DRM_DW_HDMI
-> +	imply DRM_IMX8MP_HDMI_PAI
->  	imply DRM_IMX8MP_HDMI_PVI
->  	imply PHY_FSL_SAMSUNG_HDMI_PHY
->  	help
->  	  Choose this to enable support for the internal HDMI encoder found
->  	  on the i.MX8MP SoC.
+> On Fri, 1 Aug 2025 13:09:54 -0500
+> Rob Herring <robh@kernel.org> wrote:
 >
-> +config DRM_IMX8MP_HDMI_PAI
-> +	tristate "Freescale i.MX8MP HDMI PAI bridge support"
-> +	depends on OF
-> +	select DRM_DW_HDMI
-> +	select REGMAP
-> +	select REGMAP_MMIO
-> +	help
-> +	  Choose this to enable support for the internal HDMI TX Parallel
-> +	  Audio Interface found on the Freescale i.MX8MP SoC.
-> +
->  config DRM_IMX8MP_HDMI_PVI
->  	tristate "Freescale i.MX8MP HDMI PVI bridge support"
->  	depends on OF
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-> index dd5d48584806..8d01fda25451 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -1,6 +1,7 @@
->  obj-$(CONFIG_DRM_IMX_LDB_HELPER) += imx-ldb-helper.o
->  obj-$(CONFIG_DRM_IMX_LEGACY_BRIDGE) += imx-legacy-bridge.o
->  obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE) += imx8mp-hdmi-tx.o
-> +obj-$(CONFIG_DRM_IMX8MP_HDMI_PAI) += imx8mp-hdmi-pai.o
->  obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
->  obj-$(CONFIG_DRM_IMX8QM_LDB) += imx8qm-ldb.o
->  obj-$(CONFIG_DRM_IMX8QXP_LDB) += imx8qxp-ldb.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
-> new file mode 100644
-> index 000000000000..8d13a35b206a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
-> @@ -0,0 +1,158 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2025 NXP
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/component.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <drm/bridge/dw_hdmi.h>
-> +#include <sound/asoundef.h>
-> +
-> +#define HTX_PAI_CTRL			0x00
-> +#define   ENABLE			BIT(0)
-> +
-> +#define HTX_PAI_CTRL_EXT		0x04
-> +#define   WTMK_HIGH_MASK		GENMASK(31, 24)
-> +#define   WTMK_LOW_MASK			GENMASK(23, 16)
-> +#define   NUM_CH_MASK			GENMASK(10, 8)
-> +#define   WTMK_HIGH(n)			FIELD_PREP(WTMK_HIGH_MASK, (n))
-> +#define   WTMK_LOW(n)			FIELD_PREP(WTMK_LOW_MASK, (n))
-> +#define   NUM_CH(n)			FIELD_PREP(NUM_CH_MASK, (n) - 1)
-> +
-> +#define HTX_PAI_FIELD_CTRL		0x08
-> +#define   PRE_SEL			GENMASK(28, 24)
-> +#define   D_SEL				GENMASK(23, 20)
-> +#define   V_SEL				GENMASK(19, 15)
-> +#define   U_SEL				GENMASK(14, 10)
-> +#define   C_SEL				GENMASK(9, 5)
-> +#define   P_SEL				GENMASK(4, 0)
-> +
-> +struct imx8mp_hdmi_pai {
-> +	struct regmap	*regmap;
-> +};
-> +
-> +static void imx8mp_hdmi_pai_enable(struct dw_hdmi *dw_hdmi, int channel,
-> +				   int width, int rate, int non_pcm,
-> +				   int iec958)
-> +{
-> +	const struct dw_hdmi_plat_data *pdata = dw_hdmi_to_plat_data(dw_hdmi);
-> +	struct imx8mp_hdmi_pai *hdmi_pai = pdata->priv_audio;
-> +	int val;
-> +
-> +	/* PAI set control extended */
-> +	val =  WTMK_HIGH(3) | WTMK_LOW(3);
-> +	val |= NUM_CH(channel);
-> +	regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL_EXT, val);
-> +
-> +	/* IEC60958 format */
-> +	if (iec958) {
-> +		val = FIELD_PREP_CONST(P_SEL,
-> +				       __bf_shf(IEC958_SUBFRAME_PARITY));
-> +		val |= FIELD_PREP_CONST(C_SEL,
-> +					__bf_shf(IEC958_SUBFRAME_CHANNEL_STATUS));
-> +		val |= FIELD_PREP_CONST(U_SEL,
-> +					__bf_shf(IEC958_SUBFRAME_USER_DATA));
-> +		val |= FIELD_PREP_CONST(V_SEL,
-> +					__bf_shf(IEC958_SUBFRAME_VALIDITY));
-> +		val |= FIELD_PREP_CONST(D_SEL,
-> +					__bf_shf(IEC958_SUBFRAME_SAMPLE_24_MASK));
-> +		val |= FIELD_PREP_CONST(PRE_SEL,
-> +					__bf_shf(IEC958_SUBFRAME_PREAMBLE_MASK));
-> +	} else {
-> +		/*
-> +		 * The allowed PCM widths are 24bit and 32bit, as they are supported
-> +		 * by aud2htx module.
-> +		 * for 24bit, D_SEL = 0, select all the bits.
-> +		 * for 32bit, D_SEL = 8, select 24bit in MSB.
-> +		 */
-> +		val = FIELD_PREP(D_SEL, width - 24);
-> +	}
-> +
-> +	regmap_write(hdmi_pai->regmap, HTX_PAI_FIELD_CTRL, val);
-> +
-> +	/* PAI start running */
-> +	regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL, ENABLE);
-> +}
-> +
-> +static void imx8mp_hdmi_pai_disable(struct dw_hdmi *dw_hdmi)
-> +{
-> +	const struct dw_hdmi_plat_data *pdata = dw_hdmi_to_plat_data(dw_hdmi);
-> +	struct imx8mp_hdmi_pai *hdmi_pai = pdata->priv_audio;
-> +
-> +	/* Stop PAI */
-> +	regmap_write(hdmi_pai->regmap, HTX_PAI_CTRL, 0);
-> +}
-> +
-> +static const struct regmap_config imx8mp_hdmi_pai_regmap_config = {
-> +	.reg_bits = 32,
-> +	.reg_stride = 4,
-> +	.val_bits = 32,
-> +	.max_register = HTX_PAI_FIELD_CTRL,
-> +};
-> +
-> +static int imx8mp_hdmi_pai_bind(struct device *dev, struct device *master, void *data)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct dw_hdmi_plat_data *plat_data = data;
-> +	struct imx8mp_hdmi_pai *hdmi_pai;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +
-> +	hdmi_pai = devm_kzalloc(dev, sizeof(*hdmi_pai), GFP_KERNEL);
-> +	if (!hdmi_pai)
-> +		return -ENOMEM;
+> > On Wed, Jun 18, 2025 at 3:23=E2=80=AFAM Herve Codina <herve.codina@boot=
+lin.com> wrote:
+> > >
+> > > An I2C bus can be wired to the connector and allows an add-on board t=
+o
+> > > connect additional I2C devices to this bus.
+> > >
+> > > Those additional I2C devices could be described as sub-nodes of the I=
+2C
+> > > bus controller node however for hotplug connectors described via devi=
+ce
+> > > tree overlays there is additional level of indirection, which is need=
+ed
+> > > to decouple the overlay and the base tree:
+> > >
+> > >   --- base device tree ---
+> > >
+> > >   i2c1: i2c@abcd0000 {
+> > >       compatible =3D "xyz,foo";
+> > >       i2c-bus-extension@0 {
+> >
+> > This is at I2C bus address 0? No. You are mixing 2 different address
+> > spaces. Don't do that.
+> >
+> > You could solve this with just a property in the parent. If there's
+> > more than 1, then it's just multiple phandles. However I don't think
+> > you need this at all. You can just search the DT for 'i2c-parent' and
+> > find phandles that match the i2c controller node. But why does the
+> > controller driver need to know about connectors? Shouldn't the
+> > connector driver drive this and tell the controller there's more
+> > devices?
+>
+> These were the concerns you had raised last April [0], so let's continue
+> from there and Herv=C3=A9's follow-up.
+>
+> Herv=C3=A9's position was that a double-reference is more effective as ev=
+ery
+> interested party (the i2c adapter and the i2c extension node) have an
+> explicit description of the connected party/parties. Besides, this looks
+> consistent with the bidirectional links in remote-endpoints, which has
+> similarities.
 
-I am not sure how bind/unbind work here. you use devm_ func here? does
-system auto free it at unbind()?
+In a complex graph, you need to be able to walk from any node to
+another node. I don't think that applies here.
 
-generally, free() happen and driver's remove if use devm_ func
+> OTOH I agree a single-direction link (i2c extension node to i2c
+> adapter) should work, in principle. However there are issues, mainly in
+> how an adapter finds out about the extensions when it is probed after
+> them.
 
-Frank
-> +
-> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	hdmi_pai->regmap = devm_regmap_init_mmio_clk(dev, "apb", base,
-> +						     &imx8mp_hdmi_pai_regmap_config);
-> +	if (IS_ERR(hdmi_pai->regmap)) {
-> +		dev_err(dev, "regmap init failed\n");
-> +		return PTR_ERR(hdmi_pai->regmap);
-> +	}
-> +
-> +	plat_data->enable_audio = imx8mp_hdmi_pai_enable;
-> +	plat_data->disable_audio = imx8mp_hdmi_pai_disable;
-> +	plat_data->priv_audio = hdmi_pai;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct component_ops imx8mp_hdmi_pai_ops = {
-> +	.bind   = imx8mp_hdmi_pai_bind,
-> +};
-> +
-> +static int imx8mp_hdmi_pai_probe(struct platform_device *pdev)
-> +{
-> +	return component_add(&pdev->dev, &imx8mp_hdmi_pai_ops);
-> +}
-> +
-> +static void imx8mp_hdmi_pai_remove(struct platform_device *pdev)
-> +{
-> +	component_del(&pdev->dev, &imx8mp_hdmi_pai_ops);
-> +}
-> +
-> +static const struct of_device_id imx8mp_hdmi_pai_of_table[] = {
-> +	{ .compatible = "fsl,imx8mp-hdmi-pai" },
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8mp_hdmi_pai_of_table);
-> +
-> +static struct platform_driver imx8mp_hdmi_pai_platform_driver = {
-> +	.probe		= imx8mp_hdmi_pai_probe,
-> +	.remove		= imx8mp_hdmi_pai_remove,
-> +	.driver		= {
-> +		.name	= "imx8mp-hdmi-pai",
-> +		.of_match_table = imx8mp_hdmi_pai_of_table,
-> +	},
-> +};
-> +module_platform_driver(imx8mp_hdmi_pai_platform_driver);
-> +
-> +MODULE_DESCRIPTION("i.MX8MP HDMI PAI driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-> index 1e7a789ec289..c68896392a2d 100644
-> --- a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c
-> @@ -5,11 +5,13 @@
->   */
+We've had other cases such as i2c-parent and ddc-i2c-bus for years.
+Wouldn't those have the same issue? Maybe they do and just ignored it.
+If so, too late to change their DT and the kernel has to solve the
+problems there anyways...
+
+> Your proposal of searching the whole tree involves a lot of searches in
+> a potentially large tree, even though I don't expect it to happen often
+> at least for the use cases I'm aware of.
+
+Right. And the need to do that entirely depends on the I2C core
+needing to scan the whole tree. Surely that's not actually the case.
+How does adding a device by overlay (as a direct child) work? If the
+I2C core just scans the child nodes again, don't we just need to
+change it to scan somewhere else? Seems like that would be simple
+enough change.
+
+> But, more important, Herv=C3=A9 pointed out an "i2c-parent" property is
+> already used for different purposes (i2c muxes). We could choose
+> another string but that would be fragile too.
+
+It's the same purpose. Linking an i2c bus to somewhere else in the
+tree. I don't see why a connector/overlay is special here.
+
+> One idea is to unambiguously mark i2c bus extension nodes with a
+> compatible string:
 >
->  #include <linux/clk.h>
-> +#include <linux/component.h>
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <drm/bridge/dw_hdmi.h>
->  #include <drm/drm_modes.h>
-> +#include <drm/drm_of.h>
+>   connector {
+>       i2c_ctrl: i2c-ctrl {
+>           compatible =3D "i2c-bus-extension"; // <-----
+>           i2c-parent =3D <&i2c1>;
+>           #address-cells =3D <1>;
+>           #size-cells =3D <0>;
+>       };
+>   };
 >
->  struct imx8mp_hdmi {
->  	struct dw_hdmi_plat_data plat_data;
-> @@ -79,10 +81,43 @@ static const struct dw_hdmi_phy_ops imx8mp_hdmi_phy_ops = {
->  	.update_hpd	= dw_hdmi_phy_update_hpd,
->  };
+> And then implementing a device driver for the i2c bus extension.
+
+I generally will never argue against adding a compatible...
+
+> This would allow to ensure extensions are probed after their adapter
+> (thanks to probe deferral) and at that point can register themselves at
+> the adapter. In other words the device driver core would provide the
+> synchronization between adapter, bus extension, and devices on the bus
+> extension.
+
+Can't the parent (the connector node) driver do the same thing and
+defer if any i2c-parent phandles drivers aren't probed?
+
+> A different option is to only have the "i2c-parent" phandle in the
+> extension node and nothing else in DT (no bidirectional link, no
+> compatible string), without any full-tree searches.
 >
-> +static int imx8mp_dw_hdmi_bind(struct device *dev)
-> +{
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct imx8mp_hdmi *hdmi = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = component_bind_all(dev, &hdmi->plat_data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "component_bind_all failed!\n");
-> +
-> +	hdmi->dw_hdmi = dw_hdmi_probe(pdev, &hdmi->plat_data);
-> +	if (IS_ERR(hdmi->dw_hdmi))
-> +		return PTR_ERR(hdmi->dw_hdmi);
-> +
-> +	return 0;
-> +}
-> +
-> +static void imx8mp_dw_hdmi_unbind(struct device *dev)
-> +{
-> +	struct imx8mp_hdmi *hdmi = dev_get_drvdata(dev);
-> +
-> +	dw_hdmi_remove(hdmi->dw_hdmi);
-> +
-> +	component_unbind_all(dev, &hdmi->plat_data);
-> +}
-> +
-> +static const struct component_master_ops imx8mp_dw_hdmi_ops = {
-> +	.bind   = imx8mp_dw_hdmi_bind,
-> +	.unbind = imx8mp_dw_hdmi_unbind,
-> +};
-> +
->  static int imx8mp_dw_hdmi_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct dw_hdmi_plat_data *plat_data;
-> +	struct component_match *match = NULL;
-> +	struct device_node *remote;
->  	struct imx8mp_hdmi *hdmi;
+> On the implementation side, the connector driver when probing would
+> register the extension nodes at the I2C core, which would maintain a
+> list of extension nodes. This is important when the connector probes
+> first. Then when any adapter probes the core would iterate over the
+> list to check whether the newly-probed adapter is pointed to by one of
+> the registered bus extensions, and then start populating the devices on
+> the matching bus extension(s).
 >
->  	hdmi = devm_kzalloc(dev, sizeof(*hdmi), GFP_KERNEL);
-> @@ -102,20 +137,38 @@ static int imx8mp_dw_hdmi_probe(struct platform_device *pdev)
->  	plat_data->priv_data = hdmi;
->  	plat_data->phy_force_vendor = true;
->
-> -	hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-> -	if (IS_ERR(hdmi->dw_hdmi))
-> -		return PTR_ERR(hdmi->dw_hdmi);
-> -
->  	platform_set_drvdata(pdev, hdmi);
->
-> +	/* port@2 is for hdmi_pai device */
-> +	remote = of_graph_get_remote_node(pdev->dev.of_node, 2, 0);
-> +	if (!remote) {
-> +		hdmi->dw_hdmi = dw_hdmi_probe(pdev, plat_data);
-> +		if (IS_ERR(hdmi->dw_hdmi))
-> +			return PTR_ERR(hdmi->dw_hdmi);
-> +	} else {
-> +		drm_of_component_match_add(dev, &match, component_compare_of, remote);
-> +
-> +		of_node_put(remote);
-> +
-> +		return component_master_add_with_match(dev, &imx8mp_dw_hdmi_ops, match);
-> +	}
-> +
->  	return 0;
->  }
->
->  static void imx8mp_dw_hdmi_remove(struct platform_device *pdev)
->  {
->  	struct imx8mp_hdmi *hdmi = platform_get_drvdata(pdev);
-> +	struct device_node *remote;
->
-> -	dw_hdmi_remove(hdmi->dw_hdmi);
-> +	remote = of_graph_get_remote_node(pdev->dev.of_node, 2, 0);
-> +	if (remote) {
-> +		of_node_put(remote);
-> +
-> +		component_master_del(&pdev->dev, &imx8mp_dw_hdmi_ops);
-> +	} else {
-> +		dw_hdmi_remove(hdmi->dw_hdmi);
-> +	}
->  }
->
->  static int imx8mp_dw_hdmi_pm_suspend(struct device *dev)
-> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-> index 095cdd9b7424..336f062e1f9d 100644
-> --- a/include/drm/bridge/dw_hdmi.h
-> +++ b/include/drm/bridge/dw_hdmi.h
-> @@ -143,6 +143,12 @@ struct dw_hdmi_plat_data {
->  					   const struct drm_display_info *info,
->  					   const struct drm_display_mode *mode);
->
-> +	/*
-> +	 * priv_audio is specially used for additional audio device to get
-> +	 * driver data through this dw_hdmi_plat_data.
-> +	 */
-> +	void *priv_audio;
-> +
->  	/* Platform-specific audio enable/disable (optional) */
->  	void (*enable_audio)(struct dw_hdmi *hdmi, int channel,
->  			     int width, int rate, int non_pcm, int iec958);
-> --
-> 2.34.1
->
+> A lot of care would have to be put in the disconnection path and while
+> removing any bus extension from the global list, which could race with
+> the I2C core using the list itself. The drive core wouldn't do it for
+> us for free.
+
+I'll defer to Wolfram on I2C core implementation...
+
+
+Rob
 
