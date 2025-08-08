@@ -1,212 +1,240 @@
-Return-Path: <devicetree+bounces-202833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51026B1EFED
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:51:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A338B1EFF2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 22:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B68721416
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 20:51:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C46667217F6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 20:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C1A2343C7;
-	Fri,  8 Aug 2025 20:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E052253FE;
+	Fri,  8 Aug 2025 20:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBKeL+SY"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iikqmAQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012018.outbound.protection.outlook.com [52.101.66.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2AC922A7E9;
-	Fri,  8 Aug 2025 20:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754686301; cv=none; b=SLDrCuhZ1sbD3wJNHA1+rLwqnOe29SMLwLUhWktRtEJy9ocxH++aD2sepDe5DNULaXIXKvaq0YRUeu/WmOLuJbXyU7T7B+njsVQ2ZQlNudheq+GmVYwu5b/QhiXznV9AhoVa9YaZYs79cdBoFz+C4zlzlzUbA1v+cDb4vBzLJsg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754686301; c=relaxed/simple;
-	bh=4c7dcO8cBD9ikUvxoVP8jATQy3ONCOqQNTHYEuyQBdM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E8MZjJrXltjmCATUInNeU26SibSI0+q4tvOTWoX7dpBz2NFbuxYb5XIxEoDxb029L/rzvnaNBZ3WjhIzw5TTSmvDo7eogyl9yLdbl+BtodhxKW85Mu8TXCIxsq8si2KSDwtYPtfEtrXCNRuQQ3bn6gJ8mE3K7SkFOXIbBKSvUZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBKeL+SY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B722C4CEED;
-	Fri,  8 Aug 2025 20:51:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754686301;
-	bh=4c7dcO8cBD9ikUvxoVP8jATQy3ONCOqQNTHYEuyQBdM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QBKeL+SYcyEzKbbmBSU8UI8p/fIkhmUUjyV0ltEVrmhRNTCnGbX4zICtQx9RHJ8le
-	 FdIy1QH8Hvm7vP2i+gBSjJJLuFG/ApPppzWaBfhK4mu0AakIYYonLilAmBxao0pRbW
-	 toFGjGu7RKKSRjntZntsdrQYPu3QniGr7YOd44klA0ugoTT6rFk76dxOF1Cbc0GGg5
-	 i1e4/94Z683Voo62ISDXcvvf8B0zCcOYprU7SA7w4tZMBaVjGZzRd6/dXEd1wl31GQ
-	 7gJ68jGMOJoaxqKVuyUZqxicIN4OS27nKHrNm4i3BS0z+RXpzKOH131Q+RnABBGsCD
-	 ErdSwQxvYkD6g==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ae0bde4d5c9so485981966b.3;
-        Fri, 08 Aug 2025 13:51:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUVirRp3+FH5+7Ipy7Vi9uGdsFTkoeiZ7PhpX+b4qN3N8ms6Kg9rgVmFsutSVM6SBePUMwNM9pt8MSk+8RQjIs=@vger.kernel.org, AJvYcCUdXV7FwS0Kfr3qATG5rXVE2ZcgeOCIe2tfKSAmeV+SzF2H/m+zAUBSOO5I10MVsN6Q/6PM+DbgA7wTJQ==@vger.kernel.org, AJvYcCVDVxhHlSGp9Jl6YhYiw85/APKV1S3UuRTxDH9PTX1u8Ue1wMzjpeckt+ks0zjxaFJ4X0QO+fpjaHWr@vger.kernel.org, AJvYcCWeSDWKJoTw1paaS1b9/w712o6Tbh5MA0bbtEuQLbg/LzdJux6v/7noixZH4U0NFaS//5QcDxqNA/P1QGvH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyK+qHDme28Vm/TUfQ3tWFrYoX1dgbfZik1J2JpJPznKky0pUDR
-	jnWOE5IcEFEc60LkEje5zG4mtcSBeOrnUJ+IGUyVKA+KPhp6ZE/9Y10vg+Fm5Co6i8S/iZD8U1B
-	eMXv29OyMCy5BlHI9qCIOss+yZAl4Ug==
-X-Google-Smtp-Source: AGHT+IHQrJOpK4XiBNspBEI4oq5Xzca+wGsnB52qjjmM0BV3Gl1mLQdv12KkSYu/KBIFOkihP1JJ+EasJRhG0Q8Mn4g=
-X-Received: by 2002:a17:907:7f90:b0:af1:8be4:768 with SMTP id
- a640c23a62f3a-af9c6342033mr407595666b.5.1754686299856; Fri, 08 Aug 2025
- 13:51:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7B978C9C;
+	Fri,  8 Aug 2025 20:54:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754686476; cv=fail; b=JvFb8TrtyPcSuqwGNPfrSOzZKE6siQKPK0aEzqDmQcDYdkyzFgFFKLUAYab5TPjyghP1J6/k3nc2jppoRWm7bzSDKnCXtSLF5cYbwVC0/v1HEWGtvzPwN8fsmMFLEmipgxHndEd++yXHINDPH+0fTxIjgF3BzxaNbOd7HA8LUUY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754686476; c=relaxed/simple;
+	bh=P/7pGcM1J8bPbnPuXnwYP3zfytWuIy4AhhOt6Ey8Oeo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=V0lyIvEtUyWMJf6lKQ00kwamJ/pz2t5iwEgVAJrHkgWa3Mbn1guPtNsmxlS0JJHl42/l6+0zpIxDtRwgtpNpJmMRnjVd6OLeV6YNcR2gQ0HXeVTr+pv0eeTLhzSDje94M37iyPtlLS+oet3M++SJRa+HkdPhqle4lj2KDbHopmY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iikqmAQl; arc=fail smtp.client-ip=52.101.66.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A8fJOmiL5d3mLgMUv+uXsyOuh8vUXWZiRcA4ODygGdXRu9T+kjHE6/Q4A7GYT8Jg7Cvb8dyxhJK8WB4aTYuBIphT932rb/bhlhVPfGQrXfnrWrurY7gwJpq4ZjVoSA9DSJk5zKOtajdsIxVrVmFuOebx2XaLcQ4imR5/Q8gDh8oJiaq1j2D2GD6dEqchVsQZx7+LPsUKvixSUvXwt1SDze2lcp/16Yl/dkWVhltoAYzXOLHbyywZIiqX9VmOSx0/v+MwnMwYsVTuUg+aK6Uy6lchRtaL5w/k1/lBMYXXXxevzDG7RvbEnZXnIO37mEqEuFvqHHVbJ7/2lSNukIUN0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=55BvJL466GLoH0PCMYJT/pvEAFNCjeJd9vgg1qYVt+4=;
+ b=DpuDZ4E/ZGD3AI41ARB7eA2466G6f10flQZkZ9GfhtTYILU6vV+s0q5RFSVAATIs0awk1LYd6kr50Ee+zYDhGLSQYCA5DHGdFafwAErvrZoYNb43HPZY1dgaMayAcgQFKe+FgC2L1jPgMU9EeOnVZicXUMuUJV6NioUEkcSR0TvTEpYLtpuujd69PmRCglGBEwFyM0NQfyYhCwxMXtyxpVrWg+lDQEPcWU2zM4+vfF8ZENbywXot+NeSaGNk0ZllFvkdUZE7A+z6T+2NLMzCw/8htZfnhAbBsGoyxDMz0wVzT7vSszLS3CWY5yPcIkjTWxD7qIVPeib6id7VdZuP3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=55BvJL466GLoH0PCMYJT/pvEAFNCjeJd9vgg1qYVt+4=;
+ b=iikqmAQlf0LOMLI7vnibhQf3C77HoKY/GAbhHshrwZtm6UsUxY+R7u9s2ihoXGW0mMxcNgkaMLYnpAcL2y4/DpLGITQA2uJTbk7KN5cmtoo4OrAynGQKztNCKTe0lQnymEQqA30wanQjau4ETdLo6XB1sHqulePN7XMARyIg7lDtgxYHhBaO2xEL0SgLeG5txMQY712f5S5uMMzjk6aNDLiRsBxkHHq9elr5qxtz1q8jhRZ9jnTLKknOKbAhRf+fBfubYmVFPqLxBipJioo8+fls8vyX9gBZReftQXQykTVa/J6oAdXLexZLJo175XARGVTzgClBfw3wjyzOPKfHGw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by DB9PR04MB9474.eurprd04.prod.outlook.com (2603:10a6:10:368::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.18; Fri, 8 Aug
+ 2025 20:54:32 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%5]) with mapi id 15.20.9009.013; Fri, 8 Aug 2025
+ 20:54:25 +0000
+Date: Fri, 8 Aug 2025 16:54:12 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org,
+	cristian.ciocaltea@collabora.com, luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	victor.liu@nxp.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org, l.stach@pengutronix.de,
+	shengjiu.wang@gmail.com, perex@perex.cz, tiwai@suse.com,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v4 6/7] arm64: dts: imx8mp: Add hdmi parallel audio
+ interface node
+Message-ID: <aJZjKCRehvj9Spke@lizhi-Precision-Tower-5810>
+References: <20250808080617.2924184-1-shengjiu.wang@nxp.com>
+ <20250808080617.2924184-7-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250808080617.2924184-7-shengjiu.wang@nxp.com>
+X-ClientProxiedBy: BYAPR04CA0029.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::42) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250618082313.549140-1-herve.codina@bootlin.com>
- <20250618082313.549140-2-herve.codina@bootlin.com> <CAL_JsqJ=jmXVwjtNCjRpUKj02dnJEz4GHMX2wMRaWw=M+sZQ0w@mail.gmail.com>
- <20250808180746.6fa6a6f9@booty>
-In-Reply-To: <20250808180746.6fa6a6f9@booty>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 8 Aug 2025 15:51:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
-X-Gm-Features: Ac12FXyhc30cIfb-qG-xW4VJNYGcYBf6hXqiZhkdeEr39aHdgFnYaIY8y6lXS78
-Message-ID: <CAL_JsqLxsfpaaCvV3AcniMYxAYVir7ddL4umCNY3u-ggVTiZcg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] schemas: i2c: Introduce I2C bus extensions
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DB9PR04MB9474:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1781a522-b9f6-4cd1-f6eb-08ddd6bdc24b
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?1GzF++TC1avvXmfhjClsBr04W+Bc6wryvA2ouwp7LciNCOGPGZge1RdJ1s4k?=
+ =?us-ascii?Q?bhr/zWpAEbC4iWLzybSqMmHMVyJFBcwMQ4snx0dFYg3upUL+Ho94nk2m3mDI?=
+ =?us-ascii?Q?dm6ANf8pXJ39y/VW5jqFF3/aMx/f021mvyTybjS0ZblrajclKs9vcw7lz5al?=
+ =?us-ascii?Q?dZkNDeL2oF5aglOl19sZdSOV0qsuACaUvHaAUzeTvhZh2uBp6qivaccwhc1i?=
+ =?us-ascii?Q?Oh2WgNIkTyTs2LgVt2SlMg9pPjs6fIURfZXpkJ4Jjgk8mpwWQrhlJRM+4sqr?=
+ =?us-ascii?Q?a1Drhpx30H9rZpmNkctYQ9mX0tiN90vA5FZ2uJ1NlwPTChTl8OTTB05XnFrB?=
+ =?us-ascii?Q?sX0niNnK05vRMtJuKrMJgMPo/PaJmn50aIakS4lG5dWzs7A1pfd/xJD3QmYb?=
+ =?us-ascii?Q?o9cqRKezU3fjkunXipMr655/jE54Ua3q7yqpz7ErbX/+J1oyv0wFBSQS5PUF?=
+ =?us-ascii?Q?T/9ByE6ZFuWyHZOG6/JCmmFApNFhkOnlq1bKAEkFk7nsl3QTqsS0pOsoYwsI?=
+ =?us-ascii?Q?Qb0ZPYTYUQ1eiE1rDrY93AkpcsMLtr8wYbNI2bWy+1shwG6TrTDW7WAjdwVM?=
+ =?us-ascii?Q?uNCPjaSKPuUQnDn7YDTh0X/Q//TQSPHt3/n9tjMrkt4AZbpa2HhFoomXYUJZ?=
+ =?us-ascii?Q?m0cJiWc7EzYluWcDuvlh9RK3e6rnuLiDhc7j6nGF8sC9EIe6TtcEY9B97B7z?=
+ =?us-ascii?Q?QoNQSBLzyE+efz7Epq8kEjbCKU1HnVzGJN3EC5Za7ti4Wejme+ULtTchHx/B?=
+ =?us-ascii?Q?/qDHM8w8VdrLt3AfXPBj97rv5m3bDxWe26seT8QVr1BTr3EsDrYz2e0vc/XC?=
+ =?us-ascii?Q?lQWUhR60gX8QeXoYG9Sy5/fOE8hKr9biL1kE07958aW5kJzQ2YUVPIK6tAf+?=
+ =?us-ascii?Q?SRWZjx3Ej2FwDSDTv3zEYRaSj16b1rGYteBHkW/Rbdt4lTIo7Z/id7gkNEgL?=
+ =?us-ascii?Q?Z23qRih38U4J7/fDIW40ZHabvuoMvHYrVFYeYLqPOab2wuKiouFz/JF+QS1M?=
+ =?us-ascii?Q?Db9kef6tgW9blf7OYUxKaCOOPw1mreRAiKGVpOd4Gsw+laQYCsVf28DJhJlQ?=
+ =?us-ascii?Q?V0z41WtB1qpkU22KQ/rdBANPOj27iqWTTFWxboEhAdcXgyMtTqm3tYpLSSh1?=
+ =?us-ascii?Q?94es1Oa7DfMHZNK5HUfs4/OXr/w81ime6kY+CLnyQiBKTDErllM9nA55dI3B?=
+ =?us-ascii?Q?0Ko0XojMhXPw4tc34RyH+M9No1RxuPWKpwulOZFVZKY7Lrxhf4QYIdz1Aapv?=
+ =?us-ascii?Q?WymIx1/2sm+z58+BmySQlXZorC7NIc6wuo9i9xZsQ9b4T8QOUY7yCJpp9lMJ?=
+ =?us-ascii?Q?/ujL4pMBv1VfqFHnkWjyBVRetze4ktHiEQ5fr6e6MyrPXepCGZxp0V7AlnJt?=
+ =?us-ascii?Q?pz9UQ2+WwtaKRER7ws9hv+pi/fD9k+iUz6IH2fie/TTMFhgrhdcf4O47l9E7?=
+ =?us-ascii?Q?msjryRNGM+kidc9t2+aLWdq7GxZKkaoKTJxbNueplRWP4XJNpMvlhg=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?5KAuv0XZPjGzymAbLAPMMED0bBwP1JeisLaKgK7mtKF6WA3wQ6oU2kCuhJzC?=
+ =?us-ascii?Q?E5Dmxbqt4NbkIA107DVVwgWDxXkl/DRY7e9grwKW5yI5HU36Jut7VaX/EcJe?=
+ =?us-ascii?Q?phfeZhwoMvmkbZzUU1Y5cskG1eaZxJVrmLmAVPhBPqFTriDeUv43uoPsbxnF?=
+ =?us-ascii?Q?75Y1NOJH8wWTPd+eLiGNoZdTLnc9Wpn+kXQ6LEJ0MWuLW5jnxKRSsB5IjuKr?=
+ =?us-ascii?Q?/dpsfjHDQDnaadgC0VnLrK+F1RrINfjz5jdWG4oNHV/TSLKHE2qz9XRh8CPx?=
+ =?us-ascii?Q?SvUYYCKpeKu+XsUqixzNFKAb7xuU6wUOUp8k8x2LU0rw0dzp5tXdsVuwNo0l?=
+ =?us-ascii?Q?l9HD+hvEt1cN5y5KyTJb+1H1symzN+jNYSl+bswI5tviDN0/PTeJqMk4touI?=
+ =?us-ascii?Q?1mCroUYkv7Ky6usRfyvr+oPSGQv3Q6NIaOW3+D0uhf55feTRrYENxeKmlyUw?=
+ =?us-ascii?Q?CHAkTMtfGUr0FNeBi+HI8Ov4OiKakUA66W/uj4/jkpcwwXL//GvzUjZapgzC?=
+ =?us-ascii?Q?j8+cCaEZMJa3srVGaZgmYZ3kSaeCUtT5adfoV+yhfPBPfMCjRz9wPQ9U/b4s?=
+ =?us-ascii?Q?YFo2NPfTYYqN00HBSSpnVKMPeZpdZntQ/zvP11W9h8grBC5wZY6dEBVBAnqt?=
+ =?us-ascii?Q?pwjES7wA67/6OwBreguhe28zCenxarLQlvJqyKfz2FiExLrwVBO/2xqtXVVg?=
+ =?us-ascii?Q?L+o1knsQOp0wCHCIaakMUNMztgIBO28NC5IOu5luzi1csHsbcqWiLLIMToQZ?=
+ =?us-ascii?Q?LfzwfCs5/o70/oQu3bGMp5F39DwjFZ1Iyawkqr+C8jHIAs+6+JJ0Za+Z0iK2?=
+ =?us-ascii?Q?pAqwsUATkWKwHX/WKWq+HkErCBDuydPG0dQbbTNmFjN+WzOXh3qr2Wan194d?=
+ =?us-ascii?Q?SBcEBSN6hmwSuONDMLpJdBqtP4B43twpd8qjQVSTUWl8zy6WELVPc7AERgJK?=
+ =?us-ascii?Q?fHAlml2LgnAHRPx3aMPGhEKHZjqbofp+i4SNkUEOzaaRV8NrBPX6CrFg6A23?=
+ =?us-ascii?Q?+3R0kQtGvQzg3Uv1wFDffbH3agIovuRA3tIKtBUGiY9rgj7efPgDM00wveof?=
+ =?us-ascii?Q?kY4NxiUU4U97rcn0mXWXet3Wx5eTmxg+KtWHzqI6dgcwAAfOIh63alTrFK0o?=
+ =?us-ascii?Q?P3TeSTkCnDHO+xjx0xQ2TKwTYguk2A23uhWfxxBhKqkocNXeVbfiCG6Ju+hS?=
+ =?us-ascii?Q?+oqzvgzahgXSdWF9vy9Bp4auVVssd8Dt+QFDX1kJtFtA+j0vNO9IJX2VgLrf?=
+ =?us-ascii?Q?B/95rQ3fSuuNAynsEu4tnw4E9lOTxDIv1hHMrMy6e3amyqvIZEwgqG6iHvDi?=
+ =?us-ascii?Q?6B7YOMpgq/agwxE7DROJpVZP3ozx8sor1l9b91/eOhU1V2OVNvnEmjhxDf2f?=
+ =?us-ascii?Q?3CkD8WaCEnok+X9KdpQ1oEGDtUbX91Etmnc3xM+5ylPPZDqvl4iBkjny8gL0?=
+ =?us-ascii?Q?BfWp4Kig/Py/8rzPuvYylCfKV4FcDR1rNhE64JCuDRUWUF4cBw/7rnBpU/Iz?=
+ =?us-ascii?Q?iyRtPeE0eGF5ZDV20mF1tB/yZSpWyiRHxht8wp3lauADRCmFS8J1iFscyj7u?=
+ =?us-ascii?Q?ndeT/4VDkUg0wnC6lkc=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1781a522-b9f6-4cd1-f6eb-08ddd6bdc24b
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2025 20:54:25.8339
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6kco9vPok4aPy6hOmHNxDA4wotjzhbpzc6vMNQMERCRMaAllvnry+epOl6Y4sEy9hrmstAZYBQYRXxA1jMQe/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9474
 
-On Fri, Aug 8, 2025 at 11:08=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
-n.com> wrote:
+On Fri, Aug 08, 2025 at 04:06:16PM +0800, Shengjiu Wang wrote:
+> The HDMI TX Parallel Audio Interface (HTX_PAI) is a bridge between the
+> Audio Subsystem to the HDMI TX Controller.
 >
-> Hello Rob, Wolfram,
+> Shrink register map size of hdmi_pvi to avoid overlapped hdmi_pai device.
 >
-> [this e-mail is co-written with Herv=C3=A9]
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 28 ++++++++++++++++++++++-
+>  1 file changed, 27 insertions(+), 1 deletion(-)
 >
-> Rob, Wolfram: this e-mail mentions DT description together with
-> implementation ideas, but both of your opinions are very relevant here.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 841d155685ee..00d8474bd1b1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -2066,7 +2066,7 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
 >
-> On Fri, 1 Aug 2025 13:09:54 -0500
-> Rob Herring <robh@kernel.org> wrote:
+>  			hdmi_pvi: display-bridge@32fc4000 {
+>  				compatible = "fsl,imx8mp-hdmi-pvi";
+> -				reg = <0x32fc4000 0x1000>;
+> +				reg = <0x32fc4000 0x800>;
+>  				interrupt-parent = <&irqsteer_hdmi>;
+>  				interrupts = <12>;
+>  				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PVI>;
+> @@ -2092,6 +2092,24 @@ pvi_to_hdmi_tx: endpoint {
+>  				};
+>  			};
 >
-> > On Wed, Jun 18, 2025 at 3:23=E2=80=AFAM Herve Codina <herve.codina@boot=
-lin.com> wrote:
-> > >
-> > > An I2C bus can be wired to the connector and allows an add-on board t=
-o
-> > > connect additional I2C devices to this bus.
-> > >
-> > > Those additional I2C devices could be described as sub-nodes of the I=
-2C
-> > > bus controller node however for hotplug connectors described via devi=
-ce
-> > > tree overlays there is additional level of indirection, which is need=
-ed
-> > > to decouple the overlay and the base tree:
-> > >
-> > >   --- base device tree ---
-> > >
-> > >   i2c1: i2c@abcd0000 {
-> > >       compatible =3D "xyz,foo";
-> > >       i2c-bus-extension@0 {
-> >
-> > This is at I2C bus address 0? No. You are mixing 2 different address
-> > spaces. Don't do that.
-> >
-> > You could solve this with just a property in the parent. If there's
-> > more than 1, then it's just multiple phandles. However I don't think
-> > you need this at all. You can just search the DT for 'i2c-parent' and
-> > find phandles that match the i2c controller node. But why does the
-> > controller driver need to know about connectors? Shouldn't the
-> > connector driver drive this and tell the controller there's more
-> > devices?
+> +			hdmi_pai: audio-bridge@32fc4800 {
+> +				compatible = "fsl,imx8mp-hdmi-pai";
+> +				reg = <0x32fc4800 0x800>;
+> +				interrupt-parent = <&irqsteer_hdmi>;
+> +				interrupts = <14>;
+> +				clocks = <&clk IMX8MP_CLK_HDMI_APB>;
+> +				clock-names = "apb";
+> +				power-domains = <&hdmi_blk_ctrl IMX8MP_HDMIBLK_PD_PAI>;
+> +				status = "disabled";
+> +
+> +				port {
+> +
+> +					pai_to_hdmi_tx: endpoint {
+> +						remote-endpoint = <&hdmi_tx_from_pai>;
+> +					};
+> +				};
+> +			};
+> +
+>  			lcdif3: display-controller@32fc6000 {
+>  				compatible = "fsl,imx8mp-lcdif";
+>  				reg = <0x32fc6000 0x1000>;
+> @@ -2143,6 +2161,14 @@ port@1 {
+>  						reg = <1>;
+>  						/* Point endpoint to the HDMI connector */
+>  					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +
+> +						hdmi_tx_from_pai: endpoint {
+> +							remote-endpoint = <&pai_to_hdmi_tx>;
+> +						};
+> +					};
+>  				};
+>  			};
 >
-> These were the concerns you had raised last April [0], so let's continue
-> from there and Herv=C3=A9's follow-up.
+> --
+> 2.34.1
 >
-> Herv=C3=A9's position was that a double-reference is more effective as ev=
-ery
-> interested party (the i2c adapter and the i2c extension node) have an
-> explicit description of the connected party/parties. Besides, this looks
-> consistent with the bidirectional links in remote-endpoints, which has
-> similarities.
-
-In a complex graph, you need to be able to walk from any node to
-another node. I don't think that applies here.
-
-> OTOH I agree a single-direction link (i2c extension node to i2c
-> adapter) should work, in principle. However there are issues, mainly in
-> how an adapter finds out about the extensions when it is probed after
-> them.
-
-We've had other cases such as i2c-parent and ddc-i2c-bus for years.
-Wouldn't those have the same issue? Maybe they do and just ignored it.
-If so, too late to change their DT and the kernel has to solve the
-problems there anyways...
-
-> Your proposal of searching the whole tree involves a lot of searches in
-> a potentially large tree, even though I don't expect it to happen often
-> at least for the use cases I'm aware of.
-
-Right. And the need to do that entirely depends on the I2C core
-needing to scan the whole tree. Surely that's not actually the case.
-How does adding a device by overlay (as a direct child) work? If the
-I2C core just scans the child nodes again, don't we just need to
-change it to scan somewhere else? Seems like that would be simple
-enough change.
-
-> But, more important, Herv=C3=A9 pointed out an "i2c-parent" property is
-> already used for different purposes (i2c muxes). We could choose
-> another string but that would be fragile too.
-
-It's the same purpose. Linking an i2c bus to somewhere else in the
-tree. I don't see why a connector/overlay is special here.
-
-> One idea is to unambiguously mark i2c bus extension nodes with a
-> compatible string:
->
->   connector {
->       i2c_ctrl: i2c-ctrl {
->           compatible =3D "i2c-bus-extension"; // <-----
->           i2c-parent =3D <&i2c1>;
->           #address-cells =3D <1>;
->           #size-cells =3D <0>;
->       };
->   };
->
-> And then implementing a device driver for the i2c bus extension.
-
-I generally will never argue against adding a compatible...
-
-> This would allow to ensure extensions are probed after their adapter
-> (thanks to probe deferral) and at that point can register themselves at
-> the adapter. In other words the device driver core would provide the
-> synchronization between adapter, bus extension, and devices on the bus
-> extension.
-
-Can't the parent (the connector node) driver do the same thing and
-defer if any i2c-parent phandles drivers aren't probed?
-
-> A different option is to only have the "i2c-parent" phandle in the
-> extension node and nothing else in DT (no bidirectional link, no
-> compatible string), without any full-tree searches.
->
-> On the implementation side, the connector driver when probing would
-> register the extension nodes at the I2C core, which would maintain a
-> list of extension nodes. This is important when the connector probes
-> first. Then when any adapter probes the core would iterate over the
-> list to check whether the newly-probed adapter is pointed to by one of
-> the registered bus extensions, and then start populating the devices on
-> the matching bus extension(s).
->
-> A lot of care would have to be put in the disconnection path and while
-> removing any bus extension from the global list, which could race with
-> the I2C core using the list itself. The drive core wouldn't do it for
-> us for free.
-
-I'll defer to Wolfram on I2C core implementation...
-
-
-Rob
 
