@@ -1,281 +1,140 @@
-Return-Path: <devicetree+bounces-202730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65649B1E85A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:28:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD34B1E86C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 14:34:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 088CB1AA3214
-	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:29:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CB60177B97
+	for <lists+devicetree@lfdr.de>; Fri,  8 Aug 2025 12:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9EFA27A107;
-	Fri,  8 Aug 2025 12:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31F9279DAB;
+	Fri,  8 Aug 2025 12:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="o4I47y88"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S5Ejamfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E286A277C87
-	for <devicetree@vger.kernel.org>; Fri,  8 Aug 2025 12:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4761EA84;
+	Fri,  8 Aug 2025 12:34:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754656088; cv=none; b=IMlVbhN0GUtfPCd3xwJAAJI4hHhVwW5zwslu0nyqsnHgBUAQ6zPC3Rjlo8s9zKOQ9MkoZd0rXgPBZt9KvHRH3vnKDGbHZQbhEZeLFzB74yVe1tiLC/LC2iZ0fRJWtYADEx5F7j+ZWKspTxBfAyOvTBQ0s1ZidreYRV248oFhxcU=
+	t=1754656452; cv=none; b=Oo4fIIealtTF7k3928OGEBJllSyUISwGugRb/mwR+v/YRUCUctBnBSCib2f7/RRoDUbzoEOoIMxN579QXjFJGX7vRk03AqAdkYIfrnX7iYKHGGrMzCJCvSRbr0Gr39CruJBUw3Ne4huHp4BsEO2zYj/qm0cUf0sglrCHj9SIAIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754656088; c=relaxed/simple;
-	bh=hAFR1xBhX87nwBQzR1MC0ZMDIhtmlbpADrjiVttXDLg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TIFmEaHFjNGqixEWZvYT2WC1dfaAJt+xD6KMchhdIHwnhfF5JPzLpfrXDNTVZY26FHnm/zE3mzmlqkmCz5yTGblof4lDPDizouKfijbu+xGscYm1bdveatD4dl9lty6U07t+O371kD0IgxS48YDvan5EK25O68Pozf8HqWOwYKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=o4I47y88; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b42254ea4d5so1356192a12.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 05:28:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1754656086; x=1755260886; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oQwQrGub2aStw6hjlQ5y/xMW7z8UYCEI10h/q/mNXAg=;
-        b=o4I47y88qrRN7i3AMYTOnGvrwBwoL+4+WE1x4hoxImK2D+jt7GJ7T0mV7qG7dxSIga
-         lSDAnnmakywsYh4fnDpWcx/Jxyoz+sjZNtXRpIEY/A+8nuL0sfY0Cow1PhH1RchYKcr+
-         IxLUqfzChslBoekrpHZipBds1/kc3wM11u+mY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754656086; x=1755260886;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oQwQrGub2aStw6hjlQ5y/xMW7z8UYCEI10h/q/mNXAg=;
-        b=XzxILbv8N1T2m65PO984+kk8OpB7ek6948UFJS2VDIU+cNXAW6Wp/jcOgXrvBLFpvv
-         1+ArE07wLrf/aCsET5vR9KJO6yQ44ilPNmPXXWvjIZdia7DACchk1NRpGOLvARKFcXQy
-         DrFfLMEq2SEd+RytrUsFjsvdbYftnGxOQJdSlKelBsKt048kxS4ANztv+DDiqtsmbxoY
-         FM1zMd+GApwBjOvqkm5YznPtVKTQ9TM3mHiWH0UWNFlgwOzDPGMpmw3N1d2D+FvycRv2
-         5P4s6NR7iE29Atmk7/zJ2VZ2g10eF+J/NOFt+Zo4oI43Lpga+dO+G49N3uOfEgPu9qeg
-         1O6g==
-X-Forwarded-Encrypted: i=1; AJvYcCUpk+guOOTg8NwZu5jBzj6Sq7m2RF/wcrdcO4r/9B38B5klITbHYwDwAsh2V7D9zt14LF5Q72waJl5x@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywke2uYDQ/XS/7fOc6pxhT/CJDre3Zvo9H5Ly8ccGBsnMBNyfsS
-	JDdxlSpCFlgaLD+vQ8gLLLn9CvIn4fKcNNbY/nnbOzfzc25IdEXYGbRALoe8wfjXHjg=
-X-Gm-Gg: ASbGncuhNntWXYV/j9abkx1iCUh4dLdboljJkcbSKqMwmkxTFTCacKGsJQZ/MjXFS1h
-	D/WvQR5S7vTSUyI6NONOBrWLu11Cp1PU+yOazTJw8224xUYhm6KQiqcphbj8FUNuQCmvxntpKV0
-	g8QggBJxLQME6iRHtCxQZXSAUqeYUMmPSBRa0ti+kfL8vj98VR7Ngj3IgOHq9+xuL8SVD0gCAFG
-	SXTQoCj8YBcs1FqNqOF2KLrD8YXpaDkKNmly5pDP5Ok2LKnmHuhtCepuEfI7OzAz7VVO3UOzkaT
-	aaQrxaqghiNLztIyiLxLmRbIsctIyX29qLOkSQLtJHaL6iaxbO6xfCVc4P/vyhMdZwnpVz4vHgZ
-	ysZoQkp0Qx9VJPQYySZN5Z1gWS09my7WxnElTPsidTvfqLQ==
-X-Google-Smtp-Source: AGHT+IHCreUZY3AWxk/HAxu/lZhyalRoym3qObzmCb3bMSU2wLsZVkRUHvXdeL6eTVrsglYPN+g80A==
-X-Received: by 2002:a17:903:120a:b0:240:41a4:96c0 with SMTP id d9443c01a7336-242c2208e85mr41906945ad.29.1754656085914;
-        Fri, 08 Aug 2025 05:28:05 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241e899a8cdsm208296665ad.121.2025.08.08.05.28.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Aug 2025 05:28:05 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v4 6/6] Add SPAcc Kconfig and Makefile
-Date: Fri,  8 Aug 2025 17:56:31 +0530
-Message-Id: <20250808122631.697421-7-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250808122631.697421-1-pavitrakumarm@vayavyalabs.com>
-References: <20250808122631.697421-1-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1754656452; c=relaxed/simple;
+	bh=bsBWuWydjwV6gpToYD0UMemkzbOVgo4dHyaxM95+a24=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvvyjXcQluZVQLiSbGSs26OF+Cvl5Otbk6Ceug2XIKmPxBBEIXJZroboLxt5hC1qbndhO8wcQLXxQBKhK7MqOD9tWAGEm8RYUqNUZzBcQJcTRJc7FrAvnam5m4Dp1i+A0SWbmSkIN9sMXELDV/syM9p/+uAElD61sv8oTKLAENA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S5Ejamfu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7FEDC4CEF4;
+	Fri,  8 Aug 2025 12:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754656452;
+	bh=bsBWuWydjwV6gpToYD0UMemkzbOVgo4dHyaxM95+a24=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S5Ejamfu2Gi5t0Qk9/oMf87Ab0zV+Wo05mqeUuf+8751FQtXtm4epsLg+1kVLl3vm
+	 GN4phyce5gkDEAN1oD/0D1fI+foS4v6nGQsfljlh/WS3Tu1l2mcfIVWYhCIWXAqCd8
+	 Yix5rmgPEG21gSUhwpr8P0xIjvE7YlQI9uKDuCfxGqjG8Sa+bPywAlv+P9nDBNZz30
+	 xHnlxTv/cFvwlZnyZd5b9dmd4R3V3WPkTZUdKfCNuO5FJha+j1uBM45ztyjrW2yCMl
+	 rFZEbTaNR2GIqwNXkBBUPr/6f8r9owNnS2Ukk6briqUjKixqWmvqmbux2GZTvFgcu1
+	 LxeLeuV9JrThQ==
+Date: Fri, 8 Aug 2025 18:03:46 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, conor+dt@kernel.org, 
+	bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org, 
+	dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
+ device tree
+Message-ID: <xrarnbg2qmhuivqgl7vzhmvfi6sc4zp6wa6zvpv4r4nufllc3p@u4wed2orm2cq>
+References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
+ <20250806154340.20122-5-quic_nitirawa@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250806154340.20122-5-quic_nitirawa@quicinc.com>
 
-Add Makefile and Kconfig for SPAcc driver.
+On Wed, Aug 06, 2025 at 09:13:40PM GMT, Nitin Rawat wrote:
+> Add support in QMP PHY driver to read optional vdda-phy-max-microamp
+> and vdda-pll-max-microamp properties from the device tree.
+> 
+> These properties define the expected maximum current (in microamps) for
+> each supply. The driver uses this information to configure regulators
+> more accurately and ensure they operate in the correct mode based on
+> client load requirements.
+> 
+> If the property is not present, the driver defaults load to
+> `QMP_VREG_UNUSED`.
+> 
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> index 9c69c77d10c8..6e116f7370c3 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> @@ -39,6 +39,8 @@
+>  #define PHY_INIT_COMPLETE_TIMEOUT		10000
+>  
+>  #define NUM_OVERLAY				2
+> +#define QMP_VREG_UNUSED				-1
+> +#define MAX_PROP_NAME				32
+>  
+>  /* set of registers with offsets different per-PHY */
+>  enum qphy_reg_layout {
+> @@ -1894,15 +1896,29 @@ static int qmp_ufs_vreg_init(struct qmp_ufs *qmp)
+>  {
+>  	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>  	struct device *dev = qmp->dev;
+> +	struct device_node *np = dev->of_node;
+> +	char prop_name[MAX_PROP_NAME];
+>  	int num = cfg->num_vregs;
+> -	int i;
+> +	const char *supply;
+> +	int i, ret;
+>  
+>  	qmp->vregs = devm_kcalloc(dev, num, sizeof(*qmp->vregs), GFP_KERNEL);
+>  	if (!qmp->vregs)
+>  		return -ENOMEM;
+>  
+> -	for (i = 0; i < num; i++)
+> -		qmp->vregs[i].supply = cfg->vreg_list[i];
+> +	for (i = 0; i < num; i++) {
+> +		supply = cfg->vreg_list[i];
+> +		qmp->vregs[i].supply = supply;
+> +
+> +		/* Defaults to unused */
+> +		qmp->vregs[i].init_load_uA = QMP_VREG_UNUSED;
 
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
----
- drivers/crypto/Kconfig            |   1 +
- drivers/crypto/Makefile           |   1 +
- drivers/crypto/dwc-spacc/Kconfig  | 114 ++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  16 +++++
- 4 files changed, 132 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
+You don't need to initialize the load. It will be zero initialized at this point
+and if the property parsing fails below, it's value still be zero. And the
+regulator core will apply the load only if it is > 0.
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 04b4c43b6bae..14688eda719d 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -768,6 +768,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
- 
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
- 
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 22eadcc8f4a2..c933b309e359 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -43,6 +43,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
- obj-y += intel/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 000000000000..4eb2eef56053
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dw_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+config CRYPTO_DEV_SPACC_CIPHER
-+	bool "Enable CIPHER functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_SKCIPHER
-+	select CRYPTO_LIB_DES
-+	select CRYPTO_AES
-+	select CRYPTO_CBC
-+	select CRYPTO_ECB
-+	select CRYPTO_CTR
-+	select CRYPTO_XTS
-+	select CRYPTO_CTS
-+	select CRYPTO_OFB
-+	select CRYPTO_CFB
-+	select CRYPTO_SM4_GENERIC
-+	select CRYPTO_CHACHA20
-+
-+	help
-+	  Say y to enable Cipher functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_MICHAEL_MIC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AEAD
-+	bool "Enable AEAD functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_AEAD
-+	select CRYPTO_AUTHENC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+	select CRYPTO_CHACHAPOLY1305
-+	select CRYPTO_GCM
-+	select CRYPTO_CCM
-+
-+	help
-+	  Say y to enable AEAD functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	depends on CRYPTO_DEV_SPACC
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-+
-+config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
-+	int "SPAcc internal counter value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 100000 1048575
-+	default 100000
-+	help
-+	  This value configures a hardware watchdog counter in the SPAcc engine.
-+	  The counter starts ticking when a completed cryptographic job is
-+	  sitting in the STATUS FIFO. If the job remains unprocessed for the
-+	  configured duration, an interrupt is triggered to ensure it is serviced.
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 000000000000..bf46c8e13a31
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_CIPHER),y)
-+snps-spacc-objs += spacc_skcipher.o
-+endif
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_AEAD),y)
-+snps-spacc-objs += spacc_aead.o
-+endif
+> +
+> +		snprintf(prop_name, sizeof(prop_name), "%s-max-microamp", supply);
+> +		ret = of_property_read_u32(np, prop_name, &qmp->vregs[i].init_load_uA);
+> +		if (ret)
+> +			dev_dbg(qmp->dev, "No max microamp for %s, using default %d\n",
+> +				supply, QMP_VREG_UNUSED);
+
+This print doesn't make sense as it will print the default value of -1. Please
+drop it.
+
+- Mani
+
 -- 
-2.25.1
-
+மணிவண்ணன் சதாசிவம்
 
