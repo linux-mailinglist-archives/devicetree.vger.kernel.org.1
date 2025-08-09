@@ -1,200 +1,119 @@
-Return-Path: <devicetree+bounces-202940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C51B1F561
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 18:18:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD870B1F572
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 18:30:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62F03626174
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 16:18:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53DA33B93D0
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 16:30:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603252BE7BC;
-	Sat,  9 Aug 2025 16:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD502BEC55;
+	Sat,  9 Aug 2025 16:30:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrfxhvNY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Sz+m2hla"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D71274B3D;
-	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DA22BE7B5;
+	Sat,  9 Aug 2025 16:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754756305; cv=none; b=rhZvsB44xdMn/hgdsizZr/Lka/mHx2vK8campQqS0FusR11RDq4HqhzB3sswuGZJyvxAf5HLFaQ+a36IP4BSGI1l0QRPQXc+r/0P/AXNaXUaMHDFXFQlbdlkRA/flWqU2O93uL/uUtvign7zcvHVCv5kVoCJVh2kqLKaIktILeg=
+	t=1754757010; cv=none; b=tgHYXFchskr5fniz6JkTIAXJWpF7BPzD7DZMoirUgxCBt52frquS9NWMbMvP8mqRjrOexXqfzJ4bEbxIT+JkYiNX409s9Co4/zRYJjSKEekzGRrYSSXrZOSwfrpzHQ4i1A5I9UWK+JVpRqrmzwrLCbUqe+F8ypMd6MS+c9UeU7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754756305; c=relaxed/simple;
-	bh=nR2X7s3XzAMg7Jh5xr8ezkiYQpIyMXAwdpWu2LY5er8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c9SFWeJlur4/wu4WJ+iog12bg+E56ttoEXRZ8wbGSCwrA6+oMx8LxUSbLDMRvX3ojlW8VEKXGqnfC2qn34y1sJh8t/zQjqD1jZoZfjjKWsvVgfDoWMV5ELQTmCff/aggUuxyGjcqiQPnc70/hXuU+iWJKdNyYyt/YABFe7BvdLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrfxhvNY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BC68CC4AF0B;
-	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754756304;
-	bh=nR2X7s3XzAMg7Jh5xr8ezkiYQpIyMXAwdpWu2LY5er8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=rrfxhvNY1Xma1bH/fKBsf09iN7y+fl8DiKnaeS+BlTh4cizsaQGF0wTAIVurPrwB/
-	 Bdkv+a0wPPlCagIZcZTjF3NfqtaXp8R6KXA6zoJG7zbC0j/r8bLQsKcftFV6d49/ct
-	 rpWwb5frvKo8qjdfVMoZbVZDeuYfY6LZd1NW2TJqe2twT+EIwZE9eE475/ibYRMTom
-	 rE7xjPlrtSOiyQoY+hSrHXKH6Ilwo+iyQDHmVGSxRvFfb5ZeKONmQENRSx5fdT+H/t
-	 nTNVsozhDG6viVrjAicRUS5azQYQzloLS/pgOA3Eu/XGrNxjqq5soDFsTNP5ibTdDF
-	 m4NA7TsKBpLLA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA566C87FCF;
-	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Sat, 09 Aug 2025 18:18:08 +0200
-Subject: [PATCH v2 3/3] ARM: dts: allwinner: Add Orange Pi Zero Interface
- Board overlay
+	s=arc-20240116; t=1754757010; c=relaxed/simple;
+	bh=Cm8J6ngGByY9cQAYYH5UAeYDF7M0/kP9w50arR5JHLI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zt0ksytMFo9HgyZqI4JRcR3IdiWY+75ecNUpyNgqUxbkKLx0LB/qSjqh4lZCqJBDUaq8Ai9ZQjhjvWkn//s0gTJrSL7s4HmHx91ezeYTr+z5cqoJUmAT1Pqb33AgFNxLz6XlHSt7FO3gLKdIGE5bsGUg+tWR7vTHuJ62GbaNpOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Sz+m2hla; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ejv8+d7vSpX/xZq5ZABJ9+PMyt3KH7ziQBU5i/fvp/Y=; b=Sz+m2hlaT3yZ1Kwq0JUuFRki6o
+	0ObnNEA+pVQVuIT3/EGqkvJTQPylKIl0aQes3qJvaOzyguv38YpBNPQ0joBf6ne0IVuA+GbVytVee
+	U7CvEFkUyeug4froVeX2ctKTKgLvafurOm1odsXwWjG2jL3URPgqduUu7OxV6SFmzjt0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ukmSC-0049m9-DY; Sat, 09 Aug 2025 18:29:56 +0200
+Date: Sat, 9 Aug 2025 18:29:56 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: linux-leds@vger.kernel.org, Marek Vasut <marex@denx.de>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, Lukasz Majewski <lukma@denx.de>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
+ netdev-trigger-mode property
+Message-ID: <505f53fc-3481-497e-bc26-a70f3321e075@lunn.ch>
+References: <20250113002346.297481-1-marex@denx.de>
+ <2598568.Sgy9Pd6rRy@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250809-opz-audio-v2-3-f4fd15552a82@posteo.net>
-References: <20250809-opz-audio-v2-0-f4fd15552a82@posteo.net>
-In-Reply-To: <20250809-opz-audio-v2-0-f4fd15552a82@posteo.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754756302; l=3705;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=rwwErTSLr++MWzr7FBwd2E7U9pR2ndpNt4EaJnJ0gxI=;
- b=UNB0zJG+JHbx/WEK9byBYkwHKR96kwXklUN3q3nyKKIbldkKzClVLmTI1r5YqJlV0SG59huMg
- oaeZ8XxD19UAbQAumRnof7/2vAsqpFTvu8yb1oijYquR5OP9ludnPBz
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2598568.Sgy9Pd6rRy@diego>
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+> as DT is supposed to be a hardware description, I think throwing arbitary
+> binary values around is not very readable - especially as the above would
+> be a combination of setting-bits for the TRIGGER_NETDEV_* things.
 
-The Orange Pi Zero interface board is a (mostly) passive adapter from the
-13-pin header of the Orange Pi Zero and Orange Pi Zero Plus2 to standard
-connectors (2x USB A, 1x Audio/Video output, 1x built-in microphone, 1x
-infrared input). Headphones, microphone, infrared (CIR) input, and USB
-have been tested with the Orange Pi Zero.
+I tend to agree with you. This is a tricky area, since it does appear
+in most part to be configuration, not hardware.
 
-CVBS output is currently not supported.
+What i think you should actually be describing is the label on the
+case next to the LED.
 
-  https://orangepi.com/index.php?route=product/product&product_id=871
+Taking a random example:
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
+https://www.downloads.netgear.com/files/GDC/Unmanaged_Switches/GS105Pv3_GS105PPv3_GS108LP_GS108PP_GS116LP_GS116PP_DS.pdf
 
-v2:
-- new patch
----
- arch/arm/boot/dts/allwinner/Makefile               |  7 ++++
- .../sun8i-orangepi-zero-interface-board.dtso       | 46 ++++++++++++++++++++++
- 2 files changed, 53 insertions(+)
+The case says:
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index d799ad153b37b917d1e1c091fb051140398a574b..97d0a205493f40ba5969b5c8f4708a817ae725c5 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -182,6 +182,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
- 	sun7i-a20-wits-pro-a20-dkt.dtb
- 
- # Enables support for device-tree overlays for all pis
-+DTC_FLAGS_sun8i-h2-plus-orangepi-zero := -@
- DTC_FLAGS_sun8i-h3-orangepi-lite := -@
- DTC_FLAGS_sun8i-h3-bananapi-m2-plus := -@
- DTC_FLAGS_sun8i-h3-nanopi-m1-plus := -@
-@@ -225,6 +226,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h2-plus-libretech-all-h3-cc.dtb \
- 	sun8i-h2-plus-orangepi-r1.dtb \
- 	sun8i-h2-plus-orangepi-zero.dtb \
-+	sun8i-h2-plus-orangepi-zero-interface-board.dtb \
- 	sun8i-h3-bananapi-m2-plus.dtb \
- 	sun8i-h3-bananapi-m2-plus-v1.2.dtb \
- 	sun8i-h3-beelink-x2.dtb \
-@@ -244,6 +246,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h3-orangepi-plus.dtb \
- 	sun8i-h3-orangepi-plus2e.dtb \
- 	sun8i-h3-orangepi-zero-plus2.dtb \
-+	sun8i-h3-orangepi-zero-plus2-interface-board.dtb \
- 	sun8i-h3-rervision-dvk.dtb \
- 	sun8i-h3-zeropi.dtb \
- 	sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
-@@ -264,6 +267,10 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
- 	sun8i-v3s-netcube-kumquat.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
-+sun8i-h2-plus-orangepi-zero-interface-board-dtbs += \
-+	sun8i-h2-plus-orangepi-zero.dtb sun8i-orangepi-zero-interface-board.dtbo
-+sun8i-h3-orangepi-zero-plus2-interface-board-dtbs += \
-+	sun8i-h3-orangepi-zero-plus2.dtb sun8i-orangepi-zero-interface-board.dtbo
- dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-optimus.dtb \
- 	sun9i-a80-cubieboard4.dtb
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-orangepi-zero-interface-board.dtso b/arch/arm/boot/dts/allwinner/sun8i-orangepi-zero-interface-board.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..e137eefee34163752372d442c22179b1fa41615a
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-orangepi-zero-interface-board.dtso
-@@ -0,0 +1,46 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
-+/*
-+ * Copyright (C) 2025 J. Neuschäfer <j.ne@posteo.net>
-+ *
-+ * Devicetree overlay for the Orange Pi Zero Interface board (OP0014).
-+ *
-+ *   https://orangepi.com/index.php?route=product/product&product_id=871
-+ *
-+ * This overlay applies to the following base files:
-+ *
-+ * - arch/arm/boot/dts/allwinner/sun8i-h2-plus-orangepi-zero.dts
-+ * - arch/arm/boot/dts/allwinner/sun8i-h3-orangepi-zero-plus2.dts
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&ir {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&r_ir_rx_pin>;
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
+Left LED: Link/ACT mode
+Green = Link at 1000M
+Yellow = Link at 10/100M
+Blink = ACT
 
--- 
-2.48.0.rc1.219.gb6b6757d772
+Right: PoE Mode
+Green = Powered
+Yellow = Fault
 
+So there is in fact four LEDs. Two of them are actually nothing to do
+with netdev. This shows how flexible 'PHY' LEDs are, they can in fact
+be used for anything. We currently don't have a PoE trigger, but it
+should not be too hard to add.
 
+For the two actual netdev LEDs, we need to describe the text of the
+label. The naming of the DT property also needs to emphasise this is
+the label. And if the case has no label, you should not be putting
+properties in DT, the LEDs don't actually have any fixed meaning, it
+is user space policy to set them.
+
+As you said, there has not been any obvious progress on such a DT
+binding for 6 months or more. I would probably interpret that as its
+not particularly important. Maybe it actually makes more sense to work
+on user space tools, to make it easier to configure these LEDs. Maybe
+extend ethtool with a --get-led and --set-led. It is not always so
+easy to following the symlinks in /sys, PHY LEDs appear in a different
+place to MAC LEDs typical of switches etc. Once we have ethtool
+support, it becomes easier to add entries to /etc/network/interfaces,
+or udev rules, etc.
+
+	Andrew
 
