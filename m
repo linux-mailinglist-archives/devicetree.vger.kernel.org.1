@@ -1,151 +1,152 @@
-Return-Path: <devicetree+bounces-202891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0C7B1F235
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 07:09:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0A3B1F2DA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 09:30:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821A8566FA5
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 05:09:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CAEE7A60D5
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 07:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9591A277C90;
-	Sat,  9 Aug 2025 05:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199D327C875;
+	Sat,  9 Aug 2025 07:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="dkBQsZDd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bRNFMl9k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DED11DC9A3
-	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 05:09:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918F621FF36
+	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 07:30:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754716178; cv=none; b=FfjSM49Lw8n9k1rz+VLuvvlikNPMT0IYpyv1R9/d9nBihfgH++UQkZHgJFUTbOiuAcG7mBnQqTqRCKUVlVyjftaRV3y68fUOvRLh/Dn0Jxph2fLjg1UhKdjd4lcX4ssVL9fpJMyoNRhZV3p2D93UpuO8f9fd1rphrChVmYjVRmQ=
+	t=1754724616; cv=none; b=qBgiqrp1NLwI5rfhybXks73b5ePE9XWI5zeQgiGNx2hYPyErggZSF242yT9D+nua5BHYxfeXBAp9zFuc0Nl4HQSmEYbMbvm9Acek6yKH2aND6vSuYo0lHc5bSo2/dTghbEwD85xq+YhBox/DNeZ0nL0bfS1JzgqJXomtUtiL3h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754716178; c=relaxed/simple;
-	bh=GrglcO3xsVXh3AY4plzNCBO4+hdYcu/Lkn4GpTjSkck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o9GpN0KVs2Ip5Bp4CYk5wHh/jWojTkfwcCsHb3vULSjHF/Tt4bV5gydi4LbqWLswr8GqK0+QbZrlqyQzYnBC58vnBfkf2cSl4TK6Qd/CpPbYEuXeS+EVsULHDhg0pb60S8mF4sF27cfHTuRfvyhsWrBWjk372+sDgJwgBnJxsU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=dkBQsZDd; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-615460d9897so3307007a12.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Aug 2025 22:09:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1754716174; x=1755320974; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6HTTOxi4bBvMFIB876AaeWrN83+qUAp0MN7BaBm7MTs=;
-        b=dkBQsZDdPJ7iI9FX8dr8/HoxXSSIKFfK2WVvt2hpnzIaLF2wu3JsumnpZR7Xte+rRM
-         uzmEJOT1FX2VrPNGfjAVlIy6Pnjy3Z8mOksA1jFHEj1ZxzGKpyAEcbSngYKpFZ6HAw7z
-         GARU+9It6aOQCvIXogbMTMQ0g5ozENxDE0T3OiFhGR3nMaae+KzoeI/F0yAimvj2Pdzc
-         sQPFnZp6idR1Rq9Jdu9vLju98KiTYWOfz6G7DcdJRCSSJTVUJVMWvC5G9YzysSKlOFFl
-         UYIbxtZW5riypcns2QjvG/am7IYj/W+af5VH04szsEB92FiWOdrKKARinvLpUdBBAtDO
-         dh4w==
+	s=arc-20240116; t=1754724616; c=relaxed/simple;
+	bh=l8z2N3VCZM6RQchSw+3RLf4E55Fhb8eHOiRzLOSfIUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kEcFjdwr3nWhwrdLf5h84gJ9WVDlLlXZoVm74lhmINFj6WrZZY48c/bdJ1Tw09pLWAgYyHst82HoJwcoarqIjGKitAEInLYhS0hxh/4pK9VMe9EICMPWfuphqIGVnpZplgVZyoSSUELbpjZ1eAD2FmO6A5UaLrG7BaaPRJSFvt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bRNFMl9k; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5793UJFG005462
+	for <devicetree@vger.kernel.org>; Sat, 9 Aug 2025 07:30:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6cdLO8eSlr9RJYCTskzMuxsJ
+	U7OJLCh7xxZyeqOV+Z8=; b=bRNFMl9k01cPZ27SnLt5YRi+YNY8iZx2Se8sUBfr
+	wkdGbCG5I/c7d0fecxzy1YDdtmf+DSwdfngbzNbhspvgYn0ZNPTX3L91KwEDJnTp
+	UoWPDv1/CbWaNsndJoF1V409sON0wUz/g5xk46o0jIB7AICMPIOAglezeszcjO7p
+	fOhMZIgqUQfzDNuztLwhzG2UOuk/yW3DfmE24ft6+62CZ3rSD+Pt/7eyE14NI46L
+	Zgn572YM7oVKOsyTrrXHKhA3TNVjGJKU1VI5rVT9w+ZRDgbtj/XqW7m9gK6zyUAk
+	ClZnZPvEXUooZeSFfN957vlS28mPZLSqQHsAFYlkIRR/ZQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxdur8wk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 07:30:13 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b08898f776so67285421cf.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 00:30:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754716174; x=1755320974;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6HTTOxi4bBvMFIB876AaeWrN83+qUAp0MN7BaBm7MTs=;
-        b=rsmoxdi7NPCmY4nHdVKmi9o2Ra7RGFuPsEm3Z2KYyX8H/P/SwuER4wRrZlGKF3f3j5
-         GFppdZ/WSCUeF8t7Ru+0ghI28byCs6+ZLEEvFje+Kyy2o23ZqwA0uRWYCBKcRR4BRi1s
-         r9/OMAG1F1WhZ41+ZNFgFzHBUcQP5fBlltmFSCE3R+kPLz9ahKAnLoWQ483amBCLlgls
-         dqCatxJ5Elb5NK4jMvAgq4UBtUULxVvP3bVtoiIHpez8N4k5uXGjeKYaOsScTF942pQH
-         QktbXjhU3jrbeMeEp68m7M94EcfhJqdUU6ckdQha8T7J9dKrKaVKrBto3aNmCPRyBrWY
-         INsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfcdUJwJlEYKQpxyji8x3nu0qSx0pUEDmxTE66xGywSS3TkIAvQC8320Xwlgof5pZ1YESX7IEkR2DD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOz8B4LMGv/VJ9jh1j5GC1swa7CeuT8n5QB9jO33ObbbuPbEn9
-	R9WN2+rW3Lwtchq7Vc7037Fkqy9OL74nXoZ76xELLJXXN17/u5xqzIScUKdY9wS/OLQ=
-X-Gm-Gg: ASbGncuZK0eH6jWedcMqJPLERBUncAPMzemeDnIbnn8gdmaN9qi7hxDd3vfeWoIrb/J
-	r180jnmZkJf0PC1SH+ClHa1iWKXHhwZjd2lU/AV5qTwXi0MaLSXRHcAOB+F94SiwectldCmdCkV
-	ZYGyMi567To3Upvqmyt7XGBIXOzkAZz4w1e1mdCx0rru1IPIUg5+zBLVI2WWkYw8FeqYyNoI8Fl
-	e6q3bNKr2z1u2ielmFkisTkqIVh7pZIQBQGQdvJ0AElL69578EPBDKM9FVEPTXJ0xmLkSHKBXEn
-	B0odLkq+xJeUwBK321solukCWBGgjU+cB/o16lTGVDXjoHYTrtlfCG2OP3ceCFWBfO0RA7NcZrg
-	1g4MES3XkCSwAdcy6gkHcMfe3lZdPUnE=
-X-Google-Smtp-Source: AGHT+IGXiORpQR5niIwIvpzn+wXs17bnFKeDy0GZ6K5qdZHPo1qcip11Y668BHB3y+3WMDJ6ZtPaMw==
-X-Received: by 2002:a05:6402:2101:b0:617:b3e8:97aa with SMTP id 4fb4d7f45d1cf-617e2bf8706mr4793505a12.3.1754716174120;
-        Fri, 08 Aug 2025 22:09:34 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.188])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8f16062sm14421123a12.18.2025.08.08.22.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Aug 2025 22:09:33 -0700 (PDT)
-Message-ID: <7737de72-701a-43ce-88a4-90d2d17c48f8@tuxon.dev>
-Date: Sat, 9 Aug 2025 08:09:32 +0300
+        d=1e100.net; s=20230601; t=1754724613; x=1755329413;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6cdLO8eSlr9RJYCTskzMuxsJU7OJLCh7xxZyeqOV+Z8=;
+        b=LNdyTsnHXdaGXo4UNywKXkhN5D9NVLKW4KDUWu/naqJz3rJmttwhPCPXIT7Coso/DW
+         xHquX94WYcKMY2epJeAXinOtspp2ubGz4tNYz0fBE2vORO1Fl4VA+EsmvgkTWf/PhR88
+         M4SdII5nAnH6qZIDlxyTATtqi0VXjPpqe4Jg6pMqtR9m6WPAhAxBtZ2mjuWv03g1rEM2
+         /DWycH18tVUAtVpK+zaLRkD0p/WPIyweD4nmFniQGIdbLiKr6crZNfvRtlOogGyCKolH
+         EUKsoOOsR6Mn7qw70x9zXY8euwKGqEGXsVAs8TzolgzPzvugvxbWtuWqNzvStenDtK8q
+         HyjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJgZG5Mo6IohPdLVDO8n02H8ml8WmQIKIAsbIWirDrWklJMgVMuES/SvVRJkTkk70jc72jhc92prE6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfW+nwuyIJMbZaI6QRd1rwf3coysYVZNiFmvz2Ra5Qp3D5ZRCK
+	thYILpg+lgGHIdqdGP6SDPJh3AdaY2eZ+VhQlXGtpWq5R9YKbPW9NYDxeovGcJjFsZ3K+veeX9Q
+	V1nO7AB3DpJOY5nqwGsTti00vjXwyv79s46ipm/t1x0ICnZRfSSfvDGiq5iXvqgEX
+X-Gm-Gg: ASbGncu9fdXQxlGwArGLsJare9vOF+HCrXc2bf9D/oHnIPOrRQqZi47nCe3OJr2qzft
+	hOiWB3pPV6xuYVZeiNDLdi2rdpbtY1jyESdlLsmdE9wbqhGZqgYyAGPe++jp5SIMY8Vjnf6sQYI
+	85/HugYp9Jzy9ow3EAOGvyZcVAqaVdahN3hwTpI//8D84YCkfPagzaGDDhI8a2/BsOHE76O3PNs
+	SYdgmyaZPS4uhx9drwOR0SjPFVYIAf6/q5NRKJKad+62woGAIAH7OhU2RyJLnhmGCj6Xhlup0Yl
+	rHJlQBIymxtLgNohGH34NP2XGOmIQmM/nzkEu0dRP4XRZNLVG8v94O/b3vYakLqt4woCCbfmqp+
+	LUDMyIZObMdKhjgpiA2KSF4bWO/IYwsK6H0ryEKAXSuz6jfSm7/J8
+X-Received: by 2002:a05:622a:258b:b0:4b0:65cc:f64f with SMTP id d75a77b69052e-4b0aed7c945mr88513421cf.54.1754724612729;
+        Sat, 09 Aug 2025 00:30:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHI6V+Z5+t3pF8WT1G/7aQiYdC2lbd+mLRd22M3GqlN6tzB0CFSCGVQ963LVGJWMyblECj+jQ==
+X-Received: by 2002:a05:622a:258b:b0:4b0:65cc:f64f with SMTP id d75a77b69052e-4b0aed7c945mr88513091cf.54.1754724612236;
+        Sat, 09 Aug 2025 00:30:12 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-332382a9483sm30812911fa.23.2025.08.09.00.30.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Aug 2025 00:30:11 -0700 (PDT)
+Date: Sat, 9 Aug 2025 10:30:09 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
+        bvanassche@acm.org, andersson@kernel.org, neil.armstrong@linaro.org,
+        konradybcio@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
+ device tree
+Message-ID: <5nsglhsnqdx4l44r36zmxumcpbbwhns4432hm3lvttsgyjaknb@feobdhpzzo65>
+References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
+ <20250806154340.20122-5-quic_nitirawa@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20250807151434.5241-6-wsa+renesas@sang-engineering.com>
- <20250807151434.5241-9-wsa+renesas@sang-engineering.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250807151434.5241-9-wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250806154340.20122-5-quic_nitirawa@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=IuYecK/g c=1 sm=1 tr=0 ts=6896f905 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=eDCZef9bSGwXM37ZZ4wA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: R2WfdRUYKrqbEDeC8p7Ggjheo9pyX5yC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNSBTYWx0ZWRfX4QxJT5bQh1d5
+ OqdoEnPuYTqOJnOrg3qHKxenAZSzCpmS+MfsjmuIdyoX8AO5/Ap7vTAaml2+DmLQc0DHjMN9/Jj
+ KRlVDS4pFbDGQZyU6zMAiU3SmTrXc4O0SXOMz6VDKNSx3cptseXOAgUOkPgfbFOvfmYF5Yeqj44
+ 072urGBNioCBY3VOGBGnuQ8ZvJISRuPykmpiGXJcvXwTucfuH4L6UxlODDDvZ+0qLyhwlUCV8Bs
+ J4P3G4OXL6Ebhd/CqCKcib7DfkpssQEEaiadKf/ZMqMsfm1769U5OTx66/baHhX8MiLD1j1iOjO
+ vweVZ+49IY+vBV5vPuxsqxiAoy8Hx9YSEWdoJuXMY19sQ5S4AliIWc1rpCJASfmOJF61ls2/VCZ
+ //iMEI6M
+X-Proofpoint-GUID: R2WfdRUYKrqbEDeC8p7Ggjheo9pyX5yC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-09_02,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 phishscore=0 suspectscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090025
 
-Hi, Wolfram,
-
-On 07.08.2025 18:14, Wolfram Sang wrote:
-> Enable I3C on the dedicated connector of the RZ/G3S module. Provide
-> safe defaults allowing to connect even to slow I2C devices.
+On Wed, Aug 06, 2025 at 09:13:40PM +0530, Nitin Rawat wrote:
+> Add support in QMP PHY driver to read optional vdda-phy-max-microamp
+> and vdda-pll-max-microamp properties from the device tree.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> These properties define the expected maximum current (in microamps) for
+> each supply. The driver uses this information to configure regulators
+> more accurately and ensure they operate in the correct mode based on
+> client load requirements.
+
+What defines those load values? Are they actually dependent on the
+platform? On the SoC? On the board design? On the UFS gear?
+
+> 
+> If the property is not present, the driver defaults load to
+> `QMP_VREG_UNUSED`.
+> 
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
 > ---
->  arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> index 39845faec894..17fd30df3432 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -7,6 +7,7 @@
->  
->  #include <dt-bindings/clock/renesas,r9a08g045-vbattb.h>
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/i3c/i3c.h>
->  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
->  
->  #include "rzg3s-smarc-switches.h"
-> @@ -172,6 +173,12 @@ a0 80 30 30 9c
->  	};
->  };
->  
-> +&i3c {
-> +	i2c-scl-hz = <100000>;
-> +	i3c-scl-hz = <12500000>;
 
-I'm not familiar with I3C but from the HW manual it seems there is some
-level of control for I3C in pin controller:
-- on Input Enable Control Register (IEN_m) there is this note: Note 1. 1b:
-  applies to terminals of TMS_SWDIO, I3C_SCL, I3C_SDA, P1_0, P7_0
-
-- there is I3C_SET register (bit POC) which controls the I3C voltage, so, I
-  presume, depending on the SW_I3C_VIO_SEL switch on the board (which
-  selects the output of VDD_I3C regulator)  the pins would have to be
-  configured with proper power-source = <1800> or power-source = <1200>
-
-Thank you,
-Claudiu
-
-> +	status = "okay";
-> +};
-> +
->  #if SW_CONFIG2 == SW_ON
->  /* SD0 slot */
->  &sdhi0 {
-
+-- 
+With best wishes
+Dmitry
 
