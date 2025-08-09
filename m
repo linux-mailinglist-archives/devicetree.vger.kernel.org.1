@@ -1,159 +1,110 @@
-Return-Path: <devicetree+bounces-202937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0FC0B1F531
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 17:20:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2B2B1F560
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 18:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D7257ADFFA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 15:19:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76EEF18C506A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 16:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2752BEC44;
-	Sat,  9 Aug 2025 15:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BA82BDC34;
+	Sat,  9 Aug 2025 16:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GBFpHYKK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxmhfCJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C562BE632;
-	Sat,  9 Aug 2025 15:20:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBA4AD51;
+	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754752807; cv=none; b=XkyiweKFQ8V9cRCumm4qzAivdAk4eWeALfyBbZc1bedv8FNziLtkAS0vzpYhMvkARVSxbe/lvXv3p/lLjyafpmZKTOnVwBM283DdhkbFHzD5hBTfH3a4YNtbmy0x3i44N4ri4WWLjQSiRIn5MlA98wXgyu274gbuDBEaRU6dM8M=
+	t=1754756305; cv=none; b=WviPob4mCMsC/wMZN8ZR+AaMO7sYLHIxOVaoLf8T7E0AxnFgke8CJ30r82yRzc9uZEGB9QqTGm+hm89nZkomeh76WDK7ldHyiAnAqJqgdmH15NvvcIIWYBluklxUPJJRH68uWT2Lqtq4QSGs4+1DMIf8HGHGHh2e/jdzsSWSOhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754752807; c=relaxed/simple;
-	bh=zE69J7iVRkRPHezfEuW053Wj+05v1LG9BKUsSUHztHw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MbXXOOaNR+ZTaOMllF7oNz6eu2eiZrDueAj27O+3HGzdHZGUIb0N9rznwCYC0tv6iUjzG/495XNKRxDQ0FggKvI7dky0BJZPkYz2PSWm1/zxof73nSJ2g/pClHQD/YL2VrL52AdwnSrNDbPBLjpaVH89G/c9mf47hgvTu7BAFeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GBFpHYKK; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3b77b8750acso1846963f8f.0;
-        Sat, 09 Aug 2025 08:20:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754752804; x=1755357604; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F2z37DtB7ki2BMrEIWUmQdKynw5LgE3LSUPH4IGC79o=;
-        b=GBFpHYKKs8ps1K/NWJRWha8K02JtQJWk7MZCcSvwKYAmrIgRI8x+nJkXbRwFLd95o+
-         Q+4fXbGgQOq69qTsp3pD1UsicpsA8mzQlNTL+xSZ9A2SrnkF3ZLKt8TXBMQLgvcV6mz7
-         aB7DnuF6yhti9Ul22H8/zxPZghL3t+V9XWzijb8B6g+5OdxpItuqS1UYJpiODDsRn+d3
-         qj1/6SEO7f3E77CX4Itl673ROyapgNzwEybeSLlS4wVRm+MPgPyEKGS+aQc9q6yjRHPh
-         j/Gt9U+FFfRuiU9Ef7dABueYNfDEgnaipKJDA7fF93I638UeSzLcslIxA5gzbIZQWcEU
-         G6Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754752804; x=1755357604;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F2z37DtB7ki2BMrEIWUmQdKynw5LgE3LSUPH4IGC79o=;
-        b=w1LGhM23tk/2B1c1UYXfSYzZPi4n5BgYlDtofTui0pqRdkwzkunLNkQl2y8I7GXgml
-         2o64OXk1NTR1SxEXHf2xjuaUMk7sXRk4CjW4eHxaJo3iS/NUJJJW84rzOEsvRtKMcpmV
-         JyG7JkAc5H9Llna7g7zvn2bV5wAhoQ/bgMKUObbSpMesRofLkGF6kI2+T1Dilst095SR
-         XX6EQ85hp0brTZYiwi2/cPl5e6YhToBtZZHwzkfeV4zFELUKeJvrGe8ebGIylvxQY3ei
-         ebRYpmvetEWk6rhbsdX1sgubAt2FssIPVsdgszHNoDdavLbmkpBS9gDkZYdUUp1S3NoQ
-         GQbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzkOFgdadkO4YWvR8Z3fke0kVGtDMyyss82OnsVxJ9gK1EkZ1X8G8awaUZLv8rqF/7dHKQLytQ5Cf3@vger.kernel.org, AJvYcCWi8OILLytE1WJ5MXBjZq2vds0/+qR/RrQyhWrQ/si7ZBV21GcOSBVdi7XmuOvmcs5bsXyiMdMnp4aZvit/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfMOIwDnvLch3I3LeYv2Bs82bzx5vldzo7+m9Z1stxYgHf/fGP
-	MpKh7rBY3zhcRu++L72BBgeJH1ArNKhob+MjOw8QGAeLiq8YCiebLRKZ9xF/yvA=
-X-Gm-Gg: ASbGncsMMVrOtgCKaTixoncTCT9Of+hOlbQzu/X4r5/90Hd3z8DT/FvbOSW+/rYAQ6Q
-	AJpDQ1gUC2rik4n8RNBJsAyeholQ1AHRo3706z8MHv/rJEwAcpxq+HgUDle4QomO/Tcg8BwnWvp
-	II4mFD2ZdyocPMsBICNElvJmv4S1h7pZOpUfV8U8uPoFXhgy++tBRjSHFTnmLh55hOhgjUjVTsH
-	Ar3C77GQuBdseTekbOa0xQREmhVZlnYlWSqWtqvR4tOd0f2GSeBQoGUqnBzTLpGtX60WYP6pEjm
-	VDPlYWZo82Ele8zgGiSBpmO59a4hcfdqAxwzaHrQtAYbt67PnCkDqKDEM4vyrpOSIGylqxy4a98
-	d1/9syoSw4hpVw0EGr9D4q7+ivNRiU2Cl9E4ffP38X+ju8L8=
-X-Google-Smtp-Source: AGHT+IGusN9XKZd7es3KXwBzzyBcPCvZh2zlkHXnNJLYlOsbnMoW0ha4fXEs9ddU9RF0t5ans+UMFg==
-X-Received: by 2002:a05:6000:2507:b0:3b7:931d:37a0 with SMTP id ffacd0b85a97d-3b8f97c46d9mr8230422f8f.9.1754752803443;
-        Sat, 09 Aug 2025 08:20:03 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:156f:b6b0:b8c7:9296:47d7:b0cc])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e583ff76sm178748185e9.5.2025.08.09.08.20.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Aug 2025 08:20:03 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: linux-sound@vger.kernel.org
-Cc: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	drake@endlessm.com,
-	katsuhiro@katsuster.net,
-	matteomartelli3@gmail.com,
-	zhoubinbin@loongson.cn,
-	KCHSU0@nuvoton.com,
-	patches@opensource.cirrus.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH 3/3] ASoC: dt-bindings: wlf,wm8960: Document routing strings (pin names)
-Date: Sat,  9 Aug 2025 17:18:53 +0200
-Message-Id: <20250809151853.47562-4-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250809151853.47562-1-jihed.chaibi.dev@gmail.com>
-References: <20250809151853.47562-1-jihed.chaibi.dev@gmail.com>
+	s=arc-20240116; t=1754756305; c=relaxed/simple;
+	bh=Bwb6t2YuRUfjH9rtbL/iknXzFlmnm4YAv6kHXJJPfCc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Q5dfpD5qBBm5Y8/l49bs4mREy+hIWEVLUlB47DR+sqbSi75GAaFkKPOswCDbFNDE8qkZ+2ZcljCBcFfWMXXc3K1mjx2iE7/5QbLmyvDMLEtVv4kofIJHsm6fTbyShWh9TmFNRDx3FJxXNc0hj4B9H6d+KtMPdKhiyoNPvxOoIKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxmhfCJA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 94A83C4CEE7;
+	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754756304;
+	bh=Bwb6t2YuRUfjH9rtbL/iknXzFlmnm4YAv6kHXJJPfCc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WxmhfCJANyNDVkwjSJprunldKaEGS8PyJKlbE+ylFclnnxnKfQD/pPhr3rmyYryDW
+	 KcvFI5BjMbU9D/xwFGwFIUUjMzhtlqoJXvmWJaQ2jyBwct9C4zLo6nPEASitzbaelv
+	 mLNE1UMe+QHlDtTkoidxwNAZvZGUJBXbzM/KZL2jmwW6jMoefOizgph2qE9g1EPk41
+	 4n5Sxxb0EB6t/0b4IlIQ8L3Wg6jD1RYzauDnIOakSk0f5/jabeu/FR2snbnyIT3Ogq
+	 wzCCkj84Abu47SW8fkVXxBUVLxNVr3ut4fRvdkEpMzqX4yzpyrzW9hsSknqh9AyF2h
+	 iBiDL3o2muC8w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7DF1AC87FD2;
+	Sat,  9 Aug 2025 16:18:24 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH v2 0/3] Audio and other peripherals on Orange Pi Zero
+Date: Sat, 09 Aug 2025 18:18:05 +0200
+Message-Id: <20250809-opz-audio-v2-0-f4fd15552a82@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAL10l2gC/03MQQ7CIBCF4as0sxYDSC3tynuYLgod7WyAQCVqw
+ 93FJiYu/5eXb4OEkTDB0GwQMVMi72rIQwN2mdwdGc21QXLZciU65sObTY+ZPNM916q32hiJUP8
+ h4o2eu3Uday+UVh9fO53Fd/0p+k/JggmmUJ+NaY3tTuoSfFrRHx2uMJZSPpkBRDSjAAAA
+X-Change-ID: 20250417-opz-audio-890849c8bb2e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1754756302; l=1005;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=Bwb6t2YuRUfjH9rtbL/iknXzFlmnm4YAv6kHXJJPfCc=;
+ b=M7EvQXq4AITTYxKXjvWKmbdYsFY8YmBweMFkH+7/uCjZJtk5oXQhfg7cjblavaI1YXjCEMJfv
+ 7Qn+cYdiikoA1sq1BfTl9mPzw6SGataXmHp07VPaQvx189eg50rM062
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 
-The wm8960 driver defines several DAPM widget names that are used for
-audio routing in the Device Tree. However, these strings are not
-documented in the binding file.
-
-This forces developers to read the C source to discover the valid
-names, which can be inefficient and error-prone.
-
-Add a list of the input and output widget names to the binding's
-description to make it self-contained and improve the user
-experience for board bring-up.
-
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
- .../devicetree/bindings/sound/wlf,wm8960.yaml | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Changes in v2:
+- Rebase on (almost) 6.17-rc1
+- Disable audio pins by default
+- Provide separate DT overlay for the Orange Pi Zero Interface Board
+- Link to v1: https://lore.kernel.org/r/20250418-opz-audio-v1-1-4e86bb5bc734@posteo.net
 
-diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8960.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8960.yaml
-index 3c2b9790f..c8c786cb6 100644
---- a/Documentation/devicetree/bindings/sound/wlf,wm8960.yaml
-+++ b/Documentation/devicetree/bindings/sound/wlf,wm8960.yaml
-@@ -9,6 +9,28 @@ title: Wolfson WM8960 audio codec
- maintainers:
-   - patches@opensource.cirrus.com
- 
-+description: |
-+  Wolfson WM8960 audio codec
-+
-+  Pins on the device (for linking into audio routes):
-+
-+    Outputs:
-+      * HP_L    : Left Headphone/Line Output
-+      * HP_R    : Right Headphone/Line Output
-+      * SPK_LP  : Left Speaker Output (Positive)
-+      * SPK_LN  : Left Speaker Output (Negative)
-+      * SPK_RP  : Right Speaker Output (Positive)
-+      * SPK_RN  : Right Speaker Output (Negative)
-+      * OUT3    : Mono, Left, Right or buffered midrail output for capless mode
-+
-+    Inputs:
-+      * LINPUT1 : Left single-ended or negative differential microphone input
-+      * RINPUT1 : Right single-ended or negative differential microphone input
-+      * LINPUT2 : Left line input or positive differential microphone input
-+      * RINPUT2 : Right line input or positive differential microphone input
-+      * LINPUT3 : Left line input, positive differential microphone, or Jack Detect 2
-+      * RINPUT3 : Right line input, positive differential microphone, or Jack Detect 3
-+
- properties:
-   compatible:
-     const: wlf,wm8960
+---
+J. Neuschäfer (3):
+      ARM: dts: allwinner: orangepi-zero: Add default audio routing
+      ARM: dts: allwinner: orangepi-zero2: Add default audio routing
+      ARM: dts: allwinner: Add Orange Pi Zero Interface Board overlay
+
+ arch/arm/boot/dts/allwinner/Makefile               |  7 ++++
+ .../dts/allwinner/sun8i-h2-plus-orangepi-zero.dts  | 14 +++++++
+ .../dts/allwinner/sun8i-h3-orangepi-zero-plus2.dts | 14 +++++++
+ .../sun8i-orangepi-zero-interface-board.dtso       | 46 ++++++++++++++++++++++
+ 4 files changed, 81 insertions(+)
+---
+base-commit: 36c31984cca32c5d9720c8c1eb5bd17fa915419f
+change-id: 20250417-opz-audio-890849c8bb2e
+
+Best regards,
 -- 
-2.39.5
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
