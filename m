@@ -1,308 +1,147 @@
-Return-Path: <devicetree+bounces-202946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AECCFB1F612
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 21:48:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C46B1F619
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 21:58:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC6CB17F638
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 19:48:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20947624D0B
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 19:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBECF279915;
-	Sat,  9 Aug 2025 19:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C34427991E;
+	Sat,  9 Aug 2025 19:58:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GW3Ki4is"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xxMMvco7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9ABB12E1CD;
-	Sat,  9 Aug 2025 19:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F25279DA6;
+	Sat,  9 Aug 2025 19:58:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754768910; cv=none; b=XOIaRN82hVbSbLB1ZDkvtfOEcanljNBF7mgy1nxYPJNUQbNeeDLqciTJ7Ij++cTQAQlYceU/Ahmxw+QnZBTvuc9w2rRdpPFNYcb2ZtniwmN0ncv529IQoBW5ke9R6UbVir/J20MYVs0lR98aEMiRTfVhMjODeh9yuOUoAGcP87s=
+	t=1754769522; cv=none; b=ca6p7p9W5FxdLRWZzzRk+TaFY53YibbOb/u8uOhgNlQUppQKSLsKfozpqxSGW27WVX5N/Jtw/FkNLcCZEunDJC2057CiIt3KyFEtblZG1eUGsBxqT6zW27IdoN+e4EBoBVpslQwycL++yS9uPaeiGnQBDQzUf9kNUENW99VHkUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754768910; c=relaxed/simple;
-	bh=kZKOnWSmfiYKAbhxP9TeIj78E+X0219vt+YwRgx5caA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oE5c3s9sTxtbAT3E0lmxrNd2ek0fyTgYHjFHPbIHKTT75LMC6oLQqcYm+Yith1bQvK0gFNRGJfeL3EbdkknTh69i/CLzN9+GiD/dtsMCFBiYUXguG+AG4RXVQsbb3iDaNS1Com+g6SXxO4zcJGZ3kJbwzlBskAPN5w0sxp1poVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GW3Ki4is; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6F0C4CEE7;
-	Sat,  9 Aug 2025 19:48:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754768910;
-	bh=kZKOnWSmfiYKAbhxP9TeIj78E+X0219vt+YwRgx5caA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=GW3Ki4iswX83edgSTiywebaP2Tkoq9Z/2Z2cBdYlFoSW+sYXn4P4Cw7L3Laar0hCM
-	 DYcge4uPqn4WvBxIqLMNo70w6vHYnY0wT3dWcrS9c5lr1XnTXNE7OqH7+2GeNurYA6
-	 eUV2duYEEcyZ6u73hkDCEK2yvOHHOwgpJxE4P8R+16zfXo2j8rw/p63i4Ycr6gG4aG
-	 fPDC6SRbXu1zZvOBaWskAwuNuluH5Bu5dyKSCnZneaiZaVu0jpRonJWdX3SVuNA4E0
-	 lbG22aHZe5ke/I5xzQF5RlxfuSOW3lVnxG58G3Y/3TQ712FLJWKPU76y4Ma+1H8sbc
-	 gsrXDlGLlcZiA==
-Date: Sat, 9 Aug 2025 20:48:20 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ioana Risteiu <Ioana.Risteiu@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, "David Lechner" <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Ramona Nechita
- <ramona.nechita@analog.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
-Message-ID: <20250809204820.3e0893fc@jic23-huawei>
-In-Reply-To: <20250806192502.10120-4-Ioana.Risteiu@analog.com>
-References: <20250806192502.10120-1-Ioana.Risteiu@analog.com>
-	<20250806192502.10120-4-Ioana.Risteiu@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1754769522; c=relaxed/simple;
+	bh=Rzs3tllg1u2j5+XWGCqpWUs6bctzQ/tkvT/sr8cbkPQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tzTIXsFrogkG22yrIR+1C0L3aqVOvZaE9FSjWg9LIe5B55PDOySW3RwXqVzprjJexk5aG6kaBTH/XuYc40hn1rEE/MU/Mk0S2xeREa6WgZaIPhvN2A3kSUQ6MLEsJobNeLziu9PBaIAo7nIqXobZA6D7eDBUJcMGdUdRZimJ6jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xxMMvco7; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4bzsCV0Bxbz9spt;
+	Sat,  9 Aug 2025 21:58:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1754769510;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=d6MdNBtNkuXL9Fyp8b+yocC299r5xdWciGVdsFGVZ3s=;
+	b=xxMMvco7lkLdBwxkH+3EDAzYOkdNsvwa1ZedqwSfVlL75W2K8cb8BmPGdPeMIgESa2gnVV
+	B62kuJTu9CNxHnv6qbNP/EEaIF8rdJdIDRFsofY0AXAnsQTEAsvIjW6O21yrDGrFpHuXlJ
+	y7WXvIXRRKwU+IILNiY7uX+00z4/Ia7TLmyKsYxsR6HWbYgP5E6VPenb3cWpIq7bteWJDH
+	QSrrBQELbpqk4ORjbzn27GIBixXqiStgvaF40AZGlwsGuVi60drQghxG7MGR+cCRX50CgA
+	WVt+uCQIEq835UOYXJMw4kfMKaQmedTFYaBDiI+eYpV902hv7kcIKO6OkycdqQ==
+Message-ID: <24277b44-a21e-499d-9194-71edbd483902@mailbox.org>
+Date: Sat, 9 Aug 2025 21:58:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
+ netdev-trigger-mode property
+To: Andrew Lunn <andrew@lunn.ch>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: linux-leds@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20250113002346.297481-1-marex@denx.de> <2598568.Sgy9Pd6rRy@diego>
+ <505f53fc-3481-497e-bc26-a70f3321e075@lunn.ch>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <505f53fc-3481-497e-bc26-a70f3321e075@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 53d3b34a85958bd8789
+X-MBO-RS-META: 4dw6tc584bgwm1zgzyib1d767jq676ox
 
-On Wed, 6 Aug 2025 22:25:00 +0300
-Ioana Risteiu <Ioana.Risteiu@analog.com> wrote:
-
-> Add a new functionality to ad7779 driver that streams data through data
-> output interface using IIO backend interface.
+On 8/9/25 6:29 PM, Andrew Lunn wrote:
+>> as DT is supposed to be a hardware description, I think throwing arbitary
+>> binary values around is not very readable - especially as the above would
+>> be a combination of setting-bits for the TRIGGER_NETDEV_* things.
 > 
-> Signed-off-by: Ioana Risteiu <Ioana.Risteiu@analog.com>
-Hi Ionna,
+> I tend to agree with you. This is a tricky area, since it does appear
+> in most part to be configuration, not hardware.
+> 
+> What i think you should actually be describing is the label on the
+> case next to the LED.
+> 
+> Taking a random example:
+> 
+> https://www.downloads.netgear.com/files/GDC/Unmanaged_Switches/GS105Pv3_GS105PPv3_GS108LP_GS108PP_GS116LP_GS116PP_DS.pdf
+> 
+> The case says:
+> 
+> Left LED: Link/ACT mode
+> Green = Link at 1000M
+> Yellow = Link at 10/100M
+> Blink = ACT
+> 
+> Right: PoE Mode
+> Green = Powered
+> Yellow = Fault
 
->  
-> +static int ad7779_set_data_lines(struct iio_dev *indio_dev,
-> +				 unsigned int num_lanes)
-> +{
-> +	struct ad7779_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret = ad7779_set_sampling_frequency(st, num_lanes * AD7779_DEFAULT_SAMPLING_1LINE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_backend_num_lanes_set(st->back, num_lanes);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
-> +				    AD7779_DOUT_FORMAT_MSK,
-> +				    FIELD_PREP(AD7779_DOUT_FORMAT_MSK, 2 - ilog2(num_lanes)));
-> +}
-> +
-> +static int ad7779_conf_channels(struct iio_dev *indio_dev, const struct ad7779_state *st)
+This is meant to configure the netdev trigger, i.e. how Linux configures 
+the PHY LED behavior (blink at 100/Full, not blink at 10/Full etc.), not 
+the LED labels.
 
-As per other branch of thread.  This needs a name that makes it more
-obvious it's a probe time setup rather that anything to do with configuring
-channels at runtime.
+It is already possible to configure which trigger should be used for 
+each LED in DT, it is also possible to configure trigger settings for 
+some LED triggers in DT, but it is not possible to configure the netdev 
+trigger in DT.
 
-> +{
-> +	struct iio_chan_spec *channels;
-> +	struct device *dev = &st->spi->dev;
-> +	int num_channels = ARRAY_SIZE(ad7779_channels);
-> +
-> +	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
-devm_kmemdup_array()?
+> So there is in fact four LEDs. Two of them are actually nothing to do
+> with netdev. This shows how flexible 'PHY' LEDs are, they can in fact
+> be used for anything. We currently don't have a PoE trigger, but it
+> should not be too hard to add.
+> 
+> For the two actual netdev LEDs, we need to describe the text of the
+> label. The naming of the DT property also needs to emphasise this is
+> the label. And if the case has no label, you should not be putting
+> properties in DT, the LEDs don't actually have any fixed meaning, it
+> is user space policy to set them.
+> 
+> As you said, there has not been any obvious progress on such a DT
+> binding for 6 months or more. I would probably interpret that as its
+> not particularly important.
 
-> +	if (!channels)
-> +		return -ENOMEM;
-> +
-> +	memcpy(channels, st->chip_info->channels, num_channels * sizeof(struct iio_chan_spec));
-> +
-> +	for (int i = 0; i < 8; i++)
+This is still in the backlog pipeline, which is too deep now, I'm sorry.
 
-Andy got this, but make sure to get that 8 from somewhere. It's num_channels I think. 
-Though given most of this code collapses into a single call to devm_kmemdup_array()
-I think that local variable may not make much sense. ARRAY_SIZE may be clearer.
+> Maybe it actually makes more sense to work
+> on user space tools
 
-> +		channels[i].scan_type.endianness = IIO_CPU;
-> +
-> +	indio_dev->channels = channels;
-> +
-> +	return 0;
-> +}
-> +
-> +static int setup_irq(struct ad7779_state *st, struct iio_dev *indio_dev)
+The LEDs have to be configured before userspace is even started, that's 
+what this patchset attempts to solve. Consider the state of the system 
+before (proper) userspace that would configure the LEDs is even started, 
+e.g. initramfs and other such edge cases. DT seems like the only place 
+where this could be described, and it is done so for other LED triggers 
+already.
 
-As below. Do this in a precursor patch and give it a better name!
-Pretty much everything in IIO driver gets namespaced with a driver
-specific prefix. Makes future problems with new generic functions
-much less likely and makes it clear what is local to the driver.
+Userspace configuration is solved by udev rules, that's not a problem.
 
-> +{
-> +	int ret;
-> +	struct device *dev = &st->spi->dev;
-> +
-> +	indio_dev->info = &ad7779_info;
-> +	indio_dev->channels = st->chip_info->channels;
-> +
-> +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
-> +					  iio_device_id(indio_dev));
-> +	if (!st->trig)
-> +		return -ENOMEM;
-> +
-> +	st->trig->ops = &ad7779_trigger_ops;
-> +
-> +	iio_trigger_set_drvdata(st->trig, st);
-> +
-> +	ret = devm_request_irq(dev, st->spi->irq, iio_trigger_generic_data_rdy_poll,
-> +			       IRQF_ONESHOT | IRQF_NO_AUTOEN, indio_dev->name,
-> +			       st->trig);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "request IRQ %d failed\n",
-> +					st->spi->irq);
-> +
-> +	ret = devm_iio_trigger_register(dev, st->trig);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->trig = iio_trigger_get(st->trig);
-> +
-> +	init_completion(&st->completion);
-> +
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +					      &iio_pollfunc_store_time,
-> +					      &ad7779_trigger_handler,
-> +					      &ad7779_buffer_setup_ops);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
-> +				    AD7779_DCLK_CLK_DIV_MSK,
-> +				    FIELD_PREP(AD7779_DCLK_CLK_DIV_MSK, 7));
-
-return ad7779_spi_write_mask...
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int setup_back(struct ad7779_state *st, struct iio_dev *indio_dev)
-> +{
-> +	struct device *dev = &st->spi->dev;
-> +	int ret = -EINVAL;
-> +	int num_lanes;
-> +
-> +	indio_dev->info = &ad7779_info_data;
-> +
-> +	ret = ad7779_conf_channels(indio_dev, st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->back = devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back)) {
-> +		dev_err_probe(dev, ret, "failed to get iio backend");
-ret == 0 which isn't what you want.
-> +		return PTR_ERR(st->back);
-
-I think Andy pointed this out as well.  I'm not being too careful to not
-duplicate unless I happen to remember he covered something in the earlier
-review.
-
-> +	}
-> +
-> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = device_property_read_u32(dev, "adi,num-lanes", &num_lanes);
-> +	if (ret < 0)
-
-Whilst it's a bit fiddly as this is an array read underneath, the fact
-num_lanes is not null is enough to ensure if (ret) is fine here.
-
-> +		return ad7779_set_data_lines(indio_dev, 4);
-> +
-> +	return ad7779_set_data_lines(indio_dev, num_lanes);
-> +}
-> +
->  static int ad7779_probe(struct spi_device *spi)
->  {
->  	struct iio_dev *indio_dev;
-> @@ -760,9 +917,6 @@ static int ad7779_probe(struct spi_device *spi)
->  	struct device *dev = &spi->dev;
->  	int ret = -EINVAL;
->  
-> -	if (!spi->irq)
-> -		return dev_err_probe(dev, ret, "DRDY irq not present\n");
-> -
->  	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
->  	if (!indio_dev)
->  		return -ENOMEM;
-> @@ -804,45 +958,14 @@ static int ad7779_probe(struct spi_device *spi)
->  		return ret;
->  
->  	indio_dev->name = st->chip_info->name;
-> -	indio_dev->info = &ad7779_info;
->  	indio_dev->modes = INDIO_DIRECT_MODE;
-> -	indio_dev->channels = st->chip_info->channels;
->  	indio_dev->num_channels = ARRAY_SIZE(ad7779_channels);
->  
-> -	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d", indio_dev->name,
-> -					  iio_device_id(indio_dev));
-> -	if (!st->trig)
-> -		return -ENOMEM;
-> -
-> -	st->trig->ops = &ad7779_trigger_ops;
-> -
-> -	iio_trigger_set_drvdata(st->trig, st);
-> -
-> -	ret = devm_request_irq(dev, spi->irq, iio_trigger_generic_data_rdy_poll,
-> -			       IRQF_ONESHOT | IRQF_NO_AUTOEN, indio_dev->name,
-> -			       st->trig);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "request IRQ %d failed\n",
-> -				     st->spi->irq);
-> -
-> -	ret = devm_iio_trigger_register(dev, st->trig);
-> -	if (ret)
-> -		return ret;
-> -
-> -	indio_dev->trig = iio_trigger_get(st->trig);
-> -
-> -	init_completion(&st->completion);
-> -
-> -	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> -					      &iio_pollfunc_store_time,
-> -					      &ad7779_trigger_handler,
-> -					      &ad7779_buffer_setup_ops);
-> -	if (ret)
-> -		return ret;
-> +	if (device_property_present(dev, "io-backends"))
-> +		ret = setup_back(st, indio_dev);
-> +	else
-> +		ret = setup_irq(st, indio_dev);
-
-Do the factoring out of the setup_irq stuff in a precursor patch.
-Then this one will just make it conditional as part of adding the new backend stuff.
-
-setup_irq isn't a good name. It does a bunch of things that aren't
-directly related to the irq.  Prefix the function as well
-ad7779_setup_without_backend() maybe?
-
-
->  
-> -	ret = ad7779_spi_write_mask(st, AD7779_REG_DOUT_FORMAT,
-> -				    AD7779_DCLK_CLK_DIV_MSK,
-> -				    FIELD_PREP(AD7779_DCLK_CLK_DIV_MSK, 7));
->  	if (ret)
->  		return ret;
->  
-> @@ -936,3 +1059,4 @@ module_spi_driver(ad7779_driver);
->  MODULE_AUTHOR("Ramona Alexandra Nechita <ramona.nechita@analog.com>");
->  MODULE_DESCRIPTION("Analog Devices AD7779 ADC");
->  MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("IIO_BACKEND");
+-- 
+Best regards,
+Marek Vasut
 
 
