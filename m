@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-202944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1142B1F5FD
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 21:22:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6839FB1F605
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 21:38:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E823B28A3
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 19:22:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F2B53B238A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 19:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91DA279781;
-	Sat,  9 Aug 2025 19:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96BC2741C0;
+	Sat,  9 Aug 2025 19:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b61cHcgE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yre0dFqz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C51F1B423B;
-	Sat,  9 Aug 2025 19:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF851F76A5;
+	Sat,  9 Aug 2025 19:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754767332; cv=none; b=QYgybX2tt84zO3ApKTSf0U56JKh/NN2ZgRoyGH7c+mVSmOW09x9R3/bNcd7aZ0onmpeHX7UChYxll9Yy2vdQUBZwpdJbIGlcujHhq31bO5eQtadpw5/R0jFBcRpgMPHLxJ+glx/Xli3fUYxb/Fr5AGhsSLm2/fX5KJPDtIhZWg0=
+	t=1754768278; cv=none; b=gFiLB04heAUxg5Llj5uakY8tvMDrNXqCB2IKsK7FbdQHG6qwCOgcKUltri6gmJiWYOH3Ti0TZ5+7kGsutziPak49+qnrpk4Io3iTOQBQ40JaWf38VyVx0m8zfZhAsniYkYHGqOem9MQkKyRnbxp9G0AEpwhQTwJNRLulTZhUq3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754767332; c=relaxed/simple;
-	bh=dTYI6HG9XhEmduuLLqVa8RT6OSYbSeqBodI5jXTWud0=;
+	s=arc-20240116; t=1754768278; c=relaxed/simple;
+	bh=rV96oknmnWYsz10wtH9cy0n9LgqSE14sXOyCasUmt6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ej6xUFKkMzTBf9FiyTx1yImbMDVE6SZUGEudkIxxFX7zG46X+j6hk9UOBISWBFdM49P5Ctio0RPNHCmWrglKfsyJc3aE8PzXXznFJnGjSGnIOseklJkWKmKjtP7niUAWz9bqJkGHOar19D8YQHBa9K9htqhdlbNERe2YGiCBiho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b61cHcgE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71EDFC4CEE7;
-	Sat,  9 Aug 2025 19:22:06 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ikAh9vfOIvL3Vd9239QxO2aX5BPJX9Wt4ir5aUljcElbQeWAy3iiGFHef7c/XVugSDRhyNmZdOAqysAW+ONgbOvGrZvuB7vJ+mypb7kxz24AdV3d/PY/a1i+uHXb6TssRY4qvvsG/0DoMQTk9qAlnOmOjttMocg6CYNfNlBCDN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yre0dFqz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2375C4CEE7;
+	Sat,  9 Aug 2025 19:37:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754767332;
-	bh=dTYI6HG9XhEmduuLLqVa8RT6OSYbSeqBodI5jXTWud0=;
+	s=k20201202; t=1754768278;
+	bh=rV96oknmnWYsz10wtH9cy0n9LgqSE14sXOyCasUmt6I=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=b61cHcgEeB2lIVpDFDD/RvevYf/pEhkCcJgZzr522b3ZpVRGuNYk7rl+Yx7RP33fH
-	 RtfFS87Afl4wV0TpYICatYDeON4ZxHV6zoNCPHi6g7bY9ZH0KW+8nb7KcFBfS6/lk4
-	 ZS985UvTUvGzRLQoNuSh6nYEy/Pre2IPxwJafaO+uUKolEqYZm1YbK5suObQ71MuyI
-	 gIKtTnF1GQOZWmdPGKXLfErNJt9oL5y9RsnNlNfpHrbHjbaFlCDov1uqOt4WoHOony
-	 ZkxeWPAUy+fuMB0OvzghOd+Oilr4CAoPpo/gAXJkJ0O7CZV5zYvXQsfGQC8PbVdSXM
-	 AY+ZaVWpMXWVQ==
-Date: Sat, 9 Aug 2025 20:22:01 +0100
+	b=Yre0dFqzJk0mnmj/KkW0gVF5n5jtE7LuXztDSGfQ1pVrf8/+Ojg4KJN7I3etQGxN0
+	 magFyxsWTo1Sx8dfBBlxo5l1rjnBTkJGgJ5Hk+7Q77Vyqm0Vt5cjPjXa7biOLUWhxj
+	 9jO+sCvT4CijCDL178xmDbIsQ1Km9Gxoijf7tPrkNWmz2GayC1cBEsM7Z9DKx2qDJd
+	 eWeTb2cTrC66oCwevittzk9GzEmR3ymhTWdHVuGuunWoyirJMQ6BsroTSLXHhanIPP
+	 PwindmGx+iyNnR0B5Fo5bQ5mgauZX3eaT2S4ueTaV9Lj6eQJxOydTud8GwOtAiJpXa
+	 gZvsxDleAsnWQ==
+Date: Sat, 9 Aug 2025 20:37:48 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, Matti Vaittinen
- <matti.vaittinen@fi.rohmeurope.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Ioana Risteiu <Ioana.Risteiu@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, David
+ Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ramona Nechita <ramona.nechita@analog.com>,
  linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/10] Support ROHM BD79105 ADC
-Message-ID: <20250809202201.07162fab@jic23-huawei>
-In-Reply-To: <CAHp75VcZtKMLByp7QYa_w_McECuDW+zA19HEiTxhYOTcOwxpHg@mail.gmail.com>
-References: <cover.1754641960.git.mazziesaccount@gmail.com>
-	<CAHp75VcZtKMLByp7QYa_w_McECuDW+zA19HEiTxhYOTcOwxpHg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
+Message-ID: <20250809203748.1cac382f@jic23-huawei>
+In-Reply-To: <aJO8thsrIgS3YGj2@smile.fi.intel.com>
+References: <20250806192502.10120-1-Ioana.Risteiu@analog.com>
+	<20250806192502.10120-4-Ioana.Risteiu@analog.com>
+	<aJO8thsrIgS3YGj2@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,31 +65,21 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, 8 Aug 2025 14:42:47 +0200
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-
-> On Fri, Aug 8, 2025 at 10:50=E2=80=AFAM Matti Vaittinen
-> <mazziesaccount@gmail.com> wrote:
-> >
-> > Add support for the ROHM BD79105 ADC
-> > (and do some minor simplifications to the ad7476 driver while at it).
-> >
-> > The first 2 patches were originally sent as an RFC:
-> > https://lore.kernel.org/all/cover.1754041258.git.mazziesaccount@gmail.c=
-om/ =20
->=20
-> This version LGTM
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
-> with the exception of patches for DT and MAINTAINERS, I haven't even
-> looked at them.
->=20
-
-I took another quick look and just a few comments on the DT patch
-which also need a DT maintainer review.
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
 
-Jonathan
+> 
+> > +static int ad7779_conf_channels(struct iio_dev *indio_dev, const struct ad7779_state *st)
+> > +{
+> > +	struct iio_chan_spec *channels;
+> > +	struct device *dev = &st->spi->dev;
+> > +	int num_channels = ARRAY_SIZE(ad7779_channels);
+> > +
+> > +	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);  
+> 
+> Doesn't sound like a right place for devm. Is this function called only at probe stage?
+Yup.  So probably wants a name that doesn't sound like a runtime thing.  setup_channels maybe?
+
+> 
 
