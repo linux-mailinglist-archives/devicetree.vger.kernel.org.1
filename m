@@ -1,151 +1,215 @@
-Return-Path: <devicetree+bounces-202896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B3BB1F300
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 09:57:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55681B1F30A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 10:08:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FA1F1C25327
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 07:58:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E8C7584210
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 08:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF87224225;
-	Sat,  9 Aug 2025 07:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4497927EC80;
+	Sat,  9 Aug 2025 08:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O8wl1XtU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lttuJLFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F1A27CB21
-	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 07:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BD1225A32;
+	Sat,  9 Aug 2025 08:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754726268; cv=none; b=fGM8ETZUtakPqrIDr4ZOJm8I6izQmTalxIR24zSusz1/PYaAVfnlY4Y9Ht/dBuYt5gg16n8tsXpe7ktLuvzmF21MoUeLlWnNOiicysqB7098FjzEI8OwOMI1EmNj8T3RqXO7isF6A+v8O5mnniXnmh67nikj3oCRl8VEt8/S8M4=
+	t=1754726914; cv=none; b=lmMUoGakbuKrkHjmb+w2kVfw44yVEPDomiG5Gm8ZO/sDekRUkbc9GPS5Bib0cBK3BWfEIgqOS+O2LRvDFbIR4xEJONkTLcueCylYmP9lDrKz/qBw4dnC58uyZjWKw9ckjfygD+R/qahd0wl1hUsTojqQ7TUnPSeUSffLpp9cVMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754726268; c=relaxed/simple;
-	bh=oh4gA+jRg2Y2t6H6ab0cfcQsi8u12BugRfmwasOQoC4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SIiPzGfVcOyc7SY44YDIjIxH13lVKl9m/9uYYlNvqhDUrBTiN/4WWJozz5Q/QkYb74YdkPRcUDnLIQk0ktoTNkw4v3+G28xLLk7YoPStFOpP16nFr6wS6IiWvGGkm5LxLcrMs8oKL8dE/rffy5OeXryoYUabLWr/TFPI8JLf/hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O8wl1XtU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5794minj025648
-	for <devicetree@vger.kernel.org>; Sat, 9 Aug 2025 07:57:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MHkzIZBShOGt9MA7UVWK7LV6
-	yMeWr/62GPPAqQE79tA=; b=O8wl1XtUkJSIBTGAs/rXFxl87pMLaVNnIkGRT89w
-	xJrI3wYmKWuqGHbRJHA26CqzQ2X+kmk6apjFQeQNWIkMMU5Uj3/d3bZ1WiHA6lTd
-	FHOa7PvEjU+45J514LX8sw8Y/FJPFDWZeGLxlyQ39OlBfWkPiAm8wmVFZKli4sCM
-	w1chfhIpK+/pt2BoMByiNpDI6YbLsm6lWdjrw370lZ0Vex6unAudKZecPZ3MVwqZ
-	9TpZXPVN1MPHnKsq4jq1R3JMLiF6EiaxuqCglsqvMCp/2kJCa12Z7EZZlc1jtQpn
-	NV/6NfntYpTlo3fkLIhX5QFk5s/NCan4EiJUvVv2uUcjeA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dym9g70s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 07:57:45 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b0791a8e8dso80882741cf.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 00:57:45 -0700 (PDT)
+	s=arc-20240116; t=1754726914; c=relaxed/simple;
+	bh=zxqVNvlmFBueyIpfaw0chLiheUGrJ1bn4hX2Kep9wY4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T/gFaFFGN0VO9aLN/ygp1W8v6TQcpsbc+UssHw49fPhHN7mQlkog0kOBx3pCBsrZ8rvFfLlBVJYSRSiextE8oVmd6TZ+t8nJqYTmDrNzwYXf8FOqboOENzqx5dL3GSwM7u/+rCTY7c/OaBdfOQQbqzYFbkhg7DpOUkcwm/1qjOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lttuJLFW; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b8de193b60so1673242f8f.0;
+        Sat, 09 Aug 2025 01:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754726910; x=1755331710; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bO63kbpz8+8BzniFjwRj6G4Qq7weRB5CNspOoOAO+Xo=;
+        b=lttuJLFWutHCpTmF9EYsLu0zcE3II9PhnC9GWb+kIQA7Xwq6CQ7Hv0oyyb0d5ZRKtT
+         nRmbXMRYiXwnnDfbcWb0CKtGBqgRnJHi5QNWOu1LDSbRk1iRj9JWH6FYHNYL27twszxZ
+         MyJ7du/f/+hjocHJdFm2vcogy65/I1jdoss+CCfPA+V7Ihh36cFLwxfJYC2uinqtrtcI
+         yPwTkDR45k9ZbkanieZIbkD5zJYq10FImYAipLClyXcWzaBkbBglg/VOzEGjUoswIO+D
+         CpECHmF4aKrY6Kyd6y5o/9X7GsbacR33r0P3qsA7vTsV+bbamVL3s3rRhJZuXPGLNRF7
+         MvnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754726264; x=1755331064;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MHkzIZBShOGt9MA7UVWK7LV6yMeWr/62GPPAqQE79tA=;
-        b=MB6oKcVaV2HofL7btEfG7BfEF92tFY2T+eQZdkz/QfgIKCYO7HbZdzpKA9j+3GXLnN
-         FpLiZ3xzzb+mpDZ9IIKOTy2rVyvUSDtz7t9N7oO6s3V6XJaoEa9gVA1iqhj+UhJY0yC5
-         s5kthk/BEqnSQGvQJGDjacQACU33+oC1IPUqQ7LnwlhZ5WGjz8CKubPPosOHol8rPmyc
-         ZDoAaFcC1IE2tI3pm/ziQPRqpm5TXYLLmYM7M/SWJijXHdHQKiKDRv0oH3YZmgTR60rG
-         hqm1+TUNu0Jdflt2OhFNrerdDRjwTtJn0HBxtgUUJa0Z5KcY2G5KJU/LZ8+Km5PkOfcf
-         z5aw==
-X-Forwarded-Encrypted: i=1; AJvYcCX50fkgNdjcOe4X3pMC6b9hbl079W9BlFNzYQ3QhyL6EJKxjhS3HFD8pMHWP7U12B3KLO4LQfbO/fU+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyTQDIa0T6KSAOYCzJzZMJmAuuEXd57K5zNBPjo3L0g4N+8uLy
-	y4RH/brNSQFlOCZiNccYEx+SeLIW5yrafiTJukvjNLj4JLLyz2xdLYx3/JKA6+eE1JBKabRdwQj
-	ffbQoYaNECMyEcj1mdpTxLcbi8Vb+EtfFGtIjXirXXkjMdjciu+CpEYZtKVCTazJ3
-X-Gm-Gg: ASbGncuGNUqSeJU08+fnGBzOI/dX/LSxB1auEWnsd8xoijgRjgfVnvm+8FQP6cCIcei
-	un7Pn/gZtpnf8DqUZaCBs2J1PUDiEjCRWtZ26gjZBG3HCI1Q6Mi6/PVxw2Ke8WmVzvfc1h+HCM8
-	gJaAN7m8a26RxB8b+2CUsOuS8jGDtqmyS+af8vZt3YTp1ctotxrAvtOUQd7c3033DV1/72xVO8d
-	aMbExZUJpzT5SCOfseJTKAFBkiPTX4h1794VICkkSIOdGar2bSFJ3OvidNR7bg2h34TTe2fUgwT
-	Rq1JwI1ZJw+jbiUGeTf/XMSnIKPuL7jIoSbanymAPNPElzc2AEulv4XMFGJkbRJZitoYga82qKj
-	4fAKuSgCzRvIhoSS/00RiMDCHh1uURO6hnLS1uFM7osS+pukT0uVL
-X-Received: by 2002:ac8:5a09:0:b0:4af:12b0:57aa with SMTP id d75a77b69052e-4b0aec6fcbfmr80634351cf.16.1754726264331;
-        Sat, 09 Aug 2025 00:57:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHZcKxAQsU4y2qlurvBrtplQIY3fRhPoGV1bNNa+z2XGi+BVNOPWtwNB3/KnTtakgGNSGDEww==
-X-Received: by 2002:ac8:5a09:0:b0:4af:12b0:57aa with SMTP id d75a77b69052e-4b0aec6fcbfmr80634201cf.16.1754726263912;
-        Sat, 09 Aug 2025 00:57:43 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88caf6dcsm3327161e87.159.2025.08.09.00.57.42
+        d=1e100.net; s=20230601; t=1754726910; x=1755331710;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bO63kbpz8+8BzniFjwRj6G4Qq7weRB5CNspOoOAO+Xo=;
+        b=Co0O+GT6WMgqpApCwH1QMu6SA6p2KiCAw1jVcbTkfO9jBtJiLz5/ZSnyyGPTBM14zN
+         RJ+PT1nOJk50rQp4IYdZo+fWTmqkTi6ADGqeAJIP3XVoB6gCD30ALSfhKzrGihvIsiRG
+         ClQa18hm61Uh3VJGST8W19360Febc7brAuFUDwBt8ODvGComxHmHQitOKuvjKZF1go1z
+         uIX/r1jZ21NrOB71yBMxXHl+tzFYMq817IQkvmZ6p05pSF1qcCVbzqwb4e1FHIyz+5o+
+         Uo15P/5f5VwIyt/oS2Y0Qr/BUB3Gje421UFBS7Nvs3JXv80zqEHU4vmCMao3oklGFC5c
+         TpZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUSHFY4wb4wyw0FMG1Be224j1ldH/z9tVuRF2baNUnOP/uxLZXvpcx7RRfNw751M2FvZQYzfu7sK9tmtRQ=@vger.kernel.org, AJvYcCXfwuK6D2IRbrHns3ifkoM4oYZYA2i1MhlJwDuJXDAx1x7lZETGpO/hov3LHU9ZrlctPoKmNWfzG+HZNFE=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4rdjpCRTzbdJeSzIzbT5v+wC1CwqOax6jCCE9mQ66xSSalIRL
+	La3OwlFjvKvtV+iiLhr1utklEz+wCPRqTfhANoqNvHvOn3IB5vfMdkV0KuW7pecV3V2h2Q==
+X-Gm-Gg: ASbGncuSfeEyVYUakm4PqFNZORQq+LYgL3wVpDmmGcdiUuI4kS4COVpj/tuEn+h9wTs
+	NWjCdFdIpi94nNmUQRcwUjFiYG5RLFO1FU62shZDazalIPtKdog7rukMZAPU4LtdXfeTC/2oTFu
+	XMo1ZpB03qzzDsbN9rxVKBYqRST1fNQgnMMAST0Ffc0oPsYNcBuj2vJdT3UzZ5qH6Bgy89gm0eR
+	XKKfoLOwVyhCQIOtcGuyJjKHSXsDOqjbLhm01seKXb/xincSNfxkuTU/FjppCvhgzv3qgfdQl6Q
+	WXbcJC1s26F9HSgrqLiG15CfcZHstDytowx0NvH0LC3GDWmIqoN5vGjHb56/eCqbAym9PqSHI15
+	y/BQVCNMzm7MnxgA=
+X-Google-Smtp-Source: AGHT+IHDWCw/q0WaB4EMZMox+xYQMzAajDWTVvScx+MoxUHFCsr91rFaz5iWccvYQPwh/Fr4EUAwyg==
+X-Received: by 2002:a05:6000:18a6:b0:3b5:dafc:1525 with SMTP id ffacd0b85a97d-3b900b4b727mr4817748f8f.33.1754726910280;
+        Sat, 09 Aug 2025 01:08:30 -0700 (PDT)
+Received: from mmk-tp ([2a00:1d36:1034:ab00:136:d194:45b4:3fb9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459fb43b491sm31291005e9.3.2025.08.09.01.08.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Aug 2025 00:57:43 -0700 (PDT)
-Date: Sat, 9 Aug 2025 10:57:41 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 4/6] phy: qcom: qmp-combo: introduce QMPPHY_MODE
-Message-ID: <pcmy74pebeskhfactygabzjinpbcfhluhdx7rlbx7kds5wynf7@hdlkfpkg4va7>
-References: <20250807-topic-4ln_dp_respin-v4-0-43272d6eca92@oss.qualcomm.com>
- <20250807-topic-4ln_dp_respin-v4-4-43272d6eca92@oss.qualcomm.com>
+        Sat, 09 Aug 2025 01:08:29 -0700 (PDT)
+From: Mahdi Khosravi <mmk1776@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mahdi Khosravi <mmk1776@gmail.com>
+Subject: [PATCH v4] ASoC: dt-bindings: realtek,alc5623: convert to DT schema
+Date: Sat,  9 Aug 2025 11:08:24 +0300
+Message-ID: <20250809080824.68845-1-mmk1776@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250807-topic-4ln_dp_respin-v4-4-43272d6eca92@oss.qualcomm.com>
-X-Proofpoint-GUID: LAd6NZt-0xfLbJkDQnTu_wYz46YnfqFU
-X-Proofpoint-ORIG-GUID: LAd6NZt-0xfLbJkDQnTu_wYz46YnfqFU
-X-Authority-Analysis: v=2.4 cv=YZ+95xRf c=1 sm=1 tr=0 ts=6896ff79 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=ruQs36HUC5Lhap_3HWYA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNiBTYWx0ZWRfX3qoF8aChorR/
- z1ya6IYsyXUbSg5ydUbmTRfsEOnkcIs92dC8NshGzGiok7JWd53UgtpPfVoMu3lpdZJuB+9x+cn
- QkqcPLKnukWFGjfIXfTW/jCYpQiPs65pUAzhzdUyRWEc+TWnI1h/AeE0/6+/7DEgPXqtMFEbA0/
- 5FFR6WNJK5BKtg5nZnBvUd6GrAwQfD66Ncg1XqRMP8ls3rVcPaSuMS9gFfSiUcWn1QugrHvyxqJ
- dKg62v9EsvcrxY2bM+WfdRvDFkTsfUWEO5lStzxb0TIK710H/mddBr6Bo6if6c+H41JyYwhJuQS
- NRQ0DWBlaIQhtiwpD2LBo3rUOSOGuUOMrsJKSEqDuvLy7E0nKERyFEkoIiK2Zi7I9pxiyrmUASz
- MwqxmBqw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-09_02,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 spamscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508090036
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 07, 2025 at 06:33:22PM +0200, Konrad Dybcio wrote:
-> From: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Introduce an enum for the QMP Combo PHY modes, use it in the
-> QMP commmon phy init function and default to COMBO mode.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> [konrad: some renaming and rewording]
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 44 +++++++++++++++++++++++++++----
->  1 file changed, 39 insertions(+), 5 deletions(-)
-> 
+Convert alc5623 audio codec binding to DT schema.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+---
+Changes in v4:
+- Add "realtek,alc5621" and "realtek,alc5622" to compatible list
 
+Changes in v3:
+- Drop allOf, just use $ref for uint32
+- Remove stray '>' in descriptions
+- Fix subject to "to DT schema"
 
+Changes in v2:
+- Add dai-common ref
+- Switch add-ctrl/jack-det-ctrl to allOf uint32
+- Use unevaluatedProperties
+- Fix example compatible
+---
+ .../devicetree/bindings/sound/alc5623.txt     | 25 ---------
+ .../bindings/sound/realtek,alc5623.yaml       | 55 +++++++++++++++++++
+ 2 files changed, 55 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/alc5623.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/alc5623.txt b/Documentation/devicetree/bindings/sound/alc5623.txt
+deleted file mode 100644
+index 26c86c98d671..000000000000
+--- a/Documentation/devicetree/bindings/sound/alc5623.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-ALC5621/ALC5622/ALC5623 audio Codec
+-
+-Required properties:
+-
+- - compatible:	"realtek,alc5623"
+- - reg:		the I2C address of the device.
+-
+-Optional properties:
+-
+- - add-ctrl:	  Default register value for Reg-40h, Additional Control
+-		  Register. If absent or has the value of 0, the
+-		  register is untouched.
+-
+- - jack-det-ctrl: Default register value for Reg-5Ah, Jack Detect
+-		  Control Register. If absent or has value 0, the
+-		  register is untouched.
+-
+-Example:
+-
+-	alc5621: alc5621@1a {
+-		compatible = "alc5621";
+-		reg = <0x1a>;
+-		add-ctrl = <0x3700>;
+-		jack-det-ctrl = <0x4810>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+new file mode 100644
+index 000000000000..f9c9518cd084
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,alc5623.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,alc5623.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ALC5621/ALC5622/ALC5623 Audio Codec
++
++maintainers:
++  - Mahdi Khosravi <mmk1776@gmail.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - realtek,alc5621
++      - realtek,alc5622
++      - realtek,alc5623
++
++  reg:
++    maxItems: 1
++
++  add-ctrl:
++    description:
++      Default register value for Reg-40h, Additional Control Register.
++      If absent or zero, the register is left untouched.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  jack-det-ctrl:
++    description:
++      Default register value for Reg-5Ah, Jack Detect Control Register.
++      If absent or zero, the register is left untouched.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        codec@1a {
++            compatible = "realtek,alc5623";
++            reg = <0x1a>;
++            add-ctrl = <0x3700>;
++            jack-det-ctrl = <0x4810>;
++        };
++    };
 -- 
-With best wishes
-Dmitry
+2.50.1
+
 
