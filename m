@@ -1,94 +1,110 @@
-Return-Path: <devicetree+bounces-202928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2ADDB1F460
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 13:29:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3767CB1F465
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 13:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A03B4624F0D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 11:29:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 980937A42FB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 11:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB95927D780;
-	Sat,  9 Aug 2025 11:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8B727F01B;
+	Sat,  9 Aug 2025 11:43:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bd5HJpiU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ShIujPF1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC1027C864;
-	Sat,  9 Aug 2025 11:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68611C8633
+	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 11:43:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754738945; cv=none; b=eCgJZVz6AHdtOr2nyrxSgTOuddAVTdqEP9y8p6FcpRPGGAjHNVA9V1BtCfHZeK2AwICrnni+1DiqsKA/YmSOB6fSkx26hm836oX3Ngwsei+SMjg3CKx/euKjup7bQO7A/5DxsycS3MfxI+3nq6zXLgksL9U6YZPsHJmayvY1vjg=
+	t=1754739836; cv=none; b=PbaKU7pKEM42Dm+xg8kI7ZKMAAm7y2FnP2comFALC5EpzNm4Ld5KINJfO/oC9Wkdf/9VDsry1qTkfHibu9aCWUn5x7SvvFrmV2xGi8+bzHI/18gf+jwFLg7Z6rFtU+ECpt8elE1XaAAw1DXdlWyGE7iZFZoIXQNqfzQeP3N7gx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754738945; c=relaxed/simple;
-	bh=AfFLWgoIvA4IGFwAe0geKaCh77ntPaCbb8ATrEfr9bY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h4Yxd0rxLJZ1O1NQRWVzbApI/gIfx+xMu1pMWTB8VsitXYChyokAVt8NEl+K8pjXapxf5krznATjS2iNWi+2KsBm5+Bmhb0rqGZ81k+rZ1uPpUYr79kUV1Co34gx3JHL5QMKO/jDXw1x4kTOnk6CsfV/ITo4HLzFsWmB27zvhH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bd5HJpiU; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-73c17c770a7so3861576b3a.2;
-        Sat, 09 Aug 2025 04:29:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754738943; x=1755343743; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=M3jDSSsJNCbaqA/Grzma8s/dztuniQeQowWM9jbonBk=;
-        b=bd5HJpiU9RTNesWbhem6dhRKMxAw6SBwWBHyPHkMTyn1Zun8+7yRTtLQYIoZ106UDM
-         UTSd10THkCzy7sPkdexzEnNHrqELdx3t4j6NdVCRE6NyX9RgPj+qaPpB6eMq/4aHB+OC
-         JnaZfcUvvekjS9GQL9ref4/Azvp5lBe2yU5NGcZLThxwP+Ht3c/5pQ/1rjzpmvGOznJ5
-         Q88jPmChHw7lRLRDEdimOXxlAbc4TXM3NNS3sSFzKzMC2T/3+jKqSxaTYm+L/CwFoVSP
-         rpi9lnRqhIxe8HQ7lCe1w5wGZbHDuikpYMzYNUhVEUHxjAJKxsQHzw8vZaP0Q/iJfbPZ
-         4kXA==
+	s=arc-20240116; t=1754739836; c=relaxed/simple;
+	bh=SwO5nELXRLBtJc5KwDzdoxO3kOP3CyZAe2nh9etB1hI=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EZkkJQtLmoN8nIm3ZCI7r9ZQS+K425AHI2eRpAXcB1T3VixYXK2AbrdGGxFeigVc7LtqGiK1RNlZeORk4QlPMnQJ62FbbNXu8fHLpLUalQXaTS3fVcPRbcUv023SvTxcc50qnrfIEVDwAAzCJGOLNglXAo28yAAAAu9LJhpUbaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ShIujPF1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5794e27X010455
+	for <devicetree@vger.kernel.org>; Sat, 9 Aug 2025 11:43:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Dhq7QtFTNob/e68BFvCh2tCGaBjvEnXwpiBGxxMlG8A=; b=ShIujPF1qx23DOVC
+	snJMx5DvsRwluCSvPpoXpdLOJGvKZL6pIwCEtcsO7J6QR5Khg9tqnL5oTAxsS5vJ
+	WFxjBrXDL7mG9tYg+MvTwd7/Wunz3SA2qQrdTH6Fbn+DltMlwsJDMmoucgCs42Gs
+	a+sboUBPdvz+PFVyJvaRY3jkaCm32lYI4CscIG+1U9jT6KUu++Yc97jb7/x8vTvC
+	y9dfLJh3z/ZPOnsy8L8fsBBMMzHI634jOlo1qluY+QiQ70IIJc7WzBCYaQ65dOQ8
+	l2cdWYxynsyRe+DmsTd+zKFFiDkjYylPMezfL1ihXq39ptyL7a5y52vTdoXH31QW
+	S8jF4A==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygm8fd2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 11:43:53 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b0a3557d05so57528471cf.2
+        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 04:43:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754738943; x=1755343743;
+        d=1e100.net; s=20230601; t=1754739832; x=1755344632;
         h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+         :mime-version:references:message-id:subject:cc:to:date:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M3jDSSsJNCbaqA/Grzma8s/dztuniQeQowWM9jbonBk=;
-        b=afGkE6Dd0YE0vE1pthGZ62jDORwaSYclRnPTrkoCK3d0RRjMnvFWluWXh+0iEmDHkR
-         VJ0dI6k0mUVho5sKCw+oPoxdSlYT6lb6ItjA4GXN3tXb3zLazMkFoMfMsK2+PgBabvup
-         OzamoyoNyiToKKudEeroe1ZhA3Zfc2HoHr0QOVazFqh38sr9VsbhXa55WwGVthhDtH//
-         qwV1iOaF3vImqhwTOgXS+7S8ohRO7YDNFp0CqZFkgs2hM7Bj+Jlu9QyfTMKzUfsqbf13
-         CxqiH5VJ2HUn8nPQSdVSa/sotR0ruFYsbpgzo2EaqCRgGgH5e5q4u11Y+ewVtwcbn+2V
-         OoZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKn4KpRn1ZKgyIXutMepD54V7oikNsFGptui3SbgaXSrnAwIiwvjK2cYTbkiYZYPoADXLvZe3xkGVM@vger.kernel.org, AJvYcCX7QhbjUT9JfvsmuoPQlT1avoKpYXHbAfrWJDRjpGmZ2ICfpR8vH7+UXHdxBCR4pCgwrr4sMHiLl/6tMUZ8@vger.kernel.org, AJvYcCXZsSi95hpDWGarZZwBWmLZyI0ePo2B16NfWsRmDIgyDcaWj3Ndl8LWjZzcwsXBGxAIZwbWfUegnDoa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIq4oqOxU4ke/jQKNiYQ6MZDuvHf+gexbM/vJytju0LdaLFcPA
-	y5onL+0EV7+etDxq7PfNAdcrlmxbHYZXgf2+lIjxprhOfqo6IwSClahZ
-X-Gm-Gg: ASbGncsrTsf1W4yQCFE/fgGv/2T8meX9L5//vp4Ba0XAcsG7gesgTPGywZlJJKTKwtM
-	ldyKvL9ylM5hWDnKzgTw6yXScqHs8npvkWLtxIbDJdiUlrw3bapxklvx67gvZXPuh2UL7ctB75n
-	YsVllkVCKPaTq4pbivATBIgAcigu8/NK0fTkANGloiqk97ztMmY7Q98kf6Y+OESn07j10jwoPGa
-	7PYl1Ps9eyfd1q1RLQTbMmYibonSCN4tWyY34/N+PP00DJsD4bNyMPtxvU6FdISPCkYZDKJzOHN
-	oXAV+QSc8sCemxVYO610PeEELGJhdlYskG64n4ZrdNbPPif80ovKD7BjT+/cIBFuQoDN8OtAfUc
-	nFqp4x3ypfOayJmeRTxmJLQ==
-X-Google-Smtp-Source: AGHT+IGLhk53gdI3ahnykqnR/EMkkHKH72AEKv7zh101b/xTnzkApCLMrO71maSxXuIeMiaaStb6yw==
-X-Received: by 2002:a05:6a20:914d:b0:240:21e1:cb9b with SMTP id adf61e73a8af0-24055067f3amr10996884637.14.1754738943298;
-        Sat, 09 Aug 2025 04:29:03 -0700 (PDT)
-Received: from dixit ([2401:4900:1c45:5acf:241:d77b:f6c0:54f8])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bcce89132sm22520715b3a.29.2025.08.09.04.28.57
+        bh=Dhq7QtFTNob/e68BFvCh2tCGaBjvEnXwpiBGxxMlG8A=;
+        b=bt7L20VMsIrggqHr23qaSx9XmnDFjWOQMuCnRwFklcpQQ/aRYT6ZZPf0tpTYdqTdmU
+         N19ByNWoOeMkEQyLTkzKFp4ZUK69LzqIsmlrEhSnIJhGKDQ/Fr1iaFzoOqxvgyPsLO4N
+         bXSyVnWSeDYs4vpFtYQEZYzBdNRFovBaiSjXlWgPXkmpY+3O494GyfrAzfFvHDyW2oKz
+         sNhrP6MHc0Zz7DWc4b5fn3zWXzAVTFZ9TvKednfx4BDITTSf+Zd34rGA50s2dWehIriG
+         xGfIxcHodJ9/3QPJyylBdN8/JTDJJ1jFOiUWYjUkZAyEhwOGemMlsKV/RzLEQCmhiUYl
+         SWig==
+X-Forwarded-Encrypted: i=1; AJvYcCUc4DaB4LckXlj53uLcaLn0pKDSNbrsHvOay2C/WeLLlc88lnYLK4x6x4aLBaTYj+6bPQWgPk0jXB9R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8+T9ajmfp7ld2as7ZyCyY7hJuW5F5yxiM3GsdfN8JP2uNmKHP
+	azfSJ3son1pd8xjrJhIifQ/lrC1p8eU9S+8m8GgYLwbq3yI0hQRDs7AyT4ILXxULyEG/u8emzLM
+	U2bUrRIg6E6+0GhKfXHgawfyJkvPvg1UweY7etE7BSX5A1wBM2iZk4eNDn+MGaja7
+X-Gm-Gg: ASbGncsqsokwkwjS4PIH+MG3XO3k37Aw+XvfudRebmAoD0n9cllQhxxfmlhdW4Ecz53
+	T+H7mgvVMqAgJPbx6GSE6kMD8UD1AI7HIDWul2vO0HRLCJ5239tt1uH1h/25v51K8N4p2hguwpQ
+	PFqRnggv0yKj0esOuIsArE2Sa7yWrLxD+NY5W9VUzxs/hXJTX9DcyHyxaVjhbatduXH60HTpA2d
+	frfMK8iCN/Fe7QVGe4IcxgHbGWDLPys9NrZ4vsKU9o+115EODrMixOU0V3BOO9lisHQz5vrR8jE
+	GWMJB5+/K3JgqhOJVJQhg5CMfFMjQfy4Z8SMSRDovgFOk5jPECAzgpQo5DVBL2cn8se5tg==
+X-Received: by 2002:a05:622a:4a10:b0:4af:1a43:6a52 with SMTP id d75a77b69052e-4b0aec78545mr96034771cf.16.1754739832329;
+        Sat, 09 Aug 2025 04:43:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEzqs1ndblPPDaYRCzYH6G5/RMWdae2a1I3H1jVxQ9aCs494h/N6aUaTOA+9QAqxW5zPf/3sA==
+X-Received: by 2002:a05:622a:4a10:b0:4af:1a43:6a52 with SMTP id d75a77b69052e-4b0aec78545mr96034361cf.16.1754739831696;
+        Sat, 09 Aug 2025 04:43:51 -0700 (PDT)
+Received: from trex (205.red-83-60-94.dynamicip.rima-tde.net. [83.60.94.205])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3bc12csm34291769f8f.28.2025.08.09.04.43.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Aug 2025 04:29:02 -0700 (PDT)
-Date: Sat, 9 Aug 2025 16:58:50 +0530
-From: Dixit Parmar <dixitparmar19@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <aJcw8icGvsDzFGpJ@dixit>
-References: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
- <20250807-tlv493d-sensor-v6_16-rc5-v3-1-b80d2cb41232@gmail.com>
- <CAHp75VeKPr=3H_wOvcesqj4OsrqN7zwRFFk3ys3O012JpQtxrQ@mail.gmail.com>
+        Sat, 09 Aug 2025 04:43:50 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Sat, 9 Aug 2025 13:43:49 +0200
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
+        konradybcio@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
+ resource data
+Message-ID: <aJc0dRkNQLJvF4z1@trex>
+References: <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
+ <aJMMhIqNupwPjCN+@trex>
+ <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
+ <aJNTigOMy1JFOxot@trex>
+ <fcdd9534-d494-3fdb-dfa7-1d15da6f697a@quicinc.com>
+ <aJSvjqfQw3kNrVVH@trex>
+ <447caa6d-13d2-2e75-5f33-6df9b2fd6d69@quicinc.com>
+ <2yj3er5j72yoa2ltboopx5gvquur7jl3viqnq5qsci2fxjf4ix@7t63vgizfknb>
+ <aJcQRLDplbNetNKN@trex>
+ <oi7juewvfcgvjm6tedcq246rzyqvx4eambqo36w6byynmbl7sm@i2nztugnzxo5>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,297 +114,104 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VeKPr=3H_wOvcesqj4OsrqN7zwRFFk3ys3O012JpQtxrQ@mail.gmail.com>
+In-Reply-To: <oi7juewvfcgvjm6tedcq246rzyqvx4eambqo36w6byynmbl7sm@i2nztugnzxo5>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfX0Cu6AVuFb02r
+ uvSKcLKvQH0PYHrR8Sm4PUw0hohinXjD93paqqS4P6UB2gca6Kf/2astaGUlU1DmTS5eKpKo9pq
+ 882dj3r7KMd7SnhvU2rUiKdVYpDrKwtYgD6JnXB9TTGTv/q/PXS+1JG8lPkNLRIi/1GJp0RGB1p
+ YGmZaCEXee9qT4Fylxd0oM+VFa+VCCtwVUOIPYqeme/FVsE3jbzWbP9d/OQUq8mS/qHPDOtagd0
+ Qy431UHqpvMIj+AZf6MT8zsma9PPPjgrEOM4t8kHjbSPcNCcypxXuTLm6rF+ORWV47q4sFEDRgl
+ EiG5kp8qg6lHfVn2j4//Xhx73YmKpasAZWqPlvqDhf5aYpFGN1TF97W0lIIu0do87uwaycfh5VD
+ VuhqI0gA
+X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=68973479 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=Rr2dNH5/fcnoRoBmcVUeRg==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=MGQ6gT6oETv9xCBFa_IA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: xslFhQt94RZodbCLiWim_Xk6iPBb8Qo6
+X-Proofpoint-ORIG-GUID: xslFhQt94RZodbCLiWim_Xk6iPBb8Qo6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-09_03,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090035
 
-On Thu, Aug 07, 2025 at 10:57:16PM +0200, Andy Shevchenko wrote:
-> On Thu, Aug 7, 2025 at 4:57 AM Dixit Parmar <dixitparmar19@gmail.com> wrote:
-> >
+On 09/08/25 12:22:39, Dmitry Baryshkov wrote:
+> On Sat, Aug 09, 2025 at 11:09:24AM +0200, Jorge Ramirez wrote:
+> > On 09/08/25 11:18:21, Dmitry Baryshkov wrote:
+> > > On Thu, Aug 07, 2025 at 10:05:10PM +0530, Vikash Garodia wrote:
+> > > > 
+> > > > 
+> > > > On 8/7/2025 7:22 PM, Jorge Ramirez wrote:
+> > > > > On 07/08/25 16:36:41, Vikash Garodia wrote:
+> > > > >>
+> > > > >>> It was agreed that this complexity was not necessary and that we should
+> > > > >>> just drop <6.0.55 firmware support (which would in any case only include
+> > > > >>> video decode).
+> > > > >>>
+> > > > >>> And so on v8, I removed the above.
+> > > > >>>
+> > > > >>> Now I have v9 ready to post it, but Dmitry is asking why cant we have
+> > > > >>> the v7 functionality so I am waiting for direction.
+> > > > >>
+> > > > >> the issue is in firmware for both encoder and decoder. Didn't like the idea of
+> > > > >> driver carrying the hack for a firmware issue. Just because, for encoder, we are
+> > > > >> unable to hack it in driver, we are ok to have it enabled in a newer version of
+> > > > >> the firmware, we can follow the same for decoders as well.
+> > > > > 
+> > > > > if that is the only reason please do explain what do you mean by hack.
+> > > > 
+> > > > I meant that the EOS handling was not needed in driver after fixing it in
+> > > > firmware, isn't it ? Was trying to avoid carrying this in driver.
+> > > > 
+> > > > I tend to agree with the comment made by Dmitry in another thread to have decode
+> > > > enabled with existing firmware, no option but to support the *already* published
+> > > > bins.
+> > > > 
+> > > > Having said that, these limitation of having a separate EOS dummy buffer is well
+> > > > sorted out in gen2 HFI which have an explicit DRAIN cmd for it. Hope this
+> > > > motivates you to migrate to iris soon for AR50LITE variants :)
+> > > 
+> > > Migrating to Iris won't bring gen2 HFI. Think about users which have
+> > > OEM-fused hardware. For them it's not possible to switch firmware from
+> > > gen1 to gen2. Thus, if the SoC has been released using gen1 HFI, we
+> > > should think twice before upgrading it to gen2.
+> > >
+> > 
+> > As I understand it now after the thread, any driver developer working on
+> > new features should not be constrained by users with OEM-fused hardware.
+> > 
+> > Since only the OEM can provide signed firmware updates, it is their
+> > responsibility—not ours—to figure out how to deliver those updates if
+> > they want their users to benefit from new features (or new fixes).
 > 
-> > +enum tlv493d_channels {
-> > +       TLV493D_AXIS_X = 0,
+> The OEMs might go bankrupt, might stop supporting hardware, might not be
+> bound by EU laws, etc. If the platform was shipped with gen1 HFI and we
+> suddently provide gen2 HFI, the driver must support both firmware
+> interfaces for that platform.
+
+sure, that is backwards compatibility
+
 > 
-> Why assignment? Is this HW defined value? Then you must assign all of
-> them explicitly to make code robust to changes.
->
-No, this is not HW defined value, these are used for iio channel and
-some internall indexing. Most of the driver I referred had this enum
-having assigned to 0 which i think gives clear intention and better
-understanding. either I can keep as it is assuming its good for
-readabilty or keep it unassigned. What do you suggest?
-> > +       TLV493D_AXIS_Y,
-> > +       TLV493D_AXIS_Z,
-> > +       TLV493D_TEMPERATURE
-> > +};
-> > +
-> > +enum tlv493d_op_mode {
-> > +       TLV493D_OP_MODE_POWERDOWN = 0,
+> > The EU Cyber Resilience Act supports this view by placing the update
+> > obligation on manufacturers (at least that is what I understand it, let
+> > me know if you understand it differently)
+> > 
+> > Breaking backward compatibility is something we must avoid of
+> > course. However, guaranteeing compatibility between old firmwares
+> > (whether signed or not) and _new_ features is a separate matter...
 > 
-> Ditto.
->
-Same as above. Just different usecase as this is driver specific enums.
-> > +       TLV493D_OP_MODE_FAST,
-> > +       TLV493D_OP_MODE_LOWPOWER,
-> > +       TLV493D_OP_MODE_ULTRA_LOWPOWER,
-> > +       TLV493D_OP_MODE_MASTERCONTROLLED
-> > +};
+> Anyway, the kernel is provided separately from the firmware. If we
+> supported a particular firmware set, we can not break that.
 > 
-> ...
-> 
-> > +struct tlv493d_data {
-> > +       struct device *dev;
-> > +       struct i2c_client *client;
-> 
-> Why do you need both?
-Indeed, I should drop struct device *dev member.
-> 
-> > +       /* protects from simultaneous sensor access and register readings */
-> > +       struct mutex lock;
-> > +       enum tlv493d_op_mode mode;
-> 
-> > +       u8 wr_regs[TLV493D_WR_REG_MAX];
-> > +};
-> 
-> ...
-> 
-> > +       data->wr_regs[TLV493D_WR_REG_MODE1] |= mode1_cfg;
-> > +       data->wr_regs[TLV493D_WR_REG_MODE2] |= mode2_cfg;
-> 
-> No mask for the existing values in the respective wr_regs? Wouldn't
-> you need to use FIELD_MODIFY() instead?
->
-I believe, we are doing OR op with the value created using FIELD_PREP,
-so it should not interefere with the existing non-masked values.
-However, as FIELD_MODIFY is there, I should utilize it.
-> ...
-> 
-> > +static s16 tlv493d_get_channel_data(u8 *b, enum tlv493d_channels ch)
-> > +{
-> > +       u16 val = 0;
-> 
-> I would move the default assignment to the 'default' case. This makes
-> the intention clearer.
-> 
-As per the suggestion on privious version of the patch, we are having
-ch datatype as enum and as suggested, with enum as swicth-case, it
-should not have default case. so I think this initialisation to 0 at the
-beginning should be fine.
-> > +       switch (ch) {
-> > +       case TLV493D_AXIS_X:
-> > +               val = FIELD_GET(TLV493D_BX_MAG_X_AXIS_MSB, b[TLV493D_RD_REG_BX]) << 4 |
-> > +                       FIELD_GET(TLV493D_BX2_MAG_X_AXIS_LSB, b[TLV493D_RD_REG_BX2]) >> 4;
-> > +               break;
-> > +       case TLV493D_AXIS_Y:
-> > +               val = FIELD_GET(TLV493D_BY_MAG_Y_AXIS_MSB, b[TLV493D_RD_REG_BY]) << 4 |
-> > +                       FIELD_GET(TLV493D_BX2_MAG_Y_AXIS_LSB, b[TLV493D_RD_REG_BX2]);
-> > +               break;
-> > +       case TLV493D_AXIS_Z:
-> > +               val = FIELD_GET(TLV493D_BZ_MAG_Z_AXIS_MSB, b[TLV493D_RD_REG_BZ]) << 4 |
-> > +                       FIELD_GET(TLV493D_BZ2_MAG_Z_AXIS_LSB, b[TLV493D_RD_REG_BZ2]);
-> > +               break;
-> > +       case TLV493D_TEMPERATURE:
-> > +               val = FIELD_GET(TLV493D_TEMP_TEMP_MSB, b[TLV493D_RD_REG_TEMP]) << 8 |
-> > +                       FIELD_GET(TLV493D_TEMP2_TEMP_LSB, b[TLV493D_RD_REG_TEMP2]);
-> > +               break;
-> > +       }
-> > +
-> > +       return sign_extend32(val, 11);
-> > +}
-> 
-> ...
-> 
-> > +static int tlv493d_get_measurements(struct tlv493d_data *data, s16 *x, s16 *y,
-> > +                               s16 *z, s16 *t)
-> > +{
-> > +       u8 buff[7] = {};
-> > +       int err, ret;
-> > +       u32 sleep_us = tlv493d_sample_rate_us[data->mode];
-> > +
-> > +       guard(mutex)(&data->lock);
-> 
-> No include for this API.
-> 
-General question for all the include related suggestions, all the
-required headers are being included by one of the included header(i2c.h,
-iio.h etc), in such case, is it necessary to have specific include for
-given API mentioned in source file? Will it not make it more clumsy
-in terms of repeatative header includes? I understand having all the
-includes mentioned in given source file makes it clear to understand the
-dependency the driver is having. Just want to undertand it bit more as
-learning.
-> > +       ret = pm_runtime_resume_and_get(data->dev);
-> > +       if (ret < 0)
-> > +               return ret;
-> > +
-> > +       /*
-> > +        * Poll until data is valid,
-> > +        * For a valid data TLV493D_TEMP_CHANNEL bit of TLV493D_RD_REG_TEMP should be set to 0.
-> > +        * The sampling time depends on the sensor mode. poll 3x the time of the sampling time.
-> > +        */
-> > +       ret = read_poll_timeout(i2c_master_recv, err, err ||
-> > +                       FIELD_GET(TLV493D_TEMP_CHANNEL, buff[TLV493D_RD_REG_TEMP]) == 0,
-> > +                       sleep_us, (3 * sleep_us), false, data->client, buff,
-> 
-> Redundant parentheses.
-> 
-For (3 * sleep_us)?
-> > +                       ARRAY_SIZE(buff));
-> 
-> Missing include for this macro.
-> 
-> > +       if (ret) {
-> > +               dev_err(data->dev, "i2c read poll timeout, error:%d\n", ret);
-> > +               goto out;
-> > +       }
-> > +       if (err < 0) {
-> > +               dev_err(data->dev, "i2c read data failed, error:%d\n", err);
-> > +               ret = err;
-> > +               goto out;
-> > +       }
-> > +
-> > +       *x = tlv493d_get_channel_data(buff, TLV493D_AXIS_X);
-> > +       *y = tlv493d_get_channel_data(buff, TLV493D_AXIS_Y);
-> > +       *z = tlv493d_get_channel_data(buff, TLV493D_AXIS_Z);
-> > +       *t = tlv493d_get_channel_data(buff, TLV493D_TEMPERATURE);
-> > +
-> > +out:
-> 
-> Labels are better made when they define what they are going to perform.
-> 
-> out_put_autosuspend:
-> 
-Does it mean it should have whatever is being skipped in the flow?
-> > +       pm_runtime_put_autosuspend(data->dev);
-> > +       return ret;
-> > +}
-> 
-> ...
-> 
-> > +       ret = tlv493d_set_operating_mode(data, data->mode);
-> > +       if (ret < 0) {
-> 
-> Is ' < 0' part required here?
-> 
-> > +               dev_err(data->dev, "failed to set operating mode\n");
-> > +               return ret;
-> > +       }
-> > +
-> > +       return 0;
-> 
-> If not, these all lines can be transformed to just
-> 
->   return ret;
-> 
-Yes, return 0 and the check for ret has been kept as per the previous
-review suggestion. The return value from the tlv493d_set_operating_mode
-is returned from i2c_master_send() via few function inbetween and its result
-has to be conveyed to the caller API as we are in initialization phase.
-> > +}
-> 
-> ...
-> 
-> > +static irqreturn_t tlv493d_trigger_handler(int irq, void *ptr)
-> > +{
-> > +       struct iio_poll_func *pf = ptr;
-> > +       struct iio_dev *indio_dev = pf->indio_dev;
-> > +       struct tlv493d_data *data = iio_priv(indio_dev);
-> > +
-> > +       struct {
-> > +               s16 channels[3];
-> > +               s16 temperature;
-> > +               aligned_s64 timestamp;
-> > +       } scan;
-> 
-> > +
-> 
-> No blank lines in the definition block.
-> 
-> > +       s16 x, y, z, t;
-> > +       int ret;
-> > +
-> > +       ret = tlv493d_get_measurements(data, &x, &y, &z, &t);
-> > +       if (ret) {
-> > +               dev_err(data->dev, "failed to read sensor data\n");
-> > +               goto trig_out;
-> > +       }
-> > +
-> > +       scan.channels[0] = x;
-> > +       scan.channels[1] = y;
-> > +       scan.channels[2] = z;
-> > +       scan.temperature = t;
-> > +       iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan),
-> > +                               pf->timestamp);
-> > +trig_out:
-> 
-> Make sure you use a consistent pattern for labels.
-> 
-> out_trigger_notify:
-> 
-> > +       iio_trigger_notify_done(indio_dev->trig);
-> > +
-> > +       return IRQ_HANDLED;
-> > +}
-> 
-> ...
-> 
-> > +       data->dev = dev;
-> > +       data->client = client;
-> 
-> Choose one of them, the other can be derived.
-> 
-ACK.
-> ...
-> 
-> > +               return dev_err_probe(dev, ret, "failed to initialize\n");
-> 
-> Missing include for this API.
-> 
-> ...
-> 
-> > +static const struct i2c_device_id tlv493d_id[] = {
-> > +       { "tlv493d" },
-> > +       { }
-> > +};
-> 
-> > +static const struct of_device_id tlv493d_of_match[] = {
-> > +       { .compatible = "infineon,tlv493d-a1b6", },
-> 
-> Inner comma is redundant.
-> 
-> > +       { }
-> > +};
-> 
-> Missing include for both of the ID tables.
-The ID tables are defined mod_devicetable.h in which intern gets
-included in i2c.h and i2c.h is already included in this driver file,
-should I explicitely include mod_devicetable.h here?
-> ...
-> 
-> > +static struct i2c_driver tlv493d_driver = {
-> > +       .driver = {
-> > +               .name = "tlv493d",
-> > +               .of_match_table = tlv493d_of_match,
-> 
-> > +               .pm = pm_ptr(&tlv493d_pm_ops),
-> 
-> Missing include for this macro I believe.
-> 
-No I guess. DEFINE_RUNTIME_DEV_PM_OPS is part of pm_runtime.h and its
-already included.
-> > +       },
-> > +       .probe = tlv493d_probe,
-> > +       .id_table = tlv493d_id,
-> > +};
-> 
-> > +
-> 
-> Remove this blank line.
-> 
-> > +module_i2c_driver(tlv493d_driver);
+> AR50_LITE is a corner case, as we have been shipping the firmware, but
+> there was no corresponding open-source driver for that platform.
+
+right
+
 > 
 > -- 
-> With Best Regards,
-> Andy Shevchenko
-
-Thank you for careful review,
-Dixit
+> With best wishes
+> Dmitry
 
