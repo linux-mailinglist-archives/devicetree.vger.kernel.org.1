@@ -1,130 +1,152 @@
-Return-Path: <devicetree+bounces-202899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC60B1F336
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 10:18:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6331B1F34A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 10:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3ECA8561602
-	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 08:18:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5B7218C62BB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Aug 2025 08:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF89427702A;
-	Sat,  9 Aug 2025 08:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832F4233713;
+	Sat,  9 Aug 2025 08:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lKqp4e5K"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fgx+DwV8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622CB1F8747
-	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 08:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A141DF977
+	for <devicetree@vger.kernel.org>; Sat,  9 Aug 2025 08:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754727508; cv=none; b=qMVlJS0RhHC4UbmkKjZAGDHTmIUXswfV4aaCb40hVrNghz0s84A/bm5UB9F2+Uvh65fec/BOn3EXKImrGJqz0pFYWFHK/1sCOl+azfa+gzFFGpKb6qV0IFd/U0u5wQHZfFB4nYSk6mN4JkSN53lkhBnVOfeOcdXA7v8kPxmKDb0=
+	t=1754728442; cv=none; b=B94RoH09pft5zfX721TZtU/sO2ake0AX0toETKspNiJhBZIziAsax+ag229w9w5v2xKtnGFXioQs7/k4OBX4ZZTFO0Vi/CffGSX6jyt/Gm1XvQ9Yg1tbWmOAoLwrBCs3A26XxAZ+2Pk6rgKshzBDYewjbd37w1Q2ZdrJmsVDtIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754727508; c=relaxed/simple;
-	bh=shwEQ8cryFUWL0UFeuLAJhf/97dqnkWgW2nUhwyC+ck=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MzUGNvNNSCz6eetIUvPhPbXk/6Nm9GEa4onDQT88PObUsYDCHeEydD/hKEV5Ao1xcSdWdTKMcqtMkDzdY0pI5DaYTMUsPA9geMKP1ceNe2T4F8IFXR9YQG7j2whwoc40VrAq3I5IIgHV2PxRBi6p+OYonxu5HYloLOJ8YLF+VCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lKqp4e5K; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1754728442; c=relaxed/simple;
+	bh=9AclRADJb8VLv70wpJW0mU6YC9fXqR1BQywSHzWiIpM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eJh8iugNlkvhij8KSkHZr5/GFtvvecbITKcvD7oBpWqdgl9vADh0x658Lw4WCrzajoy+ppdOve0HizZMZiKLpTW+OvZiR2PtxjcGsxf7jG037by0WgezSVb0HMCokEFFxsPuGnGTnHzPn8IFhdS0IyAgDV7wV5tp2Q4REfIPwkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fgx+DwV8; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5793oF9x026197
-	for <devicetree@vger.kernel.org>; Sat, 9 Aug 2025 08:18:26 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5795pKVD014386
+	for <devicetree@vger.kernel.org>; Sat, 9 Aug 2025 08:34:00 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Ny0ExIjmg6qzhNtxQ2+NGDBI
-	d6ex3O2Y+9L9qqEXCZA=; b=lKqp4e5KibukTe+TfdXl1Jn8kHMjawSUZYlTwpQT
-	sna12QTbLZYCVB+/dGFgjcZP6JJRbF1VIghOCW9SAsqgPfBzux0zeSU8A8wOyTcs
-	zWwE5PTIA/ljxpmtWmEIZF5iefyj0vAmNzV/Evgk17RafpMGpRz8bKd5t+n4XCEe
-	KAvjbKITY7uIgiEQdl6DpoeUH/gCtz0TvcSL6IaHs6/k4OxcOe+Lit4rlp4qNC9n
-	bgm5Li/Jv9nv02R8QvZEkH1TnIY7N0UV7z1fieDbdXJO4DoiMfhFAActGGjg7HXY
-	uIhM1SeZ1TdY9i+Z6rkxkGZJ/6r9N3Ec0W7slSZAlfnSVg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dv1fghjf-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=7UX7bgPSUhQT7z5Z1Un47p
+	xf4yqu0J+5ck4pwI5id6s=; b=Fgx+DwV8iEE8s8dHFpHddXxqQG07+GNE4mjaha
+	UWkxgLo3MPckF71aZ2IvxWECBxYRPY/k7UNn00B7kXYxsZMlsQ2EMhctU0uX8Unf
+	+ORQrQQYr+bgNNwxnJjNuyvZifQmiLreJmaGHs5Ba6SL/cqEVYX7RUgGfsyuxpdZ
+	EOw4bl0LYnamFJto9y33Aus+ri1VpxFqmXQ1CfhNlnqRPSQsMLwjBrLQ+dBVAAwJ
+	isNhb2JK+MYXCDJ9vNXBv/RLrr75TKIRjqH1CPvlasE2mEWRnvqN6BB69Rslggmf
+	k2su7RclCyOw/dBK0ZqAd9lE7EMkIHzsheWcmt4mCXT2eVgQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dv1fgj3n-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 08:18:26 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b068c25f04so70626941cf.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 01:18:26 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 08:34:00 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b096d8fc3bso65081551cf.2
+        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 01:34:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754727505; x=1755332305;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ny0ExIjmg6qzhNtxQ2+NGDBId6ex3O2Y+9L9qqEXCZA=;
-        b=gbLKmjnd+hSV+cV+UDRC0Xfi68cSTAuD+4PZkQ10inJXI4IEMN1x2TtDBzMaqeo2Pr
-         vyPzEa7DIle/VoJq+QhmLQsotR2TEGwruE/fcK071TqkSDRvRtFe1te/2KzE4gpOikVR
-         ffu1aWm2LJwyJ6sxKcfgoGfY3PVLqOh8WX348SIphOAe8T3CEHDOlCrFQ96fdnT0imjc
-         Sd/tXY7WUhDvMNABTM/xNVZT0m3MUW3y9EqRk63YRr/MsR9pfJch4IXGYWKYFkyletpI
-         RQhSrXJ1jbyK38WHgyX6aPXnFT/6qmvKnwJWtsuSVpUsS97dWzS7621H2FW9ig5TNwCk
-         1P1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXGraAqqFMiBnn7X0+g5fi8p7aaOzum9XdweNAeuZsovFcOlSCb4oBbA1h9J66m/lipUcBstmd/0Uv+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0sV3ARBrqCHtrNXOwF0Pk6GVR6920TH72XF4KXyhV2nXSpchh
-	IoqjGySGqPa9BnAIK4zygelf9MxJNuvB9zDjn+BLTEd+6KYJoQDG2+701Mijir0uR8ZbfV6pIq7
-	1ZRylpjkn4QaZD4KJSaa29HFSUZXStvpkwvDXabyzc6eX92zaCqBc2MPxwtxuwpMx
-X-Gm-Gg: ASbGnctGhD7PA6jLWZPkdrOekOqJHNZa3gzlBH2Y/9s7D6dD6l+Q85O7bbeqjd27veU
-	fSNC5UdG0uFPkeoz2TNGciaOmswYsF/zRjEYDkJX3aWV7PWWaLZS2mtAuU2eUP8ovQ9EH59qd/7
-	8OAadYUm3AK/5X0OWEfIp6lhIPoUBm2tTSa7UQ4g2GwzTVsRmpSN+1jkinJ4HFFr34BKYcYzpyE
-	iv0FWhg6Zh6EzAxM9vQHTmJELAR9sFsorh0LnPZZmXtEuCRt7PQAHPaonI9kdwu4/YyzVp6gMAX
-	19bx0bjd0zqps5deMGhbUgMFALZXRYF/1HEkf207S5EX5sTsNTwYU8Dg4t+0DEV4DqfAD76wQK+
-	8FLmNwBafK91aMrFgMeO+P7Ay/8JMVsaBE5IJLckXb8XeIP9jh4Fl
-X-Received: by 2002:a05:622a:251:b0:4ab:958a:6003 with SMTP id d75a77b69052e-4b0a086e388mr127655311cf.27.1754727505215;
-        Sat, 09 Aug 2025 01:18:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFSNNSwL+bCDNYNcUfGi9ivlMMSKYd4DhhWVIoEL/gBQIOysZIci5grnnKj6yg9ZFWbXw3i2A==
-X-Received: by 2002:a05:622a:251:b0:4ab:958a:6003 with SMTP id d75a77b69052e-4b0a086e388mr127655041cf.27.1754727504698;
-        Sat, 09 Aug 2025 01:18:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754728439; x=1755333239;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7UX7bgPSUhQT7z5Z1Un47pxf4yqu0J+5ck4pwI5id6s=;
+        b=eOJ3/uQzaD5rGW0QmU/GTxA2bs4eQvl3PPchLhNj/3uCPmydeuH8y0AQY5gtu4bXZO
+         JQBj59ao4heT3/FfrpNOqlkxmm2rn6t0HuYIaykXuC3+wCbNygwh4n23uJQuGtrLAClH
+         vq1dPV74TVj0K7p+pqqV3bfa4QZB99qvq4S0uGBclP9V6TgT5qXCpO++cu6GnUPL5s9I
+         jYumig50DuzVrDN1FqNKE1qqt42l+aezOGgA/hWYVRILwoxzjhvzcJgWYFCdUOeGMMap
+         TVdFrPpGaEsv3c7cFYc5fq7XB66IXZKRfRyi6LZxRE2ajgjbiaX255aF41LpEvNr0kK1
+         jxwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmQBHnBcy5cmK7cbw6VvOV/OIkvuyb/oYQnUcWP8VFhEyxRZaowdeQdpZTvYqSWoSNq1zX8Te+NpOs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHptGfR5zVpjn4+wVfz0a+7Pp1TsrYzN52zD3dH7X0KYpt4/n9
+	Z3DyktXqgoHVUZbSsNiOKwneZKrybkCGWNaJgxefdvAbDbg4IHiH+vNgYdfxY398AFKs/vbke3E
+	zojkEjbC4NP54qrsMZFE5wCMhnew5B22hrlTxcggU/JAEeyK2AtNGedUgOREvb8ER
+X-Gm-Gg: ASbGncv6W4ldLkuCXQcQk1Fv1ddZyVfYYO0U7GoKKbX+IlXUKDtteSKfSMUK+pAi/YI
+	WYn+jtosTdT9Dh0iIfATevY3L2svALEjnJ5e9zGTwQrmB9c+vSEHpYrF3KoqTK1gEJ3039Tqvqd
+	1rYF/+3Vtgle/XbnxO8qId4itOUgaJTokHt0ZN+vIghb839Z9IWYsgJ0sHbsjqO7WF4exKzjECt
+	hoLQzhNns1WkyW5Pdd6fa0l4xuGTYMVhzkoaCH5i3CF7Z1t98BBu29PXJZYV7ceWm/PaAuERzJ6
+	mqTxQVEi5tiWw1Eh/CHVQwIDVQ/5F50FdvVgJsQ2sixUV9Cx44S21bhv0XtZHIOq0dZjPqrbX9H
+	Y8HfLN3XPGZUNTRaWA2BluN6X0VQt3PDpDa8bmLsKTmDQeF3G0QFL
+X-Received: by 2002:a05:622a:52:b0:4af:3b7:7011 with SMTP id d75a77b69052e-4b0aedce1f4mr68180011cf.35.1754728438847;
+        Sat, 09 Aug 2025 01:33:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHzXew2BZv/FrSskTEV3OQiREswKfah58pn6beTUeaVcGNjzqZ+Saio9GUP+GmDUIANs7S+BA==
+X-Received: by 2002:a05:622a:52:b0:4af:3b7:7011 with SMTP id d75a77b69052e-4b0aedce1f4mr68179681cf.35.1754728438341;
+        Sat, 09 Aug 2025 01:33:58 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b889ac575sm3298027e87.69.2025.08.09.01.18.23
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88c99078sm3268166e87.102.2025.08.09.01.33.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Aug 2025 01:18:23 -0700 (PDT)
-Date: Sat, 9 Aug 2025 11:18:21 +0300
+        Sat, 09 Aug 2025 01:33:57 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        bryan.odonoghue@linaro.org, quic_dikshita@quicinc.com,
-        konradybcio@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/7] media: venus: core: Add qcm2290 DT compatible and
- resource data
-Message-ID: <2yj3er5j72yoa2ltboopx5gvquur7jl3viqnq5qsci2fxjf4ix@7t63vgizfknb>
-References: <4chbcvub4scnv4jxjaagbswl74tz4ygovn3vhktfodakysbgy3@kukktkwd2zsr>
- <aJHgh8mon9auOHzi@trex>
- <aJHqpiqvulGY2BYH@trex>
- <to2hrxml3um6iep4fcxhkq7pbibuimfnv4kfwqzlwdkh4osk5f@orjzbuawwgko>
- <aJMMhIqNupwPjCN+@trex>
- <0248afed-b82d-4555-8277-e84aacf153fd@oss.qualcomm.com>
- <aJNTigOMy1JFOxot@trex>
- <fcdd9534-d494-3fdb-dfa7-1d15da6f697a@quicinc.com>
- <aJSvjqfQw3kNrVVH@trex>
- <447caa6d-13d2-2e75-5f33-6df9b2fd6d69@quicinc.com>
+Subject: [PATCH v4 0/6] dt-bindings: msm/dp: Add support for 4 pixel
+ streams
+Date: Sat, 09 Aug 2025 11:33:51 +0300
+Message-Id: <20250809-dp_mst_bindings-v4-0-bb316e638284@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <447caa6d-13d2-2e75-5f33-6df9b2fd6d69@quicinc.com>
-X-Proofpoint-GUID: siTsZLAJfe2fEE4nOojyfl4oG7mpxeGC
-X-Authority-Analysis: v=2.4 cv=cLTgskeN c=1 sm=1 tr=0 ts=68970452 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=1p08hUWWfcFRm61_9koA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAwMyBTYWx0ZWRfXzPWF+JJC8ZOf
- R/OrwM2ovY+Nr5Og+UwQEp9DYZsPujJeEQyAyD+8VohkY2e2TfbUFI9BCOwI2dfWf2fcyzD/+ag
- wA7WwkXXI2jA/zK03wi39NeCqN7ztq31Tz4n3tl1gnDumF1QhMTIVTm2931Tk19NQUccTTzz6hI
- RKPoiPPQNQsek9O8Xf/vQN3hE+jV2gcwSyr5r+s+Jvhq54wNMviY7AwaoT4a3eYLEO5CU/ZFd3J
- pdYVujPfU4VuX1JlJN3t4dPSsdEMPDi/IfsuEd7bLGNtrfXG9Ycf18J8NgDnqr8/3/N9MzoKCS3
- 5qm0OxFG0M/D5ELj1ucD9dxM80PTZnCpA/Oo7i9bEgJlUod0QElk7+RTEZkZcjROeG4W+tobpWT
- mLeB+qsB
-X-Proofpoint-ORIG-GUID: siTsZLAJfe2fEE4nOojyfl4oG7mpxeGC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO8Hl2gC/3XPzW7CMAwH8Fepcl5Ymo+m5cR7TBNKUwcsrSnEo
+ QIh3p0UNHFgu0T6R/bP9pURJARi6+rKEsxIOMUS9EfF/N7FHXAcSmZSSF2Xhw+H7Uh522McMO6
+ IW6OaEHznQAZWug4JAp4f4td3yXukPKXLY8BcL7//W3PNBe9c57TqRSO12xxP6DH6lZ9Gtmiz/
+ BWMMEq8C7IIoZNGN3pQ0rWbiWh1PLmfIowvRr0YW9t3RhXGSg+ila2xQv3B3J7HJig7Eubnxax
+ 3BHwpwryuIpzz5+goQyr1tzu763mzbQEAAA==
+X-Change-ID: 20241202-dp_mst_bindings-7536ffc9ae2f
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>, Mahadevan <quic_mahap@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3425;
+ i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
+ bh=9AclRADJb8VLv70wpJW0mU6YC9fXqR1BQywSHzWiIpM=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBolwfzJLdyI/SxMbkpE8OyCKZOpEmNd+X5B/vHk
+ dPx+BKg+kmJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaJcH8wAKCRCLPIo+Aiko
+ 1fePB/4rgi2qJiP6az48o3ODT0jSQnBLloIfbWVkjJucrhIx9xoiJazRPdND2hGWh3IMoR5H8sS
+ Lb4enqqjSFWGuevD+4vJoUT2Lav7XVIDD4WVlKA3Ez4sewHIK/VOSLWkapVjhWI5r3GAi9jLnix
+ KZUC6c8nMJMUcp1MW83nj0UrXIxETKSS2c1j4jgKFwNyDfzkm/fp0QKc5jHU/QWGwXwAO5zAboE
+ oSS9IKec4RQa/37AWRcAcAEymr/tXWHHhK65a6zNXXdg9KXdVfEWCiskhqZrd4YElsbYKS08XYH
+ 0satSs36Pq4pI6XaN2WN3AnLfBMvv+fmqBCtZ4WyF6ejw7Qy
+X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-Proofpoint-GUID: AFaFNyT25w-cixT5hmU8By-psjhkHTdj
+X-Authority-Analysis: v=2.4 cv=cLTgskeN c=1 sm=1 tr=0 ts=689707f8 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=gPXn7k77wXcESHRIjWcA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAwMyBTYWx0ZWRfX6moXxsDgrikV
+ OP9g2D1b2+sF1hDBqSxmXdmcxBzG4JhE8aOQS0u5Fh18ypH1kzxKtiua+WPFP+3oEKWDXUWL4t+
+ JyuheqocPEtAl5Dq1+3mEJtba1Sm7/c9pMkb3fX9rMzlT/Qwpv7l+vmuQTBO5eM+EHKhMLAv0ZC
+ 65vnMUSZGfIUiLa25Js2I6CMdz0RJ9IWIjL8OSenypxm5CkMueqhGjyGUajWIL012An45BltFHP
+ 8u7SwncYqlKtffzzh1QWTYV/UYUt6PO3v9Ae9Cn7X13ra128gRS8m7A6m1NYbVqCJyn+EBEZ2yr
+ HgX2x2PIRwWmPkt88F6tf9dt1wNdMVtxHzcPqRF9SWCYzUsz7yyJbrYezUpIIvosvCJyYqhZcw4
+ kk0oCG3+
+X-Proofpoint-ORIG-GUID: AFaFNyT25w-cixT5hmU8By-psjhkHTdj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-09_02,2025-08-06_01,2025-03-28_01
@@ -134,45 +156,85 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2507300000 definitions=main-2508090003
 
-On Thu, Aug 07, 2025 at 10:05:10PM +0530, Vikash Garodia wrote:
-> 
-> 
-> On 8/7/2025 7:22 PM, Jorge Ramirez wrote:
-> > On 07/08/25 16:36:41, Vikash Garodia wrote:
-> >>
-> >>> It was agreed that this complexity was not necessary and that we should
-> >>> just drop <6.0.55 firmware support (which would in any case only include
-> >>> video decode).
-> >>>
-> >>> And so on v8, I removed the above.
-> >>>
-> >>> Now I have v9 ready to post it, but Dmitry is asking why cant we have
-> >>> the v7 functionality so I am waiting for direction.
-> >>
-> >> the issue is in firmware for both encoder and decoder. Didn't like the idea of
-> >> driver carrying the hack for a firmware issue. Just because, for encoder, we are
-> >> unable to hack it in driver, we are ok to have it enabled in a newer version of
-> >> the firmware, we can follow the same for decoders as well.
-> > 
-> > if that is the only reason please do explain what do you mean by hack.
-> 
-> I meant that the EOS handling was not needed in driver after fixing it in
-> firmware, isn't it ? Was trying to avoid carrying this in driver.
-> 
-> I tend to agree with the comment made by Dmitry in another thread to have decode
-> enabled with existing firmware, no option but to support the *already* published
-> bins.
-> 
-> Having said that, these limitation of having a separate EOS dummy buffer is well
-> sorted out in gen2 HFI which have an explicit DRAIN cmd for it. Hope this
-> motivates you to migrate to iris soon for AR50LITE variants :)
+On some MSM chipsets, the display port controller is capable of supporting
+up to 4 streams.
 
-Migrating to Iris won't bring gen2 HFI. Think about users which have
-OEM-fused hardware. For them it's not possible to switch firmware from
-gen1 to gen2. Thus, if the SoC has been released using gen1 HFI, we
-should think twice before upgrading it to gen2.
+To drive these additional streams, the pixel clocks for the corresponding
+stream needs to be enabled.
 
+Fixup the documentation of some of the bindings to clarify exactly which
+stream they correspond to, then add the new bindings and device tree
+changes.
+
+separately.
+
+Note: SC7280 changes depend on clock driver changes and will be posted
+---
+Changes in v4:
+- Picked up series from Jessica by the mutual agreement
+- Corrected Rob's tags (Krzysztof)
+- Split X1E80100 DP patch (Dmitry)
+- Removed SC7280 changes
+- Enabled the MST clock on SDM845
+- Link to v3: https://lore.kernel.org/r/20250717-dp_mst_bindings-v3-0-72ce08285703@oss.qualcomm.com
+
+Changes in v3:
+- Fixed dtschema errors (Rob Herring)
+- Documented all pixel stream clocks (Dmitry)
+- Ordered compatibility list alphabetically (Dmitry)
+- Dropped assigned-clocks too (Dmitry)
+- Link to v2: https://lore.kernel.org/r/20250530-dp_mst_bindings-v2-0-f925464d32a8@oss.qualcomm.com
+
+Changes in v2:
+- Rebased on top of next-20250523
+- Dropped merged maintainer patch
+- Added a patch to make the corresponding dts change to add pixel 1
+  stream
+- Squashed pixel 0 and pixel 1 stream binding patches (Krzysztof)
+- Drop assigned-clock-parents bindings for dp-controller (Krzysztof)
+- Updated dp-controller.yaml to include all chipsets that support stream
+  1 pixel clock (Krzysztof)
+- Added missing minItems and if statement (Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com
+
+---
+Abhinav Kumar (4):
+      dt-bindings: display/msm: qcom,x1e80100-mdss: correct DP addresses
+      dt-bindings: display/msm: dp-controller: add X1E80100
+      dt-bindings: display/msm: drop assigned-clock-parents for dp controller
+      dt-bindings: display/msm: add stream pixel clock bindings for MST
+
+Dmitry Baryshkov (1):
+      dt-bindings: display/msm: dp-controller: allow eDP for SA8775P
+
+Jessica Zhang (1):
+      arm64: dts: qcom: Add MST pixel streams for displayport
+
+ .../bindings/display/msm/dp-controller.yaml        | 107 ++++++++++++++++++---
+ .../bindings/display/msm/qcom,sa8775p-mdss.yaml    |  20 +++-
+ .../bindings/display/msm/qcom,sar2130p-mdss.yaml   |  10 +-
+ .../bindings/display/msm/qcom,sm8750-mdss.yaml     |  10 +-
+ .../bindings/display/msm/qcom,x1e80100-mdss.yaml   |  20 ++--
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              |  34 +++++--
+ arch/arm64/boot/dts/qcom/sar2130p.dtsi             |  10 +-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              |  20 ++--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  72 +++++++++-----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  15 ++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |  10 +-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             |  30 ++++--
+ 17 files changed, 305 insertions(+), 103 deletions(-)
+---
+base-commit: a933d3dc1968fcfb0ab72879ec304b1971ed1b9a
+change-id: 20241202-dp_mst_bindings-7536ffc9ae2f
+
+Best regards,
 -- 
 With best wishes
 Dmitry
+
 
