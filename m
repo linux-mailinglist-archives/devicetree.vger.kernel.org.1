@@ -1,175 +1,128 @@
-Return-Path: <devicetree+bounces-202963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A544B1F8A5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 08:48:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C824B1F8B3
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 09:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 510BB17AF29
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 06:48:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 427CB189A016
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 07:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51780227E97;
-	Sun, 10 Aug 2025 06:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070FB1DB92A;
+	Sun, 10 Aug 2025 07:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DQxdilTd"
+	dkim=pass (1024-bit key) header.d=narfation.org header.i=@narfation.org header.b="V6b6ocb5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from dvalin.narfation.org (dvalin.narfation.org [213.160.73.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8B022A4E8
-	for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 06:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86E5566A;
+	Sun, 10 Aug 2025 07:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.160.73.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754808472; cv=none; b=t3qmCF0ETS4TsikLgnHnKWrw8E8kp1ATNYUHUORHJrqCNHCnIbttbnNzKFnw+gyveXNOhMd1rKbdcdZ5VuRlnJwQraAS16HjbOV6nuHzZrTgMddiXCaWFNVJMttbJKCUZu0zX/jYcg+/+ivlix0CoqxpTy1jfoo32nr3UANtIHw=
+	t=1754809317; cv=none; b=ERThBI1z4yog/6Rz7AibbHpKSdoQTEQ9jJDlrmsCq0ofdVrmC3ZbGcto0i22p1lBcpyhRczaAXqkoGCNZZKFYXZJ9Ovf+v51jnqe3lYPOFsEEW9Z/xQBfmi6fDkq7ZgC11f3Qo0QaXsJC4VAFGl28zm3i+DgJATm+wcpfNrGmH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754808472; c=relaxed/simple;
-	bh=dagAYUKfMf7MQB3tjh0eU5W/hnyL6zIsoo1NhGvUigg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LgjfmmLN1tiTg+u1u9xc9SUlwkN5OO7zWgAP3hbYLOYPFerxPVjA0CS9NuSZwVE9BNtiGVZePSGSg4BV0KZ1UWmJaaKxAplERPOPdNbys1xleU6+IDz2h4MHxRvVD7ppWzMTstWZBWS1C1yOXeSEvvSTRVeGiv2vZ6OKtFUD6Yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DQxdilTd; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-617b36cc489so6650927a12.0
-        for <devicetree@vger.kernel.org>; Sat, 09 Aug 2025 23:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1754808467; x=1755413267; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sC8ppSX1H/0TCM/Y3FF+igzDwHvNt7j5FKY8GrjOIKg=;
-        b=DQxdilTdy7VTW3wQiFxUXJ4/o5yAvKO6L20sAYRURUdpsoPabe9Wmgad7FkgzrcKVO
-         PrJutt/t627s8WKngiENHad6DMnNYyQkXj/MekcMGG/9BZpvofcS9GxKeUx2Igiw1efu
-         wAK+wxUB0veaNSpVgzD6BHQwD8L9wXgMYXNBObRMtnC8JOzbBn/k1frO3BzHvE9H6w2g
-         GqywEEuBOjYik8fHcmz36tZADocyZjJXY5tFBGDR3uJkqdCCLyJeq99FWQn15X/DwBW7
-         JvxlladAmIVmqLb/htNsOFcpa2bi4noZ382DYsKPmr/CUlAlLVCfc4Nm+L7uXUGv9PtS
-         bsQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754808467; x=1755413267;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sC8ppSX1H/0TCM/Y3FF+igzDwHvNt7j5FKY8GrjOIKg=;
-        b=XtIphKpLDwQLXMAoy1toMgnTqPT3ujWd3VJWSxUuo+crtZURVxXEmOo8Ytlr58x9q1
-         1xu4HdQOrOWJx9N3jaH0gQLg6FgCme0Tlfd8U/6NLv0Cp43gpiYUgUxjAtuRRe8CQ1M/
-         zaCnNRTE1kc17hcGCrJJCsJ21TudKHRpV+nz5rvvx2XlOwPzBFHREmrlVGbjyxy0vjPj
-         Q8Pdrp54KxUV1HrOhju1dViZnqHHhmzN7IB9rZXws21A2w0DhdtW6e0V6IDOU0TYHuFq
-         np36AnjjoX1TZllybCV38syxprZSbCeD0qH+w+BcT5iR2LpBRmhcNASxBqnYlBNiIgSl
-         ZkoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXmhOnkW9UwF3jdFRJ+m+5LFOXs8jaGHW1D4rlCAZX3kEWhmajczvji0fTrZmzCig61Xu7/ERgsFe5o@vger.kernel.org
-X-Gm-Message-State: AOJu0YyymGK7cj2VLPGE4fLmQlacC6ebpcFOsRr/KCtlLffznOR66XAU
-	olSUi6YfTIvqrLIWo0FIp3NMvJZv6X1C+4dSQHRvS+OSuGppmTfZvoRJm16dMjhZe+E=
-X-Gm-Gg: ASbGncu7zwM6TCHvIyxRtF72g1mNp4mQP/3kSCxluJ0C4n8+rQhh1L8XwH4YFmkPqpT
-	dBrBjH0myk6QmGT+BULvv1j6pex610abQO0rhbgzNz7t0nPQB8ObU7xGkr3wDdffPMIm/ghUW9G
-	jA/kHRJmCbBGMl6fIk/UeeDt+nPEVu26MMLlQdN758VG3otHekfoQiIgiXcr1WAi7iWZRkGn/V8
-	ENzChxD/8ZHQxzMq0PDWdwjUxEOKrWaJOq08y6xHExojsnbQfpOwVV44l7miTRPHkan9Eeke/fD
-	WtcpZ8GpRVKffALZ9tIJcBPDIbNkU8z0HPQi7brPyQCT/XU29+8vEurobtKalfK6d5SxiDTHWHZ
-	NtJa7l+jOFogZxkABuTh3rHTGRe2PYRk+8ljrc5CoJg==
-X-Google-Smtp-Source: AGHT+IH/7dzLzWQyWlGILSjoAFS8eflMGUJjXYYLSezW9ohIbVGYZPagLxPqBOuF4SYx6XNBcYwt7w==
-X-Received: by 2002:a05:6402:51cb:b0:615:c767:5ba1 with SMTP id 4fb4d7f45d1cf-617e2b661aemr7951088a12.3.1754808467315;
-        Sat, 09 Aug 2025 23:47:47 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.188])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a8ffbdb4sm16219007a12.52.2025.08.09.23.47.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Aug 2025 23:47:46 -0700 (PDT)
-Message-ID: <1cc60291-194d-4d8c-ad0d-f83651ba4fc5@tuxon.dev>
-Date: Sun, 10 Aug 2025 09:47:44 +0300
+	s=arc-20240116; t=1754809317; c=relaxed/simple;
+	bh=jcrn+VBHBVRuF2X9rlMWIy8O7/W+PKX3+qIuU/YzHCo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dMRQ23Mqay1aT2nQL67bmsMQWi2xv5H5CFfslgatNQiBrqmrOjv4mDMlsZb6hwflNr7HxsJFDFGWwIeVi1CjKzlCUnby2/LhajYQurcXdtXKimLFfL6hzERaq/buQTj9Q8K8uBA83514ttDkqo3Yr07hCM2G7/Q+iiZoCdTGFQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=narfation.org; spf=pass smtp.mailfrom=narfation.org; dkim=pass (1024-bit key) header.d=narfation.org header.i=@narfation.org header.b=V6b6ocb5; arc=none smtp.client-ip=213.160.73.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=narfation.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=narfation.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+	s=20121; t=1754809312;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UTxcRIoRKKSNomMvw3b2nj7P65Cz7tc/XNzVDr/j4I0=;
+	b=V6b6ocb5cIIMqvZ9lbQj0lhYVnR9tINZm4iPTHbHndg+0jlNNn8HYENuJpF9QTqEg5sC/e
+	sXor0Bqd2r12Cd8OBMtDyZIB+Q0ciV57wL9kel1S8nNx5U/5uet8AgPH9Pe2UoRVGGFNxB
+	k/2Q/QVgY0xwMBh7VXU1hb8gdktJ/cE=
+From: Sven Eckelmann <sven@narfation.org>
+To: Jonas Jelonek <jelonek.jonas@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>,
+ Harshal Gohel <hg@simonwunderlich.de>
+Subject: Re: [PATCH v5 05/11] i2c: rtl9300: check if xfer length is valid
+Date: Sun, 10 Aug 2025 09:01:49 +0200
+Message-ID: <10704304.nUPlyArG6x@sven-desktop>
+In-Reply-To: <aJgzUFOzxxdNDrQa@shikoro>
+References:
+ <20250809220713.1038947-1-jelonek.jonas@gmail.com>
+ <20250809220713.1038947-6-jelonek.jonas@gmail.com> <aJgzUFOzxxdNDrQa@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] thermal: renesas: rzg3s: Add thermal driver for
- the Renesas RZ/G3S SoC
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
- p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250324135701.179827-1-claudiu.beznea.uj@bp.renesas.com>
- <20250324135701.179827-3-claudiu.beznea.uj@bp.renesas.com>
- <20250705120617.GA671672@ragnatech.se>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20250705120617.GA671672@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="nextPart2319299.iZASKD2KPV";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 
-Hi, Niklas,
+--nextPart2319299.iZASKD2KPV
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Sven Eckelmann <sven@narfation.org>
+Date: Sun, 10 Aug 2025 09:01:49 +0200
+Message-ID: <10704304.nUPlyArG6x@sven-desktop>
+In-Reply-To: <aJgzUFOzxxdNDrQa@shikoro>
+MIME-Version: 1.0
 
-On 05.07.2025 15:06, Niklas Söderlund wrote:
-> Hi Claudiu,
+On Sunday, 10 August 2025 07:51:12 CEST Wolfram Sang wrote:
+> On Sat, Aug 09, 2025 at 10:07:06PM +0000, Jonas Jelonek wrote:
+> > Add an explicit check for the xfer length to 'rtl9300_i2c_config_xfer'
+> > to make sure a length < 1 or > 16 isn't accepted. While there shouldn't
+> > be a length > 16 because this is specified in the i2c_adapter_quirks, a
+> > length of 0 may be passed.
 > 
-> Thanks for your work. 
+> There is another quirk for this: I2C_AQ_NO_ZERO_LEN
 > 
-> Sorry for late review, Geert only alerted me to the series a few days 
-> ago.
-> 
-> On 2025-03-24 15:56:59 +0200, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The Renesas RZ/G3S SoC features a Thermal Sensor Unit (TSU) that reports
->> the junction temperature. The temperature is reported through a dedicated
->> ADC channel. Add a driver for the Renesas RZ/G3S TSU.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
+> With that, you shouldn't need the code here.
 
-[ ...]
+I am a little bit lost here. Let us assume that i2c_smbus_write_byte_data() is 
+called - for example by an in-kernel driver. We would then have following call 
+chain:
 
->> +static int rzg3s_thermal_get_temp(struct thermal_zone_device *tz, int *temp)
->> +{
->> +	struct rzg3s_thermal_priv *priv = thermal_zone_device_priv(tz);
->> +	int ts_code_ave = 0;
->> +	int ret, val;
->> +
->> +	if (priv->mode != THERMAL_DEVICE_ENABLED)
->> +		return -EAGAIN;
->> +
->> +	for (u8 i = 0; i < TSU_READ_STEPS; i++) {
->> +		ret = iio_read_channel_raw(priv->channel, &val);
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		ts_code_ave += val;
->> +		/*
->> +		 * According to the HW manual (section 40.4.4 Procedure for Measuring the
->> +		 * Temperature) we need to wait here at leat 3us.
->> +		 */
->> +		usleep_range(5, 10);
->> +	}
->> +
->> +	ret = 0;
->> +	ts_code_ave = DIV_ROUND_CLOSEST(MCELSIUS(ts_code_ave), TSU_READ_STEPS);
->> +
->> +	/*
->> +	 * According to the HW manual (section 40.4.4 Procedure for Measuring the Temperature)
->> +	 * the computation formula is as follows:
->> +	 *
->> +	 * Tj = (ts_code_ave - priv->calib1) * 165 / (priv->calib0 - priv->calib1) - 40
->> +	 *
->> +	 * Convert everything to mili Celsius before applying the formula to avoid
->> +	 * losing precision.
->> +	 */
->> +
->> +	*temp = DIV_ROUND_CLOSEST((s64)(ts_code_ave - MCELSIUS(priv->calib1)) * MCELSIUS(165),
->> +				  MCELSIUS(priv->calib0 - priv->calib1)) - MCELSIUS(40);
-> 
-> The issue Geert points out, can that not be solved by holding off 
-> converting to MCELSIUS() to after you have done the calculation?
+* i2c_smbus_write_byte_data
+* i2c_smbus_xfer
+* __i2c_smbus_xfer
+* adapter->algo->smbus_xfer (aka rtl9300_i2c_smbus_xfer)
 
-This method works as well, but at the cost of some precision. As of my
-experiments, with it there will be no temperatures with .5 Celsius
-resolution (e.g., 50.5, 51.5, 52.5, etc) reported.
+But the quirk is only checked in i2c_check_for_quirks - and then on 
+`struct i2c_msg` and not `union i2c_smbus_data`. And this is only called by 
+__i2c_transfer (which is called by i2c_transfer, i2c_smbus_xfer_emulated, 
+...). But on first glance, it didn't look like it will be called when using 
+i2c_smbus_write_byte_data - unless __i2c_smbus_xfer fails and must fall back 
+to i2c_smbus_xfer_emulated. I most likely missed something when doing a quick 
+check of the source code. Maybe you can point it out.
 
-Thank you,
-Claudiu
+And I might have to point out that I am currently not next to the actual HW to 
+check if my statement that adapter->algo->smbus_xfer == rtl9300_i2c_smbus_xfer 
+is really true.
+
+Kind regards,
+	Sven
+--nextPart2319299.iZASKD2KPV
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQS81G/PswftH/OW8cVND3cr0xT1ywUCaJhD3QAKCRBND3cr0xT1
+y5n4APsHIMoTBC0vlamQgH2LwXocWomzmEvz4sqCk1WX0DBHxwD+MGgmXPdlfMEJ
+gwkQGvv7xV4MXVbfy9qsHbgnaAK7GAo=
+=DchT
+-----END PGP SIGNATURE-----
+
+--nextPart2319299.iZASKD2KPV--
+
+
 
 
