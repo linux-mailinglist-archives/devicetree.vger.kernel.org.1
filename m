@@ -1,95 +1,111 @@
-Return-Path: <devicetree+bounces-203016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BBAB1FBFA
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 22:08:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB38B1FC26
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 23:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFCD016B2E7
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 20:08:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06AAD174307
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 21:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE6821019C;
-	Sun, 10 Aug 2025 20:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B71BF2253F9;
+	Sun, 10 Aug 2025 21:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHPqAFdM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIjaG7bH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39AE42049;
-	Sun, 10 Aug 2025 20:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4552253A7;
+	Sun, 10 Aug 2025 21:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754856510; cv=none; b=NGA3usE4MDiMW6X2o9qG2Ca6ECHUlKkwSICXOfA04IKeMNBVD1mUIHFLIfx//XrLqyGcMxlRRvPFU36AKZZKYLztFT9HWQ9FsbgT3bKE/nv2g5Wmesu2rVDV15ubajm23XkaSwiza/It2JojDGEHOAqGMWes7qcKheFN6Y1yoOA=
+	t=1754860327; cv=none; b=eC7cWPDVeEETsLW8oR8JhV7QEBJsAR3PMbqUcL206nkUvAoRSIQqESv/j/SKuLFnbU0jRfg07R2Hgqh4ScwMI2MduZ/jmUbB4r15tsum4M1hCYQlNMETwc6ocVBb5WU34D69nE2YgxUtXK21bQLimRC6lqXQd+SZoSbxoqPGCq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754856510; c=relaxed/simple;
-	bh=Y5Q/vr0kJLcgM5XgDCcBAyfuPIcq6nswgQBR9Q/BEzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jc9RCPr4su7GgNa5JXWp8MWGXTcJNqPoWTfJzshO0SYQmdm22wwlvDK0/JVUZcvuelkL40uAap3go1yMgiK58lZfIrP+RIm3v3jooyIudFPD8MmXRlFJqt0fNQc+oJzfJxD3BmsqQlnpfIbUUvV/kNzgj4LTJzCA6xw9oRbRmmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hHPqAFdM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F04D7C4CEEB;
-	Sun, 10 Aug 2025 20:08:24 +0000 (UTC)
+	s=arc-20240116; t=1754860327; c=relaxed/simple;
+	bh=29Jkt6E+Z/r91Gjka8wTSIyCZDKG/PFRHm4REKs81+A=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=HP/0bbGpVNtYBfm3CiiRY5Y6jZbKxpBWtGoAXDkJ86R/dKNnzQuJx9gtCFLRuQyLz+yOQb5YwY5arup8khLquXmPYOkJnLBqXaFtEzVqIcDjfz+bHgeq9rJtSFA+BWTGzK7g7sRoIUNEUjyA3FnUDt7rg6COD2edcjkX9S9a2uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIjaG7bH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24A99C4CEEB;
+	Sun, 10 Aug 2025 21:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754856510;
-	bh=Y5Q/vr0kJLcgM5XgDCcBAyfuPIcq6nswgQBR9Q/BEzE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hHPqAFdMylbeQCy59EAgM8clk2Tuu+QaV8KgzT6/jSp9lNH4Nrqq0IDvZXbQYGv21
-	 ytFqM0HX2gU1DKb0ResjDKiOdRjKLCimE0A0I24Adog5PTxtakMbFe/PJgGGJ+tEqP
-	 NOV0q7h0cRmUOYkAOgOdUCn2iR3/apUrsQfPU+ikm0rayyowvm+vLMHj9jz9PKhKyn
-	 5k8hUGQUpXXfmjvKixN5XIA5ubswGiGNuZgwDh0VCmdNaKRQHMwED6pAEjJuykKDjx
-	 E2up4o4WZGHFR2UTUMY/t9tuEp6+VpIOrip4FAwjStvFV4nSmUMPOgPgGwq2fXqWi0
-	 lvroQTnlU9ktQ==
-Date: Sun, 10 Aug 2025 21:08:18 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Nick <nick.li@foursemi.com>
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-	xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com,
-	like.xy@foxmail.com, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] MAINTAINERS: Add entry for FourSemi audio
- amplifiers
-Message-ID: <2bab3a67-5c22-4de3-a0c2-4c1ffeda9196@sirena.org.uk>
-References: <20250723090934.480055-1-nick.li@foursemi.com>
- <20250723090934.480055-6-nick.li@foursemi.com>
+	s=k20201202; t=1754860327;
+	bh=29Jkt6E+Z/r91Gjka8wTSIyCZDKG/PFRHm4REKs81+A=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=UIjaG7bH7wfZATr/m9gGkNg8qtUzFyU3q54CX3clwzy1T8HGH1Pyqm0RwMSf/Fajx
+	 L82wKsg1dgZJr1ykakZYkN2r4mj1gEbExCXwtjPNCDn53twh/tEQcK0pKR3oc2S+Y7
+	 Ibb6c2BY9oTzYZYgOAO/0REmx74l3VUpF+s9eSP+wleUw6ZlwRVMcnuF09OHlk2sBB
+	 1naQUUjNg5chf2Vh5Sk0smFtSB31SjUe5Pe4odzKLzgt+4+DovMs61dNTAiShoF6zC
+	 ZzJkmo2GAfV8VsMVKCYLygCYNkRWsQcpyVZwRu8Z8qv4jbQAaF7QXiGGeR0yqbr6nf
+	 Oy8w+ysN6WXkA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id EAE0C39D0C2B;
+	Sun, 10 Aug 2025 21:12:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bDG4Eff0x5LWHWp6"
-Content-Disposition: inline
-In-Reply-To: <20250723090934.480055-6-nick.li@foursemi.com>
-X-Cookie: Forty two.
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 0/9] add Voyager board support
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <175486033949.1221929.12633096724273159685.git-patchwork-notify@kernel.org>
+Date: Sun, 10 Aug 2025 21:12:19 +0000
+References: <20250711133025.2192404-1-ben717@andestech.com>
+In-Reply-To: <20250711133025.2192404-1-ben717@andestech.com>
+To: Ben Zong-You Xie <ben717@andestech.com>
+Cc: linux-riscv@lists.infradead.org, arnd@arndb.de, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, tglx@linutronix.de,
+ daniel.lezcano@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ soc@lists.linux.dev, tim609@andestech.com
+
+Hello:
+
+This series was applied to riscv/linux.git (fixes)
+by Arnd Bergmann <arnd@arndb.de>:
+
+On Fri, 11 Jul 2025 21:30:16 +0800 you wrote:
+> The Voyager is a 9.6” x 9.6” Micro ATX form factor development board
+> including Andes QiLai SoC. This patch series adds minimal device tree
+> files for the QiLai SoC and the Voyager board [1].
+> 
+> Now only support basic uart drivers to boot up into a basic console. Other
+> features will be added later.
+> 
+> [...]
+
+Here is the summary with links:
+  - [v2,1/9] riscv: add Andes SoC family Kconfig support
+    https://git.kernel.org/riscv/c/00dba19aa005
+  - [v2,2/9] dt-bindings: riscv: add Andes QiLai SoC and the Voyager board bindings
+    (no matching commit)
+  - [v2,3/9] dt-bindings: interrupt-controller: add Andes QiLai PLIC
+    (no matching commit)
+  - [v2,4/9] dt-bindings: interrupt-controller: add Andes machine-level software interrupt controller
+    (no matching commit)
+  - [v2,5/9] dt-bindings: timer: add Andes machine timer
+    (no matching commit)
+  - [v2,6/9] riscv: dts: andes: add QiLai SoC device tree
+    (no matching commit)
+  - [v2,7/9] riscv: dts: andes: add Voyager board device tree
+    (no matching commit)
+  - [v2,8/9] riscv: defconfig: enable Andes SoC
+    (no matching commit)
+  - [v2,9/9] MAINTAINERS: Add entry for Andes SoC
+    (no matching commit)
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
---bDG4Eff0x5LWHWp6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Jul 23, 2025 at 05:09:34PM +0800, Nick wrote:
-> Add entry for FourSemi maintainer and related files
-
-This doesn't apply against current code, please check and resend.
-
---bDG4Eff0x5LWHWp6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiY/DIACgkQJNaLcl1U
-h9C/DAf/c+pMZps4ZOjeRABAys7Ufdmf01FaAStuf3bt6kHmy3Zk2h8eybO8eR2a
-kokB8+tZ4bvyZI6ZeRs1M1y9cAOy4oYBMHstVBt0rkefqkRmFkRBBsTbXxfrinZw
-+cd90+2SYQxajYlGCyZmnjPr7Pny30ltdZKojmJwEenvaV9pb+evGmNv8N+l15ZK
-CljNbM/hwMUGbDPOd2TFVG9CoQ9dM0eBBXZCJdtUn7JR7ka0HpCrAtIfa2+wUaby
-0/UFpR3PYTOwrTXLtUu5uEWOmWUhkBKWPX9yOz7M8iGjEF8ZgBkiF5X97Rh9l2mf
-1t+Lx9H6QtYx9livUIjvIJumXVot+A==
-=bwy4
------END PGP SIGNATURE-----
-
---bDG4Eff0x5LWHWp6--
 
