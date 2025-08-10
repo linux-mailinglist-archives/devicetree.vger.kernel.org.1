@@ -1,104 +1,64 @@
-Return-Path: <devicetree+bounces-202982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0B5B1F9E7
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 14:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42595B1FA4F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 16:01:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 591F73BBD82
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 12:22:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F27D53BC5CB
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 14:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280CE262FC1;
-	Sun, 10 Aug 2025 12:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="YbKEMTE8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E3320F070;
+	Sun, 10 Aug 2025 14:01:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2A625F994
-	for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 12:21:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4826EF9EC;
+	Sun, 10 Aug 2025 14:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754828513; cv=none; b=ttzjlYi+jJh11QgQAPiZdAx9RhMVYTzsZ5Inxt2qMW3t+KN5ANmXl5AqCdEbQwXksQgwyFvTpJ1LSd6edCOalBX+GuAALfT2td8eib7PVtVjLO+l9Sh+OyDAZQHgLXucaCdTWlp+42WTCUmuqpn20dFnVVR/OFdbAQ3AIjYjAQ0=
+	t=1754834492; cv=none; b=jAh2avzqq1BCeWWgynuQRhig96qK4exd/vk6vr8y403L4oYGx1cdMNfvatJP1df1IIh06x7BbuoHB4YNoAT3YM4R4Z7sop+rGpZJOdyVu+7+aJem17NLtbI/AMF58ADNB1sTfui6vMbu/pZKC1EahfEcQqnDr3SGoCvuNnmje4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754828513; c=relaxed/simple;
-	bh=WZSwcNr+pcS2CFvCJqEO0bTLFx2Y5UNax5ZJ2og89Us=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FwUqLX0+hgNP3rh9qt0FW2RVfxLacDiqCYjf+iQha7DI05uNSR4XsSukuXeyM/EswxVjt0fLn7uKvpEzqwLuLLEQ5T06bWjApPob0w3IxMUNvysENzoPKjZ8aAZyvxoY6ShBMoM16puC57V8zOiAqw2RUhdQa8827aFzY5+5UTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=YbKEMTE8; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6155e75a9acso5569233a12.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 05:21:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1754828510; x=1755433310; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IdKoLiN4BRQR4DmjNDMMqfI3cdNQZlmAjUao5oPGRe0=;
-        b=YbKEMTE8gIFdGyrqJDxqYur0LPFpXattN2f7+5jnXvTdloPFNqZn/mo9FJjYO7rScZ
-         cwPavncIccB673ocrJlCz2NVyCCXlZVVfAOtY8YHPIxoxvooWPz6rD6IMeCteT6R/9ye
-         ch+Qh1ciHgDEs1AHNR+oZpwpku7CwizYTk1jhGWIZs54ZgZ9juqJuX2wIAeUaRLpzN+j
-         GwAsV04FvuuXA5qyyzHEeHzb4ewQA2gPPgPJhB26qT/jsW6iGo0CevqBttADXfaUfoCd
-         4OkoA2t6JhnnnmLBrxpi2/F3vvzfWW1IDELqx0iOaNhTGMh5X661S38klfkZbASwgmrD
-         lKhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754828510; x=1755433310;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IdKoLiN4BRQR4DmjNDMMqfI3cdNQZlmAjUao5oPGRe0=;
-        b=Y/+NksM6yqAdoRodb1bjkrk46XfOt/8MiK45CMR3jduE2YRJCGNs2u2KpJ+dYCR5o0
-         zmvD/erLTaC5td63dx6EMzJ+NTBxJAcifiyW86mc2AtUOSna3hItZjjmImPQ8HZ+CCQF
-         pQi2giU42BQUX7VsswgWdqvyKv7oVzd+zuB1CQdVT8kC8TaqPjTwQoOUu8oLKvA1DbGZ
-         X0FD7l5Anxy7APLFoL1wqGJaB/9k1GIdZ8YMT/gxbL953Z0nD2D2ohAq+ltOIX1G+AEe
-         JXyQXYUZh0XGfgWfIdZNP8YvPp6muKX3/VqFmSMPrMcaIo5qFxxn0fa6h0nbWKcHx/If
-         izLw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhE5kabhv723xtx/sdYUNUuuds3ZkI7pwhmsFAvnlzQmsjimTD+Tpw2wEHsKjgmmgBpfIDO/GcRI2B@vger.kernel.org
-X-Gm-Message-State: AOJu0YylwJhe6BHWBZL4KLPBcZ0V0F4b171GdN5vOXzxuvgfkect5QcJ
-	maPzbjZDZBK31XYffxPssJG0MvIkFCyYPrKO8m81O7OZ+q07ijtzJm7j3dgLwkk26nI=
-X-Gm-Gg: ASbGnctUGxu0pN4JVxfTr9JQ9GPCZbs7U8kfgds1xoaXNruME0YWQu7/MEJm5Rfa0rG
-	EEtvz35fEc8F8C4e/nHjdJINjHPnqDN9GvjEghhaBCnhMZ4OjyB8MK0m6Vcfvh4MXpQAeIlrWD7
-	9M0VijxnLnHa2illBVQ+tV4kEqKXSTq/gFr0DqbgybReLdMiDYrvgUGveKg18jQ8Ub+lvwefSf4
-	FNKjFDA0TQ588J9fTlMztNFvE5M5fjpVvKxiXJTY/Iw79OfS+pqqXp7ZAODFLtaf+cdGzw3pD5b
-	1rySggm3HCGNaSv9y8LBKfvV5sR0myZOCjWPB99FsyrzXPUvSfju2EmQ0HWfWSWNdh9dyoy+chX
-	GEWHIcwJayw07gSgZ0EcNfPG4/Ejgp4hb+Ga2sNFQ7pDoYN06CZUp
-X-Google-Smtp-Source: AGHT+IG1VR8s9CUfGvRNrN+MgDdRWdkJbvcTgCrAzRGDjCO8ytytK6dbDH9qosonfYZ+QdH1pck48g==
-X-Received: by 2002:a05:6402:13cc:b0:617:c6b1:70e4 with SMTP id 4fb4d7f45d1cf-617e2bd993cmr8435556a12.15.1754828509709;
-        Sun, 10 Aug 2025 05:21:49 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.188])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a86758fcsm16611897a12.0.2025.08.10.05.21.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Aug 2025 05:21:48 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: rafael@kernel.org,
-	daniel.lezcano@linaro.org,
-	rui.zhang@intel.com,
-	lukasz.luba@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
+	s=arc-20240116; t=1754834492; c=relaxed/simple;
+	bh=YjX6UTbc8Eyw4QDyGAmmhh1Q6RVEqo6xpmuStGehXEA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=cRBdWTV0aC8nbs8VIObuUfh1R/xS5iEUT6SBzvdDCc2Nvfl4QclT39g5o0ecxHF/hObj5flQJ0mIzkiWRqWK4CPWq1kP4YMyjkB1QUZA4nrPxB0Z+WdyvaevRddPqX7dJC3RkUkzXfA13JQ1OaZN+H2UI4V5pX5QqN2qC8XavGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.215.209])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1ee09b3ec;
+	Sun, 10 Aug 2025 22:01:23 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: jonas@kwiboo.se
+Cc: alsi@bang-olufsen.dk,
+	amadeus@jmu.edu.cn,
+	andrew@lunn.ch,
 	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	p.zabel@pengutronix.de
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pm@vger.kernel.org,
+	davem@davemloft.net,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
+	edumazet@google.com,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	kuba@kernel.org,
+	linus.walleij@linaro.org,
 	linux-arm-kernel@lists.infradead.org,
-	niklas.soderlund@ragnatech.se,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v4 4/4] arm64: defconfig: Enable RZ/G3S thermal
-Date: Sun, 10 Aug 2025 15:21:25 +0300
-Message-ID: <20250810122125.792966-5-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250810122125.792966-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250810122125.792966-1-claudiu.beznea.uj@bp.renesas.com>
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	netdev@vger.kernel.org,
+	olteanv@gmail.com,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	ziyao@disroot.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to Radxa E24C
+Date: Sun, 10 Aug 2025 22:01:15 +0800
+Message-Id: <20250810140115.661635-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
+References: <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,40 +66,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a989449398503a2kunmca8c4679547084
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCSxpJVh0fT0tKSB4dTBlPT1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKTlVJS0JZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSEJVSktLVU
+	pCS0tZBg++
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi,
 
-Enable the CONFIG_RZG3S_THERMAL flag for the RZ/G3S SoC.
+> I had only tested on a next-20250722 based kernel and on a vendor 6.1
+> based kernel. And similar to your findings, on 6.1 based kernel there
+> was no issue only on the newer kernel.
+>
+> I will probably drop the use of "/delete-property/ snps,tso" and include
+> a note in commit message about the TSO and RX checksum issue for v2.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+After my test, this problem is caused by commit 041cc86 ("net: stmmac: Enable TSO on VLANs")
+https://github.com/torvalds/linux/commit/041cc86b3653cbcdf6ab96c2f2ae34f3d0a99b0a
 
-Changes in v4:
-- none
+It seems that this commit just exposed the TSO problem (with VLANs).
 
-Changes in v3:
-- none
+Thanks,
+Chukun
 
-Changes in v2:
-- collected tags
+--
+2.25.1
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 58f87d09366c..540e85a0c676 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -728,6 +728,7 @@ CONFIG_ROCKCHIP_THERMAL=m
- CONFIG_RCAR_THERMAL=y
- CONFIG_RCAR_GEN3_THERMAL=y
- CONFIG_RZG2L_THERMAL=y
-+CONFIG_RZG3S_THERMAL=m
- CONFIG_ARMADA_THERMAL=y
- CONFIG_MTK_THERMAL=m
- CONFIG_MTK_LVTS_THERMAL=m
--- 
-2.43.0
 
 
