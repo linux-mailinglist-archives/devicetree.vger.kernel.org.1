@@ -1,281 +1,129 @@
-Return-Path: <devicetree+bounces-202990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7CC0B1FAD4
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 17:44:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E61AB1FAFD
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 18:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A14C3A4565
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 15:44:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBEFF161E1F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 16:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CC926B756;
-	Sun, 10 Aug 2025 15:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F14925C833;
+	Sun, 10 Aug 2025 16:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iic6ewxo"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="WeXbLkLy";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="KXalXkxz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4033246787;
-	Sun, 10 Aug 2025 15:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C5D256C8D
+	for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 16:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754840660; cv=none; b=RpLZYoK7YbAQroERzob2IPqXV4KFi6VDl82afcVVrgfe0yu7rD2YG/X/PWbopkJlcLtWrASE1GdbfpwWW58ZbI2cTafgUuxWbuVR2j2m6QStXvZBF4LKOEFWhgQCgzxA6/GMito239/Hkd8lOu2fbCBWJRSrUZO49FpfcJLOBiE=
+	t=1754841844; cv=none; b=eyKVXyFxMrkFb9rM0KDfghWGE8UsNYkvz1JP8sFXJMY0Pdg7ZEGA74SKnB/3C7NgUhyreRtx3Uu3rrfjXISbr8VmN8SWcDgQcz+uskfqG4gdxyF9PGbrvojKCPn47UbYdbqKVahnhPvKXtSQEOH+cAdX1At6N5nBasM/0B6oDJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754840660; c=relaxed/simple;
-	bh=Hne6qwxJ4KYkirc6n+j6KNnWgG/jNvNCJiD/yQhYjSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tYH8AWkiVTCeclvzqrodIEfJF7jDjlpiEGVPoD3wCWZNjodD+8g1B8HJUOyBynQQw/a9fGHhGV73f/0Cns8rcZ4DsCXdCRkJKQx3UexnJaUTZs8u9Xhmk3qTaXCLEiyzzUupYPg5azU943b5vC97ObTYbmLJGtOaRP9FsjOD6zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iic6ewxo; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-320dfa8cfa3so3418845a91.3;
-        Sun, 10 Aug 2025 08:44:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754840658; x=1755445458; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NBIWANbCSNqX3PB3qnnw7IYaFXCa8H4jpKX9qPWWwF4=;
-        b=iic6ewxo6AtwVkqNV1auf8YIYJp93JBJXOX3xcaUiZ4N6KTGPuhkPmSzi9+a2AsYNV
-         wds+T6wizJNF+62VMO3bPhIeAu44/oWbXdSysAeZXN3CuULyVxGkaJAQ8tJfY40+mDxZ
-         ewUVZ8f1QqbQ8AU79L/Hfdir3R+5+fRQPWaj1E8zwURZA18mv0rCDYtF6YXtEe5gpzP/
-         Qh+PGAXKF/oOReHN+1EhIEuzFXhpc691IWwxBOKSEyxVPkxq3tuEBzz8o1E0Cn1XQFx1
-         RODiDepOPbwK+d0csaIb0p7EEgXt9vHxRJKTt9Bhg0cmzbQaz/kmfr6BPhcCePvodnoN
-         6ntQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754840658; x=1755445458;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NBIWANbCSNqX3PB3qnnw7IYaFXCa8H4jpKX9qPWWwF4=;
-        b=qT2mSj1ymmembTNVUZ/FNhByg7oMh8zJ/x3bGsWYVpc09Se03LcHXpHKsoOjC5BMzX
-         5wCU0gjJ/ONV80HHS1D9jwnelqW0X1LmKQEwM9j9eOMTvMaB1RFymZON1b4vkoZwlxIT
-         MWzfybwpmZJNthNdfxxoNsKrCpTZKJe6+cb2sqaLUPDkp0MsRHGUmbWukAd4bniOUkZm
-         sefYHZvmFSdWToqPBkYG4E8PVFKmN1tfgiyIWhWVHIAnG6kfErk8NPIQTUJov3dIse2R
-         AZFpskZreJFYFWcIZVzOr02e0fvFZ1pr3L3IaFvmuyR5y+H6Q2UpXtbv75bv8uytgFn5
-         rwfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQbcibUjDPVJ13fPyid3p3niIXdoTOSzoUV77SAWG7ZAPpPvtImPfl9YWDIT5Wv+qaTH571HD4lcJn@vger.kernel.org, AJvYcCWILV/8ozuqFYIPArkRYACC/6kLGjjzckHJqQJhV+ZNamTYMaA8PkP5gCqq6h9OFlh4ujaqxYBQD8vH@vger.kernel.org, AJvYcCWnQVnayt46ePTfKcj7yFJibHNT0Cox+9oVee2jsGMsjmBX42FC8+BsdM+9kN2xgvLozn3hnzvbx06kOnRx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFUhfn/b2qb9E9yU90KSWD6ilQEbNYZVkH68vKyTWsHlDq+KXK
-	g0Uhn816ikXlL2F51j612pJQLkhJyho+yaBoxyp3ZyMHvX92BXBRNSXR
-X-Gm-Gg: ASbGncuBfmWJSmVF2Rx39ZkTKS2FvxV6REls2hK1h3YeI3osa/NDukshuPk3AY7we4m
-	N2V2r0nAIlYbwX3is8WeRr8fmE+knohCyUJKDLV5jc2LqJDjaCTLpXoAr2s8wyOJVXGJ3Y2COtW
-	68B10xBocdRn+SVDnlrZw2fDwUjdTRWbwYUN385pJ29zcrBTjqInlCXci8d9hacA2+LnUxafVZS
-	4xWi53lQRDiWXazPhuUIN/muksHayRyBN0l2wpX7TjRPbKxWjWZNMMrzxd1ooEy+loVwcRBBL8b
-	cTelxD9FRKN+oxIzUFdZPACHDVKHbqnR+ZZHevT5NO+X5+eQVrBZ3jLUNkEhJ0Pw+QTCHROAlxl
-	B17UJe4w6eY+cYH0xsTnxrzE9/TidomE=
-X-Google-Smtp-Source: AGHT+IFoChiIoUOXeobw7QT0kPBjnTuVIMmkErksIaCZsvi/RYO/yJiAhEHEmHEe1v6BMFVmpZ83SQ==
-X-Received: by 2002:a17:90b:2b4f:b0:311:c5d9:2c70 with SMTP id 98e67ed59e1d1-32183a05009mr15818432a91.15.1754840658091;
-        Sun, 10 Aug 2025 08:44:18 -0700 (PDT)
-Received: from localhost ([2804:30c:1f50:da00:c6fb:5400:5af6:282f])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-32161282b5esm12666144a91.27.2025.08.10.08.44.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Aug 2025 08:44:17 -0700 (PDT)
-Date: Sun, 10 Aug 2025 12:44:32 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] iio: adc: add ade9000 support
-Message-ID: <aJi-YCsgepj0GLip@debian-BULLSEYE-live-builder-AMD64>
-References: <20250808141020.4384-1-antoniu.miclaus@analog.com>
- <20250808141020.4384-4-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1754841844; c=relaxed/simple;
+	bh=Xrs4WZwP3wbWjguXSwjEBFs5QZtQ2a4UDLCDDLpj49U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ENOSCcMf/cM0QrEI3vT682DsoC4JtSumoYNGCmhlJt9wsvfDwaxE5KqlQCA2ZemzGCJUAMapGQ/KU7ln77ZQ5zEV6HlmBAtXtCsCdH+/9FUd0slmxsjql4Hg3nxTCBC3T0krfhZJLZUqZtsrXF8XPPNtBWEsOrS2bKyQ9oBJMyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=WeXbLkLy; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=KXalXkxz; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c0MyL4698z9smZ;
+	Sun, 10 Aug 2025 18:03:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1754841834;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bFTUh9SwYeasiDREoxvaQj17XkkmaFIe8D9gtwB8r/M=;
+	b=WeXbLkLyIGJODrRBejRDsAyjLMr+GBrwkDlcYgwDBhBxBXAHaur34Gn3OIQPldSUW6tW5S
+	kHcLBqf2B9TBdXIc26A61qA7zm0nHCSJg+0CDAj/pmSv5Bmgo60Y+flm7k1mcvNfh/my6H
+	z/xtRhqNGoNJvlp0I3hBVyBO28WBJJ0Gxk4k55GjIqc5Rpf9Ffu9KRq20Itv2DM3Xaed8x
+	liqZdGLm5AupxOUoBEP0aabpDalBd+zzWsMStpgZPSreOF4BbEWXmkGY16fLwqNkjt+CnD
+	gmYRdrCMkJ9vUJCPPax/K0k2See8/OBlayZldr4FalglxANtBl9zypBOk/Q0Bw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=KXalXkxz;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+From: Marek Vasut <marek.vasut@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1754841832;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=bFTUh9SwYeasiDREoxvaQj17XkkmaFIe8D9gtwB8r/M=;
+	b=KXalXkxzZzQNZC863YsGVJFKRrgqTSMPP7CxMSZ4BG2T7Dsiws9tSG/tPXoAtodC0oJ2nc
+	gF9Ce3mO5BiZr5UC+Pt3PjmUVlQQaMt9uDdKxWpll7YMV1N8TfjNAukksQ6yvuqcHT3Bqd
+	gcB7EJdcIDNkWmzSYTRNmMw92/nXpDI4STR1mqsYEsPIu3FTtMJMkS/BOxu0iOPav5jgVy
+	ezN0wd9WXzoA9HYkuqKpq7v2l25VRFIzkTO0a9NvEAASZF7HluR+pWHDf/suPTztajSDuD
+	ZoOcV9MTcY0XVp78MkjIbym8Y+bwOMrTkWYSaWbs4war/0/qUkeiTvcYqvKBAA==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	kernel@dh-electronics.com
+Subject: [PATCH] arm64: dts: imx8mp: Fix missing microSD slot vqmmc on DH electronics i.MX8M Plus DHCOM
+Date: Sun, 10 Aug 2025 18:03:07 +0200
+Message-ID: <20250810160340.10042-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250808141020.4384-4-antoniu.miclaus@analog.com>
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 113fc956646a692c002
+X-MBO-RS-META: bmbrtg1j8bosgd16iqjre398getbzgqs
+X-Rspamd-Queue-Id: 4c0MyL4698z9smZ
 
-Hi Antoniu,
+Add missing microSD slot vqmmc-supply property, otherwise the kernel
+might shut down LDO5 regulator and that would power off the microSD
+card slot, possibly while it is in use. Add the property to make sure
+the kernel is aware of the LDO5 regulator which supplies the microSD
+slot and keeps the LDO5 enabled.
 
-Similarly to Nuno, I'm also getting into review only in v3 and may be missing
-remarks made in previous iterations. Also, this driver is extensive and for now,
-I only reviewed a few things (mostly register definitions and clock setup).
-I agree with somebody's suggestion I've seen about splitting the code into more
-patches according to the features that are going to be supported.
-More comments inline.
+Fixes: 8d6712695bc8 ("arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM and PDK2")
+Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 08/08, Antoniu Miclaus wrote:
-> Add driver support for the ade9000. highly accurate,
-> fully integrated, multiphase energy and power quality
-> monitoring device.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-...
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index 1c6ca5fd4b6d..98876d1ea8bf 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_AD7091R5) += ad7091r5.o
->  obj-$(CONFIG_AD7091R8) += ad7091r8.o
->  obj-$(CONFIG_AD7124) += ad7124.o
->  obj-$(CONFIG_AD7173) += ad7173.o
-> +obj-$(CONFIG_ADE9000) += ade9000.o
->  obj-$(CONFIG_AD7191) += ad7191.o
->  obj-$(CONFIG_AD7192) += ad7192.o
->  obj-$(CONFIG_AD7266) += ad7266.o
-> @@ -46,6 +47,7 @@ obj-$(CONFIG_AD7944) += ad7944.o
->  obj-$(CONFIG_AD7949) += ad7949.o
->  obj-$(CONFIG_AD799X) += ad799x.o
->  obj-$(CONFIG_AD9467) += ad9467.o
-> +obj-$(CONFIG_ADE9000) += ade9000.o
-Duplicated addition to into Makefile?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 7f754e0a5d693..68c2e0156a5c8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -609,6 +609,7 @@ &usdhc2 {
+ 	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
+ 	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
+ 	vmmc-supply = <&reg_usdhc2_vmmc>;
++	vqmmc-supply = <&ldo5>;
+ 	bus-width = <4>;
+ 	status = "okay";
+ };
+-- 
+2.47.2
 
->  obj-$(CONFIG_ADI_AXI_ADC) += adi-axi-adc.o
->  obj-$(CONFIG_ASPEED_ADC) += aspeed_adc.o
->  obj-$(CONFIG_AT91_ADC) += at91_adc.o
-> diff --git a/drivers/iio/adc/ade9000.c b/drivers/iio/adc/ade9000.c
-> new file mode 100644
-> index 000000000000..a05327119128
-> --- /dev/null
-> +++ b/drivers/iio/adc/ade9000.c
-> @@ -0,0 +1,2033 @@
-...
-> +
-> +/* Address of ADE9000 registers */
-> +#define	ADE9000_REG_AIGAIN		0x000
-> +#define	ADE9000_REG_AVGAIN		0x00B
-> +#define	ADE9000_REG_AIRMSOS		0x00C
-> +#define	ADE9000_REG_AVRMSOS		0x00D
-> +#define	ADE9000_REG_APGAIN		0x00E
-> +#define	ADE9000_REG_AWATTOS		0x00F
-> +#define	ADE9000_REG_AVAROS		0x010
-> +#define	ADE9000_REG_AFVAROS		0x012
-> +#define	ADE9000_REG_CONFIG0		0x060
-> +#define	ADE9000_REG_DICOEFF		0x072
-> +#define	ADE9000_REG_AI_PCF		0x20A
-> +#define	ADE9000_REG_AV_PCF		0x20B
-> +#define	ADE9000_REG_AIRMS		0x20C
-> +#define	ADE9000_REG_AVRMS		0x20D
-> +#define	ADE9000_REG_AWATT		0x210
-> +#define	ADE9000_REG_AVAR		0x211
-> +#define	ADE9000_REG_AVA			0x212
-> +#define ADE9000_REG_AFVAR		0x214
-> +#define	ADE9000_REG_APF			0x216
-> +#define	ADE9000_REG_BI_PCF		0x22A
-> +#define	ADE9000_REG_BV_PCF		0x22B
-> +#define	ADE9000_REG_BIRMS		0x22C
-> +#define	ADE9000_REG_BVRMS		0x22D
-> +#define	ADE9000_REG_CI_PCF		0x24A
-> +#define	ADE9000_REG_CV_PCF		0x24B
-> +#define	ADE9000_REG_CIRMS		0x24C
-> +#define	ADE9000_REG_CVRMS		0x24D
-> +#define	ADE9000_REG_AWATT_ACC		0x2E5
-> +#define ADE9000_REG_AWATTHR_LO		0x2E6
-Some defines are using tabs before the define name, others are using spaces.
-I would standardize to have one space after each '#define' but I guess it's
-also okay if you use all tabs.
-
-> +#define ADE9000_REG_AVAHR_LO		0x2FA
-> +#define ADE9000_REG_AFVARHR_LO		0x30E
-> +#define ADE9000_REG_BWATTHR_LO		0x322
-> +#define ADE9000_REG_BVAHR_LO		0x336
-> +#define ADE9000_REG_BFVARHR_LO		0x34A
-...
-> +
-> +/* Disable all interrupts except EGYRDY */
-> +#define ADE9000_MASK0			0x00000001
-Can we have more suggestive names for the masks?
-If this disables all interrupts except EGYRDY, would it be reasonable to call it
-ADE9000_EGYRDY_INT_MASK or ADE9000_MASK0_EGYRDY_MASK (or something that hints
-about that interrupt)?
-By the way, to me, this almost looks more like a constant than a mask.
-Does it become clearer that these are masks if we define them with BIT macro?
-#define ADE9000_MASK0_EGYRDY_MASK		BIT(0)   ?
-
-> +
-> +/* Disable all interrupts */
-> +#define ADE9000_MASK1			0x00000000
-Same suggestion would apply here although this really looks like a constant.
-ADE9000_MASK1_INT_DISABLE maybe?
-
-> +
-> +/* Events disabled */
-> +#define ADE9000_EVENT_MASK		0x00000000
-I would call these predefined values just constants and drop the mask part of
-the name.
-
-> +
-> +/*
-> + * Assuming Vnom=1/2 of full scale.
-> + * Refer to Technical reference manual for detailed calculations.
-> + */
-> +#define ADE9000_VLEVEL			0x0022EA28
-> +
-...
-> +
-> +static unsigned long ade9000_clkout_recalc_rate(struct clk_hw *hw,
-> +						unsigned long parent_rate)
-> +{
-> +	/* CLKOUT provides the same frequency as the crystal/external clock */
-> +	return parent_rate ? parent_rate : 24576000; /* Default 24.576 MHz */
-This value is a data sheet constant and is used twice in the driver. Does it
-make sense to have a define for it?
-#define ADE9000_DEFAULT_CLK_FREQ_HZ		24576000   ?
-
-> +}
-> +
-> +static const struct clk_ops ade9000_clkout_ops = {
-> +	.prepare = ade9000_clkout_prepare,
-> +	.unprepare = ade9000_clkout_unprepare,
-> +	.recalc_rate = ade9000_clkout_recalc_rate,
-> +};
-...
-> +
-> +static int ade9000_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ade9000_state *st;
-> +	struct regmap *regmap;
-> +	int irq;
-> +	int ret;
-...
-> +
-> +	/* Optional external clock input */
-> +	st->clkin = devm_clk_get_optional_enabled(dev, "clkin");
-> +	if (IS_ERR(st->clkin))
-> +		return dev_err_probe(dev, PTR_ERR(st->clkin), "Failed to get and enable clkin: %ld", PTR_ERR(st->clkin));
-> +
-> +	/* Register clock output provider */
-If I'm correctly reading ADE9000 data sheet, CLKOUT will have one of the
-connections to the external crystal when a crystal is used. So, maybe condition
-the clock provider feature to the supply of an external CMOS clock (not crystal)?
-Also, the description of CLKIN pin gives me the impression that the device
-requires an external clock input (either crystal or CMOS clock) so clkin would
-not be optional.
-
-> +	if (device_property_present(dev, "#clock-cells")) {
-> +		struct clk_init_data clk_init = {};
-> +		struct clk *clkout;
-> +		unsigned long parent_rate = 24576000; /* Default crystal frequency */
-> +
-> +		if (st->clkin)
-> +			parent_rate = clk_get_rate(st->clkin);
-> +
-> +		clk_init.name = "clkout";
-> +		clk_init.ops = &ade9000_clkout_ops;
-> +		clk_init.flags = CLK_GET_RATE_NOCACHE;
-> +		clk_init.num_parents = 0;
-> +
-> +		st->clkout_hw.init = &clk_init;
-> +
-> +		clkout = devm_clk_register(dev, &st->clkout_hw);
-> +		if (IS_ERR(clkout))
-> +			return dev_err_probe(dev, PTR_ERR(clkout), "Failed to register clkout: %ld", PTR_ERR(clkout));
-> +
-> +		ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &st->clkout_hw);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to add clock provider: %d", ret);
-> +	}
-
-Best regards,
-Marcelo
 
