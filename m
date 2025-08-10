@@ -1,127 +1,114 @@
-Return-Path: <devicetree+bounces-202997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-202998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B07B1FAFF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 18:05:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2051B1FB0D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 18:49:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F217716167B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 16:05:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F134B1894557
+	for <lists+devicetree@lfdr.de>; Sun, 10 Aug 2025 16:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12D12580D1;
-	Sun, 10 Aug 2025 16:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3335243958;
+	Sun, 10 Aug 2025 16:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="f7KyaG4z";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="qbq7XXkB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PVAi8pJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F60014AD2D
-	for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 16:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8FB1AA7BF;
+	Sun, 10 Aug 2025 16:49:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754841919; cv=none; b=HPirQVggwQ68Y6neFL6ctGnhGdFVOBhhKyMG+AROgN/EuUkpVU8H3If6NEjZ+CWu/fHEQWFMvrq8BCCvsLEUUU3mHSfwfcdX4Tv/+KaT1ROXl0nUNoAZlgn2F7VwHjy3pyvHFC+z2izi8cWLlZMhSSWWGHvfe3vEpuEMi0lwFn4=
+	t=1754844588; cv=none; b=ZAFPnYKTySXb0mF1NM662PubiFfvMvtApjdWophkbf8junzB9XzWIMnmcZixdOEhvzCB5fqo4bzK3RyWD+eQepPCOtPlDH2Sx/E/dR/xmEsCn+ZwyyZaFxwXSF+w0ZHoRpARiRN23cuUGF/cR/MMe6djN9HrtiIHhEUjua3f+vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754841919; c=relaxed/simple;
-	bh=KVo5vgs6n79wF/7t3/adxZw9TEcA6jNSPYXjYlLmXM0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EYNz9lKZU+raRAWnAxK880c6yaW9T9OfGhEJGz8rpoPEKfaH5+okYn7P9DSOL5itvVgnkE1YlcoUUMWXv2a/qJWHx1bNUb8M1M8NKBV5WFJfDJzYOebfpsH1t4lZt3I+IysCTs/HNUD+wE6Yf7aWzayU2x63V79eZFTLEtDQCts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=f7KyaG4z; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=qbq7XXkB; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4c0Mzt5SYxz9srm;
-	Sun, 10 Aug 2025 18:05:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1754841914;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=+3auhxeE+Rfw/97tdfWtAk0l+LpplUvhw7JTvBvY/L4=;
-	b=f7KyaG4z2hUHYWLxJ36Zp631VXu9k+LB5Z1geBRZk0lvzLiAgLgg6ygQCf9tMU762jshxk
-	rnLGI8eZ2juO5KMVVzdmczB00pxsGVD+JMW3iidkfkuwKCQPw0gvvFtCwSKYI3+Eh7nmkq
-	QfkWtm5cKfcMCN11n4rBayUEb3GZ9lmZ0NRTgsiuTPQ3RuCFhpP8wx0Pi2cfeDSBwj/UCL
-	gWMQmxZVRWTPTIfiqu2/YqPEQ1/pFDWgjx3fZShJ/PxyN+bwMSNRyi8gBck7Z8fs39cKcO
-	ZkPkQTDMLStb6Z7GPVWHl0pl+kKVvkaez05VFi7jGE95Uq2TZo0NyJYH4pVSbQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=qbq7XXkB;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-From: Marek Vasut <marek.vasut@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1754841912;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=+3auhxeE+Rfw/97tdfWtAk0l+LpplUvhw7JTvBvY/L4=;
-	b=qbq7XXkBM5GCIjM7ZZaICea7bxIpdICIT+QHHJcybuR+baO8/iWEU/Zh+S9RmA0HslrVJC
-	cDs1sKgLrRD8DmHNPzRJYsaqjfWzOyk71VQ7I6DHGCr7sm0OU02SAdyc58NYnxXFWMHzLw
-	jj4sYj3pd0kk5bjCKd1yo5ekG1ilEqalR8XeW48cjtlpBfWD5dBMn9CaZ9jXNJdX0IGvme
-	P3q+OlJ9MDJ5FttqepPzyA0N62U/cDK0nhOp94CXM1M9VH4UTkjyn6tz1y1TdfO/MlDCwL
-	vdHE+jr2p98ghArTKO5wITOGgDPbMPGqg4ZP7Vtphjs+IPadnmHZBlcSAAd+dw==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH] arm64: dts: imx8mp: Fix missing microSD slot vqmmc on Data Modul i.MX8M Plus eDM SBC
-Date: Sun, 10 Aug 2025 18:04:32 +0200
-Message-ID: <20250810160500.10213-1-marek.vasut@mailbox.org>
+	s=arc-20240116; t=1754844588; c=relaxed/simple;
+	bh=1O7Ir2JV9F3FRquanCEG57N9yilLJmRdcXyWCErqjXM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ktRrpiw2+IMHqgRh9m7qVKotK4BKj5RJEg+0pSgaN4riycFHI6XKTCcHS9+ZiZCdQ80xPN2YaTqyuyZZHvwc0LYUqDMEdz/hfyKX3GpcDzzX0ME3vTIi2HNbnc0obPyzw/rlIUUvBkFZUZGahEe1R5ze9jYeoVAB/kclw8Wr/1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PVAi8pJH; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3b788fdcc2dso265748f8f.1;
+        Sun, 10 Aug 2025 09:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754844585; x=1755449385; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1O7Ir2JV9F3FRquanCEG57N9yilLJmRdcXyWCErqjXM=;
+        b=PVAi8pJHHY/8oHFlvuQvUSML7QDWKPFusHDklGm/f2/hVcBxddUGv2l69duDGRQzgU
+         lcRS6JJ311x16P9T9iGrScxL7HypsU3m/ni27o9rAahBAvFBlxZ/hrT6py+Mhvz/BPyr
+         uvOk7VRn91TNpZ4tRywZ+zETSmBbMKQBmr+fj0FfRzlur41hnk5fmC57a9H/bw4yno2S
+         sLajvFyyC3ySesrSDPANAbqZCWNNhQ9JM3h7WmcDdQYjPrplAxSrZ76mxcKb0EKvpy3d
+         SeVhcL26buhC1G8vybDgOv2XfgntQDNU2PUkER0QkTpTipw5lGG8KN/XPt+mw8VuPsjL
+         iA7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754844585; x=1755449385;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1O7Ir2JV9F3FRquanCEG57N9yilLJmRdcXyWCErqjXM=;
+        b=kTq7IYcgQg+WPajneWiRyEdjigf9al7ArWA/qJrdV3EuaAyWXWuTNMhCVzPn3AXzxE
+         tlcdrjHrOuho80lf+qXXH5ui+A9xXBVbnx4bb5nOPbRdH3PTCIG9ObFkAAvw06SGB4gt
+         nKm8py4eqgpS8oAbGOLxBIXUszoRwdOa1OnJXs86fwDfmaEZAXIq0ymyopIRRQjdm4I9
+         WG1htbB+SmohSpgcNYlSMv2wlr8seTIt6iMu2ZNx9wVsFRQwwg36baWOyyBxcoJmecMc
+         jiXWj67x6WFLeD/pLyPQrX4sdt+a/JBzWazXiMS7+VXvg18XNMvBREFGpl1wbOM/aufs
+         EulA==
+X-Forwarded-Encrypted: i=1; AJvYcCUo+aKCmMWWcIkOxElHZexShrdGnhfDyfUFnD3yVnDEzK/XGf13fofxfnN7IJOLvWbJcYMvtWAF@vger.kernel.org, AJvYcCVltb8Gvn/dpWJmpPDhkBMgTaAgb4QjRp+lyjKd6U0zKmCkWLGtukUDYCCj1IJjKPtLDDmoHjXHVajq@vger.kernel.org, AJvYcCXl594th+50gUpVpj1yyjvdXKLKRxVyHayYUuYUfjn+vyQKvlLJNNN0P8Qk1rasXasAuYdeJDAah/fqq3xY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4aWw3RsEiO2KL4VsqGallW4BGF6utf8QsbXbVQqnyxWirvlDM
+	Yjuw6BMuCwrDMogeD5BATzXfIy3PHbTUuTdOC3iZ68BI/Pc4yRKxGoUg
+X-Gm-Gg: ASbGncsAJNPTSupt75YRxQozq8SIzLHwvR2SCTmOGix+tKtRO6QGAdnhwEN0beyNx5U
+	k4s/xrXOCvpJyCZtDKx4zHV8jDDYUKAsJ30byYNCWmnSJTGratqs51izYgoFyH2aCR8X5SMjNNb
+	6pXyGanb36p6N9/f7JYDwlRrNn2vqbJJx/SB955DKrm34cJOeMCO/256IZDd4F2UjfPy6dE8Fk5
+	/P/lt9mHfStcebm6TcoNChdrFCX45mAMAcJzXi9j3AGAuZzdEc+OOhxmACtgQqCs9902r77nPmv
+	xCJIs1xFNBq9sGb35xN7KsjJxedc5fcSHoSoUzvIDe7wD/0J2SMA7gFX0fsXUtWBopUjgGTOXBs
+	1xaHVLgGbMZe1YMc=
+X-Google-Smtp-Source: AGHT+IF3CiPbtmzEifmcmnCZ6v8i8GbiWTGaqS99ZpLMhFYLskKAThOPIcEoj6BjqGlkH2y/M2FuGw==
+X-Received: by 2002:a05:600c:820a:b0:456:1a00:c745 with SMTP id 5b1f17b1804b1-459fd04c3e9mr22165455e9.3.1754844584509;
+        Sun, 10 Aug 2025 09:49:44 -0700 (PDT)
+Received: from skbuf ([2a02:2f04:d005:3b00:f9ef:f5a3:456e:8480])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3bc12csm38395980f8f.28.2025.08.10.09.49.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Aug 2025 09:49:43 -0700 (PDT)
+Date: Sun, 10 Aug 2025 19:49:41 +0300
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>, jonas@kwiboo.se, alsi@bang-olufsen.dk,
+	conor+dt@kernel.org, davem@davemloft.net,
+	devicetree@vger.kernel.org, edumazet@google.com, heiko@sntech.de,
+	krzk+dt@kernel.org, kuba@kernel.org, linus.walleij@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, robh@kernel.org, ziyao@disroot.org
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add RTL8367RB-VB switch to
+ Radxa E24C
+Message-ID: <20250810164941.4oezju3c4vhnunrx@skbuf>
+References: <db1f42c3-c8bb-43ef-a605-12bfc8cd0d46@kwiboo.se>
+ <20250810140115.661635-1-amadeus@jmu.edu.cn>
+ <1f2f8eda-3056-48bd-9c86-3fb699f043f3@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: a50f49fba771ab398e8
-X-MBO-RS-META: 7w138gkkn3g7f1c6osbhsdw38b6kaw4a
-X-Rspamd-Queue-Id: 4c0Mzt5SYxz9srm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1f2f8eda-3056-48bd-9c86-3fb699f043f3@lunn.ch>
 
-Add missing microSD slot vqmmc-supply property, otherwise the kernel
-might shut down LDO5 regulator and that would power off the microSD
-card slot, possibly while it is in use. Add the property to make sure
-the kernel is aware of the LDO5 regulator which supplies the microSD
-slot and keeps the LDO5 enabled.
+On Sun, Aug 10, 2025 at 05:15:59PM +0200, Andrew Lunn wrote:
+> Just a guess, but maybe it is a DSA tagger bug? Maybe the user frame
+> is a VLAN frame. The tagger is placing the VLAN tag into the DSA
+> header, so in effect, the frame is no longer a VLAN frame. But it is
+> not calling __vlan_hwaccel_clear_tag() to indicate the skbuf no longer
+> needs VLAN processing?
 
-Fixes: 562d222f23f0 ("arm64: dts: imx8mp: Add support for Data Modul i.MX8M Plus eDM SBC")
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-index d0fc5977258fb..16078ff60ef08 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-@@ -555,6 +555,7 @@ &usdhc2 {
- 	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
- 	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
- 	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	vqmmc-supply = <&ldo5>;
- 	bus-width = <4>;
- 	status = "okay";
- };
--- 
-2.47.2
-
+For the original skb to have had a VLAN hwaccel tag, validate_xmit_vlan()
+would have had to not push it inside, so vlan_hw_offload_capable() must
+have been true for DSA user ports. But we advertise neither the
+NETIF_F_HW_VLAN_CTAG_TX nor the NETIF_F_HW_VLAN_STAG_TX netdev feature.
+So the VLAN tags in skbs transmitted through DSA user ports should all
+be in the skb head.
 
