@@ -1,201 +1,125 @@
-Return-Path: <devicetree+bounces-203099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14DC9B20080
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:40:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54D61B20088
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:42:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21D0E178244
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:40:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8779F18871A0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446DF2D9ED9;
-	Mon, 11 Aug 2025 07:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0B72D97A4;
+	Mon, 11 Aug 2025 07:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n/8nidds"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mXx/rQjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0541BFE00
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1578CAD23
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754898012; cv=none; b=b2Dva1uuUNzrkx41PtL5eZmmf+Q+1srcE9nyqt86MDjh6AHFmVS70CMfJ9/uhtvlgpXQ+GANr4+f6WvMwAoA8ys9V122o3tbJDfGoIkBNakIyKoyRb+RtNNjcGS1Iixq+esFlrwuxhantdn9/CYWnzPt8qQevRbFy4Hk9leUKI8=
+	t=1754898145; cv=none; b=eKDfbajq2k5qyVWX9md3vgMXHXK8lB1Epp2x9i9ma4/gtqfHQXijg72f/5KkxccW8XDN1GGGCQibO0+PKoy/purHkgpED/2xl4mUESK/ADla5qDaDel8bAw2XVZBBZd/BN7tD6oZIPJ9qKlm4nXYv/RezT8kXm7U+WdPngxKXTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754898012; c=relaxed/simple;
-	bh=WaxqPwe60aGUkhXsZ36hb/BaEfdKvftcdVEBEnneZvY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZOSK0D5aFHfbELcl2hzzk+4VMBJhuBEsOqbDMJ6XEFvSrZwUMNk/rTS8MyuEgXfEtbZbPe0elVLUqFe2HMB0JE+VitcVjpiVBa38pwUy50ogW13wuf2zCK5S70nyqpKZ6c+/adpasKrT+kjTjn9ruPcptaYxceXzK1u+lF9pqbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n/8nidds; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-455b00339c8so25034165e9.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 00:40:09 -0700 (PDT)
+	s=arc-20240116; t=1754898145; c=relaxed/simple;
+	bh=t8BVFXTwveELKbs4OwD70dbHLgAP1n/Ksj561GHwMkQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dxM9l0QoBeGDzuA/1d3Gf50DXYgDir6J8gtjZjC2aACXmc/4ATy4GGXSeK71q2vVva8y6m96Kc7XXdis4gVK+j5WkhcGuwtnE9UMgqpPSthgLZjt+7Ggg+YTKM0tqmh29rVIm9PSr2SLeoKIvdg8vspsyy+gFG+NBIDTw2hgJgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mXx/rQjy; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6154d14d6b7so4715489a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 00:42:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754898008; x=1755502808; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=POALZcOL5uP4hmBAgsW0NLC3bq36nPwjL/gPbRn+/O8=;
-        b=n/8niddsEqxjRK+EuEcwA4m1Kh1sxcGL6NLj0rmLanaJTpojCV4ycONQpR4x49mWPN
-         7vdDpbJZJgcNjatAH6ZxCpNgqMYTP1XIt+YuQ/ZmqiejOUkOV3dT+VNMOJTGeDiTJe1k
-         TQEbGW4t1otUFMYXSJGrkCCApw1JgndqA/iOw4mz0/qBM/Q1ovVO7T8lyeBFNcPrmw3d
-         dRJhn5wDx46V+3PpG4CA0Z4bv22vXzxO69bSA/tegMrohqFznXtRxSoqIIXe/ZES2MCS
-         dO1Bl+Bp4qe2UWEKhXbCfuh6dSrGoe5ag4u0zlQCGXsX++tJL0OMP0V3IIXdts8ool5C
-         nLAQ==
+        d=gmail.com; s=20230601; t=1754898142; x=1755502942; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t8BVFXTwveELKbs4OwD70dbHLgAP1n/Ksj561GHwMkQ=;
+        b=mXx/rQjyGUZzSmtOJF0rCqtBh4SWx0txaOCdKBL6AlEfVcWxahVAmniUPJ500cZu5w
+         Dngr7VyE6N4CAra7cPTbxd1HPF6rt0CXM/E7mQnVN9K49jTulj9z7+GsRIJJ5SQuDtCB
+         zJ1v1z6afZpzP4mzxlxW8AUkCUz72hEVFXLiz34Nm+uz8my507DxQNRsij178oCXvQtZ
+         Fr7gslHBGCuIp6FsoyGffVOxgoFTa5uCyybLB1wKj+ZnBrHKdpk23P5x2s56qcmoRjjj
+         iDu+t8AhTPyuf2BOvKsQlsZYz7UpSA4plMZSCR2e9KHQdfvuUw3evDGFUNL/+D1wB+PD
+         LrLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754898008; x=1755502808;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=POALZcOL5uP4hmBAgsW0NLC3bq36nPwjL/gPbRn+/O8=;
-        b=mf9HrDI77ExXId1HSOA4JB8Q+mN4B68ypZwhATOMXAqvvCzeSGpOvHAVtE25L5RrhF
-         rbMu91dYcgoN+z7Pcvewae7SzB7CqniZ+B3N9nOAwJlprqTvw89d1wFpNURlofgBdOhZ
-         15vQDxWRz84/WySjBcNp3+Z5TFLBh5epdAIEwWKrQRczLnuENqyw1OjEElvbcdc3mVAQ
-         dxzaPVTBFdxU3ZrLL6UMLUbTGK8CJi7w7roz9AyBJv9QM88k0a8wAZcifvM/hENyVdkL
-         Dq8pwIld/+sw4Fay5Y3sUbGVwD8aCuRA4KvflLm+fH/A9Blg1ZoxMshX8wv+7eBOIvcI
-         ERCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfudBKWaHQ7BCP8Z+NoJS1jeIII5yI6JFFuF5XgbR3Qg82nECOeEJMBFTux2QME/OSJH5u+ATpC9OE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHjvI8mG7gh7+vuab/Vj7qfivWrYItOsn56OBJzpI/buAo3FjS
-	BEj2woGve4WKh90WeFlmLgoH04AYRfBn4jDeang2BcRuFR3zzxy/lBiWUAsRJyrJsK8=
-X-Gm-Gg: ASbGncuDTiLn3LfKV96suYpJMNl9uZBAy6tHhQo0oGqjy50WfXKHvOYgtFdUBdH7yCd
-	n8y8n0NMk8Ss+h7xayqncAuLV/mm8hZVsmchXnGQeCYT3LbRqNn7LcdllpIGHiufEIvfl563shS
-	PhXBFU+3o/CysoxHf0g8VJCvW5IHFqJfeBHeEBzTpb1vmtal/MoC3X2WxjaAtWWYNV/NRW7w3QO
-	/j+y3TUMggpz/zIA2nhNxAtRudMYwDjJzQY4m1Mp66zcKOkiHcu5op9qRDhGjRLxjf1d2pqz/Rk
-	8h5OC5ZlVs3Ye05ME0EySJSEWC4GbQWenYp1JjQhX0fSFSPLHrCkwcxREZw3grA47YezZLNDT4O
-	wMg6CsnjrW6ei2f14zhdErEcXm0WjaMieoZOhz7gLbOvfY7U2p07k8GkeZOy/yp2iNTZwB/XK+1
-	xcpeKk8RNlxQ==
-X-Google-Smtp-Source: AGHT+IH4eA/RKU/GboTJ9VfoA/pYzZzZec5od8RkolpPdI5Ifcjq96waQtwfFh9MBuje3p8eQLal9g==
-X-Received: by 2002:a05:600c:1c83:b0:456:2698:d4d9 with SMTP id 5b1f17b1804b1-459f4f2e2eemr97639165e9.3.1754898008092;
-        Mon, 11 Aug 2025 00:40:08 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b0fa:b045:4b82:de09? ([2a01:e0a:3d9:2080:b0fa:b045:4b82:de09])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459dbba5210sm314243925e9.2.2025.08.11.00.40.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 00:40:07 -0700 (PDT)
-Message-ID: <9f2bdd43-da4c-47b2-bba5-d69bc0b06ac7@linaro.org>
-Date: Mon, 11 Aug 2025 09:40:06 +0200
+        d=1e100.net; s=20230601; t=1754898142; x=1755502942;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t8BVFXTwveELKbs4OwD70dbHLgAP1n/Ksj561GHwMkQ=;
+        b=Tr6CZik/HHVjEUoXRi5VS0bHwzTewF1RJMlbZc5DJcDpO125wQcRUu8HKnzCIG5pnp
+         nc6Y4kOkZ5fiy+GoZu58WKDImL2sLtGfEzBtewq18HY5BJfxn1OG54kljUCiLihhWRVF
+         pwrgNBQMIRjmcxdGNenLJxwMbEEMfowrvmZ8BE41U6pTHa83CVN7s8iuxM/6taIjI7Qg
+         4grlgfSNGBd+WtbZCEvZIrbJxdTCyjn5EKQ4gRX3wadosWCzSB5f7nrFVWTxE0raACj0
+         DVbZT6fb6NpB8ALxdga2oEXdCVlam75JJIr7Tc8YcSGFeXvw3pOd3NIbFLmVxY5xszGk
+         j5+g==
+X-Forwarded-Encrypted: i=1; AJvYcCWSB6/kMQTqX14yeAbrHZFHrvO1cUEV533GGD5/hedBap5UaSU+DKFrl0DNpDQQA47lL3/JoXtHcKaj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxfi792oxmffU3tLxHIkZty4Ztu7qmlVhbqnD6fdsJi9gHs1Tx9
+	nhYuaGGpaShsabWeneqzdTC0srVrf0cZcDA7aBYJCns/F3IL2Ujrr30QGcFcO56M+s1+6Xku4PV
+	ls2f+0H6Ldz8/4rRX+AW27rHGIEmmbyk=
+X-Gm-Gg: ASbGnct1HwNbNebEdGT5mUVFyUvLEWsbUBDj3T31BfRDV3AMsIx6BfsRf4R9ZigUpN7
+	cvCCyp28A0C+RbIOoCUw4NTRwAMzQ/IpOMKDb4/TLgoCsbCVHb78PAVLACmNRPNMXR+A99O2PEx
+	L3vtUsRMD5zg9QYCd+F4iWcCHcpfKrEsrLC2My18hd5aaefPrTI6u1aiK0yW37drH3BUOtDOj0W
+	iPu2ucOeZvuQJGw5p0=
+X-Google-Smtp-Source: AGHT+IEkjOj3UKdq5Lw70VWjYIWx4DN1XxZJ/fxcyup/4G5G3izgAHkxlV/d6oXutNrOUGpyT9L56you5OmTyGhnpps=
+X-Received: by 2002:a17:907:6d26:b0:ae3:60fb:1b3b with SMTP id
+ a640c23a62f3a-af9c654451dmr1188592466b.58.1754898142186; Mon, 11 Aug 2025
+ 00:42:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 2/6] phy: qcom: qmp-combo: Rename 'mode' to 'phy_mode'
-To: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250807-topic-4ln_dp_respin-v4-0-43272d6eca92@oss.qualcomm.com>
- <20250807-topic-4ln_dp_respin-v4-2-43272d6eca92@oss.qualcomm.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250807-topic-4ln_dp_respin-v4-2-43272d6eca92@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1754890670.git.zhoubinbin@loongson.cn> <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+ <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
+In-Reply-To: <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 11 Aug 2025 15:42:09 +0800
+X-Gm-Features: Ac12FXykFn-VkPb4s7ncj5ZNyjP62ENy5djpOE4M8jd15rPFnSJRHeLczU_S9rk
+Message-ID: <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
+ Document the Loongson-2K0500 NAND controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/08/2025 18:33, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> There are a numbers of ""modes"" involved: USB mode, Type-C mode (with
-> its altmodes), phy_mode and QMP_PHY mode (DP/combo/USB/off).
-> 
-> Rename the generic sounding 'mode' to 'phy_mode' to hopefully make
-> the code easier to follow.
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index f07d097b129fb7b3fad003103b7468b16c1c4390..30749943f66280c3aa9e9673466f6f736d1adbc8 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -1846,7 +1846,7 @@ struct qmp_combo {
->   	int init_count;
->   
->   	struct phy *usb_phy;
-> -	enum phy_mode mode;
-> +	enum phy_mode phy_mode;
->   	unsigned int usb_init_count;
->   
->   	struct phy *dp_phy;
-> @@ -3282,7 +3282,7 @@ static int qmp_combo_usb_set_mode(struct phy *phy, enum phy_mode mode, int submo
->   {
->   	struct qmp_combo *qmp = phy_get_drvdata(phy);
->   
-> -	qmp->mode = mode;
-> +	qmp->phy_mode = mode;
->   
->   	return 0;
->   }
-> @@ -3311,8 +3311,8 @@ static void qmp_combo_enable_autonomous_mode(struct qmp_combo *qmp)
->   	void __iomem *pcs_misc = qmp->pcs_misc;
->   	u32 intr_mask;
->   
-> -	if (qmp->mode == PHY_MODE_USB_HOST_SS ||
-> -	    qmp->mode == PHY_MODE_USB_DEVICE_SS)
-> +	if (qmp->phy_mode == PHY_MODE_USB_HOST_SS ||
-> +	    qmp->phy_mode == PHY_MODE_USB_DEVICE_SS)
->   		intr_mask = ARCVR_DTCT_EN | ALFPS_DTCT_EN;
->   	else
->   		intr_mask = ARCVR_DTCT_EN | ARCVR_DTCT_EVENT_SEL;
-> @@ -3355,7 +3355,7 @@ static int __maybe_unused qmp_combo_runtime_suspend(struct device *dev)
->   {
->   	struct qmp_combo *qmp = dev_get_drvdata(dev);
->   
-> -	dev_vdbg(dev, "Suspending QMP phy, mode:%d\n", qmp->mode);
-> +	dev_vdbg(dev, "Suspending QMP phy, mode:%d\n", qmp->phy_mode);
->   
->   	if (!qmp->init_count) {
->   		dev_vdbg(dev, "PHY not initialized, bailing out\n");
-> @@ -3375,7 +3375,7 @@ static int __maybe_unused qmp_combo_runtime_resume(struct device *dev)
->   	struct qmp_combo *qmp = dev_get_drvdata(dev);
->   	int ret = 0;
->   
-> -	dev_vdbg(dev, "Resuming QMP phy, mode:%d\n", qmp->mode);
-> +	dev_vdbg(dev, "Resuming QMP phy, mode:%d\n", qmp->phy_mode);
->   
->   	if (!qmp->init_count) {
->   		dev_vdbg(dev, "PHY not initialized, bailing out\n");
-> 
+Hi Krzysztof:
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Mon, Aug 11, 2025 at 3:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 11/08/2025 08:03, Binbin Zhou wrote:
+> > Add new compatible for the Loongson-2K NAND controller used for
+> > Loongson-2K0500 SoC.
+> >
+> > Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
+>
+>
+> Why do you add quotes?
+
+Emm...
+Sorry, I didn't notice that.
+I reacquired the V1 patchset using =E2=80=9Cb4 am xxx=E2=80=9D to avoid man=
+ually
+adding tags. I believe it may be caused by the `b4` command.
+
+>
+> Best regards,
+> Krzysztof
+
+--
+Thanks.
+Binbin
 
