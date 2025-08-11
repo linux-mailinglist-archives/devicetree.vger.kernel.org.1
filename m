@@ -1,214 +1,82 @@
-Return-Path: <devicetree+bounces-203483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350F7B218F1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 01:09:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 071AEB21920
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 01:27:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25DE746049C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:09:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19D457A9567
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC2023B611;
-	Mon, 11 Aug 2025 23:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA321E9B21;
+	Mon, 11 Aug 2025 23:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="zUXEY+ZF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+HwHJ5I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F7A224B01
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 23:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04BB199FAC;
+	Mon, 11 Aug 2025 23:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754953738; cv=none; b=uimMIbjdYjm0f0YA/YBskVu74g5pfFEDrGZZZ1mIkjC7E5qVkFDTYntTWJ7TNOVXMKrQ8U+nnV4MRqCmXHJK5wgZ/X2Q3TCHDZUdMrf6ags43aIzx+wt4uT5B4fQCyfr2L1v2wsIr5xPixo3TFfWSTdzEWrloypXM3hPkKalgyA=
+	t=1754954836; cv=none; b=bggwMv59Yz+1Pt8Bujh8oOgGMm/m1otHrPHh0hEm1BJclBORzfs0ZnEE7iezUOew6D0/ZD55Hgkaf6LKerLLdM8R83Z4yQfMWUW4alsudgi7r90YmVinpDTw6gcIoBF16efEu0JO9kvgr+3//ZR2WSwdl9kMUZFXZ7OwWiCFmhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754953738; c=relaxed/simple;
-	bh=kU7IxxrdJl9R9nSh1DSGm7hKbANjSWWwLmegZb/kWBs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hWpvTmyJNptsNf8SituRyRIzE8AXQScA3TNsbimO/8kptgCik/GHDiXkTKD18DlRv0k5IQBun+uMZdfUORjFzidFVT9CFECO/DJSE7uPILAvfTTyblV7gnryN7zP0RfWtTjLI+0CPFydEwDc8+VGxbhZCSrRMhwf3KoNGL3dAYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=zUXEY+ZF; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1754953735;
- bh=4WOQQytnvdG+ExQxM0wRnwxWgx7TDMfbUEkljON2sWA=;
- b=zUXEY+ZFYUR2qx4RF1eElcECWM8xX2Q9sevnHk/fjgGVFYQlFKhYBJADeISQPYkSF7gamvZsG
- 65Wdg0VfxHg8/mLOjrTBobKGCh2jSqqPH0mJv2Mt4IRsdWy+4sbbuQBXfZX4qRq0eP+6hMutqru
- tMC3dMhNBaA4kk3XxLd/PLC8QmT1otW/xWvMFPkSLZv/RlCSqAjtxzQXQfaavIBxkPKeeDzJamV
- bdqpSNsQ3P9rYV4pS1+tkLoiHXzWpGdR8u/NUHUjG2JMmijr5Pn9kIM8OQiFpVV5nBQLtCImBF/
- cuOGGkvE9PyGYGP0shpJM/DRMqk0CENXX1LmuDFkPk8w==
-X-Forward-Email-ID: 689a77d9de615f3104e098e6
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <9dce97a9-92e6-4803-9e06-b2938e3c4999@kwiboo.se>
-Date: Tue, 12 Aug 2025 01:08:04 +0200
+	s=arc-20240116; t=1754954836; c=relaxed/simple;
+	bh=RJtcD5Ti68xAnNSzio4G1Bb7ZDo981QAocOAX23eJb4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Uu7wNPXj7Wf2bbKxQTCmpJXUv1w0BkWg0/GDbf1HayBwhQqScQ0qLUN7EQ3QEf9RbQWSeUpAoBSdVe6N5pTQCSkw9JlEhoC1ai2gLz0IgnnadKe6pBWJy/AmIv3fnOWGSKqt0Nm3Wtx/bqy8PhglJXCRaEznzVXW2X5jtRsQNto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+HwHJ5I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0A1AC4CEED;
+	Mon, 11 Aug 2025 23:27:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754954836;
+	bh=RJtcD5Ti68xAnNSzio4G1Bb7ZDo981QAocOAX23eJb4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Z+HwHJ5IAJkxdkIAbSeHh7NHYZBd2jL4z7CAmRYj+kcA+KnOlaTY78RsEjQwZNX2y
+	 qqWRNJQk8tgnAqgKXyi5DIxHgcfQozBV00kNWiJUbC7oTgbzOnsssDJUMVZvarW2jY
+	 /YXReD4OqYC57NlkcqBntk02QGUJD6a6znfHGF0NIyNr2M/9/FL494jHGMAHJa2jhW
+	 EF5RERMVehuARbLHz+qDVEOtgotEk9h9pgKHU1gDKrPe71oNi4/VvtV9btphwJV6+5
+	 +wUCG7J/gCC3Woit43B3cG5fJPew/wQIdRvR3ct2h67IzUg4goR6e7JRe/bPpTBbWB
+	 LS3EEAh4nR5Xg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	George Moussalem <george.moussalem@outlook.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: ipq5018: add PRNG node
+Date: Mon, 11 Aug 2025 18:26:52 -0500
+Message-ID: <175495482435.157244.9166061651621835817.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250721-ipq5018-prng-v1-1-474310e0575d@outlook.com>
+References: <20250721-ipq5018-prng-v1-1-474310e0575d@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] media: rkvdec: Disable QoS for HEVC and VP9 on
- RK3328
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <20250810212454.3237486-6-jonas@kwiboo.se>
- <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Hi Nicolas,
 
-Missed some comments in my last mail.
-
-On 8/11/2025 11:25 PM, Nicolas Dufresne wrote:
-> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
->> From: Alex Bee <knaerzche@gmail.com>
->>
->> The RK3328 VDEC has a HW quirk that require QoS to be disabled when HEVC
->> or VP9 is decoded, otherwise the decoded picture may become corrupted.
->>
->> Add a RK3328 variant with a quirk flag to disable QoS when before
->> decoding is started.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> Changes in v2:
->> - No change
->> ---
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c |  9 +++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h |  2 ++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c  | 10 ++++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec.c      | 12 ++++++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec.h      |  4 ++++
->>  5 files changed, 37 insertions(+)
->>
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> index 1994ea24f0be..f8bb8c4264f7 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> @@ -789,6 +789,15 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_LUMA_CACHE_COMMAND);
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
->>  
->> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
->> +		u32 reg;
->> +
->> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +		reg |= 0xFFFF;
->> +		reg &= ~BIT(12);
+On Mon, 21 Jul 2025 10:30:46 +0400, George Moussalem wrote:
+> PRNG inside of IPQ5018 is already supported, so let's add the node for it.
 > 
-> I wonder if there is a better way to express that, if not, a comment for future
-> readers would be nice. If read it will, we keep the upper 16bit, and replaced
-> the lower bits with 0xEFFF (all bits set except 12) ? I'd rather not spend time
-> thinking if I walk by this code again.
-
-Vendor kernel use following comment to describe the purpose of this [1]:
-
-  HW defeat workaround: VP9 and H.265 power save optimization cause
-  decoding corruption, disable optimization here.
-
-From the TRM we can see following for rkvdec_swreg99_qos_ctrl:
-
-  27:26 sw_axi_wr_hurry_level
-    00: hurry off 
-    01~11: hurry level 
-  25:24 sw_axi_rd_hurry_level
-    00: hurry off 
-    01~11: hurry level 
-  23:16 sw_bus2mc_buffer_qos_level
-    range is: 0~255
-    the value is means that left space <=
-    sw_bus2mc_buffer_qos_level, it will give hurry
-  15:0 swreg_block_gating_e
-
-So yes this set swreg_block_gating_e to 0xEFFF. Possible this configure
-hw to not auto gate most internal clocks?
-
-Could add a comment and possible use something like following:
-
-  reg &= GENMASK(31, 16);
-  reg |= 0xEFFF;
-
-[1] https://github.com/Kwiboo/linux-rockchip/blob/linux-6.1-stan-rkr6.1/drivers/video/rockchip/mpp/mpp_rkvdec.c#L857-L867
-
 > 
->> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +	}
->> +
->>  	/* Start decoding! */
->>  	reg = (run.pps->flags & V4L2_HEVC_PPS_FLAG_TILES_ENABLED) ?
->>  		0 : RKVDEC_WR_DDR_ALIGN_EN;
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> index 540c8bdf24e4..c627b6b6f53a 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> @@ -219,6 +219,8 @@
->>  #define RKVDEC_REG_H264_ERR_E				0x134
->>  #define RKVDEC_H264_ERR_EN_HIGHBITS(x)			((x) & 0x3fffffff)
->>  
->> +#define RKVDEC_REG_QOS_CTRL				0x18C
->> +
->>  #define RKVDEC_REG_PREF_LUMA_CACHE_COMMAND		0x410
->>  #define RKVDEC_REG_PREF_CHR_CACHE_COMMAND		0x450
->>  
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> index 0e7e16f20eeb..cadb9d592308 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> @@ -824,6 +824,16 @@ static int rkvdec_vp9_run(struct rkvdec_ctx *ctx)
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
->>  
->>  	writel(0xe, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
->> +
->> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
->> +		u32 reg;
->> +
->> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +		reg |= 0xFFFF;
->> +		reg &= ~BIT(12);
->> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> 
-> Can we deduplicate that ?
 
-Guess so, any suggestion on how to best do that?
+Applied, thanks!
 
-One possible way that comes to mind:
+[1/1] arm64: dts: qcom: ipq5018: add PRNG node
+      commit: bf258fdaa2bcbafa04bf1ad646e8ed42e13033cb
 
-  if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS)
-	rkvdec_quirk_disable_qos(rkvdec);
-
-> 
->> +	}
->> +
->>  	/* Start decoding! */
->>  	writel(RKVDEC_INTERRUPT_DEC_E | RKVDEC_CONFIG_DEC_CLK_GATE_E |
->>  	       RKVDEC_TIMEOUT_E | RKVDEC_BUF_EMPTY_E,
-
-[snip]
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
