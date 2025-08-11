@@ -1,140 +1,150 @@
-Return-Path: <devicetree+bounces-203091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D94B2002C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ED8AB2002E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:20:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314673A2CD4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:19:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4C533A346F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:20:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E29629B233;
-	Mon, 11 Aug 2025 07:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD563284B3E;
+	Mon, 11 Aug 2025 07:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="kWvXntYy"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="haQpP/2g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB4F3FE7;
-	Mon, 11 Aug 2025 07:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCE7198E91;
+	Mon, 11 Aug 2025 07:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754896779; cv=none; b=IjwFhOyAL5I3Aa0ybT678IV9sNN/TQEGeiGgPMDAaPtRhroaG5gwk2jmzQeLuQCJ0NjqBHNUh+1tovP5j8xC8J3Ftz/daWj71p5+VXP3lD0Qho274jxyD9pUtYP4miXIWeVLZHLPks6OWDfFSWLn3Kunl1u0pK8Va/PQ6EnRELs=
+	t=1754896835; cv=none; b=SaG+0am18z0nHIMIFtrrNB0Qch4/KI8D968sxgAez567S2Np04mdKuG3yUgM7xH27cJeDrZVQ3hbqG17DyHS+BRWjlcYYM0R+3eGpOsov1fEgfpm4n8zs2QhmY5sgJ6OnaVPfmS5L0tmKfJOTb0UUCmuFO0E1ghjJFWa2khgx1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754896779; c=relaxed/simple;
-	bh=zkb/rSuCpqQhzGZFk68MecxNwLP71qQupr3vuJOoK78=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KhVdKuoiCaRohzwi+2CU3sxxBwjNEOKGPvMjhxaBqG25K8KkrfOSrMEJ1amHaDUsXlDAFLwKp4CHtpWG9sTWKAWBVN56rBZumL8TOzK27qjZQcewTt9hihIfbkNmivKZl9ifV5EsUvbGrI0sbZrmHSRirOS5tj5Rk+dWmGJNhrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=kWvXntYy; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=yCTYvc2Ip+c053RNHSzHAiqexa5hAOSQh9k+/5us8HA=; b=kWvXntYyVQgVlSgXMcsvAiBFlp
-	oUv3Ki1sAVUHXt3aWhyc8oFH7PHGRuxgcaZZwdlt+maZD7unEa5JVlDKMfuaagGkRbfuL6OxKWRk7
-	W0PwK0ZBVu0gp8Dq+Y7+o+XYE5UpAHTkm60/KSNVi/FtU1CFMWPpVbpGk3AhtpaWSp4l+Gnm34xvd
-	e0LcNY38YtA+47Nod4ePky3lwTCXHhbW0D+D/qrng4jXkwxtLuj1z5Yid6X4lAY2Z3cV/iVAEGeTi
-	bwHeylJ0KhbIj0oH9gcQ0RtLjSW8npttDDXWgCdmTB/KU7PXnQcWE/Un2d+8Y2mrnFaekSXdEb2vh
-	+y1gWBpQ==;
-Received: from i53875a0c.versanet.de ([83.135.90.12] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1ulMoc-0007Ef-PO; Mon, 11 Aug 2025 09:19:30 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- damon.ding@rock-chips.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject:
- Re: [PATCH v2 2/2] arm64: dts: rockchip: add RK3588 DP carrier from Theobroma
- Systems
-Date: Mon, 11 Aug 2025 09:19:29 +0200
-Message-ID: <10574731.0AQdONaE2F@diego>
-In-Reply-To: <0582b7bc-e5b2-4b5e-821e-8d2c4301579f@cherry.de>
-References:
- <20250723190904.37792-1-heiko@sntech.de>
- <20250723190904.37792-3-heiko@sntech.de>
- <0582b7bc-e5b2-4b5e-821e-8d2c4301579f@cherry.de>
+	s=arc-20240116; t=1754896835; c=relaxed/simple;
+	bh=rjMF5I0VciWnnIE8+pPP+oPn6uH2X8pjFgDqE+j2Ep4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fdlMqSxH+MAoGrGrbbkgZqtKmWS9kbsKfzeM79nJObMJikag0ZfLDBtu/LjLx3AVM9Oe0cOM39Ctgx7U1RWol+AvwwO3r8VU1UedO+78Qac0iUJZlVBK1g/4StTf6FJeFajzPZ0GPfHB7JecAwjhbCS6gu2kV8bay0ySQRqTBwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=haQpP/2g; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57AKWDoQ032054;
+	Mon, 11 Aug 2025 07:20:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	F6PyLsl2AAIrmnsmx4C8ByvqxJzlrU8Vx53Jsr0KJdU=; b=haQpP/2gB9b7Ezc4
+	BO5Psnx3sJ/RDi6dpOQrrWli9VHmFZNZgMLxUZtq1wUGaFqvfwfcMGUeC91pmcYM
+	PseP8Or/5MZ83gt3qmmYwIsVSiy993jvalKjHEUMJ1xYSjm5VV5ETqWkPQ3wcO5C
+	DDXs/2jLXoiZAvAaQZxRQ2Z1B4D0D6alYk+SBP6vtA2P9ADgqkv6TFo2C8saDQfT
+	OuOu1GqqYiSrRTJSyVH/pSyvqhkjXhydPLuNaHvnFm+d8msrxFYEeeleIMhfNY1n
+	bvBuNVqYX1hF08ygo4bPbdjxKVVFgBUeSGAQ0ANelZfHZtl5AdrCCTeXB0l2G3kx
+	wR6eqA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmbdgu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 07:20:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57B7KUHR013754
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 07:20:30 GMT
+Received: from [10.151.36.85] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 11 Aug
+ 2025 00:20:26 -0700
+Message-ID: <eb344d1e-22af-4ff8-9ddd-316a9968e5d7@quicinc.com>
+Date: Mon, 11 Aug 2025 12:50:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-
-Am Freitag, 25. Juli 2025, 14:29:12 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Quentin Schulz:
-> Hi Heiko,
->=20
-> On 7/23/25 9:09 PM, Heiko Stuebner wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> >=20
-> > The DisplayPort carrier is a very simple baseboard only providing seria=
-l,
-> > ethernet and a displayport output.
-> >=20
-> > But its main functionality is that it routes the Analogix eDP controller
-> > to this DisplayPort output, which allows to test that controller simply
-> > by hooking it up to a suitable monitor.
-> >=20
-> > The Analogix-DP controller supports eDP 1.3 and DP 1.2, so can drive
-> > both eDP displays as well as full DP monitors. It does not support DP+
-> > so passive DP-to-HDMI adapters won't work.
-> >=20
->=20
-> I tested this on master (2942242dde896) + v2 of the eDP driver as listed=
-=20
-> in the cover letter, or with v3 of the eDP driver +=20
-> 48f05c3b4b701ae7687fd44d462c88b7ac67e952 and in both cases I have weird=20
-> behaviors.
->=20
-> First, `reboot` is stuck for a very long time before actually rebooting.=
-=20
-> I think you have a stacktrace when you tried yourself, I don't so cannot=
-=20
-> send one.
-
-I tracked this down last week. The hang is easily reproduceable and the
-fault of the PCIe SMMU. See
-  https://lore.kernel.org/all/4400329.mogB4TqSGs@diego/
-for the full detail.
-
-TL;DR is, SMMU without users (and thus clocks/power-domains/or whatever)
-hangs on reboot.
-
-
-> Also, I tested on two different DP displays, one has a green tint, the=20
-> other one purple. When trying out other resolutions with modetest, the=20
-> kernel would often crash (no trace, just nothing on console, SSH dead).=20
-> Note that the same HW setup with downstream kernel from=20
-> https://git.theobroma-systems.com/tiger-linux.git/log/?h=3Dlinux-6.1-stan=
-=2Drkr3.2-tiger=20
-> works just fine. I would assume this has nothing to do with this Device=20
-> Tree patch here but rather the eDP patches missing some bits maybe?
->=20
-> @Damon do you have some idea?
->=20
-> The display with green tint is a Iiyama ProLite XU2294HSU and the one=20
-> with the purple tint is a Dell P2319H if that helps.
->=20
-> modetest output: https://paste.debian.net/1387797/.
-> modetest output with downstream kernel: https://paste.debian.net/1387798/
->=20
-> The Device Tree looks good to me otherwise.
->=20
-> Cheers,
-> Quentin
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: ipq5424: add i2c nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
+        <kathiravan.thirumoorthy@oss.qualcomm.com>
+References: <20250711111418.3980520-1-quic_mmanikan@quicinc.com>
+ <9597ab85-6c91-4e76-b160-0257bc4c5412@oss.qualcomm.com>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <9597ab85-6c91-4e76-b160-0257bc4c5412@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfXwd/Y6dSywtre
+ GzrsrTpmHQycDoNevCN+ivoviLhnDl19qDk/DI+lXu61eE7AYdbK6CQ6+oLCDLaSCbUyobH+YqS
+ AZZLZmjb8tj/MacxqePL/HMqHs02DsrW2b5yr1nQpwctyn8dXLZySpA7I2NbQ++9Q+WDUYG7wW1
+ BSvrlMrz4X0eBJPfTT734bRVKMSUQn0xZd/KNi44NObdqTO6flLSHNpicFAYl9TLtXR2O5pR27h
+ jd27J6IY9C3C/FECwqVll0fgC9+dyPZLEYoZfk9Wkwqx+jkz79M3LMXwoVYZ1mOR9tmqYiiEMMn
+ F9lbYsOb+0hj5IWs2jxRFSGZFWZcTd0e1oyLlEqryeQq+sC6oMeQkiMjGz7MVqFwJa1Ole2ewm8
+ snChB+Ds
+X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=689999be cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
+ a=X5u_7EEaSWp0MH8HeZ0A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: br-GE2EKZ6P4dGLb19U4OFWG5NiipgeR
+X-Proofpoint-ORIG-GUID: br-GE2EKZ6P4dGLb19U4OFWG5NiipgeR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090035
 
 
 
+On 7/30/2025 5:13 PM, Konrad Dybcio wrote:
+> On 7/11/25 1:14 PM, Manikanta Mylavarapu wrote:
+>> Serial engines 2 and 3 on the IPQ5424 support I2C. The I2C instance
+>> operates on serial engine 2, designated as i2c0, and on serial engine 3,
+>> designated as i2c1. Add both the i2c0 and i2c1 nodes.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/ipq5424.dtsi | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>> index 66bd2261eb25..858b9c714a13 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+>> @@ -425,6 +425,28 @@ uart1: serial@1a84000 {
+>>  				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
+>>  			};
+>>  
+>> +			i2c0: i2c@1a88000 {
+>> +				compatible = "qcom,geni-i2c";
+>> +				reg = <0 0x01a88000 0 0x4000>;
+>> +				clocks = <&gcc GCC_QUPV3_I2C0_CLK>;
+>> +				clock-names = "se";
+>> +				interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH>;
+>> +				assigned-clocks = <&gcc GCC_QUPV3_I2C0_CLK>;
+>> +				assigned-clock-rates = <64000000>;
+> 
+> This is very wrong, the in-driver handling should be enough.
+> If not, add an opp-table.
+> 
+
+Hi Konrad,
+
+Thank you for your review and valuable feedback.
+I will incorporate an opp-table entry with a 64MHz frequency and submit a revised patch.
+
+Thanks & Regards,
+Manikanta.
 
 
