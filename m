@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-203411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCBBB21321
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 19:28:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FF4B21329
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 19:29:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DE41626578
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:28:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E753F6266DC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D0AE2C08B2;
-	Mon, 11 Aug 2025 17:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532EB2D481E;
+	Mon, 11 Aug 2025 17:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y9bsAZhe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTE7tFWc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443E51F3FF8;
-	Mon, 11 Aug 2025 17:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4EE2D481A;
+	Mon, 11 Aug 2025 17:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754933320; cv=none; b=QGJq6O3xt1rg3BrdzgfuyFHwK68C74FRKhiHY86KXZqYtnyImRr6PfdhUd62Z3jef2t/tXImaEVL++I9/9x84DKiQBp0Xma/qUZG0WVZmNFfXAyy8YUGvLH4DC5WLv0j0wUJ3F9vmMcriK7JmE2nN4xwkd1aN5yaZwM072AZppw=
+	t=1754933331; cv=none; b=LYfQQwcMw/+X7Qae0bLdMyFWPHf5BRBW4lAizEtaY9bvZtWejRggner8eX0o2aHwfmWZYO2tMFJejPg0kLnJt9NE7bal3rT5aXvWXkWD4KFsr0E+hAP930XtH/uAK3NwjX9nXRKodYBCRAHuNSkzgC3vkTVcr5uz2HJC1AvgJK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754933320; c=relaxed/simple;
-	bh=ozftjYGg6KRXVk8Tffssj9tV6jZy2Xak99c5Z0Pqxbc=;
+	s=arc-20240116; t=1754933331; c=relaxed/simple;
+	bh=9XSbHbfFnw3XIaRpvKnt/hioK7AaWjMpyvzXjCeNyEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ad/gTO9I0tbxF0EhCpyiA3xarNQkJKkZZb+cK5oHaH41EYIqe2ZigOEk3EwkasaQhoG+oeXDppkm6OVzFWOCaIJD9tiUC758GYEyp6TnuYnwiZkCGqZLmaiAFwjodsXiveM6g71/Fru0KBGYxqznG+tlpMqpQMHQOgp1du6Z708=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y9bsAZhe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A40CC4CEED;
-	Mon, 11 Aug 2025 17:28:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Th1Vlvzmlo/ztEtCRmBDsGZidCuSI1sleNkLQT2mZeUVEO6ys51X4r3u7KKxnOF2dLBX6QUEdERoKeQDEEAtLUY2USy5dtrVu4ZS1mNqBWpCuR0Jf6jEzl+c+L/HuyJTMCGfZatJnIyZt1YICQnpS0yM0vLuo6OamtKXa5VqiD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTE7tFWc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89BD8C4CEED;
+	Mon, 11 Aug 2025 17:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754933316;
-	bh=ozftjYGg6KRXVk8Tffssj9tV6jZy2Xak99c5Z0Pqxbc=;
+	s=k20201202; t=1754933330;
+	bh=9XSbHbfFnw3XIaRpvKnt/hioK7AaWjMpyvzXjCeNyEA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y9bsAZheShltLvsuWA16dHtP+DlziyeiWeIAck9cdvqTdF0NXy0NuUKGcKc/7eKPW
-	 k8cBmAZ/OEFXLoFUHLS2XjEv2qEx8TKNlqfLdVmMezc+X46g5uJAOWsD3qrik7mlB4
-	 +C6LsMe8ZImrHF46++fsFioDAA5lrXgS4S03HgkzHq72W0IVJKLOkAkNsQz623MGE6
-	 jNH4hFoyP42GCSpCqxBDjezeIzGRc1hkh/Fdgl8z5b49eAtpo5JgFZ9nK70LFh6pSD
-	 LXD7Omow46foUKFlorkWwyfAMZOw0YobeUuQYIzNl56KcfodcokOPVb9uSYfFrtKHx
-	 csWN9IrDfkEsA==
-Date: Mon, 11 Aug 2025 12:28:35 -0500
+	b=KTE7tFWchqSfKGfWKXO+oLy2j2snSzC+gwd/SC7Zn2Cffnn18e1k3l9cXgXa/F86h
+	 0cJFMZk4mJMXr0x15gQAo1zB6Im31tDgvtWVKCUh9Oon7vTw9+KqZzHRMX9LaTqfK7
+	 rs9Dn2oqM0/hghOMcIDBEyQS/3WuUhccCs+XevhptWl8mkVCNnRIjYdPqnK1FrKe7H
+	 Ydy8ple9K7VqfKWHQa48s692TrDWf+IbGp3ID2ulJmP9wt1KfuoEHFD58jkUvNrthp
+	 22BT2SVhhpbmYVlODBpBcG/ctqMnx2IIYNVdwFoQ/+KiE/mSkdHIE5Cr6fvH/yLULB
+	 AEVajkqahSRYA==
+Date: Mon, 11 Aug 2025 12:28:49 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
 To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Robert Richter <rric@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: arm: Drop obsolete cavium-thunder2.txt
-Message-ID: <175493331520.3842001.17150965831517887163.robh@kernel.org>
-References: <20250806212812.1634740-1-robh@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linuxppc-dev@lists.ozlabs.org, Scott Wood <oss@buserror.net>,
+	linux-kernel@vger.kernel.org,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: powerpc: Drop duplicate fsl/mpic.txt
+Message-ID: <175493332847.3843132.2055857937103048620.robh@kernel.org>
+References: <20250807214432.4173273-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,19 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250806212812.1634740-1-robh@kernel.org>
+In-Reply-To: <20250807214432.4173273-1-robh@kernel.org>
 
 
-On Wed, 06 Aug 2025 16:28:11 -0500, Rob Herring (Arm) wrote:
-> The binding is already converted to schema and is located in
-> Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml.
+On Thu, 07 Aug 2025 16:44:30 -0500, Rob Herring (Arm) wrote:
+> The chrp,open-pic binding schema already supports the "fsl,mpic"
+> compatible. A couple of properties are missing, so add them and remove
+> fsl/mpic.txt.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/cavium-thunder2.txt | 8 --------
->  MAINTAINERS                                               | 2 +-
->  2 files changed, 1 insertion(+), 9 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/cavium-thunder2.txt
+>  .../interrupt-controller/chrp,open-pic.yaml   |  12 +
+>  .../devicetree/bindings/powerpc/fsl/mpic.txt  | 231 ------------------
+>  2 files changed, 12 insertions(+), 231 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/mpic.txt
 > 
 
 Applied, thanks!
