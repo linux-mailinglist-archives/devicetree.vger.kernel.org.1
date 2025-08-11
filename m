@@ -1,112 +1,133 @@
-Return-Path: <devicetree+bounces-203142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E60FB20179
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:13:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B940B20180
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:15:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B8A7189E7E4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:13:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E76793A3F7A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:15:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866E02DAFAE;
-	Mon, 11 Aug 2025 08:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259161E834B;
+	Mon, 11 Aug 2025 08:15:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qP9CMZeD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikrI2Yux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF0A72624;
-	Mon, 11 Aug 2025 08:13:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA0D17DFE7;
+	Mon, 11 Aug 2025 08:15:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754900003; cv=none; b=GWg+bhyYebeuUadfwRhtpcM4Na5M+Dz6Ycz7LCwI6LnczsE11P2sLwoxo91LbGhzL2NwC8eU+9oNeDVB1R4BW/TXtoroTY1j3YmK6fl92up6pxGXCWeo6eEj9OWNaxmJJHANIimcQZVXedURf36jnUkvAXVadYBJwp4XpRNm9Zc=
+	t=1754900144; cv=none; b=DrwrTfxYbZIuiLjbg561ydvUlz04DHFriQaHK45EfWDGPC/UwFzT1cSiO/Fsu5webRDPvlW9KGuchxDuBnhzAMbr8gGa4wp2a26kT9EK95BpkG4gbzOtHi+3AyTF0g+NlTQRTLrxVXx+JJ3vjgzCP57QdSKmUCFRd/K0AitoEsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754900003; c=relaxed/simple;
-	bh=5sjPiBzdpJnO+FR0G57D0bldCe0wsDvVzVNiX8GVo3o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jRfIZSHBdZi1tnK/nMQeSN1xZsNQJHybom9RGQ7Zdk+4iNxcsTAMMLswd4/1Aq4tEUv8cnO58iRp+Ju7Fd7qvwyi8gQv1d1wJsjPRRsLoVzesxZLHnoMLOJlIHTZQ04LTAo/3UqgtFDJgSRpXZRaUISiC/NjuPoREyQft7VIZEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qP9CMZeD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A450C4CEF7;
-	Mon, 11 Aug 2025 08:13:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754900002;
-	bh=5sjPiBzdpJnO+FR0G57D0bldCe0wsDvVzVNiX8GVo3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qP9CMZeDHEIMUyDRW81lz9yYFrXw+jtqQ4lmG4odliDcLaBN7Zb3z8FBq0SBqjJRD
-	 jIwIHc0Z8fx0NlTtIU+Bioq3GyTpDjjeC0f0m/9fVj9hSfdVaHrpdAdmnk9o+qF8wt
-	 znSC5pXA7nFfXG+0l/VycbdArzc2403pOdGirxDD2fbSDjmZDJFPmZWJNlK+loqTpK
-	 wcgSmyT59uhRn395apbWLSboB8RPzajxb/HS89c84zYjV/Wcsd/A39ROv/6KZoFtuK
-	 ROEHMpKX2CvgDqd69BBrSHFev/Thp9kaXaTLEZXIRfHyv07umoEK/Qd7owiXIylbWP
-	 KAhNLP0tY76CQ==
-Date: Mon, 11 Aug 2025 10:13:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Keguang Zhang <keguang.zhang@gmail.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, 
-	"Rob Herring (Arm)" <robh@kernel.org>
-Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
- Document the Loongson-2K0500 NAND controller
-Message-ID: <20250811-impetuous-civet-of-wind-febe58@kuoka>
-References: <cover.1754890670.git.zhoubinbin@loongson.cn>
- <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
- <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
- <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
+	s=arc-20240116; t=1754900144; c=relaxed/simple;
+	bh=6l+kIPrtTOld9kfiiJFN90DL8QZo5I1DAmpfABaUThk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BEPC48758tB2QCJ7fMyzwJ/vkall8MgXzBGkvh+cgrJsjd9GjVZh31CJ6xyeR1I2O8Eh/rOjiOTSwmTRVecItLWn757ULnZMchddfe4z6pB8PJN2nzHO7Jzfbg7d2qigUS1Kck8YEKOcFYkMXw6++JEKxqA84+IP2kfidcmjllY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ikrI2Yux; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b78127c5d1so2558586f8f.3;
+        Mon, 11 Aug 2025 01:15:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754900141; x=1755504941; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2i/21xnbMhiQmAEs/HYi6PR/TYpOSV7Dr+9Icq4dAgg=;
+        b=ikrI2YuxKtY+5lxZQRdHyk057WNt7B52/1D5KNBXZ0758EH4A/UHQ92ukSXKa9rCaS
+         Z+jpjvzwYffRCk3uAdl2ZkQLK2tZkEZpvR658QLAzcpfrJCuGE1+Ka6MrDq8NrWv8FnQ
+         ONCpcSO7sDVFo8RI8udftSxi2BtxOrSydCHky16ujoGLAIFIZomD5K/Zhqqh5vEQS16y
+         P8nKEb2HidTIgTXfKBlcGo9I0FHrT5q7EOYkgQvvyzxzHnZ9K/O3rtmgmQhiiOlTmDeO
+         C3Q/cpfbDetDn6D+f85GLmIk0UgZcWSWtb7DMCPHPx6MNlXWvkdO22tcIt4gnQi/0KEF
+         jy2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754900141; x=1755504941;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2i/21xnbMhiQmAEs/HYi6PR/TYpOSV7Dr+9Icq4dAgg=;
+        b=oqfljDjAdQJ3/bhLPgcDZKBcnVGW/Nc8sqZpNrHp+NhXhXEevNPH3e7JtmSnak90C3
+         JtGV1wz05dc7uHunz4nLUm3GS8Tmer9dpwWI5xh8tiZuaK01NZU8W4CT4frV5oi5BVBu
+         o36DEJQLkEOcoc8v2zzRavhpy/WIcgX8AEHajGhigUzRrsNED8IPXyuJtmC3NqoizW9T
+         8ITdx82I9BAIfG5HyvMwVzp+s1riAsYpF2xw53Wdw9a6Wur1ASxMDPUAnVXcfmxAxYnN
+         IyWDyNftX7CkGiyeeKN9E5tPVm3MvqT0PySkOAbhFprXiDYD4KuoaS0U8X4qUyCQVIdn
+         6g7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVHbwuweInZ/QUsu9gcJIlKP5o9ZkXUouuWXpanVbLmkMYQYqIOUytMHN5n++yA9kDjJuNtkleUv22NH3Em@vger.kernel.org, AJvYcCVwtutzKZYVXnamP5n8O782dciYjlFYTHgaAMTSOODZU3HgT+pdk2+78LR7tHxP/onB3q5/UNPx0uWkpyE=@vger.kernel.org, AJvYcCXr4qlofaC5CoXHkMQtskXmmuGNrgYcAkahGW4JvsDX/e95DT9BTcsB4neO7d/0WM9vBye23VX7o93T@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpbY2R1+dCe/BEjOU7bGRx7PyZh+lZz3VQXdjy7WdMPSXHWtOj
+	dthrOumFZRtQa9hWs17WrRQ5Qz+DGxyg68ojjX6JxOaRhEgyk947UNcqKrOtZZxr0x3FVvn1ney
+	1nzo3hxCbZ1EzOo7wm1T8bpU0KDTnGDPfWfGw
+X-Gm-Gg: ASbGncuWExPa6nUOlWjg6DPMm28ttquIi0dH5scnUMJiTxty/wNaAUGnqslbcjNzD/p
+	RwHhXJJAS2qITuJCwrwGWNuThhIjJ6HlhtZ4t+Y3cw+sYeuck6zVF3bwjnNfQsiDbt6zLfPmO2Q
+	mefEwETEfznZ+v7TXqkTRzRck9FE8kLYd2kFQWSrIxHbE9dldKqKj5tA5NCnChWJgacdb03knz+
+	2DsmqVJ
+X-Google-Smtp-Source: AGHT+IFrXyW3WnoaVgzkRQmm/tTcl+vQfD/WIMcNw/CuErG9CVALCzU+fiaaNb+FMYO9B7wLoNqZwjwCRaQXpj0ZQsw=
+X-Received: by 2002:a5d:5886:0:b0:3a4:fbaf:749e with SMTP id
+ ffacd0b85a97d-3b900b50a59mr9026882f8f.49.1754900140728; Mon, 11 Aug 2025
+ 01:15:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20250504092324.10802-1-clamor95@gmail.com> <20250504092324.10802-2-clamor95@gmail.com>
+ <20250512162439.GA3441216-robh@kernel.org> <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
+ <bc98d732-ea41-45bf-a269-f4f691243914@kernel.org>
+In-Reply-To: <bc98d732-ea41-45bf-a269-f4f691243914@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 11 Aug 2025 11:15:29 +0300
+X-Gm-Features: Ac12FXw8oyL8n94a1kk_DsJMeM6aN-Jl4TbRfbh4fNm_u2ycR7rV5G1SRj1riV8
+Message-ID: <CAPVz0n13OB5fk1TySCP13h7ZotMERCMK=Tp1xTTVgA-qFrJNTw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
+ MPE and TSEC for Tegra114+
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
 
-On Mon, Aug 11, 2025 at 03:42:09PM +0800, Binbin Zhou wrote:
-> Hi Krzysztof:
->=20
-> On Mon, Aug 11, 2025 at 3:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
+=D0=BF=D0=BD, 11 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 11:1=
+1 Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On 11/08/2025 10:01, Svyatoslav Ryhel wrote:
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  interrupts:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clocks:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: tsec
+> >>
+> >> Drop -names properties if there is only 1.
 > >
-> > On 11/08/2025 08:03, Binbin Zhou wrote:
-> > > Add new compatible for the Loongson-2K NAND controller used for
-> > > Loongson-2K0500 SoC.
-> > >
-> > > Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
-> >
-> >
-> > Why do you add quotes?
->=20
-> Emm...
-> Sorry, I didn't notice that.
-> I reacquired the V1 patchset using =E2=80=9Cb4 am xxx=E2=80=9D to avoid m=
-anually
-> adding tags. I believe it may be caused by the `b4` command.
+> > This is added to cover existing binding in tegra210 tree
+>
+> Existing binding? In what tree? This is mainline, we work only on
+> mainline and that's a new binding, so you cannot use argument that there
+> is broken code using it. Otherwise what stops anyone to push broken code
+> and then claim binding has to look because "existing code has something
+> like that"?
+>
 
-Then aren't you using some old b4?
+It seems that your words and action do not add up
 
-I just did it and look:
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/=
+arm64/boot/dts/nvidia/tegra210.dtsi?h=3Dv6.17-rc1#n181
 
-  [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller: Document =
-the Loongson-2K0500 NAND controller
-    + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kernel.=
-org)
-    + Link: https://lore.kernel.org/r/588639de591ada408bdaeb0d279c5d62a4b53=
-d61.1753166096.git.zhoubinbin@loongson.cn
-    + Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-No quotes in commit msg either.
-
-Best regards,
-Krzysztof
-
+>
+> Best regards,
+> Krzysztof
 
