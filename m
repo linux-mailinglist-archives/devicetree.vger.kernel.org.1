@@ -1,155 +1,184 @@
-Return-Path: <devicetree+bounces-203359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 596F0B20D23
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:11:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50322B20D3B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:12:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC3761886D72
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:09:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F1401615C8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EDC2DEA90;
-	Mon, 11 Aug 2025 15:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0564C2DECD3;
+	Mon, 11 Aug 2025 15:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BThMNPpx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q02aehD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD486A8D2;
-	Mon, 11 Aug 2025 15:08:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED572C17B6;
+	Mon, 11 Aug 2025 15:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754924933; cv=none; b=Pm0yefIkdFcBYEdfRd9K0FN8NfcMWfZ/UKj2GEj+CYtUKNHZD25BMNT7BCHJZRtumrLnh/fXwt9GSQDFwlQNpTUfy1tyZJC1zWz3FGkX8oDo25M9Y3rjZvFkBrxkTfNE3LA7ppDWtEL5nyrRrLaQ5e7XgYH87mWots9QdTrdGwc=
+	t=1754925075; cv=none; b=CG9ffVXz+otla2Eer4216Mh7S4AYBB7YjCybkznsiaLve48wfpP0hBG7iO+BvndeuUqF+lyleeF90NAIrhphI4gPD6NMAc6Mqt/29wNfvadueGBh3MlMrzXTBjH4imk/3T6Qnvh7dy2GGyLGcbicEYWo4QCIGjIDURDilg6DB9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754924933; c=relaxed/simple;
-	bh=gSfGTByAxTf6aQjzOAAaq23+d4fEay517VAQS+SPhxE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bu9jEVLDFng0OJD3YAaeubh4Q1LgJZI4czDihMok6QRzAfGm7ArBXPmcIjmA9TYBj1rJSaZyexRjBZk3ZcBFZSW6BS6lkL7ClQQZoqJsOAJqvcEL1Ligfp+mseHPhnykbdbQe+bDh58fpaFlNEZz0KqI/66p+zLRN4e2wDU3weo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BThMNPpx; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-459ddf8acf1so37973585e9.0;
-        Mon, 11 Aug 2025 08:08:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754924930; x=1755529730; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b2mT07260j9zQg6uZKIOUV2LzSLtm0K5b/BNFoyA2cQ=;
-        b=BThMNPpxIyKtxBzjL0HdNwjQLz44BbkmXLcx6VIzRJLjHrNYj2OicUC732Qkq4FhEW
-         M6q3oOHUFRngEzyv11T/aXPr/q8WU7wiYJvYJDC9jzbH/HzWRjrZVS30YPRi/eS3pHWQ
-         fe/YW0WyyxImqasPXQjJ3GCZBhLhQ66JhB+A7RLgTaZ9yMRbVXDTQjPc6k3NIHeLxZ1I
-         SpFRsdO4P5OKu41VriO3b4kJAROhu07SjoaEIDRx//Ki1iogZTOsBw4BxwpFtPQOHlqA
-         KT8CEIWKtUCDN6N66BwN9fk/9w/ke/YExxcYgAfXkkZFyYtCKn9K2rv3CPt68Lua8SC7
-         qRDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754924930; x=1755529730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b2mT07260j9zQg6uZKIOUV2LzSLtm0K5b/BNFoyA2cQ=;
-        b=AT1NPWeP5Y6OBCCSj76xjH3BCnW1P9bMEkX3xerBMkM4C80CwBXnC7QWUQcsarsLDc
-         wNI3HnFHokT6ajFXBEnbEW94v06TzLExRhsbdImACC5HuwPGQmYCQfiOhrozhVpJLxwX
-         VJvY9HulI0C2KWfdqqZA0Mtn669RM4leCinIp77i6U4MU0lmUPpNi5micaXrwq2zTH51
-         0TKzLoGJKXwaefojSenzTFUilJHdTVg11qWnDsgs0g4mZmEgDG3xBA44cNIZjmGSijfb
-         5Hokixfne6Lh3MdJAZEj0he7RILwAtOzfEk6bj85ikaUWPpSICvzpPkEQ2uVuUWVC8gq
-         4kGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYayyynY4AsbGN4kijk2S5qLcNI3t/gCkOMaq5idDlchzDIG5nxZb8VLeUKtEGlEx/xqhU7eUAIpPX@vger.kernel.org, AJvYcCVfJXYESWFA4iBArUMtL63FoAEtnEvzDkDW8fIL0NsI8t3/4nKYnwLrCE1waNgX9GkFn9grbcQpKLqXExEjat+6pfI=@vger.kernel.org, AJvYcCWXo/7WlT0oIWeQpxam4Q7Ocu8Axd3APRa1iSlJjl3txguO3/jQsst/k86uKU6KOi5LuBZcN5MSbPh0A4Da@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQSpi5scwo1uAk23mDazR56x5tRHIveG/8p5gTSTiLqVAWeVE9
-	JXDkEDwpdyvUvj3QoN9rjxHjcSuOjyI7USXcbK8ufH3RPWhEZEklXk6old5lP0eChYSZpCOoMK9
-	jHz8ZkD79U+Qm4YiWkcaxggsBp/vQB1k=
-X-Gm-Gg: ASbGnctNAxMZoSKqa1ILbQXaeFk7uOsr1TZr2EwZH80C2LzzXiX+yJnLjQ4mg75439n
-	5xFpOB5PryZ4LE4huQqS7qZ+NRdeAyuW+eIW2efdVzioSLO7yinGHNRB0WG/sTp28TMvJ5S6QEe
-	UIwkRB6PwOimfk7dVm3K1i5cMPgNtlEuh+q4cI2QkOV3B8srUl5G17+qrUhapnkluNoIOoTBzDp
-	q2xaC9C
-X-Google-Smtp-Source: AGHT+IFPIwhbMGFzwumJFgEWDp5HfmM1oE91YavrIFuKWbHJMtZXc6O18JEPSbJNATNOBkMBfB1aDm8IoJjXYE6ZKLY=
-X-Received: by 2002:a05:600c:4ecb:b0:459:d3ce:2cea with SMTP id
- 5b1f17b1804b1-45a10b94197mr724745e9.6.1754924929716; Mon, 11 Aug 2025
- 08:08:49 -0700 (PDT)
+	s=arc-20240116; t=1754925075; c=relaxed/simple;
+	bh=7HZKE3O+WT6DDNM9/2drqU5rxj0lRkDaLvloQLzT5lM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hR1eRenMhnnuLDWfl0ETAqQm6ENMQq/h8LhVUH/cuZ063HeVrIednz7NK6LUJkdZXKSy0pPWUJsAH9jSeB5wE3S0vbhGVKC9zi225pZXLd3bxQcTkO2A3TyCq4gBAGj4gTdfVmD0V0/OfOQJJcoBrhb76a8m7yZQqTdCoOz4rz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q02aehD2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93F6C4CEED;
+	Mon, 11 Aug 2025 15:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754925075;
+	bh=7HZKE3O+WT6DDNM9/2drqU5rxj0lRkDaLvloQLzT5lM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q02aehD2d6ncjMmY+jObE7v0Lyo+L5H3Xxy/XR80vOfJESLoOxs+i536u3aStBoX8
+	 s8RTsDXRej/j4IxSVli8GBBOnZZ2Gq+hmeysLS15mrGtoKiO5H2vt28mYxV3nYdDaJ
+	 48bIwUDFDO4E+3DVh73HPqg9i0mmZX8v/UqCEN8lJhPAFkA+zNWg8yh+WZpsrELdxq
+	 aDn+8+zeaApIbAd94JXx0BWSnup4NdVIbCXd3kpBxIDXHXL4CbWyiA+xSf1/sVP2D4
+	 atvuxZgKLZij9aVIUKwpEF4BY7aJuiMhtYy9Y0tpBz6sD4cSCFql6v4ltj6s7uglaF
+	 HtmFfldHq9bIQ==
+Date: Mon, 11 Aug 2025 10:11:12 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Describe on-SoC USB-adjacent
+ data paths
+Message-ID: <y6b5yqjbaz3sya5jg5fmcgivprtybj43eylpftd6z3mamrb737@kua5xzfonnpt>
+References: <20250808-topic-7180_qmpphy_ports-v1-1-718d7c52921a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250808215209.3692744-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250808215209.3692744-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUWo=hYPWPrweoYn5rFC50aV5EV1xqwFHmLp27GRjEADw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUWo=hYPWPrweoYn5rFC50aV5EV1xqwFHmLp27GRjEADw@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 11 Aug 2025 16:08:23 +0100
-X-Gm-Features: Ac12FXzh41CBAYGJYTtCIB8SAaZtRyhBbjbdQizzy-i4NhoC-8oCDnrAWA1TbFA
-Message-ID: <CA+V-a8vW2-YG8=-u3kUcrou+nPVLn2uhE-W+JOHpu9Cahyw2ZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: renesas,usb2-phy: Add RZ/T2H and
- RZ/N2H support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250808-topic-7180_qmpphy_ports-v1-1-718d7c52921a@oss.qualcomm.com>
 
-Hi Geert,
+On Fri, Aug 08, 2025 at 11:20:45AM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Define ports {} for the DWC controller & the QMPPHY and connect them
+> together for the SS lanes.
 
-Thank you for the review.
+Sounds quite reasonable to me, but I can only guess why you think it's a
+good idea. Please start with a paragraph documenting which problem
+you're solving.
 
-On Mon, Aug 11, 2025 at 2:34=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, 8 Aug 2025 at 23:52, Prabhakar <prabhakar.csengg@gmail.com> wrote=
-:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Document the USB2 PHY controller for the Renesas RZ/T2H (r9a09g077) and
-> > RZ/N2H (r9a09g087) SoCs. These SoCs share the same PHY block, which is
-> > similar to the one on RZ/G2L but differs in clocks, resets, and registe=
-r
-> > bits. To account for these differences, a new compatible string
-> > `renesas,usb2-phy-r9a09g077` is introduced.
-> >
-> > The RZ/N2H SoC uses the same PHY as RZ/T2H, so it reuses the RZ/T2H
-> > compatible string as a fallback.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
->
-> > @@ -120,6 +126,17 @@ allOf:
-> >        required:
-> >          - resets
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,usb2-phy-r9a09g077
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 2
-> > +        resets: false
->
-> By the time this hits upstream, you will probably have reset support
-> for RZ/T2H and RZ/N2H, so you just add renesas,usb2-phy-r9a09g077
-> to the conditional section above?
->
-But the above will still be true as MRCTLA/E/I/M register doesn't have
-any bits to reset USB{PHY} or am I missing something?
+Regards,
+Bjorn
 
-Cheers,
-Prabhakar
+> 
+> Leave the DP endpoint unconnected for now, as both Aspire 1 and the
+> Chromebooks (unmerged, see [1]) seem to have a non-trivial topology.
+> Take the creative liberty to add a newline before its ports' subnodes
+> though.
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20240210070934.2549994-23-swboyd@chromium.org/
+> 
+> Suggested-by: Rob Herring (Arm) <robh@kernel.org>
+> Closes: https://lore.kernel.org/linux-arm-msm/175462129176.394940.16810637795278334342.robh@kernel.org/
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 48 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 8f827f1d8515d6113c85a2ecacf7ac364e195242..a0df10a97c7f8aa5cd468c8983e74256490d1d06 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -2897,6 +2897,31 @@ usb_1_qmpphy: phy@88e8000 {
+>  
+>  			#clock-cells = <1>;
+>  			#phy-cells = <1>;
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					usb_1_qmpphy_out: endpoint { };
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					usb_1_qmpphy_usb_ss_in: endpoint {
+> +						remote-endpoint = <&usb_1_dwc3_ss>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +
+> +					usb_1_qmpphy_dp_in: endpoint { };
+> +				};
+> +			};
+>  		};
+>  
+>  		pmu@90b6300 {
+> @@ -3070,6 +3095,26 @@ usb_1_dwc3: usb@a600000 {
+>  				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
+>  				phy-names = "usb2-phy", "usb3-phy";
+>  				maximum-speed = "super-speed";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						usb_1_dwc3_hs: endpoint {
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +
+> +						usb_1_dwc3_ss: endpoint {
+> +							remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
+> +						};
+> +					};
+> +				};
+>  			};
+>  		};
+>  
+> @@ -3384,8 +3429,10 @@ mdss_dp: displayport-controller@ae90000 {
+>  				ports {
+>  					#address-cells = <1>;
+>  					#size-cells = <0>;
+> +
+>  					port@0 {
+>  						reg = <0>;
+> +
+>  						dp_in: endpoint {
+>  							remote-endpoint = <&dpu_intf0_out>;
+>  						};
+> @@ -3393,6 +3440,7 @@ dp_in: endpoint {
+>  
+>  					port@1 {
+>  						reg = <1>;
+> +
+>  						mdss_dp_out: endpoint { };
+>  					};
+>  				};
+> 
+> ---
+> base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
+> change-id: 20250808-topic-7180_qmpphy_ports-e63404331685
+> 
+> Best regards,
+> -- 
+> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
 
