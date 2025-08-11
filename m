@@ -1,193 +1,223 @@
-Return-Path: <devicetree+bounces-203318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF71B20B43
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:08:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D739B20B83
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C019516FB0D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:07:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8058F3B4FD8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F7C222587;
-	Mon, 11 Aug 2025 14:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2231202C3E;
+	Mon, 11 Aug 2025 14:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AzeKLnSC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCnli5jA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4925922257B;
-	Mon, 11 Aug 2025 14:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B291B87F2;
+	Mon, 11 Aug 2025 14:11:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754921173; cv=none; b=NO5Oy08t3Si2XkVBXgTmhKYI9Jv9/YTAFesUYVcBUnBBZixHu2XXrJGl+ulFJfbyMYJrTewOHMJ/ZRz1IQBhoDn/MpakTV98pT0sw3QHC4EPAa2simG779X9cfRxkFL/uqwzkqIKNbTQUjECOmfPBAaRUnAJ8JVNTFs3Bd2vm7s=
+	t=1754921499; cv=none; b=CKHlBGG4/ISvsU23RBlGeIslKLbviECncigXs3tAbZjYi7h3jaFt0uwUzZ2reWONU1AUtHNXAd3+M6D/6zkejEKyjE+y6d8KbNayAlP873vxxmkBRaNL4GWmW2ObATZLvvcCBNw+MQxsW+RUASuagC1HMzexlb6tCkwD7SnmGAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754921173; c=relaxed/simple;
-	bh=Nvh/uOAk/MDfCPBtlZRzdHaHOB6Du08aKJTNs5qDK70=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BXjUEmJqhQEDKo74zPXGJN2xp8IJ99JvP29VkgoTNZk2v0STCSnT62p/mpENhxoAqmYB8Hpqa5MFS6D1htyAgJs5IrXrTPraAjIaZ5moQNfkLilbCev1VY8fdxVQY5VnYO7txp7Im0QV1U/GyKRAMRV3rhMVgNxPEsXJI1BCAa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AzeKLnSC; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b4255b4d8f9so2887773a12.0;
-        Mon, 11 Aug 2025 07:06:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754921170; x=1755525970; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=WNGafiRX+HqlDwS0BXmPS/dqouNRqSHQ14CXdgfNMdI=;
-        b=AzeKLnSCTGYsmHtWCZtfPJElnGzE1Dc3Du1OoL+r8MTOeoq8M+6hBFqiroJWorTqEW
-         0ID/Rcnz1CkDxHeoVq5OD5aZA9BG3dElIt9f7HLUS/j87gCJMmU1LqJk35Xet2PnBubd
-         7oOxapt5a23TXfpEEPi9GOu+6HXdVlrUexJa7ENDy/+UdmpI5zizqzeNsNUHNvul47Qm
-         wC0Ip6OlQoCtYye7I7AZCirtToPmkhyHik84LeE3hyLZswKe//F5Ij/OYxntHUN1nM1n
-         NIl1N2LgOCDycxQGZh7Q0wWgsdDWCNXts8m8j4hqDsQO+gb3dWBURCZCJCKzmrLeBGVH
-         8MCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754921170; x=1755525970;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WNGafiRX+HqlDwS0BXmPS/dqouNRqSHQ14CXdgfNMdI=;
-        b=DXsjMFHiN46K24h+8lCFUrpTwZhmShuNK2xcqO1RGO23rCky40ir23iYv/FDEu+eZv
-         eRrPbeQamR0ZyKrZX5Fu0AVj8ZElCP0gmE1e08Q8Oxx5Mu4DofgK/3HMFEJgAfvn6YmC
-         GZAuk2MQGgQnTWs0uOpxbOu++fdCp0/lh4OKCbmiJ53ykP/xEkeVXb40anf3GNPQBCLD
-         i5ThIHn+M6gyJxWDhQZhMIppcRzbkDfUi90t6S8coSwXAhBArqkIuEUCsaLQ6834qxsl
-         Qc8p4J5JRtlFpltLyK7hiwBgwkoarwT5uKzcILBL9AIo2bj+EXGWYzFR19Xm/2speG22
-         HQWA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmH3eC5cM2ajnQjKRftFuaFQi0zXBPoGw2pWkt+0Fjc9cwkYACUHdZ6zdTg5DyJZzMIUtLqqwGqzO2@vger.kernel.org, AJvYcCVF8sShDh1iwKxx9pGjmwDY7JlZdyIsVZMc7IvHq1U8/rR5bwoA/EIDvmFFi1oRBY32F7hzv36/ColfqZdV@vger.kernel.org
-X-Gm-Message-State: AOJu0YynbXWTEstJqqOyEvY5cff44wgPSdHHOAb5XTdV9OJGTkNtaOn2
-	4bTb6IlxSxyu5PlmSXucrpStSYUAmoF3W2gynFf3LSBhWmTHmDo+tzH3
-X-Gm-Gg: ASbGncuSdzeWXehYUxj+HzCLy+J1LYmXWtVqgGg8LrXdb6ajnGXXk9SYcYaa1qyQQr5
-	CbZlwlnkRZpsjgDUlX/sIhjIU5ubd8CVDFZWlYSdkksVQB4TLZgHblXq4ki93kbQ1ogjGNSN7V1
-	oHdMju42neEuaSrCN3cAr8nHqlvTffGUCxyswCYdPERqs1xJ8XZtghNI2tOYlSCIUj+tcAA/YC5
-	LeJES25RY34+qAcmYbK5z1be4hcxxyB7pEvbTIZE8C26q2u2RphKFrZLC/lG0T9L/jYKULT0n2o
-	OV9iWliCkmNyQ5anf1pEcXfEtc+Nd9b+JfSBAFgLW3Vqbj+BNg67QA3wKvhdtcsHJWn4B8Dlav7
-	1bTvJ6HjIBm2P00Grp4m4vof6JWNFKKmwXTSrtsl9eK+gqeY6KpCzFGYoeMsUR+nlV5atelg=
-X-Google-Smtp-Source: AGHT+IFH/yMh9FGn6earRny56wOPbrDf0S2gGIy9zzNabyq+nzMuKcuLR2dZqSlB+QuwmwPA1v/QuA==
-X-Received: by 2002:a17:902:da83:b0:235:ea0d:ae23 with SMTP id d9443c01a7336-242c1fdc182mr169797985ad.6.1754921170086;
-        Mon, 11 Aug 2025 07:06:10 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef6bcfsm277188645ad.5.2025.08.11.07.06.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 07:06:09 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <551408c6-c468-4ffd-86ee-f93d1cba6a73@roeck-us.net>
-Date: Mon, 11 Aug 2025 07:06:08 -0700
+	s=arc-20240116; t=1754921499; c=relaxed/simple;
+	bh=HC0XY4Rhc7WOuzRzVmyl37sEhdbWKSBnwHufZNs1mlg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hh6uZXrfK3bqxomTSQAr9UWhWpl83rem0TAk1kIOptDymaaW5JMPxkU33Z7enxS1t/TU+tJ6tqQOGa4tfjgrBevyvJdsw+CNcjMtVz3k+gYsXQMv4TUgfb3YrcDlWwbDtmVkf5L+67Kec0NmbV0AclIRm+Oap5dVmTOGhffmGM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCnli5jA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04C30C4CEED;
+	Mon, 11 Aug 2025 14:11:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754921497;
+	bh=HC0XY4Rhc7WOuzRzVmyl37sEhdbWKSBnwHufZNs1mlg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YCnli5jA26zq2pNPHckm2vDfk0UjlenfmUYYa6r4zxT4SvDbqTPGY4e/Xm2uTfzNg
+	 lJbx4VXtQsWqEpP4mvR8bW0qazkFXDdDB+RQ3ZA+/rsyoaFq+I3Mrhpo56v3jU7r9q
+	 mNCGBrZbz5m3YwfzJBfaSkpWwpsqpyyIitgbB5UF8is+j5NT4SghI4DFNcaiRtod2E
+	 VBNLUH0yUHs5ic3z3zAX9hDoHhDk1EKD3xGcBQub25x+4BRdgCrjOEfoN+nIt6dKS8
+	 VXLlVhHtuOBSc8Yaa1WBBfoJfakAJktRvuhamGBuN85S2PE0Bze9VYv0WmpVr2dzzC
+	 xgV/rJFmzNmvQ==
+Date: Mon, 11 Aug 2025 19:41:28 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Harshal Dev <quic_hdev@quicinc.com>
+Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v19 2/6] remoteproc: Add TEE support
+Message-ID: <aJn6EPjXzq07aDTM@sumit-X1>
+References: <20250625094028.758016-1-arnaud.pouliquen@foss.st.com>
+ <20250625094028.758016-3-arnaud.pouliquen@foss.st.com>
+ <d4694157-a757-41f5-8874-4b67b262bc83@quicinc.com>
+ <7c77dba4-27f9-4840-b9aa-253119308519@foss.st.com>
+ <e5a234c7-0f8d-4b52-95fb-82371c8e4460@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] regulator: dt-bindings: infineon,ir38060: Add maintainer
- from IBM
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ninad Palsule <ninad@linux.ibm.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-References: <20250811134703.161941-2-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250811134703.161941-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5a234c7-0f8d-4b52-95fb-82371c8e4460@quicinc.com>
 
-On 8/11/25 06:47, Krzysztof Kozlowski wrote:
-> The infineon,ir38060 binding never got maintainer and fake "Not Me"
-> entry have been causing dt_binding_check warnings for 1.5 years now:
-> 
->    regulator/infineon,ir38060.yaml: maintainers:0: 'Not Me.' does not match '@'
-> 
-> The devices are used on few Aspeed-based IBM BMCs, so maybe recent
-> contributor to these boards - Ninad Palsule - can help here in the
-> maintenance?
-> 
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Conor Dooley <conor.dooley@microchip.com>
-> Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Ninad,
-> Can you confirm that you are ok with maintenance?
-> 
-> Alternatively, if there is still not dedicated maintainer for this
-> hardware, we should drop it along with the drvier. This will break
-> users' setups (e.g. IBM BMC boards), but maybe this will encourage them
-> to find someone to maintain this hardware?
+Hi Harshal,
 
-Oh, please. Just list me as maintainer.
-
-Guenter
-
-> ---
->   .../devicetree/bindings/regulator/infineon,ir38060.yaml         | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, Aug 04, 2025 at 02:56:18PM +0530, Harshal Dev wrote:
+> Hi Arnaud,
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> index e6ffbc2a2298..1267b68217bd 100644
-> --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: Infineon Buck Regulators with PMBUS interfaces
->   
->   maintainers:
-> -  - Not Me.
-> +  - Ninad Palsule <ninad@linux.ibm.com>
->   
->   allOf:
->     - $ref: regulator.yaml#
+> On 8/1/2025 12:53 PM, Arnaud POULIQUEN wrote:
+> > Hello Harshal,
+> > 
+> > 
+> > On 7/31/25 12:25, Harshal Dev wrote:
+> >> Hello Arnaud,
+> >>
+> >> On 6/25/2025 3:10 PM, Arnaud Pouliquen wrote:
+> >>> Add a remoteproc TEE (Trusted Execution Environment) driver that will be
+> >>> probed by the TEE bus. If the associated Trusted application is supported
+> >>> on the secure part, this driver offers a client interface to load firmware
+> >>> by the secure part.
+> >>> This firmware could be authenticated by the secure trusted application.
+> >>>
+> >>> A specificity of the implementation is that the firmware has to be
+> >>> authenticated and optionally decrypted to access the resource table.
+> >>>
+> >>> Consequently, the boot sequence is:
+> >>>
+> >>> 1) rproc_parse_fw --> rproc_tee_parse_fw
+> >>>    remoteproc TEE:
+> >>>    - Requests the TEE application to authenticate and load the firmware
+> >>>      in the remote processor memories.
+> >>>    - Requests the TEE application for the address of the resource table.
+> >>>    - Creates a copy of the resource table stored in rproc->cached_table.
+> >>>
+> >>> 2) rproc_load_segments --> rproc_tee_load_fw
+> >>>    remoteproc TEE:
+> >>>    - Requests the TEE application to load the firmware. Nothing is done
+> >>>      at the TEE application as the firmware is already loaded.
+> >>>    - In case of recovery, the TEE application has to reload the firmware.
+> >>>
+> >>> 3) rproc_tee_get_loaded_rsc_table
+> >>>    remoteproc TEE requests the TEE application for the address of the
+> >>>    resource table.
+> >>>
+> >>> 4) rproc_start --> rproc_tee_start
+> >>>    - Requests the TEE application to start the remote processor.
+> >>>
+> >>> The shutdown sequence is:
+> >>>
+> >>> 5) rproc_stop --> rproc_tee_stop
+> >>>    - Requests the TEE application to stop the remote processor.
+> >>>
+> >>> 6) rproc_tee_release_fw
+> >>>    This function is used to request the TEE application to perform actions
+> >>>    to return to the initial state on stop or on error during the boot
+> >>>    sequence.
+> >>>
+> >>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> >>> ---
+> >>> Updates vs version [18]:
+> >>> - rework/fix function headers
+> >>> - use memremap instead of ioremap for the resource table.
+> >>> - realign comments to 80 chars limit, with few exceptions for readability
+> >>> - replace spinlock by mutex and and protect APIs from concurrent access
+> >>> - add support of 64-bit address in rproc_tee_get_loaded_rsc_table()
+> >>> - Generalize teston rproc_tee_ctx.dev to prevent an unbind
+> >>> - update copyright year
+> >>>
+> >>> Updates vs version [17]:
+> >>> Fix warning:
+> >>> warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
+> >>> ---
+> >>>  drivers/remoteproc/Kconfig          |  10 +
+> >>>  drivers/remoteproc/Makefile         |   1 +
+> >>>  drivers/remoteproc/remoteproc_tee.c | 708 ++++++++++++++++++++++++++++
+> >>>  include/linux/remoteproc_tee.h      |  87 ++++
+> >>>  4 files changed, 806 insertions(+)
+> >>>  create mode 100644 drivers/remoteproc/remoteproc_tee.c
+> >>>  create mode 100644 include/linux/remoteproc_tee.h
+> >>>
 
+<snip>
+
+> >>> +
+> >>> +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> >>> +{
+> >>> +	/* Today we support only the OP-TEE, could be extend to other tees */
+> >>> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
+> >>> +}
+> >>> +
+> >>> +static int rproc_tee_probe(struct device *dev)
+> >>> +{
+> >>> +	struct tee_context *tee_ctx;
+> >>> +	int ret;
+> >>> +
+> >>> +	/* Open context with TEE driver */
+> >>> +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
+> >>> +	if (IS_ERR(tee_ctx))
+> >>> +		return PTR_ERR(tee_ctx);
+> >>> +
+> >>> +	ret = mutex_lock_interruptible(&ctx_lock);
+> >>> +	if (ret)
+> >>> +		return ret;
+> >>> +
+> >>> +	rproc_tee_ctx.dev = dev;
+> >>> +	rproc_tee_ctx.tee_ctx = tee_ctx;
+> >>> +	INIT_LIST_HEAD(&rproc_tee_ctx.sessions);
+> >>> +	mutex_unlock(&ctx_lock);
+> >>> +
+> >>> +	return 0;
+> >>> +}
+> >>
+> >> As you mentioned above, this could be extended to other TEEs. If so, is it possible for probe
+> >> to be called multiple times if we we have other TEE devices exposing the firmware authentication
+> >> service? In that case, I think rproc_tee_ctx should be dynamically initializated instead of being
+> >> static. And since we are creating a link between the Rproc device and TEE device, a call to a
+> >> function like rproc_tee_start() could retreive the associated TEE device, and then the associated
+> >> rproc_tee? :)
+> > 
+> > I have never seen a use case that requires multiple instances, but perhaps you
+> > have some?
+> > 
+> > We can expect only one TEE, which could be OP-TEE, Trusty, or another.
+> > The device is associated with a unique UUID, so only one instance is expected.
+> > 
+> > That said, making this driver support multiple instances seems like a valid
+> > future enhancement. However, I would suggest implementing it as a second step
+> > when there is a concrete need.
+> > 
+> 
+> My thought process on this stems from 1) the recent ARM FF-A developments and 2) from the current
+> implementation of the TEE subsystem which allows multiple back-end drivers to register themselves
+> via the tee_device_register() API. This means, that it's possible to have a configuration
+> where a platform supports multiple TEEs running as Secure Partitions via FF-A, and each of those
+> TEEs register their services as PTA devices on the TEE bus.
+> 
+> However, I do not really know if it's possible to have a UUID collision in such a case, which
+> would lead to rproc_tee_probe() being called twice above, which is why I raised this question. :)
+> 
+> All of this aside, I realize now that other TEE client drivers are also implemented with a static
+> private data similar to how you are doing it. So perhaps we can think of this as a later
+> enhancement if we believe that the scenario I am describing is not possible in the near future..
+>
+
+Theoretically it is possible for multiple TEE services to be there but
+why should a platform/silicon vendor require 2 redundant remoteproc firmware
+loading services to be supported? It should either be a service hosted
+by the trusted OS or can rather be an independent platform service
+running as a FF-A secure partition.
+
+-Sumit
 
