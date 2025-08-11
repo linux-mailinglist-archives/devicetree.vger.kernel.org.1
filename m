@@ -1,156 +1,123 @@
-Return-Path: <devicetree+bounces-203149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60913B20222
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:45:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B68B2022C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:48:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16B37420F2B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:45:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97DAA16DE30
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:48:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D5F2DC345;
-	Mon, 11 Aug 2025 08:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC8012561AB;
+	Mon, 11 Aug 2025 08:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dbSZf/yP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0SSgRgm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B4E62DAFB0
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7F91DF977;
+	Mon, 11 Aug 2025 08:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754901898; cv=none; b=SFF0lEQHBF90V1isIcYNi1iDvZ4d9cM4WGkjvZPC+ck6YsRn7pnj1jnS34oe+mE0CnxFCov+04V0vapjYyPdKQcqRUZJwoTni5wLXSunSLTWPlIZ3SvebXR2Jd5rw7tY1xDAQXWz5gekYx7yxD28bfWyJdA94+ljqXY5DQ4KoD4=
+	t=1754902094; cv=none; b=HQXhDRr8WGj/YyokH7Wdy1ExYKh1Vw3SzXZtvy7IXVrkpYm/xX7ougtdT3kaKaoKg0vUrx3VFXK392eSp+AM/sgorsSUyZu7/N/7ShOW+/JkVVbsCuja1j5D+rQfCHCFAxoRuCFUesDhJAzVVSeiDC7Et95wthIr2T88DW1+RkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754901898; c=relaxed/simple;
-	bh=axV6IrUwDJX16qYfVuK28rUUUeMC+FC9Cbf6mRURXWw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UOf7Ws41s0DZs4d4hG1QFtwLQLzqO793LhonUUzQsDb6pDD+R9XBSATb3n7kshJ5+4p3cmXSzwQqTuX8woaT7cpu1mZ1wmkPy9Z7JGkvw7uT0m0Be3DUsPTXSqtJ4it6PhpYyt+njTrWDIBBtRkq+lVbynxNkPYJgN2Lef/MRcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dbSZf/yP; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76aea119891so4795141b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754901896; x=1755506696; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Cv/RLSsqKmx2C79kAK3hgUWMXi5KhDOAjUstrHLjrU=;
-        b=dbSZf/yPvJ1v+rPJm2Nk8f9GYgcz1iiOsIRdXqtI/XlC9a3s8V4qFtkB7CEPA1+ilU
-         5UNYFTpHwoodfd5zMO5O8zWNf6RfEA00bgroO/onhr97I4EdQGnk3CeenhXrd0wAO7rq
-         AzQ9biJOfadOSfVkeE84+J26GaitQNAo9cnthsQ5bZ3Xj2yqQfIql1fG1r0e8LfNnmOk
-         Gx8J37y3BhLjdNhdu7wKnL7Hgt7W+xrbo9r2jOJ1cooqW/PnYr72j8v4rUkajC6d3myJ
-         ltgc9msYJrzvmzOR+oz5yf+Ga+DRHR6mpKgY/XtOf9YavH7iXnCM2VD8f5xVS+pJufvJ
-         c36Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754901896; x=1755506696;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2Cv/RLSsqKmx2C79kAK3hgUWMXi5KhDOAjUstrHLjrU=;
-        b=UsHcrlHgHINIUaH9Sa9XuWTTS5ca6w2lEEfwTuBnaG3P646eQngMt+Hni2WVg9tPBp
-         AhFs7eleloqCjdkWxfEm71x0fPh9+sinPzP1unIIsH5Yzyo35JA9v8+2ydHtTHuIxZoc
-         MYCTHS1DynrMcpL6cVdAqanA64aN8PXKN2E6rGr1BtHk3RFUCHL1Kw6p8QjUWKMiX7F5
-         m/E0ciZHN8sdPzqB6DfqaujdAAFIHab2jgbDTVXSzqyvpmXh9oXl1J0NnuD53fhbaiT3
-         i0/fTLkGC55tJ69CS7lZd+o6QnLmuGufCdVvufr3Fnnpgau8Ktk3I4TlKw/eAUKr25pt
-         VmxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTk87dsfXJFZQZM12Zl09HqoGTMXQiCrCn3NHGSc+1B0OVVpbfeYZY1N51im6Zp/7g75KnJDbHhTSy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi//A8KS4XWrfItfZ1tw0PR4My20mr1EWnWYjq6Min7q0wORRv
-	C9f8xLrOEYQ+Z0e9ofEUB1HedKAv3W2dOTH1KwUbNIEhfhiG5uTuT4b9PiqprdQHf0U=
-X-Gm-Gg: ASbGnctcRu5/qC3R+wUgdfWhkV+B/06a4v9KdinrnjwxDFDS1WMpFxNmlcHT2YuPASZ
-	4Fs4mEH3AkqXUB0SfaVpJ3Gb8FJ8LJ2q1WCWXByKDCOx25PyKc9j9riTQu/OufWNyc0F4pwz+rN
-	5430CYLgP17zawVmOYrd2LU7BB0NugqsGQ199/9AXlN9t+BcP+sGe/bK4Oyj/lxO0UBo+sTVpsY
-	B9LuPTQiHzS5XP19sc3v3HmK8Ke1ViLMzauQplLJgyP2cKA6w4dmAhS/RxHUTHXwtyXPXbu5GNG
-	q/qhmZtx30+KCPeDkbSmadCaCJ9VQfDCKjwunblDiybUBeQv0GcgnD7dy9mY38O4eJ7yYB3bn7c
-	CZL2ysW4ZdlZPPKre6Ff9kp+R
-X-Google-Smtp-Source: AGHT+IFy8OLOJxDiWjWxN2vnbqxED9SLo1xlCRWSc/+yGzHbtDgkIgFFmU48b8h75I37s18jKrFjyA==
-X-Received: by 2002:a05:6a20:12c9:b0:238:abe:6363 with SMTP id adf61e73a8af0-240412d3d1bmr28944777637.14.1754901896198;
-        Mon, 11 Aug 2025 01:44:56 -0700 (PDT)
-Received: from localhost ([122.172.87.165])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b422bac0d6csm22123918a12.38.2025.08.11.01.44.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 01:44:55 -0700 (PDT)
-Date: Mon, 11 Aug 2025 14:14:53 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/3] opp: Add bw_factor support to adjust bandwidth
- dynamically
-Message-ID: <20250811084453.ocibslv6kxkib6po@vireshk-i7>
-References: <20250717-opp_pcie-v1-0-dde6f452571b@oss.qualcomm.com>
- <0dfe9025-de00-4ec2-b6ca-5ef8d9414301@oss.qualcomm.com>
- <20250801072845.ppxka4ry4dtn6j3m@vireshk-i7>
- <7bac637b-9483-4341-91c0-e31d5c2f0ea3@oss.qualcomm.com>
- <20250801085628.7gdqycsggnqxdr67@vireshk-i7>
- <7f1393ab-5ae2-428a-92f8-3c8a5df02058@oss.qualcomm.com>
- <20250804111340.t62d4y2zg77rr3rp@vireshk-i7>
- <6035a961-7c5a-4fde-b4ea-e9ea9d88e6c1@oss.qualcomm.com>
+	s=arc-20240116; t=1754902094; c=relaxed/simple;
+	bh=sPjg+h2SttEo8xH0kwTdqtlRqB886+Ii/S4Rj9LXuaQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UjG2OMPIjH1PPWfATp2uybVehnajQTt0iCHKhK8ICLE9fTX9gISk/HPl1lDOcWTYy3DhdrG6Rl9wHX5UFakziSKY2yFvtk+TyBs6mgTTSjj23V8zG2dw0j3Is769Ve7Vq20RP/W1kDzZHBvT4w77YTn9nplL5nQ/SKnLTKBddA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0SSgRgm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7109DC4CEED;
+	Mon, 11 Aug 2025 08:48:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754902094;
+	bh=sPjg+h2SttEo8xH0kwTdqtlRqB886+Ii/S4Rj9LXuaQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r0SSgRgmfayjBC3g16i25zRmOLwqI5o5y2+U0IhR7PxnCDkq2X/zcFyZ+RIRbAlGG
+	 7klbbTCaOwT8bNAgoVT77aLanCy/mhSLcqutyBRBvo7t8Jo9kTB2Rd70a+Jr3AN9/F
+	 fVfWckL6luTbzxoSFBmW0++yYzGqVrOwEkCDhBBsilcJHYpfUxyIwusle/zt9487Ps
+	 zMNxJP32/gY5BO/LBUsXRgXuFksZN6UAHlcpgf7Uft9aNR4BGFtmJHM9pz0pt3au25
+	 418V7u44nUvsbjUTqHEznZNkX7GR/2IdddVi10krsuh9O7ZWtz8f+Rdw6HL0GRoAP3
+	 bnAdU7au5UzuQ==
+Message-ID: <91d05d08-e5be-47d1-a18c-bae972d8eb95@kernel.org>
+Date: Mon, 11 Aug 2025 10:48:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6035a961-7c5a-4fde-b4ea-e9ea9d88e6c1@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] ASoC: dt-bindings: realtek,alc5623: convert to DT
+ schema
+To: Mahdi Khosravi <mmk1776@gmail.com>, devicetree@vger.kernel.org
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250811080940.7909-1-mmk1776@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250811080940.7909-1-mmk1776@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Sorry for the delay, I was travelling a bit recently.
+On 11/08/2025 10:09, Mahdi Khosravi wrote:
+> Convert alc5623 audio codec binding to DT schema.
+> 
+> Also add "realtek,alc5621" to the compatible list for
+> existing use in kirkwood-t5325.dts.
+> 
+> Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
 
-On 06-08-25, 10:35, Krishna Chaitanya Chundru wrote:
-> On 8/4/2025 4:43 PM, Viresh Kumar wrote:
-> > On 01-08-25, 15:05, Krishna Chaitanya Chundru wrote:
-> > > Currently we are fetching the OPP based on the frequency and setting
-> > > that OPP using dev_pm_opp_set_opp().
-> > > 
-> > > As you are suggesting to use dev_pm_opp_set_prop_name() here.
-> > > This what I understood
-> > > 
-> > > First set prop name using dev_pm_opp_set_prop_name then
-> > > set opp dev_pm_opp_set_opp()
-> > > 
-> > > if you want to change above one we need to first clear using
-> > > dev_pm_opp_put_prop_name() then again call dev_pm_opp_set_prop_name
-> > > & dev_pm_opp_set_opp()
-> > 
-> > dev_pm_opp_set_prop_name() should be called only once at boot time and not
-> > again later on. It is there to configure one of the named properties before the
-> > OPP table initializes for a device. Basically it is there to select one of the
-> > available properties for an OPP, like selecting a voltage applicable for an OPP
-> > for a device.
->
-> Then we can't use this dev_pm_opp_set_prop_name(), there is possibility
-> link width x1, x2, x4 etc can also change at runtime.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hmm, looking at the way you have implemented the bw multiplier, you
-are going to call that every time you need to change the OPP
-configuration. That doesn't look nice TBH. Such configurations are
-normally provided via DT or are configured once at boot and not
-touched after that. What you are basically doing is something like,
-adding a single OPP in DT and changing the OPP frequency right before
-setting it at runtime.
 
-FWIW, you are allowed to add multiple OPPs with same frequency value
-but different bandwidths or levels. I think you should use that and
-correctly describe the hardware first (which is the step in the right
-direction). And then you can find the right OPP at runtime and send a
-request to configure it. That way we can avoid adding hacks in the OPP
-core.
-
--- 
-viresh
+Best regards,
+Krzysztof
 
