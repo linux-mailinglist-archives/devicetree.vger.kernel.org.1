@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-203116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0D7B200D9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11458B200EB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14783188F5B8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:53:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34AC8189634C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B312DAFBD;
-	Mon, 11 Aug 2025 07:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F412D8793;
+	Mon, 11 Aug 2025 07:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c3xoNAGG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqY+U/0g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DB72DAFB5;
-	Mon, 11 Aug 2025 07:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20E6C142E83;
+	Mon, 11 Aug 2025 07:55:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754898743; cv=none; b=Zw2HPI1nKkiA+3gaBCVVi9g7lJ2ZZ41XpaFUbe6QhNW/YwOP9Ia1TV5iOuQeJcXc7VqSPlUsfIPF0VF2CQTU7uPIyLiPHCz0uTl6jU1x6wnneLC2KA8p4cFsnra6BF/21JeZpBxSHSihVNHkBucj9Fc2Bbug+13NAaGA/42UHcQ=
+	t=1754898905; cv=none; b=umvtjNEs6FA5XoCkK3LYzsmnJtZ/QonOk297u+xpsGIV/97SFe0tZdonpTH3tLMIUFHgbROnpMd1nPPok2gmz/OZA1c3ccgQMBMP7A8DpUiACBI/InxtnbzzuvrITvOKMX/KB6IVSJAQPiipuYoPo8h8Q6+zhnmNGAWYuJGJQRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754898743; c=relaxed/simple;
-	bh=+BLSntymQrh/XkLGtypJrfw1XGjtmza1kggD9wXIN/s=;
+	s=arc-20240116; t=1754898905; c=relaxed/simple;
+	bh=T6S5RGpXvEebt20lVpqzNu6jotmv7zyrpQ5ocjd9L10=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dpOCeFcs3SYx+stvo9FbfE1WYGQVW0wzQo+AFUez1JzBqtN3Eua3fW5YU1b5GInt0YnjKCUYch6RHNnvQrsF5NrT7BSe3LyssDW0YgA5JHuBuoM6wZ4+Wn1nMs9kspebV1ojIlM7jJvnieWJ8vb52k5+y2UYnH1kMXTNOfngWAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c3xoNAGG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2789C4CEF1;
-	Mon, 11 Aug 2025 07:52:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=T8PljFc7A5jQ60LO0T/cqgMyjwRryaGVe+Zva0ZYnGeqkXmVtOI31CFtQjtwoX2P5p/94+qlrl39dAX100dx/9dtNLSnIZnsifi3GdAXdHr89oLGZQK8UpxZE2Pik9teZS8Gh8l4kKMIZapeX42ShOvvgPA4qfhu1IlFkIfngk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqY+U/0g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2C6DC4CEED;
+	Mon, 11 Aug 2025 07:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754898743;
-	bh=+BLSntymQrh/XkLGtypJrfw1XGjtmza1kggD9wXIN/s=;
+	s=k20201202; t=1754898904;
+	bh=T6S5RGpXvEebt20lVpqzNu6jotmv7zyrpQ5ocjd9L10=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c3xoNAGGbBNP16XXgIDYcgwJd9nwpp7WrxtkkARd2jjqlGYdgVvAW7yRKCBgy4Rdq
-	 M5at+getsjQyZrr1zDnGMPVAgkJnrvWG7GT1DmeO1ZpQT7l+qC/EIkdVms2N+fm4KC
-	 +p1ZVXt7G6V5YzMfswmlYf8QN5OGHEJ6jorFpbvCPPqSfLhKMro8dWUpQVwLZlWFp7
-	 54u3+f9Vab1ZYWYP9PF6iCHDXSdTOeTOrOkgdeuKx2ieFHH8ivBgegaelFB3zUdrK7
-	 id2rntASo0QuOuceEZec6vuN/kshdYGtk5BBA90nR3rAN87MtGoac6JkEEtMWOA2KO
-	 qDbgYyRAy/rkQ==
-Date: Mon, 11 Aug 2025 09:52:20 +0200
+	b=oqY+U/0gvevmegRF7Xt5jlEtg6Wcj7bSH1HlacearcGr1diJGXrkNgb+Tc+ThIqFM
+	 tfcjQb82VVGZekDiJfDUm9ttU+tdDcHRo+aj3JqP7q9hMt3AZX5l7xAYMN0XQ8q2E0
+	 oD5GjOLbrNEzqbHusdNzCYKPbIJFVcwJKgmBiMuxNhMqnWxGUBsI3EFDaBlL847J4H
+	 HaKG9WD7FwBHj6kHxCgt/WS9VxsXFu8ZGJ0uFxCgH9tfuYS1mO+meRu0N9+qHaeYli
+	 h9tGyIYM6xu9BBeJ6njlwK/z6NwLoHK28Wd47WPQC0y2lngVnYWgSeUjjcV6G5fsIh
+	 /jB4j/Rr5VV/A==
+Date: Mon, 11 Aug 2025 09:55:01 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jay Liu <jay.liu@mediatek.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 4/6] dt-bindings: display: mediatek: disp-tdshp: Add
- support for MT8196
-Message-ID: <20250811-boisterous-skinny-ammonite-a4ca7b@kuoka>
-References: <20250808125512.9788-1-jay.liu@mediatek.com>
- <20250808125512.9788-5-jay.liu@mediatek.com>
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org, vikash.bansal@nxp.com, 
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+Message-ID: <20250811-bittern-of-abstract-prestige-aaeda9@kuoka>
+References: <20250808132033.3996614-1-aman.kumarpandey@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,102 +59,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250808125512.9788-5-jay.liu@mediatek.com>
+In-Reply-To: <20250808132033.3996614-1-aman.kumarpandey@nxp.com>
 
-On Fri, Aug 08, 2025 at 08:53:59PM +0800, Jay Liu wrote:
-> Add disp-tdshp hardware description for MediaTek MT8196 SoC
->=20
-> Signed-off-by: Jay Liu <jay.liu@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,disp-tdshp.yaml | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,disp-tdshp.yaml
-
-We expect filename based on compatibles (see writing bindings).
-
->=20
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-disp-tdshp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek,disp-tdshp.yaml
-> new file mode 100644
-> index 000000000000..94aa33a2a5ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp-td=
-shp.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,disp-tdshp.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Fri, Aug 08, 2025 at 04:20:32PM +0300, Aman Kumar Pandey wrote:
+> +        hub@70,236153000c2 {
+> +            reg = <0x70 0x236 0x3000c2>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            assigned-address = <0x50>;
 > +
-> +title: MediaTek display 2D sharpness processor
+> +            cp0-ldo-microvolt = <1800000>;
+
+So you just duplicated regulators?
+
+> +            cp1-ldo-microvolt = <1800000>;
+> +            tp0145-ldo-microvolt = <1800000>;
+> +            tp2367-ldo-microvolt = <1800000>;
+> +            tp0145-pullup-ohm = <1000>;
+> +            tp2367-pullup-ohm = <1000>;
+> +            cp0-io-strength-ohm = <50>;
+> +            cp1-io-strength-ohm = <50>;
+> +            tp0145-io-strength-ohm = <50>;
+> +            tp2367-io-strength-ohm = <50>;
+> +            cp0-supply = <&cp0>;
+> +            tp0145-supply = <&tp0145>;
 > +
-> +maintainers:
-> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +            regulators {
+> +              cp0 {
+
+Messed indentation
+
+> +                regulator-name = "cp0";
+> +                regulator-min-microvolt = <1000000>;
+> +                regulator-max-microvolt = <1800000>;
+> +              };
 > +
-> +description: |
-> +  MediaTek display 2D sharpness processor, namely TDSHP, provides a
-> +  operation used to adjust sharpness in=C2=A0display system.
-> +  TDSHP device node must be siblings to the central MMSYS_CONFIG node.
-
-Heh? Why would this have to be a sibling? This is really odd, because
-you cannto actually rely on that.
-
-You just added unverifiable unusual ABI with no explanation.
-
-
-> +  For a description of the MMSYS_CONFIG binding, see
-> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> +  for details.
+> +              cp1 {
+> +                regulator-name = "cp1";
+> +                regulator-min-microvolt = <1000000>;
+> +                regulator-max-microvolt = <1800000>;
+> +              };
 > +
-> +properties:
-> +  compatible:
-> +    items:
-
-Drop, just enum.
-
-> +      - enum:
-> +          - mediatek,mt8196-disp-tdshp
+> +              tp0145 {
+> +                regulator-name = "tp0145";
+> +                regulator-min-microvolt = <1000000>;
+> +                regulator-max-microvolt = <1800000>;
+> +              };
 > +
-> +  reg:
-> +    maxItems: 1
+> +              tp2367 {
+> +                regulator-name = "tp2367";
+> +                regulator-min-microvolt = <1000000>;
+> +                regulator-max-microvolt = <1800000>;
+> +              };
+> +            };
 > +
-> +  clocks:
-> +    maxItems: 1
+> +            target-port@0 {
+> +                reg = <0x0>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                mode = "smbus";
+> +                pullup-enable;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
+> +                eeprom@57 {
+> +                    compatible = "atmel,24c32";
+> +                    reg = <0x57>;
+> +                    pagesize = <32>;
+> +                    wp-gpios = <&gpio2 2 0>;
+> +                    num-addresses = <8>;
+> +                };
+> +            };
 > +
-> +additionalProperties: false
+> +            target-port@2 {
+> +                reg = <0x2>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                mode = "i3c";
+> +                pullup-enable;
 > +
-> +examples:
-> +  - |
-> +
+> +                sensor@68,39200144004 {
+> +                  reg = <0x68 0x392 0x144004>;
+> +                  assigned-address = <0xa>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4262e8d833c4..b33e90030188 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15477,6 +15477,14 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+>  F:	sound/soc/codecs/tfa989x.c
+>  
+> +NXP P3H2X4X I3C-HUB DRIVER
 
-Drop blank line
-
-> +    soc {
-> +      #address-cells =3D <2>;
-> +      #size-cells =3D <2>;
-
-messed indentation
-
-> +
-> +      disp-tdshp@321e0000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetr=
-ee-basics.html#generic-names-recommendation
-
-e.g. image-processor
+Does not look ordered according to rules in this file.
 
 Best regards,
 Krzysztof
