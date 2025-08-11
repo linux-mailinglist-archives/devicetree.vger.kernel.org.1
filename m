@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-203427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EF66B214A9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:43:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B49B214B4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:44:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7098626B21
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:43:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8288A3E4251
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE852E5B0F;
-	Mon, 11 Aug 2025 18:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5442E7161;
+	Mon, 11 Aug 2025 18:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m66Hl3Fu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1yVSjAa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319C82E5B0C;
-	Mon, 11 Aug 2025 18:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A7C2E62D6;
+	Mon, 11 Aug 2025 18:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754937683; cv=none; b=ucPmCLPJMPIHzpdhKKMkjRy9XOUsieP5atkiSVvo1Bj8lIU/SpUyhcGdvLMLMkS4EnjXx4GCFUH1Ok1WpWCR+0CZ8lA34enVWw90xMs6piLSs336uoCmMDaZqAry2jMdIA6aUnv9sRCqmURkJJZvzE0k7A24wTqpOGFIFYEAlOo=
+	t=1754937686; cv=none; b=TLl3v7y4pWh8NOd3IIiBn1vBvtyrZY2rda1gdMm3YI93nOF9mtnpa8tcGFkAfRrzpTeu5gyC6tR1r5N69EOQA8wtjh7WWnhAZwLbeuuDq6qpwPkVzB48PGyfF9S/QeEykmjCteo8e9VD3IWnUN37OpLWOIfRzrUv6U50+iPl3B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754937683; c=relaxed/simple;
-	bh=GEn7wYSJ8QPZM6/NRVy/VEuhEHI2ARJZUVO5Wbt3JHU=;
+	s=arc-20240116; t=1754937686; c=relaxed/simple;
+	bh=nGLBk0spJ4rOZY3aTd42CMFaNUpB8EMZ6f1cMvAXNIE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JSwzAiyIxNnf7ypWTAAggF2W1AZ0OPOI+uCitdxZbc8LT8eniQo/NeCSpWRjhil2EkN3LYhS0BReUfPIROhyKy34j0TlSWRHxWMk8wzxLXt43FO/3R4/+IrZfo8B9i6ab3op9Ja2ZdMPrfWYrBW6JLFoS+J8G7c2GO+LPM761RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m66Hl3Fu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1967DC4CEF8;
-	Mon, 11 Aug 2025 18:41:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ACdEwyn2SWVodMtQ4jG+cHNXgLJLJcCC1xIWCZtqthExGGZi6EhUyr9rsyTBSZrnwBf4Qruca1SdBPKwdwEg6+KG4xIuz72ql5bm2u12MswTj2AEr1FuzhT+WxzK0JMHGNdSgeF3z2nxbb+8pVooKNdrVRVnshi49fchHjLcswg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1yVSjAa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFEF2C4CEF8;
+	Mon, 11 Aug 2025 18:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754937682;
-	bh=GEn7wYSJ8QPZM6/NRVy/VEuhEHI2ARJZUVO5Wbt3JHU=;
+	s=k20201202; t=1754937686;
+	bh=nGLBk0spJ4rOZY3aTd42CMFaNUpB8EMZ6f1cMvAXNIE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=m66Hl3FucW+CVLnF8/sRXq2mhfEP8Xuuu/TaDkO74hW8SKlfWxEy/b2WmujzJQwRM
-	 cTPYVMOGY+RNGgwTtstadK8Hn/2FB8y5OvLVAiJpgSF57U/NoAkp+4Gma4SWrRfMhw
-	 8tek6xrwTBD6TToqaLmEyGGh4+TK79UQEJTDqo3GVswOjlDhx6iV4NhOtLZ7EWLYup
-	 IU6KSctzIsPNW6TvwdWypI8AtzHTHZoErJfz8nqIARXP/HQe1AalUrvtgiF7qVDWLx
-	 MmwCLSKEEqEID6iowDxgdVvgB3Ia/d3nF3hcDgrsCnN+F+4Z5DPGwqr1Tyw7Q1ZnyS
-	 17xvyAI26SlKg==
+	b=M1yVSjAamOi4rOwqFWtPmYUiXXzpdpu/Uz0ObAvrONL5N3hOl2SJHVRwWd/jMBo1Q
+	 J6kZAajEVixs8ZXo3uYBd+jS4cSOvD206SdDXE8+ReFZXeEeOtLxcPhIuqPJwwVWpf
+	 Z8lz4Sje1hr4rut9lXvqzZBMbJV6LwEvKbnE2z7YIO8u6ReawMfSoTt//lb4pUKyW4
+	 yrt1JAv01ok/q/jYGf2tTchITmA3a1ZXI+ceYzHG90tPCYHaVqsVi6iMRqXd8YaS30
+	 EgJEmjWfs5npw/YLjI8OX70lbsNOnzC5Nc3jdxV4RXyxb7ivCttVfrcEBTMmRd2QDW
+	 Vp83KwBj39AXA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm6350: Add rpmh-stats node
-Date: Mon, 11 Aug 2025 13:41:01 -0500
-Message-ID: <175493766095.138281.496052462562156095.b4-ty@kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: dts: qcom: sm8[56]50: flatten the primary usb controller node
+Date: Mon, 11 Aug 2025 13:41:05 -0500
+Message-ID: <175493766081.138281.16232235662724197490.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250801-sm6350-rpmh-stats-v1-1-f1fb649d1095@fairphone.com>
-References: <20250801-sm6350-rpmh-stats-v1-1-f1fb649d1095@fairphone.com>
+In-Reply-To: <20250811-topic-sm8x50-usb-flatten-v2-0-0bbb3ac292e4@linaro.org>
+References: <20250811-topic-sm8x50-usb-flatten-v2-0-0bbb3ac292e4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,16 +66,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 01 Aug 2025 15:40:59 +0200, Luca Weiss wrote:
-> The qcom_stats driver allows querying sleep stats from various
-> remoteprocs. Add a node to enable it.
+On Mon, 11 Aug 2025 14:25:16 +0200, Neil Armstrong wrote:
+> Flatten USB Controller node on SM8550 & SM8650 to move away from legacy USB
+> Qualcomm glue driver and make use of new one.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sm6350: Add rpmh-stats node
-      commit: 9af6151b00528b0a7298aa3addb122600e514b1b
+[1/2] arm64: dts: qcom: sm8550: Flatten the USB nodes
+      commit: 33450878adfc9d6bfd9cd2da2135b7fd33f2a4fe
+[2/2] arm64: dts: qcom: sm8650: Flatten the USB nodes
+      commit: 77e1f16b930221b427ec24c634703388a64175af
 
 Best regards,
 -- 
