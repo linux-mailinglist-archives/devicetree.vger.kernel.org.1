@@ -1,180 +1,211 @@
-Return-Path: <devicetree+bounces-203125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B32DB2010C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8591DB20113
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFFEE7AAE2E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:59:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90FC57A9DA7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378682DA760;
-	Mon, 11 Aug 2025 08:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3203E2DAFBF;
+	Mon, 11 Aug 2025 08:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BST4RaTp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4qTbBJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EDA20B7F9;
-	Mon, 11 Aug 2025 08:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA2D2DAFCA;
+	Mon, 11 Aug 2025 08:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754899260; cv=none; b=bXR6mb7d6CWIJ3+VQ1dFwCIGYUdKRFV3Hw0Pt1VjkD18f7QkdLwaaR5vWowQg9DHP6V7jsZhoB9bmiynvNxzXvQmSiaOdynu8J33TOQR9iEsl4joKD94qLqAa2JoPIZ1UO4stm61P/sMGBhHOTwdth2nhEzL3e7kV8nH3qDa3D8=
+	t=1754899298; cv=none; b=OfUiCVGK87qgfi4jRMZmN4SmG4OkMWte5xI2rMYCOVrzQysmIcyDGDPbkeF5Ed6ISGJ13ox3sUTUtOUk2gYb4//E/rhb5IHbonN/01WB/+L3RMpkSgx2PLpvrFOS6yEpASu+7ecF7cC0R5U2EhzkGF3yYo+pIifB2gmyrSumquE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754899260; c=relaxed/simple;
-	bh=srkUTP+YUtpEUUTBY0f0QKZb5Nq7ktoTvVw8gPJrI4w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q1NS7tiCT6ow5OXelFcyuVNwyGcoIIjWdvu7yECHFhStExnVr+3MYVerm/H3HHmtVOmhkfmHyJSrPCvmLhaAk/hrJJuBAkNgnGu8pdolNygJ2NdPhj1mr/7wRNVxhdpDaOWIrE5B2TQYR08TVz4xNIwixlLDtVZ8Pj6GtkXFQZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BST4RaTp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9DEC4CEED;
-	Mon, 11 Aug 2025 08:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754899259;
-	bh=srkUTP+YUtpEUUTBY0f0QKZb5Nq7ktoTvVw8gPJrI4w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BST4RaTpjHP8ItttfIowfKeh0pqkoeEBV4Vnoq4Oz8gDhVzuBRcgJBFGNzis6dgHl
-	 vCfir7NSUpdKq4mzd6cQSwrZGWqE5AaaYDDuHDgnNYOxNDwVXdfNAXTgwv9h4iRfsZ
-	 aekPgle3MI50jEWQDSwU5jkM9WbycrPYMz515EKHUhLn9+wTYlegpIHoo9DqA8uDd+
-	 QiyfZ9cYMweQqLL5ZnMOMM5yvg6bGVaqk3rN4NH/2Es9hBN4wQnEpEM+PMJokbOc65
-	 h3vt3mqHMpp/yt6iwv8cbimBerBEyTPQ4TIvSgeY3szdTCTr13VSuHS0eHmETKi0DW
-	 Z0OAUMX99h0Pw==
-Date: Mon, 11 Aug 2025 10:00:56 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Will Whang <will@willwhang.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image
- sensor
-Message-ID: <20250811-successful-military-dragon-d72486@kuoka>
-References: <20250810220921.14307-1-will@willwhang.com>
- <20250810220921.14307-2-will@willwhang.com>
+	s=arc-20240116; t=1754899298; c=relaxed/simple;
+	bh=rxSd+igw1hFmEH0b4q+spgORyQ5kh2vPRXo324E70Uw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EOetaIoqbp8eqBxcU7Z11BDgv0ggSk3nO82VDJW5Hq7s6kPGv5cke2eqfCUmVhcazpftr662HjQvxl8a4fRBrd1a0UoPw5F+kRONAPzdjm73NvvGgx+O5eUM5yUtSiSJZtjXgIFoFWTdcx20BAnZ+jXZj4RG9NG9BV+adqwYmDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4qTbBJE; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b78bca0890so1934346f8f.3;
+        Mon, 11 Aug 2025 01:01:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754899281; x=1755504081; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2vjNsRDkSxarcXLpyoABzWvXNZGHjIzTMGpE9iHGJi8=;
+        b=i4qTbBJE27k46wFMJEjyKeH2+4gedDEmCYkVBBT8LNIzfguddJsW8vsZLZgN8Ym969
+         uTfjviSql9vd2yyCUXXgEZbMa/DDdutd/Zfh/Z6OCPBnJW2VZ0MkYl3smT2LJnc7ogGP
+         I4k09RjLHLcurNJZ5LtpmODHQF+TvzgxzV8Zqgkp6GJMpmdSEqBVsSid4TANZl3gFBlX
+         tt/PXeBoqhvkFRkAAJkBye7yKeLdCE6MAjPsTsDuR2NOdBlowovjyCteAzzGwl1bE6uF
+         X0lqAYm58G95ruzX2MPH2BdT4UwtnlVnZMBgVKlkuYpHX05oGtsYC8hYjk7d+HQtDXmN
+         Io6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754899281; x=1755504081;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2vjNsRDkSxarcXLpyoABzWvXNZGHjIzTMGpE9iHGJi8=;
+        b=QIR+cYnfMCj+4+cSRw6mPOHzRR0QrR9kJ39MnNGur1YtrSTP3NUaEHqTY9sCh+amXl
+         EC6o+/NcSvcG2PN9IYj0u9jQ1KsLtt70xitzvb3nlIfMv5RokqZN30MlZR7f02baJeFE
+         u3vOQL1wRA8SbzWIWNU3yw3a1R+CHcoyMIzo44hsHCXZDMkCdvkuPdEUuQQCYedbHDRm
+         ibJAUCMKre5AKTCwCISYy/4vpFmqIbaOdYdpByS5YZWdAtcvVDDI1joBVyX9lENP4Hwz
+         fW5YUkThzy8VA79P1MTIUIPzPN1G9sAR8OfSvxgaaKcBfLPKJAk/sgX+pndbeoQ9Zpj/
+         YE7A==
+X-Forwarded-Encrypted: i=1; AJvYcCU/Zi3c3GJy/N1gt8lM7migrhbnv4xgFYsbtWPaDo0/Hp+l3JG+qq7zoJQZcyooWP2CGvKw9FzsVelLVHKC@vger.kernel.org, AJvYcCVmnDO+mx+EBHvJMSC2LidFgzI7c+Qd+DUj+Dl/m6l0WOo+SprMWYJmJxd6m9FFzv6pjkHitwsWC8K7oAk=@vger.kernel.org, AJvYcCWlAutrMThURcZ6hmE626iKK8AB8TIXMyWOLyYf3696tZTTcZSaSD4xVK4LiY9OGAZPdYVfiRrrbIXr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI6/yXF9KJe+IMZUqC7jC2iY82XBr0H5puc2RjCHuYnyh1TLRS
+	UopyBJHlKdvwblV/5TndCz3eDRZuqXKcUDby/G2xussXp2ugljNEq9+oRswZikkMboseGFyKf3F
+	5BIU4rA1RtUQaFQ3kpNSn27UnBt+ImUg=
+X-Gm-Gg: ASbGncuHoKkzkuI4PY582/o5U1/cTJpMPWiI2Btb3vHRsUIbyyi9owNLWAC9aBws4TU
+	+qNU1Uki7P43PZEzD63LHhwMhb9BcmiUyuaHGEqQ7pXMJ4H1OZ8zs1VY4tVPY2tvGa437WyOaaT
+	QPxjXyHnpLGfS24ZqyuAD7nQRStgaKgGVQ/8hOA9oDjFwWhI1c2I892Flb7K5M1uUQM0JwJzYOl
+	/cxQd+W
+X-Google-Smtp-Source: AGHT+IGOLz0iBe7zlzJlq6wq+0qNMoTmtvpaXsLumipQC5TBWXKtqBORFtOGgovzRrE8OidC33+GQTHncMY6E9uU2aQ=
+X-Received: by 2002:a05:6000:2011:b0:3a5:1cc5:aa6f with SMTP id
+ ffacd0b85a97d-3b900b4dbdemr8535598f8f.34.1754899280400; Mon, 11 Aug 2025
+ 01:01:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20250504092324.10802-1-clamor95@gmail.com> <20250504092324.10802-2-clamor95@gmail.com>
+ <20250512162439.GA3441216-robh@kernel.org>
+In-Reply-To: <20250512162439.GA3441216-robh@kernel.org>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Mon, 11 Aug 2025 11:01:09 +0300
+X-Gm-Features: Ac12FXzqFbBYuwRGDqU-GBNMIudNzmVjDHn0gbdLx5TdM9JQj0sBE4cNIQMP1ug
+Message-ID: <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
+ MPE and TSEC for Tegra114+
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250810220921.14307-2-will@willwhang.com>
 
-On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
-> +description:
-> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sony,imx585
-> +      - sony,imx585-mono
+=D0=BF=D0=BD, 12 =D1=82=D1=80=D0=B0=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 19:2=
+4 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Sun, May 04, 2025 at 12:23:22PM +0300, Svyatoslav Ryhel wrote:
+> > The current EPP, ISP and MPE schemas are largely compatible with Tegra1=
+14+,
+> > requiring only minor adjustments. Additionally, the TSEC schema for the
+> > Security engine, which is available from Tegra114 onwards, is included.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../display/tegra/nvidia,tegra114-tsec.yaml   | 79 +++++++++++++++++++
+> >  .../display/tegra/nvidia,tegra20-epp.yaml     | 14 +++-
+> >  .../display/tegra/nvidia,tegra20-isp.yaml     | 15 +++-
+> >  .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
+> >  4 files changed, 113 insertions(+), 13 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvi=
+dia,tegra114-tsec.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
+ra114-tsec.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,te=
+gra114-tsec.yaml
+> > new file mode 100644
+> > index 000000000000..ed0a5a8a091b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-t=
+sec.yaml
+> > @@ -0,0 +1,79 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra114-tsec.=
+yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NVIDIA Tegra Security co-processor
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +
+> > +description: Tegra Security co-processor, an embedded security process=
+or used
+> > +  mainly to manage the HDCP encryption and keys on the HDMI link.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - enum:
+> > +          - nvidia,tegra114-tsec
+> > +          - nvidia,tegra124-tsec
+> > +          - nvidia,tegra210-tsec
+> > +
+> > +      - items:
+> > +          - const: nvidia,tegra132-tsec
+> > +          - const: nvidia,tegra124-tsec
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: tsec
+>
+> Drop -names properties if there is only 1.
 
-I don't understand this second compatible. Is this different hardware?
-Can you point me to "mono" datasheet?
+This is added to cover existing binding in tegra210 tree
 
-Your description should explain this. Commit msg as well, instead of
-speaking about driver (in fact drop all driver related comments).
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  assigned-clocks: true
-> +  assigned-clock-parents: true
-> +  assigned-clock-rates: true
-
-Drop all three.
-
-> +
-> +  clocks:
-> +    description: Clock frequency 74.25MHz, 37.125MHz, 72MHz, 27MHz, 24MHz
-> +    maxItems: 1
-> +
-> +  vana-supply:
-> +    description: Analog power supply (3.3V)
-> +
-> +  vddl-supply:
-> +    description: Interface power supply (1.8V)
-> +
-> +  vdig-supply:
-> +    description: Digital power supply (1.1V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset (XCLR) GPIO
-> +    maxItems: 1
-> +
-> +  sony,sync-mode:
-> +    description: |
-> +      Select the synchronisation mode of the sensor
-> +        0 =E2=80=93 internal sync, leader (default)
-> +        1 =E2=80=93 internal sync, follower
-> +        2 =E2=80=93 external sync
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    enum: [ 0, 1, 2 ]
-
-Previous comments not applied.
-
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +
-> +          link-frequencies: true
-
-Drop
-
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        imx585@1a {
-
-Nothing improved.
-
-You replied that you applied comment, but send the same.
-
-
-Best regards,
-Krzysztof
-
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: tsec
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  operating-points-v2: true
+> > +
+> > +  power-domains:
+> > +    items:
+> > +      - description: phandle to the core power domain
+>
+> Instead, just 'maxItems: 1'.
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - resets
+> > +  - reset-names
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/tegra114-car.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    tsec@54500000 {
+> > +        compatible =3D "nvidia,tegra114-tsec";
+> > +        reg =3D <0x54500000 0x00040000>;
+> > +        interrupts =3D <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks =3D <&tegra_car TEGRA114_CLK_TSEC>;
+> > +        resets =3D <&tegra_car TEGRA114_CLK_TSEC>;
+> > +        reset-names =3D "tsec";
+> > +    };
 
