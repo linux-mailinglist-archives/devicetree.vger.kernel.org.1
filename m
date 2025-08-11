@@ -1,301 +1,214 @@
-Return-Path: <devicetree+bounces-203482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D95B218BD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:51:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350F7B218F1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 01:09:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5081D682F4F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:50:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25DE746049C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB9C2E62B2;
-	Mon, 11 Aug 2025 22:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC2023B611;
+	Mon, 11 Aug 2025 23:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LUTvo1++"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="zUXEY+ZF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BC72E6124;
-	Mon, 11 Aug 2025 22:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F7A224B01
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 23:08:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754952500; cv=none; b=l7y8tbx0phM/3N0CeovGod5v0r8ueRSkuVnYHoGZiz0uvs42fVUGkeQujbiNnpXYjd2JmUTbrvQHfhAQIiWkGDqp9y9K7oH0zkEvsCP3jK0xFZt4gUtFMNbyTetwt5evYxzyoJJVkSsE7ky6IVySdICnevR5/taj1/idKgmQqcU=
+	t=1754953738; cv=none; b=uimMIbjdYjm0f0YA/YBskVu74g5pfFEDrGZZZ1mIkjC7E5qVkFDTYntTWJ7TNOVXMKrQ8U+nnV4MRqCmXHJK5wgZ/X2Q3TCHDZUdMrf6ags43aIzx+wt4uT5B4fQCyfr2L1v2wsIr5xPixo3TFfWSTdzEWrloypXM3hPkKalgyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754952500; c=relaxed/simple;
-	bh=UPNJQhUA6Bu+vQ0Xv1n3WkPsshuFsugmgPi29JpHb20=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Gs5Kkq80IB9fxa+nd+cp7ndtCGd7RXnydMOHgJ1LRwVxi7lKp/vkXpXEzuKITrEfa8zjhlQpgdcAB/gIa8a6DL95Xdtu95F8HfO2inaYcXhy+Hq0LyPb5cYY+B4CgKvkI5PH8joyuMi4U45UrYOmrS6sciz8eYb6PrWul01X3qA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LUTvo1++; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45a11a138faso370335e9.2;
-        Mon, 11 Aug 2025 15:48:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754952496; x=1755557296; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CodmMT7JjiLTDpj7w45XSeNEEzkEBcMMbF3t4awvoLg=;
-        b=LUTvo1++OvAofeWWstl0Zrdtq6NMPHP6e2gQvBZxr7d6EKb2Ov5KpycOAs39dkN5Z6
-         Qk2AuBuxwFC40BvJWsiOEA6iEtK8INyBcjEX5CzkU8Ie6KmgE9Aht0TBOGKBufw2z7Ty
-         iw011tOdV21eiF/03Iag4Zc/W+wzbaMGuukjvjaVqvBviy4kK5wPf8+0rBbgUZ3bUW4Y
-         CYp1MU3R2f2++1kR318cfpMXsawa8hkYeVtGnBV4F5xHju7tQaHBm1Qao8WLNY+SuUvB
-         ZIsh7EluA6ygBxvjmQ7dHGVepi7j6xbNJtP8vhO1TAb00euD3c/fhcyqDbKe9SwTLMFe
-         6q1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754952496; x=1755557296;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CodmMT7JjiLTDpj7w45XSeNEEzkEBcMMbF3t4awvoLg=;
-        b=M4LdpukZYCjKQkRMkRt6r+ec9O9Hfl8gar9FhTSs4EUDnv70UANu/XrCk52RC2AVxZ
-         nW2VCHpbcZzeq/zptSZWwjhfm3zvNXCwYRBjP+jqQlW9YX4+Jti4K++2n+5fNyIZramE
-         9QXs0oLyW9IdOWr4p00WQSjxi5KKsjNLeACCSw+LRnOsTP024m9/zRGoZiNcvgY4N2oP
-         OqJYdhBTawFqLt5F+ELXxQG6MlRfXt5i9JfJ1PDgzexDNexx9rVLkPDPHr9+BBwq50jj
-         j98mmR7NIzkhGZIUee2FVpC3I0mo8DbTxvOER0XTo/mfcH61MzUwUsJ9SpLjkHyKxhma
-         HMjg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1Z4KMdfdBKZeElhVbXcTbf/7jef/9PWqd0VBDbe+/cOQ0yD6WPtQFGHT6gu3Oll4tRUX0nt+bIDyQlGc=@vger.kernel.org, AJvYcCVIS3EItwU7GOXHbAxTqC/zpWAocwZ1RqN/iKgZSvY6rBb66tGvohm/BZS2JcSRkNwQjH2/KAKPz1J6@vger.kernel.org, AJvYcCVw1vk2ZaP1DTM+DlZ+pGgvNsjqyqmCyp79PCxfsQFuEqxiOsFd3yu5u1kKGdJRMYv5SnEi1tRhDW02@vger.kernel.org, AJvYcCXGa5YT2tU6En0Vx+clirjeolfBscSoMbLzAvolaI9hqmzN1GLEZEekh57WyBx1bEvd9TEykSn5D8hy@vger.kernel.org, AJvYcCXlnHA/HOEakxEHkzPB390pP2d2TwKtSVsFkYTHQYVsYfxZyql3EnxnAO6rnZYqk8i50EDKdshyqlRtvHY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDda6jne8GJ6glCSErpZaTaT93MkW2Q0fvHxSzxImfBd1qGqco
-	c1z1/A32a3P2RfgIFDMDcDaq530pzRPWpaFKYCCEhstRqrn774UPwuVZPQYtYLQ=
-X-Gm-Gg: ASbGncuzur5MUHrkE/GHQ0yG9Vwy3yua2WvLki7DrTWrPKs9BSU1/fP/7WpZhdv1KyG
-	lmylFjBDuvClrBFUJzlgMvZHUolJIgce/s11zxx4RdcSCPLAAh/17Docgwu5uXy00l8K2JqagLp
-	muPkrd7X6bVU6x7rxYh6hbjNwj4Zpx8/mqELl7RCqsqi2z/Qah+KWyjNNMzVrV/lhHKkLx6W4iA
-	i2OZo2INSmtoWzcdjwJjZF66gs0eWxiwbyKajCvvu59WhjjxtNDCkTbCNuR79izoAO3Nhdi2SBY
-	uY7nD+xYdb/K/EUhXop9VVj593GAe6l1gdDhMr9Io0yIJm5acYgnNoY3JuqM/cfv2+N+YVt5WbE
-	XcpLNgvLD61vcXSiH6Kbr/4fNaUZgbkF49P4w8hS5ntZA53M=
-X-Google-Smtp-Source: AGHT+IFaTclGM/3szTeKR4emD2Ude+cbSZ0zqbGoDkB1YynY4ngEcsThAfRUrEB27QVCMQeZjA6Q8w==
-X-Received: by 2002:a05:600c:4fd1:b0:453:5c30:a1fd with SMTP id 5b1f17b1804b1-45a10ba7d10mr12015855e9.8.1754952496137;
-        Mon, 11 Aug 2025 15:48:16 -0700 (PDT)
-Received: from localhost.localdomain ([2a0d:e487:224f:9b35:8c56:5611:71e6:ca77])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459dbba5210sm343678175e9.2.2025.08.11.15.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 15:48:15 -0700 (PDT)
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: peter.ujfalusi@gmail.com,
-	dmitry.torokhov@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	lgirdwood@gmail.com,
-	tiwai@suse.com,
-	conor+dt@kernel.org,
-	lee@kernel.org,
-	ukleinek@kernel.org,
-	broonie@kernel.org,
-	gregkh@linuxfoundation.org,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	shuah@kernel.org,
-	jihed.chaibi.dev@gmail.com
-Subject: [PATCH 8/8] usb: dt-bindings: ti,twlxxxx-usb: convert to DT schema
-Date: Tue, 12 Aug 2025 00:47:39 +0200
-Message-Id: <20250811224739.53869-9-jihed.chaibi.dev@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
-References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
+	s=arc-20240116; t=1754953738; c=relaxed/simple;
+	bh=kU7IxxrdJl9R9nSh1DSGm7hKbANjSWWwLmegZb/kWBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hWpvTmyJNptsNf8SituRyRIzE8AXQScA3TNsbimO/8kptgCik/GHDiXkTKD18DlRv0k5IQBun+uMZdfUORjFzidFVT9CFECO/DJSE7uPILAvfTTyblV7gnryN7zP0RfWtTjLI+0CPFydEwDc8+VGxbhZCSrRMhwf3KoNGL3dAYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=zUXEY+ZF; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1754953735;
+ bh=4WOQQytnvdG+ExQxM0wRnwxWgx7TDMfbUEkljON2sWA=;
+ b=zUXEY+ZFYUR2qx4RF1eElcECWM8xX2Q9sevnHk/fjgGVFYQlFKhYBJADeISQPYkSF7gamvZsG
+ 65Wdg0VfxHg8/mLOjrTBobKGCh2jSqqPH0mJv2Mt4IRsdWy+4sbbuQBXfZX4qRq0eP+6hMutqru
+ tMC3dMhNBaA4kk3XxLd/PLC8QmT1otW/xWvMFPkSLZv/RlCSqAjtxzQXQfaavIBxkPKeeDzJamV
+ bdqpSNsQ3P9rYV4pS1+tkLoiHXzWpGdR8u/NUHUjG2JMmijr5Pn9kIM8OQiFpVV5nBQLtCImBF/
+ cuOGGkvE9PyGYGP0shpJM/DRMqk0CENXX1LmuDFkPk8w==
+X-Forward-Email-ID: 689a77d9de615f3104e098e6
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.2.4
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <9dce97a9-92e6-4803-9e06-b2938e3c4999@kwiboo.se>
+Date: Tue, 12 Aug 2025 01:08:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] media: rkvdec: Disable QoS for HEVC and VP9 on
+ RK3328
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250810212454.3237486-1-jonas@kwiboo.se>
+ <20250810212454.3237486-6-jonas@kwiboo.se>
+ <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convert the legacy TXT binding for the TWL4030/6030 USB module
-to the modern YAML DT schema format. This adds formal validation
-and improves documentation using a conditional schema.
+Hi Nicolas,
 
-Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
----
- .../bindings/usb/ti,twlxxxx-usb.yaml          | 121 ++++++++++++++++++
- .../devicetree/bindings/usb/twlxxxx-usb.txt   |  43 -------
- 2 files changed, 121 insertions(+), 43 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
- delete mode 100644 Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
+Missed some comments in my last mail.
 
-diff --git a/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml b/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
-new file mode 100644
-index 000000000..029865ad2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/ti,twlxxxx-usb.yaml
-@@ -0,0 +1,121 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/ti,twlxxxx-usb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TWL4030/6030 USB PHY and Comparator
-+
-+maintainers:
-+  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
-+
-+description: |
-+  Bindings for the USB PHY and comparator module found within the
-+  TWL4030 and TWL6030 family of companion chips.
-+
-+  TWL6030: USB COMPARATOR
-+  TWL4030: USB COMPARATOR & PHY
-+
-+  If a sibling node is compatible with "ti,twl4030-bci", the driver for
-+  that node will query this device for USB power status.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,twl4030-usb
-+      - ti,twl6030-usb
-+
-+  interrupts:
-+    description: |
-+      Interrupts for ID and VBUS events.
-+      For "ti,twl6030-usb", two interrupts must be specified:
-+        - The first is the OTG interrupt for ID events (host mode).
-+        - The second is the USB interrupt for VBUS events (device mode).
-+      For "ti,twl4030-usb", one or two interrupts can be specified:
-+        - The first is the OTG interrupt for both ID and VBUS events.
-+        - The second is optional.
-+    minItems: 1
-+    maxItems: 2
-+
-+  usb-supply:
-+    description:
-+      Phandle to the VUSB regulator. For TWL6030, this should be the 'vusb'
-+      regulator. For TWL6032 subclass, it should be the 'ldousb' regulator.
-+
-+  usb1v5-supply:
-+    description: Phandle to the VUSB1V5 regulator (for TWL4030).
-+
-+  usb1v8-supply:
-+    description: Phandle to the VUSB1V8 regulator (for TWL4030).
-+
-+  usb3v1-supply:
-+    description: Phandle to the USB3V1 regulator (for TWL4030).
-+
-+  usb_mode:
-+    description: |
-+      The mode used by the PHY (TWL4030 ONLY) to connect to the controller:
-+        1: ULPI mode
-+        2: CEA2011_3PIN mode
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2]
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+additionalProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: ti,twl6030-usb
-+then:
-+  required:
-+    - usb-supply
-+  properties:
-+    interrupts:
-+      minItems: 2
-+else:
-+  required:
-+    - usb1v5-supply
-+    - usb1v8-supply
-+    - usb3v1-supply
-+    - usb_mode
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        twl@48 {
-+            reg = <0x48>;
-+
-+            usb_phy: usb-phy {
-+                compatible = "ti,twl4030-usb";
-+                interrupts = <10 4>;  // Single interrupt: OTG (ID and VBUS events)
-+                interrupt-parent = <&gic>;
-+                usb1v5-supply = <&reg_vusb1v5>;
-+                usb1v8-supply = <&reg_vusb1v8>;
-+                usb3v1-supply  = <&reg_vusb3v1>;
-+                usb_mode = <1>;
-+            };
-+        };
-+    };
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        twl@48 {
-+            reg = <0x48>;
-+
-+            usb_comp: usb-phy {
-+                compatible = "ti,twl6030-usb";
-+                interrupts = <4 4>, <10 4>;  // Two interrupts: OTG (ID events), USB (VBUS events)
-+                interrupt-parent = <&gic>;
-+                usb-supply = <&reg_vusb>;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt b/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
-deleted file mode 100644
-index 17327a296..000000000
---- a/Documentation/devicetree/bindings/usb/twlxxxx-usb.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--USB COMPARATOR OF TWL CHIPS
--
--TWL6030 USB COMPARATOR
-- - compatible : Should be "ti,twl6030-usb"
-- - interrupts : Two interrupt numbers to the cpu should be specified. First
--   interrupt number is the otg interrupt number that raises ID interrupts when
--   the controller has to act as host and the second interrupt number is the
--   usb interrupt number that raises VBUS interrupts when the controller has to
--   act as device
-- - usb-supply : phandle to the regulator device tree node. It should be vusb
--   if it is twl6030 or ldousb if it is twl6032 subclass.
--
--twl6030-usb {
--	compatible = "ti,twl6030-usb";
--	interrupts = < 4 10 >;
--};
--
--Board specific device node entry
--&twl6030-usb {
--	usb-supply = <&vusb>;
--};
--
--TWL4030 USB PHY AND COMPARATOR
-- - compatible : Should be "ti,twl4030-usb"
-- - interrupts : The interrupt numbers to the cpu should be specified. First
--   interrupt number is the otg interrupt number that raises ID interrupts
--   and VBUS interrupts. The second interrupt number is optional.
-- - <supply-name>-supply : phandle to the regulator device tree node.
--   <supply-name> should be vusb1v5, vusb1v8 and vusb3v1
-- - usb_mode : The mode used by the phy to connect to the controller. "1"
--   specifies "ULPI" mode and "2" specifies "CEA2011_3PIN" mode.
--
--If a sibling node is compatible "ti,twl4030-bci", then it will find
--this device and query it for USB power status.
--
--twl4030-usb {
--	compatible = "ti,twl4030-usb";
--	interrupts = < 10 4 >;
--	usb1v5-supply = <&vusb1v5>;
--	usb1v8-supply = <&vusb1v8>;
--	usb3v1-supply = <&vusb3v1>;
--	usb_mode = <1>;
--};
--- 
-2.39.5
+On 8/11/2025 11:25 PM, Nicolas Dufresne wrote:
+> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
+>> From: Alex Bee <knaerzche@gmail.com>
+>>
+>> The RK3328 VDEC has a HW quirk that require QoS to be disabled when HEVC
+>> or VP9 is decoded, otherwise the decoded picture may become corrupted.
+>>
+>> Add a RK3328 variant with a quirk flag to disable QoS when before
+>> decoding is started.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>> Changes in v2:
+>> - No change
+>> ---
+>>  drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c |  9 +++++++++
+>>  drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h |  2 ++
+>>  drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c  | 10 ++++++++++
+>>  drivers/media/platform/rockchip/rkvdec/rkvdec.c      | 12 ++++++++++++
+>>  drivers/media/platform/rockchip/rkvdec/rkvdec.h      |  4 ++++
+>>  5 files changed, 37 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> index 1994ea24f0be..f8bb8c4264f7 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> @@ -789,6 +789,15 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
+>>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_LUMA_CACHE_COMMAND);
+>>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
+>>  
+>> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
+>> +		u32 reg;
+>> +
+>> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
+>> +		reg |= 0xFFFF;
+>> +		reg &= ~BIT(12);
+> 
+> I wonder if there is a better way to express that, if not, a comment for future
+> readers would be nice. If read it will, we keep the upper 16bit, and replaced
+> the lower bits with 0xEFFF (all bits set except 12) ? I'd rather not spend time
+> thinking if I walk by this code again.
 
+Vendor kernel use following comment to describe the purpose of this [1]:
+
+  HW defeat workaround: VP9 and H.265 power save optimization cause
+  decoding corruption, disable optimization here.
+
+From the TRM we can see following for rkvdec_swreg99_qos_ctrl:
+
+  27:26 sw_axi_wr_hurry_level
+    00: hurry off 
+    01~11: hurry level 
+  25:24 sw_axi_rd_hurry_level
+    00: hurry off 
+    01~11: hurry level 
+  23:16 sw_bus2mc_buffer_qos_level
+    range is: 0~255
+    the value is means that left space <=
+    sw_bus2mc_buffer_qos_level, it will give hurry
+  15:0 swreg_block_gating_e
+
+So yes this set swreg_block_gating_e to 0xEFFF. Possible this configure
+hw to not auto gate most internal clocks?
+
+Could add a comment and possible use something like following:
+
+  reg &= GENMASK(31, 16);
+  reg |= 0xEFFF;
+
+[1] https://github.com/Kwiboo/linux-rockchip/blob/linux-6.1-stan-rkr6.1/drivers/video/rockchip/mpp/mpp_rkvdec.c#L857-L867
+
+> 
+>> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
+>> +	}
+>> +
+>>  	/* Start decoding! */
+>>  	reg = (run.pps->flags & V4L2_HEVC_PPS_FLAG_TILES_ENABLED) ?
+>>  		0 : RKVDEC_WR_DDR_ALIGN_EN;
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
+>> b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
+>> index 540c8bdf24e4..c627b6b6f53a 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
+>> @@ -219,6 +219,8 @@
+>>  #define RKVDEC_REG_H264_ERR_E				0x134
+>>  #define RKVDEC_H264_ERR_EN_HIGHBITS(x)			((x) & 0x3fffffff)
+>>  
+>> +#define RKVDEC_REG_QOS_CTRL				0x18C
+>> +
+>>  #define RKVDEC_REG_PREF_LUMA_CACHE_COMMAND		0x410
+>>  #define RKVDEC_REG_PREF_CHR_CACHE_COMMAND		0x450
+>>  
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+>> b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+>> index 0e7e16f20eeb..cadb9d592308 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
+>> @@ -824,6 +824,16 @@ static int rkvdec_vp9_run(struct rkvdec_ctx *ctx)
+>>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
+>>  
+>>  	writel(0xe, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
+>> +
+>> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
+>> +		u32 reg;
+>> +
+>> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
+>> +		reg |= 0xFFFF;
+>> +		reg &= ~BIT(12);
+>> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
+> 
+> Can we deduplicate that ?
+
+Guess so, any suggestion on how to best do that?
+
+One possible way that comes to mind:
+
+  if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS)
+	rkvdec_quirk_disable_qos(rkvdec);
+
+> 
+>> +	}
+>> +
+>>  	/* Start decoding! */
+>>  	writel(RKVDEC_INTERRUPT_DEC_E | RKVDEC_CONFIG_DEC_CLK_GATE_E |
+>>  	       RKVDEC_TIMEOUT_E | RKVDEC_BUF_EMPTY_E,
+
+[snip]
 
