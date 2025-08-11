@@ -1,187 +1,173 @@
-Return-Path: <devicetree+bounces-203176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58ECAB20340
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:25:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DF2B20351
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:27:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 657EA165806
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:25:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A669616870F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCC62DE6FB;
-	Mon, 11 Aug 2025 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E602DCF6B;
+	Mon, 11 Aug 2025 09:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jKdT/Wjq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iVlqBo7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8212DD5F7
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 09:25:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D86022DCF56;
+	Mon, 11 Aug 2025 09:27:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754904325; cv=none; b=R7QvFDM2NElrLvXpQpELaoOuupQKPbgtxflJlzZQr/T0oQMwhkKpDaMs6bF4/DMCaSoomwngFAYM7lKtlcsrm3tQzegKJ2jcicZvjZt32GNQdEqtYpxFE5qOeEkAER3s9Lqlz8o0oQIxywRj95qN/7dGiFzWtTusODCgdMHsH+I=
+	t=1754904443; cv=none; b=LGbXfNFJXp+s9TAa1peQjlizz5DUneocS2+4vEfYWiTG1AOvu8ybz0dHfShZFGeWZ5zhr4yhGZj/bWJNzVxK/Ek+nEwr8dAOuJPd4YUKeBIhO86il0s8s6BAnkyDkwrStQxDNRoXBYmnE2IIIh2FeYE8L9zpU8nwXm3ku99UGYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754904325; c=relaxed/simple;
-	bh=5qIM046RALuOts1rvwHZ0Oae3nIbBnTPFzNmQT9Ch0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t1qXRsIkleag1AMVQNAha6JEH8Tadof6Y7HeDXUYYSfd3Q9LvC3M4TfSQEyvHEXAnN61i9n9LNS5VkbCm7SPC650Y77R69BUAqms5hz9zRknxhIetnz6dHhf0qmZwU37T9i44ziF9WNhwJiB1F08q/g8nvBzKovyvzXnt88oquI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jKdT/Wjq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9Lnin022212
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 09:25:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	d5brsbQXcuMZs7M3LpkJq0KWrfVjzolKtDa4nkNHsDo=; b=jKdT/WjqipJFNT+a
-	NX/oG2GaNNjl6thViAQBbbLnd+ZcCCMV1nAbOuecIXsD2j9OBGn/M4xkrZrP96n0
-	ZCqnFu7hqWoOOp/9b0kelE6VxmZziTcZs9CRTgSFNheDFrSNSx/nnuGsfm9kumxQ
-	yj8k/pNdksFryrpAwOzQrzLBUAVHxmU6LQoSiVgf/rzKczcN3QuQe1Y3rJTiMBLr
-	xba0F8vI7bxouN7coQ9jhS2JqjXYD1NjFrZgtsTzbs1E39C7JIjyoabNT26znjML
-	FSDaDj9McIAmrZmbuOggzrUUMRFAuuOnmVjDIDfGAuCVov+/Hx4tDVk8jJPG91Qe
-	5ugK/A==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dwb73u9k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 09:25:21 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2400a0ad246so33847065ad.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 02:25:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754904320; x=1755509120;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d5brsbQXcuMZs7M3LpkJq0KWrfVjzolKtDa4nkNHsDo=;
-        b=me599DT9xBOZqLzTDh6pN36vGY4HmiTgXfoqjth/1uu9ed0Ui7du5NNazT23EG/RC1
-         JSDL0SBloekMoORKotnJ54Mnak6/cWR4RVlThXJAy6oDxeAOy0Omf6s8CV7YdlcbJhYL
-         KvON7NLPc9UXR8VNsCZyp9gI6OWvmmN4lZi7MntiaX8wRyCxDRK1pjTpyhj4aLLd0r2X
-         iL7XM9vwM+vSJZSBxFMHG8wP/hmZe3Qs2Z+bK4D8entob/xshenmzgZz4OX8SccWJf6M
-         BhN9V8vZj5GSoCHMyH0CYGshGNAtVoTD1NzNq0St0GaWhC1apYYc+82+GGkrtQrVhxI2
-         CG0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUMAk4kVQzmo0jOAMM8O/rCcDuVuHWvzaaBjOyjvEDruAhzXROPlAJq8acRb77DHTfbUhLlPaf0vC2+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyW0pGd9UgY6eHd11wGFE/OaYMb+pRsC0PlzKPq/nBMp57r7Xt6
-	A+tdJaIpnnLIUcA6B4WUsgvQ01KWe09sgoXDkem2CBaksVGRGBh8x7yk0jdQtBbCquX4FCzf3ie
-	Wlc2AIrqOA/EpMZPl5zVKRWM9Hd+1hzNRUVH4snw59DEwO3GP0L+ycll/Ho6bstmR
-X-Gm-Gg: ASbGncvEZ2sBUZIw3Sy+8fwufTfnc8KY2hrulozfrgZJdmzD1bWSIXgGH5AiE1z2XBy
-	zo6B0wvkBlNUxEb1sfsizx8dwjKC4VrjWvKVrWIXkCN3ZrE3Cx6vhf+i2arRctdyfcRvkF0qAZI
-	8ukKWdXvonlC95J2yxX4fq1vvLrTK0ofXC4kprQAIkCBckj3vHHtjvUGXy0GJ/2+pZcO5WwXHvC
-	sV8X0IZZNIkjgmeg3Hc7FDRESlluAO560bUKmhO7sjsHHipGR/+R0zB/kAcbE7umYz8W0Dmg+3Q
-	tys8EBn5IAR/qkS9+YwKE41z4kpeBBwIwLm99/XjHMqSP3yGL6Govotg5/PhiCQaJKOgLMhocYw
-	CtJLES9oqHD419tuxbGNFrdjVWhx6Ww==
-X-Received: by 2002:a17:902:ce90:b0:226:38ff:1d6a with SMTP id d9443c01a7336-242c2003629mr183281565ad.7.1754904319817;
-        Mon, 11 Aug 2025 02:25:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGY2W7Uzf0+Hhm/oLMQxV3US2K/ii+xsd0BX+O+K/VV6q57R8neGNUbis0mR8USg0+ba7mSKA==
-X-Received: by 2002:a17:902:ce90:b0:226:38ff:1d6a with SMTP id d9443c01a7336-242c2003629mr183281315ad.7.1754904319373;
-        Mon, 11 Aug 2025 02:25:19 -0700 (PDT)
-Received: from [10.133.33.13] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef67aesm269903595ad.6.2025.08.11.02.25.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 02:25:18 -0700 (PDT)
-Message-ID: <571a76a1-c430-49a5-a8b6-974f71a6437b@oss.qualcomm.com>
-Date: Mon, 11 Aug 2025 17:25:10 +0800
+	s=arc-20240116; t=1754904443; c=relaxed/simple;
+	bh=nYxKt1rZvSS9uUfdxtSyz/NQBRYpnYSweI3wcyJvXAw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ewsX1TfSxNVpcB65Je1SR/vFvIyXrCI8Mpu6KxZiTsiuThZUq04atOd5ucmLwBf6Bdfs1VZkUQmZS2fGLsZuaA2qjmbBewqA9VRI9vCHMwgD+PRTx1+bkVYpX24pdBNLCDXE9EoFXZUbtCTO4cNgOodQEAbVgGu+AP5StnECsQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iVlqBo7/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92F47C4CEF1;
+	Mon, 11 Aug 2025 09:27:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754904442;
+	bh=nYxKt1rZvSS9uUfdxtSyz/NQBRYpnYSweI3wcyJvXAw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iVlqBo7/xK8IBQljnNKIRqz5UoHE3Oz+MXQ1c89EalL+8PORlU0o4ZGWGhrrbjvei
+	 qPf6x2ilwRTgK5kmg/UybHLvu3XeACwPaXxmB6LOhx9LxBY1wP+0cT+l5b9oQrd104
+	 e4hhLOTeVjga+cX19wfLRCYnSKjhc6taPwM4njHO7dOSoDNr17yMhjcUEqCOcP++jy
+	 h6zxLFFPy6X6t0E13L8u+qyyF4/DZYvG0D3IkifITKKNTF4nsYFysL19mcfKzU5Cfe
+	 0A37B12wupzFwdfCPm2/HUnpdnPRNFPkenx45WkF81M8vzO1DStt/fpl91nR3jALJp
+	 ZrHMAxtdQSxSQ==
+Date: Mon, 11 Aug 2025 14:57:05 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com, 
+	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: sm8650: Enable MCQ support for
+ UFS controller
+Message-ID: <5se3wgpfabzlcidflef5orwtl62jk2dtg4lx47gnqcqn7mya46@i6zir5uny7gi>
+References: <20250730082229.23475-1-quic_rdwivedi@quicinc.com>
+ <20250730082229.23475-3-quic_rdwivedi@quicinc.com>
+ <eab85cb3-7185-4474-9428-8699fbe4a8e5@kernel.org>
+ <40ace3bc-7e5d-417a-b51a-148c5f498992@quicinc.com>
+ <2a7bf809-73d9-4cb6-bcc9-3625ef1eb1fa@kernel.org>
+ <kayobeddgln5oi3g235ruh7f7adbqr7srim7tmt3iwa3zn33m4@cenneffnuhnv>
+ <5a32e933-03b9-4cc3-914c-46bdb2cedce6@kernel.org>
+ <54gttzkpxg55vrh5wsvyvteovki377w3yjfejjddpzzrvldwkg@p7sc4knnvla3>
+ <4fa9074e-609a-42aa-975a-a6daa7dd6d42@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] PCI: dwc: enable PCI Power Control Slot driver for
- QCOM
-To: "Wenbin Yao (Consultant)" <quic_wenbyao@quicinc.com>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Cc: lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-        robh@kernel.org, bhelgaas@google.com, sfr@canb.auug.org.au,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_cang@quicinc.com
-References: <20250722232255.GA2864066@bhelgaas>
- <a243dc20-6b48-425f-ae43-786d347b2458@quicinc.com>
-Content-Language: en-US
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-In-Reply-To: <a243dc20-6b48-425f-ae43-786d347b2458@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=K6oiHzWI c=1 sm=1 tr=0 ts=6899b701 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
- a=cQi23a1KtdDCxFO6Ja0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: pdJcLxj-eAFrlRGefEao2sHiJ0ftDIwi
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxMyBTYWx0ZWRfX7NGWEnMQZ0+c
- rNCt2KhaTClnf3NA1Nv/Nka4T9d0MxXgfYc0js2NGK436uOdnf+THyexyxfM9S+6AU60g+F3oAH
- ej1uUUGy7qyvGU+U/con5ovko/gLN+hAcKo3Xp7G+Rv3eO6UWzuO3bvXRvPrjbNL1cUAA0ixQon
- bsl2GmS/i66QKmeg3YCfO06LMMkT2bOAa79tfEjEdDACHTE2pDKZbX5BQzwyVwJzZoW5U7i8AMG
- 5SjIwjqQM+sZXNLEB1dgM9fMMmDQdcvzLgSs3aac6zL8Qf3GOBSP1ZKrlcPXOizgWPBJmp6lTL8
- LuYGiMhR6bD3m4qGDiivcjjHSTknbfxu01LbJ16QeXmKN3BEwWKVK5duFXRJ79cRDAU+eyCXjjF
- ItUy9Aac
-X-Proofpoint-ORIG-GUID: pdJcLxj-eAFrlRGefEao2sHiJ0ftDIwi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 spamscore=0 phishscore=0 adultscore=0
- bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508090013
+In-Reply-To: <4fa9074e-609a-42aa-975a-a6daa7dd6d42@kernel.org>
 
-
-
-On 7/24/2025 10:52 AM, Wenbin Yao (Consultant) wrote:
-> On 7/23/2025 7:22 AM, Bjorn Helgaas wrote:
->> In subject:
->>
->>    PCI: qcom: Enable PCI Power Control Slot driver
->>
->> This is not a generic dwc change; it's specific to qcom, so I want the
->> subject to reflect that.
->>
->> We can fix this when applying unless other changes are needed.
+On Fri, Aug 01, 2025 at 06:09:18PM GMT, Krzysztof Kozlowski wrote:
+> On 01/08/2025 17:33, Manivannan Sadhasivam wrote:
+> > On Fri, Aug 01, 2025 at 04:20:37PM GMT, Krzysztof Kozlowski wrote:
+> >> On 01/08/2025 14:24, Manivannan Sadhasivam wrote:
+> >>> On Thu, Jul 31, 2025 at 10:38:56AM GMT, Krzysztof Kozlowski wrote:
+> >>>> On 31/07/2025 10:34, Ram Kumar Dwivedi wrote:
+> >>>>>
+> >>>>>
+> >>>>> On 31-Jul-25 12:15 PM, Krzysztof Kozlowski wrote:
+> >>>>>> On 30/07/2025 10:22, Ram Kumar Dwivedi wrote:
+> >>>>>>> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
+> >>>>>>> on the Qualcomm SM8650 platform by updating the device tree node. This
+> >>>>>>> includes adding new register regions and specifying the MSI parent
+> >>>>>>> required for MCQ operation.
+> >>>>>>>
+> >>>>>>> MCQ is a modern queuing model for UFS that improves performance and
+> >>>>>>> scalability by allowing multiple hardware queues. 
+> >>>>>>>
+> >>>>>>> Changes:
+> >>>>>>> - Add reg entries for mcq_sqd and mcq_vs regions.
+> >>>>>>> - Define reg-names for the new regions.
+> >>>>>>> - Specify msi-parent for interrupt routing.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+> >>>>>>> ---
+> >>>>>>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 9 ++++++++-
+> >>>>>>>  1 file changed, 8 insertions(+), 1 deletion(-)
+> >>>>>>>
+> >>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>>>> index e14d3d778b71..5d164fe511ba 100644
+> >>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> >>>>>>> @@ -3982,7 +3982,12 @@ ufs_mem_phy: phy@1d80000 {
+> >>>>>>>  
+> >>>>>>>  		ufs_mem_hc: ufshc@1d84000 {
+> >>>>>>>  			compatible = "qcom,sm8650-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+> >>>>>>> -			reg = <0 0x01d84000 0 0x3000>;
+> >>>>>>> +			reg = <0 0x01d84000 0 0x3000>,
+> >>>>>>> +			      <0 0x01da5000 0 0x2000>,
+> >>>>>>> +			      <0 0x01da4000 0 0x0010>;
+> >>>>>>
+> >>>>>>
+> >>>>>> These are wrong address spaces. Open your datasheet and look there.
+> >>>>>>
+> >>>>> Hi Krzysztof,
+> >>>>>
+> >>>>> I’ve reviewed it again, and it is correct and functioning as expected both on our upstream and downstream codebase.
+> >>>>> I think it is probably overlooked by you. Can you please double check from your end?
+> >>>>>
+> >>>>
+> >>>> No, it is not overlooked. There is no address space of length 0x10 at
+> >>>> 0x01da4000 in qcom doc/datasheet system. Just open the doc and look
+> >>>> there by yourself. The size is 0x15000.
+> >>>>
+> >>>
+> >>> The whole UFS MCQ region is indeed of size 0x15000, but the SQD and VS registers
+> >>> are at random offsets, not fixed across the SoC revisions. And there are some
+> >>> big holes within the whole region for things like ICE and all.
+> >>>
+> >>> So it makes sense to map only the part of these regions and leave the unused
+> >>> ones.
+> >> Each item in the reg represents some continuous, dedicated address
+> >> space, not individual registers or artificially decided subsection. The
+> >> holes in such address space is not a problem, we do it all the time for
+> >> all other devices as well.
+> >>
+> >> You need to use the definition of that address space.
+> >>
+> > 
+> > What if some of the registers in that whole address space is shared with other
+> > peripherals such as ICE?
 > 
-> OK， will fix it.
+> 
+> It will be a different address space. We don't talk about imaginary
+> 3rd-party SoC. Qualcomm datasheet lists address spaces in very precise
+> way. We were recently fixing all address spaces for remoterpocs based on
+> that.
+> 
+> > 
+> > I agree with the fact that artifically creating separate register spaces leads
+> > to issues, but here I'm worried about hardcoding the offsets in the driver which
+> > can change between SoCs and also the shared address space with ICE.
+> 
+> Drivers are expected to hard-code offsets and all drivers do it. Look at
+> display, sound codecs (both SoC and soundwire devices). Everything
+> hard-coded offsets internal to address space.
+> 
+> What you essentially want is (making it border case) "reg" per register.
+> 
 
-Hi Bjorn, we have nothing to update, will not send new version, could you
-please pick up patches and fix this when applying if there is no further
-comments?
+I was worried about the ICE overlap, but I got access to the documentation and
+verified myself (also with Nitin) that there is no ICE overlap. So yes, we can
+map the entire MCQ region and live with the hardcoded offsets.
 
-- Qiang Yu> 
->>
->> On Tue, Jul 22, 2025 at 05:11:49PM +0800, Wenbin Yao wrote:
->>> From: Qiang Yu <qiang.yu@oss.qualcomm.com>
->>>
->>> Enable the pwrctrl driver, which is utilized to manage the power supplies
->>> of the devices connected to the PCI slots. This ensures that the voltage
->>> rails of the standard PCI slots on some platforms eg. X1E80100-QCP can be
->>> correctly turned on/off if they are described under PCIe port device tree
->>> node.
->>>
->>> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
->>> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
->>> ---
->>>   drivers/pci/controller/dwc/Kconfig | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->>> index ff6b6d9e1..deafc512b 100644
->>> --- a/drivers/pci/controller/dwc/Kconfig
->>> +++ b/drivers/pci/controller/dwc/Kconfig
->>> @@ -298,6 +298,7 @@ config PCIE_QCOM
->>>       select CRC8
->>>       select PCIE_QCOM_COMMON
->>>       select PCI_HOST_COMMON
->>> +    select PCI_PWRCTRL_SLOT
->>>       help
->>>         Say Y here to enable PCIe controller support on Qualcomm SoCs. The
->>>         PCIe controller uses the DesignWare core plus Qualcomm-specific
->>> -- 
->>> 2.34.1
->>>
+- Mani
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
