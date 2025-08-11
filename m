@@ -1,166 +1,188 @@
-Return-Path: <devicetree+bounces-203361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3C9B20D52
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:18:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D33B20D57
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:18:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5E8A1887192
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:18:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3808C7A7BA6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0031E2DCBEE;
-	Mon, 11 Aug 2025 15:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4432E041E;
+	Mon, 11 Aug 2025 15:18:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="PTz32NZK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70CF2135AD;
-	Mon, 11 Aug 2025 15:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFA323BD0F
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 15:18:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754925485; cv=none; b=TWGABNkIRBy+y3zcIukNaed/Ed+tY+gAW3U0nAqteP3rHb2NESnixJ8bZUivuh31SYvyp00kqtCs9iRqFs2emZkZnI8rV7Z/XaGt3h8aWXPWlOL9G4SsSwQl593LtK4wNdiEFzuUslAuZQPFizpwK95IFwQPR91T0UHFlFDDXTU=
+	t=1754925487; cv=none; b=YyDAiO7J0AFP6BuJP254qAcWDRjzE+tis43goPf5ydh5S1L9Ow0aQ7a2r5xbyefU0jvqq5RiZYGoYDyPBzBOcR0eR4MO3r0nZQFTvAek6bdK8Yt2IUGSHOqDlFiTmDEgjLvaA7JEs2XMl+wACkoTssS7Hyh/XJ0LSVwbc++2Hd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754925485; c=relaxed/simple;
-	bh=Hbl3FDqH6hGn48dhqV3p7gZfDs6KUR3kV7tPIbZIlFQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RHvlIQmwO0d6c5yqhL+ngikM9Wbbsy/H6wBe08BBi1nDzPwf7zVlwDACER1/1gqlrzMJ9htQzpGO2RBIjLOd5nzp9xkY7KPoFDDpxhv+HfqJw4uVpZx5vLEJ8eKirw8h8o6PwwXFt3DSqLiR7oA8IpEZdqymjWQZdbdmzSFAhqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5393a970209so2928605e0c.0;
-        Mon, 11 Aug 2025 08:18:03 -0700 (PDT)
+	s=arc-20240116; t=1754925487; c=relaxed/simple;
+	bh=6a2jpr8RqbOo+9g1f65WPhHWahy1fmVBwuuQHvaAios=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Tp3jktmhdWevN/5prDFYeVeDKAc3WJj8NdvgHtLPMHw5xR+nHvVBdUNZdvq1WpnwNbnlz46dyZgr12y67J0Gg/H1+GExKo5CSmA2SKT17NmhhKZlS9TMnGx5vw7zM0Zerayo/NCjzaebPaz+dkp1E0y2NE68HSgIRAy4Kjdnx88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=PTz32NZK; arc=none smtp.client-ip=209.85.208.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-6180ce2197cso3934431a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:18:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1754925484; x=1755530284; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ihP/wnPXyZhWgHPlteto2ft6qT692i4bL35PGC7Kwgs=;
+        b=PTz32NZKUVFpakySMNj8LpNGl769jNxKtf2Wy2ymGDpQ1rdL34X1N0i6Iw8o+o2MM/
+         YgToy6bi3CvB09Thb9NkMbRZgGzIPfjFqW8Tym+y3F2q/UqbFF+c9n1Gce2zRoHdbyqA
+         if5T7ME6CpfQHdBtTWcFmjSFbhz48aK87tXccE6m0GR3KIsthGXl+b+Gma3jOJETjc6i
+         p+y04GYSnB6IuQUMzz0DePBr8f6NK4PzxfEfBOQJ9IXVwqA5p3fBB4uP/CKQkKhRZAt6
+         8yFUS+C1VkvuYKAu9T3zmnUcwVJbSvFpuout3mjbyjYwA3bwoPafqymJZP7KrTEOWrGQ
+         ayYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754925482; x=1755530282;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eRERaapospbD2j/AINuPZJ+DOhG36AvV/ZTDomBbWC8=;
-        b=ClT5xqgcjWwtJ+GQRsIGFDCnZTM9JOgvkllzjN3Ews4wYzPHj6MBJRjLR4jf/qM2Q8
-         8jcC3Tsp/Pigy45UXnmkl4mM4Q78PocueSBgEabkbjNyc9vqPrEtoCcB4xLhNLSmLIEp
-         xd186o2OYNd2VxaQydoVQns9wFFK8KWKz5pYGCot8Opd6ttnDtlvc4qX47pRaTQLz8VW
-         SBcS8W4PjrebofIDWXhYHKSMYFqOnjtPePOBnxqi5DYCpT9WJAsZDKQu0Ep5R+gW+Ywz
-         XM/EKHv+sFtL78M8vW/b7o8/iQt/wO7cmn6O/wIAoeyQ5UYVN8usd1z++p+R6g0FBlx6
-         kXNw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBmOnRUus/6znxMt6c2XBsmuPMAmHkDG3L9e4foSzIwQIEZqTBhthKFAZKz/KNPPsvsFtK9jkkkNQnNrnfR/mA5/Q=@vger.kernel.org, AJvYcCWWjvsT554UYKAfmdFjTccdtThP8ek4QcYID4JJhT/jcjxt9BCWZly1LGOI+VT1TxnRPShN9m5uZFp/@vger.kernel.org, AJvYcCWf/bjryCniyNbADON6OTaDpJ/gvyJA7Bx/f7tRjDODubEJjzZ2riDMPkTrB7cHH5h+mG6zxiw14Y1bY9Y6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuaSyY3CCaZq+GhoYEM5QVW3wA9/8kwWsITXRkyBEoFKQxYc2Y
-	3J7NpMC5hOnyzAnU9yozjMe88ml74YGyQpwINTZ8W4f2/wyhJs0T9iPtM1S+kkKz
-X-Gm-Gg: ASbGncvDZORXByzD1ggmovS0bfQ8E+mxJOUyArNWCd5Vj9ue+RohooktMD6rKBflQo0
-	d9evp4y77yS1dz6shpp7/JXtDKeNB6y9bnAlG0weyRyxaU3vt0vvLfNkuj/pz3RBksm9lK4sPZo
-	sd12gChvyqhBIbUoJTV4e3n1r9h3a5DUn7DDxhu8ygrvik1Fr6O5+qxrtMeQ+0pqS4IFsG11VhP
-	IoYLZgkI+BRC9qQmeHaBRiL3McnjRlpWezGhEHF5AQzMjXyTHKXm6ik5u9Eu6Lu1iVNh4I3siRA
-	8pAHRs2HN/RnJCpWkc81vz4lz8WgkM1FrtrSb6oIBVNm0bXsgkk3LVE7Li6WhyQwtTFQtLmAOk5
-	YxqCT0AWGfZ6I66Xuhkj4IQr1TFe1SZpQIGqqq0dfi/w4RivX+lNM3PYoUGNpoQi5Wxq1k8o=
-X-Google-Smtp-Source: AGHT+IFlj+IVhzl3HZq8NMJPa0i3x1JGPsbz18uQ7NXy1mgTBE+nr+ycOOGrvC1ShqKHaqbVO5N1/A==
-X-Received: by 2002:a05:6122:308b:b0:530:2c65:5bb9 with SMTP id 71dfb90a1353d-53a52ee8667mr5061177e0c.8.1754925482478;
-        Mon, 11 Aug 2025 08:18:02 -0700 (PDT)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53adef42d5fsm1215957e0c.0.2025.08.11.08.18.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 08:18:01 -0700 (PDT)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-88dc40608c1so2962086241.2;
-        Mon, 11 Aug 2025 08:18:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV732ze/F0RNuo/lXyVP00Njnz60kaBeVCfOwAazbq2IIHoGvuolVpA8g8e8yJRmweorOX3rDz1outT@vger.kernel.org, AJvYcCW8qTrlFIK4ikeDTRxG98FnxehJp7/iPNeHirRBErWkKx58Mu2Fvgqw6pqtX19z9AxbaLAmFDXIhLJoc7VG@vger.kernel.org, AJvYcCWKLctchTEALjT8Z/VP4Z8pOa8zjxDwIITEl76ZXK6DvfsURH5rxP+957ro5KhP8Z+P45zet8YuNmII4sNpzCTphic=@vger.kernel.org
-X-Received: by 2002:a05:6102:c0c:b0:4e9:963f:2d09 with SMTP id
- ada2fe7eead31-50cbd7be826mr117273137.10.1754925481152; Mon, 11 Aug 2025
- 08:18:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754925484; x=1755530284;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ihP/wnPXyZhWgHPlteto2ft6qT692i4bL35PGC7Kwgs=;
+        b=r5giKOg9LoeRNUq5Ai7q7yfUTdh3avyAl70oO2fGC63pXD+K5N9EBrDaMnVqUyuL+u
+         +MXZxmVkpMjYcWibTB9zt3CcsJ/mkW1dEQuuZsBlAMD45dawU/XluN++NMuYBcEEdbMH
+         qczYX6NjZxxJteKkNG6H+hjksLZo1pXTmuLyeas0mRhNJJ0EuVievl4zR/MCeUB9muri
+         9GWexwl9dgPRCUIeMgfhnVyCCR51iL31kfJKO1dGFEnL4Bx+7sdSNoypJal912z+j36D
+         yN9DJHEzG377jLdJluNpPUlytD2fPUGYTMBOpuqbCqrIuPGSFJED1kY0B8QlS0DmjK1p
+         xTaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXXwUcYPJ/3FsCmHMtzm4bbsz99bQ/eiAB8EJeLZYkYgTlnjLI9F6u0KplTq7n5qtcq7V4lhzpuZ6G1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwA8PpH9ZXUc69uERbXEaFFQHDG0zjGZi9C/vK28fWbQxvWzfmt
+	DY86GZD7y2+FXdP7UM63s5NWlsO0X7KA4JVyDJHJyTIYg3+zbPHVHSNSL5xfsU/Dhvc=
+X-Gm-Gg: ASbGncuOSqzUH/2ixmlJDvyJB36H23Tdgw1/E6Ze5LzVKvgqCCbqLUqucFbKGgG12aA
+	xghO1kdDJAKQtxQQu0PMfXUq2wRDAbTghrMA78xRY00UnikDno1hwLZLL1IfRRovfvoYW3QMGtp
+	9Dse7cGT3AvsAYawkdA9g3YIYx1wH+aJ6cmbbprqfJLtsfERam9c95MpLvD8QMnXZJTZDa6D3GJ
+	/nR6BoPhtvVg87lgrBogeWpXO1b/sTAko6OUW25/Mt+PvKvzjMSwdgqlDWSBzyXFlABEcoGzKoy
+	LLJ8vz1LASqpT5IzySkxQ8EoxQwkeV3atdi0fCSWb0Dq5B17nysInjmvTyIAWWELh93tJLyYJna
+	FKkMn1y2kq9yQA7WBp8eyVCAZwlmUcFYKsgP/EPfYjEkqrc4EA5H45sgyn0ap+KzxGA==
+X-Google-Smtp-Source: AGHT+IGvJ3ayAmkrGkViVLnbNoPZ1sMap6TBv2tr1d6iu6pDDVV5j4fRLfmHXE5vLfntRBsHIUMHNQ==
+X-Received: by 2002:a17:907:608b:b0:af9:5b1f:b87a with SMTP id a640c23a62f3a-af9c64791a2mr1210151866b.20.1754925484035;
+        Mon, 11 Aug 2025 08:18:04 -0700 (PDT)
+Received: from localhost (host-79-44-170-80.retail.telecomitalia.it. [79.44.170.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c081sm2014946666b.97.2025.08.11.08.18.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 08:18:03 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: linus.walleij@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	florian.fainelli@broadcom.com,
+	wahrenst@gmx.net,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	iivanov@suse.de,
+	svarbanov@suse.de,
+	mbrugger@suse.com,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Al Cooper <alcooperx@gmail.com>,
+	linux-mmc@vger.kernel.org,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-serial@vger.kernel.org
+Cc: Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH 0/6] Add peripheral nodes to RaspberryPi 5 DT
+Date: Mon, 11 Aug 2025 17:19:44 +0200
+Message-ID: <cover.1754924348.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250808215209.3692744-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250808215209.3692744-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdUWo=hYPWPrweoYn5rFC50aV5EV1xqwFHmLp27GRjEADw@mail.gmail.com> <CA+V-a8vW2-YG8=-u3kUcrou+nPVLn2uhE-W+JOHpu9Cahyw2ZQ@mail.gmail.com>
-In-Reply-To: <CA+V-a8vW2-YG8=-u3kUcrou+nPVLn2uhE-W+JOHpu9Cahyw2ZQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 11 Aug 2025 17:17:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVXZPhsKSbC1px9c733O-W74EHNOb9+Ag8hgsM2bPg7SQ@mail.gmail.com>
-X-Gm-Features: Ac12FXxp-lj0MFbvrPvqguz3Y5JPy4aG-7bqG3-CAFKU8C26rnV-BJ2WrZHG93A
-Message-ID: <CAMuHMdVXZPhsKSbC1px9c733O-W74EHNOb9+Ag8hgsM2bPg7SQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: renesas,usb2-phy: Add RZ/T2H and
- RZ/N2H support
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Prabhakar,
+Hi,
 
-On Mon, 11 Aug 2025 at 17:08, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> On Mon, Aug 11, 2025 at 2:34=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Fri, 8 Aug 2025 at 23:52, Prabhakar <prabhakar.csengg@gmail.com> wro=
-te:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Document the USB2 PHY controller for the Renesas RZ/T2H (r9a09g077) a=
-nd
-> > > RZ/N2H (r9a09g087) SoCs. These SoCs share the same PHY block, which i=
-s
-> > > similar to the one on RZ/G2L but differs in clocks, resets, and regis=
-ter
-> > > bits. To account for these differences, a new compatible string
-> > > `renesas,usb2-phy-r9a09g077` is introduced.
-> > >
-> > > The RZ/N2H SoC uses the same PHY as RZ/T2H, so it reuses the RZ/T2H
-> > > compatible string as a fallback.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> >
-> > > @@ -120,6 +126,17 @@ allOf:
-> > >        required:
-> > >          - resets
-> > >
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: renesas,usb2-phy-r9a09g077
-> > > +    then:
-> > > +      properties:
-> > > +        clocks:
-> > > +          minItems: 2
-> > > +        resets: false
-> >
-> > By the time this hits upstream, you will probably have reset support
-> > for RZ/T2H and RZ/N2H, so you just add renesas,usb2-phy-r9a09g077
-> > to the conditional section above?
-> >
-> But the above will still be true as MRCTLA/E/I/M register doesn't have
-> any bits to reset USB{PHY} or am I missing something?
+The following patches add a few peripheral DT nodes and related pin/gpio
+nodes for Raspberry Pi 5.
 
-You are correct. I overlooked that some modules lack reset bits.
+This brand new patchset (hence it's a V1) is the second part of the split-up
+of the patchset [1]. It tooks patches 3 to 6 from there and adds a couple
+of new patches that amend the DT bindings.
+As a result, patchset [2] is a prerequisite for this patchset.
 
-Gr{oetje,eeting}s,
+- Patch 1 and 2: Amend the bindings to avoid DT compiler warnings.
 
-                        Geert
+- Patch 3: Adds core pinctrl nodes and defines SD pins as a first appliance
+  for the pinctrl.  
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+- Patch 4: Wires the gpio-key for power button and related gpio controller.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+- Patch 5: Adds DT node for WiFi.
+
+- Patch 6: Adds Bluetooth DT node.
+
+All comments and suggestions are welcome!
+
+Happy hacking!
+Ivan and Andrea
+
+Links:
+[1] - https://lore.kernel.org/all/cover.1752584387.git.andrea.porta@suse.com/
+[2] - https://lore.kernel.org/all/cover.1754922935.git.andrea.porta@suse.com/
+
+
+CHANGES since [1]:
+
+--- PATCHES ---
+
+- Add two new patches (1 and 2) that amend the DT bindings.
+
+
+--- DTS ---
+
+- bcm2712.dtsi: Added 'interrupt-names' and dropped 'reg-shift' and
+  'reg-io-width' properties in uarta DT node. The latter two are
+  just overridden by driver code so setting them in DT is useless.
+
+- bcm2712-rpi-5-b-ovl-rp1.dts: dropped 'auto-flow-control' property
+  since it's not parsed in driver code.
+
+
+--- DT BINDINGS ---
+
+- brcm,sdhci-brcmstb.yaml: added SDHCI capabilities by including
+  sdhci-common.yaml.
+
+- serial/brcm,bcm7271-uart.yaml: let clock-frequency be an alternative way
+  to specify the clock speed instead of clocks/clock-names.
+
+
+Andrea della Porta (2):
+  dt-bindings: mmc: Add support for capabilities to Broadcom SDHCI
+    controller
+  dt-bindings: serial: Add clock-frequency property as an alternative to
+    clocks
+
+Ivan T. Ivanov (4):
+  arm64: dts: broadcom: bcm2712: Add pin controller nodes
+  arm64: dts: broadcom: bcm2712: Add one more GPIO node
+  arm64: dts: broadcom: bcm2712: Add second SDHCI controller node
+  arm64: dts: broadcom: bcm2712: Add UARTA controller node
+
+ .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |   2 +-
+ .../bindings/serial/brcm,bcm7271-uart.yaml    |  19 ++-
+ .../dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts  | 133 ++++++++++++++++++
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  47 +++++++
+ 4 files changed, 198 insertions(+), 3 deletions(-)
+
+-- 
+2.35.3
+
 
