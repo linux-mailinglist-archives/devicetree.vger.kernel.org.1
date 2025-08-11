@@ -1,143 +1,158 @@
-Return-Path: <devicetree+bounces-203184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB607B20480
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:54:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C593B2049B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:57:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 130F818A0A8B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:54:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCA5C4264D0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00AC239E9A;
-	Mon, 11 Aug 2025 09:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07D8228C99;
+	Mon, 11 Aug 2025 09:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kpu+vpWV"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kLeGAywx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E5C222565;
-	Mon, 11 Aug 2025 09:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3562F2264A3;
+	Mon, 11 Aug 2025 09:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754905949; cv=none; b=AtsodZu8sBJ9Fi0Hu0qHscQ8YIB122iL3iWvZabU//qeeQtzxLJsO6v1pePtYrq2Hgs+wlS+YooSVrueMSjhQ0atbiLXtac5jdrHzuk88EdoZhj/qfs8p/J5Au1F0jA+J8C5Ij9tnVjsGtMfaiIip3q1f9coUd0HEsEGYhvgWD0=
+	t=1754906043; cv=none; b=Je+ru2xHt4ZhZu1may8vQhC9F0p4DhNon95VcTuUnobMsRs5c4rIuK9fx0p41kd2UzBaJyCUYVmsz6QnOVaqkmXWv5oT89ovi00eSKgU67LirOXEvr5xSfwaUpdwfGVgxJHg9TFvHAqdyerBB8DO6YQkRO7uQNMsfHzm59tWzhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754905949; c=relaxed/simple;
-	bh=cTYImwdb22N3LRB1i7bNVNZxRo91+rFmZTcadt+AOys=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s7j/YJ3g61/iFCZOEFj7PWVBNMlZ9jbrqzMNt1PzxfuTBSW8v1cDsndkeYSnD8yq2pbE+v1F1XqApvbq4NkwYDKRoe/ag7uCyodxR66CNuibZIf4SHS0OhBJ7ca8j1gu1ZjfUf1mO8/EWThLqJdn6beheJnNcK52LsvwRae42DM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kpu+vpWV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEEF9C4CEED;
-	Mon, 11 Aug 2025 09:52:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754905949;
-	bh=cTYImwdb22N3LRB1i7bNVNZxRo91+rFmZTcadt+AOys=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kpu+vpWVnlyt6bS/J5MEPJ3H9T5pkZjDI5rsjUjSMn9VgJ5FQxJWTyvB7yrnCglj4
-	 54k2ep7VZCNCVPp2PsxaD8KeTIlX/UkwQcpoJ6rTqTQ05ATlSi/NB1fDqtiSNzSTBT
-	 Kkma0lswM1hL9z1ug6DFbiKGjmzkGXi2iJUh8yp5WQJyZ4gEETiVNyGfkWLpL5+PAm
-	 ql9LunATf4tVVS9JNUu3qoY8FttsDY2SlMLd4d7gWN8otHhJw4/29lF2TpuTKH9D7H
-	 GB6efb/86lU4r52yYvcs+UTHk5Mzz64UFYwzJq3hVmy1yZkfy2CPU7VUFLHmT+ndn8
-	 VpJoKhlatNI/A==
-Message-ID: <d68f4783-ffdd-4fda-8ae4-65a211f9ffb1@kernel.org>
-Date: Mon, 11 Aug 2025 11:52:23 +0200
+	s=arc-20240116; t=1754906043; c=relaxed/simple;
+	bh=iwzd7e66Z9YSwLHyEDKECZDQ4lbE4ar5MJ8qPN5e9do=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sVxTHbIfUK5a2rlPQhKI3fJeHkSS8YJIglyIIeRCpPhmF/XB0CBIJdaJaqxO8hvfMSjkoH1wg445Q29Qh+gEUEgG2Ut+XdcU97IE7kkth89ZdK6vLFhCxNiTIftBiOwK7O62pMbDT0iqGuz1wdp494Z92NoDnxdWsgmAz3g7+vc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kLeGAywx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9dG3u029264;
+	Mon, 11 Aug 2025 09:53:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CWHCyxTc03WsGsUCc9DQvI
+	omyghM+2r6Mlg+ggnej70=; b=kLeGAywx9djl0+zK4MersFZOnLj5bsyx7BrKLh
+	5PaZ1/0dbBCGMaTY4Kk22ykwGec6s9jyaEaxBOdE76LU3PNi+3dvyQOVbvQl1hCc
+	AfDIwQfp6L12Q9WK/f6nd9a9gbaKt8llUsHmt3DR4NmCl8bEkwBLhUM29hZIekjt
+	Abqvtg3hwZX0kwZCSG9Gjr13ShynniabA8ranx7mdsQIXLhrBeLKhxVEzXL03nXX
+	pTv6D10/FzRHmIyS33YR0MOQkdJ1mCzFOyoA7O/skMCZZtgQkL3Uyr7f32K30peX
+	UFVjFsgcbOsYULUkaAzGbBJGO1DMM+4EsYddP0r+5FYCoK8A==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmbuwg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 09:53:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57B9rwGo027141
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 09:53:58 GMT
+Received: from ap-kernel-sh01-lnx.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 11 Aug 2025 02:53:56 -0700
+From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+To: <robh@kernel.org>, <saravanak@google.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Zhenhua
+ Huang" <quic_zhenhuah@quicinc.com>
+Subject: [PATCH] of/address: Add error logging for of_match_bus() in address translation path
+Date: Mon, 11 Aug 2025 17:53:42 +0800
+Message-ID: <20250811095342.2383808-1-quic_zhenhuah@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio: Replace bouncing Analog emails
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250724113826.61998-2-krzysztof.kozlowski@linaro.org>
- <20250728144901.3f646a4c@jic23-huawei> <20250809210438.23fb5fd0@jic23-huawei>
- <d6n24lux6pv47mb3z2bfdbtn5olsm46rdbnkwhjurkwh4a27kl@hkcedsvni4il>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <d6n24lux6pv47mb3z2bfdbtn5olsm46rdbnkwhjurkwh4a27kl@hkcedsvni4il>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfX6u9L1RLYBI/R
+ I9ChOxy2ygD4qeXble7L6Sq7OsFbvu0z5a4aIsI3r8ju4UDHuc+NL1Yux2q76PFQPiUjDNmfupp
+ mSc9wX1G/CLrocIdyGwIzK7EooJv9B9N72AB7dJKG2e/0Iz8GYUHX/R1Y14HMWhZQpVd0aktmIw
+ azn8dg7UsLKHe2hI8MLpg6+6iDjveASk7S8KmHrUiuDoVHKpnxBopRT9hVuxGyAhy9rHJrVALem
+ snSfFojIG3wuPmvo+XpOfgQTHklF9U/+dU2T5gPrGq+mYij8dJ2PeVZgymqgW2Y9twzVGG9Wza0
+ UWjoFt0Nl+yR9B3ZXdMX6nOzAAXKhmWoK+jqkqJ1GB/rkwWC7n2eIIKxOi5OzgkkzIHPgvgiN2j
+ MHyo2eyG
+X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=6899bdb6 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
+ a=T4CoFiDlfSecjn6-qa8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: AzLfHZA7G5geS8Z0KlNvF6cSV0qd0i42
+X-Proofpoint-ORIG-GUID: AzLfHZA7G5geS8Z0KlNvF6cSV0qd0i42
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1011 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090035
 
-On 11/08/2025 11:50, Nuno Sá wrote:
->>>> I don't know who from Analog should maintain these devices, so I chosen
->>>> author from Analog of one of last commits.
->>>>
->>>> Marcelo Schmitt, could you confirm that you are okay (or not) with this?  
->>>
->>> Nuno, Michael, other ADI folk.  Can someone confirm if we are making these Marcelo's
->>> problem?
->>>
->>
->> As amusing as it would be for me, I definitely can't pick this up without
->> some tags from ADI folk and Marcelo in particular!!
-> 
-> Normally in situations like this, it defaults to me but I'm happy if
-> Marcelo is comfortable in assuming maintainership for these.
-> 
-> That said, I do think that for the adis* drivers it makes sense to be me.
+The change introduced in
+commit 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
+triggers a warning on the direct ancestor node when translating properties
+like "iommu-addresses"/"reg". However, it fails to issue a warning if the
+ancestor’s ancestor is missing the required cells.
+For instance, if node_c lacks the necessary properties, no warning will be
+generated. Potential issues will be trigger further.
+node_c {
+		//NO WARN
+	node_b {
+		//WARN on missing of "address-cells" and "size-cells"
+		node_a {
+			xxx = <memory_reion>  //contains "iommu-addresses"
+		}
+	}
+}
 
+Since of_match_bus() is now expected to succeed in traslation path,
+routine __of_translate_address. Print an error message would help in
+identifying cases where it fails, making such issues easier to diagnose.
 
-Do you mean that adis16240.yaml should be for you?
+Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
+---
+ drivers/of/address.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Just to be clear: I have no clue who should be maintaining these. For
-sure emails should not bounce...
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index f0f8f0dd191c..cd33ab64ccf3 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -515,8 +515,10 @@ static u64 __of_translate_address(struct device_node *node,
+ 	if (parent == NULL)
+ 		return OF_BAD_ADDR;
+ 	bus = of_match_bus(parent);
+-	if (!bus)
++	if (!bus) {
++		pr_err("of_match_bus failed for device node(%pOF)\n", parent);
+ 		return OF_BAD_ADDR;
++	}
+ 
+ 	/* Count address cells & copy address locally */
+ 	bus->count_cells(dev, &na, &ns);
+@@ -560,8 +562,10 @@ static u64 __of_translate_address(struct device_node *node,
+ 
+ 		/* Get new parent bus and counts */
+ 		pbus = of_match_bus(parent);
+-		if (!pbus)
++		if (!pbus) {
++			pr_err("of_match_bus failed for device node(%pOF)\n", parent);
+ 			return OF_BAD_ADDR;
++		}
+ 		pbus->count_cells(dev, &pna, &pns);
+ 		if (!OF_CHECK_COUNTS(pna, pns)) {
+ 			pr_err("Bad cell count for %pOF\n", dev);
+-- 
+2.34.1
 
-Best regards,
-Krzysztof
 
