@@ -1,381 +1,134 @@
-Return-Path: <devicetree+bounces-203440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 148DBB21526
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 21:08:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A3AB21715
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:11:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A15D73ABF64
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 19:07:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14BCD1907881
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 21:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A91A2E2EE1;
-	Mon, 11 Aug 2025 19:07:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38A0C2E2DCD;
+	Mon, 11 Aug 2025 21:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmJe5Bnz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1we82//"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238C42D6E5D;
-	Mon, 11 Aug 2025 19:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FD32E285B;
+	Mon, 11 Aug 2025 21:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754939251; cv=none; b=RX+lxJYcIDANmnEyITrHBstWPkjkxVPhgh9GWcbtWuLPyJLtwS47VNIuR4jTgopqZm7th0GU11TlDqmsydzH0x9wQwv/BInbCofixWCFzY6C19d5ZwCc0qRZWF0EBH9ij+27J4RIlQfTj8FrZLUUfIKLHaHsWs4lpCe6ibCx3FA=
+	t=1754946676; cv=none; b=fI0Dif0MGCO69scZfOR7ljHDjDo1uUnfMBNun4PSFVv5PboIGxi49p72mh4aE6KbGGUGkJb/AMINiXUj6b2CFoiMzzTRKYccFKDPmuLah1Vw308zQE9S/r2f+Wrnb56HFFFmntpFrhmAae9WRu8NBrG3EJ+s6znTvvKUpxYa58U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754939251; c=relaxed/simple;
-	bh=z9NgzLPdkixra/QUJxb+x6d8KoigZnVyhXR1Dq4delE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uvYqJOSE2I7Y9sAnlXCDD+Hn0UIOR+VQITJnSHhiWJcxOd43ay4g4m/1ODF+k01iRzMU34I7tHiJSzQso2kK0tL75UAf492Y0+S46Cm4DgjPjswsNXBgw76DyW3qfqT8Uga33lGBOvJUJmqQJxT4S83zLzMxwh8AgQkw0qDn+ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QmJe5Bnz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AF4FCC4CEFA;
-	Mon, 11 Aug 2025 19:07:30 +0000 (UTC)
+	s=arc-20240116; t=1754946676; c=relaxed/simple;
+	bh=GiMzNPUdom6LpwJOVXfmdvsrpf5L5vNqPJToueU7gX4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JVHYsB+cVHFCR11HcKzyBpQRrYka9EOFMS/oJHdeT7kxOj0pg3e3cMqPMI9QINNu9aSnBpxbTpxh8/lMRJ4OGf2v61ekKDQs66TQ+8S5TtdIX21haDMvghJRLx3WcJfg4mWlfcMInbEigoLQI6Hm5VFxcZgMuGWI6/Ug0OI3jVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1we82//; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19986C4CEED;
+	Mon, 11 Aug 2025 21:11:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754939250;
-	bh=z9NgzLPdkixra/QUJxb+x6d8KoigZnVyhXR1Dq4delE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QmJe5Bnz3I1OgZks51kAfBMvHOIxgC/qqslqFXCuDISRg48jckbt369fIs3fSvETm
-	 fuI+ZdqYJ5ox8WbHcLNZGqgweKnKQVeWjtWV0BN9JQcinwP99uuzB/nL38Ol0QvWtV
-	 0VQEHD7SCjPzGMERpN4TJZCWbUJzxeeSgF8q5mg7qzSdvv1WK9GTI8TQUV76zqGG9/
-	 dztnyM5snh67/X69gl5fP2RcjHql06eQOh7q19+yagKO1UBX/kPeg0OlXPI9e8URsd
-	 +F2PpzuzMmmrJdc8F4IMCqnfyRHxWpKPTtalOeal+XoMplTStyCosohkWfu2FpX2fE
-	 TxuJo/SKJvmKg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D4A9CA0EDB;
-	Mon, 11 Aug 2025 19:07:30 +0000 (UTC)
-From: Cristian Cozzolino via B4 Relay <devnull+cristian_ci.protonmail.com@kernel.org>
-Date: Mon, 11 Aug 2025 23:08:11 +0200
-Subject: [PATCH RESEND v4 3/3] arm64: dts: qcom: msm8953: Add device tree
- for Billion Capture+
+	s=k20201202; t=1754946675;
+	bh=GiMzNPUdom6LpwJOVXfmdvsrpf5L5vNqPJToueU7gX4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=c1we82//iorTlQ/NxDsUJQOYCWVLd2icuiWFD7dyboZjqN6Bn/WxCsw6/Sa4kJOG+
+	 dm+l+nUC/da9E1BpwrAi7puaFAySpluYDfWqiNh4wRhGKRtZXhqUEJC+/maqtuErN1
+	 SjvLnOVl0ZbMxkN8KJZXY6sBxHyfwahy77KA/7jvrf+5eQeEtb1fnPVsqsEvpITxh7
+	 RYo5Yvm+asdmZe3MkBeo7PttLrjIW9TfYQJtNVThsMphNETcyWK9id1UGTMBzbM1T/
+	 uXBNOaAeteITJlQQ7S2HKu4yLaY5zbT+SToH6FbXOUyR1x5f0KeBB/iG3+suJdFrVR
+	 lAIRrQyFX0Q9Q==
+Date: Mon, 11 Aug 2025 23:11:12 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Frank.Li@nxp.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Ghennadi.Procopciuc@nxp.com, s32@nxp.com
+Subject: Re: [PATCH v1 2/2] pwm: Add the S32G support in the Freescale FTM
+ driver
+Message-ID: <ejua4dgtdtlpr22xio6sywhaiyfjrjwdf744s73fz4zxhxyhrk@ep7o37hzwzvv>
+References: <20250810185221.2767567-1-daniel.lezcano@linaro.org>
+ <20250810185221.2767567-3-daniel.lezcano@linaro.org>
+ <p5pwwdlrldqdkpqtfvgo3dz2liz46ywy7crjfe4nybxmrhlh55@b6v7lccczczs>
+ <47ed1b83-9ace-475b-8279-6c7f394c35f3@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-rimob-initial-devicetree-v4-3-b3194f14aa33@protonmail.com>
-References: <20250811-rimob-initial-devicetree-v4-0-b3194f14aa33@protonmail.com>
-In-Reply-To: <20250811-rimob-initial-devicetree-v4-0-b3194f14aa33@protonmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, 
- Cristian Cozzolino <cristian_ci@protonmail.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754946504; l=7327;
- i=cristian_ci@protonmail.com; s=20250620; h=from:subject:message-id;
- bh=qtnuNmfCBsjsZNE4PsKOQQMDD+xe/GZt7WSU7ruu8fI=;
- b=vD0w4BoLf8k7QH+aA9amV6HCAoaMUmpgEZsqNlARPSGiu7M2FXMUNdGDHJkWP+RX2KqKtqlmZ
- pEm/tBu8zsnD0EuvhaRBU6mDRYDX+xxrvTxSW60wlCLiou9bK2vx3dE
-X-Developer-Key: i=cristian_ci@protonmail.com; a=ed25519;
- pk=xH5IvIPUNHV1Q8R0/pq2CfuVFR/wTiAyuyi6IwedjZY=
-X-Endpoint-Received: by B4 Relay for cristian_ci@protonmail.com/20250620
- with auth_id=438
-X-Original-From: Cristian Cozzolino <cristian_ci@protonmail.com>
-Reply-To: cristian_ci@protonmail.com
-
-From: Cristian Cozzolino <cristian_ci@protonmail.com>
-
-Billion Capture+ (flipkart,rimob) is a smartphone released in 2017, based
-on Snapdragon 625 (MSM8953) SoC.
-
-Add a device tree with initial support for:
-
-- GPIO keys
-- SDHCI (internal and external storage)
-- USB Device Mode
-- Regulators
-- Simple framebuffer
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 255 +++++++++++++++++++++
- 2 files changed, 256 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 140b0b2abfb555b8ef61bd9ed0217d8997800809..af3757ca017b6e3d8c579e43f647a71fc64c62b3 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -70,6 +70,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-wingtech-wt82918hd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-flipkart-rimob.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-mido.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..ef4faf7631327ba3f7d954cef57bb1ebfc09a1cc
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-@@ -0,0 +1,255 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Cristian Cozzolino
-+ */
-+/dts-v1/;
-+
-+#include "msm8953.dtsi"
-+#include "pm8953.dtsi"
-+#include "pmi8950.dtsi"
-+
-+/delete-node/ &cont_splash_mem;
-+/delete-node/ &qseecom_mem;
-+
-+/ {
-+	model = "Billion Capture+";
-+	compatible = "flipkart,rimob", "qcom,msm8953";
-+	chassis-type = "handset";
-+	qcom,msm-id = <293 0>;
-+	qcom,board-id = <0x340008 0>;
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer@90001000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0x90001000 0 (1920 * 1080 * 3)>;
-+
-+			width = <1080>;
-+			height = <1920>;
-+			stride = <(1080 * 3)>;
-+			format = "r8g8b8";
-+
-+			power-domains = <&gcc MDSS_GDSC>;
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_key_default>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 85 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	reserved-memory {
-+		qseecom_mem: qseecom@84a00000 {
-+			reg = <0x0 0x84a00000 0x0 0x1900000>;
-+			no-map;
-+		};
-+
-+		cont_splash_mem: cont-splash@90001000 {
-+			reg = <0x0 0x90001000 0x0 (1080 * 1920 * 3)>;
-+			no-map;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+
-+&hsusb_phy {
-+	vdd-supply = <&pm8953_l3>;
-+	vdda-pll-supply = <&pm8953_l7>;
-+	vdda-phy-dpdm-supply = <&pm8953_l13>;
-+
-+	status = "okay";
-+};
-+
-+&pm8953_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators {
-+		compatible = "qcom,rpm-pm8953-regulators";
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+		vdd_s5-supply = <&vph_pwr>;
-+		vdd_s6-supply = <&vph_pwr>;
-+		vdd_s7-supply = <&vph_pwr>;
-+		vdd_l1-supply = <&pm8953_s3>;
-+		vdd_l2_l3-supply = <&pm8953_s3>;
-+		vdd_l4_l5_l6_l7_l16_l19-supply = <&pm8953_s4>;
-+		vdd_l8_l11_l12_l13_l14_l15-supply = <&vph_pwr>;
-+		vdd_l9_l10_l17_l18_l22-supply = <&vph_pwr>;
-+		vdd_l23-supply = <&pm8953_s3>;
-+
-+		pm8953_s1: s1 {
-+			regulator-min-microvolt = <870000>;
-+			regulator-max-microvolt = <1156000>;
-+		};
-+
-+		pm8953_s3: s3 {
-+			regulator-min-microvolt = <1224000>;
-+			regulator-max-microvolt = <1224000>;
-+		};
-+
-+		pm8953_s4: s4 {
-+			regulator-min-microvolt = <1900000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8953_l1: l1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1000000>;
-+		};
-+
-+		pm8953_l2: l2 {
-+			regulator-min-microvolt = <975000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8953_l3: l3 {
-+			regulator-min-microvolt = <925000>;
-+			regulator-max-microvolt = <925000>;
-+		};
-+
-+		pm8953_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8953_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1900000>;
-+		};
-+
-+		pm8953_l8: l8 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <2900000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8953_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8953_l10: l10 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8953_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8953_l13: l13 {
-+			regulator-min-microvolt = <3125000>;
-+			regulator-max-microvolt = <3125000>;
-+		};
-+
-+		pm8953_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8953_l17: l17 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8953_l19: l19 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8953_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8953_l23: l23 {
-+			regulator-min-microvolt = <975000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8953_l8>;
-+	vqmmc-supply = <&pm8953_l5>;
-+
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&pm8953_l11>;
-+	vqmmc-supply = <&pm8953_l12>;
-+
-+	cd-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-+	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <135 4>;
-+
-+	gpio_key_default: gpio-key-default-state {
-+		pins = "gpio85";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "peripheral";
-+};
-
--- 
-2.49.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2tvy32zt7ncrrsxl"
+Content-Disposition: inline
+In-Reply-To: <47ed1b83-9ace-475b-8279-6c7f394c35f3@linaro.org>
 
 
+--2tvy32zt7ncrrsxl
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 2/2] pwm: Add the S32G support in the Freescale FTM
+ driver
+MIME-Version: 1.0
+
+Hello Daniel,
+
+On Mon, Aug 11, 2025 at 11:44:32AM +0200, Daniel Lezcano wrote:
+> On 11/08/2025 07:18, Uwe Kleine-K=F6nig wrote:
+> > All variants (up to now) have .has_fltctrl =3D=3D .has_fltpol. Is there=
+ a
+> > good reason that justifies two bools for the register description?
+>=20
+> Yeah, I agree it can be folded into a single has_flt_reg boolean. I can o=
+nly
+> guess that was done with the idea of sticking to the reference manual and
+> perhaps having more variant to come with, eg.,  fltctrl=3Dfalse and
+> fltpol=3Dtrue
+>=20
+> Do you want me to merge these boolean ?
+
+That's the obvious thing to do if you want the new variant supported :-)
+
+Unless you know that there is such a variant with .has_fltctrl !=3D
+=2Ehas_fltpol to appear soon, I prefer the simplified handling with only
+one bool.
+
+> > Also I wonder about the fuss given that the two registers are not used
+> > in the PWM driver. So this is only to prevent reading these registers
+> > via regmap debug stuff? What happens if the memory locations are read
+> > where the other implementations have these registers?
+>=20
+> The problem arises at resume time.
+>=20
+> 	/* restore all registers from cache */
+>         clk_prepare(fpc->ipg_clk);
+> 	regcache_cache_only(fpc->regmap, false);
+>         regcache_sync(fpc->regmap);
+>=20
+> Without skipping these registers, the kernel crashes on s32g2/3
+
+That's a useful information for the commit log.
+
+Best regards
+Uwe
+
+--2tvy32zt7ncrrsxl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiaXG0ACgkQj4D7WH0S
+/k58Xwf/Zjf1uFWjpbwlJjnQdVYbt/qmlA7RXyNxLa9E/SnQeizlsdpSKquRCqJo
+R/nrnJyJ/GO1oKm91Barl+XpUSr7dyxJ8mgFMtPtNKn/ItZEJDZXrxUn5hSJHzCL
+aETQEkbwucRul6dBnCczX8ObCU44n4Gd7QRPSWP3dmQnPbAUiD9La5QWUhcVKpyI
+vxGk69ROjMWD3XAOUApQlcloa2VNUa+Plrbqh85KPyMThd/a0z9LVSah8yPBSfOF
+8B8EMSpEtpW/Yx0kosqJvEgw5F/IctL80kYxa5HmyQZ/PWyYmmWIR8Y9xhmirLJR
+08JHQJkAupcmMPl8TuXzvVEn6kKV1A==
+=XcLy
+-----END PGP SIGNATURE-----
+
+--2tvy32zt7ncrrsxl--
 
