@@ -1,234 +1,189 @@
-Return-Path: <devicetree+bounces-203034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E997B1FDAE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 04:20:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD87B1FDCA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 04:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B731895FD3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 02:21:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 850561780DE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 02:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14598156F5E;
-	Mon, 11 Aug 2025 02:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C267258CE7;
+	Mon, 11 Aug 2025 02:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cD+oaK6I"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ue3W1p/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5684A1D;
-	Mon, 11 Aug 2025 02:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD262566F5;
+	Mon, 11 Aug 2025 02:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754878854; cv=none; b=uyt3qwlCNXk7GlYQ/oRdVj0m1bJl0h2pBQ0UDwXNF6vF3TMNgTifhokIMKj1QeCSet21biiZmieUH27sfdMc4Yr6ixpolw28hQlmx+CSaOUa5wD+G9DocrXNx4aC7jBxnXbm47gFXhJUnCZVjXnABGa+S/OZrAQ04XT4SVQIaq4=
+	t=1754879026; cv=none; b=R+oU4WmS+lEhWD93dgQEL+pKYfaKhnj3YcvVqTK7RcmOxPad3rfWN+K9kNUkES4xpzwv/9Rl5gJ4txOzTojAo+Jf4St1lVc38wjr6GTMmgMWiIeETIecvBeK1GtHSHtNRyNztbalCyk2/CtM6LyWUmH3ocqCRtUkCpZ24RmfpGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754878854; c=relaxed/simple;
-	bh=/opjgRjMfSh0lFLnsYLiUzjkiaZOnDym8h13cc60JgU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AFUv39QsBkQEwEqz/tC3yGuC+u338F9x3kzojAd6WfA6P0XT2lyvFGweYKyUYWcc3CSmTd19LDV9JWlVVHJrZT4ieSm8o8fIf8YRbhb2HLNIHBiHIjtLSW6R5ADbE0jhuVLDOZyHvEfSS8GCXPbnP3VgHRoPQZvqE58aaercgoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cD+oaK6I; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57AL9NH7015810;
-	Mon, 11 Aug 2025 02:20:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QT4lXVvaW/eTxV1T5ssSnrh45y2dsnIoYRNfT7wkJDg=; b=cD+oaK6Ib16UH+J6
-	ZzTL83BCYKOjE9oJEZpTdeE/AKWcL2cDNTxFTVJLWxN5qw/BBULnQ7JMjpM739jW
-	+GzRj9yfZxwdjc8WQ0YVEQ/93eDrRBviRID+GsvzMi5p3DmPaT0oC6SzvHIKgt3K
-	rXlKOK2k9iJJT1NQxMlFcOQZ2FMxIXx+UsQJmyDeX/EfIzdX1fYgIKIWYMPAk0uC
-	VxSxO4U1BZ1WHlvJqYg3q6XL9oK1qsVjwqPJoyCZerisCunJJlo+O61qq6rEcQiu
-	mhf6P1uSh67HNqAQmkn7n012YCr1T/q/VN1LJ0Hc7HoB7yRnK4pMYgLZnxFypFuj
-	sITAdw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dy3g2tnr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 02:20:49 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57B2KndX028570
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 02:20:49 GMT
-Received: from [10.239.31.29] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 10 Aug
- 2025 19:20:46 -0700
-Message-ID: <6a56824c-349d-4cbf-82bd-1e99551c5fc5@quicinc.com>
-Date: Mon, 11 Aug 2025 10:20:44 +0800
+	s=arc-20240116; t=1754879026; c=relaxed/simple;
+	bh=vKwdokCSbfarr3tfiBIQ+v8PuIYAWoLWZBdsuWHTjX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PjLKXCUIn4yLSkBi309+nwIULe9L/JdGLoLH07TzbCGVldx+t9DnkU9mSjUwjHfdsCvRODk26UqjvhF74OOIrD+kyPTnXDEkA/EtpRONXq2eUYVAbDeDosK5aQQQkSqizncraIAsosLIcMUkdvZ1ESiOCrHMCjtBbsPk3nL7C9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ue3W1p/0; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id ABE3D2599D;
+	Mon, 11 Aug 2025 04:23:34 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id JdiyJLpcUReS; Mon, 11 Aug 2025 04:23:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1754879014; bh=vKwdokCSbfarr3tfiBIQ+v8PuIYAWoLWZBdsuWHTjX8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Ue3W1p/0pXOBeNfkPwdtHjYymOU+XmuRgfcVr/kEmzNY9uYvjLpBkoWLmrYNehL8u
+	 C2xey/68hv5zZCRvqPya6MwxSJ2qCQSrRbpcANklFrS6KSk/bSiecCc1eb3GrS2fNL
+	 vEATL2MyhuptYyHpIBQB5kayIsU0+pvKd7b6WhUpzQlu0zYoGDTXIxKn5DzgkT0jxq
+	 fbLmYYwxKGUCLX6X1vJXHWZQMN8DPXvNwK8bz9K8NpsxwPl+8QC9Q+76wCoUYqe4uv
+	 f6U2hglawgZn0mkLxRJcTcGOTS66gDsmHUhg/C+TghkKXK1btEXZiQeo0E0e/OsxTY
+	 M/VBEsJDPb1eg==
+Date: Mon, 11 Aug 2025 02:23:14 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH] reset: thead: Scope TH1520 reset driver to VO subsystem
+Message-ID: <aJlUErajSRZJexYa@pie>
+References: <CGME20250810211419eucas1p173e5fefcfaae437d8b5531d1406ff6a6@eucas1p1.samsung.com>
+ <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: sm6150: Add ADSP and CDSP fastrpc
- nodes
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250729031259.4190916-1-quic_lxu5@quicinc.com>
-Content-Language: en-US
-From: Ling Xu <quic_lxu5@quicinc.com>
-In-Reply-To: <20250729031259.4190916-1-quic_lxu5@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=X4lSKHTe c=1 sm=1 tr=0 ts=68995381 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=aAF9b7ESmjIPvdmNWt0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzMSBTYWx0ZWRfXxOAKOWtCSXQ+
- MCGuokueVSO4tNmYe2ieAznsK6t0RhszCaw5yNsUwgnr8x5O79SpiwJksktUVNiFJIFqHIf4w5I
- +hrj4ZMGexRqYkRfcJj7pgND7ne1ZjexxgYGIfYjsiFFKfQrN8MCcq2Sc8zd8LF+/V5CMa54yMJ
- smaOx3yXpC/cNAuieyZ+6zOkD0eNx/7zuFEALQtBEMx/QD5mIbsfrHbf8Wcu5odMyj+Ri9wPkTB
- eh8hWEhVC+mvR9dcZ1d5A0oD0v4nDiQ4WqMPdMwqBJxQ3qEQB6ZhPrPOd74BkvC95oSyZIihgPn
- 73kI/xQ2DJiT6XXbQquI1eQs7+SENYI5/DG8ZWz6T5kvHgg2PV6Bdg+nnAd4vTaUkTTPxviYunu
- Ng7HUwrG
-X-Proofpoint-GUID: fPLavUpciCQQf0yPvmN1HvGJY1eJIy5h
-X-Proofpoint-ORIG-GUID: fPLavUpciCQQf0yPvmN1HvGJY1eJIy5h
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-10_06,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 adultscore=0
- spamscore=0 bulkscore=0 suspectscore=0 impostorscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090031
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
 
-在 7/29/2025 11:12 AM, Ling Xu 写道:
-> Add ADSP and CDSP fastrpc nodes for SM6150 platform.
+On Sun, Aug 10, 2025 at 11:14:19PM +0200, Michal Wilczynski wrote:
+> The reset controller driver for the TH1520 was using the generic
+> compatible string "thead,th1520-reset". However, the current
+> implementation only manages the resets for the Video Output (VO)
+> subsystem.
 > 
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
-> V2 -> v3:
->   - Add nsessions.
-> patch [v2]: https://lore.kernel.org/linux-arm-msm/20250703055532.2199477-1-quic_lxu5@quicinc.com/
-> v1 -> v2:
->   - resend patch.
-> Patch [v1]: https://lore.kernel.org/linux-arm-msm/20250523103853.1538813-1-quic_lxu5@quicinc.com/
-> ---
->  arch/arm64/boot/dts/qcom/sm6150.dtsi | 87 ++++++++++++++++++++++++++++
->  1 file changed, 87 insertions(+)
+> Using a generic compatible is incorrect as it implies control over all
+> reset units on the SoC. This could lead to conflicts if support for
+> other reset controllers on the TH1520 is added in the future like AP.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6150.dtsi b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> index e033b53f0f0f..b01a7511b71a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6150.dtsi
-> @@ -3172,6 +3172,56 @@ glink-edge {
->  				mboxes = <&apss_shared 4>;
->  				label = "cdsp";
->  				qcom,remote-pid = <5>;
-> +
-> +				fastrpc {
-> +					compatible = "qcom,fastrpc";
-> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
-> +					label = "cdsp";
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					compute-cb@1 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <1>;
-> +						iommus = <&apps_smmu 0x1081 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@2 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <2>;
-> +						iommus = <&apps_smmu 0x1082 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@3 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <3>;
-> +						iommus = <&apps_smmu 0x1083 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@4 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <4>;
-> +						iommus = <&apps_smmu 0x1084 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@5 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <5>;
-> +						iommus = <&apps_smmu 0x1085 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@6 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <6>;
-> +						iommus = <&apps_smmu 0x1086 0x0>;
-> +						dma-coherent;
-> +					};
-> +				};
->  			};
+> To ensure correctness and prevent future issues, this patch renames the
+> compatible string to "thead,th1520-reset-vo". The device tree bindings,
+> the th1520.dtsi file, and the driver itself are updated to use this new,
+> more specific compatible. The device tree node label is also renamed
+> from 'rst' to 'rst_vo' for clarity.
+> 
+> Fixes: 30e7573babdc ("dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Controller")
+> Reported-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml | 6 +++---
+>  arch/riscv/boot/dts/thead/th1520.dtsi                           | 6 +++---
+>  drivers/reset/reset-th1520.c                                    | 2 +-
+>  3 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> index f2e91d0add7a60e12973c216bb5a989857c3c47c..f84c5ae8bc3569cb1d4e8f07999888ea26e175d0 100644
+> --- a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> @@ -16,7 +16,7 @@ maintainers:
+>  properties:
+>    compatible:
+>      enum:
+> -      - thead,th1520-reset
+> +      - thead,th1520-reset-vo
+
+I think we should mark thead,th1520-reset as deprecated instead of
+removing it completely, to demonstrate the ABI problem and make the
+situation clear.
+
+>    reg:
+>      maxItems: 1
+> @@ -36,8 +36,8 @@ examples:
+>      soc {
+>        #address-cells = <2>;
+>        #size-cells = <2>;
+> -      rst: reset-controller@ffef528000 {
+> -        compatible = "thead,th1520-reset";
+> +      rst_vo: reset-controller@ffef528000 {
+> +        compatible = "thead,th1520-reset-vo";
+>          reg = <0xff 0xef528000 0x0 0x1000>;
+>          #reset-cells = <1>;
+>        };
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 42724bf7e90e08fac326c464d0f080e3bd2cd59b..9cc2f1adf489ac432b2f3fbb06b655490d9e14b3 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -235,7 +235,7 @@ aon: aon {
+>  		compatible = "thead,th1520-aon";
+>  		mboxes = <&mbox_910t 1>;
+>  		mbox-names = "aon";
+> -		resets = <&rst TH1520_RESET_ID_GPU_CLKGEN>;
+> +		resets = <&rst_vo TH1520_RESET_ID_GPU_CLKGEN>;
+>  		reset-names = "gpu-clkgen";
+>  		#power-domain-cells = <1>;
+>  	};
+> @@ -500,8 +500,8 @@ clk: clock-controller@ffef010000 {
+>  			#clock-cells = <1>;
 >  		};
 >  
-> @@ -3844,6 +3894,43 @@ glink_edge: glink-edge {
->  				mboxes = <&apss_shared 24>;
->  				label = "lpass";
->  				qcom,remote-pid = <2>;
-> +
-> +				fastrpc {
-> +					compatible = "qcom,fastrpc";
-> +					qcom,glink-channels = "fastrpcglink-apps-dsp";
-> +					label = "adsp";
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					compute-cb@3 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <3>;
-> +						iommus = <&apps_smmu 0x1723 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@4 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <4>;
-> +						iommus = <&apps_smmu 0x1724 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@5 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <5>;
-> +						iommus = <&apps_smmu 0x1725 0x0>;
-> +						dma-coherent;
-> +					};
-> +
-> +					compute-cb@6 {
-> +						compatible = "qcom,fastrpc-compute-cb";
-> +						reg = <6>;
-> +						iommus = <&apps_smmu 0x1726 0x0>;
-> +						qcom,nsessions = <5>;
-> +						dma-coherent;
-> +					};
-> +				};
->  			};
+> -		rst: reset-controller@ffef528000 {
+> -			compatible = "thead,th1520-reset";
+> +		rst_vo: reset-controller@ffef528000 {
+> +			compatible = "thead,th1520-reset-vo";
+>  			reg = <0xff 0xef528000 0x0 0x4f>;
+>  			#reset-cells = <1>;
 >  		};
->  	};
-Hi, this patch has been sent out for a long time, but it has not been checked yet.
-Could you please kindly review this patch?
--- 
-Thx and BRs,
-Ling Xu
+> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+> index 7874f0693e1b427a094a68f2b6d783985e789bf8..05ed11972774618df4512b7c9f9f12e71455e48b 100644
+> --- a/drivers/reset/reset-th1520.c
+> +++ b/drivers/reset/reset-th1520.c
+> @@ -116,7 +116,7 @@ static int th1520_reset_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id th1520_reset_match[] = {
+> -	{ .compatible = "thead,th1520-reset" },
+> +	{ .compatible = "thead,th1520-reset-vo" },
 
+And this change actually breaks compatibility with older devicetrees.
+thead,th1520-reset has been part of the ABI, and we should keep the
+compatible string to maintain the compatibility.
+
+With these two changes, I think the changes could be seperated into
+different patches, one for the dt-binding, one for the driver, and one
+for the devicetree, which could make their scope more clear.
+
+Thanks,
+Yao Zi
+
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, th1520_reset_match);
+> 
+> ---
+> base-commit: 561c80369df0733ba0574882a1635287b20f9de2
+> change-id: 20250810-fix_reset_2-a618d7426534
+> 
+> Best regards,
+> -- 
+> Michal Wilczynski <m.wilczynski@samsung.com>
+> 
 
