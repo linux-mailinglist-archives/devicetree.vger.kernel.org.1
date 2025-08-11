@@ -1,130 +1,110 @@
-Return-Path: <devicetree+bounces-203397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4A1B2124A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:40:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08289B21276
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80DFD684C47
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38164461CDA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D2D296BB6;
-	Mon, 11 Aug 2025 16:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F64529BD96;
+	Mon, 11 Aug 2025 16:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u05n6lhy"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="i0fGUEqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F30724888F;
-	Mon, 11 Aug 2025 16:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C585296BA2;
+	Mon, 11 Aug 2025 16:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754930170; cv=none; b=LW67S0hUv9UsmpOiyNgOyeykSllxFtnIf6hdihYOc2ZDkvmLfO2Au9e+fP/pC1zBOz1rHboG+pX2LxXYbRIuwJe4W1xkgDwi95fcavRw8KjtPbHxTtUojwGshuGNMhS6MEUhAG79vyq12FJa3K9OzOCp4qJOSIJPD0TKpcKOds0=
+	t=1754930303; cv=none; b=WtRRRAWLcagGvaGPS4VuIj92rH7kDHLcqhJCJTlDIkQmQICYt5HogngZRyCZC1YrPsZXMXzZUwMUxVZSF+yKOI6jHyHetUY8wuzb2mujpNR1F8bWeBPi8bPGOAaJQFow1+QsaVh/VuULND3Wz1/tMPc69kqIxSQS4rZ9xluObs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754930170; c=relaxed/simple;
-	bh=7ZMfgVnzeejYKUo7Uchi+tz+fGM5yKJz1iXdAWYyqAM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sQElzc295YIDucT77g3T55GmQhqHqgtCD8Q0ohdzs9uYKjRo/NAUTSWKHTl4eQyztyYaVPhgUwJqXiiLqZU+g+579kOyuX7lmjZf3+q5fuAmVW72wOryLTNNTR8I+bb1I/4blbxDMaQBY9UCGdeH5uIAG2Bm4c+8nsHBC5N2V64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u05n6lhy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCE2BC4CEF5;
-	Mon, 11 Aug 2025 16:36:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754930170;
-	bh=7ZMfgVnzeejYKUo7Uchi+tz+fGM5yKJz1iXdAWYyqAM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u05n6lhyjlEP+hguvk/wDXY1/mESDQYjMzAixM2H/ONpNaYZrEmjhxG5vWZmOymkg
-	 TPgAM7u9gnAUUhTDcY/Qb0Af3Bs0aMyVWXS0DObRSDIt+W7zcmBjuD0WWPCmz/+WFC
-	 ECUCXH1nToHtSVcIEAoekVK5mXMSLP2Y0lKDTSo5jqsfMSayYMeI4hehrTN+YWlWRc
-	 y2RBZOYmqYsO0KPSoTuwsKpiNtoBr30uWgBnlzoUDlUbEDaw3win6NQQ4DI2nF7Qpd
-	 n58F1dC1lVGUBLCt1PE78fdu1ogp89VHKqgeG/ZGKHj1vfwcAKMv3YihHlHmczcdZ8
-	 4ROVRAUoPlM/Q==
-Date: Mon, 11 Aug 2025 11:36:07 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, 
-	sherry.sun@nxp.com, linux-pm@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add wake GPIO
-Message-ID: <u4zedngig2jsraq27h2gc5ksp5swgypl2k3sy44znrhndtljpp@r4jb3wibkf3q>
-References: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
- <20250801-wake_irq_support-v4-1-6b6639013a1a@oss.qualcomm.com>
+	s=arc-20240116; t=1754930303; c=relaxed/simple;
+	bh=QJGJtDUL4rrKtgXcv1z7riQRc4jPp+6kVhyQlTJxqWQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LwKUaF/kR8bKRfnIiABtGPGwmt6ZyGdvcPuVHKNbJFvZ248plUXgbMF6Dyh9oyefnGis55TqdswqZDFdNtY9K7HUvKhYBVop0U1c101uBEJ1y27jpxjuY63o1eC3TUQ8LKHdtliirHiNxNsXUHisV9sVODACBVVIJz6YWNo4fgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=i0fGUEqG; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E99DE22C1F;
+	Mon, 11 Aug 2025 18:38:18 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id HJKsrIQ9aSqQ; Mon, 11 Aug 2025 18:38:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1754930298; bh=QJGJtDUL4rrKtgXcv1z7riQRc4jPp+6kVhyQlTJxqWQ=;
+	h=From:To:Cc:Subject:Date;
+	b=i0fGUEqG05RqLZIZQ88TbQqaTyhJXCN7S0QTf2NMRg3aeZBNZc0QcblTwq020doQp
+	 97WjaWNO3jADtolaKg5rMWtQtixRhXOrZzA00YPEHQFJOl+ZWMJVGe7icejcXCHh4l
+	 BccTNjyzpivnK5PTCBmCG8X6WObADw9KCnaPcr/WnKCuBRICDD3xaAN4QxliE0Or8T
+	 B52ZPpcxJKq/f/eaC8TqHRP45bLUezJYmvfXLSzfn3leC0JPI/xBF2H+JSagyIS9bU
+	 KJWFyRqr1jHx73owlCmqZySOsWa3V+iA6CqCcFs6iujQV9XkyW9Jm+fkckRYS2Ru/G
+	 o4cnpeKu2Tl+g==
+From: Yao Zi <ziyao@disroot.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>,
+	Kexy Biscuit <kexybiscuit@aosc.io>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH 0/3] Support pinctrl for Loongson 2K0300 SoC
+Date: Mon, 11 Aug 2025 16:37:47 +0000
+Message-ID: <20250811163749.47028-2-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250801-wake_irq_support-v4-1-6b6639013a1a@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 01, 2025 at 04:29:42PM +0530, Krishna Chaitanya Chundru wrote:
-> Add WAKE# gpio which is needed to bring PCIe device state
-> from D3cold to D0.
-> 
+This series adds support for Loongson 2K0300's pin controller, which is
+much different from the previous generation's one: pin multiplexing
+could be done for each pin, instead of at units of pin groups. A new
+driver, pinctrl-ls2k0300.c, is introduced to handle this.
 
-What tree did you base this on? None of these boards has pcieport1
-defined in the upstream kernel.
+This controller is also capable of drive-strength configuration for some
+functions, with a limitation that all pins configured to the the same
+function share the same drive-strength. Thus drive-strength is described
+as a property of function, and is handled bypassing the generic pinconf
+API for less complexity, since the pinconf API is based on the pingroups.
 
-Regards,
-Bjorn
+The devicetree patch depends on v3 of "Add clock support for Loongson
+2K0300 SoC"[1] for applying. Further comments, especially on handling of
+the only pinconf attribute, drive-strength, will be appreciated. Thanks
+again for your time and review.
 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts   | 1 +
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 1 +
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 1 +
->  3 files changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 10c152ac03c874df5f1dc386d9079d3db1c55362..a4d85772f86955ad061433b138581fa9d81110a4 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -810,6 +810,7 @@ &mdss_edp_phy {
->  
->  &pcieport1 {
->  	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
->  };
->  
->  &pcie1 {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index 60b3cf50ea1d61dd5e8b573b5f1c6faa1c291eee..5e73060771329cade097bf1a71056a456a7937d7 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -477,6 +477,7 @@ &pcie1 {
->  
->  &pcieport1 {
->  	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
->  };
->  
->  &pm8350c_pwm {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 0b0212b670797a364d7f0e7a458fc73245fff8db..240513774612fb2bfcdb951e5a5a77c49f49eb82 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -418,6 +418,7 @@ &lpass_va_macro {
->  
->  &pcieport1 {
->  	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
->  };
->  
->  &pcie1 {
-> 
-> -- 
-> 2.34.1
-> 
+[1]: https://lore.kernel.org/all/20250805150147.25909-1-ziyao@disroot.org/
+
+Yao Zi (3):
+  dt-binding: pinctrl: Document Loongson 2K0300 pin controller
+  pinctrl: ls2k0300: Support Loongson 2K0300 SoC
+  LoongArch: dts: Add pinctrl configuration for Loongson 2K0300
+
+ .../pinctrl/loongson,ls2k0300-pinctrl.yaml    |  92 ++++
+ MAINTAINERS                                   |   7 +
+ arch/loongarch/boot/dts/loongson-2k0300.dtsi  |  39 ++
+ drivers/pinctrl/Kconfig                       |  14 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-ls2k0300.c            | 515 ++++++++++++++++++
+ 6 files changed, 668 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/loongson,ls2k0300-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-ls2k0300.c
+
+-- 
+2.50.1
+
 
