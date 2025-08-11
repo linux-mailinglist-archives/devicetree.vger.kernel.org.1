@@ -1,174 +1,140 @@
-Return-Path: <devicetree+bounces-203079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 450BBB1FF8A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:47:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E48DB1FF98
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:48:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59EE3189AE86
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:47:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8895189C005
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E1F2D77EA;
-	Mon, 11 Aug 2025 06:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71A1C2D8383;
+	Mon, 11 Aug 2025 06:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M2O8Jkqq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G2tPNA5a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9A02D77E8
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413762D6636;
+	Mon, 11 Aug 2025 06:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754894802; cv=none; b=k2tc1Oj1TY4nUb3juSUozerhik7jRgu55+snZ+M6KOvUtZzitPgpsMdO8c/FEpVqfIeSVUx/qodUErAvZT7AfSavDkK5owG7EgdDcMbBeJ6cD3iHdtGd+nntktOBAyw80/9gfq/n7Xs8VQPLXT6bKQP75O/xxfuQnzw4bBAYmmw=
+	t=1754894924; cv=none; b=rh+dyl4WY8RcJL7Pu466QmVwBK7FrT6nuRKoCyI4fegJgCwVf7hTn04zMUUOwaB+2lMcGM3kPxyHG/na188+K9YYCL/aX81UwfEvE6/f3UN4uBbwrBE9se+xTZXt1YjbNc076uLMZTrwsM3BeBGVukRcRVjEgoSB8i7fqGrcPJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754894802; c=relaxed/simple;
-	bh=jBo5UANno+XfA29YPINf2MeDmdVe/2QnIWuOgjuDJGw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=WTy3VLl/YXEQjjdyb5h9wFCydhJGt6i1sGpmfq0ms0xNFYo2jBL+S1ZmaiWX/k5vp+QJAFbj6TJ8qUULC3fPrsFITNbvo/OSkOSSXaHgI5rDy5zizxVuSbttjjhYI8Pf7zY1frWDmZ04Ct4ukuRwawgYGpYKCzu9hrOWc7RFAWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M2O8Jkqq; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b78310b296so2087249f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:46:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754894798; x=1755499598; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rZI4IZrSEWJ+0JsUHQ5F8RKmssnmQDDF0w+or3Wom0Y=;
-        b=M2O8JkqqDgYT16WrtZ2ZiYx2jJ5dozjhPSTYWSrShlOeWDc9NOEUamv7a+MOCoy4pq
-         O1MiiRVMA8P7Xu61xm+4oAHUDyibt4bmMbrYMLzpYsZ4K0599nkfwSy2Hx826fDafgR1
-         BVVD9ymsJLso3kCIwzoJlfzsNF0Xf6GuKrvRBmdCz5JMQfweTay6cmflGM0Cq+ccNnjC
-         uufNLpbPvUdQwPO69vfN1UrfeZlJ7/OAipI+3AH0sisX8J3KR19lY/E5SdH7W3cG/10B
-         bseSFaijZfetA+MB1Ugawq+td5PXYUthppMqlJU7Rjweu9vzGS75cjeF1wGwh1TABZKR
-         BSlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754894798; x=1755499598;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rZI4IZrSEWJ+0JsUHQ5F8RKmssnmQDDF0w+or3Wom0Y=;
-        b=uhNHGh1UWkI+11R4v6HAwngs2uPgPLHDmkG8Nth3ArqI+lyWeVD9LFPEDC84/xrTzM
-         CLljBec/Xay2y6R8ZFgIBfQhvutO1s345r1cJ7afh7PQ56leJYf3s9KapsFZ239cC/Zm
-         a0vEyugIRPoACKdWZkRZCTSsZwB0hj0TuGgyZ8zcMixEZ45DdWSUQKn+8K+d2HBMXRcH
-         cuyK+V1FYUh6WVhVPt22zj3CniRSIoecCuTxhvZbRY0wZhaOoICV/coU0pr4JCg4yAwi
-         qmW7QmQMEw98EVLwAbzaluFfubsNOfbQORFf+w4B39ttIsB0hqgh2/62dBpO4gp6Y8/F
-         gMJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVMvY1A229JQP5ZFISj6BAhWu9gXRBanUpYXFlE8M8Uvj/zrZX/Pv3TfsP4GciUm/lNTVoKZUQm70qY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpXL23Q0aIjMaXDwSncrB0cfLD019SlzU8Q5lB+1lzXfr2ePEm
-	eaXxzXfM0idDbs+5/bOSEM+Gu1Sj2n6pf6DEuWlnyWDlirAOoS9I+LdHgVvOtCt8Ogk=
-X-Gm-Gg: ASbGncukawOMMytf+3PGVJKtwiln0HtNWm9bH6IHtQYsTY9rg32sXPy0Dkk3xInFii+
-	7jMHmUGR0jjPiGW+u9ioecmNtONiqKWC3WN8VvaW9EKeJRvIEtz6uLnDFTCavvrcLrlMQsle7A7
-	hrAKO9MCzcze1Ij0b+HsygJc89rD5++FSEYq9MOAgUzkDkfhNOorD6dbnOi4aNd1wjGErw9NEn8
-	wEgIaBUyKB+/1K6RkAohs6It1OhD17Pr3b24idFPsdu2SlHwxhEI3Sri76mlRmtlXXdYias+7Pm
-	O+qtMI0dWfSgUG1j4SKlPlVjFSq6ArWEkf39FYZcbQ8Nzab+iavCimNXxGgwAOQ2uscRcip6Al8
-	JoSHv1kyT0MPClSQUuG2PhNGvT2pNr9i5l31kh+RuxAE=
-X-Google-Smtp-Source: AGHT+IH+a64xEOPVPhERDfj/+owOAQRBVcZN1KIVGv8qfkFFGNlsOI9q9ejBHs8ooi13JqXBcw4o9g==
-X-Received: by 2002:a5d:64c3:0:b0:3b7:8832:fdd5 with SMTP id ffacd0b85a97d-3b900b2c83bmr9256965f8f.16.1754894798292;
-        Sun, 10 Aug 2025 23:46:38 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b79c3c33fesm40026751f8f.29.2025.08.10.23.46.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Aug 2025 23:46:37 -0700 (PDT)
-Date: Mon, 11 Aug 2025 09:46:18 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Ioana Risteiu <Ioana.Risteiu@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ramona Nechita <ramona.nechita@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Ioana Risteiu <Ioana.Risteiu@analog.com>
-Subject: Re: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
-Message-ID: <202508090909.tqDX7ah1-lkp@intel.com>
+	s=arc-20240116; t=1754894924; c=relaxed/simple;
+	bh=UFskI9Uetx9Moyp7eZo+dMCASbA5Ga+jaqTNTrGajqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ey4JPii+xgSJq5D6nIdmv/TOrRULCs4CsZEdRUvC89DMY9Bs17nw1zmLlFTEjrTn7tK31Wa2Qa++pPLJPbwdZuQUZArDsiMwes8t/M7fe8c9z3q5DJf5uWMrSGkkh53+SNy6E55uJMDyNTqAJmT/tWHPAlbIg8YpgAFZ2FpSKxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G2tPNA5a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68627C4CEED;
+	Mon, 11 Aug 2025 06:48:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754894923;
+	bh=UFskI9Uetx9Moyp7eZo+dMCASbA5Ga+jaqTNTrGajqc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=G2tPNA5aK5uIsvMw7ygPwrqcWpMoKGmCBV4bquqArD/5JqL53Iz/nufRoOXAlIv8z
+	 sMzZIh6vwwsZE6MWvD4eol3yo3Cc5e5z+HBJcA8s8YbhIvx4QhtWQi+6Gzuv9j9I3Q
+	 atS3WiaU13E1JdCoQ3veK09m2kAis3Vb60k2jnrUuaGsYxprd7ULgLxW6SQaV6swlv
+	 riJrDun0dIvekEdYtWxruTQ5qdwEwB5/YI5/9tR/x4OXi/U9W0O46rQKYEMy0BM+DC
+	 gyFU937VinN66EuRTV+DGB6FS8nrI6MYZNMqVMDfPFTm01NxMgvIL0mcuaVkIpQ2N7
+	 MlyfaA9hanm2w==
+Message-ID: <f8ad7883-d879-47ce-aafc-7c5f741f3c18@kernel.org>
+Date: Mon, 11 Aug 2025 08:48:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250806192502.10120-4-Ioana.Risteiu@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] arm64: dts: exynosautov920: add CMU_M2M clock DT
+ nodes
+To: Raghav Sharma <raghav.s@samsung.com>, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, sunyeal.hong@samsung.com,
+ shin.son@samsung.com, alim.akhtar@samsung.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dev.tailor@samsung.com,
+ chandan.vn@samsung.com, karthik.sun@samsung.com
+References: <20250808142146.3181062-1-raghav.s@samsung.com>
+ <CGME20250808141247epcas5p2c254f35146a6ea35b5c49c4316ba30a3@epcas5p2.samsung.com>
+ <20250808142146.3181062-4-raghav.s@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250808142146.3181062-4-raghav.s@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Ioana,
+On 08/08/2025 16:21, Raghav Sharma wrote:
+> Add required dt node for CMU_M2M block, which provides
+> clocks for M2M IP
+> 
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+> ---
+>  arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> index 0fdf2062930a..086d6bbc18b8 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> @@ -1454,6 +1454,19 @@ pinctrl_aud: pinctrl@1a460000 {
+>  			reg = <0x1a460000 0x10000>;
+>  		};
+>  
+> +		cmu_m2m: clock-controller@0x1a800000 {
 
-kernel test robot noticed the following build warnings:
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Are you sure this satisfies tests required by Samsung SoC maintainer
+profile?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ioana-Risteiu/iio-adc-adi-axi-adc-add-axi_adc_num_lanes_set/20250807-032923
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20250806192502.10120-4-Ioana.Risteiu%40analog.com
-patch subject: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
-config: x86_64-randconfig-161-20250809 (https://download.01.org/0day-ci/archive/20250809/202508090909.tqDX7ah1-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202508090909.tqDX7ah1-lkp@intel.com/
-
-smatch warnings:
-drivers/iio/adc/ad7779.c:893 setup_back() warn: passing zero to 'dev_err_probe'
-
-vim +/dev_err_probe +893 drivers/iio/adc/ad7779.c
-
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  879  static int setup_back(struct ad7779_state *st, struct iio_dev *indio_dev)
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  880  {
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  881  	struct device *dev = &st->spi->dev;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  882  	int ret = -EINVAL;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  883  	int num_lanes;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  884  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  885  	indio_dev->info = &ad7779_info_data;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  886  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  887  	ret = ad7779_conf_channels(indio_dev, st);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  888  	if (ret)
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  889  		return ret;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  890  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  891  	st->back = devm_iio_backend_get(dev, NULL);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  892  	if (IS_ERR(st->back)) {
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06 @893  		dev_err_probe(dev, ret, "failed to get iio backend");
-
-s/ret/PTR_ERR(st->back)/
-
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  894  		return PTR_ERR(st->back);
-
-Change this to:
-
-	if (IS_ERR(st->back))
-		return dev_err_probe(dev, PTR_ERR(st->back),
-				     "failed to get iio backend");
-
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  895  	}
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  896  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  897  	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  898  	if (ret)
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  899  		return ret;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  900  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  901  	ret = devm_iio_backend_enable(dev, st->back);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  902  	if (ret)
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  903  		return ret;
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  904  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  905  	ret = device_property_read_u32(dev, "adi,num-lanes", &num_lanes);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  906  	if (ret < 0)
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  907  		return ad7779_set_data_lines(indio_dev, 4);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  908  
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  909  	return ad7779_set_data_lines(indio_dev, num_lanes);
-1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  910  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Best regards,
+Krzysztof
 
