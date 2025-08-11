@@ -1,262 +1,174 @@
-Return-Path: <devicetree+bounces-203076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95AFB1FF78
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:43:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450BBB1FF8A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:47:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 797553AD310
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:43:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59EE3189AE86
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4B929E10C;
-	Mon, 11 Aug 2025 06:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E1F2D77EA;
+	Mon, 11 Aug 2025 06:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AYUHoZPf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M2O8Jkqq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0C91DB154
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:43:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9A02D77E8
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:46:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754894595; cv=none; b=YkNBCMcrsx82TQ6VCaw0W4lGTVhR0+pOJVrXJlLDMsP4hZrTOsa0rN0Y/JxDOR6TPBCaPn3o65SYSHU0cp+eQ6WK8jhBjMjzL0ePW4cC8X+6bPSKFhLjFcr8G4ZNlqRms3nnYdTWjTR0NJuKnHYHTqkelCk91f5HxaST7HWywVw=
+	t=1754894802; cv=none; b=k2tc1Oj1TY4nUb3juSUozerhik7jRgu55+snZ+M6KOvUtZzitPgpsMdO8c/FEpVqfIeSVUx/qodUErAvZT7AfSavDkK5owG7EgdDcMbBeJ6cD3iHdtGd+nntktOBAyw80/9gfq/n7Xs8VQPLXT6bKQP75O/xxfuQnzw4bBAYmmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754894595; c=relaxed/simple;
-	bh=cEn05/8gtRzmJHod10gCk03EvDC+5ybsS4jnchxKkv8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pEcpE9P2P3NDQGQMzciin7kH+eMBiMgls79HNkgCFtTm6E7psYomU19XpXgwy4QIBn/dm/cHbY/WN71PSgbkg7D9wWNfZUwK3SRTn38MShLsXvWJABqKDOulyOemYhigVca7gRut58kmpEgQGuXN/d8QVOdm/Pzvy2nSy/V6ZM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AYUHoZPf; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1754894802; c=relaxed/simple;
+	bh=jBo5UANno+XfA29YPINf2MeDmdVe/2QnIWuOgjuDJGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=WTy3VLl/YXEQjjdyb5h9wFCydhJGt6i1sGpmfq0ms0xNFYo2jBL+S1ZmaiWX/k5vp+QJAFbj6TJ8qUULC3fPrsFITNbvo/OSkOSSXaHgI5rDy5zizxVuSbttjjhYI8Pf7zY1frWDmZ04Ct4ukuRwawgYGpYKCzu9hrOWc7RFAWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M2O8Jkqq; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af9f6bb2358so2213066b.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:43:13 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b78310b296so2087249f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:46:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754894592; x=1755499392; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GDk12v2vJL34l7+873CbL1ksmxiNCrMWuEVM/GTIuU8=;
-        b=AYUHoZPf0NLt3hhB1QXkgByLG9X5w26eZeFqAxhXV/PYN2B9VzGO8BUaP64nE8O42y
-         Exl7OCrr2L3X0NpproRPdamQqr1RS4VlQkawQyMQW+AjIUg1iMXvQS4FS4SV+ZmjwAg2
-         k8sBZAku65fHb4oJcWI9MR0owwX2mHfuFryfn4aQbV8Dn3svD2JBw/jHyDy7yQ3WCjA1
-         YwsbpFhOQ5NpKrZyIQHaSjXuCgD+eny8dfhimd9MxfXNwB7pap78lNgAWW6ku9U24zut
-         lKSnMmk5H6q7AyIaJZUmz5hyGq0LbGLrUA+yn1QwciALgGnT+jPjO/CnFoE1L2za6h/y
-         90Ow==
+        d=linaro.org; s=google; t=1754894798; x=1755499598; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rZI4IZrSEWJ+0JsUHQ5F8RKmssnmQDDF0w+or3Wom0Y=;
+        b=M2O8JkqqDgYT16WrtZ2ZiYx2jJ5dozjhPSTYWSrShlOeWDc9NOEUamv7a+MOCoy4pq
+         O1MiiRVMA8P7Xu61xm+4oAHUDyibt4bmMbrYMLzpYsZ4K0599nkfwSy2Hx826fDafgR1
+         BVVD9ymsJLso3kCIwzoJlfzsNF0Xf6GuKrvRBmdCz5JMQfweTay6cmflGM0Cq+ccNnjC
+         uufNLpbPvUdQwPO69vfN1UrfeZlJ7/OAipI+3AH0sisX8J3KR19lY/E5SdH7W3cG/10B
+         bseSFaijZfetA+MB1Ugawq+td5PXYUthppMqlJU7Rjweu9vzGS75cjeF1wGwh1TABZKR
+         BSlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754894592; x=1755499392;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1754894798; x=1755499598;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GDk12v2vJL34l7+873CbL1ksmxiNCrMWuEVM/GTIuU8=;
-        b=h1oTUCnJtysNPvhTOBG0OOLJCa/YzJv+X9tXNo7g48kmmPiIXEKzGVfiiINpZ7rTuq
-         Rm+gweYkURsF/wXUbabhKOFnUa5OqA5XHG/ErbU0mnK5B5hFMnTigOJsBepOpwJbFnig
-         mlTsi9JUgBeYNVL06BP+h0iSKJQ01jdN3PMgktsmeZRRkz43bFAr9ZkzGtPgv4YURa6J
-         2MO+2JfKFBOO2q3hCosr504Sts0iO1G+hZXfvg0PqMYFfhqWsFz5MrgYID5BWgv0Kve8
-         VDQaFtN2ZqzymhAGImqdadGsg/pIs3yGYH6LmNTo9sdq8PBZiBe2n3GwVlCoGQMup7Me
-         iQrA==
-X-Forwarded-Encrypted: i=1; AJvYcCUP+e46j5CdAwujoWaxUEoCKdQYa4Ao86Pec5Qwcp2cuIVslnMxlycX4ajhiyLdBn/xXpdKtRWxVQNk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZaE9nqqWZmzpBHvUbU7YygP21TNtLTZvKG7VLb/4XiO9pSOo0
-	Mm9bxSHfKmfZH3jDYpGUY1ZinNIFEy3ANe39mYDftBlbS/tKiBiqqUj3VzuVVByhXD4=
-X-Gm-Gg: ASbGncvdiKgV2fJNBvL0FwkY6CSnIL6zhnF8NY2Ji0VVjU3upPwndaab5q1YRmGoBjS
-	+PccDPzKVjMe5nCWL+MrxuT58ycvpcdrRKWC741iEzDmftngTz+sw/CeOz1myyv+Yv1k3gLpqQ6
-	+d7XW6fMVtz+6P3l/OSFv81PpKpoG4yNMXOpopchfVJVfvytqPiORW63dRt0+OI8SYd+H101mMT
-	b02JnP9JKkhX9JCsaX97n7cpMisI8KbJPb55ALpKxYZCUAsNSdzfAzUbLMp2R5A11f5DsZ7WJGy
-	/L3WctE8oEyKvAhp3rSSlmrh5JVbwPOLj1zTIcGX4eGzer0N6TJ1UlswZX+XkpGOmdYsxjaHXA5
-	wyq1WWOvBmGW9Svv78IERVCjwgEvWjlSEoeYkCu2xAdo=
-X-Google-Smtp-Source: AGHT+IGpG5QWBCuxjBn8lkRYjkYkSzvGJ4BaudTpOzokDNqUOytSRhvV4L83yjG40igjSuF63eeWHg==
-X-Received: by 2002:a17:907:7e8e:b0:ae3:5d47:634 with SMTP id a640c23a62f3a-af9e1ceff40mr304544866b.9.1754894591880;
-        Sun, 10 Aug 2025 23:43:11 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0766e2sm1960618866b.27.2025.08.10.23.43.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Aug 2025 23:43:11 -0700 (PDT)
-Message-ID: <d3e028da-20d4-4b6c-92c2-4d594c308716@linaro.org>
-Date: Mon, 11 Aug 2025 08:43:09 +0200
+        bh=rZI4IZrSEWJ+0JsUHQ5F8RKmssnmQDDF0w+or3Wom0Y=;
+        b=uhNHGh1UWkI+11R4v6HAwngs2uPgPLHDmkG8Nth3ArqI+lyWeVD9LFPEDC84/xrTzM
+         CLljBec/Xay2y6R8ZFgIBfQhvutO1s345r1cJ7afh7PQ56leJYf3s9KapsFZ239cC/Zm
+         a0vEyugIRPoACKdWZkRZCTSsZwB0hj0TuGgyZ8zcMixEZ45DdWSUQKn+8K+d2HBMXRcH
+         cuyK+V1FYUh6WVhVPt22zj3CniRSIoecCuTxhvZbRY0wZhaOoICV/coU0pr4JCg4yAwi
+         qmW7QmQMEw98EVLwAbzaluFfubsNOfbQORFf+w4B39ttIsB0hqgh2/62dBpO4gp6Y8/F
+         gMJg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMvY1A229JQP5ZFISj6BAhWu9gXRBanUpYXFlE8M8Uvj/zrZX/Pv3TfsP4GciUm/lNTVoKZUQm70qY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpXL23Q0aIjMaXDwSncrB0cfLD019SlzU8Q5lB+1lzXfr2ePEm
+	eaXxzXfM0idDbs+5/bOSEM+Gu1Sj2n6pf6DEuWlnyWDlirAOoS9I+LdHgVvOtCt8Ogk=
+X-Gm-Gg: ASbGncukawOMMytf+3PGVJKtwiln0HtNWm9bH6IHtQYsTY9rg32sXPy0Dkk3xInFii+
+	7jMHmUGR0jjPiGW+u9ioecmNtONiqKWC3WN8VvaW9EKeJRvIEtz6uLnDFTCavvrcLrlMQsle7A7
+	hrAKO9MCzcze1Ij0b+HsygJc89rD5++FSEYq9MOAgUzkDkfhNOorD6dbnOi4aNd1wjGErw9NEn8
+	wEgIaBUyKB+/1K6RkAohs6It1OhD17Pr3b24idFPsdu2SlHwxhEI3Sri76mlRmtlXXdYias+7Pm
+	O+qtMI0dWfSgUG1j4SKlPlVjFSq6ArWEkf39FYZcbQ8Nzab+iavCimNXxGgwAOQ2uscRcip6Al8
+	JoSHv1kyT0MPClSQUuG2PhNGvT2pNr9i5l31kh+RuxAE=
+X-Google-Smtp-Source: AGHT+IH+a64xEOPVPhERDfj/+owOAQRBVcZN1KIVGv8qfkFFGNlsOI9q9ejBHs8ooi13JqXBcw4o9g==
+X-Received: by 2002:a5d:64c3:0:b0:3b7:8832:fdd5 with SMTP id ffacd0b85a97d-3b900b2c83bmr9256965f8f.16.1754894798292;
+        Sun, 10 Aug 2025 23:46:38 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3b79c3c33fesm40026751f8f.29.2025.08.10.23.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Aug 2025 23:46:37 -0700 (PDT)
+Date: Mon, 11 Aug 2025 09:46:18 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Ioana Risteiu <Ioana.Risteiu@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ramona Nechita <ramona.nechita@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Ioana Risteiu <Ioana.Risteiu@analog.com>
+Subject: Re: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
+Message-ID: <202508090909.tqDX7ah1-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] reset: thead: Scope TH1520 reset driver to VO subsystem
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
- Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-References: <CGME20250810211419eucas1p173e5fefcfaae437d8b5531d1406ff6a6@eucas1p1.samsung.com>
- <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250806192502.10120-4-Ioana.Risteiu@analog.com>
 
-On 10/08/2025 23:14, Michal Wilczynski wrote:
-> The reset controller driver for the TH1520 was using the generic
-> compatible string "thead,th1520-reset". However, the current
-> implementation only manages the resets for the Video Output (VO)
-> subsystem.
-> 
-> Using a generic compatible is incorrect as it implies control over all
+Hi Ioana,
 
-Depends, it does not need to imply that.
+kernel test robot noticed the following build warnings:
 
-But in general this is why we ask - and writing bindings have it
-documented - to post COMPLETE bindings.
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> reset units on the SoC. This could lead to conflicts if support for
-> other reset controllers on the TH1520 is added in the future like AP.
-> 
-> To ensure correctness and prevent future issues, this patch renames the
-> compatible string to "thead,th1520-reset-vo". The device tree bindings,
-> the th1520.dtsi file, and the driver itself are updated to use this new,
-> more specific compatible. The device tree node label is also renamed
-> from 'rst' to 'rst_vo' for clarity.
-> 
-> Fixes: 30e7573babdc ("dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Controller")
+url:    https://github.com/intel-lab-lkp/linux/commits/Ioana-Risteiu/iio-adc-adi-axi-adc-add-axi_adc_num_lanes_set/20250807-032923
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20250806192502.10120-4-Ioana.Risteiu%40analog.com
+patch subject: [PATCH v2 3/3] iio: adc: update ad7779 to use IIO backend
+config: x86_64-randconfig-161-20250809 (https://download.01.org/0day-ci/archive/20250809/202508090909.tqDX7ah1-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
 
-That's not a commit from the current RC. Where is cc stable?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202508090909.tqDX7ah1-lkp@intel.com/
 
-> Reported-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml | 6 +++---
->  arch/riscv/boot/dts/thead/th1520.dtsi                           | 6 +++---
->  drivers/reset/reset-th1520.c                                    | 2 +-
+smatch warnings:
+drivers/iio/adc/ad7779.c:893 setup_back() warn: passing zero to 'dev_err_probe'
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+vim +/dev_err_probe +893 drivers/iio/adc/ad7779.c
 
->  3 files changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
-> index f2e91d0add7a60e12973c216bb5a989857c3c47c..f84c5ae8bc3569cb1d4e8f07999888ea26e175d0 100644
-> --- a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
-> @@ -16,7 +16,7 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> -      - thead,th1520-reset
-> +      - thead,th1520-reset-vo
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  879  static int setup_back(struct ad7779_state *st, struct iio_dev *indio_dev)
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  880  {
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  881  	struct device *dev = &st->spi->dev;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  882  	int ret = -EINVAL;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  883  	int num_lanes;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  884  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  885  	indio_dev->info = &ad7779_info_data;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  886  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  887  	ret = ad7779_conf_channels(indio_dev, st);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  888  	if (ret)
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  889  		return ret;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  890  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  891  	st->back = devm_iio_backend_get(dev, NULL);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  892  	if (IS_ERR(st->back)) {
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06 @893  		dev_err_probe(dev, ret, "failed to get iio backend");
 
-No, don't rename the compatible. That's ABI break and this was ALREADY
-released.
+s/ret/PTR_ERR(st->back)/
 
-That's a NAK because you break ABI for not important reason - style.
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  894  		return PTR_ERR(st->back);
 
->  
->    reg:
->      maxItems: 1
-> @@ -36,8 +36,8 @@ examples:
->      soc {
->        #address-cells = <2>;
->        #size-cells = <2>;
-> -      rst: reset-controller@ffef528000 {
-> -        compatible = "thead,th1520-reset";
-> +      rst_vo: reset-controller@ffef528000 {
+Change this to:
 
-Drop the label. Why is it here in the first place?
+	if (IS_ERR(st->back))
+		return dev_err_probe(dev, PTR_ERR(st->back),
+				     "failed to get iio backend");
 
-> +        compatible = "thead,th1520-reset-vo";
->          reg = <0xff 0xef528000 0x0 0x1000>;
->          #reset-cells = <1>;
->        };
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index 42724bf7e90e08fac326c464d0f080e3bd2cd59b..9cc2f1adf489ac432b2f3fbb06b655490d9e14b3 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -235,7 +235,7 @@ aon: aon {
->  		compatible = "thead,th1520-aon";
->  		mboxes = <&mbox_910t 1>;
->  		mbox-names = "aon";
-> -		resets = <&rst TH1520_RESET_ID_GPU_CLKGEN>;
-> +		resets = <&rst_vo TH1520_RESET_ID_GPU_CLKGEN>;
->  		reset-names = "gpu-clkgen";
->  		#power-domain-cells = <1>;
->  	};
-> @@ -500,8 +500,8 @@ clk: clock-controller@ffef010000 {
->  			#clock-cells = <1>;
->  		};
->  
-> -		rst: reset-controller@ffef528000 {
-> -			compatible = "thead,th1520-reset";
-> +		rst_vo: reset-controller@ffef528000 {
-> +			compatible = "thead,th1520-reset-vo";
->  			reg = <0xff 0xef528000 0x0 0x4f>;
->  			#reset-cells = <1>;
->  		};
-> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> index 7874f0693e1b427a094a68f2b6d783985e789bf8..05ed11972774618df4512b7c9f9f12e71455e48b 100644
-> --- a/drivers/reset/reset-th1520.c
-> +++ b/drivers/reset/reset-th1520.c
-> @@ -116,7 +116,7 @@ static int th1520_reset_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id th1520_reset_match[] = {
-> -	{ .compatible = "thead,th1520-reset" },
-> +	{ .compatible = "thead,th1520-reset-vo" },
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  895  	}
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  896  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  897  	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  898  	if (ret)
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  899  		return ret;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  900  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  901  	ret = devm_iio_backend_enable(dev, st->back);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  902  	if (ret)
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  903  		return ret;
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  904  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  905  	ret = device_property_read_u32(dev, "adi,num-lanes", &num_lanes);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  906  	if (ret < 0)
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  907  		return ad7779_set_data_lines(indio_dev, 4);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  908  
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  909  	return ad7779_set_data_lines(indio_dev, num_lanes);
+1d61d2e4f96ac5 Ioana Risteiu 2025-08-06  910  }
 
-NAK, actual ABI break.
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
-
-Best regards,
-Krzysztof
 
