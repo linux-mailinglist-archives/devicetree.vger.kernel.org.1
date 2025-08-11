@@ -1,180 +1,215 @@
-Return-Path: <devicetree+bounces-203201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4ED6B205F6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:44:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4889B2064C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:50:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2473F7A51BC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:42:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B8F318A3E70
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2248723B632;
-	Mon, 11 Aug 2025 10:44:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RTjwMIBC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC56283FDC;
+	Mon, 11 Aug 2025 10:47:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.77.159])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5469324886F
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 10:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6AE2475CB;
+	Mon, 11 Aug 2025 10:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.77.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754909039; cv=none; b=UAb4l3a7eLetUw8N1y9nJtpJwLPiExDUoaOAqCXYpT/k8KHVUZR6RSQ20u5pKMmEyvVhg4CRYAR1Xm/tNuaUt5+ENqHsGxArSaEWbYRNDwKCU9U7P6NhOCWFX+w0yfp2ZwOQm1hIhZKXGbV0ngKkg/7oHeyk2zkAc4TCeGuKNDs=
+	t=1754909241; cv=none; b=RHi+74eoU0jY/G/QIbGk8lzLj07qqIxr/3/W8KqY477o1biwKl4TGCV2+kvocP79TB3OHeOAaGIVLKBNlt0HujJHKD5gQbyQuCoihFrbMiHTtYzajmgTWtvxOUDzta2Oc7G92ePiLiqXi34fg/dkfM2AEIvuT1X97wxNw5SdIww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754909039; c=relaxed/simple;
-	bh=OrQf5TeKik0aA/FhPSEBXH6grpaJsQKJVsOv7xshB1I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cyD9T2VyXan+kneA0QG6ufolovOjtYxfnt+db+6OBLHSn7XVJLVY8h3uFC3i6cp+C20YYu3inRF6oMbjkldfXVDd6k7z9HfS0DWk2FXYlto2iJCSLdvtKfBTVjX4N4lK6vGHVaxKlxR/hziAdhjEVwXLTqb+0dQzrax1uggi/MU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RTjwMIBC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9d8s4000598
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 10:43:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HhXbP2+tna5Rc97KVm0kgr+C
-	8N/2nVWZsJajTcTfHec=; b=RTjwMIBC52U1VjfbSIfzSN1mAUaM2KKVo+Z2O260
-	XTreoGsZB/KYV4rhJT+n6PuSeZr873taoyzUfkfxRGL5rDWwn+dCYR8hTtZEdo8E
-	+/Zq/8xHh6h9fs/k+hPLMm0bAvlFDlY9QkTm8UYns32DweQEF4sk+bfIscU4ZTYK
-	0ONMH/4N/ljyTD9Gxhu2xbDW7J1gT/ykfBtkK4AdBWCo/xJFMuaAq3D1JMdWMJxB
-	P0TT+qrgScff8fw5YObUKhrxgIL+bAt+kCFFP1ZTF0YoKQXj6i1CTk0b3QxX4W4F
-	vV5uh0Ifb4TXw2tTiRJQBxwsuqUpvjENWDf7ovJ9/KhoZg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxq6v0t6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 10:43:57 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b0b507d014so48370701cf.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 03:43:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754909036; x=1755513836;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HhXbP2+tna5Rc97KVm0kgr+C8N/2nVWZsJajTcTfHec=;
-        b=WZbRYNCVnwvxeRDYBrpADTpkgvvYAlnys3MtG5pQebqgn95C9ewPvHPbCv0+uZIg45
-         jSeou1Wjhs2hzq+EoAer5jIxjOP0aLyMeOf+cmGvP4k0FNdU18yzAIlxbSwhBazs226u
-         Do15m8gHxmaH0aqfO9bc9cqjme1R9Qnx0JMON0nBLeMfrRnRmQ8vFTjVdmU0xqH5DwWf
-         +QR9myCG7/ChQiOUrbcfWRH9PNsARXtWOHNTPJ1RJvBhmHt8nUBmD0XMvG6w2fEYuNov
-         nBd7N066Mdzee6A03pp7f3uAr3OyI7OHe8mD7gmGkh+5XaQhXRZ4JNH4TxYaq6rhcUP4
-         VuuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdbgnlKahAtbT94/3Aiwp5KLbv5K5UceGaw3rjjKlnAfqP5QlYQ3Dg3Swnr3g0csipnQzk3bnn4FIW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvFSXtI56FtPTx1fsAsqsDeqRAUZJNn/tE/WLvtn3g4ms7lL/Q
-	omBOWwqC2a2SfryMa6/WQvd0W4gg4/fsid7cRxp32DVO1xYwfqQHeWZ+IOBPc3XjmbsRFOwnHaj
-	CHg4QG6sMvNAIXbyIPcoF5EDgkzAifRF+CrWBGsZ34sjNKonDo7YuWBk8/Vu1OEOu
-X-Gm-Gg: ASbGncuqCY3lyz4pobdBjueLVUBwV+Df3G0lkDCi+Q9QBw+UFCM6In3dM+kQ+aIP4R7
-	EluAvSIXddk9oM2pVjgLZZVA+bteYU/rPPcEL7tZKl/7JKvufsOeg7C5nUQdU7a4xZMRtQn7tn+
-	qJymGJirOD2tssQI2AQE68zmbjXBzQq8C5JD7GflkaXnj9qgKwbahixN663lT+d9Nnk2JKl5J4j
-	zkESC1q7jo3JsgdWe3AlK2PkCp3LFe41WA1+/zOSMXkmPjKjYrlbPzjgk1PunLJYTVMNUjPlBO5
-	W4Vq8uWleHYO3pAYbjywoNZUcJibOCMDxto0+xbnjXQRxjptn4+TFjbEL2EB4slk+rHdEJSiv7n
-	gLEPJNfkYvE8FucrXxkkhROM13lRD0uIkCIthmRhkGOHuSSYALBBr
-X-Received: by 2002:ac8:7f94:0:b0:4b0:8087:b85 with SMTP id d75a77b69052e-4b0aed7c82emr155599541cf.57.1754909036486;
-        Mon, 11 Aug 2025 03:43:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQ+2vRNgiTRkhuWDXI9Wct/WD586NSNRCy2C3GvPTxw8ogEqF2gQptR6rB/WMoGGoXT8d+eA==
-X-Received: by 2002:ac8:7f94:0:b0:4b0:8087:b85 with SMTP id d75a77b69052e-4b0aed7c82emr155599241cf.57.1754909036028;
-        Mon, 11 Aug 2025 03:43:56 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55b88cabce5sm4279421e87.151.2025.08.11.03.43.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 03:43:55 -0700 (PDT)
-Date: Mon, 11 Aug 2025 13:43:53 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_kuiw@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] arm64: dts: qcom: sc7280: Add memory region for
- audiopd
-Message-ID: <ucgmkx5fhwf4tc634gexj4usgzdme7aj44qup5qo4fpolnixm3@dgghylexk36y>
-References: <20250701084905.872519-1-quic_lxu5@quicinc.com>
- <20250701084905.872519-2-quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1754909241; c=relaxed/simple;
+	bh=74lWnkUybeUxa2r9paZdcWUGPAOvMciUy5dinkbH8eI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kjeHe6z+J/WDyNQIFtWZqkEfq0zA++DYm/ozguJXzBhRoZHb3avg1E2W8f7mUF/vigJHlWL9gS7jFv4Fogk/xKO03Wt24XtHVEwAV3Rv+zYmd4uxFJqgaFxhaAUVSumXgflddosma3gNuLoBpjyJUN4HhMrEQxSWiRq53yvsNFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com; spf=pass smtp.mailfrom=foursemi.com; arc=none smtp.client-ip=114.132.77.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foursemi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foursemi.com
+X-QQ-mid: zesmtpsz6t1754909173t54a502d1
+X-QQ-Originating-IP: gP1au7LchbgFtd053a5FT0xRtO11SCYj7mI4AVIXK6o=
+Received: from buildhost ( [183.17.229.251])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 11 Aug 2025 18:46:11 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2318197574500668316
+EX-QQ-RecipientCnt: 14
+From: Nick Li <nick.li@foursemi.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	nick.li@foursemi.com
+Cc: xiaoming.yang@foursemi.com,
+	danyang.zheng@foursemi.com,
+	like.xy@foxmail.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/5] ASoC: codecs: Add support for FourSemi FS2104/5S
+Date: Mon, 11 Aug 2025 18:46:05 +0800
+Message-ID: <80DE83927D6EFD94+20250811104610.8993-1-nick.li@foursemi.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250701084905.872519-2-quic_lxu5@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyOCBTYWx0ZWRfX9g7MpT7jqZCu
- eF9hwxcxHF40EEX1qvrONxqDfDi/+DSq3yEmwuYw0d06QFESRmugMnlWWWksomnPKNdYsfjRLMu
- XNwYHvs0MemCAM2ruQthr/S1Yi4UVoMzTziYc+4LrmxWILHdUnhG0bxB4NIbBaSv12gOPYBmyY5
- BCu/YfkqQ5p9urB+qz32AxDBVgZjz/2NAFfLDEmavSZUwhHi7IQRozEfpNbjxZcX/pX43vw8/6X
- MpHT30g/rnQG6+Fpo5e7UC4quuBVWNkF5SDP5cfzEghjlWNn9bWWRgxii0wgHT0+pm/wpH2MXnn
- 09FVgJEnEgMXXposjM0v+HC4kSh1DS+vWuLqENTFapddsIcozBzdZ+sYpvdng8DEtBh9d3kFXOL
- MrH0boHW
-X-Authority-Analysis: v=2.4 cv=QYhmvtbv c=1 sm=1 tr=0 ts=6899c96d cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=2S0CspHO_B4CzmGuarAA:9
- a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: sEPWWQlCjgeoohhfyE4-Q-VCGIqf1S_0
-X-Proofpoint-ORIG-GUID: sEPWWQlCjgeoohhfyE4-Q-VCGIqf1S_0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 spamscore=0 phishscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508090028
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:foursemi.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MacKlOQbIuFYKvcVEf+L62TBJ5Z8W/s/fIgj6RO0aKl9rlxCxjuNBlu3
+	JMHzFENQsVkAIHj5eDDJQpXea9KkmQgxWtbP8vKWSRPZAXL5s+KBQWUYJMkngsFh1lgLjEO
+	cHzG9qlq5x0BdTtVXJjDd37c2RibKusHF7deZD6MME7H7AV+RmuV8L7r0l9rVtf9IB6Fp+7
+	sf69XI+b43+L/VZKYzzKFdi1LNFx8RSOBGD6IAENOjGstNUjd7SBh0dvVji5hRBG6lQKtOl
+	I2+SSc2dbfDSRoGOzrpNTggEP0DtzJGdTAOZVL4M1Yp9oshQfFpqKnzmEH6tGwqgSfZgXO6
+	VTbvSL/UySJ2VwlDnEefUYAB7tM5M6eqgIgwSdgxCa0r+CSIv0Y45Skw2VnKmgG58LhvBbV
+	/CE/cn4lCfR/sSruGfpSiHxkUqcG+/HBLAOsy8uziEHFVflQmwYW+jvJXA/UYux30wd/XzH
+	e7J7A7KKMX3+6qG2hFSarlYBPu/sZUGqXQBNoJidtsV/USg1yLbY88/zUFKoYKYodBfKm3D
+	E0HY7hstGmxJoinTqKChJUFJvG54IcsNJKjI9tpSv+k291iyyO8mrRzFvRNaGeX06Xh3KNK
+	KcGBUXEr/+wcBGezherfUiHM4m1NnTPhdoavXHcnNEGEIvm3DULilYgWsopMClJ5OlrqYSr
+	WIxf3KqE0zdLskADxXT/mM9gY5OhUkXrhxpU4FZTQsK0fH3s7ZUQjTcCflT8FR4d/eHUMCq
+	T4RwebtnC4DQYrPKiZxtMQeuqQUEwPTfWXR9RDM0vgNXPoXXbOHCtubbgNFSnO9+UPX2IGV
+	Bn+4CqWaNgnyvf0ZAei1lemC1CKcFGEaFH/IGudYvtcZ/GhWFKSHaHx0VH8T9pytxKGsh7W
+	dDffWtzFqI8+s0x+XP1A9Xjl6iKftRJXYXp2HODM5fCpxfRMv/nh65TbxTxkEVchN95zkBB
+	sCva8naBDKtZSwYPGvNtDwXQWJQxU5ZJ+BbqlQPF/5FXJ5JuekCsaK9LssL/AtleOOdRENl
+	Ge3GURtpEcws+qQu5v6kR/xbvuw0KR9Hyx4/I8RMcq4au41QVkv1/CjKXNwZOyDromltRxu
+	+g2usxlIXYB1HxzyD2l+DsiSVrqPbZfXW9+B57cGSTiRbF0BBjEKaZmveDyxXHWxg==
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 
-On Tue, Jul 01, 2025 at 02:19:04PM +0530, Ling Xu wrote:
-> Add reserved memory region and VMIDs for audio PD dynamic loading and
-> remote heap memory requirements. This is required in use cases such as
-> audio compressed offload. For example, playback of compressed formats
-> like MP3 need audio PD support.
-> 
-> Co-developed-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> Signed-off-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 64a2abd30100..b1def5611764 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -189,6 +189,14 @@ rmtfs_mem: rmtfs@9c900000 {
->  			qcom,client-id = <1>;
->  			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->  		};
-> +
-> +		adsp_rpc_remote_heap_mem: adsp-rpc-remote-heap {
-> +			compatible = "shared-dma-pool";
-> +			size = <0x0 0x800000>;
-> +			alignment = <0x0 0x100000>;
-> +			alloc-ranges = <0x0 0x80000000 0x0 0x40000000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	cpus {
-> @@ -3907,6 +3915,9 @@ fastrpc {
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "adsp";
->  					qcom,non-secure-domain;
-> +					memory-region = <&adsp_rpc_remote_heap_mem>;
-> +					qcom,vmids = <QCOM_SCM_VMID_LPASS>,
-> +						     <QCOM_SCM_VMID_ADSP_HEAP>;
+The FS2104/5S are Inductor-Less, Stereo, Closed-Loop,
+Digital Input Class-D Power Amplifiers with Enhanced Signal Processing.
+FS2104 can deliver 2x15W into 4ohm BTL speaker loads,
+FS2105S can deliver 2x30W into 8ohm BTL speaker loads.
 
-We should stop defining VMIDs in the DT and use label to determine them
-instead.
+Most functions have been built and tested on EVB boards:
+ARMv8-A, Linux version 6.16.0-rc6-v8
 
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> -- 
-> 2.34.1
-> 
+v5 -> v6:
+* patch#4
+  - Fix warnings reported by kernel test robot (Mark Brown):
+    warning: unused variable 'fs210x_of_match'
+* patch#5
+  - Sync the MAINTAINERS with the branch for-6.18 of upstream (Mark Brown)
 
+v4 -> v5:
+* patch#0
+  - Update change logs of the cover letter
+    Add the related reviewers after the change items
+* patch#2
+  - Add supplies(pvdd&dvdd) to section: required (Krzysztof)
+* patch#5
+  - Update MAINTAINERS for new files
+
+v3 -> v4:
+* patch#1
+  - add reviewed-by Krzysztof
+* patch#2
+  - add reviewed-by Rob Herring
+* patch#4
+  - Fix warnings reported by clang-20(W=1): (kernel test robot)
+    warnings: variable 'ret' is used uninitialized
+
+v2 -> v3:
+.../foursemi,fs2105s.yaml(patch 0002)
+- Drop "schema for " in the patch subject (Krzysztof)
+- Delete the description of the property reg (Krzysztof)
+- Restore the property clocks to v1 (Krzysztof)
+- Keep the same order as in list of properties (Krzysztof)
+
+.../Kconfig(patch 0004)
+- Fix warning reported by running checkpatch.pl (Krzysztof)
+  Write the help of config symbol with at least 4 lines
+
+.../fs210x.c/h(patch 0004)
+- Update entries comment to C++ style (Mark Brown)
+- Use linux/gpio/consumer.h instead of linux/of_gpio.h (Krzysztof)
+- Use a private lock instead of a global one (Krzysztof)
+- Delete driver version and log (Mark Brown)
+- Drop checking of pval in fs210x_reg_read (Mark Brown)
+- Drop most of the debug logs and unused codes (Mark Brown&Krzysztof)
+- Drop registers dumping in monitor (Mark Brown)
+- Use fsleep instead of usleep_range (Mark Brown)
+- Update mixer to a standard control: (Mark Brown)
+  PCM Playback Volume
+- Add 2 new standard controls: (Mark Brown)
+  DAC Mute Switch: Mute/Unmute
+  DAC Fade Switch: Fade enable/disable
+- Fix errors reported by mixer-test in mixer: (Mark Brown)
+  Effect Scene
+- Integrate the operation of reset(sdz) pin into chip init/reset (Mark Brown)
+- Add DAPM event for playback: (Mark Brown)
+  Start/stop device in DAPM instead of mute_stream
+  Start/stop delay works in mute_stream only
+- Drop use_pmdown_time in component driver for DAPM event
+- Add dai ops startup: (Mark Brown)
+  Report format&sample rates in constraints
+- Add dai ops trigger: (Mark Brown)
+  Start device in trigger when we can't obtain/control the bclk clock
+- Use description words: PROVIDER, consumer (Mark Brown)
+- Add a sysfs node for monitor period(fs210x->check_interval_ms) (Mark Brown)
+- Do the initialisations of delayed works and clock in i2c probe (Mark Brown)
+- Prevent new work after the device is suspended (Mark Brown)
+- Update regmap cache type to MAPLE (Mark Brown)
+  Define volatile registers
+- Simplify the logic of getting and setting clock (Krzysztof)
+- Simplify the logic of getting and setting reset gpio (Krzysztof)
+- Use dev_err_probe for error logs (Krzysztof)
+- Drop fs210x_parse_platdata and use fs210x_parse_dts in fs210x_init (Krzysztof)
+- Drop null checking for regmap in i2c probe (Krzysztof)
+- Drop the lock in i2c probe (Krzysztof)
+- Add a suffix(instances id) to dai name
+- Drop compatible of "foursemi,fs2104" (Krzysztof)
+- Drop ifdef CONFIG_OF and of_match_ptr (Krzysztof)
+
+v1 -> v2:
+- Adjust the order of patches according to the dependency relationship (Krzysztof)
+- Rename yaml file to foursemi,fs2105s.yaml (Krzysztof)
+- Fix some properties and wrong definitions in foursemi,fs2105s.yaml: (Krzysztof)
+  sdz-gpios -> reset->gpios
+  fs,fwm-name -> firmware-name
+  Delete fs,dai-name
+- Drop "dt-bindings for" from subject (Krzysztof)
+- Update the driver code according to the update of DT schema (Krzysztof)
+- Fix warnings/errors reported by running checkpatch.pl --strict (Krzysztof)
+- Fix warnings/errors reported by running make dt_bindings_check (Rob Herring)
+
+
+Nick Li (5):
+  dt-bindings: vendor-prefixes: Add Shanghai FourSemi Semiconductor
+    Co.,Ltd
+  ASoC: dt-bindings: Add FS2104/5S audio amplifiers
+  ASoC: codecs: Add library for FourSemi audio amplifiers
+  ASoC: codecs: Add FourSemi FS2104/5S audio amplifier driver
+  MAINTAINERS: Add entry for FourSemi audio amplifiers
+
+ .../bindings/sound/foursemi,fs2105s.yaml      |  101 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ sound/soc/codecs/Kconfig                      |   16 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/fs-amp-lib.c                 |  265 +++
+ sound/soc/codecs/fs-amp-lib.h                 |  150 ++
+ sound/soc/codecs/fs210x.c                     | 1583 +++++++++++++++++
+ sound/soc/codecs/fs210x.h                     |   75 +
+ 9 files changed, 2204 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/foursemi,fs2105s.yaml
+ create mode 100644 sound/soc/codecs/fs-amp-lib.c
+ create mode 100644 sound/soc/codecs/fs-amp-lib.h
+ create mode 100644 sound/soc/codecs/fs210x.c
+ create mode 100644 sound/soc/codecs/fs210x.h
+
+
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
 -- 
-With best wishes
-Dmitry
+2.50.1
+
 
