@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-203328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F720B20BB8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:23:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E81BB20BBB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:24:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 724C73B4367
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:19:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FD8C3BCA9E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:19:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4AB221F06;
-	Mon, 11 Aug 2025 14:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B37662253EA;
+	Mon, 11 Aug 2025 14:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a5lkql7z"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qXUIcKvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CA01D63EE
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 14:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E64CD20F098
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 14:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754921971; cv=none; b=O//ar323IpVNn5pby6FLv1pSYnBiTXdN9mj5Hh9CRFmgH/Falm+sHgBPf9LjRlYqqY2Gr6XKo9uRNsSzyto6nMNXUsGjhIaMA1Zv4jIOc/81/4V/AtHMcMYt9x4cIkItuPB42FuH0NDMwj7HmVcpyeGuJzTjk+foowohHQWQHKY=
+	t=1754921977; cv=none; b=NAsv5hShNVDeDynI+owMt4yhDFFv4/qFU1pCLMm94lSeW+cRp/cwVQqZeM97vj8CGDJHbLcucQc1DVoEqMpJ/npEcborNcy3GY2+Bacul1OO7RRN4yPMXhx0wZ9h+3OdO72PeRYbiCPIoNnVijmEyDam5WROPmyd5eDEYx/MtNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754921971; c=relaxed/simple;
-	bh=lr3DvzdjN7LkZtdXRREkDCrl05S5abNZMI7c1dAD37M=;
+	s=arc-20240116; t=1754921977; c=relaxed/simple;
+	bh=sJ/+Dba9xvP6fdv277w74ayy19TMUod8r5H1Q2Iw6qo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IePVMC4c5bPSg66C7hrRLXs0gQlmSHpAy49PacTPhBIoYIkoZLR/21ZDRw2blS+fsipCRxJz30XbrMxrDJnTQoDUdLKGBAnZqUlEL/GnV5jKrQGTzi6XHvXwmjsn0RBRVPisKLGntw9VVdIKEWm3i8CUXosiLpeeWx/sTYJemhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a5lkql7z; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=gnqUPO4W2zYcjv0SLv0NBX0rTv0vsRBvJwe5+PFttKyas91aGQ5oEFm5llWg/RmwEPkW+6r4uAdNbWP5zP2qFiGtabEgyNqSAVYDBb4GwroCA7yFFjYnFfMQ1vWSnxiEhFgvsP18JZe4aRGkG1qqY6jxY7acQ0Z9htdkL2bwXtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qXUIcKvW; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-af9176e6134so53408266b.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:19:28 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6155527ab87so779857a12.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:19:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754921967; x=1755526767; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=b7EmAb0UwLypvaNyKn31+KtkbKYbjrEsTvCuMSjsWSk=;
-        b=a5lkql7zR7EWpKumf4cBV1dqz6cAx66DwyfjdGmDVn6vv9mPrbDNRVNy4Acz0cIBCE
-         p9cqFasUYVkr+n/qTbVq9p+mtfwrlptP0gz3gQtMCP81B5jrt4HqDC4GMqrluB2IzwVG
-         nmio2RtCMkX5YSQ1t88DuwVZxAIyXIDQLLgQWRxjknyFddwGO4RCd6Zl5EhNi9BQ+Bak
-         rZq1m72z09Z0+sZlPqJoVVjcTVI8PumMz6sNYhHQnrXIkEFRRVosE30gglrftptpYUWI
-         dCeF1RpkYFSQKhelu9czv7styvy/xW0uwzssBGaMVOfQ6kTFIxoeWGpS8qkfLpCqb9OF
-         5/dg==
+        d=linaro.org; s=google; t=1754921973; x=1755526773; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukJvVGY67SRCEDRTUAiknYRlpJloxMFuVeYboh/clkg=;
+        b=qXUIcKvW/dp+PSbBTWGa0AsRsY4woLSC0SL6ro1gHw3KqQhzb8OeJjBhapN5j6WQxg
+         bIwWPHl2mi+/8QIIgN0leGo3E4DRLsp/PVvGYYf7tw0I8l0I53m2qUu/7QVVyBW1D2ks
+         iVBTEuz5UndW0pifg4x+2SwHQOYepJ534kKJmfENqHwSyRqcikE6VNYI7uEhRWAu1sNc
+         pmjrlyeqjMYu28DYxCv6lTI+zU9zpnB9KyAcJea105a83uxvReDsj2t3/CfguGQKbzxG
+         oP0Ws7CI6TdU6BsUR+YQEFWoyk9fAjpAk+QIdAJRdrdrbB9IqajU7oS8c4TwZ47fas+8
+         jp7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754921967; x=1755526767;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b7EmAb0UwLypvaNyKn31+KtkbKYbjrEsTvCuMSjsWSk=;
-        b=hks/im7fI1Zi/oNEusRTTaI8K0HxRspZNgHmGMlGjOILTJdYOpwK+LdF2t8zFILFVD
-         uJ3e4cd37LlllwmKJbSTpLUKLQUgYOcgQQwQ4y0gMfFGHDDjAX+FsLi/j6iyFyrqEPpD
-         ImI8H+GqNOc1lo0rWqzrKE2V10IUjkwooG6Pmhe2z1W2puLeQC5aRbtjnutBErbDe8rs
-         ErI5A7FyQFiO92yIy7ns84Pf4pVS7W31XaQng6fzVrtYYA+cAHNIXfcEpDvHgV4EsaWA
-         FGiCgJ1HQADSXLMQEu9LX8Q6s5NTaywsyrPRMY6FdrE8hXEoJAOB5Jmfo22KdNwOr3Z+
-         UXyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWMgfJT9ApSzhD1HmOj+Gm87LSOEm0skEvi936QiRVTsZTKpj82/T2J2VgaUpH3rIBxGv63XI6Vo5xT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwccOa2aakKAok5Hbc6/o5N/epWY/74YKGZOQIWo+Bz5lAjUMIF
-	7tr9TAU4OjCNboJA0+F5JM4OPbhcqO4fVTnzWmIlsWE10vYqyLpZUpmVVUrDFImfEhI=
-X-Gm-Gg: ASbGncvEKbcrxp8UIUJ6BaWBrKS8Ov2oN/1azTnvcmW4sDPtNqq1KwmH8JcKt4ArQB0
-	TQUw92OolkO4yvBl+g9Y2YT2t+C1XItPsjmGOCm9tTG/Qm6/ntaq5tnOszGHt7GK+I+XQp+5L2C
-	LsEjkEvasE6Dfe8X2WCTQID36dUzbDNp6TsZ5hoV/5DLj4nNqR54t/rSiE/LAh9HrTSottasx8a
-	feKvJgIQpIbVHxlabxSVz3gPQ+FV/VovZez3ZREZy383FDgIsyjlcUxECC6NgsAehsfWb6TIiQv
-	QtAV3YMokfgsUxuu9krObzvwQfEI3DzfMEIU3zpFA4NYhF3k1rBtT1NoqsxCs7bDnblbgyqV8BD
-	JpTkFRqVLb3bY1Yo5AZTvjMmEFAr6P2mM1BPT/Vg8sveDvPPDH555yg==
-X-Google-Smtp-Source: AGHT+IG+xsCh2QVwytiFvQzuSZRz6Y4edmgDh+btFCvKCUACSti+UZJeOTU+gkn1fB0y0p92sMOgAg==
-X-Received: by 2002:a17:907:3f15:b0:af9:566c:4cd2 with SMTP id a640c23a62f3a-af9dec3c054mr388659266b.10.1754921966654;
-        Mon, 11 Aug 2025 07:19:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754921973; x=1755526773;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ukJvVGY67SRCEDRTUAiknYRlpJloxMFuVeYboh/clkg=;
+        b=SXH6CZcZM/1lJsI+ff4tVn48VQUrHupj68KqNlNSEG0U/VAijIyZ27AXNrp1Tz/eWV
+         ATENF6rqaORYa4luNdm35CvaS4Uffe9bPb2pElY3gH4IB4xaYA1j+cPkIfqFEU0peMDu
+         MgrBQWxewtirHdxrGvfxnwyJzp8tj9KkW92UNFd7cp6dfzOVLWKjSe3ugS1luXtYmOrq
+         Ll/yaolA4HXmeIcPea64YOgcKr8nkI6rJY0noalu9sE3n41/733e4nGJGsy7JwWyXVC2
+         oPGTx2JrR3Sj4bpqxWOtmo36DaR0h+RIzAJRwL66Nf1cXMmhNyu6DmUyVFHh1OnM2cDD
+         nVkg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaFSt/XEjuE1Vqz99woetAgVI1rhzFlRKsGzIxyHQZNswQqZOKu0oVrBgF94pgxagFuzvndEyFfQsT@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywq0ffx6B0Zmov3LDvLji0s4K6ezVQe/3MH0OCeEJj35TE5TCKW
+	9oagOvNZ8D2DOJD0UTC5hbnAJzFEq4L1K+iBpB3obxpzU2wc8XqSZ84oH6knJ2vPCbI=
+X-Gm-Gg: ASbGnctmy7ozdVvXk3yziN2FJG9o0oVhrVax39FRQtSi9e9Ys0n0BNw3GKbjD0gsOU1
+	NrwXw+0VdhNu9tq/6E/Xs4fDx4ZFAla51Wragzf2xlmG+twtgHcySODl5ah2NybYqik7Bn4P+Me
+	zwxdGMvKExM7+DfqVvLP9A8Ma2Fb1pu3JHyeZIq9K0GhwjYHtzprVSDQYsS2Nz8sflvQNlNPGqy
+	drx2mXyrW42/mOXxoUrw1iohnIOpgCSflXR6pkGe/NjDEbnBHrmG2kqkJiXRvi9+wRtZrjM4zsq
+	tDiOuJnSx91rXfVVYCb6qP5WTLtgGGRnm0LZTORPKHYVoGnKKrenxezlVZ0KPBIeridgrRywxl+
+	ZOExQuHGhyLszehBLH4UXR+H+blAcsfVxUgD7hMFtTRs=
+X-Google-Smtp-Source: AGHT+IGISlXXKbNN4WBuSR8PDVvMccroTXbeDu/hTumwuwdfw4oDAbeip4RuSSQ7J2kZBKfEYuZPlg==
+X-Received: by 2002:a17:907:3da9:b0:ae3:cd73:efb9 with SMTP id a640c23a62f3a-af9dec80ca5mr366356666b.12.1754921973223;
+        Mon, 11 Aug 2025 07:19:33 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a3e80sm2042966466b.47.2025.08.11.07.19.24
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a3e80sm2042966466b.47.2025.08.11.07.19.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 07:19:26 -0700 (PDT)
-Message-ID: <deb5f02e-e26c-4e33-9e8b-2b3c04ddd4c9@linaro.org>
-Date: Mon, 11 Aug 2025 16:19:23 +0200
+        Mon, 11 Aug 2025 07:19:32 -0700 (PDT)
+Message-ID: <6203a510-da79-42bf-9f85-7a2092b5057c@linaro.org>
+Date: Mon, 11 Aug 2025 16:19:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 1/2] dt-bindings: leds: issi,is31fl319x: Drop 'db'
+Subject: Re: [PATCH RESEND 2/2] dt-bindings: phy: fsl,imx8mq-usb: Drop 'db'
  suffix duplicating dtschema
 To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -97,9 +97,9 @@ Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
 References: <20250811-dt-bindings-db-v1-0-457301523bb5@linaro.org>
- <20250811-dt-bindings-db-v1-1-457301523bb5@linaro.org>
-Content-Language: en-US
+ <20250811-dt-bindings-db-v1-2-457301523bb5@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -144,7 +144,7 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250811-dt-bindings-db-v1-1-457301523bb5@linaro.org>
+In-Reply-To: <20250811-dt-bindings-db-v1-2-457301523bb5@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -162,7 +162,6 @@ On 11/08/2025 15:54, Krzysztof Kozlowski wrote:
 
 
 This note is outdated - you can apply the patch.
-
 
 
 Best regards,
