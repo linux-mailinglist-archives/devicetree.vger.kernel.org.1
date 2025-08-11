@@ -1,229 +1,109 @@
-Return-Path: <devicetree+bounces-203127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 676E4B2012D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:03:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A5A0B2012B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5C3B4211D1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:03:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62A3D189E19D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86CC62D5C9F;
-	Mon, 11 Aug 2025 08:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D5C213E90;
+	Mon, 11 Aug 2025 08:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="E9ua75+N"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="UgyIgxe5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348471FE451;
-	Mon, 11 Aug 2025 08:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.203.114
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6391B1EB5E1
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754899368; cv=none; b=avYxV+6SiATBwGtXZwVAS6Szpknc5QhU2DqRWKcMd5pxCAaUe0nMRjruqbmm7nRpBAMTahDNpKV3t9JDx6qPn4qtTM6pP2Au3edunkqTXnqQMXdRYI3K1SDn/z4byb5tPAHbozRzGxkB/Cc8WEorHW5WEsXLq1av6DzmyXzneTM=
+	t=1754899379; cv=none; b=WrGlbJfCr/Y9U6SdeS7SV2jzmnznEoabvIWVfjdvHqmORxED3rnRyitWDMAIxHmx+WtvnisfL79Q7c5a+9GtICckpYNVcQdraJY7q1FKFa53i/NBef7fU0bB+jI9zu/PzJRQjU5G1vvKi1UWAZw06tgTOHbo4QZ+LnvkiCRAXnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754899368; c=relaxed/simple;
-	bh=CsTWccA+bTID6m2MKLcqrCSHVimgeuHk24BK69Y9GU4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mb+aGBJyekcHhjcHSMrh2+T7f9WPLaxQmDnDs7y8dOZa2P8l63bsZ4kbzmelAHQ3RoQpcapcrLNLD4YdqtjgR3Sj4s2ogAsNArjkL4U208kX5BVk68apGgNiVMX5GZHUsUUO7/DELuxCOnA+VcuPqncyF1libJh3vylD3R5xPYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk; spf=pass smtp.mailfrom=codethink.co.uk; dkim=pass (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b=E9ua75+N; arc=none smtp.client-ip=188.40.203.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codethink.co.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=codethink.co.uk; s=imap4-20230908; h=Sender:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MNqxMRXLftlngWU/+kh0v1RCc0qOSul6Se1CZBaU11s=; b=E9ua75+NNbkOIR8SMFNtiPe7Mu
-	gmNCx6Nk7yeXjuQRe6ILLUndIB4GNq0M7uHGCbgbqKg5t8hGce+f4t/5ImaNM3BI4Bl8XubeEPTR9
-	NMQodte2dDZ2Z9u8VTprTFCT7oUyKNHnt3+jcDOPJGAZQwYtKxX0vfYpRemoZy6X6Gist4g6gXdz8
-	v4/B1jKZAHTgmDeDqQakXKO58Iso1yScWs0y8wqlI+SfOeJD/SP+cMxVwQVDoipW863xSk3IZxs/x
-	9BpyuI14S/1vqLFf0GuzRBElsA20ZMBRRkGyn+xt5CpySgrz4oXkia5hh6OGnr/AVaGk3UeJVr54r
-	pmolosyw==;
-Received: from [167.98.27.226] (helo=[10.35.6.194])
-	by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-	id 1ulNUI-00BX56-Un; Mon, 11 Aug 2025 09:02:35 +0100
-Message-ID: <cd6ed5b1-619c-4ca9-8fe0-6b47c7d641a7@codethink.co.uk>
-Date: Mon, 11 Aug 2025 09:02:34 +0100
+	s=arc-20240116; t=1754899379; c=relaxed/simple;
+	bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uq/9Crr/d56IZeNxwgE0qj5jjtS+SAFWK8+WRWWxQDEPMNW/vOKbT5Lj+EUtu7sOv1splRZvZgY+V4+dC4PcaAretxs4rYsfSuJ+zzS9MYGlUOqsa2gPeY5mfkQZftdgJS2sFAmt00owNxPz3lsXtI1Tkr/i/gFDcNbS26/4Htc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=UgyIgxe5; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3b780bdda21so3309680f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1754899377; x=1755504177; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
+        b=UgyIgxe5Ro6fYRxflU0Ego4guQMhfCEzSrhh6tDPEaJ/DO14bGBDcxzK1v+bTVGFl+
+         tbiMxEaCksHK4YVOdUluwfTA5WWn1+g1AERaS1cKb3pxAasn+C0bwkJPU9fmDQicrcd3
+         VmU1FBnX4Uyri97fP7/vxgPjIH0Q3u9Rb1tR320XdFi2GHxAXRLErICdVuFpBVVfooRR
+         ywysR+LJf0ftKt+WlDl/Gi38R1XYgP1DE2/xXR+Cmj+Pl1EAyBFkrclB3SG9nkFU89xC
+         z/eO2xxIdARlwvcRi5qTUT3enjYGdcGv3soYYJPlYpxbyt7SMYBN+4Cddt8ZJhpeWC/6
+         KfTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754899377; x=1755504177;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
+        b=len0dNVrOJJKM8J1yXgwPa0G5LxZYABx0kEx3N1/1Q+Vs9wGF3M7A46FdyMz0iw3W4
+         MLlwmiIpo/BGqqoZYRVkT02j9Cdfe/3o75g/l7xIjngm9D+8YKaglTpMjP8DFrb0TtGF
+         4cB+X2TYwL3qIZJryqIXMBbURKX+0CB60c8Wl0RkdTJ1w8eJtHokypL7UWYnpx+lAnrF
+         kvtt9mkxSkcPN1nfU681wx+9DnrDA8kjEmrAN9AzBa+Z54u6y2/j3CZmKLL2R2zFs58a
+         ckfIuPKFWQJWBNTLtGbaFQfHKLz/mWJGq1UzojKpnYh82Y0hUvvD7+piOaFepYGJTSSt
+         g9zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQbr0kObFdN3SEWt2+CZO4X/WY7Px8fwx/yyxT4GSdnajmrOQtVd5QpdwAIR0nGn5GJc6QkJc/7GHx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzoRnNOSEezR26JUA6GFhuXjfRrAuLcI0IDo6J5V4ckCx2PCWX
+	NheWm0z+fGtlcRufLzzGBiJoZ+w+kNFSKkox0ORdx/dhH2QNadmyJqvGOGR4phc/zCbkjk1wRC7
+	8UeGmH6w+Z2/KFOR/wbQz638zg4rKHKCHQKxcLirF
+X-Gm-Gg: ASbGncsX/V6Qds8kxhhf04YFReOszzeyNpSO5bEi+yOJ1UxRweUc0BnHYoF/WORLAN3
+	XX9lO0aKPTS4o1gK6W+tb+Us8GcUOM4bpvsU3K1nIzfeIfVjjWnOhotSEb2j3GRjS3sorORpnOl
+	mpUGIGNTSTGSHhZK5nO41gw2+mNU3WbI3GJtaengMPCCrjKZ5GP7DCZBitNF9AeVmWxXxNtUpq/
+	PDtsVM=
+X-Google-Smtp-Source: AGHT+IEsu+bZtUYeYy1qxaEMLjKNvZBb3uTm4CG8EO4rTl+OBSEfC36KtsdxhcyXXfpc50vvrKBBnYZqH3HvoakxFc4=
+X-Received: by 2002:a05:6000:40de:b0:3b3:c4b1:a212 with SMTP id
+ ffacd0b85a97d-3b900b4713bmr8942645f8f.7.1754899376430; Mon, 11 Aug 2025
+ 01:02:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC/PATCH] drivers/of: add debug for early dump of the dtb
- strcutrue
-To: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250808142515.142058-1-ben.dooks@codethink.co.uk>
- <CAL_JsqJntD-o6zMo-vaCQ+f=QDuyEmUgBJqjztoriq4QF7=zEg@mail.gmail.com>
- <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
-Content-Language: en-GB
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Sender: ben.dooks@codethink.co.uk
+References: <175489428990.9320.6825335165759789458-0@git.sr.ht>
+In-Reply-To: <175489428990.9320.6825335165759789458-0@git.sr.ht>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Mon, 11 Aug 2025 10:02:41 +0200
+X-Gm-Features: Ac12FXx9gehz2CxGJpQ6e8qy2Wc5klN9fbM4vuuLbJwT1_XhTbxYB4DdVe_ursc
+Message-ID: <CAH5fLggrXbaOu8D2eFL+UtrNSqbm8H9sfgjDJzVJXMEgjBkffw@mail.gmail.com>
+Subject: Re: [PATCH linux] of: resolves TODO for copy_from_slice
+To: "~_xllx_" <elle@weathered-steel.dev>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, rust-for-linux@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 08/08/2025 22:10, Saravana Kannan wrote:
-> On Fri, Aug 8, 2025 at 9:25 AM Rob Herring <robh@kernel.org> wrote:
->>
->> On Fri, Aug 8, 2025 at 9:26 AM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
->>>
->>> When testing for boot issues, it was helpful to dump the
->>> list of nodes and properties in the device-tree passed into
->>> the kernel.
->>
->> Shouldn't the bootloader be able to dump that?
->>
->>> Add CONFIG_OF_EARLY_DUMP option to dump the list of nodes
->>> and properties to the standard console output early in the
->>> boot sequence. Note, you may need to have some sort of
->>
->> s/may/will/
->>
->>> early or debug console output if there are issues stopping
->>> the kernel starting properly.
->>
->> Seems to me this is giving the user the haystack to find the needle...
-> 
-> Completely agree with Rob.
-> 
-> Ben, can you give more context on what kind of issues this has helped
-> you (or anticipate it will) solve? Maybe there are better ways of
-> getting what you need.
+On Mon, Aug 11, 2025 at 8:38=E2=80=AFAM ~_xllx_ <_xllx_@git.sr.ht> wrote:
+>
+> From: elle <elle@weathered-steel.dev>
+>
+> Replaces the copy loop with `copy_from_slice` which became `const` in
+> stable Rust with version `1.87.0`.
+>
+> Authored-by: elle <elle@weathered-steel.dev>
+> Signed-off-by: elle <elle@weathered-steel.dev>
 
-We where having issues with u-boot on big-endian riscv.
+We still support rustc 1.78 and forward.
 
-turns out the string functions had issues with endian-ness and
-where corrupting the dtb when doing the final changes when booting
-into the kernel.
-
-the kernel wouldn;t boot as sometimes depending on data alignment
-the #size-cells and #address-cells where having their names corrupted
-and thus the kernel would bail very early.
-
-> -Saravana
-> 
->>
->>> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
->>> ---
->>>   drivers/of/Kconfig |  8 ++++++++
->>>   drivers/of/fdt.c   | 39 +++++++++++++++++++++++++++++++++++++++
->>>   2 files changed, 47 insertions(+)
->>>
->>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
->>> index 50697cc3b07e..ed2c52c54a7d 100644
->>> --- a/drivers/of/Kconfig
->>> +++ b/drivers/of/Kconfig
->>> @@ -126,4 +126,12 @@ config OF_OVERLAY_KUNIT_TEST
->>>   config OF_NUMA
->>>          bool
->>>
->>> +config OF_EARLY_DUMP
->>> +       bool "Dump node list at startup"
->>
->> This needs to depend on OF_EARLY_FLATTREE.
->>
->>> +       help
->>> +         This debug feature runs through all the nodes/properties at startup
->>> +         to show if the dtb has been passed correctly from the boot stage.
->>> +
->>> +         If unsure, say N here
->>> +
->>>   endif # OF
->>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->>> index 0edd639898a6..ab40db0e71a5 100644
->>> --- a/drivers/of/fdt.c
->>> +++ b/drivers/of/fdt.c
->>> @@ -1164,6 +1164,43 @@ static void * __init early_init_dt_alloc_memory_arch(u64 size, u64 align)
->>>          return memblock_alloc_or_panic(size, align);
->>>   }
->>>
->>> +#ifdef CONFIG_OF_EARLY_DUMP
->>> +static int __init early_init_iterate_nodes(unsigned long node,
->>> +                                          const char *uname,
->>> +                                          int depth, void *data)
->>> +{
->>> +       void *blob = initial_boot_params;
->>> +       int cur;
->>> +
->>> +       pr_info("node '%s', depth %d\n", uname, depth);
->>
->> Can you add indentation for the depth rather than printing the depth?
->>
->> I'm not completely sure if calling this is safe always. How early this
->> will run depends on the architecture. So need to test on a variety of
->> architectures. Or perhaps limit in kconfig to tested architectures.
->> I'd rather not do that though.
->>
->>> +
->>> +       for (cur = fdt_first_property_offset(blob, node);
->>> +            cur >= 0;
->>> +            cur = fdt_next_property_offset(blob, cur)) {
->>> +               const char *pname;
->>> +               const __be32 *val;
->>> +               u32 sz;
->>> +
->>> +               val = fdt_getprop_by_offset(blob, cur, &pname, &sz);
->>> +               if (!val) {
->>> +                       pr_warn(" Cannot locate property at 0x%x\n", cur);
->>> +                       continue;
->>
->> If this fails, you should probably just stop and bail out.
->>
->>> +               }
->>> +
->>> +               pr_info("node %s: property %s\n", uname, pname ? pname : "unnamed");
->>
->> Can unnamed actually happen?
->>
->>> +       }
->>> +
->>> +       return 0;
->>> +}
->>> +
->>> +static inline void early_init_dump_dt(void)
->>> +{
->>> +       of_scan_flat_dt(early_init_iterate_nodes, NULL);
->>
->> This way to iterate is left over from before having libfdt. Is there
->> not a libfdt way to iterate thru all nodes?
->>
->>> +}
->>> +#else
->>> +static inline void early_init_dump_dt(void) { }
->>> +#endif /* CONFIG_OF_EARLY_DUMP */
->>> +
->>>   bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
->>>   {
->>>          if (!dt_virt)
->>> @@ -1178,6 +1215,8 @@ bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
->>>          initial_boot_params_pa = dt_phys;
->>>          of_fdt_crc32 = crc32_be(~0, initial_boot_params,
->>>                                  fdt_totalsize(initial_boot_params));
->>> +
->>> +       early_init_dump_dt();
->>
->> Use "if (IS_ENABLED(CONFIG_OF_EARLY_DUMP))" here instead of #ifdef.
->>
->>>
->>>          /* Initialize {size,address}-cells info */
->>>          early_init_dt_scan_root();
->>> --
->>> 2.37.2.352.g3c44437643
->>>
-> 
-
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+Alice
 
