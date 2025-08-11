@@ -1,126 +1,130 @@
-Return-Path: <devicetree+bounces-203251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CAEAB208FE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:40:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E879B20909
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 353FD3A85AC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:39:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A7533A4012
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF872DAFA3;
-	Mon, 11 Aug 2025 12:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2D417BEBF;
+	Mon, 11 Aug 2025 12:41:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cUiForYF"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="gX/CWJyQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD722D77E2;
-	Mon, 11 Aug 2025 12:39:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754915947; cv=none; b=W57VB7teofQUzGcNPR+jha5nrbkrcyAvX3nGJK2xRMCy9e7BsZomBiUGXJpJMgcGmRVBogi3AKSj57NsKPcK/KtW7JU1lfFgjuVh0nX+RYW/xRGdrzvKsJoQgKWdH4UJfZfL6UNYCF/ekORkZxBR62vhuqoH24bxTbtZUof8K68=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754915947; c=relaxed/simple;
-	bh=dhBKEeU5ldQLq/3XtEZvKKj307e0aSyze9dkI+ujZdQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=siroIKSChMBQYkG2Rmen/ix+6B/K6hgANbXuHEc72EabIldusApkXE81SnO+mbyS+p0yAo47RqRCpl3ZvlnH1R7bB9jqMBkf6fClea3JVJv3EzTI9RuCmKsHGRPcBj1gQhd6osKcD/Zwkutv5bIio4CWZsqCXQVL1uCJO0xyDqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cUiForYF; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754915945; x=1786451945;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dhBKEeU5ldQLq/3XtEZvKKj307e0aSyze9dkI+ujZdQ=;
-  b=cUiForYFbQb4u4n6MdqmfHdqmWxG53uJMuwJvPec8gUdIYRusJOa146h
-   l68op4xCPEnN9xxZPHh2XWkBcZ2eHfq4uIEINE8F+qxD3IRQR/VpZNQGW
-   ChloKatfrCXn4+AlqFfD0CF7yNJ0aHBCQFhjGilUaKfEjdzoyJ1IGM4Gf
-   4HtAqp0foknn5QYTh8PqCkCT5bW/rNDP2Ot0PG2PPPuoQpce9UpXzbxtY
-   jmw6yGhRidhUthNFiuIZgUMYfsgDuyGHFWgdEhlYk+1CSgkY8c+BLi7NX
-   mSZ3Yzm4X/gSTM7C6j5Ay9AlZGEmk3I3Yl0xq/4llb4szCoQbiIjSY9RD
-   Q==;
-X-CSE-ConnectionGUID: jD9SyHoxSjWoeMQ1+BsATw==
-X-CSE-MsgGUID: 5ctARMVoT9qlkulraF9fyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="60968657"
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; 
-   d="scan'208";a="60968657"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2025 05:39:04 -0700
-X-CSE-ConnectionGUID: xSVS8NyHQXmcsesZ23AQDA==
-X-CSE-MsgGUID: ltCEpc67QXCqN9i6K1Q+ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,278,1747724400"; 
-   d="scan'208";a="165808200"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2025 05:39:02 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1ulRnm-000000052Up-4BX2;
-	Mon, 11 Aug 2025 15:38:58 +0300
-Date: Mon, 11 Aug 2025 15:38:58 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <aJnkYn4nN5K6AO2q@smile.fi.intel.com>
-References: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
- <20250807-tlv493d-sensor-v6_16-rc5-v3-1-b80d2cb41232@gmail.com>
- <CAHp75VeKPr=3H_wOvcesqj4OsrqN7zwRFFk3ys3O012JpQtxrQ@mail.gmail.com>
- <aJcw8icGvsDzFGpJ@dixit>
- <CAHp75Vc7Jftvmgb0EgnYmiKtT2TTYb2uQGNgaqm7hvkFWpJ9cg@mail.gmail.com>
- <aJdcUhz-vqnx8DwA@dixit>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62ABD145A05;
+	Mon, 11 Aug 2025 12:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754916085; cv=pass; b=PH053EpkTrMW7Fvicmp9rd8Q6oHs0KKLOsA9+7cCVrfTyTkjKePPWG2zfoOSwAw/Et+uf8zKvCxiNueHgxjUpOxLk6Upm/qn17Kn5lhMuvYxcJe5YWVPhCVqDisxbYRVbJYfa0+XaytIns7plVjtOnqppJ6yIgDdC6IEptARki4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754916085; c=relaxed/simple;
+	bh=U2yhdYGqAT6KsjoRuTApTSiNZyds64i5ntP2Ld/cNGU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fuXOBzER9YfI//BZ1wOEsRGeG25NTPoJhlWHi4DEwiD66IwiMGZ1FY6G6QxuiGOQHPiqCHGQ4+SEyYiiw3ajOU4TqlnyGbiNBjeUAmfmExXKWgzuiUEvQ70i62jNU40g8mIeiC1CXqSfCXJCjF6USRCKY46j5l5u9YbwXFM6n74=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=gX/CWJyQ; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1754916021; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=hteRfCRvkd67/Dx+dfT1KUe3zys+bioiMiINKAoqpiTvtPDlOOPKcNB/4tVKwVwFvHMX+zLzcvvN8ipbV5MQRiobOr64LC+LtReoaHmoo8FIaaicTy36wtcJ3j88Dxzd3G+4Uy6pQ12JiteUW9OgU0u5XMKeMWuH/5ZDs4BwGTA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1754916021; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4iGM2ITegptFt/GB57XpVHMLcIR82cp74UJOaNlV0sw=; 
+	b=VcAWintDg6coTqlLrgPMr08CdjQAmkSsel+lKpq6Kh8IF21WYFLkuRKepDSDUD0T9aN9C5rVcu7rKoVqRt7JdTvX3VNtS1etNT5Df0aW3kz0XwsIDOJmw9+H77SZwdWzUjr3CdXD0lmxRPnbCLMGS7dgvUUk4n2dGelta4xYlWU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1754916021;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=4iGM2ITegptFt/GB57XpVHMLcIR82cp74UJOaNlV0sw=;
+	b=gX/CWJyQm5KR7h1N2KyiPRq8MQNw2pzdjNaWcZe8wF+RXthtgRjx22s8MqNdJdiz
+	bJJPv4dtcLip+KRMuOEv1uYh6uOFoWtkGR9PW9gofTrl+kAMhB4SA0YLWH2lO20DIsW
+	qMX4h73cw6RxpBErFYkaYYQ4PmiEOWRenASXbqns=
+Received: by mx.zohomail.com with SMTPS id 1754916019156141.85896495716338;
+	Mon, 11 Aug 2025 05:40:19 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Link Mauve <linkmauve@linkmauve.fr>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Niklas Cassel <cassel@kernel.org>,
+ Damon Ding <damon.ding@rock-chips.com>,
+ Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+ Alexey Charkov <alchark@gmail.com>, Patrick Wildt <patrick@blueri.se>,
+ Chukun Pan <amadeus@jmu.edu.cn>, Diederik de Haas <didi.debian@cknow.org>,
+ Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+Subject:
+ Re: [PATCH v2 1/2] arm64: dts: rockchip: Add the vdpu381 Video Decoders on
+ RK3588
+Date: Mon, 11 Aug 2025 08:40:16 -0400
+Message-ID: <2793168.mvXUDI8C0e@trenzalore>
+In-Reply-To: <aJjxjgG1gEaKBVwE@desktop>
+References:
+ <20250808193602.142527-1-detlev.casanova@collabora.com>
+ <20250808193602.142527-2-detlev.casanova@collabora.com>
+ <aJjxjgG1gEaKBVwE@desktop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aJdcUhz-vqnx8DwA@dixit>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Sat, Aug 09, 2025 at 08:03:54PM +0530, Dixit Parmar wrote:
-> On Sat, Aug 09, 2025 at 02:44:00PM +0200, Andy Shevchenko wrote:
+Hi,
 
-...
-
-> > > > > +       data->wr_regs[TLV493D_WR_REG_MODE1] |= mode1_cfg;
-> > > > > +       data->wr_regs[TLV493D_WR_REG_MODE2] |= mode2_cfg;
-> > > >
-> > > > No mask for the existing values in the respective wr_regs? Wouldn't
-> > > > you need to use FIELD_MODIFY() instead?
-> > > >
-> > > I believe, we are doing OR op with the value created using FIELD_PREP,
-> > > so it should not interefere with the existing non-masked values.
+On Sunday, 10 August 2025 15:22:54 EDT Link Mauve wrote:
+> Hi,
+> 
+> On Fri, Aug 08, 2025 at 03:36:01PM -0400, Detlev Casanova wrote:
+> > Add the vdpu381 Video Decoders to the rk3588-base devicetree.
 > > 
-> > I am talking about existing values in the array.
-> >
-> Right. So in that I think it will make more sense to directly use
-> FIELD_MODIFY instead of using FIELD_PREP first and then doing this OR
-> op. Right?
+> > The RK3588 based SoCs all embed 2 vdpu381 decoders.
+> > This also adds the dedicated IOMMU controllers.
+> 
+> Back in the VEPU121 enablement series[1] it had been decided to not
+> expose multiple identical cores yet, because there is no infrastructure
+> yet in the kernel to schedule multiple userland processes on multiple
+> cores, or (more relevant for your usecase) to even combine two cores to
+> reach 8K support.
 
-Just double check carefully, but sounds about right.
+That's right, but the device tree still defines the hardware as it is. The 
+driver, however, will  make sure that each instance after the first one is 
+ignored (at least for now).
 
-> > > However, as FIELD_MODIFY is there, I should utilize it.
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 74 +++++++++++++++++++
+> >  1 file changed, 74 insertions(+)
+> 
+> [snip]
+> 
+> Thanks,
+> 
+> [1]
+> https://lore.kernel.org/all/20240618183816.77597-1-sebastian.reichel@collab
+> ora.com/
 
--- 
-With Best Regards,
-Andy Shevchenko
+Detlev.
+
 
 
 
