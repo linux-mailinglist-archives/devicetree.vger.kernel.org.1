@@ -1,158 +1,237 @@
-Return-Path: <devicetree+bounces-203185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C593B2049B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:57:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA56B204B1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCA5C4264D0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:54:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D548116B96D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07D8228C99;
-	Mon, 11 Aug 2025 09:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E182020B81B;
+	Mon, 11 Aug 2025 09:56:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kLeGAywx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RYpHF1pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3562F2264A3;
-	Mon, 11 Aug 2025 09:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942B6F4FA;
+	Mon, 11 Aug 2025 09:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754906043; cv=none; b=Je+ru2xHt4ZhZu1may8vQhC9F0p4DhNon95VcTuUnobMsRs5c4rIuK9fx0p41kd2UzBaJyCUYVmsz6QnOVaqkmXWv5oT89ovi00eSKgU67LirOXEvr5xSfwaUpdwfGVgxJHg9TFvHAqdyerBB8DO6YQkRO7uQNMsfHzm59tWzhk=
+	t=1754906216; cv=none; b=l/jzvTyDhbwvLhdc6GkIZiE7YxGC3Kw9YU4aF1EZK1GmayCvDhmaEWZddgXbu8PlidRDvIYurBAC61nlRK5CUL2Y3kYphHp0ungP+H8DIl2YSNX83cQWsFYRbi3m6gINvqo6OXfGJRzwQ4jSQNwVqAM0IOc3aEpqbqfPXKtE7l4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754906043; c=relaxed/simple;
-	bh=iwzd7e66Z9YSwLHyEDKECZDQ4lbE4ar5MJ8qPN5e9do=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sVxTHbIfUK5a2rlPQhKI3fJeHkSS8YJIglyIIeRCpPhmF/XB0CBIJdaJaqxO8hvfMSjkoH1wg445Q29Qh+gEUEgG2Ut+XdcU97IE7kkth89ZdK6vLFhCxNiTIftBiOwK7O62pMbDT0iqGuz1wdp494Z92NoDnxdWsgmAz3g7+vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kLeGAywx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9dG3u029264;
-	Mon, 11 Aug 2025 09:53:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=CWHCyxTc03WsGsUCc9DQvI
-	omyghM+2r6Mlg+ggnej70=; b=kLeGAywx9djl0+zK4MersFZOnLj5bsyx7BrKLh
-	5PaZ1/0dbBCGMaTY4Kk22ykwGec6s9jyaEaxBOdE76LU3PNi+3dvyQOVbvQl1hCc
-	AfDIwQfp6L12Q9WK/f6nd9a9gbaKt8llUsHmt3DR4NmCl8bEkwBLhUM29hZIekjt
-	Abqvtg3hwZX0kwZCSG9Gjr13ShynniabA8ranx7mdsQIXLhrBeLKhxVEzXL03nXX
-	pTv6D10/FzRHmIyS33YR0MOQkdJ1mCzFOyoA7O/skMCZZtgQkL3Uyr7f32K30peX
-	UFVjFsgcbOsYULUkaAzGbBJGO1DMM+4EsYddP0r+5FYCoK8A==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmbuwg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 09:53:58 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57B9rwGo027141
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 09:53:58 GMT
-Received: from ap-kernel-sh01-lnx.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 11 Aug 2025 02:53:56 -0700
-From: Zhenhua Huang <quic_zhenhuah@quicinc.com>
-To: <robh@kernel.org>, <saravanak@google.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Zhenhua
- Huang" <quic_zhenhuah@quicinc.com>
-Subject: [PATCH] of/address: Add error logging for of_match_bus() in address translation path
-Date: Mon, 11 Aug 2025 17:53:42 +0800
-Message-ID: <20250811095342.2383808-1-quic_zhenhuah@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1754906216; c=relaxed/simple;
+	bh=oLxyTCclZz3r/6nGm1z6P2ArP6KTKgEvlw9aEXNTaS0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h20zZsWtuk39AHa57x4bLx3PP5IrxRpq2STasjFQU7b9KTQ6MHIr/UVcRK8BxeLeV2l1+sIG96bI67TGcxRRyrTUp1zKwrS/9wXjR2hvBM0Vvn4YuXKJr4t5xHZ+9DJJQwjZTjAH4ceo8j0ipiL7HkW/JYIEUSNGbMgX+APZ52o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RYpHF1pd; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0329243271;
+	Mon, 11 Aug 2025 09:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1754906212;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=GaQ3wKPH5axZOjWwUUOpz2DqIUQ/8BF6oVMaeU+edpo=;
+	b=RYpHF1pdsJE1hKGkD4eG0Gake5zR8flMgUkBLCWwwK2fQBOR+hvg7S4A49u0aAHsIRV1/T
+	YdYu//Rjiubt60X+LTZhvlGlpWgYID0mpjKnLxtJAmA/0nj/z6R+CSE+Y7piT1eieOguw5
+	lclK9kDiHHsFksG6ZZ/eVKk7v0AmQ7+mNPfpngafUexky9dbBGbFWp2uI3SbPTDxL2Y5rw
+	CesgckdHjvPKbRpB/XjoTvs8Xaci1kZq4UalbsU2Yloe1cQOgWTGy0nEid8zyp8561xp0q
+	DxZWBTs+6GAcr0j7Lh9kLg/2pCOUFP/kXD/FjusIcUHak0zg3JLFzahVZLgikA==
+Message-ID: <d7b874d5-a224-4e4c-a18b-6e68480b3349@bootlin.com>
+Date: Mon, 11 Aug 2025 11:56:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am62-main: Add tidss clk-ctrl
+ property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Benoit Parrot <bparrot@ti.com>, Lee Jones <lee@kernel.org>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, thomas.petazzoni@bootlin.com,
+ Jyri Sarha <jsarha@ti.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ stable@vger.kernel.org
+References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
+ <20250730-fix-edge-handling-v1-3-1bdfb3fe7922@bootlin.com>
+ <20250731001725.GA1938112-robh@kernel.org>
+ <8a2b1876-d1d4-4523-ae6a-bd14875772cf@bootlin.com>
+ <20250805-imperial-bobcat-of-improvement-5cf705@kuoka>
+Content-Language: en-US
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Autocrypt: addr=louis.chauvet@bootlin.com; keydata=
+ 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
+In-Reply-To: <20250805-imperial-bobcat-of-improvement-5cf705@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfX6u9L1RLYBI/R
- I9ChOxy2ygD4qeXble7L6Sq7OsFbvu0z5a4aIsI3r8ju4UDHuc+NL1Yux2q76PFQPiUjDNmfupp
- mSc9wX1G/CLrocIdyGwIzK7EooJv9B9N72AB7dJKG2e/0Iz8GYUHX/R1Y14HMWhZQpVd0aktmIw
- azn8dg7UsLKHe2hI8MLpg6+6iDjveASk7S8KmHrUiuDoVHKpnxBopRT9hVuxGyAhy9rHJrVALem
- snSfFojIG3wuPmvo+XpOfgQTHklF9U/+dU2T5gPrGq+mYij8dJ2PeVZgymqgW2Y9twzVGG9Wza0
- UWjoFt0Nl+yR9B3ZXdMX6nOzAAXKhmWoK+jqkqJ1GB/rkwWC7n2eIIKxOi5OzgkkzIHPgvgiN2j
- MHyo2eyG
-X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=6899bdb6 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=T4CoFiDlfSecjn6-qa8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: AzLfHZA7G5geS8Z0KlNvF6cSV0qd0i42
-X-Proofpoint-ORIG-GUID: AzLfHZA7G5geS8Z0KlNvF6cSV0qd0i42
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
- clxscore=1011 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090035
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddufedvudegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepnfhouhhishcuvehhrghuvhgvthcuoehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekieevtdefgedtkeehteehtddttdefhffhgeejleejjeeluddvhfdugedvkeehveenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvddttddumeekiedumeegudegtdemtgekiedtmeehugeiudemieeffeelmeeiiegrieemvgdtjeehnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeegudegtdemtgekiedtmeehugeiudemieeffeelmeeiiegrieemvgdtjeehpdhhvghloheplgfkrfggieemvddttddumeekiedumeegudegtdemtgekiedtmeehugeiudemieeffeelmeeiiegrieemvgdtjeehngdpmhgrihhlfhhrohhmpehlohhuihhsrdgthhgruhhvvghtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvhedprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdro
+ hhrghdprhgtphhtthhopehjhihrihdrshgrrhhhrgesihhkihdrfhhipdhrtghpthhtohepthhomhhirdhvrghlkhgvihhnvghnsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhushgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhm
+X-GND-Sasl: louis.chauvet@bootlin.com
 
-The change introduced in
-commit 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
-triggers a warning on the direct ancestor node when translating properties
-like "iommu-addresses"/"reg". However, it fails to issue a warning if the
-ancestor’s ancestor is missing the required cells.
-For instance, if node_c lacks the necessary properties, no warning will be
-generated. Potential issues will be trigger further.
-node_c {
-		//NO WARN
-	node_b {
-		//WARN on missing of "address-cells" and "size-cells"
-		node_a {
-			xxx = <memory_reion>  //contains "iommu-addresses"
-		}
-	}
-}
 
-Since of_match_bus() is now expected to succeed in traslation path,
-routine __of_translate_address. Print an error message would help in
-identifying cases where it fails, making such issues easier to diagnose.
 
-Signed-off-by: Zhenhua Huang <quic_zhenhuah@quicinc.com>
----
- drivers/of/address.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Le 05/08/2025 à 08:44, Krzysztof Kozlowski a écrit :
+> On Thu, Jul 31, 2025 at 11:50:16AM +0200, Louis Chauvet wrote:
+>>
+>>
+>> Le 31/07/2025 à 02:17, Rob Herring a écrit :
+>>> On Wed, Jul 30, 2025 at 07:02:46PM +0200, Louis Chauvet wrote:
+>>>> For am62 processors, we need to use the newly created clk-ctrl property to
+>>>> properly handle data edge sampling configuration. Add them in the main
+>>>> device tree.
+>>>>
+>>>> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform Display SubSystem")
+>>>> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+>>>> ---
+>>>>
+>>>> Cc: stable@vger.kernel.org
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 6 ++++++
+>>>>    1 file changed, 6 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>>> index 9e0b6eee9ac77d66869915b2d7bec3e2275c03ea..d3131e6da8e70fde035d3c44716f939e8167795a 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>>> @@ -76,6 +76,11 @@ audio_refclk1: clock-controller@82e4 {
+>>>>    			assigned-clock-parents = <&k3_clks 157 18>;
+>>>>    			#clock-cells = <0>;
+>>>>    		};
+>>>> +
+>>>> +		dss_clk_ctrl: dss_clk_ctrl@8300 {
+>>>> +			compatible = "ti,am625-dss-clk-ctrl", "syscon";
+>>>> +			reg = <0x8300 0x4>;
+>>>
+>>> H/w blocks are rarely only 4 bytes of registers... Does this belong to
+>>> some larger block. The problem with bindings defining single registers
+>>> like this is they don't get defined until needed and you have a constant
+>>> stream of DT updates.
+>>
+>> In this case, I don't think there is a "larger block". This register exists
+>> only because TI had issues in the display controller [1].
+>>
+>> Here is the extract of MMR registers ([2], page 4311):
+>>
+>> [...]
+>> A2E4h AUDIO_REFCLK1_CTRL_PROXY <unrelated>
+> 
+> Here is clk ctrl proxy...
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index f0f8f0dd191c..cd33ab64ccf3 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -515,8 +515,10 @@ static u64 __of_translate_address(struct device_node *node,
- 	if (parent == NULL)
- 		return OF_BAD_ADDR;
- 	bus = of_match_bus(parent);
--	if (!bus)
-+	if (!bus) {
-+		pr_err("of_match_bus failed for device node(%pOF)\n", parent);
- 		return OF_BAD_ADDR;
-+	}
- 
- 	/* Count address cells & copy address locally */
- 	bus->count_cells(dev, &na, &ns);
-@@ -560,8 +562,10 @@ static u64 __of_translate_address(struct device_node *node,
- 
- 		/* Get new parent bus and counts */
- 		pbus = of_match_bus(parent);
--		if (!pbus)
-+		if (!pbus) {
-+			pr_err("of_match_bus failed for device node(%pOF)\n", parent);
- 			return OF_BAD_ADDR;
-+		}
- 		pbus->count_cells(dev, &pna, &pns);
- 		if (!OF_CHECK_COUNTS(pna, pns)) {
- 			pr_err("Bad cell count for %pOF\n", dev);
+(Note: I linked and copied the wrong page in my previous mail, the page 
+is 4309 and register addresses are 0x82e4 (audio_refclk1_ctrl), 0x8300 
+(dpi0_clk_ctrl) and 0x8320 (dss_dispc_clksel1), but the issue remain the 
+same)
+
+The AUDIO_REFCLK1_CTRL is already defined in the simple-bus node, but 
+with a size of 0x4 [1] and as a clock controller.
+
+What is the correct solution in this case? Should I create a big syscon 
+that overlap with audio_refclk0/1 range?
+
+[1]:https://elixir.bootlin.com/linux/v6.16/source/arch/arm64/boot/dts/ti/k3-am62-main.dtsi#L73
+
+>> A300h DPI0_CLK_CTRL_PROXY <this register, 32 bits>
+> 
+> and here as well, so pretty related. This looks also close to regular
+> syscon and we do not define individual syscon registers as device nodes.
+
+I agree this one can be included in the syscon device. Clock related 
+registers starts at 0x8000 and ends at 0x8504, should I cover the whole 
+range in the syscon?
+
+I quickly looked at the other register, here is the repartition:
+
+- 0x8000 - "normal" clock (divider + source selection)
+- 0x8040 to 0x8298 - clock source selection
+- 0x82e0 to 0x82e4 - clock control for audio (already implemented as 
+clock driver)
+- 0x8300 - the clock quirk (it seems that this is the only quirk 
+register here)
+- 0x8320 to 0x8500 - clock source selection
+
+Thanks,
+Louis Chauvet
+
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.34.1
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
