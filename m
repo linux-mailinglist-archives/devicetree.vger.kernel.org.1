@@ -1,150 +1,133 @@
-Return-Path: <devicetree+bounces-203058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9983FB1FE7A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:18:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AA7CB1FE90
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:31:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D32537A2D22
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 05:17:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ECE0163C8D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 05:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7022672600;
-	Mon, 11 Aug 2025 05:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7854198E91;
+	Mon, 11 Aug 2025 05:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HtdkxPkS"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yFHpeB+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421693FE7;
-	Mon, 11 Aug 2025 05:18:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4275610F2;
+	Mon, 11 Aug 2025 05:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754889531; cv=none; b=Emn6Y5H27xer1X2wSfV+EdLb8kyboWrk4i9I98FnbMghcg6RRKxXX5uBromSp0D5afqylBHzWLU1x1DqtquPIU2EWHhWPKvA7WbIEAqFHJo5QXuVFb3JgmJZnwD08GTnzhNxtWuI58y9NfmWJXrTwNvNeAls3Avhr36gq4Zw2KA=
+	t=1754890262; cv=none; b=fyqaxwsqyhSqDV9q0i2lVsLdNMzqGhkGv1/XJ5zbSCCFHB48rj2Me7KtxmWgGmJlu1NXUIfc56TnnK8we+PQD/TcFARjd2NaJGG9jSl612mvC7nHmWkVMgQiOLWIxEJqibcYN0p6FlKO6g+oAYdC5kA6QoMVzSooOhB+ruvw93M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754889531; c=relaxed/simple;
-	bh=iKMHjRdyP9XmmthZpNquqywenUL0QeWuDqaGBpVTFPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1BpiVbCFqyjhL5YFpWV4CtqhC0JAuIJIEHMREcuqgcHkm8ARzQJs6J7cEsAPS2eVigF8viPtUaywPKocDqv5Mu+EPdq4yPxxvLmlgQoNPlpJLbzpP15qvjl/hnGKJ7x6SjSmBA+Mt1lLh8yVO4ZlB2RO7ZeFXTPZf2FtBcCrDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HtdkxPkS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22CBBC4CEF5;
-	Mon, 11 Aug 2025 05:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754889530;
-	bh=iKMHjRdyP9XmmthZpNquqywenUL0QeWuDqaGBpVTFPU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HtdkxPkS3H/ytzLTzYr3ASnyRv9q0G1s0K5Tvj9jV61/zKw1oPpftqYtPfHYDVlNL
-	 aCTJ6rSJcpg7Vtoub8Bw54+gAPptAEaq2DPiEgzMiqKFDJNbpT411A1HQnhrP/NJTE
-	 oT3+qwnptVozXnokF4kNkfGu/kVhAphG1YjSYsRcG//rQLOXQ/QXD0rppKDBTEtw5B
-	 pxEfnuC6tHpL7FxGa3zdbEkTg+3e7Ll2knll377FwsS8Z2axEzOLRkxLI2a/clnioJ
-	 USFazZs2VrxWlGGWSBAlGcDbErXewVTeJauIsWrVDDT9nbMxWEOiNI12N3Vt2aGjrZ
-	 a4h97dO3P/vJw==
-Date: Mon, 11 Aug 2025 07:18:47 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	Frank.Li@nxp.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Ghennadi.Procopciuc@nxp.com, s32@nxp.com
-Subject: Re: [PATCH v1 2/2] pwm: Add the S32G support in the Freescale FTM
- driver
-Message-ID: <p5pwwdlrldqdkpqtfvgo3dz2liz46ywy7crjfe4nybxmrhlh55@b6v7lccczczs>
-References: <20250810185221.2767567-1-daniel.lezcano@linaro.org>
- <20250810185221.2767567-3-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1754890262; c=relaxed/simple;
+	bh=P0V2H2NxxF0Ozi8NOvSbx3x81S67gE8h723lHlm1Nws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RKdAy+m8rQ+UZPgfVfaQYKo2w/mp134BNqxXYVL5tonUjZE/0+PPclzQmxKHyssgkxwBKIzICF898YMuN3YmCUb5DphtXTySdqDYX/pJmIYzPJ3zG7LASKDEZ+nH88EjXDSOrEbuIjYwngRjTpmHI9wuQzwgWqx6//2le2d9hak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yFHpeB+u; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57B5UjKe1036119;
+	Mon, 11 Aug 2025 00:30:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1754890245;
+	bh=qGaUrxnPupGN/G94QupN7sqi/0EBTqM+/xSQq20HIj4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=yFHpeB+ucmTh/ltorX1Mz72rh6S2cswshu3GSv3iMBWiypkMidCgpzm+ZToswAwS/
+	 N9XM9eELfg7Mku8oh5m+8XokVnqR66d0lDRWZC5ox939jiCBLIxHGHrDd3ajFMGo+y
+	 8ehi3gMjla23FWoSfBtHCrkVU9nkjxk/TJMgLHgs=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57B5Uj0B2434724
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 11 Aug 2025 00:30:45 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 11
+ Aug 2025 00:30:45 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 11 Aug 2025 00:30:45 -0500
+Received: from [10.249.145.16] ([10.249.145.16])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57B5Ueij2636883;
+	Mon, 11 Aug 2025 00:30:41 -0500
+Message-ID: <be073100-31a0-44a9-8837-8c0adaf1c0ff@ti.com>
+Date: Mon, 11 Aug 2025 11:00:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wzlnp52c7g72d727"
-Content-Disposition: inline
-In-Reply-To: <20250810185221.2767567-3-daniel.lezcano@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
+To: Brandon Brnich <b-brnich@ti.com>, <linux-kernel@vger.kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Udit
+ Kumar <u-kumar1@ti.com>, Darren Etheridge <detheridge@ti.com>
+References: <20250808155555.2632451-1-b-brnich@ti.com>
+Content-Language: en-US
+From: devarsh <devarsht@ti.com>
+In-Reply-To: <20250808155555.2632451-1-b-brnich@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+On 08/08/25 21:25, Brandon Brnich wrote:
+> This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
+> present in J722s SoC, supporting baseline encoding of semiplanar based
+> YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
+> supported from 64x64 to 8kx8k.
+> 
+> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
 
---wzlnp52c7g72d727
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 2/2] pwm: Add the S32G support in the Freescale FTM
- driver
-MIME-Version: 1.0
+Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
 
-Hello,
-
-On Sun, Aug 10, 2025 at 08:52:18PM +0200, Daniel Lezcano wrote:
-> From: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
->=20
-> The Automotive S32G2 and S32G3 platforms include two FTM timers for
-> pwm. Each FTM has 6 PWM channels.
->=20
-> The current Freescale FTM driver supports the iMX8 and the Vybrid
-> Family FTM IP. The FTM IP found on the S32G platforms is almost
-> identical except for the number of channels and the register mapping.
->=20
-> These changes allow to deal with different number of channels and
-> support the holes found in the register memory mapping for s32gx for
-> suspend / resume.
->=20
-> Tested on a s32g274-rdb2 J5 PWM pin output with signal visualization
-> on oscilloscope.
->=20
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Regards
+Devarsh
 > ---
->  drivers/pwm/pwm-fsl-ftm.c | 42 +++++++++++++++++++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-fsl-ftm.c b/drivers/pwm/pwm-fsl-ftm.c
-> index c45a5fca4cbb..cdf2e3572c90 100644
-> --- a/drivers/pwm/pwm-fsl-ftm.c
-> +++ b/drivers/pwm/pwm-fsl-ftm.c
-> @@ -3,6 +3,7 @@
->   *  Freescale FlexTimer Module (FTM) PWM Driver
->   *
->   *  Copyright 2012-2013 Freescale Semiconductor, Inc.
-> + *  Copyright 2020-2025 NXP
->   */
-> =20
->  #include <linux/clk.h>
-> @@ -31,6 +32,9 @@ enum fsl_pwm_clk {
-> =20
->  struct fsl_ftm_soc {
->  	bool has_enable_bits;
-> +	bool has_fltctrl;
-> +	bool has_fltpol;
-
-All variants (up to now) have .has_fltctrl =3D=3D .has_fltpol. Is there a
-good reason that justifies two bools for the register description?
-
-Also I wonder about the fuss given that the two registers are not used
-in the PWM driver. So this is only to prevent reading these registers
-via regmap debug stuff? What happens if the memory locations are read
-where the other implementations have these registers?
-
-> +	unsigned int npwm;
+> 
+> Changes in v3:
+>   - Add TI compatible
+>   - Make node name more generic
+> 
+> Changes in v2:
+>   - remove invalid clock-names attribute
+> 
+>  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> index 5cfa7bf36641..c0a104bc87ad 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> @@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
+>  		ti,sci-proc-ids = <0x31 0xff>;
+>  		status = "disabled";
+>  	};
+> +
+> +	e5010: jpeg-encoder@fd20000 {
+> +		compatible = "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc";
+> +		reg = <0x00 0xfd20000 0x00 0x100>,
+> +		      <0x00 0xfd20200 0x00 0x200>;
+> +		reg-names = "core","mmu";
+> +		clocks = <&k3_clks 201 0>;
+> +		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+> +		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
 >  };
+>  
+>  &main_bcdma_csi {
 
-Best regards
-Uwe
-
---wzlnp52c7g72d727
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmiZfTQACgkQj4D7WH0S
-/k46YAgAiwVlwvJfiGDpL5Yj1GJPiQaq6KgOKd0HRhTH5Oo+fmyzpqaK9Tbb1UBf
-PMq9s1ON4CFmn8NYHPai4WKTpzfCmKvN6d74TcnlngL8AzicTwlib13R3AmTt3ic
-7WT67tlbuytrsV7nQqgFnn3QfpUH5zGbR3ZsGWGcFSrc0OsKq0gUNiFznKyLP5nS
-J4Xz+zwAu4RD8mD67OACpLDVxXoM9VI+BcpbOSl8RPa3Fhuf7g9hlF5BSDaOX6ck
-6jKXQmIYAFj/BYtVoag5LT6G5JTQ9rN0X+FETjVw4CQVyXp3EE/bgUeeJ7XStNEP
-2mBsoZr7s0S7kwiW/n4acDt86OTTDQ==
-=oVHp
------END PGP SIGNATURE-----
-
---wzlnp52c7g72d727--
 
