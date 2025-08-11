@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-203470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1169B2186F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:32:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03B1B21865
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:31:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4C6F1A20EF0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:31:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A0B16802F7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8210A21ADA2;
-	Mon, 11 Aug 2025 22:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957B42C21CD;
+	Mon, 11 Aug 2025 22:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GdN07UCK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CJ02Psy7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81411F948
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98481D63C6
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:30:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754951458; cv=none; b=rBBlbbqfstahTTttmjrCmRHslxFqVUNs3VxSk10wmcED+AstY6tvjFgsFCGQwawDzkw5knJWDvdv8N3QGWlwXpfMgNPYfda22XDIPlcyBztkQn6kURg1pxcLtvP+86sIBlPvmhiaOthu1mBpIVo4xOxjaRT97iZdBzytlGF/suE=
+	t=1754951459; cv=none; b=uBWvVv/epZxzmdDS9OluXVDxp4U1A11BCFB4GMrl7+rcv4C8Xkd46Bn0xC5MxPQDJ/R2es2Bkd5C/GSEvKqW9SYCjf3m5lZp9a6gDTapP91mA4AdP/mIysMBSSsyhtjjnYP1A0rbIRzovontAnOiEqreZrU3siPSV626D0eltJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754951458; c=relaxed/simple;
-	bh=GPqLNQYmGgldngVoz0uzCbZ4RuS5lu8mmuunEVAfXdQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VJVToZIBLl+CdOimsNzXGuF7q1ooL8v//sfITR+H73JRtWhT2UZhJh9X/QPotXIbX2lZf3etwtkNP+D5G2CjIxL/pIrll3mHTG1kwhxDA/9hEpBNa0TQcuDTNdJrXbJ9u4Ms0pKZBQ4SClwvCc/+puiKtCSQvFurTilNTqaqNhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GdN07UCK; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1754951459; c=relaxed/simple;
+	bh=tpem3ugXEXY+sza7Z065QDPEzGqVly+Nz2CDIYGjz8w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BGt5RXFcADkNIuXMEBBAHtzAE1vte6QLUtk3VQGjo4RTlCcd9gGmEoHeOWUUbH4Gwja/ckPzilrs4YWhLUqW3ltw6Vwoepw9nH+VLmqlANtHszO40icA3HHEeAeb+DE5scCH244hu4I+zGArw4o10R0Ae0AA11nBqr/W6dNIrdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CJ02Psy7; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-45a0dc77a15so7045945e9.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 15:30:56 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-459ddf83023so29713925e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 15:30:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754951455; x=1755556255; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HIChLFJXUTptU2roabulec0iIj7wIJeqA5HDjOWIy78=;
-        b=GdN07UCKs+jXXdTnItRn6dtNuCLj03sezobXMVqUbrzlaeL66jPSQOBJIoLB/5WhKI
-         vFTgekBPfqyXNd/2ANl1PtpbR3ys6RutwWV0/vezXm/Ss5ZCJ1AD/7vm/7tBsgeYPBde
-         lagkV578Qe5M4NEYpfL4+qr0pfVv/ydpQbgcueY0j6UJfp31R7VNwoy17LJ+zhnVHOVq
-         XlJtd65ExVMKcwB0juhF3CoGli/bd7XVZFn3ISkPr1EmnmNris59ZKFbB2BtLa1NqGmy
-         fdOU5/9dMkEyfasrCKkOAqwey68xTrqoMAfXL0IJX3RbdEGjdCG5u7MgambqONXFndZ5
-         p9kw==
+        d=linaro.org; s=google; t=1754951456; x=1755556256; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1ZIFIadWiEXjzSuKWo1v9+wZy0Xasz/GeS9q0g0hnKc=;
+        b=CJ02Psy7Jod4NwL1h9x7R9ck1PDAdi09hb75rniHQFZauHJ3TC5sY0Z6F5iP+Kfvnd
+         zpK4b83GXHRaF9pnHRChwMd36YiK1+Ns2vL9o5dL+wIoR8W3qvzo5xV0c9GRSeCu0+j+
+         RzU3mnT/14V6I7NMTE3mcZG08Z1JuF4ouhx3h8Rmq7Y6cHhvyJ+xKBHqA/G2kP/Ons3l
+         f8ZwOTHVuuD1WGtrTQLoUEGlikqWLt5fLrgXQYeoCD1eQHpUFNVKV0urfGimxAXEZMa+
+         zdYopxPNe//7/ZEOJCH3/ejJebWFwNXzQTIqrfPsAS2pV+Wespt+tSl4p8VQv1G0gqni
+         AVwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754951455; x=1755556255;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HIChLFJXUTptU2roabulec0iIj7wIJeqA5HDjOWIy78=;
-        b=czlfWrTswPKvqHBSxvlspT+voa019yNCz+ZIJmHMa85fE+YjtwfNlJYGokoNHH46qg
-         SI+dZmj/1rfijLipBPCOZbig6VqhKCKG+pbRZyNlVJI1aXyiJA2Mc4lKOqFXGMWQlTlv
-         p/TMYBH1EkEOq0KwW8CERx+n+nfif+vGT2KfpjsdDbVjrBKc4KVtj2ZRAJuDUBVnt4Ii
-         Ta8FnqZcpZC6zFrUMj3Qgn5NwFJD17uR+6RNFdsd1OrXrVtfKckFsfqXbsagfTUsuW6O
-         j2a0j5AFB6RQ7nt8rfepnURjijdaUdqBzsJfjlxEBimYIowATsEucxq/2ffB8zh85ukW
-         dWPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXVz+bpu3trDP/ZsmgQb9Ro92QuV8iNDqoqWjhYN42/LLU09K64i00uZMpvvHvz/sE0MIRKYckqzEnx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmV3FdG3TjjjWHzWTBk03niOEEBA0BinTiYaWZqzFMRYHhPT4n
-	Aeid23Kcl5sJVKTjLolGn6oyD7OdrXVq4R2Dqi9H0hxxa5jXZk8D4VdGiw6FSE164SujAKJipZn
-	nNJNp
-X-Gm-Gg: ASbGncto5bMDhD6JcpHuj3W80ar3JXIm3nXoz7A0u3q5kYIgbfV/iimnD4I1FIq7f1o
-	d2gKnULZEradXYpsqqhKp2bXT0yZ4708MqbsuYzSJ0EaTmouxVe4GbDFe4txdN7HyUaY+pKqNUO
-	wUMpsxJSPxQmC08WOBhbJRaiUaNfamRF/VsIFtHT6O1Ssv7lIrrYzNVI9uIMLO7gI3dffoxFZwr
-	PsOvj6GHXg8YGNfdklHmo7YUBnGFmtp6KNkMiODcr0Gk4pyQItC9z7BB+GgSPLhRQKlD3MIIai9
-	blkq9uRN6QHr2P/tTn6bEOGWGfHCPePDoGmfpGYC45nAKEyhtVY2Pq1jPJdiGG5CIx6JvdFgSZ5
-	OyBl8/AkVS9jwhyL77KhsAXYgWwFsxpr9yFmMoWz+cZLIwTeM
-X-Google-Smtp-Source: AGHT+IE9a3RQjvUbfMWCMwyystXXfoGplC7a7Aahfwg+Kt8MTYEed70a5T7Hc5VGmEGnzR1qkVdu5g==
-X-Received: by 2002:a05:600c:4f8f:b0:450:d4a6:799e with SMTP id 5b1f17b1804b1-45a10c005edmr8980105e9.20.1754951455077;
-        Mon, 11 Aug 2025 15:30:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754951456; x=1755556256;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1ZIFIadWiEXjzSuKWo1v9+wZy0Xasz/GeS9q0g0hnKc=;
+        b=Gb+wbNA8X707QwFfrE+gdvFNVn5B/fzrsQ8QSj03HGlM35p4MMnknk4yTabQ6IJuyL
+         1QUQhKFokqC4Vr+k9KctJb7urCIGjfnZcJ/prId7liw16MTRuhRFwt0uNqXRAAh+zSpd
+         pLzWotTKIEauBYWNerkQ85ld0IOLru3NP/lxgkUOjTtA6fOmcDou+KfCWMSsSbcISmHp
+         JccCRWh+eU69qQR01s3GTuvKFAK4/w01HY7GL9SDAc8Cur2Afbax2gbXNo3kJqSZndka
+         ldrrpOLyVtl2gR0qHihOWrskNhXtL+Mc3aEtirfpPXyspH+x/Yr2QZh3oyv4VCLp2OB/
+         zWMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVhIEXZBD3qRtKYwdzOZoCKirkZbdLuSj2dnSdLy/+a8CohRSifiSSu5PimiOA88tWqTJVNiUDYZc0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZImTFrC7x6YCENNiZBJ5DTbTeGJZJVthbbr/HTepn/XsrmKR+
+	OlNAL2enX0w5k4zLb8HeXG1fD350Uusc52lUma0V67qyFMXoM82ma4uEpgIosQe7mTg=
+X-Gm-Gg: ASbGnctMauGusNZIFvsvrcSGKSS3ZFcb0Shgtie4NYlVi6rNGWDjIyE3J+ZLJF0zNdh
+	5IBGLbcJBbHhw3SoQ7c8FWP+sMiBuJyLTwoUyQASW3tBUUzPfTCFtAiY1Y77HDCmbtelSWf0FkL
+	eJ+v1JvpGyT15hQm9SGF8Vuvw/KS9lc87Zj8DO7OO/RAPrH8Ccam/veEX4i51Gg/MWE1ooxKbah
+	uXduHFYAIK6VbKaATuDMFsnWu1GoZm/HHTZdKiEyPz+RzRUStuPGHaEtDn6gQN6vBD4Efo4tZJa
+	97yHGkNPIYm96iwd8Gf0XqiGHwv4LEAncmKI6nQaDi+xpFIQcl7rC/gUIBB1ng0Puvce4lJHwRv
+	JMNOstCv2FBIsb6PnuoptPHwuTLIXpvJBzZuFOvJn2ghSy5U2
+X-Google-Smtp-Source: AGHT+IEcfijsud9AJbAlisLtBCp6+CvVN9xcBIcukAdH0F565A40twZxHlhK+3nczktPx49heHuU+A==
+X-Received: by 2002:a05:600c:c493:b0:453:66f:b96e with SMTP id 5b1f17b1804b1-459faf4758bmr98113305e9.11.1754951456086;
+        Mon, 11 Aug 2025 15:30:56 -0700 (PDT)
 Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5853104sm271557715e9.8.2025.08.11.15.30.54
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5853104sm271557715e9.8.2025.08.11.15.30.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 15:30:54 -0700 (PDT)
+        Mon, 11 Aug 2025 15:30:55 -0700 (PDT)
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: ukleinek@kernel.org,
 	robh@kernel.org,
@@ -83,10 +84,12 @@ Cc: linux-pwm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Ghennadi.Procopciuc@nxp.com,
 	s32@nxp.com
-Subject: [PATCH v2 0/2] Add the s32g2 and s32g3 FTM PWM support
-Date: Tue, 12 Aug 2025 00:30:38 +0200
-Message-ID: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
+Subject: [PATCH v2 1/2] dt: bindings: fsl,vf610-ftm-pwm: Add compatible for s32g2 and s32g3
+Date: Tue, 12 Aug 2025 00:30:39 +0200
+Message-ID: <20250811223044.3087090-2-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
+References: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,32 +98,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The NXP Automotive platform s32g2 and s32g3 have on their board a
-FlexTimer (FTM) dedicated for the PWM. The same IP is found on the
-Freescale Vybrid Family and the i.MX8 SoCs. However, there is a small
-difference with some registers not available on the s32g2/3 and 6
-channels instead of 8.
+The S32G2 and S32G3 have a FlexTimer (FTM) available which is the same
+as the one found on the Vybrid Family and the i.MX8.
 
-These two patches provide the DT bindings for the s32g2/3 compatible
-strings and the code to deal with the FTM difference.
+Add the compatibles in the bindings
 
-Changelog:
-	v2:
-	 - Merged the two booleans for the regmap holes check
-	 - Clarified why this is needed in the changelog
-	v1:
-	 - Initial post
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../devicetree/bindings/pwm/fsl,vf610-ftm-pwm.yaml    | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-Daniel Lezcano (1):
-  dt: bindings: fsl,vf610-ftm-pwm: Add compatible for s32g2 and s32g3
-
-Ghennadi Procopciuc (1):
-  pwm: Add the S32G support in the Freescale FTM driver
-
- .../bindings/pwm/fsl,vf610-ftm-pwm.yaml       | 11 ++++--
- drivers/pwm/pwm-fsl-ftm.c                     | 35 +++++++++++++++++--
- 2 files changed, 41 insertions(+), 5 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pwm/fsl,vf610-ftm-pwm.yaml b/Documentation/devicetree/bindings/pwm/fsl,vf610-ftm-pwm.yaml
+index 7f9f72d95e7a..c7a10180208e 100644
+--- a/Documentation/devicetree/bindings/pwm/fsl,vf610-ftm-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/fsl,vf610-ftm-pwm.yaml
+@@ -26,9 +26,14 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fsl,vf610-ftm-pwm
+-      - fsl,imx8qm-ftm-pwm
++    oneOf:
++      - enum:
++          - fsl,vf610-ftm-pwm
++          - fsl,imx8qm-ftm-pwm
++          - nxp,s32g2-ftm-pwm
++      - items:
++          - const: nxp,s32g3-ftm-pwm
++          - const: nxp,s32g2-ftm-pwm
+ 
+   reg:
+     maxItems: 1
 -- 
 2.43.0
 
