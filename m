@@ -1,104 +1,145 @@
-Return-Path: <devicetree+bounces-203244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3077B20843
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:58:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDB1B20857
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:07:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4F9B1696CB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:58:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCC2A3A4C77
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526842D320E;
-	Mon, 11 Aug 2025 11:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423772D374B;
+	Mon, 11 Aug 2025 12:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="SsFYy8zO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EXRTV7GV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C431E7C23
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5122D323D;
+	Mon, 11 Aug 2025 12:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754913509; cv=none; b=VxX05ok4bv8rjjNd7hHfzXzI5X1guOU065F1hsPMjtFijgs1YuwHa/R23X98IxFy+xgY7LZtG7TNNkoEaG7ZuUgHgge7rtueQviHZb/aFw0nU3PyCFn2o2G/4dPSHcvrzTGxpQrL8XOWqs/pWIgewqrHjBYf48vCpKzv58tzA2k=
+	t=1754914022; cv=none; b=rmkpBilBi/h5yomGkIrbP+zOyOg8F9s6owaJzGhWmjsZiLxTU/ZLd07kfCrtgB+lAJMPYfrqAH/p35jgI5a6W14q/jAolYNVeLmOE5Iofze0xCKjqWWxqxtyDzHzc7+g44kdkU/GBl9d5UNDt3vS7GnOqBtZYnrGj7Z6C4asx5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754913509; c=relaxed/simple;
-	bh=yvLIgwAGw38VJJkAvUN0mEV+cxHYec3LK9NKk3AQX3g=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=X1AGrpiS3Jp+i+N2AevxaahBqB1dh5MIhevpaQW8dND/C/eAW1G5TypVJD2zr6vpPEAZfafcPuo7ZpRoJ7l5GnNAtzRB0Vx4pZZ3y3IsaxaXbOxwGgsmJXP+5Gx9RyDEZP3ezXQJ+sbT5n3MD/h0ZNOEmPbSD/z0ZZN6RSGvTCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=SsFYy8zO; arc=none smtp.client-ip=212.77.101.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 16475 invoked from network); 11 Aug 2025 13:58:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1754913500; bh=W/g/Hibh3hvAkdudgvOt5kmtLe3KXD5a8hM66tf97zI=;
-          h=From:To:Subject;
-          b=SsFYy8zOljX65jiFZ7PDLoBoL46f4I58dNu5CrA9u1joCsT4kg4CbwI4Dmj6S/Oed
-           1aUmbs371gxGLnXst7ZLpolWSIX4/rKI/Pxi4NnAi78vgbb5xshBG6QSSf0b3Vp49d
-           5gLCXNvcB6KXPsgctIoGYtPAgj4Z5SYYfQr4Dl92nNdY5Jy2cuzPpgqyqhPJJ1Elqq
-           XDjHbD46yJr3/qHxT3+goGT+KsAUCD1lPIACWZMropyWAwkSFkWidRV4D//5oo/dKu
-           9P7O9FS6F9AQxHGTZkbt5nA/OKln2FBtrYRn9L4N3LKXCotiEyboY5qv1s4Wf7S2pm
-           lRWziKlDmxsnA==
-Received: from 83.24.148.125.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.148.125])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <robh@kernel.org>; 11 Aug 2025 13:58:19 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	tsbogend@alpha.franken.de,
-	olek2@wp.pl,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] mips: lantiq: danube: add missing properties to cpu node
-Date: Mon, 11 Aug 2025 13:58:15 +0200
-Message-ID: <20250811115818.735670-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1754914022; c=relaxed/simple;
+	bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YJ32AVp7FOixOR+ml2gFJMxMYrVeDKxJ6Dci+tj1DR/1dBhkjO9Ow/1Ye+M72PPAKCVKIXTEvN7Xlt3/GLeWrufXN9ZMT74f2MrwhbugeE6uLxbmoj4+FxuVC9lCM2+mIcCOIvDHc7MSGz94nUA+TUDwxwdBUlJ2tg5rMQ/VSR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EXRTV7GV; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-332612dc0d1so32770061fa.1;
+        Mon, 11 Aug 2025 05:07:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754914018; x=1755518818; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
+        b=EXRTV7GVed1KLNZU1dGB0GE0Uf2FAi3KoQP6LsCEeTPrOw8AtEcQRIRy29p0Mib53T
+         sq86xuexa7r29M9zdvUVLhMzsrLcFpxNT/PPAyoT0AdvMSYDeliwz/ZySm+Y3IOgfTD4
+         kdebPFRN+5J2fmRpNMyjNOydfm8b3+Z7vn7/3+fQAFNSPWrQ7L0qzIy/d1m4vPfd3l7O
+         eS+sg0sjb1r2uxY1PeIueSySoQBNby5pJnKl+eHNiyDSczSMoB7j8s/in1Hbc9BIxmhM
+         uVS8dur3FnY/+mDlaNwczUqL/tSqyKg7/Q6FpD1j5dSb3TO+Vpe3HPZllHUrJUzdiJaB
+         EHIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754914018; x=1755518818;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
+        b=ZhkJXIMcFhXNg9ptyTkr8BP8p8LNnHtauM3mkUDposMAlIF4fXc2Hmhpg5Sm5/nr/6
+         WkXj/yjBGZ6PPVTHg619USCviFAxugLNb/IJjD18rww4SjGKy5FW73pvPY2OLbNAP8/5
+         26HlGPA0f1Y+r+x47Obd09woM9WqRbph/uZRMBuJt6E8QDwQj+NGxdSbSpjx+kjgvP1e
+         w7i4QIUyzAr8GK1S+Bx7xWKgBBGKRoZ5VFv2eXijj9ZVAXt1HwKMzezh/PSbt0g3IQXr
+         YJ2hks234+i45pmsC6VRbLg3eQrBsCzvgOp4w6ZvotoYs9HS1EipCOK6TO8LQ9i2chkM
+         RscA==
+X-Forwarded-Encrypted: i=1; AJvYcCUqK1cAsG/mkKuom9EI6YvF0KgQMpnPriCVjzDqDcNni03iJsJNb3UFxG+WAT+04LbzwlOiCvx5lqf2@vger.kernel.org, AJvYcCUuXaEmMTwwdX4xpD5xOaWTItgq2Yjmz26LqasFkHsgL2zhGFRzSR7OxmAgE1l6eB5yMliZDfb4bbsLP1ah@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv92teTJmGaS6H+MM4h3ZpTDd9sPeDAE9w73AKlLIlahynFGTo
+	yVt/lT0Jd2aNBGhknE0Ubx9zVnFitEHKz4GLmWd3ZI8ffP4NkdHY1Y8X
+X-Gm-Gg: ASbGncthCARHCLmPdVxl9y2StcBtd8+mm5iLUsD88n6rUzwFE6mx9WhUW7K12jMQI8V
+	qWev7aAc9+DNqe5s526Uxp669jbGnsKsgR1+HJa1+EBWc71Z+ljzjVCMee05AuTnV/IFMJmxTJ1
+	z60ylYRSVMWPBv9Y/gflu5zww7fh3TFfx66hT9ROpHpIiPnVfgCkuvC1sG7mn5T33gRaaXJfE9F
+	0lu3BUiNFEUwMoko+jC581VQ4nAiLscwFbMgbDTFwEq87wfa4xwmkLILoW8X3lswfKMmNxKSIML
+	NwP1QRxaMocJ/7d3b16nGF3pVSU2QN6m9J4JxM12wiU+OhHzaMGAXxzdLY6greYsl8mfqn2kMA1
+	XKc36C16ssnocODlynVis81bIVbk0T371amvLiN8l1rkvEm8dzMvIyHghBMMKkPyq
+X-Google-Smtp-Source: AGHT+IE/GuxIoYIqqBjeZWYH/UUn6opwNIUilcCy9C1u/SwFZxJoBETzQorqokFMCXPJ/42zsdhbAg==
+X-Received: by 2002:a2e:a007:0:b0:32e:525:5141 with SMTP id 38308e7fff4ca-333a2191a95mr20143711fa.16.1754914018203;
+        Mon, 11 Aug 2025 05:06:58 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-333bab6a92bsm9580081fa.45.2025.08.11.05.06.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 05:06:57 -0700 (PDT)
+Date: Mon, 11 Aug 2025 14:06:55 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] drm/format-helper: introduce
+ drm_fb_xrgb8888_to_gray2()
+Message-ID: <aJnc36ojqSb3-Ti2@gmail.com>
+References: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
+ <20250721-st7571-format-v2-5-159f4134098c@gmail.com>
+ <87y0sh947w.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-MailID: f2511a3017b372137fdf91dbd0a40eb9
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [4ZPE]                               
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NeiL4LulPAn3q9/h"
+Content-Disposition: inline
+In-Reply-To: <87y0sh947w.fsf@minerva.mail-host-address-is-not-set>
 
-This fixes the following warnings:
-arch/mips/boot/dts/lantiq/danube_easy50712.dtb: cpus: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cpus.yaml#
-arch/mips/boot/dts/lantiq/danube_easy50712.dtb: cpus: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cpus.yaml#
-arch/mips/boot/dts/lantiq/danube_easy50712.dtb: cpu@0 (mips,mips24Kc): 'reg' is a required property
-	from schema $id: http://devicetree.org/schemas/mips/cpus.yaml#
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- arch/mips/boot/dts/lantiq/danube.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+--NeiL4LulPAn3q9/h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/mips/boot/dts/lantiq/danube.dtsi b/arch/mips/boot/dts/lantiq/danube.dtsi
-index 7a7ba66aa534..0a942bc09143 100644
---- a/arch/mips/boot/dts/lantiq/danube.dtsi
-+++ b/arch/mips/boot/dts/lantiq/danube.dtsi
-@@ -5,8 +5,12 @@ / {
- 	compatible = "lantiq,xway", "lantiq,danube";
- 
- 	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
- 		cpu@0 {
- 			compatible = "mips,mips24Kc";
-+			reg = <0>;
- 		};
- 	};
- 
--- 
-2.47.2
+On Mon, Jul 21, 2025 at 01:24:19PM +0200, Javier Martinez Canillas wrote:
+> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+>=20
+> > Convert XRGB8888 to 2bit grayscale.
+> >
+> > It uses drm_fb_xrgb8888_to_gray8() to convert the pixels to gray8 as an
+> > intermediate step before converting to gray2.
+> >
+> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> > ---
+>=20
+> I would like Thomas to review it too, but for me the change looks good.
 
+A friendly ping to Thomas.
+
+--NeiL4LulPAn3q9/h
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmiZ3NoACgkQiIBOb1ld
+UjJOqA/9EFOMhbu0wbyYAVNPEb2bgZnVC50sjd0XuH36BRN6gOkc8bi4LvPwhcqt
+8V52Ql7zUgXLREU/YsWHPHvPyz0l4lcGkAhyAcJK1rHjbttG7QeCbZIYfVB0P4kq
+f9bzMPMz6rQ77GkGlGvSTYuWn5DtqIFP908ldJPF9pzz7GKH2GsIIpUz5uxPWpsQ
+FQndGwLyX/NXf3dayJs+GQATHIV1M8RSCAxpAzUkaLrB2caXWi5lE49ycMtpq2AL
+IG7bloPDUuq9oiX/i2h/CaqP9m9x28iSiKpsqTJyHnP755INqiHbnFCwMyqs5PpF
+Nnx/x9gpYacu1LQ8EZm49cASVQPrDpgdZ0mzbwaWzSR9LzcjTqwDyvyFpbxkuPj8
+oKJsdG8Q5SetI7p/fZeth9cd5EINmG3NQTgL2mDFfxdPl1L3Y7KWhNaSo1g3oXRQ
+HEfqkRoiDtkq+b8W+/VgfAuzYpwW+In/GzGbFGD7+ma5TbiO7yiimnSHPW0ZIXyr
+bhmubETE8d08OjoKPBZjWsGkSzO+1np5ugqVmxZZdcBC/9oUuagz6JLResG7NuqQ
+Ie/ZDBC6Np/ZW262DMDfk0cFNaM6I6IYtdIBhiss34UxbpTsYCzetUnoDk9wgi5l
+2a4kfjLmwQjQDyfxO46DJ9N6a/KUCAWm7Elzv1lbvWfRp27BNAI=
+=cZqy
+-----END PGP SIGNATURE-----
+
+--NeiL4LulPAn3q9/h--
 
