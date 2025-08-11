@@ -1,414 +1,161 @@
-Return-Path: <devicetree+bounces-203169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E62B20280
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:59:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8991CB202D1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE59B178947
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:59:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E4FC3A63ED
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 194A92DCF6A;
-	Mon, 11 Aug 2025 08:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27062DE1E2;
+	Mon, 11 Aug 2025 09:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pX7fB1Z3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Dm8MHntZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E438B2DCF4C
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F36862727F0;
+	Mon, 11 Aug 2025 09:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754902785; cv=none; b=XIBHzrqbRygAxKgrE9RS6967mV57Y3JAOsw3cJ6S8EvVUBXljFK0zLnPQ7T2pfQLmOmLXrMv7yvAeNKeytRJFnz/wkss6b2O5/XthWw8bgHcyYBAda4nw056Nx7aDjEEQn4mqCD2Mc70wUfYYhHezRNvv6uRbpZQbzT25VHk+so=
+	t=1754903417; cv=none; b=BT3Z6tEHl8lhTiPMiN4n1iv173jRiz/n6GA7NK3f3LSPaGN13gJ8EPioLeCsl9U8g6JuAfe7gXcDGC3a+l7eE+lnFKmQwf5ODglpxn1w6iSRRfcJXACCCIZ3tuP0hJwssyKIMA+iTcgDWDiHVtUk08BZxDIBSzb4DWWdgS/bKlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754902785; c=relaxed/simple;
-	bh=1wTEGa92YipwxVlxRVnJHRE/gFwAlCuafLgB7/r/kPM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q0xqmmoWtwSnKq8h59nCaoV6d1EaeOi7Vy2oK2qju+dhy1BjXl7ytvh1soxrU2HsWZ7ATNQRmfd0jgjw01ppONLfIBVRLb60/lOK4GQFHL/LVxGcxnb1SxBExX31m4PscNTGlpGiIqz2A5hfkAuR66gFNp8NB+hboyaPHc+kSBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pX7fB1Z3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B2B9C4CEF7
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:59:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754902784;
-	bh=1wTEGa92YipwxVlxRVnJHRE/gFwAlCuafLgB7/r/kPM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=pX7fB1Z3vxwE6jlOl+YObygVoORDlj+HTlmtDAaPJJs/5r4H/tmYX1+69e8vIrNlS
-	 o7QiPAW9ERmVO8sqqkn2mUwa4OwEZCiyVAqUlqDo+RPifpViqkHdQD/KnCfYFF8yPO
-	 YEInzq+Hlkesw/By31qz+fcSe1t6+MGdgqrbBvOTKR3ey0B8mGVo1DH5ZFNiQMoEsi
-	 WVXNBJqU2bKwzbjeXMhPuWvSuHr7MgM1ck8tgEM+m35GBS77DhHy5wZTPfD1/EfKjk
-	 rHGjwYsvS9OCumn/jOB2RU5LLaGgh0yDp/hDPleEk7Eqz9PYl1iZeOe8Y1gIXx+sMx
-	 WB2cf24qNgj7Q==
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-61571192ba5so6552110a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:59:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUKzKGUeBzvAEXe9ursWqtNlkeX3dF1AfQ2ptBJVbz1IpfqMZtpnqn72OkC1pw3khcdSfLZmeRJyedA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFEuErt2tWRh0CPX9oTjmOf2t1hzLmBsMZd8EEqaB4C9ZsiuPo
-	kEPgOCWfgmOWezfNnehdCTaPLLdYU8RIgCP0RPKj4fGmgRrLkRmYvMEcyD24LIJ4ouQJOkLKFNm
-	EwPChP0u2NGSFnNUdWlRk7+csrm/Zpm4=
-X-Google-Smtp-Source: AGHT+IFkKVoM15OgyHW4roeyInjiiYW2fvhUn72WQfiV4uqMLS6XIeQkYGWJECVAUW5SJUvcEDTWyuhX1hOSsQtOC5A=
-X-Received: by 2002:a05:6402:5112:b0:615:a529:a988 with SMTP id
- 4fb4d7f45d1cf-617e2bd8806mr9808339a12.14.1754902782955; Mon, 11 Aug 2025
- 01:59:42 -0700 (PDT)
+	s=arc-20240116; t=1754903417; c=relaxed/simple;
+	bh=mRPuDW1POS5navBdn5cGBjeHKYfFRTFsma8UM+B5Tjg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jK+untjHfeHA8aqmBeSA1u9o+jcW8H68X/wFVSP0Ok4KllXKFfoSCTxWoCziCv5qS3k8FEbO/iWaDmax2Oqt7X3ffubU4lPp+nCHOzS3sU+Gux3Ug6hYsbw7eG3OcqQ4j/rO/+13J+W1kXShZTMB+wXRsR/QQl+WzLGJ0D/01eU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Dm8MHntZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57ANbeZN013661;
+	Mon, 11 Aug 2025 09:10:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wfZkKVWw+QGYZpgYNTNBzT
+	z65WYXCAXZrb5tpWem0Gs=; b=Dm8MHntZEfyOdFzpiGSs2bz6J8JuudP1NQ4d5R
+	SenbdhOFoThDPnVPv7m3Vb8xoXL7W9IeOMYiTLTcMSSiqklgvDT3HtHp5J4ja9bA
+	gF1s3pFWrp2DwvGL24K+jCpwFiwXLwxtmp2Wmnq801pVWH8bAv98B10apSMTTb+r
+	ETsm8nyzdYT3GSAjqYN/z8FSifSgifqewdIhzIOR+u+DnaLEAQFV9hV3blt+B4ME
+	7O2lxTMMiWKp0RjBHIPcvWwOSZSeJP1KUyClJqwRzkIBBLabcsCqVIObZemtqrAJ
+	NDSDJcPk6hN8O1lEbhs/TRR3VoVjnoKc0kkFpUNHXNdRXheQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dupmkw12-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 09:10:11 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57B9AAEc030857
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Aug 2025 09:10:10 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 11 Aug 2025 02:10:05 -0700
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konradybcio@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>, <djakov@kernel.org>,
+        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v7 0/4] Enable cpufreq for IPQ5424
+Date: Mon, 11 Aug 2025 14:39:50 +0530
+Message-ID: <20250811090954.2854440-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <d9e92cfdb1ee69d98630286238e08a8df176718a.1754890670.git.zhoubinbin@loongson.cn>
- <CAAhV-H7hB1WU3GyzdcKvWaYuqNsEMMN2=g6gwGcOzU=_Ghd6zw@mail.gmail.com> <CAMpQs4+5CoXKBVqE+YPYPyMyZFbhXQLfqqqex3JCVusDS5AUTA@mail.gmail.com>
-In-Reply-To: <CAMpQs4+5CoXKBVqE+YPYPyMyZFbhXQLfqqqex3JCVusDS5AUTA@mail.gmail.com>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 11 Aug 2025 16:59:31 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6JyGdg8hA2vsrPGFAysSk3F9KJqmS1A2Gqwx52Q2x2_A@mail.gmail.com>
-X-Gm-Features: Ac12FXykj1aDpEGzpUGYiIBJLu6jg1PIrAjdFAtO2QD9VBc-BK6E7OY3-aUL40w
-Message-ID: <CAAhV-H6JyGdg8hA2vsrPGFAysSk3F9KJqmS1A2Gqwx52Q2x2_A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] mtd: rawnand: loongson: Add nand chip select support
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=bY5rUPPB c=1 sm=1 tr=0 ts=6899b373 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=hYIGFNv7twnpuLpzv7MA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: sFHpyX3I2x_d94MywZen8ieP1iWyYyTx
+X-Proofpoint-ORIG-GUID: sFHpyX3I2x_d94MywZen8ieP1iWyYyTx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAwMCBTYWx0ZWRfX8ZoeiyyypaHB
+ Zeh9SDQk+Z+LJ6BDp0feuuMiBOmoBwXg2pKnRLNahw+YYFkCFapiyr5mBpTriU2Db1AV/Kw7dkI
+ E4Au+bNPfSkw6a34mALdomedaGNNIIsJ6vw8ciE09qOUb7gdXUFTzgwLB91mZEXP1T6tu9oS/0R
+ Hx+86S4GiJLdi0Ll3FeUStw/5lKfercJU+82OgBorEphU3c4r6lC5UlA+WQ3+4n2QsD7jU8pjTa
+ IvAu2tc0KjicjdYL5DawZy12BIdwu9fz42xIjZn+3Z2TwHUyHVXMtEUPvcyMm6Kb07yHXC9ucNX
+ F1Ad3CJOPypOcUH2ouTTHLwpFakYMHFu3ITjkOWduM79xcc54mHHKs7dr+xsYnTD0SpfDYvqtvo
+ BNEZF8zR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ spamscore=0 clxscore=1015 phishscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090000
 
-On Mon, Aug 11, 2025 at 4:49=E2=80=AFPM Binbin Zhou <zhoubb.aaron@gmail.com=
-> wrote:
->
-> Hi:
->
-> On Mon, Aug 11, 2025 at 2:40=E2=80=AFPM Huacai Chen <chenhuacai@kernel.or=
-g> wrote:
-> >
-> > Hi, Binbin,
-> >
-> > On Mon, Aug 11, 2025 at 2:03=E2=80=AFPM Binbin Zhou <zhoubinbin@loongso=
-n.cn> wrote:
-> > >
-> > > The page address register describes the page address of the starting
-> > > address for NAND read/write/erase operations.
-> > >
-> > > According to the manual, it consists of two parts:
-> > >         {chip select, page number}
-> > >
-> > > The `chip select` is fixed at 2 bits, and the `page number` is
-> > > determined based on the actual capacity of the single-chip memory.
-> > > Therefore we need to determine the `chip select` bits base on the `pa=
-ge
-> > > number`.
-> > >
-> > > For example, for a 1GB capacity chip (2K page size), it has 1M pages.
-> > > Thus, [19:0] is used to represent the page number, and [21:20]
-> > > represents the chip select.
-> > >
-> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > ---
-> > >  .../mtd/nand/raw/loongson-nand-controller.c   | 133 ++++++++++++++--=
---
-> > >  1 file changed, 103 insertions(+), 30 deletions(-)
-> > >
-> > > diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/driver=
-s/mtd/nand/raw/loongson-nand-controller.c
-> > > index 97cd566420a8..5a51c7d299cc 100644
-> > > --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > > +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-> > > @@ -82,6 +82,7 @@ struct loongson_nand_data {
-> > >         unsigned int op_scope_field;
-> > >         unsigned int hold_cycle;
-> > >         unsigned int wait_cycle;
-> > > +       unsigned int nand_cs;
-> > >         void (*set_addr)(struct loongson_nand_host *host, struct loon=
-gson_nand_op *op);
-> > >  };
-> > >
-> > > @@ -90,6 +91,7 @@ struct loongson_nand_host {
-> > >         struct nand_chip chip;
-> > >         struct nand_controller controller;
-> > >         const struct loongson_nand_data *data;
-> > > +       unsigned int addr_cs_field;
-> > >         void __iomem *reg_base;
-> > >         struct regmap *regmap;
-> > >         /* DMA Engine stuff */
-> > > @@ -215,6 +217,26 @@ static int loongson_nand_parse_instructions(stru=
-ct nand_chip *chip, const struct
-> > >         return 0;
-> > >  }
-> > >
-> > > +static void loongson_nand_set_addr_cs(struct loongson_nand_host *hos=
-t)
-> > > +{
-> > > +       struct nand_chip *chip =3D &host->chip;
-> > > +       struct mtd_info *mtd =3D nand_to_mtd(chip);
-> > > +
-> > > +       if (!host->data->nand_cs)
-> > > +               return;
-> > > +
-> > > +       /*
-> > > +        * The Manufacturer/Chip ID read operation precedes attach_ch=
-ip, at which point
-> > > +        * information such as NAND chip selection and capacity is un=
-known. As a
-> > > +        * workaround, we use 128MB cellsize (2KB pagesize) as a fall=
-back.
-> > > +        */
-> > > +       if (!mtd->writesize)
-> > > +               host->addr_cs_field =3D GENMASK(17, 16);
-> > > +
-> > > +       regmap_update_bits(host->regmap, LOONGSON_NAND_ADDR2, host->a=
-ddr_cs_field,
-> > > +                          host->data->nand_cs << __ffs(host->addr_cs=
-_field));
-> > > +}
-> > > +
-> > >  static void ls1b_nand_set_addr(struct loongson_nand_host *host, stru=
-ct loongson_nand_op *op)
-> > >  {
-> > >         struct nand_chip *chip =3D &host->chip;
-> > > @@ -263,6 +285,8 @@ static void ls1c_nand_set_addr(struct loongson_na=
-nd_host *host, struct loongson_
-> > >                         regmap_update_bits(host->regmap, LOONGSON_NAN=
-D_ADDR2, mask, val);
-> > >                 }
-> > >         }
-> > > +
-> > > +       loongson_nand_set_addr_cs(host);
-> > >  }
-> > >
-> > >  static void loongson_nand_trigger_op(struct loongson_nand_host *host=
-, struct loongson_nand_op *op)
-> > > @@ -603,42 +627,89 @@ static int loongson_nand_exec_op(struct nand_ch=
-ip *chip, const struct nand_opera
-> > >         return nand_op_parser_exec_op(chip, &loongson_nand_op_parser,=
- op, check_only);
-> > >  }
-> > >
-> > > -static int loongson_nand_attach_chip(struct nand_chip *chip)
-> > > +static int loongson_nand_get_chip_capacity(struct nand_chip *chip)
-> > >  {
-> > >         struct loongson_nand_host *host =3D nand_get_controller_data(=
-chip);
-> > >         u64 chipsize =3D nanddev_target_size(&chip->base);
-> > > -       int cell_size =3D 0;
-> > > +       struct mtd_info *mtd =3D nand_to_mtd(chip);
-> > >
-> > > -       switch (chipsize) {
-> > > -       case SZ_128M:
-> > > -               cell_size =3D 0x0;
-> > > -               break;
-> > > -       case SZ_256M:
-> > > -               cell_size =3D 0x1;
-> > > -               break;
-> > > -       case SZ_512M:
-> > > -               cell_size =3D 0x2;
-> > > -               break;
-> > > -       case SZ_1G:
-> > > -               cell_size =3D 0x3;
-> > > -               break;
-> > > -       case SZ_2G:
-> > > -               cell_size =3D 0x4;
-> > > -               break;
-> > > -       case SZ_4G:
-> > > -               cell_size =3D 0x5;
-> > > -               break;
-> > > -       case SZ_8G:
-> > > -               cell_size =3D 0x6;
-> > > -               break;
-> > > -       case SZ_16G:
-> > > -               cell_size =3D 0x7;
-> > > -               break;
-> > > -       default:
-> > > -               dev_err(host->dev, "unsupported chip size: %llu MB\n"=
-, chipsize);
-> > > -               return -EINVAL;
-> > > +       if (mtd->writesize =3D=3D SZ_4K && chipsize =3D=3D SZ_2G) {
-> > > +               host->addr_cs_field =3D GENMASK(20, 19);
-> > > +               return 0x4;
-> > >         }
-> > I think you want to sort this part by the return value, but "return
-> > 0x4" has already break it.
-> >
-> > So I think it is better to use a big switch-case for writesize, and
-> > sort the big switch-case by writesize.
->
-> How about:
->
->         switch (mtd->writesize) {
->         case SZ_512:
->                 switch (chipsize) {
->                 case SZ_8M:
->                         host->addr_cs_field =3D GENMASK(15, 14);
->                         return 0x9;
->                 case SZ_16M:
->                         host->addr_cs_field =3D GENMASK(16, 15);
->                         return 0xa;
->                 case SZ_32M:
->                         host->addr_cs_field =3D GENMASK(17, 16);
->                         return 0xb;
->                 case SZ_64M:
->                         host->addr_cs_field =3D GENMASK(18, 17);
->                         return 0xc;
->                 case SZ_128M:
->                         host->addr_cs_field =3D GENMASK(19, 18);
->                         return 0xd;
->                 }
->                 break;
->         case SZ_2K:
->                 switch (chipsize) {
->                 case SZ_128M:
->                         host->addr_cs_field =3D GENMASK(17, 16);
->                         return 0;
-Use 0x0 for consistency.
+CPU on Qualcomm ipq5424 is clocked by huayra PLL with RCG support.
+Add support for the APSS PLL, RCG and clock enable for ipq5424.
+The PLL, RCG register space are clubbed. Hence adding new APSS driver
+for both PLL and RCG/CBC control. Also the L3 cache has a separate pll
+modeled as ICC clock. The L3 pll needs to be scaled along with the CPU.
 
->                 case SZ_256M:
->                         host->addr_cs_field =3D GENMASK(18, 17);
->                         return 0x1;
->                 case SZ_512M:
->                         host->addr_cs_field =3D GENMASK(19, 18);
->                         return 0x2;
->                 case SZ_1G:
->                         host->addr_cs_field =3D GENMASK(20, 19);
->                         return 0x3;
->                 }
->                 break;
->         case SZ_4K:
->                 if (chipsize =3D=3D SZ_2G) {
->                         host->addr_cs_field =3D GENMASK(20, 19);
->                         return 0x4;
->                 }
->                 break;
->         case SZ_8K:
->                 switch (chipsize) {
->                 case SZ_4G:
->                         host->addr_cs_field =3D GENMASK(20, 19);
->                         return 0x5;
->                 case SZ_8G:
->                         host->addr_cs_field =3D GENMASK(21, 20);
->                         return 0x6;
->                 case SZ_16G:
->                         host->addr_cs_field =3D GENMASK(22, 21);
->                         return 0x7;
->                 }
->                 break;
->         default:
->                 break;
-The default branch is unneeded. Others are OK for me.
+v7: Fix 'Reviewed-by' placement for bindings patch
+    Use enum instead of clock names for l3 pll
+    Select IPQ_APSS_5424 if IPQ_GCC_5424 is enabled
 
-Huacai
+v6: https://lore.kernel.org/linux-arm-msm/20250806112807.2726890-1-quic_varada@quicinc.com/
+	* Drop clock-names in bindings, dts and driver and use index instead
+	* Fix 'opp-microvolt'
 
->         }
->
->         dev_err(host->dev, "Unsupported chip size: %llu MB with page
-> size %u B\n",
->                 chipsize, mtd->writesize);
-> >
-> > Huacai
-> >
-> > >
-> > > +       if (mtd->writesize =3D=3D SZ_2K) {
-> > > +               switch (chipsize) {
-> > > +               case SZ_128M:
-> > > +                       host->addr_cs_field =3D GENMASK(17, 16);
-> > > +                       return 0;
-> > > +               case SZ_256M:
-> > > +                       host->addr_cs_field =3D GENMASK(18, 17);
-> > > +                       return 0x1;
-> > > +               case SZ_512M:
-> > > +                       host->addr_cs_field =3D GENMASK(19, 18);
-> > > +                       return 0x2;
-> > > +               case SZ_1G:
-> > > +                       host->addr_cs_field =3D GENMASK(20, 19);
-> > > +                       return 0x3;
-> > > +               default:
-> > > +                       goto err;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       if (mtd->writesize =3D=3D SZ_8K) {
-> > > +               switch (chipsize) {
-> > > +               case SZ_4G:
-> > > +                       host->addr_cs_field =3D GENMASK(20, 19);
-> > > +                       return 0x5;
-> > > +               case SZ_8G:
-> > > +                       host->addr_cs_field =3D GENMASK(21, 20);
-> > > +                       return 0x6;
-> > > +               case SZ_16G:
-> > > +                       host->addr_cs_field =3D GENMASK(22, 21);
-> > > +                       return 0x7;
-> > > +               default:
-> > > +                       goto err;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       if (mtd->writesize =3D=3D SZ_512) {
-> > > +               switch (chipsize) {
-> > > +               case SZ_8M:
-> > > +                       host->addr_cs_field =3D GENMASK(15, 14);
-> > > +                       return 0x9;
-> > > +               case SZ_16M:
-> > > +                       host->addr_cs_field =3D GENMASK(16, 15);
-> > > +                       return 0xa;
-> > > +               case SZ_32M:
-> > > +                       host->addr_cs_field =3D GENMASK(17, 16);
-> > > +                       return 0xb;
-> > > +               case SZ_64M:
-> > > +                       host->addr_cs_field =3D GENMASK(18, 17);
-> > > +                       return 0xc;
-> > > +               case SZ_128M:
-> > > +                       host->addr_cs_field =3D GENMASK(19, 18);
-> > > +                       return 0xd;
-> > > +               default:
-> > > +                       goto err;
-> > > +               }
-> > > +       }
-> > > +
-> > > +err:
-> > > +       dev_err(host->dev, "Unsupported chip size: %llu MB with page =
-size %u B\n",
-> > > +               chipsize, mtd->writesize);
-> > > +       return -EINVAL;
-> > > +}
-> > > +
-> > > +static int loongson_nand_attach_chip(struct nand_chip *chip)
-> > > +{
-> > > +       struct loongson_nand_host *host =3D nand_get_controller_data(=
-chip);
-> > > +       int cell_size =3D 0;
-> > > +
-> > > +       cell_size =3D loongson_nand_get_chip_capacity(chip);
-> > > +       if (cell_size < 0)
-> > > +               return cell_size;
-> > > +
-> > >         switch (chip->ecc.engine_type) {
-> > >         case NAND_ECC_ENGINE_TYPE_NONE:
-> > >                 break;
-> > > @@ -818,6 +889,7 @@ static const struct loongson_nand_data ls1b_nand_=
-data =3D {
-> > >         .status_field =3D GENMASK(15, 8),
-> > >         .hold_cycle =3D 0x2,
-> > >         .wait_cycle =3D 0xc,
-> > > +       .nand_cs =3D 0x0,
-> > >         .set_addr =3D ls1b_nand_set_addr,
-> > >  };
-> > >
-> > > @@ -828,6 +900,7 @@ static const struct loongson_nand_data ls1c_nand_=
-data =3D {
-> > >         .op_scope_field =3D GENMASK(29, 16),
-> > >         .hold_cycle =3D 0x2,
-> > >         .wait_cycle =3D 0xc,
-> > > +       .nand_cs =3D 0x0,
-> > >         .set_addr =3D ls1c_nand_set_addr,
-> > >  };
-> > >
-> > > --
-> > > 2.47.3
-> > >
-> > >
->
-> --
-> Thanks.
-> Binbin
+v5: https://lore.kernel.org/linux-arm-msm/20250804112041.845135-1-quic_varada@quicinc.com/
+	* Remove previous maintainers from bindings file
+	* Use enums instead of clock names in clock struct
+	* Add '.sync_state = icc_sync_state'
+	* Add opp-816000000
+
+v4: https://lore.kernel.org/linux-arm-msm/20250730081316.547796-1-quic_varada@quicinc.com/
+	* Address bindings related comments
+
+v3: https://lore.kernel.org/linux-arm-msm/20250724102540.3762358-1-quic_varada@quicinc.com/
+	* Use the qcom_cc_driver_data framework to trim down apss_ipq5424_probe
+
+v2: https://lore.kernel.org/linux-arm-msm/20250723110815.2865403-1-quic_varada@quicinc.com/
+	* Use icc-clk framework for l3 pll
+
+v1: https://lore.kernel.org/linux-arm-msm/20250127093128.2611247-1-quic_srichara@quicinc.com/
+
+Md Sadre Alam (1):
+  cpufreq: qcom-nvmem: Enable cpufreq for ipq5424
+
+Sricharan Ramabadhran (3):
+  dt-bindings: clock: ipq5424-apss-clk: Add ipq5424 apss clock
+    controller
+  clk: qcom: apss-ipq5424: Add ipq5424 apss clock controller
+  arm64: dts: qcom: ipq5424: Enable cpufreq
+
+ .../bindings/clock/qcom,ipq5424-apss-clk.yaml |  55 ++++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         |  69 +++++
+ drivers/clk/qcom/Kconfig                      |   9 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/apss-ipq5424.c               | 265 ++++++++++++++++++
+ drivers/cpufreq/cpufreq-dt-platdev.c          |   1 +
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |   5 +
+ include/dt-bindings/clock/qcom,apss-ipq.h     |   6 +
+ .../dt-bindings/interconnect/qcom,ipq5424.h   |   3 +
+ 9 files changed, 414 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq5424-apss-clk.yaml
+ create mode 100644 drivers/clk/qcom/apss-ipq5424.c
+
+
+base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
+-- 
+2.34.1
+
 
