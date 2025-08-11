@@ -1,211 +1,229 @@
-Return-Path: <devicetree+bounces-203126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8591DB20113
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:01:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 676E4B2012D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:03:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90FC57A9DA7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:00:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5C3B4211D1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3203E2DAFBF;
-	Mon, 11 Aug 2025 08:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86CC62D5C9F;
+	Mon, 11 Aug 2025 08:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i4qTbBJE"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b="E9ua75+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA2D2DAFCA;
-	Mon, 11 Aug 2025 08:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348471FE451;
+	Mon, 11 Aug 2025 08:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.203.114
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754899298; cv=none; b=OfUiCVGK87qgfi4jRMZmN4SmG4OkMWte5xI2rMYCOVrzQysmIcyDGDPbkeF5Ed6ISGJ13ox3sUTUtOUk2gYb4//E/rhb5IHbonN/01WB/+L3RMpkSgx2PLpvrFOS6yEpASu+7ecF7cC0R5U2EhzkGF3yYo+pIifB2gmyrSumquE=
+	t=1754899368; cv=none; b=avYxV+6SiATBwGtXZwVAS6Szpknc5QhU2DqRWKcMd5pxCAaUe0nMRjruqbmm7nRpBAMTahDNpKV3t9JDx6qPn4qtTM6pP2Au3edunkqTXnqQMXdRYI3K1SDn/z4byb5tPAHbozRzGxkB/Cc8WEorHW5WEsXLq1av6DzmyXzneTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754899298; c=relaxed/simple;
-	bh=rxSd+igw1hFmEH0b4q+spgORyQ5kh2vPRXo324E70Uw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EOetaIoqbp8eqBxcU7Z11BDgv0ggSk3nO82VDJW5Hq7s6kPGv5cke2eqfCUmVhcazpftr662HjQvxl8a4fRBrd1a0UoPw5F+kRONAPzdjm73NvvGgx+O5eUM5yUtSiSJZtjXgIFoFWTdcx20BAnZ+jXZj4RG9NG9BV+adqwYmDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i4qTbBJE; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b78bca0890so1934346f8f.3;
-        Mon, 11 Aug 2025 01:01:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754899281; x=1755504081; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2vjNsRDkSxarcXLpyoABzWvXNZGHjIzTMGpE9iHGJi8=;
-        b=i4qTbBJE27k46wFMJEjyKeH2+4gedDEmCYkVBBT8LNIzfguddJsW8vsZLZgN8Ym969
-         uTfjviSql9vd2yyCUXXgEZbMa/DDdutd/Zfh/Z6OCPBnJW2VZ0MkYl3smT2LJnc7ogGP
-         I4k09RjLHLcurNJZ5LtpmODHQF+TvzgxzV8Zqgkp6GJMpmdSEqBVsSid4TANZl3gFBlX
-         tt/PXeBoqhvkFRkAAJkBye7yKeLdCE6MAjPsTsDuR2NOdBlowovjyCteAzzGwl1bE6uF
-         X0lqAYm58G95ruzX2MPH2BdT4UwtnlVnZMBgVKlkuYpHX05oGtsYC8hYjk7d+HQtDXmN
-         Io6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754899281; x=1755504081;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2vjNsRDkSxarcXLpyoABzWvXNZGHjIzTMGpE9iHGJi8=;
-        b=QIR+cYnfMCj+4+cSRw6mPOHzRR0QrR9kJ39MnNGur1YtrSTP3NUaEHqTY9sCh+amXl
-         EC6o+/NcSvcG2PN9IYj0u9jQ1KsLtt70xitzvb3nlIfMv5RokqZN30MlZR7f02baJeFE
-         u3vOQL1wRA8SbzWIWNU3yw3a1R+CHcoyMIzo44hsHCXZDMkCdvkuPdEUuQQCYedbHDRm
-         ibJAUCMKre5AKTCwCISYy/4vpFmqIbaOdYdpByS5YZWdAtcvVDDI1joBVyX9lENP4Hwz
-         fW5YUkThzy8VA79P1MTIUIPzPN1G9sAR8OfSvxgaaKcBfLPKJAk/sgX+pndbeoQ9Zpj/
-         YE7A==
-X-Forwarded-Encrypted: i=1; AJvYcCU/Zi3c3GJy/N1gt8lM7migrhbnv4xgFYsbtWPaDo0/Hp+l3JG+qq7zoJQZcyooWP2CGvKw9FzsVelLVHKC@vger.kernel.org, AJvYcCVmnDO+mx+EBHvJMSC2LidFgzI7c+Qd+DUj+Dl/m6l0WOo+SprMWYJmJxd6m9FFzv6pjkHitwsWC8K7oAk=@vger.kernel.org, AJvYcCWlAutrMThURcZ6hmE626iKK8AB8TIXMyWOLyYf3696tZTTcZSaSD4xVK4LiY9OGAZPdYVfiRrrbIXr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI6/yXF9KJe+IMZUqC7jC2iY82XBr0H5puc2RjCHuYnyh1TLRS
-	UopyBJHlKdvwblV/5TndCz3eDRZuqXKcUDby/G2xussXp2ugljNEq9+oRswZikkMboseGFyKf3F
-	5BIU4rA1RtUQaFQ3kpNSn27UnBt+ImUg=
-X-Gm-Gg: ASbGncuHoKkzkuI4PY582/o5U1/cTJpMPWiI2Btb3vHRsUIbyyi9owNLWAC9aBws4TU
-	+qNU1Uki7P43PZEzD63LHhwMhb9BcmiUyuaHGEqQ7pXMJ4H1OZ8zs1VY4tVPY2tvGa437WyOaaT
-	QPxjXyHnpLGfS24ZqyuAD7nQRStgaKgGVQ/8hOA9oDjFwWhI1c2I892Flb7K5M1uUQM0JwJzYOl
-	/cxQd+W
-X-Google-Smtp-Source: AGHT+IGOLz0iBe7zlzJlq6wq+0qNMoTmtvpaXsLumipQC5TBWXKtqBORFtOGgovzRrE8OidC33+GQTHncMY6E9uU2aQ=
-X-Received: by 2002:a05:6000:2011:b0:3a5:1cc5:aa6f with SMTP id
- ffacd0b85a97d-3b900b4dbdemr8535598f8f.34.1754899280400; Mon, 11 Aug 2025
- 01:01:20 -0700 (PDT)
+	s=arc-20240116; t=1754899368; c=relaxed/simple;
+	bh=CsTWccA+bTID6m2MKLcqrCSHVimgeuHk24BK69Y9GU4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mb+aGBJyekcHhjcHSMrh2+T7f9WPLaxQmDnDs7y8dOZa2P8l63bsZ4kbzmelAHQ3RoQpcapcrLNLD4YdqtjgR3Sj4s2ogAsNArjkL4U208kX5BVk68apGgNiVMX5GZHUsUUO7/DELuxCOnA+VcuPqncyF1libJh3vylD3R5xPYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk; spf=pass smtp.mailfrom=codethink.co.uk; dkim=pass (2048-bit key) header.d=codethink.co.uk header.i=@codethink.co.uk header.b=E9ua75+N; arc=none smtp.client-ip=188.40.203.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=codethink.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codethink.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=codethink.co.uk; s=imap4-20230908; h=Sender:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MNqxMRXLftlngWU/+kh0v1RCc0qOSul6Se1CZBaU11s=; b=E9ua75+NNbkOIR8SMFNtiPe7Mu
+	gmNCx6Nk7yeXjuQRe6ILLUndIB4GNq0M7uHGCbgbqKg5t8hGce+f4t/5ImaNM3BI4Bl8XubeEPTR9
+	NMQodte2dDZ2Z9u8VTprTFCT7oUyKNHnt3+jcDOPJGAZQwYtKxX0vfYpRemoZy6X6Gist4g6gXdz8
+	v4/B1jKZAHTgmDeDqQakXKO58Iso1yScWs0y8wqlI+SfOeJD/SP+cMxVwQVDoipW863xSk3IZxs/x
+	9BpyuI14S/1vqLFf0GuzRBElsA20ZMBRRkGyn+xt5CpySgrz4oXkia5hh6OGnr/AVaGk3UeJVr54r
+	pmolosyw==;
+Received: from [167.98.27.226] (helo=[10.35.6.194])
+	by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+	id 1ulNUI-00BX56-Un; Mon, 11 Aug 2025 09:02:35 +0100
+Message-ID: <cd6ed5b1-619c-4ca9-8fe0-6b47c7d641a7@codethink.co.uk>
+Date: Mon, 11 Aug 2025 09:02:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250504092324.10802-1-clamor95@gmail.com> <20250504092324.10802-2-clamor95@gmail.com>
- <20250512162439.GA3441216-robh@kernel.org>
-In-Reply-To: <20250512162439.GA3441216-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 11 Aug 2025 11:01:09 +0300
-X-Gm-Features: Ac12FXzqFbBYuwRGDqU-GBNMIudNzmVjDHn0gbdLx5TdM9JQj0sBE4cNIQMP1ug
-Message-ID: <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114+
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC/PATCH] drivers/of: add debug for early dump of the dtb
+ strcutrue
+To: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250808142515.142058-1-ben.dooks@codethink.co.uk>
+ <CAL_JsqJntD-o6zMo-vaCQ+f=QDuyEmUgBJqjztoriq4QF7=zEg@mail.gmail.com>
+ <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
+Content-Language: en-GB
+From: Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <CAGETcx99RE6=knBq75sMGUPKcuTKLXqJSo5NKyaZWRfXWEa7tA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Sender: ben.dooks@codethink.co.uk
 
-=D0=BF=D0=BD, 12 =D1=82=D1=80=D0=B0=D0=B2. 2025=E2=80=AF=D1=80. =D0=BE 19:2=
-4 Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sun, May 04, 2025 at 12:23:22PM +0300, Svyatoslav Ryhel wrote:
-> > The current EPP, ISP and MPE schemas are largely compatible with Tegra1=
-14+,
-> > requiring only minor adjustments. Additionally, the TSEC schema for the
-> > Security engine, which is available from Tegra114 onwards, is included.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../display/tegra/nvidia,tegra114-tsec.yaml   | 79 +++++++++++++++++++
-> >  .../display/tegra/nvidia,tegra20-epp.yaml     | 14 +++-
-> >  .../display/tegra/nvidia,tegra20-isp.yaml     | 15 +++-
-> >  .../display/tegra/nvidia,tegra20-mpe.yaml     | 18 +++--
-> >  4 files changed, 113 insertions(+), 13 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvi=
-dia,tegra114-tsec.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
-ra114-tsec.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,te=
-gra114-tsec.yaml
-> > new file mode 100644
-> > index 000000000000..ed0a5a8a091b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-t=
-sec.yaml
-> > @@ -0,0 +1,79 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra114-tsec.=
-yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NVIDIA Tegra Security co-processor
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +
-> > +description: Tegra Security co-processor, an embedded security process=
-or used
-> > +  mainly to manage the HDCP encryption and keys on the HDMI link.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - nvidia,tegra114-tsec
-> > +          - nvidia,tegra124-tsec
-> > +          - nvidia,tegra210-tsec
-> > +
-> > +      - items:
-> > +          - const: nvidia,tegra132-tsec
-> > +          - const: nvidia,tegra124-tsec
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: tsec
->
-> Drop -names properties if there is only 1.
+On 08/08/2025 22:10, Saravana Kannan wrote:
+> On Fri, Aug 8, 2025 at 9:25 AM Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Fri, Aug 8, 2025 at 9:26 AM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+>>>
+>>> When testing for boot issues, it was helpful to dump the
+>>> list of nodes and properties in the device-tree passed into
+>>> the kernel.
+>>
+>> Shouldn't the bootloader be able to dump that?
+>>
+>>> Add CONFIG_OF_EARLY_DUMP option to dump the list of nodes
+>>> and properties to the standard console output early in the
+>>> boot sequence. Note, you may need to have some sort of
+>>
+>> s/may/will/
+>>
+>>> early or debug console output if there are issues stopping
+>>> the kernel starting properly.
+>>
+>> Seems to me this is giving the user the haystack to find the needle...
+> 
+> Completely agree with Rob.
+> 
+> Ben, can you give more context on what kind of issues this has helped
+> you (or anticipate it will) solve? Maybe there are better ways of
+> getting what you need.
 
-This is added to cover existing binding in tegra210 tree
+We where having issues with u-boot on big-endian riscv.
 
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: tsec
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  operating-points-v2: true
-> > +
-> > +  power-domains:
-> > +    items:
-> > +      - description: phandle to the core power domain
->
-> Instead, just 'maxItems: 1'.
->
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - resets
-> > +  - reset-names
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/tegra114-car.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    tsec@54500000 {
-> > +        compatible =3D "nvidia,tegra114-tsec";
-> > +        reg =3D <0x54500000 0x00040000>;
-> > +        interrupts =3D <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&tegra_car TEGRA114_CLK_TSEC>;
-> > +        resets =3D <&tegra_car TEGRA114_CLK_TSEC>;
-> > +        reset-names =3D "tsec";
-> > +    };
+turns out the string functions had issues with endian-ness and
+where corrupting the dtb when doing the final changes when booting
+into the kernel.
+
+the kernel wouldn;t boot as sometimes depending on data alignment
+the #size-cells and #address-cells where having their names corrupted
+and thus the kernel would bail very early.
+
+> -Saravana
+> 
+>>
+>>> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+>>> ---
+>>>   drivers/of/Kconfig |  8 ++++++++
+>>>   drivers/of/fdt.c   | 39 +++++++++++++++++++++++++++++++++++++++
+>>>   2 files changed, 47 insertions(+)
+>>>
+>>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+>>> index 50697cc3b07e..ed2c52c54a7d 100644
+>>> --- a/drivers/of/Kconfig
+>>> +++ b/drivers/of/Kconfig
+>>> @@ -126,4 +126,12 @@ config OF_OVERLAY_KUNIT_TEST
+>>>   config OF_NUMA
+>>>          bool
+>>>
+>>> +config OF_EARLY_DUMP
+>>> +       bool "Dump node list at startup"
+>>
+>> This needs to depend on OF_EARLY_FLATTREE.
+>>
+>>> +       help
+>>> +         This debug feature runs through all the nodes/properties at startup
+>>> +         to show if the dtb has been passed correctly from the boot stage.
+>>> +
+>>> +         If unsure, say N here
+>>> +
+>>>   endif # OF
+>>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+>>> index 0edd639898a6..ab40db0e71a5 100644
+>>> --- a/drivers/of/fdt.c
+>>> +++ b/drivers/of/fdt.c
+>>> @@ -1164,6 +1164,43 @@ static void * __init early_init_dt_alloc_memory_arch(u64 size, u64 align)
+>>>          return memblock_alloc_or_panic(size, align);
+>>>   }
+>>>
+>>> +#ifdef CONFIG_OF_EARLY_DUMP
+>>> +static int __init early_init_iterate_nodes(unsigned long node,
+>>> +                                          const char *uname,
+>>> +                                          int depth, void *data)
+>>> +{
+>>> +       void *blob = initial_boot_params;
+>>> +       int cur;
+>>> +
+>>> +       pr_info("node '%s', depth %d\n", uname, depth);
+>>
+>> Can you add indentation for the depth rather than printing the depth?
+>>
+>> I'm not completely sure if calling this is safe always. How early this
+>> will run depends on the architecture. So need to test on a variety of
+>> architectures. Or perhaps limit in kconfig to tested architectures.
+>> I'd rather not do that though.
+>>
+>>> +
+>>> +       for (cur = fdt_first_property_offset(blob, node);
+>>> +            cur >= 0;
+>>> +            cur = fdt_next_property_offset(blob, cur)) {
+>>> +               const char *pname;
+>>> +               const __be32 *val;
+>>> +               u32 sz;
+>>> +
+>>> +               val = fdt_getprop_by_offset(blob, cur, &pname, &sz);
+>>> +               if (!val) {
+>>> +                       pr_warn(" Cannot locate property at 0x%x\n", cur);
+>>> +                       continue;
+>>
+>> If this fails, you should probably just stop and bail out.
+>>
+>>> +               }
+>>> +
+>>> +               pr_info("node %s: property %s\n", uname, pname ? pname : "unnamed");
+>>
+>> Can unnamed actually happen?
+>>
+>>> +       }
+>>> +
+>>> +       return 0;
+>>> +}
+>>> +
+>>> +static inline void early_init_dump_dt(void)
+>>> +{
+>>> +       of_scan_flat_dt(early_init_iterate_nodes, NULL);
+>>
+>> This way to iterate is left over from before having libfdt. Is there
+>> not a libfdt way to iterate thru all nodes?
+>>
+>>> +}
+>>> +#else
+>>> +static inline void early_init_dump_dt(void) { }
+>>> +#endif /* CONFIG_OF_EARLY_DUMP */
+>>> +
+>>>   bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
+>>>   {
+>>>          if (!dt_virt)
+>>> @@ -1178,6 +1215,8 @@ bool __init early_init_dt_verify(void *dt_virt, phys_addr_t dt_phys)
+>>>          initial_boot_params_pa = dt_phys;
+>>>          of_fdt_crc32 = crc32_be(~0, initial_boot_params,
+>>>                                  fdt_totalsize(initial_boot_params));
+>>> +
+>>> +       early_init_dump_dt();
+>>
+>> Use "if (IS_ENABLED(CONFIG_OF_EARLY_DUMP))" here instead of #ifdef.
+>>
+>>>
+>>>          /* Initialize {size,address}-cells info */
+>>>          early_init_dt_scan_root();
+>>> --
+>>> 2.37.2.352.g3c44437643
+>>>
+> 
+
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
+
+https://www.codethink.co.uk/privacy.html
 
