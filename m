@@ -1,215 +1,116 @@
-Return-Path: <devicetree+bounces-203093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D8FB20050
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 879D4B20053
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393A1189B5DE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:30:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EE5D18958B4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C1D2DA75C;
-	Mon, 11 Aug 2025 07:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79AA20B812;
+	Mon, 11 Aug 2025 07:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VapAIphb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="afvh1dJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CF52DA751
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475CC1F8725;
+	Mon, 11 Aug 2025 07:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754897420; cv=none; b=sWz3nIWdy/QkN4brB55ETGqpt5jXvpF7uhuZo1KfeBI9JiObUtmFOIWHzuE6K2Ei2RcL58MKFZz+a188P9cfOTqJk1YLgf+r0587xoLKTxosWcLS/0jahJ9OKMTwjWCe4mdCaFkD+g7IYsD9PdfgS2u/9cyPSG308jqEjgwCuc0=
+	t=1754897534; cv=none; b=GP36N/5ULns/zVRlsMhJKHwB8+jGVW/ayCNWO14L17lsfTh+qame2LViTaryjdd38irqY6EFNLGMgmhHpMvoO4TjRG1ProlZEArv/oulz5ArYUFObbFKfbnH+Xeh6uPByLULE/ptCysghoABjI4JE8ipgYko34bU0qpwgQ//LhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754897420; c=relaxed/simple;
-	bh=lckde+jMQk66xn8OaUk0PP30d4mhLqwl/Duo1sMYROs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=batPH8xMltYntSGb+1QNKWILvbq+F0hCf55k9Xul80P3SOFQga6QdolQ8E3dz/cGVW/TMHxYmOM/hR38eID1yyvTuo2O8uWhKfw6hMkqXJjf/KV5HWL1nuRw/AWQTc4ihIs0NhmtQ/EvNaVOp2DxcIc+UYR9QYOWBfe6ebR0sEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VapAIphb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57ANwAk4003985
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:30:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OcP8VyIXvYe2IEmI7Z5YRpFJhorfq3DAeG+V0H/cwMw=; b=VapAIphbd8bN8TYF
-	KwQSuuSb3hiRYQTYuLISG6SZfskrWNw6Y2pgFpEbB6BBiDhnOzKFlZIXPQE7x91f
-	yiCK8qaiHN4f7Z/ZBBc8IxtiMo0KpinwBS1Uj+uujrvhAuHJy2yJjmVN6m674Q7l
-	fVm98d+K1AYJsop9feoQeqGixCsh7tYiVlHM/b04Oq3K6NS77sreOqYBjJg5mmTm
-	WmrYuaB/3Zt88OHfrkMZFNL/u1tv49W9ugzONqGiVbYGe35EH4ugRmwRbZ2SemuR
-	m6haRxxUuP8MPAa9zo7icgn36bIc/AhoamaKy2MA7R6VqbFEz1Y2k7A+OL9fzPdO
-	T4jqXQ==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9skka0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:30:18 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76bf73032abso4145011b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 00:30:18 -0700 (PDT)
+	s=arc-20240116; t=1754897534; c=relaxed/simple;
+	bh=tbQ6ECzo7yrvKoKhbN3OqhuH+nyjidDfXNeDUmldEos=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Z78vJPHF9svfXZFRUWEIjPE6fff0tTPyRAuPkV6PYItbiycYiIIgFR7MRON8tNYI9GFgOfyho8VeJMF+8h4rrTMhhX/SdvkeQT2SbimmkZsPldvUdQSAbZFrhVUTsEn4KUradSLaiA7CRHPwApfsY+6Rbm3LKPmMKfn3W5HDvUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=afvh1dJD; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-240763b322fso40968965ad.0;
+        Mon, 11 Aug 2025 00:32:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754897532; x=1755502332; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VmAvaOe6j5EmRYWGU1fBubg+Cb6vql9Hba/ceuT9oGM=;
+        b=afvh1dJDEyKUDRlqAgMH20HU8TkyEuSkmhIC8iCJihea7iq7mU2jV5G9Qv0hCxBCmO
+         gn78kByCSjkOU9ae+3xpf341ZuMsqH56Me+aZYkmGzfj/FhQ/h/7HqQloQemBl9ytsgb
+         i+ucWyyCcvpQJrrclib256aqyNmcb6AUUkgTEwYHS2ZOi+uYSdx8M2zUeje5cVmOcxHf
+         CaGPHG1GPPg3OB+ZEzS9ns/mVGJogZG5V/R5I0UIjDgDrjzInNK1pPQnwo1V0YxiLHF0
+         kWm8v1/HKtc1vP5fmnp0ND+MrcfbLAzakL3I7mZouGUqH6hI4LtunL/sLhUykYgb6Be9
+         5lhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754897417; x=1755502217;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OcP8VyIXvYe2IEmI7Z5YRpFJhorfq3DAeG+V0H/cwMw=;
-        b=FN5uQjTx21PoWAeTEaoLSlCQR1ox8/ry/Rnk67Q3gONWLZDWkfBJaMkhYuzEXo73By
-         k9xcNFSdIIgDnTGHLjIuopRMS8kHIejo3n9wkkz6e+bcnWR8OoMMSVYMAFjasso2oa5k
-         yx4K9lco1PV1Ci8QmW4dM8hhS3/m7vKACLb8LU8WREvrBDyAsQ75t+F/J08UOWQjifkE
-         xtBfmLtLVsZWXfBBxEgieFmfyF4jRzFpmrW1uKcsGFbcIf7v0m6qYGjlmhiRFatSYQ2s
-         wQ+s0aBkpUtwDfX3MKnQ3Lsw7zPGOxctrrQ9Tz/XaSuHLxRo6MwImQSqY1l75LhY9cps
-         y2cA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmnY7kqnfYkh12Rv96/Yg1N6/mcZ+eFYLjE2cSYo41BPBbnBArhaA8kIxiefU+eWttpHLcex+mr4bN@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZrt+nx+/mtVizsSUGvmn+TkZQQ7B1kCphxK6dDx3PPJCrKxZI
-	w5cEej0PifNse9ZbCkcXAgTAvWpQA/HTnmz7z52wFFNzzSvKPwhQ6eq0WpsBadk0ak5QtkmkPPX
-	uxKBk/B45ujXYn4mGD9kQD7ar2niug3aX1PaMO5QakEGVJRi5NaFQcR5ZurBuWv6+
-X-Gm-Gg: ASbGncug+k4XYvssVJZcNljoQPqX726eYaF2qQn+U+kUo8ntsK/EwCtMAmLMdyJop/w
-	ZsANUPSdwlvlaoqopxwVZyyS9f+3fkm8OmBNdN2g4ox2q84olq1xwAdbUctiiiM9Na1qLi0A693
-	hhYuVuKf0rxexMMxH1rEUMS9JMjChzE4lqfNLDwEgsW6+Z5w50Bhmeo1g29SsIF9ezTHr2icIfo
-	uZQdRf8rnMJxPGO1eL0xvJX44hx6zFZRTsIIzL0aG3nE+nQGYcFvJvQ2wYCkvEI5RulsLv6CSBw
-	hcEhnVo5xFjBsyneBFxY44NzFwMlal/gvYcDLIVwWk5pyiwkrxy9sXxdk3nHzHSlCw5Vltw/IWu
-	1Mga5HkkXi1xQ1OOO3SLZWGdfbUhP
-X-Received: by 2002:a05:6a00:b85:b0:76b:c9b9:a11b with SMTP id d2e1a72fcca58-76c46088bc4mr19460949b3a.3.1754897417506;
-        Mon, 11 Aug 2025 00:30:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFcltBUJ0g3R1fj2EUKLW6qYXdOXJ4NHnBg4nb4hNe0riHVIhAk6EPyUknxW89lXsGXleL63A==
-X-Received: by 2002:a05:6a00:b85:b0:76b:c9b9:a11b with SMTP id d2e1a72fcca58-76c46088bc4mr19460907b3a.3.1754897417066;
-        Mon, 11 Aug 2025 00:30:17 -0700 (PDT)
-Received: from [10.133.33.12] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfd8ebbsm26141096b3a.102.2025.08.11.00.30.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 00:30:16 -0700 (PDT)
-Message-ID: <e9e77527-202c-411e-add2-2af9d82b8e8d@oss.qualcomm.com>
-Date: Mon, 11 Aug 2025 15:30:08 +0800
+        d=1e100.net; s=20230601; t=1754897532; x=1755502332;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VmAvaOe6j5EmRYWGU1fBubg+Cb6vql9Hba/ceuT9oGM=;
+        b=vs/JUI7692lgK/URQ0kHxCKrEBvxffutuQDQwlcXE1G8NlBZ/1OsxPz6VOG+o3SJox
+         Boi3fOy3//xMaWjBauNiQbGo6JhK8EJsHChfTKwmcOqxCfMhUuzjmIAFjVOavG32/3cz
+         KQFZnmLUGo2QIpXH5MHnkTEDA5KNWm2m+6Q4JRKYTEdsOmCdQ16kWxaYZzQF+Vi2jkyJ
+         SybKeim7BmOdoTa3UJGP2KlGAAlcfSAnhPpOEEsdraSLYoTWzP0BbCTTc59TKIIIHBRk
+         9yD4595YFFI1h9uPhfZzkL1uCmyIl/YQ6EBf/MIi00CxyxYKTB5lHR1/xF1g97LnoByA
+         CJjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVMGmT4qs/cNE5IMtS0WOWKQxxxryZ6GfPZ8RoO3utuj3Nt07c96tXWlolTHdStyrHylUIB+Q1/fjZVE4f0@vger.kernel.org, AJvYcCXcClJeGetnOkhvE83QsUXhD/1UpjBxQ1neAmNTPfzeE7ykvKzUKyJ0KsEwGxRWc6LVTfRmLLQxIT/6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRHzy/gsI8hJ52f9tBGqXq/oo15gW2tgbonwHftww4wT0ZDUPp
+	mr2dIvxANOL/sYuHVapeEy6pc05GOCO205wcmi31MlszToWU4MbC9BJL
+X-Gm-Gg: ASbGncv21sA/cPW/vvB33LpkbPNUhdgBDZ+Orh7O8HGST8AybQc0IzyC/Dq46ocWtzs
+	aO2OGwDao2NibarV1jwCYY3Yumluj14MuRP6WiiByZTy9e3WyJweQbY37yhbx2TVmv+FBkOyU6n
+	hMNS5WhLV1mf1BxBEyX+FN8/x7CFfipSNuXbbhUuEUIhfbw9RrXqiikcTJIj60AeqA4XqyEmQcb
+	QnZ1At8GBmHS9ZRM6FxbEQhJLaJMVWDiDdJTORqlDHU3a+s9kv/X6b/HlznDLrkJ9Ow4L+rLU4l
+	qY06tAcBUmslfW24US9d6QGjcPfA8NUm5ljeh2OBzO53rt31UW9ROKaOtIRZftUOxX5FK4GDC/e
+	xrOs/Lwdqgk+CbsL1jzyp/33vnLHM4MolYnRhjHpyGt/8ES13oa1tD+mvSI+vZVj8ULt2mbw5Fr
+	5ouG7gfIKuP5tk4UhnX2ION7zoDsMh
+X-Google-Smtp-Source: AGHT+IFXbN/ROk/rj/EE6wkBjU2Pa6lHobrT5on+fm9tiIBjWD7PK7FkSOu7E5PIF5JTYu2m2sIOTg==
+X-Received: by 2002:a17:902:f78e:b0:240:1831:eede with SMTP id d9443c01a7336-242c21e043dmr224354695ad.32.1754897532487;
+        Mon, 11 Aug 2025 00:32:12 -0700 (PDT)
+Received: from peter-bmc.. (2001-b400-e388-d3b1-e90a-ba63-d547-4584.emome-ip6.hinet.net. [2001:b400:e388:d3b1:e90a:ba63:d547:4584])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef59b2sm267624575ad.7.2025.08.11.00.32.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 00:32:12 -0700 (PDT)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Revise Meta(Facebook) Harma BMC(AST2600)
+Date: Mon, 11 Aug 2025 15:32:05 +0800
+Message-ID: <20250811073208.787063-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 0/2] pci: qcom: Add QCS615 PCIe support
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-References: <20250725112346.614316-1-ziyue.zhang@oss.qualcomm.com>
-Content-Language: en-US
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-In-Reply-To: <20250725112346.614316-1-ziyue.zhang@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=68999c0a cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=0rveLjV9VWli9pvRdbwA:9 a=QEXdDO2ut3YA:10
- a=IoOABgeZipijB_acs4fv:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: OEqvrSsQ7bM_XvMJQpvRQ5BqLvwJ2H3K
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX3HxBi+hK+Dyl
- YN+EWyf8A2vMDWd3RsDLEsq/8MoS095yfbPW9U0E2r9bMHrBYyYSW8xtvs+opi4UGcqBETm5gEN
- JwL21iBh3GG9GSw8Ts2/RpIEDEhOHwDfTN171p9OM+7NEXX+O1h21rFooyyZgnxunMb9UimiHnw
- 23oeXk/bxfCExcH1kzlSb0cMkHOCWZms9kB4KcC3JrH/v91SdQAh/AEPwJdJD0tmyBp4u+KsvfD
- LfAfrD+0DTAaxrf+6lEE8BZD7E7WcAVxewzdpRxQ9DDlvo2P4iIcHfhcgVEowiCgcFORlwE1QAz
- wDQcHW4Qm4Py3huL5i8JlbNlkjBTZI2SG2Qph4UBRv0ZAq2i0KkgIqFnY0YEg/9E38VArOvZe54
- v0HbFUDO
-X-Proofpoint-GUID: OEqvrSsQ7bM_XvMJQpvRQ5BqLvwJ2H3K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090015
+Content-Transfer-Encoding: 8bit
 
+Summary:
+Revise linux device tree entry related to Meta(Facebook) Harma
+specific devices connected to BMC(AST2600) SoC.
 
-On 7/25/2025 7:23 PM, Ziyue Zhang wrote:
-> This series adds document, phy, configs support for PCIe in QCS615.
->
-> This series depend on the dt-bindings change
-> https://lore.kernel.org/all/20250521-topic-8150_pcie_drop_clocks-v1-0-3d42e84f6453@oss.qualcomm.com/
->
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-> ---
-> Have following changes:
-> 	- Add a new Document the QCS615 PCIe Controller
-> 	- Add configurations in devicetree for PCIe, including registers, clocks, interrupts and phy setting sequence.
-> 	- Add configurations in devicetree for PCIe, platform related gpios, PMIC regulators, etc.
->
-> Changes in v9:
-> - Patch rebased
-> - Link to v8: https://lore.kernel.org/all/20250703095630.669044-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v8:
-> - Fix scripts/checkpatch.pl error (Krzystof)
-> - Link to v7: https://lore.kernel.org/all/20250702103549.712039-1-ziyue.zhang@oss.qualcomm.com/
->
-> Changes in v7:
-> - Add Fixes tag to phy bindings patch (Johan)
-> - QCS615 is Gen3 controller but Gen2 phy, so limited max link speed to Gen2.
-> - Remove eq-presets-8gts and oppopp-8000000 for only support Gen2.
-> - Link to v6: https://lore.kernel.org/all/t6bwkld55a2dcozxz7rxnvdgpjis6oveqzkh4s7nvxgikws4rl@fn2sd7zlabhe/
->
-> Changes in v6:
-> - Change PCIe equalization setting to one lane
-> - Add reviewed by tags
-> - Link to v5: https://lore.kernel.org/all/t6bwkld55a2dcozxz7rxnvdgpjis6oveqzkh4s7nvxgikws4rl@fn2sd7zlabhe/
->
-> Changes in v5:
-> - Drop qcs615-pcie.yaml and use sm8150, as qcs615 is the downgraded
->    version of sm8150, which can share the same yaml.
-> - Drop compatible enrty in driver and use sm8150's enrty (Krzysztof)
-> - Fix the DT format problem (Konrad)
-> - Link to v4: https://lore.kernel.org/all/20250507031559.4085159-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v4:
-> - Fixed compile error found by kernel test robot(Krzysztof)
-> - Update DT format (Konrad & Krzysztof)
-> - Remove QCS8550 compatible use QCS615 compatible only (Konrad)
-> - Update phy dt bindings to fix the dtb check errors.
-> - Link to v3: https://lore.kernel.org/all/20250310065613.151598-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v3:
-> - Update qcs615 dt-bindings to fit the qcom-soc.yaml (Krzysztof & Dmitry)
-> - Removed the driver patch and using fallback method (Mani)
-> - Update DT format, keep it same with the x1e801000.dtsi (Konrad)
-> - Update DT commit message (Bojor)
-> - Link to v2: https://lore.kernel.org/all/20241122023314.1616353-1-quic_ziyuzhan@quicinc.com/
->
-> Changes in v2:
-> - Update commit message for qcs615 phy
-> - Update qcs615 phy, using lowercase hex
-> - Removed redundant function
-> - split the soc dtsi and the platform dts into two changes
-> - Link to v1: https://lore.kernel.org/all/20241118082619.177201-1-quic_ziyuzhan@quicinc.com/
->
->
-> Krishna chaitanya chundru (2):
->    arm64: dts: qcom: qcs615: enable pcie
->    arm64: dts: qcom: qcs615-ride: Enable PCIe interface
->
->   arch/arm64/boot/dts/qcom/qcs615-ride.dts |  42 +++++++
->   arch/arm64/boot/dts/qcom/sm6150.dtsi     | 138 +++++++++++++++++++++++
->   2 files changed, 180 insertions(+)
->
->
-> base-commit: d7af19298454ed155f5cf67201a70f5cf836c842
-Hi Maintainers,
+commit-id: 2236141ed3d6f31f53147c26208dafef6051ae43
 
-It seems the patches get reviewed tag for a long time, can you give this
+v1
+  - Patch 0001 - add power monitor support
+  - Patch 0002 - revise gpio name
 
-series further comment or help me to merge them ?
-Thanks very much.
+Peter Yin (2):
+  ARM: dts: aspeed: harma: add power monitor support
+  ARM: dts: aspeed: harma: revise gpio name
 
-BRs
-Ziyue
+ .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 25 +++++++++++++------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
+
 
