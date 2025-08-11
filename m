@@ -1,202 +1,165 @@
-Return-Path: <devicetree+bounces-203073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA857B1FF6C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AC26B1FF70
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:38:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCC461630CC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:37:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CEFF163BB2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:38:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50EE275AE4;
-	Mon, 11 Aug 2025 06:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBF129B8D9;
+	Mon, 11 Aug 2025 06:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zp5dLXu+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kR6TbhiA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9098E26E6E2
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487C957C9F;
+	Mon, 11 Aug 2025 06:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754894265; cv=none; b=kk4BMVGGNFPPQh7VyrP0eExKsdSWQn+IyZXL5dHpzVITpLFkxMs3Bj0nuyCiSZP3NR2A2Rbj5lfS2iTv+qCT7uGMalFc+vGaLcc4VDgxl/Uc7c98TbzMXAQQQeIIGWrEUVuaFE1A7GsArAy/9vbuYb/e7KfOOzikjmmUcVrNicw=
+	t=1754894302; cv=none; b=WgntM784+fTOtLV7KyjJ8Jw1nwiVq7e351ha60fqzsW5/p05hUMzY22AwWGIbewZEzV3vha9J+Bb+wuzyRenZFf3XBpJ5UAam6j+Hr3oVnUGutuwXDAEajaOTJ+axF0gHkmnZhj4eWQK1wlfiSmFBJYpeiTV3R/xFRiB0I2ItxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754894265; c=relaxed/simple;
-	bh=7d8t96b0qezUmXbQCCOoNOM2QKR/WsFqklcLiZwHGPA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kyHSj+GQZKhn744yIURnF/XPei9n/WuXVPVQv54pw9f3uDCJzOta9Hd4gVDgdUlgZDI+zmv4OfdbQTNu4ZFRybgFxPR8gY5PruQ/g4hbqfKlVdD/MBRDV9renZUrwxrU9WfKsl67RmVZioLl+XskPlwpxSNC4sAUjq1Ai8A8sGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zp5dLXu+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22645C4CEED
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:37:45 +0000 (UTC)
+	s=arc-20240116; t=1754894302; c=relaxed/simple;
+	bh=A5HEG7XgJUt4wjPWMnHqs0rS7OShpT65SYqFRjxhiXU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WWje8NBJL4capxKUlCnd8gUzvuR8MBrlQjJmw+RECCeNde1nZittT2AiPoDYmQniOV9t/m+lnuiIo8TDaPm3sUlqYq+Z7adTxEUuMnSUuzlriZZLcIVEdxMtPSJqMuPPacNsniGwEvHuidIpAFpsGUL6ABB9gpbH4YXbcbjwgwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kR6TbhiA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1041AC4CEED;
+	Mon, 11 Aug 2025 06:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754894265;
-	bh=7d8t96b0qezUmXbQCCOoNOM2QKR/WsFqklcLiZwHGPA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Zp5dLXu+Lq/q5B8Okvor9u08lpxr+S+HVBhmpMPd80dtJr1sFHquR6PDKVi2+AZmn
-	 uhcjbvWUigWIavAXi7mNszMvkQ1iugom96haN6Unb56Xbw5EtGNljF1vcQJXEHH5Pl
-	 ifJB0Ely/hijj0/aXhXTBk5CQlOtilYJokdVI9sJC1KM4khk17lXKKPkCwg/NqoLVD
-	 kwx9QW7NxCZY682bOmlQIj31P0T+1hZvl+Zyp6Dm/8W3/Eovid9plWakw7Eyw35Kt7
-	 3rgjbjIkCZeufls/05fsLSmF10c5j1zBJ2RUzkXAdYyIn1ejIDQVwa8hRNqKsbcbk7
-	 +2zV2W+eJuzhg==
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-af96524c5a9so521793866b.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:37:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXe2gBj9+/IW56mnnFuV85VkAP1Rl7zPuajhIOfufhpGlzi2GaBDwb+6m83It3TvK5bB+bdV6ciZgSy@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOAuWmWFhn8V2MPTLgngIQRLMj72hzP5PTOgvFjUVSwTUfVoyQ
-	ZY1PGKjyQ2OSQBC2nm4vsvrJ/5cJLlWnnlf/hz4pRoVOxwfj8JDqxSReG5CeBaP2ECWVDQyYYbG
-	BtveG616KI3pIcXZZ/+i+bIhrif61D3U=
-X-Google-Smtp-Source: AGHT+IGfEMnAcApCso1Pq2FL+AFwDit+/6rHiFN1Xv32lctHH6W1GNaPJ2XUoinBbz1h7eQmwl0i3f08hpe/cuPyR80=
-X-Received: by 2002:a17:907:86a0:b0:af9:621f:c219 with SMTP id
- a640c23a62f3a-af9c6525a5cmr1030367866b.51.1754894263682; Sun, 10 Aug 2025
- 23:37:43 -0700 (PDT)
+	s=k20201202; t=1754894301;
+	bh=A5HEG7XgJUt4wjPWMnHqs0rS7OShpT65SYqFRjxhiXU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kR6TbhiAqxfztq3KKWeWWvwKDgFDoRrVqhzKHD2Xt3GylgtlYhVNnzTZnoYXWSOLy
+	 y/GqKM8fRiKGOxO+3HdHx69g4aaFJsM7CcprCk6oMtgW/Rh71woZFvNsnL/KSqzDWk
+	 1LG+tTru1MVEyUB7su9OkF/b00C4G8nnk2d/IgWNjiP0g35PGrSDPQUewCif6sU3Xb
+	 K9TYDVTxg7Uli123Onqld3fF3UdorYodRMb3N8cJRSCxJKVLF3Rc/n7YvLjGf/u15Y
+	 mHcBPm0EuR4UHqcvhMy7xXLscsXYo7ci4AjsAq5zLRObbacFVH/qChZYeg+bvfn123
+	 QVOCb8zrMuSzQ==
+Message-ID: <dfaa36d6-41b2-46c1-ba14-e2fb5c9815e6@kernel.org>
+Date: Mon, 11 Aug 2025 08:38:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <6b6ddac4728d3debcf2dbb7db82c6b69f9b4956f.1754890670.git.zhoubinbin@loongson.cn>
-In-Reply-To: <6b6ddac4728d3debcf2dbb7db82c6b69f9b4956f.1754890670.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 11 Aug 2025 14:37:32 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H49xGqd-Y+ffwwwVaES5ZGoCWp2dN_tSETFtBjsjgbC9A@mail.gmail.com>
-X-Gm-Features: Ac12FXxbTT750dgKQ0qF-YxJ472Kiw5CWbv592pJMs2LDxPid6stBAPMaKfL9uI
-Message-ID: <CAAhV-H49xGqd-Y+ffwwwVaES5ZGoCWp2dN_tSETFtBjsjgbC9A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] mtd: rawnand: loongson: Add 6-byte NAND ID reading support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/5] dt-bindings: power: Add Marvell PXA1908 domains
+To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20250806-pxa1908-genpd-v1-0-16409309fc72@dujemihanovic.xyz>
+ <20250806-pxa1908-genpd-v1-2-16409309fc72@dujemihanovic.xyz>
+ <20250808-portable-expert-turkey-4f8f19@kuoka> <2017616.PYKUYFuaPT@radijator>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <2017616.PYKUYFuaPT@radijator>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi, Binbin,
+On 08/08/2025 21:46, Duje Mihanović wrote:
+> On Friday, 8 August 2025 09:34:54 Central European Summer Time Krzysztof Kozlowski wrote:
+>> On Wed, Aug 06, 2025 at 07:33:21PM +0200, Duje Mihanović wrote:
+>>> +          A number of phandles to clocks that need to be enabled during
+>>> domain +          power up.
+>>
+>> This does not exist in your example, so it is just confusing.
+> 
+> This is because I have not implemented any of the clocks used by the
+> domains at this moment.
+> 
+> Actually, I am not sure anymore whether it is necessary to assign
+> clocks to the domains as I have just yesterday successfully brought up
+> the GPU with some out-of-tree code and that did not require giving the
+> domains any clocks even though the vendor kernel does this. Should I
+> just go with that and drop all clock handling from the power domain
+> driver, at which point there would be no need for the individual domain
+> nodes? If not, how should I in the future assign clocks to the domains?
 
-On Mon, Aug 11, 2025 at 2:02=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> From: Keguang Zhang <keguang.zhang@gmail.com>
->
-> Loongson-1C and Loongson-2K SoCs support NAND flash chips with 6-byte ID.
-> However, the current implementation only handles 5-byte ID which can lead
-> to incorrect chip detection.
->
-> Extend loongson_nand_read_id_type_exec() to support 6-byte NAND ID.
->
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../mtd/nand/raw/loongson-nand-controller.c   | 29 +++++++++++++++----
->  1 file changed, 23 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mt=
-d/nand/raw/loongson-nand-controller.c
-> index b5a7be0fcacc..97cd566420a8 100644
-> --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-> +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-> @@ -50,6 +50,9 @@
->  #define LOONGSON_NAND_COL_ADDR_CYC     2U
->  #define LOONGSON_NAND_MAX_ADDR_CYC     5U
->
-> +#define LOONGSON_NAND_READ_ID_SLEEP_US         1000
-> +#define LOONGSON_NAND_READ_ID_TIMEOUT_US       5000
-> +
->  #define BITS_PER_WORD                  (4 * BITS_PER_BYTE)
->
->  struct loongson_nand_host;
-> @@ -73,6 +76,8 @@ struct loongson_nand_op {
->  };
->
->  struct loongson_nand_data {
-> +       unsigned int max_id_cycle;
-> +       unsigned int id_cycle_field;
->         unsigned int status_field;
->         unsigned int op_scope_field;
->         unsigned int hold_cycle;
-> @@ -458,10 +463,10 @@ static int loongson_nand_read_id_type_exec(struct n=
-and_chip *chip, const struct
->         struct loongson_nand_op op =3D {};
->         int i, ret;
->         union {
-> -               char ids[5];
-> +               char ids[6];
->                 struct {
->                         int idl;
-> -                       char idh;
-> +                       u16 idh;
->                 };
->         } nand_id;
->
-> @@ -469,11 +474,16 @@ static int loongson_nand_read_id_type_exec(struct n=
-and_chip *chip, const struct
->         if (ret)
->                 return ret;
->
-> -       nand_id.idl =3D readl(host->reg_base + LOONGSON_NAND_IDL);
-> -       nand_id.idh =3D readb(host->reg_base + LOONGSON_NAND_IDH_STATUS);
-> +       ret =3D regmap_read_poll_timeout(host->regmap, LOONGSON_NAND_IDL,=
- nand_id.idl, nand_id.idl,
-> +                                      LOONGSON_NAND_READ_ID_SLEEP_US,
-> +                                      LOONGSON_NAND_READ_ID_TIMEOUT_US);
-The last two lines can be merged.
+I am asking to see complete binding with complete DTS in example and
+submitted to SoC maintainer.
 
-Huacai
+I did not comment on drivers. This is not a driver patch.
 
-> +       if (ret)
-> +               return ret;
->
-> -       for (i =3D 0; i < min(sizeof(nand_id.ids), op.orig_len); i++)
-> -               op.buf[i] =3D nand_id.ids[sizeof(nand_id.ids) - 1 - i];
-> +       nand_id.idh =3D readw(host->reg_base + LOONGSON_NAND_IDH_STATUS);
-> +
-> +       for (i =3D 0; i < min(host->data->max_id_cycle, op.orig_len); i++=
-)
-> +               op.buf[i] =3D nand_id.ids[host->data->max_id_cycle - 1 - =
-i];
->
->         return ret;
->  }
-> @@ -676,6 +686,10 @@ static int loongson_nand_controller_init(struct loon=
-gson_nand_host *host)
->         if (IS_ERR(host->regmap))
->                 return dev_err_probe(dev, PTR_ERR(host->regmap), "failed =
-to init regmap\n");
->
-> +       if (host->data->id_cycle_field)
-> +               regmap_update_bits(host->regmap, LOONGSON_NAND_PARAM, hos=
-t->data->id_cycle_field,
-> +                                  host->data->max_id_cycle << __ffs(host=
-->data->id_cycle_field));
-> +
->         chan =3D dma_request_chan(dev, "rxtx");
->         if (IS_ERR(chan))
->                 return dev_err_probe(dev, PTR_ERR(chan), "failed to reque=
-st DMA channel\n");
-> @@ -800,6 +814,7 @@ static void loongson_nand_remove(struct platform_devi=
-ce *pdev)
->  }
->
->  static const struct loongson_nand_data ls1b_nand_data =3D {
-> +       .max_id_cycle =3D 5,
->         .status_field =3D GENMASK(15, 8),
->         .hold_cycle =3D 0x2,
->         .wait_cycle =3D 0xc,
-> @@ -807,6 +822,8 @@ static const struct loongson_nand_data ls1b_nand_data=
- =3D {
->  };
->
->  static const struct loongson_nand_data ls1c_nand_data =3D {
-> +       .max_id_cycle =3D 6,
-> +       .id_cycle_field =3D GENMASK(14, 12),
->         .status_field =3D GENMASK(23, 16),
->         .op_scope_field =3D GENMASK(29, 16),
->         .hold_cycle =3D 0x2,
-> --
-> 2.47.3
->
+> 
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/power/marvell,pxa1908-power.h>
+>>> +
+>>> +    clock-controller@d4282800 {
+>>> +      compatible = "marvell,pxa1908-apmu", "simple-mfd", "syscon";
+>>> +      reg = <0xd4282800 0x400>;
+>>> +      #clock-cells = <1>;
+>>> +
+>>> +      power-controller {
+>>> +        compatible = "marvell,pxa1908-power-controller";
+>>
+>> No address space, so this should be folded into the parent.
+> 
+> By this, do you mean that the clock driver registers the power domain
+> controller through devm_mfd_add_devices()?
+
+
+There are multiple ways this is being solved but NONE of them are
+binding ways. You again bring driver into bindings discussion.
+
+
+Best regards,
+Krzysztof
 
