@@ -1,94 +1,67 @@
-Return-Path: <devicetree+bounces-203245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FDB1B20857
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:07:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA06B20886
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:14:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCC2A3A4C77
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:07:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F8707AC48A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423772D374B;
-	Mon, 11 Aug 2025 12:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E762D375B;
+	Mon, 11 Aug 2025 12:14:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EXRTV7GV"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fY0pHNYS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5122D323D;
-	Mon, 11 Aug 2025 12:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7462D3233
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 12:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754914022; cv=none; b=rmkpBilBi/h5yomGkIrbP+zOyOg8F9s6owaJzGhWmjsZiLxTU/ZLd07kfCrtgB+lAJMPYfrqAH/p35jgI5a6W14q/jAolYNVeLmOE5Iofze0xCKjqWWxqxtyDzHzc7+g44kdkU/GBl9d5UNDt3vS7GnOqBtZYnrGj7Z6C4asx5c=
+	t=1754914444; cv=none; b=a/+r+mWwSqwoVOMcP8ON/YY3odeCPqXKq2DcU0YtHAz+UJ97MKV9DfTnEaE60obFU5ITOud5XGlUcMdJPkr2jwmmlXX87KG39qmjjAzMf7YIRkHyl/dLUE60+ft3DrO5klTNBoXNlrMRPpToM6dUygdpj4t4twPsnG/DAyfJJa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754914022; c=relaxed/simple;
-	bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
+	s=arc-20240116; t=1754914444; c=relaxed/simple;
+	bh=amponW7DJgmlj4XAt5exzzEGz1Qd4pt2+zsXs6yVGyQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YJ32AVp7FOixOR+ml2gFJMxMYrVeDKxJ6Dci+tj1DR/1dBhkjO9Ow/1Ye+M72PPAKCVKIXTEvN7Xlt3/GLeWrufXN9ZMT74f2MrwhbugeE6uLxbmoj4+FxuVC9lCM2+mIcCOIvDHc7MSGz94nUA+TUDwxwdBUlJ2tg5rMQ/VSR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EXRTV7GV; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-332612dc0d1so32770061fa.1;
-        Mon, 11 Aug 2025 05:07:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754914018; x=1755518818; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
-        b=EXRTV7GVed1KLNZU1dGB0GE0Uf2FAi3KoQP6LsCEeTPrOw8AtEcQRIRy29p0Mib53T
-         sq86xuexa7r29M9zdvUVLhMzsrLcFpxNT/PPAyoT0AdvMSYDeliwz/ZySm+Y3IOgfTD4
-         kdebPFRN+5J2fmRpNMyjNOydfm8b3+Z7vn7/3+fQAFNSPWrQ7L0qzIy/d1m4vPfd3l7O
-         eS+sg0sjb1r2uxY1PeIueSySoQBNby5pJnKl+eHNiyDSczSMoB7j8s/in1Hbc9BIxmhM
-         uVS8dur3FnY/+mDlaNwczUqL/tSqyKg7/Q6FpD1j5dSb3TO+Vpe3HPZllHUrJUzdiJaB
-         EHIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754914018; x=1755518818;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7XkeTVeR7AUVclSQxB89lgWFvzEFYt+AP7RBVupiRSs=;
-        b=ZhkJXIMcFhXNg9ptyTkr8BP8p8LNnHtauM3mkUDposMAlIF4fXc2Hmhpg5Sm5/nr/6
-         WkXj/yjBGZ6PPVTHg619USCviFAxugLNb/IJjD18rww4SjGKy5FW73pvPY2OLbNAP8/5
-         26HlGPA0f1Y+r+x47Obd09woM9WqRbph/uZRMBuJt6E8QDwQj+NGxdSbSpjx+kjgvP1e
-         w7i4QIUyzAr8GK1S+Bx7xWKgBBGKRoZ5VFv2eXijj9ZVAXt1HwKMzezh/PSbt0g3IQXr
-         YJ2hks234+i45pmsC6VRbLg3eQrBsCzvgOp4w6ZvotoYs9HS1EipCOK6TO8LQ9i2chkM
-         RscA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqK1cAsG/mkKuom9EI6YvF0KgQMpnPriCVjzDqDcNni03iJsJNb3UFxG+WAT+04LbzwlOiCvx5lqf2@vger.kernel.org, AJvYcCUuXaEmMTwwdX4xpD5xOaWTItgq2Yjmz26LqasFkHsgL2zhGFRzSR7OxmAgE1l6eB5yMliZDfb4bbsLP1ah@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv92teTJmGaS6H+MM4h3ZpTDd9sPeDAE9w73AKlLIlahynFGTo
-	yVt/lT0Jd2aNBGhknE0Ubx9zVnFitEHKz4GLmWd3ZI8ffP4NkdHY1Y8X
-X-Gm-Gg: ASbGncthCARHCLmPdVxl9y2StcBtd8+mm5iLUsD88n6rUzwFE6mx9WhUW7K12jMQI8V
-	qWev7aAc9+DNqe5s526Uxp669jbGnsKsgR1+HJa1+EBWc71Z+ljzjVCMee05AuTnV/IFMJmxTJ1
-	z60ylYRSVMWPBv9Y/gflu5zww7fh3TFfx66hT9ROpHpIiPnVfgCkuvC1sG7mn5T33gRaaXJfE9F
-	0lu3BUiNFEUwMoko+jC581VQ4nAiLscwFbMgbDTFwEq87wfa4xwmkLILoW8X3lswfKMmNxKSIML
-	NwP1QRxaMocJ/7d3b16nGF3pVSU2QN6m9J4JxM12wiU+OhHzaMGAXxzdLY6greYsl8mfqn2kMA1
-	XKc36C16ssnocODlynVis81bIVbk0T371amvLiN8l1rkvEm8dzMvIyHghBMMKkPyq
-X-Google-Smtp-Source: AGHT+IE/GuxIoYIqqBjeZWYH/UUn6opwNIUilcCy9C1u/SwFZxJoBETzQorqokFMCXPJ/42zsdhbAg==
-X-Received: by 2002:a2e:a007:0:b0:32e:525:5141 with SMTP id 38308e7fff4ca-333a2191a95mr20143711fa.16.1754914018203;
-        Mon, 11 Aug 2025 05:06:58 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-333bab6a92bsm9580081fa.45.2025.08.11.05.06.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 05:06:57 -0700 (PDT)
-Date: Mon, 11 Aug 2025 14:06:55 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=S2+C3qDZz8KwUOPLf6Bw4iJEhOw3F9C0bx1PVbRtf8hhhvxSKu4W2aaHzCsPXt46pFawqU9tPfUrcuBdiJ0XhtVn9u+BxUYN+vgYwi5ukeYmdKgtNhnyh+QhLKgZU828VLTOzacz8m32qPxeqq6DU6a/EF/ufA4AgZnK+9THF6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fY0pHNYS; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=TRxN
+	csCzqBQF4V1FzxDJHehigkCbHGb5hQfKzzkDwZ4=; b=fY0pHNYSxCGP8nuB4tKB
+	nSOD1Y7afKB6S/SkX5mP7fkz1otFJczFHetIcP8Q+PZLWuzw997bwiYN9Ol09282
+	igGg806Tj+pV9A1IeHHnJ1OwIORyCX3sgxD+B29wXZTFvXHHiHQRShqev5illj0L
+	usk5SvYqtXsuA1v8F9bL7XAwSeneZi4CB6mWkpsxR90zWyqgZohxkjgfu4AGeBXK
+	HblSY+Hbtdd7Z8PjjTtX4m7r+/YMWo9RUGsXb/OVqj7o3o9KxuObEBrIQlFre9t7
+	/jN0FPX9w5d7HVyb73RfRVELaFl39JZ8xlrTWueGYVaOUJc2KT3kfBZhFhPgSyP6
+	4A==
+Received: (qmail 2790037 invoked from network); 11 Aug 2025 14:13:51 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Aug 2025 14:13:51 +0200
+X-UD-Smtp-Session: l3s3148p1@2Z5D2xU8iNBtKLEk
+Date: Mon, 11 Aug 2025 14:13:50 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] drm/format-helper: introduce
- drm_fb_xrgb8888_to_gray2()
-Message-ID: <aJnc36ojqSb3-Ti2@gmail.com>
-References: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
- <20250721-st7571-format-v2-5-159f4134098c@gmail.com>
- <87y0sh947w.fsf@minerva.mail-host-address-is-not-set>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/7] i2c: qcom-cci: Add msm8953 compatible
+Message-ID: <aJnefpETGJm_cuRY@shikoro>
+References: <20250810-msm8953-cci-v1-0-e83f104cabfc@lucaweiss.eu>
+ <20250810-msm8953-cci-v1-2-e83f104cabfc@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,50 +69,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NeiL4LulPAn3q9/h"
+	protocol="application/pgp-signature"; boundary="9dxlZBEI2nsTtP8Z"
 Content-Disposition: inline
-In-Reply-To: <87y0sh947w.fsf@minerva.mail-host-address-is-not-set>
+In-Reply-To: <20250810-msm8953-cci-v1-2-e83f104cabfc@lucaweiss.eu>
 
 
---NeiL4LulPAn3q9/h
+--9dxlZBEI2nsTtP8Z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 21, 2025 at 01:24:19PM +0200, Javier Martinez Canillas wrote:
-> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
->=20
-> > Convert XRGB8888 to 2bit grayscale.
-> >
-> > It uses drm_fb_xrgb8888_to_gray8() to convert the pixels to gray8 as an
-> > intermediate step before converting to gray2.
-> >
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
->=20
-> I would like Thomas to review it too, but for me the change looks good.
+On Sun, Aug 10, 2025 at 05:37:53PM +0200, Luca Weiss wrote:
+> Add a config for the v1.2.5 CCI found on msm8953 which has different
 
-A friendly ping to Thomas.
+Given the above version number...
 
---NeiL4LulPAn3q9/h
-Content-Type: application/pgp-signature; name=signature.asc
+>  static const struct of_device_id cci_dt_match[] = {
+>  	{ .compatible = "qcom,msm8226-cci", .data = &cci_v1_data},
+> +	{ .compatible = "qcom,msm8953-cci", .data = &cci_msm8953_data},
+
+... why don't we use it here to stay consistent? cci_v1_2_5_data?
+
+>  	{ .compatible = "qcom,msm8974-cci", .data = &cci_v1_5_data},
+>  	{ .compatible = "qcom,msm8996-cci", .data = &cci_v2_data},
+
+--9dxlZBEI2nsTtP8Z
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmiZ3NoACgkQiIBOb1ld
-UjJOqA/9EFOMhbu0wbyYAVNPEb2bgZnVC50sjd0XuH36BRN6gOkc8bi4LvPwhcqt
-8V52Ql7zUgXLREU/YsWHPHvPyz0l4lcGkAhyAcJK1rHjbttG7QeCbZIYfVB0P4kq
-f9bzMPMz6rQ77GkGlGvSTYuWn5DtqIFP908ldJPF9pzz7GKH2GsIIpUz5uxPWpsQ
-FQndGwLyX/NXf3dayJs+GQATHIV1M8RSCAxpAzUkaLrB2caXWi5lE49ycMtpq2AL
-IG7bloPDUuq9oiX/i2h/CaqP9m9x28iSiKpsqTJyHnP755INqiHbnFCwMyqs5PpF
-Nnx/x9gpYacu1LQ8EZm49cASVQPrDpgdZ0mzbwaWzSR9LzcjTqwDyvyFpbxkuPj8
-oKJsdG8Q5SetI7p/fZeth9cd5EINmG3NQTgL2mDFfxdPl1L3Y7KWhNaSo1g3oXRQ
-HEfqkRoiDtkq+b8W+/VgfAuzYpwW+In/GzGbFGD7+ma5TbiO7yiimnSHPW0ZIXyr
-bhmubETE8d08OjoKPBZjWsGkSzO+1np5ugqVmxZZdcBC/9oUuagz6JLResG7NuqQ
-Ie/ZDBC6Np/ZW262DMDfk0cFNaM6I6IYtdIBhiss34UxbpTsYCzetUnoDk9wgi5l
-2a4kfjLmwQjQDyfxO46DJ9N6a/KUCAWm7Elzv1lbvWfRp27BNAI=
-=cZqy
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmiZ3noACgkQFA3kzBSg
+KbaAaBAArCu6nCG7A/KOAzgEA5qfKFQScxh7zN9wR66HVKX+n7OAazuXMA/9OPR7
+D66/DgdxzPgB7AeK2GOUtfWKttYdtVpQjks6PGEFCkDBzwsWcqyubsB/wLLJvWkP
+B7Zd/aj906kU+unp+yGUl6WCWBNaoreaRblkxC5Du1GPIK1qfPXkCymo0cniTyCI
+lhIj4SQCqsz42rXcUxMTLr3JGbsxCmc3fhD4IhzueAU17+2mm03xFEfSSUtGA2YB
+JaeL4trNM0WIWpM8WmeVucQOLkj2Kslb4sz8H3eXBpFZHXdNl+uNlllwHMIG4OX5
+2mqZzvnkkzXMwsNWwQ+d4FayHfvxSkCNxlFZhld3DyOqTO3fZpQbkZJ3cZWXcudo
+G8l6bv2yHI90ecIt4TZ6W8kcQHIZ0cDNdoUZAf3B8aNwgxn+M2kHMKbypVoDZMD+
+LW+gbzkv0I8Nfpevb9l0hgxC7v5U6awDCAy64afLsQhKwVcw0yDyAZAI73maIRNj
+FwpSzz/txwcXMH1tpqt4s5OcckiPKD/DSf9rGaPnjIuh6nJdE5R/TrlpVrjAUqAz
+pAp+xYFQEfvzdzi0dmJkfCADMLt0Rr2HaaTXXEB6th65pXdB5gkF1AqmCcF0Pl4z
+M1m4PZTYK/2DVgYwv5bfgiEUrtVHn5ZQNuBbkBew104+sr137vs=
+=YyXL
 -----END PGP SIGNATURE-----
 
---NeiL4LulPAn3q9/h--
+--9dxlZBEI2nsTtP8Z--
 
