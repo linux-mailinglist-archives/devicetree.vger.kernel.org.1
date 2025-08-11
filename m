@@ -1,110 +1,173 @@
-Return-Path: <devicetree+bounces-203260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3172B209A4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:08:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BFBB209C1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:12:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EBC442677A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:08:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0493218A6D1E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79EE32DAFA0;
-	Mon, 11 Aug 2025 13:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6122DA77A;
+	Mon, 11 Aug 2025 13:11:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPRtyiMn"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="ikcc/73y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EC82D97BB;
-	Mon, 11 Aug 2025 13:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCDB2DD5E0
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 13:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754917701; cv=none; b=gUkFdMkdOxc23saMM9ngwWR2KmEZgxBcIVFLZHKAvLNtzlmLEHpCVHc9vWT1CiVTQa3IhEsESORC/ZbAJDqN101Hoga+kG4erxFQJZqOHhatMM74+G8Jyhb5aXRr3H2pfWL72MWk7oGp3441Nxatbz+yjfEEmtpCUJLa1J13Q2Y=
+	t=1754917876; cv=none; b=YrD0NxLO6j73fqy+9UdUwPlww2ShVTjvW9bzkJeM+/JriL7guj9lBmgtb0BFlQ7HcVMZzpm9/m2ijNvm8T8Kprmve8ywlbi/sJmopY5dlm9WzsbcKdtguAX/rkbO7KO06xLyRHmBn+TiAfKm6G8HcYy3c2ZbglWiEW/BT/87QRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754917701; c=relaxed/simple;
-	bh=/d1KfM733xo3R+3/FrFqcjdaajI0/o+yoPMVuCUOk6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ClUzCgmmaiOG87XOcWNnxrBWN0OpQAVHMAL4JPA7kOgRllRXqklUIykTfy4L4+FauF7RJ8/TkZBpxBaNjUbaCUMlmYfIJPP+X+igCcmPZCjfnWt72+GzY7zgVnoBu8sN7WnVd8so1eA9Klnlf2CQP5hTqZPRrrvHskH4HRQRFFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPRtyiMn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 634DEC4CEED;
-	Mon, 11 Aug 2025 13:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754917700;
-	bh=/d1KfM733xo3R+3/FrFqcjdaajI0/o+yoPMVuCUOk6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GPRtyiMn+3F/Jo9S3Zc3bMjLlAPmm6JKZq9yO9a5IHU3W5CJn/fZ5m4o+Ys9UJpqv
-	 CsVa8g3eBqX3KxEbeB7aDeVHM3xWRHnnC2knCTcCJ24rA7k7WzShKoGFV7l/9Cwz4r
-	 Oif5brJ6Oq2MhvsFHT/RWM8223Jo5Bh+z2YqDgvMIJm7wijPaDEdCiK+tu4YjEXN7m
-	 Cv8e40ogPmQD+Ec7U0BS2CQ/Sx1AHkqkQ3y+FyiuX1sjRv4uWFMf+PpTkMAaQBaFXS
-	 T+oQFAyqAXpgwyplQGZtKcHfc2D1yzStOSZICf/oOoaI8JLNMKYBjDeeI26/jssK/7
-	 da/IMSUNrZJ+Q==
-Date: Mon, 11 Aug 2025 14:08:16 +0100
-From: Mark Brown <broonie@kernel.org>
-To: jeff_chang@richtek.com
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] regulator: rt5133: Add RT5133 PMIC regulator
- Support
-Message-ID: <421d5c9c-bf2c-40d4-b8da-cbfc19d60ff5@sirena.org.uk>
-References: <20250731031701.2832994-1-jeff_chang@richtek.com>
- <20250731031701.2832994-2-jeff_chang@richtek.com>
+	s=arc-20240116; t=1754917876; c=relaxed/simple;
+	bh=yE8OBW9bYAOuGyoQFj9KdGZ+ZdFLWH39KSV1Pq77KYM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fQUDqk8I/s3DTAXgGobuYFh4vZ+XWXIcPBedXdjNu8P9A/2mUCTu7Z2ZRnUNCR1wMrArpeka8L6NNPpFVCXRdDh4Gb/skhoNbsEfpDCQgsls+DBO5KTwzqOUXM+fpvV7z0toqgUw3Fs7x3GzlmjpStuZ2K+3QhI1QSBx3Ios7lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=ikcc/73y; arc=none smtp.client-ip=212.77.101.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 25722 invoked from network); 11 Aug 2025 15:11:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1754917866; bh=KnzIC1aJsKjtkakaOx7iUoe1ZE5aQxCNyxXlWh7IfTQ=;
+          h=From:To:Cc:Subject;
+          b=ikcc/73yIhh28pvl4yiMflQvjczOKxb0dD74SlshaCboXC1nFawVK2LXJ5l6tp6Kx
+           4hXzu9+Aq5uMstIYZNF5dfyHpTEYtJAb/42hwAU/HLao3h5wXbk7Xw2c8FQbhy6UC0
+           ReoXrvu4Rdo+k5uWZpd3LuoI3yeReJbpcG6rlqzY4J3h6akODi7U0nm7fKDTmysr2Q
+           B3zNO7t69aEUYmedjH7zNMrSn+C0VYx1dMmVVuXUPkIpdURsNzne9siR/KcwKvHqpf
+           LkS3jz/7BPtbMn/WqpxTEOlInvE4gK9zGiIzh1gAkuKGwJk/h9YujHv1CtsT+Rl8/9
+           PKxQDZBqdCeiw==
+Received: from 83.24.148.125.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.148.125])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <wim@linux-watchdog.org>; 11 Aug 2025 15:11:05 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	hauke@hauke-m.de,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH] dt-bindings: watchdog: lantiq,wdt: convert bindings to dtschema
+Date: Mon, 11 Aug 2025 15:10:54 +0200
+Message-ID: <20250811131104.837210-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6Jcc0h44nmsTmYGk"
-Content-Disposition: inline
-In-Reply-To: <20250731031701.2832994-2-jeff_chang@richtek.com>
-X-Cookie: I've Been Moved!
+Content-Transfer-Encoding: 8bit
+X-WP-DKIM-Status: good (id: wp.pl)                                                      
+X-WP-MailID: 80e68a2d6ad57dd231c1b90fa7d6dfd1
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 000000A [kZN0]                               
 
+Convert the Lantiq WDT Watchdog bindings to yaml format.
 
---6Jcc0h44nmsTmYGk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../bindings/watchdog/lantiq,wdt.yaml         | 50 +++++++++++++++++++
+ .../bindings/watchdog/lantiq-wdt.txt          | 24 ---------
+ 2 files changed, 50 insertions(+), 24 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
 
-On Thu, Jul 31, 2025 at 11:15:32AM +0800, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
->=20
-> RT5133 is a highly-integrated chip. It includes 8 LDOs and 3 GPOs that can
-> be used to drive output high/low purpose. The dependency of the GPO block=
- is
-> internally LDO1 Voltage.
+diff --git a/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
+new file mode 100644
+index 000000000000..f1102fff2d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/lantiq,wdt.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/lantiq,wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lantiq WTD watchdog
++
++maintainers:
++  - Hauke Mehrtens <hauke@hauke-m.de>
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - lantiq,falcon-wdt
++          - lantiq,wdt
++          - lantiq,xrx100-wdt
++      - items:
++          - enum:
++              - lantiq,xrx200-wdt
++              - lantiq,xrx300-wdt
++          - const: lantiq,xrx100-wdt
++
++  reg:
++    maxItems: 1
++
++  lantiq,rcu:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the RCU syscon node (required for
++      "lantiq,falcon-wdt" and "lantiq,xrx100-wdt")
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    watchdog@803f0 {
++        compatible = "lantiq,xrx200-wdt", "lantiq,xrx100-wdt";
++        reg = <0x803f0 0x10>;
++
++        lantiq,rcu = <&rcu0>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt b/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
+deleted file mode 100644
+index 18d4d8302702..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/lantiq-wdt.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-Lantiq WTD watchdog binding
+-============================
+-
+-This describes the binding of the Lantiq watchdog driver.
+-
+--------------------------------------------------------------------------------
+-Required properties:
+-- compatible		: Should be one of
+-				"lantiq,wdt"
+-				"lantiq,xrx100-wdt"
+-				"lantiq,xrx200-wdt", "lantiq,xrx100-wdt"
+-				"lantiq,falcon-wdt"
+-- reg			: Address of the watchdog block
+-- lantiq,rcu		: A phandle to the RCU syscon (required for
+-			  "lantiq,falcon-wdt" and "lantiq,xrx100-wdt")
+-
+--------------------------------------------------------------------------------
+-Example for the watchdog on the xRX200 SoCs:
+-		watchdog@803f0 {
+-			compatible = "lantiq,xrx200-wdt", "lantiq,xrx100-wdt";
+-			reg = <0x803f0 0x10>;
+-
+-			lantiq,rcu = <&rcu0>;
+-		};
+-- 
+2.47.2
 
-This breaks an allmodconfig build:
-
-/build/stage/linux/drivers/regulator/rt5133-regulator.c:605:15: error: inco=
-mpati
-ble function pointer types assigning to 'int (*)(struct gpio_chip *, unsign=
-ed in
-t, int)' from 'void (struct gpio_chip *, unsigned int, int)' [-Wincompatibl=
-e-fun
-ction-pointer-types]
-  605 |         priv->gc.set =3D rt5133_gpio_set;
-      |                      ^ ~~~~~~~~~~~~~~~
-1 error generated.
-
---6Jcc0h44nmsTmYGk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiZ6z8ACgkQJNaLcl1U
-h9DNDgf+ONNkMu5C/QmIBqU3avkdCADf9UaCI3COdNjFMnfbqth+im53Y3aMVa7D
-vqYHcuv7smBjrtpSSpxQWo0rStW91PYVSGIqCxl3oSbabebQkfcD+p73LUQzWbJW
-e9rptuu3xK3XCDRCvfTicuWRREJW7UnWf9tqtJcszkOKeL0eFOh1gTnio70KZgle
-t8oSCpsTuV2uCBLa2EbO0NF4j1xLPgJXRTWMObFTUeCBX69eAC7XKyGaKjAk8UTs
-uMrUvcb7PWgP1n/KW/aw5uJay8vaoMIcn0Ffk2xgyeAodVuu1c1oOsqJGZ5RYKOq
-dYlpL6pp7DTTsvN5L7Tph0j6zwKmOQ==
-=cKnQ
------END PGP SIGNATURE-----
-
---6Jcc0h44nmsTmYGk--
 
