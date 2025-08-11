@@ -1,205 +1,134 @@
-Return-Path: <devicetree+bounces-203392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572B9B2116C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:18:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D5AB2124E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C8657A9438
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:16:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFCBA2A2797
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA2652E2F16;
-	Mon, 11 Aug 2025 16:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC1C311C16;
+	Mon, 11 Aug 2025 16:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFWlJLc0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQKZkosJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD7E2E2EF0;
-	Mon, 11 Aug 2025 16:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C15311C0F;
+	Mon, 11 Aug 2025 16:14:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754928796; cv=none; b=mUMyw/EqQ/gZTn+YvoIYaGRlg/1k2J09J4OaU0IFvH1cg4MmAMZmJw0Xt0I1J3yOYdw5JgXG9q2NRkVvaJmuXUw+J6W9Fljqh5pfWzy6BHEXr2F2jv4woJ/npTW3k9+Yqj/8LZ0ZRrKO87E0nR+6aGLgONem2rcJh+GEAsGIsEw=
+	t=1754928854; cv=none; b=lSOUT/9Rrr3D8jyMymr9EFrtZuD1RVfLpNbob9vb/I4t/BapnVWcO1rC+jpbrnOYKq2Nehr0hBR0R1yGVth6v04Tjt6rMYe3jxteqtqETslbjBB6EIVajCNbRnv/UP+BpZGYwbemBmb889YVaEdvN3aBhfMkTdHaJduM1fjFOIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754928796; c=relaxed/simple;
-	bh=OFIAxfCdVqiwI0BnVxFp7HK/cM2fOF129WyqjM+1rZE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MLpm4mdE7zuQXykc/HtQl3O97d3uNmz5M64wk0CMD4hfkT9nIpRWBTYl8TRw0JxeiSXKmvlzoxESLp6rvZHMSpxMueedEkgzR4UN5wDArkh0ldL32XlMfqwctGo9xRjAl3DVoB+xl/qi10X0wgDp0e2lxlRYTz0As9e7cyNBYHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFWlJLc0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 45D28C4CEF9;
-	Mon, 11 Aug 2025 16:13:16 +0000 (UTC)
+	s=arc-20240116; t=1754928854; c=relaxed/simple;
+	bh=zUvFB3N7aRigcs85SVTI8l61IaGOrKzSv0p4/Mkmidc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gXSn9mNWinUWbsDAk0yaJZh64bX3FERr3r6GB+xebM0qhC+1SvySEmOck/VL9ccU5DqKiWPE7Z7HWlB91opstBSeNASqHha4+7nPNAuCeEQwGXoEdtOk1svkLSA3CxUgFYqM/mpRehBd8/RtgRtyqbDubosr3juREuuzFsydFks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQKZkosJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5191C4CEED;
+	Mon, 11 Aug 2025 16:14:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754928796;
-	bh=OFIAxfCdVqiwI0BnVxFp7HK/cM2fOF129WyqjM+1rZE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JFWlJLc0rhHglycTVAytmDXIZDciSyTdToUPpiBkG+yv28BdJFm9GGtPJZ9BQQcWG
-	 T8m6DtisdzHDlIz6fSd3CYKbkxzWoTmCDxdwCUhaKyOiv874n5cYZNiTqiK6Vb23Ke
-	 TteEcdAAE5KtvxaX06mEhA4WIW/ekbMkQtxIPYAvm3qJmr1lEwj5UVs2G57TTOLxA/
-	 scigtsegiWiAykiG6sUdevsW2Z3l4H8fXZSNr0X5vU4j+cIdwy202YhJC4IMj5iNxF
-	 efnNx7zXdOVaFGpaAd4igXUXUv4DJ+8gru7vcxqdY60nZRdFZjeGVowqSh3KXX9+Lj
-	 GravrAJayNMrA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35579CA0ED3;
-	Mon, 11 Aug 2025 16:13:16 +0000 (UTC)
-From: Gregory Fuchedgi via B4 Relay <devnull+gfuchedgi.gmail.com@kernel.org>
-Date: Mon, 11 Aug 2025 09:13:16 -0700
-Subject: [PATCH v2 2/2] dt-bindings: hwmon: update TI TPS23861 bindings
- with per-port schema
+	s=k20201202; t=1754928854;
+	bh=zUvFB3N7aRigcs85SVTI8l61IaGOrKzSv0p4/Mkmidc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DQKZkosJk4fVVmEqzcG9LhpFHnU38nzt9N2S2KsEaamcoz4FpBvVMyt8LUi5F/qyF
+	 C7xYTz7BDI+O+TthuXIlRLj//tWa5hGP/mQFeP3RY1D7BBdE96qz7bPhym6uDrOUfG
+	 h3Ba79ALK1lk/EDrV16kcRHtTzzlxGx2QJbH6zaYuqjiacbN2CCuzlMEOZPVjlRGfc
+	 M8khlsQOvYvwWBPi1+H6wpxtC5VmewhfG7t/evRDD7HJ+nwM7crN9kBVNKZfz4Yc8J
+	 jB1kQGjrrMjle/7cA9taNeHCadeT9XICl+9qzYPkEoH5qxemzLwf25JOMIqRoefNAc
+	 vCl+lOKI+dMkQ==
+Date: Mon, 11 Aug 2025 17:14:08 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Nitin Rawat <quic_nitirawa@quicinc.com>, vkoul@kernel.org,
+	kishon@kernel.org, mani@kernel.org, conor+dt@kernel.org,
+	bvanassche@acm.org, neil.armstrong@linaro.org,
+	dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+	krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH V1 4/4] phy: qcom-qmp-ufs: read max-microamp values from
+ device tree
+Message-ID: <81858c88-151a-46ea-9172-76d3052467e9@sirena.org.uk>
+References: <20250806154340.20122-5-quic_nitirawa@quicinc.com>
+ <f368b6da-1aa3-4b8e-9106-3c29d4ab5c5e@oss.qualcomm.com>
+ <fe2bc07c-8fe9-47fd-bcd7-c2f0ebbd596f@sirena.org.uk>
+ <aed1de56-fafe-4ccc-b542-69400b574def@oss.qualcomm.com>
+ <acf89420-743b-4178-ac05-d4ca492bfee3@sirena.org.uk>
+ <599b8a4b-324a-4543-ba27-0451f05c3dfd@quicinc.com>
+ <3aa82f65-4812-4bf0-9323-96f40824a004@sirena.org.uk>
+ <8c7f8cfc-2090-449e-b6ec-688a0021bac4@oss.qualcomm.com>
+ <14566f49-7f7b-4583-98b7-8a473054f7c3@sirena.org.uk>
+ <kwp3q4r5rzahzro5f6l6ml24vbiutyxokrhjsbtzcb5kvanx5e@elagxv6w5dq7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-hwmon-tps23861-add-class-restrictions-v2-2-ebd122ec5e3b@gmail.com>
-References: <20250811-hwmon-tps23861-add-class-restrictions-v2-0-ebd122ec5e3b@gmail.com>
-In-Reply-To: <20250811-hwmon-tps23861-add-class-restrictions-v2-0-ebd122ec5e3b@gmail.com>
-To: Robert Marko <robert.marko@sartura.hr>, 
- Luka Perkov <luka.perkov@sartura.hr>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Gregory Fuchedgi <gfuchedgi@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754928795; l=3382;
- i=gfuchedgi@gmail.com; s=20250811; h=from:subject:message-id;
- bh=xpxZZVQduuI8ZuEwYXxZY5dWL1ZqA8Vhj1NRk9pc398=;
- b=m5Lxo8KQLpI997ER/UiJ0xI+2VYJHDsJ2jPXs0/xlemcSbFSNwbzrZoWx4dDYFdjq1q4uE6ve
- l3OImKrhu0KA1/5bHCH47MTf4EbQlfBUO1UkgJQg5uzrlwDRuvQmCqp
-X-Developer-Key: i=gfuchedgi@gmail.com; a=ed25519;
- pk=J3o48+1a2mUIebH8K4S3SPuR5bmamUvjlsf8onoIccA=
-X-Endpoint-Received: by B4 Relay for gfuchedgi@gmail.com/20250811 with
- auth_id=484
-X-Original-From: Gregory Fuchedgi <gfuchedgi@gmail.com>
-Reply-To: gfuchedgi@gmail.com
-
-From: Gregory Fuchedgi <gfuchedgi@gmail.com>
-
-Update schema after per-port poe class restrictions and a few other options
-were implemented.
-
-Signed-off-by: Gregory Fuchedgi <gfuchedgi@gmail.com>
----
- .../devicetree/bindings/hwmon/ti,tps23861.yaml     | 86 ++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-index ee7de53e19184d4c3df7564624532306d885f6e4..578f4dad7eab630b218e9e30b23fc611a760d332 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
-@@ -24,12 +24,62 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-   shunt-resistor-micro-ohms:
-     description: The value of current sense resistor in microohms.
-     default: 255000
-     minimum: 250000
-     maximum: 255000
- 
-+  reset-gpios:
-+    description: Optional GPIO for the reset pin.
-+    maxItems: 1
-+
-+  shutdown-gpios:
-+    description: |
-+      Optional GPIO for the shutdown pin. Used to prevent PoE activity before
-+      the driver had a chance to configure the chip.
-+    maxItems: 1
-+
-+  interrupts:
-+    description: |
-+      The interrupt specifier. Only required if PoE class is restricted to less
-+      than class 4 in the device tree.
-+    maxItems: 1
-+
-+patternProperties:
-+  "^port@[0-3]$":
-+    type: object
-+    description: Port specific nodes.
-+    unevaluatedProperties: false
-+    required:
-+      - reg
-+
-+    properties:
-+      reg:
-+        description: Port index.
-+        items:
-+          minimum: 0
-+          maximum: 3
-+
-+      class:
-+        description: The maximum power class a port should accept.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 4
-+
-+      off-by-default:
-+        description: Indicates the port is off by default.
-+        type: boolean
-+
-+      label:
-+        description: Optional port label
-+
- required:
-   - compatible
-   - reg
-@@ -51,3 +101,39 @@ examples:
-             shunt-resistor-micro-ohms = <255000>;
-         };
-     };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        tps23861@28 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            compatible = "ti,tps23861";
-+            reg = <0x28>;
-+            shunt-resistor-micro-ohms = <255000>;
-+            reset-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-+            shutdown-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <14 0>;
-+            label = "my_poe_controller";
-+            port@0 {
-+                    reg = <0>;
-+                    class = <2>; // Max PoE class allowed.
-+                    off-by-default;
-+                    label = "myport";
-+            };
-+            port@1 {
-+                    reg = <1>;
-+                    status = "disabled";
-+            };
-+            port@2 {
-+                    reg = <2>;
-+                    status = "disabled";
-+            };
-+            port@3 {
-+                    reg = <3>;
-+                    status = "disabled";
-+            };
-+        };
-+    };
-
--- 
-2.43.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="RYB+8S+psHX1nRNn"
+Content-Disposition: inline
+In-Reply-To: <kwp3q4r5rzahzro5f6l6ml24vbiutyxokrhjsbtzcb5kvanx5e@elagxv6w5dq7>
+X-Cookie: Preserve the old, but know the new.
 
 
+--RYB+8S+psHX1nRNn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Aug 11, 2025 at 10:50:27AM -0500, Bjorn Andersson wrote:
+> On Thu, Aug 07, 2025 at 08:09:56PM +0100, Mark Brown wrote:
+> > On Thu, Aug 07, 2025 at 07:43:15PM +0200, Konrad Dybcio wrote:
+
+> > > I was never able to get a reliable source for those numbers myselfe
+> > > either.. At least some of them are prooooobably? chosen based on the
+> > > used regulator type, to ensure it's always in HPM..
+
+> > That's what set_mode() is for.  Like I say it's becoming less and less
+> > relevant though.
+
+> set_mode() just applies the mode to the regulator_dev, so in cases where
+> you have multiple consumers of a regulator_dev things would break.
+
+> Further, there are numerous cases where we have multiple consumers each
+> needing a "low" mode, but their combined load requires a "high" mode.
+
+> set_load() and its aggregation of the inputs deals with both of these
+> issues.
+
+That sort of active mode management is not the suggestion above that all
+this stuff is just intended to force the regulator to always be in high
+power mode.  If that's the goal then like I say just use set_mode() and
+directly express it.
+
+> Whether mode setting is becoming less relevant in our hardware, that I
+> don't have the definitive answer to.
+
+I rather get the impression that nobody understands what any of this
+stuff is actually trying to accomplish in these systems and is just
+copying things around from older code or BSPs, I'm not entirely
+convinced it's actually doing anything useful in modern systems.
+
+--RYB+8S+psHX1nRNn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmiaFs8ACgkQJNaLcl1U
+h9BxhQf/UJqZKs8mo12KlYBhGyWFco3u7lVCgt4l+vj3fCKJh/itUOLOKH88rJHY
+5bo974wYeOZIoR+rasvIWrlL4l6TD8GZJUKXrnwczYVD/V2saf5pDUdxIZN+QuwZ
+QZFAj8tK1iE5JorOYirLzAG4Y/VHpFK7PTXljI5DWeSzZsvxTtUqCPbxUyEtIwWi
+0TIbFBeEmU4Z6mZLO6DFcNmXJFajAQO3NVQQyQwnmqGm593+8OZpdSggKN/SrCO+
+1PTy9oucOf7K6cAM5SJEjT1ozMuCT5deSq+2C5SL+QxfoMtRjnD9rgGUoufst9KK
+vKK5kKDcrWDg+TRAFfl2FpHWzvB3HA==
+=y1Fm
+-----END PGP SIGNATURE-----
+
+--RYB+8S+psHX1nRNn--
 
