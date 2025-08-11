@@ -1,148 +1,354 @@
-Return-Path: <devicetree+bounces-203404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4AFB2129C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:55:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE32AB212B9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 19:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46BB07AE414
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:53:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBC1C19077B3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1F429BDB9;
-	Mon, 11 Aug 2025 16:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E5B2D320B;
+	Mon, 11 Aug 2025 17:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fjKkVDbE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KrOYpOsK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DAE1A9F9D;
-	Mon, 11 Aug 2025 16:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD52C8F6F;
+	Mon, 11 Aug 2025 17:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754931294; cv=none; b=ANZ5XYu2ABxEzghqKeVGXyzcxODRqMxcFXNGR5emh/4G0Riyw3uPpLAPHSLtaVZZr2IwgI2tJnw/Yn/0eeY8BUmH9qBP7BXJn4E0mQcWx+IddmoF1ZjVKRLzG7lrof9uj4ENDNpqUkf6bEwnnzy+co78KHf7lFUzre8jfSaNrbE=
+	t=1754931699; cv=none; b=DTxRm0FJACTAMdQx+KGIxp0Rd7teXbZoZ5oDYkDuWlVmvS0OF0b//oM0rzrDfZWbn8eVpATbu/gkDcyBMWVh9ybvpZjBHh76bfUg/eZUUaX46uKrPKSAQpxATIyDDI7c1n9pkwB/NjecPjNNchz0x+Sd19TSs6XjhnncwHoLR8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754931294; c=relaxed/simple;
-	bh=ZGt+p08oHdbLkYuiWh/Tz5VD7GjaLJTOK0rVBJdfwtc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sOWFaFplYtCEikhpALKDeQ2oE7IQJ97g8l141crsJp2aCp9pERUn/Y1rI69Ihy4N+VImADQK483SrPOaXbwXlX8ZEDeOGqaO4PGTcrFvxY4k4ry30IMAfOXRb0Fuz6RlX6VO+zqJ+eS0SqutXLlR2AdURMHgWQkybXUZUePOH24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fjKkVDbE; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57BFBxwo006181;
-	Mon, 11 Aug 2025 16:54:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SL6BgA+WcBvuMIY77uel/uKLCF3VnOVk87TVduJNN+U=; b=fjKkVDbE1ULONjbc
-	0jQTZMSwO8J08gY1XEUTl+AhwmUgjiVUmhyikv+AzbWZTOcA81ekCbkRy4tgO5v9
-	7RXW+tFxuE9Ucq0DbQTrsWK0Py5ylM6zXwjSCbjMG2jhnI+04v5Vd36KGq7zwUSl
-	OUXOBeRCLCEi2OeeRBiXvA15vq+ZUPnrp+b4zAjvmREDoWnm/krzDLQF9A0p/Km7
-	yLbY1QYOISfdWiHHIrnddnLPEDkvTsAiegKaI9Ii8426fiieDSFF1lq+Q1Cd6WHD
-	89/391ry4attgdxBMtGoUESleq3jpOvMO9FPdsHmazWu9UArp/zGpHBCX/R31nf2
-	gxmFQg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fjxb89hb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 16:54:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57BGscTb020043
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 16:54:38 GMT
-Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 11 Aug
- 2025 09:54:33 -0700
-Message-ID: <9ff100b4-a3a5-4364-8172-1ccb5566e50c@quicinc.com>
-Date: Mon, 11 Aug 2025 22:24:29 +0530
+	s=arc-20240116; t=1754931699; c=relaxed/simple;
+	bh=LePcmCErxHN4FFi59vKJF0tF7rM/rgGts4fW0PbL+lk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=RuDS97RYfzy4TgFOCMMPcZRShQgOrDJHiWy/0LsenXKfpFPw5Rnubq3JS/pfIQ0ShkKdp5XCF2a/M8CGt5D9o3HKastBlackN/zVu4GK/KOhbWTqBM33ty+A9aImGxQ8abTm9/s1IHdF2ffDPdS1drXjmUvzzPUZgnnrXYmdU98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KrOYpOsK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF55C4CEED;
+	Mon, 11 Aug 2025 17:01:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754931698;
+	bh=LePcmCErxHN4FFi59vKJF0tF7rM/rgGts4fW0PbL+lk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=KrOYpOsKk4RofS3aXaPeeTSiS9SE5w6LWXPJbtNMM1vdVX9g71Mbl2EKAnD1JC5LS
+	 R7utac8/cWEqsP/O1I/lDYW2uzSnBHs1wO/12SDR4S9QQut25C3ZBZHe8pxCQwpJSj
+	 SYpgFVEcP95wblgyCiQWRxQEHKMSOiISVgZCVYPRyCE/iQlroIEV74JljhJ+YiL+eJ
+	 Vs3wvFIQHmtYqJwyU4nWSF2kaZbQy9FB/d+bybLVPukICBjIPHOYtlAcz9MPs0bNWj
+	 mkuDhcU5+CXpjyY/4DD4ZrO1H0WUT0H7n41E9nAOfjZD7C93pQav4UHO93GV7cjKgs
+	 RGMEdY7G+zSqQ==
+Date: Mon, 11 Aug 2025 12:01:36 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Eric Auger <eauger@redhat.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Stuart Yoder <stuyoder@gmail.com>,
+	Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+	Nipun Gupta <nipun.gupta@amd.com>,
+	Nikhil Agarwal <nikhil.agarwal@amd.com>,
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jerry Snitselaar <jsnitsel@redhat.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
+	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	Charan Teja Kalla <quic_charante@quicinc.com>,
+	regressions@leemhuis.info
+Subject: Re: [PATCH v2 4/4] iommu: Get DT/ACPI parsing into the proper probe
+ path
+Message-ID: <20250811170136.GA144788@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] arm64: dts: qcom: sm8650: Enable MCQ support for
- UFS controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, <mani@kernel.org>,
-        <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>, <agross@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250811143139.16422-1-quic_rdwivedi@quicinc.com>
- <20250811143139.16422-3-quic_rdwivedi@quicinc.com>
- <67aedb2a-3ccc-4440-b2ff-b3dbedf5e25c@kernel.org>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <67aedb2a-3ccc-4440-b2ff-b3dbedf5e25c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=G6EcE8k5 c=1 sm=1 tr=0 ts=689a204f cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=L1kT8yVtU14eprXNtIQA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA5NyBTYWx0ZWRfX63E7qFo4pURL
- q/+l4evnNvfVwVp7Gc/xaPVwue8tg3JGq5OlaMqMwYkt+XaNmg2+dlYlP2KMuMja0uDqpL1X4Kg
- Z0xxYGpGiM5pAMVvS5QKazjtaTX0GZVNibNDmVnftaWeRG8vXg/JL7qqvSvsMJXk8wUqTjFsGis
- RS8Q3hljUwXFaYyrMtonuSQPLU4CK7DwZgYD5o5n3vXmoSO0CJfNIUgo2pInt24aadBWLQSkhge
- 2TN13uIkBWVEG1PH/Exm+gcZyDiemIHLX43+JdkZ6s2S4FMgnJTU9E4Vzzpre101CL1XQEoR8ys
- jCN3q+we7cmpyuL82OFhOl6tuz1PseuYqB9RQIz4xa4BK1BvDdmCMUw6ciINS6Ax2nboQbCss+z
- 4qiCw0xz
-X-Proofpoint-ORIG-GUID: u45KLYEv_FIjwBI41TTw4vwFCYGAOrdP
-X-Proofpoint-GUID: u45KLYEv_FIjwBI41TTw4vwFCYGAOrdP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_03,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
- malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110097
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc77e5ab-daab-4ae4-9e5a-0329b5324730@redhat.com>
 
+[+cc regressions]
 
-
-On 11-Aug-25 8:13 PM, Krzysztof Kozlowski wrote:
-> On 11/08/2025 16:31, Ram Kumar Dwivedi wrote:
->> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
->> on the Qualcomm SM8650 platform by updating the device tree node. This
->> includes adding new register region for MCQ and specifying the MSI parent
->> required for MCQ operation.
->>
->> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 ++++++-
->>  1 file changed, 6 insertions(+), 1 deletion(-)
+On Mon, Aug 11, 2025 at 06:44:01PM +0200, Eric Auger wrote:
+> On 2/28/25 4:46 PM, Robin Murphy wrote:
+> > In hindsight, there were some crucial subtleties overlooked when moving
+> > {of,acpi}_dma_configure() to driver probe time to allow waiting for
+> > IOMMU drivers with -EPROBE_DEFER, and these have become an
+> > ever-increasing source of problems. The IOMMU API has some fundamental
+> > assumptions that iommu_probe_device() is called for every device added
+> > to the system, in the order in which they are added. Calling it in a
+> > random order or not at all dependent on driver binding leads to
+> > malformed groups, a potential lack of isolation for devices with no
+> > driver, and all manner of unexpected concurrency and race conditions.
+> > We've attempted to mitigate the latter with point-fix bodges like
+> > iommu_probe_device_lock, but it's a losing battle and the time has come
+> > to bite the bullet and address the true source of the problem instead.
+> > 
+> > The crux of the matter is that the firmware parsing actually serves two
+> > distinct purposes; one is identifying the IOMMU instance associated with
+> > a device so we can check its availability, the second is actually
+> > telling that instance about the relevant firmware-provided data for the
+> > device. However the latter also depends on the former, and at the time
+> > there was no good place to defer and retry that separately from the
+> > availability check we also wanted for client driver probe.
+> > 
+> > Nowadays, though, we have a proper notion of multiple IOMMU instances in
+> > the core API itself, and each one gets a chance to probe its own devices
+> > upon registration, so we can finally make that work as intended for
+> > DT/IORT/VIOT platforms too. All we need is for iommu_probe_device() to
+> > be able to run the iommu_fwspec machinery currently buried deep in the
+> > wrong end of {of,acpi}_dma_configure(). Luckily it turns out to be
+> > surprisingly straightforward to bootstrap this transformation by pretty
+> > much just calling the same path twice. At client driver probe time,
+> > dev->driver is obviously set; conversely at device_add(), or a
+> > subsequent bus_iommu_probe(), any device waiting for an IOMMU really
+> > should *not* have a driver already, so we can use that as a condition to
+> > disambiguate the two cases, and avoid recursing back into the IOMMU core
+> > at the wrong times.
+> > 
+> > Obviously this isn't the nicest thing, but for now it gives us a
+> > functional baseline to then unpick the layers in between without many
+> > more awkward cross-subsystem patches. There are some minor side-effects
+> > like dma_range_map potentially being created earlier, and some debug
+> > prints being repeated, but these aren't significantly detrimental. Let's
+> > make things work first, then deal with making them nice.
+> > 
+> > With the basic flow finally in the right order again, the next step is
+> > probably turning the bus->dma_configure paths inside-out, since all we
+> > really need from bus code is its notion of which device and input ID(s)
+> > to parse the common firmware properties with...
+> > 
+> > Acked-by: Bjorn Helgaas <bhelgaas@google.com> # pci-driver.c
+> > Acked-by: Rob Herring (Arm) <robh@kernel.org> # of/device.c
+> > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > 
-> Way you organize your patchset is confusing. Why DTS is in the middle?
-> It suggests dependency and this would be strong objection from me.
+> This patch seems to break virtio-iommu along with qemu. After applying
+> it we cannot see any iommu group. I don't have any specific warning in
+> dmesg though. Reverting bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into
+> the proper probe path") fixes the issue for me. Added Jerry and
+> jean-Philippe in the loop.
 
-Hi Krzysztof,
+#regzbot introduced: bcb81ac6ae3c ("iommu: Get DT/ACPI parsing into the proper probe path")
 
-My current patch submission order is as follows:
-
-1.DT binding
-2.Device tree
-3.Driver changes
-
-Please let me know if you'd prefer to rearrange the order and place the driver patch in the middle.
-
-
-Regards,
-Ram
+> > v2:
+> >  - Comment bus driver changes for clarity
+> >  - Use dev->iommu as the now-robust replay condition
+> >  - Drop the device_iommu_mapped() checks in the firmware paths as they
+> >    weren't doing much - we can't replace probe_device_lock just yet...
+> >  
+> >  drivers/acpi/arm64/dma.c        |  5 +++++
+> >  drivers/acpi/scan.c             |  7 -------
+> >  drivers/amba/bus.c              |  3 ++-
+> >  drivers/base/platform.c         |  3 ++-
+> >  drivers/bus/fsl-mc/fsl-mc-bus.c |  3 ++-
+> >  drivers/cdx/cdx.c               |  3 ++-
+> >  drivers/iommu/iommu.c           | 24 +++++++++++++++++++++---
+> >  drivers/iommu/of_iommu.c        |  7 ++++++-
+> >  drivers/of/device.c             |  7 ++++++-
+> >  drivers/pci/pci-driver.c        |  3 ++-
+> >  10 files changed, 48 insertions(+), 17 deletions(-)
+> > 
+> > diff --git a/drivers/acpi/arm64/dma.c b/drivers/acpi/arm64/dma.c
+> > index 52b2abf88689..f30f138352b7 100644
+> > --- a/drivers/acpi/arm64/dma.c
+> > +++ b/drivers/acpi/arm64/dma.c
+> > @@ -26,6 +26,11 @@ void acpi_arch_dma_setup(struct device *dev)
+> >  	else
+> >  		end = (1ULL << 32) - 1;
+> >  
+> > +	if (dev->dma_range_map) {
+> > +		dev_dbg(dev, "dma_range_map already set\n");
+> > +		return;
+> > +	}
+> > +
+> >  	ret = acpi_dma_get_range(dev, &map);
+> >  	if (!ret && map) {
+> >  		end = dma_range_map_max(map);
+> > diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> > index 9f4efa8f75a6..fb1fe9f3b1a3 100644
+> > --- a/drivers/acpi/scan.c
+> > +++ b/drivers/acpi/scan.c
+> > @@ -1632,13 +1632,6 @@ static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
+> >  		err = viot_iommu_configure(dev);
+> >  	mutex_unlock(&iommu_probe_device_lock);
+> >  
+> > -	/*
+> > -	 * If we have reason to believe the IOMMU driver missed the initial
+> > -	 * iommu_probe_device() call for dev, replay it to get things in order.
+> > -	 */
+> > -	if (!err && dev->bus)
+> > -		err = iommu_probe_device(dev);
+> > -
+> >  	return err;
+> >  }
+> >  
+> > diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+> > index 8ef259b4d037..71482d639a6d 100644
+> > --- a/drivers/amba/bus.c
+> > +++ b/drivers/amba/bus.c
+> > @@ -364,7 +364,8 @@ static int amba_dma_configure(struct device *dev)
+> >  		ret = acpi_dma_configure(dev, attr);
+> >  	}
+> >  
+> > -	if (!ret && !drv->driver_managed_dma) {
+> > +	/* @drv may not be valid when we're called from the IOMMU layer */
+> > +	if (!ret && dev->driver && !drv->driver_managed_dma) {
+> >  		ret = iommu_device_use_default_domain(dev);
+> >  		if (ret)
+> >  			arch_teardown_dma_ops(dev);
+> > diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> > index 6f2a33722c52..1813cfd0c4bd 100644
+> > --- a/drivers/base/platform.c
+> > +++ b/drivers/base/platform.c
+> > @@ -1451,7 +1451,8 @@ static int platform_dma_configure(struct device *dev)
+> >  		attr = acpi_get_dma_attr(to_acpi_device_node(fwnode));
+> >  		ret = acpi_dma_configure(dev, attr);
+> >  	}
+> > -	if (ret || drv->driver_managed_dma)
+> > +	/* @drv may not be valid when we're called from the IOMMU layer */
+> > +	if (ret || !dev->driver || drv->driver_managed_dma)
+> >  		return ret;
+> >  
+> >  	ret = iommu_device_use_default_domain(dev);
+> > diff --git a/drivers/bus/fsl-mc/fsl-mc-bus.c b/drivers/bus/fsl-mc/fsl-mc-bus.c
+> > index d1f3d327ddd1..a8be8cf246fb 100644
+> > --- a/drivers/bus/fsl-mc/fsl-mc-bus.c
+> > +++ b/drivers/bus/fsl-mc/fsl-mc-bus.c
+> > @@ -153,7 +153,8 @@ static int fsl_mc_dma_configure(struct device *dev)
+> >  	else
+> >  		ret = acpi_dma_configure_id(dev, DEV_DMA_COHERENT, &input_id);
+> >  
+> > -	if (!ret && !mc_drv->driver_managed_dma) {
+> > +	/* @mc_drv may not be valid when we're called from the IOMMU layer */
+> > +	if (!ret && dev->driver && !mc_drv->driver_managed_dma) {
+> >  		ret = iommu_device_use_default_domain(dev);
+> >  		if (ret)
+> >  			arch_teardown_dma_ops(dev);
+> > diff --git a/drivers/cdx/cdx.c b/drivers/cdx/cdx.c
+> > index c573ed2ee71a..780fb0c4adba 100644
+> > --- a/drivers/cdx/cdx.c
+> > +++ b/drivers/cdx/cdx.c
+> > @@ -360,7 +360,8 @@ static int cdx_dma_configure(struct device *dev)
+> >  		return ret;
+> >  	}
+> >  
+> > -	if (!ret && !cdx_drv->driver_managed_dma) {
+> > +	/* @cdx_drv may not be valid when we're called from the IOMMU layer */
+> > +	if (!ret && dev->driver && !cdx_drv->driver_managed_dma) {
+> >  		ret = iommu_device_use_default_domain(dev);
+> >  		if (ret)
+> >  			arch_teardown_dma_ops(dev);
+> > diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
+> > index a3b45b84f42b..1cec7074367a 100644
+> > --- a/drivers/iommu/iommu.c
+> > +++ b/drivers/iommu/iommu.c
+> > @@ -414,9 +414,21 @@ static int iommu_init_device(struct device *dev)
+> >  	if (!dev_iommu_get(dev))
+> >  		return -ENOMEM;
+> >  	/*
+> > -	 * For FDT-based systems and ACPI IORT/VIOT, drivers register IOMMU
+> > -	 * instances with non-NULL fwnodes, and client devices should have been
+> > -	 * identified with a fwspec by this point. Otherwise, we can currently
+> > +	 * For FDT-based systems and ACPI IORT/VIOT, the common firmware parsing
+> > +	 * is buried in the bus dma_configure path. Properly unpicking that is
+> > +	 * still a big job, so for now just invoke the whole thing. The device
+> > +	 * already having a driver bound means dma_configure has already run and
+> > +	 * either found no IOMMU to wait for, or we're in its replay call right
+> > +	 * now, so either way there's no point calling it again.
+> > +	 */
+> > +	if (!dev->driver && dev->bus->dma_configure) {
+> > +		mutex_unlock(&iommu_probe_device_lock);
+> > +		dev->bus->dma_configure(dev);
+> > +		mutex_lock(&iommu_probe_device_lock);
+> > +	}
+> > +	/*
+> > +	 * At this point, relevant devices either now have a fwspec which will
+> > +	 * match ops registered with a non-NULL fwnode, or we can reasonably
+> >  	 * assume that only one of Intel, AMD, s390, PAMU or legacy SMMUv2 can
+> >  	 * be present, and that any of their registered instances has suitable
+> >  	 * ops for probing, and thus cheekily co-opt the same mechanism.
+> > @@ -426,6 +438,12 @@ static int iommu_init_device(struct device *dev)
+> >  		ret = -ENODEV;
+> >  		goto err_free;
+> >  	}
+> > +	/*
+> > +	 * And if we do now see any replay calls, they would indicate someone
+> > +	 * misusing the dma_configure path outside bus code.
+> > +	 */
+> > +	if (dev->driver)
+> > +		dev_WARN(dev, "late IOMMU probe at driver bind, something fishy here!\n");
+> >  
+> >  	if (!try_module_get(ops->owner)) {
+> >  		ret = -EINVAL;
+> > diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> > index e10a68b5ffde..6b989a62def2 100644
+> > --- a/drivers/iommu/of_iommu.c
+> > +++ b/drivers/iommu/of_iommu.c
+> > @@ -155,7 +155,12 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
+> >  		dev_iommu_free(dev);
+> >  	mutex_unlock(&iommu_probe_device_lock);
+> >  
+> > -	if (!err && dev->bus)
+> > +	/*
+> > +	 * If we're not on the iommu_probe_device() path (as indicated by the
+> > +	 * initial dev->iommu) then try to simulate it. This should no longer
+> > +	 * happen unless of_dma_configure() is being misused outside bus code.
+> > +	 */
+> > +	if (!err && dev->bus && !dev_iommu_present)
+> >  		err = iommu_probe_device(dev);
+> >  
+> >  	if (err && err != -EPROBE_DEFER)
+> > diff --git a/drivers/of/device.c b/drivers/of/device.c
+> > index edf3be197265..5053e5d532cc 100644
+> > --- a/drivers/of/device.c
+> > +++ b/drivers/of/device.c
+> > @@ -99,6 +99,11 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+> >  	bool coherent, set_map = false;
+> >  	int ret;
+> >  
+> > +	if (dev->dma_range_map) {
+> > +		dev_dbg(dev, "dma_range_map already set\n");
+> > +		goto skip_map;
+> > +	}
+> > +
+> >  	if (np == dev->of_node)
+> >  		bus_np = __of_get_dma_parent(np);
+> >  	else
+> > @@ -119,7 +124,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
+> >  		end = dma_range_map_max(map);
+> >  		set_map = true;
+> >  	}
+> > -
+> > +skip_map:
+> >  	/*
+> >  	 * If @dev is expected to be DMA-capable then the bus code that created
+> >  	 * it should have initialised its dma_mask pointer by this point. For
+> > diff --git a/drivers/pci/pci-driver.c b/drivers/pci/pci-driver.c
+> > index f57ea36d125d..4468b7327cab 100644
+> > --- a/drivers/pci/pci-driver.c
+> > +++ b/drivers/pci/pci-driver.c
+> > @@ -1653,7 +1653,8 @@ static int pci_dma_configure(struct device *dev)
+> >  
+> >  	pci_put_host_bridge_device(bridge);
+> >  
+> > -	if (!ret && !driver->driver_managed_dma) {
+> > +	/* @driver may not be valid when we're called from the IOMMU layer */
+> > +	if (!ret && dev->driver && !driver->driver_managed_dma) {
+> >  		ret = iommu_device_use_default_domain(dev);
+> >  		if (ret)
+> >  			arch_teardown_dma_ops(dev);
 > 
-> Please read carefully writing bindings, submitting patches in DT and SoC
-> maintainer profile.
-> 
-> Best regards,
-> Krzysztof
-
 
