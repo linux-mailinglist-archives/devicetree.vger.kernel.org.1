@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-203097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C752B2005C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:32:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F26B2006F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:36:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 715B0189A5F8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:33:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86CC716C7DC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 009FD2D97BF;
-	Mon, 11 Aug 2025 07:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92682D979E;
+	Mon, 11 Aug 2025 07:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvFQckAv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LoXj+qtp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F312405E1;
-	Mon, 11 Aug 2025 07:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6AF2D9490;
+	Mon, 11 Aug 2025 07:36:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754897565; cv=none; b=JuPlvFwXvkANgdHHDbO/bdn1y1EMh1l8Ys5pcaPKfJhFBzCJosxWFeuz2Dsf6UiFDcAUELRwBDXIqrfWwKlmgkMHW7/W3uY9aFIbk3sKWiFQWdLYZ6mhCgCWRJK6L9lCGNCrU6hLnYB76v1eEfcFld+BSt//qpiDSewHNsWZ3MM=
+	t=1754897793; cv=none; b=AyYAuOXE2dC16uTmsHSCNn/p+iiqSpVwSsn8afWums4IVx8asgAlHDXgHvS4POsFfJpdMyRAG8SUz95E4E9mPWNbMSC8OEM9HKTeS3l7aAOCyRBt2uOEJkw3u3Iz+6VHx9spXbJMdncUNUzSPw0kHk76Db0s2z0oLqDaEN7XvBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754897565; c=relaxed/simple;
-	bh=AoVPEwayh/Oz3pK2Pi3/6ljDqWNPYnk8dyLRcATD1bs=;
+	s=arc-20240116; t=1754897793; c=relaxed/simple;
+	bh=FTwdbvuHr+oybtA3gNLW9qkwWv1MZMxUxE1XDWX3zZg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L2/5gYWZwBH+saIxYdoCbqCGUGtOwN7xYfDeM9RqaIucW23D+C2+jTy2O/4aKmeQg2TXPwwPr5zlGQzaBW/665eRj7e2d1nKzx7e7Jh8YFD2zl11giCxlFsnM6t0l7+9AsglYZlf3uyC8ESxYZY0Jvc8zu9sKN75UfcBJ0B5sME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvFQckAv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87832C4CEF1;
-	Mon, 11 Aug 2025 07:32:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oTPQqoWO9DDgENF9RZMljwH3Mqp5+4/0SJ0+QbY+bGOW5SyL5ITGuOO9kVk0Lp9nwkO26Kua1nxIc662Hk1tktF0Jon26hYYQP7At2EQaKnL2I1MLm/YGaGz1IJBSRDPKXK3FU6E52ffI4Yen3iky/WOM/ITjeId1Y2fw/ybCvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LoXj+qtp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87602C4CEED;
+	Mon, 11 Aug 2025 07:36:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754897565;
-	bh=AoVPEwayh/Oz3pK2Pi3/6ljDqWNPYnk8dyLRcATD1bs=;
+	s=k20201202; t=1754897792;
+	bh=FTwdbvuHr+oybtA3gNLW9qkwWv1MZMxUxE1XDWX3zZg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hvFQckAv0CrfwELpmtbws5Fns1ZMdnfZKkJlLqGdokVFDnYoVhw5JNUx/bbDyeo1f
-	 9zwKVqQxhzmCJxpvmVECBf+jFo3xlrkN8JOWHnVm690r91XZmWD++5CfsWmaVNyPHr
-	 VVdX/kFOTto0OccWfgwSQuJq63nNWmkTHdW269tcY2DzUAkrzA3h9Z9HriwSGzXax8
-	 uMKz4KLi1fcYHpGNze9Rf2eo/2qCtNGiX+6zLjWxC0TZw3Dx0ZNy6K3Cn813oxifgZ
-	 aYwnsuD/X4oXAQiLp7vEgoEU3Kv83POfopJ5mLMPd5JwYDggOFlerFCnHpJp+ZufDW
-	 +tA9SXvUU7Bqg==
-Message-ID: <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
-Date: Mon, 11 Aug 2025 09:32:39 +0200
+	b=LoXj+qtplu3dfcr/AV7V5bVpHmNEn+3ixgYdntJWHySBMuHorVVZbJ8cnuY6y9KKF
+	 jlLFwWZ/T12dVEGOBec76WQGk4bDMFsCS4YkqqPSuHlFxb4irybKnRO58Ub1B4SkeZ
+	 qIdr7p0dPko0oZwh5PvXNTg0NPAeC8262duAnOO9pqCwsYGYtOePM+KDxMYwnmlgcb
+	 wMDK6qgtdNKPkoHPQoZcr9RA+XOzHQZQWQg7BGWl3X6qs7ZlATcSPhas0bf8B/iFEk
+	 Z85SMY1suLZ+tqqvELCughcvBtmiqfaZsIW+fJYf/CrkHpu2vKEYa0iJxj1YRYaNtf
+	 +rpySYDmhUAPg==
+Message-ID: <7883de94-425e-4679-822f-af9fc263ae9c@kernel.org>
+Date: Mon, 11 Aug 2025 09:36:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
- Document the Loongson-2K0500 NAND controller
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
- <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
- loongarch@lists.linux.dev, devicetree@vger.kernel.org,
- linux-mtd@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
-References: <cover.1754890670.git.zhoubinbin@loongson.cn>
- <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+Subject: Re: [PATCH v2] arm64: dts: st: Add memory-region-names property for
+ stm32mp257f-ev1
+To: Patrice Chotard <patrice.chotard@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250811-upstream_fix_dts_omm-v2-1-00ff55076bd5@foss.st.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +105,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20250811-upstream_fix_dts_omm-v2-1-00ff55076bd5@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/08/2025 08:03, Binbin Zhou wrote:
-> Add new compatible for the Loongson-2K NAND controller used for
-> Loongson-2K0500 SoC.
+On 11/08/2025 09:01, Patrice Chotard wrote:
+> In order to set the AMCR register, which configures the
+> memory-region split between ospi1 and ospi2, we need to
+> identify the ospi instance.
 > 
-> Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
+> By using memory-region-names, it allows to identify the
+> ospi instance this memory-region belongs to.
+> 
+> Fixes: cad2492de91c ("arm64: dts: st: Add SPI NOR flash support on stm32mp257f-ev1 board")
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+> Changes in v2:
+> - Update commit message.
+> - Use correct memory-region-names value.
+> - Remove "Cc: <stable@vger.kernel.org>" tag as the fixed patch is not part of a LTS.
 
-
-Why do you add quotes?
+How LTS is relevant here?
 
 Best regards,
 Krzysztof
