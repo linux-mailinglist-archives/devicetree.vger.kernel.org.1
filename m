@@ -1,178 +1,157 @@
-Return-Path: <devicetree+bounces-203272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB03B20A91
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:42:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43A58B20AA3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:47:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D187A7B1495
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:40:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4419118C06D6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F942DEA74;
-	Mon, 11 Aug 2025 13:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434DA202C3A;
+	Mon, 11 Aug 2025 13:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="aEvimXYB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g1JT99KX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCB92DEA65;
-	Mon, 11 Aug 2025 13:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA5371898F8
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 13:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754919684; cv=none; b=UvOiOhkPC7gtlCykVffvv6djb0/KWmHg1WmQt0x5Hs7IUU6l47QXTcd+KcOhMQDGkXdRfnDz+7P1Qu5UK3WAd35jiM7JHrCnaytLNoIwnVpXpsnhD6I6s/C9KpV4IuflRzPD48z/QoGvgn60tOrWjOwFdzoYRmxxWu6FreFAKzY=
+	t=1754920032; cv=none; b=bbcCQ+oIDMKaSbyimNHSDggYXIglIkUfnvIaZeiB00hixfYsMmybuUdv9ja956yR+Gq7uK+mQN39reeg0yw8QDyF3yS15GSskKBIx+bpgyg7rVQW46gG0fpgpy3z/2l4d85c1xE/qxLytoFJ2nmPWeP7sreBwFHgv6Rp3UHrHAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754919684; c=relaxed/simple;
-	bh=EwKVSE+xlhWtppMsIC0wFkFKY+Ek8JZOdL9HhV7w8qQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GckKHJozwF7prupTMLpDQFG9Kr2AmcAlYfVG75MWQ9RwSSd0v56PfEB0/8QG3/oViXsr8sW29is15wzA5rZYDXPA+ZUIwFTDBuet99iE7X+TWnd+NWMmhPBA3Zyr+4QOeb9K3MexTjmHP2sS0BPChl+Pnyhb8mHCwn1CAD5WfWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=aEvimXYB; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1754919651;
-	bh=+0D/xtSyclY9YeXodV2ESPW/VNymBxUPSTcmaRsZFQk=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=aEvimXYBDVAIGQEN0suPUyWajG4qfbA8gdJE38xMKDyvL4iFKDVLO6tJcNWNl00Nv
-	 L6pI44rcHWpjWWhbRqfPqN7+6l7tLb7WJ5KDA79BwqsYsEH7F68lHzcWZLZ6u2MlZg
-	 X+QTxn3/7tGfXTdTg1PvzaRh7uDX5eO+m9J6vQ7o=
-X-QQ-mid: zesmtpip3t1754919646t750cf849
-X-QQ-Originating-IP: 1I4WHGqpVJrS9nwcYnSEwg1mh0FiNErlU+HTTj7t5Cs=
-Received: from = ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 11 Aug 2025 21:40:44 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 5142891819712798634
-EX-QQ-RecipientCnt: 16
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Mon, 11 Aug 2025 21:40:34 +0800
-Subject: [PATCH v5 2/2] clk: spacemit: fix sspax_clk
+	s=arc-20240116; t=1754920032; c=relaxed/simple;
+	bh=qNq2IA4q9eVODe9Ak5qcJ7g5u90O2A2dHTjVJv6bwQc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OUu3mvBb2IYsEpgkVC+ncO6hjOeTT2JPTPfmI7zbQ3JZwixkLUd/zFJyV+4hFeglaODY77nGzRRLvZkWSDvEKJfiYZVI/AxMEt/qXLSxFJJG/WY7Gtn+ZcmC7PB8BrJyspcSW1WbuQvoveLFdJK3bwj52D/UEKqXgr87Zm+e4GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g1JT99KX; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-af99942ba4cso56939166b.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754920027; x=1755524827; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OHmSb6G/GAZ/olIZ2TdPEzaA8vTp4NnJiB8D/HCSvxs=;
+        b=g1JT99KXQdIkkosPwBtaRxPOk3ZuUJgm0kLj08pB+i3t+oc6vF5extqGpT78XxslP2
+         5/AO/oMiqrSwO+ExBS1HtSaoJDPodIKHGgSRACBStJphc9qT+DIxB/eXtxz4J7s94F3N
+         oc5Q4nY8UtNsOOPLmjtbEsSgtME6bxOmOIcuRFdc3V0fpyzpVfHWqMpNR9YZlsxLRIFa
+         f2JtW0UwVOpQYRrzEf8rWnVy2s7JcJj/qQQKGzIhHBOz2vQMwl/STQpxWztiD9kdsNMM
+         h62h7bo4QAVh66gAH5L6wz6FDIMARmQx30xVO2HPvPt3uCOUHWyvXQj/SGDEUy0eQSfY
+         horw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754920027; x=1755524827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OHmSb6G/GAZ/olIZ2TdPEzaA8vTp4NnJiB8D/HCSvxs=;
+        b=Tep0lpY1LRUH11QJQnPiOVOUD42IIocJG5DfL/ChcZYQiNr+SenH3Byj3j6VE8sMG0
+         BSgWESqUuXUoe47+UpngNqURxrUj+wjxowsaeB0iL2yJXQNXuOH/M8pjZariKxRVez2l
+         OlooyOXGI5Ib3snbWenGiyIdDR5GAMOf/WvSkhbILtr3uOG/GcW0vEMyJngq3n8gJo7K
+         5Vqu66FJWPsNkvEmfZ/Ly2TOuwXT/WIg5Lvk5H8r8MVknQMAuzaDXhBcPz8UzLRFo5gS
+         0tpTvp2K0LFNw3DwZg1x3bY55nGlkC1b/cL6Qt+ljPAaRMidqMrv+RGz7186uJjJUDUC
+         L+5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXhpyrZgjgTUpiL4xdPXVM2njUWTIb27SyJ+CkaUqOaRGJSCRCGCo9LtyauhxLip9p3WiSW2VnM9oTE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yytu7bi6jy9LetWhBLkM2FdNpIFlC1JLKwvwpC51DjE3YyGoGlS
+	l9K4jx7IM7jdiusMRIROwYpUoCJ5bId9hqevarOoN1rrhl+hP3XHnB5dcuY9kIK/NN0I1cGCqet
+	mQbeZ
+X-Gm-Gg: ASbGncuibNSiCwRMOE3T89Ynd3/8PUJCXqnqkYniyqv1GB5Vjb03ydJ4xdsZkju91np
+	7GQIukp4bHz8jU44aeUYoHHuHhQ/C3IdoYMxK7EV8GZALkZvriUUJAtBW/ENOF1FoI8csRECxAX
+	kajH+NJNvQeVX7GyH5jawIa45B2E/u6357UcGAYpuy8K+8mvEhAr6SLagrvRed/yUkoYDOaKN9Z
+	Sl1KKOpqVIV3un7e17K8FOHYKSmMxR6lRgSD1T0Ac/dUA/9AcoxxxDWRMgEH1o9Fzgj/AsACt/9
+	jdWS2UL1aKPN0C36RtVyg+g1bOXzCt5DDiYoDxeJkkk/DfvfCvjNVWdJej5g0fEBfEwxJyXyiU+
+	EXWYBQNFPua+8nbv1qf4qa7Mr0UccPXyLc4n9fx3ueG9m
+X-Google-Smtp-Source: AGHT+IEJUjFlaEGw+VKmxEaPlc20pzXwMVl23SfzDc4bl3GXEwr/gyjG1KZJDIYGj9ntjakD+YU4AQ==
+X-Received: by 2002:a17:907:6ea6:b0:af9:3116:e10d with SMTP id a640c23a62f3a-af9e1d3d697mr348430966b.11.1754920027265;
+        Mon, 11 Aug 2025 06:47:07 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a078a11sm2067500566b.7.2025.08.11.06.47.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 06:47:06 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ninad Palsule <ninad@linux.ibm.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Subject: [PATCH] regulator: dt-bindings: infineon,ir38060: Add maintainer from IBM
+Date: Mon, 11 Aug 2025 15:47:04 +0200
+Message-ID: <20250811134703.161941-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-k1-clk-i2s-v5-2-ebadd06e1e91@linux.spacemit.com>
-References: <20250811-k1-clk-i2s-v5-0-ebadd06e1e91@linux.spacemit.com>
-In-Reply-To: <20250811-k1-clk-i2s-v5-0-ebadd06e1e91@linux.spacemit.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- Inochi Amaoto <inochiama@outlook.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-clk@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
- Yao Zi <ziyao@disroot.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754919637; l=3086;
- i=troy.mitchell@linux.spacemit.com; s=20250712; h=from:subject:message-id;
- bh=EwKVSE+xlhWtppMsIC0wFkFKY+Ek8JZOdL9HhV7w8qQ=;
- b=26/O+mjSBSWiF1/RhGR5NKfnNd1X96Hv85kfc7sUe88X6jtIL1refAZMItUiZxCo6aDVLlSi8
- mDIipJ33GBXBecTM/a5QKi/6ALjLFFRctjm69TMpYQYR2DNm7YZuZgs
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=zhRP1xE0bftrurqSWI+SzcSdJGIZ0BTTY9Id0ESzqlI=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: M3ziZXKDk+iOPR+UgAZS/ckQSVE4v9nl/JPC8zEsfbnTtjMwLHy39RAC
-	pVmDjmw8o3e7md3OP8UmTaqQyjofjBJfSiIEUjOtYadf09egDFtQKqT6aDHu1FPskBVZfq7
-	RZhX6qZVnJn8lzaFFh2GBICXT6JcdKb/sRZyT7JVYRyUExzybUemcfug3AB9aWlVe0vveoU
-	BdaMktQAHEhKQ0TDsokCfE3jNkzbqpx9BU85gU/c8cwX77qp8pGaiBTF5olGnEskwqaoUZk
-	cbd4N23qL3ccCt3rwN4bjdXDMRSkFlpRMVoASQuJiBj9mPhp7tQrAttZ2OgoZQinskpVCSc
-	RHcwRgTF8VAJDpBF6N0Zd6bO5eEBp27lGG6MxgINondghvF8tkRqsrmWKtZSgsNQMe31js0
-	+6bSbSwMrWL38PcJHifjyYFU5hC4y5tXZ9NVN4kv2P7aL53ZNDduOzCmmi8wdhDVEQGhUqY
-	zeTN1ua1gdegaEYP/VkM/WrLECpCI5XMU8XATxPkzfi5eBOI7WWPEFRkrRU23/9oUMh+cNr
-	5aR8noBFFeQp7DLYQKYjfFM2msxKarhgWdQUBMn2gUYbbkBURC1SAiLPIAqwDnFeCIj2a93
-	0sL/iFu2OklYJ+A+oQxnQroTcwyF/nAJtXL/0jcfVj7375z4abcziaZlQqe8kMfblwlMQhh
-	qkwR+gsb8k4+q+0VuPwK+7WkbvS2UeyySISRjyvvaoH7UH4iLVGXEOtSsYWM/Z3v0bbrXQu
-	WktxgQJ/FefgwprTmrbetEe/6CmU+4RvSG3caAmWPFyenJBzaDcy1y/Onl+SVAExhaEz+aj
-	6yZYqX3kh5GJ+2sVsBZoUxfwQ6WYT/9ISY4Mik+TfsAgfpkAYnq4bGvR0BvVoWY2FFKNY7y
-	hkDN+EWNxbwyb3bMgEYDS/ChqD48Gm76kyuowrc9NIuHWMcAF5IoLIo1ScaRGjRoz6kG74s
-	5Zqi4RmiMel8xqWJJTbtmagAgfsX63pgOzdMcU0o0COeta/H2FRaZp3wAxuhnmLYL7md5bj
-	QOOs8UqD5mekwRBNL4DhAGPGC1xcME0p+vef3nO+/e0s7+I/wyMhc8p+irWf08dSfMfdjHc
-	g==
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1622; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=qNq2IA4q9eVODe9Ak5qcJ7g5u90O2A2dHTjVJv6bwQc=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBomfRXHFk0PCv8z8o1gPR9QCVv3QzVxrbS8GBhN
+ XjO5gynC9WJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaJn0VwAKCRDBN2bmhouD
+ 18cND/9Ry3EiTHFXI8RBs1gtx8r3b/kthrBNe9oLKdeBBvcAu4IyOSf08BoMgUDZin0mkuw/qT3
+ yNhJ6gPVIvDcuu2rLCDG5jmpqqK8ZTWKd0RVPhN1tWbhEpHtWIA08ky/jz3ZMhUbQ3jp31Kqdr3
+ m/HzUI2QifZDpZ31kNpfB1sJpZnUmd1bi1i+FD8EE2aMHQnQiszqRl0T7D4HAH+A3XQubfqgxrU
+ AtDTU2ahEf8MjNY6ju7uyvCtBtqDQ9QZ00JcvGv+LZv45bAGMOKC9wPxGsCEfrfoHkVBGpfgO+v
+ YRfnj1Ohe3Tjw20twk0/Hzdn9oqgllylFRWDjfIIspAEX8gmXzlNgP+QSly9vjLUajzypWZjV7n
+ aV2uCpB8FnpaSHEPtdNKjIw4xiPR6DLtgWsVK3h3evHhTqJsBLZ9VMQPMz2AUCyFkEUfF24E+G/
+ YaMNNnyzmQJynuROJKiPtcW8c45UM62PKzasydPdohEIK2xIr1PMBZe/zUPdsysqoL8xnzPW7v5
+ yq44ZGhmeNCaAFOAQe4DpArbFbPMeYyzczslfNSQORahVoTks7d3pKCTO9kMIdXVfjN0m/XusB5
+ Mc/8o7aoj5ldLd6JfbDIfQgvH+lhNa+52yRrg8Un5xnu/AdRgfVO72hrrbvNrXCNdheIGWvD5VQ Rqvc5a7x0dmX5DA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-Hardware Requirement:
+The infineon,ir38060 binding never got maintainer and fake "Not Me"
+entry have been causing dt_binding_check warnings for 1.5 years now:
 
-BIT[3] of this register must be set if need to select i2s_bclk as
-SSPA parent clock, to solve this, introduces a new SSPAx_I2S_BCLK
-clock as the virtual gate clock.
+  regulator/infineon,ir38060.yaml: maintainers:0: 'Not Me.' does not match '@'
 
-Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-Suggested-by: Yao Zi <ziyao@disroot.org>
-Reviewed-by: Haylen Chu <heylenay@4d2.org>
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+The devices are used on few Aspeed-based IBM BMCs, so maybe recent
+contributor to these boards - Ninad Palsule - can help here in the
+maintenance?
+
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- drivers/clk/spacemit/ccu-k1.c | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-index 65e6de030717afa60eefab7bda88f9a13b857650..62cdba516a29f960e15e04642470f55e3d85bfad 100644
---- a/drivers/clk/spacemit/ccu-k1.c
-+++ b/drivers/clk/spacemit/ccu-k1.c
-@@ -247,7 +247,14 @@ CCU_GATE_DEFINE(aib_clk, CCU_PARENT_NAME(vctcxo_24m), APBC_AIB_CLK_RST, BIT(1),
- 
- CCU_GATE_DEFINE(onewire_clk, CCU_PARENT_NAME(vctcxo_24m), APBC_ONEWIRE_CLK_RST, BIT(1), 0);
- 
--static const struct clk_parent_data sspa_parents[] = {
-+/*
-+ * When i2s_bclk is selected as the parent clock of sspa,
-+ * the hardware requires bit3 to be set
-+ */
-+CCU_GATE_DEFINE(sspa0_i2s_bclk, CCU_PARENT_HW(i2s_bclk), APBC_SSPA0_CLK_RST, BIT(3), 0);
-+CCU_GATE_DEFINE(sspa1_i2s_bclk, CCU_PARENT_HW(i2s_bclk), APBC_SSPA1_CLK_RST, BIT(3), 0);
-+
-+static const struct clk_parent_data sspa0_parents[] = {
- 	CCU_PARENT_HW(pll1_d384_6p4),
- 	CCU_PARENT_HW(pll1_d192_12p8),
- 	CCU_PARENT_HW(pll1_d96_25p6),
-@@ -255,10 +262,22 @@ static const struct clk_parent_data sspa_parents[] = {
- 	CCU_PARENT_HW(pll1_d768_3p2),
- 	CCU_PARENT_HW(pll1_d1536_1p6),
- 	CCU_PARENT_HW(pll1_d3072_0p8),
--	CCU_PARENT_HW(i2s_bclk),
-+	CCU_PARENT_HW(sspa0_i2s_bclk),
- };
--CCU_MUX_GATE_DEFINE(sspa0_clk, sspa_parents, APBC_SSPA0_CLK_RST, 4, 3, BIT(1), 0);
--CCU_MUX_GATE_DEFINE(sspa1_clk, sspa_parents, APBC_SSPA1_CLK_RST, 4, 3, BIT(1), 0);
-+CCU_MUX_GATE_DEFINE(sspa0_clk, sspa0_parents, APBC_SSPA0_CLK_RST, 4, 3, BIT(1), 0);
-+
-+static const struct clk_parent_data sspa1_parents[] = {
-+	CCU_PARENT_HW(pll1_d384_6p4),
-+	CCU_PARENT_HW(pll1_d192_12p8),
-+	CCU_PARENT_HW(pll1_d96_25p6),
-+	CCU_PARENT_HW(pll1_d48_51p2),
-+	CCU_PARENT_HW(pll1_d768_3p2),
-+	CCU_PARENT_HW(pll1_d1536_1p6),
-+	CCU_PARENT_HW(pll1_d3072_0p8),
-+	CCU_PARENT_HW(sspa1_i2s_bclk),
-+};
-+CCU_MUX_GATE_DEFINE(sspa1_clk, sspa1_parents, APBC_SSPA1_CLK_RST, 4, 3, BIT(1), 0);
-+
- CCU_GATE_DEFINE(dro_clk, CCU_PARENT_HW(apb_clk), APBC_DRO_CLK_RST, BIT(1), 0);
- CCU_GATE_DEFINE(ir_clk, CCU_PARENT_HW(apb_clk), APBC_IR_CLK_RST, BIT(1), 0);
- CCU_GATE_DEFINE(tsen_clk, CCU_PARENT_HW(apb_clk), APBC_TSEN_CLK_RST, BIT(1), 0);
-@@ -865,6 +884,8 @@ static struct clk_hw *k1_ccu_apbc_hws[] = {
- 	[CLK_SSPA1_BUS]		= &sspa1_bus_clk.common.hw,
- 	[CLK_TSEN_BUS]		= &tsen_bus_clk.common.hw,
- 	[CLK_IPC_AP2AUD_BUS]	= &ipc_ap2aud_bus_clk.common.hw,
-+	[CLK_SSPA0_I2S_BCLK]	= &sspa0_i2s_bclk.common.hw,
-+	[CLK_SSPA1_I2S_BCLK]	= &sspa1_i2s_bclk.common.hw,
- };
- 
- static const struct spacemit_ccu_data k1_ccu_apbc_data = {
+Ninad,
+Can you confirm that you are ok with maintenance?
 
+Alternatively, if there is still not dedicated maintainer for this
+hardware, we should drop it along with the drvier. This will break
+users' setups (e.g. IBM BMC boards), but maybe this will encourage them
+to find someone to maintain this hardware?
+---
+ .../devicetree/bindings/regulator/infineon,ir38060.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+index e6ffbc2a2298..1267b68217bd 100644
+--- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
++++ b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Infineon Buck Regulators with PMBUS interfaces
+ 
+ maintainers:
+-  - Not Me.
++  - Ninad Palsule <ninad@linux.ibm.com>
+ 
+ allOf:
+   - $ref: regulator.yaml#
 -- 
-2.50.1
+2.48.1
 
 
