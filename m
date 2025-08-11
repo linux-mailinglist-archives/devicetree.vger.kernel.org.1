@@ -1,133 +1,155 @@
-Return-Path: <devicetree+bounces-203143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B940B20180
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:15:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67F05B20192
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:19:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E76793A3F7A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:15:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 286FA3A60D9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 259161E834B;
-	Mon, 11 Aug 2025 08:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D12D2DAFA4;
+	Mon, 11 Aug 2025 08:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ikrI2Yux"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qj30TMNv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA0D17DFE7;
-	Mon, 11 Aug 2025 08:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855F626C3B6
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754900144; cv=none; b=DrwrTfxYbZIuiLjbg561ydvUlz04DHFriQaHK45EfWDGPC/UwFzT1cSiO/Fsu5webRDPvlW9KGuchxDuBnhzAMbr8gGa4wp2a26kT9EK95BpkG4gbzOtHi+3AyTF0g+NlTQRTLrxVXx+JJ3vjgzCP57QdSKmUCFRd/K0AitoEsk=
+	t=1754900381; cv=none; b=ooweX6j0wmWSrmDdOT/rfoujPV1x/8nmWv7Ttrpd9B9ECdMgItMm9jdU3OrCIv/HchgKzlzJtM4vjb1iJWVnf2Gf7LkOKQ231WAd9G/kJ4j4TNAooQCoIDA5Xxo0mKcwRdkl2Nzrt9WEbNjXE14OwePRGVuhcs87GQAPUdJl1Xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754900144; c=relaxed/simple;
-	bh=6l+kIPrtTOld9kfiiJFN90DL8QZo5I1DAmpfABaUThk=;
+	s=arc-20240116; t=1754900381; c=relaxed/simple;
+	bh=XTrg9sh9z/zz/WffhF21Ny6WPfQ0gdSWCd4GZohzIxw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BEPC48758tB2QCJ7fMyzwJ/vkall8MgXzBGkvh+cgrJsjd9GjVZh31CJ6xyeR1I2O8Eh/rOjiOTSwmTRVecItLWn757ULnZMchddfe4z6pB8PJN2nzHO7Jzfbg7d2qigUS1Kck8YEKOcFYkMXw6++JEKxqA84+IP2kfidcmjllY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ikrI2Yux; arc=none smtp.client-ip=209.85.221.50
+	 To:Cc:Content-Type; b=NMjGVuEFXYS+iFElvCARjk6ncQ2KUmRLr9XSjvS84F/g19oES3ddJovD5LWJRGWeOJ/mL959Akk9s/Zpa6yYS79WXL6MBX/fWDml0FKxBsN4A4bXerm5Hg2T3b2IzuDz/fp5CWeBxcH12H4Y1U+XTSXdYEYMBSNd1V3qTIonkYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qj30TMNv; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3b78127c5d1so2558586f8f.3;
-        Mon, 11 Aug 2025 01:15:42 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-af96d097df5so743978966b.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:19:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754900141; x=1755504941; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1754900378; x=1755505178; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2i/21xnbMhiQmAEs/HYi6PR/TYpOSV7Dr+9Icq4dAgg=;
-        b=ikrI2YuxKtY+5lxZQRdHyk057WNt7B52/1D5KNBXZ0758EH4A/UHQ92ukSXKa9rCaS
-         Z+jpjvzwYffRCk3uAdl2ZkQLK2tZkEZpvR658QLAzcpfrJCuGE1+Ka6MrDq8NrWv8FnQ
-         ONCpcSO7sDVFo8RI8udftSxi2BtxOrSydCHky16ujoGLAIFIZomD5K/Zhqqh5vEQS16y
-         P8nKEb2HidTIgTXfKBlcGo9I0FHrT5q7EOYkgQvvyzxzHnZ9K/O3rtmgmQhiiOlTmDeO
-         C3Q/cpfbDetDn6D+f85GLmIk0UgZcWSWtb7DMCPHPx6MNlXWvkdO22tcIt4gnQi/0KEF
-         jy2A==
+        bh=SgbL89+jWcykg4VT77IwFJx/cFqzfg7ANmaGG3REd70=;
+        b=Qj30TMNvk7yU7JEPiC1Qbt6E86btX19GNwTEMd+Hh8gm7qZg05Vi3LMyax5g6PTKTH
+         mM5cliwcbVxPfAPnGuSOlCTPu7wp34/gvxwD9w15vh0GwjJ5vnbUiAuPH5Mub0lPWGQN
+         pm4i/9jK+bmSShdOh24UG+A0qR7wKg7twc18gB8kpFYq7FRV7WBnnWaMj9ZPlURZSkRY
+         adwSYIuHu3D7wxAz5nBonA2z20RkiijCDtrdCh/CvRnaIHE5xjHCsyPtP04PACXyJYkK
+         Y7vgHEbIb1rYdo0w7BGWb+bH9Qa/30etsuzUwU/PsET14yY3xaXxvg2CbvN62p/bO2C3
+         lR5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754900141; x=1755504941;
+        d=1e100.net; s=20230601; t=1754900378; x=1755505178;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2i/21xnbMhiQmAEs/HYi6PR/TYpOSV7Dr+9Icq4dAgg=;
-        b=oqfljDjAdQJ3/bhLPgcDZKBcnVGW/Nc8sqZpNrHp+NhXhXEevNPH3e7JtmSnak90C3
-         JtGV1wz05dc7uHunz4nLUm3GS8Tmer9dpwWI5xh8tiZuaK01NZU8W4CT4frV5oi5BVBu
-         o36DEJQLkEOcoc8v2zzRavhpy/WIcgX8AEHajGhigUzRrsNED8IPXyuJtmC3NqoizW9T
-         8ITdx82I9BAIfG5HyvMwVzp+s1riAsYpF2xw53Wdw9a6Wur1ASxMDPUAnVXcfmxAxYnN
-         IyWDyNftX7CkGiyeeKN9E5tPVm3MvqT0PySkOAbhFprXiDYD4KuoaS0U8X4qUyCQVIdn
-         6g7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVHbwuweInZ/QUsu9gcJIlKP5o9ZkXUouuWXpanVbLmkMYQYqIOUytMHN5n++yA9kDjJuNtkleUv22NH3Em@vger.kernel.org, AJvYcCVwtutzKZYVXnamP5n8O782dciYjlFYTHgaAMTSOODZU3HgT+pdk2+78LR7tHxP/onB3q5/UNPx0uWkpyE=@vger.kernel.org, AJvYcCXr4qlofaC5CoXHkMQtskXmmuGNrgYcAkahGW4JvsDX/e95DT9BTcsB4neO7d/0WM9vBye23VX7o93T@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpbY2R1+dCe/BEjOU7bGRx7PyZh+lZz3VQXdjy7WdMPSXHWtOj
-	dthrOumFZRtQa9hWs17WrRQ5Qz+DGxyg68ojjX6JxOaRhEgyk947UNcqKrOtZZxr0x3FVvn1ney
-	1nzo3hxCbZ1EzOo7wm1T8bpU0KDTnGDPfWfGw
-X-Gm-Gg: ASbGncuWExPa6nUOlWjg6DPMm28ttquIi0dH5scnUMJiTxty/wNaAUGnqslbcjNzD/p
-	RwHhXJJAS2qITuJCwrwGWNuThhIjJ6HlhtZ4t+Y3cw+sYeuck6zVF3bwjnNfQsiDbt6zLfPmO2Q
-	mefEwETEfznZ+v7TXqkTRzRck9FE8kLYd2kFQWSrIxHbE9dldKqKj5tA5NCnChWJgacdb03knz+
-	2DsmqVJ
-X-Google-Smtp-Source: AGHT+IFrXyW3WnoaVgzkRQmm/tTcl+vQfD/WIMcNw/CuErG9CVALCzU+fiaaNb+FMYO9B7wLoNqZwjwCRaQXpj0ZQsw=
-X-Received: by 2002:a5d:5886:0:b0:3a4:fbaf:749e with SMTP id
- ffacd0b85a97d-3b900b50a59mr9026882f8f.49.1754900140728; Mon, 11 Aug 2025
- 01:15:40 -0700 (PDT)
+        bh=SgbL89+jWcykg4VT77IwFJx/cFqzfg7ANmaGG3REd70=;
+        b=bBgUUPTBzCACTRP0T78UmraoFCXKnV8Nhg79h9jX2s6cEJ6/+tAjpaW0/awKan/10s
+         brVs8KLSh7O2Ur4Gd16pigMUj5MKb6efAHmsGRDWIgmSotUJaX3hGYRmYnqyiZEdLtDv
+         4pAT52ro0QCzzUsSMACICzVlin5t4NivNTnN6SF4b6yBv97XK865dAomvxyn9P+vH1IM
+         XSohWSKLzpIAZsJYRIOnzgjfgu/28i+UyWGcXAzvexGgpcrJZDajb828O+IOz9R5aCAI
+         FvDeThJRxtxglHNU9/UaTFrmwRRvQTJ195Ay87eFHENgFg2rcNeP+zOq1CAG0CRq+q9P
+         k6hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWGtaL/MR2Xf8X2nm5UjlPt4RVKgzXF65QIUcLme2NSoeB/50JLuSHxYrmIAPWeO4N4GhhaJNrDbfIa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcLFKceCkKRaxKUtAK3V3+eEcM59oWfp1TH+sylCU9671Dyhnm
+	lTkBYTl5sKATz7x6ZuGS6WM8HhXfs12HyD74//zoSlu5pWqHvKt+7pxKj2wYyurFwPozYbeyQhn
+	+n3vxPN5DH/+PZDhHTT6IFlHOYng9uf8=
+X-Gm-Gg: ASbGncvqVZewo9wjOMzEcEr/RNnWklLujHmE85Ucp6oJcWsGV7mDO17PJeRBM7GhRs/
+	laxw/+9Jnr+R+khhrDTpAJ0Gzn2T0UFd6vRytAZwv+wDsxtIoZW6uwdzl5P2IuuEjccxIiXUxvx
+	lkKcqvJ+2ZsIOYDc5W8QxK+4/MUys0D017SU7ZtLeOwQtYiRULSV25I9zVnNqHsJmxqejogl74g
+	fwI2fJg
+X-Google-Smtp-Source: AGHT+IF8gqpHKUggAz8mRHFtabGXF36B1xtlX4P+D1pU+orCN9564Rlc80C3nmmzBa8cGbzuEi0zdw4YMnyQiNETI6E=
+X-Received: by 2002:a17:907:7f02:b0:ae0:ce59:5952 with SMTP id
+ a640c23a62f3a-af9c65f16ecmr931142066b.60.1754900377495; Mon, 11 Aug 2025
+ 01:19:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250504092324.10802-1-clamor95@gmail.com> <20250504092324.10802-2-clamor95@gmail.com>
- <20250512162439.GA3441216-robh@kernel.org> <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
- <bc98d732-ea41-45bf-a269-f4f691243914@kernel.org>
-In-Reply-To: <bc98d732-ea41-45bf-a269-f4f691243914@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Mon, 11 Aug 2025 11:15:29 +0300
-X-Gm-Features: Ac12FXw8oyL8n94a1kk_DsJMeM6aN-Jl4TbRfbh4fNm_u2ycR7rV5G1SRj1riV8
-Message-ID: <CAPVz0n13OB5fk1TySCP13h7ZotMERCMK=Tp1xTTVgA-qFrJNTw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114+
+References: <cover.1754890670.git.zhoubinbin@loongson.cn> <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+ <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org> <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
+ <20250811-impetuous-civet-of-wind-febe58@kuoka>
+In-Reply-To: <20250811-impetuous-civet-of-wind-febe58@kuoka>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 11 Aug 2025 16:19:24 +0800
+X-Gm-Features: Ac12FXyFB4EVt99-WdzeI01ERu2yfCN8TNLMEhiVAElN4xIXYzFbGw-dcmhbDQ0
+Message-ID: <CAMpQs4J1ThxZqJupm68WmpQpkG2HtkRctk6zDmbszaHUyBm19g@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
+ Document the Loongson-2K0500 NAND controller
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D0=BF=D0=BD, 11 =D1=81=D0=B5=D1=80=D0=BF. 2025=E2=80=AF=D1=80. =D0=BE 11:1=
-1 Krzysztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+Hi Krzysztof:
+
+On Mon, Aug 11, 2025 at 4:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> On 11/08/2025 10:01, Svyatoslav Ryhel wrote:
-> >>> +
-> >>> +  reg:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  interrupts:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clocks:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clock-names:
-> >>> +    items:
-> >>> +      - const: tsec
-> >>
-> >> Drop -names properties if there is only 1.
+> On Mon, Aug 11, 2025 at 03:42:09PM +0800, Binbin Zhou wrote:
+> > Hi Krzysztof:
 > >
-> > This is added to cover existing binding in tegra210 tree
+> > On Mon, Aug 11, 2025 at 3:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> > >
+> > > On 11/08/2025 08:03, Binbin Zhou wrote:
+> > > > Add new compatible for the Loongson-2K NAND controller used for
+> > > > Loongson-2K0500 SoC.
+> > > >
+> > > > Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
+> > >
+> > >
+> > > Why do you add quotes?
+> >
+> > Emm...
+> > Sorry, I didn't notice that.
+> > I reacquired the V1 patchset using =E2=80=9Cb4 am xxx=E2=80=9D to avoid=
+ manually
+> > adding tags. I believe it may be caused by the `b4` command.
 >
-> Existing binding? In what tree? This is mainline, we work only on
-> mainline and that's a new binding, so you cannot use argument that there
-> is broken code using it. Otherwise what stops anyone to push broken code
-> and then claim binding has to look because "existing code has something
-> like that"?
+> Then aren't you using some old b4?
 >
+> I just did it and look:
+>
+>   [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller: Documen=
+t the Loongson-2K0500 NAND controller
+>     + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kerne=
+l.org)
+>     + Link: https://lore.kernel.org/r/588639de591ada408bdaeb0d279c5d62a4b=
+53d61.1753166096.git.zhoubinbin@loongson.cn
+>     + Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-It seems that your words and action do not add up
+Thanks for your reply and testing.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/=
-arm64/boot/dts/nvidia/tegra210.dtsi?h=3Dv6.17-rc1#n181
+I rechecked my b4 repository, and it does need to be updated. It was my mis=
+take.
+I will fix it in the next version.
 
+Thanks again!
+>
+>
+> No quotes in commit msg either.
 >
 > Best regards,
 > Krzysztof
+>
+
+--=20
+Thanks.
+Binbin
 
