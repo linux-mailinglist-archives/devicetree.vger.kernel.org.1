@@ -1,109 +1,135 @@
-Return-Path: <devicetree+bounces-203128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A5A0B2012B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1841FB20134
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:04:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62A3D189E19D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:03:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 402211899B16
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D5C213E90;
-	Mon, 11 Aug 2025 08:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F3E2D979C;
+	Mon, 11 Aug 2025 08:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="UgyIgxe5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IcOiqKQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6391B1EB5E1
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BDE1EB5E1;
+	Mon, 11 Aug 2025 08:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754899379; cv=none; b=WrGlbJfCr/Y9U6SdeS7SV2jzmnznEoabvIWVfjdvHqmORxED3rnRyitWDMAIxHmx+WtvnisfL79Q7c5a+9GtICckpYNVcQdraJY7q1FKFa53i/NBef7fU0bB+jI9zu/PzJRQjU5G1vvKi1UWAZw06tgTOHbo4QZ+LnvkiCRAXnA=
+	t=1754899488; cv=none; b=HzcCOKwwy6Aqy2Sv4hYbnS5BzSdJ/fML340/aXIxi/VX709VyRGSUi0bGQDl9CS5Z0rRpvMKXrSo1rQ+FbY7Mf69XHXOHI+74pQuQZrJHolX65/Nh0M0R1XuiIpj+TKe3esBiUxZ++dIC6T7i2EQRgtIDb2gvBlH8AAtyFBWbnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754899379; c=relaxed/simple;
-	bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uq/9Crr/d56IZeNxwgE0qj5jjtS+SAFWK8+WRWWxQDEPMNW/vOKbT5Lj+EUtu7sOv1splRZvZgY+V4+dC4PcaAretxs4rYsfSuJ+zzS9MYGlUOqsa2gPeY5mfkQZftdgJS2sFAmt00owNxPz3lsXtI1Tkr/i/gFDcNbS26/4Htc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=UgyIgxe5; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3b780bdda21so3309680f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:02:58 -0700 (PDT)
+	s=arc-20240116; t=1754899488; c=relaxed/simple;
+	bh=RfqUbaa9s7JOmh2LfjwsNwwwmm0uXMw9G0+7rubVqf8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d93bEpDMrBf3fmviuqRbYAVKfn5aOuGENdK+R+r4CNGBW6dfghfynEtvhmQokaCKQRWTof3TWAKGOdAYbP5seza/DoTpLVD1Qen2zLIl6pr8Y8Gx6fEyQHorAPHeXB1A8Ne5eE6cQbJN3W1u0N1tPChzpMPkyWxbfOioEZ53LuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IcOiqKQ3; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-af94e75445dso725734466b.0;
+        Mon, 11 Aug 2025 01:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1754899377; x=1755504177; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
-        b=UgyIgxe5Ro6fYRxflU0Ego4guQMhfCEzSrhh6tDPEaJ/DO14bGBDcxzK1v+bTVGFl+
-         tbiMxEaCksHK4YVOdUluwfTA5WWn1+g1AERaS1cKb3pxAasn+C0bwkJPU9fmDQicrcd3
-         VmU1FBnX4Uyri97fP7/vxgPjIH0Q3u9Rb1tR320XdFi2GHxAXRLErICdVuFpBVVfooRR
-         ywysR+LJf0ftKt+WlDl/Gi38R1XYgP1DE2/xXR+Cmj+Pl1EAyBFkrclB3SG9nkFU89xC
-         z/eO2xxIdARlwvcRi5qTUT3enjYGdcGv3soYYJPlYpxbyt7SMYBN+4Cddt8ZJhpeWC/6
-         KfTA==
+        d=gmail.com; s=20230601; t=1754899485; x=1755504285; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y6hrDr1ho+LmcOihDF5/afd2FJMkMgiWJJggRREgOis=;
+        b=IcOiqKQ3hoDD0W9XYGZyoqDUFzu+NqzL0Mk1cO6sVf9F0NR7pU6qvHyIqELyIoZ2gt
+         LR0+fWwbn8bmdz7XfIa5Saj/litrlWtQF2xuRSFcl22bWgsQxlhqOQY1XWB/mNISArK5
+         S2Hwmpb9dZ/caRZdHcT+y90h61J8cJw4QYgn5xOpI3oAef6OBy5sP306cOQpweWOX+7g
+         WPNUzhk4zWWATF5BK9SrRpM7Ewmgq4d3GvlZpMgEVqk8kvzy0nDoH4/KLZo+1vEBjyGP
+         /PsDyAQhaYw+gOM9emvH5GFHjtfNuFhMgKv77Hx28yuApEQSSgQIeRBg0SBc3nal18wA
+         CyqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754899377; x=1755504177;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7reyRBP3UdIht+6RRZkiKQMHmNl6aG2xURu4YxzEKWc=;
-        b=len0dNVrOJJKM8J1yXgwPa0G5LxZYABx0kEx3N1/1Q+Vs9wGF3M7A46FdyMz0iw3W4
-         MLlwmiIpo/BGqqoZYRVkT02j9Cdfe/3o75g/l7xIjngm9D+8YKaglTpMjP8DFrb0TtGF
-         4cB+X2TYwL3qIZJryqIXMBbURKX+0CB60c8Wl0RkdTJ1w8eJtHokypL7UWYnpx+lAnrF
-         kvtt9mkxSkcPN1nfU681wx+9DnrDA8kjEmrAN9AzBa+Z54u6y2/j3CZmKLL2R2zFs58a
-         ckfIuPKFWQJWBNTLtGbaFQfHKLz/mWJGq1UzojKpnYh82Y0hUvvD7+piOaFepYGJTSSt
-         g9zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQbr0kObFdN3SEWt2+CZO4X/WY7Px8fwx/yyxT4GSdnajmrOQtVd5QpdwAIR0nGn5GJc6QkJc/7GHx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzoRnNOSEezR26JUA6GFhuXjfRrAuLcI0IDo6J5V4ckCx2PCWX
-	NheWm0z+fGtlcRufLzzGBiJoZ+w+kNFSKkox0ORdx/dhH2QNadmyJqvGOGR4phc/zCbkjk1wRC7
-	8UeGmH6w+Z2/KFOR/wbQz638zg4rKHKCHQKxcLirF
-X-Gm-Gg: ASbGncsX/V6Qds8kxhhf04YFReOszzeyNpSO5bEi+yOJ1UxRweUc0BnHYoF/WORLAN3
-	XX9lO0aKPTS4o1gK6W+tb+Us8GcUOM4bpvsU3K1nIzfeIfVjjWnOhotSEb2j3GRjS3sorORpnOl
-	mpUGIGNTSTGSHhZK5nO41gw2+mNU3WbI3GJtaengMPCCrjKZ5GP7DCZBitNF9AeVmWxXxNtUpq/
-	PDtsVM=
-X-Google-Smtp-Source: AGHT+IEsu+bZtUYeYy1qxaEMLjKNvZBb3uTm4CG8EO4rTl+OBSEfC36KtsdxhcyXXfpc50vvrKBBnYZqH3HvoakxFc4=
-X-Received: by 2002:a05:6000:40de:b0:3b3:c4b1:a212 with SMTP id
- ffacd0b85a97d-3b900b4713bmr8942645f8f.7.1754899376430; Mon, 11 Aug 2025
- 01:02:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754899485; x=1755504285;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y6hrDr1ho+LmcOihDF5/afd2FJMkMgiWJJggRREgOis=;
+        b=BlRxvVO52+oEcZVvDcrjs2ag0YU4kxWD8+VhiUAKzDhGyvNhtbsRZamVRNigdHmrBV
+         Q6VkGEJoAqQE1/TkUccLRwZIwXHWttZyqASzTauH9ymbI8j4cwwpNDYrZ0aUryzbFxhC
+         IeVJpePPNY1xkCKPglJi8v9Nh8L+KrgDS60Jywlif6hTb3OFQaXp4N1yLDD9+LBIzMWa
+         DKVGizUDRtsjpAqFcibw6uD/6qBQ5PrHY3o6ycvt1c5u5qNNK6n/onew1gtmeWgFrznQ
+         2KalyAcQmTSOFOEe1BF4H6fZqry2gY79NK4NdlubOzoUfRdSTLnNBu73EXrz2k1m8HRH
+         AycA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0VYK8OrBiSn7RoRX7po//6hlOfCSE+Qcj3tE6MMn5Ot8QWER3exE2v3cTzQMRCp72g440ovgfqqSspg4=@vger.kernel.org, AJvYcCW3D6McVMtAO/Yn/LojfkxVdrBWDzsHfeWGpLp+IWcIxTld5rKkxqfugez+L56RKrwgOM4V5Iv9szQX@vger.kernel.org, AJvYcCX/epmKhEaPVfirLx+v7UQ2V06VD/raYhr8uRmlEAgElFrxugHv+FW8ImdHpLDqb52RvU0A13wP1RGMcY0x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9mh3pKFKeEcvUbkYnEv6mlYgUkqQaOXq7dl7x7SoexAYeEQqz
+	zoSt9qukB5WBkDdkXxLSCgBYJe65UF8YkGVslvNGbLDoVolrX8A/JNIC
+X-Gm-Gg: ASbGnctKdVVTEraBD/CZ4QtV2Mf5wMS5mOC+M2uagm4vZeswlc3DzQ+KR9yg0p6x9Mk
+	WYq4QS4ZzONJI26+EQ7+cVWdMtAvHaUQsYhv3HIFvi2SU3pXyKx+RwE7ElvFBDKmYgfgyrQId4W
+	135OYOn7KplnIem4X/ija3Dwd1swVbBBjc7y3aQpC2b9LDBK+wvvY8bTZwI0o+xh7mzw68SiOZn
+	cpBD+Xxix/u9Y7y7+lzmHWqsu6JAQ/QqCDrNf7+llD53NCfjlOstGGVwa4Gx+uz819v5uxGUBgH
+	YKjLl4b+29tKW5r1wBFrmqZocI3m+/iCH4AkfcW445m+USuieWyTULnPvxbkygFINCuqkz0/eoQ
+	sAjOe/71/oiFEWg==
+X-Google-Smtp-Source: AGHT+IEtHXo+fztQkhpk6ZRQbC3R8fp8OUp3I7mzBide/4wx9z/CJVbiAPNZatH1C9egBfNknbVreA==
+X-Received: by 2002:a17:907:3d12:b0:af9:71c2:9fa with SMTP id a640c23a62f3a-af9c63b0ae7mr1181315566b.4.1754899484762;
+        Mon, 11 Aug 2025 01:04:44 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c081sm1956446566b.97.2025.08.11.01.04.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 01:04:44 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5 RESEND] thermal: tegra: add SOCTHERM support for Tegra114
+Date: Mon, 11 Aug 2025 11:04:17 +0300
+Message-ID: <20250811080422.12300-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <175489428990.9320.6825335165759789458-0@git.sr.ht>
-In-Reply-To: <175489428990.9320.6825335165759789458-0@git.sr.ht>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Mon, 11 Aug 2025 10:02:41 +0200
-X-Gm-Features: Ac12FXx9gehz2CxGJpQ6e8qy2Wc5klN9fbM4vuuLbJwT1_XhTbxYB4DdVe_ursc
-Message-ID: <CAH5fLggrXbaOu8D2eFL+UtrNSqbm8H9sfgjDJzVJXMEgjBkffw@mail.gmail.com>
-Subject: Re: [PATCH linux] of: resolves TODO for copy_from_slice
-To: "~_xllx_" <elle@weathered-steel.dev>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
-	Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, rust-for-linux@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 11, 2025 at 8:38=E2=80=AFAM ~_xllx_ <_xllx_@git.sr.ht> wrote:
->
-> From: elle <elle@weathered-steel.dev>
->
-> Replaces the copy loop with `copy_from_slice` which became `const` in
-> stable Rust with version `1.87.0`.
->
-> Authored-by: elle <elle@weathered-steel.dev>
-> Signed-off-by: elle <elle@weathered-steel.dev>
+SOCTHERM is thermal sensor and thermal throttling controller found in Tegra
+SoC starting from Tegra114. Existing Tegra124 setup is mostly compatible
+with Tegra114 and needs only a few slight adjustmets of fuse calibration
+process.
 
-We still support rustc 1.78 and forward.
+---
+Changes in v2:
+- no changes, resend.
+---
 
-Alice
+Svyatoslav Ryhel (5):
+  soc: tegra: fuse: add Tegra114 nvmem cells and fuse lookups
+  dt-bindings: thermal: Document Tegra114 SOCTHERM Thermal Management
+    System
+  thermal: tegra: soctherm-fuse: parametrize configuration further
+  thermal: tegra: add Tegra114 specific SOCTHERM driver
+  ARM: tegra: Add SOCTHERM support on Tegra114
+
+ .../thermal/nvidia,tegra124-soctherm.yaml     |   2 +
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        | 197 ++++++++++++++++
+ drivers/soc/tegra/fuse/fuse-tegra30.c         | 122 ++++++++++
+ drivers/thermal/tegra/Makefile                |   1 +
+ drivers/thermal/tegra/soctherm-fuse.c         |  33 ++-
+ drivers/thermal/tegra/soctherm.c              |   6 +
+ drivers/thermal/tegra/soctherm.h              |  17 +-
+ drivers/thermal/tegra/tegra114-soctherm.c     | 213 ++++++++++++++++++
+ drivers/thermal/tegra/tegra124-soctherm.c     |   8 +
+ drivers/thermal/tegra/tegra132-soctherm.c     |   8 +
+ drivers/thermal/tegra/tegra210-soctherm.c     |   8 +
+ 11 files changed, 604 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/thermal/tegra/tegra114-soctherm.c
+
+-- 
+2.48.1
+
 
