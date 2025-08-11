@@ -1,76 +1,66 @@
-Return-Path: <devicetree+bounces-203120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB90B200E2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:53:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E565B200DE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:53:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9558D178AF7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:53:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8D68189D4CE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914C02DCBE0;
-	Mon, 11 Aug 2025 07:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27BC2D97BC;
+	Mon, 11 Aug 2025 07:52:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ZQ+7Xu1N"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="L4ozjTwy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD7C52DC34D;
-	Mon, 11 Aug 2025 07:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDAB2DBF52
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754898754; cv=none; b=l27u7fsVpVmIaSyhCHeSzsn9EH97hn/30RXsWyfVpc12Cw7t6Z6+wFXxpvSFmyWWJdBM94Wh1vbvliIQC/FLenkSv52/muV5LnUdRWBBNR2MgMdq++BF96eHeYBXsa30y6enjMQNqZ72+RzhCjkzoldnFuvDefo62Nurexlm7BY=
+	t=1754898747; cv=none; b=TojrEzQhfxBf9gCZ/yOEHJgbK8wgao1qGbBEpc6NJzNscg8BuZm1Hasz+z8qbGMQuybPZeprp9N6CkpUvbx01s9k7W/FsiprPGC3+lo6AO+eINJhZbYX9C6HgTc0vmWOrqhVMc3M0dElpDl03Ck1XKTDoJTn6sSsANuD9gWQtGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754898754; c=relaxed/simple;
-	bh=39WBLjsfxKNijYZhYU0A0LkNQJhlQksO1yLsTP+f13w=;
+	s=arc-20240116; t=1754898747; c=relaxed/simple;
+	bh=LPik64T9aT5j/L0YfNApVI/Fufclk4/VeGFxt2AXrlI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nCdetNKs1Bgx8GFsQsOZsgv0EjhEy8FYwjDFaxxHY8+lGNxL8jgKqdgiYJJHejZQLPD73LQrADbmL2puKZ75teIZbdt/W81WutaPFD41T1rsA0qxaYPi9F4hOkeDveVwLVNVtKV+E/UmZyqPbK1o8W5Ul4drvvauTbteCwxScmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ZQ+7Xu1N; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=tD9QO4Yi705JalB9kJ0HSta3rZA5S8uIo1F4JuwyPuacAdCuY9seJ969o1ueW4zcVw3pbB3QXbGZseTbG9CgXdPdHs+pQEvOfx1bYzOhM5FgNkUvgU1TqberpnuD1XqSEdutEczGkHyjO3wNPYJYwLFlMAxqXEw4wT4FTkECQHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=L4ozjTwy; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=ysn3zwyuU6s13DDWolDXQKifp8kTjv/aucfDhO4qCuA=; b=ZQ+7Xu1NFO4Np0TMbQJLOBZv4Y
-	xnCQjOvhFHnFhfa0KQfzC5s9SOJCfnBBro+U+jBNVDqmWly2Ff/eDJBX4yG5Dx4wPkW03boI8ly5/
-	4fZd2GVvNflKNoM75smMHiC1SwZsuehTN4jJLPEnn8gXb4ilemsJ89nYKDpAQzD85/57u+gmIuOXi
-	c54puADCM7vCHqGPDmMGrDCSqfQm0mmY7j5A6NRYjazIGSxq7fbNIbcZHJFQgJe9H7FLSObyqeR+X
-	VovaMjFOpBuTg6dYw0c+ibniv2jq41ldoI1ON9Ujhh3GaghFNq1S4YKPMYKJEviJB0HAOF4fJPjX2
-	3qb0z0MQ==;
+	bh=JAiHq+xguJpa7DgogLPbFgMp/g76RQv1ZbsletpzmXM=; b=L4ozjTwyfMcjPYnRFixEbHH4ir
+	OtDGYzXskLFxRTpqzreCLs54DL9ozxjpg9gYOxs+glSCKvRrcs1ZqsLoMtKToiGM9/Oi72eblV8kJ
+	pYMXRcsBQItns1JNSFHV77FOK5YgbE41UyT59SrLZycFedRpMi1DOoo8o232Laf6IuESpYNHwUiEh
+	nZh2HY0HfwZcWT85YJKjPS7MoiJAgLjUf/j916tNXYbQy2thG2dBMvlDbs2KEKnisCnZBvDPLeaBE
+	WAd3LxFq4zWQnOmZUU5rx8+L6nEObF56UNfsH6jUXG/PjQLuKGNk6+/eCzjY09k2vLx6Zq0OovrL2
+	aHmDC1eQ==;
 Received: from i53875a0c.versanet.de ([83.135.90.12] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1ulNKM-0007Ro-Cb; Mon, 11 Aug 2025 09:52:18 +0200
+	id 1ulNKM-0007Ro-Pc; Mon, 11 Aug 2025 09:52:18 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Alexey Charkov <alchark@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com,
-	linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Ye Zhang <ye.zhang@rock-chips.com>
-Subject: Re: (subset) [PATCH v6 0/7] RK3576 thermal sensor support, including OTP trim adjustments
-Date: Mon, 11 Aug 2025 09:52:04 +0200
-Message-ID: <175489870466.808197.13531794692476437932.b4-ty@sntech.de>
+	Diederik de Haas <didi.debian@cknow.org>,
+	Peter Robinson <pbrobinson@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3399-pinebook-pro
+Date: Mon, 11 Aug 2025 09:52:05 +0200
+Message-ID: <175489870467.808197.16352396043488314840.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
-References: <20250610-rk3576-tsadc-upstream-v6-0-b6e9efbf1015@collabora.com>
+In-Reply-To: <20250730102129.224468-1-pbrobinson@gmail.com>
+References: <20250730102129.224468-1-pbrobinson@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,31 +71,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 10 Jun 2025 14:32:36 +0200, Nicolas Frattaroli wrote:
-> This series adds support for the RK3576's thermal sensor.
+On Wed, 30 Jul 2025 11:21:26 +0100, Peter Robinson wrote:
+> As described in the pinebookpro_v2.1_mainboard_schematic.pdf page 10,
+> he SPI Flash's VCC connector is connected to VCC_3V0 power source.
 > 
-> The sensor has six channels, providing measurements for the package
-> temperature, the temperature of the big cores, the temperature of the
-> little cores, and the GPU, NPU and DDR controller.
+> This fixes the following warning:
 > 
-> In addition to adding support for the sensor itself, the series also
-> adds support for reading thermal trim values out of the device tree.
-> Most of this functionality is not specific to this SoC, but needed to be
-> implemented to make the sensors a little more accurate in order to
-> investigate whether the TRM swapped GPU and DDR or downstream swapped
-> GPU and DDR in terms of channel IDs, as downstream disagrees with what's
-> in the TRM, and the difference is so small and hard to pin down with
-> testing that the constant offset between the two sensors was a little
-> annoying for me to deal with.
+>   spi-nor spi1.0: supply vcc not found, using dummy regulator
 > 
 > [...]
 
 Applied, thanks!
 
-[6/7] arm64: dts: rockchip: Add thermal nodes to RK3576
-      commit: 15e8ba9d8b14ae6de415186622379f5f4dcfd141
-[7/7] arm64: dts: rockchip: Add thermal trim OTP and tsadc nodes
-      commit: a4053badacf3699023527392c947314b074f5e0e
+[1/1] arm64: dts: rockchip: Add vcc-supply to SPI flash on rk3399-pinebook-pro
+      commit: d1f9c497618dece06a00e0b2995ed6b38fafe6b5
 
 Best regards,
 -- 
