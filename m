@@ -1,133 +1,143 @@
-Return-Path: <devicetree+bounces-203059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA7CB1FE90
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:31:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29BC4B1FEE9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ECE0163C8D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 05:31:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3F293B3C65
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7854198E91;
-	Mon, 11 Aug 2025 05:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yFHpeB+u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDF826E6E6;
+	Mon, 11 Aug 2025 06:02:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4275610F2;
-	Mon, 11 Aug 2025 05:30:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2C92571A2
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754890262; cv=none; b=fyqaxwsqyhSqDV9q0i2lVsLdNMzqGhkGv1/XJ5zbSCCFHB48rj2Me7KtxmWgGmJlu1NXUIfc56TnnK8we+PQD/TcFARjd2NaJGG9jSl612mvC7nHmWkVMgQiOLWIxEJqibcYN0p6FlKO6g+oAYdC5kA6QoMVzSooOhB+ruvw93M=
+	t=1754892171; cv=none; b=c+QErLL1+ztTp7c5gYF1vmEYv/H1cDprjSM59C6HhYfad/VO0x1p+iLeBire+f4qJpGL8tFIjNEALsGLX/Rc4EebswlOEuwxBEeofXoQgEWnid86b+EDjf00u6uqecCcScAjFg8mkjln4I9qwkbdGNggXU27pXvVGOqt6Qao9AM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754890262; c=relaxed/simple;
-	bh=P0V2H2NxxF0Ozi8NOvSbx3x81S67gE8h723lHlm1Nws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RKdAy+m8rQ+UZPgfVfaQYKo2w/mp134BNqxXYVL5tonUjZE/0+PPclzQmxKHyssgkxwBKIzICF898YMuN3YmCUb5DphtXTySdqDYX/pJmIYzPJ3zG7LASKDEZ+nH88EjXDSOrEbuIjYwngRjTpmHI9wuQzwgWqx6//2le2d9hak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yFHpeB+u; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57B5UjKe1036119;
-	Mon, 11 Aug 2025 00:30:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1754890245;
-	bh=qGaUrxnPupGN/G94QupN7sqi/0EBTqM+/xSQq20HIj4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=yFHpeB+ucmTh/ltorX1Mz72rh6S2cswshu3GSv3iMBWiypkMidCgpzm+ZToswAwS/
-	 N9XM9eELfg7Mku8oh5m+8XokVnqR66d0lDRWZC5ox939jiCBLIxHGHrDd3ajFMGo+y
-	 8ehi3gMjla23FWoSfBtHCrkVU9nkjxk/TJMgLHgs=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57B5Uj0B2434724
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 11 Aug 2025 00:30:45 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 11
- Aug 2025 00:30:45 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 11 Aug 2025 00:30:45 -0500
-Received: from [10.249.145.16] ([10.249.145.16])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57B5Ueij2636883;
-	Mon, 11 Aug 2025 00:30:41 -0500
-Message-ID: <be073100-31a0-44a9-8837-8c0adaf1c0ff@ti.com>
-Date: Mon, 11 Aug 2025 11:00:39 +0530
+	s=arc-20240116; t=1754892171; c=relaxed/simple;
+	bh=ZFBlkt78UmRm+gXtvrZt5z41fpWRCwXqQVvW8KPeHq4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U4t95TUahqhXNn9imHeS624TGG+ngcceLsVBVP6ZpZKdLCBQHx45xMt0Nb1cK6t0+Tuni6O/oqC63745BzA+mMeiw5VGkuOwAeINcP760KmfQpxMMltxpTyESZBmVKc/qEJOL5ajcednlePAig1d5FLuNEbvHBcpxXcxjAn9uFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.69.45])
+	by gateway (Coremail) with SMTP id _____8CxLGuCh5loRkI+AQ--.52802S3;
+	Mon, 11 Aug 2025 14:02:42 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.69.45])
+	by front1 (Coremail) with SMTP id qMiowJAxE+R8h5loyFRCAA--.51398S2;
+	Mon, 11 Aug 2025 14:02:38 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v2 0/8] mtd: rawnand: loongson: Add Loongson-2K nand controller support
+Date: Mon, 11 Aug 2025 14:02:24 +0800
+Message-ID: <cover.1754890670.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: ti: k3-j722s-main: Add E5010 JPEG Encoder
-To: Brandon Brnich <b-brnich@ti.com>, <linux-kernel@vger.kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Udit
- Kumar <u-kumar1@ti.com>, Darren Etheridge <detheridge@ti.com>
-References: <20250808155555.2632451-1-b-brnich@ti.com>
-Content-Language: en-US
-From: devarsh <devarsht@ti.com>
-In-Reply-To: <20250808155555.2632451-1-b-brnich@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJAxE+R8h5loyFRCAA--.51398S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoWxJr17ZF4fXF47KF4DGryfGrX_yoW8tF4fpa
+	y3u3y3GF1DJF43AFZ09a48Cr1rZFyfJ39rJwsxW348C39xW345XryjyF1rtFWxurWSqryU
+	ZFyfGF48GF4DCFgCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUB2b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q
+	6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
+	vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
+	Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
+	xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0
+	cI8IcVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8V
+	AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E
+	14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUc66wDUUUU
 
-On 08/08/25 21:25, Brandon Brnich wrote:
-> This adds node for E5010 JPEG Encoder which is a stateful JPEG Encoder
-> present in J722s SoC, supporting baseline encoding of semiplanar based
-> YUV420 and YUV422 raw video formats to JPEG encoding, with resolutions
-> supported from 64x64 to 8kx8k.
-> 
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+Hi all:
 
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+This patchset adds support for the Loongson-2K0500/Loongson-2K1000 NAND
+controllers, which are similar to the Loongson-1C NAND controller.
 
-Regards
-Devarsh
-> ---
-> 
-> Changes in v3:
->   - Add TI compatible
->   - Make node name more generic
-> 
-> Changes in v2:
->   - remove invalid clock-names attribute
-> 
->  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> index 5cfa7bf36641..c0a104bc87ad 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
-> @@ -385,6 +385,16 @@ c7x_1: dsp@7e200000 {
->  		ti,sci-proc-ids = <0x31 0xff>;
->  		status = "disabled";
->  	};
-> +
-> +	e5010: jpeg-encoder@fd20000 {
-> +		compatible = "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc";
-> +		reg = <0x00 0xfd20000 0x00 0x100>,
-> +		      <0x00 0xfd20200 0x00 0x200>;
-> +		reg-names = "core","mmu";
-> +		clocks = <&k3_clks 201 0>;
-> +		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
-> +		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
->  };
->  
->  &main_bcdma_csi {
+They support a maximum capacity of 16GB FLASH per chip, with a maximum
+page size of 8KB. The chip supports up to 4 chip selects and 4 RDY signals.
+
+The key difference between the Loongson-2K NAND controllers is that the
+Loongson-2K1000 explicitly configures the DMA controller routing, while
+the Loongson-2K0500 defaults to using APBDMA0.
+
+Summary of the patchset:
+Ptach 1-2: Rename all prefixes from ls1x to loongson
+Patch 3: Add 6-byte NAND ID reading
+Patch 4: Add chip select support
+Patch 5-6: Add Loongson-2K0500 NAND controller support
+Patch 7-8: Add Loongson-2K1000 NAND controller support
+
+Thanks.
+
+-------
+V2:
+Based on linux-mtd/nand/next.
+Patch (5/8):
+  - Add Acked-by tag from Rob, thanks;
+Patch (7/8):
+  - Update reg-names attribute description.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1753166096.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (7):
+  mtd: rawnand: loongson1: Rename the prefix from ls1x to loongson
+  mtd: rawnand: loongson: Rename loongson1 to loongson
+  mtd: rawnand: loongson: Add nand chip select support
+  dt-bindings: mtd: loongson,ls1b-nand-controller: Document the
+    Loongson-2K0500 NAND controller
+  mtd: rawnand: loongson: Add Loongson-2K0500 NAND controller support
+  dt-bindings: mtd: loongson,ls1b-nand-controller: Document the
+    Loongson-2K1000 NAND controller
+  mtd: rawnand: loongson: Add Loongson-2K1000 NAND controller support
+
+Keguang Zhang (1):
+  mtd: rawnand: loongson: Add 6-byte NAND ID reading support
+
+ .../mtd/loongson,ls1b-nand-controller.yaml    |   56 +-
+ MAINTAINERS                                   |    2 +-
+ drivers/mtd/nand/raw/Kconfig                  |    8 +-
+ drivers/mtd/nand/raw/Makefile                 |    2 +-
+ .../mtd/nand/raw/loongson-nand-controller.c   | 1032 +++++++++++++++++
+ .../mtd/nand/raw/loongson1-nand-controller.c  |  836 -------------
+ 6 files changed, 1091 insertions(+), 845 deletions(-)
+ create mode 100644 drivers/mtd/nand/raw/loongson-nand-controller.c
+ delete mode 100644 drivers/mtd/nand/raw/loongson1-nand-controller.c
+
+
+base-commit: fb2fae70e7e985c4acb1ad96110d8b98bb64a87c
+-- 
+2.47.3
 
 
