@@ -1,327 +1,262 @@
-Return-Path: <devicetree+bounces-203075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480FFB1FF74
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:40:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95AFB1FF78
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53FD21893FD1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:40:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 797553AD310
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 06:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80C229C32F;
-	Mon, 11 Aug 2025 06:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4B929E10C;
+	Mon, 11 Aug 2025 06:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZPXDjRmB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AYUHoZPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92A532853E2
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0C91DB154
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754894433; cv=none; b=fm43Jr78gl8r9HzLbV73IRNCyab7SYra3uwmdyNCJishrKJXX20qTFy12xjKGVUtQ5vEkguVE7xAwKz4FEraOaAkBJWiinWLCn+SNF+j4bdvMBaFupQcan+vFTDGTOLDjAkJn2UImZf9Nddr/rHGPHf3MolxWhFHUw7oKvTSSDg=
+	t=1754894595; cv=none; b=YkNBCMcrsx82TQ6VCaw0W4lGTVhR0+pOJVrXJlLDMsP4hZrTOsa0rN0Y/JxDOR6TPBCaPn3o65SYSHU0cp+eQ6WK8jhBjMjzL0ePW4cC8X+6bPSKFhLjFcr8G4ZNlqRms3nnYdTWjTR0NJuKnHYHTqkelCk91f5HxaST7HWywVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754894433; c=relaxed/simple;
-	bh=0JcRQP+H0XHCIo7g0nU6YHzEpVne+Tqnljqq4UaWA7s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iNR3nQxlkD0WBwxZ2ldmcwc+uDmLWQRWA3EAZewXWnxDzqISM5/nbgf+3+3GC3m9LzTCgR+g5Y+qURsa3DIrAEUogmRUtDibDtA2uKgHsa6OpWZgixtO0WJoFVMeDcpovvyYBIIhYus427aXqVC3DJR76hvEivtWoTSvADk93yY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZPXDjRmB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26BE3C4CEF7
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 06:40:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754894433;
-	bh=0JcRQP+H0XHCIo7g0nU6YHzEpVne+Tqnljqq4UaWA7s=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZPXDjRmBsq/laetc/B4p65GaQmEjVFJSgxXW3NK5q5SfBiQanWZnl06FrQF6qy37d
-	 mrVStCVzO8XRFEFPiYIAs7IGF/BhXeXnDc7ypobsNuzEPrz3lh+8/S54IFWX0G8tm7
-	 IFT3Db8KCzU6YUjtawD4urcXJ9j+hQIcxjHnTXdMokHF1adXIqFKGrihwzGjPSK7Sv
-	 yrw0V8LIsUu+lOope1yHeBmAk0oZBBGIQ1gYYHYPMzU4oqjpMeDwaPz67c8XfW9TvO
-	 XBqWTip+7kzMKukjE/mcExzJBlcHVQ6UecWeSrvfN9NDl+Mz+6xQH3bGZzoH9hz3Z5
-	 1hfSORawzTwMA==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-615d1865b2dso5908853a12.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:40:33 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW5bOWv9QDXHN2DkqrGGwfX1u+MSosmoPeYo4hT4Cm1Hg5wU/0WgBzV2n7plRfD1WsL6YVFs8NOcb/o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtEYZ0h9VgvQk1UHkj+n4UjFyAmS5ffHnGI8ta1WcwuiSwmo//
-	IBqK0dXA7Jlf7hgyg/LqQN+xMGG/aQX/zvJ48uRGFaTqH594rKQ+NQz2YPvKXAVFzMo5Gql5Jri
-	SNsbfvlmzt37v5oBFiBCKEg8eqQgI8E4=
-X-Google-Smtp-Source: AGHT+IEgW7LSTwnEcmS/pZpo7s+dLshAsR+7r4uSNqUsc4GKCpc9g2xWeaWQPeLOGzCtSVwpC62mNUqDSjlgmwaVoAI=
-X-Received: by 2002:a50:d482:0:b0:615:78c6:7aed with SMTP id
- 4fb4d7f45d1cf-617e2ed61c6mr6887719a12.32.1754894431666; Sun, 10 Aug 2025
- 23:40:31 -0700 (PDT)
+	s=arc-20240116; t=1754894595; c=relaxed/simple;
+	bh=cEn05/8gtRzmJHod10gCk03EvDC+5ybsS4jnchxKkv8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pEcpE9P2P3NDQGQMzciin7kH+eMBiMgls79HNkgCFtTm6E7psYomU19XpXgwy4QIBn/dm/cHbY/WN71PSgbkg7D9wWNfZUwK3SRTn38MShLsXvWJABqKDOulyOemYhigVca7gRut58kmpEgQGuXN/d8QVOdm/Pzvy2nSy/V6ZM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AYUHoZPf; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af9f6bb2358so2213066b.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Aug 2025 23:43:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754894592; x=1755499392; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GDk12v2vJL34l7+873CbL1ksmxiNCrMWuEVM/GTIuU8=;
+        b=AYUHoZPf0NLt3hhB1QXkgByLG9X5w26eZeFqAxhXV/PYN2B9VzGO8BUaP64nE8O42y
+         Exl7OCrr2L3X0NpproRPdamQqr1RS4VlQkawQyMQW+AjIUg1iMXvQS4FS4SV+ZmjwAg2
+         k8sBZAku65fHb4oJcWI9MR0owwX2mHfuFryfn4aQbV8Dn3svD2JBw/jHyDy7yQ3WCjA1
+         YwsbpFhOQ5NpKrZyIQHaSjXuCgD+eny8dfhimd9MxfXNwB7pap78lNgAWW6ku9U24zut
+         lKSnMmk5H6q7AyIaJZUmz5hyGq0LbGLrUA+yn1QwciALgGnT+jPjO/CnFoE1L2za6h/y
+         90Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754894592; x=1755499392;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GDk12v2vJL34l7+873CbL1ksmxiNCrMWuEVM/GTIuU8=;
+        b=h1oTUCnJtysNPvhTOBG0OOLJCa/YzJv+X9tXNo7g48kmmPiIXEKzGVfiiINpZ7rTuq
+         Rm+gweYkURsF/wXUbabhKOFnUa5OqA5XHG/ErbU0mnK5B5hFMnTigOJsBepOpwJbFnig
+         mlTsi9JUgBeYNVL06BP+h0iSKJQ01jdN3PMgktsmeZRRkz43bFAr9ZkzGtPgv4YURa6J
+         2MO+2JfKFBOO2q3hCosr504Sts0iO1G+hZXfvg0PqMYFfhqWsFz5MrgYID5BWgv0Kve8
+         VDQaFtN2ZqzymhAGImqdadGsg/pIs3yGYH6LmNTo9sdq8PBZiBe2n3GwVlCoGQMup7Me
+         iQrA==
+X-Forwarded-Encrypted: i=1; AJvYcCUP+e46j5CdAwujoWaxUEoCKdQYa4Ao86Pec5Qwcp2cuIVslnMxlycX4ajhiyLdBn/xXpdKtRWxVQNk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZaE9nqqWZmzpBHvUbU7YygP21TNtLTZvKG7VLb/4XiO9pSOo0
+	Mm9bxSHfKmfZH3jDYpGUY1ZinNIFEy3ANe39mYDftBlbS/tKiBiqqUj3VzuVVByhXD4=
+X-Gm-Gg: ASbGncvdiKgV2fJNBvL0FwkY6CSnIL6zhnF8NY2Ji0VVjU3upPwndaab5q1YRmGoBjS
+	+PccDPzKVjMe5nCWL+MrxuT58ycvpcdrRKWC741iEzDmftngTz+sw/CeOz1myyv+Yv1k3gLpqQ6
+	+d7XW6fMVtz+6P3l/OSFv81PpKpoG4yNMXOpopchfVJVfvytqPiORW63dRt0+OI8SYd+H101mMT
+	b02JnP9JKkhX9JCsaX97n7cpMisI8KbJPb55ALpKxYZCUAsNSdzfAzUbLMp2R5A11f5DsZ7WJGy
+	/L3WctE8oEyKvAhp3rSSlmrh5JVbwPOLj1zTIcGX4eGzer0N6TJ1UlswZX+XkpGOmdYsxjaHXA5
+	wyq1WWOvBmGW9Svv78IERVCjwgEvWjlSEoeYkCu2xAdo=
+X-Google-Smtp-Source: AGHT+IGpG5QWBCuxjBn8lkRYjkYkSzvGJ4BaudTpOzokDNqUOytSRhvV4L83yjG40igjSuF63eeWHg==
+X-Received: by 2002:a17:907:7e8e:b0:ae3:5d47:634 with SMTP id a640c23a62f3a-af9e1ceff40mr304544866b.9.1754894591880;
+        Sun, 10 Aug 2025 23:43:11 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0766e2sm1960618866b.27.2025.08.10.23.43.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Aug 2025 23:43:11 -0700 (PDT)
+Message-ID: <d3e028da-20d4-4b6c-92c2-4d594c308716@linaro.org>
+Date: Mon, 11 Aug 2025 08:43:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <d9e92cfdb1ee69d98630286238e08a8df176718a.1754890670.git.zhoubinbin@loongson.cn>
-In-Reply-To: <d9e92cfdb1ee69d98630286238e08a8df176718a.1754890670.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 11 Aug 2025 14:40:19 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H7hB1WU3GyzdcKvWaYuqNsEMMN2=g6gwGcOzU=_Ghd6zw@mail.gmail.com>
-X-Gm-Features: Ac12FXwt0XkTy-Ko4ZZ8RHQJunRpS31QBknq1JMGqumo1cHqVWn5AlD67Ot1tPU
-Message-ID: <CAAhV-H7hB1WU3GyzdcKvWaYuqNsEMMN2=g6gwGcOzU=_Ghd6zw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] mtd: rawnand: loongson: Add nand chip select support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] reset: thead: Scope TH1520 reset driver to VO subsystem
+To: Michal Wilczynski <m.wilczynski@samsung.com>,
+ Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+References: <CGME20250810211419eucas1p173e5fefcfaae437d8b5531d1406ff6a6@eucas1p1.samsung.com>
+ <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi, Binbin,
+On 10/08/2025 23:14, Michal Wilczynski wrote:
+> The reset controller driver for the TH1520 was using the generic
+> compatible string "thead,th1520-reset". However, the current
+> implementation only manages the resets for the Video Output (VO)
+> subsystem.
+> 
+> Using a generic compatible is incorrect as it implies control over all
 
-On Mon, Aug 11, 2025 at 2:03=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> The page address register describes the page address of the starting
-> address for NAND read/write/erase operations.
->
-> According to the manual, it consists of two parts:
->         {chip select, page number}
->
-> The `chip select` is fixed at 2 bits, and the `page number` is
-> determined based on the actual capacity of the single-chip memory.
-> Therefore we need to determine the `chip select` bits base on the `page
-> number`.
->
-> For example, for a 1GB capacity chip (2K page size), it has 1M pages.
-> Thus, [19:0] is used to represent the page number, and [21:20]
-> represents the chip select.
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Depends, it does not need to imply that.
+
+But in general this is why we ask - and writing bindings have it
+documented - to post COMPLETE bindings.
+
+> reset units on the SoC. This could lead to conflicts if support for
+> other reset controllers on the TH1520 is added in the future like AP.
+> 
+> To ensure correctness and prevent future issues, this patch renames the
+> compatible string to "thead,th1520-reset-vo". The device tree bindings,
+> the th1520.dtsi file, and the driver itself are updated to use this new,
+> more specific compatible. The device tree node label is also renamed
+> from 'rst' to 'rst_vo' for clarity.
+> 
+> Fixes: 30e7573babdc ("dt-bindings: reset: Add T-HEAD TH1520 SoC Reset Controller")
+
+That's not a commit from the current RC. Where is cc stable?
+
+> Reported-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  .../mtd/nand/raw/loongson-nand-controller.c   | 133 ++++++++++++++----
->  1 file changed, 103 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mt=
-d/nand/raw/loongson-nand-controller.c
-> index 97cd566420a8..5a51c7d299cc 100644
-> --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-> +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-> @@ -82,6 +82,7 @@ struct loongson_nand_data {
->         unsigned int op_scope_field;
->         unsigned int hold_cycle;
->         unsigned int wait_cycle;
-> +       unsigned int nand_cs;
->         void (*set_addr)(struct loongson_nand_host *host, struct loongson=
-_nand_op *op);
->  };
->
-> @@ -90,6 +91,7 @@ struct loongson_nand_host {
->         struct nand_chip chip;
->         struct nand_controller controller;
->         const struct loongson_nand_data *data;
-> +       unsigned int addr_cs_field;
->         void __iomem *reg_base;
->         struct regmap *regmap;
->         /* DMA Engine stuff */
-> @@ -215,6 +217,26 @@ static int loongson_nand_parse_instructions(struct n=
-and_chip *chip, const struct
->         return 0;
->  }
->
-> +static void loongson_nand_set_addr_cs(struct loongson_nand_host *host)
-> +{
-> +       struct nand_chip *chip =3D &host->chip;
-> +       struct mtd_info *mtd =3D nand_to_mtd(chip);
-> +
-> +       if (!host->data->nand_cs)
-> +               return;
-> +
-> +       /*
-> +        * The Manufacturer/Chip ID read operation precedes attach_chip, =
-at which point
-> +        * information such as NAND chip selection and capacity is unknow=
-n. As a
-> +        * workaround, we use 128MB cellsize (2KB pagesize) as a fallback=
-.
-> +        */
-> +       if (!mtd->writesize)
-> +               host->addr_cs_field =3D GENMASK(17, 16);
-> +
-> +       regmap_update_bits(host->regmap, LOONGSON_NAND_ADDR2, host->addr_=
-cs_field,
-> +                          host->data->nand_cs << __ffs(host->addr_cs_fie=
-ld));
-> +}
-> +
->  static void ls1b_nand_set_addr(struct loongson_nand_host *host, struct l=
-oongson_nand_op *op)
->  {
->         struct nand_chip *chip =3D &host->chip;
-> @@ -263,6 +285,8 @@ static void ls1c_nand_set_addr(struct loongson_nand_h=
-ost *host, struct loongson_
->                         regmap_update_bits(host->regmap, LOONGSON_NAND_AD=
-DR2, mask, val);
->                 }
->         }
-> +
-> +       loongson_nand_set_addr_cs(host);
->  }
->
->  static void loongson_nand_trigger_op(struct loongson_nand_host *host, st=
-ruct loongson_nand_op *op)
-> @@ -603,42 +627,89 @@ static int loongson_nand_exec_op(struct nand_chip *=
-chip, const struct nand_opera
->         return nand_op_parser_exec_op(chip, &loongson_nand_op_parser, op,=
- check_only);
->  }
->
-> -static int loongson_nand_attach_chip(struct nand_chip *chip)
-> +static int loongson_nand_get_chip_capacity(struct nand_chip *chip)
->  {
->         struct loongson_nand_host *host =3D nand_get_controller_data(chip=
-);
->         u64 chipsize =3D nanddev_target_size(&chip->base);
-> -       int cell_size =3D 0;
-> +       struct mtd_info *mtd =3D nand_to_mtd(chip);
->
-> -       switch (chipsize) {
-> -       case SZ_128M:
-> -               cell_size =3D 0x0;
-> -               break;
-> -       case SZ_256M:
-> -               cell_size =3D 0x1;
-> -               break;
-> -       case SZ_512M:
-> -               cell_size =3D 0x2;
-> -               break;
-> -       case SZ_1G:
-> -               cell_size =3D 0x3;
-> -               break;
-> -       case SZ_2G:
-> -               cell_size =3D 0x4;
-> -               break;
-> -       case SZ_4G:
-> -               cell_size =3D 0x5;
-> -               break;
-> -       case SZ_8G:
-> -               cell_size =3D 0x6;
-> -               break;
-> -       case SZ_16G:
-> -               cell_size =3D 0x7;
-> -               break;
-> -       default:
-> -               dev_err(host->dev, "unsupported chip size: %llu MB\n", ch=
-ipsize);
-> -               return -EINVAL;
-> +       if (mtd->writesize =3D=3D SZ_4K && chipsize =3D=3D SZ_2G) {
-> +               host->addr_cs_field =3D GENMASK(20, 19);
-> +               return 0x4;
->         }
-I think you want to sort this part by the return value, but "return
-0x4" has already break it.
+>  Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml | 6 +++---
+>  arch/riscv/boot/dts/thead/th1520.dtsi                           | 6 +++---
+>  drivers/reset/reset-th1520.c                                    | 2 +-
 
-So I think it is better to use a big switch-case for writesize, and
-sort the big switch-case by writesize.
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-Huacai
+>  3 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> index f2e91d0add7a60e12973c216bb5a989857c3c47c..f84c5ae8bc3569cb1d4e8f07999888ea26e175d0 100644
+> --- a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+> @@ -16,7 +16,7 @@ maintainers:
+>  properties:
+>    compatible:
+>      enum:
+> -      - thead,th1520-reset
+> +      - thead,th1520-reset-vo
 
->
-> +       if (mtd->writesize =3D=3D SZ_2K) {
-> +               switch (chipsize) {
-> +               case SZ_128M:
-> +                       host->addr_cs_field =3D GENMASK(17, 16);
-> +                       return 0;
-> +               case SZ_256M:
-> +                       host->addr_cs_field =3D GENMASK(18, 17);
-> +                       return 0x1;
-> +               case SZ_512M:
-> +                       host->addr_cs_field =3D GENMASK(19, 18);
-> +                       return 0x2;
-> +               case SZ_1G:
-> +                       host->addr_cs_field =3D GENMASK(20, 19);
-> +                       return 0x3;
-> +               default:
-> +                       goto err;
-> +               }
-> +       }
-> +
-> +       if (mtd->writesize =3D=3D SZ_8K) {
-> +               switch (chipsize) {
-> +               case SZ_4G:
-> +                       host->addr_cs_field =3D GENMASK(20, 19);
-> +                       return 0x5;
-> +               case SZ_8G:
-> +                       host->addr_cs_field =3D GENMASK(21, 20);
-> +                       return 0x6;
-> +               case SZ_16G:
-> +                       host->addr_cs_field =3D GENMASK(22, 21);
-> +                       return 0x7;
-> +               default:
-> +                       goto err;
-> +               }
-> +       }
-> +
-> +       if (mtd->writesize =3D=3D SZ_512) {
-> +               switch (chipsize) {
-> +               case SZ_8M:
-> +                       host->addr_cs_field =3D GENMASK(15, 14);
-> +                       return 0x9;
-> +               case SZ_16M:
-> +                       host->addr_cs_field =3D GENMASK(16, 15);
-> +                       return 0xa;
-> +               case SZ_32M:
-> +                       host->addr_cs_field =3D GENMASK(17, 16);
-> +                       return 0xb;
-> +               case SZ_64M:
-> +                       host->addr_cs_field =3D GENMASK(18, 17);
-> +                       return 0xc;
-> +               case SZ_128M:
-> +                       host->addr_cs_field =3D GENMASK(19, 18);
-> +                       return 0xd;
-> +               default:
-> +                       goto err;
-> +               }
-> +       }
-> +
-> +err:
-> +       dev_err(host->dev, "Unsupported chip size: %llu MB with page size=
- %u B\n",
-> +               chipsize, mtd->writesize);
-> +       return -EINVAL;
-> +}
-> +
-> +static int loongson_nand_attach_chip(struct nand_chip *chip)
-> +{
-> +       struct loongson_nand_host *host =3D nand_get_controller_data(chip=
-);
-> +       int cell_size =3D 0;
-> +
-> +       cell_size =3D loongson_nand_get_chip_capacity(chip);
-> +       if (cell_size < 0)
-> +               return cell_size;
-> +
->         switch (chip->ecc.engine_type) {
->         case NAND_ECC_ENGINE_TYPE_NONE:
->                 break;
-> @@ -818,6 +889,7 @@ static const struct loongson_nand_data ls1b_nand_data=
- =3D {
->         .status_field =3D GENMASK(15, 8),
->         .hold_cycle =3D 0x2,
->         .wait_cycle =3D 0xc,
-> +       .nand_cs =3D 0x0,
->         .set_addr =3D ls1b_nand_set_addr,
->  };
->
-> @@ -828,6 +900,7 @@ static const struct loongson_nand_data ls1c_nand_data=
- =3D {
->         .op_scope_field =3D GENMASK(29, 16),
->         .hold_cycle =3D 0x2,
->         .wait_cycle =3D 0xc,
-> +       .nand_cs =3D 0x0,
->         .set_addr =3D ls1c_nand_set_addr,
->  };
->
-> --
-> 2.47.3
->
->
+No, don't rename the compatible. That's ABI break and this was ALREADY
+released.
+
+That's a NAK because you break ABI for not important reason - style.
+
+>  
+>    reg:
+>      maxItems: 1
+> @@ -36,8 +36,8 @@ examples:
+>      soc {
+>        #address-cells = <2>;
+>        #size-cells = <2>;
+> -      rst: reset-controller@ffef528000 {
+> -        compatible = "thead,th1520-reset";
+> +      rst_vo: reset-controller@ffef528000 {
+
+Drop the label. Why is it here in the first place?
+
+> +        compatible = "thead,th1520-reset-vo";
+>          reg = <0xff 0xef528000 0x0 0x1000>;
+>          #reset-cells = <1>;
+>        };
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 42724bf7e90e08fac326c464d0f080e3bd2cd59b..9cc2f1adf489ac432b2f3fbb06b655490d9e14b3 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -235,7 +235,7 @@ aon: aon {
+>  		compatible = "thead,th1520-aon";
+>  		mboxes = <&mbox_910t 1>;
+>  		mbox-names = "aon";
+> -		resets = <&rst TH1520_RESET_ID_GPU_CLKGEN>;
+> +		resets = <&rst_vo TH1520_RESET_ID_GPU_CLKGEN>;
+>  		reset-names = "gpu-clkgen";
+>  		#power-domain-cells = <1>;
+>  	};
+> @@ -500,8 +500,8 @@ clk: clock-controller@ffef010000 {
+>  			#clock-cells = <1>;
+>  		};
+>  
+> -		rst: reset-controller@ffef528000 {
+> -			compatible = "thead,th1520-reset";
+> +		rst_vo: reset-controller@ffef528000 {
+> +			compatible = "thead,th1520-reset-vo";
+>  			reg = <0xff 0xef528000 0x0 0x4f>;
+>  			#reset-cells = <1>;
+>  		};
+> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
+> index 7874f0693e1b427a094a68f2b6d783985e789bf8..05ed11972774618df4512b7c9f9f12e71455e48b 100644
+> --- a/drivers/reset/reset-th1520.c
+> +++ b/drivers/reset/reset-th1520.c
+> @@ -116,7 +116,7 @@ static int th1520_reset_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id th1520_reset_match[] = {
+> -	{ .compatible = "thead,th1520-reset" },
+> +	{ .compatible = "thead,th1520-reset-vo" },
+
+NAK, actual ABI break.
+
+
+Best regards,
+Krzysztof
 
