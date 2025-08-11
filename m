@@ -1,254 +1,291 @@
-Return-Path: <devicetree+bounces-203466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B682DB2179E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:46:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0FDB217AB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 23:52:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC638190596A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 21:46:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10C91906173
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 21:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F3D28466E;
-	Mon, 11 Aug 2025 21:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9752DCC0B;
+	Mon, 11 Aug 2025 21:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RZWg6Fe3"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZpddCZ9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34582311C2E;
-	Mon, 11 Aug 2025 21:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B57D311C2E;
+	Mon, 11 Aug 2025 21:52:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754948762; cv=none; b=n2RUpdahas5Xml84bO0TkCmrYaOw3Yte4qed8wk+la4mBLIFxZaJV5T+ZzT/cUcTBk+mLLToJaLUA7xllZV07vCZyUriTbAEOWgNZaTtAK0Tiwr2PECK3xOWXZzk95eQ98gVPY4LoH675+IuiRTfBXqcP5ZlYbZG+xGJEdCECvs=
+	t=1754949170; cv=none; b=H+Ujz4aYC9jHodiSO3z+MAiRlvSSDXEpY7zr4uv8QuDvU2IOmHjZypJMxi5j2KxjGAo+VTejnj77d1w0UOMGD4iXm64kR709VvQB3F2j0yo3lAMER1xs42kMxOncMlwaTOZz4FNVqa95WLrBsBOBDBh3T15yUcOA11FObOyLLPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754948762; c=relaxed/simple;
-	bh=2Oe8kgGT21tommz/oAaFAC2kJoN97CNW8KHYWK8PUks=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SICJpOpuaHdgFtC6KYEe/sXj/O6MUsYg3EI4YpMksmipcvL5krT3BelnLTyRyCl+I/rFUg6Kk4dnVDMcPGUShDTfjtNp4lbBwPn3Ix7/4fV+ZlpdkV1Ml8cUThGTdOzMEINx1qddAjRI83oRMMdpmYFS/4SU74BYa/o1k5sp2B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RZWg6Fe3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57BFBJaR004770;
-	Mon, 11 Aug 2025 21:45:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZIjtyinG9nHtHhZQ8hhADmScgNe+P1our94TkbAJt70=; b=RZWg6Fe3kmL8QMZC
-	kzXSdNrvKitebLi/j5AMsOJz4cYy6ToMm0o3TkDBKFCFXJtBY4nLi/mj4TFvf66H
-	e+PLUtltJHEmKHxJpqs+s2lwiHnV10DTXrleukcmb4llhS1uZBZwSWW4lPItqFBS
-	wxhJs8mDk3sPnHmrjQ6aUjUBPLPsi18EL38ACFcXC9nLt6KFsGYrFk7+r/i9eMMP
-	UQRSlp4j35zOGYO72HuIneFA3ohLafFxJa4ZyucKd8Y39Q7CcZpr6hEjWrOwexB/
-	CqPbL/I1dPxAlTbMpUhBpoK+K7836sn6akSF2WfV1hV9bXhmGM4TTIC/Yt5ztpHp
-	Sy6hHA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fjxb90n7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 21:45:49 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57BLjmMx008283
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Aug 2025 21:45:48 GMT
-Received: from [10.216.45.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 11 Aug
- 2025 14:45:42 -0700
-Message-ID: <f5b4580c-4e68-405f-95fb-21fa1b105711@quicinc.com>
-Date: Tue, 12 Aug 2025 03:15:38 +0530
+	s=arc-20240116; t=1754949170; c=relaxed/simple;
+	bh=SPlaGimm4OduzdBnXC3TkfH6GzXgsNxTdn5PXq/afAI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ntw41PNymN6Ie+UwtAqeH5A5Qf8czrlIjYwkElq6vOnPZ4jEvQIeJ9veEFsVRUEZyjs15o+xNW8kEycRif2gB+WViLwUjTJKZAcExj4uPcuRW2/JR38vSh+UoK6ZhsAQLs2p7CUOe2Dt4bsOy/zE6Ana9bsSKNhhY7DE0Ar3oac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZpddCZ9E; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1754949166;
+	bh=SPlaGimm4OduzdBnXC3TkfH6GzXgsNxTdn5PXq/afAI=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=ZpddCZ9EzgHZdpBs63f/A3PN2rNaLZiUaW3sqW0iKkf6WYmOmbvj3en8buacqhwh3
+	 aprSlmQX5DMQ4UZwHEVEdKfR5J4wNe427zYUjwJn2WGIJVvnp9Eay/cmujg5z6tgDl
+	 PuT2jvj/ZeNQ0J4pPuidlUzxgLQJcrqQP/Eu0NVhO7JyypGCM4oOH7KP8vNJOwGk/J
+	 5vJ/yDnz699pvsNyObUS2Pdj8+40DKLOKg4H3j8ZLIaLXHtL17sM7n5qNdT4RJqN3r
+	 GyyPkUmTPVp2/8QXF4898F2GeSSDADB0uxUfB+LcaF1ynjiwZG47RIa/mCaCDrtRxi
+	 R6JHNq1rmqjbA==
+Received: from [IPv6:2606:6d00:11:5a76::c41] (unknown [IPv6:2606:6d00:11:5a76::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id DD69717E0286;
+	Mon, 11 Aug 2025 23:52:44 +0200 (CEST)
+Message-ID: <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
+Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Jonas Karlman <jonas@kwiboo.se>, Ezequiel Garcia	
+ <ezequiel@vanguardiasur.com.ar>, Detlev Casanova
+ <detlev.casanova@collabora.com>,  Mauro Carvalho Chehab	
+ <mchehab@kernel.org>
+Cc: Alex Bee <knaerzche@gmail.com>, Sebastian Fricke
+	 <sebastian.fricke@collabora.com>, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Mon, 11 Aug 2025 17:52:42 -0400
+In-Reply-To: <20250810212454.3237486-1-jonas@kwiboo.se>
+References: <20250810212454.3237486-1-jonas@kwiboo.se>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mQGiBEUQN0MRBACQYceNSezSdMjx7sx6gwKkMghrrODgl3B0eXBTgNp6c431IfOOEsdvk
+ oOh1kwoYcQgbg4MXw6beOltysX4e8fFWsiRkc2nvvRW9ir9kHDm49MkBLqaDjTqOkYKNMiurFW+go
+ zpr/lUW15QqT6v68RYe0zRdtwGZqeLzX2LVuukGwCg4AISzswrrYHNV7vQLcbaUhPgIl0D+gILYT9
+ TJgAEK4YHW+bFRcY+cgUFoLQqQayECMlctKoLOE69nIYOc/hDr9uih1wxrQ/yL0NJvQCohSPyoyLF
+ 9b2EuIGhQVp05XP7FzlTxhYvGO/DtO08ec85+bTfVBMV6eeY4MS3ZU+1z7ObD7Pf29YjyTehN2Dan
+ 6w1g2rBk5MoA/9nDocSlk4pbFpsYSFmVHsDiAOFje3+iY4ftVDKunKYWMhwRVBjAREOByBagmRau0
+ cLEcElpf4hX5f978GoxSGIsiKoDAlXX+ICDOWC1/EXhEEmBR1gL0QJgiVviNyLfGJlZWnPjw6xhhm
+ tHYWTDxBOP5peztyc2PqeKsLsLWzAr7QnTmljb2xhcyBEdWZyZXNuZSA8bmljb2xhc0BuZHVmcmVz
+ bmUuY2E+iGIEExECACIFAlXA3CACGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sB
+ qgcJngAnRDBTr8bhzuH0KQwFP1nEYtfgpKdAKCrQ/sJfuG/8zsd7J8wVl7y3e8ARbRDTmljb2xhcy
+ BEdWZyZXNuZSAoQi4gU2MuIEluZm9ybWF0aXF1ZSkgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29
+ tPohgBBMRAgAgBQJFlCyOAhsDBgsJCAcDAgQVAggDBBYCAwECHgECF4AACgkQcVMCLawGqBwhLQCg
+ zYlrLBj6KIAZ4gmsfjXD6ZtddT8AoIeGDicVq5WvMHNWign6ApQcZUihtElOaWNvbGFzIER1ZnJlc
+ 25lIChCLiBTYy4gSW5mb3JtYXRpcXVlKSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY28udW
+ s+iGIEExECACIFAkuzca8CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sBqgcQX8
+ An2By6LDEeMxi4B9hUbpvRnzaaeNqAJ9Rox8rfqHZnSErw9bCHiBwvwJZ77QxTmljb2xhcyBEdWZy
+ ZXNuZSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY29tPohiBBMRAgAiBQJNzZzPAhsDBgsJC
+ AcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRBxUwItrAaoHLlxAKCYAGf4JL7DYDLs/188CPMGuwLypw
+ CfWKc9DorA9f5pyYlD5pQo6SgSoiC0R05pY29sYXMgRHVmcmVzbmUgKEIgU2MuIEluZm9ybWF0aXF
+ 1ZSkgPG5pY29sYXMuZHVmcmVzbmVAdXNoZXJicm9va2UuY2E+iGAEExECACAFAkUQN0MCGwMGCwkI
+ BwMCBBUCCAMEFgIDAQIeAQIXgAAKCRBxUwItrAaoHPTnAJ0WGgJJVspoctAvEcI00mtp5WAFGgCgr
+ +E7ItOqZEHAs+xabBgknYZIFPU=
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
+	boundary="=-9rHoaNyNACYag69RQWES"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8155: Add gear and rate limit
- properties to UFS
-To: 'Manivannan Sadhasivam' <mani@kernel.org>,
-        Alim Akhtar
-	<alim.akhtar@samsung.com>
-CC: 'Konrad Dybcio' <konrad.dybcio@oss.qualcomm.com>,
-        'Krzysztof Kozlowski'
-	<krzk@kernel.org>,
-        'Ram Kumar Dwivedi' <quic_rdwivedi@quicinc.com>, <avri.altman@wdc.com>,
-        <bvanassche@acm.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <James.Bottomley@hansenpartnership.com>,
-        <martin.petersen@oracle.com>, <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <06d201dc0689$9f438200$ddca8600$@samsung.com>
- <wpfchmssbrfhcxnoe37agonyc5s7e2onark77dxrlt5jrxxzo2@g57mdqrgj7uk>
- <06f301dc0695$6bf25690$43d703b0$@samsung.com>
- <CGME20250806112542epcas5p15f2fdea9b635a43c54885dbdffa03b60@epcas5p1.samsung.com>
- <nkefidnifmbnhvamjjyl7sq7hspdkhyoc3we7cvjby3qd7sgho@ddmuyngsomzu>
- <0d6801dc07b9$b869adf0$293d09d0$@samsung.com>
- <fh7y7stt5jm65zlpyhssc7dfmmejh3jzmt75smkz5uirbv6ktf@zyd2qmm2spjs>
- <0f8c01dc0876$427cf1c0$c776d540$@samsung.com>
- <xqynlabahvaw4cznbofkkqjr4oh7tf6crlnxoivhpadlymxg5v@a4b5fgf55nqw>
- <10ae01dc08c9$022d8aa0$06889fe0$@samsung.com>
- <o2lnzaxurshoyyxtdcyiyphprumisggd6m2qvcoeptvnkvh4ap@dm2nc4krinja>
-Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <o2lnzaxurshoyyxtdcyiyphprumisggd6m2qvcoeptvnkvh4ap@dm2nc4krinja>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=G6EcE8k5 c=1 sm=1 tr=0 ts=689a648d cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
- a=pyoVPm71RKJ-DdxDm9cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA5NyBTYWx0ZWRfX4hNPXG7rrA/c
- UYoeeeMp5YAhGlGluUEtht4A587+suPjkkkUT+cPI3UeG/mbUdo2aDiRC3QtzR0pm1gtEsyzdid
- Nqu6G5dQ3s6J3ZOONVnVU9GxWELkfgsW+41Qhx3EUeSXLQtGcfxiLtbfJle5fKix1lO97UQ79lu
- mXx2kAeT2xj+OB5sDCxfTy8cCx30SGVMhEzMn4rMG4BV6adScVrCvJETFVAlnMHaz8mctM2fUao
- veA/BXMYkMUAJXzR5J/XQB9HoJcYWuFGqhsb1XaTWEebbS0grVEkrOuHqbgrPCWymwwLSE9d6ub
- qPLgtpfgS+8R78sA3rBw6GkFw1MVeMTwNEJozlIcUPGqfUYnXD5p5PmFKiRBbmc6QfyJ6vvhCyV
- CwoQxpS/
-X-Proofpoint-ORIG-GUID: vfhsHoI_08neQPc0-2oc0GfW9_30P2ni
-X-Proofpoint-GUID: vfhsHoI_08neQPc0-2oc0GfW9_30P2ni
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_04,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
- malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110097
 
 
+--=-9rHoaNyNACYag69RQWES
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 8/9/2025 4:43 PM, 'Manivannan Sadhasivam' wrote:
-> On Sat, Aug 09, 2025 at 06:30:29AM GMT, Alim Akhtar wrote:
-> 
-> [...]
-> 
->>>>>>>>>> I understand that this is a static configuration, where it
->>>>>>>>>> is already known
->>>>>>>>> that board is broken for higher Gear.
->>>>>>>>>> Can this be achieved by limiting the clock? If not, can we
->>>>>>>>>> add a board
->>>>>>>>> specific _quirk_ and let the _quirk_ to be enabled from
->>>>>>>>> vendor specific hooks?
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>> How can we limit the clock without limiting the gears? When
->>>>>>>>> we limit the gear/mode, both clock and power are implicitly
->>> limited.
->>>>>>>>>
->>>>>>>> Possibly someone need to check with designer of the SoC if
->>>>>>>> that is possible
->>>>>>> or not.
->>>>>>>
->>>>>>> It's not just clock. We need to consider reducing regulator,
->>>>>>> interconnect votes also. But as I said above, limiting the
->>>>>>> gear/mode will take care of all these parameters.
->>>>>>>
->>>>>>>> Did we already tried _quirk_? If not, why not?
->>>>>>>> If the board is so poorly designed and can't take care of the
->>>>>>>> channel loses or heat dissipation etc, Then I assumed the gear
->>>>>>>> negotiation between host and device should fail for the higher
->>>>>>>> gear and driver can have
->>>>>>> a re-try logic to re-init / re-try "power mode change" at the
->>>>>>> lower gear. Is that not possible / feasible?
->>>>>>>>
->>>>>>>
->>>>>>> I don't see why we need to add extra logic in the UFS driver if
->>>>>>> we can extract that information from DT.
->>>>>>>
->>>>>> You didn’t answer my question entirely, I am still not able to
->>>>>> visualised how come Linkup is happening in higher gear and then
->>>>>> Suddenly
->>>>> it is failing and we need to reduce the gear to solve that?
->>>>>
->>>>> Oh well, this is the source of confusion here. I didn't (also the
->>>>> patch) claim that the link up will happen with higher speed. It will
->>>>> most likely fail if it couldn't operate at the higher speed and
->>>>> that's why we need to limit it to lower gear/mode *before* bringing the
->>> link up.
->>>>>
->>>> Right, that's why a re-try logic to negotiate a __working__ power mode
->>> change can help, instead of introducing new binding for this case.
->>>
->>> Retry logic is already in place in the ufshcd core, but with this kind of signal
->>> integrity issue, we cannot guarantee that it will gracefully fail and then we
->>> could retry. The link up *may* succeed, then it could blow up later also
->>> (when doing heavy I/O operations etc...). So with this non-deterministic
->>> behavior, we cannot rely on this logic.
->>>
->> I would image in that case , PHY tuning / programming is not proper.
-> 
-> I don't have the insight into the PHY tuning to avoid this issue. Maybe Nitin or
-> Ram can comment here. But PHY tuning is mostly SoC specific in the PHY driver.
-> We don't have board level tuning sequence AFIAK.
+Le dimanche 10 ao=C3=BBt 2025 =C3=A0 21:24 +0000, Jonas Karlman a =C3=A9cri=
+t=C2=A0:
+> This series add a HEVC backend to the Rockchip Video Decoder driver.
+>=20
+> With the dependent H.264 High 10 and 4:2:2 profile support series
+> finally merged there is finally time to send a v2 with minor changes and
+> a suggested code style fix of this series. v1 of this series has been
+> fully functional up until recent unstaging of the rkvdec driver.
+>=20
+> A version of this HEVC backend has been in use by the LibreELEC distro
+> for the past 5+ years [1]. It was initially created based on a copy of
+> the H264 backend, unstable HEVC uAPI controls and a cabac table + scaling
+> matrix functions shamelessly copied 1:1 from the Rockchip mpp library.
+>=20
+> It has since then been extended to use the stable HEVC uAPI controls and
+> improved opon e.g. to include support for rk3288 and fix decoding issues
+> by Alex Bee and Nicolas Dufresne.
+>=20
+> The version submitted in this series is based on the code currently used
+> by the LibreELEC distro, excluding hard/soft reset, and with cabac table
+> and scaling matrix functions picked from Sebastian Fricke prior series
+> to add a HEVC backend [2].
+>=20
+> Big thanks to Alex Bee, Nicolas Dufresne and Sebastian Fricke for making
+> this series possible!
+>=20
+> Patch 1 add the new HEVC backend.
+> Patch 2-3 add variants support to the driver.
+> Patch 4 add support for a rk3288 variant.
+> Patch 5 add a rk3328 variant to work around hw quirks.
+> Patch 6-7 add device tree node for rk3288.
+>=20
+> This was tested on a ROCK Pi 4 (RK3399) and Rock64 (RK3328):
+>=20
+> =C2=A0 v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+> =C2=A0 ...
+> =C2=A0 Total for rkvdec device /dev/video1: 49, Succeeded: 49, Failed: 0,=
+ Warnings:
+> 0
+>=20
+> =C2=A0 Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2re=
+quest
+> =C2=A0 ...
+> =C2=A0 Ran 137/147 tests successfully
 
-Hi Alim and Mani,
+I've also tested RK3399 using Renegade Elite from Libre Computer, though wi=
+th
+GStreamer. My results for this suite is 134/147, with failing tests being:
 
-Here's my take:
+- DBLK_D_VIXS_2
+- DSLICE_A_HHI_5
+- DELTAQP_A_BRCM_4
+- EXT_A_ericsson_4
+- PICSIZE_A_Bossen_1 (expected)
+- PICSIZE_B_Bossen_1 (expected)
+- PICSIZE_C_Bossen_1 (expected)
+- PICSIZE_D_Bossen_1 (expected)
+- SAODBLK_A_MainConcept_4
+- SAODBLK_B_MainConcept_4
+- TSUNEQBD_A_MAIN10_Technicolor_2 (expected)
+- WPP_D_ericsson_MAIN10_2
+- WPP_D_ericsson_MAIN_2
 
-There can be multiple reasons for limiting the gear/rate on a customer 
-board beyond PHY tuning issues:
+Please share your list, this seems big enough difference to be worth making=
+ sure
+we did not diverge somewhere between both interpretation of the V4L2 spec.
+GStreamer has been mostly tested with MTK driver so far. Can you also share=
+ a
+link to the latest ffmpeg tree you are using (since its not upstream FFMPEG=
+) ?
 
-1. Board-level signal integrity concerns
-2. Channel or reference clock configuration issues
-3. Customer board layout not meeting layout design guidelines
+Detlev reports 146/147 on newer hardware using GStreamer, failing
+TSUNEQBD_A_MAIN10_Technicolor_2 (9bit chroma) only. On Detlev side, it will=
+ we
+important to check why 8K videos (PICSIZE*) passes with a single core, perh=
+aps
+we accidently use both cores ?
 
-This becomes especially critical in automotive platforms like the 
-SA8155, as mentioned by Ram. In such safety-critical applications, 
-customer prioritize reliability over peak performance, and hence 
-customers are generally comfortable operating at lower gears if 
-stability is ensured.
+Note, also expected, we failt JCT-VC-SCC, JCT-VC-MV-HEVC, and JCT-VC-RExt p=
+asses
+2/49. This last suite is pretty new in fluster.
 
-For the current case customer had some issue #1 at their end(though 
-don't have complete details)
+regards,
+Nicolas
 
-As Mani pointed out, issues are more likely to surface under stress 
-conditions rather than during link startup. Therefore, IMHO if any 
-limitations are known, it's advisable to restrict the gear/rate during 
-initialization to avoid potential problems later.
+>=20
+> =C2=A0 Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2re=
+quest
+> =C2=A0 ...
+> =C2=A0 Ran 9/9 tests successfully
+>=20
+> And on a TinkerBoard (RK3288):
+>=20
+> =C2=A0 v4l2-compliance 1.30.1, 32 bits, 32-bit time_t
+> =C2=A0 ...
+> =C2=A0 Total for rkvdec device /dev/video3: 49, Succeeded: 49, Failed: 0,=
+ Warnings:
+> 0
+>=20
+> =C2=A0 Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2re=
+quest
+> =C2=A0 ...
+> =C2=A0 Ran 137/147 tests successfully
+>=20
+> =C2=A0 Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2re=
+quest
+> =C2=A0 ...
+> =C2=A0 Ran 9/9 tests successfully
+>=20
+> The WPP_x_ericsson tests from test suite JCT-VC-HEVC_V1 has been showing
+> a mix of both Success and/or Fail result for FFmpeg-H.265-v4l2request.
+>=20
+> Full summary of fluster run can be found at [3].
+>=20
+> Please note that there is a known issue with concurrent decoding,
+> decoding errors in one decode session may affect a separate session.
+> The only known mitigation to this is to pause decoding for some time
+> and/or do a full HW reset, something to handle in future series.
+>=20
+> Changes in v2:
+> - Rabase after h264 high10/422 merge and unstaging of rkvdec driver
+> - Use new_value in transpose_and_flatten_matrices()
+> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
+> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
+> - Adjust code style in rkvdec_enum_coded_fmt_desc()
+> - Collect a-b tag
+> - Drop merged vdec node reg size patches
+> Link to v1:
+> https://lore.kernel.org/linux-media/20231105233630.3927502-1-jonas@kwiboo=
+.se
+>=20
+> [1]
+> https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/p=
+atches/linux/default/linux-2000-v4l2-wip-rkvdec-hevc.patch
+> [2]
+> https://lore.kernel.org/linux-media/20230101-patch-series-v2-6-2-rc1-v2-0=
+-fa1897efac14@collabora.com/
+> [3] https://gist.github.com/Kwiboo/bedf1f447b50921ffbe26cb99579582d
+>=20
+> Alex Bee (4):
+> =C2=A0 media: rkvdec: Add variants support
+> =C2=A0 media: rkvdec: Add RK3288 variant
+> =C2=A0 media: rkvdec: Disable QoS for HEVC and VP9 on RK3328
+> =C2=A0 ARM: dts: rockchip: Add vdec node for RK3288
+>=20
+> Jonas Karlman (3):
+> =C2=A0 media: rkvdec: Add HEVC backend
+> =C2=A0 media: rkvdec: Implement capability filtering
+> =C2=A0 media: dt-bindings: rockchip,vdec: Add RK3288 compatible
+>=20
+> =C2=A0.../bindings/media/rockchip,vdec.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
+> =C2=A0arch/arm/boot/dts/rockchip/rk3288.dtsi=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 17 +-
+> =C2=A0.../media/platform/rockchip/rkvdec/Makefile=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0 2 +-
+> =C2=A0.../rockchip/rkvdec/rkvdec-hevc-data.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 1848 +++++++++++++++++
+> =C2=A0.../platform/rockchip/rkvdec/rkvdec-hevc.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 826 ++++++++
+> =C2=A0.../platform/rockchip/rkvdec/rkvdec-regs.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0=C2=A0 4 +
+> =C2=A0.../platform/rockchip/rkvdec/rkvdec-vp9.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 10 +
+> =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.c=C2=A0=C2=A0 |=C2=A0 184=
+ +-
+> =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.h=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 15 +
+> =C2=A09 files changed, 2886 insertions(+), 21 deletions(-)
+> =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-he=
+vc-data.c
+> =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-he=
+vc.c
 
-Moreover, introducing quirks for such cases isn’t very effective, as it 
-requires specifying the exact gear/rate to be limited—which can vary 
-significantly across different targets.
+--=-9rHoaNyNACYag69RQWES
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Regards,
-Nitin
+-----BEGIN PGP SIGNATURE-----
 
-> 
->>
->>>> And that approach can be useful for many platforms.
->>>
->>> Other platforms could also reuse the same DT properties to workaround
->>> similar issues.
->>>
->>>> Anyway coming back with the same point again and again is not productive.
->>>> I gave my opinion and suggestions. Rest is on the maintainers.
->>>
->>> Suggestions are always welcomed. It is important to have comments to try
->>> out different things instead of sticking to the proposed solution. But in my
->>> opinion, the retry logic is not reliable in this case. Moreover, we do have
->>> similar properties for other peripherals like PCIe, MMC, where the vendors
->>> would use DT properties to limit the speed to workaround the board issues.
->>> So we are not doing anything insane here.
->>>
->>> If there are better solutions than what is proposed here, we would indeed
->>> like to hear.
->>>
->> For that, more _technical_ things need to be discussed (e.g. Is it the PHY which has problem, or problem is happening at unipro level or somewhere else),
->> I didn't saw any technical backing from the patch Author/Submitter
->> (I assume Author should be knowing a bit more in-depth then what we are assuming and discussing here).
->>
-> 
-> Nitin/Ram, please share more details on what level the customer is facing the
-> issue.
-> 
-> - Mani
-> 
+iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaJpmKgAKCRBxUwItrAao
+HG8lAJ4602CSHQ1YZnGfNkgIvp7n1cgBQgCfafRmb71rNsF9qjZayYW+wxvbOlg=
+=vlVd
+-----END PGP SIGNATURE-----
 
+--=-9rHoaNyNACYag69RQWES--
 
