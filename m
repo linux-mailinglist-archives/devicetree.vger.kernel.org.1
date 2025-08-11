@@ -1,186 +1,126 @@
-Return-Path: <devicetree+bounces-203096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF13B2005A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:32:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C752B2005C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:32:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C1541744ED
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:32:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 715B0189A5F8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 07:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24C82DA75B;
-	Mon, 11 Aug 2025 07:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 009FD2D97BF;
+	Mon, 11 Aug 2025 07:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wpktz2VG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hvFQckAv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620952DA749;
-	Mon, 11 Aug 2025 07:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F312405E1;
+	Mon, 11 Aug 2025 07:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754897539; cv=none; b=ClIKrmU2LKSqRQoN/p0Bz63v+l7QwuW0t56Vp6FKTs5ydPn8Aj0Ms4XTYDTXvs+kTrI+JwCJEHkYTCOFnY0+jzN3pL1NhNdYkIzICPzf/mfjNoivaJWboVDrxWF61svr4Bwtqsia2kBiYQh1/nCBfUX0oH9FVx0Yme2KrUTdCfk=
+	t=1754897565; cv=none; b=JuPlvFwXvkANgdHHDbO/bdn1y1EMh1l8Ys5pcaPKfJhFBzCJosxWFeuz2Dsf6UiFDcAUELRwBDXIqrfWwKlmgkMHW7/W3uY9aFIbk3sKWiFQWdLYZ6mhCgCWRJK6L9lCGNCrU6hLnYB76v1eEfcFld+BSt//qpiDSewHNsWZ3MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754897539; c=relaxed/simple;
-	bh=oFZ75lZuyiQqjqpbDkCREZvA3cjEzUpuIBH1uakv9io=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UB+VQ7sC65DbZQ51nSDIsUZluS4WNcHI5W6SRbqmhJeEVJVtBJh6gVAz45i/c4AHsK7jEPU+yA9d2owU2QIlrXbmNqPs4b/TLHCRc4Or+quwAczE9zLogssuhpA70l7Ci7jc8+vqOkCTxpxrEaNCgO/aY5DMD0QM5AEo88S1XFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wpktz2VG; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-242d3ba2b44so10122585ad.3;
-        Mon, 11 Aug 2025 00:32:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754897538; x=1755502338; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bx0HUPagVnZ+U8BFdJ9INMhdQD62bMvRUffwK7m8W24=;
-        b=Wpktz2VGqjlD6nGo2/bX7HG1ED9R25INl+Wl2BmiYP0ixod16hZNIGqEgxvz9O7OO7
-         QtGnUkLrVf4kqs3PJfl9Pj1ObJuJgqS1QApKVBQizcxnTWm+0296alnOuCDp6n4DAzV1
-         R1RW+QaHf5zvmR1WyFkztxOcxd3J96xF0PTrApw6BexJkIUdkzqmR5jihLT8UMonoN0g
-         1DudQzkw1aqNzpKBfqLKIYdcC2cPKDZGw/osndse1y7VnKI6sch35wTcy4RvDbyKHR5W
-         7AAbP6Ac7tAmthX0ILsv+nic3IpOBhE3EcItLCJMEIP0Qi2PP3T2uYu2xtVe9G037CkU
-         rf6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754897538; x=1755502338;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bx0HUPagVnZ+U8BFdJ9INMhdQD62bMvRUffwK7m8W24=;
-        b=xBChI4MFdcOBEQ5GP1ktxoJn7to8wal+YkpAKtCNCiWQw1qnol7xiTcQef8fzygvbI
-         S37+EdXwS6eu2GiQLEeFpnDjN/rK96sedkYH33Nc/HSjzP1Jvp7kwJjvQoAkPUvFHnw0
-         amohH6So20CDmrL5E9SuLlaNsZSRrAPZTAaWZMKFHdS0NaGlbq90bFTnAifDxTcVJYLT
-         lEo41Ljg57jzgmBEQbGa/xqvzR2T5l4Zxwn3AreScXOe+SMhCLurCK24Xc7Pdy5ZY513
-         Wc6el0GJTubHdwFZqaH0sqz513pbOr98i+jdqV7UUU7nKpbmbWDd6OrA/lBTPF6dHbpz
-         2hlA==
-X-Forwarded-Encrypted: i=1; AJvYcCWKwipm7hEqIQuhIczolvbnHY1hDjFaV560uUOROYy/XiTAOA8twwa94J2u2z1D7zImF6qCOvzUzMln4rnk@vger.kernel.org, AJvYcCX2jNuWlb/JLDkxrlsVZfCmuh7Ndlgkw3S5rWjbcJze6oB8+M90WRp/+r8Fz6E7NyFa6Y7d04ZEbtx0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwsmRMkkhFnUkWJQOPIZONnMh9HpfNZsjiO6oRFTZo/riY+Q3Em
-	TCAaVkEpvWh7FG31dzfE4BZ27gTS4B3qQ0c8NYGMnzdUr5/ZpLxrQQ8Nk2Mm+Ybz
-X-Gm-Gg: ASbGncvO9uRLew27k+bwjmncd3aSaRQtsILjjlKhzaKwD1lGOnspWx2LAjT7mIYOirw
-	yJVOSn/zmmkDndJKu483opuIZwTTjJSKmHEFnl7CiQGHmm+yJL+uWnxWp6cQAlk1wKTW5/StVB/
-	MKxu4AE4hDKc2EcDZ30NawM+ejqRYO+JnBvAKUjM2mSSm0CYTXw1sVdHosLHm5hxVu6A740kLh/
-	oHtaodW3vCVJOpsRqkwd+C2/KL9A9mqlSzFX/Z2brZ8z9I/CvL5GhQl1AmJNBMym/uodesxo0Ev
-	XH3ADCZDCbiHtKBmof695SyoljTIeWV5oBxTW1OJ+U+07pbNbJ7LCU2Y0ozJhrHYAo1tWXHr8DR
-	9vZlW5dRI5hKTmCsnz+iJlPdhYqsayLGkwLnPQRqZ6M1B6HyuLdaksNrlJcKqWSCEJDMia+mtue
-	b4JVCrV+19pee0vQ45xqgowOC6kXz4
-X-Google-Smtp-Source: AGHT+IHw5o+Jkau6vl+zzP8wniWy1wnCha+yKhslleKKvxim75ReWEWO0PXV/5b8z7D2bbPKCN7MKw==
-X-Received: by 2002:a17:902:ebc6:b0:242:9bbc:3644 with SMTP id d9443c01a7336-242c225a177mr160057395ad.54.1754897537580;
-        Mon, 11 Aug 2025 00:32:17 -0700 (PDT)
-Received: from peter-bmc.. (2001-b400-e388-d3b1-e90a-ba63-d547-4584.emome-ip6.hinet.net. [2001:b400:e388:d3b1:e90a:ba63:d547:4584])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef59b2sm267624575ad.7.2025.08.11.00.32.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 00:32:17 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] ARM: dts: aspeed: harma: revise gpio name
-Date: Mon, 11 Aug 2025 15:32:07 +0800
-Message-ID: <20250811073208.787063-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250811073208.787063-1-peteryin.openbmc@gmail.com>
-References: <20250811073208.787063-1-peteryin.openbmc@gmail.com>
+	s=arc-20240116; t=1754897565; c=relaxed/simple;
+	bh=AoVPEwayh/Oz3pK2Pi3/6ljDqWNPYnk8dyLRcATD1bs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L2/5gYWZwBH+saIxYdoCbqCGUGtOwN7xYfDeM9RqaIucW23D+C2+jTy2O/4aKmeQg2TXPwwPr5zlGQzaBW/665eRj7e2d1nKzx7e7Jh8YFD2zl11giCxlFsnM6t0l7+9AsglYZlf3uyC8ESxYZY0Jvc8zu9sKN75UfcBJ0B5sME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hvFQckAv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87832C4CEF1;
+	Mon, 11 Aug 2025 07:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754897565;
+	bh=AoVPEwayh/Oz3pK2Pi3/6ljDqWNPYnk8dyLRcATD1bs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hvFQckAv0CrfwELpmtbws5Fns1ZMdnfZKkJlLqGdokVFDnYoVhw5JNUx/bbDyeo1f
+	 9zwKVqQxhzmCJxpvmVECBf+jFo3xlrkN8JOWHnVm690r91XZmWD++5CfsWmaVNyPHr
+	 VVdX/kFOTto0OccWfgwSQuJq63nNWmkTHdW269tcY2DzUAkrzA3h9Z9HriwSGzXax8
+	 uMKz4KLi1fcYHpGNze9Rf2eo/2qCtNGiX+6zLjWxC0TZw3Dx0ZNy6K3Cn813oxifgZ
+	 aYwnsuD/X4oXAQiLp7vEgoEU3Kv83POfopJ5mLMPd5JwYDggOFlerFCnHpJp+ZufDW
+	 +tA9SXvUU7Bqg==
+Message-ID: <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
+Date: Mon, 11 Aug 2025 09:32:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
+ Document the Loongson-2K0500 NAND controller
+To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
+ <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-mtd@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
+References: <cover.1754890670.git.zhoubinbin@loongson.cn>
+ <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Update GPIO label definitions in the device tree to reflect the correct
-power and control signal names. This includes:
+On 11/08/2025 08:03, Binbin Zhou wrote:
+> Add new compatible for the Loongson-2K NAND controller used for
+> Loongson-2K0500 SoC.
+> 
+> Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
 
-- Rename "fcb0-activate" to "fcb1-activate" and "fcb2-activate"
-- Add labels for:
-  - power-p3v3-standby
-  - power-p1v8-good
-  - power-pvdd33-s5
-  - power-pvdd18-s5
-  - power-asic-good
-- Replace unnamed GPIOs with appropriate labels such as:
-  - irq-pvddcore0-ocp-alert
-  - irq-pvddcore1-ocp-alert
-  - smi-control-n, nmi-control-n, etc.
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+Why do you add quotes?
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-index 741d2d9b6d03..2622954d0ce3 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-@@ -234,7 +234,7 @@ gpio@12 {
- 		"","",
- 		"","",
- 		"","",
--		"","fcb1-activate",
-+		"","fcb2-activate",
- 		"","";
- 	};
- };
-@@ -308,7 +308,7 @@ gpio@12 {
- 		"","",
- 		"","",
- 		"","",
--		"","fcb0-activate",
-+		"","fcb1-activate",
- 		"","";
- 	};
- };
-@@ -698,14 +698,14 @@ &sgpiom0 {
- 	"","",
- 	/*A4-A7 line 8-15*/
- 	"","power-config-asic-module-enable",
--	"","power-config-asic-power-good",
--	"","power-config-pdb-power-good",
-+	"power-p3v3-standby","power-config-asic-power-good",
-+	"power-p1v8-good","power-config-pdb-power-good",
- 	"presence-cpu","smi-control-n",
- 	/*B0-B3 line 16-23*/
- 	"","nmi-control-n",
--	"","nmi-control-sync-flood-n",
--	"","",
-+	"power-pvdd33-s5","nmi-control-sync-flood-n",
- 	"","",
-+	"power-pvdd18-s5","",
- 	/*B4-B7 line 24-31*/
- 	"","FM_CPU_SP5R1",
- 	"reset-cause-rsmrst","FM_CPU_SP5R2",
-@@ -749,7 +749,7 @@ &sgpiom0 {
- 	/*F4-F7 line 88-95*/
- 	"presence-asic-modules-0","rt-cpu0-p1-force-enable",
- 	"presence-asic-modules-1","bios-debug-msg-disable",
--	"","uart-control-buffer-select",
-+	"power-asic-good","uart-control-buffer-select",
- 	"presence-cmm","ac-control-n",
- 	/*G0-G3 line 96-103*/
- 	"FM_CPU_CORETYPE2","",
-@@ -809,7 +809,10 @@ &sgpiom0 {
- 	/*N4-N7 line 216-223*/
- 	"","","","","","","","",
- 	/*O0-O3 line 224-231*/
--	"","","","","","","","",
-+	"","",
-+	"irq-pvddcore0-ocp-alert","",
-+	"irq-pvddcore1-ocp-alert","",
-+	"","",
- 	/*O4-O7 line 232-239*/
- 	"","","","","","","","",
- 	/*P0-P3 line 240-247*/
--- 
-2.25.1
-
+Best regards,
+Krzysztof
 
