@@ -1,234 +1,256 @@
-Return-Path: <devicetree+bounces-203472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980E3B21869
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:31:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB4FB21879
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:34:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33E3D4639AA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:31:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA2CD427688
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAEB2E3397;
-	Mon, 11 Aug 2025 22:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E9E222591;
+	Mon, 11 Aug 2025 22:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M3x5+Mbx"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="NC8fmStE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B84225A38
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:30:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C0D21C9F1
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754951460; cv=none; b=Rymm3bbJ12Qp8m0wL5r9wXWzW+ETaYjzDLV4QnZ4bakj5JGSX8w+aEJ+c/8XSFpY3Dv7frK8j5LDdziTvjp8tD2+0Vh9iC1gEf+Wky71jLAJQ46skDCI+PbZM8cwdYJSP8ky7U3AXgZr20+QcK+uUCviYwmxl4G1+N20S8b2CUE=
+	t=1754951688; cv=none; b=eoY3W2rMvwGsKmv2JAu+pXi41D61duWXHuv/0ooUAq5lNT/Ai/fPf2AdayIRZfGY+5GjNUNWpIInY0NzRdwCALM8wM+HlTcbki0bmz2/nEXSG4Sf9VQ6PXuk2wOzVYyt1lOMbUxMG8fRsYvSqQiWTkYDO0i7ubV1qH/OFf//+1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754951460; c=relaxed/simple;
-	bh=QhsYH0yhdInsawGFOOU7wcTCxTp2DjRCkw5oJ+fqeTM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R4e+RUq+UGAzfMEG85fMUyYlwOlwQlxuzc0e9jE22BOGQSkQ7QUag81cbtBWV34rRzWzpphKykjdCxn74ZHF/ISB/wasg80NHxlNhegA/k7ZddbUIc22HsZa7D7uusXuw3JF+C+vm5lHnLrDO6YCI23MhdHkuoC/sntxq+QJlr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M3x5+Mbx; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b8de6f7556so2704726f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 15:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754951457; x=1755556257; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ffT6YWZkdUEe6FghMWArz7x5VLbOw7EcrzjaESrmOVU=;
-        b=M3x5+MbxIAZ1hYugfjac1JsqdVvTHxfYNIdfX0Gn023YlKzEMxAdRwyiMmnHYV3GlZ
-         802X4DBCxRqBdL1+r0POGO8rPgF2tqc7qun2TCi34mmsAcwrI/n9uDWED3sK6+BzVUyX
-         bcc8jQGUYOKXmECXE6K5BAbOx1BpmGDsyQGi2omJjNN81C6RUbsETVydEM1XKpRt43H+
-         X5cqbTBsNAyrsGCVMi8449A4UkFE8S06O8f5FOET49LeRVWH0XsxUVZlazF1MT82YrVH
-         Pg4eDeUURk3In4VyvLJnHS3BkhgOx0LYqO6eAfw21Y3z1qDBSgtMW6wV56b81il8TTWu
-         W1AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754951457; x=1755556257;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ffT6YWZkdUEe6FghMWArz7x5VLbOw7EcrzjaESrmOVU=;
-        b=seP78wZVwlRgVFsPhXJDoaDu79ehQIjYrFJtbTjB6ob2YQiCguQwDCi3sYhYZEKyrI
-         zKmyCO8dLcr+WKxbCCd/oLmL70Xz1EmPvDFKEvpv/9wZNTr664kMamdkeNeQMWFiPCqf
-         xOCUPnNTlUXGqBHh7eL+qaOiGB3/9Omark9bRsownLSvXIcDZOVjQyoY3gkQAd/zIIyW
-         fS88x5sDBwITdJS9Ec+fgLegSG8D5DEPxCU0q1fE/OZ+jvnGh4+3OSnnnisaVVubfDau
-         QayeeZxbTAo4UlRoFDO3/ObpTqNv0nnWbU6+ZfBjKIrAZxwIxtvp9msBshGoznsFFJuV
-         GpEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXlK28ji9deMJEr7EOUXq9pnF5bTylJVLm32Wjx6JNyrrAJUkDvJT1V93/bG+NF9pusDK5G+zZoXh2d@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXPoCzpVsbbcKgz9P7K4CjByhfkdOxLbURfGvsYgsGTMMUe0yd
-	oZckVcidM+v3L9LXbBtDnMIAeYlYeOu3jZ9PE69RCCuwminm8lg8PxhsZ9Ib+d271Z4=
-X-Gm-Gg: ASbGncsPvyi3yoKN0mE01xB65YRTme55pIwIa9yBgjF+ArP4Y0sUJXzs8j2OShSXtsQ
-	SBrJSqt1v/UIRJaISHNqMsBJ2m0Lg6YZGjvuuT+0sd26sAIX2vbHRVHLrysKGgrzjddqlvMii90
-	KM4QGDx5EtgIcwey9AfV7xe7CkTMtlPAMUaLSoXmOIJvYAneZ6t7Y6/2Hxnjq/8YV/lBOtpWRF9
-	e7u+RJNQe6ejGKCSGI0tsQbeyspvoRcGG0Hf3gmlzFwwsn6uLnBQRrGxYDCRsjJ/h2UZkwvs4nm
-	m9r849QRDQork9eFZ33uikI1Gb80bFRfHy52K4CRc0+yJs6weDstuuy5EjfIf0TGYYHFSW+Jh0m
-	TKR4k1ZQvuB8FC9019TX4YiWinUxtMrhrvI5yVJtdugBStUe536RVxykoy8A=
-X-Google-Smtp-Source: AGHT+IHVXO4RAN9/7Z9SLjJsYn02aSZQYS+lU4qmFjKvqvXByVPkXWX5bCNH7Uajhq9MOI+lo9gT7Q==
-X-Received: by 2002:a05:6000:24c4:b0:3b7:940e:6529 with SMTP id ffacd0b85a97d-3b910fdb838mr872543f8f.10.1754951457121;
-        Mon, 11 Aug 2025 15:30:57 -0700 (PDT)
-Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5853104sm271557715e9.8.2025.08.11.15.30.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 15:30:56 -0700 (PDT)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com
-Cc: linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ghennadi.Procopciuc@nxp.com,
-	s32@nxp.com
-Subject: [PATCH v2 2/2] pwm: Add the S32G support in the Freescale FTM driver
-Date: Tue, 12 Aug 2025 00:30:40 +0200
-Message-ID: <20250811223044.3087090-3-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
-References: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1754951688; c=relaxed/simple;
+	bh=KEJz8V3hTKSNX75hFQYkEePbPa67hYMeGLAn/TFBgQE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sQsw095/U809sHWSyptup03cvxURco3d5yEamTaLrs7rTz5MHIQz6nN3Sx/Wk5ExuMtC9TFP+SsxKZqmNUB4GbFzKplg91sYgBv8VLODotqKdiBazkVvWlcy2aDVj5+GjkrHhIu7/13whQLKJO6FbxnVHOynGIndRuXSpGsR07Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=NC8fmStE; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from localhost (unknown [20.236.11.102])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 766862118279;
+	Mon, 11 Aug 2025 15:34:45 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 766862118279
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1754951686;
+	bh=IwUhsFOiIi6zVcaJg3YrevuM/Efz5wgM79z0k/2+V58=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NC8fmStEktFHXs7Gwd5+MBF/sOxe/YRuwXQMP7Cdg+03h1qB9i7z25fjbxNTfeJB2
+	 HJs+BEDX2sjBvRhUBvPOeI4Cvh3CkAvE1SK931K1TBY6QoisYwInK5UxEvhzD1jKiM
+	 v1dAlPzV+DO2ajr4BftKMDV3pGyAsQQN4RRFhBPg=
+Date: Mon, 11 Aug 2025 15:34:44 -0700
+From: Jacob Pan <jacob.pan@linux.microsoft.com>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, virtualization@lists.linux.dev, jgg@ziepe.ca,
+ will@kernel.org, eric.auger@redhat.com, code@tyhicks.com,
+ eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
+ bboscaccy@linux.microsoft.com
+Subject: Re: [PATCH v3 3/3] arm-smmu: select suitable MSI IOVA
+Message-ID: <20250811153444.000071ab@linux.microsoft.com>
+In-Reply-To: <20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
+References: <20250806215539.1240561-1-shyamsaini@linux.microsoft.com>
+	<20250806215539.1240561-4-shyamsaini@linux.microsoft.com>
+Organization: LSG
+X-Mailer: Claws Mail 3.21.0 (GTK+ 2.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+On Wed,  6 Aug 2025 14:55:39 -0700
+Shyam Saini <shyamsaini@linux.microsoft.com> wrote:
 
-The Automotive S32G2 and S32G3 platforms include two FTM timers for
-pwm. Each FTM has 6 PWM channels.
+> Currently ARM SMMU drivers hardcode PCI MSI IOVA address.
+> Not all the platform have same memory mappings and some platform
+> could have this address already being mapped for something else.
+> This can lead to collision and as a consequence the MSI IOVA addr
+> range is never reserved.
+> 
+> Fix this by reserving faulty IOVA range and selecting alternate
+> MSI_IOVA suitable for the intended platform.
+> 
+> Example of reserving faulty IOVA range for PCIE device in the DTS:
+> 
+> reserved-memory {
+> 	#address-cells = <2>;
+> 	#size-cells = <2>;
+> 	faulty_iova: resv_faulty {
+> 		iommu-addresses = <&pcieX 0x0 0x8000000 0x0 0x100000>;
+> 	};
+> };
+> 
+> &pcieX {
+> 	memory-region = <&faulty_iova>;
+> };
+> 
+> Suggested-by: Jason Gunthorpe <jgg@ziepe.ca>
+> Link: https://lore.kernel.org/linux-iommu/20250416181759.GF493866@ziepe.ca/
+> Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
+> ---
+>  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 27
+> +++++++++++++++------ drivers/iommu/arm/arm-smmu/arm-smmu.c       |
+> 27 +++++++++++++++------ include/linux/iommu.h
+> | 25 +++++++++++++++++++ 3 files changed, 65 insertions(+), 14
+> deletions(-)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c index
+> 5f46140a8f3fa..0dfb522e173f0 100644 ---
+> a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c +++
+> b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c @@ -3642,17 +3642,30 @@
+> static int arm_smmu_of_xlate(struct device *dev, static void
+> arm_smmu_get_resv_regions(struct device *dev, struct list_head *head)
+>  {
+> -	struct iommu_resv_region *region;
+>  	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+>  
+> -	region = iommu_alloc_resv_region(MSI_IOVA_BASE,
+> MSI_IOVA_LENGTH,
+> -					 prot, IOMMU_RESV_SW_MSI,
+> GFP_KERNEL);
+> -	if (!region)
+> -		return;
+> -
+> -	list_add_tail(&region->list, head);
+> +	static const u64 msi_bases[] = { MSI_IOVA_BASE,
+> MSI_IOVA_BASE2 }; 
+>  	iommu_dma_get_resv_regions(dev, head);
+> +
+> +	/*
+> +	 * Use the first msi_base that does not intersect with a
+> platform
+> +	 * reserved region. The SW MSI base selection is entirely
+> arbitrary.
+> +	 */
+> +	for (int i = 0; i != ARRAY_SIZE(msi_bases); i++) {
+nit: i < ARRAY_SIZE(msi_bases) is more robust
 
-The current Freescale FTM driver supports the iMX8 and the Vybrid
-Family FTM IP. The FTM IP found on the S32G platforms is almost
-identical except for the number of channels and the register mapping.
+> +		struct iommu_resv_region *region;
+> +
+> +		if (resv_region_intersects(msi_bases[i],
+> MSI_IOVA_LENGTH, head))
+> +			continue;
+> +
+> +		region = iommu_alloc_resv_region(msi_bases[i],
+> MSI_IOVA_LENGTH, prot,
+> +						 IOMMU_RESV_SW_MSI,
+> GFP_KERNEL);
+> +		if (!region)
+> +			return;
+> +
+> +		list_add_tail(&region->list, head);
+> +		return;
+> +	}
 
-These changes allow to deal with different number of channels and
-support the holes found in the register memory mapping for s32gx for
-suspend / resume. The fault register does not exist on the s32gx and
-at resume time all the mapping is wrote back leading to a kernel
-crash.
+Maybe add a warning if both msi_bases are conflicting. Or you can keep
+searching until a non-intersecting region is found. e.g. let
+resv_region_intersects() return a valid region.
 
-  /* restore all registers from cache */
-  regcache_cache_only(fpc->regmap, false);
-  regcache_sync(fpc->regmap);
-
-The regmap callbacks 'writeable_reg()' and 'readable_reg()' will skip
-the address corresponding to a register which is not present.
-
-Tested on a s32g274-rdb2 J5 PWM pin output with signal visualization
-on oscilloscope.
-
-Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- drivers/pwm/pwm-fsl-ftm.c | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pwm/pwm-fsl-ftm.c b/drivers/pwm/pwm-fsl-ftm.c
-index c45a5fca4cbb..e0069dbdb02d 100644
---- a/drivers/pwm/pwm-fsl-ftm.c
-+++ b/drivers/pwm/pwm-fsl-ftm.c
-@@ -3,6 +3,7 @@
-  *  Freescale FlexTimer Module (FTM) PWM Driver
-  *
-  *  Copyright 2012-2013 Freescale Semiconductor, Inc.
-+ *  Copyright 2020-2025 NXP
-  */
- 
- #include <linux/clk.h>
-@@ -31,6 +32,8 @@ enum fsl_pwm_clk {
- 
- struct fsl_ftm_soc {
- 	bool has_enable_bits;
-+	bool has_flt_reg;
-+	unsigned int npwm;
- };
- 
- struct fsl_pwm_periodcfg {
-@@ -386,6 +389,20 @@ static bool fsl_pwm_volatile_reg(struct device *dev, unsigned int reg)
- 	return false;
- }
- 
-+static bool fsl_pwm_is_reg(struct device *dev, unsigned int reg)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct fsl_pwm_chip *fpc = to_fsl_chip(chip);
-+
-+	if (reg >= FTM_CSC(fpc->soc->npwm) && reg < FTM_CNTIN)
-+		return false;
-+
-+	if ((reg == FTM_FLTCTRL || reg == FTM_FLTPOL) && !fpc->soc->has_flt_reg)
-+		return false;
-+
-+	return true;
-+}
-+
- static const struct regmap_config fsl_pwm_regmap_config = {
- 	.reg_bits = 32,
- 	.reg_stride = 4,
-@@ -394,23 +411,26 @@ static const struct regmap_config fsl_pwm_regmap_config = {
- 	.max_register = FTM_PWMLOAD,
- 	.volatile_reg = fsl_pwm_volatile_reg,
- 	.cache_type = REGCACHE_FLAT,
-+	.writeable_reg = fsl_pwm_is_reg,
-+	.readable_reg = fsl_pwm_is_reg,
- };
- 
- static int fsl_pwm_probe(struct platform_device *pdev)
- {
-+	const struct fsl_ftm_soc *soc = of_device_get_match_data(&pdev->dev);
- 	struct pwm_chip *chip;
- 	struct fsl_pwm_chip *fpc;
- 	void __iomem *base;
- 	int ret;
- 
--	chip = devm_pwmchip_alloc(&pdev->dev, 8, sizeof(*fpc));
-+	chip = devm_pwmchip_alloc(&pdev->dev, soc->npwm, sizeof(*fpc));
- 	if (IS_ERR(chip))
- 		return PTR_ERR(chip);
- 	fpc = to_fsl_chip(chip);
- 
- 	mutex_init(&fpc->lock);
- 
--	fpc->soc = of_device_get_match_data(&pdev->dev);
-+	fpc->soc = soc;
- 
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
-@@ -526,15 +546,26 @@ static const struct dev_pm_ops fsl_pwm_pm_ops = {
- 
- static const struct fsl_ftm_soc vf610_ftm_pwm = {
- 	.has_enable_bits = false,
-+	.has_flt_reg = true,
-+	.npwm = 8,
- };
- 
- static const struct fsl_ftm_soc imx8qm_ftm_pwm = {
- 	.has_enable_bits = true,
-+	.has_flt_reg = true,
-+	.npwm = 8,
-+};
-+
-+static const struct fsl_ftm_soc s32g2_ftm_pwm = {
-+	.has_enable_bits = true,
-+	.has_flt_reg = false,
-+	.npwm = 6,
- };
- 
- static const struct of_device_id fsl_pwm_dt_ids[] = {
- 	{ .compatible = "fsl,vf610-ftm-pwm", .data = &vf610_ftm_pwm },
- 	{ .compatible = "fsl,imx8qm-ftm-pwm", .data = &imx8qm_ftm_pwm },
-+	{ .compatible = "nxp,s32g2-ftm-pwm", .data = &s32g2_ftm_pwm },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, fsl_pwm_dt_ids);
--- 
-2.43.0
+>  }
+>  
+>  /*
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c
+> b/drivers/iommu/arm/arm-smmu/arm-smmu.c index
+> 4a07650911991..84b74b8519386 100644 ---
+> a/drivers/iommu/arm/arm-smmu/arm-smmu.c +++
+> b/drivers/iommu/arm/arm-smmu/arm-smmu.c @@ -1600,17 +1600,30 @@
+> static int arm_smmu_of_xlate(struct device *dev, static void
+> arm_smmu_get_resv_regions(struct device *dev, struct list_head *head)
+>  {
+> -	struct iommu_resv_region *region;
+>  	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+>  
+> -	region = iommu_alloc_resv_region(MSI_IOVA_BASE,
+> MSI_IOVA_LENGTH,
+> -					 prot, IOMMU_RESV_SW_MSI,
+> GFP_KERNEL);
+> -	if (!region)
+> -		return;
+> -
+> -	list_add_tail(&region->list, head);
+> +	static const u64 msi_bases[] = { MSI_IOVA_BASE,
+> MSI_IOVA_BASE2 }; 
+>  	iommu_dma_get_resv_regions(dev, head);
+> +
+> +	/*
+> +	 * Use the first msi_base that does not intersect with a
+> platform
+> +	 * reserved region. The SW MSI base selection is entirely
+> arbitrary.
+> +	 */
+> +	for (int i = 0; i != ARRAY_SIZE(msi_bases); i++) {
+> +		struct iommu_resv_region *region;
+> +
+> +		if (resv_region_intersects(msi_bases[i],
+> MSI_IOVA_LENGTH, head))
+> +			continue;
+> +
+> +		region = iommu_alloc_resv_region(msi_bases[i],
+> MSI_IOVA_LENGTH, prot,
+> +						 IOMMU_RESV_SW_MSI,
+> GFP_KERNEL);
+> +		if (!region)
+> +			return;
+> +
+> +		list_add_tail(&region->list, head);
+> +		return;
+> +	}
+>  }
+>  
+>  static int arm_smmu_def_domain_type(struct device *dev)
+> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+> index 517f908296436..6750ecdebaa94 100644
+> --- a/include/linux/iommu.h
+> +++ b/include/linux/iommu.h
+> @@ -1509,14 +1509,39 @@ static inline void iommu_debugfs_setup(void)
+> {} 
+>  #ifdef CONFIG_IOMMU_DMA
+>  #define MSI_IOVA_BASE        0x8000000
+> +#define MSI_IOVA_BASE2       0xA0000000
+>  #define MSI_IOVA_LENGTH      0x100000
+>  
+> +static inline bool resv_region_intersects(phys_addr_t msi_base,
+> size_t length,
+> +					  struct list_head
+> *resv_region_list) +{
+> +	struct iommu_resv_region *region;
+> +	phys_addr_t start, end, resv_region_end;
+> +
+> +	start = msi_base;
+> +	end = start + length - 1;
+> +	list_for_each_entry(region, resv_region_list, list) {
+> +		resv_region_end = region->start + region->length - 1;
+> +		/* overlap detected */
+> +		if (!(start > resv_region_end || end <
+> region->start))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t
+> base); #else /* CONFIG_IOMMU_DMA */
+>  static inline int iommu_get_msi_cookie(struct iommu_domain *domain,
+> dma_addr_t base) {
+>  	return -ENODEV;
+>  }
+> +
+> +static inline bool resv_region_intersects(phys_addr_t msi_base,
+> size_t length,
+> +					  struct list_head
+> *resv_region_list) +{
+> +	return false;
+> +}
+>  #endif	/* CONFIG_IOMMU_DMA */
+>  
+>  /*
 
 
