@@ -1,96 +1,135 @@
-Return-Path: <devicetree+bounces-203182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B9FB20448
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:49:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94032B2032E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:22:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA8AA18C2270
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:49:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58B9A3A9CFD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 09:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A318221FCD;
-	Mon, 11 Aug 2025 09:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6992C2DCF6E;
+	Mon, 11 Aug 2025 09:22:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="Z3MPyC/y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PnXipBWe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF242153C1
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 09:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBB3242D95
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 09:22:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754905657; cv=none; b=bDqRYSwc0AN5V0VS77a/yFSqOSC24D5+Ln61TJvo4ybvkBPyx9Xu1r+vFTvYjp5Hr0YpA/GF4O/Ai9Xj2haIiSfjvf+3yeAUASpzb8f4dI7GNAh5U4dDaMmWf/MxcadV1lsYX9Mza1iHr7+Rl0E5/8aq2n4cs5bI1lVKVVpBe/I=
+	t=1754904128; cv=none; b=nKiGoiI6GsoEz01H2ARQ3BURBcFsFqG4gIgWLR9jm7rGU/nLGZAGGt3zS7DAszJiEWsYgXskA/gn510qHWRWYxXOgjkfsK57hCqLwJPxSsRyh5wRuJ6W9PCp0Ir1bfOcHxS9Svp1ia0n90voxFKKoHguVKTNOY40x1K/HSJ7LDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754905657; c=relaxed/simple;
-	bh=B6OgfGWrJTmOPWVma9W95ySOuNbVX75iwTf6/mPCbQ8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rS/KamRwJtS+w4GaKEyC1IzZQKac+MzCzqUFTpo0VZrl59hK/JAl7aFJTZtcI9c8PJ8U6kc8TsEEnUee9tP4idX5STH83tKAorqGFFViJmJrnYOJF+J7ZLvTMvppiIwHx89h8kEywd2sLgTalW/1kC0pBo/NqLfORF22Eo1bwu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=Z3MPyC/y; arc=none smtp.client-ip=212.77.101.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 36672 invoked from network); 11 Aug 2025 11:20:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1754904053; bh=3umHQDcb0zjHfkJbR08wpJ0dPt9WRkjKc/Qo2lTT0iA=;
-          h=From:To:Cc:Subject;
-          b=Z3MPyC/y3Fqc1WPlf/+le4mK0yu3Etq/U9OFZZfT6GVqk2vgmiOprsdeaPVjVpySJ
-           ml11s/0l90KsBK4TFZD1VIDw7ijqLclFkJyahC7rR0F83ogZoQuBl9aM5gRFT6dQT+
-           M6UE7lzO9Iw9N74yzSjAsZYXZ8adW8CLRJAS6KGNWfuxG9Z2bwz0UMC7gGB4i0LoMI
-           N0O37HdhpgEwClHk11iGQpZaiQwuG/ypc/2lt/TF8cqm6FyNjObv2cZjhQD1EvjnkS
-           myTKjTCUk05rpddlIKqyOjCSCVjO9GrZrxXQYm5mnt4F1NEGGeiCDOiGJDXsTT4oxZ
-           FXCkHc/9Xwh9w==
-Received: from 83.24.148.125.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.148.125])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <tsbogend@alpha.franken.de>; 11 Aug 2025 11:20:53 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: tsbogend@alpha.franken.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	zhouyanjie@wanyeetech.com,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH] dt-bindings: mips: cpu: Add MIPS 34Kc Core
-Date: Mon, 11 Aug 2025 11:20:36 +0200
-Message-ID: <20250811092048.497087-1-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1754904128; c=relaxed/simple;
+	bh=K/zPVqxGg7tPN+JbH7RDbuwnwSJKsZfgYcJ/y4119IA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bmeFQLuNQIe5mIwaTtyTu5CQMVvx46gC3cojZbv4pMPvftJ7XNrrtR914txo/1FIGn9tflE5QNmEU46bAgwVW7c91R1sBlytpA67URSmGliQHPVmpxFbI28bE/yYEtSox9cWO5PXqLJeB3z7swmsSYJ/2cLkzuGLKovmOqMdfQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PnXipBWe; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7425bd5a83aso3374617b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 02:22:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754904125; x=1755508925; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=n44ROEDa3iRmjIj2E/S0tuIP2QaLePXT+HAKtrIXfuc=;
+        b=PnXipBWeA2oYugnfcYMhifxpADIJqd+BzdtR/6Btms/qY7WjTCaCaTLicn36cZCZtp
+         SL6URDZief23E7YUR2GB9QKopMU7aWlVEWBTPLRVDszIDU04d90n0khK4r3RysZWVTdv
+         H2CrOc2bByNGC7n8+yVXXoemyInOdZCrLLzUbvOIse1HYoo7tuM/MQbhg4fY2AM1ZLTU
+         c956F3p8roLky8nVAD6fRssdntkdUilIWe6SJdiI0xPJGXFr0I1X/Twi7B+vT2y9tpdE
+         8Dvcl3sFEQur2SELjc8TBmyoY7NaCN1B+yBYuEWtZ84oCSW0PgNsMTxsknebkW+H0Nyt
+         OcoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754904125; x=1755508925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n44ROEDa3iRmjIj2E/S0tuIP2QaLePXT+HAKtrIXfuc=;
+        b=JtEfgv5KHEyLAKdF8KMfZpj96pnrsObsI90/hqj5b8n6TB1uvnZno9Fz3AC4fujtNh
+         1dTJO5n0GMWz04RJ0UPJ4DEE+V5g8kkhfp1yOMnhKvEA3HXpyGbJh0FVFI4jg9c5X+G9
+         53sb53/YqGTWoz9Ii98cZi7KNj6KzSKkr+EZ+7eLCcnMZpJgoc+nJPZa3szeOI824NXm
+         IsNXQWH1l/1RWFz8kS718utXvRw7Wx/kUGP9GQmbMd7e/2mwvWNa1LECZdDBpYloaK1m
+         lMBV2D2Uy+hVCVbIFKZzyj2NfT1ehVo5Te4t5mBsK0biQUy0p96feE57/heZXF6C8C1r
+         S4yg==
+X-Forwarded-Encrypted: i=1; AJvYcCVg+Gt/ybmigQ30hrB1bDkCq6oCzB51QL80xY3PAaGGNzPLtAX18ls7Pj39Uf09QJno8YSqxuepo88p@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj529nTejftqnDGjf2/TBx9MuwI6P8j4/WyJj4Wqh+nngRUKde
+	OtZvln3rIK4pyLwdxz7SCZA6dI36JKcRVSspIe6EMg/pgL8xAH3f8gpaG9c/ein3Bjo=
+X-Gm-Gg: ASbGncstvPsr8BonVhtUKjgg4mmleUKshvVwXYWZY28WdFnK21kl6qsUWe6NYymornc
+	3GJBY3yOoQfmaEQvjV861nnqx4jrGJiUMDRTmLbLowPZe1lpy6/Kcq2X+mnKpCMjeUKlRYqsmbF
+	fV1RDZQGx4gDSzN1qZqIEcQGnS2pbTiw1D6a3g0aIV5k91FhvmXImH5gyUpZylSWYhcTNIcLmHx
+	tBCDOB5VRN/mH5rVLW/GFH/Uf6nkuhximvwKG71nAIcCEYO/0P9I7kcILmaRWsutSdLzAGr+3AT
+	xucLI0inLJeb2/AVzu1MwKTwxOOl3kElLpJiuYPABznZ8hb6tlz2oDhNZPAl4mHHPooIFHXRPYr
+	GiE6pOL/lma5qtsEi1EZmcm+C
+X-Google-Smtp-Source: AGHT+IEY0nvgGQRFqL9yezJOvWADh1/cHUUmKJ7QswLrUeIJdU75UuZ8LO0U21sJdWveXkp3OX6rWA==
+X-Received: by 2002:a05:6a21:32a3:b0:23d:de52:a5f0 with SMTP id adf61e73a8af0-24055204322mr19749640637.42.1754904125252;
+        Mon, 11 Aug 2025 02:22:05 -0700 (PDT)
+Received: from localhost ([122.172.87.165])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b423d2f5035sm20840763a12.39.2025.08.11.02.22.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 02:22:04 -0700 (PDT)
+Date: Mon, 11 Aug 2025 14:52:02 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	konradybcio@kernel.org, rafael@kernel.org, ilia.lin@kernel.org,
+	djakov@kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	Md Sadre Alam <quic_mdalam@quicinc.com>,
+	Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v7 3/4] cpufreq: qcom-nvmem: Enable cpufreq for ipq5424
+Message-ID: <20250811092202.auarwnyoagebcw3o@vireshk-i7>
+References: <20250811090954.2854440-1-quic_varada@quicinc.com>
+ <20250811090954.2854440-4-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: c31b38db7f8f9720d512873d28b9fe54
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 000000A [0WME]                               
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811090954.2854440-4-quic_varada@quicinc.com>
 
-Document MIPS 34Kc device tree bindings. It is used in the Realtek
-RTL930x SoC.
+On 11-08-25, 14:39, Varadarajan Narayanan wrote:
+> From: Md Sadre Alam <quic_mdalam@quicinc.com>
+> 
+> IPQ5424 have different OPPs available for the CPU based on
+> SoC variant. This can be determined through use of an eFuse
+> register present in the silicon.
+> 
+> Added support for ipq5424 on nvmem driver which helps to
+> determine OPPs at runtime based on the eFuse register which
+> has the CPU frequency limits. opp-supported-hw dt binding
+> can be used to indicate the available OPPs for each limit.
+> 
+> nvmem driver also creates the "cpufreq-dt" platform_device after
+> passing the version matching data to the OPP framework so that the
+> cpufreq-dt handles the actual cpufreq implementation.
+> 
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> [ Changed '!=' based check to '==' based check ]
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v5: Add 'Acked-by: Viresh Kumar'
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c | 5 +++++
+>  2 files changed, 6 insertions(+)
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
- 1 file changed, 1 insertion(+)
+You should have dropped this one now, as I already applied the
+previous version.
 
-diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
-index 471373ad0cfb..d3677f53f142 100644
---- a/Documentation/devicetree/bindings/mips/cpus.yaml
-+++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-@@ -33,6 +33,7 @@ properties:
-       - mips,mips1004Kc
-       - mips,mips24KEc
-       - mips,mips24Kc
-+      - mips,mips34Kc
-       - mips,mips4KEc
-       - mips,mips4Kc
-       - mips,mips74Kc
 -- 
-2.47.2
-
+viresh
 
