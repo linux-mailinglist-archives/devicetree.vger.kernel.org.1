@@ -1,132 +1,199 @@
-Return-Path: <devicetree+bounces-203344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59434B20C94
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:51:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680E5B20C69
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:46:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 592944259F7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:45:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C5D37AD264
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D2A2D3725;
-	Mon, 11 Aug 2025 14:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E995D2DCBEE;
+	Mon, 11 Aug 2025 14:45:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DUeRpwiC"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="e5G08uop"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497F3253B42;
-	Mon, 11 Aug 2025 14:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98B91624DD
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 14:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754923445; cv=none; b=JTqJ9DnsgXrX17F9CF5FclUWJicLGTSeQ1VsZ/brgsZWpFuR8rm2WIt3iOGi29lH0m6m719EXMbrBwWGzl1VMxaRS2g1IAxkxsX41u8Pp+pxDvgaqZA7O5U9N8UUucswPdpck2bIfWnYIzq5NNaMnL1pqQGiZP56sbmQxFfv0eg=
+	t=1754923510; cv=none; b=DZ+dzu+LrJ5VBRzLqhsoUbWM9Hy4Th6zISmFOVc2zxa30D4Rx6Vsqkr//gkVzt4r4DId2fytVTqVr6BS/OXK5ZTdni5acMSTbgp/YSzSoP7jB4WraOtHwU1gkkCRHEIvdv79gM0XDc2NjAirxuNoqPCrOaMVQoy7Iac6M8o3h3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754923445; c=relaxed/simple;
-	bh=W+VGi/n0WjUYmmcqvfG/6Z/pBx9Gsr2/SuoZYs+30pY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J7uVvrl8VaJlsmN24JvuhNQtSsyYOLUaelpR+pcs2YJiNzgaPoYckR59l1gYTTflWnAz3m9oyArrEcDnNi5Mz0oKUW0++oVTcQZRQltkEk4ik/c1duKW8hyVuMMzY0GdZhTarMwvxb6CVz6o4QNx7lt4RMxf14UUsV9f4wsItlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DUeRpwiC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A0EC4CEED;
-	Mon, 11 Aug 2025 14:44:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754923444;
-	bh=W+VGi/n0WjUYmmcqvfG/6Z/pBx9Gsr2/SuoZYs+30pY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DUeRpwiCnlg0tQcfu/x8U9zCUrldW9eAUOuFGz7Swfh1oURjiQGooOiGic+dsDRFC
-	 5OGHlF+bKbszLlFGzZOuu3EHgR07m24Hfr0Wv30xLJb3C2d+vluz+Ft34E/kqF4YBv
-	 etvu16q7VKqXOMBZ2dR9eDSu6TWnLXhF8SVcnOkUDpowEFGSy2cHrWp9tXLP31v9Ju
-	 fvbqx7FHIfSB55Sd8/n5oqryL8in4e8grePfCyKrcvSmXF3x7j1siqmVZYftpC7a6z
-	 cRLlNgpe4shTl8hlhvfCUrhYNo3gyi5FVt7UK9xnApvAScG92jvmRhnM8n7Ax4XWAb
-	 4aaDfG6XUZORg==
-Message-ID: <67aedb2a-3ccc-4440-b2ff-b3dbedf5e25c@kernel.org>
-Date: Mon, 11 Aug 2025 16:43:59 +0200
+	s=arc-20240116; t=1754923510; c=relaxed/simple;
+	bh=ssZi2V2BpkiG5DrbhwdFR2j15/GCo9BoYjkK7NmEm7Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=U+DqR7s1mxhb3wmdOkFslR94romGRD8WFDz1nYJTNT3kD0QB7E6OWMQuBmTjfnkjuNZaCa1UaMJ7pMrFuP1OlQ1vELZmxDAmAOaoHCDDnLmDAWxTUvFOUjsQyTUugoUD0g2FlDoN7mC6iAH0znscOVDzYSh8xsGDr83yfsz+9tY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=e5G08uop; arc=none smtp.client-ip=209.85.218.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-af9a25f091fso594816366b.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:45:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1754923507; x=1755528307; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hJcoOLDf8BTazRGK+87/HJW+Db0TPk2aWIU1Zf6mQlM=;
+        b=e5G08uopp2ry8GMtJImk70FuZW9mAjtaS0BO1RCuacHJ38omWJomrID9F5VP90AwR9
+         wq2fsmHQ6kaOSt4CJ3fhi36HrY+taeheZqDFhLeMsAinlR2paTFZ8OMonjfYKb2W+vZD
+         BePvn8ApZG6Kk6WeCDOX7wWFsjpe7nX4p2VGw1/lBs3iuosHEB93qVtKOGeRDVQAspJF
+         Kd8QKyfVHqQFTZoWpp0FspjmRdUTLLQfywJe1wSHMm5Et0wR+GPOssNbReSzNDEpKRlo
+         BkLvlSoPypJM05xJFRE5MPkN0VNIGl+i5MHDOwOEsClyZQZvymiAHSwVwOelb2Vil6Sg
+         A+0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754923507; x=1755528307;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hJcoOLDf8BTazRGK+87/HJW+Db0TPk2aWIU1Zf6mQlM=;
+        b=VCHajlWltQVW5eRqTeu6SylrvBdWWZ0e7PFetvFKPtiY9U/fUFLOsifFtwntbMmo/N
+         /nfQxwBSxm/xINeyml1VPxfB6zJcHXM9V+kEZkq+rAKdfM7u5OYPN9dIR7sAADdSaoYn
+         WMG2oORWl/ZxAS3RtcwYOA/2fbZJkOrDkLY761TCtPwLdu75eN7v4ek/6qLiv7BhTB39
+         dxWgtBE8Xln301lJa4hp8L5GVE1Gx0WjdwWpNOf8k9ckfsTHVeouGdYgkFIKFwIIEOFy
+         AwNBTVBkTkAqrtlijaJ73Ti97I3vQgPuStGw7/k6nvv/IUX9ri94PFjyRr32PahuTyG8
+         ePRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVIVB6QIzYWA5pk7ETNrCX/zpwJIcLrC5jTtQkmK1CgC7orIKmWJWQDa+OVqtBXuf1vIVDW9GNd6b90@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywub7oOPQqb7Dw061D28rKTpSrYXTrmPmSzgf+y/XMojfICBsOQ
+	q2LkMcCLXH9QRoWLyhGVvBjnroUoycx9aAaB9ikPCCRWCVlLm+8sxNQ/b/N69eWM/Gc=
+X-Gm-Gg: ASbGncttxAxFLqgwXK7Nlw9zpALgyRAjaER4ehRHsAGJV56lZYmIoQ3DS04C3M/wQBB
+	UoCl6xoOD9ui3IoZiG0pDMNVpQodJBWVSO4xR+di5TN4u0pQ9Rmy74d6pPxS3GDne6CR4MQ/WEE
+	cBTS5nTg1iZrmaLaOL0K+IVqQyW6YTnBX/KsAvvVcwp5DygfP9pRv92uyx5RAzh/w2/WUVxEa8Z
+	UTo2oQdiCm/lzRqjMdz2ZgfskXnaPYQMkD+gdmpR4Ad4qgjsUvLzWZd/ZfmyTIDaarqzcBymQEA
+	v4zuXPxaKQqEeX599IfI6br8SCryg0k1FVDqHthJ4m0NTnl+0m8YNSKbUqRgWrnpcht0imy7KD0
+	jKv1ErZ8qQkB1KNwOjmxgmDLKqR4MDdNUbGrZxF4r8h0uw/QxO2BPc2VYDQCvwqnF3w==
+X-Google-Smtp-Source: AGHT+IGxUCzXjFil7BaQruhMsAvs3m/J8Chpjk13kDIOzDYu/beUtkNUJBMy4y0EFRLuwUY2CuxLOw==
+X-Received: by 2002:a17:907:7fa4:b0:ae3:c767:da11 with SMTP id a640c23a62f3a-af9c65de7eemr1074989066b.50.1754923506918;
+        Mon, 11 Aug 2025 07:45:06 -0700 (PDT)
+Received: from localhost (host-79-44-170-80.retail.telecomitalia.it. [79.44.170.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af937c86989sm1814983866b.74.2025.08.11.07.45.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 07:45:06 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: linus.walleij@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	florian.fainelli@broadcom.com,
+	wahrenst@gmx.net,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	iivanov@suse.de,
+	svarbanov@suse.de,
+	mbrugger@suse.com,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>
+Subject: [PATCH v3 0/3] Add pin control driver for BCM2712 SoC
+Date: Mon, 11 Aug 2025 16:46:50 +0200
+Message-ID: <cover.1754922935.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/4] arm64: dts: qcom: sm8650: Enable MCQ support for
- UFS controller
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, mani@kernel.org,
- alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org,
- James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250811143139.16422-1-quic_rdwivedi@quicinc.com>
- <20250811143139.16422-3-quic_rdwivedi@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250811143139.16422-3-quic_rdwivedi@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/08/2025 16:31, Ram Kumar Dwivedi wrote:
-> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
-> on the Qualcomm SM8650 platform by updating the device tree node. This
-> includes adding new register region for MCQ and specifying the MSI parent
-> required for MCQ operation.
-> 
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+*important note* - For clarity's sake, here's the revision list from which
+this patchset derives:
 
-Way you organize your patchset is confusing. Why DTS is in the middle?
-It suggests dependency and this would be strong objection from me.
+V3 (this patchset, split-up to deal exclusively with pin controller stuff)
+V2 (missing v2 in the mail subject): https://lore.kernel.org/all/cover.1752584387.git.andrea.porta@suse.com/
+V1 (original by Ivan): https://lore.kernel.org/all/20240731062814.215833-1-iivanov@suse.de/
 
-Please read carefully writing bindings, submitting patches in DT and SoC
-maintainer profile.
+Also, in V3 the patchset has been split into two:
 
-Best regards,
-Krzysztof
+- patches 1, 2 and 7 from V2 form the new revision V3 to deal with
+  core pinctrl stuff only.
+
+- all remaining patches will respawn as a new patchset that adds new DT
+  nodes for the peripherals that use the pinctrl. As a consequence, it
+  will require the above mentioned V3 patchset as a prerequisite.
+
+--- 
+
+Hi,
+
+The following patches add a pin control driver for the BCM2712 SoC.
+
+Device driver is follow up version on what Andrea posted in April [1].
+
+It is based on sources from here [2]. I just made few cosmetic changes
+and addressed review comments from earlier submission. I don't have
+documentation for this controller.
+
+A separate patchset will add peripheral nodes that rely on the SoC pin
+controller to setup and config the pins.
+
+All this have been tested as kernel was directly booted RPi5 via
+kernel= config.txt option and cmdline.txt file with following content
+(Note I am using Tumbleweed RPi raw images)
+
+# cat /boot/efi/cmdline.txt
+root=/dev/mmcblk0p3 rootwait rw systemd.show_status=1 console=tty ignore_loglevel earlycon console=ttyAMA10,115200
+
+With all these patches Bluetooth and Wifi are working fine (tm) with
+firmware files provided by openSUSE Tumbleweed.
+
+All comments and suggestions are welcome!
+
+Happy hacking!
+Ivan and Andrea
+
+[1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@broadcom.com/
+[2] https://github.com/raspberrypi/linux/blob/rpi-6.6.y/drivers/pinctrl/bcm/pinctrl-bcm2712.c
+[3] https://lore.kernel.org/lkml/20240605120712.3523290-1-florian.fainelli@broadcom.com/#t
+[4] https://lore.kernel.org/all/bfc60a7e-54d2-48a6-a288-4fe76d66507a@gmx.net/
+
+
+CHANGES in V3:
+
+--- PATCHES ---
+
+- The V2 patchset has been split into two. This patchset (V3) contains reworked
+  patches 1,2,7 from V2 while the remaining (again, reworked) patches will
+  respawn as an entirely new patchset.
+
+
+--- DT BINDINGS ---
+
+- brcm,bcm2712c0-pinctrl.yaml: emmc_* pins are specific and do not provide
+  other alternate function, so the function property can be dropped for those
+  pins.
+
+- brcm,bcm2712c0-pinctrl.yaml: fixed the schema ID reflecting the current
+  filename.
+
+
+--- DRIVER ---
+
+- pinctrl-brcmstb.c: wrapped a couple of lines exceeding 100 columns.
+
+
+Andrea della Porta (1):
+  arm64: defconfig: Enable BCM2712 on-chip pin controller driver
+
+Ivan T. Ivanov (2):
+  dt-bindings: pinctrl: Add support for Broadcom STB pin controller
+  pinctrl: bcm: Add STB family pin controller driver
+
+ .../pinctrl/brcm,bcm2712c0-pinctrl.yaml       |  135 ++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/pinctrl/bcm/Kconfig                   |   13 +
+ drivers/pinctrl/bcm/Makefile                  |    1 +
+ drivers/pinctrl/bcm/pinctrl-brcmstb.c         | 1197 +++++++++++++++++
+ 5 files changed, 1347 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm2712c0-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/bcm/pinctrl-brcmstb.c
+
+-- 
+2.35.3
+
 
