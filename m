@@ -1,318 +1,118 @@
-Return-Path: <devicetree+bounces-203249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28A65B208BE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:25:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C55B208D7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:35:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A719418A224A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:26:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9ECD3B84D5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 12:35:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A28A2D3EE1;
-	Mon, 11 Aug 2025 12:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D096A2D375D;
+	Mon, 11 Aug 2025 12:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UVLQSNaS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrKiPp4Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 435392D3A97
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 12:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EBF2D323D;
+	Mon, 11 Aug 2025 12:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754915126; cv=none; b=dHe2ZAoUr+7yb/3+CGYnHhDZe66LQR696aKczBDVlJV5OSHEWQqBwY6taGKwc55ANyDgKioZ68jnFVkdUWAmcSGl4AiRuRTtWGwV8Ei7MvG5VZsjoOBOYMahbupux4rV/XhnF8Elcr5wVFWKFyuM69dNNvlR13vQvQ8knwacaeI=
+	t=1754915719; cv=none; b=awhLFfwG3sIqAzOB/rlfrHgARDXNLAuAvpAwI9VLmIndqYFlshxUBHkt5YNNUNEKZxaVWk10Cxia9soIvTErNPaeQduWK52EJ0ym+qPkpwTdkI6tGO+QArKD2fHva6I0JTK7kolGaafxRMF8+zBWz1BRacfWvB4A+lQgNDc9j4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754915126; c=relaxed/simple;
-	bh=n6T5GhUysgMZGgbWj0uqn+CFLJN1qzaodZC5ot+Vkv0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PHf3t4XMIFvpU8HycjgqraEGHIu7jZq2htUvAXtrPQD/jXkF7vyAbfsqa0svqn/dJFKW7ussE0m8v2nLKhd5bMyHY84KCd2xi/02kom9++WdTdMU2Vvx+cwYHICD3q9VM2JWEN+VSQi0Sqvjs/T6XAY/dG5XEhCbmFcdCfFWreo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UVLQSNaS; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-458bdde7dedso28836105e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 05:25:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754915122; x=1755519922; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QLqlhHSdqib3orjcSPHkGKRVwVxunkxH/1/tKc5ugRo=;
-        b=UVLQSNaSrPilO4B1iGxIoK2cQT5/xoR474Za3zKeqNcIVKwpslYWP8Yq4FuyUPkun/
-         HTdjMXY25RJn1XY0XtiNLrQM6W2BnuiDwCmAoxEBVEDT2dkiA73g/bEQtZakt2sA8yTp
-         b7WxfOJoI9zs3qq15ut1lh44BNqepOr3dZzXinfnLIN5NyM/piD2aDeN3jYmviD6gO70
-         Pb1Drd2SjbCnFPK2SHMsLl0A5mnuCBe6r8w85KdujXyRCPfNQgAFh665OVFkMnp1vfIx
-         cScjj2E8An38X75KPU9ua5OFblY/bmlGJGXUMRiy1WGwj2g7Kenqpe3/Y1+zeHKpTJZE
-         nTOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754915122; x=1755519922;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QLqlhHSdqib3orjcSPHkGKRVwVxunkxH/1/tKc5ugRo=;
-        b=hZz9CxPmc7yKGvVBWa/xHA96SRLqowwCC/M+Fhp4SvZXanoRWHYBMa0KEW1vMuNHlt
-         Pw3P4rP4Zx6y4OOFzhUkvRWkWRFOTSGJ9e/k47PcfsA8EQW0yWMmgzxk3FB63ELTz2Na
-         jKce7U/NzQF8tYBpWOrM7iUBxSJas3+mbmiCdtspQPc4ZTESZ6+TRHwId5ZwzkAYlW7u
-         QMqE4iMU7jpELOOuEhtEm1VWEq8lYaSO+mQragGG8kz2Zi+7bm3w9nfS2mJ+10eZzKSl
-         lucGMrPbvkhu/duA5JHkKasO4VMOGdctFVHwOJmy+UGmCKyYkkwAA1VvWsc3udetClih
-         NfjA==
-X-Forwarded-Encrypted: i=1; AJvYcCWupJYj+e44HwxWNUOEgj2fANJwAMi3/8B2zFYtG6CV/uyhMW+toPyW82WaDt6W01sTKkJl1prlwuy0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwSosDwsFZtntbPI0fUeq6QG/RD2F1A/esYJpEj7U7EvDNPfkg
-	nivKjB4xycbXnmg2PgvLwe6Z5fbSIWZCcp9My/pQPxgzAiTakTYZhaGYlL8GILG2gmI=
-X-Gm-Gg: ASbGncuiPPS1tYQAVqvrryhdMw1fEpLYphdcRaQToPI0BhqvpiNzM1rbfB3SScbAv7U
-	CuhV2IfkLUTqMTpJ/cMugmPtgl2cUcFhXfFuueJ8Kfbml9AcLLgZdjxLsot88s1My56E/pIWCm3
-	U8FKAqnlg5e/Pky6C5SgQ4Wx+hwNmn1z3hBxeB0CjPLneydMoU1VLClYjzjTCrqIJetl4Kl3U+V
-	3o4JVaT90aA+Ap6ahAKkZimVQRecVIEbm0zktTTJDPINjtcscB27G+RG5dyMRfCAVjXoLEDm0/f
-	KFg0u5E7UwEquxcAeaa7ASpwvJufO/uy8v8zf//TKrDQrkYb8p7SpJ/P6skB/W3TkSu9Csr2IrY
-	MoBM1uQTgYHdTv0DrFIwaomOKEuBhRDM8GZu0aqjTs84=
-X-Google-Smtp-Source: AGHT+IEO/D3Kf0FEExOrijHou096dDtBPWCLjC1WgVsjGIgzijMpCDE2xPmlCCIGCuY8d0Y0NY1PGg==
-X-Received: by 2002:a05:600c:3b9e:b0:456:285b:db3c with SMTP id 5b1f17b1804b1-459ff5a7a67mr70226905e9.3.1754915122311;
-        Mon, 11 Aug 2025 05:25:22 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5d0b1afsm248013475e9.26.2025.08.11.05.25.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 05:25:22 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 11 Aug 2025 14:25:18 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8650: Flatten the USB nodes
+	s=arc-20240116; t=1754915719; c=relaxed/simple;
+	bh=xPf4hCC+HgEef5Swn5jiIwNVTgFJh8/Tr7iUx6FhQlg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Y6pbpYvPSel2Dv09ph8GJA4qDlp+lM7jQGwe46KQxrwmfjP7vMJZ+KAdlZy28d9FZeXGq5u/M05WKcfMe3c6mi8DlqRibUzf7zcw5STdg+6YK+F//SgDuIgF85opnUZZooRb/CQpqFRdBxVUrfLGLI965qyVxjC4DzEoaigYnA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrKiPp4Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EEA4C4CEED;
+	Mon, 11 Aug 2025 12:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754915718;
+	bh=xPf4hCC+HgEef5Swn5jiIwNVTgFJh8/Tr7iUx6FhQlg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=RrKiPp4YR+5UeVQhTjhRrBfrjt3LLrtXkBjI/ArUI8iUHWWLWydGFkIJ0/Ok4C+Hh
+	 diETbZpRXWj7m59Or5GQB5aZeUM2gjRskoVrzX9FGYb4sen0D0AqLBwWxjVwoiEnR5
+	 fSJtbe7ca9YDDUYe0DqXHEUaPq3kIuqUntxTpKAywwqiH0N0TTNkSU916d5t344/6E
+	 I71IpiMPERo83GlO6T5KsAFtykIjAMki2bKfjzu/MWg4yaiklQa6DSS5aZDPOarxnz
+	 xWt7ftlMe9SNZjflZNea7+wi/+G9x5StNenrX1yjGZtSmYRDVauwby5kVJGJYyUhNo
+	 MbTQntPCDE2DA==
+Date: Mon, 11 Aug 2025 07:35:17 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-topic-sm8x50-usb-flatten-v2-2-0bbb3ac292e4@linaro.org>
-References: <20250811-topic-sm8x50-usb-flatten-v2-0-0bbb3ac292e4@linaro.org>
-In-Reply-To: <20250811-topic-sm8x50-usb-flatten-v2-0-0bbb3ac292e4@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5739;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=n6T5GhUysgMZGgbWj0uqn+CFLJN1qzaodZC5ot+Vkv0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBomeEvWsHn0f5DU/lw77i8DW5ulsIAcomwTc/Vozd6
- aR/PJvmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaJnhLwAKCRB33NvayMhJ0UuuEA
- CCh99wAzxF8LXcnzalK3YrahyKbv6dAkIHdvBXq0KXe9sHglhMt+5sj+wl0ZhchXIDfW7aSxwevdAv
- ruLKqjPSgq5/SABUqQcUrKJ3lvfD6/hLPqxDfpN18cB3QRpaOgetkDRGVta5CmWvwJxROwftwr3kLP
- iBVn0iPdM2AFRMGJ5QktipG9n7WvKHJ/g8eub7uZtPtqYW+C6ia1qhiwg8AVVLq4ZDYdUQbnvhrkvw
- cI856VZjp7imiw4EYnxzxslTAc8V6VsqPAEXa+7YZ5kl5ZY54ZiKR9qD5jOvCnPCK/X7hu3g8hJu2I
- 68TKyRyJxxhenEfT1CrS11KJl2lfhMlLOMW52tKKNtqBwREPxpO0hGGn/V9bc1u65UCfNyiIL4Kprf
- Gydsr7AXPhipTzRFZXlpSEliclmMRh1OvJzHn4y2KmdfLlt1qVb3WT1Oydn5s3ha1CY2CWbj/cCzud
- wf+WLZ3eKAeMzYMP4Lk6jtTQ6NSM8pDhV5UBHgIxq+RNAmU33+E6ICSA70XSM6x21pqDTp6sQ/vAmH
- sE2O7CWftIJ46/d3n45zpcS5o9eYg5CDkBLzTBqi5GAaLr4QyE5/JPKivaRLCPqSbUI9lsPQezCHJN
- aprBbphUzxCjRPXr1Wf/7AAon2MnHiCJN5IT1Iz0mKQ0nvUEmYZPD7cV8boA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, alexandre.belloni@bootlin.com, 
+ devicetree@vger.kernel.org, linux-i3c@lists.infradead.org, Frank.Li@nxp.com, 
+ priyanka.jain@nxp.com, vikash.bansal@nxp.com, linux-kernel@vger.kernel.org, 
+ conor+dt@kernel.org, lee@kernel.org, broonie@kernel.org, 
+ shashank.rebbapragada@nxp.com
+To: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+In-Reply-To: <20250808132033.3996614-1-aman.kumarpandey@nxp.com>
+References: <20250808132033.3996614-1-aman.kumarpandey@nxp.com>
+Message-Id: <175491571725.2516426.3535387819811029037.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub
+ support
 
-Transition the USB controllers found in the SM8650 SoC to the newly
-introduced, flattened representation of the Qualcomm USB block.
 
-The reg and interrupts properties from the usb child node are merged
-with their counterpart in the outer node, remaining properties and child
-nodes are simply moved.
+On Fri, 08 Aug 2025 16:20:32 +0300, Aman Kumar Pandey wrote:
+> Add bindings for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> multiport I3C hub family. These devices connect to a host via
+> I3C/I2C/SMBus and allow communication with multiple downstream
+> peripherals.
+> 
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> 
+> ---
+> V1 -> V2: Cleaned up coding style and addressed review comments
+> V2 -> V3: Added mfd device support for i3c hub and regulator.
+> ---
+>  .../bindings/mfd/nxp,p3h2840-i3c-hub.yaml     | 320 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 +
+>  2 files changed, 328 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml
+> 
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650-hdk.dts |  6 +--
- arch/arm64/boot/dts/qcom/sm8650-mtp.dts |  6 +--
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts |  6 +--
- arch/arm64/boot/dts/qcom/sm8650.dtsi    | 86 +++++++++++++++------------------
- 4 files changed, 46 insertions(+), 58 deletions(-)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-index 259649d7dcd768ecf93c9473adc1738e7d715b6c..a00da76a60620b998973cab189f12eeaa0a448fa 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
-@@ -1310,12 +1310,10 @@ &ufs_mem_phy {
-  */
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "otg";
- 	usb-role-switch;
-+
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-index 8a957adbfb383411153506e46d4c9acfb02e3114..c67bbace27439ad67cfb247a88aec633f93f5a6d 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
-@@ -857,12 +857,10 @@ &ufs_mem_phy {
-  */
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "otg";
- 	usb-role-switch;
-+
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 7552d5d3fb4020e61d47242b447c9ecbec5f8d55..081b7e40f5742120a611cbfa57a59dfb1dc19b9f 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -1293,12 +1293,10 @@ &ufs_mem_phy {
-  */
- 
- &usb_1 {
--	status = "okay";
--};
--
--&usb_1_dwc3 {
- 	dr_mode = "otg";
- 	usb-role-switch;
-+
-+	status = "okay";
- };
- 
- &usb_1_dwc3_hs {
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index e14d3d778b71bbbd0c8fcc851eebc9df9ac09c31..bcafd9cf3eae6ad10d1ddb681829b1561d57e8f3 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5651,16 +5651,18 @@ usb_dp_qmpphy_dp_in: endpoint {
- 			};
- 		};
- 
--		usb_1: usb@a6f8800 {
--			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
--			reg = <0 0x0a6f8800 0 0x400>;
-+		usb_1: usb@a600000 {
-+			compatible = "qcom,sm8650-dwc3", "qcom,snps-dwc3";
-+			reg = <0 0x0a600000 0 0xfc100>;
- 
--			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
-+			interrupts-extended = <&intc GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>,
-+					      <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH 0>,
- 					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH 0>,
- 					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
- 					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
- 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "pwr_event",
-+			interrupt-names = "dwc_usb3",
-+					  "pwr_event",
- 					  "hs_phy_irq",
- 					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq",
-@@ -5685,6 +5687,11 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-+			phys = <&usb_1_hsphy>,
-+			       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
-+			phy-names = "usb2-phy",
-+				    "usb3-phy";
-+
- 			interconnects = <&aggre1_noc MASTER_USB3_0 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-@@ -5692,59 +5699,46 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-+			iommus = <&apps_smmu 0x40 0>;
-+
- 			power-domains = <&gcc USB30_PRIM_GDSC>;
- 			required-opps = <&rpmhpd_opp_nom>;
- 
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
--
--			status = "disabled";
--
--			usb_1_dwc3: usb@a600000 {
--				compatible = "snps,dwc3";
--				reg = <0 0x0a600000 0 0xcd00>;
-+			snps,hird-threshold = /bits/ 8 <0x0>;
-+			snps,usb2-gadget-lpm-disable;
-+			snps,dis_u2_susphy_quirk;
-+			snps,dis_enblslpm_quirk;
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
-+			snps,is-utmi-l1-suspend;
-+			snps,usb3_lpm_capable;
-+			snps,usb2-lpm-disable;
-+			snps,has-lpm-erratum;
-+			tx-fifo-resize;
- 
--				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH 0>;
--
--				iommus = <&apps_smmu 0x40 0>;
--
--				phys = <&usb_1_hsphy>,
--				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
--				phy-names = "usb2-phy",
--					    "usb3-phy";
-+			dma-coherent;
- 
--				snps,hird-threshold = /bits/ 8 <0x0>;
--				snps,usb2-gadget-lpm-disable;
--				snps,dis_u2_susphy_quirk;
--				snps,dis_enblslpm_quirk;
--				snps,dis-u1-entry-quirk;
--				snps,dis-u2-entry-quirk;
--				snps,is-utmi-l1-suspend;
--				snps,usb3_lpm_capable;
--				snps,usb2-lpm-disable;
--				snps,has-lpm-erratum;
--				tx-fifo-resize;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 
--				dma-coherent;
-+			status = "disabled";
- 
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
- 
--					port@0 {
--						reg = <0>;
-+				port@0 {
-+					reg = <0>;
- 
--						usb_1_dwc3_hs: endpoint {
--						};
-+					usb_1_dwc3_hs: endpoint {
- 					};
-+				};
- 
--					port@1 {
--						reg = <1>;
-+				port@1 {
-+					reg = <1>;
- 
--						usb_1_dwc3_ss: endpoint {
--							remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
--						};
-+					usb_1_dwc3_ss: endpoint {
-+						remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
- 					};
- 				};
- 			};
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml:32:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+./Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml:166:111: [warning] line too long (118 > 110 characters) (line-length)
 
--- 
-2.34.1
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/nxp,p3h2840-i3c-hub.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/mfd/i3c.yaml
+	Tried these paths (check schema $id if path is wrong):
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/i3c.yaml
+	/usr/local/lib/python3.11/dist-packages/dtschema/schemas/mfd/i3c.yaml
+
+doc reference errors (make refcheckdocs):
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
+MAINTAINERS: Documentation/devicetree/bindings/i3c/p3h2x4x_i3c_hub.yaml
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250808132033.3996614-1-aman.kumarpandey@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
