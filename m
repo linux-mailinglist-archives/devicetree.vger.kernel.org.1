@@ -1,149 +1,99 @@
-Return-Path: <devicetree+bounces-203226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F992B206DD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:07:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFBA4B206E2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 13:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A70C93A7571
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:07:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E24232A2CB3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 11:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349002BE7A0;
-	Mon, 11 Aug 2025 11:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0192BE7DB;
+	Mon, 11 Aug 2025 11:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BwaX5EH/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cXkzUFps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FE72BE647
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8123423B627
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:07:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754910422; cv=none; b=ApfODXILwf8I1GSJeZC+JhhHEM3/wiw6ufRYMbE4dGUfCNmMjiTeb7Kot12lRNrv+XYxDesO8HHICJKKx41ao4JmsM817oZzI8++D4K/jLYTVi6hyMF2OAdfQ+c61IqfCFuio+V3YO1AaDs2yOvOZWUyklAnZX2809+ZMZTI4wg=
+	t=1754910466; cv=none; b=aR+oBj4dAdMS1+QI9XNrgX4Q+dNIglp79cMgqRj454NhBiQyEYaypYjcWfcK9FaepY/hEvphPBsuQOJYiROYn3w7zn/a7RAVBdAfJ0dCAT62Feuzq2QMCFzAGlqPVnPisRM0sLTI1XjYn69qM7OZo0zlh7l57UKYjV00PcP8LmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754910422; c=relaxed/simple;
-	bh=7qGIv2VMmoh53/xPrZ93lE5MyP7wZkaBAOl0Dkqa0Ao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j6SqsKRk4aX7nMF0wc2h2DAtbEFCCcQ9QrOieI9pKhnMbv/u8fV5zsQZppAhp8Xq9qgqDF7r5kOTIbriJpB6WnY85/OrjKEEWrtYT1VTg0JeRUvIXC3jRVAW7OmDuCPIjB6pwrc81NOHaO1M9sO1mB1lud8zGPe4WTVIq/9yctI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BwaX5EH/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57B9dAdb025352
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:06:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zSz6n6RvfTQOfYt/pcVGk94yjTXS1qFmv6HDJ4iF3Wo=; b=BwaX5EH/9h7AZl+H
-	GcfeI6p1RaaUQOd2Vz8pY/6KKqSrkrlUqi7r4va89isjWvnfFzuNvceYy/LaF+He
-	loZ3Xjl0zQQaOPr8DVBiYX34AhS1DT8xiV2nOiM+uMIavrJxJG4hlUs9aqOA7Pud
-	nj65I8ncZb6EsGWwP1N5Lebq0f9AlYLdrK4hQolAa22sbKpzsDrCb3lEIHKfG08e
-	LuBPDDi1VA3zEs5kwm8niClQWvKVEbOAg9oYtQTY5aLdo7AR2LcGkqLhfShjK4x6
-	G5W/Oq9Vip6tQMh3oEU2nlIIIAtDcBQdTM7uqW2G4HhXo7l+1DiPudw3+MdBa/KN
-	Th2ASw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dwb745yt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:06:59 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b067cb154eso9697291cf.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 04:06:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754910419; x=1755515219;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zSz6n6RvfTQOfYt/pcVGk94yjTXS1qFmv6HDJ4iF3Wo=;
-        b=M5hbl2r0cfD1am4SAaej6pFbhwi3BnQFDL56h7GPsBV1kBRNUy1j9oD277Hy94XDeD
-         L6LGTvVRrhNed2exYhVsRWmiVl0b9UruhLs1kXtq0G9sofBB0fXJpQ3sLsTYlFtmothw
-         duzMPhe9YTyz3qhijmtkFcXEjhcxSlbQd9ur9rL4y2qGVg9C321dqaKss5YpRSOiNEG8
-         T6M2Yg1DUmwXWJPZEuSIQttx+m6Wr7NIzhr1zGd34AU26mvisBrmqUIXael/ls6VF/iG
-         s2Zhc3ReEMdDXxllnGMJ9ghrTXjs/DCtbafOojNTwQO2baFRmsZsepKjXwgNkbUfRiNh
-         8PCg==
-X-Forwarded-Encrypted: i=1; AJvYcCWo8n7Nq4sMo03HwCJ79aGLKxYez7/aIzb5TJKPVh4RqXXEgsJ9ao+TAyYuoqSGukUAllIyVFl60UG1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8c/nuTTCxfhJDm/bD76Kdh0qQoy31qM5reZ1E3zEqbR6KNutU
-	2o4Nyq0krC7yFDuKIi+7XgvoPjkGkthtRuXQSqbp69KoR6zxXzcIteEQBIBxtIvCNbJpNRv4WJn
-	oxJXE8z2ae6AJy7YUZpBB/MgmK+p8a0GbAOS4Y+z2phecNW23ateKQFH+/vy6KU1I
-X-Gm-Gg: ASbGncvMEct38vrRPXAr+m1CMqCQwojem5kaBabuNg/4Dfnqu7pGLbcMzJRIZw1oNv1
-	xcBwYYm6Y9fELkjJDj3Tki307mREAGcuvv2wJStWG5mwmkuroFCsuRpq3FbIiqFYHjFEG3evPhY
-	ACFF0zR+c5NZkD8+cpLYh8Cdu8ZMlSZl5QBWcIp9+KJB3kPQ14a/0hTsScJNu/BrlF1jMrJjIeG
-	mI5ZUrfpU9UsSDRFEEBdeH7hP9jGE8zfUBQItsDFNrI2zJtRoQURwCiYhnHcMEkDr/+bOXIoaQR
-	8/YsrLOmRijAlnLbFMLsFOw8v4n/U7vKjQiR6BKqzwHrp/6Mg9I1PKm3mdZKRLSVRLKV8sDXGK0
-	6N7eA5HNkU3om+jgGnQ==
-X-Received: by 2002:a05:622a:4387:b0:4ab:5ac3:1347 with SMTP id d75a77b69052e-4b0da992a42mr19224111cf.13.1754910418670;
-        Mon, 11 Aug 2025 04:06:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHezk0S2+X+438LvPdPc+q9fDLwWz5D27Izg9g5C7RUB21t8vXyV84fmt0GHdVE3MsjAtpv+w==
-X-Received: by 2002:a05:622a:4387:b0:4ab:5ac3:1347 with SMTP id d75a77b69052e-4b0da992a42mr19223821cf.13.1754910418142;
-        Mon, 11 Aug 2025 04:06:58 -0700 (PDT)
-Received: from [192.168.43.16] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a24370asm2000917966b.128.2025.08.11.04.06.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 04:06:57 -0700 (PDT)
-Message-ID: <53644b36-2eff-4b1c-9886-591afee8b589@oss.qualcomm.com>
-Date: Mon, 11 Aug 2025 13:06:55 +0200
+	s=arc-20240116; t=1754910466; c=relaxed/simple;
+	bh=jrPX3asXOVnx4d8V7WmssJwou+YiP/03bbhmghaPMxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=JM4PWWIV4na2ryvruaej58N4tPQCuDZ5VT2ZK/QNOZidLJ94A6oaNm3YiUZfRsPy8oOOW88kb32EXh9Gma4OtSNLgnmNXQ7fZ2itdGD/FyFhvHxH4PA3UCsVFYMC8O20TAJyetJq7F6j/LH008JSzzC5H76rsXtA9U8IblGFWyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cXkzUFps; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250811110741euoutp0135477966b1ff5ab35f92c19521105464~ascRiRvf82505725057euoutp01g
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 11:07:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250811110741euoutp0135477966b1ff5ab35f92c19521105464~ascRiRvf82505725057euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754910461;
+	bh=u8h5sOd5ZZUtNfpfhWggmgKeLg0/x2lr+B4GFvhV6yY=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=cXkzUFpskzwmCYAS5S0GKje5vrNr80hJseWOOuVwTV/0EE8IlwlenonPQ7l6xjDeq
+	 Af6LNlt2d1wsr5qwJyoXfYqo57pUUjibYloSLxMeowLeF+9rT7L6RympoDWnaXKaST
+	 +CNSZZEGRjmf/BqlqKRIv/73xoY8dbw5C0wW93xc=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250811110741eucas1p1fdd92fcf7b997d5d67d34129c14ea7f5~ascRHgJUF1793917939eucas1p1Y;
+	Mon, 11 Aug 2025 11:07:41 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250811110740eusmtip1c4907f7c2fd3a01b855aa829c7bff5e0~ascQJfIL53218032180eusmtip17;
+	Mon, 11 Aug 2025 11:07:40 +0000 (GMT)
+Message-ID: <416dbaed-a68f-4edb-a20c-94cb4c53c748@samsung.com>
+Date: Mon, 11 Aug 2025 13:07:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sc7280: Add nsessions property
- for adsp
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Ling Xu <quic_lxu5@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_kuiw@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250701084905.872519-1-quic_lxu5@quicinc.com>
- <20250701084905.872519-3-quic_lxu5@quicinc.com>
- <nsdj4ytpdn55mn5l2gr23w4whpbt2ogxbaomimqoarvskz3uzs@5mbrq7jvxnp2>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH v4] of: reserved_mem: Restructure call site for
+ dma_contiguous_early_fixup()
+To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
+	robh@kernel.org, robin.murphy@arm.com
+Cc: saravanak@google.com, quic_obabatun@quicinc.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, william.zhang@broadcom.com, kernel@oss.qualcomm.com,
+	will@kernel.org, djakov@kernel.org
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <nsdj4ytpdn55mn5l2gr23w4whpbt2ogxbaomimqoarvskz3uzs@5mbrq7jvxnp2>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <20250806172421.2748302-1-oreoluwa.babatunde@oss.qualcomm.com>
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=K6oiHzWI c=1 sm=1 tr=0 ts=6899ced3 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=z0GXuPKBCmORgo7IezoA:9
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: Jhe0u_kLF5XkuEhjNEwnQkvtzgNa0H2f
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxMyBTYWx0ZWRfX8wqXU60xb0NQ
- WTGk2loiqkbkJVLAGtwlZOVd1XqvSXhu9cj/Kv2UilOc3NQKDUMDpnJhwTce8J/P87pD6hYWDLZ
- 5RsP1Q9IEi+5XkjkkkWHHMVZ/NrXPxuXKabWU2cdGHE2EiVzi2PXrXU6zluqCdBoLwBGg9djCV3
- EYHT1g3UIItfLdD70+Uu0deIV/f2dDsC2wQpCfYZYZ6sXzm3q/VJuNx5MWWBDWAnx1rpIivZ+QE
- eAyezJyFZLpAnBdybaDtmgnDqgrO/Yv6ReN+KeLdzk6sxqjIhXlWFedSyOyeE26yMhmQQ4Q2pT0
- l65PYUC0bHqjuQxl7s5qNXvYb2SRAa8NbIGpXOquoroCBaGcRhLpE15lz5jw5pgOZ+Kh6f1qkzm
- Mfn90p6C
-X-Proofpoint-ORIG-GUID: Jhe0u_kLF5XkuEhjNEwnQkvtzgNa0H2f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-11_01,2025-08-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 spamscore=0 phishscore=0 adultscore=0
- bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508090013
+X-CMS-MailID: 20250811110741eucas1p1fdd92fcf7b997d5d67d34129c14ea7f5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf
+X-EPHeader: CA
+X-CMS-RootMailID: 20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf
+References: <CGME20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf@eucas1p2.samsung.com>
+	<20250806172421.2748302-1-oreoluwa.babatunde@oss.qualcomm.com>
 
-On 8/11/25 12:42 PM, Dmitry Baryshkov wrote:
-> On Tue, Jul 01, 2025 at 02:19:05PM +0530, Ling Xu wrote:
->> Add nsessions property for adsp context bank to make sessions
->> available for ADSP offload.
-> 
-> - Describe the problem, describe _how_ the commit solves it.
+On 06.08.2025 19:24, Oreoluwa Babatunde wrote:
+> Restructure the call site for dma_contiguous_early_fixup() to
+> where the reserved_mem nodes are being parsed from the DT so that
+> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+>
+> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
+> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+> Tested-by: William Zhang <william.zhang@broadcom.com>
 
-This is pure software configuration, the only real limitation is that
-the total amount of sessions per channel can't exceed 14 (because our
-driver says so? I have conflicting information where this number comes
-from), but no more than 5 is recommended for optimal performance
+Thanks, applied to dma-mapping-fixes branch.
 
-I'd rather waste a couple of bytes and pre-alloc the maximum amount on
-every channel, so that if someone decides they want to use the DSPs ever
-so slightly differently, they don't have to run around changing the DT..
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-Konrad
 
