@@ -1,61 +1,72 @@
-Return-Path: <devicetree+bounces-203412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FF4B21329
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 19:29:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E51B213DA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:10:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E753F6266DC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 17:29:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A71A91906C1D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532EB2D481E;
-	Mon, 11 Aug 2025 17:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D67E2D6E59;
+	Mon, 11 Aug 2025 18:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTE7tFWc"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="XPD/ANhg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4EE2D481A;
-	Mon, 11 Aug 2025 17:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C76022D6E55
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 18:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754933331; cv=none; b=LYfQQwcMw/+X7Qae0bLdMyFWPHf5BRBW4lAizEtaY9bvZtWejRggner8eX0o2aHwfmWZYO2tMFJejPg0kLnJt9NE7bal3rT5aXvWXkWD4KFsr0E+hAP930XtH/uAK3NwjX9nXRKodYBCRAHuNSkzgC3vkTVcr5uz2HJC1AvgJK4=
+	t=1754935797; cv=none; b=ahdfUvAF90LfGQSvxveRlPPxX8awiAcios1cdBr6ZVJ+75ZLugZmMFwomD7U1JajBBNaMDowiayZFbCdZ4Ir4KNaK/7fZuOGP8D4TQsB0xpNSGA87HbrDdKkaTTlgbTm53Que4YGndhhfhufH/NO6Ql+SZdOymEIVh8+D6+Kvkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754933331; c=relaxed/simple;
-	bh=9XSbHbfFnw3XIaRpvKnt/hioK7AaWjMpyvzXjCeNyEA=;
+	s=arc-20240116; t=1754935797; c=relaxed/simple;
+	bh=IHfWofOH+O8x7iEleneRbecji0kLTS0PrMQu3tYrRws=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Th1Vlvzmlo/ztEtCRmBDsGZidCuSI1sleNkLQT2mZeUVEO6ys51X4r3u7KKxnOF2dLBX6QUEdERoKeQDEEAtLUY2USy5dtrVu4ZS1mNqBWpCuR0Jf6jEzl+c+L/HuyJTMCGfZatJnIyZt1YICQnpS0yM0vLuo6OamtKXa5VqiD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTE7tFWc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89BD8C4CEED;
-	Mon, 11 Aug 2025 17:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754933330;
-	bh=9XSbHbfFnw3XIaRpvKnt/hioK7AaWjMpyvzXjCeNyEA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KTE7tFWchqSfKGfWKXO+oLy2j2snSzC+gwd/SC7Zn2Cffnn18e1k3l9cXgXa/F86h
-	 0cJFMZk4mJMXr0x15gQAo1zB6Im31tDgvtWVKCUh9Oon7vTw9+KqZzHRMX9LaTqfK7
-	 rs9Dn2oqM0/hghOMcIDBEyQS/3WuUhccCs+XevhptWl8mkVCNnRIjYdPqnK1FrKe7H
-	 Ydy8ple9K7VqfKWHQa48s692TrDWf+IbGp3ID2ulJmP9wt1KfuoEHFD58jkUvNrthp
-	 22BT2SVhhpbmYVlODBpBcG/ctqMnx2IIYNVdwFoQ/+KiE/mSkdHIE5Cr6fvH/yLULB
-	 AEVajkqahSRYA==
-Date: Mon, 11 Aug 2025 12:28:49 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jeEnXHF/YEu5cpcFYicg+LSHUdzVZkpnMq8FuMcpSSWMFRh+G7ayQ4/kkNMJ2+gZZVckG5UO/p7NTkU4JXMSXotCKgeZ/M/qUj8xXuA9YDvjYizZ/Wo5NZbKEvSn5t6tYzOlto+iQeqdDIOtEksLiIxjEiH85+Tg4lGuXXf+n7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=XPD/ANhg; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 669D122D9F;
+	Mon, 11 Aug 2025 20:09:54 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id eLziFljdYo3b; Mon, 11 Aug 2025 20:09:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1754935793; bh=IHfWofOH+O8x7iEleneRbecji0kLTS0PrMQu3tYrRws=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=XPD/ANhgW9xWWTr4p+xWiPkL5CU9ohz8GwQIi0EKiAQOwkZOxWoZGbq/6ydmL3fYk
+	 tRJQ6qyoq9mbBlqh0+sNevKPhCuAS0+D4xc5g+gqt2ol4dv4RuWc4F9GGcytrizENA
+	 47wdzaLjJi6/ThRQEKxVUlyWBv/Hxsg5RwUyRT/1rsqDNRbpIcEfY8SBZCCZkIZIK2
+	 3Pto6QtDaCXcpdeaSQBqmP3ySp2unP9RcRmelgtT2Ih1AJoQvMODaO7ezwazBrJPFQ
+	 gCtlM6g71MbHBbBi8InA+blfhNRg7xrYrVM+1DoCnCD8msEgk5ADA5UKDWBPdZ9UMg
+	 9j83PhPZt+EUA==
+Date: Mon, 11 Aug 2025 18:09:45 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linuxppc-dev@lists.ozlabs.org, Scott Wood <oss@buserror.net>,
-	linux-kernel@vger.kernel.org,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: powerpc: Drop duplicate fsl/mpic.txt
-Message-ID: <175493332847.3843132.2055857937103048620.robh@kernel.org>
-References: <20250807214432.4173273-1-robh@kernel.org>
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2 6/8] mtd: rawnand: loongson: Add Loongson-2K0500 NAND
+ controller support
+Message-ID: <aJox6R9eCZ5vSc7H@pie>
+References: <cover.1754890670.git.zhoubinbin@loongson.cn>
+ <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,22 +75,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250807214432.4173273-1-robh@kernel.org>
+In-Reply-To: <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
 
-
-On Thu, 07 Aug 2025 16:44:30 -0500, Rob Herring (Arm) wrote:
-> The chrp,open-pic binding schema already supports the "fsl,mpic"
-> compatible. A couple of properties are missing, so add them and remove
-> fsl/mpic.txt.
+On Mon, Aug 11, 2025 at 02:03:13PM +0800, Binbin Zhou wrote:
+> The Loongson-2K0500 NAND controller is similar to the Loongson-1C.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> It supports a maximum capacity of 16GB FLASH per chip with a maximum
+> page size of 8KB, and it supports up to 4 chip selects and 4 RDY
+> signals.
+> 
+> Its DMA controller is defaulted to APBDMA0.
+> 
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
->  .../interrupt-controller/chrp,open-pic.yaml   |  12 +
->  .../devicetree/bindings/powerpc/fsl/mpic.txt  | 231 ------------------
->  2 files changed, 12 insertions(+), 231 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/powerpc/fsl/mpic.txt
+>  drivers/mtd/nand/raw/Kconfig                  |  2 +-
+>  .../mtd/nand/raw/loongson-nand-controller.c   | 55 ++++++++++++++++++-
+>  2 files changed, 54 insertions(+), 3 deletions(-)
 > 
+> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+> index d9e3f13666ac..7b0c5d06aa95 100644
+> --- a/drivers/mtd/nand/raw/Kconfig
+> +++ b/drivers/mtd/nand/raw/Kconfig
+> @@ -464,7 +464,7 @@ config MTD_NAND_NUVOTON_MA35
+>  
+>  config MTD_NAND_LOONGSON
+>  	tristate "Loongson NAND controller"
+> -	depends on LOONGSON1_APB_DMA || COMPILE_TEST
+> +	depends on LOONGSON1_APB_DMA || LOONGSON2_APB_DMA || COMPILE_TEST
 
-Applied, thanks!
+Why is this dependency necessary? I think the DMA operations are done
+through DMAengine API, and thus the consumer decouples with the DMA
+provider. If so, I think the depends line should be removed, instead of
+extended.
 
+Regards,
+Yao Zi
+
+>  	select REGMAP_MMIO
+>  	help
+>  	  Enables support for NAND controller on Loongson family chips.
 
