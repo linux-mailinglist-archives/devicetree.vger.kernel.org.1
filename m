@@ -1,346 +1,167 @@
-Return-Path: <devicetree+bounces-203383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63800B210D3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:04:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23662B21C77
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:02:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11AA3188E119
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 15:59:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFFD7460AA9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B892EA739;
-	Mon, 11 Aug 2025 15:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D7529BDA4;
+	Tue, 12 Aug 2025 05:02:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="ogqg01Kz"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ci6lQz4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2054.outbound.protection.outlook.com [40.107.223.54])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3272EA730;
-	Mon, 11 Aug 2025 15:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754926843; cv=fail; b=K9v6obLMy85ZpMVUMP4e5Q591nNmh0BI6VBuxJIcNIV9izY3pp4QDfleWaF6PvSc5ObirV9HbjNa0uhity+/Kn078UZLZyhIB29Q5kY2s+v6VCjHWPzVLcckwlxLlRL6VWGqQkmeyj7lL1BtqwIVlOkn/IZiNUShObgZpm66VZk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754926843; c=relaxed/simple;
-	bh=CUHMEWzhNJkg29afeGmnZfXbs9J9dvVetcTADNbOh3w=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=jH26KH3+oVZKuyzfo0sZNKVX4PA9+DTMj2vs1xIG5jKiELEuVCUbafTP0X5mtCpjshQixpzxX5iJtJn9nFSyug6b2TtFbWNkIc2ElfRg4JySJQMI4dAjAWoAYoZR/zD3Rgw6BXieCY6/36SrjPKavMGiLyBiAkEWM3MoH+tWm3c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=ogqg01Kz; arc=fail smtp.client-ip=40.107.223.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i6i2rg7oCyWS+WRQfWuj5J1u+1FPfQeGUKteJNbvJ/JRp6iatsbHvrUQiCmgUhJpOLwtmIB5+QkaP7nHsVkMU6KpOg+3evolmWL5Hdz0jxSI4Eegp74DSWtiLucjbJGtk0CAfcPK/mq6hDH73EOtJQOZw2KwY9JkkFiJc+XuA3einUsqKXctcxfYwQaftO2m+06FrvsQgzdL/WggCVeBf5PDa2ecQWSxRMV9qgg1Tfe7/Wu/QEXS3OF7yJTDDDgzUdeO0ocmx+8+dHCaGIEaNyYHbMZdqQwT1mewm6p63AZy5y+erROqMhWbI5qQpOXivyo7URR42nFyTuWHwLgXww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nLtb64lNMIZfsgaFQnvqu6y4a57LpgjnBHzODnq8MXw=;
- b=SGzv9pfHXMp0HuAKyINhgJnxpFPVgCO/SEbcZcDCRdLrf1t6v+FqbY6sS/PzkxblaKS9hSW5zRjBTbhbuT3br1g1btGHZrBFnB3/TYGpTLJFmJQnrEbT0VK4uxTg98+mpVWrg83GUqw8Khy9Gxc6ht2J889yda3EHffKrvRDgRwJFXB3MZjK8W5w5gtiBToJzPZjBlRi8ZpXi2nW34wCLnndCgtxdyPThwTiWD7QcBeLvjEY+fWjMxWH5Wm8fNND2QNnw5HaeVAc4LFzWkT02VR9yNFnKBF1gucJpGTFrQtTEy8hlAqk8p5A2sj1BgsKC+CmOtpi4vhC97hqtNwoCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
- dkim=pass header.d=altera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nLtb64lNMIZfsgaFQnvqu6y4a57LpgjnBHzODnq8MXw=;
- b=ogqg01KzOjMLINWJGeVl33zgbcbEYXEkcSZnxsNDWaorkfMZmeXEfCNVK6NqNWPHtROnme/Gaap0ukHBidECsEL950MZL5fjr4TxOxPvqr5KtqGp41HoSeH8ZmBVCur+WZNa/kZGRM63VCm2yFeaJgvs2H5O3OqSlE4H2srlPtwqptZF4IAuoEncdnWVfzTypIQ0fvgg/9rzRECCZZHDyIHzKl99EYxmgRqKkJBZKazAf5kslHrVQB/khQjeMUJVKt1Lea5uXaBxJj1dCo6KH79htE6IY6Uraz5LO1Z0ZUAlu0oofxDXeStS+zGozkc7Zup7W261w5Vu/pneqgyX8A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=altera.com;
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com (2603:10b6:a02:b4::23)
- by PH0PR03MB6333.namprd03.prod.outlook.com (2603:10b6:510:be::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.11; Mon, 11 Aug
- 2025 15:40:38 +0000
-Received: from BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c]) by BYAPR03MB3461.namprd03.prod.outlook.com
- ([fe80::706b:dd15:bc81:313c%6]) with mapi id 15.20.9031.012; Mon, 11 Aug 2025
- 15:40:38 +0000
-Message-ID: <a70d060d-f1c8-4147-8f1b-1c7ce6360252@altera.com>
-Date: Mon, 11 Aug 2025 08:40:34 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] arm64: dts: Agilex5 Add gmac nodes to DTSI for
- Agilex5
-From: Matthew Gerlach <matthew.gerlach@altera.com>
-To: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, dinguyen@kernel.org,
- maxime.chevallier@bootlin.com, richardcochran@gmail.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Mun Yew Tham <mun.yew.tham@altera.com>
-References: <20250724154052.205706-1-matthew.gerlach@altera.com>
- <20250724154052.205706-3-matthew.gerlach@altera.com>
- <13467efc-7c79-4d06-af1c-301b852a530c@altera.com>
-Content-Language: en-US
-In-Reply-To: <13467efc-7c79-4d06-af1c-301b852a530c@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY1P220CA0003.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:59d::10) To BYAPR03MB3461.namprd03.prod.outlook.com
- (2603:10b6:a02:b4::23)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAD2A1C861D
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 05:02:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754974931; cv=none; b=PYDSBcZJXSveMPQIz8DTGoioW/0DpMa1qtcK+Y7tNMn6+OTH/4wQr44YdTEp5XQtYlgJ/ywfpEc5p86KWf5n1E6kknkwJvMLlRD582JHT+HOA7AYtLcO1m/fkv7M9ke0853u5gNw1tQxznzeSkdFz/O2cR+Ft3KSXgXCPFad7ZU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754974931; c=relaxed/simple;
+	bh=CfLYbqCxRafBrxAGK3+KQuynNahf96oHjWF9i+esuwU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=ROCEWuGcvxIdxOWSXZJtUObcI5T1goD77WhgDLMOlCsLRdYuufrCnh4ZD2Cgfh53VD51H1RmzIbStVr0a7r9+msCslmGJGPYeMg4Jv/N1Nm1LAco/3BUZ36aFj1Npk3d5vWheojHaJkRZvT60WZBe4gK32zSMtnLv2Hp8snRiE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ci6lQz4m; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250812050200epoutp03e9fb529388e9a9bcd890288aec3c9da1~a7GRYEBKv0124501245epoutp03D
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 05:02:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250812050200epoutp03e9fb529388e9a9bcd890288aec3c9da1~a7GRYEBKv0124501245epoutp03D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1754974920;
+	bh=Ssg3FkvIoDSUUOwewES1gLVGvgAbXp8l/yQiu6KJjHc=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=ci6lQz4miqajsd/8Rs/2/AUFB41lbtFg+/DQAAp+/4JbmqhCoxwsOVSUQDrdYW4Wc
+	 b8FwEywojmOukwcV5OLG/SNA+Ux55sRh14gpnYZTyrBorWHkoAgmB1Iw80HQpmR5mL
+	 UfTS2FVOuAn6l6V4+mBclEvRnaWFOkgF0ckxm4h8=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250812050159epcas5p3396269eda3eaf4b1ac8882203783643e~a7GQfvMkD2901229012epcas5p3_;
+	Tue, 12 Aug 2025 05:01:59 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4c1K9f3Hgjz6B9mG; Tue, 12 Aug
+	2025 05:01:58 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250811154648epcas5p4e55cc82e0df7d44ea55e249fef63d5fa~awP_dUo6C0894708947epcas5p44;
+	Mon, 11 Aug 2025 15:46:48 +0000 (GMT)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250811154646epsmtip154a28e0d8f0bee70bc8cc6c53b295bd9~awP71Ue-S2450724507epsmtip1q;
+	Mon, 11 Aug 2025 15:46:45 +0000 (GMT)
+From: Shradha Todi <shradha.t@samsung.com>
+To: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Cc: mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+	vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
+	m.szyprowski@samsung.com, jh80.chung@samsung.com, pankaj.dubey@samsung.com,
+	Shradha Todi <shradha.t@samsung.com>
+Subject: [PATCH v3 00/12] Add PCIe support for Tesla FSD SoC
+Date: Mon, 11 Aug 2025 21:16:26 +0530
+Message-ID: <20250811154638.95732-1-shradha.t@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3461:EE_|PH0PR03MB6333:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01ac96cb-e9d4-4049-b5eb-08ddd8ed6bc5
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|366016|1800799024|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RGF2aEI2K2FENG9RRDBmWkE2eXNJTEZ6eWp5eEVNUVdxR21uTHB3NDEzQnpR?=
- =?utf-8?B?NWZYeXM4QXVZalhJOUFReGR0MG1HQmt5TDlRRHMrRWtQY3dCY3A2ck5sdTc5?=
- =?utf-8?B?dlQwUnpFTTN1cTZDL1RQck4yQ2ZGRytwNzZVRVNZVVRtcGwyNlhKOTRldHI3?=
- =?utf-8?B?VE05cENybFJNKzR0OENWbUpJdHQ1emtBckhhbVFiNTdlWTMzYjVMd1p0NVBq?=
- =?utf-8?B?dzBoamduSUNrL1lFeStzQ3VyWUxBdDJxWnB5dWJmK3duNlZMZ2dvSk50UzRY?=
- =?utf-8?B?ZEFaeXkvVW8xMjlNK01kRk1Qc0VFM0F6M2wwODZBZWdRcjJSWTRoV2JwNnZ4?=
- =?utf-8?B?eXBWZTVvTmtScFV6VjQ5UkZBeWdrcWNVZW9Zbkl4SUc5bTlIbmFlRDYvTmpr?=
- =?utf-8?B?NENiN014ejhkekRGazN2UWdya0Mvc0FIOGN3VXZVbk5qR3h6azEvb3E1a1ha?=
- =?utf-8?B?djZjTDVHNEVQblh4R2NwL3lHclJaTHZ0dFRxYjJKV0RNNUhsdWI1bkRUbTJu?=
- =?utf-8?B?Uk0rYVI5R3RSN20wakI5ZEtkYmlMK1JjUkFudXNxdG1uRzhJV3JsdXNMRi9E?=
- =?utf-8?B?Z20vc0xZcHNtbDRqd2Vxc1VFS20wc2lhR2xiV1VFVHFhMmNuMmpWTGovb0tj?=
- =?utf-8?B?YjU3M3h5MTZZVHArbHdOL0N5ckpueTE0Nm1mS25wOTZVaTdQRGt0SHJZSGdG?=
- =?utf-8?B?VzdFMDJlcVhhc0F1QTZMSEw1aTV5ekdRdjJHNVBhYzg4UzZZclc1WFVDbEto?=
- =?utf-8?B?U2FPc1VvZjdhaXZYdy81dGR6VXIwQnNOSStxTzREVmREZjhvZng0a0kyblpI?=
- =?utf-8?B?RFVwUldabFVCbHUzdndrdStlWDFyL1dZSjZHVWtUdUFCdllIQ1VQbStNZkh4?=
- =?utf-8?B?ZXJYdHErN3A4RkFJb1BPR1NOa2RiZTE0eUpCUEZtNk1UWW5mT2RaTWZZQU9v?=
- =?utf-8?B?WW1vRmxKTUJsSGsxcUt0Z3poSlJwVXhWSUY2SFFENDlBbGlkZFh4VGwrR1Vu?=
- =?utf-8?B?TERFdE5LSkhuTEI4Rzl5SVRJeG8wMmJwZ2s4UXc3akwxR1VidTBQWk1BblE5?=
- =?utf-8?B?eDgvNVN5QnZHSkhuL3V3K0MzVlRBem4rb1lrdmxSN3ZNVVVrSGxZbllPbG1K?=
- =?utf-8?B?YUFxbVpQSlEwaDNpWlZXQnkxSmNXd0MvaDNQWFFhWmRoZHVxdWVDcmlCWThV?=
- =?utf-8?B?UzlQaGJFbXpLZFlNcTc2d0N1bFdMZUhqdndyYlBhUGpWY1BQRFFmeGdzZ3d4?=
- =?utf-8?B?SmVQbjQrZVVOWGdzSmk1ZTYrWGtJcnB5MlJ5d1dkWXR3NTVWMmc0RStWSzkz?=
- =?utf-8?B?K2N5MUxGamw3TDU0QmVHbXpGQUFtaHQ3U3BDcjFZaGlCcXJhamJYSzFxbGNC?=
- =?utf-8?B?a2dhOGRhZFZwdXVvSWl3RUhkVlZRSVFNREVLckd1V3prNUVtNlc3dDVGazk0?=
- =?utf-8?B?M1FqMFp5U2hKVlRabGY1bktMVjY2akNrOG10c2ZTSDhDejBnN05BSkZnZDFk?=
- =?utf-8?B?ZXpkNjZZTnNwSG9iRmNRY2ppelhWcWxsVFBXem9wNmZmaGFTa3AySnJlb2Vv?=
- =?utf-8?B?RmFUL3YreWpWTXZHdTdMeHhuWGEwZ3Z4M3NvVS9ObHNvaDV3RlhQN2lzVjRW?=
- =?utf-8?B?TW96TmRBOWJxSUtGMVJ2VFk5aSszUXJ4c1BvMzZqendqMnhGTjd5VHNKRFNU?=
- =?utf-8?B?RENXOFhDRVJoQjZOWDVablBPUk8rN1FJWE11NnE0OHZKaDJuK3d1V3pDMk9j?=
- =?utf-8?B?ZXN2dEtydHNqYUc0Q0YvMTVqeVdTQloyVG1rWnNyYmZCeE42VWYrZ2lQZkpO?=
- =?utf-8?B?WXdBVnNtZ0lGSWlFNllhVzV1UG9FR3ZwMGNva21pSi9MZHRxQXZjajAyNzNh?=
- =?utf-8?B?bDhrdFc1MFhHZDJlS3NwdXVialFWaHU0YU95UWdOb0krWkRRd2YxaGVpbUNW?=
- =?utf-8?B?RkVKYmxGUFRrb0lQeE1Qb1RyTmRFR2dhT0crKzB5V3pZWmdsT0dWWis0NUZw?=
- =?utf-8?B?clQ5MlZJR1pRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB3461.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?V3loUjBCRjV2djBQTE9ZTlh5Q0xoaEpTdTljcmlvOW8rRFNndGVtblRaR2hp?=
- =?utf-8?B?OUtLNUVDU1oyTjFHZVAzcTZEbXRXZlhUVUR1OGxxYnFIUFJvVkZZUDJ0VzQ4?=
- =?utf-8?B?V2lYRzlSUEdPaEp3cExkU3l5bUNmYktUYlkyd2VPd2xzcGVkL0o1T1h0OGp0?=
- =?utf-8?B?NDIzVkJWZXc1a2EvTUJaTEdPVzU3U0psM2dYYVhjS2JCMXB1T3lJd0Z4ZWxH?=
- =?utf-8?B?SmdwaG0zUW9FemRob2VqTEtNQnUxMFR0VnhWOUFVQlc1bjhjRWUrMCtyUnpr?=
- =?utf-8?B?ZmNIZGs5V2RZWWVmaGFpSTIrSHFUeWlSeU9scExoKzZ1RDA0bXFEczVjcWRH?=
- =?utf-8?B?S25uVSsxTitNSzVqMTlmV1Q2UHBqb0tBVVFOVjRsWDkxRFN1THoza0lNTUdl?=
- =?utf-8?B?enZ6Q2xha2ZIMlNab0tzYmhSQWh0c0FGZDAzeHRvZ0FMQWNwRjFuN2NLdHNr?=
- =?utf-8?B?eFNFRkduVmRoZXQ0VWhjSjNCeUhUbkxoNHZlSEMwb05ocTdWRUFJYzEzc0N6?=
- =?utf-8?B?Ry9pdGQ3TUZWci9KV3Uyd01SbTdTQWJneUFrdVNCSFozL1JjV1N2NnJBUXpH?=
- =?utf-8?B?TldxSUZSNjVnei9ZaWZTbTQvQ2treUNFYjM4QTk0TTlUZ3JnS0pHQ3pGS3Uw?=
- =?utf-8?B?dFByb2RiM3ArVVUwUnpXanN0MEFlbndoNkhldEZHb2dkTnpCNzZZZ045bUVQ?=
- =?utf-8?B?WHVzSDZ3dHBiTjJhaWJYcVFCT1pETU5SYUtBcVdnVnU3bTIwdWJzVUdYL2FJ?=
- =?utf-8?B?amZ3OFJ2bDhoaUNXaSsxZ2lwR0FrNlB2NXRmWFZramRiWHdxSmZyVTJYaUox?=
- =?utf-8?B?NDdWRFJuWVhGcVliWkdvWDRuZ24zLzhxa3JzZk9NN0k2b0EvZnhGT1NMOHhT?=
- =?utf-8?B?Nis2SDR6T1l3MjlxTWZFRDlkYXRDT2tibFZ4allNSllOLzBoRWwrRWhJSTcw?=
- =?utf-8?B?NlZJZTZDL2xZZXdZckdoM3JqbHh6QzZMZWU2R2w1S25zbURycWt0cTNCZXQw?=
- =?utf-8?B?dlIyUHlPRnBZZ3NKUWx6cnNSNXM2UU9QMFFFSnVYR0VFUlBBdnNISFpWaldz?=
- =?utf-8?B?RnBSOS9ZUDZXZFZYdmh2VnJrVHdhblU4Zjg4bjFzb1hpaWFTbERGNDZDbFo5?=
- =?utf-8?B?ZDh5cm9CZzhvZm1WVzNTRWIwVEp2ek1WU2w3eTNnTC9TQWplRFFDSCtiZTl2?=
- =?utf-8?B?UldNU1ZtM1B2VTFvNHgvUk5EdkxKSUhrOUhDTHpQUDhOeTJHbEtsbGxOcHIv?=
- =?utf-8?B?UXVpdEVabldJWm5GajNTVVhrdzNockRiMXJ2SEJUMzZuZjI1cG9TcSsrRERx?=
- =?utf-8?B?cXBrVVhtWmFQQ0pFdndacDBUa054SjFxcE04dGNhM2R5WHJ5TnFIWmIrdExB?=
- =?utf-8?B?Z3M4aWhXSnJ1SjF3NnJFcTRHaUpzL2dpR2Z5UEllbWRuZGpYb2J6Q1gvdmxn?=
- =?utf-8?B?OW8wMGRSaldHYlUyQkQwK29GTStJVFJ0eUhiNitjTDFkOUN4blJvUm5heFBu?=
- =?utf-8?B?REZjMEI2RkdmQmtiUklIZWZLYlorVVR6aTNETXliZ2JnbERwVW4yR1V1S2Ji?=
- =?utf-8?B?blpVUU5PUWdDYjN1M3Y4QmRZM3BLVmNORmRYbHZyajF6c1QvQUNqY0VFQ3Zy?=
- =?utf-8?B?NVdib1g4dXhEdUFWdWlwdHVVZUN2UEtSK3NnNGxxWVJ1aFUyQXd3T280NlRE?=
- =?utf-8?B?UjFiSkNYcE5wRnVuVFIzR0V5R0gwLzJOZWFFbmhxcHUzcGJXQU5XRlhYNGZJ?=
- =?utf-8?B?V21FeUdBTHZXOHZpQWtuSHFsZjYrWWpiOVc2aXFVNDNkRU1Na1hrMU93N2l0?=
- =?utf-8?B?Rmt2MU9oUWhYMVNuM1o0QTNOZ3h2b2ZZa00xaHp2MjFTeVFmSGVMTzRzTEVU?=
- =?utf-8?B?NGFnbWQxakZlUDdtM0NCQXJPaEZOYUxMTWRZL3ppSXp6QlZITmFPdDVMeGVK?=
- =?utf-8?B?RGJNdEZpMEZTS082UkNQd1JsL3dDVGcrcU45UldoSkZnaTJ5WEV3cjRLL0Rn?=
- =?utf-8?B?dzltK1U3K2Z0OGErN1NIM2tYczBUWEJpM3NiUXNGREpENkhDVytzRnZpeTJz?=
- =?utf-8?B?S3UwSkJ3aDNJYWoyK09jWVQ4YXU3TnAvVjNiZ2dkb2hrSU1oaEJlWEUwUkZl?=
- =?utf-8?B?Wk5xengvaXAvMDFINmpPM2NiM2d5L2U0STgvclV4dCtxZEM5a0NHcTNVM2tC?=
- =?utf-8?B?MVE9PQ==?=
-X-OriginatorOrg: altera.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01ac96cb-e9d4-4049-b5eb-08ddd8ed6bc5
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB3461.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2025 15:40:38.4825
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZqPAz6GuuNxJlluLzg7AFD23oPY6PhU5cV97PgyEbY+zGVpPP41JT7bUT5rh31gosIOa/TQZwLDMi/6zrWgJGMFLlZFs0XjJmSx1e+IvHqQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB6333
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250811154648epcas5p4e55cc82e0df7d44ea55e249fef63d5fa
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250811154648epcas5p4e55cc82e0df7d44ea55e249fef63d5fa
+References: <CGME20250811154648epcas5p4e55cc82e0df7d44ea55e249fef63d5fa@epcas5p4.samsung.com>
+
+FSD platform has three instances of DesignWare based PCIe IP,
+one is in FSYS0 block and other two in FSYS1 block.
+This patch series add required DT binding, DT file modifications,
+Controller driver support and PHY driver support for the same.
+
+To keep single PCIe controller driver and PHY driver for all Samsung
+manufactured SoC, we have made changes to Exynos files to extend
+support for FSD platform and other Samsung manufactured SoCs which
+shall be upstreamed soon.
+
+First a version was posted as a separate driver file:
+https://lore.kernel.org/lkml/20221121105210.68596-1-shradha.t@samsung.com/
+This was rejected and request was made to add the support in exynos file
+itself.
+
+Then another patchset was posted to refactor existing exynos file:
+https://lore.kernel.org/lkml/649a8d88-0504-5aa9-d167-d25d394f3f26@linaro.org/T/
+This requested some major changes
+
+Taking both these reviews into consideration, I have posted a fresh
+patchset where both changes to exynos framework and addition of new FSD
+support is present.
+
+v3:
+ - Made separate DT bindings for Exynos5433 and FSD platforms as not
+   much is shared
+ - Moved all common changes to separate patch for controller and PHY
+   and added FSD related changes on top
+ - Removed alias method of differentiating between instances of PHY and
+   added two separate compatibles.
+ - Fixed smatch issues pointed out by Dan and other styling issues.
+
+v2: https://lore.kernel.org/all/20250625165229.3458-1-shradha.t@samsung.com/ 
+ - Reordered patches for removing unused MACROs and renaming them
+ - Fixed all incomplete DT bindings
+ - Modified PHY driver code to adopt better design
+ - Removed patch to add alignment data in PCI endpoint test driver
+ - Added dts changes in the patchset itself
+
+v1: https://lore.kernel.org/lkml/20250518193152.63476-1-shradha.t@samsung.com/ 
 
 
+*** BLURB HERE ***
 
-On 8/4/25 7:57 AM, Matthew Gerlach wrote:
->
-> On 7/24/25 8:40 AM, Matthew Gerlach wrote:
-> > From: Mun Yew Tham <mun.yew.tham@altera.com>
-> >
-> > Add the base device tree nodes for gmac0, gmac1, and gmac2 to the DTSI
-> > for the Agilex5 SOCFPGA.  Agilex5 has three Ethernet controllers based on
-> > Synopsys DWC XGMAC IP version 2.10.
-> >
-> > Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
-> > Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
-> > ---
-> > v2:
-> >   - Remove generic compatible string for Agilex5.
-> > ---
-> >   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 336 ++++++++++++++++++
-> >   1 file changed, 336 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> > index 7d9394a04302..04e99cd7e74b 100644
-> > --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> > +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> > @@ -486,5 +486,341 @@ qspi: spi@108d2000 {
-> >   			clocks = <&qspi_clk>;
-> >   			status = "disabled";
-> >   		};
->
-> Is there any feedback for this patch and the next one in the series,
-> "[PATCH v2 3/4] arm64: dts: socfpga: agilex5: enable gmac2 on the
-> Agilex5 dev kit"?
->
-> Thanks,
-> Matthew Gerlach
+Shradha Todi (12):
+  PCI: exynos: Remove unused MACROs in exynos PCIe file
+  PCI: exynos: Change macro names to exynos specific
+  PCI: exynos: Reorder MACROs to maintain consistency
+  PCI: exynos: Add platform device private data
+  PCI: exynos: Add resource ops, soc variant and device mode
+  dt-bindings: PCI: Split exynos host into two files
+  dt-bindings: PCI: Add support for Tesla FSD SoC
+  dt-bindings: phy: Add PCIe PHY support for FSD SoC
+  phy: exynos: Add platform device private data
+  phy: exynos: Add PCIe PHY support for FSD SoC
+  PCI: exynos: Add support for Tesla FSD SoC
+  arm64: dts: fsd: Add PCIe support for Tesla FSD SoC
 
-Just checking in again. Is there any feedback on this patch (v2 2/4) or 
-the next patch (v2 3/4)?
-https://lore.kernel.org/lkml/20250724154052.205706-1-matthew.gerlach@altera.com/T/#m2a5f9a3d22dfef094986fd8a421051f55667b427 
+ .../bindings/pci/samsung,exynos-pcie.yaml     |  70 +--
+ .../bindings/pci/samsung,exynos5433-pcie.yaml |  89 +++
+ .../bindings/pci/tesla,fsd-pcie-ep.yaml       |  91 +++
+ .../bindings/pci/tesla,fsd-pcie.yaml          |  77 +++
+ .../bindings/phy/samsung,exynos-pcie-phy.yaml |  27 +-
+ arch/arm64/boot/dts/tesla/fsd-evb.dts         |  34 ++
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  65 ++
+ arch/arm64/boot/dts/tesla/fsd.dtsi            | 147 +++++
+ drivers/pci/controller/dwc/pci-exynos.c       | 567 +++++++++++++++---
+ drivers/phy/samsung/phy-exynos-pcie.c         | 295 ++++++++-
+ 10 files changed, 1300 insertions(+), 162 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos5433-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/tesla,fsd-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/tesla,fsd-pcie.yaml
 
-https://lore.kernel.org/lkml/20250724154052.205706-1-matthew.gerlach@altera.com/T/#m3e3d9774dbdb34d646b53c04c46ec49d32254544
+-- 
+2.49.0
 
-Thanks,
-Matthew Gerlach
-
-> > +
-> > +		gmac0: ethernet@10810000 {
-> > +			compatible = "altr,socfpga-stmmac-agilex5",
-> > +				     "snps,dwxgmac-2.10";
-> > +			reg = <0x10810000 0x3500>;
-> > +			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "macirq";
-> > +			resets = <&rst EMAC0_RESET>, <&rst EMAC0_OCP_RESET>;
-> > +			reset-names = "stmmaceth", "ahb";
-> > +			clocks = <&clkmgr AGILEX5_EMAC0_CLK>,
-> > +				 <&clkmgr AGILEX5_EMAC_PTP_CLK>;
-> > +			clock-names = "stmmaceth", "ptp_ref";
-> > +			mac-address = [00 00 00 00 00 00];
-> > +			tx-fifo-depth = <32768>;
-> > +			rx-fifo-depth = <16384>;
-> > +			snps,multicast-filter-bins = <64>;
-> > +			snps,perfect-filter-entries = <64>;
-> > +			snps,axi-config = <&stmmac_axi_emac0_setup>;
-> > +			snps,mtl-rx-config = <&mtl_rx_emac0_setup>;
-> > +			snps,mtl-tx-config = <&mtl_tx_emac0_setup>;
-> > +			snps,pbl = <32>;
-> > +			snps,tso;
-> > +			altr,sysmgr-syscon = <&sysmgr 0x44 0>;
-> > +			snps,clk-csr = <0>;
-> > +			status = "disabled";
-> > +
-> > +			stmmac_axi_emac0_setup: stmmac-axi-config {
-> > +				snps,wr_osr_lmt = <31>;
-> > +				snps,rd_osr_lmt = <31>;
-> > +				snps,blen = <0 0 0 32 16 8 4>;
-> > +			};
-> > +
-> > +			mtl_rx_emac0_setup: rx-queues-config {
-> > +				snps,rx-queues-to-use = <8>;
-> > +				snps,rx-sched-sp;
-> > +				queue0 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x0>;
-> > +				};
-> > +				queue1 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x1>;
-> > +				};
-> > +				queue2 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x2>;
-> > +				};
-> > +				queue3 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x3>;
-> > +				};
-> > +				queue4 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x4>;
-> > +				};
-> > +				queue5 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x5>;
-> > +				};
-> > +				queue6 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x6>;
-> > +				};
-> > +				queue7 {
-> > +					snps,dcb-algorithm;
-> > +					snps,map-to-dma-channel = <0x7>;
-> > +				};
-> > +			};
-> > +
-> > +			mtl_tx_emac0_setup: tx-queues-config {
-> > +				snps,tx-queues-to-use = <8>;
-> > +				snps,tx-sched-wrr;
-> > +				queue0 {
-> > +					snps,weight = <0x09>;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue1 {
-> > +					snps,weight = <0x0A>;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue2 {
-> > +					snps,weight = <0x0B>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue3 {
-> > +					snps,weight = <0x0C>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue4 {
-> > +					snps,weight = <0x0D>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue5 {
-> > +					snps,weight = <0x0E>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue6 {
-> > +					snps,weight = <0x0F>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +				queue7 {
-> > +					snps,weight = <0x10>;
-> > +					snps,coe-unsupported;
-> > +					snps,dcb-algorithm;
-> > +				};
-> > +			};
-> > +		};
-> > +
->
 
