@@ -1,201 +1,193 @@
-Return-Path: <devicetree+bounces-203317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD926B20B4C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:10:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF71B20B43
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F4883A3308
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:07:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C019516FB0D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF5C2459D8;
-	Mon, 11 Aug 2025 14:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F7C222587;
+	Mon, 11 Aug 2025 14:06:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="PpR8rMpZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AzeKLnSC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgeu1.qq.com (smtpbgeu1.qq.com [52.59.177.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5466E23BCF5;
-	Mon, 11 Aug 2025 14:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.59.177.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4925922257B;
+	Mon, 11 Aug 2025 14:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754921109; cv=none; b=kZUSGUNroSbgh24SJHiINMdR+3aTLiyiPrkUJ6ytNFAz5UXCBQwm0UNaKwbgUoP0zeYpwfprBUtuWF4vQUsNo5sgKdMEc0aHG16P0xoiysga/fQ0NTx0RzhPc+WLaCOTtcz0fBcPtE9Gnx1yAiVeL26Gv+xkdJ3STfm178zseMQ=
+	t=1754921173; cv=none; b=NO5Oy08t3Si2XkVBXgTmhKYI9Jv9/YTAFesUYVcBUnBBZixHu2XXrJGl+ulFJfbyMYJrTewOHMJ/ZRz1IQBhoDn/MpakTV98pT0sw3QHC4EPAa2simG779X9cfRxkFL/uqwzkqIKNbTQUjECOmfPBAaRUnAJ8JVNTFs3Bd2vm7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754921109; c=relaxed/simple;
-	bh=/eP5t1s0TqmJIvJ8sxEMoPxPa8mRQSEXNyaZxgSUlDo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=e0NB4bH7v7+MqFHBeuSQvyRLgV8/pVG9uzAbti7oW+jg6/NyBLN4WqLQkjEeb7iz0Ud+smj3mG7Ht6aYJdKl7RDN0AdoqfYXsKNrED4MI/M1pWXscuqZPuEXWmnI57BU/Xmtzf5crOGZ+z2uH62pFpBsA2PFGtBIzfeBa+BBXdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=PpR8rMpZ; arc=none smtp.client-ip=52.59.177.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1754921091;
-	bh=oUvLpctbzw/WmMzpaNN8M2oVwo9YJxXCqlSJR/iqBr4=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=PpR8rMpZadtp6AJTmxAaNaejQAbvdZuhyYchCHs9cQVWRiLb0ggFzFqjAFFUblaQo
-	 V/OM16U7ZhMzJIJpudurQZeh8Yo1Q00hPgRlt6mTAdxp1CvH1cLKRSMH2shyAgneut
-	 DAakkYe4btH/T+qnRulXl/4G5XBk48POVAPZc51k=
-X-QQ-mid: zesmtpip3t1754921090t5adf6c6f
-X-QQ-Originating-IP: 77QCtEo+rzaJ27LWZg1zIIO7xOaXq4U7Kmzsi4q9YBI=
-Received: from = ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 11 Aug 2025 22:04:48 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 11959351235578941372
-EX-QQ-RecipientCnt: 16
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Mon, 11 Aug 2025 22:04:30 +0800
-Subject: [PATCH v2 4/4] clk: spacemit: fix i2s clock
+	s=arc-20240116; t=1754921173; c=relaxed/simple;
+	bh=Nvh/uOAk/MDfCPBtlZRzdHaHOB6Du08aKJTNs5qDK70=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BXjUEmJqhQEDKo74zPXGJN2xp8IJ99JvP29VkgoTNZk2v0STCSnT62p/mpENhxoAqmYB8Hpqa5MFS6D1htyAgJs5IrXrTPraAjIaZ5moQNfkLilbCev1VY8fdxVQY5VnYO7txp7Im0QV1U/GyKRAMRV3rhMVgNxPEsXJI1BCAa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AzeKLnSC; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b4255b4d8f9so2887773a12.0;
+        Mon, 11 Aug 2025 07:06:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754921170; x=1755525970; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=WNGafiRX+HqlDwS0BXmPS/dqouNRqSHQ14CXdgfNMdI=;
+        b=AzeKLnSCTGYsmHtWCZtfPJElnGzE1Dc3Du1OoL+r8MTOeoq8M+6hBFqiroJWorTqEW
+         0ID/Rcnz1CkDxHeoVq5OD5aZA9BG3dElIt9f7HLUS/j87gCJMmU1LqJk35Xet2PnBubd
+         7oOxapt5a23TXfpEEPi9GOu+6HXdVlrUexJa7ENDy/+UdmpI5zizqzeNsNUHNvul47Qm
+         wC0Ip6OlQoCtYye7I7AZCirtToPmkhyHik84LeE3hyLZswKe//F5Ij/OYxntHUN1nM1n
+         NIl1N2LgOCDycxQGZh7Q0wWgsdDWCNXts8m8j4hqDsQO+gb3dWBURCZCJCKzmrLeBGVH
+         8MCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754921170; x=1755525970;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WNGafiRX+HqlDwS0BXmPS/dqouNRqSHQ14CXdgfNMdI=;
+        b=DXsjMFHiN46K24h+8lCFUrpTwZhmShuNK2xcqO1RGO23rCky40ir23iYv/FDEu+eZv
+         eRrPbeQamR0ZyKrZX5Fu0AVj8ZElCP0gmE1e08Q8Oxx5Mu4DofgK/3HMFEJgAfvn6YmC
+         GZAuk2MQGgQnTWs0uOpxbOu++fdCp0/lh4OKCbmiJ53ykP/xEkeVXb40anf3GNPQBCLD
+         i5ThIHn+M6gyJxWDhQZhMIppcRzbkDfUi90t6S8coSwXAhBArqkIuEUCsaLQ6834qxsl
+         Qc8p4J5JRtlFpltLyK7hiwBgwkoarwT5uKzcILBL9AIo2bj+EXGWYzFR19Xm/2speG22
+         HQWA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmH3eC5cM2ajnQjKRftFuaFQi0zXBPoGw2pWkt+0Fjc9cwkYACUHdZ6zdTg5DyJZzMIUtLqqwGqzO2@vger.kernel.org, AJvYcCVF8sShDh1iwKxx9pGjmwDY7JlZdyIsVZMc7IvHq1U8/rR5bwoA/EIDvmFFi1oRBY32F7hzv36/ColfqZdV@vger.kernel.org
+X-Gm-Message-State: AOJu0YynbXWTEstJqqOyEvY5cff44wgPSdHHOAb5XTdV9OJGTkNtaOn2
+	4bTb6IlxSxyu5PlmSXucrpStSYUAmoF3W2gynFf3LSBhWmTHmDo+tzH3
+X-Gm-Gg: ASbGncuSdzeWXehYUxj+HzCLy+J1LYmXWtVqgGg8LrXdb6ajnGXXk9SYcYaa1qyQQr5
+	CbZlwlnkRZpsjgDUlX/sIhjIU5ubd8CVDFZWlYSdkksVQB4TLZgHblXq4ki93kbQ1ogjGNSN7V1
+	oHdMju42neEuaSrCN3cAr8nHqlvTffGUCxyswCYdPERqs1xJ8XZtghNI2tOYlSCIUj+tcAA/YC5
+	LeJES25RY34+qAcmYbK5z1be4hcxxyB7pEvbTIZE8C26q2u2RphKFrZLC/lG0T9L/jYKULT0n2o
+	OV9iWliCkmNyQ5anf1pEcXfEtc+Nd9b+JfSBAFgLW3Vqbj+BNg67QA3wKvhdtcsHJWn4B8Dlav7
+	1bTvJ6HjIBm2P00Grp4m4vof6JWNFKKmwXTSrtsl9eK+gqeY6KpCzFGYoeMsUR+nlV5atelg=
+X-Google-Smtp-Source: AGHT+IFH/yMh9FGn6earRny56wOPbrDf0S2gGIy9zzNabyq+nzMuKcuLR2dZqSlB+QuwmwPA1v/QuA==
+X-Received: by 2002:a17:902:da83:b0:235:ea0d:ae23 with SMTP id d9443c01a7336-242c1fdc182mr169797985ad.6.1754921170086;
+        Mon, 11 Aug 2025 07:06:10 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef6bcfsm277188645ad.5.2025.08.11.07.06.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Aug 2025 07:06:09 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <551408c6-c468-4ffd-86ee-f93d1cba6a73@roeck-us.net>
+Date: Mon, 11 Aug 2025 07:06:08 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] regulator: dt-bindings: infineon,ir38060: Add maintainer
+ from IBM
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ninad Palsule <ninad@linux.ibm.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+References: <20250811134703.161941-2-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20250811134703.161941-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-k1-clk-i2s-generation-v2-4-e4d3ec268b7a@linux.spacemit.com>
-References: <20250811-k1-clk-i2s-generation-v2-0-e4d3ec268b7a@linux.spacemit.com>
-In-Reply-To: <20250811-k1-clk-i2s-generation-v2-0-e4d3ec268b7a@linux.spacemit.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Alex Elder <elder@riscstar.com>, Haylen Chu <heylenay@4d2.org>, 
- Inochi Amaoto <inochiama@outlook.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Jinmei Wei <weijinmei@linux.spacemit.com>, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754921074; l=4205;
- i=troy.mitchell@linux.spacemit.com; s=20250712; h=from:subject:message-id;
- bh=/eP5t1s0TqmJIvJ8sxEMoPxPa8mRQSEXNyaZxgSUlDo=;
- b=p3HEwh3FPsXPkPLayk+Nv8p8KIP+CiyvupGRdd/M1EW0hj4BIzjQBvfOmJJNmHfWUf4zpTd/I
- nJgeuQ4Q9vuDlqsdURTkbApXuDuq6R9iYSatGTdLH23AW4EG0Ve1q42
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=zhRP1xE0bftrurqSWI+SzcSdJGIZ0BTTY9Id0ESzqlI=
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NYSbNmQ6i3UflGZQAhExDUD5lezifgMNpg/HQ1y4ZLzfvJpN3ogzQQwc
-	OClc6N7TR4/Mz+5fYUZG0dtigTV+p7cnXhu35WSp28lmhVwoI6RpjYmOv1MiDQwDvxDVGFy
-	VY6kbg3oezvzNIpp170m21rA0V6NOiVFowef0WyXOJtfBsuF4UmvDx+UD56s/8n8UMpDIF7
-	mWZ00dOOJOo3EdUZwXUbloRolVgzEcvhewsYYncpjDVj34207OP7ycRs5hrdVOZf7k/MABt
-	yhf6wXG/p94NgPac5yAV0/yjFL1dgU+P8tMKj047P9noiKJ4TQvJESkax6AupUml7hR23Q6
-	mJbUl3UW2xRUu67eOsE2Yx9PelRIGnyj4ImELM3BPEpH5QeKkpanDN8JVR8zt7RmaatqGcM
-	AouqxkonTeIdPyy4c0cJ8/rsB80QMVF7338X8U6207WQ090WgzZHaFlVJIuRH40RKAr6Sjj
-	CbdhKeKQfIXvOfx5AzTw8kOkbyz0BJf8/cAU8oskaasVWhoTbN47wBF3MMDjCKaafRPmRHQ
-	j+lSNSFdusI7CjQRZM3jBDdYx9tZQf/F9xQXeQrBZ6fXXUfnpm1Uf26ySGTfTEHvXp0MlX2
-	4tVh7g0mEDUca8U0WaZzwCC4ZEPvWnn3YZvgYrw8aOOmAMK3qpwld9JDdJHRaBH958LuJ/S
-	+AkevnVIbnIcrX7DczPgDsC2eqRjlGVZHyag6CqnYCaewUrDQyTKsgh9rLeX6dvjQdQgOIW
-	wrENzLyg1aHOzEYpYLZixq1wsNtSNrxgW+JnT4N+c2X5Ypr3tJwn9YJ82Ho52PR9UWc6a/x
-	n3XWvpqVnxG2zFViht4tFNg3P17sYc4dX1ZIIRxKQNzq0WCcavh2fAb8xLNOx0h8nS1C0PT
-	ws6xnxsHJFjNRTjEHS7jKGRudJsOB0UW4hnOJFfNXd/FhmDQ90PtVYrjZg501peYDBBml2j
-	hNKjM/yx1CwbXgw4S3gCwpqMBb1FDMjsfgSUxE6qsjXDVf82Rqyrn19YqYuHYCDcC3096Pr
-	WJYtH5rYqa9DMxP9ji/s1xIIKpXLTyBQjBYCNKWqH7BpCvjvs9Vh872WBMvgFH+PdhjTj/0
-	8otdT8tiRWD71bdUGBwTmob+NkcUACYbFRsALWFboueB3isN548EDet7w7KnIeGPSvvljK1
-	ktQnHkq6yc4Wm6vIz9gx/qoTSNlz7dZ6fZ7o
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
 
-Defining i2s_bclk and i2s_sysclk as fixed-factor clocks is insufficient
-for real I2S use cases.
+On 8/11/25 06:47, Krzysztof Kozlowski wrote:
+> The infineon,ir38060 binding never got maintainer and fake "Not Me"
+> entry have been causing dt_binding_check warnings for 1.5 years now:
+> 
+>    regulator/infineon,ir38060.yaml: maintainers:0: 'Not Me.' does not match '@'
+> 
+> The devices are used on few Aspeed-based IBM BMCs, so maybe recent
+> contributor to these boards - Ninad Palsule - can help here in the
+> maintenance?
+> 
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Conor Dooley <conor.dooley@microchip.com>
+> Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Ninad,
+> Can you confirm that you are ok with maintenance?
+> 
+> Alternatively, if there is still not dedicated maintainer for this
+> hardware, we should drop it along with the drvier. This will break
+> users' setups (e.g. IBM BMC boards), but maybe this will encourage them
+> to find someone to maintain this hardware?
 
-Moreover, the current I2S clock configuration does not work as expected
-due to missing parent clocks.
+Oh, please. Just list me as maintainer.
 
-This patch adds the missing parent clocks, defines i2s_sysclk as
-a DDN clock, and i2s_bclk as a DIV clock.
+Guenter
 
-The I2S-related clock registers can be found here [1].
-
-Link:
-https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
-[1]
-
-Fixes: 1b72c59db0add ("clk: spacemit: Add clock support for SpacemiT K1 SoC")
-Co-developer: Jinmei Wei <weijinmei@linux.spacemit.com>
-Signed-off-by: Jinmei Wei <weijinmei@linux.spacemit.com>
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- drivers/clk/spacemit/ccu-k1.c    | 28 +++++++++++++++++++++++-----
- include/soc/spacemit/k1-syscon.h |  1 +
- 2 files changed, 24 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/clk/spacemit/ccu-k1.c b/drivers/clk/spacemit/ccu-k1.c
-index 65e6de030717afa60eefab7bda88f9a13b857650..3a885d64fb09144bb0d40024fea9415d66eba01b 100644
---- a/drivers/clk/spacemit/ccu-k1.c
-+++ b/drivers/clk/spacemit/ccu-k1.c
-@@ -136,13 +136,28 @@ CCU_GATE_DEFINE(pll1_d3_819p2, CCU_PARENT_HW(pll1_d3), MPMU_ACGR, BIT(14), 0);
- CCU_GATE_DEFINE(pll1_d2_1228p8, CCU_PARENT_HW(pll1_d2), MPMU_ACGR, BIT(16), 0);
- 
- CCU_GATE_DEFINE(slow_uart, CCU_PARENT_NAME(osc), MPMU_ACGR, BIT(1), CLK_IGNORE_UNUSED);
--CCU_DDN_DEFINE(slow_uart1_14p74, pll1_d16_153p6, MPMU_SUCCR, 16, 13, 0, 13, 0);
--CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 0);
-+CCU_DDN_DEFINE(slow_uart1_14p74, pll1_d16_153p6, MPMU_SUCCR, 16, 13, 0, 13, 2, 0);
-+CCU_DDN_DEFINE(slow_uart2_48, pll1_d4_614p4, MPMU_SUCCR_1, 16, 13, 0, 13, 2, 0);
- 
- CCU_GATE_DEFINE(wdt_clk, CCU_PARENT_HW(pll1_d96_25p6), MPMU_WDTPCR, BIT(1), 0);
- 
--CCU_FACTOR_GATE_DEFINE(i2s_sysclk, CCU_PARENT_HW(pll1_d16_153p6), MPMU_ISCCR, BIT(31), 50, 1);
--CCU_FACTOR_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR, BIT(29), 1, 1);
-+CCU_FACTOR_DEFINE(i2s_153p6, CCU_PARENT_HW(pll1_d8_307p2), 2, 1);
-+
-+static const struct clk_parent_data i2s_153p6_base_parents[] = {
-+	CCU_PARENT_HW(i2s_153p6),
-+	CCU_PARENT_HW(pll1_d8_307p2),
-+};
-+CCU_MUX_DEFINE(i2s_153p6_base, i2s_153p6_base_parents, MPMU_FCCR, 29, 1, 0);
-+
-+static const struct clk_parent_data i2s_sysclk_src_parents[] = {
-+	CCU_PARENT_HW(pll1_d96_25p6),
-+	CCU_PARENT_HW(i2s_153p6_base)
-+};
-+CCU_MUX_GATE_DEFINE(i2s_sysclk_src, i2s_sysclk_src_parents, MPMU_ISCCR, 30, 1, BIT(31), 0);
-+
-+CCU_DDN_DEFINE(i2s_sysclk, i2s_sysclk_src, MPMU_ISCCR, 0, 15, 15, 12, 1, 0);
-+
-+CCU_DIV_GATE_DEFINE(i2s_bclk, CCU_PARENT_HW(i2s_sysclk), MPMU_ISCCR, 27, 2, BIT(29), 2, 0);
- 
- static const struct clk_parent_data apb_parents[] = {
- 	CCU_PARENT_HW(pll1_d96_25p6),
-@@ -639,7 +654,7 @@ static const struct clk_parent_data emmc_parents[] = {
- CCU_MUX_DIV_GATE_FC_DEFINE(emmc_clk, emmc_parents, APMU_PMUA_EM_CLK_RES_CTRL, 8, 3, BIT(11),
- 			   6, 2, BIT(4), 0);
- CCU_DIV_GATE_DEFINE(emmc_x_clk, CCU_PARENT_HW(pll1_d2_1228p8), APMU_PMUA_EM_CLK_RES_CTRL, 12,
--		    3, BIT(15), 0);
-+		    3, BIT(15), 1, 0);
- 
- static const struct clk_parent_data audio_parents[] = {
- 	CCU_PARENT_HW(pll1_aud_245p7),
-@@ -756,6 +771,9 @@ static struct clk_hw *k1_ccu_mpmu_hws[] = {
- 	[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
- 	[CLK_APB]		= &apb_clk.common.hw,
- 	[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
-+	[CLK_I2S_153P6]		= &i2s_153p6.common.hw,
-+	[CLK_I2S_153P6_BASE]	= &i2s_153p6_base.common.hw,
-+	[CLK_I2S_SYSCLK_SRC]	= &i2s_sysclk_src.common.hw,
- };
- 
- static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
-diff --git a/include/soc/spacemit/k1-syscon.h b/include/soc/spacemit/k1-syscon.h
-index c59bd7a38e5b4219121341b9c0d9ffda13a9c3e2..354751562c55523ef8a22be931ddd8aca9651084 100644
---- a/include/soc/spacemit/k1-syscon.h
-+++ b/include/soc/spacemit/k1-syscon.h
-@@ -30,6 +30,7 @@ to_spacemit_ccu_adev(struct auxiliary_device *adev)
- 
- /* MPMU register offset */
- #define MPMU_POSR			0x0010
-+#define MPMU_FCCR			0x0008
- #define  POSR_PLL1_LOCK			BIT(27)
- #define  POSR_PLL2_LOCK			BIT(28)
- #define  POSR_PLL3_LOCK			BIT(29)
-
--- 
-2.50.1
+> ---
+>   .../devicetree/bindings/regulator/infineon,ir38060.yaml         | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> index e6ffbc2a2298..1267b68217bd 100644
+> --- a/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/infineon,ir38060.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: Infineon Buck Regulators with PMBUS interfaces
+>   
+>   maintainers:
+> -  - Not Me.
+> +  - Ninad Palsule <ninad@linux.ibm.com>
+>   
+>   allOf:
+>     - $ref: regulator.yaml#
 
 
