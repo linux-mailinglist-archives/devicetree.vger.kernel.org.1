@@ -1,257 +1,127 @@
-Return-Path: <devicetree+bounces-203469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3266AB2184F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:23:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1169B2186F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:32:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E25D83AF547
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:23:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4C6F1A20EF0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72E52DE6F1;
-	Mon, 11 Aug 2025 22:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8210A21ADA2;
+	Mon, 11 Aug 2025 22:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="Qwu8/6nc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GdN07UCK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAEC2253FE
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81411F948
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754951015; cv=none; b=izTLJHKnZ2Uog4bwtFN+06XiF6cec3uk00OrQYes61vePVXTuc7kkURa7fFGzagIciy3rjbBhkI7gEsg+I28vjMWGplCUcHj+N/o32310as/UEDugk7g1M1YE29zuW4qFWn6vYR7iPkmvfP/0dreJbuMa3d6hge7fVCYLVOM3F8=
+	t=1754951458; cv=none; b=rBBlbbqfstahTTttmjrCmRHslxFqVUNs3VxSk10wmcED+AstY6tvjFgsFCGQwawDzkw5knJWDvdv8N3QGWlwXpfMgNPYfda22XDIPlcyBztkQn6kURg1pxcLtvP+86sIBlPvmhiaOthu1mBpIVo4xOxjaRT97iZdBzytlGF/suE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754951015; c=relaxed/simple;
-	bh=1zNdvvcHZP6R5JJ23etj6t+b+hZpTABX3/TkZ7lxdJs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O3B8FxnDt9HY/cHW+u66R3YvYqpJsf9vKHYNiVw+I7vlhQoi1OJK5MBqKw+q1JussUj/AIMjW+lQeX21AJ/AJuA4nBqL16b1u23tsBBGqwv8ldnX/KNZHsjHLtJfao0exXoVmOPLyBelDNRToF+SMy9KeUCWhkHxWimsMryJz7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=Qwu8/6nc; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1754951008;
- bh=g2RgxYyMc9YCrvR3tGO7/rfnt+jgDsWOgP4l8MdW5ZM=;
- b=Qwu8/6ncUS0+jpQiWzXuU7AHFbDBlunBv8DQ7G/BKN/1xsDf44SQaes0cAjdiARMMAhqMtE48
- bpF7QKSCi9Y78Rsrca+kiTU4dUzr4bl0gr2x6BYVFKMuCXDIhmyafNig1f2O5HhL63rTWzBym/8
- kbgWWWB//Gb0NB39foz/5zQksxXZ3deqTH9MkSP5JB7/qyBdbrsTR65/YtXUmIcYBQfm4w0Skdi
- jttA7LsliIv2ysyx5vzFdYTMly8aa0fUvnSiJUs0/zigyyIu2W0cCukbd/EbfvjHzz+7ywTB7At
- pxYfvwfZHf7P3T33bujqw3qaisgrKykgoTGGY08YC/xA==
-X-Forward-Email-ID: 689a6d18de615f3104e089a6
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <16b67aec-8675-45a2-b6df-380bd5f3bf4c@kwiboo.se>
-Date: Tue, 12 Aug 2025 00:22:11 +0200
+	s=arc-20240116; t=1754951458; c=relaxed/simple;
+	bh=GPqLNQYmGgldngVoz0uzCbZ4RuS5lu8mmuunEVAfXdQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VJVToZIBLl+CdOimsNzXGuF7q1ooL8v//sfITR+H73JRtWhT2UZhJh9X/QPotXIbX2lZf3etwtkNP+D5G2CjIxL/pIrll3mHTG1kwhxDA/9hEpBNa0TQcuDTNdJrXbJ9u4Ms0pKZBQ4SClwvCc/+puiKtCSQvFurTilNTqaqNhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GdN07UCK; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-45a0dc77a15so7045945e9.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 15:30:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754951455; x=1755556255; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HIChLFJXUTptU2roabulec0iIj7wIJeqA5HDjOWIy78=;
+        b=GdN07UCKs+jXXdTnItRn6dtNuCLj03sezobXMVqUbrzlaeL66jPSQOBJIoLB/5WhKI
+         vFTgekBPfqyXNd/2ANl1PtpbR3ys6RutwWV0/vezXm/Ss5ZCJ1AD/7vm/7tBsgeYPBde
+         lagkV578Qe5M4NEYpfL4+qr0pfVv/ydpQbgcueY0j6UJfp31R7VNwoy17LJ+zhnVHOVq
+         XlJtd65ExVMKcwB0juhF3CoGli/bd7XVZFn3ISkPr1EmnmNris59ZKFbB2BtLa1NqGmy
+         fdOU5/9dMkEyfasrCKkOAqwey68xTrqoMAfXL0IJX3RbdEGjdCG5u7MgambqONXFndZ5
+         p9kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754951455; x=1755556255;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HIChLFJXUTptU2roabulec0iIj7wIJeqA5HDjOWIy78=;
+        b=czlfWrTswPKvqHBSxvlspT+voa019yNCz+ZIJmHMa85fE+YjtwfNlJYGokoNHH46qg
+         SI+dZmj/1rfijLipBPCOZbig6VqhKCKG+pbRZyNlVJI1aXyiJA2Mc4lKOqFXGMWQlTlv
+         p/TMYBH1EkEOq0KwW8CERx+n+nfif+vGT2KfpjsdDbVjrBKc4KVtj2ZRAJuDUBVnt4Ii
+         Ta8FnqZcpZC6zFrUMj3Qgn5NwFJD17uR+6RNFdsd1OrXrVtfKckFsfqXbsagfTUsuW6O
+         j2a0j5AFB6RQ7nt8rfepnURjijdaUdqBzsJfjlxEBimYIowATsEucxq/2ffB8zh85ukW
+         dWPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVz+bpu3trDP/ZsmgQb9Ro92QuV8iNDqoqWjhYN42/LLU09K64i00uZMpvvHvz/sE0MIRKYckqzEnx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmV3FdG3TjjjWHzWTBk03niOEEBA0BinTiYaWZqzFMRYHhPT4n
+	Aeid23Kcl5sJVKTjLolGn6oyD7OdrXVq4R2Dqi9H0hxxa5jXZk8D4VdGiw6FSE164SujAKJipZn
+	nNJNp
+X-Gm-Gg: ASbGncto5bMDhD6JcpHuj3W80ar3JXIm3nXoz7A0u3q5kYIgbfV/iimnD4I1FIq7f1o
+	d2gKnULZEradXYpsqqhKp2bXT0yZ4708MqbsuYzSJ0EaTmouxVe4GbDFe4txdN7HyUaY+pKqNUO
+	wUMpsxJSPxQmC08WOBhbJRaiUaNfamRF/VsIFtHT6O1Ssv7lIrrYzNVI9uIMLO7gI3dffoxFZwr
+	PsOvj6GHXg8YGNfdklHmo7YUBnGFmtp6KNkMiODcr0Gk4pyQItC9z7BB+GgSPLhRQKlD3MIIai9
+	blkq9uRN6QHr2P/tTn6bEOGWGfHCPePDoGmfpGYC45nAKEyhtVY2Pq1jPJdiGG5CIx6JvdFgSZ5
+	OyBl8/AkVS9jwhyL77KhsAXYgWwFsxpr9yFmMoWz+cZLIwTeM
+X-Google-Smtp-Source: AGHT+IE9a3RQjvUbfMWCMwyystXXfoGplC7a7Aahfwg+Kt8MTYEed70a5T7Hc5VGmEGnzR1qkVdu5g==
+X-Received: by 2002:a05:600c:4f8f:b0:450:d4a6:799e with SMTP id 5b1f17b1804b1-45a10c005edmr8980105e9.20.1754951455077;
+        Mon, 11 Aug 2025 15:30:55 -0700 (PDT)
+Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459e5853104sm271557715e9.8.2025.08.11.15.30.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 15:30:54 -0700 (PDT)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ghennadi.Procopciuc@nxp.com,
+	s32@nxp.com
+Subject: [PATCH v2 0/2] Add the s32g2 and s32g3 FTM PWM support
+Date: Tue, 12 Aug 2025 00:30:38 +0200
+Message-ID: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] media: rkvdec: Disable QoS for HEVC and VP9 on
- RK3328
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <20250810212454.3237486-6-jonas@kwiboo.se>
- <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi Nicolas,
+The NXP Automotive platform s32g2 and s32g3 have on their board a
+FlexTimer (FTM) dedicated for the PWM. The same IP is found on the
+Freescale Vybrid Family and the i.MX8 SoCs. However, there is a small
+difference with some registers not available on the s32g2/3 and 6
+channels instead of 8.
 
-On 8/11/2025 11:25 PM, Nicolas Dufresne wrote:
-> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
->> From: Alex Bee <knaerzche@gmail.com>
->>
->> The RK3328 VDEC has a HW quirk that require QoS to be disabled when HEVC
->> or VP9 is decoded, otherwise the decoded picture may become corrupted.
->>
->> Add a RK3328 variant with a quirk flag to disable QoS when before
->> decoding is started.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> Changes in v2:
->> - No change
->> ---
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c |  9 +++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h |  2 ++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c  | 10 ++++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec.c      | 12 ++++++++++++
->>  drivers/media/platform/rockchip/rkvdec/rkvdec.h      |  4 ++++
->>  5 files changed, 37 insertions(+)
->>
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> index 1994ea24f0be..f8bb8c4264f7 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> @@ -789,6 +789,15 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ctx)
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_LUMA_CACHE_COMMAND);
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
->>  
->> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
->> +		u32 reg;
->> +
->> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +		reg |= 0xFFFF;
->> +		reg &= ~BIT(12);
-> 
-> I wonder if there is a better way to express that, if not, a comment for future
-> readers would be nice. If read it will, we keep the upper 16bit, and replaced
-> the lower bits with 0xEFFF (all bits set except 12) ? I'd rather not spend time
-> thinking if I walk by this code again.
-> 
->> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +	}
->> +
->>  	/* Start decoding! */
->>  	reg = (run.pps->flags & V4L2_HEVC_PPS_FLAG_TILES_ENABLED) ?
->>  		0 : RKVDEC_WR_DDR_ALIGN_EN;
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> index 540c8bdf24e4..c627b6b6f53a 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
->> @@ -219,6 +219,8 @@
->>  #define RKVDEC_REG_H264_ERR_E				0x134
->>  #define RKVDEC_H264_ERR_EN_HIGHBITS(x)			((x) & 0x3fffffff)
->>  
->> +#define RKVDEC_REG_QOS_CTRL				0x18C
->> +
->>  #define RKVDEC_REG_PREF_LUMA_CACHE_COMMAND		0x410
->>  #define RKVDEC_REG_PREF_CHR_CACHE_COMMAND		0x450
->>  
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> index 0e7e16f20eeb..cadb9d592308 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
->> @@ -824,6 +824,16 @@ static int rkvdec_vp9_run(struct rkvdec_ctx *ctx)
->>  	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
->>  
->>  	writel(0xe, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
->> +
->> +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
->> +		u32 reg;
->> +
->> +		reg = readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
->> +		reg |= 0xFFFF;
->> +		reg &= ~BIT(12);
->> +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> 
-> Can we deduplicate that ?
-> 
->> +	}
->> +
->>  	/* Start decoding! */
->>  	writel(RKVDEC_INTERRUPT_DEC_E | RKVDEC_CONFIG_DEC_CLK_GATE_E |
->>  	       RKVDEC_TIMEOUT_E | RKVDEC_BUF_EMPTY_E,
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
->> index c20e046205fe..d61d4c419992 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
->> @@ -1226,6 +1226,13 @@ static const struct rkvdec_variant
->> rk3288_rkvdec_variant = {
->>  	.capabilities = RKVDEC_CAPABILITY_HEVC,
->>  };
->>  
->> +static const struct rkvdec_variant rk3328_rkvdec_variant = {
->> +	.capabilities = RKVDEC_CAPABILITY_HEVC |
->> +			RKVDEC_CAPABILITY_H264 |
->> +			RKVDEC_CAPABILITY_VP9,
->> +	.quirks = RKVDEC_QUIRK_DISABLE_QOS,
->> +};
->> +
->>  static const struct rkvdec_variant rk3399_rkvdec_variant = {
->>  	.capabilities = RKVDEC_CAPABILITY_HEVC |
->>  			RKVDEC_CAPABILITY_H264 |
->> @@ -1237,6 +1244,10 @@ static const struct of_device_id of_rkvdec_match[] = {
->>  		.compatible = "rockchip,rk3288-vdec",
->>  		.data = &rk3288_rkvdec_variant,
->>  	},
->> +	{
->> +		.compatible = "rockchip,rk3328-vdec",
->> +		.data = &rk3328_rkvdec_variant,
->> +	},
->>  	{
->>  		.compatible = "rockchip,rk3399-vdec",
->>  		.data = &rk3399_rkvdec_variant,
->> @@ -1267,6 +1278,7 @@ static int rkvdec_probe(struct platform_device *pdev)
->>  	platform_set_drvdata(pdev, rkvdec);
->>  	rkvdec->dev = &pdev->dev;
->>  	rkvdec->capabilities = variant->capabilities;
->> +	rkvdec->quirks = variant->quirks;
->>  	mutex_init(&rkvdec->vdev_lock);
->>  	INIT_DELAYED_WORK(&rkvdec->watchdog_work, rkvdec_watchdog_func);
->>  
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.h
->> b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
->> index 8e1f8548eae4..e633a879e9bf 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.h
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
->> @@ -26,6 +26,8 @@
->>  #define RKVDEC_CAPABILITY_H264		BIT(1)
->>  #define RKVDEC_CAPABILITY_VP9		BIT(2)
->>  
->> +#define RKVDEC_QUIRK_DISABLE_QOS	BIT(0)
-> 
-> Can you go back in the series, get H264 into bit 0, VP9 into bit 1, and set
-> quirks from bit 16 ? Just worried the whole finding can becomes a mess in many
-> years from now.
+These two patches provide the DT bindings for the s32g2/3 compatible
+strings and the code to deal with the FTM difference.
 
-The reason for HEVC in bit 0 is mainly because the first generation was
-HEVC only, this also matches the mode reg values (0=hevc, 1=h264, 2=vp9).
+Changelog:
+	v2:
+	 - Merged the two booleans for the regmap holes check
+	 - Clarified why this is needed in the changelog
+	v1:
+	 - Initial post
 
-I can start quirk at bit 16 if you like, not really sure I understand
-why? Do you want to combine capabilities and quirks into one?
+Daniel Lezcano (1):
+  dt: bindings: fsl,vf610-ftm-pwm: Add compatible for s32g2 and s32g3
 
-Regards,
-Jonas
+Ghennadi Procopciuc (1):
+  pwm: Add the S32G support in the Freescale FTM driver
 
-> 
->> +
->>  struct rkvdec_ctx;
->>  
->>  struct rkvdec_ctrl_desc {
->> @@ -69,6 +71,7 @@ vb2_to_rkvdec_decoded_buf(struct vb2_buffer *buf)
->>  
->>  struct rkvdec_variant {
->>  	unsigned int capabilities;
->> +	unsigned int quirks;
->>  };
->>  
->>  struct rkvdec_coded_fmt_ops {
->> @@ -121,6 +124,7 @@ struct rkvdec_dev {
->>  	struct delayed_work watchdog_work;
->>  	struct iommu_domain *empty_domain;
->>  	unsigned int capabilities;
->> +	unsigned int quirks;
->>  };
->>  
->>  struct rkvdec_ctx {
+ .../bindings/pwm/fsl,vf610-ftm-pwm.yaml       | 11 ++++--
+ drivers/pwm/pwm-fsl-ftm.c                     | 35 +++++++++++++++++--
+ 2 files changed, 41 insertions(+), 5 deletions(-)
+
+-- 
+2.43.0
 
 
