@@ -1,142 +1,112 @@
-Return-Path: <devicetree+bounces-203141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F744B20171
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:11:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E60FB20179
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:13:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1037E3A4A20
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:11:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B8A7189E7E4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20932DA769;
-	Mon, 11 Aug 2025 08:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866E02DAFAE;
+	Mon, 11 Aug 2025 08:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAWzK3Nl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qP9CMZeD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F9B2D8DA3;
-	Mon, 11 Aug 2025 08:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF0A72624;
+	Mon, 11 Aug 2025 08:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754899898; cv=none; b=l7ALsQoBqHPkzC3aUDAXrF3A1zBiUOU8w8mj+5Pya22Eyba5u0yLsxy7CgUhuW4vGZyARusmhEFkvgAkjlwk3/yYmDkzpKGC/WhQjVIO/wuhQsFRjMGIC0x9zFMFLpyQorBJAa9Ui0P0Nyy7m93PttwJppy5IK6zfsONyc2Io0U=
+	t=1754900003; cv=none; b=GWg+bhyYebeuUadfwRhtpcM4Na5M+Dz6Ycz7LCwI6LnczsE11P2sLwoxo91LbGhzL2NwC8eU+9oNeDVB1R4BW/TXtoroTY1j3YmK6fl92up6pxGXCWeo6eEj9OWNaxmJJHANIimcQZVXedURf36jnUkvAXVadYBJwp4XpRNm9Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754899898; c=relaxed/simple;
-	bh=NL3HqBIepZ8clCiHUxZ1IZrBLw2P8J3PrJIx4jJLeTQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P7R0p7e7iGRVPdeUPttYxeaCS4kCvVrbKW17gLJ1PxYrNC9ZhtRp9CdTEW1J7h1pR9LkPK8N3qBqaMchHeWnMs399qHo8BBPrbRyCmZ68FG5w3YvO5iGel2TlxmOvRTItJWvvbjZEIRZ9ZO+T0TwH/EVHuh9xVlDtc7cd1mMHsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAWzK3Nl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 121E1C4CEED;
-	Mon, 11 Aug 2025 08:11:35 +0000 (UTC)
+	s=arc-20240116; t=1754900003; c=relaxed/simple;
+	bh=5sjPiBzdpJnO+FR0G57D0bldCe0wsDvVzVNiX8GVo3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jRfIZSHBdZi1tnK/nMQeSN1xZsNQJHybom9RGQ7Zdk+4iNxcsTAMMLswd4/1Aq4tEUv8cnO58iRp+Ju7Fd7qvwyi8gQv1d1wJsjPRRsLoVzesxZLHnoMLOJlIHTZQ04LTAo/3UqgtFDJgSRpXZRaUISiC/NjuPoREyQft7VIZEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qP9CMZeD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A450C4CEF7;
+	Mon, 11 Aug 2025 08:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754899898;
-	bh=NL3HqBIepZ8clCiHUxZ1IZrBLw2P8J3PrJIx4jJLeTQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vAWzK3Nl2KLSu91tRgBj6VXoDFMlcGdQh+Q/ZER7JxdajKDSUvdzSCFwDpk5FxO5g
-	 NqjF1DTMDQX7BAOanvf6q89vSdZ/xo9UvuPK1XfeQUGv/uPaFS4u7N+rkiXLh4MKPn
-	 3at72CnqhJeClMc0D0mrL9fwqeRjL8Ls4WpcYl+Y8/1AVGoF+qKDJqKa4kYfz5noHC
-	 0m0RQWIvpNfAePuAJt1I89ArhbrtsnigIu5O+gKCgyHbTDkAkPjBTkOsfYE80buglf
-	 lo/3LbFMwhbywkL6FE9c3j+KfDmto6fSGd4k5evyfQzIK6w7s13+hCkO3J5KR2rhYx
-	 XBv3nBWY5E48w==
-Message-ID: <bc98d732-ea41-45bf-a269-f4f691243914@kernel.org>
-Date: Mon, 11 Aug 2025 10:11:34 +0200
+	s=k20201202; t=1754900002;
+	bh=5sjPiBzdpJnO+FR0G57D0bldCe0wsDvVzVNiX8GVo3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qP9CMZeDHEIMUyDRW81lz9yYFrXw+jtqQ4lmG4odliDcLaBN7Zb3z8FBq0SBqjJRD
+	 jIwIHc0Z8fx0NlTtIU+Bioq3GyTpDjjeC0f0m/9fVj9hSfdVaHrpdAdmnk9o+qF8wt
+	 znSC5pXA7nFfXG+0l/VycbdArzc2403pOdGirxDD2fbSDjmZDJFPmZWJNlK+loqTpK
+	 wcgSmyT59uhRn395apbWLSboB8RPzajxb/HS89c84zYjV/Wcsd/A39ROv/6KZoFtuK
+	 ROEHMpKX2CvgDqd69BBrSHFev/Thp9kaXaTLEZXIRfHyv07umoEK/Qd7owiXIylbWP
+	 KAhNLP0tY76CQ==
+Date: Mon, 11 Aug 2025 10:13:20 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org, 
+	"Rob Herring (Arm)" <robh@kernel.org>
+Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
+ Document the Loongson-2K0500 NAND controller
+Message-ID: <20250811-impetuous-civet-of-wind-febe58@kuoka>
+References: <cover.1754890670.git.zhoubinbin@loongson.cn>
+ <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
+ <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org>
+ <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: tegra: document EPP, ISP,
- MPE and TSEC for Tegra114+
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <treding@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250504092324.10802-1-clamor95@gmail.com>
- <20250504092324.10802-2-clamor95@gmail.com>
- <20250512162439.GA3441216-robh@kernel.org>
- <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAPVz0n0j-pMRgP0Kgfq=hHDQRRqF0Jvq_XqwTtnKo1hAUr4cHw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
 
-On 11/08/2025 10:01, Svyatoslav Ryhel wrote:
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: tsec
->>
->> Drop -names properties if there is only 1.
-> 
-> This is added to cover existing binding in tegra210 tree
+On Mon, Aug 11, 2025 at 03:42:09PM +0800, Binbin Zhou wrote:
+> Hi Krzysztof:
+>=20
+> On Mon, Aug 11, 2025 at 3:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > On 11/08/2025 08:03, Binbin Zhou wrote:
+> > > Add new compatible for the Loongson-2K NAND controller used for
+> > > Loongson-2K0500 SoC.
+> > >
+> > > Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
+> >
+> >
+> > Why do you add quotes?
+>=20
+> Emm...
+> Sorry, I didn't notice that.
+> I reacquired the V1 patchset using =E2=80=9Cb4 am xxx=E2=80=9D to avoid m=
+anually
+> adding tags. I believe it may be caused by the `b4` command.
 
-Existing binding? In what tree? This is mainline, we work only on
-mainline and that's a new binding, so you cannot use argument that there
-is broken code using it. Otherwise what stops anyone to push broken code
-and then claim binding has to look because "existing code has something
-like that"?
+Then aren't you using some old b4?
+
+I just did it and look:
+
+  [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller: Document =
+the Loongson-2K0500 NAND controller
+    + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kernel.=
+org)
+    + Link: https://lore.kernel.org/r/588639de591ada408bdaeb0d279c5d62a4b53=
+d61.1753166096.git.zhoubinbin@loongson.cn
+    + Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
+No quotes in commit msg either.
 
 Best regards,
 Krzysztof
+
 
