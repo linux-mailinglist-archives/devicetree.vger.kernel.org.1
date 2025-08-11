@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-203422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE29B21494
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:42:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2C8B2149C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:42:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38A39625D34
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:42:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99D3B3E46E8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 18:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB102E337E;
-	Mon, 11 Aug 2025 18:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD272E3B19;
+	Mon, 11 Aug 2025 18:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AbuLZlDw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NduAltwG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0232E336C;
-	Mon, 11 Aug 2025 18:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436032E3B12;
+	Mon, 11 Aug 2025 18:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754937677; cv=none; b=XvAPpSY1ZKpK4aNn4iJHsGoCOoWMP1T3P0eizejuFgiUiCrdW0l/gNLVHFpZ/oarSBkJ+N7++/+ZrxkyS4s0GkIsUzDN/THK6Gsj9/lvD8ox6lx2kZ3OIIPqn3o5LDKBRdRdL338t0rbM7FnZVXcxMwVmBrQIoEyRjAiTxH0OYw=
+	t=1754937679; cv=none; b=pUq91nFxN89+cacKM6ZjpkwoBRR87lZeALrFcAhpqD6qiUfGnoCWyHDnqIXtJVx8eaYuQDEJdCwE8Vw8eGQkEAR08v6YeiVOYNRIsRjG0DHK4rGiPOnMzGIyy8W2x48OVuag2mhvn3sGC+OVY3QAmOn8AD/gjVrWSuyX76ikRIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754937677; c=relaxed/simple;
-	bh=f+CLPephwGhFpFxL9fAwCN64RSUg7mbAh29TU2oyj+w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bwR5VKNSPGJWvrvvB/BgzKeFwAk4eY7bRVqhKn3Llvdnl1fTRUMJTBivayOoFXwzFOLiOyudeu2RwlB/8qNf6HD3lr5PicY79SSGbBOLwgbX+omzJxw8a6kOaGfSecopkz/s6hRX9iYA6i1WdaHtD0AozoTW5X3WT9oTc+VvAzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbuLZlDw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50BE5C4CEFC;
-	Mon, 11 Aug 2025 18:41:16 +0000 (UTC)
+	s=arc-20240116; t=1754937679; c=relaxed/simple;
+	bh=+zsGa2+vFar2a+6iTKTcF0XLThdIA3Cz3b0VrYnE6fA=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=K6DXr3Ib/FcnF8hcJJ+cKaTLdj3x6jWyO3Z71QtOq2PlvO7tMUFppPFEWUBJs+hRZpoCXGWnHKFDC9lOpBlzSaDfnGdHkD7wMXQMBkw4X524arNTVI05swHfKMHrJS+1007MVLPK59stnRhp6BoeJsv43ZRQVqmm2itGEVygif8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NduAltwG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B41CC4CEF7;
+	Mon, 11 Aug 2025 18:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754937677;
-	bh=f+CLPephwGhFpFxL9fAwCN64RSUg7mbAh29TU2oyj+w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AbuLZlDwNBgm+xQloKdNcOn6oKVlHAvtzdBh7jp4kMYy3u3cO0CiF28boKQJdcKwp
-	 if5vcaOCONb6qQDYHasNoEyJn8A6i4eXFZoiuuUo1IqhzpEF3LecTJz0eWUjcFq32C
-	 gTpI41IG63C8inqlgGeC6LkZ3L0RWTQDzvctN9LcgaXO6uiDDvZle/TWkENRpfdZAE
-	 q70Rocxrl3GcNqgECwkaiHgx/UXVb0oH7B7h41I3Nud9b54zqZqKCy/A2XxdGl1UoC
-	 cp7mtitBFqJNc3jGO87UiNoo4nhERo1ygjb+OXkIQjAmIeJmJ/jIT5HLIM6XO23ps7
-	 1eWX2CnHNh6dg==
+	s=k20201202; t=1754937678;
+	bh=+zsGa2+vFar2a+6iTKTcF0XLThdIA3Cz3b0VrYnE6fA=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=NduAltwGTGvgVLgnL3qC+Fg2Oriz74paKUpnTJlnj3hfvIzED8VgiGv7NyynnoKEP
+	 cO4narpvzapdcv6Whkr8PPgStKjl9G1RGbyxL6W4t4mssGra2Qb2R6SqrApwSY79YS
+	 DwQAS4VInbhqB0ywtnGymw9fvigmUa6vsY+FnRn+a5QesnkvcVy5z1hvWqpvVU5pgl
+	 ZjT9cPLgZc2flspWX+Frj43kZcBjPQh2edOTkU6HjJIp9tZk773tkDg3zhN8tUuCCu
+	 zN3q1AcU17meglQL6zSM23GtnOLEsik9ss3EEAjKtZ4jFBhEvkH0b/WUptgcc+1OwN
+	 FIeztzZOEA3qw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	bod.linux@nxsw.ie,
-	Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v3 0/4] Add support to read the restart reason from IMEM
-Date: Mon, 11 Aug 2025 13:40:55 -0500
-Message-ID: <175493766109.138281.3436384432329568509.b4-ty@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Sort nodes by unit address
+Date: Mon, 11 Aug 2025 13:40:57 -0500
+Message-ID: <175493766110.138281.6112861432588496958.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
-References: <20250502-wdt_reset_reason-v3-0-b2dc7ace38ca@oss.qualcomm.com>
+In-Reply-To: <20250727193652.4029-2-krzysztof.kozlowski@linaro.org>
+References: <20250727193652.4029-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,21 +66,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 02 May 2025 18:47:48 +0530, Kathiravan Thirumoorthy wrote:
-> In Qualcomm IPQ SoC, if the system is rebooted due to the watchdog
-> timeout, there is no way to identify it. Current approach of checking
-> the EXPIRED_STATUS in WDT_STS is not working.
+On Sun, 27 Jul 2025 21:36:53 +0200, Krzysztof Kozlowski wrote:
+> Qualcomm DTS uses sorting of MMIO nodes by the unit address, so move
+> few nodes in SM8650 DTSI to fix that.
 > 
-> To achieve this, if the system is rebooted due to watchdog timeout, the
-> information is captured in the IMEM by the bootloader (along with other
-> reason codes as well).
 > 
-> [...]
 
 Applied, thanks!
 
-[1/4] dt-bindings: sram: qcom,imem: Document IPQ5424 compatible
-      commit: 3fa1095979393d5b178264cc1bdfb473e80ab774
+[1/1] arm64: dts: qcom: sm8650: Sort nodes by unit address
+      commit: 8def31f8c1e1f3d28e4ee3dcf6818a74c9a9a2f7
 
 Best regards,
 -- 
