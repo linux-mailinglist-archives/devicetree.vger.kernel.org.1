@@ -1,252 +1,119 @@
-Return-Path: <devicetree+bounces-203447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17541B21666
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:27:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EEC6B21680
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 22:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1762A7AF933
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:26:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1FBB34E30AA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 20:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843082DAFA7;
-	Mon, 11 Aug 2025 20:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A23A2D94B4;
+	Mon, 11 Aug 2025 20:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="V7mApP9g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmSosz69"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1872D9EDD;
-	Mon, 11 Aug 2025 20:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C943E311C31;
+	Mon, 11 Aug 2025 20:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754944057; cv=none; b=lSM1CB5zcZgRETPbzcUd/2ORpN6rSDS8L0o+uI5m889cx+K4gxPg4eDf8G9icY1lzeowj2Z7mJDmxCr/0xoiTN6JnM1EAhpQcojwVhmPlhnUj6aucIveYeVafama7cJVbCSqLT8JVz57UDtkvxzWlHOqKcTjSUyR39Cds8U9/Pg=
+	t=1754944330; cv=none; b=gg6ulMkCEMLi6CO8ungJi3kLB00OYfCieMv5Q5h5kn5TNIZr90HAaWy1BDGg1ZhqygqmSmlvqDNa/rlbhPMzmHNhXTBVMtDPDVP5wf+Ex6PWzYCbUiT7cVu7nS/5wR114Oyem856ICm8QiTTfi/dny/jeRiFxNGDMzJch0N2miM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754944057; c=relaxed/simple;
-	bh=97/FktGL1WOXce4gBvBtsbBUHJjxPvrKCEWOXUD7x0A=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HRjy3RWm3Z8OcDaEIN152fHAIFSkwzKlsosUrZFKLoaBrCgVVRA7/Bz8KnD9B/i6JbSWuyu2fBdxhqdPR+lYTsLqwyYJNZwdM9q9FfJRh4PooNczC+K6IlbXRfcYj5zlx/XOszMHHLiZMwDqx5TVeZ+ma1xxYnH6G4HH8yTRaeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=V7mApP9g; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1754944053;
-	bh=97/FktGL1WOXce4gBvBtsbBUHJjxPvrKCEWOXUD7x0A=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=V7mApP9gHD2h8fQ/FCG0mp2/K5QdXJNnbdr4X1Dm5Ny53ABy3jt6WwcwFdGDJ0AG+
-	 9oaiI43faZxshCNzTAgHMDzGGfiHkRctvSaoBwDaL7YU76QCHPxICQTuT9jWxScDvw
-	 D/ujR0cMQCRBhUEr8R7v5D0XpEKfCm1LSkYg94fIe3L3reaq/zybv0JZEtPym8BxdX
-	 Czx3xfeLm4LthxppoH4sdImmoHGyPuJOgqPBullyVQ6/P9nG0NYHl+4+6UuGLCtSw0
-	 VPKgmDPiKuWwYD6pDNwq7vIzd51BwzsHVkANfL7BeQESSudlXTg1BnHk8R0xVUNyhe
-	 uXUT5iUdP13LA==
-Received: from [IPv6:2606:6d00:11:5a76::c41] (unknown [IPv6:2606:6d00:11:5a76::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CA64817E0C87;
-	Mon, 11 Aug 2025 22:27:31 +0200 (CEST)
-Message-ID: <017fee1a5aa36205430d0e32c84629375523f5ff.camel@collabora.com>
-Subject: Re: [PATCH v2 1/7] media: rkvdec: Add HEVC backend
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Detlev Casanova	
- <detlev.casanova@collabora.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Heiko Stuebner	 <heiko@sntech.de>, Alex Bee
- <knaerzche@gmail.com>, Sebastian Fricke	 <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 11 Aug 2025 16:27:29 -0400
-In-Reply-To: <d0d50da8-f8bb-4a6f-bd44-5199d26b7a86@kwiboo.se>
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
-	 <20250810212454.3237486-2-jonas@kwiboo.se>
-	 <9c8cb837d10d3cdd54fe34dedfe40c10e848f648.camel@collabora.com>
-	 <d0d50da8-f8bb-4a6f-bd44-5199d26b7a86@kwiboo.se>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mQGiBEUQN0MRBACQYceNSezSdMjx7sx6gwKkMghrrODgl3B0eXBTgNp6c431IfOOEsdvk
- oOh1kwoYcQgbg4MXw6beOltysX4e8fFWsiRkc2nvvRW9ir9kHDm49MkBLqaDjTqOkYKNMiurFW+go
- zpr/lUW15QqT6v68RYe0zRdtwGZqeLzX2LVuukGwCg4AISzswrrYHNV7vQLcbaUhPgIl0D+gILYT9
- TJgAEK4YHW+bFRcY+cgUFoLQqQayECMlctKoLOE69nIYOc/hDr9uih1wxrQ/yL0NJvQCohSPyoyLF
- 9b2EuIGhQVp05XP7FzlTxhYvGO/DtO08ec85+bTfVBMV6eeY4MS3ZU+1z7ObD7Pf29YjyTehN2Dan
- 6w1g2rBk5MoA/9nDocSlk4pbFpsYSFmVHsDiAOFje3+iY4ftVDKunKYWMhwRVBjAREOByBagmRau0
- cLEcElpf4hX5f978GoxSGIsiKoDAlXX+ICDOWC1/EXhEEmBR1gL0QJgiVviNyLfGJlZWnPjw6xhhm
- tHYWTDxBOP5peztyc2PqeKsLsLWzAr7QnTmljb2xhcyBEdWZyZXNuZSA8bmljb2xhc0BuZHVmcmVz
- bmUuY2E+iGIEExECACIFAlXA3CACGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sB
- qgcJngAnRDBTr8bhzuH0KQwFP1nEYtfgpKdAKCrQ/sJfuG/8zsd7J8wVl7y3e8ARbRDTmljb2xhcy
- BEdWZyZXNuZSAoQi4gU2MuIEluZm9ybWF0aXF1ZSkgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29
- tPohgBBMRAgAgBQJFlCyOAhsDBgsJCAcDAgQVAggDBBYCAwECHgECF4AACgkQcVMCLawGqBwhLQCg
- zYlrLBj6KIAZ4gmsfjXD6ZtddT8AoIeGDicVq5WvMHNWign6ApQcZUihtElOaWNvbGFzIER1ZnJlc
- 25lIChCLiBTYy4gSW5mb3JtYXRpcXVlKSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY28udW
- s+iGIEExECACIFAkuzca8CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sBqgcQX8
- An2By6LDEeMxi4B9hUbpvRnzaaeNqAJ9Rox8rfqHZnSErw9bCHiBwvwJZ77QxTmljb2xhcyBEdWZy
- ZXNuZSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY29tPohiBBMRAgAiBQJNzZzPAhsDBgsJC
- AcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRBxUwItrAaoHLlxAKCYAGf4JL7DYDLs/188CPMGuwLypw
- CfWKc9DorA9f5pyYlD5pQo6SgSoiC0R05pY29sYXMgRHVmcmVzbmUgKEIgU2MuIEluZm9ybWF0aXF
- 1ZSkgPG5pY29sYXMuZHVmcmVzbmVAdXNoZXJicm9va2UuY2E+iGAEExECACAFAkUQN0MCGwMGCwkI
- BwMCBBUCCAMEFgIDAQIeAQIXgAAKCRBxUwItrAaoHPTnAJ0WGgJJVspoctAvEcI00mtp5WAFGgCgr
- +E7ItOqZEHAs+xabBgknYZIFPU=
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-i9Oq4aZo3lZiAeIGW3ru"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1754944330; c=relaxed/simple;
+	bh=ly505YzUJCW+w4zhIqTBgdX8GQwNdFihL6xwl57D2e8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aI8FQOUjIejNHAYcQxR+FoJsb1UZdgMqrbnI4XETU8QzH4Y839YPktmSwHv9he8zxLSc8/PIcI8+/DwHWNMVC3azMnEViGCxoUp+LhrE/hF9yfBnv7uzJEsJ9/hVrjFyCdMUf4n/zctTwhH89RTbKvvMN38Z20KP4DaSgGXKciQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmSosz69; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF9FC4CEED;
+	Mon, 11 Aug 2025 20:32:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754944330;
+	bh=ly505YzUJCW+w4zhIqTBgdX8GQwNdFihL6xwl57D2e8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DmSosz69RADL61BU8YtrkDonA6FsRPJqOl2gRpOcoJj5nvL4/uwrGydZdT+xpkn2B
+	 mxSYa0jmyzZnDQ5htfR/Nf3x8DCeyTO0/Hsx+HOtlzdnvtLPmH873jwwh37Nsks9Nq
+	 9q0MkssxJNwFUd7n+BHeklO8vAupuhXH9dmMnWD9f7Tho6DTTLBStfWjM5KQ6QIzKq
+	 vvqt2vmRV9215aH9qHQKZxei9bIyH4ivLTLLbAiSUlh1QW1iM9pHJNbfDLOvAhLEz1
+	 KuKKMTNEjSRNeCsfyvWeD6CYTodak4s20fh5xju9uXUz4JlcIOsv3gfy1xFSuWkvIi
+	 T8iaYQixe8XKQ==
+Date: Mon, 11 Aug 2025 21:32:00 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <20250811213200.2a5da728@jic23-huawei>
+In-Reply-To: <20250807-tlv493d-sensor-v6_16-rc5-v3-1-b80d2cb41232@gmail.com>
+References: <20250807-tlv493d-sensor-v6_16-rc5-v3-0-b80d2cb41232@gmail.com>
+	<20250807-tlv493d-sensor-v6_16-rc5-v3-1-b80d2cb41232@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-i9Oq4aZo3lZiAeIGW3ru
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le lundi 11 ao=C3=BBt 2025 =C3=A0 21:46 +0200, Jonas Karlman a =C3=A9crit=
-=C2=A0:
-> Hi Nicolas,
->=20
-> On 8/11/2025 9:12 PM, Nicolas Dufresne wrote:
-> > Le dimanche 10 ao=C3=BBt 2025 =C3=A0 21:24 +0000, Jonas Karlman a =C3=
-=A9crit=C2=A0:
-> > > The Rockchip VDEC supports the HEVC codec with the Main and Main10
-> > > Profile up to Level 5.1 High tier: 4096x2304@60 fps.
-> > >=20
-> > > Add the backend for HEVC format to the decoder.
-> > >=20
-> > > Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> > > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> > > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> > > ---
-> > > Changes in v2:
-> > > - Use new_value in transpose_and_flatten_matrices()
-> > > - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
-> > > - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
-> > > ---
-> > > =C2=A0.../media/platform/rockchip/rkvdec/Makefile=C2=A0=C2=A0 |=C2=A0=
-=C2=A0=C2=A0 2 +-
-> > > =C2=A0.../rockchip/rkvdec/rkvdec-hevc-data.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 1848 +++++++++++++++++
-> > > =C2=A0.../platform/rockchip/rkvdec/rkvdec-hevc.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 817 ++++++++
-> > > =C2=A0.../platform/rockchip/rkvdec/rkvdec-regs.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0=C2=A0 2 +
-> > > =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.c=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 76 +
-> > > =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.h=C2=A0=C2=A0 |=C2=A0=
-=C2=A0=C2=A0 1 +
-> > > =C2=A06 files changed, 2745 insertions(+), 1 deletion(-)
-> > > =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvde=
-c-hevc-
-> > > data.c
-> > > =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvde=
-c-hevc.c
-> > >=20
-> > > diff --git a/drivers/media/platform/rockchip/rkvdec/Makefile
-> > > b/drivers/media/platform/rockchip/rkvdec/Makefile
-> > > index cb86b429cfaa..a77122641d14 100644
-> > > --- a/drivers/media/platform/rockchip/rkvdec/Makefile
-> > > +++ b/drivers/media/platform/rockchip/rkvdec/Makefile
-> > > @@ -1,3 +1,3 @@
-> > > =C2=A0obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC) +=3D rockchip-vdec.o
-> > > =C2=A0
-> > > -rockchip-vdec-y +=3D rkvdec.o rkvdec-h264.o rkvdec-vp9.o
-> > > +rockchip-vdec-y +=3D rkvdec.o rkvdec-h264.o rkvdec-hevc.o rkvdec-vp9=
-.o
-> > > diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.=
-c
-> > > b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
-> > > new file mode 100644
-> > > index 000000000000..eac4ea604949
-> > > --- /dev/null
-> > > +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
-> > > @@ -0,0 +1,1848 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Rockchip Video Decoder driver
-> > > + *
-> > > + * Copyright (C) 2023 Collabora, Ltd.
-> > > + *	Sebastian Fricke <sebastian.fricke@collabora.com>
-> > > + */
-> > > +
-> > > +#include <linux/types.h>
-> > > +
-> > > +#define RKV_CABAC_TABLE_SIZE		27456
-> > > +
-> > > +/*
-> > > + * This file is #include from rkvdec-hevc.c and not compiled.
-> > > + */
-> > > +static const u8 rkvdec_hevc_cabac_table[RKV_CABAC_TABLE_SIZE] =3D {
-> > > +	0x07, 0x0f, 0x48, 0x58, 0x58, 0x40, 0x40, 0x40, 0x40, 0x40, 0x0f,
-> > > 0x40, 0x40, 0x40, 0x0f,
-> >=20
-> > Nit, in H.264 case, we managed to fill the CABAC based on the spect wit=
-h
-> > macros,
-> > didn't we figure-out this one ? I didn't check in Detlev tree, I'm just
-> > asking
-> > here.
->=20
-> As hinted at in the cover letter: in the initial implementation used for
-> LibreELEC I just shamelessly copied the cabac data 1:1 from the Rockchip
-> mpp library, for this series it was replaced with the cabac table from
-> Sebastian Fricke prior series to add a HEVC backend [1]. Sebastian
-> mentioned following regarding the cabac table:
->=20
-> """
-> Notable design decisions:
-> - The giant static array of cabac values is moved to a separate c file,
-> I did so because a separate .h file would be incorrect as it doesn't
-> expose anything of any value for any other file than the rkvdec-hevc.c
-> file. Other options were:
-> =C2=A0 - Calculating the values instead of storing the results (No clear =
-pattern
-> =C2=A0=C2=A0=C2=A0 found for the calculation using the static array and t=
-he formulas from the
-> =C2=A0=C2=A0=C2=A0 specification)
-> =C2=A0 - Supply them via firmware (Adding firmware makes the whole softwa=
-re
-> =C2=A0=C2=A0=C2=A0 way more complicated and the usage of the driver less =
-obvious)
-> """
->=20
-> I have not explored any other way to handle the cabac table based on
-> these design decisions.
->=20
-> [1]
-> https://lore.kernel.org/linux-media/20230101-patch-series-v2-6-2-rc1-v2-0=
--fa1897efac14@collabora.com/
-
-I see, I guess if we don't know how it was generated, there isn't much we c=
-an do
-about it.
-
-cheers,
-Nicolas
-
->=20
-> Regards,
-> Jonas
->=20
-> >=20
-> > Nicolas
->=20
-> [snip]
-
---=-i9Oq4aZo3lZiAeIGW3ru
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNATURE-----
+On Thu, 07 Aug 2025 08:26:35 +0530
+Dixit Parmar <dixitparmar19@gmail.com> wrote:
 
-iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaJpSMQAKCRBxUwItrAao
-HOTrAKChQb418dF5D1psffW41seij+dvEgCgmJmwxhVAqiRs4EdF46/syDW1+7w=
-=5k7o
------END PGP SIGNATURE-----
+> The Infineon TLV493D is a Low-Power 3D Magnetic Sensor. The Sensor
+> applications includes joysticks, control elements (white goods,
+> multifunction knops), or electric meters (anti tampering) and any
+> other application that requires accurate angular measurements at
+> low power consumptions.
+> 
+> The Sensor is configured over I2C, and as part of Sensor measurement
+> data it provides 3-Axis magnetic fields and temperature core measurement.
+> 
+> The driver supports raw value read and buffered input via external trigger
+> to allow streaming values with the same sensing timestamp.
+> 
+> While the sensor has an interrupt pin multiplexed with an I2C SCL pin.
+> But for bus configurations interrupt(INT) is not recommended, unless timing
+> constraints between I2C data transfers and interrupt pulses are monitored
+> and aligned.
+> 
+> The Sensor's I2C register map and mode information is described in product
+> User Manual [1].
+> 
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> Link: https://www.mouser.com/pdfDocs/Infineon-TLV493D-A1B6_3DMagnetic-UserManual-v01_03-EN.pdf [1]
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
 
---=-i9Oq4aZo3lZiAeIGW3ru--
+Andy did a detailed review, so I only took a quick glance at this version.
+One additional thing I noticed though.
+
+> +	pm_runtime_get_noresume(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 500);
+> +	pm_runtime_use_autosuspend(dev);
+> +
+> +	pm_runtime_mark_last_busy(dev);
+
+Drop the mark last busy.  That's now always called in pm_runtime_put_autosuspend()
+after a patch that just merged in this merge window.
+
+Seems you got it for the other cases but maybe just missed this call.
+
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "iio device register failed\n");
+> +
+> +	return 0;
+> +}
+>
+
 
