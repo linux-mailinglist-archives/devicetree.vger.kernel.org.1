@@ -1,223 +1,148 @@
-Return-Path: <devicetree+bounces-203322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D739B20B83
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:17:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4FC8B20B5C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 16:12:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8058F3B4FD8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:13:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 551A82A6E60
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 14:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2231202C3E;
-	Mon, 11 Aug 2025 14:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACD2214A7B;
+	Mon, 11 Aug 2025 14:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCnli5jA"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="RPomDGHs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B291B87F2;
-	Mon, 11 Aug 2025 14:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4832820CCE5
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 14:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754921499; cv=none; b=CKHlBGG4/ISvsU23RBlGeIslKLbviECncigXs3tAbZjYi7h3jaFt0uwUzZ2reWONU1AUtHNXAd3+M6D/6zkejEKyjE+y6d8KbNayAlP873vxxmkBRaNL4GWmW2ObATZLvvcCBNw+MQxsW+RUASuagC1HMzexlb6tCkwD7SnmGAY=
+	t=1754921452; cv=none; b=Dfe+0yPBR5zs+cjqi6Ndc5lerDEJPe/hwkwmDv+ErG3o66H+byq4qFSpdK8FmgYQU6+78kSmlljngNZzZmW8wqzygsSuCTqiulCrrtcbSYpBZKIFUzs3jSWD637hcTcLQaAPGkBnim6XFOumRvSsY8qTR+eiUa39pphBCRso5aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754921499; c=relaxed/simple;
-	bh=HC0XY4Rhc7WOuzRzVmyl37sEhdbWKSBnwHufZNs1mlg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hh6uZXrfK3bqxomTSQAr9UWhWpl83rem0TAk1kIOptDymaaW5JMPxkU33Z7enxS1t/TU+tJ6tqQOGa4tfjgrBevyvJdsw+CNcjMtVz3k+gYsXQMv4TUgfb3YrcDlWwbDtmVkf5L+67Kec0NmbV0AclIRm+Oap5dVmTOGhffmGM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCnli5jA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04C30C4CEED;
-	Mon, 11 Aug 2025 14:11:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754921497;
-	bh=HC0XY4Rhc7WOuzRzVmyl37sEhdbWKSBnwHufZNs1mlg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YCnli5jA26zq2pNPHckm2vDfk0UjlenfmUYYa6r4zxT4SvDbqTPGY4e/Xm2uTfzNg
-	 lJbx4VXtQsWqEpP4mvR8bW0qazkFXDdDB+RQ3ZA+/rsyoaFq+I3Mrhpo56v3jU7r9q
-	 mNCGBrZbz5m3YwfzJBfaSkpWwpsqpyyIitgbB5UF8is+j5NT4SghI4DFNcaiRtod2E
-	 VBNLUH0yUHs5ic3z3zAX9hDoHhDk1EKD3xGcBQub25x+4BRdgCrjOEfoN+nIt6dKS8
-	 VXLlVhHtuOBSc8Yaa1WBBfoJfakAJktRvuhamGBuN85S2PE0Bze9VYv0WmpVr2dzzC
-	 xgV/rJFmzNmvQ==
-Date: Mon, 11 Aug 2025 19:41:28 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: Harshal Dev <quic_hdev@quicinc.com>
-Cc: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1754921452; c=relaxed/simple;
+	bh=H6l53B4wZkFz+nYR8PTiIJtmbUzH50h27nGG3cRI8Sc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=WdE9W4UQSZHNiytZkUrd2+i9o4shDISXww/tuvz2N8jg/3mQ+aGJI3qqizRQR/KGGr73AmTzgitGE1Vu98BeVpR7wPMa2dG5tbeQGG1vEOCGpJqqpFq6Hd2u4WcuFSBP9172Zy+9CCrknIfKMYW/0ChMb83OPd9qTFb3F23OFKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=RPomDGHs; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-af96fba3b37so824963366b.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 07:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1754921448; x=1755526248; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ohexk0G5qQQ/U7tEXowxhsg85cDA9yyayQBpZFpm+6I=;
+        b=RPomDGHspqrOA99cpDwb5F73hsjuzh3Ibdr+JNVUwjiWOgn+kJGmAMEzJQc41jXwyP
+         rD68hgO+XCuL7INKK+L6bWexxcHiNE1zQwtKyJiLEprc4I9taRgh3HKlUpBnS8Bj5qmM
+         kjiJ5B4gpBJ14eJPSuyYF6jIpnOaSL5w/0mW37PKRWdfBrNKu441QnK40cr5AMU0siXK
+         xSq0X1FoWiX1lF8+xzi8vrGMuZFOuq54WNWifxwDpf0My0xIt7CzPkbmS8EBcRjrxSDz
+         MGXfLVBBliWkYw8dQxVyZPV5rUBv1ZYkdWXj0mi7BVlSSBl3Pv893cMtn/VldPtWQliT
+         DO/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754921449; x=1755526249;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ohexk0G5qQQ/U7tEXowxhsg85cDA9yyayQBpZFpm+6I=;
+        b=Ir06eR8DxG1RLaKObOyvNLMewWUuoS3TXlcUDVk+Z0Y3yAyOYs7ISK/TzDkg6CYCe1
+         I4L7CQ2vnYwM018uAK2Xh3BUg1lxAfqKS34ALJUqEG2wASDW8Fz3fvoOKi/Tc3gLBuSd
+         v7ZGByLnoSiqzyYFEMubuV5i+ocJ3Sad6t/GWGTR0o+YjPbkXAK8Ho1vVwa2aH8i/SnG
+         gUIhgQymaV71JKuOk1yfckBs+yEOhEqgLJ67zOElXcEYhkf8w/thIWF5hwlLfccBFS34
+         ftobAWnQDr2axfX/AEX7ZZkRdSng9lusRE68ykBMxrh9ReHfmaUGaTg5lrie97lRYre0
+         w6mQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWhlrI9Xob6TaxbdIvdYVrQxcSXuqUmk/nmaVVwRmdPz/4MS0zR8TRoCc9g3n5WcexbRHi5heNbLbZR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBy2cK8YZAGgobqosRndUqLAOoJe8EruEKwyr1jayxSUJlQoFq
+	nW6Ya2i/gWs9+s26wZhSXOytSDUHtVj2AJYbw0AohhC0szrW9qdCEHH3VSsA7iQh9FM=
+X-Gm-Gg: ASbGnctZpUyDonJQJB+8dPrCXX7t+2IO17IBzU8FcQrvsM9PnYUvoEx/Ye1Y3bOQXZG
+	uHBERtR0IlKjBp3XV5l2DlMRz6hqWk5tHSEiUliR2QSYD4uxn6ldMzxPUokWJlT8FvWAirXIQ4n
+	1ST/yWuxuuyREG6BhQCaZN5Eij7qxyCbRNWY1gvLnezSf7cXHUUFwD069oQnhYZdTK/QXNK57QZ
+	VDSkHW1b7vBv13LqIGnVv/kUtTs9nW1FKVaDEVj40KEsv72A5Jpj+grp6i3JSTJByd3rzlotgb5
+	gdA9HQEVYI7wejtMqMQlDQlEFX0aRSKR51ROAKH8897o50/sfjXH4gGV40Ifg+o1kmOrxD5F3F/
+	hplIIPk7HEwh+JsSZJR5yzajdGUpd+9JZpbjr0ofJJYhk+A34a+InEMln3Gu2GpLxNw==
+X-Google-Smtp-Source: AGHT+IHdBKFk8Hdz0O5Qrkqv+q1AVcT+ToZrNVbbDng2NMf7Xf+fMHPhcyvkBGiKagZpBw13o0Tyeg==
+X-Received: by 2002:a17:907:c1c:b0:af9:71c2:9c3 with SMTP id a640c23a62f3a-af9c647bce8mr1317574966b.35.1754921448512;
+        Mon, 11 Aug 2025 07:10:48 -0700 (PDT)
+Received: from localhost (host-79-44-170-80.retail.telecomitalia.it. [79.44.170.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a23bedcsm2030552266b.120.2025.08.11.07.10.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 07:10:48 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v19 2/6] remoteproc: Add TEE support
-Message-ID: <aJn6EPjXzq07aDTM@sumit-X1>
-References: <20250625094028.758016-1-arnaud.pouliquen@foss.st.com>
- <20250625094028.758016-3-arnaud.pouliquen@foss.st.com>
- <d4694157-a757-41f5-8874-4b67b262bc83@quicinc.com>
- <7c77dba4-27f9-4840-b9aa-253119308519@foss.st.com>
- <e5a234c7-0f8d-4b52-95fb-82371c8e4460@quicinc.com>
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	kernel-list@raspberrypi.com,
+	Matthias Brugger <mbrugger@suse.com>,
+	iivanov@suse.de,
+	svarbanov@suse.de
+Subject: [PATCH 0/2] Establish the roles of board DTSes for Raspberry Pi5
+Date: Mon, 11 Aug 2025 16:12:33 +0200
+Message-ID: <cover.1754914766.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e5a234c7-0f8d-4b52-95fb-82371c8e4460@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Harshal,
+Hi,
 
-On Mon, Aug 04, 2025 at 02:56:18PM +0530, Harshal Dev wrote:
-> Hi Arnaud,
-> 
-> On 8/1/2025 12:53 PM, Arnaud POULIQUEN wrote:
-> > Hello Harshal,
-> > 
-> > 
-> > On 7/31/25 12:25, Harshal Dev wrote:
-> >> Hello Arnaud,
-> >>
-> >> On 6/25/2025 3:10 PM, Arnaud Pouliquen wrote:
-> >>> Add a remoteproc TEE (Trusted Execution Environment) driver that will be
-> >>> probed by the TEE bus. If the associated Trusted application is supported
-> >>> on the secure part, this driver offers a client interface to load firmware
-> >>> by the secure part.
-> >>> This firmware could be authenticated by the secure trusted application.
-> >>>
-> >>> A specificity of the implementation is that the firmware has to be
-> >>> authenticated and optionally decrypted to access the resource table.
-> >>>
-> >>> Consequently, the boot sequence is:
-> >>>
-> >>> 1) rproc_parse_fw --> rproc_tee_parse_fw
-> >>>    remoteproc TEE:
-> >>>    - Requests the TEE application to authenticate and load the firmware
-> >>>      in the remote processor memories.
-> >>>    - Requests the TEE application for the address of the resource table.
-> >>>    - Creates a copy of the resource table stored in rproc->cached_table.
-> >>>
-> >>> 2) rproc_load_segments --> rproc_tee_load_fw
-> >>>    remoteproc TEE:
-> >>>    - Requests the TEE application to load the firmware. Nothing is done
-> >>>      at the TEE application as the firmware is already loaded.
-> >>>    - In case of recovery, the TEE application has to reload the firmware.
-> >>>
-> >>> 3) rproc_tee_get_loaded_rsc_table
-> >>>    remoteproc TEE requests the TEE application for the address of the
-> >>>    resource table.
-> >>>
-> >>> 4) rproc_start --> rproc_tee_start
-> >>>    - Requests the TEE application to start the remote processor.
-> >>>
-> >>> The shutdown sequence is:
-> >>>
-> >>> 5) rproc_stop --> rproc_tee_stop
-> >>>    - Requests the TEE application to stop the remote processor.
-> >>>
-> >>> 6) rproc_tee_release_fw
-> >>>    This function is used to request the TEE application to perform actions
-> >>>    to return to the initial state on stop or on error during the boot
-> >>>    sequence.
-> >>>
-> >>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> >>> ---
-> >>> Updates vs version [18]:
-> >>> - rework/fix function headers
-> >>> - use memremap instead of ioremap for the resource table.
-> >>> - realign comments to 80 chars limit, with few exceptions for readability
-> >>> - replace spinlock by mutex and and protect APIs from concurrent access
-> >>> - add support of 64-bit address in rproc_tee_get_loaded_rsc_table()
-> >>> - Generalize teston rproc_tee_ctx.dev to prevent an unbind
-> >>> - update copyright year
-> >>>
-> >>> Updates vs version [17]:
-> >>> Fix warning:
-> >>> warning: EXPORT_SYMBOL() is used, but #include <linux/export.h> is missing
-> >>> ---
-> >>>  drivers/remoteproc/Kconfig          |  10 +
-> >>>  drivers/remoteproc/Makefile         |   1 +
-> >>>  drivers/remoteproc/remoteproc_tee.c | 708 ++++++++++++++++++++++++++++
-> >>>  include/linux/remoteproc_tee.h      |  87 ++++
-> >>>  4 files changed, 806 insertions(+)
-> >>>  create mode 100644 drivers/remoteproc/remoteproc_tee.c
-> >>>  create mode 100644 include/linux/remoteproc_tee.h
-> >>>
+this patchset is composed of the following:
 
-<snip>
+- patch 1: just a cleanup to get rid of duplicated declarations in the
+  board DTS for BCM2712.
 
-> >>> +
-> >>> +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
-> >>> +{
-> >>> +	/* Today we support only the OP-TEE, could be extend to other tees */
-> >>> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
-> >>> +}
-> >>> +
-> >>> +static int rproc_tee_probe(struct device *dev)
-> >>> +{
-> >>> +	struct tee_context *tee_ctx;
-> >>> +	int ret;
-> >>> +
-> >>> +	/* Open context with TEE driver */
-> >>> +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
-> >>> +	if (IS_ERR(tee_ctx))
-> >>> +		return PTR_ERR(tee_ctx);
-> >>> +
-> >>> +	ret = mutex_lock_interruptible(&ctx_lock);
-> >>> +	if (ret)
-> >>> +		return ret;
-> >>> +
-> >>> +	rproc_tee_ctx.dev = dev;
-> >>> +	rproc_tee_ctx.tee_ctx = tee_ctx;
-> >>> +	INIT_LIST_HEAD(&rproc_tee_ctx.sessions);
-> >>> +	mutex_unlock(&ctx_lock);
-> >>> +
-> >>> +	return 0;
-> >>> +}
-> >>
-> >> As you mentioned above, this could be extended to other TEEs. If so, is it possible for probe
-> >> to be called multiple times if we we have other TEE devices exposing the firmware authentication
-> >> service? In that case, I think rproc_tee_ctx should be dynamically initializated instead of being
-> >> static. And since we are creating a link between the Rproc device and TEE device, a call to a
-> >> function like rproc_tee_start() could retreive the associated TEE device, and then the associated
-> >> rproc_tee? :)
-> > 
-> > I have never seen a use case that requires multiple instances, but perhaps you
-> > have some?
-> > 
-> > We can expect only one TEE, which could be OP-TEE, Trusty, or another.
-> > The device is associated with a unique UUID, so only one instance is expected.
-> > 
-> > That said, making this driver support multiple instances seems like a valid
-> > future enhancement. However, I would suggest implementing it as a second step
-> > when there is a concrete need.
-> > 
-> 
-> My thought process on this stems from 1) the recent ARM FF-A developments and 2) from the current
-> implementation of the TEE subsystem which allows multiple back-end drivers to register themselves
-> via the tee_device_register() API. This means, that it's possible to have a configuration
-> where a platform supports multiple TEEs running as Secure Partitions via FF-A, and each of those
-> TEEs register their services as PTA devices on the TEE bus.
-> 
-> However, I do not really know if it's possible to have a UUID collision in such a case, which
-> would lead to rproc_tee_probe() being called twice above, which is why I raised this question. :)
-> 
-> All of this aside, I realize now that other TEE client drivers are also implemented with a static
-> private data similar to how you are doing it. So perhaps we can think of this as a later
-> enhancement if we believe that the scenario I am describing is not possible in the near future..
->
+- patch 2: explicitly states what BCM2712 board DTS will host the
+  customized nodes that refer to RP1 internal peripherals. This is
+  important so that followup patches add the nodes to the correct
+  DTS file. For more information about why it has to be done, please
+  take a look to the patch comment.
 
-Theoretically it is possible for multiple TEE services to be there but
-why should a platform/silicon vendor require 2 redundant remoteproc firmware
-loading services to be supported? It should either be a service hosted
-by the trusted OS or can rather be an independent platform service
-running as a FF-A secure partition.
+Andrea della Porta (2):
+  arm64: dts: broadcom: delete redundant pcie enablement nodes
+  arm64: dts: broadcom: amend the comment about the role of BCM2712
+    board DTS
 
--Sumit
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts      | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
+
+-- 
+2.35.3
+
 
