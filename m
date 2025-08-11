@@ -1,155 +1,180 @@
-Return-Path: <devicetree+bounces-203144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67F05B20192
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:19:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC210B201A8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:22:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 286FA3A60D9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:19:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDC0F1632ED
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D12D2DAFA4;
-	Mon, 11 Aug 2025 08:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qj30TMNv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5782DC32C;
+	Mon, 11 Aug 2025 08:21:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855F626C3B6
-	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA90D2DBF40;
+	Mon, 11 Aug 2025 08:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754900381; cv=none; b=ooweX6j0wmWSrmDdOT/rfoujPV1x/8nmWv7Ttrpd9B9ECdMgItMm9jdU3OrCIv/HchgKzlzJtM4vjb1iJWVnf2Gf7LkOKQ231WAd9G/kJ4j4TNAooQCoIDA5Xxo0mKcwRdkl2Nzrt9WEbNjXE14OwePRGVuhcs87GQAPUdJl1Xs=
+	t=1754900496; cv=none; b=mVCbq1Hgf58tCV6AyRmPB0NP/al+p6QAwccwbq6QZh9YOPvjYOtih2Phcfghcx3I/NAn7JRkDYQHudCIl5tu3LMP9wciMvj4Y0Vyg9Os+AK6Z/rfJE9ZhLr/QOV4ykTiL+AGz5d+0FnjNsmdMrvzlDQMJHMnh0EDLwDrzPp0bRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754900381; c=relaxed/simple;
-	bh=XTrg9sh9z/zz/WffhF21Ny6WPfQ0gdSWCd4GZohzIxw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NMjGVuEFXYS+iFElvCARjk6ncQ2KUmRLr9XSjvS84F/g19oES3ddJovD5LWJRGWeOJ/mL959Akk9s/Zpa6yYS79WXL6MBX/fWDml0FKxBsN4A4bXerm5Hg2T3b2IzuDz/fp5CWeBxcH12H4Y1U+XTSXdYEYMBSNd1V3qTIonkYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Qj30TMNv; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-af96d097df5so743978966b.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:19:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754900378; x=1755505178; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SgbL89+jWcykg4VT77IwFJx/cFqzfg7ANmaGG3REd70=;
-        b=Qj30TMNvk7yU7JEPiC1Qbt6E86btX19GNwTEMd+Hh8gm7qZg05Vi3LMyax5g6PTKTH
-         mM5cliwcbVxPfAPnGuSOlCTPu7wp34/gvxwD9w15vh0GwjJ5vnbUiAuPH5Mub0lPWGQN
-         pm4i/9jK+bmSShdOh24UG+A0qR7wKg7twc18gB8kpFYq7FRV7WBnnWaMj9ZPlURZSkRY
-         adwSYIuHu3D7wxAz5nBonA2z20RkiijCDtrdCh/CvRnaIHE5xjHCsyPtP04PACXyJYkK
-         Y7vgHEbIb1rYdo0w7BGWb+bH9Qa/30etsuzUwU/PsET14yY3xaXxvg2CbvN62p/bO2C3
-         lR5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754900378; x=1755505178;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SgbL89+jWcykg4VT77IwFJx/cFqzfg7ANmaGG3REd70=;
-        b=bBgUUPTBzCACTRP0T78UmraoFCXKnV8Nhg79h9jX2s6cEJ6/+tAjpaW0/awKan/10s
-         brVs8KLSh7O2Ur4Gd16pigMUj5MKb6efAHmsGRDWIgmSotUJaX3hGYRmYnqyiZEdLtDv
-         4pAT52ro0QCzzUsSMACICzVlin5t4NivNTnN6SF4b6yBv97XK865dAomvxyn9P+vH1IM
-         XSohWSKLzpIAZsJYRIOnzgjfgu/28i+UyWGcXAzvexGgpcrJZDajb828O+IOz9R5aCAI
-         FvDeThJRxtxglHNU9/UaTFrmwRRvQTJ195Ay87eFHENgFg2rcNeP+zOq1CAG0CRq+q9P
-         k6hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGtaL/MR2Xf8X2nm5UjlPt4RVKgzXF65QIUcLme2NSoeB/50JLuSHxYrmIAPWeO4N4GhhaJNrDbfIa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcLFKceCkKRaxKUtAK3V3+eEcM59oWfp1TH+sylCU9671Dyhnm
-	lTkBYTl5sKATz7x6ZuGS6WM8HhXfs12HyD74//zoSlu5pWqHvKt+7pxKj2wYyurFwPozYbeyQhn
-	+n3vxPN5DH/+PZDhHTT6IFlHOYng9uf8=
-X-Gm-Gg: ASbGncvqVZewo9wjOMzEcEr/RNnWklLujHmE85Ucp6oJcWsGV7mDO17PJeRBM7GhRs/
-	laxw/+9Jnr+R+khhrDTpAJ0Gzn2T0UFd6vRytAZwv+wDsxtIoZW6uwdzl5P2IuuEjccxIiXUxvx
-	lkKcqvJ+2ZsIOYDc5W8QxK+4/MUys0D017SU7ZtLeOwQtYiRULSV25I9zVnNqHsJmxqejogl74g
-	fwI2fJg
-X-Google-Smtp-Source: AGHT+IF8gqpHKUggAz8mRHFtabGXF36B1xtlX4P+D1pU+orCN9564Rlc80C3nmmzBa8cGbzuEi0zdw4YMnyQiNETI6E=
-X-Received: by 2002:a17:907:7f02:b0:ae0:ce59:5952 with SMTP id
- a640c23a62f3a-af9c65f16ecmr931142066b.60.1754900377495; Mon, 11 Aug 2025
- 01:19:37 -0700 (PDT)
+	s=arc-20240116; t=1754900496; c=relaxed/simple;
+	bh=dwA+k5MoQMPREAqtf+/R5bWlrbm5zpY7s6D0K58iuOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Z5r3x8MDNpj6DDJ6R0MHPmvn2KEOeEVYu2yrlzI+9NwCSIa0aNPeMCtUtvN8xal45n3MKUohG2k1nNgMW0mdD+Y/o+s0+QSGPuvobCgZutr2MttKLgiayZvUA5SwjfD7qHgzM4x1Y0YSYpjBx+UNY9kobhhnYpioP4meWXrjeho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 74230200F82;
+	Mon, 11 Aug 2025 10:21:27 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 378F0200F65;
+	Mon, 11 Aug 2025 10:21:27 +0200 (CEST)
+Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id E99411800225;
+	Mon, 11 Aug 2025 16:21:25 +0800 (+08)
+From: Lakshay Piplani <lakshay.piplani@nxp.com>
+To: alexandre.belloni@bootlin.com,
+	linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org
+Cc: vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com,
+	shashank.rebbapragada@nxp.com,
+	Lakshay Piplani <lakshay.piplani@nxp.com>
+Subject: [PATCH v2 1/2] dt-bindings: rtc: nxp,pcf85363: add timestamp mode config
+Date: Mon, 11 Aug 2025 13:51:22 +0530
+Message-Id: <20250811082123.1099880-1-lakshay.piplani@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <a6b216e6726edc00a910ba543ef8f7a9195b94f7.1754890670.git.zhoubinbin@loongson.cn>
- <208c1e34-85b4-47d7-a4d3-8b8b7f2caa84@kernel.org> <CAMpQs4+OcC_jMvQVc+u9ue9HeBEPcbzWORC0rWkXhj3y90fvSQ@mail.gmail.com>
- <20250811-impetuous-civet-of-wind-febe58@kuoka>
-In-Reply-To: <20250811-impetuous-civet-of-wind-febe58@kuoka>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 11 Aug 2025 16:19:24 +0800
-X-Gm-Features: Ac12FXyFB4EVt99-WdzeI01ERu2yfCN8TNLMEhiVAElN4xIXYzFbGw-dcmhbDQ0
-Message-ID: <CAMpQs4J1ThxZqJupm68WmpQpkG2HtkRctk6zDmbszaHUyBm19g@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller:
- Document the Loongson-2K0500 NAND controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, "Rob Herring (Arm)" <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi Krzysztof:
+NXP PCF85263/PCF85363 provides three timestamp registers (TSR1-TSR3)
+which latch the current time when a selected event occurs. Add a
+vendor specific property, nxp,timestamp-mode, to select the event
+source for each register.
 
-On Mon, Aug 11, 2025 at 4:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Mon, Aug 11, 2025 at 03:42:09PM +0800, Binbin Zhou wrote:
-> > Hi Krzysztof:
-> >
-> > On Mon, Aug 11, 2025 at 3:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> > >
-> > > On 11/08/2025 08:03, Binbin Zhou wrote:
-> > > > Add new compatible for the Loongson-2K NAND controller used for
-> > > > Loongson-2K0500 SoC.
-> > > >
-> > > > Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
-> > >
-> > >
-> > > Why do you add quotes?
-> >
-> > Emm...
-> > Sorry, I didn't notice that.
-> > I reacquired the V1 patchset using =E2=80=9Cb4 am xxx=E2=80=9D to avoid=
- manually
-> > adding tags. I believe it may be caused by the `b4` command.
->
-> Then aren't you using some old b4?
->
-> I just did it and look:
->
->   [PATCH v1 5/8] dt-bindings: mtd: loongson,ls1b-nand-controller: Documen=
-t the Loongson-2K0500 NAND controller
->     + Acked-by: Rob Herring (Arm) <robh@kernel.org> (=E2=9C=93 DKIM/kerne=
-l.org)
->     + Link: https://lore.kernel.org/r/588639de591ada408bdaeb0d279c5d62a4b=
-53d61.1753166096.git.zhoubinbin@loongson.cn
->     + Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Also introduce a new header 'pcf85363-tsr.h' to expose
+macros for timestamp mode fields, improving readability
+of device tree file.
 
-Thanks for your reply and testing.
+Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+---
+Changes in v2:
+- Addressed review comments from Rob Herring:
+  * use $ref: /schemas/types.yaml#/definitions/uint32-array
+  * tuple form with exactly 3 items (TSR1/TSR2/TSR3), per items decimal enums
+  * define 'nxp,timestamp-mode' clearly
+  * drop watchdog related vendor properties
+  * remove watchdog related vendor properties from i2c example
 
-I rechecked my b4 repository, and it does need to be updated. It was my mis=
-take.
-I will fix it in the next version.
+ .../devicetree/bindings/rtc/nxp,pcf85363.yaml | 23 ++++++++++++++-
+ include/dt-bindings/rtc/pcf85363-tsr.h        | 28 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/rtc/pcf85363-tsr.h
 
-Thanks again!
->
->
-> No quotes in commit msg either.
->
-> Best regards,
-> Krzysztof
->
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+index 52aa3e2091e9..cf9c155162d6 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85363.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/rtc/nxp,pcf85363.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Philips PCF85263/PCF85363 Real Time Clock
++title: NXP PCF85263/PCF85363 Real Time Clock
+ 
+ maintainers:
+   - Alexandre Belloni <alexandre.belloni@bootlin.com>
+@@ -39,6 +39,24 @@ properties:
+   start-year: true
+   wakeup-source: true
+ 
++  nxp,timestamp-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    items:
++      - enum: [0, 1, 2] # TSR1: NONE, FE, LE
++        description: TSR1 mode
++      - enum: [0, 1, 2, 3, 4, 5] # TSR2: NONE, FB, LB, LV, FE, LE
++        description: TSR2 mode
++      - enum: [0, 1, 2, 3] # TSR3: NONE, FB, LB, LV
++        description: TSR3 mode
++    description: |
++      Defines timestamp modes for TSR1, TSR2, and TSR3.
++      Use macros from <dt-bindings/rtc/pcf85363-tsr.h>.
++
++      Each value corresponds to a mode constant:
++        - TSR1: NONE, FE, LE
++        - TSR2: NONE, FB, LB, LV, FE, LE
++        - TSR3: NONE, FB, LB, LV
++
+ required:
+   - compatible
+   - reg
+@@ -47,6 +65,7 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/rtc/pcf85363-tsr.h>
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -56,5 +75,7 @@ examples:
+             reg = <0x51>;
+             #clock-cells = <0>;
+             quartz-load-femtofarads = <12500>;
++            wakeup-source;
++            nxp,timestamp-mode = <PCF85363_TSR1_FE PCF85363_TSR2_LB PCF85363_TSR3_LV>;
+         };
+     };
+diff --git a/include/dt-bindings/rtc/pcf85363-tsr.h b/include/dt-bindings/rtc/pcf85363-tsr.h
+new file mode 100644
+index 000000000000..1fb5b9b3601e
+--- /dev/null
++++ b/include/dt-bindings/rtc/pcf85363-tsr.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright 2025 NXP
++ */
++
++#ifndef _DT_BINDINGS_RTC_PCF85363_TSR_H
++#define _DT_BINDINGS_RTC_PCF85363_TSR_H
++
++/* TSR1 modes */
++#define PCF85363_TSR1_NONE 0x00
++#define PCF85363_TSR1_FE 0x01
++#define PCF85363_TSR1_LE 0x02
++
++/* TSR2 modes */
++#define PCF85363_TSR2_NONE 0x00
++#define PCF85363_TSR2_FB 0x01
++#define PCF85363_TSR2_LB 0x02
++#define PCF85363_TSR2_LV 0x03
++#define PCF85363_TSR2_FE 0x04
++#define PCF85363_TSR2_LE 0x05
++
++/* TSR3 modes */
++#define PCF85363_TSR3_NONE 0x00
++#define PCF85363_TSR3_FB 0x01
++#define PCF85363_TSR3_LB 0x02
++#define PCF85363_TSR3_LV 0x03
++
++#endif /* _DT_BINDINGS_RTC_PCF85363_TSR_H */
+-- 
+2.25.1
 
---=20
-Thanks.
-Binbin
 
