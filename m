@@ -1,123 +1,419 @@
-Return-Path: <devicetree+bounces-203150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B68B2022C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:48:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE915B20233
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 10:49:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97DAA16DE30
-	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:48:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF02916E256
+	for <lists+devicetree@lfdr.de>; Mon, 11 Aug 2025 08:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC8012561AB;
-	Mon, 11 Aug 2025 08:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA9023B613;
+	Mon, 11 Aug 2025 08:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0SSgRgm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DiYHJvDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7F91DF977;
-	Mon, 11 Aug 2025 08:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 878D4259C80
+	for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 08:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754902094; cv=none; b=HQXhDRr8WGj/YyokH7Wdy1ExYKh1Vw3SzXZtvy7IXVrkpYm/xX7ougtdT3kaKaoKg0vUrx3VFXK392eSp+AM/sgorsSUyZu7/N/7ShOW+/JkVVbsCuja1j5D+rQfCHCFAxoRuCFUesDhJAzVVSeiDC7Et95wthIr2T88DW1+RkQ=
+	t=1754902195; cv=none; b=eIB6lN9ECRlkSEr0VANlcEy48TB/HPK9NmdiGDSh9WS74hE1LB7YP9O4g2lf/Xat40Lvwy6c1fRHMpU880xoLOG3LIr3IR7CHE2F+jPUj966/HBf9AzJXw0AuZh6GxWEBtzDFOSSxcPWiisePxMnpNpu1nngrkdxSn/kobCiStE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754902094; c=relaxed/simple;
-	bh=sPjg+h2SttEo8xH0kwTdqtlRqB886+Ii/S4Rj9LXuaQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UjG2OMPIjH1PPWfATp2uybVehnajQTt0iCHKhK8ICLE9fTX9gISk/HPl1lDOcWTYy3DhdrG6Rl9wHX5UFakziSKY2yFvtk+TyBs6mgTTSjj23V8zG2dw0j3Is769Ve7Vq20RP/W1kDzZHBvT4w77YTn9nplL5nQ/SKnLTKBddA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0SSgRgm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7109DC4CEED;
-	Mon, 11 Aug 2025 08:48:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754902094;
-	bh=sPjg+h2SttEo8xH0kwTdqtlRqB886+Ii/S4Rj9LXuaQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r0SSgRgmfayjBC3g16i25zRmOLwqI5o5y2+U0IhR7PxnCDkq2X/zcFyZ+RIRbAlGG
-	 7klbbTCaOwT8bNAgoVT77aLanCy/mhSLcqutyBRBvo7t8Jo9kTB2Rd70a+Jr3AN9/F
-	 fVfWckL6luTbzxoSFBmW0++yYzGqVrOwEkCDhBBsilcJHYpfUxyIwusle/zt9487Ps
-	 zMNxJP32/gY5BO/LBUsXRgXuFksZN6UAHlcpgf7Uft9aNR4BGFtmJHM9pz0pt3au25
-	 418V7u44nUvsbjUTqHEznZNkX7GR/2IdddVi10krsuh9O7ZWtz8f+Rdw6HL0GRoAP3
-	 bnAdU7au5UzuQ==
-Message-ID: <91d05d08-e5be-47d1-a18c-bae972d8eb95@kernel.org>
-Date: Mon, 11 Aug 2025 10:48:09 +0200
+	s=arc-20240116; t=1754902195; c=relaxed/simple;
+	bh=rRE/6MJKBTvko1sGv5ua9YlV7Trr/LlLl8NXqg6mnUs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eAkrNojUvkeDXOB3+5uEpubY9I+7xvmTmERHx8h4zIvI+EdjKRuf5y6PgYG2t/Ex6jcRfT5lKeDUcdrUJAeHTVAhujODqoqXGzhB5hGSezldlO7+BQN8v0p1VOm7uL74wh6OfK8ns0/WVNXvXxXTZnoOZKHFo9jrTz4II1NCBAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DiYHJvDX; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-af958127df5so618400366b.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 01:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1754902192; x=1755506992; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=24UDtUSXpD7MISobVRN3TUNY/U8o8IyoI99Gh/qzulE=;
+        b=DiYHJvDXVW6eAvImIj6R/iCVFQqt+YYAPRl4jsxUsHl9362jllVsarSw2lYPv0uY0+
+         ONFp45ihrTsX8AI3l/L62vA/T6RnjQz7xHVdB0K+kZYl03RMrTbRrFiLwaG5snmVoC9z
+         EYa31KoB0xYGM9qBMEP0T/G3xSjonmBYZ8sn1Q0CdPgIICdJLaDUNYzKZbWLae6IVNSd
+         poSIF3PcqH7Ivj/rTN1R48/8VG15tCw4dODcT6KJL3an7V3Zhpo1a1czOUeM4o4dJ87b
+         CE0MxvIW7kT4R/toSwAExIwIneRZxibInn7KjnHa+Pi+UJrZMdEnuMci1ZOUGZkIgpsl
+         FdTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754902192; x=1755506992;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=24UDtUSXpD7MISobVRN3TUNY/U8o8IyoI99Gh/qzulE=;
+        b=MBIh+BW2Rp1KjTCpF4nvsDEmksysGan/l0mJ09KvoO04IRblbM2J4SUFQ5fa/evCpn
+         JkZYFrkyu1/uc509GA48Pfrnlfhy04qHxMdo0PzYevgVbK2f9xhR5vwCdTBocvQmxfW5
+         6C0t0QUwLWYeFRXF+VZQatExIe9XnhcbwD2/VZo5piRVtP3d4FS5Nodk7jLSvo0+jmqF
+         CT5QG/q4gH76R5GV/cCTguVJSrYXkgE33bBExM27uVjn984tVDhFxAr8fbxxwJiHsuwz
+         vb8Psd4TOAq3Rdul9OKWTbD/tI0eV+XChCXT5XF61vA488VpEI5abjs8PyVhK8xSWgM2
+         m/Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCXbarzOWfKOwZNIBaIWLF6dLVGe3RXG5GSXEGZisHYnacnB5I5IzIviFwmeeuSs2193AOXikolC4ZHd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJQ2TQzjWHviht2zGEf5xK9fzOSzChhLCRZE3yBf6PcWull4ya
+	eg7KsSjmOhtEIXGEl5m5OT0qiQFYPU/rOQbpApZ28EKZo7vqlTePSb3gub248U27vZHujphaJr8
+	GnNRW9ELBrGni6pTXY9oqO5RO1etVl9Q=
+X-Gm-Gg: ASbGncuSSuX5h53Bnj0jKmWJn5/yMaboHpBWggch4805fR1JJfKkOtR2dRnc7JvWgrd
+	3EEr4yik0oaHmXl1dCu+LWknkRspr52HfV1A/aLyIGs+ZofLTzDdDE7ILJB4qN4sAQTtzW84Pm3
+	QjLRTYjg5tvWM6VzTFLzt2qrv4U+l5KchU9EH8wKU+gQZvV6BuWKRT42oSt3mZsdmEAyoOJyWq8
+	KIZBdHl
+X-Google-Smtp-Source: AGHT+IF+k9SUz6zyVqSF+9mljNmWYDbyxGCUaIpKmc95esHu+s7a1zRl5eSkX2TCgiyiBZMPDxmQPdoQUdnrNKF0nb4=
+X-Received: by 2002:a17:907:7f18:b0:ae9:b800:2283 with SMTP id
+ a640c23a62f3a-af9c6452471mr1096461566b.15.1754902191593; Mon, 11 Aug 2025
+ 01:49:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] ASoC: dt-bindings: realtek,alc5623: convert to DT
- schema
-To: Mahdi Khosravi <mmk1776@gmail.com>, devicetree@vger.kernel.org
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250811080940.7909-1-mmk1776@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250811080940.7909-1-mmk1776@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1754890670.git.zhoubinbin@loongson.cn> <d9e92cfdb1ee69d98630286238e08a8df176718a.1754890670.git.zhoubinbin@loongson.cn>
+ <CAAhV-H7hB1WU3GyzdcKvWaYuqNsEMMN2=g6gwGcOzU=_Ghd6zw@mail.gmail.com>
+In-Reply-To: <CAAhV-H7hB1WU3GyzdcKvWaYuqNsEMMN2=g6gwGcOzU=_Ghd6zw@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 11 Aug 2025 16:49:38 +0800
+X-Gm-Features: Ac12FXwGwpz408gg222z9rlreVaN48DovnkhWhDtbZvrKva62EZwQJUUuXN4LPw
+Message-ID: <CAMpQs4+5CoXKBVqE+YPYPyMyZFbhXQLfqqqex3JCVusDS5AUTA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] mtd: rawnand: loongson: Add nand chip select support
+To: Huacai Chen <chenhuacai@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-mtd@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/08/2025 10:09, Mahdi Khosravi wrote:
-> Convert alc5623 audio codec binding to DT schema.
-> 
-> Also add "realtek,alc5621" to the compatible list for
-> existing use in kirkwood-t5325.dts.
-> 
-> Signed-off-by: Mahdi Khosravi <mmk1776@gmail.com>
+Hi:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Aug 11, 2025 at 2:40=E2=80=AFPM Huacai Chen <chenhuacai@kernel.org>=
+ wrote:
+>
+> Hi, Binbin,
+>
+> On Mon, Aug 11, 2025 at 2:03=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.=
+cn> wrote:
+> >
+> > The page address register describes the page address of the starting
+> > address for NAND read/write/erase operations.
+> >
+> > According to the manual, it consists of two parts:
+> >         {chip select, page number}
+> >
+> > The `chip select` is fixed at 2 bits, and the `page number` is
+> > determined based on the actual capacity of the single-chip memory.
+> > Therefore we need to determine the `chip select` bits base on the `page
+> > number`.
+> >
+> > For example, for a 1GB capacity chip (2K page size), it has 1M pages.
+> > Thus, [19:0] is used to represent the page number, and [21:20]
+> > represents the chip select.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../mtd/nand/raw/loongson-nand-controller.c   | 133 ++++++++++++++----
+> >  1 file changed, 103 insertions(+), 30 deletions(-)
+> >
+> > diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/=
+mtd/nand/raw/loongson-nand-controller.c
+> > index 97cd566420a8..5a51c7d299cc 100644
+> > --- a/drivers/mtd/nand/raw/loongson-nand-controller.c
+> > +++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
+> > @@ -82,6 +82,7 @@ struct loongson_nand_data {
+> >         unsigned int op_scope_field;
+> >         unsigned int hold_cycle;
+> >         unsigned int wait_cycle;
+> > +       unsigned int nand_cs;
+> >         void (*set_addr)(struct loongson_nand_host *host, struct loongs=
+on_nand_op *op);
+> >  };
+> >
+> > @@ -90,6 +91,7 @@ struct loongson_nand_host {
+> >         struct nand_chip chip;
+> >         struct nand_controller controller;
+> >         const struct loongson_nand_data *data;
+> > +       unsigned int addr_cs_field;
+> >         void __iomem *reg_base;
+> >         struct regmap *regmap;
+> >         /* DMA Engine stuff */
+> > @@ -215,6 +217,26 @@ static int loongson_nand_parse_instructions(struct=
+ nand_chip *chip, const struct
+> >         return 0;
+> >  }
+> >
+> > +static void loongson_nand_set_addr_cs(struct loongson_nand_host *host)
+> > +{
+> > +       struct nand_chip *chip =3D &host->chip;
+> > +       struct mtd_info *mtd =3D nand_to_mtd(chip);
+> > +
+> > +       if (!host->data->nand_cs)
+> > +               return;
+> > +
+> > +       /*
+> > +        * The Manufacturer/Chip ID read operation precedes attach_chip=
+, at which point
+> > +        * information such as NAND chip selection and capacity is unkn=
+own. As a
+> > +        * workaround, we use 128MB cellsize (2KB pagesize) as a fallba=
+ck.
+> > +        */
+> > +       if (!mtd->writesize)
+> > +               host->addr_cs_field =3D GENMASK(17, 16);
+> > +
+> > +       regmap_update_bits(host->regmap, LOONGSON_NAND_ADDR2, host->add=
+r_cs_field,
+> > +                          host->data->nand_cs << __ffs(host->addr_cs_f=
+ield));
+> > +}
+> > +
+> >  static void ls1b_nand_set_addr(struct loongson_nand_host *host, struct=
+ loongson_nand_op *op)
+> >  {
+> >         struct nand_chip *chip =3D &host->chip;
+> > @@ -263,6 +285,8 @@ static void ls1c_nand_set_addr(struct loongson_nand=
+_host *host, struct loongson_
+> >                         regmap_update_bits(host->regmap, LOONGSON_NAND_=
+ADDR2, mask, val);
+> >                 }
+> >         }
+> > +
+> > +       loongson_nand_set_addr_cs(host);
+> >  }
+> >
+> >  static void loongson_nand_trigger_op(struct loongson_nand_host *host, =
+struct loongson_nand_op *op)
+> > @@ -603,42 +627,89 @@ static int loongson_nand_exec_op(struct nand_chip=
+ *chip, const struct nand_opera
+> >         return nand_op_parser_exec_op(chip, &loongson_nand_op_parser, o=
+p, check_only);
+> >  }
+> >
+> > -static int loongson_nand_attach_chip(struct nand_chip *chip)
+> > +static int loongson_nand_get_chip_capacity(struct nand_chip *chip)
+> >  {
+> >         struct loongson_nand_host *host =3D nand_get_controller_data(ch=
+ip);
+> >         u64 chipsize =3D nanddev_target_size(&chip->base);
+> > -       int cell_size =3D 0;
+> > +       struct mtd_info *mtd =3D nand_to_mtd(chip);
+> >
+> > -       switch (chipsize) {
+> > -       case SZ_128M:
+> > -               cell_size =3D 0x0;
+> > -               break;
+> > -       case SZ_256M:
+> > -               cell_size =3D 0x1;
+> > -               break;
+> > -       case SZ_512M:
+> > -               cell_size =3D 0x2;
+> > -               break;
+> > -       case SZ_1G:
+> > -               cell_size =3D 0x3;
+> > -               break;
+> > -       case SZ_2G:
+> > -               cell_size =3D 0x4;
+> > -               break;
+> > -       case SZ_4G:
+> > -               cell_size =3D 0x5;
+> > -               break;
+> > -       case SZ_8G:
+> > -               cell_size =3D 0x6;
+> > -               break;
+> > -       case SZ_16G:
+> > -               cell_size =3D 0x7;
+> > -               break;
+> > -       default:
+> > -               dev_err(host->dev, "unsupported chip size: %llu MB\n", =
+chipsize);
+> > -               return -EINVAL;
+> > +       if (mtd->writesize =3D=3D SZ_4K && chipsize =3D=3D SZ_2G) {
+> > +               host->addr_cs_field =3D GENMASK(20, 19);
+> > +               return 0x4;
+> >         }
+> I think you want to sort this part by the return value, but "return
+> 0x4" has already break it.
+>
+> So I think it is better to use a big switch-case for writesize, and
+> sort the big switch-case by writesize.
 
+How about:
 
-Best regards,
-Krzysztof
+        switch (mtd->writesize) {
+        case SZ_512:
+                switch (chipsize) {
+                case SZ_8M:
+                        host->addr_cs_field =3D GENMASK(15, 14);
+                        return 0x9;
+                case SZ_16M:
+                        host->addr_cs_field =3D GENMASK(16, 15);
+                        return 0xa;
+                case SZ_32M:
+                        host->addr_cs_field =3D GENMASK(17, 16);
+                        return 0xb;
+                case SZ_64M:
+                        host->addr_cs_field =3D GENMASK(18, 17);
+                        return 0xc;
+                case SZ_128M:
+                        host->addr_cs_field =3D GENMASK(19, 18);
+                        return 0xd;
+                }
+                break;
+        case SZ_2K:
+                switch (chipsize) {
+                case SZ_128M:
+                        host->addr_cs_field =3D GENMASK(17, 16);
+                        return 0;
+                case SZ_256M:
+                        host->addr_cs_field =3D GENMASK(18, 17);
+                        return 0x1;
+                case SZ_512M:
+                        host->addr_cs_field =3D GENMASK(19, 18);
+                        return 0x2;
+                case SZ_1G:
+                        host->addr_cs_field =3D GENMASK(20, 19);
+                        return 0x3;
+                }
+                break;
+        case SZ_4K:
+                if (chipsize =3D=3D SZ_2G) {
+                        host->addr_cs_field =3D GENMASK(20, 19);
+                        return 0x4;
+                }
+                break;
+        case SZ_8K:
+                switch (chipsize) {
+                case SZ_4G:
+                        host->addr_cs_field =3D GENMASK(20, 19);
+                        return 0x5;
+                case SZ_8G:
+                        host->addr_cs_field =3D GENMASK(21, 20);
+                        return 0x6;
+                case SZ_16G:
+                        host->addr_cs_field =3D GENMASK(22, 21);
+                        return 0x7;
+                }
+                break;
+        default:
+                break;
+        }
+
+        dev_err(host->dev, "Unsupported chip size: %llu MB with page
+size %u B\n",
+                chipsize, mtd->writesize);
+>
+> Huacai
+>
+> >
+> > +       if (mtd->writesize =3D=3D SZ_2K) {
+> > +               switch (chipsize) {
+> > +               case SZ_128M:
+> > +                       host->addr_cs_field =3D GENMASK(17, 16);
+> > +                       return 0;
+> > +               case SZ_256M:
+> > +                       host->addr_cs_field =3D GENMASK(18, 17);
+> > +                       return 0x1;
+> > +               case SZ_512M:
+> > +                       host->addr_cs_field =3D GENMASK(19, 18);
+> > +                       return 0x2;
+> > +               case SZ_1G:
+> > +                       host->addr_cs_field =3D GENMASK(20, 19);
+> > +                       return 0x3;
+> > +               default:
+> > +                       goto err;
+> > +               }
+> > +       }
+> > +
+> > +       if (mtd->writesize =3D=3D SZ_8K) {
+> > +               switch (chipsize) {
+> > +               case SZ_4G:
+> > +                       host->addr_cs_field =3D GENMASK(20, 19);
+> > +                       return 0x5;
+> > +               case SZ_8G:
+> > +                       host->addr_cs_field =3D GENMASK(21, 20);
+> > +                       return 0x6;
+> > +               case SZ_16G:
+> > +                       host->addr_cs_field =3D GENMASK(22, 21);
+> > +                       return 0x7;
+> > +               default:
+> > +                       goto err;
+> > +               }
+> > +       }
+> > +
+> > +       if (mtd->writesize =3D=3D SZ_512) {
+> > +               switch (chipsize) {
+> > +               case SZ_8M:
+> > +                       host->addr_cs_field =3D GENMASK(15, 14);
+> > +                       return 0x9;
+> > +               case SZ_16M:
+> > +                       host->addr_cs_field =3D GENMASK(16, 15);
+> > +                       return 0xa;
+> > +               case SZ_32M:
+> > +                       host->addr_cs_field =3D GENMASK(17, 16);
+> > +                       return 0xb;
+> > +               case SZ_64M:
+> > +                       host->addr_cs_field =3D GENMASK(18, 17);
+> > +                       return 0xc;
+> > +               case SZ_128M:
+> > +                       host->addr_cs_field =3D GENMASK(19, 18);
+> > +                       return 0xd;
+> > +               default:
+> > +                       goto err;
+> > +               }
+> > +       }
+> > +
+> > +err:
+> > +       dev_err(host->dev, "Unsupported chip size: %llu MB with page si=
+ze %u B\n",
+> > +               chipsize, mtd->writesize);
+> > +       return -EINVAL;
+> > +}
+> > +
+> > +static int loongson_nand_attach_chip(struct nand_chip *chip)
+> > +{
+> > +       struct loongson_nand_host *host =3D nand_get_controller_data(ch=
+ip);
+> > +       int cell_size =3D 0;
+> > +
+> > +       cell_size =3D loongson_nand_get_chip_capacity(chip);
+> > +       if (cell_size < 0)
+> > +               return cell_size;
+> > +
+> >         switch (chip->ecc.engine_type) {
+> >         case NAND_ECC_ENGINE_TYPE_NONE:
+> >                 break;
+> > @@ -818,6 +889,7 @@ static const struct loongson_nand_data ls1b_nand_da=
+ta =3D {
+> >         .status_field =3D GENMASK(15, 8),
+> >         .hold_cycle =3D 0x2,
+> >         .wait_cycle =3D 0xc,
+> > +       .nand_cs =3D 0x0,
+> >         .set_addr =3D ls1b_nand_set_addr,
+> >  };
+> >
+> > @@ -828,6 +900,7 @@ static const struct loongson_nand_data ls1c_nand_da=
+ta =3D {
+> >         .op_scope_field =3D GENMASK(29, 16),
+> >         .hold_cycle =3D 0x2,
+> >         .wait_cycle =3D 0xc,
+> > +       .nand_cs =3D 0x0,
+> >         .set_addr =3D ls1c_nand_set_addr,
+> >  };
+> >
+> > --
+> > 2.47.3
+> >
+> >
+
+--=20
+Thanks.
+Binbin
 
