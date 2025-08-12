@@ -1,316 +1,120 @@
-Return-Path: <devicetree+bounces-203678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF68B22405
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:05:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE995B2243E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:12:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE811A20137
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:05:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7507F501F53
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A93D2EAB65;
-	Tue, 12 Aug 2025 10:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zr+F9DbR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029A82EF64B;
+	Tue, 12 Aug 2025 10:08:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 531932EA722
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C402EE608;
+	Tue, 12 Aug 2025 10:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754993131; cv=none; b=UhzfenhTNoLT2EYYWubjHlf4KxYD8MmLFHCc92vWYM/a1F6SZ5N0I2mZQo7t5OifUsBDAjQPCrPDoNn+LhVZVKjTLSAsureltpN213RE3eeEhrEJhYLFakoT/7a+u/sPn/X79bGcZWFAtTnwxc0m0EGnPdWziU3GxxbFTTmLgjE=
+	t=1754993321; cv=none; b=IqVwgfA1WIYH98K/PUnErzNKHjnjOqAtxwfhl6FCKYIALsgGTuEuUfdbYZobcVrX5UpQ4A6jGDbiJo87egnM1F2PHNz9sOfIxL6aHDkLhrIQ9ZZoOuUVYPQydht1HISMCHQySgx2qdEkoCyx7VRJ82dziSAw6quppqY3QOMFmp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754993131; c=relaxed/simple;
-	bh=XWLmAcxb47LR5YyiumJRk7B+Aw0Td4c8Q4AvQT48z8U=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=DxAERjWpg/ok8NVkyCsExxq1CPantxDt0JwG4jrkulOgsbL7MLslW8lsdU15/DYUFrtbFsk1x63NGRnYmY9UUIM5mzxQsHNm7ZfWPFDiZukX1BNoR7uXYSl8zCNsCxFsE4t9pNIcu9lN9JCoSLxK+MxiCKCNW74IUpZ1NrVfZrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zr+F9DbR; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-458baf449cbso50852525e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:05:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1754993128; x=1755597928; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g4puXE3WG3G/o6QrhUTZRedOpdszGi21yFpntx6Hhf0=;
-        b=Zr+F9DbRm6bKzpi5hJSCw3G7QuojjYnOZ+Bm0VN6KzoOYmvBzmhgyXDFhCXuo0zlZ/
-         W0WGUHIFY7PntRSe8YDDejrzBnrvqCK4laehgdFIbqW9cI9TqY/ZL+DtdO8jpXAFj8mB
-         3TjXOLC7mL4njevQS5xvmmjQKJlOXqSkpdmmJ8CI46aOZ/XHR5TA57k/vUL2ZarFwGIl
-         Htel/dkRxYucWgnn1/YswZ9EJkBwQf5J3jaoK2vTK0oRIz2KLgAbFekACxPiNhJUvAZP
-         4hK+O8T4jaSYzm1VX718lKl65pZIBh6jo/9YpO57ltWu3su3Nq99vNutWK4uUBxoFnzH
-         m3xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754993128; x=1755597928;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=g4puXE3WG3G/o6QrhUTZRedOpdszGi21yFpntx6Hhf0=;
-        b=ucSHMCNQp2NN5POMaK8fQ0wXmG/q31uesu6y8j8pcQTKNfwzwyg0zfn+Y5mHgDBgWK
-         c3EHQWxjadqe7eNsE1z3rV1QvTpCCYSGwJwZT0z4kksR4rYgJxoVJCykhQj4UUFRGzzu
-         +zvsCMrciJ8fDh9PdQEoxR96ywQWUm0u1XxZSidex5UHrGrLYAGGZ81epsWrQApLXGHP
-         iReyRKEqUAD8OrHlypEUMZw0bj1Im5EVOsUnKE56FDkzKrsi2re25Ik/3ravtCSOxeKO
-         3P8ufOzg9PEVsjdFpI+4lqjfBhTVVlUNv5+Z11yGMlMfVPJaGVZnMqsrNsUfBtOGndqH
-         pQng==
-X-Forwarded-Encrypted: i=1; AJvYcCXbqtjDe7lgf0zq/rZMUM/GPs/igClCEvZkHzF0sV7YjrdJn8PiN5vnzLTegf2PjZs5UmhieDqYJ7Gg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxPKDPqk5opt1UuzURK0ynn2wuL/cbAMLSmQeg3xWeVR4EQc5E
-	TcK8Lo8NloLxWdu31CknkKUxlK54uMzSGYmYp2fdeO+87O7WmmDnlzwvhA3kSZYFCeQ=
-X-Gm-Gg: ASbGncstGEJgE+jYf5FEYXELKJWLfp+O9v6lbR56vXZcBnhUdV/7fIxqIQn3RtDwETa
-	+QKMln7RDORhI8rU0VvDi+OqVWQARmJDxJmZz1Yt/2672oAHyk6t4pEcg+ayThn/fadurXoPbMu
-	UYqQFHIze3IFEMQBu+U423vpdYVzgDOs6PzyrMhYoqoixO+xxfVKkS/Ix5ro8GokLIwnC18XnXs
-	nw068MU1VwAZe0MHpB8Fp0UiXU3muaCy403+1aXypNI4ysl4E8Or1kBed05WaADslk8E/OAHgHU
-	3l4EvvSHilU9ktKe9cixBM3YV/zPDlTriFTt1vNaV3cOFz9bTdgcIQ4Lt49b2kiSM1382kqaP/I
-	rPjVj4QAYwtyW3Hbr5uWLu9ZAnBg=
-X-Google-Smtp-Source: AGHT+IFgVaBDrE/OVb0Lh1YQvuxoYmxXAVREy1eRPSTlBSW7jn1WRvr6YcYi0LzfZNKXStQpAN7nxA==
-X-Received: by 2002:a05:600c:c4b7:b0:458:f70d:ebdd with SMTP id 5b1f17b1804b1-45a10bea224mr24581875e9.16.1754993127536;
-        Tue, 12 Aug 2025 03:05:27 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:42cc:2c69:7a9c:4dff])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-459dc7e1ddesm381057535e9.27.2025.08.12.03.05.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Aug 2025 03:05:26 -0700 (PDT)
+	s=arc-20240116; t=1754993321; c=relaxed/simple;
+	bh=kL6bGYM0ZMSLMScq+M/UzqNWj+xf+642H3cPtoz0nAk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f9uYtk7va0tHXKQUduK9OJimyfXaZMI9UWUTVmci7JFnprRcv/ClCNiWK9206HKcU+nEF9DGx/xSJdBYBQDsaEl6gn/aBqOiZ1/0VxFKZXUZvcLowoyn+ONPWupi2DM4ASnAJvX/JLs19C6LjzmaqTxBmDVukdSujzBfTBy0SME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 12 Aug
+ 2025 18:08:30 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 12 Aug 2025 18:08:30 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Thomas Gleixner
+	<tglx@linutronix.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Kevin Chen
+	<kevin_chen@aspeedtech.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v4 0/2] irqchip/ast2700-intc: Add AST2700 INTC debugfs support and yaml update
+Date: Tue, 12 Aug 2025 18:08:28 +0800
+Message-ID: <20250812100830.145578-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 12 Aug 2025 11:05:26 +0100
-Message-Id: <DC0D53ZTNOBU.E8LSD5E5Z8TX@linaro.org>
-Subject: Re: [PATCH v7 7/8] serial: qcom-geni: Enable PM runtime for serial
- driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Praveen Talari" <quic_ptalari@quicinc.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
- <dmitry.baryshkov@oss.qualcomm.com>
-Cc: <psodagud@quicinc.com>, <djaggi@quicinc.com>,
- <quic_msavaliy@quicinc.com>, <quic_vtanuku@quicinc.com>,
- <quic_arandive@quicinc.com>, <quic_cchiluve@quicinc.com>,
- <quic_shazhuss@quicinc.com>, "Jiri Slaby" <jirislaby@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
- <bryan.odonoghue@linaro.org>, <neil.armstrong@linaro.org>,
- <srini@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250721174532.14022-1-quic_ptalari@quicinc.com>
- <20250721174532.14022-8-quic_ptalari@quicinc.com>
-In-Reply-To: <20250721174532.14022-8-quic_ptalari@quicinc.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-(c/c Neil and Srini)
+This patch series adds device tree bindings and driver support for the
+AST2700 SoC!|s two interrupt controllers (INTC0 and INTC1), along with
+debugfs entries for runtime inspection of routing and register protection
+status, and bindings example refine.
 
-On Mon Jul 21, 2025 at 6:45 PM BST, Praveen Talari wrote:
-> The GENI serial driver currently handles power resource management
-> through calls to the statically defined geni_serial_resources_on() and
-> geni_serial_resources_off() functions. This approach reduces modularity
-> and limits support for platforms with diverse power management
-> mechanisms, including resource managed by firmware.
->
-> Improve modularity and enable better integration with platform-specific
-> power management, introduce support for runtime PM. Use
-> pm_runtime_resume_and_get() and pm_runtime_put_sync() within the
-> qcom_geni_serial_pm() callback to control resource power state
-> transitions based on UART power state changes.
->
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+v4:
+- aspeed,ast2700-intc.yaml
+ - Clarify the relationship between INTC0/INTC1 parent nodes, the
+   aspeed,ast2700-intc-ic child nodes, and the GIC.
+ - Add a block diagram and DT examples showing the cascaded wiring
+   (GIC <- INTC0 <- INTC1 children).
+ - Mirrors the datasheet-described topology and register map, including
+   the separation of INTC0/INTC1 regions.
+ - Lets DT unambiguously express first-level (GIC parent) and cascaded
+   second-level (INTC0 parent) interrupt controllers via examples that
+   use `interrupts` for INTC0 children and `interrupts-extended` for
+   INTC1 children routed into INTC0.
 
+- irq-ast2700-intc.c
+ - Drop all string decoding and human readable tables.
+   Debugfs now dumps raw routing/protection registers only.
+ - Split into a separate source file and made it modular
+ - If the compatible not match ast2700-intc0/1, bail out return -ENODEV.
 
-This breaks at least RB1 (QRB2210), maybe others.
-Currently broken on -master and on linux-next.
+v3:
+- aspeed,ast2700-intc.yaml
+  - Clarify the relationship between INTC0/INTC1 parent nodes, the
+    aspeed,ast2700-intc-ic child nodes, and the GIC.
+  - Add a block diagram and DT examples showing the cascaded wiring
+    (GIC <- INTC0 <- INTC1 children).
+  - Mirrors the datasheet-described topology and register map, including
+    the separation of INTC0/INTC1 regions and their routing/protection
+    registers.
+  - Lets DT unambiguously express first-level (GIC parent) and cascaded
+    second-level (INTC0 parent) interrupt controllers via examples that
+    use `interrupts` for INTC0 children and `interrupts-extended` for
+    INTC1 children routed into INTC0.
+  
+- irq-aspeed-intc.c
+  - separate c file from irq-aspeed-intc.c
+  - make m
 
-Upon login prompt random parts of kernel seems to be off/failed and
-debugging led to udev being stuck:
+v2:
+- fix dt bindingcheck
 
-[   85.369834] INFO: task kworker/u16:0:12 blocked for more than 42 seconds=
-.
-[   85.376699]       Not tainted 6.17.0-rc1-00004-g53e760d89498 #9
-[   85.382660] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables =
-this message.
-[   85.390547] task:kworker/u16:0   state:D stack:0     pid:12    tgid:12  =
-  ppid:2      task_flags:0x4208060 flags:0x00000010
-[   85.401748] Workqueue: async async_run_entry_fn
-[   85.406349] Call trace:
-[   85.408828]  __switch_to+0xe8/0x1a0 (T)
-[   85.412724]  __schedule+0x290/0x7c0
-[   85.416275]  schedule+0x34/0x118
-[   85.419554]  rpm_resume+0x14c/0x66c
-[   85.423111]  rpm_resume+0x2a4/0x66c
-[   85.426647]  rpm_resume+0x2a4/0x66c
-[   85.430188]  rpm_resume+0x2a4/0x66c
-[   85.433722]  __pm_runtime_resume+0x50/0x9c
-[   85.437869]  __driver_probe_device+0x58/0x120
-[   85.442287]  driver_probe_device+0x3c/0x154
-[   85.446523]  __driver_attach_async_helper+0x4c/0xc0
-[   85.451446]  async_run_entry_fn+0x34/0xe0
-[   85.455504]  process_one_work+0x148/0x290
-[   85.459565]  worker_thread+0x2c4/0x3e0
-[   85.463368]  kthread+0x118/0x1c0
-[   85.466651]  ret_from_fork+0x10/0x20
-[   85.470337] INFO: task irq/92-4a8c000.:71 blocked for more than 42 secon=
-ds.
-[   85.477351]       Not tainted 6.17.0-rc1-00004-g53e760d89498 #9
-[   85.483323] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables =
-this message.
-[   85.491195] task:irq/92-4a8c000. state:D stack:0     pid:71    tgid:71  =
-  ppid:2      task_flags:0x208040 flags:0x00000010
-[   85.502290] Call trace:
-[   85.504786]  __switch_to+0xe8/0x1a0 (T)
-[   85.508687]  __schedule+0x290/0x7c0
-[   85.512231]  schedule+0x34/0x118
-[   85.515504]  __synchronize_irq+0x60/0xa0
-[   85.519483]  disable_irq+0x3c/0x4c
-[   85.522929]  msm_pinmux_set_mux+0x3a8/0x44c
-[   85.527167]  pinmux_enable_setting+0x1c4/0x28c
-[   85.531665]  pinctrl_commit_state+0xa0/0x260
-[   85.535989]  pinctrl_pm_select_default_state+0x4c/0xa0
-[   85.541182]  geni_se_resources_on+0xd0/0x15c
-[   85.545522]  geni_serial_resource_state+0x8c/0xbc
-[   85.550282]  qcom_geni_serial_runtime_resume+0x24/0x3c
-[   85.555470]  pm_generic_runtime_resume+0x2c/0x44
-[   85.560139]  __rpm_callback+0x48/0x1e0
-[   85.563949]  rpm_callback+0x74/0x80
-[   85.567494]  rpm_resume+0x39c/0x66c
-[   85.571040]  __pm_runtime_resume+0x50/0x9c
-[   85.575193]  handle_threaded_wake_irq+0x30/0x80
-[   85.579771]  irq_thread_fn+0x2c/0xb0
-[   85.583443]  irq_thread+0x16c/0x278
-[   85.587003]  kthread+0x118/0x1c0
-[   85.590283]  ret_from_fork+0x10/0x20
-[   85.593943] INFO: task (udev-worker):228 blocked for more than 42 second=
-s.
-[   85.600873]       Not tainted 6.17.0-rc1-00004-g53e760d89498 #9
-[   85.606846] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables =
-this message.
-[   85.614717] task:(udev-worker)   state:D stack:0     pid:228   tgid:228 =
-  ppid:222    task_flags:0x400140 flags:0x00000818
-[   85.625823] Call trace:
-[   85.628316]  __switch_to+0xe8/0x1a0 (T)
-[   85.632217]  __schedule+0x290/0x7c0
-[   85.635765]  schedule+0x34/0x118
-[   85.639044]  async_synchronize_cookie_domain.part.0+0x50/0xa4
-[   85.644854]  async_synchronize_full+0x78/0xa0
-[   85.649270]  do_init_module+0x190/0x23c
-[   85.653154]  load_module+0x1708/0x1ca0
-[   85.656952]  init_module_from_file+0x74/0xa0
-[   85.661273]  __arm64_sys_finit_module+0x130/0x2f8
-[   85.666023]  invoke_syscall+0x48/0x104
-[   85.669842]  el0_svc_common.constprop.0+0xc0/0xe0
-[   85.674604]  do_el0_svc+0x1c/0x28
-[   85.677973]  el0_svc+0x2c/0x84
-[   85.681078]  el0t_64_sync_handler+0xa0/0xe4
-[   85.685316]  el0t_64_sync+0x198/0x19c
-[   85.689032] INFO: task (udev-worker):229 blocked for more than 42 second=
-s.
+Ryan Chen (2):
+  dt-bindings: interrupt-controller: aspeed: Add parent compatibles and
+    refine documentation
+  Irqchip/ast2700-intc: add debugfs support and AST2700 INTC0/INTC1
+    routing/protection display
 
+ .../aspeed,ast2700-intc.yaml                  | 158 +++++++++++-----
+ drivers/irqchip/Kconfig                       |   6 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-ast2700-intc.c            | 174 ++++++++++++++++++
+ 4 files changed, 296 insertions(+), 43 deletions(-)
+ create mode 100644 drivers/irqchip/irq-ast2700-intc.c
 
-Usually wifi, all remoteprocs and anything that depends on lpass/pinctrl fa=
-il to probe.
-
-Reverting these:
-86fa39dd6fb7 serial: qcom-geni: Enable Serial on SA8255p Qualcomm platforms
-1afa70632c39 serial: qcom-geni: Enable PM runtime for serial driver
-
-resolves the regression. Couldn't say if we should go with reverting since =
-86fa39dd6fb7
-adds support of serial on SA8255p and for clean revert both have to be reve=
-rted.
-
-Any thoughts?
-
-Best regards,
-Alexey
-
-
-
-
-
-> ---
-> v6 -> v7
-> From Bjorn:
-> - used devm_pm_runtime_enable() instead of pm_runtime_enable()
-> - updated commit text.
->
-> v5 -> v6
-> - added reviewed-by tag in commit
-> - added __maybe_unused to PM callback functions to avoid
->   warnings of defined but not used
-> ---
->  drivers/tty/serial/qcom_geni_serial.c | 24 ++++++++++++++++++++++--
->  1 file changed, 22 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/q=
-com_geni_serial.c
-> index 81f385d900d0..aa08de659e34 100644
-> --- a/drivers/tty/serial/qcom_geni_serial.c
-> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> @@ -1713,10 +1713,10 @@ static void qcom_geni_serial_pm(struct uart_port =
-*uport,
->  		old_state =3D UART_PM_STATE_OFF;
-> =20
->  	if (new_state =3D=3D UART_PM_STATE_ON && old_state =3D=3D UART_PM_STATE=
-_OFF)
-> -		geni_serial_resources_on(uport);
-> +		pm_runtime_resume_and_get(uport->dev);
->  	else if (new_state =3D=3D UART_PM_STATE_OFF &&
->  		 old_state =3D=3D UART_PM_STATE_ON)
-> -		geni_serial_resources_off(uport);
-> +		pm_runtime_put_sync(uport->dev);
-> =20
->  }
-> =20
-> @@ -1878,6 +1878,8 @@ static int qcom_geni_serial_probe(struct platform_d=
-evice *pdev)
->  	if (ret)
->  		return ret;
-> =20
-> +	devm_pm_runtime_enable(port->se.dev);
-> +
->  	ret =3D uart_add_one_port(drv, uport);
->  	if (ret)
->  		return ret;
-> @@ -1909,6 +1911,22 @@ static void qcom_geni_serial_remove(struct platfor=
-m_device *pdev)
->  	uart_remove_one_port(drv, &port->uport);
->  }
-> =20
-> +static int __maybe_unused qcom_geni_serial_runtime_suspend(struct device=
- *dev)
-> +{
-> +	struct qcom_geni_serial_port *port =3D dev_get_drvdata(dev);
-> +	struct uart_port *uport =3D &port->uport;
-> +
-> +	return geni_serial_resources_off(uport);
-> +}
-> +
-> +static int __maybe_unused qcom_geni_serial_runtime_resume(struct device =
-*dev)
-> +{
-> +	struct qcom_geni_serial_port *port =3D dev_get_drvdata(dev);
-> +	struct uart_port *uport =3D &port->uport;
-> +
-> +	return geni_serial_resources_on(uport);
-> +}
-> +
->  static int qcom_geni_serial_suspend(struct device *dev)
->  {
->  	struct qcom_geni_serial_port *port =3D dev_get_drvdata(dev);
-> @@ -1952,6 +1970,8 @@ static const struct qcom_geni_device_data qcom_geni=
-_uart_data =3D {
->  };
-> =20
->  static const struct dev_pm_ops qcom_geni_serial_pm_ops =3D {
-> +	SET_RUNTIME_PM_OPS(qcom_geni_serial_runtime_suspend,
-> +			   qcom_geni_serial_runtime_resume, NULL)
->  	SYSTEM_SLEEP_PM_OPS(qcom_geni_serial_suspend, qcom_geni_serial_resume)
->  };
-> =20
+-- 
+2.34.1
 
 
