@@ -1,164 +1,171 @@
-Return-Path: <devicetree+bounces-203570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34FAB21E0E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:14:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F95B21E33
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:23:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 821CC426E58
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 06:14:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E65A41903CF9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 06:23:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7522E2DE7;
-	Tue, 12 Aug 2025 06:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830332D3ED7;
+	Tue, 12 Aug 2025 06:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KlxyIJFT";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="VOm5I74O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MxSoZxYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FD82DF3F8;
-	Tue, 12 Aug 2025 06:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E2C2737F2;
+	Tue, 12 Aug 2025 06:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754979282; cv=none; b=rQfnXpAMHiv8WgCaHpBl7EioKwFNWBa8oeH3JIWFf0fDj8nJAKIHJ24gsUnLSS35yJQrF140LT21GtVHmjfvatNitLsuQ4siYT5ryZrzElPoq7BAcTRArPmX4+eO3VzF/R3XwvIv/+dncR7d7+If/CymrPL6LD2KidWDhQuNC+c=
+	t=1754979813; cv=none; b=ZA8iwWJE/Q/a6Ek3kTKSvBehNzaFvsch9LtfKLuo+adKuaKUJcNSR8jxjr1+H+EmrH4EB0nNO8canmvY04g2ic7cI8Mnw7reg6YLXDZqCfHHJ69niacL9TvV0WBsIOz6rJQsh7OsD+Qb+WRo3ggORxujWuXPx40aakFkM8zZEfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754979282; c=relaxed/simple;
-	bh=4n7r1OIpw6fzOoFrlrKeD7qcewHqoXmWCm7O/kfW/KA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KhCFmeRiukZAWYQn28KAdaGSHRhag7A/DMCWXqPShYf31woIqLh1OR2NB/LYqSrehucvpT88h+CH2YVor7M+6jkG66Qznanrf2JzTpz+wyH/ZtuxXh+rFEn0PdL1G7AhCiUfSA2lmWBQsLqRRNmH+xzvqS/kPKAYt2seByV7rkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KlxyIJFT; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=VOm5I74O reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1754979279; x=1786515279;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7kDMXkiqwspte3OFxiCO5uJIctYbcK6fSwBNuY8L+04=;
-  b=KlxyIJFTDi8jkKZ96RCseLFLY+6kx8l9LbtZmWglSXEM/6ABSGiWab7k
-   DArQ6Buart7k/y5qx55d8bJxE2Hh0+eYyaR6ZmNE37wkDuqTtQZekTG9E
-   gJmqalSsajXSOB3WTljXubGE91yMaGIPYewTtytz+kRyOAxCw/dQWTH2+
-   q5TKMZ7PFkSgWxlt1csosldTpMGn/54icmBLxvb+oEfHpVwSDMM5Bb+IJ
-   yH3SPYtpjRgGV2hjWCgK462Y59PP3LG6WKGKsufH6T8B4M5XYOmmdgZKj
-   k98CQ//gwbaDnebmXd+7iuFwNyeLN4aSypbhFDvlrZoo8507Vc1CCxrSW
-   w==;
-X-CSE-ConnectionGUID: B4ffp1ALSjKWb0uJfw2sUg==
-X-CSE-MsgGUID: 0MqoVO07Ql6hiYkpsM+9JA==
-X-IronPort-AV: E=Sophos;i="6.17,284,1747692000"; 
-   d="scan'208";a="45692356"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 12 Aug 2025 08:14:30 +0200
-X-CheckPoint: {689ADBC6-33-AD8F5F64-F0EACAA5}
-X-MAIL-CPID: 742ED08D02BE758A2A1B26C8759E02E3_1
-X-Control-Analysis: str=0001.0A002104.689ADBC7.002A,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AFFA16835C;
-	Tue, 12 Aug 2025 08:14:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1754979266;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7kDMXkiqwspte3OFxiCO5uJIctYbcK6fSwBNuY8L+04=;
-	b=VOm5I74Oo5znWlaXmN6u8OJRm5q/YOa+tu/QK1DPY5JPD+J7KZGpK5JP+DU17ptUV0Hb3E
-	zH0KCm5pUcm6jc+JsrDLMmMdfbkLdqmuDZgGcNI/xvacXZt35YOmrj5rS/9qA01yQEkhMJ
-	qehK313US2ohYsMtXl+5cbLNmpe9CNMuB0qhy/HsC7aaAqu2XMQP6PVnkDcsIvmCJYaCfC
-	WjOI/fho5sWWLpFhNWOR9IAwC/vgZ4/7MJ2OQsWnx0gS9ILCSyIHS9ec+va7ZwIFDbnqM0
-	D2KA/TaS1pwf8V1K4T/3Ax/ptch+2mCRXDQ/5g5cJwC/31mROSUCp/lNkZNCXQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Frank Li <Frank.li@nxp.com>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: fsl: fsl,
- rcpm: Add #power-domain-cells
-Date: Tue, 12 Aug 2025 08:14:24 +0200
-Message-ID: <2799138.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <aIv+CgkePusUoT6Q@lizhi-Precision-Tower-5810>
-References:
- <20250731055806.2265628-1-alexander.stein@ew.tq-group.com>
- <20250731-funky-crab-of-defense-7cd658@kuoka>
- <aIv+CgkePusUoT6Q@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1754979813; c=relaxed/simple;
+	bh=EEWQDK8PVcCe68a7MGsKFYvPTrTUfqREIsgj+DSHaqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tYShPRsgNt1rkDMwkpcWn457NmXgFU541tcVm7r7NQG3kQ8OkVMorCJdMjhiFdFySSlVpP3pQUiGwyfw21cmAqbYO4E1Yv859Da4KmsaE1BXzgSabaV3BO0hgiUAmV0nNhge1OFIOEgw/qX8DgVO9PsQJv5GAT5DnWk0Knmf67o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MxSoZxYV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BDAEC4CEF0;
+	Tue, 12 Aug 2025 06:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754979811;
+	bh=EEWQDK8PVcCe68a7MGsKFYvPTrTUfqREIsgj+DSHaqc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MxSoZxYVHru27TJzAn2moqCQlvxr0Mkt1ePeqiuKoYzb0yuorBpSmyUsL6bb/jfSh
+	 tRjxSZTSDYrwnnAHqOjitJqCH8e5umZ6r7rtDDmwx6wGn2wN3W9k7OuEGFCKWpz0Cd
+	 hCb5KKBJaZ5NfvDDbbQmNFe+H2ZsfBMJN+RqkfFm1D69i9LFQWz5pp6BG7piSKMlxJ
+	 TQhQCDpp/Mkq+8uQzTbau98BukpqDuqt6Pa2RM5diqCq2RcAOcH6aLn6I1PzfC8LKB
+	 X4cA3VAp/JBbJNftodJ3NvvONgUtYIVa7mhaH1VjYO+TYI8IPRKo6kj7IEStCBQc1e
+	 UqsOIplVhwtqA==
+Message-ID: <f12e6ff3-6ec3-487f-bf9c-0f8c06ee6444@kernel.org>
+Date: Tue, 12 Aug 2025 08:23:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image
+ sensor
+To: Will Whang <will@willwhang.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250810220921.14307-1-will@willwhang.com>
+ <20250810220921.14307-2-will@willwhang.com>
+ <20250811-successful-military-dragon-d72486@kuoka>
+ <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Frank,
+On 12/08/2025 04:47, Will Whang wrote:
+> Hi Krzysztof,
+> Reply inline.
+> Thanks,
+> Will Whang
+> 
+> On Mon, Aug 11, 2025 at 1:01 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
+>>> +description:
+>>> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - sony,imx585
+>>> +      - sony,imx585-mono
+>>
+>> I don't understand this second compatible. Is this different hardware?
+>> Can you point me to "mono" datasheet?
+>>
+>> Your description should explain this. Commit msg as well, instead of
+>> speaking about driver (in fact drop all driver related comments).
+>>
+> Mono version of this sensor is basically just removing the bayer
+> filter, so the sensor itself actually doesn't know if it is color or
+> mono and from my knowledge there are no registers programmed in the
+> factory that will show the variant and model number. (That is why when
+> the driver probing it only test blacklevel register because there are
+> no ID registers)
+> Originally in V1 patch I've made the switch between color and mono in
+> dtoverlay config but reviewer comments is to move it to compatible
+> string and not property.(https://lore.kernel.org/linux-media/20250703175121.GA17709@pendragon.ideasonboard.com/)
 
-Am Freitag, 1. August 2025, 01:36:42 CEST schrieb Frank Li:
-> On Thu, Jul 31, 2025 at 08:32:57AM +0200, Krzysztof Kozlowski wrote:
-> > On Thu, Jul 31, 2025 at 07:58:04AM +0200, Alexander Stein wrote:
-> > > dtbs_check for ls1021.dtsi warns about unsupported property:
-> > >  power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' d=
-oes not match any of the regexes: '^pinctrl-[0-9]+$'
-> > >
-> > > But if removed the check warns about missing property:
-> > >  power-controller@1ee2140 (fsl,ls1021a-rcpm): '#power-domain-cells' i=
-s a required property
-> >
-> >
-> > And if any other warning says something, are you going to do that as
-> > well?
-> >
-> > >
-> > > Given commit 8bcf67b8d893b ("ARM: dts: ls1021a: add #power-domain-cel=
-ls
-> > > for power-controller node") explicitly added that property, add it
-> > > to the expected property list as well.
-> >
-> > No, commit does not explain why! It's one of this NXP commits without
-> > explanation, doing random things.
-> >
-> > No, explain why do you think this is a power domain provider - fast
-> > look told me that it is NOT.
->=20
-> It is not power controller. rcpm controller enable wakeup source.
->=20
-> In arm64, use below patch to fix warning
->=20
-> commit e39f567e1c38c29629962ab327f0ad1a288dcab2
-> Author: Frank Li <Frank.Li@nxp.com>
-> Date:   Mon Jul 29 14:59:24 2024 -0400
->=20
->     arm64: dts: layerscape: rename rcpm as wakeup-control from power-cont=
-rol
->=20
->     Invoke power-domain.yaml if node name as 'power-control'.
->=20
->     Rcpm actually are not power domain controller. It just control wakeup
->     capability. So rename it as wakeup-control. Fix below CHECK_DTBS warn=
-ing.
->=20
->     power-controller@1ee2140: '#power-domain-cells' is a required property
->             from schema $id: http://devicetree.org/schemas/power/power-do=
-main.yaml#
->=20
->     Signed-off-by: Frank Li <Frank.Li@nxp.com>
->     Signed-off-by: Shawn Guo <shawnguo@kernel.org>
->=20
-
-Thanks for the link. I've applied a similar change to ls1021 instead of thi=
-s patch.
-
-Thanks and best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+You only partially answer and judging by mentioning driver below:
 
 
+> 
+> In this case, what would you recommend?
+> 
+> compatible:
+>   enum:
+>     - sony,imx585
+>     - sony,imx585-mono
+>   description: IMX585 has two variants, color and mono which the
+> driver supports both.
+
+... I still have doubts that you really understand what I am asking. Is
+this one device or two different devices?
+
+
+Best regards,
+Krzysztof
 
