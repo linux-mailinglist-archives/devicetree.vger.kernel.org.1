@@ -1,140 +1,139 @@
-Return-Path: <devicetree+bounces-203677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E0AB223D3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:57:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A792EB223CB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 052AC1B62AAB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85FD53AE40F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351FC2E9ED9;
-	Tue, 12 Aug 2025 09:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933842E9ED9;
+	Tue, 12 Aug 2025 09:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fxOupTQL"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HR/wDnWj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B36D2E974D;
-	Tue, 12 Aug 2025 09:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5071C2EA745;
+	Tue, 12 Aug 2025 09:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754992620; cv=none; b=oYNJill4xFPtQoU+ujMBxukopHkaPqrhg9UUyEpLT9AAvVRt15RNit1WFC8BYsjPOoJUIUu64W2K3hfVd8OMyCwuFE056P7H6wv62ioBh677CMR0t/EtNs0xIcALvjwQm3tg47pzKT8AfvYXKjRUvmmfoXo0Z+l/o4NO65D3WM8=
+	t=1754992567; cv=none; b=CVNAkzDlBDjnWrvjYLzaIuJsdZjQbYk5n/Gr2p4TtpGwghYK9cJ0cckVtZ6ZC80Gt6niyYIKU5MsMN3XTvl3bTWwmQ+feUpiW2pm4H7VojBw+hWbdJhE/Vl+109+SyVApjUQV85cZgo+Te333fikEICJ+cjSAEGIRbQg0rUsoCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754992620; c=relaxed/simple;
-	bh=kZ2l5x950PA0cR5I+Bh1ES8Lujux+bvQVQOPWBN9iz0=;
+	s=arc-20240116; t=1754992567; c=relaxed/simple;
+	bh=Jc6UjfTcQvZWgyuziRpzBFM1KCrtVqYio7YrhWkGjvg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CjODPMt4Peie6rkKPt/dyJ0QAPjfFBV1ULJOLPwTRZWOFFM0rgppz8jy/6dXmzcO/b8ZBPu1GxhmbhSqvrnW8fZssNS/fBohRbqN+zdu1tPC92saVCGOOdInSOvu6wFmObirz3NhpPqaiPxWq6FfJcCfzCZQmSNfCpnxogD1JXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fxOupTQL; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1754992618; x=1786528618;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kZ2l5x950PA0cR5I+Bh1ES8Lujux+bvQVQOPWBN9iz0=;
-  b=fxOupTQLXW2woqAZkKM0GBwShs4XLJcDPFw47AGMJq5WzEIdlU9dQtHW
-   2IshLG/RJl8NERSSxDS+7ak3LzN7i6p7LITkYOywXozbzaL9BWfqcISVN
-   3+zJAzE3XNbJWfs5ClFN0ZJmgL04pI6bXZFkaTBPYCWSt81yXQztSAcO5
-   thFs+H0Xh6GbE0lSIuk17hTUa0tQ4xshAgPrZN6GBneXlSkyHVgmeF8cQ
-   k/b9QX7ppc/7gXjaAPP5ZBtml0rrcWUL8+7WA1GY7PX8JuOkjHnCTKzMe
-   l1nm1MEEFQxy4zbXzKOrouRBdSAe4JotS963EqNE99k1QTPPu0uNzMg1A
-   Q==;
-X-CSE-ConnectionGUID: Y2Z3js9JRT+KIe+iW1Rzgw==
-X-CSE-MsgGUID: 08MeM3WYRgm0d8TErknVuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11518"; a="67968760"
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; 
-   d="scan'208";a="67968760"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2025 02:56:58 -0700
-X-CSE-ConnectionGUID: RkPC6m94SoKqMbnl2CRniA==
-X-CSE-MsgGUID: 9h5Ou5W5QQuC4liiIRCzig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,284,1747724400"; 
-   d="scan'208";a="165655966"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by fmviesa007.fm.intel.com with ESMTP; 12 Aug 2025 02:56:54 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ullk8-0006eW-2k;
-	Tue, 12 Aug 2025 09:56:39 +0000
-Date: Tue, 12 Aug 2025 17:55:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: ~_xllx_ <_xllx_@git.sr.ht>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>, rust-for-linux@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH linux] of: resolves TODO for copy_from_slice
-Message-ID: <202508121650.l7ZSniGd-lkp@intel.com>
-References: <175489428990.9320.6825335165759789458-0@git.sr.ht>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hy+2vMfAg9fOWfemYKGbbyV9ycgXBudBY6gSpzzdntbMv9lSSZYcerei/9wgbVDme0mUE/ErmIKm/rj7WJRHcC13wx0M5ot5KiFGrwLM+TdIHCC8ltPj5811E6BQJPfk8XVsVqTZpIe9N4o40uqqyccNe0qGBUfu2k/5vaec96A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HR/wDnWj; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id A7B9A3D5;
+	Tue, 12 Aug 2025 11:55:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754992509;
+	bh=Jc6UjfTcQvZWgyuziRpzBFM1KCrtVqYio7YrhWkGjvg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HR/wDnWjoEx6ULy6D4nn+zWGXxDgeyYjkra3kB1vPWDoUNiH9LNSm4NLhq91Jm+eg
+	 0W3+I+BKlvUc8had2s1myxVGNC/2Vl5oBrmBNmb18Ap60IBtTsVPwph/ogC/gOV+fG
+	 7QnPJqG8jllMngW/Th7BLSigM759CA6JBFuS6338=
+Date: Tue, 12 Aug 2025 12:55:43 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Will Whang <will@willwhang.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image
+ sensor
+Message-ID: <20250812095543.GJ30054@pendragon.ideasonboard.com>
+References: <20250810220921.14307-1-will@willwhang.com>
+ <20250810220921.14307-2-will@willwhang.com>
+ <20250811-successful-military-dragon-d72486@kuoka>
+ <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
+ <f12e6ff3-6ec3-487f-bf9c-0f8c06ee6444@kernel.org>
+ <CAFoNnrxhUof8BBrefm1L1peTxg==Koz72TY+54G_8QUy-rrT8g@mail.gmail.com>
+ <e695c61a-e183-4eea-a7f6-1b2861b2129f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <175489428990.9320.6825335165759789458-0@git.sr.ht>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e695c61a-e183-4eea-a7f6-1b2861b2129f@kernel.org>
 
-Hi ~_xllx_,
+On Tue, Aug 12, 2025 at 08:47:12AM +0200, Krzysztof Kozlowski wrote:
+> On 12/08/2025 08:31, Will Whang wrote:
+> > On Mon, Aug 11, 2025 at 11:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >> On 12/08/2025 04:47, Will Whang wrote:
+> >>> On Mon, Aug 11, 2025 at 1:01 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>>> On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
+> >>>>> +description:
+> >>>>> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
+> >>>>> +
+> >>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    enum:
+> >>>>> +      - sony,imx585
+> >>>>> +      - sony,imx585-mono
+> >>>>
+> >>>> I don't understand this second compatible. Is this different hardware?
+> >>>> Can you point me to "mono" datasheet?
+> >>>>
+> >>>> Your description should explain this. Commit msg as well, instead of
+> >>>> speaking about driver (in fact drop all driver related comments).
+> >>>>
+> >>> Mono version of this sensor is basically just removing the bayer
+> >>> filter, so the sensor itself actually doesn't know if it is color or
+> >>> mono and from my knowledge there are no registers programmed in the
+> >>> factory that will show the variant and model number. (That is why when
+> >>> the driver probing it only test blacklevel register because there are
+> >>> no ID registers)
+> >>> Originally in V1 patch I've made the switch between color and mono in
+> >>> dtoverlay config but reviewer comments is to move it to compatible
+> >>> string and not property.(https://lore.kernel.org/linux-media/20250703175121.GA17709@pendragon.ideasonboard.com/)
+> >>
+> >> You only partially answer and judging by mentioning driver below:
+> >>
+> >>> In this case, what would you recommend?
+> >>>
+> >>> compatible:
+> >>>   enum:
+> >>>     - sony,imx585
+> >>>     - sony,imx585-mono
+> >>>   description: IMX585 has two variants, color and mono which the
+> >>> driver supports both.
+> >>
+> >> ... I still have doubts that you really understand what I am asking. Is
+> >> this one device or two different devices?
+> > 
+> > One device that has two variants: IMX585-AAMJ1 (Mono) and IMX585-AAQJ1
+> > (Color). Silicon-wise the difference is just with or without bayer
+> > filter.
+> 
+> Then I would propose to use sony,imx585-aamj1 and -aaqj1 with short
+> explanation either in comment or description about difference in RGB
+> mosaic filter.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linux/master]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/_xllx_/of-resolves-TODO-for-copy_from_slice/20250811-144924
-base:   linux/master
-patch link:    https://lore.kernel.org/r/175489428990.9320.6825335165759789458-0%40git.sr.ht
-patch subject: [PATCH linux] of: resolves TODO for copy_from_slice
-config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20250812/202508121650.l7ZSniGd-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250812/202508121650.l7ZSniGd-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508121650.l7ZSniGd-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> error[E0080]: evaluation of constant value failed
-   --> rust/doctests_kernel_generated.rs:6978:11
-   |
-   6978 |          (of::DeviceId::new(c_str!("test,device")), ())
-   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ evaluation panicked: copy_from_slice: source slice length does not match destination slice length
-   |
-   note: inside `rust_doctest_kernel_alloc_kbox_rs_7::kernel::of::DeviceId::new`
-   --> rust/kernel/of.rs:42:9
-   |
-   42   |         of.compatible.copy_from_slice(src);
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the failure occurred here
---
->> error[E0080]: evaluation of constant value failed
-   --> samples/rust/rust_driver_platform.rs:88:7
-   |
-   88 |     [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
-   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ evaluation panicked: copy_from_slice: source slice length does not match destination slice length
-   |
-   note: inside `kernel::of::DeviceId::new`
-   --> rust/kernel/of.rs:42:9
-   |
-   42 |         of.compatible.copy_from_slice(src);
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the failure occurred here
+Works for me. We could possibly omit the "j1" suffix too.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Laurent Pinchart
 
