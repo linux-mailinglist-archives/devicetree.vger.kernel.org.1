@@ -1,255 +1,174 @@
-Return-Path: <devicetree+bounces-203668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D40B2232E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:32:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C892FB2233F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:34:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC4A3188A2E7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:28:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C06763A814F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907BF2E8DEE;
-	Tue, 12 Aug 2025 09:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A992E88AA;
+	Tue, 12 Aug 2025 09:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="BH8Y9mql"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AfUjRdMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F591A2630
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 09:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0946C2DECD8;
+	Tue, 12 Aug 2025 09:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754990871; cv=none; b=nzFFqkXTqrSvjIl5V/JoQlaIoZ8ZLSHW1hRNvIhCFJ2AptJUPl8eyoJJY33dACP4+JCgKH6JroKEvrSJvgPeRTaW6q1gm+fpcrczGsKPnSg7Gi4WpHNDxm7c62xZcb46ts2X3EvrVIYNPeYu2xO7nPNif3Vqm64oAZxtn4T2Nsc=
+	t=1754990951; cv=none; b=R6oRKyZfmAnJ5ozNGX1nWg0DPovt7H0xnd1rc15lTY2Zzw+Ja1qahGArISXnj/dFPIQHglV2Qa0ZGJ6C7131e3Y5BiumT9k0dCqvSfNGNygLJJ7cSPnuJSVoFtlSLXMayTsO94DNzd1jPdhIzydGcZl1el76Go5KyWQlh0HkBAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754990871; c=relaxed/simple;
-	bh=PbGYvMlzqYx/gA6RLDXradsyz4rLJzdKXURDIyRfsNY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=uqYNOe6yQkrmyduYDZm8eocvqe9ObjH3fXTYWyZ2fppggiuC4H2/w18UNldECtGbbbY/UbxhZcRHFuJIYNEqTqnC44cM2iWLA+p07HuGuKZqxH59LVhyc8IWUPZYrVvcAOyPgccWs5wzEiimG9VrKO3o61aAjDdjgBkQ28KVLMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BH8Y9mql; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250812092742euoutp0115d2a55652883357152e844c3db731b9~a_uQSNibS0431504315euoutp01v
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 09:27:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250812092742euoutp0115d2a55652883357152e844c3db731b9~a_uQSNibS0431504315euoutp01v
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1754990862;
-	bh=g5AHVnaN02SeQdkCUMm3F2XPQfpkP2d1uFtnb+36e6Q=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=BH8Y9mqlR6X9EU5moo2uOBrTPNczuunrcW8Ux10UL2wyrvY6vSPwG4QNWW46ESur9
-	 p2aY8bBqiCXDxtdwd7SytNYVQhwDR05pieKCiv73sttnT69PpAG+4Cm0cfBxsh6Ax7
-	 brkLi2eSJYaMJ9d6/Zs+7zjt/inUnI/tcYMKuWao=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250812092741eucas1p18ed7f17ece1be26778845f58868fb528~a_uPpEoNJ3008930089eucas1p1V;
-	Tue, 12 Aug 2025 09:27:41 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250812092740eusmtip28fd35ea1890563e079e686f04b78ca2c~a_uOfedmj3004730047eusmtip2C;
-	Tue, 12 Aug 2025 09:27:40 +0000 (GMT)
-Message-ID: <00ea8f31-140f-467f-8083-e1c044afa391@samsung.com>
-Date: Tue, 12 Aug 2025 11:27:40 +0200
+	s=arc-20240116; t=1754990951; c=relaxed/simple;
+	bh=HJ0KxG5lbLaI5hiEc8MtSryj/4T4H3dyzApWoG552iM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XwwBBfi2EMWvTcEC49vgS/0p46gjAHLj7Oh1wYtWd6jtE/zbExU+hhhlf/0t31pT5kGgliCJKwMRsUXKx9FHDfid8UVFzypFVGLnHBJNc5FvpLKh67V9V2ZuF0o7rzGyNmU65KoXgroO1nyAxr2Z7slCwkoElCwW9xnr5y1+Pqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AfUjRdMF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C5cOfl021620;
+	Tue, 12 Aug 2025 09:29:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hY8bI4WiZJyN9ZrRHaTZK1FNG9pHOnKhL0nDCGU3KD4=; b=AfUjRdMFwXGLm/1b
+	Ey67L4soNMcREcuALH4GRSa6UOpIDNKodcpnggYD6MEeEd0zBVHLNea6JxyLn3bm
+	XmUeclFofHpEmBIqboz+3Uq68fDS3khVIft45eoF55Vunr+wgFhyCXs+K2hLtVMG
+	W5lXwPFwPdCQTlKc/UyW0hCGVd8rw/mHdyMYRqUV6+Ih4Sy+hbV1FQVygZmLO7Oi
+	SWC0Eiv1/ywdtEo2uShfgjcKmH8u5bldp+qxo9dsB/7ds5ZdW6KacRlEEJ+39hhs
+	VeOz+Y5Kf71tkQ+BPrgtmWeW/i534Ya7OQXDbA1iTQpHXyDFeylsEITT3cR9LUng
+	6AkjBQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxj47jr5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 09:29:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57C9T0r8030208
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 09:29:00 GMT
+Received: from [10.50.36.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 12 Aug
+ 2025 02:28:55 -0700
+Message-ID: <76731f2a-d120-ed3d-6a1c-e339b0a6ad10@quicinc.com>
+Date: Tue, 12 Aug 2025 14:58:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/3] rust: pwm: Add complete abstraction layer
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini
-	<drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob
-	Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
-	Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, Benno Lossin <lossin@kernel.org>, Michael
-	Turquette <mturquette@baylibre.com>, Drew Fustini <fustini@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v2 0/3] media: iris: Add support for SM8750 (VPU v3.5)
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <8C20C615-DBF2-4DF9-9AB3-E78C4B1E7493@collabora.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
+ <c009fe77-8590-c467-a0a4-76bd6ec7cba4@quicinc.com>
+ <363cfc88-9664-483f-9503-9eca7c8e617c@kernel.org>
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+In-Reply-To: <363cfc88-9664-483f-9503-9eca7c8e617c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250812092741eucas1p18ed7f17ece1be26778845f58868fb528
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250717090833eucas1p16c916450b59a77d81bd013527755cb21
-X-EPHeader: CA
-X-CMS-RootMailID: 20250717090833eucas1p16c916450b59a77d81bd013527755cb21
-References: <20250717-rust-next-pwm-working-fan-for-sending-v12-0-40f73defae0c@samsung.com>
-	<CGME20250717090833eucas1p16c916450b59a77d81bd013527755cb21@eucas1p1.samsung.com>
-	<20250717-rust-next-pwm-working-fan-for-sending-v12-3-40f73defae0c@samsung.com>
-	<42C9DF97-2E0F-453B-800A-1DA49BF8F29F@collabora.com>
-	<8ad10cc3-6e7d-4a8b-b6f6-9568403ee2b3@samsung.com>
-	<8C20C615-DBF2-4DF9-9AB3-E78C4B1E7493@collabora.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNyBTYWx0ZWRfX+hKYD1oleovm
+ KVPWpZszY7bMwxaB5n7mQ49UxhWpU4ME9x74HrUhZ5Lpt4Vhae0BeNlb7Itx56Uz12crUL0g5la
+ SMTtwPlevcDO1nXg5N8Hdf4GjmYdy8rxwwxYpM20qFv3SdIBveHPkEIiwxbOcMm6W2j5HSgohmG
+ L8yV2ybe5rtoAHU/fVSjg4NUag5jeeYZz3DY07kiZwHL3hKSLI0iyPTbNqR0y+nWALIGqSteGr4
+ 4GCfn/SdpRfZK39/JP/JtCcrE2Ouw1wyK03+U4YU9gqwppnZ8BMg6gaWZZyLD1bTtmzfFABI4/P
+ pAT9RilD9/gYeJ7OgGyuvJQRjt+HGLTbVg/0gy7SEDLgmVLZWMB9WyIMfGs58hPsuIAXXXk4ej9
+ OUDvtyRw
+X-Authority-Analysis: v=2.4 cv=fvDcZE4f c=1 sm=1 tr=0 ts=689b095c cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=S3NbW_dMZBFmUMV749MA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: V-o9tBp_jgO2FBk4F_6rdr1N7abrqWlo
+X-Proofpoint-GUID: V-o9tBp_jgO2FBk4F_6rdr1N7abrqWlo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_04,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090027
 
 
 
-On 8/6/25 14:49, Daniel Almeida wrote:
-> Hi Michal,
-> 
->> On 4 Aug 2025, at 19:29, Michal Wilczynski <m.wilczynski@samsung.com> wrote:
->>
->>
->> On 7/25/25 17:56, Daniel Almeida wrote:
->>>> +
->>>> +    /// Gets the label for this PWM device, if any.
->>>> +    pub fn label(&self) -> Option<&CStr> {
->>>> +        // SAFETY: self.as_raw() provides a valid pointer.
->>>> +        let label_ptr = unsafe { (*self.as_raw()).label };
->>>> +        if label_ptr.is_null() {
->>>> +            None
->>>> +        } else {
->>>> +            // SAFETY: label_ptr is non-null and points to a C string
->>>> +            // managed by the kernel, valid for the lifetime of the PWM device.
->>>> +            Some(unsafe { CStr::from_char_ptr(label_ptr) })
->>>> +        }
->>>> +    }
+On 8/12/2025 1:29 PM, Krzysztof Kozlowski wrote:
+> On 12/08/2025 09:52, Dikshita Agarwal wrote:
 >>>
->>> nit: this can be written more concisely, but I personally don’t mind.
->>
->> Do you have something specific in mind ? I think the alternative way of
->> expressing this would use NonNull, but somehow this feels less readable
->> for me.
-> 
-> Yes, an early return, i.e.:
-> 
-> if label_ptr.is_null() {
->   return None
-> }
-> 
-> It saves you one level of indentation by removing the else branch.
-> 
->>
->>
->>>> +
->>>> +/// Trait defining the operations for a PWM driver.
->>>> +pub trait PwmOps: 'static + Sized {
->>>> +    /// The driver-specific hardware representation of a waveform.
->>>> +    ///
->>>> +    /// This type must be [`Copy`], [`Default`], and fit within `PWM_WFHWSIZE`.
->>>> +    type WfHw: Copy + Default;
+>>> v4l2-compliance report:
 >>>
->>> Can’t you use a build_assert!() here? i.e.:
+>>> v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+>>> v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
 >>>
->>>    #[doc(hidden)]
->>>    const _CHECK_SZ: () = {
->>>        build_assert!(core::mem::size_of::<Self::WfHw>() <= bindings::PWM_WFHWSIZE as usize);
->>>    };
 >>
->> This doesn't work i.e the driver using oversized WfHw compiles
->> correctly, but putting the assert inside the serialize did work, please
->> see below.
-> 
-> Can you show how it looks like with the build_assert included? Just as a sanity check.
-
-For a sanity check, here’s the code I added to the PwmOps trait, exactly
-as you suggested:
-
-#[doc(hidden)]
-const _CHECK_SZ: () = {
-    build_assert!(core::mem::size_of::<Self::WfHw>() <= bindings::PWM_WFHWSIZE as usize);
-};
-
-To test it, I went into the pwm-th1520 driver and changed its WfHw
-implementation to be larger than PWM_WFHWSIZE. I expected the build to
-fail because of the build_assert!, but it compiled without any errors.
-
-This is why I concluded it "doesn't work" in this position, whereas
-placing the check inside the serialize function did cause a (linker)
-error as expected. I'm probably missing something subtle here.
-
-> 
+>> Thank you for running the v4l2 compliance tests with your patches. While
+>> these tests are helpful for verifying API compliance, they do not cover the
+>> actual functional aspects of the new SOC support being added.
 >>
->>
->>>
->>>> +        Err(ENOTSUPP)
->>>> +    }
->>>> +
->>>> +    /// Convert a hardware-specific representation back to a generic waveform.
->>>> +    /// This is typically a pure calculation and does not perform I/O.
->>>> +    fn round_waveform_fromhw(
->>>> +        _chip: &Chip<Self>,
->>>> +        _pwm: &Device,
->>>> +        _wfhw: &Self::WfHw,
->>>> +        _wf: &mut Waveform,
->>>> +    ) -> Result<c_int> {
->>>> +        Err(ENOTSUPP)
->>>> +    }
->>>
->>> Please include at least a description of what this returns.
->>
->> Instead I think it should just return Result, reviewed the code and it's
->> fine.
->>
-> 
-> Ack.
-> 
->>>
->>>> +/// Bridges Rust `PwmOps` to the C `pwm_ops` vtable.
->>>> +struct Adapter<T: PwmOps> {
->>>> +    _p: PhantomData<T>,
->>>> +}
->>>> +
->>>> +impl<T: PwmOps> Adapter<T> {
->>>> +    const VTABLE: PwmOpsVTable = create_pwm_ops::<T>();
->>>> +
->>>> +    /// # Safety
->>>> +    ///
->>>> +    /// `wfhw_ptr` must be valid for writes of `size_of::<T::WfHw>()` bytes.
->>>> +    unsafe fn serialize_wfhw(wfhw: &T::WfHw, wfhw_ptr: *mut c_void) -> Result {
->>>> +        let size = core::mem::size_of::<T::WfHw>();
->>>> +        if size > bindings::PWM_WFHWSIZE as usize {
->>>> +            return Err(EINVAL);
->>>> +        }
->>>
->>> See my previous comment on using build_assert if possible.
->>
->> So I did try this and it does work, however it results in a cryptic
->> linker error:
->> ld.lld: error: undefined symbol: rust_build_error
->>>>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
->>>>>              drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDriverData>>::read_waveform_callback) in archive vmlinux.a
->>>>> referenced by pwm_th1520.2c2c3938312114c-cgu.0
->>>>>              drivers/pwm/pwm_th1520.o:(<kernel::pwm::Adapter<pwm_th1520::Th1520PwmDriverData>>::round_waveform_tohw_callback) in archive vmlinux.a
->> make[2]: *** [scripts/Makefile.vmlinux:91: vmlinux] Error 1
->>
->> I assume this could be fixed at some point to better explain what
->> failed? I think putting the assert in serialize functions is fine and
->> the proposed _CHECK_SZ isn't really required.
->>
->> I would love to do some debugging and find out why that is myself if
->> time allows :-)
-> 
-> There is nothing wrong here. A canonical Rust-for-Linux experience is stumbling
-> upon the error generated by build_assert and being rightly confused. People ask
-> about this every few months :)
-> 
-> This just means that the build_assert triggered and the build failed as a
-> result. IOW, it means that your build_assert is working properly to catch
-> errors.
+>> Please run a decoder use-case using either v4l2-ctl or GStreamer (GST) and
+>> add the results in this cover letter.
+> You did not provide such details on your submission:
+> https://lore.kernel.org/all/20250704-iris-video-encoder-v1-0-b6ce24e273cf@quicinc.com/
 
-Yeah it is working correctly, I was just hoping errors can be somehow
-made more informative :-), but it is hard and would require some support
-from compiler as I imagine.
+I have mentioned in my series that I have used both v4l2-ctl and GStreamer
+(GST) for encoder testing, in addition to running v4l2-compliance. That is
+what I am asking you to do as well.
 
-> 
-> — Daniel
-> 
-> 
+Your cover letter only mentions v4l2-compliance, which does not verify the
+actual functionality of the driver.
 
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+As a maintainer, I believe it is my responsibility to ensure that anyone
+enabling support for any SoC with this driver has tested its basic
+functionality. Please note, my intention is not to block anyone’s patches.
+
+To clarify, I am not asking you to provide any test reports. If you have
+already tested this series with v4l2-ctl or GST, please just mention it in
+your cover letter.
+
+Thanks,
+Dikshita
+> 
+> so asking others of this is just unfair and unjustified obstacle. If you
+> have technical comments, then share. If you are just making fake
+> obstacles to stop some patchset then refrain from commenting.
+> 
+> Unless you want statement like:
+> 
+> 
+> All patches have been tested with v4l2-compliance, v4l2-ctl and
+> Gstreamer on SM8750.
+> 
+> Then I can give you such statement, just like you did for your patchset:
+> 
+> All patches have been tested with v4l2-compliance, v4l2-ctl and
+> Gstreamer on SM8750.
+> 
+> Best regards,
+> Krzysztof
 
