@@ -1,210 +1,150 @@
-Return-Path: <devicetree+bounces-203913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB11FB22EB9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:15:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E7BB22ECC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 585026249FC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:12:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EC1D189FED6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D049D2FAC1A;
-	Tue, 12 Aug 2025 17:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5172FDC25;
+	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="R93pjl1Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrx7ONev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662FC2F83D8
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 17:12:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433802FDC22;
+	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755018737; cv=none; b=Qmmcu3KucZanQXvj4TK8skaHzykjLg9iqhgcE2F5aH7/ft3YFJE5c13lUpqEcr4oHMLskr4e1jKiGszq1HLJkvAS3Md7yyoXragxdWnBTYMq5gJFBbOVL1B540UF2yjVYlD22PWM14LOsvFwwankVD+9fC/lRXxfohcYqCq+GwE=
+	t=1755018981; cv=none; b=CP7rVoGAELN/lMJ3DXpqRkOvURCoI9DnClLu4dqdG15LlaiEWmWcZvWQYJGtIwZp+yioW77dl/w+mz9sYSMbooTyLSyRJLpF6xsJAPYWzpz2+vb7k5USpWjzfs3tYWmPD5rlv+OmcGSZ84nUo0STtQgEUH44wUhUpmdFVKpaKAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755018737; c=relaxed/simple;
-	bh=lS/40P8nQMXKSvQR6zaZadkefSkKwNcHGpfg+Wj5eCw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gMcAgfBxVCSLtWWcGVOmiiCGSCyvTSXvFkuP8FOZ+nybCsiyEFEAoJRfTP92yOy/FtmtQ7RLVQ5NeBpm1MeA+cA/DfI+3apHC84y3okChXxdan6S3FaR5M/bBl5osMPhBkDxme+RxENu5+B/KU9vo5pJxvAo8gNxJbASYiI8nto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=R93pjl1Z; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1755018733;
- bh=cdeSFqQnzEBtE1cji6fpW5bK8huqaFlZYcJ7e7uALrE=;
- b=R93pjl1ZZ75pMZc2by7v1hRq+D3BHYcg6Bpqis2cMw0DpZKCniTjhHf0I7U0zAFogZ9PFmGgp
- 3knqf1bXc4HAv1K6kmDIW1aEZOkFEauIDexJ9ZEcZsqTNkUlTzr2Yj5wDdYrjmeYSpVBmO5qnMI
- 1BvKG1MirGuMLNdWmRqh+pmuBmiza1MslPSyF8l/G08B0bGIoWk1+Heg+bFCf/sr7qgZhbWsz/z
- vczMVX/S9T1IBHPIW6T8FpPZ0cDsyOQA6NGcUpTSjD3T/fRFwvDgdaQfksWmYGfRZu7QdaNqUp3
- UEe2zonY8paIojmRU4REBTB53mJc+gQIMzYKO+Iz1/XQ==
-X-Forward-Email-ID: 689b75bff092412ac26312e8
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <64d551d7-924a-48af-96ca-224fa94543d8@kwiboo.se>
-Date: Tue, 12 Aug 2025 19:11:21 +0200
+	s=arc-20240116; t=1755018981; c=relaxed/simple;
+	bh=hiKx5h6WgJ1kRSlNqANQXTbZ/qufuAsjkmYJWLdzY/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ck0C9EfIyaAZn6nRNte/iPdPCjH1XmIkr0spdv5AJ3iBO+V2NkWGQg1kA3wOOi5E7i7E0VGhX2X+P3liZb6AVXLMv8xK0tWg7l793vkKloF01ssxPsxvV33Ng6XD0Pi/wl82QwzciPGK7GBwybDKVjlo/l5PxL35zRyf3jFG4jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrx7ONev; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085B8C4CEF9;
+	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755018981;
+	bh=hiKx5h6WgJ1kRSlNqANQXTbZ/qufuAsjkmYJWLdzY/A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=rrx7ONevt651nfLg0mqbamZT+I9vsT7FOdqYPWXahJLbdCSR9mxCrDH69WVkjOJFJ
+	 sQrSPjjyETzpVgPm/FHFSlCO56TxP9G1ojEVjiQONhbWjmHp/jN3AGYxeDXB4e9tl1
+	 glmCD6QGhW2LROTweKFIBVLIf3b2wlfF0JZzidE0Sv/duoSwFiK67XXeW0tyfVD0p1
+	 qFw12ZcpeprdH93mFyOicmwAeeVdeemJK2Apu8OvKbP5yYC2TKznK1bubWNGb9egnq
+	 3Gt1V6Wv6p+XqgkHEaM4Xh6Q+NAEFXFo+NMzcls9CuGdnwu7g9utWKlCFpqWlmxiMv
+	 j2QJ2LTmx0ywA==
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-af96d097df5so1043620266b.3;
+        Tue, 12 Aug 2025 10:16:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUcx18mKhV4JI1t8hY+1EK/pYbtlbJacs9/dGMXcGP0F1tJo/fx7oiK4/ad23FMCzYNHKd3Bz6pJnDDKmeU@vger.kernel.org, AJvYcCV5F5izSu4RvsSDC5t2G/xgKiJiI8SvnYlgJUudNcjZBq1CDRiVHATAbynHblTLczX9PqVP1B4W1lZT2g==@vger.kernel.org, AJvYcCXk58MGqzwg1JHt7AjAyuf/nBCfTSz1NZDx73pBH7+q+Ws6OEPxScLcVq0oBHnvUQuPenmiE4h4DCdx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlQynzZXfaQXB2ICxMvHTVDXVj+d/JIGtI8eiRfwqjOnYcSZl0
+	Lg7qqEeP6JCEEeb9BX19Q36209UgT8fzA5KiJIs7aFqi+qid5JpWDA/0IBp+29W3ry1jzpjdVP9
+	1C88lpomgDISsl+uJiAzNZ5Ff4gANrA==
+X-Google-Smtp-Source: AGHT+IEBE2ikhAU2DNl85LpL+NhY5CizUSURSGTC9MFOW45Us0P1xe9kfUVQc4IbWaS2z6b1ZX94B9hdIEwvFsOIwvk=
+X-Received: by 2002:a17:906:c145:b0:ae3:4f80:ac4c with SMTP id
+ a640c23a62f3a-afca4cca31fmr10795866b.12.1755018979494; Tue, 12 Aug 2025
+ 10:16:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Alex Bee <knaerzche@gmail.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <DC0FTXJNW0KB.3I8DLNHJVL21O@cknow.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <DC0FTXJNW0KB.3I8DLNHJVL21O@cknow.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1754996033.git.christophe.leroy@csgroup.eu>
+ <0b56ef403a7c8d0f8305e847d68959a1037d365e.1754996033.git.christophe.leroy@csgroup.eu>
+ <0fd6fefc-9fad-4ea6-a619-e9f480747ac0@kernel.org>
+In-Reply-To: <0fd6fefc-9fad-4ea6-a619-e9f480747ac0@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Aug 2025 12:16:08 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
+X-Gm-Features: Ac12FXw2MCpi_Gef6Ss--eZgTnXi88_EsAQqYxE-YlC_gadE4Co6lYS79wZ_vkE
+Message-ID: <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: soc: fsl: qe: Add an interrupt
+ controller for QUICC Engine Ports
+To: Krzysztof Kozlowski <krzk@kernel.org>, Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Diederik,
+On Tue, Aug 12, 2025 at 10:23=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 12/08/2025 13:02, Christophe Leroy wrote:
+> > The QUICC Engine provides interrupts for a few I/O ports. This is
+> > handled via a separate interrupt ID and managed via a triplet of
+> > dedicated registers hosted by the SoC.
+> >
+> > Implement an interrupt driver for it for that those IRQs can then
+> > be linked to the related GPIOs.
+> >
+> > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> > ---
+> >  .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 63 +++++++++++++++++++
+> >  1 file changed, 63 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
+l,qe-ports-ic.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-po=
+rts-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports=
+-ic.yaml
+> > new file mode 100644
+> > index 0000000000000..7c98706d03dd1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.=
+yaml
+> > @@ -0,0 +1,63 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +
+> > +title: Freescale QUICC Engine I/O Ports Interrupt Controller
+> > +
+> > +maintainers:
+> > +  - name: Christophe Leroy
+> > +    email: christophe.leroy@csgroup.eu
+>
+> Oh no...
+>
+> > +
+> > +description: |
+> > +  Interrupt controller for the QUICC Engine I/O ports found on some
+> > +  Freescale/NXP PowerQUICC and QorIQ SoCs.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - fsl,mpc8323-qe-ports-ic
+> > +      - fsl,mpc8360-qe-ports-ic
+> > +      - fsl,mpc8568-qe-ports-ic
+> > +
+> > +  reg:
+> > +    description: Base address and size of the QE I/O Ports Interrupt C=
+ontroller registers.
+> > +    minItems: 1
+> > +    maxItems: 1
+>
+> This was never tested but more important this and everything further
+> looks like generated by AI. Please don't do that or at least mark it
+> clearly, so I will prioritize accordingly (hint: AI generates poor code
+> and burden to decipher AI slop should not be on open source reviewers
+> but on users of AI, but as one of maintainers probably you already know
+> that, so sorry for lecturing).
 
-On 8/12/2025 2:11 PM, Diederik de Haas wrote:
-> Hi Jonas,
-> 
-> On Sun Aug 10, 2025 at 11:24 PM CEST, Jonas Karlman wrote:
->> This series add a HEVC backend to the Rockchip Video Decoder driver.
->>
->> With the dependent H.264 High 10 and 4:2:2 profile support series
->> finally merged there is finally time to send a v2 with minor changes and
->> a suggested code style fix of this series. v1 of this series has been
->> fully functional up until recent unstaging of the rkvdec driver.
->>
->> A version of this HEVC backend has been in use by the LibreELEC distro
->> for the past 5+ years [1]. It was initially created based on a copy of
->> the H264 backend, unstable HEVC uAPI controls and a cabac table + scaling
->> matrix functions shamelessly copied 1:1 from the Rockchip mpp library.
->>
->> It has since then been extended to use the stable HEVC uAPI controls and
->> improved opon e.g. to include support for rk3288 and fix decoding issues
->> by Alex Bee and Nicolas Dufresne.
->>
->> The version submitted in this series is based on the code currently used
->> by the LibreELEC distro, excluding hard/soft reset, and with cabac table
->> and scaling matrix functions picked from Sebastian Fricke prior series
->> to add a HEVC backend [2].
->>
->> Big thanks to Alex Bee, Nicolas Dufresne and Sebastian Fricke for making
->> this series possible!
->>
->> Patch 1 add the new HEVC backend.
->> Patch 2-3 add variants support to the driver.
->> Patch 4 add support for a rk3288 variant.
->> Patch 5 add a rk3328 variant to work around hw quirks.
->> Patch 6-7 add device tree node for rk3288.
-> 
-> It looks like I had a previous version of linuxtv-rkvdec-hevc-v2 branch
-> locally and that also had this commit:
-> - media: rkvdec: Keep decoder clocks gated
-> 
-> Is that one no longer needed/useful/etc ?
+If anyone needs some AI (chatgpt) converted bindings, my "dt-convert"
+branch has ~800 of them. Feeding the warnings back to AI to fix was
+somewhat effective. The result is not the worst I've seen submitted.
+It saves some of the boilerplate, but can't fix things that are just
+wrong or unclear in .txt bindings. Despite my 'prompt engineering'
+attempts, it still tends to get the same things wrong over and over.
 
-I do not think it is, could possible be to keep power consumption at
-minimum while decoding. Some parts enable auto gating and then we
-disable it when decoding is complete. With auto-suspend the entire block
-is disabled anyway so this probably did not make any noticeable
-difference and could instead introduce new possible issues.
-
-> 
-> And 'chewitt' also had a commit to fix 8/10-bit selection:
-> https://github.com/chewitt/linux/commit/4b93b05d2ca608bc23f1d52bcc32df926d435c7c
-> "WIP: media: rkvdec: fix 8-bit/10-bit format selection"
-> 
-> I haven't tried that one (yet), but did  try an other variant with
-> changing the ordering in rkvdec_hevc_decoded_fmts but that didn't work
-> in my tests. (Can ofc be PEBKAC)
-
-The format selection in kernel for this series should be correct,
-however to ensure 10-bit works you need following for ffmpeg-v4l2request
-to select and use 10-bit pixel formats:
-
-libdrm 2.4.104+ (NV15) / 2.4.118+ (NV20)
-- 10-bit drm formats, ffmpeg v4l2request test with a #ifdef
-
-linux headers v6.16-rc1+ (NV15/NV20)
-- 10-bit v4l2 pix fmt, ffmpeg v4l2request test with a #ifdef
-
-FFmpeg v4l2request will not negotiate use of 10-bit formats without
-DRM_FORMAT_NV15/NV20 and V4L2_PIX_FMT_NV15/NV20 defined when ffmpeg was
-compiled.
-
-That would be the most likely issue if only 8-bit formats is working.
-
-> 
-> Would that be useful? I do/did have consistent problems with playing
-> 10-bit encoded video files.
-
-Looking quickly at the 'fix 8/10-bit selection' commit the issue is that
-rkvdec_hevc_get_image_fmt() was incomplete to begin with. The
-rkvdec_hevc_get_image_fmt() in this series has been correct since v1.
-
-> 
->> This was tested on a ROCK Pi 4 (RK3399) and Rock64 (RK3328):
->> <snip>
->>
->> Please note that there is a known issue with concurrent decoding,
->> decoding errors in one decode session may affect a separate session.
->> The only known mitigation to this is to pause decoding for some time
->> and/or do a full HW reset, something to handle in future series.
-> 
-> Or would that be (potential) material for a future series as well?
-
-Yes, adding proper HW reset support is something for a future series.
-
-Regards,
-Jonas
-
-> 
-> Cheers,
->   Diederik
->>
->> <snip>
->>
->> Alex Bee (4):
->>   media: rkvdec: Add variants support
->>   media: rkvdec: Add RK3288 variant
->>   media: rkvdec: Disable QoS for HEVC and VP9 on RK3328
->>   ARM: dts: rockchip: Add vdec node for RK3288
->>
->> Jonas Karlman (3):
->>   media: rkvdec: Add HEVC backend
->>   media: rkvdec: Implement capability filtering
->>   media: dt-bindings: rockchip,vdec: Add RK3288 compatible
->>
->>  .../bindings/media/rockchip,vdec.yaml         |    1 +
->>  arch/arm/boot/dts/rockchip/rk3288.dtsi        |   17 +-
->>  .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
->>  .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  826 ++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-regs.h    |    4 +
->>  .../platform/rockchip/rkvdec/rkvdec-vp9.c     |   10 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.c   |  184 +-
->>  .../media/platform/rockchip/rkvdec/rkvdec.h   |   15 +
->>  9 files changed, 2886 insertions(+), 21 deletions(-)
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-> 
-
+Rob
 
