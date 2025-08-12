@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-203894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66655B22D78
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:27:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9917B22DA0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:31:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74B8C1886A01
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:24:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C6EA62376A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEE82F6579;
-	Tue, 12 Aug 2025 16:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C6A2FA0C0;
+	Tue, 12 Aug 2025 16:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bkUWwKyb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp4fASVs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C43532F5494;
-	Tue, 12 Aug 2025 16:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6152F8BEF;
+	Tue, 12 Aug 2025 16:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755015826; cv=none; b=hDw2LvZ1OwuPC0gh4bY+rQsAaJgyA5ADEN2LONsyA7olFfRM1vE2BRohW5GXLU7P0d+yqQJU8rZkSyKr6GWMDSxDZnPV6wwxqWcjCNA/zK2Kogy6j8PYZb7dDQud/gtJACqsIhuxSeX42jS53G8tTUN60/aJdEqHLZwmVPIsP8o=
+	t=1755015841; cv=none; b=jH6Unj6ta6p+ejp8wMjYBfxRTBpTt4e37tp3enZ0OCEG130Vj8RXsKgPEooBK8X31Ztluuoe5EV3vbSl2uo8/8W1Csf189qUDC/O8bnvpIup5mA4yuQ4uiGTGN7onCfblt+hRBA+tnGciyO5tZHtaf4zlHGMgNjfAIBsXx9dLMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755015826; c=relaxed/simple;
-	bh=aCT0NA5XFbhw2WWxBE1dioUETYz3wro3ExCaYb1idqE=;
+	s=arc-20240116; t=1755015841; c=relaxed/simple;
+	bh=MaZ8xxpsRnmxn0uraPxFI2200TjLgvcQp6f3aJflkgU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FoyVBxrY9LIeYPNaQH0zSG5Nb69qFrx0+gwFY65msuP6UCtOtj2mTUH0mL4dpskpMso4350avIOIfElRBoD2HeNmAiS7aHNmQpIdWN3A/3ZBCuRXy5ewN1Ji47abDfwse5WoFSz46P+ZqtMyDBxexWmEBO66p2YyBxcMK9vYkdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bkUWwKyb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57D87C4CEF6;
-	Tue, 12 Aug 2025 16:23:44 +0000 (UTC)
+	 MIME-Version:Content-Type; b=kFlbFIu58wpLCFk0Ovkw7+JpOJScUTATyT7HvBW9URlEqBB99MQawcI6heMdWXTVM135rzgetA7TjsHGaTq1cMx+Ujk7r1VXpbuWPfGWzTqi0HTLj8GHjrWolgcAtlnc5X8xObf4HSoLHmHJNcihXkw/N5iLL/LLHHGHFLx55Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gp4fASVs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94512C4CEF8;
+	Tue, 12 Aug 2025 16:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755015826;
-	bh=aCT0NA5XFbhw2WWxBE1dioUETYz3wro3ExCaYb1idqE=;
+	s=k20201202; t=1755015841;
+	bh=MaZ8xxpsRnmxn0uraPxFI2200TjLgvcQp6f3aJflkgU=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bkUWwKybhiKKgdZKDbCQtsMsNZNEhzFvXy3HaKYk/SpaVvx8446Si+N7M9EhLQapY
-	 3u+KtcSeJFzrbhMeft0SyEK+YFdWjQHAaq/r16XWspDEGYvrmKleFz6kOmqIWXAojO
-	 LR+frZYU08PwfKAkHMkbNX6XONbh94ROZe/pijrvDmrLIQ6wL/0mQTLZc9WYkATOxu
-	 M5G21/48F212F6/eyZWOoltGTcO1IypMlYJAkePMySl3fmeMhmeSMgLk+kK9Gpsatu
-	 zHWyzIRBpVh3bYx20Sgr81/wgKleWPbehMuRqv+mwDIOyHkdGDo7GWbRF+wWNfEFNB
-	 gVpltKiqca+Ug==
+	b=gp4fASVsccI+2W+hpv6GZtrdwpXf1NgENA4Eptn+jeIBZmX1jiI5DS0V4B44XqyxV
+	 sy9KW0tE/Kdk9+jFpIItAr6biTBwdigR8BIXmVZsT5QGUKQ6cf3v7WON0DCbsN3wYg
+	 /XB0t1MNr1Y0q5PtzbLnQxn928bh6K+5/s9KTPffH7cOpT+FFW5fP/+U+xsiN0uBNs
+	 Ucl2qSnrw1cZ30IwtTYNmRC6Z+invgSmrQjPCnedYrAgTNrV2qKPRr3jN4ByoTouxV
+	 x5LQO31pDIZXg+Sl63xI9Hb6FX5Z9aK5K1PmHJiFyX0lcilPk6b0n9D6XWNq4qEOB7
+	 C2jqgY682govg==
 From: Mark Brown <broonie@kernel.org>
 To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
  conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
- Nick <nick.li@foursemi.com>
+ Nick Li <nick.li@foursemi.com>
 Cc: xiaoming.yang@foursemi.com, danyang.zheng@foursemi.com, 
  like.xy@foxmail.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250723090934.480055-1-nick.li@foursemi.com>
-References: <20250723090934.480055-1-nick.li@foursemi.com>
-Subject: Re: [PATCH v5 0/5] ASoC: codecs: Add support for FourSemi
- FS2104/5S
-Message-Id: <175501582409.192378.2510847202564091154.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 17:23:44 +0100
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <EA25BCF08F8BA128+20250811104610.8993-2-nick.li@foursemi.com>
+References: <EA25BCF08F8BA128+20250811104610.8993-2-nick.li@foursemi.com>
+Subject: Re: [PATCH v6 1/5] dt-bindings: vendor-prefixes: Add Shanghai
+ FourSemi Semiconductor Co.,Ltd
+Message-Id: <175501583828.192378.16681495842244137315.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 17:23:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,16 +65,11 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-cff91
 
-On Wed, 23 Jul 2025 17:09:29 +0800, Nick wrote:
-> The FS2104/5S are Inductor-Less, Stereo, Closed-Loop,
-> Digital Input Class-D Power Amplifiers with Enhanced Signal Processing
-> FS2104 can deliver 2x15W into 4ohm BTL speaker loads,
-> FS2105S can deliver 2x30W into 8ohm BTL speaker loads.
+On Mon, 11 Aug 2025 18:46:06 +0800, Nick Li wrote:
+> Add vendor prefix for Shanghai FourSemi Semiconductor Co.,Ltd
+> Link: https://en.foursemi.com/
 > 
-> Most functions have been built and tested on EVB boards:
-> ARMv8-A, Linux version 6.16.0-rc6-v8
 > 
-> [...]
 
 Applied to
 
