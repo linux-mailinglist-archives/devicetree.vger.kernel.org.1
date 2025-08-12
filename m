@@ -1,316 +1,265 @@
-Return-Path: <devicetree+bounces-203536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F63B21B81
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:16:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71ED8B21BA3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4802417404E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71BE2169A90
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5762D320E;
-	Tue, 12 Aug 2025 03:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B1719D8AC;
+	Tue, 12 Aug 2025 03:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MBDFxaVb"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="lCumiTjL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2054.outbound.protection.outlook.com [40.107.212.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290C2274B44
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754968599; cv=none; b=RNq39/N23zcJFE/UK3N2h4teKIjMz1TNKg9C6rfGjyMLdt0jPYPaleTEVbluni3WXAY/a6SJIBbpSotIYDifDJF5l/26JRhF99VJkOAfQ5XdsxuoSzKv2lPilg4GnDZQCwhJqYg3CFB7zTvsvu3Ctftd4zPAqIKyC15OYkbBlhA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754968599; c=relaxed/simple;
-	bh=skyJQGwtjusd2fTyqK4jZTr1TkF8k+4YfPyQ2SN6Icg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gBI2XTbA3FlTVxgw2Vdip4IZW8iarp2yq1RtdUD1efoCtWNws0tPO6TDWe7SDfol7uhBpaassuFqhN1QDQmQE0oF3tegHWPu8kxQg0SykX7Evx16pGZrCI4qFbRhe4ZG2WqxPKeDZCR235EsjBx5/j2+wma/PTOz7iM7idT1hfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MBDFxaVb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57BFcYBA029349
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:16:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=GaQleQ/0rrosjfb5eT4ezc
-	NW4HeipC8aVP0mq7Y4vTg=; b=MBDFxaVbYOYRauagAVm3o0hlUDWxRl4+qPT7yM
-	dpJuXgD/tvyabIT9sCmw7oCiUa8nY2vR9k84SUu8XDpq9YFJ6290O5GvX74nwmzL
-	t1ccJVeQKSGm4ISoDC+AopmOGBeLCXP0abSWk+kIZZZmgWmNnBJ6xdzm5aTjTCvD
-	UYpdw5TaEDbv7j009yQ/WnrVi+bNm7tk6wKgNyu4NIn3h/UI+IdMorM1I7ydkyUI
-	0ELCaFDodPgrcMZ95qHNHciKnbpshdLeZ3sGaupktmqaIfPTTrl+HHFuSML9gY6k
-	+TCcpGB7TLellTwegQDXHy3pV6YxkFEUbDxUrzXOfUoSTDEQ==
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9sprds-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:16:37 +0000 (GMT)
-Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-742f52a4cc8so658030a34.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 20:16:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754968596; x=1755573396;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GaQleQ/0rrosjfb5eT4ezcNW4HeipC8aVP0mq7Y4vTg=;
-        b=Qzp6wRMZtNUxu9ANYUEStAz9Tds+ExocHhTcukoGbvpsZrxkhlI0hPfvz9F3A+NiKP
-         8kewRuAFECORqqZ2LIiSihRZODo9y58Ctivg/wGpzxBepI6CdpLqOvs7SkP+XZiloCYK
-         Z0lbixQjZRMV51NpeytTE4kezrzWvIOOLUrHZfD4jrq1DefqwCqBvX6T6h7/NX1ieXaJ
-         akqnegOFHgoZVcreAiQVEYqOzNED0+sngmkUu9ZELqbhzWuO6slQriFYjqqkpNXJM+Fr
-         PCZ5hNY4ImyhIMq0Volkrp69nUIxdWeslLvwpkPVMLDsSBh85iZAfC8uh8oisWko47Hp
-         w+Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCX65QygOVv2q8hxavFOpxlQBCRDKbqDIebE6fx5UCVrwnh8SQGB9SrsssICG4efLQ3V8/bhHUKewphk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoIoOg3r+O6kX2f922ljN1PHj+pqAMOOGCCs/1xjy1ybxAWX7M
-	2g0fqcWPaQxLpqXNXdLuOjTKH4Ovb76IL0P/Gdd6xrmnhEqgGJpCbNt66wpaRv5xgtwT5B+aaRo
-	ms8TvaMQ5O1XTV+QIirpzgk8D7Oa1RlLc8ngWBA/tg74sjc6Cl/HrRC+FJbkYn838
-X-Gm-Gg: ASbGncu/8OL+NYfwwT4oIZOcU8Equin0w4T0s3M8BogU87Wore7PX+V/LHmUg1LoYrI
-	0HPv0BzCkYHnk2TCunR1rBRztzeRVo78oF7MtZ0kT3LApcN0IWVaajOR2qgUKeeq8neXyJbJzAB
-	ELtd1JoqtFZySu9PiD/GmX26A2AzVQGDYUfnrq7+x/wlv7OdbT/tCOOtcWRksetb/L2uKEAm52d
-	kY3pxD/PBl9a+5kGrfi/FGuS+64qyIfMJy9/Viv8kXCUPxkotEnPAWvs2vZhMPuxMeXvhEWPVgn
-	EHdqdiLaEyAs97sbozzjvtkSheDgF+2AcPsSNEsghU6RC7R+9d887jPnVM1NvvlFv8EDLnEk+/g
-	2mgbBqS0RK3eM7yTp08F1M3PsuhnvUoBEbQkZ6zA=
-X-Received: by 2002:a05:6830:f83:b0:731:e808:be5f with SMTP id 46e09a7af769-74366d42fccmr1737420a34.28.1754968596043;
-        Mon, 11 Aug 2025 20:16:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEBUd+3O9UKn6bkdVs8e2VoBB59jxJamZEy/9WNxBHWOenHV77k0glG9E2TLdjfYhHXksaD6A==
-X-Received: by 2002:a05:6830:f83:b0:731:e808:be5f with SMTP id 46e09a7af769-74366d42fccmr1737404a34.28.1754968595655;
-        Mon, 11 Aug 2025 20:16:35 -0700 (PDT)
-Received: from [192.168.86.68] (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61b7c8905e1sm1251129eaf.9.2025.08.11.20.16.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Aug 2025 20:16:35 -0700 (PDT)
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Date: Mon, 11 Aug 2025 22:16:29 -0500
-Subject: [PATCH] arm64: dts: qcom: sc7280: Describe the first PCIe
- controller and PHY
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF62335C7;
+	Tue, 12 Aug 2025 03:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1754969181; cv=fail; b=Lqc7CQWJAn6UBtkx0XLKqpnSGLk/2WpqF8J+/E4urbFMvUJcy/C3iIZVldzrf6KYuyFyMJpxy7FIoaTiBi33ry9qx6VteYlrsM1AmCi9rU4NTVbaHBn0B3r5Z1Ww9OTqEby/R4gsvFdcDCUmRwqzSRMi1hGMI2I5NA9mSMC1xO0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1754969181; c=relaxed/simple;
+	bh=VyvwYTTY4MegeIxlT3jQ0PITJBpFd8xgAB6hr2tk1rk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JUrQM2OFdpgBkIDdkkNCZosvmvWUGwO5Ej8ymZCEFR2AoiMwqz/wFjPRQEyu11+207yNgkkgdZeGSIz0u3y0HxSy9Lj7xro47l/F1zFWbeMrYPuZG9z+bfjKiTj1qKSC/GHeB8tzxrqUniF7NDnCt6lB9RJuqF9VvNq0DjimfII=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=lCumiTjL; arc=fail smtp.client-ip=40.107.212.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z60xUCRb/A4FraWlSOitYkzMaOgeqnUpY2QIZNzTqaevOhg75ZYQtjDMwlyVNwt+n7UJITnLZ+vGeHeMZo7UOoHuW58m25nb6PI6cWF64T5+8YR3nugNMO04rLoplrTiiUAocIJfdObShR2/Cp0qINU8zzg6TSc7g7xpXABpxkL5Df1+rO8G7gxJX+5TCZkZ6LNjWEB9WC1zXo/vB4MPukozwl+zOZ9UAqm1MDOhIakhNhvpodb9fmrnFWqZd6Nsbqmv/G0y9NE6GQRkgg7csSqR71a6yitGOGSjDeifMkoXHi7B1VOW/68OsSXH3h63wztxQguhvQ0qbehpLZn26Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dJFPrgweUbYgMQHtvWj25zohzbbwj4tGvIrwPukKhsw=;
+ b=iczkoZib7JiFOkRr8Wrr7q8W2FZU/5tI/fOTzP8UMrsIEVc5rR2Ily2B/5N4RFRGWhEP2V8y/vm2sgYcKyi5JqmTnCP5KFQqI22ufEF8Je9jbZ7+vhaXBiFb6D/j/d9GSNLPHUQ/TwIgMTSpetoYbDyv1XuJo8BobrYb9zrMZ2xy/9ThnQlKdHjdvzXrer6GZ8tFgLJ8GuvYjs3Z+OKTBz6MizjsdRG1f0BoanMTEb0xykNXuQ2Wn66yo4omIbgEZwAgK3Yzkg/7dbRSPa/HmDwf2byeeT0NHVlgiauxJZEEJR1l4bYUYXYSOdW8kDHs0JiKbewhoBOPed2nlz8kXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dJFPrgweUbYgMQHtvWj25zohzbbwj4tGvIrwPukKhsw=;
+ b=lCumiTjLpxJSIcswBEht//pJEM/pfHIK4tJOfnmi4TJLR+QUY/1cGIFMvBILDIbWybLz04qX7Gz+WQ6YmdfnK00vmsUXGb2SHgFmiPwX51tujWzZ8WrMyPmued4wExgFLJn+X8DxXQoVKrh51dp5lhH6bIAOSdz4ItoKprH/fz0=
+Received: from BY3PR03CA0009.namprd03.prod.outlook.com (2603:10b6:a03:39a::14)
+ by PH8PR12MB7158.namprd12.prod.outlook.com (2603:10b6:510:22a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8989.16; Tue, 12 Aug
+ 2025 03:26:13 +0000
+Received: from SN1PEPF000252A2.namprd05.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::d9) by BY3PR03CA0009.outlook.office365.com
+ (2603:10b6:a03:39a::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9009.22 via Frontend Transport; Tue,
+ 12 Aug 2025 03:26:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF000252A2.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9031.11 via Frontend Transport; Tue, 12 Aug 2025 03:26:13 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 11 Aug
+ 2025 22:26:11 -0500
+Received: from [172.19.71.207] (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 11 Aug 2025 22:26:11 -0500
+Message-ID: <c627564a-ccc3-9404-ba87-078fb8d10fea@amd.com>
+Date: Mon, 11 Aug 2025 20:26:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: Issues with OF_DYNAMIC PCI bridge node generation
+ (kmemleak/interrupt-map IC reg property)
+Content-Language: en-US
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <maz@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <aJms+YT8TnpzpCY8@lpieralisi>
+From: Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <aJms+YT8TnpzpCY8@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250811-sc7280-pcie0-v1-1-6093e5b208f9@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAAyymmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDC0ND3eJkcyMLA92C5MxUA11DM2MjY/MkU8OkxDQloJaCotS0zAqwcdG
- xtbUAC4GePl4AAAA=
-X-Change-ID: 20250811-sc7280-pcie0-163237b51baf
-To: cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4939;
- i=bjorn.andersson@oss.qualcomm.com; h=from:subject:message-id;
- bh=skyJQGwtjusd2fTyqK4jZTr1TkF8k+4YfPyQ2SN6Icg=;
- b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBomrISIZSeuj4FYKAuRReAwOUK3oe0oyISoHypu
- A76YnT8bcyJAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCaJqyEhUcYW5kZXJzc29u
- QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcXGjhAAgnvRW0Kfci0GhBs/HKWfGL9HrK9Sa1BXInP3qi/
- dNbJfSzGQxtTAYz7UCPa7QMpIh9UhaVVRLC/QXTJz0TOvHCRbObnQmhcFi++uefNBAfA2OyryDw
- /e8U+X8+u3wc+98fcDzkxiDit+Ew7cRj/AbTI8AqoD+dxHWTrpY6mweMzoCtcS1W0jw7lEhvU6Y
- IDBc41MOLsL0XpMCWfHm3sAAoP1gmQ508Ns4Qy8TR2FbOTPnBnPyylPTSUwr0iBSNSDbLezKqkF
- 9AG2/b3jnDvM2gyQJA9cUS9ySGNDJrJBczzTrN2Mxkp/MNC4bFP6+C8sLbIq8trXMHjWP06Yecr
- KEwgwzcPEZJ74QEsIhxd1UylRpl8xTrJNnNfO7xDRtci2A18UHVBr1Qe+KIAZX9Puqv378Op7P7
- K82XLGjp4A9iCpC5wKSOZwkFO3YGuPsdrUFornQfD4rMbfgJJ2dqS/6DJHDrNyj7ozRVz9DEKA0
- Jpfa0G5jTgGbSg14XCWRZHpqNTDy2ayIBzj5vmzIw3jyHpt+I+Kyn8DHYt/+eteaWg5AFPAD7f5
- zthottp3mug0XunYZv1TLxkjjyJ8p1EATNxdqrAqXdW75lCGO9JtyQqOj1eBSjrL1wshWWCjLOu
- GJhWSffjVjdxQODhZv91+VUBT4KLLkLFpDQOy6ZL3D1M=
-X-Developer-Key: i=bjorn.andersson@oss.qualcomm.com; a=openpgp;
- fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
-X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=689ab215 cx=c_pps
- a=z9lCQkyTxNhZyzAvolXo/A==:117 a=DaeiM5VmU20ml6RIjrOvYw==:17
- a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=SrWXOAHHq75Mue0GltgA:9
- a=QEXdDO2ut3YA:10 a=EyFUmsFV_t8cxB2kMr4A:22
-X-Proofpoint-ORIG-GUID: 3mms7Q5hnjXCT6X6bYGoIBacnNYTqMOl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX42k9ZwlxKlbJ
- 6qO2B0i/iL0Mm4tky57NuIuofvvSmQCl8uAdBuOR1R8KnBqFgIUYsQOMAGmJircT2hUUsS+2cCw
- qp2+7Gi1NLF2TOoy6bymNw1O90cNWBSYYfMVnMGRwO+XcvgtzEAtwaGViZKNKWn9jw2LOQAlrti
- vgBqXtcHsgvY1T5VI7JMTgo6WY8ZZbI793TSu0ECzKUARwsWFpTW6lzyaXp4QPnFtfdkDuvoh9P
- MpEj2HUQuWq6NXejENg1JrAA3okNHhf76ISeSlRPorkPRiI5zlcbB0ILSAUOyEyLWozcmHYjHbp
- 11AYaSuQTjw8EPDr5ImpCKz1243fCTCtBFRuQPTmjq4ZgGuOK3o11ayyiLmnHYejvnRw3LfJbTJ
- wT+Qkq5M
-X-Proofpoint-GUID: 3mms7Q5hnjXCT6X6bYGoIBacnNYTqMOl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-12_01,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090015
+Received-SPF: None (SATLEXMB03.amd.com: lizhi.hou@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A2:EE_|PH8PR12MB7158:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04869163-1b65-4289-4555-08ddd94ffd63
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|376014|1800799024|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cUx1ekc0NEhlM0V5MThxQjBHdmIweE5ieFJoWmZ0U1lXcVhScUc2OVZTc3Jz?=
+ =?utf-8?B?TENIQU1iRklDelpZeXNLZXlKcjZyUFhWOTNacngrNXRJTzI1MHB5b0t5R1p4?=
+ =?utf-8?B?VGJERnZXQ3AxUUd6WC9JVWEyZEVtUU5WNWNvOGFqNjBBb1A5bnE2Vklibmw5?=
+ =?utf-8?B?QzFFMFpvVm5wSEkrNTllWGZjUHcwNW9uR2d5S3VMWm96MDVseDQ1VmRFdnRQ?=
+ =?utf-8?B?VDhVUnJWbXp0QVhqQk9Gemk3QmlyeFFPRUI0S2h5YktyRTNXR2ZTSWU5OS9C?=
+ =?utf-8?B?VzV3dk9IRWRvcUJnY2dQRDR4bitEOElicVZLMDFzUElVaHE4NVl3Ylo2aith?=
+ =?utf-8?B?ZHQxQjRQV3lWUW5PZkNLMW1HOVVES0ZHcFRyK2h3WE1LWHNVOE9Da0NFUDZu?=
+ =?utf-8?B?YmRaTEgxMmtEUE4rTUtNdTU5c2RWZ0tSVGNCSEFLam9KODZPU2dVM1p6UUtt?=
+ =?utf-8?B?cCt0dndXak1NZnMvRklLQ3FNcEpKRzkybGJoVm9STmpEcnkyeWMyNDVRdWE5?=
+ =?utf-8?B?NTBOREZDYTJ0VkpaVlYveUFwaEtXQmN0MnpVUW5zWWxiNVlmdmIxdVV3V1VI?=
+ =?utf-8?B?OE1sYVFSU3l5emRUQWJxVDZpM1NqR0VodzlKMWVyR0twWWRvMmhiNDA0ZDVS?=
+ =?utf-8?B?R3laR3ZlVWtNN2hjNlZtVHM2N0p6Y21pNHZMdlI2eDBIdjh5c01vMmkzNDNq?=
+ =?utf-8?B?WG4rdXNZTjJKLyswdDN4SDlQWXpRd0diY3I2UTlqcUhPcFM2RGtGenErZDJJ?=
+ =?utf-8?B?dnhCSDdDWkt2THE5eG1vOWpwb2xvWFpQeXFEbWljTEdQL0ZuUEpnTS90a1gv?=
+ =?utf-8?B?bUlxemhlM0VuajJlbGdUSjJJN0JJZ2IrN2hDWFBnQ0ZDMXJwNWhMNjNKK1Z1?=
+ =?utf-8?B?Skdwd0NyZnUzMXdyaUx2VkQ3UDBlcXFlS2JQVWxhSWpNd293TkMzRDJ4bUhi?=
+ =?utf-8?B?L2pzUytrMDV4a3pKaUVKNjJSYWhvQ1JXREJqUy80NFhvMU9qY3hUMWV0K2p6?=
+ =?utf-8?B?VmNkbkc4a2RoOUp3UDZZZ1FFOStrWGJtMXE3dlhId2hDZ0FzQlVCbzg1bWk3?=
+ =?utf-8?B?NjdtZ1NHMTBrOGdOUkYrbmhWQUxDWUZlUGV6OUxXdWxUQU5vZG1CNUhQVEJB?=
+ =?utf-8?B?VVhHSUM4YVVUMUlsNS9ldExCZlpVSVhvVFhhWjZqU0RxUDEvRW5FUnhJZDA5?=
+ =?utf-8?B?TFQrSktBVFMwTkZXbDNnVTc2OWFmb2hmS2pnUFEyVEdKZTBVbVArejVTWmFU?=
+ =?utf-8?B?L0RDbDg2d0tTTFpDVk85bGZCYzlRL2UrTldFVjdzcytxcTloSmg3UEV2SzY0?=
+ =?utf-8?B?aHRBOEFuWWFHaWJMNEV3WG94T3lvQUdINzZSTWw4Zmd5dmRCYy9SRy9janpo?=
+ =?utf-8?B?TzN2WFpDRlBSYVlyamdES1pZdTJmZ0NNbUU5VXk1S2I4c1lJRUpKTGVpcnN0?=
+ =?utf-8?B?WTY5UkJqNGdUc1RtaHRwc2ZLQy92UXNBSjc0VjIySjNRR3VtNHpva0hTWGdR?=
+ =?utf-8?B?eXAyQW9Pd0NLdkFoVzh6VkIwOHRBQi9Na1QxdUJCd2tSalI1Y284SWpsQWdZ?=
+ =?utf-8?B?RUkvRWpWZGZXb0F3ajViZU1QQkNhK2phT05vRDcxb2tpOWZNMjF1Z1czTTVz?=
+ =?utf-8?B?WjljQW1EMVdKRk8yU0N4RGtPeXRDYXZTeXRWdFl5aUdkcmJsNUFYbnJRcE5L?=
+ =?utf-8?B?K0s1RnFZTk4yYkRLRnR1Y3poOTN2d0FnbTRIR0NzK05ncTJodTM0ZjZ1ejVY?=
+ =?utf-8?B?OTVEaE5mOHhOUkcwU2l2WnpIREZkdzg3a0pNSkdOamIvbmVTY1NFZG5JcWxZ?=
+ =?utf-8?B?WkQzM1VCZ1JGeExkem1WZU8wcHRzSVZKUVJnMmpxOHhsMjA5cjl3cjI0OXpa?=
+ =?utf-8?B?Zjg3ZHVoY0hsZzk2dXRGRkNsYy95M1Y5SElZMSt3c1NFU2lBdW9SSmhZcDY3?=
+ =?utf-8?B?UmxxL3h5MHpZdkxCdW1ZOENVL2VqR0pZVmFIaEkvNE1KeVNvVUxNWWpURDRS?=
+ =?utf-8?B?dUdUUitrdkpBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 03:26:13.2514
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04869163-1b65-4289-4555-08ddd94ffd63
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF000252A2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7158
 
-Only one PCIe controller has been described so far, but the SC7280 has
-two controllers/phys. Describe the second one as well.
+On 8/11/25 01:42, Lorenzo Pieralisi wrote:
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 134 +++++++++++++++++++++++++++++++++++
- 1 file changed, 134 insertions(+)
+> Hi Lizhi, Rob,
+>
+> while debugging something unrelated I noticed two issues
+> (related) caused by the automatic generation of device nodes
+> for PCI bridges.
+>
+> GICv5 interrupt controller DT top level node [1] does not have a "reg"
+> property, because it represents the top level node, children (IRSes and ITSs)
+> are nested.
+>
+> It does provide #address-cells since it has child nodes, so it has to
+> have a "ranges" property as well.
+>
+> You have added code to automatically generate properties for PCI bridges
+> and in particular this code [2] creates an interrupt-map property for
+> the PCI bridges (other than the host bridge if it has got an OF node
+> already).
+>
+> That code fails on GICv5, because the interrupt controller node does not
+> have a "reg" property (and AFAIU it does not have to - as a matter of
+> fact, INTx mapping works on GICv5 with the interrupt-map in the
+> host bridge node containing zeros in the parent unit interrupt
+> specifier #address-cells).
+Does GICv5 have 'interrupt-controller' but not 'interrupt-map'? I think 
+of_irq_parse_raw will not check its parent in this case.
+>
+> It is not clear to me why, to create an interrupt-map property, we
+> are reading the "reg" value of the parent IC node to create the
+> interrupt-map unit interrupt specifier address bits (could not we
+> just copy the address in the parent unit interrupt specifier reported
+> in the host bridge interrupt-map property ?).
+>
+> - #address-cells of the parent describes the number of address cells of
+>    parent's child nodes not the parent itself, again, AFAIK, so parsing "reg"
+>    using #address-cells of the parent node is not entirely correct, is it ?
+> - It is unclear to me, from an OF spec perspective what the address value
+>    in the parent unit interrupt specifier ought to be. I think that, at
+>    least for dts including a GICv3 IC, the address values are always 0,
+>    regardless of the GICv3 reg property.
+>
+> I need your feedback on this because the automatic generation must
+> work seamlessly for GICv5 as well (as well as all other ICs with no "reg"
+> property) and I could not find anything in the OF specs describing
+> how the address cells in the unit interrupt specifier must be computed.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 64a2abd3010018e94eb50c534a509d6b4cf2473b..e44678b27226b8a911d8d2afa39092aa33396bec 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2200,6 +2200,135 @@ wifi: wifi@17a10040 {
- 			qcom,smem-state-names = "wlan-smp2p-out";
- 		};
- 
-+		pcie0: pcie@1c00000 {
-+			compatible = "qcom,pcie-sc7280";
-+			reg = <0 0x01c00000 0 0x3000>,
-+			      <0 0x60000000 0 0xf1d>,
-+			      <0 0x60000f20 0 0xa8>,
-+			      <0 0x60001000 0 0x1000>,
-+			      <0 0x60100000 0 0x100000>,
-+			      <0 0x01c03000 0 0x1000>;
-+			reg-names = "parf", "dbi", "elbi", "atu", "config", "mhi";
-+			device_type = "pci";
-+			linux,pci-domain = <0>;
-+			bus-range = <0x00 0xff>;
-+			num-lanes = <1>;
-+
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
-+				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
-+
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi0",
-+					  "msi1",
-+					  "msi2",
-+					  "msi3",
-+					  "msi4",
-+					  "msi5",
-+					  "msi6",
-+					  "msi7",
-+					  "global";
-+			#interrupt-cells = <1>;
-+			interrupt-map-mask = <0 0 0 0x7>;
-+			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
-+				 <&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
-+				 <&pcie0_phy>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_PCIE_0_AUX_CLK>,
-+				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-+				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-+				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-+				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-+				 <&gcc GCC_DDRSS_PCIE_SF_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_CENTER_SF_AXI_CLK>,
-+				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>;
-+			clock-names = "pipe",
-+				      "pipe_mux",
-+				      "phy_pipe",
-+				      "ref",
-+				      "aux",
-+				      "cfg",
-+				      "bus_master",
-+				      "bus_slave",
-+				      "slave_q2a",
-+				      "tbu",
-+				      "ddrss_sf_tbu",
-+				      "aggre0",
-+				      "aggre1";
-+
-+			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-+				    <0x100 &apps_smmu 0x1c01 0x1>;
-+
-+			resets = <&gcc GCC_PCIE_0_BCR>;
-+			reset-names = "pci";
-+
-+			power-domains = <&gcc GCC_PCIE_0_GDSC>;
-+
-+			phys = <&pcie0_phy>;
-+			phy-names = "pciephy";
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&pcie0_clkreq_n>;
-+			dma-coherent;
-+
-+			status = "disabled";
-+
-+			pcie0_port: pcie@0 {
-+				device_type = "pci";
-+				reg = <0x0 0x0 0x0 0x0 0x0>;
-+				bus-range = <0x01 0xff>;
-+
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+		};
-+
-+		pcie0_phy: phy@1c06000 {
-+			compatible = "qcom,sm8250-qmp-gen3x1-pcie-phy";
-+			reg = <0 0x01c06000 0 0x1000>;
-+
-+			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-+				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-+				 <&gcc GCC_PCIE_CLKREF_EN>,
-+				 <&gcc GCC_PCIE0_PHY_RCHNG_CLK>,
-+				 <&gcc GCC_PCIE_0_PIPE_CLK>;
-+			clock-names = "aux",
-+				      "cfg_ahb",
-+				      "ref",
-+				      "refgen",
-+				      "pipe";
-+
-+			clock-output-names = "pcie_0_pipe_clk";
-+			#clock-cells = <0>;
-+
-+			#phy-cells = <0>;
-+
-+			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
-+			reset-names = "phy";
-+
-+			assigned-clocks = <&gcc GCC_PCIE0_PHY_RCHNG_CLK>;
-+			assigned-clock-rates = <100000000>;
-+
-+			status = "disabled";
-+		};
-+
- 		pcie1: pcie@1c08000 {
- 			compatible = "qcom,pcie-sc7280";
- 			reg = <0 0x01c08000 0 0x3000>,
-@@ -5285,6 +5414,11 @@ mi2s1_ws: mi2s1-ws-state {
- 				function = "mi2s1_ws";
- 			};
- 
-+			pcie0_clkreq_n: pcie0-clkreq-n-state {
-+				pins = "gpio88";
-+				function = "pcie0_clkreqn";
-+			};
-+
- 			pcie1_clkreq_n: pcie1-clkreq-n-state {
- 				pins = "gpio79";
- 				function = "pcie1_clkreqn";
+Please see: 
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html
 
----
-base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-change-id: 20250811-sc7280-pcie0-163237b51baf
+2.4.3.1 mentions:
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+"Both the child node and the interrupt parent node are required to have 
+#address-cells and #interrupt-cells properties defined. If a unit 
+address component is not required, #address-cells shall be explicitly 
+defined to be zero."
 
+>
+> I found this [3] link where in section 7 there is an interrupt mapping
+> algorithm; I don't understand it fully and I think it is possibly misleading.
+>
+> Now, the failure in [2] (caused by the lack of a "reg" property in the
+> IC node) triggers an interrupt-map property generation failure for PCI
+> bridges that are upstream devices that need INTx swizzling.
+>
+> In turn, that leads to a kmemleak detection:
+>
+> unreferenced object 0xffff000800368780 (size 128):
+>    comm "swapper/0", pid 1, jiffies 4294892824
+>    hex dump (first 32 bytes):
+>      f0 b8 34 00 08 00 ff ff 04 00 00 00 00 00 00 00  ..4.............
+>      70 c2 30 00 08 00 ff ff 00 00 00 00 00 00 00 00  p.0.............
+>    backtrace (crc 1652b62a):
+>      kmemleak_alloc+0x30/0x3c
+>      __kmalloc_cache_noprof+0x1fc/0x360
+>      __of_prop_dup+0x68/0x110
+>      of_changeset_add_prop_helper+0x28/0xac
+>      of_changeset_add_prop_string+0x74/0xa4
+>      of_pci_add_properties+0xa0/0x4e0
+>      of_pci_make_dev_node+0x198/0x230
+>      pci_bus_add_device+0x44/0x13c
+>      pci_bus_add_devices+0x40/0x80
+>      pci_host_probe+0x138/0x1b0
+>      pci_host_common_probe+0x8c/0xb0
+>      platform_probe+0x5c/0x9c
+>      really_probe+0x134/0x2d8
+>      __driver_probe_device+0x98/0xd0
+>      driver_probe_device+0x3c/0x1f8
+>      __driver_attach+0xd8/0x1a0
+>
+> I have not grokked it yet but it seems genuine, so whatever we decide
+> in relation to "reg" above, this ought to be addressed too, if it
+> is indeed a memleak.
+
+Not sure what is the leak. I will look into more.
+
+
+Lizhi
+
+>
+> Please let me know if something is unclear I can provide further
+> details.
+>
+> Thanks,
+> Lorenzo
+>
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.yaml?h=v6.17-rc1
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/of_property.c?h=v6.17-rc1#n283
+> [3] https://www.devicetree.org/open-firmware/practice/imap/imap0_9d.html
 
