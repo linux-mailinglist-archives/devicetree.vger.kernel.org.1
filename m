@@ -1,146 +1,151 @@
-Return-Path: <devicetree+bounces-203636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E3FB22210
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:56:24 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04FAEB221C5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B706B18C6543
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:50:49 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BE8D54E04F9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D443F2E7628;
-	Tue, 12 Aug 2025 08:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8507C2E424B;
+	Tue, 12 Aug 2025 08:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="cYazT4E0"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="C3aucEYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4372DCF7C
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:48:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FE22E5B11;
+	Tue, 12 Aug 2025 08:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754988533; cv=none; b=VVaMcRVUa9hELHQpOa/EjxcOQooDlZADI/tpZLeDfRAlrAjL1MoYU2dPqD02lfAVwHWZ+MQiA2ISjVVvb2WA3LcPLjF024h86ciODV0MyE3JQW6Wjr41DopgJC9JpfbztLuEwr/QfNnFZMfrSvPPydGM1flOIKZYAsOBwnsPSWg=
+	t=1754988701; cv=none; b=UFgyMBNFBfGbxIDrV1wXBdsoEaabvuyn0ja67RLcSnVr7pRhb8Ar2sQF/YWhGATrYHk3RTrfDsUTbxCQshT/bt3PbQegw2pgTlXYN+MUvNEdK2iLXL2tZOaOqbPekjoEIw2XhiMh92IJjTTNzyEJ9YJPdyTgSjj1eNx6SSqIFuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754988533; c=relaxed/simple;
-	bh=aFBF5dW26m6Z+lOf9QzPL7466+Foa5N95p4seNu5zUk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mH5HvoQlYyOfZs6VUFCuZG55Oo3++BNUSi0I2aZ+esFg34lfSZh6x4HOSIfDrUmKGH27hzSVi6DwYmaWrBBzrkyxs+VjcAEbQ7CkUQf4rVnl2lR79AmFkuWYihV6T1VLnwzgyMLH8y/XBX6nWkkt63HgEf/Ef052g0N6etpyFUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=cYazT4E0; arc=none smtp.client-ip=209.85.208.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-6182ea5a6c0so2926315a12.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:48:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1754988530; x=1755593330; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=l0CFpq1HCuyeYFLbDR8k9bWBZ4oNvj1i296rXTBH/70=;
-        b=cYazT4E0MMtqGBX9s2zmIqO4LOH0HheT/sseXh61GRUfUAkg2Lv3E++8t3vqWpIxfb
-         Ku7FPCSh/4S7MsTXFqiVvlh2c9cNy39fDHjLD/6AX4MrvPU6KV7WQcsNl7dbgZwPalvN
-         oPJ25Je98xpZ35PsTYvxugW0OQ7DyObwXgtU9Aapuu61/rfv1Hf1aG6bGEMjoE/sUnP3
-         Z6/MqCh7UFQWVoZQkSpzLWCZFQAMYoFa9qYzU8CpKBGf2n22/wrThWduWnD427yDZLMF
-         JW5kkgKkU2txC8kwvFFlRDgdmv5vYhFA8MrHlUg8Kd9vHb4qfX2Oo8iGrMzYmOXvqMg2
-         dNBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754988530; x=1755593330;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l0CFpq1HCuyeYFLbDR8k9bWBZ4oNvj1i296rXTBH/70=;
-        b=q6G15JcODr2lXQoV7jtkUULN9SQGr62Duupr5H25Mb6q09EsRS7FTPSJBkA/B5VdZy
-         hGSFIGIGRInm3RQrUy2xdVmhKbgG52ccWqARSBCeUNFpuEWubZILLtFYtbCJJLjeu/Fb
-         xEHiqyAVx5Bsd7HmAMCpARrmlaJWDRdhlr9H+R0bpIGoLDp2lMbt205q2qvWzw9VXqaM
-         BREDdpWYkFGiMqxVUxDobUeBJWPQN/6fskPwsCTYOokec9VpZBlGCGjQsLDHvsLsh3Ev
-         zhHaAgy7Hul2wXWuIFeFckb0zKde/3Qr68yB7pBmLp3vSE7yKXq/QBAMtzvTSP3uqJHr
-         fmOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSXUI9/Y/HiBrPN4jE2cSrZvQVlDJqpb2LL8sdmexfBm6ZkoymqbUQfgltrxvKL2/ihhA62IoHCxJs@vger.kernel.org
-X-Gm-Message-State: AOJu0YySZVzcrRkuwaiRPobdQ1OxArZf25lnJBQHtWo+cgCpZsw8Gvbt
-	g0lT8r1YEbrD5UOqcwiof4/6pm3El88SfyoxubuEPe15eKuXCNT4MkOoZqVfqa3WUGI=
-X-Gm-Gg: ASbGncu1VMyTAQnkcloDAUI1z2HPb0etQZXBdAmeFy7MksnPKzCVU1XmBiTmkGjqF3U
-	qGTQFcohDUVEGwMdjNNoWa87ljrLsm+OKNm0LJFeuVHvEU/x31p0brvsWrSdfKf7ha+pI4T47Kw
-	K834qL38ldOjF3DcBmO4bdZeiqtaq0dH+1q7pgUN1K4NHDE9cH6ON3rIGDXZ7otEGf1Pcm2LBKF
-	xIi9rHo4zznP3xjovIg1iSeYoFtYrGav2qbl0e9sdptKB/0A+hdxLR0X7sEQ8RQIW024/Mvyhgc
-	J9AgfNkXP+R1qk/6e75AYdJNT/bBwTX/2V+xfITZ5p7kG/Oy2v3Mf/4RGKPyvdxVHiS82ZuQ4Xs
-	PU+/0u+MIWUzgoEkY7RjDKnasfePho4ov3W0m8JPZUyjNcpsvefFnSqP3nRTbTafxWA==
-X-Google-Smtp-Source: AGHT+IHtFs8w0fVJyzS1M1cginNB7x2BJdFDZRxDj5MXgzQYeyqcq0scZCRhd7hs7865IgJzSU8QUg==
-X-Received: by 2002:a05:6402:3111:b0:614:fead:3d56 with SMTP id 4fb4d7f45d1cf-617e2e8fc4amr8958140a12.32.1754988530010;
-        Tue, 12 Aug 2025 01:48:50 -0700 (PDT)
-Received: from localhost (host-79-44-170-80.retail.telecomitalia.it. [79.44.170.80])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-617df37d061sm7754871a12.40.2025.08.12.01.48.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 01:48:49 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Jim Quinlan <jim2101024@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	kwilczynski@kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1754988701; c=relaxed/simple;
+	bh=uWunz3Mv4f9pwZDDQLQYeUZk+J7flLykw7MQNQ5U70Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j90kGCFKlORB30OCIT91C1e0sMx5BVpYo4Qd8nYr3QZ9AXgujLpZLHipwWB0HlODpF+XXyf8w/P1jluX5WDrBWqQphlYXPRWarZto/C/TcEA+t8LVObCSALS0EI0oEAXIC+SasGYB6b0gIKsxlCKGTnStyygz9qFo9AYL55AFAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=C3aucEYb; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 58B6C228;
+	Tue, 12 Aug 2025 10:50:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1754988638;
+	bh=uWunz3Mv4f9pwZDDQLQYeUZk+J7flLykw7MQNQ5U70Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=C3aucEYbV0P7yp/axUQALhXq6bp8VBvc2J2Y7oxywS2DT0wkQcULimUysw6t2Wj9A
+	 02yqs0eGLRkh/tHSmaR/e3cSXgz6j1mowZZ/U7BJU1Gh9rA6wq0grt3RYB9zU7naYg
+	 AJwsTgVjQMR+YPXtsC5u0TEPyDTgoszJVunGgoA8=
+Date: Tue, 12 Aug 2025 11:51:12 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: linux-media@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Arec Kao <arec.kao@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Bingbu Cao <bingbu.cao@intel.com>,
+	Bryan O'Donoghue <bod@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	iivanov@suse.de,
-	svarbanov@suse.de,
-	mbrugger@suse.com,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC warning
-Date: Tue, 12 Aug 2025 10:50:37 +0200
-Message-ID: <20250812085037.13517-1-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
+	Daniel Scally <djrscally@gmail.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Hans de Goede <hansg@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>, Hao Yao <hao.yao@intel.com>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Jason Chen <jason.z.chen@intel.com>, Jimmy Su <jimmy.su@intel.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Leon Luo <leonl@leopardimaging.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Mark Brown <broonie@kernel.org>,
+	Matthew Majewski <mattwmajewski@gmail.com>,
+	Matthias Fend <matthias.fend@emfend.at>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Pavel Machek <pavel@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Ricardo Ribalda <ribalda@chromium.org>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shunqian Zheng <zhengsq@rock-chips.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Tarang Raval <tarang.raval@siliconsignals.io>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Tony Lindgren <tony@atomide.com>, Zhi Mao <zhi.mao@mediatek.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: (subset) [PATCH 00/72] media: i2c: Reduce cargo-cult
+Message-ID: <20250812085112.GH30054@pendragon.ideasonboard.com>
+References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
+ <175495482477.157244.17354544707184168458.b4-ty@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <175495482477.157244.17354544707184168458.b4-ty@kernel.org>
 
-The devicetree compiler is complaining as follows:
+Hi Bjorn,
 
-arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges property, but no unit name
-/home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_nexus' was unexpected)
+On Mon, Aug 11, 2025 at 06:27:01PM -0500, Bjorn Andersson wrote:
+> On Thu, 10 Jul 2025 20:46:56 +0300, Laurent Pinchart wrote:
+> > This patch series build on top of Mehdi's introduction of the
+> > devm_v4l2_sensor_clk_get() helper (see [1]) to drastically reduce
+> > cargo-cult in camera sensor drivers.
+> > 
+> > A large number of camera sensor drivers directly use the
+> > "clock-frequency" property to retrieve the effective or desired external
+> > clock rate. This is standard behaviour on ACPI platforms that don't
+> > implement MIPI DisCo for Imaging, but usage of the property has leaked
+> > to OF-based platforms, due to a combination of historical reasons (using
+> > "clock-frequency" was initially considered right until before the
+> > introduction of "assigned-clock-rates") and plain cargo-cult.
+> > 
+> > [...]
+> 
+> Applied, thanks!
+> 
+> [12/72] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Replace clock-frequency in camera sensor node
+>         commit: 5433560caa5e7e677a8d4310bbec08312be765b4
 
-Add the optional node that fix this to the DT binding.
+I'm afraid that's too soon. This will introduce a breakage without a
+corresponding change to the camera sensor driver.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4-lkp@intel.com/
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+I will post a v2 with the patches reordered. We could merge the V4L2
+side in a rc1-based stable branch and merge than in the arm-soc tree as
+well, but I think we can also delay the .dts changes to the next kernel
+version. Do you have a preference ?
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 812ef5957cfc..7d8ba920b652 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -126,6 +126,15 @@ required:
- allOf:
-   - $ref: /schemas/pci/pci-host-bridge.yaml#
-   - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm2712-pcie
-+    then:
-+      properties:
-+        rp1_nexus:
-+          $ref: /schemas/misc/pci1de4,1.yaml
-   - if:
-       properties:
-         compatible:
 -- 
-2.35.3
+Regards,
 
+Laurent Pinchart
 
