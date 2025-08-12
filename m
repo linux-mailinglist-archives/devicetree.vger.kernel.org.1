@@ -1,82 +1,56 @@
-Return-Path: <devicetree+bounces-203504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77321B219DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:37:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17AE5B219FA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:59:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DF087AEEC6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:36:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2E3B625F4F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3342D59E3;
-	Tue, 12 Aug 2025 00:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33F12D77F6;
+	Tue, 12 Aug 2025 00:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TsGzF7YV"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="DL4/RCtM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8242586CE
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 00:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FAF2D3A9E
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 00:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754959064; cv=none; b=Kkd81N/rOYF2atUzBRpVmUx8u6pGkzs7O7AAwo9r7b8GfZgxVhWMTma5ZoIeBHNKaNHLRSo7etNKhnEKRHoqO7C8EowdqVGQiDZmwxXim/FeJWVNpyRPBUwcv+T9BC5A5DT42djZpD+Y8UByDucWF4jZqfoFUlWzZDWv5toYMnY=
+	t=1754960351; cv=none; b=SaRqys7K4orK7V0GIJWD6Nc+iUMkFLjtSi6PbUCqIO0FSMBpaHs+kF8Sf1P49iTUS1tYKHH6mJzXIhAy22xlKOqDzcFSfQtIujt3yh1ji4+yB4bbylNwFmNtMSqU65gthAg/Oi/0qYWgGzTff7wwSmtCxtKEl5Wsvl1wIGCWEzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754959064; c=relaxed/simple;
-	bh=MM7amlMlymZ6itBYJO4K7FlQlWOV9Hf4f/LDG05WvS8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=d6MoMEuJ2CF0BEaYViWVsAnVZWftSy2JOGeTKYCCsvj1Qufgya/TrAHBd9gk21sVhvpFmNPjhIVIRMvvwwRhcJIpycat4Pi8fcJ81Pe/UkHX7SOg34Xj1zG1wQ7672FJJV9mIu84bKLGK+zazqDGSqvUTtTaCCNebZ93HrDzKdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TsGzF7YV; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-61b4b90fb87so2327618eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 17:37:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1754959060; x=1755563860; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Qij29Dwz/tFkYWESkoLoLc09dn5e79Z0zwgkLbVcarc=;
-        b=TsGzF7YVAuW8sL9l39Kzqdd13bM6XCMe+SxKb3aR8bFAOA/POAkBqapXVbU6bkuVti
-         acOqEwq7XOeUR9DACuUxEWFLjV/O685/SaJIc6+7FpIC5iQscn1Xx24NkyuKnwpxtKsm
-         3udz/8mtDu+90ncA4EWKvvU8rJxFn1og79lfKiX4fKnVqdgBhJVCbvxgLl8EOiDE3mrR
-         ximygKtVkhdAv3qcpIML56h5ltkiqnqXYaESSbvE7tKjl0FIcIrLnn4j+PsBnrXfxJ9x
-         x0Cl6NQy+BfUVet/yofiqHG8DJMtradg1Ad0tsQGEOl2uHxei31+/Glc7839xMRe8/ZJ
-         PWWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754959060; x=1755563860;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qij29Dwz/tFkYWESkoLoLc09dn5e79Z0zwgkLbVcarc=;
-        b=gHegJXL+u2w0vtKFEITM2EivOQKgq43PKcj3/edycSsN0TdDxrcUfrdYOTk51fOMLH
-         VLnLmub+xasxQ9ZyqLF6waWxdpzRWdNZDy8N5VzMLSGAJbKN4cF7OOiNrdAmt7GLmly4
-         aKRTvIz8x1UAEz/xqXcFL3dlB2sTw5CsSvm/xsqf1dQWRkTONaFgKqtJOWAtia0U5aRZ
-         aXsoEXeA/hv2Vw0xl5EVxB0oq2mgbw4XDoFlcBzl9be0AyxIU9ycn+th0Ui63SYUuvf8
-         9VXoEPeabgzifkFiuzyejJYht8u9jQ8WezqIqKm2KesWYXRUS0N7VMB96b9rJG4weq8A
-         LcYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmG7KzlvBJAIWcYzBVCTIJoAUxrSLNg4MOYQVgPKDfdHFaKQEzrnrcT0j/FIRdZxyzewAgiub1F+Fe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGK79m9z/b7uceQ9WGfin/W9mn3AI5Ly6WbCHlqJ7IAcV3is1b
-	jiEY74RDt7RDTxrZsE1XfDkUwkScq2P29dPNYtqH+9b+hZKvr+ZaucVn/a3MpwXHBsm3erOsr1j
-	Drecw
-X-Gm-Gg: ASbGncuKasRMheKYWrezraQ6/owr7jwX3Tv/7z/e1n6ZPci8U4SVBoIs/7rdn47Abjs
-	Z3qhXvz7suDXqVg92cMTjXx5leofPQFukRG/ElhO7yW2Aqs4JolOGftqm18zewKA5NugDok1zzQ
-	28ccuE5gvLPBYbGbOjCBrbqwztm8YuONaqR0XmgYSGJtdm4KfqGRrD88pAF3+uy8u6cScwrPTWK
-	LMmShJwAN+tITxHsNQkh7Uw9eVUWJ/Kh81gSd5i5oUInObJIALQD4wkQv8czEHRcUAiarg4gFkF
-	8tjFeEhFJ+lcxeukHkt1LOcWtsiuBnynzYGyTNu7MF2V99yg/MWFwiO0J5iIrBc68h8rwoB2cmR
-	5bpwSTnfcjV8XLz+rrz17IHvL62D0ALfIv7F85Zgd1o4fOKNpiU8/Md/P+EyOAX+rvYa0swjlQw
-	8=
-X-Google-Smtp-Source: AGHT+IGakl/eXVN/0VvRKWuNy816VmFzFbnxikB++De4HoaGdaaXnZwngXs2yzJOw8EAkR7KH4BssA==
-X-Received: by 2002:a05:6820:2209:b0:619:932b:3dc0 with SMTP id 006d021491bc7-61bb5b4aac2mr1230648eaf.3.1754959060262;
-        Mon, 11 Aug 2025 17:37:40 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:4a4f:fe55:51b4:b5ba? ([2600:8803:e7e4:1d00:4a4f:fe55:51b4:b5ba])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61b7cac4d37sm1229026eaf.30.2025.08.11.17.37.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Aug 2025 17:37:39 -0700 (PDT)
-Message-ID: <64e64124-112d-4942-8ca4-290cabcfd9dd@baylibre.com>
-Date: Mon, 11 Aug 2025 19:37:39 -0500
+	s=arc-20240116; t=1754960351; c=relaxed/simple;
+	bh=JCztoMb1WN0huVXDjLoooBs9C8+yxbQ1qa8RG3l7Ibo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a0QUXFMIDzqv5Jmqw1GVIOgd8wtMLIYXo/DiGWyS9cbUVZfz9Kd7fNAG7EKJnoZeLPRffeT+49md2IKiYOD1yUEeJrr3Qm//4hKuxufdyKaXj80nt7psfWTeILT1R60oZhIpicV7EqN7mINfbd8F3UKeBY0ANyrUcvxAtTGRZ6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=DL4/RCtM; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1754960348;
+ bh=pBHXi1lXV0Do4H4xlZEW1aZfNWfJ7TqQmC3OWib8Y0o=;
+ b=DL4/RCtMzWwxZxBjbhq/jjZhixErg7u9/YdAKrcQWw6pLy49l585juXWD8rEtgnIgNCrur8Q5
+ Pc+UnRJbaHf6HFVQAsbZb+oP6wMZIbzyObPRE9g6bdPxK0vy9wCAVCg2vOlT65kyVhZ9m2DcD3l
+ xfz9tcI3mCsd9rWhmVIWc5DvdTSBsTmV2bfjJndMG1bs2bWgthCav4APWzSri3nbFMnLLDJd6O2
+ ULZ44BKeOMQ5LVvZ023omm244NsfqC+wdPLQtnOUy3qzfMRPluXREBm9F95DaplVfD15J+sI6gx
+ NKbROMqEXKLV9TkzWfjJdCX6aa1dWFum1/pL3HPEZf4Q==
+X-Forward-Email-ID: 689a91ba10bdea4a6d7c6e15
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.2.4
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <4b3c409b-5f10-4aa0-996f-1dc2d28816ef@kwiboo.se>
+Date: Tue, 12 Aug 2025 02:58:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,98 +58,359 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] iio: add power and energy measurement modifiers
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250808141020.4384-1-antoniu.miclaus@analog.com>
- <20250808141020.4384-2-antoniu.miclaus@analog.com>
+Subject: Re: [PATCH v2 1/7] media: rkvdec: Add HEVC backend
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250810212454.3237486-1-jonas@kwiboo.se>
+ <20250810212454.3237486-2-jonas@kwiboo.se>
+ <bdb53663ab741fbc70dd83fb858432b838736219.camel@collabora.com>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250808141020.4384-2-antoniu.miclaus@analog.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <bdb53663ab741fbc70dd83fb858432b838736219.camel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 8/8/25 9:10 AM, Antoniu Miclaus wrote:
-> Add new IIO modifiers to support power and energy measurement devices:
+Hi Nicolas,
+
+On 8/11/2025 11:07 PM, Nicolas Dufresne wrote:
+> First pass of review,
 > 
-> Power modifiers:
-> - IIO_MOD_ACTIVE: Real power consumed by the load
-> - IIO_MOD_REACTIVE: Power that oscillates between source and load
-> - IIO_MOD_APPARENT: Magnitude of complex power
-> - IIO_MOD_FUND_REACTIVE: Reactive power at fundamental frequency
-> - IIO_MOD_FACTOR: Power factor (ratio of active to apparent power)
+> There is obvious conflict between Detlev RK3388/3576 series, please coordinate.
+> By picking the same direction, the common code can be split from platform code,
+> and then both sets can share that common code and avoid conflicts.
+
+Yes, it is very unfortunate that Detlev did not base the work on v1 of
+this series, this has been sitting idle on the list for almost 2 years
+only waiting on its dependent H264 High10/4:2:2 series to be merged.
+
+Most feedback for v1 was related to unstaging and the series could be
+applied clean until iommu detach/attach was introduced very recently.
+
+This series has also been referenced in multiple threads related to
+rkvdec2 work, most recent at [1]. Unfortunately, I have missed both v1
+and v2 of Detlev's new rkvdec2 series, and was not able to send a v2 of
+this until now due to family tragedy.
+
+I will take a closer look at Detlev's new rkvdec2 series and see what I
+can do in a v3 to ease any merge conflicts.
+
+[1] https://lore.kernel.org/linux-media/a787e6e0-d4ce-45e3-8263-2489585d3ec0@kwiboo.se/
+
 > 
-> Signal quality modifiers:
-> - IIO_MOD_RMS: Root Mean Square value
+> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
+>> The Rockchip VDEC supports the HEVC codec with the Main and Main10
+>> Profile up to Level 5.1 High tier: 4096x2304@60 fps.
+>>
+>> Add the backend for HEVC format to the decoder.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> ---
+>> Changes in v2:
+>> - Use new_value in transpose_and_flatten_matrices()
+>> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
+>> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
+>> ---
+>>  .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
+>>  .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
+>>  .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  817 ++++++++
+>>  .../platform/rockchip/rkvdec/rkvdec-regs.h    |    2 +
+>>  .../media/platform/rockchip/rkvdec/rkvdec.c   |   76 +
+>>  .../media/platform/rockchip/rkvdec/rkvdec.h   |    1 +
+>>  6 files changed, 2745 insertions(+), 1 deletion(-)
+>>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
+>>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>>
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/Makefile b/drivers/media/platform/rockchip/rkvdec/Makefile
+>> index cb86b429cfaa..a77122641d14 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/Makefile
+>> +++ b/drivers/media/platform/rockchip/rkvdec/Makefile
+>> @@ -1,3 +1,3 @@
+>>  obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC) += rockchip-vdec.o
+>>  
+>> -rockchip-vdec-y += rkvdec.o rkvdec-h264.o rkvdec-vp9.o
+>> +rockchip-vdec-y += rkvdec.o rkvdec-h264.o rkvdec-hevc.o rkvdec-vp9.o
+
+[snip]
+
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> new file mode 100644
+>> index 000000000000..1994ea24f0be
+>> --- /dev/null
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>> @@ -0,0 +1,817 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Rockchip Video Decoder HEVC backend
+>> + *
+>> + * Copyright (C) 2023 Collabora, Ltd.
+>> + *      Sebastian Fricke <sebastian.fricke@collabora.com>
+>> + *
+>> + * Copyright (C) 2019 Collabora, Ltd.
+>> + *	Boris Brezillon <boris.brezillon@collabora.com>
+>> + *
+>> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
+>> + *	Jeffy Chen <jeffy.chen@rock-chips.com>
+>> + */
+>> +
+>> +#include <media/v4l2-mem2mem.h>
+>> +
+>> +#include "rkvdec.h"
+>> +#include "rkvdec-regs.h"
+>> +#include "rkvdec-hevc-data.c"
+>> +
+>> +/* Size in u8/u32 units. */
+>> +#define RKV_SCALING_LIST_SIZE		1360
+>> +#define RKV_PPS_SIZE			(80 / 4)
+>> +#define RKV_PPS_LEN			64
+>> +#define RKV_RPS_SIZE			(32 / 4)
+>> +#define RKV_RPS_LEN			600
+>> +
+>> +struct rkvdec_sps_pps_packet {
+>> +	u32 info[RKV_PPS_SIZE];
+>> +};
+>> +
+>> +struct rkvdec_rps_packet {
+>> +	u32 info[RKV_RPS_SIZE];
+>> +};
+>> +
+>> +struct rkvdec_ps_field {
+>> +	u16 offset;
+>> +	u8 len;
+>> +};
+>> +
+>> +#define PS_FIELD(_offset, _len) \
+>> +	((struct rkvdec_ps_field){ _offset, _len })
+>> +
+>> +/* SPS */
+>> +#define VIDEO_PARAMETER_SET_ID				PS_FIELD(0, 4)
+>> +#define SEQ_PARAMETER_SET_ID				PS_FIELD(4, 4)
+>> +#define CHROMA_FORMAT_IDC				PS_FIELD(8, 2)
+>> +#define PIC_WIDTH_IN_LUMA_SAMPLES			PS_FIELD(10, 13)
+>> +#define PIC_HEIGHT_IN_LUMA_SAMPLES			PS_FIELD(23, 13)
+>> +#define BIT_DEPTH_LUMA					PS_FIELD(36, 4)
+>> +#define BIT_DEPTH_CHROMA				PS_FIELD(40, 4)
+>> +#define LOG2_MAX_PIC_ORDER_CNT_LSB			PS_FIELD(44, 5)
+>> +#define LOG2_DIFF_MAX_MIN_LUMA_CODING_BLOCK_SIZE	PS_FIELD(49, 2)
+>> +#define LOG2_MIN_LUMA_CODING_BLOCK_SIZE			PS_FIELD(51, 3)
+>> +#define LOG2_MIN_TRANSFORM_BLOCK_SIZE			PS_FIELD(54, 3)
+>> +#define LOG2_DIFF_MAX_MIN_LUMA_TRANSFORM_BLOCK_SIZE	PS_FIELD(57, 2)
+>> +#define MAX_TRANSFORM_HIERARCHY_DEPTH_INTER		PS_FIELD(59, 3)
+>> +#define MAX_TRANSFORM_HIERARCHY_DEPTH_INTRA		PS_FIELD(62, 3)
+>> +#define SCALING_LIST_ENABLED_FLAG			PS_FIELD(65, 1)
+>> +#define AMP_ENABLED_FLAG				PS_FIELD(66, 1)
+>> +#define SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG		PS_FIELD(67, 1)
+>> +#define PCM_ENABLED_FLAG				PS_FIELD(68, 1)
+>> +#define PCM_SAMPLE_BIT_DEPTH_LUMA			PS_FIELD(69, 4)
+>> +#define PCM_SAMPLE_BIT_DEPTH_CHROMA			PS_FIELD(73, 4)
+>> +#define PCM_LOOP_FILTER_DISABLED_FLAG			PS_FIELD(77, 1)
+>> +#define LOG2_DIFF_MAX_MIN_PCM_LUMA_CODING_BLOCK_SIZE	PS_FIELD(78, 3)
+>> +#define LOG2_MIN_PCM_LUMA_CODING_BLOCK_SIZE		PS_FIELD(81, 3)
+>> +#define NUM_SHORT_TERM_REF_PIC_SETS			PS_FIELD(84, 7)
+>> +#define LONG_TERM_REF_PICS_PRESENT_FLAG			PS_FIELD(91, 1)
+>> +#define NUM_LONG_TERM_REF_PICS_SPS			PS_FIELD(92, 6)
+>> +#define SPS_TEMPORAL_MVP_ENABLED_FLAG			PS_FIELD(98, 1)
+>> +#define STRONG_INTRA_SMOOTHING_ENABLED_FLAG		PS_FIELD(99, 1)
 > 
-> These modifiers enable proper representation of power measurement
-> devices like energy meters and power analyzers.
+> Detlev is moving to structures and memcpy, with a minor performance gain, this
+> is the way to go, I can understand if this is quite involving, but one of you
+> will have to do it.
+
+Sure, and this was the the main reason why I mentioned this incoming
+series back in [1], to consider this series before doing too much
+re-work on a future rkvdec1 + rkvdec2 merge series.
+
+As mentioned above, I will take a closer look at Detlev's new rkvdec2
+series and see what I can do in a v3 to ease any merge conflicts.
+
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v3:
->  - remove accumulated energy modifiers
->  - rename power_factor to powerfactor for consistency
->  Documentation/ABI/testing/sysfs-bus-iio | 11 +++++++++++
->  drivers/iio/industrialio-core.c         |  5 +++++
->  include/linux/iio/types.h               |  1 +
->  include/uapi/linux/iio/types.h          |  4 ++++
->  4 files changed, 21 insertions(+)
+>> +/* PPS */
+>> +#define PIC_PARAMETER_SET_ID				PS_FIELD(128, 6)
+>> +#define PPS_SEQ_PARAMETER_SET_ID			PS_FIELD(134, 4)
+>> +#define DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG		PS_FIELD(138, 1)
+>> +#define OUTPUT_FLAG_PRESENT_FLAG			PS_FIELD(139, 1)
+>> +#define NUM_EXTRA_SLICE_HEADER_BITS			PS_FIELD(140, 13)
+>> +#define SIGN_DATA_HIDING_ENABLED_FLAG			PS_FIELD(153, 1)
+>> +#define CABAC_INIT_PRESENT_FLAG				PS_FIELD(154, 1)
+>> +#define NUM_REF_IDX_L0_DEFAULT_ACTIVE			PS_FIELD(155, 4)
+>> +#define NUM_REF_IDX_L1_DEFAULT_ACTIVE			PS_FIELD(159, 4)
+>> +#define INIT_QP_MINUS26					PS_FIELD(163, 7)
+>> +#define CONSTRAINED_INTRA_PRED_FLAG			PS_FIELD(170, 1)
+>> +#define TRANSFORM_SKIP_ENABLED_FLAG			PS_FIELD(171, 1)
+>> +#define CU_QP_DELTA_ENABLED_FLAG			PS_FIELD(172, 1)
+>> +#define LOG2_MIN_CU_QP_DELTA_SIZE			PS_FIELD(173, 3)
+>> +#define PPS_CB_QP_OFFSET				PS_FIELD(176, 5)
+>> +#define PPS_CR_QP_OFFSET				PS_FIELD(181, 5)
+>> +#define PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG	PS_FIELD(186, 1)
+>> +#define WEIGHTED_PRED_FLAG				PS_FIELD(187, 1)
+>> +#define WEIGHTED_BIPRED_FLAG				PS_FIELD(188, 1)
+>> +#define TRANSQUANT_BYPASS_ENABLED_FLAG			PS_FIELD(189, 1)
+>> +#define TILES_ENABLED_FLAG				PS_FIELD(190, 1)
+>> +#define ENTROPY_CODING_SYNC_ENABLED_FLAG		PS_FIELD(191, 1)
+>> +#define PPS_LOOP_FILTER_ACROSS_SLICES_ENABLED_FLAG	PS_FIELD(192, 1)
+>> +#define LOOP_FILTER_ACROSS_TILES_ENABLED_FLAG		PS_FIELD(193, 1)
+>> +#define DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG		PS_FIELD(194, 1)
+>> +#define PPS_DEBLOCKING_FILTER_DISABLED_FLAG		PS_FIELD(195, 1)
+>> +#define PPS_BETA_OFFSET_DIV2				PS_FIELD(196, 4)
+>> +#define PPS_TC_OFFSET_DIV2				PS_FIELD(200, 4)
+>> +#define LISTS_MODIFICATION_PRESENT_FLAG			PS_FIELD(204, 1)
+>> +#define LOG2_PARALLEL_MERGE_LEVEL			PS_FIELD(205, 3)
+>> +#define SLICE_SEGMENT_HEADER_EXTENSION_PRESENT_FLAG	PS_FIELD(208, 1)
+>> +#define NUM_TILE_COLUMNS				PS_FIELD(212, 5)
+>> +#define NUM_TILE_ROWS					PS_FIELD(217, 5)
+>> +#define COLUMN_WIDTH(i)					PS_FIELD(256 + ((i) * 8), 8)
+>> +#define ROW_HEIGHT(i)					PS_FIELD(416 + ((i) * 8), 8)
+>> +#define SCALING_LIST_ADDRESS				PS_FIELD(592, 32)
+
+[snip]
+
+>> +/*
+>> + * Creation of the Reference Picture Set memory blob for the hardware.
+>> + * The layout looks like this:
+>> + * [0] 32 bits for L0 (6 references + 2 bits of the 7th reference)
+>> + * [1] 32 bits for L0 (remaining 3 bits of the 7th reference + 5 references
+>> + *     + 4 bits of the 13th reference)
+>> + * [2] 11 bits for L0 (remaining bit for 13 and 2 references) and
+>> + *     21 bits for L1 (4 references + first bit of 5)
+>> + * [3] 32 bits of padding with 0s
+>> + * [4] 32 bits for L1 (remaining 4 bits for 5 + 5 references + 3 bits of 11)
+>> + * [5] 22 bits for L1 (remaining 2 bits of 11 and 4 references)
+>> + *     lowdelay flag (bit 23), rps bit offset long term (bit 24 - 32)
+>> + * [6] rps bit offset long term (bit 1 - 3),  rps bit offset short term (bit 4 - 12)
+>> + *     number of references (bit 13 - 16), remaining 16 bits of padding with 0s
+>> + * [7] 32 bits of padding with 0s
+>> + *
+>> + * Thus we have to set up padding in between reference 5 of the L1 list.
+>> + */
+>> +static void assemble_hw_rps(struct rkvdec_ctx *ctx,
+>> +			    struct rkvdec_hevc_run *run)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> index 2fb2cea4b192..28f51e4cc367 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-iio
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> @@ -167,7 +167,12 @@ Description:
->  		is required is a consistent labeling.  Units after application
->  		of scale and offset are millivolts.
->  
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltageY_rms_raw
+> Rockchip calls this one the swp_rps, in the sense the the slice header and its
+> enclosed reference are parsed by software. Detlev implements the HW RPS (which
+> requires an extended control) since SW RPS wasn't documented and this
+> implementation did not work for newer chip. We have no information that HW RPS
+> would work on RK3399 and older, I'm just asking to rename to we can
+> differentiate it.
 
-This looks out of place. There is no existing in_altvoltage_raw, so we need
-to start a new section.
+Sure, I can rename this this assemble_sw_rps or similar in a v3.
 
-> +
->  What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_raw
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_active_raw
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_reactive_raw
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_apparent_raw
->  KernelVersion:	4.5
->  Contact:	linux-iio@vger.kernel.org
->  Description:
-> @@ -176,6 +181,8 @@ Description:
->  		unique to allow association with event codes. Units after
->  		application of scale and offset are milliwatts.
->  
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_powerfactor
+> 
+>> +{
+>> +	const struct v4l2_ctrl_hevc_decode_params *decode_params = run->decode_params;
+>> +	const struct v4l2_ctrl_hevc_sps *sps = run->sps;
+>> +	const struct v4l2_ctrl_hevc_slice_params *sl_params;
+>> +	const struct v4l2_hevc_dpb_entry *dpb;
+>> +	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
+>> +	struct rkvdec_hevc_priv_tbl *priv_tbl = hevc_ctx->priv_tbl.cpu;
+>> +	struct rkvdec_rps_packet *hw_ps;
+>> +	int i, j;
+>> +	unsigned int lowdelay;
+>> +
+>> +#define WRITE_RPS(value, field) set_ps_field(hw_ps->info, field, value)
+>> +
+>> +#define REF_PIC_LONG_TERM_L0(i)			PS_FIELD((i) * 5, 1)
+>> +#define REF_PIC_IDX_L0(i)			PS_FIELD(1 + ((i) * 5), 4)
+>> +#define REF_PIC_LONG_TERM_L1(i)			PS_FIELD(((i) < 5 ? 75 : 132) + ((i) * 5), 1)
+>> +#define REF_PIC_IDX_L1(i)			PS_FIELD(((i) < 4 ? 76 : 128) + ((i) * 5), 4)
+>> +
+>> +#define LOWDELAY				PS_FIELD(182, 1)
+>> +#define LONG_TERM_RPS_BIT_OFFSET		PS_FIELD(183, 10)
+>> +#define SHORT_TERM_RPS_BIT_OFFSET		PS_FIELD(193, 9)
+>> +#define NUM_RPS_POC				PS_FIELD(202, 4)
+>> +
+>> +	for (j = 0; j < run->num_slices; j++) {
+>> +		uint st_bit_offset = 0;
+>> +		uint num_l0_refs = 0;
+>> +		uint num_l1_refs = 0;
+>> +
+>> +		sl_params = &run->slices_params[j];
+>> +		dpb = decode_params->dpb;
+>> +
+>> +		if (sl_params->slice_type != V4L2_HEVC_SLICE_TYPE_I) {
+>> +			num_l0_refs = sl_params->num_ref_idx_l0_active_minus1 + 1;
+>> +
+>> +			if (sl_params->slice_type == V4L2_HEVC_SLICE_TYPE_B)
+>> +				num_l1_refs = sl_params->num_ref_idx_l1_active_minus1 + 1;
+>> +
+>> +			lowdelay = 1;
+>> +		} else {
+>> +			lowdelay = 0;
+>> +		}
+>> +
+>> +		hw_ps = &priv_tbl->rps[j];
+>> +		memset(hw_ps, 0, sizeof(*hw_ps));
+>> +
+>> +		for (i = 0; i < num_l0_refs; i++) {
+>> +			const struct v4l2_hevc_dpb_entry dpb_l0 = dpb[sl_params->ref_idx_l0[i]];
+>> +
+>> +			WRITE_RPS(!!(dpb_l0.flags & V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE),
+>> +				  REF_PIC_LONG_TERM_L0(i));
+>> +			WRITE_RPS(sl_params->ref_idx_l0[i], REF_PIC_IDX_L0(i));
+>> +
+>> +			if (dpb_l0.pic_order_cnt_val > sl_params->slice_pic_order_cnt)
+>> +				lowdelay = 0;
+>> +		}
+>> +
+>> +		for (i = 0; i < num_l1_refs; i++) {
+>> +			const struct v4l2_hevc_dpb_entry dpb_l1 = dpb[sl_params->ref_idx_l1[i]];
+>> +			int is_long_term =
+>> +				!!(dpb_l1.flags & V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE);
+>> +
+>> +			WRITE_RPS(is_long_term, REF_PIC_LONG_TERM_L1(i));
+>> +			WRITE_RPS(sl_params->ref_idx_l1[i], REF_PIC_IDX_L1(i));
+>> +
+>> +			if (dpb_l1.pic_order_cnt_val > sl_params->slice_pic_order_cnt)
+>> +				lowdelay = 0;
+>> +		}
+>> +
+>> +		WRITE_RPS(lowdelay, LOWDELAY);
+>> +
+>> +		if (!(decode_params->flags & V4L2_HEVC_DECODE_PARAM_FLAG_IDR_PIC)) {
+>> +			if (sl_params->short_term_ref_pic_set_size)
+>> +				st_bit_offset = sl_params->short_term_ref_pic_set_size;
+>> +			else if (sps->num_short_term_ref_pic_sets > 1)
+>> +				st_bit_offset = fls(sps->num_short_term_ref_pic_sets - 1);
+>> +		}
+>> +
+>> +		WRITE_RPS(st_bit_offset + sl_params->long_term_ref_pic_set_size,
+>> +			  LONG_TERM_RPS_BIT_OFFSET);
+>> +		WRITE_RPS(sl_params->short_term_ref_pic_set_size,
+>> +			  SHORT_TERM_RPS_BIT_OFFSET);
+>> +
+>> +		WRITE_RPS(decode_params->num_poc_st_curr_before +
+>> +			  decode_params->num_poc_st_curr_after +
+>> +			  decode_params->num_poc_lt_curr,
+>> +			  NUM_RPS_POC);
+>> +	}
+>> +}
 
-This one also needs a new section with Description: etc.
+[snip]
 
-> +
->  What:		/sys/bus/iio/devices/iio:deviceX/in_capacitanceY_raw
->  KernelVersion:	3.2
->  Contact:	linux-iio@vger.kernel.org
-> @@ -1569,6 +1576,9 @@ Description:
->  
->  What:		/sys/.../iio:deviceX/in_energy_input
->  What:		/sys/.../iio:deviceX/in_energy_raw
-> +What:		/sys/.../iio:deviceX/in_energyY_active_raw
-> +What:		/sys/.../iio:deviceX/in_energyY_reactive_raw
-> +What:		/sys/.../iio:deviceX/in_energyY_apparent_raw
->  KernelVersion:	4.0
->  Contact:	linux-iio@vger.kernel.org
->  Description:
-> @@ -1692,6 +1702,7 @@ Description:
->  
->  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_raw
->  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_supply_raw
-> +What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_rms_raw
+> 
+> 
+> Looks good otherwise. Please let me know your plan to combine or prepare for
+> both series.
 
-Shouldn't this be in_altcurrentY_rms_raw? in_currentY_raw is DC current, not AC.
-And we will likely need IIO_ALTCURRENT to go with it.
+I will take a closer look at Detlev's new rkvdec2 series and see what I
+can do in a v3 to ease any merge conflicts.
 
->  KernelVersion:	3.17
->  Contact:	linux-iio@vger.kernel.org
->  Description:
+I am just a little bit sad that this series has been completely ignored
+for the continued work with rkvdec2, the new series even seem to
+implement a slightly different variant system when this has been here
+waiting all this time :-/
+
+Regards,
+Jonas
+
+> 
+> Nicolas
+
 
