@@ -1,149 +1,164 @@
-Return-Path: <devicetree+bounces-203586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03CDB21FC1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:43:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E153DB21FED
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B103506487
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:43:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 080FA1AA7A5B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E074F2E0927;
-	Tue, 12 Aug 2025 07:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86AC2DEA6F;
+	Tue, 12 Aug 2025 07:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gpHolMAn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MDEgMQIX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23F82D7803;
-	Tue, 12 Aug 2025 07:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1435A21D3F5;
+	Tue, 12 Aug 2025 07:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754984586; cv=none; b=gwOI4QpJNMfkb8GnOkrGxeiLu6T9bK5FqyjU07xkZ/LpvBftGPnm733bkcmRjjkx430oDQJDf2Bqp1vet0auATUUHyyoOsGzWuOINphozaog8lWehOdoas1kGJV3lfyct+nEHAng81QvbY4Yy3CrRVVhNo9RjyMHDFkBf6egB6s=
+	t=1754985250; cv=none; b=RkAL7QaLSwBYTR4WO33eFY/5guLRTg3AswkvlvPSR/hnoIlpFkJrooqHVVb/qCqqwuynu/3AGze/9Vkgch7zK+ksJStOdXEK6ozFnU0LS/pzV6OE9s8WYaltRFa+tpsYFrhwlNIX3QJC3tD0kyT9xJ1+gJnflbYqMRyX8rRrb0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754984586; c=relaxed/simple;
-	bh=1cRnQersqcQvz+yWOTCBkCExWQMW2QB2FBbOUQAleYk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Np7n/U2tzM1wQhGZEZYIxTFqgiA/d27/DHCh36eQ6BT7WBdsaK3u9j22ivkoe+QaqEjcXg8t2S+FoqGVknxVPk5RiAUMIGo73B9z9Fc8P4sYyHbHXg5RanBdcBMlp5S5xS0Egxxd8Zfu5Vp+auly/r1wfT3Fw9LHY0/HtkkWjm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gpHolMAn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86DDCC4CEF8;
-	Tue, 12 Aug 2025 07:43:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754984585;
-	bh=1cRnQersqcQvz+yWOTCBkCExWQMW2QB2FBbOUQAleYk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gpHolMAnHPF7LJ36a+KOSpg9bK2tULx1gTw9Kz4IGRaE3cipeer8Z+OO0QnqbneBE
-	 tCVp8cPmeu3MjYJVVmUI5IjdoSvQG5Od0U0wI9rQTTwD8oXTRRUmG1jJu8KIMqewkz
-	 Hee+SkmRZ0gWZ+HGo1rWbFVb4NXwqs4nppkOwuz4AIMfkJKrXIn5D8jJIi2pGHLkQb
-	 GAwPK7FUybpeqZ0aKbtYXRK10I+gDB3rcAWDWUJZVxnfVy7+w9+qGzyBfen6cg75s9
-	 j9RevmP1FsAr2FL/Jgn2CxU0raY0OYX138sx4aqnJmBVC6LuZDJVC1UBf+frC78Gg6
-	 kHlPQY/6D0ljg==
-Message-ID: <1400fece-db6c-45b3-831d-f653d28eb192@kernel.org>
-Date: Tue, 12 Aug 2025 09:42:59 +0200
+	s=arc-20240116; t=1754985250; c=relaxed/simple;
+	bh=5ZJNrOvG62+G8wSEDV8YHrlOfH8zuqLSvFO3q8Tc9cc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=tNYDXQI08jtGp06+O4FgX/whMj7QCxkh0IUx4SWVwcROEBB+X/YfAD5QKiVjST2VS3W/ebtKllSOCrjwEOYdDoOfJtxcf/K9AyHvjdJGkgsamAW7mMm2vDJgjQtd5493Oewf2k+UjUEHdIJPSFYeP5rHyIbCfmg/eNjW0Ptc2zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MDEgMQIX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C51fQl019036;
+	Tue, 12 Aug 2025 07:54:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6yEFOFYSfqfaUAowNl7o6t+7yRibP2E7iMvJ1yRlAlk=; b=MDEgMQIXGAJFuNRE
+	UAg33puKwfRW5rFRLsGfjSQNe/S9fH22+hFoOLe2Ca7usnooiWLlXmo/dO+od5/X
+	PexBxK7pGf1J+MlxO+FMCFft6XKJnR7lgAQqLQzOywpiMQjkXBhkT00LXBYwI0Le
+	lwPP7hc2TUfk0V/54pGAHGax2kWITzB3hKXY1nIeCnWctWQZJj3B+of1j2/xDHnp
+	o2TADwV4LUXrGqKPgdQu9WFbsTX7inFR4SBLzbyERO3B7MQ8zKcuvy0PB+jE+ZWK
+	18qJF3kF7bEp6qTV/oYG7ORjPE+KT9w3RZca2I3PA2nNdisgqc5BZwyNYcr8P44u
+	hWKhPA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxduy9ek-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 07:54:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57C7rxIU013582
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 07:53:59 GMT
+Received: from [10.50.36.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 12 Aug
+ 2025 00:53:54 -0700
+Message-ID: <c009fe77-8590-c467-a0a4-76bd6ec7cba4@quicinc.com>
+Date: Tue, 12 Aug 2025 13:22:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: nau8825: Document routing strings
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, linux-sound@vger.kernel.org
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, drake@endlessm.com,
- katsuhiro@katsuster.net, matteomartelli3@gmail.com, zhoubinbin@loongson.cn,
- KCHSU0@nuvoton.com, patches@opensource.cirrus.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org
-References: <20250809151853.47562-1-jihed.chaibi.dev@gmail.com>
- <20250809151853.47562-3-jihed.chaibi.dev@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Subject: Re: [PATCH v2 0/3] media: iris: Add support for SM8750 (VPU v3.5)
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        "Bryan
+ O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250809151853.47562-3-jihed.chaibi.dev@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=IuYecK/g c=1 sm=1 tr=0 ts=689af318 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=uiWDzxgDrFXmigHyhEwA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: k7B3iSPthe_nVLpKtyYgpsK-U7SwKcFf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNSBTYWx0ZWRfXwQ+5Roh/mKzL
+ /nok21L+tDwrMVKM16s10U6uJ11v/ug9U9C8Hfcki7iGVrmv/6w37lML7AXf27DSTiiSIKbGa+A
+ 0BK0QbgnHoRklMUlnrtusZ+W/hdjSS/YLspfIGyBFJRYQjO3+Urya/PP2c8NO9DxqdgC+H1wiOC
+ klGoQ9VeVrxPH1vhkAxBgkU0gxIaRxl6BWkNmOdWRyA7h3BmLsCdDBa9D2dn8rL/znQPpkw+9ZX
+ adtE4rTEXpegGYIWMRediYqwieVRiylWiCMn2OPcDIAKu2apSPyrziwclXJ3ufduI0mBWeX8Psz
+ y5o5GGme9UA7BRlY8FSo4p0givbHAFNWIHFLzenBmIIdgRXUNFCaGSWSUeZdKKAjv39oEBuv8vV
+ Ptlpu0Yb
+X-Proofpoint-GUID: k7B3iSPthe_nVLpKtyYgpsK-U7SwKcFf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_02,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 phishscore=0 suspectscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090025
 
-On 09/08/2025 17:18, Jihed Chaibi wrote:
-> The nau8825 driver defines several DAPM widget names that are used for
-> audio routing in the Device Tree. However, these strings are not
-> documented in the binding file.
-> 
-> This forces developers to read the C source to discover the valid
-> names, which can be inefficient and error-prone.
 
-Reading snd_soc_dapm_route can be automatize/scripted, so I don't
-consider it error prone or difficult, comparing to reading free form
-text in any documentation.
+
+On 8/4/2025 7:07 PM, Krzysztof Kozlowski wrote:
+> Changes in v2:
+> - Unify power-off sequence with SM8650 and re-use existing callbacks.
+> - Drop incorrect WRAPPER_CORE_POWER_CONTROL and unused
+>   controller_resets.
+> - Rename FW to qcom/vpu/vpu35_p4.mbn.
+> - DT binding: correct typo + Rb tag.
+> - Link to v1: https://lore.kernel.org/r/20250714-sm8750-iris-v1-0-3006293a5bc7@linaro.org
+> 
+> Firmware:
+> =========
+> Mot yet released, AFAIK. Will be hopefully released later by Qualcomm.
+
+Its released here:
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/qcom?id=530f283206034b20ed791ef379f4394ca21fe63d
 
 > 
-> Add a list of the input and output widget names to the binding's
-> description to make it self-contained and improve the user
-> experience for board bring-up.
+> DTS for reference was posted here:
+> https://lore.kernel.org/all/20250714-b4-sm8750-iris-dts-v1-0-93629b246d2e@linaro.org/
 > 
-> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-> ---
->  .../devicetree/bindings/sound/nuvoton,nau8825.yaml   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Description:
+> ============
+> Add support for SM8750 Iris codec with major differences against
+> previous generation SM8650.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
-> index a54f194a0..cb1c82aa3 100644
-> --- a/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8825.yaml
-> @@ -9,6 +9,18 @@ title: NAU8825 audio CODEC
->  maintainers:
->    - John Hsu <KCHSU0@nuvoton.com>
->  
-> +description: |
-> +  NAU8825 audio CODEC
-> +
-> +  Valid routing names defined in the driver for this codec include:
-Describe pins on the device or device properties instead.
+> DTS will follow up separately (depends on other DTS patches so cannot be
+> merged as is).
+> 
+> v4l2-compliance report:
+> 
+> v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
+> 
 
-Best regards,
-Krzysztof
+Thank you for running the v4l2 compliance tests with your patches. While
+these tests are helpful for verifying API compliance, they do not cover the
+actual functional aspects of the new SOC support being added.
+
+Please run a decoder use-case using either v4l2-ctl or GStreamer (GST) and
+add the results in this cover letter.
+
+Thanks,
+Dikshita
 
