@@ -1,260 +1,179 @@
-Return-Path: <devicetree+bounces-203712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B182BB2250C
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB35CB2250D
 	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:55:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 464A02A7C45
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:52:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E78221AA6BD0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 737242EBDF0;
-	Tue, 12 Aug 2025 10:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B2C2EBDFC;
+	Tue, 12 Aug 2025 10:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="paES9/v9"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FQxRcwv/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8E62EBDC8
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312482EBDE1
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754995935; cv=none; b=GQjnek+ue6RmxereGhSiSg2XvAl9QkkxXMImNrbpTf0UQxkyOMR5xyrH9NKZ7N+YyklsiTW85+uYEKBcN719yDkASqOEKxc2eiNzsqYnuUUUTx2OlLxvko8FbexKmQA6Cokw8aQXRL54FuI35a5o2BlAuTbXMnjdoILZE9CTCkc=
+	t=1754996122; cv=none; b=mF6f2LJUBKJHR2zELnRrPw7Hnm31QDTy2TXAhJofrlYpVNqqq64UnAjtBOZmQSqKaz1SwimpnVNHj4GlU9PXknaLrf5dArhkyuyH36Ee7az16RTCQpwb5UO1CrwUguqi6JVE5lwZ2kWMj2cj65WxOHPDermB2v55+0ch9XuiZ3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754995935; c=relaxed/simple;
-	bh=t55+OxdOQK9kjz+pTTcn9wYdyzdpqs/wBpTLxjWl0CU=;
+	s=arc-20240116; t=1754996122; c=relaxed/simple;
+	bh=Pj8Bgqn/mXPWbTZeeeQ/TfBZEKt2UzEfDdrBFxMjh2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a5NFZVj0EFQvdA22R/B3nLqY48uyCiakGSTHg1UXc9x1PrR1PoByBN4eoMGcmm2vgpjq6sAI/0a1Kqmo7QiuYi/tU0LNKwm+9TgBjkls7JSwTZVuMJOPTYM+ti3fzDlZ9Q+h4plI+BFMqwxEzMhoKDSard/NlSAec1ItuGer5VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=paES9/v9; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=QP4CtT1C2K1pGdtg2utVYgVoLEh4kOsxjIz6qH+nT3Yz+7yCs79Xnsn/8lk7FNM4/54+ApOnXHzt7Bwfpr+U0gaaajwxIK/t2efSVXvUrGeaxbehIwYbS9MpcruFllO76qcpC2vKtA1CJMgCyHT6Yo23Up2hQbAytYl6xlFghEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FQxRcwv/; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C5Wgej018313
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:52:13 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C3mQl8006181
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:55:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vrdvUYMsLFxF4FLJgur6KfN0+EY7My8qqgb8/nvdTZw=; b=paES9/v9Axp0Fr/x
-	zuwKhKq3pHhID3usJyNQPSTEC+WRcV8MSPEOu66bbL5Akz6I5cuH1W6KexdeVh8i
-	uVzAX4k2pU6Cejx60ZGURljlynPQV/+3WbecmbiidlEd8GbATgek3mqUQfaewrDJ
-	4qs4SSVuMtc1WyoJSMtE08sHr1+FMkLhTKaqNW57oUIo5K/Ayjm+4iKieBQcwVre
-	VFekmWyceUGnt0S+h0UtjA6IyWCjiaiaPK790rLjhaBAgo/3Jgsr9/VsmWL65Suk
-	TrXlsI0GBP3J+BpMs9KS1Db/nzhmdPga+rXSX52vlEeWzg4cmK/jQrLNBmbNzAwu
-	IatRLw==
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=0t0Mj4fJK1eduZrrGo955CBD
+	djHdqYbc7uk+hDghtMI=; b=FQxRcwv/Jtq65zYoMJp1XXGg99XP5yZw44pjw5X4
+	okbeZ3Wr3iwqmISso1e0lE0U6fkUucuxT4PQWUqchm2aZKu1BHsMppmg5ePGZJ/e
+	3T/Xa+FSocO/y+idJUIKmHzkouxHiDEBL7H7s69grwHW9Sqj6kGd13A6E7jTXxms
+	c9fXUr5iunJ+wgxQnfvmwtppHSMEvKfnV/lm9OLguD1foB6cEgJVZ2SJeOCJ5BFA
+	5lwmW9IVkZoHEFHY9liXSqJONTJdZWGV0bCHfQCk1mIhUYkMtUS4JZjGwF6I5NVB
+	fabFvDexyPnW1ZAJcqWplY2agMO31rmyvRTM7opr+gUdTA==
 Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dy3g7sgv-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fjxbay7c-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:52:12 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7072ed70a37so147474176d6.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:52:12 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 10:55:20 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-707648b885aso105034716d6.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:55:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754995931; x=1755600731;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vrdvUYMsLFxF4FLJgur6KfN0+EY7My8qqgb8/nvdTZw=;
-        b=XyhJ/uRebfcUZx7KfLV4giIZeqdbw80HtBxndARtoE4qmkLQkibhriQNuBH0xHKO/r
-         7iu/wGjvsPgMEkhMay2t+/5v5pfwor/QGQTZsdWazLBL234zFxaEg6cijyPrUTvQsRDW
-         5N7G+qaaOqHLR76fDg46fC00v29OxzAChfNdG5qwdknvfIlP1vbH5h7rcO9fJZon1sy1
-         UiK7ZVRmpjEsCcFnXifeazLOaNMTtOGs04h5nRCQHKHeABgywTas/6j1bmjPEGc/Dt9/
-         63zsFDj1bdEmg1UC/qUxuS8dLaSMtKsVPL1VQfEGn54mbkfZGGlB6103z8/w1moV7ux8
-         bvlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVOWCwgTT3Tyqk8e2PKtokJRKGAwRvnE4ciDKDoGI6K2lUwiCNa2qn+O7a0U00LnjAzirEOOPWkUPq3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOpDXnXUsOf0zSZjWRhn5JPNZ1XNKKRjrjnQKjJ9xBJWKpsr9X
-	mbfZ64RcuWMpyEvUwJeZ2511xb9TCKcmBAkJqAAlylkq+WgQPEvpk1qXAGoThD3AoC6nLFzZ1vQ
-	yGyJOsflbFvWQ80JOTKbh7qI9td2V1Njd+8Kpid/Jg7n42c9Zs2aYgagYoqVdOex+
-X-Gm-Gg: ASbGncvE6AfgspKGOCVyEdX9UHtwQThC/Xd6kBkdcrwxnz1UChGGNDV/zFI2ctSeLn4
-	GuaEDNxQOSxocsKWHlpgB6Be1c2FCasz8N2P6whqAXV9OEXF6cIpZDAXSWu+Qp+r3UjzHPUc4Mq
-	60TsdGZ+m3/nC/rvGX5/ySOmrrBErttbWR08Vn05ro8gUIWHaiHupzCEWbhyW7XWXvEiIgZDDN5
-	33zTZoEF7wDYa3o1LChTmYJpIaOPIFSr4WvckIpQZlxrWH1AUYB0Rg5CR/YyQP+I3g9kLP7OoSq
-	04DVnBRatyKKdsCRXPrRV2mziJOL7wF5oD6wzgLLwO8jRKvh7qJGhBkMrbm9Gm6upDs590W4YVM
-	Pigar2pNQp+QKcPol3rz8322F2hBRz9hCuJfAJt5+kF+IKM3wJmBZ
-X-Received: by 2002:ad4:5bac:0:b0:6fa:c408:5a3b with SMTP id 6a1803df08f44-709d5c6f1b7mr40015206d6.9.1754995931447;
-        Tue, 12 Aug 2025 03:52:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF/dJcvVsnI5zs8AmyFySKz8aEKAGU74Spts/yY1T3s2IF+LNgVa3AfWWzCvKg31q62eogSGA==
-X-Received: by 2002:ad4:5bac:0:b0:6fa:c408:5a3b with SMTP id 6a1803df08f44-709d5c6f1b7mr40014856d6.9.1754995930903;
-        Tue, 12 Aug 2025 03:52:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1754996119; x=1755600919;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0t0Mj4fJK1eduZrrGo955CBDdjHdqYbc7uk+hDghtMI=;
+        b=MFHf+mHbINvHZCbEsQTIq0l591FRsXA4g07bcRiOivfQDAf6JETexPA548MPXxyg+c
+         FalV8cQQm26ozNrIin8mlnWHHx97UvW6E/5v+kKID1zmKF9uPq7vj0qe/JNP5zhz7pbZ
+         5/qEsJTVcYmoN6qOQlSfcb4nNdqjH1g3PeRBBUcSS8WvZf8CREZsDrvytmYM8io9A7bq
+         c94nqvrgkNL9cpkRASNMAg73bpB/wH6AgBNhZVLtrMaEmFjaYTPelBRGM9UPBdl+UbnN
+         HJwqTWg9RoHF+komkb1fzOyBhNsRwHtuPdLkcMCUL4q0ld70yOWelk/imf+QjEWxzI4T
+         BThA==
+X-Forwarded-Encrypted: i=1; AJvYcCU99qFty1J2iaBZgkkBf2XezMyXjRhW0V7WQGMf7jHAqGm5YPnAE1yEE1WvXgdYrGPI+S4BPayiqWCh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9vEHetzEvS5iq46aGhEQ0k+ac6eATeBQ8Q8SPuSIfih/Q4Za2
+	+9KAEnowUJynViqGGH+GXrxPeW8pBAnKuPsYtiOhOcJRukJljwju3REUAEfNHWCJftJCgTW0tgN
+	n7z/xtmig3IwW6VNLzzTBWvCAjHS99W9b0/T4gmyFJkeEkkqH2NlDeevsFwMqly5u
+X-Gm-Gg: ASbGnctC61K3E0/YZrhqy67TWHT997Uy91r9hE2yfqiZIsb8Uf9qcKRMoePHjaAC2m3
+	8H0BD8B7KRLmfsdmmvXQ9NVleu4+4LkB/vyb6IhlwSORWwAViKh1SdKdGvfoSQitIzrmS/mnaHM
+	wXMP+liA9RZbb7gEetaWDpg/pNnXJsklTXAgbZ7PZmV/Rbq6wK7mik75vd1YKMMJv0oEG8Cv1eh
+	YEZQLTHQNmWGidVd85/wFovU1AonxGF5a8JKM1JgltPB0GK3eK6CVC91iTOb4dC4MRWg0evmPjN
+	wbHZeG860OpNN83gxNNUxkYSFcecLKPHeyWyLmG9ZcNZCcS+/LpydsmcDFY/6ZjggXLME1lit2L
+	0uegF84RCLdyGJ7v2+V7Z/3DG4lzdP9dqJn6qBdg04F8HJ9vFOpks
+X-Received: by 2002:a05:6214:2aaf:b0:707:49ae:cd47 with SMTP id 6a1803df08f44-7099a332e69mr182468606d6.30.1754996118941;
+        Tue, 12 Aug 2025 03:55:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdkhFnmwSU74jKtHq9bp9+uokwPAB0k/r84R0m1BGkqTHSLqHpUTQQ7XgYD2WVUetchlW7gw==
+X-Received: by 2002:a05:6214:2aaf:b0:707:49ae:cd47 with SMTP id 6a1803df08f44-7099a332e69mr182468246d6.30.1754996118482;
+        Tue, 12 Aug 2025 03:55:18 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-33238272944sm42016811fa.13.2025.08.12.03.52.09
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55cce15c5casm1342803e87.112.2025.08.12.03.55.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 03:52:10 -0700 (PDT)
-Date: Tue, 12 Aug 2025 13:52:08 +0300
+        Tue, 12 Aug 2025 03:55:16 -0700 (PDT)
+Date: Tue, 12 Aug 2025 13:55:14 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nitin Rawat <quic_nitirawa@quicinc.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, vkoul@kernel.org,
-        kishon@kernel.org, conor+dt@kernel.org, bvanassche@acm.org,
-        andersson@kernel.org, neil.armstrong@linaro.org,
-        konradybcio@kernel.org, krzk+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V1 2/4] arm64: dts: qcom: sm8750: add max-microamp for
- UFS PHY and PLL supplies
-Message-ID: <ljythvl2yfilcnmgdwt2cyyefxmgl54osll5e76qn7njadhgqq@rwrl3dy6ykt3>
-References: <20250806154340.20122-1-quic_nitirawa@quicinc.com>
- <20250806154340.20122-3-quic_nitirawa@quicinc.com>
- <20250808-calm-boa-of-swiftness-a4a7ce@kuoka>
- <9af71063-0629-4ccc-bc76-3fb588677bf4@oss.qualcomm.com>
- <292907f3-25d6-40d9-be6e-b6b83e646d73@kernel.org>
- <5e32be05-0dbd-4d6f-879d-8ce97fb430ba@quicinc.com>
- <rh3qxu2rijpjswfash3rpmmh6sw47l3b6j5p5upti6zffknasz@cywwm3fypghd>
- <89ab7e51-f82e-465a-aa22-1ccb8e7a0f6d@quicinc.com>
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, mani@kernel.org,
+        alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org, agross@kernel.org,
+        James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 2/4] arm64: dts: qcom: sm8650: Enable MCQ support for
+ UFS controller
+Message-ID: <27qmlr3lie54lyigl5v434yzvbes5twy6zgtkqb52ycfh23vsp@zdg57ifh7kog>
+References: <20250811143139.16422-1-quic_rdwivedi@quicinc.com>
+ <20250811143139.16422-3-quic_rdwivedi@quicinc.com>
+ <67aedb2a-3ccc-4440-b2ff-b3dbedf5e25c@kernel.org>
+ <9ff100b4-a3a5-4364-8172-1ccb5566e50c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <89ab7e51-f82e-465a-aa22-1ccb8e7a0f6d@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=X4lSKHTe c=1 sm=1 tr=0 ts=689b1cdd cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=2OwXVqhp2XgA:10 a=7T__WHWB9XTw_rtxigEA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzMSBTYWx0ZWRfX/UCfAFK/6OEd
- T4IY+m3vy1a4CDNUD91U0RorNQ6++w+KNZa7GGiyuTyj7WawAQpj4SdPOjHwY/M3NpazfqhLmvM
- eHszQp3G/Hc2VzVPDM6aupmfOrSOMwlHD96EcprT/FlSQe1SKkqfROe0pMbSY1aEhNe8VidSL7s
- ZKdbZzZO3Qn83nRaRsjV6NqTdPg38ebVA8yGJHTfM23ox0pXi/lFENiZ/P50KkgCgNclIocyuEZ
- djQHKAlaU9OqjN6nw1iPx2q2xOfLCOqyhqKm+15Vii4NMMLtleQyTh6yigcTAqn/I2LiwLrpwBh
- IiVAsk4pKI2Y+8PmNytOcScOjaAyk2cJsVVWcaroVr7Tc7qtqXcT5FiBFNnNGKYLdkPgbSUweOG
- 8h5gPsAc
-X-Proofpoint-GUID: XzQgmulnxPDlZTJU64cjv3UOPERquoxZ
-X-Proofpoint-ORIG-GUID: XzQgmulnxPDlZTJU64cjv3UOPERquoxZ
+In-Reply-To: <9ff100b4-a3a5-4364-8172-1ccb5566e50c@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=G6EcE8k5 c=1 sm=1 tr=0 ts=689b1d98 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8 a=VZigEyOcwVUUxk4fBhcA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA5NyBTYWx0ZWRfX8zmFcaL/SSlU
+ M9rQKvVBDodQNqV2jnSEVm91g+3A6RogJCCj5S898dcq0WwcNHROJ+M3rn4xE7yOQPbIK9qRyXo
+ FA1XpFqiNr7J65xOVKSyVa2ztpga+Hp2FlVaF60PzRsRSB/7K3Vam7/NoKOzH05fgNCOygxDIkb
+ Y148HpUTMZR1pRzquZxPAHFsO8Gek2Go3bK4IFMnC1p04NdYEAubI+5bpVxXkjTVRmkTGYocs3/
+ pvLSGpQjJWZf2FT7x/wsaZ1AiM2dBLSbebrv8kQtjHI3XOCuufrN4E2Mtc5A3mQS9nUKJwO4Tpe
+ kas6ouppwHHxFCMlWuEiJml+aLxO//bZsEH8y+ZxdEGrGzusmbKtBKdwdDTka3vICfe9zwxZEf7
+ 5GvA5zv+
+X-Proofpoint-ORIG-GUID: VIxO9o_teoIJP2PhPzR_zIBPvBRSN1DE
+X-Proofpoint-GUID: VIxO9o_teoIJP2PhPzR_zIBPvBRSN1DE
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-12_05,2025-08-11_01,2025-03-28_01
+ definitions=2025-08-12_06,2025-08-11_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 adultscore=0
- spamscore=0 bulkscore=0 suspectscore=0 impostorscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090031
+ suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
+ malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110097
 
-On Tue, Aug 12, 2025 at 01:25:02AM +0530, Nitin Rawat wrote:
+On Mon, Aug 11, 2025 at 10:24:29PM +0530, Ram Kumar Dwivedi wrote:
 > 
 > 
-> On 8/9/2025 4:37 PM, Manivannan Sadhasivam wrote:
-> > On Fri, Aug 08, 2025 at 08:49:45PM GMT, Nitin Rawat wrote:
-> > > 
-> > > 
-> > > On 8/8/2025 3:09 PM, Krzysztof Kozlowski wrote:
-> > > > On 08/08/2025 10:58, Konrad Dybcio wrote:
-> > > > > On 8/8/25 9:29 AM, Krzysztof Kozlowski wrote:
-> > > > > > On Wed, Aug 06, 2025 at 09:13:38PM +0530, Nitin Rawat wrote:
-> > > > > > > Add `vdda-phy-max-microamp` and `vdda-pll-max-microamp` properties to
-> > > > > > > the UFS PHY node in the device tree.
-> > > > > > > 
-> > > > > > > These properties define the maximum current (in microamps) expected
-> > > > > > > from the PHY and PLL regulators. This allows the PHY driver to
-> > > > > > > configure regulator load accurately and ensure proper regulator
-> > > > > > > mode based on load requirements.
-> > > > > > 
-> > > > > > That's not the property of phy, but regulator.
-> > > > > > 
-> > > > > > Also reasoning is here incomplete - you just post downstream code. :/
-> > > > > 
-> > > > > The reason for this change is good, but perhaps not explained clearly
-> > > > > 
-> > > > > All of these values refer to the maximum current draw that needs to be
-> > > > > allocated on a shared voltage supply for this peripheral (because the
-> > > > 
-> > > > 
-> > > > It sounds very different than how much it can be drawn. How much can be
-> > > > drawn is the property of the regulator. The regulator knows how much
-> > > > current it can support.
-> > > 
-> > > Consumers are aware of their dynamic load requirements, which can vary at
-> > > runtime—this awareness is not reciprocal. The power grid is designed based
-> > > on the collective load requirements of all clients sharing the same power
-> > > rail.
-> > > 
-> > > Since regulators can operate in multiple modes for power optimization, each
-> > > consumer is expected to vote for its runtime power needs. These votes help
-> > > the regulator framework maintain the regulator in the appropriate mode,
-> > > ensuring stable and efficient operation across all clients.
-> > > 
-> > > 
-> > > Stability issues can arise if each consumer does not vote for its own load
-> > > requirement.
-> > > For example, consider a scenario where a single regulator is shared by two
-> > > consumers.
-> > > 
-> > > If the first client requests low-power mode by voting for zero or a minimal
-> > > load to regulator framework during its driver's LPM sequence, and the second
-> > > client (e.g., UFS PHY) has not voted for its own load requirement through
-> > > the regulator framework, the regulator may transition to low-power mode.
-> > > This can lead to issues for the second client, which expects a higher power
-> > > state to operate correctly.
-> > > 
+> On 11-Aug-25 8:13 PM, Krzysztof Kozlowski wrote:
+> > On 11/08/2025 16:31, Ram Kumar Dwivedi wrote:
+> >> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
+> >> on the Qualcomm SM8650 platform by updating the device tree node. This
+> >> includes adding new register region for MCQ and specifying the MSI parent
+> >> required for MCQ operation.
+> >>
+> >> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 ++++++-
+> >>  1 file changed, 6 insertions(+), 1 deletion(-)
 > > 
-> > I think we all agree on consumers setting the load for shared regulators, but
-> > the naming and description of the DT property is what causing confusion here.
-> > There is no way the consumers can set the *max* current draw for a shared
-> > regulator. They can only request load as per their requirement. But the max
-> > current draw is a regulator constraint.
+> > Way you organize your patchset is confusing. Why DTS is in the middle?
+> > It suggests dependency and this would be strong objection from me.
 > 
-> To avoid confusion with regulator-level constraints, I'm open to renaming
-> the property vdda-phy-max-microamp to something more descriptive, such as
-> vdda-phy-client-peak-load-microamp or vdda-phy-peak-load-microamp. Along
-> with updating the description, this would better reflect the property's
-> actual intent: to specify the maximum current a client may draw during peak
-> operation, rather than implying it defines the regulator’s maximum
-> capability.
+> Hi Krzysztof,
+> 
+> My current patch submission order is as follows:
+> 
+> 1.DT binding
+> 2.Device tree
+> 3.Driver changes
+> 
+> Please let me know if you'd prefer to rearrange the order and place the driver patch in the middle.
 
-Move them into the driver please.
+THe recommended way is opposite:
+
+- DT bindings
+- Driver changes
+- DT changes
+
+This lets maintainers to pick up their parts with less troubles.
 
 > 
 > 
-> Having said that, I had a follow-up discussion with the PHY designer to
-> confirm whether this value could vary at the board level. Based on their
-> response, it's a fixed value for the SoC and does not change across
-> different boards(atleast for now). Therefore, I can remove from device tree
-> and replaced with hardcoded, per-compatible data in the driver.
-> 
+> Regards,
+> Ram
 > > 
-> > > 
-> > > > 
-> > > > 
-> > > > > supply's capabilities change depending on the maximum potential load
-> > > > > at any given time, which the regulator driver must be aware of)
-> > > > > 
-> > > > > This is a property of a regulator *consumer*, i.e. if we had a chain
-> > > > > of LEDs hanging off of this supply, we'd need to specify NUM_LEDS *
-> > > > > MAX_CURR under the "led chain" device, to make sure that if the
-> > > > > aggregated current requirements go over a certain threshold (which is
-> > > > > unknown to Linux and hidden in RPMh fw), the regulator can be
-> > > > > reconfigured to allow for a higher current draw (likely at some
-> > > > > downgrade to efficiency)
-> > > > 
-> > > > 
-> > > > The problem is that rationale is downstream. Instead I want to see some
-> > > > reason: e.g. datasheets, spec, type of UFS device (that was the argument
-> > > > in the driver patch discussion).
-> > > 
-> > > 
-> > > The PHY load requirements for consumers such as UFS, USB, PCIe are defined
-> > > by Qualcomm’s PHY IP and are well-documented in Qualcomm’s datasheets and
-> > > power grid documentation. These values can depending on the process or
-> > > technology node, board design, and even the chip foundry used.
-> > > 
-> > > As a result, the load values can differ across SoCs or may be even
-> > > board(unlikely though) due to variations in any of these parameters.
-> > > 
+> > Please read carefully writing bindings, submitting patches in DT and SoC
+> > maintainer profile.
 > > 
-> > Okay. This goes into the commit message and possibly some part of it to property
-> > description also.
-> 
-> 
-> 
-> 
-> > 
-> > - Mani
-> > 
+> > Best regards,
+> > Krzysztof
 > 
 
 -- 
