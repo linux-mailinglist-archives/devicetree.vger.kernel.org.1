@@ -1,283 +1,264 @@
-Return-Path: <devicetree+bounces-203774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49376B227EC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:12:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7C8B227E1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:10:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80E371B61108
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:02:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BEA33B24BB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4BB5178372;
-	Tue, 12 Aug 2025 13:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6C227932F;
+	Tue, 12 Aug 2025 13:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oSvgX2of"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQtbTHnP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 764261D6AA;
-	Tue, 12 Aug 2025 13:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794E3277009;
+	Tue, 12 Aug 2025 13:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755003623; cv=none; b=hSdA8QNApMuOHUMePdOGAmdo5kxC3fhajsOKHaYKDhLHK8R35WlssbRhSP5bFHHT7PEFvAQl6PmhWz+AErlQjDnZHx8ov9u1Y0ROaSG229S7hl250tvEca0eR/EpFvwTI/tjzJ58kOeoR5oPq+cbNOAvb6CAKpzUPIZ+ijJWAl4=
+	t=1755003792; cv=none; b=k53tOamgFBmSPdYdrS3rIOkbMyQty7DAmiq+oZW7t1yQFYugkhNAvn9t8hmmp5WnGnGp37clgMIg0WwOrToP+e/b+hwWp1eyDpyXdPtJGqIkKchu4iJcqKKK+XmSYjCG6UN+IsOwWWUvtxM8sHFYcxLL1RIm61ktuJxsl4PdtPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755003623; c=relaxed/simple;
-	bh=BPZhi1cYHWPs10d8aw+eUuAT4jQOgOOanuDWooHD66M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=X4rfe18fLP/ThtsJ1wlqFg/1ydYHEsTd722qth5R0nMuuk4W2OmvTUF4DOojrDZYouc/dMeNK7K5sYZrlcO+VyvX0thYg7hK3Jdag3IqxNFp7RKFSiIqK+4VgD17TSLRME76rfdrxV8oXWYFj/V8hvVmeqR+w6o3QPOrcHI72P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oSvgX2of; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1755003619;
-	bh=BPZhi1cYHWPs10d8aw+eUuAT4jQOgOOanuDWooHD66M=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=oSvgX2of80L02E0fcdOtjkRdCDV4W2cJtF0VNyeDf7vjjydxLjB5DamTHdsrGAIT2
-	 cy6fVuTM6Rh5ao6b3R8HQKvqZAT4t71qjg7sk4xB76Z0Wr5AvXbuutFT4TMO93mva1
-	 nW+tgKKfU/5EVJobEPLS18jDbotTUzhEtTOimDI/3bfffrRUVZO72qClzwOZwHSqTf
-	 yQ1AbYoT7OQHWwYpHOkh1gEP2Z/CCiSUbjvHfLyyRmrDPzVN6P1OJxrIzYWCOBIdxq
-	 isrZ5ygEstVzItRUu8B4KssVP8vJtRjHTLv/1lz5Rqrr/1gFRv6C7AUkOIDG2topIQ
-	 hv3ctCcBhWyog==
-Received: from [IPv6:2606:6d00:11:5a76::c41] (unknown [IPv6:2606:6d00:11:5a76::c41])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 19A3217E04C0;
-	Tue, 12 Aug 2025 15:00:18 +0200 (CEST)
-Message-ID: <f2908b2d35671e70e6a8b295de623e3a3ffe2212.camel@collabora.com>
-Subject: Re: [PATCH v2 5/7] media: rkvdec: Disable QoS for HEVC and VP9 on
- RK3328
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Detlev Casanova	
- <detlev.casanova@collabora.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Heiko Stuebner	 <heiko@sntech.de>, Alex Bee
- <knaerzche@gmail.com>, Sebastian Fricke	 <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, 	linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 12 Aug 2025 09:00:15 -0400
-In-Reply-To: <9dce97a9-92e6-4803-9e06-b2938e3c4999@kwiboo.se>
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
-	 <20250810212454.3237486-6-jonas@kwiboo.se>
-	 <3cf31d3b89a66b1bec57486c54c3df31393335e5.camel@collabora.com>
-	 <9dce97a9-92e6-4803-9e06-b2938e3c4999@kwiboo.se>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mQGiBEUQN0MRBACQYceNSezSdMjx7sx6gwKkMghrrODgl3B0eXBTgNp6c431IfOOEsdvk
- oOh1kwoYcQgbg4MXw6beOltysX4e8fFWsiRkc2nvvRW9ir9kHDm49MkBLqaDjTqOkYKNMiurFW+go
- zpr/lUW15QqT6v68RYe0zRdtwGZqeLzX2LVuukGwCg4AISzswrrYHNV7vQLcbaUhPgIl0D+gILYT9
- TJgAEK4YHW+bFRcY+cgUFoLQqQayECMlctKoLOE69nIYOc/hDr9uih1wxrQ/yL0NJvQCohSPyoyLF
- 9b2EuIGhQVp05XP7FzlTxhYvGO/DtO08ec85+bTfVBMV6eeY4MS3ZU+1z7ObD7Pf29YjyTehN2Dan
- 6w1g2rBk5MoA/9nDocSlk4pbFpsYSFmVHsDiAOFje3+iY4ftVDKunKYWMhwRVBjAREOByBagmRau0
- cLEcElpf4hX5f978GoxSGIsiKoDAlXX+ICDOWC1/EXhEEmBR1gL0QJgiVviNyLfGJlZWnPjw6xhhm
- tHYWTDxBOP5peztyc2PqeKsLsLWzAr7QnTmljb2xhcyBEdWZyZXNuZSA8bmljb2xhc0BuZHVmcmVz
- bmUuY2E+iGIEExECACIFAlXA3CACGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sB
- qgcJngAnRDBTr8bhzuH0KQwFP1nEYtfgpKdAKCrQ/sJfuG/8zsd7J8wVl7y3e8ARbRDTmljb2xhcy
- BEdWZyZXNuZSAoQi4gU2MuIEluZm9ybWF0aXF1ZSkgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29
- tPohgBBMRAgAgBQJFlCyOAhsDBgsJCAcDAgQVAggDBBYCAwECHgECF4AACgkQcVMCLawGqBwhLQCg
- zYlrLBj6KIAZ4gmsfjXD6ZtddT8AoIeGDicVq5WvMHNWign6ApQcZUihtElOaWNvbGFzIER1ZnJlc
- 25lIChCLiBTYy4gSW5mb3JtYXRpcXVlKSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY28udW
- s+iGIEExECACIFAkuzca8CGwMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHFTAi2sBqgcQX8
- An2By6LDEeMxi4B9hUbpvRnzaaeNqAJ9Rox8rfqHZnSErw9bCHiBwvwJZ77QxTmljb2xhcyBEdWZy
- ZXNuZSA8bmljb2xhcy5kdWZyZXNuZUBjb2xsYWJvcmEuY29tPohiBBMRAgAiBQJNzZzPAhsDBgsJC
- AcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRBxUwItrAaoHLlxAKCYAGf4JL7DYDLs/188CPMGuwLypw
- CfWKc9DorA9f5pyYlD5pQo6SgSoiC0R05pY29sYXMgRHVmcmVzbmUgKEIgU2MuIEluZm9ybWF0aXF
- 1ZSkgPG5pY29sYXMuZHVmcmVzbmVAdXNoZXJicm9va2UuY2E+iGAEExECACAFAkUQN0MCGwMGCwkI
- BwMCBBUCCAMEFgIDAQIeAQIXgAAKCRBxUwItrAaoHPTnAJ0WGgJJVspoctAvEcI00mtp5WAFGgCgr
- +E7ItOqZEHAs+xabBgknYZIFPU=
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
-	boundary="=-JAuicq2EIvWHvsvtmtAs"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1755003792; c=relaxed/simple;
+	bh=MvCjB2FFh0rEnk1mIXk4Ad2pPOp0IpbEwQOMEM9XKLA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=m3Lz4v44W/g8uUTk3KxiXxFmfmX5z0NdjaRAg1CyxW0NTXYeJnwIzVUii+oJ1WxkWiGIgW+gxmcTxgpguX3fLNiWgXoG7bOOp4N04SxFaYlf25E87PuqnWzJpC3GiTDOXWBQ47aOx4+N8dykCjQHj9jZKkySyeYTJeb9VF8QOck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQtbTHnP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4DBAFC4CEF0;
+	Tue, 12 Aug 2025 13:03:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755003792;
+	bh=MvCjB2FFh0rEnk1mIXk4Ad2pPOp0IpbEwQOMEM9XKLA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=sQtbTHnPcBc/LIxEenAALis0AHhCRVOOjZDE/u859HAMQhyeTDtmJXbMlCpzA7Wyt
+	 uz6piPEVzXzL4fXBCGpKkmM0vyqtcK8X07l1Riw78UKjVJFJTCfutCUQQqepdnpcla
+	 EZsWufvm1M+0N/WbMxpfFZhA+Fo7OwMwYG82D3BBYEeI6rVhxNDKlW2RJFUPEKTUqL
+	 +TUyw+mgPFb0KP3aunrCmJXGSfXbkXDY1jIEFYxvx8C9zSlhOTkCwdccx5bhP8AhV7
+	 w/ikYM0bggm8iTthj0nzQTuk68sBaPw8sIC6gUwyJiXAOzA5FNRUK0/ISHW0HbCWyA
+	 cHI2jBgUwR94Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F6CDC87FCB;
+	Tue, 12 Aug 2025 13:03:12 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v11 0/3] arm64: dts: qcom: Add Lenovo ThinkBook 16 device
+ tree
+Date: Tue, 12 Aug 2025 15:02:47 +0200
+Message-Id: <20250812-tb16-dt-v11-0-4923d2cd7121@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-JAuicq2EIvWHvsvtmtAs
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mardi 12 ao=C3=BBt 2025 =C3=A0 01:08 +0200, Jonas Karlman a =C3=A9crit=
-=C2=A0:
-> Hi Nicolas,
->=20
-> Missed some comments in my last mail.
->=20
-> On 8/11/2025 11:25 PM, Nicolas Dufresne wrote:
-> > Le dimanche 10 ao=C3=BBt 2025 =C3=A0 21:24 +0000, Jonas Karlman a =C3=
-=A9crit=C2=A0:
-> > > From: Alex Bee <knaerzche@gmail.com>
-> > >=20
-> > > The RK3328 VDEC has a HW quirk that require QoS to be disabled when H=
-EVC
-> > > or VP9 is decoded, otherwise the decoded picture may become corrupted=
-.
-> > >=20
-> > > Add a RK3328 variant with a quirk flag to disable QoS when before
-> > > decoding is started.
-> > >=20
-> > > Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> > > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> > > ---
-> > > Changes in v2:
-> > > - No change
-> > > ---
-> > > =C2=A0drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c |=C2=A0 9 =
-+++++++++
-> > > =C2=A0drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h |=C2=A0 2 =
-++
-> > > =C2=A0drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c=C2=A0 | 10 =
-++++++++++
-> > > =C2=A0drivers/media/platform/rockchip/rkvdec/rkvdec.c=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 12 ++++++++++++
-> > > =C2=A0drivers/media/platform/rockchip/rkvdec/rkvdec.h=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 4 ++++
-> > > =C2=A05 files changed, 37 insertions(+)
-> > >=20
-> > > diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-> > > b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-> > > index 1994ea24f0be..f8bb8c4264f7 100644
-> > > --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-> > > +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
-> > > @@ -789,6 +789,15 @@ static int rkvdec_hevc_run(struct rkvdec_ctx *ct=
-x)
-> > > =C2=A0	writel(1, rkvdec->regs + RKVDEC_REG_PREF_LUMA_CACHE_COMMAND);
-> > > =C2=A0	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
-> > > =C2=A0
-> > > +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
-> > > +		u32 reg;
-> > > +
-> > > +		reg =3D readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> > > +		reg |=3D 0xFFFF;
-> > > +		reg &=3D ~BIT(12);
-> >=20
-> > I wonder if there is a better way to express that, if not, a comment fo=
-r
-> > future
-> > readers would be nice. If read it will, we keep the upper 16bit, and
-> > replaced
-> > the lower bits with 0xEFFF (all bits set except 12) ? I'd rather not sp=
-end
-> > time
-> > thinking if I walk by this code again.
->=20
-> Vendor kernel use following comment to describe the purpose of this [1]:
->=20
-> =C2=A0 HW defeat workaround: VP9 and H.265 power save optimization cause
-> =C2=A0 decoding corruption, disable optimization here.
->=20
-> From the TRM we can see following for rkvdec_swreg99_qos_ctrl:
->=20
-> =C2=A0 27:26 sw_axi_wr_hurry_level
-> =C2=A0=C2=A0=C2=A0 00: hurry off=20
-> =C2=A0=C2=A0=C2=A0 01~11: hurry level=20
-> =C2=A0 25:24 sw_axi_rd_hurry_level
-> =C2=A0=C2=A0=C2=A0 00: hurry off=20
-> =C2=A0=C2=A0=C2=A0 01~11: hurry level=20
-> =C2=A0 23:16 sw_bus2mc_buffer_qos_level
-> =C2=A0=C2=A0=C2=A0 range is: 0~255
-> =C2=A0=C2=A0=C2=A0 the value is means that left space <=3D
-> =C2=A0=C2=A0=C2=A0 sw_bus2mc_buffer_qos_level, it will give hurry
-> =C2=A0 15:0 swreg_block_gating_e
->=20
-> So yes this set swreg_block_gating_e to 0xEFFF. Possible this configure
-> hw to not auto gate most internal clocks?
->=20
-> Could add a comment and possible use something like following:
->=20
-> =C2=A0 reg &=3D GENMASK(31, 16);
-> =C2=A0 reg |=3D 0xEFFF;
-
-Thanks for the information, I think this form is somewhat nicer indeed, and=
- a
-little comment, its fine to say that the QOS bits are undocumented.
-
-Nicolas
-
->=20
-> [1]
-> https://github.com/Kwiboo/linux-rockchip/blob/linux-6.1-stan-rkr6.1/drive=
-rs/video/rockchip/mpp/mpp_rkvdec.c#L857-L867
->=20
-> >=20
-> > > +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> > > +	}
-> > > +
-> > > =C2=A0	/* Start decoding! */
-> > > =C2=A0	reg =3D (run.pps->flags & V4L2_HEVC_PPS_FLAG_TILES_ENABLED) ?
-> > > =C2=A0		0 : RKVDEC_WR_DDR_ALIGN_EN;
-> > > diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-> > > b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-> > > index 540c8bdf24e4..c627b6b6f53a 100644
-> > > --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-> > > +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-regs.h
-> > > @@ -219,6 +219,8 @@
-> > > =C2=A0#define RKVDEC_REG_H264_ERR_E				0x134
-> > > =C2=A0#define RKVDEC_H264_ERR_EN_HIGHBITS(x)			((x) &
-> > > 0x3fffffff)
-> > > =C2=A0
-> > > +#define RKVDEC_REG_QOS_CTRL				0x18C
-> > > +
-> > > =C2=A0#define RKVDEC_REG_PREF_LUMA_CACHE_COMMAND		0x410
-> > > =C2=A0#define RKVDEC_REG_PREF_CHR_CACHE_COMMAND		0x450
-> > > =C2=A0
-> > > diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> > > b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> > > index 0e7e16f20eeb..cadb9d592308 100644
-> > > --- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> > > +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vp9.c
-> > > @@ -824,6 +824,16 @@ static int rkvdec_vp9_run(struct rkvdec_ctx *ctx=
-)
-> > > =C2=A0	writel(1, rkvdec->regs + RKVDEC_REG_PREF_CHR_CACHE_COMMAND);
-> > > =C2=A0
-> > > =C2=A0	writel(0xe, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
-> > > +
-> > > +	if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS) {
-> > > +		u32 reg;
-> > > +
-> > > +		reg =3D readl(rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> > > +		reg |=3D 0xFFFF;
-> > > +		reg &=3D ~BIT(12);
-> > > +		writel(reg, rkvdec->regs + RKVDEC_REG_QOS_CTRL);
-> >=20
-> > Can we deduplicate that ?
->=20
-> Guess so, any suggestion on how to best do that?
->=20
-> One possible way that comes to mind:
->=20
-> =C2=A0 if (rkvdec->quirks & RKVDEC_QUIRK_DISABLE_QOS)
-> 	rkvdec_quirk_disable_qos(rkvdec);
->=20
-> >=20
-> > > +	}
-> > > +
-> > > =C2=A0	/* Start decoding! */
-> > > =C2=A0	writel(RKVDEC_INTERRUPT_DEC_E | RKVDEC_CONFIG_DEC_CLK_GATE_E |
-> > > =C2=A0	=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RKVDEC_TIMEOUT_E | RKVDEC=
-_BUF_EMPTY_E,
->=20
-> [snip]
-
---=-JAuicq2EIvWHvsvtmtAs
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHg7m2gC/33T226cMBAG4FdBXNcrj89GUZX3iHJh7CFrlcMWE
+ 5Q2yrt3dlcp3CziBlvoY+z557MuOGcsdVN91jOuueRppAXAj6qO5zC+IcuJNmrBheYagC0tGJY
+ Whk5FJWVytoWavr7M2OWPG/XySutzLss0/7nJK1x3vw3931iBcZaidsoEoaNyz1OfSjxPU1+m/
+ n2hYsqpzX/rK7iKPWI2RBBio/LeJO0wmUNE7hChNkQSAhaFSV5qtPIQUQ8QRYiIgIaDS7Ljh4j
+ eEMPthmhCAiovpVGdFvoQMQ8QQ4iBIMGDQrTiELE7RPgNsYRILayRCqR03SHidojkG+IIiZ0SQ
+ XpD93rcHb8hlm9ZW/21xcmjcNxJ2x7fCfBNcbArhd7paTvKSLI6Gv+Q+boHesbf7zQSyz3V9YC
+ lhNtENNXTd5HgpBH6BN44oQwDFnr8OK15DHP5lcvz2xByf4rT8LPez1RT3QGKzzCtyDBdGI7pM
+ uVxKawLCWMKIaUAzXqbrzYUZMQMeWmqFrTy+vpzF6PHNlgpotAtp4HsbNAyxkhN6+gkX/8Ajen
+ sWuQDAAA=
+X-Change-ID: 20250511-tb16-dt-e84c433d87b1
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755003790; l=7478;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=MvCjB2FFh0rEnk1mIXk4Ad2pPOp0IpbEwQOMEM9XKLA=;
+ b=plSHW2jwSAKKF5SBaLx+GhAZcf8qybHDSqgeROMEk6FloZUUiuep2oyTfrjPc+quZGYY3+d+a
+ Ark118gOxthDOs1k7lkeiyuea2dBhog79rNUgK95SmRoUYCmZpy7SOO
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
------BEGIN PGP SIGNATURE-----
+Device tree for the Lenovo Thinkbook 16 G7 QOY
 
-iF0EABECAB0WIQSScpfJiL+hb5vvd45xUwItrAaoHAUCaJs63wAKCRBxUwItrAao
-HAUsAKC1sBxNA1+yEIFCnD/e1Ljvs4W7zQCgkzXoEfYGmIbzQwoE/GL67jAV2K8=
-=/EUA
------END PGP SIGNATURE-----
+The Laptop is a Snapdragon X1 / X1 Plus (Purwa) based device [1].
 
---=-JAuicq2EIvWHvsvtmtAs--
+Supported features:
+
+- USB type-c and type-a ports
+- Keyboard
+- Touchpad (all that are described in the dsdt)
+- Touchscreen (described in the dsdt, no known SKUss)
+- Display including PWM backlight control
+- PCIe devices
+- nvme
+- SDHC card reader
+- ath12k WCN7850 Wifi and Bluetooth
+- ADSP and CDSP
+- GPIO keys (Lid switch)
+- Sound via internal speakers / DMIC / USB / headphone jack
+- DP Altmode with 2 lanes (as all of these still do)
+- Integrated fingerprint reader (FPC)
+- Integrated UVC camera
+- X1-45 GPU
+
+Not supported yet:
+
+- HDMI port.
+- EC and some fn hotkeys.
+
+Limited support yet:
+
+- SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
+the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
+but not UHS-I (SD104) and UHS-II.
+
+Notes:
+
+- Putting the camera behind usb_2_dwc3 results in the camera switched off after 30
+seconds. With the stand-alone node as previously defined it stays usable and
+suspends, as intended. Since the sole reason for the USB camera to be in the
+devicetree is the required extra supply (which is guessed, as mentioned), and
+its handling by power management, I would propose to keep it this way.
+
+- The gpi_dma nodes appear to be implicitly enabled when a serial device is used.
+I added them, no change in behaviour, though. Since this would be the only X1
+device adding them afaik, I left them out.
+
+- The cma-memory is removed, it is not on all x1 devices as I assumed.
+Haven't found a case where it is required.
+
+- i2c2 defines the keyboard and 4 different touchpad interfaces. With the bundling
+of the pinctrl it seems to work better. I've had issues with only clock and touchpad
+pinctrl on the i2c2 node, and not keyboard.
+
+This work was done without any schematics or non-public knowledge of the device.
+So, it is based on the existing x1 device trees, dsdt analysis, using HWInfo
+ARM64, and pure guesswork. It has been confirmed, however, that the device really
+has 4 NXP PTN3222 eUSB2 repeaters, one of which doesn't have a reset GPIO (eusb5
+@43).
+
+I have brought up the Thinkbook over the last 5 months since the x1p42100-crd
+patches were available. The laptop is very usable now, and quite solid as a dev/
+test platform.
+
+Big thanks to Aleksandrs Vinarskis for helping (and sort of persisting) on the
+fingerprint, camera and HDMI issues.
+
+[1]: https://psref.lenovo.com/syspool/Sys/PDF/ThinkBook/ThinkBook_16_G7_QOY/ThinkBook_16_G7_QOY_Spec.pdf
+
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+---
+Changes in v11:
+- respin due to b4 / git issue (thanks Konrad)
+- corrected SoB for patch #3 (thanks Krzysztof)
+- Link to v10: https://lore.kernel.org/r/20250810-tb16-dt-v10-0-0bfed6d75c69@oldschoolsolutions.biz
+
+Changes in v10:
+- rebased as recommended onto 20250701183625.1968246-1-alex.vinarskis@gmail.com and
+  20250724-move-edp-endpoints-v1-3-6ca569812838@oss.qualcomm.com (whole series)
+- rebased onto next-20250808
+- amended node order
+- checked occurrence of touchpad variants: current users have eiher @2c (like mine) or @38
+- removed 4 lanes definition from mdss_dp0_out and mdss_dp_1_out. The required patches for
+  it are not yet upstream, as it seems.
+- removed UFS reset from reserved ranges
+- removed commented-out lines 
+- Link to v9: https://lore.kernel.org/r/20250701-tb16-dt-v9-0-7d9e280837b5@oldschoolsolutions.biz
+
+Changes in v9:
+- rebase to next-20250701
+- fix errors listed from Rob Herrings dts check script - one typo, one missing 
+  pmic-glink compatible string
+- Link to v8: https://lore.kernel.org/r/20250630-tb16-dt-v8-0-cf42a396e736@oldschoolsolutions.biz
+
+Changes in v8:
+- rebase to next-20250630
+- fix bleed-over of edp0_hpd_active - not in linux-next yet
+- fix bleed-over of hdmi definition 
+- Link to v7: https://lore.kernel.org/r/20250629-tb16-dt-v7-0-35276341338f@oldschoolsolutions.biz
+
+Changes in v7:
+- amended pinctrl order and indents where needed
+- interchanged enable-gpios and select-gpios for usb-sbu-mux as they are
+  defined in the dsdt - dp altmode function confirmed in both orientations
+- picked up reviewed-by and acked-by from Dmitry Baryshkob and Rob Herring
+- Link to v6: https://lore.kernel.org/r/20250607-tb16-dt-v6-0-61a31914ee72@oldschoolsolutions.biz
+
+Changes in v6:
+- removed compatible for qcom,sm8550-pmic-glink" in pmic-glink
+- fixed malformed gpu node
+- Link to v5: https://lore.kernel.org/r/20250607-tb16-dt-v5-0-ae493364f525@oldschoolsolutions.biz
+
+Changes in v5:
+- removed patch for the CMN N160JCE-ELL panel, got reviewed
+- re-ordered code in onboard_usb_dev as requested by Dmitry Baryshkov
+- amended device tree with review notes from Dmitry Baryshkov where possible
+  and resuting in a working laptop - added notes section
+- Link to v4: https://lore.kernel.org/r/20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz
+
+Changes in v4:
+- squashed Makefile and dts commits to one
+- picked up r-b from Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+- Link to v3: https://lore.kernel.org/r/20250524-tb16-dt-v3-0-17e26d935e73@oldschoolsolutions.biz
+
+Changes in v3:
+- removed changes in x1e80100.dtsi and x1p42100.dtsi - resolved with [2]
+- fixed schema errors with correct compatible string for the model
+- added power management for the camera via onboard_usb_dev.c
+- amended node ordering
+- changed the panel driver used to edp-panel, added panel in the driver
+- amended x1e80100.dtsi for exposing PM8010: This one is not present in the design,
+  added /delete-node/ for it.
+- removed commented-out lines for sdhc, specified which don't work.
+- corrected ZAP shader firmware name
+- Link to v2: https://lore.kernel.org/r/20250516-tb16-dt-v2-0-7c4996d58ed6@oldschoolsolutions.biz
+
+Changes in v2:
+- removed nodes that gave DTC compile errors (pm8010_thermal, edp0_hpd_active)
+- amended qcom.yaml
+- shortened the commit titles to fit 75 chars
+- Link to v1: https://lore.kernel.org/r/20250515-tb16-dt-v1-0-dc5846a25c48@oldschoolsolutions.biz
+
+[2]: 20250520-topic-x1p4_tsens-v2-1-9687b789a4fb@oss.qualcomm.com
+
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Add Lenovo TB16 support
+      firmware: qcom: scm: Allow QSEECOM on Lenovo Thinkbook 16
+      arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY device tree
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ .../boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 1629 ++++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c                   |    1 +
+ 4 files changed, 1633 insertions(+)
+---
+base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
+change-id: 20250511-tb16-dt-e84c433d87b1
+prerequisite-message-id: <20250701183625.1968246-1-alex.vinarskis@gmail.com>
+prerequisite-patch-id: b35889814152fca77b3822bce5418358924fe9f7
+prerequisite-change-id: 20250724-move-edp-endpoints-fadecdaadda1:v1
+prerequisite-patch-id: c536bf9ec7fd22af9b05b695272997615dfd675f
+prerequisite-patch-id: d513e5a08d3be585b9b6a737ef3a1ad275d7caad
+prerequisite-patch-id: 605ef6f89dd84f810df11be9d11ee6803a6bf289
+prerequisite-patch-id: 2ab2430624acbdd9011f6c0c2a77469fd19fc75a
+prerequisite-patch-id: bfbb562513763ce75f2bb5da7f12e7b54ff3919d
+
+Best regards,
+-- 
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+
 
