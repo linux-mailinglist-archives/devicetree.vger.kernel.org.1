@@ -1,113 +1,142 @@
-Return-Path: <devicetree+bounces-203906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6693FB22E5B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:56:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9008AB22E68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D1D03A8371
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:54:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F059B7AC905
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056AD2FA0E9;
-	Tue, 12 Aug 2025 16:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A835B2FABEB;
+	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="xGdc/awl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LLcPmm4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56932263F22;
-	Tue, 12 Aug 2025 16:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE512882AB;
+	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755017664; cv=none; b=AwUeMrkGTyC2z6CJ51BfC63ykj3x59y1QIyaS/W89C5ds66Dh35vF/Am4MxTqeUMIQcfzrf4tQNjdPCImGdtEiNhFGbSii5asSaPRkk6KRs7vIt5RH/8IaVzQUtn8yV+yYJ3+qXdz0yUJ33ioBtojrqmv1pfpqHK/10QRzVaFgE=
+	t=1755017960; cv=none; b=Ow+v+WQ8DAb69Ael6jZatqIMoxJl7JXaGeJ9Hh0cLT00QnkZ4Dk3BCe6VAS37YxELGeXeIHVOUF2VtMlbJ+n3XxBIBy6sSXCZZVjCChF4YYBLqQAmhQob81C4V+SeLe7F28ap3J4Xzb8A7eQREHKDqPrA4sCtm1iocjRG8i5mVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755017664; c=relaxed/simple;
-	bh=/qn5HyjejE8OObLaU00F8rwyy1m3kk48b055lsc1nYQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SmbwGPP5JgSdGWWUZvabJmF0MYMNS5sNLxh5NZlsm8IUY4js1RbWx/SWxDqh77+VUqtplnAEM94lvkiLpUMXu4wqnXRwdFcTx5uSGiQVI5sO6dNd7rhtXU9laNP8xCqelXEd6vPsLlu978WoxZk2Wt+wTY2r+16igcxs9ipss60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=xGdc/awl; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=1SxDAKOHuKo6/4q/wwaqNCQYQq81PZ4obbS2L6Mwp/k=; b=xGdc/awlWFGNckXmwjToLVREYM
-	a2X70y6ewzvP+SNCnkWmFdSGXtNGeG1Styz2eWfCXh8z0aCOSvkAV0LvKUN+W0kCKxEbbEIWW//eM
-	Lmu5l/4u58fjz1aGM1MPHmugHnrvBwoco5EqxdaPTEYXWb31Bgx87KajikX6O49ubhQuhHPdzHhZk
-	iQOv+PullK/SuJ01MEXALeRLUvJ0zi+B6WYBZ+tw0iQo6IBD4fiuWLFNQarf5QlyEFbSs2UHmx+ae
-	s9/Jn7sN9SQ40iXD001VfLoiojhABmlzI9+aG4LR+w9mmZq+AZ6VuEPVdtCfdU6csZZPD8HqpeREP
-	ZNGcsRgg==;
-Received: from [50.53.25.54] (helo=[192.168.254.17])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1ulsGQ-0000000BU2A-0rUS;
-	Tue, 12 Aug 2025 16:54:18 +0000
-Message-ID: <5ee33ac3-c23e-4da7-87bc-2a5ea6e93afe@infradead.org>
-Date: Tue, 12 Aug 2025 09:54:16 -0700
+	s=arc-20240116; t=1755017960; c=relaxed/simple;
+	bh=QG7yl+OjilKldnfrLrCLthek8RiczM5eXczR66KP9Ig=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uiTBuP+m5Scluye3ylYLKzdMWsV+vS+QM3/f3k6fxWjrXIb7NfL8wFiz+9VOn+Rrtu/xi326jlqKcdp5EDJLZWRDAFM4Eqb7NTqrkH8EHo0UFq7VtBEZ3Kgk+5yXqnR8GLBXj/JydvK6ekGlS4YaNPTLQON0wHefU6KtMw/LxxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LLcPmm4F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EB0C4CEF6;
+	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755017960;
+	bh=QG7yl+OjilKldnfrLrCLthek8RiczM5eXczR66KP9Ig=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=LLcPmm4FxuZN9IuO5Mm3ufQP8b+kubAPSbN+GqlLnKUS/+IZgSxgiK/N5TIrELyvb
+	 oRy+bMXzHKnDSNST/BjkfnjLChHLjJGEqWaaq2H4VTPX5Xm4za4mOh0TAbbHFbjiFf
+	 pXDIvOQlrIeq/TF4k2Zoy44DRqmop4FqMn93QWw+ikf02SoY/s6xKdpoKh1orGRz+s
+	 KCre5hg+zd0pswPZCrvyUJ4QxFYDxEc9dSvjVG0xYIv91APJ2sZMPjKmt92Y2fyI55
+	 IR0gx2ab+w4mrBMvqif9lWG3dO8CXl3RBY4F/S99aSD7DifCKsDLvYfXe0FHF3KY8l
+	 UAYoDP+k64SqQ==
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso8981078a12.1;
+        Tue, 12 Aug 2025 09:59:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUSq6MeEOl3rTaTJffO4hO+971b7DKvw6RBuAf6CcF89WHgNVeZty4Ocfc1E9XpKOLMW41v5pdjRp6+@vger.kernel.org, AJvYcCUeaHtOp7Jj0vLqkFI+7b+94PJh+2XpuNMS3hXU/J+gG4n8DYSqXUyWxL0ZLmXN7eBsJ0XulNk/6HWVTZSf@vger.kernel.org, AJvYcCWTQ9vvS5urJ5avGJodl/cNTun0Wh50eOFk5QnEoJ17WUE4YwsNIptfvjLil6RWYrLCHenENakzy4zN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSbvBwGPSgqDmAbnPRo8a175806s9gmwlR9TVvou7fmWINuEAq
+	oun174viUqJuulCqbtDWJeGTbZ63RLzKfZLEApJUizPvWvtpjIsY0kZ/pikSFno1mS3Q6LH6QJZ
+	jPQ6mLk/yV/2pFz61pApe5Z1K2RySAA==
+X-Google-Smtp-Source: AGHT+IF1rFMvLqTw0zhBnEbF/24oh+pXC7Cyhcry2T0uiCBMH7+QMKcaZshDTGiUzXOGycYjeiwyJQZcWXyjV2prnqU=
+X-Received: by 2002:a17:907:2d1e:b0:ad8:9257:573a with SMTP id
+ a640c23a62f3a-afca4cba79emr5530366b.5.1755017958559; Tue, 12 Aug 2025
+ 09:59:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 03/14] net: ethernet: qualcomm: Add PPE driver
- for IPQ9574 SoC
-To: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
- Suruchi Agarwal <quic_suruchia@quicinc.com>,
- Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
- quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com
-References: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
- <20250812-qcom_ipq_ppe-v7-3-789404bdbc9a@quicinc.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20250812-qcom_ipq_ppe-v7-3-789404bdbc9a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <aJms+YT8TnpzpCY8@lpieralisi> <c627564a-ccc3-9404-ba87-078fb8d10fea@amd.com>
+ <aJrwgKUNh68Dx1Fo@lpieralisi> <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
+In-Reply-To: <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Aug 2025 11:59:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJF6s8GsGe1w6KEkeECab956YiBSFbdbHOiiCv2+v3MAA@mail.gmail.com>
+X-Gm-Features: Ac12FXwQ-VolqLcu_Kk_NoubrTpWU2JGnruO8pHHND6fvG1ZgFz7YpsckQnOIjA
+Message-ID: <CAL_JsqJF6s8GsGe1w6KEkeECab956YiBSFbdbHOiiCv2+v3MAA@mail.gmail.com>
+Subject: Re: Issues with OF_DYNAMIC PCI bridge node generation
+ (kmemleak/interrupt-map IC reg property)
+To: Lizhi Hou <lizhi.hou@amd.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, maz@kernel.org, devicetree@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Aug 12, 2025 at 10:53=E2=80=AFAM Lizhi Hou <lizhi.hou@amd.com> wrot=
+e:
+>
+>
+> On 8/12/25 00:42, Lorenzo Pieralisi wrote:
+> > On Mon, Aug 11, 2025 at 08:26:11PM -0700, Lizhi Hou wrote:
+> >> On 8/11/25 01:42, Lorenzo Pieralisi wrote:
+> >>
+> >>> Hi Lizhi, Rob,
+> >>>
+> >>> while debugging something unrelated I noticed two issues
+> >>> (related) caused by the automatic generation of device nodes
+> >>> for PCI bridges.
+> >>>
+> >>> GICv5 interrupt controller DT top level node [1] does not have a "reg=
+"
+> >>> property, because it represents the top level node, children (IRSes a=
+nd ITSs)
+> >>> are nested.
+> >>>
+> >>> It does provide #address-cells since it has child nodes, so it has to
+> >>> have a "ranges" property as well.
+> >>>
+> >>> You have added code to automatically generate properties for PCI brid=
+ges
+> >>> and in particular this code [2] creates an interrupt-map property for
+> >>> the PCI bridges (other than the host bridge if it has got an OF node
+> >>> already).
+> >>>
+> >>> That code fails on GICv5, because the interrupt controller node does =
+not
+> >>> have a "reg" property (and AFAIU it does not have to - as a matter of
+> >>> fact, INTx mapping works on GICv5 with the interrupt-map in the
+> >>> host bridge node containing zeros in the parent unit interrupt
+> >>> specifier #address-cells).
+> >> Does GICv5 have 'interrupt-controller' but not 'interrupt-map'? I thin=
+k
+> >> of_irq_parse_raw will not check its parent in this case.
+> > But that's not the problem. GICv5 does not have an interrupt-map,
+> > the issue here is that GICv5 _is_ the parent and does not have
+> > a "reg" property. Why does the code in [2] check the reg property
+> > for the parent node while building the interrupt-map property for
+> > the PCI bridge ?
+>
+> Based on the document, if #address-cells is not zero, it needs to get
+> parent unit address. Maybe there is way to get the parent unit address
+> other than read 'reg'?  Or maybe zero should be used as parent unit
+> address if 'reg' does not exist?
+>
+> Rob, Could you give us some advise on this?
 
+If there's no 'reg', then 'ranges' parent address can be used. If
+'ranges' is boolean (i.e. 1:1), then shrug. Just use 0. Probably, 0
+should just always be used because I don't think it ever matters.
 
-On 8/12/25 7:10 AM, Luo Jie wrote:
-> diff --git a/drivers/net/ethernet/qualcomm/Kconfig b/drivers/net/ethernet/qualcomm/Kconfig
-> index a4434eb38950..6e56b022fc2d 100644
-> --- a/drivers/net/ethernet/qualcomm/Kconfig
-> +++ b/drivers/net/ethernet/qualcomm/Kconfig
-> @@ -60,6 +60,21 @@ config QCOM_EMAC
->  	  low power, Receive-Side Scaling (RSS), and IEEE 1588-2008
->  	  Precision Clock Synchronization Protocol.
->  
-> +config QCOM_PPE
-> +	tristate "Qualcomm Technologies, Inc. PPE Ethernet support"
-> +	depends on HAS_IOMEM && OF
-> +	depends on COMMON_CLK
-> +	select REGMAP_MMIO
-> +	help
-> +	  This driver supports the Qualcomm Technologies, Inc. packet
-> +	  process engine (PPE) available with IPQ SoC. The PPE includes
-> +	  the ethernet MACs, Ethernet DMA (EDMA) and switch core that
-
-Please use ethernet or Ethernet consistently.
-
-> +	  supports L3 flow offload, L2 switch function, RSS and tunnel
-> +	  offload.
-> +
-> +	  To compile this driver as a module, choose M here. The module
-> +	  will be called qcom-ppe.
-> +
--- 
-~Randy
-
+From my read of the kernel's interrupt parsing code, only the original
+device's node (i.e. the one with 'interrupts') address is ever used in
+the parsing and matching. So the values in the parent's address cells
+don't matter. If a subsequent 'interrupt-map' is the parent, then the
+code would compare the original address with the parent's
+interrupt-map entries (if not masked). That kind of seems wrong to me,
+but also unlikely to ever occur if it hasn't already. And that code is
+something I don't want to touch because we tend to break platforms
+when we do. The addresses are intertwined with the interrupt
+translating because interrupts used to be part of the buses (e.g ISA).
+That hasn't been the case for any h/w in the last 20 years.
 
