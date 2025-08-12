@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-203624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1580B2219E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:47:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46035B2219B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:47:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD2707235EB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:40:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8D3C1AA4741
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 765B22E7654;
-	Tue, 12 Aug 2025 08:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE782E2845;
+	Tue, 12 Aug 2025 08:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GJKin4ld"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gufhqA2Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE9B32E8DED
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D209E2E2DFD
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754987868; cv=none; b=rBa1JSyjXhtZTI0REsOIIR+xnKUcHbmv8KVbcefQX84xFNeNkl/QfYkv0j/qCpWC+wkT1h5ZXAUzL1A5PH2NBD1/1M+6NhqNpI9L/6i8Z4EM4FCk2TVKYIje3IkyjOatu/OdShYk7E3+rX6uxmHVJkvC68GqJiqaauBIhYn8Qhw=
+	t=1754987872; cv=none; b=GReiMa53V4AlNb//OSFRG/rRIdOqxYX3MNmspKHPw2P96H7EoD7mwng23U6LPSzTX95cn9W+ewUMknFQcQ8ew+ZlwiarYvGYNgzZW3bw04O2w4VmvitpNfTpXTmq0gM2RKKFYlflRK2khqw1EW2VLx0gauLfiKb3zULKBQVKIvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754987868; c=relaxed/simple;
-	bh=xtxhewrRdxb/X3PMc7wN8egXSrqwQkWhSbTXQL2ZeWY=;
+	s=arc-20240116; t=1754987872; c=relaxed/simple;
+	bh=D/F4ojh5lN6J1g3jMwklYOcZ7lTVu6mETleBG8wgOTk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=e5SxtbWvcITuWZSguiRS6UfOo29E7Hg3kv8upkBlTSH5xXf4yw0DfgneKYNkF0/9kOZ2aP1wPOBLPpok8Q2mgax5kM4IIl3C1/+1z7BPrX8pMDKxAShLxNm/2eFHls0fla26WHf0/UVbBwcBYxTxnc+DeqihzePtSsOKD3X63zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GJKin4ld; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=PEpMsjytjeDv8NohNMesZL9omBjj6LFBEBypo/zHzcvR+Wu5KMkIPzSWNl9smHSRFK164IS4ZW/cAWMP4xkdtCOXVW6l56F735voQXTrIINCNhmLXCWD2usrbT+MntVYdpM6uGIvAs1+UWNWMS5+D8xWrnAffY3TWNNaMMPJdHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gufhqA2Z; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C71YTP008308
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:45 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C5Xkxc030288
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:50 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=riURT7yHCOP
-	Zx38hIetmNcrk/xUqPrSJU9dLdU0LRDM=; b=GJKin4ldmrNMZD8zcr+1NHBAgdz
-	//9AbRH4PQBcUZ9fxecK3iWVCNevMsUQte/Wa19fuvpNErwbWvdgEdtGLkJJ54AP
-	6QAeJ7nuYET1jC7bT8urMGONOZ58wRSdeD5+WG1RoAnOrjryp5hdW5hQjFBiigWi
-	sKtkF8ut80Y0AWUkhzTVbfSnQAkAhlYaFeDwx5ZKv2EBmFoVTA4DiOVa7FeSC1pE
-	0mnzbdi8Xag38oKA/LfJenvYvulhigEPEVQtvUjuaoXUuKadvy5UoGYs/Oje5b+s
-	1SYOGRR8kkdaPM45dusXOyT9nW/nzbU6MYQRYCbjs+VqwR6xjGCpurrsN8Q==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=wrGu5dBmfdM
+	mzrfdvoTs2DIE+CWt05hHpp1+g0Qaf2o=; b=gufhqA2ZBtkvBSF2b8ZHeibVtt5
+	H43hsVSJWZzwVH70ZTx66iee0kXSpyLFjt+WIp2nL/iJ10+tej5R08Dv4/VDezcV
+	kajiTaj4wwFt4VPqzZi7Lh5wwMxkEAF9r516yTN3ncFqMcTyKkNhez8wbYmg3NSU
+	ONPJprHDkB0q2vdSXmZ5QhokpifwubucDWxGjfMoqOIVrMZhX5Soc+NomHwPOww1
+	uMKm2Bk05Ar3iiqkoi1r6LXWS5PJN+6dACdhWbUCFcZA38v0KrAbkVhy6y6mWj0l
+	SuVOxLx9wkq/eJ8dmitZ8AsOqgluTivUGHqAcPJkB3g9RjL3Z6b5oYh3ahQ==
 Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ffhjk8p0-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmfcuq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:45 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-243030571c2so3536335ad.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:37:45 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:37:50 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-23ff7d61fb7so51104005ad.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:37:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754987864; x=1755592664;
+        d=1e100.net; s=20230601; t=1754987869; x=1755592669;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=riURT7yHCOPZx38hIetmNcrk/xUqPrSJU9dLdU0LRDM=;
-        b=h/z0RVJhjj4f87bMJ8Bm+ZZ3vn/RNLno7/VUQlaAJeHor/pNBGIwvCSWuSfv6Lx4vz
-         8QgpVBkswmujF6a2uyqWRRfDtAPaY837HoKwqoHV/bKdRuxEZepfZ7qh3TJqNg5c8TIm
-         4NUgo4bba+RZ7CJ9ikeqFZ+4SiCbs4YzrCB/ijMLtmOcMPZW3sB2JwuDfoDpuhPYGjiI
-         Cgk7fJIx9mcHa1FBxQEVWB1DnNI7N3bePSQGujz3D8sy8DLga4SCkSnTYgf30jeTclaw
-         hMCS/H95Dx0B6M9uDZGpJdN72QXw51kaybRl4+tgtzzRxvVbkQJ7/ApAdzxBZ1vDfcRI
-         m0FA==
-X-Forwarded-Encrypted: i=1; AJvYcCXMD6qUt/JixDvpLS1/K4/aiDOfoY0BZ6G6eu7u9PdT5YIBu9uOr0V9DJuLcdagE5RgOqzYKLztiY8g@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBmTWZKncaXa4zZLyus6//q74v7h9OoBHhopmQc1pZmf/7i71a
-	tSwYTryODKJdK70b3AQlU0MNPjprTdMQkTyjpLdnVi5zL+15fiq70ZU76wku6ZNzn2ErV09aWXk
-	dNCOIoRsA8oxO6YWK5SN+hQayPC3EGvUDgRju1YEU5mSHkBICp3lxcv6D+x4mO71c
-X-Gm-Gg: ASbGncv5FfUZHji296pOcWRaaLuwl6xbY4qTRM8DeGCKzCarklf5fhKAjToFT6G4+JS
-	XjJ6ELbfZNtQ+FP043yFGjCQ68QzBEDqY+xqpbJfnk22GYbnwIAbdNlc7ERrhIW6az+jgtZA9bV
-	xZQ0+RXVVm99m1e3c8zKw1s1RTH7LunNzqK1Rcw757+jy0DgbbK9qzI3Tv+Yx1AjOZUgygFOBXK
-	sbQmVtmzmcH0119axi1dufb1IzNZuegBsXtVkrtSyaX7CzS8wrA50naK0oDD0NWOUjA6Yq89WQC
-	tIKcAEGAJxtdx6KcjfEr3h7IHU05i+yzckhWn1TkTzlZ6SLr5aY0Dm4wwdEBWV4mxj+ZWcJB9kk
-	evi53aDrk0MYC6P2Xzgk=
-X-Received: by 2002:a17:902:e74f:b0:240:11be:4dd3 with SMTP id d9443c01a7336-242fc230cd9mr37045515ad.3.1754987863926;
-        Tue, 12 Aug 2025 01:37:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF5dAbW2Log0v6AuB3l+T7D5XFDndUH0k2jF1NznPuDRg5AqrmtsIfJngtinh2TBDJFxMffEA==
-X-Received: by 2002:a17:902:e74f:b0:240:11be:4dd3 with SMTP id d9443c01a7336-242fc230cd9mr37045195ad.3.1754987863460;
-        Tue, 12 Aug 2025 01:37:43 -0700 (PDT)
+        bh=wrGu5dBmfdMmzrfdvoTs2DIE+CWt05hHpp1+g0Qaf2o=;
+        b=aDBApJxcCYydDF0XJ48nXUa+djyNVUQZVTC9hTYp8OHlRywZ9Qr9s0R0v2D4c7QFYK
+         rvSf/cKeBwjm0HSe7Kd6CUdekZcAiea0cruJO4AGD9XusITxAb4nRCDyophZqrlWDagw
+         SmS+Uq/ZE0XKZdmXSDvrXSRj6teFL1s/IhCDte3LaSEFawIe1rm9enub0kOwwapuNd6D
+         UBGuvBgZxwWppExEQSeEMcW7vc5Bl3PhAbz1WuFpNqZF0G3CkhXGd0pdf74X382J2BTt
+         q6Sx/JAjnMDacTgI4BH89aVQX3BhBDo5fwWZo87KfeFLKJqN+Xu/h4sGoARNL2AwMtCj
+         1EpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVY55qMH32gDwkVtRMY/mA4rL1TxXm/xTMuRC33BmDZcUDOdEAY8fZHXLuu+unYzG5pLvMW3R/mS752@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo9aa8f1at3uElsU3bBNokelTUcGNRqFuAxK44bce/gosUj5xK
+	2RP4sC+3zyTluiiH8tnKhz54/wNv0PpObKJsuK6Zqj1TKXTFXllyVdbk2ZMgxe+05QSya44RwU+
+	yq/4wZsTMP5+a2p9e2IHC7VRAFAsYM+DtLl9XttA1XvCRGEcd80wit9QiEGWnchu7
+X-Gm-Gg: ASbGnctXKSTJC7LFc5xaxQ3lVee77QFbZyG3C0+epFvQhIQn3CixaH5TJ3TiWxdIYk+
+	fYLnzhcff0O7suhqkN0Kkl3WT+s/LFG6Lw+Cuo28Y0R63KhDE+V8Hfqu+G+f1ONdzn/mtkzqwaJ
+	oHVQr4oHCLQnYTXgPg9lNFMJoTQSv0cZDzH5zezR372eZtCw06aYSiSuI3QvrTG35nbZ5E6gql3
+	WHLu1yunpbJp04/jPSIdj8VE4Z2clombrninAbyOPyY9M+89zaCJoGSOUCw2uzjtUDVi1IWChcZ
+	eMu5likNA9W4saZRo5G5+RPEivtPTLkLQIVjoYaA1mvLF0mxZZFZHIVp3EdEgli8Jg/ap4pMMtF
+	NWwlavWFROeUD7ShcaOk=
+X-Received: by 2002:a17:903:32d0:b0:240:6fc0:3421 with SMTP id d9443c01a7336-242fc2df919mr32672055ad.3.1754987869234;
+        Tue, 12 Aug 2025 01:37:49 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE1epWZtnF2IBB4X6gRIcAxheEo7d+5Pdk6LBydS5mLgAm0zXrYNJ+qesoW7cmIPGP6RrbrFw==
+X-Received: by 2002:a17:903:32d0:b0:240:6fc0:3421 with SMTP id d9443c01a7336-242fc2df919mr32671605ad.3.1754987868720;
+        Tue, 12 Aug 2025 01:37:48 -0700 (PDT)
 Received: from jiegan.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-243086849b3sm1915345ad.175.2025.08.12.01.37.38
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-243086849b3sm1915345ad.175.2025.08.12.01.37.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 01:37:43 -0700 (PDT)
+        Tue, 12 Aug 2025 01:37:48 -0700 (PDT)
 From: Jie Gan <jie.gan@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
         Mike Leach <mike.leach@linaro.org>,
@@ -96,9 +96,9 @@ To: Suzuki K Poulose <suzuki.poulose@arm.com>,
 Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v5 1/9] coresight: core: Refactoring ctcu_get_active_port and make it generic
-Date: Tue, 12 Aug 2025 16:37:23 +0800
-Message-Id: <20250812083731.549-2-jie.gan@oss.qualcomm.com>
+Subject: [PATCH v5 2/9] coresight: core: add a new API to retrieve the helper device
+Date: Tue, 12 Aug 2025 16:37:24 +0800
+Message-Id: <20250812083731.549-3-jie.gan@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250812083731.549-1-jie.gan@oss.qualcomm.com>
 References: <20250812083731.549-1-jie.gan@oss.qualcomm.com>
@@ -109,125 +109,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA3NCBTYWx0ZWRfXytWjpXKwzIHE
- alc7QP4U+Ys6+KYNXs8vj2k0lWWC3gtToFr4QmHUzTlfFz+4xQP6NCWyFcdCOulobMvYj5wYQqc
- YmWD+ZrEEbc8h1MOmahx3reFMvBU3hfnVZcxuMEyr8dBOnQ+Run0oLqq6Jyg4KF9rbka1LiMmfY
- U0SyiHtz4blC6rkREcgpWvDEGIlA9b62jrikZurgbYsAtExIiF2yeJ64EaBaGxVvM9inrQoQf/b
- tmAWMOPX7ZZ97sD8OfNqJ4HkUOR2cN9zYjoziLqSH6WhsTcxvC6rwptOacQbm4xHe7qyNSQ9L9G
- TIdaYhtBuflbAfghRf0t2qIzBHah+68c/yGFKWRKd19TTVdG2uTX6CKQ328cpdEkk5kFC7uVsy0
- ppUZIHKx
-X-Proofpoint-GUID: 2g7ejLCwYw5CYd84IIo_Lx3Xi7vyyAX9
-X-Authority-Analysis: v=2.4 cv=TJFFS0la c=1 sm=1 tr=0 ts=689afd59 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfX77Sl60svlQZ8
+ tMFQ5Ia7lZv76UqNIR73IhcPJTBjou9y5RmN9sqw2n8UYx8qh3REQeHad+hiZQdWeI7Y3hFHGy5
+ w0+Mq4popKvKbKixLylnlgvsA9I+vstqGUOdG/Elimfszn6ZGkizVx2sRgF8XLFkQToDR04syiG
+ g6kMrTXBs2T5rJSoeAQtneL0QGS3EMY32ibE3FYKPxeB9ZgpOEyqy6vbZbo1BJ+slZ0P/biFIYo
+ E/HaJ/m49xXbiWmxp3X4adxf1JiCPa5fYJNLo9OPKUink7G2AdhdEtMw0yXGp+jqei7OaaN1X0H
+ hwidXJplwKTm4+gL9kwLki6/S336OZHa52JF2jtC0l9CDur/PljIch6Sjjk8eRvZZvLDvi0rom5
+ sXXhwtMY
+X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=689afd5e cx=c_pps
  a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=UMME_An3wchvczm7DuYA:9
+ a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=ViBFXQGRTvhYuEXyb1sA:9
  a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 2g7ejLCwYw5CYd84IIo_Lx3Xi7vyyAX9
+X-Proofpoint-GUID: fG2-VpUpq9-KZDsuzojQs4EfUydMhK4w
+X-Proofpoint-ORIG-GUID: fG2-VpUpq9-KZDsuzojQs4EfUydMhK4w
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-12_04,2025-08-11_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0
- phishscore=0 clxscore=1015 spamscore=0 bulkscore=0 classifier=typeunknown
+ priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508110074
+ engine=8.19.0-2507300000 definitions=main-2508090035
 
-Remove ctcu_get_active_port from CTCU module and add it to the core
-framework.
-
-The port number is crucial for the CTCU device to identify which ETR
-it serves. With the port number we can correctly get required parameters
-of the CTCU device in TMC module.
+Retrieving the helper device of the specific coresight device based on
+its helper_subtype because a single coresight device may has multiple types
+of the helper devices.
 
 Reviewed-by: Mike Leach <mike.leach@linaro.org>
 Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-core.c  | 24 +++++++++++++++++++
- .../hwtracing/coresight/coresight-ctcu-core.c | 19 +--------------
- drivers/hwtracing/coresight/coresight-priv.h  |  2 ++
- 3 files changed, 27 insertions(+), 18 deletions(-)
+ drivers/hwtracing/coresight/coresight-core.c | 35 ++++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-priv.h |  2 ++
+ 2 files changed, 37 insertions(+)
 
 diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
-index 1accd7cbd54b..042c4fa39e55 100644
+index 042c4fa39e55..018b1119c48a 100644
 --- a/drivers/hwtracing/coresight/coresight-core.c
 +++ b/drivers/hwtracing/coresight/coresight-core.c
-@@ -580,6 +580,30 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
+@@ -580,6 +580,41 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
  }
  EXPORT_SYMBOL_GPL(coresight_get_sink);
  
 +/**
-+ * coresight_get_in_port_dest: get the in-port number of the dest device
-+ * that is connected to the src device.
++ * coresight_get_helper: find the helper device of the assigned csdev.
 + *
-+ * @src: csdev of the source device.
-+ * @dest: csdev of the destination device.
++ * @csdev: The csdev the helper device is conntected to.
++ * @type:  helper_subtype of the expected helper device.
 + *
-+ * Return: port number upon success or -EINVAL for fail.
++ * Retrieve the helper device for the specific csdev based on its
++ * helper_subtype.
++ *
++ * Return: the helper's csdev upon success or NULL for fail.
 + */
-+int coresight_get_in_port_dest(struct coresight_device *src,
-+			       struct coresight_device *dest)
++struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
++					      int type)
 +{
-+	struct coresight_platform_data *pdata = dest->pdata;
 +	int i;
++	struct coresight_device *helper;
 +
-+	for (i = 0; i < pdata->nr_inconns; ++i) {
-+		if (pdata->in_conns[i]->src_dev == src)
-+			return pdata->in_conns[i]->dest_port;
++	/* protect the connections */
++	mutex_lock(&coresight_mutex);
++	for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
++		helper = csdev->pdata->out_conns[i]->dest_dev;
++		if (!helper || !coresight_is_helper(helper))
++			continue;
++
++		if (helper->subtype.helper_subtype == type) {
++			mutex_unlock(&coresight_mutex);
++			return helper;
++		}
 +	}
++	mutex_unlock(&coresight_mutex);
 +
-+	return -EINVAL;
++	return NULL;
 +}
-+EXPORT_SYMBOL_GPL(coresight_get_in_port_dest);
++EXPORT_SYMBOL_GPL(coresight_get_helper);
 +
- u32 coresight_get_sink_id(struct coresight_device *csdev)
- {
- 	if (!csdev->ea)
-diff --git a/drivers/hwtracing/coresight/coresight-ctcu-core.c b/drivers/hwtracing/coresight/coresight-ctcu-core.c
-index c6bafc96db96..3bdedf041390 100644
---- a/drivers/hwtracing/coresight/coresight-ctcu-core.c
-+++ b/drivers/hwtracing/coresight/coresight-ctcu-core.c
-@@ -118,23 +118,6 @@ static int __ctcu_set_etr_traceid(struct coresight_device *csdev, u8 traceid, in
- 	return 0;
- }
- 
--/*
-- * Searching the sink device from helper's view in case there are multiple helper devices
-- * connected to the sink device.
-- */
--static int ctcu_get_active_port(struct coresight_device *sink, struct coresight_device *helper)
--{
--	struct coresight_platform_data *pdata = helper->pdata;
--	int i;
--
--	for (i = 0; i < pdata->nr_inconns; ++i) {
--		if (pdata->in_conns[i]->src_dev == sink)
--			return pdata->in_conns[i]->dest_port;
--	}
--
--	return -EINVAL;
--}
--
- static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight_path *path,
- 				bool enable)
- {
-@@ -147,7 +130,7 @@ static int ctcu_set_etr_traceid(struct coresight_device *csdev, struct coresight
- 		return -EINVAL;
- 	}
- 
--	port_num = ctcu_get_active_port(sink, csdev);
-+	port_num = coresight_get_in_port_dest(sink, csdev);
- 	if (port_num < 0)
- 		return -EINVAL;
- 
+ /**
+  * coresight_get_in_port_dest: get the in-port number of the dest device
+  * that is connected to the src device.
 diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
-index 33e22b1ba043..e51b22b8ebde 100644
+index e51b22b8ebde..f80122827934 100644
 --- a/drivers/hwtracing/coresight/coresight-priv.h
 +++ b/drivers/hwtracing/coresight/coresight-priv.h
-@@ -156,6 +156,8 @@ void coresight_remove_links(struct coresight_device *orig,
- u32 coresight_get_sink_id(struct coresight_device *csdev);
- void coresight_path_assign_trace_id(struct coresight_path *path,
+@@ -158,6 +158,8 @@ void coresight_path_assign_trace_id(struct coresight_path *path,
  				   enum cs_mode mode);
-+int coresight_get_in_port_dest(struct coresight_device *src,
-+			       struct coresight_device *dest);
+ int coresight_get_in_port_dest(struct coresight_device *src,
+ 			       struct coresight_device *dest);
++struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
++					      int type);
  
  #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
  int etm_readl_cp14(u32 off, unsigned int *val);
