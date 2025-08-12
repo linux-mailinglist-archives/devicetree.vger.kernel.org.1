@@ -1,212 +1,215 @@
-Return-Path: <devicetree+bounces-203750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB3CB22645
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:02:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1298B2264A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:04:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F2CC2A7F45
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:02:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAFC0172EBE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC3F2253E9;
-	Tue, 12 Aug 2025 12:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E732E172F;
+	Tue, 12 Aug 2025 12:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IdvDQnbW"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Wm94GUfS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010002.outbound.protection.outlook.com [52.101.84.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE441F4CA0;
-	Tue, 12 Aug 2025 12:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755000138; cv=none; b=CPYnJPGId8+V3OAyWwkav8PLUG76eXV6D/fEgNRLt8o5s5yzB/rJTnSL7RnKe6a2hHzSCjkzAvLX3mu8FTLGFHmDTFqz3sYVmAHmnS0hstV2lK1LY8BTu8CYLJKx4XPSbiXY4ZH9bGUKwD1mNXpQn5QFet6fnKC8jYMiCpU2Vrw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755000138; c=relaxed/simple;
-	bh=zM7gP/7OYppk6RZVuF/mgz7lz8DWar/tc9UDFpxArDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=INTalhm90iTkKN2XJeP72eisj5H97xB2sv+oOf9l0OHqHhCumwGEmbq1y7GGFkdMhwIp7LaAooP6lyXy5n+MoL1U99jMAOswzt/9jIuzqiJ+RMY81pL3iSTwRqveh8HouIABoMzr6on4CRyIG+iKC8C/wSul1Hj/lvhq7laBsfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IdvDQnbW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D679BC4CEF0;
-	Tue, 12 Aug 2025 12:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755000138;
-	bh=zM7gP/7OYppk6RZVuF/mgz7lz8DWar/tc9UDFpxArDs=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=IdvDQnbWrw58pIPTxTdrL0lt5dchPftAtfNyCZV9JbUf2seXz2mAICuLxcCnTzUF0
-	 PIWPRYA9KgmPtpUyYXHw5/FjnUEKyXvduzBBFCe/uowhhK71zjD4silr7FYREvQAH3
-	 cuHFaabf1pnUFlik85pTxwFcxXYfVtfTjCwb9jlaqRf8moExRmiCFD4k3jHtlAzWZ/
-	 7m5iB0GGtWn83kn2IgjzM47F8A0QuXZp+sGoZP1cBUGVZgzCHiURSx3bBQwWGRje9a
-	 vIMHXRpRD5wvNK5ineQjXlYSTciE6ArbjOVD2qSfKG9MHCzKqa3+15E3psywDB65nQ
-	 tzE3rASn8XzUg==
-Message-ID: <d02626bc-a00e-486a-854e-b4555c11ee85@kernel.org>
-Date: Tue, 12 Aug 2025 14:02:11 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC1C35898;
+	Tue, 12 Aug 2025 12:04:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.2
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755000249; cv=fail; b=l+2lDsOItKv6ZM2/TxbJqTJ3GCeDc/LpeorbkxjAwtAOSCVHMQwkd16wTbBjBan5mMBLlaDT/p+JonWtYaJgV2hz8CIQMu0SMVP8Vc4ay8aCkz9AWAjFdr6K5OkF2kTf41wxv1XJUcr8my9sOdO7AijrOu3rgHZ8cFI9miyA8lc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755000249; c=relaxed/simple;
+	bh=O3srH2V2e2vo+uVXIFkbX8bhv5K+oQKbEqndDcE75VE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=jaBsDRqeBsSvfhShD8Y4yyxjinIyiA6xxKrFJZoPTj5K3g1TWptDqUtKcn+B+oeF3UYHtDu4J2Mg+NuMfX0w6F9WZXfn79ye6+Ypkns6pOTlxSrCso2NG45unm/LuRYwVf+4BGQeyooloIABlL30qksU8mHKsAiNfbAg9kpd9Wg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Wm94GUfS; arc=fail smtp.client-ip=52.101.84.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c0NoP8xpiQ8YinPGyme6ir9FrcSJH0RNxmzmL6Zigi7sv2mqc6YZmijqPLfilqfd5+llyZ5/iaqM0qVR05ZVL9CKE4g+7s7VP/j3p05DmEYKm1kEIGKkCMWzU1VQaqyX2Vx85XcHz0XDY6Ah5eWL+QtaGdre65Nh/Y8aceSIEAxD7Es0ts/D9lpd1zxJDn91pf3MdN7vgyUNIiLJWuq4bxgeIgPYQZ1MIuGOaUHC4X/IO//Oa7kjaBelRtlg3snHHIsbHBs34o/Q8jjUiZ0DK7MBMagkTvpJovakKphfi81NFrnfD8f31hjSUkFc/derlbDAKnwOdWLShMc0w7V7og==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=198Zc/FH1hU+ut9AAJh4spEqbhJPTLiNrln+9yXiHG4=;
+ b=HPeL3DCU5PRtLoTeyOyvFG59t7+GQgwt2a7ZC/IvF3FUWTLSH7+UYeJgjBcaqJKmkg/UzVECfNhDpweGcM5sZE+c/LmRGLneBWyVGBYCCXHCL38xS+5O6dJjJUNo5WTHs7jlhDtkKdIr8vXCr4yBMF86de1V7l1SfLaPt1TP5Bg+T6s9uXNpN7hL98PZi4BxCebLewCMWVM48WlhpxnBRK0FaOUNeHArbTqevhfu6sj+68iMg40DVou8PNzOZdtRuJVUJjMCs2/Fy3dUf57BOZlFkRxorWXm9svrMVJMi08v3oma3vqnaendZOFKeDBd3r7YTmbUjfpjhES7ZRMEtA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=198Zc/FH1hU+ut9AAJh4spEqbhJPTLiNrln+9yXiHG4=;
+ b=Wm94GUfS7+9gBDSOlJl26ozGpGInff8dpeISFTyqMM/gNC03aDG5uaMjzsMHWkxTadQJpAIbuyFv2KmzlS6g62NYMgl8AtcRlFbHOFn83fYjz8iR+m6nJheu4/avXxgVm6MGIWROkmYwRUe20Vo1C2eEgMxLfBZsBtzpjTLXz6FMB7Eu0R3yMUis+cBXjjugspmr6jDzKvhNS205Y84yWOFT4jnXtvCD9YqPhXlvDoa5HCFTSbkbBc2pdiACeLz43/0oIFPng1uPr1GWtOaiCb3u58xSnAxyY0chmeJ/soJ0NwXfcBYKAYExVpbJF1TA18w63kFQmAwu+IA0Vlk6MA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by DB9PR04MB8075.eurprd04.prod.outlook.com (2603:10a6:10:25d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.13; Tue, 12 Aug
+ 2025 12:04:03 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%7]) with mapi id 15.20.9031.012; Tue, 12 Aug 2025
+ 12:04:03 +0000
+Date: Tue, 12 Aug 2025 15:03:59 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	richardcochran@gmail.com, claudiu.manoil@nxp.com,
+	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	vadim.fedorenko@linux.dev, Frank.Li@nxp.com, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, festevam@gmail.com, fushi.peng@nxp.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v3 net-next 06/15] ptp: netc: add periodic pulse output
+ support
+Message-ID: <20250812120359.5yceb6xcauq3jkqi@skbuf>
+References: <20250812094634.489901-1-wei.fang@nxp.com>
+ <20250812094634.489901-7-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250812094634.489901-7-wei.fang@nxp.com>
+X-ClientProxiedBy: VI1P195CA0044.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:802:5a::33) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: serial: Add clock-frequency property as
- an alternative to clocks
-To: Andrea della Porta <andrea.porta@suse.com>, linus.walleij@linaro.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- iivanov@suse.de, svarbanov@suse.de, mbrugger@suse.com,
- Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell
- <phil@raspberrypi.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Al Cooper <alcooperx@gmail.com>,
- linux-mmc@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
- linux-serial@vger.kernel.org
-References: <cover.1754924348.git.andrea.porta@suse.com>
- <419658ce1a1009c6f8b7af22a02b278cd695dab0.1754924348.git.andrea.porta@suse.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <419658ce1a1009c6f8b7af22a02b278cd695dab0.1754924348.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|DB9PR04MB8075:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6cc29db0-a77c-4659-5073-08ddd99854a0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|366016|376014|7416014|1800799024|19092799006;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?uIKiN2XsPK1QENE6FhY/qEK3mKQRbzBOQlCkapC6wskfpN1bFY1wemGKWIxo?=
+ =?us-ascii?Q?hs2dOuUMBq90MAB7wASkso8jpIx0lDZdYHPGBXEbY8tE0FtC2DQpmiET7QS1?=
+ =?us-ascii?Q?1/yPdYIg3s+70+sJ/24pn1Kq5qHdGSOSfEqocUkt9qcT9XOqnAdFeHlJOY7e?=
+ =?us-ascii?Q?/+bqM9krvgY+nj9UZHNI2TyWDicspneAIzkyFz7T9Dw90Nnu1fwQvpL6HDuU?=
+ =?us-ascii?Q?/TZ0UHqTDZQQWz8+F5wLdxMYYLp3eFmNDcAgi4pdzr3sMgN+nb+LUg1sV19N?=
+ =?us-ascii?Q?BrRGQqNxAz/bEXYy2djMvX0D2V1SO840Yo+mQ5qNzOmtzDqUnygFaEnlKAdQ?=
+ =?us-ascii?Q?HPSvmgsMhSYiJwGI7Z2XNltxKpzA9ShT/v8LhTqiyyIcWvaG5hMkJ4LVUpE3?=
+ =?us-ascii?Q?udIBVUl0HR1cBfxbvRh7Srb7DnmlIhq/SSzrde/mR2LLp1T4OLOvXA12X6Cf?=
+ =?us-ascii?Q?z+uAO6jFX4SpjKIZags2InP9/jZGtyazhQvo0Ro4mJDceaypGp4BsDC13iUc?=
+ =?us-ascii?Q?KIdXLJEfwpARZCVSH8lSW08usnHGNWtv9b/Gwo1v4zapyobdtGNvgDz0rIBi?=
+ =?us-ascii?Q?Tgt20//8Wq17D9wMhvOchzIN2ooYRU8mPFPceQqstH3D02uTzn+IhUVleWd2?=
+ =?us-ascii?Q?zekNb9Cmt6nLbfbBTzE1Qh+xYK0WIrdAE96m4xzsw2yHYzJ+nBC7RhU+mlNL?=
+ =?us-ascii?Q?Cmmcu48fKbPoxCpqllGEMK+DbQB/s0jWLagv6UE77YHpmSnP/I0Y7wSzGFz5?=
+ =?us-ascii?Q?jIVTGN7qB3BL3c63GyDBOkT34jd+4X6/0RTSmJ9medYWWky8W5Q4G4JaPXSY?=
+ =?us-ascii?Q?fuplhyPDTvYOi2H2USy56GPqLX8TlopXCync+dbJVi82xv+pQZXVMvbWruVx?=
+ =?us-ascii?Q?EwTq4NARsVL3dHeIuJihPCKzLn+C4Xy1NDpgMrx02uyuh0RbVOAyb3X4zf6q?=
+ =?us-ascii?Q?UO3RAXJnd+x5hcMgfw31kT/ffZaXqLxWe49FKfppL1QhLTvqScYpu9NWTrVT?=
+ =?us-ascii?Q?LZ1/kYJA0WODtj2NWXdbhMk1Mn+QcoZGGaLPu4sdVDG7OVlJI3GieVumMR4S?=
+ =?us-ascii?Q?lfZdnN8FLObn9Uc8PCqtrnrXi3qZqWnxCvlPSTZVIFZUjNs0gRpuqZjZNcjx?=
+ =?us-ascii?Q?pNvhZisGqmeDDRxThryZnhFevZ48gXAKz9tIh0U0K1tckJECjxwg9D9jh2HV?=
+ =?us-ascii?Q?45OjyctA+YawYcbIQZr0xob0FYI3bqVtMzPzXB572BcLhiZkHwQHtzOgQo9V?=
+ =?us-ascii?Q?rJajW5shh7uXtBTSkUbsY+PdkfUiZ888J/wLj9By++agR1YbIF0waIa3wNFZ?=
+ =?us-ascii?Q?dQC3UbU7NKFugoA7Ses6FPeyWcSZzLrkekA2Zni6zEH8omNrgvhTDoLF5uSF?=
+ =?us-ascii?Q?j/v3X/E7CkQkrRzfw32jx2VM/KFdWS9UVPIRDuL7ifcVaodM+Ci1ArX/oBBG?=
+ =?us-ascii?Q?GP3BNUIvSJ4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(376014)(7416014)(1800799024)(19092799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?pE1j1gkUSZXiN3Jujv1P1fxeyRcpMCw9J/hx90RzROTe/sQiI3Prkrn0y5S5?=
+ =?us-ascii?Q?K10Bj7Ia8ekabtyMSFGXIdfzXQ02ewEbQxp3tKUh5xaMFIUm0Cucilp7R58P?=
+ =?us-ascii?Q?7DoSAE33qYKzs1JEmC/zoIuhKkNTyVoYA5W57z6xmkHJMN3Drx7P+OW6PN88?=
+ =?us-ascii?Q?WyEpDZg7qNe69YpHvxgPXLlSLRq1SfdNEGBDogGNkHIyE2/QEry2H7K/8Pg8?=
+ =?us-ascii?Q?pcjmsRxqR4XDFpavXx8dAeAQNjHzOdhzyRp8rqO+UoyWHBLuJpJmL+FF+KoX?=
+ =?us-ascii?Q?1RUh1wv+hHeZiDKFu6z5AMRoFt/sj2FSZuKP7nQlJr0WQBQ3febYKtU9u2a9?=
+ =?us-ascii?Q?hWI+Q9bAaa+Vq+9zaq41IZh3Trv8c7gToG4iRiONkaurHp/SbCPoXxrr33NK?=
+ =?us-ascii?Q?eaxNE8xUcMxlEUBNZ5Ciz+UmTpJajMfeiwNn4oJOxiVdTBXosklLYrhAkP1Z?=
+ =?us-ascii?Q?4EFurYAn6XVSY5RncLYfUyZOc/Hs0+s47FYlqrs+99BA7GKzWD6lIa04WSuN?=
+ =?us-ascii?Q?wrYB9tYJJ7M/bps/MvY14mis9YMEVpNiLAjh8SuQDNXYYDj3xlGjcpP8yuWv?=
+ =?us-ascii?Q?XDdqm9S9Z9FcVYXtHfcMLD7B0jY7olu1/wtUKcC4+M53bFML2HzAOA1eYbC6?=
+ =?us-ascii?Q?5fGmTC2Qrn6ijHrgP3T31quxYDKRbwE97qHWX3DNOsdyJ4QiO7nczUo8jlB8?=
+ =?us-ascii?Q?8xwg1EwvuumVJNJ2Sss6vc64Kb+izPj151fFOw/K1uIEih4l4VNuJ9Eatw48?=
+ =?us-ascii?Q?ZzOHjH1Q+56c52qL2CyFfFW4JsYceFwMZGeF3kx53K9/roSjfAPS1xKkz1ii?=
+ =?us-ascii?Q?pUG2d6P4gWk+/Am/EFE2asItNgOEtyz+YQ/8wfFipl3PxA4JB4bPwJmlgozv?=
+ =?us-ascii?Q?5DScLXOYwRYL+URked00uMNYMYGZXBd9b7x2GKn6LxqgCa61xKwOc/hHsFaB?=
+ =?us-ascii?Q?NLSQ8dnLspS6EZlmnNMteTqrOKNBrL2vL3wg2xfgB3FL/I53DjTj3gaJ1ZVO?=
+ =?us-ascii?Q?CBjOM8qRq/+NomGw/ZXlyx5yByHb6iE4/iTFyw/PjzO9bFegcjj7WA5g7Z/p?=
+ =?us-ascii?Q?WTCBUhe1tow7lNEMLxH3VQUoqTIeQ9bR/Qp5pI1iIdeFkYaqHrQSeQCSP0Xw?=
+ =?us-ascii?Q?XSTlkR7K3g9swhxDrxtAur6ZY5wRIqmlTlVY2RHrJFV5vGkoIReqNUfwDwjs?=
+ =?us-ascii?Q?XggWrA4tJ3JQW1voYfwRnW1Y5FS8VBXDvu3EMSFWi7qi6A5cWqb/VpYRfrk8?=
+ =?us-ascii?Q?pP0jzgpsxdMp9OytFrcMSsQ3MGAO79d/swuj8WKW0haLIPh00lR88dUKkbPm?=
+ =?us-ascii?Q?U/E2NaamhN5WuyxOkvm72LNN0zW9RwE41YNjAejsiwk+JVWhjJTj5q1/OF9N?=
+ =?us-ascii?Q?3qkyJVM9Pss3t87Lwtln+BES1Z0BOuhTd4vJC+6ey5iLqqRzRSEumauIewFE?=
+ =?us-ascii?Q?ZKMpUNzzaELFQpoKJBEL4hs/JusQ+YmjRKxc32aOuMn8iX0yrbw8CE97RKwj?=
+ =?us-ascii?Q?wHrFyV2i/6zbE3jW6Ssa520Q7FGesQnrF9v9tOTBWdbNjLwSE3HBb9HfBpfg?=
+ =?us-ascii?Q?ubon2AJkJItcnExl7HFH7hbJTQifjwcIkL/ODnNKGwlynDlsVtOHNHTZixZ9?=
+ =?us-ascii?Q?uDg/Uy75Ui0JQvgj8RoS9StKbMKCrvEMHXs33ZV/FefIdUQS7fR4+q0j0DY6?=
+ =?us-ascii?Q?47/g/g=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cc29db0-a77c-4659-5073-08ddd99854a0
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 12:04:03.6372
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2pROSdesNzjn309P+gfmbqYCx6iHxLtAyAGIgA1JVIm4skiTgksIDUKzUB+9aiREA7q8Mz58h4R/af/IMEXb7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8075
 
-On 11/08/2025 17:19, Andrea della Porta wrote:
-> The UARTA controller on BCM2712 connected to Bluetooth chip does not
-
-Bluetooth chip does not ask...
-
-> mandiatorily ask for a clock connected to the high speed baud generator.
-> This is, in fact, an optional clock in the driver.
-
-... or driver does not ask?
-
-Please describe here hardware.
-
-
-> 
-> As an alternative, the call to uart_read_port_properties() ensures that
-> just a simple 'clock-frequency' property can be specified for the clock
-> value.
-
-Don't describe drivers. Describe hardware.
-
-> 
-> Amend the bindings to allow to either specify clocks or clock-frequency.
-> 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  .../bindings/serial/brcm,bcm7271-uart.yaml    | 19 +++++++++++++++++--
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml b/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
-> index 89c462653e2d..96697b1428bd 100644
-> --- a/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
-> @@ -40,7 +40,15 @@ properties:
->            - const: dma_tx
->            - const: dma_intr2
+On Tue, Aug 12, 2025 at 05:46:25PM +0800, Wei Fang wrote:
+> @@ -210,77 +343,178 @@ static void netc_timer_set_pps_alarm(struct netc_timer *priv, int channel,
+>  static int netc_timer_enable_pps(struct netc_timer *priv,
+>  				 struct ptp_clock_request *rq, int on)
+>  {
+> -	u32 fiper, fiper_ctrl;
+> +	struct device *dev = &priv->pdev->dev;
+>  	unsigned long flags;
+> +	struct netc_pp *pp;
+> +	int err = 0;
 >  
-> +  clock-frequency:
-> +    description:
-> +      The input clock frequency for the UART, Either this or clocks must be
-> +      specified.
+>  	spin_lock_irqsave(&priv->lock, flags);
+>  
+> -	fiper_ctrl = netc_timer_rd(priv, NETC_TMR_FIPER_CTRL);
+> -
+>  	if (on) {
+		...
+>  	} else {
+> -		if (!priv->pps_enabled)
+> +		/* pps_channel is invalid if PPS is not enabled, so no
+> +		 * processing is needed.
+> +		 */
+> +		if (priv->pps_channel >= NETC_TMR_FIPER_NUM)
+>  			goto unlock_spinlock;
+>  
+> -		fiper = NETC_TMR_DEFAULT_FIPER;
+> -		priv->tmr_emask &= ~(TMR_TEVNET_PPEN(0) |
+> -				     TMR_TEVENT_ALMEN(0));
+> -		fiper_ctrl |= FIPER_CTRL_DIS(0);
+> -		priv->pps_enabled = false;
+> -		netc_timer_alarm_write(priv, NETC_TMR_DEFAULT_ALARM, 0);
+> +		netc_timer_disable_periodic_pulse(priv, priv->pps_channel);
+> +		priv->fs_alarm_bitmap &= ~BIT(pp->alarm_id);
 
-Anyway, don't open-code schema in free form text.
+You dereference "pp"->alarm_id before assigning "pp" one line below.
 
-That's legacy property. You need clear explanation why.
-
+> +		pp = &priv->pp[priv->pps_channel];
+> +		memset(pp, 0, sizeof(*pp));
+> +		priv->pps_channel = NETC_TMR_INVALID_CHANNEL;
+>  	}
+>  
+> -	netc_timer_wr(priv, NETC_TMR_TEMASK, priv->tmr_emask);
+> -	netc_timer_wr(priv, NETC_TMR_FIPER(0), fiper);
+> -	netc_timer_wr(priv, NETC_TMR_FIPER_CTRL, fiper_ctrl);
+> +unlock_spinlock:
+> +	spin_unlock_irqrestore(&priv->lock, flags);
 > +
->    clocks:
-> +    description:
-> +      High speed baud rate clock. Either this or clock-frequency must be
-> +      specified.
-
-Drop last sentence, Anyway, don't open-code schema in free form text.
-First sentence seems redundant anyway.
-
-
->      minItems: 1
-
-I'll fix this.
-
->  
->    clock-names:
-> @@ -61,11 +69,18 @@ required:
->    - compatible
->    - reg
->    - reg-names
-> -  - clocks
-> -  - clock-names
->    - interrupts
->    - interrupt-names
->  
-> +oneOf:
-> +  - allOf:
-> +      - required:
-> +          - clocks
-> +      - required:
-> +          - clock-names
-> +  - required:
-> +      - clock-frequency
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-
-Best regards,
-Krzysztof
+> +	return err;
+> +}
 
