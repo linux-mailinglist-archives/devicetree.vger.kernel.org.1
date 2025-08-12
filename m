@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-203725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D44B2255D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:09:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66C2B2255B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF8553A8B7D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3D151B61D99
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC4A2EFD97;
-	Tue, 12 Aug 2025 11:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067672F0C44;
+	Tue, 12 Aug 2025 11:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P8vYU/q0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LcO3FcJv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ECD2EFD8C;
-	Tue, 12 Aug 2025 11:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02EC2EFDBE;
+	Tue, 12 Aug 2025 11:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754996742; cv=none; b=hr/d7n8063eSEEju+knQyiVTdVZeKj9Mj8fbcWBdX2YfZ7toyQGW1B0FtC1dyBT8ua4mMMggMYnte2KaoJMmMxOId54LMY6xxofnBhteOLBX8fTHHYyiRQJ3HKkmGWJsNzOsyDpjUooJY1Bf5xcWEe3nAhzZRveXBkmZLh/BGVw=
+	t=1754996751; cv=none; b=lva8eJMWyz5OxTMB84IvCsB7def3WbcVtVPa+zy4mN5/gN8vT1xoGR1HIKTXm39BXVzIGrIJac0OBzvEkiovuLfOsbz+iud/rFoYZJ8l8L4niIPUgIhNfKv7aBNra7/8UBCyO2sMdR9iI+slXps4FKbxgD2G/MTYPgl6wtcShUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754996742; c=relaxed/simple;
-	bh=jxTjEnHMPmG/BlK3tUeUzJ7ztWZxZ6PlYKzdAUEeXPs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cW9a8SiJwCidM3k1pn7SZTUPVCs5YaJ1tuMX9IJUB70WxvWJ6o9cwAG0U4EsRGiWbQlGSvKwWFoXxH1O480urvcTfCyjb6Q3Qy1u0fd37yLHPB/q0kUqTAOvoJUKZaHcJ+rZMH4rYNgyytx0TonlfATBXTxVPYjS5jdnzPuR02Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P8vYU/q0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 853C4C4CEF4;
-	Tue, 12 Aug 2025 11:05:40 +0000 (UTC)
+	s=arc-20240116; t=1754996751; c=relaxed/simple;
+	bh=DKWZGx+TMzDh4nT8KSomqllRYPxezHT+9s2or2Azo4o=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=raDXv5sp8/+7qEBc0Nqg8PsS+u9Rv9sBWEu5AaxBXnWKbp1QJwi+s5Q0p6GHEI6bC+TVOb2ubaZqoMmhA3esFHr5kvgLkqs0yKXhPeBL15gJlAu+REANR0OYtFE0PNucwVYWcWWXYAYTOgo9FzPHFIJLs8CQnDORg96C3YrrAuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LcO3FcJv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 550B7C4CEF4;
+	Tue, 12 Aug 2025 11:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754996742;
-	bh=jxTjEnHMPmG/BlK3tUeUzJ7ztWZxZ6PlYKzdAUEeXPs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=P8vYU/q0NEUim5xP4qaa7JJH6ed2uJcE0DvoTEx+DYq17cfY8JeAY3YZrF1MruKuo
-	 jc9L88hfparqYQth3xaLv//o0sLtxi9Jmp8HRLYh+uuTaBzHnlTp2O694si6apnOhs
-	 I2Z2B9iB1YS2WmT8TU7YUaASrlDNQrktlcoTjK+QdmrygNJ78AHVFyRor4hlaRSqbu
-	 B1C63NqZgQ0Ra4W9TVrmVTWU4ueIMFA88Ls6dzLOuLFzK3vtqTe0b5ABpv3xTnn9VD
-	 2nEa2QO+TsvsjfnN5mYhOFdqwnimL++x+uycDnQpVgEH0clp+h7j4lODHVKqQq2nXi
-	 ZAjILq64EkUeA==
+	s=k20201202; t=1754996751;
+	bh=DKWZGx+TMzDh4nT8KSomqllRYPxezHT+9s2or2Azo4o=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=LcO3FcJvz5AwH1cMfQyjoxycSL/+ZSWHplSedZ4GF/AWmha9nJKsLfJ+FT6LM4Meo
+	 m1vyLEO934nZCX2rJ7pJ4PNzXXPYGOJkRlPVShdty5aZHDCCDpWwpTA/D+9jNSuTa3
+	 7mssVQbM85pFyfKWIvqwfcdFpx734grqTUefo5Cd7Z+nAXQf4B53+jBVQ2gmJ2Aar3
+	 sbi6qp6jzNJs6DU2Ksywc9RRlBtViKUr0xsxXvfWtSAElMiJ/9KUjnTB2g7JuHjS/M
+	 MM3n0H+Lw8ycrVzKQ/uAhM4SF5UiiQmpT2LN5IqxOWNXRlp3+NtKYiuDXe5YrDMxVi
+	 LGou2IuoDY23g==
 From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Paul Cercueil <paul@crapouillou.net>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org
-In-Reply-To: <20250807214459.4173892-1-robh@kernel.org>
-References: <20250807214459.4173892-1-robh@kernel.org>
-Subject: Re: [PATCH] regulator: dt-bindings: Clean-up active-semi,act8945a
- duplication
-Message-Id: <175499674028.16220.7731759072204819862.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 12:05:40 +0100
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+ claudiu.beznea@tuxon.dev, ryan.wanner@microchip.com, 
+ tudor.ambarus@linaro.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Manikandan Muralidharan <manikandan.m@microchip.com>
+In-Reply-To: <20250730101015.323964-1-manikandan.m@microchip.com>
+References: <20250730101015.323964-1-manikandan.m@microchip.com>
+Subject: Re: [PATCH v2 1/3] spi: atmel: simplify MR register update in
+ cs_activate()
+Message-Id: <175499674908.16293.5097516304989126078.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 12:05:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,27 +65,25 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-cff91
 
-On Thu, 07 Aug 2025 16:44:57 -0500, Rob Herring (Arm) wrote:
-> The active-semi,act8945a binding is documented in multiple places. The
-> charger child node is documented in regulator/active-semi,act8945a.yaml
-> and power/supply/active-semi,act8945a-charger.yaml. An old text binding
-> is in mfd/act8945a.txt.
+On Wed, 30 Jul 2025 15:40:13 +0530, Manikandan Muralidharan wrote:
+> simplified the MR register configuration by updating only the PCS field
+> using SPI_BFINS() instead of rewriting the entire register.
+> Avoids code duplication.
 > 
-> Update the regulator/active-semi,act8945a.yaml with the additional
-> descriptions and constraints from
-> power/supply/active-semi,act8945a-charger.yaml, and then remove it and
-> mfd/act8945a.txt.
 > 
-> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] regulator: dt-bindings: Clean-up active-semi,act8945a duplication
-      commit: a54ef14188519a0994d0264f701f5771815fa11e
+[1/3] spi: atmel: simplify MR register update in cs_activate()
+      commit: 379f819733f28b5aa1802f3ede442f08b7275f4e
+[2/3] spi: dt-bindings: atmel,at91rm9200-spi: Add support for optional 'spi_gclk' clock
+      commit: a673ebd0a2a587f3d6b923d59d363fc9e8a9f920
+[3/3] spi: atmel: Add support for handling GCLK as a clock source
+      commit: 91e5722baaea06c1f1b105e9e3fd6645dbdd938b
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
