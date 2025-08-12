@@ -1,193 +1,121 @@
-Return-Path: <devicetree+bounces-203947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D87B23882
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:25:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6249CB23920
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E5FA1BC05B1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:24:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7A9D1B60DF1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E5D2FFDE7;
-	Tue, 12 Aug 2025 19:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372C22FD1C3;
+	Tue, 12 Aug 2025 19:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c+cQE4Hc"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="A+8neLnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F342FFDEF;
-	Tue, 12 Aug 2025 19:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8A72FD1C5
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 19:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755026638; cv=none; b=YDoPP2jTcy9hBBRPns0o2GKs99TrBSGwQzc3TOSGLyIPaG+R0pcaXYXe+T70PcgAfTlP2EYzht9AGR6zsz674IcGOEBEC9I4GKyhgb3is/tzyspx/pAp0bTgB56A5MtdgaB2oSpt2M6Ok9wlq0EmdwSUCUnJwwEOS54KzLdDbC4=
+	t=1755027452; cv=none; b=F1nWonjeiWYoUbR2aftlPssNl/VyLFIVIHxw6cYECalorxA9ZQ0eJj+32on9QEqyzANEA4IlihTERnAb0xE2Tb/pgiRqfM14ugXNPa1Do/nSf3X9qwXNKhOzs6P2FmSBTbkQZon1x+pyZn5tTOmSFtneAXUxLWerysgwuAwAijc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755026638; c=relaxed/simple;
-	bh=JU3dr+Crf9Xb9K7UG3kzrtxsMTafuGut+zNbA4vOTaU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=D+P57sV4EhdKrfoDSD87+wWrbjdeXbDg6RcT3LfMzP4oQrNPR0w+R7xsHM+yfGOfVUFbRgzGWeytzdQV6cPOhd0mGyOz8y2nZL629/2lltR5rdmTx3vBHo+3jlA4O1KJPYFK88hJEAN9tryOFgSLGCVwANjpRRjiE+JA8LsrDU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c+cQE4Hc; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4b06d162789so67940231cf.2;
-        Tue, 12 Aug 2025 12:23:56 -0700 (PDT)
+	s=arc-20240116; t=1755027452; c=relaxed/simple;
+	bh=lpjEYtls75Mz8HuyMAQeOkeLsxER9FsyOhrBS6beBRQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z0HIrSh/fFe/jmAbx5pHZgvDIrQbN/p/MpAAoNRXRuyTpGT1JCzTxvknRmNX1DuZQPrFtKMnLYDAbZSweok29n5IVGKY8bnjzG+MYe2xrAM7v5nMPDRwufzBBNBhVivckLqo7oCADT4rtnsysIIqBnhKRv4iIwF9L/AODGMwJjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=A+8neLnf; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-459e20ec1d9so57095015e9.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 12:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755026636; x=1755631436; darn=vger.kernel.org;
+        d=pinefeat.co.uk; s=google; t=1755027449; x=1755632249; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cAMPXkeC97be5vrkWMOP6D7jQs9OWhWX6Txvw9DQCp0=;
-        b=c+cQE4HcZpS4O6Mk3zc0DIf4QUD90xmE2jIgSgKL0g6Qedcdt9J/sPXaA9heiH3TIl
-         gEdiclqB4ohQmXrMxcSvOJSfoX1OM43Wz8XA2yRKGSJTcLLXc7qDVoJMXtto1yzpL/e1
-         TisdCITkkzfMoqHS0fesljyCg1NTTO5FfyFiWZuptkvlaCbsMNDSEpllFPziNwd4yuUA
-         0ZFwIugz5VWlTltunLSR2QHfGpURu6jdUfWB/IycYbxHrqCBYfGzUUn85e10qxjL5AFc
-         jHZNyz3YuZDKl3oHNzy5xRG9ufkD4kV4BGEWC2lzsFh5wy/47ubqYd7utpKnqQg+Q8on
-         Rihw==
+        bh=lpjEYtls75Mz8HuyMAQeOkeLsxER9FsyOhrBS6beBRQ=;
+        b=A+8neLnfqxc2SW+xxy/vZ9x6VjD2FJKImHtM6OdzZQk+HC7leAs5gSP5JzYRlU46Cc
+         8ITcBz90z7g5GP8uA0WwnMyvKLIhavRoXTc4vabAnb57+eckZPUwFev3hw8c4tJ+SGjW
+         rI7Pv/KfvcHRefUN4gaHBmMX0vWKYeoExFiLBFiec38GPH9Syj0YLK8DHgTc/TF9eAR1
+         oYqRNiKaavm2FOwNJijtcpsezCdjU3OBF2NfUvvQ9TgYfxznrCYN6jNrbPO0hQg5cyM0
+         N2tnwGOiIYz5bNWWkqM2WxXfBA3sbCTbI20MDR+agGidSNqwndbASw/s4XpjWn+QMWik
+         gQXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755026636; x=1755631436;
+        d=1e100.net; s=20230601; t=1755027449; x=1755632249;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cAMPXkeC97be5vrkWMOP6D7jQs9OWhWX6Txvw9DQCp0=;
-        b=dlWRg8M+tx89rK+NjVPLh1ZIZk7ar29wevqWfLC1Zh8psNO/EGVHHjVEGGiV11NHaR
-         FaWt9P+Rzsds8KHHhl6s10S3WmttKODOaODPv5B22sJCNJed0TZdyH55ZVfe3L2wlyr0
-         XNBOQPsIuib4jvWbmlp6Y+TKEUyHLFNgqRcFSH5xAveB2rt8jaVCuRrk5bAr05NPVUQy
-         rq1OwXjxH43EO/xiSatC+N5bRXP1Yw7aBCaof1o/Hx3EMO4Ewfx9SNKZKGcXXJaIx67V
-         hTeWYKgwlRqevM4hcNIcgDcngrQEoBJ/LUkgq0lYtIxxwUG0HjdCkN823Ff6NSi/63lG
-         HtEA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8TArwcAL1SulfUbD2h96YXj4BHiLBakblc+FukgjkrZNp420GEyCtddfajD1Pg/q1kdUYvvAAEFBTfQ==@vger.kernel.org, AJvYcCVrivJcV3v1oeoANlkcDKCpCgnm+/2+P96MaRVQwcbD2PoxuNdZIydenNOzyL2ZEqyyhMcXx1wVw14F7x0P@vger.kernel.org, AJvYcCXuvbFlUzMCWIxY8yIT6OanCm4pvYhITbFX0Vy27DtBn0XBJ6T9fQJL79sBGY71aHgs6/PI4yg6L+3g@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+nk8EfMJFcDisLO2+xPISnXPNjZ9B2huWJ0WN+F1aHYc04zKR
-	ppW8sz6WpjFbFc8SFgzSggWNmcMOGuRw57Ze7VZpsSx2YjZF+bbq1StNCZXzYA==
-X-Gm-Gg: ASbGncuyYQpxsqBlOx9ru81Yq28J6mOkfZDKHas4hHmYLj0UO5eOtAkHRmWWMF/1jY1
-	3NEGPs/Jxyws0cO/RUkDZc1c9nXRNgMVD6p7vFgQ8dsRIOdJ4mQp14Gn881EM1vp/ILwdNz0qwu
-	Hh8zzxtFnOdnfxm1v1x2srK5VrjIPHYePZVYoDHknS4d3oJpDCanVDvYmyywKICSlIHdBPZ9T14
-	b4AV+6TvOBA8h6DONw5+bL2m4SfjZ2YdeYsnlo9OquoTEw39rnLELXpBWK+bBAef7GfKeH/CBks
-	km3HDvVA65SMg2EPm5almPKaCEne3snYLmIhSaQ1E/kIhK/pk/yCCacC6vLv+9nS7rnbKTCTUrI
-	JJnE=
-X-Google-Smtp-Source: AGHT+IEONCf7cWEXdiNlOm7qpzqCXEN0am4gWgDXvIBizpWxDhCHrQn63WlDGoi1E/X4jo9p75CUwQ==
-X-Received: by 2002:ac8:6f15:0:b0:4ab:80e0:955f with SMTP id d75a77b69052e-4b0fc7d2796mr2792511cf.34.1755026635733;
-        Tue, 12 Aug 2025 12:23:55 -0700 (PDT)
-Received: from archlinux.lan ([2601:644:8200:acc7::1f6])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-7097e906c3csm101471076d6.65.2025.08.12.12.23.51
+        bh=lpjEYtls75Mz8HuyMAQeOkeLsxER9FsyOhrBS6beBRQ=;
+        b=UdS/i+bKYPftGPQQuC3d7zt4vAOr5R3tWisnwwaJXOM47puN5HsD7yiXlsbASu9lbX
+         UAemmyoHpf7qm9XpHeVAc+EoX9jwgQX1lsdmGaYb2r50Ppk/mEF+bDE8yXcDv6mCrh5K
+         6Z92r36MtJHPYVMexQpdfw3b5UFjkYgwIY1OEYOpslZGkoqrPXXJtpiWnNr+hQQ6klHU
+         bCHEhih0tzNTbQUsnLV4v6E5AZC46AH7ikoucGZw6aH3xsh1hoWntn6TWJliqp4JRLeZ
+         w7TuwP44ReET/nRnzsaAJ3qVWmQPgyg5RBHxRuQl879YpMXSA0LF8Gbh4ee83BAxpCUC
+         6oWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXHzQ5MP/TGzNGVAT3JdVKe1o0XGeqMa566xH3b4JREou5PDLVCuS83s8Tb5r86Ks5OyXPkb7G+Yijz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8KvZf1Q0tXnfLJlh9Cq4kv84QfZ3aYH/PwSOTqoxMVcq68WOJ
+	SL4idrZjSbJ0Vk2uUgyKsfbTraAQBu4CLr02tqbGDChfLVgZaJiJGDrfXYvVHR5UGiA=
+X-Gm-Gg: ASbGnctGYMlF9aVFoO7vm9pp36zX9IVhLNUU/T5LlI7rX8qtG6Z3VRjRZmdi4BlsHp7
+	oMMFGYH0/7CipZHxc+zM3rS/ExMgDrACne36rpkBH5gDGZSN/r1WeypGFd6tmcn9r0BKlBWISfS
+	1nEocwO4yFIDexC9CrdVz18One7Dkv7i1s/0rpdEMX8OF92B1DW3hc6AfUWoNPH05AUGtzFRas1
+	78gOYw+PU0Czxd8YRo08iIxcRMA8mEyCcohaJpuyfWPx0HeJ8yyu4c8A02vqhKWEGUZXgHMukwC
+	iVi5PpCb29JvntfNe96vMz1oU0Ohxqr+RyIg8714c8S1bk/PJTfp9iD4/5rex/KgCy5yFV48m6P
+	ZVPL76luID8b+XQgvmsITQLnmWv3xsD7eE1FfgoRa
+X-Google-Smtp-Source: AGHT+IEFG4AR8hyeoi9xGW3i9Kv3cfWS8J1y9CmyOAAwiS9HcKFO53BgEJ6PRTHA6JWAs5T67T1MdQ==
+X-Received: by 2002:a05:6000:2307:b0:3b8:d893:5234 with SMTP id ffacd0b85a97d-3b917f17216mr147809f8f.47.1755027448584;
+        Tue, 12 Aug 2025 12:37:28 -0700 (PDT)
+Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:631a:d481:b3a0:fb92])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3ac51asm46249991f8f.1.2025.08.12.12.37.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 12:23:55 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: =?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
-	Johannes Berg <johannes@sipsolutions.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	linux-mips@vger.kernel.org (open list:MIPS)
-Subject: [PATCHv2 3/3] mips: qca: use led-sources for WMAC LED
-Date: Tue, 12 Aug 2025 12:23:34 -0700
-Message-ID: <20250812192334.11651-4-rosenp@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250812192334.11651-1-rosenp@gmail.com>
-References: <20250812192334.11651-1-rosenp@gmail.com>
+        Tue, 12 Aug 2025 12:37:28 -0700 (PDT)
+From: Aliaksandr Smirnou <support@pinefeat.co.uk>
+To: krzk@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	support@pinefeat.co.uk
+Subject: [PATCH v2 1/2] dt-bindings: Pinefeat cef168 lens control board
+Date: Tue, 12 Aug 2025 20:37:22 +0100
+Message-Id: <20250812193722.10193-1-support@pinefeat.co.uk>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <84262447-0877-4c52-8c80-65f1288e5944@kernel.org>
+References: <84262447-0877-4c52-8c80-65f1288e5944@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The ath9k driver creates an LED unconditionally being driven with
-sometimes the wrong pin. Not only that, the current dts definitions have
-LEDs for the WMAC that do not behave in response to it. Fix both issues.
+On Tue, 12 Aug 2025 09:13:22 +0200, Krzysztof Kozlowski wrote:
+> Property says VCC, description says VDD, datasheet says 5V (not 3.3V).
+>
+> I guess this should be for the 5V case, no?
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts | 10 +++++-----
- arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts   | 10 ++++------
- arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts      | 10 ++++------
- 3 files changed, 13 insertions(+), 17 deletions(-)
+Thank you following up.
 
-diff --git a/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts b/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-index a7901bb040ce..344e1a2ee6ea 100644
---- a/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-+++ b/arch/mips/boot/dts/qca/ar9132_tl_wr1043nd_v1.dts
-@@ -56,11 +56,6 @@ led-2 {
- 			label = "tp-link:green:qss";
- 			gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
- 		};
--
--		led-3 {
--			label = "tp-link:green:wlan";
--			gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
--		};
- 	};
- };
- 
-@@ -111,4 +106,9 @@ partition@2 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <9>;
-+		led-active-low;
-+	};
- };
-diff --git a/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts b/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-index 37a74aabe4b4..573ca7752698 100644
---- a/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-+++ b/arch/mips/boot/dts/qca/ar9331_dragino_ms14.dts
-@@ -22,12 +22,6 @@ memory@0 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		led-wlan {
--			label = "dragino2:red:wlan";
--			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
--			default-state = "off";
--		};
--
- 		led-lan {
- 			label = "dragino2:red:lan";
- 			gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
-@@ -101,4 +95,8 @@ spiflash: w25q128@0 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <0>;
-+	};
- };
-diff --git a/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts b/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-index a7108c803eb3..6891d9589b68 100644
---- a/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-+++ b/arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts
-@@ -22,12 +22,6 @@ memory@0 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		led-wlan {
--			label = "tp-link:green:wlan";
--			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
--			default-state = "off";
--		};
--
- 		led-lan {
- 			label = "tp-link:green:lan";
- 			gpios = <&gpio 17 GPIO_ACTIVE_LOW>;
-@@ -117,4 +111,8 @@ spiflash: s25sl032p@0 {
- 
- &wifi {
- 	status = "okay";
-+
-+	led {
-+		reg = <0>;
-+	};
- };
--- 
-2.50.1
+The 5V line is used exclusively to power the lens motor (through the
+power switch). This 5V supply can come from the Raspberry Pi GPIO
+header, a battery, or other sources. Importantly, this power source
+is independent of the board’s MCU and its kernel driver.
 
+Additionally, the board does not include any voltage regulators.
+The MCU operates at 3.3V, which is supplied either via the CSI connector
+or the serial connector directly from the Raspberry Pi GPIO 3.3V rail.
+Therefore, the driver does not manage any regulator, which is why the
+“vcc-supply” property was absent in the binding.
+
+Would you like me to remove the “vcc-supply” property as it was
+originally?
 
