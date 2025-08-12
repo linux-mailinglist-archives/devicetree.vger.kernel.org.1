@@ -1,98 +1,103 @@
-Return-Path: <devicetree+bounces-203721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE00AB22536
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:04:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0043B22544
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:06:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4096C3A3305
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:04:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DED5005EA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A95A2E336B;
-	Tue, 12 Aug 2025 11:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B70E2EE285;
+	Tue, 12 Aug 2025 11:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ataNcfpo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWSKHm9m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418C822B590;
-	Tue, 12 Aug 2025 11:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBF52EE262;
+	Tue, 12 Aug 2025 11:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754996651; cv=none; b=Pa7Jpq0WyVmej8SDy6NQvbSZmwSPrm9tSK0w0AzuCVNxkBfmuq7q3vQWEzy6r9Zl2D2liGaXSU3+MKQfSbR0ZGAwvBm6GSyju8kep1ljgWTAYRoGxBc8vx80LZYb4HZL3Y/ubuVC/Co4DzZQl2tZo/b/3aW3QJc0fxoa4r5bmYM=
+	t=1754996719; cv=none; b=J/8+rM+fFy3iwOWegBUsoxxJHhi44RhooVoS4Bh+K2+KNSpf1jbSvJ0YrUVDVH9B+K0YqCARChDvkA1IBroRFkYgW2f3f9jznctwtq/nF3ZbSJxCtEgM34/WfbqUD/Z/5imgzsi/olR70MES7cvscsmPKh+LQkk1cPhhphw3G9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754996651; c=relaxed/simple;
-	bh=B+PEgTbf6nrhb/pTGdfvLO5lzTBBQrybiZaSI3MT0Ao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V5gLuSXEP5ljlgsZgSPeo6utrOh9nbssjgLf+5KvSVmTqlwwsk2cnITXRHFx4eMAAOSVRjitUz1Jz5UU9reX4hWMc2eFdOY5fXnfHZDI5+OshsLmBXuspEL3FQeTm4kGEOi9fxa3iptdFQz6Gl6zVwZwdDo6I2Ike7xaFaS/IH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ataNcfpo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3316BC4CEF0;
-	Tue, 12 Aug 2025 11:04:08 +0000 (UTC)
+	s=arc-20240116; t=1754996719; c=relaxed/simple;
+	bh=0BwRILpusAVrivTLcsAixdNdRY4nvTJgi3xEFY4YsN8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=J7tA/g92PKMh4CpIZoRwkABq5pfV0A1zK8C6aK1BQwVr/aTRm3fMllnX5NTkpTCwVfJvUZNPJo8Vg75QFWHRB5V80nVpC4wekbWCOI0soCRFsMryJWSqnXYLRRT84FoXp7fi4QJbi0fRZdDZiKJzIQrlB0k1I7jTS2vuv7xMHfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWSKHm9m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB2FDC4CEF0;
+	Tue, 12 Aug 2025 11:05:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754996649;
-	bh=B+PEgTbf6nrhb/pTGdfvLO5lzTBBQrybiZaSI3MT0Ao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ataNcfpoXpirEm7xwJlmEpcq4x8xZ2BB+TgjMheJOrtKYvO1w/i211qXrlLbenNNF
-	 fcWLhvUWILk0qLFvraxEw0clxYSqEkdYOz2dDwAjh1xbwgjB+aeGF3dyUGsrtUUOiq
-	 dZDf2zJyBdDBrr8rpcjMnnDzx5cvnIARDvz6OKH857UMKOxWxbg4XoeGEuOJdacT1P
-	 THhevSNdL+OXxaiQIlPslnERdx1fRpJwFX+qz8k+033GQbO4SUYqdLmMoC8OdyLXXl
-	 dSBAtxkHGXH0ykufdf8qCsCFIbE9YPc6eK+Q6Qu73kQMpJKLVb6cvuFeQb3hnirmvi
-	 baIJ2y2aCuqeA==
-Date: Tue, 12 Aug 2025 12:04:05 +0100
+	s=k20201202; t=1754996719;
+	bh=0BwRILpusAVrivTLcsAixdNdRY4nvTJgi3xEFY4YsN8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=PWSKHm9maPZ82AuMYOrCQxHej/6dypc7ijXS9T0jfJ7mV9Ii54WMJrtrYOjOksuVA
+	 X4QUGxJMgUrqHN3kw2FSiTDb/mh8v2wPpKJK+etKn6Mj296uUUQm4ZJw1/QUtv/vZO
+	 BgQDfr5WgcaFsPh/NajPl62ZKwYH7YBNu3MDpILaW6DabjIrPWv0JVCd5aiBPgHcWQ
+	 R00UEF8FIFTq8Xksz44XIfAhxuIDYZ2+TYc65zyroiBhvEqrP4Wt3pctmfgYqESXlL
+	 BdONDglSkxV6WWf7ICTwrn3bW9ydDnZ7odVOmgQRiUuRUUNJGKTbcnkaVBiHmjwkE1
+	 s9YeWIuV7Y8vg==
 From: Mark Brown <broonie@kernel.org>
-To: jeff_chang@richtek.com
-Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] regulator: rt5133: Add RT5133 PMIC regulator
- Support
-Message-ID: <cce96a11-6bd2-4a95-8012-74fc9bbc76cd@sirena.org.uk>
-References: <20250812031541.2966667-1-jeff_chang@richtek.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250807214358.4172451-1-robh@kernel.org>
+References: <20250807214358.4172451-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Drop imx-audio-sgtl5000.txt
+Message-Id: <175499671651.16031.1365399416603486475.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 12:05:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eVWQQKUyROMXhXEq"
-Content-Disposition: inline
-In-Reply-To: <20250812031541.2966667-1-jeff_chang@richtek.com>
-X-Cookie: For internal use only.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
+On Thu, 07 Aug 2025 16:43:57 -0500, Rob Herring (Arm) wrote:
+> The "fsl,imx-audio-sgtl5000" binding is already covered by
+> fsl-asoc-card.yaml, so remove the old text binding.
+> 
+> 
 
---eVWQQKUyROMXhXEq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Tue, Aug 12, 2025 at 11:14:56AM +0800, jeff_chang@richtek.com wrote:
-> From: Jeff Chang <jeff_chang@richtek.com>
->=20
-> RT5133 is a highly-integrated chip. It includes 8 LDOs and 3 GPOs that can
-> be used to drive output high/low purpose. The dependency of the GPO block=
- is
-> internally LDO1 Voltage.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-You're missing patch 1 here with the DT bindings.
+Thanks!
 
---eVWQQKUyROMXhXEq
-Content-Type: application/pgp-signature; name="signature.asc"
+[1/1] ASoC: dt-bindings: Drop imx-audio-sgtl5000.txt
+      commit: 605d902bb6b6f5b12a5baeaca0dc359ced7685cb
 
------BEGIN PGP SIGNATURE-----
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmibH6QACgkQJNaLcl1U
-h9Dopgf+JTqvi5jADxtTd+tqB0k4PtcNioCPW3RRBgZ1f4l+iubDJZGasBJ+/Tqo
-LwTAV8jDRmHJ9j3owAqo3X4dud5bOWJegkNxO56SVXv1rRt+/f07HO+UiIJ/6Ovu
-rUmPulogC3wmMUzc9fWTyknyJrfXlwzIo3cPE6d4nnIdTpV9Jdvu669m3nZmUzhi
-SBg0bjuOqBgHsZANrtEhJXrvn67IjQbcxoxAssq3dwOhT7zSfZlloqAk6s57aO98
-0HsplP1qKtUIWkeA39JkGkyJ8iRDt8IclE3ZmX/Xb48btRpRefR+005eDuPnE52g
-9kGfbNv2tMlXo1MpWd80jdKWW6unSw==
-=2GXV
------END PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---eVWQQKUyROMXhXEq--
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
