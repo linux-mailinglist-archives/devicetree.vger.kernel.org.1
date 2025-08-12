@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-203903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CEBB22E10
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:47:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7073B22E27
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48E7518890F8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:42:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CB536252A5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620DA2FD1C0;
-	Tue, 12 Aug 2025 16:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37EDA2FE574;
+	Tue, 12 Aug 2025 16:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSpQX7Xq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/kTdtEh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CCB2FA0EA;
-	Tue, 12 Aug 2025 16:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030492FE571;
+	Tue, 12 Aug 2025 16:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755016892; cv=none; b=L0oNVGaPJ4Mwos2iY2SpMxMVBC3qa/3S66LKcEVqPk//o5SuE22nHhGyLmEkwdM0/FzdoXHd3Ujv9c9XWM/Acamz1ZTxRqv6TbwRgw8fyU+MoMD5gXhUWptL4fqBdBYw07xsQjcOOZ7SJVEwLxCitjSLnn3ULpGs/3E4kGZy+qk=
+	t=1755016906; cv=none; b=KxIb2ERVvGlqCMklAjimZfMEtUu967fKDdd9VTuh3uYvb3yWVsFtQNJM+ETjnzok1B0B1Y/oZyWfOUgC321WNyTVcCqJm/Aqr430gh6UPTP2PXpBqNR1TxWSor4iWHAWs4jmU8IhoyEB/G9g5C9cnUXu444bqylygCfHFP5hdt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755016892; c=relaxed/simple;
-	bh=RpDjRJiLb5VsAKP90NEwluXA2g+8CuZTXLDSu6vFNqQ=;
+	s=arc-20240116; t=1755016906; c=relaxed/simple;
+	bh=QGGDJtpzAvDGfqv7vg9yuxITaE/1e8imJeia0T1EH14=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=q18bxwQe5BzfV04rgUoDtqLL7HiioGHtFS1M7Sbsl8HrzRJdB2c6WmsO7iZumxS7DhyAkAPjG0DNPw1CA19CYcHBpCMiVGE/HiA+Ds1+BYnk86QS0MOy+mQMVIILu6MQx5PFqbWoptxaJttQth17Qyj0SVjvTKE+Yl46U4GvBnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSpQX7Xq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E4A5C4CEF1;
-	Tue, 12 Aug 2025 16:41:25 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ojqULRFGoniM7bYHxQtNZsUqb09Rniv/YPtSnOUB2cxr/8lS+FgHiDdpFk6XElRiOHhFwm+2crdiMB1rRQOkNj9QjqPKCyjpf96zIQzLMQOK77uakFRQMGwfirukGhNkmpBd6OQgoHZk2SR1y3UbEH9yybF0yU4ntHoH2Kyf/a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/kTdtEh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B88C4CEF1;
+	Tue, 12 Aug 2025 16:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755016891;
-	bh=RpDjRJiLb5VsAKP90NEwluXA2g+8CuZTXLDSu6vFNqQ=;
+	s=k20201202; t=1755016905;
+	bh=QGGDJtpzAvDGfqv7vg9yuxITaE/1e8imJeia0T1EH14=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=sSpQX7Xqp3Ga/zn5ks20ncAR+XkGXgnA4nm1swQ99t9DNtzMQOHvN76Q19gay/zVQ
-	 C2iEI3Ufb1kU58Ox0VUh/MrFNdKvSyHCTCS4s442NkDAcD4Ci99ML5WVRGfCtXszzn
-	 7TdgajRF6rJQqnEauVPpNpRluXlM+Z3bAhEfq5KLRi8FyflnSY2ARCWVS+LYHxP6tm
-	 VL2dXpiXliH+I+s8u6HK3mJiLqqnMvEdpr+IXHzOe51srWLJff6HgeGK6VmgkkUz0O
-	 Yp6THY57GW3zSm7XUWmJ04nYK5O7WsVfaLZbv/ehptzPhnPsp9BtH7hk7+nmmU3NsP
-	 RDlbB5ihTZ7jw==
+	b=T/kTdtEhphOT6xszjdKktCKpnJpfZa5VEwMlu+vUa4rn37Qe7G6XfB5had/tshpCT
+	 dKCJtPpwMY5mlN89kaeWEyCs2IesyHvzUj7WMcStNXTkp9KwDGuHpOjRzeUdmUkOQi
+	 jeuQd/v6m8VGR9de5HDYzGXpn24NdCDY07RoaMj3IScRqWuVEyqKERtzoao+6pRdSN
+	 9DhZycyPdSIwSY3WLvHPYdG/RZ/6YuPsBoB/wRIv9MRS5lrdh1bZVutkQlBME8rj3w
+	 nOUm7fqbxZqxqssQ4c6Wr/W2f8t+Jhu5KLpiKcZe2TPSBD4psDFdK4MoJoNFM5Ax/M
+	 kRjCYuRti3Bog==
 From: Vinod Koul <vkoul@kernel.org>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+To: Kishon Vijay Abraham I <kishon@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Vincent Knecht <vincent.knecht@mailoo.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250811-dt-bindings-db-v1-0-457301523bb5@linaro.org>
-References: <20250811-dt-bindings-db-v1-0-457301523bb5@linaro.org>
-Subject: Re: (subset) [PATCH RESEND 0/2] dt-bindings: Drop 'db' suffix
- duplicating dtschema
-Message-Id: <175501688581.633310.2083661450340253592.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 22:11:25 +0530
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Frank Wang <frank.wang@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Detlev Casanova <detlev.casanova@collabora.com>, 
+ Shresth Prasad <shresthprasad7@gmail.com>, Chukun Pan <amadeus@jmu.edu.cn>, 
+ Jonas Karlman <jonas@kwiboo.se>, Yao Zi <ziyao@disroot.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250728102947.38984-2-ziyao@disroot.org>
+References: <20250728102947.38984-2-ziyao@disroot.org>
+Subject: Re: (subset) [PATCH v5 0/6] Support RK3528 variant of Rockchip
+ naneng-combphy
+Message-Id: <175501689991.633310.3061565953624951232.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 22:11:39 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,20 +70,28 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Mon, 11 Aug 2025 15:54:02 +0200, Krzysztof Kozlowski wrote:
-> Resending because all dependencies are merged.
+On Mon, 28 Jul 2025 10:29:42 +0000, Yao Zi wrote:
+> Rockchip RK3528 ships a naneng-combphy that operates in either PCIe or
+> USB 3.0 mode. It has a similar control logic to previous generations of
+> naneng-combphy but an apparently different register layout.
 > 
-> Please take individual patches via respective subsystems (phy, leds).
-> 
-> Previously:
-> - Link to v1: https://lore.kernel.org/r/20250627-dt-bindings-db-v1-0-d5c7072acbee@linaro.org
+> This series prepares phy-rockchip-naneng-combphy.c for variants with a
+> different register layout and add RK3528 support.
 > 
 > [...]
 
 Applied, thanks!
 
-[2/2] dt-bindings: phy: fsl,imx8mq-usb: Drop 'db' suffix duplicating dtschema
-      commit: 78a474b5a31a25e0a77e50df42be925f7cb575e6
+[1/6] dt-bindings: soc: rockchip: Add RK3528 pipe-phy GRF syscon
+      commit: d7122636eca216ea2876baae45483d17e40a55f6
+[2/6] dt-bindings: phy: rockchip: naneng-combphy: Add power-domains property
+      commit: 19bb2bfdfa5dc4a912e7e5e3432290204e998ac9
+[3/6] dt-bindings: phy: rockchip: naneng-combphy: Add RK3528 variant
+      commit: d9e0fd60d8d44b2cabd41f5e370e9d41edffe6e9
+[4/6] phy: rockchip: naneng-combphy: Add SoC prefix to register definitions
+      commit: 11f1896e60f61ca1948cb7920585a79ce5254c0c
+[5/6] phy: rockchip: naneng-combphy: Add RK3528 support
+      commit: aee07ee1b97d9a3825e8db609a1c76157218cc59
 
 Best regards,
 -- 
