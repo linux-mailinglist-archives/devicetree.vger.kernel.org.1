@@ -1,170 +1,135 @@
-Return-Path: <devicetree+bounces-203981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E833B23A13
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:34:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CC5B23A61
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 23:11:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA6C23B4A4A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:34:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B51B87A52C5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81AB22D7392;
-	Tue, 12 Aug 2025 20:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC52274B29;
+	Tue, 12 Aug 2025 21:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTUw039H"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iPMgSUEk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5681E2D5A10;
-	Tue, 12 Aug 2025 20:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9BE2197A76;
+	Tue, 12 Aug 2025 21:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755030840; cv=none; b=oPr6b49v0U0UKTDf2uowkcYY0v2ZmamBkWziaPyHJGl+ENI8q5CHb/YNbgkcFvnvtc7CsynR6yQ5NIPcTSc/eK+C2T7hh8m0rvbaA3CvpuFLffVZrIReUoRn0b7WMbI2B+fgOYtyzJkpuOUNH/lFAykPKaOAAaa2C/t8nXBCeP4=
+	t=1755033079; cv=none; b=tvtFLDxN+KOalvXA/SHjCYkFu3FMDlNLYjlBmHdGa3dBL1Xvm36nH/ReoiZWXkg8tVJq+ROJcvlXMW/wZv4TMFRa0Vjdbahu6Zg0MAMQDhikh0jl3M5uodXZA2xJkfvHzn8j1NPnK7F1bCbSAZ5tTZICq5AiCe+/e0krynuZZVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755030840; c=relaxed/simple;
-	bh=rzrbO5xcK/Wu8K8pRlisGVRhj7ITITPQ2YAOSrXQ0Hc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=k/4rnIocYDsqlwKWc6Wb4kg3F/eZ8g9406LXns8P0enNybj+G4N4avWxrjzIAZyerpPcR/y0jyWxo81BxEj7VyHcHtDulQQ0kkOAN3AKpvZAtlhOgLzPCrmXkqAjVj8kpVHiIozfP7POAzmrzAhBYmzcvW6/9sNKEZLfjbSeNVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTUw039H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBFFCC4CEF4;
-	Tue, 12 Aug 2025 20:33:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755030839;
-	bh=rzrbO5xcK/Wu8K8pRlisGVRhj7ITITPQ2YAOSrXQ0Hc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UTUw039HaDFC5GMa5FZMvSy8rNq7IVpDg2j1hK9nszqq1zwk6lAS8G0W9wnDz1AOn
-	 M+a+XAXAcg7fvVWyuVXo8EGb9udEGYpSM9u93/A9dDXBmR75kCBlWpO2sL+W7Rwo+Y
-	 +rtJ/gvB2Z3eYuU48L9/4hsbIgpyFHSb761ma/PYWnYW3Q+YivS1ZCYiTUzQQ+eSaw
-	 AkWXv1p3WOxgpcfdVTb93cftkDI9i8omUSBAX65U2eO6RGsoQHdZv9kKe2KHI1LaYR
-	 OVZ97qu9UGbS8qO4Wh5c9wzcGly5nEx2yubLGjGJUxIk770NFgDs99DsFUMJVKNkuW
-	 WoPyoOJ2TRb1g==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: Convert brcm,bcm2835-i2s to DT schema
-Date: Tue, 12 Aug 2025 15:33:55 -0500
-Message-ID: <20250812203356.735234-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1755033079; c=relaxed/simple;
+	bh=ptw9LWjwcshgBavY2yDU/Ee+H+KyvQTD0coZYZFxVfw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ULmDe/Bzm/M1UBRgPmwPE049MDBJmQLcBowAYMqjp+7AP1VLOVf6J9MUI02NDzm/1atlmJ1EbyGStqsG/+9sbhIh/bdA7JS5HOI7mnzkZEy56FedcTaZL6NoAYaoI7ur40aszCqg9Tq59EBavEPIx6NTBIS4ZG5MWzUsmXYY2RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iPMgSUEk; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1755033076;
+	bh=ptw9LWjwcshgBavY2yDU/Ee+H+KyvQTD0coZYZFxVfw=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=iPMgSUEkfNJiAjaNCg4fHebUfF9p4iwEMZYSQwgT3Wag8oCvrrorR82Bq+flfOcAA
+	 tJE/Yoicrzw8NxpJCIWPPwA8lhSY3QDThCFfZS0af2JKOocxNwJNPGGFvi52DpWIPR
+	 rfp96b9bk+frqd/JoscI7HeslPOnw24WS16oaArSS9knnpRp6StIjNe34jMttiQ/N2
+	 PwrCFWxH28cc2bJhESkMhUuieD/1bwztCE2rL1oY3n/B+JDdgpUVuXdnVPPctJe1Nr
+	 ggH7Sftmy6AqFFgE9khGPbHMDitLVejnKoL1yJUUDLXdN1bGzQpQ754p+334Mxdt/W
+	 JLqzujFi6Sk4A==
+Received: from [IPv6:2606:6d00:11:5a76::c41] (unknown [IPv6:2606:6d00:11:5a76::c41])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A839717E0237;
+	Tue, 12 Aug 2025 23:11:14 +0200 (CEST)
+Message-ID: <d4f53de2dabce333e9f24fe0036d91b8d60af628.camel@collabora.com>
+Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, Jonas Karlman
+	 <jonas@kwiboo.se>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Mauro
+ Carvalho Chehab <mchehab@kernel.org>
+Cc: Alex Bee <knaerzche@gmail.com>, Sebastian Fricke
+	 <sebastian.fricke@collabora.com>, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Tue, 12 Aug 2025 17:11:12 -0400
+In-Reply-To: <3547812.44csPzL39Z@earth>
+References: <20250810212454.3237486-1-jonas@kwiboo.se>
+	 <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
+	 <3547812.44csPzL39Z@earth>
+Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
+ keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
+ /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoiZBBMWCgBBAhsDBQsJCA
+ cCAiICBhUKCQgLAgQWAgMBAh4HAheAFiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmgssvgFCQll93U
+ ACgkQ2UGUUSlgcvRSeQEAjcvEl/A6R2y2nMufL4A8MiKQfPZqJPXlhhno2PZqqUcBAIR87Pv5+cZV
+ ZTN26stch5wMyalcKgRNQ9IxtGvVelUCtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1ZnJlc
+ 25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AWIQ
+ TvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZsmBU
+ pkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHCAAS0
+ LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBFiEE7
+ w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAwECHg
+ cCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8bRLv
+ 9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
+Organization: Collabora Canada
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-3mQpTUvxe3+s5ASJnZMy"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Convert the Broadcom BCM2835 I2S/PCM binding to DT schema format. It's a
-straightforward conversion.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/sound/brcm,bcm2835-i2s.txt       | 24 ---------
- .../bindings/sound/brcm,bcm2835-i2s.yaml      | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.txt
- create mode 100644 Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.yaml
+--=-3mQpTUvxe3+s5ASJnZMy
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.txt b/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.txt
-deleted file mode 100644
-index 7bb0362828ec..000000000000
---- a/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--* Broadcom BCM2835 SoC I2S/PCM module
--
--Required properties:
--- compatible: "brcm,bcm2835-i2s"
--- reg: Should contain PCM registers location and length.
--- clocks: the (PCM) clock to use
--- dmas: List of DMA controller phandle and DMA request line ordered pairs.
--- dma-names: Identifier string for each DMA request line in the dmas property.
--  These strings correspond 1:1 with the ordered pairs in dmas.
--
--  One of the DMA channels will be responsible for transmission (should be
--  named "tx") and one for reception (should be named "rx").
--
--Example:
--
--bcm2835_i2s: i2s@7e203000 {
--	compatible = "brcm,bcm2835-i2s";
--	reg = <0x7e203000 0x24>;
--	clocks = <&clocks BCM2835_CLOCK_PCM>;
--
--	dmas = <&dma 2>,
--	       <&dma 3>;
--	dma-names = "tx", "rx";
--};
-diff --git a/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.yaml b/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.yaml
-new file mode 100644
-index 000000000000..f3cfe92684d0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/brcm,bcm2835-i2s.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/brcm,bcm2835-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 SoC I2S/PCM module
-+
-+maintainers:
-+  - Florian Fainelli <florian.fainelli@broadcom.com>
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm2835-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: Transmission DMA controller phandle and request line.
-+      - description: Reception DMA controller phandle and request line.
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - dmas
-+  - dma-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835.h>
-+
-+    i2s@7e203000 {
-+        compatible = "brcm,bcm2835-i2s";
-+        reg = <0x7e203000 0x24>;
-+        clocks = <&clocks BCM2835_CLOCK_PCM>;
-+        dmas = <&dma 2>, <&dma 3>;
-+        dma-names = "tx", "rx";
-+    };
--- 
-2.47.2
+Hi,
 
+Le mardi 12 ao=C3=BBt 2025 =C3=A0 15:57 -0400, Detlev Casanova a =C3=A9crit=
+=C2=A0:
+> > Detlev reports 146/147 on newer hardware using GStreamer, failing
+> > TSUNEQBD_A_MAIN10_Technicolor_2 (9bit chroma) only. On Detlev side, it =
+will
+> > we important to check why 8K videos (PICSIZE*) passes with a single cor=
+e,
+> > perhaps we accidently use both cores ?
+>=20
+> 1 core can do 8K. In theory, it can do up to close to 65535x65535... It i=
+s=20
+> only a speed issue, so you can do 8K but you won't be able to get to 8K@6=
+0=20
+> with only one core on rk3588.
+
+now that makes me wonder if that means we can reach speed such as 240Hz 4K =
+by
+slaving the cores, of if that only works for 8K. If this is the case, perha=
+ps
+the decoder will need to be target performance aware to make the best
+scheduling.
+
+Nicolas
+
+--=-3mQpTUvxe3+s5ASJnZMy
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaJut8AAKCRDZQZRRKWBy
+9Ih8AQDKyfk0G5x1w5UjIb06h+rwgbK7YR0Lu+0CgbaCFrUrCwEAtl6TV9GOaFhe
+Ubqzqi3x44DC0qxKWNjsJ9wdHUCpbAM=
+=ANNJ
+-----END PGP SIGNATURE-----
+
+--=-3mQpTUvxe3+s5ASJnZMy--
 
