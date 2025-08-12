@@ -1,359 +1,300 @@
-Return-Path: <devicetree+bounces-203884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80DE6B22C54
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:58:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B778EB22CBA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5E1A505E9A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE25062393E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5049E2F656A;
-	Tue, 12 Aug 2025 15:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C962FFDEE;
+	Tue, 12 Aug 2025 15:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aZjeOzs6"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="tO8f+uI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010065.outbound.protection.outlook.com [52.101.69.65])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0D72F28E2;
-	Tue, 12 Aug 2025 15:52:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4A92FDC40;
+	Tue, 12 Aug 2025 15:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.61
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755013978; cv=fail; b=N53cfi40med6T1JvedxipfxTJraOPOsBZqYB1HWYAOJ9eyBubmKYNOmtxc024VQVxPSEiI2PKAP7gJJTsrzCRSdoWtiDmw9h/JQuNJ7hRuGSawfR3X/FksJX2ioVNFHSZPSIw+q/yoUCLZ7EVSHUYuV9bjBD4k86Pvguuw0Ood4=
+	t=1755013995; cv=fail; b=ZSzcHCjraWCXEe7qb0bUp4AVlOEc9dKafVRcKOVzw5hpweLsMVtOAnpha3f7YtGsCxERUOjRWbKFdDU6gKC/e913IbFR89PRAngwdbIWW10qLMZxVn5m7a8qhjGjO+ChpwM5hj91tT/gLoL04eZT5p9jMQUDqvFCFK7lYQC8JrA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755013978; c=relaxed/simple;
-	bh=FMgtPeNBMoOc3spp4SlfJ2tDFKKt3XIeBGbP4il9f7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Lcz+jNmzXyTr+uP5TwCn/vp/LNbnxk/cgnb+Qr4uF5pW4GdmJ+WmaB8b026Uif+/J1bYgNVhK/sQSp5eXS68OyfC0v7p+3WRf+zDlQzteGr6/lQvl1Fs58cEqwebeY4dA0g06YpmD6spRiXtHUu3mOaP6lmNl1lk0kjirTbdI60=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aZjeOzs6; arc=fail smtp.client-ip=52.101.69.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1755013995; c=relaxed/simple;
+	bh=VjOOXK9lgNce2wIuyq8/gdU1UqF5k80boMLd1x+bWMs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HFLs0dBRioDNmvrfEzw77XyAFNHCuE7W019r/MAikOWAG5w/kn96onLi4nks4gDvzSNibI+kou9D6JUnWazqqNnOOeaKKUC3o2xliRUlnuvHSBVJEEcuXZnSzJLj4XqaeX2rB02wq8OjYA7J+ggNZF9SzGtScUk/bM8ZuR1mWTQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=tO8f+uI8; arc=fail smtp.client-ip=40.107.94.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZvYqXaMA3JwOj5PUEQcmjTdK57yBx77lgV3IcmOthR84wrqQuuSe5lKZqzhq2lfiHAjG6rXmYQXnI3TxfxeIMz0+7jTC70WUW6qQ3uVroCpUNRUNNXReVfGX1jhd1VIBf8tH2DhMMQgGoBtjTkbqPin6n0FBGayHHEfYlWUH7+KbNelZR12XhuDuj4kFjRqEyyj93l25szJ1S6iiTIz6z0ZHrp6xcnDvpqTVJmaFgkUkCi+5pjwed6sIhl4jMj6esCuLGH9+B2LSZAM8gRJXMjp9U8nBrKn1LTdrTBbDYibdgX+6qJW6JFQBmLezubL8Am8wJ51kXi2L1Ch3izFhNQ==
+ b=rRLH2s3aTlvtay16osA15A9M5BAD6fjZZux9Ma3E9TpOyFSJkgCIP+2JdiMGTOBusLIOXM7hOE43WOJsf+QATf+G/Lr+z/kX2NOwZjvQUHKYFMdQtMySKdyX0VI5RByddleVx7+PHOJRe8tRjW+bn2wB7cBenfBBNeRFlPjlXCxRPmokRiu3ghn6bnZbjLNrUWJ1xqZjNoJq20VZBL4s9PeKIhd0K+27Yff91kDsxEb1UeI2uEnkq63zB/lBWW0/AhO1YVCPfQO/sP/nB/8Z2lVQj3RXm8lsBHpszuyKpJQ/FneroS/tIeCD9CQk6AIA4ATRgCZT2CqFhNGGiXEVOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VgJFe1jlye15LPOTokLajAoFAB9gvaOKNeQg5cQm0BA=;
- b=kkAoCr3apn27zZX1+vtZDdK4cudt0uDhbPSKGFMz5nnEndPOeY0xuw6NazKPEtpvFlkUh7Iznuudj9dGZKFfm+ksXd5xRCAQkCZY99S/WMw6WkSaG5K/6TLjnHyV67Nr86FcEV80ZesbV9H4FUflQsUYhfcio4PTjveyv7USWq4a39Ekuyain3nierrg8SzJ662bOssZXvJgcxS4o/auqb6mu3FPKhVuWHSlLFfeZsY1R94N/DUy+KFaA3KGeOlF0cNONeHzFTRJy5L9bLXW4iDRbzQuAxPnfLsAZs1Kinbw8IALEJ3Ga9l+Pw3MbwuoKJ1F0IgdkYzm3RzxHypOBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=kbkxOAWk9d1j96IpZYOdIzPDOMNprbtXCJUQ1iRoQTw=;
+ b=JJPJ3hMlFOtKW+AAyCYbHBBL1gKDL+hxvLaL6L7hTUVs9zpYJ7NJxXgN14IiPPd6E8raqMr8/zFuRmZaKd6YBaUiKJOC2Hb0iUKu7xeDKo0MlrbnUfmll9hjHpxlUhO+dBOrjqVvhSF8wSoWiuG9xnREFtScRAZJVLsJ6KOuFtaqrQFyTo30vmIU8nQRoswmIdmyrDOtsg8bQzn6c305Ci6dlR0Mn2/f2OGeBzIRiWw3ff/i3Ju6Xvd95pTbNLZVthyoXzhNr8hi2PBsrvQmCcgTPhL6MDGZliRewkh6NSHL6v1D2AKIFuNsIQAHsmP7gc2B+Vt8VGjAtCAhFx3elg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VgJFe1jlye15LPOTokLajAoFAB9gvaOKNeQg5cQm0BA=;
- b=aZjeOzs69G/1HJJs3NjNfUQWN1c+znoceYgwlavS4ynPYF3wNFeyZISGZZ3Sf2uCZ/EvCBN0nD8F1167VoLXca725f/ccbWzfU/gPJPMOCmV6gIGyfb5J5NJoy1yxyjoKfFmJSzIxNqlkFpgVvZ+QyJiY/UyTzsYm5wcI9uoibfiwHNszid6CmgbHSsA2cshptbwrx5ijNAOED4aQi3o4Oyikvl43XS4/EK+TnqLcKA3/i2JZi1GoJYt/1tZJV1vCpoAHDAO5pUjaUuy8AhYpA6i05JsqyXpRcpqbKN/fxXnx1rJT+fTOPh7P97ppuE8PE99AkphrSs0sp73bs9YuQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM7PR04MB7174.eurprd04.prod.outlook.com (2603:10a6:20b:11a::23) with
+ bh=kbkxOAWk9d1j96IpZYOdIzPDOMNprbtXCJUQ1iRoQTw=;
+ b=tO8f+uI82zLpxBoT1dIEQ6IY5K0hSDO4d/afnv3FyvOqrpLwWXE//r8uHVTjaDtNeLrGhAO3tF7r3QZ5c45JM262xYgjr1JWeWGxPEWh24cBQiLQ/hgKEZAVkSNhePu5UstyI/L4bYcEgDK6e08rbC5R9y+TEtRbIvm/ThhVxEI=
+Received: from SJ0PR13CA0197.namprd13.prod.outlook.com (2603:10b6:a03:2c3::22)
+ by SA3PR12MB9228.namprd12.prod.outlook.com (2603:10b6:806:39c::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.13; Tue, 12 Aug
- 2025 15:52:51 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9031.011; Tue, 12 Aug 2025
- 15:52:51 +0000
-Date: Tue, 12 Aug 2025 11:52:41 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	richardcochran@gmail.com, claudiu.manoil@nxp.com,
-	vladimir.oltean@nxp.com, xiaoning.wang@nxp.com,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, vadim.fedorenko@linux.dev,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	fushi.peng@nxp.com, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, kernel@pengutronix.de
-Subject: Re: [PATCH v3 net-next 11/15] net: enetc: extract
- enetc_update_ptp_sync_msg() to handle PTP Sync packets
-Message-ID: <aJtjSbZGZC/w1YAs@lizhi-Precision-Tower-5810>
-References: <20250812094634.489901-1-wei.fang@nxp.com>
- <20250812094634.489901-12-wei.fang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250812094634.489901-12-wei.fang@nxp.com>
-X-ClientProxiedBy: BYAPR11CA0098.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::39) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Tue, 12 Aug
+ 2025 15:53:11 +0000
+Received: from CO1PEPF000066E8.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c3:cafe::fe) by SJ0PR13CA0197.outlook.office365.com
+ (2603:10b6:a03:2c3::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.14 via Frontend Transport; Tue,
+ 12 Aug 2025 15:53:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1PEPF000066E8.mail.protection.outlook.com (10.167.249.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.9031.11 via Frontend Transport; Tue, 12 Aug 2025 15:53:09 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 12 Aug
+ 2025 10:53:07 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 12 Aug
+ 2025 10:53:07 -0500
+Received: from [172.19.71.207] (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Tue, 12 Aug 2025 10:53:07 -0500
+Message-ID: <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
+Date: Tue, 12 Aug 2025 08:53:06 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: Issues with OF_DYNAMIC PCI bridge node generation
+ (kmemleak/interrupt-map IC reg property)
+Content-Language: en-US
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <maz@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <aJms+YT8TnpzpCY8@lpieralisi>
+ <c627564a-ccc3-9404-ba87-078fb8d10fea@amd.com> <aJrwgKUNh68Dx1Fo@lpieralisi>
+From: Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <aJrwgKUNh68Dx1Fo@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Received-SPF: None (SATLEXMB05.amd.com: lizhi.hou@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM7PR04MB7174:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25d9ffe7-a27b-45ae-bb78-08ddd9b84aae
+X-MS-TrafficTypeDiagnostic: CO1PEPF000066E8:EE_|SA3PR12MB9228:EE_
+X-MS-Office365-Filtering-Correlation-Id: c72ad43b-c170-47dc-c6f6-08ddd9b8561e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|7416014|52116014|19092799006|1800799024|38350700014;
+	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ccoufyF1AYM7P2jWW9+npNJr1/nwFsANFopgh3S4xF5SbYqdg6NQJgwd9pJh?=
- =?us-ascii?Q?oyc0det4IuKlWNX8optJynuyWoyt39Ittco59SNJpyW71TPOiPej6L26f9E9?=
- =?us-ascii?Q?HKzpzCFGOgMhFOwsyqiPomIIH5b7GyDGULJIuBPkD6toGi0MxiPSxlfVIHGV?=
- =?us-ascii?Q?A3TJdhnDQQxCiDhBKoEIG2ntjQeEWCau6Yt/5+cQ9Zh06bFMcWOYsY42flhR?=
- =?us-ascii?Q?5FoccdYlX1BiG1DWMVPtUNeDIUDn+7cwH9oIw/fcp3d5TpRcW97aac2wPS01?=
- =?us-ascii?Q?I2giW9ztkmFeuW15S65VkRWz1Wb+caPzrGdatxsr5kFEC6/0zdFlIKcNbXlG?=
- =?us-ascii?Q?gre0kdGV0nPjIS6qwzV/UeI7ONx0oNUT++Yjaljhy7VJWZHngzfbk0AHodOZ?=
- =?us-ascii?Q?LAY9SpmqRkW9m5vyP5U66YUqdlYNp4Y4GUNOmXn2LhbvioPgp80do5DeMLvc?=
- =?us-ascii?Q?PhdslsyFOt98rFfEKYKu+SRuFHU7cnWaVpozd5tTS1FDQmTsMEh25yPvR0/G?=
- =?us-ascii?Q?I5xA3ZID/0h0f6fA9cPf9Wt7q0KDkbK3XVQkaUD+2rR+OPfKs9ijK+uUTb3Q?=
- =?us-ascii?Q?sR2OaK+P5gNK6SXQ2TQNFrpBgfC8HWjRFEHc0QSOe5miLkcRIg9nMZwnQSkr?=
- =?us-ascii?Q?R2DeneQzNWD+XTwlTUSp5YsN82d6D1KwloqyjtNETkGMVhuRETju4+sJBQ3d?=
- =?us-ascii?Q?B7LQLbCeS2ECAt85B5LPf3c2xbRI30N2DzIFWgbEqoy6rwryixfAlMO+wDu4?=
- =?us-ascii?Q?BP2rdQUbaHjpfDg42jcU977EG4GFE3tE/yfU1YYMLFcIEe4uC5tgtZXf6cgX?=
- =?us-ascii?Q?6uqQhXN0znhN5yLalCg5sVnIcARxw+yANc/A/EgKfw+ZEDReeEaAO+GFiwmR?=
- =?us-ascii?Q?h6rXYOXjSi4Tzr9CnVjwG3x2V3wfvXmrgai0e8UnF0i78TTXt4BBguba8q0m?=
- =?us-ascii?Q?bXEFVSef+kfQ3+1ewl+7H2acyYEHCAaBl0QFVbmIhZ5OaeQZz06fcPAZr28c?=
- =?us-ascii?Q?jE4Asc0xSCMwMUgImd5YhgHm6YzQ3NiYG9LNlcGkS+B0JFtVEOkcvAV7u27a?=
- =?us-ascii?Q?S73VLAcJyv499HR0VwxhXEZZfNCIpT3YPSrRrulIvtYcaCtCkWZ1shoJgmc/?=
- =?us-ascii?Q?VGbeg8YCG/7SF5gMXVQT/QyneHvBWBaX8z7h4LdRzn28DxJEwSLpzqRXzzln?=
- =?us-ascii?Q?N76lDgOm17IcKcPLAoZGBSw1PaqvfEJDPQ6wqBDHueEzjHSIYZeEymii1sIj?=
- =?us-ascii?Q?IZReu50OMw3uQUYiNFJnBrsUIgdyp7uGdFBRRT4tnFFhWbTH44V2ujzL+mLa?=
- =?us-ascii?Q?4RV2yXN+hWuXzgSx4Ft3M3r4DbZ+89Lw3YXWvNwxVBRWM5ViEdZszYRB3ia5?=
- =?us-ascii?Q?QVuQAFxTdBMmk0sBLuFTTDxnimNTICNUswqdnrQXNwpwkJjV+o/SIqTCVXwr?=
- =?us-ascii?Q?BEKRoLOsa2xYb51tKygrqr5jKn2WpTsMcvgI2fInM6gD+mLe6MK7gg=3D=3D?=
+	=?utf-8?B?cEVyMnMvRHNEWlRRcktoNTR6amhxWVNPdHZJZzdvTjhZTlkvTWlQcXdhNUFR?=
+ =?utf-8?B?NFcrTWNhNW5TNEJZcFRSN2J3eGxyQkRhRDZiMHc0ZWIxR3NvekJKV2hmSzMw?=
+ =?utf-8?B?QTBNYmFmbTBqajlXY1VUa2ZCVHByRVdKaG9GeWhXeUNPSUEzT2lTTmJCUzZR?=
+ =?utf-8?B?SHZmVmF3L0tHemcwdVFiRXpXVGdSSVYxY1ZKM3M3TGdZUGRRT0J3V2V2MWRz?=
+ =?utf-8?B?U09CVS9lcXlvQnlUSEZ6bE4xdDBvRzY1bXFvT1l2QStoVGk4eTN4WlBmQXhB?=
+ =?utf-8?B?NkJta2FpTVpUdjk3M2UvYVB1blBWaTJYUWdyb2xGU1BBUFo1dVgxaVIxbk5u?=
+ =?utf-8?B?Yi9zclF5YXVZM3ljak5tQlhSTlNCaVB0MlR6d0pIT2pCQmQ2K3J5V3lBcVc1?=
+ =?utf-8?B?cVJsM0xzejU4Z2ZwWVJXTnRwMlhxVFA0STFGbTBPZTdnZkJQNDdkekxSWWRz?=
+ =?utf-8?B?ODZFWUZCN2lLZDVqNUZWV3ZmQ3pxdVg3OWx0QmNRdzR0N3RUdGFIRjBaT1NS?=
+ =?utf-8?B?eHhmUEtEbW54bENSOGxwbERlcHFXUFdTSzlGM1l1YUNvMVY3eE1Va0JtSUpY?=
+ =?utf-8?B?VnhONmMyamswbWhMQTZqWm1NU24zcVlBSUtzaTRvdUQweGNtdWZZUk9hcWY3?=
+ =?utf-8?B?d0VNd0RPM1MxSUc4c0p1d0J3SzMyZ2ZBV3p3YS9nRjFuOWxmd1ROUjNVcWMw?=
+ =?utf-8?B?bmVya3YvNEhZL0hvSVViYUYydTVGRS84NW1vTUVUb29ySTcxY21UZFk0MC9u?=
+ =?utf-8?B?Sm1JbHZrUHk4UjF0elNJZW55S084cjR5RHZRTVB1Q0g4TjFjVW45RDhyNEJm?=
+ =?utf-8?B?NFNISjRKeWVwOFQ2cW13SkdQU2ZtNWpBYWVTc1dnVVhYODB3a0VWL2hCYjBJ?=
+ =?utf-8?B?VEFwdEdadUg2RjJtdXhleWRNWGRrN1BxTlIrNkFCTlltbjNmSXRCaTdnZFFm?=
+ =?utf-8?B?Y3lDSVZDVWFGTGVtQzlDK3BsZ1hQSGE1T3pZeW42MVFhaG5XbWxtdE5ZeDFr?=
+ =?utf-8?B?a215UWFleG9pOVZGV2VFcW1HQ3B0TDFqei9maGNqbmJmd20zd0wyeWJ6b2Jq?=
+ =?utf-8?B?cmplUk9nMjJyZ3BMQ3BNVW5DbE1GTjBNdXZvcUl4ZU51TTNVditNU2FuSDln?=
+ =?utf-8?B?V3JWYXl2THF0SnVUMW1ZblVkNC82Wm9VNjNBQkJDenhsWUFTVHo4WlIzdHhM?=
+ =?utf-8?B?aXFzblloZ2o2UmdVNDVreldmWFJXMWN3cTlrZVIwZndQeXZoV1lYN3hmMGRx?=
+ =?utf-8?B?NGxoOXpmQ1ZNTjlubnpvZVZBVXVxREdBNXFCdHkrallSendDWWpKZVViTEJw?=
+ =?utf-8?B?b0tLUmp5eG1SR2VOY1ZLTWxhK0J2ZlFweERBK1c2NHI4TnpqY1ZZbzBrRkIz?=
+ =?utf-8?B?dHlQelRBWkQwNGJ4T3g0SU10ZVpRbVV2aUxCMytoR1hmVi81RHBmaG9SNlZw?=
+ =?utf-8?B?SkJMODN1OXZsaW0wUmE5RWNRaExKamNFRFNqRTJVcTE3MWVNamdyYUcyLzB0?=
+ =?utf-8?B?QTV5US9KNmJ6MjBVMk5EbHpUazB6dGFMa0pTWHhraWZ4aFloTUMxcTduVUE0?=
+ =?utf-8?B?cERtQ1VGQUFoL3JkOVBzN2lURGdSRjk4dkVmTVUxazRWamdtNGR2VFJmQ2Jy?=
+ =?utf-8?B?eGhTQUVDb0FKQmNWcGc3VEhzSGJ0MkxnU21Ca0pUbXlub2dtWnV4YUxWVkNs?=
+ =?utf-8?B?YWl2UU5md1NyZGJoTThlSnFkdXlNQWVBUmJOZmlBaGdEbm4zZEkvWEFJNXdP?=
+ =?utf-8?B?TnhFa2FNVzA1Mm8yZHl6NmFST0psckM2QzBkNFo2SkREZFMvcGNJK1JvMlFC?=
+ =?utf-8?B?KzBFMUpjejlhRW5xekRjNlNCVjhVK2psVzZ1QlY4ZkpyMk85Q1h0OXdJM1VS?=
+ =?utf-8?B?Ym9OMTNRQk9ULzEwZU9uYjFORDNSUUFINGY5RkV5V0FodHNtdG5xY0REUXhq?=
+ =?utf-8?B?OXVqS3FwRWRzWUZnY3NtVmNKak1IbytYYk5aMmVNenlKSFJ0NHJXSDFaV0FE?=
+ =?utf-8?B?Z1R1dEtXbmlBPT0=?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(52116014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?e28g2Kq3Z9CHBa05rnCNKByW9/cFEoXWGcDee7e4ckcvNZuDlURoHKZTMvfc?=
- =?us-ascii?Q?Rw7vlwNi5nvqGzX/U3XSyVoKs9H/gHW36jyyISz9Df1+sEJisWBbhGDE8f2N?=
- =?us-ascii?Q?CmWj0ZhBpPtS4tj0Fc8GHAE1U1DRYZFUAVCjNHPWUkp8o7SeTmBPCbgeGuSU?=
- =?us-ascii?Q?xfcgzdPqr2Pa/x2NBK3S+C+mPWfjJJ+U3NIfG6V+NUK1p9ti6dj2yf8s7V/p?=
- =?us-ascii?Q?an3MSNW729Q82oZ8MEStB7NLeh+LgL5ty+xRk8fwDG01nsmL3u9zFijL3cv6?=
- =?us-ascii?Q?yrAhUdS0kSo4Kj/5L5Cy2JB7hIw7HRNtrFLWWPvnpAhGBIg7f7/4XlPkaS+v?=
- =?us-ascii?Q?96992ccNGs8CiBM9OCFYCgxhGSyvxOF8TWKmi4PLADxnivpKELtTda2lGw2K?=
- =?us-ascii?Q?ytJMHaJy3h8ldwW1F58yZU3fGtHbPpkq5hNgl2KDv+svuoGu1Cocu4mnrMCA?=
- =?us-ascii?Q?X6eFQMDY+GdLLEv41GTyHiOonFs4lkD4uRMKBW7UEXeaUSOu/c4YZay3iHzE?=
- =?us-ascii?Q?k5ByCCiVYwuecpBOrnnUSpfBHR+9/leB7WwK0EThHoDzIKIJWlzlrNEnjx1I?=
- =?us-ascii?Q?aO/U73LX9vCmB1vn/0JthnsT9G9EoF9OPPOMQQNHHKLwcLhT05e+3AihR/BI?=
- =?us-ascii?Q?xkBpsqibZODvmAz1zRAfRBM+ulgttJcOr5AA+IzvGvm/R7JJK1wKFZYV9asH?=
- =?us-ascii?Q?Z0BUCDhqWymdcDCXusaVbMPg/ps0WVSRRsbEN2heUAfyMWidDqn311zxYo5z?=
- =?us-ascii?Q?cg/KKfG8pmXkENfIBvzI/FxHbj4h53ZzlRi9qmCcfBjT/jm9aoKPyhUuoLYo?=
- =?us-ascii?Q?UB1Zfi/uwjSQTDHzn0QbkHe9ySoqj5RC0550A7U79fnsdThdKkIzEEII1jtl?=
- =?us-ascii?Q?RJ5Jclcwfh+b1WAiXSKbKoxayLC8BgH27zmTo7iDs4O/NS7owBZN+JOeBVAi?=
- =?us-ascii?Q?KHT+ckhKr6ryNDQIKlpzgQbeR8U69/QBAwu7nc2Xc7hI5eP9KLuliFrBUSvZ?=
- =?us-ascii?Q?k0ZYHnDT0JlWyjKtSIKdsTLNlR+Rpkky46ZFOQLsB8QSm/W/SZVvVxXbttnH?=
- =?us-ascii?Q?etfqxgLuMxXuVkl14SfkrLPsg6qN5VX/pybHzSZGddVUHYdBgRfofK8RJEg9?=
- =?us-ascii?Q?cfFu8zA9GrNEQJplzBuitEH9kWzJzbEqXUQfR8eo2bn7ut14gl3fFN2TpRhE?=
- =?us-ascii?Q?fpeSM4GSs3jSGPI68iEWo4vrIlNZUxA6+974IonelIN/Qdb2UoHRxda8hIww?=
- =?us-ascii?Q?sZDxpoF751jyeCCQapQF3m9qLay9Rcn9cdNpgZ8gLnxfp3NO/wwyoyyXt8Ko?=
- =?us-ascii?Q?eDVMwoj5rYxypRfabwmaJEJdMxKMsnURw5hrEYN1fMfSBVriB43DirOCCWQe?=
- =?us-ascii?Q?DCdhKew3G6238nT3i5FuvXKTIeChGTQAQuZkE1Tc2KAcY4wfIKRLEiSNwkfD?=
- =?us-ascii?Q?weY6Zz8eA7z78C/ZGb5g4YzEg4Gy4UDeH+mHcBX/aemnw3JIxysEW/8TUtsa?=
- =?us-ascii?Q?j0NpxGrLg3L1CFX9O6Ls4wEytjyDqWqSKVar1cX/To3AWA4L0zVrFv/zIlq2?=
- =?us-ascii?Q?zyTx1XdvhlmgSByJqxbqh1XSwY9R2z7hFpaFYhI2?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25d9ffe7-a27b-45ae-bb78-08ddd9b84aae
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 15:52:50.9102
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 15:53:09.7200
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mfbw3yz0YFQHoueoSk7KltePfQ470khHnfkggZEGMC4vF4/ZBsiZdj08JeTcGJL2GvekQ7hd+SFDTFE5Fx9YUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7174
+X-MS-Exchange-CrossTenant-Network-Message-Id: c72ad43b-c170-47dc-c6f6-08ddd9b8561e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF000066E8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9228
 
-On Tue, Aug 12, 2025 at 05:46:30PM +0800, Wei Fang wrote:
-> Move PTP Sync packet processing from enetc_map_tx_buffs() to a new helper
-> function enetc_update_ptp_sync_msg() to simplify the original function.
-> Prepare for upcoming ENETC v4 one-step support.
 
-Add "no functional change".
+On 8/12/25 00:42, Lorenzo Pieralisi wrote:
+> On Mon, Aug 11, 2025 at 08:26:11PM -0700, Lizhi Hou wrote:
+>> On 8/11/25 01:42, Lorenzo Pieralisi wrote:
+>>
+>>> Hi Lizhi, Rob,
+>>>
+>>> while debugging something unrelated I noticed two issues
+>>> (related) caused by the automatic generation of device nodes
+>>> for PCI bridges.
+>>>
+>>> GICv5 interrupt controller DT top level node [1] does not have a "reg"
+>>> property, because it represents the top level node, children (IRSes and ITSs)
+>>> are nested.
+>>>
+>>> It does provide #address-cells since it has child nodes, so it has to
+>>> have a "ranges" property as well.
+>>>
+>>> You have added code to automatically generate properties for PCI bridges
+>>> and in particular this code [2] creates an interrupt-map property for
+>>> the PCI bridges (other than the host bridge if it has got an OF node
+>>> already).
+>>>
+>>> That code fails on GICv5, because the interrupt controller node does not
+>>> have a "reg" property (and AFAIU it does not have to - as a matter of
+>>> fact, INTx mapping works on GICv5 with the interrupt-map in the
+>>> host bridge node containing zeros in the parent unit interrupt
+>>> specifier #address-cells).
+>> Does GICv5 have 'interrupt-controller' but not 'interrupt-map'? I think
+>> of_irq_parse_raw will not check its parent in this case.
+> But that's not the problem. GICv5 does not have an interrupt-map,
+> the issue here is that GICv5 _is_ the parent and does not have
+> a "reg" property. Why does the code in [2] check the reg property
+> for the parent node while building the interrupt-map property for
+> the PCI bridge ?
 
->
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
->
-> ---
-> v2: no changes
-> v3: Change the subject and improve the commit message
-> ---
->  drivers/net/ethernet/freescale/enetc/enetc.c  | 129 ++++++++++--------
->  .../net/ethernet/freescale/enetc/enetc_hw.h   |   1 +
->  2 files changed, 71 insertions(+), 59 deletions(-)
->
-> diff --git a/drivers/net/ethernet/freescale/enetc/enetc.c b/drivers/net/ethernet/freescale/enetc/enetc.c
-> index 54ccd7c57961..ef002ed2fdb9 100644
-> --- a/drivers/net/ethernet/freescale/enetc/enetc.c
-> +++ b/drivers/net/ethernet/freescale/enetc/enetc.c
-> @@ -221,12 +221,79 @@ static void enetc_unwind_tx_frame(struct enetc_bdr *tx_ring, int count, int i)
->  	}
->  }
->
-> +static u32 enetc_update_ptp_sync_msg(struct enetc_ndev_priv *priv,
-> +				     struct sk_buff *skb)
-> +{
-> +	struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
-> +	u16 tstamp_off = enetc_cb->origin_tstamp_off;
-> +	u16 corr_off = enetc_cb->correction_off;
-> +	struct enetc_si *si = priv->si;
-> +	struct enetc_hw *hw = &si->hw;
-> +	__be32 new_sec_l, new_nsec;
-> +	__be16 new_sec_h;
-> +	u32 lo, hi, nsec;
-> +	u8 *data;
-> +	u64 sec;
-> +	u32 val;
-> +
-> +	lo = enetc_rd_hot(hw, ENETC_SICTR0);
-> +	hi = enetc_rd_hot(hw, ENETC_SICTR1);
-> +	sec = (u64)hi << 32 | lo;
-> +	nsec = do_div(sec, 1000000000);
-> +
-> +	/* Update originTimestamp field of Sync packet
-> +	 * - 48 bits seconds field
-> +	 * - 32 bits nanseconds field
-> +	 *
-> +	 * In addition, the UDP checksum needs to be updated
-> +	 * by software after updating originTimestamp field,
-> +	 * otherwise the hardware will calculate the wrong
-> +	 * checksum when updating the correction field and
-> +	 * update it to the packet.
-> +	 */
-> +
-> +	data = skb_mac_header(skb);
-> +	new_sec_h = htons((sec >> 32) & 0xffff);
-> +	new_sec_l = htonl(sec & 0xffffffff);
-> +	new_nsec = htonl(nsec);
-> +	if (enetc_cb->udp) {
-> +		struct udphdr *uh = udp_hdr(skb);
-> +		__be32 old_sec_l, old_nsec;
-> +		__be16 old_sec_h;
-> +
-> +		old_sec_h = *(__be16 *)(data + tstamp_off);
-> +		inet_proto_csum_replace2(&uh->check, skb, old_sec_h,
-> +					 new_sec_h, false);
-> +
-> +		old_sec_l = *(__be32 *)(data + tstamp_off + 2);
-> +		inet_proto_csum_replace4(&uh->check, skb, old_sec_l,
-> +					 new_sec_l, false);
-> +
-> +		old_nsec = *(__be32 *)(data + tstamp_off + 6);
-> +		inet_proto_csum_replace4(&uh->check, skb, old_nsec,
-> +					 new_nsec, false);
-> +	}
-> +
-> +	*(__be16 *)(data + tstamp_off) = new_sec_h;
-> +	*(__be32 *)(data + tstamp_off + 2) = new_sec_l;
-> +	*(__be32 *)(data + tstamp_off + 6) = new_nsec;
-> +
-> +	/* Configure single-step register */
-> +	val = ENETC_PM0_SINGLE_STEP_EN;
-> +	val |= ENETC_SET_SINGLE_STEP_OFFSET(corr_off);
-> +	if (enetc_cb->udp)
-> +		val |= ENETC_PM0_SINGLE_STEP_CH;
-> +
-> +	enetc_port_mac_wr(priv->si, ENETC_PM0_SINGLE_STEP, val);
-> +
-> +	return lo & ENETC_TXBD_TSTAMP;
-> +}
-> +
->  static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
->  {
->  	bool do_vlan, do_onestep_tstamp = false, do_twostep_tstamp = false;
->  	struct enetc_ndev_priv *priv = netdev_priv(tx_ring->ndev);
->  	struct enetc_skb_cb *enetc_cb = ENETC_SKB_CB(skb);
-> -	struct enetc_hw *hw = &priv->si->hw;
->  	struct enetc_tx_swbd *tx_swbd;
->  	int len = skb_headlen(skb);
->  	union enetc_tx_bd temp_bd;
-> @@ -326,67 +393,11 @@ static int enetc_map_tx_buffs(struct enetc_bdr *tx_ring, struct sk_buff *skb)
->  		}
->
->  		if (do_onestep_tstamp) {
-> -			u16 tstamp_off = enetc_cb->origin_tstamp_off;
-> -			u16 corr_off = enetc_cb->correction_off;
-> -			__be32 new_sec_l, new_nsec;
-> -			u32 lo, hi, nsec, val;
-> -			__be16 new_sec_h;
-> -			u8 *data;
-> -			u64 sec;
-> -
-> -			lo = enetc_rd_hot(hw, ENETC_SICTR0);
-> -			hi = enetc_rd_hot(hw, ENETC_SICTR1);
-> -			sec = (u64)hi << 32 | lo;
-> -			nsec = do_div(sec, 1000000000);
-> +			u32 tstamp = enetc_update_ptp_sync_msg(priv, skb);
->
->  			/* Configure extension BD */
-> -			temp_bd.ext.tstamp = cpu_to_le32(lo & 0x3fffffff);
-> +			temp_bd.ext.tstamp = cpu_to_le32(tstamp);
->  			e_flags |= ENETC_TXBD_E_FLAGS_ONE_STEP_PTP;
-> -
-> -			/* Update originTimestamp field of Sync packet
-> -			 * - 48 bits seconds field
-> -			 * - 32 bits nanseconds field
-> -			 *
-> -			 * In addition, the UDP checksum needs to be updated
-> -			 * by software after updating originTimestamp field,
-> -			 * otherwise the hardware will calculate the wrong
-> -			 * checksum when updating the correction field and
-> -			 * update it to the packet.
-> -			 */
-> -			data = skb_mac_header(skb);
-> -			new_sec_h = htons((sec >> 32) & 0xffff);
-> -			new_sec_l = htonl(sec & 0xffffffff);
-> -			new_nsec = htonl(nsec);
-> -			if (enetc_cb->udp) {
-> -				struct udphdr *uh = udp_hdr(skb);
-> -				__be32 old_sec_l, old_nsec;
-> -				__be16 old_sec_h;
-> -
-> -				old_sec_h = *(__be16 *)(data + tstamp_off);
-> -				inet_proto_csum_replace2(&uh->check, skb, old_sec_h,
-> -							 new_sec_h, false);
-> -
-> -				old_sec_l = *(__be32 *)(data + tstamp_off + 2);
-> -				inet_proto_csum_replace4(&uh->check, skb, old_sec_l,
-> -							 new_sec_l, false);
-> -
-> -				old_nsec = *(__be32 *)(data + tstamp_off + 6);
-> -				inet_proto_csum_replace4(&uh->check, skb, old_nsec,
-> -							 new_nsec, false);
-> -			}
-> -
-> -			*(__be16 *)(data + tstamp_off) = new_sec_h;
-> -			*(__be32 *)(data + tstamp_off + 2) = new_sec_l;
-> -			*(__be32 *)(data + tstamp_off + 6) = new_nsec;
-> -
-> -			/* Configure single-step register */
-> -			val = ENETC_PM0_SINGLE_STEP_EN;
-> -			val |= ENETC_SET_SINGLE_STEP_OFFSET(corr_off);
-> -			if (enetc_cb->udp)
-> -				val |= ENETC_PM0_SINGLE_STEP_CH;
-> -
-> -			enetc_port_mac_wr(priv->si, ENETC_PM0_SINGLE_STEP,
-> -					  val);
->  		} else if (do_twostep_tstamp) {
->  			skb_shinfo(skb)->tx_flags |= SKBTX_IN_PROGRESS;
->  			e_flags |= ENETC_TXBD_E_FLAGS_TWO_STEP_PTP;
-> diff --git a/drivers/net/ethernet/freescale/enetc/enetc_hw.h b/drivers/net/ethernet/freescale/enetc/enetc_hw.h
-> index 73763e8f4879..377c96325814 100644
-> --- a/drivers/net/ethernet/freescale/enetc/enetc_hw.h
-> +++ b/drivers/net/ethernet/freescale/enetc/enetc_hw.h
-> @@ -614,6 +614,7 @@ enum enetc_txbd_flags {
->  #define ENETC_TXBD_STATS_WIN	BIT(7)
->  #define ENETC_TXBD_TXSTART_MASK GENMASK(24, 0)
->  #define ENETC_TXBD_FLAGS_OFFSET 24
-> +#define ENETC_TXBD_TSTAMP	GENMASK(29, 0)
+Based on the document, if #address-cells is not zero, it needs to get 
+parent unit address. Maybe there is way to get the parent unit address 
+other than read 'reg'?  Or maybe zero should be used as parent unit 
+address if 'reg' does not exist?
 
-Suppose this type patch no any addtional change to reduce review efforts.
+Rob, Could you give us some advise on this?
 
-Or you need say replace 0x3fffffff with ENETC_TXBD_TSTAMP.
 
-Frank
+Thanks,
+
+Lizhi
+
 
 >
->  static inline __le32 enetc_txbd_set_tx_start(u64 tx_start, u8 flags)
->  {
-> --
-> 2.34.1
+>>> It is not clear to me why, to create an interrupt-map property, we
+>>> are reading the "reg" value of the parent IC node to create the
+>>> interrupt-map unit interrupt specifier address bits (could not we
+>>> just copy the address in the parent unit interrupt specifier reported
+>>> in the host bridge interrupt-map property ?).
+>>>
+>>> - #address-cells of the parent describes the number of address cells of
+>>>     parent's child nodes not the parent itself, again, AFAIK, so parsing "reg"
+>>>     using #address-cells of the parent node is not entirely correct, is it ?
+>>> - It is unclear to me, from an OF spec perspective what the address value
+>>>     in the parent unit interrupt specifier ought to be. I think that, at
+>>>     least for dts including a GICv3 IC, the address values are always 0,
+>>>     regardless of the GICv3 reg property.
+>>>
+>>> I need your feedback on this because the automatic generation must
+>>> work seamlessly for GICv5 as well (as well as all other ICs with no "reg"
+>>> property) and I could not find anything in the OF specs describing
+>>> how the address cells in the unit interrupt specifier must be computed.
+>> Please see: https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html
+>>
+>> 2.4.3.1 mentions:
+>>
+>> "Both the child node and the interrupt parent node are required to have
+>> #address-cells and #interrupt-cells properties defined. If a unit address
+>> component is not required, #address-cells shall be explicitly defined to be
+>> zero."
+> Yes, but again, that's not what I am asking. GICv5 requires
+> #address-cells (2.3.5 - link above - it has child nodes and it
+> has to define "ranges") but it does not require a "reg" property,
+> code in [2] fails.
 >
+> That boils down to what does "a unit address component is not required"
+> means.
+>
+> Why does the code in [2] read "reg" to build the parent unit interrupt
+> specifier (with #address-cells size of the parent, which, again, I
+> don't think it is correct) ?
+>
+>>> I found this [3] link where in section 7 there is an interrupt mapping
+>>> algorithm; I don't understand it fully and I think it is possibly misleading.
+>>>
+>>> Now, the failure in [2] (caused by the lack of a "reg" property in the
+>>> IC node) triggers an interrupt-map property generation failure for PCI
+>>> bridges that are upstream devices that need INTx swizzling.
+>>>
+>>> In turn, that leads to a kmemleak detection:
+>>>
+>>> unreferenced object 0xffff000800368780 (size 128):
+>>>     comm "swapper/0", pid 1, jiffies 4294892824
+>>>     hex dump (first 32 bytes):
+>>>       f0 b8 34 00 08 00 ff ff 04 00 00 00 00 00 00 00  ..4.............
+>>>       70 c2 30 00 08 00 ff ff 00 00 00 00 00 00 00 00  p.0.............
+>>>     backtrace (crc 1652b62a):
+>>>       kmemleak_alloc+0x30/0x3c
+>>>       __kmalloc_cache_noprof+0x1fc/0x360
+>>>       __of_prop_dup+0x68/0x110
+>>>       of_changeset_add_prop_helper+0x28/0xac
+>>>       of_changeset_add_prop_string+0x74/0xa4
+>>>       of_pci_add_properties+0xa0/0x4e0
+>>>       of_pci_make_dev_node+0x198/0x230
+>>>       pci_bus_add_device+0x44/0x13c
+>>>       pci_bus_add_devices+0x40/0x80
+>>>       pci_host_probe+0x138/0x1b0
+>>>       pci_host_common_probe+0x8c/0xb0
+>>>       platform_probe+0x5c/0x9c
+>>>       really_probe+0x134/0x2d8
+>>>       __driver_probe_device+0x98/0xd0
+>>>       driver_probe_device+0x3c/0x1f8
+>>>       __driver_attach+0xd8/0x1a0
+>>>
+>>> I have not grokked it yet but it seems genuine, so whatever we decide
+>>> in relation to "reg" above, this ought to be addressed too, if it
+>>> is indeed a memleak.
+>> Not sure what is the leak. I will look into more.
+> Thanks,
+> Lorenzo
+>
+>>
+>> Lizhi
+>>
+>>> Please let me know if something is unclear I can provide further
+>>> details.
+>>>
+>>> Thanks,
+>>> Lorenzo
+>>>
+>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.yaml?h=v6.17-rc1
+>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/of_property.c?h=v6.17-rc1#n283
+>>> [3] https://www.devicetree.org/open-firmware/practice/imap/imap0_9d.html
 
