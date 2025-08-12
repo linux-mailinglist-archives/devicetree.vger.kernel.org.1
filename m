@@ -1,97 +1,117 @@
-Return-Path: <devicetree+bounces-203543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C04B21BF9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 06:03:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 201EAB21C37
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 06:47:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A31A1A20AAE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 04:04:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C7922A49BC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 04:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ACA62DEA8D;
-	Tue, 12 Aug 2025 04:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC1129BDA4;
+	Tue, 12 Aug 2025 04:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZKTVYyRp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mtEkAWmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B632DE1FA;
-	Tue, 12 Aug 2025 04:03:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFF01E47AD
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 04:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754971420; cv=none; b=fQ/9JGr0B6vXEQGj5vXIbSW/FQWLXRLvXhV7aywYMO8koTsBQacvKaqwf1eCjW8Jqfb2Ff7gWkzA20s+lGs7tGjzkvtrIeAZ2uXgkL5vgGbeF5aWaJ+Fw2+pkyaniJ/nFEvDrKSrGzTebfSVi/sLgzrX66s1l7FbPhZK6B8NQJI=
+	t=1754974014; cv=none; b=AC2jGQ6b8vGqtdjxsSh1ILqXPUOxiKTFEQUlGNCxXnxMM4PEt2O2HJQNzO0SFhXCUZ2iiPYSbxU/8++LGrm4TCLF0nvaqOifHdrldNML5mruE8U2uOIzrp/G//N17lyWZLxqJp0eFd4L3E91E6k0kcQ+ug9BQX6MIy1Y1hOs7Ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754971420; c=relaxed/simple;
-	bh=XcUN90SIX6F+Zc2KwnFda0c/JQ1wv7pJe7Dj45S2Y6M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SIjYtnIU1UtsPsbHF97pQcEsfquxe7gJtbj5lvxe+OmNUpiGCF67gPOYQv98SPHpoj2g+PISROD7Qbh3nFy0UO5mRKM97RBZawsHy07funI8jKuG+9yw/wRmGCNqcBS8Do2Sc3qAWEuksXA3ynJ89vcG5pCeCzFUxNSwiMfELkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZKTVYyRp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23E72C4CEF7;
-	Tue, 12 Aug 2025 04:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754971419;
-	bh=XcUN90SIX6F+Zc2KwnFda0c/JQ1wv7pJe7Dj45S2Y6M=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZKTVYyRpG479K8a1tLBiW3FE6rGJILzVcoT0qUh1YSP2DNmnZH7cJ4k6p5Eth0y0r
-	 SFLT8eWH8/KYNUmETCiLX7gNE+O91LWrUvDiN0RkIQ9OyfZDLK+h+4fLGWrQr/lhqn
-	 i+6xRF1L2zU0ja+55iNb2av14d+bneWO03jVn1E5JIC4P49hILFisesNRrfNXRzIjO
-	 vv51BII/9myYaKlNHMHcjB0mt4sVV69jodKsXvdc0sswXY8zC3bly2Bpb/Ka/nF8bn
-	 JaARd49KBc3k0DzOGjh5T/r46vyzVU2E5B1gwknpxyNnibMYsadH5rwAMuEyZ4YIQl
-	 P2QKVwDg4zEow==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1754974014; c=relaxed/simple;
+	bh=wC3ytpNQLFhZ9ExmBiZv2b74og9kvNU1YGCPkEuFVYM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tjf4raLQ39jvcDARSHtpSuFbtRnry1SZrTnHQ7B74clhAq1jXKCET/0F2kKXQlUHr1kdQBght5jsAHzJyyhXhDsy6S6PbgIpCyYfRrGADdm+NYcWL2zaOHZvh1ECi37b+/sg/d5ahZ4QXuJbWF1fCEFv97B7YLBFhxoJrrk4lJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mtEkAWmM; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-31ee880f7d2so5797443a91.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 21:46:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1754974012; x=1755578812; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/PAp/p0CKEU1PLaC2oOhrdXss1JcDMsVFpCnTxkIB8I=;
+        b=mtEkAWmMoD3Trl0Q+VzN1HOiZcJw4vXeUCB5pfADvIHMbGRFsQXIxJu9T31YUGDv5T
+         YH6KGH914GnyqyAYkgpWumapQdTT0u8r/7/yoANfqZnU7r1Sq6s1e6XNXWX1+B2PqziF
+         mFm5TcP/EcgsWtUaJiDJvWgOCjNZDEeoLDHY5ijqbGIu2UJE4lgqCJKnUfR699X9dtW9
+         IHo6PaWpcrQhR9UrNiyU9dZLq0/IgUOxxS+o6rI0ajnoSy7raBPEolSvnsNCoCJ7Vp/6
+         YMO9ofWHfOeeiMZnUf89QcntlBKSSP6FBvNJbK5mQv190bgUo4Kl6VzfoWX5XlUy/VO7
+         5OGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754974012; x=1755578812;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/PAp/p0CKEU1PLaC2oOhrdXss1JcDMsVFpCnTxkIB8I=;
+        b=GSfbcVVGLjsrPr6yGkiK2feU09Y8I80IAsv2m6TBQkAq4joGE6/9nbdGM6VZQLvGnn
+         ruL5/qVPtjyjvQq7bxIfxF2kXteQZpxSCAtnWT+UCVfLxY6OmGWBX3QwxV95I2gewHaB
+         z8JUX7hWaYkZkFKRJXRs0BbPHO8+R8NAH9UzgkuIxDodXf16rlwrQUYzQUDPa5SJnivv
+         Tkvb9DwiKfD3zLGY8lwJ4iQmjUV5IqjJfiq8njd3mkxug6AIV1Tb5OKVbmTcYGLRL4FL
+         FScPzS8iMXL9dTaiTah3n244ClH9TCwTIA+kFjzs7iJOIdgSiYtNkcSR/gGPhtZAm/aB
+         Cj1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVqx+qIVGDAAdNrhfMvQjRBtxqq1/dq5FkjgqJCwxKVE9Sbnyegc1u1HkF4plunYWEDT3H7XsBqjzQi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWgHinlZ85+em+Vhy6hY4pS+TJ7+XhK8PKivm2G1cYD4ZZxkLa
+	6d1KkxGNUTT+iAk2if5JnF4UaJadRlbDFxIjmDw8ZZL01tS2Z2R0ZKYzv9zyi+j10OE=
+X-Gm-Gg: ASbGncsUkB3cNbb02OXqbA/mhrDI9jWylJ9PnNalzvG5lSculRJw6WULEfQxqMeSGXC
+	n7tKH1NINgEk0BZy4qOKNCj5XCuT4hATaLZ25jVBl13J8SdsBFKSSwEyueWG+vMbWLhvwOphx/U
+	+BLd8K4bmGlrG/YBFKEJFUScqAPhtaCBSx/tGiYEkxLeo29xZ3KGHJVcQoshTYnXVRhyRtnpFhM
+	oJAHBhe2wORk3MSBFio6LpLP4WehAvFmgatQ3JjFrbREMfF0C3rQtfAHlHTG/1c7UpdtCf1XDp5
+	sFqm8pg15KPHiIHayDXQKgSxPXZl1n6HA+kyo7crg0O6GtiDnZlIWE2HbsV37/5S2HgTX7qc8Y9
+	o7rVumSastT+Kpdbgn0278eC9
+X-Google-Smtp-Source: AGHT+IGjPX0id8Dv8vez0mnwgena9eAtzVTtJZ9HyxZHou00TWOaELyAHtHLqaUQtbKMZdNuqWLIpA==
+X-Received: by 2002:a17:90b:55ce:b0:311:9c1f:8516 with SMTP id 98e67ed59e1d1-321c0a6d1c0mr3313417a91.15.1754974012349;
+        Mon, 11 Aug 2025 21:46:52 -0700 (PDT)
+Received: from localhost ([122.172.87.165])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32161282ab6sm16525053a91.26.2025.08.11.21.46.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Aug 2025 21:46:51 -0700 (PDT)
+Date: Tue, 12 Aug 2025 10:16:48 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Taniya Das <quic_tdas@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/5] arm64: dts: qcom: add empty eDP endpoints to the SoC DTSI files
-Date: Mon, 11 Aug 2025 23:03:36 -0500
-Message-ID: <175497141341.170566.10974575943237439276.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250724-move-edp-endpoints-v1-0-6ca569812838@oss.qualcomm.com>
-References: <20250724-move-edp-endpoints-v1-0-6ca569812838@oss.qualcomm.com>
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS615
+ compatible
+Message-ID: <20250812044648.7rifiugfjrdso6f6@vireshk-i7>
+References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
+ <20250702-qcs615-mm-cpu-dt-v4-v5-1-df24896cbb26@quicinc.com>
+ <3xki62glazqka7gngvrz3jifk36vkjlqjm6gv4mg7lqbhnnlsa@ryxyt2pcsfk2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3xki62glazqka7gngvrz3jifk36vkjlqjm6gv4mg7lqbhnnlsa@ryxyt2pcsfk2>
 
-
-On Thu, 24 Jul 2025 15:23:38 +0300, Dmitry Baryshkov wrote:
-> Follow the example of other DP controllers and also eDP controller on
-> SC7280 and add missing mdss*_dp*_out endpoint declaration to the SoC
-> DTSI. This slightly reduces the boilerplate in the platform DT files and
-> also reduces the difference between DP and eDP controllers.
+On 11-08-25, 22:46, Bjorn Andersson wrote:
+> On Wed, Jul 02, 2025 at 02:43:09PM +0530, Taniya Das wrote:
+> > Document compatible for cpufreq hardware on Qualcomm QCS615 platform.
+> > 
 > 
-> While we are at it, also clean up remaining data-lanes and supplies
-> leftovers.
-> 
-> [...]
+> @Viresh, @Rafael. Please merge this binding patch through your trees.
 
-Applied, thanks!
+Applied. Thanks.
 
-[1/5] arm64: dts: qcom: sc8180x: add empty mdss_edp_out endpoint
-      commit: 45cca0f3c8208d210751ec91edf778a18336df88
-[2/5] arm64: dts: qcom: sc8280xp: add empty mdss*_dp*_out endpoints
-      commit: caaba55bb751133433c1b0806f5ce6b88359f0f7
-[3/5] arm64: dts: qcom: x1e80100: add empty mdss_dp3_out endpoint
-      commit: 91329efd132bf58aaecb33c07a4e566d9e95ff71
-[4/5] arm64: dts: qcom: move data-lanes to the DP-out endpoint
-      commit: c361adf09dfc77c62da4c0d548a8c8d50eb9c71d
-[5/5] arm64: dts: qcom: sc7180-acer-aspire1: drop deprecated DP supplies
-      commit: afde4d8ea536964b7b7fe83cc6736e28475b6135
-
-Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+viresh
 
