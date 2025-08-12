@@ -1,364 +1,221 @@
-Return-Path: <devicetree+bounces-203892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA84B22D28
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:21:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922C7B22D40
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:23:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CE88188FBA6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:16:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5A2A168342
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1CC2F746E;
-	Tue, 12 Aug 2025 16:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDC92F7474;
+	Tue, 12 Aug 2025 16:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJXUCF1P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZAyjZUWL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC022D8766;
-	Tue, 12 Aug 2025 16:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BAB22F28F0;
+	Tue, 12 Aug 2025 16:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755015375; cv=none; b=vCKnv/YBDs0EncEKrfFKUWIWazX7BSN9zhqsOZtT9TFgay1HPcpQj1vUCdkpPsmmPB2WcFfI3tY8/S0LUb6G91z5JAIJ+PMpRANOFgZNyKZvhB5ecSyISkT14erHdUaAsioqth8TBqxiLulfWOYCV9ceiqIMPDijVX3HyA6EUyU=
+	t=1755015465; cv=none; b=pzSuTdfkS49MGWMlVyhkD8sE5cnauI3jST9KfFikwvUL3sG22U9QZwuqmVA4xxlg+Q2nzPt1yUl7TuT1yvWu4zfuwcwdgQafY/wcJiZFDsFyTBNZ6x/1Fhu7El5FZDN/WjaMIqJYMft553oajwAtNjQD70i8mHSNACeXCtEbzpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755015375; c=relaxed/simple;
-	bh=5CKZtbCtMZFmUKuvkywo2ShWr2yG0izXiueBW8zdot8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oxgNYYdSIGAtU9Uc3VvEB6lCJS7VL+yK52ZlMb/daSwE5wb3JT5+Ia9n9fTyvR2qjhFRUrp6itxkSoniei8adPIqRfO/lyiGYWz3hnABchdACAgoj14ct6yKfTaR4KQCWIZHHhJ1ETG4io5tQgcHi0S/ZWHyplbl3zyCtfRKfh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJXUCF1P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB286C4CEF1;
-	Tue, 12 Aug 2025 16:16:10 +0000 (UTC)
+	s=arc-20240116; t=1755015465; c=relaxed/simple;
+	bh=BoG6J0vitsZeMhBXYAdB4om3bGHuAZphoElNcm/lDZI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SyypC6R44QgfoafYsT4SWPfrHfiRJ35VTYegABAJJXMWoTbZ0mGZ7BbszI/0PfugmauviWLezRrkJ+KhALIPw6dsX5z93cvNUjVYgKg75SqYLmcyJuwrHIucBjk/aRgtloBLKq/D8tmHt3dTmTTUPYb2Gvo/Mp9u/+N6LxWbiUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZAyjZUWL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D83DC4CEF0;
+	Tue, 12 Aug 2025 16:17:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755015374;
-	bh=5CKZtbCtMZFmUKuvkywo2ShWr2yG0izXiueBW8zdot8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uJXUCF1Pd183MassaFQFNS6xvCuyis3KhrpZL7VYLUs/Jl6vz3RUcY+2JA7K/Vb3a
-	 6kOOsQJOxLOQGGM1fVGwQgOWviWba/uXzIH59Rdq7ZK3pfZPo0hL/B/C0KOA8+CFAN
-	 89KkofycVAs5V5fVArLUTlYqPNMxesnp15bFoef55eOtT4kt9xOIpctqAGZ108r+qK
-	 KsTT4wdAnGE+8018sP9Fje4PRHcyAZ1hGRx11GCcSqXoyOEUimAHMOKZ/dAWw48Paq
-	 QD9F3MLjoSiSErEGwXoWKPF43jpPde4CTD5e7YxnlhQDr3b3RzO0nANmBbPJu5FTBk
-	 nqmDhPXosfqBA==
-Message-ID: <ce1285be-5a3f-4d4b-bca1-e31f56573597@kernel.org>
-Date: Tue, 12 Aug 2025 18:16:08 +0200
+	s=k20201202; t=1755015465;
+	bh=BoG6J0vitsZeMhBXYAdB4om3bGHuAZphoElNcm/lDZI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZAyjZUWL/goWT25QQOy/iTxXRTC113j6c0PxQKYkoJFpKfk+R4pH4O73XfBbdLlUT
+	 kyw/UTJ8oH6BAwfSTND7jv9Q/SyKI4ms54oiZWPNu8hXgPOkMq28ZdnaN9mvRHT3No
+	 hYTTwPwyjxSB/nY1GxyrxFtB8AHSt+fU7m4iN9qZTzZHh0PGplX1bHulkNdsGT7XSZ
+	 12TAqWDfDfnukFfv/dLxNbkECPwqhQ1jkyUDt+OTHXfn/Fu0dCEh3Al9si/GiIotXh
+	 xK49KukiVy4Hay0DPo+4Qtsq2BQht7qzLRLBWg9x0P1mYB3M2FOH61Df/pd0GDVfZh
+	 Hv9NiUqm7uAGg==
+Date: Tue, 12 Aug 2025 18:17:40 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Lizhi Hou <lizhi.hou@amd.com>
+Cc: Rob Herring <robh@kernel.org>, maz@kernel.org,
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: Issues with OF_DYNAMIC PCI bridge node generation
+ (kmemleak/interrupt-map IC reg property)
+Message-ID: <aJtpJEPjrEq8Z78F@lpieralisi>
+References: <aJms+YT8TnpzpCY8@lpieralisi>
+ <c627564a-ccc3-9404-ba87-078fb8d10fea@amd.com>
+ <aJrwgKUNh68Dx1Fo@lpieralisi>
+ <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] arm64: dts: bst: add support for Black Sesame
- Technologies C1200 CDCU1.0 board
-To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, ulf.hansson@linaro.org,
- catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- adrian.hunter@intel.com, robin.murphy@arm.com, ding.wang@bst.ai,
- gordon.ge@bst.ai
-Cc: bst-upstream@bstai.top, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, soc@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250812123110.2090460-1-yangzh0906@thundersoft.com>
- <20250812123110.2090460-7-yangzh0906@thundersoft.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250812123110.2090460-7-yangzh0906@thundersoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
 
-On 12/08/2025 14:31, Albert Yang wrote:
-> Add device tree support for the Black Sesame Technologies (BST) C1200
-> CDCU1.0 ADAS 4C2G platform. This platform is based on the BST C1200 SoC
-> family.
+On Tue, Aug 12, 2025 at 08:53:06AM -0700, Lizhi Hou wrote:
 > 
-> The changes include:
-> - Adding a new BST device tree directory
-> - Adding Makefile entries to build the BST platform device trees
-> - Adding the device tree for the BST C1200 CDCU1.0 ADAS 4C2G board
+> On 8/12/25 00:42, Lorenzo Pieralisi wrote:
+> > On Mon, Aug 11, 2025 at 08:26:11PM -0700, Lizhi Hou wrote:
+> > > On 8/11/25 01:42, Lorenzo Pieralisi wrote:
+> > > 
+> > > > Hi Lizhi, Rob,
+> > > > 
+> > > > while debugging something unrelated I noticed two issues
+> > > > (related) caused by the automatic generation of device nodes
+> > > > for PCI bridges.
+> > > > 
+> > > > GICv5 interrupt controller DT top level node [1] does not have a "reg"
+> > > > property, because it represents the top level node, children (IRSes and ITSs)
+> > > > are nested.
+> > > > 
+> > > > It does provide #address-cells since it has child nodes, so it has to
+> > > > have a "ranges" property as well.
+> > > > 
+> > > > You have added code to automatically generate properties for PCI bridges
+> > > > and in particular this code [2] creates an interrupt-map property for
+> > > > the PCI bridges (other than the host bridge if it has got an OF node
+> > > > already).
+> > > > 
+> > > > That code fails on GICv5, because the interrupt controller node does not
+> > > > have a "reg" property (and AFAIU it does not have to - as a matter of
+> > > > fact, INTx mapping works on GICv5 with the interrupt-map in the
+> > > > host bridge node containing zeros in the parent unit interrupt
+> > > > specifier #address-cells).
+> > > Does GICv5 have 'interrupt-controller' but not 'interrupt-map'? I think
+> > > of_irq_parse_raw will not check its parent in this case.
+> > But that's not the problem. GICv5 does not have an interrupt-map,
+> > the issue here is that GICv5 _is_ the parent and does not have
+> > a "reg" property. Why does the code in [2] check the reg property
+> > for the parent node while building the interrupt-map property for
+> > the PCI bridge ?
 > 
-> This board features a quad-core Cortex-A78 CPU, and various peripherals
-> including UART, MMC, watchdog timer, and interrupt controller.
+> Based on the document, if #address-cells is not zero, it needs to get parent
+> unit address. Maybe there is way to get the parent unit address other than
+> read 'reg'?
+
+Reading the parent "reg" using the parent #address-cells as address size does
+not seem correct to me anyway.
+
+> Or maybe zero should be used as parent unit address if 'reg' does not
+> exist?
+
+zeros are used for eg GICv3 interrupt-map properties, I suppose that's
+a wild card to say "any device in the interrupt-controller bus",
+whatever that means.
+
+Just my interpretation, I don't know the history behind this.
+
+> Rob, Could you give us some advise on this?
+
+Please, thanks.
+
+Lorenzo
+
+> Thanks,
 > 
-> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
-> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
-> ---
-> Changes for v3:
-> - Split defconfig enablement out into a dedicated defconfig patch
-> - Refine memory description: consolidate ranges in memory node and
->   delele unused memory ranges
-> - Adjust the order of nodes
-> - remove mask of gic
+> Lizhi
 > 
-> Changes for v2:
-> 1. Reorganized memory map into discrete regions
-> 2. Updated MMC controller definition:
->    - Split into core/CRM register regions
->    - Removed deprecated properties
->    - Updated compatible string
-> 3. Standardized interrupt definitions and numeric formats
-> 4. Removed reserved-memory node (superseded by bounce buffers)
-> 5. Added root compatible string for platform identification
-> 6. Add soc defconfig
-> ---
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/bst/Makefile              |   2 +
->  .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  42 +++++++
->  arch/arm64/boot/dts/bst/bstc1200.dtsi         | 117 ++++++++++++++++++
->  4 files changed, 162 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/bst/Makefile
->  create mode 100644 arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
->  create mode 100644 arch/arm64/boot/dts/bst/bstc1200.dtsi
 > 
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 79b73a21ddc2..a39b6cafb644 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -12,6 +12,7 @@ subdir-y += arm
->  subdir-y += bitmain
->  subdir-y += blaize
->  subdir-y += broadcom
-> +subdir-y += bst
->  subdir-y += cavium
->  subdir-y += exynos
->  subdir-y += freescale
-> diff --git a/arch/arm64/boot/dts/bst/Makefile b/arch/arm64/boot/dts/bst/Makefile
-> new file mode 100644
-> index 000000000000..4c1b8b4cdad8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_BST) += bstc1200-cdcu1.0-adas_4c2g.dtb
-> diff --git a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
-> new file mode 100644
-> index 000000000000..d8fb07b0bc80
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +#include "bstc1200.dtsi"
-> +
-> +/ {
-> +	model = "BST C1200-96 CDCU1.0 4C2G";
-> +	compatible = "bst,c1200-cdcu1.0-adas-4c2g", "bst,c1200";
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@810000000 {
-> +		device_type = "memory";
-> +		reg = <0x8 0x10000000 0x0 0x30000000>,
-> +		      <0x8 0xc0000000 0x1 0x0>,
-> +		      <0xc 0x00000000 0x0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		mmc0_reserved: mmc0-reserved@5160000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x5160000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-
-This is none of the two approved ordering styles from DTS coding style.
-What sort of coding style are you using?
-
-> +	status = "okay";
-> +	memory-region = <&mmc0_reserved>;
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
-> new file mode 100644
-> index 000000000000..5e9ca0ee17cf
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
-> @@ -0,0 +1,117 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	compatible = "bst,c1200";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	clk_mmc: clock-4000000 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <4000000>;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0>;
-
-0x0
-
-And why reg is the last? Please follow DTS coding style.
-
-I already asked for this at v1. How did you resolve that comment?
-
-Then I asked about this at v2:
-
-"Nothing improved. I asked to follow DTS coding style in ordering."
-
-So can you please respond to comments? You keep sending the same - third
-time - and this is waste of our time.
-
-> +		};
-> +
-> +		cpu@1 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x100>;
-> +		};
-> +
-> +		cpu@2 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x200>;
-> +		};
-> +
-> +		cpu@3 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x300>;
-> +		};
-> +
-> +		l2_cache: l2-cache {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		interrupt-parent = <&gic>;
-> +
-> +		uart0: serial@20008000 {
-> +			compatible = "snps,dw-apb-uart";
-> +			reg = <0x0 0x20008000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
-> +			clock-frequency = <25000000>;
-> +			reg-shift = <2>;
-> +			reg-io-width = <4>;
-> +			status = "disabled";
-> +		};
-> +
-> +		mmc0: mmc@22200000 {
-> +			compatible = "bst,c1200-dwcmshc-sdhci";
-> +			reg = <0x0 0x22200000 0x0 0x1000>,
-> +			      <0x0 0x23006000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk_mmc>;
-> +			clock-names = "core";
-> +			max-frequency = <200000000>;
-> +			bus-width = <8>;
-> +			non-removable;
-
-Hm, this is odd to see in SoC. Are you saying that your SoC (!) has MMC
-memory embedded?
-
-> +			dma-coherent;
-> +			status = "disabled";
-
-If so, why is it disabled?
-
-> +		};
-> +
-> +		gic: interrupt-controller@32800000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupt-controller;
-> +			ranges;
-> +			reg = <0x0 0x32800000 0x0 0x10000>,
-> +			      <0x0 0x32880000 0x0 0x100000>;
-
-Random order...
-Best regards,
-Krzysztof
-
+> > 
+> > > > It is not clear to me why, to create an interrupt-map property, we
+> > > > are reading the "reg" value of the parent IC node to create the
+> > > > interrupt-map unit interrupt specifier address bits (could not we
+> > > > just copy the address in the parent unit interrupt specifier reported
+> > > > in the host bridge interrupt-map property ?).
+> > > > 
+> > > > - #address-cells of the parent describes the number of address cells of
+> > > >     parent's child nodes not the parent itself, again, AFAIK, so parsing "reg"
+> > > >     using #address-cells of the parent node is not entirely correct, is it ?
+> > > > - It is unclear to me, from an OF spec perspective what the address value
+> > > >     in the parent unit interrupt specifier ought to be. I think that, at
+> > > >     least for dts including a GICv3 IC, the address values are always 0,
+> > > >     regardless of the GICv3 reg property.
+> > > > 
+> > > > I need your feedback on this because the automatic generation must
+> > > > work seamlessly for GICv5 as well (as well as all other ICs with no "reg"
+> > > > property) and I could not find anything in the OF specs describing
+> > > > how the address cells in the unit interrupt specifier must be computed.
+> > > Please see: https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html
+> > > 
+> > > 2.4.3.1 mentions:
+> > > 
+> > > "Both the child node and the interrupt parent node are required to have
+> > > #address-cells and #interrupt-cells properties defined. If a unit address
+> > > component is not required, #address-cells shall be explicitly defined to be
+> > > zero."
+> > Yes, but again, that's not what I am asking. GICv5 requires
+> > #address-cells (2.3.5 - link above - it has child nodes and it
+> > has to define "ranges") but it does not require a "reg" property,
+> > code in [2] fails.
+> > 
+> > That boils down to what does "a unit address component is not required"
+> > means.
+> > 
+> > Why does the code in [2] read "reg" to build the parent unit interrupt
+> > specifier (with #address-cells size of the parent, which, again, I
+> > don't think it is correct) ?
+> > 
+> > > > I found this [3] link where in section 7 there is an interrupt mapping
+> > > > algorithm; I don't understand it fully and I think it is possibly misleading.
+> > > > 
+> > > > Now, the failure in [2] (caused by the lack of a "reg" property in the
+> > > > IC node) triggers an interrupt-map property generation failure for PCI
+> > > > bridges that are upstream devices that need INTx swizzling.
+> > > > 
+> > > > In turn, that leads to a kmemleak detection:
+> > > > 
+> > > > unreferenced object 0xffff000800368780 (size 128):
+> > > >     comm "swapper/0", pid 1, jiffies 4294892824
+> > > >     hex dump (first 32 bytes):
+> > > >       f0 b8 34 00 08 00 ff ff 04 00 00 00 00 00 00 00  ..4.............
+> > > >       70 c2 30 00 08 00 ff ff 00 00 00 00 00 00 00 00  p.0.............
+> > > >     backtrace (crc 1652b62a):
+> > > >       kmemleak_alloc+0x30/0x3c
+> > > >       __kmalloc_cache_noprof+0x1fc/0x360
+> > > >       __of_prop_dup+0x68/0x110
+> > > >       of_changeset_add_prop_helper+0x28/0xac
+> > > >       of_changeset_add_prop_string+0x74/0xa4
+> > > >       of_pci_add_properties+0xa0/0x4e0
+> > > >       of_pci_make_dev_node+0x198/0x230
+> > > >       pci_bus_add_device+0x44/0x13c
+> > > >       pci_bus_add_devices+0x40/0x80
+> > > >       pci_host_probe+0x138/0x1b0
+> > > >       pci_host_common_probe+0x8c/0xb0
+> > > >       platform_probe+0x5c/0x9c
+> > > >       really_probe+0x134/0x2d8
+> > > >       __driver_probe_device+0x98/0xd0
+> > > >       driver_probe_device+0x3c/0x1f8
+> > > >       __driver_attach+0xd8/0x1a0
+> > > > 
+> > > > I have not grokked it yet but it seems genuine, so whatever we decide
+> > > > in relation to "reg" above, this ought to be addressed too, if it
+> > > > is indeed a memleak.
+> > > Not sure what is the leak. I will look into more.
+> > Thanks,
+> > Lorenzo
+> > 
+> > > 
+> > > Lizhi
+> > > 
+> > > > Please let me know if something is unclear I can provide further
+> > > > details.
+> > > > 
+> > > > Thanks,
+> > > > Lorenzo
+> > > > 
+> > > > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v5.yaml?h=v6.17-rc1
+> > > > [2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/of_property.c?h=v6.17-rc1#n283
+> > > > [3] https://www.devicetree.org/open-firmware/practice/imap/imap0_9d.html
 
