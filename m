@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-203866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0E7B22B4D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:02:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF30B22B52
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:03:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7ABA3AC70A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:55:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABF99188A7A0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5F52ED14B;
-	Tue, 12 Aug 2025 14:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9581B2EF646;
+	Tue, 12 Aug 2025 14:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ct53i35n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gr+95pxJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAB22DE703;
-	Tue, 12 Aug 2025 14:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0FB2ED167;
+	Tue, 12 Aug 2025 14:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755010499; cv=none; b=s/mDqy2CJDq25JIgmL1HzemYSQz5OsTwpsX92x8f+voiahdff0PE/0XadaZ0DySeRslxSN+Zto0E2LF8rw9yjRmgUhZ+uzg6J9JEmzUfNmV2jsTNX9wvfdSFwXIFZO3S1pgLR/wDO/xxEn+1q0XkxxGKMiGQiNRZMKdbjElT5e8=
+	t=1755010700; cv=none; b=RJb4msvbhqbPoN4o/IpGZ++/Q/4/T+yM1Wrex7MKjrTp5Yt+k6QUKZQ/TAVDYEKZK4aVjLamk5CefKhBuuS8a5T6XbcVjdceu/vYVgtSScfz5TlPOZ3Ojs3kgBkR/XGBkvqGWsJTspFVkCHodar0DiosBGjvfD/omB0q6zDg0ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755010499; c=relaxed/simple;
-	bh=lJnQY+aWGBe5007j6NioyIK8Sb6art474dNbjRtW7y0=;
+	s=arc-20240116; t=1755010700; c=relaxed/simple;
+	bh=Rk2Wv+XIInfRq7CIVjb46iopF138UdtfA0/xltArFE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qe0fJvSs63Qa4IKbShAhs0GiwwvrKkmKKvZxk0ey2PVSvh2YCWv7joTjNnhJljRzg19mktH30p8AVKlJkfDfrSqZqUZeXHVu66Sx2nZwGbAEHU0rsOQ3u0n5i6iGgiN425KfqrpprqX6CowyJJLZlR7FZh3tKgNLU1R9UER4IM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ct53i35n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C40FC4CEF0;
-	Tue, 12 Aug 2025 14:54:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/3QS+5KnLpkxCi2YL9jukYJtudEIEHS5JuDE1dhJ+MxuLGRrWRezFYP3cIdWl1Hq6Klv/JulR8haciJsRW1e55zKK6gOSvbwygjZvT1MK7gFVMr2QucQd+xUBwBiKmpI9BQPEmVX760Hz9SMgFbZFaOpgiUZBwU8VbT0IBxzTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gr+95pxJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBACEC4CEF0;
+	Tue, 12 Aug 2025 14:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755010499;
-	bh=lJnQY+aWGBe5007j6NioyIK8Sb6art474dNbjRtW7y0=;
+	s=k20201202; t=1755010699;
+	bh=Rk2Wv+XIInfRq7CIVjb46iopF138UdtfA0/xltArFE4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ct53i35n+qUOyANFK08CZAoJcWjU4JRsrJp/fL+pa3KtkPdpUhDeMNO8NX/DOZjDY
-	 //JEvmLanzEAig7vgHAKqlUy6hoS1RhWc0WJWeT2nP9zOMilDT1wd4q02NcN98pC8o
-	 sfrke2dNyx0vozDKpi1hUjzL64BVWhdKOtxpLcNxym/lre5v9m00Y8a0ZDsHVM3VQT
-	 ghAG9AyFW6K42eDCQe421JZeocGqa4BakPlj0lf8iX0KuQ2RPAU82jUTMaLxetz2Mg
-	 Q2JA7CrBSP5ezl4P5ShWWffe7QKYbNktfe2rb3JjliobHciFkMVtj//V5kUIHC/Qwe
-	 vKPqKRFYKqOiA==
-Date: Tue, 12 Aug 2025 09:54:56 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] clk: qcom: dispcc-sc7280: Add dispcc resets
-Message-ID: <fh3uvnu3ydgdtez77ruuhlgq2obry4jifn5w3kok2qbjdkmtoz@j6jsealfbxzu>
-References: <20250811-sc7280-mdss-reset-v1-0-83ceff1d48de@oss.qualcomm.com>
- <20250811-sc7280-mdss-reset-v1-2-83ceff1d48de@oss.qualcomm.com>
- <ed0341b3-4056-4826-bec7-e835a6da4fad@oss.qualcomm.com>
+	b=gr+95pxJS+t0zEZwDxuWO4Zulu5pWboRnBN0sYvpSPCIhgPgcG0CIuNrcuV9cm2iL
+	 JXGLEfoNloA76MSb80VjrzdSRHDkajmPjIDikik6T9k4H64EsfgMxesNGkiJr56TsO
+	 WDGPche70euE6kocR+2vfFYyOF9rq2nI9lR/rZsImJgRG2CFUhRzuZ4p0A5kvp1nbj
+	 M4JC2zibR0HLVtpO8Mv+fQbEvhNLnF7iw0fT8C1synXwh7ip2Pr7da+9FvnOnQF6bR
+	 7HI4Qy2k1OknRHYiuqqRJYI+f2alQAoZpQl1cTcxIugkQ57av21FxSTnbcZJuiQqMg
+	 JaWM2NsG792xA==
+Date: Tue, 12 Aug 2025 09:58:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: linux-kernel@vger.kernel.org, peter.ujfalusi@gmail.com,
+	dmitry.torokhov@gmail.com, krzk+dt@kernel.org, lgirdwood@gmail.com,
+	tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org,
+	ukleinek@kernel.org, broonie@kernel.org, gregkh@linuxfoundation.org,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-usb@vger.kernel.org, shuah@kernel.org
+Subject: Re: [PATCH 1/8] mfd: dt-bindings: ti,twl4030-audio: convert to DT
+ schema
+Message-ID: <20250812145818.GB3607226-robh@kernel.org>
+References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
+ <20250811224739.53869-2-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,87 +64,136 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ed0341b3-4056-4826-bec7-e835a6da4fad@oss.qualcomm.com>
+In-Reply-To: <20250811224739.53869-2-jihed.chaibi.dev@gmail.com>
 
-On Tue, Aug 12, 2025 at 10:35:30AM +0530, Taniya Das wrote:
+On Tue, Aug 12, 2025 at 12:47:32AM +0200, Jihed Chaibi wrote:
+> Convert the legacy TXT binding for the TWL4030 audio module
+> to the modern YAML DT schema format. This adds formal validation
+> and improves documentation.
 > 
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> ---
+>  .../bindings/mfd/ti,twl4030-audio.yaml        | 91 +++++++++++++++++++
+>  .../devicetree/bindings/mfd/twl4030-audio.txt | 46 ----------
+
+Shouldn't this move to bindings/sound/?
+
+>  2 files changed, 91 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl4030-audio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-audio.txt
 > 
-> On 8/12/2025 8:41 AM, Bjorn Andersson wrote:
-> > Like many other platforms the sc7280 display clock controller provides
-> > a couple of resets for the display subsystem. In particular the
-> > MDSS_CORE_BCR is useful to reset the display subsystem to a known state
-> > during boot, so add these.
-> > 
-> 
-> In this issue I believe the requirement is to have a clean sheet and
-> restart the MDSS explicitly. Historically MDSS never required a BCR reset.
-> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl4030-audio.yaml b/Documentation/devicetree/bindings/mfd/ti,twl4030-audio.yaml
+> new file mode 100644
+> index 000000000..16ddcf007
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,twl4030-audio.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,twl4030-audio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TWL4030-family Audio Module
+> +
+> +maintainers:
+> +  - Peter Ujfalusi <peter.ujfalusi@gmail.com>
+> +
+> +description: |
 
-On most targets we rely on the display driver coming up and configuring
-the hardware anew in a way that happens to be aligned with the existing
-state (boot splash) - or there was no state, which makes this easier.
+Don't need '|' if no formatting to preserve.
 
-But I had to introduce the use of the BCR reset in compute platforms
-when I worked on DP, because some of the state left by the bootloader
-would conflict with what Linux was doing. Similar on this target, as
-we're trying to initialize the display driver, we get a bunch of iommu
-faults.
+> +  The audio module within the TWL4030-family of companion chips consists
+> +  of an audio codec and a vibra driver. This binding describes the parent
+> +  node for these functions.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,twl4030-audio
+> +
+> +  codec:
+> +    type: object
+> +    description: Node containing properties for the audio codec functionality.
 
-Ultimately, the display driver should likely read back the hardware
-state and attempt a graceful transition between whatever state the
-bootloader left the hardware in and what Linux wants it to be.
+       additionalProperties: false
 
-When this feature is implemented, the display driver can simply stop
-pulling the BCR.
+and a blank line here.
 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-> > ---
-> >  drivers/clk/qcom/dispcc-sc7280.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/clk/qcom/dispcc-sc7280.c b/drivers/clk/qcom/dispcc-sc7280.c
-> > index 8bdf57734a3d47fdf8bd2053640d8ef462677556..465dc06c87128182348a4e0ea384af779647bd84 100644
-> > --- a/drivers/clk/qcom/dispcc-sc7280.c
-> > +++ b/drivers/clk/qcom/dispcc-sc7280.c
-> > @@ -17,6 +17,7 @@
-> >  #include "clk-regmap-divider.h"
-> >  #include "common.h"
-> >  #include "gdsc.h"
-> > +#include "reset.h"
-> >  
-> >  enum {
-> >  	P_BI_TCXO,
-> > @@ -847,6 +848,11 @@ static struct gdsc *disp_cc_sc7280_gdscs[] = {
-> >  	[DISP_CC_MDSS_CORE_GDSC] = &disp_cc_mdss_core_gdsc,
-> >  };
-> >  
-> > +static const struct qcom_reset_map disp_cc_sc7280_resets[] = {
-> > +	[DISP_CC_MDSS_CORE_BCR] = { 0x1000 },
-> > +	[DISP_CC_MDSS_RSCC_BCR] = { 0x2000 },
-> > +};
-> > +
-> >  static const struct regmap_config disp_cc_sc7280_regmap_config = {
-> >  	.reg_bits = 32,
-> >  	.reg_stride = 4,
-> > @@ -861,6 +867,8 @@ static const struct qcom_cc_desc disp_cc_sc7280_desc = {
-> >  	.num_clks = ARRAY_SIZE(disp_cc_sc7280_clocks),
-> >  	.gdscs = disp_cc_sc7280_gdscs,
-> >  	.num_gdscs = ARRAY_SIZE(disp_cc_sc7280_gdscs),
-> > +	.resets = disp_cc_sc7280_resets,
-> > +	.num_resets = ARRAY_SIZE(disp_cc_sc7280_resets),
-> >  };
-> >  
-> >  static const struct of_device_id disp_cc_sc7280_match_table[] = {
-> > 
-> 
-> Reviewed-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> 
+> +    properties:
+> +      ti,digimic_delay:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Delay in milliseconds after enabling digital microphones to reduce
+> +          artifacts.
+> +
+> +      ti,ramp_delay_value:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Headset ramp delay configuration to reduce pop noise.
+> +
+> +      ti,hs_extmute:
+> +        type: boolean
+> +        description:
+> +          Enable the use of an external mute for headset pop reduction.
+> +
+> +      ti,hs_extmute_gpio:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description:
+> +          The GPIO specifier for the external mute control.
+> +        maxItems: 1
+> +
+> +      ti,offset_cncl_path:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Offset cancellation path selection. Refer to the Technical
+> +          Reference Manual for valid values.
 
-Thanks,
-Bjorn
+Constraints for any of these properties?
 
-> -- 
-> Thanks,
-> Taniya Das
-> 
+> +
+> +    # The 'codec' node itself is optional, but if it exists, it can be empty.
+> +    # We don't require any of its sub-properties.
+> +
+> +  ti,enable-vibra:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Set to 1 to enable the vibra functionality, if missing
+> +      or it is 0, the vibra functionality is disabled.
+
+Sounds like constraints. Don't write constraints in prose.
+
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +
+> +      clock-frequency = <2600000>;
+
+Drop. Not relevant to this binding.
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      twl: twl@48 {
+> +        reg = <0x48>;
+> +        interrupts = <7>; /* SYS_NIRQ cascaded to intc */
+> +        interrupt-parent = <&intc>;
+> +
+> +        twl_audio: audio {
+> +          compatible = "ti,twl4030-audio";
+> +
+> +          ti,enable-vibra = <1>;
+> +
+> +          codec {
+> +            ti,ramp_delay_value = <3>;
+> +          };
+> +
+> +        };
+> +      };
+> +    };
 
