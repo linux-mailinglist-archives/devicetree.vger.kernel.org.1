@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-204008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E767FB23AF7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 23:48:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAAA2B23B29
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 23:51:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A164B627BEB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50E6F1B62436
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD7E2DCF7C;
-	Tue, 12 Aug 2025 21:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3CD2E765C;
+	Tue, 12 Aug 2025 21:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LiqLCdAn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JitiK6Ru"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E931F29BDAE;
-	Tue, 12 Aug 2025 21:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43542E7653;
+	Tue, 12 Aug 2025 21:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755035210; cv=none; b=N5Zc203YdNa6Gb35Vhbqk9LmBvojO1nNfz/cStqEN0Vz0Zbx5ycpaLtSrbhpzbZn1MSNuIT7l5YpwnXwhRBNZWSC/EfsrLR6NDMJzbVnzlK+hlFAx3V0hTFQARxktjGDNjrF56pme3irj46ah3K6UTA7Fjz7YzeDrixMtpzF9hE=
+	t=1755035307; cv=none; b=KnFAxUPmfEEhOKhJGnmpUL6OrNVPBMsuafXaOVmen6CYGDCHY/CHTBYPcRNtOt/PRrq76uTDToxJlrqFk+7EDokGXPxAsVPodWrLbmySxZBsfnx6fuk8KacbjOcqyV4dx25qd7AwmHYJNt0thfO+GxyZZqI9zHytmCLJqIe35Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755035210; c=relaxed/simple;
-	bh=iRI91GWS5JtfRL35xOx18YmlhcvwLYh070awFZg1njw=;
+	s=arc-20240116; t=1755035307; c=relaxed/simple;
+	bh=th+Tt+i8GHZE/TJ0BOOsHI2d+wou8zSZ8hqvcIg3cO8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=k0mekOJoJ4sjpSwuhX/CW5eG7ZdBm6nTri4ATKX2zthdftOEZ2pGaQvFIbKTe79ZtcEX9Dg4m+cZlueMcWcwglea1XP9imDACi+o96ww2dreJDCZQ6OQBanccgLqKf0xW7eRk9d3xqHiGCCcpadr2DRQxoL9CFbSERpqr9mAPuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=LiqLCdAn; arc=none smtp.client-ip=213.167.242.64
+	 MIME-Version; b=cgRNKBtBOikLm0FvdpYRrjNvmzTkGZlXBkJvKGiJurDx+hCVpqjdovTSSoKz7Eq6Svlu012mBFz9MI9195bGBvKZuSzkSCW9I5H3UaO7316AOuQ3b1qyZbh09UIDaS5fLBgQ0RRE+/e6jciHJ2iWEUCRLzjevJ8eXoWrlAhcpkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JitiK6Ru; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 51C1715BF;
-	Tue, 12 Aug 2025 23:45:52 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 9AAB24A4;
+	Tue, 12 Aug 2025 23:47:31 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1755035152;
-	bh=iRI91GWS5JtfRL35xOx18YmlhcvwLYh070awFZg1njw=;
+	s=mail; t=1755035251;
+	bh=th+Tt+i8GHZE/TJ0BOOsHI2d+wou8zSZ8hqvcIg3cO8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LiqLCdAnan0lyah+6ttO1vkrg04P8X/QrHezpsxxil3+Iu0Mr6u6D7Y7iv5visv2g
-	 eXeg6+bIMULFRB84Dx3Xi0/kH7w7rTJJLkAHr2oQoU9Mat3MZOw5GEv5OvqQrhtV3O
-	 RmCr2Da2b/bPQJPe5MXvalaC+g0w+kkJHocVmMhY=
+	b=JitiK6RuAVuFt7rsxxZN2p8ABjDKKpn18Xj2iOMIcj5mIG3SBvpNM4vsNpWkTveS7
+	 OcWx1ZlWq5WNTVX/ruB7+8J/btpwhBpO8Eh5BMVIefeZ9BNF8zXCiMj+iNHmBOzNsS
+	 jvLk8RNnTjHTNBGsoetz8p2f7rwjGep8v3XPPJfU=
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: linux-media@vger.kernel.org
-Cc: Leon Luo <leonl@leopardimaging.com>,
-	Rob Herring <robh@kernel.org>,
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 04/72] dt-bindings: media: imx274: Make clocks property required
-Date: Wed, 13 Aug 2025 00:45:12 +0300
-Message-ID: <20250812214620.30425-5-laurent.pinchart@ideasonboard.com>
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 63/72] ARM: dts: samsung: exynos4210-i9100: Replace clock-frequency in camera sensor node
+Date: Wed, 13 Aug 2025 00:46:11 +0300
+Message-ID: <20250812214620.30425-64-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20250812214620.30425-1-laurent.pinchart@ideasonboard.com>
 References: <20250812214620.30425-1-laurent.pinchart@ideasonboard.com>
@@ -63,58 +64,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The sensor requires an external clock, and drivers need to access the
-clock to retrieve its frequency in order to configure the sensor. This
-makes usage of the clocks property mandatory for a system to work
-properly. Mark the clocks and clock-names properties as required, and
-update the example accordingly.
+The clock-frequency for camera sensors has been deprecated in favour of
+the assigned-clocks and assigned-clock-rates properties. Replace it in
+the device tree.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
-Changes since v1:
+This patch can be merged independently from the previous clock handling
+refactoring in the driver ("media: i2c: s5k5baf: Use V4L2 legacy sensor
+clock helper").
 
-- Adapt examples in bindings that reference sensors
+Without the driver change, when the clock-frequency property is not set,
+the driver defaults to a fixed 24MHz value. That is the frequency set in
+DT for this board, so the resulting clock frequency does not change.
 ---
- Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml  | 4 ++++
- Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 3 +++
- 2 files changed, 7 insertions(+)
+ arch/arm/boot/dts/samsung/exynos4210-i9100.dts | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-index b397a730ee94..b06a6e75ba97 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-@@ -46,6 +46,8 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-+  - clock-names
-   - port
- 
- additionalProperties: false
-@@ -59,6 +61,8 @@ examples:
-         imx274: camera-sensor@1a {
-             compatible = "sony,imx274";
-             reg = <0x1a>;
-+            clocks = <&imx274_clk>;
-+            clock-names = "inck";
-             reset-gpios = <&gpio_sensor 0 0>;
- 
-             port {
-diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-index 4dcbd2b039a5..0539d52de422 100644
---- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-@@ -361,6 +361,9 @@ examples:
-                   compatible = "sony,imx274";
-                   reg = <0x1a>;
- 
-+                  clocks = <&serializer>;
-+                  clock-names = "inck";
+diff --git a/arch/arm/boot/dts/samsung/exynos4210-i9100.dts b/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
+index df229fb8a16b..43cee5e26a9a 100644
+--- a/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
++++ b/arch/arm/boot/dts/samsung/exynos4210-i9100.dts
+@@ -169,11 +169,14 @@ image-sensor@2d {
+ 			vdda-supply = <&cam_io_en_reg>;
+ 			vddreg-supply = <&vt_core_15v_reg>;
+ 			vddio-supply = <&vtcam_reg>;
 +
-                   reset-gpios = <&serializer1 0 GPIO_ACTIVE_LOW>;
+ 			clocks = <&camera 0>;
+ 			clock-names = "mclk";
++			assigned-clocks = <&camera 0>;
++			assigned-clock-rates = <24000000>;
++
+ 			stbyn-gpios = <&gpl2 0 GPIO_ACTIVE_LOW>;
+ 			rstn-gpios = <&gpl2 1 GPIO_ACTIVE_LOW>;
+-			clock-frequency = <24000000>;
  
-                   port {
+ 			port {
+ 				s5k5bafx_ep: endpoint {
 -- 
 Regards,
 
