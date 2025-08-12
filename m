@@ -1,416 +1,120 @@
-Return-Path: <devicetree+bounces-203505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17AE5B219FA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:59:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A812B21A19
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2E3B625F4F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:59:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 074EB1906B68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 01:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33F12D77F6;
-	Tue, 12 Aug 2025 00:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C4B2D6632;
+	Tue, 12 Aug 2025 01:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="DL4/RCtM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mpsffJTC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FAF2D3A9E
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 00:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4977426E6FA;
+	Tue, 12 Aug 2025 01:24:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754960351; cv=none; b=SaRqys7K4orK7V0GIJWD6Nc+iUMkFLjtSi6PbUCqIO0FSMBpaHs+kF8Sf1P49iTUS1tYKHH6mJzXIhAy22xlKOqDzcFSfQtIujt3yh1ji4+yB4bbylNwFmNtMSqU65gthAg/Oi/0qYWgGzTff7wwSmtCxtKEl5Wsvl1wIGCWEzc=
+	t=1754961885; cv=none; b=Iwy9VzWbnj5m0KHhBkl3nlmq76kuXvPPzbQAIxM1sN4JnDQx9Dwgo8R5upQgYk+AyUvxo1KAi7TtFG/UFR2X8S/zPsDarM1R2KZow8crhGM2rWIGH8mp4WDkoA+LazpK7BK4xW7KBJirg9Ka5uRgcWusGGJCW5wPuUkP1c+nSnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754960351; c=relaxed/simple;
-	bh=JCztoMb1WN0huVXDjLoooBs9C8+yxbQ1qa8RG3l7Ibo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a0QUXFMIDzqv5Jmqw1GVIOgd8wtMLIYXo/DiGWyS9cbUVZfz9Kd7fNAG7EKJnoZeLPRffeT+49md2IKiYOD1yUEeJrr3Qm//4hKuxufdyKaXj80nt7psfWTeILT1R60oZhIpicV7EqN7mINfbd8F3UKeBY0ANyrUcvxAtTGRZ6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=DL4/RCtM; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1754960348;
- bh=pBHXi1lXV0Do4H4xlZEW1aZfNWfJ7TqQmC3OWib8Y0o=;
- b=DL4/RCtMzWwxZxBjbhq/jjZhixErg7u9/YdAKrcQWw6pLy49l585juXWD8rEtgnIgNCrur8Q5
- Pc+UnRJbaHf6HFVQAsbZb+oP6wMZIbzyObPRE9g6bdPxK0vy9wCAVCg2vOlT65kyVhZ9m2DcD3l
- xfz9tcI3mCsd9rWhmVIWc5DvdTSBsTmV2bfjJndMG1bs2bWgthCav4APWzSri3nbFMnLLDJd6O2
- ULZ44BKeOMQ5LVvZ023omm244NsfqC+wdPLQtnOUy3qzfMRPluXREBm9F95DaplVfD15J+sI6gx
- NKbROMqEXKLV9TkzWfjJdCX6aa1dWFum1/pL3HPEZf4Q==
-X-Forward-Email-ID: 689a91ba10bdea4a6d7c6e15
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <4b3c409b-5f10-4aa0-996f-1dc2d28816ef@kwiboo.se>
-Date: Tue, 12 Aug 2025 02:58:30 +0200
+	s=arc-20240116; t=1754961885; c=relaxed/simple;
+	bh=aT5Q2WA6/waKkfKW8TVe3LUbF4tFGsQMxm3mhfDLNfY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=l/xfpGnWRk684G05tqzjd9Zs4PmwmNrmw69MtnBvpOtOaMMEotwrFe2Z1TjMKyyMKvRfjr2XBElqbypyB4ob8LY4J1VW0XV0VS6WK9Cl8c9iB6uU/2xcL0sO29yTGh+3Eaw7Umqw3x3f8Zhw0/5olI2T8SSS5w+f7QpD4KQtzww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mpsffJTC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A77D7C4CEED;
+	Tue, 12 Aug 2025 01:24:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754961884;
+	bh=aT5Q2WA6/waKkfKW8TVe3LUbF4tFGsQMxm3mhfDLNfY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=mpsffJTC6kOJ/pZlYldvCoB+Lv+9qWFk0cxazU/62P6fhH+2mjC+VOkSjSOkI50u4
+	 h/iMiguPmQCZhY2B6NuKtQvuOGYf+f1iJUnr3aRjrd2ZnKMTQ9Y/E4e8KwiYokZZb5
+	 pM83rsuj+UsujBuOWqLzvzO7UYsQcryKvF+HPOAHO/vPDC2mQjq9fzvR8h0MPHdRQF
+	 jIpum/xtiI8jwyVnSeGyEjvn0zqyGhOlswO4YDzp1NooG10TatPE2WC+zJqfUUt0NQ
+	 C8ueOpsXUsDlLcg5zfj3VHlF39HL6QSilXntbs9DeIQxhrBCFU5FvReowdJiV3Ybw5
+	 wUUupfzHJboSg==
+Date: Mon, 11 Aug 2025 20:24:43 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] media: rkvdec: Add HEVC backend
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <20250810212454.3237486-2-jonas@kwiboo.se>
- <bdb53663ab741fbc70dd83fb858432b838736219.camel@collabora.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <bdb53663ab741fbc70dd83fb858432b838736219.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: tiwai@suse.com, devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+ gregkh@linuxfoundation.org, ukleinek@kernel.org, krzk+dt@kernel.org, 
+ dmitry.torokhov@gmail.com, broonie@kernel.org, linux-pwm@vger.kernel.org, 
+ lee@kernel.org, linux-sound@vger.kernel.org, lgirdwood@gmail.com, 
+ peter.ujfalusi@gmail.com, linux-kernel@vger.kernel.org, 
+ linux-input@vger.kernel.org, shuah@kernel.org, conor+dt@kernel.org
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+In-Reply-To: <20250811224739.53869-3-jihed.chaibi.dev@gmail.com>
+References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
+ <20250811224739.53869-3-jihed.chaibi.dev@gmail.com>
+Message-Id: <175496188325.1486426.9118766970247515386.robh@kernel.org>
+Subject: Re: [PATCH 2/8] mfd: dt-bindings: ti,twl6040: convert to DT schema
 
-Hi Nicolas,
 
-On 8/11/2025 11:07 PM, Nicolas Dufresne wrote:
-> First pass of review,
+On Tue, 12 Aug 2025 00:47:33 +0200, Jihed Chaibi wrote:
+> Convert the legacy TXT binding for the TWL6040 MFD
+> to the modern YAML DT schema format. This adds formal validation
+> and improves documentation.
 > 
-> There is obvious conflict between Detlev RK3388/3576 series, please coordinate.
-> By picking the same direction, the common code can be split from platform code,
-> and then both sets can share that common code and avoid conflicts.
-
-Yes, it is very unfortunate that Detlev did not base the work on v1 of
-this series, this has been sitting idle on the list for almost 2 years
-only waiting on its dependent H264 High10/4:2:2 series to be merged.
-
-Most feedback for v1 was related to unstaging and the series could be
-applied clean until iommu detach/attach was introduced very recently.
-
-This series has also been referenced in multiple threads related to
-rkvdec2 work, most recent at [1]. Unfortunately, I have missed both v1
-and v2 of Detlev's new rkvdec2 series, and was not able to send a v2 of
-this until now due to family tragedy.
-
-I will take a closer look at Detlev's new rkvdec2 series and see what I
-can do in a v3 to ease any merge conflicts.
-
-[1] https://lore.kernel.org/linux-media/a787e6e0-d4ce-45e3-8263-2489585d3ec0@kwiboo.se/
-
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> ---
+>  .../devicetree/bindings/mfd/ti,twl6040.yaml   | 155 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/twl6040.txt       |  67 --------
+>  2 files changed, 155 insertions(+), 67 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,twl6040.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/twl6040.txt
 > 
-> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
->> The Rockchip VDEC supports the HEVC codec with the Main and Main10
->> Profile up to Level 5.1 High tier: 4096x2304@60 fps.
->>
->> Add the backend for HEVC format to the decoder.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->> Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
->> ---
->> Changes in v2:
->> - Use new_value in transpose_and_flatten_matrices()
->> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
->> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
->> ---
->>  .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
->>  .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  817 ++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-regs.h    |    2 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.c   |   76 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.h   |    1 +
->>  6 files changed, 2745 insertions(+), 1 deletion(-)
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->>
->> diff --git a/drivers/media/platform/rockchip/rkvdec/Makefile b/drivers/media/platform/rockchip/rkvdec/Makefile
->> index cb86b429cfaa..a77122641d14 100644
->> --- a/drivers/media/platform/rockchip/rkvdec/Makefile
->> +++ b/drivers/media/platform/rockchip/rkvdec/Makefile
->> @@ -1,3 +1,3 @@
->>  obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC) += rockchip-vdec.o
->>  
->> -rockchip-vdec-y += rkvdec.o rkvdec-h264.o rkvdec-vp9.o
->> +rockchip-vdec-y += rkvdec.o rkvdec-h264.o rkvdec-hevc.o rkvdec-vp9.o
 
-[snip]
+My bot found errors running 'make dt_binding_check' on your patch:
 
->> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> new file mode 100644
->> index 000000000000..1994ea24f0be
->> --- /dev/null
->> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
->> @@ -0,0 +1,817 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Rockchip Video Decoder HEVC backend
->> + *
->> + * Copyright (C) 2023 Collabora, Ltd.
->> + *      Sebastian Fricke <sebastian.fricke@collabora.com>
->> + *
->> + * Copyright (C) 2019 Collabora, Ltd.
->> + *	Boris Brezillon <boris.brezillon@collabora.com>
->> + *
->> + * Copyright (C) 2016 Rockchip Electronics Co., Ltd.
->> + *	Jeffy Chen <jeffy.chen@rock-chips.com>
->> + */
->> +
->> +#include <media/v4l2-mem2mem.h>
->> +
->> +#include "rkvdec.h"
->> +#include "rkvdec-regs.h"
->> +#include "rkvdec-hevc-data.c"
->> +
->> +/* Size in u8/u32 units. */
->> +#define RKV_SCALING_LIST_SIZE		1360
->> +#define RKV_PPS_SIZE			(80 / 4)
->> +#define RKV_PPS_LEN			64
->> +#define RKV_RPS_SIZE			(32 / 4)
->> +#define RKV_RPS_LEN			600
->> +
->> +struct rkvdec_sps_pps_packet {
->> +	u32 info[RKV_PPS_SIZE];
->> +};
->> +
->> +struct rkvdec_rps_packet {
->> +	u32 info[RKV_RPS_SIZE];
->> +};
->> +
->> +struct rkvdec_ps_field {
->> +	u16 offset;
->> +	u8 len;
->> +};
->> +
->> +#define PS_FIELD(_offset, _len) \
->> +	((struct rkvdec_ps_field){ _offset, _len })
->> +
->> +/* SPS */
->> +#define VIDEO_PARAMETER_SET_ID				PS_FIELD(0, 4)
->> +#define SEQ_PARAMETER_SET_ID				PS_FIELD(4, 4)
->> +#define CHROMA_FORMAT_IDC				PS_FIELD(8, 2)
->> +#define PIC_WIDTH_IN_LUMA_SAMPLES			PS_FIELD(10, 13)
->> +#define PIC_HEIGHT_IN_LUMA_SAMPLES			PS_FIELD(23, 13)
->> +#define BIT_DEPTH_LUMA					PS_FIELD(36, 4)
->> +#define BIT_DEPTH_CHROMA				PS_FIELD(40, 4)
->> +#define LOG2_MAX_PIC_ORDER_CNT_LSB			PS_FIELD(44, 5)
->> +#define LOG2_DIFF_MAX_MIN_LUMA_CODING_BLOCK_SIZE	PS_FIELD(49, 2)
->> +#define LOG2_MIN_LUMA_CODING_BLOCK_SIZE			PS_FIELD(51, 3)
->> +#define LOG2_MIN_TRANSFORM_BLOCK_SIZE			PS_FIELD(54, 3)
->> +#define LOG2_DIFF_MAX_MIN_LUMA_TRANSFORM_BLOCK_SIZE	PS_FIELD(57, 2)
->> +#define MAX_TRANSFORM_HIERARCHY_DEPTH_INTER		PS_FIELD(59, 3)
->> +#define MAX_TRANSFORM_HIERARCHY_DEPTH_INTRA		PS_FIELD(62, 3)
->> +#define SCALING_LIST_ENABLED_FLAG			PS_FIELD(65, 1)
->> +#define AMP_ENABLED_FLAG				PS_FIELD(66, 1)
->> +#define SAMPLE_ADAPTIVE_OFFSET_ENABLED_FLAG		PS_FIELD(67, 1)
->> +#define PCM_ENABLED_FLAG				PS_FIELD(68, 1)
->> +#define PCM_SAMPLE_BIT_DEPTH_LUMA			PS_FIELD(69, 4)
->> +#define PCM_SAMPLE_BIT_DEPTH_CHROMA			PS_FIELD(73, 4)
->> +#define PCM_LOOP_FILTER_DISABLED_FLAG			PS_FIELD(77, 1)
->> +#define LOG2_DIFF_MAX_MIN_PCM_LUMA_CODING_BLOCK_SIZE	PS_FIELD(78, 3)
->> +#define LOG2_MIN_PCM_LUMA_CODING_BLOCK_SIZE		PS_FIELD(81, 3)
->> +#define NUM_SHORT_TERM_REF_PIC_SETS			PS_FIELD(84, 7)
->> +#define LONG_TERM_REF_PICS_PRESENT_FLAG			PS_FIELD(91, 1)
->> +#define NUM_LONG_TERM_REF_PICS_SPS			PS_FIELD(92, 6)
->> +#define SPS_TEMPORAL_MVP_ENABLED_FLAG			PS_FIELD(98, 1)
->> +#define STRONG_INTRA_SMOOTHING_ENABLED_FLAG		PS_FIELD(99, 1)
-> 
-> Detlev is moving to structures and memcpy, with a minor performance gain, this
-> is the way to go, I can understand if this is quite involving, but one of you
-> will have to do it.
+yamllint warnings/errors:
 
-Sure, and this was the the main reason why I mentioned this incoming
-series back in [1], to consider this series before doing too much
-re-work on a future rkvdec1 + rkvdec2 merge series.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,twl6040.example.dtb: twl@4b (ti,twl6040): 'twl6040,audpwron-gpio' does not match any of the regexes: '^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pciclass|pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^100ask,.*', '^70mai,.*', '^8dev,.*', '^GEFanuc,.*', '^IBM,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*', '^abracon,.*', '^abt,.*', '^acbel,.*', '^acelink,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^adieng,.*', '^admatec,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^aesop,.*', '^airoha,.*', '^al,.*', '^alca
+ tel,.*', '^aldec,.*', '^alfa-network,.*', '^allegro,.*', '^allegromicro,.*', '^alliedvision,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampere,.*', '^amphenol,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^anbernic,.*', '^andestech,.*', '^anvo,.*', '^aoly,.*', '^aosong,.*', '^apm,.*', '^apple,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arcom,.*', '^arctic,.*', '^arcx,.*', '^argon40,.*', '^ariaboard,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^armsom,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^asix,.*', '^aspeed,.*', '^asrock,.*', '^asteralabs,.*', '^asus,.*', '^atheros,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axiado,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*'
+ , '^belling,.*', '^bhf,.*', '^bigtreetech,.*', '^bitmain,.*', '^blaize,.*', '^blutek,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bsh,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^bytedance,.*', '^calamp,.*', '^calao,.*', '^calaosystems,.*', '^calxeda,.*', '^cameo,.*', '^canaan,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cct,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^chargebyte,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chongzhou,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cisco,.*', '^cix,.*', '^clockwork,.*', '^cloos,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^comvetia,.*', '^congatec,.*', '^coolpi,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csot,.*', '^csq,.*', '^ctera,.*', '^ctu,.*'
+ , '^cubietech,.*', '^cudy,.*', '^cui,.*', '^cypress,.*', '^cyx,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^deepcomputing,.*', '^dell,.*', '^delta,.*', '^densitron,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dfrobot,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dimonoff,.*', '^diodes,.*', '^dioo,.*', '^djn,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^dream,.*', '^ds,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebang,.*', '^ebbg,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^econet,.*', '^edgeble,.*', '^edimax,.*', '^edt,.*', '^ees,.*', '^eeti,.*', '^einfochips,.*', '^eink,.*', '^elan,.*', '^element14,.*', '^elgin,.*', '^elida,.*', '^elimo,.*', '^elpida,.*', '^embedfire,.*', '^embest,.*', '^emcraft,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^enclustra,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^engleder,.*', '^
+ epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^exegin,.*', '^ezchip,.*', '^facebook,.*', '^fairchild,.*', '^fairphone,.*', '^faraday,.*', '^fascontek,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^fii,.*', '^firefly,.*', '^focaltech,.*', '^forlinx,.*', '^freebox,.*', '^freecom,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^fxtec,.*', '^galaxycore,.*', '^gameforce,.*', '^gardena,.*', '^gateway,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gehc,.*', '^gemei,.*', '^gemtek,.*', '^genesys,.*', '^genexis,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^glinet,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^gocontroll,.*', '^goldelico,.*', '^goodix,.*', '^google,.*', '^goramo,.*', '^gplus,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haochuangyi,.*', '^haoyu,.*', '^hardkernel,.
+ *', '^hechuang,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*', '^hisi,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperf,.*', '^hoperun,.*', '^hp,.*', '^hpe,.*', '^hsg,.*', '^htc,.*', '^huawei,.*', '^hugsun,.*', '^huiling,.*', '^hwacom,.*', '^hxt,.*', '^hycon,.*', '^hydis,.*', '^hynitron,.*', '^hynix,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^iei,.*', '^ifi,.*', '^ilitek,.*', '^imagis,.*', '^img,.*', '^imi,.*', '^inanbo,.*', '^incircuit,.*', '^indiedroid,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^ingrasys,.*', '^injoinic,.*', '^innocomm,.*', '^innolux,.*', '^inside-secure,.*', '^insignal,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inventec,.*', '^inversepath,.*', '^iom,.*', '^irondevice,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^itian,.*', '^ivo,.*', '^iwave,.*', '^jadard,.*', '^jasonic,.*', '^jdi,.*', '^jedec,.*', 
+ '^jenson,.*', '^jesurun,.*', '^jethome,.*', '^jianda,.*', '^jide,.*', '^joz,.*', '^jty,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kvg,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^lckfb,.*', '^lctech,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^lincolntech,.*', '^lineartechnology,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^liontron,.*', '^liteon,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongmasses,.*', '^loongson,.*', '^lsi,.*', '^luckfox,.*', '^lunzn,.*', '^luxul,.*', '^lwn,.*', '^lxa,.*', '^m5stack,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marantec,.*',
+  '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^maxlinear,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsensing,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*', '^meraki,.*', '^merrii,.*', '^methode,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*', '^microtips,.*', '^mikroe,.*', '^mikrotik,.*', '^milkv,.*', '^miniand,.*', '^minix,.*', '^mips,.*', '^miramems,.*', '^mitsubishi,.*', '^mitsumi,.*', '^mixel,.*', '^miyoo,.*', '^mntre,.*', '^mobileye,.*', '^modtronix,.*', '^moortec,.*', '^mosaixtech,.*', '^motorcomm,.*', '^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxic,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^neardi,.*', '^nec,.*', '^neofidelity,.*', '^neonode,.*', '^netcube,.*', '^netgear,.*', '^netlo
+ gic,.*', '^netron-dy,.*', '^netronix,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^newvision,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nicera,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^nothing,.*', '^novatek,.*', '^novtech,.*', '^numonyx,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^ocs,.*', '^oct,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^oneplus,.*', '^onie,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^openailab,.*', '^opencores,.*', '^openembed,.*', '^openpandora,.*', '^openrisc,.*', '^openwrt,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^osmc,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pegatron,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pinctrl-[0-9]+$', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plant
+ ower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^ply,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^polyhex,.*', '^pool[0-3],.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^powkiddy,.*', '^pri,.*', '^primeview,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^puya,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qishenglong,.*', '^qnap,.*', '^quanta,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^relfor,.*', '^remarkable,.*', '^renesas,.*', '^rervision,.*', '^retronix,.*', '^revotics,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^rve,.*', '^saef,.*', '^sakurapi,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^schneider,.
+ *', '^sciosense,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^senseair,.*', '^sensirion,.*', '^sensortek,.*', '^sercomm,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shift,.*', '^shimafuji,.*', '^shineworld,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^siemens,.*', '^sifive,.*', '^siflower,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silan,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconfile,.*', '^siliconmitus,.*', '^silvaco,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sinowealth,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skov,.*', '^skyworks,.*', '^smartfiber,.*', '^smartlabs,.*', '^smartrg,.*', '^smi,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^sophgo,.*', '^sourceparts,.*', '^spacemit,.*', '^spansion,.*', '^sparkfun,.*', '^spinalhdl,.*', '^sprd,.*', '^square,.*', '^ssi,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericss
+ on,.*', '^starfive,.*', '^starry,.*', '^startek,.*', '^starterkit,.*', '^ste,.*', '^stericsson,.*', '^storlink,.*', '^storm,.*', '^storopack,.*', '^summit,.*', '^sunchip,.*', '^sundance,.*', '^sunplus,.*', '^supermicro,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^synopsys,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^tcs,.*', '^tcu,.*', '^tdo,.*', '^team-source-display,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^techwell,.*', '^teejet,.*', '^teltonika,.*', '^tempo,.*', '^terasic,.*', '^tesla,.*', '^test,.*', '^tfc,.*', '^thead,.*', '^thine,.*', '^thingyjp,.*', '^thundercomm,.*', '^thwc,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^topic,.*', '^topland,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^transpeed,.*', '^traverse,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^turing,.*', '^tyan,.*', '^tyhx,.*', '^u-blox,.*', '^u-boot,.*', '^u
+ bnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ufispace,.*', '^ugoos,.*', '^ultratronik,.*', '^uni-t,.*', '^uniwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^usr,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*', '^vertexcom,.*', '^via,.*', '^vialab,.*', '^vicor,.*', '^videostrong,.*', '^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vivax,.*', '^vocore,.*', '^voipac,.*', '^voltafield,.*', '^vot,.*', '^vscom,.*', '^vxt,.*', '^wacom,.*', '^wanchanglong,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^welltech,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^widora,.*', '^wiligear,.*', '^willsemi,.*', '^winbond,.*', '^wingtech,.*', '^winlink,.*', '^winsen,.*', '^winstar,.*', '^wirelesstag,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^wolfvision,.*', '^x-powers,.*', '^xen,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^x
+ unlong,.*', '^xylon,.*', '^yadro,.*', '^yamaha,.*', '^yes-optoelectronics,.*', '^yic,.*', '^yiming,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ys,.*', '^ysoft,.*', '^yuridenki,.*', '^yuzukihd,.*', '^zarlink,.*', '^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmagic,.*', '^zte,.*', '^zyxel,.*'
+	from schema $id: http://devicetree.org/schemas/vendor-prefixes.yaml#
 
-As mentioned above, I will take a closer look at Detlev's new rkvdec2
-series and see what I can do in a v3 to ease any merge conflicts.
+doc reference errors (make refcheckdocs):
 
-> 
->> +/* PPS */
->> +#define PIC_PARAMETER_SET_ID				PS_FIELD(128, 6)
->> +#define PPS_SEQ_PARAMETER_SET_ID			PS_FIELD(134, 4)
->> +#define DEPENDENT_SLICE_SEGMENTS_ENABLED_FLAG		PS_FIELD(138, 1)
->> +#define OUTPUT_FLAG_PRESENT_FLAG			PS_FIELD(139, 1)
->> +#define NUM_EXTRA_SLICE_HEADER_BITS			PS_FIELD(140, 13)
->> +#define SIGN_DATA_HIDING_ENABLED_FLAG			PS_FIELD(153, 1)
->> +#define CABAC_INIT_PRESENT_FLAG				PS_FIELD(154, 1)
->> +#define NUM_REF_IDX_L0_DEFAULT_ACTIVE			PS_FIELD(155, 4)
->> +#define NUM_REF_IDX_L1_DEFAULT_ACTIVE			PS_FIELD(159, 4)
->> +#define INIT_QP_MINUS26					PS_FIELD(163, 7)
->> +#define CONSTRAINED_INTRA_PRED_FLAG			PS_FIELD(170, 1)
->> +#define TRANSFORM_SKIP_ENABLED_FLAG			PS_FIELD(171, 1)
->> +#define CU_QP_DELTA_ENABLED_FLAG			PS_FIELD(172, 1)
->> +#define LOG2_MIN_CU_QP_DELTA_SIZE			PS_FIELD(173, 3)
->> +#define PPS_CB_QP_OFFSET				PS_FIELD(176, 5)
->> +#define PPS_CR_QP_OFFSET				PS_FIELD(181, 5)
->> +#define PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT_FLAG	PS_FIELD(186, 1)
->> +#define WEIGHTED_PRED_FLAG				PS_FIELD(187, 1)
->> +#define WEIGHTED_BIPRED_FLAG				PS_FIELD(188, 1)
->> +#define TRANSQUANT_BYPASS_ENABLED_FLAG			PS_FIELD(189, 1)
->> +#define TILES_ENABLED_FLAG				PS_FIELD(190, 1)
->> +#define ENTROPY_CODING_SYNC_ENABLED_FLAG		PS_FIELD(191, 1)
->> +#define PPS_LOOP_FILTER_ACROSS_SLICES_ENABLED_FLAG	PS_FIELD(192, 1)
->> +#define LOOP_FILTER_ACROSS_TILES_ENABLED_FLAG		PS_FIELD(193, 1)
->> +#define DEBLOCKING_FILTER_OVERRIDE_ENABLED_FLAG		PS_FIELD(194, 1)
->> +#define PPS_DEBLOCKING_FILTER_DISABLED_FLAG		PS_FIELD(195, 1)
->> +#define PPS_BETA_OFFSET_DIV2				PS_FIELD(196, 4)
->> +#define PPS_TC_OFFSET_DIV2				PS_FIELD(200, 4)
->> +#define LISTS_MODIFICATION_PRESENT_FLAG			PS_FIELD(204, 1)
->> +#define LOG2_PARALLEL_MERGE_LEVEL			PS_FIELD(205, 3)
->> +#define SLICE_SEGMENT_HEADER_EXTENSION_PRESENT_FLAG	PS_FIELD(208, 1)
->> +#define NUM_TILE_COLUMNS				PS_FIELD(212, 5)
->> +#define NUM_TILE_ROWS					PS_FIELD(217, 5)
->> +#define COLUMN_WIDTH(i)					PS_FIELD(256 + ((i) * 8), 8)
->> +#define ROW_HEIGHT(i)					PS_FIELD(416 + ((i) * 8), 8)
->> +#define SCALING_LIST_ADDRESS				PS_FIELD(592, 32)
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250811224739.53869-3-jihed.chaibi.dev@gmail.com
 
-[snip]
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
->> +/*
->> + * Creation of the Reference Picture Set memory blob for the hardware.
->> + * The layout looks like this:
->> + * [0] 32 bits for L0 (6 references + 2 bits of the 7th reference)
->> + * [1] 32 bits for L0 (remaining 3 bits of the 7th reference + 5 references
->> + *     + 4 bits of the 13th reference)
->> + * [2] 11 bits for L0 (remaining bit for 13 and 2 references) and
->> + *     21 bits for L1 (4 references + first bit of 5)
->> + * [3] 32 bits of padding with 0s
->> + * [4] 32 bits for L1 (remaining 4 bits for 5 + 5 references + 3 bits of 11)
->> + * [5] 22 bits for L1 (remaining 2 bits of 11 and 4 references)
->> + *     lowdelay flag (bit 23), rps bit offset long term (bit 24 - 32)
->> + * [6] rps bit offset long term (bit 1 - 3),  rps bit offset short term (bit 4 - 12)
->> + *     number of references (bit 13 - 16), remaining 16 bits of padding with 0s
->> + * [7] 32 bits of padding with 0s
->> + *
->> + * Thus we have to set up padding in between reference 5 of the L1 list.
->> + */
->> +static void assemble_hw_rps(struct rkvdec_ctx *ctx,
->> +			    struct rkvdec_hevc_run *run)
-> 
-> Rockchip calls this one the swp_rps, in the sense the the slice header and its
-> enclosed reference are parsed by software. Detlev implements the HW RPS (which
-> requires an extended control) since SW RPS wasn't documented and this
-> implementation did not work for newer chip. We have no information that HW RPS
-> would work on RK3399 and older, I'm just asking to rename to we can
-> differentiate it.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Sure, I can rename this this assemble_sw_rps or similar in a v3.
+pip3 install dtschema --upgrade
 
-> 
->> +{
->> +	const struct v4l2_ctrl_hevc_decode_params *decode_params = run->decode_params;
->> +	const struct v4l2_ctrl_hevc_sps *sps = run->sps;
->> +	const struct v4l2_ctrl_hevc_slice_params *sl_params;
->> +	const struct v4l2_hevc_dpb_entry *dpb;
->> +	struct rkvdec_hevc_ctx *hevc_ctx = ctx->priv;
->> +	struct rkvdec_hevc_priv_tbl *priv_tbl = hevc_ctx->priv_tbl.cpu;
->> +	struct rkvdec_rps_packet *hw_ps;
->> +	int i, j;
->> +	unsigned int lowdelay;
->> +
->> +#define WRITE_RPS(value, field) set_ps_field(hw_ps->info, field, value)
->> +
->> +#define REF_PIC_LONG_TERM_L0(i)			PS_FIELD((i) * 5, 1)
->> +#define REF_PIC_IDX_L0(i)			PS_FIELD(1 + ((i) * 5), 4)
->> +#define REF_PIC_LONG_TERM_L1(i)			PS_FIELD(((i) < 5 ? 75 : 132) + ((i) * 5), 1)
->> +#define REF_PIC_IDX_L1(i)			PS_FIELD(((i) < 4 ? 76 : 128) + ((i) * 5), 4)
->> +
->> +#define LOWDELAY				PS_FIELD(182, 1)
->> +#define LONG_TERM_RPS_BIT_OFFSET		PS_FIELD(183, 10)
->> +#define SHORT_TERM_RPS_BIT_OFFSET		PS_FIELD(193, 9)
->> +#define NUM_RPS_POC				PS_FIELD(202, 4)
->> +
->> +	for (j = 0; j < run->num_slices; j++) {
->> +		uint st_bit_offset = 0;
->> +		uint num_l0_refs = 0;
->> +		uint num_l1_refs = 0;
->> +
->> +		sl_params = &run->slices_params[j];
->> +		dpb = decode_params->dpb;
->> +
->> +		if (sl_params->slice_type != V4L2_HEVC_SLICE_TYPE_I) {
->> +			num_l0_refs = sl_params->num_ref_idx_l0_active_minus1 + 1;
->> +
->> +			if (sl_params->slice_type == V4L2_HEVC_SLICE_TYPE_B)
->> +				num_l1_refs = sl_params->num_ref_idx_l1_active_minus1 + 1;
->> +
->> +			lowdelay = 1;
->> +		} else {
->> +			lowdelay = 0;
->> +		}
->> +
->> +		hw_ps = &priv_tbl->rps[j];
->> +		memset(hw_ps, 0, sizeof(*hw_ps));
->> +
->> +		for (i = 0; i < num_l0_refs; i++) {
->> +			const struct v4l2_hevc_dpb_entry dpb_l0 = dpb[sl_params->ref_idx_l0[i]];
->> +
->> +			WRITE_RPS(!!(dpb_l0.flags & V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE),
->> +				  REF_PIC_LONG_TERM_L0(i));
->> +			WRITE_RPS(sl_params->ref_idx_l0[i], REF_PIC_IDX_L0(i));
->> +
->> +			if (dpb_l0.pic_order_cnt_val > sl_params->slice_pic_order_cnt)
->> +				lowdelay = 0;
->> +		}
->> +
->> +		for (i = 0; i < num_l1_refs; i++) {
->> +			const struct v4l2_hevc_dpb_entry dpb_l1 = dpb[sl_params->ref_idx_l1[i]];
->> +			int is_long_term =
->> +				!!(dpb_l1.flags & V4L2_HEVC_DPB_ENTRY_LONG_TERM_REFERENCE);
->> +
->> +			WRITE_RPS(is_long_term, REF_PIC_LONG_TERM_L1(i));
->> +			WRITE_RPS(sl_params->ref_idx_l1[i], REF_PIC_IDX_L1(i));
->> +
->> +			if (dpb_l1.pic_order_cnt_val > sl_params->slice_pic_order_cnt)
->> +				lowdelay = 0;
->> +		}
->> +
->> +		WRITE_RPS(lowdelay, LOWDELAY);
->> +
->> +		if (!(decode_params->flags & V4L2_HEVC_DECODE_PARAM_FLAG_IDR_PIC)) {
->> +			if (sl_params->short_term_ref_pic_set_size)
->> +				st_bit_offset = sl_params->short_term_ref_pic_set_size;
->> +			else if (sps->num_short_term_ref_pic_sets > 1)
->> +				st_bit_offset = fls(sps->num_short_term_ref_pic_sets - 1);
->> +		}
->> +
->> +		WRITE_RPS(st_bit_offset + sl_params->long_term_ref_pic_set_size,
->> +			  LONG_TERM_RPS_BIT_OFFSET);
->> +		WRITE_RPS(sl_params->short_term_ref_pic_set_size,
->> +			  SHORT_TERM_RPS_BIT_OFFSET);
->> +
->> +		WRITE_RPS(decode_params->num_poc_st_curr_before +
->> +			  decode_params->num_poc_st_curr_after +
->> +			  decode_params->num_poc_lt_curr,
->> +			  NUM_RPS_POC);
->> +	}
->> +}
-
-[snip]
-
-> 
-> 
-> Looks good otherwise. Please let me know your plan to combine or prepare for
-> both series.
-
-I will take a closer look at Detlev's new rkvdec2 series and see what I
-can do in a v3 to ease any merge conflicts.
-
-I am just a little bit sad that this series has been completely ignored
-for the continued work with rkvdec2, the new series even seem to
-implement a slightly different variant system when this has been here
-waiting all this time :-/
-
-Regards,
-Jonas
-
-> 
-> Nicolas
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
