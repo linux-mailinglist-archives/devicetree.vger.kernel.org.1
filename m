@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-203918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81873B23155
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:03:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89A9B231B9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:08:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A26E3A1E83
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:02:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D0F17BB96
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CFC32FFDEC;
-	Tue, 12 Aug 2025 18:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD632FF163;
+	Tue, 12 Aug 2025 18:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u2587cxK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xGTTGiCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007462F5E;
-	Tue, 12 Aug 2025 18:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAAC2DE1E2;
+	Tue, 12 Aug 2025 18:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755021641; cv=none; b=c8nyK5oz3Pelx3AiUHR/muyUvWRDIcyi74g4lq775Gitcul5fGjm3vlz5xa4ein9/pUqGO5F4gZwocMQ3Sra8qAX/YvsClT5WqyVM8QJvg89UOaiyY3jzIDEuxjFr3wrTnDhO9m5j+nPfKIki75OxoT7wAdoX+MPNblZTW1+KUM=
+	t=1755021798; cv=none; b=EQIeFtKPun4kxtO+jyC6Pj3bE8fnsc8RUk8Ol8uefqRQvW2LGgfkm3a0bB4m1QVVnP1DtNrqfqnadow/EZV9A3zLjeXs3svwQRiEwEiqztijZKTbrFnJhchQQNBBS4x40DNgk8loIJqdJiv8eni36pjLgHL/QDm4WZB2hCjEHVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755021641; c=relaxed/simple;
-	bh=kzKLuTuUfh7FqpJNcVmLQFASFM8SVvh89ULWgFdABDQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EDlcW0HVQnE0f0oiSItOOL4kgPcss+eVcGAnvs0wN9PAcNLO7jDpemj0Kt+AZ662DzsNg4x8v9B5IBe4fACnbiJIy4voVGLCpQGjgMm0wnSaUTVtLqjrhcOh6ayXwD9CWXLGhY6FMWZW2RzxCXLEfAdl//cSxXaBvOLqQ+eaXAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u2587cxK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 489D5C4CEFB;
-	Tue, 12 Aug 2025 18:00:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755021640;
-	bh=kzKLuTuUfh7FqpJNcVmLQFASFM8SVvh89ULWgFdABDQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u2587cxK9cLMUSH6fy50HDZEdq6KaCNvSeV1PZHhsJLDENb3N514tzmDmiY3akC7p
-	 XAcH/omJaH4Aejnx6FK67uwbySZGtVRcGaeItuSAeeHMNCWuRwCtY1r+SUJt/wRJIj
-	 NsnPauVMOZ6m1r/Od8KpYk3zBL/KLCJ+gXJ9pReJP6Wf5xk4d9uuY5VcKmqjAYK/4J
-	 Mo1w4PiYYkTboEQX2yoYFS2qiVkCa/vfUtrYLIk1ihByh0kiuv5zSgM9dNO87MaQ9t
-	 UIul8h52wcS8dnEkmxiNGIufWs3Mi+7imtQk7tTb11yeajrx93PoSHjDnH5Uvga2+c
-	 b5bKVTxlqjvoA==
-Message-ID: <0ece8b0e-6c20-42ca-a3a6-4c35ee2be07b@kernel.org>
-Date: Tue, 12 Aug 2025 20:00:35 +0200
+	s=arc-20240116; t=1755021798; c=relaxed/simple;
+	bh=bMtOmbxE5p7nSfiC6tRT+00dIG/yVnMcG7trMtDKEgg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NDlMrwonaxnnhozOHghUYMwo6a14XV+uT4+iyfi39poE+s8J7KaKLU9FtcGmhFvnmvroOBcq0c6Zd0iuop64anVodQ+7IwAAm1sFG7HxGSqJ/mkVGfb4Q3iGiUqxGtUPgWsp3XVod5GZ1Tyql7uPGf+PtVwdnJphyRqyho+u1YA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xGTTGiCI; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57CI2ZRn1965775;
+	Tue, 12 Aug 2025 13:02:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755021755;
+	bh=hMP0pJPoGHjZWTBGyFsy5GjlgQnYq7dpmd6umTXAFHw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xGTTGiCIuoAp4XKGSPiEFgtSLFpPc8JU8zomPTl4Ngl3OShXZwEWK3gVURvQxIQ0p
+	 ifJnTKFue/A57cyzZGpACISJD+mfDz2M1qwC5kmMivYe+0j6z+DwNpbtx68xSMSyC7
+	 57bHV1paxMK/yL/3WF0KjlDCXfMTpKrmEs0sY9hA=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57CI2ZGF3992685
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 12 Aug 2025 13:02:35 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 12
+ Aug 2025 13:02:34 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 12 Aug 2025 13:02:34 -0500
+Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57CI2R58748582;
+	Tue, 12 Aug 2025 13:02:28 -0500
+Message-ID: <86cf7d99-1295-42ab-acda-88a8212ec4d4@ti.com>
+Date: Tue, 12 Aug 2025 23:32:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,88 +65,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: ltc2497: add docs for LTC2495
-To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250812-ltc2495-v1-0-7bf4c6feec2e@gmail.com>
- <20250812-ltc2495-v1-1-7bf4c6feec2e@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 4/4] drm/tidss: Fix sampling edge configuration
+To: Louis Chauvet <louis.chauvet@bootlin.com>, devarsh <devarsht@ti.com>,
+        "Jyri Sarha" <jyri.sarha@iki.fi>,
+        Tomi Valkeinen
+	<tomi.valkeinen@ideasonboard.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Sam
+ Ravnborg <sam@ravnborg.org>,
+        Benoit Parrot <bparrot@ti.com>, Lee Jones
+	<lee@kernel.org>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC: <thomas.petazzoni@bootlin.com>, Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen
+	<tomi.valkeinen@ti.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <stable@vger.kernel.org>
+References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
+ <20250730-fix-edge-handling-v1-4-1bdfb3fe7922@bootlin.com>
+ <71ef3203-e11d-4244-8d2d-8e47e8ba6140@ti.com>
+ <f15779ad-788a-4dc6-b5a6-4187b9a9c986@ti.com>
+ <e9df67f0-8fce-4fbf-8fff-c499c4a2efaf@bootlin.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250812-ltc2495-v1-1-7bf4c6feec2e@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <e9df67f0-8fce-4fbf-8fff-c499c4a2efaf@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 12/08/2025 19:04, Yusuf Alper Bilgin wrote:
-> This updates the binding documentation for LTC2497 to include LTC2495.
 
-What are the differences, why it cannot be made compatible with 2497
-(fallback)?
 
-If there is going to be any new version:
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
+On 8/11/25 15:26, Louis Chauvet wrote:
 > 
-> Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/lltc,ltc2497.yaml | 3 +++
->  1 file changed, 3 insertions(+)
 > 
+> Le 08/08/2025 à 18:26, Swamil Jain a écrit :
+>>
+>>
+>> On 8/8/25 19:16, devarsh wrote:
+>>> Hi Louis,
+>>>
+>>> Thanks for the patch.
+>>>
+>>> On 30/07/25 22:32, Louis Chauvet wrote:
+>>>> As stated in the AM62x Technical Reference Manual (SPRUIV7B), the data
+>>>> sampling edge needs to be configured in two distinct registers: one 
+>>>> in the
+>>>> TIDSS IP and another in the memory-mapped control register modules.
+>>>
+>>> I don't think AM62x is thee only one which requires this and on the
+>>> contrary not all SoCs require this extra setting. We had been waiting on
+>>> confirmations from hardware team and very recently they gave a list of
+>>> SoCs which require this, as per that I think we need to limit this to
+>>> AM62x and AM62A per current supported SoCs.
+>>>
+>>> Swamil,
+>>> Please confirm on this and share if any additional details required 
+>>> here.
+>>>
+>>
+>> Yeah Devarsh, as you mentioned, this is valid for AM62X, AM62A and
+>> AM62P. We would have upstreamed this feature, but there are some
+>> corrections in Technical Reference Manual for these SoCs regarding
+>> programming CTRL_MMR_DPI_CLK_CTRL register fields, we are in loop with
+>> H/W team, waiting for their official confirmation regarding this issue.
+>>
+>> Thanks Louis for working on this patch, but we should wait for H/W
+>> team's confirmation.
+> 
+> Hello all,
+> 
+> Thanks for the feedback. I was not aware of this current work.
+> Do you plan to send the fix yourself? Should I wait your HW team 
+> feedback and send a v2?
+> 
+Hi Louis, H/W team confirmed that, CTRL_MMR_DPI0_CLK_CTRL.bit[8] should 
+be programmed same as DSS_VP1_POL_FREQ.bit[14](IPC) and 
+CTRL_MMR_DPI0_CLK_CTRL.bit[9] should be programmed same as 
+DSS_VP1_POL_FREQ.bit[16](RF). Please continue with you patches.
 
+> I also have a very similar patch ready for u-boot (depending on the same 
+> DT modifications), do you plan to fix u-boot too?
+> 
+Please fix u-boot also.
 
+Thanks and regards,
+Swamil.
 
-Best regards,
-Krzysztof
+> Thanks,
+> Louis Chauvet
+> 
+> 
+>> Regards,
+>> Swamil.
+>>
+>>> Regards
+>>> Devarsh
+>>>
+>>>    Since
+>>>> the latter is not within the same address range, a phandle to a syscon
+>>>> device is used to access the regmap.
+>>>>
+>>>> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform 
+>>>> Display SubSystem")
+>>>> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Cc: stable@vger.kernel.org
+>>>> ---
+>>>>    drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
+>>>>    1 file changed, 14 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>>>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> index 
+>>>> c0277fa36425ee1f966dccecf2b69a2d01794899..65ca7629a2e75437023bf58f8a1bddc24db5e3da 100644
+>>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>>> @@ -498,6 +498,7 @@ struct dispc_device {
+>>>>        const struct dispc_features *feat;
+>>>>        struct clk *fclk;
+>>>> +    struct regmap *clk_ctrl;
+>>>>        bool is_enabled;
+>>>> @@ -1267,6 +1268,11 @@ void dispc_vp_enable(struct dispc_device 
+>>>> *dispc, u32 hw_videoport,
+>>>>                   FLD_VAL(mode->vdisplay - 1, 27, 16));
+>>>>        VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 1, 0, 0);
+>>>> +
+>>>> +    if (dispc->clk_ctrl) {
+>>>> +        regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 
+>>>> 0x000);
+>>>> +        regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 
+>>>> 0x000);
+>>>> +    }
+>>>>    }
+>>>>    void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
+>>>> @@ -3012,6 +3018,14 @@ int dispc_init(struct tidss_device *tidss)
+>>>>        dispc_init_errata(dispc);
+>>>> +    dispc->clk_ctrl = 
+>>>> syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
+>>>> +                                   "ti,clk-ctrl");
+>>>> +    if (IS_ERR(dispc->clk_ctrl)) {
+>>>> +        r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
+>>>> +                  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
+>>>> +        return r;
+>>>> +    }
+>>>> +
+>>>>        dispc->fourccs = devm_kcalloc(dev, 
+>>>> ARRAY_SIZE(dispc_color_formats),
+>>>>                          sizeof(*dispc->fourccs), GFP_KERNEL);
+>>>>        if (!dispc->fourccs)
+>>>>
+>>>
+> 
 
