@@ -1,56 +1,82 @@
-Return-Path: <devicetree+bounces-203503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54E5B219A4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:02:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77321B219DB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:37:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59DDA3A5610
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:02:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DF087AEEC6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 00:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F153281376;
-	Tue, 12 Aug 2025 00:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3342D59E3;
+	Tue, 12 Aug 2025 00:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="EeBXQW7V"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TsGzF7YV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B8F17333F
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 00:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8242586CE
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 00:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754956927; cv=none; b=Jo1uDfjIYSvO9HTKDdOvaNDvGewiRP7CNBUfO9a3cpu9KbFlkgV+Lw8vzpV8LzmtkvBrjmiBGZB3vCc3evVusMCyH2dxq+GccuvvBeY3bHFeEhnmNTpbjRrHdDIPzx8t/EhIlywOlm0ZbKpnJQUYzU+r1pKBoK51YF1kIMLjCA8=
+	t=1754959064; cv=none; b=Kkd81N/rOYF2atUzBRpVmUx8u6pGkzs7O7AAwo9r7b8GfZgxVhWMTma5ZoIeBHNKaNHLRSo7etNKhnEKRHoqO7C8EowdqVGQiDZmwxXim/FeJWVNpyRPBUwcv+T9BC5A5DT42djZpD+Y8UByDucWF4jZqfoFUlWzZDWv5toYMnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754956927; c=relaxed/simple;
-	bh=h3XIrRi4Eh1r1otKGR/Gs4MjvshCnmwLL1ZN39prrfo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IFbNA90Q/Z0RkMPfteoxldAVilFl8AIF/5mcsLSmM3P7bDDJTkOch9L0OGX1nR9TS5sM/1okTlehZorZuG1rDcBA9tnvWRK2T0U18QIFHepy2wIcSr1BxwJ6F6Ra2dHEAUykDqUpfl0vVFFizj7ZiAtZRaq0YfEqCt3YSt2qAvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=EeBXQW7V; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1754956920;
- bh=LksAwlMK4Zcalf/VkDre46LCCYPoR3RkYJEdyB3ZKtw=;
- b=EeBXQW7Vof3Srqrc9frLmPydDGmzghR1wpRB41M6Z2grUMK81zh89emtHi27RFOAU5prY6P76
- LWtfKAZ0jq09PtH2cBpzYXcXvpkYIJ2dHMT6Ac53tdvkjTqRWe6yAqTAf2uG6wg78ZeqBDsG/Z3
- jULBB7V5GNaNyG5tN7T0Hyypo61YftQHLjfvr97A4abo1r093QZl19k1Ds6QZYAz+xvFAAf/C1a
- OlZxBaA56kikFkzqX1gewyRnM/CWUOjcYi0pv4nr80XoIhMj+GP8j5cnXcPuEtjlmB2xsB7KdPJ
- 3zh8NdRH5HRXCamxgN0/n8QIxCmNHEVFVh1O6klVbtqA==
-X-Forward-Email-ID: 689a841810bdea4a6d7c54b0
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.4
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <1dd29158-0660-4254-ac00-1316768d9b82@kwiboo.se>
-Date: Tue, 12 Aug 2025 02:00:19 +0200
+	s=arc-20240116; t=1754959064; c=relaxed/simple;
+	bh=MM7amlMlymZ6itBYJO4K7FlQlWOV9Hf4f/LDG05WvS8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=d6MoMEuJ2CF0BEaYViWVsAnVZWftSy2JOGeTKYCCsvj1Qufgya/TrAHBd9gk21sVhvpFmNPjhIVIRMvvwwRhcJIpycat4Pi8fcJ81Pe/UkHX7SOg34Xj1zG1wQ7672FJJV9mIu84bKLGK+zazqDGSqvUTtTaCCNebZ93HrDzKdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TsGzF7YV; arc=none smtp.client-ip=209.85.161.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-61b4b90fb87so2327618eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 17:37:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1754959060; x=1755563860; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Qij29Dwz/tFkYWESkoLoLc09dn5e79Z0zwgkLbVcarc=;
+        b=TsGzF7YVAuW8sL9l39Kzqdd13bM6XCMe+SxKb3aR8bFAOA/POAkBqapXVbU6bkuVti
+         acOqEwq7XOeUR9DACuUxEWFLjV/O685/SaJIc6+7FpIC5iQscn1Xx24NkyuKnwpxtKsm
+         3udz/8mtDu+90ncA4EWKvvU8rJxFn1og79lfKiX4fKnVqdgBhJVCbvxgLl8EOiDE3mrR
+         ximygKtVkhdAv3qcpIML56h5ltkiqnqXYaESSbvE7tKjl0FIcIrLnn4j+PsBnrXfxJ9x
+         x0Cl6NQy+BfUVet/yofiqHG8DJMtradg1Ad0tsQGEOl2uHxei31+/Glc7839xMRe8/ZJ
+         PWWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754959060; x=1755563860;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qij29Dwz/tFkYWESkoLoLc09dn5e79Z0zwgkLbVcarc=;
+        b=gHegJXL+u2w0vtKFEITM2EivOQKgq43PKcj3/edycSsN0TdDxrcUfrdYOTk51fOMLH
+         VLnLmub+xasxQ9ZyqLF6waWxdpzRWdNZDy8N5VzMLSGAJbKN4cF7OOiNrdAmt7GLmly4
+         aKRTvIz8x1UAEz/xqXcFL3dlB2sTw5CsSvm/xsqf1dQWRkTONaFgKqtJOWAtia0U5aRZ
+         aXsoEXeA/hv2Vw0xl5EVxB0oq2mgbw4XDoFlcBzl9be0AyxIU9ycn+th0Ui63SYUuvf8
+         9VXoEPeabgzifkFiuzyejJYht8u9jQ8WezqIqKm2KesWYXRUS0N7VMB96b9rJG4weq8A
+         LcYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmG7KzlvBJAIWcYzBVCTIJoAUxrSLNg4MOYQVgPKDfdHFaKQEzrnrcT0j/FIRdZxyzewAgiub1F+Fe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGK79m9z/b7uceQ9WGfin/W9mn3AI5Ly6WbCHlqJ7IAcV3is1b
+	jiEY74RDt7RDTxrZsE1XfDkUwkScq2P29dPNYtqH+9b+hZKvr+ZaucVn/a3MpwXHBsm3erOsr1j
+	Drecw
+X-Gm-Gg: ASbGncuKasRMheKYWrezraQ6/owr7jwX3Tv/7z/e1n6ZPci8U4SVBoIs/7rdn47Abjs
+	Z3qhXvz7suDXqVg92cMTjXx5leofPQFukRG/ElhO7yW2Aqs4JolOGftqm18zewKA5NugDok1zzQ
+	28ccuE5gvLPBYbGbOjCBrbqwztm8YuONaqR0XmgYSGJtdm4KfqGRrD88pAF3+uy8u6cScwrPTWK
+	LMmShJwAN+tITxHsNQkh7Uw9eVUWJ/Kh81gSd5i5oUInObJIALQD4wkQv8czEHRcUAiarg4gFkF
+	8tjFeEhFJ+lcxeukHkt1LOcWtsiuBnynzYGyTNu7MF2V99yg/MWFwiO0J5iIrBc68h8rwoB2cmR
+	5bpwSTnfcjV8XLz+rrz17IHvL62D0ALfIv7F85Zgd1o4fOKNpiU8/Md/P+EyOAX+rvYa0swjlQw
+	8=
+X-Google-Smtp-Source: AGHT+IGakl/eXVN/0VvRKWuNy816VmFzFbnxikB++De4HoaGdaaXnZwngXs2yzJOw8EAkR7KH4BssA==
+X-Received: by 2002:a05:6820:2209:b0:619:932b:3dc0 with SMTP id 006d021491bc7-61bb5b4aac2mr1230648eaf.3.1754959060262;
+        Mon, 11 Aug 2025 17:37:40 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:4a4f:fe55:51b4:b5ba? ([2600:8803:e7e4:1d00:4a4f:fe55:51b4:b5ba])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-61b7cac4d37sm1229026eaf.30.2025.08.11.17.37.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Aug 2025 17:37:39 -0700 (PDT)
+Message-ID: <64e64124-112d-4942-8ca4-290cabcfd9dd@baylibre.com>
+Date: Mon, 11 Aug 2025 19:37:39 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,230 +84,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Alex Bee <knaerzche@gmail.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
- <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
+Subject: Re: [PATCH v3 1/4] iio: add power and energy measurement modifiers
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250808141020.4384-1-antoniu.miclaus@analog.com>
+ <20250808141020.4384-2-antoniu.miclaus@analog.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250808141020.4384-2-antoniu.miclaus@analog.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi Nicolas,
-
-On 8/11/2025 11:52 PM, Nicolas Dufresne wrote:
-> Le dimanche 10 août 2025 à 21:24 +0000, Jonas Karlman a écrit :
->> This series add a HEVC backend to the Rockchip Video Decoder driver.
->>
->> With the dependent H.264 High 10 and 4:2:2 profile support series
->> finally merged there is finally time to send a v2 with minor changes and
->> a suggested code style fix of this series. v1 of this series has been
->> fully functional up until recent unstaging of the rkvdec driver.
->>
->> A version of this HEVC backend has been in use by the LibreELEC distro
->> for the past 5+ years [1]. It was initially created based on a copy of
->> the H264 backend, unstable HEVC uAPI controls and a cabac table + scaling
->> matrix functions shamelessly copied 1:1 from the Rockchip mpp library.
->>
->> It has since then been extended to use the stable HEVC uAPI controls and
->> improved opon e.g. to include support for rk3288 and fix decoding issues
->> by Alex Bee and Nicolas Dufresne.
->>
->> The version submitted in this series is based on the code currently used
->> by the LibreELEC distro, excluding hard/soft reset, and with cabac table
->> and scaling matrix functions picked from Sebastian Fricke prior series
->> to add a HEVC backend [2].
->>
->> Big thanks to Alex Bee, Nicolas Dufresne and Sebastian Fricke for making
->> this series possible!
->>
->> Patch 1 add the new HEVC backend.
->> Patch 2-3 add variants support to the driver.
->> Patch 4 add support for a rk3288 variant.
->> Patch 5 add a rk3328 variant to work around hw quirks.
->> Patch 6-7 add device tree node for rk3288.
->>
->> This was tested on a ROCK Pi 4 (RK3399) and Rock64 (RK3328):
->>
->>   v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
->>   ...
->>   Total for rkvdec device /dev/video1: 49, Succeeded: 49, Failed: 0, Warnings:
->> 0
->>
->>   Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2request
->>   ...
->>   Ran 137/147 tests successfully
+On 8/8/25 9:10 AM, Antoniu Miclaus wrote:
+> Add new IIO modifiers to support power and energy measurement devices:
 > 
-> I've also tested RK3399 using Renegade Elite from Libre Computer, though with
-> GStreamer. My results for this suite is 134/147, with failing tests being:
+> Power modifiers:
+> - IIO_MOD_ACTIVE: Real power consumed by the load
+> - IIO_MOD_REACTIVE: Power that oscillates between source and load
+> - IIO_MOD_APPARENT: Magnitude of complex power
+> - IIO_MOD_FUND_REACTIVE: Reactive power at fundamental frequency
+> - IIO_MOD_FACTOR: Power factor (ratio of active to apparent power)
 > 
-> - DBLK_D_VIXS_2
-> - DSLICE_A_HHI_5
-> - DELTAQP_A_BRCM_4
-> - EXT_A_ericsson_4
-> - PICSIZE_A_Bossen_1 (expected)
-> - PICSIZE_B_Bossen_1 (expected)
-> - PICSIZE_C_Bossen_1 (expected)
-> - PICSIZE_D_Bossen_1 (expected)
-> - SAODBLK_A_MainConcept_4
-> - SAODBLK_B_MainConcept_4
-> - TSUNEQBD_A_MAIN10_Technicolor_2 (expected)
-> - WPP_D_ericsson_MAIN10_2
-> - WPP_D_ericsson_MAIN_2
+> Signal quality modifiers:
+> - IIO_MOD_RMS: Root Mean Square value
 > 
-> Please share your list, this seems big enough difference to be worth making sure
-> we did not diverge somewhere between both interpretation of the V4L2 spec.
-> GStreamer has been mostly tested with MTK driver so far. Can you also share a
-> link to the latest ffmpeg tree you are using (since its not upstream FFMPEG) ?
-
-As mentioned in this cover letter the full fluster report can be found
-at [3], and has links to the trees used to produce the raw report data,
-have now also added some more details of versions used.
-
-The tests from the report was running on a RK3399 Rock Pi 4B v1.5.
-
-- Linux: 6.17-rc1 + patches
-- fluster: 0.4.1 + patch
-- FFmpeg: 7.1.1 + patches
-- GStreamer: 1.27.1
-
-JCT-VC-HEVC_V1 on GStreamer-H.265-V4L2SL-Gst1.0:
-
-- DBLK_D_VIXS_2 (fail)
-- DSLICE_A_HHI_5 (fail)
-- EXT_A_ericsson_4 (fail)
-- PICSIZE_A_Bossen_1 (error)
-- PICSIZE_B_Bossen_1 (error)
-- PICSIZE_C_Bossen_1 (error)
-- PICSIZE_D_Bossen_1 (error)
-- SAODBLK_A_MainConcept_4 (fail)
-- SAODBLK_B_MainConcept_4 (fail)
-- TSUNEQBD_A_MAIN10_Technicolor_2 (error)
-
-JCT-VC-HEVC_V1 on FFmpeg-H.265-v4l2request:
-
-- CONFWIN_A_Sony_1 (fail)
-- EXT_A_ericsson_4 (fail)
-- PICSIZE_A_Bossen_1 (error)
-- PICSIZE_B_Bossen_1 (error)
-- PICSIZE_C_Bossen_1 (error)
-- PICSIZE_D_Bossen_1 (error)
-- SAODBLK_A_MainConcept_4 (fail)
-- SAODBLK_B_MainConcept_4 (fail)
-- TSUNEQBD_A_MAIN10_Technicolor_2 (error)
-- VPSSPSPPS_A_MainConcept_1 (error)
-
-The WPP_*_ericsson_MAIN* samples get a mixed Fail/Success when running
-the full test suite for FFmpeg-H.265-v4l2request, however retrying them
-individually they will eventually report Success. Not sure this is an
-issue with FFmpeg or the driver, since they pass with GStreamer.
-
-Interesting that DBLK_D_VIXS_2, DSLICE_A_HHI_5 and CONFWIN_A_Sony_1
-consistently differs between GStreamer and FFmpeg.
-
-[3] https://gist.github.com/Kwiboo/bedf1f447b50921ffbe26cb99579582d
-
+> These modifiers enable proper representation of power measurement
+> devices like energy meters and power analyzers.
 > 
-> Detlev reports 146/147 on newer hardware using GStreamer, failing
-> TSUNEQBD_A_MAIN10_Technicolor_2 (9bit chroma) only. On Detlev side, it will we
-> important to check why 8K videos (PICSIZE*) passes with a single core, perhaps
-> we accidently use both cores ?
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v3:
+>  - remove accumulated energy modifiers
+>  - rename power_factor to powerfactor for consistency
+>  Documentation/ABI/testing/sysfs-bus-iio | 11 +++++++++++
+>  drivers/iio/industrialio-core.c         |  5 +++++
+>  include/linux/iio/types.h               |  1 +
+>  include/uapi/linux/iio/types.h          |  4 ++++
+>  4 files changed, 21 insertions(+)
 > 
-> Note, also expected, we failt JCT-VC-SCC, JCT-VC-MV-HEVC, and JCT-VC-RExt passes
-> 2/49. This last suite is pretty new in fluster.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 2fb2cea4b192..28f51e4cc367 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -167,7 +167,12 @@ Description:
+>  		is required is a consistent labeling.  Units after application
+>  		of scale and offset are millivolts.
+>  
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltageY_rms_raw
 
-Following is the FFmpeg-H.265-v4l2request result with this:
+This looks out of place. There is no existing in_altvoltage_raw, so we need
+to start a new section.
 
-- JCT-VC-MV-HEVC 9/9
-- JCT-VC-RExt 2/49
-- JCT-VC-SCC 0/15
-- JCT-VC-3D-HEVC 27/27
-- JCT-VC-SHVC 1/69
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_active_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_reactive_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_apparent_raw
+>  KernelVersion:	4.5
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -176,6 +181,8 @@ Description:
+>  		unique to allow association with event codes. Units after
+>  		application of scale and offset are milliwatts.
+>  
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_powerY_powerfactor
 
-Regards,
-Jonas
+This one also needs a new section with Description: etc.
 
-> 
-> regards,
-> Nicolas
-> 
->>
->>   Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2request
->>   ...
->>   Ran 9/9 tests successfully
->>
->> And on a TinkerBoard (RK3288):
->>
->>   v4l2-compliance 1.30.1, 32 bits, 32-bit time_t
->>   ...
->>   Total for rkvdec device /dev/video3: 49, Succeeded: 49, Failed: 0, Warnings:
->> 0
->>
->>   Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2request
->>   ...
->>   Ran 137/147 tests successfully
->>
->>   Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2request
->>   ...
->>   Ran 9/9 tests successfully
->>
->> The WPP_x_ericsson tests from test suite JCT-VC-HEVC_V1 has been showing
->> a mix of both Success and/or Fail result for FFmpeg-H.265-v4l2request.
->>
->> Full summary of fluster run can be found at [3].
->>
->> Please note that there is a known issue with concurrent decoding,
->> decoding errors in one decode session may affect a separate session.
->> The only known mitigation to this is to pause decoding for some time
->> and/or do a full HW reset, something to handle in future series.
->>
->> Changes in v2:
->> - Rabase after h264 high10/422 merge and unstaging of rkvdec driver
->> - Use new_value in transpose_and_flatten_matrices()
->> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
->> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
->> - Adjust code style in rkvdec_enum_coded_fmt_desc()
->> - Collect a-b tag
->> - Drop merged vdec node reg size patches
->> Link to v1:
->> https://lore.kernel.org/linux-media/20231105233630.3927502-1-jonas@kwiboo.se
->>
->> [1]
->> https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/patches/linux/default/linux-2000-v4l2-wip-rkvdec-hevc.patch
->> [2]
->> https://lore.kernel.org/linux-media/20230101-patch-series-v2-6-2-rc1-v2-0-fa1897efac14@collabora.com/
->> [3] https://gist.github.com/Kwiboo/bedf1f447b50921ffbe26cb99579582d
->>
->> Alex Bee (4):
->>   media: rkvdec: Add variants support
->>   media: rkvdec: Add RK3288 variant
->>   media: rkvdec: Disable QoS for HEVC and VP9 on RK3328
->>   ARM: dts: rockchip: Add vdec node for RK3288
->>
->> Jonas Karlman (3):
->>   media: rkvdec: Add HEVC backend
->>   media: rkvdec: Implement capability filtering
->>   media: dt-bindings: rockchip,vdec: Add RK3288 compatible
->>
->>  .../bindings/media/rockchip,vdec.yaml         |    1 +
->>  arch/arm/boot/dts/rockchip/rk3288.dtsi        |   17 +-
->>  .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
->>  .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  826 ++++++++
->>  .../platform/rockchip/rkvdec/rkvdec-regs.h    |    4 +
->>  .../platform/rockchip/rkvdec/rkvdec-vp9.c     |   10 +
->>  .../media/platform/rockchip/rkvdec/rkvdec.c   |  184 +-
->>  .../media/platform/rockchip/rkvdec/rkvdec.h   |   15 +
->>  9 files changed, 2886 insertions(+), 21 deletions(-)
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
->>  create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+> +
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_capacitanceY_raw
+>  KernelVersion:	3.2
+>  Contact:	linux-iio@vger.kernel.org
+> @@ -1569,6 +1576,9 @@ Description:
+>  
+>  What:		/sys/.../iio:deviceX/in_energy_input
+>  What:		/sys/.../iio:deviceX/in_energy_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_active_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_reactive_raw
+> +What:		/sys/.../iio:deviceX/in_energyY_apparent_raw
+>  KernelVersion:	4.0
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
+> @@ -1692,6 +1702,7 @@ Description:
+>  
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_raw
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_supply_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_currentY_rms_raw
 
+Shouldn't this be in_altcurrentY_rms_raw? in_currentY_raw is DC current, not AC.
+And we will likely need IIO_ALTCURRENT to go with it.
+
+>  KernelVersion:	3.17
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
 
