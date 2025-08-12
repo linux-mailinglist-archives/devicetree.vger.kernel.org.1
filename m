@@ -1,142 +1,145 @@
-Return-Path: <devicetree+bounces-203907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9008AB22E68
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:59:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA8B5B22E99
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F059B7AC905
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:57:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 143EF2A1CDE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A835B2FABEB;
-	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B603B2FA0F4;
+	Tue, 12 Aug 2025 17:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LLcPmm4F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LQkQyupD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE512882AB;
-	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069101A9FB7;
+	Tue, 12 Aug 2025 17:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755017960; cv=none; b=Ow+v+WQ8DAb69Ael6jZatqIMoxJl7JXaGeJ9Hh0cLT00QnkZ4Dk3BCe6VAS37YxELGeXeIHVOUF2VtMlbJ+n3XxBIBy6sSXCZZVjCChF4YYBLqQAmhQob81C4V+SeLe7F28ap3J4Xzb8A7eQREHKDqPrA4sCtm1iocjRG8i5mVo=
+	t=1755018593; cv=none; b=Q9kop5tqxaYcD+/CcNB/KNXj8tPmjQHsxvGd93KVhVmc/C348pBjMtZWWm+AQ9ENUqWWzBanILDH9C/HN9YXEujkIOm4myC7gcnwGr2EmbzwJAeIqZFKejkbD2J2e6PcXfg/hMNy+BdKu5XWKbMJaX/kft+JY9IkbsvvCs3CAOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755017960; c=relaxed/simple;
-	bh=QG7yl+OjilKldnfrLrCLthek8RiczM5eXczR66KP9Ig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uiTBuP+m5Scluye3ylYLKzdMWsV+vS+QM3/f3k6fxWjrXIb7NfL8wFiz+9VOn+Rrtu/xi326jlqKcdp5EDJLZWRDAFM4Eqb7NTqrkH8EHo0UFq7VtBEZ3Kgk+5yXqnR8GLBXj/JydvK6ekGlS4YaNPTLQON0wHefU6KtMw/LxxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LLcPmm4F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09EB0C4CEF6;
-	Tue, 12 Aug 2025 16:59:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755017960;
-	bh=QG7yl+OjilKldnfrLrCLthek8RiczM5eXczR66KP9Ig=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LLcPmm4FxuZN9IuO5Mm3ufQP8b+kubAPSbN+GqlLnKUS/+IZgSxgiK/N5TIrELyvb
-	 oRy+bMXzHKnDSNST/BjkfnjLChHLjJGEqWaaq2H4VTPX5Xm4za4mOh0TAbbHFbjiFf
-	 pXDIvOQlrIeq/TF4k2Zoy44DRqmop4FqMn93QWw+ikf02SoY/s6xKdpoKh1orGRz+s
-	 KCre5hg+zd0pswPZCrvyUJ4QxFYDxEc9dSvjVG0xYIv91APJ2sZMPjKmt92Y2fyI55
-	 IR0gx2ab+w4mrBMvqif9lWG3dO8CXl3RBY4F/S99aSD7DifCKsDLvYfXe0FHF3KY8l
-	 UAYoDP+k64SqQ==
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso8981078a12.1;
-        Tue, 12 Aug 2025 09:59:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUSq6MeEOl3rTaTJffO4hO+971b7DKvw6RBuAf6CcF89WHgNVeZty4Ocfc1E9XpKOLMW41v5pdjRp6+@vger.kernel.org, AJvYcCUeaHtOp7Jj0vLqkFI+7b+94PJh+2XpuNMS3hXU/J+gG4n8DYSqXUyWxL0ZLmXN7eBsJ0XulNk/6HWVTZSf@vger.kernel.org, AJvYcCWTQ9vvS5urJ5avGJodl/cNTun0Wh50eOFk5QnEoJ17WUE4YwsNIptfvjLil6RWYrLCHenENakzy4zN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSbvBwGPSgqDmAbnPRo8a175806s9gmwlR9TVvou7fmWINuEAq
-	oun174viUqJuulCqbtDWJeGTbZ63RLzKfZLEApJUizPvWvtpjIsY0kZ/pikSFno1mS3Q6LH6QJZ
-	jPQ6mLk/yV/2pFz61pApe5Z1K2RySAA==
-X-Google-Smtp-Source: AGHT+IF1rFMvLqTw0zhBnEbF/24oh+pXC7Cyhcry2T0uiCBMH7+QMKcaZshDTGiUzXOGycYjeiwyJQZcWXyjV2prnqU=
-X-Received: by 2002:a17:907:2d1e:b0:ad8:9257:573a with SMTP id
- a640c23a62f3a-afca4cba79emr5530366b.5.1755017958559; Tue, 12 Aug 2025
- 09:59:18 -0700 (PDT)
+	s=arc-20240116; t=1755018593; c=relaxed/simple;
+	bh=GJqSwKXrv9kf1Eg8zsDXI1RQAGBzTE4/rWNbVTUC9A0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aXc7BtfmpCJhbsKrtFJ8ebZlHfQpqb+Saiw3KQPMyI2sgYfFOJP9KT5reLzAtv0LG/UavE9cJdCqaaNu+3Tlnb9c5yU4Qw622gaCuYNFhigcIk9nYbBnmYYa+A+QwT8H8AL+JJDNl9TIxXMvFXhijqCpn99Wpa7ddUvSW7kSEIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LQkQyupD; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-605b9488c28so10040440a12.2;
+        Tue, 12 Aug 2025 10:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755018590; x=1755623390; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I2n9q+MzB6DY/bKUzRvh7nOvEqA1CZKBA0NS5WtsojM=;
+        b=LQkQyupDaYNOx87ryH+DFII94Fy+rTLhZHVArHyAEQefVuJhKStX/8QlJTkvp4KTPk
+         rF8gOpnTR0ZCS7ilibFKPjJeSGUVChYwbKxBgedd2ruk17dwamVhuhBvzDG1uF0YHBP8
+         TMSVSREOiiGApkRZ93yprm+e+ivQGXUckOdeZ/VvCe7WJ30GrT7cSkPHMlq1ktI7Wx+v
+         1o2hWjS8xjtxt+ZV3hsG3jQU2lvdtuDGEH681hrp0nuYLizY/OzSxtjHfXhJ/r2qS2vX
+         CiMtuBwSTL2a/5A1xLGbdIBUvOyqC9QYvVuHzoNJ1q91mG1llNxkf+blfWUjtNa8am2x
+         SLuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755018590; x=1755623390;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I2n9q+MzB6DY/bKUzRvh7nOvEqA1CZKBA0NS5WtsojM=;
+        b=wr+793ZDppRx99P6CInAvrHZZcDhqVaUUpU/4avXcoKL8SnyqFwP/Zj9pT5wRuc9Gk
+         teXzOFHs52aqWIgAZMNI1qUNTGFVK9dGxSjmDox5sO4t4f1St8n2GluO2shFUzIWKw7H
+         C3cKfTYTAS01lThecIpHIiQ1PRVfHlG+avfPPyp4b06dtFDrJz9BeNPzDJRx9rXe2V3D
+         5utRzFiNdjpI++J4sGyILfF0uZ5u08et+aOgQX7kyqSIjmtJMyWTX1ajWHTntk3o2vfs
+         uQzKR3vkyupdIwUvy4iqkZTz0mnZEGRDE1FnpxmPg7Kp4UvQrLPPeruCssCSKBcamkEx
+         qvjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUiZPq3EFQrGzUFViwnglXVkDUyu8w1/mDGHg2SyswzCgt0JzQoe/dQLaNuqLwqWQUaE/volSCzZm5M@vger.kernel.org, AJvYcCVDJ+KZl5m8RtRDIwYDCnid9nvDmXapCUcwFYa/+hAQWL3cCxrLJ+WvuDM11NiEkonZ47IXPfmF2XkQ@vger.kernel.org, AJvYcCXN6PAgs5VLJkgtjKvapzV440Su19yj1WNtnEiy/TYfKaZcRvFNRZwvjMBf2RlZK1h31smiEchNDDjaijLd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJ8PEofV6ZJ7pYUuAWt9BDYnolENsRW0j0/DHXCdfQfoSKEjYq
+	OFvfNXyveX0P1AdYdtepQ/H8gYVxbO4bT5Moh2/N68X2CzdTbp/AiX+h
+X-Gm-Gg: ASbGncveiNkJmC8SjAVB1P+z6+sUNykV23DR+Vl4oIM505Nssmstk3dYFu65T3ApBI9
+	nm92Yw5ebSMP1SdCnIA3QxP095c6Aljmx/9lAMSP3lvIMRTI1aAa5/nYYe3ToIIDsWCAzqlbv91
+	TrQ0xg/uDHkuZXqPr4PSKS5kQ454KwkpuMJJbTfibuUVIQtHK8TTWkHYbfKI3UMOMQFOMhm2PTR
+	7RWXilDYyK/mCGytRM2hERL9ILw7iteg2qHgF+V+YTLVMS5kJp0+LNHeL70UD4jXwSkjCp5Wao8
+	8CDKfmTRgo8EMbMncQjg+tHJhsBtgoFTAqPD38RSNsDQNUJ6ndb0VPS//L/IMFUHlT9NVgvSLj4
+	cMmg08B7jHNdhZv6lAjxfPaA+imO3
+X-Google-Smtp-Source: AGHT+IGWi0gclXsMRyvIXhVx9dBSCoSZApIbrxrm8VuThflbMnovGdhJ2eD3qjZjNWNT/GrwCXDxFw==
+X-Received: by 2002:a05:6402:2690:b0:617:d013:74a with SMTP id 4fb4d7f45d1cf-61866ffc84fmr507117a12.4.1755018590063;
+        Tue, 12 Aug 2025 10:09:50 -0700 (PDT)
+Received: from [127.0.1.1] ([185.177.137.147])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-615a911451csm20060302a12.60.2025.08.12.10.09.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Aug 2025 10:09:49 -0700 (PDT)
+From: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+Subject: [PATCH 0/3] Add LTC2495 support
+Date: Tue, 12 Aug 2025 19:04:09 +0200
+Message-Id: <20250812-ltc2495-v1-0-7bf4c6feec2e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <aJms+YT8TnpzpCY8@lpieralisi> <c627564a-ccc3-9404-ba87-078fb8d10fea@amd.com>
- <aJrwgKUNh68Dx1Fo@lpieralisi> <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
-In-Reply-To: <e15ebb26-15ac-ef7a-c91b-28112f44db55@amd.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 12 Aug 2025 11:59:06 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJF6s8GsGe1w6KEkeECab956YiBSFbdbHOiiCv2+v3MAA@mail.gmail.com>
-X-Gm-Features: Ac12FXwQ-VolqLcu_Kk_NoubrTpWU2JGnruO8pHHND6fvG1ZgFz7YpsckQnOIjA
-Message-ID: <CAL_JsqJF6s8GsGe1w6KEkeECab956YiBSFbdbHOiiCv2+v3MAA@mail.gmail.com>
-Subject: Re: Issues with OF_DYNAMIC PCI bridge node generation
- (kmemleak/interrupt-map IC reg property)
-To: Lizhi Hou <lizhi.hou@amd.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, maz@kernel.org, devicetree@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAl0m2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDC0ND3ZySZCMTS1NdU3MjC0PzZEPjtBRjJaDqgqLUtMwKsEnRsbW1ADL
+ khyNZAAAA
+X-Change-ID: 20250811-ltc2495-572817c13fd3
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755018589; l=1217;
+ i=y.alperbilgin@gmail.com; s=20250811; h=from:subject:message-id;
+ bh=GJqSwKXrv9kf1Eg8zsDXI1RQAGBzTE4/rWNbVTUC9A0=;
+ b=0D/CA8UbcZLAi8agtjIDtnJihfA/nSRBZQNSmO/yx8XtMXo83TS8dh8W0VxkfVw+GGl23ynum
+ EVLpU90atDXD+yiT9kmtiH/NkaiXxaiyVuT+LYWzelXMM9E2AuZ18yu
+X-Developer-Key: i=y.alperbilgin@gmail.com; a=ed25519;
+ pk=FtW2oyQ0+xlYU0XmhYiJYC3lNPtPrgeE6i4WXPwaFnY=
 
-On Tue, Aug 12, 2025 at 10:53=E2=80=AFAM Lizhi Hou <lizhi.hou@amd.com> wrot=
-e:
->
->
-> On 8/12/25 00:42, Lorenzo Pieralisi wrote:
-> > On Mon, Aug 11, 2025 at 08:26:11PM -0700, Lizhi Hou wrote:
-> >> On 8/11/25 01:42, Lorenzo Pieralisi wrote:
-> >>
-> >>> Hi Lizhi, Rob,
-> >>>
-> >>> while debugging something unrelated I noticed two issues
-> >>> (related) caused by the automatic generation of device nodes
-> >>> for PCI bridges.
-> >>>
-> >>> GICv5 interrupt controller DT top level node [1] does not have a "reg=
-"
-> >>> property, because it represents the top level node, children (IRSes a=
-nd ITSs)
-> >>> are nested.
-> >>>
-> >>> It does provide #address-cells since it has child nodes, so it has to
-> >>> have a "ranges" property as well.
-> >>>
-> >>> You have added code to automatically generate properties for PCI brid=
-ges
-> >>> and in particular this code [2] creates an interrupt-map property for
-> >>> the PCI bridges (other than the host bridge if it has got an OF node
-> >>> already).
-> >>>
-> >>> That code fails on GICv5, because the interrupt controller node does =
-not
-> >>> have a "reg" property (and AFAIU it does not have to - as a matter of
-> >>> fact, INTx mapping works on GICv5 with the interrupt-map in the
-> >>> host bridge node containing zeros in the parent unit interrupt
-> >>> specifier #address-cells).
-> >> Does GICv5 have 'interrupt-controller' but not 'interrupt-map'? I thin=
-k
-> >> of_irq_parse_raw will not check its parent in this case.
-> > But that's not the problem. GICv5 does not have an interrupt-map,
-> > the issue here is that GICv5 _is_ the parent and does not have
-> > a "reg" property. Why does the code in [2] check the reg property
-> > for the parent node while building the interrupt-map property for
-> > the PCI bridge ?
->
-> Based on the document, if #address-cells is not zero, it needs to get
-> parent unit address. Maybe there is way to get the parent unit address
-> other than read 'reg'?  Or maybe zero should be used as parent unit
-> address if 'reg' does not exist?
->
-> Rob, Could you give us some advise on this?
+Hi Maintainers,
 
-If there's no 'reg', then 'ranges' parent address can be used. If
-'ranges' is boolean (i.e. 1:1), then shrug. Just use 0. Probably, 0
-should just always be used because I don't think it ever matters.
+This patch series extends the existing LTC2497 driver to add support for
+LTC2495 ADC.
 
-From my read of the kernel's interrupt parsing code, only the original
-device's node (i.e. the one with 'interrupts') address is ever used in
-the parsing and matching. So the values in the parent's address cells
-don't matter. If a subsequent 'interrupt-map' is the parent, then the
-code would compare the original address with the parent's
-interrupt-map entries (if not masked). That kind of seems wrong to me,
-but also unlikely to ever occur if it hasn't already. And that code is
-something I don't want to touch because we tend to break platforms
-when we do. The addresses are intertwined with the interrupt
-translating because interrupts used to be part of the buses (e.g ISA).
-That hasn't been the case for any h/w in the last 20 years.
+In addition to supporting the LTC2495, this series also enables the
+reading of the internal temperature sensor channel for both the newly
+added LTC2495 and the already supported LTC2499.
+
+Please consider these patches for inclusion.
+
+Thanks and best regards,
+
+Yusuf Alper Bilgin
+
+Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+---
+Yusuf Alper Bilgin (3):
+      dt-bindings: iio: adc: ltc2497: add docs for LTC2495
+      iio: adc: ltc2497: add support for LTC2495
+      iio: adc: ltc2497: add temperature sensor support
+
+ .../devicetree/bindings/iio/adc/lltc,ltc2497.yaml  |   3 +
+ drivers/iio/adc/ltc2496.c                          |   1 +
+ drivers/iio/adc/ltc2497-core.c                     | 100 +++++++++++++++++----
+ drivers/iio/adc/ltc2497.c                          |  40 ++++++++-
+ drivers/iio/adc/ltc2497.h                          |   9 +-
+ 5 files changed, 128 insertions(+), 25 deletions(-)
+---
+base-commit: acbbb5a20971089064ca6b271dd251e629be8d4d
+change-id: 20250811-ltc2495-572817c13fd3
+
+Best regards,
+-- 
+Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
+
 
