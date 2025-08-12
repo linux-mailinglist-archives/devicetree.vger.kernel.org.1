@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-203583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F018EB21F83
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:32:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5768FB21FB2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:40:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CC461AA5B4A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:32:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6ACDF188E7E7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D002DCF62;
-	Tue, 12 Aug 2025 07:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747872D7803;
+	Tue, 12 Aug 2025 07:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jqUtyZCn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hKV6/h+e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500AF2D8375;
-	Tue, 12 Aug 2025 07:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F841A9F99;
+	Tue, 12 Aug 2025 07:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754983932; cv=none; b=Wfkk2j2ZHh27VIiR30Oo1juzj6zzgrLpWkMMKMyNyUp45SQzQErTnc6Deejt5zDHii0cg19MjCspGWV5iUjSpFihZ51nQK1ZkaUmauZorf+ge2eoisRLFgD2qAFFqEY2nMHOrlb+eAfLmH9yxwTVtWW4eW2s7kCiOQXicRvedwQ=
+	t=1754984426; cv=none; b=phBo9mHCFroehRnuOCDD64AS5/Hz7WfYbUXYdOufveJ/TG62lZZ8knIgahkSv6sHTDa9BbqzxU3hW2lG41v8GobsyQPxV7dCWytRS5xzAca0uF5LsAmdDs9hqv2PEtg4Z3eKeQinQo/T0r1XtvD3S2kU/XBaHuXVc2JZ21HZJCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754983932; c=relaxed/simple;
-	bh=O+0/mMzcYBzAXr5xY2ybwh3+r//NqA3Z+JWUeLP3lH4=;
+	s=arc-20240116; t=1754984426; c=relaxed/simple;
+	bh=wfjGcl31LN8RT0HnE6qlAX5V1ZOh3Ia0Y/31tNz9kKQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pCPXulXJwFjnMX0/LTaFnMabiREJkhKHXBSwPfzRLjw03b8MKDZmOgV3RUjjGafficgJGBEtkIu4ENPMEpSPw0ufZNyDWEYcHbbn4+LvpEW4YQl+5n1P+xaIxMxuTgRQcmiucWACt1GSuUzuIU07OkQwu33qeScURtcefhc2CWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jqUtyZCn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76E05C4CEF0;
-	Tue, 12 Aug 2025 07:32:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=toznbd1gFh3nx6zZVQ6CPzXr1RbRk3luA59O4rQadJnMWPwq2qr7dfZXr4vgpAhh2GrSJ4LiFWcva5urlDDtQXD2wNctn24c7cxycjNVAmO04ymTgkzWOUkUp/Yh7qx+x9ktcxOnDqx/WUl6eMhMsWtTGQocmbCe6fdDVPOakt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hKV6/h+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 581A7C4CEF1;
+	Tue, 12 Aug 2025 07:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754983931;
-	bh=O+0/mMzcYBzAXr5xY2ybwh3+r//NqA3Z+JWUeLP3lH4=;
+	s=k20201202; t=1754984425;
+	bh=wfjGcl31LN8RT0HnE6qlAX5V1ZOh3Ia0Y/31tNz9kKQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jqUtyZCnXk+znDbQjnFeGQOxKcz2AIPqI60/CZMZjjVL9St8LUuPHFepgL2ODH7Ve
-	 R7obL8/R2LFEiuafdIg0vPBB01R6gCyFyC0OGFJ80ZiB5iAFUoqiu99lD3qKJ6s7YM
-	 BUHD9b5IME2vAdrMcXwkOxGCJ7UxXd0PXx7MgdhaU4K6p7KY4vM1PaYKy73BYGIPQ9
-	 /1bD1fHuQK5srVVFWb9lluTLfm5V0alCUm/M8g+91BcVSw3YXzxNaViXF0g6AWjfDA
-	 wdyayNd14vwOZ2wM4jlUzeaRhkB0bmbdViN2v1lJ0f4Vjl67cTMEeTijj/accEY/7R
-	 7BkAoveiQrjJA==
-Message-ID: <c44c9aad-b08e-4be8-b135-258305b1f950@kernel.org>
-Date: Tue, 12 Aug 2025 09:32:04 +0200
+	b=hKV6/h+eBdhrGOR8LWo2tUnD1ifH3Wq1YtGrBb6JHh6uQ1buxuoWe6QbWqArRuRb9
+	 GD8Rh+IGPTCxcCTB3c9/9SWXmhuWUlJT55gaGF9GMKQFNrqBn5ogTQIiKhmgfT26OC
+	 uz0rOg9BW292o9M+5Fel25c9L9bEL34TpN8otEYXNXJkH3BZb4v9301FlHTvcUZDTe
+	 kx1VCGUaUvfXwAgoyaZRLQajIHezn+wNVE0J2OZsZn6HQKvcr9S+1JYIReM7x69v16
+	 jRtln5FTv7R+EZbLyRllsMTXjwFB7KNjQYTUD6y6TFcwDQytgWAtDdxfWQOmo5BXZI
+	 1IObiCZTNBUuw==
+Message-ID: <d5d0133f-1b42-4ad0-a3e0-2a2bdeb67484@kernel.org>
+Date: Tue, 12 Aug 2025 09:40:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,39 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 04/25] virt: geniezone: Add GenieZone hypervisor
- driver
-To: =?UTF-8?B?TGlqdS1jbHIgQ2hlbiAo6Zmz6bqX5aaCKQ==?=
- <Liju-clr.Chen@mediatek.com>, "corbet@lwn.net" <corbet@lwn.net>,
- "mhiramat@kernel.org" <mhiramat@kernel.org>,
- =?UTF-8?B?WWluZ3NoaXVhbiBQYW4gKOa9mOepjui7kik=?=
- <Yingshiuan.Pan@mediatek.com>, "rostedt@goodmis.org" <rostedt@goodmis.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "mathieu.desnoyers@efficios.com" <mathieu.desnoyers@efficios.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "will@kernel.org"
- <will@kernel.org>, "richardcochran@gmail.com" <richardcochran@gmail.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WmUteXUgV2FuZyAo546L5r6k5a6HKQ==?= <Ze-yu.Wang@mediatek.com>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?B?S2V2ZW5ueSBIc2llaCAo6Kyd5a6c6Iq4KQ==?=
- <Kevenny.Hsieh@mediatek.com>, =?UTF-8?B?U2hhd24gSHNpYW8gKOiVreW/l+elpSk=?=
- <shawn.hsiao@mediatek.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?UGVpTHVuIFN1ZWkgKOmai+WfueWAqyk=?= <PeiLun.Suei@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-trace-kernel@vger.kernel.org" <linux-trace-kernel@vger.kernel.org>,
- =?UTF-8?B?Q2hpLXNoZW4gWWVoICjokYnlpYfou5Ip?= <Chi-shen.Yeh@mediatek.com>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <20241114100802.4116-1-liju-clr.chen@mediatek.com>
- <20241114100802.4116-5-liju-clr.chen@mediatek.com>
- <7b79d4b5-ba91-41a0-90d1-c64bcab53cec@kernel.org>
- <cb84d8d87a67516f9b92a89f81fe4efc088f7617.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: everest,es8316: Document routing
+ strings
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, linux-sound@vger.kernel.org
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, drake@endlessm.com,
+ katsuhiro@katsuster.net, matteomartelli3@gmail.com, zhoubinbin@loongson.cn,
+ KCHSU0@nuvoton.com, patches@opensource.cirrus.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org
+References: <20250809151853.47562-1-jihed.chaibi.dev@gmail.com>
+ <20250809151853.47562-2-jihed.chaibi.dev@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -128,17 +105,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <cb84d8d87a67516f9b92a89f81fe4efc088f7617.camel@mediatek.com>
+In-Reply-To: <20250809151853.47562-2-jihed.chaibi.dev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/08/2025 09:04, Liju-clr Chen (陳麗如) wrote:
-> we have guarded the gzvm driver with the CONFIG_MTK_GZVM Kconfig
-> option. This ensures the code is only compiled and active on selected
-> platforms, and will not affect other users or systems.
+On 09/08/2025 17:18, Jihed Chaibi wrote:
+> The es8316 driver defines several DAPM widget names that are used for
+> audio routing in the device tree. However, these strings are not
+> documented in the binding file.
+> 
+> This forces developers to read the C source to discover the valid
+> names, which can be inefficient and error-prone.
 
-That is simply not true, since it will be enabled in defconfig in EVERY
-platform. Look up approach of single kernel and single image.
+Reading free form text is as inefficient and error-prone as reading the
+driver.
+
+> 
+> Add a list of the input and output widget names to the binding's
+> description to make it self-contained and improve the user
+> experience for board bring-up.
+> 
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/everest,es8316.yaml  | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.yaml b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+> index e4b2eb5fa..cd073dd0c 100644
+> --- a/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+> +++ b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
+> @@ -12,6 +12,20 @@ maintainers:
+>    - Matteo Martelli <matteomartelli3@gmail.com>
+>    - Binbin Zhou <zhoubinbin@loongson.cn>
+>  
+> +description: |
+> +  Everest ES8311, ES8316 and ES8323 audio CODECs
+> +
+> +  Valid routing names defined in the driver for this codec include:
+
+Anyway, don't describe drivers but hardware.
 
 Best regards,
 Krzysztof
