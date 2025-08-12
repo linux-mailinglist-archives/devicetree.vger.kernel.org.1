@@ -1,190 +1,487 @@
-Return-Path: <devicetree+bounces-203877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975F7B22BBA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:31:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C56B6B22BC7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:34:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 999791899B88
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D7C6426EF3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DB427FB27;
-	Tue, 12 Aug 2025 15:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED67A2F5329;
+	Tue, 12 Aug 2025 15:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SrgXhh1C"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FwCz1DDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74C6A921;
-	Tue, 12 Aug 2025 15:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B4A2D3233
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 15:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755012708; cv=none; b=qLtgz69kHu9Qj0EOwEF1PySyW5qfvG/HvQ9eUE7t/ZT06a+b1sww7vhIAH4Wx+4gtnuNOrp0z5WTw6oBd/2O6hlepRVZpxES5J2F/oTb+imaLb0b8PviDFdH1ChYt7keCkt65F8iO2sDYAeTvQYcwv1SSgOfknKLtvw6Xal0h7I=
+	t=1755012853; cv=none; b=WRsR8yJPCAjS29bYb6qbQv28M9PjusVM0fhiuzgT6kTh+kUaRV1ibyGwTG844nGp6CSgRwLwGUFCUd2K70Ys0N/KhNkUq9P7NYukRsmqVDBJwFJKQsulJ2VoLFWkJSLMl/ovz+zv5WUNRdakkOauv5H4Ml9g87+pTzmnGp6NZs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755012708; c=relaxed/simple;
-	bh=7Hv+ueAWXCZtucc5ihKieZHy7B8J1yy5o2aV43q1n4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RcFAXIUchM8k5gqZzOBEaS1/RzBR5ggxQut154LNoHQQHbbwn++GkBh7WQesq/5OmbEmqUzoFuXVYvT3sHY9W68sN8R9/dJ6tw3gmDOs0KRaWPuHbwH8tc129wDmz7XoUNVVZc8bw/UfH7kWLzOWEZvz9ggbyzDHn+rW5mqIvHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SrgXhh1C; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57CAw5MP005086;
-	Tue, 12 Aug 2025 15:31:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7blMCBvW2GltCpqVvVOPApYy/QCz0KiQXGkPuenrorg=; b=SrgXhh1C/Js4b0Ia
-	qN6WYypsfJa3FB1x3H/Vt7W3s8yfOQMeqUlcAVd/yrt0UFNP/nFxDBRfO5AhzVrM
-	o66+ADKtw+Nnz+Sbl8l7US5Aoj0n/kT/ySkkygO7Dxs/BRrsfhdm/Lmpy+WyHmz0
-	VG4oaE7Qc69NkMu6QIti6v5VDMmiwhq/PLPcz+17Vxhu1lXNiK/i/lnv1jMptEob
-	UlTKAWjSf2IfyNjHp3731al2qs0xqSV30mVDm4k4w3P8iZ4YiuiYc6Go43oyIUTs
-	Ek+NMDZ+sTybUEmX2DzpGfZcQ34ABAISQdehPk4O+09M9blTujw5x2mQDcmcCREI
-	AXoLuQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dygmgmd3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Aug 2025 15:31:43 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57CFVgCh012103
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Aug 2025 15:31:42 GMT
-Received: from [10.216.52.158] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 12 Aug
- 2025 08:31:39 -0700
-Message-ID: <956e5828-303a-44ce-d41e-0f7b977581a8@quicinc.com>
-Date: Tue, 12 Aug 2025 21:01:36 +0530
+	s=arc-20240116; t=1755012853; c=relaxed/simple;
+	bh=xaeWnJ5wkRdOsQs1+RdAsfMNuHQdh6ejaqjcgSCAdLU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=jPT/UEybXMz/CYqF/xst2esJppZY0cNx+P7zg/QfylZyNTa1kDEM7fGdH05OM42h9xKDWO8agIKLmTt3ulrgfrZR3ULKOWSgUKlk7rrelL3fPNH8OVz9FmgTyeyRMVd+/b5fQUQGwP5ccJ7DexnFjFld4spb/qsHc3cDXTr4bb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FwCz1DDX; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-30799a41109so2092958fac.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:34:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755012850; x=1755617650; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+EQoHQpdLoccE7byal3Z0g90/NiviiY9nwSpgAP6KmU=;
+        b=FwCz1DDX2CwEDF/a2oUkXFVau3oSewPB7UAj4AU3a59jUlsed12cbjYqPU8hLoNn/h
+         1cQfLTGOrHQvYVVZ9mTjkkvLwNf2HmZRa4/d/Cgg0lPYmif7TyyVgyseIRBD3ya8kMFV
+         V1u/7hV+UehtrsP5fmhehMkhh/7U6uD//gjfazSPGq1h8IaYAaijRTtDHZGgmIa7Q7kt
+         pJMogmvRcRx8Hgby4i1azwcRCdaoK/ZeRQGZpW4C85B6RjBkZsIjDDHCJK8gOvMPr25q
+         kdqFLc+9aI7VR3jRmPGaQW50huUOu5A6ggQPPQAIjDrr10FIrZtwliUHVHah38VTN72m
+         oZwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755012850; x=1755617650;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+EQoHQpdLoccE7byal3Z0g90/NiviiY9nwSpgAP6KmU=;
+        b=bYNBRW0ubJObiOSY/OPy570nlF0pNKUkBrOuwTswxj3JJwMd8VuBPVM7J73L5NvW7z
+         ztImSc3h29KLgEcTAcRxoDmxfMcWsVK0daaP/LVN+Rq8bRpKVNaISzPnaHFCq6Z9DY//
+         C9WAoGivRfScEugeb5rDso6/aTipvJ3P+GIvGmGTsD4g2wE/6m4rDxL1L7svs2kXlLr+
+         KOmNmhFlejEp0yYepoyqaeIyV8TJujL8e83Mx0G/9JGs2m6wKClFfveLN7JAc255c2+A
+         k0Po24zinNkU8jAqYX0Klvv2NNl1KChIs3YM0KUNHtf+FgelmZHCYWt/JUTu4YPwkqAS
+         yhPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUoGbYwZjKz8MdJ+9K+Lrdz0isWEibY/3Aw7AS0bgxukgf33/3ws2erlaF7WWJMZHzW3UYlqbHcBzyp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY2pjWLh4GkbtyPvoVcoBk66qjB0di8J80Y5rkv8CHveLexSXn
+	/Mcu6T2867c+f9EXAGIuN6v5OjwAMSKDtGntngzExrpBNACoakXrfdlh+WxYY61PEz0=
+X-Gm-Gg: ASbGnctRnTqpwFf9xEa5cs1i68VsELIh72A1RSV8FHlUI+kmdxOZyEoi/fci7d99Ivr
+	37aR1Mgn+yEH8YlCek/BWQl0ersR/d7dktMbj7byaaUp+V0TAO6fADkyAKVPdNi0ZI6jXYlW6Lj
+	g1I/T0kxQL3qTDvFdKQcejxM8gBUCHBW4AanSw5Aayat/4hbtps9XkrPV7gVCxDPvaSc/OJlTAs
+	z/YFiJM5lrVX66wp/at74G2a7qCTCuUlDe61XNzvOMC6lDh4Rj25lRHvxgSh2arCQusCy/bmzvi
+	apjK4plCae0HFvIX1QYNNEetG2E/IHSvVdwtVqOkGxu1MIJVvt342XCpnCOT2Y1KVH+eqeL4m9K
+	pS81+QcKQ8X//C99kiD9SGAYOfw7s5UCrTmLR5onIPjOoKY8urdkCxM+jftcbIQicvln1WpniHn
+	I4rU8pFZLN0Q==
+X-Google-Smtp-Source: AGHT+IH3+67Bpmwt8b5E1oD0rMhZf8pp6j8Ed5gmKyMStmI9U7W+QB1lbPEKEAmNqKjd1DII8HhXgg==
+X-Received: by 2002:a05:6870:6c11:b0:306:e92f:8a68 with SMTP id 586e51a60fabf-30c94e7ffd0mr2320201fac.2.1755012848420;
+        Tue, 12 Aug 2025 08:34:08 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:1fd1:71c7:ca6b:f533? ([2600:8803:e7e4:1d00:1fd1:71c7:ca6b:f533])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-30bedd2c7dfsm4712007fac.23.2025.08.12.08.34.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Aug 2025 08:34:07 -0700 (PDT)
+Message-ID: <2214d559-5a5f-40e5-aa46-298ac2eaa9c2@baylibre.com>
+Date: Tue, 12 Aug 2025 10:34:06 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH RFC v2 1/3] arm64: dts: qcom: sm8750: Add Iris VPU v3.5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mcp9600: Add support for mcp9601 and sensor config
+To: linux-iio@vger.kernel.org, Andrew Hepp <andrew.hepp@ahepp.dev>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+References: <6esdq4e4r7vmxwlyfs4a3sgdomazxospr3go2oaqkwhpgw6mkh@hdca2d3f6zwp>
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250806-b4-sm8750-iris-dts-v2-0-2ce197525eed@linaro.org>
- <20250806-b4-sm8750-iris-dts-v2-1-2ce197525eed@linaro.org>
- <e414163e-e171-466f-965d-afb9203d32fa@oss.qualcomm.com>
- <2ok6o4e5pz4ichhchycqkns2afzce5y6ppjr2av4yz3wc3iatk@m3cdck7csavt>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <2ok6o4e5pz4ichhchycqkns2afzce5y6ppjr2av4yz3wc3iatk@m3cdck7csavt>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAzNSBTYWx0ZWRfXxurZ0jmjwxEn
- XcpM6fR3f42zvOVvQkJeGHlefNG4c/05a71IoUFwq3mAj9KBKC3UWEHl1fWZtc7nJcLS8UP3U2/
- xkyMo7FP5TjmKVpBMj6rSdhc1RD7H++/jbCHl0F8P37DNziG3HOcsf8Z8NNn1PyTECr7Zrm4ToA
- VYisXUFFqvLqqSOtepanQjULOZHXRFxYwTm0CuIH3WY2sg65+e+cQoAj6NOTSeNXwRpiSOXa0Ct
- +UJ/UPJPxYBK+Q+x9PYHOglOQAyhQJ/99b1vynqHh1KuCQC3LBtnBi1yH+S5gMK/TpokS/XLGIo
- +kHGMo2zTl1Nvvf9rhzrN9Yee5fZy1OaRf0eAKFpSNtm7JLbKTP7edbuWt2IbYZK0JrD9rJ0KMr
- QItjEBAw
-X-Authority-Analysis: v=2.4 cv=FvMF/3rq c=1 sm=1 tr=0 ts=689b5e5f cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=U5oYCqrO6Bkvc5ZcE2kA:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: YLnD3H0oEglZlYbY7akfBn5mPFIsdvNl
-X-Proofpoint-ORIG-GUID: YLnD3H0oEglZlYbY7akfBn5mPFIsdvNl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-12_07,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 bulkscore=0 suspectscore=0 phishscore=0
- clxscore=1015 impostorscore=0 spamscore=0 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090035
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <6esdq4e4r7vmxwlyfs4a3sgdomazxospr3go2oaqkwhpgw6mkh@hdca2d3f6zwp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-On 8/12/2025 8:09 PM, Dmitry Baryshkov wrote:
-> On Tue, Aug 12, 2025 at 04:21:12PM +0200, Konrad Dybcio wrote:
->> On 8/6/25 2:38 PM, Krzysztof Kozlowski wrote:
->>> Add Iris video codec to SM8750 SoC, which comes with significantly
->>> different powering up sequence than previous SM8650, thus different
->>> clocks and resets.  For consistency keep existing clock and clock-names
->>> naming, so the list shares common part.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> ---
->>
->> [...]
->>
->>> +			iris_opp_table: opp-table {
->>> +				compatible = "operating-points-v2";
->>> +
->>> +				opp-240000000 {
->>> +					opp-hz = /bits/ 64 <240000000>;
->>> +					required-opps = <&rpmhpd_opp_low_svs_d1>,
->>> +							<&rpmhpd_opp_low_svs_d1>;
->>> +				};
->>> +
->>> +				opp-338000000 {
->>> +					opp-hz = /bits/ 64 <338000000>;
->>> +					required-opps = <&rpmhpd_opp_low_svs>,
->>> +							<&rpmhpd_opp_low_svs>;
->>> +				};
->>> +
->>> +				opp-420000000 {
->>> +					opp-hz = /bits/ 64 <420000000>;
->>> +					required-opps = <&rpmhpd_opp_svs>,
->>> +							<&rpmhpd_opp_svs>;
->>> +				};
->>> +
->>> +				opp-444000000 {
->>> +					opp-hz = /bits/ 64 <444000000>;
->>> +					required-opps = <&rpmhpd_opp_svs_l1>,
->>> +							<&rpmhpd_opp_svs_l1>;
->>> +				};
->>> +
->>> +				opp-533333334 {
->>> +					opp-hz = /bits/ 64 <533333334>;
->>> +					required-opps = <&rpmhpd_opp_nom>,
->>> +							<&rpmhpd_opp_nom>;
->>> +				};
->>
->> There's an additional OPP: 570 MHz @ NOM_L1
->>
->> +Dmitry, Vikash, please make sure you're OK with the iommu entries
+On 8/12/25 8:08 AM, Ben Collins wrote:
+> The mcp9600 dt binding doc claims to support thermocouple-type but
+> I don't see where this is implemented.
 > 
-> We still don't have a way to describe it other way at this point.
+> - Add support to detect mcp9601 device type
+> - Add support to use thermocouple-type dt prop
+> - Add thrermocouple iio info to get/set this from sysfs
+> - Add filter-level dt prop to set the filtering level of the chip
+> - Update dt binding docs
 
-I could validate the extended "iommu-map-masks" proposal. Given that we have a
-new binding for SM8750 [1] , does it make sense to add iommus min/max as [1,5] ?
-such that later if new property is introduced "iommu-map-mask", it does not
-break ABI.
+This is too much for one patch. Split the thermocouple type and
+filter level into separate patches.
 
-iommus = <&apps_smmu 0x1940 0>;
-iommu-map-masks = <0 &apps_smmu 0x1947 1 0>;
-
-[1] https://lore.kernel.org/all/20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org/
-
-Regards,
-Vikash
 > 
->>
->> the other properties look OK
->>
->> Konrad
+> Signed-off-by: Ben Collins <bcollins@kernel.org>
+> Cc: Andrew Hepp <andrew.hepp@ahepp.dev>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: "Nuno Sá" <nuno.sa@analog.com>
+> ---
+
+The dependency on your other patch should be mentioned here.
+Or just include the other patch in the series too.
+
+>  .../iio/temperature/microchip,mcp9600.yaml    |   9 +
+>  drivers/iio/temperature/mcp9600.c             | 185 ++++++++++++++++--
+>  2 files changed, 181 insertions(+), 13 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> index d2cafa38a5442..0ee0259471c6a 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+> @@ -42,6 +42,14 @@ properties:
+>        Use defines in dt-bindings/iio/temperature/thermocouple.h.
+>        Supported types are B, E, J, K, N, R, S, T.
+>  
+> +  filter-level:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Level of chip filtering to use. 0 means filtering is disabled.
+> +      See reference manual 5.2.2 - THERMOCOUPLE SENSOR CONFIGURATION
+> +      REGISTER, FIGURE 5-6 for Filter Step Response graph. Supported
+> +      values are in the range of 0-7.
+> +
+
+Devicetree binding changes need to be in a separate patch and CC the
+relevant maintainers.
+
+However, this looks like something that doesn't belong in a devicetree.
+Unless you can justify why the filtering level depends on how the
+system is wired up, this is more likely something that should be
+done at runtime.
+
+I only had a very quick look a the datasheet, but I think using
+IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY to control the filter
+range would make sense.
+
+>    vdd-supply: true
+>  
+>  required:
+> @@ -65,6 +73,7 @@ examples:
+>              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
+>              interrupt-names = "open-circuit";
+>              thermocouple-type = <THERMOCOUPLE_TYPE_K>;
+> +            filter-level = <1>;
+>              vdd-supply = <&vdd>;
+>          };
+>      };
+> diff --git a/drivers/iio/temperature/mcp9600.c b/drivers/iio/temperature/mcp9600.c
+> index 6e9108d5cf75f..c1fe1e530786c 100644
+> --- a/drivers/iio/temperature/mcp9600.c
+> +++ b/drivers/iio/temperature/mcp9600.c
+> @@ -18,15 +18,23 @@
+>  #include <linux/minmax.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+> +#include <dt-bindings/iio/temperature/thermocouple.h>
+>  
+>  #include <linux/iio/events.h>
+>  #include <linux/iio/iio.h>
+>  
+>  /* MCP9600 registers */
+> -#define MCP9600_HOT_JUNCTION 0x0
+> -#define MCP9600_COLD_JUNCTION 0x2
+> +#define MCP9600_HOT_JUNCTION		0x0
+> +#define MCP9600_COLD_JUNCTION		0x2
+
+Whitespace changes should also be in a separate patch to avoid
+distraction from the actual changes.
+
+>  #define MCP9600_STATUS			0x4
+>  #define MCP9600_STATUS_ALERT(x)		BIT(x)
+> +#define MCP9600_STATUS_OC_IR		BIT(4)
+> +#define MCP9601_STATUS_SC		BIT(5)
+> +#define MCP9600_SENSOR_CFG		0x5
+> +#define MCP9600_SENSOR_TYPE_MASK	GENMASK(6, 4)
+> +#define MCP9600_SENSOR_TYPE(x)		((x << 4) & MCP9600_SENSOR_TYPE_MASK)
+
+We typically avoid making macros like this and just use
+FIELD_PREP() at the call site.
+
+> +#define MCP9600_FILTER_MASK		GENMASK(2, 0)
+> +#define MCP9600_FILTER(x)		((x << 0) & MCP9600_FILTER_MASK)
+>  #define MCP9600_ALERT_CFG1		0x8
+>  #define MCP9600_ALERT_CFG(x)		(MCP9600_ALERT_CFG1 + (x - 1))
+>  #define MCP9600_ALERT_CFG_ENABLE	BIT(0)
+> @@ -38,10 +46,11 @@
+>  #define MCP9600_ALERT_LIMIT1		0x10
+>  #define MCP9600_ALERT_LIMIT(x)		(MCP9600_ALERT_LIMIT1 + (x - 1))
+>  #define MCP9600_ALERT_LIMIT_MASK	GENMASK(15, 2)
+> -#define MCP9600_DEVICE_ID 0x20
+> +#define MCP9600_DEVICE_ID		0x20
+>  
+>  /* MCP9600 device id value */
+> -#define MCP9600_DEVICE_ID_MCP9600 0x40
+> +#define MCP9600_DEVICE_ID_MCP9600	0x40
+> +#define MCP9600_DEVICE_ID_MCP9601	0x41
+>  
+>  #define MCP9600_ALERT_COUNT		4
+>  
+> @@ -58,6 +67,21 @@ enum mcp9600_alert {
+>  	MCP9600_ALERT4
+>  };
+>  
+> +static const unsigned int mcp9600_type_map[] = {
+> +	[THERMOCOUPLE_TYPE_K] = 0,
+> +	[THERMOCOUPLE_TYPE_J] = 1,
+> +	[THERMOCOUPLE_TYPE_T] = 2,
+> +	[THERMOCOUPLE_TYPE_N] = 3,
+> +	[THERMOCOUPLE_TYPE_S] = 4,
+> +	[THERMOCOUPLE_TYPE_E] = 5,
+> +	[THERMOCOUPLE_TYPE_B] = 6,
+> +	[THERMOCOUPLE_TYPE_R] = 7,
+> +};
+> +
+> +static const int mcp9600_tc_types[] = {
+> +	'B', 'E', 'J', 'K', 'N', 'R', 'S', 'T'
+> +};
+> +
+>  static const char * const mcp9600_alert_name[MCP9600_ALERT_COUNT] = {
+>  	[MCP9600_ALERT1] = "alert1",
+>  	[MCP9600_ALERT2] = "alert2",
+> @@ -87,8 +111,12 @@ static const struct iio_event_spec mcp9600_events[] = {
+>  		{							       \
+>  			.type = IIO_TEMP,				       \
+>  			.address = MCP9600_HOT_JUNCTION,		       \
+> -			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |	       \
+> -					      BIT(IIO_CHAN_INFO_SCALE),	       \
+> +			.info_mask_separate =                                  \
+> +					BIT(IIO_CHAN_INFO_RAW) |	       \
+> +					BIT(IIO_CHAN_INFO_THERMOCOUPLE_TYPE) | \
+> +					BIT(IIO_CHAN_INFO_SCALE),              \
+> +			.info_mask_separate_available =                        \
+> +					BIT(IIO_CHAN_INFO_THERMOCOUPLE_TYPE),  \
+
+Since the type is set the the devicetree and can't be changed, there doesn't
+seems much sense in listing the available types.
+
+>  			.event_spec = &mcp9600_events[hj_ev_spec_off],	       \
+>  			.num_event_specs = hj_num_ev,			       \
+>  		},							       \
+> @@ -125,6 +153,9 @@ static const struct iio_chan_spec mcp9600_channels[][2] = {
+>  
+>  struct mcp9600_data {
+>  	struct i2c_client *client;
+> +	unsigned char dev_id;
+
+This isn't used outside of the probe function, so doesn't need to be here.
+
+> +	u32 thermocouple_type;
+> +	u32 filter;
+
+filter_level
+
+>  };
+>  
+>  static int mcp9600_read(struct mcp9600_data *data,
+> @@ -155,13 +186,82 @@ static int mcp9600_read_raw(struct iio_dev *indio_dev,
+>  		if (ret)
+>  			return ret;
+>  		return IIO_VAL_INT;
+> +
+>  	case IIO_CHAN_INFO_SCALE:
+>  		*val = 62;
+>  		*val2 = 500000;
+>  		return IIO_VAL_INT_PLUS_MICRO;
+> +
+> +	case IIO_CHAN_INFO_THERMOCOUPLE_TYPE:
+> +		*val = mcp9600_tc_types[data->thermocouple_type];
+> +		return IIO_VAL_CHAR;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int mcp9600_write_raw_get_fmt(struct iio_dev *indio_dev,
+> +				     struct iio_chan_spec const *chan,
+> +				     long mask)
+> +{
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_THERMOCOUPLE_TYPE:
+> +		return IIO_VAL_CHAR;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int mcp9600_config(struct mcp9600_data *data)
+> +{
+> +	struct i2c_client *client = data->client;
+> +	int ret, cfg;
+> +
+> +	cfg  = MCP9600_SENSOR_TYPE(mcp9600_type_map[data->thermocouple_type]) |
+> +		MCP9600_FILTER(data->filter);
+> +
+> +	ret = i2c_smbus_write_byte_data(client, MCP9600_SENSOR_CFG, cfg);
+> +
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set sensor configuration\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mcp9600_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     int val, int val2, long mask)
+> +{
+> +	struct mcp9600_data *data = iio_priv(indio_dev);
+> +	int tc_type = -1;
+> +	int i, ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_THERMOCOUPLE_TYPE:
+
+Why would we want to write over what was set in the devicetree?
+
+> +		for (i = 0; i < ARRAY_SIZE(mcp9600_tc_types); i++) {
+> +			if (mcp9600_tc_types[i] == toupper(val)) {
+> +				tc_type = i;
+> +				break;
+> +			}
+> +		}
+> +		if (tc_type < 0)
+> +			return -EINVAL;
+> +
+> +		data->thermocouple_type = tc_type;
+> +		ret = mcp9600_config(data);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		break;
+
+return 0; here
+
+> +
+>  	default:
+>  		return -EINVAL;
+>  	}
+> +
+> +	return 0;
+
+rather than here
+
+>  }
+>  
+>  static int mcp9600_get_alert_index(int channel2, enum iio_event_direction dir)
+> @@ -299,12 +399,32 @@ static int mcp9600_write_thresh(struct iio_dev *indio_dev,
+>  	}
+>  }
+>  
+> +static int mcp9600_read_avail(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      const int **vals, int *type, int *length,
+> +			      long mask)
+> +{
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_THERMOCOUPLE_TYPE:
+> +		*vals = mcp9600_tc_types;
+> +		*type = IIO_VAL_CHAR;
+> +		*length = ARRAY_SIZE(mcp9600_tc_types);
+> +		return IIO_AVAIL_LIST;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+>  static const struct iio_info mcp9600_info = {
+>  	.read_raw = mcp9600_read_raw,
+> +	.write_raw = mcp9600_write_raw,
+> +	.write_raw_get_fmt = mcp9600_write_raw_get_fmt,
+>  	.read_event_config = mcp9600_read_event_config,
+>  	.write_event_config = mcp9600_write_event_config,
+>  	.read_event_value = mcp9600_read_thresh,
+>  	.write_event_value = mcp9600_write_thresh,
+> +	.read_avail = mcp9600_read_avail,
+>  };
+>  
+>  static irqreturn_t mcp9600_alert_handler(void *private,
+> @@ -418,26 +538,65 @@ static int mcp9600_probe(struct i2c_client *client)
+>  {
+>  	struct iio_dev *indio_dev;
+>  	struct mcp9600_data *data;
+> -	int ret, ch_sel;
+> +	int ch_sel, dev_id, ret;
+>  
+> -	ret = i2c_smbus_read_byte_data(client, MCP9600_DEVICE_ID);
+> -	if (ret < 0)
+> -		return dev_err_probe(&client->dev, ret, "Failed to read device ID\n");
+> -	if (ret != MCP9600_DEVICE_ID_MCP9600)
+> -		dev_warn(&client->dev, "Expected ID %x, got %x\n",
+> -				MCP9600_DEVICE_ID_MCP9600, ret);
+> +	dev_id = i2c_smbus_read_byte_data(client, MCP9600_DEVICE_ID);
+> +	if (dev_id < 0)
+> +		return dev_err_probe(&client->dev, dev_id, "Failed to read device ID\n");
+> +
+> +	switch (dev_id) {
+> +	case MCP9600_DEVICE_ID_MCP9600:
+> +		dev_info(&client->dev, "Identified as mcp9600");
+> +		break;
+> +	case MCP9600_DEVICE_ID_MCP9601:
+> +		dev_info(&client->dev, "Identified as mcp9601");
+> +		break;
+> +
+
+Experience has show that depending on ICs to report the correct device ID
+is fragile. Instead, we should depend on the compatible string. Printing
+this for debug purposes is acceptable though, but should be a separate
+patch. Just don't fail if it is an unexpected value.
+
+> +	default:
+> +		return dev_err_probe(&client->dev, -EINVAL, "Unknown device ID: %x\n",
+> +				     dev_id);
+> +	}
+>  
+>  	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+>  	if (!indio_dev)
+>  		return -ENOMEM;
+>  
+>  	data = iio_priv(indio_dev);
+> +
+> +	ret = device_property_read_u32(&client->dev, "thermocouple-type",
+> +				       &data->thermocouple_type);
+> +	if (ret) {
+> +		dev_warn(&client->dev,
+> +			 "Missing thermocouple-type property, using Type-K\n");
+
+The devicetree bindings should have a default listed. So this should not be
+a warning, but rather the expected default.
+
+> +		data->thermocouple_type = THERMOCOUPLE_TYPE_K;
+> +	} else if (data->thermocouple_type < 0 || data->thermocouple_type >=
+> +		   ARRAY_SIZE(mcp9600_type_map)) {
+> +		dev_warn(&client->dev,
+> +			 "Invalid thermocouple-type property, using Type-K\n");
+
+Should fail with error if the devicetree gives an invalid value.
+
+> +		data->thermocouple_type = THERMOCOUPLE_TYPE_K;
+> +	}
+> +
+> +	ret = device_property_read_u32(&client->dev, "filter-level",
+> +				       &data->filter);
+> +	if (ret) {
+> +		dev_warn(&client->dev,
+> +			 "Missing filter-level property, using 0\n");
+> +		data->filter = 0;
+> +	} else if (data->filter < 0 || data->filter > 7) {
+> +		dev_warn(&client->dev,
+> +			 "Invalid filter-level property, using 0\n");
+> +		data->filter = 0;
+> +	}
+> +
+> +	data->dev_id = dev_id;
+>  	data->client = client;
+>  
+>  	ch_sel = mcp9600_probe_alerts(indio_dev);
+>  	if (ch_sel < 0)
+>  		return ch_sel;
+>  
+> +	mcp9600_config(data);
+> +
+>  	indio_dev->info = &mcp9600_info;
+>  	indio_dev->name = "mcp9600";
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+
 
