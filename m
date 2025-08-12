@@ -1,149 +1,122 @@
-Return-Path: <devicetree+bounces-203642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3341B22257
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8953DB2225C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C89552A5FAB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:01:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25325178327
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 09:03:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5C12E7197;
-	Tue, 12 Aug 2025 09:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D8A2E62D8;
+	Tue, 12 Aug 2025 09:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mz3rN8xh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="js6kE89d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534E82E62CF
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 09:01:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8154F2D9EE8;
+	Tue, 12 Aug 2025 09:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754989304; cv=none; b=B2C1sYFtcXBbzpy/ne4hvm8TwpB0gxcWWTVn80o1kY8/2hbN2gP8Yks/amQ/nP+QQAmDQBr8DzCEPNvHgtwbXoOacQCjJ/M9FwGnF3dWHaifAGdZOai+/X5aD+hZ8L6XIRPpWYf7AbBIxGAOV+LlgotKs61Hszpya4Rf3D/Z7qw=
+	t=1754989431; cv=none; b=txOu1n9CIVNXhioPEspQKzYfLT24of1MNtDYCza2UqJv0dwytV9qJ9z3bGIigqJTBYC55VPCv+Hk7aKQln9i7kk2fn0LmKlv5Kk+yd1RKnF93L+/vVbq9vPnM1rp2JPXyiMWjtkPUUkIMkhPVR+FGE2v+z4F80gK+wzoINR1v4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754989304; c=relaxed/simple;
-	bh=sgGWFkDYS3wfvwEU1/vcI7AebQToAzAPsQJ2/xmGWeM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ryPotPPRcfFckZuy/jJgz/Ksm6L8BE+OC1u4KFobNpUeDOFbE9H26TpRkYkf4RnQGbvJUuaCnG2LsZdv/FouqFHsMNNOQdgwtusj715QhK9ymdIWbxDlFedjEVfWmvHF4qIsgnM+UNfKRDNw7LWgRBBZL/Bdfk9Z3Z5NikezKxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mz3rN8xh; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-76bc5e68d96so4522105b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 02:01:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1754989301; x=1755594101; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1evk3OmIRtfZwDni9+00QXZ21rdMVrFGcmbyCodTqyQ=;
-        b=mz3rN8xhP5gPgFzKD+nSmVCePCZU4ikVKlSeOM8NyHp1/Aw448lJTy0Aa84uBeS6cP
-         3s6di1W22+5dRYOIgEPT3c2QBJpND6nnGTVdrYHCFC3JAF1404Ca1emqfRU1HRtmYM3T
-         sOq9w0DvkE9Wyi8gAGENzWbdGxidPalDEqcm4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754989301; x=1755594101;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1evk3OmIRtfZwDni9+00QXZ21rdMVrFGcmbyCodTqyQ=;
-        b=FTwU/uwwIdk2WXygWVYxwxggXhjoCBCAwp/TrpAvlY0JtORV6N5U5sEQkJTMrrUOok
-         8t+KWCmI8Eemi4j/UmQrrKMHM/2SeKk3zkvekFHbJu3e58siGzrYcvPZ4qxqAq9j/DO5
-         jzWC/mmc16xwki3Qm/YyDDs10xM4QAMgrntJz4LU3v+fcaSjB/TrQGmH/CKXLKkCoYsA
-         bdKPn1InsJPrAAlYSzXnfD2Xu6Orad/b4sNGnBWH2HcPsScRWDv4ohgRgWUeUljo99oK
-         4aXQxNuxnlFaEVMnhSOyFcnt+TUotOON1OZYgpFIEEud8uPciwFrvSAeu2bHWkofXw/P
-         mlpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVVODJpLwBFHFUJozcc5OiXII0nJFF3nzrGM72kTZ6bIBGMbN4FmvC8j0JQgZbBC+aNY3LMvh274ET9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjedoVuaZSPnxOdVm/quskwp/Zm1HMNXAoHQ7goiY4TKodrNXk
-	aJDTz+/PQUuzMXok+oyiOcvJcMmpo98GmN+Fs6FV3ELCVLx5rOgs+pUcHdwa/7TJxg==
-X-Gm-Gg: ASbGncudrx6UtUEErdhFFg/iJNkWOKMVpEVHHyUj3L7VmU+aA8Me8338FKgppXtISpM
-	nvHVCaxO3F56iagVuQCUYs4ZuoB1qgzgcKeCn7nfMX1BDn//+asdYRrcXZZwf9CUeUIesfZFdhS
-	ZnnN1tuaCP7vDC/6BDAyhL97kbehtbT+RBoqLiQdbHskNNhDe+0tv2uZtwjz/hSoH/qZDSII1Ep
-	zpdwu0bXhRdoJ9hEv6EIpSorv1k4EIAdMOXtYkZFMcGkGeG/jNMAtbNVP/2XhWsO2JQjVXZg+SY
-	sg4wK259RdTah3xhbrc4XSWoKUN8/LjWnUEN0NEyj9ZvKhKSGOi3KrucVe5gae5yYL+22IkV7A9
-	zcn7wurUk+4J8gK3tQdpyScOmwiQ33ZBwQMG5VV4C
-X-Google-Smtp-Source: AGHT+IHXmeu6f/qQoZG8o8delXd8Ye6Z0N5pfSw8ONOvc9dDiZfBz+hBlS0QTkCIYV04xBciYh8R9w==
-X-Received: by 2002:a05:6a20:3d1c:b0:23f:f88a:c17d with SMTP id adf61e73a8af0-2409aa01f0amr3953648637.42.1754989301505;
-        Tue, 12 Aug 2025 02:01:41 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:f81e:7c91:8fbf:672a])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfbcee7sm29052518b3a.66.2025.08.12.02.01.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 02:01:41 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: mt8186-tentacruel: Fix touchscreen model
-Date: Tue, 12 Aug 2025 17:01:34 +0800
-Message-ID: <20250812090135.3310374-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.51.0.rc0.215.g125493bb4a-goog
+	s=arc-20240116; t=1754989431; c=relaxed/simple;
+	bh=pEhHGHVMUuHh5GhlTrTlvajaC+W67kdilWL3yeGGv3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G69Y7EnAJrDRp64JzbzyExbaK57ph2SlEDiBAQ67CyEziJuG/CNp47HO5qnvtG+WFZtJHDX2NQMHNb1MVXxf8lHS7kkC6RiaDHfQG+0nEUKFUYZ2lGMtGrEniAKflADNFY8isWr4/WqSuB/HhnR3jYXmja7wyK2rDHTPN/FeII4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=js6kE89d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D217C4CEF0;
+	Tue, 12 Aug 2025 09:03:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754989431;
+	bh=pEhHGHVMUuHh5GhlTrTlvajaC+W67kdilWL3yeGGv3g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=js6kE89dm9D3Z8FU1/2TKhxDTlZ+cWE+Jw84+k4vfTdgFEsb+S27so8A8bGT3YSRN
+	 dU21OUCa3Vf1Ds/zuER/DpxNKqekK7K+UG18E261kexqQHLOkDCK+/IcNRsH0ueAAZ
+	 OMQq102O1X3vSRy9VC32QxBNVC7FwC+Wb08Bt6SMXkp/BjRpQ2hhcjOBXALXtQ9bI5
+	 GnJQe8O9MoqsV5BBdwrmLv9twdoTTm78iTLINwoM2XAB8hmhpiiHryV8XfRSW4eGiF
+	 wbjBUge28NrBbd8MEx1An0MOUnzf2sXJmXUnja51sZPj/KTbd3lFZnnGuUvAL4pma1
+	 9WIqBi90TVUKw==
+Message-ID: <758fb1ce-bf7e-4dd8-aa24-3f89d9be5652@kernel.org>
+Date: Tue, 12 Aug 2025 11:03:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt: bindings: fsl,vf610-ftm-pwm: Add compatible
+ for s32g2 and s32g3
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, ukleinek@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, Frank.Li@nxp.com
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ghennadi.Procopciuc@nxp.com, s32@nxp.com
+References: <20250811223044.3087090-1-daniel.lezcano@linaro.org>
+ <20250811223044.3087090-2-daniel.lezcano@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250811223044.3087090-2-daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The touchscreen controller used with the original Krabby design is the
-Elan eKTH6918, which is in the same family as eKTH6915, but supporting
-a larger screen size with more sense lines.
+On 12/08/2025 00:30, Daniel Lezcano wrote:
+> The S32G2 and S32G3 have a FlexTimer (FTM) available which is the same
+> as the one found on the Vybrid Family and the i.MX8.
+> 
+> Add the compatibles in the bindings
+I already asked in previous patches - prefix is always dt-bindings.
 
-OTOH, the touchscreen controller that actually shipped on the Tentacruel
-devices is the Elan eKTH6A12NAY. A compatible string was added for it
-specifically because it has different power sequencing timings.
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-Fix up the touchscreen nodes for both these. This also includes adding
-a previously missing reset line. Also add "no-reset-on-power-off" since
-the power is always on, and putting it in reset would consume more
-power.
 
-Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi   | 8 ++++----
- .../dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts  | 4 ++++
- 2 files changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
-index 7c971198fa95..72a2a2bff0a9 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
-@@ -71,14 +71,14 @@ &i2c1 {
- 	i2c-scl-internal-delay-ns = <10000>;
- 
- 	touchscreen: touchscreen@10 {
--		compatible = "hid-over-i2c";
-+		compatible = "elan,ekth6915";
- 		reg = <0x10>;
- 		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&touchscreen_pins>;
--		post-power-on-delay-ms = <10>;
--		hid-descr-addr = <0x0001>;
--		vdd-supply = <&pp3300_s3>;
-+		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
-+		vcc33-supply = <&pp3300_s3>;
-+		no-reset-on-power-off;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
-index 26d3451a5e47..24d9ede63eaa 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
-@@ -42,3 +42,7 @@ MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
- 		CROS_STD_MAIN_KEYMAP
- 	>;
- };
-+
-+&touchscreen {
-+	compatible = "elan,ekth6a12nay";
-+};
--- 
-2.51.0.rc0.215.g125493bb4a-goog
-
+Best regards,
+Krzysztof
 
