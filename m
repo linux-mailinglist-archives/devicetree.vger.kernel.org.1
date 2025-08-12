@@ -1,166 +1,148 @@
-Return-Path: <devicetree+bounces-203842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB6AB22A71
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:29:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4015EB22A68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:28:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64F4C16E5BC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:17:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF0D6E0FA8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82030302CB5;
-	Tue, 12 Aug 2025 14:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1452EF644;
+	Tue, 12 Aug 2025 14:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XqE1sexr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVSkDOp7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E8A2EA721;
-	Tue, 12 Aug 2025 14:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001D02EE5FE;
+	Tue, 12 Aug 2025 14:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755007934; cv=none; b=tXwEOP4ZbyVHtdn0CXKd3kSUpppt6ufIrl7Qo4VHGgvY5E0Q01JWpnl/appx7QuLmS7Yc9vML6qzASnl7j09Bup1c3gl5ILh8hHVFZkt2LLXy4UMWCpC4czYPD3QYJ2QC0NpiOCXFczMUftQiosutMKO40WKiuwhNM5nYkmgofs=
+	t=1755008121; cv=none; b=XbCM6VnXEsugp3/eZIG0egIM49X+cdLFFveWeI4y2IdkCLxdDb+AgoRBm0w1EnhE2EMIEoQFjpUQoUTXDxGBw7qA9BjpJKNkgv1Z+zzRhbraigoZMDJ1brd/oEV1siXoKqtxZD2ldtzXacH4hp/kg4v8EBYMCdkaHm1AsXPrCiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755007934; c=relaxed/simple;
-	bh=PJRh77BlqVsEpKRGUextThdX92CPAbJt12XhrYigNZc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=jubENxFZSnwfEHkTTKcDeCc7oO+n/sEJBPntD/d3Vsax5L8++EoQJqqKuuBI3WyZFUYyayMGHAyHhyQVDflP/8T7Tr7v1J1Ua5AATuK7eXCCkhelct3Dj8LwmLvAb0Ip8DOPt7N/UWgXmbS41TwaE6VsWt2sZ4CtT0u1tB6tobY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XqE1sexr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57CAwi8E025631;
-	Tue, 12 Aug 2025 14:11:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dMh9F/zW3ltk/+W9kfI6XSfIFxsE1lXA2GRM0pTwl34=; b=XqE1sexrZQEHCWtt
-	TtdEAR//dSyvEl4PGQOxxxvK8QdVyl9n//axIEN4i2CLiXMHsu/dd5/w3LJAv+fm
-	/b9XU3mj5gRSUehPmdu+IeUPOIuQ0IY2VfLXW6QDRfcNrYC/eOiRI6djphYcJap4
-	wyJla+bvl9PmKXE3kh01jIyGtcIEp6n0usBqSP/pkjLY2vG6hA5yN2H6yE+7D02Q
-	r6ZDt78UhysrN/uJaStQ86aAB1It4vRfvLCb3HBw3mW97SWSxkG7VyQwL/Ty2h6y
-	XTJw66gJXfyYdAP1/8Eh8ZdP0tOFmS9CE5EbuWcy+IjX2u3mWDMnf79yn8NYqeYV
-	TbHtsg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9srka7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Aug 2025 14:11:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57CEBvbn029825
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Aug 2025 14:11:57 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Tue, 12 Aug 2025 07:11:52 -0700
-From: Luo Jie <quic_luoj@quicinc.com>
-Date: Tue, 12 Aug 2025 22:10:38 +0800
-Subject: [PATCH net-next v7 14/14] MAINTAINERS: Add maintainer for Qualcomm
- PPE driver
+	s=arc-20240116; t=1755008121; c=relaxed/simple;
+	bh=w7+yVouNu4e07ndbQI5R/ESPidCEgnhCvVvoIskNZ1o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E4Sum5595zp753t47zAqG4WrGsRTMU+2tPT/5XErPkne5Gedcm8nb4CxrDUrrUEGYwaFA9DUL/QaRwcUfCnBSCFvnUqAnlWqnU0je72S5aaDRToaspTNIcfdydpI+yy+N4IFFoKKEVfVPdeu8r9oXutK3ir9tMZPeAtsAmM4JjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVSkDOp7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B94BC4CEF0;
+	Tue, 12 Aug 2025 14:15:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755008120;
+	bh=w7+yVouNu4e07ndbQI5R/ESPidCEgnhCvVvoIskNZ1o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZVSkDOp7TGFY8qTzD3/ueAnokWbRqIhNjIf3yT3tGKpLWBAQfhe1eHdSUVH4A9aNf
+	 43nKMj+QoXfD4N5hbUkiHsEBUoGx/2Xj8/DU/kmIK3MtV48P0FC3JH32upqd48Et6r
+	 RLTFstH59k/O49ndEKOrP4NQ5VDlVnatFOEZsJvj1cukwZ0p1vDngo+jkRTU01PNMs
+	 A4l9hJsevQ5hPr8XIR451S/yrJqwEg+YmC51nsVhxTS2qKPnfP57LH1OW61ofV5FIS
+	 V4lya1lyIousHF2WpRvfPynjoffb8bspyTT522Z/hkexyupY233NV+YLEiH20F3ZTR
+	 RFN1LZPbuAFGg==
+Date: Tue, 12 Aug 2025 19:45:16 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com,
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
+	igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com,
+	s.nawrocki@samsung.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
+	dev.tailor@samsung.com, faraz.ata@samsung.com,
+	muhammed.ali@samsung.com, selvarasu.g@samsung.com
+Subject: Re: [PATCH v5 2/6] phy: exynos5-usbdrd: support HS phy for
+ ExynosAutov920
+Message-ID: <aJtMdHcidETZyiIp@vaman>
+References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+ <CGME20250805114310epcas5p459aa232884d22501f5fefe42f239fecc@epcas5p4.samsung.com>
+ <20250805115216.3798121-3-pritam.sutar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250812-qcom_ipq_ppe-v7-14-789404bdbc9a@quicinc.com>
-References: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
-In-Reply-To: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
-        Suruchi Agarwal
-	<quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>,
-        "Simon
- Horman" <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Kees Cook
-	<kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        "Philipp
- Zabel" <p.zabel@pengutronix.de>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        Luo Jie
-	<quic_luoj@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755007841; l=898;
- i=quic_luoj@quicinc.com; s=20250209; h=from:subject:message-id;
- bh=PJRh77BlqVsEpKRGUextThdX92CPAbJt12XhrYigNZc=;
- b=KfHO01pLn3Yb/4AY90A9qSPRVYZGnXYwTQ+VXn+LrPflqznhIG3aL9ZyQoA5iZTO+yVmsS8le
- W8XLgjIEP17DOO2zeyiWexoSerNoy8yybF9KsUIvKnatlpKOHJfn2hT
-X-Developer-Key: i=quic_luoj@quicinc.com; a=ed25519;
- pk=pzwy8bU5tJZ5UKGTv28n+QOuktaWuriznGmriA9Qkfc=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=689b4bae cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=-_PooAnB-Ua2z9syxaEA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: ifEkOtMyIBd0Sbtl52OoNEFz26zP2EOh
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX/FUod6/49Bh+
- NknTj+COarb+8/JUHSokfDXveTag+4TmETaj/qTYMhXv3S07msJQi+DNXG+hfWOg93RClk6mXOK
- 51Gzm+kI5Cqd1BgZJq19BIU6DRtZ+FoAVRAz23MSoQwdKcNkPJuiUki97d3z4CYir+BUr3XUmkw
- vLXHRto0Mwms9R8XZhe5nIkHtpDolBcAv5iZlf8o6DSPexzv3N3NjD9e8lwks4pGzLbaaqI55C7
- lcq318ZswPjtwOyRsyiEmdvkq1cgGJh/1J90XqHyt+JKwfe2rGo3Dyj+JKtQCCZaBiABAHMfi6M
- wu5N/QQaHE5l0SdLYiHmNmxz3Ocmxf9dJpOvDN0RJhrkeeUo7MirtFhugUTt9idx/S6fTxCtaSj
- YsGiubPG
-X-Proofpoint-GUID: ifEkOtMyIBd0Sbtl52OoNEFz26zP2EOh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-12_07,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508090015
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250805115216.3798121-3-pritam.sutar@samsung.com>
 
-Add maintainer entry for PPE (Packet Process Engine) driver supported
-for Qualcomm IPQ SoCs.
+On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
+> Enable UTMI+ phy support for this SoC which is very similar to what
+> the existing Exynos850 supports.
+> 
+> Add required change in phy driver to support HS phy for this SoC.
+> 
+> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> ---
+>  drivers/phy/samsung/phy-exynos5-usbdrd.c    | 123 ++++++++++++++++++++
+>  include/linux/soc/samsung/exynos-regs-pmu.h |   2 +
+>  2 files changed, 125 insertions(+)
+> 
+> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> index dd660ebe8045..5400dd23e500 100644
+> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> @@ -2054,6 +2054,126 @@ static const struct exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
+>  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
+>  };
+>  
+> +static int exynosautov920_usbdrd_phy_init(struct phy *phy)
+> +{
+> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+> +	int ret;
+> +
+> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Bypass PHY isol */
+> +	inst->phy_cfg->phy_isol(inst, false);
+> +
+> +	/* UTMI or PIPE3 specific init */
+> +	inst->phy_cfg->phy_init(phy_drd);
+> +
+> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
+> +{
+> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+> +	int ret = 0;
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Superfluous init..
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd62ad58a47f..bcab0192f39b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20837,6 +20837,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml
- F:	drivers/power/supply/qcom_smbx.c
- 
-+QUALCOMM PPE DRIVER
-+M:	Luo Jie <quic_luoj@quicinc.com>
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/qcom,ipq9574-ppe.yaml
-+F:	Documentation/networking/device_drivers/ethernet/qualcomm/ppe/ppe.rst
-+F:	drivers/net/ethernet/qualcomm/ppe/
-+
- QUALCOMM QSEECOM DRIVER
- M:	Maximilian Luz <luzmaximilian@gmail.com>
- L:	linux-arm-msm@vger.kernel.org
+> +
+> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	exynos850_usbdrd_phy_exit(phy);
+> +
+> +	/* enable PHY isol */
+> +	inst->phy_cfg->phy_isol(inst, true);
+> +
+> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
+> +
+> +	return 0;
+> +}
+> +
+> +static int exynosautov920_usbdrd_phy_power_on(struct phy *phy)
+> +{
+> +	int ret;
+> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+
+Reverse chrsitmas tree pls
 
 -- 
-2.34.1
-
+~Vinod
 
