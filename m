@@ -1,50 +1,65 @@
-Return-Path: <devicetree+bounces-203805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17ECDB22976
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:00:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85AB0B229B4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:08:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 696315800BA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:48:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E65E15A3607
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:55:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900FC286D6B;
-	Tue, 12 Aug 2025 13:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E2E28C871;
+	Tue, 12 Aug 2025 13:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X3xQY9H7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="PmKbGT2T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64754286D62;
-	Tue, 12 Aug 2025 13:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B6728B7F9;
+	Tue, 12 Aug 2025 13:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755006456; cv=none; b=UzGa4Vnp6VfeXEDvlf5aDoDEiRhaX2O2C1mtyryPhW9TnW8uAJjp9gviQ0SrobUP3otmaWi8LaD9Ba0cQRXfgfsY42Fky9xrjU/7eLH3zB099Vt3ns18cKRd6BAmSYWNyCkTqVYtiHhddDkYgeD/46XRnEqrn1/zVXXuGGWQU7I=
+	t=1755006691; cv=none; b=ipP/VnZYFuvWa71Wvr+Ny9s9EWfzJncUUmWaPwCM5MHu4WlJkVKzfw5VnKK+l2Y6bJmFnYv7sFp+lwPSSJ4QQ1Ym16D2MEDsCA50L8Jmm9dTg4FaQY4erbEL0CusTsR9p/c9iQ/iG+T9uXyKYBa9m/N5ffw168lSh7ZzXz5gsro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755006456; c=relaxed/simple;
-	bh=X6n/+3xEiROoaLOeAyKDEfF8djhS8Jnz2Ne7NWGpc7c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=iqIWaCDUzb04u7pvrgVIs4He+KR0FL+EW1QnYBuhWbI2pHArefCY0BNFYpuPX3tEflTJAmEcxBs3KrqkIw56nT0feXt1kp+YnIMSQYduvuVi4ecCFR/QJbclIYz63alPALJ6C6GUu0BdmBD8M3kHNF8Eq2fo5CILaiBhf7raiMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X3xQY9H7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB291C4CEF6;
-	Tue, 12 Aug 2025 13:47:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755006456;
-	bh=X6n/+3xEiROoaLOeAyKDEfF8djhS8Jnz2Ne7NWGpc7c=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=X3xQY9H7xOVd/abyJtucpPtLEGbGbksIwjAOL383bi2NaMMp/rvcbNrtlT6Mni4es
-	 gkTc7mpJfb3waYRDLCnD8XmKMvHHCze1ANPpfrPMDk8NAgUsPxci58aZTlaA1KfOoB
-	 i5vw+MzkvzLkgEZWdtpu6+eYs9RVlyO1dVKkZoL7DHvANDiL/VYZAOdJVOncaTWyud
-	 gTXunRW71OfAiEiEQfQVSqNybl0ZrUWO2tSEuvJJ3S624BSl72W5FtZtZilU114mRT
-	 TnwaljKMaCuQQ7Ybvy14o9cchqD0ENqumSWFTD662dkx22qZOvKsAIICHuepcN2uW3
-	 5zQEsTTtWOZ6w==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Tue, 12 Aug 2025 15:47:24 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100-romulus: Add WCN7850
- Wi-Fi/BT
+	s=arc-20240116; t=1755006691; c=relaxed/simple;
+	bh=++NajfbZH5OyT4/lRy65HX742F5eJ0aw0mmsRf1i63g=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Q7I03WwxtjzVvGYAsWsgz8s0hwlQy4uD/trxAUngnxkhxp2baJcuyuMP6IZV3jFmI3SB4rAih3QAYI/Y9hwaG31+BqxgrHpXOE/bchKYihGLxP1yinwsYwZDHomWwetl6gtl0wjAup2SLHRCyD1rDKhqJN4fHOyhDuc4pnpGx+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=PmKbGT2T; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57CDPppH020872;
+	Tue, 12 Aug 2025 15:50:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=BzZrYKJ719TbfYyFhu6sPQ
+	e5KNJvUX1XlD0RKATByZ4=; b=PmKbGT2TzkhAh88PnD4Anecg5M6xIqDTmv8LQL
+	SrWNvir8a1v67es6iyr0qfdyrJlWgbF2zHdRWrjveb4Px4X5xGaVaWEs8pJlpu8t
+	GQTPpuZz8lArUDB+AfacacPIoPLiQ1Oz85zdmtJJXSKrMwG6PDeQn9vcuOyjYIQY
+	HL8UGlMr8kFwN/+tgOUPPr1ZdxxQ0ptz/1Y5DAKQnnF7YsTxDLz1Zb2qSN92q81j
+	svAPuKUi5m0ONvfqTFD9TN+NuZ+8Vg27wMx2RIT8jENHK/ciEYHcVHLqPQTrFa61
+	mMsAvX34JMpDtuSL3wyjr0Zi0y/oHwg3p7rZmo7SGtPW5HqQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48dwp1tvsw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 15:50:55 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6C6BD40048;
+	Tue, 12 Aug 2025 15:49:24 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C98E37835C8;
+	Tue, 12 Aug 2025 15:48:59 +0200 (CEST)
+Received: from localhost (10.130.74.180) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 12 Aug
+ 2025 15:48:59 +0200
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH v2 00/13] Enable display support for STM32MP25
+Date: Tue, 12 Aug 2025 15:48:57 +0200
+Message-ID: <20250812-drm-misc-next-v2-0-132fd84463d7@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,231 +67,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250812-topic-romulus_wifi_pci-v1-2-2adbed1b1f1d@oss.qualcomm.com>
-References: <20250812-topic-romulus_wifi_pci-v1-0-2adbed1b1f1d@oss.qualcomm.com>
-In-Reply-To: <20250812-topic-romulus_wifi_pci-v1-0-2adbed1b1f1d@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAElGm2gC/13MywqDMBCF4VeRWXckCYmXrnyP4kLipM5CUzIiF
+ vHdm9pdl/+B8x0glJgE7sUBiTYWjksOcyvAT8PyJOQxNxhlnKp0jWOacWbxuNC+oh2CVZXX3ro
+ A+fNKFHi/vEefe2JZY3pf/Ka/60+qjfuTNo0KB9c2tqHK+NB2IYqUspY+ztCf5/kBvG0dVKwAA
+ AA=
+X-Change-ID: 20250617-drm-misc-next-4af406c1c45f
+To: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755006446; l=5113;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=YrfeJ4a+N+nuR8SIwAnAuBWoP6xTXRmOMVpzKvzHzb4=;
- b=SB6w7LL2/SZR+vZAGi0OWU958n99GsgwcXsLpy2g8Am7GfyImkFgp/jcvvZIvwIWObIf6Lsov
- M1jlg+cqmVPCE0+BceJf5v7cHsXesMZoF6J9wS7HvJaVv8TzU99n1qX
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_07,2025-08-11_01,2025-03-28_01
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+This series aims to add and enable sufficient LVDS display support for
+STM32MP257F-EV1 board.
 
-It comes soldered onboard, just like on the QCP.
+LVDS is the default use case to drive a display panel on STM32MP257F-EV,
+even though DSI panels will be supported in the near future.
 
-Unfortunately, the rfkill pin is triggered by default, so a workaround
-is needed to convince the Linux driver to enable the hw, after which it
-works just fine.
+The LTDC needs a pixel rate in sync with the bridge currently in use.
+For that both DSI and LVDS bridges need to declare an internal clock and
+become clock provider to the mux. The mux then selects the reference
+clock for the LTDC pixel rate generation.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+For now this mux is handled internally in the LTDC, while waiting for
+the STM32 clock framework to merge a 'clk-mux' based on the SYSCFG.
+This explains the link done in the patch [7/8] between the LVDS,
+providing the reference clock for the LTDC internals.
+
+  +----------+              |\
+  |  DSI PHY |------------->| \           +------------+
+  |          |ck_dsi_phy    |  |          |            |
+  +----------+              |  |--------->|    LTDC    |
+  +----------+              |  |pixel_clk |            |
+  | LVDS PHY |------------->|  |          +------------+
+  |          |clk_pix_lvds  |  |
+  +----------+              |  |
+                            |  |
+   ck_ker_ltdc ------------>| /
+                            |/|
+                              └- SYSCFG
+
+Clock selection applies as follow:
+- 0b00: Selects ck_dsi_phy
+- 0b01: Selects clk_pix_lvds
+- 0b10: Selects ck_ker_ltdc (for parallel or DSI display).
+- 0b11: Reserved
+
+The reset value of the register controlling the mux is 0b01, meaning
+that the default clock assigned is the clk_pix_lvds.  This causes two
+things:
+
+- In order to get basic display on the LVDS encoder, like intended,
+nothing has to be done on this mux within the LTDC driver (which for now
+explains the unused syscfg phandle on the LTDC node in the device-tree).
+
+- 'pixel_clk' is dependent from 'clk_pix_lvds' because of the LTDC clock
+domains.  They also need to be sync to get a coherent pixel rate though
+the display clock tree (which explains the LVDS phandle on the LTDC node
+in the device-tree).
+
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 ---
- .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 143 +++++++++++++++++++++
- 1 file changed, 143 insertions(+)
+Changes in v2:
+- Documentation:
+  - Add support for new compatible "st,stm32mp255-lvds"
+  - Change LTDC compatible for SoC compliant one
+  - Make clearer LTDC clock-names property
+- Devicetree:
+  - Change compatible according to the documentation
+  - Change clock and clock-names order to match documentation (and avoid
+    warnings)
+- Drivers:
+  - Change LTDC compatible
+- Add Rob's trailer where relevant
+- Link to v1: https://lore.kernel.org/r/20250725-drm-misc-next-v1-0-a59848e62cf9@foss.st.com
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-index 3a4df8f8066ae699eb7d889530f976fce565757e..d5105ebbfc387f3a6626f1f135cab8a5f92b8e6b 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-@@ -379,6 +379,42 @@ vreg_pcie_3v3_main: regulator-pcie-3v3-main {
- 		regulator-boot-on;
- 	};
- 
-+	vreg_wcn_0p95: regulator-wcn-0p95 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_0P95";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_1p9: regulator-wcn-1p9 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_1P9";
-+		regulator-min-microvolt = <1900000>;
-+		regulator-max-microvolt = <1900000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_3p3: regulator-wcn-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&wcn_sw_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+	};
-+
- 	sound {
- 		compatible = "qcom,x1e80100-sndcard";
- 		model = "X1E80100-Romulus";
-@@ -458,6 +494,65 @@ platform {
- 			};
- 		};
- 	};
-+
-+	wcn7850-pmu {
-+		compatible = "qcom,wcn7850-pmu";
-+
-+		vdd-supply = <&vreg_wcn_0p95>;
-+		vddio-supply = <&vreg_l15b>;
-+		vddaon-supply = <&vreg_wcn_0p95>;
-+		vdddig-supply = <&vreg_wcn_0p95>;
-+		vddrfa1p2-supply = <&vreg_wcn_1p9>;
-+		vddrfa1p8-supply = <&vreg_wcn_1p9>;
-+
-+		wlan-enable-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&wcn_wlan_bt_en>;
-+		pinctrl-names = "default";
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -1087,6 +1182,23 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
-+&pcie4_port0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1107";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &pcie6a {
- 	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-@@ -1310,6 +1422,13 @@ ssam_state: ssam-state-state {
- 		bias-disable;
- 	};
- 
-+	wcn_wlan_bt_en: wcn-wlan-bt-en-state {
-+		pins = "gpio116", "gpio117";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	pcie3_default: pcie3-default-state {
- 		perst-n-pins {
- 			pins = "gpio143";
-@@ -1385,6 +1504,13 @@ wcd_default: wcd-reset-n-active-state {
- 		output-low;
- 	};
- 
-+	wcn_sw_en: wcn-sw-en-state {
-+		pins = "gpio214";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	cam_indicator_en: cam-indicator-en-state {
- 		pins = "gpio225";
- 		function = "gpio";
-@@ -1408,6 +1534,23 @@ embedded-controller {
- 	};
- };
- 
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+		max-speed = <3200000>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+	};
-+};
-+
- &usb_1_ss0_hsphy {
- 	vdd-supply = <&vreg_l3j>;
- 	vdda12-supply = <&vreg_l2j>;
+---
+Raphael Gallais-Pou (11):
+      dt-bindings: display: st: add new compatible to LTDC device
+      dt-bindings: display: st,stm32-ltdc: add access-controllers property
+      dt-bindings: display: st: add new compatible to LVDS device
+      dt-bindings: display: st,stm32mp25-lvds: add access-controllers property
+      dt-bindings: display: st,stm32mp25-lvds: add power-domains property
+      dt-bindings: arm: stm32: add required #clock-cells property
+      arm64: dts: st: add ltdc support on stm32mp251
+      arm64: dts: st: add lvds support on stm32mp255
+      arm64: dts: st: add clock-cells to syscfg node on stm32mp251
+      arm64: dts: st: enable display support on stm32mp257f-ev1 board
+      arm64: dts: st: add loopback clocks on LTDC node
 
+Yannick Fertre (2):
+      drm/stm: ltdc: support new hardware version for STM32MP25 SoC
+      drm/stm: ltdc: handle lvds pixel clock
+
+ .../bindings/arm/stm32/st,stm32-syscon.yaml        | 31 ++++++---
+ .../devicetree/bindings/display/st,stm32-ltdc.yaml | 33 ++++++++-
+ .../bindings/display/st,stm32mp25-lvds.yaml        | 14 +++-
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             | 19 ++++++
+ arch/arm64/boot/dts/st/stm32mp255.dtsi             | 19 +++++-
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         | 79 ++++++++++++++++++++++
+ drivers/gpu/drm/stm/drv.c                          | 11 ++-
+ drivers/gpu/drm/stm/ltdc.c                         | 57 +++++++++++++++-
+ drivers/gpu/drm/stm/ltdc.h                         |  6 ++
+ 9 files changed, 251 insertions(+), 18 deletions(-)
+---
+base-commit: e48123c607a0db8b9ad02f83c8c3d39918dbda06
+change-id: 20250617-drm-misc-next-4af406c1c45f
+
+Best regards,
 -- 
-2.50.1
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
 
