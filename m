@@ -1,164 +1,98 @@
-Return-Path: <devicetree+bounces-203739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B8C2B225C0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE00AB22536
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:04:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EA143BF799
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:21:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4096C3A3305
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0B12E974D;
-	Tue, 12 Aug 2025 11:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A95A2E336B;
+	Tue, 12 Aug 2025 11:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ataNcfpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84CE42E6137;
-	Tue, 12 Aug 2025 11:20:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 418C822B590;
+	Tue, 12 Aug 2025 11:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754997646; cv=none; b=DVPJnOqIKBKmLtMrNL5BAvRnhkCbngm3ToJws/ogLSE7KB7qAMPd0Aani0ogcXVave8jBj03U59RrsTx9lwT45rrk7jU+dQitSxlygL45/Kdi+mjSgEm0iplZ+1e/D0vZ1m7TsmLfbdVsMzEWlsmJr17SeVTo7QdpwYh4yLMAK8=
+	t=1754996651; cv=none; b=Pa7Jpq0WyVmej8SDy6NQvbSZmwSPrm9tSK0w0AzuCVNxkBfmuq7q3vQWEzy6r9Zl2D2liGaXSU3+MKQfSbR0ZGAwvBm6GSyju8kep1ljgWTAYRoGxBc8vx80LZYb4HZL3Y/ubuVC/Co4DzZQl2tZo/b/3aW3QJc0fxoa4r5bmYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754997646; c=relaxed/simple;
-	bh=sBDv7vR+It1XYOsUbKJGVxht0ECRwLjzMeT3ejRDm/U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=n5fqdY8t9JbUhGPYKbbCELfibq/9MJZf1eDJHTw/QPSyoZJ3+uQb7cJfn3EnUjh7a0r+4UyyBUr8k2ZNAnyizxNrXQERwbjeLgFssIDvCObqdsc0ZxkTQqRunwf2ilytpbokD1Q2R03E+Ff80Pyhf9qMVtrPqi9hwSMWS69zLvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4c1TBR4kXzz9sT7;
-	Tue, 12 Aug 2025 13:03:11 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3y8dTxRQA3KN; Tue, 12 Aug 2025 13:03:11 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4c1TBP5hjWz9sSs;
-	Tue, 12 Aug 2025 13:03:09 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id AE0E58B763;
-	Tue, 12 Aug 2025 13:03:09 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id Qz7WChCQ-Wh5; Tue, 12 Aug 2025 13:03:09 +0200 (CEST)
-Received: from PO20335.idsi0.si.c-s.fr (unknown [192.168.235.99])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 20F128B764;
-	Tue, 12 Aug 2025 13:03:09 +0200 (CEST)
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Qiang Zhao <qiang.zhao@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
+	s=arc-20240116; t=1754996651; c=relaxed/simple;
+	bh=B+PEgTbf6nrhb/pTGdfvLO5lzTBBQrybiZaSI3MT0Ao=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V5gLuSXEP5ljlgsZgSPeo6utrOh9nbssjgLf+5KvSVmTqlwwsk2cnITXRHFx4eMAAOSVRjitUz1Jz5UU9reX4hWMc2eFdOY5fXnfHZDI5+OshsLmBXuspEL3FQeTm4kGEOi9fxa3iptdFQz6Gl6zVwZwdDo6I2Ike7xaFaS/IH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ataNcfpo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3316BC4CEF0;
+	Tue, 12 Aug 2025 11:04:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1754996649;
+	bh=B+PEgTbf6nrhb/pTGdfvLO5lzTBBQrybiZaSI3MT0Ao=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ataNcfpoXpirEm7xwJlmEpcq4x8xZ2BB+TgjMheJOrtKYvO1w/i211qXrlLbenNNF
+	 fcWLhvUWILk0qLFvraxEw0clxYSqEkdYOz2dDwAjh1xbwgjB+aeGF3dyUGsrtUUOiq
+	 dZDf2zJyBdDBrr8rpcjMnnDzx5cvnIARDvz6OKH857UMKOxWxbg4XoeGEuOJdacT1P
+	 THhevSNdL+OXxaiQIlPslnERdx1fRpJwFX+qz8k+033GQbO4SUYqdLmMoC8OdyLXXl
+	 dSBAtxkHGXH0ykufdf8qCsCFIbE9YPc6eK+Q6Qu73kQMpJKLVb6cvuFeQb3hnirmvi
+	 baIJ2y2aCuqeA==
+Date: Tue, 12 Aug 2025 12:04:05 +0100
+From: Mark Brown <broonie@kernel.org>
+To: jeff_chang@richtek.com
+Cc: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: soc: fsl: qe: Add an interrupt controller for QUICC Engine Ports
-Date: Tue, 12 Aug 2025 13:02:54 +0200
-Message-ID: <0b56ef403a7c8d0f8305e847d68959a1037d365e.1754996033.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <cover.1754996033.git.christophe.leroy@csgroup.eu>
-References: <cover.1754996033.git.christophe.leroy@csgroup.eu>
+Subject: Re: [PATCH v7 2/2] regulator: rt5133: Add RT5133 PMIC regulator
+ Support
+Message-ID: <cce96a11-6bd2-4a95-8012-74fc9bbc76cd@sirena.org.uk>
+References: <20250812031541.2966667-1-jeff_chang@richtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1754996575; l=2493; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=sBDv7vR+It1XYOsUbKJGVxht0ECRwLjzMeT3ejRDm/U=; b=BOrAHvPX1MdgLy+6wlTvGbgoypCVvvGj7lfPu6JAC3QbSLnZxuD3Vq6NaU3gedK/5SowU993K yN7/zKYS8O5AWY9thNswXKEYACGBAOQv5dd7OmZYqNex0uG2y6q4nwB
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eVWQQKUyROMXhXEq"
+Content-Disposition: inline
+In-Reply-To: <20250812031541.2966667-1-jeff_chang@richtek.com>
+X-Cookie: For internal use only.
 
-The QUICC Engine provides interrupts for a few I/O ports. This is
-handled via a separate interrupt ID and managed via a triplet of
-dedicated registers hosted by the SoC.
 
-Implement an interrupt driver for it for that those IRQs can then
-be linked to the related GPIOs.
+--eVWQQKUyROMXhXEq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
+On Tue, Aug 12, 2025 at 11:14:56AM +0800, jeff_chang@richtek.com wrote:
+> From: Jeff Chang <jeff_chang@richtek.com>
+>=20
+> RT5133 is a highly-integrated chip. It includes 8 LDOs and 3 GPOs that can
+> be used to drive output high/low purpose. The dependency of the GPO block=
+ is
+> internally LDO1 Voltage.
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
-new file mode 100644
-index 0000000000000..7c98706d03dd1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+title: Freescale QUICC Engine I/O Ports Interrupt Controller
-+
-+maintainers:
-+  - name: Christophe Leroy
-+    email: christophe.leroy@csgroup.eu
-+
-+description: |
-+  Interrupt controller for the QUICC Engine I/O ports found on some
-+  Freescale/NXP PowerQUICC and QorIQ SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,mpc8323-qe-ports-ic
-+      - fsl,mpc8360-qe-ports-ic
-+      - fsl,mpc8568-qe-ports-ic
-+
-+  reg:
-+    description: Base address and size of the QE I/O Ports Interrupt Controller registers.
-+    minItems: 1
-+    maxItems: 1
-+
-+  interrupt-controller:
-+    type: boolean
-+    description: Indicates this node is an interrupt controller.
-+
-+  '#address-cells':
-+    const: 0
-+    description: Must be 0.
-+
-+  '#interrupt-cells':
-+    const: 1
-+    description: Number of cells to encode an interrupt specifier.
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 1
-+    description: Interrupt line to which the QE I/O Ports controller is connected.
-+
-+  interrupt-parent:
-+    description: Phandle to the parent interrupt controller.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#address-cells'
-+  - '#interrupt-cells'
-+  - interrupts
-+  - interrupt-parent
-+
-+examples:
-+  - |
-+    interrupt-controller@c00 {
-+      interrupt-controller;
-+      compatible = "fsl,mpc8323-qe-ports-ic";
-+      #address-cells = <0>;
-+      #interrupt-cells = <1>;
-+      reg = <0xc00 0x18>;
-+      interrupts = <74 0x8>;
-+      interrupt-parent = <&ipic>;
--- 
-2.49.0
+You're missing patch 1 here with the DT bindings.
 
+--eVWQQKUyROMXhXEq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmibH6QACgkQJNaLcl1U
+h9Dopgf+JTqvi5jADxtTd+tqB0k4PtcNioCPW3RRBgZ1f4l+iubDJZGasBJ+/Tqo
+LwTAV8jDRmHJ9j3owAqo3X4dud5bOWJegkNxO56SVXv1rRt+/f07HO+UiIJ/6Ovu
+rUmPulogC3wmMUzc9fWTyknyJrfXlwzIo3cPE6d4nnIdTpV9Jdvu669m3nZmUzhi
+SBg0bjuOqBgHsZANrtEhJXrvn67IjQbcxoxAssq3dwOhT7zSfZlloqAk6s57aO98
+0HsplP1qKtUIWkeA39JkGkyJ8iRDt8IclE3ZmX/Xb48btRpRefR+005eDuPnE52g
+9kGfbNv2tMlXo1MpWd80jdKWW6unSw==
+=2GXV
+-----END PGP SIGNATURE-----
+
+--eVWQQKUyROMXhXEq--
 
