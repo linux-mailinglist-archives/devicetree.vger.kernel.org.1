@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-203753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE03B22667
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:12:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6FC7B2266C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:13:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59C471B629BE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBC903AE8F4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:12:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503EF2EF667;
-	Tue, 12 Aug 2025 12:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FBE2EFDA0;
+	Tue, 12 Aug 2025 12:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tIRdm9aQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NxiTIAI1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2F22EF656;
-	Tue, 12 Aug 2025 12:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D83A2EFD9A;
+	Tue, 12 Aug 2025 12:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755000732; cv=none; b=a2GiHzEGvsh+be/cxYuUvK8TW/agL5kW9qpB+pl8LqXLInn6e3d4v0Kn3nT8P0t+ieoU0/RbxujvF3rO3bNA4y6djazRNsR6D0RNmKLqFUM0EmabA6lukDSOCzrBcw8wQ3gYEZj3bdMjzGmeREyYDQqbmQD/aVbGE217EUB7Rdc=
+	t=1755000734; cv=none; b=YLBdu+HTBuvgAmMZvam6oyDf/6Mf/oA6rrndLWEdX0Bz5iq765iRJxeP0ZjYSIfEI8szze2KL/0RjMrB6dkVxrcz4Q+bEoGcvTuAHuQbI5VoQEYsDLD6jfPVHbNt+ZyVtHR0FV82YEbz7Z2FCAvYoeOIS1tjoSkHIx/jBQjbLo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755000732; c=relaxed/simple;
-	bh=iWEGZNePX3dcvoxdhsYKOr/evXy1Bi/gWovD04hMcT4=;
+	s=arc-20240116; t=1755000734; c=relaxed/simple;
+	bh=F0jl31lJlrxf9bEufJTtyVHDr4swwK0MIuhlvBZ02rI=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=QLpjT4W+jwmcvIMqfIjvMfJrFgCyWXB6WWqZrIpM8/uEhQW+mgC93hwxj4WYm7nQBOOXhAPGZvAMXwi+dJfwav+Lt9j+a2RzGR95wZH2j89I5L6YuAZROsESwZUlqm86CEMgW0DveeGfv0XeIKWrKTZ7oTLAIY1Jw28IjP6WCfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tIRdm9aQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18391C4CEF0;
-	Tue, 12 Aug 2025 12:12:10 +0000 (UTC)
+	 Message-Id:Subject; b=on3Zj3vYFOjaoZYtYR7TXPeH1zbL20ORWkSsEbkGRl5J1juAgW1FK9NJ6Jy3ijbTBafcJhIzjXLdYdm+6Gus4WuyKDt7r+cU664eeGS97LwApsT8d4srP0U9ueuvYIwnjAjUVyuzuqSFESydrbzwIHT/sejayfcwzQ2i/5Tq7ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NxiTIAI1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7E86C4CEF0;
+	Tue, 12 Aug 2025 12:12:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755000731;
-	bh=iWEGZNePX3dcvoxdhsYKOr/evXy1Bi/gWovD04hMcT4=;
+	s=k20201202; t=1755000734;
+	bh=F0jl31lJlrxf9bEufJTtyVHDr4swwK0MIuhlvBZ02rI=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tIRdm9aQ+lbOitXgVRW5ZlfMf287CXLopaS9ckwK0Oj1GEv2XUKNfvgJNkUU0/m8/
-	 3UQrWIMA/2Ri0Sx3o393SwP2x59ijs2FLXRtXEV9ydCJM4+EkYq09WaXIcJoJcmrRn
-	 JcGOetzpzvwPH0+PFldss+o4Wn9XhHi7DUDrOvKvozPycAm2jLqTxs2ncLOnU0FOHx
-	 pxL45edtldj8hdkf38g7NIc4VRRURRqjQ4yJJrEJh7YpMCzJqRCYUOZzmeD0xiCSEu
-	 a7W3QzR8muRDWt19fPV7UkENuOstU8X9I1U/2U29Wqt9qQnPTJd19LszILFS4ScRvz
-	 QQ7o7y6WHsUMw==
-Date: Tue, 12 Aug 2025 07:12:10 -0500
+	b=NxiTIAI1ZsZXXFMENyUYwQ71XKs/s3vuE6fp+I1hYPgB6PXVv15ewjRQUqM4Umlx+
+	 0jQWgC15JhMbNemnEMb0QmnEDXlqCRm1uzFY6hV+WXAqAlcm/SPhnj9UiDqLv3cxQ8
+	 GmxH1xpVpqnr5oD83WeZPoPnJCpK1v4IQUZCc3lvwQkNxDz16Ozeis9EcG5/6YrBZH
+	 mPUtqQMPvVubq6awHo4z7K4fzHL6D3G9LRrwowAnxf/hiM/eNl3zbRFjb7lHLElLae
+	 EJfHX08hmRv7ohiz7GPtf/CQF4ctBHvjt57rDpFYdU96BVJBArwwAch0XQgHviEjq6
+	 idPVAE4mb51yg==
+Date: Tue, 12 Aug 2025 07:12:11 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,68 +51,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org, 
- phone-devel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-To: Cristian Cozzolino <cristian_ci@protonmail.com>
-In-Reply-To: <20250811-rimob-initial-devicetree-v4-0-b3194f14aa33@protonmail.com>
-References: <20250811-rimob-initial-devicetree-v4-0-b3194f14aa33@protonmail.com>
-Message-Id: <175500063389.2957146.14812918350034377091.robh@kernel.org>
-Subject: Re: [PATCH RESEND v4 0/3] Add initial device tree for Billion
- Capture+
+Cc: iivanov@suse.de, florian.fainelli@broadcom.com, 
+ Catalin Marinas <catalin.marinas@arm.com>, linux-mmc@vger.kernel.org, 
+ Ulf Hansson <ulf.hansson@linaro.org>, linus.walleij@linaro.org, 
+ Jonathan Bell <jonathan@raspberrypi.com>, linux-serial@vger.kernel.org, 
+ conor+dt@kernel.org, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, svarbanov@suse.de, 
+ Phil Elwell <phil@raspberrypi.com>, Jiri Slaby <jirislaby@kernel.org>, 
+ Will Deacon <will@kernel.org>, linux-gpio@vger.kernel.org, 
+ mbrugger@suse.com, wahrenst@gmx.net, Al Cooper <alcooperx@gmail.com>
+To: Andrea della Porta <andrea.porta@suse.com>
+In-Reply-To: <cover.1754924348.git.andrea.porta@suse.com>
+References: <cover.1754924348.git.andrea.porta@suse.com>
+Message-Id: <175500063439.2957253.9707220864929081392.robh@kernel.org>
+Subject: Re: [PATCH 0/6] Add peripheral nodes to RaspberryPi 5 DT
 
 
-On Mon, 11 Aug 2025 23:08:08 +0200, Cristian Cozzolino wrote:
-> Billion Capture+ is a handset using the MSM8953 SoC released in 2017
-> and sold by Flipkart.
+On Mon, 11 Aug 2025 17:19:44 +0200, Andrea della Porta wrote:
+> Hi,
 > 
-> Add a device tree with initial support for:
+> The following patches add a few peripheral DT nodes and related pin/gpio
+> nodes for Raspberry Pi 5.
 > 
-> - GPIO keys
-> - SDHCI (internal and external storage)
-> - USB Device Mode
-> - Regulators
-> - Simple framebuffer
+> This brand new patchset (hence it's a V1) is the second part of the split-up
+> of the patchset [1]. It tooks patches 3 to 6 from there and adds a couple
+> of new patches that amend the DT bindings.
+> As a result, patchset [2] is a prerequisite for this patchset.
 > 
-> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
-> ---
-> Changes in v4:
-> - pick up tags (Rob);
-> - Link to v3: https://lore.kernel.org/r/20250626-rimob-initial-devicetree-v3-0-4017ac9fd93d@protonmail.com
+> - Patch 1 and 2: Amend the bindings to avoid DT compiler warnings.
 > 
-> Changes in v3:
-> - (patch 3/3): pick up tag (Konrad);
-> - Link to v2: https://lore.kernel.org/r/20250624-rimob-initial-devicetree-v2-0-34f6045ebc30@protonmail.com
+> - Patch 3: Adds core pinctrl nodes and defines SD pins as a first appliance
+>   for the pinctrl.
 > 
-> Changes in v2:
-> - (patch 3/3):
->   - add unit address and label to qseecom (Luca);
->   - reorder properties alphabetically in gpio-keys node (Konrad);
->   - fix hex values in reg address and size cells: from 0x00 to 0x0 (Konrad);
->   - add regulator-allow-set-load property to regulators supplying sdhc1/sdhc2.
-> - Link to v1: https://lore.kernel.org/r/20250620-rimob-initial-devicetree-v1-0-8e667ea21f82@protonmail.com
+> - Patch 4: Wires the gpio-key for power button and related gpio controller.
 > 
-> ---
-> Cristian Cozzolino (3):
->       dt-bindings: vendor-prefixes: Add Flipkart
->       dt-bindings: arm: qcom: Add Billion Capture+
->       arm64: dts: qcom: msm8953: Add device tree for Billion Capture+
+> - Patch 5: Adds DT node for WiFi.
 > 
->  Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
->  .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
->  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->  .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 255 +++++++++++++++++++++
->  4 files changed, 259 insertions(+)
-> ---
-> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-> change-id: 20250620-rimob-initial-devicetree-da86a5bffc8b
+> - Patch 6: Adds Bluetooth DT node.
 > 
-> Best regards,
+> All comments and suggestions are welcome!
+> 
+> Happy hacking!
+> Ivan and Andrea
+> 
+> Links:
+> [1] - https://lore.kernel.org/all/cover.1752584387.git.andrea.porta@suse.com/
+> [2] - https://lore.kernel.org/all/cover.1754922935.git.andrea.porta@suse.com/
+> 
+> 
+> CHANGES since [1]:
+> 
+> --- PATCHES ---
+> 
+> - Add two new patches (1 and 2) that amend the DT bindings.
+> 
+> 
+> --- DTS ---
+> 
+> - bcm2712.dtsi: Added 'interrupt-names' and dropped 'reg-shift' and
+>   'reg-io-width' properties in uarta DT node. The latter two are
+>   just overridden by driver code so setting them in DT is useless.
+> 
+> - bcm2712-rpi-5-b-ovl-rp1.dts: dropped 'auto-flow-control' property
+>   since it's not parsed in driver code.
+> 
+> 
+> --- DT BINDINGS ---
+> 
+> - brcm,sdhci-brcmstb.yaml: added SDHCI capabilities by including
+>   sdhci-common.yaml.
+> 
+> - serial/brcm,bcm7271-uart.yaml: let clock-frequency be an alternative way
+>   to specify the clock speed instead of clocks/clock-names.
+> 
+> 
+> Andrea della Porta (2):
+>   dt-bindings: mmc: Add support for capabilities to Broadcom SDHCI
+>     controller
+>   dt-bindings: serial: Add clock-frequency property as an alternative to
+>     clocks
+> 
+> Ivan T. Ivanov (4):
+>   arm64: dts: broadcom: bcm2712: Add pin controller nodes
+>   arm64: dts: broadcom: bcm2712: Add one more GPIO node
+>   arm64: dts: broadcom: bcm2712: Add second SDHCI controller node
+>   arm64: dts: broadcom: bcm2712: Add UARTA controller node
+> 
+>  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      |   2 +-
+>  .../bindings/serial/brcm,bcm7271-uart.yaml    |  19 ++-
+>  .../dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts  | 133 ++++++++++++++++++
+>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  47 +++++++
+>  4 files changed, 198 insertions(+), 3 deletions(-)
+> 
 > --
-> Cristian Cozzolino <cristian_ci@protonmail.com>
+> 2.35.3
 > 
 > 
 > 
@@ -133,15 +167,26 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
- Base: using specified base-commit 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250808 (exact match)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250811-rimob-initial-devicetree-v4-0-b3194f14aa33@protonmail.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/broadcom/' for cover.1754924348.git.andrea.porta@suse.com:
 
-arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dtb: gpu@1c00000 (qcom,adreno-506.0): clock-names:5: 'alwayson' is not one of ['core', 'iface', 'mem', 'mem_iface', 'alt_mem_iface', 'gfx3d', 'rbbmtimer', 'rbcpr']
-	from schema $id: http://devicetree.org/schemas/display/msm/gpu.yaml#
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb: /soc@107c000000/pinctrl@7d504100: failed to match any schema with compatible: ['brcm,bcm2712c0-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb: /soc@107c000000/pinctrl@7d504100: failed to match any schema with compatible: ['brcm,bcm2712c0-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: /soc@107c000000/pinctrl@7d504100: failed to match any schema with compatible: ['brcm,bcm2712c0-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb: /soc@107c000000/pinctrl@7d510700: failed to match any schema with compatible: ['brcm,bcm2712c0-aon-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb: /soc@107c000000/pinctrl@7d510700: failed to match any schema with compatible: ['brcm,bcm2712c0-aon-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: /soc@107c000000/pinctrl@7d510700: failed to match any schema with compatible: ['brcm,bcm2712c0-aon-pinctrl']
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dtb: hvs@107c580000 (brcm,bcm2712-hvs): clocks: [[27, 4], [27, 16]] is too long
+	from schema $id: http://devicetree.org/schemas/display/brcm,bcm2835-hvs.yaml#
+arch/arm64/boot/dts/broadcom/bcm2712-d-rpi-5-b.dtb: hvs@107c580000 (brcm,bcm2712-hvs): clocks: [[27, 4], [27, 16]] is too long
+	from schema $id: http://devicetree.org/schemas/display/brcm,bcm2835-hvs.yaml#
+arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: hvs@107c580000 (brcm,bcm2712-hvs): clocks: [[27, 4], [27, 16]] is too long
+	from schema $id: http://devicetree.org/schemas/display/brcm,bcm2835-hvs.yaml#
 
 
 
