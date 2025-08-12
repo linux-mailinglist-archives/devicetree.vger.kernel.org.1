@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-203638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1165FB22220
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:58:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C339FB2222C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 10:59:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB901886FCC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:55:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F05B1777ED
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9E22E6104;
-	Tue, 12 Aug 2025 08:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CCE2E62B0;
+	Tue, 12 Aug 2025 08:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlhMGelf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oe9JsDNZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8F42E1C74;
-	Tue, 12 Aug 2025 08:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D782E6128
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754988912; cv=none; b=D7Z6fcOYqzLFuxko3KJLheAX+klkzBbTzNJKcXaiRSsoJbHLcGt7v1nD8cylGrFVmGMN09M3B6QfTw8hbivbo7roDUOJwcA20J1++Hcwmrl42lj5TVNl/i7J4Jm4bzN7CEtAV80McSn6rD7riRYCNtB2MzvxXhTBo3iOM0NPfy0=
+	t=1754988922; cv=none; b=G5q4fmGe+8L4eMLVibAwBrtm7OZgYwrE4lNhWsNJpYBtRhU8BPiTAJP/SRKmL+N185Pb3oA48pLaslPdV7tiZSOSafGHtvrfVB8mODX6w42OD1LE+vIMT6uK/s1A7Os4yN+o2ilRyXFZMiBtJxaSNlt2IM6NpdUDga4m3pkHAJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754988912; c=relaxed/simple;
-	bh=D5p6Ycjb+TLwUgdojPUyJJLdzqDj0US7QUkvj3u+Yok=;
+	s=arc-20240116; t=1754988922; c=relaxed/simple;
+	bh=xSs6dS+KyRDNFjNfeFIgB59xgPp98X9tQpRjtakfgRU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F0bHmi9HDVGHZ5wQb5K298axWIheMCayQF2lMXp6bTcURnwlA9V1jThKdU7V3JKsvN4Zcyn9B9vtgP0psbspc2mHrLe4wdH2jlbZgMMYmnwaNG/ffg2XppumCIY8+4JX0hHcuEKu3LA3L3lvq19s5Oj4ACAAo/k7DAr16PrcQfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlhMGelf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74246C4CEF0;
-	Tue, 12 Aug 2025 08:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754988912;
-	bh=D5p6Ycjb+TLwUgdojPUyJJLdzqDj0US7QUkvj3u+Yok=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JlhMGelfVzXLX0u23DmiEy1PAw3Li3frBqx+eX25g2ZLSJ8GMcQ8ecdEOlqWLZCL6
-	 FmWY7MtUY1zzcXTKk+iZhFJoz+WE6CKzsMnVZz44XgeI8UJPglRLIPpsDhF2H139Kg
-	 KME4LaVDVaYTW2bbGDS6PcLbAhYpCmDzTjucEmf6zB7VuKiyTw1DkCePxSmoIju1oW
-	 qjITLhU1Y33oxrZhDgUKMQqD/lNTK1J2er71vT0cknB7SiAwN7x4K7w2tEJnUr3+uR
-	 8lYIrT8wcVYz6C61WnpgF/oQcCSj4d/T3qDDJqYCf404u7UMXSfzMelXwYl0cch636
-	 XFcxElEWFyD8Q==
-Message-ID: <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
-Date: Tue, 12 Aug 2025 10:55:05 +0200
+	 In-Reply-To:Content-Type; b=PsQifQm/PrK4lW0qpc+UII1X1vwrI9igaHjWSoY8OG3/Zzex8ivo1crvGA6DJKQKLtXAkf+J5g/DXMRrGTmzw17JoIHvKqnNZalea1PzGIl6wHRw8NG/v69U4b1JCDdLfQYtKBarG7LfBTaPSTJpoBrWLBgZCxRsWfn/FV82Ndg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oe9JsDNZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C5XOVW028837
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:55:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ebzLashfQv7DGHl2pjGLWaRMjZRcLyKDg5E66/KXdh4=; b=oe9JsDNZUHdy5vFJ
+	PdStn1nMaBC7PB3A0D5Qvl+Ps/yy8wI+I+E31mAKnZccBAVI2HKidilkjMQ5JA4A
+	B8ohSVBrvYXSRFCi8AZ1iRGkEsZyC9Q1cYCMZaULUbnMw+au0/xsgNBd78U02r0D
+	r5yyrz3MpMVTYgff8/WmNZlREMmI/eXHYDlvD0zAudyfmawHYUZTcCPlWqP3ZlHK
+	KlbT0EDWLpSO2qD8BlfDSda5AcCrVgYMKD3sbf+KhwP2rdQXCiXZM4ss8Op4/RwK
+	JDDxfvg8bDZhRmEvQ/LWcvcgJsydvIAyop4RutGezTdlVAGQAEZ+1tSPCEu4zqa8
+	t2mjAQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9sqn72-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:55:20 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76bcd829ff1so5038131b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:55:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754988920; x=1755593720;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ebzLashfQv7DGHl2pjGLWaRMjZRcLyKDg5E66/KXdh4=;
+        b=ujbbNTjdwueHrwAWex5d+nZVu+sJ03//nTYNIlnJMUZeghxETQbg5VqlKoajyGk1Az
+         cSPcIGASyup868lGpOC89U6IB8WYaobFXLV2pVHAfSb+MjsLfyQDxiesg0Eg+RaYmKyI
+         u0AdVsqwhFCs/p+oMf9BW34jAcQJLj/OhcHTNDFK352aSMjBeGhnlAPHdiK0RIZkXkwx
+         fNgUi1p3qEzCPdeJhn4oSdn+GKMIl5DTmyD7bccJZdxNInyz07+ZcM6jddw+rUN1xxiq
+         ojquCrw9fbK5dVNKwks32zVnUAOEn1grFpNV5FGWHHeLmwf2S6aVke6f9UbtcexMljqQ
+         UyvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUESnu2RLQ3PKVXu1z9CHDE7Jq8ZBn2Kqup2vbHlyCDr2+i80W0hM0qn2jR+xgxHAYMoTi0UDPOjjUx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy529EX9JQ9fMPxpAh3RzmjXzAFPdTttn3JjpgCG8kymv/LnqUH
+	p2+ggx4Q/kbcvZCbhAQ0WdLR9u6p0w2Dnp0Ugd9dz7G7fX3LwtfYTxulMACdOFYmxisfNBygZSW
+	+scBPu2ROhg7tFqtEIJ5ZJ73slWIPRCqXKzrtIO6uu4UsFWYZZxBX4NFo8k0UDnr4
+X-Gm-Gg: ASbGnct9RJbaUyUf/HNMrOxWiq1t6k17bCP9IKHRhSOuMsev7wHVhAebZ4DT8xfebyV
+	aqF1Sb/hNPRNPkL65sEukIbi+A21AHQfkLtTItzKDSD0Dx0X8MLlpru7cO0Xy6v9Ika9rU1U5PZ
+	g8R0Al7EPHkSEtjuTGljYfGMUndyHVMD3Rwk20+VOkw3EhDEGg6eAC5Q9aC49ZS23OyXo8LMXI7
+	qIdHU3xxZiCaOxRXVoh4O3DmMyFATa22iU3BuxlFrPMVRZyGCvkNm9sthg+a05fUr/4qwFCSLgb
+	V6/AO/24LQNK+ht+6A3HoTxdObLdLYR9czBzwjQXNlkwJj3YPFBrKlYtL3u/ka6EXzJI
+X-Received: by 2002:a05:6a21:9988:b0:23d:781f:1516 with SMTP id adf61e73a8af0-240551604f0mr25082532637.22.1754988919653;
+        Tue, 12 Aug 2025 01:55:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFlnXmlEPEhmClJA7oU3TLCmpGyzifixg3hvVecLC6bS5LjgZJzR0qSooNP83dnLrlUeNXW9A==
+X-Received: by 2002:a05:6a21:9988:b0:23d:781f:1516 with SMTP id adf61e73a8af0-240551604f0mr25082483637.22.1754988919136;
+        Tue, 12 Aug 2025 01:55:19 -0700 (PDT)
+Received: from [10.217.217.159] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b424ca987desm19854361a12.40.2025.08.12.01.55.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Aug 2025 01:55:18 -0700 (PDT)
+Message-ID: <d56920b0-0bbb-4951-aa02-152da6b9f9d2@oss.qualcomm.com>
+Date: Tue, 12 Aug 2025 14:25:12 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,126 +89,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC
- warning
-To: Andrea della Porta <andrea.porta@suse.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- kwilczynski@kernel.org, Manivannan Sadhasivam <mani@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, iivanov@suse.de,
- svarbanov@suse.de, mbrugger@suse.com,
- Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
-Cc: kernel test robot <lkp@intel.com>
-References: <20250812085037.13517-1-andrea.porta@suse.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: qcs615: Add clock nodes for
+ multimedia clock
+To: Bjorn Andersson <andersson@kernel.org>, Taniya Das <quic_tdas@quicinc.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
+ <20250702-qcs615-mm-cpu-dt-v4-v5-2-df24896cbb26@quicinc.com>
+ <vxeadjzwywqjjqm7elg5pltq3jtnv7fprquhdoydhxnjihpsw7@tlqoq5wpgcr3>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250812085037.13517-1-andrea.porta@suse.com>
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <vxeadjzwywqjjqm7elg5pltq3jtnv7fprquhdoydhxnjihpsw7@tlqoq5wpgcr3>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=689b0178 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=Kl_B17VGIN1bcdT5aTYA:9 a=QEXdDO2ut3YA:10
+ a=IoOABgeZipijB_acs4fv:22 a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: BjwFFGDCr-SkTFHGM9Hmora5E3CxmcXw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfXz7xMSfGzCJBj
+ fywpYUpl255HB9ANBkFRL2GKCc7a5c6K04J8xItgwsfz0lcLMrjwct6VA9wRFU7OPjqXZV8WS/d
+ /goPb8HCl3kYljC/VTDKysrghDQwO1S8L6MiGsuEFEqtALTIBnUddeFCbIFAj67UzdTV7BSzgbP
+ bG0ehg7uoakf+3/kwUbtkqug1mE8XWe2N0ivZPU1OjoppQEPscp3pFSDmk9qUtpEt0Her21vwOD
+ BwLUh2GtEUMueyt1L7u55izMbKODv/ZBfrjU8SOwzOqTEQ7F7eZv3MG0Q2UrrP14yyq4JMiodnI
+ 9L1vfZL5kGqIk9k0ADAXOOYtFhelJfwHigRjquIYH4gW9K3HAp1ydTjSxg1MHmaIpNsZktPrVx+
+ uLzCcSY4
+X-Proofpoint-GUID: BjwFFGDCr-SkTFHGM9Hmora5E3CxmcXw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_04,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090015
 
-On 12/08/2025 10:50, Andrea della Porta wrote:
-> The devicetree compiler is complaining as follows:
+
+
+On 8/12/2025 9:15 AM, Bjorn Andersson wrote:
+> On Wed, Jul 02, 2025 at 02:43:10PM +0530, Taniya Das wrote:
+>> Add support for video, camera, display and gpu clock controller nodes
+>> for QCS615 platform.
+>>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
 > 
-> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges property, but no unit name
-> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_nexus' was unexpected)
-
-Please trim the paths.
-
+>   DTC [C] arch/arm64/boot/dts/qcom/qcs615-ride.dtb
+> /home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@100000: 'clock-names' is a required property
+>         from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gcc.yaml#
+> /home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@5090000: clocks: [[43, 0], [45, 2]] is too short
+>         from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gpucc.yaml#
+> /home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@5090000: Unevaluated properties are not allowed ('clocks' was unexpected)
+>         from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gpucc.yaml#
+> /home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@af00000: clocks: [[43, 0], [45, 29]] is too short
+>         from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-dispcc.yaml#
+> /home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@af00000: Unevaluated properties are not allowed ('clocks' was unexpected)
+>         from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-dispcc.yaml#
 > 
-> Add the optional node that fix this to the DT binding.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4-lkp@intel.com/
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> The missing clock-names in clock-controller@100000 predates this series.
+> Sorry for merging broken patches in the past, please fix that as well.
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 812ef5957cfc..7d8ba920b652 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -126,6 +126,15 @@ required:
->  allOf:
->    - $ref: /schemas/pci/pci-host-bridge.yaml#
->    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: brcm,bcm2712-pcie
-> +    then:
-> +      properties:
-> +        rp1_nexus:
 
-No, you cannot document post-factum... This does not follow DTS coding
-style.
+Bjorn, would you prefer that I add the clock-names property to the GCC
+clock node to resolve the warning, or should I instead remove the
+required: clock-names entry from the qcom,qcs615-gcc.yaml schema?
 
-Also:
+Let me know which approach aligns better with your expectations.
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+-- 
+Thanks,
+Taniya Das
 
-... and nodes should be anyway defined in top-level and only customized
-per variant. I am surprised that DTS patch carries a reviewed tag,
-because it was never checked/tested :/
-
-> +          $ref: /schemas/misc/pci1de4,1.yaml
->    - if:
->        properties:
->          compatible:
-
-
-Best regards,
-Krzysztof
 
