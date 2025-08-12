@@ -1,226 +1,95 @@
-Return-Path: <devicetree+bounces-203801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33A2B22957
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:56:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD27EB22996
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:05:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB521BC6BA8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:40:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20AC716C875
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C2728313B;
-	Tue, 12 Aug 2025 13:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62221284B35;
+	Tue, 12 Aug 2025 13:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zA1Yx7Uu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bSixSqmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E2AB281370
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 13:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F1228467D;
+	Tue, 12 Aug 2025 13:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755005945; cv=none; b=teJLDvrdBmS5wvsTz+Oy8W+5TcX7L5BNsZhpWK1Oey0QAUGA+fLd19aJyQNFDCsEVhsBg1K9uv1vGMD+2aDS3d7cmibFALpmj1gErnLMR7pEO4UUeqwiHQJf8eP0pSY88FhJLHuLyblfjOr9pesdlB8EEgKg4y1rDI6K4ElXjGs=
+	t=1755006450; cv=none; b=CJ5IBxbuS6RakmftT7RTGJyU6O36QVzWsG6eq2CB+J9okHWloAr5JSl52A546XtrfxNMMkFiO1cA0TjNxu9ID5dmy3OSawMgWiZG6fVM2Zl/H44DKqxn1VsPjz/4Ty5lSAdtv65B7J2us3gUCKVzrssbccWpiCdN00p3hBP3MLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755005945; c=relaxed/simple;
-	bh=vFn0jCSKE1KpsbrkuboVpZfoRk4S06SCDMiRDBC4J8s=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Gy2VZpjP0FavqeVxXt9LB79VdwupJuSJBTwKOkfKUikkLlaKWex+mr4lS+E7kcPIXicKUgnd8SRB7lDriaC9rq1LcGePgGqjy3pX0CRJtmmNReBAETSb6u8oLzARSET7A7T4SQnF9Ir7Km8h5OlwE95BorKnE75AXX01vA4cg90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zA1Yx7Uu; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-459d7726ee6so28386145e9.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 06:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755005942; x=1755610742; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r+F6T7liCG9gadSn68AjZAZfIPgOb+DpRS8VT8i0DD8=;
-        b=zA1Yx7Uu9KkqgEWh81jEvm4UFjXOkrFs2/PzPMFzDupuH+dxU1nksi4rB9I/7ut00J
-         Kk5n0RIHJo8v96XnE0Xf4HqnGwoGy8e0y5Lihhq0Wn/svxMnfYFsAEP1nJllm/sCaamf
-         pJCOUlhrbT6vfccsSIumFBE6MTvqXw6J4QfRhMkjsO/hB/05ml1/emgZwnUHpMf4Bh1V
-         pB0CEDbcQaN57mZy+Q/LaQsX6oDR3AGqn6TVwG6ST7KAn58iXp2kPRTz62/Wzt9rlXKJ
-         Pg3EjdYxGK/PtWOlM5ziPyYpbtDXTis2xiX2XXiJa5Yorv+b4Im+EPrvjan4fHxN3RZl
-         e3Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755005942; x=1755610742;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=r+F6T7liCG9gadSn68AjZAZfIPgOb+DpRS8VT8i0DD8=;
-        b=ew+QMbYBQD6l6OkZ+Ha/XPSrgRcZes1MpDgnfM/Tnv3Kp+Tq4wcmLFNMXeDIYusdzz
-         n+7bDlMW6oISK/k7QmIiswbrPBI4oY9Pa4GvGJmrVKK0jTxAvlMKnbBcRqvT3ajqslla
-         abetVt6ADpRtZDBUwT0PXavsoQ5HJlooYGvGk6UjlOTekoxMUzCsXcPPzcRDLjfa3CUD
-         SkuRgt7R4991Zt2MoDZ/VgSJvUgDVum4t0c2mvlPibzqzs9p4kUU8lZduI1jvn2y+uB1
-         bXPoE4P6Mi3QYffXimyX4OVt09FddAk+Wx5qnTSCitCpt8X+HO1teClueRTrOH43IXb9
-         YqRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWXdWMxOayplYyFHnlPH33yoHrfQmMQmm+WLg/NncrUQwsVmlqeYA7mQtRqCtHKZ9ddD0sOipRsqQa5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOXX41P5dkGBUoc5I32XQM6Xk4MfOIAYIAhNNXNNvHGNF73Sw1
-	Y09KOOz8cRfvVqVNbIETYmE6B0/gZ/URFoDVMwrqdSZvANLHQy/5Y31fUKUrJ4wYHY4=
-X-Gm-Gg: ASbGncvr0Xp2hpP5gayF8z+rgPMwEL9EcpmO9yAxhYZKBCUuBi3bODAXCyLrBWXxyuU
-	sqbDNxyPdkzHmFaBtyDYItCQpekZFK4wJP1/0nOyIt84rVxR/iugJD+GiALio87eQdoG/weKT0B
-	0DJQnv8AGxX4diWTJFn/nKN/pud2BJ1ch1sETERWQcsv1mAe/k3g6T0jfNrwplm/N+KvrbT6J7W
-	yA4wvWJzCIxo4FhurrD8RuB5f9OdB1t+tu2NnIBXcKh9F/fdZjFVxGOKyJQcaqEgj9vInAAK8rb
-	sTPqBIsYNffXPK1zsimgHn6xWLfFOkJxyfmYSQsWk6gx0PFy6zLLaOvtKgHqIsO7FSQrhfIFP51
-	ewoFjwJBo4Uj8QLbQlHSfxh9rlpYl9b4JfASqMyOoYwd40eM+FgNR80OqvKjwABXdvXIykxVl8Q
-	PSdq2gPoik6A==
-X-Google-Smtp-Source: AGHT+IG68k5KkLHuUBSjtpxGcS06gQVZPGCBg//jo/LZq9FzGZ01MFCnek+ggsr/rWGxjSd/2rnI0Q==
-X-Received: by 2002:a05:600c:8b35:b0:43c:ea1a:720a with SMTP id 5b1f17b1804b1-45a10b9ae9emr27765545e9.1.1755005941590;
-        Tue, 12 Aug 2025 06:39:01 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:9086:bd36:16a7:1f8b? ([2a01:e0a:3d9:2080:9086:bd36:16a7:1f8b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c489e81sm44885723f8f.68.2025.08.12.06.39.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Aug 2025 06:39:00 -0700 (PDT)
-Message-ID: <d7949778-73c4-4575-8db3-a3724f75eb38@linaro.org>
-Date: Tue, 12 Aug 2025 15:39:00 +0200
+	s=arc-20240116; t=1755006450; c=relaxed/simple;
+	bh=ygSBFak7HTq/95jo9PWSCAhd/zWvgp4pHUCRLWIzguQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LdkILp8TnXSGnQHAGn/2h4dRzGOWl9uxKB+3QTMcSoC4DC7xMv9aCeikAniCAMWqA7NpEfPJXugTSxC8TwREPWc0+pAgV7sHQkvjJ8WjUooy8f5VcGHnDD4pGBBavXBaeZcv6VPXkUyeW8ksc9bJ0MXO933bvdDAdhsIw7mAWwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bSixSqmb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05353C4CEF0;
+	Tue, 12 Aug 2025 13:47:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755006449;
+	bh=ygSBFak7HTq/95jo9PWSCAhd/zWvgp4pHUCRLWIzguQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=bSixSqmbxg7Xpp+dYHTvmhBsJoJ171OsmBJWJeGdc2+v58jpQdR1cGQ3/GRaBVyjz
+	 12/HT8nHLc3W7km9HBIDUIdq7e+SbfD6qoOKjaSpjIk9hMbiVoWtXiePkVbctKWMQz
+	 mkldtJbt5KlR/Q+h0JLVOT8MWfH6CGdtwJRIarXZ23eqM29w3A2UissjnTeyFARYYx
+	 fImY5OWPK1zJZKgP9wpI92z6QTLhS4WgJgHPEmPuHNR/7xjZWHy+GvmQEYTD+0rms3
+	 6Z3rNH5h7DECf1GZjxyA9Cs9ILPnJGfGto2niuNb79cVNuaVaGHqG09EH29NV/KqH6
+	 Gb0yyEe7WWR/A==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/2] Surface Laptop PCIe3 supplies + Wi-Fi
+Date: Tue, 12 Aug 2025 15:47:22 +0200
+Message-Id: <20250812-topic-romulus_wifi_pci-v1-0-2adbed1b1f1d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI D-PHY driver
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Bryan O'Donoghue <bod@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250710-x1e-csi2-phy-v1-0-74acbb5b162b@linaro.org>
- <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250710-x1e-csi2-phy-v1-2-74acbb5b162b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOpFm2gC/x3M2wqEIBRG4VeJfZ2gQjX1KhERuq0fphTtMBC9+
+ 0iX38VaNyWO4ERdcVPkEwl+y1BlQWaZtpkFbDZpqSv5UVrsPsCI6Nfje6TxgsMYDERdS56ctU3
+ VKspxiOzwe8f98Dx/Pb8MPmgAAAA=
+X-Change-ID: 20250812-topic-romulus_wifi_pci-660eafdd7591
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1755006446; l=646;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=ygSBFak7HTq/95jo9PWSCAhd/zWvgp4pHUCRLWIzguQ=;
+ b=mjCtTj/uW51Ll7+P0OWNaIXaMeffTbCS1WyW5kNb1yiAjdV8P4TUXKwRDO4tXIdO5jFsF7NDX
+ UyH3ozAlgDVBzbN0/+ralFp5U/yRPfrtksWR76Edif0IjT7Y3jI+ZZ/
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On 10/07/2025 18:16, Bryan O'Donoghue wrote:
-> Add a new MIPI CSI2 driver in D-PHY mode initially. The entire set of
-> existing CAMSS CSI PHY init sequences are imported in order to save time
-> and effort in later patches.
-> 
-> In-line with other PHY drivers the process node name is omitted from the
-> compat string while the soc name is included.
-> 
-> At the moment we follow the assignment of lane positions - the bitmap of
-> physical input lanes to logical lane numbers as a linear list per the
-> existing DPHY @lanes data-member.
-> 
-> This is fine for us in upstream since we also map the lanes contiguously
-> but, our hardware can support different lane mappings so we should in the
-> future extend out the DPHY structure to capture the mapping.
-> 
-> The Qualcomm 3PH class of PHYs can do both D-PHY and C-PHY mode. For now only
-> D-PHY is supported.
-> 
-> In porting some of the logic over from camss-csiphy*.c to here its also
-> possible to rationalise some of the code.
-> 
-> In particular use of regulator_bulk and clk_bulk as well as dropping the
-> seemingly useless and unused interrupt handler.
-> 
-> The PHY sequences and a lot of the logic that goes with them are well proven
-> in CAMSS and mature so the main thing to watch out for here is how to get
-> the right sequencing of regulators, clocks and register-writes.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   MAINTAINERS                                        |  11 +
->   drivers/phy/qualcomm/Kconfig                       |  11 +
->   drivers/phy/qualcomm/Makefile                      |   6 +
->   drivers/phy/qualcomm/phy-qcom-mipi-csi2-3ph-dphy.c | 491 +++++++++++++++++++++
->   drivers/phy/qualcomm/phy-qcom-mipi-csi2-core.c     | 281 ++++++++++++
->   drivers/phy/qualcomm/phy-qcom-mipi-csi2.h          | 101 +++++
->   6 files changed, 901 insertions(+)
-> 
->
-<snip>
+Trivial changes (similar to other X1 boards), I've been running them
+for a couple months without much problems.
 
-> +const struct mipi_csi2phy_clk_freq zero = { 0 };
-> +
-> +const struct mipi_csi2phy_clk_freq dphy_4nm_x1e_csiphy = {
-> +	.freq = {
-> +		300000000, 400000000, 480000000
-> +	},
-> +	.num_freq = 3,
-> +};
-> +
-> +const struct mipi_csi2phy_clk_freq dphy_4nm_x1e_csiphy_timer = {
-> +	.freq = {
-> +		266666667, 400000000
-> +	},
-> +	.num_freq = 2,
-> +};
-> +
-> +const struct mipi_csi2phy_soc_cfg mipi_csi2_dphy_4nm_x1e = {
-> +	.ops = &phy_qcom_mipi_csi2_ops_3ph_1_0,
-> +	.reg_info = {
-> +		.init_seq = lane_regs_x1e80100,
-> +		.lane_array_size = ARRAY_SIZE(lane_regs_x1e80100),
-> +		.offset = 0x1000,
-> +		.generation = GEN2,
-> +	},
-> +	.supply_names = (const char *[]){
-> +		"vdda-0p8",
-> +		"vdda-1p2"
-> +	},
-> +	.num_supplies = 2,
-> +	.clk_names = (const char *[]) {
-> +		"camnoc_axi",
-> +		"cpas_ahb",
-> +		"csiphy",
-> +		"csiphy_timer"
-> +	},
-> +	.num_clk = 4,
-> +	.clk_freq = {
-> +		zero,
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (2):
+      arm64: dts: qcom: x1e80100-romulus: Describe PCIe power supplies
+      arm64: dts: qcom: x1e80100-romulus: Add WCN7850 Wi-Fi/BT
 
-It seems clang doesn't like this at all:
-drivers/phy/qualcomm/phy-qcom-mipi-csi2-3ph-dphy.c:486:3: error: initializer element is not a compile-time constant
-                 zero,
-                 ^~~~
-1 error generated.
+ .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 214 +++++++++++++++++++++
+ 1 file changed, 214 insertions(+)
+---
+base-commit: 2674d1eadaa2fd3a918dfcdb6d0bb49efe8a8bb9
+change-id: 20250812-topic-romulus_wifi_pci-660eafdd7591
 
-> +		zero,
-> +		dphy_4nm_x1e_csiphy,
-> +		dphy_4nm_x1e_csiphy_timer,
-> +	},
-> +};
-<snip>
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
