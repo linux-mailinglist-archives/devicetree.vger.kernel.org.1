@@ -1,59 +1,65 @@
-Return-Path: <devicetree+bounces-203900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3FDB22E03
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:45:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD585B22E0D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:46:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A388916AD5C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:40:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E426B18992EE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:41:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4982FABEA;
-	Tue, 12 Aug 2025 16:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECC72FAC1E;
+	Tue, 12 Aug 2025 16:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBf4lzGW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDGo2CNW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 878342FA0E8;
-	Tue, 12 Aug 2025 16:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA3C2FA0FA;
+	Tue, 12 Aug 2025 16:40:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755016823; cv=none; b=mDbKnMnS+xP15JAZRc52w654deTy22kGDYYwUwun85I8caVNzjQtCX/iNJc+httvSwVEF+CNs72FuBSPKNBeZ+mMg+NuhPei9lGaTeLZ99snj7ohM8DRjeljKKJSPOD/3fTsVli15Euf1e8iijUsnGLE/4rJ/5pOswCJz1bvK0c=
+	t=1755016834; cv=none; b=SzVof/Fbj5ITX7NCgOCJlOZRSM6ReLIje8WEPYgtHu2YoxTrYEdCQFO6qEmSKTaJ/ccrI6PRstrCqMNelodRfLO/+Gpdu5NYfTDwjnuH2Z5gmL/HxWYMoufZCU+ZDq2tk86IJhAxnDmZLNXpd81C5FFbSuZS1IskHtj0RUWYsKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755016823; c=relaxed/simple;
-	bh=FP3+W4WD7PYdGcbVMt4lMvxd4MweItxFCQZ2nbvYrjY=;
+	s=arc-20240116; t=1755016834; c=relaxed/simple;
+	bh=c0imZ72TUJ70OzV/83zxsZL4bXqGEF0O9JOXyLfWMgY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qnNp3UqMuxxibsVEejdIKxKbYuzoEydBaH2CZ3eIALuibQwsjDA3OWY1WSDGhhlkWbMRgz8lUKct4Zz1k+vg6yjAgf6WhQ3EltIUfQjbS8wJp5A7mqPWarTOOgQgEUYjFSTqsIpzugY+qyf9oqtwkVc/Kh2blUZfzqWQei1N+mU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBf4lzGW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5E70C4CEF7;
-	Tue, 12 Aug 2025 16:40:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Vaf3XKZri+8BALFvZ9qF92tc2kGonhe3exqirCG545m8EuLh1Mt4hplrmKQ6X0rbBttUxIezqdzzn/iyA8tDCqPvnnroaKwEUtlmbydwNnMONFpYpfzQEajUZwBtfUtEQ98Nw6Bvuojjte3Lcv4Chq9T48SZPN8Wo5s/UfqURhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDGo2CNW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 318FAC4CEF0;
+	Tue, 12 Aug 2025 16:40:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755016823;
-	bh=FP3+W4WD7PYdGcbVMt4lMvxd4MweItxFCQZ2nbvYrjY=;
+	s=k20201202; t=1755016834;
+	bh=c0imZ72TUJ70OzV/83zxsZL4bXqGEF0O9JOXyLfWMgY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=oBf4lzGWc4rYRw2gl+eWYePVEg2rX8xAxmtPO5cxrradsZi1bZrEy+30vII34i0ip
-	 rXKIO24aJoSJzZ/SDOfjHiXC6zQZ7sIZvFnt26+9k2+SI1OBfIY5UaWsbC7c2mESId
-	 p2zA5dium/eA9SnECpUQGrWlmVBDIx2CAlMXVAshs83uEqLYDgyViFtVnTakG+uu/p
-	 I9ORR5aIbh9ychmRqdBcE9L+dUJztmD6THfbJrchghA0J60wF17glFGHFYTIEy6rJV
-	 paENv4Ieoscfn1Ov1ghpoPElf2BaiYQWRzwOyI8qlB73hMlvzw0mTFma+n/3eX62Im
-	 JEvehX5CJsFQQ==
+	b=WDGo2CNWD1Bi+gY3wt+qreis05jO5RimzwXEGs3acdX6RAtHFtlQuV4lEyAZSyS/R
+	 zWRqi351ysteb4BfND75gZkKyRcItV6BvEoGa9/2FsjIYm5/YnhXeach63vNJiw1Z6
+	 F74DVKTxRMMSOh3qWAEKeaywAzVPYCHjZSW7h4VV8YBgry5Xh9lf+pVoGT/M06o8LW
+	 LHmDOyKO9JjG7AHaXNSj10nUs9NeGTypfiqLeARh4qs4V/tg8Hlhw8MH+JMTJjJaAA
+	 o3z/VQ3staVVr1j3uNMC7IW43prPdg6aJk53cS/lGek5OOFtu8DwtdUgM2IaqcXI+8
+	 OL1elNUz5QZ9g==
 From: Vinod Koul <vkoul@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250806200138.1366189-1-robh@kernel.org>
-References: <20250806200138.1366189-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: phy: marvell,comphy-cp110: Fix clock and
- child node constraints
-Message-Id: <175501682042.633066.13384009290495512266.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 22:10:20 +0530
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
+ mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+ bhelgaas@google.com, johan+linaro@kernel.org, kishon@kernel.org, 
+ neil.armstrong@linaro.org, abel.vesa@linaro.org, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
+ quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, 
+ Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20250725102231.3608298-1-ziyue.zhang@oss.qualcomm.com>
+References: <20250725102231.3608298-1-ziyue.zhang@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v7 0/3] pci: qcom: drop unrelated clock and
+ add link_down reset for sa8775p
+Message-Id: <175501682675.633066.14367700051268770361.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 22:10:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +71,24 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13.0
 
 
-On Wed, 06 Aug 2025 15:01:37 -0500, Rob Herring (Arm) wrote:
-> In converting marvell,comphy-cp110 to schema, the constraints for clocks on
-> marvell,comphy-a3700 are wrong, the maximum number of child nodes are wrong,
-> and the phy nodes may have a 'connector' child node:
+On Fri, 25 Jul 2025 18:22:28 +0800, Ziyue Zhang wrote:
+> This series drop gcc_aux_clock in pcie phy, the pcie aux clock should
+> be gcc_phy_aux_clock. And sa8775p platform support link_down reset in
+> hardware, so add it for both pcie0 and pcie1 to provide a better user
+> experience.
 > 
-> phy@18300 (marvell,comphy-a3700): clock-names: False schema does not allow ['xtal']
-> phy@120000 (marvell,comphy-cp110): 'phy@3', 'phy@4', 'phy@5' do not match any of the regexes: '^phy@[0-2]$', '^pinctrl-[0-9]+$'
-> phy@120000 (marvell,comphy-cp110): phy@2: 'connector' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> Have follwing changes:
+>   - Update pcie phy bindings for sa8775p.
+>   - Document link_down reset.
+>   - Remove aux clock from pcie phy.
+>   - Add link_down reset for pcie.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] dt-bindings: phy: marvell,comphy-cp110: Fix clock and child node constraints
-      commit: 5cfdfc623835d40664f642b75a56d9934f24c5ff
+[1/3] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
+      commit: aac1256a41cfbbaca12d6c0a5753d1e3b8d2d8bf
 
 Best regards,
 -- 
