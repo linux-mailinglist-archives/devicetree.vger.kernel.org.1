@@ -1,107 +1,210 @@
-Return-Path: <devicetree+bounces-203541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BD67B21BC6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:46:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B306B21BCE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:50:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9980B426E5C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:46:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4DB627E63
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07087255F24;
-	Tue, 12 Aug 2025 03:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD822D876B;
+	Tue, 12 Aug 2025 03:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A62MfAI4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mfEjVlTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1901DF27F;
-	Tue, 12 Aug 2025 03:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E49635948
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754970386; cv=none; b=hKi6FfZ57cZr3Ay1eIKgae+LognnDmtlETYfK9DqJsn5gJMuNChUf7ZhK0y690vE3jecGl9EP2G/RZvr5JS64aUrcYw64+IhfMn2RkJrObrMKv5KFIU3qOczIwqKrNubCRJ6fV6WrdTx6CYS3S/RqlLFY7aGCLc8vrxQOlEiel8=
+	t=1754970596; cv=none; b=Nhjf9gOzrEQloMPVCEc05epFjPNfaystveJpmxNjcNY1VOOQIq0o8vCImRUzov5aFzGWMYC/kCNisX5RdQhTt1DcUz9QFhDQOyeHD5I3Q2OSKUC667Hn88bTJgmyJMBGTOTM0xhpFRC1wjk6GyQwnggNWy7v4wKKTwCvDRj/LXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754970386; c=relaxed/simple;
-	bh=sMFke7zRm9HTPBn23ob80gOMzZ7jKNIHnlhCuWiE6bY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KGK9AHdi4Dstnov7mWBx66wkUZdwNt3Cb2dwinXdalgGasTxKvufRb94Ugo03CfKNWhkGTnql56TqyDxcdUW7WFP9Wjs4px4KynUsIRIaTLybTnwHETG5m4tHmGhJdX9l93SYCq/MwDtGREILeIRrU05n6REJksV0g0BASByDcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A62MfAI4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D314C4CEED;
-	Tue, 12 Aug 2025 03:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754970386;
-	bh=sMFke7zRm9HTPBn23ob80gOMzZ7jKNIHnlhCuWiE6bY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A62MfAI4Ygz7OcXndn+3l/EGMTEjrIYkGfgNmvHr+2+cGJlZ2BWhNIDzMLyqkeilP
-	 bSvP8wJ0gzsrZN6Z9z2RsTEulVNvrwQKfy5I6L+EM4iMA3zAkpyDHvL3auuPf1wthf
-	 Btx2IscphhRsvsquyXL7/OW5o3kHfwVQwqriKpMcQzk02SDUSLjnL3vP6d5cI5pA6k
-	 Qra9VtCu51XOUXXpDvnvzAlWkR9DAxcY55ylNp6nCfiT2mAhh7zyWkYWrIWCSdKRdy
-	 RaJbl/PhSGNMe09+BBDe1x9nP7z+bzUm6oJu4D1oXoVTvO3OpCaqb2PWXy5C3/mdAa
-	 IVgecwzqgxzCw==
-Date: Mon, 11 Aug 2025 22:46:23 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: cpufreq: cpufreq-qcom-hw: Add QCS615
- compatible
-Message-ID: <3xki62glazqka7gngvrz3jifk36vkjlqjm6gv4mg7lqbhnnlsa@ryxyt2pcsfk2>
-References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
- <20250702-qcs615-mm-cpu-dt-v4-v5-1-df24896cbb26@quicinc.com>
+	s=arc-20240116; t=1754970596; c=relaxed/simple;
+	bh=87OsKUWhd93bhH0mOSNgVS47foXOTSCk7LBABDEo+cI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fEH+BKw+n6HpQGso2dWUTfmF68/S3ua4lLCQ1cpruCIauQgLbgsx8cU+1mNJ/XO+CL4BfnMqjcOffrcQiCDMK8YKJVYyco47W6ud5KPDrNFYHhrEtXXxOsUPzUAmI0gzrMJgqy1CGVpmB3/RsvSOJwC8kWs8hTRPdjnC7BelFRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mfEjVlTj; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57C3Qs4v004770
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:49:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5TV846db6f3LjcIYa6Gb2G9q0zV9dsFXUpYfVhL1rCU=; b=mfEjVlTjeyFm0qHS
+	zFnOX5AD3U5UGq89NvX7+yyyR38LA2xb0dTSWn/ysP4ngFic0Vm8c+Lh5tHZzAo8
+	VoEHkp22Ayv1c5+t7D7v6RoUGG+TTIvJgehpN1JToIC2FOErWsNkJ7S0WKViXnnU
+	eXUl2UJqqEmSOKfNiJcyJOP3gdsV4wAbptMvxk2ei60AJ9b4A0MrIrIQ89kEVhax
+	92F/LjJP9eSnH55wPr52b75DAzLpNclov+8Q3JSYhD4p65Qx7+2z95HrjSfNABRd
+	kLLQ2DpJ9STUu65cbphDurT0z90ULGec0IDyWf2MqaHyjTB+KOL5F4NRcpRian87
+	qlJuug==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fjxb9t13-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 03:49:54 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b2c36951518so2198027a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 20:49:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754970593; x=1755575393;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5TV846db6f3LjcIYa6Gb2G9q0zV9dsFXUpYfVhL1rCU=;
+        b=oJt5damGavKhlNM4RlXTW+y2WAC6O6GSkjgoO9fg8hgU7NW5hevpprJviRV/XrLuT3
+         aEO3xrMCu3tgKlfh1/ZFN+aNC8wNpNS8nT6Zs4APZfbLczFVYjouWG/aaRuqyonHxAqs
+         CaSa9DMgBUFOGBH3av2x/LL7wbgIiQXpSqI3vKrBeJo59IFR5Amx7zlkvi6nKsL1nzd8
+         aqcMAlfulUxD0kCbSlM8m6RZskGSpkeDJZV999jpqa4DyXNN6JxPXD4IgCsyjtR0YFLt
+         YiGOdp6a0gxKODJ9keUIE9kMw5lp6W+DAwRk4/LiYntRP7oWfVp5U2NL+WvKjm7NWPBN
+         8Jpg==
+X-Forwarded-Encrypted: i=1; AJvYcCWxWZXE2hdNfbg9WlX8oxuoQb4lImiu4SlDMbG/j2Jw1vU78YJNJMRi0FM9X1cMr9jJEmD1/DU+rxhu@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXKux7ZNmTq+wXXtswuXIxYIjMatOhDBxIo5CQyNKPMOtq9a0Z
+	KuMvEQqpVrDBsRQGJvKBx8mDygaxO8QHWgfZTIeAOAH8g/3gqhi0WzdOK6LDf+9KmRgv/821uwp
+	7FB91E1DaplOFuNtLSlvYaOPjrQUB2u3acgZ1Diu0G8n9IYnUnQYc/SnOUoNRAuyu
+X-Gm-Gg: ASbGncs+veyJC8QDZAjD+8gZH/+C59xiOHjxnIUxH8xvXTJofkSbMF6zUbN385+wn96
+	9G0IdbvBcJkECoS/bpwJww8jZ56H1v54Xqlt+1xKI8v31KewuYNOyIBBa2UVu0WD5dNzKqAKrFx
+	2GqEfo7GYO+EItcykF/TRMKzg5Ne+RRq0WkeFUJB8hbAQdisCkdCB4k5FYj/p7ch4OZouyFE61R
+	2BojHdfrwugqQziL4sxFajx+BybY79pPVTNDknUkqQ5xAPi4vDRC0pF8N1iq7uUJQ+gS0hZxEsF
+	hJmN3LDVR0MuyjbFdW4k7Et4NnTrUr/N7kItTq8Kyn9fr8xWk3jaZdUa87ql9nPELAUv8t4fxA=
+	=
+X-Received: by 2002:a05:6a20:3945:b0:238:351a:6437 with SMTP id adf61e73a8af0-2409a9b57f1mr3209077637.43.1754970593600;
+        Mon, 11 Aug 2025 20:49:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHP375zTdK8Lz8GD2GdflxZl60YmZFoMKeDDEAaMpk+lohW3i3wGJFGZRlHt70eEG4IIaUe0w==
+X-Received: by 2002:a05:6a20:3945:b0:238:351a:6437 with SMTP id adf61e73a8af0-2409a9b57f1mr3209046637.43.1754970593156;
+        Mon, 11 Aug 2025 20:49:53 -0700 (PDT)
+Received: from [10.218.42.132] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfbce56sm28275963b3a.82.2025.08.11.20.49.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Aug 2025 20:49:52 -0700 (PDT)
+Message-ID: <f21f6fd0-9d58-4eee-9676-e6e9543cf7f6@oss.qualcomm.com>
+Date: Tue, 12 Aug 2025 09:19:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250702-qcs615-mm-cpu-dt-v4-v5-1-df24896cbb26@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add wake GPIO
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Rafael J. Wysocki"
+ <rafael@kernel.org>,
+        Pavel Machek <pavel@kernel.org>, Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,
+        Danilo Krummrich <dakr@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+        quic_mrana@quicinc.com, sherry.sun@nxp.com, linux-pm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Manivannan Sadhasivam <mani@kernel.org>
+References: <20250801-wake_irq_support-v4-0-6b6639013a1a@oss.qualcomm.com>
+ <20250801-wake_irq_support-v4-1-6b6639013a1a@oss.qualcomm.com>
+ <u4zedngig2jsraq27h2gc5ksp5swgypl2k3sy44znrhndtljpp@r4jb3wibkf3q>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <u4zedngig2jsraq27h2gc5ksp5swgypl2k3sy44znrhndtljpp@r4jb3wibkf3q>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=G6EcE8k5 c=1 sm=1 tr=0 ts=689ab9e2 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=Ztk8bZVGPGJlfjIOV0sA:9 a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA5NyBTYWx0ZWRfX8wN1Um6tmUDs
+ S2rDadsXWXiM9D8MQRtCSRz0fPmM+CkxfeCIqQKq8EUpnsFgmJCxCiq/06dTazjXtkVFL7YJTPI
+ Vq1spV0JbtNRwdaqoQsPi6aQ1320gmCaZL1H5dpWDvDwacNXxhs5Z2WLu5nMmH6Ct/hsHZ/lM1O
+ mGvHDnRIc3X1Ce/MM9mR8e1VojgSBYzyM3+3EzNs+CbP2VrmfxpVXYW52dqCjEA7cPzibvRV7iE
+ MP00BoqIxMfIIr0gr5xeXNEF4OCc/WHp83CGYiuqasV+kyNFNvyosxxTRMxGE7X3F8oSHUkulPr
+ nPCHYU3Fy/+pR64gBnyK9dQuUPdRYI6GyEbbFfH2ZzX68jHWkObbKXhFCPeVg1ad0w8ykdrOLQA
+ MIPa03UV
+X-Proofpoint-ORIG-GUID: OxHoKAqEQZwPjX68fhkQBP09rGSVy0wt
+X-Proofpoint-GUID: OxHoKAqEQZwPjX68fhkQBP09rGSVy0wt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_01,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0
+ malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110097
 
-On Wed, Jul 02, 2025 at 02:43:09PM +0530, Taniya Das wrote:
-> Document compatible for cpufreq hardware on Qualcomm QCS615 platform.
-> 
 
-@Viresh, @Rafael. Please merge this binding patch through your trees.
 
-Regards,
-Bjorn
+On 8/11/2025 10:06 PM, Bjorn Andersson wrote:
+> On Fri, Aug 01, 2025 at 04:29:42PM +0530, Krishna Chaitanya Chundru wrote:
+>> Add WAKE# gpio which is needed to bring PCIe device state
+>> from D3cold to D0.
+>>
+> 
+> What tree did you base this on? None of these boards has pcieport1
+> defined in the upstream kernel.
+> 
+Sorry I forgot to add dependencies to dependencies to one more series.
+I will add the dependencies in the next series.
 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+- Krishna Chaitanya.
+> Regards,
+> Bjorn
 > 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> index e0242bed33420a39b8a8cff4229ba9eee994ca30..2d42fc3d8ef811368c990977173f41b26535e0c8 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> @@ -22,6 +22,7 @@ properties:
->          items:
->            - enum:
->                - qcom,qcm2290-cpufreq-hw
-> +              - qcom,qcs615-cpufreq-hw
->                - qcom,sc7180-cpufreq-hw
->                - qcom,sc8180x-cpufreq-hw
->                - qcom,sdm670-cpufreq-hw
-> @@ -132,6 +133,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,qcs615-cpufreq-hw
->                - qcom,qdu1000-cpufreq-epss
->                - qcom,sa8255p-cpufreq-epss
->                - qcom,sa8775p-cpufreq-epss
-> 
-> -- 
-> 2.34.1
-> 
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts   | 1 +
+>>   arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 1 +
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 1 +
+>>   3 files changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index 10c152ac03c874df5f1dc386d9079d3db1c55362..a4d85772f86955ad061433b138581fa9d81110a4 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -810,6 +810,7 @@ &mdss_edp_phy {
+>>   
+>>   &pcieport1 {
+>>   	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
+>>   };
+>>   
+>>   &pcie1 {
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> index 60b3cf50ea1d61dd5e8b573b5f1c6faa1c291eee..5e73060771329cade097bf1a71056a456a7937d7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+>> @@ -477,6 +477,7 @@ &pcie1 {
+>>   
+>>   &pcieport1 {
+>>   	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
+>>   };
+>>   
+>>   &pm8350c_pwm {
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> index 0b0212b670797a364d7f0e7a458fc73245fff8db..240513774612fb2bfcdb951e5a5a77c49f49eb82 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+>> @@ -418,6 +418,7 @@ &lpass_va_macro {
+>>   
+>>   &pcieport1 {
+>>   	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +	wake-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
+>>   };
+>>   
+>>   &pcie1 {
+>>
+>> -- 
+>> 2.34.1
+>>
 
