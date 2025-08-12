@@ -1,148 +1,106 @@
-Return-Path: <devicetree+bounces-203843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4015EB22A68
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:28:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE672B22A95
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:32:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFF0D6E0FA8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F7C21BC5ED6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B1452EF644;
-	Tue, 12 Aug 2025 14:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED202F4A0A;
+	Tue, 12 Aug 2025 14:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVSkDOp7"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ZsH+uVTQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001D02EE5FE;
-	Tue, 12 Aug 2025 14:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E252B2EA47E
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 14:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755008121; cv=none; b=XbCM6VnXEsugp3/eZIG0egIM49X+cdLFFveWeI4y2IdkCLxdDb+AgoRBm0w1EnhE2EMIEoQFjpUQoUTXDxGBw7qA9BjpJKNkgv1Z+zzRhbraigoZMDJ1brd/oEV1siXoKqtxZD2ldtzXacH4hp/kg4v8EBYMCdkaHm1AsXPrCiU=
+	t=1755008187; cv=none; b=a+ha28hxxz0z96DRgW2L2rBG/6I/VIjor0BDx+NLNXYiIMcvS7J5cQH9T9LVgoVhsu4wL5C5QTcB47qE/ud7y5w1Jivr3VbYq+eqjJ9Ad7qjxA/TW9cSIS2Pn9jyDxm3W40dIQXLXtFt64etZByS/JvLJwXZqWhy2BMtr2yPePw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755008121; c=relaxed/simple;
-	bh=w7+yVouNu4e07ndbQI5R/ESPidCEgnhCvVvoIskNZ1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E4Sum5595zp753t47zAqG4WrGsRTMU+2tPT/5XErPkne5Gedcm8nb4CxrDUrrUEGYwaFA9DUL/QaRwcUfCnBSCFvnUqAnlWqnU0je72S5aaDRToaspTNIcfdydpI+yy+N4IFFoKKEVfVPdeu8r9oXutK3ir9tMZPeAtsAmM4JjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVSkDOp7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B94BC4CEF0;
-	Tue, 12 Aug 2025 14:15:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755008120;
-	bh=w7+yVouNu4e07ndbQI5R/ESPidCEgnhCvVvoIskNZ1o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZVSkDOp7TGFY8qTzD3/ueAnokWbRqIhNjIf3yT3tGKpLWBAQfhe1eHdSUVH4A9aNf
-	 43nKMj+QoXfD4N5hbUkiHsEBUoGx/2Xj8/DU/kmIK3MtV48P0FC3JH32upqd48Et6r
-	 RLTFstH59k/O49ndEKOrP4NQ5VDlVnatFOEZsJvj1cukwZ0p1vDngo+jkRTU01PNMs
-	 A4l9hJsevQ5hPr8XIR451S/yrJqwEg+YmC51nsVhxTS2qKPnfP57LH1OW61ofV5FIS
-	 V4lya1lyIousHF2WpRvfPynjoffb8bspyTT522Z/hkexyupY233NV+YLEiH20F3ZTR
-	 RFN1LZPbuAFGg==
-Date: Tue, 12 Aug 2025 19:45:16 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org,
-	kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
-	igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com,
-	s.nawrocki@samsung.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com,
-	muhammed.ali@samsung.com, selvarasu.g@samsung.com
-Subject: Re: [PATCH v5 2/6] phy: exynos5-usbdrd: support HS phy for
- ExynosAutov920
-Message-ID: <aJtMdHcidETZyiIp@vaman>
-References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
- <CGME20250805114310epcas5p459aa232884d22501f5fefe42f239fecc@epcas5p4.samsung.com>
- <20250805115216.3798121-3-pritam.sutar@samsung.com>
+	s=arc-20240116; t=1755008187; c=relaxed/simple;
+	bh=R5nnZKtUiilDivRmsxMYOh+vKL6+puQDJ6xyxH4ExM8=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Le14fUQ6N34/3yMeqgv94dTjcr7SEKTynHMSst1BF8J/V86a4Krz5DRnCqwTGmkWy0BgUvRXufxY+H2sgIMZkqbRTEv6qP0jO/TDAPYymQa72ZeP6vsKeuxDla1WBdyUIn2fv2bKff61hZS5kcP4pKZZxRhAdYrXi8XyuiASJ1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ZsH+uVTQ; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55b7454c6b0so6055036e87.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 07:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1755008184; x=1755612984; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R5nnZKtUiilDivRmsxMYOh+vKL6+puQDJ6xyxH4ExM8=;
+        b=ZsH+uVTQF/xLILlchoKK43ktOfavTvT+t6GYzbm9aQGMQuoDqOmXEL42L8oXTsLr8Y
+         P+1qlPYEmobAdynkNr6mODxl7v5mTbjVHoVSGd4j9iquKqvuXpqzn+blRGO5M/jh/EVy
+         T7heI2vFr43GdMIZCV2Ckqu3GzFSmYeYxh/vS+qtOHfcqc7T19aONqTBdBcM9RRBnPZE
+         8/3i252m6cbPKnDgasYR80MWym8v7Z0aUKVM0F0rxaco37Jiz7vH2SaBWt4Qz3WKyAXh
+         tNurhRTX7ozqTfKt6s2OUFNlE11kSlzye+3Kz6YeLHogZaS5m9rWnWx50Gl358uy8z/b
+         OqyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755008184; x=1755612984;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R5nnZKtUiilDivRmsxMYOh+vKL6+puQDJ6xyxH4ExM8=;
+        b=ZL1VLQbC72zvOwePOmdkrpZ84oPMKXbg97sW0Evr9NItVZ7jtCz5l4eCbBLHROm4Pk
+         hgokxxCWiSXhPjuN7k0kPK3upcNzzjXYSxteC64kMBvjBDxdhZS4BLn2YwKKAlclZgWQ
+         FQ2ns8ru8AI5D2ig0bpgb5K7ay3RK9JbiyL4RFEK0ruzD2FQzdxyNBE8FsdHL8gJelCq
+         u3BzYNVBxBge/LvNU2TWh3ZBD3eltqm1a5ecYSYRcxRskqARNrpTIOMQJVeesyNxiCKj
+         Jwt1jN3Koh1PzvSKoc/PQTnY3BlD5cDNFN7yfYCiNr+kfULk4VRupuHvgizmNEalmxxt
+         HZAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNtaT1xjTc+bGXc5Z7/SLjqsi0BEHll7529mAFSSPOk6WLU0/KeyfohxXF+ZFTnkwMUBEy+aDNd0wP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzf7LmbUhzO0a1jiNmbvCHyZRe5wvewecRVluYMifAkF3BmiGmR
+	BtWJi8Tu/1mbSRiojFUxcYmaCd9iSho8JV+F9T5mjq1AoHzeqSvcQXRZC45SfHPAtEmHin4XvRQ
+	04yEVl5ZfsyDM4RU6SOpZzfMskfUbUTBdMnpQpnetqg==
+X-Gm-Gg: ASbGncthZ8+ABf7UqR688zngieDHRbRZ6Z4zwgO/pVYRkNpkyFyhw4DnJCf+PHaTwUs
+	PguIVKiJWOHGhoqtUqjaiiePGC09ZWotRVENnf6eesTuOi+IodrKqDc90q9dYzm2dWY8QOotIxP
+	HeM2hZAEk3dkd8bTe0iH9obLeLP4NZcu+JC4dY39aVUzGHnZU8dJFUNZkQo7rbsR5hhoWtpiEjx
+	DO2XqnMqNwWN0Z3OLRJdvechR+gq6oi6IEA
+X-Google-Smtp-Source: AGHT+IFSWGaG+YAxuC5QAHmmbcboQlauIZZLZgo0OwDLSkIV0ywA07Ks+Bfh+bGhzN53ifgDGqSDL8YW+yRt/PdEog4=
+X-Received: by 2002:a05:6512:1329:b0:553:2480:2309 with SMTP id
+ 2adb3069b0e04-55cd7581e05mr1175047e87.3.1755008183964; Tue, 12 Aug 2025
+ 07:16:23 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Aug 2025 10:16:23 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Aug 2025 10:16:23 -0400
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <f4d04d0c9d72d089af7490c6ce91bb4c455fbffd.1754996033.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250805115216.3798121-3-pritam.sutar@samsung.com>
+References: <cover.1754996033.git.christophe.leroy@csgroup.eu> <f4d04d0c9d72d089af7490c6ce91bb4c455fbffd.1754996033.git.christophe.leroy@csgroup.eu>
+Date: Tue, 12 Aug 2025 10:16:23 -0400
+X-Gm-Features: Ac12FXwr1ZykknKcViL5DSBC6TTWTpzY9rOvoc9OKAJoev5KLP9n85B_Vyoqws8
+Message-ID: <CAMRc=Mc_MMwsiGybyMdY0T+QiRuZWFGEifxV4Kz7oqZaY_-kzg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] soc: fsl: qe: Change GPIO driver to a proper platform driver
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Qiang Zhao <qiang.zhao@nxp.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
-> Enable UTMI+ phy support for this SoC which is very similar to what
-> the existing Exynos850 supports.
-> 
-> Add required change in phy driver to support HS phy for this SoC.
-> 
-> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+On Tue, 12 Aug 2025 13:02:52 +0200, Christophe Leroy
+<christophe.leroy@csgroup.eu> said:
+> In order to be able to add interrupts to the GPIOs, first change the
+> QE GPIO driver to the proper platform driver in order to allow
+> initialisation to be done in the right order, otherwise the GPIOs
+> get added before the interrupts are registered.
+>
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 > ---
->  drivers/phy/samsung/phy-exynos5-usbdrd.c    | 123 ++++++++++++++++++++
->  include/linux/soc/samsung/exynos-regs-pmu.h |   2 +
->  2 files changed, 125 insertions(+)
-> 
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> index dd660ebe8045..5400dd23e500 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -2054,6 +2054,126 @@ static const struct exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
->  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
->  };
->  
-> +static int exynosautov920_usbdrd_phy_init(struct phy *phy)
-> +{
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
-> +	int ret;
-> +
-> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Bypass PHY isol */
-> +	inst->phy_cfg->phy_isol(inst, false);
-> +
-> +	/* UTMI or PIPE3 specific init */
-> +	inst->phy_cfg->phy_init(phy_drd);
-> +
-> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
-> +{
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
-> +	int ret = 0;
 
-Superfluous init..
-
-> +
-> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	exynos850_usbdrd_phy_exit(phy);
-> +
-> +	/* enable PHY isol */
-> +	inst->phy_cfg->phy_isol(inst, true);
-> +
-> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int exynosautov920_usbdrd_phy_power_on(struct phy *phy)
-> +{
-> +	int ret;
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
-
-Reverse chrsitmas tree pls
-
--- 
-~Vinod
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
