@@ -1,304 +1,364 @@
-Return-Path: <devicetree+bounces-203891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C379FB22D0D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:20:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA84B22D28
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED90C3A2FBF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:13:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CE88188FBA6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3CC23D7E4;
-	Tue, 12 Aug 2025 16:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1CC2F746E;
+	Tue, 12 Aug 2025 16:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cBjwabI5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJXUCF1P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011005.outbound.protection.outlook.com [52.101.70.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FDA305E08;
-	Tue, 12 Aug 2025 16:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755015195; cv=fail; b=UuggkqKYJpplRP6X3XxzCIYKyce/dWllMnt+dayO9FPimU4e42kQJsbouSLwEVSud6/odi4bu94wR2HDnj0t8oWH/asF61kObQlbiWsHuMZtJMA/luu+G/yhh5CL9CxrZ89FCF4a74ELw2ezSDOzyPrcVnzpPT9k8ScaqEL/M9g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755015195; c=relaxed/simple;
-	bh=vArNtc1nHOgt64POvENaexx5x0kr1OF7ojI85bpyB1s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=pxHAk0DeAurMkwAabqh2ITVwUID8pQFYiTtTeB/GYxc+trvl5PHj1C4LmohQ3xuJmvhKg50UjMqj/bmPAmLNXI83edghwt1dumuUciK6O3T48FiFpWYBp2lQNsE+LaMjLm6J5OVmQQxK1gKOu2y8UFerSy01IXNM9d/ZeK5HfGA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cBjwabI5; arc=fail smtp.client-ip=52.101.70.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SO8irVjO9pCv9eCHk41MvOX5IWhiBJ2/UwiN2cwu9Dp1qZDypmGzME0oXTEmUuYa1+5yw8GDCGs8q27o63cDVkyQeMYPZaFU2YgZSHTGTvNKQLCyaRzdwwbYe9fb4+I70aDhBTs584X1VMNNzF5rj7vovIZDajHEYoLHDt1D2r4p9nxfxdfhgVKYCSRDJ9VWnRUc2SxbWGctDI3hQV8NdQe9Fw3s+CgadGjbYjzf1U2nwZOorSWTfakw5/FxutBzOkR4IJSQOgWLfIhIk06EhgaxUX8mCC5nV8tyuqalM50tu8yHdX2fQ55bcdvCmbfOiEzTdnZDz5OKhkE0AUzueQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k/sD+PQ2B2uWVW5s4K7GsR/Pdx1mP4nkfK9kZRwCT5c=;
- b=ZNXnmSKPz3avtqwpzH6lHGmhOCKi4UPKXHDv8wKz2O3QELPzyY2pvo4J5E3tK24S0icbEKbYpRCI1zVUV1GM/WTlDvGj+fGVcVS/SmRY1QQ9tp/wNTbtKTKd/XGzZsJM/qpEfA+hB8LY+OVMb2Ru7uTOHF/+rEr31DD80kt4NBvPU9A40CAcYuOHEm6L8p2Bzj+D63Y9PHSMcOGuSIhHPqU1J1wYCjxIZjgOQwn6gSww+l/nd685h8OoDB4ccZq25fpgisVygqa3E7xDKp1mvvYN1qPh1y6qbP2O6uRsRYbNKJolDytsFaBYe3a74rg0z2r4RkgICDDSAwm9HPI/IA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k/sD+PQ2B2uWVW5s4K7GsR/Pdx1mP4nkfK9kZRwCT5c=;
- b=cBjwabI5o0LJz17mr4GG2Y0tMhn/wCcTTo4pVWYs+Cxjvr1e9RS/4Rgst8jysT2VNfPVB1rC4T9HdrDsSpivBZFoTWoB268rgvDp7Sl4f42HEPlZlagxLZKqrmaXGPnquLf7YDn2wlO4y9bCDCNSmh3wx9RHHFdkhnUDNmB4rFwPsP2rics5leH5DC6uJf6g198zqmu01vCMO2KTA0RzAnmIZe/ir/mQ6NpsSVuHKaURjCeRON/Wu3eP1NG6HO5cUeknkA5Yp5QaVROrq1BuDymhRmC94u9Z7bxJcTM4bNk266Z80/4cwlco6CaLISF6oDwaX/sG/mgh8OaTsxaDPw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10712.eurprd04.prod.outlook.com (2603:10a6:800:261::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.12; Tue, 12 Aug
- 2025 16:13:09 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.9031.011; Tue, 12 Aug 2025
- 16:13:09 +0000
-Date: Tue, 12 Aug 2025 12:13:01 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: guoniu.zhou@oss.nxp.com
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, rmfrfs@gmail.com,
-	laurent.pinchart@ideasonboard.com, martink@posteo.de,
-	kernel@puri.sm, mchehab@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
-Subject: Re: [PATCH v3 1/3] media: imx8mq-mipi-csi2: Add data type field in
- pixel format
-Message-ID: <aJtoDVBUUHyPITQS@lizhi-Precision-Tower-5810>
-References: <20250812091856.1036170-1-guoniu.zhou@oss.nxp.com>
- <20250812091856.1036170-2-guoniu.zhou@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250812091856.1036170-2-guoniu.zhou@oss.nxp.com>
-X-ClientProxiedBy: PH7P220CA0060.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:32b::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC022D8766;
+	Tue, 12 Aug 2025 16:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755015375; cv=none; b=vCKnv/YBDs0EncEKrfFKUWIWazX7BSN9zhqsOZtT9TFgay1HPcpQj1vUCdkpPsmmPB2WcFfI3tY8/S0LUb6G91z5JAIJ+PMpRANOFgZNyKZvhB5ecSyISkT14erHdUaAsioqth8TBqxiLulfWOYCV9ceiqIMPDijVX3HyA6EUyU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755015375; c=relaxed/simple;
+	bh=5CKZtbCtMZFmUKuvkywo2ShWr2yG0izXiueBW8zdot8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oxgNYYdSIGAtU9Uc3VvEB6lCJS7VL+yK52ZlMb/daSwE5wb3JT5+Ia9n9fTyvR2qjhFRUrp6itxkSoniei8adPIqRfO/lyiGYWz3hnABchdACAgoj14ct6yKfTaR4KQCWIZHHhJ1ETG4io5tQgcHi0S/ZWHyplbl3zyCtfRKfh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJXUCF1P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB286C4CEF1;
+	Tue, 12 Aug 2025 16:16:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755015374;
+	bh=5CKZtbCtMZFmUKuvkywo2ShWr2yG0izXiueBW8zdot8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uJXUCF1Pd183MassaFQFNS6xvCuyis3KhrpZL7VYLUs/Jl6vz3RUcY+2JA7K/Vb3a
+	 6kOOsQJOxLOQGGM1fVGwQgOWviWba/uXzIH59Rdq7ZK3pfZPo0hL/B/C0KOA8+CFAN
+	 89KkofycVAs5V5fVArLUTlYqPNMxesnp15bFoef55eOtT4kt9xOIpctqAGZ108r+qK
+	 KsTT4wdAnGE+8018sP9Fje4PRHcyAZ1hGRx11GCcSqXoyOEUimAHMOKZ/dAWw48Paq
+	 QD9F3MLjoSiSErEGwXoWKPF43jpPde4CTD5e7YxnlhQDr3b3RzO0nANmBbPJu5FTBk
+	 nqmDhPXosfqBA==
+Message-ID: <ce1285be-5a3f-4d4b-bca1-e31f56573597@kernel.org>
+Date: Tue, 12 Aug 2025 18:16:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10712:EE_
-X-MS-Office365-Filtering-Correlation-Id: d9716e96-9828-4236-85d0-08ddd9bb212b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?YR/eSo7NaJ58Y6pX1pWhYTxVfURm9T+JM9SRXBtTBUjpLzMgPihhGqlf+5Sx?=
- =?us-ascii?Q?ZcTgOcKuYZFJ42lSKhh+T97KffYdDKFsnLaw+mdkHG5Qd1Kx4RH1dwlqD4V7?=
- =?us-ascii?Q?ZpC0ej5BDaiv0QW312Sl6k6Pem4KRSP5T/bLnA1L0z8/bm0T9jo6JxhI7dc7?=
- =?us-ascii?Q?3i1AKnxPTQefD5DyhBGSxTE3O88/yWGxHVtEE/evt3H+82nWPc/DsVsXRhtR?=
- =?us-ascii?Q?55MPQKDe+P8iBn9adP9B8hGHPAFy+rThplCoDSEsSqOQvH5elX2vgLIcQ497?=
- =?us-ascii?Q?AKL3eRtb1taRxTpykDbWCro0b6TCTns8vVghzIqS8pHnSz3WC1XaOThqUdPG?=
- =?us-ascii?Q?BiTeraAxOaq7Jz4rcwZ/9lNmomQfPoYz50K57ZyKe6LoHAfXt8Sei0rSnf6r?=
- =?us-ascii?Q?1JwQf/WyH8irLDDeHF3jCLPJRm1sPMAJxQ7+rKHglV+ZhQpzCT/56ue5fWnd?=
- =?us-ascii?Q?fsCIaxdX8ow8RK4UWxjRs+gsYGU43SU2sXStDl1DfaswaZLHhXJ0y4mFSjLY?=
- =?us-ascii?Q?GxNojFaLeyyh1br0h4NOKUL0brGc5gYzbg5wYai4xoMciqmL2M9W2006a20H?=
- =?us-ascii?Q?04nklJCTQcsgmSe8hFOcZ3SXIWLqcwF9s4Hmy/JfAu2z34Tqqq+Nez6a8/Sp?=
- =?us-ascii?Q?Fce+N3qZBPfdKjuf6r9HuyVNDG41njjTJV43Bdk6oYJ+SVUUXbwOCk5hVDBZ?=
- =?us-ascii?Q?EkXbWLEwe7XzusYWWNoLj6XFhY2NeWgYlTzIYvG5qOkYXseJJxlcsKhYraX1?=
- =?us-ascii?Q?wDkDKXeTQ9WcvTq/RikGi3DoouZyVRu82r4Wx5/HcyIXmwDJ568o1y+Vw/3Y?=
- =?us-ascii?Q?FZO3sGU+W+Q8vVNyQXWVoOYl8PDwV+99UjB6QGOG+aLqtF7eP6rV0aQ/ug+t?=
- =?us-ascii?Q?xhmA7fw3vj44HjdAXkc24NjwTaQS2mPo66+qP7pt5CeL33xEQej1xxJTjA+g?=
- =?us-ascii?Q?/iI+g8goy6CA+Q7m322MQAZUP7hj2dHEVqqzU6P0qdmaYFF+XEjWyPhw2x/y?=
- =?us-ascii?Q?ZqygfW9TK8xXODROoT7v6v63mIvMxi+Fk+omhwkfyh3neMAAY2/TH4mL+4Qq?=
- =?us-ascii?Q?+X7DZnf5rWVlTfjajohZpsId5fyZuiygL2RFuUiRIuaCdnhkaZBnSA5HoqPq?=
- =?us-ascii?Q?m8BUBS4yKvNzaqln/8H0frUFpgZ0btbbHNN1+HFUMrsy4X+lrYAkCluk3Dwu?=
- =?us-ascii?Q?AbfhUAGKjrD7ri99Wpk15GMutMGv9Og+UcHuTFkc0jr08j3vS7EwqyXpY7Js?=
- =?us-ascii?Q?MOeP5PUJ3z8u8Vswp+xZNTbf1lbchGMa0N+mK3hyghAiQ3SMM7ijjbv3uIxO?=
- =?us-ascii?Q?Gx1tRSV1efSX62D62Jq64BN9el9MQWZzMLc+dj42SnMq5VB7IItzHqRp5uMZ?=
- =?us-ascii?Q?hN2/R2a2qnNnOUnfI3BTn9iCa680uKpXwwl/lM9o3MNZq5KKAUNDoYaBZt/R?=
- =?us-ascii?Q?jR5x6iRYi8t/MQCFMc+XAQiApCo0czHOk7jB+zkWG7KaJHoYzwNn7JbPTcxX?=
- =?us-ascii?Q?LkFJ1fZJjfdAOMM=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?2e131rR8fknAgVY7Yd5oY6RkJauxdNKH0ZkHZkUYTcvdAZ/KXKIgsh2qVZZh?=
- =?us-ascii?Q?QcfEBjjtpTrZVohHzyheauOWXFvea9wnDfTXaK/HMv9uPE/o5tLnrWRzXKZ5?=
- =?us-ascii?Q?HZvJnIhEWt+paRJ3sxuQTfRmPwQQV+bDjuMZ9N4GJp/hpg5s+cXbQqQgUf6F?=
- =?us-ascii?Q?tE+Bdfc+izF8k/z8jSoOMFjMJo9Q1+opsON50BCvZGG/IlYtQelfNZT0gWSL?=
- =?us-ascii?Q?rtTbsl27+Ps6Dv5HEbs0nhroLUXPbs3zN6p0+uHI9PGCJ9A7pdQO7ZXTUhUM?=
- =?us-ascii?Q?e+G+i13FwfUMZkpZ7LIZkQw2/5VJhTJ7Qn/miarbva8lqZ+Rbk/WYw25GFrl?=
- =?us-ascii?Q?o7nQkjPKaZPi+MW+9xjsJsb3N9V94g1A3cfk2TkBtjOm6wNo55afrk9M4Xn8?=
- =?us-ascii?Q?oyEVx/UaL1M8TzBTedFT1h5r2UABExNM7kxr9QjysLa6c4/fAr6Dt74LloOp?=
- =?us-ascii?Q?1+UH2RPCSYqamjODORJov//wS/qnMuhrHNsOTK4pOGS9aJ6FjeZuUQt4hQuD?=
- =?us-ascii?Q?NRXyQqKbvoQEdy6eU+k1JLSE+IL2l9Dit9GuBLqYT7T1SRYu3j0/hsfkHhjq?=
- =?us-ascii?Q?U0rO4R+ZdLNGcY4fRxYfLluBRSfvehMkQshlSmNjx5gt4RFirzkD3+qyH/5A?=
- =?us-ascii?Q?UjNSjPFbT64/HEZt0yJizKlB5fGMbt9xi6n4fyvSrob9FN6BCynxtTv354rH?=
- =?us-ascii?Q?is5sLumxJuzAmBL6k7DdtzCy7Fui3mNQ3/wzluhkOm2qjUVmAld1PGSKGeps?=
- =?us-ascii?Q?lv72Xec4AdQFjU699J4v92clrUrwwFANm8Nv8wkxbhz9KC+J6wKoGB6hvq2Z?=
- =?us-ascii?Q?lWqbUjZyUqwEztVjQD6dcjfP6SrbIa780xEdjsAGt0R84eVZ+XYvXCoqVehR?=
- =?us-ascii?Q?M/Ws08JLA/brxZdAkngjT8BCHcJlsMcGKfVBvXU2cB0F4OWlfxCtdiIue+hX?=
- =?us-ascii?Q?XOjLAv4gS4EpvrMDQdTzXg2pDC1ciA0/dZGEG9NWqmP9sKQcNZwTpOpFEsvu?=
- =?us-ascii?Q?WSdKPmRiYM7b6PnANEqreNQj9/YaLA572Gb2wCcUgz/zo+fKz9VIhq4d2VJx?=
- =?us-ascii?Q?JRNiUy4u1fAGgyylTPsI9jvJqq05tEokBf6wc2oU686wpscS2aQq2hETZMZk?=
- =?us-ascii?Q?wQIqh0DQxSSmh7WEo2+doZL0NyCrdAmB4Br9N5q8N5E+WUaMxLmmuYd0ADsL?=
- =?us-ascii?Q?VqvkXO8it7lzEISYtDCyO0hC61p6PMCFE9oUiAYernz8FULPVxkc307rXULi?=
- =?us-ascii?Q?qwXw4OIbEKpmFZRbNWP2p36KB8RNiEMEhQUZ3SoM25PJbcUB729FtjKQsIJc?=
- =?us-ascii?Q?ksqHd1gT/akuxvQl90JDbA4wrERwIZ3irHRvI36RTCM/1xTB9vU5fdlYDs/k?=
- =?us-ascii?Q?yWG09btIhiawRaX/vhFL+Z67i4ekps/QfbqeR7wBNAuEw53cWxn/hgd0SRe/?=
- =?us-ascii?Q?AP31tv+1xqSVpQLmddds1XaqFwbVNRPFiRnJRJKeqsIrNTtYDn/OOQfB4LrA?=
- =?us-ascii?Q?xs3JZC7teCfbPphz9qAEjvwDYLNSPW+TwpZgOU8z690ODvehDkKwuh/7yCZq?=
- =?us-ascii?Q?HLdexsLv8XvnJbn0Ty5XQwOiAl5hL0POhnE18qcN?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9716e96-9828-4236-85d0-08ddd9bb212b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2025 16:13:09.7085
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HJiArB53o1IaH68IHa8zMs0SORSGRNKJFCRSiSDR9oMoLo36UpoXO10a+86cNV1cV3ObyuJTxKyMP9oyqdr3RQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10712
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/8] arm64: dts: bst: add support for Black Sesame
+ Technologies C1200 CDCU1.0 board
+To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, ulf.hansson@linaro.org,
+ catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ adrian.hunter@intel.com, robin.murphy@arm.com, ding.wang@bst.ai,
+ gordon.ge@bst.ai
+Cc: bst-upstream@bstai.top, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-mmc@vger.kernel.org, soc@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250812123110.2090460-1-yangzh0906@thundersoft.com>
+ <20250812123110.2090460-7-yangzh0906@thundersoft.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250812123110.2090460-7-yangzh0906@thundersoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 12, 2025 at 05:18:55PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: Guoniu Zhou <guoniu.zhou@nxp.com>
->
-> Add data type field in CSI pixel format info since the downstream
-> subdev in the pipeline need to know.
->
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+On 12/08/2025 14:31, Albert Yang wrote:
+> Add device tree support for the Black Sesame Technologies (BST) C1200
+> CDCU1.0 ADAS 4C2G platform. This platform is based on the BST C1200 SoC
+> family.
+> 
+> The changes include:
+> - Adding a new BST device tree directory
+> - Adding Makefile entries to build the BST platform device trees
+> - Adding the device tree for the BST C1200 CDCU1.0 ADAS 4C2G board
+> 
+> This board features a quad-core Cortex-A78 CPU, and various peripherals
+> including UART, MMC, watchdog timer, and interrupt controller.
+> 
+> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
+> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
 > ---
->  drivers/media/platform/nxp/imx8mq-mipi-csi2.c | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
-> index 3a4645f59a44..7495400adc22 100644
-> --- a/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
-> +++ b/drivers/media/platform/nxp/imx8mq-mipi-csi2.c
-> @@ -25,6 +25,7 @@
->  #include <linux/reset.h>
->  #include <linux/spinlock.h>
->
-> +#include <media/mipi-csi2.h>
->  #include <media/v4l2-common.h>
->  #include <media/v4l2-device.h>
->  #include <media/v4l2-fwnode.h>
-> @@ -138,6 +139,7 @@ struct csi_state {
->
->  struct csi2_pix_format {
->  	u32 code;
-> +	u32 data_type;
->  	u8 width;
->  };
->
-> @@ -262,68 +264,89 @@ static const struct csi2_pix_format imx8mq_mipi_csi_formats[] = {
->  	/* RAW (Bayer and greyscale) formats. */
->  	{
->  		.code = MEDIA_BUS_FMT_SBGGR8_1X8,
-> +		.data_type = MIPI_CSI2_DT_RAW8,
+> Changes for v3:
+> - Split defconfig enablement out into a dedicated defconfig patch
+> - Refine memory description: consolidate ranges in memory node and
+>   delele unused memory ranges
+> - Adjust the order of nodes
+> - remove mask of gic
+> 
+> Changes for v2:
+> 1. Reorganized memory map into discrete regions
+> 2. Updated MMC controller definition:
+>    - Split into core/CRM register regions
+>    - Removed deprecated properties
+>    - Updated compatible string
+> 3. Standardized interrupt definitions and numeric formats
+> 4. Removed reserved-memory node (superseded by bounce buffers)
+> 5. Added root compatible string for platform identification
+> 6. Add soc defconfig
+> ---
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/bst/Makefile              |   2 +
+>  .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  42 +++++++
+>  arch/arm64/boot/dts/bst/bstc1200.dtsi         | 117 ++++++++++++++++++
+>  4 files changed, 162 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/bst/Makefile
+>  create mode 100644 arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+>  create mode 100644 arch/arm64/boot/dts/bst/bstc1200.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 79b73a21ddc2..a39b6cafb644 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -12,6 +12,7 @@ subdir-y += arm
+>  subdir-y += bitmain
+>  subdir-y += blaize
+>  subdir-y += broadcom
+> +subdir-y += bst
+>  subdir-y += cavium
+>  subdir-y += exynos
+>  subdir-y += freescale
+> diff --git a/arch/arm64/boot/dts/bst/Makefile b/arch/arm64/boot/dts/bst/Makefile
+> new file mode 100644
+> index 000000000000..4c1b8b4cdad8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +dtb-$(CONFIG_ARCH_BST) += bstc1200-cdcu1.0-adas_4c2g.dtb
+> diff --git a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+> new file mode 100644
+> index 000000000000..d8fb07b0bc80
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+> @@ -0,0 +1,42 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include "bstc1200.dtsi"
+> +
+> +/ {
+> +	model = "BST C1200-96 CDCU1.0 4C2G";
+> +	compatible = "bst,c1200-cdcu1.0-adas-4c2g", "bst,c1200";
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@810000000 {
+> +		device_type = "memory";
+> +		reg = <0x8 0x10000000 0x0 0x30000000>,
+> +		      <0x8 0xc0000000 0x1 0x0>,
+> +		      <0xc 0x00000000 0x0 0x40000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		mmc0_reserved: mmc0-reserved@5160000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x5160000 0x0 0x10000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
 
-CSI2 data type is well defined in MIPI CSI2 spec. so the convertion from
-media_bus_fmt to CSI2 DT is fixed patten for all CSI2 drivers.
+This is none of the two approved ordering styles from DTS coding style.
+What sort of coding style are you using?
 
-I post one patch at
-https://lore.kernel.org/imx/20250808-95_cam-v2-4-4b29fa6919a7@nxp.com/
+> +	status = "okay";
+> +	memory-region = <&mmc0_reserved>;
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> new file mode 100644
+> index 000000000000..5e9ca0ee17cf
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> @@ -0,0 +1,117 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	compatible = "bst,c1200";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	clk_mmc: clock-4000000 {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <4000000>;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu@0 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0>;
 
-helper funciton media_bus_fmt_to_csi2_dt(.code) to get CSI2 data type.
+0x0
 
-Laurent Pinchart have not time to review patch until sept 8. I hope first
-3 patches can be reviewed and merged soon if they agree this methods.
+And why reg is the last? Please follow DTS coding style.
 
-also .width can be removed.
+I already asked for this at v1. How did you resolve that comment?
 
-Frank
+Then I asked about this at v2:
 
->  		.width = 8,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGBRG8_1X8,
-> +		.data_type = MIPI_CSI2_DT_RAW8,
->  		.width = 8,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGRBG8_1X8,
-> +		.data_type = MIPI_CSI2_DT_RAW8,
->  		.width = 8,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SRGGB8_1X8,
-> +		.data_type = MIPI_CSI2_DT_RAW8,
->  		.width = 8,
->  	}, {
->  		.code = MEDIA_BUS_FMT_Y8_1X8,
-> +		.data_type = MIPI_CSI2_DT_RAW8,
->  		.width = 8,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SBGGR10_1X10,
-> +		.data_type = MIPI_CSI2_DT_RAW10,
->  		.width = 10,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGBRG10_1X10,
-> +		.data_type = MIPI_CSI2_DT_RAW10,
->  		.width = 10,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGRBG10_1X10,
-> +		.data_type = MIPI_CSI2_DT_RAW10,
->  		.width = 10,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SRGGB10_1X10,
-> +		.data_type = MIPI_CSI2_DT_RAW10,
->  		.width = 10,
->  	}, {
->  		.code = MEDIA_BUS_FMT_Y10_1X10,
-> +		.data_type = MIPI_CSI2_DT_RAW10,
->  		.width = 10,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SBGGR12_1X12,
-> +		.data_type = MIPI_CSI2_DT_RAW12,
->  		.width = 12,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGBRG12_1X12,
-> +		.data_type = MIPI_CSI2_DT_RAW12,
->  		.width = 12,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGRBG12_1X12,
-> +		.data_type = MIPI_CSI2_DT_RAW12,
->  		.width = 12,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SRGGB12_1X12,
-> +		.data_type = MIPI_CSI2_DT_RAW12,
->  		.width = 12,
->  	}, {
->  		.code = MEDIA_BUS_FMT_Y12_1X12,
-> +		.data_type = MIPI_CSI2_DT_RAW12,
->  		.width = 12,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SBGGR14_1X14,
-> +		.data_type = MIPI_CSI2_DT_RAW14,
->  		.width = 14,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGBRG14_1X14,
-> +		.data_type = MIPI_CSI2_DT_RAW14,
->  		.width = 14,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SGRBG14_1X14,
-> +		.data_type = MIPI_CSI2_DT_RAW14,
->  		.width = 14,
->  	}, {
->  		.code = MEDIA_BUS_FMT_SRGGB14_1X14,
-> +		.data_type = MIPI_CSI2_DT_RAW14,
->  		.width = 14,
->  	},
->  	/* YUV formats */
->  	{
->  		.code = MEDIA_BUS_FMT_YUYV8_1X16,
-> +		.data_type = MIPI_CSI2_DT_YUV422_8B,
->  		.width = 16,
->  	}, {
->  		.code = MEDIA_BUS_FMT_UYVY8_1X16,
-> +		.data_type = MIPI_CSI2_DT_YUV422_8B,
->  		.width = 16,
->  	}
->  };
-> --
-> 2.34.1
->
+"Nothing improved. I asked to follow DTS coding style in ordering."
+
+So can you please respond to comments? You keep sending the same - third
+time - and this is waste of our time.
+
+> +		};
+> +
+> +		cpu@1 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x100>;
+> +		};
+> +
+> +		cpu@2 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x200>;
+> +		};
+> +
+> +		cpu@3 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x300>;
+> +		};
+> +
+> +		l2_cache: l2-cache {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			cache-unified;
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		interrupt-parent = <&gic>;
+> +
+> +		uart0: serial@20008000 {
+> +			compatible = "snps,dw-apb-uart";
+> +			reg = <0x0 0x20008000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-frequency = <25000000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc0: mmc@22200000 {
+> +			compatible = "bst,c1200-dwcmshc-sdhci";
+> +			reg = <0x0 0x22200000 0x0 0x1000>,
+> +			      <0x0 0x23006000 0x0 0x1000>;
+> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk_mmc>;
+> +			clock-names = "core";
+> +			max-frequency = <200000000>;
+> +			bus-width = <8>;
+> +			non-removable;
+
+Hm, this is odd to see in SoC. Are you saying that your SoC (!) has MMC
+memory embedded?
+
+> +			dma-coherent;
+> +			status = "disabled";
+
+If so, why is it disabled?
+
+> +		};
+> +
+> +		gic: interrupt-controller@32800000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			interrupt-controller;
+> +			ranges;
+> +			reg = <0x0 0x32800000 0x0 0x10000>,
+> +			      <0x0 0x32880000 0x0 0x100000>;
+
+Random order...
+Best regards,
+Krzysztof
+
 
