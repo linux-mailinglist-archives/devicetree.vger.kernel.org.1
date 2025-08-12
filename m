@@ -1,95 +1,95 @@
-Return-Path: <devicetree+bounces-203954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 968F0B23985
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:02:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B9AB23990
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:04:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 437A37B4E73
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:00:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0210A7B5BBD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95432C1583;
-	Tue, 12 Aug 2025 20:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADB42D0622;
+	Tue, 12 Aug 2025 20:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sUUlxX7D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XKWoXYvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64982D061B
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 20:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301D52D061F;
+	Tue, 12 Aug 2025 20:03:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755028886; cv=none; b=cJw91VEd/gVIqhfLv1I6mgioIhU2TDA+rHD56Tyfzhi1Ej2gFZH6O+54W+AbRyHxOmxZvh6v3QxVcHTrow3of0tfAka7wTwRytl4o+siFKkEwdJnqjxmdD/G+81Wpg2ybZ0h4rr46cyAJbl1pQGsgO+1hRO7SNDPzrFb3t5WyBU=
+	t=1755029028; cv=none; b=egFphUAAsbFfL7hWyzCAISzM63vUUe3MqqhLBw+wCRHAVMx8hWOEQpiHw4VEsu0S6CTs/6P5vxPRuQeObaoIre4Qy7+Y27SDOQZkijwEa+BDLMI+UTeCDO5b2Yb66xK61iBbU71pZ7rY8EZecg4yE+RYnXJcCCzw7h3y8LVKMVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755028886; c=relaxed/simple;
-	bh=QhsYH0yhdInsawGFOOU7wcTCxTp2DjRCkw5oJ+fqeTM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NkfhCkqgkJE6MuTst0JOZgQ/RZgcWNQNcOxSfaq3JCs1nqpB0CofMCc5N5SmmYepj6Uo0Wi+rhZ3+LXEa4WlE0tK3CB+Bdi66nBlEDCNcf3adzwq/nZgcLlQTzAErrcW49CgmrrxB5uXOd4vhVQKRJgHBUNgVTP3A0nqPc8lkL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sUUlxX7D; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3b78a034f17so4417579f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 13:01:24 -0700 (PDT)
+	s=arc-20240116; t=1755029028; c=relaxed/simple;
+	bh=SxdasrissLGvGXRvp0gyJmbCtu3PfGjLIbNFDsDZVcA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q6MGXwua8+VjtCqcyB2/O2sKTzTN494gx5SlYXfn3to8rQU2Mq/GrR3GzYdLymKTeaotolAIOFQPhVcjpRjkIsk2j4QbeAcLIYh3Rpdudx5fzvGtvklMlKi4tNwsRhewHl502hPoXgccN9vofWIg691ejHR3+f9jjMOpEVSH/i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XKWoXYvW; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45a11a138faso6306205e9.2;
+        Tue, 12 Aug 2025 13:03:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755028883; x=1755633683; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ffT6YWZkdUEe6FghMWArz7x5VLbOw7EcrzjaESrmOVU=;
-        b=sUUlxX7D+MPNbVs6ggl8le841YLuoj6GuKA3gt/FLUNZmLtni020nQwC8HlAoe+53u
-         4mygUvLxn/KuSmm9E0E6YPWuL9zEig5bp+ex1qvTmtgxGwWOgRpW9frW0zLi1hWUKWoz
-         Us5mARKyUxA/tUlqFb5TNOn1E7TAPBLhmrvYE7HzLzLRKizRvox0JsE6rfA+gUMf7Vl2
-         psmJTdTuG6uRFtsEqq9M768sDaLXN/rx6nf8NFHdPAz1yvspjefjQXDtbPuO0kmdkyCv
-         2yM1KcHtXayF647/ozLBRorzhjDm3DHR/S2coDOksP96uclJ2EpwvMvqmoLVgd/5SKgJ
-         K0qw==
+        d=gmail.com; s=20230601; t=1755029025; x=1755633825; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X6+FcMg6QvQqmr954QXmJ5ck64+EiprUFswIQoHqfBA=;
+        b=XKWoXYvWB7pbogUi2z6/AIv4Hh1kGCIq103fdRS/hyb9aU//eZ3GclWY8oC906wkSZ
+         LGWoPtNkIAR0n3Z2kdtjXGurygo2C9MT5nxvltQ0BH47mIPNjn5DRnIsEXJ3pw4AH797
+         PSYwDq0al+0Ss3FANIJRG7T84j1RuL2lmiPPFWSMbDVQGzb4p55YN0WlVFttlr9ZICmI
+         QEjF4xdebMNjkU2OY7a5V79l5tgJNoCTR9BWNTJYnOJI7M51IyNLU3QuAHlZ/ixBe8T0
+         7EseayZ+i7ivwYemM7WjwmUiQA7rmHpaNZU8hZEf5Wtu57vSPzcymWqT8UERK5bEBpvt
+         YLuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755028883; x=1755633683;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ffT6YWZkdUEe6FghMWArz7x5VLbOw7EcrzjaESrmOVU=;
-        b=Np/o+MFlFaNwq7YwpkWXQtJKJqjB51MlQdjtcGZLNP8D2//hh4GQsxDaecvYtyPpuk
-         pPbIWj9p/wINatrkJzaHxT3/TK1FcedunwWLCXSlEAYrNHYG3hjHBK+H2v2Zw1YvPiuq
-         LGlxx3B+b4ZtEteC+7Bbjxf+HVtLNqQ7uVbH/Ge10EsNYfjeUUM4MW0V02GrbSeZ3VQk
-         SySh7mGUiY563ByrnUUwhVj7SjjCndq1uYNF2M8H9AAlQM86GGSDDJBynpEXxWSjUBHw
-         qjJk4H4nrQz4ONJaAOLniP0YdPsOtQ9BaGPiZkgwpYsLdZljXK6gwwbTyEHJidXLD5So
-         9yqA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjoMAK5HDy1VB1VrdCupqCca8aW9e7ZUVerr+zaGYZ0zm368DBThVn2XNUdhv5y7Da8XV/AWp6EgoQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNBaERf+ZJcGBTTxJEioCA6j5NSOMmts1kkdeXUmSAhNc1Q67j
-	4O+V3mSnag/uIcao5pWr6HPN16aPitdnyn6TLhYDmg+WJNWVfiNIbHNRaZthyjx0rAg=
-X-Gm-Gg: ASbGnctws6v4pNW8+Rdtd3/O5TKfMrITce3VU2qobKe+lBy12AHb/AeEhhhSStxI96G
-	jBzmxc7BcLBr6BBZ+xIJbe3WFVCROulJ6h7vs0zkL0MEAl0LrJIk9aHaKPhR5O0XnRBV2C0Jigi
-	E9AqI1hcPTWpxuhdT9yI+0/D/Nep0FEBdqeVshEVtWbmuQfCsIeIeiJiRdnZORp6HvpYx6mlG57
-	XER5G8LYGYwj0Y8q1D4wA1LXCCp1pw9lc90dBg7ePeRwWEpxtlASbrHCtn5/SlLKWcR+utEn92n
-	/XVobDcyDjEp2ExgqyKZweIAFt4wKWCJ8Fc1RM/JPWBib5/k9rU8DCXZPUPVhrli7pMQcqdqxUQ
-	4I7qKuo1helu6/YGdbPfQnMvuFX9BPIozKPmCIYJ2ZQDM6dcM
-X-Google-Smtp-Source: AGHT+IHc34Qhx2TDH0Xoena1J/lnQZ1RBfr849sg07pnAZNEpqQgsf69asw97faoWVn6n3rrPRwosw==
-X-Received: by 2002:a5d:584c:0:b0:3a4:ef70:e0e1 with SMTP id ffacd0b85a97d-3b917f41aaamr188136f8f.55.1755028883037;
-        Tue, 12 Aug 2025 13:01:23 -0700 (PDT)
-Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3abed3sm45143947f8f.10.2025.08.12.13.01.22
+        d=1e100.net; s=20230601; t=1755029025; x=1755633825;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X6+FcMg6QvQqmr954QXmJ5ck64+EiprUFswIQoHqfBA=;
+        b=ZnTWxCZ62BkMwBgr8VQaO7U+rkQSQY1hQ833cTgR91ZGZ12/llI50vkjTr9gehmrsy
+         L/wZiHLyF3m/sux4p4C+6fJ2tBY7iBVm3vJlmJv5tKsHP6m2vY2cTdhUy5ysyE1Pq38Y
+         nADbwXnZn2VQGdhiPYLwPXjEpI04ihL+5ft7IcHnbuWAChbYnqutnJC60ZxqtfPysz0F
+         lLWCRUL8fLQBZHZeLELmISsF8xU9p8THj7wOVwXEMDbNYKqKuN7FsKLYFfqY8kV7UVxG
+         8hVdg0FrdmwNVC/5KtxOSSGrQ3G+f99+L7dOd0jIWJ2/Evk8A3LAfnLHXOMRfAKz1O8u
+         pTlA==
+X-Forwarded-Encrypted: i=1; AJvYcCUN5FNmGp0ldWvW0DIahF6sCNDeOPrObzyDwJq1+Iz5udqInlEw89HhFgSxzZK6XNI1mht3hvS6+zdM@vger.kernel.org, AJvYcCWWJIbUyuudhE2My+P4mv3dEOC3r3reWM/PB79pc8iGGcV14VZRBDDqfPrvatcW/Xr0GSzD1mCGc8wXzWLe@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIhEPwz7uIC0Bi2MilBB2Zf2gsllZ/uk89bUzuu/DcQ+HFrbOa
+	6orn2P9iGso2kF0z8wkAWcSNNDOMLWeO8oTbKS0jkZQFhmVgUhHOOEYR
+X-Gm-Gg: ASbGncuaqMJMaRVWW8nlX6nRPFeim+N99ZEtKQpydfNIU7vBsEkGJ2hQOhjYvkZn6Yw
+	/P5u93rovlXd5xsjuufZYoBds5r38ozvDq1/DBNsUjCPw6qNPu2Ug4N4liwkqK3qkVgwvu2D0lW
+	8XpZdL/iVx+psL6VzrwAJAR2ttp/3ivIAWTOyVwm4jYnV8TE1Mox9CgpUFTEoPm6zCjnnjpdGlP
+	jweB7jOYv2xkU7ygDgugMcJtt97uhD/Qrd+A9D/U8MZeQDp63jVxPpl3T3QxQgJ5DEPuhE2mqt5
+	N4s4zlQ+FwCSAEPav9U+sRZ2Os9tQqMMLc/qQO4CXog2yr85rgmmkBc0Nzke4WfwvqGdSG1O9ES
+	NkPFGE5ODaqxI6MZn0NSSUMS1fhnDa1ObwGi9G4BtvZXURRWZxa1ZwyH4FmZJcXTGqmcfz86uIJ
+	vt2rpw60Gn
+X-Google-Smtp-Source: AGHT+IHXsRSDiP3Y7jmzKZGS8y233mFUcwP4pTfBD0FRRClJFUePk7AG3pJAVgrDEzCzFm2jXJjJaw==
+X-Received: by 2002:a05:600c:1c15:b0:459:d645:bff7 with SMTP id 5b1f17b1804b1-45a165c883fmr3516925e9.12.1755029025249;
+        Tue, 12 Aug 2025 13:03:45 -0700 (PDT)
+Received: from iku.Home (97e54365.skybroadband.com. [151.229.67.101])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a16dde163sm297645e9.12.2025.08.12.13.03.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 13:01:22 -0700 (PDT)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Frank.Li@nxp.com
-Cc: linux-pwm@vger.kernel.org,
+        Tue, 12 Aug 2025 13:03:44 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Ghennadi.Procopciuc@nxp.com,
-	s32@nxp.com
-Subject: [PATCH v3 2/2] pwm: Add the S32G support in the Freescale FTM driver
-Date: Tue, 12 Aug 2025 22:00:36 +0200
-Message-ID: <20250812200036.3432917-3-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
-References: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 00/13] arm64: dts: renesas: Add support for SCI/LEDs/I2C/MMC on RZ/{T2H,RZ/N2H} SoCs and boards
+Date: Tue, 12 Aug 2025 21:03:31 +0100
+Message-ID: <20250812200344.3253781-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,137 +98,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-The Automotive S32G2 and S32G3 platforms include two FTM timers for
-pwm. Each FTM has 6 PWM channels.
+Hi All,
 
-The current Freescale FTM driver supports the iMX8 and the Vybrid
-Family FTM IP. The FTM IP found on the S32G platforms is almost
-identical except for the number of channels and the register mapping.
+Extend hardware support on Renesas RZ/T2H and RZ/N2H SoCs and evaluation
+boards. Below are the features added for the RZ/T2H and RZ/N2H SoCs and
+EVKs:
+- Add SCI nodes for RZ/T2H and RZ/N2H SoCs.
+- Enable I2C0 and I2C1 support
+- Enable EEPROM on I2C0
+- Enable LEDs on RZ/T2H and RZ/N2H EVKs.
+- Enable MMC on RZ/T2H and RZ/N2H EVKs.
+- Enable MicroSD card slot on RZ/T2H and RZ/N2H EVKs.
+- Enable SD card slot on RZ/T2H and RZ/N2H EVKs.
 
-These changes allow to deal with different number of channels and
-support the holes found in the register memory mapping for s32gx for
-suspend / resume. The fault register does not exist on the s32gx and
-at resume time all the mapping is wrote back leading to a kernel
-crash.
+Cheers,
+Prabhakar
 
-  /* restore all registers from cache */
-  regcache_cache_only(fpc->regmap, false);
-  regcache_sync(fpc->regmap);
+Lad Prabhakar (12):
+  arm64: dts: renesas: r9a09g077: Add DT nodes for SCI channels 1-5
+  arm64: dts: renesas: r9a09g087: Add DT nodes for SCI channels 1-5
+  arm64: dts: renesas: r9a09g087: Add pinctrl node
+  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Add user LEDs
+  arm64: dts: renesas: r9a09g087m44-rzn2h-evk: Add user LEDs
+  arm64: dts: renesas: rzt2h-evk-common: Add pinctrl for SCI0 node
+  arm64: dts: renesas: r9a09g077m44-rzt2h-evk: Enable I2C0 and I2C1
+    support
+  arm64: dts: renesas: r9a09g087m44-rzt2h-evk: Enable I2C0 and I2C1
+    support
+  arm64: dts: renesas: rzt2h-evk-common: Enable EEPROM on I2C0
+  arm64: dts: renesas: rzt2h/rzn2h: Enable eMMC
+  arm64: dts: renesas: rzt2h/rzn2h: Enable MicroSD card slot
+  arm64: dts: renesas: rzt2h/rzn2h: Enable SD card slot
 
-The regmap callbacks 'writeable_reg()' and 'readable_reg()' will skip
-the address corresponding to a register which is not present.
+Thierry Bultel (1):
+  arm64: dts: renesas: r9a09g077: Add pinctrl node
 
-Tested on a s32g274-rdb2 J5 PWM pin output with signal visualization
-on oscilloscope.
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  83 ++++++++
+ .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 108 ++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  94 +++++++++
+ .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    | 134 ++++++++++++
+ .../dts/renesas/rzt2h-n2h-evk-common.dtsi     | 196 ++++++++++++++++++
+ 5 files changed, 615 insertions(+)
 
-Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- drivers/pwm/pwm-fsl-ftm.c | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pwm/pwm-fsl-ftm.c b/drivers/pwm/pwm-fsl-ftm.c
-index c45a5fca4cbb..e0069dbdb02d 100644
---- a/drivers/pwm/pwm-fsl-ftm.c
-+++ b/drivers/pwm/pwm-fsl-ftm.c
-@@ -3,6 +3,7 @@
-  *  Freescale FlexTimer Module (FTM) PWM Driver
-  *
-  *  Copyright 2012-2013 Freescale Semiconductor, Inc.
-+ *  Copyright 2020-2025 NXP
-  */
- 
- #include <linux/clk.h>
-@@ -31,6 +32,8 @@ enum fsl_pwm_clk {
- 
- struct fsl_ftm_soc {
- 	bool has_enable_bits;
-+	bool has_flt_reg;
-+	unsigned int npwm;
- };
- 
- struct fsl_pwm_periodcfg {
-@@ -386,6 +389,20 @@ static bool fsl_pwm_volatile_reg(struct device *dev, unsigned int reg)
- 	return false;
- }
- 
-+static bool fsl_pwm_is_reg(struct device *dev, unsigned int reg)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct fsl_pwm_chip *fpc = to_fsl_chip(chip);
-+
-+	if (reg >= FTM_CSC(fpc->soc->npwm) && reg < FTM_CNTIN)
-+		return false;
-+
-+	if ((reg == FTM_FLTCTRL || reg == FTM_FLTPOL) && !fpc->soc->has_flt_reg)
-+		return false;
-+
-+	return true;
-+}
-+
- static const struct regmap_config fsl_pwm_regmap_config = {
- 	.reg_bits = 32,
- 	.reg_stride = 4,
-@@ -394,23 +411,26 @@ static const struct regmap_config fsl_pwm_regmap_config = {
- 	.max_register = FTM_PWMLOAD,
- 	.volatile_reg = fsl_pwm_volatile_reg,
- 	.cache_type = REGCACHE_FLAT,
-+	.writeable_reg = fsl_pwm_is_reg,
-+	.readable_reg = fsl_pwm_is_reg,
- };
- 
- static int fsl_pwm_probe(struct platform_device *pdev)
- {
-+	const struct fsl_ftm_soc *soc = of_device_get_match_data(&pdev->dev);
- 	struct pwm_chip *chip;
- 	struct fsl_pwm_chip *fpc;
- 	void __iomem *base;
- 	int ret;
- 
--	chip = devm_pwmchip_alloc(&pdev->dev, 8, sizeof(*fpc));
-+	chip = devm_pwmchip_alloc(&pdev->dev, soc->npwm, sizeof(*fpc));
- 	if (IS_ERR(chip))
- 		return PTR_ERR(chip);
- 	fpc = to_fsl_chip(chip);
- 
- 	mutex_init(&fpc->lock);
- 
--	fpc->soc = of_device_get_match_data(&pdev->dev);
-+	fpc->soc = soc;
- 
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
-@@ -526,15 +546,26 @@ static const struct dev_pm_ops fsl_pwm_pm_ops = {
- 
- static const struct fsl_ftm_soc vf610_ftm_pwm = {
- 	.has_enable_bits = false,
-+	.has_flt_reg = true,
-+	.npwm = 8,
- };
- 
- static const struct fsl_ftm_soc imx8qm_ftm_pwm = {
- 	.has_enable_bits = true,
-+	.has_flt_reg = true,
-+	.npwm = 8,
-+};
-+
-+static const struct fsl_ftm_soc s32g2_ftm_pwm = {
-+	.has_enable_bits = true,
-+	.has_flt_reg = false,
-+	.npwm = 6,
- };
- 
- static const struct of_device_id fsl_pwm_dt_ids[] = {
- 	{ .compatible = "fsl,vf610-ftm-pwm", .data = &vf610_ftm_pwm },
- 	{ .compatible = "fsl,imx8qm-ftm-pwm", .data = &imx8qm_ftm_pwm },
-+	{ .compatible = "nxp,s32g2-ftm-pwm", .data = &s32g2_ftm_pwm },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, fsl_pwm_dt_ids);
 -- 
-2.43.0
+2.50.1
 
 
