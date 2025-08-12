@@ -1,61 +1,72 @@
-Return-Path: <devicetree+bounces-203539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9861EB21BBB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:45:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02764B21BC5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BC27426947
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:45:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E6B2460D0B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8041D5CD7;
-	Tue, 12 Aug 2025 03:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5A41B2186;
+	Tue, 12 Aug 2025 03:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qfc3lvRX"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NbYqq15F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD91C2C9;
-	Tue, 12 Aug 2025 03:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4232D9EDD;
+	Tue, 12 Aug 2025 03:46:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754970314; cv=none; b=ZppgR8OY1Xl/S3sMzcB7I5RjRhPYC3G8RN1IFWFGUXykIJ5QcJq5Kqt/GvT1Tu0K3iDiRD4W4M4sWYp2wAJAhlD4iu2hO3M2grIRsV89XLwA9my1tHsN5/4KzunapQI/l1nXXxd9nQMYl8E6FarOI7igxMHccMR+C0Vz+QcTjHM=
+	t=1754970371; cv=none; b=B1VrKQXdIYIThtOnm77gmhVvsgB/13hF0OBa0GG1okbedZag5Lp2h6mqAonFyWbppluP1TnzRI5YA9zRNt6/dR0AM4I4xmW/bpmHuiKY2PC3st9eL7CwivGSekM85AH5tMwLjzhB5z65E/4qmRDjHFskNie4aVAhhi8jBfhLR+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754970314; c=relaxed/simple;
-	bh=fGznMj5kGw675RyQXLV/XCgKKgQRypn/BRq5eHB0/kI=;
+	s=arc-20240116; t=1754970371; c=relaxed/simple;
+	bh=QKrhEizsg0N1zg4M61hvf6ECAUH4usaiehJgLk+LSYA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=osgfGFUc6WEnfWbKPKhib13zpyYH2mtA0OI9KnHCejmqfGisd/KT3fD9fIuZwIqmFJiWgpD6P8m9Z02AlEN/NQX1V5LYuyuuDMQ9XUWidOiNKdy14jdSotH5hyvP+h1osycyeWiYH0wvkWW7sKsvdsWEWlv8EDCZBz+MEpaEQ0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qfc3lvRX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD96C4CEED;
-	Tue, 12 Aug 2025 03:45:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754970314;
-	bh=fGznMj5kGw675RyQXLV/XCgKKgQRypn/BRq5eHB0/kI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qfc3lvRXmXf6zGDIm14OqBO4VLeZdKKDk/mjmFvoK0s7AMfLlrVsd/1HcV9GFH9vf
-	 D2EvqrmRLqGE4yY/+rQ5YB6LRcRhakivxuWnfxo3M7GBBrbRVficiowQGdcyjehAWo
-	 aGS35G48y/wMPe87HRumxLceA1IKv14zdTye5SbqsA7VYfr1eYoB3wTF61D8bLQ/a3
-	 CNSm2Ky8p3jBvxl0EDN0HY1jfbPBQFRhFr3ec5XE9/97Qk7ZW5wzgJrpjzxAfBMQ+A
-	 pWOfugmOL8erNNUHnbdUU+8Fdgbj0KgVaJrM9WnEqQhePefk60GyFjGcvrFRrX1opE
-	 EQQQ2kSSaimLA==
-Date: Mon, 11 Aug 2025 22:45:11 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Jagadeesh Kona <quic_jkona@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: qcs615: Add clock nodes for
- multimedia clock
-Message-ID: <vxeadjzwywqjjqm7elg5pltq3jtnv7fprquhdoydhxnjihpsw7@tlqoq5wpgcr3>
-References: <20250702-qcs615-mm-cpu-dt-v4-v5-0-df24896cbb26@quicinc.com>
- <20250702-qcs615-mm-cpu-dt-v4-v5-2-df24896cbb26@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DgqciquRsZ7KpGmJZx+GH2WSBvWqp0LxxLd83fOHaow7Uez3nCwAKHcy7L7Mf6EmDVp2OIc2JYCUQkM25PhqvESkC7oCqt6U0w7p4AsggnkRcLSbiAlcnm/hJMtYP8Lr5Ah/hMByuiSb8MpK/hAz1YQnNPxn2HyysslYheMo2LE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NbYqq15F; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=NIC/wkT8xDaIY7MD6UsDmD8NMUh6b3J8xBtXrNsXYKo=; b=NbYqq15F+k0PaYhFy5Hc5uGO1C
+	F7j6cSoP/whS4817YNAeQ66fdIUeTNQC5RhDl3Pn2Jkb/dJBC2qkppaK48DJ9uxXASz28fYUHgXWy
+	gKaqh24ZdeiIwvrmcSyoigBz47PTJ39VEZOCcGj6Fe050vKSBFjjU3uGdFI1pW5XiSuY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ulfxA-004PNl-P9; Tue, 12 Aug 2025 05:45:36 +0200
+Date: Tue, 12 Aug 2025 05:45:36 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vivian Wang <uwu@dram.page>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Simon Horman <horms@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v5 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <ac9cce0b-d29e-499b-8a86-28979cd12fb5@lunn.ch>
+References: <20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn>
+ <20250812-net-k1-emac-v5-2-dd17c4905f49@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,117 +75,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250702-qcs615-mm-cpu-dt-v4-v5-2-df24896cbb26@quicinc.com>
+In-Reply-To: <20250812-net-k1-emac-v5-2-dd17c4905f49@iscas.ac.cn>
 
-On Wed, Jul 02, 2025 at 02:43:10PM +0530, Taniya Das wrote:
-> Add support for video, camera, display and gpu clock controller nodes
-> for QCS615 platform.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
+> +static void emac_get_pause_stats(struct net_device *dev,
+> +				 struct ethtool_pause_stats *pause_stats)
+> +{
+> +	struct emac_priv *priv = netdev_priv(dev);
+> +	struct emac_hw_tx_stats *tx_stats;
+> +	struct emac_hw_rx_stats *rx_stats;
+> +
+> +	tx_stats = &priv->tx_stats;
+> +	rx_stats = &priv->rx_stats;
+> +
+> +	scoped_guard(spinlock_irqsave, &priv->stats_lock) {
+> +		emac_stats_update(priv);
+> +
+> +		pause_stats->tx_pause_frames = tx_stats->tx_pause_pkts;
+> +		pause_stats->rx_pause_frames = rx_stats->rx_pause_pkts;
+> +	}
+> +}
 
-  DTC [C] arch/arm64/boot/dts/qcom/qcs615-ride.dtb
-/home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@100000: 'clock-names' is a required property
-        from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gcc.yaml#
-/home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@5090000: clocks: [[43, 0], [45, 2]] is too short
-        from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gpucc.yaml#
-/home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@5090000: Unevaluated properties are not allowed ('clocks' was unexpected)
-        from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-gpucc.yaml#
-/home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@af00000: clocks: [[43, 0], [45, 29]] is too short
-        from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-dispcc.yaml#
-/home/bjorn/sandbox/kernel/db845c/arch/arm64/boot/dts/qcom/qcs615-ride.dtb: clock-controller@af00000: Unevaluated properties are not allowed ('clocks' was unexpected)
-        from schema $id: http://devicetree.org/schemas/clock/qcom,qcs615-dispcc.yaml#
+You have pause statistics, but not actual configuration of pause.
+
+> +static void emac_adjust_link(struct net_device *dev)
+> +{
+> +	struct emac_priv *priv = netdev_priv(dev);
+> +	struct phy_device *phydev = dev->phydev;
+> +	u32 ctrl;
+
+Normally the adjust_link callback you configure the hardware with the
+result of pause negotiation.
+
+> +/* Called when net interface is brought up. */
+> +static int emac_open(struct net_device *ndev)
+> +{
+> +	struct emac_priv *priv = netdev_priv(ndev);
+> +	struct device *dev = &priv->pdev->dev;
+> +
+> +	int ret;
+
+Extra blank line.
 
 
-The missing clock-names in clock-controller@100000 predates this series.
-Sorry for merging broken patches in the past, please fix that as well.
+    Andrew
 
-Regards,
-Bjorn
-
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 51 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index bfbb210354922766a03fe05e6d117ea21d118081..5adf409d7ce7226042c759cc83ceca331097ae37 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -3,7 +3,11 @@
->   * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
-> +#include <dt-bindings/clock/qcom,qcs615-camcc.h>
-> +#include <dt-bindings/clock/qcom,qcs615-dispcc.h>
->  #include <dt-bindings/clock/qcom,qcs615-gcc.h>
-> +#include <dt-bindings/clock/qcom,qcs615-gpucc.h>
-> +#include <dt-bindings/clock/qcom,qcs615-videocc.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/interconnect/qcom,icc.h>
-> @@ -1506,6 +1510,18 @@ data-pins {
->  			};
->  		};
->  
-> +		gpucc: clock-controller@5090000 {
-> +			compatible = "qcom,qcs615-gpucc";
-> +			reg = <0 0x05090000 0 0x9000>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GPLL0>;
-> +
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
->  		stm@6002000 {
->  			compatible = "arm,coresight-stm", "arm,primecell";
->  			reg = <0x0 0x06002000 0x0 0x1000>,
-> @@ -3317,6 +3333,41 @@ gem_noc: interconnect@9680000 {
->  			qcom,bcm-voters = <&apps_bcm_voter>;
->  		};
->  
-> +		videocc: clock-controller@ab00000 {
-> +			compatible = "qcom,qcs615-videocc";
-> +			reg = <0 0x0ab00000 0 0x10000>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&sleep_clk>;
-> +
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		camcc: clock-controller@ad00000 {
-> +			compatible = "qcom,qcs615-camcc";
-> +			reg = <0 0x0ad00000 0 0x10000>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
-> +		dispcc: clock-controller@af00000 {
-> +			compatible = "qcom,qcs615-dispcc";
-> +			reg = <0 0x0af00000 0 0x20000>;
-> +
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
-> +
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +			#power-domain-cells = <1>;
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,qcs615-pdc", "qcom,pdc";
->  			reg = <0x0 0x0b220000 0x0 0x30000>,
-> 
-> -- 
-> 2.34.1
-> 
+---
+pw-bot: cr
 
