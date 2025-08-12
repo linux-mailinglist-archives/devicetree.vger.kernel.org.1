@@ -1,58 +1,54 @@
-Return-Path: <devicetree+bounces-203976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C67B23A0A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:33:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55EDB23A0B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC53F7AB56B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:31:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52C707B51FB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB662D060D;
-	Tue, 12 Aug 2025 20:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93F32D323D;
+	Tue, 12 Aug 2025 20:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ey348pIx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6Gw8wef"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94A92F0693;
-	Tue, 12 Aug 2025 20:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C15982D0620;
+	Tue, 12 Aug 2025 20:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755030796; cv=none; b=VN8NkeDywdTYeT9OQoFRFWG4Fs3Vm/lBT9ryEOuvMSU+jgXPpn4oWHz2s2//wmfWHzzYhMRzX7z86rKmrL/xYgCf8kXj+mFcqra/uEHldHFY0776Vnnk4Zs7CR/h6yMi/ZEb+ZxbuYvyPV0Xo+oVZNHiKSD/Ani1yQORyqq1TH8=
+	t=1755030803; cv=none; b=iYddt632iFnnIeVa+Vcvg6ah6iwmdOP1dw1pBP6/hcC1dp/mdL7/jWBHWsEpY1vyxzv/SBZ7EfYsvi9hnUorO9xPprHg0nPlZBX0uz0jx3XxgDOyZ8vNKmK8ltPaw0UKXKhQATiAVuOAagNUEfCEvXT+UvcwqGEgMpLQBHRS04s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755030796; c=relaxed/simple;
-	bh=uwbhXIneRmsaZaWvxLCpVQGXbk9Wr+ul8nmFQxg5e64=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YVJABLHpkP7gJ2CWKX7OhHJSZ16Plv3Hv9SpCs0j2CbrrAXmUKo3RoweJyh/GVlEWQMSbGXsDuYlnsNHxdOeMmgniJUppjCTPWHkp/NX1Q/vu0mT8sOM+LEe37YpJEVD739Vcc8Lo6mR0cQ7n7OETOKwMBEimYyWp5sAfmwYKhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ey348pIx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B056AC4CEF0;
-	Tue, 12 Aug 2025 20:33:13 +0000 (UTC)
+	s=arc-20240116; t=1755030803; c=relaxed/simple;
+	bh=8DrMUGsDQTgYNcwFmSW6vsA4tSzlNtDuQiHXYlSKQVY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L1NhUwWZpc8ZQv5DVzNif35Ass1+U3BTq3XHh9DBiuJNcsXbCOlTKYfLQdM4o0A8sodwo8WUXrPhFonzWLMyjBsCX6iRWqqNQZ3Empv9rV6MP9rZ8A75Vo8P5HWWAtcsGHjlNGFrw595RzJEMdsQuXJOz1qSItbWnNlV5M0lamw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6Gw8wef; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 445C7C4CEF1;
+	Tue, 12 Aug 2025 20:33:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755030794;
-	bh=uwbhXIneRmsaZaWvxLCpVQGXbk9Wr+ul8nmFQxg5e64=;
+	s=k20201202; t=1755030803;
+	bh=8DrMUGsDQTgYNcwFmSW6vsA4tSzlNtDuQiHXYlSKQVY=;
 	h=From:To:Cc:Subject:Date:From;
-	b=ey348pIxSmFm/UuOuwlV3pkJy5dMXtVoasKq52qo7O4uY0j2SJbbn6qngNNJBcBHW
-	 X9Q11QGg5IQebv64cEGTwnMIF9xB37Qt9OLbVilFMMjHJvXxfkIU6RzPd0tUgwLroD
-	 AsYkvpxBbdzty+v9+//6RFeHzYdGtfyw4KN3+jfi09MUXZnHbJ9r5SeuNSy9yO00jX
-	 /sek+IMGEQ+w4vh8He+bZr0DZwnm0tNdAOnKEs1SoNwjsMv/vxJlrM9uoBrVzOQwWm
-	 q9J0P581vrR5fy1MVSAenZ4R+9X95afhO9ruvsra9bIpGn3ropkCR580C27pEcTfgZ
-	 D0kKpJoI3CQQw==
+	b=b6Gw8wefCNETNYy2musDSNVWIgg5CXqtXVL+7TgZhM20IJINk7ePvcl/Dwkp+SrPp
+	 llHfdPEhUvHm14NkWuNp8txA7OZqv+4CJjDdsa0Qqzj7HykXShyFRpAq6S5GdnfTnw
+	 DsvAiDyavlzKjs746zRZSif4rzKmLAsjTOwwRe+18l/U6JkQLrN2cIXZKcZNpkUP76
+	 hXZxnbbobkvQNV+A6X1zYbCatfvTwlA6VIORQ6z3iVztbZ3+DBZNW/sRnisFKRSYtQ
+	 dmyIve51oB11zmrx76dSguiVSsC93WxGMeNMcydZFfLd7tVNkJkNYqNRN7g10BzRNz
+	 c0O4stPreQ/mQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>,
+To: Lee Jones <lee@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: dma: nvidia,tegra20-apbdma: Add undocumented compatibles and "clock-names"
-Date: Tue, 12 Aug 2025 15:33:07 -0500
-Message-ID: <20250812203308.727731-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: mfd: syscon: Add "marvell,armada-3700-usb2-host-device-misc" compatible
+Date: Tue, 12 Aug 2025 15:33:18 -0500
+Message-ID: <20250812203319.729300-1-robh@kernel.org>
 X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -62,48 +58,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the undocumented NVIDIA APBDMA compatibles and "clock-names" which
-are already in use. There doesn't appear to be any per compatible
-differences.
+Add the "marvell,armada-3700-usb2-host-device-misc" compatible which is
+already in use.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/dma/nvidia,tegra20-apbdma.yaml          | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
-index a2ffd5209b3b..ea40c4e27a97 100644
---- a/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
-+++ b/Documentation/devicetree/bindings/dma/nvidia,tegra20-apbdma.yaml
-@@ -18,10 +18,17 @@ maintainers:
- properties:
-   compatible:
-     oneOf:
--      - const: nvidia,tegra20-apbdma
-+      - enum:
-+          - nvidia,tegra114-apbdma
-+          - nvidia,tegra20-apbdma
-       - items:
-           - const: nvidia,tegra30-apbdma
-           - const: nvidia,tegra20-apbdma
-+      - items:
-+          - enum:
-+              - nvidia,tegra124-apbdma
-+              - nvidia,tegra210-apbdma
-+          - const: nvidia,tegra148-apbdma
- 
-   reg:
-     maxItems: 1
-@@ -32,6 +39,9 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  clock-names:
-+    const: dma
-+
-   interrupts:
-     description:
-       Should contain all of the per-channel DMA interrupts in
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index 27672adeb1fe..1f381d159af8 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -79,6 +79,7 @@ select:
+           - marvell,armada-3700-cpu-misc
+           - marvell,armada-3700-nb-pm
+           - marvell,armada-3700-avs
++          - marvell,armada-3700-usb2-host-device-misc
+           - marvell,armada-3700-usb2-host-misc
+           - marvell,dove-global-config
+           - mediatek,mt2701-pctl-a-syscfg
+@@ -185,6 +186,7 @@ properties:
+           - marvell,armada-3700-cpu-misc
+           - marvell,armada-3700-nb-pm
+           - marvell,armada-3700-avs
++          - marvell,armada-3700-usb2-host-device-misc
+           - marvell,armada-3700-usb2-host-misc
+           - marvell,dove-global-config
+           - mediatek,mt2701-pctl-a-syscfg
 -- 
 2.47.2
 
