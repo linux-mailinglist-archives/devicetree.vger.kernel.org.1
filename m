@@ -1,94 +1,94 @@
-Return-Path: <devicetree+bounces-203989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E15E3B23A7F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 23:16:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C59FBB23A8D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 23:21:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 643C36E3F41
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:16:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02B866E50AB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 21:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067BC2D6E6F;
-	Tue, 12 Aug 2025 21:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D27302D8DA9;
+	Tue, 12 Aug 2025 21:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KGLp/IEv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CgytJMWm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D114326C3A2;
-	Tue, 12 Aug 2025 21:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43322D7808;
+	Tue, 12 Aug 2025 21:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755033357; cv=none; b=PwxjPtNx6DfHqzW6PFH6ZWbqi++eoz4JyFbSiCvKg9yhZGbftIMvY9AFvJTGotmBOJZ/YUfjHQ561TuVa4DNpeaGRkR60ojm5LZ7Pu9VaXE3/BKIdTDIQwUhKEKisIqZpO9wSvRlvwXamu9jMMPYW4niV0eC51XiFozEP1bj+8o=
+	t=1755033618; cv=none; b=sDTuny6l96re955Um4k0bkOiIzNQJj4ScYZ01IdWDOJYVLqkzXpSMiw2gVpKWi4Ble0vdooWl/dHd7VKj/NA5h6b2aRocy5xO9UG4k+IBgbAp46rAnr+8lAOu2bcYC+sEvlkLCMSi64HTtxuw72Z+6UnLDYpsxZUi8lhw8+ziBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755033357; c=relaxed/simple;
-	bh=AIVY8GN2ACCBEKa/Ha4Rz92hSOzQszl89xx3U4cHrlI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YDNbrDlCY/fEu64wqFWcUKh9WD2oEXTBslQrL/w5QIHlQhtJ/dt953HKqAdgEteDGUhQpHKE8geoRuZq+U9e3a8DIQ0dvIynT9GOu5WZFSfE4CsOasMBAJE+rXovWeG+Li1dEolBePu3B71688VTX7Ub6PnFWCdDETR02l/DYsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KGLp/IEv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7BA9C4CEF0;
-	Tue, 12 Aug 2025 21:15:50 +0000 (UTC)
+	s=arc-20240116; t=1755033618; c=relaxed/simple;
+	bh=C+KttgTZ2avh2OL713FKvz8YyKV99KKUUR2nqlakuUA=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=fLAf4q4R9gyqGEjQEOIyI7nkb4byTVdEdbHHtrQNmmtdgyG/Tw3/bTS4ptDm2RjmS+naniyV90ExiqI1VXbeiACltm/7fvWpqWPnFXwP+/6Yr/cZzThvKmBk+bIm4ejxmF4/seChtdfRa0ROYTSr2um2Xbe7BVveUWDRyLQF1RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CgytJMWm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 827F7C4CEF5;
+	Tue, 12 Aug 2025 21:20:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755033357;
-	bh=AIVY8GN2ACCBEKa/Ha4Rz92hSOzQszl89xx3U4cHrlI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KGLp/IEvU80wGWgPbxM6CqO0Frjig8HCS59vZHJvHwbrJz0ESSsMCkmN3c7Qe1JEp
-	 CG38ofqBqqH27Ivo6gfh99i+hOEaSgJU4iClaQt/hkDF4AOjme9nBWPDqUQmCnIIYK
-	 QPXEyR0pzA/XQe15DImXg8ZjNDa8CiJMfwLv3cQsqcyNHCSwZmFFDA4HbuZi47iIbW
-	 JOYwyApvY26GgRzAdjn7VwRsLkJ0w39zRkvKF9pbDEMI7I/VR2OpluPN0CNQdNj5lk
-	 tuL8vi5hXa/yfINYfwBQ2AfUHENYrBB8L45vJvMYh9Ws74luw3pWACZ6tKCeXn3r98
-	 JGDgjF99Oul9Q==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	krishna.chundru@oss.qualcomm.com,
-	quic_vbadigan@quicinc.com,
-	quic_nayiluri@quicinc.com,
-	quic_ramkri@quicinc.com,
-	quic_nitegupt@quicinc.com,
-	Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v5 0/2] Update PCIe PHY settings for QCS8300 and SA8775P
-Date: Tue, 12 Aug 2025 16:13:47 -0500
-Message-ID: <175503322856.231048.14752083569105388831.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250617-update_phy-v5-0-2df83ed6a373@quicinc.com>
-References: <20250617-update_phy-v5-0-2df83ed6a373@quicinc.com>
+	s=k20201202; t=1755033618;
+	bh=C+KttgTZ2avh2OL713FKvz8YyKV99KKUUR2nqlakuUA=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=CgytJMWm3/0qZvHyGUr8HrkftmMw+XIFpSUcajD9c4i/h6Kkenko833K4exGhIWRt
+	 Pd7XhSi3/0QE5XuEOTxh6Tqk2DfTJ6T8NbNILb6jxXsXO9yVGKEZ9O9+5gClL98HGr
+	 gon02Q9tkV86mrE3nLuwT6R8RbdT+0lmBryxAU/0+4jLgn+jbcJ6TgOB8xcRA5YvYG
+	 n8YDP+356eRCt2bTXboU41O208hTV4/zw/+pEp/Gn69+ggOJgE85vKn7XzvppjNe2O
+	 P3CJqhaHribQXaMuCpYfIh9iyn4vXU1GiiNw2iY0ovZzFG9Y0MEHYAs/omi8CecA/K
+	 nscMaczaZIqsg==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADDE9383BF51;
+	Tue, 12 Aug 2025 21:20:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: nfc: ti,trf7970a: Drop 'db' suffix
+ duplicating dtschema
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175503363024.2827924.6313629408379264166.git-patchwork-notify@kernel.org>
+Date: Tue, 12 Aug 2025 21:20:30 +0000
+References: <20250811142235.170407-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250811142235.170407-2-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mgreer@animalcreek.com, krzk@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ robh@kernel.org, conor+dt@kernel.org, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 
+Hello:
 
-On Tue, 17 Jun 2025 17:08:18 +0530, Mrinmay Sarkar wrote:
-> This Series is to update PCIe PHY settings as per latest
-> hardware programming guide and remove max link speed dt
-> property for SA8775P PCIe EP.
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 11 Aug 2025 16:22:36 +0200 you wrote:
+> A common property unit suffix '-db' was added to dtschema, thus
+> in-kernel bindings should not reference the type.
 > 
-> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/net/nfc/ti,trf7970a.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 
-Applied, thanks!
+Here is the summary with links:
+  - [net-next] dt-bindings: nfc: ti,trf7970a: Drop 'db' suffix duplicating dtschema
+    https://git.kernel.org/netdev/net-next/c/f8262b8dadfa
 
-[2/2] arm64: dts: qcom: sa8775p: Remove max link speed property for PCIe EP
-      commit: d6111177f6504b013d0424657e131ae9a36ab5e2
-
-Best regards,
+You are awesome, thank you!
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
