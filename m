@@ -1,167 +1,269 @@
-Return-Path: <devicetree+bounces-203757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9872AB226AB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:20:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77249B227F6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CC627AEDFC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:19:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFB623AAC26
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F58E19CC27;
-	Tue, 12 Aug 2025 12:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8C8189B84;
+	Tue, 12 Aug 2025 13:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QS1qhtkv"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="WXExFBYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m1973178.qiye.163.com (mail-m1973178.qiye.163.com [220.197.31.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01B1137750;
-	Tue, 12 Aug 2025 12:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AFA243399;
+	Tue, 12 Aug 2025 13:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755001250; cv=none; b=LFq6WzjLZbpxwy6WpID4nruF/V65OofLC7xZnJY1N+dfDLtD0LiypyoqjQM97KcuR/1Le/tkP2KXUUP6dCmx1odQp7LwO0W57aKD5+naC59AA2kP/m6uIrve6O1pyaRuT16h9EtcF/MBYNslk5A3bjlLHZ9LgO4bF0vyPy3ag3s=
+	t=1755004016; cv=none; b=KLp2VNakzpTA/P57unQzRSbueenMSNYmWVC77VLZbb4YPG4+zDww/MCisiwEDuarH+wSYzk8fiyEhSLyw8dnD3QpQ1zBmgtpEmY83UpZVaJIuNMpKjasJmV2U8AcVuVAzv8mnGRKysRnqhBZSpDm4vT6lgp5tqigs1+kx0N8bqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755001250; c=relaxed/simple;
-	bh=p4SoCy+5Wp2hINd3FOD7sAZrv3yA75uzRqso2UHx+Vg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q3tmOThaYR+r2aXH/WOFA0hIW3rE5l3WBZVy0rIrQPn11hKrou4WXji5wbw1D+I1nGkEDd3eiT6uv01QrEUbh7JQ0jAf6kWEmdY7tSYzjG7O8TxZfaAhNkZZ8Md6q8guHsdeLYEAuMRZTH6AApg1Oo4Tejx2KYIUjX+E9YvVZ0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QS1qhtkv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 944F5C4CEF0;
-	Tue, 12 Aug 2025 12:20:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755001250;
-	bh=p4SoCy+5Wp2hINd3FOD7sAZrv3yA75uzRqso2UHx+Vg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QS1qhtkvxxgtFmWZXpwUOz7C2w+Xg/fdeRkUqsEjcPIJz6Ja95Qq3GPCVqJjIUGue
-	 NOP4lqdZr0y/nmGvlTvg/4d2RdFWrvwh/3xlvAhEgjBHvoMSdwDEmr9OEaowdx3NvD
-	 zF0oh9EE9B8I5ammwpc+o3ck81zVsa86T7lDtSmLKm3njatFJuGki/QlYgTGJQ0asH
-	 AgfJx1r9i9AnJU3Iog3zm3nTTsyDKoaEco/MUmgd4P8dRxycszS33ZEjvuttK+8OhR
-	 GOzBATQOrry/OkVmkQ/FP+rA+wQpldftccJ/EcvN278Gpadf3A68pVdvazvQJH9+pT
-	 ivkSbKuE+TpTQ==
-Message-ID: <a6b063a2-2b99-4de4-a3b3-876f6b778bc6@kernel.org>
-Date: Tue, 12 Aug 2025 14:20:45 +0200
+	s=arc-20240116; t=1755004016; c=relaxed/simple;
+	bh=DEWudkDs7Iyzzd5CQSSDdcSBulpghXtyEw5QR46nGWc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YtRQHDWXmUK21IUlStq2maALCjE+MPjR6xGeXeovlEHkgG7valGe68HKy1zGvXcBiCdd35HYU4ZqWX37k2tzELh4xYq5TD0tQm49qM7bWlsIX1HSJzO9+ofrTHUQ+ExHTFLfLFMILzcVBoWAubDra9GaVXLEaOXvLew9cHW7AUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=WXExFBYP; arc=none smtp.client-ip=220.197.31.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from albert-OptiPlex-7080.. (unknown [117.184.129.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1f211b6c3;
+	Tue, 12 Aug 2025 20:31:20 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: krzk@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ulf.hansson@linaro.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	arnd@arndb.de,
+	adrian.hunter@intel.com,
+	robin.murphy@arm.com,
+	ding.wang@bst.ai,
+	gordon.ge@bst.ai
+Cc: bst-upstream@bstai.top,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	soc@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Albert Yang <yangzh0906@thundersoft.com>
+Subject: [PATCH v3 0/8] Introduce Black Sesame Technologies C1200 SoC and CDCU1.0 board
+Date: Tue, 12 Aug 2025 20:31:02 +0800
+Message-ID: <20250812123110.2090460-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/3] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
- device tree
-To: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20250810-tb16-dt-v10-0-0bfed6d75c69@oldschoolsolutions.biz>
- <20250810-tb16-dt-v10-3-0bfed6d75c69@oldschoolsolutions.biz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250810-tb16-dt-v10-3-0bfed6d75c69@oldschoolsolutions.biz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a989e43800c09cckunm52c5de628442aa
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRkdVh5JQ0wZHkwYSEJCHVYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
+	tLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=WXExFBYPk7NKVCNi2iseFIS/kU7WjgjUjApwXGxesJJs2m1qId4UbKBMeXv4EJTEIwr8zJ3zWDNVLxV9+S89czj464yRo7yefaCp4S7TusIDXUSyHkGAQcvBU/OPnvt4THiy/p6Kof7yASa1hucucobYx4IWP4MStNT1XAyV03U=; s=default; c=relaxed/relaxed; d=thundersoft.com; v=1;
+	bh=jeUxTQ9kPol+qucz8lWjIE1iNI3a/p05jPfDCS+yCg4=;
+	h=date:mime-version:subject:message-id:from;
 
-On 10/08/2025 19:37, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> Device tree for the Lenovo Thinkbook 16 G7 QOY
-> 
-> The Laptop is a Snapdragon X1 / X1 Plus (Purwa) based device [1].
-> 
-> Supported features:
-> 
-> - USB type-c and type-a ports
-> - Keyboard
-> - Touchpad (all that are described in the dsdt)
-> - Touchscreen (described in the dsdt, no known SKUss)
-> - Display including PWM backlight control
-> - PCIe devices
-> - nvme
-> - SDHC card reader
-> - ath12k WCN7850 Wifi and Bluetooth
-> - ADSP and CDSP
-> - GPIO keys (Lid switch)
-> - Sound via internal speakers / DMIC / USB / headphone jack
-> - DP Altmode with 2 lanes (as all of these still do)
-> - Integrated fingerprint reader (FPC)
-> - Integrated UVC camera
-> - X1-45 GPU
-> 
-> Not supported yet:
-> 
-> - HDMI port.
-> - EC and some fn hotkeys.
-> 
-> Limited support yet:
-> 
-> - SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
-> the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
-> but not UHS-I (SD104) and UHS-II.
-> 
-> This work was done without any schematics or non-public knowledge of the device.
-> So, it is based on the existing x1e device trees, dsdt analysis, using HWInfo
-> ARM64, and pure guesswork. It has been confirmed, however, that the device really
-> has 4 NXP PTN3222 eUSB2 repeaters, one of which doesn't have a reset GPIO (eusb5
-> @43).
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> Co-developed by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Black Sesame Technologies C1200 is a high-performance Armv8 SoC designed for automotive
+and industrial applications. The CDCU1.0 (Central Domain Control Unit) board is the
+development platform built by Black Sesame Technologies. You can find more information
+about the SoC and related boards at:
+https://bst.ai
 
+Currently, to run the upstream kernel on the CDCU1.0 board, you need to use the
+bootloader provided by Black Sesame Technologies. The board supports various
+interfaces including MMC/SD card, which is implemented using the BST C1200 DWCMSHC
+SDHCI controller.
 
-Incorrect SoB chain. Please look at submitting patches which describe
-exactly that case.
+In this series, we add initial SoC and board support for kernel building. The series
+includes:
 
+Patch 1: Add Black Sesame Technologies vendor prefix in vendor-prefixes.yaml
+- Adds "bst" vendor prefix for Black Sesame Technologies Co., Ltd.
+- Required for device tree bindings to properly identify BST hardware
 
-Best regards,
-Krzysztof
+Patch 2: Add device tree bindings for BST SoC platforms
+- Creates new binding file Documentation/devicetree/bindings/arm/bst.yaml
+- Defines compatible strings for BST C1200 family and C1200 CDCU1.0 board
+- Documents BST's focus on automotive-grade SoCs for ADAS applications
+
+Patch 3: Add ARCH_BST configuration for BST silicon support
+- Adds Kconfig option for BST architecture support
+- Enables building kernel for BST platforms
+
+Patch 4: Add device tree binding for BST DWCMSHC SDHCI controller
+- Documents the BST C1200 SDHCI controller binding
+- Required for MMC/SD card support on BST platforms
+
+Patch 5: Add BST C1200 SDHCI controller driver
+- Implements the MMC host controller driver for BST C1200
+- Enables SD card support on BST platforms
+
+Patch 6: Add device tree support for BST C1200 CDCU1.0 board
+- Adds device tree source files for C1200 SoC and CDCU1.0 board
+- Configures hardware components including MMC controller
+
+Patch 7: Enable BST Soc And C1200 DWCMSHC controller in defconfig
+- Enables MMC controller driver in default arm64 config
+
+Patch 8: Update MAINTAINERS for BST support
+- Adds maintainer information for BST ARM SoC support
+- Consolidates BST-related entries
+
+Changes for v3:
+- Patch 1:
+  - No changes
+- Patch 2:
+  - Add Signed-off-by: Ge Gordon
+- Patch 3:
+  - Reword subject from "for bst silicons" to "for Black Sesame Technologies SoCs"
+  - drop unrelated whitespace hunk
+- Patch 4:
+  - Switch reg schema from maxItems to explicit items with per-entry descriptions
+  - Improve example: add irq.h include and wrap under a bus node with address/size cells
+  - Drop status = "disabled" from example; keep example concise
+  - Add Signed-off-by: Ge Gordon
+- Patch 5:
+  - Code improvements based on review feedback:
+    - Simplified dwcmshc_priv structure by removing unused fields
+    - Improved helper functions with better encapsulation
+    - Used devm_platform_ioremap_resource() for resource management
+    - Updated Kconfig description and alphabetical ordering
+    - clarify documentation on hardware limitations and bounce buffer approach
+    - remove duplicate sdhci_writew SDHCI_CLOCK_CONTROL
+- Patch 6:
+  - Split defconfig enablement out into a dedicated defconfig patch
+  - Refine memory description: consolidate ranges in memory node and delele unused memory ranges
+  - Adjust the order of nodes
+  - remove mask of gic
+- Patch 7:
+  - Also enable CONFIG_ARCH_BST in arm64 defconfig (in addition to CONFIG_MMC_SDHCI_BST)
+- Patch 8:
+  - No changes
+
+Changes for v2:
+- Pass dts build check and mmc driver build check with below commands:
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=build_dir CHECK_DTBS=y bst/bstc1200-cdcu1.0-adas_4c2g.dtb W=1
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- drivers/mmc/host/ W=1 O=build_dir
+- Patch 2: 
+  1. Removed unnecessary pipe (`|`) in description
+  2. Dropped invalid `compatible` entry for standalone SoC
+  3. Removed root node (`$nodename: '/'`) definition
+- Patch 3:
+  1. Placed the configuration entry in correct alphabetical order
+  2. Used generic family name (ARCH_BST) instead of SoC-specific naming
+  3. Followed upstream kernel naming and description conventions
+- Patch 4:
+  1. Simplified description, removed redundant paragraphs
+  2. Updated $schema to reference mmc-specific scheme
+  3. Corrected compatible to add soc name
+     (bst,c1200-dwcmshc-sdhci)
+  4. Removed all redundant property descriptions
+  5. Dropped invalid mmc_crm_base/size properties, use reg for all address
+     ranges
+  6. Cleaned up required properties to only essential entries
+  7. Standardized example DTS format, fixed reg syntax and property
+     ordering
+  8. Removed additionalProperties: true
+- Patch 5:
+  1. Dependency Simplification:
+     - Removed COMMON_CLK dependency from Kconfig (MMC_SDHCI_BST)
+     - Add ARCH_BST || COMPILE_TES dependency from Kconfig (MMC_SDHCI_BST)
+
+  2. Resource Management Improvements:
+     - Replaced temporary ioremap with persistent mapping
+       * Mapped CRM registers once during probe instead of per-access
+       * Added proper cleanup in remove callback
+     - Refactored bounce buffer allocation:
+       * Simplified error handling and memory management
+       * Removed unnecessary DMA configuration layers
+
+  3. Code Cleanup & Optimization:
+     - Pruned unused headers and legacy vendor debug code
+     - Removed deprecated sdhci_bst_print_vendor() export
+     - Converted internal functions to static scope
+     - Standardized naming conventions:
+       * Renamed DRIVER_NAME to match kernel standards
+       * Changed default_max_freq to DEFAULT_MAX_FREQ
+     - Optimized clock configuration routines
+
+  4. Hardware Integration Fixes:
+     - Fixed register access macros for EMMC_CTRL
+       * Added proper offset calculation via SDHCI_VENDOR_PTR_R
+     - Corrected device tree compatibility string to:
+       "bst,c1200-dwcmshc-sdhci"
+
+  5. Error Handling Enhancements:
+     - Added robust ioremap error checking
+     - Improved bounce buffer allocation failure handling
+     - Streamlined probe/remove flow
+
+  6. Maintainability:
+     - Updated MODULE_DESCRIPTION and AUTHOR fields
+     - Added explanatory comments for hardware limitations
+     - Removed redundant multi-host setup infrastructure
+  7. fix build warnings from lkp
+    | Reported-by: kernel test robot <lkp@intel.com>
+    | Closes:
+    https://lore.kernel.org/oe-kbuild-all/202505290615.GZzN5rNL-lkp@intel.com/
+
+- Patch 6:
+  1. Reorganized memory map into discrete regions
+  2. Updated MMC controller definition:
+     - Split into core/CRM register regions
+     - Removed deprecated properties
+     - Updated compatible string
+  3. Standardized interrupt definitions and numeric formats
+  4. Removed reserved-memory node (superseded by bounce buffers)
+  5. Added root compatible string for platform identification
+  6. Add soc defconfig
+
+Albert Yang (8):
+  dt-bindings: vendor-prefixes: Add Black Sesame Technologies Co., Ltd.
+  dt-bindings: arm: add Black Sesame Technologies (bst) SoC
+  arm64: Kconfig: add ARCH_BST for Black Sesame Technologies SoCs
+  dt-bindings: mmc: add binding for BST DWCMSHC SDHCI controller
+  mmc: sdhci: add Black Sesame Technologies BST C1200 controller driver
+  arm64: dts: bst: add support for Black Sesame Technologies C1200
+    CDCU1.0 board
+  arm64: defconfig: enable BST platform and SDHCI controller support
+  MAINTAINERS: add and consolidate Black Sesame Technologies (BST) ARM
+    SoC support
+
+ .../devicetree/bindings/arm/bst.yaml          |  31 ++
+ .../bindings/mmc/bst,dwcmshc-sdhci.yaml       |  70 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  10 +
+ arch/arm64/Kconfig.platforms                  |   8 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/bst/Makefile              |   2 +
+ .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  42 ++
+ arch/arm64/boot/dts/bst/bstc1200.dtsi         | 117 ++++
+ arch/arm64/configs/defconfig                  |   2 +
+ drivers/mmc/host/Kconfig                      |  14 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-bst-c1200.c         | 510 ++++++++++++++++++
+ 13 files changed, 810 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/bst.yaml
+ create mode 100644 Documentation/devicetree/bindings/mmc/bst,dwcmshc-sdhci.yaml
+ create mode 100644 arch/arm64/boot/dts/bst/Makefile
+ create mode 100644 arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+ create mode 100644 arch/arm64/boot/dts/bst/bstc1200.dtsi
+ create mode 100644 drivers/mmc/host/sdhci-of-bst-c1200.c
+
+-- 
+2.43.0
+
 
