@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-203722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0043B22544
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:06:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABAEFB2254E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:08:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33DED5005EA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:06:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A8EF1B66E84
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B70E2EE285;
-	Tue, 12 Aug 2025 11:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A38F2ED147;
+	Tue, 12 Aug 2025 11:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWSKHm9m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igHhMXGP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBF52EE262;
-	Tue, 12 Aug 2025 11:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000E62ECEBA;
+	Tue, 12 Aug 2025 11:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754996719; cv=none; b=J/8+rM+fFy3iwOWegBUsoxxJHhi44RhooVoS4Bh+K2+KNSpf1jbSvJ0YrUVDVH9B+K0YqCARChDvkA1IBroRFkYgW2f3f9jznctwtq/nF3ZbSJxCtEgM34/WfbqUD/Z/5imgzsi/olR70MES7cvscsmPKh+LQkk1cPhhphw3G9Y=
+	t=1754996737; cv=none; b=bmntdzZ6WWkn4WfH4QQJnEtTAfSvo2Z/Khjc9YUcCfuvEF3PJwDFM+5rHzqBFAirMyFkKXWS/9mKxAXLx1XYhNe2QIrwQ6eHob3P4GSD9sF08QO2VhMI/qY7CKtpvqWC6aZDkH36J8HJXGGvjhK+cQl+/mysitWpvCppZRSVrQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754996719; c=relaxed/simple;
-	bh=0BwRILpusAVrivTLcsAixdNdRY4nvTJgi3xEFY4YsN8=;
+	s=arc-20240116; t=1754996737; c=relaxed/simple;
+	bh=UKCmf5RiS8hzLgpwR79YEpQepRcjhp5ZkjHO4+I/vMs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=J7tA/g92PKMh4CpIZoRwkABq5pfV0A1zK8C6aK1BQwVr/aTRm3fMllnX5NTkpTCwVfJvUZNPJo8Vg75QFWHRB5V80nVpC4wekbWCOI0soCRFsMryJWSqnXYLRRT84FoXp7fi4QJbi0fRZdDZiKJzIQrlB0k1I7jTS2vuv7xMHfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWSKHm9m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB2FDC4CEF0;
-	Tue, 12 Aug 2025 11:05:16 +0000 (UTC)
+	 MIME-Version:Content-Type; b=jzcnSEAfhchZ98rnq5sJvQwwM6DivvHb/vgv1r01f2BrHuc3oCk3cSKbOnauRI9Cfdp448fbM50pf5BXNhmyBL7R8GWGtSP29nHVrujbGR1IlRqHqpA91EPwKHYb1jaJ0BKo+cQNCSLCVnl/7iv7j4ncAbt+uTOJT3As7vJzQ8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igHhMXGP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10AD5C4CEF6;
+	Tue, 12 Aug 2025 11:05:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754996719;
-	bh=0BwRILpusAVrivTLcsAixdNdRY4nvTJgi3xEFY4YsN8=;
+	s=k20201202; t=1754996736;
+	bh=UKCmf5RiS8hzLgpwR79YEpQepRcjhp5ZkjHO4+I/vMs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=PWSKHm9maPZ82AuMYOrCQxHej/6dypc7ijXS9T0jfJ7mV9Ii54WMJrtrYOjOksuVA
-	 X4QUGxJMgUrqHN3kw2FSiTDb/mh8v2wPpKJK+etKn6Mj296uUUQm4ZJw1/QUtv/vZO
-	 BgQDfr5WgcaFsPh/NajPl62ZKwYH7YBNu3MDpILaW6DabjIrPWv0JVCd5aiBPgHcWQ
-	 R00UEF8FIFTq8Xksz44XIfAhxuIDYZ2+TYc65zyroiBhvEqrP4Wt3pctmfgYqESXlL
-	 BdONDglSkxV6WWf7ICTwrn3bW9ydDnZ7odVOmgQRiUuRUUNJGKTbcnkaVBiHmjwkE1
-	 s9YeWIuV7Y8vg==
+	b=igHhMXGPnXgIy+4M00EKA7zqcB0NanYYfB4fwo9wqwsW5iG4fMh7dIK8XbAF/9Ufj
+	 gyY+6WBfTy2GT8rnAW4tobVY23HZEWPhaSBQSEdi2Ir+W644ut8mOde+XlHcdYyrks
+	 9LSmnge2SOlz2RdEOgXFUE2e1ZW9m35rxNyfxIUzqKuayOFJseU46a2SSO07FFSemR
+	 VQaMKi8DTq31eoYzY/2NU+1HiE6RTovirZ+9usuCuJ0Uw5J4x2ovGAO2Xb2nludE43
+	 6wDOixSvdIioIQk8fJUyE34rlMcIymriNx/bYd99Jc+aHbs+0ohcenWUMHsi4+TiMZ
+	 nwrywfSPPUIFQ==
 From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250807214358.4172451-1-robh@kernel.org>
-References: <20250807214358.4172451-1-robh@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: Drop imx-audio-sgtl5000.txt
-Message-Id: <175499671651.16031.1365399416603486475.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 12:05:16 +0100
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com>
+References: <20250802-starqltechn_integration_upstream-v7-1-98ed0e1e1185@gmail.com>
+Subject: Re: [PATCH v7] regulator: add s2dos05 regulator support
+Message-Id: <175499673481.16220.3331767092992671586.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 12:05:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +64,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-cff91
 
-On Thu, 07 Aug 2025 16:43:57 -0500, Rob Herring (Arm) wrote:
-> The "fsl,imx-audio-sgtl5000" binding is already covered by
-> fsl-asoc-card.yaml, so remove the old text binding.
+On Sat, 02 Aug 2025 14:22:22 +0300, Dzmitry Sankouski wrote:
+> S2DOS05 has 1 buck and 4 LDO regulators, used for powering
+> panel/touchscreen.
 > 
 > 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: Drop imx-audio-sgtl5000.txt
-      commit: 605d902bb6b6f5b12a5baeaca0dc359ced7685cb
+[1/1] regulator: add s2dos05 regulator support
+      commit: bb2441402392ef1f49563be68e8f0dcb127ac965
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
