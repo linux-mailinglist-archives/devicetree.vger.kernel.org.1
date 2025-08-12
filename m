@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-203724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCFAB22550
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:08:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D44B2255D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 254CD3A1E4D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF8553A8B7D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C66A2EF652;
-	Tue, 12 Aug 2025 11:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC4A2EFD97;
+	Tue, 12 Aug 2025 11:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J86l1yrL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P8vYU/q0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735E02EE617;
-	Tue, 12 Aug 2025 11:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1ECD2EFD8C;
+	Tue, 12 Aug 2025 11:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754996739; cv=none; b=pFG5m8yZq4exfEa2ccjn5vIIUUq82bMiCZOGhLECsvVCLNXuiAFBpVWgNdreF10xiV0RoN9VpSLSZWikiOlsw3XbmPgYEbRcxATKtgRFwdWaOP0UzHMi/EJp9ElPjfwQ2uSoWHQJQ7NToIuTJx2i7DbnO0e5hkmgKM7dLKKRUEk=
+	t=1754996742; cv=none; b=hr/d7n8063eSEEju+knQyiVTdVZeKj9Mj8fbcWBdX2YfZ7toyQGW1B0FtC1dyBT8ua4mMMggMYnte2KaoJMmMxOId54LMY6xxofnBhteOLBX8fTHHYyiRQJ3HKkmGWJsNzOsyDpjUooJY1Bf5xcWEe3nAhzZRveXBkmZLh/BGVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754996739; c=relaxed/simple;
-	bh=sPpT/31FEoxwbyG26q2M4osJ/52Rr/J0gte2gCGjdDo=;
+	s=arc-20240116; t=1754996742; c=relaxed/simple;
+	bh=jxTjEnHMPmG/BlK3tUeUzJ7ztWZxZ6PlYKzdAUEeXPs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZTn24FMXDMhZWDhazS0qbfwl8ULHeZ/XCuwhd2sk9j6rwf0j8pgN8kan3IlUt9THXoBSjHtppKL25SL52vO0hQObKcGKBEEnH5d4v6fUyjjXAGJlDcedcLbF6rXVbSC8pKku3C2CIFnk6BnxXlTJtawAYoKLTplcafuhaayfuag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J86l1yrL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47314C4CEF7;
-	Tue, 12 Aug 2025 11:05:37 +0000 (UTC)
+	 MIME-Version:Content-Type; b=cW9a8SiJwCidM3k1pn7SZTUPVCs5YaJ1tuMX9IJUB70WxvWJ6o9cwAG0U4EsRGiWbQlGSvKwWFoXxH1O480urvcTfCyjb6Q3Qy1u0fd37yLHPB/q0kUqTAOvoJUKZaHcJ+rZMH4rYNgyytx0TonlfATBXTxVPYjS5jdnzPuR02Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P8vYU/q0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 853C4C4CEF4;
+	Tue, 12 Aug 2025 11:05:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754996739;
-	bh=sPpT/31FEoxwbyG26q2M4osJ/52Rr/J0gte2gCGjdDo=;
+	s=k20201202; t=1754996742;
+	bh=jxTjEnHMPmG/BlK3tUeUzJ7ztWZxZ6PlYKzdAUEeXPs=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=J86l1yrLymyGibOHNWlIdlnu29DzIusjsM/hmtmRyMo4XwfUT3mACTIdk9pBjgrtr
-	 7dMrZn46/eRn40BvrpanTDG8IyG/tpaoN4YdCFct+iqQDr6MPPlkaTL5luLYm4pAiJ
-	 QZS/qD9x4dPGs6SG8sQpO9AP+2lZCMSLOqtnuRV4WB+1RkOPcKU7Nk9f2ZZKQ+3DoF
-	 Muqo9+4qGyJ5OTV8dSj88Vr51gFyCLpYeFw52R0K24aphx+CSghYtR0Gwrr/n12RNt
-	 tz4TDZKaISIVKqHY+dP49s7FhmxVEcZrrRWdLvbDkdhxU6bYoyQE6aMJBdTdMJWkGu
-	 BFPOSyrMVPTcw==
+	b=P8vYU/q0NEUim5xP4qaa7JJH6ed2uJcE0DvoTEx+DYq17cfY8JeAY3YZrF1MruKuo
+	 jc9L88hfparqYQth3xaLv//o0sLtxi9Jmp8HRLYh+uuTaBzHnlTp2O694si6apnOhs
+	 I2Z2B9iB1YS2WmT8TU7YUaASrlDNQrktlcoTjK+QdmrygNJ78AHVFyRor4hlaRSqbu
+	 B1C63NqZgQ0Ra4W9TVrmVTWU4ueIMFA88Ls6dzLOuLFzK3vtqTe0b5ABpv3xTnn9VD
+	 2nEa2QO+TsvsjfnN5mYhOFdqwnimL++x+uycDnQpVgEH0clp+h7j4lODHVKqQq2nXi
+	 ZAjILq64EkUeA==
 From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20250805-starqltechn_integration_upstream-v8-1-09d8a321fafe@gmail.com>
-References: <20250805-starqltechn_integration_upstream-v8-1-09d8a321fafe@gmail.com>
-Subject: Re: [PATCH v8] regulator: add s2dos05 regulator support
-Message-Id: <175499673703.16220.16675557166066099726.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 12:05:37 +0100
+To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Paul Cercueil <paul@crapouillou.net>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org
+In-Reply-To: <20250807214459.4173892-1-robh@kernel.org>
+References: <20250807214459.4173892-1-robh@kernel.org>
+Subject: Re: [PATCH] regulator: dt-bindings: Clean-up active-semi,act8945a
+ duplication
+Message-Id: <175499674028.16220.7731759072204819862.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 12:05:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,11 +64,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-cff91
 
-On Tue, 05 Aug 2025 22:40:56 +0300, Dzmitry Sankouski wrote:
-> S2DOS05 has 1 buck and 4 LDO regulators, used for powering
-> panel/touchscreen.
+On Thu, 07 Aug 2025 16:44:57 -0500, Rob Herring (Arm) wrote:
+> The active-semi,act8945a binding is documented in multiple places. The
+> charger child node is documented in regulator/active-semi,act8945a.yaml
+> and power/supply/active-semi,act8945a-charger.yaml. An old text binding
+> is in mfd/act8945a.txt.
 > 
+> Update the regulator/active-semi,act8945a.yaml with the additional
+> descriptions and constraints from
+> power/supply/active-semi,act8945a-charger.yaml, and then remove it and
+> mfd/act8945a.txt.
 > 
+> [...]
 
 Applied to
 
@@ -76,8 +83,8 @@ Applied to
 
 Thanks!
 
-[1/1] regulator: add s2dos05 regulator support
-      commit: bb2441402392ef1f49563be68e8f0dcb127ac965
+[1/1] regulator: dt-bindings: Clean-up active-semi,act8945a duplication
+      commit: a54ef14188519a0994d0264f701f5771815fa11e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
