@@ -1,237 +1,243 @@
-Return-Path: <devicetree+bounces-203791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF01CB2284C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:24:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BB2B2288B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:32:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F14016AA9F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:18:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00838503D73
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D24227934A;
-	Tue, 12 Aug 2025 13:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E3427AC50;
+	Tue, 12 Aug 2025 13:24:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="UtgZG6G5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="EA6BljAq";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="UtgZG6G5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="EA6BljAq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="snffIGnN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E477276022
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 13:18:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E35E27E1C3
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 13:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755004729; cv=none; b=kKvBr67tIeUwT7w7+wru8lvPgRPQCDWYfua2n+5VrIC9yq3qW0FRbnwHid0k1WCLqv7Wnk/rW38Uv19pgrUGrd+zv0z6Tyq8B5gZna6vm3C93Xe0yAewf/bwFC5D9tCW9k3sJW1bpQ0P9cd2W855dxcSACn+Y4psFVbmzcbHv44=
+	t=1755005094; cv=none; b=nQba0TMFjaFUfKLgzTPoyEwwfLxyle0p7W0Zk110AxdFUMDw2lbARlKEc8vQSNos2rco2UEDda3jGkVtUYPSAimxE18PvzmTcbi4FaTOLwedabKNX3MyfAF5wvx9F69t237SkVjH8vvzul3Bdt3ecik3PyRqoYUv9xYEDIGfENk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755004729; c=relaxed/simple;
-	bh=7r5yJWSv8nIJo/KHCyiI1Nv92QtpWaQb9h6xnyk8548=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aeh6hMYJJOnm4993MFs7/SdWuzKfUIj3iZPpfc9XjC61gCLW0Z7OytNhOTUsKKxfwpfBRUwjr9bBjV+w6WW/9+jH+TdiDT7bl/WxbkysG7RMKiTImibANay4DfnhCB5bHAmS/hng8hxrh8jx4i8o97tkyL7jz3MjjJrsXBLavrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=UtgZG6G5; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=EA6BljAq; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=UtgZG6G5; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=EA6BljAq; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id CC4501F45B;
-	Tue, 12 Aug 2025 13:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755004725; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=QRs3Lbu/CyqX1NOfs/4bvgoB0mLNEji8vX3OaJ0mTX4=;
-	b=UtgZG6G5F8rqx8Eco59BNijBiVIzfrqtFnvstXMUCNL+8EFQbibfyUQ9pZRxJxcnxp59u2
-	aS5wl8OE2RrAvVXODJXnueVN1XstL9/3O9eMGqcdZb3ep4JMMJRZ14iDr5vgbTibmNL9He
-	Tsd4CeE998lnUXFTk6ZQU3cmCm9Q/pA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755004725;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=QRs3Lbu/CyqX1NOfs/4bvgoB0mLNEji8vX3OaJ0mTX4=;
-	b=EA6BljAqZc1barv1BCS9HXZcaH+ZI3vv7ku4o303GZb+vY9WXLnxZsjsvTVnoI+m8GbtsR
-	ODaMLDHlGkQI8+Bg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1755004725; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=QRs3Lbu/CyqX1NOfs/4bvgoB0mLNEji8vX3OaJ0mTX4=;
-	b=UtgZG6G5F8rqx8Eco59BNijBiVIzfrqtFnvstXMUCNL+8EFQbibfyUQ9pZRxJxcnxp59u2
-	aS5wl8OE2RrAvVXODJXnueVN1XstL9/3O9eMGqcdZb3ep4JMMJRZ14iDr5vgbTibmNL9He
-	Tsd4CeE998lnUXFTk6ZQU3cmCm9Q/pA=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1755004725;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=QRs3Lbu/CyqX1NOfs/4bvgoB0mLNEji8vX3OaJ0mTX4=;
-	b=EA6BljAqZc1barv1BCS9HXZcaH+ZI3vv7ku4o303GZb+vY9WXLnxZsjsvTVnoI+m8GbtsR
-	ODaMLDHlGkQI8+Bg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5AC67136C7;
-	Tue, 12 Aug 2025 13:18:45 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id nf37FDU/m2jgOgAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Tue, 12 Aug 2025 13:18:45 +0000
-Message-ID: <3fad47e3-c1e7-4f37-8341-402d2756ea20@suse.de>
-Date: Tue, 12 Aug 2025 15:18:45 +0200
+	s=arc-20240116; t=1755005094; c=relaxed/simple;
+	bh=Gf90/pHp5CpXSUGL2hjNMT/bBSAS8DnZpsS3Yd0qYoQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DXtYZ+7y8aVJc/KHgcCagd4ZN2GVsQ20cmY30bGhXG7LlN7UkU6Gog+aOdJVB+zB9eIp25bBvLT7QkM9MIXyKtbwcnj1Chx+lBQU3d3Br5LPJ6dCIg4BTJ49uAIXlUY4Vded20ByFjm7sSVBI5wkcDiIIyYscEd/IYI/wio7JBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=snffIGnN; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-af946c07c84so76906966b.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 06:24:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755005090; x=1755609890; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=F8RI+MamHncx3o1Ahq5d696tmTBIcFmRxxxMBZrqMbs=;
+        b=snffIGnN0R22OEyqekU+W9Kd7HuKmerYXVz84QSaM8mCGf4sklNmngS2zaV2DHbe5m
+         YUA77+M6zR6Ey2kS6yNCxFCtWsvowSvJFBTH/pxiCVD7Gz8Wgk/T27VU1OXaed7oiXH6
+         Ps4hWvg9z118CkMpiD2iRhtQD71Zgl18PCVNNhbOjQ2m/P3eK9iZfdgNLxkb+SlBcQDM
+         vuonm14w8KFHRhGWVsRI8ZeHsTDIyzYFQO9Nsw7wLCP8vV1jSZuPCr3K2xbM0iX6UsZm
+         U4+HoV5wAjGbxfgTBkLGaEUybbgSuGBbQzcALov9t+c8CYIWV4wiFRD6DuK/XDN3qcpQ
+         zUkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755005090; x=1755609890;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F8RI+MamHncx3o1Ahq5d696tmTBIcFmRxxxMBZrqMbs=;
+        b=t9gqzPS4SyiDwlMZpZ+0tYAUvoJlujSkMGafTLBMQm0ID61/bW3+oPFu1n98Lmb7zf
+         ZKufkujGY00OjkQoZeBFVCl9p6fYKzZXGOtIuaNRYeSPr7v8EfjCbIqlcwhOis8d7Kdp
+         /sGI8wromEOOWgxraFSUxtRKJjPFJLM04/OoOQjbMGEEp/Qq/Kbiu+HFamb2CUfOxJIZ
+         OPaynaWxIdGCqGxHLqihVknIAgSEcvU5eSS58LvxoT03CnKf4boFzlQEaLus9n63LduA
+         BuPqc/SJPBYcdcX+Oq/fzVRHU+bz59C0mNyxKh7ZdH9LYR+mFLQL5z6eNge8f1oAFmgS
+         pRbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXXdshdUlqKkagGSCJkm6maU0kek8+2kdNqni+Ss1DzlJV5ktkxzHHXeef2Pwm5GtFCOoXF4pDU4OyA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhsk2VvRXWAzD/84jpVV0znjPIqUiNtNt5906qG9nH/j/81wke
+	HCV3DPqYk3XSPbFBS//eV2JaPXXafNM5MD+nDhWHTLO1rSMSQ0mLXKvQd9NqwP7ichA=
+X-Gm-Gg: ASbGncsbHH+uOY+VIMoOG76W/qFM0xbLi10WURBtQpFfjNZ1MRkuOnlywbCokymo4LW
+	aFoXaX6MZfNShi2ThFtEPbQ+xdnQppn8O8jUYKuylaLsvZPYKwAnPysCLQWnqkBkDCH1ZdxpMFs
+	9SpsFK4pDpfGbrYqQGFt4olNe8MuaKMFIHm947MOwMhUYQu3vEapsU0ZxahJJx+aYcRPwIAmXmJ
+	XswxVCVIRpBr09cWqS3MVZ2W+GoPdyiWT+7vkUgwISt9V+8uM7qWAHc7dydk8i5briZaUJGhMdI
+	tbdShV/0lhtX9kT6b5+hZbofta8HNNw7dbXiaYoIvXAJeqrohtGseaMkmaKi30wyJ2N3/1fwaBT
+	FmKdK+IB/bnu/O1YbVxQJFY7DH93iuazEHhLcXVVzuOb4
+X-Google-Smtp-Source: AGHT+IEbGag45vPX20LYB1WfopE+qzWBntuEjRkdvpr5wWxVk98Pkdq2jfNu+AIQodZOnj6MJXuypQ==
+X-Received: by 2002:a17:907:a44:b0:af9:6666:4acb with SMTP id a640c23a62f3a-afb8d2889e9mr47673066b.10.1755005090215;
+        Tue, 12 Aug 2025 06:24:50 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c0a4sm2209111666b.109.2025.08.12.06.24.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Aug 2025 06:24:49 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: iio: Replace bouncing Analog emails
+Date: Tue, 12 Aug 2025 15:24:46 +0200
+Message-ID: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] accel: Add Arm Ethos-U NPU driver
-To: Rob Herring <robh@kernel.org>
-Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Robin Murphy <robin.murphy@arm.com>, Steven Price <steven.price@arm.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-References: <20250811-ethos-v2-0-a219fc52a95b@kernel.org>
- <20250811-ethos-v2-2-a219fc52a95b@kernel.org>
- <8a872e48-0743-43b0-8259-70d6b8e4c221@suse.de>
- <CAL_JsqJL5sy7Otzo7R8mYW_-7s+ajggjtuW7tYBnVxYPaJHs+w@mail.gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <CAL_JsqJL5sy7Otzo7R8mYW_-7s+ajggjtuW7tYBnVxYPaJHs+w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5871; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=Gf90/pHp5CpXSUGL2hjNMT/bBSAS8DnZpsS3Yd0qYoQ=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBom0CdLawzbdg5SHABJ9mkeI0NywQinQuUswts5
+ DApnJGmm+CJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaJtAnQAKCRDBN2bmhouD
+ 12WbD/wKouB7wmK4OxH3waJb/3ZCqzLwwlhmFpjI4NuB+iQo5Fid4ueRvVHHg9NxUFXWSSK2VDg
+ vGYLlAVkVQ+U6p2FxaXymZ5xEzJo4p6pvy81RWQ2x73nYMixgb+oVaarh37iQclF9HIBVI52gXc
+ y8GuXHyLe6VVpvPkditS/yYIBqEEmU+RUode2LqB2F9uZbw68c7VR280C6P8PD0GIwEEtV90I4x
+ 5bnWwrR+BUUFw9APBMBIMg7ZGmT/H6m+UxuQErTykTCTnJVmnucXGL+EpoUjC3nW7Fy+i9gpgWa
+ kYlrBTANxawQY/RTxkqtJAfz96sYlmB2SJa5sOFy0zGxt2AsxHe62yjsp8JCHdhHXdQ8zBxYce6
+ 3btPxFq7ZvEfIWhRB3waHQ+JK6Vz4AXdKI3uREoo9Kg9htXOJN4yZ0iYbQhkHqGHIfMBF6OxwDj
+ 07HDx/HGk0VHD3sQSkkn0lCMh+Gm/eD+AlM5gI4ipO4XXf/WDEf/sLOMgq1NkmflvEfCmIJUlnT
+ r3BfLAmhYFbWsFqV8j5xRDP+feRfMq0DW5vBfkDqekDZ68aaIGprL9PusGpNupUOHyAvkUG5yvM
+ 7Cjq43BklNsp4bpUb7hDHTDxdQPDrqWcAnqoYfr4qdgWUsbNq5a5rv72EVz48qKRBE4wi99r13/ WdHa7GH2Nq+Ofcw==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	ARC_NA(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[tomeuvizoso.net,kernel.org,linux.intel.com,gmail.com,ffwll.ch,linaro.org,amd.com,arm.com,vger.kernel.org,lists.freedesktop.org,lists.linaro.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid]
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
 
-Hi
+Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
+permanently:
 
-Am 12.08.25 um 14:56 schrieb Rob Herring:
-> On Tue, Aug 12, 2025 at 6:01 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> Hi
->>
->> Am 11.08.25 um 23:05 schrieb Rob Herring (Arm):
->>> Add a driver for Arm Ethos-U65/U85 NPUs. The Ethos-U NPU has a
->>> relatively simple interface with single command stream to describe
->>> buffers, operation settings, and network operations. It supports up to 8
->>> memory regions (though no h/w bounds on a region). The Ethos NPUs
->>> are designed to use an SRAM for scratch memory. Region 2 is reserved
->>> for SRAM (like the downstream driver stack and compiler). Userspace
->>> doesn't need access to the SRAM.
->>>
->>> The h/w has no MMU nor external IOMMU and is a DMA engine which can
->>> read and write anywhere in memory without h/w bounds checks. The user
->>> submitted command streams must be validated against the bounds of the
->>> GEM BOs. This is similar to the VC4 design which validates shaders.
->>>
->>> The job submit is based on the rocket driver for the Rockchip NPU
->>> utilizing the GPU scheduler. It is simpler as there's only 1 core rather
->>> than 3.
->>>
->>> Tested on i.MX93 platform (U65) with WIP Mesa Teflon support.
->>>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->> I've looked over this patch and it looks good to me. There's a
->> dev_info() in ethos_init() of which I think it should become drm_dbg().
->> Anyway
-> I prefer to print out what h/w we've discovered. That's a fairly
-> common pattern for drivers (and more useful than announcing drivers
-> that only loaded).
->
->> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Thanks!
->
->> Side note: I noticed that there's buffer-allocation code here that
->> reinvents dumb buffers. We've ocationally talked about creating a better
->> dumb-buffers ioctl interface and this drivers could be another use case.
-> Yeah. In the past I got told don't use dumb buffers APIs for anything
-> but dumb scanout buffers. I guess with enough copies opinions
-> change...
+  Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
 
-That advice wasn't wrong. But the current dumb-buffer ioctls don't 
-support scanout buffers well either. If we build something new, we can 
-try to cover additional use cases as well.
+so replace them with Marcelo Schmitt and Nuno Sá (listed alphabetically
+by first name) from Analog where appropriate.
 
-Best regards
-Thomas
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
->
-> Rob
+Changes in v2:
+1. Add Nuno, based on discussions on the list.
+2. Add Rob's Ack.
 
+This change got agreement on the list, but still would be nice if you
+folks Ack it formally.
+---
+ Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 3 ++-
+ Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 3 ++-
+ Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 3 ++-
+ Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
+ Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 3 ++-
+ Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 3 ++-
+ Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 3 ++-
+ 7 files changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+index 3dc973b98f81..a92e153705f3 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: ADIS16240 Programmable Impact Sensor and Recorder driver
+ 
+ maintainers:
+-  - Alexandru Tachici <alexandru.tachici@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ description: |
+   ADIS16240 Programmable Impact Sensor and Recorder driver that supports
+diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+index 88aa67bf2280..0ba0df46c3a9 100644
+--- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+ 
+ maintainers:
+-  - Stefan Popa <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ description: |
+   Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that supports
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index 7146a654ae38..4dd5395730c1 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices AD7124 ADC device driver
+ 
+ maintainers:
+-  - Stefan Popa <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ description: |
+   Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
+diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+index 5207c919abe0..eac48166fe72 100644
+--- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+@@ -9,7 +9,6 @@ title: Linear Technology / Analog Devices LTC2496 ADC
+ maintainers:
+   - Lars-Peter Clausen <lars@metafoo.de>
+   - Michael Hennerich <Michael.Hennerich@analog.com>
+-  - Stefan Popa <stefan.popa@analog.com>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+index 82b0eed6a7b7..091cc93f1f90 100644
+--- a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
++++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+@@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices AD5770R DAC device driver
+ 
+ maintainers:
+-  - Alexandru Tachici <alexandru.tachici@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ description: |
+   Bindings for the Analog Devices AD5770R current DAC device. Datasheet can be
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+index 53d607441612..2e1ff77fd1de 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADF4371/ADF4372 Wideband Synthesizers
+ 
+ maintainers:
+-  - Popa Stefan <stefan.popa@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ description: |
+   Analog Devices ADF4371/ADF4372 SPI Wideband Synthesizers
+diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+index 7a1a74fec281..43ecf46e9c20 100644
+--- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analog Devices ADIS16480 and similar IMUs
+ 
+ maintainers:
+-  - Alexandru Tachici <alexandru.tachici@analog.com>
++  - Marcelo Schmitt <marcelo.schmitt@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
+ 
+ properties:
+   compatible:
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+2.48.1
 
 
