@@ -1,100 +1,162 @@
-Return-Path: <devicetree+bounces-203563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70E1B21D09
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:43:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78239B21DBF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 07:59:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1234C1890AB4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:41:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C4663A790A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257952C21CE;
-	Tue, 12 Aug 2025 05:39:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DC01A9F91;
+	Tue, 12 Aug 2025 05:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GE8wz8IM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FhrQzbW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F147D296BCA;
-	Tue, 12 Aug 2025 05:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1312580CF
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 05:55:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754977198; cv=none; b=HYa+80ntUMz6T93BvyGeYtWCQMip8/hGjnbKXmeK2PYdw+xGmGkFjsDGBHmmo3OekfaFQJtfx2EQqUp4SUtD7nNrr0DFhshqhRdPi3jO+VIkTaRef8G2j4zw5O7HlfdeocZAG9otYqfIoXFaR2GOuvCpkBTSIHMmCc3c01Y6Hfo=
+	t=1754978130; cv=none; b=OzhlHLFmpLeQtB8kZWOtc5mETV13rcFcvm6a20/i2wAjNejuK8mKqGPvfD9e0qpsUWBiJKUzftudg3EGdVy0mOPRu9VXtZFOeJs4Sclpv0nYKYGX18XCaK6/CFl0DV+ImmnAVwyhI1GJc9SBGgJveTF4J2oBOj89+/gVaQppi4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754977198; c=relaxed/simple;
-	bh=8Ka0sd8FxkjIz00jjTcMx5oRTqQPN4HlysV+S/vVdgc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jvbtHcFzx5a3A7e2F4qFP6M8Dq1Y08z9lEX+zMBz0EK3fmDKtiPcvq0wd3W1dVggY8gCnddM7LE1dGRbaw/1uDo1YPugrTI9UlFy9sBJgzhM8niHb3+O8KBxvXcfP2m5ungggTUzMCOlDscq9VZfimlMrqD+Xf1Xw7+KYaLKDe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GE8wz8IM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A546C4CEF0;
-	Tue, 12 Aug 2025 05:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754977197;
-	bh=8Ka0sd8FxkjIz00jjTcMx5oRTqQPN4HlysV+S/vVdgc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GE8wz8IMlrQ5frhZwhslxoZ05i34brKKZumRyQwF689QOSgTaFZ4QOtiuRFdLkKFo
-	 T8FdEaLYiDtcdg0jBvfLspbmGk3B0Yvqb7JT8CYbJtUfaRLpE2UKWKHbihYErODUOt
-	 BmPxM+qVmzdAwUiAch8OuSyRWgCO22dYFAbTPgOokj78zRc+EgY2yNpJkv90wiMYqu
-	 /T6uG+wHR/R6gjdsAA8gftXTQmDlP8R+2BICsqJFlhtZfJVid+ODeHsFKviFyG0/Ud
-	 HGDQkXVlBYcqGDPh8zSyl8U1T0opdAmMP1VLxRSuluHHibY1+mNyteI4yg644FX8XU
-	 i9FhMfDk8ObzA==
-Date: Mon, 11 Aug 2025 22:39:55 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH] reset: thead: Scope TH1520 reset driver to VO subsystem
-Message-ID: <aJrTq775sXTrsepl@x1>
-References: <CGME20250810211419eucas1p173e5fefcfaae437d8b5531d1406ff6a6@eucas1p1.samsung.com>
- <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
+	s=arc-20240116; t=1754978130; c=relaxed/simple;
+	bh=jVgCYfXMSjJ/9fZtfupDTMepf8WIhFofQBAD5wXcV8w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H9vF6DITg+8qX240GgNgLmLVddpoD00z1MBo2IgasYj2eD7Jr86MXidr1HqFDgC/4h0iRk85967ggtaZHyXGHZyrVT7ouqpUj8IpkTypG2l8MHpFhZw0BX53ms/RQkGpjvA/iJcuRRtF1gXM8VU+zVHAqm+eFKR4A7SItwIv1jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FhrQzbW/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57BJNSVI004991
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 05:55:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XI4zA0XPEeDju8LmiA5iAEsb1GjF7x2tJZG8gRPEHcw=; b=FhrQzbW/vDlM2Zam
+	Aqq0M+z7LFXJEmSTWYT1ASIuluq9c7fLPwnTy1t4UJX1tW4jKcr6HQpo1wnrTscE
+	yZG0t6M4qhQWvZxDXzV4HYqnyKnlbIqZyrbq3oycD29I4myfBbHAK/yZjLDqLyVP
+	6JSfbbT8ZZwqw4MqMfcFnhRvFoq7/29rZH6fckzUnzL2D840tlge4T66xiU+HV4p
+	CIed+G5to8rHqRsMDn392U5s0Phk3Yk7hsHpnGYUP6gvSFeQ4vHIva4niKR2m6CW
+	p7UB6D2ycgRGXSIy2LO/3DplyYSVwbrvcB/8OdA18++tdZjddYuR6uB5Fv2qea0a
+	zpNraQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ffq6jtga-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 05:55:28 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32129c65bf8so5774861a91.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 22:55:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754978127; x=1755582927;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XI4zA0XPEeDju8LmiA5iAEsb1GjF7x2tJZG8gRPEHcw=;
+        b=jL/SEzE9lhPIuBTXV33HEQA/xnxScdmO4Kg02mC0p09e/pES2sgBCGkUnBalAqRplB
+         qhhkLzI8xKkknbrqCB4lzGcTLz/nqmLixVz/utss2qpIN6k58qLKdDwvXkKjtTLYFlYS
+         IvYTGlRergWQybg52h1POo0YgUWtvVk/3kLELxc+TS73g1oPcpHWCLd2FXddpP9bKrdk
+         yZvoXXScnpN5Vcb6T2Parxvcz7CH+8JLj4AGibRo4RkHDJyi8UvtQXqFbP7SoAyO6+zR
+         KyeuhEIfMGGylO0sXH1fhTcmH7u3mTG/6T7KU2H3h9UX+v42iZ6M2dZ+wcjgp9rK+8cD
+         B6uA==
+X-Forwarded-Encrypted: i=1; AJvYcCVj6UPf5Cw9DWqjvVeeQY6D/owl+zIjknxspR5VOLkVWZV28+B2BCMCHZ7Jb6dWQe6Lf9t4q7dMePMJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdPW3s+s0siNCeT5SnuDwNS1kN6HXk2AHPJDfaAMrnQQ43xjcT
+	y/e78mVv3ndhs/pga/G0lHD6hsv8+tS2TwcCVsw+Az9/+WvEGRkFIpKGosTKTtZi56QBxCiEKSM
+	+nt1TXO1ca14+RYnrI5eItGMic/yeGgYyvrkB6ndA1/Q7hbxzeMN4eR1JsA9IUIjn
+X-Gm-Gg: ASbGncsfSNuPQsKra7rjZtRnjc76Qt8Ck31wJQftSwPZIHmp3865kYVsloVyXk4oCmn
+	fHcFo8/dZ+3jjn4vj8dAHDTUyGV9fOp/Mi/Sms06xxhKX9oAvJ4uZ8H2zExbvwyImV38k7Wq7c7
+	pOfJ6iVKlW30mmWGmu2hjCGjr46gk2SQ0qH2sumqDWrp5YG7NDxPO7G7/uxJoGtD+J6AX53hZ94
+	VDxK1HhusEJW3nRJSExxv6qfiud5TOy/qj9O6QymvnjmMkfg9sCAmhCXOfz/GT4E12d8pIdv0Kw
+	7180zUNAnalV2rCMw9SKLULdFVM8FSV+ylPiygfTLGzLb1km6Il+hYtt0l27s0Nw0NcaRCM=
+X-Received: by 2002:a17:903:2283:b0:240:9a45:26e6 with SMTP id d9443c01a7336-242fc230f18mr30549755ad.10.1754978127369;
+        Mon, 11 Aug 2025 22:55:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/YPzCOCkFvG1QEpOcPR/+AeqBulYJ1CpcEiZvOMQ6dowlNrMRbKyFgKjMlGH5EpOo+tkUlg==
+X-Received: by 2002:a17:903:2283:b0:240:9a45:26e6 with SMTP id d9443c01a7336-242fc230f18mr30549445ad.10.1754978126934;
+        Mon, 11 Aug 2025 22:55:26 -0700 (PDT)
+Received: from [10.206.107.125] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1f15092sm290447335ad.66.2025.08.11.22.55.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Aug 2025 22:55:26 -0700 (PDT)
+Message-ID: <d1cce1f2-df38-49ea-ab62-a1397be4e599@oss.qualcomm.com>
+Date: Tue, 12 Aug 2025 11:25:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250810-fix_reset_2-v1-1-b0d1900ba578@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/5] dt-bindings: misc: qcom,fastrpc: Add GDSP label
+To: Ling Xu <quic_lxu5@quicinc.com>, srini@kernel.org,
+        amahesh@qti.qualcomm.com, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        arnd@arndb.de, gregkh@linuxfoundation.org
+Cc: quic_kuiw@quicinc.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250716132836.1008119-1-quic_lxu5@quicinc.com>
+ <20250716132836.1008119-2-quic_lxu5@quicinc.com>
+Content-Language: en-US
+From: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
+In-Reply-To: <20250716132836.1008119-2-quic_lxu5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA3NSBTYWx0ZWRfX+E1Cam5no/EG
+ yFob3GmD/peWVFM2pIq24nKlkIt8MeEty3st+69EOn3bPgbdEuu2iTJlq6S9NNbpXo5RYyay05I
+ C3hrNd3r3o3PAeD9S1PG94roMCltp/FAG/HAcLUXXAIk/WrXABgjDvFI+mSgin7OA8h5jV9A8ke
+ 0exEmUbpia0Wl/U2C9E3E0ivQXoyVCcQg+l1I54RD4mhTVuuEgAINvh/q1135Lp2frFLSRV1I3O
+ coiLXVFJO47We5wfQwkO8JbOeVqck0AnJmNXhvLta18MobvU/DuNvCMHpNDvcN6qyw1GAk22Ywe
+ 41uLD6KoEe+AhTseA7sxYzs8OA8tie1qBC0o3o3E+Lyl8exz+3ppB57P1iW88i0YAYr6IOFMqpj
+ BrpPo6n0
+X-Authority-Analysis: v=2.4 cv=TLZFS0la c=1 sm=1 tr=0 ts=689ad750 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=3zBhIfn5MegWJkNBbEwA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: pEeCR2kfS4SJ6_Hv4ZgaqJog1T3QXWOy
+X-Proofpoint-ORIG-GUID: pEeCR2kfS4SJ6_Hv4ZgaqJog1T3QXWOy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_02,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 phishscore=0 malwarescore=0 spamscore=0 priorityscore=1501
+ bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110075
 
-On Sun, Aug 10, 2025 at 11:14:19PM +0200, Michal Wilczynski wrote:
-> The reset controller driver for the TH1520 was using the generic
-> compatible string "thead,th1520-reset". However, the current
-> implementation only manages the resets for the Video Output (VO)
-> subsystem.
 
-Looking at Section 5.4 on Page 451 of the TH1520 System User Manual [1],
-it does seem like we would ultimately need 6 separate nodes for reset
-controllers:
 
- 0xFF_EF01_4000: AP_SUBSYS
- 0xFF_EC02_C000: MISC_SUBSYS
- 0xFF_E404_0000: VI_SUBSYS
- 0xFF_EF52_8000: VO_SUBSYS
- 0xFF_ECC3_0000: VP_SUBSYS
- 0xFF_EF04_0000: DSP_SUBSYS
+On 7/16/2025 6:58 PM, Ling Xu wrote:
+> There are some products which support GDSP remoteprocs. GDSP is General
+> Purpose DSP where tasks can be offloaded. There are 2 GDSPs named gdsp0
+> and gdsp1. Add "gdsp0" and "gdsp1" as the new supported labels for GDSP
+> fastrpc domains.
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> index 0840a3d92513..3f6199fc9ae6 100644
+> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> @@ -27,6 +27,8 @@ properties:
+>        - sdsp
+>        - cdsp
+>        - cdsp1
+> +      - gdsp0
+> +      - gdsp1
+>  
 
-Maybe we should take this opportunity to document the bindings for all
-the resets that the REE (e.g. Linux) can control?
+Reviewed-by: Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>
 
-It seemed like that was overkill for the 2 resets needed for the GPU,
-but, as Krzysztof noted in this thread, problems arise when bindings are
-introduced that are not complete.
+>    memory-region:
+>      maxItems: 1
 
-Thanks,
-Drew
-
-[1] https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
 
