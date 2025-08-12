@@ -1,174 +1,169 @@
-Return-Path: <devicetree+bounces-203974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9A3B239FE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:32:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 588C1B23A04
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 22:33:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCACE1A282FF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6CB1A26C76
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:33:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1521C2D739E;
-	Tue, 12 Aug 2025 20:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B22262FF1;
+	Tue, 12 Aug 2025 20:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CilKU77A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4SQ4e4b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3404E2D0627;
-	Tue, 12 Aug 2025 20:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8BB5202C3A;
+	Tue, 12 Aug 2025 20:33:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755030639; cv=none; b=jhvWP1r/fCwFMBsS/J+WL34Cld4xRNTsOXOphg+RILmdAT6y0j4dZGwvQ016r7zgbbwOY8wicHjdhkh37+rOAWu9flf33quoJsbYdeoSqphvEmoGa7KmjUlooD2h8XjKAXRrLWmFVNTeYz3DGoWUCkxsYANJWdK2bp6LICaFbCw=
+	t=1755030785; cv=none; b=eChGLUy/xq3XwknEsgxQT9nFkrHsCQkz+0xJunxCZKhghzoIa9zmcGsqLn0s8jhHDzdy/Mo/VoU4aDYOVLN/0mHSLdUMcrNsQvexH/Eyy7P0Cs1IWdqdjqoXukwWbZoBnVkfV8wPLWvroaFCSB8cB1nDJAqP8TwT+QWryAu+4yM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755030639; c=relaxed/simple;
-	bh=Z46ZEe7O+jWIb3cQLmtasBStIyvB4eOFL1/6Uj9pPf8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZHYMK78hs44lO5uSesMJC8Lz9uDmX8vG2OhnZUmKOSh+jkTlpEOk/LCX/Erxfx7oWaUC8iVRpxVGXOGAltnMPIesDYQd/AHvCkFNlPx8XSErvGgiHrEzHGExUTlkSym82ZsIY0BjCACGeyxDh+/jnQlpur3vCGIprgNcbw4V1/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CilKU77A; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6182b3218aeso4650549a12.2;
-        Tue, 12 Aug 2025 13:30:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755030635; x=1755635435; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nwf0tl4nBa13UJCl6mfa+smPxgRED9nFICt3MHieDdU=;
-        b=CilKU77A4zil2IIUM8/pJZ5alWXN9cF0/JduTvKNyATzbo6/52U9d9Py3CQUvHird5
-         BrD6VWEX3esUkBnw1Mua9HkNMBme4EEs52IUraxI0ARbfrtaF53/5Z8P573m9Pv8iJl1
-         7gdUmKgJSX3R/bPyK3Zvdwfw+OPF0kKuFEoO01HyqgkwzpUU2LFzoSx0GZtIsjqfvHXv
-         WbPVnCjO6+dgaBm5Bc8Si+GiZljrUuji1gOisWsBPoTKb34/xhx3r3CPsJD4slPeEKgb
-         pabtd3On4TdAUE1wxqNP7gcrizup8TzGti26eGJynOlDRoQKmHCZ8B7EDo5mX4bc25q5
-         vF3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755030635; x=1755635435;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Nwf0tl4nBa13UJCl6mfa+smPxgRED9nFICt3MHieDdU=;
-        b=OukAbtwOqJb8uSKLt3wJ/ehDq6y+S6aCTYdwngaFzFX/YUkyETH+W5ffUrco/5MxF+
-         mrqpjKjfOYc46lCXsF1ybuF6gZlEMm4HLhkRNnyTWK1Sc52Dj8gfKxCS9MjwMc5LjIZw
-         Q47Mj0n+PebtdSgXBoDHobrMWRcg74lxPlHbaseDpBkXqg60LgfUYEAOj7Mr4JEA2kxv
-         JLmusjv7tIqLUnVScNV1m1HuwMAk80sBDsKABZvwDcOcky0Sii4lUBpLHCJy58+6rajN
-         mrmJCrnmxIdU0v8KqSeNpwReLHUirJXGhOUwZ6kogRPYEwwCS6X33fo8+KN478kYE55I
-         3K3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXQqZV6errrvXJZJJPUXpjRBDfztIYWMyAzd0dRhDLTdUTbbuA4oklr53DpYpYM3LLyfW5R2co1+haTFGk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlddiNw4O3nTvloUUWLWJ36tN/xIiIzQmdftXq4BC2w5dYcLwv
-	/jV/5RpK5JC0MS3szD9GHDk7PbFcQeWxcpca3amaR8FVKhS9XJIqyVS12BwBhfofr9I=
-X-Gm-Gg: ASbGncufZPwul/7RkceXtfpYVbO/tp6+eiJPtz4/8uoD+wB+X65+DNZvtXZOr8j/vd7
-	15kHxas/nw6R0cLUxggBN/qg7DQSE3PgvZyGldXd48c7x5/HAztPOrmItITAKiHV0pht7Bw86I/
-	1CI06xdRPy6+RL24h2zv1M0LJ+ruWZ9/n5hkhP8gdcUYREwlBqK9CtJ93sC3YWaA3rDZoh7FUlp
-	mqxnnZupP3LYIta8RQ95W+3MC2w2J9VbNsOMIdwUhYFUkYhVk+OAQehinlDsET6mid4iO4a9jSa
-	DbmgOfgVVL+VIQm+aTsS1XJ6D4Hsl/wYMxdmtkoXf95CpcWqMEVYAPYlon/VHoux3LulD0sblF5
-	4wXyi1itABfPUNjXscL0A0OUhwHdxFqKZ1R63UUf+kgIXGQumiac=
-X-Google-Smtp-Source: AGHT+IEfTzvBVYRLiP0bE3VohxDxUnqG+MLEAQ2wwCgb+zmjB2XzUTRJ02q7YAarySiFmVMKHcddMQ==
-X-Received: by 2002:a17:907:3fa7:b0:af9:24e7:1c85 with SMTP id a640c23a62f3a-afca4e6c854mr56918366b.55.1755030635456;
-        Tue, 12 Aug 2025 13:30:35 -0700 (PDT)
-Received: from alchark-surface.localdomain ([185.213.155.230])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0a3b58sm2266073166b.58.2025.08.12.13.30.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 13:30:35 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Wed, 13 Aug 2025 00:30:25 +0400
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add Bluetooth on rk3576-evb1-v10
+	s=arc-20240116; t=1755030785; c=relaxed/simple;
+	bh=1zQDwv+c+2f8PAjLjmyAUalogDJhgfoJjuw8TmC5/fQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=u8aiU5gmZw5Q7dehR1AdsRN/a2mUekZmUGSDNcsUpXN3fdU0znGgtckesZ11KK28P1ECH0e59tUoXVjfD4m/DxDtp/t9+sshC5IwAsYxYWvPVPGj63YzdJFVgIVAJgy48h0LVnP85j4SOogfBWgpeKE1haxOSgGG6UwGXTZ1H68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4SQ4e4b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF141C4CEF0;
+	Tue, 12 Aug 2025 20:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755030785;
+	bh=1zQDwv+c+2f8PAjLjmyAUalogDJhgfoJjuw8TmC5/fQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=P4SQ4e4bFLupR3TzUMp1am/GwXfw7JyeJPr1ysMR7ki4SP6VkCE8A2g61LTrM2EXK
+	 U7EkuaZzgMPLghKkZ39zoTCNjwuvFy4kiWmsfLigXy69Rt5aSjURab/QVf8bdBtFCs
+	 OQuvaicDLsuPHbIJ67Ismm+KPGF4wABSCYOU0s3U9V2Mux7sBuytZ5XviXM5YYuUfO
+	 6fCi2TE5gkH/bfXFBgTLZGkVZ1d9/qsTVE1s6PriULIM7rrfxIgr0LKRm3hb6w2tk3
+	 v+T9buWsTsJQMVj/SsWeiv0rWIZjYQ5MIPFsrxMVQkTxYfhILlfWjY+9IILhES4unh
+	 KYCHaMbNWHnqQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: Convert marvell,armada-3700-wdt to DT schema
+Date: Tue, 12 Aug 2025 15:32:57 -0500
+Message-ID: <20250812203301.726374-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-evb1-rtcwifibt-v1-3-d13c83422971@gmail.com>
-References: <20250813-evb1-rtcwifibt-v1-0-d13c83422971@gmail.com>
-In-Reply-To: <20250813-evb1-rtcwifibt-v1-0-d13c83422971@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Pavel Zhovner <pavel@flipperdevices.com>, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755030626; l=2008;
- i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
- bh=Z46ZEe7O+jWIb3cQLmtasBStIyvB4eOFL1/6Uj9pPf8=;
- b=RQg31BRxfObH1cVBuJD4fSCw1UhS4ukP9dJLnufNSw+VBfFIYLbjeudwPAaPOhmQ/zr8CmtWj
- T5kSwCxhfcqBhEHdI4Qbo6cHZoG/vAF0oDbaA1OF8Ax5LUPH8J7jLej
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Add device tree nodes to enable Bluetooth in the Ampak AP6275P module
-found on Rockchip RK3576 EVB1 and connected over a UART link.
+Convert the Marvell Armada 3700 watchdog binding to DT schema format.
+It's a straight-forward conversion.
 
-Note that this doesn't enable the out-of-band PCM connection. It's
-routed to SAI2 M0 pins in case anyone wishes to add it.
-
-Tested-by: Pavel Zhovner <pavel@flipperdevices.com>
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 35 ++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ .../bindings/watchdog/armada-37xx-wdt.txt     | 23 -----------
+ .../watchdog/marvell,armada-3700-wdt.yaml     | 41 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 42 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,armada-3700-wdt.yaml
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index 100ca2e23c6093ae517d741fcd047e2a8172f457..d3e70a646fbe1e99cb007e7d9f09da33beedc842 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -766,6 +766,20 @@ &pcie1 {
- };
- 
- &pinctrl {
-+	bluetooth {
-+		bt_reg_on: bt-reg-on {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
+diff --git a/Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt b/Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
+deleted file mode 100644
+index a8d00c31a1d8..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-* Armada 37xx CPU Watchdog Timer Controller
+-
+-Required properties:
+-- compatible : must be "marvell,armada-3700-wdt"
+-- reg : base physical address of the controller and length of memory mapped
+-	region.
+-- clocks : the clock feeding the watchdog timer. See clock-bindings.txt
+-- marvell,system-controller : reference to syscon node for the CPU Miscellaneous
+-	Registers
+-
+-Example:
+-
+-	cpu_misc: system-controller@d000 {
+-		compatible = "marvell,armada-3700-cpu-misc", "syscon";
+-		reg = <0xd000 0x1000>;
+-	};
+-
+-	wdt: watchdog@8300 {
+-		compatible = "marvell,armada-3700-wdt";
+-		reg = <0x8300 0x40>;
+-		marvell,system-controller = <&cpu_misc>;
+-		clocks = <&xtalclk>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/marvell,armada-3700-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvell,armada-3700-wdt.yaml
+new file mode 100644
+index 000000000000..60d44d642fb5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/marvell,armada-3700-wdt.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/marvell,armada-3700-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
++title: Armada 37xx CPU Watchdog Timer Controller
 +
-+		host_wake_bt: host-wake-bt {
-+			rockchip,pins = <1 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
++maintainers:
++  - Marek Behún <kabel@kernel.org>
 +
- 	hym8563 {
- 		rtc_int: rtc-int {
- 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -843,6 +857,27 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart4 {
-+	pinctrl-0 = <&uart4m1_xfer &uart4m1_ctsn &uart4m1_rtsn>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
++properties:
++  compatible:
++    const: marvell,armada-3700-wdt
 +
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&hym8563>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio1 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB1 IRQ_TYPE_LEVEL_HIGH>;
-+		pinctrl-0 = <&bt_reg_on &bt_wake_host &host_wake_bt>;
-+		pinctrl-names = "default";
-+		shutdown-gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vcc_3v3_s3>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
-+};
++  reg:
++    maxItems: 1
 +
- &ufshc {
- 	status = "okay";
- };
-
++  clocks:
++    maxItems: 1
++
++  marvell,system-controller:
++    description: Reference to syscon node for the CPU Miscellaneous Registers
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - marvell,system-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    watchdog@8300 {
++        compatible = "marvell,armada-3700-wdt";
++        reg = <0x8300 0x40>;
++        marvell,system-controller = <&cpu_misc>;
++        clocks = <&xtalclk>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 06a4cde222bd..6a2de9638c08 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2623,7 +2623,7 @@ F:	Documentation/devicetree/bindings/firmware/cznic,turris-mox-rwtm.txt
+ F:	Documentation/devicetree/bindings/firmware/cznic,turris-omnia-mcu.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/marvell,mpic.yaml
+ F:	Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+-F:	Documentation/devicetree/bindings/watchdog/armada-37xx-wdt.txt
++F:	Documentation/devicetree/bindings/watchdog/marvell,armada-3700-wdt.yaml
+ F:	drivers/bus/moxtet.c
+ F:	drivers/firmware/turris-mox-rwtm.c
+ F:	drivers/gpio/gpio-moxtet.c
 -- 
-2.49.1
+2.47.2
 
 
