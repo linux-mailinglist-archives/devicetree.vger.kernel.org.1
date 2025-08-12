@@ -1,197 +1,135 @@
-Return-Path: <devicetree+bounces-203640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E5C5B2223F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:01:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3261EB22247
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 11:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FE692A121B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:58:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8DA43BD23F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 08:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4470E2E62CB;
-	Tue, 12 Aug 2025 08:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A982E62BF;
+	Tue, 12 Aug 2025 08:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mwDjLlNm"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RQUDCRLz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 008B32E6138;
-	Tue, 12 Aug 2025 08:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8972E62BB
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 08:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754989127; cv=none; b=gGXWoFUGy7UY7d0cJaiUbqiKjzSffw+FRrbg8J2Aaii9EZN2GxJg0zFT5MY9JmmKCOUrykZRZ051js83mZxs2pntDpuVM2jHZbluCTSMqagfAMGhJ58YVS1aSdcOAXUPLFTFM4rnUVOdFIxEV1qR52QvlY1E6pSrpYhmVBZzmNk=
+	t=1754989155; cv=none; b=nb8wpW2fMR+EcKstJZbZEa1KCr9MutvD2FBJwlJJEHBc7sSK50h53gyQBXwiuEM0xcvM+90g/9MCJxkT2yz9VhBC7CWZ+GlIablG9K5id49kCPQkkRDsJz+m6DbGbVpFIUbHkXRxKD2CC9kbarRDiknqNk1eYgEueYhuNZiDaRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754989127; c=relaxed/simple;
-	bh=Jz3zWQc4zQWbozG7bpplB5qBv8LJG+ZXy/MF5G7tI98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WTqkFWpGaDit2Y/08XBatkrvwGfYDrdLCH40+BGMLblDIAlaOT2STlmlNCMD1mrcXFuu7nf00t3/AOZq59FIndgquxbgYoBWW9T2Te6Wc0t/GV/wEewpBCpYZDRUZm816kt19vcztiFrSnmM5p82GC+WVjqBpuSKdl8NxkM2Ekg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mwDjLlNm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09663C4CEF0;
-	Tue, 12 Aug 2025 08:58:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754989126;
-	bh=Jz3zWQc4zQWbozG7bpplB5qBv8LJG+ZXy/MF5G7tI98=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mwDjLlNmqdE0G3fwVwgRK8xQfZsigeYX9zIQqAZaEj+KVYndZPwaxWzZ6WSdosmpB
-	 CfnD9oRH9GVkUf1DnPYIdarDxapq9Zg+MeA0F3BxjZke4QVC4u1BDuVrBijpeB1qNl
-	 sHC/qezAGKyq8bM5Nic5x81f0HLjwTgm6T/8Yh6Ly5cuz/kHkFmHJ9ctytjLFLiXu5
-	 WSRcu4PR6TGcK+gHILhvfH9uSXpJAa96kNjXQg0yZbJmcojFqQKjgEsOsz1oVoqkeP
-	 qxRV48bxPPZihIaF/3DyMau6RiDAyBiMLMyyKj15mlUcDyOImuiq7pHRbSxw4171LY
-	 RxhreUKl+k1BQ==
-Message-ID: <ca1f08c9-244d-482b-b719-c7997913f56e@kernel.org>
-Date: Tue, 12 Aug 2025 10:58:30 +0200
+	s=arc-20240116; t=1754989155; c=relaxed/simple;
+	bh=aVo0vySJdU/GbU+4akaorxhBe4ts7YUD++0ENml4rvg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OgXn8HZhiq/oa0J/up5s8ahwcEHR37lIzeh1HNhNVAYziCOqh8+6wu4LM+OXONiLHOrU/LKgZs8fljD4f7MpC4fsVA0uIbW+/oZ5ndp9EsPOhb3WdVorXQp+bo8hAJnm+UuX2F5BkI3SaUL9AzehzHCtcU7XWnqmOwOy0nETqzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RQUDCRLz; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-76bc5e68e26so4821271b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1754989153; x=1755593953; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jZ4gc/Zl5lzZDEjUwdPD/JiqefAjh6ZunVQqiM20mjs=;
+        b=RQUDCRLzku3v80lBPqOA4XgMvmYfU+l4kOEeyRfl1CvpPSKC4v9zvcHdw9X3/oID6n
+         K59j8F14La5OFn2ZzNLU3kibzJ3HxZZo+vGQv6zDjj7O3WAb9DPvXSAyK92TCgf5TFX3
+         8OpaQsu1sWitSBhg0IMx8c76R+AoCZBfZekJk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1754989153; x=1755593953;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jZ4gc/Zl5lzZDEjUwdPD/JiqefAjh6ZunVQqiM20mjs=;
+        b=nynfzI9BjUklLcrmpJUEhod8ITVkgrEm5n95HCN9Swbeja53NkNslr8/VRS0QkXX2P
+         /B/EuOrLBxpFbiuC13uk2vglcpt93ylBDX7XsllCQuSgBesyFt2b4Z/JtUbEPP8tOLxS
+         +Ev/RclXL5mS7G2RJGpA21YBLNXO3J7pETYcofgbCh+WqENlnN9YD2WUZxlhMBP+cDEm
+         v+ap2hlCAg/L3Y1/1GuAa1KVNCQikb0ygNV6MhXz51BXdg68/pKnlJDPIzOBGkMeRQRn
+         HL45kv87UAFhyVrlaRg5y9kSBYJFc7U8+wLZ4gusArcE2YZ72tGwhnexio15jhiIRdkK
+         6gwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXS0TtzwkAGmabzK3RiTO+8IWnKx4kHL1CP5feyCcdUhkncEVhjeH2WPAdhm8D0npKV4e9AJlTDR7lG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2Z367YIfpImRhMVWxFbZhVqZf0kAvu74NgQ2dnQeODhg2RD0y
+	og+JQAARQIzlprdqBkn4YftKRWy/6r4FKzNFVLno0nAzs2fAu8aV4sk/LQrFZzLvhg==
+X-Gm-Gg: ASbGnctFPolHoUqaf0TCYdOHBAl4CjLnPkbrfj3qp/RubHeNzRGc7E8pvvQQ8uoIiDr
+	5ByLUOSZp2z97n9m8oA4gq3miw9BWuUOid9WQJxMBfi4d2ctZKJnpmFYwfp9/uT4rKwga3s0djR
+	+1h3coV4GCQzs9drL9TICIzfgWxg3I03vXMvtahAmshuIdueIJwvTjb3kgfjRxpabIwlAhUtWAm
+	keQmhEtGsHRQayGhOm4gWgPzy7YhqYv8NiSUXbJmaR21mdkw3ALYItQh1h6dVri8caYvHdqizRq
+	pY5cITh5bBFc2ailtlF2nYILnT3EQvC6F6xHmFPuhwZHD6yf9MKDYoTEE/0OFe/0TjtE/h+Ru5Q
+	h454fhYcg80or+xxHuTw1JNd7OLob8tw3s54W8zpf
+X-Google-Smtp-Source: AGHT+IGXDOk02fIlA5qGSfKYGJ9s90O7hcZRHRwO1X5CkCWLtg4wt+uUNkT/Lzp453pl+RrYTnvzDw==
+X-Received: by 2002:a05:6a00:3c94:b0:76b:8b13:e06a with SMTP id d2e1a72fcca58-76e0df53209mr4119372b3a.14.1754989152945;
+        Tue, 12 Aug 2025 01:59:12 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:f81e:7c91:8fbf:672a])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bfcb26905sm21989442b3a.123.2025.08.12.01.59.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Aug 2025 01:59:12 -0700 (PDT)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: mediatek: mt8188-geralt: Enable first SCP core
+Date: Tue, 12 Aug 2025 16:59:00 +0800
+Message-ID: <20250812085902.3309160-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.51.0.rc0.215.g125493bb4a-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH 00/72] media: i2c: Reduce cargo-cult
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-media@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Mehdi Djait <mehdi.djait@linux.intel.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Arec Kao <arec.kao@intel.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Bingbu Cao <bingbu.cao@intel.com>, Bryan O'Donoghue <bod@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Dongchun Zhu <dongchun.zhu@mediatek.com>, Fabio Estevam
- <festevam@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Hans de Goede <hansg@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hao Yao <hao.yao@intel.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- Jacopo Mondi <jacopo@jmondi.org>, Jason Chen <jason.z.chen@intel.com>,
- Jimmy Su <jimmy.su@intel.com>, Jingjing Xiong <jingjing.xiong@intel.com>,
- Jonas Karlman <jonas@kwiboo.se>, Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Leon Luo <leonl@leopardimaging.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Magnus Damm <magnus.damm@gmail.com>, Manivannan Sadhasivam
- <mani@kernel.org>, Mark Brown <broonie@kernel.org>,
- Matthew Majewski <mattwmajewski@gmail.com>,
- Matthias Fend <matthias.fend@emfend.at>,
- Mikhail Rudenko <mike.rudenko@gmail.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
- Pavel Machek <pavel@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Ricardo Ribalda <ribalda@chromium.org>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Shunqian Zheng <zhengsq@rock-chips.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Tarang Raval <tarang.raval@siliconsignals.io>,
- Tianshu Qiu <tian.shu.qiu@intel.com>, Todor Tomov <todor.too@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Tony Lindgren <tony@atomide.com>, Zhi Mao <zhi.mao@mediatek.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250710174808.5361-1-laurent.pinchart@ideasonboard.com>
- <175495482477.157244.17354544707184168458.b4-ty@kernel.org>
- <20250812085112.GH30054@pendragon.ideasonboard.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250812085112.GH30054@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/08/2025 10:51, Laurent Pinchart wrote:
-> Hi Bjorn,
-> 
-> On Mon, Aug 11, 2025 at 06:27:01PM -0500, Bjorn Andersson wrote:
->> On Thu, 10 Jul 2025 20:46:56 +0300, Laurent Pinchart wrote:
->>> This patch series build on top of Mehdi's introduction of the
->>> devm_v4l2_sensor_clk_get() helper (see [1]) to drastically reduce
->>> cargo-cult in camera sensor drivers.
->>>
->>> A large number of camera sensor drivers directly use the
->>> "clock-frequency" property to retrieve the effective or desired external
->>> clock rate. This is standard behaviour on ACPI platforms that don't
->>> implement MIPI DisCo for Imaging, but usage of the property has leaked
->>> to OF-based platforms, due to a combination of historical reasons (using
->>> "clock-frequency" was initially considered right until before the
->>> introduction of "assigned-clock-rates") and plain cargo-cult.
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [12/72] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine: Replace clock-frequency in camera sensor node
->>         commit: 5433560caa5e7e677a8d4310bbec08312be765b4
-> 
-> I'm afraid that's too soon. This will introduce a breakage without a
-> corresponding change to the camera sensor driver.
-> 
-> I will post a v2 with the patches reordered. We could merge the V4L2
-> side in a rc1-based stable branch and merge than in the arm-soc tree as
+The first SCP core is used to drive the video decoder and encoders.
 
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-You cannot ("cannot" as not following the process) merge drivers into
-DTS branch.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+index c5254ae0bb99..10764786bc21 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+@@ -164,6 +164,12 @@ reserved_memory: reserved-memory {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		scp_mem_reserved: memory@50000000 {
++			compatible = "shared-dma-pool";
++			reg = <0 0x50000000 0 0x800000>;
++			no-map;
++		};
++
+ 		apu_mem: memory@55000000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0 0x55000000 0 0x1400000>;
+@@ -1146,6 +1152,16 @@ &postmask0_out {
+ 	remote-endpoint = <&dither0_in>;
+ };
+ 
++&scp_cluster {
++	status = "okay";
++};
++
++&scp_c0 {
++	firmware-name = "mediatek/mt8188/scp.img";
++	memory-region = <&scp_mem_reserved>;
++	status = "okay";
++};
++
+ &sound {
+ 	pinctrl-names = "aud_etdm_hp_on", "aud_etdm_hp_off",
+ 			"aud_etdm_spk_on", "aud_etdm_spk_off",
+-- 
+2.51.0.rc0.215.g125493bb4a-goog
 
-
-> well, but I think we can also delay the .dts changes to the next kernel
-
-
-All users of DTS will be anyway affected and commit msg should address that.
-
-> version. Do you have a preference ?
-
-
-
-Best regards,
-Krzysztof
 
