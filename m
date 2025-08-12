@@ -1,150 +1,130 @@
-Return-Path: <devicetree+bounces-203914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E7BB22ECC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:16:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99815B22F1F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 19:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EC1D189FED6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:16:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 772273AE835
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5172FDC25;
-	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FDE62FDC49;
+	Tue, 12 Aug 2025 17:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrx7ONev"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="c/A+57AB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433802FDC22;
-	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168682FABF0
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 17:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755018981; cv=none; b=CP7rVoGAELN/lMJ3DXpqRkOvURCoI9DnClLu4dqdG15LlaiEWmWcZvWQYJGtIwZp+yioW77dl/w+mz9sYSMbooTyLSyRJLpF6xsJAPYWzpz2+vb7k5USpWjzfs3tYWmPD5rlv+OmcGSZ84nUo0STtQgEUH44wUhUpmdFVKpaKAI=
+	t=1755019913; cv=none; b=UpsfpNHhA6w40hVqGaZS41VDwz11pTx8d8D/oa8c6RXTXx8qydFI9AV/cgNDFl1eq37HgG8XWFXVDwhmMuMl02zUUKuAVvF4PPB3jyxjCDJW2QNgLECvKvN5d6mOxt2dq4YKL/fvmoWHoPznIZRL0WBbinRU0iWMpKQwod+qLT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755018981; c=relaxed/simple;
-	bh=hiKx5h6WgJ1kRSlNqANQXTbZ/qufuAsjkmYJWLdzY/A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ck0C9EfIyaAZn6nRNte/iPdPCjH1XmIkr0spdv5AJ3iBO+V2NkWGQg1kA3wOOi5E7i7E0VGhX2X+P3liZb6AVXLMv8xK0tWg7l793vkKloF01ssxPsxvV33Ng6XD0Pi/wl82QwzciPGK7GBwybDKVjlo/l5PxL35zRyf3jFG4jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrx7ONev; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 085B8C4CEF9;
-	Tue, 12 Aug 2025 17:16:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755018981;
-	bh=hiKx5h6WgJ1kRSlNqANQXTbZ/qufuAsjkmYJWLdzY/A=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rrx7ONevt651nfLg0mqbamZT+I9vsT7FOdqYPWXahJLbdCSR9mxCrDH69WVkjOJFJ
-	 sQrSPjjyETzpVgPm/FHFSlCO56TxP9G1ojEVjiQONhbWjmHp/jN3AGYxeDXB4e9tl1
-	 glmCD6QGhW2LROTweKFIBVLIf3b2wlfF0JZzidE0Sv/duoSwFiK67XXeW0tyfVD0p1
-	 qFw12ZcpeprdH93mFyOicmwAeeVdeemJK2Apu8OvKbP5yYC2TKznK1bubWNGb9egnq
-	 3Gt1V6Wv6p+XqgkHEaM4Xh6Q+NAEFXFo+NMzcls9CuGdnwu7g9utWKlCFpqWlmxiMv
-	 j2QJ2LTmx0ywA==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-af96d097df5so1043620266b.3;
-        Tue, 12 Aug 2025 10:16:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUcx18mKhV4JI1t8hY+1EK/pYbtlbJacs9/dGMXcGP0F1tJo/fx7oiK4/ad23FMCzYNHKd3Bz6pJnDDKmeU@vger.kernel.org, AJvYcCV5F5izSu4RvsSDC5t2G/xgKiJiI8SvnYlgJUudNcjZBq1CDRiVHATAbynHblTLczX9PqVP1B4W1lZT2g==@vger.kernel.org, AJvYcCXk58MGqzwg1JHt7AjAyuf/nBCfTSz1NZDx73pBH7+q+Ws6OEPxScLcVq0oBHnvUQuPenmiE4h4DCdx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlQynzZXfaQXB2ICxMvHTVDXVj+d/JIGtI8eiRfwqjOnYcSZl0
-	Lg7qqEeP6JCEEeb9BX19Q36209UgT8fzA5KiJIs7aFqi+qid5JpWDA/0IBp+29W3ry1jzpjdVP9
-	1C88lpomgDISsl+uJiAzNZ5Ff4gANrA==
-X-Google-Smtp-Source: AGHT+IEBE2ikhAU2DNl85LpL+NhY5CizUSURSGTC9MFOW45Us0P1xe9kfUVQc4IbWaS2z6b1ZX94B9hdIEwvFsOIwvk=
-X-Received: by 2002:a17:906:c145:b0:ae3:4f80:ac4c with SMTP id
- a640c23a62f3a-afca4cca31fmr10795866b.12.1755018979494; Tue, 12 Aug 2025
- 10:16:19 -0700 (PDT)
+	s=arc-20240116; t=1755019913; c=relaxed/simple;
+	bh=vGPEjbF20fanotlxlvyuLCGGl8an7bi1fogBzOPg9iM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YKDWZXpfADQ5e8XWL0njb59YL0Axlji+ToIgYfyIK8UaCvh7AqB4ecVzuKpElrdquCuVw/4K4DCk8pxNZ8+5SlDVbaAYh8bugtxyeR7GKxSSu3zy2G60x3PvpuZO5KW8mRihxFfjEGFBq8qdXrGS/js+VpQl8abrwYZGDSeqn8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=c/A+57AB; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1755019909;
+ bh=lLNl7MI8X4M5cxrMR25hGPEYfSQVqkkWhNzJlEstFA0=;
+ b=c/A+57ABEc86qFRkbT3YxSoUTbk1suErG6+UYUEVudmnMctx2i3e+4mauZi7y5BuVtasDxxmK
+ dmkb6agWunYlH+g7vP1xsLY5VxFRnRYHMiW2F8UuAv2hrX+3rXOjXZsnKBLWBWxWBJtiiMCS8Ke
+ MBZGTCMeD5YgtZqjk4GCGRMTsJWyZHBke4KsWjqAdZN3qwToof8kme/gPXzu5pT3LSmkcTUBO05
+ C9RkclPkmcta6oV9mG95nZEkEPUKIIfo5UHWYcj6VwUBdR9n7fGWmp16/WFg1zg7/5ahC3C1+IA
+ mavOTTFDqHfNwJdyjAyvfLvHpKENsPslfoL02B6Eq0kw==
+X-Forward-Email-ID: 689b7a6df092412ac2631c2f
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.2.4
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <efdf8c99-d166-4b78-afc5-d4a6eb5ac046@kwiboo.se>
+Date: Tue, 12 Aug 2025 19:31:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754996033.git.christophe.leroy@csgroup.eu>
- <0b56ef403a7c8d0f8305e847d68959a1037d365e.1754996033.git.christophe.leroy@csgroup.eu>
- <0fd6fefc-9fad-4ea6-a619-e9f480747ac0@kernel.org>
-In-Reply-To: <0fd6fefc-9fad-4ea6-a619-e9f480747ac0@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 12 Aug 2025 12:16:08 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
-X-Gm-Features: Ac12FXw2MCpi_Gef6Ss--eZgTnXi88_EsAQqYxE-YlC_gadE4Co6lYS79wZ_vkE
-Message-ID: <CAL_Jsq+1Aw5AyBeW+BhTuyWZ8BN8BJUq047oJCDKVQPZWxWYCA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: soc: fsl: qe: Add an interrupt
- controller for QUICC Engine Ports
-To: Krzysztof Kozlowski <krzk@kernel.org>, Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc: Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/7] media: rkvdec: Add HEVC backend
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Alex Bee <knaerzche@gmail.com>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250810212454.3237486-1-jonas@kwiboo.se>
+ <50162371fd54fc976a84fcf57c9b69112a892c46.camel@collabora.com>
+ <1dd29158-0660-4254-ac00-1316768d9b82@kwiboo.se>
+ <91864a1c047d2bdfce202b070716a694ede47d5e.camel@collabora.com>
+ <a66feb89fa02f05b187e5603ffc3b1501ef3cbd5.camel@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <a66feb89fa02f05b187e5603ffc3b1501ef3cbd5.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 12, 2025 at 10:23=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 12/08/2025 13:02, Christophe Leroy wrote:
-> > The QUICC Engine provides interrupts for a few I/O ports. This is
-> > handled via a separate interrupt ID and managed via a triplet of
-> > dedicated registers hosted by the SoC.
-> >
-> > Implement an interrupt driver for it for that those IRQs can then
-> > be linked to the related GPIOs.
-> >
-> > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> > ---
-> >  .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       | 63 +++++++++++++++++++
-> >  1 file changed, 63 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fs=
-l,qe-ports-ic.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-po=
-rts-ic.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports=
--ic.yaml
-> > new file mode 100644
-> > index 0000000000000..7c98706d03dd1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.=
-yaml
-> > @@ -0,0 +1,63 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +
-> > +title: Freescale QUICC Engine I/O Ports Interrupt Controller
-> > +
-> > +maintainers:
-> > +  - name: Christophe Leroy
-> > +    email: christophe.leroy@csgroup.eu
->
-> Oh no...
->
-> > +
-> > +description: |
-> > +  Interrupt controller for the QUICC Engine I/O ports found on some
-> > +  Freescale/NXP PowerQUICC and QorIQ SoCs.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,mpc8323-qe-ports-ic
-> > +      - fsl,mpc8360-qe-ports-ic
-> > +      - fsl,mpc8568-qe-ports-ic
-> > +
-> > +  reg:
-> > +    description: Base address and size of the QE I/O Ports Interrupt C=
-ontroller registers.
-> > +    minItems: 1
-> > +    maxItems: 1
->
-> This was never tested but more important this and everything further
-> looks like generated by AI. Please don't do that or at least mark it
-> clearly, so I will prioritize accordingly (hint: AI generates poor code
-> and burden to decipher AI slop should not be on open source reviewers
-> but on users of AI, but as one of maintainers probably you already know
-> that, so sorry for lecturing).
+On 8/12/2025 2:44 PM, Nicolas Dufresne wrote:
+> I forgot, 
+> 
+> Le mardi 12 août 2025 à 08:38 -0400, Nicolas Dufresne a écrit :
+>>> JCT-VC-HEVC_V1 on GStreamer-H.265-V4L2SL-Gst1.0:
+>>>
+>>> - DBLK_D_VIXS_2 (fail)
+>>> - DSLICE_A_HHI_5 (fail)
+>>> - EXT_A_ericsson_4 (fail)
+>>> - PICSIZE_A_Bossen_1 (error)
+>>> - PICSIZE_B_Bossen_1 (error)
+>>> - PICSIZE_C_Bossen_1 (error)
+>>> - PICSIZE_D_Bossen_1 (error)
+>>> - SAODBLK_A_MainConcept_4 (fail)
+>>> - SAODBLK_B_MainConcept_4 (fail)
+>>> - TSUNEQBD_A_MAIN10_Technicolor_2 (error)
+> 
+> I'me getting the same result if I force a single job in fluster. The test I
+> posted was with 2 jobs. Detlev found that the iommu reset is required in more
+> cases on RK3588/3576, perhaps the HEVC decoder in older hardware needs the same,
+> I will try and report.
 
-If anyone needs some AI (chatgpt) converted bindings, my "dt-convert"
-branch has ~800 of them. Feeding the warnings back to AI to fix was
-somewhat effective. The result is not the worst I've seen submitted.
-It saves some of the boilerplate, but can't fix things that are just
-wrong or unclear in .txt bindings. Despite my 'prompt engineering'
-attempts, it still tends to get the same things wrong over and over.
+Vendor kernel [1] check following bits from RKVDEC_REG_INTERRUPT reg to
+decide if a full HW reset should be done.
 
-Rob
+  err_mask = RKVDEC_BUF_EMPTY_STA
+  	   | RKVDEC_BUS_STA
+  	   | RKVDEC_COLMV_REF_ERR_STA
+  	   | RKVDEC_ERR_STA
+  	   | RKVDEC_TIMEOUT_STA;
+
+Adding proper reset support can be rather involved and main reason why
+this series does not handle it, better suited for a separate future
+series.
+
+Proper HW reset will require e.g. dt-bindings, DT updates, pmu idle
+request integration and for rk3328 vendor even moved VPU reset to TF-A.
+
+Doing the iommu detach/attach dance not only on RKVDEC_SOFTRESET_RDY
+could possible improve some cases, until full reset can be implemented.
+
+[1] https://github.com/Kwiboo/linux-rockchip/blob/linux-6.1-stan-rkr6.1/drivers/video/rockchip/mpp/mpp_rkvdec.c#L924-L931
+
+Regards,
+Jonas
+
+> 
+> Nicolas
+
 
