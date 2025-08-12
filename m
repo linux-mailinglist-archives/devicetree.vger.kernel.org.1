@@ -1,102 +1,128 @@
-Return-Path: <devicetree+bounces-203875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69927B22BB0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:29:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0045AB22BB6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 17:30:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA96D1A2666C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:29:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F56D2A80C2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080482F5487;
-	Tue, 12 Aug 2025 15:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42C92882DE;
+	Tue, 12 Aug 2025 15:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9SloMJT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j6s1h4hh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7742F5481;
-	Tue, 12 Aug 2025 15:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893D12AD0D;
+	Tue, 12 Aug 2025 15:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755012551; cv=none; b=dFdCRzAOCtxeaeHahtxH4ff4VUA68F6Br580Z8syUDDW6BqTKlM6o12/ft/LN42Ap806D8HMLMRJTaenr695DBxjgyK8GIDp3lSCQT1q6Txb3M9tpRWlGMjpWCaqej+C4qOknYMpwJx1CpPkikkwgz9JIYP1Amov2m/TfxnOJTk=
+	t=1755012634; cv=none; b=fIbYejrDZxVw/10fxCMAA/LaRGuFZ+nVOcGL3aRWylng5m2Kzx3lQ/BwPmn2DgLShOXlhgaJbR5IxtncoYatGGWyrKxAhCLmoosThGMgvodz/mBQmslmme3251jouQgNAVuT5yWOfxRThT6B2kebKexV3AcJW3Y/JknZbKKdbMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755012551; c=relaxed/simple;
-	bh=m5eXkqwhtq2KR/p+yktgoCeF4iXuruewK5AtT05FGGs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AcSJlkda8YskG6NH3vKBQDvuABYJh2KuInPS/hRlbFJrjsivBYmVMnVtPvr7Z8+uYWlDw0eGs7hBf6Pe58QneK9JNodRKUrINiXOn0BryWQYmsy5D+rQPL/ar4vZoS8Ua9noiNKXPI3l85F0t0NgG339gbUgxISwzNs31lejwqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9SloMJT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1725C4CEF0;
-	Tue, 12 Aug 2025 15:29:07 +0000 (UTC)
+	s=arc-20240116; t=1755012634; c=relaxed/simple;
+	bh=fSpC7xHCqIbWLnou6SZi6B0P5Vb+1fpce9qaTi/b3gA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Iza+I8dpCXT0Gg0CIbU7I38U/UWwVkY47sueZllrxpflDtYW+aCM5WZCvfX4CqdyJQOf0Gu9DsEbxyKDcNU2uK/v39hzlwE/i/SFvHcidOAY/kCXdXwnwxENKixuHzGnbbZRlXxKmZMOXc0GyljiECXaNbDwBJP6QieOFz4uP0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j6s1h4hh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55DDBC4CEF0;
+	Tue, 12 Aug 2025 15:30:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755012549;
-	bh=m5eXkqwhtq2KR/p+yktgoCeF4iXuruewK5AtT05FGGs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=J9SloMJTLL3BLKO0t/Tm8vXsuj5upbYZzV3cUUZFig5ZVZ9AZypCAT56QMnxv+zd5
-	 b/FjxwE9ZoMpfMxWBXSwo/j5kwrq9vtB7PkzVvUdPJzu6l4tmRHCe+xMOsNeenwmxs
-	 5xaVEqV6P+5LlJoivG0MK0FeGt4fU8cpt2c2I6ZtY/XHVRht1vA3+x0g4PaVOt4B1u
-	 r4Ku73yHl5HqAg/v3OyUA6cCABJeYXXasG9Lo2a0A+S5bs7B1K2AWMgkqeBbHkPGEd
-	 L6O9ICfa9QUYnYydppGyTBgPu42kWiobhb9PLSFuhTk5aqjADSpti76DQcO27P7AGH
-	 hop8lUwn4kRng==
-From: Mark Brown <broonie@kernel.org>
-To: devicetree@vger.kernel.org, Mahdi Khosravi <mmk1776@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250811080940.7909-1-mmk1776@gmail.com>
-References: <20250811080940.7909-1-mmk1776@gmail.com>
-Subject: Re: [PATCH v5] ASoC: dt-bindings: realtek,alc5623: convert to DT
- schema
-Message-Id: <175501254765.179691.1589109865896563758.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 16:29:07 +0100
+	s=k20201202; t=1755012633;
+	bh=fSpC7xHCqIbWLnou6SZi6B0P5Vb+1fpce9qaTi/b3gA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j6s1h4hhIOSVDqhNeSAI3iCo3Yl4LfJRBM4UYOH7ygRYj+ll1xhynNsETQEDKb/8M
+	 Dth1dKho/DG7cb560HHymVZYFnVOAMW9EPyNeigdcq1v+5uzIeiq6NFPQRbwyY0gtI
+	 eRrbrg1T+TL1cZhkuXhYt8unQoTvjSVE7LfJHjxwuCRQOfPrm7WQ76mvUKtKBbXIu7
+	 Sp7ALBfaCC/BowA1ZsrH5R5jX29v3tjKATyWOkAZ82dKCNeI06st4jx/R/PUad49Kx
+	 hBXoqG5S3tDCH74pTpGYxxkm7BHkwOUrBSxuf5bPbeiyN4EuL+2tnFQCRalv2inXyw
+	 zkA75PhP/BJmA==
+Message-ID: <fd39f667-9153-4c62-9993-2156f2cebf1d@kernel.org>
+Date: Tue, 12 Aug 2025 17:30:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] soc: fsl: qe: Add support of IRQ in QE GPIO
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Qiang Zhao <qiang.zhao@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <cover.1754996033.git.christophe.leroy@csgroup.eu>
+ <22b3847fd0011024c10aff48f1e5223894ce718a.1754996033.git.christophe.leroy@csgroup.eu>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <22b3847fd0011024c10aff48f1e5223894ce718a.1754996033.git.christophe.leroy@csgroup.eu>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-cff91
 
-On Mon, 11 Aug 2025 11:09:40 +0300, Mahdi Khosravi wrote:
-> Convert alc5623 audio codec binding to DT schema.
-> 
-> Also add "realtek,alc5621" to the compatible list for
-> existing use in kirkwood-t5325.dts.
-> 
-> 
+On 12/08/2025 13:02, Christophe Leroy wrote:
+>  
+>  	qe_gc = kzalloc(sizeof(*qe_gc), GFP_KERNEL);
+>  	if (!qe_gc) {
+> @@ -313,6 +324,14 @@ static int qe_gpio_probe(struct platform_device *ofdev)
+>  
+>  	spin_lock_init(&qe_gc->lock);
+>  
+> +	if (!of_property_read_u32(np, "fsl,qe-gpio-irq-mask", &mask)) {
 
-Applied to
+Undocumented ABI. You cannot add such stuff and testing your DTS would
+point it out.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: realtek,alc5623: convert to DT schema
-      commit: 8c02c8353460f8630313aef6810f34e134a3c1ee
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards,
+Krzysztof
 
