@@ -1,231 +1,99 @@
-Return-Path: <devicetree+bounces-203920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89A9B231B9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D433CB231DC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 20:10:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D0F17BB96
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:04:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C88170072
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD632FF163;
-	Tue, 12 Aug 2025 18:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1042E2FF163;
+	Tue, 12 Aug 2025 18:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xGTTGiCI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oc1fu6CX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFAAC2DE1E2;
-	Tue, 12 Aug 2025 18:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D902BEC2F;
+	Tue, 12 Aug 2025 18:04:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755021798; cv=none; b=EQIeFtKPun4kxtO+jyC6Pj3bE8fnsc8RUk8Ol8uefqRQvW2LGgfkm3a0bB4m1QVVnP1DtNrqfqnadow/EZV9A3zLjeXs3svwQRiEwEiqztijZKTbrFnJhchQQNBBS4x40DNgk8loIJqdJiv8eni36pjLgHL/QDm4WZB2hCjEHVM=
+	t=1755021863; cv=none; b=V8c9ZVy4KMjsGfy0BYvKUgOXiutGTERRTHVvtZv9O/P6Sn4D4HQmc+StsI/a/hrOYuuCs9JN+XgvzOYA4kYUAYWDa2JRffrJFgkvWpHpTuHLvg8TxLjcXrPatqvwgFilH9MRyxn51NDZKnr56sameKriBHETr0yCCpBdVl0x9iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755021798; c=relaxed/simple;
-	bh=bMtOmbxE5p7nSfiC6tRT+00dIG/yVnMcG7trMtDKEgg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NDlMrwonaxnnhozOHghUYMwo6a14XV+uT4+iyfi39poE+s8J7KaKLU9FtcGmhFvnmvroOBcq0c6Zd0iuop64anVodQ+7IwAAm1sFG7HxGSqJ/mkVGfb4Q3iGiUqxGtUPgWsp3XVod5GZ1Tyql7uPGf+PtVwdnJphyRqyho+u1YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xGTTGiCI; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57CI2ZRn1965775;
-	Tue, 12 Aug 2025 13:02:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755021755;
-	bh=hMP0pJPoGHjZWTBGyFsy5GjlgQnYq7dpmd6umTXAFHw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=xGTTGiCIuoAp4XKGSPiEFgtSLFpPc8JU8zomPTl4Ngl3OShXZwEWK3gVURvQxIQ0p
-	 ifJnTKFue/A57cyzZGpACISJD+mfDz2M1qwC5kmMivYe+0j6z+DwNpbtx68xSMSyC7
-	 57bHV1paxMK/yL/3WF0KjlDCXfMTpKrmEs0sY9hA=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57CI2ZGF3992685
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 12 Aug 2025 13:02:35 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 12
- Aug 2025 13:02:34 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 12 Aug 2025 13:02:34 -0500
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57CI2R58748582;
-	Tue, 12 Aug 2025 13:02:28 -0500
-Message-ID: <86cf7d99-1295-42ab-acda-88a8212ec4d4@ti.com>
-Date: Tue, 12 Aug 2025 23:32:27 +0530
+	s=arc-20240116; t=1755021863; c=relaxed/simple;
+	bh=M+Z0eS10SwonwtWVyijlh48EzuFQRgyP4fZWIjEAAMk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bd7BzTxr3t+xVvgPaZKvwhRtb4Mpd9anbl4HTDQsVpQl81ohPTpFzOo8NuyWNNtGaqWtSLVCWYKN6v8jiGAUKTID78LQMWnW4HgY4aVPr1IaRigr/7LKF6yg705B+y/s+oyhwMnKkpbCrIHt3L6pkFcW3+eTUgmk36TYs2+YJlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oc1fu6CX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A847C4CEF0;
+	Tue, 12 Aug 2025 18:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755021862;
+	bh=M+Z0eS10SwonwtWVyijlh48EzuFQRgyP4fZWIjEAAMk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Oc1fu6CXkSQrsq1WR6782QF+WDcM+p89+zlSRfEwIdUSKZo59f9H4UvhKs4FkNkxU
+	 xfHPSEM6Qf7OCL3hrqLovnBOHHEKUuBrtHYaE9IQNuPsH5WvJpjlpOhCg7B6KtGoGs
+	 wJRVp91pZblP+IBQ9IoScDQ0vP641HQ+upYYzAwiqBV08+Q3Ay/KZBUsf/tM3fvKIm
+	 ed3XaDx1B35Rk+XqMaQhcF9ecUxHe25Hnx5Xs+w9TsQKmEYjzFd2hUsRJgqPOgLGQw
+	 bX97o1vGQreeCMhawLcDqPgqQ9l11NIagMuayYsiEOGE4vQRwLVbDlM0yz34jgwMh1
+	 /WL1mN2166Amw==
+Date: Tue, 12 Aug 2025 19:04:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: adi,axi-clkgen: add
+ clock-output-names property
+Message-ID: <20250812-hedge-cohesive-24d38a57ea43@spud>
+References: <20250811-dt-bindings-clk-axi-clkgen-add-clock-output-names-property-v1-1-f02727736aa7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] drm/tidss: Fix sampling edge configuration
-To: Louis Chauvet <louis.chauvet@bootlin.com>, devarsh <devarsht@ti.com>,
-        "Jyri Sarha" <jyri.sarha@iki.fi>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Sam
- Ravnborg <sam@ravnborg.org>,
-        Benoit Parrot <bparrot@ti.com>, Lee Jones
-	<lee@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-CC: <thomas.petazzoni@bootlin.com>, Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ti.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <stable@vger.kernel.org>
-References: <20250730-fix-edge-handling-v1-0-1bdfb3fe7922@bootlin.com>
- <20250730-fix-edge-handling-v1-4-1bdfb3fe7922@bootlin.com>
- <71ef3203-e11d-4244-8d2d-8e47e8ba6140@ti.com>
- <f15779ad-788a-4dc6-b5a6-4187b9a9c986@ti.com>
- <e9df67f0-8fce-4fbf-8fff-c499c4a2efaf@bootlin.com>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <e9df67f0-8fce-4fbf-8fff-c499c4a2efaf@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mGfDyCaNb20uxoLU"
+Content-Disposition: inline
+In-Reply-To: <20250811-dt-bindings-clk-axi-clkgen-add-clock-output-names-property-v1-1-f02727736aa7@baylibre.com>
 
 
+--mGfDyCaNb20uxoLU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 8/11/25 15:26, Louis Chauvet wrote:
-> 
-> 
-> Le 08/08/2025 à 18:26, Swamil Jain a écrit :
->>
->>
->> On 8/8/25 19:16, devarsh wrote:
->>> Hi Louis,
->>>
->>> Thanks for the patch.
->>>
->>> On 30/07/25 22:32, Louis Chauvet wrote:
->>>> As stated in the AM62x Technical Reference Manual (SPRUIV7B), the data
->>>> sampling edge needs to be configured in two distinct registers: one 
->>>> in the
->>>> TIDSS IP and another in the memory-mapped control register modules.
->>>
->>> I don't think AM62x is thee only one which requires this and on the
->>> contrary not all SoCs require this extra setting. We had been waiting on
->>> confirmations from hardware team and very recently they gave a list of
->>> SoCs which require this, as per that I think we need to limit this to
->>> AM62x and AM62A per current supported SoCs.
->>>
->>> Swamil,
->>> Please confirm on this and share if any additional details required 
->>> here.
->>>
->>
->> Yeah Devarsh, as you mentioned, this is valid for AM62X, AM62A and
->> AM62P. We would have upstreamed this feature, but there are some
->> corrections in Technical Reference Manual for these SoCs regarding
->> programming CTRL_MMR_DPI_CLK_CTRL register fields, we are in loop with
->> H/W team, waiting for their official confirmation regarding this issue.
->>
->> Thanks Louis for working on this patch, but we should wait for H/W
->> team's confirmation.
-> 
-> Hello all,
-> 
-> Thanks for the feedback. I was not aware of this current work.
-> Do you plan to send the fix yourself? Should I wait your HW team 
-> feedback and send a v2?
-> 
-Hi Louis, H/W team confirmed that, CTRL_MMR_DPI0_CLK_CTRL.bit[8] should 
-be programmed same as DSS_VP1_POL_FREQ.bit[14](IPC) and 
-CTRL_MMR_DPI0_CLK_CTRL.bit[9] should be programmed same as 
-DSS_VP1_POL_FREQ.bit[16](RF). Please continue with you patches.
+On Mon, Aug 11, 2025 at 05:17:01PM -0500, David Lechner wrote:
+> Add an optional `clock-output-names` property to the ADI AXI Clock
+> Generator binding. This is already being used in the Linux driver and
+> real-world dtbs, so we should document it to allow for correct binding
+> validation.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 
-> I also have a very similar patch ready for u-boot (depending on the same 
-> DT modifications), do you plan to fix u-boot too?
-> 
-Please fix u-boot also.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks and regards,
-Swamil.
+--mGfDyCaNb20uxoLU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Thanks,
-> Louis Chauvet
-> 
-> 
->> Regards,
->> Swamil.
->>
->>> Regards
->>> Devarsh
->>>
->>>    Since
->>>> the latter is not within the same address range, a phandle to a syscon
->>>> device is used to access the regmap.
->>>>
->>>> Fixes: 32a1795f57ee ("drm/tidss: New driver for TI Keystone platform 
->>>> Display SubSystem")
->>>> Signed-off-by: Louis Chauvet <louis.chauvet@bootlin.com>
->>>>
->>>> ---
->>>>
->>>> Cc: stable@vger.kernel.org
->>>> ---
->>>>    drivers/gpu/drm/tidss/tidss_dispc.c | 14 ++++++++++++++
->>>>    1 file changed, 14 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->>>> b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> index 
->>>> c0277fa36425ee1f966dccecf2b69a2d01794899..65ca7629a2e75437023bf58f8a1bddc24db5e3da 100644
->>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> @@ -498,6 +498,7 @@ struct dispc_device {
->>>>        const struct dispc_features *feat;
->>>>        struct clk *fclk;
->>>> +    struct regmap *clk_ctrl;
->>>>        bool is_enabled;
->>>> @@ -1267,6 +1268,11 @@ void dispc_vp_enable(struct dispc_device 
->>>> *dispc, u32 hw_videoport,
->>>>                   FLD_VAL(mode->vdisplay - 1, 27, 16));
->>>>        VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 1, 0, 0);
->>>> +
->>>> +    if (dispc->clk_ctrl) {
->>>> +        regmap_update_bits(dispc->clk_ctrl, 0, 0x100, ipc ? 0x100 : 
->>>> 0x000);
->>>> +        regmap_update_bits(dispc->clk_ctrl, 0, 0x200, rf ? 0x200 : 
->>>> 0x000);
->>>> +    }
->>>>    }
->>>>    void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
->>>> @@ -3012,6 +3018,14 @@ int dispc_init(struct tidss_device *tidss)
->>>>        dispc_init_errata(dispc);
->>>> +    dispc->clk_ctrl = 
->>>> syscon_regmap_lookup_by_phandle_optional(tidss->dev->of_node,
->>>> +                                   "ti,clk-ctrl");
->>>> +    if (IS_ERR(dispc->clk_ctrl)) {
->>>> +        r = dev_err_probe(dispc->dev, PTR_ERR(dispc->clk_ctrl),
->>>> +                  "DISPC: syscon_regmap_lookup_by_phandle failed.\n");
->>>> +        return r;
->>>> +    }
->>>> +
->>>>        dispc->fourccs = devm_kcalloc(dev, 
->>>> ARRAY_SIZE(dispc_color_formats),
->>>>                          sizeof(*dispc->fourccs), GFP_KERNEL);
->>>>        if (!dispc->fourccs)
->>>>
->>>
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJuCIQAKCRB4tDGHoIJi
+0ni0AP9gIxv/QtLhCt7M7e2LAxaqBAWctbmrbHVuFf5oX7RexwD+O28wmxVF0n9x
+tDrgsnv+ItDXcA9WrVn6IXKXvfUVxg4=
+=PPvg
+-----END PGP SIGNATURE-----
+
+--mGfDyCaNb20uxoLU--
 
