@@ -1,109 +1,111 @@
-Return-Path: <devicetree+bounces-203530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E696B21B55
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:07:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B7ECB21B6D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 05:12:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96BB5463D9F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:06:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 581B61A238E4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7A12E5B3F;
-	Tue, 12 Aug 2025 03:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EqCTkjqg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FD22E3385;
+	Tue, 12 Aug 2025 03:11:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039642E5B3B;
-	Tue, 12 Aug 2025 03:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF27253359;
+	Tue, 12 Aug 2025 03:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754967904; cv=none; b=lJvrPV9iGnBvRI1el1EBG59F0qt97R+FTEucsxOC21UbBC/q8Yorb1TYQcbFZBAK3mwRNGm1/hofJeR5jN+51q6MCE/FqHCOHxdUnUdUhRlDKggOsr2AvyWkoM9HMa3rWkSZ9FQqiRIc3Bbu5OTN5gITKRcR7EeXJC3vkbG/AYE=
+	t=1754968314; cv=none; b=Zt5OFaOQl8wjuOf4nAdb9bFB2snYjfQa9fRDqgiouWdB+8XbPFOftY9B0UjLY+E1oFJoYE6I22g+QsXKwwDa0M8z7gIDPaF9LYHr1p3QYd4UU+7jQ/ay+KSlmkNDwLvQEUkJ++mMMOB8CM0hVnuSciP1df48qzOKldoIn0ovPUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754967904; c=relaxed/simple;
-	bh=+SYEc7mcuPezHlXmlPDvheE/ZJqUSaIeGVyT8sV6eOM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f2myYNvffcUn7K3WO1UxWofT5m/15ipBOeQzOrzI0RQq3N+01iwze/rPoEszusF1brmClpgQ5ohJg8tEwrNUwpheRsRJI42iqBTUw8nwlXBR9YTwMqd9XXKl7cQ5UFDFa/Y9A4ODGMlYK3biD7TT7aLuXvigRnwmoHXrViGs76A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EqCTkjqg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FB6CC4CEF6;
-	Tue, 12 Aug 2025 03:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1754967903;
-	bh=+SYEc7mcuPezHlXmlPDvheE/ZJqUSaIeGVyT8sV6eOM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EqCTkjqgz/U0F0HowmywnKuw1f3Cx7Bo/4UcfPNM6MwPp24J2KxTZ5TDxETt+OJS/
-	 VMZ+dRwfCNtYtAvGHmbpSyPy1B+K9jjDXUbrQoOwvMQALH8f/ZcYxorDOnGuSFD1fW
-	 KVPrT5lG5illSdZCAQ3hbV6OLi37fLX0l0hQyD2mwfcntSOZBm9UukXxchsWAZeFdi
-	 vRQHrGKGQ9XXXnztCJqMC1xqCEznPG4xr1fDoST8XMBzIKIjG6kyttkK1FFUPwWzTZ
-	 p72jj8sV5XmPneO+2SiDNOge1pi4GImMWmmFnFaJZGvOs9WbM/jTY/RiJFa9RFhAmZ
-	 ZPEfN1bUW2kFw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jingoohan1@gmail.com,
-	mani@kernel.org,
-	lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	bhelgaas@google.com,
-	johan+linaro@kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	neil.armstrong@linaro.org,
-	abel.vesa@linaro.org,
-	Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	qiang.yu@oss.qualcomm.com,
-	quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com,
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Subject: Re: (subset) [PATCH v7 0/3] pci: qcom: drop unrelated clock and add link_down reset for sa8775p
-Date: Mon, 11 Aug 2025 22:04:52 -0500
-Message-ID: <175496788924.165980.4310613357045244026.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250725102231.3608298-1-ziyue.zhang@oss.qualcomm.com>
-References: <20250725102231.3608298-1-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1754968314; c=relaxed/simple;
+	bh=J+5V0xx3lI2r04i1in4bjdw1bkLd9VZSX0KX29JPZI0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lQ+34POUyZjjJwXItI1J82u4j5oO7YGUvuqrfzly8hoEm3XHVPZi6k2mqWrq8KqOxkqX5zgVEotfWdLGgCIoz58HYPSmdYHSr+qTxsAAfUpi2AZcKrjQ/RvwbsPdkStIOYAltehEoiGQSD+g+ksc1bJen8TP5BVBWEphWXaJ1aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.111] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowADnPl+_sJpoQFIJCw--.51801S2;
+	Tue, 12 Aug 2025 11:10:56 +0800 (CST)
+Message-ID: <86b99a5f-02a0-43cc-9f7b-4ed3a260b4df@iscas.ac.cn>
+Date: Tue, 12 Aug 2025 11:10:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v5 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Vivian Wang <uwu@dram.page>,
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn>
+ <20250812-net-k1-emac-v5-2-dd17c4905f49@iscas.ac.cn>
+ <5c32fde3-0478-4029-9b71-e46a60edf06b@lunn.ch>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <5c32fde3-0478-4029-9b71-e46a60edf06b@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowADnPl+_sJpoQFIJCw--.51801S2
+X-Coremail-Antispam: 1UD129KBjvdXoW5Kry3GFyDKrWxXFy7JF1rCrg_yoWxWwc_Gw
+	1Fk3yFkFs0yrs0y34Sgw15Ar1fKa95XF9xZw1v9r4xCF9xtFW29ryDuFnIq3WxWrZxGr95
+	trnI9w4UWrn7AjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbV8YjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwV
+	C2z280aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvj
+	DU0xZFpf9x07jDsqXUUUUU=
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+
+Hi Andrew,
+
+On 8/12/25 10:17, Andrew Lunn wrote:
+>> +/* Caller must hold stats_lock */
+>> +static void emac_stats_update(struct emac_priv *priv)
+>> +{
+>> +	u64 *tx_stats_off = (u64 *)&priv->tx_stats_off;
+>> +	u64 *rx_stats_off = (u64 *)&priv->rx_stats_off;
+>> +	u64 *tx_stats = (u64 *)&priv->tx_stats;
+>> +	u64 *rx_stats = (u64 *)&priv->rx_stats;
+>> +	u32 i, res;
+> Rather than the comment, you could do:
+>
+> 	assert_spin_locked(priv->stats_lock);
+
+Thanks, I'll use assert_spin_locked.
+
+I don't think there's anything else that needs a similar assertion, but
+I'll check for sure and update next version.
+
+Vivian "dramforever" Wang
 
 
-On Fri, 25 Jul 2025 18:22:28 +0800, Ziyue Zhang wrote:
-> This series drop gcc_aux_clock in pcie phy, the pcie aux clock should
-> be gcc_phy_aux_clock. And sa8775p platform support link_down reset in
-> hardware, so add it for both pcie0 and pcie1 to provide a better user
-> experience.
-> 
-> Have follwing changes:
->   - Update pcie phy bindings for sa8775p.
->   - Document link_down reset.
->   - Remove aux clock from pcie phy.
->   - Add link_down reset for pcie.
-> 
-> [...]
+> 	Andrew
 
-Applied, thanks!
-
-[2/3] arm64: dts: qcom: sa8775p: remove aux clock from pcie phy
-      commit: d41fb878adf64ef5dc4b4c25419e875483f62fe2
-[3/3] arm64: dts: qcom: sa8775p: add link_down reset for pcie
-      commit: f0370265b1d7fc169956927aa62c3abc375743b5
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
 
