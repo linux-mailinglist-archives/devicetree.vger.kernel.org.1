@@ -1,131 +1,101 @@
-Return-Path: <devicetree+bounces-203771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A86B227BB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:05:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F32CB227CB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 15:09:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79441623B13
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 12:59:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C609C1BC46F0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 13:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0372E283FF9;
-	Tue, 12 Aug 2025 12:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E3E27CCF2;
+	Tue, 12 Aug 2025 12:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FFY21p6f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxIrNfy/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4E5283CBF;
-	Tue, 12 Aug 2025 12:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E30E27C17E;
+	Tue, 12 Aug 2025 12:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755003425; cv=none; b=shP7jLFfJ1QIJLOBKaGkcAPyf2ACdVq2+PNnkVMqtPTKOK5Iqb5knNCdrMdd75rcVgK5UZVk5SoLX9LkZBWAvUfWmRN/Z421DVfRRDau1sREQklJESTtO8qt1gzQLdcWH+FU7p4kBrVyEmXGHZBP5pBTQnCuaYx7NfMjdaEnKVA=
+	t=1755003529; cv=none; b=f4a1HUlAvgZmR0t6jUARky8msfH1RNwycmkPalXH5z8GwhUeXM7BP1wGQ4Et8SFoJWgBZ/HdtaxbHyrfwu1i1PosSPJgNK7TpIIXvu2RpMSiG9Zu15kzIZ5O2HQMJRIB1bMPiLiOezhY3PWTlIYmRmikKMFUi2nJkzsXu+wgnOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755003425; c=relaxed/simple;
-	bh=qghFQCOOR0UBMf1erX9Gzu5+pSrhr+ojvuByHjWtUkg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sX25tYeskxrGfi4v8SqlMUaBYJWF/bA/padTna3nBIUADHeqjVL6AM1bYXgQF3kc6HQXChPLrYxUhu+IfTbMSoGRLZ+5XyNGm4AjswXaCGgQvBa1OnEWgHFaPn3UDBzGsDkc+Xjzcefl9B3MZlwWs0HX6PPESCk2FJyk3FfDNp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFY21p6f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44243C4CEF5;
-	Tue, 12 Aug 2025 12:57:05 +0000 (UTC)
+	s=arc-20240116; t=1755003529; c=relaxed/simple;
+	bh=auJ4UCOYqu+Cyrj4Xt+shRCFXAxSa8EAUPDWJRJ1GYE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=cyVJuw/mkYzNdD1MXPU5GAqkqbjrTfrLjQLiKEt54OpulqLeYq7pG0GO/EiX0Z0q8FIdcC1v98V1xXlMZNfN6M8TOCOCKgaSWw1t2rkvK+LBF6UT3kOPXHt71b+y9crdxleTtEVZSTw1hiOdnMLJoxbDeTi/weIQp9wtZ6J3Ifc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxIrNfy/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488CBC4CEF5;
+	Tue, 12 Aug 2025 12:58:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755003425;
-	bh=qghFQCOOR0UBMf1erX9Gzu5+pSrhr+ojvuByHjWtUkg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FFY21p6fWGgX3tqv+54v6/2y2QKYGHPBYVWxO3SccGYmbsLOdENRKVqo8ykjz4E/+
-	 Vg5erN9uAv+YdUjlYBiJUL4f9SlUiuA89a83P/EGxTptUX7cDAcRGUvEdp5+5DtOI8
-	 BKG3YuGzpnu2RhQNOv/xAuP98l/0xoAClzpXC2PWnJ7Uewk0ioGtB7KatkF/nrJdwt
-	 +kVkcXwM+pnrZQOJJs3MH3Gh8ntbmhXncvjlgdBB+WkvjjKL8K0r4F98rdQ6krIiu5
-	 P0oiUvraDeQjLVYxZeiGEv6diX8HWgdI0Iiq5oVrY8IMfXZlhNhV9PtImwnWNK7hKQ
-	 HMZsLT8biUy7A==
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-af934d7c932so713898166b.3;
-        Tue, 12 Aug 2025 05:57:05 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVwp9/eJwYiifjcT45YpKr/SpJ6so7KnNlszSzLqY7SOycduKUOUrGLr/Y/C2dfpPldatSmF5pkjq3QP2k=@vger.kernel.org, AJvYcCWF2wbm4Fg8UljGss0k4CPybPtXXZyP6Yf2Ki1RQq7ENKXeg4cPBojD860oChBbbangORU10Voj88Kng5pv@vger.kernel.org, AJvYcCXr5ebgx+ZIK7OQHQSQENg7briIVDh/x/genOObe5+mUEQZ96gxb9zUlDqmHycuDBH0QlyAj8kdyMqP@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywv4A1OZNugx1sZYjI+yI8jDd0SEILCnxWF+FSfc3gzQNRV8FCY
-	jFHQCgwZOOw/8es0Jy5FAOhBMIbhAko7qdPOKFsLXm48vqdY0EDmq5Dg8KCNT0Kwqh3SifflHL5
-	N45c54ulrR84XMGIMr0GOlKGsAx5itg==
-X-Google-Smtp-Source: AGHT+IFDUbbe2PhMsIRWb9q1ckE7Y9HH+PJ5GWNSinNHIim73doYwGhVoAfafcP5txHzDsr8Ed8+WkTjBqTHjyEPdqM=
-X-Received: by 2002:a17:906:4796:b0:af9:8c20:145b with SMTP id
- a640c23a62f3a-af9c634f563mr1528914666b.10.1755003423802; Tue, 12 Aug 2025
- 05:57:03 -0700 (PDT)
+	s=k20201202; t=1755003529;
+	bh=auJ4UCOYqu+Cyrj4Xt+shRCFXAxSa8EAUPDWJRJ1GYE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=GxIrNfy/52USCUUs4tL4CxRNcGeuTLwNIlkLzoWZGaFmpxWADiVnghi/0/G8d3330
+	 1ti4Sf0ac8tCWKO/4BDZPsq7YIlCAqU89kBbb1McuxVzAQgQ5VxhXLgRvQXlUDCpLM
+	 QZ1EB1iuisBYSm30EcNxCQPhFr0s6R6eMpuzQBoynSr7ZuiDrLZq0RqiDti47wBZVU
+	 e4OdMydFNGtgPNG99YHoQLo6PZsYSTlBqdjWS99bPVIqICPHaDir6fJKQdVwgmOVBO
+	 +w/En6Gt5PdktwMMj9RSaXv6KeLMF5U4fQggfs7pei5XbG8+ENUekHwv4NpEqWygFx
+	 sPdFyX7Zp+/0g==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>, 
+ kernel test robot <lkp@intel.com>
+In-Reply-To: <20250731-b4-pf09-v2-v3-0-4c2659516582@nxp.com>
+References: <20250731-b4-pf09-v2-v3-0-4c2659516582@nxp.com>
+Subject: Re: [PATCH v3 0/2] regulator: add new PMIC PF0900 support
+Message-Id: <175500352702.61648.1681084828187836719.b4-ty@kernel.org>
+Date: Tue, 12 Aug 2025 13:58:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250811-ethos-v2-0-a219fc52a95b@kernel.org> <20250811-ethos-v2-2-a219fc52a95b@kernel.org>
- <8a872e48-0743-43b0-8259-70d6b8e4c221@suse.de>
-In-Reply-To: <8a872e48-0743-43b0-8259-70d6b8e4c221@suse.de>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 12 Aug 2025 07:56:51 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJL5sy7Otzo7R8mYW_-7s+ajggjtuW7tYBnVxYPaJHs+w@mail.gmail.com>
-X-Gm-Features: Ac12FXwuFSQu1fZPX73cq3WQKGjboa7GxXCNwN2iRczUjfXBezoHJpzIMA5o6NE
-Message-ID: <CAL_JsqJL5sy7Otzo7R8mYW_-7s+ajggjtuW7tYBnVxYPaJHs+w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] accel: Add Arm Ethos-U NPU driver
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Robin Murphy <robin.murphy@arm.com>, Steven Price <steven.price@arm.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
-On Tue, Aug 12, 2025 at 6:01=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
->
-> Hi
->
-> Am 11.08.25 um 23:05 schrieb Rob Herring (Arm):
-> > Add a driver for Arm Ethos-U65/U85 NPUs. The Ethos-U NPU has a
-> > relatively simple interface with single command stream to describe
-> > buffers, operation settings, and network operations. It supports up to =
-8
-> > memory regions (though no h/w bounds on a region). The Ethos NPUs
-> > are designed to use an SRAM for scratch memory. Region 2 is reserved
-> > for SRAM (like the downstream driver stack and compiler). Userspace
-> > doesn't need access to the SRAM.
-> >
-> > The h/w has no MMU nor external IOMMU and is a DMA engine which can
-> > read and write anywhere in memory without h/w bounds checks. The user
-> > submitted command streams must be validated against the bounds of the
-> > GEM BOs. This is similar to the VC4 design which validates shaders.
-> >
-> > The job submit is based on the rocket driver for the Rockchip NPU
-> > utilizing the GPU scheduler. It is simpler as there's only 1 core rathe=
-r
-> > than 3.
-> >
-> > Tested on i.MX93 platform (U65) with WIP Mesa Teflon support.
-> >
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->
-> I've looked over this patch and it looks good to me. There's a
-> dev_info() in ethos_init() of which I think it should become drm_dbg().
-> Anyway
+On Thu, 31 Jul 2025 18:44:40 +0800, Joy Zou wrote:
+> Add binding document and driver.
+> 
+> 
 
-I prefer to print out what h/w we've discovered. That's a fairly
-common pattern for drivers (and more useful than announcing drivers
-that only loaded).
+Applied to
 
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-> Side note: I noticed that there's buffer-allocation code here that
-> reinvents dumb buffers. We've ocationally talked about creating a better
-> dumb-buffers ioctl interface and this drivers could be another use case.
+[1/2] dt-bindings: regulator: add PF0900 regulator yaml
+      commit: 82f0907931f016c04bcb992f764bd65992c7008e
+[2/2] regulator: pf0900: Add PMIC PF0900 support
+      commit: 162e23657e5379f07c6404dbfbf4367cb438ea7d
 
-Yeah. In the past I got told don't use dumb buffers APIs for anything
-but dumb scanout buffers. I guess with enough copies opinions
-change...
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Rob
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
