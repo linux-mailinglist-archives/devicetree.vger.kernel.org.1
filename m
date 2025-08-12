@@ -1,214 +1,228 @@
-Return-Path: <devicetree+bounces-203845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F1EB22A7C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:30:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FCBB22A7B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:30:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 615F668247E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:19:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACB165824E8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 14:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7EA2E62CD;
-	Tue, 12 Aug 2025 14:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72F12D7819;
+	Tue, 12 Aug 2025 14:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qKXnghsv"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="VbB2Av/i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B7E28E579;
-	Tue, 12 Aug 2025 14:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D954528DB52
+	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 14:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755008284; cv=none; b=F42xX8uq4rHG/d6aSomW1nukbjUXLS5l2v12+Ck7hSZpjKk/qajbycyA00aTu5FoELNN66moTctPZctjxlvcgWXaxMNQkOBWSWLXnR8li4hMwWN6YNom9UOW+vNDA0m74dscPYhXf3WhtHhZTFcD9HvSL6pRcnB7VjoUCfbTRv4=
+	t=1755008418; cv=none; b=Po8fUMqDfeMkej9EYN6QjiFG9WKYP8P/uq7Q6QG9I02IR7N9Kan+WoNvgQiWYsylTLKlmes2AaTdGhuSSUMXe4IX/cIOxj5o6oEd/9nRrJQrrGx0conAuYgNHFfVJyFLFY50X1MDg/Kg5zOqHp/Jp3ekEpZrg2zcVZvmts3f7WM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755008284; c=relaxed/simple;
-	bh=XO4yi+cl35zAmP3v6jAb/UAs/XIZlfZgkA7+goZt8gY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZCaxQv1t4bw9fGu1fS12XJCu4StqxAgtgUh2VdBL9wf6hXVKGFNDk7OpwFMybcyAT55Q9H04z+Xg//piyt4kw1dmcK7OcbVGoBDGhcbyB3A2BbuBhgflRIRhcTjiebizskFpxD1vv2Ft1dlZ1ixGzP3T3u5Rs8sM+v+vyAXimQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qKXnghsv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A503C4CEF0;
-	Tue, 12 Aug 2025 14:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755008284;
-	bh=XO4yi+cl35zAmP3v6jAb/UAs/XIZlfZgkA7+goZt8gY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qKXnghsvCobCiCc1V94xXx9EcY1CxqZVopyNQmp037uV70h1uWJLg3M0VmfiTPz3h
-	 ByRRD1j4hVIiL6aUCnFZ8NzgcK4Qd0fUtsYjPQF2gx6FHl+7GF+LFikcd3kIZ0rBrb
-	 rvy9gPLUErtuutBlKCnxjKC/NslhH1pwpAF9ZBOIhkAkzo4qZBbjNraTFl2P+u9Lgs
-	 QZPMWprmeBHhCm6nIKPKKqIAgkzfJtMrLrjxvBPHb8cfCI6MeeCLfJbgLokI109IGQ
-	 eOMOyPCIuiBhlGlzWageG9NOgncojpHfxL/tJolfGEAhIaT0jErLVQvhMXt2cqaq5H
-	 Y/ZyOMbrv64aQ==
-Date: Tue, 12 Aug 2025 19:48:00 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org,
-	kauschluss@disroot.org, ivo.ivanov.ivanov1@gmail.com,
-	igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com,
-	s.nawrocki@samsung.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com,
-	muhammed.ali@samsung.com, selvarasu.g@samsung.com
-Subject: Re: [PATCH v5 4/6] phy: exynos5-usbdrd: support HS combo phy for
- ExynosAutov920
-Message-ID: <aJtNGGjKy762BLcX@vaman>
-References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
- <CGME20250805114316epcas5p49b78db499c2e37a1fe68f4b2f0be62a7@epcas5p4.samsung.com>
- <20250805115216.3798121-5-pritam.sutar@samsung.com>
+	s=arc-20240116; t=1755008418; c=relaxed/simple;
+	bh=r/g7cxm9Na/CcdAsWOeh8hMTNl83bUK5G5JindICPdA=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r+NOHUj/u1uMh7Q0AOzc75w2tVSvgyh6SuCmWeonjxlNKTN2Phs3tiEaqpb8UPgC2Mfslk7kOcfrTiCL0lhJxk1WW0x1Ek2TJ0U3rolR7Y46FMlz+d1FDoaI0ZrC2aSb58LHYDKNem4zRnhoU6tLaHE9ah0vBbe1pSsvn0OISVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=VbB2Av/i; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55cbf3ce8c1so3320910e87.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 07:20:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1755008415; x=1755613215; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMY/csa2U5fal/bu+jvHfhppLjeOUw06LSvQ98vCN+Y=;
+        b=VbB2Av/ilyFpfSAy7GSw5jAA2dcwGrFIjhwLIZLgsPne7uhPCPNnzTq75Z7woz4Wzl
+         1UqV7H/VtZ3RCbcNzZ2tGZEUCT885M+F0G1cljgS9ZjfKsYpuAwrJJYQdvIbiB46m/XZ
+         myEsXrf1cKaTjGoAkDBa27MdEseueIVThlvy0XklSfXw+QuXqPcSsXy5SrU/ZBXqmx8h
+         j232RdLXJt+yX7YvcRjQk6ifwnvbdM+Ffd7EiZSGZ/AVQjdBWJKNGVTiv/nWWWtg99Or
+         bbKAB/fTgvVbdlbOY/mMjHFmnQ53YNG16PB1EYxMLGab2s1PtrNvAZPZZmGV48am4RXV
+         1giQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755008415; x=1755613215;
+        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zMY/csa2U5fal/bu+jvHfhppLjeOUw06LSvQ98vCN+Y=;
+        b=bQX/XdbwX4jAB9ZYqBTp3MWSep2pFk6OeeMiHtbtFsIllfbO9hsWdUM5vQL9BeLDnV
+         OX5HhOcFFcUqkOi3P6f1bjzUR5Xo/2rF1ofdKuPDhvFU0Qms917RtZTQp9LUS5mmrdHH
+         LCOt3EvpY0XSM388da7bfXQrKTUEiPa/cfhDSlp0kwcFlPT162l+k+0s3mEXliqupSZr
+         D7J+geNfSzUZqz5JWxyc+aEevDPGcRc2lFObGbPaiKJikzKiDpn9kUU7a9afs7Z4DweR
+         zki6frbngMnGM1Ux42eGfAF+IdLpn7FKvPslvUn09LLDRO8oEsSUVQVikTN9a1Qmhl4b
+         fo2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWHxg+iBca/XVqz2oJniRxayCPad2STpoqlmpQP235secvcKfVe1dYFwULvJS9a3HMt1FJJi08PFe2v@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzei6MFOvnNryYkd0L32B9FuAr/D7fFjijzzuUBR292RhuIGQZ7
+	osgCXlGQFJ+4/s8yFmpYM9WVGAtEYsNRQyKYs1Wn6dVgzhBM4A00v0Hcmib92CsGUjsyhwxpzIE
+	QlxZmMHSBuUQPQ/4kg6wEJK5f7At6yq+l+huk2TgoKg==
+X-Gm-Gg: ASbGncv3DFOvOIYliSgn3XkipKzmPzTLhoG/URwNDBnGGI3K1SvPjCrmR1VDmZkKz8l
+	YWSLmuphb613ERvsbRHqcnbANIoTlWoFvPQAXdy426qpLLKlOEisbMwo6RsteJ9RE/xeFR9VkbX
+	/lknhCUAeL3waTENTM8xmMy9oWn+UNAjD1HSjZikWUyLg/09gTpnWNnvrBnYLo/yLfJjM57OdWQ
+	X0bILh62a0tNjFfjIwl2BN8xnvKfOVHxsAM
+X-Google-Smtp-Source: AGHT+IHuu5wvW4QtT3XRKQhSqRyAl4ltkuZNueZbz0L47TOdCOtZKGDL/QaBXRZMyQYhkVVn0ozd5KBBIXmm6CR5nec=
+X-Received: by 2002:a05:6512:1193:b0:55b:84b9:9a32 with SMTP id
+ 2adb3069b0e04-55cd7602a4dmr1190170e87.30.1755008414804; Tue, 12 Aug 2025
+ 07:20:14 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Aug 2025 10:20:14 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 12 Aug 2025 10:20:14 -0400
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <f4d04d0c9d72d089af7490c6ce91bb4c455fbffd.1754996033.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250805115216.3798121-5-pritam.sutar@samsung.com>
+References: <cover.1754996033.git.christophe.leroy@csgroup.eu> <f4d04d0c9d72d089af7490c6ce91bb4c455fbffd.1754996033.git.christophe.leroy@csgroup.eu>
+Date: Tue, 12 Aug 2025 10:20:14 -0400
+X-Gm-Features: Ac12FXxJwAJyIiJkerY_ZMj0NVdYlnI0XD6BtSNaGx0TIql8RITghXtjTU4PQzQ
+Message-ID: <CAMRc=MfkaY5AgYrOE7eVSMbkPjWj6+5XLSrFoaSDjzUWX4Dn0Q@mail.gmail.com>
+Subject: Re: [PATCH 2/4] soc: fsl: qe: Change GPIO driver to a proper platform driver
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Qiang Zhao <qiang.zhao@nxp.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
-> Support UTMI+ combo phy for this SoC which is somewhat simmilar to
-> what the existing Exynos850 support does. The difference is that
-> some register offsets and bit fields are defferent from Exynos850.
-> 
-> Add required change in phy driver to support combo HS phy for this SoC.
-> 
-> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+On Tue, 12 Aug 2025 13:02:52 +0200, Christophe Leroy
+<christophe.leroy@csgroup.eu> said:
+> In order to be able to add interrupts to the GPIOs, first change the
+> QE GPIO driver to the proper platform driver in order to allow
+> initialisation to be done in the right order, otherwise the GPIOs
+> get added before the interrupts are registered.
+>
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 > ---
->  drivers/phy/samsung/phy-exynos5-usbdrd.c | 210 +++++++++++++++++++++++
->  1 file changed, 210 insertions(+)
-> 
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> index 5400dd23e500..c22f4de7d094 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -41,6 +41,13 @@
->  #define EXYNOS2200_CLKRST_LINK_PCLK_SEL		BIT(1)
->  
->  #define EXYNOS2200_DRD_UTMI			0x10
+>  drivers/soc/fsl/qe/gpio.c | 88 +++++++++++++++++++++++----------------
+>  1 file changed, 53 insertions(+), 35 deletions(-)
+>
+> diff --git a/drivers/soc/fsl/qe/gpio.c b/drivers/soc/fsl/qe/gpio.c
+> index 8df1e8fa86a5f..b502377193192 100644
+> --- a/drivers/soc/fsl/qe/gpio.c
+> +++ b/drivers/soc/fsl/qe/gpio.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/export.h>
+>  #include <linux/property.h>
+> +#include <linux/platform_device.h>
+>
+>  #include <soc/fsl/qe/qe.h>
+>
+> @@ -295,45 +296,62 @@ void qe_pin_set_gpio(struct qe_pin *qe_pin)
+>  }
+>  EXPORT_SYMBOL(qe_pin_set_gpio);
+>
+> -static int __init qe_add_gpiochips(void)
+> +static int qe_gpio_probe(struct platform_device *ofdev)
+>  {
+> -	struct device_node *np;
+> -
+> -	for_each_compatible_node(np, NULL, "fsl,mpc8323-qe-pario-bank") {
+> -		int ret;
+> -		struct qe_gpio_chip *qe_gc;
+> -		struct of_mm_gpio_chip *mm_gc;
+> -		struct gpio_chip *gc;
+> -
+> -		qe_gc = kzalloc(sizeof(*qe_gc), GFP_KERNEL);
+> -		if (!qe_gc) {
+> -			ret = -ENOMEM;
+> -			goto err;
+> -		}
+> +	struct device *dev = &ofdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	int ret;
+> +	struct qe_gpio_chip *qe_gc;
+> +	struct of_mm_gpio_chip *mm_gc;
+> +	struct gpio_chip *gc;
 > +
-> +/* ExynosAutov920 bits */
-> +#define UTMICTL_FORCE_UTMI_SUSPEND		BIT(13)
-> +#define UTMICTL_FORCE_UTMI_SLEEP		BIT(12)
-> +#define UTMICTL_FORCE_DPPULLDOWN		BIT(9)
-> +#define UTMICTL_FORCE_DMPULLDOWN		BIT(8)
+> +	qe_gc = kzalloc(sizeof(*qe_gc), GFP_KERNEL);
+> +	if (!qe_gc) {
+> +		ret = -ENOMEM;
+> +		goto err;
+> +	}
+>
+> -		spin_lock_init(&qe_gc->lock);
+> +	spin_lock_init(&qe_gc->lock);
+>
+> -		mm_gc = &qe_gc->mm_gc;
+> -		gc = &mm_gc->gc;
+> +	mm_gc = &qe_gc->mm_gc;
+> +	gc = &mm_gc->gc;
+>
+> -		mm_gc->save_regs = qe_gpio_save_regs;
+> -		gc->ngpio = QE_PIO_PINS;
+> -		gc->direction_input = qe_gpio_dir_in;
+> -		gc->direction_output = qe_gpio_dir_out;
+> -		gc->get = qe_gpio_get;
+> -		gc->set = qe_gpio_set;
+> -		gc->set_multiple = qe_gpio_set_multiple;
+> +	mm_gc->save_regs = qe_gpio_save_regs;
+> +	gc->ngpio = QE_PIO_PINS;
+> +	gc->direction_input = qe_gpio_dir_in;
+> +	gc->direction_output = qe_gpio_dir_out;
+> +	gc->get = qe_gpio_get;
+> +	gc->set = qe_gpio_set;
+> +	gc->set_multiple = qe_gpio_set_multiple;
+>
+> -		ret = of_mm_gpiochip_add_data(np, mm_gc, qe_gc);
+> -		if (ret)
+> -			goto err;
+> -		continue;
+> +	ret = of_mm_gpiochip_add_data(np, mm_gc, qe_gc);
+
+Actually scratch my R-b, on second glance - this should now be
+replaced with devm_gpiochip_add_data(). I don't see anything that
+would be in the way now that it's an actuall platform device.
+
+Bartosz
+
+> +	if (!ret)
+> +		return 0;
+>  err:
+> -		pr_err("%pOF: registration failed with status %d\n",
+> -		       np, ret);
+> -		kfree(qe_gc);
+> -		/* try others anyway */
+> -	}
+> -	return 0;
+> +	dev_err(dev, "registration failed with status %d\n", ret);
+> +	kfree(qe_gc);
 > +
->  #define EXYNOS2200_UTMI_FORCE_VBUSVALID		BIT(1)
->  #define EXYNOS2200_UTMI_FORCE_BVALID		BIT(0)
->  
-> @@ -250,6 +257,22 @@
->  #define EXYNOS850_DRD_HSP_TEST			0x5c
->  #define HSP_TEST_SIDDQ				BIT(24)
->  
-> +#define EXYNOSAUTOV920_DRD_HSP_CLKRST		0x100
-> +#define HSPCLKRST_PHY20_SW_PORTRESET		BIT(3)
-> +#define HSPCLKRST_PHY20_SW_POR			BIT(1)
-> +#define HSPCLKRST_PHY20_SW_POR_SEL		BIT(0)
+> +	return ret;
+> +}
 > +
-> +#define EXYNOSAUTOV920_DRD_HSPCTL		0x104
-> +#define HSPCTRL_VBUSVLDEXTSEL			BIT(13)
-> +#define HSPCTRL_VBUSVLDEXT			BIT(12)
-> +#define HSPCTRL_EN_UTMISUSPEND			BIT(9)
-> +#define HSPCTRL_COMMONONN			BIT(8)
+> +static const struct of_device_id qe_gpio_match[] = {
+> +	{
+> +		.compatible = "fsl,mpc8323-qe-pario-bank",
+> +	},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, qe_gpio_match);
 > +
-> +#define EXYNOSAUTOV920_DRD_HSP_TEST		0x10c
+> +static struct platform_driver qe_gpio_driver = {
+> +	.probe		= qe_gpio_probe,
+> +	.driver		= {
+> +		.name	= "qe-gpio",
+> +		.of_match_table	= qe_gpio_match,
+> +	},
+> +};
 > +
-> +#define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
-> +#define HSPPLLTUNE_FSEL				GENMASK(18, 16)
-> +
->  /* Exynos9 - GS101 */
->  #define EXYNOS850_DRD_SECPMACTL			0x48
->  #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL		GENMASK(13, 12)
-> @@ -2054,6 +2077,139 @@ static const struct exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
->  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
->  };
->  
-> +static void
-> +exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
+> +static int __init qe_gpio_init(void)
 > +{
-> +	void __iomem *reg_phy = phy_drd->reg_phy;
-> +	u32 reg;
-> +
-> +	/*
-> +	 * Disable HWACG (hardware auto clock gating control). This
-> +	 * forces QACTIVE signal in Q-Channel interface to HIGH level,
-> +	 * to make sure the PHY clock is not gated by the hardware.
-> +	 */
-> +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
-> +	reg |= LINKCTRL_FORCE_QACT;
-> +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
-
-maybe add a read-modify-write helper, this is user a lot here
-
-> +
-> +	/* De-assert link reset */
-> +	reg = readl(reg_phy + EXYNOS2200_DRD_CLKRST);
-> +	reg &= ~CLKRST_LINK_SW_RST;
-> +	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST);
-> +
-> +	/* Set PHY POR High */
-> +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
-> +	reg |= HSPCLKRST_PHY20_SW_POR | HSPCLKRST_PHY20_SW_POR_SEL;
-> +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSP_CLKRST);
-> +
-> +	/* Enable UTMI+ */
-> +	reg = readl(reg_phy + EXYNOS2200_DRD_UTMI);
-> +	reg &= ~(UTMICTL_FORCE_UTMI_SUSPEND | UTMICTL_FORCE_UTMI_SLEEP |
-> +		UTMICTL_FORCE_DPPULLDOWN | UTMICTL_FORCE_DMPULLDOWN);
-> +	writel(reg, reg_phy + EXYNOS2200_DRD_UTMI);
-> +
-> +	/* set phy clock & control HS phy */
-> +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
-> +	reg |= HSPCTRL_EN_UTMISUSPEND | HSPCTRL_COMMONONN;
-> +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
-> +
-> +	fsleep(100);
-> +
-> +	/* Set VBUS Valid and DP-Pull up control by VBUS pad usage */
-> +	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
-> +	reg |= FIELD_PREP_CONST(LINKCTRL_BUS_FILTER_BYPASS, 0xf);
-> +	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
-> +
-> +	reg = readl(reg_phy + EXYNOS2200_DRD_UTMI);
-> +	reg |= EXYNOS2200_UTMI_FORCE_VBUSVALID | EXYNOS2200_UTMI_FORCE_BVALID;
-> +	writel(reg, reg_phy + EXYNOS2200_DRD_UTMI);
-> +
-> +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
-> +	reg |= HSPCTRL_VBUSVLDEXTSEL | HSPCTRL_VBUSVLDEXT;
-> +	writel(reg, reg_phy + EXYNOSAUTOV920_DRD_HSPCTL);
-> +
-> +	/* Setting FSEL for refference clock */
-> +	reg = readl(reg_phy + EXYNOSAUTOV920_DRD_HSPPLLTUNE);
-> +	reg &= ~HSPPLLTUNE_FSEL;
-
-Empty line here please
-
-> +	switch (phy_drd->extrefclk) {
-> +	case EXYNOS5_FSEL_50MHZ:
-> +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 7);
-> +		break;
-> +	case EXYNOS5_FSEL_26MHZ:
-> +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 6);
-> +		break;
-> +	case EXYNOS5_FSEL_24MHZ:
-> +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 2);
-> +		break;
-> +	case EXYNOS5_FSEL_20MHZ:
-> +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 1);
-> +		break;
-> +	case EXYNOS5_FSEL_19MHZ2:
-> +		reg |= FIELD_PREP(HSPPLLTUNE_FSEL, 0);
-> +		break;
-> +	default:
-> +		dev_warn(phy_drd->dev, "unsupported ref clk: %#.2x\n",
-> +			 phy_drd->extrefclk);
-
-but we still continue?
--- 
-~Vinod
+> +	return platform_driver_register(&qe_gpio_driver);
+>  }
+> -arch_initcall(qe_add_gpiochips);
+> +arch_initcall(qe_gpio_init);
+> --
+> 2.49.0
+>
+>
 
