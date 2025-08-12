@@ -1,152 +1,173 @@
-Return-Path: <devicetree+bounces-203507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F836B21A62
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 03:48:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDCFB21A85
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 04:04:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA49A466181
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 01:47:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E11CD3BCEE5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 02:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A292F2248A0;
-	Tue, 12 Aug 2025 01:46:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xfj/hVMj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0878D2E36E9;
+	Tue, 12 Aug 2025 02:03:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B0A2D97BD
-	for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 01:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12092D6E4F;
+	Tue, 12 Aug 2025 02:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1754963183; cv=none; b=VymUmLSXPgfZb5w6e8Bj9eRcpqHnPFQmWWqLClUfOtY+OIvqW2KnT2IiD2HcD7atyhTaZ/2Ig8Li3pBHsmFw4gErueVXJBPIR0OauOyBcmh+EcCRvywvR5MNJphOLwzQUBqEW5xmjVHv3XF7NtmNP4AiHkQ47vg36Qq7hQP4fdU=
+	t=1754964211; cv=none; b=TIaiHgQ8XPhXBEHJi4/EdImpVfexI5DjewSciRduRvB1i3IryCbZDLHMTTLufjCFZafpzI3fG9fcWv6TPINKOqEj31ADB3usZ5U7nZvu7gyGDiJRB96MYgBGIlO5jQ/gmgkpaKwReuXRaUHLv559/i93Vz0nJx+j5OOyiVouQSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1754963183; c=relaxed/simple;
-	bh=NgumnPkAJTRAFscuaIVCaroO0OwDgnOyT2oZmvnvPqM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LpT9XMyajxFkEtUmJvaoOqj+lCDkCjkgGd6+SUmRi37Zt0PrQGoc/gUk4X6bChqiZgI9X+0PrVh9Eo/LWMzRBCW+6EY2SkCU1cSopQMUqUWafGReSKbiw/p5mj8HqEc8T/uFMlZyciV7SMNuiy8HPUf0V6AqB/aNfON1A+1jUq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xfj/hVMj; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-617b36cc489so9710494a12.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Aug 2025 18:46:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1754963180; x=1755567980; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WYaz1/uT9oyZjCyu9oVfjnYhAs3G+DnESiLkCTuz8Uc=;
-        b=Xfj/hVMjzSxKKmnpIGDZOkhXdTXn3mhG6QuRbE2f5/8l6ZLlSxlkp96blwl3rqfZXk
-         cd7ehZvh6K8FICgPj2dCUrHAOLyTiAOS1hTPDCcP0UH7fedCE+80DgOTZX2ZI0pLUOFT
-         52K+QQ5rQn3blHTXoSin8pXh5ciDatiVTnfBfmpyPafUkX5r/95rLKGlz2yjOUePnH9X
-         hWOirnvlNdh8tHOnnbkNtVhQv+Dy2yyyZAxVTLtQ62u7Ap2BQjMcl0Ogj1jrng5rh/9A
-         t/BFST5FaK8eojLnFb3ScIiYSEkxRRF8If0wzxgHkX935wlF8uOio6VjUJfppD/69Byj
-         cFqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1754963180; x=1755567980;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WYaz1/uT9oyZjCyu9oVfjnYhAs3G+DnESiLkCTuz8Uc=;
-        b=rfCWBuecrmNXKpBRXtaVlSTBQtaBwyROdzblkzD9FX7oDziiP+3rKDkuPmfMzypEBR
-         wd6K4ri2AcBdox85r6uV1ysjbppPWrYgDN2lFRILzCkhpsakJppTjrysoq7oHnzfTpj/
-         A9dHo4K6A2JBkr/BZYcKcFHs5cUj5i9R7qXUZjKm/cdINSmmaoBlK5tf8gRyOAc/nO8p
-         /9Z5e7n0pdqtv2bkKCuFbTyWOAyZxU+cUo+9qNDCa/j+Q6S14Ooa9nHkLGsCMDixxUbU
-         2WZv3hKsqi+tbG/o9XIzEwXrPwF7r4X4/67UjblT7STA6NNisxPbPjZ3w+wd5TU+7jwy
-         vnmg==
-X-Forwarded-Encrypted: i=1; AJvYcCWLVNlmJFtnkkIV3sQa6rSuL8ucFMMbYXfyrrILFPuIzk27385ss1fKiaj5RTDUR4mXuPhtTbIPZpTO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKjWk9MsTOsPemaxkuRpLIKpb3mpuOo43WEVz8AAfAVmN9ZnKe
-	MNbiZyOX40u818aWWL+HJ/Oy+Jo3r4LbkqfAkmuLPYdo4NrB4J0k/0qUTpo9H8Gx0b50pY/EHwN
-	F91PNse0h8wa37h/X8tExNkIBpLSEc0vLWCojZhE=
-X-Gm-Gg: ASbGnct6iN6ZzeNTcCbwmVQI83BJ2jQQhdx5FiFDMnLbr+1xxNe7evkZ7VnwofDMEHK
-	HHE2NYlLOP6vXdNF5F3IyQr3FUEBaPd2A6WmnhaBKx+Eu3Are45jVxqEMmC/j6QR8ROjbPJ1xrJ
-	IJNTKxCH3Hhy5oNat8ca/ACYLjmLUWnKx4h1Cks+YkHBY+AGx4s4A2ZnJ64ikRKUnBTDY/LM1bT
-	fN6shA=
-X-Google-Smtp-Source: AGHT+IGgBsPd0ik++HxOLBsaEV8zW5o8TFHwtEZ/G5uBZxwRtTAQ1Zhq97IMhlh4+r1CKAUkXGwVqxKI7eSRs6med2s=
-X-Received: by 2002:a17:907:72c5:b0:ace:d710:a8d1 with SMTP id
- a640c23a62f3a-afa1e087ebdmr143285266b.24.1754963179717; Mon, 11 Aug 2025
- 18:46:19 -0700 (PDT)
+	s=arc-20240116; t=1754964211; c=relaxed/simple;
+	bh=UgIV8Iw+C6RHzQ/Qww8vam7v+73LkHgRGgp/J/479BE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=S1oIV4Paz3h7ui+WDOkSzQoLbiMiZnThMOOODJQb6fkpSyjKAYxNo1H6YILG2AHOzYU9ni5jM0svygp0kCOPvhVVR1s71j5CPvsENRYQKIRFv6yCxbsq7z00H5uCsVxP+AXFcRYckHK+dYCwXoHvvwOfb/jDYvPjzpyb6YPX19A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [127.0.0.2] (unknown [114.241.87.235])
+	by APP-03 (Coremail) with SMTP id rQCowAB3DH7LoJpoRIQaCw--.31870S2;
+	Tue, 12 Aug 2025 10:02:52 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH net-next v5 0/5] Add Ethernet MAC support for SpacemiT K1
+Date: Tue, 12 Aug 2025 10:02:16 +0800
+Message-Id: <20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1754890670.git.zhoubinbin@loongson.cn> <89732d64415077ecd9f74c5853c542e62c0dfe26.1754890670.git.zhoubinbin@loongson.cn>
- <aJox6R9eCZ5vSc7H@pie>
-In-Reply-To: <aJox6R9eCZ5vSc7H@pie>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Tue, 12 Aug 2025 09:46:07 +0800
-X-Gm-Features: Ac12FXz0ARLdniv0c7AvZGZa7aD_nYfFRofkgvyicNZC2-pOKF37F5dYWwU43vI
-Message-ID: <CAMpQs4+3iAYWkDKf67=+0wXSgZmg+fC7p5kFst0fushpWscuaA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] mtd: rawnand: loongson: Add Loongson-2K0500 NAND
- controller support
-To: Yao Zi <ziyao@disroot.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Keguang Zhang <keguang.zhang@gmail.com>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mtd@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKigmmgC/2XOTU7DMBAF4KtEXuNo7PgvXXEPxMJMxtRCcYodo
+ qIqd8ekSDTtcjTvezMXVihHKuzQXFimJZY4pTrop4bh0ad34nGoM5MgNRgwPNHMPwSn0SPvSDi
+ hwZE3ilVxyhTieWt7Yb/BROeZvV43mT6/av38t37zhThO4xjnQ7OYVlieUWzhYyzzlL+3nxaxp
+ a/nRbc7vwgOHNGEnrQAY+xzLOhL67HFtDUt8la7vZZV9yroAFZK692j7v61BbnXXdXOyQG1VqB
+ C96jVrb77XFVtnBmgR4Xh/va6rj/F+9TNmQEAAA==
+X-Change-ID: 20250606-net-k1-emac-3e181508ea64
+To: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Vivian Wang <wangruikang@iscas.ac.cn>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, 
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-CM-TRANSID:rQCowAB3DH7LoJpoRIQaCw--.31870S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxur4fKrWkGryxKryxWry7trb_yoW5tFWxpF
+	W8ZFZI9397JrWIgrs7uw47uF93Xan5t343WF15t395Xa1DAFyUAr9akw43Cr1UZrWrJ342
+	y3WUZrn7CFyDA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+	6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+	4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+	CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+	nIWIevJa73UjIFyTuYvjTRNJ5oDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-HI Yao:
+SpacemiT K1 has two gigabit Ethernet MACs with RGMII and RMII support.
+Add devicetree bindings, driver, and DTS for it.
 
-Thanks for your reply.
+Tested primarily on BananaPi BPI-F3. Basic TX/RX functionality also
+tested on Milk-V Jupiter.
 
-On Tue, Aug 12, 2025 at 2:09=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
->
-> On Mon, Aug 11, 2025 at 02:03:13PM +0800, Binbin Zhou wrote:
-> > The Loongson-2K0500 NAND controller is similar to the Loongson-1C.
-> >
-> > It supports a maximum capacity of 16GB FLASH per chip with a maximum
-> > page size of 8KB, and it supports up to 4 chip selects and 4 RDY
-> > signals.
-> >
-> > Its DMA controller is defaulted to APBDMA0.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  drivers/mtd/nand/raw/Kconfig                  |  2 +-
-> >  .../mtd/nand/raw/loongson-nand-controller.c   | 55 ++++++++++++++++++-
-> >  2 files changed, 54 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfi=
-g
-> > index d9e3f13666ac..7b0c5d06aa95 100644
-> > --- a/drivers/mtd/nand/raw/Kconfig
-> > +++ b/drivers/mtd/nand/raw/Kconfig
-> > @@ -464,7 +464,7 @@ config MTD_NAND_NUVOTON_MA35
-> >
-> >  config MTD_NAND_LOONGSON
-> >       tristate "Loongson NAND controller"
-> > -     depends on LOONGSON1_APB_DMA || COMPILE_TEST
-> > +     depends on LOONGSON1_APB_DMA || LOONGSON2_APB_DMA || COMPILE_TEST
->
-> Why is this dependency necessary? I think the DMA operations are done
-> through DMAengine API, and thus the consumer decouples with the DMA
-> provider. If so, I think the depends line should be removed, instead of
-> extended.
+I would like to note that even though some bit field names superficially
+resemble that of DesignWare MAC, all other differences point to it in
+fact being a custom design.
 
-This is an existing execution dependency. Although there is no
-guarantee that it will work with other DMA engines in the future, only
-this combination has been tested and proven to be correct at present.
-Therefore, I would still like to retain this dependency.
->
-> Regards,
-> Yao Zi
->
-> >       select REGMAP_MMIO
-> >       help
-> >         Enables support for NAND controller on Loongson family chips.
+Based on SpacemiT drivers [1]. These patches are also available at:
 
+https://github.com/dramforever/linux/tree/k1/ethernet/v5
 
---=20
-Thanks.
-Binbin
+[1]: https://github.com/spacemit-com/linux-k1x
+
+---
+Changes in v5:
+- Rebased on v6.17-rc1, add back DTS now that they apply cleanly
+- Use standard statistics interface, handle 32-bit statistics overflow
+- Minor changes:
+  - Fix clock resource handling in emac_resume
+  - Ratelimit the message in emac_rx_frame_status
+  - Add ndo_validate_addr = eth_validate_addr
+  - Remove unnecessary parens in emac_set_mac_addr
+  - Change some functions that never fail to return void instead of int
+  - Minor rewording
+- Link to v4: https://lore.kernel.org/r/20250703-net-k1-emac-v4-0-686d09c4cfa8@iscas.ac.cn
+
+Changes in v4:
+- Resource handling on probe and remove: timer_delete_sync and
+  of_phy_deregister_fixed_link
+- Drop DTS changes and dependencies (will send through SpacemiT tree)
+- Minor changes:
+  - Remove redundant phy_stop() and setting of ndev->phydev
+  - Fix error checking for emac_open in emac_resume
+  - Fix one missed dev_err -> dev_err_probe
+  - Fix type of emac_start_xmit
+  - Fix one missed reverse xmas tree formatting
+  - Rename some functions for consistency between emac_* and ndo_*
+- Link to v3: https://lore.kernel.org/r/20250702-net-k1-emac-v3-0-882dc55404f3@iscas.ac.cn
+
+Changes in v3:
+- Refactored and simplified emac_tx_mem_map
+- Addressed other minor v2 review comments
+- Removed what was patch 3 in v2, depend on DMA buses instead
+- DT nodes in alphabetical order where appropriate
+- Link to v2: https://lore.kernel.org/r/20250618-net-k1-emac-v2-0-94f5f07227a8@iscas.ac.cn
+
+Changes in v2:
+- dts: Put eth0 and eth1 nodes under a bus with dma-ranges
+- dts: Added Milk-V Jupiter
+- Fix typo in emac_init_hw() that broke the driver (Oops!)
+- Reformatted line lengths to under 80
+- Addressed other v1 review comments
+- Link to v1: https://lore.kernel.org/r/20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn
+
+---
+Vivian Wang (5):
+      dt-bindings: net: Add support for SpacemiT K1
+      net: spacemit: Add K1 Ethernet MAC
+      riscv: dts: spacemit: Add Ethernet support for K1
+      riscv: dts: spacemit: Add Ethernet support for BPI-F3
+      riscv: dts: spacemit: Add Ethernet support for Jupiter
+
+ .../devicetree/bindings/net/spacemit,k1-emac.yaml  |   81 +
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   46 +
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   46 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   48 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |   22 +
+ drivers/net/ethernet/Kconfig                       |    1 +
+ drivers/net/ethernet/Makefile                      |    1 +
+ drivers/net/ethernet/spacemit/Kconfig              |   29 +
+ drivers/net/ethernet/spacemit/Makefile             |    6 +
+ drivers/net/ethernet/spacemit/k1_emac.c            | 2051 ++++++++++++++++++++
+ drivers/net/ethernet/spacemit/k1_emac.h            |  422 ++++
+ 11 files changed, 2753 insertions(+)
+---
+base-commit: 062b3e4a1f880f104a8d4b90b767788786aa7b78
+change-id: 20250606-net-k1-emac-3e181508ea64
+
+Best regards,
+-- 
+Vivian "dramforever" Wang
+
 
