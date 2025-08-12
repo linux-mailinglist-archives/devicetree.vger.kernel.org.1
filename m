@@ -1,92 +1,113 @@
-Return-Path: <devicetree+bounces-203905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-203906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6451B22E39
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:51:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6693FB22E5B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 18:56:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4D13681CD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:43:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D1D03A8371
+	for <lists+devicetree@lfdr.de>; Tue, 12 Aug 2025 16:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF9D82FF152;
-	Tue, 12 Aug 2025 16:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056AD2FA0E9;
+	Tue, 12 Aug 2025 16:54:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewk+AaHK"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="xGdc/awl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06BD2FF14F;
-	Tue, 12 Aug 2025 16:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56932263F22;
+	Tue, 12 Aug 2025 16:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755016913; cv=none; b=BYl2IudtYCwvdLuIhCOXlWuvKvFOG3/CFib2kMMe7jxB15pyeGvfBcRkDHPltgtgegCBwdtTfcMc6BwGFH4cM+P08ouFvBgd27qieBg6FA0zVC7Bdvm5PdX+uZIpxouGwwYEOEbzoPW4T1yi45CW8bv2vLU71+ig3p7z8r4Nlf4=
+	t=1755017664; cv=none; b=AwUeMrkGTyC2z6CJ51BfC63ykj3x59y1QIyaS/W89C5ds66Dh35vF/Am4MxTqeUMIQcfzrf4tQNjdPCImGdtEiNhFGbSii5asSaPRkk6KRs7vIt5RH/8IaVzQUtn8yV+yYJ3+qXdz0yUJ33ioBtojrqmv1pfpqHK/10QRzVaFgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755016913; c=relaxed/simple;
-	bh=yQgCyFgmlpiQfbU/3+VFXyd2IaPslpZXj/9VuPOztFU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LQTdomjD6pz8r53GY9xqHyBXBIzrhksJtRlXwUds7FJVhaAaVOWIMzrcrmVD/byI13+TSeHSTe+ub85yfR3aFGYZyw459Kn5xrSPuIqP6v2dcDDDRsJsEHzGDA9InD2w+su2VEZIZkA4FYIxdjLI09NaTg2gyOBw20FiBK4ExAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewk+AaHK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EF14C4CEF7;
-	Tue, 12 Aug 2025 16:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755016913;
-	bh=yQgCyFgmlpiQfbU/3+VFXyd2IaPslpZXj/9VuPOztFU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ewk+AaHKTP1J9VFrYB8nT2+5Cg6D99RsW5lyPD5+L4I9I3n5OXVHxm0slnz96N0YG
-	 0YJO2IlR9zkGQeJWz/xSSPneYp+3Rt97D3i001ieiFK7jJafOkDEswF/T40lhMcwMc
-	 JZfNFW6SOmdS7akXx03Mc+tMlplQSugtAa11JrY/KF9FerNQHVZvDAGNWTGjvQWa+6
-	 9+WOvGdZRFW7cpimtjagJFHJ3OA4VknEt4L9bH/2hMT2vwekHZ+sReTRYhxRlWGyxv
-	 cQo3N0Bq30hyDY4vSkbwfnZ8vZgSRRhE/CRSRfgDJ/DnqxLNtfZYyyBYd7h6bS7I/x
-	 fi0gydERTUPDQ==
-From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250709-sm7635-eusb-repeater-v2-0-b6eff075c097@fairphone.com>
-References: <20250709-sm7635-eusb-repeater-v2-0-b6eff075c097@fairphone.com>
-Subject: Re: [PATCH v2 0/4] Add support for eUSB2 repeater on PMIV0104
-Message-Id: <175501690862.633310.534963018208999296.b4-ty@kernel.org>
-Date: Tue, 12 Aug 2025 22:11:48 +0530
+	s=arc-20240116; t=1755017664; c=relaxed/simple;
+	bh=/qn5HyjejE8OObLaU00F8rwyy1m3kk48b055lsc1nYQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SmbwGPP5JgSdGWWUZvabJmF0MYMNS5sNLxh5NZlsm8IUY4js1RbWx/SWxDqh77+VUqtplnAEM94lvkiLpUMXu4wqnXRwdFcTx5uSGiQVI5sO6dNd7rhtXU9laNP8xCqelXEd6vPsLlu978WoxZk2Wt+wTY2r+16igcxs9ipss60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=xGdc/awl; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=1SxDAKOHuKo6/4q/wwaqNCQYQq81PZ4obbS2L6Mwp/k=; b=xGdc/awlWFGNckXmwjToLVREYM
+	a2X70y6ewzvP+SNCnkWmFdSGXtNGeG1Styz2eWfCXh8z0aCOSvkAV0LvKUN+W0kCKxEbbEIWW//eM
+	Lmu5l/4u58fjz1aGM1MPHmugHnrvBwoco5EqxdaPTEYXWb31Bgx87KajikX6O49ubhQuhHPdzHhZk
+	iQOv+PullK/SuJ01MEXALeRLUvJ0zi+B6WYBZ+tw0iQo6IBD4fiuWLFNQarf5QlyEFbSs2UHmx+ae
+	s9/Jn7sN9SQ40iXD001VfLoiojhABmlzI9+aG4LR+w9mmZq+AZ6VuEPVdtCfdU6csZZPD8HqpeREP
+	ZNGcsRgg==;
+Received: from [50.53.25.54] (helo=[192.168.254.17])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1ulsGQ-0000000BU2A-0rUS;
+	Tue, 12 Aug 2025 16:54:18 +0000
+Message-ID: <5ee33ac3-c23e-4da7-87bc-2a5ea6e93afe@infradead.org>
+Date: Tue, 12 Aug 2025 09:54:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lei Wei <quic_leiwei@quicinc.com>,
+ Suruchi Agarwal <quic_suruchia@quicinc.com>,
+ Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+ quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com
+References: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
+ <20250812-qcom_ipq_ppe-v7-3-789404bdbc9a@quicinc.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250812-qcom_ipq_ppe-v7-3-789404bdbc9a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
 
 
-On Wed, 09 Jul 2025 16:55:13 +0200, Luca Weiss wrote:
-> Add a new property qcom,tune-res-fsdif for the eUSB2 repeater and add
-> the compatible for the repeater on the PMIV0104 PMIC.
-> 
-> 
 
-Applied, thanks!
+On 8/12/25 7:10 AM, Luo Jie wrote:
+> diff --git a/drivers/net/ethernet/qualcomm/Kconfig b/drivers/net/ethernet/qualcomm/Kconfig
+> index a4434eb38950..6e56b022fc2d 100644
+> --- a/drivers/net/ethernet/qualcomm/Kconfig
+> +++ b/drivers/net/ethernet/qualcomm/Kconfig
+> @@ -60,6 +60,21 @@ config QCOM_EMAC
+>  	  low power, Receive-Side Scaling (RSS), and IEEE 1588-2008
+>  	  Precision Clock Synchronization Protocol.
+>  
+> +config QCOM_PPE
+> +	tristate "Qualcomm Technologies, Inc. PPE Ethernet support"
+> +	depends on HAS_IOMEM && OF
+> +	depends on COMMON_CLK
+> +	select REGMAP_MMIO
+> +	help
+> +	  This driver supports the Qualcomm Technologies, Inc. packet
+> +	  process engine (PPE) available with IPQ SoC. The PPE includes
+> +	  the ethernet MACs, Ethernet DMA (EDMA) and switch core that
 
-[1/4] dt-bindings: phy: qcom,snps-eusb2-repeater: Document qcom,tune-res-fsdif
-      commit: 47e9b6f601932899280f725b0fdbc4d4f85e2719
-[2/4] phy: qualcomm: phy-qcom-eusb2-repeater: Support tune-res-fsdif prop
-      commit: 8e086fe190b63ef1d0d31b300bfefb5d00217427
-[3/4] dt-bindings: phy: qcom,snps-eusb2-repeater: Add compatible for PMIV0104
-      commit: eb86c2ce4a89157da71d3a7953eac4dcde7d5527
-[4/4] phy: qualcomm: phy-qcom-eusb2-repeater: Add support for PMIV0104
-      commit: 8427a4ca85b36247cb2c055ec7507a78a19246ad
+Please use ethernet or Ethernet consistently.
 
-Best regards,
+> +	  supports L3 flow offload, L2 switch function, RSS and tunnel
+> +	  offload.
+> +
+> +	  To compile this driver as a module, choose M here. The module
+> +	  will be called qcom-ppe.
+> +
 -- 
-~Vinod
-
+~Randy
 
 
