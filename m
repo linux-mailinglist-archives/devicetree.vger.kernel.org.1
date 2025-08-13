@@ -1,148 +1,101 @@
-Return-Path: <devicetree+bounces-204101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEED1B2413B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:16:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1BCB2415C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7286B18886E0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:15:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B45A41B6430D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAED2C159A;
-	Wed, 13 Aug 2025 06:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52DB82D29D7;
+	Wed, 13 Aug 2025 06:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O33T+d1J"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="HzBv5nVG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D05F72C1585;
-	Wed, 13 Aug 2025 06:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5E52D1F5E;
+	Wed, 13 Aug 2025 06:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755065696; cv=none; b=WGfzHyq1tNKj+BftAjLqp6WIDmrAgf+EFgGxUNsD68CE9HnNaoim5tlJEZUEzDydPlk95RKVUL+0+8fztMdtHmyik+9uRu9sAQq8bEgAlkrl365Aj6/vhz+qSHiMpQxhLj8M0x+yeOEHjqsWxBgQuNWLdpaeVgg3HGkCZKTYuQI=
+	t=1755066103; cv=none; b=pwzYA1kLfDhOlK+JHtrLHpIwdAR8MdByeIQXn4Vn3pJsN+qHMJ71tqDYV8wzqT7I4YUSkIsrcKxI8M4RxB5e+GIWrpdco7+88VGc+0unIOtpmGv7drZPbKxZ02xsxgLe8zmPoO2JKF64Hqf0zbGJAy+SFfDEYE0OrcrBKGalrAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755065696; c=relaxed/simple;
-	bh=zzBXjnqtqb37/MzYYMO6Uyf3zcc5YvizBUv3VzMi2Us=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C9ZtgSAHKtLt0gqoAFEzdmanmhOoVjNaScu1YipK8RzJn0Dq04fL5z/BolT/+00Qdj2EAUxqbVaMcphsLjfXE6Zu9m6GVvJSA06wSrZ+iheS+Dwd5F0opSHIo1ClUAxEBha+RhAs0eFoLfZE7+B0511aXatrRHgg60B57BNjBQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O33T+d1J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91660C4CEED;
-	Wed, 13 Aug 2025 06:14:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755065696;
-	bh=zzBXjnqtqb37/MzYYMO6Uyf3zcc5YvizBUv3VzMi2Us=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=O33T+d1JsC78QxBBvqf9ksBCOSsxHSE2PurdBROZFAsOR5zXHxoDnYCgsACUitmUN
-	 6eeMPIMcHGZIRCOSyazKNuA+ZkfHPzPgfhtJO5UNSEtX2+LNL5uEmahTf8SNJBrT4s
-	 AR6fY8oUVNpa6cIeMZZHSs+H1Qe29xyPgUmLzA5pTLilCQ77lgXuxpjuV6WgDNqdr/
-	 alwfOZuzkGTCq9CAUXwzZbgTkmnUOUPylHBr6A+CDR4O2D4VM6Sc1mrpmcDkOQTnxx
-	 M1RY5GYsYHI7GM+b8QXuDq+TfEs6yFpdZV4jAT0Eki0Z//d1ztXPtKdBLaJ4qmlsj7
-	 xTi+86Abt+U1g==
-Message-ID: <074fcd4c-0da8-42c4-a567-64fa7e173894@kernel.org>
-Date: Wed, 13 Aug 2025 08:14:51 +0200
+	s=arc-20240116; t=1755066103; c=relaxed/simple;
+	bh=R7BUrhaHlE+9M6miAsWQi4bAbzafiOq8uvLGBAzIAq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iSwYQl3aIJPP7hU0p679fhJ6GrYPyDGQo6y+lDpN7apF7/RivymgbRR/3OEvq9UIVTduiJAB0CU1ZIIy36Dn8ZjddimFIF/Rpe8BkYiaKusg0BUHSZ99yFYE4LAE9BolgVi1FZSghQBAncLLSX/laHtqLHOg8XQHtbunrYHlXkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=HzBv5nVG; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4c1yv037m5z9tqW;
+	Wed, 13 Aug 2025 08:21:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1755066092;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R7BUrhaHlE+9M6miAsWQi4bAbzafiOq8uvLGBAzIAq4=;
+	b=HzBv5nVGPMRSRR+YMjdElj5iR8abwMaCcLgwvslaKMttaQtz7TZWp0D012lWeiC0mBQwP4
+	iEL5a34Oq95fDINHh55H2Gp7jkqaaQDR2IoY2pokHWu4pSBw6ljpXomuBNJb3QZzNPkOnT
+	XR9ZatcRvodI6+Svxi0KIw4EICZ1PAc7PEuURzjEL8lObPgg4eaARKRYl87L6chkacD1Jn
+	JDLK3BkUw1CijUJOVH3FsvTXVTTft2t35KdDYvwZwlKvtai6T28u7VZEJMocO+eKxPJMW7
+	ekajwyq1V5ZRzZsCgN/IcnmItCdxb0onu8FoR+FwzFm/AszAdNJ912RsSsJJyg==
+Date: Wed, 13 Aug 2025 08:21:25 +0200
+From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
+ <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Richard Cochran
+ <richardcochran@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
+Subject: Re: [net-next RESEND v17 00/12] net: mtip: Add support for MTIP
+ imx287 L2 switch driver
+Message-ID: <20250813082125.7ccb3089@wsk>
+In-Reply-To: <20250812185044.4381fae8@kernel.org>
+References: <20250812082939.541733-1-lukasz.majewski@mailbox.org>
+	<20250812185044.4381fae8@kernel.org>
+Organization: mailbox.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: rtc: Add Apple SMC RTC
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org
-References: <20250812-wip-smc-rtc-v1-0-66a8e96dad60@kernel.org>
- <20250812-wip-smc-rtc-v1-1-66a8e96dad60@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250812-wip-smc-rtc-v1-1-66a8e96dad60@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-MBO-RS-META: uwo1t4bs5scuz11ixqc31chge76m7mni
+X-MBO-RS-ID: aec305653413cba275c
 
-On 12/08/2025 20:25, Sven Peter wrote:
-> +maintainers:
-> +  - Sven Peter <sven@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: apple,smc-rtc
-> +
+Hi Jakub,
 
-No resources except nvmem? This should be folded into the parent. Don't
-create device node to instantiate drivers.
+> On Tue, 12 Aug 2025 10:29:27 +0200 Lukasz Majewski wrote:
+> > This patch series adds support for More Than IP's L2 switch driver
+> > embedded in some NXP's SoCs. This one has been tested on imx287,
+> > but is also available in the vf610. =20
+>=20
+> The arch/arm patches don't apply to net-next any more.
+> Perhaps we should take this opportunity to drop them?
+> We will really only apply the bindings and the driver code.
+> dts and arch/ code need to go to the appropriate arch maintainer..
 
-> +  nvmem-cells:
-> +    items:
-> +      - description: 48bit RTC offset, specified in 32768 (2^15) Hz clock ticks
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: rtc_offset
-> +
-> +required:
-> +  - compatible
-> +  - nvmem-cells
-> +  - nvmem-cell-names
-> +
-> +additionalProperties: false
+Ok. I will remove them from the patch set and resubmit to arm tree.
 
-Missing example. If this is part of other device (like MFD), then the
-one there should be extended here.
-
-> 
-
-
+--=20
 Best regards,
-Krzysztof
+
+=C5=81ukasz Majewski
 
