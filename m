@@ -1,157 +1,120 @@
-Return-Path: <devicetree+bounces-204251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05FBB24BDC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:29:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB40FB24BFF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:35:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 509AE882D03
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 14:29:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E11E5A2E20
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 14:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E249B2F656B;
-	Wed, 13 Aug 2025 14:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE7D2FE59F;
+	Wed, 13 Aug 2025 14:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="cRYKtO11"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZiAeBJYc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2169E2ED14F
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 14:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C4B1DE896;
+	Wed, 13 Aug 2025 14:32:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755095375; cv=none; b=oihlglltViO5WTmhEMbiv99EWcd2VD8lUTdEGMiG04WMqlQ1GokvxFOld6c97iP7/TzFyDi+x6K34cboPm3QSmdBDhrz1Fg7J3TTkzUvQfq5/Kz+J1MLvBCsjETjcCTbSXuF+WuOX7p5pGd8lN89jFTNmRuCfG8I3K3G7APs3dE=
+	t=1755095542; cv=none; b=RKX2IZJvYfl3xef55u72KXWYwqyoSDinr4i1yEjNg81g3CPO1m/G5baPB2GaYSoaHrBgxvgi/+7fRxdG7LUTgISmc3xs9BFGZgDmtAfdVRMTWuw2IZRL9drVb2UI/q62TVnj6Ly8KTvvfTMgEhAg1GmyCGm5p+eIz1196k9Iaz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755095375; c=relaxed/simple;
-	bh=qihzpTxj5De8Q1aeb/tzYw6U/W+sS4FraSESg7kL6UI=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Cj2PmDFxSNnIm3m+7ogExbj5hJLfJ/0sfCx1hv4PFQ8OcXt6SzpA9WcOHd8j3dO7QI87fKuPohmj7XJCfqaE5NpEn63VYS5Z1nOQ5JbBJwtG88FLieBKXJ0FNRKlVAX6Q5GqGQmfrDyP8tsq1fkhHY4MYMTFvBhIWhKxnIK6jcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=cRYKtO11; arc=none smtp.client-ip=212.77.101.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 15862 invoked from network); 13 Aug 2025 16:29:31 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755095371; bh=D3oxhsCXayNd8nbZZK3yVVcUaoK/rK3H5eEbvDOy3ms=;
-          h=From:To:Subject;
-          b=cRYKtO11oVIDxSTg3PUEVWFrV+z4F8q/wF5mRLRN4zCyrdKo59l3ntnBUB9Z0QrWv
-           KQhylpdgXrOpncipNKM5XAXSva3WuI8WSbnJHPNsyoNgyO9Dx03LosajlrZ80i6QbV
-           yGcTaByCjJaU1NQkOfq/MXamgqk30IINuEILt/hP3PRjj9T5g/USgmRMdmeNvPrIS1
-           fawRPgV/y6ZO1KGQQZNih8QYFIv8fgePx2aeYKddM2KPXnkC5IU9vsKuHUc68stw/4
-           uiM1SUdbcVJ5efCJK1IKoWcr3nNykkKRVn1wI2iYuQspauCW7z+wi+/jM1gHIjEpaA
-           qHs+uc7HKK3hg==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <robh@kernel.org>; 13 Aug 2025 16:29:31 +0200
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	neil.armstrong@linaro.org,
-	heiko@sntech.de,
-	kever.yang@rock-chips.com,
-	mani@kernel.org,
-	tsbogend@alpha.franken.de,
-	john@phrozen.org,
-	masahiroy@kernel.org,
-	olek2@wp.pl,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: mips: lantiq: Add Lantiq platform binding
-Date: Wed, 13 Aug 2025 16:21:34 +0200
-Message-ID: <20250813142917.2053814-4-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250813142917.2053814-1-olek2@wp.pl>
-References: <20250813142917.2053814-1-olek2@wp.pl>
+	s=arc-20240116; t=1755095542; c=relaxed/simple;
+	bh=/EhEWG9EO9qtvc4CfChN1MldpWaQ//ZskyMXUA+S+UA=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=msokv4iSYFWn0hhycxLTrjSR+Z7EfADPedBwMaSEmoCRPaCjLM+nzcXDwVyGwIbFhvWJIE/hfoF1zuz32rsdKOUDgXZ+bm7g4I+42iMXyFnYcq/vJDAYMUl12T4GhGj7ZmYz0qCG1dh/BPzCIp2GeOdxFfbuvkLfblhNn+72lxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZiAeBJYc; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DEW9wU2093149;
+	Wed, 13 Aug 2025 09:32:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755095529;
+	bh=XimLamn4Mz+6hg6tinLd+SKZfD3TGjk59OoPPjemj7E=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=ZiAeBJYcGeXF0blL7GEu+qezR4zKyDyG0liZ8Q2gEdU28tOdE0EGbXjdNQH2h1rKr
+	 a4NlX2rUY6kTny2zdqzQyDrxlwHz+vM3x6+MIedtQeynskZQNRV4/ZwHayHszfZGQA
+	 8saQ+zCMVTHfqqmpC9k9HN8IbHDs04qZkD00h8zo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DEW92Z1036690
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 13 Aug 2025 09:32:09 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
+ Aug 2025 09:32:09 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 13 Aug 2025 09:32:08 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DEW9pp2440532;
+	Wed, 13 Aug 2025 09:32:09 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <obh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        Wadim Egorov
+	<w.egorov@phytec.de>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <upstream@lists.phytec.de>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-phyboard-electra: Add ti,pa-stats property
+Date: Wed, 13 Aug 2025 09:32:07 -0500
+Message-ID: <175509551721.157835.6025291111862070229.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20250804105450.2322647-1-w.egorov@phytec.de>
+References: <20250804105450.2322647-1-w.egorov@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-WP-MailID: d9bd7045da565dc21e14cf586744e21b
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [scMR]                               
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Document the top-level device tree binding for Lantiq MIPS-based SoCs
+Hi Wadim Egorov,
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
- .../devicetree/bindings/mips/lantiq/soc.yaml  | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/lantiq/soc.yaml
+On Mon, 04 Aug 2025 12:54:50 +0200, Wadim Egorov wrote:
+> Add ti,pa-stats phandles. This is a phandle to PA_STATS syscon regmap
+> and will be used to dump IET related statistics for ICSSG Driver.
+> 
+> 
 
-diff --git a/Documentation/devicetree/bindings/mips/lantiq/soc.yaml b/Documentation/devicetree/bindings/mips/lantiq/soc.yaml
-new file mode 100644
-index 000000000000..e1708cd9b07e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/lantiq/soc.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mips/lantiq/soc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lantiq SoC based Platform
-+
-+maintainers:
-+  - Aleksander Jan Bajkowski <olek2@wp.pl>
-+
-+description:
-+  Devices with a Lantiq CPU shall have the following properties.
-+
-+properties:
-+  $nodename:
-+    const: "/"
-+  compatible:
-+    oneOf:
-+      - description: Boards with Lantiq Amazon-SE SoC
-+        items:
-+          - const: lantiq,ase
-+
-+      - description: Boards with Lantiq Danube SoC
-+        items:
-+          - const: lantiq,danube
-+
-+      - description: Boards with Lantiq Falcon SoC
-+        items:
-+          - const: lantiq,falcon
-+
-+      - description: Boards with Lantiq Twinpass SoC
-+        items:
-+          - const: lantiq,twinpass
-+
-+      - description: Boards with Lantiq ARX100 SoC
-+        items:
-+          - const: lantiq,ar9
-+
-+      - description: Boards with Lantiq GRX100 SoC
-+        items:
-+          - const: lantiq,gr9
-+
-+      - description: Boards with Lantiq xRX200 SoC
-+        items:
-+          - enum:
-+              - bt,homehub-v5a
-+          - const: lantiq,vr9
-+
-+      - description: Boards with Lantiq xRX300 SoC
-+        items:
-+          - const: lantiq,ar10
-+
-+      - description: Boards with Lantiq xRX330 SoC
-+        items:
-+          - const: lantiq,grx390
-+
-+additionalProperties: true
-+
-+...
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/1] arm64: dts: ti: k3-am642-phyboard-electra: Add ti,pa-stats property
+      commit: 6aa4c1a38cf10c9760f81d456b7f92ff157e5f83
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.47.2
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
 
