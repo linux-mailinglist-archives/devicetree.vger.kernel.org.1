@@ -1,142 +1,176 @@
-Return-Path: <devicetree+bounces-204333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC49B2505A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:58:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3835CB2507D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF3233B0994
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:55:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53D365A4532
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:58:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA48C290DB2;
-	Wed, 13 Aug 2025 16:54:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FB028D8CE;
+	Wed, 13 Aug 2025 16:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JKNzH+lU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q6yM3sx5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F6428CF79;
-	Wed, 13 Aug 2025 16:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8FB28C036;
+	Wed, 13 Aug 2025 16:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755104092; cv=none; b=AX4cj0qzrYRAcKbQlX17NUDmLMeI/v+HgRnSm4oJCGFOwI319+GUEMWX1wq1yhBOaoJjKdLje6Whk5K3IVrKUulxeORnDZkNBped/ZTfD0tptVAPNRN1ApK+TnpYzPBcszZ0Jxcd00nfP8+3n+M12M5R1GxKZ6fiW0+LQuns/8w=
+	t=1755104218; cv=none; b=ULTb4wn0c//0pBylyxKRO4AqgC4sb4OgsQYN2oDOMg7P9qQPq4Ju9BsnX6qUMtsaot6Y1ZWeruRwPrA7k291yqj3DXc0Z6q3tgrQ4BDZDiFiwreGpAibKBjMAhZn4dSACDeY6F1ppP6dz2pHQhFaKuz8/hb6aLSD14Td0Je3QMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755104092; c=relaxed/simple;
-	bh=CZw4GixnfHPXRK/UfOutcE7yqF1wjDJYoGAF9qyUGZQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mw+RATT45CCC7KXOimjzrZThEK8aoP83+n/30TpW+Zeh5AaDUKJQtUxk/3YkHKXFaAYljvwdfonNkUGGVUx4IHJU0H3UgUk1dnLxVwuZ+qPRt57keDeCFV5xPQ/ZOP+oV5aOi5t+xzXgKLeWjYLlXLnANcTiXERygBzhyz+yJCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JKNzH+lU; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-afcb79f659aso6218166b.2;
-        Wed, 13 Aug 2025 09:54:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755104089; x=1755708889; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tq3HEWYIpGIBcVWQoH8ungeMgw62nNqiay/iNYB/g28=;
-        b=JKNzH+lU6vJ6bmSspcTcJJ2IUO7DbotTZBghbLv2Hx0Jcw8oLmZQkM9jXpL5lobTNj
-         Alfp3HSidfZXx/SQuPodIPFdKKWLz7G9FkoJXNw+5oWAukLnXWed1ZOYZCtkEu6N0cxB
-         5YhUY2rOxdrhzWzEhM8w6S5oEGx1XcCVmkBViLXhvnl5PRcmnpkwwuFxkPSm/WHKdsSI
-         AVKS7E3Tc1CVz6z9iqq551gkPw0rwEpoycgQ+l9weHAg/e01HjKr0fwBPL7b/dMJUctp
-         /oOaBnW6e5HeEAS8pntMNqRmh9FyHoJSCXoBmoFqqzvc060+/Lh++lwb7vcILUDgv/m0
-         5GOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755104089; x=1755708889;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Tq3HEWYIpGIBcVWQoH8ungeMgw62nNqiay/iNYB/g28=;
-        b=LYt2n0nm5KifX1JXU+s8jjfyrHN/ut45F6LqVf/fe2TBq3eHZHVuyilaBtLrXasp1h
-         SUcunFA7IWiqTgvpteisXZG2RSoNiT9fDJiL5kWy91XRq0X+I9Ycy1aA8PDFDC6sSgQo
-         skDkzVzSwKsKStAw2CGTOYGjEMxp1vUAA9TgkHZ/7fXmzHFcWVl++r1kmRoUKYydy1uW
-         vnJeJOarL31MyyEjG4ZDUMr4Z2dHErCrRcP8REqZwIBynwlVfk7J26gNQu0HxFJyAckx
-         hSc72SNWuA4Qo7BuXU2uBmPZkYjY4uRpwaqGGRRi8CfLp2J/gjLCLhTwqZQPgcdZGmV1
-         ia3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUmtAZWqGrwJxlZESxoiJDIMrn8YVCaGtaohVLnwSlFOn+e3/1VffMM/G5o32v6lwgkbrGQ9NMyLDdq@vger.kernel.org, AJvYcCX+CCv+dCa/PrRtkHfAtVX7gaDbHifmRFqC4yhRjkEIpQrKnYTLcY7x0I1dUl21eYC9XTaLl4nOOobyo6D0@vger.kernel.org, AJvYcCX+V0dGHQmpBFkuP5PgZ7GCFk1CM58yavfyX78uXwjVxREJYBK9jcK2AHrXY4W2BCYxFZZAoCUBSkd7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9Qu3UUGb9Q0ne/O/ixd+NM68cinqiJGM1kJhK//TxHCzsMFoZ
-	1smI+E8D34nBK8v8CDXDj9ksVayl/qT2cFLod7RbH5kH5dglFbD6vA+zDsroDQXm
-X-Gm-Gg: ASbGnctfVjy9c7s+1Z4MtZDQpOMvKgxmh83Xq5xjlutTPbKWxg4VTLFNxSA2vp7czP0
-	lVOfD2HGl6xXq/8SMjG7179VRsmo5KVZcM8rUrKS2YeH7w4XcwqthmTpz33mCjWvDCYvPdXCENh
-	pC3FoSG3qzqIuYN5JOhtNXSGSQygqrnmGw3swgBIi5+ZRbbWYJt8FAFuN/rlCucye2WHKjnStDw
-	VHOhJIJVTUroPH+KjR6RYLn8cOEQp7udrhWm2pWDqmAqJBtTn3yQ4vLJZPbxoewc0JUXfkij+Aq
-	NpVv9XmiQlmGyZAev+SysbP0ffMgcmOduYlhr0t/b2Sd3fe6HRL0xbeIgCu88X1zwsWNZ3imrkQ
-	+AHoU03Xve4eMST+49Nt6a0YZBaay
-X-Google-Smtp-Source: AGHT+IGlA0y1/joQa4p3Sj2YnLVCr8yTrUFupxVTWZxxiSZya8P/pMzOoU4nYr2zSk0FwloEYs03Dw==
-X-Received: by 2002:a17:907:7e9f:b0:afa:2772:68fd with SMTP id a640c23a62f3a-afca4e4a6ffmr314286866b.44.1755104089244;
-        Wed, 13 Aug 2025 09:54:49 -0700 (PDT)
-Received: from [127.0.1.1] ([185.177.137.147])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a1e82a5sm2428573766b.82.2025.08.13.09.54.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 09:54:48 -0700 (PDT)
-From: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-Date: Wed, 13 Aug 2025 18:54:32 +0200
-Subject: [PATCH v2 4/4] iio: adc: ltc2497: reorder ltc2497core_driverdata
- members to remove hole
+	s=arc-20240116; t=1755104218; c=relaxed/simple;
+	bh=wtCHHBkc9VQ/tOWiyIF3NLlBUxmXbuQSsSyqsyTRB0s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SLC7F5ygMXq4el14pR90i1LjSRcuLGEINnt6GleBEQZXOAr73qOjIqLyUDRpPJ5OtQPmgbeGzwtqoPPMLE4ea1pNQzNWazF3ci2ZION2Hy9HW8OUt1zBB1CBFbD8NYCzJVrbuDxAEWKv7fZlN+x286DCx1qNGDi7vF5p9wZ1d8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q6yM3sx5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6133C4CEF1;
+	Wed, 13 Aug 2025 16:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755104217;
+	bh=wtCHHBkc9VQ/tOWiyIF3NLlBUxmXbuQSsSyqsyTRB0s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q6yM3sx5VWEoU6FdpzNPR2Ijpmm3fGYciJXsi6bY709/j+rEoGpbZO6tQlqAqSbjB
+	 Xt/NQONCE2LdwNYOrUsf3mm8u8sASwXor2CS6P+t3SQVX4nQOLBqNACE+/mLIRMD4q
+	 GgLpKvlkSJ8WstBpKZvcWH3J3WEMUJx3iI5CAZ5Jdb0dCt+GhNtSKzmYy0tzi1ovur
+	 JrTqE2rPuekpJ8JiAxNX3qGwptv3Uz7y0958VeWC+6IhpBYCcXcdadWVJIqbjEk5YH
+	 NJr6I1lIEXtfYGneukrMdh+lqhABcirN6uFZa8IiyySmLy/CxkUSoHEYwI2FhjJvQ5
+	 7Pyr4oun3VLqA==
+Date: Wed, 13 Aug 2025 17:56:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	neil.armstrong@linaro.org, heiko@sntech.de,
+	kever.yang@rock-chips.com, mani@kernel.org,
+	tsbogend@alpha.franken.de, john@phrozen.org, masahiroy@kernel.org,
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: mips: lantiq: Add Lantiq platform
+ binding
+Message-ID: <20250813-overprice-pledge-2e3bd932992c@spud>
+References: <20250813142917.2053814-1-olek2@wp.pl>
+ <20250813142917.2053814-4-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-ltc2495-v2-4-bbaf20f6ba07@gmail.com>
-References: <20250813-ltc2495-v2-0-bbaf20f6ba07@gmail.com>
-In-Reply-To: <20250813-ltc2495-v2-0-bbaf20f6ba07@gmail.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755104084; l=1105;
- i=y.alperbilgin@gmail.com; s=20250811; h=from:subject:message-id;
- bh=CZw4GixnfHPXRK/UfOutcE7yqF1wjDJYoGAF9qyUGZQ=;
- b=C3vf+mOXfNf6r4q+oZtOpNnT6SL77d7lBwRiTccFjbBReSQcg9wS5dKzlwbjhpUdEEvVTYg8+
- 9Qe0j3ESwKnBA3JHUZmBDkqOG9Mx1uHyLLedSRN6DB+VOPtJ/XgtRkL
-X-Developer-Key: i=y.alperbilgin@gmail.com; a=ed25519;
- pk=FtW2oyQ0+xlYU0XmhYiJYC3lNPtPrgeE6i4WXPwaFnY=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oEx4W702Fmql7/me"
+Content-Disposition: inline
+In-Reply-To: <20250813142917.2053814-4-olek2@wp.pl>
 
-Reorder struct members from largest to smallest to eliminate a 7-byte
-hole identified by the pahole tool, making the layout memory-optimal.
 
-Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
----
- drivers/iio/adc/ltc2497.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+--oEx4W702Fmql7/me
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
-index 7f53bf8b8469d2371bb7ae64ce90a61beadba9ba..578f55efc5c400980fe8bbd2b220aafb222d6f33 100644
---- a/drivers/iio/adc/ltc2497.h
-+++ b/drivers/iio/adc/ltc2497.h
-@@ -27,12 +27,12 @@ struct ltc2497_chip_info {
- struct ltc2497core_driverdata {
- 	struct regulator *ref;
- 	ktime_t	time_prev;
--	/* lock to protect against multiple access to the device */
--	struct mutex lock;
- 	const struct ltc2497_chip_info	*chip_info;
--	u8 addr_prev;
- 	int (*result_and_measure)(struct ltc2497core_driverdata *ddata,
- 				  u8 address, int *val);
-+	/* lock to protect against multiple access to the device */
-+	struct mutex lock;
-+	u8 addr_prev;
- };
- 
- int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev);
+On Wed, Aug 13, 2025 at 04:21:34PM +0200, Aleksander Jan Bajkowski wrote:
+> Document the top-level device tree binding for Lantiq MIPS-based SoCs
+>=20
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> ---
+>  .../devicetree/bindings/mips/lantiq/soc.yaml  | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/lantiq/soc.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/mips/lantiq/soc.yaml b/Doc=
+umentation/devicetree/bindings/mips/lantiq/soc.yaml
+> new file mode 100644
+> index 000000000000..e1708cd9b07e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/lantiq/soc.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/lantiq/soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lantiq SoC based Platform
+> +
+> +maintainers:
+> +  - Aleksander Jan Bajkowski <olek2@wp.pl>
+> +
+> +description:
+> +  Devices with a Lantiq CPU shall have the following properties.
+> +
+> +properties:
+> +  $nodename:
+> +    const: "/"
+> +  compatible:
+> +    oneOf:
+> +      - description: Boards with Lantiq Amazon-SE SoC
+> +        items:
+> +          - const: lantiq,ase
 
--- 
-2.43.0
+Half these entries you have added say "boards" but there are no boards
+in them at all. Where are the boards? Only the homehub entry appears to
+be complete.
 
+
+Cheers,
+Conor.
+
+> +
+> +      - description: Boards with Lantiq Danube SoC
+> +        items:
+> +          - const: lantiq,danube
+> +
+> +      - description: Boards with Lantiq Falcon SoC
+> +        items:
+> +          - const: lantiq,falcon
+> +
+> +      - description: Boards with Lantiq Twinpass SoC
+> +        items:
+> +          - const: lantiq,twinpass
+> +
+> +      - description: Boards with Lantiq ARX100 SoC
+> +        items:
+> +          - const: lantiq,ar9
+> +
+> +      - description: Boards with Lantiq GRX100 SoC
+> +        items:
+> +          - const: lantiq,gr9
+> +
+> +      - description: Boards with Lantiq xRX200 SoC
+> +        items:
+> +          - enum:
+> +              - bt,homehub-v5a
+> +          - const: lantiq,vr9
+> +
+> +      - description: Boards with Lantiq xRX300 SoC
+> +        items:
+> +          - const: lantiq,ar10
+> +
+> +      - description: Boards with Lantiq xRX330 SoC
+> +        items:
+> +          - const: lantiq,grx390
+> +
+> +additionalProperties: true
+> +
+> +...
+> --=20
+> 2.47.2
+>=20
+
+--oEx4W702Fmql7/me
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJzD0wAKCRB4tDGHoIJi
+0gLqAQCON/a/zUlss+fouyGiv6bXwMRRNP0gxpfNdo6HstJz1wEAgYqoZh4z9Mn3
+YCjpQZf9MWi5Wrb7dW7c0OGxNH8g0wE=
+=eH7D
+-----END PGP SIGNATURE-----
+
+--oEx4W702Fmql7/me--
 
