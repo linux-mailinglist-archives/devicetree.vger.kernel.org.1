@@ -1,107 +1,94 @@
-Return-Path: <devicetree+bounces-204278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B10B24D11
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:18:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA42B24D36
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:22:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52667189091C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:13:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1221B3BB71F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:17:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24292F659E;
-	Wed, 13 Aug 2025 15:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="u3E8TZj8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2861F8BCB;
+	Wed, 13 Aug 2025 15:17:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF8B1BCA0E;
-	Wed, 13 Aug 2025 15:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075A51EF389
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 15:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755097978; cv=none; b=myuwIMgaKUJ/uTjBCJr4xXvnjpAq5YjVo4SIqeCiUJ/M688AK1vKlC83ra9MTD6+7TdxiOAU2zmOh9o3VfGAPNuAFCZ9i+pqcp8hiY4BRqsI42sY8ZjeTn2z75Iuz5TOStMFqpt82X25GjZ0f7Zs4I0X/UMB0/9jERRDiWgH30s=
+	t=1755098220; cv=none; b=HLSdh7kHqCgi7eqb/QgzryQGj2pbS1MlmrN+JuaJZA49EF+59dGY+/DnRP27Ij0rlA5P99QqGbQs/4qXG05OchGpAm1i04JXNq+Sh5Av3u0brjKHpx6l1QX5V+ucmQkjOD1fwN17RpjWqRc2u4xMNqqNc6BQP/XtR1Fhzx9yyHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755097978; c=relaxed/simple;
-	bh=z0nf7nEe5UmaN9hhZAnvfuPeleKckGUCNgev9gRMPlQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NRIjb/qKwrE/fw/CyclAOoEDxT3h/iMnciN4QO1x0mvIDIFaPnXHU13yf9ktmYCQCrOScIpCAoBVfIji6pze0LTVK81eD8/rKkW/Vgp8sQGeSogyCZZlYPtYAXXWMjbUAGpB4jO/ZHvjSRe/yo8Sz22I0Z6Yehem9S6aWLApWNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=u3E8TZj8; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=0MR5T/hYqkDcwtTShdWjbf89ggneYNcFMBTM7A8bZyQ=; b=u3E8TZj8BCALAXtWNYOZqfhkw1
-	cVibrwPJIj9GaRoSLvXFyJ9Cmr4V62gFGMwCPmzV54apr0vKhsWCA113sW+yaYxxbCHzlJkooNKf4
-	HV8b3oyR5bB+gaD5RSjl3KOK6fxxVMbuw2WjIwt7ioxXsxG9P+P/3++k1Fu2+FjhJF+zQ1yAFq9tD
-	MjqjmTuF8qHsLds0r2a0I34tm3W50qv4LyemyMt838zZfZfRRHJqj7e8Sobx5DOICPGs3cizAi7Bn
-	7q5/KtycVIrEM7HyAf8kA/wmZTJwLyFuu9JFw0j2qJcAxoIuqXxuH3OiSCO3LTLb9JWH6m38sHRwF
-	mWKxFRBQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37712)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1umD9g-0006th-1R;
-	Wed, 13 Aug 2025 16:12:44 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1umD9c-0005rJ-2X;
-	Wed, 13 Aug 2025 16:12:40 +0100
-Date: Wed, 13 Aug 2025 16:12:40 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1755098220; c=relaxed/simple;
+	bh=oKp2lZiQ3oJCMCm9FxULdr589AuLvdQ0SykmCkbL7OI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=b+jCQUjbH05Iat/LCDvUtBqokfem/wqODnlF01RB8+D89FG1/MikhQp+SgZBlazjmBw8vx1acu82AZfklWDnk1oHDF2uqXd1Ia6d4Igoyjd1GfMFP/gThwqXTToKqTCjEI7gSdTgdLRXYXUGj5dHdc8IJkW2v1BEkte14BtEQtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=watter.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=91.218.175.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=watter.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ben Collins <bcollins@watter.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH net-next v2 06/10] arm64: dts: allwinner: a527:
- cubie-a5e: Add ethernet PHY reset setting
-Message-ID: <aJyraGJ3JbvfGfEw@shell.armlinux.org.uk>
-References: <20250813145540.2577789-1-wens@kernel.org>
- <20250813145540.2577789-7-wens@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Hepp <andrew.hepp@ahepp.dev>
+Cc: Ben Collins <bcollins@watter.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/5] dt-bindings: iio: mcp9600: Add compatible for microchip,mcp9601
+Date: Wed, 13 Aug 2025 15:15:51 +0000
+Message-ID: <20250813151614.12098-2-bcollins@watter.com>
+In-Reply-To: <20250813151614.12098-1-bcollins@watter.com>
+References: <20250813151614.12098-1-bcollins@watter.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250813145540.2577789-7-wens@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Aug 13, 2025 at 10:55:36PM +0800, Chen-Yu Tsai wrote:
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> index 70d439bc845c..d4cee2222104 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> @@ -94,6 +94,9 @@ &mdio0 {
->  	ext_rgmii_phy: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
->  		reg = <1>;
-> +		reset-gpios = <&pio 7 8 GPIO_ACTIVE_LOW>; /* PH8 */
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <150000>;
+MCP9601 is a superset of MCP9600 and is supported by the driver.
 
-Please verify that kexec works with this, as if the calling kernel
-places the PHY in reset and then kexec's, and the reset remains
-asserted, the PHY will not be detected.
+Signed-off-by: Ben Collins <bcollins@watter.com>
+---
+ .../bindings/iio/temperature/microchip,mcp9600.yaml         | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+index d2cafa38a5442..d8af0912ce886 100644
+--- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
++++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Microchip MCP9600 thermocouple EMF converter
++title: Microchip MCP9600 and similar thermocouple EMF converters
+ 
+ maintainers:
+   - Andrew Hepp <andrew.hepp@ahepp.dev>
+@@ -14,7 +14,9 @@ description:
+ 
+ properties:
+   compatible:
+-    const: microchip,mcp9600
++    enum:
++      - microchip,mcp9600
++      - microchip,mcp9601
+ 
+   reg:
+     maxItems: 1
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.50.1
+
 
