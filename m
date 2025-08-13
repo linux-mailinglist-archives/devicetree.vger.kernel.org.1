@@ -1,118 +1,160 @@
-Return-Path: <devicetree+bounces-204200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 079ECB24678
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:03:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C714AB246A2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC71016F16B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:00:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E31B63A7EB8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:03:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AC12F49EA;
-	Wed, 13 Aug 2025 09:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141222D0623;
+	Wed, 13 Aug 2025 10:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rPxck3uV"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BNwN8S33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC432F3C25;
-	Wed, 13 Aug 2025 09:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2F02D2390
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 10:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755079032; cv=none; b=pNvrTLzcemuggN9L2BKkPBSVT9rmTMKhwdcSAWM7/lmDCVZvpdpuwsg2KYa6JCN7A8WdvSFE4gsPJDcVvRbM3WWTMtoPHl3mt+JO1sRPIXGRt5lltrekvDq4T1cISrs90GtJA5TErBf1xq/Y1lBHrIZKvySevja+sstGEheTLJM=
+	t=1755079415; cv=none; b=nV4zi2xdMy2FGHooPARYaKH6CtL9tOPZV3YN6Z35eqFXr/4AOzMeCTqLuSOVEa8X9ivUBHt/HKMNxZG+NZTWeoLQ/jIMdBc1+8xvAAKC/jBlRjzqFlIWuJ7ZlFjKnzQWT8vO6jiUKVykDu/FtV0oHUKuN7VZyBLZ5MQJvYFIpmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755079032; c=relaxed/simple;
-	bh=3I/mDqpQX9jkLpLoehB+o2RmLvW1cxiRLz6+Er4xFOE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mV65qllHhtbN8J7kkdx/0S5jhHe/1+C8qi6BcTgirjGTdgt+l0KOIt6vl0IOR+j8LMYLr66JRFpK5tpLwKF1E55Zx0/fQ3PfdQ3f3dZ3PhRwsjvrnAlu5mgMJtTQ7nJ9NbaqF7LGzbhi4JllfNgWVfZzbxmbi7Bk1/MwOSrMzDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rPxck3uV; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c23gc147Gz9tHg;
-	Wed, 13 Aug 2025 11:57:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1755079020;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3I/mDqpQX9jkLpLoehB+o2RmLvW1cxiRLz6+Er4xFOE=;
-	b=rPxck3uVjGwVbjegnyQf978gzo+AChZ920JmecucA/mfRWGtJP/WQrT4CZ4rISo0Z5SfTb
-	7xbZL8h7b+hIab2dIR7MXaDX6HpxJCouTG2Q0ACtD0/XYRCewrARcji9s7L64Ke7qTWDPt
-	INm9fhWFk18EwwsxU9o53TNNEG5E4mAyRlC6tohqirDigkOtmYQpbsLWEpmPnIT8NjLcPm
-	mcnfTTl0qZLpmmcQj5+eYBnAPiBoSsBsvNCFP0qzQw40jogFJz7GeluVyJ/lHg489NnlQ7
-	iLlcRYa9uDRtK+NB62kdSCLvam2gG6Fi+UqF7HLlXbc55DXrMHY3joUawW/Teg==
-Date: Wed, 13 Aug 2025 11:56:55 +0200
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?UTF-8?B?Q3PDs2vDoXM=?= Bence <csokas.bence@prolan.hu>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6-display5: Replace license text comment
- with SPDX identifier
-Message-ID: <20250813115646.29a08c1c@wsk>
-In-Reply-To: <eac01571-13cb-44a8-b724-76e1b2af4c0b@kernel.org>
-References: <20250709-display5-dts-lic-v1-1-81e46a650d3d@prolan.hu>
-	<d9e81ff2-5621-49db-92a1-acf304b225f8@prolan.hu>
-	<eac01571-13cb-44a8-b724-76e1b2af4c0b@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1755079415; c=relaxed/simple;
+	bh=XJ18+y6IN20URNsWOGtZC0DCI/fLtzEWGfVrzsaSDwU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YzvONg34oDaNf0feUIWoEDNevqlhcC4hhf/F4HbaiIWBQSOS6nyj4dXdSTN8KXT44xR0qB4kFv00qCDgoV3dIBG6JpaJmJ0qnQ4bMLOootMeTjSLe6ScInCRFPbkhJE1AkIWjnryz2he/jn5eaBpJ636Es93Ukcehph6aADWR+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BNwN8S33; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5393aa6c5d4so4249859e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 03:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1755079411; x=1755684211; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JpOqTr/H8i5iWZL4dLpviHUqjl+PiTBlvfyP9LcDKi4=;
+        b=BNwN8S332Tz3rJyCoPUjkAaBdSocFVYsC5CMP1c/cRkir38iIYc+N1Kun6y9V2yCLJ
+         MEARBqotFvSLoAwSvuXSpwi2A/TwMOVjjyjw7SLUqOHebkST5b0PoRem4Gm1zQFk26LX
+         4YcDTLrdUDAVk3iWQr1sS3LiRGyFQysc1gmx0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755079411; x=1755684211;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JpOqTr/H8i5iWZL4dLpviHUqjl+PiTBlvfyP9LcDKi4=;
+        b=V30ryu2XODl/KssgT2qY288nAYyO3RruL9voDvvgQKIdMB72qyOcxef+YQltl7Ue1J
+         noKzBnq8V7He+WHknKx1tStKHEgm73rxF90LgnEPA5gmLBHKQcyMjB9vzuBMWVCinRap
+         HNFqnWv81zhgcUffD0Mf///e9fBj5JfQpiWyHaEHmVXzmghSXkwJ1bHFk0pkxExgKEN/
+         Wjg42aRst0SVfafEjz4nVQiCfPXzL3jBvfiiDhFb0YL9PfBJxeuHmuc9Cz8cEGx/R2jv
+         2eFgoV2t59KKcki2VyeaArLa0vv/YHifXuIPOMcMUE5qR0KedPAz2dG0gWCL2bwON0Uf
+         zUDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUqC8cPRwUODOo+0ZBfIOntGF9MbJyfSH3a4vbdsSihzcyxUc6+ISmP42vbMNqfmIyu0lBg6W/88YCS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHNe8IMouFtUQfcqoYk8+X1hkEX2UprQwPkpy1FbPx1t47e0yj
+	kfHob0GAWAZ/QyweP/CTBT2ZWetyceemj3Y4d7Kjh+jj8BDk9i93fQrUkOgKisWWiNFqy9N/qqi
+	ICec=
+X-Gm-Gg: ASbGncujcaiybK2Zeb4f7VSIDWzYCa307j15bmjcgVHbslEVLMSmt8yvDebi9G3OalI
+	y+RaO6lcvumqAXYNfSXl/qrVQTBtUsL5PU1R2jEYVQ6L5GjMPCFcGq9zr9XozY9q1UIIkNAulpJ
+	3YSoZCazgUDpxewNqaET/BDUJryF7xhPKXi0ub8DGTwoBB1KTKvUSLzQo60xPojI4+VkyYsPEPr
+	XBx20k3qqbj+FUak7630FOD+opU6NoKUD7rEM9JUfQOAv7Jqbfpmt32txGjJDz7ZwxA95+9SQ8P
+	7OG9BPg/IqXXbg7OfZ+og23PxIyjsetGySthlfO/ityQNClMJGDrZFthqOR3NHpYBKVV9vIWftv
+	jXGMP1OeD67rjNKe6L+zkS08jqCj/jFWRtGNMDkdQXCMqV5b7+fXFgfstqQ==
+X-Google-Smtp-Source: AGHT+IHK06r1GMBcoSzy7F4qY4yUz0RZ11VUhKJZELTxGem2+seqh+PXgmM0imDklNSmGrJTqFhDSA==
+X-Received: by 2002:a05:6122:a03:b0:539:46e5:cfba with SMTP id 71dfb90a1353d-53b0b5f6357mr609660e0c.7.1755079411481;
+        Wed, 13 Aug 2025 03:03:31 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-539b01b6352sm3771844e0c.14.2025.08.13.03.03.30
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Aug 2025 03:03:30 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-88ddd1c6178so3691691241.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 03:03:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVf1bcWGHPGS35Cu1rlUNMem79EbzSP10RlzNLRBw3uykCv5u0piW++Rj/wWCY26bWjaPSfs0/QkSew@vger.kernel.org
+X-Received: by 2002:a05:6102:580f:b0:4e5:c51b:ace4 with SMTP id
+ ada2fe7eead31-50e5069ec3dmr831455137.20.1755079409916; Wed, 13 Aug 2025
+ 03:03:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250812085902.3309160-1-wenst@chromium.org>
+In-Reply-To: <20250812085902.3309160-1-wenst@chromium.org>
+From: Fei Shao <fshao@chromium.org>
+Date: Wed, 13 Aug 2025 18:02:53 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nhG_ExACJRpJoqmO7nn+P24uiaha21SFEyR3aoKL-Pjgw@mail.gmail.com>
+X-Gm-Features: Ac12FXxcH53--yUF4XiZyOJVA9MjGchb9U9zLHe6JnSsrI_-dNHmZMaj3Vdi_pE
+Message-ID: <CAC=S1nhG_ExACJRpJoqmO7nn+P24uiaha21SFEyR3aoKL-Pjgw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8188-geralt: Enable first SCP core
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-ID: c13e5f5f6dd64ce9ace
-X-MBO-RS-META: sowtjo94ijj8df1d4gp6ww9koodhgx4h
 
-On Wed, 13 Aug 2025 10:33:32 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Aug 12, 2025 at 8:39=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
+>
+> The first SCP core is used to drive the video decoder and encoders.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64=
+/boot/dts/mediatek/mt8188-geralt.dtsi
+> index c5254ae0bb99..10764786bc21 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> @@ -164,6 +164,12 @@ reserved_memory: reserved-memory {
+>                 #size-cells =3D <2>;
+>                 ranges;
+>
+> +               scp_mem_reserved: memory@50000000 {
+> +                       compatible =3D "shared-dma-pool";
+> +                       reg =3D <0 0x50000000 0 0x800000>;
+> +                       no-map;
+> +               };
+> +
+>                 apu_mem: memory@55000000 {
+>                         compatible =3D "shared-dma-pool";
+>                         reg =3D <0 0x55000000 0 0x1400000>;
+> @@ -1146,6 +1152,16 @@ &postmask0_out {
+>         remote-endpoint =3D <&dither0_in>;
+>  };
+>
+> +&scp_cluster {
+> +       status =3D "okay";
+> +};
+> +
+> +&scp_c0 {
+> +       firmware-name =3D "mediatek/mt8188/scp.img";
+> +       memory-region =3D <&scp_mem_reserved>;
 
-> On 13/08/2025 10:29, Cs=C3=B3k=C3=A1s Bence wrote:
-> > Hi,
-> >=20
-> > On 2025. 07. 09. 9:32, Bence Cs=C3=B3k=C3=A1s wrote: =20
-> >> Replace verbatim license text with a `SPDX-License-Identifier`.
-> >>
-> >> The comment header mis-attributes this license to be "X11", but the
-> >> license text does not include the last line "Except as contained
-> >> in this notice, the name of the X Consortium shall not be used in
-> >> advertising or otherwise to promote the sale, use or other
-> >> dealings in this Software without prior written authorization from
-> >> the X Consortium.". Therefore, this license is actually equivalent
-> >> to the SPDX "MIT" license (confirmed by text diffing).
-> >>
-> >> Cc: Lukasz Majewski <lukma@denx.de>
-> >> Signed-off-by: Bence Cs=C3=B3k=C3=A1s <csokas.bence@prolan.hu> =20
-> >=20
-> > So, what do you all think, is this patch acceptable? =20
->=20
-> Yes, you just need Acks from all contributors there.
->=20
+It looks like a pinctrl for SCP_VREQ_VAO (GPIO 98) is missing?
+Datasheet says it's for "SCP to PMIC normal voltage request", and
+MT8195 and MT8192 also have that configured.
 
-Acked-by: Lukasz Majewski <lukma@denx.de>
+Regards,
+Fei
 
-> Best regards,
-> Krzysztof
-
-
-
---=20
-Best regards,
-
-=C5=81ukasz Majewski
-
+> +       status =3D "okay";
+> +};
+> +
+>  &sound {
+>         pinctrl-names =3D "aud_etdm_hp_on", "aud_etdm_hp_off",
+>                         "aud_etdm_spk_on", "aud_etdm_spk_off",
+> --
+> 2.51.0.rc0.215.g125493bb4a-goog
+>
+>
 
