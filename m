@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-204396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDE3B25505
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 23:15:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1C3B25514
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 23:18:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ECD25A64D6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:15:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 600365A7334
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D8CF2E9752;
-	Wed, 13 Aug 2025 21:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1CA2D4B68;
+	Wed, 13 Aug 2025 21:18:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iEBG+XJo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FnCZMsAc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C68C188715
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 21:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC0E28C5DE
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 21:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755119716; cv=none; b=MlR+6/v4E4K57Te6SjRgrR0JMtkqojxmUlVe448zUd655zN5RR67cCGH8n/u1ax83ZhFp1TY7MMFNx7Q83d1uDhLQQsjUdVJ/9xBmWu4K0wujVHZYI9c5WPcy3b3+DIuR8i3rympYHmMiqgCLCmFUWq7WkwYj1ASayUTAadZ3DQ=
+	t=1755119928; cv=none; b=I/zLVOtEdpqgyxzihSs1GafbqLUo9Kql0YengXY/FGNbzk4WAGTvWxuYi4UUbTDHjZsSkRTE+yB3171bIrte4Dg37DbsoVMvcuWU0FGz2GMWRo2Ck2JhiqMLrQWq08S42vkWXGGOMjzVue+DbqH8ohxsl72lyO22q5vVjtbM5WM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755119716; c=relaxed/simple;
-	bh=f0mOh5zW36wEzOojcDIcMa7UEWLFOqZuK/fsupPNmY4=;
+	s=arc-20240116; t=1755119928; c=relaxed/simple;
+	bh=159JjksWphg/u3Ou/yWHfdipsTDPtxM9qqh+szH/GOY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GujtN56ZzygtxCrprYE/3g5OkasE2/3uyi4ChE1m2BQeNlJ1ucLpJMGvVK8S10efQKDp6bvqL2f4Wofm10MMRBJPO8arPPmFSl9nSnGr2lVNAeRCWTE0vFk8EGsl7KV0kx27XhWbaQNoc9R24I0foEbfgssUSutHPufa/RGn5rk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iEBG+XJo; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=sHvLAytABIWkiKvoiSxJeQ0pSL/p5IyU+raMTRDN9OUMSsYiXLwzKnNAPLqMrecoCQ+4Zw7ZgVBAlfiFwuh6XwSK6YTvKXb+JTqIn7j8/bb01HADoTwxo7D/N5O1kux+lVV0jyAKeCY85BCgE8LTYGh7hCkO7PX9wo5U4amyvPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FnCZMsAc; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3b9e7437908so205218f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 14:15:14 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45a1b0bde14so1055565e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 14:18:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755119713; x=1755724513; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1755119924; x=1755724724; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ewofpmx2u2AWLuh72EpS+Kxy8uzpjMF+7SbnHvsYlc4=;
-        b=iEBG+XJoLFsnrn6dm5Fsa2J/ukEKZdfxok99/Qz+ZSBT/ocPZbg0cyOtkO8wFB1KxC
-         V3oC2YQBwEQUo2hGLlfssLsSgzJJV2AI0N1RT/sXR4WfEFRmX/hA8VvttnVRe032Y+N2
-         zzgGyQ5h0GwZWuNI70flYcztveCpUA8hhA9ql+CCz5tFCVMfipttR+S+z7bfKHcpQguk
-         D9rK2uXZtl461kj3WFMQ7hKMksw5q8UJ7Ya9vVG3BquGU1Cx5mYhGhJ9Iyc7ZV0Zjj21
-         UpUlgmAxmXwh1WFYYQlopN+fXiKFIkHwVvdOP0ahGMk6YPSfSG3bxu66eiNgMC4EiTHo
-         G53A==
+        bh=PqmDry58z/oQCQIk+cJ1AKlAu2Ei2eYWgYuFg40UKS4=;
+        b=FnCZMsAcpicyI2FzXNdanhhyO+t5bYkJTLM8qy/IZv2B+5ChFS7kaLDh9uRcf9/t/l
+         NEwS9PC3YQ7ci614goM+wGG5F02s1WXpxic1M1d1+Aj+RlhiwbcboyGerd0tm4Oik2he
+         NV/PNOZTGZi1O4kMn8hl0s4px1Fa+KPiG/LMS5Csyw/ltQtsG5Lgr2CaxSYxcw2TsLzm
+         y9flbREHmvbyX/h6fKYseL/S5ZNI5ZxrTIKJd3kf+K7orpUHOhADXD1NwuI0VImuwUYJ
+         PxfkWDDP9+ZHcspC5fLHBW8+JLVnTm29wbWu2GHRm/ZuAnGQK3NUCLcVTRRVY4Dk72J5
+         azOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755119713; x=1755724513;
+        d=1e100.net; s=20230601; t=1755119924; x=1755724724;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ewofpmx2u2AWLuh72EpS+Kxy8uzpjMF+7SbnHvsYlc4=;
-        b=l/xz0zwo2Hvorf2LmUVjKZZKcArdYFcTAFCYM5UhbyCpuqBOx2B2WouOPtihj2/Vwl
-         7vwCJHBxCOH2tuShjsozBPmQA9hcK2QdkGwNQLiM085HWVlMYsbxXjAcubg08OajtSo6
-         87TL44ph8MuesJcuVlXU/ESw5KykdLzhXpU6/1VyP4tjsHqHdT56cAeBO8IBbwjl6gYv
-         fr6qju4lre2fPjF2eoWzryvkCeO/9eBlkZvKagoetYSNC8tU/ELIOgOTsKjLMLyGSZag
-         gURfb8wEepCRB5DzJm9UqX9v7uFn4bil/EXNRq+okMKeoNR+SxF3CuqQ9ZMQATTpDeNs
-         q4Pw==
-X-Forwarded-Encrypted: i=1; AJvYcCU5zdVImg+2uSuoA8h1Rya+lH4yOkk+tDlmsF/6nTCDcrxlBdWnT+oxspwgI95+Vt5WI/YSqb0cKuln@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXlfcebG7tNGXX0W9U7uhUfiWWpgbcq4c1wJDpsvs2xSoWL31h
-	2hJ0uOBVA8ueSdiYeQ0fbzXrmxLKYRhbTgrHAs8vLbffsnBZx27x5NoD0dr2rvMYrjI=
-X-Gm-Gg: ASbGncvs0yHXUvsn/ZpQt5LnAy6oYO2SyUPe/lPEo/LDtXgk78sOqDWEFnBK1mP1LIg
-	YTB6qQI2DiL73rjWrpciCfyZM4fG3AYSd5XuD3ZEmyRXkiXYVM29vDvmbZyndtpbgPiLx4Ee0+h
-	RzsjQmG49U4NfY45iVJNEh0teSax61Fwz78kUPLcX38VYRGjZiWiuaQ11o/4f6VXwFu201GUUm4
-	tyHICPTAcKkVeBTdeY7HWdZ/84HUnVhUwTOExHzhhdGGLq1bOOHsmAKm/C8n5It/4XNc3fPCQON
-	CANszOk9diSJ8eUknXbnCskJY+wgooSR/Pz4svV0BgnCCWiPkquqVBLB/57rb/IsCYJwYk1yar4
-	/SEBNXBMZABehfWN7lmol/c4jnlVFt9dZrzVKryt7rFhE3EuCF0wc1jWg0jpy/dlF
-X-Google-Smtp-Source: AGHT+IESt7Dqns9DwMc5t6p93qJ/wntgnWbJwzl+NSSOoNpJ0QKJzEMjsB+Jf37ThCfpJRFyEsk/pw==
-X-Received: by 2002:a05:6000:4283:b0:3b9:8224:d3cf with SMTP id ffacd0b85a97d-3b9fc2f813bmr578094f8f.54.1755119712975;
-        Wed, 13 Aug 2025 14:15:12 -0700 (PDT)
+        bh=PqmDry58z/oQCQIk+cJ1AKlAu2Ei2eYWgYuFg40UKS4=;
+        b=tE5kYTNcxTJH96mufjv9qkjwTQjaKvXZ6ap4V9Lvvps1VfWpZH07Vz5FBmUFjSZavq
+         6jdYSNfKXwAzVsfZKHreIFRDfMDvD3f3nK5Hou7c0pmHJIp1BeE4bBDusy1scRdG8Vh8
+         uPEFf3QX0E8OjEwJOjOcBxIGvWYeDn+J864VUg35uL8geYk6L3P0oyyjS1Va+RlZ4tqy
+         5PW8NnQMy1uRPJEqycX33/sP7BD322BG1FZ4qmsI8I6eLDxomoYAMWolmQETAgUMUVi8
+         QxJN9F3gjOFz2Uldc0iwjGpHu8QeEb9f0TGnvMODkoKYhUDyLrlSQvZ/I8KQWwwQ9EPw
+         /GJg==
+X-Forwarded-Encrypted: i=1; AJvYcCXz1v/YO0yEwXfiH0QmRDIc3Drjl+gVcPPRx86OxHvzEs84THm2j1yK+Czot6KbFst2zvoC/kWgkGKi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvqrOt5cRITMuSwRcArul0V0UZgm+qGRPThm1VtCe6rirsYjyZ
+	RPYYoDod3u5S1+CudWHRnYR/bcivewevYs5mwXWnl/AfyKpkblzNveWEySYViRvC+gw=
+X-Gm-Gg: ASbGncuQpFwY16QQ9bAMvtt5Zbq2u2yoI5hd/lzvYNq9gdCQFEMNYiFLTGvTFLWrCp4
+	j/4RUEBe2SJRneP/EV22DFamHS09pZU2dFzRXBT+AEtSpWObs5jOZtVbtIKWjCc+/xvcf4QqWJ/
+	6GuX3bh1JFIt+ldp8Ej4dXmB0RwrtOA77s99RCFG+QKa85nI3WtEC149hWPddmy+6FQqCtJ9uGo
+	ESVXdpTJLBIoG7cKwrOcNAsADIUTGQ+GiKdEd2VJLPGRqI9d0J0Ki/rVaJm6wsDQaujsI+HwLZW
+	t9SZdgH+2xOXahYJiHBoGLFQLgDc81HPGunvEYCVSaKQFt3Uq5YMUevU0pmN41L16G6w8zkGNvJ
+	fzCla2OAlIln5SonkLX+uhq8Qs31RxHmFVncCw+yEJGDvwFK7bGEpsl/37oOsvwc2
+X-Google-Smtp-Source: AGHT+IGVcM00Y26FF+FPGURVp7bTF94M65Mkx8JUXqdBhigzdEAzBLNoXLhJsRfOkHHWGBlHaw1XQA==
+X-Received: by 2002:a05:600c:b90:b0:458:bfe1:4a82 with SMTP id 5b1f17b1804b1-45a1b655872mr2584415e9.16.1755119924479;
+        Wed, 13 Aug 2025 14:18:44 -0700 (PDT)
 Received: from [192.168.0.13] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b91b05b28fsm2527911f8f.21.2025.08.13.14.15.11
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1b789d68sm1106075e9.1.2025.08.13.14.18.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Aug 2025 14:15:12 -0700 (PDT)
-Message-ID: <93e35282-52a3-4c3e-8065-b2a6c363c974@linaro.org>
-Date: Wed, 13 Aug 2025 22:15:10 +0100
+        Wed, 13 Aug 2025 14:18:44 -0700 (PDT)
+Message-ID: <b69b884b-c257-4b72-80b0-3251306365ad@linaro.org>
+Date: Wed, 13 Aug 2025 22:18:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,73 +82,247 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: qcom,sm8550-iris: Add SM8750
- video codec
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH v4 6/9] media: qcom: camss: Add support for CSID for
+ sa8775p
+To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+ cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
- <20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org>
- <683024c7-3740-cb9a-6924-33816edd63f3@quicinc.com>
- <8d8dcaef-eb96-4e7b-9a0a-8b3836cb284c@kernel.org>
- <e33a22ba-f82a-412a-b1fd-d1cd50f6b21d@kernel.org>
+References: <20250807121105.710072-1-quic_vikramsa@quicinc.com>
+ <20250807121105.710072-7-quic_vikramsa@quicinc.com>
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <e33a22ba-f82a-412a-b1fd-d1cd50f6b21d@kernel.org>
+In-Reply-To: <20250807121105.710072-7-quic_vikramsa@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/08/2025 09:04, Krzysztof Kozlowski wrote:
-> On 12/08/2025 10:00, Krzysztof Kozlowski wrote:
->> On 12/08/2025 09:54, Dikshita Agarwal wrote:
->>>
->>>
->>> On 8/4/2025 7:07 PM, Krzysztof Kozlowski wrote:
->>>> Add binding for Qualcom SM8750 Iris video codec, which comes with
->>>> significantly different powering up sequence than previous SM8650, thus
->>>> different clocks and resets.  For consistency keep existing clock and
->>>> clock-names naming, so the list shares common part.
->>>>
->>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>   .../bindings/media/qcom,sm8750-iris.yaml           | 186 +++++++++++++++++++++
->>>>   1 file changed, 186 insertions(+)
->>>>
->>>
->>> Query:
->>> Can the additional reset and clocks be accommodated in existing 8550-iris
->>
->> No, different hardware. Although it is hardware from your domain and
->> your company, so I would assume you know the answer.
-> I guess I misread - I thought you want to re-use existing properties or
-> something like that, but you just want to create one huge binding?
+On 07/08/2025 13:11, Vikram Sharma wrote:
+> The CSID in sa8775p is version 690, This csid is different from
+> csid 780 w.r.t few bit-fields.
 > 
-> No. Don't grow these unmaintainable patterns. We have been changing this
-> for some time already :/
+> Signed-off-by: Suresh Vankadara <quic_svankada@quicinc.com>
+> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> ---
+>   .../platform/qcom/camss/camss-csid-gen3.c     |  27 +++-
+>   drivers/media/platform/qcom/camss/camss.c     | 133 ++++++++++++++++++
+>   2 files changed, 153 insertions(+), 7 deletions(-)
 > 
-> Best regards,
-> Krzysztof
-
-@Dikshita can you revert here are you happy with a new binding or 
-requesting in-line changes in Iris - my reading here is a binding is 
-justified.
-
-@Krzysztof 
-https://lore.kernel.org/linux-arm-msm/fb8f154b-3da4-4bee-82e1-3a1597a35c46@kernel.org/
-
-Are you sending a v3 here ?
-
-I can also just add the OPP when applying this patch.
-
----
-bod
-
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid-gen3.c b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> index 433908a54baa..fc6a9787febe 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid-gen3.c
+> @@ -45,8 +45,11 @@
+>   #define CSID_CSI2_RX_IRQ_CLEAR		0xA4
+>   #define CSID_CSI2_RX_IRQ_SET		0xA8
+>   
+> +#define IS_CSID_690(csid)	(csid->camss->res->version == CAMSS_8775P)
+>   #define CSID_BUF_DONE_IRQ_STATUS	0x8C
+> -#define		BUF_DONE_IRQ_STATUS_RDI_OFFSET	(csid_is_lite(csid) ? 1 : 14)
+> +#define BUF_DONE_IRQ_STATUS_RDI_OFFSET  (csid_is_lite(csid) ?\
+> +						1 : (IS_CSID_690(csid) ?\
+> +						13 : 14))
+>   #define CSID_BUF_DONE_IRQ_MASK		0x90
+>   #define CSID_BUF_DONE_IRQ_CLEAR		0x94
+>   #define CSID_BUF_DONE_IRQ_SET		0x98
+> @@ -59,6 +62,7 @@
+>   
+>   #define CSID_CSI2_RX_CFG0		0x200
+>   #define		CSI2_RX_CFG0_NUM_ACTIVE_LANES	0
+> +#define		CSI2_RX_CFG0_VC_MODE		3
+>   #define		CSI2_RX_CFG0_DL0_INPUT_SEL	4
+>   #define		CSI2_RX_CFG0_PHY_NUM_SEL	20
+>   
+> @@ -66,7 +70,9 @@
+>   #define		CSI2_RX_CFG1_ECC_CORRECTION_EN	BIT(0)
+>   #define		CSI2_RX_CFG1_VC_MODE		BIT(2)
+>   
+> -#define CSID_RDI_CFG0(rdi)		(0x500 + 0x100 * (rdi))
+> +#define CSID_RDI_CFG0(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
+> +					(0x300 + 0x100 * (rdi)) :\
+> +					(0x500 + 0x100 * (rdi)))
+>   #define		RDI_CFG0_TIMESTAMP_EN		BIT(6)
+>   #define		RDI_CFG0_TIMESTAMP_STB_SEL	BIT(8)
+>   #define		RDI_CFG0_DECODE_FORMAT		12
+> @@ -75,10 +81,14 @@
+>   #define		RDI_CFG0_DT_ID			27
+>   #define		RDI_CFG0_EN			BIT(31)
+>   
+> -#define CSID_RDI_CTRL(rdi)		(0x504 + 0x100 * (rdi))
+> +#define CSID_RDI_CTRL(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
+> +					(0x304 + 0x100 * (rdi)) :\
+> +					(0x504 + 0x100 * (rdi)))
+>   #define		RDI_CTRL_START_CMD		BIT(0)
+>   
+> -#define CSID_RDI_CFG1(rdi)		(0x510 + 0x100 * (rdi))
+> +#define CSID_RDI_CFG1(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
+> +					(0x310 + 0x100 * (rdi)) :\
+> +					(0x510 + 0x100 * (rdi)))
+>   #define		RDI_CFG1_DROP_H_EN		BIT(5)
+>   #define		RDI_CFG1_DROP_V_EN		BIT(6)
+>   #define		RDI_CFG1_CROP_H_EN		BIT(7)
+> @@ -86,9 +96,12 @@
+>   #define		RDI_CFG1_PIX_STORE		BIT(10)
+>   #define		RDI_CFG1_PACKING_FORMAT_MIPI	BIT(15)
+>   
+> -#define CSID_RDI_IRQ_SUBSAMPLE_PATTERN(rdi)	(0x548 + 0x100 * (rdi))
+> -#define CSID_RDI_IRQ_SUBSAMPLE_PERIOD(rdi)	(0x54C + 0x100 * (rdi))
+> -
+> +#define CSID_RDI_IRQ_SUBSAMPLE_PATTERN(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
+> +							(0x348 + 0x100 * (rdi)) :\
+> +							(0x548 + 0x100 * (rdi)))
+> +#define CSID_RDI_IRQ_SUBSAMPLE_PERIOD(rdi)	(csid_is_lite(csid) && IS_CSID_690(csid) ?\
+> +							(0x34C + 0x100 * (rdi)) :\
+> +							(0x54C + 0x100 * (rdi)))
+>   #define CSI2_RX_CFG0_PHY_SEL_BASE_IDX	1
+>   
+>   static void __csid_configure_rx(struct csid_device *csid,
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 4767d4e7c306..5f1e267045cb 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -2554,6 +2554,139 @@ static const struct camss_subdev_resources csiphy_res_8775p[] = {
+>   	},
+>   };
+>   
+> +static const struct camss_subdev_resources csid_res_8775p[] = {
+> +	/* CSID0 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "csid", "csiphy_rx"},
+> +		.clock_rate = {
+> +			{ 400000000, 400000000},
+> +			{ 400000000, 400000000}
+> +		},
+> +		.reg = { "csid0" },
+> +		.interrupt = { "csid0" },
+> +		.csid = {
+> +			.is_lite = false,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID1 */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "csid", "csiphy_rx"},
+> +		.clock_rate = {
+> +			{ 400000000, 400000000},
+> +			{ 400000000, 400000000}
+> +		},
+> +		.reg = { "csid1" },
+> +		.interrupt = { "csid1" },
+> +		.csid = {
+> +			.is_lite = false,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +
+> +	/* CSID2 (lite) */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "cpas_vfe_lite", "vfe_lite_ahb",
+> +			   "vfe_lite_csid", "vfe_lite_cphy_rx",
+> +			   "vfe_lite"},
+> +		.clock_rate = {
+> +			{ 0, 0, 400000000, 400000000, 0},
+> +			{ 0, 0, 400000000, 480000000, 0}
+> +		},
+> +		.reg = { "csid_lite0" },
+> +		.interrupt = { "csid_lite0" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID3 (lite) */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "cpas_vfe_lite", "vfe_lite_ahb",
+> +			   "vfe_lite_csid", "vfe_lite_cphy_rx",
+> +			   "vfe_lite"},
+> +		.clock_rate = {
+> +			{ 0, 0, 400000000, 400000000, 0},
+> +			{ 0, 0, 400000000, 480000000, 0}
+> +		},
+> +		.reg = { "csid_lite1" },
+> +		.interrupt = { "csid_lite1" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID4 (lite) */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "cpas_vfe_lite", "vfe_lite_ahb",
+> +			   "vfe_lite_csid", "vfe_lite_cphy_rx",
+> +			   "vfe_lite"},
+> +		.clock_rate = {
+> +			{ 0, 0, 400000000, 400000000, 0},
+> +			{ 0, 0, 400000000, 480000000, 0}
+> +		},
+> +		.reg = { "csid_lite2" },
+> +		.interrupt = { "csid_lite2" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID5 (lite) */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "cpas_vfe_lite", "vfe_lite_ahb",
+> +			   "vfe_lite_csid", "vfe_lite_cphy_rx",
+> +			   "vfe_lite"},
+> +		.clock_rate = {
+> +			{ 0, 0, 400000000, 400000000, 0},
+> +			{ 0, 0, 400000000, 480000000, 0}
+> +		},
+> +		.reg = { "csid_lite3" },
+> +		.interrupt = { "csid_lite3" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +	/* CSID6 (lite) */
+> +	{
+> +		.regulators = {},
+> +		.clock = { "cpas_vfe_lite", "vfe_lite_ahb",
+> +			   "vfe_lite_csid", "vfe_lite_cphy_rx",
+> +			   "vfe_lite"},
+> +		.clock_rate = {
+> +			{ 0, 0, 400000000, 400000000, 0},
+> +			{ 0, 0, 400000000, 480000000, 0}
+> +		},
+> +		.reg = { "csid_lite4" },
+> +		.interrupt = { "csid_lite4" },
+> +		.csid = {
+> +			.is_lite = true,
+> +			.hw_ops = &csid_ops_gen3,
+> +			.parent_dev_ops = &vfe_parent_dev_ops,
+> +			.formats = &csid_formats_gen2
+> +		}
+> +	},
+> +};
+> +
+>   static const struct resources_icc icc_res_sa8775p[] = {
+>   	{
+>   		.name = "ahb",
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
