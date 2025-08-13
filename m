@@ -1,341 +1,170 @@
-Return-Path: <devicetree+bounces-204414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC03FB25728
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 01:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10453B25734
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 01:05:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF80F188F434
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 23:04:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C89C1C860C8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 23:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A282D8767;
-	Wed, 13 Aug 2025 23:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1417F2F3C25;
+	Wed, 13 Aug 2025 23:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QCrrJARN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KkpyQYqp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41942D46A2
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 23:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046E02D46A2;
+	Wed, 13 Aug 2025 23:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755126258; cv=none; b=Z6HCEP/yoaNXnLeIp99ZVe9ND00nXAPY9hnuD+X6V5YNonEXX/D8R+QSDS7VNx+vp6cMQOK0BArqjCHdjdIgYw3ctBulhX8+5UJLGuonYPaJTYNn/VHzcWPmVIe7WUgGSWSGUY7J+u1xPD+m3ZhoG+FGjkXaoVEOfjhbYRzvXus=
+	t=1755126283; cv=none; b=VPiFuMqBXFz20W3AU+MZobmoks1r53/+yroUxP0eiIULvDRe6mMxl870GB7pxkjd2mF7rMNqAdyuBm5O6tQy8fFmi41E5+lbNRrb5OI8yYOZLdpLwbiR3Niqprwb0xqoXOthJC3QljY9PHZ+f2+hYuQ0NwdZefISXsIlo/v7lLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755126258; c=relaxed/simple;
-	bh=V8tv6QYmtZ4XrciW/E5chTrle+DeFBzxKefuKdwTNlM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=ez7L52TffxuH29fQ560I+DXl/6s7FJKZr98gMs06+H9ONzlanOLT6v6sF06C0kSq80Cs8jIoPizQ6SBJpEuclDF1VBol5tul2fh6qdn6CqcXY0PFg2hyzgY6hdx/agvEqOn53fREO/ZYHnApvJurjMOAoqr0Cjg+njZhC2OgGIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QCrrJARN; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45a1b065d58so1858825e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 16:04:16 -0700 (PDT)
+	s=arc-20240116; t=1755126283; c=relaxed/simple;
+	bh=u77HgcnqZUI0DyTMAuYCiDcC5lkLJPB0fBe76X83Ga0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iB7W8v9U/fUqrhqVWmI6oMhca0e9iDOSu5Twjww+55se32Xi03gi8GfTB/GxqKyQm4fnpE8d4gJhFDfz1EOCfYTP1OZIOgqvL60MugY7V+dObieUYTCSaoquJ2UPOc8b7cwU/KXDJwiNw4w6WBCOKlNdUGxg7Lb+HTV/EZ2CEtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KkpyQYqp; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e931cddb0e2so328261276.3;
+        Wed, 13 Aug 2025 16:04:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755126255; x=1755731055; darn=vger.kernel.org;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1755126279; x=1755731079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Fma0jMGy51uQlwxrCY+Lr/EVRe0o/h9sqaHsep6/mww=;
-        b=QCrrJARNSh9iaSZvMuLHTJrAvyUYevsj50a8XYfzDzJySWtRLRCV0oWPxEM54Uciow
-         H5I+wgQjaGuvBQafg2Sr7GZ7ZQ3FB37f+ki9+ta/QT3d2l3PcWK5mfu6NYarAjGZl0hf
-         sCZUCDAxxi6qCFuaLW5S5Py3NcG1hEyrxqiQ1kmOYNnDJuWbxUZMi92zzQivS3K+ZsJg
-         R2RDwEObZTx+NJWRAqa5YN1bAatk7mFYWW9JQY+U1NUOnH4s7kxpbKIYgmQYAgnY++Sv
-         YnYTXbBaHTZHkJaUNCem8KviTBw01M8TKG8oABtlySbbaNqdPxSMn1VUmPMm2Lv+NQMz
-         063A==
+        bh=Pr9Kj1G07sBFKVdkwu1EeIztDNfpAGMBwPb2yvwQO3w=;
+        b=KkpyQYqp/ltXTtI0h0sg4NA5oLpKj4Bja8frcNEWptyVSBGwU2FcHuk4fleLIbcxW7
+         hILs/4UdlHHIyXVqzPLplE6YZ9YSD55szEd4tebLYD2cUSpWWRTswIRNcKMN36AZltoq
+         IwAFWCipMYr4pbTbIdB/ka/bZNsdqOLXtxnlNgQ6r2E/dVRIfYo8b0PpaAV1Zo4NmuXD
+         wCjR5d3GMc/MyUkrePh8YFL1su4NjCnecxukHPbSKMgw7wFotlQzeTc/6buPb9xn6Uk/
+         rxkaIt61xTVlaLOH9nFppnTOUjA5X0bzwYkTxpi1vtTZO6oaH1U9VEMwk237p40wCoW/
+         bQDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755126255; x=1755731055;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Fma0jMGy51uQlwxrCY+Lr/EVRe0o/h9sqaHsep6/mww=;
-        b=iuc3QQVaAXgAzayH7TIFIsoBwjBKcRH7lxMtLcBagjXiJgF7cdlPwyz7/gvFptM5ZX
-         W/WHRpNX9Eb3uBcqLx65/3R58e7pG0Ii6x+o9PU8oDJ/6oerx3RavnheZ8C/LXOlMi2b
-         eu3r450ouhVlsNJZhpyBTHxLDKdyE2hqLdous7t8VP6I/VDk3jcdHAwGM2wvbZ0X83bI
-         oCk2acrfcQ5SeG1uvDEVlxYQMVYplNh62BpFAtUik5PTLxCikKr0VYUhzWt5GGkBKIQU
-         KwuB2wXAu/WrDCrKlf2Po1cOM5aDHm/v3PJ2w52WN6zwF0FE9fZOi/1VGB1U93fgkcHg
-         u47g==
-X-Forwarded-Encrypted: i=1; AJvYcCU8dz+m5dGu3NirjL+P6VsteT+QXDOt9XEcBDRb/YhKVqMxmHU4/tm8j6o83CCC8vdsCEthG/vbrt0T@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFWfjTQumZ2kiRXBYYqqc+KrTnBiN4iH7CXfyG9TLiartTnmS5
-	scvP7eA7jfYpZiQXdFgsEaVQNTNKRqZf+RN7uBCQfAVkPVCHNrEH+JPa8jSUVrKCitk=
-X-Gm-Gg: ASbGncs3IUHSinxMTuzpy+awo6qaLQkTR7sqtLbHU1+c+nLb+8vHC155q1HIuunUpJg
-	lpxuodBvkr7/NLtLZTyfwlEq0JHYPmrS1u8HpxjJQAW64kLZ9RjMGvkyg2LbTav3Ijts8EDaKXr
-	X/OD2WGsOigMczwSDQHxL6M3xnOxCoSRiES4ZcjmJhwf7daEZsnKlGwYUbhIfZqmU3OVEgfji3C
-	UQ5tXANLjx8O+vXx7VSkuvd16mUIjFgCGbYpg75L3lTQQltCFVou7czZ5jkpdrvXkCyxGr/m4VA
-	4n9IqU1nirCw7YE+1uXMDlkHhtwVkgv5dktp7hk2IeM0QR9vaLYlDGWoPiQW3dCG3Q7OrWOvVJs
-	1E3k7l4i+EowRatn0eMQf0UPXZn8=
-X-Google-Smtp-Source: AGHT+IEhcbKpnrTTmO41bGN+y6+XLDkw2c1iBzsSYn8Otej+XJU1Ch8JUGavn+Mdu+oPYs7fT9Y/tQ==
-X-Received: by 2002:a05:600c:3515:b0:456:1923:7549 with SMTP id 5b1f17b1804b1-45a1b6553a8mr3339795e9.26.1755126254989;
-        Wed, 13 Aug 2025 16:04:14 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:7f3a:5ab2:26aa:831f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1a50b9e6sm19416515e9.6.2025.08.13.16.04.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Aug 2025 16:04:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755126279; x=1755731079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pr9Kj1G07sBFKVdkwu1EeIztDNfpAGMBwPb2yvwQO3w=;
+        b=oHy0H8HycN9vF5jeoIYcQ6kKK094jPZ92/tRCfTV1yFhtimx86M9L+2UzTpqbqDjXU
+         HLNbmONMFaVJdZpLoZ4y3QlN4+jZ+XlNQitGlYDcFI7hRGZEAVhYTTACktLGJDbfbsuV
+         KpjUOvq5oRjUltKlGbEGm0/pVZZHf5MBzgb7RO9GAk10VQIboYe7/LfRyVJLELqmac8E
+         2GKdnPQQnCKAejLU3PKcBYC1UBdSm6KWfzyp+c6LLYpZ0QWAD2GyKS/DQmDVUMMYD5b8
+         WQu/4EOIIm5IlzyKL1sApAKSuO4s1oGAYMs/3IEcJEK2sAXD0s9E1a9qjSoyZgqyFnff
+         s6TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxm89yjjEsz76S9uwHglaYwkFpApYGmPY4OcufF3YrxoLDeiA9A7d2tk6ZeGXdAS8pimJZ3QA9tZR2N8T8@vger.kernel.org, AJvYcCWcrIaz+oCLKmbF8DRkEKx2rEpnhdV6A1AaTMWUsomtwy3s5rHTU16XkJ5W70+Mbz6z6UJsbs/xMtyfdQ==@vger.kernel.org, AJvYcCXO6tz7l1mQ1p2a+OlyICkeLBRiMz4K5ma64bmoTyB7NKnLdttWGSrBB+JEKtQQdrFBO5x8bWiVLc8z@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIVhr+4ZGBq4183R0Il32cTIY3eMQdslnZ80gkRGyjGsLN6wAH
+	tTa1I5mOf2TD/6b5zKynLGeo4tcBiX68uLXGAd+O4KWW/22Q/+U2laCNNzZwnTNhe5CornQ6/Q+
+	9gfv9W7QnmdBbA+3OtqOspeAPnJH48ik=
+X-Gm-Gg: ASbGnctYKP4ZRhY7sGhOkYqz8FAlIqZTS5DvLrYRW7/IVcFS6BbQDruAJsXG7suIgjK
+	OeNaI0uv3uRMlGAa/IPxakmyDdebRyMA8UBW61vpE7YwlkGa3nUtjHf+rmZ1HdvGgzobSwBc/V6
+	eiznqGfco7Wt28xnUfk1a+Kdx1KmuomqIcMTXOJh6n41WAypYaqP4L46tNJBNs/st01LtyKwiWi
+	Tvap8SO+W5bCtpsQoH9
+X-Google-Smtp-Source: AGHT+IG7lFQGkxo260R40BXsMXP2dO7WlFpphAJUK3E5r/amKiJyMYB2CNZKh93w2y97cKZYxB75AvRAwHVMH60IMsc=
+X-Received: by 2002:a05:6902:26ca:b0:e90:6a88:eac0 with SMTP id
+ 3f1490d57ef6-e931e24f7eamr1050134276.38.1755126279152; Wed, 13 Aug 2025
+ 16:04:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250812192334.11651-1-rosenp@gmail.com> <20250812192334.11651-2-rosenp@gmail.com>
+ <14f0cb76-1694-4330-899a-7565af0dfdfc@kernel.org>
+In-Reply-To: <14f0cb76-1694-4330-899a-7565af0dfdfc@kernel.org>
+From: Rosen Penev <rosenp@gmail.com>
+Date: Wed, 13 Aug 2025 16:04:27 -0700
+X-Gm-Features: Ac12FXyys9GBy4gP4fGG0TS-5bObcQEdpHAmr6F9oGDkOu-nkxxKBO0SLtnWMho
+Message-ID: <CAKxU2N_vo9NThjGaiX1Fq5jet0vdw390ZYpVct4=XPa5gwj-Kg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/3] dt-bindings: net: wireless: ath9k: add led bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>, 
+	Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 14 Aug 2025 00:04:13 +0100
-Message-Id: <DC1OBXZ7UUTZ.2V473MOKABPKJ@linaro.org>
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Lee
- Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
- <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
- <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
- <srinivas.kandagatla@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/3] ASoC: codecs: add new pm4125 audio codec driver
-X-Mailer: aerc 0.20.0
-References: <20250711-pm4125_audio_codec_v1-v2-0-13e6f835677a@linaro.org>
- <20250711-pm4125_audio_codec_v1-v2-2-13e6f835677a@linaro.org>
- <0acde3b4-a437-4fa1-b5bd-fe1810309bb8@wanadoo.fr>
-In-Reply-To: <0acde3b4-a437-4fa1-b5bd-fe1810309bb8@wanadoo.fr>
 
-On Fri Jul 11, 2025 at 4:15 PM BST, Christophe JAILLET wrote:
-> Hi,
-
-Hi Christophe,
-
->> +static int pm4125_probe(struct sdw_slave *pdev, const struct sdw_device=
-_id *id)
->> +{
->> +	struct device *dev =3D &pdev->dev;
->> +	struct pm4125_sdw_priv *priv;
->> +	u8 master_ch_mask[PM4125_MAX_SWR_CH_IDS];
->> +	int master_ch_mask_size =3D 0;
->> +	int ret, i;
->> +
->> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->> +	if (!priv)
->> +		return -ENOMEM;
->> +
->> +	/* Port map index starts at 0, however the data port for this codec st=
-arts at index 1 */
->> +	if (of_property_present(dev->of_node, "qcom,tx-port-mapping")) {
->> +		priv->is_tx =3D true;
->> +		ret =3D of_property_read_u32_array(dev->of_node, "qcom,tx-port-mappin=
-g",
->> +						 &pdev->m_port_map[1], PM4125_MAX_TX_SWR_PORTS);
->> +	} else
->> +		ret =3D of_property_read_u32_array(dev->of_node, "qcom,rx-port-mappin=
-g",
->> +						 &pdev->m_port_map[1], PM4125_MAX_SWR_PORTS);
+On Wed, Aug 13, 2025 at 1:16=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> Nitpick: If a branch of an if needs { }, I think that both should have.
-
-Yes. Thanks.
-
->> +
->> +	if (ret < 0)
->> +		dev_info(dev, "Error getting static port mapping for %s (%d)\n",
->> +			 priv->is_tx ? "TX" : "RX", ret);
->> +
->> +	priv->sdev =3D pdev;
->> +	dev_set_drvdata(dev, priv);
+> On 12/08/2025 21:23, Rosen Penev wrote:
+> > The ath9k driver has various pin GPIO numbers for different chipsets
+> > which are not always correct for every device.
+> >
+> > Add bindings to specify the correct number and if it should be
+> > active-low.
+> >
+> > Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> > ---
+> >  .../bindings/net/wireless/qca,ath9k.yaml           | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.y=
+aml b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > index d16ca8e0a25d..e701046146f2 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
+> > @@ -50,6 +50,17 @@ properties:
+> >
+> >    ieee80211-freq-limit: true
+> >
+> > +  led:
+> > +    type: object
 >
-> ...
+> Each node must end with additional/unevaluatedProperties: false. See
+> example schema and writing schema.
 >
->> +static const struct sdw_device_id pm4125_slave_id[] =3D {
->> +	SDW_SLAVE_ENTRY(0x0217, 0x10c, 0), /* Soundwire pm4125 RX/TX Device ID=
- */
->> +	{ },
+> That will probably lead you to missing LED common binding.
+
 >
-> No need for a trailing comma after a terminator
-
-Ok.
-
-
->> +};
->> +MODULE_DEVICE_TABLE(sdw, pm4125_slave_id);
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +      led-active-low:
+> > +        description:
+> > +          LED is enabled with ground signal.
 >
-> ...
+> Aren't you redefining existing properties?
+I don't think led-active-low is specified in any central location:
+
+Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml:  led-active-l=
+ow:
+Documentation/devicetree/bindings/leds/irled/ir-spi-led.yaml:
+  led-active-low;
+Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml:
+ led-active-low:
+Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml:
+led-active-low:
+Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml:
+ led-active-low;
 >
->> +#include <linux/component.h>
->> +#include <linux/delay.h>
->> +#include <linux/device.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regmap.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/slab.h>
->> +#include <sound/jack.h>
+> > +        type: boolean
+> > +
+> >    qca,no-eeprom:
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> >      description:
+> > @@ -102,5 +113,8 @@ examples:
+> >          compatible =3D "qca,ar9130-wifi";
+> >          reg =3D <0x180c0000 0x230000>;
+> >          interrupts =3D <2>;
+> > +        led {
+> > +          led-sources =3D <0>;
 >
-> Maybe, keep alphabetical order?
-
-It looks like the headers were sorted in pm4125-sdw.c.
-However, in pm4125.c I changed the order a bit for the next submission.
-
->> +#include <sound/pcm_params.h>
->> +#include <sound/pcm.h>
->> +#include <sound/soc-dapm.h>
->> +#include <sound/soc.h>
->> +#include <sound/tlv.h>
+> Totally confusing with schema. active-low in one place, different
+> property in the example and no source for that property at all :/
+Ah right. Will fix.
 >
-> ...
 >
->> +static int pm4125_bind(struct device *dev)
->
-> If an error occures at some point, should things be undone before returni=
-ng?
-
-Thanks! This probably inherited from other codecs.
-I reimplemented this for the next version.
-
->> +{
->> +	struct pm4125_priv *pm4125 =3D dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	/* Give the soundwire subdevices some more time to settle */
->> +	usleep_range(15000, 15010);
->> +
->> +	ret =3D component_bind_all(dev, pm4125);
->> +	if (ret) {
->> +		dev_err(dev, "Slave bind failed, ret =3D %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	pm4125->rxdev =3D pm4125_sdw_device_get(pm4125->rxnode);
->> +	if (!pm4125->rxdev) {
->> +		dev_err(dev, "could not find rxslave with matching of node\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	pm4125->sdw_priv[AIF1_PB] =3D dev_get_drvdata(pm4125->rxdev);
->> +	pm4125->sdw_priv[AIF1_PB]->pm4125 =3D pm4125;
->> +
->> +	pm4125->txdev =3D pm4125_sdw_device_get(pm4125->txnode);
->> +	if (!pm4125->txdev) {
->> +		dev_err(dev, "could not find txslave with matching of node\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	pm4125->sdw_priv[AIF1_CAP] =3D dev_get_drvdata(pm4125->txdev);
->> +	pm4125->sdw_priv[AIF1_CAP]->pm4125 =3D pm4125;
->> +
->> +	pm4125->tx_sdw_dev =3D dev_to_sdw_dev(pm4125->txdev);
->> +	if (!pm4125->tx_sdw_dev) {
->> +		dev_err(dev, "could not get txslave with matching of dev\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	/*
->> +	 * As TX is the main CSR reg interface, which should not be suspended =
-first.
->> +	 * expicilty add the dependency link
->> +	 */
->> +	if (!device_link_add(pm4125->rxdev, pm4125->txdev,
->> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
->> +		dev_err(dev, "Could not devlink TX and RX\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (!device_link_add(dev, pm4125->txdev,
->> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
->> +		dev_err(dev, "Could not devlink PM4125 and TX\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	if (!device_link_add(dev, pm4125->rxdev,
->> +			     DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME)) {
->> +		dev_err(dev, "Could not devlink PM4125 and RX\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	pm4125->regmap =3D dev_get_regmap(&pm4125->tx_sdw_dev->dev, NULL);
->> +	if (!pm4125->regmap) {
->> +		dev_err(dev, "could not get TX device regmap\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	ret =3D pm4125_irq_init(pm4125, dev);
->> +	if (ret) {
->> +		dev_err(dev, "IRQ init failed: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	pm4125->sdw_priv[AIF1_PB]->slave_irq =3D pm4125->virq;
->> +	pm4125->sdw_priv[AIF1_CAP]->slave_irq =3D pm4125->virq;
->> +
->> +	ret =3D pm4125_set_micbias_data(pm4125);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Bad micbias pdata\n");
->> +		return ret;
->> +	}
->> +
->> +	ret =3D snd_soc_register_component(dev, &soc_codec_dev_pm4125,
->> +					 pm4125_dais, ARRAY_SIZE(pm4125_dais));
->> +	if (ret)
->> +		dev_err(dev, "Codec registration failed\n");
->> +
->> +	return ret;
->> +}
-
-[..]
-
->> +static int pm4125_probe(struct platform_device *pdev)
->> +{
->> +	struct component_match *match =3D NULL;
->> +	struct device *dev =3D &pdev->dev;
->> +	struct pm4125_priv *pm4125;
->> +	struct wcd_mbhc_config *cfg;
->> +	int ret;
->> +
->> +	pm4125 =3D devm_kzalloc(dev, sizeof(*pm4125), GFP_KERNEL);
->> +	if (!pm4125)
->> +		return -ENOMEM;
->> +
->> +	dev_set_drvdata(dev, pm4125);
->> +
->> +	pm4125->supplies[0].supply =3D "vdd-io";
->> +	pm4125->supplies[1].supply =3D "vdd-cp";
->> +	pm4125->supplies[2].supply =3D "vdd-mic-bias";
->> +	pm4125->supplies[3].supply =3D "vdd-pa-vpos";
->> +
->> +	ret =3D devm_regulator_bulk_get(dev, PM4125_MAX_BULK_SUPPLY, pm4125->s=
-upplies);
->
-> devm_regulator_bulk_get_enable() could certainly be used to save a few=20
-> lines of code after fix the missing regulator_bulk_disable() in the=20
-> error handling of the probe.
-
-Thanks! I'll reimplement this.
-For me it looks like after staring at devm_regulator_bulk_get_enable()
-that regulator_bulk_disable() is not needed.
-
-[..]
-
->> +static void pm4125_remove(struct platform_device *pdev)
->> +{
->> +	struct device *dev =3D &pdev->dev;
->> +	struct pm4125_priv *pm4125 =3D dev_get_drvdata(dev);
->> +
->> +	component_master_del(&pdev->dev, &pm4125_comp_ops);
->> +
->> +	pm_runtime_disable(dev);
->> +	pm_runtime_set_suspended(dev);
->> +	pm_runtime_dont_use_autosuspend(dev);
->> +
->> +	regulator_bulk_disable(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
->> +	regulator_bulk_free(PM4125_MAX_BULK_SUPPLY, pm4125->supplies);
->
-> Is it correct? (it looks related to devm_regulator_bulk_get())
-
-I'll take a look at that.
-
-Thank you,
-Alexey
+> Best regards,
+> Krzysztof
 
