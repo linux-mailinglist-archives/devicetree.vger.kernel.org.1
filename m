@@ -1,226 +1,216 @@
-Return-Path: <devicetree+bounces-204109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C53B2419E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:35:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE149B241AA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:38:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60C5E18883FB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:34:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 97E254E3616
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EB92D63FD;
-	Wed, 13 Aug 2025 06:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4297C2D372C;
+	Wed, 13 Aug 2025 06:38:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1192D542F;
-	Wed, 13 Aug 2025 06:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DB42D3220;
+	Wed, 13 Aug 2025 06:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755066796; cv=none; b=SHfb1fh1Ossv8xPD2xgZzyWkGcAd/m3C6FYRJbMgIdJpN4gVKBawilIgb7TjWMZGVidKBXMSnJtXrJHAaTOAftsAQBWAmd51qd9lFoxE/21oEZ7wV0rU3lnrUxRjOAcl6FxLgQofbo5G7ylkrENoiHkuMT6JYio4X36bvhVTOQ0=
+	t=1755067104; cv=none; b=KfBnN//mJKNwhM7+Fgb3MwqGX7dtBnFhuOVGxA2qHFF0OygCAC5gGzs6OuVQDbQlXxS873bPtBTQGRdMJF4GpNfWA7p3ig7EguOxZlVia6F/S7YXt0h/HHYQvKv3PlT67Tf4oRl0z+TQYZ/qjVkt86zItS4YDBw2O7tDDHmad7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755066796; c=relaxed/simple;
-	bh=8gjWsXm0VlB8Wbugiu6rvJc3y4PeQEm4UtIZEPaOnlw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lriTe2julegY/4hzw5h1P8FEUe+c45IuchnAlmrYUpzK4cyd5HH29iygJnAYIPigiFOWHcNVcegXdis84es6bNneBDmJADGAbJuJnrQPcdrnEWGrQcLLJvxXS9P31Y2ue2fa4v9ainLBH9wC4Ck9zCaz+SgazVTGndfQfWnT+7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
- 2025 14:33:01 +0800
-Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Wed, 13 Aug 2025 14:33:01 +0800
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>
-CC: Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Po-Yu
- Chuang <ratbert@faraday-tech.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<taoren@meta.com>, <bmc-sw2@aspeedtech.com>
-Subject: [net-next v2 4/4] net: ftgmac100: Add RGMII delay configuration for AST2600
-Date: Wed, 13 Aug 2025 14:33:01 +0800
-Message-ID: <20250813063301.338851-5-jacky_chou@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250813063301.338851-1-jacky_chou@aspeedtech.com>
-References: <20250813063301.338851-1-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1755067104; c=relaxed/simple;
+	bh=NlaZC1vsg/3EvL4u3fWp4og70gDFoZCZIHdYTf1ff9U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QINQm/+R42VCniuuVpBDLzJyD/26d+gytI7ZibTyymrEvs81Ho/fy+zV27myuiQS1p9mPkUMzBugPZKxPZPf/AifqnimY0Lurha/X38axJ+CXtKZSfF75OSDUHEgFEbK7bO5dOIQ6up0kMDN7XsELwsL1XJSJnQR2hP2OzsC/9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=willwhang.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=willwhang.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-61568fbed16so9849058a12.3;
+        Tue, 12 Aug 2025 23:38:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755067101; x=1755671901;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hANsG9cDZ8y0uwjnNV/4yPX2jp2bM/vF9ssenK54Q3g=;
+        b=CBPCUSviIuMT5j+kj2m61Lcg0oxSxzT5bMLWc+geZjKokyLpAIWGqh8AcPVZWqlnvl
+         Z2Ig7oLBvAkfiza6oydmE9jZHfqHfO7MY/PnQZSCbCMaDrt/MLY0N7YfJaYrlgk99DRg
+         vQioWVy2wgYgDCnFWQ+MCu2mQVPQhohLcMPoZgdg2f2gQmcRX/3X4SSX9QxIYHFUs8ZK
+         WkY65WSxqCpHMdX3GGZZvNnHFIOHp5qIwAaDznenjBXZSTN6qpnVTOvg0BjoQKAu1NI4
+         pY+P4eQKBkIyKgtWNoFn/ZocekigRp650c0RIpDJvupPmCrXWr65ouO7IaymVhJSgguu
+         EQzg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6golCLnZ4bKo15rjevADvZYhnqlxNWogzgLsWpRSRUbxQWbjHdYdCjf6cowZ/jrJWo4qAZZ/xR5Nt@vger.kernel.org, AJvYcCVM/hdPvDpaoIDVo5xHPv8pGNWvjccHYDU4HxovfrF1PvRm9a1cJKdgkero/1aNobvvw2UxGT8mqto+U7k=@vger.kernel.org, AJvYcCX57xvRfKZ/8YOZ2bXkteW2BubuY68TVIC/CdCy40dAQJMv0IEzi5fKyeoBR9te89NqSgSoUjKWJ9zHxmdM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw20u2p0g91ZaVyiazXUSODYgWl5oTneon2fSL2Lqe8PbIZGQ11
+	YUbdXWzX3R5e4TwrUykUj8DqJVZNIQYrK6MwXZSpdI8WUiSoi6vdeXFn8wwTQA9HM5g=
+X-Gm-Gg: ASbGncsw6Jn323Wqc6vTeQyZGiYxk7z2TLRvXcV+21f7+0gpccSmX0HvLXo/zmppFP9
+	podnYAkGp8h/D+Nev4g87i4whIR8zDFWo3N/3XvR0zmem5v/Pi6qq1Iq+BsoTr5qcvX05hRR6Dq
+	E531Us85QEydi8fuadvahvy+93yENh/9AziLBHIOq6ovfXT6b2Skz8xwC84L5Y/PaPuj2sO2DtB
+	A/Y/GN/8P5XAz4RnRe0iSrYcJUvwxaCF0vP1JKq295XOS3TPDpP17sVT1IVIdN2/Lq4Nwr9jnmu
+	UeWv3tYXik8iICBtORKFh8dtrR7+h1FOtge/bJcxQHPFeMlDiOgKLW/uwZTfU5G+qsuyNkyvhQ7
+	sdR8R4jIdZyg9ZtJ/x1Wc+wXN/2Doeo5dg2mP/DhJzwBHi8jgandQOW2eBw==
+X-Google-Smtp-Source: AGHT+IFgrcpGLwy1D4Ab6xWE5L9jJ2olv+s4GNqUG3YfEdp6MbWv+JTYO29SqKMXRBr9ujxBm6QZNw==
+X-Received: by 2002:a17:907:72d4:b0:ae3:4f99:a5a5 with SMTP id a640c23a62f3a-afca4cc8debmr162755666b.6.1755067100225;
+        Tue, 12 Aug 2025 23:38:20 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com. [209.85.208.54])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af9247845edsm2278268966b.46.2025.08.12.23.38.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Aug 2025 23:38:19 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-60c9d8a169bso11430361a12.1;
+        Tue, 12 Aug 2025 23:38:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV03C5hMh+xzh9W7SJRbabUWZl0ZcZHXBrq0jqK8dWyPI1HNJ/hzq2Hi8XvL9SCfglP4NJ01BxQWyfUUCp0@vger.kernel.org, AJvYcCW42IawvgX5YFj0c/Qjn+v/vDgfpyjpyjxpqYubVFmZhG8p2ULX1NjjSy9k/Hq8QEitZvT1F9c//3dtCY8=@vger.kernel.org, AJvYcCXWQSNKkIuUubfO23fgTtKQ8206N/2258bJnmEU/jbmJrRlp1X++tkyvF94qnkXBQQmG6mBiShWCJa4@vger.kernel.org
+X-Received: by 2002:a05:6402:35d5:b0:618:6a75:75a0 with SMTP id
+ 4fb4d7f45d1cf-6186b4b1ed4mr1626683a12.0.1755067099429; Tue, 12 Aug 2025
+ 23:38:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20250810220921.14307-1-will@willwhang.com> <20250810220921.14307-2-will@willwhang.com>
+ <20250811-successful-military-dragon-d72486@kuoka> <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
+ <f12e6ff3-6ec3-487f-bf9c-0f8c06ee6444@kernel.org> <CAFoNnrxhUof8BBrefm1L1peTxg==Koz72TY+54G_8QUy-rrT8g@mail.gmail.com>
+ <e695c61a-e183-4eea-a7f6-1b2861b2129f@kernel.org> <20250812095543.GJ30054@pendragon.ideasonboard.com>
+ <CAFoNnrzWot_Bf=YZFac1GkZgOOnJycwpidvwL93p3p-C-zn8BA@mail.gmail.com> <6d6dc9e6-751f-4079-b21e-2e3461885b03@kernel.org>
+In-Reply-To: <6d6dc9e6-751f-4079-b21e-2e3461885b03@kernel.org>
+From: Will Whang <will@willwhang.com>
+Date: Tue, 12 Aug 2025 23:38:08 -0700
+X-Gmail-Original-Message-ID: <CAFoNnrwoRbtvTHHnjarDTKEHnQMaMDERPKi_vnYym3n8tVpzOA@mail.gmail.com>
+X-Gm-Features: Ac12FXzzLLrmw8gIl8Z6rXDfhueeMgmWZqS1-9wCIvFbO51xu2pnx-aLX2I9B8Q
+Message-ID: <CAFoNnrwoRbtvTHHnjarDTKEHnQMaMDERPKi_vnYym3n8tVpzOA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image sensor
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In AST2600, the RGMII delay is configured in SCU register.
-The MAC0/1 and the MAC2/3 on AST2600 have different delay unit with
-their delay chain.
-These MACs all have the 32 stage to configure delay chain.
-      |Delay Unit|Delay Stage|TX Edge Stage|RX Edge Stage|
-------+----------+-----------+-------------+-------------+
-MAC0/1|     45 ps|        32 |           0 |           0 |
-------+----------+-----------+-------------+-------------+
-MAC2/3|    250 ps|        32 |           0 |          26 |
-------+----------+-----------+-------------+-------------+
-The RX edge stage of MAC2 and MAC3 are strating from 26.
-We calculate the delay stage from the rx-internal-delay-ps of MAC2/3 to
-add 26. If the stage is equel to or bigger than 32, the delay stage will
-be mask 0x1f to get the correct setting. The delay chain is like a ring
-for configuration.
-So, the rx-internal-delay-ps of MAC2/3 is 2000 ps, we will get the delay
-stage is 2.
+On Tue, Aug 12, 2025 at 11:08=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 13/08/2025 06:30, Will Whang wrote:
+> > On Tue, Aug 12, 2025 at 2:56=E2=80=AFAM Laurent Pinchart
+> > <laurent.pinchart@ideasonboard.com> wrote:
+> >>
+> >> On Tue, Aug 12, 2025 at 08:47:12AM +0200, Krzysztof Kozlowski wrote:
+> >>> On 12/08/2025 08:31, Will Whang wrote:
+> >>>> On Mon, Aug 11, 2025 at 11:23=E2=80=AFPM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> >>>>> On 12/08/2025 04:47, Will Whang wrote:
+> >>>>>> On Mon, Aug 11, 2025 at 1:01=E2=80=AFAM Krzysztof Kozlowski <krzk@=
+kernel.org> wrote:
+> >>>>>>> On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
+> >>>>>>>> +description:
+> >>>>>>>> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
+> >>>>>>>> +
+> >>>>>>>> +properties:
+> >>>>>>>> +  compatible:
+> >>>>>>>> +    enum:
+> >>>>>>>> +      - sony,imx585
+> >>>>>>>> +      - sony,imx585-mono
+> >>>>>>>
+> >>>>>>> I don't understand this second compatible. Is this different hard=
+ware?
+> >>>>>>> Can you point me to "mono" datasheet?
+> >>>>>>>
+> >>>>>>> Your description should explain this. Commit msg as well, instead=
+ of
+> >>>>>>> speaking about driver (in fact drop all driver related comments).
+> >>>>>>>
+> >>>>>> Mono version of this sensor is basically just removing the bayer
+> >>>>>> filter, so the sensor itself actually doesn't know if it is color =
+or
+> >>>>>> mono and from my knowledge there are no registers programmed in th=
+e
+> >>>>>> factory that will show the variant and model number. (That is why =
+when
+> >>>>>> the driver probing it only test blacklevel register because there =
+are
+> >>>>>> no ID registers)
+> >>>>>> Originally in V1 patch I've made the switch between color and mono=
+ in
+> >>>>>> dtoverlay config but reviewer comments is to move it to compatible
+> >>>>>> string and not property.(https://lore.kernel.org/linux-media/20250=
+703175121.GA17709@pendragon.ideasonboard.com/)
+> >>>>>
+> >>>>> You only partially answer and judging by mentioning driver below:
+> >>>>>
+> >>>>>> In this case, what would you recommend?
+> >>>>>>
+> >>>>>> compatible:
+> >>>>>>   enum:
+> >>>>>>     - sony,imx585
+> >>>>>>     - sony,imx585-mono
+> >>>>>>   description: IMX585 has two variants, color and mono which the
+> >>>>>> driver supports both.
+> >>>>>
+> >>>>> ... I still have doubts that you really understand what I am asking=
+. Is
+> >>>>> this one device or two different devices?
+> >>>>
+> >>>> One device that has two variants: IMX585-AAMJ1 (Mono) and IMX585-AAQ=
+J1
+> >>>> (Color). Silicon-wise the difference is just with or without bayer
+> >>>> filter.
+> >>>
+> >>> Then I would propose to use sony,imx585-aamj1 and -aaqj1 with short
+> >>> explanation either in comment or description about difference in RGB
+> >>> mosaic filter.
+> >>
+> >> Works for me. We could possibly omit the "j1" suffix too.
+> >>
+> > My thinking is that imx585 and imx585-mono are easier to comprehend
+> > than IMX585-AAM and IMX585-AAQ.
+> > Because in dtoverlay for the users/me they will have to know what is
+> > the exact name instead of easy to remember name.
+> >
+> > dtoverlay=3Dimx585-aam
+> > is not as nice as
+> > dtoverlay=3Dimx585-mono
+>
+> I have datasheet for AAQ, so how above is easier for me to figure out
+> which compatible I am using?
+>
+I propose this:
 
-Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
----
- drivers/net/ethernet/faraday/ftgmac100.c | 86 ++++++++++++++++++++++++
- drivers/net/ethernet/faraday/ftgmac100.h | 12 ++++
- 2 files changed, 98 insertions(+)
+compatible:
+  enum:
+    - sony,imx585
+    - sony,imx585-mono
+    - sony,imx585-AAQJ1
+    - sony,imx585-AAMJ1
 
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.c b/drivers/net/ethernet/faraday/ftgmac100.c
-index a98d5af3f9e3..02f49558bed8 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.c
-+++ b/drivers/net/ethernet/faraday/ftgmac100.c
-@@ -25,6 +25,9 @@
- #include <linux/if_vlan.h>
- #include <linux/of_net.h>
- #include <linux/phy_fixed.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
- #include <net/ip.h>
- #include <net/ncsi.h>
- 
-@@ -1812,6 +1815,86 @@ static bool ftgmac100_has_child_node(struct device_node *np, const char *name)
- 	return ret;
- }
- 
-+static void ftgmac100_set_internal_delay(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct regmap *scu;
-+	u32 rgmii_tx_delay;
-+	u32 rgmii_rx_delay;
-+	int dly_mask;
-+	int dly_reg;
-+	int id;
-+
-+	if (!(of_device_is_compatible(np, "aspeed,ast2600-mac01") ||
-+	      of_device_is_compatible(np, "aspeed,ast2600-mac23")))
-+		return;
-+
-+	/* If lack one of them, do not configure anything */
-+	if (of_property_read_u32(np, "tx-internal-delay-ps", &rgmii_tx_delay)) {
-+		dev_warn(&pdev->dev, "failed to get tx-internal-delay-ps\n");
-+		return;
-+	}
-+	if (of_property_read_u32(np, "rx-internal-delay-ps", &rgmii_rx_delay)) {
-+		dev_warn(&pdev->dev, "failed to get tx-internal-delay-ps\n");
-+		return;
-+	}
-+	id = of_alias_get_id(np, "ethernet");
-+	if (id < 0 || id > 3) {
-+		/* If lack alias or out of range, do not configure anything */
-+		dev_warn(&pdev->dev, "get wrong alise id %d\n", id);
-+		return;
-+	}
-+
-+	if (of_device_is_compatible(np, "aspeed,ast2600-mac01")) {
-+		dly_reg = AST2600_MAC01_CLK_DLY;
-+		if (rgmii_tx_delay > AST2600_MAC01_CLK_DLY_MAX) {
-+			dev_warn(&pdev->dev, "tx-internal-delay-ps %u is out of range\n",
-+				 rgmii_tx_delay);
-+			return;
-+		}
-+		if (rgmii_rx_delay > AST2600_MAC01_CLK_DLY_MAX) {
-+			dev_warn(&pdev->dev, "rx-internal-delay-ps %u is out of range\n",
-+				 rgmii_rx_delay);
-+			return;
-+		}
-+		rgmii_tx_delay /= AST2600_MAC01_CLK_DLY_UNIT;
-+		rgmii_rx_delay /= AST2600_MAC01_CLK_DLY_UNIT;
-+	} else if (of_device_is_compatible(np, "aspeed,ast2600-mac23")) {
-+		dly_reg = AST2600_MAC23_CLK_DLY;
-+		if (rgmii_tx_delay > AST2600_MAC23_CLK_DLY_MAX) {
-+			dev_warn(&pdev->dev, "tx-internal-delay-ps %u is out of range\n",
-+				 rgmii_tx_delay);
-+			return;
-+		}
-+		if (rgmii_rx_delay > AST2600_MAC23_CLK_DLY_MAX) {
-+			dev_warn(&pdev->dev, "rx-internal-delay-ps %u is out of range\n",
-+				 rgmii_rx_delay);
-+			return;
-+		}
-+		rgmii_tx_delay /= AST2600_MAC23_CLK_DLY_UNIT;
-+		/* The index of rx edge delay is started from 0x1a */
-+		rgmii_rx_delay = (0x1a + (rgmii_rx_delay / AST2600_MAC23_CLK_DLY_UNIT)) & 0x1f;
-+	}
-+
-+	if (id == 0 || id == 2) {
-+		dly_mask = ASPEED_MAC0_2_TX_DLY | ASPEED_MAC0_2_RX_DLY;
-+		rgmii_tx_delay = FIELD_PREP(ASPEED_MAC0_2_TX_DLY, rgmii_tx_delay);
-+		rgmii_rx_delay = FIELD_PREP(ASPEED_MAC0_2_RX_DLY, rgmii_rx_delay);
-+	} else {
-+		dly_mask = ASPEED_MAC1_3_TX_DLY | ASPEED_MAC1_3_RX_DLY;
-+		rgmii_tx_delay = FIELD_PREP(ASPEED_MAC1_3_TX_DLY, rgmii_tx_delay);
-+		rgmii_rx_delay = FIELD_PREP(ASPEED_MAC1_3_RX_DLY, rgmii_rx_delay);
-+	}
-+
-+	scu = syscon_regmap_lookup_by_phandle(np, "scu");
-+	if (IS_ERR(scu)) {
-+		dev_warn(&pdev->dev, "failed to map scu base");
-+		return;
-+	}
-+
-+	regmap_update_bits(scu, dly_reg, dly_mask, rgmii_tx_delay | rgmii_rx_delay);
-+}
-+
- static int ftgmac100_probe(struct platform_device *pdev)
- {
- 	struct resource *res;
-@@ -1977,6 +2060,9 @@ static int ftgmac100_probe(struct platform_device *pdev)
- 		if (of_device_is_compatible(np, "aspeed,ast2600-mac"))
- 			iowrite32(FTGMAC100_TM_DEFAULT,
- 				  priv->base + FTGMAC100_OFFSET_TM);
-+
-+		/* Configure RGMII delay if there are the corresponding compatibles */
-+		ftgmac100_set_internal_delay(pdev);
- 	}
- 
- 	/* Default ring sizes */
-diff --git a/drivers/net/ethernet/faraday/ftgmac100.h b/drivers/net/ethernet/faraday/ftgmac100.h
-index 4968f6f0bdbc..a9f0f00ac784 100644
---- a/drivers/net/ethernet/faraday/ftgmac100.h
-+++ b/drivers/net/ethernet/faraday/ftgmac100.h
-@@ -271,4 +271,16 @@ struct ftgmac100_rxdes {
- #define FTGMAC100_RXDES1_UDP_CHKSUM_ERR	(1 << 26)
- #define FTGMAC100_RXDES1_IP_CHKSUM_ERR	(1 << 27)
- 
-+/* Aspeed SCU */
-+#define AST2600_MAC01_CLK_DLY	0x340
-+#define AST2600_MAC23_CLK_DLY	0x350
-+#define AST2600_MAC01_CLK_DLY_MAX	1395	/* ps */
-+#define AST2600_MAC01_CLK_DLY_UNIT	45	/* ps */
-+#define AST2600_MAC23_CLK_DLY_MAX	7750	/* ps */
-+#define AST2600_MAC23_CLK_DLY_UNIT	250	/* ps */
-+#define ASPEED_MAC0_2_TX_DLY		GENMASK(5, 0)
-+#define ASPEED_MAC0_2_RX_DLY		GENMASK(17, 12)
-+#define ASPEED_MAC1_3_TX_DLY		GENMASK(11, 6)
-+#define ASPEED_MAC1_3_RX_DLY		GENMASK(23, 18)
-+
- #endif /* __FTGMAC100_H */
--- 
-2.43.0
+  description: IMX585 has two variants, color (IMX585-AAQ) and mono
+(IMX585-AAM) which
+the driver supports both.
 
+Description is there for a reason, dtoverlay has description also. See
+sony,imx296.yaml as an example.
+If you are looking at AAQ you know it is a color sensor and all the
+color sensors from sony can be used with imx+three numbers in the
+current list.
+This is following the established convention.
+
+> >
+> > which is what it does, a mono variant of the sensor.
+> >
+> > I really don't understand the standard for compatible string naming
+> > here, is there something I missed? Is it required to use the full name
+> > of the sensor parts number as a compatible string?
+>
+> It's not part number. You have there different models. We don't add
+> prose to compatibles, but use device or model names.
+>
+> Best regards,
+> Krzysztof
 
