@@ -1,99 +1,185 @@
-Return-Path: <devicetree+bounces-204084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35AFB23FF5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:57:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A795CB2404E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 276721AA7E80
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:57:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFCAD1A2134E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 05:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB6528D828;
-	Wed, 13 Aug 2025 04:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0892BEC4A;
+	Wed, 13 Aug 2025 05:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="newIlYZ/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C+yn+i19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061728EA72
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 04:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8961129C325;
+	Wed, 13 Aug 2025 05:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755061017; cv=none; b=MICvejp8fmy5JBZB7OLDi0SOJmdkLHsO2tFqMwaguh2wdI2I0fDMh0xUPr0McCpxwYbxA0wHoTDOaRKUHGes4BiNt9Q9W/0kF86HaL74y60z9UAfhPTNd9XfpGKB8kcLDvtO2uN8UzcnARzZZaPeeSYgRfw6BnXvuUd+oH+VBQA=
+	t=1755063499; cv=none; b=YbdNqOScN28BoYwMRuALosaS1ilyuZ7vxTxh9yUyPHVPw1+yMxaf8oZjHUMaVv+TeoZA7ZSQ/gTsS7PahLA3HDQ6gMlQAQXrBNiVg3SbaEkHCTDI17+iDs7kNpki5Fr2VFkzYOCK5WI3sGNMYWpJaIWGa0uxj2JwrZtl+87zpDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755061017; c=relaxed/simple;
-	bh=i9HAB2BknolEvf3NnJy79vTeSKi7hkKdxt+pkfaeJNM=;
-	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=NBPxrUasAm0yvAI/RDP2qTA3gfgr93G5grgfQq/qfM1ef5+EDIIgb0fR2fRKyFYzSpxzhP09ksg0vbVHcmRmvGg1VAH7Fcmsi65CjcPhY+IjN7lhPXZuq5lbOaiIW0IJeeCrDFwvuF2qRxcuG5btc/313tCbvxS94j8fqKDskW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=newIlYZ/; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id AE4042C012E;
-	Wed, 13 Aug 2025 16:56:46 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1755061006;
-	bh=i9HAB2BknolEvf3NnJy79vTeSKi7hkKdxt+pkfaeJNM=;
-	h=From:To:CC:Subject:Date:From;
-	b=newIlYZ/2YcMFyA3MU4ZgJPCX4FnUWgiiH4SmPCieXRtU93ZC25oqtaOXJv582W0S
-	 ZJKAti0koVtxsrFuzF31KR2YP4ZYowHc/VA5DLIjun7ucHV+px9vwtGolyzUnQB3JR
-	 S0/eEV64WmnisyWOzWUjLxpJTeTE71sVWYSmcm9zvA0ku8KMULrbtuN0u5NrCZ3Ce+
-	 GRec0OlfoxMmE0nTWHQGsYBTALaN2KzEWuz+tPympK8du0WQl9RnIj7wwnbeEO8+tI
-	 GXlOwg5lcHQ4H+rstbflwf+AM4zo0qt+dr4Dwfr+kyt63KtUYE0m9+fjvFrS0+wrJq
-	 GTsFYzZlKqhOQ==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B689c1b0e0000>; Wed, 13 Aug 2025 16:56:46 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+	s=arc-20240116; t=1755063499; c=relaxed/simple;
+	bh=ur+XoyAnnhMf2Gyc6LAvTuQZUY2496eAik8EkwZjH48=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y4jBo72+aTe966S+xnu8kGsSMxSe42n7c2Za6ShPwm2TtqWdK5eZXklsHr0GaAyFXkTdhiP9/u0bB7bJtWg/IWwC/OidhBBPJC/YKJ/RX79Ubr69UV7x2RdqWHWYm6qzTP5A8Ik980PCqI+pmKNgkuTxwijB5uZUdWD5x8k2ThA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C+yn+i19; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57D3nrDe021451;
+	Wed, 13 Aug 2025 05:38:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=LTeD8XjA5sDc2PaAhEZRnC
+	J2P2kHoKkZGlImDRo/ri8=; b=C+yn+i19hGSoH98BotgmaidXSNR0sGK387FIdK
+	ZhSDyry7ienDPUtWpPJEt6WKVxXht3CAkp1C1aqVo4wv8Nfm1Ypxk0GdeIlL7d7q
+	6+G2CoaWDOJYEztwXgRhrBiYtFM1/uqMUh7SUFwHkM8RnLMdhsaOgyuZpUI17ni8
+	1rqFDw51uXZifPQDS8/4EDxworEI93judLrlpcoP5Dl8i6EU1xAhA/kKPSdkBhxl
+	KEd1/P1/FaoNb/NwvXJHY4r6fhXQNdp4b/Hc5Ju7prySZebe6rH5xqa3YnjOgNWY
+	YChwO48fHTeJ1D/mVnaKvcG12Gt7OOGFt0pPG+3CRlbPMA7g==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxdv2hj9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 05:38:02 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57D5c2XA028798
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 05:38:02 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Wed, 13 Aug 2025 16:56:46 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Wed, 13 Aug 2025 16:56:46 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: "complete" dt-bindings for new SoC
-Thread-Topic: "complete" dt-bindings for new SoC
-Thread-Index: AQHcDA6rJilEkNg0QUajYrO/hETw/g==
-Date: Wed, 13 Aug 2025 04:56:46 +0000
-Message-ID: <82c09e95-9856-42ec-b7a5-858fd06b888a@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <612AFAC5CA15154EBE0D0F5C1210FDEB@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+ 15.2.1748.10; Tue, 12 Aug 2025 22:37:56 -0700
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <cros-qcom-dts-watchers@chromium.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/7] qcom: qcs8300: Add qcs8300 camss support
+Date: Wed, 13 Aug 2025 11:07:17 +0530
+Message-ID: <20250813053724.232494-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=dtt4CEg4 c=1 sm=1 tr=0 ts=689c1b0e a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=jGRUliSn7nfH5Q6_R60A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=IuYecK/g c=1 sm=1 tr=0 ts=689c24bb cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=cI1YGEVR75NLnxNL1NcA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: CLZnXJoJvOmKlPvtAgUAzbE1_7odMk0y
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNSBTYWx0ZWRfXyo6/oHbMxAkD
+ q/qOYQnGpmer8uRpCrwrjtrBcMHqgOEFopvH9YMd/j2WJ66vOKcKIOz8buz0JBWu1dy+YZUkAoT
+ XBguEQBawdPwaHNdmw0ZI8JtAE4S9qnQodjULQo4eAxo8Tr9MbSktAOHFzz6Pm5Wh0C+jtPyXgS
+ MbQWjH2/YFlcP3WM5ZC1NtTw5rkjWrahBIQbmbHpYtrtJovFFSKoEX/NeSmwRnv5e82C1R2asXK
+ huX3fN5iGaVdhvRaT9X3c8ZJrnSgBlA8NqRMFsM9fQLMvH3sAtGaIA1yZtgYJdEQUujUzaPHRFq
+ AejWqgZ6Se2gGcSzjZOD/fR3blMQwslX10K+2CndmB5WBiobOXOblGRhYi33e0PqvPoA5JacqGj
+ mBmzYU3C
+X-Proofpoint-GUID: CLZnXJoJvOmKlPvtAgUAzbE1_7odMk0y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_08,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 adultscore=0
+ clxscore=1015 phishscore=0 suspectscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090025
 
-SGkgRGV2aWNldHJlZSBFbnRodXNpYXN0cywNCg0KQSBmZXcgdGltZXMgbm93IEkndmUgYmVlbiB0
-b2xkIHRoYXQgdGhpbmdzIHdvdWxkIGhhdmUgYmVlbiBlYXNpZXIgaGFkIEkgDQpzdWJtaXR0ZWQg
-YSBjb21wbGV0ZSBiaW5kaW5nIGluIHRoZSBmaXJzdCBwbGFjZS4gSSBmaW5kIG15c2VsZiBsb29r
-aW5nIA0KYXQgYW5vdGhlciBuZXcgU29DIChhIFJlYWx0ZWsgU3dpdGNoIHdpdGggYW5kIGludGVn
-cmF0ZWQgQVJNNjQgY29yZSB0aGlzIA0KdGltZSkuIEknbSBhbHNvIHdhaXRpbmcgb24gaGFyZHdh
-cmUgc28gSSBmaWd1cmVkIEkgY291bGQgcHJvYmFibHkgZ2V0IA0KdGhlIGJhbGwgcm9sbGluZyBv
-biBhIGRldmljZXRyZWUgYW5kIEkgd2FudGVkIHRvIGRvIGEgYmV0dGVyIGpvYiBvZiANCndyaXRp
-bmcgdGhlIGJpbmRpbmcuDQoNCldoaWNoIGJyaW5ncyBiZSB0byB0aGUgcXVlc3Rpb24uIFdoYXQg
-ZG9lcyBhICJjb21wbGV0ZSIgYmluZGluZyBtZWFuIHRvIA0KdGhlIGRldmljZXRyZWUgbWFpbnRh
-aW5lcnM/IEFyZSB3ZSB0YWxraW5nIGFib3V0IGFuIG92ZXJhbGwgYmluZGluZyBmb3IgDQp0aGUg
-Y2hpcCB0aGF0IGNhbGxzIG91dCBwZXJpcGhlcmFscyAoc29tZSB3aGljaCBhbHJlYWR5IGV4aXN0
-KSB3aXRoIGEgDQpyZWY6ID8gT3IgYSBmdWxsIGJpbmRpbmcgaW4gb25lIGRvY3VtZW50IHRoYXQg
-Y292ZXJzIGV2ZXJ5dGhpbmcgaW4gdGhlIA0KY2hpcD8gRG9lcyBpdCBuZWVkIHRvIGJlIGFjY29t
-cGFuaWVkIGJ5IGFuIGFjdHVhbCBkdHMoaSkgZm9yIHRoZSBjaGlwPw0KDQpUaGFua3MsDQpDaHJp
-cw0KDQo=
+From: Vikram Sharma <vikramsa@qti.qualcomm.com>
+
+QCS8300 is a Qualcomm SoC. This series adds bindings and devicetree
+and driver changes to bring up CSIPHY, TPG, CSID, VFE/RDI interfaces
+in QCS8300.
+
+QCS8300 provides
+- 2 x VFE, 3 RDI per VFE
+- 5 x VFE Lite, 6 RDI per VFE
+- 2 x CSID
+- 5 x CSID Lite
+- 3 x TPG
+- 3 x CSIPHY
+
+Changes in v3 compared to v2:
+- Bindings and Device Tree: Reordered csid_wrapper to appear first in the
+  register list (as suggested by Bryan).
+- CSIPHY Driver: Updated the commit message for the CSIPHY patch.
+- VFE/CSID Resource Data: Reused the same resource data as sa8775p for VFE
+  and CSID.
+- Patch Series Order: Rearranged the patch sequence and moved the DTSI
+  update to the final patch in the series.
+- Code Cleanup: Removed duplicate data structures and reused existing
+  ones.
+- Optimization: Simplified and optimized conditional checks.
+- Link to v2:
+  https://lore.kernel.org/linux-arm-msm/20250711131134.215382-1-quic_vikramsa@quicinc.com/
+
+Changes compared to v1:
+- Changed the order for register entries in bindings - Krzysztof
+- Changed the naming for interrupts for consistency - Krzysztof
+- Combined separate series for driver and dtsi into one.
+- Rebased on top of latest version of sa8775p camss patches.
+- Link to v1:
+  Driver: https://lore.kernel.org/all/20250214095611.2498950-1-quic_vikramsa@quicinc.com
+  DTSI: https://lore.kernel.org/all/20250214094747.2483058-1-quic_vikramsa@quicinc.com  
+
+Dependencies:
+https://lore.kernel.org/linux-arm-msm/20250807121105.710072-1-quic_vikramsa@quicinc.com/
+
+We have tested this on qcs8300-ride board with 'Test Pattern Generator'
+https://lore.kernel.org/all/20250717-qcs8300_tpg-v2-1-0946c69c2c8b@quicinc.com/
+
+A rebased version of the TPG driver, built on top of this series, will be
+shared in a follow-up post.
+
+Used following tools for the sanity check of these changes.
+- make CHECK_DTBS=y W=1 DT_SCHEMA_FILES=media/qcom,qcs8300-camss.yaml
+  qcom/qcs8300-ride.dtb
+- make DT_CHECKER_FLAGS=-m W=1 DT_SCHEMA_FILES=media/qcom,qcs8300-camss.yaml
+  dt_binding_check
+- Smatch: make CHECK="smatch --full-path" M=drivers/media/platform/qcom/camss/
+- Sparse: make C=2 M=drivers/media/platform/qcom/camss/
+- make -j32 W=1
+- checkpatch.pl
+
+Vikram Sharma (7):
+  media: dt-bindings: Add qcom,qcs8300-camss compatible
+  media: qcom: camss: Add qcs8300 compatible
+  media: qcom: camss: Add CSIPHY support for QCS8300
+  media: qcom: camss: enable csid 690 for qcs8300
+  media: qcom: camss: enable vfe 690 for qcs8300
+  media: qcom: camss: Enumerate resources for QCS8300
+  arm64: dts: qcom: qcs8300: Add support for camss
+
+ .../bindings/media/qcom,qcs8300-camss.yaml    | 336 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 171 +++++++++
+ .../platform/qcom/camss/camss-csid-gen3.c     |   3 +-
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |   2 +
+ .../platform/qcom/camss/camss-vfe-gen3.c      |   3 +-
+ drivers/media/platform/qcom/camss/camss-vfe.c |   2 +
+ drivers/media/platform/qcom/camss/camss.c     |  85 +++++
+ drivers/media/platform/qcom/camss/camss.h     |   1 +
+ 8 files changed, 601 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,qcs8300-camss.yaml
+
+Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+-- 
+2.25.1
+
 
