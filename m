@@ -1,106 +1,123 @@
-Return-Path: <devicetree+bounces-204387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0B7B25484
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 22:29:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 057E9B25499
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 22:41:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C1781C817BF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 20:29:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B8695A5151
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 20:41:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FE912D541B;
-	Wed, 13 Aug 2025 20:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2502D0612;
+	Wed, 13 Aug 2025 20:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l1189CjP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ll/6m25Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C81E2C0F90;
-	Wed, 13 Aug 2025 20:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C5A2FD7DF;
+	Wed, 13 Aug 2025 20:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755116953; cv=none; b=ekaBjHl7Cd52zgD+GjEvhDEzfbqbuzDq1dyhrgAz94VlL3cc5R0Vb0cSNa+/FPvDuG3zdzIidRDrE0Qo14bhR4LPD2FiLmYwKTkwpRMUgD/a6EqO49ZU50rUP6kYLyZG+mIRUwKlbiU8HwrcpuhNDjvfURP4GVnFBzK1us/71jg=
+	t=1755117680; cv=none; b=dvdpVcrfSjXCUsI2MnSLDA3vuZs+Hop6OKSXYHU/+wARjuAFBVy6yjJDytz0BEzGKzN1oweIpqq9mf+/ZK9oaj6yiqMCEOu6oVv/WPGXtYhzorDUvp4vm5iNvrLP7ORTby+vE2Ce2ll3wIZ+uBcEIol9hW38ass0fNyuIZvFtnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755116953; c=relaxed/simple;
-	bh=JDqkqLnA1DgwrkxpFOGRanFFgHAOdkpUE2gvLXGPfb0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YSH8Nz7HHlw0IAJ4Tpf3nrWqbA741xnKoXzPJ2AkBLhyfBZYCGrF4UMkLV3E/tAqOHEuEDNJOvDwNtcemXfDCh9nDsMcs/1Zb8/PWfRTJ16VsvzNIywefkLJIZTcvP1YOkrJhSlUI+nCDGksnePKgAKZnHGSfGhwMMBEXcF9/PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l1189CjP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 509D7C4CEEB;
-	Wed, 13 Aug 2025 20:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755116951;
-	bh=JDqkqLnA1DgwrkxpFOGRanFFgHAOdkpUE2gvLXGPfb0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l1189CjP9ZTarvY9ceaieigv/aNNlwUUoVqmGx2j6PeIT/sjoavrw+j0Ko+NMJPFa
-	 Nt1+myVWY9FV32xNHi/gZMxbsA2SS0mn2m8MM5ySv/8OBgvrs+80YAP9/WpF5Rcequ
-	 1XfNpBG3qsuNq93vUMFFNO/X8NpjrUrXgjzC8xdkk4cbhnBnvZ2kX0SbqOWX5nL7s/
-	 xBtUFQZ0pWr1p1/YRqfPC6I5EpKj2eaBGjfXFFOyzQACJDQG6pdB+CwRknSu37nqgc
-	 bbFmbK7s2DFRjzJB89bWZeoxFqnnPAqVV11jZt+d2REN7ZdW2+rEwogMHeUkAzFz/L
-	 okM/auhD7lglQ==
-Date: Wed, 13 Aug 2025 21:29:05 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: linux-kernel@vger.kernel.org, peter.ujfalusi@gmail.com,
-	dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	lgirdwood@gmail.com, tiwai@suse.com, conor+dt@kernel.org,
-	lee@kernel.org, ukleinek@kernel.org, gregkh@linuxfoundation.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org, shuah@kernel.org
-Subject: Re: [PATCH 7/8] sound: dt-bindings: ti,omap-twl4030: convert to DT
- schema
-Message-ID: <11e5ae2f-d692-4f34-8319-8fda028fda5d@sirena.org.uk>
-References: <20250811224739.53869-1-jihed.chaibi.dev@gmail.com>
- <20250811224739.53869-8-jihed.chaibi.dev@gmail.com>
+	s=arc-20240116; t=1755117680; c=relaxed/simple;
+	bh=/hVnjGurG+wRx78ATz1Xr5RkDjhzM+9y3No+kd5SbZ8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eHcx6RL2FPnE6dIFM22ajur4h+x+8TteLfKhIJSaraoGzNc/rG5FKKhjXTJtGfQcV+t2ijYgqxV3AjIdG66Xmem4mKO9QdkdFLWxB1sycEBavoc7kfT/O85KwbaotQFQLlYMRfCap3OP992HyZk/g+Yz+5Sm6fSd3fS/oduiGe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ll/6m25Q; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DKfAQu2154325;
+	Wed, 13 Aug 2025 15:41:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755117670;
+	bh=Wdvf/jNhiHmkxjIEZx3swrAG0Wn7qiN5MEB1zX7qGEY=;
+	h=From:To:CC:Subject:Date;
+	b=ll/6m25QMS4TjdFp35YDDcLZTp3XyH2Z81YAe75gG2palTt5f0IS1JHddm7zpDCQS
+	 F3oFkkoOyytR8sNnVWAv1iH+ls1kFtoZwqgRjZqLY1H833Z81joZ8cxmPOZ4JscaOt
+	 sOp71q32S4BelEJk7H0MkE36DA6U2uwG3Tm8lf08=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DKfAC71329210
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 13 Aug 2025 15:41:10 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
+ Aug 2025 15:41:09 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 13 Aug 2025 15:41:09 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DKf9AM2853509;
+	Wed, 13 Aug 2025 15:41:09 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, David Airlie
+	<airlied@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>,
+        Nishanth Menon
+	<nm@ti.com>
+Subject: [PATCH V2 0/3] drm/bridge: it66121: Add it66122 support
+Date: Wed, 13 Aug 2025 15:41:03 -0500
+Message-ID: <20250813204106.580141-1-nm@ti.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z01+OwFMchK4Q9wz"
-Content-Disposition: inline
-In-Reply-To: <20250811224739.53869-8-jihed.chaibi.dev@gmail.com>
-X-Cookie: Turn the other cheek.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi,
 
---z01+OwFMchK4Q9wz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Add support for IT66122, which for all practical purposes is
+drop in replacement for IT66121 except for the ID register
+definition.
 
-On Tue, Aug 12, 2025 at 12:47:38AM +0200, Jihed Chaibi wrote:
+BeagleY-AI uses this new part as the old part is no longer in production
+as far as I understand.
 
-> Convert the legacy TXT binding for the OMAP TWL4030 sound card
-> to the modern YAML DT schema format. This adds formal validation
-> and improves documentation.
+Now, BeaglePlay uses it66121 at the moment, but at some point, it might
+end up flipping over to the new part.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Quick boot log on BeaglePlay for compatibility check:
+https://gist.github.com/nmenon/6cb8b8a00bcce1755628d131df878840
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Changes since V1:
+* Picked up Krystoff's binding ack
+* Switched over to a vid/pid list
 
---z01+OwFMchK4Q9wz
-Content-Type: application/pgp-signature; name="signature.asc"
+V1: https://lore.kernel.org/all/20250813190835.344563-1-nm@ti.com/
 
------BEGIN PGP SIGNATURE-----
+Nishanth Menon (3):
+  dt-bindings: display: bridge: it66121: Add compatible string for
+    IT66122
+  drm/bridge: it66121: Convert the vid/pid entries into a list
+  drm/bridge: it66121: Add it66122 support
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmic9ZEACgkQJNaLcl1U
-h9DsmAf8C2WEGZVTspM9EPpF8Gy1IOWSpSZhVHAkTzZyrUIixzwbYvF4+DXjEnZk
-HeWO9uMVHTG9As1ouM7GysgUGVrOH9UJk5VkEoIoZVIa+AI/SmAjNhkck1EZ85zE
-Kjhtv8Mv2NN7vzsfFCg9EEdRN1JDFkxGXc0Au+/sSPbPMoW3E87JFUj4fCuXc/Fh
-xqLN0fXvgk6FIpBM2gM9TlHuuGqXKj33PiNHNz2loWkLRZ1woZNnsURzUvQx/5xm
-Mj6Mf/MTK7zzsFMGst2jLBICjj3G0Yk7iswk/9ZMwoT6ym5Xgy05nvaDAvzqPvKw
-+6rernCFRjmR98GcHCQR+68pJD1JiQ==
-=feCv
------END PGP SIGNATURE-----
+ .../bindings/display/bridge/ite,it66121.yaml  |  1 +
+ drivers/gpu/drm/bridge/ite-it66121.c          | 32 ++++++++++++++-----
+ 2 files changed, 25 insertions(+), 8 deletions(-)
 
---z01+OwFMchK4Q9wz--
+-- 
+2.47.0
+
 
