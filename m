@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-204177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71088B24550
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1797B24552
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A48AA7BA196
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:22:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31BFA7AEEEE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF5B2F0C77;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F322F1FF5;
 	Wed, 13 Aug 2025 09:23:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="zs7x1EGC"
+	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="cDkB3o22"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049F02F0C5F
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 09:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1512F0C72
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 09:23:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755077018; cv=none; b=PlTvcGz8h2kzwiiDvyQBXdogxcoZ7+8oXm4tYj5um7OL/bJOLuLwVnTwbJqIVpoEPg9cpAWhtiiqgJ4dHbqr5+QDgiA0aaJ8YzCN3HXC3YseNBD9qxb/GNuOLH43GHWx5MQideQHTNnvCiR7v2H4tHZppy7Wyxgoc9d7uLTIc28=
+	t=1755077018; cv=none; b=ZyhZMZY5ioxaEMonKcB6RQVMWxvQjvvPZ0A4xMBdAkXOsV6wXUcHn4J3pGHopNeyzFFxYGHR326WuSqC1LGYAwTV7BaMgjhj2eAR60+8UYzOxuceedGgnDTBkPugh+PphAgZG4GboeUGsvsuwlxnJmnGTT2klN9xy6osmdWByA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1755077018; c=relaxed/simple;
-	bh=nSnlQzS3Oijb3uuQVtZaTkeoC2ip6X+Cu8XPFNiTPn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rlKxnsbOd3xlLkndQVRGuFo9NHXhxGMZPc58rF1oop+4RKMrz9lO74skhUletuL6t2fd8rh3vSAN6UBpxYcOy8aJzD9XbcXFhSD5i9v15MZb4zkbDAM+B9JKDNsirdbmzMowN7S7l1AXq/m2+AYCl1vOlbMjE4EM+vJTEsVQBQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=zs7x1EGC; arc=none smtp.client-ip=209.85.221.43
+	bh=/rTdKk2uoMxb+q/0DRtX1FS+dFKCBJFEKFc1tSBa6tI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AhkS0uZusirIufwCp8hZXFgB66yAP1HEWC4c4RR7BIdLjyxqOd//FKDtZLP/WcbUdl5DJ3c8vdEFZ3G+5ZEMXNfKkbr2KaZL8G5jNqDJFMjuAp0OoROdVhCueK7nkL7YWFiVxMZaMYz4b4t2c+pTldv25AhcPoYREia1VvIVszk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=cDkB3o22; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3b7825e2775so5805014f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 02:23:35 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b7920354f9so5210704f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 02:23:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1755077014; x=1755681814; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TEyolKpesJRN4enzfkBag9GEI6SkLDls4Ifg+2q31hc=;
-        b=zs7x1EGCn8ffj7DYVYo7TFkqrPsYCNvbrfpJ5V1DrCEQFMxcBgf8kmR76xD2SkiPWU
-         QshGB3Bl1Tx5ndWclqiWQZ4H0El3y4n7yRFEN/PrcGv9vIlJDuWD+PEwMnf926NHEROe
-         6vZltUaViF7q3jroc0kvY/6BdF2yrQYExgSYQy0WEZ8sLiS2iBoYShuE6+KbaFFsjdy7
-         p+llBRJHjCk9WUKmaVzfVphyB3kmOh9gZaEU2kxwvXHLi0N3G8D2M1unSxI/2YnCPTIP
-         oJH9aNc7y8fvLoKp3TPkqCjqfvJz+sHWVgh61v8SE4UQ46HGw8gtct7W748Vf8NSAAyW
-         HwUg==
+        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1755077015; x=1755681815; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KV/LyU13FVZD+Ygh9a2dJ4SQHfL+zi8sFF76wcqrPxw=;
+        b=cDkB3o22Ic757gaF3BaRwWOsRH44EukplTFs280m0M5FTpZWRDwanWkozVxP60pus+
+         yzVrw3pwz6FVbPVukvcTJUFWQ6O+JO8n5mrncbXFnkUiYUQiuOQsT3GBaUWDMnUSCF0A
+         BwYgyVGKilHYKMaK+DrFNepzbA9/NhIq+OXKrXoEsJBI/QdLKa6a1RsAuJ58atB/NFzu
+         rUwStvNI63DeFkPruhX+S3NU3L56hSRwjEeM7Hl0DZelVOyG47SWjz78YkwPvCiW5NhM
+         aJdG1EbHISaAYR71kix3SixtQUYP55KJ7/LepYG9se6Ej+6vk04zGP+SprAw0RbSut1+
+         WJIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755077014; x=1755681814;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TEyolKpesJRN4enzfkBag9GEI6SkLDls4Ifg+2q31hc=;
-        b=alZP5oVVsagVx9A1ucQWA0qhFngTw67JWU6S0khjjW/pb/KB+qYfe6Ig0Qf58+zhCV
-         x1U2H/DsNxdauAbCZnom/OICG9ntnXsSZjflfuqj6r3Tj/L5rEy4T49uYNvWLmNURbFZ
-         w+ilJaqTtTHbVDIYBdh1uqQAPfhBfokYI76/wnEKVLR4aVqj7xv6XJAqx+JUJbq4//W1
-         vFK3J82W9c9TqPCeuU/zRXnPDXBUnL/NKcgSxtE3UTQOTslgrp7K/lVCCT3fUWZ4Dot6
-         6duNl0fcCVMn7pHSC/hZ3lKf3ithn0vEOGGxmM2FlNWRRG8JalkRDJIJ7GjJBzuiA9M9
-         skgw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/FY2tASnjpsIgC7bP8qAO8wfuy6tvJCcqPYHmU7+kEoGf/N90cKKag8PFErCw+nsVhW9iHfWch+RH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGje5cIXfls9+/zdmTlHpGynUWvw+KRYaGb+cRw+gyykfFFfn7
-	Sz8L+Mo6kIuryhS0pHR5KoFS20CRZpWYjvjYjSxJLCVs/MYclDaxVHUekNg3X+Onexc=
-X-Gm-Gg: ASbGncsj7d7cP9CP8uCTfnqc8ITiwPux/XIND3rujzBzmm6HCR7kO+dlfg8lyPMEL4w
-	mBXqik79gVbG1ROiLDIJhvhJSqwxXylvY3x7xXboo1hzFwIR4uVLnUMRPdZxJMsEAUesizFDUC8
-	Qn/PQ9sAfugFkd7S+YnY8DYgMHCjveyOKm21v5/N/S260cLbr7lGUG97FPspeHhFsSSCBa8qgm9
-	pfzl+dkilGasrT9AHWtZ5JIEdv2ZWRbokyRiqjDyNWwluhbIHpbZFR3gAIaMJe5PHqpn1S8xjhI
-	hSak7pvCs74T8JsYrs3MvpBvVCT11QkUv6ti8/dbihxNwX7THLn6v5QQ0v4Dv9rA9UxNqIyQtke
-	4htWL3MSlQBKG5h/DUdDMH9/ygUM11pe0y7x6p0zS3pIcSspVGQ==
-X-Google-Smtp-Source: AGHT+IFxawn2hn81XiBMFzlp9R7LXDt7IQlnw4bYwjrbGUdm+VKiMtSVAcwLlkK3/1f3t/cZPUZtdA==
-X-Received: by 2002:a05:6000:40cb:b0:3b7:9b58:5b53 with SMTP id ffacd0b85a97d-3b917ec345cmr1916488f8f.45.1755077013860;
-        Wed, 13 Aug 2025 02:23:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755077015; x=1755681815;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KV/LyU13FVZD+Ygh9a2dJ4SQHfL+zi8sFF76wcqrPxw=;
+        b=OdGVyETetzZ23GcmC+AQqnI2SJdbmxpwLwfLXQ0uU2+3RjF3Nqia8itB/QfZbM60zU
+         iGelGtfnFswHFYBeOis8h5gbN1ydI17BZ2kOhZhTmh9tkwmtbGf0DLiM27iVm+BgVS9D
+         Xjfk5wK11ty2zWEiCdsqA6a/iPZ5HDvWcX5GxoAqGJjfLqqr59E8f1LPTskkTDwKQCwJ
+         F1ULaVhx4Ym8/sfLGNA1KF4/7z+Kn9WL2iZV3aeCEPkF6RqmsYcJ7799HPFfR/vtPle4
+         A3sWqglMc0FXoovYc3W8i4jpACR8psmouprXpiEOk68Y725UVPEsqAZCnLx8Bu+/RKci
+         0okQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDfrNyXJtHhnDSp1smKZ6eOTtT09q8dKs8fQDyf9/cVN+2Bk48d5UkMb9cUC+O/nvDH42Wxa7Pd0sF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjRWANLz6/mG52JeyA23tHMnmWyXjaFfcFQimZ+MHPyLcHq1qz
+	81n3ezK9Cylq6j12TXm9kp56m+YX8KUydYQt5i/Z5xt4FcsjrUEPu+yq/g93IYXcqPc=
+X-Gm-Gg: ASbGnctLEj3YDrOc1jLl/+FZ02gqafep8j/+eQwSp02pRpX2MngmnSG2H8LybtwO7Sa
+	YbvDnoLyaWrQvsQuE/1+XP2iNS1gidVPKMmik3c6l4akmOVsA5vFqD+tyHl0N1qXtH+egOC9QME
+	W2Ew9WjXnuLXZI8WGq2G//Y/acoNoHOq7NpO7Uz98OaCdJ2KgcGa9rLzw9FMncHImgD72ef4spr
+	RsdKXRJS0u0iQjadZ+gtqMH0f5M0KtBxGQ6iSVsSXgy9W9DQTGj1Xh9opVGtpFqgCg325aBEkBX
+	kZc6PJCIORXfQWhWIziHYp25UfE7eBNGmfUrdq3yZI8oU5BwNKnv++ceMKphND5PjGoNIu4xYyM
+	4grvNG8Pen91Zo9b1FKBAFHJX65AYD6vowMs5avVsrNB7yeogNA==
+X-Google-Smtp-Source: AGHT+IEWxoI/kRzm9XJtVKTQJfagZa2jXeR/JqY3ScAS+RcLcnu42mBz4ZP0ExrShNWcggbJ1f56TQ==
+X-Received: by 2002:a05:600c:4e15:b0:456:1923:7549 with SMTP id 5b1f17b1804b1-45a16b73703mr16081835e9.26.1755077015065;
+        Wed, 13 Aug 2025 02:23:35 -0700 (PDT)
 Received: from pop-os.telenet.be ([2a02:1807:2a00:3400:d33c:e682:2af6:3c3d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3ac158sm47966077f8f.4.2025.08.13.02.23.32
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c3ac158sm47966077f8f.4.2025.08.13.02.23.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 02:23:33 -0700 (PDT)
+        Wed, 13 Aug 2025 02:23:34 -0700 (PDT)
 From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
 To: dlan@gentoo.org,
 	robh@kernel.org,
@@ -87,10 +89,12 @@ Cc: skhan@linuxfoundation.org,
 	spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Subject: [PATCH v3 0/2] riscv: dts: spacemit: Add initial support for OrangePi RV2
-Date: Wed, 13 Aug 2025 11:22:38 +0200
-Message-ID: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
+Subject: [PATCH v3 1/2] dt-bindings: riscv: spacemit: Add OrangePi RV2 board
+Date: Wed, 13 Aug 2025 11:22:39 +0200
+Message-ID: <20250813092240.180333-2-hendrik.hamerlinck@hammernet.be>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
+References: <20250813092240.180333-1-hendrik.hamerlinck@hammernet.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,58 +103,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patchset adds initial device tree support for the OrangePi RV2 board.
-
-The OrangePi RV2 [1] is described as using the Ky X1 SoC. Based on research
-and testing, it appears to be identical or very closely related to the
-SpacemiT K1 SoC [2], as suggested by the following:
-
-- Similar integration in the Banana Pi kernel tree [3], which uses the 
-  OrangePi RV2 and identifies it as the SpacemiT K1.
-- Comparison of the device tree code showing a match to the OrangePi RV2 
-  Linux tree [4].
-- Locally tested the OrangePi RV2 with the SpacemiT K1 device tree, 
-  confirming it boots and operates correctly.
-
-Patch #1 documents the compatible string for the OrangePi RV2, and 
-patch #2 adds its minimal device tree. This enables booting to a serial
-console with UART output and blinking a LED, similar to other K1-based 
-boards such as the Banana Pi BPI-F3 or the Milk-V Jupiter.
+Document the compatible string for the OrangePi RV2 board [1]. The board
+is described as using the Ky X1 SoC, which, based on available downstream
+sources and testing, appears to be identical or very closely related to
+the SpacemiT K1 SoC [2].
 
 Link: http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-RV2.html [1]
 Link: https://www.spacemit.com/en/key-stone-k1 [2]
-Link: https://github.com/BPI-SINOVOIP/pi-linux/blob/linux-6.6.63-k1/arch/riscv/boot/dts/spacemit/k1-x_orangepi-rv2.dts [3]
-Link: https://github.com/orangepi-xunlong/linux-orangepi/tree/orange-pi-6.6-ky [4]
+Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+Reviewed-by: Yixun Lan <dlan@gentoo.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+---
+v3: Improved changelog
+---
+ Documentation/devicetree/bindings/riscv/spacemit.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v3:
-Improved changelog: Reworded relation to SpacemiT K1 as presumed identical,
-based on downstream sources and testing.
-Applied Yixun Lan's Reviewed-by tag.
-
-Changes in v2:
-Patch 1: no changes.
-Patch 2:
-- Added aliases section to the device tree.
-- Removed the memory section, as it is populated by the bootloader.
-- Updated copyright header.
-Link: https://lore.kernel.org/spacemit/20250718084339.471449-3-hendrik.hamerlinck@hammernet.be/
-
-Here is version 1 of this series:
-  https://lore.kernel.org/spacemit/20250711183245.256683-1-hendrik.hamerlinck@hammernet.be/
-
-This is the follow-up mentioned in the previous version, sent now that
-v6.17-rc1 was released yesterday.
-
-Hendrik Hamerlinck (2):
-  dt-bindings: riscv: spacemit: Add OrangePi RV2 board
-  riscv: dts: spacemit: Add OrangePi RV2 board device tree
-
- .../devicetree/bindings/riscv/spacemit.yaml   |  1 +
- arch/riscv/boot/dts/spacemit/Makefile         |  1 +
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 40 +++++++++++++++++++
- 3 files changed, 42 insertions(+)
- create mode 100644 arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-
+diff --git a/Documentation/devicetree/bindings/riscv/spacemit.yaml b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+index 077b94f10dca..c56b62a6299a 100644
+--- a/Documentation/devicetree/bindings/riscv/spacemit.yaml
++++ b/Documentation/devicetree/bindings/riscv/spacemit.yaml
+@@ -22,6 +22,7 @@ properties:
+           - enum:
+               - bananapi,bpi-f3
+               - milkv,jupiter
++              - xunlong,orangepi-rv2
+           - const: spacemit,k1
+ 
+ additionalProperties: true
 -- 
 2.43.0
 
