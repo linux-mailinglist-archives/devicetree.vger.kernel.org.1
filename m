@@ -1,332 +1,120 @@
-Return-Path: <devicetree+bounces-204212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85AAFB2474D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F3BB2476D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:36:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF531AA165C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:33:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD7C21AA242D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7FC52F49E4;
-	Wed, 13 Aug 2025 10:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AAE2F4A06;
+	Wed, 13 Aug 2025 10:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PURmZRTq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XqLUgWhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E050212556;
-	Wed, 13 Aug 2025 10:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1492C2F6561
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 10:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755081194; cv=none; b=HFwruRm2lFKQeQQ+TuNKEuw5EWtTxoaIlYwyKLUZCd2oXWdvaxS/N8MQLLZVziYVyIhvvYDEuDkUddAXKk15tl61nnk+DS89bYicctfymlrXxc/PAk3KjMkO1FyjNCOMMjAjaIC7eM02Gb+YN7zGpfHG9+YfiqgHE47VpeLKsuM=
+	t=1755081397; cv=none; b=qa6kZwDC/e3PZSop6qUZrwLKi/cfWiQkYtd9Ljw42xnSjzgscX6zEoGYqRUFHAZtn4HOdCEaU8Uh+48ygBQhnGUNT1HEHgVO5TyR3A/Y0XbZOrsFBm6pv7a/wjpoFZ/Q35SX18mKse2gZG6wt0u6sZeNT0Rsu69/dtA4NMv1s9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755081194; c=relaxed/simple;
-	bh=Z1Hn4HXV90z37zqkBIruZmJ7JA38MhBLP+Edi7CtcUE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rM/wQ2P1DTkMorQjm/ZossR34lCEmCE9oie+aUEY7ev2b0sT31Ps6mksxQc9stiLaCUjVHJbHZCddzBk2HHM+nzuFrAsod4nKE88Fyq4HWbf+mK/ao0FJLTliGcw8BHphDqed1iwNwYiw28ts7R2uVQRVmuqSoWqYvDhi3LxDKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PURmZRTq; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-af968aa2de4so1142146566b.1;
-        Wed, 13 Aug 2025 03:33:12 -0700 (PDT)
+	s=arc-20240116; t=1755081397; c=relaxed/simple;
+	bh=rM1VH7DXY3SQ5CU5JoXtOdVhg6Lj0cix+4FvL7D4Z3Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=G7Dq72vSj4+ErrlW378mCiPGTQ7K1aDa1Kx09h5KsIu1fgadwMnkP+IzLKA2n2E584O8uGLjbyKqC8iOCA3dH0/HjIOq7K1WI06OiIyDxSDkNm4Yh1dE1911m4jCi/BNggHbN7CEtWIBRgX9iSAOqkyYIOPJYGPX2kxtfyTKY+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XqLUgWhl; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-61539f6815fso1035539a12.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 03:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755081191; x=1755685991; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1755081394; x=1755686194; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OoHPULbI5wuoZ1YdxWM5wh2d8cLuaTCdw6lqxODddaw=;
-        b=PURmZRTqog/cIVHAOeOxuykFR11oojVFi1hPKlUBnYH0wyRpMH6wbfGDjdf3Tl4XuV
-         4uGHx2mlWx6jMy1Jtvz0qef8nkK1ZMZi6VRV1iWgETiTBKCR9bA7tawnxrUF496ehIZS
-         +2JY499ggDKQ2QfOSTkqGbG7bcOaB1u2ct00GgaDpqZX5Tq9JvxguaQou4ocussxVnKK
-         M0IkYD56J21rRg73xgALswUFXKghGn/gb/YIIkAi88uhCzzlPYb7TuVwMVdvakFgUAL2
-         P4qnOWOcceYEWhN7j7aVWGPGtVeEhVpTKOwTQ5n4dpIUHHdtkn1Jk0Dqnz5kEAfIUxme
-         QEEw==
+        bh=pZSse5z3Xz3M0O4BGbTx+nqu/znB14s8R4egSwB9b9M=;
+        b=XqLUgWhl4cK8s3pED+YdqFOezhbepyC3P/7XsRA3c1rgqdPL2ghVGjcnxSi7Sad6Dt
+         cnAjZIG1COXaQd8ku1vDXl+bSJRT/1F9MB/rMIuipBm+P/4tvhBXBd7jGFH6y8pP/D3v
+         LkX6y+v7R4llOGaEIKOmj12dI6FwRKu/inR6qnquq2ISt41GsMzQZboJ4iWYuIKxCLbG
+         GCcGL19JeuFYgQRE8PJh89n3Ky9enSIH+LNKEeEzdT1hvohncvU5rwNWAgHyWY1mSRu+
+         5d5XoVF3RHm3K11p4xOavVxkdgBzNfDdhqUVzy+bQblLiznvoTAW9Jc+4D/OQKAb6ecX
+         a45w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755081191; x=1755685991;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1755081394; x=1755686194;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OoHPULbI5wuoZ1YdxWM5wh2d8cLuaTCdw6lqxODddaw=;
-        b=Bt8RQCxQ9w/higwoy9zFs2v37cBM77AZVxz0bGs+2gUhejy4/FyQiUgh0No0v98UaI
-         F6oi9E8JiRi5pIFriIMxV2tYVaSwdjYgIbDnFKzmrnxjPCmyLadnnUBWy0KOlrTVFLJH
-         aNx74o55wt86dskc8lQjfiP70WQWqv+GJUhEiHgGAOXCCmJoidbqqV7Kc3PV8IKQyxTC
-         PJ+zE+M1TfZg0M5WNTW/Q914NOHoOfZBmahhinF9yEmBnKdphiS0qkEfTd6WbR20S5zg
-         LhBBOGYhTFYAhaOY/ODP7tRAsKfds2ByxKOWNlXcj/WGU/czN+iLdNKez0qi0DXMUhv6
-         dQJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVaZrWZydrww+VSVtaZMOzxWZPQQiBFMVn7IFRupD1F/QK+pLuoF/H4aEIsK1QJ12kuNSPq04FXAuR1@vger.kernel.org, AJvYcCWbNeM8R4VP26SiLTmiyjhp6muRgT/VE5XAT99K2AUN3jxtIpRse9XOUPOkWd9Zuq4DoO3WLDhZ0uKHZbVP@vger.kernel.org, AJvYcCXFpr6uAQ/4vezB62b4AvuSFMK0EF5c4W9jljY1lYFnh6qL3wk5KQ2VBAeKv9s4u5i9t+h3VECcPaDC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzoxjutqhuTW7tsryNONFdYfloOCXmOLxNE/A47fvWtbGID9fH
-	ea/UWmQyHH3D/wMBNmadJOOQD0FubMyMQbwqQoKDVEfQbI0+/p56ARPeU/Y0rGrSLAOjKm2a4AJ
-	cH8j8qC4J2dGiEFR4KkyGgvkExf0MErs=
-X-Gm-Gg: ASbGnctwsqiCc99PP6gSSCyja7urljuTUaxy2qZYOpRMElbGV9J6oQQZBkMeQeEqPkD
-	aGBZtSv4WpMgl6/5HRFmlF57eBRXDOLXroMuBMWfCx3QSXhyAmziWvQ1u4vlJXMcgCxUaKaxUtV
-	ZvOfz0m//i+bHO86F4Ru6BW8RQF0w9eQbIO0weWL7Hi9Hx3Z/vZWe3GCNdGBRG73a+t1X8QT48x
-	o+6XmHItQ==
-X-Google-Smtp-Source: AGHT+IHvBEa00ScGrDIDnQYMzvTcURv3pXbGkzyXKZy9fjPacKMzA5Dy8/GaLaod0q+nPnUakcE+zaBDQ0e49cQdG4M=
-X-Received: by 2002:a17:907:94c6:b0:af9:c31c:eeca with SMTP id
- a640c23a62f3a-afca4f03214mr260708266b.48.1755081190989; Wed, 13 Aug 2025
- 03:33:10 -0700 (PDT)
+        bh=pZSse5z3Xz3M0O4BGbTx+nqu/znB14s8R4egSwB9b9M=;
+        b=rVW8axrrKMOHDn1YU1XP8Cn+r46OtYHgCSgJKWxmvKJk8AchVu5HedNk3zTe0df36h
+         JbWPVodlK+V8afMXhKObdL+Fj1pkha4j94SwtXmgv6lk84XKzvv+trvf0d13UptcpuRp
+         RIisLd3rHG/oy2EKM1IZzptc9H3hIoF0O/7JZol+rzL9KayIwEWdYXvYtknMCJ3qIY3Y
+         LW2x9fMl1JKLEIP3U9n7OiR3kE17DfJTi5PvBYXg7CluNaWYAOufLqabmokTtAEBO0Rc
+         5a2saDuwVnRd9CabX/ZdvbHZPOSRNy0MjHvrJFVASPQpeyUplorUxiE8pMUAzqE2vW6/
+         xXlg==
+X-Forwarded-Encrypted: i=1; AJvYcCU9ZtoahpHo4ao21ywJ4862FFJHRad+G9JtPwYvLmdXLHVRtUPUDihS3G2NNO63zGIRgIuVyrTiOrKo@vger.kernel.org
+X-Gm-Message-State: AOJu0YziQGBI2ye3fVAeTIEfGmyhFigCsMs8vbfOeaLDoQkdL7yp5x5c
+	u97BSvTYLhfBoWu9hBj/C2+8BheQOLCSFLiz81+YyMecEtY6FLpgJQwOy5LyddicjPU=
+X-Gm-Gg: ASbGnct3sFAd/WT32EToTFzVXvAh/jkd2i1jf28pSf/Y4il81iFxyM3zoNzsiAol9jU
+	0YMhOAsp5IiK1hqTRu+pf38HzapmWeb70vHvj9feG7IkfU3+e+PVfs2Ha3lqTWrmdgwXHoAaEKW
+	V/ww2nWhkHCqR+SnFKJcXi57RBLaxKCbc63eCJQjaYX28hsCKrm2EcynipFaNKIAuhGEHhfVb5e
+	PH0JsUlo8ecShAi3U4nzqLdGx5Y67F6u3uDEsSz6PrlC+ahgtfDzbXUk/IwSTQnTsfEZhhxZ/Ve
+	lg/4JUtnbrNuipsZDTit6HiTBZ0TTh2zcYBHNo3pJXHzkQ5azrOMXugaHE2awRzjsW9h8cdxZRr
+	+8N3fV7p+ehZiAFI71wPLkUFrD8vat5nFYJBLMg7cqegcOwVNvA==
+X-Google-Smtp-Source: AGHT+IFIGBvJE51ImLFwJEf+HWdvDhMI/ga9sn6qqV6XG49qX/4+cl2bNcAjFXq4HMH1UQxepumpXQ==
+X-Received: by 2002:a17:906:4794:b0:af9:7e88:e174 with SMTP id a640c23a62f3a-afca4e6e6b9mr94000266b.12.1755081394358;
+        Wed, 13 Aug 2025 03:36:34 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21c08csm2392328866b.118.2025.08.13.03.36.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Aug 2025 03:36:33 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250731234532.12903-1-semen.protsenko@linaro.org>
+References: <20250731234532.12903-1-semen.protsenko@linaro.org>
+Subject: Re: [PATCH] arm64: dts: exynos: Add Ethernet node for E850-96
+ board
+Message-Id: <175508139304.40388.17997940621075080202.b4-ty@linaro.org>
+Date: Wed, 13 Aug 2025 12:36:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812-ltc2495-v1-0-7bf4c6feec2e@gmail.com> <20250812-ltc2495-v1-3-7bf4c6feec2e@gmail.com>
-In-Reply-To: <20250812-ltc2495-v1-3-7bf4c6feec2e@gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 13 Aug 2025 12:32:34 +0200
-X-Gm-Features: Ac12FXxjxkaJujszOO8N7Lcd-0HGt-KfpmhgX0vJ-9qifttuWJ9Lxc72e0FKIU4
-Message-ID: <CAHp75Vd-3OwHfyDSH_+GtbD8zNaz8qi2WQZD1kHM0GfUnRXRnA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] iio: adc: ltc2497: add temperature sensor support
-To: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Beguin <liambeguin@gmail.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Aug 12, 2025 at 7:09=E2=80=AFPM Yusuf Alper Bilgin
-<y.alperbilgin@gmail.com> wrote:
->
-> The LTC2495 and LTC2499 include an internal temperature sensor. This
-> patch adds support for reading it via a standard IIO temperature
-> channel.
-
-..
-
->  static const struct ltc2497_chip_info ltc2496_info =3D {
->         .resolution =3D 16,
->         .name =3D NULL,
-> +       .has_temp_channel =3D false,
->  };
-
-Unneeded change.
-
-...
-
->  static int ltc2497core_read_raw(struct iio_dev *indio_dev,
-> -                           struct iio_chan_spec const *chan,
-> -                           int *val, int *val2, long mask)
-> +                               struct iio_chan_spec const *chan,
-> +                               int *val, int *val2, long mask)
-
-Unrelated change.
-
-...
-
-> +               switch (chan->type) {
-> +               case IIO_VOLTAGE:
-> +                       *val =3D ret / 1000;
-
-Don't remember if we have something like MICROVOLT_PER_MILLIVOLT.
-
-> +                       *val2 =3D ddata->chip_info->resolution + 1;
-> +
-> +                       return IIO_VAL_FRACTIONAL_LOG2;
-> +
-> +               case IIO_TEMP:
-> +                       if (!ddata->chip_info->has_temp_channel)
-> +                               return -EINVAL;
-> +
-> +                       /*
-> +                        * The datasheet formula to get Temperature in Ce=
-lsius is:
-> +                        * Temp_C =3D (Conversion * Vref / temp_scale) - =
-273
-> +                        *
-> +                        * To match the IIO framework's model of (raw + o=
-ffset) * scale,
-> +                        * and to get the final result in millidegrees Ce=
-lsius:
-> +                        *
-> +                        * =3D ((Conversion * Vref / temp_scale) - 273) *=
- 1000
-> +                        * =3D (Conversion - (273 * temp_scale / Vref)) *=
- 1000 * Vref / temp_scale
-
- * Temp_mC =3D ... =3D
- *                      ...
-
-I.o.w. make it more explicit, otherwise those dangling equal signs are
-not helpful.
-
-> +                        *
-> +                        * This gives us if the Vref is in mV:
-> +                        * scale  =3D Vref * 1000 / temp_scale
-> +                        * offset =3D -273 * temp_scale / Vref
-> +                        */
-> +                       *val =3D ret;
-> +                       *val2 =3D ddata->chip_info->temp_scale;
-> +
-> +                       return IIO_VAL_FRACTIONAL;
-> +
-> +               default:
-> +                       return -EINVAL;
-> +               }
-> +       case IIO_CHAN_INFO_OFFSET:
-> +               if (chan->type !=3D IIO_TEMP)
-> +                       return -EINVAL;
-> +
-> +               /* see the calculation above. Offset with (-273 * temp_sc=
-ale / Vref) */
-> +               ret =3D regulator_get_voltage(ddata->ref);
-> +               if (ret < 0)
-> +                       return ret;
->
-> -               return IIO_VAL_FRACTIONAL_LOG2;
-> +               *val =3D -273 * ddata->chip_info->temp_scale;
-> +               *val2 =3D ret / 1000;
-
-I remember we have some constants in units.h for degrees, but don't
-remember if they are for Kelvin only or Celsius also included. Please,
-check and use, if available.
-
-> +               return IIO_VAL_FRACTIONAL;
->
->         default:
->                 return -EINVAL;
->  }
-
-...
-
-> +#define LTC2497_T_CHAN() {                                              =
-                       \
-
-Why parentheses?
-
-> +       .type =3D IIO_TEMP,                                              =
-                         \
-> +       .channel =3D 0,                                                  =
-                         \
-> +       .address =3D (LTC2497_TEMP_CMD_ADDR),                            =
-                         \
-> +       .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),                  =
-                         \
-> +       .info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_=
-CHAN_INFO_OFFSET),       \
-> +}
-
-...
-
-> +       /* Dynamically create the channel list */
-> +       if (ddata->chip_info->has_temp_channel) {
-> +               /* Allocate space for common channels + 1 temp channel */
-> +               indio_dev->num_channels =3D ARRAY_SIZE(ltc2497core_channe=
-l) + 1;
-> +               indio_dev->channels =3D devm_kmemdup(dev, ltc2497core_cha=
-nnel,
-
-Why not devm_kmemdup_array() ?
-
-> +                                                  sizeof(ltc2497core_cha=
-nnel), GFP_KERNEL);
-
-sizeof(*...)
-
-> +               if (!indio_dev->channels)
-> +                       return -ENOMEM;
-> +
-> +               memcpy((void *)&indio_dev->channels[ARRAY_SIZE(ltc2497cor=
-e_channel)],
-
-This is a strange style, can you improve it?
-
-> +                      &ltc2497_temp_channel, sizeof(ltc2497_temp_channel=
-));
-> +       } else {
-> +               indio_dev->channels =3D ltc2497core_channel;
-> +               indio_dev->num_channels =3D ARRAY_SIZE(ltc2497core_channe=
-l);
-> +       }
-
-...
-
-> +       if (ddata->chip_info->has_temp_channel) {
-> +               if (address =3D=3D LTC2497_TEMP_CMD_ADDR)
-> +                       ret =3D i2c_smbus_write_byte_data(st->client, LTC=
-2497_ENABLE,
-> +                                                       LTC2497_TEMP_CMD_=
-ADDR);
-> +               else
-> +                       ret =3D i2c_smbus_write_byte_data(st->client, LTC=
-2497_ENABLE | address,
-> +                                                       LTC2497_EN2);
-
-> +
-
-Stray blank line.
-
-> +       } else {
-> +               ret =3D i2c_smbus_write_byte(st->client, LTC2497_ENABLE |=
- address);
-> +       }
-> +
->         if (ret)
-> -               dev_err(&st->client->dev, "i2c transfer failed: %pe\n",
-> -                       ERR_PTR(ret));
-> +               dev_err(&st->client->dev, "i2c transfer failed: %pe\n", E=
-RR_PTR(ret));
->         return ret;
-
-...
-
->         [TYPE_LTC2497] =3D {
->                 .resolution =3D 16,
->                 .name =3D NULL,
-> +               .has_temp_channel =3D false,
->         },
-
-Unneeded change.
-
-...
-
->         [TYPE_LTC2499] =3D {
->                 .resolution =3D 24,
->                 .name =3D "ltc2499",
-> +               .has_temp_channel =3D true,
-> +               .temp_scale =3D 1570000, /* 1570 V per degree C -> 157000=
-0 mV */
-
-1570V ?! Hmm...
-
->         },
-
-...
-
-> +#define LTC2497_ENABLE         0xA0
-> +#define LTC2497_EN2            0x80
-> +#define LTC2497_IM             0x40
-
-Are those bit masks / bits in the register? Offsets?
-
-> +#define LTC2497_TEMP_CMD_ADDR  (LTC2497_EN2 | LTC2497_IM)
-
-This is really strange naming for... what exactly? Can a comment be added?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
 
-...
+On Thu, 31 Jul 2025 18:45:32 -0500, Sam Protsenko wrote:
+> The E850-96 board has a hard-wired LAN9514 chip which acts as a USB hub
+> and Ethernet bridge. It's being discovered dynamically when the USB bus
+> gets enumerated, but the corresponding Ethernet device tree node is
+> still needed for the bootloader to pass the MAC address through. Add
+> LAN9514 nodes as described in [1]. 'local-mac-address' property (in the
+> 'ethernet' node) is used for MAC address handover from the bootloader to
+> Linux.
+> 
+> [...]
 
->  struct ltc2497_chip_info {
->         u32 resolution;
->         const char *name;
-> +       bool has_temp_channel;
-> +       u32 temp_scale; /* in mV, for temp conversion */
+Applied, thanks!
 
-Then simply add a (mV, yes, with capital V) suffix to the field name.
+[1/1] arm64: dts: exynos: Add Ethernet node for E850-96 board
+      (no commit info)
 
->  };
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Have you run `pahole`? Does it agree with the proposed layout?
-
---=20
-With Best Regards,
-Andy Shevchenko
 
