@@ -1,198 +1,195 @@
-Return-Path: <devicetree+bounces-204039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA58AB23E4D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:39:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82671B23E52
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:45:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D4273ACD5F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 02:37:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CECE16B66C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 02:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D2E1DF265;
-	Wed, 13 Aug 2025 02:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E5F71E9B2F;
+	Wed, 13 Aug 2025 02:45:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DPOtYuaL"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="CLFLSxX7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629CA139D0A;
-	Wed, 13 Aug 2025 02:37:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BBC9A930
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 02:45:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755052645; cv=none; b=h/LwthEkpGURlKZKoYBkvitx54DJYcRwCEccYpX9I0H9cC8LQKh4NbFUWutRsrfUJsTkzk2MVOMGmY8ABWhSC24nLmasBbWYp86NdN4kzVhGimHK7Nd/zGCzFDHfE6AbbZZdPPT1dT9aifrCMHJOgwu+XolqAq6lRGS2kw9U7JU=
+	t=1755053116; cv=none; b=I07k9KN24jMDgUAr6NI5Xow+eKjj9YDG4L1gvoe0FoolhiMvT/rpJ9mdfSBMo1SMn5cUbJ0Q11BNJmjt25UmzS9RSF6u4cu5NGDxExwIHp3d5Q10HoRKCb9DAlpDac3X2dikblyPeLEvM1z3yJpOfsSwV6Nlxe0DY7mcMVwHIqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755052645; c=relaxed/simple;
-	bh=mZe7gpS/9sl+TjlQKK4plRQeU8GkfylF8j0ySV/dbV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nr900UwYUEILABY5Dv0nsGumsSLvdVjocMXpC2swtmIzjiT3rLi/44Ro+HeLAA2tmI/+WOUoc0JWl39gZindoF1b8ZNLNpC9CtVhohYEyHNwYAW549XgZ2tAKez3zZHPB0+wfpHLtSGbxE+k6J3WEOMsewF+948H0mZTry7Kkv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DPOtYuaL; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755052643; x=1786588643;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mZe7gpS/9sl+TjlQKK4plRQeU8GkfylF8j0ySV/dbV4=;
-  b=DPOtYuaL2HdmZs1OiJOM9/UT9HtrJzXyL3vHZRTrwKiMdB8NoCyy6H0Q
-   x9KE5u7teq6wD36zHgV9ePuWVc/PXV6sL9sNNcCcmm75iRZsKvPhiyPiP
-   bF+rhzUFboVL6FjMBAb9tj9AzlrCqB+CREi/NU5dcne496xte+qV0tFOr
-   CVuDMo7vnPBI06eyXnjqKyjtC4/nskuEdsrylD7qKhwM5LsQ1hScavntF
-   PtlwZ/A+sSkf+p6n6/1NG9S3FrIAg2WNr5Aay/l0OlKEqv7hqrVqXgE4h
-   o7WK/TBcmgq0lBmdRXlQS6lCvwTzAHeg9v9SU+2vdhtFLqOOgd8gULGAX
-   A==;
-X-CSE-ConnectionGUID: nlFEKjqIQQW4UUKRoyDFVA==
-X-CSE-MsgGUID: CfTU10uzRqiRRdW6uk2kHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="82770119"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="82770119"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2025 19:37:22 -0700
-X-CSE-ConnectionGUID: SSYInxC6R0ipR4eBMymsYg==
-X-CSE-MsgGUID: iOthpAQBQnmB7/U7wdUA3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="171684930"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa005.jf.intel.com with ESMTP; 12 Aug 2025 19:37:16 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1um1ME-0009TY-2a;
-	Wed, 13 Aug 2025 02:37:06 +0000
-Date: Wed, 13 Aug 2025 10:35:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Wei Fang <wei.fang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, richardcochran@gmail.com,
-	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
-	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	vadim.fedorenko@linux.dev, Frank.Li@nxp.com, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, festevam@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, fushi.peng@nxp.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 net-next 06/15] ptp: netc: add periodic pulse output
- support
-Message-ID: <202508131027.y3pyBEJQ-lkp@intel.com>
-References: <20250812094634.489901-7-wei.fang@nxp.com>
+	s=arc-20240116; t=1755053116; c=relaxed/simple;
+	bh=qigzO2DTvwyXcMLvudEMT153tkZ+VKdFAQ3TY4DaMas=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Xt6elQyk8wV75aQ6ehntiaCrKoKSZE2N/c9w6oa7rXHdt1iRvcStuT2R0Xvpl+s5oZ5Gf5G5EBqpBxYF8NoSFT65HTzHYBFLB4zkdKH2HkYtWoDoZK84VfCaogYO/zvPIqvfVux/VtmYp2G+VL6daqb1Ubw6HdciT96E+ZsehQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=CLFLSxX7; arc=none smtp.client-ip=209.85.166.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-3e55b170787so2540035ab.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 19:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755053114; x=1755657914; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=niKBP2EZ19X+wqMs4ZG9wJKfN7oQpwL1MM9OL7zTge0=;
+        b=CLFLSxX7rF5tvPunB+WqYhc16+BC/oleqw5EDDPSGTH8JVb6EnJhgrle3ITluIU4Yv
+         k1xNiyJihpgtL2gwtaqOHdnW51cQnoDLyYIp7UzpIj41Kfd6VZydepfd94r0jn0ZhxLM
+         HuSett1bUgo4KTCK/HboO0zUbzjpUFV6r5VnFDt+Ka0mHYb9zyIo28z+jB7dLrrx7HP7
+         EpAyH1mrHLTzZlrxjJHsAaGw1hQ0XdOE+LIcWoU3kHTQqT9mQxNCBX1McFz1xeB+UmoV
+         eKBLNKEGArVZqgvf5X+lGlzrdL6D/sJhJVsvtWbCkbYn674eX/vNN9SyQ8H6+h9Q2OZy
+         Swrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755053114; x=1755657914;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=niKBP2EZ19X+wqMs4ZG9wJKfN7oQpwL1MM9OL7zTge0=;
+        b=Mglt7qKOyQvl2pggxzTwCLhW/pCBl4HtVGaly/QTz14pHK8YjuanHHzGMcGtR8M7SH
+         uaKzL9NvoYzTPwhxy7ZDIuFjX+M7MlAMJ39fdjXuGi78zERt6YYqkJ7jQ+gniXYg3YC6
+         QFjF/NTtEUth5hMJmOkc7W9FzrCKGgPmgoTeMjEIq8DwDsKHLt/O0/TJkhXLjjvsEDQT
+         XZEC9a1KLstOQRDvDDG0EGik8uLWYykKiX7kJLqR1gduMUfTJuleYRjbbt2K/EOhp3JL
+         /gfUmP1BHNKB7Jnn0JY8QwB+Gv0FRhCEkQjS077KlPe4+ztbuy93r5okLd09DIeL9E7M
+         MN/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWchVfB8DnFD6b6M4gJhhVXOC8Ba6pxjN5OdfE8rtVliECEDeqCYmU6wJFrmQIkMKgOii2fotVmFkvF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlRV/36RBwqhIJzMhpeExUwGh43iQd22lnP6B9HEbJDQTbO9Bx
+	E7ZpVNEl2jJfmeYVIiTXGdiHxA0ni3DnL+ALYKmSFeAL79VB/pmj2pDbhpAdAvz0LUM=
+X-Gm-Gg: ASbGncvgrLHWwzKIttOCH5ze3oHinMV1bzq+/BMGCB+H2xxsLuNLZfdi6UK739gxh0V
+	42A962F2/L9Fmyrvay3t79u3oHvT3CInqdR55mWfzdtPs9+5I41cwgEiCZDYs4NlIZ8RgjSoVys
+	sZU5FwzQbgKS82w/M45N//MCKKptWdYOCMwpYP7KTB1dD0nAEtyGwvU1QsxMT59ePwiEiHmBOiw
+	c7La0v4kdsvBI/XHiHvzJ40aczuyZbuS50o02ZR4aP8t325MxbYGxrpcabzkPOQNRTnx5KhGm7b
+	2YK00SFxmF2num+FI4vDmTi3GVAaKlyaVizjxIq71g6Ie7ZUF7Ac/jknylvlO6v+s3wGoJVLvux
+	vBjEqYPsamp3PNYXoLlBYA69f8524uFHPxGoeiYmt3vKWmxXjpTL2wCN7U1Cp/y1GdMD4n2lhJ1
+	pz
+X-Google-Smtp-Source: AGHT+IEBZwyeOzbbOcVhNNK5J1cGS+53cBPTwwwfowqlesyNWISPovkwp31RGRTV3tyrIRkYbuJPkg==
+X-Received: by 2002:a05:6e02:19cd:b0:3e3:b3d0:26cf with SMTP id e9e14a558f8ab-3e5685aa5bcmr15459295ab.10.1755053113531;
+        Tue, 12 Aug 2025 19:45:13 -0700 (PDT)
+Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50ae9bcfbf6sm3430829173.54.2025.08.12.19.45.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Aug 2025 19:45:13 -0700 (PDT)
+From: Alex Elder <elder@riscstar.com>
+To: lee@kernel.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	alexandre.belloni@bootlin.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: mat.jonczyk@o2.pl,
+	dlan@gentoo.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	linux.amoon@gmail.com,
+	troymitchell988@gmail.com,
+	guodong@riscstar.com,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v12 0/7] spacemit: introduce P1 PMIC support
+Date: Tue, 12 Aug 2025 21:45:01 -0500
+Message-ID: <20250813024509.2325988-1-elder@riscstar.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250812094634.489901-7-wei.fang@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Wei,
+The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
+converters and 12 LDOs.  It contains a load switch, ADC channels,
+GPIOs, a real-time clock, and a watchdog timer.
 
-kernel test robot noticed the following build warnings:
+This series introduces a multifunction driver for the P1 PMIC as
+well as drivers for its regulators and RTC.
 
-[auto build test WARNING on net-next/main]
+The content of this version is identical to the previous one.
+It has simply been rebased onto Linux v6.17-rc1.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Wei-Fang/dt-bindings-ptp-add-NETC-Timer-PTP-clock/20250812-181510
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20250812094634.489901-7-wei.fang%40nxp.com
-patch subject: [PATCH v3 net-next 06/15] ptp: netc: add periodic pulse output support
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250813/202508131027.y3pyBEJQ-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 3769ce013be2879bf0b329c14a16f5cb766f26ce)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250813/202508131027.y3pyBEJQ-lkp@intel.com/reproduce)
+					-Alex
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508131027.y3pyBEJQ-lkp@intel.com/
+This series is available here:
+  https://github.com/riscstar/linux/tree/outgoing/pmic-v12
 
-All warnings (new ones prefixed by >>):
+Between version 11 and version 12:
+  - Simple rebase
 
->> drivers/ptp/ptp_netc.c:394:33: warning: variable 'pp' is uninitialized when used here [-Wuninitialized]
-     394 |                 priv->fs_alarm_bitmap &= ~BIT(pp->alarm_id);
-         |                                               ^~
-   drivers/ptp/ptp_netc.c:348:20: note: initialize the variable 'pp' to silence this warning
-     348 |         struct netc_pp *pp;
-         |                           ^
-         |                            = NULL
-   1 warning generated.
+Here is version 11 of this series:
+  https://lore.kernel.org/lkml/20250803025812.373029-1-elder@riscstar.com/
+
+Between version 10 and version 11:
+  - Abandon trying to implement a simple_mfd_data->max_register field
+  - Fix a missing dependency pointed out by the kernel test robot
+
+Here is version 10 of this series:
+  https://lore.kernel.org/lkml/20250726131003.3137282-1-elder@riscstar.com/
+
+Between version 9 and version 10:
+  - The #address-cells and #size-cells for the i2c8 DTS node
+    were moved into its primary definition in "k1.dtsi".
+  - The interrupts property for the i2c8 DTS node was moved
+    below its clock-related properties.
+  - The status property in the pmic@41 DTS node was dropped.
+  - The function that provides the regmap_config structure
+    to use was reworked a bit.
+  - A new function was added to free the regmap_config
+    structure after it's no longer needed.
+
+Here is version 9 of this series:
+  https://lore.kernel.org/lkml/20250724202511.499288-1-elder@riscstar.com/
+
+Between version 8 and version 9:
+  - The max_config value is always used if it is provided with the
+    simple_mfd_data structure.
+  - The regmap_config structure used is allocated dynamically if
+    necessary; otherwise regmap_config_8r_8v is used.
+  - A small duplicated comment is removed
+
+Here is version 8 of this series:
+  https://lore.kernel.org/lkml/20250710175107.1280221-1-elder@riscstar.com/
+
+More complete history is available at that link.
 
 
-vim +/pp +394 drivers/ptp/ptp_netc.c
+Alex Elder (7):
+  dt-bindings: mfd: add support the SpacemiT P1 PMIC
+  mfd: simple-mfd-i2c: add SpacemiT P1 support
+  regulator: spacemit: support SpacemiT P1 regulators
+  rtc: spacemit: support the SpacemiT P1 RTC
+  riscv: dts: spacemit: enable the i2c8 adapter
+  riscv: dts: spacemit: define fixed regulators
+  riscv: dts: spacemit: define regulator constraints
 
-   337	
-   338	/* Note that users should not use this API to output PPS signal on
-   339	 * external pins, because PTP_CLK_REQ_PPS trigger internal PPS event
-   340	 * for input into kernel PPS subsystem. See:
-   341	 * https://lore.kernel.org/r/20201117213826.18235-1-a.fatoum@pengutronix.de
-   342	 */
-   343	static int netc_timer_enable_pps(struct netc_timer *priv,
-   344					 struct ptp_clock_request *rq, int on)
-   345	{
-   346		struct device *dev = &priv->pdev->dev;
-   347		unsigned long flags;
-   348		struct netc_pp *pp;
-   349		int err = 0;
-   350	
-   351		spin_lock_irqsave(&priv->lock, flags);
-   352	
-   353		if (on) {
-   354			int alarm_id;
-   355			u8 channel;
-   356	
-   357			if (priv->pps_channel < NETC_TMR_FIPER_NUM) {
-   358				channel = priv->pps_channel;
-   359			} else {
-   360				channel = netc_timer_select_pps_channel(priv);
-   361				if (channel == NETC_TMR_INVALID_CHANNEL) {
-   362					dev_err(dev, "No available FIPERs\n");
-   363					err = -EBUSY;
-   364					goto unlock_spinlock;
-   365				}
-   366			}
-   367	
-   368			pp = &priv->pp[channel];
-   369			if (pp->enabled)
-   370				goto unlock_spinlock;
-   371	
-   372			alarm_id = netc_timer_get_alarm_id(priv);
-   373			if (alarm_id == priv->fs_alarm_num) {
-   374				dev_err(dev, "No available ALARMs\n");
-   375				err = -EBUSY;
-   376				goto unlock_spinlock;
-   377			}
-   378	
-   379			pp->enabled = true;
-   380			pp->type = NETC_PP_PPS;
-   381			pp->alarm_id = alarm_id;
-   382			pp->period = NSEC_PER_SEC;
-   383			priv->pps_channel = channel;
-   384	
-   385			netc_timer_enable_periodic_pulse(priv, channel);
-   386		} else {
-   387			/* pps_channel is invalid if PPS is not enabled, so no
-   388			 * processing is needed.
-   389			 */
-   390			if (priv->pps_channel >= NETC_TMR_FIPER_NUM)
-   391				goto unlock_spinlock;
-   392	
-   393			netc_timer_disable_periodic_pulse(priv, priv->pps_channel);
- > 394			priv->fs_alarm_bitmap &= ~BIT(pp->alarm_id);
-   395			pp = &priv->pp[priv->pps_channel];
-   396			memset(pp, 0, sizeof(*pp));
-   397			priv->pps_channel = NETC_TMR_INVALID_CHANNEL;
-   398		}
-   399	
-   400	unlock_spinlock:
-   401		spin_unlock_irqrestore(&priv->lock, flags);
-   402	
-   403		return err;
-   404	}
-   405	
+ .../devicetree/bindings/mfd/spacemit,p1.yaml  |  86 +++++++++
+ .../boot/dts/spacemit/k1-bananapi-f3.dts      | 135 ++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |   7 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi          |  13 ++
+ drivers/mfd/Kconfig                           |  11 ++
+ drivers/mfd/simple-mfd-i2c.c                  |  18 ++
+ drivers/regulator/Kconfig                     |  13 ++
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/spacemit-p1.c               | 157 ++++++++++++++++
+ drivers/rtc/Kconfig                           |  10 ++
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-spacemit-p1.c                 | 167 ++++++++++++++++++
+ 12 files changed, 619 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/spacemit,p1.yaml
+ create mode 100644 drivers/regulator/spacemit-p1.c
+ create mode 100644 drivers/rtc/rtc-spacemit-p1.c
 
+
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.48.1
+
 
