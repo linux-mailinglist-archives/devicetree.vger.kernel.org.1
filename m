@@ -1,163 +1,231 @@
-Return-Path: <devicetree+bounces-204134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 368F8B24342
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:53:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97383B2435A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B8B01B67264
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:51:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52C52188BB3E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A352E36FA;
-	Wed, 13 Aug 2025 07:50:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F6B2BE65A;
+	Wed, 13 Aug 2025 07:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cyfbHPyw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rx4LG8lH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF132E1C56;
-	Wed, 13 Aug 2025 07:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690A62E36F4;
+	Wed, 13 Aug 2025 07:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755071449; cv=none; b=iWSXTkcRc+uOZxpvlTXeQBMCCW9JYBNQnyT2BXyj8CvF2usCXEvn+GjQwvoWiJNh4YK9XForIn0/msGmv3kC3hOR+vlstqN8XhzGUZqQ/PjPs14XV7JXk/jk5b4V5VVpgKe/BiEgTolZQ+e5h5dEG7Ylp9+xuVl6YUaxKKJN/6c=
+	t=1755071653; cv=none; b=nDlIDVzWIWAj3PQzYiQr22HqrozZlB819xwPmKVl+5GlYyEME2PsQKFlBYMsNUCEEwPkZYvRB0/InQAVpc0yzwYB6G2MlqGPOQfSLeHwFu46igZ0gEKupftfXfZ0ldO0hIV2MICuNj9nOpEMaxF8WzDPNRgh6JESC1s4FpOe4AY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755071449; c=relaxed/simple;
-	bh=GCkcSwQXaPB+Reeu4y3cV78hJ9D/iB5yjlZx4Qatnh8=;
+	s=arc-20240116; t=1755071653; c=relaxed/simple;
+	bh=Se+R3SRBnQAUbFZPplFYB0lmjvDbELTuqeQUIydxg5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N5MXmep7trLLN3AjY/N0vSTO5xTPMICpE8fDWcWfvMsTC9OMfLiGXcqnrFmysusnh7Q+Nb/GYg+jfvyhCaOXw8ppGJjLLT297UpetP1fS8Gg2a1DhQBYWwkL8vVdMu47Y/6xXeRQzUiQlcJjRy5xnVbNezBQ7ocN5AbQe2lRYcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cyfbHPyw; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755071448; x=1786607448;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GCkcSwQXaPB+Reeu4y3cV78hJ9D/iB5yjlZx4Qatnh8=;
-  b=cyfbHPyw6dei7t7zFb4YPjhUHu+fJZU/uGB5dfzCpSxaBLu/aqPH0dG6
-   4JnAANLSy5V6xBqPAiBGtdqv2M+qg7Neyi1oBo8PM/CpOrBO21lhDHSFE
-   NmLnumhRHBrnGzPnUuTyocjJ85N3kNlO95K2A8XkrnDSw5ZlzzNfigX+Z
-   e4LJtXVpcW9XGRn3DVxHijx3WclsFCxuvHryrcfFVsbvU3tf1fBoq/fOO
-   cP3WApRAL4o3NtEnrYPx1s3r69ZJpzaWqozrzLW3BSIIBe3TNSA9au10M
-   7yrP9fNU1IosDo1Im1ez0x/qR/vpAsgqoxEZ6GRUFpIknCNJlWtKFzi/m
-   Q==;
-X-CSE-ConnectionGUID: let9IegKTXSRoNAaLC1rTw==
-X-CSE-MsgGUID: lpB42WgwQjiwvfaVUdiCpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57260476"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="57260476"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2025 00:50:48 -0700
-X-CSE-ConnectionGUID: UFpW3ZHJRgG7Yrcfgk7aGw==
-X-CSE-MsgGUID: hr6+tZAJTK62MvVvrPVRZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="165625222"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 13 Aug 2025 00:50:44 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1um6Fc-0009gS-1J;
-	Wed, 13 Aug 2025 07:50:29 +0000
-Date: Wed, 13 Aug 2025 15:49:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Qiang Zhao <qiang.zhao@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] soc: fsl: qe: Add an interrupt controller for QUICC
- Engine Ports
-Message-ID: <202508131517.P1Nfz0RF-lkp@intel.com>
-References: <1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy@csgroup.eu>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pa8yXX2/ZtlSFbVV4bBVbHym+0FEApO/OMYfwgy/wuEA+DxSKh3EpyzAo0U5BzglMOjvsSzOp/Y35y5iB2Vo/7Bk24RuxYcftq09qRJpcIv73QKYeMuQvOP7xgQ0daUMOchSFW53Lu9TsJDPohBKhWHTucX7PTlv8RlPGr+wGvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rx4LG8lH; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7e8248ee36cso554266985a.2;
+        Wed, 13 Aug 2025 00:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755071650; x=1755676450; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2UybIz5RKzn5qYjRcunlta4nxb7ffklkg0o7NA7aXmE=;
+        b=Rx4LG8lHY2SX6BknK5UstA3nbosQEjZ0XbqJ+RlP6ObJ8bI2vJcON7NVsh0hIWjcbN
+         ovfmi2hhoGqbdCTa3IoOaQNIbh5zELM/MDeXCkcPo7kt9Fj6Mq0Kbx7BvMOdi0VaLqiV
+         EIYJDL7BTIE3p66Ln1Thg41F1gUBLowQDIv1TntTWjZItJUw8nzcIx8dchMxtrycDmyz
+         wDhyL7b7N2FWRIACbWTB00NAFzg1STfi+ow0F42TvYHrpGSvDP/N5jjvAcb9H7eTo+PW
+         UWeJ2V/F3/yX7e8ajZ4mbqwN9YVGzqxNjqr9T6JHYvx//q/joyLoBF4Q5N8BIF/GuPy5
+         kHHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755071650; x=1755676450;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2UybIz5RKzn5qYjRcunlta4nxb7ffklkg0o7NA7aXmE=;
+        b=ZzWlKRWXD899iEziaOMDO/vLi6icw3q70UHDlvkRLEV2Osk3XY3lTFcLmU/zBWWypY
+         rHEGQTeHB0ICy/UmybFzPcuTz9wyKfWdfuGpPPEIPZV27aHqPT3/ojwOYbSsjZ6l1Tis
+         04VsB6rX7Jm/2F6iLGuWKgleRTnBvMdeKJ/qwjaMAJprrgS/SIQ0wHNEbn48RK7IDnQK
+         FdA/SQej6U5dS2GmGytjU6auDEa270lgTscmPh65+Zc3NcyUxj5+kym6Zx+gLKzct069
+         /8vh7V5OC0AwE3ZBey+obGFz+VgnE6Pi91KprIDmWsj+P3pHh3EizTsvq2HIihtny8nG
+         Wptg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrsjb+ex1BIhsQsrjQrKyFk5PQenpFP1dvWC30kG/ti4bSIP+PsFCuvfsRpaE3QTCRXKhgkTn2XqtNTy/i@vger.kernel.org, AJvYcCWsYJBfgjMOHwVEKqVtBqV0sEvNfj4nnUtYbeCiazSnnNCekgCXyE6tghkEYNvJq8wIf3TEJxG6IDDl@vger.kernel.org, AJvYcCX5WtBNCcqtthngkLJVrcd5KCGoP4InfrqwAjcUAa1vZHUKQwzVVA6AQ+ncelIYZirywYBRQyChPAcd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuSwjcgZuk1qror0KD6W4DXINIIldI8blQAyDF7M42lmJopkrn
+	WCokmB2ZfItVVmzbqhsA6ky3vA78icaofoAJ2x3eKAjo3jkrItFGO12l
+X-Gm-Gg: ASbGncsAYPOS3qK7NBmp00wEGvAuVLErx4PrRvVZr9l4WN3l1zkGrSAKanTgiJ5z2gH
+	c6oJ/7ZZX03MyrzpqiwiqZGsFVJVmANQxf/HLcsyKkT8ozCCuq+jAXJsyZ3T7943b3nCOBz9Zr4
+	BI3rtJhiiI6K+cuth1HvNhv9Ej5CA/xJanP16gEQ92xWZDofWOwjnIf7n6opKj1hy3ga7Ge6Mj4
+	farHA6Y97Vu43oWc47KFF51QRrsuemx/6lo191Q+DQeLRs3aBfw8TlVu6sc7zo9TC4xXdzELFKT
+	IUKd55jmHUMWWCFuw8hxBkQ740kL/M5qdNlLJjAq3IuWwadvaIEeC4Y7zPgIiRkyDdNjXLqjeuT
+	an/9shmPo2/s=
+X-Google-Smtp-Source: AGHT+IG43rF9yFYmKpQf+pkO92Bo4veU5NRhAxmIcO1Unuk2b5QG17zeBJ5XdkFwEaFlvk0TdGVUZQ==
+X-Received: by 2002:a05:620a:d5b:b0:7e3:46da:9e1f with SMTP id af79cd13be357-7e8653259d6mr242571085a.56.1755071650030;
+        Wed, 13 Aug 2025 00:54:10 -0700 (PDT)
+Received: from nsa ([45.88.190.11])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e67f595525sm1922281085a.2.2025.08.13.00.54.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Aug 2025 00:54:09 -0700 (PDT)
+Date: Wed, 13 Aug 2025 08:54:25 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: iio: Replace bouncing Analog emails
+Message-ID: <whi5if3mrfjtszczpgerdzv457iihcf6bbywbrt5i7javoap4u@dtgd4ncum4gt>
+References: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy@csgroup.eu>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
 
-Hi Christophe,
+On Tue, Aug 12, 2025 at 03:24:46PM +0200, Krzysztof Kozlowski wrote:
+> Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
+> permanently:
+> 
+>   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
+> 
+> so replace them with Marcelo Schmitt and Nuno Sá (listed alphabetically
+> by first name) from Analog where appropriate.
+> 
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-kernel test robot noticed the following build warnings:
+Acked-by: Nuno Sá <nuno.sa@analog.com>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.17-rc1 next-20250813]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Christophe-Leroy/soc-fsl-qe-Add-an-interrupt-controller-for-QUICC-Engine-Ports/20250812-195423
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy%40csgroup.eu
-patch subject: [PATCH 1/4] soc: fsl: qe: Add an interrupt controller for QUICC Engine Ports
-config: powerpc64-randconfig-002-20250813 (https://download.01.org/0day-ci/archive/20250813/202508131517.P1Nfz0RF-lkp@intel.com/config)
-compiler: powerpc64-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250813/202508131517.P1Nfz0RF-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508131517.P1Nfz0RF-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/fsl/qe/qe_ports_ic.c: In function 'qepic_probe':
->> drivers/soc/fsl/qe/qe_ports_ic.c:102:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     nb = (int)of_device_get_match_data(dev);
-          ^
-
-
-vim +102 drivers/soc/fsl/qe/qe_ports_ic.c
-
-    94	
-    95	static int qepic_probe(struct platform_device *pdev)
-    96	{
-    97		struct device *dev = &pdev->dev;
-    98		struct qepic_data *data;
-    99		int irq;
-   100		int nb;
-   101	
- > 102		nb = (int)of_device_get_match_data(dev);
-   103		if (nb < 1 || nb > 32)
-   104			return -EINVAL;
-   105	
-   106		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-   107		if (!data)
-   108			return -ENOMEM;
-   109	
-   110		data->reg = devm_platform_ioremap_resource(pdev, 0);
-   111		if (IS_ERR(data->reg))
-   112			return PTR_ERR(data->reg);
-   113	
-   114		irq = platform_get_irq(pdev, 0);
-   115		if (irq < 0)
-   116			return irq;
-   117	
-   118		data->host = irq_domain_add_linear(dev->of_node, nb, &qepic_host_ops, data);
-   119		if (!data->host)
-   120			return -ENODEV;
-   121	
-   122		irq_set_handler_data(irq, data);
-   123		irq_set_chained_handler(irq, qepic_cascade);
-   124	
-   125		return 0;
-   126	}
-   127	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> Changes in v2:
+> 1. Add Nuno, based on discussions on the list.
+> 2. Add Rob's Ack.
+> 
+> This change got agreement on the list, but still would be nice if you
+> folks Ack it formally.
+> ---
+>  Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 3 ++-
+>  Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 3 ++-
+>  Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
+>  Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 3 ++-
+>  7 files changed, 12 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> index 3dc973b98f81..a92e153705f3 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: ADIS16240 Programmable Impact Sensor and Recorder driver
+>  
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+>    ADIS16240 Programmable Impact Sensor and Recorder driver that supports
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> index 88aa67bf2280..0ba0df46c3a9 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
+>  
+>  maintainers:
+> -  - Stefan Popa <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+>    Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that supports
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> index 7146a654ae38..4dd5395730c1 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices AD7124 ADC device driver
+>  
+>  maintainers:
+> -  - Stefan Popa <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+>    Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
+> diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> index 5207c919abe0..eac48166fe72 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
+> @@ -9,7 +9,6 @@ title: Linear Technology / Analog Devices LTC2496 ADC
+>  maintainers:
+>    - Lars-Peter Clausen <lars@metafoo.de>
+>    - Michael Hennerich <Michael.Hennerich@analog.com>
+> -  - Stefan Popa <stefan.popa@analog.com>
+>  
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> index 82b0eed6a7b7..091cc93f1f90 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
+> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices AD5770R DAC device driver
+>  
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+>    Bindings for the Analog Devices AD5770R current DAC device. Datasheet can be
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> index 53d607441612..2e1ff77fd1de 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADF4371/ADF4372 Wideband Synthesizers
+>  
+>  maintainers:
+> -  - Popa Stefan <stefan.popa@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  description: |
+>    Analog Devices ADF4371/ADF4372 SPI Wideband Synthesizers
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> index 7a1a74fec281..43ecf46e9c20 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analog Devices ADIS16480 and similar IMUs
+>  
+>  maintainers:
+> -  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+>  
+>  properties:
+>    compatible:
+> -- 
+> 2.48.1
+> 
 
