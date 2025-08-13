@@ -1,108 +1,121 @@
-Return-Path: <devicetree+bounces-204306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D27B24E5E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9339B24EA5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:03:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 570E7681300
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C58625A9D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41B52820DB;
-	Wed, 13 Aug 2025 15:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8193723A9BB;
+	Wed, 13 Aug 2025 15:51:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z/qMCFrf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57012820B1;
-	Wed, 13 Aug 2025 15:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54FDFC148;
+	Wed, 13 Aug 2025 15:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755099900; cv=none; b=Y4E3q2dRvOEu87PpUtR87n1PAfj09yvgU1vo5oY79m3PvSAJIMjPh02ZDqygk+sClQV7ebDQy2A/cb1r/qKMkN5J+HuB3frJ/V9tlb5pAhVYQ57Noz5t1y2CZ/ID6Xp95d75070rJBq6saE4qr07gp2HlO4HS20iZRMEk/OFRCk=
+	t=1755100294; cv=none; b=um/aISNO80biGrDqFffwm4yfGpJZKLClJ0GyrCgBScy/3nHbXHpJL36zXMyPS+iGMiEq0GhcjQByCRVviM52ovoffRTQ6AABLs2BYx+aw1uRcZNSGHCinoIdYjX3S+OAHAXUEnM+kAchLXEzmKVAp4BD7NvX98im1IjDwO27MWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755099900; c=relaxed/simple;
-	bh=SDfSLwrtZXQ9HPSfpfvWAs0cQbK5OrAW80eATwWhUk0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IbEggOlj7CcbxSYSapY9IMoN5wiMw8MBS9ddtmJvwvayn//s/PUpQdKfDaPbcLawrYhvbMZMfXBa9EPlXuhKgmnFA5KHbfo31zHIyqHMZNmlFz3qar6DIAjKBBNlu5sUgza41/e3c2Qf6Hx1OLSggyK4s4Rl5+grWVLKcwZeOpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2377C4CEF1;
-	Wed, 13 Aug 2025 15:44:58 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 resend] arm64: dts: freescale: Switch to hp-det-gpios
-Date: Wed, 13 Aug 2025 17:44:46 +0200
-Message-ID: <65670a9983c47919317e02557f072dbe0426f48a.1755099817.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1755100294; c=relaxed/simple;
+	bh=Nned+2OXLAR4zbMBIAOqe5xsNi80BA2aVmJkwOizo/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IKkKMNM92gvEoO3E2qzk6/2aTQEep3zJt5rTwSJ4zOgT8H+kTH8OMqRmtmm1KKMnN5+YxtKdWaGmJka/Y+lz34n6I9enah+wmuqQFi1iyi0Zhd50JobfEZpGH25WwpBV26KmSvkmBrS3x/IqzWAcxBvRcgR379t+J2ak5gtGLRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z/qMCFrf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D53BFC4CEEB;
+	Wed, 13 Aug 2025 15:51:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755100293;
+	bh=Nned+2OXLAR4zbMBIAOqe5xsNi80BA2aVmJkwOizo/A=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=Z/qMCFrfEERYFA8IES6JygMml11nsuNkVSY1quWx7F+D7wF31X8MlEECLSfwkwWAn
+	 XErYabNXdin0znaccplF3O+tR9VQwLTZ7tbcFMgCaPHbmTlekDNr8uaiqJDUl51Stq
+	 py/Y0N+K8xtfU7tu3lHaGwJQw+Cl+U2m1o+SmO5zwJymG4DpqJpdeunaRdDBRELiO/
+	 hDV4EEZJuckxK5esHLkCxNzFlfvLsiAnIQjZf2qklf5/5AjrJK02kqvWogeNKO5K3R
+	 azAjg6YNxRQaeHDvwIJ3+T9GFckD7cK0J68bsFfelMdoMfSULnW259sdUXODJg7lyX
+	 MVjkXTUcS3Yag==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-333a17be4e0so47496971fa.1;
+        Wed, 13 Aug 2025 08:51:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVUhtqrQDwZ+weBfrllBIOHac2fBJd5SSG8NvZr5pZiNPN1vgjR1P9l1sm+y6QfKZiE82VK0f5c@vger.kernel.org, AJvYcCW2nn5LFvMGxLSQhSxQQ/D/ECUz9pfLX7EiKjDKyR/Fj2KEdsjvu57xIwapg7QTCG8H69LKHugbR04Nhe+U@vger.kernel.org, AJvYcCXDsrbHuMsMo2S+DEOeLDqgHbB9+irc9vikE3PmRz7CasE2LA/nz/qq1Qq7k78my2TRernSQalMi5KZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYQYG8C58lpIVng9OCR3D3ND4dqldoom3/rCuaUYoP6/D7arGT
+	k4f2gRREXYwZuFy57lUqZn1MbOP+nRPVg7Mux/egJJpvHUBG2OtsZ4MBTxdq19XxKtCh2BvfuuJ
+	g+zja4BrKtuOpBBActRNF3dg6dMtj9Do=
+X-Google-Smtp-Source: AGHT+IF/AlFvjXg9axEmXPnPSPFeb7xCGFHKQ17NbUjRATjXnSeff8Hv94XSiaaI3kXUimdVd3Yinhj/CTkIyHUENJo=
+X-Received: by 2002:a05:651c:20cf:20b0:332:6304:3076 with SMTP id
+ 38308e7fff4ca-333e9548740mr7131671fa.1.1755100292240; Wed, 13 Aug 2025
+ 08:51:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250813145540.2577789-1-wens@kernel.org> <20250813145540.2577789-7-wens@kernel.org>
+ <aJyraGJ3JbvfGfEw@shell.armlinux.org.uk>
+In-Reply-To: <aJyraGJ3JbvfGfEw@shell.armlinux.org.uk>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Wed, 13 Aug 2025 23:51:18 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67cKrQygew2CVaq5GCGvzcpkSdU_12Gjq9KR7tFFBow0Q@mail.gmail.com>
+X-Gm-Features: Ac12FXym9NQN41ia2Vqvuf9FmKIFWMrTnliSDOIAEvwEtKHt0VT0y1bsZEx7Lbg
+Message-ID: <CAGb2v67cKrQygew2CVaq5GCGvzcpkSdU_12Gjq9KR7tFFBow0Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 06/10] arm64: dts: allwinner: a527: cubie-a5e:
+ Add ethernet PHY reset setting
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Andre Przywara <andre.przywara@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Replace the deprecated "hp-det-gpio" property by "hp-det-gpios" in
-Freescale Generic ASoC Sound Card device nodes.
+On Wed, Aug 13, 2025 at 11:12=E2=80=AFPM Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+>
+> On Wed, Aug 13, 2025 at 10:55:36PM +0800, Chen-Yu Tsai wrote:
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/=
+arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > index 70d439bc845c..d4cee2222104 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > @@ -94,6 +94,9 @@ &mdio0 {
+> >       ext_rgmii_phy: ethernet-phy@1 {
+> >               compatible =3D "ethernet-phy-ieee802.3-c22";
+> >               reg =3D <1>;
+> > +             reset-gpios =3D <&pio 7 8 GPIO_ACTIVE_LOW>; /* PH8 */
+> > +             reset-assert-us =3D <10000>;
+> > +             reset-deassert-us =3D <150000>;
+>
+> Please verify that kexec works with this, as if the calling kernel
+> places the PHY in reset and then kexec's, and the reset remains
+> asserted, the PHY will not be detected.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Dependency commit cfd1054c65eefec3 ("ASoC: fsl-asoc-card: Add missing
-    handling of {hp,mic}-dt-gpios") is in v6.13.
----
- arch/arm64/boot/dts/freescale/imx8qm-mek.dts      | 2 +-
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts     | 2 +-
- arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+I found this to be a bit confusing to be honest.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-index 95523c5381357b66..d0b3e66e09739261 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
-@@ -406,7 +406,7 @@ sound-wm8960 {
- 		model = "wm8960-audio";
- 		audio-cpu = <&sai1>;
- 		audio-codec = <&wm8960>;
--		hp-det-gpio = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
- 		audio-routing =	"Headphone Jack", "HP_L",
- 				"Headphone Jack", "HP_R",
- 				"Ext Spk", "SPK_LP",
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index e54be7f649ffb0e4..7b033744554105de 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -333,7 +333,7 @@ sound-wm8960 {
- 		model = "wm8960-audio";
- 		audio-cpu = <&sai1>;
- 		audio-codec = <&wm8960>;
--		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
- 		audio-routing = "Headphone Jack", "HP_L",
- 				"Headphone Jack", "HP_R",
- 				"Ext Spk", "SPK_LP",
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 2f949a0d48d2d806..213eb5476b84bab5 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -216,7 +216,7 @@ sound-wm8962 {
- 		model = "wm8962-audio";
- 		audio-cpu = <&sai3>;
- 		audio-codec = <&wm8962>;
--		hp-det-gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-+		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
- 		audio-routing = "Headphone Jack", "HPOUTL",
- 				"Headphone Jack", "HPOUTR",
- 				"Ext Spk", "SPKOUTL",
--- 
-2.43.0
+If I put the reset description in the PHY (where I think it belongs),
+then it wouldn't work if the reset isn't by default deasserted (through
+some pull-up). This would be similar to the kexec scenario.
 
+Whereas if I put the reset under the MDIO bus, then the core would
+deassert the reset before scanning the bus.
+
+It's confusing to me because the code already goes through the MDIO bus
+device tree node and *knows* that there are PHYs under it, and that the
+PHYs might have a reset. And it can even handle them _after_ the initial
+bus scan.
+
+Describing the PHY reset as a bus reset IMHO isn't correct.
+
+
+ChenYu
 
