@@ -1,334 +1,191 @@
-Return-Path: <devicetree+bounces-204122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD46B24244
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47BD1B242AA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:28:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B20FD586F86
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:10:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E4071696FE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 083D72ED145;
-	Wed, 13 Aug 2025 07:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TJ6lCE8a";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="GgP676hq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB6A2D3236;
+	Wed, 13 Aug 2025 07:24:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9B02ECEA1;
-	Wed, 13 Aug 2025 07:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246F32DCC06
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755068938; cv=none; b=NObkFKn5IlqJw/lfVn9eYDYcCB4iyYrcGasrgW2FPB2LJ1lKNw7t51LouBQUicX82VqaMPWHbaiTSFxJYSRzPLQZaVYDsFU3uYLekPXZXngLcOjmLQwacNvzXfVhxQ6X9MTvnqZKw3sTFZ3D6anyZ1lZPTxrgOJbYW+SRzLQhwY=
+	t=1755069844; cv=none; b=MXQIfMR2oFLGd7kZmo2tt47vNSqbejnpmQXRKzv46FgicHUiHk6+sXur99X4M8SUqbMuEG8FiGpOSNdb/N6jtfCex3h4Y0pqNSw1d5eQXfhaNkyxngeX6sFBPI6mS88mmnxvSrTk/8c/20lCd7YxfZgf+R89dNWnByd82DjoXFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755068938; c=relaxed/simple;
-	bh=QYaxlKYoCnSUSTITH74gXHhQqP4vxVMhGv1+UnHTb74=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=CcslMNF4TALCBSTVrmiumMlHAox8/RPziChmewTbrQ9etslZQ3z652COKcwEalQTUw80YDHfzid5yF6+AAsmk8uW39bm1KaqW5OqM1tLPWCAMj6vnR1Ehe+W6laDWjckSk3PWRhn2yIHJaYRHgWC4SX4UaClFUrJn0mFk7CWGqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TJ6lCE8a; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=GgP676hq; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	s=arc-20240116; t=1755069844; c=relaxed/simple;
+	bh=LTp9h4E8z/4gVVB70sS+uyodcHcZqU3Ib72DtMoUEeg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RXZ+ypfU5Kq9bOodOVJDEub/xI1Jd/Psb6wpy7r6nRX6J8q0/agR21qY27qVb6nnHBCSkG3bMv/tv1XqPYz6+Ii7O/M2tCIv5bcDZkErJt7DT9PiigcdUCL5sivybQ7K5uEml8uBq65sYNji8Y434IuLrrQmsiUeAUKjuKbtA6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1um5pP-00031i-Bb; Wed, 13 Aug 2025 09:23:19 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1um5pN-0003LF-1a;
+	Wed, 13 Aug 2025 09:23:17 +0200
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4c1zxg1CW4z9sxM;
-	Wed, 13 Aug 2025 09:08:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1755068935;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8jexbxzipWzrxqlmph9PiBTpETZUbRAyJQiQmfwesXA=;
-	b=TJ6lCE8ajvCRDPp2Qm/byOLqXJnvECzLa0KhGFePXqqnZ09txZ0gVOFqCLn341Mx/Z8pvC
-	URzNxMLXD98Qj7LgLGy+v6LMWr6n7GVuP6AA121BKSJmTlSK44z2bHjwtYb1+YcFUImV2A
-	lYaQ0FJSb/jlz4AVdwAL5bUQKaY5LX1FhNkWjKBrI7VB6gd6xvKtWduSFyiG17A7Hpei25
-	BpIKn5RWWpnYkHe/knhb4GZj5lO1HHAAcctiSID5yFTnUZqrxxY9TxsQgCWvDOS2P3nSq6
-	aAOM1XHpvbHxMHJFpD5sCGNFn01SXCXv7inmT47zOxZSVRi3/G1vQ7dQjLbdtw==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=GgP676hq;
-	spf=pass (outgoing_mbo_mout: domain of lukasz.majewski@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=lukasz.majewski@mailbox.org
-From: Lukasz Majewski <lukasz.majewski@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1755068933;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8jexbxzipWzrxqlmph9PiBTpETZUbRAyJQiQmfwesXA=;
-	b=GgP676hqUjQQJUCeoTiHyvGv8pUUmkKmozcJMdzLbGWRcbv01NCnk3t6sOTxB8ihjzwp6r
-	/Jm8suMKH0AnQCE416CjX/8aFskKswhII9S2+EcuKZOqVnEnqIQi2Csjv/E/2zXP2SFruw
-	tnQ6TXGeScf+C1DKmHJVLKb1CvLV8wjVcwIHe1uIDZaHPFdvQb1VYZfgKgOUtvsOynxd/q
-	m/gPRs9KniIsMSfxgcNnu2cvH1BxiMRFwhmcOeB+gDeQq9S/9oN5unCR3Y8AYm5GklKZ5J
-	di4b/+3MFDcNXSosPVHVEgz8whrz0H1CxeMwJcCrhOBWP+IR0rhizEGaEjW4kQ==
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Simon Horman <horms@kernel.org>,
-	Lukasz Majewski <lukasz.majewski@mailbox.org>
-Subject: [net-next v18 7/7] net: mtip: Extend the L2 switch driver for imx287 with bridge operations
-Date: Wed, 13 Aug 2025 09:07:55 +0200
-Message-Id: <20250813070755.1523898-8-lukasz.majewski@mailbox.org>
-In-Reply-To: <20250813070755.1523898-1-lukasz.majewski@mailbox.org>
-References: <20250813070755.1523898-1-lukasz.majewski@mailbox.org>
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 1C5FD4567D0;
+	Wed, 13 Aug 2025 07:23:17 +0000 (UTC)
+Date: Wed, 13 Aug 2025 09:23:16 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+	Simon Horman <horms@kernel.org>, Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/4] dt-bindings: can: m_can: Add wakeup properties
+Message-ID: <20250813-energetic-hare-of-pizza-6ad6df-mkl@pengutronix.de>
+References: <20250812-topic-mcan-wakeup-source-v6-12-v8-0-6972a810d63b@baylibre.com>
+ <20250812-topic-mcan-wakeup-source-v6-12-v8-1-6972a810d63b@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 71b44368fe03902302c
-X-MBO-RS-META: 4yikww5yjhzhwnbfzdtp181u6u8ig5q4
-X-Rspamd-Queue-Id: 4c1zxg1CW4z9sxM
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nfqkg2ypmiobsl4a"
+Content-Disposition: inline
+In-Reply-To: <20250812-topic-mcan-wakeup-source-v6-12-v8-1-6972a810d63b@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-After this change the MTIP L2 switch can be configured as offloading
-device for packet switching when bridge on their interfaces is created.
 
-Signed-off-by: Lukasz Majewski <lukasz.majewski@mailbox.org>
----
+--nfqkg2ypmiobsl4a
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 1/4] dt-bindings: can: m_can: Add wakeup properties
+MIME-Version: 1.0
 
-Changes for v13:
-- New patch - created by excluding some code from large (i.e. v12 and
-  earlier) MTIP driver
+On 12.08.2025 11:10:22, Markus Schneider-Pargmann wrote:
+> The pins associated with m_can have to have a special configuration to
+> be able to wakeup the SoC from some system states. This configuration is
+> described in the wakeup pinctrl state while the default state describes
+> the default configuration.
+>=20
+> Also m_can can be a wakeup-source if capable of wakeup.
+>=20
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  .../devicetree/bindings/net/can/bosch,m_can.yaml   | 22 ++++++++++++++++=
+++++++
+>  1 file changed, 22 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b=
+/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> index c4887522e8fe97c3947357b4dbd4ecf20ee8100a..ecba8783198fc1658fcc236d8=
+aa3c89d8c90abbd 100644
+> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
+> @@ -106,6 +106,22 @@ properties:
+>          maximum: 32
+>      minItems: 1
+> =20
+> +  pinctrl-0:
+> +    description: Default pinctrl state
+> +
+> +  pinctrl-1:
+> +    description: Wakeup pinctrl state
+> +
+> +  pinctrl-names:
+> +    description:
+> +      When present should contain at least "default" describing the defa=
+ult pin
+> +      states. The second state called "wakeup" describes the pins in the=
+ir
+> +      wakeup configuration required to exit sleep states.
+> +    minItems: 1
+> +    items:
+> +      - const: default
+> +      - const: wakeup
+> +
 
-Changes for v14 - v15:
-- None
+This breaks at least the stm32mp15 SoCs that define a sleep state:
 
-Changes for v16:
-- Enable MTIP ports to support bridge offloading
+&m_can1 {
+	resets =3D <&rcc FDCAN_R>;
+	pinctrl-names =3D "default", "sleep";
+	pinctrl-0 =3D <&m_can1_pins_b>;
+	pinctrl-1 =3D <&m_can1_sleep_pins_b>;
+	status =3D "okay";
+};
 
-Changes for v17 - v18:
-- None
----
- .../net/ethernet/freescale/mtipsw/Makefile    |   2 +-
- .../net/ethernet/freescale/mtipsw/mtipl2sw.c  |   9 +-
- .../net/ethernet/freescale/mtipsw/mtipl2sw.h  |   2 +
- .../ethernet/freescale/mtipsw/mtipl2sw_br.c   | 132 ++++++++++++++++++
- 4 files changed, 143 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
+>    power-domains:
+>      description:
+>        Power domain provider node and an args specifier containing
+> @@ -122,6 +138,12 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+> =20
+> +  wakeup-source:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      List of phandles to system idle states in which mcan can wakeup th=
+e system.
+> +
+> +
 
-diff --git a/drivers/net/ethernet/freescale/mtipsw/Makefile b/drivers/net/ethernet/freescale/mtipsw/Makefile
-index a99aaf6ddfb2..81e2b0e03e6c 100644
---- a/drivers/net/ethernet/freescale/mtipsw/Makefile
-+++ b/drivers/net/ethernet/freescale/mtipsw/Makefile
-@@ -1,4 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_FEC_MTIP_L2SW) += nxp-mtipl2sw.o
--nxp-mtipl2sw-objs := mtipl2sw.o mtipl2sw_mgnt.o
-+nxp-mtipl2sw-objs := mtipl2sw.o mtipl2sw_mgnt.o mtipl2sw_br.o
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-index 4c9776fc5382..a67fd1f5c807 100644
---- a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.c
-@@ -1887,11 +1887,15 @@ static int mtip_sw_probe(struct platform_device *pdev)
- 	if (ret)
- 		return dev_err_probe(&pdev->dev, ret, "Could not alloc IRQ\n");
- 
-+	ret = mtip_register_notifiers(fep);
-+	if (ret)
-+		return ret;
-+
- 	ret = mtip_switch_dma_init(fep);
- 	if (ret) {
- 		dev_err(&pdev->dev, "%s: ethernet switch init fail (%d)!\n",
- 			__func__, ret);
--		return ret;
-+		goto unregister_notifiers;
- 	}
- 
- 	ret = mtip_mii_init(fep, pdev);
-@@ -1922,6 +1926,8 @@ static int mtip_sw_probe(struct platform_device *pdev)
- 			  fep->bd_dma);
- 	fep->rx_bd_base = NULL;
- 	fep->tx_bd_base = NULL;
-+ unregister_notifiers:
-+	mtip_unregister_notifiers(fep);
- 
- 	return ret;
- }
-@@ -1930,6 +1936,7 @@ static void mtip_sw_remove(struct platform_device *pdev)
- {
- 	struct switch_enet_private *fep = platform_get_drvdata(pdev);
- 
-+	mtip_unregister_notifiers(fep);
- 	mtip_ndev_cleanup(fep);
- 
- 	mtip_mii_remove(fep);
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-index 7e5373823d43..3dae94048917 100644
---- a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw.h
-@@ -643,6 +643,8 @@ int mtip_port_learning_config(struct switch_enet_private *fep, int port,
- int mtip_port_blocking_config(struct switch_enet_private *fep, int port,
- 			      bool enable);
- bool mtip_is_switch_netdev_port(const struct net_device *ndev);
-+int mtip_register_notifiers(struct switch_enet_private *fep);
-+void mtip_unregister_notifiers(struct switch_enet_private *fep);
- int mtip_port_enable_config(struct switch_enet_private *fep, int port,
- 			    bool tx_en, bool rx_en);
- void mtip_clear_atable(struct switch_enet_private *fep);
-diff --git a/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-new file mode 100644
-index 000000000000..f961b9cc4e6a
---- /dev/null
-+++ b/drivers/net/ethernet/freescale/mtipsw/mtipl2sw_br.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ *  L2 switch Controller driver for MTIP block - bridge network interface
-+ *
-+ *  Copyright (C) 2025 DENX Software Engineering GmbH
-+ *  Lukasz Majewski <lukma@denx.de>
-+ */
-+
-+#include <linux/etherdevice.h>
-+#include <linux/netdevice.h>
-+#include <linux/platform_device.h>
-+#include <net/switchdev.h>
-+
-+#include "mtipl2sw.h"
-+
-+static int mtip_ndev_port_link(struct net_device *ndev,
-+			       struct net_device *br_ndev,
-+			       struct netlink_ext_ack *extack)
-+{
-+	struct mtip_ndev_priv *priv = netdev_priv(ndev), *other_priv;
-+	struct switch_enet_private *fep = priv->fep;
-+	struct net_device *other_ndev;
-+	int err;
-+
-+	/* Check if one port of MTIP switch is already bridged */
-+	if (fep->br_members && !fep->br_offload) {
-+		/* Get the second bridge ndev */
-+		other_ndev = fep->ndev[fep->br_members - 1];
-+		other_priv = netdev_priv(other_ndev);
-+		if (other_priv->master_dev != br_ndev) {
-+			NL_SET_ERR_MSG_MOD(extack,
-+					   "L2 offloading only possible for the same bridge!");
-+			return notifier_from_errno(-EOPNOTSUPP);
-+		}
-+
-+		fep->br_offload = 1;
-+		mtip_switch_dis_port_separation(fep);
-+		mtip_clear_atable(fep);
-+	}
-+
-+	if (!priv->master_dev)
-+		priv->master_dev = br_ndev;
-+
-+	fep->br_members |= BIT(priv->portnum - 1);
-+
-+	err = switchdev_bridge_port_offload(ndev, ndev, NULL, NULL, NULL,
-+					    false, extack);
-+	if (err) {
-+		dev_err(&ndev->dev, "can't offload bridge port %s [err: %d]\n",
-+			ndev->name, err);
-+		return err;
-+	}
-+
-+	dev_dbg(&ndev->dev,
-+		"%s: ndev: %s br: %s fep: %p members: 0x%x offload: %d\n",
-+		__func__, ndev->name,  br_ndev->name, fep, fep->br_members,
-+		fep->br_offload);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void mtip_netdevice_port_unlink(struct net_device *ndev)
-+{
-+	struct mtip_ndev_priv *priv = netdev_priv(ndev);
-+	struct switch_enet_private *fep = priv->fep;
-+
-+	dev_dbg(&ndev->dev, "%s: ndev: %s members: 0x%x\n", __func__,
-+		ndev->name, fep->br_members);
-+
-+	switchdev_bridge_port_unoffload(ndev, NULL, NULL, NULL);
-+
-+	fep->br_members &= ~BIT(priv->portnum - 1);
-+	priv->master_dev = NULL;
-+
-+	if (fep->br_members && fep->br_offload) {
-+		fep->br_offload = 0;
-+		mtip_switch_en_port_separation(fep);
-+		mtip_clear_atable(fep);
-+	}
-+}
-+
-+/* netdev notifier */
-+static int mtip_netdevice_event(struct notifier_block *unused,
-+				unsigned long event, void *ptr)
-+{
-+	struct net_device *ndev = netdev_notifier_info_to_dev(ptr);
-+	struct netdev_notifier_changeupper_info *info = ptr;
-+	struct netlink_ext_ack *extack;
-+	int ret = NOTIFY_DONE;
-+
-+	if (!mtip_is_switch_netdev_port(ndev))
-+		return NOTIFY_DONE;
-+
-+	extack = netdev_notifier_info_to_extack(&info->info);
-+
-+	switch (event) {
-+	case NETDEV_CHANGEUPPER:
-+		if (!netif_is_bridge_master(info->upper_dev))
-+			break;
-+
-+		if (info->linking)
-+			ret = mtip_ndev_port_link(ndev, info->upper_dev,
-+						  extack);
-+		else
-+			mtip_netdevice_port_unlink(ndev);
-+
-+		break;
-+	default:
-+		return NOTIFY_DONE;
-+	}
-+
-+	return notifier_from_errno(ret);
-+}
-+
-+static struct notifier_block mtip_netdevice_nb __read_mostly = {
-+	.notifier_call = mtip_netdevice_event,
-+};
-+
-+int mtip_register_notifiers(struct switch_enet_private *fep)
-+{
-+	int ret = register_netdevice_notifier(&mtip_netdevice_nb);
-+
-+	if (ret)
-+		dev_err(&fep->pdev->dev, "can't register netdevice notifier\n");
-+
-+	return ret;
-+}
-+
-+void mtip_unregister_notifiers(struct switch_enet_private *fep)
-+{
-+	unregister_netdevice_notifier(&mtip_netdevice_nb);
-+}
--- 
-2.39.5
+One newline should be enough.
 
+>  required:
+>    - compatible
+>    - reg
+>=20
+> --=20
+> 2.50.1
+>=20
+>=20
+>=20
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--nfqkg2ypmiobsl4a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmicPWEACgkQDHRl3/mQ
+kZxZ6ggAndbI3imPTI4yTppaCqGe0O0ugEouNouvoXOSLMDIPzSYMNem3/ug/wMQ
+RdnIkPTCILVaBDpWLamA5J8ZIJRQuaXxDUdiSHZNV+MnHAwvKQ9RTlSAX6O0EYa0
+wtz0KbvyR5MoaJ7VeQMPi3cZ4r3Z3Jkn76nLYLqk0W8ONEm79Qc/BdAsigDNP/A0
+C/taLXRROfu8IlwfXhMjGrRxjbpsdek/JOyqujbbPhAH+JdhDN+aqVxMAi72ht1d
+lHIHUkUGLlPFqGny9yAYtOZumuEJPMJQRMTG/t9ZuI9LyTKfUgalb2/bQGsYGp/5
+KG2dR4+6OGFm1HkZu3vFb6QJW5qPtQ==
+=mzQ8
+-----END PGP SIGNATURE-----
+
+--nfqkg2ypmiobsl4a--
 
