@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B370CB240DC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:01:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5D2B240DA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED70118970F7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C72B16CDF5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C50B26FA60;
-	Wed, 13 Aug 2025 06:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045C721C160;
+	Wed, 13 Aug 2025 06:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uecDUHo7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zkw79BVM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD6F1F099C;
-	Wed, 13 Aug 2025 06:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B2361FCE;
+	Wed, 13 Aug 2025 06:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755064824; cv=none; b=lSQth9dj2pY3jnXlGRNdh0ca7N6/ARRTBvIpH6tgspijueRskWyOnm6y5xUisVwclFVGrhgCOv2KO0iFayCxJSeZddeU46POqACpq0K7+7RjPBb4u15CRbZ1LECyXghU1PoP9gn53v0QtasROB6sBL7HdvE/lPt0uvatjo/XHhE=
+	t=1755064872; cv=none; b=EpNNuNxflervrF7GbGzelBBx4EeJjhbrCD+rnRiiQ2arDwhQj76A9gIzkENDoKiNHzj2oKkwNpJxwyrGBciqeeA7sv/MPfJHQWR6sprVBdClfgLdSf1QdM/a3DYZhtGN7ydSVmXTIdz8ipco68KqcDZiLi7z4ixutnrHJ/8YEvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755064824; c=relaxed/simple;
-	bh=yiqnatmjL9df9H+0s0wS55bl9IzIhgx0qIsceSspp+I=;
+	s=arc-20240116; t=1755064872; c=relaxed/simple;
+	bh=mZQqBTot+ltVIa/QIkSnxOqKRyxRXw1w9DtthNuyycw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bwqJFGPCmUYMRFiPEk6BO73ZCb4+8X88natjJ9UPutXxk25u2rz514w3wQrZ0uNOLKNJkbwjyETuIRQON6pOV9kDnNrtmrYmYHBUMRehoSN/KMKWCLBKMVFlnkQZiO7t72a6x5XCl7qoEyKtRBQ0sVr4YOj30bll/NDwIo6svhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uecDUHo7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E416DC4CEEB;
-	Wed, 13 Aug 2025 06:00:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OYtrktAOVrE27E921NV8QQ4EnTkrFFEzTLeRuZYA/NtLEiTCiiHpUIp5FMwOjxslhFqpwBLcX17ax0wxVo+I1W1fwSBTkgMQnOIUW7Fi6NjR3cmCW/PJ0rZ0vYCVdDWk+MqDf92/NrRzCWE4PqpKxE8ZVfmtMvIbk540MNnTqRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zkw79BVM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF07C4CEEB;
+	Wed, 13 Aug 2025 06:01:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755064823;
-	bh=yiqnatmjL9df9H+0s0wS55bl9IzIhgx0qIsceSspp+I=;
+	s=k20201202; t=1755064872;
+	bh=mZQqBTot+ltVIa/QIkSnxOqKRyxRXw1w9DtthNuyycw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uecDUHo7bJz6sZeGzPnthW+Y8sFrPrI8j0TdQq6orhxeryF91g/nhLE25qJSLyWeg
-	 db/rXkyYO5OFMFDaSTIlxo6QVT4u58am4on63OvwPbmOdItygk2C7N1XY/QjkJFLiK
-	 0G2lMLWJaqCDNgNmfj+Axh3waeIap+MWfXm2R8qj7hHenjw+i6X81NOWmBuNKWWJSN
-	 lH3YPW2l0zbXakuR/4GrECy2wFoev4lfND8cbSRWAEpD6nqzAuxNIEU7753wspL/BF
-	 7THfta6TK/NEhVcy2nkMs9jxa3vL2VtIByRPlvuPDECrKU9vLGduLoBFTAU3Z3UK7+
-	 X1ebz3yFLGeOg==
-Message-ID: <6d6dc9e6-751f-4079-b21e-2e3461885b03@kernel.org>
-Date: Wed, 13 Aug 2025 08:00:17 +0200
+	b=Zkw79BVMVur9TfNeFa74Sk+3nZmJdj/adObSSO9rPxiXB/4ocboJI1fFZZCjLMU/t
+	 ckkelkLmHtuJHYxPS0AA65bFS9zRDGpY4M+mxlM5pIqN9/wx5dJ5zyv/wzXqMaUdGt
+	 otLEvLvIBcOBNVL8B1czhApdGX/KN0cox8rx6TNd0CePw9kJGb9fYB/dtvmApDKHL4
+	 Cpfi7AA403D50DOT7z5wIOV4hhTAlNJfZ41G0e8ayzs6qDw3b1d5x/mtwOf136d79s
+	 G9TJ8mszr9FC1GuGlwCvrXn3Vx0WBa8qqTnWLM1YR4uZiOd7scEY2xKN8kqdl7JONT
+	 bWvLkSPjJXmXQ==
+Message-ID: <8314491a-3c4c-4a32-8b3e-62c06109bc71@kernel.org>
+Date: Wed, 13 Aug 2025 08:01:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image
- sensor
-To: Will Whang <will@willwhang.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250810220921.14307-1-will@willwhang.com>
- <20250810220921.14307-2-will@willwhang.com>
- <20250811-successful-military-dragon-d72486@kuoka>
- <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
- <f12e6ff3-6ec3-487f-bf9c-0f8c06ee6444@kernel.org>
- <CAFoNnrxhUof8BBrefm1L1peTxg==Koz72TY+54G_8QUy-rrT8g@mail.gmail.com>
- <e695c61a-e183-4eea-a7f6-1b2861b2129f@kernel.org>
- <20250812095543.GJ30054@pendragon.ideasonboard.com>
- <CAFoNnrzWot_Bf=YZFac1GkZgOOnJycwpidvwL93p3p-C-zn8BA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: vendor-prefixes: Add Black Sesame
+ Technologies Co., Ltd.
+To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <d5e0f41e-34c1-44af-ac0d-8362a72a2ff1@kernel.org>
+ <20250813045310.2307498-1-yangzh0906@thundersoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,90 +102,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAFoNnrzWot_Bf=YZFac1GkZgOOnJycwpidvwL93p3p-C-zn8BA@mail.gmail.com>
+In-Reply-To: <20250813045310.2307498-1-yangzh0906@thundersoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 13/08/2025 06:30, Will Whang wrote:
-> On Tue, Aug 12, 2025 at 2:56 AM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
->>
->> On Tue, Aug 12, 2025 at 08:47:12AM +0200, Krzysztof Kozlowski wrote:
->>> On 12/08/2025 08:31, Will Whang wrote:
->>>> On Mon, Aug 11, 2025 at 11:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>> On 12/08/2025 04:47, Will Whang wrote:
->>>>>> On Mon, Aug 11, 2025 at 1:01 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>>> On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
->>>>>>>> +description:
->>>>>>>> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
->>>>>>>> +
->>>>>>>> +properties:
->>>>>>>> +  compatible:
->>>>>>>> +    enum:
->>>>>>>> +      - sony,imx585
->>>>>>>> +      - sony,imx585-mono
->>>>>>>
->>>>>>> I don't understand this second compatible. Is this different hardware?
->>>>>>> Can you point me to "mono" datasheet?
->>>>>>>
->>>>>>> Your description should explain this. Commit msg as well, instead of
->>>>>>> speaking about driver (in fact drop all driver related comments).
->>>>>>>
->>>>>> Mono version of this sensor is basically just removing the bayer
->>>>>> filter, so the sensor itself actually doesn't know if it is color or
->>>>>> mono and from my knowledge there are no registers programmed in the
->>>>>> factory that will show the variant and model number. (That is why when
->>>>>> the driver probing it only test blacklevel register because there are
->>>>>> no ID registers)
->>>>>> Originally in V1 patch I've made the switch between color and mono in
->>>>>> dtoverlay config but reviewer comments is to move it to compatible
->>>>>> string and not property.(https://lore.kernel.org/linux-media/20250703175121.GA17709@pendragon.ideasonboard.com/)
->>>>>
->>>>> You only partially answer and judging by mentioning driver below:
->>>>>
->>>>>> In this case, what would you recommend?
->>>>>>
->>>>>> compatible:
->>>>>>   enum:
->>>>>>     - sony,imx585
->>>>>>     - sony,imx585-mono
->>>>>>   description: IMX585 has two variants, color and mono which the
->>>>>> driver supports both.
->>>>>
->>>>> ... I still have doubts that you really understand what I am asking. Is
->>>>> this one device or two different devices?
->>>>
->>>> One device that has two variants: IMX585-AAMJ1 (Mono) and IMX585-AAQJ1
->>>> (Color). Silicon-wise the difference is just with or without bayer
->>>> filter.
+On 13/08/2025 06:53, Albert Yang wrote:
+> Hi Krzysztof,
+> 
+> Thanks for the review.
+> 
+> On Tue, Aug 12, 2025 at 03:34:55PM +0200, Krzysztof Kozlowski wrote:
+>> On 12/08/2025 14:31, Albert Yang wrote:
+>>> Black Sesame Technologies Co., Ltd.s a leading automotive-grade
+>>> computing SoC and SoC-based
+>>> intelligent vehicle solution provider. Link: https://bst.ai/.
 >>>
->>> Then I would propose to use sony,imx585-aamj1 and -aaqj1 with short
->>> explanation either in comment or description about difference in RGB
->>> mosaic filter.
+>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
 >>
->> Works for me. We could possibly omit the "j1" suffix too.
->>
-> My thinking is that imx585 and imx585-mono are easier to comprehend
-> than IMX585-AAM and IMX585-AAQ.
-> Because in dtoverlay for the users/me they will have to know what is
-> the exact name instead of easy to remember name.
+>> Odd order of tags. When was the patch written, by who and when was the
+>> Ack given?
 > 
-> dtoverlay=imx585-aam
-> is not as nice as
-> dtoverlay=imx585-mono
+> Rob’s Ack was on v1:
+> https://lore.kernel.org/lkml/174915411977.3161261.2820163642193291293.robh@kernel.org/
 
-I have datasheet for AAQ, so how above is easier for me to figure out
-which compatible I am using?
 
-> 
-> which is what it does, a mono variant of the sensor.
-> 
-> I really don't understand the standard for compatible string naming
-> here, is there something I missed? Is it required to use the full name
-> of the sensor parts number as a compatible string?
+So how it can appear before Ge signed off?
 
-It's not part number. You have there different models. We don't add
-prose to compatibles, but use device or model names.
 
 Best regards,
 Krzysztof
