@@ -1,107 +1,81 @@
-Return-Path: <devicetree+bounces-204047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718F1B23E67
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:47:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E470AB23E77
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:49:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF57D6289BD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 02:46:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 904866E5384
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 02:49:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D13B21ABD7;
-	Wed, 13 Aug 2025 02:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 569CB26E140;
+	Wed, 13 Aug 2025 02:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="MyKWcV3Z"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="bxa7omOw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9821F2163BD
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 02:45:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A24826CE32;
+	Wed, 13 Aug 2025 02:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755053129; cv=none; b=CkDIRhQ2ZDj8nJM/CYmuECfDHd0/wJ/ZfVhh08ku0EiKvz1PTt5gkYmWcOFathi6czCtKffB6mwuI5VUbTM/5uoUIXrPeK4yjMtygC/MOmpJPlMUgWZxgxZ23DVpk9M4N4XLZXK7I6DleIqTxSCOcLuwW+8d24mYcZqMMSKBVHE=
+	t=1755053348; cv=none; b=IdIkFlYkMQNwkVlU4zW8C2aYTQqyE7bOtaYfgFvBM/+MS7UaFBFLSepJLvSY8V5N4JcJQU63crUkJBzL2ZHFYGH9pJwkLpxumpd/6758fNGvnycPj5p/7/gZxiP3VKPuShet5GigfyyeYOKAoiROk8mt0rUURoOXBm+EWKhEj0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755053129; c=relaxed/simple;
-	bh=D00Agu9o5lMwHglRF8JEmN9Mz2SwGM8gIpQ2brQAJHQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZYy6ts6pKMku0Uusvsb9Dwws+K+UyiuVbW3r+2eUI3pWgvEHYx/yZGUKbhjN/HRFP/7mkCxpCLxEKvbbHIGNX8Tn8EEDJrunBeaMuk7aaYoJUdjp/U2L+xFIjD64J4KgpQ7JYT6RTAgZuGTj2iM3f1RYgJoAhSoVAXRpIMG45GY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=MyKWcV3Z; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3e3f152700fso31014965ab.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 19:45:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755053127; x=1755657927; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RmHcfUIrXFFWAxyqlPf+YQqXo4C+Q0QbA66Hg5xFlzs=;
-        b=MyKWcV3Z0g4HxbJYAQ796VKO0GuPmAXSO0Cjt4wEzjCOhkePS31NTCLtaVsvMqfrgz
-         6pCXJMBTjtN1+TkyFgt8yDEK5jLOQ8fcw7lMoVaFYWAAAKsO1JloKJB5nNcza2JR97HD
-         sTF0WKz0Nu6rltjPPhVlWhOKqF4pcqgzyrN8J8cx9ZMQiq3BcUi6KDdM5EtbCx/clucM
-         eaSjyJdUHygYpvrIfcnVhE4PkpaZP51X90kVxkGm5qHeG7vE+BqqsCgmaVIqizq7N8Tw
-         Faj8gSIu/Ju6rmQLxqA+g+ENh5UQwjcs53exVYiixG6m0YA1k0/aaw7+Y5lBzZK1nOXZ
-         0OmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755053127; x=1755657927;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RmHcfUIrXFFWAxyqlPf+YQqXo4C+Q0QbA66Hg5xFlzs=;
-        b=YZtUH2BcxY6l9XiQFad103Z/XRiG08avay+UzhIZSQW3p3QLJf0ubEUpHTiLpTAhJv
-         aEP2vPj+MnwYObOCwDIF/UEtpePnHR3aaOVyl2iIU35sql7Kn1hWs2+t9hIwLZjnqAI9
-         6mbdLTBJcYA0pCUGIiiZSzH67r2iNqpDgZeeaz2sRyJS1552GL9p/H2D4kT4GhVcZb4v
-         fyrnZ5LROk+00qIIaFUWU/dl7JIxqcNl66U/ofCFe9FdIciilWVZTuU/wVY7LU364WNe
-         2ewPHahGWXoLs57Ge7Wu7Mg+22LVrP7W+z+SwwD2mKD3ujhTi6crWk+HXVW7OjPsjKs6
-         T9bA==
-X-Forwarded-Encrypted: i=1; AJvYcCWevk/9+2OsU7w4D8lSCKwaTvRnfWhO23TvEXMpn/bcCpLlpp66TLb7OBNEsOWS+G55ck9/b0vkl3Mb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRAaarV54CZECLnR55uL5w/m4OHD+rX+sH/pWGwNHUPASkdJa3
-	tjlLZI3/NCAT4wt8BnUHxvzmySAsq8pgcb43pAEPZC+TMqCVbcc4HePV4NZlo3OQdTWld1Lpy8V
-	bXQ8U
-X-Gm-Gg: ASbGncvmNevYcrZWnJt5mOpKRJq421z9NPrBC8/qFg4jnCPa3lS3KpRWs5Ab93XCvPO
-	oq8xE8/rPLA6qAArTC60iDI9fidmuDCvQJSb/1IO/eBm2o63yRjuPGBWEs6qqXJZJH3Y7cWtHcv
-	0CqcRmI3vYQE6vbuVaQQrhxp0UHC0KJ60SNklivxXuh8kawvItOEUws3Ih4AIY1E5PZIJBYe8FY
-	BVcYzyCVu7IkS4aZTUwbee1pkw4Evo986dvEdxBQaddmyMMsGl9/KOVVtWLC9Xdc/woPo66ZBby
-	49gq+U5vZ5BXDGfoeHDhS+JKJ7xd+e0v0R71pZ4bEjdPs9ZVGMOy/mkOH/JbPch5FvE84pX2yLV
-	s5qC/lit7jQbC8cWE87N5onsQ9fWEVSoL3V7ahYCAH2fF4zLXteskfWfvKHi4OWHsJg==
-X-Google-Smtp-Source: AGHT+IFoJ7UdDYgWZatV5u4GKDu3Y3U3FYyZUg9TQH+UAQsNUabAIk5nOGAMecrX5f7XD0yGFSpmTg==
-X-Received: by 2002:a05:6e02:170b:b0:3e5:504b:420c with SMTP id e9e14a558f8ab-3e5674a2d6amr25649635ab.18.1755053126723;
-        Tue, 12 Aug 2025 19:45:26 -0700 (PDT)
-Received: from zippy.localdomain (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50ae9bcfbf6sm3430829173.54.2025.08.12.19.45.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Aug 2025 19:45:26 -0700 (PDT)
-From: Alex Elder <elder@riscstar.com>
-To: lee@kernel.org,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	alexandre.belloni@bootlin.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mat.jonczyk@o2.pl,
-	dlan@gentoo.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	linux.amoon@gmail.com,
-	troymitchell988@gmail.com,
-	guodong@riscstar.com,
-	linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v12 7/7] riscv: dts: spacemit: define regulator constraints
-Date: Tue, 12 Aug 2025 21:45:08 -0500
-Message-ID: <20250813024509.2325988-8-elder@riscstar.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250813024509.2325988-1-elder@riscstar.com>
-References: <20250813024509.2325988-1-elder@riscstar.com>
+	s=arc-20240116; t=1755053348; c=relaxed/simple;
+	bh=lb1vEA+USRsXEgIUQoGg9hKn7jRrdpSuivQNxULl10I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WuNu7gJioJRvCr/sDMncVbPMaVPJnw8TALZyFbY4bIyVBW6YCajgzfpc1CquIgWg1B7cJgbUXJr+KLhCLyAMZlfXc+4K0xMt4+BKkJUOswpa17MdCihKbo8nDiaR58KhyW7rMfAfvjwMJmfYFtU8mZj2wy5C67w5gyQkC38lwzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=bxa7omOw; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57D2OM5w027876;
+	Tue, 12 Aug 2025 22:48:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=AiTqgxU56QzKfoEWBkv5QCGUm77
+	RFOAFnKf9pwL9ZGQ=; b=bxa7omOwfeyac4iYOLXc3ty0+x7mY5isgO5BD6J6sXN
+	J+lD3BGkcNjBzp06qFZwWko/n8Er0xYqKwI8wUDBXwQ+sYPQK+K/c0LFsc0mbJ8h
+	YxdCnnI7Nl0/sogixa+uXxVi4e/3T+Cf7y6gSj645mq0zcOS3xwJnIqzPmV2PgaT
+	YwcetKDUfg3fGFWUNVXPTQnI4FbhgJGg13jZAKnfpmTwfKK3Vk0AJQSNRh9ZguLN
+	2JsjtRmH2N10yuOAx29gqSfrX/hdkcR+8A247kJw3rJiNSaEqBWT7I9fVM1YwCeX
+	NPMUunUgCJlYKoqUmdiDrcYX6dFh8Eon1D4sgAJWGpg==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48g9q9t9qp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Aug 2025 22:48:50 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 57D2mnXJ050803
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 12 Aug 2025 22:48:49 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 12 Aug 2025 22:48:48 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 12 Aug 2025 22:48:48 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 12 Aug 2025 22:48:48 -0400
+Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57D2mZ7d032749;
+	Tue, 12 Aug 2025 22:48:37 -0400
+From: Jonathan Santos <Jonathan.Santos@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Jonathan Santos <Jonathan.Santos@analog.com>,
+        <Michael.Hennerich@analog.com>, <jic23@kernel.org>,
+        <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <jonath4nns@gmail.com>
+Subject: [PATCH 0/4] Add support for ADAQ776x-1 ADC Family
+Date: Tue, 12 Aug 2025 23:48:32 -0300
+Message-ID: <cover.1754617360.git.Jonathan.Santos@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,131 +83,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=EOsG00ZC c=1 sm=1 tr=0 ts=689bfd12 cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=2OwXVqhp2XgA:10 a=UDRy0rmbmT11ON5WklsA:9
+X-Proofpoint-GUID: wXqBrq2PaIGjsqJO78QIoy9OUIAwilht
+X-Proofpoint-ORIG-GUID: wXqBrq2PaIGjsqJO78QIoy9OUIAwilht
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEyMDE2NCBTYWx0ZWRfX9bdZFwvA6naB
+ VuqN7QCi8F6EwFHRIiwmKkq8U7aYkOjG9DkZh5OhvmTDZ0fR/8J6tlAP8oRcdC1VlVSnHJAhm6j
+ j81VhAE9dGkodNaOJK57L124WSH6NAxsGdMG14q4GnWwCFirJNQrM1ju0BnklqLh84T+A+FnRjJ
+ CRIao2BAKjYHLXd5YW5mmC9WIgu99JpYmonzn5hlKYw2w6YpbvIatbVHaEfy4yIkUnC8l5Z3gkI
+ hTknSoh0CJRaJ8rwMizbYM3omjaQPD4B2XQcVMnEu48QrXIxMdZa56pxkSk/R+uHxA55GsxZM9L
+ mL97eqcF5f6quYG/5cuzaE7H5L45MH5gPfDNxSMDOdx/yvzGI4W5qcS+iQYEFcgYHCjt4Qsgb28
+ ugRqLMad
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_08,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 phishscore=0 spamscore=0 suspectscore=0
+ clxscore=1015 priorityscore=1501 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508120164
 
-Define basic constraints for the regulators in the SpacemiT P1 PMIC,
-as implemented in the Banana Pi BPI-F3.
+This adds support for the ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1 devices. 
 
-Signed-off-by: Alex Elder <elder@riscstar.com>
----
- .../boot/dts/spacemit/k1-bananapi-f3.dts      | 104 ++++++++++++++++++
- 1 file changed, 104 insertions(+)
+The ADAQ7768-1 and ADAQ7769-1 integrate a programmable gain amplifier (PGA)
+with 7 and 8 gain options, respectively. The ADAQ7767-1 and ADAQ7769-1 
+also feature a 3-pin selectable Anti-aliasing filter (AAF) gain.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index a11a60b9f369b..a9a2596a94e89 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -68,6 +68,110 @@ pmic@41 {
- 		compatible = "spacemit,p1";
- 		reg = <0x41>;
- 		interrupts = <64>;
-+		vin-supply = <&reg_vcc_4v>;
-+
-+		regulators {
-+			buck1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			buck6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3450000>;
-+				regulator-ramp-delay = <5000>;
-+				regulator-always-on;
-+			};
-+
-+			aldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			aldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			aldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo1 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+			};
-+
-+			dldo2 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo3 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo4 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo5 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+
-+			dldo6 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-always-on;
-+			};
-+
-+			dldo7 {
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <3400000>;
-+			};
-+		};
- 	};
- };
- 
+Jonathan Santos (4):
+  dt-bindings: iio: adc: ad7768-1: add new supported parts
+  iio: adc: ad7768-1: introduce chip info for future multidevice support
+  iio: adc: ad7768-1: use devm_regulator_get_enable_read_voltage
+  iio: adc: ad7768-1: add support for ADAQ776x-1 ADC Family
+
+ .../bindings/iio/adc/adi,ad7768-1.yaml        |  48 ++-
+ drivers/iio/adc/ad7768-1.c                    | 389 +++++++++++++++---
+ 2 files changed, 382 insertions(+), 55 deletions(-)
+
+
+base-commit: 0a686b9c4f847dc21346df8e56d5b119918fefef
 -- 
-2.48.1
+2.34.1
 
 
