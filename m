@@ -1,173 +1,108 @@
-Return-Path: <devicetree+bounces-204305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B67B24E1C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:50:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D27B24E5E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A2ADB61676
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:48:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 570E7681300
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B895927AC32;
-	Wed, 13 Aug 2025 15:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+NwJ5hq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41B52820DB;
+	Wed, 13 Aug 2025 15:45:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B78E276058;
-	Wed, 13 Aug 2025 15:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57012820B1;
+	Wed, 13 Aug 2025 15:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755099851; cv=none; b=KP/6fIwx/IneH3szRqFm4cgAN2/sz8JFOdoKgE+6Rh8ZIJdBdgSVsjdG019GHu1X+En2NGpWqRC9mZU8/o74wUy9yqmC54rv+SqVttmairpOwoQ7y7u57Nn3hlcHyuBK7YSElsq6nFWCwDsyJXR80CZ+waJiBuwytA06evhvD3k=
+	t=1755099900; cv=none; b=Y4E3q2dRvOEu87PpUtR87n1PAfj09yvgU1vo5oY79m3PvSAJIMjPh02ZDqygk+sClQV7ebDQy2A/cb1r/qKMkN5J+HuB3frJ/V9tlb5pAhVYQ57Noz5t1y2CZ/ID6Xp95d75070rJBq6saE4qr07gp2HlO4HS20iZRMEk/OFRCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755099851; c=relaxed/simple;
-	bh=O2hl/hlVCOc1FdbV0cQBKJVYbqIwGltINMJ91/7CsDw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hLHbi1dIcfLEBHMdJv42U61QWUHMfYgldFKy0+QH7PKNrRbsTj1bIncPhpiT3snbgUB8LDjDKNCjja8aTJi2B61ecQQ0WV1o5SxRWoefmuKJvxayjlDodXydgkVpL/Xdre4WBIkkeuz15ylG3d2F3EWZqEqb+4A577H0Q3GAqDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+NwJ5hq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 017D7C4CEEB;
-	Wed, 13 Aug 2025 15:44:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755099851;
-	bh=O2hl/hlVCOc1FdbV0cQBKJVYbqIwGltINMJ91/7CsDw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O+NwJ5hq6eoz0kZJJvysgjZN9eqWQYocqHLJbc++4LHC0hEKirRnUNqU/xk6Fm7vw
-	 /27BzGwp1799XXCZPxUwx12cv4y39Apt4zWq6UyjreNomnIGgtOHvm/xyC+JxuivXI
-	 K5Pxvh3gQKj/8INsYwxjNwKuZoye2GVolnonH9+cY0NLFnUl9SzR8uIeMTsH60o8oa
-	 zdCu3ij0xIHPlILeDgKOpOWqdffbQQB+vKdjMYqNOCjYdcNh2AoD9rRvGQx+FrQgMV
-	 JdGoTpBP3W32C5QdF7nWuCYlgwmEUUHmZAxOxeFdrerd4QzjK3joNwb0cUeNmW539Y
-	 bdvV7TpMHoRXQ==
-Date: Wed, 13 Aug 2025 10:44:10 -0500
-From: Rob Herring <robh@kernel.org>
-To: hans.zhang@cixtech.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	mani@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mpillai@cadence.com, fugang.duan@cixtech.com,
-	guoyin.chen@cixtech.com, peter.chen@cixtech.com,
-	cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 08/13] dt-bindings: PCI: Add CIX Sky1 PCIe Root
- Complex bindings
-Message-ID: <20250813154410.GB114155-robh@kernel.org>
-References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
- <20250813042331.1258272-9-hans.zhang@cixtech.com>
+	s=arc-20240116; t=1755099900; c=relaxed/simple;
+	bh=SDfSLwrtZXQ9HPSfpfvWAs0cQbK5OrAW80eATwWhUk0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IbEggOlj7CcbxSYSapY9IMoN5wiMw8MBS9ddtmJvwvayn//s/PUpQdKfDaPbcLawrYhvbMZMfXBa9EPlXuhKgmnFA5KHbfo31zHIyqHMZNmlFz3qar6DIAjKBBNlu5sUgza41/e3c2Qf6Hx1OLSggyK4s4Rl5+grWVLKcwZeOpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2377C4CEF1;
+	Wed, 13 Aug 2025 15:44:58 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 resend] arm64: dts: freescale: Switch to hp-det-gpios
+Date: Wed, 13 Aug 2025 17:44:46 +0200
+Message-ID: <65670a9983c47919317e02557f072dbe0426f48a.1755099817.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250813042331.1258272-9-hans.zhang@cixtech.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 13, 2025 at 12:23:26PM +0800, hans.zhang@cixtech.com wrote:
-> From: Hans Zhang <hans.zhang@cixtech.com>
-> 
-> Document the bindings for CIX Sky1 PCIe Controller configured in
-> root complex mode with five root port.
-> 
-> Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
-> 
-> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
-> ---
->  .../bindings/pci/cix,sky1-pcie-host.yaml      | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-> new file mode 100644
-> index 000000000000..2bd66603ac24
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/cix,sky1-pcie-host.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CIX Sky1 PCIe Root Complex
-> +
-> +maintainers:
-> +  - Hans Zhang <hans.zhang@cixtech.com>
-> +
-> +description:
-> +  PCIe root complex controller based on the Cadence PCIe core.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: cix,sky1-pcie-host
-> +
-> +  reg:
-> +    items:
-> +      - description: PCIe controller registers.
-> +      - description: ECAM registers.
-> +      - description: Remote CIX System Unit registers.
-> +      - description: Region for sending messages registers.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg
-> +      - const: cfg
-> +      - const: rcsu
-> +      - const: msg
-> +
-> +  ranges:
-> +    maxItems: 3
-> +
-> +required:
-> +  - compatible
-> +  - ranges
-> +  - bus-range
-> +  - device_type
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - msi-map
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    / {
+Replace the deprecated "hp-det-gpio" property by "hp-det-gpios" in
+Freescale Generic ASoC Sound Card device nodes.
 
-bus {
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - Dependency commit cfd1054c65eefec3 ("ASoC: fsl-asoc-card: Add missing
+    handling of {hp,mic}-dt-gpios") is in v6.13.
+---
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts     | 2 +-
+ arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      pcie@a010000 {
-> +          compatible = "cix,sky1-pcie-host";
-> +          reg = <0x00 0x0a010000 0x00 0x10000>,
-> +                <0x00 0x2c000000 0x00 0x4000000>,
-> +                <0x00 0x0a000000 0x00 0x10000>,
-> +                <0x00 0x60000000 0x00 0x00100000>;
-> +          reg-names = "reg", "cfg", "rcsu", "msg";
-> +          ranges = <0x01000000 0x00 0x60100000 0x00 0x60100000 0x00 0x00100000>,
-> +                  <0x02000000 0x00 0x60200000 0x00 0x60200000 0x00 0x1fe00000>,
-> +                  <0x43000000 0x18 0x00000000 0x18 0x00000000 0x04 0x00000000>;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          bus-range = <0xc0 0xff>;
-> +          device_type = "pci";
-> +          #interrupt-cells = <1>;
-> +          interrupt-map-mask = <0 0 0 0x7>;
-> +          interrupt-map = <0 0 0 1 &gic 0 0 GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                          <0 0 0 2 &gic 0 0 GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                          <0 0 0 3 &gic 0 0 GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                          <0 0 0 4 &gic 0 0 GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH 0>;
-> +          msi-map = <0xc000 &gic_its 0xc000 0x4000>;
-> +      };
-> +    };
-> -- 
-> 2.49.0
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+index 95523c5381357b66..d0b3e66e09739261 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+@@ -406,7 +406,7 @@ sound-wm8960 {
+ 		model = "wm8960-audio";
+ 		audio-cpu = <&sai1>;
+ 		audio-codec = <&wm8960>;
+-		hp-det-gpio = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
++		hp-det-gpios = <&lsio_gpio0 31 GPIO_ACTIVE_HIGH>;
+ 		audio-routing =	"Headphone Jack", "HP_L",
+ 				"Headphone Jack", "HP_R",
+ 				"Ext Spk", "SPK_LP",
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+index e54be7f649ffb0e4..7b033744554105de 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
+@@ -333,7 +333,7 @@ sound-wm8960 {
+ 		model = "wm8960-audio";
+ 		audio-cpu = <&sai1>;
+ 		audio-codec = <&wm8960>;
+-		hp-det-gpio = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
++		hp-det-gpios = <&lsio_gpio1 0 GPIO_ACTIVE_HIGH>;
+ 		audio-routing = "Headphone Jack", "HP_L",
+ 				"Headphone Jack", "HP_R",
+ 				"Ext Spk", "SPK_LP",
+diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+index 2f949a0d48d2d806..213eb5476b84bab5 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
+@@ -216,7 +216,7 @@ sound-wm8962 {
+ 		model = "wm8962-audio";
+ 		audio-cpu = <&sai3>;
+ 		audio-codec = <&wm8962>;
+-		hp-det-gpio = <&gpio2 11 GPIO_ACTIVE_HIGH>;
++		hp-det-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+ 		audio-routing = "Headphone Jack", "HPOUTL",
+ 				"Headphone Jack", "HPOUTR",
+ 				"Ext Spk", "SPKOUTL",
+-- 
+2.43.0
+
 
