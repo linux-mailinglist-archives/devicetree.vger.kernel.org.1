@@ -1,119 +1,163 @@
-Return-Path: <devicetree+bounces-204133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2292B24300
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:44:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 368F8B24342
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:53:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 110A416707A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:45:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B8B01B67264
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC032D3204;
-	Wed, 13 Aug 2025 07:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A352E36FA;
+	Wed, 13 Aug 2025 07:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cyfbHPyw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 167062D060A
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CF132E1C56;
+	Wed, 13 Aug 2025 07:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755071095; cv=none; b=N3d4MHEOHbHbD+qU/lmNvB3pu/8iHAZ/3Uk3hFvhWwkSkUkeNa8nSPyw8LZJumQp/gWYLvfPVUKHjdhDc53Dqoq6AFC1x3tP8C9FGM7WZHYxw9zU4L98hiFvQUtBcnv/NDjGkOLaQRx9JFWuJ8Z77vuZW4t/SQJsL0P0Kj2SCVs=
+	t=1755071449; cv=none; b=iWSXTkcRc+uOZxpvlTXeQBMCCW9JYBNQnyT2BXyj8CvF2usCXEvn+GjQwvoWiJNh4YK9XForIn0/msGmv3kC3hOR+vlstqN8XhzGUZqQ/PjPs14XV7JXk/jk5b4V5VVpgKe/BiEgTolZQ+e5h5dEG7Ylp9+xuVl6YUaxKKJN/6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755071095; c=relaxed/simple;
-	bh=koPY2s0L8sA1lIhOUhIScD7xdjwz5oz7ltE7vaBqHIU=;
+	s=arc-20240116; t=1755071449; c=relaxed/simple;
+	bh=GCkcSwQXaPB+Reeu4y3cV78hJ9D/iB5yjlZx4Qatnh8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ql1RXdGdwaIOvdoLfK3NOi76LKoCyn688doL+d5+LHtkQMCMouHf2ymJFqizcJjQJ4Pi31MX2Oz0kEO02282NIaBcS5qJco6QKIaPpPRnnHx2GS2k3JqAUhe2xroUUX3VOTUpMHCGzD+FUaxcSVFpR4wkfekmWz1mb/w+KQa4+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1um6A1-0005h2-SD; Wed, 13 Aug 2025 09:44:37 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1um6A0-0003S0-02;
-	Wed, 13 Aug 2025 09:44:36 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 95B80456809;
-	Wed, 13 Aug 2025 07:44:35 +0000 (UTC)
-Date: Wed, 13 Aug 2025 09:44:35 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
-	Simon Horman <horms@kernel.org>, Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
-Message-ID: <20250813-avocet-of-fascinating-honeydew-7700aa-mkl@pengutronix.de>
-References: <20250812-topic-mcan-wakeup-source-v6-12-v8-0-6972a810d63b@baylibre.com>
- <20250812-topic-mcan-wakeup-source-v6-12-v8-4-6972a810d63b@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=N5MXmep7trLLN3AjY/N0vSTO5xTPMICpE8fDWcWfvMsTC9OMfLiGXcqnrFmysusnh7Q+Nb/GYg+jfvyhCaOXw8ppGJjLLT297UpetP1fS8Gg2a1DhQBYWwkL8vVdMu47Y/6xXeRQzUiQlcJjRy5xnVbNezBQ7ocN5AbQe2lRYcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cyfbHPyw; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1755071448; x=1786607448;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GCkcSwQXaPB+Reeu4y3cV78hJ9D/iB5yjlZx4Qatnh8=;
+  b=cyfbHPyw6dei7t7zFb4YPjhUHu+fJZU/uGB5dfzCpSxaBLu/aqPH0dG6
+   4JnAANLSy5V6xBqPAiBGtdqv2M+qg7Neyi1oBo8PM/CpOrBO21lhDHSFE
+   NmLnumhRHBrnGzPnUuTyocjJ85N3kNlO95K2A8XkrnDSw5ZlzzNfigX+Z
+   e4LJtXVpcW9XGRn3DVxHijx3WclsFCxuvHryrcfFVsbvU3tf1fBoq/fOO
+   cP3WApRAL4o3NtEnrYPx1s3r69ZJpzaWqozrzLW3BSIIBe3TNSA9au10M
+   7yrP9fNU1IosDo1Im1ez0x/qR/vpAsgqoxEZ6GRUFpIknCNJlWtKFzi/m
+   Q==;
+X-CSE-ConnectionGUID: let9IegKTXSRoNAaLC1rTw==
+X-CSE-MsgGUID: lpB42WgwQjiwvfaVUdiCpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57260476"
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
+   d="scan'208";a="57260476"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2025 00:50:48 -0700
+X-CSE-ConnectionGUID: UFpW3ZHJRgG7Yrcfgk7aGw==
+X-CSE-MsgGUID: hr6+tZAJTK62MvVvrPVRZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
+   d="scan'208";a="165625222"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 13 Aug 2025 00:50:44 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1um6Fc-0009gS-1J;
+	Wed, 13 Aug 2025 07:50:29 +0000
+Date: Wed, 13 Aug 2025 15:49:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Qiang Zhao <qiang.zhao@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] soc: fsl: qe: Add an interrupt controller for QUICC
+ Engine Ports
+Message-ID: <202508131517.P1Nfz0RF-lkp@intel.com>
+References: <1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="y2xvuxnvm2747qii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250812-topic-mcan-wakeup-source-v6-12-v8-4-6972a810d63b@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy@csgroup.eu>
+
+Hi Christophe,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.17-rc1 next-20250813]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christophe-Leroy/soc-fsl-qe-Add-an-interrupt-controller-for-QUICC-Engine-Ports/20250812-195423
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/1dcc9528e97d228ea7889caa00cc254ef0375ed4.1754996033.git.christophe.leroy%40csgroup.eu
+patch subject: [PATCH 1/4] soc: fsl: qe: Add an interrupt controller for QUICC Engine Ports
+config: powerpc64-randconfig-002-20250813 (https://download.01.org/0day-ci/archive/20250813/202508131517.P1Nfz0RF-lkp@intel.com/config)
+compiler: powerpc64-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250813/202508131517.P1Nfz0RF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508131517.P1Nfz0RF-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/soc/fsl/qe/qe_ports_ic.c: In function 'qepic_probe':
+>> drivers/soc/fsl/qe/qe_ports_ic.c:102:7: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     nb = (int)of_device_get_match_data(dev);
+          ^
 
 
---y2xvuxnvm2747qii
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
-MIME-Version: 1.0
+vim +102 drivers/soc/fsl/qe/qe_ports_ic.c
 
-On 12.08.2025 11:10:25, Markus Schneider-Pargmann wrote:
-> am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
-> a wakeup source. Add support to select the wakeup state if WOL is
-> enabled.
+    94	
+    95	static int qepic_probe(struct platform_device *pdev)
+    96	{
+    97		struct device *dev = &pdev->dev;
+    98		struct qepic_data *data;
+    99		int irq;
+   100		int nb;
+   101	
+ > 102		nb = (int)of_device_get_match_data(dev);
+   103		if (nb < 1 || nb > 32)
+   104			return -EINVAL;
+   105	
+   106		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+   107		if (!data)
+   108			return -ENOMEM;
+   109	
+   110		data->reg = devm_platform_ioremap_resource(pdev, 0);
+   111		if (IS_ERR(data->reg))
+   112			return PTR_ERR(data->reg);
+   113	
+   114		irq = platform_get_irq(pdev, 0);
+   115		if (irq < 0)
+   116			return irq;
+   117	
+   118		data->host = irq_domain_add_linear(dev->of_node, nb, &qepic_host_ops, data);
+   119		if (!data->host)
+   120			return -ENODEV;
+   121	
+   122		irq_set_handler_data(irq, data);
+   123		irq_set_chained_handler(irq, qepic_cascade);
+   124	
+   125		return 0;
+   126	}
+   127	
 
-The driver makes already use of pinctrl_pm_select_default_state(dev),
-does it make sense to use it here, too?
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---y2xvuxnvm2747qii
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmicQmAACgkQDHRl3/mQ
-kZy8zAgAhMrFoTPVzEul/U+GJkkt2qclG7S5R840RJwQEYXKPwMW9Hl/i7xKv0eI
-cbMvwVySd+F9kWHPApDNlF8HZ2m01acDvKjq/LannFSKBVST8c0Bf4QeeJRNqxT7
-ZtaSfRI3SWFANiQ/6Esi+bH4mhNJtDWE+pnkiZ/ZDY4wqrQZJkDv60yMHY+lM6/Q
-/lW27P+jduTrdx1w/lp5vFSMs9XdTU3K5YwnS04/DGUGvmPfOaPZoFUZzX6BakHP
-QppCMBuepKjWilH2pJYK1uzkzqeiQZYZHhlJ0+uuIcrEDtBclYhJ1X938j5ujAR5
-WiTjckEcPHFm97BtnSEx0wn2XmQgmA==
-=+1WX
------END PGP SIGNATURE-----
-
---y2xvuxnvm2747qii--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
