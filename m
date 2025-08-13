@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2F9B24FC2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:30:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E9EFB24FA2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0BC32A62AB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:15:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6659062726C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40DA8284671;
-	Wed, 13 Aug 2025 16:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA08286D42;
+	Wed, 13 Aug 2025 16:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qdsxWoF8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o72Kp6QV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141DA74420;
-	Wed, 13 Aug 2025 16:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD93286887;
+	Wed, 13 Aug 2025 16:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755101742; cv=none; b=Yhjl2YNoPKXGCb7K5MYsaGl6OCWu79y3fJFnYz4mkMDjsLw4Q/b30soIkp9EpIjrDcz/9ZD5+cwA4k6CBQ373nXDSZqWShvjE0p9RPoJCeaXyR4wRRWZGi6wV+ALgivyvF6wStSMyNZ2siRWx8JCC4BbiucogdZgoja/y+x2AsI=
+	t=1755101860; cv=none; b=QxPOqde+KWy2jK/k8mDaXTtbJ68hlxJoPI5RKjwQE0nrjqlS6hC+tDRIj+APrXB6xTugDACrMvyxrExWuAiM18vg1PEm/uuKVpgXzxpHnobgW5TT72awEN7zQqYHO9+AtAVoQrh61/fgkqmGJdsOlOYPXbpJ2XGGWfUHqWavCmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755101742; c=relaxed/simple;
-	bh=giUUtRKrFjoboowTopXXWzpCiufG2/NF8WvUf9l4T3w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S3EafMs6wQj4DsKl89/0cJrM7Ku2R8fhP5KbZJb+ja+mNfTFdM6mmDgfV1xqQro4wgiKdXCDcZ/IOBYIlm891/SL7AqydZVGebXPcROdintbAaO8VRnxB2yOlAzR2LGRwlxm9QTNcRaV7mIMz3OaqDIREENqF7cjc26RrCeq/ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qdsxWoF8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4078C4CEEF;
-	Wed, 13 Aug 2025 16:15:38 +0000 (UTC)
+	s=arc-20240116; t=1755101860; c=relaxed/simple;
+	bh=qEfPC2UuSGDKxXAWijg44iSZ7Qn8m4JDMfgHpDc4lME=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=GthMs4yzTitgpmj3UjXuZwLL8KX6jLdWUuMxuKVnthL3djAuUhW9clCzyXJHLQzCvTWYMd37arV1+XeB4BxN005Lym48r1FEvAc2fwmrwH8MXbYlhcjBhaZGC7t/8fekjhzpqf7kwTT32nwyY7HZAUzvh/dYS6mtTbu5zS6GEvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o72Kp6QV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A165EC4CEEB;
+	Wed, 13 Aug 2025 16:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755101741;
-	bh=giUUtRKrFjoboowTopXXWzpCiufG2/NF8WvUf9l4T3w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qdsxWoF8cymXMny2dOWSc0ymwdJeuSUBVQcaQ2tSEJOiY4tdwefaF1azmwZYTnkZp
-	 OlQh59ECd7I5QQpPLSYxUeAgtGqNULnWYx4G08FC6xO1e0WxnUTGzHE69uTVq6bKFH
-	 9gseNtfDzw/N522ZbexbTfJjz7hn/Km1GJzp9rHIO1YEoBEpKML+f8QUobzOh7AEGT
-	 TMutPprETLLLqT0Rm5T3K0gMVfxzLKkJsPpRIzeEG9FePL3j0/lNrjKKZWfQlI4mal
-	 DwahXotNX1Ija+q7d2bAuXuN8GI98FJ4CTwG8IiPMdmyCitElrKLzlS8Hbx1kxU1B8
-	 4K8J7+gtM2LwQ==
-Message-ID: <e7577165-436d-4335-943b-2187f7b95946@kernel.org>
-Date: Wed, 13 Aug 2025 18:15:37 +0200
+	s=k20201202; t=1755101860;
+	bh=qEfPC2UuSGDKxXAWijg44iSZ7Qn8m4JDMfgHpDc4lME=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=o72Kp6QVr5zoo16Jdm+n8geo24LaQ+BC3tiNmPAgAcjsfbF/fVSHa7BH9pYLuqEDb
+	 rrDGlOeBqHX6ZjMx+zzFLPftBnIRo/iwDvz24Ao09t5LAZo0g4aVmGiVbQ1Fsv6tXz
+	 wpCyK8ouA+Ekamvr0Apb9yD4XKJObDZSMinmEg+AiMTKy+w1xLRdhWMcF35zSLfxh1
+	 e+HVfBk3WyFNPhCJ+jbDx9+lBMPQCAvHTiE/E59HR8+1v3M3yxH1a7KsVZUI1p5oTd
+	 TeepFWskzV8hhkLUDMKzul3RWHqv8ZKu2XA5y1Fb2HtzYpOiIwNFpkbOf9eQ8h9oPL
+	 rZ+fepXcIOiXQ==
+Message-ID: <d90b8c70-983e-44bd-b2dc-ec8d898217ff@kernel.org>
+Date: Wed, 13 Aug 2025 18:17:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: iio: mcp9600: Add compatible for
- microchip,mcp9601
-To: Ben Collins <bcollins@watter.com>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Hepp <andrew.hepp@ahepp.dev>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250813151614.12098-1-bcollins@watter.com>
- <20250813151614.12098-2-bcollins@watter.com>
+Subject: Re: [PATCH] dt-bindings: hwmon: convert lantiq-cputemp to yaml
+To: Aleksander Jan Bajkowski <olek2@wp.pl>, jdelvare@suse.com,
+ linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, fe@dev.tdt.de, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250813091924.1075488-1-olek2@wp.pl>
+ <6f46e420-832a-4c6e-b1e9-d797b0425834@kernel.org>
+ <9d0ebfe1-e92b-45e0-baf1-3d6d2ce4c568@wp.pl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,58 +103,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250813151614.12098-2-bcollins@watter.com>
+In-Reply-To: <9d0ebfe1-e92b-45e0-baf1-3d6d2ce4c568@wp.pl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2025 17:15, Ben Collins wrote:
-> MCP9601 is a superset of MCP9600 and is supported by the driver.
-
-There is no driver patch, so I cannot verify last part - about driver -
-and I don't understand it. If it is already supported, doesn't it make
-this patch redundant? Or did you wanted to say you are documenting
-compatible being already used?
-
-
+On 13/08/2025 11:52, Aleksander Jan Bajkowski wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Ben Collins <bcollins@watter.com>
+> On 8/13/25 11:24, Krzysztof Kozlowski wrote:
+>> On 13/08/2025 11:19, Aleksander Jan Bajkowski wrote:
+>>> +---
+>>> +$id: http://devicetree.org/schemas/hwmon/lantiq,cputemp.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Lantiq cpu temperature sensor
+>>> +
+>>> +maintainers:
+>>> +  - Florian Eckert <fe@dev.tdt.de>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: lantiq,cputemp
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +
+>> I think this reads and writs to some IOMEM space, so you really need
+>> here 'reg'. That's the problem with such old bindings... binding is
 
 
-Where is the changelog? That's a v2.
-
-No cover letter either...
-
-> ---
->  .../bindings/iio/temperature/microchip,mcp9600.yaml         | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> index d2cafa38a5442..d8af0912ce886 100644
-> --- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Microchip MCP9600 thermocouple EMF converter
-> +title: Microchip MCP9600 and similar thermocouple EMF converters
->  
->  maintainers:
->    - Andrew Hepp <andrew.hepp@ahepp.dev>
-> @@ -14,7 +14,9 @@ description:
->  
->  properties:
->    compatible:
-> -    const: microchip,mcp9600
-> +    enum:
-> +      - microchip,mcp9600
-> +      - microchip,mcp9601
-
-If it is superset, why isn't this expressed with compatibility and fallback?
-
->  
->    reg:
->      maxItems: 1
+Please address this. Driver on first glance tells me it accesses MMIO.
 
 
 Best regards,
