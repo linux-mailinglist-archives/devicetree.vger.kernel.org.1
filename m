@@ -1,114 +1,212 @@
-Return-Path: <devicetree+bounces-204240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15514B24999
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 14:37:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F72B24A1B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:05:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 649021BC0242
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:37:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3BD8584E09
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF86923C519;
-	Wed, 13 Aug 2025 12:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7136C2E4252;
+	Wed, 13 Aug 2025 13:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="pD2miAJY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cAW4mthz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EEA623A58E
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 12:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FED215A87C;
+	Wed, 13 Aug 2025 13:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755088624; cv=none; b=ahKFdiJOT7WJeOAytCiOwDNmEXqGluv7sBgKfJOnXPiqOmbyGq3yg5ZQTIynHoE7os5H9oR1PKcBBxO9wnBNxGaLvfm1HAf3BRIBMiGsiw4LHxgA+no+O6SUcxlLct19DwcfPusL8dM3YYVTvLMBOBeaTayUttV/jr9daW4poa8=
+	t=1755090334; cv=none; b=UmzJgkDmYaEmmovd9O2UrfRRadbsJdW0kZQVIArHtz/W8SXGWn2ebbxkKPxRTDvrHdYsePOaeScnNiRy0bA+SXI1oDVWKGPSYYCJZu+pBcREaSk30fPHXWoDRQVdYS9XlPIFORyErCZQ4I1qDmFqnSgmRMqaEVsoUonOPT6GbIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755088624; c=relaxed/simple;
-	bh=Dio7h+uqlbgU4biS+L4BkekXjii6MxHsEIflkjyhoZ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uC+mqOsrVTJzcLAe1QSRwHp8TUiwHpQpKtQFJBbVldSkFyhh3opSh9HQBp0i8S+5/vefCOQQQIrG0W4Vtm3LiPVGILaRSnIv5B4Mlr0hL91fhBdM8BFCouO/l0l4cs6os7naWqMSMAwsC7cVgvrqN/8pidzXks07v+iiF3Vfo/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=pD2miAJY; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-881833b7adbso459631439f.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 05:37:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755088622; x=1755693422; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QJSNE7TDIwDdVBJivdzquzFfOdkEAZ/NqbU/Si8oVJo=;
-        b=pD2miAJYs2q425XHx+ErrycxYy0aWLorgV+N+BEtt3PMXn3QTBQc/Ah2lGcPD820qB
-         E74DBg1bPByO5HSYdhTSwYD8bLUEOJbDQ8e2jnpIxNCtYRhEbfo9Ix2NstSBBhnBZNGZ
-         WXznnvJABFi6BtCd7FMr9GLHJRXQtW5SPUrTMGlIuSnKIKYS/yTJsFRUGaxROJV8BnxB
-         Xqz4eBXVQvTghFNh36w7NyujD/mC72zb1456B9zuk2Ga4ljDPb8Qkc1D2Wp3BpZj83eC
-         NHoCOcwXtoo03WoOygHQxYbRa+JDrrGHjBxXfWDr1UtYeyMDwEyWqIUHHQe+xmxfoBWl
-         TBeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755088622; x=1755693422;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QJSNE7TDIwDdVBJivdzquzFfOdkEAZ/NqbU/Si8oVJo=;
-        b=mj8/8/dR3ZARwIjyxn/EhwVcOmPrXIqpvA146kx4Zp/6l6PvexVgmCN/JrZVzzikMF
-         DdbOcaWp5rpyTL5El0hFIaBvVNk1w2lQDtWN6+EScjNUyi2pTvhF8d1MKhg5zOHynGwV
-         r6qkOfrWJrLyITrv2ylSzO8hMFp0juxtX+2vGQIu+LTBNfReVECUav/BAIA7SwRxO7Z4
-         fsIAxhJ8vS+G0pQSwl/VdKGYvdMn5crGLzCboRtnfg3jChe98FnbP4Sb1JUkPIne4Mbl
-         eZdUVfwrwotR96i4qF8Xz4FwMux6KlZYridePCQEzIdvi6KGZh8q7KBx5NOOXbMba6f3
-         NXsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVaxOmE7SCFamuZ7Rt5o7e9iq4zJaJNaK/91yTCCP+//ZvlDbSFMJs/7XZvaqT6eC6fVGQLGEswrmwo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVgAE4mn16qgA6T0kdI1Ufi0ZWychDTUAaCzJ3GWxBjwmyIii2
-	cNl//XyczyD241hE2smMySVoTm8RSRK0qpRkLBtk1fp5B7H5Qe+EMwvGhCGK5dXrH/Y=
-X-Gm-Gg: ASbGncuFv9LesbdeDDz40R//o4s1DxjB0L6o9FTD1GLNYcUKJbq+68bJcGZiKmgT+AI
-	6HL0ZkP9p20df/9KPIpL5qombpmpynwSOi5Pe2klNJxk7BPEdsNRBOuwwYuaMQWsxjUj+deQI2C
-	Ft/0zI3G+J2Qdjnv3P18RjcWkKIpXvXUCIxwq7phng3s+WP4U0B/vksZPnqLR+n/1y4nprYB1Mv
-	U1xkomQBZ0WOMQPkBA18IioahJjUKFydfNRbjUt2pv6SsG6amJQNU3/xFLTfxzGrQ+FgwRYlqOJ
-	DulUq6nSm6uZsBV9MQCPj2FkO1IkvIDK0K2tSiTopSXGdGU6Wz+pUFEdWpQ0huCIryQlTXIIrLt
-	F0aLzcIjsfVDAyf5jjt3vPl40ndjqdGG4sjkv1MfXY+voNGmd0vMoOB0xRN+WAk/TS/HN3FR2
-X-Google-Smtp-Source: AGHT+IFnwEFQtUPVw9g9mmFiyfGLoS5nlr8HAUmqQnFfYA2GdWoqbZqkoS/L9fICYJiWR+VCb+vYyQ==
-X-Received: by 2002:a05:6602:14d4:b0:881:7837:6058 with SMTP id ca18e2360f4ac-88429514720mr521566239f.0.1755088621539;
-        Wed, 13 Aug 2025 05:37:01 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-883f19c1475sm445898339f.29.2025.08.13.05.36.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Aug 2025 05:37:01 -0700 (PDT)
-Message-ID: <fd7ac07d-030c-41d6-94dd-da53b593f5ab@riscstar.com>
-Date: Wed, 13 Aug 2025 07:36:58 -0500
+	s=arc-20240116; t=1755090334; c=relaxed/simple;
+	bh=agF8vQN8DrGjvKoo9wYAr2t7qN0STSPsR7lgfOl2dkY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kFlnW2/MOBLfQyM0Z7G/99jc3U2b0SvzRAlygEsm1vG+lmtNmRPCVBHtl0YCVcQmLjtYNmMRTJzXjZ1VRgvIEg6Xzzwzafi3K2I71SFkK7Y9Tl1jQommmTec/7O1zihG1Pgg59CawhUOwsPHJD1SRc3R7cDo+hLpRmSe7nKsaSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cAW4mthz; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DD5ODJ2152796;
+	Wed, 13 Aug 2025 08:05:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755090324;
+	bh=OyvusIEXjAre/xttjCZZR35LjwYPJuaLUvaZ9xyV3Z8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=cAW4mthz+eHWDjhCFx18wqQmgxjqWJVY/281sbD/5YMHzdqsigvxPfiyRDDHGZxA3
+	 OkzoEL4zLGmM3MUB5JoNChRxVAnCCG2QioJhHelWzMAD8EHXE04J6oUtLKWsKhlgQ+
+	 LXs9zc2DmDq9V1iizq6CdlIMzj1HVmejfd1S9jjo=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DD5OZi1086160
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 13 Aug 2025 08:05:24 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
+ Aug 2025 08:05:23 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 13 Aug 2025 08:05:23 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DD5MkH2333843;
+	Wed, 13 Aug 2025 08:05:22 -0500
+Date: Wed, 13 Aug 2025 18:35:21 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Akashdeep Kaur <a-kaur@ti.com>
+CC: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vishalm@ti.com>, <sebin.francis@ti.com>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining macros
+Message-ID: <20250813130521.zpe7lguful6gyhjz@lcpd911>
+References: <20250731115631.3263798-1-a-kaur@ti.com>
+ <20250731115631.3263798-4-a-kaur@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/7] dt-bindings: mfd: add support the SpacemiT P1
- PMIC
-To: Troy Mitchell <troymitchell988@gmail.com>
-Cc: lee@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mat.jonczyk@o2.pl, dlan@gentoo.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, linux.amoon@gmail.com, guodong@riscstar.com,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250813024509.2325988-1-elder@riscstar.com>
- <20250813024509.2325988-2-elder@riscstar.com>
- <aJyC5q0X8mj1xbSB@troy-wujie14pro-arch>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <aJyC5q0X8mj1xbSB@troy-wujie14pro-arch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250731115631.3263798-4-a-kaur@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 8/13/25 7:19 AM, Troy Mitchell wrote:
-> You can change it from this to my company email:
-> troy.mitchell@linux.spacemit.com
-> 
-> Acked-by: Troy Mitchell<troymitchell988@gmail.com>
-> 
->                  - Troy
+Akashdeep,
 
-I will make this change before I do a final version.	-Alex
+On Jul 31, 2025 at 17:26:31 +0530, Akashdeep Kaur wrote:
+> Add the drive strength, schmitt trigger enable macros to pinctrl file.
+> Add the missing macros for deep sleep configuration control.
+
+Please can you add sources/ links to the TRM/collateral and sections where you get
+all this information from?
+
+> Reword the existing deep sleep macros to provide combinations that can
+> directly be used in device tree files.
+
+I am not very clear on what this line is trying to say. Can you explain
+a bit more with an example of a reword and how it is helping?
+
+> 
+> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-pinctrl.h | 66 +++++++++++++++++++++++------
+>  1 file changed, 54 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> index c0f09be8d3f9..f26f1fcf6f74 100644
+> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> @@ -3,7 +3,7 @@
+>   * This header provides constants for pinctrl bindings for TI's K3 SoC
+>   * family.
+>   *
+> - * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2018-2025 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  #ifndef DTS_ARM64_TI_K3_PINCTRL_H
+>  #define DTS_ARM64_TI_K3_PINCTRL_H
+> @@ -19,6 +19,13 @@
+>  #define DS_OUT_VAL_SHIFT	(26)
+>  #define DS_PULLUD_EN_SHIFT	(27)
+>  #define DS_PULLTYPE_SEL_SHIFT	(28)
+> +#define WKUP_EN_SHIFT		    (29)
+> +#define WKUP_LVL_EN_SHIFT	    (7)
+> +#define WKUP_LVL_POL_SHIFT	    (8)
+> +#define ST_EN_SHIFT		        (14)
+> +#define DRV_STR_SHIFT		    (19)
+> +#define DS_ISO_OVERRIDE_EN_SHIFT (22)
+> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
+
+Seeing it on lore and in my git log -p as well, the alignment looks off.
+Please fix it.
+
+>  
+>  /* Schmitt trigger configuration */
+>  #define ST_DISABLE		(0 << ST_EN_SHIFT)
+> @@ -33,6 +40,26 @@
+>  #define INPUT_EN		(1 << RXACTIVE_SHIFT)
+>  #define INPUT_DISABLE		(0 << RXACTIVE_SHIFT)
+>  
+> +#define DS_PULL_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
+> +#define DS_PULL_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
+> +
+> +#define DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
+> +#define DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
+> +
+> +#define DS_INPUT_EN		    (1 << DS_OUT_DIS_SHIFT)
+> +#define DS_INPUT_DISABLE    (0 << DS_OUT_DIS_SHIFT)
+> +
+> +#define DS_OUT_VALUE_ZERO   (0 << DS_OUT_VAL_SHIFT)
+> +#define DS_OUT_VALUE_ONE    (1 << DS_OUT_VAL_SHIFT)
+> +
+> +#define WKUP_ENABLE		    (1 << WKUP_EN_SHIFT)
+> +#define WKUP_ON_LEVEL		(1 << WKUP_LVL_EN_SHIFT)
+> +#define WKUP_ON_EDGE        (0 << WKUP_LVL_EN_SHIFT)
+> +#define WKUP_LEVEL_LOW      (0 << WKUP_LVL_POL_SHIFT)
+> +#define WKUP_LEVEL_HIGH		(1 << WKUP_LVL_POL_SHIFT)
+> +
+> +#define WKUP_DISABLE        (0 << WKUP_EN_SHIFT)
+> +
+
+These too, fix all alignment issues please.
+
+>  /* Only these macros are expected be used directly in device tree files */
+>  #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
+>  #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
+> @@ -53,18 +80,33 @@
+>  #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
+>  #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
+>  
+> +#define PIN_DRIVE_STRENGTH_NOMINAL	(0 << DRV_STR_SHIFT)
+> +#define PIN_DRIVE_STRENGTH_SLOW	    (1 << DRV_STR_SHIFT)
+> +#define PIN_DRIVE_STRENGTH_FAST	    (2 << DRV_STR_SHIFT)
+> +
+> +#define PIN_SCHMITT_TRIGGER_DISABLE	(0 << ST_EN_SHIFT)
+> +#define PIN_SCHMITT_TRIGGER_ENABLE	(1 << ST_EN_SHIFT)
+> +
+>  #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
+> -#define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
+> -#define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
+> -#define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
+> -#define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
+> -#define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
+> -#define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
+> -#define PIN_DS_OUT_VALUE_ONE		(1 << DS_OUT_VAL_SHIFT)
+> -#define PIN_DS_PULLUD_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
+> -#define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
+> -#define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
+> -#define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
+> +#define PIN_DS_FORCE_ENABLE		    (1 << FORCE_DS_EN_SHIFT)
+> +#define PIN_DS_ISO_OVERRIDE_DISABLE	(0 << DS_ISO_OVERRIDE_EN_SHIFT)
+> +#define PIN_DS_ISO_OVERRIDE	        (1 << DS_ISO_OVERRIDE_EN_SHIFT)
+> +#define PIN_DS_ISO_BYPASS           (1 << DS_ISO_BYPASS_EN_SHIFT)
+> +#define PIN_DS_ISO_BYPASS_DISABLE   (0 << DS_ISO_BYPASS_EN_SHIFT)
+> +
+> +#define DS_STATE_VAL        (1 << DS_EN_SHIFT)
+> +#define ACTIVE_STATE_VAL    (0 << DS_EN_SHIFT)
+> +
+> +#define PIN_DS_OUTPUT_LOW       (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
+> +#define PIN_DS_OUTPUT_HIGH      (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
+> +#define PIN_DS_INPUT            (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DISABLE)
+> +#define PIN_DS_INPUT_PULLUP	    (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_UP)
+> +#define PIN_DS_INPUT_PULLDOWN   (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DOWN)
+> +
+> +#define WKUP_EN_EDGE		(WKUP_ENABLE | WKUP_ON_EDGE)
+> +#define WKUP_EN_LEVEL_LOW	(WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_LOW)
+> +#define WKUP_EN_LEVEL_HIGH	(WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_HIGH)
+> +#define WKUP_EN		        WKUP_EN_EDGE
+
+
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
