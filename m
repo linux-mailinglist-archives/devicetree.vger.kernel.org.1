@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5D2B240DA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE36DB240E2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:03:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C72B16CDF5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:01:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCB6D17FDE8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045C721C160;
-	Wed, 13 Aug 2025 06:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A50AB2BF019;
+	Wed, 13 Aug 2025 06:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zkw79BVM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WwKcSNC9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0B2361FCE;
-	Wed, 13 Aug 2025 06:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C22223D7C6;
+	Wed, 13 Aug 2025 06:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755064872; cv=none; b=EpNNuNxflervrF7GbGzelBBx4EeJjhbrCD+rnRiiQ2arDwhQj76A9gIzkENDoKiNHzj2oKkwNpJxwyrGBciqeeA7sv/MPfJHQWR6sprVBdClfgLdSf1QdM/a3DYZhtGN7ydSVmXTIdz8ipco68KqcDZiLi7z4ixutnrHJ/8YEvo=
+	t=1755064981; cv=none; b=l5itHCBR1p1+mqyDWJEDTGVtBAbuBt812HVUCeoIfsRzKYGNfy0o4GNAeVAQfhpAdVeHSucrqnDmDtZxT5rXCE6ZwS8Loas89lI7/qpMONPIAiyIW2t4Lx2mov3Ry2V1APYs/yYmXa8Zoq+ywQ/ENUj7vMTUydXqMCOvL1jDzuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755064872; c=relaxed/simple;
-	bh=mZQqBTot+ltVIa/QIkSnxOqKRyxRXw1w9DtthNuyycw=;
+	s=arc-20240116; t=1755064981; c=relaxed/simple;
+	bh=xpVzbfzh6K6iNq6MqiRnNFbqoopiD+3fbmgHO4xwcoA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OYtrktAOVrE27E921NV8QQ4EnTkrFFEzTLeRuZYA/NtLEiTCiiHpUIp5FMwOjxslhFqpwBLcX17ax0wxVo+I1W1fwSBTkgMQnOIUW7Fi6NjR3cmCW/PJ0rZ0vYCVdDWk+MqDf92/NrRzCWE4PqpKxE8ZVfmtMvIbk540MNnTqRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zkw79BVM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AF07C4CEEB;
-	Wed, 13 Aug 2025 06:01:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=q39OrmYLbcO+yvWTl5lEgka3c3bL4QVUaf1oMp/bQnuni8OdE/Z575bl3LuxexaV+HSegEqzOT6RsTpj9TZ0nRcN5yJDG2OYbRv5CF8z4rRTQTQRd6hYAgt1ZJ7XRXvedSs8EXOB87w+SAcpA651bAZmdqK1712XYiaJVgQuOqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WwKcSNC9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F1DC4CEEB;
+	Wed, 13 Aug 2025 06:02:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755064872;
-	bh=mZQqBTot+ltVIa/QIkSnxOqKRyxRXw1w9DtthNuyycw=;
+	s=k20201202; t=1755064981;
+	bh=xpVzbfzh6K6iNq6MqiRnNFbqoopiD+3fbmgHO4xwcoA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zkw79BVMVur9TfNeFa74Sk+3nZmJdj/adObSSO9rPxiXB/4ocboJI1fFZZCjLMU/t
-	 ckkelkLmHtuJHYxPS0AA65bFS9zRDGpY4M+mxlM5pIqN9/wx5dJ5zyv/wzXqMaUdGt
-	 otLEvLvIBcOBNVL8B1czhApdGX/KN0cox8rx6TNd0CePw9kJGb9fYB/dtvmApDKHL4
-	 Cpfi7AA403D50DOT7z5wIOV4hhTAlNJfZ41G0e8ayzs6qDw3b1d5x/mtwOf136d79s
-	 G9TJ8mszr9FC1GuGlwCvrXn3Vx0WBa8qqTnWLM1YR4uZiOd7scEY2xKN8kqdl7JONT
-	 bWvLkSPjJXmXQ==
-Message-ID: <8314491a-3c4c-4a32-8b3e-62c06109bc71@kernel.org>
-Date: Wed, 13 Aug 2025 08:01:09 +0200
+	b=WwKcSNC9+WKcBiR0WI7W+oj5vHF06GmzwnHKwufyA24L2WlFEpVHGjwtdNo+kpd3c
+	 k3sNKSNuuM/wE3tbVcb2lL9BgIW17btp5bJqECxq9+qGV5omaU7va0xllfwYMghpvh
+	 8d5LizqldFW4FvaKeFM7aBLJcf5m8Tq2Z6QwkbvgTvJl4rlJws6A2+k5mOyQqVszRT
+	 gi4sfxMtzNDbdeI/WdLHmU+ZF04yWdlzTveRp1QRFZAehj9gvu0cc0iMHD12E4+bMX
+	 +saz7uQZXc82DqpLfSdVlrky5TbVC9rDgcMDf/M3h2zAM56Qz6fEzauP6Q/4CbyMqu
+	 aNS8HNvLr4hWQ==
+Message-ID: <ac83c453-c24d-4c4d-83bc-9ed13f2f9d1e@kernel.org>
+Date: Wed, 13 Aug 2025 08:02:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/8] dt-bindings: vendor-prefixes: Add Black Sesame
- Technologies Co., Ltd.
-To: Albert Yang <yangzh0906@thundersoft.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <d5e0f41e-34c1-44af-ac0d-8362a72a2ff1@kernel.org>
- <20250813045310.2307498-1-yangzh0906@thundersoft.com>
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on sa8775p
+To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-2-odelu.kukatla@oss.qualcomm.com>
+ <90b51e31-3217-4483-bb5b-ec328665a723@kernel.org>
+ <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,33 +112,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250813045310.2307498-1-yangzh0906@thundersoft.com>
+In-Reply-To: <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13/08/2025 06:53, Albert Yang wrote:
-> Hi Krzysztof,
+On 13/08/2025 07:55, Odelu Kukatla wrote:
 > 
-> Thanks for the review.
 > 
-> On Tue, Aug 12, 2025 at 03:34:55PM +0200, Krzysztof Kozlowski wrote:
->> On 12/08/2025 14:31, Albert Yang wrote:
->>> Black Sesame Technologies Co., Ltd.s a leading automotive-grade
->>> computing SoC and SoC-based
->>> intelligent vehicle solution provider. Link: https://bst.ai/.
->>>
->>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->>> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
+> On 8/12/2025 3:47 PM, Krzysztof Kozlowski wrote:
+>> On 08/08/2025 16:02, Odelu Kukatla wrote:
+>>> Add reg and clocks properties to enable the clocks required
+>>> for accessing QoS configuration.
 >>
->> Odd order of tags. When was the patch written, by who and when was the
->> Ack given?
-> 
-> Rob’s Ack was on v1:
-> https://lore.kernel.org/lkml/174915411977.3161261.2820163642193291293.robh@kernel.org/
+>>
+>> Nothing here explains why EXISTING hardware is being changed. I also
+>> remember big discussions and big confusing patches regarding sa8775p
+>> (its rename, dropping/changing all providers), and this patch feels like
+>> pieces of it without proper justification.
+>>
+> Thanks for the review.
+> I have added description in cover letter, i will add here as well in next revision.> And this is hidden ABI break, no justification, no mentioning either.
+>> Again we are discussing basics of ABI breaking patches?
+>>
+> If you are talking ABI break if we load old DT which may lead to crash, we have .qos_requires_clocks flag which takes care of skipping QoS if required clocks are not enabled.we have addressed this issue through https://lore.kernel.org/all/20240704125515.22194-1-quic_okukatla@quicinc.com/ 
 
+Format your emails correctly, it's difficult to read.
 
-So how it can appear before Ge signed off?
+Your binding did not require reg and clocks. Now it requires reg and
+clocks. This is called ABI break.
 
+Please follow Qualcomm extensive upstreaming guide, it explains this,
+doesn't it? Or follow writing bindings...
 
 Best regards,
 Krzysztof
