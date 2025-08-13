@@ -1,75 +1,73 @@
-Return-Path: <devicetree+bounces-204280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED30EB24D45
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:24:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB29B24D37
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 939893A3BFB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:18:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 810AD1893B52
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97C6218EB1;
-	Wed, 13 Aug 2025 15:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3401F3FDC;
+	Wed, 13 Aug 2025 15:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WGZ4Cklv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="N/bC7Ttx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0066C1FDE19;
-	Wed, 13 Aug 2025 15:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED41188A0C;
+	Wed, 13 Aug 2025 15:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755098253; cv=none; b=iaFlQGZfvb1pLBHYx2sXKg3+iyCMw31re+vR8ArTRC2W0N9KX8j3/sX6oh9th5u+mbRvRlzlXumA6oMB42z+EVKjRZ3dw5XLdmznfCwMLjyrf5aPdwEIWyejOkdbuIZpMl2EsyiDwAirPtx3aWWkPZP1WyRx8gQmhYGWTScGs6g=
+	t=1755098309; cv=none; b=aOkvkAfDUORf0QQdqoubyXKGSwkgTD2bvURpVuB+bxzMROK+t9404SPB9oDaZScNAG4BIbTqCgS2+ikVNyuRO5wF4045tM2xPz8WWE4k00iU0c2kz1b/n9yf2TIxyjFcM4jxuPd391tvwQeuQy0c71O54QrWWHpuBDvrNQc7Z9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755098253; c=relaxed/simple;
-	bh=X55BNW/lvLuP0M1N8mH4Vvk/thi99V61e54O86PhtzQ=;
+	s=arc-20240116; t=1755098309; c=relaxed/simple;
+	bh=p7kUeqOY8eu6sbORye2iPrV7HXR5MjZ7/aKeOQGxuBQ=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mfwIRgusSGttC1KAs7txkiqODmIqX3i5Bkru2USLJuVBmApqqlypWUclVBf+36lWphrPcw0Yenq2paiWWCwMV97WbhzoUaXn0O0ilQbsiivQWpaz28eEesx24pWxq6Ln2ckWRS731qAJ7NAczl3h+N4cN3MYlyAW+I2+i4SF59s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WGZ4Cklv; arc=none smtp.client-ip=198.47.19.246
+	 Content-Type:Content-Disposition:In-Reply-To; b=ma83/zuJkmZmvwmaq93JjH0j+dlk6HbL/wLndy4QsKmQpj90f7bKrZYG1xYv1O6t+yS6eipWhbjcSkaEfQ2GULsc2YSqLqSaLE1TvIpkXp+0K958bAJW89Izqixk/4J7RLF3LWi6xffm6BLr5+wXTeIHCJvyl0vHpyQD4LB+Xmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=N/bC7Ttx; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DFHMuB2101625;
-	Wed, 13 Aug 2025 10:17:22 -0500
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DFIKoi2101708;
+	Wed, 13 Aug 2025 10:18:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755098242;
-	bh=mcAdqGklcRo+qLa2crMGRiBhEAbVfeREEGf0sW1Z/G0=;
+	s=ti-com-17Q1; t=1755098300;
+	bh=hhdtKws0AycCkK53UlJjP9D8XM/fNiJlo7puW4IHx5E=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WGZ4CklvI+zkUPaV54K6b5MBk2b0LdxHQn6wRWSdTpCWUbISrFyXxONBmoFMl4Wis
-	 LKnMpVp9w+xfMK6VkCyY1vftwgJP0HIaxJAyW2aLpviANW9WekVM84gqHmGWQ29zT+
-	 Rw/SrjmDADK1TiRRiT3S3PNmOKZf2/LHFy7QYYhE=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DFHMVc479317
+	b=N/bC7TtxNQJJOzYI0o6kQwioHEBrltAI+Dve+FQ9MVFTM6tAfffdiYiyhzGzzGWx+
+	 n4SOIEE2IExuC1TIEMdDAu5Y9/ZIkuD+ogMymeMsPMyHivsDr4ko57xlEWXCsw/IRZ
+	 TwsMXTHCIzi5bt9ArUEmDmX6957GL1M1F4iQYwm4=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DFIKUM1163159
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 10:17:22 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 13 Aug 2025 10:18:20 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
- Aug 2025 10:17:21 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 10:18:19 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 13 Aug 2025 10:17:21 -0500
+ Frontend Transport; Wed, 13 Aug 2025 10:18:19 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DFHLeO2494680;
-	Wed, 13 Aug 2025 10:17:21 -0500
-Date: Wed, 13 Aug 2025 10:17:21 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DFIJfm2495450;
+	Wed, 13 Aug 2025 10:18:19 -0500
+Date: Wed, 13 Aug 2025 10:18:19 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <rs@ti.com>
 CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d-gole@ti.com>,
         <afd@ti.com>, <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <detheridge@ti.com>, <matt.coster@imgtec.com>,
-        Michael Walle
-	<mwalle@kernel.org>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62p-j722s: enable the bxs-4-64
-Message-ID: <20250813151721.nc5fr3qmro5grlda@steam>
+        <detheridge@ti.com>, <matt.coster@imgtec.com>
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the bxs-4-64
+Message-ID: <20250813151819.5rthljjrpryfwezz@skinning>
 References: <20250808232522.1296240-1-rs@ti.com>
- <20250808232522.1296240-2-rs@ti.com>
+ <20250808232522.1296240-3-rs@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +76,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250808232522.1296240-2-rs@ti.com>
+In-Reply-To: <20250808232522.1296240-3-rs@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 On 18:25-20250808, rs@ti.com wrote:
@@ -86,49 +84,45 @@ On 18:25-20250808, rs@ti.com wrote:
 > 
 > Add the relevant device tree node for Imagination's BXS-4-64 GPU.
 > 
-> These devices specifically do not set the dma-coherent bit because they
-> do not use the same MSMC configuration as other BXS-4-64 enabled TI
-> platforms.
+> These devices uses a similar MSMC configuration to the J721S2. As such,
+> they also require the use of the dma-coherent attribute.
 > 
 > Signed-off-by: Randolph Sapp <rs@ti.com>
 > ---
->  .../boot/dts/ti/k3-am62p-j722s-common-main.dtsi     | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> index 2e5e25a8ca86..a51db8f9dff8 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> @@ -690,6 +690,19 @@ ospi0: spi@fc40000 {
->  		};
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> index 7c5b0c69897d..a44ca34dda62 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -2691,4 +2691,18 @@ bist_main14: bist@33c0000 {
+>  		bootph-pre-ram;
+>  		ti,sci-dev-id = <234>;
 >  	};
->  
-> +	gpu: gpu@fd80000 {
+> +
+> +	gpu: gpu@4e20000000 {
 > +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
 
-Note the discussion in https://lore.kernel.org/linux-arm-kernel/DBE4UO2RGAYX.17V1DAF8MQYJM@kernel.org/
+Following  https://lore.kernel.org/linux-arm-kernel/DBE4UO2RGAYX.17V1DAF8MQYJM@kernel.org/
+Is it worth having ti,j784s4-gpu here? Are there any SoC specific quirks
+that driver will need to handle?
 
-> +		reg = <0x00 0x0fd80000 0x00 0x80000>;
-> +		clocks = <&k3_clks 237 1>;
+> +		reg = <0x4e 0x20000000 0x00 0x80000>;
+> +		clocks = <&k3_clks 181 1>;
 > +		clock-names = "core";
-> +		assigned-clocks = <&k3_clks 237 1>;
+> +		assigned-clocks = <&k3_clks 181 1>;
 > +		assigned-clock-rates = <800000000>;
-> +		interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>,
-> +				<&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
+> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> +		power-domains = <&k3_pds 181 TI_SCI_PD_EXCLUSIVE>,
+> +				<&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
 > +		power-domain-names = "a", "b";
+> +		dma-coherent;
 > +	};
-> +
->  	cpsw3g: ethernet@8000000 {
->  		compatible = "ti,am642-cpsw-nuss";
->  		#address-cells = <2>;
+>  };
 > -- 
 > 2.50.1
 > 
-
-Is the issue that Michael reported
-https://lore.kernel.org/linux-arm-kernel/20250716134717.4085567-3-mwalle@kernel.org/
-resolved?
 
 -- 
 Regards,
