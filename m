@@ -1,149 +1,126 @@
-Return-Path: <devicetree+bounces-204242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD403B24A64
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:16:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F123B24AA8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 115A43B0776
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:15:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E9CE7B4974
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2452E7F2F;
-	Wed, 13 Aug 2025 13:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102E92EA49F;
+	Wed, 13 Aug 2025 13:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CbJPAx9a"
+	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="zts5AfOi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB21374040;
-	Wed, 13 Aug 2025 13:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392FC2E92A6
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 13:34:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755090940; cv=none; b=HlttxnzkgXNer0gsiTPIex2AtRz2pbzDNo4cfWuVCw+9PYQP7qYBMoVB60RJ9596Uy/tDpL1GyvFiiKu68wzEH/HHCQJqP+GjiZMD5h1NniECoTtZmucA3bF1ufLgl+UbZ2GhBBewvvubl1UxCJRJFRNXRy9omQAClSaYZofN9Q=
+	t=1755092061; cv=none; b=IFOmuffm3l+QBr2g0nUFevHpSBtAGjSRLC8o5kl6zDZ6ocG7JKHoFJS2CbL9sJLy5S6CFd9w7OS6uvYxHyTyJ9sVT8+zZdLRTYywYxVw5pFr16xtLhosVlGgVgjsVjs9Y2Y5bjpCLuBrM18PX9d/SUvnW3Vkrwu8XFIEXsfD8Pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755090940; c=relaxed/simple;
-	bh=bV71xf+f9QJOsVohDQLije+nacy+gxH0Wf4/5ROh5JU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h+sLfkRcjkbv2kz2WVRVFojl+lODSvXE0OIIEfnP6PG+8AJVpUBgFpVT8mmY90i0wLaO/69yw/2IBTJZrvifoMRqdJ9SdKiR5AKO5Yj4FUnckQW9tkH3ppGGxVdfKOyaYE/vvVI2A0YfqmgLQUlxyYox8rKaD/XYjBEguLzhfOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CbJPAx9a; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DDFWtc1705331;
-	Wed, 13 Aug 2025 08:15:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755090932;
-	bh=wOw2qc5uTTadm+FwJMr/jc3sueTsMi+eiVewiY1neSo=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=CbJPAx9ayLZOjdJf6yfzZo0UwzCQHJiQwhBoB8OjZtQ7JyEe55r6YOIVsjjZQcqw2
-	 Uf3oZ/cxo1bxKjRgETND4Uqjr41Nc0HsYxVspcI+c+0l4bku5Ybl9NhIZhjNZ0gXvT
-	 cjTXAOPlerOZxe9tr0pRXN9f7t6nwTGgthwqrs/c=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DDFWR31097033
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 08:15:32 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
- Aug 2025 08:15:31 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 13 Aug 2025 08:15:31 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DDFUfV2039114;
-	Wed, 13 Aug 2025 08:15:31 -0500
-Date: Wed, 13 Aug 2025 18:45:30 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Akashdeep Kaur <a-kaur@ti.com>
-CC: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vishalm@ti.com>, <sebin.francis@ti.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62x-sk-common: Remove the
- unused config from USB1_DRVVBUS
-Message-ID: <20250813131530.apibc4p6t2uo5bkr@lcpd911>
-References: <20250731115631.3263798-1-a-kaur@ti.com>
- <20250731115631.3263798-3-a-kaur@ti.com>
+	s=arc-20240116; t=1755092061; c=relaxed/simple;
+	bh=fNSC8w8HU0S89hQRnFJWFWREK6fXZjS72GfrRn4HArw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bRwNNKcTVT0PmwwvrEvuMdCts+GwcxPaamIbl/wCChEc07KIEn8LtoFsG1CJn4pgncIlnve5ahh82VWHymzBqnxFCqfL7tNmJeIoblCdcNV7ttZ/xHAd8tw67rT4bMnYBI38DKf8tlfs919XgXr53/5MAKgiIObgxyGZe5iqb9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=zts5AfOi; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3b79bdc9a7dso4027527f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 06:34:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1755092056; x=1755696856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fNSC8w8HU0S89hQRnFJWFWREK6fXZjS72GfrRn4HArw=;
+        b=zts5AfOieDGtIpBk2bnNnf3iiJNQg6K8rn3kUC9fc4ndoyX9jnBrcU6x6iHb7qUO3B
+         8Glfm88viDrW9fYLImCF3awDhsXQR5j/9Tnspf/hNTi9a7Mxgbvk9/N9uSpofAZXJUes
+         duIyApbZ6pD6Jiz4KTsHNefl2uEGh8nOzy/3YVUIWQAXYq18DdXxZh8vt48lfG0IEhLJ
+         ZiOztvyokuujAtESWcStkFuHzqrErEhVYgbCK02GiOjp30kScY/UGyJ/baxuuqSFjY/h
+         KLqSDClYxOULDu3kFVDRMsf5tILszqYQawDpI7xnlW7MpiZFyoDFCCF85NNB7YfKQiBj
+         IN7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755092056; x=1755696856;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fNSC8w8HU0S89hQRnFJWFWREK6fXZjS72GfrRn4HArw=;
+        b=Imw4zlIZ62uVKqEnWP92YkX4xtbc7SUvAGM4oNxeOqBw7rxI3A53ae6gOAE3X+pPe3
+         Rk3+7MCxJ7Ws1u746NgsLYgnumti6GPK1utJry8dsCcpJqYdRgQsJX5rlfxWa/RMOgXJ
+         zcLU2eijK6f+OevRKaZQATPL13kjFCmtP1ueX1emOOTpjfda8RuCNzsADWGpM9coGfer
+         K5mOWGSGjRHfcogXRnJpftD2j5NSgfZ8UhqItXKq4SlUYeBGGzpjHGE+Ciah5N3eN/9p
+         xk25eGTDWL1bOre94RR1akGtT5JzC9HvEqjHvIOYJJTAN/hYjnd1Fv5U7WIHGsYvK8it
+         CCrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXtu9JCobcVlm28VndJkjy2m+iCJELY7ur1/9UoCqZJLuLtqZ+DPP66cvBALFlSwFIXsO23MbTN/5t3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzxxuf+o6pkdB7r2Dh9N16Cmdu7AYqCHDqPdmD8n+WFfwoQKJ+D
+	QO7SzA4ZIRodLLDThxysqzD1ET6lLcAtI6Ym3UgDiCePtFlndrbv9II5Vo45anq5PFM=
+X-Gm-Gg: ASbGncvynrVmBwJ3+U7gFLK93JXhADkWRVvQxAFlP/UeIhPlJS8gOeGual6F0oOAJsa
+	oUKlytP3v8eaceNyERIBc4oRaRjanQtWk2+QShXiixbgVuaU/qOftoYbQO2ZIqfhyg3QKtl+A69
+	XIUvpBKGa4QgvFWqZkDanpbbCbwu0ZCPiAmsw7PzbVJhDtieckwTgPotrS51Ueq2ExTgF63Lpmx
+	9Anl49sDNpSIZkvZWI565LBiNL3ItEAnl6+0Jd2zcnOPW6IpcZU/gqSjByEQdVAOKWLw7MaCx34
+	BHQBwaJX1tGdJCmijosNio4ptR2dzKjggqx8ROWUd7BT9K54aIoKRwrlG3nprX36pdn8eAYSE0b
+	9AZKzi+dUTna7G2Os7A7jVu2PymYOqKKziZoKxQarWq6Ys77N5RPRVBY7ijzAq4+h9+/dwQz6ch
+	+jZ0853h5b3wEvWmW+GBtJ
+X-Google-Smtp-Source: AGHT+IGyWBRLcYyjmPdaFJ7RJMvGFJChrNnUkFexYqA+15BorH+hR4bUKBZZRC1EER2gmnrpcLdyVA==
+X-Received: by 2002:a05:6000:26c9:b0:3b8:ff3b:6437 with SMTP id ffacd0b85a97d-3b917c85890mr2243633f8f.0.1755092055765;
+        Wed, 13 Aug 2025 06:34:15 -0700 (PDT)
+Received: from ?IPV6:2a02:1807:2a00:3400:388a:2f48:ed4:7e0e? ([2a02:1807:2a00:3400:388a:2f48:ed4:7e0e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b8e0846777sm37944948f8f.48.2025.08.13.06.34.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Aug 2025 06:34:15 -0700 (PDT)
+Message-ID: <463dcfa3-152e-4a48-9821-debdc29c89b2@hammernet.be>
+Date: Wed, 13 Aug 2025 15:34:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250731115631.3263798-3-a-kaur@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v5 4/5] riscv: dts: spacemit: Add Ethernet
+ support for BPI-F3
+To: Vivian Wang <wangruikang@iscas.ac.cn>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Shuah Khan <skhan@linuxfoundation.org>
+References: <20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn>
+ <20250812-net-k1-emac-v5-4-dd17c4905f49@iscas.ac.cn>
+Content-Language: en-US
+From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+In-Reply-To: <20250812-net-k1-emac-v5-4-dd17c4905f49@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Jul 31, 2025 at 17:26:30 +0530, Akashdeep Kaur wrote:
-> After the SoC has entered the Deep Sleep mode, USB1 can be used to wakeup
-
-Just leaving my comments on the commit message here since 1st patch
-seems to be pretty much the same commit message.
-
-Let's reword this as --> Deep Sleep low power mode.
-Makes it a bit more clear.
-
-> the SoC based on USB events triggered by USB devices. This requires that
-> the pin corresponding to the Type-A connector remains pulled up even after
-> the SoC has entered the Deep Sleep mode.
-> For that, either deep Sleep pullup can be selected or the pin can have the
-
-Nit: Be consistent with either deep sleep, or Deep Sleep, don't mix case.
-Also, please can we talk here in terms of exactly which macros we're
-talking about? For eg. if deep sleep pullup == PIN_DS_PULLUD_ENABLE, then
-please mention that in a bracket or something for people who may not
-necessarily be aware of all these terms.
 
 
-> same configuration that it had when SoC was in active mode.
-> In order for deep sleep configuration to take effect, the deep sleep
-> control bit has to be enabled.
+On 8/12/25 04:02, Vivian Wang wrote:
+> Banana Pi BPI-F3 uses an RGMII PHY for each port and uses GPIO for PHY
+> reset.
+>
+> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
+>
+Tested on Banana Pi BPI-F3 and Orange Pi RV2. Verified SSH shell over eth0
+and eth1 interfaces, and basic UDP connectivity using iperf3. Thank you!
 
-Please talk with some references, because not everyone will be able to
-follow what we mean by deep sleep control bit/ deep sleep configuration.
+Tested-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
 
-> Remove the deep sleep state configuration from USB1_DRVBUS pin as it is
-> anyways not taking effect (deep sleep control bit is not set).
-> 
-> This reverts commit 527f884d2d94981016e181dcbd4c4b5bf597c0ad.
-
-And so are you in conclusion saying that this patch is just unnecessary/
-useless? The bracket message feels to me that you are saying that if we set
-the deep sleep control bit this patch will start working as expected?
-Please can you clarify a bit on that end?
-
-> 
-> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 13e1d36123d5..d3bed23134ca 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -249,7 +249,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
->  
->  	main_usb1_pins_default: main-usb1-default-pins {
->  		pinctrl-single,pins = <
-> -			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
-> +			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
->  		>;
->  	};
->  
-
-Sorry for the long review on the commit message, but context feels like
-everything when it comes to small patches. Hence trying to make sure
-everyone understands what's being done here... :)
-
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+Kind regards,
+Hendrik
 
