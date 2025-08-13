@@ -1,164 +1,135 @@
-Return-Path: <devicetree+bounces-204323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE55AB24FA9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:27:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2EBB24FF3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:39:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF7997210D9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:21:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87CEF7A75E9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D147288C38;
-	Wed, 13 Aug 2025 16:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CBE2874E0;
+	Wed, 13 Aug 2025 16:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0S2YRBz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="sLdiBpUQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5045C288C34;
-	Wed, 13 Aug 2025 16:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE31228CBC;
+	Wed, 13 Aug 2025 16:39:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755101980; cv=none; b=rI97LJ8FVIVBZSZuL/oTBHgfi7Uoh4PJgR0FDJcnZ+OXHvlte7wZZ0rmSK7koYesvmqXQYf1kedvIIGyASkY0KlbzYv2nOs2hj0BlGXq3g8UIvlZJMs9RdnoNYTBD4MMt9SJBeo3TcsuFhP2mB/pMJGjVcG8U5G3ivnKRceNPug=
+	t=1755103170; cv=none; b=QkPQzd6WKC2rQQiUcbHxRg/JFXuenWJ4CxshCS5IChDp2WGNm0pNuyHPZg+L9YqXvvrt+20Uax/n1s+l9arLg2uY9W+MAwf0nEOERouY5b/APR4+SZdPagqB+snEK29aLExJgNV3gHu6acdkDeHf4aukTjbKwBfbs+uYSevBuwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755101980; c=relaxed/simple;
-	bh=zktYY27yEtPifC5oo8BefdXqq2I5u3RdgBI9sbeT2qI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ut8BC6OE+argAHrX2LEvcPCyDe4qkd/FhVJ0XHR2Vmgv3TPfgvVdf4N1D40CIxOZuFrTlj5pdSLiVNNq77nz2Grpg0sKk/tRyCz4LTwpkHO5iko50TS8PiY36eao89XW00qeP4BJToa0GpzD7ZxSULZ5zdySLSgvmLUUY/75oDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0S2YRBz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3822BC4CEEB;
-	Wed, 13 Aug 2025 16:19:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755101978;
-	bh=zktYY27yEtPifC5oo8BefdXqq2I5u3RdgBI9sbeT2qI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y0S2YRBzfti9YauFJtc0246BQaU8Vz4CII8FiOkOv1smqtWTMZvDlNtwRLlpz6Z2i
-	 lMSMvi5S/qe+VDAdrCLvRj81AE7F4qPPQ9DP5DmSKUWv4yPlmvnsWgt76mVofMB/FN
-	 86tSaObspWlM0FZ2jFZegEzS+8e0uPn151PUrl24VNgYDCqKFzYOZ+rco7qP8j/1y7
-	 d1qUhzP74UlJfN8lrP3o465itcMvtYOMAdjhkrDApbtaUAPXhIzR7z4+aqhM3g9b8x
-	 Pw0vwX6LObtKhrGCN1ieH7uB16pru91AcfI5uCRkcJ1E7OQHmfi21dWdjaWgAN/BHz
-	 4y7tyUcz7JeDg==
-Message-ID: <017a4d15-286d-4e0a-89ff-f658009a6de6@kernel.org>
-Date: Wed, 13 Aug 2025 18:19:34 +0200
+	s=arc-20240116; t=1755103170; c=relaxed/simple;
+	bh=6jhThN3V5Sy9HAQLake0C0yKwgeTlss8RsoaPr0/fIY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TPVtvD/RC9vLYO9Y2qJnJBgkTDlZDP6uE2L+cM9y0otRTwueSwUdfbCIKYRr6+FWPZ02l3tNWfYQ9ugVqiuZSIVctluVOOA1IhoOQbitoAC3BCoERT6dkNS/ZSvgs6CFdf10rwbod3mbjQif5KcjBjDyvp4VzPaW5gLckbY2gYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=sLdiBpUQ; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=0RmjA/0wiM4s7TkHx13AGbryUZlazMaMKFUlnrneZd8=; b=sLdiBpUQ6Yi+E7x3xU6hlF9M8i
+	PnCofosIIGDvBfpg1eNpOM7+bfa0aFRmpvdr80QrtJ4ZAihQqJI/yt8SHMhnaL94kqYLIq/Vl7sZ0
+	z3r12w8VXITbqpgNB981DFKF4qjjhw8HfynZBRCAj8z4okX0Ycn1Rz3UiGNTrvHkkME9mEPB7FNWZ
+	BBgiPuymq90exhf6beW9yubxMbXDTN8qvjdqdrtcLR8kcITjAccHv0uuZQXY6Eitdn/sEdYKOe8Dn
+	5ijge/Vtvg4pvrx9GIfPJI9NslD/y4GbqhV+tGVBGiBoVPEPbcCojGZJgv1lX+SULMrBi/WpbjN5e
+	wE7F558w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34320)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1umEVL-00073q-0M;
+	Wed, 13 Aug 2025 17:39:11 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1umEVF-0005uD-34;
+	Wed, 13 Aug 2025 17:39:06 +0100
+Date: Wed, 13 Aug 2025 17:39:05 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej@kernel.org>,
+	Samuel Holland <samuel@sholland.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Andre Przywara <andre.przywara@arm.com>
+Subject: Re: [PATCH net-next v2 06/10] arm64: dts: allwinner: a527:
+ cubie-a5e: Add ethernet PHY reset setting
+Message-ID: <aJy_qUbmqoOG-GBC@shell.armlinux.org.uk>
+References: <20250813145540.2577789-1-wens@kernel.org>
+ <20250813145540.2577789-7-wens@kernel.org>
+ <aJyraGJ3JbvfGfEw@shell.armlinux.org.uk>
+ <CAGb2v67cKrQygew2CVaq5GCGvzcpkSdU_12Gjq9KR7tFFBow0Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] spi: dt-bindings: add doc for Amlogic A113L2 SFC
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Liang Yang <liang.yang@amlogic.com>,
- Feng Chen <feng.chen@amlogic.com>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-References: <20250808-spifc-v1-0-ff4e30e26a6b@amlogic.com>
- <20250808-spifc-v1-1-ff4e30e26a6b@amlogic.com>
- <20250808-adamant-fat-raven-38c8b3@kuoka>
- <7fab19de-8ed1-4fe5-b2a4-a7e9c13d8424@amlogic.com>
- <5cc336bc-f071-41d2-b59a-af0df23af00b@kernel.org>
- <d872a711-7442-4e2e-bc59-0d6f4f656fde@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <d872a711-7442-4e2e-bc59-0d6f4f656fde@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGb2v67cKrQygew2CVaq5GCGvzcpkSdU_12Gjq9KR7tFFBow0Q@mail.gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 13/08/2025 11:34, Xianwei Zhao wrote:
-> Hi Krzysztof,
->     Thanks  for your reply.
+On Wed, Aug 13, 2025 at 11:51:18PM +0800, Chen-Yu Tsai wrote:
+> On Wed, Aug 13, 2025 at 11:12 PM Russell King (Oracle)
+> <linux@armlinux.org.uk> wrote:
+> >
+> > On Wed, Aug 13, 2025 at 10:55:36PM +0800, Chen-Yu Tsai wrote:
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > > index 70d439bc845c..d4cee2222104 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
+> > > @@ -94,6 +94,9 @@ &mdio0 {
+> > >       ext_rgmii_phy: ethernet-phy@1 {
+> > >               compatible = "ethernet-phy-ieee802.3-c22";
+> > >               reg = <1>;
+> > > +             reset-gpios = <&pio 7 8 GPIO_ACTIVE_LOW>; /* PH8 */
+> > > +             reset-assert-us = <10000>;
+> > > +             reset-deassert-us = <150000>;
+> >
+> > Please verify that kexec works with this, as if the calling kernel
+> > places the PHY in reset and then kexec's, and the reset remains
+> > asserted, the PHY will not be detected.
 > 
-> On 2025/8/13 15:36, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 13/08/2025 08:13, Xianwei Zhao wrote:
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-controller.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: amlogic,a4-spifc
->>>>> +
->>>>> +  reg:
->>>>> +    items:
->>>>> +      - description: core registers
->>>>> +      - description: parent clk control registers
->>>>
->>>> Why are you poking to parent node or to clock registers? This looks like
->>>> mixing up device address spaces.
->>>>
->>>
->>> The SPIFC bus clock multiplexes EMMC modules, so the corresponding
->>> frequency division register is also in EMMC module. The SPIFC and the
->>> EMMC modules cannot be used simultaneously.
->>
->> Then obviously you cannot put here EMMC or parent registers.
->>
->> It looks really like you miss proper hardware representation.
->>
+> I found this to be a bit confusing to be honest.
 > 
-> It does seem a bit unusual. However, in our hardware design, EMMC and 
-> SFC modules are integrated, and they share common resources such as the 
-> clock and I/O pins .They are mutually exclusive.
-> 
+> If I put the reset description in the PHY (where I think it belongs),
+> then it wouldn't work if the reset isn't by default deasserted (through
+> some pull-up). This would be similar to the kexec scenario.
 
-How did you express it in DT? This looks similar to serial engines and
-such are not implemented independently.
+The reason for this is quite simple. While it's logical to put it in
+there, the problem is that the PHY doesn't respond on the MDIO bus
+while it's reset pin is asserted.
 
-> Here, I'll modify the register description. Do you think it's feasible
+Consequently, when we probe the MDIO bus to detect PHYs and discover
+the PHY IDs, we get no response, and thus we believe there isn't a
+device at the address. That means we don't create a device, and thus
+there's no mdio device for the address.
 
-No, because it changes nothing... Clock provider pokes clock divider
-registers. Not clock consumer.
+There is a work-around, which is to encode the PHY ID in the DT
+compatible (check the ethernet-phy binding). However, note that we
+will then not read the actual PHY ID (maybe we should?) which means
+if the driver wants to know e.g. the revision, or during production
+the PHY changes, it will require DT to change.
 
-Best regards,
-Krzysztof
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
