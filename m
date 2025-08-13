@@ -1,48 +1,57 @@
-Return-Path: <devicetree+bounces-204157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4365B24455
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:31:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2227CB2445A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 10:33:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78CC95A3230
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:29:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 825A03B8563
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 08:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7E152EFD96;
-	Wed, 13 Aug 2025 08:27:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 688172EBBAC;
+	Wed, 13 Aug 2025 08:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pRk/y4Uz"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="E5tytUhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52DA2ED85F;
-	Wed, 13 Aug 2025 08:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E2E2C21C8;
+	Wed, 13 Aug 2025 08:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755073667; cv=none; b=ZECYSg0QkxdIOQGgU0sqZFY+E7EtjoAXyBz9QnB3BdLWuiZ0vdsbLazw2yo6vFNQ1+Z0LBTM7Rzq/6jkkeSxm6CEeVvVYuX1v/ZlD9WB0dG96aBYeqpgj0p7mZTV27TAnXPZyzo9LEtdDTm3yrSqQT811SPVyP9qbh2vM1JsOnE=
+	t=1755073768; cv=none; b=R9CL0V1eKvLKZ6HLW2q4LEQs9JsleT098cBj28xOo/i0MrSTLcumj6ZbSsLkCuAzB8itgYqwJU23hBMIWumKOv0ugUOoUpcPmdN5T+zStDuFeeZGjPRC2kJqgPAoEHzLJXMScyZOOTHsN8tSil6oBiTwA5sorsXamP+NAG8/BEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755073667; c=relaxed/simple;
-	bh=oEWD46vDy9z48drINkgK+NrICiqVXzJRKRKE95sUsUs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DAK/TtwkOUny3nEFaPdSLJSi0GwRO71Wi8qvm2dRj+C+4bCG6krsoEb7ZCDcIf6+zI5eIs84RNR1pFTZZMszIh2pCg+lflQXNdTN2OeQQXYoZ0wbZ5AFOhgm1BB2saBh5/rvtOFzmKXNPc4kawmrA5bsoqU3jrqPNGfpTk8Pkrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pRk/y4Uz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B037C4CEEB;
-	Wed, 13 Aug 2025 08:27:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755073667;
-	bh=oEWD46vDy9z48drINkgK+NrICiqVXzJRKRKE95sUsUs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pRk/y4UzDZ+EtlkFst7bXN5++uMaluUTW59uizh4+TKxO49bW5PxisxOs8UAUkGfm
-	 HNyO/HZIzliD/3pnmZJToE+0WnzA4vgqgajdXgSufqONXFd45i2CHR/BNTz/q2BTfI
-	 AblwcTwi0TxsvG71Zgqg/JQHIx3ErIG41+nNz2x1k5R7VKUK/P+3GWLiU+IS6pRwn5
-	 icOOHQiaIM+wdWo3eKApc154+xJAsTw1LEx3dGlH9GQJIcrZwDlotgiaXPPSpFLC+U
-	 GXrcYpkLwWSuThw2F3QgnICE6dVU6eVHjTfdmcsRLBZl0bi66P3xWMjwYzrLW9Somd
-	 H8AxBv7UTGzuw==
-Message-ID: <c3cf9b97-3883-4ebb-a2ed-0033adebda87@kernel.org>
-Date: Wed, 13 Aug 2025 10:27:42 +0200
+	s=arc-20240116; t=1755073768; c=relaxed/simple;
+	bh=U9SP2g+1o5HuQsjOdWWsXoBuSvpDRttSOJq85x+A4CI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=WD/cnEJ9yN8kjpSe9RUo8eBoRLRxkQJ+Jk8ZG/KAnIgeyW+idktvGYimb4hE/FAkUSkuPzK+3LiK7u1cJsLw2ubbEkGFUMOJ+L3pZ2rGiFv8md9eF0VdHtS/oW8S5ESffLY442n8MzVPqspR9pgHNnHLl3JqXe+pgH6hBq0M6So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=E5tytUhX; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 823A8A024B;
+	Wed, 13 Aug 2025 10:29:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=kVMjeVimj9bigs3Ft2HZ
+	zQg53xmlBKzfvvopzZb05O0=; b=E5tytUhXXMptxH2U2Z5HK9cD5DDwOqB7OZuA
+	8Ygm0pG+3d782Fv89BRFsm8NkmD7QbU/u/3kvdhQqzduShzMMjvvZNOEOv/fV2gp
+	4afRxcHV7UN68ndSGmlPYAQymy0uwyeLf/bBXyBTEiyrtC2tjKiXr6u7XcY52We9
+	L7sh6wQNJIWw/HIZrdCI2A8Mcqsx/mlUFvC5L4UxEmqicv359Ny3LN5maWsezGR2
+	yF6LYNebXletH93zeqoigFtnNTJkGrJRNnRA1P4dQkiUilVBItfLNTyOZnm28S6g
+	CmMZ5+Mpla0H7r1FKoiSxcVI2DXtbDBzeadP8jgGzA2/CdgjZ7ASsfOhnGxHz5av
+	7DY2DOY56lXRTumCOJ4qFj3H6ET62QN6oacTOzWLy+CSTtLl5VUd2oGMS/8ZAIzf
+	jjM8WiuxexfXJW68Ace1O4xNFTJiU1kqU+YoiRt4E4qYcvuNP2PRIHJZbPbnNPRf
+	RNwvL1x9oWH0F320FQE62Mi+OhDFe8RwxHsX1deMRvyeRg03xeiKLRYnlZqybeqW
+	JDEQVur9QKioq/TaELXoN/qjPGE6xdNFmKmoH8xk9xczCw3b5E/825u2NLiDoqiN
+	teOBNoUYQ9swJ05cgU6x/OzIuE0w74I5KqWYL7gk0ZV2I+gKIgrYgCHCx2+YfXnD
+	G1eC+g0=
+Message-ID: <d9e81ff2-5621-49db-92a1-acf304b225f8@prolan.hu>
+Date: Wed, 13 Aug 2025 10:29:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +59,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: ad7768-1: add new supported
- parts
-To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Michael.Hennerich@analog.com, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jonath4nns@gmail.com
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
- <ecb7406f54938658b51b4469034d87a57086bd1e.1754617360.git.Jonathan.Santos@analog.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+Subject: Re: [PATCH] ARM: dts: imx6-display5: Replace license text comment
+ with SPDX identifier
+To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn
+ Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	"Pengutronix Kernel Team" <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250709-display5-dts-lic-v1-1-81e46a650d3d@prolan.hu>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ecb7406f54938658b51b4469034d87a57086bd1e.1754617360.git.Jonathan.Santos@analog.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20250709-display5-dts-lic-v1-1-81e46a650d3d@prolan.hu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155E617761
 
-On 13/08/2025 04:48, Jonathan Santos wrote:
-> Add compatibles for supported parts in the ad7768-1 family:
-> 	ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1
+Hi,
+
+On 2025. 07. 09. 9:32, Bence Csókás wrote:
+> Replace verbatim license text with a `SPDX-License-Identifier`.
 > 
-> Add property and checks for AFF gain, supported by ADAQ7767-1
-> and ADAQ7769-1 parts:
-> 	adi,aaf-gain
+> The comment header mis-attributes this license to be "X11", but the
+> license text does not include the last line "Except as contained in this
+> notice, the name of the X Consortium shall not be used in advertising or
+> otherwise to promote the sale, use or other dealings in this Software
+> without prior written authorization from the X Consortium.". Therefore,
+> this license is actually equivalent to the SPDX "MIT" license (confirmed
+> by text diffing).
 > 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7768-1.yaml        | 48 +++++++++++++++++--
->  1 file changed, 44 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> index c06d0fc791d3..568a85e0d052 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> @@ -4,18 +4,26 @@
->  $id: http://devicetree.org/schemas/iio/adc/adi,ad7768-1.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Analog Devices AD7768-1 ADC device driver
-> +title: Analog Devices AD7768-1 ADC family device driver
+> Cc: Lukasz Majewski <lukma@denx.de>
+> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
 
-If doing this, drop device driver. It should not be here in the first place.
+So, what do you all think, is this patch acceptable?
 
->  
->  maintainers:
->    - Michael Hennerich <michael.hennerich@analog.com>
->  
->  description: |
-> -  Datasheet at:
-> -    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
-> +  Analog Devices AD7768-1 24-Bit Single Channel Low Power sigma-delta ADC family
-> +
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7767-1.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7768-1.pdf
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7769-1.pdf
->  
->  properties:
->    compatible:
-> -    const: adi,ad7768-1
-> +    enum:
-> +      - adi,ad7768-1
-> +      - adi,adaq7767-1
-> +      - adi,adaq7768-1
-> +      - adi,adaq7769-1
->  
->    reg:
->      maxItems: 1
-> @@ -58,6 +66,23 @@ properties:
->      description:
->        ADC reference voltage supply
->  
-> +  adi,aaf-gain:
-> +    description: |
-> +      Specifies the gain of the Analog Anti-Aliasing Filter (AAF) applied to the
-> +      ADC input, measured in milli-units. The AAF provides additional signal
+Bence
 
-What is milli unit? Isn't gain in dB, so maybe you want mB? Quite
-unpopular to see mB, but we cannot use 1/100 of dB, so I could
-understand it.
-
-> +      rejection within the frequency range of fs ± f3dB, where fs is the sampling
-> +      frequency, and f3dB is the -3dB cutoff frequency. The specific values of
-> +      fs and f3dB, as well as the rejection intensity, depend on the digital
-> +      filter configuration.
-Best regards,
-Krzysztof
 
