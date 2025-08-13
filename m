@@ -1,262 +1,158 @@
-Return-Path: <devicetree+bounces-204024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4155B23DB0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 03:30:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A672FB23DB6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 03:32:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7895D3A6E43
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 01:30:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DBB9563230
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 01:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE1F19004A;
-	Wed, 13 Aug 2025 01:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE882199230;
+	Wed, 13 Aug 2025 01:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nEKnXw2T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IiB6wOPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDBB72C0F8F;
-	Wed, 13 Aug 2025 01:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81426249EB
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 01:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755048642; cv=none; b=IM7Rr/KcdRqqr05ti4ciMzy9+Y2pydFdiDbl0eKMo5zdBZ4iqL6bHmyJCzvkSo+XekBwjFCHmu+YJjtBK4t3xOPhJeoXuib/QqKjFXBAX9hQmKYC8QGKxuWa3qPOgRfWeopx850XkkhXzsOWNArRtYUfLLjEX6eNaAoxakSKnJs=
+	t=1755048707; cv=none; b=YHYyTwL/FfolXl2PFyX/l9nQXPLnCchKrAg9JMnaqfxqb3zWzBHKMEuVbb811OHPtZe8Fhq13NfV9Nc6+Lvz+34eWJt9miphuArfCLNMigncbJcU38qSSTQTwwkfMAhd2RJTiBt+jp85Lx1pEDlyziaX1BDpv/zVPxmKZFwpAk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755048642; c=relaxed/simple;
-	bh=00kgvQ3E3mMUK4/2JuryhLdEXJ7T8Tc5ujqXa2qhFU8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m6QYRypZdvQvFyP/+xXswPJgmT5r2Z69RaxhRAm+4I261MZbNka9e87gn/X0MX2IfUgCr1NbJmFjDwB6XS2oHpfGbBp0XjHyUlN7XesesPXoDnoqZUzr52kbxrpzoR5mHIGEGkkZmBZdnqXFZmyJVpFfEXrOfb5qgYRE7cnk5pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nEKnXw2T; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1755048641; x=1786584641;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=00kgvQ3E3mMUK4/2JuryhLdEXJ7T8Tc5ujqXa2qhFU8=;
-  b=nEKnXw2TI93l3pr2yxDJEd37GHrI+uaz4IiQPxcXCA7akMXe2et2pF1R
-   ggIey+02Q6+k30BTK71P4ABH9at7RBbuwPAyj1ifPYUjjTAOgrEdJxero
-   mbtU3r07i0HWluUiz3uwdD+z/iUxGFQscVu25rTDVDBj8nd0HrFyPpmv1
-   FnNeHjBBTu7dKqfMUsA1AWlEQ0gleR/kBc/vluvA9FiuZgqSRNfFt3gXp
-   GG2NOaM6ZZ3iC5QO5lJJ1fi8E7ybChzgGIGj4XQrn09eLvQk4zn+Dg1GY
-   pMh1bHdGydXetrbWD17tt2xNlFwHGF2PSG6PjzDZTXBiPc6vrv8Rl7eC7
-   w==;
-X-CSE-ConnectionGUID: kIbx9KLtT+uS65wPWPgtww==
-X-CSE-MsgGUID: /PAsk/T9QR2INrLM8QRUxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11520"; a="57397573"
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="57397573"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2025 18:30:39 -0700
-X-CSE-ConnectionGUID: ZNLe2exQT++nQgiXoeHG6w==
-X-CSE-MsgGUID: iyl/+SfOTQKjgNISXYJB7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.17,285,1747724400"; 
-   d="scan'208";a="170544406"
-Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 12 Aug 2025 18:30:35 -0700
-Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1um0JS-0009RE-2C;
-	Wed, 13 Aug 2025 01:30:07 +0000
-Date: Wed, 13 Aug 2025 09:28:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexander Smirnov <asmirnou@pinefeat.co.uk>, mchehab@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Aliaksandr Smirnou <support@pinefeat.co.uk>
-Subject: Re: [PATCH v2 2/2] media/i2c: Pinefeat cef168 lens control board
- driver
-Message-ID: <202508130917.FKIv8K4Z-lkp@intel.com>
-References: <20250811213102.15703-3-aliaksandr.smirnou@gmail.com>
+	s=arc-20240116; t=1755048707; c=relaxed/simple;
+	bh=MvPb3zCS9Grc/PvA90a/i9WK+vFW2rPw8r2AYE0gtqI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZmC/CQj/23obtM99fD8tDilquphvhc0qeTjVViRcp91RQR5R/ix9XJk1XU9kk//4KRfqHyJ7H2zuq/c38ojMuzWZiDGWDjMlcnLC/gzjEZJWhmsqTqkpon3e6rZB7bGn5foao0EHRqDyEmUjDDIl/tYQldzDgBP1xwrf51LucyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IiB6wOPv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57CLAlaW025489
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 01:31:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MvPb3zCS9Grc/PvA90a/i9WK+vFW2rPw8r2AYE0gtqI=; b=IiB6wOPvYXwAKf4H
+	3/5ujJyGZpMq2KmwJJ8MUDUMPmhOg6LTMPvJY+5VQRhRUBcG2HSGxdyrIg9wFCyn
+	JWlCSeL39kioCp1HNWSG2J8g6n1yRorLsefD+ozoJY1q2CE3Du1/5az7l3Br4bLb
+	Kxa2n+GhYeTjn7h8jKjky4mhvKFzr4ATAp0MgU0xlwy3LnOqpm5AOUR5BxPZYAMf
+	cB+flLbu68MCm8sxnUiRmzmegr6up+BHxPQXJ6DGkaOcIeUfm9kc7N/RQQ7cIaa+
+	Nm5fPdevV650KCEApjTTlFYQruZu6AJ9Zdl9Xt22agft7PMGOFHZNl29HAFN8N2s
+	Lx5XWQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9st7ds-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 01:31:45 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-242fe34add1so15151125ad.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Aug 2025 18:31:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755048705; x=1755653505;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MvPb3zCS9Grc/PvA90a/i9WK+vFW2rPw8r2AYE0gtqI=;
+        b=K1i1aAuEb/mol0J9OV7E9ljVJgmsyJdSiOmsDCXcwrELCSq+eFcpIWCi5GEpZ/kQPf
+         IzgoTyEcgXLIVgd9PChXtntQ8i8RsvyxTxiLK9mpIQGW4jfXypgm8xhcXJ5JdJp8Xnmj
+         Yonw1BUuFVmLx5yINFxq7/+bS7R5dnSOMkGxEapPaBC2Jkw9IuKmBmCbmr4B6nx6q61i
+         64SAa0GI+V/Wu+WLkTXLjrBfIvTHoyfmfXnb82PjOYWwWbALtGbjzQ8DZkDiTcHuN5M1
+         YEfu7dmYrKh4RxupEeGO+fRDISbXlbto/U1HASsncPD27kINnEQt4Yqf+p5VCVmP1eCM
+         pADw==
+X-Forwarded-Encrypted: i=1; AJvYcCVgmVyjdV0hmptbDmMj+9P5CMprhC8i7lhyBBTUd1pFl/NFGUO8VGHKpAJDhkO/WH1ZAGohC5oa6ggt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9d15mkKDLEYAHbQs4Qws2HkAfjcK/j8T+EEG60WjT2MmNF5eP
+	l5j2Y0kTFN1/YHEE6ud8DRTgBT74vHgFGw9yDpkqTske952zH5UvdGf5Hmkv07sx9SrKvVcYtJ3
+	ch8fi5HO02gy/rp4nNqb1rLELqR5vlmNO25LIqVbtdjZJVSud+BUM/YdiJu34arcH
+X-Gm-Gg: ASbGncsPFv2p3bVBAqGvG+Dvi/L8aebglo+OWSSKh2+uaRQNcdBWimklWNAbUwitQ3z
+	qWmpmiIc+KCDk/Bd3+VTHHpCYT2Xe9G3LHpJRxeRWVLOZ4KOga90vd4Uc2SgFGImkSIRDZuAojC
+	3qZnJelAAWaLNidyFysUNWqFIiXLVAKkSMLD+I/G2Oe4AWG3kdw0pOoE5q6lLkDDwkpTXNL4Y+T
+	zbUb2CjqLjioH3n1Mhq3Vzd8rKqBC9tc5ZehDT3hvL4YsZdtfl02/JtWCd8qyMTG2F1+AOXXrv4
+	IW5DdgW39+C/9w9821x0njBkCpnNE+h05ynTzp6NuaXToldzGu06CSaKDK7+OKyrKK8Ps5XI1y0
+	71BCI3i0XfOS8P3x87wxti1+5xOrp
+X-Received: by 2002:a17:903:3c2c:b0:240:bf59:26bb with SMTP id d9443c01a7336-2430d105d69mr17783315ad.19.1755048704788;
+        Tue, 12 Aug 2025 18:31:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdQ1DXAaDzxKmVvrKlv5h38m6LWfzDz/yLj0/n0px8bSRgCo+HiXsqzUIOas6zP/ZN2Hi6dg==
+X-Received: by 2002:a17:903:3c2c:b0:240:bf59:26bb with SMTP id d9443c01a7336-2430d105d69mr17782695ad.19.1755048704225;
+        Tue, 12 Aug 2025 18:31:44 -0700 (PDT)
+Received: from [10.133.33.58] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241d1ef83f3sm310234365ad.28.2025.08.12.18.31.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Aug 2025 18:31:43 -0700 (PDT)
+Message-ID: <cef1da96-f584-4100-a97d-640fa24e5f54@oss.qualcomm.com>
+Date: Wed, 13 Aug 2025 09:31:36 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250811213102.15703-3-aliaksandr.smirnou@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/5] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Update pcie phy bindings for qcs8300
+To: Vinod Koul <vkoul@kernel.org>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
+        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+        bhelgaas@google.com, johan+linaro@kernel.org, kishon@kernel.org,
+        neil.armstrong@linaro.org, abel.vesa@linaro.org, kw@linux.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
+        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250811071131.982983-1-ziyue.zhang@oss.qualcomm.com>
+ <20250811071131.982983-2-ziyue.zhang@oss.qualcomm.com>
+ <aJsYd7tAi4CdOfZ9@vaman>
+Content-Language: en-US
+From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
+In-Reply-To: <aJsYd7tAi4CdOfZ9@vaman>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=689beb01 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=buFmA9CyAF0SDTxNqVIA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-ORIG-GUID: taEahbwumMJXhGhyBiKfBftCduc_OIoQ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX6wiMPciV6fhs
+ i/MDcgMm68rQnIGFTuhHlpHRSg1YIUvaT7WG7RnBve6JJY/bkm1w25KyabstZMK+5K9IWZemlip
+ 4XwMytJd/cI16FhNReaMjm3yvWfaS0ldXqBRRn5SGospvaNoEVx0mmFTk+WfXx9k8Mr/NlC5y0I
+ hJ2gaInLFBDot0c8tx+CbNi4GoY5F2GT/BsAcqaJy7DpjMf3qk2X1Snipbg70WXlYmiBkIfaCZW
+ SDqu2Szuzd55XEGGib3ksKKDa6pOiIgmn7sk4ewFEx4RM7rUXIJ7y45sQnPcqUMgRAo0nQT9VRR
+ Cu9YUE/KcpKraUtFy9Ii1LD2stjnmG8j9WON6dqE+1Ku3cgAyofK1oVgeyneCvw1e4aEUwJsPVW
+ vE10DKCc
+X-Proofpoint-GUID: taEahbwumMJXhGhyBiKfBftCduc_OIoQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_08,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090015
 
-Hi Alexander,
 
-kernel test robot noticed the following build warnings:
+On 8/12/2025 6:33 PM, Vinod Koul wrote:
+> On 11-08-25, 15:11, Ziyue Zhang wrote:
+>> The gcc_aux_clk is not required by the PCIe PHY on qcs8300 and is not
+>> specified in the device tree node. Hence, move the qcs8300 phy
+>> compatibility entry into the list of PHYs that require six clocks.
+>>
+>> Removed the phy_aux clock from the PCIe PHY binding as it is no longer
+>> used by any instance.
+> This does not apply on phy tree, please rebase
 
-[auto build test WARNING on 2b38afce25c4e1b8f943ff4f0a2b51d6c40f2ed2]
+Hi Vinod
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Smirnov/dt-bindings-Pinefeat-cef168-lens-control-board/20250812-053441
-base:   2b38afce25c4e1b8f943ff4f0a2b51d6c40f2ed2
-patch link:    https://lore.kernel.org/r/20250811213102.15703-3-aliaksandr.smirnou%40gmail.com
-patch subject: [PATCH v2 2/2] media/i2c: Pinefeat cef168 lens control board driver
-config: arm64-randconfig-r132-20250813 (https://download.01.org/0day-ci/archive/20250813/202508130917.FKIv8K4Z-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250813/202508130917.FKIv8K4Z-lkp@intel.com/reproduce)
+This patch based on the patch you applied in 8.12.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202508130917.FKIv8K4Z-lkp@intel.com/
+dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Update pcie phy bindings
+commit: aac1256a41cfbbaca12d6c0a5753d1e3b8d2d8bf
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/media/i2c/cef168.c:37:13: sparse: sparse: incorrect type in assignment (different base types) @@     expected unsigned short [usertype] val @@     got restricted __le16 [usertype] @@
-   drivers/media/i2c/cef168.c:37:13: sparse:     expected unsigned short [usertype] val
-   drivers/media/i2c/cef168.c:37:13: sparse:     got restricted __le16 [usertype]
->> drivers/media/i2c/cef168.c:76:32: sparse: sparse: cast to restricted __le16
->> drivers/media/i2c/cef168.c:76:32: sparse: sparse: cast to restricted __le16
->> drivers/media/i2c/cef168.c:76:32: sparse: sparse: cast to restricted __le16
->> drivers/media/i2c/cef168.c:76:32: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:77:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:77:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:77:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:77:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:78:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:78:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:78:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:78:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:79:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:79:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:79:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:79:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:80:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:80:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:80:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:80:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:81:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:81:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:81:39: sparse: sparse: cast to restricted __le16
-   drivers/media/i2c/cef168.c:81:39: sparse: sparse: cast to restricted __le16
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
->> drivers/media/i2c/cef168.c:133:30: sparse: sparse: cast to restricted __le32
+Can you try to apply it again ? Thanks
 
-vim +37 drivers/media/i2c/cef168.c
+BRs
+Ziyue
 
-    31	
-    32	static int cef168_i2c_write(struct cef168_device *cef168_dev, u8 cmd, u16 val)
-    33	{
-    34		struct i2c_client *client = v4l2_get_subdevdata(&cef168_dev->sd);
-    35		int retry, ret;
-    36	
-  > 37		val = cpu_to_le16(val);
-    38		char tx_data[4] = { cmd, (val & 0xff), (val >> 8) };
-    39	
-    40		tx_data[3] = crc8(cef168_crc8_table, tx_data, 3, CRC8_INIT_VALUE);
-    41	
-    42		for (retry = 0; retry < 3; retry++) {
-    43			ret = i2c_master_send(client, tx_data, sizeof(tx_data));
-    44			if (ret == sizeof(tx_data))
-    45				return 0;
-    46			else if (ret != -EIO && ret != -EREMOTEIO)
-    47				break;
-    48		}
-    49	
-    50		dev_err(&client->dev, "I2C write fail after %d retries, ret=%d\n",
-    51			retry, ret);
-    52		return -EIO;
-    53	}
-    54	
-    55	static int cef168_i2c_read(struct cef168_device *cef168_dev,
-    56				   struct cef168_data *rx_data)
-    57	{
-    58		struct i2c_client *client = v4l2_get_subdevdata(&cef168_dev->sd);
-    59	
-    60		int ret = i2c_master_recv(client, (char *)rx_data,
-    61					  sizeof(struct cef168_data));
-    62		if (ret != sizeof(struct cef168_data)) {
-    63			dev_err(&client->dev, "I2C read fail, ret=%d\n", ret);
-    64			return -EIO;
-    65		}
-    66	
-    67		u8 computed_crc = crc8(cef168_crc8_table, (const u8 *)rx_data,
-    68				       sizeof(struct cef168_data) - 1, CRC8_INIT_VALUE);
-    69		if (computed_crc != rx_data->crc8) {
-    70			dev_err(&client->dev,
-    71				"CRC mismatch calculated=0x%02X read=0x%02X\n",
-    72				computed_crc, rx_data->crc8);
-    73			return -EIO;
-    74		}
-    75	
-  > 76		rx_data->moving_time = le16_to_cpu(rx_data->moving_time);
-    77		rx_data->focus_position_min = le16_to_cpu(rx_data->focus_position_min);
-    78		rx_data->focus_position_max = le16_to_cpu(rx_data->focus_position_max);
-    79		rx_data->focus_position_cur = le16_to_cpu(rx_data->focus_position_cur);
-    80		rx_data->focus_distance_min = le16_to_cpu(rx_data->focus_distance_min);
-    81		rx_data->focus_distance_max = le16_to_cpu(rx_data->focus_distance_max);
-    82	
-    83		return 0;
-    84	}
-    85	
-    86	static int cef168_set_ctrl(struct v4l2_ctrl *ctrl)
-    87	{
-    88		struct cef168_device *dev = to_cef168(ctrl);
-    89		u8 cmd;
-    90	
-    91		switch (ctrl->id) {
-    92		case V4L2_CID_FOCUS_ABSOLUTE:
-    93			return cef168_i2c_write(dev, INP_SET_FOCUS, ctrl->val);
-    94		case V4L2_CID_FOCUS_RELATIVE:
-    95			cmd = ctrl->val < 0 ? INP_SET_FOCUS_N : INP_SET_FOCUS_P;
-    96			return cef168_i2c_write(dev, cmd, abs(ctrl->val));
-    97		case V4L2_CID_IRIS_ABSOLUTE:
-    98			return cef168_i2c_write(dev, INP_SET_APERTURE, ctrl->val);
-    99		case V4L2_CID_IRIS_RELATIVE:
-   100			cmd = ctrl->val < 0 ? INP_SET_APERTURE_N : INP_SET_APERTURE_P;
-   101			return cef168_i2c_write(dev, cmd, abs(ctrl->val));
-   102		case CEF168_V4L2_CID_CUSTOM(calibrate):
-   103			return cef168_i2c_write(dev, INP_CALIBRATE, 0);
-   104			return 0;
-   105		}
-   106	
-   107		return -EINVAL;
-   108	}
-   109	
-   110	static int cef168_get_ctrl(struct v4l2_ctrl *ctrl)
-   111	{
-   112		struct cef168_device *dev = to_cef168(ctrl);
-   113		int rval;
-   114	
-   115		if (ctrl->id != V4L2_CID_FOCUS_ABSOLUTE &&
-   116		    ctrl->id != CEF168_V4L2_CID_CUSTOM(data) &&
-   117		    ctrl->id != CEF168_V4L2_CID_CUSTOM(focus_range) &&
-   118		    ctrl->id != CEF168_V4L2_CID_CUSTOM(lens_id))
-   119			return -EINVAL;
-   120	
-   121		struct cef168_data data;
-   122	
-   123		rval = cef168_i2c_read(dev, &data);
-   124		if (rval < 0)
-   125			return rval;
-   126	
-   127		switch (ctrl->id) {
-   128		case V4L2_CID_FOCUS_ABSOLUTE:
-   129			ctrl->val = data.focus_position_cur;
-   130			return 0;
-   131		case CEF168_V4L2_CID_CUSTOM(focus_range):
-   132			ctrl->p_new.p_u32[0] =
- > 133				(u32)le32_to_cpu(((u32)data.focus_position_min << 16) |
-   134						 data.focus_position_max);
-   135			return 0;
-   136		case CEF168_V4L2_CID_CUSTOM(lens_id):
-   137			ctrl->p_new.p_u8[0] = data.lens_id;
-   138			return 0;
-   139		case CEF168_V4L2_CID_CUSTOM(data):
-   140			memcpy(ctrl->p_new.p_u8, &data, sizeof(data));
-   141			return 0;
-   142		}
-   143	
-   144		return -EINVAL;
-   145	}
-   146	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
