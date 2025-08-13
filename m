@@ -1,126 +1,105 @@
-Return-Path: <devicetree+bounces-204381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3799B253CF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:20:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89047B253DF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:23:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6E0F5A038F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:20:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79B0D5A55A1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3972D372C;
-	Wed, 13 Aug 2025 19:20:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CBF02F998D;
+	Wed, 13 Aug 2025 19:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mlRhIYmT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IheAlBBI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FBF10785;
-	Wed, 13 Aug 2025 19:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2482F9982;
+	Wed, 13 Aug 2025 19:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755112841; cv=none; b=uYpg8BThYB2lpqdgJ7wo/af41GChynPKv5kR7dSUjVZULm2WOuw8f02q9b+RxDrjDSR1K5V0zfHn9pWuzk1OFAHwExuDog71XOCLSucfaZ+kKRwD0lj2SMT2Amyd44uPowDQLJSeNba3jdFyxwf83RbZAD5B3ygFoBNsromwkaU=
+	t=1755112958; cv=none; b=sMJ0+YV+HjlhfFDmefpuDjQzBa8vRByoa5U2YdLWixPh2mJei/7twtgQFl33Lmw5rjoR/vUBu0TFbmY2V2q4OtzyiPZbPxuWXE2r8e9TMErNYs8195XBSUrhYU3PTqub6dWIN+pr89FQQAAvhU3fK6WleTBXlVNPBc4AUrEbU50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755112841; c=relaxed/simple;
-	bh=PDJhFh9NikHx+GpD7oqdM9qqfwvz5lGAeM1nGy+Joxw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UwY1SlV+VXUn+tZwqL8Sgs+EIV0KrBKnDuYLdgtq6VR4V47qc7USS9+4tkHnc30VzcsyMPiCvv1QQiCMys7Y1hreNN17DkbMnDQoFuj1JPgoaEnSNX8gIQRkze5dhwpL20OkihkyvysZoJBLpKN//3vW04QcF9AnA/hvQ9fwi6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mlRhIYmT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3351C4CEEB;
-	Wed, 13 Aug 2025 19:20:37 +0000 (UTC)
+	s=arc-20240116; t=1755112958; c=relaxed/simple;
+	bh=N477yPAUgF8MFDSi5oZ2xy5+NriyaZW/5Ft0lXfFS6Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Tr4WAUzFhfoJinsmIOntj2KjwKyzFphWT24v2WFxZwDxMC5dCjoNA6Ji7UpANOVI5ri7Om8kjbYgLywkERfmaAZIjZr1lZOnh2f+hAAWxdWccPIOnKQrUdMabK3vgt6ZDTQ65A3WdGeRIkcxFe5D8qEryaBxC6YHmO/Qvvwi2ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IheAlBBI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 577B0C4CEEB;
+	Wed, 13 Aug 2025 19:22:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755112840;
-	bh=PDJhFh9NikHx+GpD7oqdM9qqfwvz5lGAeM1nGy+Joxw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mlRhIYmTqsa5EcAr2zLpLh7xylDnD4OGM/ur8Au3jnZnmB2LYquRTKtvGjQo5W5z+
-	 x4fGOA8i6sJ10HdaUdOjkKHG87Y1tSB14CKKjP0nljzvJH2ysF1mcARoHn64Y1n7jk
-	 DGcfcYfW3nMS8i5VbauMNzS0PtebyH3Mp4PVMelwFp0WpISiYVbnF1pQFPaN+yNMTw
-	 53c/LlYagb1OcDXvSHog9DTyoycNYzI4ViC13WLg/7Z6BVbrgs6BvSqDplP4b9YYpg
-	 hT3S5ItQ8uICc/z1TUjz6cd34VO9xnSTmO2272Oxu/w6xQykdsarhEO3Yl8JwMlzR3
-	 6nqfZn5hD/tSw==
-Message-ID: <f75e0372-6a45-4d27-a74a-0a41c5674987@kernel.org>
-Date: Wed, 13 Aug 2025 21:20:36 +0200
+	s=k20201202; t=1755112957;
+	bh=N477yPAUgF8MFDSi5oZ2xy5+NriyaZW/5Ft0lXfFS6Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=IheAlBBIQ2Bt+CcdnxUFDJSj2gXEDefMs+XsgEE9N6Y7yBu0Nv5mj9qbxNsshF6QQ
+	 Y1vQB3DWs+KMaZnajrrrq2CzT6s40dejdd7D9ok5zgISoO7dOBqAlKHY5WArlFW8Mn
+	 Rb4xQESpYfHP+rUhzQjpScWPSkgmoaC571N4HTfNCBYaaXn3EqCrRwCEiGcSdpu1Tf
+	 akFZy6tccfWufnGlQvXMmfWkIsatrUjjjh/JlFUTUThMpEXzfyOoQUPq1bqI6/p4YI
+	 wJVkE8y/Oke8jyVdAfTBBYslChMgHuPBRgCpWNStuJuFgzKykTqzT3q56hRM3fp6DZ
+	 mmOdd0TYoKq4Q==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250812203356.735234-1-robh@kernel.org>
+References: <20250812203356.735234-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Convert brcm,bcm2835-i2s to DT
+ schema
+Message-Id: <175511295510.250237.5224980225208974771.b4-ty@kernel.org>
+Date: Wed, 13 Aug 2025 20:22:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: it66121: Add compatible
- string for IT66122
-To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Robert Nelson <robertcnelson@gmail.com>,
- Jason Kridner <jkridner@beagleboard.org>
-References: <20250813190835.344563-1-nm@ti.com>
- <20250813190835.344563-2-nm@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250813190835.344563-2-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
-On 13/08/2025 21:08, Nishanth Menon wrote:
-> Add a new ite,it66122 compatible string to the IT66121 binding
-> documentation, since the two chips are practically same except for id
-> register difference.
+On Tue, 12 Aug 2025 15:33:55 -0500, Rob Herring (Arm) wrote:
+> Convert the Broadcom BCM2835 I2S/PCM binding to DT schema format. It's a
+> straightforward conversion.
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: Convert brcm,bcm2835-i2s to DT schema
+      commit: bab4ab484a6ca170847da9bffe86f1fa90df4bbe
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
