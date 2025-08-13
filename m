@@ -1,83 +1,48 @@
-Return-Path: <devicetree+bounces-204126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B564EB242C3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:32:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95D8AB242C0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:32:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA4D42A5B1F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:29:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4DEE726BF3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C542D7392;
-	Wed, 13 Aug 2025 07:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731972D63FD;
+	Wed, 13 Aug 2025 07:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dBz0QzYC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GUDg6u1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3953D2D640E
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454182D0C9B;
+	Wed, 13 Aug 2025 07:29:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755070120; cv=none; b=bAXWo31GpIbnT4yoKbr6CZg9fb4qEjEjCsX4Sxe6+Lmv/NXDlm/1XqMFH1mX1f5AAV1QjqnuCYwkBwWZ2Fb9ZmTnquFkWoyrYO+UFnq4wP/drNttjlJqHMAzvWDv0LzhiS6I34Y0Zut/42Uv60Z4682yrXkML1+DaYWxY5/nJEY=
+	t=1755070191; cv=none; b=i4jbu7Z5FRVtrH6OJAsPwdHAlm//HlIqERaIoiAYBasZ6yoMDk9j1L62G/7V+1z7NEdsTxwcQFz8+NA4PH8qHgaq/kP+2itIHkUEL1TKJReY98oIWs6K/vFA4cFQAJU/neoE/A5XYhHVhtDYsyRt4lpXh5saD5aKDi9RJ3JKNAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755070120; c=relaxed/simple;
-	bh=3dTpD+QYfARqgui04LznNHegUi3+WIdxyLeFvtWS9XQ=;
+	s=arc-20240116; t=1755070191; c=relaxed/simple;
+	bh=saY+wgT/qb8l8l5eN/tBvLjaCSu9tJjgQ9MfbbvDoq4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K81StaGdNTSPjPq92BpP2LNrwYmnP6V1N6H7LwoeatGatunOoD2w+ETalzXYSv3SPTACVGLfg9DPkLRdeRK4Dvh+/DStP+La31knp741/wp2s1zziLxEedzxYbFEX1dpeChj4yzzdnIRCqqvqKNXMdI8GeOJvgn+TghHTmuUhfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dBz0QzYC; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-459d4d7c745so56770295e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 00:28:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755070115; x=1755674915; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2xoUqUxNajMdJpp9NpgGZ+X40EVMdAmJr3CW3+M0wpo=;
-        b=dBz0QzYCS7VJhQ+WaU6OqpwpvSCg0R4U+VJMn+K4e027a0nSzUqvhdwhyES3Fax2a1
-         JK9VHg5V1cBFSKHQXvkwmyQScpNOTpTHMahuwBKfhDvyx+tBaUnLOfZLnW6+PITD30or
-         r8Qtu4XtRArFcJFkgRMnmWQu9Qks7J0OGfxsvMmZCdvh4d4Ic71Y9OHJ+Cy3AIr1I0HT
-         AD5Ps6GMhy8BEH7tYD6+Ykk9+GcNNIeqrpHNfNiDdV2Nzzh343qLbSCK26WiqS/Hh4yz
-         VRr40yQwhsBSEJ0ng3wKYNYntxgktj7ogEEFwdjLbUqT9e7IAu0Kl6r8wrjMRLheF003
-         UH7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755070115; x=1755674915;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2xoUqUxNajMdJpp9NpgGZ+X40EVMdAmJr3CW3+M0wpo=;
-        b=chkMjIlbXFA78NKa/JbxVb2XJTAFtlKDY5FUo2AYzrFhy+AYn8SDnHNY9tq4YHHLE/
-         eS3+oPwpwLRo4MseBDF/tnEg/TDiEXd2Vv/Uq03gfAaeMkqIIBtVmBj8sHVfhNbmSbS/
-         miQR4Xk7+RAI17HaG7Rz/jYQ/BkOXxzXPof+tHCJfydBwcRB+Vxd/h0R73DWPOpvrLbG
-         AZHyFXfT6PzmJ0hUbm9C3vftDb7iM/P5tMfTE3Mr4V/alLBjXznN2YZhNeSAFSRvle7I
-         JCau+mMzspveEJULTBcwEDiW/mfPulV9Aa1Knr1WzdIVKAQoh1taFyDuf88ogJ4frtH8
-         cfJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVs8sxtRHhh0vJdj8EM0psUCge+4wIFeyDrxGM50i6zRFagH6JRot2FavIMAoSFWo5AIckZQ2UbkMQ/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOQaBM/EpJ/SYaB5qI7m0GaSKknOMVFgcvoa86Niybl8O4MuJu
-	KhjMug0HvobYO4/iYAjcTxoEexP2eMtHV5GMaJHPRCVtl4C75N596BK88dzHPzMXnWg=
-X-Gm-Gg: ASbGncu+w2E7S1T4nMi7gWwIJA4/9VLGOmQhom5pfFmGhkr6lDl2iwiXASn5Jd3u1Ou
-	xX/zJGFARj0/SBg0CcdrcZ2h4bUX4QHXmiXvODyl/dvymh/KQme1+NGXAVLGsSWvYG67xB7trPt
-	hSJdEZACPF2hyH/4unLJN7cQVhce1bYSTYSbD6vCT+uil3HlUfK/cAQl4QDCL3MNPg9+W4qS4GS
-	cEG2ljWajjEhpvEri/SHq/uK/kqdN3P1513bdwqW2wTyJq3ZzLT+sUX6cDROpDmQLO4GLVxO3KJ
-	qRTSRp5Q0QUXy1NIaFVej/j0VJvXsTyo+ONJym2vKqQWPL4nxsTkGy4fy8YGNzxBzRanoW/IFkb
-	iLiErlnvLzPZ8Nkn4a09TQWEJB0qd7Nc4iJ9oF47jPkMcYvyYkR0m6JiEVrVniFa+/CJVXnJrH3
-	U=
-X-Google-Smtp-Source: AGHT+IGhyGw5sWS4YaYWNtfgUO+k5XMMhYMVBS3uMJMofzMil1epG4rBzcgefuGHwCqiUIIJ+EM7Kg==
-X-Received: by 2002:a05:600c:19c7:b0:459:d3ce:2cbd with SMTP id 5b1f17b1804b1-45a165a9779mr16658705e9.13.1755070115468;
-        Wed, 13 Aug 2025 00:28:35 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:3e43:d171:89d1:18e8? ([2a01:e0a:3d9:2080:3e43:d171:89d1:18e8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a16d3e4c3sm18766355e9.0.2025.08.13.00.28.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Aug 2025 00:28:35 -0700 (PDT)
-Message-ID: <1fc94c92-276e-4435-aaff-630cace7ec42@linaro.org>
-Date: Wed, 13 Aug 2025 09:28:34 +0200
+	 In-Reply-To:Content-Type; b=RocffWAYBDeT3dKR3Ie7qumdUfFX/teVIwFSBH761kKprVxve1gwkH2mEshVqVBBGrtZGWptHXOiX5ob5nB/xmmaLGEqA5Dc1B2HoHe0YPToiHcZxIv/m6optOHoX654Fblo2ZDqDuJYfl17MK0QpY1dG5nm0YrzmHguC0LbJ5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GUDg6u1k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AABAC4CEEB;
+	Wed, 13 Aug 2025 07:29:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755070190;
+	bh=saY+wgT/qb8l8l5eN/tBvLjaCSu9tJjgQ9MfbbvDoq4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GUDg6u1kJ24lRLJgMGrJYC38ECBKZBOTeY5IvwNKY2pYgXvvNVRSRs+YrN7TnYNPR
+	 akMh9sCSPsxMr9wi1OU5BoODFyu4W/2Yd83x7vTxXy6DoPDNYluop30/braRNO1B5G
+	 2c8r3gLgI6i7dpELqhsYbNrekObMfJ68JmzWSPKNuhBAaXPdE87sy8s53Xg8NEbyVu
+	 AL2eM06ezaj5ja/lrqCILGC4SiPLbePLUK+kOKQGOfGboP8Utmt9HXmecurRZsjHMw
+	 u3xwmKNg3mkGM3UmHfzBsOTEyJpF5YURlbOHc4DZwLQjOzFEfQ06W2ElU/kBpcbCIa
+	 bX5WeS9fdk7Og==
+Message-ID: <dcd42e01-d14c-4e52-97f7-c1aedc81653b@kernel.org>
+Date: Wed, 13 Aug 2025 09:29:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,76 +50,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: Fix address for usb controller
- node
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Flatten usb controller nodes
+To: Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- kernel test robot <lkp@intel.com>
-References: <20250813063840.2158792-1-krishna.kurapati@oss.qualcomm.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250813063840.2158792-1-krishna.kurapati@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250728035812.2762957-1-krishna.kurapati@oss.qualcomm.com>
+ <175496788918.165980.17430518825409421820.b4-ty@kernel.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <175496788918.165980.17430518825409421820.b4-ty@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2025 08:38, Krishna Kurapati wrote:
-> Correct the address in usb controller node to fix the following warning:
+On 12/08/2025 05:04, Bjorn Andersson wrote:
 > 
-> Warning (simple_bus_reg): /soc@0/usb@a6f8800: simple-bus unit address
-> format error, expected "a600000"
+> On Mon, 28 Jul 2025 09:28:12 +0530, Krishna Kurapati wrote:
+>> Flatten usb controller nodes and update to using latest bindings
+>> and flattened driver approach.
+>>
+>>
 > 
-> Fixes: c015f76c23ac ("arm64: dts: qcom: sm8450: Fix address for usb controller node")
-> Cc: stable@vger.kernel.org
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202508121834.953Mvah2-lkp@intel.com/
-> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> Applied, thanks!
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 2baef6869ed7..38c91c3ec787 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -5417,7 +5417,7 @@ opp-202000000 {
->   			};
->   		};
->   
-> -		usb_1: usb@a6f8800 {
-> +		usb_1: usb@a600000 {
->   			compatible = "qcom,sm8450-dwc3", "qcom,snps-dwc3";
->   			reg = <0 0x0a600000 0 0xfc100>;
->   			status = "disabled";
+> [1/1] arm64: dts: qcom: sc7280: Flatten usb controller nodes
+>       commit: d72cb0551d113a0a42e12dcdfdad78ade2c63f50
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Was this patch ever checked against bindings?
+
+Best regards,
+Krzysztof
 
