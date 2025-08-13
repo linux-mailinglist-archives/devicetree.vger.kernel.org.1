@@ -1,202 +1,157 @@
-Return-Path: <devicetree+bounces-204325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42413B24FF5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:40:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FA4B25018
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A9FD7A3378
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:38:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B83E63AE892
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 16:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883E62877C4;
-	Wed, 13 Aug 2025 16:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="omjkMhQD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9329428727D;
+	Wed, 13 Aug 2025 16:43:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57901287510;
-	Wed, 13 Aug 2025 16:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54912877C4;
+	Wed, 13 Aug 2025 16:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755103202; cv=none; b=l+00+oOzZ8R43/rcxDmSvwzN12geGqipbv8e3/C1jbHYIZagtQPxe7h74ig5+1Ut8vCuABC95TxELqrqQfSpIKYabNx1VaMvNzk40vjqYh+oTK4MxOWdDEwVprulpz0R6JKn1Lxpnv0jSduIdp4JC6GUAzqFvvIb0+CTmPY0LlM=
+	t=1755103417; cv=none; b=Rmk4zbDyxUFUGJUUzPt6Ui7yI+B5jNidvd8QVj0ZsIqTTzCKNPKIhhV7nB30oboH0SH7hDK6S91NNoEvYl2uKRAvqKB7xKT4/hhHCe61bS6QtgfZFq1eg+Y7AzPMJvf3KMeHRhUGQuSF4H9g/1gK4b1r5H7bGi7jLK+0hkbkhmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755103202; c=relaxed/simple;
-	bh=s8ZXEipGSIJlMDIb18naqDV3kZSHdB/qD0ILmHJeqbs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ecQcjjxOf9d1FToKA9pQp8cwJYguRdZP5AQrXzKYkaCn2zDdxk7GYmYhFaHj199PkUamWxWwEn+MtJMYdSEUSxd50WAV3dTxWdleaqawGaeUKFxrXqRL3/hzGGmLd/voEVp56qWbQRaLQpE+bk47uF91aXlCIE71EJFrPEk+Vhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=omjkMhQD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C198EC4CEEB;
-	Wed, 13 Aug 2025 16:40:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755103201;
-	bh=s8ZXEipGSIJlMDIb18naqDV3kZSHdB/qD0ILmHJeqbs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=omjkMhQD9oRe4bVtEyTDH44yDFKboKpOGtcbD8GT9O8J352gBe6l8mq2PUjcuwAcU
-	 8ibfOwvFrmjsvzbFS6QHEhUOniPp/bBUG6U0B0RhmxCJy8c9YG8LsX5OJMHzKVllLd
-	 M49oGrDfr/dl9kC0aV2OSF6sJ1H2VLKNIMvAhLoHWaHjpZoTuTUy85g4HcymGPfokP
-	 ybRp0b5p3By1kpX0tHtrBcx5UIdIhtggKG1tdMEPu3E39ZauYxLd+N3fL3Yh/59aMh
-	 bdA0AfNLGPluOs/0AYYw+WNIjuwcsOlzND96burMON257vVCbGDUXo1L/tJ0UKGXrb
-	 GDnvh28lixVDQ==
-Date: Wed, 13 Aug 2025 11:40:00 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1755103417; c=relaxed/simple;
+	bh=eGOtfUOzn7VJhhjgjc5OkdQcb/GSkSfB33WxAxwSZy4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ecv0lhDXd8eMcn+Qy90HB3ev3WRTeXcypdi/QH4pWKmkf4Ack94oTzlrrE1zx90rSNhXb/h1B84Ax8Aij94sh6qaCLORZQ6PZKhD6Kz3jtbE706v3snu/tdDe9FKDdjHjW9R1SFUSiIg8VhiZ/k7s1IShC64jxIKhW8EGHkG8DU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BCEFB12FC;
+	Wed, 13 Aug 2025 09:43:25 -0700 (PDT)
+Received: from e130802.arm.com (e130802.arm.com [10.1.33.71])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D0D923F5A1;
+	Wed, 13 Aug 2025 09:43:30 -0700 (PDT)
+Date: Wed, 13 Aug 2025 17:42:58 +0100
+From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+	Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
+	Srinivas Kalaga <Srinivas.Kalaga2@arm.com>
+Subject: Re: [PATCH v19 2/6] remoteproc: Add TEE support
+Message-ID: <aJzAkk-k4nfXY7Ux@e130802.arm.com>
+References: <20250625094028.758016-1-arnaud.pouliquen@foss.st.com>
+ <20250625094028.758016-3-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jernej Skrabec <jernej@kernel.org>, linux-kernel@vger.kernel.org, 
- "David S. Miller" <davem@davemloft.net>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- Andre Przywara <andre.przywara@arm.com>, Chen-Yu Tsai <wens@csie.org>, 
- Eric Dumazet <edumazet@google.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- Paolo Abeni <pabeni@redhat.com>, linux-arm-kernel@lists.infradead.org, 
- Samuel Holland <samuel@sholland.org>, Jakub Kicinski <kuba@kernel.org>, 
- netdev@vger.kernel.org, linux-sunxi@lists.linux.dev, 
- Conor Dooley <conor+dt@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-In-Reply-To: <20250813145540.2577789-2-wens@kernel.org>
-References: <20250813145540.2577789-1-wens@kernel.org>
- <20250813145540.2577789-2-wens@kernel.org>
-Message-Id: <175510320095.362031.4736054030445457554.robh@kernel.org>
-Subject: Re: [PATCH net-next v2 01/10] dt-bindings: net: sun8i-emac: Add
- A523 GMAC200 compatible
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250625094028.758016-3-arnaud.pouliquen@foss.st.com>
 
+Hi Arnaud,
 
-On Wed, 13 Aug 2025 22:55:31 +0800, Chen-Yu Tsai wrote:
-> From: Chen-Yu Tsai <wens@csie.org>
+> Add a remoteproc TEE (Trusted Execution Environment) driver that will be
+> probed by the TEE bus. If the associated Trusted application is supported
+> on the secure part, this driver offers a client interface to load firmware
+> by the secure part.
+> This firmware could be authenticated by the secure trusted application.
 > 
-> The Allwinner A523 SoC family has a second Ethernet controller, called
-> the GMAC200 in the BSP and T527 datasheet, and referred to as GMAC1 for
-> numbering. This controller, according to BSP sources, is fully
-> compatible with a slightly newer version of the Synopsys DWMAC core.
-> The glue layer around the controller is the same as found around older
-> DWMAC cores on Allwinner SoCs. The only slight difference is that since
-> this is the second controller on the SoC, the register for the clock
-> delay controls is at a different offset. Last, the integration includes
-> a dedicated clock gate for the memory bus and the whole thing is put in
-> a separately controllable power domain.
+> A specificity of the implementation is that the firmware has to be
+> authenticated and optionally decrypted to access the resource table.
 > 
-> Add a compatible string entry for it, and work in the requirements for
-> a second clock and a power domain.
+> Consequently, the boot sequence is:
 > 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
-> Changes since v1:
-> - Switch to generic (tx|rx)-internal-delay-ps properties
-> ---
->  .../net/allwinner,sun8i-a83t-emac.yaml        | 81 ++++++++++++++++++-
->  1 file changed, 79 insertions(+), 2 deletions(-)
+> 1) rproc_parse_fw --> rproc_tee_parse_fw
+>    remoteproc TEE:
+>    - Requests the TEE application to authenticate and load the firmware
+>      in the remote processor memories.
+>    - Requests the TEE application for the address of the resource table.
+>    - Creates a copy of the resource table stored in rproc->cached_table.
 > 
+> 2) rproc_load_segments --> rproc_tee_load_fw
+>    remoteproc TEE:
+>    - Requests the TEE application to load the firmware. Nothing is done
+>      at the TEE application as the firmware is already loaded.
+>    - In case of recovery, the TEE application has to reload the firmware.
+> 
+> 3) rproc_tee_get_loaded_rsc_table
+>    remoteproc TEE requests the TEE application for the address of the
+>    resource table.
+> 
+> 4) rproc_start --> rproc_tee_start
+>    - Requests the TEE application to start the remote processor.
+> 
+> The shutdown sequence is:
+> 
+> 5) rproc_stop --> rproc_tee_stop
+>    - Requests the TEE application to stop the remote processor.
+> 
+> 6) rproc_tee_release_fw
+>    This function is used to request the TEE application to perform actions
+>    to return to the initial state on stop or on error during the boot
+>    sequence.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+...
+> +
+> +static const struct tee_client_device_id rproc_tee_id_table[] = {
+> +	{UUID_INIT(0x80a4c275, 0x0a47, 0x4905, 0x82, 0x85, 0x14, 0x86, 0xa9, 0x77, 0x1a, 0x08)},
+> +	{}
+> +};
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Other implementations may use different UUIDs.
+What about adding a kernel configuration option which, when enabled, allows
+alternative implementations to override this table?
 
-yamllint warnings/errors:
+> +/**
+> + * rproc_tee_register() - Register a remote processor controlled by the TEE application.
+...
+> +
+> +static int rproc_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
+> +{
+> +	/* Today we support only the OP-TEE, could be extend to other tees */
+> +	return (ver->impl_id == TEE_IMPL_ID_OPTEE);
+> +}
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): clock-names: ['stmmaceth', 'phy_ref_clk'] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): clocks: [[4294967295, 28], [4294967295, 118]] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): compatible: 'oneOf' conditional failed, one must be fixed:
-	['toshiba,visconti-dwmac', 'snps,dwmac-4.20a'] is too long
-	'allwinner,sun8i-a83t-emac' was expected
-	'allwinner,sun8i-h3-emac' was expected
-	'allwinner,sun8i-r40-gmac' was expected
-	'allwinner,sun8i-v3s-emac' was expected
-	'allwinner,sun50i-a64-emac' was expected
-	'toshiba,visconti-dwmac' is not one of ['allwinner,sun20i-d1-emac', 'allwinner,sun50i-a100-emac', 'allwinner,sun50i-h6-emac', 'allwinner,sun50i-h616-emac0', 'allwinner,sun55i-a523-gmac0']
-	'allwinner,sun55i-a523-gmac200' was expected
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): 'resets' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): 'reset-names' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.example.dtb: ethernet@28000000 (toshiba,visconti-dwmac): 'syscon' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): clock-names: ['stmmaceth', 'mac-clk-tx', 'mac-clk-rx', 'ethstp', 'eth-ck'] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): clocks: [[4294967295, 105], [4294967295, 103], [4294967295, 104], [4294967295, 112], [4294967295, 123]] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): clock-names: ['stmmaceth', 'mac-clk-tx', 'mac-clk-rx', 'ethstp', 'eth-ck'] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): clocks: [[4294967295, 105], [4294967295, 103], [4294967295, 104], [4294967295, 112], [4294967295, 123]] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): compatible: 'oneOf' conditional failed, one must be fixed:
-	['st,stm32mp1-dwmac', 'snps,dwmac-4.20a'] is too long
-	'allwinner,sun8i-a83t-emac' was expected
-	'allwinner,sun8i-h3-emac' was expected
-	'allwinner,sun8i-r40-gmac' was expected
-	'allwinner,sun8i-v3s-emac' was expected
-	'allwinner,sun50i-a64-emac' was expected
-	'st,stm32mp1-dwmac' is not one of ['allwinner,sun20i-d1-emac', 'allwinner,sun50i-a100-emac', 'allwinner,sun50i-h6-emac', 'allwinner,sun50i-h616-emac0', 'allwinner,sun55i-a523-gmac0']
-	'allwinner,sun55i-a523-gmac200' was expected
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): 'resets' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): 'reset-names' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): 'phy-handle' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): 'syscon' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/stm32-dwmac.example.dtb: ethernet@5800a000 (st,stm32mp1-dwmac): Unevaluated properties are not allowed ('reg-names', 'st,syscon' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): clock-names:0: 'stmmaceth' was expected
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref', 'rmii_internal'] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): clocks: [[4294967295, 34], [4294967295, 37], [4294967295, 154], [4294967295, 155], [4294967295, 158]] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): power-domains: False schema does not allow [[4294967295, 4]]
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref', 'rmii_internal'] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): clocks: [[4294967295, 34], [4294967295, 37], [4294967295, 154], [4294967295, 155], [4294967295, 158]] is too long
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): compatible: 'oneOf' conditional failed, one must be fixed:
-	['mediatek,mt2712-gmac', 'snps,dwmac-4.20a'] is too long
-	'allwinner,sun8i-a83t-emac' was expected
-	'allwinner,sun8i-h3-emac' was expected
-	'allwinner,sun8i-r40-gmac' was expected
-	'allwinner,sun8i-v3s-emac' was expected
-	'allwinner,sun50i-a64-emac' was expected
-	'mediatek,mt2712-gmac' is not one of ['allwinner,sun20i-d1-emac', 'allwinner,sun50i-a100-emac', 'allwinner,sun50i-h6-emac', 'allwinner,sun50i-h616-emac0', 'allwinner,sun55i-a523-gmac0']
-	'allwinner,sun55i-a523-gmac200' was expected
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): 'resets' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): 'reset-names' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): 'phy-handle' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): 'syscon' is a required property
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): Unevaluated properties are not allowed ('mediatek,pericfg', 'mediatek,tx-delay-ps' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
+Could we make ver->impl_id user-configurable please ? for example, by reading
+it from the device tree since it isn’t discoverable at runtime? In our setup, we’d set
+it to TEE_IMPL_ID_TSTEE.
 
-doc reference errors (make refcheckdocs):
+> +
+> +static int rproc_tee_probe(struct device *dev)
+> +{
+> +	struct tee_context *tee_ctx;
+> +	int ret;
+> +
+> +	/* Open context with TEE driver */
+> +	tee_ctx = tee_client_open_context(NULL, rproc_tee_ctx_match, NULL, NULL);
+> +	if (IS_ERR(tee_ctx))
+> +		return PTR_ERR(tee_ctx);
+> +
+> +	ret = mutex_lock_interruptible(&ctx_lock);
+> +	if (ret)
+> +		return ret;
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250813145540.2577789-2-wens@kernel.org
+In some TEEs, the client driver might need to perform extra work during probing.
+For example, when using TS TEE, calling tee_shm_alloc_kernel_buf() is required.
+Could we introduce an rproc_tee_ops and add a TEE probe operation called by the
+remoteproc driver for performing custom TEE setup ?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Kind regards,
+Abdellatif
 
