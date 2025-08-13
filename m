@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-204353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C2EFB252E7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 20:20:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F616B25304
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 20:26:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B6F45A714C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:20:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53AB91C840FE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 18:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAAF2C2AA5;
-	Wed, 13 Aug 2025 18:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F702E92D9;
+	Wed, 13 Aug 2025 18:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KvpBCAZv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PCj7LPDe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C1F289809;
-	Wed, 13 Aug 2025 18:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED522D8766
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 18:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755109206; cv=none; b=k1FV6nRMNvIEkKvGHuL6qTmRzffRlQ3xLJx7KYdjKqkKP5N4aXnEPy1tKvQHP4aC+JOd+zx8YmNx0iH6LM0CpvfVtIS/nsUugRZZmXsjPp/VsSSbg/n5FFncsV7/R9aTURvQn3pOa/kHwr+jlwRicbmXTsRGh02B28gd89WYDrc=
+	t=1755109568; cv=none; b=aFMsFfJa9q90L36LhVE+ULHhfVKcJ/9aaHQYLz1871p7Pc1Nk9Mrnvzs3Rirca6exv6IX1qp0twllfiYoKFfGNw3D4pR0mtfxoWUdg/Gki/QkxgQUOoxxNlHaMpgBhGjJ4T28BJbndcmIYZGJg/fI1K8KbeT708AqIuKmZmJp6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755109206; c=relaxed/simple;
-	bh=fx2taVZ5xjW8Do9nHaFsVYCdHcr+JOY5ZQch8MkH4BI=;
+	s=arc-20240116; t=1755109568; c=relaxed/simple;
+	bh=kjaqRalQ6f+VnPUzPJ3lUTMCHNI4Mqln+f9A2PCWars=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JzhrWGxD44o+IxK+Q6SuOmgMg4bQpTFj4gcrP8jAb3kaBOOrh4YuZ/D7sSWS9dS5vsrcYtB7LgvIlVPZExMFC4cIFyZtxBDbVZAfOTHBDgJscFD49c1LSkigafgKMJWoNqCIKHNMRcaPlyi3AZLOMPHltv5hFVn7oZauExP5DSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KvpBCAZv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 813F4C4CEEF;
-	Wed, 13 Aug 2025 18:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755109204;
-	bh=fx2taVZ5xjW8Do9nHaFsVYCdHcr+JOY5ZQch8MkH4BI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KvpBCAZv+uSlob2VReCQpMJE9J4RjQU7GmjcREdhPTpNa5BhMj+hdfFj1NLn3S2fv
-	 bmcuoq3rY0B9WFIQXbFKsoEyemNG8usUQsNniNzNgiHWXn/b57MxI5QPPurr9Zt6fY
-	 yICPkAPBznwoeFHxd3auZvwvH3o9ATcxm9VqSbmUGYF6HIG3FUa5EH2PRxE/BZ+q89
-	 GAUOYAsllld0KCzTeeiJoD/IqNYJofcEu76FuSbQ7nt5IRwFKF6FDUUTOAhAOYHakH
-	 6VkWSH97LPe9i4m0zr17O1uNwhU/02xo1Nf4Qe5ZtjxhALaWD2Az8yRUBIPrK0DKsQ
-	 sYkDcJedwsCtw==
-Message-ID: <faafcc6f-d5f5-449b-bb43-81bf496bdbb0@kernel.org>
-Date: Wed, 13 Aug 2025 20:19:57 +0200
+	 In-Reply-To:Content-Type; b=chmbhp74BTkzuRNnnU0ds2LVGEBDF9wdgsy7dCTmGUnQBitg5Ojia7PQZFJO9+5v0wvJ9mQe7Puiffj+09ybWC+c8LBNJeSEYFZyVwj0NVQw6vD+kP411gX78ol5lbr0tEl9OqoX8IxB3xHqneH+yPtzIRq1Rh1dfcR9WfGuI5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PCj7LPDe; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-afcb731ca55so2711466b.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 11:26:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755109563; x=1755714363; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=PG2XQ09YxGQDAljbZJ1dBpExZdNgeyI6Zcz42FxK4Mc=;
+        b=PCj7LPDeYAXaowVBmpom8m5uScmjxGfFgqFzlR1fSVb7AeboS5eohYmo4ywE9kL95V
+         aBSePNtjlvdtnNb7TpI9Mnlx8jwf/fiRrpOW7gnAFidJ89cxI2K6EU8LOqokfsWw+CKB
+         Su8w9jKFsZwsWgpxnHoIRECsy0coAmxZ+/vy3VoS6lGL9STAMfTx/YcV4ADduNDn39AF
+         /F20vkcFco2SLmIUkRL7DcSjYsWs8QeK6AvFs8gOitpDcfwsjX6MsPWvltJmeLEnLQJz
+         ZGDFOiVjYYeFJdekSgGnTDLNR3FuIjZfm3KiF7DEo/XQFoimthpHVan+uOmjVMvp5g7c
+         yxAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755109563; x=1755714363;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PG2XQ09YxGQDAljbZJ1dBpExZdNgeyI6Zcz42FxK4Mc=;
+        b=cHW8PUAacrEe+JzC/MeifAIVsLueH82ttTGoPVHuVDt3zpLw0uCLWhQidb7ctsfBVo
+         nKCChTVFRDu6YEKDcQaKC6ZgnvJew7RhxIIYItoafKEuA4Atb6GcFxtPLH3pAvBE2k6U
+         xZe9H9s1Y7GPFj3BSW/NEHFS9tNvNr1siddJy7SfSpiKxDbonP9VWHoL3xbUjn8pvyq8
+         oD9F0/VBSFDaked+k6zqoEp8iWaRlWRrgO09EAA0EvbvL5R+OgeJ264T84rGb7V8LiUb
+         PxLkshJrUM/Vcfi5Zc16sOVSxzn3JR6GFGvElJF6vIVwMHMTbrpRqNOttqRMThwWcEbI
+         UTmw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5OsoH26sea4GVSmfOL8g+k0aK3L0cHeArIXv+Uxivf22QYBIlKT73J+GaE1MyUoTddrzzL2p4g0oO@vger.kernel.org
+X-Gm-Message-State: AOJu0YykErda1CiQOq0TeUVQAwNBaukDnZa1QyFjNMsr+qlY9LUbM5LZ
+	kE5zZi9AqtExqVekufe6XkfxAFi/C9SYBr3rLxsFXewKni0XFglyhU822tDWr+2fAV0=
+X-Gm-Gg: ASbGncsDghFqhoL8QdmBZ1XBwaoHB4+LWpBs53+A/5Rr7UimwJCmzE1O7RvoCDUQ/YZ
+	gkzu9EGhLubYT/drVQRZGqimvSjeigu9KLklNWu0dl2yn+9rNl2cJ79kfuLuWRBqLst7z1lPzTy
+	IX6SN6EXtMxWujnjAjDO41kT7N6SKW3wOyXFC3WO3fxH4DA7mQ6Khk1sdA7u7ZqAXOdqtoJY7T6
+	seUy6g45jJIIfCJtJrwy5bMv/7ih/yMNu00QpkGq8erBq9Qafwk80Oy3mTFOf7BqtvpFim1o4eO
+	HifShvEp4WA6NQ0GPTRYmHZPTschgr0mXIm0ZRrr4ht+h9LZlecpASvFgT6bWyTKntKEMmQm/0O
+	Xvodf3Bm4EdXWGVxrHwtH2gjZ52uZ+GGxXs2UqmEttlM=
+X-Google-Smtp-Source: AGHT+IFaN9KUjjqPxBrud3j7rI49y4RZJJQ73wRUqjRKrKs4uhIrrRPKHQ6crcL+1sNOlr+nwDLI0Q==
+X-Received: by 2002:a17:907:d88:b0:ae3:5d47:634 with SMTP id a640c23a62f3a-afcb98e24d8mr8259266b.9.1755109562455;
+        Wed, 13 Aug 2025 11:26:02 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0766f9sm2488355966b.24.2025.08.13.11.26.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Aug 2025 11:26:01 -0700 (PDT)
+Message-ID: <c0864d4f-fede-4d2e-8f93-c52d870adb5d@linaro.org>
+Date: Wed, 13 Aug 2025 20:25:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +83,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 2/3] drm/imagination: fix clock control on the J722S
-To: Michael Walle <mwalle@kernel.org>, Frank Binns <frank.binns@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
+Subject: Re: [PATCH v6 06/17] drm/msm/dsi/phy: Toggle back buffer resync after
+ preparing PLL
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Stephan Gerhold <stephan.gerhold@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-References: <20250716134717.4085567-1-mwalle@kernel.org>
- <20250716134717.4085567-3-mwalle@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Abel Vesa <abel.vesa@linaro.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250610-b4-sm8750-display-v6-0-ee633e3ddbff@linaro.org>
+ <20250610-b4-sm8750-display-v6-6-ee633e3ddbff@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -78,89 +117,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 a/A=
-In-Reply-To: <20250716134717.4085567-3-mwalle@kernel.org>
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <20250610-b4-sm8750-display-v6-6-ee633e3ddbff@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/07/2025 15:47, Michael Walle wrote:
-> The J722S won't let you set the clock frequency if there is no device
-> using it. Thus, the assigned-clocks property won't work per se.
+On 10/06/2025 16:05, Krzysztof Kozlowski wrote:
+> According to Hardware Programming Guide for DSI PHY, the retime buffer
+> resync should be done after PLL clock users (byte_clk and intf_byte_clk)
+> are enabled.  Downstream also does it as part of configuring the PLL.
 > 
-> As a workaround, set the clock again during the probing of the driver.
+> Driver was only turning off the resync FIFO buffer, but never bringing it
+> on again.
 > 
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  drivers/gpu/drm/imagination/pvr_device.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/imagination/pvr_device.c b/drivers/gpu/drm/imagination/pvr_device.c
-> index 8b9ba4983c4c..e7a7cc1bdf93 100644
-> --- a/drivers/gpu/drm/imagination/pvr_device.c
-> +++ b/drivers/gpu/drm/imagination/pvr_device.c
-> @@ -16,6 +16,7 @@
->  
->  #include <linux/bitfield.h>
->  #include <linux/clk.h>
-> +#include <linux/clk/clk-conf.h>
->  #include <linux/compiler_attributes.h>
->  #include <linux/compiler_types.h>
->  #include <linux/dma-mapping.h>
-> @@ -641,6 +642,14 @@ pvr_device_init(struct pvr_device *pvr_dev)
->  	if (err)
->  		return err;
->  
-> +	/* Set any 'assigned-clocks' properties again. This is a workaround for
-> +	 * the clock handling on k3 platforms. There, one cannot set the clock
-> +	 * frequency until there is at least one (enabled) user if it.
-> +	 */
-> +	err = of_clk_set_defaults(drm_dev->dev->of_node, true);
-> +	if (err)
-> +		return err;
 
-+Cc Abel, Bjorn, Konrad, Stephan G. and Stephen B.,
 
-Interesting stuff. This touches a bit similar problems we have (and had)
-for Qualcomm Display PHYs, where assigned-clock-parents were called too
-early - before the block (PHY) is being enabled.
+BTW, this and two other fixes from this thread were for some reason not
+picked up.
 
-The workaround we implemented so far was - last patch hook in:
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=80dd5911cbfdc2f6ae904341d41a7a8bd8cc546c
-
-I know Stephan G. is working on something better, so probably he will Cc
-you once this is ready.
+One fix got comments, but it does not stop rest of the fixes,
+considering they were reviewed.
 
 Best regards,
 Krzysztof
