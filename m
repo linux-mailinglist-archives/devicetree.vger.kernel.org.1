@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE02B24099
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:49:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6DE3B240B2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:53:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28253688635
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 05:49:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D7CD4E295A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 05:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3142C15B3;
-	Wed, 13 Aug 2025 05:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66EB29C325;
+	Wed, 13 Aug 2025 05:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n34bRQWW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NLFBDSZg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E582C15A8;
-	Wed, 13 Aug 2025 05:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99FCF4FA;
+	Wed, 13 Aug 2025 05:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755064139; cv=none; b=ERh3ZYFsvMT6GLb3MRLPf6JD/xYcANTqpswXD5NYcnEUNlK7YcRW99WcAstkvXPQN5ON3G5mI0PUyWKFbR/DQHE1Rt738nhxSc5taEaZ2r6Mh7pOd5ISd/O1LHUpY/lyWArWdjtHdwPGfSc12HOHg+VElqW3CY6yRMZdIdscZ3o=
+	t=1755064433; cv=none; b=tXYSEO6RL7uRFe9xQbDEOC1DwoTkzgZv9UkGEekCeA7C3SzDJwxX4uOzVbxCHkJWhIRbOVu05DsryXLocTkFesQd+ZT0TsEYTSU88cAUu5BT9Pee8rF5GlviCEeIEGeREByepXq5HYyMGKC8LT7l9t9c/OsWrMk7X0E9p3Mx1cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755064139; c=relaxed/simple;
-	bh=v2+LzP/RyNnvQJuTwqwFxbLgkZQ+Z0N2Fi1NJHc3CJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hDZz5rUzCKS76WAvT4SRssyuBe21d9jamH9gFZ9R5P0xh6mJfNWdLLOdOv5TbkaLe7bFTfEUDzFIpqaYAFGtJCJ7e7z6K7MKVEEDJiKiJOyqWzJRbGvUQywEqVHI7IWlFhKZkYvBjvVzOyNM6ApY0nP/YL9e17BERr9dkj+kBc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n34bRQWW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B63EAC4CEEB;
-	Wed, 13 Aug 2025 05:48:57 +0000 (UTC)
+	s=arc-20240116; t=1755064433; c=relaxed/simple;
+	bh=tYzfRnMFc7+M+HGJ6EtfaAGrss0xOuxsXzcgaExPhWw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=mu7PAT4A9lJpVwJ1g/R//wMpcFHAioO092wVOaD/nZrGV5HIITcELuoI3IAXi06EeLZlLkLRp071jBtYGygaSJlELLcuur6QelEzZZZY5Wk9pSTYLiNfCoA1uf6NRmfY5kVCzIaR1jyzYdjJjh0zwHo/IgQ7wUIZLtwUua1qxQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NLFBDSZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB7BDC4CEEB;
+	Wed, 13 Aug 2025 05:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755064139;
-	bh=v2+LzP/RyNnvQJuTwqwFxbLgkZQ+Z0N2Fi1NJHc3CJc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n34bRQWW4RLNeD6jzsHxfmTji0RZ0OVe78j2gn3FozZCqKkANBr0DVOjNxW/v6c+u
-	 7t/CddAM/l9sQKXyDJgU9mITDum+ylBbNuZkd99ztAbhvy0zHhzzw0/XwaQn7dIu6w
-	 Ik14621Yvn3cBnxqXRqqFgrb5tR5KpS7GXcuc3/FkTsooVX8q4msB2xASneDdQ84O3
-	 rxcQJtKc+W7y8XuwIzdwTLY9JmiBC7ggQBeTAo2C554EO11uoLOuGyFHm3sYyBY1Qh
-	 O/SBkr+QmuZUzS+gUYdqcOsVBaVKLu5FrTik6aa6QuQyZKelduA0+1oLIqQGbQnMGc
-	 2Jy8z3DQbcQuA==
-Message-ID: <4f0ec956-d796-4c62-995b-f8a879b444f0@kernel.org>
-Date: Wed, 13 Aug 2025 07:48:55 +0200
+	s=k20201202; t=1755064433;
+	bh=tYzfRnMFc7+M+HGJ6EtfaAGrss0xOuxsXzcgaExPhWw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=NLFBDSZgWTXYe5uxoXn1FpSSAOsOZ8QG8zNtyQZt5E/5xtJFokE8zHGTPsHQ7d93p
+	 pU6Ol3etX7teZpsgdhCpFF/PcRD8+9kKfh/bicK11jS1/qiJoSlHthAilNb1NHYM9x
+	 6eUolc2Hj5JSEfHCHMkKv2Zism4m0b2p14HeDWrCiqxiZKLJSEDFp5jEZxAwlf3eAi
+	 m39JqnZ2wJF0E6HEMrBtwj6+G2HTO/vf8Snc47fIUFEzf9gP+SmosQBWwckXDK3BwE
+	 zpdwjGbeOsNt0dbDOgFA0V+9hNCI5rUmEHoIz0fuWzT+7D/d2iZTKfz/AQHvRPcTy2
+	 mqdb4pK72a4Iw==
+Message-ID: <5f444470-2095-43a9-b946-d95fe6690c73@kernel.org>
+Date: Wed, 13 Aug 2025 07:53:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: "complete" dt-bindings for new SoC
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <82c09e95-9856-42ec-b7a5-858fd06b888a@alliedtelesis.co.nz>
+Subject: Re: [PATCH] mcp9600: Add support for mcp9601 and sensor config
+To: linux-iio@vger.kernel.org, Andrew Hepp <andrew.hepp@ahepp.dev>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+References: <6esdq4e4r7vmxwlyfs4a3sgdomazxospr3go2oaqkwhpgw6mkh@hdca2d3f6zwp>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,32 +100,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <82c09e95-9856-42ec-b7a5-858fd06b888a@alliedtelesis.co.nz>
+In-Reply-To: <6esdq4e4r7vmxwlyfs4a3sgdomazxospr3go2oaqkwhpgw6mkh@hdca2d3f6zwp>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 13/08/2025 06:56, Chris Packham wrote:
-> Hi Devicetree Enthusiasts,
+On 12/08/2025 15:08, Ben Collins wrote:
+> The mcp9600 dt binding doc claims to support thermocouple-type but
+> I don't see where this is implemented.
 > 
-> A few times now I've been told that things would have been easier had I 
-> submitted a complete binding in the first place. I find myself looking 
-> at another new SoC (a Realtek Switch with and integrated ARM64 core this 
-> time). I'm also waiting on hardware so I figured I could probably get 
-> the ball rolling on a devicetree and I wanted to do a better job of 
-> writing the binding.
+> - Add support to detect mcp9601 device type
+> - Add support to use thermocouple-type dt prop
+> - Add thrermocouple iio info to get/set this from sysfs
+> - Add filter-level dt prop to set the filtering level of the chip
+> - Update dt binding docs
 > 
-> Which brings be to the question. What does a "complete" binding mean to 
-> the devicetree maintainers? Are we talking about an overall binding for 
-> the chip that calls out peripherals (some which already exist) with a 
-> ref: ? Or a full binding in one document that covers everything in the 
-> chip? Does it need to be accompanied by an actual dts(i) for the chip?
+> Signed-off-by: Ben Collins <bcollins@kernel.org>
+> Cc: Andrew Hepp <andrew.hepp@ahepp.dev>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: "Nuno Sá" <nuno.sa@analog.com>
 
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
-Writing bindings doc describes that. I would add on top - if SoC has
-multiple devices of same class, like multiple clock controllers or
-resets, this should be taken into account if not sending all of them.
-And by taking account I mean think how complete picture will look like.
-One SoC for RISV-V is example of that...
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
+
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
+
 
 Best regards,
 Krzysztof
