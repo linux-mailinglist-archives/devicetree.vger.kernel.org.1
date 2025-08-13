@@ -1,94 +1,138 @@
-Return-Path: <devicetree+bounces-204279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA42B24D36
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED30EB24D45
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1221B3BB71F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:17:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 939893A3BFB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:18:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2861F8BCB;
-	Wed, 13 Aug 2025 15:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97C6218EB1;
+	Wed, 13 Aug 2025 15:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WGZ4Cklv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075A51EF389
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 15:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0066C1FDE19;
+	Wed, 13 Aug 2025 15:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755098220; cv=none; b=HLSdh7kHqCgi7eqb/QgzryQGj2pbS1MlmrN+JuaJZA49EF+59dGY+/DnRP27Ij0rlA5P99QqGbQs/4qXG05OchGpAm1i04JXNq+Sh5Av3u0brjKHpx6l1QX5V+ucmQkjOD1fwN17RpjWqRc2u4xMNqqNc6BQP/XtR1Fhzx9yyHo=
+	t=1755098253; cv=none; b=iaFlQGZfvb1pLBHYx2sXKg3+iyCMw31re+vR8ArTRC2W0N9KX8j3/sX6oh9th5u+mbRvRlzlXumA6oMB42z+EVKjRZ3dw5XLdmznfCwMLjyrf5aPdwEIWyejOkdbuIZpMl2EsyiDwAirPtx3aWWkPZP1WyRx8gQmhYGWTScGs6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755098220; c=relaxed/simple;
-	bh=oKp2lZiQ3oJCMCm9FxULdr589AuLvdQ0SykmCkbL7OI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b+jCQUjbH05Iat/LCDvUtBqokfem/wqODnlF01RB8+D89FG1/MikhQp+SgZBlazjmBw8vx1acu82AZfklWDnk1oHDF2uqXd1Ia6d4Igoyjd1GfMFP/gThwqXTToKqTCjEI7gSdTgdLRXYXUGj5dHdc8IJkW2v1BEkte14BtEQtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=watter.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=watter.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ben Collins <bcollins@watter.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Hepp <andrew.hepp@ahepp.dev>
-Cc: Ben Collins <bcollins@watter.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/5] dt-bindings: iio: mcp9600: Add compatible for microchip,mcp9601
-Date: Wed, 13 Aug 2025 15:15:51 +0000
-Message-ID: <20250813151614.12098-2-bcollins@watter.com>
-In-Reply-To: <20250813151614.12098-1-bcollins@watter.com>
-References: <20250813151614.12098-1-bcollins@watter.com>
+	s=arc-20240116; t=1755098253; c=relaxed/simple;
+	bh=X55BNW/lvLuP0M1N8mH4Vvk/thi99V61e54O86PhtzQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mfwIRgusSGttC1KAs7txkiqODmIqX3i5Bkru2USLJuVBmApqqlypWUclVBf+36lWphrPcw0Yenq2paiWWCwMV97WbhzoUaXn0O0ilQbsiivQWpaz28eEesx24pWxq6Ln2ckWRS731qAJ7NAczl3h+N4cN3MYlyAW+I2+i4SF59s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WGZ4Cklv; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DFHMuB2101625;
+	Wed, 13 Aug 2025 10:17:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755098242;
+	bh=mcAdqGklcRo+qLa2crMGRiBhEAbVfeREEGf0sW1Z/G0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WGZ4CklvI+zkUPaV54K6b5MBk2b0LdxHQn6wRWSdTpCWUbISrFyXxONBmoFMl4Wis
+	 LKnMpVp9w+xfMK6VkCyY1vftwgJP0HIaxJAyW2aLpviANW9WekVM84gqHmGWQ29zT+
+	 Rw/SrjmDADK1TiRRiT3S3PNmOKZf2/LHFy7QYYhE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DFHMVc479317
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 13 Aug 2025 10:17:22 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
+ Aug 2025 10:17:21 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 13 Aug 2025 10:17:21 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DFHLeO2494680;
+	Wed, 13 Aug 2025 10:17:21 -0500
+Date: Wed, 13 Aug 2025 10:17:21 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <rs@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d-gole@ti.com>,
+        <afd@ti.com>, <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <detheridge@ti.com>, <matt.coster@imgtec.com>,
+        Michael Walle
+	<mwalle@kernel.org>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62p-j722s: enable the bxs-4-64
+Message-ID: <20250813151721.nc5fr3qmro5grlda@steam>
+References: <20250808232522.1296240-1-rs@ti.com>
+ <20250808232522.1296240-2-rs@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250808232522.1296240-2-rs@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-MCP9601 is a superset of MCP9600 and is supported by the driver.
+On 18:25-20250808, rs@ti.com wrote:
+> From: Randolph Sapp <rs@ti.com>
+> 
+> Add the relevant device tree node for Imagination's BXS-4-64 GPU.
+> 
+> These devices specifically do not set the dma-coherent bit because they
+> do not use the same MSMC configuration as other BXS-4-64 enabled TI
+> platforms.
+> 
+> Signed-off-by: Randolph Sapp <rs@ti.com>
+> ---
+>  .../boot/dts/ti/k3-am62p-j722s-common-main.dtsi     | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 2e5e25a8ca86..a51db8f9dff8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -690,6 +690,19 @@ ospi0: spi@fc40000 {
+>  		};
+>  	};
+>  
+> +	gpu: gpu@fd80000 {
+> +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
 
-Signed-off-by: Ben Collins <bcollins@watter.com>
----
- .../bindings/iio/temperature/microchip,mcp9600.yaml         | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Note the discussion in https://lore.kernel.org/linux-arm-kernel/DBE4UO2RGAYX.17V1DAF8MQYJM@kernel.org/
 
-diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-index d2cafa38a5442..d8af0912ce886 100644
---- a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-+++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9600.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9600.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Microchip MCP9600 thermocouple EMF converter
-+title: Microchip MCP9600 and similar thermocouple EMF converters
- 
- maintainers:
-   - Andrew Hepp <andrew.hepp@ahepp.dev>
-@@ -14,7 +14,9 @@ description:
- 
- properties:
-   compatible:
--    const: microchip,mcp9600
-+    enum:
-+      - microchip,mcp9600
-+      - microchip,mcp9601
- 
-   reg:
-     maxItems: 1
+> +		reg = <0x00 0x0fd80000 0x00 0x80000>;
+> +		clocks = <&k3_clks 237 1>;
+> +		clock-names = "core";
+> +		assigned-clocks = <&k3_clks 237 1>;
+> +		assigned-clock-rates = <800000000>;
+> +		interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
+> +		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>,
+> +				<&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
+> +		power-domain-names = "a", "b";
+> +	};
+> +
+>  	cpsw3g: ethernet@8000000 {
+>  		compatible = "ti,am642-cpsw-nuss";
+>  		#address-cells = <2>;
+> -- 
+> 2.50.1
+> 
+
+Is the issue that Michael reported
+https://lore.kernel.org/linux-arm-kernel/20250716134717.4085567-3-mwalle@kernel.org/
+resolved?
+
 -- 
-2.50.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
