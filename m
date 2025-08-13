@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-204339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E68B25115
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:06:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F39B3B251B1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7089A0644
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:01:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C71E9A6ACD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2320028D827;
-	Wed, 13 Aug 2025 17:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0652980C2;
+	Wed, 13 Aug 2025 17:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMas8frn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6sC3POs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE17E22DF9E;
-	Wed, 13 Aug 2025 17:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F39C296BCE;
+	Wed, 13 Aug 2025 17:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755104462; cv=none; b=k77XuFCrnGlZC6DteOrOJ1G+ZnTW5NIIEy2eTjoR0Y1WmiSm1wCEfWMGaJhQz3Q5Tx1HqTT74Q3uUIW3/Ge8mEj9puIOjNJYc/q9fhUe3IR1VIE3aaitazFmnI7JEewS6zugF6fKU9nwgOSr6LCBQhU7hxggS28CTguDPoT4F+s=
+	t=1755104682; cv=none; b=ZP0GDJck/5JM4c35f2qJyqFlzPw474JtAMEhpV64oM+N415pLlwuhx9Sj+uBugcTeHsK7c8V+JtZ5+wGrWOxvuJBIwtzfd2OZyfHy/gRwpeHdWBsJR35xMjp3c3vgmKmykWYio6tguY76l083Wk8ZoAQocUxA33IFFqklh7MOYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755104462; c=relaxed/simple;
-	bh=hPgVOTOzVezoA5w3n5VtqQYo2mxCUXrIIYMmOg4FXV0=;
+	s=arc-20240116; t=1755104682; c=relaxed/simple;
+	bh=FSbJnX/tdDDfJEsqxBkGdS+Mt93VVJRBi5BDnS63LrM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Buv1yHiPF1s/+61nPq3BadikcGiUCdHpRX+8IZeGLpZPDSYsRqiu/ipaY65DJhTmxmkoagi9LC3gULHh7R1VTDwRn6FFkVt75gY1OTUZt+fyG4Z/xDrMUC/1Tsjt2ufcN5I8+cm+jpExkXIOj1A2ishIygSIArgj88vqpKF4axM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMas8frn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72301C4CEEF;
-	Wed, 13 Aug 2025 17:00:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HM7+ieYbOBlHkveakVUYyLwhtFVOrU6NwjH6yG/4yjDml4z8xSSvf6S0ISHgp3Vf3VuVyBrnH4tLn5tTGkPzrwHSOxaCCq7+gfQH3XL64mv0L9Xmf7dYlPPbQ8G5R3GjG+pfmA9VAh9MjnQ7NM7Wz7Vpq3z0uX98RpEs/h3qDH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6sC3POs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0DD1C4CEEB;
+	Wed, 13 Aug 2025 17:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755104461;
-	bh=hPgVOTOzVezoA5w3n5VtqQYo2mxCUXrIIYMmOg4FXV0=;
+	s=k20201202; t=1755104682;
+	bh=FSbJnX/tdDDfJEsqxBkGdS+Mt93VVJRBi5BDnS63LrM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nMas8frntNXMrlTT99REIn0+lRenQk6+eTBfytsfAAY80CZSbPag8bJKBuyCTgldc
-	 Q1N8eY4ndQ2hQ5GzTkCDGruW8ajBO4TRHU9qMN1BliATenKBTYM+kGxuBOo5ZyTa1X
-	 VllOqWMpxzdgTBwuuVV3ijYARoxWHiuaIMLxQHHG2H7XcQoKYL9OugfZLKbCF9qast
-	 Dsfu3ss55MUvIqhEiDZSz4ShdxnA8bKfSyNGbEACqOU7QHk+3FOY2MIRg0m94kHq5I
-	 /yvtl7yAOdVwgivDRIpLD4RDP8kXamkAtyzX9IlXSPQvPmycoPz2f+ZtSCWsK84VoQ
-	 H/qFCQ91dCzWA==
-Date: Wed, 13 Aug 2025 18:00:56 +0100
+	b=U6sC3POsHNbSLFaFHvuXxYNI7iydZ3zybQL2zc/OwIJwvDljQnciryylLyaFbRWfu
+	 42+IpLwFBz15+c4o06uoCluukWrjr7MkUdr0pVDUGSgGjNYfiT4+eNr9aKAZTusHXM
+	 bcxloXVLpr9X7GuGqBSW6JyLuOusm/9WzJ+zLHQS2NApmpcV+qkRX2WLos3eXYgQAY
+	 OtAvsIhp/B09sOqSh/ZQhAUNnHys6Lc/TxM2VpYqoYR6H5SeGL1UurtDpSF/GAjxFV
+	 9ALci36BTn+ay3FLgViJaPR4C2HULP3E29kndISE8R/XYSaj/jlax5SGQjzgwzKGt9
+	 QjYFwUOfgAdTg==
+Date: Wed, 13 Aug 2025 18:04:37 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Yao Zi <ziyao@disroot.org>, Han Gao <rabenda.cn@gmail.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: reset: thead,th1520-reset: add more
- VOSYS resets
-Message-ID: <20250813-upstage-identify-683582a03f7e@spud>
-References: <20250813081716.2181843-1-uwu@icenowy.me>
- <20250813081716.2181843-2-uwu@icenowy.me>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Frank.Li@nxp.com, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ghennadi.Procopciuc@nxp.com, s32@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: fsl,vf610-ftm-pwm: Add
+ compatible for s32g2 and s32g3
+Message-ID: <20250813-degraded-suds-7f3835afe532@spud>
+References: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
+ <20250812200036.3432917-2-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,40 +60,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zLx+xFUkqdnSsKIv"
+	protocol="application/pgp-signature"; boundary="RQHkjRFD+cMAASiM"
 Content-Disposition: inline
-In-Reply-To: <20250813081716.2181843-2-uwu@icenowy.me>
+In-Reply-To: <20250812200036.3432917-2-daniel.lezcano@linaro.org>
 
 
---zLx+xFUkqdnSsKIv
+--RQHkjRFD+cMAASiM
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 13, 2025 at 04:17:15PM +0800, Icenowy Zheng wrote:
-> VOSYS contains more resets for a display pipeline, includes ones for the
-> display controller (called DPU in the manual), the HDMI controller and 2
-> MIPI DSI controllers.
+On Tue, Aug 12, 2025 at 10:00:35PM +0200, Daniel Lezcano wrote:
+> The S32G2 and S32G3 have a FlexTimer (FTM) available which is the same
+> as the one found on the Vybrid Family and the i.MX8.
 >=20
-> Allocate IDs for these resets in the dt binding header file.
+> Add the compatibles in the bindings
 >=20
-> Now all peripheral related VOSYS reset controls are here, only the bus
-> matrix / IOPMP ones are missing, which shouldn't be messed with.
->=20
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---zLx+xFUkqdnSsKIv
+--RQHkjRFD+cMAASiM
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJzEyAAKCRB4tDGHoIJi
-0gxpAP0YBFmEYd0HAqrdEYHu+BQ+mClU/GfxdUwkKpFg61rWXAEAmjNCfBLWG/dz
-s0ZdN1Q34+01iYJuldDj2Vwt5ry8MgE=
-=VRmL
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJzFpQAKCRB4tDGHoIJi
+0iaCAP930uL+/MNTShH+iLr3K0k/Z0OGgyJPz6agtNojZKb2MwD/SnRmhmfhNl9u
+zK+a3mIzBhHScsYN3AnQN9c4fzDUbw4=
+=lIG0
 -----END PGP SIGNATURE-----
 
---zLx+xFUkqdnSsKIv--
+--RQHkjRFD+cMAASiM--
 
