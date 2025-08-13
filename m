@@ -1,200 +1,184 @@
-Return-Path: <devicetree+bounces-204074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB62B23F95
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:28:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584ADB23FAA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 06:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC12A2A7FE3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:28:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B93A41893433
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 04:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED2E2C08D0;
-	Wed, 13 Aug 2025 04:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9C322258E;
+	Wed, 13 Aug 2025 04:31:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023104.outbound.protection.outlook.com [40.107.44.104])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2FE2BE640;
-	Wed, 13 Aug 2025 04:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755059238; cv=fail; b=lYnn6nbP6aeER/QujQMU8FgpNxYvGyZomNxFmbGvpbnFdL5PyhzPTQ4T9qJU+kq0DXGW98PoGrJzb6X/fP1TqMJSzXxxGT45fEdtnoR4lzWHNUpH2c11omxAu8FepC2YgvlpU1CnTE7bxnCbm9EeXN1eVwN5hCMyLobNbLo6I50=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755059238; c=relaxed/simple;
-	bh=r+Qkefs47oY6jF0PEqr2QE+PsGCgJIkkgwfbMofRvbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M+QUrgwBEYeyxbHfwudMNIJ2sMCgZ7mqKFA0nDVG74Fjv24x68zduApQ6138Y2VfSFngCY0EXcAVxOozK83qNCXsZHi1mOSf/55MnoXrf/ZJw+6vCjc0AlCz3naA89ijN3cpxsJTtrleHvDmEd397X2z/GfTrrqfpSDqQMYL6wo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LEaVfVf08/pSq39p1LtrC/W+0+ORF+XTc2/A3F0umvaVuFqmaI8BmXzGxVL//9p/aa3RMLI2VM88PxrnJbf6REWSC7RHSo8cNnI1u0ELpU3mi1NytQMm5EgAlooQzWk/b5v4M3gtMb1/COqeDguwjwSKHXk6Hj1OcboG+QoCyKKGODIkdkpLWphWdMv1bQo6boeZ1wT/MeIzWRNXUAgUPKWv19Cuflyr/1EuQk03Nh1wEv9jkJCQtrBZ/fxEFv6xX4R4SSyFXGxY5rOA/XKRNMXiA0p9x55qYiJhEa5xPZ6alvLLFvsv0dc9pPW1NGQNwPIaqewUZICYAbVF8PAGXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M+5ibsszrIdg2MynYFSRWpz2hkTGEqoGCPPfJGeKGNk=;
- b=nloKpCtJ57rid0ZKoPF5omp36eS+MYyaVi/LsfpXC9H66MiMzgcGVFylzHdhIoW2rTBjW+lLNxXEcYOrN+Hb51VywG2Plrl5kswr05axA22nVHXeLGFNaqb3vHhOA8UfKWvJsimJznWrL/2dVN5nUNMIvAALZ8/zBGx2XZHsHTgjYSJ1M/GGz9d2VxY4q3jstr5p2RsXeIzQtwiqQVy1IhGXjkqCbi3dKXa2p2QiPYYqYDHJuHKOEpaESZNSNEl71yKHk+XT7vSQWPm/qeUzdS7kF+FqwStHY96zFnU3PN8mi89R05FySG3znNp4R3bBRAOhge4j0Ypmid0Gh2qwrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR03CA0087.apcprd03.prod.outlook.com (2603:1096:4:7c::15) by
- SE1PPF215029121.apcprd06.prod.outlook.com (2603:1096:108:1::40e) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.14; Wed, 13 Aug
- 2025 04:27:11 +0000
-Received: from SG1PEPF000082E2.apcprd02.prod.outlook.com
- (2603:1096:4:7c:cafe::b5) by SG2PR03CA0087.outlook.office365.com
- (2603:1096:4:7c::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.15 via Frontend Transport; Wed,
- 13 Aug 2025 04:27:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E2.mail.protection.outlook.com (10.167.240.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.11 via Frontend Transport; Wed, 13 Aug 2025 04:27:09 +0000
-Received: from hans.. (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id DCF2141604EB;
-	Wed, 13 Aug 2025 12:27:04 +0800 (CST)
-From: hans.zhang@cixtech.com
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	mani@kernel.org,
-	robh@kernel.org,
-	kwilczynski@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: mpillai@cadence.com,
-	fugang.duan@cixtech.com,
-	guoyin.chen@cixtech.com,
-	peter.chen@cixtech.com,
-	cix-kernel-upstream@cixtech.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hans Zhang <hans.zhang@cixtech.com>
-Subject: [PATCH v7 13/13] arm64: dts: cix: Enable PCIe on the Orion O6 board
-Date: Wed, 13 Aug 2025 12:23:31 +0800
-Message-ID: <20250813042331.1258272-14-hans.zhang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250813042331.1258272-1-hans.zhang@cixtech.com>
-References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870D423D7F7;
+	Wed, 13 Aug 2025 04:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755059474; cv=none; b=gcv1TyCPMfid4zZIMC968mgSAUJtQ4Ixz48kh6vfe/U1qrw89WkT22MHnDHyRkPJa5IfKd9jLFDVxnltOlXl85j7CaPSwuWSLeFY2Lwv1si345u3kFCgWYktipmFbyqKw/yf2bzf+tPEWnAmcAzxyFgBw6O7mbQK9gk55lAI4U4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755059474; c=relaxed/simple;
+	bh=1+lPN/7RaXvAgaTP1wg5cSNxAX1xzdUfHWFU4t8MroE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rXH9j37xGezABqWN5oXSKJlBz4z/wQY3UkYvbL1/QZhn0Oa1di2MyteSWZLNqIfNTon0OCDMbrk3qIWAXmlFLGryTPF3pTR70uMZP3wXG/bkJ1VvVQ2W+lurG7CiQB9y2ZMS8I/6XJ6ytWIkFp0XAXOGn+Hhn5BG0l3Jeiy/Lbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=willwhang.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=willwhang.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-af91a6b7a06so1037912366b.2;
+        Tue, 12 Aug 2025 21:31:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755059470; x=1755664270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jEitumvRdECaQFnfUf7n8uN2sOMlQVkaq/vshRF+hlY=;
+        b=WP0CXxOk6c0kfhTS7AZr/K1vK7hNd6t0bzgtzO4J3MOxEcpcw72rfchQar2XSZWNar
+         R2gdcbPx6u0ElwVVO91/IJLmHQiSvqyVhK4W4yHErtOezwaNoSbQ3lBsqp+zuFKdINtL
+         5KsEgFTIdAhszZvaV6BbJYVm23eAsa8AEf5jB/EvrP9qkrml1wXo3SsSgrV3skMJ5uYj
+         m/+k6Q9TRzdZB8LYBT9znvg3IEcEa8bGvEfvD8hruQx+Obpkij0W1azyP5G9jUA1Jfp1
+         oKg5hksrtCAnxy+KgIwNDg+acFvgMRmbwRgC6QFt9wVPd0ZmcfSUGylBrTszfzRoDrVy
+         3KKw==
+X-Forwarded-Encrypted: i=1; AJvYcCUnOZWI9qoHFLnm9WXWkI+dqfL23KOGzaRNaLEAUl42DYvGPnUVBA61RjHdwPqL+GVo+/aLWqnJSFIN5nFt@vger.kernel.org, AJvYcCUwHTn477wy9eF1JOyWoSGI51pM969j6JmEMnOan53HtG/h9Iv63joen90TK6B7IVJiP+fw36mZfsU0@vger.kernel.org, AJvYcCVFDROMuHgD0GJR02w0o37GtsNFX5vTe4PjfMomGFrmYgfxqzBP7jTXQ0ltBtv8PQv7JPmTd1Jsf8GYeXE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxioYNkFPfwisk0ttTTg5zatEL4fxlhbLewseevlZjsevqT8e9y
+	HPv7/bdutAUy3h7g9MHBkfMgJVTomcsa7DrbA8R+m8NLUVy5gnmjb3g5xHmWSaASxDk=
+X-Gm-Gg: ASbGncsJ5WEdlRK4DCQYx+sFHCFcuo1jLnd61auRwixig/bn2QbGHVuDO2+rNKWpIzA
+	2MISfxElf3asR8zigBZZ6YzbHLs2V9aPzOr8wWxfYQ0dmwlzMGYAL89SFCOSlxkQ2CG+dkGEGlG
+	GdQBgajamFJNEE8TEoKkjtUUEgURpDkutHn+zuCBLIY2ce0lLehgTHDEPkS9XoXCN4nhmOQDrGR
+	KOrgnE+yesl2mTUrm3MSsJfoRruiltsSpehUIbtUEvjAyT7nBVozOZdH4AZY4MPTIw7AaNRp0WF
+	S+ry4E+aNbCYzAz34bEKtBJZSKA+Wd6Vo266WDhXRfIlKyVtvfHuWTfYYR08Af3mwe3YTVirPyi
+	6pTVdLWv/o3x1fty/LTeGAxIUJaYOLwXCdSd28ErGKaVDLwcp/nbAj1ae5w==
+X-Google-Smtp-Source: AGHT+IEpWm9bIegfdk88A9QXgS/lu6pGEs+VhpYdstqTyKTGj5UlzN0p7iKHeIKgnWxdl24fecfQTw==
+X-Received: by 2002:a17:907:d90:b0:af9:6e4a:3b2c with SMTP id a640c23a62f3a-afca4e3f7demr160313566b.43.1755059469632;
+        Tue, 12 Aug 2025 21:31:09 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com. [209.85.208.42])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0761f2sm2334474766b.11.2025.08.12.21.31.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Aug 2025 21:31:09 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6152faff57eso9667120a12.1;
+        Tue, 12 Aug 2025 21:31:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUL/Y+uvGgOsLhYz+AK/h9UXMiSv2JX7ik9imGjnxMMhEKMpUCCTW3d48sWpp6f7JuFVNjDIDuC8Kx9P+cE@vger.kernel.org, AJvYcCWDF6g2t3R9VVVDZsd/gzTPQ5InosQCJEurp6J2TSVZQENPgnzJYRuibmE7/5AKaW3ylzSwRdRLDYFE7Ec=@vger.kernel.org, AJvYcCWXiqebk7lCizvLhgzwCLCJAENN5rDY3q6W3Q7tWSBASNTVakBDTiBOzVD6Fq2hZAQXZmTD040rUvUl@vger.kernel.org
+X-Received: by 2002:a05:6402:5251:b0:615:539b:7acf with SMTP id
+ 4fb4d7f45d1cf-6186b75b54cmr834464a12.2.1755059469148; Tue, 12 Aug 2025
+ 21:31:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E2:EE_|SE1PPF215029121:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 86611f47-5c25-4e9c-9d0a-08ddda21ab43
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?lp5/uYNXUVBL/t3kxlwocgEV8le8xyHlkWKITu89j+s+rKkDhGm49VtkVLu1?=
- =?us-ascii?Q?SpjXmeYm+O3ODieELwSmS+66BQJgSZOJUr9wtBR1rk6UwbHwRd8np3dLoZnn?=
- =?us-ascii?Q?Vq6aqlYvQqMsmRh5dOGhIaa91zWqLz81zip9nHm5COg/w9xVYHrb1P1xhXhx?=
- =?us-ascii?Q?p6oGpzBaAY6EliW00tU4fxFvGJGEwP+p/i7oWc3x+BKYCJO1wP+8Ue2VCybx?=
- =?us-ascii?Q?hDJtaEYNGjS3Ue2x1mNKP3WdFv+rAwe1aFbmeOWN7VYIOS30fMLdst6h+4zt?=
- =?us-ascii?Q?2KL7CLeQ4iZ0WrVAWLPcpN9Q8EpbQBYFNObbnECJ6qb9gBr2da+e0VcXHHRV?=
- =?us-ascii?Q?vpx5Z/LsaG3E31qsZTx+85+PXk/UDeEBJZ/Aa09VbUiTxbJBL8oXFnt5CfFr?=
- =?us-ascii?Q?aKwkKCl4h9tWIEwCwA0Ljsa5r2kFNhAO9TKIoKmIQklQ/DWLe6WxzgW2K4fY?=
- =?us-ascii?Q?gpn2VrDo5eX0b5+9HUjdGwUQBRYd949Ig6f50tRreFTT0G3Qzz7C2PjvyHDJ?=
- =?us-ascii?Q?UVDkYXUPGdAvGujTmF3fiDBt877LBTt2pfW/kHgAdlNJGbNquqdJ/Q1AknF9?=
- =?us-ascii?Q?Cdo+cIFE9LimHKwTLxePSUSiw8pBjI46fQABbgb05oZQn7Bm1ecGYaGbELfc?=
- =?us-ascii?Q?UjAKA1xPbEi8KVS5cMWVd+4s5iLENsYc74iPK5nE32PtUR6h8Ls9BQgBQzAR?=
- =?us-ascii?Q?P+HCTVALCIesys1iY3Z224/I6ZRx+2DSbLLhI/QcROOrDxIBXH9WfeFNUypw?=
- =?us-ascii?Q?0tWG1sYAhwvbcldI//77A5eWG5OWxa2oVkKrsGUmJV4tsRnxVm0jGXdRcMHa?=
- =?us-ascii?Q?3vtlVRMCAV3KWbXUE4T0HpHT7T2toP6D0pfzASUEU58PYZYqgSbo4CJLX9CU?=
- =?us-ascii?Q?SM6g5Q5B8o/90spi7v60rBntzQjEwDRj3nH/f1aaaEbzFAPvshOeGrVYUqGG?=
- =?us-ascii?Q?SWNPLnc0RMd0PSjsyAhr1IMO1u3VuJufqG80BmqkJURGPjScSUOaFRy04gMv?=
- =?us-ascii?Q?rKV3igaHChuXnI/Ip+S3/3a4wv9WcbvvMm5R4LTHz+YHFf8Pc754u1rGrKDb?=
- =?us-ascii?Q?ua1A5IxD9z6Rgsx9b2K4JT1pG/hD5pfg4iU/t9ZgJzPKKXocQKhS8aWR7MCy?=
- =?us-ascii?Q?pDIgszyAOUMRtZQdjgV+uI7ihq0kv2lycWQo8mEDPrlv2jISSeLyjfQMAsqN?=
- =?us-ascii?Q?XL2I//6GLjzxOb6zuB8cVbYY3PtZqrLKT9ekJLvGimJjC2F4UcDbYq35NtQn?=
- =?us-ascii?Q?yVDr2cRDc+M4ikhHcz/2U4rr99H2Oa39OgZd7WTb8wBJDvkwSlRcXp4LCVgN?=
- =?us-ascii?Q?Xmm3YHERef5RW4h/cVgn7Eyi4SIki8MBA9Fu3g0ogbN+lvB0GbOLZJXzd+IQ?=
- =?us-ascii?Q?w0llogHw+ppAFIxNEOzawRnG//20BdTKa/EOfoosIvB4JDPQTwD+cexk7xyt?=
- =?us-ascii?Q?oPMCpC+USx1LGZBm3cSeAD53kkV50gGEogjP6OZnwDMVGNgjvsHSFIcJEzkS?=
- =?us-ascii?Q?9c7SQsrQJmq2JAA0VQSMo920++Hes8c1HnEd?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 04:27:09.6742
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86611f47-5c25-4e9c-9d0a-08ddda21ab43
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E2.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1PPF215029121
+References: <20250810220921.14307-1-will@willwhang.com> <20250810220921.14307-2-will@willwhang.com>
+ <20250811-successful-military-dragon-d72486@kuoka> <CAFoNnrxWwqT9WA-h2WOsUe6Q-qEoz2mTHLpDogAyMwiXXZ9MrA@mail.gmail.com>
+ <f12e6ff3-6ec3-487f-bf9c-0f8c06ee6444@kernel.org> <CAFoNnrxhUof8BBrefm1L1peTxg==Koz72TY+54G_8QUy-rrT8g@mail.gmail.com>
+ <e695c61a-e183-4eea-a7f6-1b2861b2129f@kernel.org> <20250812095543.GJ30054@pendragon.ideasonboard.com>
+In-Reply-To: <20250812095543.GJ30054@pendragon.ideasonboard.com>
+From: Will Whang <will@willwhang.com>
+Date: Tue, 12 Aug 2025 21:30:58 -0700
+X-Gmail-Original-Message-ID: <CAFoNnrzWot_Bf=YZFac1GkZgOOnJycwpidvwL93p3p-C-zn8BA@mail.gmail.com>
+X-Gm-Features: Ac12FXw_0xiUCO5_AdWCiXWdSKd3XS6pJsuGK-9Sx_SEJjxOfia3w-Vp2ADn6es
+Message-ID: <CAFoNnrzWot_Bf=YZFac1GkZgOOnJycwpidvwL93p3p-C-zn8BA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: Add Sony IMX585 CMOS image sensor
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Hans Zhang <hans.zhang@cixtech.com>
+On Tue, Aug 12, 2025 at 2:56=E2=80=AFAM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> On Tue, Aug 12, 2025 at 08:47:12AM +0200, Krzysztof Kozlowski wrote:
+> > On 12/08/2025 08:31, Will Whang wrote:
+> > > On Mon, Aug 11, 2025 at 11:23=E2=80=AFPM Krzysztof Kozlowski <krzk@ke=
+rnel.org> wrote:
+> > >> On 12/08/2025 04:47, Will Whang wrote:
+> > >>> On Mon, Aug 11, 2025 at 1:01=E2=80=AFAM Krzysztof Kozlowski <krzk@k=
+ernel.org> wrote:
+> > >>>> On Sun, Aug 10, 2025 at 11:09:18PM +0100, Will Whang wrote:
+> > >>>>> +description:
+> > >>>>> +  IMX585 sensor is a Sony CMOS sensor with 4K and FHD outputs.
+> > >>>>> +
+> > >>>>> +properties:
+> > >>>>> +  compatible:
+> > >>>>> +    enum:
+> > >>>>> +      - sony,imx585
+> > >>>>> +      - sony,imx585-mono
+> > >>>>
+> > >>>> I don't understand this second compatible. Is this different hardw=
+are?
+> > >>>> Can you point me to "mono" datasheet?
+> > >>>>
+> > >>>> Your description should explain this. Commit msg as well, instead =
+of
+> > >>>> speaking about driver (in fact drop all driver related comments).
+> > >>>>
+> > >>> Mono version of this sensor is basically just removing the bayer
+> > >>> filter, so the sensor itself actually doesn't know if it is color o=
+r
+> > >>> mono and from my knowledge there are no registers programmed in the
+> > >>> factory that will show the variant and model number. (That is why w=
+hen
+> > >>> the driver probing it only test blacklevel register because there a=
+re
+> > >>> no ID registers)
+> > >>> Originally in V1 patch I've made the switch between color and mono =
+in
+> > >>> dtoverlay config but reviewer comments is to move it to compatible
+> > >>> string and not property.(https://lore.kernel.org/linux-media/202507=
+03175121.GA17709@pendragon.ideasonboard.com/)
+> > >>
+> > >> You only partially answer and judging by mentioning driver below:
+> > >>
+> > >>> In this case, what would you recommend?
+> > >>>
+> > >>> compatible:
+> > >>>   enum:
+> > >>>     - sony,imx585
+> > >>>     - sony,imx585-mono
+> > >>>   description: IMX585 has two variants, color and mono which the
+> > >>> driver supports both.
+> > >>
+> > >> ... I still have doubts that you really understand what I am asking.=
+ Is
+> > >> this one device or two different devices?
+> > >
+> > > One device that has two variants: IMX585-AAMJ1 (Mono) and IMX585-AAQJ=
+1
+> > > (Color). Silicon-wise the difference is just with or without bayer
+> > > filter.
+> >
+> > Then I would propose to use sony,imx585-aamj1 and -aaqj1 with short
+> > explanation either in comment or description about difference in RGB
+> > mosaic filter.
+>
+> Works for me. We could possibly omit the "j1" suffix too.
+>
+My thinking is that imx585 and imx585-mono are easier to comprehend
+than IMX585-AAM and IMX585-AAQ.
+Because in dtoverlay for the users/me they will have to know what is
+the exact name instead of easy to remember name.
 
-Add PCIe RC support on Orion O6 board.
+dtoverlay=3Dimx585-aam
+is not as nice as
+dtoverlay=3Dimx585-mono
 
-Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
----
-Dear Krzysztof,
+which is what it does, a mono variant of the sensor.
 
-Due to the fact that the GPIO, PINCTRL and other modules of our platform are
-not yet ready for upstream. Attributes that PCIe depends on, such as reset-gpios
-and pinctrl*, have not been added for the time being. It will be added gradually
-in the future.
+I really don't understand the standard for compatible string naming
+here, is there something I missed? Is it required to use the full name
+of the sensor parts number as a compatible string?
 
-The following are Arnd's previous comments. We can go to upsteam separately.
-https://lore.kernel.org/all/422deb4d-db29-48c1-b0c9-7915951df500@app.fastmail.com/
----
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-index d74964d53c3b..be3ec4f5d11e 100644
---- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -34,6 +34,26 @@ linux,cma {
- 
- };
- 
-+&pcie_x8_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x4_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x2_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_0_rc {
-+	status = "okay";
-+};
-+
-+&pcie_x1_1_rc {
-+	status = "okay";
-+};
-+
- &uart2 {
- 	status = "okay";
- };
--- 
-2.49.0
-
+> --
+> Regards,
+>
+> Laurent Pinchart
 
