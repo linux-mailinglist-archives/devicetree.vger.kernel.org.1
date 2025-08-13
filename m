@@ -1,231 +1,130 @@
-Return-Path: <devicetree+bounces-204135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97383B2435A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:56:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 657CEB24361
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:57:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52C52188BB3E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:54:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F5BC1689E1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F6B2BE65A;
-	Wed, 13 Aug 2025 07:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rx4LG8lH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74E32E3B17;
+	Wed, 13 Aug 2025 07:55:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690A62E36F4;
-	Wed, 13 Aug 2025 07:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC572E612F
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755071653; cv=none; b=nDlIDVzWIWAj3PQzYiQr22HqrozZlB819xwPmKVl+5GlYyEME2PsQKFlBYMsNUCEEwPkZYvRB0/InQAVpc0yzwYB6G2MlqGPOQfSLeHwFu46igZ0gEKupftfXfZ0ldO0hIV2MICuNj9nOpEMaxF8WzDPNRgh6JESC1s4FpOe4AY=
+	t=1755071708; cv=none; b=ra6OkAYsLy6I/8oCzb+H/Ac2ZjkMBVgSEZakFvAwflG4qbnPU6lZ6nSlKk90UFw1gfOkzUsNqwWbkcCF1NqDYZ30q7cZwgyBuWqxXXwTDYkz+1yhSh9L1p9T1Ol88q4XD7tNfKYS0stTi+26SLJGCpHQcF9/pk670yM58xo9h18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755071653; c=relaxed/simple;
-	bh=Se+R3SRBnQAUbFZPplFYB0lmjvDbELTuqeQUIydxg5c=;
+	s=arc-20240116; t=1755071708; c=relaxed/simple;
+	bh=17up/G/1laxbCJDZqY+UPD+ssU74UB4snWyS+1JKHnY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pa8yXX2/ZtlSFbVV4bBVbHym+0FEApO/OMYfwgy/wuEA+DxSKh3EpyzAo0U5BzglMOjvsSzOp/Y35y5iB2Vo/7Bk24RuxYcftq09qRJpcIv73QKYeMuQvOP7xgQ0daUMOchSFW53Lu9TsJDPohBKhWHTucX7PTlv8RlPGr+wGvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rx4LG8lH; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7e8248ee36cso554266985a.2;
-        Wed, 13 Aug 2025 00:54:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755071650; x=1755676450; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2UybIz5RKzn5qYjRcunlta4nxb7ffklkg0o7NA7aXmE=;
-        b=Rx4LG8lHY2SX6BknK5UstA3nbosQEjZ0XbqJ+RlP6ObJ8bI2vJcON7NVsh0hIWjcbN
-         ovfmi2hhoGqbdCTa3IoOaQNIbh5zELM/MDeXCkcPo7kt9Fj6Mq0Kbx7BvMOdi0VaLqiV
-         EIYJDL7BTIE3p66Ln1Thg41F1gUBLowQDIv1TntTWjZItJUw8nzcIx8dchMxtrycDmyz
-         wDhyL7b7N2FWRIACbWTB00NAFzg1STfi+ow0F42TvYHrpGSvDP/N5jjvAcb9H7eTo+PW
-         UWeJ2V/F3/yX7e8ajZ4mbqwN9YVGzqxNjqr9T6JHYvx//q/joyLoBF4Q5N8BIF/GuPy5
-         kHHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755071650; x=1755676450;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2UybIz5RKzn5qYjRcunlta4nxb7ffklkg0o7NA7aXmE=;
-        b=ZzWlKRWXD899iEziaOMDO/vLi6icw3q70UHDlvkRLEV2Osk3XY3lTFcLmU/zBWWypY
-         rHEGQTeHB0ICy/UmybFzPcuTz9wyKfWdfuGpPPEIPZV27aHqPT3/ojwOYbSsjZ6l1Tis
-         04VsB6rX7Jm/2F6iLGuWKgleRTnBvMdeKJ/qwjaMAJprrgS/SIQ0wHNEbn48RK7IDnQK
-         FdA/SQej6U5dS2GmGytjU6auDEa270lgTscmPh65+Zc3NcyUxj5+kym6Zx+gLKzct069
-         /8vh7V5OC0AwE3ZBey+obGFz+VgnE6Pi91KprIDmWsj+P3pHh3EizTsvq2HIihtny8nG
-         Wptg==
-X-Forwarded-Encrypted: i=1; AJvYcCWrsjb+ex1BIhsQsrjQrKyFk5PQenpFP1dvWC30kG/ti4bSIP+PsFCuvfsRpaE3QTCRXKhgkTn2XqtNTy/i@vger.kernel.org, AJvYcCWsYJBfgjMOHwVEKqVtBqV0sEvNfj4nnUtYbeCiazSnnNCekgCXyE6tghkEYNvJq8wIf3TEJxG6IDDl@vger.kernel.org, AJvYcCX5WtBNCcqtthngkLJVrcd5KCGoP4InfrqwAjcUAa1vZHUKQwzVVA6AQ+ncelIYZirywYBRQyChPAcd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuSwjcgZuk1qror0KD6W4DXINIIldI8blQAyDF7M42lmJopkrn
-	WCokmB2ZfItVVmzbqhsA6ky3vA78icaofoAJ2x3eKAjo3jkrItFGO12l
-X-Gm-Gg: ASbGncsAYPOS3qK7NBmp00wEGvAuVLErx4PrRvVZr9l4WN3l1zkGrSAKanTgiJ5z2gH
-	c6oJ/7ZZX03MyrzpqiwiqZGsFVJVmANQxf/HLcsyKkT8ozCCuq+jAXJsyZ3T7943b3nCOBz9Zr4
-	BI3rtJhiiI6K+cuth1HvNhv9Ej5CA/xJanP16gEQ92xWZDofWOwjnIf7n6opKj1hy3ga7Ge6Mj4
-	farHA6Y97Vu43oWc47KFF51QRrsuemx/6lo191Q+DQeLRs3aBfw8TlVu6sc7zo9TC4xXdzELFKT
-	IUKd55jmHUMWWCFuw8hxBkQ740kL/M5qdNlLJjAq3IuWwadvaIEeC4Y7zPgIiRkyDdNjXLqjeuT
-	an/9shmPo2/s=
-X-Google-Smtp-Source: AGHT+IG43rF9yFYmKpQf+pkO92Bo4veU5NRhAxmIcO1Unuk2b5QG17zeBJ5XdkFwEaFlvk0TdGVUZQ==
-X-Received: by 2002:a05:620a:d5b:b0:7e3:46da:9e1f with SMTP id af79cd13be357-7e8653259d6mr242571085a.56.1755071650030;
-        Wed, 13 Aug 2025 00:54:10 -0700 (PDT)
-Received: from nsa ([45.88.190.11])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e67f595525sm1922281085a.2.2025.08.13.00.54.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 00:54:09 -0700 (PDT)
-Date: Wed, 13 Aug 2025 08:54:25 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: Replace bouncing Analog emails
-Message-ID: <whi5if3mrfjtszczpgerdzv457iihcf6bbywbrt5i7javoap4u@dtgd4ncum4gt>
-References: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XXlIk6rvByxryTDsWLmehSjRz0NyRLgX225BuL+2oZxlv5foYVwkBuuTiFLJT9LIC97C2G6/AUTpZqCiX2SDM3vyuZ4Ls9/a7u1olPnPEIFm6ZA9FqKyJzdXj0or+Q8g7jArSJor5zfp0BwO8mvP267NAMPR2YaR/rUXPbLXqms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1um6Jt-00078r-Fc; Wed, 13 Aug 2025 09:54:49 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1um6Js-0003Sy-13;
+	Wed, 13 Aug 2025 09:54:48 +0200
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id EC4D045683A;
+	Wed, 13 Aug 2025 07:54:47 +0000 (UTC)
+Date: Wed, 13 Aug 2025 09:54:47 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+	Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
+	Simon Horman <horms@kernel.org>, Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, 
+	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
+Message-ID: <20250813-apricot-cicada-of-apotheosis-e8d5fa-mkl@pengutronix.de>
+References: <20250812-topic-mcan-wakeup-source-v6-12-v8-0-6972a810d63b@baylibre.com>
+ <20250812-topic-mcan-wakeup-source-v6-12-v8-4-6972a810d63b@baylibre.com>
+ <20250813-avocet-of-fascinating-honeydew-7700aa-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p6jujqy3l2flf72n"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250812132445.75398-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250813-avocet-of-fascinating-honeydew-7700aa-mkl@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Aug 12, 2025 at 03:24:46PM +0200, Krzysztof Kozlowski wrote:
-> Emails to stefan.popa@analog.com and alexandru.tachici@analog.com bounce
-> permanently:
-> 
->   Remote Server returned '550 5.1.10 RESOLVER.ADR.RecipientNotFound; Recipient not found by SMTP address lookup'
-> 
-> so replace them with Marcelo Schmitt and Nuno Sá (listed alphabetically
-> by first name) from Analog where appropriate.
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
 
-Acked-by: Nuno Sá <nuno.sa@analog.com>
+--p6jujqy3l2flf72n
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
+MIME-Version: 1.0
 
-> 
-> Changes in v2:
-> 1. Add Nuno, based on discussions on the list.
-> 2. Add Rob's Ack.
-> 
-> This change got agreement on the list, but still would be nice if you
-> folks Ack it formally.
-> ---
->  Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml | 3 ++-
->  Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml   | 3 ++-
->  Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml      | 3 ++-
->  Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml    | 1 -
->  Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml     | 3 ++-
->  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml   | 3 ++-
->  Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml   | 3 ++-
->  7 files changed, 12 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
-> index 3dc973b98f81..a92e153705f3 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
-> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: ADIS16240 Programmable Impact Sensor and Recorder driver
->  
->  maintainers:
-> -  - Alexandru Tachici <alexandru.tachici@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  description: |
->    ADIS16240 Programmable Impact Sensor and Recorder driver that supports
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-> index 88aa67bf2280..0ba0df46c3a9 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
->  
->  maintainers:
-> -  - Stefan Popa <stefan.popa@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  description: |
->    Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer that supports
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> index 7146a654ae38..4dd5395730c1 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
-> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Analog Devices AD7124 ADC device driver
->  
->  maintainers:
-> -  - Stefan Popa <stefan.popa@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  description: |
->    Bindings for the Analog Devices AD7124 ADC device. Datasheet can be
-> diff --git a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
-> index 5207c919abe0..eac48166fe72 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2496.yaml
-> @@ -9,7 +9,6 @@ title: Linear Technology / Analog Devices LTC2496 ADC
->  maintainers:
->    - Lars-Peter Clausen <lars@metafoo.de>
->    - Michael Hennerich <Michael.Hennerich@analog.com>
-> -  - Stefan Popa <stefan.popa@analog.com>
->  
->  properties:
->    compatible:
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
-> index 82b0eed6a7b7..091cc93f1f90 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5770r.yaml
-> @@ -8,7 +8,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Analog Devices AD5770R DAC device driver
->  
->  maintainers:
-> -  - Alexandru Tachici <alexandru.tachici@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  description: |
->    Bindings for the Analog Devices AD5770R current DAC device. Datasheet can be
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> index 53d607441612..2e1ff77fd1de 100644
-> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Analog Devices ADF4371/ADF4372 Wideband Synthesizers
->  
->  maintainers:
-> -  - Popa Stefan <stefan.popa@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  description: |
->    Analog Devices ADF4371/ADF4372 SPI Wideband Synthesizers
-> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-> index 7a1a74fec281..43ecf46e9c20 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16480.yaml
-> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Analog Devices ADIS16480 and similar IMUs
->  
->  maintainers:
-> -  - Alexandru Tachici <alexandru.tachici@analog.com>
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +  - Nuno Sá <nuno.sa@analog.com>
->  
->  properties:
->    compatible:
-> -- 
-> 2.48.1
-> 
+On 13.08.2025 09:44:35, Marc Kleine-Budde wrote:
+> On 12.08.2025 11:10:25, Markus Schneider-Pargmann wrote:
+> > am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
+> > a wakeup source. Add support to select the wakeup state if WOL is
+> > enabled.
+>=20
+> The driver makes already use of pinctrl_pm_select_default_state(dev),
+> does it make sense to use it here, too?
+
+Every suspend/resume cycle will overwrite the pinctrl setting with the
+default one.
+
+| int m_can_class_resume(struct device *dev)
+| {
+| [...]
+| 	pinctrl_pm_select_default_state(dev);
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--p6jujqy3l2flf72n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmicRMMACgkQDHRl3/mQ
+kZwB7gf9Fq3xmxmg80kEAI/NPS2rUYeqccDab32rRGOQHTLBtpivL0ap3NULqf2Z
+WGaFuODT5TBV1zJqSZ9oRc9SdhwfJOO1/17/A5uE6fLn+9i91fLLFPfvTwVCEAaQ
+puX607lxWiJYUl9n/jE5/MlsSKZq2ba9aHevhQbr6YXYrG3tb6ITYe5DhQhp1D5n
+5owIIdhQ0PJbGeaJLud/MjSd0y2X6AXY/npChic30GO80RmTMZDxqLm+VcwVoJgL
+zSCec6NzxzJfaFNfVRpzf8cFq+HbWqM0ai+CnfEZD1SypOBVlD2j7g2zERHfvqi8
+E/crEhvpJD0FEhRy/Lbo8W1u/mDY5Q==
+=+ar3
+-----END PGP SIGNATURE-----
+
+--p6jujqy3l2flf72n--
 
