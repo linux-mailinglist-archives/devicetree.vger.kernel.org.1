@@ -1,297 +1,194 @@
-Return-Path: <devicetree+bounces-204174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7909DB2450C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:13:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0339B2451B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BE406832D1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:13:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADCC317BA0B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB392D3237;
-	Wed, 13 Aug 2025 09:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD20E2EFD88;
+	Wed, 13 Aug 2025 09:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="CUBybRtf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022129.outbound.protection.outlook.com [52.101.126.129])
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011031.outbound.protection.outlook.com [52.103.68.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981652BE03C;
-	Wed, 13 Aug 2025 09:13:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3B61A9F94;
+	Wed, 13 Aug 2025 09:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.31
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755076391; cv=fail; b=OhaMZyZHznp/pZrWz4qJBIeCEmI+62HiOUboGUaQpSukD4mG0GHmJQxEg6fwHe0/X63Vavy0ktsN8pKyQAOM0mufbDbrnaPzvC4sayCAVGeCmSSWLEQEcqpoihEdMyms2x1R6ErL2v2u4nSeuTLIfqoD5yV6dfvDVme9Lv5fR1Y=
+	t=1755076594; cv=fail; b=TeM32bBkIzzMmf6uaUj72wc/OrZ2d+b/sKUZKwTDYNCXYCnzMTW2bLjnfQlV4rhel+pMhg8t8nwJYUiKcm62V13VaAAYh6WnGM+EVcquP5N782lHUq3EsrD9/3a7it5UWqQhTXGcDlixIzPpsshGtoePs41waORS2nTSrhNCkEc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755076391; c=relaxed/simple;
-	bh=jAYqbaAwyPHM4O0KOAvUHni9Euk6H2Fe+zo1l36kAp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I8Vo1PgBdcxYNeZFLGgM3tjRauDjBqkipEpQn6VYFfFdCzy6beXfYqC2Y5CNDgn2TPREaB3uG5WeJ6KoiYnqVdar5i8QkVKe0mtyW9qIprQEuoCLAW8kKT9Zuej92zdKdf1CR6MuFjv6PURdotANkYi8kbgwOk/jOtc4fTUhgz0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+	s=arc-20240116; t=1755076594; c=relaxed/simple;
+	bh=GrAofSermi3SPZ/+MJrlP2uMysXPCFWaCTyjVlMog0Q=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=DFptm+Er3+SACKZJjX0JqDoAF336D2v2jvi/YO3gnfxUr+ms5RiIN3oa+n219Po6i1CWYvcDuAXK+p6kICIkkIApnjMr/Xa8sCVIUNHJXS1zfXlnApJ0pdSn2I8+3IIRH274Wx96Tf05PBRYR1QeSy+p70yuNDFRf8WTsh3TIZ4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=CUBybRtf; arc=fail smtp.client-ip=52.103.68.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o21Shg3pBwWdV/wpY5Ch1suuslDew6EZYzDKjbLZkEtPRt6ZrxsDqdOWlMjSDKfoKnKM5KLb/lS+BcmC8mWbrad3FGphxiprWnMSTTxaqOBO8/MHQ9MTedD7ZwkjTC6Kx90NLcFsEemTU1KY/w3bvHInAfOz0o/ST144/cUtaeRPzLE6locwGp7phkBjIgt6ikGl3IikUCxRF35YwLQ6gbmRMuLeC8JA9YF7VSYw8MXTn96meNlPJw/Sg8RWBbm6WhMa+XgDMdE4LYP7CzwSAw5BDFRCJzDCgzjC+xpgod+UA6692TgrTZcgnwJ/GXAHV41AA9VverwbfefjFPRk2g==
+ b=T1AX7udw+aLTPRXLRwk+ingch8x/iBT9dpl2+OupIcJ7ZsT8E01PDKrwxTdmL1aLlebY0XPHjbESCjlohbkLqmsix1ECYN0hKTZ5+DQJYx/2sFG8dOEyJwP+Q0Aqw6KrWETRw2YEr/7Ef7kCBAH3RAn17Ue4oxQbeeuW9A85wqLxbdfU2H5GdtOxB39uxQcr9UkCI8ESaLpmzZL6tRvjRnRvMKkjzGM8Ha4AmsyMCjpE2QNfgrocNXmCHHPUv0NaNI/B8gHjped39zcCUj37McVU8GJs7yKtrfvz9mx1PMm648AuHXH/KZ1ZPu7yXIo2x8uDG32KqZu9rMdq8kNcgA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KDMfcfjpCeCli5WOiBGAMoFqxpFOckj1aNHLbUQeADI=;
- b=jxVQ0TkhIK0ydj73DErXpNiK5+FTEI+LvOGQeLuZSwNKI/A3W7mFv9jQu1eBJi2DOq6AAWVz1IOpXIQqfeOdGaJSakNpJ07Ky0i9BXyfGtu0z/O4RMpF5NPudEhZckAlgYr6ypOPVayKpIfonzYOTQ30WRZN1Ch94OuxcDhJELje6v4SRfgzdc/q8guetXmSPhQie1o2kZsSydbFNs95G/5E8+Cacqf9EYRtSWtjPj8m0Y6N8p2K6ujdMMORN0EtPyOU3JPMSS6VdqfBKsjXVhKFloX5lKjVCtMKmufVwwDdO0Dk3tQHZrENY7Pi6RRfXDPwUjB16KRTZw8VS1dayw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR01CA0156.apcprd01.prod.exchangelabs.com
- (2603:1096:4:8f::36) by SEZPR06MB7137.apcprd06.prod.outlook.com
- (2603:1096:101:232::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.15; Wed, 13 Aug
- 2025 09:13:04 +0000
-Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
- (2603:1096:4:8f:cafe::d9) by SG2PR01CA0156.outlook.office365.com
- (2603:1096:4:8f::36) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9031.15 via Frontend Transport; Wed,
- 13 Aug 2025 09:13:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9031.11 via Frontend Transport; Wed, 13 Aug 2025 09:13:03 +0000
-Received: from [172.16.64.208] (unknown [172.16.64.208])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id B9B0C400CA08;
-	Wed, 13 Aug 2025 17:12:57 +0800 (CST)
-Message-ID: <cb35dfbd-2fa4-4125-bd87-9f86405983eb@cixtech.com>
-Date: Wed, 13 Aug 2025 17:12:57 +0800
+ bh=8Or+ckiNZBYwkgRTfUWZRJUm31d4RsPNf/DCV2UEajU=;
+ b=EfortgpwNnCVx2lWvUEBEi2yS8srpuOjS3KmeFZH7JDgUGqUEyWBf5KfOlxeFv8FIE8soQ/NVKNiYXflG2b+cnr8nXmItjoFGl/juoUMtV8PFzlYSD+1UPgN1RjlV74B36bxR3DWbsMek9H4DDFYuci6ewpcW3Y/NsxSFeX9r6/vJSXQ83Sl5Wr5S+Ok+Y+MiYyX82jD+TVSVZA3vpwAZ5hJZnYYBnKgEtv4dwqufvRdrO2WS7qIczjYlMY8oRvxFriaxlj07Z4tiYpeREMEjnYVD1w7Vny2Pchjpj3/tpCI0mwpMpnqgtVAi82tGxQm5RqHJlyWGrovgdjIAWT1vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Or+ckiNZBYwkgRTfUWZRJUm31d4RsPNf/DCV2UEajU=;
+ b=CUBybRtft3RTd1AmOTI2c2fXU9tm/AwSxctMmvq5I1p3KrOBqhX48ZZUEeyp0V/cf5qjVOZA4i8GEj0W7EVtG3YB35W2nxgv+Rkf11puCA2m31o5wQpZNpYP5qxAui5xnaaC3HN6gos+ufaJee1PFssavLcqaFNYAVAnA5sBq100A5V3al3onLlEO45s3PgaqhY4sO+vHQ2KzoyKDP/jxu8knbkiLmeMl0Gg7CprGjGkJYbRNQkLoQVs7B5KyH6Gtuca1KdKIgIyZS5pachl9d9xTjYh7Ai0GVzUg6f9bv/jgJs/QGwUjd0v1tesvh3pi0HKLbALO/7ttmD+W1THCQ==
+Received: from MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:16f::16) by MAXPR01MB4422.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:2::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9009.22; Wed, 13 Aug
+ 2025 09:16:26 +0000
+Received: from MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5dff:3ee7:86ee:6e4b]) by MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::5dff:3ee7:86ee:6e4b%4]) with mapi id 15.20.9031.012; Wed, 13 Aug 2025
+ 09:16:25 +0000
+Message-ID:
+ <MAUPR01MB110727C208BC6E8E94821982BFE2AA@MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM>
+Date: Wed, 13 Aug 2025 17:16:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add SPI NOR DTS node for SG2042 SoC and boards using
+ it
+To: Zixian Zeng <sycamoremoon376@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Inochi Amaoto <inochiama@gmail.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Han Gao <rabenda.cn@gmail.com>
+References: <20250813-sfg-spidts-v1-0-99b7e2be89d9@gmail.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20250813-sfg-spidts-v1-0-99b7e2be89d9@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR04CA0018.apcprd04.prod.outlook.com
+ (2603:1096:4:197::9) To MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:16f::16)
+X-Microsoft-Original-Message-ID:
+ <61bf0288-699a-42ed-b5e6-db53a75d5f04@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 08/13] dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex
- bindings
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: mpillai@cadence.com, cix-kernel-upstream@cixtech.com,
- lpieralisi@kernel.org, bhelgaas@google.com, devicetree@vger.kernel.org,
- conor+dt@kernel.org, linux-pci@vger.kernel.org, mani@kernel.org,
- kw@linux.com, kwilczynski@kernel.org, krzk+dt@kernel.org,
- fugang.duan@cixtech.com, guoyin.chen@cixtech.com, peter.chen@cixtech.com,
- linux-kernel@vger.kernel.org
-References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
- <20250813042331.1258272-9-hans.zhang@cixtech.com>
- <175507391391.3310343.12670862270884103729.robh@kernel.org>
-Content-Language: en-US
-From: Hans Zhang <hans.zhang@cixtech.com>
-In-Reply-To: <175507391391.3310343.12670862270884103729.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|SEZPR06MB7137:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9b80d17-530e-42eb-380a-08ddda499b85
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: MAUPR01MB11072:EE_|MAXPR01MB4422:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31e2f0a8-94a1-4123-895f-08ddda4a13f1
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|7416014|82310400026|1800799024|13003099007;
+	BCL:0;ARA:14566002|461199028|8060799015|19110799012|6090799003|5072599009|15080799012|10035399007|40105399003|4302099013|440099028|3412199025|1602099012;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?eEZyVHp5WkVybEJJV29yNGJwYzdGZkJuQ3FLRjNWejhCV1kzUzFsUXA0VTh4?=
- =?utf-8?B?VCttbkNXdmVvanlPWlRxSE83NksvREtpQ29oNGpMMVlYb1FjTTFFbWVKS0JI?=
- =?utf-8?B?anRBQmVFWktDZWUySUM0V3B1Z3U1WnJ5VGxUdERYY2hZKzZHcExGVHBhcmhB?=
- =?utf-8?B?YyszMWUyZXNzVms5SW91aGJvci9helgwWnpVYmpCb25wMVJMLzNXN2toRi9v?=
- =?utf-8?B?dUZJV2x5SVJ1QTVpQ3hhRFRqR0RGWkxjUk5GYnFyajArRE5YZlBvaGRHcGVq?=
- =?utf-8?B?ZGk4eWpEMkNoUzNCbzZWTVdXVDBocWVUZHlyTUtsNGpDZ2ROOGtScmpYTk10?=
- =?utf-8?B?bFk5d0swcEhVcU9LSnp6bnJhNS80Y3Q3My8raUI2WDg1NkEyTUFxVUNLWHlK?=
- =?utf-8?B?NlpQdXI5aFZUeWVzU1dxM2xSMWkyWXlJc21ydzVmbm1DdWt0bFFYTHZGeHpI?=
- =?utf-8?B?SzJnbk9VOW9RUTlwSWpBVW1XYVl0bklzTVdPc1RPWE5wVVc1S2lyWm50aExS?=
- =?utf-8?B?UzFRUkNKUHZzWlc0TzgzeSt6RXh0ak9YQkRrSkVOeTNkNm9tbWU1MGlGSURq?=
- =?utf-8?B?Zzhwc3NVbWM2YjVsZFlURGdTallhcmVnMkIyR2tPKzlSS05hS0cybUhGVHMw?=
- =?utf-8?B?UmNzZ1dMQ2o5VVQzVVJCRi9HUnBDZVVVZmtHVDVYMVdSU2l0cG4xeDdDd2xt?=
- =?utf-8?B?ZDA2MS84cERiczkrYmxxTFl4QUdteWMybWdkZlp1U2hQNnRkRVhBZEtydVJQ?=
- =?utf-8?B?TlVmN0xtdElPMkMydCtLTzRlbUI2WnVjR1ZnUTNnVnYwYVZ3MzlXTVc4azlu?=
- =?utf-8?B?Q0JETElZTUs1RTYxUTVZNSswNlJyU0xDOG1VL3JJMUNqZ29Ya3g5QndVQ0lD?=
- =?utf-8?B?UWlJV1BlWmdPanNiQTd1ak04YlVROWhZMmFNL0E1TTlEOUpYSXNpWEV4RmM0?=
- =?utf-8?B?cUYxRGpDNUlQQkFZa2YwNTZXT0hDU2JiLzdacnJDL3JnK0VlaVdvcE0xZXNz?=
- =?utf-8?B?VFAwV3o0U3pNUzJxMnF3cFd5aTI3d29OVEZXMGRaZXpwbnc4aCsxWHV1d2hz?=
- =?utf-8?B?RmNyN1hrdVpaLy92SFI5YStnYVUrMmNSa3hodGlJVEhxRHd2TjNvNGgzUDUy?=
- =?utf-8?B?TkhSVUN3Vy9qWXRnbzZLY3VROVFsTzl1eHBVdys4cWNWMUNORDd3RmdvM1V5?=
- =?utf-8?B?VEg3bHpvZWx2UlhwWkxlL2E4dHlTZG9JdEtQVHJFTzhKdkU3bENRbEhMdS83?=
- =?utf-8?B?WmZyb0t2VEZSQ1pGM1cyaTJVdytEeFJHRWovREVRTEdCRDNzTVhLQSthL0E0?=
- =?utf-8?B?dFV1bFdPSzI4bkNGalpaNGJQMDRYK1ZjQ3lGeExyNzFaVHRVT0U1TCs3aFFv?=
- =?utf-8?B?MG5ISXprTUtjM3dTQk1oUmM0SXozcGFxcGxLSHRObnl2dlJxNlJIMGZleHVs?=
- =?utf-8?B?UFFNZ2NHYVplMXZSdGdDRHJYNGd5TGwwTzhVNXVNUDlNSnVZUzRyMytkbzdR?=
- =?utf-8?B?VmVUeXZWU2l0djFjbEg4N2NVUmsyOHB4UXhzVWQ4ZHU0Qm5WWm9wcXJTWW5T?=
- =?utf-8?B?SXdnZFFkN0xrczN3V1RkdDJZWTNCMUxCSkJEU05XMUFsTDFsTnVaSzQ0YVBr?=
- =?utf-8?B?Zm0xaW5SclB1Ky9pQm03MjI1YS82VUdkOFUySVpiUSt5eEhKUE5QMXM0cTdU?=
- =?utf-8?B?aWpkSWFCb3FIdEcvaXNac202bHdlemdqak1OdzNmYkRBaEZrWmZkSmIrTWVj?=
- =?utf-8?B?cHJkUHhrVWN4MW9UOGRVYTFtZlErVVd4L25TVkJwOFBzeWgybmd3MHBkYisy?=
- =?utf-8?B?UE5TcHBHcHV0QTNyOTRJd1RkeHJYbklMMVJhNXRBclVCYjFIRlU4bTgxYk1K?=
- =?utf-8?B?ZGpILzRMUTF4bUtTemcyZ1ZNR2tDZkZWQm1kQVBxNWVOTktjaUFNQjV0UWtq?=
- =?utf-8?B?UVlFYkhnWWFaMTZYeVpWRzlQeGVtWkJ4MmVjS2NySHl5aUhKakkrN2RSUUFo?=
- =?utf-8?B?cnMvKzI0cERBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(7416014)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 09:13:03.1401
+	=?utf-8?B?VEozcFY4bmJGS1ZTeXVld0hjT2xaOVRQWkRYWFQ1QUZ5bnMrdkJoMGlkbGdy?=
+ =?utf-8?B?NlBGdzIzUFFoR29lemdWaE1OSDhySERXU2IxUG43OXY0cXRKOVVNTXlCQlRp?=
+ =?utf-8?B?T1E3OXJIcUxMVXQ4QUtNYjR3VFVXZFpTcDBuM0F2UjhIa2xQYlRGRjV6Qk5H?=
+ =?utf-8?B?eEVXTmc1ampXNDE5aUJnakw2V29tQ0JlV1V1QWw5Sy9zalNHeVFjSlVqUS82?=
+ =?utf-8?B?c0NVaDNCZldWMXB3aXJuM2xkeENvK1F1ZHdac2ExZ3BPd0lBZXFzRDFzT25l?=
+ =?utf-8?B?OTZybFJ2RGE3M2g4bTlGdE42UEw5SVpBMTJMUlBWeGpmTTFJcllRQ25RSmZJ?=
+ =?utf-8?B?d0IvbTZuMlJkMzZjMmwxZ3VtNmZuNmhUTGRnYjhsbmxKOURrT1ZNR0VxaEov?=
+ =?utf-8?B?WEZUNUVnWm9vSDQ3TVRvMlpJZ0VCdGVLNmJYSGlOZGdHRGhDWVdlQWpQRmNE?=
+ =?utf-8?B?eWZ1TmpLb3FZYWROWEZwTGdRZ2RvT2tMRFlvOFllQW5JbEhJNFFDWFZweCs3?=
+ =?utf-8?B?WDZ0bVUvdVJKUkF2NUxVenV6a3VmTFA2cEVuRmM1VHJ3UjAraGwrdmg0cFFv?=
+ =?utf-8?B?VnlWSm03d2I3S0swQXV3WVdHcXR0RG1JVGttRlZkQUQwYUl1Qms0dFNGTi9F?=
+ =?utf-8?B?WTBkK2dUNnJQbkN4MU9Ud2JlamwxbUZSWnE2VDlNUXIwRDlCQ0lZZ1ZsNGVN?=
+ =?utf-8?B?N2hXNkFWcnpha2NNaFRLWlVBaVdxRTFwemJZejVYNTgyYXc1SGFaNTYrMkRw?=
+ =?utf-8?B?UklrWU01WkxhU04ra1lhQUZCcmhDVVlvTEhZaXZQbTZsTXV2STBDcHRWazB1?=
+ =?utf-8?B?M1Q4V0FXV1Vjb0duclVjMFpCVkpBTXE2VkdaNUtvc0ZTQzFzNzlnZ2xvS09R?=
+ =?utf-8?B?c1RIVXhTdmY5N2J5UlhWQ2JIRVlIR2lVdXFCRkZhSnJsMEVzQ0xTd00wRzk2?=
+ =?utf-8?B?MU1naWM2RE16a1c1d21NVEhaVG14dTJSbUVVaTJmQ3M3aHVaNS9oOFdaUitO?=
+ =?utf-8?B?b3IvK1VFTE0zM1lRSzdQdnlocFlkaCt5Vmh6eFVDZDNrdEt3YnpwV01LbDBx?=
+ =?utf-8?B?Mk5TVHhZTklPdzc4eWxNWm1LTUtEV2YrN2dvbGVFSVBFQXhDb3FmQXE5Mlhx?=
+ =?utf-8?B?emhYeENleFl2dFVkTncrWmNwU1ErY3o4VklxWVhvMU9BWHFkSGJoNS9wV2lH?=
+ =?utf-8?B?ZWZsR3dYRlZxaWhFMHRWU3R6a1A1NDdRVk90eHZIRXF6eCtkNGV3dnZWWEpj?=
+ =?utf-8?B?Y053cEgzQ0J2bXpxNi9ZUmlpdmdIUUdra1VreWxOamlaZ2cxWDJBN2d1Zmwz?=
+ =?utf-8?B?YlNRUml6dSt1QWV4VTNGdTd6VllHVkV6MS9FYWdaejQxZngvc2Z0UHBHSzlx?=
+ =?utf-8?B?VnNlTHRmK2psYy9qa0ozdmFHQi8zQVo3SFZzelRYbnRpQ1IydGt1RFVPTFdz?=
+ =?utf-8?B?bmw2TlY5VHdaUGY3ekhkS2xCZndwRnE5WVdEWmZxV3lUTU1jMXl4Yi9lQ3Ju?=
+ =?utf-8?B?NDFuL0NqUWVtZHBZUkt1WU9FczMzN2FuZzliRzFFLzkwdVR5NDlhNExSNkhX?=
+ =?utf-8?B?cXREY29FZjdZSE9qUXVwVUNNbS9UOS9qSzd3SVR6N0V0dmNlWG9vdUpJS2pZ?=
+ =?utf-8?B?OFZLbEtWSWlzRWdZbDdGcENqL2x2NkkzUVJIUGg0YWMrV3lCSXdxcHd2YjJ2?=
+ =?utf-8?B?ZUsxWGhESzdEcHREM0xkeXNML1BNdUpYbWVneFF1QTN4UlJNNTB1dzRBPT0=?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SmxGalpFbGR6NHFXN24zclBJeERiamZMVm1PdlVGeDNjZWFBTEpKZEFxZStB?=
+ =?utf-8?B?NmREU1EyK21XQ0N6akJWYmJXMUczdlpNUjRVeTBKVWRFelZWYnhRdUFsZ3hH?=
+ =?utf-8?B?QkY5QVU4ZWtzT0w1eEdGV2k0enU3RlFjS2pPa1cwRit3WGpKOVMvRXpPU3RR?=
+ =?utf-8?B?dm1WNlZFMEM0MnI3L3cvejczc0JWUVpnN0o5SnVSeEdxbWVVenE0bTZDWmdz?=
+ =?utf-8?B?VUl2ZmFhdHN4NDVQaXB6UGhVdGFxdGZLbXVmSG5JZnhoR2l3MXBvbUNsWEF2?=
+ =?utf-8?B?aU1DUE1OK1htVWRzbHdrYjRTeE1xc29PT0t1c0MzOUVkWm5MbDQ5eks2UWdV?=
+ =?utf-8?B?aEdzc3d2aXNlQXdNUmJmSU5SdFVGS2I2ZkE4a0M2WjRRZ25DS1I2MDFuMmZE?=
+ =?utf-8?B?STlkL1dRQjBOMExvYkYvVXprZW9jTEQzNnkzTkJVWDVVam5mTm9GT0RwclYz?=
+ =?utf-8?B?L0xjdDJ5aERiUkkwVmRTR1loenBmTnJ5WG1CY01UQkJSbFVxTk1DQmNibVUy?=
+ =?utf-8?B?TnZ5QlVvL2RkUUZPUnBhbkQ4M2RjYWtkS2huYVBLSFZnV2p1RU9HVmJPWE5N?=
+ =?utf-8?B?THhyd1g2R0I0VUhFb0QzZmhJbmxxR1gzM1BCdEFkOWJrKzlHcllCTVhYU2o5?=
+ =?utf-8?B?ZmM2ZWUzN096WTRzU08yZmZ4dGdVQXh4cFQ2TjI4ZGRTNjlvNGsyVTdWeFNY?=
+ =?utf-8?B?QXFtb09FQSsxMXJqU0dVVUZTWk40eXdvRk9KM28xUHcxc1NTWFc1Yk1vTHpw?=
+ =?utf-8?B?eU50WDhnWkdYdlRER0lLMi9ReXF5c3J4b01qRWJzSnJzNjBsaXdUVkJ4MU9t?=
+ =?utf-8?B?TUxXRFhYc1IxcFl3Ty8va2xVc0ZEOG0vUnZFeG1qdlY4L0VLZ0F5Q1dQME5H?=
+ =?utf-8?B?aDJaZjZlRWNMK2h1Uk1ZeUx3T1MyK1VnTnB4NmdHcVZkYlY2QXhCUndXeEdS?=
+ =?utf-8?B?MUVxcHZKZlF4d0RQTHU3aFpJY0FURmQ2YUVjQnlJVlFqR1hLVStZc2plUldM?=
+ =?utf-8?B?V3pZT2VqdExTVFlaWFNxL3QxdUlMUnRLanVGT3o1aUFJMEwwZk8wOC9qdWtk?=
+ =?utf-8?B?bjRsQW9iOTAxZVFSUjZoRDZNVldubmtGM21wTW9SeDZPVW5mZUUxOUYyQ002?=
+ =?utf-8?B?S2NnMG9sektCRlFPbzU5YWNOT2drSnFpQ0ptZ1dyMS9vY3ZmZkQva2I1T0dD?=
+ =?utf-8?B?bERhcFV4M2xINFRZT3h0OS9mRTZaYVRMMmcybDZucFBlclRKSFQwZ2ViSU55?=
+ =?utf-8?B?TVFrWlRHaS9wNWZXb3RHdEpYbU9CYXprdE5BSFQweFU5NGw2UUE4K0Q5ZHVy?=
+ =?utf-8?B?RDhmM0hUWENFQnlRYjVsUUxTRXE0MUpkSitaNnkvenZzRWhwNVdhWVpiSFBU?=
+ =?utf-8?B?L1A0QklyN05GRUlwT2FzS1BDdCs3TldZbkVsb3NQeitNVEFmUUlUM0VsSm9u?=
+ =?utf-8?B?cEdCVHMxYUQ3STFpUkpZZnkzNnlYMFIvZlo0WGM4alRaZUdWeUJERW9IMTJ6?=
+ =?utf-8?B?dWtSeWdmZSthM2Y4eUd1NnAvVFFoMWo4MXY2V0RrOE1xMnlFVE5wTnRLMk1Y?=
+ =?utf-8?B?QWpibnNyL3BOQXdiV012V1JQelFnT2dqRXBkdFdzOEFxRlBiNXFUV2F2ejFG?=
+ =?utf-8?B?RVpnc3ppdHpvNlRFOGJpRUFWdmUxeUExY2dkazJ0N0E3K1ZJUlJaeVo3L1k4?=
+ =?utf-8?B?eDgzdTUxZ244dmxsL1VDd3ozMFhIdTRaR0dGOFh4UUhpVkJIU3F5Ky8rVW00?=
+ =?utf-8?Q?a2YIJL11Xq7evw+wjH+aVcuKDOdJ3B1cirlZwD9?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31e2f0a8-94a1-4123-895f-08ddda4a13f1
+X-MS-Exchange-CrossTenant-AuthSource: MAUPR01MB11072.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2025 09:16:25.8263
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9b80d17-530e-42eb-380a-08ddda499b85
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7137
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB4422
 
 
-
-On 2025/8/13 16:31, Rob Herring (Arm) wrote:
-> EXTERNAL EMAIL
-> 
-> On Wed, 13 Aug 2025 12:23:26 +0800, hans.zhang@cixtech.com wrote:
->> From: Hans Zhang <hans.zhang@cixtech.com>
->>
->> Document the bindings for CIX Sky1 PCIe Controller configured in
->> root complex mode with five root port.
->>
->> Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
->>
->> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
->> ---
->>   .../bindings/pci/cix,sky1-pcie-host.yaml      | 79 +++++++++++++++++++
->>   1 file changed, 79 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: /: 'compatible' is a required property
->          from schema $id: http://devicetree.org/schemas/root-node.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: /: 'model' is a required property
->          from schema $id: http://devicetree.org/schemas/root-node.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250813042331.1258272-9-hans.zhang@cixtech.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
-
-Dear Rob,
-
-I'm very sorry. No errors were detected on my PC. I'll check my local 
-environment and fix this issue in the next version.
-
-If I have done anything wrong, please remind me.
-
-
-
-hans@hans:~/code/kernel_org/linux$ export 
-CROSS_COMPILE=/home/hans/cix/bringup_master/tools/gcc/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
-hans@hans:~/code/kernel_org/linux$ export ARCH=arm64
-hans@hans:~/code/kernel_org/linux$ make dt_binding_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-   CHKDT   ./Documentation/devicetree/bindings
-   LINT    ./Documentation/devicetree/bindings
-   DTEX 
-Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dts
-   DTC [C] 
-Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb
-hans@hans:~/code/kernel_org/linux$ make W=1 dt_binding_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-hans@hans:~/code/kernel_org/linux$ pip3 install dtschema --upgrade
-Defaulting to user installation because normal site-packages is not 
-writeable
-Requirement already satisfied: dtschema in 
-/home/hans/.local/lib/python3.10/site-packages (2025.6.1)
-Collecting dtschema
-   Downloading dtschema-2025.8-py3-none-any.whl.metadata (7.9 kB)
-Requirement already satisfied: ruamel.yaml>0.15.69 in 
-/home/hans/.local/lib/python3.10/site-packages (from dtschema) (0.18.14)
-Requirement already satisfied: jsonschema<4.18,>=4.1.2 in 
-/home/hans/.local/lib/python3.10/site-packages (from dtschema) (4.17.3)
-Requirement already satisfied: rfc3987 in 
-/home/hans/.local/lib/python3.10/site-packages (from dtschema) (1.3.8)
-Requirement already satisfied: pylibfdt in 
-/home/hans/.local/lib/python3.10/site-packages (from dtschema) (1.7.2.post1)
-Requirement already satisfied: attrs>=17.4.0 in 
-/home/hans/.local/lib/python3.10/site-packages (from 
-jsonschema<4.18,>=4.1.2->dtschema) (25.3.0)
-Requirement already satisfied: 
-pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in 
-/home/hans/.local/lib/python3.10/site-packages (from 
-jsonschema<4.18,>=4.1.2->dtschema) (0.20.0)
-Requirement already satisfied: ruamel.yaml.clib>=0.2.7 in 
-/home/hans/.local/lib/python3.10/site-packages (from 
-ruamel.yaml>0.15.69->dtschema) (0.2.12)
-Downloading dtschema-2025.8-py3-none-any.whl (120 kB)
-Installing collected packages: dtschema
-   Attempting uninstall: dtschema
-     Found existing installation: dtschema 2025.6.1
-     Uninstalling dtschema-2025.6.1:
-       Successfully uninstalled dtschema-2025.6.1
-Successfully installed dtschema-2025.8
-
-[notice] A new release of pip is available: 25.1.1 -> 25.2
-[notice] To update, run: python3 -m pip install --upgrade pip
-hans@hans:~/code/kernel_org/linux$ make dt_binding_check 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
-hans@hans:~/code/kernel_org/linux$ make refcheckdocs
-Documentation/userspace-api/netlink/netlink-raw.rst: 
-:doc:`rt-link<../../networking/netlink_spec/rt-link>`
-Documentation/userspace-api/netlink/netlink-raw.rst: 
-:doc:`tc<../../networking/netlink_spec/tc>`
-Documentation/userspace-api/netlink/netlink-raw.rst: 
-:doc:`tc<../../networking/netlink_spec/tc>`
-Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml: 
-Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt: 
-Documentation/devicetree/bindings/gpio/gpio-dsp-keystone.txt
-Documentation/hwmon/g762.rst: 
-Documentation/devicetree/bindings/hwmon/g762.txt
-Documentation/trace/rv/da_monitor_instrumentation.rst: 
-Documentation/trace/rv/da_monitor_synthesis.rst
-Documentation/translations/ja_JP/SubmittingPatches: 
-linux-2.6.12-vanilla/Documentation/dontdiff
-Documentation/translations/ja_JP/process/submit-checklist.rst: 
-Documentation/translations/ja_JP/SubmitChecklist
-Documentation/translations/zh_CN/admin-guide/README.rst: 
-Documentation/dev-tools/kgdb.rst
-Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst: 
-Documentation/dev-tools/gdb-kernel-debugging.rst
-Documentation/translations/zh_CN/how-to.rst: Documentation/xxx/xxx.rst
-Documentation/translations/zh_TW/admin-guide/README.rst: 
-Documentation/dev-tools/kgdb.rst
-Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst: 
-Documentation/dev-tools/gdb-kernel-debugging.rst
-Documentation/userspace-api/netlink/index.rst: 
-Documentation/networking/netlink_spec/index.rst
-Documentation/userspace-api/netlink/specs.rst: 
-Documentation/networking/netlink_spec/index.rst
-arch/riscv/kernel/kexec_image.c: Documentation/riscv/boot-image-header.rst
-drivers/clocksource/timer-armada-370-xp.c: 
-Documentation/devicetree/bindings/timer/marvell,armada-370-xp-timer.txt
-include/rv/da_monitor.h: Documentation/trace/rv/da_monitor_synthesis.rst
-
-
-Best regards,
-Hans
+On 8/13/2025 4:33 PM, Zixian Zeng wrote:
+> [PATCH 1/4] and [PATCH 2/4] are copied from patch set [1]
+> [PATCH v4 4/4] without content changes.
+>
+> Link: https://lore.kernel.org/linux-riscv/20250720-sfg-spifmc-v4-0-033188ad801e@gmail.com/ [1]
+>
+> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
+Need not SOB in cover letter.
+> ---
+> Zixian Zeng (4):
+>        riscv: dts: sophgo: Add SPI NOR node for SG2042
+>        riscv: dts: sophgo: Enable SPI NOR node for PioneerBox
+>        riscv: dts: sophgo: Enable SPI NOR node for SG2042_EVB_V1
+>        riscv: dts: sophgo: Enable SPI NOR node for SG2042_EVB_V2
+>
+>   arch/riscv/boot/dts/sophgo/sg2042-evb-v1.dts       | 24 ++++++++++++++++++++++
+>   arch/riscv/boot/dts/sophgo/sg2042-evb-v2.dts       | 12 +++++++++++
+>   .../riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts | 24 ++++++++++++++++++++++
+>   arch/riscv/boot/dts/sophgo/sg2042.dtsi             | 24 ++++++++++++++++++++++
+>   4 files changed, 84 insertions(+)
+> ---
+> base-commit: 8a4fdd09c96f6713e6cb47d36e9f9dd6f6694215
+> change-id: 20250813-sfg-spidts-ee56044969fe
+>
+> Best regards,
 
