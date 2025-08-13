@@ -1,211 +1,192 @@
-Return-Path: <devicetree+bounces-204227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFA6B247EE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:04:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C0DB24809
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C39D5A4B53
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:02:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9102173B39
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 533982FE567;
-	Wed, 13 Aug 2025 11:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303162F6585;
+	Wed, 13 Aug 2025 11:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RCVjqD3U"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U5uCGNiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDAD2FDC32;
-	Wed, 13 Aug 2025 11:00:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421502D060C;
+	Wed, 13 Aug 2025 11:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755082841; cv=none; b=A3v1RStHxo8AXvKypdpPHbGL4bKmn5LzPMk38XgA4broO8i8/tjZt18DIzvQGJskUanyKGiYZzQbz8UFPHJ84kewDV9G40w89jpIr2Cpl3EKmKji/31HZrI6dAQ4C2vJSHzInnh3tC47cM/9SYCzNcO6eGsjzX2/91jN/QUwl6w=
+	t=1755083308; cv=none; b=ZblI5Pvx9dUj5JR3F0hv4tPuVqH9O/BQMP/zVVj3KBhaYBy7ZJV3nYPw+63DAQXZNWaW3Z5YuQ+B9gv74I1rIJvUI2zDjlxayuXZpho1d3ImJ0aH/dy7fIgPjUiQmrWa51SoqjQ+wuviIaR9WAFVLTU90o+ZyDHnHI6+8lKRMPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755082841; c=relaxed/simple;
-	bh=zuGgg+KtKbX59cmwAVv8C3u2io11Muh9kIrEOlRf3fc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=O18seW334jmrRvFLWdKN0U7gU/S5JFK6ol1DpRQf1w8Tb2rYLkbNe6G5AuZjCa8isI/sAe5GcoOwIuP2qtYIvm2dxMi+taEKfisatOdZ+5FbDgCE5yKEq11uOaZLVTe8J8hoWomxrDQ7A0rtJrXK5Y0a3lQJKNAJpQgl7Tz3jmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RCVjqD3U; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-af93381a1d2so1016601866b.3;
-        Wed, 13 Aug 2025 04:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755082838; x=1755687638; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lz6W98GzI/frUrKHDzE5ELN6joCDuBvAObhPSXpDpZc=;
-        b=RCVjqD3UZ1fj2Tql/PNrJyeTlRyl0P9C6RF589Cm6F6DGytRnFa3oXBZ3i+YGyFnHA
-         stOwy5ARubQL+BgX1uJNbxYLxstvgGZbwvcfQOEiQ3l9MLailslgOoUJeW8n5hN7kd8n
-         kMeZOJ5cMoFomIZx7xV/3sUuABnTw+lIgC3vGv68cieKe9WVAbHiKRTwGYZvjzaou8dY
-         rv0uQxTZERCPSOp0gDDRQrd/+RVzit3Qw68OXW1qdJRVDnApi04p8Uj4XGBlVrAVDLpw
-         pH12EYHXK3aL1pR1dKWwzq0PKWXKJ3EhyHRO+eCkE2Kq82FtBXQFA0tCZ3Z8en0Z3xPX
-         xh5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755082838; x=1755687638;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lz6W98GzI/frUrKHDzE5ELN6joCDuBvAObhPSXpDpZc=;
-        b=vP5+2BiqS3QFe3Fi3nf0JCslKKg2mS8JWlTa4q6Qv5veb1YOTogOlE9709h/8ZU/nX
-         AZZlJfhOmaWl+OoOVXiTE49m3Kv2Bi6jdzjMYDkPn73c1NpUBkQP9GRUbOtJ4PUv2M7t
-         ADwswVcuYjSbPcre86gMi6wnOPGkzkwfko8NHdUzqfNB6lVcuj1nzS0ipymhdgxjpDsc
-         L2ktJD3KnEed7JPQ0SuNz5fukGh1ItbmrezhnIUOaML1IyCG/cT4I9b+s90hyU8icLWs
-         dK1g47GEIJVkalXe14KURdToLDNogTTDUqEYo3tgThgSt/oEjXnmma6XNxvAPzqcdsBq
-         /FCA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3lqcJ+QkTw8RppAzBItCRMHC96LNvUIFb6kCr+NXvDHb8Mz1+l1QIEGYUIsI/5j0uRqjOdZkume6a@vger.kernel.org, AJvYcCUGOrAp7fPfxKqv6PYzz6u0Y96lvIUdfZ85APtJ33Ja5V5mBXZ5qDuKDcS8UHmmxvWDzI25mJKWuEsfu0GG@vger.kernel.org, AJvYcCW/vocFCN5a3PJz69HUVbAOxAaFIZQlGDNyoZWW41WnPPreixbS6fvyoGylb23dLYUmN785aogMPcWB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5TYxhAHPhmDmZZRyINnkYn1fclzwVZmnronIkCA+zI1C9ZBGd
-	763r2ElltSf4z3GcZTp1w8FWcCPQ8zpvvj1iuiaQzHIqcGXGOp9Zfm8o
-X-Gm-Gg: ASbGncuyPpbGPFeGKi/D2qc6atpBYIrrWpCQ/p153Vr5YhzHK7hbJ5rlxK+ZE7XFhTF
-	IV2W9c4u7reOPqXb0jLfR/RFZfZIoukZSszv/kxnnBa5/+AGG9mQ2o/UJkbPVlKyY49ASlHBIOL
-	PBhwt7yEX6ixazQXbPe5UNHhOEWKhB8XgCi2Q1VjBAJzMjcwPkx3vZj9wg5AXhEolW+pyxnTBRN
-	hiPLdSWY/UTrIHlsO7CIkorSQ41QnNE3mt7tzWdkX8lmgJu2Df25Xy1ba6Xcibd18JBEVu081WR
-	XO4FOGESIIkhNcI+ChQzX/+UTNkazb590ZiCvaou0sPsUuXTzDobpKd2A/bKHMItzHb8hxCp2eY
-	AG7GWEnWkjy0/4mc3P5qnsfTNmHUft2WoPnTDAKSw/Nd3Qn9+/QLRro3qbHUS4jDL1x4DIm9fFa
-	vCfqMf
-X-Google-Smtp-Source: AGHT+IH0aqDtVR0VevZ8f2uJ+2//Q9uHHryebJnEAf3vQOeF9yW2TPtt5LjJNUehypu46peYZ5JGzw==
-X-Received: by 2002:a17:907:968a:b0:afc:a330:e423 with SMTP id a640c23a62f3a-afca4e434e2mr261368366b.42.1755082837769;
-        Wed, 13 Aug 2025 04:00:37 -0700 (PDT)
-Received: from tablet.my.domain (ip-31-0-121-4.multi.internet.cyfrowypolsat.pl. [31.0.121.4])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a0df10asm2377046966b.59.2025.08.13.04.00.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 04:00:37 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Wed, 13 Aug 2025 13:00:15 +0200
-Subject: [PATCH v6 9/9] ARM: dts: bcm11351: Add corresponding bus clocks
- for peripheral clocks
+	s=arc-20240116; t=1755083308; c=relaxed/simple;
+	bh=agLW0VIDcUGVqtF+PXqlqKoUZfF/53CioVgWfMwAxpo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Y6nNU1ktOTUoDaeGGklHl2Tt2N2Yrm41qwNdjPti0NZrdRM3S/bIgcy1vM5x7Bsv4oWsd6A1zRmywrgrSWw0wO2qorb8pUCdqZbaaBmIsegF3UzyKnlUkSs40J9M+t6rLhrQj5ASQ11Z5vy8/kbIyelgqvx1irxd7CZOkBwA97U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U5uCGNiO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57D6mJlR008724;
+	Wed, 13 Aug 2025 11:08:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eSJS8iaPgTC+NMg4WjXp7ShROEazviRD3VPvqnJIBbA=; b=U5uCGNiO4KmIu6qv
+	+OLEsZrxQmGVFgmbBz0pWnhCnTXq2stiedu4MgSg5L9KsM/AsTXIt69WzJg8v+E5
+	E368aovOlIAw6pJppkNqUd42ubxJ/qR3G7LVGcdQnRkhSc4hEkAzJD5tFBU7W4Fv
+	KwCFTuWhPSel0qBrCgh5JMuTqLvRA2VjECARWt4bdVa6ryOrkGokSQqxXVHrhNOI
+	4x3Pbhv9Ed5KwXu91hR/wRDjT43sUYJjWuIjChUWj4oP1fHe7tDoV1MOt2RKgdZA
+	Ol7m9IBGV/UQwyC3lUxxcxp41UtrRYuXwwr4Xf0MOn5+4fXpdJuxmlbIm6DEz5A+
+	CTUBhg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fem4fg51-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 11:08:20 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57DB8JOF015501
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 11:08:19 GMT
+Received: from [10.206.107.4] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
+ 2025 04:08:14 -0700
+Message-ID: <ab5d3811-9fbf-4749-9463-4457fbf50023@quicinc.com>
+Date: Wed, 13 Aug 2025 16:38:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-kona-bus-clock-v6-9-f5a63d4920a4@gmail.com>
-References: <20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com>
-In-Reply-To: <20250813-kona-bus-clock-v6-0-f5a63d4920a4@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Alex Elder <elder@kernel.org>, 
- Stanislav Jakubek <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2485;
- i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=zuGgg+KtKbX59cmwAVv8C3u2io11Muh9kIrEOlRf3fc=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBonHA+zA3eXsWGpqI/E+S4hxfwR/JJD0yngPm32
- mRlhtef826JAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCaJxwPgAKCRCzu/ihE6BR
- aIj5D/0cV/FmJu4x3Wi5+fJqoEK/plwBYfi2jRNtUW6oUV6vvYcUkIpOt7FqTvUfOoDEmADjsJo
- hrjjaKSa8GpqgtabK6sVleXRHbOUuiO/k3j0cZH8qO4HL6sH5f2OgisGwzDT5oO+SAhL2UqVhen
- j1z9bwwBgN7y5/xDRmC6ktPuQQX3YBeQ3ipbGhpvCdyc2XCVXKohiIYZKiy7CtKy5wlykh1nmLF
- 2w11m7ZbM8HhYXpWTHsBjBKtbfOcRJsroyB4gjhSz4UNBpP7fitkAkwZgVQ5qDjlClhpO9hIXdb
- d2jlGTo2AaJm9Q0DzboPvxpYMsD84YkjaT/zs3cRsXLAilYRE7Z4NxRUylxjNMdLWzx90Bfba10
- hN/BGCuNLwv4l7/AY8FQYuf/1pUbbpuoTQfCI13qr7aLRsA341nMl9iAlaf5c4kfhzKUbJBMZwi
- SUoLZ82ZkN3ggO1qNjVgHuvKnNbTE+4/YNvbOOjMjrXjdBykAb2CR/Jwt+me4kPjVEZTu8+Tljp
- 4HgtcmXqjJK9dTx4+7ai5UTs67adDZxeV8CwgOvVAIEnYyclGXWdGhI9P9jnmesLUPidEDwOkMu
- ELA8OZcbKhGtFS7+v9eBL0qrs3h7Wz7b9TfudcNMR1TiBEtnfKwfHzHvQheMGWEgeaSx+XUzbpQ
- pfitsuvC2sGhu9w==
-X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
- fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 4/4] arm64: dts: qcom: sm8550: Remove SDR104/SDR50
+ broken capabilities
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Adrian Hunter
+	<adrian.hunter@intel.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_cang@quicinc.com>, <quic_nguyenb@quicinc.com>,
+        <quic_rampraka@quicinc.com>, <quic_pragalla@quicinc.com>,
+        <quic_sayalil@quicinc.com>, <quic_nitirawa@quicinc.com>,
+        <quic_bhaskarv@quicinc.com>, <kernel@oss.qualcomm.com>
+References: <20250801084518.2259767-1-quic_sartgarg@quicinc.com>
+ <20250801084518.2259767-5-quic_sartgarg@quicinc.com>
+ <69f2807c-9a28-4b31-97cc-2756f0ab9fd4@kernel.org>
+ <c7e36755-9255-4209-9d53-20077bd1d3ba@quicinc.com>
+ <8b023e56-435b-43df-8b15-c562a494e06f@kernel.org>
+Content-Language: en-US
+From: Sarthak Garg <quic_sartgarg@quicinc.com>
+In-Reply-To: <8b023e56-435b-43df-8b15-c562a494e06f@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CX22bScD_SV7lCuBYIpCB4sFzipBqTpI
+X-Proofpoint-ORIG-GUID: CX22bScD_SV7lCuBYIpCB4sFzipBqTpI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA2OCBTYWx0ZWRfX98xLFV266QbX
+ m27GIrJhSGb85YleytGJ0sQtrACMSDLz2lJ9QoDSGFvL1IjUV8jzFpWDdwJ6Pf35WJ5HWUvIU7N
+ yEppGUGTbYsYOFqHBCLPlynigAx0A3xSUKyh9BmYGe3ubhPVn3/mA2VFSTLtsUJYjG/WYMgteTP
+ mjmuowFZxJB7ndNXUuWDGF8mi+RSurRoahyot3Pj257xkyj0Ivh8Ofq3QEkCoZX9wozlDmlwj/s
+ 1zxKaTlg3P3EAg8efJvTzcx4WbHTp4whNwyfIxkvKHE8G/N+u1My3TrR5HENQsiBec/vLPB/WT9
+ yrK+K6Gu8YgkEjl8vcj8z66TM71mWqDUw+iZhR35AzeDyDsA7as6whxe7UHWhi8xdrtYzzdWVtq
+ xyZ6Yizv
+X-Authority-Analysis: v=2.4 cv=YMafyQGx c=1 sm=1 tr=0 ts=689c7224 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=COk6AnOGAAAA:8
+ a=7vkX0yn46oB1UrFKko0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-13_01,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 priorityscore=1501 spamscore=0 suspectscore=0
+ adultscore=0 impostorscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508110068
 
-Following changes in the clock driver, add matching bus clocks for
-existing peripheral clocks. Replace the usb_otg_ahb fixed clock with
-the real bus clock.
 
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
----
-Changes in v2:
-- Add this patch (BCM281xx bus clocks)
----
- arch/arm/boot/dts/broadcom/bcm11351.dtsi | 33 ++++++++++++++++++++++----------
- 1 file changed, 23 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm11351.dtsi b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-index 53857e572080d752732c512ed27f942756d59c46..fac5cf5a46bd9a4b7e09a2e65c3e807d1b4ef960 100644
---- a/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm11351.dtsi
-@@ -233,7 +233,9 @@ aon_ccu: aon_ccu@35002000 {
- 			#clock-cells = <1>;
- 			clock-output-names = "hub_timer",
- 					     "pmu_bsc",
--					     "pmu_bsc_var";
-+					     "pmu_bsc_var",
-+					     "hub_timer_apb",
-+					     "pmu_bsc_apb";
- 		};
- 
- 		master_ccu: master_ccu@3f001000 {
-@@ -246,7 +248,14 @@ master_ccu: master_ccu@3f001000 {
- 					     "sdio4",
- 					     "usb_ic",
- 					     "hsic2_48m",
--					     "hsic2_12m";
-+					     "hsic2_12m",
-+					     "sdio1_ahb",
-+					     "sdio2_ahb",
-+					     "sdio3_ahb",
-+					     "sdio4_ahb",
-+					     "usb_ic_ahb",
-+					     "hsic2_ahb",
-+					     "usb_otg_ahb";
- 		};
- 
- 		slave_ccu: slave_ccu@3e011000 {
-@@ -262,7 +271,17 @@ slave_ccu: slave_ccu@3e011000 {
- 					     "bsc1",
- 					     "bsc2",
- 					     "bsc3",
--					     "pwm";
-+					     "pwm",
-+					     "uartb_apb",
-+					     "uartb2_apb",
-+					     "uartb3_apb",
-+					     "uartb4_apb",
-+					     "ssp0_apb",
-+					     "ssp2_apb",
-+					     "bsc1_apb",
-+					     "bsc2_apb",
-+					     "bsc3_apb",
-+					     "pwm_apb";
- 		};
- 
- 		ref_1m_clk: ref_1m {
-@@ -325,12 +344,6 @@ var_52m_clk: var_52m {
- 			clock-frequency = <52000000>;
- 		};
- 
--		usb_otg_ahb_clk: usb_otg_ahb {
--			compatible = "fixed-clock";
--			clock-frequency = <52000000>;
--			#clock-cells = <0>;
--		};
--
- 		ref_96m_clk: ref_96m {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
-@@ -396,7 +409,7 @@ usbotg: usb@3f120000 {
- 		compatible = "snps,dwc2";
- 		reg = <0x3f120000 0x10000>;
- 		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&usb_otg_ahb_clk>;
-+		clocks = <&master_ccu BCM281XX_MASTER_CCU_USB_OTG_AHB>;
- 		clock-names = "otg";
- 		phys = <&usbphy>;
- 		phy-names = "usb2-phy";
+On 8/5/2025 2:55 PM, Krzysztof Kozlowski wrote:
+> On 05/08/2025 11:19, Sarthak Garg wrote:
+>>
+>>
+>> On 8/1/2025 2:32 PM, Krzysztof Kozlowski wrote:
+>>> On 01/08/2025 10:45, Sarthak Garg wrote:
+>>>> The kernel now handles level shifter limitations affecting SD card
+>>>> modes, making it unnecessary to explicitly disable SDR104 and SDR50
+>>>> capabilities in the device tree.
+>>>>
+>>>> However, due to board-specific hardware constraints particularly related
+>>>> to level shifter in this case the maximum frequency for SD High-Speed
+>>>> (HS) mode must be limited to 37.5 MHz to ensure reliable operation of SD
+>>>> card in HS mode. This is achieved using the max-sd-hs-frequency property
+>>>> in the board DTS.
+>>>>
+>>>> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sm8550-hdk.dts                     | 1 +
+>>>>    arch/arm64/boot/dts/qcom/sm8550-mtp.dts                     | 1 +
+>>>>    arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts | 1 +
+>>>>    arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 3 ---
+>>>>    4 files changed, 3 insertions(+), 3 deletions(-)
+>>>>
+>>>
+>>> This will break MMC for all of the users and nothing in commit msg or
+>>> cover letter explains that or mentions merging strategy.
+>>>
+>>> Exactly this case is covered by your internal guideline, no? Please read it.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>
+>> Just to make sure I’m addressing the right concern — are you primarily
+>> worried about the introduction of the max-sd-hs-frequency property in
+>> the board DTS files, or about the removal of the sdhci-caps-mask
+>> from the common sm8550.dtsi?
+> 
+> 
+> Apply this patch and test MMC. Does it work? No. Was it working? Yes.
+> 
+> 
+> Best regards,
+> Krzysztof
 
--- 
-2.50.1
 
+You're absolutely right to raise the concern about potential breakage.
+After conducting additional testing across multiple boards, I’ve 
+confirmed that the removal of SDR104/SDR50 broken capabilities does 
+indeed affect V1 SM8550 devices.
+However, on V2 devices, all modes—including SDR104, SDR50, and HS—are 
+fully functional and have been verified to work reliably.
+
+Based on your feedback, I will revise the patch to retain the broken 
+SDR104/SDR50 capabilities in the common sm8550.dtsi, ensuring no impact 
+on current sm8550 devices already in use.
+
+We will revisit the removal of broken capabilities dt property for 
+upcoming targets after thorough validation and testing to ensure no 
+regressions from the beginning.
+
+Please let me know if this approach aligns with your expectations. I’ll 
+prepare and send out a revised patch accordingly.
+
+Best regards,
+Sarthak
 
