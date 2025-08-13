@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF4BBB253CA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:17:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3799B253CF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 21:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C5BE1C820E6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:17:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6E0F5A038F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5457D2C3260;
-	Wed, 13 Aug 2025 19:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3972D372C;
+	Wed, 13 Aug 2025 19:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nW0z0nSe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mlRhIYmT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25197287263;
-	Wed, 13 Aug 2025 19:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FBF10785;
+	Wed, 13 Aug 2025 19:20:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755112649; cv=none; b=KOEKuTEz7vX8SoR9UzRYgJXYhgrpoxvo/wBz5yduOa7irgsi64//qQ3RsU9SwrM0g41anCkYbwhRUxspRAzlUd/v7sS9lY4Tv2yapDy58KoPlAlTpTe+fdoO9GRwiDu0RshB2wb2SO0BSMNj7x7IhSS6sXvuDhJUB2s5XuODet0=
+	t=1755112841; cv=none; b=uYpg8BThYB2lpqdgJ7wo/af41GChynPKv5kR7dSUjVZULm2WOuw8f02q9b+RxDrjDSR1K5V0zfHn9pWuzk1OFAHwExuDog71XOCLSucfaZ+kKRwD0lj2SMT2Amyd44uPowDQLJSeNba3jdFyxwf83RbZAD5B3ygFoBNsromwkaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755112649; c=relaxed/simple;
-	bh=rDlKzG55XuEX8jU1UdbiT1DquMsLeP4vzWBKRtg/MpA=;
+	s=arc-20240116; t=1755112841; c=relaxed/simple;
+	bh=PDJhFh9NikHx+GpD7oqdM9qqfwvz5lGAeM1nGy+Joxw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XjjoEFQxgL/r/uKBCudDDv81UtC6Ns+JctZF+muhgZj/C9b0hGLBU0TK6WBzdQ9JSSG9ruu/GsaaSAkI1u6lSEKsiE2hJdiBuVkTFJMyIS6ewCEId1uEjTWGxs8uh88dDpSrFCgd9N9GAJ0oKkS0yw073qIcim2WZeBUlRejERE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nW0z0nSe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6735C4CEEB;
-	Wed, 13 Aug 2025 19:17:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UwY1SlV+VXUn+tZwqL8Sgs+EIV0KrBKnDuYLdgtq6VR4V47qc7USS9+4tkHnc30VzcsyMPiCvv1QQiCMys7Y1hreNN17DkbMnDQoFuj1JPgoaEnSNX8gIQRkze5dhwpL20OkihkyvysZoJBLpKN//3vW04QcF9AnA/hvQ9fwi6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mlRhIYmT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3351C4CEEB;
+	Wed, 13 Aug 2025 19:20:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755112648;
-	bh=rDlKzG55XuEX8jU1UdbiT1DquMsLeP4vzWBKRtg/MpA=;
+	s=k20201202; t=1755112840;
+	bh=PDJhFh9NikHx+GpD7oqdM9qqfwvz5lGAeM1nGy+Joxw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nW0z0nSeQijUCwxybMTish8HQBwNcm8vMODh7p+94JNHzaQ9xlIIdrbnd0jnDlL1F
-	 SF/iq25piErqUGU9nelJbpAQzvnqLMxaafOUly2x4ZuuvO5zMUQNzv1fDkPiHRmRVt
-	 /hIvkQpOFqmcrDV3g9ftm5JSVFQu4FGFu7lckFYApfbTbNVyJdv+9DiqyxNspJliWs
-	 7IDddhqXOu47PO5t5LlgVHA7o6bDrg5vp+hAf/dX+8wzkN5LXCerSs915pXQ9GDl1d
-	 /Wnb9SmiG0l2xVVgLB0UbYbeGU9mjM+u7Lv79nAP1SEDNbHbylx+OMU4xrknO5aXfg
-	 0NyhFF7TCjhDQ==
-Message-ID: <829069ca-0efb-4375-99bf-ccda52f74ac0@kernel.org>
-Date: Wed, 13 Aug 2025 21:17:23 +0200
+	b=mlRhIYmTqsa5EcAr2zLpLh7xylDnD4OGM/ur8Au3jnZnmB2LYquRTKtvGjQo5W5z+
+	 x4fGOA8i6sJ10HdaUdOjkKHG87Y1tSB14CKKjP0nljzvJH2ysF1mcARoHn64Y1n7jk
+	 DGcfcYfW3nMS8i5VbauMNzS0PtebyH3Mp4PVMelwFp0WpISiYVbnF1pQFPaN+yNMTw
+	 53c/LlYagb1OcDXvSHog9DTyoycNYzI4ViC13WLg/7Z6BVbrgs6BvSqDplP4b9YYpg
+	 hT3S5ItQ8uICc/z1TUjz6cd34VO9xnSTmO2272Oxu/w6xQykdsarhEO3Yl8JwMlzR3
+	 6nqfZn5hD/tSw==
+Message-ID: <f75e0372-6a45-4d27-a74a-0a41c5674987@kernel.org>
+Date: Wed, 13 Aug 2025 21:20:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 03/13] PCI: cadence: Add register definitions for
- HPA(High Perf Architecture)
-To: hans.zhang@cixtech.com, bhelgaas@google.com, lpieralisi@kernel.org,
- kw@linux.com, mani@kernel.org, robh@kernel.org, kwilczynski@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com,
- peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
- <20250813042331.1258272-4-hans.zhang@cixtech.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: it66121: Add compatible
+ string for IT66122
+To: Nishanth Menon <nm@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ David Airlie <airlied@gmail.com>, Maxime Ripard <mripard@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Robert Nelson <robertcnelson@gmail.com>,
+ Jason Kridner <jkridner@beagleboard.org>
+References: <20250813190835.344563-1-nm@ti.com>
+ <20250813190835.344563-2-nm@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,40 +107,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250813042331.1258272-4-hans.zhang@cixtech.com>
+In-Reply-To: <20250813190835.344563-2-nm@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2025 06:23, hans.zhang@cixtech.com wrote:
->  static inline u32 cdns_pcie_read_sz(void __iomem *addr, int size)
->  {
->  	void __iomem *aligned_addr = PTR_ALIGN_DOWN(addr, 0x4);
-> @@ -313,19 +410,17 @@ static inline void cdns_pcie_ep_disable(struct cdns_pcie_ep *ep)
->  #endif
->  
->  void cdns_pcie_detect_quiet_min_delay_set(struct cdns_pcie *pcie);
-> -
->  void cdns_pcie_set_outbound_region(struct cdns_pcie *pcie, u8 busnr, u8 fn,
->  				   u32 r, bool is_io,
->  				   u64 cpu_addr, u64 pci_addr, size_t size);
-> -
->  void cdns_pcie_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie,
->  						  u8 busnr, u8 fn,
->  						  u32 r, u64 cpu_addr);
-> -
->  void cdns_pcie_reset_outbound_region(struct cdns_pcie *pcie, u32 r);
->  void cdns_pcie_disable_phy(struct cdns_pcie *pcie);
-> -int cdns_pcie_enable_phy(struct cdns_pcie *pcie);
-> -int cdns_pcie_init_phy(struct device *dev, struct cdns_pcie *pcie);
-> +int  cdns_pcie_enable_phy(struct cdns_pcie *pcie);
-> +int  cdns_pcie_init_phy(struct device *dev, struct cdns_pcie *pcie);
+On 13/08/2025 21:08, Nishanth Menon wrote:
+> Add a new ite,it66122 compatible string to the IT66121 binding
+> documentation, since the two chips are practically same except for id
+> register difference.
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
 
-I don't understand how this (and many other pieces here) is related to
-"add register definitions".
-
-This is not a register definition.
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
