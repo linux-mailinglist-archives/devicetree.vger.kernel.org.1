@@ -1,159 +1,146 @@
-Return-Path: <devicetree+bounces-204303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74660B24E0E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:49:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2881B24E56
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:56:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A84207A156C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:47:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C0CA9A41CB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC732BD024;
-	Wed, 13 Aug 2025 15:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556DB287249;
+	Wed, 13 Aug 2025 15:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fGRnxJsr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTXqYtgr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C8B29E104;
-	Wed, 13 Aug 2025 15:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2932A285C85;
+	Wed, 13 Aug 2025 15:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755099747; cv=none; b=ndZAXbmBKGviE0IKUzrJOLtPxI/HrYL+0Tej+tIzcGAtFXwPcCIel8Mh9qUgl9hJ/DfTZj6cYlmECySkgNVUicfK8HS9X5wv3SPyx8EuVb2paZX/VuKLZwlZitoxjThOOKp4t0ePjsz94mJp7uuKaF3ZtQEL9yEurCcAzwS9Bew=
+	t=1755099810; cv=none; b=ol6YlF/mMrLcEs//2z3kOEU0JJNI8Hy5LPp0KsCis7N1Azz7GZNLAAUmLUazOaTT/ZYmQM7vFSQtGnT+pQhy2jmHmUhxlBY5mHJ3Hqr8ifbwaMvYgKDlsV2k+6bRM+Z+iEyBn2L5kWkYGACtNihBKmpMjzyPUMHJUb1M8wVbEm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755099747; c=relaxed/simple;
-	bh=7eEQScKSS4lgeevbAHUT916RwyFbFyv80kGiczwdQFA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HI0dkVCmU/RKNuN5CmW+kq1zTfcMKBSBA7HjInLdYM9bmygL1EL+P7v3D0q0JNDi16U06Ks2LPZZf4to9QdqJpfrOazN0pNU7LllUQh35plRNW82W1ZyOgndu6cUB2gNyO9n6ZzK/AV/ODsFiiDW9DDN1tJzGZ+B2EMLQUwj9o8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fGRnxJsr; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7e835e02cd1so467830985a.2;
-        Wed, 13 Aug 2025 08:42:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755099745; x=1755704545; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HV68KIDec58Lp5ofIAN+WaUYN4AgQmpZQcNEziHckfo=;
-        b=fGRnxJsrAYOyePbY8T6zwWGhb02bhBvFantMO/cdkNH+BpyoWVdpJLMSeshjJwlzYE
-         esnNx+hkomIRytkFaZ4PF2ovMnV5xsUc09oMte9YcFbvzOB2vYOhgYSfZVwFiGCCfEjd
-         5JvUXdjVNADoH2kVHkUeEme5GkVu7U212dTu2LicBFsdn18bz0b0B7QMVi1GPwzRB6gr
-         CgI4wpaEkoK1FuCkxHNJTh1aKaR5idEU4TEc0g4/yl9eYtK0R7rGUqHz+9E+vmhp2qaK
-         29KFAZBuGAjeF80fpNBate+fwdYrtXV2gO7Y2aKFt+OB4Nr1KO2wdERLIjBqCnHd5t5T
-         pMCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755099745; x=1755704545;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HV68KIDec58Lp5ofIAN+WaUYN4AgQmpZQcNEziHckfo=;
-        b=fH7qzXXtBUCz2ZLNgQ8f0JAdIdHfJaEZR3wYWF2f374S0dY9/SZ3hhB82i6ON8eXw4
-         zzPBWqEiYPdGh6SvU9Ce0z0HiZy+IJB22uDUXQoWy/+kC/S2KgUes0DnJEz0jUO7h9mt
-         xlZiI6DSyadLIZGQwkzMWg3i1MmVwOETpZiG9GN/u/axbxGdNziszhnAlGMLM6XYP25I
-         N2DcbRr0LccyvdFgL6j6OL5zwg3Wj41e20XFSFvMk+TZq1gQEWT2wWaYfj6WvZvKMkRF
-         Ngtnyqn0w5QNuOgRYZgZZm3MHwk+wCp3n/lVFGlniiqR5C6xn2/CU9MH6W1O9K/MK/e7
-         fiEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOa/I9nud8CjpSOU5BDjgD4Jgp8IqxlIS4ZHr32WJX7a9OTadSxGJbjFW+NFgNGlVwlFyeyP5Xph3Rsttv@vger.kernel.org, AJvYcCVM/nuVy0G7DxVfhGvnlRPZ7p7CFQ2GK0mOx2P/sXoRc5ITF0Dc2J6UrbMowdSgLc77aQi8clwAeLIzAEQK9+k=@vger.kernel.org, AJvYcCVXo3NuaLcqoTvr2ph13TRKhFJQ5/RFu270DTXa5LPF162uLVSoA7t+SyuyBRg5QZKh00XeGPsexTM7xQ==@vger.kernel.org, AJvYcCW8QjVnxCpcjsWMPD8lv7ExcmMgT7vxQN4RZ7TuOnnv8uIcLlGxurCdvzalYinckxU+SIEGcauWXUtK@vger.kernel.org, AJvYcCX+1JYDLs9jIbuJaPgpRwCEZnWIv/fwRBHmGxS/Cql89+cYTFSASlaTHLyVpHguaKEN8qUe2Q/j@vger.kernel.org, AJvYcCX0F1e8ToCSRpfXOJ4tGomEqbS0pXbajpNVihvBk69OmpcsQlzyqHc+LCQ5Fs2yLf5vFXpmfFeghGk=@vger.kernel.org, AJvYcCXR5oqYslufJV5ItAJ4SZcF9KefbZcjPsCQ0WMBJhQRP+ojEdkOQQIAdnS3Bh3ruoXWUvHy9AAU3RgElbP1PEXW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7QEDrD6fIFVw7R82IYXISNWpkKkm8YzYiPyqeBP+sTF4L/c4G
-	yfA/KhvKUwATbBP21QHTnNEcT7gk4RxXxf/5rZ/lJ9pyo1iKTroZsvJZ
-X-Gm-Gg: ASbGncvkfgXIG2xYej3yPgv1BDrBe3nXsOB5pmtOsAcWhwRWPBpUb9z2cPc7yCae9QQ
-	uXO+e+zw+yX8IItdjw2BAcyFgE9HE/9zcVzZOnTAqKNWuaLOWjOKO3N3xRo9fcB6FCymep9F6sy
-	zKki+hY8EInDCiRyYu8jc2N9u1yWBUYuqC0D8StJ40uCrGhsuMP/OvINEC4sF3U10WIDga+TKCD
-	Qgsp5T9vjbtVu2GUmR6Bgq7L0+hG1NVYu99+0rB1MsXpEYdxv4arJjbVibi4V86ODGcV4rfQ6oM
-	8WSwuRMYaUindWwz91nVjygo1hOAvrsJbXjZ1CSE9c2BFa5H4sUgulmEnMMfPwpiZ4x8+3L8CWS
-	GbZGVpAPhUcDddiHr5H0yBllJqU+k3J8Ran53yc1TZ/nJRjL1EbDucw8P8lxLX0aDnBimlHM+/T
-	GOWR1OrW3O6Q2iQRBFxWllj4pt7I700RHilw==
-X-Google-Smtp-Source: AGHT+IGueTHLMPq5mASKcygcGpjxpQLr77vYPVpPZinVZalsZaN0RbJcr5FWn9+kKNzsAHrio9z2NQ==
-X-Received: by 2002:ae9:c10d:0:b0:7e1:5efc:6f6 with SMTP id af79cd13be357-7e865323bfbmr351498185a.47.1755099745105;
-        Wed, 13 Aug 2025 08:42:25 -0700 (PDT)
-Received: from 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa ([2600:4808:6353:5c00:d445:7694:2051:518c])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7e81bc7a1e3sm1180019685a.74.2025.08.13.08.42.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 08:42:24 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 13 Aug 2025 11:42:02 -0400
-Subject: [PATCH v3 11/11] rust: acpi: use `core::ffi::CStr` method names
+	s=arc-20240116; t=1755099810; c=relaxed/simple;
+	bh=OCVS1nKCZktGk9eJd0qFRaW2McBTaTP8gAMmGlBkVBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LieJ4hmV9+DrIap7ztfYjTMnsFW3WhEEQx0mAms5Ihh9NtSVw2kg+PZDnci0H/tGSUHi2wggVotohmjd2BbIIFtXHfug6jnRQkMH8Wt9oru1e/3TAvvtobEqM/avm8B0XoPayjYTjMT9WVm/1f27kGu023+VMwbEkKYI7+RZ3LU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTXqYtgr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C6E2C4CEEB;
+	Wed, 13 Aug 2025 15:43:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755099809;
+	bh=OCVS1nKCZktGk9eJd0qFRaW2McBTaTP8gAMmGlBkVBo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lTXqYtgrHymg/AgcfavetFeRIi6t1/wDE/vuxDqfjs4YOmWgeFk0hf74GfTDM95OC
+	 LQFw7XNNNJzDu0qor+FdRRSnYwqa2uxCq0dNYAHa/ypyIsHib/q43+7Ucnd5gEeHrc
+	 qUmFm79ztubtjOhtbbkfJFce0/P7FEFHn4l6NWdBgflJxuquSE1kk4ghkxvlpk/PVe
+	 BAPNkE4lvKncGYxeOSKktRFWmysZ+9C4aG8J+3VIRgxCwc9Zex4ApPTj/Zn/Zzy9D+
+	 sV7VjCPAYowhmmJkbskc2fnVfAnclYfGrxLKE8EIGE+U54UiwVwbnGfDRoMpGxEm4i
+	 67iAE+Zd+v2GQ==
+Date: Wed, 13 Aug 2025 10:43:28 -0500
+From: Rob Herring <robh@kernel.org>
+To: Hans Zhang <hans.zhang@cixtech.com>
+Cc: mpillai@cadence.com, cix-kernel-upstream@cixtech.com,
+	lpieralisi@kernel.org, bhelgaas@google.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, mani@kernel.org, kw@linux.com,
+	kwilczynski@kernel.org, krzk+dt@kernel.org, fugang.duan@cixtech.com,
+	guoyin.chen@cixtech.com, peter.chen@cixtech.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 08/13] dt-bindings: PCI: Add CIX Sky1 PCIe Root
+ Complex bindings
+Message-ID: <20250813154328.GA114155-robh@kernel.org>
+References: <20250813042331.1258272-1-hans.zhang@cixtech.com>
+ <20250813042331.1258272-9-hans.zhang@cixtech.com>
+ <175507391391.3310343.12670862270884103729.robh@kernel.org>
+ <cb35dfbd-2fa4-4125-bd87-9f86405983eb@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-core-cstr-fanout-1-v3-11-545c14bc44ff@gmail.com>
-References: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
-In-Reply-To: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Jocelyn Falempe <jfalempe@redhat.com>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Arnd Bergmann <arnd@arndb.de>, Len Brown <lenb@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-acpi@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1755099716; l=1137;
- i=tamird@gmail.com; h=from:subject:message-id;
- bh=7eEQScKSS4lgeevbAHUT916RwyFbFyv80kGiczwdQFA=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
- MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QLzNH5g4iPNs065FYw7w7djV+1xHowTEMku81polGSYjrhqzWV320xGu/06+NykyIYuirJGl3Sv
- bZdE3PrXglg8=
-X-Developer-Key: i=tamird@gmail.com; a=openssh;
- fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cb35dfbd-2fa4-4125-bd87-9f86405983eb@cixtech.com>
 
-Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` by
-avoid methods that only exist on the latter.
+On Wed, Aug 13, 2025 at 05:12:57PM +0800, Hans Zhang wrote:
+> 
+> 
+> On 2025/8/13 16:31, Rob Herring (Arm) wrote:
+> > EXTERNAL EMAIL
+> > 
+> > On Wed, 13 Aug 2025 12:23:26 +0800, hans.zhang@cixtech.com wrote:
+> > > From: Hans Zhang <hans.zhang@cixtech.com>
+> > > 
+> > > Document the bindings for CIX Sky1 PCIe Controller configured in
+> > > root complex mode with five root port.
+> > > 
+> > > Supports 4 INTx, MSI and MSI-x interrupts from the ARM GICv3 controller.
+> > > 
+> > > Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
+> > > ---
+> > >   .../bindings/pci/cix,sky1-pcie-host.yaml      | 79 +++++++++++++++++++
+> > >   1 file changed, 79 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+> > > 
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: /: 'compatible' is a required property
+> >          from schema $id: http://devicetree.org/schemas/root-node.yaml#
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb: /: 'model' is a required property
+> >          from schema $id: http://devicetree.org/schemas/root-node.yaml#
+> > 
+> > doc reference errors (make refcheckdocs):
+> > 
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250813042331.1258272-9-hans.zhang@cixtech.com
+> > 
+> > The base for the series is generally the latest rc1. A different dependency
+> > should be noted in *this* patch.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit after running the above command yourself. Note
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > your schema. However, it must be unset to test all examples with your schema.
+> > 
+> 
+> Dear Rob,
+> 
+> I'm very sorry. No errors were detected on my PC. I'll check my local
+> environment and fix this issue in the next version.
+> 
+> If I have done anything wrong, please remind me.
+> 
+> 
+> 
+> hans@hans:~/code/kernel_org/linux$ export CROSS_COMPILE=/home/hans/cix/bringup_master/tools/gcc/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu/arm-gnu-toolchain-12.3.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+> hans@hans:~/code/kernel_org/linux$ export ARCH=arm64
+> hans@hans:~/code/kernel_org/linux$ make dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   CHKDT   ./Documentation/devicetree/bindings
+>   LINT    ./Documentation/devicetree/bindings
+>   DTEX Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dts
+>   DTC [C]
+> Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.example.dtb
+> hans@hans:~/code/kernel_org/linux$ make W=1 dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
 
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- rust/kernel/acpi.rs | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+DT_SCHEMA_FILES limits testing to only the matching pattern. 
+Ultimately, you have to test without it.
 
-diff --git a/rust/kernel/acpi.rs b/rust/kernel/acpi.rs
-index 7ae317368b00..37e1161c1298 100644
---- a/rust/kernel/acpi.rs
-+++ b/rust/kernel/acpi.rs
-@@ -37,11 +37,8 @@ impl DeviceId {
-     /// Create a new device id from an ACPI 'id' string.
-     #[inline(always)]
-     pub const fn new(id: &'static CStr) -> Self {
--        build_assert!(
--            id.len_with_nul() <= Self::ACPI_ID_LEN,
--            "ID exceeds 16 bytes"
--        );
--        let src = id.as_bytes_with_nul();
-+        let src = id.to_bytes_with_nul();
-+        build_assert!(src.len() <= Self::ACPI_ID_LEN, "ID exceeds 16 bytes");
-         // Replace with `bindings::acpi_device_id::default()` once stabilized for `const`.
-         // SAFETY: FFI type is valid to be zero-initialized.
-         let mut acpi: bindings::acpi_device_id = unsafe { core::mem::zeroed() };
-
--- 
-2.50.1
-
+Rob
 
