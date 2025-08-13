@@ -1,90 +1,161 @@
-Return-Path: <devicetree+bounces-204237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E33FAB24944
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 14:13:13 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62FDB24896
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:39:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB895583426
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 12:13:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AD2994E2993
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F7E2F83C1;
-	Wed, 13 Aug 2025 12:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9532F6596;
+	Wed, 13 Aug 2025 11:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="A1b1EWXL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lTiqdsfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32101.qiye.163.com (mail-m32101.qiye.163.com [220.197.32.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E862F747A;
-	Wed, 13 Aug 2025 12:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040FF74420;
+	Wed, 13 Aug 2025 11:39:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755087190; cv=none; b=oOSRYoJsJb+8vCLnUQvUAQNvSbgwSuSVRNILhcudUtRB0KQOUMIoDnampuzcLgaeJUACnzSOMRG0dXtoNVmMZg5A6RyQgjQUee4q571or3igjz/5GXNVU4GK16hUkc0obM7u3x2EZh2kkwP3hURNOgMNvwqFPULn0IVlNp8LuHE=
+	t=1755085189; cv=none; b=kpdjPlv5B/ZjBuer1aFv/aaInQQy6wWGJMHLzupCZzNFWn5plVdZJqAtCBEnVffyLAgmpbjthnpTyUnFUEVyiiS1tMDWSt3qiP4+sybzk5ZjatPUX7oBtrmJzFYmclh59bQX2wIXWNzVC7icXojI5z0keeJUfM5wm5lrhy3ZES8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755087190; c=relaxed/simple;
-	bh=x30mp3FPSN9wV3/dLzmgHqK/6hUW8Po2GYO0aqAfpcQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Xce2HoU6qemnr26ip8S8PftrPM/EyOb84g5J863LuvvBSuyq7fbIcVFiO5xoBGEW9F8gJsneJ6jFVi2PPT34jck1FV8hIq4UPt3sAkJIHjgGG0Lc9ntPEIJ+fdMpEyz1iOT4mgcekfBqexSLiL5qzOMPmHJUYn9KEWHW3LKob+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=A1b1EWXL; arc=none smtp.client-ip=220.197.32.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from albert-OptiPlex-7080.. (unknown [117.184.129.134])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1f4393c88;
-	Wed, 13 Aug 2025 19:37:32 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-To: krzk@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	yangzh0906@thundersoft.com
-Subject: Re: [PATCH v3 1/8] dt-bindings: vendor-prefixes: Add Black Sesame Technologies Co., Ltd.
-Date: Wed, 13 Aug 2025 19:37:30 +0800
-Message-ID: <20250813113732.2393097-1-yangzh0906@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <8314491a-3c4c-4a32-8b3e-62c06109bc71@kernel.org>
-References: <8314491a-3c4c-4a32-8b3e-62c06109bc71@kernel.org>
+	s=arc-20240116; t=1755085189; c=relaxed/simple;
+	bh=Zi6Z75oIMtn8beKtFputqAn8NKkyXzfJHRrfLH3JN/w=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=FVtjUWZ9+WGlPEHEBahvRrsW2pivIK59IMwHqbKr8eKUd3ez8uaQCrfuBWZJkhIBzlgS/PiwDp5BM2GcjPFnRYbqIjVXAEVgc9TPRP4PhI+VgF5fjh3QrRffwifZXQBVEO44vZcZKY/0mjqIg8YBakGgup29/pD5wXCZ+FIwMQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lTiqdsfR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DBLbgk002778;
+	Wed, 13 Aug 2025 11:39:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UJq5xl9wnlbTfrwZF8n2U+4EQciaitdnUfm2jP4aBNY=; b=lTiqdsfRl1pFVuwm
+	yg/nPzzH+T/3ZpVcXGcBcKvj6W4CUgQt3GrsWAXt0o25/nzrEC/gWww87fvRxrjy
+	wkykHSme6IyOui/BEd2p6kDz3FySkuGb2mUcmj/Fl7V+mSa7i+btrZKEL8gE9oTq
+	TUJP3Jt68qZ11KxOjR52tATYHhFCBVlcTtWyqMBGnipDC+5ETpUwEcfWNFrHf8kJ
+	y1DJJi/0cSD122xtpTMXWa7jMqgN9NaHxV2vicnfJhiqDBN7vsWYBbxnZf1yHRG1
+	l9SKICOO5cULnBCgKkljTu7u22HJka8Edre01kUYg1lbSxyfo+IEDwRFyMHRE/rG
+	+JA73Q==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dxdv3kk5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 11:39:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57DBdUQo008472
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 11:39:30 GMT
+Received: from [10.235.9.75] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
+ 2025 04:39:25 -0700
+Message-ID: <ccb022ab-45a8-4e97-8b63-4d2921ebfadc@quicinc.com>
+Date: Wed, 13 Aug 2025 19:39:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a98a3389b2509cckunmde634496a1193f
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHUxMVh4ZHUwfSRkZHUxMHVYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUJCSU5LVUpLS1
-	VKQktCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=A1b1EWXLuXwanmImXmiQgdIv5JjC5qz3vWpkB/5NM2aXrpney6BIYuj8nX7NWkAHLhHIpYJ/N5uA4tl3FCVnq6blm96jXARXW2fJtysyjFeIpvIx4HmAsiwFIdVaSFtPYE1X1Tk42UojR8TReSA90d6Qjbbsf51UB1FAgQgmQxQ=; s=default; c=relaxed/relaxed; d=thundersoft.com; v=1;
-	bh=x30mp3FPSN9wV3/dLzmgHqK/6hUW8Po2GYO0aqAfpcQ=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+From: Luo Jie <quic_luoj@quicinc.com>
+Subject: Re: [PATCH net-next v7 03/14] net: ethernet: qualcomm: Add PPE driver
+ for IPQ9574 SoC
+To: Randy Dunlap <rdunlap@infradead.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Lei Wei <quic_leiwei@quicinc.com>,
+        "Suruchi
+ Agarwal" <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook
+	<kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        "Philipp
+ Zabel" <p.zabel@pengutronix.de>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>
+References: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
+ <20250812-qcom_ipq_ppe-v7-3-789404bdbc9a@quicinc.com>
+ <5ee33ac3-c23e-4da7-87bc-2a5ea6e93afe@infradead.org>
+Content-Language: en-US
+In-Reply-To: <5ee33ac3-c23e-4da7-87bc-2a5ea6e93afe@infradead.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=IuYecK/g c=1 sm=1 tr=0 ts=689c7973 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
+ a=yauDWUx4ckUadswYq4AA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: HPXd7wzleDymh-hJW_R1aw-SCfLCbgzB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAyNSBTYWx0ZWRfX5i13+qW4nDqh
+ usNlwPqDoA5CNuTNowKAdonAV7zadljzx9q3fqcxT+1U2TJ07AUN/7VCjWN15jv3mbCvze9A2Uz
+ QI4CwGUmrc62E2ULgQkvAOJuGB9UCEj7XUtOTo8ReP8uZjXUj7Bgn5qTfTCa+dbzSNWi5iCzo2a
+ z6VUSqtH1stODts+15mlPPTJ4kD9k1TJh9yonz9Uqhceyx9MaoD5cbPclc6gAq9ArsbZJp44udY
+ OjHGH8SMve90uCrZo52J30m8Rj3hHkOaiwQUYbLe94ZZ3e9vZS/j/J1JnOpnzk9gCVhyXBwKNmS
+ GkodGwC94senKvc1Sy2Cv6boQGsLhbMsz2WwD0EI//G8DsPU1vRzGiR8Ws+yPTJxzv2/JQWBGrm
+ nwqGpvKy
+X-Proofpoint-GUID: HPXd7wzleDymh-hJW_R1aw-SCfLCbgzB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-13_01,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 phishscore=0 suspectscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090025
 
-On Wed, Aug 13, 2025 at 08:01:09AM +0200, Krzysztof Kozlowski wrote:
-> On 13/08/2025 06:53, Albert Yang wrote:
-> >>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> >>> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
-> >>
-> >> Odd order of tags. When was the patch written, by who and when was the
-> >> Ack given?
-> >
-> > Rob’s Ack was on v1:
-> > https://lore.kernel.org/lkml/174915411977.3161261.2820163642193291293.robh@kernel.org/
->
->
-> So how it can appear before Ge signed off?
 
-You’re absolutely right, I’ll ensure future submissions follow the
-correct order. This area is still new to me, but I’m actively working
-to master it.
 
-Best regards,
-Albert
+On 8/13/2025 12:54 AM, Randy Dunlap wrote:
+> 
+> 
+> On 8/12/25 7:10 AM, Luo Jie wrote:
+>> diff --git a/drivers/net/ethernet/qualcomm/Kconfig b/drivers/net/ethernet/qualcomm/Kconfig
+>> index a4434eb38950..6e56b022fc2d 100644
+>> --- a/drivers/net/ethernet/qualcomm/Kconfig
+>> +++ b/drivers/net/ethernet/qualcomm/Kconfig
+>> @@ -60,6 +60,21 @@ config QCOM_EMAC
+>>   	  low power, Receive-Side Scaling (RSS), and IEEE 1588-2008
+>>   	  Precision Clock Synchronization Protocol.
+>>   
+>> +config QCOM_PPE
+>> +	tristate "Qualcomm Technologies, Inc. PPE Ethernet support"
+>> +	depends on HAS_IOMEM && OF
+>> +	depends on COMMON_CLK
+>> +	select REGMAP_MMIO
+>> +	help
+>> +	  This driver supports the Qualcomm Technologies, Inc. packet
+>> +	  process engine (PPE) available with IPQ SoC. The PPE includes
+>> +	  the ethernet MACs, Ethernet DMA (EDMA) and switch core that
+> 
+> Please use ethernet or Ethernet consistently.
+
+OK, I will update to use "Ethernet" consistently throughout the code.
+
+> 
+>> +	  supports L3 flow offload, L2 switch function, RSS and tunnel
+>> +	  offload.
+>> +
+>> +	  To compile this driver as a module, choose M here. The module
+>> +	  will be called qcom-ppe.
+>> +
+
 
