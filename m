@@ -1,130 +1,192 @@
-Return-Path: <devicetree+bounces-204136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657CEB24361
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:57:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39758B24375
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F5BC1689E1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:55:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50961189B815
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 07:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74E32E3B17;
-	Wed, 13 Aug 2025 07:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C60D2E424B;
+	Wed, 13 Aug 2025 07:55:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WWCU/c9p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC572E612F
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7DBC2BE65A
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:55:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755071708; cv=none; b=ra6OkAYsLy6I/8oCzb+H/Ac2ZjkMBVgSEZakFvAwflG4qbnPU6lZ6nSlKk90UFw1gfOkzUsNqwWbkcCF1NqDYZ30q7cZwgyBuWqxXXwTDYkz+1yhSh9L1p9T1Ol88q4XD7tNfKYS0stTi+26SLJGCpHQcF9/pk670yM58xo9h18=
+	t=1755071759; cv=none; b=u9AJpzEH4ueuYhl7xBaCvqvINtxzPzRHJ+LYyVfJvJqRTPoS4UVD2TZ1EHLU3KgxedY2JKKwbISWYEM9og60hgtswxV0wLwN1mmoL3A4pcQmQLsodf6hRZlsfQY4tZakE6Y3z2CP6fImHHcz/4zZxCMKzCuZLvEFlqdso8YFip4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755071708; c=relaxed/simple;
-	bh=17up/G/1laxbCJDZqY+UPD+ssU74UB4snWyS+1JKHnY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XXlIk6rvByxryTDsWLmehSjRz0NyRLgX225BuL+2oZxlv5foYVwkBuuTiFLJT9LIC97C2G6/AUTpZqCiX2SDM3vyuZ4Ls9/a7u1olPnPEIFm6ZA9FqKyJzdXj0or+Q8g7jArSJor5zfp0BwO8mvP267NAMPR2YaR/rUXPbLXqms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1um6Jt-00078r-Fc; Wed, 13 Aug 2025 09:54:49 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1um6Js-0003Sy-13;
-	Wed, 13 Aug 2025 09:54:48 +0200
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id EC4D045683A;
-	Wed, 13 Aug 2025 07:54:47 +0000 (UTC)
-Date: Wed, 13 Aug 2025 09:54:47 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
-	Sebin Francis <sebin.francis@ti.com>, Kendall Willis <k-willis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>, 
-	Simon Horman <horms@kernel.org>, Vincent MAILHOL <mailhol.vincent@wanadoo.fr>, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
-Message-ID: <20250813-apricot-cicada-of-apotheosis-e8d5fa-mkl@pengutronix.de>
-References: <20250812-topic-mcan-wakeup-source-v6-12-v8-0-6972a810d63b@baylibre.com>
- <20250812-topic-mcan-wakeup-source-v6-12-v8-4-6972a810d63b@baylibre.com>
- <20250813-avocet-of-fascinating-honeydew-7700aa-mkl@pengutronix.de>
+	s=arc-20240116; t=1755071759; c=relaxed/simple;
+	bh=N/EFTl//MUVpepPSVYfso39VLXLEkNVBQ8GJWEUsU5Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eRW8zQDB+Q4C9K+TvnXQ8FjEAyVlLTapeqxj0cEY1AdmTHNnKUPTKeKzS3GybaiX1RS2Aj9ChaHh7CtawApTZSFfGp2U2gxxrGEEwgmuy0GBcccVbJAoR6jXlyOEOCmytttwjNxqjIP5793Hu5o2FgvnLAvTyw0GUAJhXbGxEtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WWCU/c9p; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57D6mH6x001935
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:55:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=PbxeIGNssb8EQVu2gX91Sa
+	Cd/YhbWEN2gAOYLERC55E=; b=WWCU/c9pA94DPQT4oid+EvX0oHaVGN8N/YvZw5
+	yN06bSa7E/pAw4xrLqm0kzDM8QH8Dbca4+egb1J3s3ZMrbNqKITeEvXq0xQbKQQx
+	73eYmz+VNY86VhMkq+CrJreT4AlfROUUTOAM3uQx3a1xFlm2fZnvLDpTHl9Ki3BV
+	ABGsxuHsWM8G97Ajc+pmMf7/pggACSUsqiQ2Y4bEOb1AU2+qlpLR/JFPGyvhUvbp
+	gIJRukHGosjDEU8Om4I7dfcVtdlwG9w6r34ORRyZFmhfHv3O/N+aTLywj8lQQYuK
+	BYVtiYG7TLNcTArRSzuNbc8UeuqsmI5ittEp//vLu1zRYBlQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ffhjpstm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 07:55:56 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-76bc511e226so6257092b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 00:55:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755071755; x=1755676555;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PbxeIGNssb8EQVu2gX91SaCd/YhbWEN2gAOYLERC55E=;
+        b=P0k/7lLVaGghBUXMtDD+Zm2iNhpq92Dub6SIULQo/yedugYHMuwrsDes/d6I4riIYR
+         AFHjS/Q6eFgvw2X2bi5Ib3NfXttmZ6vUDvYP3CLYBQbNpSi/pjIptM4oMvAxNBv0Ccck
+         uNtMeb+YMV2txJzHHGWWJAayjSEGxK5SkvBRfa/Kn4Uv4eRdazoXJbFS9rQKyL8Z1JpH
+         qDBp9s5KCiXBa1dw+lmPijYwpNFmbcjgnmdOh9d4UevAGvur0eTlZm5o4b/WcTfqTTrx
+         obmzPsyVV08Ptdm//e7LAgFLXljgbR3LFQ3FsBWmjmt1dOK6V1whApvLPlJZNi1gj5Q6
+         Dafg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuLcsB/cVDLc7QCE+5beDCpo4RJMP6AZBZ3l/QZKMVGVZ+TOnyfBCQQF867j67ieiYoi6ZwNaUaOQN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM4QUp1U6W7+5Cojv0nv5dOaxxdsUd35K38Oq57Dap7knaDsQw
+	wy3v0MGDfOs58tq5sNc0bJviHs2ouuXG9DXJdmyJR9vgSCp2dsVfR6Wbo9MVzktGWl4ldt/UCEk
+	wSffaI8T9n/Sk8/5Bu8DOTsVT5Z5/9LPT21UN1nti3y1EQdhpjY4R8cWDJsZ4u5FM
+X-Gm-Gg: ASbGncuO+QyrjVdGmPJV+eiZcXEQ/ZRr2D16QNHNjzvr4Wa0IQuoDFTNb3+i32Dfdc2
+	CDiZFsDnXeHjj2s6cxAiNHp+YSvui06QrpAoVHSXq8HwTWZ3d2gyEAe4Nrr0IWgZtmHoXsR3BC7
+	51wWuX24spIp1KQmVpyW+qJ4CAQRLcXnIyoff5B9vJu/GocWRdeYOWylorbLItQ+x+l9X390Yaz
+	ezgFqsSbOkVzQx9w3SGeESfNjM/XHtGiHqvV822kIuAcL4xxyPpdwJJfT5FNF2biEcOVA41uQjl
+	sXvwlzBsN82HdsGDkyTWqbX2pP44eKxprGO94GDmz1yjAZRph+JAu61TXTvdr82V
+X-Received: by 2002:aa7:88d6:0:b0:76b:ffd1:7722 with SMTP id d2e1a72fcca58-76e20fe52ffmr3694997b3a.24.1755071755275;
+        Wed, 13 Aug 2025 00:55:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFejr+/favLOO8iLHlOBozznAzz7xZoBuIk5htMdciv+yIGlKh80pmUms50GL2E13VJAOM9w==
+X-Received: by 2002:aa7:88d6:0:b0:76b:ffd1:7722 with SMTP id d2e1a72fcca58-76e20fe52ffmr3694973b3a.24.1755071754778;
+        Wed, 13 Aug 2025 00:55:54 -0700 (PDT)
+Received: from hu-tdas-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76bccfbd22csm31395754b3a.65.2025.08.13.00.55.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Aug 2025 00:55:54 -0700 (PDT)
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+Subject: [PATCH v4 0/7] Add support for Clock controllers for Glymur SoC
+Date: Wed, 13 Aug 2025 13:25:16 +0530
+Message-Id: <20250813-glymur-clock-controller-v4-v4-0-a408b390b22c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p6jujqy3l2flf72n"
-Content-Disposition: inline
-In-Reply-To: <20250813-avocet-of-fascinating-honeydew-7700aa-mkl@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOREnGgC/x3MQQqDMBAAwK/Inl1Ig5LYrxQPIa7p0piUjYoi/
+ r2hx7nMBYWEqcCzuUBo58I5VXRtA/7tUiDkqRq00r2yD40hnssm6GP2H/Q5rZJjJMG9w36w1sx
+ KW2cmqMFXaObjn7/G+/4BxyDCIGwAAAA=
+X-Change-ID: 20250812-glymur-clock-controller-v4-59887f028a7d
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-aa3f6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDA3NCBTYWx0ZWRfXyY7pmEf03Svq
+ /iAugzQ1lPJeB9IqUjYshOZbo3xfpcus6lgF4Z8YLjzSTScNsAryW3MBTDT6LFG1odzRAQOdw4g
+ SdAFtTEsfJaLua43fYHgm2X+RBEP9JaMnWr9p2W6MRPHLGWE4NzDgczemuiTOknqLsUS1D68lwb
+ Ba5K1/KgyWnMlvIz9aXaFPJOGgROnWaCWoEUYdc1ShVf1L+jzmjMP+oesON0QkBG9Ia1E8h3yJz
+ pg3m7hjNFYzs/2NGx6Cg4KMalADeO6fyhQdpC4d3SvBhvKRbOFsznH9pUi1ydAztJqO0Zkov2+a
+ niKavA6hP+MpWsDjCChm6oSJohJ+qkpSfEYxudwA1art/ZdrSFeC7T/aj9+xksgHII1UVJvJjlv
+ tUVc0SRM
+X-Proofpoint-GUID: Mi7I5wNvE24QGTDNZe2XJJjWkFwLaf9i
+X-Authority-Analysis: v=2.4 cv=TJFFS0la c=1 sm=1 tr=0 ts=689c450c cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=9iZiYaJo2d43-za_6isA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-ORIG-GUID: Mi7I5wNvE24QGTDNZe2XJJjWkFwLaf9i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_08,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ phishscore=0 clxscore=1015 spamscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508110074
 
+Introduce the support for Global clock controller(GCC), TCSR and the RPMH clock controller for
 
---p6jujqy3l2flf72n
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v8 4/4] can: m_can: Support pinctrl wakeup state
-MIME-Version: 1.0
+Qualcomm's next gen compute SoC - Glymur.
 
-On 13.08.2025 09:44:35, Marc Kleine-Budde wrote:
-> On 12.08.2025 11:10:25, Markus Schneider-Pargmann wrote:
-> > am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
-> > a wakeup source. Add support to select the wakeup state if WOL is
-> > enabled.
->=20
-> The driver makes already use of pinctrl_pm_select_default_state(dev),
-> does it make sense to use it here, too?
+Device tree changes aren't part of this series and will be posted separately after the
+official announcement of the Glymur SoC.
 
-Every suspend/resume cycle will overwrite the pinctrl setting with the
-default one.
+Changes in v4:
+ - Update the commit message for all dt-bindings to incorporate "Glymur SoC".
+ - Add the xo parent for the TCSR CC clocks[Abel]
+ - Update the GCC driver to cleanup dfs_rcgs as part of 'qcom_cc_driver_data'[Dmitry]
+ - Add RB tag from [Konrad]
+ - Fix the broken previous patchset links.
+ - Link to v3: https://lore.kernel.org/lkml/20250729-glymur-gcc-tcsrcc-rpmhcc-v3-0-227cfe5c8ef4@oss.qualcomm.com/
 
-| int m_can_class_resume(struct device *dev)
-| {
-| [...]
-| 	pinctrl_pm_select_default_state(dev);
+Changes in v3:
+- Update the commit message for all the dt-bindings [Krzysztof]
+- Update the commit message as required.
+- Link to v2: https://lore.kernel.org/all/20250724-glymur_clock_controllers-v2-0-ab95c07002b4@oss.qualcomm.com/
 
-regards,
-Marc
+Changes in v2:
+- Drop second/last, redundant "bindings" in TCSR and also align the
+  filename [Krzysztof]
+- Update the year to the copyright [Krzysztof]
+- Align to the new Kconfig name CLK_GLYMUR_GCC/TCSR [Abel, Bjorn]
+- Use qcom_cc_probe() for tcsrcc [Dmitry]
+- Add RB tag from [Dmitry] to patch #5
+- Link to v1: https://lore.kernel.org/lkml/20250716152017.4070029-1-pankaj.patil@oss.qualcomm.com/
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+---
+Taniya Das (7):
+      dt-bindings: clock: qcom-rpmhcc: Add support for Glymur SoCs
+      dt-bindings: clock: qcom: Document the Glymur SoC TCSR Clock Controller
+      clk: qcom: Add TCSR clock driver for Glymur SoC
+      clk: qcom: rpmh: Add support for Glymur rpmh clocks
+      clk: qcom: clk-alpha-pll: Add support for Taycan EKO_T PLL
+      dt-bindings: clock: qcom: document the Glymur Global Clock Controller
+      clk: qcom: gcc: Add support for Global Clock Controller
 
---p6jujqy3l2flf72n
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/clock/qcom,glymur-gcc.yaml |  122 +
+ .../devicetree/bindings/clock/qcom,rpmhcc.yaml     |    1 +
+ .../bindings/clock/qcom,sm8550-tcsr.yaml           |    3 +
+ drivers/clk/qcom/Kconfig                           |   17 +
+ drivers/clk/qcom/Makefile                          |    2 +
+ drivers/clk/qcom/clk-alpha-pll.h                   |    6 +
+ drivers/clk/qcom/clk-rpmh.c                        |   22 +
+ drivers/clk/qcom/gcc-glymur.c                      | 8616 ++++++++++++++++++++
+ drivers/clk/qcom/tcsrcc-glymur.c                   |  313 +
+ include/dt-bindings/clock/qcom,glymur-gcc.h        |  578 ++
+ include/dt-bindings/clock/qcom,glymur-tcsr.h       |   24 +
+ 11 files changed, 9704 insertions(+)
+---
+base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
+change-id: 20250812-glymur-clock-controller-v4-59887f028a7d
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Taniya Das <taniya.das@oss.qualcomm.com>
 
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmicRMMACgkQDHRl3/mQ
-kZwB7gf9Fq3xmxmg80kEAI/NPS2rUYeqccDab32rRGOQHTLBtpivL0ap3NULqf2Z
-WGaFuODT5TBV1zJqSZ9oRc9SdhwfJOO1/17/A5uE6fLn+9i91fLLFPfvTwVCEAaQ
-puX607lxWiJYUl9n/jE5/MlsSKZq2ba9aHevhQbr6YXYrG3tb6ITYe5DhQhp1D5n
-5owIIdhQ0PJbGeaJLud/MjSd0y2X6AXY/npChic30GO80RmTMZDxqLm+VcwVoJgL
-zSCec6NzxzJfaFNfVRpzf8cFq+HbWqM0ai+CnfEZD1SypOBVlD2j7g2zERHfvqi8
-E/crEhvpJD0FEhRy/Lbo8W1u/mDY5Q==
-=+ar3
------END PGP SIGNATURE-----
-
---p6jujqy3l2flf72n--
 
