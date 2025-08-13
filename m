@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-204241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F72B24A1B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:05:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD403B24A64
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:16:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3BD8584E09
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:05:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 115A43B0776
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 13:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7136C2E4252;
-	Wed, 13 Aug 2025 13:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2452E7F2F;
+	Wed, 13 Aug 2025 13:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="cAW4mthz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CbJPAx9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FED215A87C;
-	Wed, 13 Aug 2025 13:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB21374040;
+	Wed, 13 Aug 2025 13:15:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755090334; cv=none; b=UmzJgkDmYaEmmovd9O2UrfRRadbsJdW0kZQVIArHtz/W8SXGWn2ebbxkKPxRTDvrHdYsePOaeScnNiRy0bA+SXI1oDVWKGPSYYCJZu+pBcREaSk30fPHXWoDRQVdYS9XlPIFORyErCZQ4I1qDmFqnSgmRMqaEVsoUonOPT6GbIk=
+	t=1755090940; cv=none; b=HlttxnzkgXNer0gsiTPIex2AtRz2pbzDNo4cfWuVCw+9PYQP7qYBMoVB60RJ9596Uy/tDpL1GyvFiiKu68wzEH/HHCQJqP+GjiZMD5h1NniECoTtZmucA3bF1ufLgl+UbZ2GhBBewvvubl1UxCJRJFRNXRy9omQAClSaYZofN9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755090334; c=relaxed/simple;
-	bh=agF8vQN8DrGjvKoo9wYAr2t7qN0STSPsR7lgfOl2dkY=;
+	s=arc-20240116; t=1755090940; c=relaxed/simple;
+	bh=bV71xf+f9QJOsVohDQLije+nacy+gxH0Wf4/5ROh5JU=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kFlnW2/MOBLfQyM0Z7G/99jc3U2b0SvzRAlygEsm1vG+lmtNmRPCVBHtl0YCVcQmLjtYNmMRTJzXjZ1VRgvIEg6Xzzwzafi3K2I71SFkK7Y9Tl1jQommmTec/7O1zihG1Pgg59CawhUOwsPHJD1SRc3R7cDo+hLpRmSe7nKsaSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=cAW4mthz; arc=none smtp.client-ip=198.47.23.235
+	 Content-Type:Content-Disposition:In-Reply-To; b=h+sLfkRcjkbv2kz2WVRVFojl+lODSvXE0OIIEfnP6PG+8AJVpUBgFpVT8mmY90i0wLaO/69yw/2IBTJZrvifoMRqdJ9SdKiR5AKO5Yj4FUnckQW9tkH3ppGGxVdfKOyaYE/vvVI2A0YfqmgLQUlxyYox8rKaD/XYjBEguLzhfOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CbJPAx9a; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DD5ODJ2152796;
-	Wed, 13 Aug 2025 08:05:24 -0500
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DDFWtc1705331;
+	Wed, 13 Aug 2025 08:15:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755090324;
-	bh=OyvusIEXjAre/xttjCZZR35LjwYPJuaLUvaZ9xyV3Z8=;
+	s=ti-com-17Q1; t=1755090932;
+	bh=wOw2qc5uTTadm+FwJMr/jc3sueTsMi+eiVewiY1neSo=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cAW4mthz+eHWDjhCFx18wqQmgxjqWJVY/281sbD/5YMHzdqsigvxPfiyRDDHGZxA3
-	 OkzoEL4zLGmM3MUB5JoNChRxVAnCCG2QioJhHelWzMAD8EHXE04J6oUtLKWsKhlgQ+
-	 LXs9zc2DmDq9V1iizq6CdlIMzj1HVmejfd1S9jjo=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DD5OZi1086160
+	b=CbJPAx9ayLZOjdJf6yfzZo0UwzCQHJiQwhBoB8OjZtQ7JyEe55r6YOIVsjjZQcqw2
+	 Uf3oZ/cxo1bxKjRgETND4Uqjr41Nc0HsYxVspcI+c+0l4bku5Ybl9NhIZhjNZ0gXvT
+	 cjTXAOPlerOZxe9tr0pRXN9f7t6nwTGgthwqrs/c=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DDFWR31097033
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 08:05:24 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 13 Aug 2025 08:15:32 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
- Aug 2025 08:05:23 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2025 08:15:31 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 13 Aug 2025 08:05:23 -0500
+ Frontend Transport; Wed, 13 Aug 2025 08:15:31 -0500
 Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DD5MkH2333843;
-	Wed, 13 Aug 2025 08:05:22 -0500
-Date: Wed, 13 Aug 2025 18:35:21 +0530
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DDFUfV2039114;
+	Wed, 13 Aug 2025 08:15:31 -0500
+Date: Wed, 13 Aug 2025 18:45:30 +0530
 From: Dhruva Gole <d-gole@ti.com>
 To: Akashdeep Kaur <a-kaur@ti.com>
 CC: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
@@ -64,10 +64,11 @@ CC: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
         <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <vishalm@ti.com>, <sebin.francis@ti.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining macros
-Message-ID: <20250813130521.zpe7lguful6gyhjz@lcpd911>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62x-sk-common: Remove the
+ unused config from USB1_DRVVBUS
+Message-ID: <20250813131530.apibc4p6t2uo5bkr@lcpd911>
 References: <20250731115631.3263798-1-a-kaur@ti.com>
- <20250731115631.3263798-4-a-kaur@ti.com>
+ <20250731115631.3263798-3-a-kaur@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,134 +77,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250731115631.3263798-4-a-kaur@ti.com>
+In-Reply-To: <20250731115631.3263798-3-a-kaur@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Akashdeep,
+On Jul 31, 2025 at 17:26:30 +0530, Akashdeep Kaur wrote:
+> After the SoC has entered the Deep Sleep mode, USB1 can be used to wakeup
 
-On Jul 31, 2025 at 17:26:31 +0530, Akashdeep Kaur wrote:
-> Add the drive strength, schmitt trigger enable macros to pinctrl file.
-> Add the missing macros for deep sleep configuration control.
+Just leaving my comments on the commit message here since 1st patch
+seems to be pretty much the same commit message.
 
-Please can you add sources/ links to the TRM/collateral and sections where you get
-all this information from?
+Let's reword this as --> Deep Sleep low power mode.
+Makes it a bit more clear.
 
-> Reword the existing deep sleep macros to provide combinations that can
-> directly be used in device tree files.
+> the SoC based on USB events triggered by USB devices. This requires that
+> the pin corresponding to the Type-A connector remains pulled up even after
+> the SoC has entered the Deep Sleep mode.
+> For that, either deep Sleep pullup can be selected or the pin can have the
 
-I am not very clear on what this line is trying to say. Can you explain
-a bit more with an example of a reword and how it is helping?
+Nit: Be consistent with either deep sleep, or Deep Sleep, don't mix case.
+Also, please can we talk here in terms of exactly which macros we're
+talking about? For eg. if deep sleep pullup == PIN_DS_PULLUD_ENABLE, then
+please mention that in a bracket or something for people who may not
+necessarily be aware of all these terms.
+
+
+> same configuration that it had when SoC was in active mode.
+> In order for deep sleep configuration to take effect, the deep sleep
+> control bit has to be enabled.
+
+Please talk with some references, because not everyone will be able to
+follow what we mean by deep sleep control bit/ deep sleep configuration.
+
+> Remove the deep sleep state configuration from USB1_DRVBUS pin as it is
+> anyways not taking effect (deep sleep control bit is not set).
+> 
+> This reverts commit 527f884d2d94981016e181dcbd4c4b5bf597c0ad.
+
+And so are you in conclusion saying that this patch is just unnecessary/
+useless? The bracket message feels to me that you are saying that if we set
+the deep sleep control bit this patch will start working as expected?
+Please can you clarify a bit on that end?
 
 > 
 > Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-pinctrl.h | 66 +++++++++++++++++++++++------
->  1 file changed, 54 insertions(+), 12 deletions(-)
+>  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> index c0f09be8d3f9..f26f1fcf6f74 100644
-> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> @@ -3,7 +3,7 @@
->   * This header provides constants for pinctrl bindings for TI's K3 SoC
->   * family.
->   *
-> - * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2018-2025 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  #ifndef DTS_ARM64_TI_K3_PINCTRL_H
->  #define DTS_ARM64_TI_K3_PINCTRL_H
-> @@ -19,6 +19,13 @@
->  #define DS_OUT_VAL_SHIFT	(26)
->  #define DS_PULLUD_EN_SHIFT	(27)
->  #define DS_PULLTYPE_SEL_SHIFT	(28)
-> +#define WKUP_EN_SHIFT		    (29)
-> +#define WKUP_LVL_EN_SHIFT	    (7)
-> +#define WKUP_LVL_POL_SHIFT	    (8)
-> +#define ST_EN_SHIFT		        (14)
-> +#define DRV_STR_SHIFT		    (19)
-> +#define DS_ISO_OVERRIDE_EN_SHIFT (22)
-> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
-
-Seeing it on lore and in my git log -p as well, the alignment looks off.
-Please fix it.
-
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 13e1d36123d5..d3bed23134ca 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -249,7 +249,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
 >  
->  /* Schmitt trigger configuration */
->  #define ST_DISABLE		(0 << ST_EN_SHIFT)
-> @@ -33,6 +40,26 @@
->  #define INPUT_EN		(1 << RXACTIVE_SHIFT)
->  #define INPUT_DISABLE		(0 << RXACTIVE_SHIFT)
+>  	main_usb1_pins_default: main-usb1-default-pins {
+>  		pinctrl-single,pins = <
+> -			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
+> +			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
+>  		>;
+>  	};
 >  
-> +#define DS_PULL_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
-> +#define DS_PULL_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
-> +
-> +#define DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-> +#define DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-> +
-> +#define DS_INPUT_EN		    (1 << DS_OUT_DIS_SHIFT)
-> +#define DS_INPUT_DISABLE    (0 << DS_OUT_DIS_SHIFT)
-> +
-> +#define DS_OUT_VALUE_ZERO   (0 << DS_OUT_VAL_SHIFT)
-> +#define DS_OUT_VALUE_ONE    (1 << DS_OUT_VAL_SHIFT)
-> +
-> +#define WKUP_ENABLE		    (1 << WKUP_EN_SHIFT)
-> +#define WKUP_ON_LEVEL		(1 << WKUP_LVL_EN_SHIFT)
-> +#define WKUP_ON_EDGE        (0 << WKUP_LVL_EN_SHIFT)
-> +#define WKUP_LEVEL_LOW      (0 << WKUP_LVL_POL_SHIFT)
-> +#define WKUP_LEVEL_HIGH		(1 << WKUP_LVL_POL_SHIFT)
-> +
-> +#define WKUP_DISABLE        (0 << WKUP_EN_SHIFT)
-> +
 
-These too, fix all alignment issues please.
-
->  /* Only these macros are expected be used directly in device tree files */
->  #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
->  #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
-> @@ -53,18 +80,33 @@
->  #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
->  #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
->  
-> +#define PIN_DRIVE_STRENGTH_NOMINAL	(0 << DRV_STR_SHIFT)
-> +#define PIN_DRIVE_STRENGTH_SLOW	    (1 << DRV_STR_SHIFT)
-> +#define PIN_DRIVE_STRENGTH_FAST	    (2 << DRV_STR_SHIFT)
-> +
-> +#define PIN_SCHMITT_TRIGGER_DISABLE	(0 << ST_EN_SHIFT)
-> +#define PIN_SCHMITT_TRIGGER_ENABLE	(1 << ST_EN_SHIFT)
-> +
->  #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
-> -#define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
-> -#define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
-> -#define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
-> -#define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
-> -#define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
-> -#define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
-> -#define PIN_DS_OUT_VALUE_ONE		(1 << DS_OUT_VAL_SHIFT)
-> -#define PIN_DS_PULLUD_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
-> -#define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
-> -#define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
-> -#define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
-> +#define PIN_DS_FORCE_ENABLE		    (1 << FORCE_DS_EN_SHIFT)
-> +#define PIN_DS_ISO_OVERRIDE_DISABLE	(0 << DS_ISO_OVERRIDE_EN_SHIFT)
-> +#define PIN_DS_ISO_OVERRIDE	        (1 << DS_ISO_OVERRIDE_EN_SHIFT)
-> +#define PIN_DS_ISO_BYPASS           (1 << DS_ISO_BYPASS_EN_SHIFT)
-> +#define PIN_DS_ISO_BYPASS_DISABLE   (0 << DS_ISO_BYPASS_EN_SHIFT)
-> +
-> +#define DS_STATE_VAL        (1 << DS_EN_SHIFT)
-> +#define ACTIVE_STATE_VAL    (0 << DS_EN_SHIFT)
-> +
-> +#define PIN_DS_OUTPUT_LOW       (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
-> +#define PIN_DS_OUTPUT_HIGH      (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
-> +#define PIN_DS_INPUT            (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DISABLE)
-> +#define PIN_DS_INPUT_PULLUP	    (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_UP)
-> +#define PIN_DS_INPUT_PULLDOWN   (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DOWN)
-> +
-> +#define WKUP_EN_EDGE		(WKUP_ENABLE | WKUP_ON_EDGE)
-> +#define WKUP_EN_LEVEL_LOW	(WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_LOW)
-> +#define WKUP_EN_LEVEL_HIGH	(WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_HIGH)
-> +#define WKUP_EN		        WKUP_EN_EDGE
-
+Sorry for the long review on the commit message, but context feels like
+everything when it comes to small patches. Hence trying to make sure
+everyone understands what's being done here... :)
 
 -- 
 Best regards,
