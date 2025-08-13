@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-204338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FD7B25105
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:06:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6E68B25115
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 19:06:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57437257EA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:00:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7089A0644
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D1F28D839;
-	Wed, 13 Aug 2025 17:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2320028D827;
+	Wed, 13 Aug 2025 17:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="By8FiGPM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMas8frn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C88628A701;
-	Wed, 13 Aug 2025 17:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE17E22DF9E;
+	Wed, 13 Aug 2025 17:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755104426; cv=none; b=hvJme7EKNNonlxtg9udLRDDFoApGVW/RyLqJhg7NhEZVw2hqFN8zf6M0lnvaBpwXuLLwaiSP5jOG9jqT1A91DasS9BccaGT8VWwfuQN4pojfd87sI1tfALP+/STZR9GH1JupptNjiK0ruzFvwGUeMg+dmFv2Gt81Ny+Ha92Xfkk=
+	t=1755104462; cv=none; b=k77XuFCrnGlZC6DteOrOJ1G+ZnTW5NIIEy2eTjoR0Y1WmiSm1wCEfWMGaJhQz3Q5Tx1HqTT74Q3uUIW3/Ge8mEj9puIOjNJYc/q9fhUe3IR1VIE3aaitazFmnI7JEewS6zugF6fKU9nwgOSr6LCBQhU7hxggS28CTguDPoT4F+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755104426; c=relaxed/simple;
-	bh=3E70uCZdsVlnY5HHNZKc6pAhrrnlA5QbBWcg/yc6aGs=;
+	s=arc-20240116; t=1755104462; c=relaxed/simple;
+	bh=hPgVOTOzVezoA5w3n5VtqQYo2mxCUXrIIYMmOg4FXV0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G19R1tqbdTbLXZdCsdxHhx7DbUo36PV0Fq1m0CR1aknSkOJEq5PzDqTv1FCji+TawbOooiSttksf+It6MmwlSOtbHBWrJWrraJmMx4uMBmJ3ptENA4AnjKfX9z4Om21lNNgs90F40yihNc+AkP3pqVTbBFWqoCEihOBH8afFJwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=By8FiGPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69673C4CEEB;
-	Wed, 13 Aug 2025 17:00:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Buv1yHiPF1s/+61nPq3BadikcGiUCdHpRX+8IZeGLpZPDSYsRqiu/ipaY65DJhTmxmkoagi9LC3gULHh7R1VTDwRn6FFkVt75gY1OTUZt+fyG4Z/xDrMUC/1Tsjt2ufcN5I8+cm+jpExkXIOj1A2ishIygSIArgj88vqpKF4axM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMas8frn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72301C4CEEF;
+	Wed, 13 Aug 2025 17:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755104426;
-	bh=3E70uCZdsVlnY5HHNZKc6pAhrrnlA5QbBWcg/yc6aGs=;
+	s=k20201202; t=1755104461;
+	bh=hPgVOTOzVezoA5w3n5VtqQYo2mxCUXrIIYMmOg4FXV0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=By8FiGPMEFptGHgQ5TuONHulpMaV9p2sQTpptDgAywUyFdcoQ7+U6GiDN5nhvGueE
-	 Owgw+K0YrlNTo/pENceZu+VwGDl78+SiGdyNH4TW6P1zX9IfJu/hEifFtmHl7xGvRs
-	 nwQ8WRId3z+pM252k9FKgqVe5/JTFraR9Kh1MLh6s4bxHTSofilB++Ct+4rRT/ijLA
-	 qfaHEpzl4IqjrBsEtwrN7SJN9bpVmE+V4JL9cOMi9/Y5a1T/5PX/doNSl7b0M6bOmE
-	 gFyg8WSxC/47wxmh5Kclzh/ZnH68ZVx/uCpcr2vfhZQJtklcIUUcoWs1gBMFozF6rb
-	 cj5e4Dm3d0Keg==
-Date: Wed, 13 Aug 2025 18:00:20 +0100
+	b=nMas8frntNXMrlTT99REIn0+lRenQk6+eTBfytsfAAY80CZSbPag8bJKBuyCTgldc
+	 Q1N8eY4ndQ2hQ5GzTkCDGruW8ajBO4TRHU9qMN1BliATenKBTYM+kGxuBOo5ZyTa1X
+	 VllOqWMpxzdgTBwuuVV3ijYARoxWHiuaIMLxQHHG2H7XcQoKYL9OugfZLKbCF9qast
+	 Dsfu3ss55MUvIqhEiDZSz4ShdxnA8bKfSyNGbEACqOU7QHk+3FOY2MIRg0m94kHq5I
+	 /yvtl7yAOdVwgivDRIpLD4RDP8kXamkAtyzX9IlXSPQvPmycoPz2f+ZtSCWsK84VoQ
+	 H/qFCQ91dCzWA==
+Date: Wed, 13 Aug 2025 18:00:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	kernel@collabora.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-bifrost: Add compatible for
- MT8365 SoC
-Message-ID: <20250813-tinwork-outfit-ead86c38585d@spud>
-References: <20250813-mt8365-enable-gpu-v1-0-46c44c6c1566@collabora.com>
- <20250813-mt8365-enable-gpu-v1-1-46c44c6c1566@collabora.com>
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Yao Zi <ziyao@disroot.org>, Han Gao <rabenda.cn@gmail.com>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: reset: thead,th1520-reset: add more
+ VOSYS resets
+Message-ID: <20250813-upstage-identify-683582a03f7e@spud>
+References: <20250813081716.2181843-1-uwu@icenowy.me>
+ <20250813081716.2181843-2-uwu@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,35 +65,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ST/TrnE4ajryBS2Z"
+	protocol="application/pgp-signature"; boundary="zLx+xFUkqdnSsKIv"
 Content-Disposition: inline
-In-Reply-To: <20250813-mt8365-enable-gpu-v1-1-46c44c6c1566@collabora.com>
+In-Reply-To: <20250813081716.2181843-2-uwu@icenowy.me>
 
 
---ST/TrnE4ajryBS2Z
+--zLx+xFUkqdnSsKIv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 13, 2025 at 11:25:42AM +0200, Louis-Alexis Eyraud wrote:
-> Add a compatible for the MediaTek MT8365 SoC, that has an integrated
-> ARM Mali G52 MC1 GPU and compatible with arm,mali-bifrost.
+On Wed, Aug 13, 2025 at 04:17:15PM +0800, Icenowy Zheng wrote:
+> VOSYS contains more resets for a display pipeline, includes ones for the
+> display controller (called DPU in the manual), the HDMI controller and 2
+> MIPI DSI controllers.
 >=20
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> Allocate IDs for these resets in the dt binding header file.
+>=20
+> Now all peripheral related VOSYS reset controls are here, only the bus
+> matrix / IOPMP ones are missing, which shouldn't be messed with.
+>=20
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-
---ST/TrnE4ajryBS2Z
+--zLx+xFUkqdnSsKIv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJzEowAKCRB4tDGHoIJi
-0sDMAP4+0xSBcmMGGhX5SJe5IJFeOimSGjNftWdRCFtpLo9HWgD8D8T3LnfuaWZf
-iFanLD4cGtlfmp+DFdIhwe8VPds0iAs=
-=sFgA
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJzEyAAKCRB4tDGHoIJi
+0gxpAP0YBFmEYd0HAqrdEYHu+BQ+mClU/GfxdUwkKpFg61rWXAEAmjNCfBLWG/dz
+s0ZdN1Q34+01iYJuldDj2Vwt5ry8MgE=
+=VRmL
 -----END PGP SIGNATURE-----
 
---ST/TrnE4ajryBS2Z--
+--zLx+xFUkqdnSsKIv--
 
