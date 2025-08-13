@@ -1,50 +1,73 @@
-Return-Path: <devicetree+bounces-204054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9F4B23EB7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 05:01:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B448B23EC0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 05:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 885B03B75B7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 03:01:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 315987B0DF4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 03:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3904028DB56;
-	Wed, 13 Aug 2025 03:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FCD829BD9A;
+	Wed, 13 Aug 2025 03:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZtaFsfBp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GzPfOsjR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1132B28D8F8;
-	Wed, 13 Aug 2025 03:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C861E3DDB;
+	Wed, 13 Aug 2025 03:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755054083; cv=none; b=l1QqINhMO2R55CxFR7uerRI7GrC5/1nOsKlreGFbVaNm0s+VUDG/32AJAeru9bXdOdhMoN8LOPh4PxgNbfhVNlIGZNQKUyGeiRf3b8z+wnxJoVxStux/2MLQj5hBLdewDSXEpZ7o4FqHIUSEkteoDgEpk173tQcVVyoKrT6JSmo=
+	t=1755054433; cv=none; b=hGA8kpek5b5VJnT0hUqUDdRAokaE5KSpzfh1vM+I6bseXvUt46yOdw0MIh8tnasKQDz2zuFtpV17osfX4IInMiBGlOpVbUZfhXyXgymeTN0DS1e9KHY6hCQnPwPIeoPoboVxZIMfP54E6IsDlG3sQyr+3+4RJ8MQqfa7KoiL218=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755054083; c=relaxed/simple;
-	bh=ah5s8QI5yHtW13rFxqFgRLPbL9Ck1PJlUKhkvkzSQak=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=oUNzYk1Voo8dQqpcktJW2GK/wpmiAszFR7JkVl1m26Hf3JwryWB0rfx+JTYIhIf69rzl3bYXGL8IJCo9GcaQrHAWUIYZo2EgOyzutDXStA0k+/u0ZUDtSIirpmwYbqHzI+YY5sffZa7FJN1JVtkdCbhS8zaHvJw73DU2BVWPQvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZtaFsfBp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91B7FC4CEF0;
-	Wed, 13 Aug 2025 03:01:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755054082;
-	bh=ah5s8QI5yHtW13rFxqFgRLPbL9Ck1PJlUKhkvkzSQak=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=ZtaFsfBpGd4++cIB4bzulDyJTU+BzAc+HjH/48RK5e+BPK6wUbQjUptHB+rpDh6wQ
-	 dDpxmjbLnJKlG3eoXWwo7sDZLmCkRzYGzH1hsS1dQ/i4n3sFNCCH8hZI6iTVW0eLYD
-	 31YhUsdh/x7zHyQxISNMxz2cf+N0R/gZ/fl2w2ffneruvZ37TuK1O6TO0zB7HmyYsl
-	 NPGIM56c4rXmAoq5dJB71XU1oq+27uzWrOcJE7v1+UqUW0YKXJVuIKbbBOSocxg0ea
-	 Xwe4wSh070Dz9L5uYr+MsJ9e4kzIGivLxNqnCWMC0J3J/brzB87wQBxYX/hoXf50os
-	 W70J47kv1lMPA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADE2539D0C2E;
-	Wed, 13 Aug 2025 03:01:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1755054433; c=relaxed/simple;
+	bh=MEoAc7TPYE8ygQ8y+xMrBzxhxVQHdjRmbJoDoLLK6lM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sik+yIG0dOf3rVEswkDMwT2VsS/xXgOTJud+5Q+q21Z+XDy+XUGwMevJ7GWjdUN5V9VssUz6JovSClW6zV78aHhGlHjAXTGwHFLK7GoNwuQnZw0FpWCxh0BxnjG3T0TY0EctYYmOWEEZLjgv6F/5E9KAO2tI0OEeYzeLVB+lKW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GzPfOsjR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57CJT0Ib025655;
+	Wed, 13 Aug 2025 03:07:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=tPrkZ7G4xkJuAyn6k7vawU
+	oFD/v0UauaMNQHDOVvi0g=; b=GzPfOsjRsxd2SkX4NWCD0DLXKkf/5JZy9SVwdn
+	9PXpQUVInHkQb6wWwvSEc0d06kIJi6fsZrHX5Qv8EW4PWQeXKfulqGmtjaxqOPcK
+	6hcaqjrX1tOjz86F+7qKR5dDInJTVJVdcy3ta05v68x7nUZ0xgIq3j1q4vwrtRqW
+	fQHO1tlqYoHKHTooL6zoTL71f6fkuHFKUWt7+4+Hx7AfpyqSwHQkPyHQCmHwFJM3
+	S5yKWDxBswJIcdjkCdk9RIYegik/Q0zo6BWjwEzlO2LwRLW26OG7HyGQfXndcP5r
+	RGqtNpe4afaZOhWGmhT02DZLrvfrkHXq1HkeSNo6U3H+zC2A==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48dw9stej4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 03:07:05 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57D374NB029787
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Aug 2025 03:07:04 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 12 Aug 2025 20:07:00 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <srini@kernel.org>, <amahesh@qti.qualcomm.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC: <quic_kuiw@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH v10 0/5] Add support for gdsp remoteproc on lemans
+Date: Wed, 13 Aug 2025 08:36:33 +0530
+Message-ID: <20250813030638.1075-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,58 +75,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v7 0/7] net: airoha: Introduce NPU callbacks for
- wlan offloading
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175505409423.2923440.2479531614501125802.git-patchwork-notify@kernel.org>
-Date: Wed, 13 Aug 2025 03:01:34 +0000
-References: <20250811-airoha-en7581-wlan-offlaod-v7-0-58823603bb4e@kernel.org>
-In-Reply-To: 
- <20250811-airoha-en7581-wlan-offlaod-v7-0-58823603bb4e@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, horms@kernel.org, nbd@nbd.name,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski@linaro.org
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=J+Wq7BnS c=1 sm=1 tr=0 ts=689c0159 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=qgJfyGv91k1fQCYRv54A:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: TZ9Api2L4Q6jQ_swmd18kL7uSOWqEkBi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA5MDAxNSBTYWx0ZWRfX+tGszF4cIbe5
+ Ijpfwv7tL0skrC1/Y2vVG3BMMr95aprHl4hvCBCrgeKJ+sJtr+Dsl8mbDZ4sDnJ835LGBMLnO/A
+ CqN/uqEvxR+sXvQ2E4xZxOUSxf+kf23X/rNa//qT+uCMM+ZBSPSr0iJewEd8nPbBmJY9s8CfKqO
+ CKLHiFkxnxCL3wP4n0j0FycgPlsCps2m6w6Cu8c0JDX1yh2kmjU+PzL+9Fdq0KbD1AAEGGKeCB8
+ MRRxtAU0RsFySZeRVP9Lz35gdZ7IQXc0/hhnaUIAhpzIQesZOO9Gh1LrZehIs3LpN7928thr3pK
+ WSjpexoGYgWGEgEscrYBIgrdRbzj8htgmNHZFYNt0211SNIy209rQIDCqENyHHiWisKIP68mBCj
+ ZqX9fxUD
+X-Proofpoint-GUID: TZ9Api2L4Q6jQ_swmd18kL7uSOWqEkBi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-12_08,2025-08-11_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 clxscore=1015 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508090015
 
-Hello:
+The fastrpc driver has support for 5 types of remoteprocs. There are
+some products which support GDSP remoteprocs. GDSP is General Purpose
+DSP where tasks can be offloaded. Add fastrpc nodes and task offload
+support for GDSP. Also strict domain IDs for domain.
+Patch [v9]: https://lore.kernel.org/linux-arm-msm/20250716132836.1008119-1-quic_lxu5@quicinc.com/
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Changes in v10:
+  - Rebase patch because the file is renamed to lemans.dtsi.
+Changes in v9:
+  - Change the patches order.
+Changes in v8:
+  - Split patch.
+Changes in v7:
+  - Edit commit message.
+Changes in v6:
+  - Edit commit message.
+  - Remove unused definition.
+Changes in v5:
+  - Edit commit message and add sapce before comment end.
+  - Move domain definitions back to driver.
+Changes in v4:
+  - Split patch and change to common syntax.
+Changes in v3:
+  - Restrict domain IDs to represent a domain.
+Changes in v2:
+  - Add GPDSP labels in dt-bindings.
 
-On Mon, 11 Aug 2025 17:31:35 +0200 you wrote:
-> Similar to wired traffic, EN7581 SoC allows to offload traffic to/from
-> the MT76 wireless NIC configuring the NPU module via the Netfilter
-> flowtable. This series introduces the necessary NPU callback used by
-> the MT7996 driver in order to enable the offloading.
-> MT76 support has been posted as RFC in [0] in order to show how the
-> APIs are consumed.
-> 
-> [...]
+Ling Xu (5):
+  dt-bindings: misc: qcom,fastrpc: Add GDSP label
+  arm64: dts: qcom: lemans: add GDSP fastrpc-compute-cb nodes
+  misc: fastrpc: Remove kernel-side domain checks from capability ioctl
+  misc: fastrpc: Cleanup the domain names
+  misc: fastrpc: add support for gdsp remoteproc
 
-Here is the summary with links:
-  - [net-next,v7,1/7] dt-bindings: net: airoha: npu: Add memory regions used for wlan offload
-    https://git.kernel.org/netdev/net-next/c/cebd717d8f01
-  - [net-next,v7,2/7] net: airoha: npu: Add NPU wlan memory initialization commands
-    https://git.kernel.org/netdev/net-next/c/564923b02c1d
-  - [net-next,v7,3/7] net: airoha: npu: Add wlan_{send,get}_msg NPU callbacks
-    https://git.kernel.org/netdev/net-next/c/f97fc66185b2
-  - [net-next,v7,4/7] net: airoha: npu: Add wlan irq management callbacks
-    https://git.kernel.org/netdev/net-next/c/03b7ca3ee5e1
-  - [net-next,v7,5/7] net: airoha: npu: Read NPU wlan interrupt lines from the DTS
-    https://git.kernel.org/netdev/net-next/c/a1740b16c837
-  - [net-next,v7,6/7] net: airoha: npu: Enable core 3 for WiFi offloading
-    https://git.kernel.org/netdev/net-next/c/29c4a3ce5089
-  - [net-next,v7,7/7] net: airoha: Add airoha_offload.h header
-    https://git.kernel.org/netdev/net-next/c/b3ef7bdec66f
+ .../bindings/misc/qcom,fastrpc.yaml           |  2 +
+ arch/arm64/boot/dts/qcom/lemans.dtsi          | 58 +++++++++++++++++++
+ drivers/misc/fastrpc.c                        | 54 ++++++++---------
+ include/uapi/misc/fastrpc.h                   |  2 +-
+ 4 files changed, 86 insertions(+), 30 deletions(-)
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
