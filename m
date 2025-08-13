@@ -1,132 +1,160 @@
-Return-Path: <devicetree+bounces-204281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB29B24D37
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:22:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1480B24D4F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 810AD1893B52
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:19:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36DAA167B54
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA3401F3FDC;
-	Wed, 13 Aug 2025 15:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A6F22FAF8;
+	Wed, 13 Aug 2025 15:24:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="N/bC7Ttx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y4PxIGkL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED41188A0C;
-	Wed, 13 Aug 2025 15:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B6A1FECD8;
+	Wed, 13 Aug 2025 15:24:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755098309; cv=none; b=aOkvkAfDUORf0QQdqoubyXKGSwkgTD2bvURpVuB+bxzMROK+t9404SPB9oDaZScNAG4BIbTqCgS2+ikVNyuRO5wF4045tM2xPz8WWE4k00iU0c2kz1b/n9yf2TIxyjFcM4jxuPd391tvwQeuQy0c71O54QrWWHpuBDvrNQc7Z9A=
+	t=1755098643; cv=none; b=pJwVlL47SKC2Br6Iq5b1RjcRuesKD8BkVpBo9iSngffmtGqlg3Vr1xmuLrzDHww3RXKnFfqSLdR6pR9LZVNwoWgOa9W12IGPCCZsQ5XrkLC+rOWav3USYXaw0S3DwYS1NuFtR7o9Y6dOBysljvHTZw036Cl2Wiy4aVqtdKxSetI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755098309; c=relaxed/simple;
-	bh=p7kUeqOY8eu6sbORye2iPrV7HXR5MjZ7/aKeOQGxuBQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ma83/zuJkmZmvwmaq93JjH0j+dlk6HbL/wLndy4QsKmQpj90f7bKrZYG1xYv1O6t+yS6eipWhbjcSkaEfQ2GULsc2YSqLqSaLE1TvIpkXp+0K958bAJW89Izqixk/4J7RLF3LWi6xffm6BLr5+wXTeIHCJvyl0vHpyQD4LB+Xmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=N/bC7Ttx; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57DFIKoi2101708;
-	Wed, 13 Aug 2025 10:18:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755098300;
-	bh=hhdtKws0AycCkK53UlJjP9D8XM/fNiJlo7puW4IHx5E=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=N/bC7TtxNQJJOzYI0o6kQwioHEBrltAI+Dve+FQ9MVFTM6tAfffdiYiyhzGzzGWx+
-	 n4SOIEE2IExuC1TIEMdDAu5Y9/ZIkuD+ogMymeMsPMyHivsDr4ko57xlEWXCsw/IRZ
-	 TwsMXTHCIzi5bt9ArUEmDmX6957GL1M1F4iQYwm4=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57DFIKUM1163159
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 13 Aug 2025 10:18:20 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 13
- Aug 2025 10:18:19 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 13 Aug 2025 10:18:19 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57DFIJfm2495450;
-	Wed, 13 Aug 2025 10:18:19 -0500
-Date: Wed, 13 Aug 2025 10:18:19 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <rs@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <d-gole@ti.com>,
-        <afd@ti.com>, <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <detheridge@ti.com>, <matt.coster@imgtec.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-j784s4-j742s2: enable the bxs-4-64
-Message-ID: <20250813151819.5rthljjrpryfwezz@skinning>
-References: <20250808232522.1296240-1-rs@ti.com>
- <20250808232522.1296240-3-rs@ti.com>
+	s=arc-20240116; t=1755098643; c=relaxed/simple;
+	bh=UbhBnuInugUu2cTjmEDB4YCiAKRUPYCSJOrFRfqKV7c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pzCDU5JeTJPLAbbWXEwKC5s2X7saCniN0VYUZtFm0IJADQEPuRxGG44Y82pVC8LJQDQ7RoIqB8kP3onSrQHuSvkSSO8VzUqfs+o/QNJ5hUHZdIPmr2mqe4IHoKM8eWaXNL1BHEqYotdXFg7ehqeURe7rx1PVHadHSQU43xLB2j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y4PxIGkL; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b78127c5d1so4486391f8f.3;
+        Wed, 13 Aug 2025 08:24:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755098640; x=1755703440; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Al/qX1qt84RxLjmC8/RQc6iv8G0Q8rgfIYnhnorUlSI=;
+        b=Y4PxIGkLzIt13ISWiN/QQQ3aZia6W+4aLb92UQFx5l9m5u3/qakVBGwZTI9J/k29MV
+         3NFormTuObcAfZ+sjjuRmsKrxMW5UqdYCqMMwQpnJwqjxMJR0IxB0k8ObRSNOw/PWZTQ
+         VDsLFwEubFd5FTAvW/T9BfaELV5iWUeMQu6KOxDNnYg3yrTW0XG8aRusrLA72Osv7IBs
+         fiMudsJjf/FNC1ns6MnaAF0kC+Inr4WaXK/TbOFHiIOHBP7UPnUBbHSwgve0PtDU47De
+         wF+7U+dZqZAweX5RuQP68/ri6E1SfEwtdk2RZUvIl2IInnQO4j91gI/eV+wwVfXxenSx
+         ketw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755098640; x=1755703440;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Al/qX1qt84RxLjmC8/RQc6iv8G0Q8rgfIYnhnorUlSI=;
+        b=Zth0a7z9c1Jg9KvfoJCZghH3oBCtOTRpH60xj4ZYn6Q9G3JPA35m/S0mg8ARqmKMbs
+         KLnNDHgEP4uE3LgUf9Iy4cdtBUf9e7DpbmK2102UKrB1GF+Qog562hWt+Q9+Ijqge3VD
+         ToABe3jZNiBgf++n76CaFzFgDsoE/kLYlNASWuLcPC/DnmnX57XhFhehumq6mf+85aYd
+         5BbhO38O3ib13oU2jrGdBjJOuJCp102MOkRAKSDzT9yeG/a2NiUgN4IPW+LclLMJW2Pe
+         ULRLPHPU1CZtlD9GxbiQ0PbGvhxJR9RU8urNCwJTKuWJFbt5qlm9DaHW9tL1IrFX1wwm
+         J3Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSZ0jS0zTr/GcVxHOhrwERYnCJ332z96h7s0kqlagHQekCv/Q3EbQcyI9j2wt9PGM1D7c0rqAF0iswg5bC@vger.kernel.org, AJvYcCXir8oyNNm6PxdeQb5M13NKop/ZzgaFkhruoSFqqNUt2K/9l+6r2WcB6DeHdUULtHb0dfKVQG1WfmKx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfK7nWLgledg8yhpTMaR6+2vp+q1uTzLecxMBmGW6mxI9VH8PG
+	V49fTfwlZoD6Ce18MnOZZgbUI4Hq4CcefrEXavbfvOk6btYiOqbOOCXi
+X-Gm-Gg: ASbGncsC+LKzgWtVZxbc5TYgJGeU2h9lLD0OCtwKSwlyVlBIL+g7bx8OO4hr+wx2PSt
+	e5rkBiATF1+vhmwf7TAgu/0qVabwLmeSO+lAjg9vDKOQSdLWF0gnezqDL27OmjtQZEHTZqlQkpE
+	fhDrYkJH27XMatCWmVJUdf9hphUmm5pqYz2KWhDlrBMz0vZp9A7NSjen5lpXCEKVfbZ7732gR+y
+	IV6tuH3bs9jqDIg4/M6IwXBLHu78v3v5KjdE3j8UHtoc2n4aw6uV5Xdpv65jaY++amTkrX+3oBC
+	MTXMwVAUUTpVc9gCOSZfUhu1EB7L32cpFw0M6bNcENDZINNRHrtAiSVBsuzJYJZYU2Ifh/peGZb
+	ApCz+PPR+KUc4ZOFZWQj3Fz9fB1WbeVUxfaXTo0sFFgGAnIwJf5lWBIhK6RFWKWHgSHAAQRLRQg
+	qVbol0KCYY
+X-Google-Smtp-Source: AGHT+IGYHFONNUotKor9AwdwBpAKxhh3g61crvlGCa5AwvCNjlgzokphZFqfiS3bpgh4iCtgc9HZ1Q==
+X-Received: by 2002:a05:6000:1a8b:b0:3a5:39ee:2619 with SMTP id ffacd0b85a97d-3b917ebb5bamr2437420f8f.47.1755098640145;
+        Wed, 13 Aug 2025 08:24:00 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b8ff860acbsm21721544f8f.51.2025.08.13.08.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Aug 2025 08:23:59 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Chen-Yu Tsai <wens@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
+Subject: Re: [PATCH net-next v2 03/10] soc: sunxi: sram: add entry for a523
+Date: Wed, 13 Aug 2025 17:23:57 +0200
+Message-ID: <2791868.mvXUDI8C0e@jernej-laptop>
+In-Reply-To: <20250813145540.2577789-4-wens@kernel.org>
+References:
+ <20250813145540.2577789-1-wens@kernel.org>
+ <20250813145540.2577789-4-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250808232522.1296240-3-rs@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 18:25-20250808, rs@ti.com wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> Add the relevant device tree node for Imagination's BXS-4-64 GPU.
-> 
-> These devices uses a similar MSMC configuration to the J721S2. As such,
-> they also require the use of the dma-coherent attribute.
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
+Dne sreda, 13. avgust 2025 ob 16:55:33 Srednjeevropski poletni =C4=8Das je =
+Chen-Yu Tsai napisal(a):
+> From: Chen-Yu Tsai <wens@csie.org>
+>=20
+> The A523 has two Ethernet controllers. So in the system controller
+> address space, there are two registers for Ethernet clock delays,
+> one for each controller.
+>=20
+> Add a new entry for the A523 system controller that allows access to
+> the second register.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
 > ---
->  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> index 7c5b0c69897d..a44ca34dda62 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> @@ -2691,4 +2691,18 @@ bist_main14: bist@33c0000 {
->  		bootph-pre-ram;
->  		ti,sci-dev-id = <234>;
->  	};
-> +
-> +	gpu: gpu@4e20000000 {
-> +		compatible = "ti,j721s2-gpu", "img,img-bxs-4-64", "img,img-rogue";
-
-Following  https://lore.kernel.org/linux-arm-kernel/DBE4UO2RGAYX.17V1DAF8MQYJM@kernel.org/
-Is it worth having ti,j784s4-gpu here? Are there any SoC specific quirks
-that driver will need to handle?
-
-> +		reg = <0x4e 0x20000000 0x00 0x80000>;
-> +		clocks = <&k3_clks 181 1>;
-> +		clock-names = "core";
-> +		assigned-clocks = <&k3_clks 181 1>;
-> +		assigned-clock-rates = <800000000>;
-> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 181 TI_SCI_PD_EXCLUSIVE>,
-> +				<&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
-> +		power-domain-names = "a", "b";
-> +		dma-coherent;
-> +	};
+>  drivers/soc/sunxi/sunxi_sram.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sra=
+m.c
+> index 08e264ea0697..4f8d510b7e1e 100644
+> --- a/drivers/soc/sunxi/sunxi_sram.c
+> +++ b/drivers/soc/sunxi/sunxi_sram.c
+> @@ -320,6 +320,10 @@ static const struct sunxi_sramc_variant sun50i_h616_=
+sramc_variant =3D {
+>  	.has_ths_offset =3D true,
 >  };
-> -- 
-> 2.50.1
-> 
+> =20
+> +static const struct sunxi_sramc_variant sun55i_a523_sramc_variant =3D {
+> +	.num_emac_clocks =3D 2,
+> +};
+> +
+>  #define SUNXI_SRAM_THS_OFFSET_REG	0x0
+>  #define SUNXI_SRAM_EMAC_CLOCK_REG	0x30
+>  #define SUNXI_SYS_LDO_CTRL_REG		0x150
+> @@ -440,6 +444,10 @@ static const struct of_device_id sunxi_sram_dt_match=
+[] =3D {
+>  		.compatible =3D "allwinner,sun50i-h616-system-control",
+>  		.data =3D &sun50i_h616_sramc_variant,
+>  	},
+> +	{
+> +		.compatible =3D "allwinner,sun55i-a523-system-control",
+> +		.data =3D &sun55i_a523_sramc_variant,
+> +	},
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, sunxi_sram_dt_match);
+>=20
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+
+
+
 
