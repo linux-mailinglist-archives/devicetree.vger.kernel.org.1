@@ -1,129 +1,139 @@
-Return-Path: <devicetree+bounces-204188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13245B2464B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:58:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CB69B24650
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 11:59:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD24E3B23BE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:53:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B09D1698E5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 09:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2707212569;
-	Wed, 13 Aug 2025 09:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B467E2FDC32;
+	Wed, 13 Aug 2025 09:53:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="sVMeAFx6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVQc14Dk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAADE212571
-	for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 09:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E1A2F3C2B;
+	Wed, 13 Aug 2025 09:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755078784; cv=none; b=P+yjXs8iLekiJW9pJIJL3pqkz3GYt2j8Bw+7KOqN3Nu0vXTUQs9mLXBpTu9WBn2MxqxUxmL6UCmXGO98Tsv+XyvNduQCt6awOjehtpTiJ2BZmnhxjPktcN32Y1gOAA6DboskbE871q1LSVTt1BywtU/ALz60o5VejSkig+wuCOY=
+	t=1755078830; cv=none; b=SqmR9EvydO20iDPxvsNZVwpkvLNWesLakOMdz3h7L1bsSbLz2kndzaqhopatYXd7etRyvgxHfmnY/zSm+qQoYlV2XeykwekJQSzbiJ3HE1gxA/Yo3ag+XIRrVV6mUzYiosrRx2ldp2/eNZpfmCBCtbM2g4ezO9uOKNcIbIhXKtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755078784; c=relaxed/simple;
-	bh=Rrg+PDeB1og0Ip97n8NMinUcp87go5qnz3BHKDTd/nU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=V15gTzFKonba6XwhNRXqAjsv1yuo4jeLpaGsA+9uuJdd3T/gNYM5wcbLbYtFCT/QggFWYq/a+sYjeMDynBD4n+F3yIK1YCg+FGZuRx6L5Md0nNg8vl8JtF+wW2xLQH+6sEwt3fwZjUauoynVQpWyREuaty5EuXM1YALrkJAwveE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=sVMeAFx6; arc=none smtp.client-ip=212.77.101.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 46995 invoked from network); 13 Aug 2025 11:52:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1755078775; bh=AAtYHcTaVyCFpkLjxJA7aO2dq1kno3BoVNBG/qhbPvs=;
-          h=Subject:To:From;
-          b=sVMeAFx69/OgX7TxKXwY6qEp4Goae5lJ90CJwEgIeTOmKh9jX7b4TSqOvejsNA6Pd
-           s+6eSR7O3ILRI3aPpm9WFA5DQtE1+POJv86OfV8JJE7L/VAeQWfJq2djfvBHu3jBEW
-           RpHuhDGI7XKItT+PjT+HWEB3eQHbxX6WGO5YWWE66dGkdb18qB3g7Wi2wGazUdrOzS
-           4tNoILnmwiH4Heo6JQrS8rg/p3QCoJOXUlx8R4DJuEJLDU8wpsfP/9u9HWcaLcpEC1
-           V7sGUkjfysKxEizSgYuyXvmkE3/UKWcdoxGKqe/5MTfpqFXjeo2cSSiVjA0wrj4Zby
-           nqrJ1v33qbauw==
-Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO [192.168.3.229]) (olek2@wp.pl@[83.24.134.210])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
-          for <krzk@kernel.org>; 13 Aug 2025 11:52:55 +0200
-Message-ID: <9d0ebfe1-e92b-45e0-baf1-3d6d2ce4c568@wp.pl>
-Date: Wed, 13 Aug 2025 11:52:54 +0200
+	s=arc-20240116; t=1755078830; c=relaxed/simple;
+	bh=eiXrLuhR4xCamhoxoYxrnKpTHf3dzkLdi7yUfznol88=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kCpTgEEc6xeSFzA1HsYLwRELGHiIgEySRJV+lXDjRggYON79zRWbRkTlpWS/a7tjllTYZISVEdNjlBZuFquGiOPG2oXroYOL6gxUPEGAAskZk0XPKCHLZlAJ/LtD7TEtnINLXwxUjkyPH6wnS0x/r2VQOWg68CMsf9XGiZTJMFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVQc14Dk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 254C5C4CEF5;
+	Wed, 13 Aug 2025 09:53:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755078830;
+	bh=eiXrLuhR4xCamhoxoYxrnKpTHf3dzkLdi7yUfznol88=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mVQc14DkJP1EaNM/NFLB+N4og7C2CwBzEN3QEZ22tuDnLg0NHojdZKfJjweWfSqsQ
+	 izGRTx2CjUzF6xoaIyEWrLLly6/BGe1ms4mXF8wJLHQyFlnQpIffkTDU2uLlEkXUfb
+	 /UswVtkiFrfoyuAu9f3xsq4MyzflHzP5n88JZu50ZRXSBa+2lEl03hBzqGxjY3lG7S
+	 oR7I91D2xCWnRjXQuhtXZHqiWgQ4gVhStVKZNVqnOAJtHv6utT/rQ9CjFxVfYmg6xZ
+	 8klurv5xze/wYBSr3OV2o0ueGPJsjSeqprI+HCitXTiZh6nQbaIX8u7smvfCVm8Z+a
+	 CoJVynjcWm4oA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A319CA0EE3;
+	Wed, 13 Aug 2025 09:53:50 +0000 (UTC)
+From: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
+Subject: [PATCH 0/5] Apple device tree sync from downstream kernel
+Date: Wed, 13 Aug 2025 11:53:32 +0200
+Message-Id: <20250813-apple-dt-sync-6-17-v1-0-209f15d10aa0@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: convert lantiq-cputemp to yaml
-To: Krzysztof Kozlowski <krzk@kernel.org>, jdelvare@suse.com,
- linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, fe@dev.tdt.de, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250813091924.1075488-1-olek2@wp.pl>
- <6f46e420-832a-4c6e-b1e9-d797b0425834@kernel.org>
-Content-Language: en-US
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-In-Reply-To: <6f46e420-832a-4c6e-b1e9-d797b0425834@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-WP-MailID: 46fb8cb658e1bebe764a3937a8873c36
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000000 [QfNi]                               
+X-B4-Tracking: v=1; b=H4sIAJxgnGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDC0Nj3cSCgpxU3ZQS3eLKvGRdM11Dc90Uw7Rkw2QLyzTz5EQloMaCotS
+ 0zAqwodGxtbUAsOexiGQAAAA=
+X-Change-ID: 20250813-apple-dt-sync-6-17-d1fc1c89f7ca
+To: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+ Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Kettenis <kettenis@openbsd.org>, 
+ Hector Martin <marcan@marcan.st>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2447; i=j@jannau.net;
+ s=yk2024; h=from:subject:message-id;
+ bh=eiXrLuhR4xCamhoxoYxrnKpTHf3dzkLdi7yUfznol88=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhow5CWsePjDbkaGoumtOfrJAVFj2+dDzsUq7k1yFmWomB
+ rzTN23sKGVhEONikBVTZEnSftnBsLpGMab2QRjMHFYmkCEMXJwCMJGtlgz/M1h7Y6/v4L+x4oP/
+ RI4ntz55uvg3i6pPmO72bOd1h52eTgz/VJgv6D9JzLx50DnkkeJZ9vf8Vu/jO3dbafPaf9vWvuE
+ GLwA=
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Endpoint-Received: by B4 Relay for j@jannau.net/yk2024 with auth_id=264
+X-Original-From: Janne Grunau <j@jannau.net>
+Reply-To: j@jannau.net
 
-Hi Krzysztof,
+This series pulls changes from the downstream device trees which are
+supported in upstream kernel.
+Most importantly it fixes the PCIe description for a specific iMac model
+(iMac M1, 2 USB-C ports, 2021). This is worked around in the downstream
+kernel by not disabling the port. In preparation for submitting M2
+Pro/Max/Ultra devices trees I investigated the issue on the similarly
+affected M2 Pro Mac mini and fixed it this way.
+It completes the Wlan/BT device nodes for t600x based devices and adds
+the missing 15-inch Macbook Air (M2, 2023).
 
-On 8/13/25 11:24, Krzysztof Kozlowski wrote:
-> On 13/08/2025 11:19, Aleksander Jan Bajkowski wrote:
->> +---
->> +$id: http://devicetree.org/schemas/hwmon/lantiq,cputemp.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Lantiq cpu temperature sensor
->> +
->> +maintainers:
->> +  - Florian Eckert <fe@dev.tdt.de>
->> +
->> +properties:
->> +  compatible:
->> +    const: lantiq,cputemp
->> +
->> +required:
->> +  - compatible
->> +
-> I think this reads and writs to some IOMEM space, so you really need
-> here 'reg'. That's the problem with such old bindings... binding is
-> broken, DTS is half-baked or non-existing, driver has 20 years.
+Checkpatch emits following warnings:
+
+WARNING: DT compatible string vendor "pci14e4" appears un-documented --
+check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+
+Which I chose to ignore. `vendor-prefixes.yaml` prefixes contains no
+other mapping for PCI vendor code and the list of ignored prefixes
+forbids extending it. Both options feel wrong though. "pci${vendor}" is
+clearly a vendor prefix but duplicating the PCI vendor data base feels
+wrong. `vendor-prefixes.yaml` currently does not contain and PCI vendor
+aliases.
+
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+Hector Martin (2):
+      arm64: dts: apple: t600x: Comple WiFi properties
+      arm64: dts: apple: t600x: Add bluetooth device nodes
+
+Janne Grunau (3):
+      arm64: dts: apple: t8103-j457: Fix PCIe ethernet iommu-map
+      dt-bindings: arm: apple: Add t8112 j415 compatible
+      arm64: dts: apple: Add devicetreee for t8112-j415
+
+ Documentation/devicetree/bindings/arm/apple.yaml |  2 +
+ arch/arm64/boot/dts/apple/Makefile               |  1 +
+ arch/arm64/boot/dts/apple/t6000-j314s.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t6000-j316s.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t6001-j314c.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t6001-j316c.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t6001-j375c.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t6002-j375d.dts        |  8 +++
+ arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi   | 10 +++
+ arch/arm64/boot/dts/apple/t600x-j375.dtsi        | 10 +++
+ arch/arm64/boot/dts/apple/t8103-j457.dts         | 12 +++-
+ arch/arm64/boot/dts/apple/t8112-j415.dts         | 80 ++++++++++++++++++++++++
+ 12 files changed, 161 insertions(+), 2 deletions(-)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250813-apple-dt-sync-6-17-d1fc1c89f7ca
+
+Best regards,
+-- 
+Janne Grunau <j@jannau.net>
 
 
-These devices are not so old. They support multithreading. In the case
-of NAT, they can process up to 700Mbps of traffic.
-
-
->
-> BTW, why converting this old binding? Do you have any interest in
-> actually running MIPS?
-
-
-I have several devices with Lantiq SoC (xRX100, xRX200 and xRX330).
-They are supported by OpenWRT. These are the only devices with mainline
-Linux that support ADSL2+ and VDSL2. I would like to add the missing dts
-files for the xRX200 and xRX330 families. I have started fixing the errors
-reported by the dtbs_check script.
-
-Downstream dts:
-https://github.com/openwrt/openwrt/blob/main/target/linux/lantiq/files/arch/mips/boot/dts/lantiq/vr9.dtsi#L29
-
->
-> I assume you did not check Rob's dt-convert branch to avoid
-> duplicated... because he did convert EXACTLY this binding. And more from
-> Lantiq.
-
-
-Thanks, I didn't know that.
-
->
->
->
-> Best regards,
-> Krzysztof
 
