@@ -1,184 +1,218 @@
-Return-Path: <devicetree+bounces-204290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9CAB24D79
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:33:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91636B24D7B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 17:34:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 953D8884974
-	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:28:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B7BB1882BE3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Aug 2025 15:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57E0D23ABB0;
-	Wed, 13 Aug 2025 15:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B232309B9;
+	Wed, 13 Aug 2025 15:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RkUziWdk"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="c1mbcx01"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EF1238C1F;
-	Wed, 13 Aug 2025 15:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E63B1EDA2A;
+	Wed, 13 Aug 2025 15:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755098900; cv=none; b=ZRkAI9XT+/sUZt3iKwfeMKtpN/nBhvatWOL5qBNam/SMGGrKkRFvguH0rdag7yFOiG6CFB/wVksjzsHbNWLhehzvk0xxYsVg6bRffOVgAdAtgbiH9ooSaCdK8HsUJ4v5e6AHLQo5aliVlQwBfKZ6NVseZAvqBq2tVeSFjS/7bYg=
+	t=1755098975; cv=none; b=mExCkFnvShlBGnDvpM/VJ3ycZwWSHrGdSAB2Vmazjwprr1oOEYsGowN1/MuDd8y7ePjEC8E92SSkJ4TIeYozgaIRo8yk9xyIkiGG/zHp0uZQBegd9DP1E1BaxmTudgFpln4qKg51Wh/6XnpsvrPQ5thptg2+svSWNEoYyScV0/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755098900; c=relaxed/simple;
-	bh=bjUfZArd1dIc7xzYB2XLMMwVGzBdfmOFwXw1/SOljyM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NS49Bz0rAXZJysZjvQOvW7NHnunXRQ/Mj7Drs+CeaJI5vm15S/ZQZP7z+mbzxpiIo+gHCPKUhUfsfJtf6jeNYhhCAOeyTLT/VSQ26IAUGKOrpdY/ENEotG/ujtfye2G+CxQWt7K1gjRf3Y5oz9dIQgbJGDv+jAU7TH5HV+ai6vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RkUziWdk; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3b7920354f9so5521019f8f.2;
-        Wed, 13 Aug 2025 08:28:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755098896; x=1755703696; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KR4hoVadqu8aUTOVreHxSaRU8mKdTHXFpDokGXEFHMw=;
-        b=RkUziWdkcobc1+VLt8dmdysE1gqk4uco0MtHAGr5y3islQOQaHk3W2H+d/pGNyl1hO
-         USFBdoRQkKGT8YNBZWRX/eCJ/kHqlqCcJ9+aGAQXgOI3TPDL7Kepjc0tCrqj+8k97I0Y
-         Tx9bhsgZVht67IVMGYcAvzh82EsSn9coAnkelNaLfkCu9Zo2mFW8qeXNUWHIq+EKdScy
-         NS/vrWD8s5cSxUO51ElUWyg/J2YLYOwAsRs34/u3+YS67YOf4jh4QCYQvK8TnLeEowX/
-         LPodmHeMXCQb+dJ1iURKgqo8iyfSUN3xnTuWvpV+xZoSf89DKHlbjHy0oTgURRFVEzWI
-         PZqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755098896; x=1755703696;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KR4hoVadqu8aUTOVreHxSaRU8mKdTHXFpDokGXEFHMw=;
-        b=BTJlyxDnz6+tao0YWH6hCMPpULx/448mmmHN7RK+SH75GenMEhMQOsqxDONgrt206y
-         oS1I0ClQNMR1iqinF+xbYfoEhFtOCahQXd7WspvEG/uy5ccwsZfcgedqETfye8LRzXHz
-         zJSEfqGr75hwfqt6hW+XFLFIgopflkgF0GeaOD1ewZKBXziVxLeXLaNlaRkNeoUGYP5Z
-         vvkFzdDcKiqwuRozBGDLra91mkGkJYbZcKODlOWd94OcbZnkIYpsNZFvgpc+5KiGkarC
-         0PS2Tfg8aTYpzzDu1FFSLFErFc0LtUmW3205AmVpKrhQIOatEhO3+Wb/DahFuHzGViw+
-         a7PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV5emU64FHKZ+uGhIpKd2zxUx6ovoyYIt3CRuT9LsVb9MHRd8IkZwHiU6iuNU5x9FH4cN+0UClatXuMnVGS@vger.kernel.org, AJvYcCWXV0CKgXb1U3fCXWsTMt7nspJa/thQ1V9lF5wHmqa/Z/AwO/anMU1z4c3hXGMjKc8YQVvWC1TUp8WW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrmUKumarZdBwvdJktQSN/EMS+p2UA6dnipz4cI5hLaqlahk+/
-	sEzEfXKERnRSY16FJararOGZseEcbmoOA07GVxq3wk8djhi+GHI6EbHY
-X-Gm-Gg: ASbGnctu8dJa75jwLUOeFAfy40jxXfvqNGHj7wJx2dpkXqewaMer4YBrw1pkHN+y3DV
-	sT3baK5QXm4NdnIYId51pVLondRFW1k3zY94yD93l43qlUl8D/67+eNe2zhZBXh1mzTTGZNj5n5
-	p2awjW+NI0U71uYJ1INYGirrD1PLruCORtExuOs+2IMM7y9V+B8P0VNW6e4iEu1Eu6HlWI9leP+
-	ZeGwFTMcyDETbtO6f+KxwBNIEebIfz3Pei4DFhM//AKwmeImeOFJxQf8ewC/UCeH2WCMyi1rvU7
-	9Vid3cVnXL4HcEZNaMOPZWiN0uUPYlgznWgsv+775OgvTHjIa08RX9Wo2eBWVPv5HkIXhxrF+Yw
-	Kda0QTa+lpufpcguMfh29maNVJb9F9W/ur0jmMN3YjMbQ8Rz6eW/PxW124pylH1U0cEFciNkebW
-	jWnULLX7o=
-X-Google-Smtp-Source: AGHT+IHE0fucbXsrHkFdPEfs8yK736j25+deb3oJqHtDVR3z1PaujgH3AAxRRrD0UXP0szDCxxOwTw==
-X-Received: by 2002:a05:6000:22ca:b0:3b8:893f:a184 with SMTP id ffacd0b85a97d-3b917ecd302mr2496485f8f.52.1755098895560;
-        Wed, 13 Aug 2025 08:28:15 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b79c466838sm50661600f8f.49.2025.08.13.08.28.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Aug 2025 08:28:15 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-Subject:
- Re: [PATCH net-next v2 10/10] arm64: dts: allwinner: t527: orangepi-4a:
- Enable Ethernet port
-Date: Wed, 13 Aug 2025 17:28:13 +0200
-Message-ID: <3363827.aeNJFYEL58@jernej-laptop>
-In-Reply-To: <20250813145540.2577789-11-wens@kernel.org>
-References:
- <20250813145540.2577789-1-wens@kernel.org>
- <20250813145540.2577789-11-wens@kernel.org>
+	s=arc-20240116; t=1755098975; c=relaxed/simple;
+	bh=MR0DcSztgKA4jVA39j6euLbkCbLBnVIqd8/aw4ObGKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MANKYlOQYjQqiS2B1KT2YsqtgHN5k0XN04CoroFIt4S0ox1srql45bxbUfGGdXmPbTxqx8elNuMTPiM5pAYqbNVI01PXPIll6B8q1Yfczto5oEE31tFtBbWO7twhv5rFanXqdPtL8e+fqBV2zrHvvlwnKSa3RgzAnNt+8judKks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=c1mbcx01; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id DBF74A09CA;
+	Wed, 13 Aug 2025 17:29:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=EmjzUDwTEf/ZVzLY6NpU
+	Z7nq/gf392CNl+RtZjfZyd4=; b=c1mbcx01jkNEjwmMwbywiKqeRa2FdI/RIrSg
+	umyluj/3Jz/VgcmHExvEZ83/8clhYcXKnl4CNtKXLL4C6sVBzFUAIjIVFkIWmX1K
+	nWxzKsfWoB2/JqsuF2IIcTMZPu//8sLeZn5YkTpFL9NA7G49np1e6iNV5ZAawslC
+	aYeBn1UUll7OpxgQEapTQLW2IvXkuxUx7CcI436lWs8HpoCDSVjfI95sFiaW+Rap
+	cZdezw/NX7gwsL05oWWbrOrA4eMYPVc9ZfqGn8+XcpyGsXdQGcT7bCkPEU6VzfVr
+	w0toicu09s82GfT4ds9Z0yrh6gGZqg7ZE8dChtnkptX8Yad++Oov3h0tfpBRO6dl
+	pdDztiYuLU/yn1hM2KPBDRir09691LBhPlb5uLBiK0a7O+5a96VbYeMcTtGqDTOc
+	QGVnKDOZAXKZifJdHf9FInn4bG3oeC/EUXYmmTzS/OU+/GYRT348fgzEPKePlQ0x
+	Oft+ihlf9gHnF6ddkab0qJp4lGIZtsSGCoiKo+gbzTp60ug2CtIs2AWFlfUajqkQ
+	HbV/8dWEvFk14kMYJZ0wZUs/umE/Hn6BUZgkKFEt3MQxVS1dprivtz0x9x/2nOhr
+	yO+W5k22H7qaRqWDAj7B2hWObNHnV2mPCF2UGFLW0mlB4RQH4SKWHYSPLpqJ2Swd
+	nrQGohI=
+Message-ID: <db71a9dd-72b0-47ef-a7f0-bd527262c4e9@prolan.hu>
+Date: Wed, 13 Aug 2025 17:29:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ARM: dts: imx6-litesom: Replace license text comment
+ with SPDX identifier
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Marcin Niestroj <m.niestroj@grinn-global.com>, Piotr Figlarek
+	<piotr.figlarek@grinn-global.com>, Marcin Niestroj <m.niestroj@emb.dev>
+References: <20250709-litesom-dts-lic-v2-1-b907084ced96@prolan.hu>
+Content-Language: en-US
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+In-Reply-To: <20250709-litesom-dts-lic-v2-1-b907084ced96@prolan.hu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: sinope.intranet.prolan.hu (10.254.0.237) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155E617765
 
-Dne sreda, 13. avgust 2025 ob 16:55:40 Srednjeevropski poletni =C4=8Das je =
-Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
->=20
-> On the Orangepi 4A board, the second Ethernet controller, aka the GMAC200,
-> is connected to an external Motorcomm YT8531 PHY. The PHY uses an external
-> 25MHz crystal, has the SoC's PI15 pin connected to its reset pin, and
-> the PI16 pin for its interrupt pin.
->=20
-> Enable it.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Hi,
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+On 2025. 07. 09. 9:31, Bence Csókás wrote:
+> Replace verbatim license text with a `SPDX-License-Identifier`.
+> 
+> The comment header mis-attributes this license to be "X11", but the
+> license text does not include the last line "Except as contained in this
+> notice, the name of the X Consortium shall not be used in advertising or
+> otherwise to promote the sale, use or other dealings in this Software
+> without prior written authorization from the X Consortium.". Therefore,
+> this license is actually equivalent to the SPDX "MIT" license (confirmed
+> by text diffing).
+> 
+> Cc: Marcin Niestroj <m.niestroj@grinn-global.com>
+> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
 
-Best regards,
-Jernej
++Cc: Piotr Figlarek
 
 > ---
->=20
-> Changes since v1:
-> - Switch to generic (tx|rx)-internal-delay-ps properties
+> Changes in v2:
+> - Fix msg
+> - Link to v1: https://lore.kernel.org/r/20250702-litesom-dts-lic-v1-1-401e4d141bf0@prolan.hu
 > ---
->  .../dts/allwinner/sun55i-t527-orangepi-4a.dts | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/=
-arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> index d07bb9193b43..b604d961c4fd 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-> @@ -15,6 +15,7 @@ / {
->  	compatible =3D "xunlong,orangepi-4a", "allwinner,sun55i-t527";
-> =20
->  	aliases {
-> +		ethernet0 =3D &gmac1;
->  		serial0 =3D &uart0;
->  	};
-> =20
-> @@ -95,11 +96,33 @@ &ehci1 {
->  	status =3D "okay";
->  };
-> =20
-> +&gmac1 {
-> +	phy-mode =3D "rgmii-id";
-> +	phy-handle =3D <&ext_rgmii_phy>;
-> +	phy-supply =3D <&reg_cldo4>;
-> +
-> +	tx-internal-delay-ps =3D <0>;
-> +	rx-internal-delay-ps =3D <300>;
-> +
-> +	status =3D "okay";
-> +};
-> +
->  &gpu {
->  	mali-supply =3D <&reg_dcdc2>;
->  	status =3D "okay";
->  };
-> =20
-> +&mdio1 {
-> +	ext_rgmii_phy: ethernet-phy@1 {
-> +		compatible =3D "ethernet-phy-ieee802.3-c22";
-> +		reg =3D <1>;
-> +		interrupts-extended =3D <&pio 8 16 IRQ_TYPE_LEVEL_LOW>; /* PI16 */
-> +		reset-gpios =3D <&pio 8 15 GPIO_ACTIVE_LOW>; /* PI15 */
-> +		reset-assert-us =3D <10000>;
-> +		reset-deassert-us =3D <150000>;
-> +	};
-> +};
-> +
->  &mmc0 {
->  	vmmc-supply =3D <&reg_cldo3>;
->  	cd-gpios =3D <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
->=20
-
-
+>   arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts | 38 +-------------------------
+>   arch/arm/boot/dts/nxp/imx/imx6ul-litesom.dtsi  | 38 +-------------------------
+>   2 files changed, 2 insertions(+), 74 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts
+> index 5e62272acfba..7a4127670a6f 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-liteboard.dts
+> @@ -1,44 +1,8 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>   /*
+>    * Copyright 2016 Grinn
+>    *
+>    * Author: Marcin Niestroj <m.niestroj@grinn-global.com>
+> - *
+> - * This file is dual-licensed: you can use it either under the terms
+> - * of the GPL or the X11 license, at your option. Note that this dual
+> - * licensing only applies to this file, and not this project as a
+> - * whole.
+> - *
+> - *  a) This file is free software; you can redistribute it and/or
+> - *     modify it under the terms of the GNU General Public License
+> - *     version 2 as published by the Free Software Foundation.
+> - *
+> - *     This file is distributed in the hope that it will be useful,
+> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> - *     GNU General Public License for more details.
+> - *
+> - * Or, alternatively,
+> - *
+> - *  b) Permission is hereby granted, free of charge, to any person
+> - *     obtaining a copy of this software and associated documentation
+> - *     files (the "Software"), to deal in the Software without
+> - *     restriction, including without limitation the rights to use,
+> - *     copy, modify, merge, publish, distribute, sublicense, and/or
+> - *     sell copies of the Software, and to permit persons to whom the
+> - *     Software is furnished to do so, subject to the following
+> - *     conditions:
+> - *
+> - *     The above copyright notice and this permission notice shall be
+> - *     included in all copies or substantial portions of the Software.
+> - *
+> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> - *     OTHER DEALINGS IN THE SOFTWARE.
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-litesom.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-litesom.dtsi
+> index 8d6893210842..c387753f833b 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-litesom.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-litesom.dtsi
+> @@ -1,44 +1,8 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>   /*
+>    * Copyright 2016 Grinn
+>    *
+>    * Author: Marcin Niestroj <m.niestroj@grinn-global.com>
+> - *
+> - * This file is dual-licensed: you can use it either under the terms
+> - * of the GPL or the X11 license, at your option. Note that this dual
+> - * licensing only applies to this file, and not this project as a
+> - * whole.
+> - *
+> - *  a) This file is free software; you can redistribute it and/or
+> - *     modify it under the terms of the GNU General Public License
+> - *     version 2 as published by the Free Software Foundation.
+> - *
+> - *     This file is distributed in the hope that it will be useful,
+> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> - *     GNU General Public License for more details.
+> - *
+> - * Or, alternatively,
+> - *
+> - *  b) Permission is hereby granted, free of charge, to any person
+> - *     obtaining a copy of this software and associated documentation
+> - *     files (the "Software"), to deal in the Software without
+> - *     restriction, including without limitation the rights to use,
+> - *     copy, modify, merge, publish, distribute, sublicense, and/or
+> - *     sell copies of the Software, and to permit persons to whom the
+> - *     Software is furnished to do so, subject to the following
+> - *     conditions:
+> - *
+> - *     The above copyright notice and this permission notice shall be
+> - *     included in all copies or substantial portions of the Software.
+> - *
+> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> - *     OTHER DEALINGS IN THE SOFTWARE.
+>    */
+>   
+>   #include "imx6ul.dtsi"
+> 
+> ---
+> base-commit: 66701750d5565c574af42bef0b789ce0203e3071
+> change-id: 20250702-litesom-dts-lic-ad9774ebde3d
+> 
+> Best regards,
 
 
 
