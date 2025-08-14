@@ -1,108 +1,128 @@
-Return-Path: <devicetree+bounces-204712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7CFB267E6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:47:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8E9B2680A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:52:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F093F1CE2CE5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:38:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F355F3BE918
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3042F3C3C;
-	Thu, 14 Aug 2025 13:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336B0301019;
+	Thu, 14 Aug 2025 13:47:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3TFREvM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IdZIJ3cR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33AF21514E4;
-	Thu, 14 Aug 2025 13:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80CBF3002AB;
+	Thu, 14 Aug 2025 13:47:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755178429; cv=none; b=dUpTggMM4qq5R4lleY+gKe9vBHUvY8aWrXd6qFWB8QFTnBUmxZxbN95dNG7KTAu73qpHlERP/FbzIMn0B7eLE4+0vfVBOe7uIytP46leyuH9ptMfxEHNrr8UVwCwIs4FeqgQ6CuYMw8nQ99xJiZqj863nT813D5l9e6XFA52LZc=
+	t=1755179230; cv=none; b=a+bYUtuwSOJTIeDCR78hKjJPI8KmOpFCNnA15oU/0Jq5DXO80Y49ZIRtovxFaEtPLoO9YCoEiwIxhgWcX+zCW1BNY1yjU55dou3oAVvtxV2XG9YWcAsKueI8P7XYtE57v6EvrMBfMUl4zOvPHuPedvpP1xi0Kxaveurgh9T9Cjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755178429; c=relaxed/simple;
-	bh=qzHOrb660hNBXkxGw6DWMOMC3lLxUoz/yT/E1S7tZKI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JmW4Ys8h5pnFaqpq+frJ4K4nAngN0V+2GyoD/vJoQZlO52BH2aWWRTUSHGnEoX5FjZB29zUTjpP9SFJx4OGHtWitt9MmpOeq1DmYT57s2KYd4XOUWx2vLxq/Fo66hTY+vUBehFBgY1khBjqdBoZwkxM445CzOBWTmoYYQEidB/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3TFREvM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D9DC4CEED;
-	Thu, 14 Aug 2025 13:33:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755178428;
-	bh=qzHOrb660hNBXkxGw6DWMOMC3lLxUoz/yT/E1S7tZKI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z3TFREvMs1WoLOVL2tGaVT1AakYVA6W35J8m4vEyfQfAyM33dod6zbIvi5EZ1o4ab
-	 +wMY1hRryZmJya4eBLPwosoXvYCs7Hm8DP4mJqMxIjz+fK3bTqZyQyIajhMwZadJ3A
-	 VgKFpqwqWMz5XEiP87KZltrdbdpp7ekrl4gAU2w5KnSxbY9Tc79i75ZmxsSbc6noSa
-	 14Zr9EcpAfOR6dYy1EH27ORo6AzIYNG9OjyukxBmc9XHqR84SWyKav01vmYQ15nCYc
-	 kS4Zb/fu4eIRpPpxjviCrOuPbqL1PgkfEYx1n7Bl6BVDLraINW34jdIQrNZEM8PE8E
-	 hX7jkkQX4Kkqg==
-Date: Thu, 14 Aug 2025 14:33:42 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: linux-kernel@vger.kernel.org, andreas@kemnade.info,
-	peter.ujfalusi@gmail.com, dmitry.torokhov@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, lgirdwood@gmail.com,
-	tiwai@suse.com, conor+dt@kernel.org, lee@kernel.org,
-	ukleinek@kernel.org, gregkh@linuxfoundation.org,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org, shuah@kernel.org
-Subject: Re: [PATCH v2 7/9] Documentation: omap-twl4030: convert to DT schema
-Message-ID: <8c9366a5-482e-4bf2-b8cc-79e789bf2ff0@sirena.org.uk>
-References: <20250814132129.138943-1-jihed.chaibi.dev@gmail.com>
- <20250814132129.138943-8-jihed.chaibi.dev@gmail.com>
+	s=arc-20240116; t=1755179230; c=relaxed/simple;
+	bh=GqVc2VsNvo8WaKH1lYDYvEXU5odP4Glj4NAepOPOiyI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=j+K4aRajA8hC1wH/0T+x+iKcjN3vz19gL+X9sbcYwbjG8i+jUQp/HDK+e6sCn71Zb+NdChsa4NEjB7HGs2fhH996KPXkfZb8uTcCxurWSVR1+FHfNuPGdg8J3kBi7ilIuvkc9/fLIS/ZToy4KEvOUlC78XE3O6PADSTIDld7jvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IdZIJ3cR; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57EDkrh21942947;
+	Thu, 14 Aug 2025 08:46:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755179213;
+	bh=CchY9kgd+QHnqasSPXFS7iuj2D2oQD8WBNnjx7vsovw=;
+	h=From:To:CC:Subject:Date;
+	b=IdZIJ3cRekrOJ5eRec8dUCXheT/vToLg38HmnDYjFTPjih2H+0X6nv0bL+OlbZpcK
+	 /F4pEEOFuJWnuvZo4vRh/IwH44obOQneLSJ8rFBtBYk9LbT3t7S7sKY42CgdJOIPGr
+	 2ES/qC8Hc2MKe85Nx4Lo8KbFzTJ5/rFRH8RDCH+w=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57EDkrF71748922
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 14 Aug 2025 08:46:53 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
+ Aug 2025 08:46:53 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 14 Aug 2025 08:46:53 -0500
+Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57EDkq4X3688508;
+	Thu, 14 Aug 2025 08:46:52 -0500
+From: Anshul Dalal <anshuld@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: Anshul Dalal <anshuld@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/4] Add support for TI AM6254atl SiP
+Date: Thu, 14 Aug 2025 19:15:26 +0530
+Message-ID: <20250814134531.2743874-1-anshuld@ti.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4nUJ618zm+2DpXSV"
-Content-Disposition: inline
-In-Reply-To: <20250814132129.138943-8-jihed.chaibi.dev@gmail.com>
-X-Cookie: This sentence no verb.
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi all,
 
---4nUJ618zm+2DpXSV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series adds support for AM6254atl SiP (or AM62x SiP for short)
+to the linux device-tree.
 
-On Thu, Aug 14, 2025 at 03:21:27PM +0200, Jihed Chaibi wrote:
-> Convert the legacy TXT binding for the OMAP TWL4030 sound card
-> to the modern YAML DT schema format. This adds formal validation
-> and improves documentation.
+The OPN (Orderable Part Number) 'AM6254atl' expands as follows[1]:
 
-> Changes in v2:
+AM6254atl
+     ||||
+     |||+-- Feature Lookup (L indicates 512MiB of integrated LPDDR4)
+     ||+--- Device Speed Grade (T indicates 1.25GHz/1.4GHz on the A53 cores)
+     |+---- Silicon PG Revision (A indicates SR 1.0)
+     +----- Core configuration (4 indicates A53's in Quad core config)
 
-This should go after the ---, tools use this to remove the changelog
-when committing.
+AM62x SiP provides the existing AM62x SoC with 512MiB of DDR integrated in a
+single packages.
 
-> - Fixed comment formatting (added spaces for better alignment).
-> - Updated commit subject to align with subsystem style.
+This patch set adds the new 'k3-am6254atl' SoC level dtsi alongside the
+'k3-am6254atl-sk' dts for the EVM (Evaluation Module board). The newly added
+'k3-am625-sk-common' dtsi includes the common hardware between the existing
+AM62x EVM and the new EVM for AM62x SiP.
 
-Should be ASoC: dt-bindings:=20
+Regards,
+Anshul
+---
+[1]: https://www.ti.com/lit/ds/symlink/am625sip.pdf Page#21
+Product Page:
+    https://www.ti.com/product/AM625SIP/part-details/AM6254ATLHJAMKR
+---
+Anshul Dalal (4):
+  arm64: dts: ti: k3-am62*: remove SoC dtsi from common dtsi
+  dt-bindings: arm: ti: Add binding for AM625 SiP
+  arm64: dts: ti: Introduce base support for AM6254atl SiP
+  arm64: dts: ti: Add support for AM6254atl SiP SK
 
---4nUJ618zm+2DpXSV
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/arm/ti/k3.yaml        |   7 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts      |   8 +
+ .../arm64/boot/dts/ti/k3-am625-sk-common.dtsi | 296 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts        | 301 +-----------------
+ arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts    |  15 +
+ arch/arm64/boot/dts/ti/k3-am6254atl.dtsi      |  23 ++
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |   8 -
+ 8 files changed, 354 insertions(+), 305 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am625-sk-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6254atl-sk.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6254atl.dtsi
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.50.1
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmid5bUACgkQJNaLcl1U
-h9A2/gf8DYx2qBWKgxDl5J/9xk1Tol23Uwe7rnV2+wSVddxlxcPYEO+lCQ+ktiYz
-EJi0x9SUpw/em43nQulrEBY7vvJH6jlOMpM7qehbhuCdkAqIN1Be8e7/bR3LfGCM
-27wWzx1+Hxoun9V4q7w0MuKhjztsmti5MouUB03NQbR13uGmV9kNxJWF9juqAujI
-xfcamPWNGGyPF6GRjiuuBhPmrjl8yFh8u2UyiI4E1IS/GL3kth1FjC8igDAMniou
-2Fgn4M+BQrHi94iGGe+T19uAue1VARcg2RkYU6WUkuiBSRr673eL1OJQVOIoiFn6
-dm6JtgM4fu3FxSdbGp+fonGTJEdUZA==
-=3+dF
------END PGP SIGNATURE-----
-
---4nUJ618zm+2DpXSV--
 
