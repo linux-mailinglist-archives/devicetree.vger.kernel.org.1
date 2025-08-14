@@ -1,126 +1,171 @@
-Return-Path: <devicetree+bounces-204737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A95B2688E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:07:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1491FB268F6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:19:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3D197B2C82
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:05:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53B4D601F1A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E451AF4D5;
-	Thu, 14 Aug 2025 14:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DD632143D;
+	Thu, 14 Aug 2025 14:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iXxvpwzh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UEOyQxV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7B31A9FB8;
-	Thu, 14 Aug 2025 14:01:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC03321427;
+	Thu, 14 Aug 2025 14:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755180081; cv=none; b=GecX4OUEAdJP8OOknQSJ8T6NkeBO3XX7Tc2xImjX5Oem6BigJEh7wtJMAiqvfd3mzGZTwFUrFO3pNxbR3tiQRFx2ycrp14AgxgvRLQ5viz3Gi56s1nReAB1dUBbijZ0MQ69X8M5yAd9HEdZjEQ1FLKBn7llLxs6nas3+QlqlkH4=
+	t=1755180408; cv=none; b=V+Q2/RduAfCvZjCoOH5gmgQnTTARjegyNhms1i8s9uHSXADFQWmziOuiIIs6DG2C9tZ2hf5FRwlohzlxFxAI/vR6cwIV80W08Gmr4SccsrwL3FwQG8c7Ult1DnvobevL+O7Rh1mkYZ+12RI7Ve49B2uCEqODcjN+c99sUC0bO0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755180081; c=relaxed/simple;
-	bh=OJwgXQoKUoVQ6JMi/lzTSRWNwpU4o4E8nVxhmW1I3Ss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j7tM0IParRRqmS38nrTILmaQEvBM7oRSEuUc5GqrpIp0G7gMCgG3ckqEl3SG6271o6SmHol3+TDh8IjtRGkK6zEM0sxkZtjDPny9eqwYdH0UBeQCYqXILq3N0IFgc9cdPh36XytGXEVe3un0AdSZWB0gDxlaDp0/ysvhDZ4cS4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iXxvpwzh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EEAC4CEED;
-	Thu, 14 Aug 2025 14:01:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755180080;
-	bh=OJwgXQoKUoVQ6JMi/lzTSRWNwpU4o4E8nVxhmW1I3Ss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iXxvpwzh2EedlQ9q7ou5ppIO27ljUbxMV/BYUmWblGZ1axlrwXYBkLHJbakoVUplp
-	 FJisloc00zW1zUG09FJ7SC2dfPNqNth15fQHg3p56Km6tGXpkCdpDcO9H6zOnCWlCZ
-	 ekmvqIscoPehmfSCBl0RCOAw/PDt3VEhHv5Sq7QcZMl/2s09izsd7TOghFMXT5+GmK
-	 nTHkIry1mQfjv91Zyl2Qt2LudY3/1iR5ZfqKfi9egVQ3Zp0v5zNRnC599NTzcqM08d
-	 DjDCgL9SZg7CzXSM964X4m05Re4k5PN9KQIQRmXNIVdoLWD0REGYRtj14NWj+ktkcl
-	 KY8jAsbjcUlzw==
-Date: Thu, 14 Aug 2025 09:01:19 -0500
-From: Rob Herring <robh@kernel.org>
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Philippe Cornu <philippe.cornu@foss.st.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/13] dt-bindings: display: st: add new compatible to
- LVDS device
-Message-ID: <20250814140119.GA2748790-robh@kernel.org>
-References: <20250812-drm-misc-next-v2-0-132fd84463d7@foss.st.com>
- <20250812-drm-misc-next-v2-3-132fd84463d7@foss.st.com>
- <20250814-dancing-nautilus-of-camouflage-ebb441@kuoka>
- <2c13bf48-5453-4302-9cde-eac51e314af1@foss.st.com>
+	s=arc-20240116; t=1755180408; c=relaxed/simple;
+	bh=Ybxk1TB6zRWIfSh85LcO2RRx7atnh+AZLW/N/PE9Rcs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=mUyBNeELNzOgCUg2jCxasK5M0tyAJx4y2+4iOd4iGHu+uzUhvGnTAFVuQHBhVOyub5gwG+5ZwnmWbi1n8zIl04Qd0LezxmXFaE9F6VAI46c2atzEaicVgPxJhdc/IBi71B14SjX1bjnjSMfLbk1iLXBdW9lZehC+G6ufMKoCUGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UEOyQxV2; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3b9e418ba08so477264f8f.3;
+        Thu, 14 Aug 2025 07:06:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755180405; x=1755785205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Qda6eKiChu1mXCojr2a5Wn7iDIeLm6m2hQhqg1Pn4sg=;
+        b=UEOyQxV2fDgRPnaeK13ztdYlFtXTWFg64MhSQhLr9GeLlZCAIn0K97TQUBfP2+SduR
+         Al2JfRyZZm2u9JJ+unyZ7q375+glYjQQKM//CeKBjP5J8X9bPHWSGRhkqB4jZqBwu7r/
+         zDeOnVfox4n+JUoSrqeNesGOKMb83hXBKxU/u/fKv/zso4XPrGfUQ3zfSZAAnYSTa3Jq
+         4aNoOVJJLBXogTTu0NQ8CurDLFA+ht0Ft1GYDCW1hLAMqlbDCGltE+j+bYeNU9j2Ll2P
+         YSTD9iAT5FxvILJmBQFpIenvZyrbq0VRBn0ef1UzMXHsVNYOoGnI9qP7rwfTW90b90XJ
+         B3ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755180405; x=1755785205;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qda6eKiChu1mXCojr2a5Wn7iDIeLm6m2hQhqg1Pn4sg=;
+        b=cx8KrlCSHUcIxMN5jRuK9sHHqrr3aLtW7UggxS+3bejR6Wasodjm0cjavrzbun/gVE
+         NSZwIa52DVBiH9COvG/ERYCuomGcOEqIGUuUmcnE6XAcHzzfZKMb+VKVtuqgxPxGweIs
+         kD67nkpJdpgHtVJNK/zDBAcGeaIs1KoJuXs6mUwkYaDPUnGpti3JLhf+aEWNW0GtBTmQ
+         wXcom8kAFFydxIN4ANeaEs0Tg6zURNmL4gg3UPbZhlmoVqcH3ws7+DxYJMKOa3qojbxk
+         KihkYkhGwMY84jxCoEV0ce8wC7nPCz3vyP3jR9GQoh15Djptj4tMcCwRLnx1zpVPIQ6s
+         OxSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUl9stnpj4dcJZ69DWkrXWP3MVfPaoS19rI/lqC3cYdDjxzyZCE9TiWEp4GYuE4JRCZdUs4qTAOxr9qWKRBLZ52jw==@vger.kernel.org, AJvYcCVwNXwtQbEu2ngNB0OdQE1459Y8oGdLxao3IKx/73iQumJuHqBqpnHvpamfWpCCDFsb3aggOX4SDaOv@vger.kernel.org, AJvYcCWHTfpM5B1Ij7F+fd8jOwYDJod+AA6gkQx4QtFt+GFN04HsCbePs/nmgVGzeybuzZ+HogN58Dviv9gE@vger.kernel.org, AJvYcCXTFRikrNZ4wgEeEmya00J2Dz7HurzJcHpyRouEsqY7H1+UU0l1Txjb1hfPdXKRSmx9QNUAMBe1i9Uj@vger.kernel.org, AJvYcCXj9xd6PaEkNXO9MBNhOpvg6Rrqqi+8zb+ONT46OwDtKl653Da48CCsYecIXoo061tBPeBUW8kGY/9+rpq+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfunE9r9nrfoGbNhasfvwz9IaMq9FWCB7yNkXeLMEfza+P2m+v
+	sGbRVyl1AxOJp5d41YQHhCg3nBzlwzNEndwAfkdCZdpIcrD0g8zc3WwY
+X-Gm-Gg: ASbGncvmFhRPDf10dzEm+sONPK3cNF3W4jBi6bDeZ0jZ76RuQxoRRWSBNKHE+7QiL6U
+	ufQHVhGEa1gsvcOCbXOIU9LLBjUaCKGldAYHLSTYxncu94gwMBI6brtMbRjLZVcEIq5nzmBLWHr
+	66nqyupdtmek2A994t/8OiMrZ9k0r3PYXSCE9pn73c/gbBkLdbV5+qMLCV52hgRJ0CEABNNiPey
+	nZZo+Ii1ns5vKbRgQM5P1L1xo6Llj9wInmC4bqVewglcRxcdv7YPle8C1cNJCNmL1DZ7odtYO74
+	yoQZrLKF9uCfG1+lfqTjjYqJH4iVnfqq4D/s2tV7p0Qg0kH8btbpTT3KQX2x6DR7SBW7aJk8HnD
+	1sxiOjgvS30kQQ8YvegvPXEJikhW78rsh3gPzivG60iLSOlAymhxf1jk3cyI626QtMpcRdTX4hz
+	8kxvc0pB6RGnICcpYCkWyZLfPXJbAmvWbGAIVuDCYkoPOqZJC7K2zLl7sg7nfBF24WI4z6pwyPh
+	8M=
+X-Google-Smtp-Source: AGHT+IEnQ9do0ALLGKmunp/XJpi/t5BmL0hnvtsNOXrAxguTK/fiIMH8QwU2UzXZuUzOb9KHxDTCdQ==
+X-Received: by 2002:a05:6000:2405:b0:3b9:7bf0:88e1 with SMTP id ffacd0b85a97d-3b9edfd55bfmr2615620f8f.56.1755180404714;
+        Thu, 14 Aug 2025 07:06:44 -0700 (PDT)
+Received: from ?IPV6:2a01:cb08:941b:4c00:f383:4db2:82a:81e9? (2a01cb08941b4c00f3834db2082a81e9.ipv6.abo.wanadoo.fr. [2a01:cb08:941b:4c00:f383:4db2:82a:81e9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3b8e0bfc79fsm40404341f8f.56.2025.08.14.07.06.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 07:06:44 -0700 (PDT)
+Message-ID: <4055d2c4-64c7-498f-8cdb-8d749d32ec68@gmail.com>
+Date: Thu, 14 Aug 2025 16:06:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2c13bf48-5453-4302-9cde-eac51e314af1@foss.st.com>
+User-Agent: Mozilla Thunderbird
+From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+Subject: Re: [PATCH v5 05/20] dt-bindings: memory: factorise LPDDR props into
+ SDRAM props
+To: Julius Werner <jwerner@chromium.org>,
+ =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
+ Gatien Chevallier <gatien.chevallier@foss.st.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20250728-ddrperfm-upstream-v5-0-03f1be8ad396@foss.st.com>
+ <20250728-ddrperfm-upstream-v5-5-03f1be8ad396@foss.st.com>
+ <CAODwPW-FjCtPGYkNYozo0ybEjz_rVOeDqkvEPiCmQ6M2in0OeQ@mail.gmail.com>
+Content-Language: en-US
+In-Reply-To: <CAODwPW-FjCtPGYkNYozo0ybEjz_rVOeDqkvEPiCmQ6M2in0OeQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 14, 2025 at 02:36:47PM +0200, Raphael Gallais-Pou wrote:
-> 
-> 
-> On 8/14/25 11:09, Krzysztof Kozlowski wrote:
-> > On Tue, Aug 12, 2025 at 03:49:00PM +0200, Raphael Gallais-Pou wrote:
-> >> Update the compatible to accept both "st,stm32mp255-lvds" and
-> >> st,stm32mp25-lvds" respectively.  Default will fall back to
-> >> "st,stm32mp25-lvds".
-> >>
-> >> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml | 8 +++++++-
-> >>  1 file changed, 7 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> >> index 6736f93256b5cebb558cda5250369ec4b1b3033c..b777c55626e4b322d77ef411ad9e4a3afb6c9131 100644
-> >> --- a/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/st,stm32mp25-lvds.yaml
-> >> @@ -31,7 +31,13 @@ description: |
-> >>  
-> >>  properties:
-> >>    compatible:
-> >> -    const: st,stm32mp25-lvds
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - enum:
-> >> +              - st,stm32mp255-lvds
-> >> +          - const: st,stm32mp25-lvds
-> >> +      - items:
-> > Drop. This should be just enum or const, no need for items.
-> 
-> Why would items not be applicable in this case ? I want the compatible field to
-> be either:
-> 
-> compatible = "st,stm32mp255-lvds", "st,stm32mp25-lvds";
-> 
-> or
-> 
-> compatible = "st,stm32mp25-lvds";
+Hi Julius,
 
-Krzysztof is only talking about the 2nd 'items' here. For cases with a 
-single entry, you can skip 'items'. It's just a shorter version. Either 
-way will work the same.
+On 30/07/2025 20:27, Julius Werner wrote:
+>> +      Compatible strings can be either explicit vendor names and part numbers
+>> +      (e.g. elpida,ECB240ABACN), or generated strings of the form
+>> +      lpddrX,YY,ZZZZ or ddrX-YYYY,AAAA...,ZZZZ where X, Y, A and Z are in lower
+> 
+> If the revision ID is only one byte for DDR, there should be only two Zs.
 
-Rob
+Indeed, will fix it here and in the dedicated field documentation below.
+Wouldn't it be better to add a regex pattern for the compatible ?
+
+> 
+>> +      case hexadecimal with leading zeroes.
+> 
+> AAAA is not hexadecimal, it's a verbatim ASCII string (at least that's
+> how I would define it, for readability).
+
+Yes you're right. I'll add the numbers of chars it corresponds to in the 
+dedicated field below also.
+
+> 
+>> +      For LPDDR and DDR SDRAM, X is the SDRAM version (2, 3, 4, etc.).
+>> +      For LPDDR SDRAM:
+>> +        - YY is the manufacturer ID (from MR5), 1 byte
+>> +        - ZZZZ is the revision ID (from MR6 and MR7), 2 bytes
+>> +      For DDR4 SDRAM with SPD, according to JEDEC SPD4.1.2.L-6 :
+>> +        - YYYY is the manufacturer ID, 2 bytes, from bytes 320 and 321
+>> +        - AAAA... is the part number, 20 bytes, from bytes 329 to 348
+> 
+> This should clarify that it is excluding trailing spaces (so only the
+> significant part of those 20 bytes, since they're supposed to be
+> padded with spaces at the end).
+
+I'll add a comment about that.
+
+> 
+>> +        - Z is the revision ID, 1 byte, from byte 349
+>> +      The former form is useful when the SDRAM vendor and part number are
+>> +      known, such as when the SDRAM is soldered on the board.
+> 
+> This inversion of the statement is a bit odd? I think it's more
+> important to explain why we need the latter form (or just explain
+> both).
+
+I will document both forms so.
+
+> 
+>> +      SDRAM revision ID:
+>> +        - LPDDR SDRAM, decoded from Mode Register 6 and 7, always 2 bytes.
+>> +        - DDR4 SDRAM, decoded from the SPD from byte 349 according to
+>> +          JEDEC SPD4.1.2.L-6.
+> 
+> nit: Add "always one byte" for clarity and consistency with the LPDDR
+> equivalent.
+
+Ack
+
 
