@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE6CB25B81
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:03:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F90CB25B88
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9B2D56210F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:03:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA19B1C825CD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3246238C1A;
-	Thu, 14 Aug 2025 06:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29847234973;
+	Thu, 14 Aug 2025 06:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2MhWXkF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JysSALKF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7686823817D;
-	Thu, 14 Aug 2025 06:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF43222B5A5;
+	Thu, 14 Aug 2025 06:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755151407; cv=none; b=iyZhUveDLXPapCS1TgZa9siIcT2WdW7xhb4XbXXqmPI/pd+7hqe6qR91EGYdB9DuVrit4AdxypR/fTZ4b1R8v2B5+5VKIbsm1Al9UfaccsR131NNLB6WQiOgZ07KrfDMBUtnnhFND4cHjjso/T5rH0n0E0PfDXnDS8XwEpyUASM=
+	t=1755151471; cv=none; b=E2GVz10MPlXXcSN2fIKPcdpEU7W5rMvY0RoMrD2bgL0dhNg6v1vjY9UfeuWlBZAxAkFhfjK4xJgD1Q/hj1tPZ74RJ53j77+GrF+bEJOB521pdmYhSkgqpda9AdZZ73wbhNDPBqT+chFUEpo7du8dSFy/6dciKk68lc3NlOh8ZGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755151407; c=relaxed/simple;
-	bh=rqZLE8aWdiYpL3EpPANCrXfhk+gaSXxdGb4Y0ONH+oI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QZKqo/NF9CtucpHuOzUCX0x+cWy1JKFWYJdZWbxR2hMjFFbWhi1JjUMY58h1/s6dQyOZ0vXwiVbpRxDDG5AwW31KRBEYTQt1PQqbh6GL9qp5h/IZ7kodho6vOLZR2baYkcFhTFEj9MNNLT0KBxfusv96u0F0N2A7Mhag3bhlI7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2MhWXkF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70274C4CEF5;
-	Thu, 14 Aug 2025 06:03:24 +0000 (UTC)
+	s=arc-20240116; t=1755151471; c=relaxed/simple;
+	bh=PliVYRFckN6WnUwDx+UBEk6ze8QuYS5HaH+wT1zWYJw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=JGXz0XdszeLUQC1Yr2ehX+B8eQx7yp3DPOVG2WTw8z1Qy16od/fC7BgrP10G+CX3CVv1VwSUg6Oc1AwWX35ZAHAM8bdD7HM3Gyg5v4iOLEHYsIpH3lbdqHyicu9dAz314+PZeaHynnyJpTAPsfoJqfSAN8DrYyPngRiR33xiX7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JysSALKF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0F01C4CEEF;
+	Thu, 14 Aug 2025 06:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755151407;
-	bh=rqZLE8aWdiYpL3EpPANCrXfhk+gaSXxdGb4Y0ONH+oI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h2MhWXkFdRvKr6TiP/s8Jywgbtk3OdBL4mJUPNws1rdxTWLWLm8c4aJAjSL9oqg46
-	 obuYnAtVNDMwVpFjSWCwHBhdLkQfqp2l7ICBaaKZpphXseZlB43jO73jfGxI9V2iex
-	 9rlaCDlIJSSWf3f5eJPBgylgjcn9xKJ/RHYgeTXm9EJjCoKT3/GYI5BpyT5n6ClBrC
-	 ff4pt4ZVq+qGvpje0eLN8MEOn6CNh0jcWgbrHk5pBIOS3WRsgjq8v4VgVfnpyxB1OJ
-	 d8esAmlyDLdTuxl2YPeS19W7D3QUnEXhr1u829+4U7FYa33gCS+lghwAkxkr/9h8PD
-	 btiU7yMaamuhA==
-Message-ID: <8c27b00c-5b80-400f-8538-b9ad96fd5feb@kernel.org>
-Date: Thu, 14 Aug 2025 08:03:23 +0200
+	s=k20201202; t=1755151470;
+	bh=PliVYRFckN6WnUwDx+UBEk6ze8QuYS5HaH+wT1zWYJw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=JysSALKFp7CJ8TYAknlFqd5nhu2NMqvVRA0bVu5PJBFuzLfc5/ZyEDxYIzVkKp89r
+	 FTvQwCyLsjtCTMIrvr1LGaKQu6EFjLjsmPy1guzq2lQXkRUy6LDgmmKaInv7louYaX
+	 HRSVlKZx5DCtO0miaS4dxasLw1dOi/B8vYFw3KIldt/Cqw1QO1QIhfkLC50ui8go3f
+	 DDrEQYbvtBpKy5n0462kZJ0EoFG7dmLNjrnCQ0x345kAApYKliidek4x/L97s61qdP
+	 YNaO2yWv65rsBhjFnRnN/JJQxLhhVh6ewrnqQERigsLRv310Qlt4IA3el2+UrZljIA
+	 R+SbvBAzUYOFA==
+Message-ID: <913d9e9b-4cf3-438d-a15c-d16de4c7b6dd@kernel.org>
+Date: Thu, 14 Aug 2025 08:04:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: ad7768-1: add new supported
- parts
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com,
- jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <cover.1754617360.git.Jonathan.Santos@analog.com>
- <ecb7406f54938658b51b4469034d87a57086bd1e.1754617360.git.Jonathan.Santos@analog.com>
- <c3cf9b97-3883-4ebb-a2ed-0033adebda87@kernel.org>
- <aJ0UEUVmIH94Nuwi@JSANTO12-L01.ad.analog.com>
-Content-Language: en-US
+Subject: Re: [PATCH] dt-bindings: hwmon: convert lantiq-cputemp to yaml
+To: Aleksander Jan Bajkowski <olek2@wp.pl>, jdelvare@suse.com,
+ linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, fe@dev.tdt.de, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250813091924.1075488-1-olek2@wp.pl>
+ <6f46e420-832a-4c6e-b1e9-d797b0425834@kernel.org>
+ <9d0ebfe1-e92b-45e0-baf1-3d6d2ce4c568@wp.pl>
+ <d90b8c70-983e-44bd-b2dc-ec8d898217ff@kernel.org>
+ <ea558f80-959c-477c-9ca5-5c9635b03e56@wp.pl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -106,35 +105,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aJ0UEUVmIH94Nuwi@JSANTO12-L01.ad.analog.com>
+In-Reply-To: <ea558f80-959c-477c-9ca5-5c9635b03e56@wp.pl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/08/2025 00:39, Jonathan Santos wrote:
->>>  
->>> +  adi,aaf-gain:
->>> +    description: |
->>> +      Specifies the gain of the Analog Anti-Aliasing Filter (AAF) applied to the
->>> +      ADC input, measured in milli-units. The AAF provides additional signal
->>
->> What is milli unit? Isn't gain in dB, so maybe you want mB? Quite
->> unpopular to see mB, but we cannot use 1/100 of dB, so I could
->> understand it.
->>
+On 14/08/2025 00:21, Aleksander Jan Bajkowski wrote:
+>          };
 > 
-> Actually, the gain is expressed in V/V, not in dB. I may have phrased it poorly, but since
-> there are fractional values like 0.364 and 0.143, I chose to represent it
-> in milli-units.
+>          cputemp@103040 {
+>              compatible = "lantiq,cputemp";
+>              reg = <0x103040 0x4>;
+>          };
+> ...
+> 
+> Best regards, Aleksander Jan Bajkowski
+> 
 
-Why your reply to is corrupted:
-"c3cf9b97-3883-4ebb-a2ed-0033adebda87@kernel.org"?
-
-
-What sort of unit is milli-unit? Isn't this 1/1000 of some BASE unit,
-but you do not have here a base?
-
-I think you want just basis point if this is V/V (already in common
-property suffixes)
+Yes
 
 Best regards,
 Krzysztof
