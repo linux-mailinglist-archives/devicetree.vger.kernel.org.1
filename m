@@ -1,126 +1,190 @@
-Return-Path: <devicetree+bounces-204757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7AEAB26A16
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:53:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD17B26A56
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 17:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36C3C7BF258
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:52:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7036017F757
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722C21FDE01;
-	Thu, 14 Aug 2025 14:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2595C1DE3AC;
+	Thu, 14 Aug 2025 14:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qQKFq6iA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lfUMkKbD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5841E520B
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:53:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AC41C8612
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:54:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755183206; cv=none; b=m0gF/avl+pDprLrvqUOcMfez255cXtICJmzjtB/iIo98E3p8nd4vFOgbI0wcnLhMSZXikC+RO1kXHUsA3iOZuKBJk5X/Nl5/OHrUX07IUoxSI+FQnD2RhfJErRVg+dLv5rwamG1cM8gdAg40p6k59HUx7VSAM2Rn4+UV4s2bTPw=
+	t=1755183272; cv=none; b=WAgAGnPdSmUsg2zpQBlja1yQBj21yUtaz5evVSdpSQruREQPTt/EsCdJEmkloupKCCkfbuXQUFc5LuQBWrJ4nJtAdJYxsryV6I42IBK8VCrzaMAVG1buZBY3hJlKwB69VhligatDu4Jbfs+NKJreJV9th+sLOg3t5w8HoNlsblA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755183206; c=relaxed/simple;
-	bh=NoD+ETZUwC1NI2iM9n8JTzIDjdIebuVBxIdD00m9A4o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uooizxv7rcPmCTBr8t26TNWe9UuwxmZupDTCQNvkHlPfuHdFqlc4QJ3KSriAjClczEOvJO8wzXsYobaftMv2BwgS2WnBMhkqqxba8Ydx1F9RNI+E4V3UmVehmuTNnn8bdoGiQW6Fdha1K2zQBDujXJibq2I3vh0feJV8AZe2E8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qQKFq6iA; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-61bd4a3f39cso196969eaf.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 07:53:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1755183203; x=1755788003; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KzOI1R5AmqgwHvOsxB+fLFbNEjWM3he7pbnJXPseqYk=;
-        b=qQKFq6iAVny0evBubLrDxa1Djp2eyCJfflC4haB4URjNn4xK+9hac9TvqLnvdtu1vo
-         rv7nz4Dx4AKNTYSoxG8J5whIpnr9YyKtraIM0wPWRE8Ub4zbzKlafLS8iTlNGCDn7bkA
-         8BodmPvVXd0ULlWwIgWThqdoqz398qJGCUSJ7JksQlFFqpGEN4W4Q9YIHK5JHzT1TThW
-         ICT88Jt7ZNQ5HU4S1CfE7vnfHCPx8qzow1c/Fi6h3yye5NaIZtXOFSegKpZXi/0yrIMG
-         G72VEDeLJPeTSMsEuaNZFpfVQcJRvTm1E5MAb9ryPDOwvhfckQBFiUxp855exnmvoVb/
-         F2bA==
+	s=arc-20240116; t=1755183272; c=relaxed/simple;
+	bh=sTDazc1yIq3qWxjwXzAUfJ9okZVEuQDE5VUa+DaPuIU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dv8R/pl1NLRZPRgNSKDkBYCM22gM+wuc0pqdqkauR1TVGIS+rY2pGfpzGPOb2cXZ2R45jtM8yV/s3ctw3/vyVUiLSfj8GuZOErI3OGf9dlfoa6klMKcKS+3K+BJzEWMTSPhYF+lUtDN2ZYx0WDsAc12tzMsZP3Qt5i7UDfed/iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lfUMkKbD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57E9xKOD029021
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:54:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=jnWjRH8kAJZ+wsaNi0TeGo
+	upyd6TNOm/RN5MzRClQ+Q=; b=lfUMkKbDkqpUsAPwBXSj5jF/jfQ/JRbiiK6LpA
+	4ILrreo9memIIofnUnQMy3gUaCxx5rQRsemEkCM5QYWUMuOjP1xklSTWN0oYVNpO
+	FJ5igztjUhYG1apgSyQ1w5RMe5BZ4QCNZPj7aep89Nznc7x3LbRvy1rLB+Wekdlp
+	ZKgFm3WqrDPvDDCpp2v/MfIcjqyFxxnrLLpDUqq3ta44MKSynRqQ0CIoGgBia/rL
+	R9qm44+AEWCU7WmJzpmrogj2pF3GGo8z0IwHsQ0YMy174xWsqk+lrD4cguo0NdSA
+	qgk37DYBid+XV84LZ88gviJZWBsC86l/hQly87TFfYINyGVA==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48g9q9y4xy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 14:54:29 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b47173ae5b9so698816a12.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 07:54:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755183203; x=1755788003;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KzOI1R5AmqgwHvOsxB+fLFbNEjWM3he7pbnJXPseqYk=;
-        b=oqnPY1fCySkmVXyoSiNGI5u2IQsXBIuaqOKxEX4RbaPqYvVq2W7HQqSCr71L9hMbms
-         GKQQeJ9MRS3MhzSITtPQBoANlpxJm1TO0bOjxrhj8gryc9H6b7dGJcPxHoxmsLVKmJqK
-         9NTPXE69x4la5HbX2TrzdODPoiST7hgz5P+1WKodQyxD+cfTUFMlhZqsKl5D7ZyUen0R
-         IQQG7r7lvOJSqJVrA4B/IQWAe7hqO1ateoZl+HaZ0I3dq2sDXdSwDKfsRYg5X3qdY11D
-         kBtMmxzAUzrJ4z6izXxtXxYfLDOsiAt4nCU16uBgVb1LOZtIWNI0gSkr88HSjYEH2D4H
-         eS0g==
-X-Forwarded-Encrypted: i=1; AJvYcCXC4yritg3L5D3gyZZKtoB0k/54dpvj0bhWbBhbAcrRbkZ5AViXh4NJeRYX1S5vYbZyaHLhriHAPqHD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiHgfKWbouhJ/iEj8Iw25s4cHpNPnqrsSNnwxT6mIBM4sypjmC
-	9Qz6d6YOsYoKPJKQuGxEXaon0bDBv0AUWHJMTlFOftBmTA6XKBdyzKZjLryLu5k/pHc=
-X-Gm-Gg: ASbGncsFQ1oBcrYLyjaLOdNghuyfY4RQUDPvIrIqxl1FdgevzjjpGSjSnHqll8vCIpG
-	zAlIyokG+IjJ8ozdYC5xHF//rpU/G5lAVUI1fou1UcAtkRzk+cmi4zNsOOi6ng7tj06dXUTWGKm
-	Z6HKnrLKTolnoUKXzsYeLJPTB1NH7MYAWSPrxfpnZCkp39cPaPcCYRJ4lTkkeTcjWxQFgUDa+nm
-	r6eamwRX62IdkpB8vHZWChbiVcLTA8w0PkwUM0g6otpp58E7+Vf9NVJy6Kt71X2x4uWP2m7syDK
-	XfkbOs50dzjCtLIslWrc73GArsPOGHFya7n1O6VoWvV8E7Oz/olJRDh+wHHzXWSpsMaaPTU7Ru7
-	7HyA8PNzL8ImqS6WJyT0NxYb9T2w+R2kpWEo06JMmTdb82gtRRzLydSbHt1XG5nd77BemfXj5S3
-	Q=
-X-Google-Smtp-Source: AGHT+IHZQPl7wPLYHM/KcEYiWAE0RJvui1GqMwr8hzIsejCa/j3IZ2UWYnVBxZ+MYPbjzDGWie9RZg==
-X-Received: by 2002:a05:6808:6554:20b0:434:b43:d498 with SMTP id 5614622812f47-435df7fd625mr1317435b6e.28.1755183203117;
-        Thu, 14 Aug 2025 07:53:23 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:2d9b:959c:3c59:5831? ([2600:8803:e7e4:1d00:2d9b:959c:3c59:5831])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-435ce879777sm1104886b6e.24.2025.08.14.07.53.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Aug 2025 07:53:22 -0700 (PDT)
-Message-ID: <d817f2c9-063f-4506-888f-f3c6faef53c4@baylibre.com>
-Date: Thu, 14 Aug 2025 09:53:21 -0500
+        d=1e100.net; s=20230601; t=1755183269; x=1755788069;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jnWjRH8kAJZ+wsaNi0TeGoupyd6TNOm/RN5MzRClQ+Q=;
+        b=RyJDUvJjkQQU2cKNGdw54XgTcZbg9lfaRVJo5C9P6Lkbu1D8PWCRjS7jbJxpSEC/Ma
+         5xDXPNGBV/1FjoTCNaAm0nmKCTxCwz2iL3B2V/H5P9e9G8rwTlfNu2n3C/F22k+9j/Os
+         szRgw40Rnv+Jq6NcASjP5B6sZVfZI/Ik+krlyt+4FMr97ASMX0XZV0ooabYy7KYyI34r
+         0xWA/vJYBQ/QBMSlSUWZszL7umsAw7N9EZFquXPjfcdl/RLbakDmKb0+XWJI2g/fwfUi
+         yH3YzrWlzOnMaa/i56N5gWR8HbR6jHjtwgMRe4labpWWLql64gedXcRokxENl8JPkXUW
+         V24A==
+X-Forwarded-Encrypted: i=1; AJvYcCVS1FZvDTHGBa2TxhEYFe6DQ6tNBKgjsQZwX92R5F2bTKZywXOXFiej72aiPuyGi8tVt4bzTCc3dsAT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIgVyWhDGPzB0r9om/h3rKhfgfzYq6In4DpFDXdOdbiX2oKGT7
+	xfdmImCcOPhGT49f8mtanZKrVvzet+P3XGF/4kr9ovRSei4R/QbGe6lAY+MdFmBkSeP+l3n848n
+	4Z071RoXDzq+/CpPxFrTA02q7oD3bDSL9DF0ScGvAOn3m+0RKCVcoycQe+8f9EhaU
+X-Gm-Gg: ASbGncu1dNnn+3mpGdW4BXcCFEZGDT08bduc7vzZFzB3pgfS61EJlgcpn1a1FxMGe3I
+	ErNFhxf51dU4BnMokACKSiZEF5n0eb6qNIIh7Nodng+qMf70an6HTOPausKdtIJlVZ1btKQKIKv
+	a2VJieWAvP9IBGjQ6wbu45sVMoo/q1eHRUeCWsGoMecm+k2p5JySXN9WI64a8nNjFJ91n48K3Ji
+	Bw/f3VLSgy6gj0pRP4D6a64hAZaHQ0oWFrQ53p65LLiyVy7AJbRchmzyM1M3JT4hPJ01OSNTjYi
+	HtV474TkowsrBhLSb3IC5oIKnirSzC8O8mjNSIUWsvVe2F/njRo6mySNKu2lqGY=
+X-Received: by 2002:a05:6a20:2591:b0:23f:f934:19b9 with SMTP id adf61e73a8af0-240bcfc6b0cmr5657426637.14.1755183268832;
+        Thu, 14 Aug 2025 07:54:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHxL/zbaKfeuWHI0X0OWza3tJ4fqkY+GAuDg0fSfwz8nRrmhB07AjtsS2mow3MVEiJzFL3yKg==
+X-Received: by 2002:a05:6a20:2591:b0:23f:f934:19b9 with SMTP id adf61e73a8af0-240bcfc6b0cmr5657372637.14.1755183268365;
+        Thu, 14 Aug 2025 07:54:28 -0700 (PDT)
+Received: from [169.254.0.3] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-76be718b2d6sm30715274b3a.56.2025.08.14.07.54.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 07:54:27 -0700 (PDT)
+From: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Subject: [PATCH v2 0/3] Add interconnect support for Glymur SoC
+Date: Thu, 14 Aug 2025 14:54:18 +0000
+Message-Id: <20250814-glymur-icc-v2-0-596cca6b6015@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: adc: adc128s052: Simplify matching chip_data
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>,
- Lothar Rubusch <l.rubusch@gmail.com>
-References: <cover.1755159847.git.mazziesaccount@gmail.com>
- <b91ca4c576aac225525bbd7cd904bf684e796987.1755159847.git.mazziesaccount@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <b91ca4c576aac225525bbd7cd904bf684e796987.1755159847.git.mazziesaccount@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJr4nWgC/0WOzW7DIBAGXyXi3LX4NdinvkeVA15DQoONA7bVK
+ sq7lzStcllpDt/s3EhxObhC+sONZLeHEtJcgb8dCJ7tfHIQxsqEU66oYRJO8XvaMgRE6FBJ1vJ
+ hbD0jdbBk58PXr+zjWNnnNMF6zs6+FJq1TDElVCNpXWsODBY7X+xns9g1xPdUSnPdbMQ0TU09f
+ +LsrluNW5/2V1tNfZbx/zKMCS+AaV5zitFl2CWozhjtKTdWj/0uH87BFgePJ2HtDwNTslOUMWM
+ QOzdYLThyNVAhRq+tEogoJPPkeL//AA9wekIzAQAA
+X-Change-ID: 20250814-glymur-icc-9c54162bd6f1
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
+Cc: Mike Tipton <mike.tipton@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Authority-Analysis: v=2.4 cv=CNMqXQrD c=1 sm=1 tr=0 ts=689df8a5 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=TcYuhgBYnFsORjw0c20A:9
+ a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-GUID: KsBMw2UoTXV3Bz8hpQL3mm6EjINXXpEr
+X-Proofpoint-ORIG-GUID: KsBMw2UoTXV3Bz8hpQL3mm6EjINXXpEr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODEyMDE2NCBTYWx0ZWRfX+xUaRkXP9RhU
+ 7dgy2CL0FDSk8WV7LCYhXBvUYiLxvGbFGeybc48TZp7DDOnPOf7gAGrdKJ8IMsOwA7tJUdlvd1e
+ J/Mef33dXZk6zd/tJJd3EEVAobbeHJMlYNlQdiKljWi5t2nV+eYnAzBJWJFHecUfdpx2im6z2as
+ e3jTX7JYKIfRN8lKo4RYdc1J55zoYOMsTzjo+4WWiIP+uUZEJidS9ED5gHrOPnP2KOAmtyujaoe
+ lLNSiQ38pnkEaGd2or351gaGPXvW35IBDOz/fObleHDdTbnMvGt5xE4/D3n/pLeJk7kiKHviWxv
+ 6xzOAg3TeC+m+7vL+ep+D3O/oYtJ+FkZWPp8VOgMpUmY9iBErk4D4vgincsFb8H7sIOb7Xkgq9b
+ GDvi/6HA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-13_02,2025-08-14_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 phishscore=0 bulkscore=0 clxscore=1015
+ malwarescore=0 impostorscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508120164
 
-On 8/14/25 3:35 AM, Matti Vaittinen wrote:
-> The adc128s052 driver supports a few different ICs. IC specific
-> configuration data is stored in an array. IC data, residing in a
-> specific point of the array, is pointed from the SPI device match data.
-> 
-> There is no need to have the chip config data structures in an array
-> and splitting them out of an array has at least following benefits:
-> 
-> - Chip-specific structures can be named after the chips they support.
->   This makes referring them a tad cleaner, compared to using a generic
->   array name with a numerical index.
-> 
-> - Avoid all potential 'out of bounds' errors which can result if the
->   array is changed.
-> 
-> Split the chip configuration data array to individual structures.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
-> ---
-Reviewed-by: David Lechner <dlechner@baylibre.com>
+Add interconnect dt-bindings and driver support for
+Qualcomm's next gen compute SoC - Glymur.
+Device tree changes aren't part of this series and will be posted
+separately after the official announcement of the Glymur SoC.
+
+Changes since v1:
+  - Replaced static IDs with dynamic ID allocation in driver [Georgi]
+  - Enabled QoS config support for Glymur SoC [Konrad]
+  - Updated MAX_PORTS to 4 to support video master QoS programming on
+    Glymur SoC.
+
+Raviteja Laggyshetty (2):
+  dt-bindings: interconnect: document the RPMh Network-On-Chip
+    interconnect in Glymur SoC
+  interconnect: qcom: add glymur interconnect provider driver
+
+ .../interconnect/qcom,glymur-rpmh.yaml        |   84 +
+ drivers/interconnect/qcom/Kconfig             |    9 +
+ drivers/interconnect/qcom/Makefile            |    2 +
+ drivers/interconnect/qcom/glymur.c            | 2259 +++++++++++++++++
+ drivers/interconnect/qcom/glymur.h            |  185 ++
+ .../interconnect/qcom,glymur-rpmh.h           |  205 ++
+ 6 files changed, 2744 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,glymur-rpmh.yaml
+ create mode 100644 drivers/interconnect/qcom/glymur.c
+ create mode 100644 drivers/interconnect/qcom/glymur.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,glymur-rpmh.h
+
+--
+2.34.1
+
+---
+Raviteja Laggyshetty (3):
+      dt-bindings: interconnect: document the RPMh Network-On-Chip interconnect in Glymur SoC
+      interconnect: qcom: icc-rpmh: increase MAX_PORTS to support four QoS ports
+      interconnect: qcom: add glymur interconnect provider driver
+
+ .../bindings/interconnect/qcom,glymur-rpmh.yaml    |  172 ++
+ drivers/interconnect/qcom/Kconfig                  |    9 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/glymur.c                 | 2543 ++++++++++++++++++++
+ drivers/interconnect/qcom/icc-rpmh.h               |    2 +-
+ .../dt-bindings/interconnect/qcom,glymur-rpmh.h    |  205 ++
+ 6 files changed, 2932 insertions(+), 1 deletion(-)
+---
+base-commit: b1549501188cc9eba732c25b033df7a53ccc341f
+change-id: 20250814-glymur-icc-9c54162bd6f1
+prerequisite-change-id: 20250812-glymur-clock-controller-v4-59887f028a7d:v4
+prerequisite-patch-id: 3f2811249c8a302f59430e6c66d38f42058c38d9
+prerequisite-patch-id: 0f69dae48c7a4c6b0b39d0edc5d5f114ac464e13
+prerequisite-patch-id: fa24158f66c7291a63dc20e384d13a44ad008858
+prerequisite-patch-id: de42c5bedc98965fb14256108743307f738dc34a
+prerequisite-patch-id: f1872a81e0bdf89b2e26397d8eb6dc1ce7eeac1e
+prerequisite-patch-id: f8c9dd47ab2e9baaea8acfa0698cd48908ccec47
+prerequisite-patch-id: 4d61cfd61bf324419714776a0a5c9686dcb944ea
+
+Best regards,
+-- 
+Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
 
 
