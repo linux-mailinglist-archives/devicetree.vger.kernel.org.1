@@ -1,128 +1,200 @@
-Return-Path: <devicetree+bounces-204674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E7CCB26553
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:25:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1B1B26565
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:31:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D1E0B612F7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:24:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC19BB61A62
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:29:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1BF2FCC1D;
-	Thu, 14 Aug 2025 12:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B7B2DAFCE;
+	Thu, 14 Aug 2025 12:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TuMOvynp"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="lCFuXntZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7DE28D8C1;
-	Thu, 14 Aug 2025 12:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC2961FCE
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 12:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755174331; cv=none; b=j8BjRXFpudzJVe2N9pY0zbI2KWwPVosdbFmKmxDBTT20J5LE1Q3JRiZlbeiZc0xZpcat8JciSPBdXqIkKrC4v/GRQCcVyPdjTJMopbXOTLRbQCA4VBTNR1Rh53z9L/lNjuBHNHLnDzqFOQQc5PiJW/14Rulmd/g6WkDUXlLnnzw=
+	t=1755174658; cv=none; b=lwHBEnWxuJzR74351ZxM339xR9v0jCq5SA/THPQunbsXo4SUm3wNNISRMMJaoDzCl8q2PRsAn+GJMEBhHNN66OuLXhbV4f5BNiDNHz2iJzKCf4M9FFHV+EdDI00L/BptkARgC7uvluswA+C6YohPfY/RXUVoCn4dzqdr+Cr82bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755174331; c=relaxed/simple;
-	bh=TMRNS4/NevbbcdPgGkBj7pDR66311bh0nxYKiBtY5QY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bl7ArKGXdapayCV9cUZDPAZB5UT5AOQknXTcCbp2g42wJd7zJBtP3qxR3vrTJRXEIPspVSPJbYk6RNeYuoO9vMXCJ2humudO4ggNqjMVxgWpMaVfs9l27Y8g0G5ufNNgpP+A5qVknuqzZZwmdSKd+0C1n8YfsEcMTwH/XI2EvGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TuMOvynp; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb78e70c5so139296566b.1;
-        Thu, 14 Aug 2025 05:25:29 -0700 (PDT)
+	s=arc-20240116; t=1755174658; c=relaxed/simple;
+	bh=ehYxh88qbynkJXrnR7yfu3EhZJI6SZZ9KH93azTco3k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MZKlLsrB/y2yTktLSKmfagY/0Nr+vRzec0Ca6TOfJeAAbECznsrzqkzbHh/BPiNUVT/wyUwrEzpIzYNs2KvCbJYKPhDayvv2moZsxQKHuYR8m5LnUHaJ7QOxPehOIrBsTu5FKuN+qoWGE1+phIizkgNmIjRUrLXmWl7ah4pY3UQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=lCFuXntZ; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-74381fdbdbeso472805a34.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 05:30:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755174328; x=1755779128; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6Zn0zTLrLFpjS2ruyB+t+7Ky512n2nN3JSsV0usxRq4=;
-        b=TuMOvynpslpMIGTzSuEVc4YjxshwzNtxYC03XRbUFYXSaefQ/oBWnAWSIg4DmcjzPV
-         u5LF809Ruwp9iAMDBYl7fx0FI01FKnVCkfR7uiaK/nRbC+Tm/xEC2SKP1xaJO2KvsboQ
-         mhIroqtnMMd+9rPnjs9r1hyUS7Em8FDPcBWHuU3dBFiEx0oIhmwfUONdMXE2/yJiYDA+
-         +JtYoXMrLRRpvrRGVzCrpMBosyfHWniOykvMtqhHJ35+eimbYbfgWS7ZjpPyhqjqyfzJ
-         vD5USKBsnAUOxneHJsk9NNvVnBJkBa7mZUEtXFjekRrsrSiDxWhac2cLoY38alG61KCY
-         UjNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755174328; x=1755779128;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755174655; x=1755779455; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6Zn0zTLrLFpjS2ruyB+t+7Ky512n2nN3JSsV0usxRq4=;
-        b=Z1fFRVolKQVZJtMUmOHGKEv0/nttccW2G6iE8d1xbB4e5eGsieBGUHxIOlcanf7q7P
-         bxsobgNi6wpdRcnkbga1eT4X615QKJwH168jmqM2iSGpr149IJmZDLeQj01CGIDY/vUW
-         kQ+DVJEsecj6mjeGCL5tgg/fFFW6y5TK1tk+xlcbzbXOKps/XYbREhtAvSyusb4A4DS0
-         UYHm4yRKXBy9WYPrhQvZ0G44TA+1RcrsTPqSYQjVDH5k8IBUslmvKUudUt7CypHC8L9a
-         EgxfAZx1rCLnj9mdFJxtwAyjEKtp2a4HE6dJk+AjgaRCRuF4a2T1wa/54LoQlIHIWSeK
-         lNUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXyWhTHMdSJGHPBDTOWbAUOWcGuAvjNTY5zsO24EzhPsV9Pt0vsPnvfLNbHZjZNCl6HIH/r0qZtdBff@vger.kernel.org, AJvYcCXzSuaJfOsHeqlHGTa8MXcsWpDtdTX8hsm5DYD4gmeKzpQ2quh5+4rl5YIcoijDY7iTjGdegRQPNK5FkmoX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4wogmbYfnC2olu0thAfx8pvB4Tgbk5nczk9F7gA5uJ8ten86t
-	4/Udt4hXeaTpWJ4nwgG1NxvWHp/wTVDjOzdokJ7QCsGGFqnTj233zKq7
-X-Gm-Gg: ASbGncvnfh+EevxWnK969KvzQOfhi0kquGKqD8Z0B8tmcKB4wZc82B3fEOoOlufZOQ/
-	+/TtcpMc5zeE20d/qKz/7Svys4RnvCaCXa+xO/WQOFYjIc1G2F5CEeaMoARz/ilAXV1NHsd3fYr
-	l5JZwPRsnnBr3CLIRaJRODqEvija2ZtbRduX0uvhm1IXz58cy0/fvYaaP5q6GJi+vYoprtCAS0J
-	kvgzqEVeacXO9n6G+2+We3Lk7TICi3ClETUeWo5y+NVZlCpWbt4rZ8d0FcEKVZVdMsbMEPLirUk
-	4wfGexNBnb92di+c6GVZtXzuMVA+BYnWG4otnQgNsIv+VadupgKH9mzSJ2GGQwvwqWw7pw3exdt
-	O3rfyBoq6KnJPOaJxgK5jwNQrBM1opPEQc0es7aM=
-X-Google-Smtp-Source: AGHT+IHjsxCUiYW/uoWEjgeek8aaBeXGwkkMXVAUYPiTK0zQoad1DLVXJqClmAJwLq5qVxazIWZmOQ==
-X-Received: by 2002:a17:907:7ba8:b0:ae7:cb7:9005 with SMTP id a640c23a62f3a-afcb98cef01mr245291666b.35.1755174328076;
-        Thu, 14 Aug 2025 05:25:28 -0700 (PDT)
-Received: from giga-mm.home ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af937c86989sm2364446966b.74.2025.08.14.05.25.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 05:25:27 -0700 (PDT)
-Message-ID: <2c04e14269f1462a76ba0b4f42f90501ef57913c.camel@gmail.com>
-Subject: Re: [PATCH 3/3] eeprom: at25: make FRAM device ID error message
- more precise
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Markus Heidelberg <m.heidelberg@cab.de>, Arnd Bergmann <arnd@arndb.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Christian Eggers <ceggers@arri.de>,
- Jiri Prchal <jiri.prchal@aksignal.cz>, 	linux-kernel@vger.kernel.org
-Date: Thu, 14 Aug 2025 14:25:27 +0200
-In-Reply-To: <20250814111546.617131-4-m.heidelberg@cab.de>
-References: <20250814111546.617131-1-m.heidelberg@cab.de>
-	 <20250814111546.617131-4-m.heidelberg@cab.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+        bh=Ywvq4778+XMT9D9uuqrnqBrIL1jeEJwzcsXhXKprWOg=;
+        b=lCFuXntZ24gff8ibR4J05GPO/qhl9PwWRUcg/yQX0PC7Py0mCS7IVpTUyqIL/Kc3Qd
+         6EUJmyiIHvUv74m+J9DuhrWDrQOPIypKbX5Gq5iXEuuPueu+QfuYuaYf0cNA3ilYJxHG
+         yhx5H00rNzjIg+GGBl/vVOMl/pxqQg177HF3IRXElXuxwvAmc35uhJRmHuU0WdRUlLXH
+         qClhev5rX1TOfc4DnODEIXixz7auGrYqKp9HEeoJdgX4pXot8C1X1NTV/SdR9LIEkIar
+         p/qhCI7k8odMBj8teZmnbvtNoYBKsds43oB8yKynMwhSbPUVC7Yf3AeMrHmZY6k9j/Dd
+         pOzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755174655; x=1755779455;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ywvq4778+XMT9D9uuqrnqBrIL1jeEJwzcsXhXKprWOg=;
+        b=uE2n2YAy9ywZdne3aO9ML9SGAYSkRQ12wqNaJ1vfyMp81q6pG2fH5hZheVZpVQruss
+         ULFSlXUopy+pQ3BbbuH6O/d+38T7WslJTXgykLYUrCIAmDrlvrrfTN4JWYYiMNZvnRp1
+         o8lhcxnouBs47domleF7xN37jp4aP7TlWMtdzgCtwttAxFoCBgdbQcXd/qecy85bPgcx
+         bAd5M+ND5Xlf0J+iRP7KZuOECTit+Gy5phF68ATzviikPWCupqWjV1h3wdB3iqGlPl87
+         VFVbjVn/IaevhKKQviqxVpHuMwUfgkJekk+wXZqaB0gbZiJIMG3kdWGw+Q75yAtFE1ED
+         CeTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWngTd+uGGMGfZDZ2MnEvtit2HAxnseUwolV9CF0KmcGbPb1lXUwRJMzeZJdtjzaGoM5jUZEUl5WJPP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUOgfHXgimOrhQ5McpAQR5e/jQKuCo27aabxTpzwgYJnX46aTV
+	NKzhs6IbipxzwScK78vDxCk8gKv+MWniV1e5bn0scu3NFvM3Umathn+X58vN7fz7OTc=
+X-Gm-Gg: ASbGncue0B0XO1XcO6ODLamvhSlB/bc1vWNeBcj4vPntP4999InQvS/g7aDEBJJFIf3
+	9svpa7wl7vFuM7IrIsk3705sEZG/NIrfA/VDYIhPblbZbabzCrYx0WbKVitjl/7iyLLS/7Cj3Hn
+	dSr8wKe5FyAMb7NRNFkY4sJoZTmNNx57tTNUmGKk4staV2pA0eq/0VgtQXAHHnHdo+8HSrVyk7q
+	n0z9s+2duqU10btQ3LeR60lWKozC+9M6KNj3tViGmIDgkAlUzSWtJpPdWG4wy7NN7S8LSrUE0el
+	VFiCcy5gQQCOh54fnFO9yrsMtszRKoZ0cZMDbdr/FBgGBZQqrMtz7HA/0L3+bEdonwyyGWrrSi9
+	rd83XjKdwoReMc5GCSVFHpMlb/Xutz3DtTzq1FtsoBlr/64QZhYSQxYh2iXBTig==
+X-Google-Smtp-Source: AGHT+IHBzdCRrljPnkfDW8jmr3rpPTUxAN1tCDdoZAzws2zd3haB25jvZwxqllCVG7gPmDZID86wtg==
+X-Received: by 2002:a05:6830:3497:b0:727:3439:5bdf with SMTP id 46e09a7af769-74382bc3f86mr1632907a34.13.1755174655075;
+        Thu, 14 Aug 2025 05:30:55 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-50ae997ea9fsm4538196173.17.2025.08.14.05.30.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Aug 2025 05:30:54 -0700 (PDT)
+Message-ID: <8f7bac84-623b-47dc-bc58-dc0013a85877@riscstar.com>
+Date: Thu, 14 Aug 2025 07:30:52 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: phy: spacemit: add SpacemiT PCIe/combo
+ PHY
+To: Yao Zi <ziyao@disroot.org>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, vkoul@kernel.org, kishon@kernel.org
+Cc: dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ tglx@linutronix.de, johan+linaro@kernel.org, thippeswamy.havalige@amd.com,
+ namcao@linutronix.de, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
+ inochiama@gmail.com, quic_schintav@quicinc.com, fan.ni@samsung.com,
+ devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-pci@vger.kernel.org, spacemit@lists.linux.dev,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250813184701.2444372-1-elder@riscstar.com>
+ <20250813184701.2444372-2-elder@riscstar.com> <aJ1PJBax-Pj983OZ@pie>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <aJ1PJBax-Pj983OZ@pie>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2025-08-14 at 13:15 +0200, Markus Heidelberg wrote:
-> The error description would be wrong in case the "size" Devicetree
-> property is missing for an FRAM without device ID.
->=20
-> Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
+On 8/13/25 9:52 PM, Yao Zi wrote:
+> On Wed, Aug 13, 2025 at 01:46:55PM -0500, Alex Elder wrote:
+>> Add the Device Tree binding for the PCIe/USB 3.0 combo PHY found in
+>> the SpacemiT K1 SoC.  This is one of three PCIe PHYs, and is unusual
+>> in that only the combo PHY can perform a calibration step needed to
+>> determine settings used by the other two PCIe PHYs.
+>>
+>> Calibration must be done with the combo PHY in PCIe mode, and to allow
+>> this to occur independent of the eventual use for the PHY (PCIe or USB)
+>> some PCIe-related properties must be supplied: clocks; resets; and a
+>> syscon phandle.
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   .../bindings/phy/spacemit,k1-combo-phy.yaml   | 110 ++++++++++++++++++
+>>   1 file changed, 110 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml b/Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml
+>> new file mode 100644
+>> index 0000000000000..ed78083a53231
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/spacemit,k1-combo-phy.yaml
+> 
+> ...
+> 
+>> +  spacemit,syscon-pmu:
+>> +    description:
+>> +      PHandle that refers to the APMU system controller, whose
+>> +      regmap is used in setting the mode
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> 
+> Clock controllers and ethernet controllers all use spacemit,apmu to
+> refer the APMU system controller. Do you think it's better to keep them
+> aligned?
 
-Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+I do think it's better to keep them aligned.
 
-> ---
-> =C2=A0drivers/misc/eeprom/at25.c | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-> index c90150f72836..e2868f7bdb03 100644
-> --- a/drivers/misc/eeprom/at25.c
-> +++ b/drivers/misc/eeprom/at25.c
-> @@ -399,7 +399,7 @@ static int at25_fram_to_chip(struct device *dev, stru=
-ct spi_eeprom *chip)
-> =C2=A0				id[j] =3D tmp;
-> =C2=A0			}
-> =C2=A0		if (id[6] !=3D 0xc2) {
-> -			dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
-> +			dev_err(dev, "Error: no Cypress FRAM with device ID (manufacturer ID =
-bank 7: %02x)\n", id[6]);
-> =C2=A0			return -ENODEV;
-> =C2=A0		}
+And I appreciate your noticing this.  I don't see anything
+that's accepted upstream that defines properties like this,
+but I now see this:
+  
+https://lore.kernel.org/lkml/20250812-net-k1-emac-v5-2-dd17c4905f49@iscas.ac.cn/
 
---=20
-Alexander Sverdlin.
+I did a quick scan for what others do when a property's
+value is a phandle, and other than just "syscon" it seems
+that word is omitted.
+
+So unless someone else suggests otherwise, I'll use
+"spacemit,apmu" for this property in my next version.
+
+> ...
+> 
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/spacemit,k1-syscon.h>
+>> +    combo_phy: phy@c0b10000 {
+> 
+> This label is unnecessary.
+
+OK.  I used it when testing USB but we can add the label
+back when that driver gets reviewed.
+
+>> +        compatible = "spacemit,k1-combo-phy";
+>> +        reg = <0xc0b10000 0x1000>;
+>> +        clocks = <&syscon_apmu CLK_PCIE0_DBI>,
+>> +                 <&syscon_apmu CLK_PCIE0_MASTER>,
+>> +                 <&syscon_apmu CLK_PCIE0_SLAVE>;
+>> +        clock-names = "dbi",
+>> +                      "mstr",
+>> +                      "slv";
+>> +        resets = <&syscon_apmu RESET_PCIE0_DBI>,
+>> +                 <&syscon_apmu RESET_PCIE0_MASTER>,
+>> +                 <&syscon_apmu RESET_PCIE0_SLAVE>,
+>> +                 <&syscon_apmu RESET_PCIE0_GLOBAL>;
+>> +        reset-names = "dbi",
+>> +                      "mstr",
+>> +                      "slv",
+>> +                      "global";
+>> +        spacemit,syscon-pmu = <&syscon_apmu>;
+>> +        #phy-cells = <1>;
+>> +        status = "disabled";
+>> +    };
+> 
+> Best regards,
+> Yao Zi
+
+Thanks a lot.
+
+					-Alex
+
 
