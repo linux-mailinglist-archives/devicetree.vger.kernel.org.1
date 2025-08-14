@@ -1,165 +1,205 @@
-Return-Path: <devicetree+bounces-204700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0202EB26746
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:29:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DC0B267A9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 139D15E4946
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:24:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 755B01CC0FD6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E023002C7;
-	Thu, 14 Aug 2025 13:23:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277183009E2;
+	Thu, 14 Aug 2025 13:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wBMrmAc/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZzRxVVY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DE03002BE
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 13:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E45C2EBDDD
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 13:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755177836; cv=none; b=FwzZ4mXWGAtIPuJkfwrbXf/sMrae++8rg0yKc/FzJC4P5Ok6UlOmshx63aVo4dHSKxwjboluBMxtPwVf4Bfly+cuWXb1kXh44kwaTL7wKxkf0uk31VinC3nfTVCbzQ4OUcSqRdvtFOr8kWbyHpYmCcAk41L58bXy8kHJm5aO+/k=
+	t=1755178124; cv=none; b=uK6SSUzBnie9NEngBf97GzIr6QYYEe+aVYtsAitCEY3TpbaQ7opfg8HyvMNDlP1UVpmjsVGTvj1j9ik40Mh1xL2DniPChUPGg/flMtolvn78Q5zIJ4PUm/A7MVj8LOm5zI436HKxPlRqqMb8DA3GnV4bgvvCpY9qtWVbeLdnREY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755177836; c=relaxed/simple;
-	bh=j2lJMHwL/mryALVVeqNju/rLZLU5pws84MPhbxVUNy4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m/aFvBtOUoh2wWZaKg86sb1DFTJiAvygC4qWil5H1/JbaPXFEoY6VIW3ud06NKzgijqQAmHmekCz0d3ZNNgCSX0ch3zunEYRjzsPv9t4+MfOm+5pXFKUNfwiYi5pE/tw7KfJo75Fc+Me1o6x5tff3mv1yrxjfJY8p049tPSoc9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wBMrmAc/; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45a1b0bde14so4667805e9.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 06:23:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1755177833; x=1755782633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hEb06N5Fa4rPEtmflX9srzTgGFvnEZaC4f274YC/kn4=;
-        b=wBMrmAc/ssv8H3ItNktg+xvObTxNhaBKsCut3lcqhwweVBmxpBbddYH7grGRfTvCur
-         ThyImNueh+zmu3bkFDzKHBtGWcefrFXwyPyzrAGRGtlxaTe3BQPmijo3PiJaoYUgra4e
-         tOYoQfklvzP7u37OvKQLpGCrBpZljYpOKGzNdogVvhZI60qNULR+zkN8UiBKJhZZji1B
-         4v3kI/bR5pZPhwzsfm2hH1+DYmCQanqtwR6H1VnVzb1rrCTe28tXrIlVkF1LrZfq37OI
-         5/y3IKh168mzjhICLnu3VbNSrnXfqbatIBY7Wox4mU8AoJg/aEiFBSvzeEoPfQs3/o0E
-         OhxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755177833; x=1755782633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hEb06N5Fa4rPEtmflX9srzTgGFvnEZaC4f274YC/kn4=;
-        b=JA3naHBotdzBPx4DR1UKfCu2LefO9pO/tiUDoLRokzaO7veYnuo7HbxhqMX74PPC7Y
-         qGgplG07RKIGVbmHpD0WHLk9t4xXH9NYxOjpkdFDDX8daP+oy0dK8wHwOdHK5Q7LfMdU
-         mzJQWKHYisdMcAbSmMzsX+sah32SGAVUtP4k/KvdP1Xhby+cJxN3NJKnmfPl8cvoB6qn
-         79biE9Ykj2/p+z8MXf0QeQW3gQAla5HU4KOQVK2bsr6C0WmWLPT1JkV3NaqyCVtLsX6K
-         DFBfNZsfugVMhTM6GPc+6niai78R5Z/jjlJrZfWDJozT2TOMSkrlW5e+HIuRXR61hyqX
-         Mouw==
-X-Forwarded-Encrypted: i=1; AJvYcCUe7Qyxf9lHy1YNGtgwjodMnzYQB9rbHnJvrumU0WsHDqBlLrQt83deMpbLEviOCGAh9hWtg4B9Tmrj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+gKtj7Rq1yHHx0xeB3ooyUg2cWex995/wgGUX+5FdXPY3YKFP
-	mtlnSlzzWwQO8Y8aUsxgUsGgE1U4pF7j/BCn4avn4ZpmR7cK3TmRruDsqFGgUFbQ2Xw=
-X-Gm-Gg: ASbGncudUTs4v5h3h+ZFhkPSYpCfHFvdZUGBRSWvEFzeMqTQKIQ30hlCTQW2JTzPGjf
-	HV4RV+btX1hJdEyt44CC0/4RbIJ8bRyBqwAmC6UdrJpxw70+wkepBfptw9Lhv4Mnyzd37VHQMuE
-	wyN118ZvHGVgxOHz7rA6ZNqQsK5icAw7egQVgybh8WKFLyoHmms8gK/c8AAIgXdDbFnbxURDUH9
-	5x/ppSCJXwkKOifZqVBwrdWjYliQ0zfF9iuPBovue2oxjrs02dp2fBMQG4FIUog+T55JWj+ofpX
-	AYaEEUp88swTOu5zP7J+7ovu3JwnPw1RI/GbR1FBWqC+eMdDYNWNbnVBYfcMhVdv/gfsRS8wjxH
-	kNF/3LcWAcWoLb73BFapYjqzOuNmIemAb/glizhcz+vOb/YJuVCkeFJK7UYgczg==
-X-Google-Smtp-Source: AGHT+IEeWDaYHaX1ixVeGZrg1niQ27if5sJYq8roDVzPgUppHd5n/Iw2kUmDMcNmiQTa/EJbkU3Psw==
-X-Received: by 2002:a05:600c:450e:b0:456:496:2100 with SMTP id 5b1f17b1804b1-45a1b6753a2mr28657505e9.31.1755177832928;
-        Thu, 14 Aug 2025 06:23:52 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45a1c70acc7sm20591415e9.25.2025.08.14.06.23.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Aug 2025 06:23:52 -0700 (PDT)
-Message-ID: <a0d431ef-effd-49b8-8124-0c0890a70ffb@linaro.org>
-Date: Thu, 14 Aug 2025 15:23:51 +0200
+	s=arc-20240116; t=1755178124; c=relaxed/simple;
+	bh=6PnAZe4A85kl6H3wMAfpDBn82Vzw+tysBiyt8VAF8vg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=JbYNx4/GFhMCZA782wQr5DFAKl2wRkISScySRf3AAJn60Sj0+a/KvNOTxpTo3U6llI4AOc2H8nXIrPh+P/l0TxuvQT7hWnzrIYaK7jLzBBBro6hVJZO0rJlzC8rwEfwjJg9gq55rLzv3KSR9wTtICJna9uQj2HQ1eHlfcUqp52I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZzRxVVY5; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250814132839epoutp014a1cec7c84be75187a2c81adaca8ca75~bpTM-ynTx2263022630epoutp01P
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 13:28:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250814132839epoutp014a1cec7c84be75187a2c81adaca8ca75~bpTM-ynTx2263022630epoutp01P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1755178119;
+	bh=L3ufGPnyrW0N3UVpr3/riCJH1PQGRtTjLIlg9Lbrstg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=ZzRxVVY5/wPdoVLxiMHEU5kpHumoK0S66oxLoNIMT+d4vhRsTLFh2Z+Ce+MWHDkOG
+	 LfhHE3VzzpQXqt+UWdVLNcSatvUVQVOcNZ4Qp7RPX1fWDait/49tMsZ/J7ivfIBZFf
+	 UNYY6UXvJ8rL0Fkt/Zonw5Ue59gdHqCKjTkPjq/I=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20250814132838epcas5p3c3693b0f5672407d67efe160b31fcc0c~bpTMXiWWT1937819378epcas5p3c;
+	Thu, 14 Aug 2025 13:28:38 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4c2mKK6nlKz6B9m7; Thu, 14 Aug
+	2025 13:28:37 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250814132606epcas5p1cdf8e1a97f5abe9d71dcd1b425a07648~bpQ_QWk6L2554225542epcas5p1n;
+	Thu, 14 Aug 2025 13:26:06 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250814132602epsmtip1c22abee846ffe43383ffacb28125aafe~bpQ7V3wRg3173831738epsmtip1Y;
+	Thu, 14 Aug 2025 13:26:02 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Vinod Koul'" <vkoul@kernel.org>
+Cc: <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <aJtMdHcidETZyiIp@vaman>
+Subject: RE: [PATCH v5 2/6] phy: exynos5-usbdrd: support HS phy for
+ ExynosAutov920
+Date: Thu, 14 Aug 2025 18:56:01 +0530
+Message-ID: <02f101dc0d1e$fd018ef0$f704acd0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Add the s32g2 and s32g3 FTM PWM support
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Frank.Li@nxp.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ghennadi.Procopciuc@nxp.com, s32@nxp.com
-References: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
- <jmhzng2ezrrqhy52y7eru2ik6uburn4rnilfwreqmvkeirqbnm@b5ksjlufwuwf>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <jmhzng2ezrrqhy52y7eru2ik6uburn4rnilfwreqmvkeirqbnm@b5ksjlufwuwf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJ+ZgWj3OwstM5ZbwFL0KmcSzrOlQIGOcp3ARbD4UABdmTpTbL41iug
+Content-Language: en-in
+X-CMS-MailID: 20250814132606epcas5p1cdf8e1a97f5abe9d71dcd1b425a07648
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250805114310epcas5p459aa232884d22501f5fefe42f239fecc
+References: <20250805115216.3798121-1-pritam.sutar@samsung.com>
+	<CGME20250805114310epcas5p459aa232884d22501f5fefe42f239fecc@epcas5p4.samsung.com>
+	<20250805115216.3798121-3-pritam.sutar@samsung.com> <aJtMdHcidETZyiIp@vaman>
 
-On 14/08/2025 12:54, Uwe Kleine-König wrote:
-> Hello Daniel,
+Hi Vinod, 
+
+> -----Original Message-----
+> From: Vinod Koul <vkoul@kernel.org>
+> Sent: 12 August 2025 07:45 PM
+> To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> Cc: kishon@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; alim.akhtar@samsung.com; andre.draszik@linaro.org;
+> peter.griffin@linaro.org; kauschluss@disroot.org;
+> ivo.ivanov.ivanov1@gmail.com; igor.belwon@mentallysanemainliners.org;
+> m.szyprowski@samsung.com; s.nawrocki@samsung.com; linux-
+> phy@lists.infradead.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; rosa.pila@samsung.com;
+> dev.tailor@samsung.com; faraz.ata@samsung.com;
+> muhammed.ali@samsung.com; selvarasu.g@samsung.com
+> Subject: Re: [PATCH v5 2/6] phy: exynos5-usbdrd: support HS phy for
+> ExynosAutov920
 > 
-> On Tue, Aug 12, 2025 at 10:00:34PM +0200, Daniel Lezcano wrote:
->> The NXP Automotive platform s32g2 and s32g3 have on their board a
->> FlexTimer (FTM) dedicated for the PWM. The same IP is found on the
->> Freescale Vybrid Family and the i.MX8 SoCs. However, there is a small
->> difference with some registers not available on the s32g2/3 and 6
->> channels instead of 8.
->>
->> These two patches provide the DT bindings for the s32g2/3 compatible
->> strings and the code to deal with the FTM difference.
->>
->> Changelog:
->>          v3:
->> 	 - Fixed dt-bindings subject prefix
->>          v2:
->> 	 - Merged the two booleans for the regmap holes check
->> 	 - Clarified why this is needed in the changelog
->> 	v1:
->> 	 - Initial post
->>
->> Daniel Lezcano (1):
->>    dt-bindings: pwm: fsl,vf610-ftm-pwm: Add compatible for s32g2 and
->>      s32g3
->>
->> Ghennadi Procopciuc (1):
->>    pwm: Add the S32G support in the Freescale FTM driver
+> On 05-08-25, 17:22, Pritam Manohar Sutar wrote:
+> > Enable UTMI+ phy support for this SoC which is very similar to what
+> > the existing Exynos850 supports.
+> >
+> > Add required change in phy driver to support HS phy for this SoC.
+> >
+> > Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+> > ---
+> >  drivers/phy/samsung/phy-exynos5-usbdrd.c    | 123
+> ++++++++++++++++++++
+> >  include/linux/soc/samsung/exynos-regs-pmu.h |   2 +
+> >  2 files changed, 125 insertions(+)
+> >
+> > diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > index dd660ebe8045..5400dd23e500 100644
+> > --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> > @@ -2054,6 +2054,126 @@ static const struct
+> exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
+> >  	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
+> >  };
+> >
+> > +static int exynosautov920_usbdrd_phy_init(struct phy *phy) {
+> > +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> > +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+> > +	int ret;
+> > +
+> > +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks,
+> phy_drd->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Bypass PHY isol */
+> > +	inst->phy_cfg->phy_isol(inst, false);
+> > +
+> > +	/* UTMI or PIPE3 specific init */
+> > +	inst->phy_cfg->phy_init(phy_drd);
+> > +
+> > +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks,
+> > +phy_drd->clks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int exynosautov920_usbdrd_phy_exit(struct phy *phy) {
+> > +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> > +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
+> > +	int ret = 0;
 > 
-> Applied to
-> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-next
+> Superfluous init..
 > 
-> with this merge conflict resolution:
-
-Thanks for fixing the conflict.
-
-Restested it and I can confirm it works as expected.
-
-
-> diff --cc drivers/pwm/pwm-fsl-ftm.c
-> index 6683931872fc,e0069dbdb02d..000000000000
-> --- a/drivers/pwm/pwm-fsl-ftm.c
-> +++ b/drivers/pwm/pwm-fsl-ftm.c
-> @@@ -396,7 -428,9 +416,7 @@@ static int fsl_pwm_probe(struct platfor
->    		return PTR_ERR(chip);
->    	fpc = to_fsl_chip(chip);
->    
->   -	mutex_init(&fpc->lock);
->   -
-> - 	fpc->soc = of_device_get_match_data(&pdev->dev);
-> + 	fpc->soc = soc;
->    
->    	base = devm_platform_ioremap_resource(pdev, 0);
->    	if (IS_ERR(base))
+> > +
+> > +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks,
+> phy_drd->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	exynos850_usbdrd_phy_exit(phy);
+> > +
+> > +	/* enable PHY isol */
+> > +	inst->phy_cfg->phy_isol(inst, true);
+> > +
+> > +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks,
+> > +phy_drd->clks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int exynosautov920_usbdrd_phy_power_on(struct phy *phy) {
+> > +	int ret;
+> > +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
+> > +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
 > 
-> The pro tip here to make your upstream maintainer lucky is to work on
-> their tree or next or at least the latest development release and make
-> use of `git format-patch --base`.
+> Reverse chrsitmas tree pls
+> 
+> --
+> ~Vinod
 
-Ok noted, thanks
+Will address these comments in next version of the patch-set (v6).
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Thank you.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+Pritam
+
+
 
