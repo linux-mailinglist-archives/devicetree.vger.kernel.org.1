@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D8AB25B59
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:55:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D8CB25B6A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7ECA724B5B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:55:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0250117181C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 05:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159F922ACF3;
-	Thu, 14 Aug 2025 05:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7CD2264B1;
+	Thu, 14 Aug 2025 05:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ndjiftL7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FU61HHVU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1A882264DC;
-	Thu, 14 Aug 2025 05:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEBE1E7660;
+	Thu, 14 Aug 2025 05:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755150907; cv=none; b=bPKQz54koOMHZcXbZ+R3+LSq1zwGfk9qnbJDKG+iQ0sWn+zOllt6LZ2XNNdCJuzgzwuFJS8D2LowWUeY8EkiWFq4t58Bbs0hPpiKQ9oZwI1s7axP006MuAK2AZaS9SW/W7nihMONCQGrFIsTzpnE3Y2ccFb3CW75w48qNOa29vA=
+	t=1755151127; cv=none; b=jkIIdsMkQV99DuJJ4LaSowEz4cKR3eyTPQ82KUtWVlDUCLB4Yf+6lyrceG/6wAT99HlmjyXJdml/cRma5i5Sxl7Bqb4yr5wpZkrB9rY7q1WkDNzdl5KDZgAW5ldv5vHsx3uDxE9cfYfUPwlgMYZXO1nDKd3qcZOE5L7R1DZIpnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755150907; c=relaxed/simple;
-	bh=bbyK3ySf7EsEeidieaJF4Q2vkvws/lNmnML01l39Usk=;
+	s=arc-20240116; t=1755151127; c=relaxed/simple;
+	bh=YqjGY16kAIhfftSdmD6Uo3e3M9wXkFLFyaZhRsF6uvc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HI0Xr2pb/NZfvcvuV90hEvsGMCq/g3aH5zIU7apihmcGXe8RUb2CeM5iBNUm8z0cT9Vj8flZ7qGb1Kf4wcY8T5OLAZbeaa4XtQbwBstrXgpSN4nLosDJS3VrSIUWagGf+vm9aGFIYtVOSYw53LdQRYiDfxcl/Dr/5EsFJEm7dbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ndjiftL7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF20EC4CEEF;
-	Thu, 14 Aug 2025 05:55:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jO96kmRGj9GC+J980ndryQeWbzjrBLXpbAQsZJqmcMxjUNZGGPfSQcY1cHt2EQvEkVnttIVa6AYoQEuTbgZl6gt/JYY6zC+gr6AgfBQUV+rPggNFs4SqnGHs2bIunC7mMcj/UxYfvXFjM/NwU5zSgU23mS7Xp+Ovq7flNZDa/JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FU61HHVU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5932C4CEF5;
+	Thu, 14 Aug 2025 05:58:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755150905;
-	bh=bbyK3ySf7EsEeidieaJF4Q2vkvws/lNmnML01l39Usk=;
+	s=k20201202; t=1755151127;
+	bh=YqjGY16kAIhfftSdmD6Uo3e3M9wXkFLFyaZhRsF6uvc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ndjiftL7TKYfTnMIkL/oW8XmDqdSNKSgnBzMFxdCBIpupvvghm2XUecheOgH6Dat0
-	 5L6W4e3lhJEzvrBAvoHUiykE8jWEoNK0bcbihG5sgTBASEWCijrMf2Zr2Gl5gWIEWi
-	 01aSIl7I44NGWRdwOM8QFYFteY5LPVY4wlvL3O0X9m3/KpawRJoHNNfQpoyWMkxOHA
-	 hnE0Ez5+RPRvkjGDfwTfpZjo8X1MLqsFSasFC06Orvym5ykdfQX6Pqxag/SxPTsFzS
-	 yXEJJVtpULFubUO3ewof0Py6VUDKhlAXVFiyw60663R+qOQWgfjqL1moLI/NvSqIsV
-	 /3tZnent6AEcw==
-Message-ID: <cdaf0a50-379c-458e-9ad3-c796979a856d@kernel.org>
-Date: Thu, 14 Aug 2025 07:55:00 +0200
+	b=FU61HHVUBIw4vtg1C3qgLCXVuIE7UMisPWwvGsDUGX18a0i1FuLbCTMusEXGg0CK7
+	 dY5tNu7X34ifWdqGZRmiEJnZW4lYrMBhfqL93UqBdQJPa8MIss64/B9raRHONdcbNr
+	 hHsFALy+ocQqwIP4nIOs33XVqPV+batVqCtiflEl/EQOYSj9Kxu5KxwObGMkKjSEXz
+	 JvLb98Ch+99EFWb4c7aueHqKYiKXQB0D1F2ETarmf4t97BQBM4lwaEU87OwQ34bBDZ
+	 xQj6aTJBqEpisxsApAXL8zecEifPAdliRTYVbIwOfqBJt02ArrYOrkXGyzlNyGYhMj
+	 ngaXr+uHcxyUQ==
+Message-ID: <f9104329-f2ca-4b50-855f-27b7328efd61@kernel.org>
+Date: Thu, 14 Aug 2025 07:58:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2 2/3] wifi: ath9k: ahb: add led pin OF support
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-wireless@vger.kernel.org, =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgens?=
- =?UTF-8?Q?en?= <toke@toke.dk>, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20250812192334.11651-1-rosenp@gmail.com>
- <20250812192334.11651-3-rosenp@gmail.com>
- <74d5ccda-89f7-4ddc-9574-ba7e8d4a2488@kernel.org>
- <CAKxU2N91q=d_c===x=AL+pwXkz8K1B8eXj8ePfm6dK_4cAk9Gg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] media: dt-bindings: qcom,sm8550-iris: Add SM8750
+ video codec
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
+ <20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org>
+ <683024c7-3740-cb9a-6924-33816edd63f3@quicinc.com>
+ <8d8dcaef-eb96-4e7b-9a0a-8b3836cb284c@kernel.org>
+ <e33a22ba-f82a-412a-b1fd-d1cd50f6b21d@kernel.org>
+ <93e35282-52a3-4c3e-8065-b2a6c363c974@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,26 +113,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAKxU2N91q=d_c===x=AL+pwXkz8K1B8eXj8ePfm6dK_4cAk9Gg@mail.gmail.com>
+In-Reply-To: <93e35282-52a3-4c3e-8065-b2a6c363c974@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2025 00:59, Rosen Penev wrote:
->>
->>> +             u32 led_pin;
->>> +
->>> +             if (!of_property_read_u32(np, "reg", &led_pin))
->>> +                     ah->led_pin = led_pin;
->>> +
->>> +             ah->config.led_active_high = !of_property_read_bool(np, "led-active-low");
->>> +             of_node_put(np);
->>> +     }
->>
->> Leaking OF node.
+On 13/08/2025 23:15, Bryan O'Donoghue wrote:
+> @Krzysztof 
+> https://lore.kernel.org/linux-arm-msm/fb8f154b-3da4-4bee-82e1-3a1597a35c46@kernel.org/
 > 
-> Not following here.
-
-You miss proper cleanup, leaking of node.
+> Are you sending a v3 here ?
+> 
+> I can also just add the OPP when applying this patch.
+DTS is independent and whatever discussed there does not really stop
+this patch. This patch stops DTS, though. v3 of DTS does not matter -
+the question is if any has comments for this patch (other than doing
+something opposite we do for most bindings...).
 
 Best regards,
 Krzysztof
