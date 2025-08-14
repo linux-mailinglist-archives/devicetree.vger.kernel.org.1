@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-204464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F90CB25B88
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:04:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3511B25B93
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:07:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA19B1C825CD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:04:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACC31587C81
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29847234973;
-	Thu, 14 Aug 2025 06:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96D60234973;
+	Thu, 14 Aug 2025 06:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JysSALKF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QNeWby6t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF43222B5A5;
-	Thu, 14 Aug 2025 06:04:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C962D23183C
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 06:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755151471; cv=none; b=E2GVz10MPlXXcSN2fIKPcdpEU7W5rMvY0RoMrD2bgL0dhNg6v1vjY9UfeuWlBZAxAkFhfjK4xJgD1Q/hj1tPZ74RJ53j77+GrF+bEJOB521pdmYhSkgqpda9AdZZ73wbhNDPBqT+chFUEpo7du8dSFy/6dciKk68lc3NlOh8ZGw=
+	t=1755151643; cv=none; b=J3BJhNTb/4BrrRjqhF/lRl9cnGOv8VvZ6ptXrsvaKgq++4i/nubWABseVulHeZbJrenpNrgR9NjqVZqCH9nredFmUNoKQC+orCu90wgMEZTJ7DkJ8Bon3J0Zxn1HISuRCMxQ6Nv1hvnRtchM3B0ntYolq2dINLMRozu81qxTf88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755151471; c=relaxed/simple;
-	bh=PliVYRFckN6WnUwDx+UBEk6ze8QuYS5HaH+wT1zWYJw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=JGXz0XdszeLUQC1Yr2ehX+B8eQx7yp3DPOVG2WTw8z1Qy16od/fC7BgrP10G+CX3CVv1VwSUg6Oc1AwWX35ZAHAM8bdD7HM3Gyg5v4iOLEHYsIpH3lbdqHyicu9dAz314+PZeaHynnyJpTAPsfoJqfSAN8DrYyPngRiR33xiX7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JysSALKF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0F01C4CEEF;
-	Thu, 14 Aug 2025 06:04:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755151470;
-	bh=PliVYRFckN6WnUwDx+UBEk6ze8QuYS5HaH+wT1zWYJw=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=JysSALKFp7CJ8TYAknlFqd5nhu2NMqvVRA0bVu5PJBFuzLfc5/ZyEDxYIzVkKp89r
-	 FTvQwCyLsjtCTMIrvr1LGaKQu6EFjLjsmPy1guzq2lQXkRUy6LDgmmKaInv7louYaX
-	 HRSVlKZx5DCtO0miaS4dxasLw1dOi/B8vYFw3KIldt/Cqw1QO1QIhfkLC50ui8go3f
-	 DDrEQYbvtBpKy5n0462kZJ0EoFG7dmLNjrnCQ0x345kAApYKliidek4x/L97s61qdP
-	 YNaO2yWv65rsBhjFnRnN/JJQxLhhVh6ewrnqQERigsLRv310Qlt4IA3el2+UrZljIA
-	 R+SbvBAzUYOFA==
-Message-ID: <913d9e9b-4cf3-438d-a15c-d16de4c7b6dd@kernel.org>
-Date: Thu, 14 Aug 2025 08:04:25 +0200
+	s=arc-20240116; t=1755151643; c=relaxed/simple;
+	bh=qd1dL4KjsD66W0eVfF0C+v/X0urvtophmCzwfogiKeU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=am9f1/dFcZ8iDVQ2A3bzogvNUw66kj+ivoG6JSHQQGsoABbCRSxNpErVsfffs400SZo1nNSZ32+ELj5AbQugZystofcUsbu+oWBIGAEJxVbxzDklbrnM6S6RAwBLGOkplOdzYD2/w4D70EEo2rMkutd6u3o/vZ/h5X2nghLDfcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QNeWby6t; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6188b7895e9so127335a12.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Aug 2025 23:07:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755151640; x=1755756440; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ci+IGtiZbOmlJlE3zlaa7XgorYlIQP8ww3YDEaztMAo=;
+        b=QNeWby6tZiTNcWn4QZ5+kcMB9W2tFjPauRFUmL92TUKzDocZSEVWF7gCByCHPPHO58
+         /ZOkya52mbmiP2BpqYp7zCKQOEC0CXIiWZnV6CAZL4XGx5uXgZaoQ9up0XdS0fVu+reI
+         CR/71B8VDimrnM42pxRubrInZAvWRFPxxP8bubVMK1RAacB0zvdq36/W+7ojtr01hzJn
+         4w7bp8MYG83lDa4ZOzPWBvI5Z4EU3sGBoEEq5H5fHSfWgYUJLidr7FS2dMvRUFzvxMpl
+         kVjHrBpKmOzODhNlEu91RqSVsjncm5+O0MRrSnyvz0BG+l0/QFnq0XrRAT6jlZIwVMY2
+         j0uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755151640; x=1755756440;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ci+IGtiZbOmlJlE3zlaa7XgorYlIQP8ww3YDEaztMAo=;
+        b=RAfNQBFS2ZIzSKzqkQJArVUkr8gK8ZRl7MrW+C8u8OlQ8oP20l56Cs4DK1SUXDVL+L
+         AOzCFiPcoIso5HxvvlWrUkIooAtVPmpapOd/GktN5JH/Vaee+eu497SqK0cLlEuge2cj
+         wuG8kjB/b9W4LSOclEBCxndm6+ixbcroIsohMC0SP4nZfWIPWwPl8SvewL91Fz+E+rpu
+         3AY6mYZxuS0VI2klChOrC5qZwSNqD6JvWxIIU05nrGv4oppsLI+WnEfuzgpIx/GkFRTc
+         j2sMV2lp3WuUlqNj1YkoYpJd7ViMVCxKgJq1PSH8vPuMYMRxQKUzaeD65yxN3o4UxfuB
+         u88A==
+X-Forwarded-Encrypted: i=1; AJvYcCWURWzpjSnEI0DI7xbKiXvT7SF0GLTBvK72HaQlactkqpxWeTnUM+QiIoop0RoCdrHSqgrKmZjCFc6P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqzuZb5bVrZP9vegTbA9H51nfUUJCySVvH4tvAYcEtlE6w3Z7s
+	Ot5aQdKw+3O54o3aLR+zEoO8FuyRDWLMiQmE0hkmfyrXwlIuBtghovv/Q746WN41EyM=
+X-Gm-Gg: ASbGncsJX1EQv9T9qyvzodWUaxgGzwm0p89ribozWl5Pz+cDm1EmJwfrb4TOqeXqgQs
+	kGSSuhQOJTz0UmCLzEZ6IEFEVEHVAf0JXgouZNV5n6TiNxPoEK0xsd71FrqW7s4tdtXRg5cWQQD
+	rfClOANkSFmRBTuGqRjxn8Qr/GrTutVi/70qeXYXrWmEZD+Ls5Sft4Xqtjwg9enI+533CE30oE9
+	61pGCmgPpoJ+XOn4NV5s/KNoSIxuG8US9y2/VYogUIzr5v0cf88nrfQ2xrQpm73Rs0xU/kNGaXD
+	yE/zFi203Al8yoO7JHg5nypA3B8ODHDWZOwJbsKb/cVzN9t6sOpSlFWl2C95xDKfc3Ps77jREvy
+	lEeSLaFPrtNm4LaejMw511e4BkEqxlpLKKn0OGbIBrn8=
+X-Google-Smtp-Source: AGHT+IGbBKN8HHglRaoVxVrKTfsUydQbHF8nbqWbq5ui9lqBbkDlBQxwrjLsLBHPSQc6coSgkLQwdw==
+X-Received: by 2002:a05:6402:2351:b0:615:cf53:cf35 with SMTP id 4fb4d7f45d1cf-6186c249fa0mr2129188a12.5.1755151640071;
+        Wed, 13 Aug 2025 23:07:20 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6186422ff6fsm3124967a12.39.2025.08.13.23.07.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Aug 2025 23:07:19 -0700 (PDT)
+Message-ID: <c4a63197-9fef-4261-a0e0-9d57e009263a@linaro.org>
+Date: Thu, 14 Aug 2025 08:07:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +83,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: convert lantiq-cputemp to yaml
-To: Aleksander Jan Bajkowski <olek2@wp.pl>, jdelvare@suse.com,
- linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, fe@dev.tdt.de, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250813091924.1075488-1-olek2@wp.pl>
- <6f46e420-832a-4c6e-b1e9-d797b0425834@kernel.org>
- <9d0ebfe1-e92b-45e0-baf1-3d6d2ce4c568@wp.pl>
- <d90b8c70-983e-44bd-b2dc-ec8d898217ff@kernel.org>
- <ea558f80-959c-477c-9ca5-5c9635b03e56@wp.pl>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 0/9] arm64: dts: qcom: x1: Disable audio codecs by default
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Stephan Gerhold <stephan.gerhold@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+References: <20250813-x1e80100-disable-audio-codecs-v1-0-af82d9576f80@linaro.org>
+ <5de00c2e-2b81-42f4-ab17-6db0f1daf7ff@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -72,56 +105,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  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
- 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 a/A=
-In-Reply-To: <ea558f80-959c-477c-9ca5-5c9635b03e56@wp.pl>
+ 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
+ 2+47PN9NZAOyb771QoVr8A==
+In-Reply-To: <5de00c2e-2b81-42f4-ab17-6db0f1daf7ff@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/08/2025 00:21, Aleksander Jan Bajkowski wrote:
->          };
+On 14/08/2025 01:09, Konrad Dybcio wrote:
+> On 8/13/25 5:58 PM, Stephan Gerhold wrote:
+>> Currently, the macro audio codecs are enabled by default in x1e80100.dtsi.
+>> However, they do not probe without the ADSP remoteproc, which is disabled
+>> by default.
 > 
->          cputemp@103040 {
->              compatible = "lantiq,cputemp";
->              reg = <0x103040 0x4>;
->          };
-> ...
-> 
-> Best regards, Aleksander Jan Bajkowski
-> 
+> FWIW if the ADSP doesn't start, you can't really consider the platform
+> working.. It just does oversees too much of the SoC to even seriously
+> consider using the device without it
 
-Yes
+
+I agree. ADSP is supposed to come up for every or almost every platform,
+because it is crucial for USB and charging.
+
+It's true that LPASS macro codec nodes need resources from ADSP, but
+still these are resources internal to the SoC. We disable nodes in DTI
+which need an external resource. That's not really the case for LPASS.
 
 Best regards,
 Krzysztof
