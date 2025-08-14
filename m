@@ -1,101 +1,97 @@
-Return-Path: <devicetree+bounces-204538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA590B25E75
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:10:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E869B25E80
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:14:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F52F7B108D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:09:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79E6156685A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE21B2E717D;
-	Thu, 14 Aug 2025 08:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D2A2E719D;
+	Thu, 14 Aug 2025 08:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DLbJ0NC1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UmDFlGeu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F3827587D;
-	Thu, 14 Aug 2025 08:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4F62E610E;
+	Thu, 14 Aug 2025 08:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755159040; cv=none; b=jJStjg3CQoB6VRd5bYjK8QCOTCqxyRaKUasbvLD8GrHPoRjfzrmQdKfwZpJ7D8B0RCZXTd1t1P3VnXmU6NXv1M4JKBN5cYs237/WHEGYAKsoNRysPYCJS8XmfybdDyECY6JBL9v9sGUUSTQ1ogSCcjft8Q960WDoFDTW4OUYpPw=
+	t=1755159220; cv=none; b=Xkf9U+0qzx61G+/to5D77jnL105R3MIHyXVte37Xvq5v6wfrYy228CwIy07qke0qpDC1XhPcBANPuioA/rcc7FF9X6pIK33hKFalws4bZwBAYVO+6fk9mTIOi9//tgFJLsiEHZp8jwRDIh1QOfxh6ayPY014r3UYFiGue4TNrbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755159040; c=relaxed/simple;
-	bh=8PGdpqI11ac8Y8fSWkUX0aKnppBjPfTLxK1xdjlz6cE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=PtEhGhFRSOTxnEqm7Iw+VTGJAl/s2l//MyjB190sPlDAMHS3ZvQdETwlYsCdXKPua1bPmE1RTTOGtRFQaDUXjXMIxslxEgL5z79wF+3QR70LNp6f21x80Mn1umGoKqbWT0Gx5qW/G1HalFm7cr1FO7jY4ZPM0didQIlUC3S2O10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DLbJ0NC1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2747C4CEF4;
-	Thu, 14 Aug 2025 08:10:32 +0000 (UTC)
+	s=arc-20240116; t=1755159220; c=relaxed/simple;
+	bh=2D1OOFtNbdpnycHdnojgPyCPrVecspF1AWE0YpTc5Ms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HEDkaHYk4AlLhNu108pBEHi0RUIa5OhusOZQ0wGgdm46ycWj2t4Z9YnxE7psVB36PAmUlO4TCoCMWfY4xRb+xRaSapCglJMfhNZulI5JGvxjAMPGmrJiI8J2GGTR241+lfErNrxvdAYM8TxjsQl6K3xB9/4Sbn4D30TdTwgVmiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UmDFlGeu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC14C4CEF4;
+	Thu, 14 Aug 2025 08:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755159040;
-	bh=8PGdpqI11ac8Y8fSWkUX0aKnppBjPfTLxK1xdjlz6cE=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=DLbJ0NC153asI54kpXF/bKi1f5qTjJYsdUrlcRx7KzPAUp3hOB3VlFXB2QW7nMuiK
-	 tNAuNlLZzXMh5kyDx4qeuZA+eFTi9ZHbFPq7QZ4nIOLtndciGqwzCJN/rXowebYeng
-	 h7yTuboG83nXDd+Buqo5VVartYvky3YZ+6YMqRrsaYBUGjjRudUE6LutBc93y9fZAG
-	 VflSSnl1UZlFjNfQWsNH8ltDGKwlrLSo3XQeaAvYbjQMoaq9r9jWSxc41YktvdTf8C
-	 qqZ3E+bbhcSlbLc0C0YRYrSk15I0J2lvCVoRPuhIQwY1gjU0+JBx5AVe9d72U5QYeA
-	 FRGRzpivjT7zg==
+	s=k20201202; t=1755159218;
+	bh=2D1OOFtNbdpnycHdnojgPyCPrVecspF1AWE0YpTc5Ms=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UmDFlGeuPH1XfHlUH4Z3k2aCt3AaRHbvrNWNEngpXoKELe0G7p8j9wn597XTJ6iRN
+	 L3uQCWlFV7V11dHkYcctJnDXVUiM/pnqLIpHn5b6459R2ZpjsJfxczmbkz0dyiIr6k
+	 lRmDayR2Z4PLhL5m8hChhnNuaQ2eJT6crOpObWEpHB59dqLxSjv7imEUReeqZk4Z3Z
+	 vWNlmem+zPdfiStTM7Gsgo9euIJOjnoSjYx9dEXDLUFQ84fUlCDU8TYPkepLsnbB0n
+	 VYJJgnTxtFcVsbm1BqiBT7BQtfg9fASWovDCmdB+MXojxqkC+WjgOCGfrg4DLdXPZD
+	 4qmMis49DPJYQ==
+Date: Thu, 14 Aug 2025 10:13:35 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shradha Todi <shradha.t@samsung.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org, kishon@kernel.org, 
+	arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com, 
+	pankaj.dubey@samsung.com
+Subject: Re: [PATCH v3 08/12] dt-bindings: phy: Add PCIe PHY support for FSD
+ SoC
+Message-ID: <20250814-refreshing-watchful-lemming-4feb03@kuoka>
+References: <20250811154638.95732-1-shradha.t@samsung.com>
+ <CGME20250811154729epcas5p456ddb0d1ba34b992204f54724b57a401@epcas5p4.samsung.com>
+ <20250811154638.95732-9-shradha.t@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 14 Aug 2025 10:10:31 +0200
-Message-Id: <DC1ZY7PYGCK6.2LDYPXE3XSUMK@kernel.org>
-Cc: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
- <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-acpi@vger.kernel.org>
-Subject: Re: [PATCH v3 11/11] rust: acpi: use `core::ffi::CStr` method names
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Tamir Duberstein" <tamird@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>, "Dave Ertman"
- <david.m.ertman@intel.com>, "Ira Weiny" <ira.weiny@intel.com>, "Leon
- Romanovsky" <leon@kernel.org>, "Breno Leitao" <leitao@debian.org>, "Rafael
- J. Wysocki" <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>,
- "Luis Chamberlain" <mcgrof@kernel.org>, "Russ Weight"
- <russ.weight@linux.dev>, "Brendan Higgins" <brendan.higgins@linux.dev>,
- "David Gow" <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "FUJITA
- Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>, "Jocelyn Falempe"
- <jfalempe@redhat.com>, "Javier Martinez Canillas" <javierm@redhat.com>,
- "Arnd Bergmann" <arnd@arndb.de>, "Len Brown" <lenb@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20250813-core-cstr-fanout-1-v3-0-545c14bc44ff@gmail.com>
- <20250813-core-cstr-fanout-1-v3-11-545c14bc44ff@gmail.com>
-In-Reply-To: <20250813-core-cstr-fanout-1-v3-11-545c14bc44ff@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250811154638.95732-9-shradha.t@samsung.com>
 
-On Wed Aug 13, 2025 at 5:42 PM CEST, Tamir Duberstein wrote:
-> Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` by
-> avoid methods that only exist on the latter.
->
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+On Mon, Aug 11, 2025 at 09:16:34PM +0530, Shradha Todi wrote:
+> Since Tesla FSD SoC uses Samsung PCIe PHY, add support in
+> exynos PCIe PHY bindings.
+> 
+> In Tesla FSD SoC, the two PHY instances, although having identical
+> hardware design and register maps, are placed in different locations
+> (Placement and routing) inside the SoC and have distinct
+> PHY-to-Controller topologies. (One instance is connected to two PCIe
+> controllers, while the other is connected to only one). As a result,
+> they experience different analog environments, including varying
+> channel losses and noise profiles.
+> 
+> Since these PHYs lack internal adaptation mechanisms and f/w based
+> tuning, manual register programming is required for analog tuning.
+> To ensure optimal signal integrity, it is essential to use different
+> register values for each PHY instance, despite their identical hardware
+> design. This is because the same register values may not be suitable
+> for both instances due to their differing environments and topologies.
 
-Reviewed-by: Benno Lossin <lossin@kernel.org>
+Would be nice if above (or most of it) would be reflected in binding
+description. Please do so and:
 
----
-Cheers,
-Benno
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> ---
->  rust/kernel/acpi.rs | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
+Best regards,
+Krzysztof
+
 
