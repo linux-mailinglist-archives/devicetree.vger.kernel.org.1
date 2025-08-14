@@ -1,128 +1,107 @@
-Return-Path: <devicetree+bounces-204514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C5DB25D6E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:32:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE40B25D86
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D0141C844FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:33:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C453B5A49BE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81CEF2798EF;
-	Thu, 14 Aug 2025 07:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F9A27145F;
+	Thu, 14 Aug 2025 07:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="JY1R47Nf"
+	dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b="0cuAFlmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DC62797B8;
-	Thu, 14 Aug 2025 07:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755156640; cv=pass; b=rTxJuwR7MRVksdXwislWTqXJN2/bONiJo4eMwdDlIVPrHE6jaiLsY+stvZkAy9RWzSuclnPJof8jesPuxJZhDdKIP9CfEdARwq2saCDODis96KK5D1wIXU5n7SNu7eDehY7up/kkCphiygI/HY3SIfglRx0o5YOOTdwxw7cwGGY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755156640; c=relaxed/simple;
-	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pFoGjlMmV8WyPOVwHfGfR3THtcKLxOkUS1gx7rTbQcukaBbHeE2OVGmC5xqCEGTXcg0E0hoyD2y3zAFQHDoECs0EbLHFcPE0nmdwQdgf0lR5q0NLO1NfbmcS7SAxEl5qgU8WxfWwKQ8kXaOdfjJJhKAH4TVrDguQJ3MK/thv03Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=JY1R47Nf; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1755156620; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SPunGYyixl+oELVyQ528XgFQeeYb0rvoaJ+Eu2HDDKE5C33LZsDBVEv1P5SDOCd1wTXRhTyKhZfeKml2gTwJMmLHxe482R2MAp3vNRwF92fRoIrgJvBhNa35WtUgYC29n6Nz+PtKRLCN/rE25olvHrZPEHfczpTMhgi4aMdYdRw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1755156620; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=; 
-	b=dni2mPhibvReAa3iqkj8KXvzg1rkjJn/AIekKryJPkV65iDi+8nhn0aUW7igXL4pFiryrOZoRy7LFRXEtcI6lIwrdKUDrlb/n2bOiR2p4oPWELAnHbnvutS/oV+QhcGaRvK99LCL28xPOwATd5sTqdvMoptv2Gn2BKHE8APDWnA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755156620;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=;
-	b=JY1R47NfTAyWEMgXmq2J4D+EjiVlWXKVAKLmE1REJkFD3s4LCB4bryCRwEJ2uxG8
-	IdkDvO/bF2zGxls4Ws4siFLpOGmamOFCTTbRLHKV3jJOEDqa59XtJAjYFq0F4sx63Mv
-	dvoGYfhWlwjX39R5fv3sBp/ZQFz+5J7ijAH00roooEUJOzYSgs2C/KnT2CwTupNxkY8
-	vg3QgFF0l4QPFAjMTEcRg7YHGwUPpowCrmtr+UZ5ZLo6xlDme1ObMS8XxE2ag7EEWqV
-	tZtw35LE7dy/HThdoyBYmdeJTY5TMrVfeLaPMn5YaXzK+DhFQM5pGdYZXYaLU5+3qt1
-	LP0fO4UVMw==
-Received: by mx.zohomail.com with SMTPS id 1755156617506124.96455839373789;
-	Thu, 14 Aug 2025 00:30:17 -0700 (PDT)
-Message-ID: <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
-Subject: Re: [RFC PATCH 2/4] dt-bindings: firmware: thead,th1520-aon: add a
- mailbox name for SBI
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini
- <fustini@kernel.org>,  Guo Ren <guoren@kernel.org>, Fu Wei
- <wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar
- <jassisinghbrar@gmail.com>, Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>, Yao
- Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Thu, 14 Aug 2025 15:30:10 +0800
-In-Reply-To: <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
-References: <20250814070757.2267325-1-uwu@icenowy.me>
-	 <20250814070757.2267325-3-uwu@icenowy.me>
-	 <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F412FF67C;
+	Thu, 14 Aug 2025 07:30:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.130.44.152
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755156631; cv=none; b=VaaIMfBhGQFSpwUpNu/coVqIcMLxcGzCz5uBlJ+G8qhzjI114zsk5vkShUjV2Cok5s8hlfO9oXWgcsgTaY4yJzBMgWeU4D8enWO96lBCE0KdZA76N2zynbq3s1uiXLBcK9wrb+MBn0A+Rc9jirncHXYBTzmHnMXu6H73ASCN9m0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755156631; c=relaxed/simple;
+	bh=BgpL/qeJvgcZBCwwScC7+fuQidTdFioLiY1RUBgzWp8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=OZ78COMxAI+bknnAu/0lg1BEfoP/+jcBrUlntVP05YZEpa9epYFXdJCF2nMmnTQEYBFBYLA//4nGrj++03uY+gGLCuaIcH/M/5+vVQz54Mcm6VwdnnPzci1+53ZVZZVKaSxcHBasr9i+NmMeIzpxyHnBoDOiU9r9SXCb2CwYkDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com; spf=pass smtp.mailfrom=richtek.com; dkim=pass (2048-bit key) header.d=richtek.com header.i=@richtek.com header.b=0cuAFlmC; arc=none smtp.client-ip=220.130.44.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=richtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=richtek.com
+X-MailGates: (SIP:2,PASS,NONE)(compute_score:DELIVER,40,3)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=richtek.com;
+	s=richtek; t=1755156626;
+	bh=S9rxrFf8qezYW4KrXLdUVidv8njftc7BpZoygBQ6NlU=; l=1115;
+	h=From:To:Subject:Date:Message-ID:MIME-Version;
+	b=0cuAFlmCeXTF1lGbVS4mqhEMnVRj9AslalUb4o3dGTqK5a4/aU5xtmN2A7DnfjrsT
+	 6AU2ubAN0onFwmNa48IUF7mIU6HQHY4buNgnvknuWyK6T4C7y118hS43DLBXWvnXy4
+	 z2Q8CL+EJ0ed4jrwfeFGkVDdy7WMCZ48IQyGLCzlH4Z7z2nearnmdiENK+YaRRX95M
+	 vY0EXI459JNUPfhP0n5/ITCNiGOtUC82j8x3yMqOqCFSEnfF8hyWgpRd9y2b3QduL0
+	 BuGA0Yv4YPZxQBMfpV6hVdXfiSjwWl3LshYDsd9etglmwCr0HqTfQ8/OX7ayFat8yK
+	 kkZh1WdfJew/Q==
+Received: from 192.168.10.47
+	by mg.richtek.com with MailGates ESMTPS Server V6.0(817465:0:AUTH_RELAY)
+	(envelope-from <cy_huang@richtek.com>)
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256/256); Thu, 14 Aug 2025 15:30:19 +0800 (CST)
+Received: from ex4.rt.l (192.168.10.47) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 14 Aug
+ 2025 15:30:19 +0800
+Received: from git-send.richtek.com (192.168.10.154) by ex4.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1544.11 via Frontend
+ Transport; Thu, 14 Aug 2025 15:30:19 +0800
+From: <cy_huang@richtek.com>
+To: Sebastian Reichel <sre@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"ChiYuan Huang" <cy_huang@richtek.com>, <devicetree@vger.kernel.org>,
+	<linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH RESEND v2 0/3] Add Richtek RT9756 Smart-Cap divider charger
+Date: Thu, 14 Aug 2025 15:31:05 +0800
+Message-ID: <cover.1755154950.git.cy_huang@richtek.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-=E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:18 +0200=EF=BC=
-=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
-> On 14/08/2025 09:07, Icenowy Zheng wrote:
-> > The SBI firmware might want to communicate to the AON firmware too.
-> >=20
-> > Add a mbox-name item to allow to allocate a mailbox for SBI.
-> >=20
-> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > ---
-> > =C2=A0.../devicetree/bindings/firmware/thead,th1520-aon.yaml=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 7
-> > ++++---
-> > =C2=A01 file changed, 4 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> > b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
-> > index 3365124c7fd47..555465f4aab4e 100644
-> > --- a/Documentation/devicetree/bindings/firmware/thead,th1520-
-> > aon.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-
-> > aon.yaml
-> > @@ -26,11 +26,12 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0 const: thead,th1520-aon
-> > =C2=A0
-> > =C2=A0=C2=A0 mboxes:
-> > -=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 2
->=20
->=20
-> ABI break without explanation why ("allow" is not a reason to affect
-> ABI) and its impact.
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-Is adding items an ABI break?
+This patch series adds support for RT9756 charger.
 
-Or should I explicitly say "minItems: 1" here?
+RESEND V2
+- Add 'Reviewed-by' tag in dt-binding patch
 
->=20
->=20
-> Best regards,
-> Krzysztof
+V2
+- Add reference to 'power-supply.yaml'
+- Remove 'wakeup-source' from required property list
+- Use 'unevaluatedProperties' to replace 'additionalProperties'
+
+ChiYuan Huang (3):
+  dt-bindings: power: supply: Add Richtek RT9756 smart cap divider
+    charger
+  power: supply: rt9756: Add Richtek RT9756 smart cap divider charger
+  Documentation: power: rt9756: Document exported sysfs entries
+
+ .../ABI/testing/sysfs-class-power-rt9756      |  52 +
+ .../bindings/power/supply/richtek,rt9756.yaml |  72 ++
+ drivers/power/supply/Kconfig                  |  15 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/rt9756.c                 | 932 ++++++++++++++++++
+ 5 files changed, 1072 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9756
+ create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9756.yaml
+ create mode 100644 drivers/power/supply/rt9756.c
+
+
+base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
+-- 
+2.34.1
 
 
