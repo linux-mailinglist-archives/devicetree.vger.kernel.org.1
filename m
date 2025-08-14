@@ -1,105 +1,134 @@
-Return-Path: <devicetree+bounces-204550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8536CB25F05
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:37:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9039FB25F28
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:40:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C3DD5A6DDA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:37:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB2241896EF6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:39:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57059291864;
-	Thu, 14 Aug 2025 08:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A3C82E8E0E;
+	Thu, 14 Aug 2025 08:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZu4Se1s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mfr3RrNp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B691FDE01;
-	Thu, 14 Aug 2025 08:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2DF1A317D;
+	Thu, 14 Aug 2025 08:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755160619; cv=none; b=IEFgyNE1I6iefUpUrtijR2GV5Ym8HhUSafOM/vSdvFzmvhJfiFocvE7EnNHfVwS8sT7oHWbZUiYjth/unIZcf4gCgK4TE9rZDFvBC2vkM3YPpjsoMJfJ3T6iBoEaU2jPx+DXsALtSE+2EEfns5v1SGP/5Z9R8e3ehtCFWttWNGo=
+	t=1755160741; cv=none; b=r/oe25iMbW4G8wBa9ps19aZcIPDMmrdkMY/dt5IetMuo1cUWMQH5dYcfTi+je+mEwyseFJ1kpzn90hz/rpvZl6p2GXjSQj7b5z/cgM8G2V0XMKtJ+rb0TmSGxifFvqkuao2py5hla/QpMbJ3LnKYwI2+0dlylBUoqMdEAOfOGSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755160619; c=relaxed/simple;
-	bh=tU5iipaDEUy6NFDdG2V1HfYPchwAoL9oGgj2hDb7VKU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=lGy8lUNYDmRHX+X9dZs7lMjVvu16SoDONUMs57vech8R87Qv2gK9e/SejATK1dVI51C0j+Wuqp5+IO6OWaXtuqiCBhfZKJ9Nk036fa3BNrieoUVguYGJKJhs8u2reRZ58hfvP9in9L6QzvXPEgseHXntT37agMEv5C5QJXCWcEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZu4Se1s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BBFFC4CEEF;
-	Thu, 14 Aug 2025 08:36:58 +0000 (UTC)
+	s=arc-20240116; t=1755160741; c=relaxed/simple;
+	bh=kQaDaY3pQLr2E9PAy8sKF2YRobCVPIAPQgcNNQ8dVKs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mim7+aFmoIEnZYQyW3eNOXBxDwzTsM/VD7V1ILVwk4UUpSaSEw8zVmf0/pmvNOrsSZTJvVQmFBnV0LtVEbg03IBeQGGgN0REZ6t9kvI3HFQ+H5WTlgj8HK1bHQG5D6cAy2f9wIUamUKbIthbO/EyUegndMH7EDr3HXwxXUk32ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mfr3RrNp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46CA9C4CEEF;
+	Thu, 14 Aug 2025 08:38:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755160618;
-	bh=tU5iipaDEUy6NFDdG2V1HfYPchwAoL9oGgj2hDb7VKU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=pZu4Se1sZSkaFhuobBWv5m5jYhXyjrZqrSLVIZlP/GORW8EWSCa99FpaW2FWGtfkt
-	 xu1InKq/CuaJWBLvZ7pJQGoNuBe2sPScF66BCDX+pNwdmvvNKhSjF/toNx3/QnXF0I
-	 xdhYkFS5wTLQBJQGeEhsZuH4hWzKKcxgtu5j8eAvecGIlDcnQTO5OUODPVKkJNkChr
-	 Jx46Q0YsHVAICsW4cQpYhsfSkFwL1tGfclIe7JEJo+885OM/yAATBU2wvNVJCGKhel
-	 x9wkBhXYljY9TUKieG2RGzAa3Whl+anh+Is6jA2of4EAO0NmeR/BsjASqGZxEo32Me
-	 Txwbl8N0bO5aA==
-Date: Thu, 14 Aug 2025 03:36:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1755160740;
+	bh=kQaDaY3pQLr2E9PAy8sKF2YRobCVPIAPQgcNNQ8dVKs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Mfr3RrNp+m89cj4pjYeaVoHpoEzISu8jczWMeXsjC26Mizjskz8i2nRhG3JNa6fW1
+	 s7g9C5L2Tr3lBX714t6hsiKqj4KPMsr6hF2QFntu/SS6MIPibrHGhu8IqBTR12TdgS
+	 m1GtqvkoSdFNnBurhzbUAvnupdXiNWUgCFkkipYAo8EmAR6LyQgUjoffyoL2caZJcl
+	 S/T5KvWCFnTVB8YwLWMlGAVLOamNesiNlDxMOUEbDcMuMxrgL4jOUyyuKVSPievjyZ
+	 vQ0UIRWkE3yH0UWcM6EXYA3W7t8WqPAKZV6Qip2rsWrgeexNY4FqKMo+sUKYZtOzEK
+	 vJFuPlmdnOXDg==
+Message-ID: <7a986acc-ad7a-4b89-bc84-1184391eb9ad@kernel.org>
+Date: Thu, 14 Aug 2025 10:38:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
- Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, Simon Horman <horms@kernel.org>, 
- netdev@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>
-To: David Yang <mmyangfl@gmail.com>
-In-Reply-To: <20250814065032.3766988-2-mmyangfl@gmail.com>
-References: <20250814065032.3766988-1-mmyangfl@gmail.com>
- <20250814065032.3766988-2-mmyangfl@gmail.com>
-Message-Id: <175516061769.1975599.3085098117739247200.robh@kernel.org>
-Subject: Re: [RFC net-next 1/3] dt-bindings: net: dsa: yt921x: Add
- Motorcomm YT921x switch support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/3] Initial support for Qualcomm Hamoa IOT EVK board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Yingying Tang <quic_yintang@quicinc.com>,
+ Shuai Zhang <quic_shuaz@quicinc.com>, Yongxing Mou <quic_yongmou@quicinc.com>
+References: <20250814-hamoa_initial-v5-0-817a9c6e8d47@oss.qualcomm.com>
+ <5reeryefhw7burzf2lymhg5wivaq2n4gq5hszvfp57dergvpyx@qehaf334gdrn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5reeryefhw7burzf2lymhg5wivaq2n4gq5hszvfp57dergvpyx@qehaf334gdrn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 14 Aug 2025 14:50:20 +0800, David Yang wrote:
-> The Motorcomm YT921x series is a family of Ethernet switches with up to
-> 8 internal GbE PHYs and up to 2 GMACs.
+On 14/08/2025 10:24, Dmitry Baryshkov wrote:
+>> ---
+>> Changes in v5:
+>> - Update base commit.
+>> - Drop an already merged patch:
+>> https://lore.kernel.org/all/20250804-hamoa_initial-v4-2-19edbb28677b@oss.qualcomm.com/
+>> - Link to v4: https://lore.kernel.org/r/20250804-hamoa_initial-v4-0-19edbb28677b@oss.qualcomm.com
 > 
-> Signed-off-by: David Yang <mmyangfl@gmail.com>
-> ---
->  .../bindings/net/dsa/motorcomm,yt921x.yaml    | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+> Please keep full changelog rather than trimming previous iterations.
 > 
+> Also, is there a reason why you didn't pick up audio and display chunks
+> as it was requested on the corresponding reviews?
 
-My bot found errors running 'make dt_binding_check' on your patch:
 
-yamllint warnings/errors:
+Thanks for noticing it, I totally forgot we requested that.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml: motorcomm,switch-id: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250814065032.3766988-2-mmyangfl@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Krzysztof
 
