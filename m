@@ -1,156 +1,104 @@
-Return-Path: <devicetree+bounces-204899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 198E5B27226
-	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 00:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D67B271F5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Aug 2025 00:46:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AED2AA3FA4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:45:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D00FAAA0B7D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A72629D293;
-	Thu, 14 Aug 2025 22:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705142951D5;
+	Thu, 14 Aug 2025 22:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GDVKK2CR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kfgMWQ2E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D10C29D28A;
-	Thu, 14 Aug 2025 22:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EEE828136F;
+	Thu, 14 Aug 2025 22:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755211298; cv=none; b=NhH3moCSymHXiUlFv8+HyxZckLHG2tMs6oGcdgDNqXOjTqzClOreIkmASFcb+rZj/NIPfpTS8N+n6g8B6JyQaPwefV9BWSKwRiLm7UJ/VkhL1YbVwLE621EBESFpCIHcEpJZR849htS+hO+R6vM9fY9pZ3Ja0+v60jdn2R9JK7A=
+	t=1755211256; cv=none; b=idxuMeiIT3PvQJPXfmEaWBkH+WYEKKTomTqtEdAithcVQ7JySodXYGYA6ASM0lfVSBKGnU+pF/Dp2XTGKavqFUhnULmOQtDXT+z0yywmNrp5mXacKiXQwdgmuuu/UVXs14VDKBXjsMIP8QA3VJQEt72Rgcf8uRVMWkp7dTH7xvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755211298; c=relaxed/simple;
-	bh=ejaQnOKwUAQlC92tOLLuqLlkWaPM9KYXEKFnnYZ+dYc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i2iJrn4Lc1AUNXmDvNjlyIBIjQC/wMoHLIjYRU6tAOFWd1gF+7yPegs5EhbRyXPxctDvOv3sA1g6vtx6w0EOs3uwI34BFW2Nvto6Gtb9hXqpPY3rCJxUMGR2zZLi0HW7ySj0H9rl5EfkuPn4xGvixjtC5svngE341/4nX8Iwm6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GDVKK2CR; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57EMfVgn1973684;
-	Thu, 14 Aug 2025 17:41:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1755211291;
-	bh=wLHxUFjfLmqm/i4YDPATjTVBn9dA+0sj+cclW38Fa4I=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GDVKK2CRinJzwXhGWC6S+/FVen7oC3LTXhY7sJN3357b6G0vXvlASWUK4Ea4moUu/
-	 p37MMCmr9OJjlMh48cE2IPHV3QOL4iwlTKTqDzJqFprqKPjh0vPRXS7X7eD6Ft4KY3
-	 SgAgD3h6r2cOTFbH/+ErTfdIx7ssqxsYj31LejWs=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57EMfVaN2150859
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 14 Aug 2025 17:41:31 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
- Aug 2025 17:41:30 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 14 Aug 2025 17:41:30 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.234.212])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57EMcw58096792;
-	Thu, 14 Aug 2025 17:41:27 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <afd@ti.com>, <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <b-padhi@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 33/33] arm64: dts: ti: k3-j7*-ti-ipc-firmware: Switch MCU R5F cluster to Split-mode
-Date: Fri, 15 Aug 2025 04:08:39 +0530
-Message-ID: <20250814223839.3256046-34-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250814223839.3256046-1-b-padhi@ti.com>
-References: <20250814223839.3256046-1-b-padhi@ti.com>
+	s=arc-20240116; t=1755211256; c=relaxed/simple;
+	bh=8G9CxDqP1jybeUHRO2NOjhgGn1Kh5z/Nj845EVD600s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SyvNcZ0qrHPKso7ASh7ZsxPofjOLhEELuYF9CXOLcU1KHJjZnY/5bqncQUq7P5tTihPeuCID1wrxWkqnqI498UUozu1ZUxZVFEeZj+q9BJrioUoVDy+uRW5AwmLk68bf2tGsbd/DLyF5dBuqs1B8HCTRjLtYDIRb1Ylx4KiX7A8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kfgMWQ2E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92AEAC4CEED;
+	Thu, 14 Aug 2025 22:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1755211255;
+	bh=8G9CxDqP1jybeUHRO2NOjhgGn1Kh5z/Nj845EVD600s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kfgMWQ2EU4SUB4CFGqVaqHLutotWkmyR/hY/lxAoi1q1I4JYIiR4vGGKpV7Ycbb/U
+	 UU9tWmKc13L0/JNm8aMl6S6pNAcOTYyP8nNSaJzwmu0EqKRtdUTG6NZzF2AbKT48V/
+	 kHdrzy1sKYAKAmiAnn97R/fiogAM2P11An+NfxfVkrPlxw42pwgcrvE/RTT6zMfUkh
+	 ZtNc0snNGTztGfC+EvC3ZF4sy96Ig04+AmMjdef2GHAz97gD89caRB5MU7VRwPrmwJ
+	 4I7BdX8OA2imiriWQ+YviVhYxHlDMUaWKbPC2VS/xx68rfo6RRKWTesCXiTXdlz/x/
+	 QKTn+aWvXIuAQ==
+Date: Thu, 14 Aug 2025 17:40:54 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: linux-doc@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-arm-msm@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Pavithra R <quic_pavir@quicinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Kees Cook <kees@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	Lei Wei <quic_leiwei@quicinc.com>, Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	linux-hardening@vger.kernel.org,
+	Suruchi Agarwal <quic_suruchia@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_kkumarcs@quicinc.com,
+	quic_linchen@quicinc.com, Philipp Zabel <p.zabel@pengutronix.de>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v7 01/14] dt-bindings: net: Add PPE for Qualcomm
+ IPQ9574 SoC
+Message-ID: <175521125408.4049104.2810229443778226424.robh@kernel.org>
+References: <20250812-qcom_ipq_ppe-v7-0-789404bdbc9a@quicinc.com>
+ <20250812-qcom_ipq_ppe-v7-1-789404bdbc9a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250812-qcom_ipq_ppe-v7-1-789404bdbc9a@quicinc.com>
 
-Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
-R5F cluster in the MCU domain which is configured for LockStep mode at
-the moment. The necessary support to use MCU R5F cluster in split mode
-was added in the bootloader. And the TI IPC firmware for the split
-processors is already available public.
 
-Therefore, Switch this R5F cluster to Split mode by default in all the
-boards using TI IPC Firmware config (k3-j7*-ti-ipc-firmware). This
-gives out an extra general purpose R5F core free to run any applications
-as required. Lockstep mode remains default in the SoC level dtsi, so
-downstream board dts which do not use TI IPC Firmware config should not
-be impacted by this switch.
+On Tue, 12 Aug 2025 22:10:25 +0800, Luo Jie wrote:
+> The PPE (packet process engine) hardware block is available in Qualcomm
+> IPQ chipsets that support PPE architecture, such as IPQ9574. The PPE in
+> the IPQ9574 SoC includes six ethernet ports (6 GMAC and 6 XGMAC), which
+> are used to connect with external PHY devices by PCS. It includes an L2
+> switch function for bridging packets among the 6 ethernet ports and the
+> CPU port. The CPU port enables packet transfer between the ethernet ports
+> and the ARM cores in the SoC, using the ethernet DMA.
+> 
+> The PPE also includes packet processing offload capabilities for various
+> networking functions such as route and bridge flows, VLANs, different
+> tunnel protocols and VPN.
+> 
+> The PPE switch is modeled according to the ethernet switch schema, with
+> additional properties defined for the switch node for interrupts, clocks,
+> resets, interconnects and Ethernet DMA. The switch port node is extended
+> with additional properties for clocks and resets.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../devicetree/bindings/net/qcom,ipq9574-ppe.yaml  | 533 +++++++++++++++++++++
+>  1 file changed, 533 insertions(+)
+> 
 
-Users who prefer to use the fault-tolerant lockstep mode with TI IPC
-firmware config, can do that by setting `ti,cluster-mode` property to 1.
-
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi             | 1 +
- arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi             | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi            | 1 +
- .../boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi     | 1 +
- 4 files changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-index 8eff7bd2e771..ddf3cd899d0e 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-ti-ipc-firmware.dtsi
-@@ -94,6 +94,7 @@ &main_timer2 {
- 
- &mcu_r5fss0 {
- 	status = "okay";
-+	ti,cluster-mode = <0>;
- };
- 
- &mcu_r5fss0_core0 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-index 5b3fa95aed76..57890a3b38a2 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-ti-ipc-firmware.dtsi
-@@ -211,6 +211,7 @@ &main_timer15 {
- };
- 
- &mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-index 40c9f2b64e7e..7ee8a8615246 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-ti-ipc-firmware.dtsi
-@@ -179,6 +179,7 @@ &main_timer5 {
- };
- 
- &mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-index b5a4496a05bf..e12fa55a4df0 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-ti-ipc-firmware-common.dtsi
-@@ -254,6 +254,7 @@ &main_timer9 {
- };
- 
- &mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
- 	status = "okay";
- };
- 
--- 
-2.34.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
