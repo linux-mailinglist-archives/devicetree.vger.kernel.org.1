@@ -1,185 +1,117 @@
-Return-Path: <devicetree+bounces-204458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21751B25A76
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:26:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12CD7B25A7E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E4E06883A1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:26:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCE9F7ABFA0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 04:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D461FC0F0;
-	Thu, 14 Aug 2025 04:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="R9egz5S4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5D3E1DE4F6;
+	Thu, 14 Aug 2025 04:33:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8A9B79FE;
-	Thu, 14 Aug 2025 04:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6611611185;
+	Thu, 14 Aug 2025 04:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755145602; cv=none; b=AG3pcD7ifOSpiAg+/1Kx3N4naqJIBl+HhBV1AxCsUrFSYy9e/0DkIXod5bi13AVr7EeWcg6gD3SJO33/S1clwk5wR7PNDhvD+v5boEx0zGnwae4IsaPNGGPrkTdO9sAZ3tqtDwEc/wCbfo5DzyPfsqPbdjh4iY69oNmpWlfob58=
+	t=1755146018; cv=none; b=m37NYawKytzl/0vUskIkublsH36z7t7ODgeGJsX8s2CPKTI+3kiIIE6NVVwI3ueO/tPN6yohMvPJv7rEkS3UbzOgjTVMs7DfxZq5DOKiWi3l4bKlFuCYQxE73ELIkP/fSpcJoeJ7U7CSLgI0AcZZ9OaA+H6kxkS5UTNBZDGu8UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755145602; c=relaxed/simple;
-	bh=sBLUNb42w2jz2ZlgBmIQXwpPBdBWdvuXUkbV2elogYs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QxbzrdGMiPZsWD5zlvKXfnhJ8lS9qD5Ll2fNwAZh1OaP072GaZrukOVRx6adNYgIMKlgZr8y7grZ8+juKgicCdc7gOkf8TDjkG6hshDzuKdDZPKwOMy6rZTfXjLr70dFfFj0pNR93resvR5X0n7RRfEYLEhmfLiOy9c1/Mk33CA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=R9egz5S4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57DN2rCR031245;
-	Thu, 14 Aug 2025 04:26:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7DzY+zh6d6AHtlLEfK3xL+SfU30o5/x7or790c7+rfM=; b=R9egz5S4Nhd1pwuL
-	mHgBh2XGXfMTtNBv0ObZq8ZpMYfsy1YEr4JlyE0Evrrh6TEWEjxWDbA6Uzmf7S2e
-	X3NPpxvVD4I3uR1hSjUkvKUF1OahIOVM1AvZfcggQWs7D3A+K72dYwTNP9/PmZO/
-	cDHtoj2ogkK8o+5x8KY/oV1WDm5DwT3b9F3noD7GK9M5O5ipUwvrq/CdysqivOwz
-	KlfhMYuvqmRA0ktMW0yxlXxndNWEs4AkA1IP1vqTeXgnycd6lKTjCpbBAqGIsJoe
-	A/GKZ3lXvhlOJ8tG0k9/0a1aa4shEL/HqU4dNrzDoGEaKSPScUwpmD0zDssf+he9
-	bq7QiQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48fm3vs4sy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 04:26:19 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 57E4QIs5024490
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Aug 2025 04:26:18 GMT
-Received: from [10.50.36.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 13 Aug
- 2025 21:26:13 -0700
-Message-ID: <04b34250-520e-6320-bfcf-4dbb4ea0c523@quicinc.com>
-Date: Thu, 14 Aug 2025 09:56:10 +0530
+	s=arc-20240116; t=1755146018; c=relaxed/simple;
+	bh=0UChQ8NT6vgwHUxSU2UAnaKaxvepeo0bFHfSHBvALBA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M93g5wKf5IGRnD+3UMYoeg6U+7Cv070DIPwQ+hlENjJuDKQOo1FJQNkzIQO7GggZ1GLlNH+8IB+oZ19Nn7iMHZNwG2scKmrFZYD1Z+1WmrPehDN7tNhJBpzHcwLUQQVgPxYPIE6aIx5QaiqUTb6oa6ANcZXJGzpyD2K6nRU6gYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
+X-QQ-mid: esmtpsz20t1755146002teef8830e
+X-QQ-Originating-IP: Peg8pNWex+cqhVtTMZ0ezMqa3HAUy9biynpsprY/6KQ=
+Received: from localhost.localdomain ( [183.51.121.135])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 14 Aug 2025 12:33:20 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6940595432327476163
+EX-QQ-RecipientCnt: 15
+From: Kaison Deng <dkx@t-chip.com.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de
+Cc: honyuenkwun@gmail.com,
+	cenk.uluisik@googlemail.com,
+	i@chainsx.cn,
+	damon.ding@rock-chips.com,
+	jbx6244@gmail.com,
+	sebastian.reichel@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kaison Deng <dkx@t-chip.com.cn>
+Subject: [PATCH] arm64: dts: rockchip: fix es8388 address on rk3588s-roc-pc
+Date: Thu, 14 Aug 2025 12:32:30 +0800
+Message-Id: <20250814043230.2774813-1-dkx@t-chip.com.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: qcom,sm8550-iris: Add SM8750
- video codec
-Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Abhinav Kumar
-	<abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250804-sm8750-iris-v2-0-6d78407f8078@linaro.org>
- <20250804-sm8750-iris-v2-1-6d78407f8078@linaro.org>
- <683024c7-3740-cb9a-6924-33816edd63f3@quicinc.com>
- <8d8dcaef-eb96-4e7b-9a0a-8b3836cb284c@kernel.org>
- <e33a22ba-f82a-412a-b1fd-d1cd50f6b21d@kernel.org>
- <93e35282-52a3-4c3e-8065-b2a6c363c974@linaro.org>
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-In-Reply-To: <93e35282-52a3-4c3e-8065-b2a6c363c974@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODExMDEwNyBTYWx0ZWRfX+MUbxS/11pb8
- kxk1KZei8c2zDtpP88n6MZxSCboO7tADBSOSDaSIWyP/Am5iFRfhmakW9Le8RuzdAtvl1WJkQKD
- bW9q9/6Gdq0so6eEvoC9oOICIKZVvTgjtyMMR8APAvb3d3n39QUg6zngAjJVQFVTfGEuzcyWwoe
- yYdvCzTryv3/5R/SSwrWB5anEMr9NqEk2vjH16MToxcAQa7G6NniS+lfKC6SWhnAYv9vBRh6307
- mKSKtc+bn6vLGtfhxMuwPZyQRJiCu+ejjw4SEicbM4Od9hgLWNQw5zdVPx74ZuXcW/uchuVcCat
- KPg8CjTlPAL0zb2HEUm14EvelblVexjhW1WLPocaHexaE8a0DMrcNdoJ5xSzhlGVn2N+Akjfnh4
- gShMIy/m
-X-Proofpoint-GUID: AzIbW23rQvmCWCXP-lbDAupKwO6q2rVk
-X-Authority-Analysis: v=2.4 cv=A+1sP7WG c=1 sm=1 tr=0 ts=689d656b cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=3k836agxgdhUhSIPf64A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: AzIbW23rQvmCWCXP-lbDAupKwO6q2rVk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-13_02,2025-08-11_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 priorityscore=1501 malwarescore=0 spamscore=0
- phishscore=0 clxscore=1015 adultscore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508110107
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: MLtv/SBKWfQ6vyMfDVz14T/w4Z88LK3E5Ts5efiQ8sb49PfgSJ5b7Vx4
+	xT4huA5DNZaXqT7RQ5VkuQpi+V8aEcuuGCyBdjIQkGW97Yqaqw9INZ7DREWu9q6oyp6vv77
+	fAXJsk0sNhAKkvB+8iwCTCLOm4DwqVRCtFTBC9pGfG4ZzvcWwcIAj58iGzckFBeIK320u6j
+	qN7ak6Lk8B9cfE8JsmUJNfGMD8p1BKX/G8w2gijZYVfWcVzb3A6JOZ8zU87a0jSs5dPADVg
+	tdZtMhXxfMDULWmERN5U4WPq0sXT3h1OA6m+ea/wsq9vFnLQRzSly8TvQr/sc35aj+pSu6Q
+	ZLG7RsA0+PBuVV69493q0VzIir/dUmb8gCZh1gicS1HRaeSOUTihZaU/dZJHH2bbG2bTe44
+	D3TFgWp0/rL8BoSE/cTiGNqq+xfRNxzBvdh7yMRYfUxDMB84KVZrTuAoWWbxtxn9kA2B3uf
+	9TSy7bREcPWMPQsv2BSvLJua/640KZPTkOHsOYnooBL16A5X30uF//30gG5iqjobd/J2kUK
+	3ZotavFxG6Wzvla1KFmceVHaWSdhdHA2g6tOy0Z8M7b8rhGqbrg18kqP3HbaqmJ6zGgBOHy
+	xhfWRAWz0ih6m34IjvwFGxmn13Ask7RW/EZauYkqgiC7w18KXe3ge7sP+3ozjvajME/AFdY
+	I/3VD5Y249rim0xRNPmPK6PncPvZIxcCw950sTD9Thv8ypFXTeKfcftAShijUtUWYPf1Cfi
+	o7C48soGuf6lOdRaAK393QcJ9IP5LVZwwVnbTGlk7T1kmnQB9DrjqLr6f6pgl/PZ1vVdZsr
+	CWGjOjgMd8xSvUt+1g03a9fLngRVqNyTvY/CMWP5U8eWcUyDU8nfODG+ZW0fs+iQaz7bFK3
+	YZUwi844i9aziaipOGEid9DtiDTP3ENUdB2JuzNv3cxFFn2nPaGXyO6qFZ7tjq6vTUeUEo5
+	ijzgXEhIKgKokX5sWDIAGCrlcgxaYRILKuAKGY3hru355G2dpi21xVeZSzr4+1MHP9BXYYB
+	nFJ6HKNzRiMb9pQN3S5IpuWnu7HTcu1oy8v0mgmfwsYPuJ4zQ2YXZVePGegoPOXL2v0/Q6E
+	A==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
+Use the correct es8388 address for rk3588s-roc-ps
 
+Signed-off-by: Kaison Deng <dkx@t-chip.com.cn>
+---
+ arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 8/14/2025 2:45 AM, Bryan O'Donoghue wrote:
-> On 12/08/2025 09:04, Krzysztof Kozlowski wrote:
->> On 12/08/2025 10:00, Krzysztof Kozlowski wrote:
->>> On 12/08/2025 09:54, Dikshita Agarwal wrote:
->>>>
->>>>
->>>> On 8/4/2025 7:07 PM, Krzysztof Kozlowski wrote:
->>>>> Add binding for Qualcom SM8750 Iris video codec, which comes with
->>>>> significantly different powering up sequence than previous SM8650, thus
->>>>> different clocks and resets.  For consistency keep existing clock and
->>>>> clock-names naming, so the list shares common part.
->>>>>
->>>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>   .../bindings/media/qcom,sm8750-iris.yaml           | 186
->>>>> +++++++++++++++++++++
->>>>>   1 file changed, 186 insertions(+)
->>>>>
->>>>
->>>> Query:
->>>> Can the additional reset and clocks be accommodated in existing 8550-iris
->>>
->>> No, different hardware. Although it is hardware from your domain and
->>> your company, so I would assume you know the answer.
->> I guess I misread - I thought you want to re-use existing properties or
->> something like that, but you just want to create one huge binding?
->>
->> No. Don't grow these unmaintainable patterns. We have been changing this
->> for some time already :/
->>
->> Best regards,
->> Krzysztof
-> 
-> @Dikshita can you revert here are you happy with a new binding or
-> requesting in-line changes in Iris - my reading here is a binding is
-> justified.
-> 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+index 7434ac39246f..7e179862da6e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+@@ -320,9 +320,9 @@ hym8563: rtc@51 {
+ &i2c3 {
+ 	status = "okay";
+ 
+-	es8388: audio-codec@10 {
++	es8388: audio-codec@11 {
+ 		compatible = "everest,es8388", "everest,es8328";
+-		reg = <0x10>;
++		reg = <0x11>;
+ 		clocks = <&cru I2S1_8CH_MCLKOUT>;
+ 		AVDD-supply = <&vcc_3v3_s0>;
+ 		DVDD-supply = <&vcc_1v8_s0>;
 
-Sure, but I was trying to understand how extending the current SM8550
-binding for [1] wasn't an issue.
+base-commit: 7f0817eee7ba40b48e956955d6fd8ba14750168c
+-- 
+2.25.1
 
-[1]
-https://lore.kernel.org/linux-media/20250417-topic-sm8x50-iris-v10-v7-1-f020cb1d0e98@linaro.org/
-
-Thanks,
-Dikshita
-
-> @Krzysztof
-> https://lore.kernel.org/linux-arm-msm/fb8f154b-3da4-4bee-82e1-3a1597a35c46@kernel.org/
-> 
-> Are you sending a v3 here ?
-> 
-> I can also just add the OPP when applying this patch.
-> 
-> ---
-> bod
-> 
 
