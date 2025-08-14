@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-204657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6AACB263C5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61EBEB263D9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:12:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFD6E721A16
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:01:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BFA89E1DE3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA602FCBE0;
-	Thu, 14 Aug 2025 11:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13B52E7F25;
+	Thu, 14 Aug 2025 11:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X7qTVoxT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GXBZcrUX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67642EAB9F;
-	Thu, 14 Aug 2025 11:00:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C222E1741;
+	Thu, 14 Aug 2025 11:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755169236; cv=none; b=bBmZ2zXt8i/5eVHZZ0/o9+0xJk1hZ4g/EKu4H4iRO8W76E0WqFoUgXM0UNK6NFuHxqh7rrEwbPuZvv3CTAbUFsjkdiE7JTKT8dxjy2IXCQCyCPldBvNUNU1i98TFmvAalsOZluqPqyjB06/wbPsSr8qPHFMp+L6pJL+fW+l3d9c=
+	t=1755169587; cv=none; b=dWCKrbiPk4bY3jk5cnlnRlp9LyISyvGYdlZ6DQ3iD2iGW+9OtfTSgLE0wFPL0Cw4iMd06i43aPcXW5ViIQMsXUwKGWcBSAeGMRGz5OjGFTrTfSnX3VNcGaFQpHbky2DJoLqPMVIc/WiLx3t+A6U2PMhARp8WDbk449Rs7UvGEcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755169236; c=relaxed/simple;
-	bh=ha3TYWbV+huAwQsCRTUDSrSg0nq7+oWMtWJZ76ApaJI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Qvj867XdxlqDpOdD6XLBdvqtQktKV4l7mZhWN+k/tX9HnicYr+YVeBRQLisscQJTxrza+u2X+an6drqYWaYu3NVluG/EeeQCx6Sv6Ut2fYw1GcLx1LdCszOUlaaprgHtbgvV36Ir75o87hq2FvoczMh0jVcC4xv6fcy/+asFtm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X7qTVoxT; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-afcb73621fcso116010166b.0;
-        Thu, 14 Aug 2025 04:00:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755169233; x=1755774033; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IVqngp6d0YHayShjN7NcmU4rtRaIIuqWkl5dT+TPW6Y=;
-        b=X7qTVoxTrnD5iZ4vLXQhCv7dg8n/5otgdhrv3ZjXzQodLLWUW2/x8+l2sM7CwgmZiD
-         12QbHgyD3i9MC38NkJ0U6PThONi68zGw6UDdn5yN/mFiLJ+OGpACdmTrbIqTn0T4oAU0
-         xd16gyaHZYo0HiDIsKFswUYOa9bQvJcNh37G7mdEe2+bejhqQdgEobeYkaIxCSHi7koa
-         ovKuRwayjigJtzve78zkcHpJOaVNjc7dDI3YNfE7Bs9bkwTMdlTyJeVGk8e7Nee26nyR
-         7hlAHLwEdmf0A1+e7GMe1drdS9bowgXNpP0E2L1mNuTxcR+MKk9LUVc5CNRlOzPnhrKd
-         1aRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755169233; x=1755774033;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IVqngp6d0YHayShjN7NcmU4rtRaIIuqWkl5dT+TPW6Y=;
-        b=eZ25GEjgdyQz7UQnUiryuzPwQW3QlvxBdWMyL166RRihMd6oVcMXPTNKVbXqOARgGd
-         WlGsnb3MNnT/+SWt1ckjrBK1tBH7dJ6CEADuxJ74unyXW0ETVq11DUn7rjaDgLjYk9DN
-         6SGp7Eu/DLxa8SILcG5XCL6XUC5MwdXy+ySyaEHDNgnqoyY/MGvHcUJTp1yNyq2hBzKB
-         5E++8H59I0P53kt5Foa9FHPWwi83dWPfjsupwkmCMDLdGPvljmrXUgoX17F/pU32SWll
-         lWxmKsv1scIaKelptJ/3XyK9SVZ52HsEqzVW4/VY7+HH8qu8DGC7zyz3gHUrm8X7B8yM
-         mnRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU5qmbSk0BXExHSCWygFfRUPWKVURAGc94aI68tBup28PSlPTT7V1hdSeBxru1nzy/7iGMwBC2HADWvXxmA@vger.kernel.org, AJvYcCUdkoZ5+dAvzSiE9SHXxgPwzjPq8+aMkO/AgZd5j1o3+jRQn5BY5lwsRje1bdXotQSGGgY9uT+hYJs0@vger.kernel.org, AJvYcCWBdWgk4y/n+GALc8SrzCR7lkdPcKkxpHL1PmHrcONwaXDZOM3BWMoXH8lQfsoasKkdxCKQpZONz4ir@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaaAnDM7X2Mhwy4NM2iQKcyVLQIRqkH6rBOdY8bohrHIAuoQeg
-	CbOXu3XFWhe2Wn2SaH9TV/LL7muD+5clgDkHvAT4Yl1Q0gb11EpPMKJ2
-X-Gm-Gg: ASbGncuORQ6va4e0VKODOmENhE3CIXSVCEd8lcAk6z/9neHdwEDcdVfQOeRfYvdNyY9
-	S2fBLBrfZ2jiPWF2cqkU+9aZj44HmgykV/nNCVOrfd86J/m7Fc93S78gR574Z+8YHFX6AaYQjY2
-	P3nLQHMlGskcZJ1mzJy4SVbd54q4vOZw3htZG4MLaWS0k/O/cHYsoTWwaIOv4kuTvw7mhYRnihX
-	wHQ5TIlAFa0kzJzt3CC8MXWGdvZklA4/gx5EfuoOR8FlzC7FAkomuPQOKwuheHlmOqRoMoDkc7d
-	ZFZeU5evtKDHqBCmFYm4TmAqLCI33oCA0w+B9DilZrJcnr/O7/Fq0Ic5CMwt7nXKcP9nMzkuOQE
-	CYAcTGD1VBA5RWyn4AZAYHtwMuSJd
-X-Google-Smtp-Source: AGHT+IFb4uqgKytb6JRIALaC3r7ae///g9Z/qOGjhuJ/hLXr/TVNVTsIfJAGTCy8LbQPDjrIaOnPKA==
-X-Received: by 2002:a17:907:9487:b0:ae0:ab3f:36b5 with SMTP id a640c23a62f3a-afcb981ee79mr254524466b.4.1755169233178;
-        Thu, 14 Aug 2025 04:00:33 -0700 (PDT)
-Received: from [127.0.1.1] ([185.177.137.147])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91dfd4b31sm2542980066b.85.2025.08.14.04.00.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Aug 2025 04:00:32 -0700 (PDT)
-From: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-Date: Thu, 14 Aug 2025 13:00:20 +0200
-Subject: [PATCH v3 4/4] iio: adc: ltc2497: reorder struct members to fix
- memory holes
+	s=arc-20240116; t=1755169587; c=relaxed/simple;
+	bh=rT8vpugLy20aEThSawYZskApeynAixeH8erAiCJiS8A=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JX7Vo9By0uabN9VfHfHzPLVq9DmJbG9dThjYz9l6hn+zH0CqZOxifdwnFG806zMR1eNnLhlRVmmUBRS6gaMpIIQv4H2bh8XPyElxMRqTT5duEU49nhPtu/hCMi84r4sHSg7+x50NItUcp4RVzOpOiB+I+1CzLlKp+igX761C9Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GXBZcrUX; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57EB6ERR1866430;
+	Thu, 14 Aug 2025 06:06:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1755169575;
+	bh=eXx4QX6GlD1ye8FFz2m4mlJAlk6n+EGxro0PcZGIkPw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=GXBZcrUXGbzBJoBc6Y76HkE6W6wG2F8A4R4wVqO2nO8Z0pBUdThZ8Uj7nLXM3WilB
+	 CnLYuzm/hs57jA1nA48D1u4WAfArhwZTD53LdimriHiaoWIL9k6qo/WmEzCuc9htvf
+	 nbLRGP6IKsOt0NWly2fis7w1lcrynndCIdCyT3AU=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57EB6E541669453
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 14 Aug 2025 06:06:14 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 14
+ Aug 2025 06:06:14 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 14 Aug 2025 06:06:14 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57EB6EsG3819943;
+	Thu, 14 Aug 2025 06:06:14 -0500
+Date: Thu, 14 Aug 2025 06:06:14 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, David Airlie <airlied@gmail.com>,
+        Maxime
+ Ripard <mripard@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>, <afd@ti.com>
+Subject: Re: [PATCH V2 3/3] drm/bridge: it66121: Add it66122 support
+Message-ID: <20250814110614.ziwsadnrxuoxknpk@oxidation>
+References: <20250813204106.580141-1-nm@ti.com>
+ <20250813204106.580141-4-nm@ti.com>
+ <0c684542-aacb-4e8c-a1c0-7fc0da78c733@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250814-ltc2495-v3-4-c2a6cecd6b99@gmail.com>
-References: <20250814-ltc2495-v3-0-c2a6cecd6b99@gmail.com>
-In-Reply-To: <20250814-ltc2495-v3-0-c2a6cecd6b99@gmail.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Beguin <liambeguin@gmail.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755169221; l=1743;
- i=y.alperbilgin@gmail.com; s=20250811; h=from:subject:message-id;
- bh=ha3TYWbV+huAwQsCRTUDSrSg0nq7+oWMtWJZ76ApaJI=;
- b=AAUFkHhsavrGE02LDakST86q8xbNc5p47qQxtm45rVCCHo0N+t1JNejhdY+/4DuJPXDJbui/D
- OW2xs1Rczi/BgFqc/a2zKjM//RR2j8u2LNCKtz9VkkydLJO3bfEwWY3
-X-Developer-Key: i=y.alperbilgin@gmail.com; a=ed25519;
- pk=FtW2oyQ0+xlYU0XmhYiJYC3lNPtPrgeE6i4WXPwaFnY=
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0c684542-aacb-4e8c-a1c0-7fc0da78c733@ideasonboard.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Reorder members in the `ltc2497_chip_info` and `ltc2497core_driverdata`
-structs to eliminate memory holes identified by the `pahole` tool.
+On 13:32-20250814, Tomi Valkeinen wrote:
 
-Confirm via the `bloat-o-meter` that this change has no significant
-impact on the final code size:
+Thanks for looking at this closer, Tomi.
 
-| Object File     | Total Size Change |
-|-----------------|-------------------|
-| ltc2497-core.o  | 0 (0.00%)         |
-| ltc2497.o       | +2 (+0.10%)       |
-| ltc2496.o       | 0 (0.00%)         |
+> 
+> On 13/08/2025 23:41, Nishanth Menon wrote:
+> > The IT66122 is a drop in replacement for the IT66122. The part is
+                                                      ^^
 
-Signed-off-by: Yusuf Alper Bilgin <y.alperbilgin@gmail.com>
----
- drivers/iio/adc/ltc2497.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Uggh.. I just realized I made a typo here -> should have stated: "
+"The IT66122 is a drop in replacement for the IT66121."
 
-diff --git a/drivers/iio/adc/ltc2497.h b/drivers/iio/adc/ltc2497.h
-index 65f406bc61c24b912de4beed604a074b3ea9df91..578f55efc5c400980fe8bbd2b220aafb222d6f33 100644
---- a/drivers/iio/adc/ltc2497.h
-+++ b/drivers/iio/adc/ltc2497.h
-@@ -10,8 +10,8 @@
- #define LTC2497_ENABLE_TEMPERATURE_CONV	(LTC2497_EN2 | LTC2497_IM)
- 
- struct ltc2497_chip_info {
--	u32 resolution;
- 	const char *name;
-+	u32 resolution;
- 	/*
- 	 * Represents the datasheet constant from the temperature formula:
- 	 * T_Kelvin = (DATAOUT * Vref) / temp_scale, where Vref is in Volts.
-@@ -27,12 +27,12 @@ struct ltc2497_chip_info {
- struct ltc2497core_driverdata {
- 	struct regulator *ref;
- 	ktime_t	time_prev;
--	/* lock to protect against multiple access to the device */
--	struct mutex lock;
- 	const struct ltc2497_chip_info	*chip_info;
--	u8 addr_prev;
- 	int (*result_and_measure)(struct ltc2497core_driverdata *ddata,
- 				  u8 address, int *val);
-+	/* lock to protect against multiple access to the device */
-+	struct mutex lock;
-+	u8 addr_prev;
- };
- 
- int ltc2497core_probe(struct device *dev, struct iio_dev *indio_dev);
+> > register compatible with what we use of the IT66121. The only relevant
+> 
+> The intro letter said "practical purposes is drop in replacement for
+> IT66121". Here you say "with what we use of the IT66121".
+> 
+> What does that mean? Are they identical, except the IDs? Or are they
+
+The only difference we had been told at the time about is that they are
+identical from operation perspective except for the ID register (I
+understand it is some sort of manufacturing change or something that is
+not visible to s/w - Robert/Jason could add more).
+
+> different, but the features and registers this driver uses are
+> identical? Or different, but only identical wrt. the driver's features
+> TI uses?
+
+Minor clarification: This is used on BeagleBoard.org foundation boards
+BeagleY-AI to be specific and not on Texas Instruments EVMs/SK.
+
+Personally, I have just looked at the features that BeagleY-AI platform
+uses. Though, searching via llms tells me there may be additional
+features, but I don't have the specific details to confirm beyond what
+the BeagleY-AI platform does.
+
+I am hoping BeagleBoard.org Foundation folks OR anyone on the list who
+have contacts with ITE Tech. INC. could probably add information.
 
 -- 
-2.43.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
