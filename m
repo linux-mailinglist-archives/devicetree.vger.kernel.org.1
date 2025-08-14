@@ -1,389 +1,145 @@
-Return-Path: <devicetree+bounces-204648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55C7B26385
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06893B263A2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30C5E5E5C59
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:53:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C9FF583812
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD8730274D;
-	Thu, 14 Aug 2025 10:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA022FAC0F;
+	Thu, 14 Aug 2025 10:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KNC14W8A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K09pQZu+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4282FD7CE;
-	Thu, 14 Aug 2025 10:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7A02EA472;
+	Thu, 14 Aug 2025 10:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755168734; cv=none; b=Ogg5BZvdVxilQ3whOtcuCTbZPjX6MmmNJF4Ln/qI4ZOYWBRXAyKjHsJaciMGq/qVLgHKFeQdt/5NpHMciJYNE0T14RYqe0VF/2PV8TUir84MnJh5mGZtbm53kVluZzfy9bxtAMkH6wYNk4XWfzFbaA64sXWWPt+ckkUuwPS5ZJA=
+	t=1755168843; cv=none; b=urOegwunxysrKG6ftjWfXA1WlmgRgel+3MANMbJEb9CEQ+/1Sh8Qv3tRV1z8Poor/Ip+D/xVFEq+qYbr6FRfNUSXMCjgRsbZcq4eW+BCS++O/aS42Vl7w2yAyc4KfU52WEOcQNvQaltn7znNsLh2Ten52TNbQXsJoINjt1qRLmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755168734; c=relaxed/simple;
-	bh=VjTUeKO5DzaMDYjeEYA5iF9+wACGlLhG3F60oh75hSc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NYUe2u+/WaFi7Z75pRLkoLNYWloswjojJahCtvy42IaKwHn75ltFKyw89ZHjcyrYTxUioC8tzZYWsoR5fO+n3EP704xnhklKdggFlyoCmJQ1bqWWJQz13izrxTH6BZvB9SfQhoYnVKmEIe6JgmqhgsyKxPFL7ARFkZ2Su9lBZTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KNC14W8A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E7AFEC116C6;
-	Thu, 14 Aug 2025 10:52:13 +0000 (UTC)
+	s=arc-20240116; t=1755168843; c=relaxed/simple;
+	bh=ziANNSCP7w5PAQy8kOB8wkVCq4nc196swfrWsB7bTGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fop+n3Bgu1fWKojD4r80V/nFcYk3EO9Db+XaJEa93Tft2XtYEOh8WaPLLlV3gyCsWITO0bAsp1kKIxD0oSHbBWPobcrQmZoVbga+24+sO6uYiOdoMIBIDg+3b/Rgg7BAX1gNQ4R2d+hvKt23MoiExok3fa2r0jxOBg8Dz+DhHyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K09pQZu+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E220C4CEED;
+	Thu, 14 Aug 2025 10:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755168734;
-	bh=VjTUeKO5DzaMDYjeEYA5iF9+wACGlLhG3F60oh75hSc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=KNC14W8A5+6rwWWaCK9IhSljuFwveZUwinNedHP00BVcepgDPA4wXkp25ondA5jva
-	 SV53cOvY+B/7vguHcR2O8c7Jau9CvTUI/zp0avRrZVZYT2e5S8KMzdKHYZA/zaSFoA
-	 v1RRNaOLF3yn5TZIERTNURzaM8iEGzleR46TF9iq6Lmr/yC82vXMIs5gcOgqrwyCdz
-	 lHweWuY+FXUr3sTdHefKaWbq11ynPfpWPm2hjIQDHhoI23xVLLGLTrqdPHulo6Br47
-	 WYDj6w8UAY6cMk+APct9yHVJr+Hv/2zC5jhzpwh+2xWgMhLsrBoJcBhBHZOzyYMHMl
-	 vnGZZ/bgbk6xg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEBCECA0EDC;
-	Thu, 14 Aug 2025 10:52:13 +0000 (UTC)
-From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
-Date: Thu, 14 Aug 2025 11:52:28 +0100
-Subject: [PATCH 6/6] gpio: gpio-ltc4283: Add support for the LTC4283 Swap
- Controller
+	s=k20201202; t=1755168843;
+	bh=ziANNSCP7w5PAQy8kOB8wkVCq4nc196swfrWsB7bTGE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K09pQZu+HKLg3pe91+ILUUnSSCf9V5lv5hpw/25AC4fQbw/nUmJ7RgITAg5gIcgYg
+	 q16cR5Lf/k5uJ9a5q4MtkNLae+U6HvI0/N+I8hvwbweaXlDDY0WefaE5ivyzRLu3c5
+	 A8kkRZh+243uOoQhBbZmO9Tl9oyvSqw1u+H3S5ejCO+pD+AYG0onw1asQluRG0boaU
+	 mjIkBXM/PB3xtLOXdjVGtLyZail+FuJZ3hTp+6yLjgQiY3oW51014lMdCpVghteK8t
+	 VmaEC+K6Crc9JaMUXy0aloTaXjitdZR8HnOWQNJbkzxE9Mghw6RpdXlN6oat/tJXlo
+	 TJj3Zl9xptE0g==
+Date: Thu, 14 Aug 2025 12:54:00 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Frank.Li@nxp.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Ghennadi.Procopciuc@nxp.com, s32@nxp.com
+Subject: Re: [PATCH v3 0/2] Add the s32g2 and s32g3 FTM PWM support
+Message-ID: <jmhzng2ezrrqhy52y7eru2ik6uburn4rnilfwreqmvkeirqbnm@b5ksjlufwuwf>
+References: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250814-ltc4283-support-v1-6-88b2cef773f2@analog.com>
-References: <20250814-ltc4283-support-v1-0-88b2cef773f2@analog.com>
-In-Reply-To: <20250814-ltc4283-support-v1-0-88b2cef773f2@analog.com>
-To: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-doc@vger.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1755168753; l=9063;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=086cCq1l2Tj2mWktUEYQQ1Yx2N11Tx954i757Fp6GS8=;
- b=Df5+LPzwO2GllKw5IVHwHmIpshDRP7srrKtkaqLHYV1ft7YNDZPrlSvKEbke84e1zjoZSC5b0
- 6t0oRmMZgtUCrFQnOxeoKq6LZdpMz+gqwyUXt0HM1dMTCJAI/vWAGZa
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
- auth_id=100
-X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Reply-To: nuno.sa@analog.com
-
-From: Nuno Sá <nuno.sa@analog.com>
-
-The LTC4283 device has up to 8 pins that can be configured as GPIOs.
-
-Note that PGIO pins are not set as GPIOs by default so if they are
-configured to be used as GPIOs we need to make sure to initialize them
-to a sane default. They are set as inputs by default.
-
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- MAINTAINERS                 |   1 +
- drivers/gpio/Kconfig        |  10 ++
- drivers/gpio/Makefile       |   1 +
- drivers/gpio/gpio-ltc4283.c | 233 ++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 245 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e492e75833564bd9065fe2422e86479553ea59dd..ae45c190920930ebe8890610bd7f92bd628ad025 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14508,6 +14508,7 @@ S:	Supported
- F:	Documentation/devicetree/bindings/gpio/adi,ltc4283.yaml
- F:	Documentation/devicetree/bindings/hwmon/adi,ltc4283.yaml
- F:	Documentation/devicetree/bindings/mfd/adi,ltc4283.yaml
-+F:	drivers/gpio/gpio-ltc4283.c
- F:	drivers/hwmon/ltc4283-hwmon.c
- F:	drivers/mfd/ltc4283.c
- F:	include/linux/mfd/ltc4283.h
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index e43abb322fa6e15f19f2f498aa5adea03e6cd3bf..fe1cd8c1a2f7f012ece0f207552fd1f15df26b1d 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -461,6 +461,16 @@ config GPIO_LPC32XX
- 	  Select this option to enable GPIO driver for
- 	  NXP LPC32XX devices.
- 
-+config GPIO_LTC4283
-+	tristate "Analog Devices LTC4283 GPIO support"
-+	depends on MFD_LTC4283
-+	help
-+	  If you say yes here you want the GPIO function available in Analog
-+	  Devices LTC4283 Negative Voltage Hot Swap Controller.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called gpio-ltc4283.
-+
- config GPIO_MB86S7X
- 	tristate "GPIO support for Fujitsu MB86S7x Platforms"
- 	help
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 379f55e9ed1e69cd9c5745f8643541b85953db1c..513f2b5c82ccff3a1da855d45abb5ad6abf5a14e 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -99,6 +99,7 @@ obj-$(CONFIG_GPIO_LP873X)		+= gpio-lp873x.o
- obj-$(CONFIG_GPIO_LP87565)		+= gpio-lp87565.o
- obj-$(CONFIG_GPIO_LPC18XX)		+= gpio-lpc18xx.o
- obj-$(CONFIG_GPIO_LPC32XX)		+= gpio-lpc32xx.o
-+obj-$(CONFIG_GPIO_LTC4283)		+= gpio-ltc4283.o
- obj-$(CONFIG_GPIO_MACSMC)		+= gpio-macsmc.o
- obj-$(CONFIG_GPIO_MADERA)		+= gpio-madera.o
- obj-$(CONFIG_GPIO_MAX3191X)		+= gpio-max3191x.o
-diff --git a/drivers/gpio/gpio-ltc4283.c b/drivers/gpio/gpio-ltc4283.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..c2c454c3b6e4ab0fe315dafc7eb66c45c3ceae67
---- /dev/null
-+++ b/drivers/gpio/gpio-ltc4283.c
-@@ -0,0 +1,233 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices LTC4283 GPIO driver
-+ *
-+ * Copyright 2025 Analog Devices Inc.
-+ */
-+#include <linux/bitmap.h>
-+#include <linux/bits.h>
-+#include <linux/device.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/mfd/ltc4283.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define LTC4283_INPUT_STATUS			0x02
-+#define LTC4283_PGIO_CONFIG_2			0x11
-+
-+#define LTC42823_ADIO_CONFIG			0x12
-+/* starts at bit 4 */
-+#define   LTC4283_ADIOX_CONFIG_MASK(pin)	BIT((pin) + 4)
-+#define LTC4283_PGIO_DIR_IN			3
-+
-+struct ltc4283_gpio {
-+	struct gpio_chip gpio_chip;
-+	struct regmap *regmap;
-+};
-+
-+static int ltc4283_pgio_get_direction(const struct ltc4283_gpio *st, unsigned int off)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, LTC4283_PGIO_CONFIG, &val);
-+	if (ret)
-+		return ret;
-+
-+	val = field_get(LTC4283_PGIO_CFG_MASK(off), val);
-+	if (val == LTC4283_PGIO_DIR_IN)
-+		return GPIO_LINE_DIRECTION_IN;
-+
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int ltc4283_gpio_get_direction(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	unsigned int val;
-+	int ret;
-+
-+	if (off >= LTC4283_PGIOX_START_NR)
-+		return ltc4283_pgio_get_direction(st, off);
-+
-+	ret = regmap_read(st->regmap, LTC42823_ADIO_CONFIG, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val & LTC4283_ADIOX_CONFIG_MASK(off))
-+		return GPIO_LINE_DIRECTION_IN;
-+
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int ltc4283_gpio_direction_set(const struct ltc4283_gpio *st,
-+				      unsigned int off, bool input)
-+{
-+	if (off >= LTC4283_PGIOX_START_NR) {
-+		unsigned int val;
-+
-+		val = field_prep(LTC4283_PGIO_CFG_MASK(off), input ? 3 : 2);
-+		return regmap_update_bits(st->regmap, LTC4283_PGIO_CONFIG,
-+					  LTC4283_PGIO_CFG_MASK(off), val);
-+	}
-+
-+	return regmap_update_bits(st->regmap, LTC42823_ADIO_CONFIG,
-+				  LTC4283_ADIOX_CONFIG_MASK(off),
-+				  field_prep(LTC4283_ADIOX_CONFIG_MASK(off), input));
-+}
-+
-+static int __ltc4283_gpio_set_value(const struct ltc4283_gpio *st,
-+				    unsigned int off, int val)
-+{
-+	u32 reg = off < LTC4283_PGIOX_START_NR ? LTC42823_ADIO_CONFIG : LTC4283_PGIO_CONFIG_2;
-+
-+	return regmap_update_bits(st->regmap, reg, BIT(off),
-+				  field_prep(BIT(off), !!val));
-+}
-+
-+static int ltc4283_gpio_direction_input(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+
-+	return ltc4283_gpio_direction_set(st, off, true);
-+}
-+
-+static int ltc4283_gpio_direction_output(struct gpio_chip *gc, unsigned int off, int val)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	int ret;
-+
-+	ret = ltc4283_gpio_direction_set(st, off, false);
-+	if (ret)
-+		return ret;
-+
-+	return __ltc4283_gpio_set_value(st, off, val);
-+}
-+
-+static int ltc4283_gpio_get_value(struct gpio_chip *gc, unsigned int off)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+	unsigned int val, reg;
-+	int ret, dir;
-+
-+	dir = ltc4283_gpio_get_direction(gc, off);
-+	if (dir < 0)
-+		return dir;
-+
-+	if (dir == GPIO_LINE_DIRECTION_IN) {
-+		ret = regmap_read(st->regmap, LTC4283_INPUT_STATUS, &val);
-+		if (ret)
-+			return ret;
-+
-+		/* ADIO1 is at bit 3. */
-+		if (off < LTC4283_PGIOX_START_NR)
-+			return !!(val & BIT(3 - off));
-+
-+		/* PGIO1 is at bit 7. */
-+		return !!(val & BIT(7 - (off - LTC4283_PGIOX_START_NR)));
-+	}
-+
-+	if (off < LTC4283_PGIOX_START_NR)
-+		reg = LTC42823_ADIO_CONFIG;
-+	else
-+		reg = LTC4283_PGIO_CONFIG_2;
-+
-+	ret = regmap_read(st->regmap, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	return !!(val & BIT(off));
-+}
-+
-+static int ltc4283_gpio_set_value(struct gpio_chip *gc, unsigned int off, int val)
-+{
-+	struct ltc4283_gpio *st = gpiochip_get_data(gc);
-+
-+	return __ltc4283_gpio_set_value(st, off, val);
-+}
-+
-+static int ltc4283_init_valid_mask(struct gpio_chip *gc, unsigned long *valid_mask,
-+				   unsigned int ngpios)
-+{
-+	unsigned long *mask = dev_get_drvdata(gc->parent->parent);
-+
-+	bitmap_copy(valid_mask, mask, ngpios);
-+	return 0;
-+}
-+
-+static int ltc4283_gpio_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	/* Get mask from top level device. */
-+	unsigned long *mask = dev_get_drvdata(dev->parent);
-+	struct ltc4283_gpio *st;
-+	struct gpio_chip *gc;
-+	unsigned int gpio;
-+	int ret;
-+
-+	st = devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
-+	if (!st)
-+		return -ENOMEM;
-+
-+	st->regmap = dev_get_regmap(dev->parent, NULL);
-+
-+	gc = &st->gpio_chip;
-+	gc->parent = dev;
-+	gc->get_direction = ltc4283_gpio_get_direction;
-+	gc->direction_input = ltc4283_gpio_direction_input;
-+	gc->direction_output = ltc4283_gpio_direction_output;
-+	gc->get = ltc4283_gpio_get_value;
-+	gc->set = ltc4283_gpio_set_value;
-+	gc->init_valid_mask = ltc4283_init_valid_mask;
-+	gc->can_sleep = true;
-+
-+	gc->base = -1;
-+	gc->ngpio = LTC4283_GPIO_MAX;
-+	gc->label = pdev->name;
-+	gc->owner = THIS_MODULE;
-+
-+	for_each_set_bit(gpio, mask, LTC4283_GPIO_MAX) {
-+		if (gpio < LTC4283_PGIOX_START_NR)
-+			continue;
-+
-+		/*
-+		 * PGIO pins can have some other state other than input
-+		 * or output, so we need to make sure to set one of those.
-+		 * Default to input.
-+		 */
-+		ret = ltc4283_gpio_direction_set(st, gpio, true);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "Failed to set direction for PGIO %u\n", gpio);
-+	}
-+
-+	return devm_gpiochip_add_data(dev, &st->gpio_chip, st);
-+}
-+
-+static const struct platform_device_id ltc4283_gpio_id_table[] = {
-+	{ "ltc4283-gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, ltc4283_gpio_id_table);
-+
-+static const struct of_device_id ltc4283_of_id_table[] = {
-+	{ "adi,ltc4283-gpio" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ltc4283_of_id_table);
-+
-+static struct platform_driver ltc4283_gpio_driver = {
-+	.driver	= {
-+		.name = "ltc4283-gpio",
-+		.of_match_table = ltc4283_of_id_table,
-+	},
-+	.probe = ltc4283_gpio_probe,
-+	.id_table = ltc4283_gpio_id_table,
-+};
-+module_platform_driver(ltc4283_gpio_driver);
-+
-+MODULE_AUTHOR("Nuno Sá <nuno.sa@analog.com>");
-+MODULE_DESCRIPTION("GPIO LTC4283 Driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.50.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7nq7dujoidxx352a"
+Content-Disposition: inline
+In-Reply-To: <20250812200036.3432917-1-daniel.lezcano@linaro.org>
 
 
+--7nq7dujoidxx352a
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 0/2] Add the s32g2 and s32g3 FTM PWM support
+MIME-Version: 1.0
+
+Hello Daniel,
+
+On Tue, Aug 12, 2025 at 10:00:34PM +0200, Daniel Lezcano wrote:
+> The NXP Automotive platform s32g2 and s32g3 have on their board a
+> FlexTimer (FTM) dedicated for the PWM. The same IP is found on the
+> Freescale Vybrid Family and the i.MX8 SoCs. However, there is a small
+> difference with some registers not available on the s32g2/3 and 6
+> channels instead of 8.
+>=20
+> These two patches provide the DT bindings for the s32g2/3 compatible
+> strings and the code to deal with the FTM difference.
+>=20
+> Changelog:
+>         v3:
+> 	 - Fixed dt-bindings subject prefix
+>         v2:
+> 	 - Merged the two booleans for the regmap holes check
+> 	 - Clarified why this is needed in the changelog
+> 	v1:
+> 	 - Initial post
+>=20
+> Daniel Lezcano (1):
+>   dt-bindings: pwm: fsl,vf610-ftm-pwm: Add compatible for s32g2 and
+>     s32g3
+>=20
+> Ghennadi Procopciuc (1):
+>   pwm: Add the S32G support in the Freescale FTM driver
+
+Applied to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+
+with this merge conflict resolution:
+
+diff --cc drivers/pwm/pwm-fsl-ftm.c
+index 6683931872fc,e0069dbdb02d..000000000000
+--- a/drivers/pwm/pwm-fsl-ftm.c
++++ b/drivers/pwm/pwm-fsl-ftm.c
+@@@ -396,7 -428,9 +416,7 @@@ static int fsl_pwm_probe(struct platfor
+  		return PTR_ERR(chip);
+  	fpc =3D to_fsl_chip(chip);
+ =20
+ -	mutex_init(&fpc->lock);
+ -
+- 	fpc->soc =3D of_device_get_match_data(&pdev->dev);
++ 	fpc->soc =3D soc;
+ =20
+  	base =3D devm_platform_ioremap_resource(pdev, 0);
+  	if (IS_ERR(base))
+
+The pro tip here to make your upstream maintainer lucky is to work on
+their tree or next or at least the latest development release and make
+use of `git format-patch --base`.
+
+Best regards
+Uwe
+
+--7nq7dujoidxx352a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmidwEUACgkQj4D7WH0S
+/k6hAQf+JIneL5db7exA59/VygPd9FRzBydkVt90GrolvsX9nDiE+4iWGWE+slLC
+OWUMcZ/zG03Evfgo11QGKFvXPjxiOddA6kkjdPMT9VToITh0Yfw9jQ1s4eGqnzJc
+oIA942VfrfwY6hcQcmxW/IGnbjk309Vu5XLd0+6srcOIhAm59UZ9UjRq1NTIwP/+
+7yDm0nXzMAMJ4T0pPZJQFd6+9fIa0FpkSf3GGkhW7HQ6sAeYkeXQZw9iNcggwsph
+skcEdxqb6MqzIlG7Ec4ZKJI4/QNDJzoUgNBbmcH+CL8Lc8mmaVR9oLRCC7B3n8P4
+6SV5zT1ZRaH/JMwJ3R6Web+1Y0gLNA==
+=XzQx
+-----END PGP SIGNATURE-----
+
+--7nq7dujoidxx352a--
 
