@@ -1,159 +1,164 @@
-Return-Path: <devicetree+bounces-204764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E8CB26B9B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 17:55:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7D5B26C06
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 18:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A93D8687C37
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 15:50:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 926E8A00B9B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 16:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291DD24168D;
-	Thu, 14 Aug 2025 15:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F1424DCF9;
+	Thu, 14 Aug 2025 16:07:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bibmmQvZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A94233710;
-	Thu, 14 Aug 2025 15:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4232472AB
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 16:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755186627; cv=none; b=WXhUesGeYiAhjHuCIf6Ln8ujIH/tEpHT93CGeEq/gcYF5R5XYGH1MCeXGRxEd5H/3oMjz4vo3FQ/LL5zxoMcDNO46uAZMc31zv/cXrrugwhrhigLz2PDGPDrbfro2GWJokTrvVbM4ARQDvsOXxgcbznvZXo9dpJsmwXZmXvhw8o=
+	t=1755187625; cv=none; b=YWPY4yFoHbMIOeFRQ2MqwJli+erk6SRMScfaUhMAxWHq31Z+kNgd17HnMKjqTxK9IIwge4qjmkCOPeCWPvc144I4ydCBqrwSH2XjW4mZ7eGQ1mbU03mArPolwwIqtGT21E4Ff9x2pSGifEIILQuCq4cMKI2GEhmSLEQrmJPC6zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755186627; c=relaxed/simple;
-	bh=Z8bEQI00NkbwUdIv/vhnAFw33hHBlPVS4Ot/H8rFDX0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hRuC7ZcK5L8LoHnkpiLwb6rKxZuCDGx1fpngN1oFI+Z3qtN8NJYC2OYTvzRZiysx8D+A0FCtm7oXBsHFAa0Jsa36KJ6Nnx3xa7ioZDBMr0DAObtg3R149OpYRUKYfrj146gOTt4aVdbmxvC8+vffERuPRn6BPlrIIWIJ8q69ayk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-50f890e9054so670829137.1;
-        Thu, 14 Aug 2025 08:50:24 -0700 (PDT)
+	s=arc-20240116; t=1755187625; c=relaxed/simple;
+	bh=MEMndkwsKz3Wir01XY15+wsOAiobH1YxwPbkYo3eX7Y=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iskGET7XqvXBJ/jf0s1EzWsDTuip+PdHq4QVc31hXEpKZZ0YJuAxpBgZ2NbTaQRqgDvB4idlLNIigRVbGsg5Wp6szIM2bRszG3VV1z+3Qcts+XnSjh8vEzEnFguDLFX63fw8mL/XYd0YDsPRPpHHM2pZlrOEsyI/JTB1PPNypro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bibmmQvZ; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-45a1b097037so6363895e9.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 09:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1755187621; x=1755792421; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yj38X/0MfiFnhuC5i4RxM2VUGXAWD2Xbv8OmXp3rmdA=;
+        b=bibmmQvZBZkUL7IGH+Xr/U4n4OtdjnPCPKcsE6j2efOgUnz/WDj4Vzydfgr22xW3AP
+         iu0rrm9Fgw2dOl/kVAVN6g7nArEG0h7FfhnoDiD4ZkGz57/vxoPH+D/VXMRLcVbfc5X8
+         +PWAjKS/MB54XYnfxDaGXXZyp0Ox0gzswZVK6a+b+z5XBEGJuz96Z190tjK5wso9uSej
+         sKH7COfdHJTG6vQUvYlPzmX5kQDQ0Jlz3lQzwbWTIJ6mzRyKyG3woa56dpcAbA/77fG6
+         4w2cLhCmwb36dKAa+khZ7YkJbHHPVPjxfkDtJDcvXgjYU8S+FnGlYggVj6nSxFhRxM+3
+         MKBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755186624; x=1755791424;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1755187621; x=1755792421;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PPxPc5gSPfbsdKnAKMvHjWJ+7kwSju+xPbLU6ci9bXI=;
-        b=ndqAdnqeqj7R6w+OH36IkI9E3vh3N4uMeVF3/TwZCdwyglahufIRYbA/wqbr01P418
-         3DF1lumkO4f+RjGBoUDo4Q3sm4u0NOzeOFyQcNGfv6t63jOeSggqYTuIHf8QRZ2Ijyvw
-         29BWsgnGUy9MtmYdoVxRrIxZcbrmAaGpbuxpfFcpFwiCUE1Z7tefzuVevSGFEslsOOtd
-         5vubfz+RCUqc+oxBX/gCZESNFXmbkYrUiE9V0HfYMUezKViIPqSWKX2m3j4KVXf2UPdO
-         DR42Nat4bxCzC3PKAaS0X7CiyXyqu8giozgC23kD58z8g7iQ11jgR8ozSxCYM1HeuytH
-         xvxw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHxZf1LhnKdzrCgnsmNB0PmZrFLP0yI83pLMrlNmPRk+fvt8eROzqEVjfjL64yejPXX0vGFPjNZRvBRYd+qXhYyww=@vger.kernel.org, AJvYcCX1TtezLZtDR3FCRuEelVd8/4UrI+/Ht3Qpt2HKTJcRagy9TYdWSDvhDtEdXXKCkY1Bg442ad0Xmeoy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiCu9VeLiyt4vHBFCTlSKB9vE4yPUsFUIznUcfvD2eX8ne617F
-	SfoO8fjSYC9n3dFJFi95UzytH7IsEAuYC3qGZmgwqR101r2lyp3NHcbWF864fTvm
-X-Gm-Gg: ASbGncvpUpLR9rWmv8aJDm5KAVt+zv6LH5vTbzeAC1R7XyIhdbA+xaeLgFbMS1UehtZ
-	eJHkyDM/826pHoh+fbuOX0gwqWeQIXYfbuqoiy4XSx+xxJuFEJZJQgNV361thWJ5O7huWoe73Kl
-	7rS0Trz0AdaOZcZGw639epPlnJrxdp4YgqHCxOZWDm2vHFULX8B8GOBuZJVObp6h02yq1JHsA1T
-	O0OWFkYwlZNVILi0FNZEYJaKWUMkS56WMduxnOrGvOU4g4nSr5OeeJUeyktICDQ/OdeYp8ywzFE
-	B9xyJqIcXfLx+qFCoLPGfgL9WjVbuXY2DgsEIg7VGgmSGhDZifBb541K3st0Hz6GibE2VeI72mz
-	XxzWsKsI/7IZVKauZh+jRLvWg6nkW19AXj15ny0At/P9arPQymik4lTUQHoahI3DHEsxdQJI=
-X-Google-Smtp-Source: AGHT+IGbC6O9pnhUIODkWNTe8O4zW3OeWDg6dGpEYrD5ocj+VR6CZwaraSr+g992dClkTbqsxXj6yg==
-X-Received: by 2002:a05:6102:30ca:10b0:511:db31:acc2 with SMTP id ada2fe7eead31-511db41e87cmr181400137.4.1755186623733;
-        Thu, 14 Aug 2025 08:50:23 -0700 (PDT)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-88e0268d423sm3083400241.2.2025.08.14.08.50.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Aug 2025 08:50:23 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-89018ec3597so602313241.0;
-        Thu, 14 Aug 2025 08:50:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU7VZjyh+fAarSo9Rml2hNxpd59nmMEWmIHcgr7wHCdm/bwvo/6JIsW8TXQB8gG0GXVCnHzT8/nQ7LEX9MWaf9e/NQ=@vger.kernel.org, AJvYcCVqfT9ka3gf4bKPD5YyQ9bYcpbACr7Wx6Xn/q3yUa9yme42vFDwgFfRwcSJDWNIs0xyQv2IaOjwVgvW@vger.kernel.org
-X-Received: by 2002:a05:6102:e09:b0:4fc:b033:cdc5 with SMTP id
- ada2fe7eead31-50fe9974df5mr1403773137.22.1755186623090; Thu, 14 Aug 2025
- 08:50:23 -0700 (PDT)
+        bh=yj38X/0MfiFnhuC5i4RxM2VUGXAWD2Xbv8OmXp3rmdA=;
+        b=Qus0trdh9dEOA3DIC0qo/aFyTj6e9nHnmebZr2S59RpJiDc7lj0NBF7GMYDaWMDBNI
+         k1fS23X0pDF2jS88jaYSHK56DWl9DBQu5Q/WGyr6CWZjOh33hKGb8+d3TxKJDPwYMNee
+         U1wXOvZVxlsLXZsBVmucmVR62g1rL79nCWwd8gMd38IjbPIWSYdvQaWo8tdkewBPLQI8
+         M4e3uT+8GcQeNqcZVtHMmqMkYyAfzAlLaI9UqohxDf7BVSHuIhH85utYTrRdvKkrnT7/
+         v1wJqr23RKk64YoZrUDoUHh8/35/a0Ydu1SDjrJzLQPEx+DwpI8XewcZNtzyUwtGWGhR
+         5g6g==
+X-Forwarded-Encrypted: i=1; AJvYcCV1ONXxC5/3XArubM3pxaVK+VqjfPM2dYRPRQh0hBdicjVojU7R/ZFAw7bSL418ZPkJJj3Fp/wyatQW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/gVRd90Jm7IhD/yys8jwIbcP21A0dF9TPM9oXXKrT+XgnGcLo
+	GLQdhUgqYXDMRWxsGvGQ31316oRgmDX65UYwISrczDoDi9OwASGMeSV45nOWztxw/Es=
+X-Gm-Gg: ASbGncsHshyI42dU5YGUmPu1QaxChkv2y1m9giTRf7WPnmdkroniXQfAdG1oAQM8C1z
+	4nUPGollqY9PIDXnUqdfvCGhvtBfGHseDdrolpRCoDJra2blmmi43AdgdQ2VmVKncbCGcZVJw4e
+	ySU1ryMQBss3C0Ate8iYkxxIyoG8GFPRcPwApGyvunUEFeNKkLUj7bh5ejQ4jKfqtcbJ0iJDrdh
+	LIWkQ4Uar9s3V+O7EkgI2rDaIjFyFTTu+/MsAvcL8+/Ah113n7bxFn7gsSokTxmzrZUA8CtdJi/
+	7gPo8t82psOQFKjq3WFbkGgeo/Gg1mLngV5lx5aR1iwCQP98Iwv4D1bv3l0A6MWw/aQDBNTg4ly
+	oa+YO4VY4M3f8PEucJEEZm8UEQYvDbO0=
+X-Google-Smtp-Source: AGHT+IGccfHVH8S3HQU2QCeEdvi+7U1L+lLQrDOX9EP621ilEY0DVdTkWjRgqUW6HC5Zu2JnCCHaEg==
+X-Received: by 2002:a05:600c:470a:b0:459:db5a:b097 with SMTP id 5b1f17b1804b1-45a1b6489e0mr37662135e9.16.1755187621381;
+        Thu, 14 Aug 2025 09:07:01 -0700 (PDT)
+Received: from ho-tower-lan.lan ([185.48.76.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45a1c6bd172sm28363495e9.6.2025.08.14.09.07.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 09:07:00 -0700 (PDT)
+From: James Clark <james.clark@linaro.org>
+Subject: [PATCH 00/13] spi: spi-fsl-lpspi: Generic fixes and support for
+ S32G devices
+Date: Thu, 14 Aug 2025 17:06:40 +0100
+Message-Id: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250625100330.7629-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdV3=c24KxO_Sbt50FGsFnNVYNnHAUhk-yoa+nM1f+7+kA@mail.gmail.com> <e1d465f7-43d7-471b-b8a7-7d24428bac4c@mailbox.org>
-In-Reply-To: <e1d465f7-43d7-471b-b8a7-7d24428bac4c@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Aug 2025 17:50:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX6naFbq-5LyuC4n+JRPTXGSSohKDTf95=MS_SMyHqfng@mail.gmail.com>
-X-Gm-Features: Ac12FXzUlAeFho5ry-hkAttyLSDTpbx1Nmmf3I2qDfLxTUJAEpDknPJ7TslWclQ
-Message-ID: <CAMuHMdX6naFbq-5LyuC4n+JRPTXGSSohKDTf95=MS_SMyHqfng@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a779g3: Update thermal trip points
- on V4H Sparrow Hawk
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJAJnmgC/2XOSwqDMBCA4atI1k3JgxjtqvcoXUSd6BRrQlKCR
+ bx7oxRKcfkPzDezkAgBIZJLsZAACSO6KQc/FaQdzNQDxS43EUwoprmiD/OESKfZ09FHj5Rb06o
+ KtDCqJnnLB7A47+LtnnvA+HLhvR9IfJt+LckPVuKU0a4uhdSVsbJtriNOJrizCz3ZsCR+QMWOz
+ ySRAalryzvTlBrgD1jX9QNSTsKt8AAAAA==
+To: Frank Li <Frank.Li@nxp.com>, Mark Brown <broonie@kernel.org>, 
+ Clark Wang <xiaoning.wang@nxp.com>, Fugang Duan <B38611@freescale.com>, 
+ Gao Pan <pandy.gao@nxp.com>, Fugang Duan <fugang.duan@nxp.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Larisa Grigore <larisa.grigore@oss.nxp.com>, 
+ Larisa Grigore <larisa.grigore@nxp.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, 
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com
+Cc: James Clark <james.clark@linaro.org>, linux-spi@vger.kernel.org, 
+ imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+X-Mailer: b4 0.14.0
 
-Hi Marek,
+Various fixes for LPSI along with some refactorings. None of the fixes
+are strictly related to S32G, however these changes all originate from
+the work to support S32G devices. The only commits that are strictly
+related are for the new s32g2 and s32g3 compatible strings.
 
-On Wed, 6 Aug 2025 at 17:23, Marek Vasut <marek.vasut@mailbox.org> wrote:
-> On 8/6/25 11:35 AM, Geert Uytterhoeven wrote:
-> >> +/* THS sensor in SoC near CA76 cores does more progressive cooling. */
-> >> +&sensor_thermal_ca76 {
-> >> +       critical-action = "shutdown";
-> >> +
-> >> +       cooling-maps {
-> >> +               /*
-> >> +                * The cooling-device minimum and maximum parameters inversely
-> >> +                * match opp-table-0 {} node entries in r8a779g0.dtsi, in other
-> >> +                * words, 0 refers to 1.8 GHz OPP and 4 refers to 500 MHz OPP.
-> >> +                * This is because they refer to cooling levels, where maximum
-> >> +                * cooling level happens at 500 MHz OPP, when the CPU core is
-> >> +                * running slowly and therefore generates least heat.
-> >
-> > That applies to cooling-device = <&a76_[0-3] ...>...
->
-> Do you want me to add this line into the comment ?
+Signed-off-by: James Clark <james.clark@linaro.org>
+---
+To: Frank Li <Frank.Li@nxp.com>
+To: Mark Brown <broonie@kernel.org>
+To: Clark Wang <xiaoning.wang@nxp.com>
+To: Fugang Duan <B38611@freescale.com>
+To: Gao Pan <pandy.gao@nxp.com>
+To: Fugang Duan <fugang.duan@nxp.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Shawn Guo <shawnguo@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+To: Larisa Grigore <larisa.grigore@oss.nxp.com>
+To: Larisa Grigore <larisa.grigore@nxp.com>
+To: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+To: Ciprianmarian Costea <ciprianmarian.costea@nxp.com>
+To: s32@nxp.com
+Cc: linux-spi@vger.kernel.org
+Cc: imx@lists.linux.dev
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
 
-I don't think that is really needed (see below)
+---
+James Clark (7):
+      spi: spi-fsl-lpspi: Enumerate all pin configuration definitions
+      spi: spi-fsl-lpspi: Add DT property to override default pin config
+      spi: spi-fsl-lpspi: Constify devtype datas
+      spi: spi-fsl-lpspi: Make prescale erratum a bool
+      spi: spi-fsl-lpspi: Parameterize reading num-cs from hardware
+      dt-bindings: lpspi: Update maximum num-cs value
+      dt-bindings: lpspi: Document nxp,lpspi-pincfg property
 
-> >> +                */
-> >> +               map0 {
-> >> +                       /* At 68C, inhibit 1.7 GHz and 1.8 GHz modes */
-> >> +                       trip = <&sensor3_passive_low>;
-> >> +                       cooling-device = <&a76_0 2 4>;
-> >> +                       contribution = <128>;
-> >> +               };
-> >> +
-> >> +               map1 {
-> >> +                       /* At 72C, inhibit 1.5 GHz mode */
-> >> +                       trip = <&sensor3_passive_mid>;
-> >> +                       cooling-device = <&a76_0 3 4>;
-> >> +                       contribution = <256>;
-> >> +               };
-> >> +
-> >> +               map2 {
-> >> +                       /* At 76C, start injecting idle states */
-> >> +                       trip = <&sensor3_passive_hi>;
-> >> +                       cooling-device = <&a76_0_thermal_idle 0 80>,
-> >> +                                        <&a76_1_thermal_idle 0 80>,
-> >> +                                        <&a76_2_thermal_idle 0 80>,
-> >> +                                        <&a76_3_thermal_idle 0 80>;
-> >
-> > ... but what do "0 80" refer to? I couldn't find in the thermal-idle
-> > bindings what exactly are the minimum and maximum cooling states here.
->
-> The comments in drivers/thermal/cpuidle_cooling.c clarify that, it is
-> the idle injection rate in percent, in this case the cooling can inject
-> idle states up to 80% of time.
+Larisa Grigore (6):
+      spi: spi-fsl-lpspi: Fix transmissions when using CONT
+      spi: spi-fsl-lpspi: Set correct chip-select polarity bit
+      spi: spi-fsl-lpspi: Reset FIFO and disable module on transfer abort
+      spi: spi-fsl-lpspi: Clear status register after disabling the module
+      spi: spi-fsl-lpspi: Add compatible for S32G
+      dt-bindings: lpspi: Document support for S32G
 
-OK, so I will add "(0-80%)" to the idle states comment, and sort
-the nodes while queuing in renesas-devel for v6.18.
+ .../devicetree/bindings/spi/spi-fsl-lpspi.yaml     | 21 +++++-
+ drivers/spi/spi-fsl-lpspi.c                        | 87 +++++++++++++++-------
+ 2 files changed, 82 insertions(+), 26 deletions(-)
+---
+base-commit: 0cc53520e68bea7fb80fdc6bdf8d226d1b6a98d9
+change-id: 20250715-james-nxp-lpspi-1fac58e72a59
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+James Clark <james.clark@linaro.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
