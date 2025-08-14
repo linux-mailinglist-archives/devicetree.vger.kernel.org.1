@@ -1,99 +1,156 @@
-Return-Path: <devicetree+bounces-204545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F1DB25ED5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:30:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2A2B25F08
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:37:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51B3B7B26A2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:28:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49B1F18896C3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 08:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B8E2E7F18;
-	Thu, 14 Aug 2025 08:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0AD52D3EDB;
+	Thu, 14 Aug 2025 08:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gpKKgtsd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hIYycoX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DE22580D7;
-	Thu, 14 Aug 2025 08:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE20239581;
+	Thu, 14 Aug 2025 08:35:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755160188; cv=none; b=DY+hqeAJkVysTlSwNe3oO0fxf9B6kVQ4bGdRUJq7tjMfLn5TrXiMa7TLwGY1sNZjjZaBYoObHIkpduIV6hGVr/zzI/KuJporV8+ufcDIMLnimeYCb+ktpkf4R755bnGb2pWgeYwLANGr9nyqhUeuAQA76BAK8it6fMyt2iy+8UM=
+	t=1755160506; cv=none; b=FZhoIjsiF5q/QpMkr2mRywhErs2OqeAAERPwF9NjFimjh3S+onMtI5BivdmEfGXXxHqAa50AGf1BNzrdSJvcizYNkVlS18NPPO6Tg5V06iP5SVvU6DwKs41L8mYBZV2c2SY5/14h/wk8a4jwhM4OD9oDbPSNoBxij6EVaRRoBes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755160188; c=relaxed/simple;
-	bh=czB9BQFUSwV/+y45czm/RfvfKjNZIL9R6PoXdqY73Hc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kjwt9uFCFU8QGShMEBsMdxCZROlp6msNJxZdQBtlQXOjxOrKKi+MpCLOAaYoCjHUbyEv05EVB1gni1mNv8lCB4XGWOHgARZ0gKsNj7mD8yVcwk7NL7Rd78iw821jdNwaZS4OxsBLZfUJX4Qx1Q9Dk8/itn8oKFc4VakFTeol2a4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gpKKgtsd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C67BBC4CEF7;
-	Thu, 14 Aug 2025 08:29:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755160188;
-	bh=czB9BQFUSwV/+y45czm/RfvfKjNZIL9R6PoXdqY73Hc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gpKKgtsd6bZYAKDZj6uqmdK41sXqXoT81mI+N6HfapbmEVGrDCYGUa2AQ1wiK5bwO
-	 QLnzgxc4sotDIP5DfgrRGM0w2xY7sEpjzrBHuOQCWKKDq/MgeBxRDEjVMtnc+jZDsf
-	 LIB7FQlpoxqZJbqVQiQJKzGAmfK8r/ub+hbFrgd62AnaFiXT+c2gV5XqEBbT6FzZrJ
-	 5dPy6pz+A62BmxEjYaQrREJm4IrP2NA6D/7Y1li6F5eIT31f6m7LWyocSac6qJ1INl
-	 ZBbozPIuwwMsLt5efmD7GwAvEnr+wheIvobMwpCCl+WF9icX/ZRTjtDt3e3U6b8pQZ
-	 7UQUEitABmgmQ==
-Date: Thu, 14 Aug 2025 10:29:45 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Wei Fang <wei.fang@nxp.com>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"richardcochran@gmail.com" <richardcochran@gmail.com>, Claudiu Manoil <claudiu.manoil@nxp.com>, 
-	Vladimir Oltean <vladimir.oltean@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, 
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>, 
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>, 
-	"pabeni@redhat.com" <pabeni@redhat.com>, "vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>, 
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "F.S. Peng" <fushi.peng@nxp.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v3 net-next 03/15] dt-bindings: net: add an example for
- ENETC v4
-Message-ID: <20250814-finicky-tall-wolverine-6a5b90@kuoka>
-References: <20250812094634.489901-1-wei.fang@nxp.com>
- <20250812094634.489901-4-wei.fang@nxp.com>
- <aJtR4j9+w5fVsJL4@lizhi-Precision-Tower-5810>
- <PAXPR04MB8510925387F9F72A8E99AB82882AA@PAXPR04MB8510.eurprd04.prod.outlook.com>
- <aJyq2h+y+KBjqmsr@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1755160506; c=relaxed/simple;
+	bh=btMaktMsMFdvjb/8kiNjF7N+VOtWOxJQuOFY4wPqgbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=PMQXABACZh3W1iVeWD9XIvgDXtPSCRWpu+Pw5y6Ggk/tVedj1oTDlRAAQHIhKirFUfCThmb+R+xa8W67EgxSw9lyHHoDM8bvfGjHXghfAzQyZv9hUxyxlWsKN72dS9cKGTbTrmmAoW/03yjcPtGk+7CoBjI6UjlHevP0xHfmwUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hIYycoX5; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-333f92a69d4so5069301fa.2;
+        Thu, 14 Aug 2025 01:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1755160503; x=1755765303; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R7aR8S9FRLta1axStaNt4O0Wb6l880Eq2jEsm/C+nIM=;
+        b=hIYycoX51mM186Jjc3Dyi6QOsiichlPNvaGGn6AgkjYcjrxuAQJXg0iS5U3jMRUZbU
+         Om9hgcy+5+IqqQ7GHlJb2WPBz01ihEV5L//l4SA1lwKi5qH28+o7IZe4Wp5IGTvPRDc3
+         zKiQdiCNeBgW2IMbfuuiq2YGda+OeWRzjrbtIBFlFZtNQMfXFSJemrvnwIDF1gbaPsIE
+         76PONA4kniwYiGuC8JpBDiOtOSalYVfjI5DbyPlVwQDm6JiNZM6htbBUyzgCHH37Ody6
+         1FxZGyYdd+Dp4B7n5stQ7YT4sgLsp14vhiq/4PuMKDfClD+JYinW5cQGTino/SufrDVB
+         DyUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1755160503; x=1755765303;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=R7aR8S9FRLta1axStaNt4O0Wb6l880Eq2jEsm/C+nIM=;
+        b=UXTyaBFaXe26zYy+HPPvafjl6NtsIy940mKJAMcNDc0msaxj0ISHnVIOlk/NfeLR7X
+         cqKYALKdma9+xxnMDmtsNaCXp4kEVB5jK0w89NdCyfc9fgA12ADF80FyIU65GVCRSyZA
+         JYfSsRc36+pKT1d8EKVUljmWDwZjXqKW9ThGOYCtNqMC4C8Fl9izhE4rNR0QbtkMR2Bg
+         KwWJvjxwI+fVZL/FUZP8fCrNaYW42rneTxfFpajYDsfOWW/RoDOjjWwezyytDvY+qqhh
+         qWqIDmRm2NrWQLgxzHt3ABoVjKSYkWR14nwQOCsVK+KiM+phCCCsjiXyZN/Yg3YQdgJr
+         bCwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUEBYyFEyRvoM5s5aIpxRaoJn8NBdh57zHk+Wwl21THcGZKZjAvBnzZQFN8Ta73v+tBAZVrFmZmK3MO@vger.kernel.org, AJvYcCV0Vgj7FoOzghyDnJa3bgAuzLuj4oVAXJ+YTygiMJOA0Qa3O3Tnf6D1SHR9RVpQz7yqKDAcGvPDFbbn2Paj@vger.kernel.org, AJvYcCX0lzLOeoqm78bruuhSPQ3h/ffhzCT/zx1mpeHCnE+mdceZoYpatxieZTb+mn58NvYKe7GLJqXTRmaY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzl8OdsfcoALTosqv4aIxDGzda7pQsMuasjInNrEsHTYoiNDvt8
+	KRY3hpHo1KC+rt9stlqWyseo4gY1WcdqeQvSKwFObSVf6obi1cYmJeX6
+X-Gm-Gg: ASbGnct1YMG+f/yB/ajJXVI5jw6k5S63wVqE07LE3PUQ5l22q789MFRQMD3uAHs9WBi
+	UyzYO/GBkDcK1buFcnN3AFzCJSnjt/9rJR6LWjTlsMeG5EW8ZPgfOCF9IdK0uEXyR8u14Oq/tKk
+	CKhECQ4frNzjiXwy5qtbi581wDNXhEKu7FiD3daBka9OlZplr5+nsZnKsZUyErJpqqoqCAa5DpI
+	5agGbs3OyM5bFFLaYY/onC3gWY2rrF1XciwHpCS6+VEGAJFXTQYHOfnDyIU9tenHdpsgXFM3kyJ
+	RLZh7MD6b3uRVm65N7/4zCs1sZkw3TMPGeLRe74Il/RkyDAWa7ASS9ukNWl91mmY4/XSSUtFt1V
+	mxOYYwapQvMpfrOrEgE9A7cP2
+X-Google-Smtp-Source: AGHT+IEZeHzlXMMVE4kRk5QCaLTyFIuAx0jVdWQvsbTeSj+GjEtfhbgXIYu9OpDKv1NCBoqSdv8c2Q==
+X-Received: by 2002:a2e:2e1a:0:b0:333:f952:e3da with SMTP id 38308e7fff4ca-333fa824acdmr3588921fa.31.1755160502712;
+        Thu, 14 Aug 2025 01:35:02 -0700 (PDT)
+Received: from mva-rohm ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-333f8cbbfd3sm1920661fa.3.2025.08.14.01.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 01:35:01 -0700 (PDT)
+Date: Thu, 14 Aug 2025 11:34:50 +0300
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sukrut Bellary <sbellary@baylibre.com>,
+	Lothar Rubusch <l.rubusch@gmail.com>
+Subject: [PATCH 0/3] Support ROHM BD7910[0,1,2,3]
+Message-ID: <cover.1755159847.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Bf1rqEWCO5/UOXc+"
 Content-Disposition: inline
-In-Reply-To: <aJyq2h+y+KBjqmsr@lizhi-Precision-Tower-5810>
 
-On Wed, Aug 13, 2025 at 11:10:18AM -0400, Frank Li wrote:
-> On Wed, Aug 13, 2025 at 01:38:55AM +0000, Wei Fang wrote:
-> > > On Tue, Aug 12, 2025 at 05:46:22PM +0800, Wei Fang wrote:
-> > > > Add a DT node example for ENETC v4 device.
-> > >
-> > > Not sure why need add examples here? Any big difference with existed
-> > > example?
-> > >
-> >
-> > For enetc v4, we have added clocks, and it also supports ptp-timer
-> > property, these are different from enetc v1, so I think it is better to
-> > add an example for v4.
-> 
-> If there are not big change, needn't duplicate one example at yaml file,
-> the content should be in dts file already. Pass DTB_CHECK should be okay.
 
-Two new properties is on the edge of justification of new example. I am
-fine with both - having this patch and dropping it.
+--Bf1rqEWCO5/UOXc+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+Add support for ROHM BD7910[0,1,2,3] ADCs.
 
+The ROHM BD79100, BD79101, BD79102 and BD79103 are ADCs derived from the
+BD79104. According to the data-sheets, the BD79103 is compatible with the
+BD79104. Rest of the ICs have different number of analog input channels.
+
+This series adds support for these ICs using the ti-adc128s052.c.
+
+NOTE: There has been work on couple of other patch series [1][2] touching
+this same driver. I haven't considered those changes because, AFAICS,
+there has been no new revisions of these series since mid June.
+
+[1]: https://lore.kernel.org/all/20250614091504.575685-1-sbellary@baylibre.=
+com/
+[2]: https://lore.kernel.org/all/20250625170218.545654-2-l.rubusch@gmail.co=
+m/
+
+
+Matti Vaittinen (3):
+  dt-bindings: iio: adc: Add BD7910[0,1,2,3]
+  iio: adc: adc128s052: Simplify matching chip_data
+  iio: adc: adc128s052: Support ROHM BD7910[0,1,2,3]
+
+ .../bindings/iio/adc/rohm,bd79104.yaml        |  11 +-
+ drivers/iio/adc/ti-adc128s052.c               | 114 ++++++++++++------
+ 2 files changed, 87 insertions(+), 38 deletions(-)
+
+
+base-commit: 856d7be7f3c459a6d646b1f8432c6f616ade0d10
+--=20
+2.50.1
+
+
+--Bf1rqEWCO5/UOXc+
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmidn6MACgkQeFA3/03a
+ocX1Jgf/cmjpNbrghOnqLYHfkVAYA/QfNxEgLBQQFPptiQuWTYO+Ya8b0QQjwEHx
+s0lscWStFTwd8hVNsgcmxX2DSrG3+eUizMm9rUexpEkiB+//QC3WeHKPblNOx/Iy
+FpHD1KR7uvXUADiGl//9WMPil7P7KThQKYJJLtbCHGo7rt9aY5HBk76HM6XtlgV8
+k/VKdXIamyQt8GdTOh5xRtqni4/S95LNqy1Kvajyxpt9G1naMZjT1FCvBwBy5HFg
+A44vNP84pUfgc3ll8ipOxzi3z/rbfZ/XFN5ZA2Ci7Kr0QN+5CI1ASqmGJ+BTkKsW
+reC9pt5YQeGuGfB83VbtUTtIylIOrQ==
+=cw0a
+-----END PGP SIGNATURE-----
+
+--Bf1rqEWCO5/UOXc+--
 
