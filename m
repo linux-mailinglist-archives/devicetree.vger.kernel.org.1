@@ -1,92 +1,128 @@
-Return-Path: <devicetree+bounces-204509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93D6AB25D85
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:35:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C5DB25D6E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 424239E7317
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:30:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D0141C844FD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70FF26A0E0;
-	Thu, 14 Aug 2025 07:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81CEF2798EF;
+	Thu, 14 Aug 2025 07:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="twxsBirt"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="JY1R47Nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7CB2690F9;
-	Thu, 14 Aug 2025 07:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755156547; cv=none; b=e2X1ru7xuRjAOznt5E//L7CCJtMmHVDQanQwuoAGVt7htmNCnq0WOvrNFwGiTtsDnML1wqGCX0diDY85MYKX+6Rqqe4GIQ7K11ol9cYEIy5+xTC2OjslG95uLyA0UyKfB3G1T9YwQyQP0JzOXL6kKUZTgM2HKHYqHKcWPGW8/pQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755156547; c=relaxed/simple;
-	bh=yFHZE0Fem6LY03lyJJsU+PZNFRS6Y/kss8PySXhjW9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4EoZ0AnXOMUt5BWcpw/r+JK2FlJQGBWoqWzjeKQ7N4uDdYS0otRhSxmuf1bzY4nuGp8BQFQKM8CK1bHZn2zvQgJRprOxa2Rah96pUxhcugY56glZ0wE0LlAurSQS+0GEW23NAt3gpv3LdFpvXsTahmlXijsrMcoOCLknoV5dQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=twxsBirt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69186C4CEEF;
-	Thu, 14 Aug 2025 07:29:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755156547;
-	bh=yFHZE0Fem6LY03lyJJsU+PZNFRS6Y/kss8PySXhjW9k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=twxsBirtdf1/fqUMGnjnp4W+W2EyaHiytp95UB5RLLzIBSMCZ+bU0ph8qSJcjOZk5
-	 6+OZ1TC0mrpErUesb+58RtFxWpnrAsHEtLksdYn+oLVkjEe4q3I0koe+Lz2D2npIPU
-	 ATtrdMR0/b/ljxnABqi/xE/mLsdVbWvJ1ASvsSHZQWlDJXopOo3PToPl1DMtXk09UE
-	 tqBq2VoLmbv2HkAMM/XTgpmV1Ygiabsyn3hehtyTqpzFctcFFPbVrseZ/nF9XjzjaH
-	 LavCdWPcnC3OpNneRPS5rAMFRL0TAm0TTHecn+aNZpwnbpSw8wlsKgPBlisvXTM+MB
-	 qtSlCSmlMpWeQ==
-Date: Thu, 14 Aug 2025 09:29:04 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 09/11] dt-bindings: iio: adc: ad7476: Add ROHM bd79105
-Message-ID: <20250814-hilarious-nonchalant-bat-b205cf@kuoka>
-References: <cover.1754901948.git.mazziesaccount@gmail.com>
- <3f70f68665225be3091f8a0412e74037b6a2a88e.1754901948.git.mazziesaccount@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DC62797B8;
+	Thu, 14 Aug 2025 07:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1755156640; cv=pass; b=rTxJuwR7MRVksdXwislWTqXJN2/bONiJo4eMwdDlIVPrHE6jaiLsY+stvZkAy9RWzSuclnPJof8jesPuxJZhDdKIP9CfEdARwq2saCDODis96KK5D1wIXU5n7SNu7eDehY7up/kkCphiygI/HY3SIfglRx0o5YOOTdwxw7cwGGY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1755156640; c=relaxed/simple;
+	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=pFoGjlMmV8WyPOVwHfGfR3THtcKLxOkUS1gx7rTbQcukaBbHeE2OVGmC5xqCEGTXcg0E0hoyD2y3zAFQHDoECs0EbLHFcPE0nmdwQdgf0lR5q0NLO1NfbmcS7SAxEl5qgU8WxfWwKQ8kXaOdfjJJhKAH4TVrDguQJ3MK/thv03Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=JY1R47Nf; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1755156620; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=SPunGYyixl+oELVyQ528XgFQeeYb0rvoaJ+Eu2HDDKE5C33LZsDBVEv1P5SDOCd1wTXRhTyKhZfeKml2gTwJMmLHxe482R2MAp3vNRwF92fRoIrgJvBhNa35WtUgYC29n6Nz+PtKRLCN/rE25olvHrZPEHfczpTMhgi4aMdYdRw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1755156620; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=; 
+	b=dni2mPhibvReAa3iqkj8KXvzg1rkjJn/AIekKryJPkV65iDi+8nhn0aUW7igXL4pFiryrOZoRy7LFRXEtcI6lIwrdKUDrlb/n2bOiR2p4oPWELAnHbnvutS/oV+QhcGaRvK99LCL28xPOwATd5sTqdvMoptv2Gn2BKHE8APDWnA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1755156620;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=4YKeOCrqfpj59GD3VQlFLFbf1XftNmL9kWn00fco//k=;
+	b=JY1R47NfTAyWEMgXmq2J4D+EjiVlWXKVAKLmE1REJkFD3s4LCB4bryCRwEJ2uxG8
+	IdkDvO/bF2zGxls4Ws4siFLpOGmamOFCTTbRLHKV3jJOEDqa59XtJAjYFq0F4sx63Mv
+	dvoGYfhWlwjX39R5fv3sBp/ZQFz+5J7ijAH00roooEUJOzYSgs2C/KnT2CwTupNxkY8
+	vg3QgFF0l4QPFAjMTEcRg7YHGwUPpowCrmtr+UZ5ZLo6xlDme1ObMS8XxE2ag7EEWqV
+	tZtw35LE7dy/HThdoyBYmdeJTY5TMrVfeLaPMn5YaXzK+DhFQM5pGdYZXYaLU5+3qt1
+	LP0fO4UVMw==
+Received: by mx.zohomail.com with SMTPS id 1755156617506124.96455839373789;
+	Thu, 14 Aug 2025 00:30:17 -0700 (PDT)
+Message-ID: <1b63d1872f5b2c89f2fafdf717bda5ec29589b69.camel@icenowy.me>
+Subject: Re: [RFC PATCH 2/4] dt-bindings: firmware: thead,th1520-aon: add a
+ mailbox name for SBI
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini
+ <fustini@kernel.org>,  Guo Ren <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar
+ <jassisinghbrar@gmail.com>, Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Han Gao <rabenda.cn@gmail.com>, Inochi Amaoto <inochiama@gmail.com>, Yao
+ Zi <ziyao@disroot.org>, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 14 Aug 2025 15:30:10 +0800
+In-Reply-To: <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
+References: <20250814070757.2267325-1-uwu@icenowy.me>
+	 <20250814070757.2267325-3-uwu@icenowy.me>
+	 <d0d4c9e7-c350-4996-a53b-09b13bdb9409@kernel.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3f70f68665225be3091f8a0412e74037b6a2a88e.1754901948.git.mazziesaccount@gmail.com>
+X-ZohoMailClient: External
 
-On Mon, Aug 11, 2025 at 11:52:04AM +0300, Matti Vaittinen wrote:
-> The ROHM BD79105 is a simple, 16-bit, 1-channel ADC with a 'CONVSTART'
-> pin used to start the ADC conversion. Other than the 'CONVSTART', there
-> are 3 supply pins (one used as a reference), analog inputs, ground and
-> communication pins. It's worth noting that the pin somewhat confusingly
-> labeled as 'DIN', is a pin which should be used as a chip-select. The IC
-> does not have any writable registers.
-> 
-> The device is designed so that the output pin can, in addition to
-> outputting the data, be used as a 'data-ready'-IRQ. There are cases
-> where the IRQ can't be used (because it is delivered via SPI data-line).
-> Hence, some systems may use a GPIO for polling the data readiness.
-> 
-> Add a compatible for the bd79105 and add the data-ready GPIO to the
-> binding.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> 
+=E5=9C=A8 2025-08-14=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 09:18 +0200=EF=BC=
+=8CKrzysztof Kozlowski=E5=86=99=E9=81=93=EF=BC=9A
+> On 14/08/2025 09:07, Icenowy Zheng wrote:
+> > The SBI firmware might want to communicate to the AON firmware too.
+> >=20
+> > Add a mbox-name item to allow to allocate a mailbox for SBI.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > ---
+> > =C2=A0.../devicetree/bindings/firmware/thead,th1520-aon.yaml=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 7
+> > ++++---
+> > =C2=A01 file changed, 4 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> > b/Documentation/devicetree/bindings/firmware/thead,th1520-aon.yaml
+> > index 3365124c7fd47..555465f4aab4e 100644
+> > --- a/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > aon.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/thead,th1520-
+> > aon.yaml
+> > @@ -26,11 +26,12 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 const: thead,th1520-aon
+> > =C2=A0
+> > =C2=A0=C2=A0 mboxes:
+> > -=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 2
+>=20
+>=20
+> ABI break without explanation why ("allow" is not a reason to affect
+> ABI) and its impact.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Is adding items an ABI break?
 
-Best regards,
-Krzysztof
+Or should I explicitly say "minItems: 1" here?
+
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
 
