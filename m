@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-204651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B0DDB26380
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:57:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 863B4B263B7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 13:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F8C44E0F0F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:57:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BEA61C846FB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 10:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCFC301029;
-	Thu, 14 Aug 2025 10:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF2E21A23A4;
+	Thu, 14 Aug 2025 10:57:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA011301011
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 10:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51317318132
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 10:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755168983; cv=none; b=RHJ4ZhLQGpVZouN9fa9oPuIinnaUKcrgBdQE+2hBM0AhEszluuC6QdW0lgCMlVgQ+zWXVWGjDcp09Zb5+l5aTJz4ndQ5qmw/gdhi35LNBTBE/U2Lp23cj0UqQuyvyZPB0jspw4rW3uYg1SqJZJUjZeuVZt5aomguLZ6zVhtAHWs=
+	t=1755169044; cv=none; b=kkdGqtbchzfNaxAc91jRtswLRNSLVoVOejHAQibnIcQjrDfDqqqMVPJe3i0TsqslMwJ/x0oKvC+ndPHYA0wfMYNrx12H6iZTUUjbJum41Ja0SpQcJyOkW6WqxF4RGwS3qZihPl+X4Jx1+zM5SFxeb+Se9djW8MMV4FRvlRt9ArI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755168983; c=relaxed/simple;
-	bh=3+OfW9BOfjYv2yldcC6Z/G9UCY1xuSmIk3TDJoWLvCc=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hXWYxzbWedBuvSCOvKSDyJyZbxM6yN/VgDCvJU7v6Df2uOUBzM5LtvoFIqoj3EEtUMv+L3NM3FohJ+EtFPBlOwfs1+P7cWSFr/w7YC6NTDLL6cw3muhjCiYZ4CArDqO+IXJIDyhFCdkyak7qepIFTf0EJK7jd1MwRicmO7hzVFU=
+	s=arc-20240116; t=1755169044; c=relaxed/simple;
+	bh=Q5wFcGljVGF+9lLQ4rmalAeB56Hon75f5JsZyOTlPrY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=PC7tLNcdhkK2hE7dwr27BLDqK2+gv+MBPHDeLBnc6WfBSb+sgQOsNZ4n0SISg0ajNxcwFHa9dBaH5pZpvVGi5m5HW4CxiCon3cqGtvGTS74XMNhwt+CPY6d0R+LOCAZ1l2OBev6drdY7oKXG+gbuMJUactBLStSCoQ6tspbJ0Qs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,34 +33,30 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcq-0001YI-AE; Thu, 14 Aug 2025 12:56:04 +0200
+	id 1umVe1-0001iR-BF; Thu, 14 Aug 2025 12:57:17 +0200
 Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcp-000EyL-36;
-	Thu, 14 Aug 2025 12:56:03 +0200
+	id 1umVe0-000EyY-2z;
+	Thu, 14 Aug 2025 12:57:16 +0200
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1umVcp-000Hxp-2o;
-	Thu, 14 Aug 2025 12:56:03 +0200
-Message-ID: <7933061270daa3f9c53021064f92f7431fdac9de.camel@pengutronix.de>
-Subject: Re: [PATCH v12 0/3] Add support for AST2700 clk driver
+	id 1umVe0-000I31-2h;
+	Thu, 14 Aug 2025 12:57:16 +0200
+Message-ID: <0af65202bca6ef30ee6530703db303e81ec190eb.camel@pengutronix.de>
+Subject: Re: [PATCH 0/6] reset: bcm6345: add support for internal ephy
+ resets on bcm63xx
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Joel Stanley
- <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mo Elbadry
- <elbadrym@google.com>, Rom Lemarchand <romlem@google.com>, William
- Kennington <wak@google.com>, Yuxiao Zhang <yuxiaozhang@google.com>,
- wthai@nvidia.com,  leohu@nvidia.com, dkodihalli@nvidia.com,
- spuranik@nvidia.com
-Date: Thu, 14 Aug 2025 12:56:03 +0200
-In-Reply-To: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
-References: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
+To: Kyle Hendry <kylehendrydev@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?ISO-8859-1?Q?Fern=E1ndez?= Rojas
+	 <noltari@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 14 Aug 2025 12:57:16 +0200
+In-Reply-To: <20250709024740.194520-1-kylehendrydev@gmail.com>
+References: <20250709024740.194520-1-kylehendrydev@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -75,23 +71,28 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Di, 2025-07-08 at 13:29 +0800, Ryan Chen wrote:
-> This patch series is add clk driver for AST2700.
+On Di, 2025-07-08 at 19:47 -0700, Kyle Hendry wrote:
+> bcm63xx SoCs have a register in the gpio controller that controls some
+> of the phy functionality. Some of the bits reset individual phys and=20
+> need a driver to set.=20
 >=20
-> AST2700 is the 8th generation of Integrated Remote Management Processor
-> introduced by ASPEED Technology Inc. Which is Board Management controller
-> (BMC) SoC family. AST2700 have two SoC connected, one is SoC0, another
-> is SoC1, it has it's own scu, this driver inlcude SCU0 and SCU1 driver.
+> The other fields in the register configure phy power and will be set
+> by the network device driver.=20
 >=20
-> v12:
+> Kyle Hendry (6):
+>   reset: bcm6345: add support for bcm63xx ephy control register
+>   dt-bindings: reset: add compatible for bcm63xx ephy control
 [...]
 
-Applied patch 2 to reset/next, thanks!
+Applied patches 1 and 2 to reset/next (in inverse order), thanks!
 
-[2/3] reset: aspeed: register AST2700 reset auxiliary bus device
-      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D9c50f99c1353
+[2/6] dt-bindings: reset: add compatible for bcm63xx ephy control
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3Da341bcfbfa74
+[1/6] reset: bcm6345: add support for bcm63xx ephy control register
+      https://git.pengutronix.de/cgit/pza/linux/commit/?id=3D6e273caeacf0
+
+Do you agree that patches 2-6 are not necessary?
 
 regards
 Philipp
-
 
