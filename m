@@ -1,152 +1,127 @@
-Return-Path: <devicetree+bounces-204617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60018B26153
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:46:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3050B26146
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 11:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C9B45C52F9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:38:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A4A83AD457
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E5B2E7F18;
-	Thu, 14 Aug 2025 09:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE30E2F39BC;
+	Thu, 14 Aug 2025 09:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="morrRifc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACE12BE031;
-	Thu, 14 Aug 2025 09:33:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF6E2EB5AC
+	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 09:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755164007; cv=none; b=WNdCd+1CF7gwvqL0sZpbIpiJudweGAR/pUXXPQTm39Nqi5FJ+i35IG+4InB02PcOF5pecfE4+5MXKEzGlQLnw1iSBU5cimvpgtWVyDNq6fX9l6rP7glfmCd+n320kGzUwlGEaHcJO7M9gK+66UnptH2oSz/TAnvKV2ArWC0VnfU=
+	t=1755164242; cv=none; b=kxGgeCQ/wdZoMcRnN8GXg9ASIVD6AmPo9dGW3xjE4+mSaZSoUUbRiwJNnzlB8cPrlcl0w6czk0XZIxZtt+aSFVJkDQ3OZRvg2qLNNmI3D7XTkUtBFp0tuSEUHPZshz02Jka848jyPubuRUV9aFuWG8VUOs7VHxvOGHLlPNwBc4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755164007; c=relaxed/simple;
-	bh=KZc0kUV/S1SGDDnm5y0S5siXkvB2RZfXR0gvYMuVbZs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=P/NzniefSHFYwXrNOLvJTOYW9rYLGsFInS6i6P4zEvtuW5WdCKXzah3E6avNk2Vryd98n7g7I/2xoyH0jzoZsYKWSEithCFKXhMMAcBbPiivukEpTcq+g881DaeDbUVv2bmaoiKlRDJnDPrz5S+6IDYAcYgT9WUC7EFAbRXjTnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Thu, 14 Aug 2025 17:33:06 +0800 (GMT+08:00)
-Date: Thu, 14 Aug 2025 17:33:06 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: =?UTF-8?B?6JGj57uq5rSL?= <dongxuyang@eswincomputing.com>
-To: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1755164242; c=relaxed/simple;
+	bh=dW/xr3vfgNuCDhueJr+yTDWl3zvG+UZlbW8h3X4Hqv0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=ZaUUeg19J8FsgKPbmobemQU1qJvQNewZuIQBIIMBK4P1CrQGpSfoUx5PP5W5EVvg6uCfOza3TG5VSaaIoP8jpady0yWUvNSWD0JDR0hcxznu+ojkULCRfYoIxgIzSSyVdps7pGza3Rk57ZNnXsIEBQtYTv/IXw/16JRLu5WBsGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=morrRifc; arc=none smtp.client-ip=212.77.101.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 31925 invoked from network); 14 Aug 2025 11:37:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1755164233; bh=8l/lnnXu3QrQ/y3L8Ck9okdvOOxwUP3ntLh2uTCv6t4=;
+          h=From:To:Subject;
+          b=morrRifcFiLjgI8tlOVH/IO6VzZ2+UvxMUlyNwVZItlB/yO3Tj+W3fqHPaUdvmF95
+           ZLOiAZ9gpweBhGcG+LTmFqpO37QinW7175luAl7AQWUc6ednBBk7pZp/BVxON+M7KD
+           Y+T2OdYk88A5LBu2YXmTUfKxQW5UmP4DW/neMFsPPN8PoophtNl53NaH4DY9slkvRi
+           xfFW1t8Zy2JpU2zcMurXfm3Rq9L9P0xhEOg7r8A+FFNp6IXemJ4R7ACj3lODTIhbc/
+           2CSFyuZC3X2Apc8eFu8czTacDdhci0J1QgAt3XiDzTw9FX6gANb8ARYwpqHCbd1L05
+           NXqH/sHJNT6aw==
+Received: from 83.24.134.210.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.134.210])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <tsbogend@alpha.franken.de>; 14 Aug 2025 11:37:13 +0200
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+To: tsbogend@alpha.franken.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	olek2@wp.pl,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v5 0/2] Add driver support for ESWIN eic7700 SoC reset
- controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20250725093249.669-1-dongxuyang@eswincomputing.com>
-References: <20250725093249.669-1-dongxuyang@eswincomputing.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Subject: [PATCH 1/2] dt-bindings: mips: lantiq: Document Lantiq Xway GPTU
+Date: Thu, 14 Aug 2025 11:36:59 +0200
+Message-ID: <20250814093704.3197030-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <2c645c89.128.198a7ed0bc9.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDHZpVSrZ1obKK+AA--.22351W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQEOAmicvfMcE
-	gAAs4
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW3Jw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Transfer-Encoding: 8bit
+X-WP-MailID: b0a65c4fa6f64b97e001525c45aeb3b6
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 000000A [kTNU]                               
 
-SGkgYWxsLAoKR2VudGxlIHBpbmcuCgpUaGFua3MsClh1eWFuZyBEb25nCgo+IFVwZGF0ZXM6Cj4g
-Cj4gICBkdC1iaW5kaW5nczogcmVzZXQ6IGVzd2luOiBEb2N1bWVudGF0aW9uIGZvciBlaWM3NzAw
-IFNvQwo+ICAgdjQgLT4gdjU6Cj4gICAgIDEuIERyb3BwZWQgRUlDNzcwMF9SRVNFVF9NQVggZnJv
-bSBiaW5kaW5ncy4KPiAgICAgMi4gQWRkICJSZXZpZXdlZC1ieSIgdGFnIG9mICJLcnp5c3p0b2Yg
-S296bG93c2tpIiBmb3IgUGF0Y2ggMS4KPiAgICAgMy4gQ29ycmVjdGVkIHRoZSBsaW5rIHRvIHBy
-ZXZpb3VzIHZlcnNpb25zLgo+ICAgICBMaW5rIHRvIHY0OiBodHRwczovL2xvcmUua2VybmVsLm9y
-Zy9hbGwvMjAyNTA3MTUxMjE0MjcuMTQ2Ni0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29t
-Lwo+IAo+ICAgdjMgLT4gdjQ6Cj4gICAgIDEuIFJlbW92ZSByZWdpc3RlciBvZmZzZXRzIGluIGR0
-LWJpbmRpbmdzLgo+ICAgICAyLiBUaGUgY29uc3QgdmFsdWUgb2YgIiNyZXNldC1jZWxsIiB3YXMg
-Y2hhbmdlZCBmcm9tIDIgdG8gMS4KPiAgICAgICAgQmVjYXVzZSB0aGUgb2Zmc2V0cyB3ZXJlIHJl
-bW92ZWQgZnJvbSBkdC1iaW5kaW5ncy4gVGhlcmUgYXJlCj4gICAgICAgIG9ubHkgSURzLiBBbmQg
-cmVtb3ZlZCB0aGUgZGVzY3JpcHRpb24gb2YgaXQuCj4gICAgIDMuIE1vZGlmeSBjb3B5cmlnaHQg
-eWVhciBmcm9tIDIwMjQgdG8gMjAyNS4KPiAgICAgNC4gUmVkZWZpbmVkIHRoZSBJRHMgaW4gdGhl
-IGR0LWJpbmRpbmdzIGFuZCB1c2VkIHRoZXNlIHRvIGJ1aWxkIGEKPiAgICAgICAgcmVzZXQgYXJy
-YXkgaW4gcmVzZXQgZHJpdmVyLiBFbnN1cmUgdGhhdCB0aGUgcmVzZXQgcmVnaXN0ZXIgYW5kCj4g
-ICAgICAgIHJlc2V0IHZhbHVlIGNvcnJlc3BvbmRpbmcgdG8gdGhlIElEcyBhcmUgY29ycmVjdC4K
-PiAgICAgTGluayB0byB2MzogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1
-ODExLjEyMzAtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiAgIHYyIC0+IHYz
-Ogo+ICAgICAxLiBEcm9wIHN5c2NvbiBhbmQgc2ltcGxlLW1mZCBmcm9tIHlhbWwgYW5kIGNvZGUs
-IGJlY2F1c2UgdGhlc2UgYXJlCj4gICAgICAgIG5vdCBuZWNlc3NhcnkuCj4gICAgIDIuIFVwZGF0
-ZSBkZXNjcmlwdGlvbiB0byBpbnRyb2R1Y2UgcmVzZXQgY29udHJvbGxlci4KPiAgICAgMy4gQWRk
-IHJlc2V0IGNvbnRyb2wgaW5kaWNlcyBmb3IgZHQtYmluZGluZ3MuCj4gICAgIDQuIEtlZXAgdGhl
-IHJlZ2lzdGVyIG9mZnNldHMgaW4gZHQtYmluZGluZ3MuCj4gICAgIExpbmsgdG8gdjI6IGh0dHBz
-Oi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDYxOTA3NTgxMS4xMjMwLTEtZG9uZ3h1eWFuZ0Bl
-c3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2MSAtPiB2MjoKPiAgICAgMS4gQ2xlYXIgd2Fybmlu
-Z3MvZXJyb3JzIGZvciB1c2luZyAibWFrZSBkdF9iaW5kaW5nX2NoZWNrIi4KPiAgICAgMi4gVXBk
-YXRlIGV4YW1wbGUsIGNoYW5nZSBwYXJlbnQgbm9kZSBmcm9tIHN5cy1jcmcgdG8gcmVzZXQtY29u
-dHJvbGxlcgo+ICAgICAgICBmb3IgcmVzZXQgeWFtbC4KPiAgICAgMy4gRHJvcCB0aGUgY2hpbGQg
-bm9kZSBhbmQgYWRkICcjcmVzZXQtY2VsbHMnIHRvIHRoZSBwYXJlbnQgbm9kZS4KPiAgICAgNC4g
-RHJvcCB0aGUgZGVzY3JpcHRpb24sIGJlY2F1c2Ugc3lzLWNyZyBibG9jayBpcyBjaGFuZ2VkIHRv
-IHJlc2V0LQo+ICAgICAgICBjb250cm9sbGVyLgo+ICAgICA1LiBDaGFuZ2UgaGV4IG51bWJlcnMg
-dG8gZGVjaW1hbCBudW1iZXJzIGdvaW5nIGZyb20gMCwgYW5kIGRyb3AgdGhlCj4gICAgICAgIG5v
-dCBuZWVkZWQgaGFyZHdhcmUgbnVtYmVycy4KPiAgICAgTGluayB0byB2MTogaHR0cHM6Ly9sb3Jl
-Lmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1ODExLjEyMzAtMS1kb25neHV5YW5nQGVzd2luY29t
-cHV0aW5nLmNvbS8KPiAKPiAgIHJlc2V0OiBlc3dpbjogQWRkIGVpYzc3MDAgcmVzZXQgZHJpdmVy
-Cj4gICB2NCAtPiB2NToKPiAgICAgMS4gVGhlIHZhbHVlIG9mIC5tYXhfcmVnaXN0ZXIgaXMgMHg3
-ZmZmYy4KPiAgICAgMi4gQ29udmVydGVkICJ0b19lc3dpbl9yZXNldF9kYXRhIiBmcm9tIG1hY3Jv
-IHRvIGlubGluZSBmdW5jdGlvbi4KPiAgICAgMy4gTW9kaWZpZWQgRUlDNzcwMF9SRVNFVF9PRkZT
-RVQgdG8gRUlDNzcwMF9SRVNFVCBhbmQgZWljNzcwMF8KPiAgICAgICAgcmVnaXN0ZXJfb2Zmc2V0
-IHRvIGVpYzc3MDBfcmVzZXQuCj4gICAgIDQuIFNpbmNlIEVJQzc3MDBfUkVTRVRfTUFYIGlzIGRy
-b3BwZWQsIHVzZWQgZWljNzcwMF9yZXNldFtdIHdpdGhvdXQKPiAgICAgICAgRUlDNzcwMF9SRVNF
-VF9NQVguCj4gICAgIDUuIFJlbW92ZWQgZnVuY3Rpb24gZXN3aW5fcmVzZXRfc2V0LCBhbmQgcHV0
-IHJlZ21hcF9jbGVhcl9iaXRzIGluCj4gICAgICAgIGVzd2luX3Jlc2V0X2Fzc2VydCBhbmQgcmVn
-bWFwX3NldF9iaXRzIGluIGVzd2luX3Jlc2V0X2RlYXNzZXJ0Lgo+ICAgICA2LiBBZGRlZCB1c2xl
-ZXBfcmFuZ2UgaW4gZnVuY3Rpb24gZXN3aW5fcmVzZXRfcmVzZXQgd2hpY2ggd2FzIG1pc3NlZC4K
-PiAgICAgNy4gVXNlZCBBUlJBWV9TSVpFKGVpYzc3MDBfcmVzZXQpIGZvciBkYXRhLT5yY2Rldi5u
-cl9yZXNldHMuCj4gICAgIDguIFVzZSBidWlsdGluX3BsYXRmb3JtX2RyaXZlciwgYmVjYXVzZSBy
-ZXNldCBkcml2ZXIgaXMgYSByZXNldAo+ICAgICAgICBjb250cm9sbGVyIGZvciBTb0MuIFJlbW92
-ZWQgZXN3aW5fcmVzZXRfaW5pdCBmdW5jdGlvbi4KPiAgICAgOS4gTW9kaWZpZWQgZXN3aW5fcmVz
-ZXRfKiB0byBlaWM3NzAwX3Jlc2V0XyouCj4gICAgIExpbmsgdG8gdjQ6IGh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL2FsbC8yMDI1MDcxNTEyMTQyNy4xNDY2LTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1
-dGluZy5jb20vCj4gCj4gICB2MyAtPiB2NDoKPiAgICAgMS4gQWRkICdjb25zdCcgZm9yIHRoZSBk
-ZWZpbml0aW9uLiBJdCBpcyAnY29uc3Qgc3RydWN0IG9mX3BoYW5kbGVfCj4gICAgICAgIGFyZ3Mg
-KnJlc2V0X3NwZWMgPSBkYXRhOycuCj4gICAgIDIuIE1vZGlmeSBjb3B5cmlnaHQgeWVhciBmcm9t
-IDIwMjQgdG8gMjAyNS4KPiAgICAgMy4gSW5jbHVkZWQgImVzd2luLGVpYzc3MDAtcmVzZXQuaCIg
-aW4gcmVzZXQgZHJpdmVyLgo+ICAgICA0LiBBZGRlZCBtYXBwaW5nIHRhYmxlIGZvciByZXNldCBJ
-RHMuCj4gICAgIDUuIFJlbW92ZWQgb2ZfeGxhdGUgYW5kIGlkciBmdW5jdGlvbnMgYXMgd2UgYXJl
-IHVzaW5nIElEcyBmcm9tIERUUy4KPiAgICAgNi4gUmVtb3ZlZCAucmVtb3ZlIGZ1bmN0aW9uLgo+
-ICAgICBMaW5rIHRvIHYzOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4
-MTEuMTIzMC0xLWRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgdjIgLT4gdjM6
-Cj4gICAgIDEuIENoYW5nZSBzeXNjb25fbm9kZV90b19yZWdtYXAoKSB0byBNTUlPIHJlZ21hcCBm
-dW5jdGlvbnMsIGJlY2F1c2UKPiAgICAgICAgZHJvcHBlZCBzeXNjb24uCj4gICAgIDIuIEFkZCBC
-SVQoKSBpbiBmdW5jdGlvbiBlc3dpbl9yZXNldF9zZXQoKSB0byBzaGlmdCB0aGUgcmVzZXQKPiAg
-ICAgICAgY29udHJvbCBpbmRpY2VzLgo+ICAgICAzLiBSZW1vdmUgZm9yY2VkIHR5cGUgY29udmVy
-c2lvbnMgZnJvbSBmdW5jdGlvbiBlc3dpbl9yZXNldF9vZl8KPiAgICAgICAgeGxhdGVfbG9va3Vw
-X2lkKCkuCj4gICAgIExpbmsgdG8gdjI6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1
-MDYxOTA3NTgxMS4xMjMwLTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2
-MSAtPiB2MjoKPiAgICAgMS4gTW9kaWZ5IHRoZSBjb2RlIGFjY29yZGluZyB0byB0aGUgc3VnZ2Vz
-dGlvbnMuCj4gICAgIDIuIFVzZSBlc3dpbl9yZXNldF9hc3NlcnQoKSBhbmQgZXN3aW5fcmVzZXRf
-ZGVhc3NlcnQgaW4gZnVuY3Rpb24KPiAgICAgICAgZXN3aW5fcmVzZXRfcmVzZXQoKS4KPiAgICAg
-My4gUGxhY2UgUkVTRVRfRUlDNzcwMCBpbiBLY29uZmlnIGFuZCBNYWtlZmlsZSBpbiBvcmRlci4K
-PiAgICAgNC4gVXNlIGRldl9lcnJfcHJvYmUoKSBpbiBwcm9iZSBmdW5jdGlvbi4KPiAgICAgTGlu
-ayB0byB2MTogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1ODExLjEyMzAt
-MS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiBYdXlhbmcgRG9uZyAoMik6Cj4g
-ICBkdC1iaW5kaW5nczogcmVzZXQ6IGVzd2luOiBEb2N1bWVudGF0aW9uIGZvciBlaWM3NzAwIFNv
-Qwo+ICAgcmVzZXQ6IGVzd2luOiBBZGQgZWljNzcwMCByZXNldCBkcml2ZXIKPiAKPiAgLi4uL2Jp
-bmRpbmdzL3Jlc2V0L2Vzd2luLGVpYzc3MDAtcmVzZXQueWFtbCAgIHwgIDQyICsrCj4gIGRyaXZl
-cnMvcmVzZXQvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxMCArCj4gIGRyaXZl
-cnMvcmVzZXQvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMSArCj4gIGRyaXZl
-cnMvcmVzZXQvcmVzZXQtZWljNzcwMC5jICAgICAgICAgICAgICAgICB8IDQzMiArKysrKysrKysr
-KysrKysrKysKPiAgLi4uL2R0LWJpbmRpbmdzL3Jlc2V0L2Vzd2luLGVpYzc3MDAtcmVzZXQuaCAg
-IHwgMjk4ICsrKysrKysrKysrKwo+ICA1IGZpbGVzIGNoYW5nZWQsIDc4MyBpbnNlcnRpb25zKCsp
-Cj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-cmVzZXQvZXN3aW4sZWljNzcwMC1yZXNldC55YW1sCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
-ZXJzL3Jlc2V0L3Jlc2V0LWVpYzc3MDAuYwo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9k
-dC1iaW5kaW5ncy9yZXNldC9lc3dpbixlaWM3NzAwLXJlc2V0LmgKPiAKPiAtLQo+IDIuMTcuMQo=
+The Lantiq SoC has six built-in 16-bit general purpose timers (GPTU).
+
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ .../mips/lantiq/lantiq,gptu-xway.yaml         | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+
+diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+new file mode 100644
+index 000000000000..fcfc634dd391
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,gptu-xway.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mips/lantiq/lantiq,gptu-xway.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lantiq Xway SoC series General Purpose Timer Unit (GPTU)
++
++maintainers:
++  - Aleksander Jan Bajkowski <olek2@wp.pl>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - lantiq,gptu-xway
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 6
++    maxItems: 6
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    gptu@e100a00 {
++        compatible = "lantiq,gptu-xway";
++        reg = <0xe100a00 0x100>;
++        interrupt-parent = <&icu0>;
++        interrupts = <126>, <127>, <128>, <129> ,<130>, <131>;
++    };
+-- 
+2.47.2
 
 
