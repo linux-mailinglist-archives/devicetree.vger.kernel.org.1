@@ -1,185 +1,249 @@
-Return-Path: <devicetree+bounces-204672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E990B2652D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C75B2654E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 14:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29DDBA06DFD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:16:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C546DA073C8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 12:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0DAF2FD7C2;
-	Thu, 14 Aug 2025 12:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C212FCC08;
+	Thu, 14 Aug 2025 12:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="KWboGCmW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UyMKDhdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36051367
-	for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 12:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46A21F582A;
+	Thu, 14 Aug 2025 12:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755173749; cv=none; b=CMFxWtmomO8zSn5XewDZMTwfYBGOTsPQe0n9ZA4T1mxAZSQ9HqPVRPV2D55WzGcYJJrpLFSdFEYgYqviqGNd4zBDdC8yBETR7sn278+YctVz5V5KhPj1/nQEu11Q80Ywk9dTdjWCk6+WJleTBxLipL9+pns/b4weh4BfETxguNE=
+	t=1755174250; cv=none; b=QLE6//tHcgLS2WADbYyeLVsGjs/hf6qnSmKNhJHE0+KrP/yuP1dKK0qf48JgvUSd5aMZ2VCjjf/4EHLUNh4c48XSqhrWSnEVQS8+czluwWb7NpkxsZ1vRk7oMSOkk8lqu9pA4TeeJQO2PTv2hulOvKDd3SoVeTMuU0055+alG0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755173749; c=relaxed/simple;
-	bh=7ez/y9SoR7GgwvoO0othTBNuBdwFuPF00uw0mKgomx0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bYkzBUz9lP5uzepCOYV7fW9eIM1U15D9sJhGZMf35KpqZ11blC1nfQGlzUKHo7pbsseRm7yM0lrAC0sv9BGHOy9t5teXXgiWd0Srv3mlhixZzTIwM4nx1ZZ6M3il/Aqh7MEVB77DuAfgth1YKKV7JBq61uwbF2Q3OE/QO1j8TEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=KWboGCmW; arc=none smtp.client-ip=209.85.166.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-88432e29adcso20407139f.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Aug 2025 05:15:46 -0700 (PDT)
+	s=arc-20240116; t=1755174250; c=relaxed/simple;
+	bh=ry2LinR5+acyR+ZXIapg4oAMbGxmEAvdfYv9R45eHbk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ax2enjoe14EL66oTTHn3+StKyfNkJinid2e3UjRJuK0xlkUrSPmzo7hHHXBYkwI5+5htnO7dB+VYGelLclCatmBbJW8vP31IeMuZ38812z+BtxK7UjGEKs38CQe84ZMeB/WPWrwHWfx+UqCLNKtsfaXRsiiov1nCNV4wRN65A+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UyMKDhdO; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6188b654241so1703430a12.1;
+        Thu, 14 Aug 2025 05:24:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1755173746; x=1755778546; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jH/A5TldJIt0r8HRzTTERB8tMOGIsMMgINBB+z4/hxw=;
-        b=KWboGCmW2r2Ok3o1uFo3UCKfUr4Umu5rmWZT8M0mSv8Wdf3noCnvZKzy5nu2OE6Wkt
-         alWfxgekgp08tUPxc3IHD+zt97zrfPxoNtDQBmcej+Mzw6O2Sywuh1E7WjmRd93+CnEI
-         593IRj8G+wurx0rykj8BbrdW95Wro9jbRybFYYo0XzsuN9oJaJoSe52GvGEh7lDIJi5w
-         CVFZUvRJGbx7e+j68G6Vd80sain+wJvbit34eGC4kIxGHaBarpfTzSmGQscX5lQJFtCr
-         9OMGffYigIHiT1lSgh9bTHJGar31UWoVYCoWgFdJptH+IItfuUkGTHxEBiOhyBk0EO/u
-         EodQ==
+        d=gmail.com; s=20230601; t=1755174247; x=1755779047; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Kz21h/GxK1yaFVpKMjB0SGbD6rY9JcSSIlqWXA/9/Bc=;
+        b=UyMKDhdO1613sLowdYMRXsf2hkknsN++/q7BkT1oDYfCx0DOoSNWhdS+Q0KdoHBhU6
+         4iY7JzPfHS50meg7WJo0LRUmOHE3rV6j4NIvvkrpZ1aebu/QcW1sjTPVa9PA2/2Siz4r
+         J+Qjb50kuEcHnAy2yUiU6E+XRcQrIcrKXFR8aaI4dj3LtYRb8YRE9GX/K0wbSCaKdrSu
+         SCdOIxE307ElBdsSj8UbcsWGcx1WA1MfSMdHPl6mgg5LS2UykWqVNLX9XRqr6HXPF74/
+         kWRUOXkAIdM9bCp2ENcC2AUGz+O2EVJIftkfxXx7MewHhfVsevsicozHiNqfMQiYBLTq
+         UGLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755173746; x=1755778546;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jH/A5TldJIt0r8HRzTTERB8tMOGIsMMgINBB+z4/hxw=;
-        b=Vmuh3rIFyWuT0YD1ta4yULfjrV8wQKeClZhiEdUjxCjYoKvyiYrLRDdAH1uNZzkNvH
-         CpMOaT57y+azSzmhUsK/Z9/DNRzoiwE/fs24cEkeRGnIomNVOXnzbLwfLiCAeMDEU7Bf
-         zYLcVNFhoFqnKYRC+I9FVQFa5ic1szeL6gb6F9YyiCokvV7A0izMs+TisYI/fXbFYdbk
-         Nfrm6vQw5E1DogIzBUODtk50tS/U5NGJWGVKtHTj4an2ASbwSd6znog2rpXKkca/yGkD
-         qLyy6YOEMPNptYj42w9sn2wfgqQvUIheaYT+AsotyD9tp0eDvhRsd/vbqzMgmMan3+so
-         6Adw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAeSsXw7Y4tXvl2wqb1ZDBPvlzy5HvOe3jRZDlXV9CQCqWOdd9mEwqtNhLys9/N0pkSVLp+/gtbKyh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBmvANRJrn7zuiVHIq3yFgsEVHnW3Q5kTIeZFMPdy7ySRXiB6a
-	GBYs6r9uMp6w4sJD8J8Ih6YT3o7yZhTToPWVtVLmeGa76muHLAOeXh+auX9/1SuadNQ=
-X-Gm-Gg: ASbGnctiIHrVX0M/dG/WN1cpNFyrFYnn7PBnfY9oXNHUAPWtgn9YcD5mdm5GJCbUgKO
-	CSUf0TobaI7OmA1djOpQOB5OjnDutY0KJdNWFzG7+v7NFE62fiFGr85/62lRKjCvdcM+p5xmpkE
-	R99oD8yqZa1U3oTMnbeiaUnYbhx71DZYSTrrXRWIk0GwTgenVCumz7DtxlDeHIICJprpjyz1yOq
-	wM2xRr/VM1nmxLQdiYP7+kOWzwUJc6H5CEWyFGKxyeX9wlGQjods1C+y60ScSP8nR5otW9FYPUH
-	YRD60MrjXfFDdUZUPyoXkImjZL5utRFryw8kWCxS06D5Zu2LAn3AVPuoHCcJgdzBDwhoxuvfVeo
-	RozCJjiQIs423VjQ5E4tncTKP77CYQx9Jwq3ZxjL2iIxNCtu0KQHbr2zUBbcF1g==
-X-Google-Smtp-Source: AGHT+IEk5Gf6e1UB1FErhDDdp2cqW5OM5qB7djdZQAW5/M0csvkRq5HHXBwlwGdJnT74jfJk+RYeIA==
-X-Received: by 2002:a05:6e02:3bc7:b0:3e5:4631:54a5 with SMTP id e9e14a558f8ab-3e5709835e8mr60618705ab.18.1755173745691;
-        Thu, 14 Aug 2025 05:15:45 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3e55b077b34sm27683845ab.51.2025.08.14.05.15.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Aug 2025 05:15:45 -0700 (PDT)
-Message-ID: <4eaa30bc-9a25-4fe0-b685-1d0d8fa503c2@riscstar.com>
-Date: Thu, 14 Aug 2025 07:15:43 -0500
+        d=1e100.net; s=20230601; t=1755174247; x=1755779047;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Kz21h/GxK1yaFVpKMjB0SGbD6rY9JcSSIlqWXA/9/Bc=;
+        b=wM/VGueHXHgzoIpVhtHABzOljchwsO5lbK8QUg75La9/kSB47gGSD8RR+uP4UR/cEt
+         04UqqPEZtDfAYEyEsmyuC8hkIENjsgywa1VlyXKwLqIx4JxFD5Q3kOXCJe+1Cm6ywH9E
+         0xbbcByes3C3LNv1n1Ay1yVhit5pX2k9OY2JxzwAylO23RV/ihazQVJweHRW/1ybfFQi
+         oGmZ7o/VD7CifIBMI/mZDZdl4ER8qUcf/eTErKseQFPe4eujrIyUY7hYlLAh2UZJgYEU
+         4odc7dbsD6N9oOv6oBNfwUaRArlPf7MQ+8tNVUgm5YB6xjMqf6nsggRBMeUMVK/nPE8s
+         XLzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVj2qKgJCzuxicCwmCtb6yiEfKjDksN2IXzGyEF6NLJ/6HeBLpLtZ8ky7QNqXmTK4L+9fgGIAWOEC/z@vger.kernel.org, AJvYcCW69q/WpoTkBE40sLgAIo08d8m71xCRQt43KxL6kjjG092cduzmfb2sEssrDCEEnAMWbudAtbXXOrHbZN/O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBph3ADvZTwaiJykMTCzbuRq8BeULAsnT9x4GLN2a0IBAqpvo2
+	8rLX5wkoBmIhSOZgXWsVocfXGInNl4J1F0wxrt/VXx69+UFTmVWqScP4
+X-Gm-Gg: ASbGncvjN6h7QfQvugXzomS5QlUDT0BxuYZzl4mF0rrupjYekZzxUpF5dcjzaqRhvdO
+	0iL7J0n8dH7F2wyxcNieZ448EFqNCWpUvdkGMhHCos3g2+7RzolhkJFjU8fA81eGFk2mPHu/m5l
+	K8b6VNdWiyozVXxOABQRp8rkNV4DA5dx2NClUinb6KUecvqS9WXrbPfVYekFQ8ABNRBeM7YCayw
+	MOBcJ6l+vk1yJOSL7n3aoPG/SwSOK5/Qj3NF9141GydA2XIOv87QyoDgKXfbFgdujunKvGBC78p
+	LrQApYdoNzrGKN0UeQ2Oco3nOdzqJSzzmnqmOZdBi01yAQdWvbt2rkXNSYh7J1HbhpnJVJPyvwn
+	h4h70DgBYIliSr8C8Qv5NkA5bUdX/6nfHxZ688F8=
+X-Google-Smtp-Source: AGHT+IGWiJlYtfNSxH2mHMJP2mtKl4b47xVZr2FIn9jVQU6Cs4T+6t19fvx/g0eKtkgdqO8JhlXlFw==
+X-Received: by 2002:a17:907:2d1e:b0:afa:1d30:1437 with SMTP id a640c23a62f3a-afcb993eafamr234382566b.53.1755174246837;
+        Thu, 14 Aug 2025 05:24:06 -0700 (PDT)
+Received: from giga-mm.home ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-af91a21ac0asm2582706666b.99.2025.08.14.05.24.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Aug 2025 05:24:06 -0700 (PDT)
+Message-ID: <cfdff4f068c98feba252b28fb61de7629637dc45.camel@gmail.com>
+Subject: Re: [PATCH 2/3] eeprom: at25: support Cypress FRAMs without device
+ ID
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Markus Heidelberg <m.heidelberg@cab.de>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Christian Eggers <ceggers@arri.de>,
+ Jiri Prchal <jiri.prchal@aksignal.cz>, 	linux-kernel@vger.kernel.org
+Date: Thu, 14 Aug 2025 14:24:06 +0200
+In-Reply-To: <20250814111546.617131-3-m.heidelberg@cab.de>
+References: <20250814111546.617131-1-m.heidelberg@cab.de>
+	 <20250814111546.617131-3-m.heidelberg@cab.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] phy: spacemit: introduce PCIe/combo PHY
-To: Inochi Amaoto <inochiama@gmail.com>, lpieralisi@kernel.org,
- kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org,
- bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- vkoul@kernel.org, kishon@kernel.org
-Cc: dlan@gentoo.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
- tglx@linutronix.de, johan+linaro@kernel.org, thippeswamy.havalige@amd.com,
- namcao@linutronix.de, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com,
- quic_schintav@quicinc.com, fan.ni@samsung.com, devicetree@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pci@vger.kernel.org,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, Junzhong Pan <panjunzhong@linux.spacemit.com>
-References: <20250813184701.2444372-1-elder@riscstar.com>
- <20250813184701.2444372-5-elder@riscstar.com>
- <valmrbddij2dn4fjxefr46zud2u6eco2isyaa62sd66d27foyl@4hrhafqftgb5>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <valmrbddij2dn4fjxefr46zud2u6eco2isyaa62sd66d27foyl@4hrhafqftgb5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 8/13/25 6:42 PM, Inochi Amaoto wrote:
-> On Wed, Aug 13, 2025 at 01:46:58PM -0500, Alex Elder wrote:
->> Introduce a driver that supports three PHYs found on the SpacemiT
->> K1 SoC.  The first PHY is a combo PHY that can be configured for
->> use for either USB 3 or PCIe.  The other two PHYs support PCIe
->> only.
->>
->> All three PHYs must be programmed with an 8 bit receiver termination
->> value, which must be determined dynamically; only the combo PHY is
->> able to determine this value.  The combo PHY performs a special
->> calibration step at probe time to discover this, and that value is
->> used to program each PHY that operates in PCIe mode.  The combo
->> PHY must therefore be probed--first--if either of the PCIe-only
->> PHYs will be used.
->>
->> During normal operation, the USB or PCIe driver using the PHY must
->> ensure clocks and resets are set up properly.  However clocks are
->> enabled and resets are de-asserted temporarily by this driver to
->> perform the calibration step on the combo PHY.
->>
->> Tested-by: Junzhong Pan <panjunzhong@linux.spacemit.com>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> ---
->>   drivers/phy/Kconfig                |  11 +
->>   drivers/phy/Makefile               |   1 +
->>   drivers/phy/phy-spacemit-k1-pcie.c | 639 +++++++++++++++++++++++++++++
->>   3 files changed, 651 insertions(+)
->>   create mode 100644 drivers/phy/phy-spacemit-k1-pcie.c
+On Thu, 2025-08-14 at 13:15 +0200, Markus Heidelberg wrote:
+> Not all FRAM chips have a device ID and implement the corresponding read
+> command. For such chips this led to the following error on module
+> loading:
+>=20
+> =C2=A0=C2=A0=C2=A0 at25 spi2.0: Error: no Cypress FRAM (id 00)
+>=20
+> The device ID contains the memory size, so devices without this ID are
+> supported now by setting the size manually in Devicetree using the
+> "size" property.
+>=20
+> Tested with FM25L16B and "size =3D <2048>;":
+>=20
+> =C2=A0=C2=A0=C2=A0 at25 spi2.0: 2 KByte fm25 fram, pagesize 4096
+>=20
+> According to Infineon/Cypress datasheets, these FRAMs have a device ID:
+>=20
+> =C2=A0=C2=A0=C2=A0 FM25V01A
+> =C2=A0=C2=A0=C2=A0 FM25V02A
+> =C2=A0=C2=A0=C2=A0 FM25V05
+> =C2=A0=C2=A0=C2=A0 FM25V10
+> =C2=A0=C2=A0=C2=A0 FM25V20A
+> =C2=A0=C2=A0=C2=A0 FM25VN10
+>=20
+> but these do not:
+>=20
+> =C2=A0=C2=A0=C2=A0 FM25040B
+> =C2=A0=C2=A0=C2=A0 FM25640B
+> =C2=A0=C2=A0=C2=A0 FM25C160B
+> =C2=A0=C2=A0=C2=A0 FM25CL64B
+> =C2=A0=C2=A0=C2=A0 FM25L04B
+> =C2=A0=C2=A0=C2=A0 FM25L16B
+> =C2=A0=C2=A0=C2=A0 FM25W256
+>=20
+> So all "FM25V*" FRAMs and only these have a device ID. The letter after
+> "FM25" (V/C/L/W) only describes the voltage range, though.
+>=20
+> Link: https://lore.kernel.org/all/20250401133148.38330-1-m.heidelberg@cab=
+.de/
+> Signed-off-by: Markus Heidelberg <m.heidelberg@cab.de>
 
-. . .
+Reviewed-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 
->> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
->> index c670a8dac4680..20f0078e543c7 100644
->> --- a/drivers/phy/Makefile
->> +++ b/drivers/phy/Makefile
+> ---
+> =C2=A0drivers/misc/eeprom/at25.c | 67 ++++++++++++++++++++---------------=
+---
+> =C2=A01 file changed, 36 insertions(+), 31 deletions(-)
+>=20
+> diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
+> index 2d0492867054..c90150f72836 100644
+> --- a/drivers/misc/eeprom/at25.c
+> +++ b/drivers/misc/eeprom/at25.c
+> @@ -379,37 +379,49 @@ static int at25_fram_to_chip(struct device *dev, st=
+ruct spi_eeprom *chip)
+> =C2=A0	struct at25_data *at25 =3D container_of(chip, struct at25_data, ch=
+ip);
+> =C2=A0	u8 sernum[FM25_SN_LEN];
+> =C2=A0	u8 id[FM25_ID_LEN];
+> +	u32 val;
+> =C2=A0	int i;
+> =C2=A0
+> =C2=A0	strscpy(chip->name, "fm25", sizeof(chip->name));
+> =C2=A0
+> -	/* Get ID of chip */
+> -	fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
+> -	/* There are inside-out FRAM variations, detect them and reverse the ID=
+ bytes */
+> -	if (id[6] =3D=3D 0x7f && id[2] =3D=3D 0xc2)
+> -		for (i =3D 0; i < ARRAY_SIZE(id) / 2; i++) {
+> -			u8 tmp =3D id[i];
+> -			int j =3D ARRAY_SIZE(id) - i - 1;
+> +	if (!device_property_read_u32(dev, "size", &val)) {
+> +		chip->byte_len =3D val;
+> +	} else {
+> +		/* Get ID of chip */
+> +		fm25_aux_read(at25, id, FM25_RDID, FM25_ID_LEN);
+> +		/* There are inside-out FRAM variations, detect them and reverse the I=
+D bytes */
+> +		if (id[6] =3D=3D 0x7f && id[2] =3D=3D 0xc2)
+> +			for (i =3D 0; i < ARRAY_SIZE(id) / 2; i++) {
+> +				u8 tmp =3D id[i];
+> +				int j =3D ARRAY_SIZE(id) - i - 1;
+> +
+> +				id[i] =3D id[j];
+> +				id[j] =3D tmp;
+> +			}
+> +		if (id[6] !=3D 0xc2) {
+> +			dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
+> +			return -ENODEV;
+> +		}
+> =C2=A0
+> -			id[i] =3D id[j];
+> -			id[j] =3D tmp;
+> +		switch (id[7]) {
+> +		case 0x21 ... 0x26:
+> +			chip->byte_len =3D BIT(id[7] - 0x21 + 4) * 1024;
+> +			break;
+> +		case 0x2a ... 0x30:
+> +			/* CY15B116QN ... CY15B116QN */
+> +			chip->byte_len =3D BIT(((id[7] >> 1) & 0xf) + 13);
+> +			break;
+> +		default:
+> +			dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
+> +			return -ENODEV;
+> =C2=A0		}
+> -	if (id[6] !=3D 0xc2) {
+> -		dev_err(dev, "Error: no Cypress FRAM (id %02x)\n", id[6]);
+> -		return -ENODEV;
+> -	}
+> =C2=A0
+> -	switch (id[7]) {
+> -	case 0x21 ... 0x26:
+> -		chip->byte_len =3D BIT(id[7] - 0x21 + 4) * 1024;
+> -		break;
+> -	case 0x2a ... 0x30:
+> -		/* CY15B116QN ... CY15B116QN */
+> -		chip->byte_len =3D BIT(((id[7] >> 1) & 0xf) + 13);
+> -		break;
+> -	default:
+> -		dev_err(dev, "Error: unsupported size (id %02x)\n", id[7]);
+> -		return -ENODEV;
+> +		if (id[8]) {
+> +			fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
+> +			/* Swap byte order */
+> +			for (i =3D 0; i < FM25_SN_LEN; i++)
+> +				at25->sernum[i] =3D sernum[FM25_SN_LEN - 1 - i];
+> +		}
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	if (chip->byte_len > 64 * 1024)
+> @@ -417,13 +429,6 @@ static int at25_fram_to_chip(struct device *dev, str=
+uct spi_eeprom *chip)
+> =C2=A0	else
+> =C2=A0		chip->flags |=3D EE_ADDR2;
+> =C2=A0
+> -	if (id[8]) {
+> -		fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
+> -		/* Swap byte order */
+> -		for (i =3D 0; i < FM25_SN_LEN; i++)
+> -			at25->sernum[i] =3D sernum[FM25_SN_LEN - 1 - i];
+> -	}
+> -
+> =C2=A0	chip->page_size =3D PAGE_SIZE;
+> =C2=A0	return 0;
+> =C2=A0}
+> --
+> 2.43.0
 
-. . .
-
->> +static int k1_pcie_pll_lock(struct k1_pcie_phy *k1_phy, bool pcie)
->> +{
->> +	u32 val = pcie ? CFG_FORCE_RCV_RETRY : 0;
->> +	void __iomem *virt;
->> +
->> +	writel(val, k1_phy->regs + PCIE_RC_DONE_STATUS);
->> +
->> +	/*
->> +	 * Wait for indication the PHY PLL is locked.  Lanes for ports
->> +	 * B and C share a PLL, so it's enough to sample just lane 0.
->> +	 */
->> +	virt = k1_phy->regs + PCIE_PU_ADDR_CLK_CFG;	/* Lane 0 */
->> +
->> +	return readl_poll_timeout(virt, val, val & PLL_READY,
->> +				  POLL_DELAY, PLL_TIMEOUT);
->> +}
->> +
-> 
-> Can we use standard clk_ops and clk_mux to normalize this process?
-
-I understand you're suggesting that we represent this as a clock.
-
-Can you be more specific about how you suggest I do that?
-
-For example, are you suggesting I create a separate clock driver
-for this one PLL (in each PCIe register space)?
-
-Or do you mean use clock structures and callbacks within this
-driver to represent this?
-
-I'm just not sure what you have in mind, and the two options I
-mention seem a lot more complicated than this one function.
-
-Thanks.
-
-					-Alex
-
-> Regards,
-> Inochi
-
+--=20
+Alexander Sverdlin.
 
