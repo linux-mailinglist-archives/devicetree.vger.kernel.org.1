@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-204484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A44FB25C74
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:01:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4256B25C8B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 09:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CA82B611CE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 06:58:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4426A1BC475B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 07:02:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A9D25BEF3;
-	Thu, 14 Aug 2025 06:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77327263F43;
+	Thu, 14 Aug 2025 07:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ERAdkFp4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CfJJmDQE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47652505CB;
-	Thu, 14 Aug 2025 06:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4897825A659;
+	Thu, 14 Aug 2025 07:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755154768; cv=none; b=FgJPGcqMbZxatEsnXwTl8eBvrPXinoXh1B3V4x7h4Lx0sTBAmB9RbT/FqSQKPu94tdC/DZ6Dzl0S2STRAQJZP/+9rxngjVyKmtLu/8e35QjHvHf6RMHo18QmXG8N1nmTVi159i9c9bM5LYe9QyingtN69Yhlo17kRlUsUuWJexQ=
+	t=1755154900; cv=none; b=keOxihBa3gG1pmaV9vgm92DH80sUw4u84+fvpnrtiGquVpS4ZMED2dvj1CTC+ejjJg5OBCkp3B54vos5sDzd4apggPeKwEssjylodgQCz6k4LLTgdl0x3Q+LORPxD/sohCfJRTREsFsT9FVdq44jWk3ZpvSvVdmGckxoUkVRqf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755154768; c=relaxed/simple;
-	bh=CtmqplZwY66VaRI3jcehqVyC7vyWcB4HKqdwUObY6qk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=iA9p/jh8ywrwrN1apXG2IA1AtZw9EnmAmG11zavQ5Q2Zef1X8qF5MStYrNbICHgccFZnuR20qm8vTN6tq5CHmX0vEpKAzZEdyy0mRo0RkQJ8JxVGbK83+TVdoUQt1PAy/On5/b0ZYtGbcXdMbm4f+R1ek1IdeTQOJllyp5lGIkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ERAdkFp4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBE84C4CEEF;
-	Thu, 14 Aug 2025 06:59:23 +0000 (UTC)
+	s=arc-20240116; t=1755154900; c=relaxed/simple;
+	bh=G4m2WmUA6j5mbRNXvyqVELr7P6kumC3Wt2zPvFeuSVI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FsKrZEsajFaN6vqFe+YDFm4WaBkWB0goXfWHI5SrU12SZROq1BGC+DC4lJc4BEQ7yPPC+LrhxTa/pAJz6ZXNy35tJXzWfWkdvgkLylrWbDZyumwiCZwGDZg27p8ifE/VY7VyEbdbw9a2+CtsoibAY/bJjwId7MkmhFzh0CYLC8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CfJJmDQE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 766F6C4CEEF;
+	Thu, 14 Aug 2025 07:01:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755154768;
-	bh=CtmqplZwY66VaRI3jcehqVyC7vyWcB4HKqdwUObY6qk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ERAdkFp4+b09ZVe/VqAVH5IEu/83yRDmVGoVN+WAja6HHm3TV8yaC/MamtvTxdWZx
-	 hQf0Rh9cSXsydAKvMYmZgok77TiHrn+hKofWDuiv7PsUDvj8t0XszRgULbsShhrW+a
-	 FT8DRX46k6f8a5/pDGqSGQbKGEcOV3TbpIzOjT0nYE+ZVK//5X31FDGwn7T+X3HgOH
-	 AyA7Ut5/ApAemQ77Yb1/d06/b9VSEWZ7FQrn68am7HdID5gF9MqetSOwM5XYFj1jnt
-	 XuChR59P4onxP5YzWrdGvhHfj+CE3scaxDqfEogICMd8EBPwjE2IctwcZuzlUzXdWt
-	 tB+CKI0uos5eQ==
-Message-ID: <6a22ef70-02ed-4436-8c6d-822d04f2c930@kernel.org>
-Date: Thu, 14 Aug 2025 08:59:22 +0200
+	s=k20201202; t=1755154899;
+	bh=G4m2WmUA6j5mbRNXvyqVELr7P6kumC3Wt2zPvFeuSVI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CfJJmDQElgFs9Ogl780UH6NOP70i1oxXgzwiGTwP08poyZzyRvQbDVF0RC5gM7Ho8
+	 P7go/JXHips9oRUILR6WuZzgiG9/lY85C9KNjSz4bSrAH1CjgU0isi1Cy38aLrjETy
+	 /ZRCF5C7zo/aEMXe/tO+MFax7dHKLic9EKixSQ94plath7XxyUpvv4LJanqYIGjT7n
+	 3L75w8zOrcDsrMYmu5/hgTohHmkt7EAaVUlbjTaZITW8/jfv9gP1AK1Rl0SGxdIKuv
+	 5uW2Qrup29CGGs6xESThum6XaFbv5NNphOZlrnvUnAX2BwhryeyMf+m54tBBFvhejv
+	 yuyjKtOsY9sow==
+Message-ID: <94d10725-e69f-4a08-954a-db66b384b2f1@kernel.org>
+Date: Thu, 14 Aug 2025 09:01:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] ufs: ufs-qcom: describe x1e80100 quirks
-To: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>, marcus@nazgul.ch,
- kirill@korins.ky, vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
- alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
- andersson@kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org
-References: <20250814005904.39173-1-harrison.vanderbyl@gmail.com>
- <20250814005904.39173-3-harrison.vanderbyl@gmail.com>
+Subject: Re: [RFC net-next 0/3] net: dsa: yt921x: Add support for Motorcomm
+ YT921x
+To: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250814065032.3766988-1-mmyangfl@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,47 +106,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250814005904.39173-3-harrison.vanderbyl@gmail.com>
+In-Reply-To: <20250814065032.3766988-1-mmyangfl@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2025 02:59, Harrison Vanderbyl wrote:
-> Describe describe driver quirks for x1e80100 ufs device
-> Signed-off-by: Harrison Vanderbyl <harrison.vanderbyl@gmail.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 3 +++
->  drivers/ufs/host/ufs-qcom.c             | 1 +
->  2 files changed, 4 insertions(+)
+On 14/08/2025 08:50, David Yang wrote:
+> Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+> Motorcomm Electronic Technology, including:
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 9c69c77d10c8..b88cafac4da7 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> @@ -2168,6 +2168,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
->  	}, {
->  		.compatible = "qcom,sm8750-qmp-ufs-phy",
->  		.data = &sm8750_ufsphy_cfg,
-> +	}, {
-> +		.compatible = "qcom,x1e80100-qmp-ufs-phy",
-> +		.data = &sm8550_ufsphy_cfg,
+>   - YT9215S / YT9215RB / YT9215SC: 5 GbE phys
+>   - YT9213NB / YT9214NB: 2 GbE phys
+>   - YT9218N / YT9218MB: 8 GbE phys
+> 
+> and up to 2 serdes interfaces.
+> 
+> This patch adds basic support for a working DSA switch.
+> 
+> previous rfc: https://lore.kernel.org/all/20250808173808.273774-1-mmyangfl@gmail.com/
 
-So it is fully compatible? If so then don't duplicate entries and
-express compatibility with fallback.
 
->  	},
->  
->  	{ },
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 76fc70503a62..2e143ccd1a03 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -2282,6 +2282,7 @@ static const struct of_device_id ufs_qcom_of_match[] __maybe_unused = {
->  	{ .compatible = "qcom,ufshc" },
->  	{ .compatible = "qcom,sm8550-ufshc", .data = &ufs_qcom_sm8550_drvdata },
->  	{ .compatible = "qcom,sm8650-ufshc", .data = &ufs_qcom_sm8550_drvdata },
-> +	{ .compatible = "qcom,x1e80100-ufshc", .data = &ufs_qcom_sm8550_drvdata },
+So that's a v2? Please version your patches correctly, e.g. use b4 or
+git format-patch -vX, and add changelog in cover letter or under '---'
+of individual patches describing changes from previous version.
 
-Same problem here.
+>   - fix coding style
+>   - add dt binding
+>   - add support for fdb, vlan and bridge
+
+
+Please also explain why this is RFC, why this is not ready for review.
 
 
 Best regards,
