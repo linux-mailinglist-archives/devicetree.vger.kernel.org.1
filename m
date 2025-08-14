@@ -1,170 +1,113 @@
-Return-Path: <devicetree+bounces-204839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-204840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77679B27069
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:53:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B393B2707D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 22:59:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA21B1CC24DD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 20:53:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82BF05E0D98
+	for <lists+devicetree@lfdr.de>; Thu, 14 Aug 2025 20:59:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873D92737FC;
-	Thu, 14 Aug 2025 20:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83062273D6D;
+	Thu, 14 Aug 2025 20:59:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xd8F/Vqp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZBTLYNL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF5C26FA46;
-	Thu, 14 Aug 2025 20:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502C4272E42;
+	Thu, 14 Aug 2025 20:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1755204800; cv=none; b=iTFVPS3M8XoGAZfdRw4vF4DiuDvcuZijSSI4LwXLo8nKMoVcRxVv3LYFBv0AlXOrei4qzQ9IXrGYeD+wgzCDI5CqPKeSPXgnCefe/4pnOgb5KFfqZb6QRVxOjmYxoAfyDI3WaplS3jD8sRvpFpsorn1ytuiMKTrZMwmZoca/ekc=
+	t=1755205160; cv=none; b=uQ5sjzib1SREbmQL18QKX7inumMOmk+FxEKbii776ETKy5azmffMGQ8ss+8LhHP9EJF5Z+VZNgKVLwMLE0n9fV1twuNkyHLLJ1uletBK6DfAO2HVwokNXDEdFhK15fqDNF/Z/7+hA4ugcCHQLHv6DLsav154kq8n3nwNZcIA11I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1755204800; c=relaxed/simple;
-	bh=2LkRFzEQQLz4AsmD3GeNQ+csq6dZRddW53dxc2tua8w=;
+	s=arc-20240116; t=1755205160; c=relaxed/simple;
+	bh=Tb8hGze9KVpCqWMZFaP75hh5mWHsorO7iqkAvfTQO0Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tt4fSw0GPWYZ0mYRLu2rjgSsh1wJljQNXxeiNAzXKv9iKdggyT5HgJdbN/6KMD7TZW9NUJjtmJxug/W3Z6BzdheW+xIM55icwa6d9Y5G4O7cOGAclvx4y1HiYNKRxsABoK9x8FUEA9A16tk5qz0bdDEKhSbX6BVQ+tb69s3P3mM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xd8F/Vqp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 040DDC4CEED;
-	Thu, 14 Aug 2025 20:53:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ug68nprUDi1Px/uZvaR8mxw+lgeYDdhukztwYtHdH411ckkXWIZqyLTCq0hTcGMH7z+EMsZur6U51WkkJAJxYiwfUywP5FWWgOSv/V6L8HozGLknE3QrwWNcOc7nmyTCBnUi8ZuD1BS+xox+bFIAIhLvcVGiejDhFS6swNBJg7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jZBTLYNL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FE42C4CEED;
+	Thu, 14 Aug 2025 20:59:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1755204798;
-	bh=2LkRFzEQQLz4AsmD3GeNQ+csq6dZRddW53dxc2tua8w=;
+	s=k20201202; t=1755205158;
+	bh=Tb8hGze9KVpCqWMZFaP75hh5mWHsorO7iqkAvfTQO0Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xd8F/VqpOJKht5NslLkVfnLi7Vhs+djTmWL+AGaKqNfW+hlk1SizvwwK514eJaIX9
-	 sJ6E+SnEPGgiX5AuS0qktX7na+YkgJ7dXTxuwASdjM2JkkdO6NvdwnMOVFNwsQfaXH
-	 zdmK+WaRGzP1YjxZ7pn1eU6batw2NzSL8HJXkZdqWmUzUaPQ1Q1kc/rYMphoG5wCAk
-	 0XBESRPPPGRacMW7e3jBNDliebXM7jMdFMR/pDxsYrB0DFRNgyMtCIrQf6Czu6Zas5
-	 6qZj+R5W6Zx9n8b1hwaNLMzf0C4e1hwDXGy9I8VS3W7QvF00ZXIa+9+psPR9DmpNWe
-	 RLt+FXQrtFPdA==
-Date: Thu, 14 Aug 2025 21:53:14 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mips: lantiq: Document Lantiq Xway VMMC
-Message-ID: <20250814-extended-collector-8335abee820d@spud>
-References: <20250814161748.3230278-1-olek2@wp.pl>
+	b=jZBTLYNLo7rNXtPYOKWDDRJLNg2SiYsR/U1wfMoexVHfzeh5+ZibOWLXayI+mIaTt
+	 ZT96Ozjsd1xBRGn3x5U6VisXs03AJvs8UQYinxH82K3zFUaiGzhh7yUTD6QIMGsgkE
+	 zTGnmu5MrD0sAe1rEjhoEAoZFexLOCe1g2gdsLiGUY8+jwGhDrLfNvg8aUx0F7cy98
+	 Lwq9S0qxDeGkK13MhRUcBYuUAXYe7GI485FoymZc3ZZQhJ41hudUfwPDxXllrku/9W
+	 v2P37OM35nBn/szcH83yL6eTCl3yGQIzS2ApXQNsaCBBp2/FLFgTqkBv0k58wKR11t
+	 zrMQg6cwn0jdg==
+Date: Thu, 14 Aug 2025 15:59:17 -0500
+From: Rob Herring <robh@kernel.org>
+To: James Clark <james.clark@linaro.org>
+Cc: Frank Li <Frank.Li@nxp.com>, Mark Brown <broonie@kernel.org>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	Fugang Duan <B38611@freescale.com>, Gao Pan <pandy.gao@nxp.com>,
+	Fugang Duan <fugang.duan@nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Larisa Grigore <larisa.grigore@oss.nxp.com>,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+	linux-spi@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 11/13] dt-bindings: lpspi: Update maximum num-cs value
+Message-ID: <20250814205917.GA3894941-robh@kernel.org>
+References: <20250814-james-nxp-lpspi-v1-0-9586d7815d14@linaro.org>
+ <20250814-james-nxp-lpspi-v1-11-9586d7815d14@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ari62n+PILi2eRwl"
-Content-Disposition: inline
-In-Reply-To: <20250814161748.3230278-1-olek2@wp.pl>
-
-
---ari62n+PILi2eRwl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250814-james-nxp-lpspi-v1-11-9586d7815d14@linaro.org>
 
-On Thu, Aug 14, 2025 at 06:17:45PM +0200, Aleksander Jan Bajkowski wrote:
-> The Lantiq SoCs have a 2nd mips core called "voice mips macro core (vmmc)"
-> which is used to run the voice firmware.
->=20
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+On Thu, Aug 14, 2025 at 05:06:51PM +0100, James Clark wrote:
+> As mentioned in commit f46b06e62c86 ("spi: spi-fsl-lpspi: Read
+> chip-select amount from hardware for i.MX93"), some devices support up
+> to 3 chip selects so update the max value.
+> 
+> This isn't a fix or functional change because the devices with 3 chip
+> selects support reading the number of chip selects from hardware, so the
+> value wouldn't have needed to be set here. However the commit states
+> that the DT could be used to overwrite any HW value, so the full range
+> should be supported. This also avoids confusion for any readers about
+> how many chip selects there are.
+
+If reading the h/w gives you 3, when would the DT need to override that 
+with 3? You only need an override for 2 or less.
+
+> 
+> Signed-off-by: James Clark <james.clark@linaro.org>
 > ---
->  .../mips/lantiq/lantiq,vmmc-xway.yaml         | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/lantiq/lantiq,=
-vmmc-xway.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mips/lantiq/lantiq,vmmc-xw=
-ay.yaml b/Documentation/devicetree/bindings/mips/lantiq/lantiq,vmmc-xway.ya=
-ml
-> new file mode 100644
-> index 000000000000..bee64f6d0e97
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/lantiq/lantiq,vmmc-xway.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/lantiq/lantiq,vmmc-xway.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lantiq VMMC (Voice MIPS Macro Core)
-> +
-> +maintainers:
-> +  - Aleksander Jan Bajkowski <olek2@wp.pl>
-> +
-> +description:
-> +  The Lantiq SoCs have a 2nd mips core called "Voice MIPS Macro Core (VM=
-MC)"
-> +  which is used to run the voice firmware. The firmware handles analog
-> +  telephone lines.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - lantiq,vmmc-xway
-
-Same comment here as elsewhere, the commit message seems to suggest that
-you're trying to use one compatible for multiple devices. Not using
-soc-specific compatibles requires justification if that's what you're
-doing as they are the norm.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 6
-> +    maxItems: 6
-
-Same comment here as elsewhere re: items list explaining each item.
-
-> +
-> +  gpios: true
-
-What are these gpios? You've got 3 below, what portion of those three
-are required? How many mix/max?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    vmmc@107000 {
-> +        compatible =3D "lantiq,vmmc-xway";
-> +        reg =3D <0x107000 0x300>;
-> +        interrupt-parent =3D <&icu0>;
-> +        interrupts =3D <150>, <151>, <152>, <153>, <154>, <155>;
-> +        gpios =3D <&gpio 30 GPIO_ACTIVE_HIGH
-> +                 &gpio 31 GPIO_ACTIVE_HIGH
-> +                 &gpio 3  GPIO_ACTIVE_HIGH>;
-> +
-> +    };
-> --=20
-> 2.47.2
->=20
-
---ari62n+PILi2eRwl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaJ5MugAKCRB4tDGHoIJi
-0hEuAQChrMm3aIadGdB/jPZg4DG5RglwxgVK72EEf0NTp+WVDwEAm7/j5Wqo6L3m
-QFpE8NvEPCIGmZLM6O1xgVsex/pW0Aw=
-=KLOh
------END PGP SIGNATURE-----
-
---ari62n+PILi2eRwl--
+>  Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> index a65a42ccaafe..ce7bd44ee17e 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> @@ -64,7 +64,7 @@ properties:
+>      description:
+>        number of chip selects.
+>      minimum: 1
+> -    maximum: 2
+> +    maximum: 3
+>      default: 1
+>  
+>    power-domains:
+> 
+> -- 
+> 2.34.1
+> 
 
